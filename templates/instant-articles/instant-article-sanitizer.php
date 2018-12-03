@@ -18,6 +18,8 @@ if(class_exists("DOMDocument")){
 	add_filter( 'ampforwp_fbia_content_dom','ampforwp_fbia_wrap_elements');
 	// Video Filter
 	add_filter( 'ampforwp_fbia_content_dom','ampforwp_fbia_video_element');
+	// Embeds sanitizer
+	add_filter( 'fbia_content_dom','ampforwp_fbia_wrap_embed_elements');
 	}
 function ampforwp_fbia_headlines($content){
 		// Replace h3, h4, h5, h6 with h2
@@ -276,7 +278,30 @@ function ampforwp_fbia_video_element( $DOMDocument ){
 	}
 	return $DOMDocument;
 }
-
+// Embeds Sanitizer
+function ampforwp_fbia_wrap_embed_elements( $DOMDocument ) {
+	$figure_object = $DOMDocument->createElement( 'figure' );
+	$figure_object->setAttribute( 'class', 'op-interactive' );
+	$iframe_object = $DOMDocument->createElement( 'iframe' );
+	$body = $DOMDocument->getElementsByTagName( 'body' )->item( 0 );
+    $xpath = new DOMXPath($DOMDocument);
+    // Instagram
+    $class_name = 'instagram-media';
+    $blockquotes = $xpath->query("//*[contains(@class,'$class_name')]");
+    foreach($blockquotes as $instagram_media){
+  		if ( 'iframe' !== $instagram_media->parentNode->tagName ) {
+			$iframe = clone $iframe_object;
+			$instagram_media->parentNode->replaceChild( $iframe, $instagram_media );
+			$iframe->appendChild( $instagram_media );
+			if ( 'figure' !== $iframe->parentNode->tagName ) {
+				$figure_template = clone $figure_object;
+				$iframe->parentNode->replaceChild( $figure_template, $iframe );
+				$figure_template->appendChild( $iframe );
+			}
+		}
+    }
+	return $DOMDocument;
+}
 function ampforwp_get_ia_placement_id(){
 	global $redux_builder_amp;
 	$instant_article_ad_id = $redux_builder_amp['fb-instant-article-ad-id'];
