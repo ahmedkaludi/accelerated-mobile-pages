@@ -53,7 +53,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 												),
 											array(
 												"img",
-												"<style>",
+												"<style type=\"text/css\">",
 												"<sidebar ",
 												"</sidebar>",
 												)
@@ -64,10 +64,10 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 				img{height:auto;}
 				.amp-featured-image img{width:100%;height:auto;}
 				.content-wrapper, .header, .header-2, .header-3{width:100% !important;}
-				.image-mod img{width:100%}
+				.image-mod img{width:100%;}
 				
 				';
-				$re = '/<style type="text\/css">(.*?)<\/style>/';
+				$re = '/<style\s*type="text\/css">(.*?)<\/style>/si';
 				$subst = "<style type=\"text/css\">$1 ".$nonampCss."</style>";
 				$returnData = preg_replace($re, $subst, $returnData);
 				$returnData = preg_replace(
