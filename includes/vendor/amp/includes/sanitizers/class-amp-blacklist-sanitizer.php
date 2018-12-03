@@ -145,7 +145,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		if ( empty( $href ) ) {
 			$name_attr = $node->getAttribute( 'name' );
 			$id_attr = $node->getAttribute( 'id' );
-			if ( ! empty( $id_attr ) ) {
+			if ( ! empty( $id_attr ) || ! empty( $name_attr ) ) {
 				// No further validation is required
 				return true;
 			} else {
