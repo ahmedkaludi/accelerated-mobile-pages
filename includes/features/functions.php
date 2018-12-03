@@ -256,6 +256,15 @@ function ampforwp_generate_meta_desc($json=""){
                 $desc = $seopress_description;
             }
         }
+        // The SEO Framework
+        if ( class_exists('The_SEO_Framework\\Generate_Description') && 5 == $redux_builder_amp['ampforwp-seo-selection'] ) {
+            $tsf_desc = $ampforwp_tsf = '';
+            $ampforwp_tsf   = \the_seo_framework();
+            $tsf_desc       = $ampforwp_tsf->get_description();
+            if ( $tsf_desc ) {
+                $desc = $tsf_desc;
+            }
+        }
         // strip_shortcodes  strategy not working here so had to do this way
         // strips shortcodes
         $desc = preg_replace('/\[(.*?)\]/','', $desc);

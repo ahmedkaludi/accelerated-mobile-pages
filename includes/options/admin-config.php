@@ -1443,6 +1443,9 @@ $tabs = array(
             elseif ( function_exists('genesis_title') ) {
                 $default = 4;
             }
+            elseif ( is_plugin_active('autodescription/autodescription.php') ) {
+                $default = 5;
+            }
             return $default;
         }
     }
@@ -1492,7 +1495,8 @@ $tabs = array(
                     '1'    => 'Yoast',
                     '2'    => 'All in One SEO',
                     '3'    => 'SEOPress',
-                    '4'    => 'Genesis'
+                    '4'    => 'Genesis',
+                    '5'    => 'The SEO Framework'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),

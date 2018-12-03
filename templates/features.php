@@ -1627,6 +1627,15 @@ function ampforwp_replace_title_tags() {
 				$site_title = $seopress_title;
 			}
 		}
+		// The SEO Framework Compatibility #2670
+		if ( class_exists('The_SEO_Framework\\Generate_Title') ) {
+			$tsf_title = $ampforwp_tsf = '';
+			$ampforwp_tsf 	= \the_seo_framework();
+			$tsf_title 		= $ampforwp_tsf->get_title();
+			if ( $tsf_title ) {
+				$site_title = $tsf_title;
+			}
+		}
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
 }
