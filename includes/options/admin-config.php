@@ -5572,7 +5572,7 @@ Redux::setSection( $opt_name, array(
 
         )
     ));
-
+if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
 $single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',
@@ -6170,6 +6170,16 @@ $single_page_options = array(
         'desc' => $single_extension_listing 
     )
 );
+}
+else{
+      $single_page_options = array(         
+        array(
+            'id'      => 'amp_newspaper_settings_info',
+            'type'    => 'Info',
+            'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 2.4;margin:-25px -14px -18px -17px;font-size:16px"><b>It seems that you have activated the amp newspaper theme plugin.</b><br> <a href="'. esc_url(admin_url('admin.php?page=amp_options&tabid=ampforwp-theme-subsection-shortcode-panel')) .'" target="_blank">Go to newspaper theme settings</a>.<br /> </div>',
+              ),
+           );
+       }
    // Single Section
   Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'Single', 'accelerated-mobile-pages' ),
