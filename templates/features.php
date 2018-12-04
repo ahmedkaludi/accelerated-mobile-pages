@@ -1628,7 +1628,7 @@ function ampforwp_replace_title_tags() {
 			}
 		}
 		// The SEO Framework Compatibility #2670
-		if ( class_exists('The_SEO_Framework\\Generate_Title') ) {
+		if ( function_exists( 'the_seo_framework' ) ) {
 			$tsf_title = $ampforwp_tsf = '';
 			$ampforwp_tsf 	= \the_seo_framework();
 			$tsf_title 		= $ampforwp_tsf->get_title();
