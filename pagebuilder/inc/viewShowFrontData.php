@@ -495,6 +495,7 @@ function amppb_validateCss($css){
 	$css = (esc_html($css));
 	$css = str_replace('&quot;', '"', $css);
 	$css = preg_replace('/@media([^\r\n,{}]+){\s*}/', "", $css);
+	$css = str_replace(array('.amppb-fluid','.amppb-fixed'), array('.ap-fl','.ap-fi'), $css);
 	$css = preg_replace('/(([a-z -]*:(\s)*;))/', "", $css);
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
 	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
@@ -546,7 +547,13 @@ function amppb_post_content($content){
 							$replace .= 'ap_r_'.$rowsData['id'];
 						}
 						if(isset($rowsData['data'][$field['name']]) && !is_array($rowsData['data'][$field['name']])){
-							$replace .= $rowsData['data'][$field['name']];
+							if($field['name']=='grid_type' && $rowsData['data'][$field['name']] == 'amppb-fluid' ){
+								$replace .= 'ap-fl';
+							}elseif($field['name']=='grid_type' && $rowsData['data'][$field['name']]=='amppb-fixed'){
+								$replace .= 'ap-fi';
+							}else{
+								$replace .= $rowsData['data'][$field['name']];
+							}
 						}else{
 							$replace .= '';
 						}
