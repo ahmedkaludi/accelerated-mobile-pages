@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 0.9.97.21
+Stable tag: 0.9.97.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,11 +184,36 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.21 (21st November 2018) =
+= 0.9.97.22 (4th December 2018) =
 * Fixed: Sanitation of user contents before save #2679
-* Fixed: Menu is Not working in Minimal Blogging theme (0.9.97.20) #2667
-* Fixed: Author bio not showing proper link #2674
-* Fixed: HTML not being rendered on cookie consent notifications #2671
-* Fixed: Telephone link not working
+* Fixed: Vuukle AMP integration #2600
+* Fixed: "Change Internal Links to AMP" not working properly for anchor tags (internal links) #2562
+* Fixed: Secondary menu color is not outputting the value in latest update #2680
+* Fixed: The instagram embed code is not working in facebook instant article in the AMP. #2523
+* Fixed: FTP Link being generated in Non-AMP but not in AMP #2477
+* Fixed: Videos aren't rendering whenever Convert AMP to WP theme (Beta) is enabled #2501
+* Fixed: More debug errors #2513
+* Fixed: Comments closed not looking good in Swift theme #2542
+* Fixed: Total Plus theme compatibility #2511
+* Fixed: Excerpt Option is not Working. #2509
+* Fixed: Image of Design 3 and Swift are same in Installation wizard #2540
+* Fixed: AMP renders with ?q after the /amp #2361
+* Fixed: Tables overflow in swift theme when adding the tables to the site [TEST + ALT solution] #2392 
+* Fixed: Unable Access the Wp-admin page when Amp takeover option is Enabled. #2476
+* Fixed: Latest post title is displaying in the AMP homepage instead of site title #2419
+* Fixed: AMP menu is not working when Jetpack Mobile theme option is enabled #2584
+* Fixed: Allow SVG format Logo in AMP #2431
+* Fixed: Link to Non-AMP page in Footer points to 404 #2586
+* Fixed: Debug warnings in error logs #2367
+* Fixed: The AMP for WP plugin(Version 0.9.97.20) bug are notice-error :undefine index and Unused code. #2687
+* Fixed: Improvements in AMP page builder code #2471
+* Fixed: Table class is getting removed in AMP pages. #2699
+* Fixed: View Non-AMP version link is not working when Mobile Redirection option is enabled. #2607
+* Fixed: Pagination is not working when AMP Takeover is enabled #2686
+* Fixed: The featured slider is not displaying properly images using the Firefox browser with the design 3 theme. #2677
+* Fixed: Icons for AMP Stories and Shortcode Ultimate #2598
+* Fixed: Images are stretched whenever Convert AMP to WP theme (Beta) Option is enabled. #2694
+* Fixed: Vertical words in table on mobile #2606
+* Fixed: Re-modification of single settings option panel when newspaper theme activated #2706
 
 Full changelog available in changelog.txt
