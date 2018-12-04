@@ -3228,7 +3228,7 @@
                     $addClass = ''; $style="";
                     $current_screen = get_current_screen(); 
                     if(is_object($current_screen) && $current_screen->parent_base=='amp_options'){
-                        $enabledOptions = array('basic', 'design', 'opt-go-premium','opt-choose');
+                        $enabledOptions = array('basic', 'design', 'opt-go-premium','opt-choose','ampforwp-theme-subsection');
                         if(!in_array($section['id'], $enabledOptions)){
                             $addClass = 'otherSectionFields';
                             $style="style='display:none;'";
