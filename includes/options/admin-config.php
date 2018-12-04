@@ -373,20 +373,20 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-teaser/amp-teaser.php')? 1: 2),
                             'settingUrl'=>'{ampforwp-teaser-subsection}',
-                        ),
-                        array(
-                            'name'=>'View All Extensions',
-                            'desc'=>'See all the extensions available for AMP',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
-                            'price'=>'FREE',
-                            'url_link'=>'https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_amp-more-comingsoon&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> '',
-                            'item_name'=>'',
-                            'store_url'=>'',
-                            'is_activated'=>2,
-                            'settingUrl'=>'',
-                        ),
+                        )
                     );
+        $viewAllExtensions = array(
+                    'name'=>'View All Extensions',
+                    'desc'=>'See all the extensions available for AMP',
+                    'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
+                    'price'=>'FREE',
+                    'url_link'=>'https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_amp-more-comingsoon&utm_campaign=AMP%20Plugin',
+                    'plugin_active_path'=> '',
+                    'item_name'=>'',
+                    'store_url'=>'',
+                    'is_activated'=>2,
+                    'settingUrl'=>'',
+                );
 
 $extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $extension_listing_array );
 $all_extensions_data = $extension_listing_array;
@@ -395,11 +395,14 @@ $ampforwp_nameOfUser = "";
 $ampforwp_is_productActivated = false;
 function ampforwp_sort_extension_array($a, $b){
     if ($a['is_activated'] == $b['is_activated']) {
-        return 0;
+        return strcmp(strtolower($a['name']), strtolower($b['name']));
     }
     return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
 }
 usort($extension_listing_array, 'ampforwp_sort_extension_array');
+//add view all extensions
+array_push($extension_listing_array, $viewAllExtensions);
+
 foreach ($extension_listing_array as $key => $extension) {
     $currentStatus = "";
 
