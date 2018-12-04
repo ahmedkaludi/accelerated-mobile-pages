@@ -154,6 +154,10 @@ function ampforwp_page_template_redirect() {
     if ( false == ampforwp_get_setting('amp-mobile-redirection-tabs') ) {
       $isTablet = ! $mobile_detect->isTablet();
     }
+    // No mobile redirection on oembeds #2003
+    if ( isset($_SERVER['REQUEST_URI']) && false !== strpos($_SERVER['REQUEST_URI'], '/embed/') ) {
+      return;
+    }
     // Return if Dev mode is enabled
     if ( isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode'] ) {
       return;
