@@ -725,14 +725,17 @@ function rowData($container,$col,$moduleTemplate){
 										}
 
 									$repeaterFrontTemplate = str_replace('{{repeater_unique}}', $repeaterUniqueId, $repeaterFrontTemplate);
-										$repeaterUniqueId++;
+									$repeaterFrontTemplate = ampforwp_replaceIfContentConditional('repeater_unique', $repeaterUniqueId, $repeaterFrontTemplate);
+										
 									}
 								}
+								$repeaterUniqueId++;
 								$repeaterFrontTemplate = str_replace('{{repeater-module-class}}', esc_attr($moduleField['name'].'_'.$repeaterVarIndex), $repeaterFrontTemplate);
 								
 								$repeaterFields .= $repeaterFrontTemplate;
 
 							}
+							$repeaterUniqueId = $repeaterUniqueId-1;//Rememeber: loop is going to POST INCREMENT So for perfect counting need to decrese by 1
 						}//If Check for Fall back
 						if(!is_numeric($repeaterKey)){
 							$moduleFrontHtml = str_replace('{{repeater_'.$repeaterKey.'}}', trim($repeaterFields), $moduleFrontHtml);
@@ -912,6 +915,10 @@ function rowData($container,$col,$moduleTemplate){
                 }//If closed
 
                 $moduleFrontHtml = str_replace('{{unique_cell_id}}', $contentArray['cell_id'], $moduleFrontHtml);
+                if(isset($repeaterUniqueId)){ 
+                $moduleFrontHtml = str_replace('{{repeater_max_count}}', $repeaterUniqueId, $moduleFrontHtml);          
+				$moduleFrontHtml = ampforwp_replaceIfContentConditional('repeater_max_count', $repeaterUniqueId, $moduleFrontHtml);
+				}
 				$html .= "<div class='amp_mod ap_m_".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
 				$html .= '</div>';
 				/*if($contentArray['type']=="text"){
