@@ -72,53 +72,29 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 
 		public function amp_next_page() { 
 			$loop_link = $first_url = $first_title = $first_image = $second_url = $second_image = $second_title ='';
-			$single_links = $single_titles = $single_images = $classes = array();
+			$single_links = $single_titles = $single_images = $classes = $pages = array();
 			if ( $this->is_loop ) {
 				$loop_link = $this->loop_link();
-				$first_url = $loop_link.($this->paged+1);
-				$second_url = $loop_link.($this->paged+2);
+				$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link.($this->paged+1));
+				$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link.($this->paged+2));
 			}
 			if ( $this->is_single ) {
-				// Urls				
-				$single_links 	= $this->single_post();				
-				$first_url = $single_links[0];
-				$second_url = $single_links[1];
-				// Titles
-				$single_titles 	= $this->single_post('title');				
-				$first_title = $single_titles[0];
-				$second_title = $single_titles[1];
-				// Images
-				$single_images 	= $this->single_post('image');
-				$first_image = $single_images[0];
-				$second_image = $single_images[1];
+				$pages = $this->single_post();
 			}
 			$classes = $this->hide();
 			?>
 			<amp-next-page>
 			  	<script type="application/json">
 			    {
-			      	"pages": [{
-				          "title": 	"<?=$first_title?>",
-				          "image": 	"<?=$first_image?>",
-				          "ampUrl": "<?=$first_url?>"
-				        },
-				        {
-				          "title": 	"<?=$second_title?>",
-				          "image": 	"<?=$second_image?>",
-				          "ampUrl": "<?=$second_url?>"
-				        }
-				    ],
+			      	"pages": <?=json_encode($pages)?>,
 				    "hideSelectors": <?=$classes?>
 		    	}
 			  	</script>
 			</amp-next-page>
 		<?php }
-		public function single_post($type = 'url') {
-
+		public function single_post() {
 			global $post;
-			$urls = array();
-			$titles = array();
-			$images = array();
+			$pages = array();
 			$exclude_ids = get_option('ampforwp_exclude_post');
 			$exclude_ids[] = $post->ID;
 			$query_args =  array(
@@ -129,25 +105,15 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				'post__not_in' 		  => $exclude_ids,
 				'has_password' => false ,
 				'post_status'=> 'publish',
-				'posts_per_page' => 2
+				'posts_per_page' => ampforwp_get_setting('ampforwp-infinite-scroll-single-number')
 			  );
 			$query = new WP_Query( $query_args );
 			while ($query->have_posts()) {
 				$query->the_post();
-				$urls[] = ampforwp_url_controller( get_permalink() );
-				$titles[] = get_the_title();
-				$images[] = ampforwp_get_post_thumbnail('url', 'full');
+				$pages[] = array('title'=>get_the_title(),'image'=>ampforwp_get_post_thumbnail('url', 'full'),'ampUrl'=>ampforwp_url_controller( get_permalink() ));
 			}
 			wp_reset_postdata();
-			switch ($type) {
-				case 'url':
-					return $urls;
-				case 'title':
-					return $titles;
-				case 'image':
-					return $images;
-			}
-			return $urls;
+			return $pages;
 		}
 
 		public function loop_link() {
@@ -170,7 +136,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				$classes = array("#headerwrap","#pagination","#footer",".nav_container",".related_posts");
 			}
 			if ( 3 == $design ) {
-				$classes = array(".relatedpost",".footer_wrapper",".pagination-holder");
+				$classes = array("#headerwrap",".relatedpost",".footer_wrapper",".pagination-holder");
 			}
 			if ( 4 == $design ) {
 				$classes = array(".p-m-fl",".loop-pagination",".footer",".r-pf",".srp ul",".srp h3","#pagination",".h_m_w");
