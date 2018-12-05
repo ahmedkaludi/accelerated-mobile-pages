@@ -90,7 +90,7 @@ if ( get_query_var( 'paged' ) ) {
 						$thumb_url = ampforwp_get_post_thumbnail();
 						if($thumb_url){
 							?>
-							 <amp-img src=<?php echo esc_url($thumb_url) ?> width=450 height=270></amp-img>
+							 <amp-img src=<?php echo esc_url($thumb_url) ?> width=450 height=270 layout=responsive></amp-img>
 						<?php } 
 					}?>
                   <div class="featured_title">
