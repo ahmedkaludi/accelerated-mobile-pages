@@ -6179,7 +6179,7 @@ else{
         array(
             'id'      => 'amp_newspaper_settings_info',
             'type'    => 'Info',
-            'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 2.4;margin:-25px -14px -18px -17px;font-size:16px"><b>It seems that you have activated the amp newspaper theme plugin.</b><br> <a href="'. esc_url(admin_url('admin.php?page=amp_options&tabid=ampforwp-theme-subsection-shortcode-panel')) .'" >Go to newspaper theme settings</a>.<br /> </div>',
+            'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 2.4;margin:-25px -14px -18px -17px;font-size:16px"><b>It seems that you have activated the amp newspaper theme plugin.</b><br><div class="extension-menu-call"> <a href="{ampforwp-theme-subsection-shortcode}" class="redux-group-tab-link-a current" >Go to newspaper theme settings.</a></div></div>',
               ),
            );
        }

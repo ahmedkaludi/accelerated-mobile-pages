@@ -2149,6 +2149,16 @@
                                 continue; // You need a type!
                             }
 
+                            if(isset($field['desc'])){
+                                    $description = $field['desc'];
+                                    foreach ($this->sections as $key => $value) {
+                                        if(strpos($description, '{'.$value['id'].'}')!==false){
+                                           $description = str_replace('{'.$value['id'].'}', 'admin.php?page=amp_options&tab='.$key, $description);
+                                        }
+                                    }
+                                   $field['desc'] =  $description;
+                            }
+
                             if ( $field['type'] == "info" && isset( $field['raw_html'] ) && $field['raw_html'] == true ) {
                                 $field['type']                             = "raw";
                                 $field['content']                          = $field['desc'];
