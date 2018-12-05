@@ -1645,7 +1645,7 @@ add_action('amp_post_template_include_single','ampforwp_update_title_for_frontpa
 function ampforwp_update_title_for_frontpage() {
 	$check_custom_front_page = get_option('show_on_front');
 
-	if ( $check_custom_front_page == 'page' && is_home() ) {
+	if ( $check_custom_front_page == 'page' && ampforwp_is_home() ) {
 
 		remove_action( 'amp_post_template_head', 'amp_post_template_add_title' );
 		add_action('amp_post_template_head','ampforwp_frontpage_title_markup');
