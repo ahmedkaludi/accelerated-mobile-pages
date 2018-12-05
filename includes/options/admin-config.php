@@ -2175,7 +2175,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'mode'     => 'javascript',
                         'theme'    => 'monokai',
                         'desc'     => '',
-                        'default'  => esc_html__('{
+                        'default'  => __('{
     "vars": {
         "account": "UA-xxxxxxx-x"  //Replace this with your Tracking ID
     },
