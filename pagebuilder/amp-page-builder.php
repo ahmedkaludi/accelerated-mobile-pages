@@ -299,12 +299,7 @@ function call_page_builder(){
 			    				'image',
 			    				'text'
 			    				);
-
-			    function pb_cmp_tosort($a, $b){
-			        return strcmp($a['label'], $b['label']);
-			    }
-
-				uasort($moduleTemplate, 'pb_cmp_tosort');
+				uasort($moduleTemplate, 'ampforwp_pb_cmp_tosort');
 			    foreach ($moduleTemplate as $key => $module) {
 			    	if(in_array($key, $oldModules)){
 			    		continue;
@@ -334,23 +329,6 @@ function call_page_builder(){
 			    <div class="clearfix"></div>
 			</div><!-- .amppb-module-actions -->
 		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		        
-	        
 	        <?php /* This is where our action buttons to add rows 
 				Modules
 	        */ ?>
@@ -369,19 +347,14 @@ function call_page_builder(){
 				  default content
 				-->
 				
-			</amp-pagebuilder-module-modal>
-	        
-	        
-	    </div>
-	    
-	
+			</amp-pagebuilder-module-modal>	        
+	    </div>	
 	</div>
     <?php
 }
-
-
-
-
+ function ampforwp_pb_cmp_tosort($a, $b){
+			        return strcmp($a['label'], $b['label']);
+			    }
 function create_posttype_amppb_layout(){
 	register_post_type( 'amppb_layout',
 	    array(
