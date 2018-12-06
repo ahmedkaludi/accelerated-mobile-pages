@@ -6697,20 +6697,17 @@ function ampforwp_is_non_amp( $type="" ) {
 // Removing the AMP on login register etc of Theme My Login plugin	
     
 	if (function_exists('tml_register_default_actions')){
-      $tml_pages = theme_my_login()->get_actions();
-    if ( isset( $_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI']  ) {
-      $current_page = $_SERVER['REQUEST_URI'];
-    }
-  
-      $current_page = explode('/', $current_page);
-       if ( isset($tml_pages) && $tml_pages ) {
-        foreach ($tml_pages as $page) {
-          if ( in_array($page->get_slug(), $current_page)) {
-            return false;
+        $tml_pages = tml_get_actions();
+        $pages = array();
+        if ( isset($tml_pages) && $tml_pages ) {
+          foreach ($tml_pages as $page) {
+            $pages[] = $page->get_slug();
           }
-        }
       }
- 	}	
+      if(in_array(get_query_var('action'), $pages) ){
+        return false;
+      }
+   }
 	return $non_amp;
 }
 
