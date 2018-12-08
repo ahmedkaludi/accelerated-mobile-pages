@@ -231,7 +231,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 0.9.97.19 (4th October 2018) =
 * Fixed: Tables overflow not working in swift theme #2392
 * Fixed: Null check added to fix null reference exception #2526
-* Fixed: Minor Bug related with menu
+* Fixed: Minor Bug related with menu #2612
 
 = 0.9.97.18 (29th September 2018) =
 * Fixed: Minor Bug related with menu
