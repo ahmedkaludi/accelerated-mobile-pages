@@ -520,22 +520,26 @@ function autoCompileLess($css)
     }
     //Remove multiple Spaces
     //padding:\s*?(\d*px)\s*(\d*px)\s*(\d*px)\s*(\d*px)\s*?;
-    /*$css = preg_replace_callback(
     //"/(margin|padding):\s*?(\d*px)\s*(\d*px)\s*(\d*px)\s*(\d*px)\s*?\s*;/",
-    "/(margin|padding):\s*?(\d*(|px))\s*(\d*(|px))\s*(\d*(|px))\s*(\d*(|px))\s*?\s*;/",
+    $css = preg_replace_callback(
+    "/(margin|padding):\s*?(auto|\d*(|px))\s*(auto|\d*(|px))\s*(auto|\d*(|px))\s*(auto|\d*(|px))\s*?\s*;/",
     function($m) {
-    	if(count($m)==4){
+    	if(count($m)!==0){
         	$m[2] = trim($m[2]);
         	$m[3] = trim($m[3]);
         	$m[4] = trim($m[4]);
         	$m[5] = trim($m[5]);
-        	if(($m[2]==$m[4]) && $m[3] == $m[5]){
+        	if( ($m[2]==$m[6]) && ($m[4] == $m[8]) ){
+        		if ( $m[2] == $m[4] ) {
+        			return $m[1].":".$m[2].";";
+        		}
         		if(trim($parts[0])==trim($m[1])){
         			return $m[1].":".$m[2].";";
         		}else{
-        			return $m[1].":".$m[2]." ".$m[3].";";
+        			return $m[1].":".$m[2]." ".$m[4].";";
         		}
-        	}else{
+        	}
+        	else{
         		return $m[0];
         	}
         }else{
@@ -543,7 +547,7 @@ function autoCompileLess($css)
         }
 
     },
-    $css);*/
+    $css);
     // save CSS with groups of media query
     return $css;
 }
