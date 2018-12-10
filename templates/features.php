@@ -3308,86 +3308,37 @@ function ampforwp_remove_sq_seo() {
 //67 View Non AMP
 function ampforwp_view_nonamp(){
 	global $redux_builder_amp, $post, $wp;
-  	$ampforwp_backto_nonamp = '';
-  	$nofollow 				= '';
-  if ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
-  	$post_id = get_option('page_for_posts');
-		if($redux_builder_amp['amp-mobile-redirection']==1)
-        $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post_id )).'?nonamp=1';
-    else
-      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post_id ));
-}
-  elseif ( is_home() ) {
-    if($redux_builder_amp['amp-mobile-redirection']==1)
-       $ampforwp_backto_nonamp = trailingslashit(home_url()).'?nonamp=1' ;
-    else
-       $ampforwp_backto_nonamp = user_trailingslashit(home_url()) ;
-  }
-  if ( is_single() ){
-    if($redux_builder_amp['amp-mobile-redirection']==1)
-      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1' ;
-    else
-      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID )) ;
-  }
-  if ( is_page() ){
-    if($redux_builder_amp['amp-mobile-redirection']==1)
-        $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1';
-    else
-      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID ));
-  }
-  if( is_archive() || is_search() ) {
-
-    $permalink_structure 	= '';
-	$permalink_structure 	= get_option('permalink_structure');
-
-    if($redux_builder_amp['amp-mobile-redirection']==1){
-        $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
-        $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','/?nonamp=1',$ampforwp_backto_nonamp);
-      }
-    else{
-        $ampforwp_backto_nonamp = untrailingslashit( home_url( $wp->request ) );
-        $ampforwp_backto_nonamp = dirname($ampforwp_backto_nonamp);
-        $ampforwp_backto_nonamp = user_trailingslashit($ampforwp_backto_nonamp);
-        
-        if('' == $permalink_structure){
-        	$ampforwp_backto_nonamp = site_url('?'.$wp->query_string);
-        	$ampforwp_backto_nonamp = remove_query_arg( 'amp', $ampforwp_backto_nonamp );
-        }
-      }
-      if ( is_search() ) {
-      	if ( ! empty( $permalink_structure ) ){
-      		$ampforwp_backto_nonamp = add_query_arg('s', $wp->query_vars['s'], $ampforwp_backto_nonamp);
-      	} 
-      }
-  }
-  
-   if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
+  	$nofollow = $page = $amp_url = $non_amp_url = '';
+   	if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
    		$nofollow = 'rel="nofollow"';
-   }
-   if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
-   	$ampforwp_backto_nonamp = '';
-   }
-        $amp_url = "";
-  		$amp_url = $_SERVER['REQUEST_URI'];
-		$amp_url = explode('/', $amp_url);
-		$amp_url = array_flip($amp_url);
-		unset($amp_url['amp']);
-		$non_amp_url = "";
-		$non_amp_url = array_flip($amp_url);
-		$non_amp_url = implode('/', $non_amp_url);
-		$page = "";
-	  	$query_arg_array = $wp->query_vars;
-	  	if( array_key_exists( "page" , $query_arg_array  ) ) {
-		   $page = $wp->query_vars['page'];
-	  	}
-	  	if ( $page >= '2') { 
-			$non_amp_url = trailingslashit( $non_amp_url  . '?page=' . $page);
-		} 
+   	}
+	$amp_url = untrailingslashit( home_url( $wp->request ) );
+	$amp_url = explode('/', $amp_url);
+	$amp_url = array_flip($amp_url);
+	unset($amp_url['amp']);
+	$non_amp_url = array_flip($amp_url);
+	$non_amp_url = implode('/', $non_amp_url);
+	$query_arg_array 	= $wp->query_vars;
+	
+	if( array_key_exists( "page" , $query_arg_array  ) ) {
+		$page = $wp->query_vars['page'];
+	}
+	if ( $page >= '2') { 
+		$non_amp_url = trailingslashit( $non_amp_url  . '?page=' . $page);
+	} 
 
-		$non_amp_url =  user_trailingslashit( $non_amp_url );
-		$non_amp_url =  add_query_arg('nonamp', '1', $non_amp_url );
-   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo  esc_url($non_amp_url); ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;apply_filters('ampforwp_modify_view_non_amp_link',$non_amp_url);?></a> <?php  }
- }
+	if ( ampforwp_get_setting('amp-mobile-redirection') ) {
+		$non_amp_url = add_query_arg('nonamp','1',$non_amp_url);
+	}
+	else
+		$non_amp_url = user_trailingslashit($non_amp_url);
+   	if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
+   		$non_amp_url = '';
+   	}
+
+	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url($non_amp_url) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php
+	}
+}
 
  //68. Facebook Instant Articles
 add_action('init', 'fb_instant_article_feed_generator');
