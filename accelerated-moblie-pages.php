@@ -850,6 +850,7 @@ if( !function_exists( 'is_search_enabled_in_ampforwp' ) ) {
 }
 
 add_filter('plugin_row_meta' , 'ampforwp_add_plugin_meta_links', 10, 2);
+if ( ! function_exists('ampforwp_add_plugin_meta_links') ) {
 function ampforwp_add_plugin_meta_links($meta_fields, $file) {
     if ( plugin_basename(__FILE__) == $file ) {
       $plugin_url = "https://wordpress.org/support/plugin/accelerated-mobile-pages";
@@ -871,3 +872,4 @@ function ampforwp_add_plugin_meta_links($meta_fields, $file) {
 
     return $meta_fields;
   }
+}
