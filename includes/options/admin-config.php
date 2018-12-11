@@ -2637,7 +2637,7 @@ $e_commerce_support[] = array(
                        'id'       => 'amp-translator-fourohfour',
                        'type'     => 'text',
                        'title'    => __('404 Error', 'accelerated-mobile-pages'),
-                       'default'  => __('Oops! That page can’t be found.','accelerated-mobile-pages'),
+                       'default'  => __("Oops! That page can't be found.","accelerated-mobile-pages"),
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
