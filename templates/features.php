@@ -6792,3 +6792,11 @@ function ampforwp_remove_ahref_lightbox( $content ) {
 	$updated_content = preg_replace("/<a[^>]+\>(<img[^>]+\>)<\/a>/i", '$1', $content);
 	return $updated_content;
 }
+// Gutenberg Modules CSS
+add_action('amp_post_template_css', 'ampforwp_gutenberg_css');
+if ( ! function_exists('ampforwp_gutenberg_css') ) {
+	function ampforwp_gutenberg_css(){ ?>
+		.wp-block-button { color: #fff}
+		.wp-block-button a {background-color: #32373c;border-radius: 28px;color: inherit;display: inline-block;padding: 12px 24px;}
+	<?php }
+}
