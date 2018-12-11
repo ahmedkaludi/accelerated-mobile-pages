@@ -30,7 +30,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
       }
       $ampforwp_metas = json_decode(get_post_meta($amp_current_post_id,'ampforwp-post-metas',true),true); 
       $amp_custom_post_content_check = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
-      $amp_custom_post_content_input = $ampforwp_metas['ampforwp_custom_content_editor'];
+      $amp_custom_post_content_input = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor', true);
 
       	if ( empty( $amp_custom_post_content_input ) ) {
             $data['ampforwp_amp_content'] = false;
@@ -133,6 +133,7 @@ function amp_content_editor_title_callback( $post ) {
   global $post;
   global $redux_builder_amp;
   $ampforwp_metas = array();
+  $custom_amp_editor = '';
   $amp_current_post_id = $post->ID;
   if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
     $amp_current_post_id = ampforwp_get_frontpage_id();
@@ -140,6 +141,7 @@ function amp_content_editor_title_callback( $post ) {
 
   wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
   $ampforwp_metas = json_decode(get_post_meta($amp_current_post_id,'ampforwp-post-metas',true),true);
+  $custom_amp_editor = get_post_meta($amp_current_post_id,'ampforwp_custom_content_editor',true);
   $amp_content_on_off = $ampforwp_metas['ampforwp_custom_content_editor_checkbox']; 
   $amp_content_on_off = esc_attr($amp_content_on_off);
  // $amp_content_on_off = '';
@@ -155,7 +157,7 @@ function amp_content_editor_title_callback( $post ) {
 
   <!--HTML content Ends here-->
   <?php
-  $content = $ampforwp_metas['ampforwp_custom_content_editor'];
+  $content = $custom_amp_editor;
   $editor_id = 'ampforwp_custom_content_editor';
   wp_editor( $content, $editor_id );
 }
@@ -176,8 +178,7 @@ function amp_content_editor_meta_save( $post_id ) {
     //if there is data to be saved to DB
     // Save data of Custom AMP Editor
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {
-      $ampforwp_metas['ampforwp_custom_content_editor'] = $_POST[ 'ampforwp_custom_content_editor' ];
-      update_post_meta($post_id, 'ampforwp-post-metas', json_encode($ampforwp_metas) );
+      update_post_meta($post_id, 'ampforwp_custom_content_editor', $_POST['ampforwp_custom_content_editor'] );
     }
     // Save data of Custom AMP Editor CheckBox
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) { 

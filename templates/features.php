@@ -6749,9 +6749,6 @@ if ( ! function_exists('ampforwp_post_metas') ) {
 		if( !isset($post_metas['ampforwp_custom_content_editor_checkbox'] ) || null == $post_metas['ampforwp_custom_content_editor_checkbox'] ) {
 			$post_metas['ampforwp_custom_content_editor_checkbox'] = get_post_meta($post_id,'ampforwp_custom_content_editor_checkbox',true);
 		}
-		if( !isset($post_metas['ampforwp_custom_content_editor'] ) || null == $post_metas['ampforwp_custom_content_editor'] ) {
-			$post_metas['ampforwp_custom_content_editor'] = get_post_meta($post_id,'ampforwp_custom_content_editor',true);
-		}
 		update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));	
 		// Delete the previous metas
 		if( isset($post_metas['ampforwp-amp-on-off'] ) ) {
@@ -6771,9 +6768,6 @@ if ( ! function_exists('ampforwp_post_metas') ) {
 		}
 		if( isset($post_metas['ampforwp_custom_content_editor_checkbox'] ) ) {
 			delete_post_meta($post_id,'ampforwp_custom_content_editor_checkbox');
-		}
-		if( isset($post_metas['ampforwp_custom_content_editor'] ) ) {
-			delete_post_meta($post_id,'ampforwp_custom_content_editor');
 		}
 	}
 }
