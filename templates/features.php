@@ -6798,5 +6798,7 @@ if ( ! function_exists('ampforwp_gutenberg_css') ) {
 	function ampforwp_gutenberg_css(){ ?>
 		.wp-block-button { color: #fff}
 		.wp-block-button a {background-color: #32373c;border-radius: 28px;color: inherit;display: inline-block;padding: 12px 24px;}
+		.wp-block-cover{background-size: cover;background-position: center center;min-height: 430px;width: 100%;margin: 1.5em 0 1.5em 0;display: flex;justify-content: center;align-items: center;overflow: hidden;}
+		.wp-block-cover-text{color: #fff;font-size: 2em;line-height: 1.25;z-index: 1;}
 	<?php }
 }
