@@ -434,6 +434,7 @@ $containerCommonSettings = array(
 								'label'		=>"Background Video URL",
 								'tab'		=>'customizer',
 								'default'	=>'',
+								'helpmessage'	=> 'Your video should be 600px away from the top or not within the first 75% of the viewport and it should be added like - https://www.youtube.com/embed/XXXXXXXXXX',
 								'content_type'=>'html',
 								'required'  => array('background_type'=>'video')
 								),
