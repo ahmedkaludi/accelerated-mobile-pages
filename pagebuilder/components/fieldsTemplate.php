@@ -33,7 +33,7 @@
     </div>
     
     <div class="amp-form-control" :id="field.name" data-type="text-editor" v-else-if="field.type=='text-editor' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
-        <div class="form-label" style="position: absolute;margin-top: 10px;">{{field.label}}</div>
+        <div class="form-label" style="margin-top: 10px;">{{field.label}}</div>
         <div class="form-field"><textarea-wysiwyg :default-text="field" :fieldindex="fieldkey"></textarea-wysiwyg>
         <div class="help-msg" v-html="field.helpmessage"></div>
         </div>
