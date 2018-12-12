@@ -18,7 +18,7 @@ function amp_post_template_add_canonical( $amp_template ) {
 add_action( 'amp_post_template_head', 'amp_post_template_add_scripts' );
 function amp_post_template_add_scripts( $amp_template ) {
 	$scripts = $amp_template->get( 'amp_component_scripts', array() );
-	foreach ( $scripts as $element => $script ) : 
+	foreach ( $scripts as $element => $script ) :
 		$custom_type = ($element == 'amp-mustache') ? 'template' : 'element'; ?>
 		<script custom-<?php echo esc_attr( $custom_type ); ?>="<?php echo esc_attr( $element ); ?>" src="<?php echo esc_url( $script ); ?>" async></script>
 	<?php endforeach; ?>
@@ -43,6 +43,11 @@ function amp_post_template_add_boilerplate_css( $amp_template ) {
 if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') || ! is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') ):
 add_action( 'amp_post_template_footer', 'amp_post_template_add_schemaorg_metadata' );
 function amp_post_template_add_schemaorg_metadata( $amp_template ) {
+	global $redux_builder_amp;
+	if ( defined( 'RANK_MATH_FILE' ) && 3 == $redux_builder_amp['ampforwp-seo-selection'] && $redux_builder_amp['ampforwp-seo-rankmath-meta'] ) {
+		return;
+	}
+
 	$metadata = $amp_template->get( 'metadata' );
 	if ( empty( $metadata ) ) {
 		return;
