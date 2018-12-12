@@ -218,6 +218,10 @@ function ampforwp_page_template_redirect() {
         }
     }
 
+    if ( function_exists('weglot_plugin_loaded') ) {
+      $url_to_redirect = ampforwp_get_weglot_url();
+      $url_to_redirect = $url_to_redirect . user_trailingslashit('amp');   
+    }
     // Check if we are on Mobile phones then start redirection process
     if ( $mobile_detect->isMobile() && $isTablet ) {
 

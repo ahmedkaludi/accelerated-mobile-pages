@@ -6799,3 +6799,19 @@ if ( ! function_exists('ampforwp_gutenberg_css') ) {
 		.wp-block-cover-text{color: #fff;font-size: 2em;line-height: 1.25;z-index: 1;}
 	<?php }
 }
+
+if ( ! function_exists('ampforwp_get_weglot_url') ) {
+function ampforwp_get_weglot_url(){
+		$url = weglot_get_full_url_no_language();
+		$current_lang = weglot_get_current_and_original_language();
+		$original_lang = $current_lang['original'];
+		$current_lang = $current_lang['current'];
+		if($current_lang == $original_lang ){
+			return $url;
+		 }else{
+			$url = trailingslashit($url) . $current_lang;
+			return esc_url(user_trailingslashit($url));
+		}
+	
+}
+}
