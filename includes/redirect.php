@@ -74,7 +74,7 @@ function ampforwp_check_amp_page_status() {
     }
     // Single and Pages
     if ( is_singular() ) {
-      $amp_metas = json_decode(get_post_meta( get_the_ID(),'ampforwp-post-metas',true) );
+      $amp_metas = json_decode(get_post_meta( get_the_ID(),'ampforwp-post-metas',true), true );
       if ( 'hide-amp' == $amp_metas['ampforwp-amp-on-off'] ) {
         $amp_on_off = true;
       }
