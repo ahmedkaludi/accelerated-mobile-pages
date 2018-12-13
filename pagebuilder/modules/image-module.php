@@ -1,13 +1,12 @@
 <?php
-$output = '{{if_selected_image}}<amp-img {{if_id}}id="{{id}}"{{ifend_id}} src="{{selected_image}}" class="{{css_class}}" width="{{image_width}}" height="{{image_height}}" layout="responsive"  alt="{{image_alt}}"></amp-img>{{ifend_selected_image}}';
+$output = '{{if_selected_image}}<amp-img src="{{selected_image}}" class="{{css_class}}" width="{{image_width}}" height="{{image_height}}" layout="responsive"  alt="{{image_alt}}"></amp-img>{{ifend_selected_image}}';
 return array(
 		'label' =>'Image',
 		'name' => 'image',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Customizer',
-              'container_css'=>'Container css',
-              'advanced'=>'Advanced'
+              'container_css'=>'Container css'
             ),
 		'fields' => array(
 					array(
@@ -26,14 +25,6 @@ return array(
 						'default'=>'',
 						'content_type'=>'html',
 						),
-				 	array(
-						'type'		=>'text',
-						'name'		=>"id",
-						'label'		=>'ID',
-						'tab'		=>'advanced',
-						'default'	=>'',
-						'content_type'=>'html'
-					),
 					),
 		'front_template'=> $output,
 		'front_css'=>'',	
