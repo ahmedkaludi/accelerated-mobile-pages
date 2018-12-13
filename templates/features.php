@@ -3336,7 +3336,7 @@ function ampforwp_view_nonamp(){
    		$non_amp_url = '';
    	}
 
-	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url($non_amp_url) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php
+	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url($non_amp_url) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html__( $redux_builder_amp['amp-translator-non-amp-page-text', 'accelerated-mobile-pages')] ) ;?></a> <?php
 	}
 }
 
