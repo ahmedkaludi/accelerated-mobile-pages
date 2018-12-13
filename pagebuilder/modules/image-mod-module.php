@@ -1,7 +1,7 @@
 <?php 
 $output = '
 	{{if_condition_img_hyperlink==1}}<a href="{{hyperlink_link_img}}" {{if_condition_img_link_open==new_page}}target="_blank"{{ifend_condition_img_link_open_new_page}}>{{ifend_condition_img_hyperlink_1}}
-		{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}  alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
+		{{if_img_upload}}<amp-img src="{{img_upload}}" {{if_id}}id="{{id}}"{{ifend_id}} width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}  alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 	{{if_condition_img_hyperlink==1}}</a>{{ifend_condition_img_hyperlink_1}}';
 
 $css = '
@@ -120,8 +120,16 @@ return array(
 				                        )
 				                      ),
 				                'content_type'=>'html',
-			              	),	
-						array(
+			              	),
+			              	array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),	
+							array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',

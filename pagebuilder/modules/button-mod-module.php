@@ -1,6 +1,6 @@
 <?php 
 $output = '
-	<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} {{if_condition_check_for_nofollow==1}}rel="nofollow"{{ifend_condition_check_for_nofollow_1}} class="btn-txt">{{content_title}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}</a>
+	<div {{if_id}}id="{{id}}"{{ifend_id}} class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} {{if_condition_check_for_nofollow==1}}rel="nofollow"{{ifend_condition_check_for_nofollow_1}} class="btn-txt">{{content_title}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}</a>
 {{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>
 {{if_condition_button_repeat_check==1}}{{repeater}}{{ifend_condition_button_repeat_check_1}}
 ';
@@ -438,6 +438,14 @@ return array(
 		           				'content_type'=>'css',
 		           				'required'  => array( 'check_for_resic'=>'1')
 	 						),
+						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div class="srvs">
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="srvs">
 	<h2><a href="{{srvs_url}}">{{srvs_title}}</a></h2>
 	<span class="s-hdng">{{srvs_subhdng}}</span>
 	<div class="lst">
@@ -285,6 +285,14 @@ return array(
                                 'left'=>'0px',
                             ),
 								'content_type'=>'css',
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
 							),
 						array(
 								'type'		=>'spacing',

@@ -104,6 +104,14 @@ return array(
 	 							'required'  => array('blurb_layout_type'=>'1'),
 	 						),
 						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
@@ -150,7 +158,7 @@ return array(
                 
               ),
           'front_template'=>
-        	'<div class="li-mod">
+        	'<div {{if_id}}id="{{id}}"{{ifend_id}} class="li-mod">
         		<span class="ico-pic icon-{{icon-picker}}"></span>
 				<span class="li-txt">{{list_title}}</span>
 			</div>'

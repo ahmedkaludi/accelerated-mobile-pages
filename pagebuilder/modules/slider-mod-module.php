@@ -1,7 +1,7 @@
 <?php 
 $output = '
 {{if_condition_carousel_layout_type==1}}
-	<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
+	<amp-carousel {{if_id}}id="{{id}}"{{ifend_id}} width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
 		{{repeater_image}}
 	</amp-carousel>
 {{ifend_condition_carousel_layout_type_1}}
@@ -522,7 +522,15 @@ return array(
 	 												'left'  	=>'Left',
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
-	 						),	
+	 						),
+	 						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),	
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

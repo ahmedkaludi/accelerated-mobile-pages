@@ -1,6 +1,6 @@
 <?php 
 $output = '
-	<amp-iframe width="{{width}}" height="{{height}}"
+	<amp-iframe {{if_id}}id="{{id}}"{{ifend_id}} width="{{width}}" height="{{height}}"
     sandbox="allow-scripts allow-same-origin"
     {{if_condition_mode_type==place}}src="https://www.google.com/maps/embed/v1/place?key={{map_key}}&q={{address}}"{{ifend_condition_mode_type_place}}
     {{if_condition_mode_type==view}}src="https://www.google.com/maps/embed/v1/view?key={{map_key}}&center={{latitude}},{{longitude}}&zoom={{zooming}}&maptype={{map_type}}"{{ifend_condition_mode_type_view}}>
@@ -16,7 +16,7 @@ return array(
 		'tabs' => array(
               'customizer'=>'Content',
               'design'=>'Design',
-              //'advanced' => 'Advanced'
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
 						
@@ -115,7 +115,15 @@ return array(
 			           				'tab'     =>'customizer',
 			 						'default'	=>'',	
 			           				'content_type'=>'html',
-			 					)
+			 					),
+			 					array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 							
 			),
 		'front_template'=> $output,

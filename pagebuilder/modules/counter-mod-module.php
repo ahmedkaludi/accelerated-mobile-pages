@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div class="ln-fx">{{repeater}}</div>';
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx">{{repeater}}</div>';
 $css = '
 {{module-class}}.counter-mod{
 	margin:{{margin_css}};
@@ -125,6 +125,14 @@ return array(
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
+						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

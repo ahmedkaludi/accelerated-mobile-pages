@@ -1,4 +1,4 @@
-<?php $output = '<div class="amp_pb_module amp_btn {{css_class}}">
+<?php $output = '<div {{if_id}}id="{{id}}"{{ifend_id}} class="amp_pb_module amp_btn {{css_class}}">
 <a href="{{button_link}}">{{button_txt}}</a></div>';
 return array(
 		'label' =>'Button',
@@ -6,7 +6,8 @@ return array(
           'default_tab'=> 'customizer',
           'tabs' => array(
               'customizer'=>'Customizer',
-              'container_css'=>'Container css'
+              'container_css'=>'Container css',
+              'advanced'=> 'Advanced'
             ),
 		'fields'=> array(
 				 	array(
@@ -25,6 +26,14 @@ return array(
                     'default' => '#',
                     'content_type'=>'html',
 						),
+                    array(
+                        'type'      =>'text',
+                        'name'      =>"id",
+                        'label'     =>'ID',
+                        'tab'       =>'advanced',
+                        'default'   =>'',
+                        'content_type'=>'html'
+                    ),
 				 	array(
                     'type'    => 'text',
                     'name'    => 'css_class',

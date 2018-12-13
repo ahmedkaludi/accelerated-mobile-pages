@@ -1,4 +1,4 @@
-<?php $output = '<div class="amp_pb_module amp_text {{css_class}}">
+<?php $output = '<div {{if_id}}id="{{id}}"{{ifend_id}} class="amp_pb_module amp_text {{css_class}}">
 <p>{{text_editor}}</p>
 </div>';
 return array(
@@ -7,7 +7,8 @@ return array(
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Customizer',
-              'container_css'=>'Container css'
+              'container_css'=>'Container css',
+              'advanced'=>'Advanced'
             ),
 		'fields'=> array(
 					array(
@@ -35,6 +36,14 @@ return array(
 						'content_type'=>'css',
 						'output_format'=>"color: %default%",
 						
+					),
+					array(
+						'type'		=>'text',
+						'name'		=>"id",
+						'label'		=>'ID',
+						'tab'		=>'advanced',
+						'default'	=>'',
+						'content_type'=>'html'
 					),
         ),
 		'front_template'=>$output,

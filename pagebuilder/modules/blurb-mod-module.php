@@ -1,5 +1,5 @@
 <?php 
-$output = '<div class="ln-fx">{{repeater}}</div>';
+$output = '<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx">{{repeater}}</div>';
 $css = '
 {{if_condition_blurb_layout_type==1}}
 {{module-class}} .ln-fx{width:100%;display:flex; flex-wrap:wrap;margin:{{margin_css}};padding:{{padding_css}};}
@@ -295,19 +295,27 @@ return array(
                             ),
 								'content_type'=>'css',
 							),
-							array(
-								'type'		=>'spacing',
-								'name'		=>"padding_gpg",
-								'label'		=>'Padding',
-								'tab'		=>'design',
-								'default'	=>array(
-													'left'=>'30px',
-													'right'=>'30px',
-													'top'=>'50px',
-													'bottom'=>'50px'
-												),
-								'content_type'=>'css',
-							),
+						array(
+							'type'		=>'spacing',
+							'name'		=>"padding_gpg",
+							'label'		=>'Padding',
+							'tab'		=>'design',
+							'default'	=>array(
+												'left'=>'30px',
+												'right'=>'30px',
+												'top'=>'50px',
+												'bottom'=>'50px'
+											),
+							'content_type'=>'css',
+						),
+						array(
+							'type'		=>'text',
+							'name'		=>"id",
+							'label'		=>'ID',
+							'tab'		=>'advanced',
+							'default'	=>'',
+							'content_type'=>'html'
+						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

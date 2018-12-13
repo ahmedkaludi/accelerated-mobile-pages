@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div class="bs-md">
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="bs-md">
 	<div class="map blk">
 		<a href="{{map_lnk}}">
 			<span class="ico-pic icon-{{map_icon}}"></span>
@@ -311,6 +311,14 @@ return array(
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
 	 						),
+						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

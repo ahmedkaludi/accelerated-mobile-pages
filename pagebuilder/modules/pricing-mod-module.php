@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div class="ln-fx">{{repeater}}</div>';
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx">{{repeater}}</div>';
 $css = '
 {{if_condition_pricing_layout_type==1}}
 .pricing-mod{margin:{{margin_css}};padding:{{padding_css}};}
@@ -65,6 +65,14 @@ return array(
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
+							),
+	 					array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
 							),
 						array(
 								'type'		=>'spacing',

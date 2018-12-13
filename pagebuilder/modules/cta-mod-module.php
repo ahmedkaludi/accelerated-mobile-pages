@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div class="cta-tlt">
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="cta-tlt">
 	<h2>{{content_title}}</h2>
 	{{if_condition_check_for_hdng_desc==1}}
 		<div class="cta-dsc">{{hdng_descrp}}</div>
@@ -204,6 +204,14 @@ return array(
 		 						'default'	=>' ',	
 		           				'content_type'=>'html',
 	 						),
+	 					array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

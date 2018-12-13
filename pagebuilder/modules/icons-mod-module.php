@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div class="ln-fx">{{repeater}}</div>';
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx">{{repeater}}</div>';
 $css = '
 .icons-mod{margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .ln-fx{
@@ -61,6 +61,14 @@ return array(
 	 												'flex-end'    =>'Right', 													),
 	 							'content_type'=>'css',
 	 						),
+						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

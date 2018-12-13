@@ -1,7 +1,7 @@
 <?php 
 $output = '
 	{{if_condition_video_option==custom}}
-	<amp-video width="{{width}}" height="{{height}}" src="{{video_upload_link}}"
+	<amp-video {{if_id}}id="{{id}}"{{ifend_id}} width="{{width}}" height="{{height}}" src="{{video_upload_link}}"
 	 layout="responsive"   
 	  {{if_condition_custom_video_more_info==1}}poster="{{poster}}"
 	  artist="{{artist}}"
@@ -18,7 +18,7 @@ $output = '
 	{{ifend_condition_video_option_custom}}
 
 	{{if_condition_video_option==youtube}}
-	<amp-youtube
+	<amp-youtube {{if_id}}id="{{id}}"{{ifend_id}}
     data-videoid="{{youtube_video_id}}"
     layout="responsive"
     width="{{width}}" height="{{height}}"></amp-youtube>
@@ -202,6 +202,14 @@ return array(
 	 						'content_type'=>'js',
 	           				'required'  => array('video_option'=>'embed'),
  						),
+ 						array(
+							'type'		=>'text',
+							'name'		=>"id",
+							'label'		=>'ID',
+							'tab'		=>'advanced',
+							'default'	=>'',
+							'content_type'=>'html'
+						),
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,

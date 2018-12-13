@@ -1,12 +1,12 @@
 <?php 
 $output = '
 {{if_condition_tabs_layout_type==1}}
-<amp-selector role="tablist" layout="container" class="ampTabContainer">
+<amp-selector {{if_id}}id="{{id}}"{{ifend_id}} role="tablist" layout="container" class="ampTabContainer">
 	{{repeater_tab_content}}
 </amp-selector>
 {{ifend_condition_tabs_layout_type_1}}
 {{if_condition_tabs_layout_type==2}}
-<amp-selector role="tablist" layout="container" class="ampTabContainer">
+<amp-selector {{if_id}}id="{{id}}"{{ifend_id}} role="tablist" layout="container" class="ampTabContainer">
   {{repeater_tab2_content}}
 </amp-selector>
 {{ifend_condition_tabs_layout_type_2}}
@@ -457,6 +457,14 @@ return array(
 							),
 
 						// Global Fields //
+						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

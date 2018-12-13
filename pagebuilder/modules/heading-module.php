@@ -1,5 +1,5 @@
 <?php 
-$output = '<{{header_type}} class="h-txt">{{content_title}}</{{header_type}}>';
+$output = '<{{header_type}} {{if_id}}id="{{id}}"{{ifend_id}} class="h-txt">{{content_title}}</{{header_type}}>';
 $css = '
 {{module-class}}{width:100%;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .h-txt{font-size:{{text-size}};color:{{font_color_picker}};letter-spacing:{{letter-spacing}};font-weight:{{font_type}};line-height:{{line-height}};}
@@ -97,8 +97,16 @@ return array(
 	 												'left'  	=>'Left',
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
-	 						),		
-						array(
+	 						),
+	 						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),		
+							array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
