@@ -5251,6 +5251,14 @@ $single_page_options = array(
 //                   'max-height'=> 60,
             ),
             array(
+               'id' => 'ampforwp-gallery-lightbox', 
+               'type' => 'switch',
+               'title' => esc_html__('Lightbox for Gallery', 'accelerated-mobile-pages'),
+               'class' => 'child_opt child_opt_arrow',
+               'default'    =>  1,
+               'required'   =>  array('ampforwp-gallery-design-type' , '!=' , '3'),
+             ),
+            array(
                'id' => 'single-sneakp-section', 
                'type' => 'section',
                'title' => __('Content Sneak Peek', 'accelerated-mobile-pages'),
