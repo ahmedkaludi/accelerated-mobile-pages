@@ -756,3 +756,18 @@ visibility: hidden;
 .redux_status_table.widefat{
     clear: none;
 }
+.ampforwp-rate-stars{
+    display:inline-block;
+    color:#ffb900;
+    position:relative;
+    top:3px;
+}
+.ampforwp-rate-stars svg{
+    fill:#ffb900;
+}
+.ampforwp-rate-stars svg:hover{
+    fill:#ffb900
+}
+.ampforwp-rate-stars svg:hover ~ svg{
+    fill:none;
+}
