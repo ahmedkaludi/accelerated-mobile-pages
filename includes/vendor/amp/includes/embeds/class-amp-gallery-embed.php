@@ -234,9 +234,10 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 
 		//replacements
 			$r = rand(1,100);
-			$amp_carousel = AMP_HTML_Utils::build_tag(
+			$amp_carousel = AMP_HTML_Utils::build_tag( 
 							'amp-carousel',
 							array(
+								'lightbox'=> '',
 								'width' => $this->args['width'],
 								'height' => $this->args['height'],
 								'type' => 'slides',
