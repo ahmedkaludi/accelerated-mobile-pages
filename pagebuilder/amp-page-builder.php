@@ -146,7 +146,7 @@ function ampforwp_call_page_builder(){
 			<div id="sorted_rows" class="amppb-rows drop" >
 				<drop class="drop" :class="{'row-dropping':rowOverDrop}" @drop="handleDrop" @dragover="rowOverDrop = true"
 			@dragleave="rowOverDrop = false">
-					<p class="dummy amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0"><?php echo esc_html__('Start by dragging a Column and then a Module','accelerated-mobile-pages'); ?>.</p>
+					<p class="amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0"><?php echo esc_html__('Start by dragging a Column and then a Module','accelerated-mobile-pages'); ?>.</p>
 					<draggable :element="'div'" class="dragrow"
 						v-model="mainContent.rows" 
 						:options="{
