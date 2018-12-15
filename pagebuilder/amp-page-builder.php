@@ -46,7 +46,6 @@ function amp_content_pagebuilder_title_callback( $post ){
 	$content 		= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
 	
 	//previous data stored compatible
-	//echo get_post_meta( $amp_current_post_id, 'amp-page-builder', true );
 	if(get_post_meta($amp_current_post_id ,'use_ampforwp_page_builder',true)==null && 
 		get_post_meta( $amp_current_post_id, 'amp-page-builder', true ) != ''){
 		update_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
@@ -111,14 +110,14 @@ function ampforwp_call_page_builder(){
 								array(		
 				 						'type'		=>'text',		
 				 						'name'		=>"content_title",		
-				 						'label'		=>'Category Block Title',
+				 						'label'		=> esc_html__('Category Block Title','accelerated-mobile-pages'),
 				           				'tab'     =>'customizer',
 				 						'default'	=>'Category',		
 				 						),
 								array(		
 				 						'type'		=>'text',		
 				 						'name'		=>"content_title",		
-				 						'label'		=>'Category Block Title',
+				 						'label'		=> esc_html__('Category Block Title','accelerated-mobile-pages'),
 				           				'tab'     =>'container_css',
 				 						'default'	=>'Category',		
 				 						),
@@ -131,7 +130,6 @@ function ampforwp_call_page_builder(){
 	unset($backendRowSetting['front_css']);
 	unset($backendRowSetting['front_common_css']);
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
-	//'.add_query_arg('use_amp_pagebuilder','1',$url).'
 	?>
 	<div id="ampForWpPageBuilder_container">
 		<div id="start_amp_pb_post" class="start_amp_pb" data-postId="<?php echo esc_attr(get_the_ID()) ?>" v-if="startPagebuilder==0" @click="amppb_startFunction($event)"><?php echo esc_html__('Start the AMP Page Builder','accelerated-mobile-pages'); ?></div>
@@ -286,7 +284,7 @@ function ampforwp_call_page_builder(){
 				</drag>
 	       		<div class="clearfix"></div>
 	        </div><!-- .amppb-actions -->
-	        <div class="amppb-module-actions" id="amppb-module-actions-container" data-recentid="<?php echo $totalmodules; ?>">
+	        <div class="amppb-module-actions" id="amppb-module-actions-container" data-recentid="<?php echo esc_attr($totalmodules); ?>">
 			    <?php
 			    //fallback support Hide old modules
 			    $oldModules = array(
@@ -314,7 +312,7 @@ function ampforwp_call_page_builder(){
 			    	$moduleJson = array('type'=> 'module','moduleDraggable'=>true ,'modulename'=>strtolower($module['name']),'moduleJson'=>$module);
 			    	echo '
 			    	<drag class="drag" :transfer-data=\''.json_encode($moduleJson).'\' :draggable="true" :effect-allowed="\'copy\'">
-				    	<span class="amppb-add-row button-primary button-large draggable module-'.strtolower($module['name']).'"
+				    	<span class="amppb-add-row button-primary button-large draggable module-'.esc_attr(strtolower($module['name'])).'"
 				    	>
 				    		'.$module['label'].'
 				    	</span>
@@ -357,8 +355,6 @@ function ampforwp_create_posttype_amppb_layout(){
 		        'name' => esc_html__( 'AMP Layouts','accelerated-mobile-pages' ),
 		        'singular_name' => esc_html__( 'AMP Layout','accelerated-mobile-pages' )
 		      ),
-	    /*'public' => true,
-      	'has_archive' => false,*/
 	    'public' => false,  // it's not public, it shouldn't have it's own permalink, and so on
 		'publicly_queriable' => false,  // you should be able to query it
 		'show_ui' => false,  // you should be able to edit it in wp-admin
