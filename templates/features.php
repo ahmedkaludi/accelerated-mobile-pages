@@ -1490,7 +1490,7 @@ function ampforwp_remove_title_tags() {
 }
 function ampforwp_replace_title_tags() {
 
-	add_filter( 'pre_get_document_title', 'ampforwp_add_custom_title_tag', 10 );
+	add_filter( 'pre_get_document_title', 'ampforwp_add_custom_title_tag', 20 );
 	add_filter( 'wp_title', 'ampforwp_add_custom_title_tag', 10, 3 );
 
 	function ampforwp_add_custom_title_tag( $title = '', $sep = '', $seplocation = '' ) {
