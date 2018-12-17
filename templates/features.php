@@ -1633,6 +1633,13 @@ function ampforwp_replace_title_tags() {
 				$site_title = $tsf_title;
 			}
 		}
+		// Custom Front Page Title From Rank Math SEO #2701
+		if ( defined( 'RANK_MATH_FILE' ) && '6' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+		 	if ( ampforwp_is_blog() ) {
+		 		$post_id = ampforwp_get_blog_details('id');
+		 	}
+		 	$site_title = RankMath\Post::get_meta( 'title', $post_id );
+		}
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
 }
@@ -2776,7 +2783,7 @@ function ampforwp_change_default_amp_post_meta() {
 add_action('amp_post_template_head','ampforwp_meta_description');
 function ampforwp_meta_description() {
 	global $redux_builder_amp;
-	if ( ! $redux_builder_amp['ampforwp-seo-meta-description'] ) {
+	if ( ! $redux_builder_amp['ampforwp-seo-meta-description'] || '6' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 		return;
 	}
 	$desc = "";
