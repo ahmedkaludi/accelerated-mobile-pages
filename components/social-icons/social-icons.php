@@ -26,7 +26,7 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 
  	$social_icons_names = array();
 	$url = get_the_permalink();
-	$title = esc_attr( rawurlencode( get_the_title() ) );
+	$title = esc_attr( get_the_title() );
 	if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
 		$twitter_url = get_the_permalink();
 	}

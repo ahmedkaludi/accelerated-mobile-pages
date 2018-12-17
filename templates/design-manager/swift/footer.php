@@ -67,7 +67,7 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-twitter-share']){?>
 		<li>
-			<a title="twitter share" class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(rawurlencode(get_the_title())); ?>">
+			<a title="twitter share" class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(get_the_title()); ?>">
 			</a>
 		</li>
 		<?php } ?>
