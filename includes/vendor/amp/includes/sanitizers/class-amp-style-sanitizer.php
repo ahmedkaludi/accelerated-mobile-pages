@@ -450,14 +450,13 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 			return;
 		}
 		$class = $element->getAttribute( 'class' );
-
+		$tagName = $element->tagName;
 		$properties = $this->process_style( $value );
 
 		if ( ! empty( $properties ) ) {
 			$class_name = $this->generate_class_name( $properties );
 			$new_class  = trim( $class . ' ' . $class_name );
-
-			$selector = '.' . $class_name;
+			$selector = $tagName.'.' . $class_name;
 			$length   = strlen( sprintf( '%s { %s }', $selector, join( '; ', $properties ) . ';' ) );
 
 			if ( $this->current_custom_size + $length > $this->custom_max_size ) {
