@@ -3870,7 +3870,7 @@ $e_commerce_support[] = array(
                        'id'       => 'amp-translator-fourohfour',
                        'type'     => 'text',
                        'title'    => esc_html__('404 Error', 'accelerated-mobile-pages'),
-                       'default'  => esc_html__('Oops! That page can’t be found.','accelerated-mobile-pages'),
+                       'default'  => esc_html__("Oops! That page can't be found.","accelerated-mobile-pages"),
                        'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
