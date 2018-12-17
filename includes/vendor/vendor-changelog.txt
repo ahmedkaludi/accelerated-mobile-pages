@@ -61,3 +61,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 34. Added itemprop attribute in amp-img #2585
 35. Mobile detect library added from https://github.com/serbanghita/Mobile-Detect
 36. Added class-amp-gallery-block-sanitizer.php, class-amp-block-sanitizer.php in Vendor AMP Sanitizers and class-amp-core-block-handler.php in Vendor AMP Embed Handlers #2427
+37. class-amp-style-sanitizer.php updated #2745
