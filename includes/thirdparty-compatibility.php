@@ -424,10 +424,10 @@ if(!function_exists('ampforwp_findInternalUrl')){
 			return $url;
 		}
 	}
-    if($url=='#'){ return $url; }
-    if(strpos($url, "#")!==false){
-      	return $url;
+    if( $url=='#' || strpos($url, "#")!==false || strpos($url, "tel:")!==false ) {
+    	return $url; 
     }
+
     if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
       // Skip the URL's that have edit link to it
       $parts = parse_url($url);
