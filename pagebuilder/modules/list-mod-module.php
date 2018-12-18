@@ -1,6 +1,6 @@
 <?php 
 $output = '
-	{{repeater}}
+	<div {{if_id}}id="{{id}}"{{ifend_id}}>{{repeater}}</div>
 ';
 $css = '
 {{module-class}}.list-mod{display:flex;flex-wrap: wrap;margin:{{margin_css}};max-width:{{lst-mod-wdth}};}
@@ -158,7 +158,7 @@ return array(
                 
               ),
           'front_template'=>
-        	'<div {{if_id}}id="{{id}}"{{ifend_id}} class="li-mod">
+        	'<div class="li-mod">
         		<span class="ico-pic icon-{{icon-picker}}"></span>
 				<span class="li-txt">{{list_title}}</span>
 			</div>'

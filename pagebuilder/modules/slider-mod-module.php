@@ -1,7 +1,8 @@
 <?php 
 $output = '
+<div {{if_id}}id="{{id}}"{{ifend_id}}>
 {{if_condition_carousel_layout_type==1}}
-	<amp-carousel {{if_id}}id="{{id}}"{{ifend_id}} width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
+	<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
 		{{repeater_image}}
 	</amp-carousel>
 {{ifend_condition_carousel_layout_type_1}}
@@ -41,7 +42,7 @@ $output = '
 	</div>
 	
 {{ifend_condition_carousel_layout_type_4}}
-
+</div>
 ';
 $css = '
 {{if_condition_carousel_layout_type==1}}
