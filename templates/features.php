@@ -5009,7 +5009,8 @@ function ampforwp_dev_mode_notice(){
 	global $redux_builder_amp;
 	$message = '';
 	if(isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode']) {
-			$message =  ' Please turn off Development mode, when you are done.';?> Please turn off Development mode, when you are done.';?>		
+			$message =  ' Please turn off Development mode, when you are done.';?>
+					
 			<div class="notice notice-success is-dismissible amp-dev-notice" style="position:relative;
 		    height: 40px; overflow: hidden; ">
 				<div class="ampforwp-dev-mode-message" style="margin-top: 10px;">
