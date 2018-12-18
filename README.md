@@ -184,6 +184,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.97.23 (18th December 2018) =
+* Fixed: Sub menu items and arrows are not functioning in publisher theme. #2672
+* Fixed: Fatal error when Polylang(Core) is activated. #2657
+* Fixed: Improve coding in amp-page-builder.php #2725
+* Fixed: Escaping not done properly #2723
+* Fixed: Serialization problem with AMP settings data. #2717
+* Fixed: Whenever Convert AMP to WP theme (Beta) option is enabled Logo Image is being stretched. #2726
+
 = 0.9.97.22 (6th December 2018) =
 * Added: Total Plus theme compatibility #2511
 * Added: Allow SVG format Logo in AMP #2431
