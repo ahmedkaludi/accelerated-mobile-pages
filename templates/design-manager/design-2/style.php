@@ -46,7 +46,7 @@ amp-wistia-player {margin:5px 0px;}
     margin: 0 auto;
     <?php endif; ?>
 }
-.wp-block-image.aligncenter amp-img {
+figure.aligncenter amp-img {
  margin: 0 auto;
  }
 /* Slide Navigation code */

@@ -71,7 +71,7 @@ amp-wistia-player {margin:5px 0px;}
     <?php endif; ?>
     <?php echo ampforwp_font_selector('content'); ?>
 }
-.wp-block-image.aligncenter amp-img {
+figure.aligncenter amp-img {
  margin: 0 auto;
  }
 
