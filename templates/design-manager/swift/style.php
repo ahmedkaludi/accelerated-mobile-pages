@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp; ?>
 <?php if(!isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector'])){?>
-<?php if(! if_is_levelup() && !if_levelup_has_builder() ){ ?>
+<?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ ?>
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 300;font-display: auto;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Light.ttf');}
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 400;font-display: auto;src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Regular.ttf');}
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 500;font-display: auto;src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Medium.ttf');} 
@@ -41,7 +41,7 @@ amp-carousel > amp-img > img {object-fit: contain;}
 .amp-carousel-img img {object-fit: contain;}
 amp-instagram{box-sizing: initial;}
 .wp-block-image.aligncenter amp-img {margin: 0 auto;}
-<?php if(! if_is_levelup() && !if_levelup_has_builder() ){ // Level up Condition starts?>
+<?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts?>
 @font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;font-display: auto;src:  local('icomoon'), local('icomoon'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.ttf');}
 .cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px}
 header .cntr{
@@ -312,7 +312,7 @@ if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && i
     .right a, .left a {padding: 10px 30px 14px;}
 }
 <?php }?>
-<?php if(! if_is_levelup() && !if_levelup_has_builder() ){ // Level up Condition starts?>
+<?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts?>
 <?php //page and frontpage
 if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
     <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
@@ -734,7 +734,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
 }
 <?php } //Drop Cap CSS ends
 // Menu Search CSS
-if(! if_is_levelup() && !if_levelup_has_builder() ){ // Level up Condition starts 
+if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts 
 if ( isset($redux_builder_amp['menu-search']) && $redux_builder_amp['menu-search'] ) { ?>
 .m-srch #amp-search-submit {
     cursor: pointer;
@@ -1073,7 +1073,7 @@ thead th {
 }
 <?php } //Header and Archive Sidebar CSS Ends ?>
 <?php 
-if(! if_is_levelup() && !if_levelup_has_builder() ){ // Level up Condition starts 
+if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts 
 //Footer
 if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { ?>
 .footer{margin-top: 80px;}
@@ -1368,7 +1368,7 @@ if(isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp
   padding-bottom:40px;
 }
 <?php } ?>
-<?php if(! if_is_levelup() && !if_levelup_has_builder() ){ // Level up Condition starts ?>
+<?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 [class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 .amp-ad-wrapper{width:100%;text-align:center;}
@@ -1621,7 +1621,7 @@ if($redux_builder_amp['header-type'] == '10'){?>
 }
 <?php } // Header 10 CSS Ends
 // image floats removed in mobile view #2525
-if(! if_is_levelup() && !if_levelup_has_builder() ){ // Level up Condition starts 
+if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts 
 if(is_singular()){?>
 @media(max-width:480px){
 .sp-rt .alignright , .sp-rt .alignleft {

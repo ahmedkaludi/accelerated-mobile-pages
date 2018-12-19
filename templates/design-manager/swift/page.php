@@ -2,12 +2,14 @@
 amp_header(); ?>
 <div <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>class="sp"<?php } ?>>
 	<div <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>class="cntr"<?php } ?>>
+		<?php if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts ?>
 		<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 			<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
 				amp_breadcrumb();
 			}?>
 		 	<?php amp_title(); ?>
 		<?php } ?>
+		<?php } // Level up Condition ends here?>
 		<?php if ( isset($redux_builder_amp['featured_image_swift_page']) && $redux_builder_amp['featured_image_swift_page'] && ampforwp_has_post_thumbnail() ) { ?>
 			<div class="sf-img">
 				<?php amp_featured_image();?>
