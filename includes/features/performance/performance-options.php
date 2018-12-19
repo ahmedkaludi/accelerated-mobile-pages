@@ -8,6 +8,40 @@ use ReduxCore\ReduxFramework\Redux;
   $cache_AD_URL = "http://ampforwp.com/amp-cache/#utm_source=options-panel&utm_medium=performance-tab&utm_campaign=AMP%20Plugin";
   $cache_desc = '<a href="'.$cache_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp_cache_b.png" width="560" height="85" /></a>';
   }
+  // PWA Section
+  Redux::setSection( $opt_name, array(
+        'title'      => esc_html__( 'PWA', 'accelerated-mobile-pages' ),
+        'id'         => 'pwa-for-wp',
+        'desc'      => '',
+        'subsection' => true,
+        'class'      => 'ampforwp_new_features ',
+        'fields'     => array(
+            array(
+                  'id' => 'ampforwp-pwa-for-wp',
+                  'type' => 'section',
+                  'title' => esc_html__('Progressive Web App (PWA)', 'accelerated-mobile-pages'),
+                  'indent' => true,
+                  'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+              ),
+
+           array(
+               'id'       => 'ampforwp_pwa_module',
+               'type'     => 'raw',
+               'title'     => esc_html__('PWA Support', 'accelerated-mobile-pages'),
+               'content'  => (!is_plugin_active('pwa-for-wp/pwa-for-wp.php')? 
+                                '<div class="install-now ampforwp-activation-call-module-upgrade button  " id="ampforwp-pwa-activation-call" data-secure="'.wp_create_nonce('verify_module').'">Activate this Module</div>'
+                            : '<div class="col-wrapper">
+                                   <a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'"> <div class="ampforwp-recommendation-btn updated-message"><p>Go to PWA Settings</p></div> </a> 
+                                </div>
+                            ').'<a class="amp_recommend_learnmore" href="https://ampforwp.com/tutorials/article/what-is-pwa-for-wp-and-why-its-included-in-the-amp/" target="_blank">Learn more</a>'
+           ),
+
+       )
+
+  )
+
+  );
   // Performance SECTION
   Redux::setSection( $opt_name, array(
         'title'      => __( 'Performance', 'accelerated-mobile-pages' ),
@@ -31,14 +65,6 @@ use ReduxCore\ReduxFramework\Redux;
                'tooltip-subtitle'     => __('Improve the Page Speed and Loading time with Minification option', 'accelerated-mobile-pages'),
                'default'  => 0
            ),
-           array(
-               'id'       => 'ampforwp_pwa_module',
-               'type'     => 'raw',
-               'title'     => __('PWA for wp', 'accelerated-mobile-pages'),
-               'tooltip-subtitle'     => __('', 'accelerated-mobile-pages'),
-               'content'  => (!is_plugin_active('pwa-for-wp/pwa-for-wp.php')? '<div class="update-message ampforwp-modules"><p> New PWA Module <button type="button" id="ampforwp-pwa-activation-call" class="button-link"> Enable </button></p></div>' : '<a href="'.admin_url('admin.php?page=pwaforwp').'">Go to settings</a>')
-           ),
-
        )
 
   )

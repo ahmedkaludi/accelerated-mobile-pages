@@ -38,3 +38,10 @@ if ( ! function_exists( 'ampforwp_footermenu') ) {
 require_once( AMPFORWP_PLUGIN_DIR . '/includes/newsletter.php' );
 // 3. Some Extra Styling for Admin area
 // Moved to functions.php
+
+add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_upgread_script' );
+function ampforwp_add_admin_upgread_script($hook){
+	if('toplevel_page_amp_options'==$hook){
+		wp_enqueue_script( 'ampforwp_admin_module_upgreade', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/module-upgrade.js', array( 'jquery', 'updates' ), AMPFORWP_VERSION, true );
+	}
+}
