@@ -222,7 +222,9 @@ padding: <?php echo $redux_builder_amp['primary-menu-padding-control']['padding-
 
 <?php //Home and Archive
 
-if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && is_shop()) ) { ?>
+if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && is_shop()) ) { 
+if(isset($redux_builder_amp['amp-frontpage-select-option']) && $redux_builder_amp['amp-frontpage-select-option']==0){
+	?>
 .hmp{margin-top:34px;display:inline-block;width:100%;  }
 .fbp{width:100%;display:inline-block;clear:both;margin:15px 15px 20px 15px;}
 .fbp-img a{display:block;line-height:0;}
@@ -311,7 +313,9 @@ if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && i
 @media(max-width:320px){
     .right a, .left a {padding: 10px 30px 14px;}
 }
-<?php }?>
+<?php }//Custom front page ends here
+}
+?>
 <?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts?>
 <?php //page and frontpage
 if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
