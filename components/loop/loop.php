@@ -388,7 +388,6 @@ function amp_loop_image( $data=array() ) {
 				$height = $height * $resolution;
 			}
 			$thumb_url_array = ampforwp_aq_resize( $thumb_url, $width, $height, true, false, true ); //resize & crop the image
-			$thumb_url_array = esc_url(apply_filters('ampforwp_modify_thumb_url_array', $thumb_url_array));
 			$thumb_url = $thumb_url_array[0];
 			$thumb_width = $thumb_url_array[1];
 			$thumb_height = $thumb_url_array[2];
