@@ -67,7 +67,8 @@ function ampforwp_add_sd_fields($fields){
                                             </div>' 
                                             
                 );
-          $fields[] =         array(
+          if( !is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') ) {
+            $fields[] =         array(
                       'id' => 'ampforwp-sd_1',
                       'type' => 'section',
                       'title' => __('Schema & Structured Data', 'accelerated-mobile-pages'),
@@ -75,7 +76,7 @@ function ampforwp_add_sd_fields($fields){
                       'layout_type' => 'accordion',
                         'accordion-open'=> 1, 
                   );
-    $fields[] =   array(
+            $fields[] =   array(
                       'id'       => 'ampforwp-sd-type-posts',
                       'type'     => 'select',
                       'title'    => __('Posts', 'accelerated-mobile-pages'),
@@ -83,7 +84,7 @@ function ampforwp_add_sd_fields($fields){
                       'options'  => ampforwp_get_sd_types(),
                       'default'  => 'BlogPosting',
             );
-    $fields[] =   array(
+            $fields[] =   array(
                       'id'       => 'ampforwp-sd-type-pages',
                       'type'     => 'select',
                       'title'    => __('Pages', 'accelerated-mobile-pages'),
@@ -91,7 +92,7 @@ function ampforwp_add_sd_fields($fields){
                       'options'  =>  ampforwp_get_sd_types(),
                       'default'  => 'BlogPosting',
             );
-          $fields[] = array(
+            $fields[] = array(
                       'id' => 'ampforwp-sd_2',
                       'type' => 'section',
                       'title' => __('Default Values Setup', 'accelerated-mobile-pages'),
@@ -100,20 +101,20 @@ function ampforwp_add_sd_fields($fields){
                         'accordion-open'=> 1, 
                   );
 
-        $fields[] =   array(
+            $fields[] =   array(
                       'id'       => 'amp-structured-data-logo',
                       'type'     => 'media',
                       'url'      => true,
                       'title'    => __('Default Structured Data Logo', 'accelerated-mobile-pages'),
                       'tooltip-subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
             );
-    $fields[] =   array(
+            $fields[] =   array(
                       'id'       => 'ampforwp-sd-logo-dimensions',
                       'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
                       'type'     => 'switch',
                       'default'  => 0,
             );
-    $fields[] =   array(
+            $fields[] =   array(
                     'class'=>'child_opt child_opt_arrow',
                       'id'       => 'ampforwp-sd-logo-width',
                       'type'     => 'text',
@@ -122,7 +123,7 @@ function ampforwp_add_sd_fields($fields){
                       'default' => '600',
                       'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
             );
-    $fields[] =   array(
+            $fields[] =   array(
                     'class'=>'child_opt',
                     'id'       => 'ampforwp-sd-logo-height',
                     'type'     => 'text',
@@ -131,7 +132,7 @@ function ampforwp_add_sd_fields($fields){
                     'default' => '60',
                     'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
             );
-    $fields[] =   array(
+            $fields[] =   array(
                       'id'      => 'amp-structured-data-placeholder-image',
                       'type'    => 'media',
                       'url'     => true,
@@ -139,7 +140,7 @@ function ampforwp_add_sd_fields($fields){
                       'tooltip-subtitle'    => __('Upload the Image you want to show as Placeholder Image.', 'accelerated-mobile-pages'),
                       'placeholder'  => __('when there is no featured image set in the post','accelerated-mobile-pages'),
             );
-    $fields[] =   array(
+            $fields[] =   array(
                       'id'       => 'amp-structured-data-placeholder-image-width',
                       'title'    => __('Default Post Image Width', 'accelerated-mobile-pages'),
                       'type'     => 'text',
@@ -147,7 +148,7 @@ function ampforwp_add_sd_fields($fields){
                       'tooltip-subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
                       'default'  => '700'
             );
-    $fields[] =   array(
+            $fields[] =   array(
                       'id'       => 'amp-structured-data-placeholder-image-height',
                       'title'    => __('Default Post Image Height', 'accelerated-mobile-pages'),
                       'type'     => 'text',
@@ -155,7 +156,7 @@ function ampforwp_add_sd_fields($fields){
                       'tooltip-subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
                       'default'  => '550'
              );
-    $fields[] =   array(
+            $fields[] =   array(
                       'id'      => 'amporwp-structured-data-video-thumb-url',
                       'type'    => 'media',
                       'url'     => true,
@@ -163,13 +164,14 @@ function ampforwp_add_sd_fields($fields){
                       'tooltip-subtitle'    => __('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
                       'placeholder'  => __('When there is no thumbnail set for the video','accelerated-mobile-pages'),
             );
-    $fields[] =   array(  
+            $fields[] =   array(  
                       'id'       => 'ampforwp-sd-multiple-images',  
                       'title'    => __('High-resolution Images', 'accelerated-mobile-pages'), 
                       'type'     => 'switch', 
                       'default'  => 0,  
                       'tooltip-subtitle' => 'For best results, provide multiple high-resolution images (minimum of 300,000 pixels when multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1 <a href="https://developers.google.com/search/docs/data-types/article#article_types" target="_blank">Read more</a>' 
             );
+          }
     return $fields;
     }
 }
