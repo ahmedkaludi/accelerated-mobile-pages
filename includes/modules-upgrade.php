@@ -62,6 +62,33 @@ function ampforwp_enable_modules_upgread(){
                         );
             $redirectSettingsUrl = admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp');
         break;
+        case 'adsforwp':
+            $nonceUrl = add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'ads-for-wp',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => wp_create_nonce( 'ads-for-wp' ),
+                                    ),
+                        network_admin_url( 'plugins.php' )
+                        );
+            $plugins[] = array(
+                            'name' => 'ads-for-wp',
+                            'path_' => 'https://downloads.wordpress.org/plugin/ads-for-wp.zip',
+                            'path' =>  add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'ads-for-wp',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => $nonceUrl,
+                                    )
+                                    ),
+                            'install' => 'ads-for-wp/ads-for-wp.php',
+                        );
+            $redirectSettingsUrl = admin_url('admin.php?page=adsforwp&tab=general&reference=ampforwp');
+        break;
         default:
             $plugins = array();
         break;
@@ -90,6 +117,9 @@ function ampforwp_admin_notice_module_reference_install() {
             break;
             case 'structured_data_options':
                 $message = 'AMPforWP Structured data Module has been Upgraded. You may configure it below:';
+            break;
+            case 'adsforwp_options':
+                $message = 'AMPforWP AdsforWP Module has been Upgraded. You may configure it below:';
             break;
         }
     }
