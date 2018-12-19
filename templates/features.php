@@ -6825,7 +6825,7 @@ function ampforwp_get_weglot_url(){
 add_action('ampforwp_below_the_title','ampforwp_jannah_subtitle');
 function ampforwp_jannah_subtitle(){
 if (function_exists('jannah_theme_name') && function_exists('tie_get_postdata')){?>
-	<h4 class="amp-wp-content"><?php echo tie_get_postdata( 'tie_post_sub_title' ) ?></h4>
+	<h4 class="amp-wp-content"><?php echo esc_html__(tie_get_postdata( 'tie_post_sub_title' ), 'accelerated-mobile-pages' )?></h4>
 <?php
 } 
 }
