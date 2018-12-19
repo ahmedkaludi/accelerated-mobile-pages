@@ -124,7 +124,7 @@ amp-sidebar{width:250px}.amp-sidebar-image{line-height:100px;vertical-align:midd
 .ampforwp-ad-above-related-post{padding-top:15px;}
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
 .single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 22px; font-size: 13px; color:#333; font-family: sans-serif; }
-.wp-block-image.aligncenter amp-img {
+figure.aligncenter amp-img {
  margin: 0 auto;
  }
 /* Footer */

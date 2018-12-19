@@ -40,7 +40,7 @@ amp-carousel > amp-img > img {object-fit: contain;}
 .amp-carousel-container {position: relative;width: 100%;height: 100%;} 
 .amp-carousel-img img {object-fit: contain;}
 amp-instagram{box-sizing: initial;}
-.wp-block-image.aligncenter amp-img {margin: 0 auto;}
+figure.aligncenter amp-img {margin: 0 auto;}
 <?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts?>
 @font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;font-display: auto;src:  local('icomoon'), local('icomoon'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.ttf');}
 .cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px}
