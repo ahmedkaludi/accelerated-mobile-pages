@@ -193,9 +193,11 @@ amp_header(); ?>
 					</ul>
 	            </div>
 	        	<?php } ?>
-			<div class="cmts">
-				<?php amp_comments();?>
-			</div>
+	        <?php if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts ?>
+				<div class="cmts">
+					<?php amp_comments();?>
+				</div>
+			<?php } // Level up Condition ends  ?>
 			<?php } ?>
 		</div>
 	</div>
