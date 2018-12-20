@@ -3314,7 +3314,7 @@ function ampforwp_view_nonamp(){
 	global $redux_builder_amp, $post, $wp;
   	$nofollow = $page = $amp_url = $non_amp_url = '';
    	if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
-   		$nofollow = 'rel="nofollow"';
+   		$nofollow = 'rel=nofollow';
    	}
 	$amp_url = untrailingslashit( home_url( $wp->request ) );
 	$amp_url = explode('/', $amp_url);
