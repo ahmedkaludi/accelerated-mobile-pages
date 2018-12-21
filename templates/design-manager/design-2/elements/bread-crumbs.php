@@ -229,8 +229,6 @@ if ( isset($redux_builder_amp['ampforwp-bread-crumb']) && 1 == $redux_builder_am
             echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Search results for: ' . get_search_query() . '">
             ' . ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-search-text'], 'Search results for') . ': ' . get_search_query() . '</strong></li>';
            
-        } elseif ( is_404() ) {
-            // Nothing to show here
         } 
         echo '</ul>';
       
