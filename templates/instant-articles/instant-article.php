@@ -20,7 +20,7 @@
 				<h1><?php the_title(); ?></h1>
         <?php if ( function_exists('tie_get_postdata') && tie_get_postdata( 'tie_post_sub_title' ) ) { ?>
                 <!-- Subtitle -->
-        <h2><?php echo esc_attr(tie_get_postdata( 'tie_post_sub_title' )); ?></h2>
+        <h2><?php echo esc_html(tie_get_postdata( 'tie_post_sub_title' )); ?></h2>
         <?php } ?>
 				<!-- kicker -->
 				<h3 class="op-kicker">
