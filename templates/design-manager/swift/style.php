@@ -967,7 +967,6 @@ if ( (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sideba
 }
 }
 <?php }
-//var_dump((ampforwp_is_home()));die;
 if ( (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] && (ampforwp_is_front_page() || ampforwp_is_home()) ) || (isset($redux_builder_amp['swift-sidebar']) && $redux_builder_amp['swift-sidebar'] && is_single() ) ) { ?>
 /*** Sidebar CSS ***/
 <?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
