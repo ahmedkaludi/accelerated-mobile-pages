@@ -3018,6 +3018,16 @@ function ampforwp_auto_flush_on_save($redux_builder_amp) {
 		global $wp_rewrite;
 		$wp_rewrite->flush_rules();
 	}
+	$options = $new_options = array();
+	if ( is_array($redux_builder_amp['hide-amp-categories']) && !is_array($redux_builder_amp['hide-amp-categories2'])) {
+		$options = array_keys(array_filter($redux_builder_amp['hide-amp-categories'] ) );
+		foreach ($options as $option ) {
+			$new_options[] = $option;
+		}
+	    $redux_builder_amp['hide-amp-categories2'] = $new_options;
+		$redux_builder_amp['hide-amp-categories'] = '';
+	    update_option('redux_builder_amp',$redux_builder_amp);
+	 }
 }
 add_action("redux/options/redux_builder_amp/saved",'ampforwp_auto_flush_on_save', 10, 1);
 
@@ -4563,12 +4573,12 @@ function ampforwp_posts_to_remove () {
 	$selected_cats 					= array();
 	$post_id_array 					= array();
 	$current_cats_ids 				= array();
-	if(isset($redux_builder_amp['hide-amp-categories'])){
-		$get_categories_from_checkbox = $redux_builder_amp['hide-amp-categories'];
+	if(isset($redux_builder_amp['hide-amp-categories2'])){
+		$get_categories_from_checkbox = $redux_builder_amp['hide-amp-categories2'];
 		if($get_categories_from_checkbox){
 			$get_selected_cats = array_filter($get_categories_from_checkbox);
 			foreach ($get_selected_cats as $key => $value) {
-				$selected_cats[] = $key;
+				$selected_cats[] = $value;
 			}  
 		}
 		$current_cats = get_the_category(get_the_ID());
@@ -4581,8 +4591,8 @@ function ampforwp_posts_to_remove () {
 	    	return true;
 	    }
 	}
-	if( is_array($redux_builder_amp['hide-amp-tags-bulk-option']) )	{
-		$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
+	if( is_array($redux_builder_amp['hide-amp-tags-bulk-option2']) )	{
+		$get_tags_checkbox =  array_values(array_filter($redux_builder_amp['hide-amp-tags-bulk-option2'])); 
 		$all_tags 	= get_the_tags(get_the_ID());
 		$tagsOnPost = array();
 		if ( $all_tags ) {
@@ -4603,13 +4613,13 @@ if ( ! function_exists('ampforwp_exclude_archive') ) {
 		global $redux_builder_amp;
 		$exclude = array();
 		// Categories
-		if ( isset($redux_builder_amp['hide-amp-categories']) && is_array($redux_builder_amp['hide-amp-categories']) && 'cat' == $archive ) {
-			$exclude = array_keys(array_filter($redux_builder_amp['hide-amp-categories']));
+		if ( isset($redux_builder_amp['hide-amp-categories2']) && is_array($redux_builder_amp['hide-amp-categories2']) && 'cat' == $archive ) {
+			$exclude = array_values(array_filter($redux_builder_amp['hide-amp-categories2']));
 			return $exclude;
 		}
 		// Tags
-		if ( isset($redux_builder_amp['hide-amp-tags-bulk-option']) && is_array($redux_builder_amp['hide-amp-tags-bulk-option']) && 'tag' == $archive ) {
-			$exclude = array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option']));
+		if ( isset($redux_builder_amp['hide-amp-tags-bulk-option2']) && is_array($redux_builder_amp['hide-amp-tags-bulk-option2']) && 'tag' == $archive ) {
+			$exclude = array_values(array_filter($redux_builder_amp['hide-amp-tags-bulk-option2']));
 			return $exclude;
 		}
 	}
@@ -4849,7 +4859,7 @@ function is_category_amp_disabled(){
 	global $redux_builder_amp;
 	$current_cats_ids = $selected_cats = array();
 	if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
-		if(is_tag() && is_array($redux_builder_amp['hide-amp-tags-bulk-option']))	{
+		if(is_tag() && is_array($redux_builder_amp['hide-amp-tags-bulk-option2']))	{
 			$all_tags 	= get_the_tags();
 			$tagsOnPost = array();
 			if ( $all_tags ) {
@@ -4857,7 +4867,7 @@ function is_category_amp_disabled(){
 					$tagsOnPost[] = $tagsvalue->term_id;
 				}
 			}
-			$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
+			$get_tags_checkbox =  array_values(array_filter($redux_builder_amp['hide-amp-tags-bulk-option2'])); 
 			
 			if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
 				return true;
@@ -4868,12 +4878,12 @@ function is_category_amp_disabled(){
 		}//tags check area closed
 		$categories = get_the_category();
 		if ( $categories) {
-			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
+			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories2']; 
 			// Check if $get_categories_from_checkbox has some cats then only show
 			if ( $get_categories_from_checkbox ) {
 				$get_selected_cats = array_filter($get_categories_from_checkbox);
 				foreach ($get_selected_cats as $key => $value) {
-					$selected_cats[] = $key;
+					$selected_cats[] = $value;
 				}
 				foreach ($categories as $key => $cats) {
 					$current_cats_ids[] =$cats->cat_ID;
@@ -7477,3 +7487,28 @@ $file_types = array_merge($file_types, $new_filetypes );
 return $file_types;
 }
 add_action('upload_mimes', 'ampforwp_upload_svg');
+
+// Ajax functions
+add_action( 'wp_ajax_categories', 'ampforwp_ajax_cats' );
+function ampforwp_ajax_cats(){
+	$return = array();
+ 	$categories = get_categories(array('search'=> $_GET['q']));
+ 	$categories_array = array();
+   	if ( $categories ) :
+        foreach ($categories as $cat ) {
+                $return[] = array($cat->cat_ID,$cat->name);// array( Cat ID, Cat Name )
+        }
+    endif;
+	wp_send_json( $return );
+}
+add_action( 'wp_ajax_tags', 'ampforwp_ajax_tags' );
+function ampforwp_ajax_tags(){
+	$return = array();
+ 	$tags = get_tags(array('search'=> $_GET['q']));
+   	if ( $tags ) :
+        foreach ($tags as $tag ) {
+                $return[] = array($tag->term_id,$tag->name);// array( Tag ID, tag Name )
+        }
+    endif;
+	wp_send_json( $return );
+} 

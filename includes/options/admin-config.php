@@ -3539,13 +3539,36 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => esc_html__( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'default'   => 0, 
                         'data'      => 'category_list_hierarchy',
-                        ), 
+                       
+                         'class'     => 'hide'
+                        ),
+                        array(
+                        'id'        =>'hide-amp-categories2',
+                        'type'      => 'select',
+                        'title'     => __('Select Categories to Hide AMP'),
+                        'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
+                        'multi'     => true, 
+                        'ajax'      => true, 
+                        'data-action'     => 'categories', 
+                        'data'      => 'categories',
+                        ),  
                         array(
                         'id'        =>'hide-amp-tags-bulk-option',
                         'type'      => 'checkbox',
                         'title'     => esc_html__('Select Tags to Hide AMP'),
                         'tooltip-subtitle' => esc_html__( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                         'default'   => 0, 
+                        'data'      => 'tags',
+                         'class'      => 'hide'
+                       ),
+                    array(
+                        'id'        =>'hide-amp-tags-bulk-option2',
+                        'type'      => 'select',
+                        'title'     => __('Select Tags to Hide AMP'),
+                        'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
+                        'multi'     => true,
+                        'ajax'      => true,
+                        'data-action' => 'tags', 
                         'data'      => 'tags',
 
                        ),
@@ -5261,25 +5284,7 @@ Redux::setSection( $opt_name, array(
     }
     //End of code for fetching categories to show as a list in redux settings
 
-    // code for fetching tags to show as a list in the redux settings
-    $tags_array = '';
-    if(get_tags()){
-        $tags = get_tags( array(
-                                'orderby' => 'name',
-                                'order'   => 'ASC',
-                                'number'  => 500
-                                ) );
-        $tags_array = array();
-        if( $tags ) :
-            foreach( $tags as $tag ){
-                $tag_id = $tag->term_id;
-                $key = "".$tag_id;
-                // building associative array of ID-tag_name
-                $tags_array[ $key ] = $tag->name;
-            }
-        endif;
-    }
-    // End of code for fetching tags to show as a list in redux settings
+    
     $ampforwp_home_loop = array();
     $ampforwp_home_loop = get_option('ampforwp_custom_post_types');
     $ampforwp_home_loop['post'] = 'Posts';
@@ -5339,12 +5344,16 @@ Redux::setSection( $opt_name, array(
                     'type'     => 'select',
                         'class'    => 'child_opt',
                     'title'    => esc_html__( 'Featured Slider from Tags', 'accelerated-mobile-pages' ),
-                    'options'  => $tags_array,
+                    //'options'  => $tags_array,
                     'required' => array(
                     array('amp-design-selector', '=' , '3'),
                     array('amp-design-3-featured-slider', '=' , '1'),
                     array('amp-design-3-featured-content', '=' , '2'),
-                        ),       
+                        ),  
+                    //'multi'     => true,
+                        'ajax'      => true,
+                        'data-action' => 'tags', 
+                        'data'      => 'tags',         
                 ),
                  array(
                         'id'        =>'ampforwp-featur-slider-num-posts',
