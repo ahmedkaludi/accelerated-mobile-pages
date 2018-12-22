@@ -709,9 +709,11 @@ var reduxOptionTab = function(){
 //reduxOptionTab();   
 
  $( '.redux-action_bar input' ).on('click', function( e ) {
+    if($(".amp-ls-solve").length){
       var license = $(".amp-ls-solve").val();
        license = window.atob(license);
        $(".amp-ls-solve").val(license);
+   }
 })
 
 $(".redux-ampforwp-ext-activate").click(function(){
