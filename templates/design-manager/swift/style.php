@@ -77,8 +77,12 @@ header .cntr{
 <?php } // Sickt CSS Ends ?>
 .h_m_w{width:100%;clear:both;display: inline-flex;<?php if($redux_builder_amp['swift-height-control']){?>height:<?php echo $redux_builder_amp['swift-height-control']?>;<?php } ?>}
 .h-ic a:after, .h-ic a:before{font-family: 'icomoon';font-size: 23px;<?php if(isset($redux_builder_amp['swift-element-color-control'] ['rgba']) && $redux_builder_amp['swift-element-color-control'] ['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>}
+<?php if ( true == ampforwp_get_setting('ampforwp-callnow-button') ) { ?>
 .h-call a:after{content: "\e0cd";}
+<?php } ?>
+<?php if (function_exists('is_shop') && is_shop()){ ?>
 .h-shop a:after{align-self: center;}
+<?php } ?>
 .h-ic{margin:0px 10px; align-self: center;}
 .amp-logo a{line-height:0;display:inline-block;<?php if(isset($redux_builder_amp['swift-element-color-control'] ['rgba']) && $redux_builder_amp['swift-element-color-control'] ['rgba']){?>color:<?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>}
 .logo <?php if(is_single()){ ?> h2 <?php } else{?>h1<?php }?>{margin: 0;font-size: 17px;font-weight: 700;text-transform: uppercase;display:inline-block;}
