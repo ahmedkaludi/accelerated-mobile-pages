@@ -424,7 +424,7 @@ if(!function_exists('ampforwp_findInternalUrl')){
 			return $url;
 		}
 	}
-    if( $url=='#' || strpos($url, "#")!==false || strpos($url, "tel:")!==false ) {
+    if( false === wp_http_validate_url($url)) {
     	return $url; 
     }
 
