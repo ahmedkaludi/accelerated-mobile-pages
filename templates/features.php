@@ -6281,7 +6281,7 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
 	} else {
 		$new_url = add_query_arg( 'amp', '1', $url );
 	}
-	return esc_url( $new_url );
+	return esc_url( apply_filters( 'ampforwp_url_controller', $new_url ) );
 }
 // 99. Merriweather Font Management
 add_filter( 'amp_post_template_data', 'ampforwp_merriweather_font_management' );

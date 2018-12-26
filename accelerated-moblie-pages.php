@@ -511,7 +511,7 @@ function ampforwp_is_amp_endpoint() {
 		return ampforwp_is_non_amp();
 	}
 	else {
-		return false !== get_query_var( 'amp', false );
+		return apply_filters('ampforwp_is_amp_endpoint', false !== get_query_var( 'amp', false ) );
 	}
 }
 
