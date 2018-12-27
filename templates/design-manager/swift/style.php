@@ -1379,15 +1379,16 @@ if(isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp
 <?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 [class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
-.amp-ad-wrapper{width:100%;text-align:center;}
+<?php if(true == ampforwp_get_setting('enable-amp-ads-1')||true == ampforwp_get_setting('enable-amp-ads-2')||true == ampforwp_get_setting('enable-amp-ads-3')||true == ampforwp_get_setting('enable-amp-ads-4')||true == ampforwp_get_setting('enable-amp-ads-5')||true == ampforwp_get_setting('enable-amp-ads-6')){?>
+body .amp-ad-wrapper{width:100%;text-align:center;margin: 10px 0;}
 .amp-ad-wrapper span { display: inherit; font-size: 12px; line-height: 1;}
+<?php } ?>
 <?php if( isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1'] ) { ?>.amp_ad_1{margin: -2px 0px -17px 0px;}<?php } 
 if( isset($redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2'] ) { ?>.amp_ad_2{margin: 20px 0px -23px 0px; }<?php } 
 if( isset($redux_builder_amp['enable-amp-ads-3'] ) && $redux_builder_amp['enable-amp-ads-3'] ) { ?>.amp-ad-3{margin: 0px 0px -4px 0px;}<?php }
 if( isset($redux_builder_amp['enable-amp-ads-4'] ) && $redux_builder_amp['enable-amp-ads-4'] ) { ?>.amp_ad_4{margin: 20px 0px 20px 0px;}<?php }
 if( isset($redux_builder_amp['enable-amp-ads-5'] ) && $redux_builder_amp['enable-amp-ads-5'] ) { ?>.amp_ad_5{margin: 10px 0px -17px 0px;}<?php }
 if( isset($redux_builder_amp['enable-amp-ads-6'] ) && $redux_builder_amp['enable-amp-ads-6'] ) { ?>.amp-ad-6{ margin: 0px 0px 20px 0px;}<?php } ?>
-.amp-ad-wrapper {margin-top: 10px; margin-bottom: 10px}
 <?php if( true == $redux_builder_amp['amp-enable-notifications'] ) {?>
 	#amp-user-notification1{padding: 5px;text-align: center;background: #fff;border-top: 1px solid #005be2;}
 	#amp-user-notification1 p {display: inline-block;margin: 20px 0px;}
