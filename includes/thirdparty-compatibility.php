@@ -46,12 +46,31 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 												"<style amp-custom>",
 												"<amp-sidebar ",
 												"</amp-sidebar>",
+												'on="tap:ampforwpConsent.dismiss"',
+												'<div id="post-consent-ui"',
+												'on="tap:ampforwpConsent.reject"',
+												'on="tap:ampforwpConsent.accept"'
+
 												),
 											array(
 												"img",
 												"<style type=\"text/css\">",
 												"<sidebar ",
 												"</sidebar>",
+												'onClick="ampforwp_gdrp_set()"',
+												'<script>
+												function getCookie(name) {
+												  var value = "; " + document.cookie;
+												  var parts = value.split("; " + name + "=");
+												  if (parts.length == 2) return parts.pop().split(";").shift();
+												}
+												function ampforwp_gdpr(){console.log();
+											if(getCookie(\'ampforwpcookie\') == \'1\'){document.getElementById(\'gdpr_c\').remove();}
+											}ampforwp_gdpr();
+											function ampforwp_gdrp_set(){document.getElementById(\'ampforwpConsent\').remove(); document.cookie = \'ampforwpcookie=1;expires;path=/\';}
+												</script><div id="post-consent-ui"',
+												'onClick="ampforwp_gdrp_set()"',
+												'onClick="ampforwp_gdrp_set()"',
 												)
 											, $ampData);
 
