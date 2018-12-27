@@ -1121,19 +1121,11 @@ if(isset($redux_builder_amp['ftr2-gapping'])){
 }
 .w-bl{margin-left: 0;display: flex;flex-direction: column;position: relative;flex: 1 0 22%;margin:0 15px 30px;line-height:1.5;}
 .w-bl h4{font-size: <?php echo $redux_builder_amp['swift-head-size'] ?>;font-weight: <?php echo $redux_builder_amp['swift-head-fntwgth'] ?>;margin-bottom: 20px;text-transform: uppercase;letter-spacing: 1px;padding-bottom: 4px;}
-.w-bl ul li, .ampforwp_wc_shortcode_title{list-style-type: none;margin-bottom: 15px;}
+.w-bl ul li{list-style-type: none;margin-bottom: 15px;}
 .w-bl ul li:last-child{margin-bottom:0;}
 .w-bl ul li a{text-decoration: none;}
 .w-bl .menu li .sub-menu{display:none;}
 
-.ampforwp_wc_shortcode_title{
-	margin-top: 12px;
-    display: inline-block;
-}
-.ampforwp_wc_shortcode_excerpt{
-	font-size:15px;
-	line-height:1.4;
-}
 <?php // Back to Top CSS //
 if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
 	.btt{
