@@ -3576,7 +3576,7 @@ function ampforwp_modify_rel_amphtml_paginated_post($url) {
 					$new_url = add_query_arg('page',$post_paginated_page,$url);
 				}
 				else{
-					$new_url = trailingslashit($url).$post_paginated_page;
+					$new_url = trailingslashit($url.$post_paginated_page);
 				}
 
 				$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$new_url);
