@@ -59,13 +59,13 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 												"</sidebar>",
 												'onClick="ampforwp_gdrp_set()"',
 												'<script>
-												function getCookie(name) {
+												function ampforwp_gdpr_getCookie(name) {
 												  var value = "; " + document.cookie;
 												  var parts = value.split("; " + name + "=");
 												  if (parts.length == 2) return parts.pop().split(";").shift();
 												}
 												function ampforwp_gdpr(){console.log();
-											if(getCookie(\'ampforwpcookie\') == \'1\'){document.getElementById(\'gdpr_c\').remove();}
+											if(ampforwp_gdpr_getCookie(\'ampforwpcookie\') == \'1\'){document.getElementById(\'gdpr_c\').remove();}
 											}ampforwp_gdpr();
 											function ampforwp_gdrp_set(){document.getElementById(\'ampforwpConsent\').remove(); document.cookie = \'ampforwpcookie=1;expires;path=/\';}
 												</script><div id="post-consent-ui"',
