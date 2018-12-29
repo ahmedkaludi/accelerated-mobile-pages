@@ -833,6 +833,7 @@ function rowData($container,$col,$moduleTemplate){
 								//'cat' => $fieldValues['category_selection'],
 								'posts_per_page' => $show_no_of_posts,
 								'has_password' => false,
+								'ignore_sticky_posts' => 1,
 								'post_status'=> 'publish',
 								'post_type' => $fieldValues['post_type_selection']
 							);
