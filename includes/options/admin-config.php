@@ -2074,6 +2074,13 @@ Redux::setSection( $opt_name, array(
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
                     array(
+                        'id'       => 'fb-instant-feedback',
+                        'type' => 'switch',
+                        'title'    => __('Feedback for Media', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Allow like and comment for media', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
                         'id'       => 'fbia-header-text-area',
                         'type'     => 'textarea',
                         'title'    => __('Custom HTML in Head Tag', 'accelerated-mobile-pages'),

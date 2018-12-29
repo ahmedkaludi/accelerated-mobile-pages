@@ -2,8 +2,6 @@
 add_filter( 'fbia_content', 'headlines');
 add_filter( 'fbia_content', 'filter_dom');
 add_filter( 'fbia_content', 'address_tag');
-//remove_all_filters( 'post_gallery' );
-//add_filter( 'post_gallery', 'fb_gallery_shortcode', 10, 3 );
 
 // DOM Document Filter
 if(class_exists("DOMDocument")){
@@ -123,18 +121,18 @@ function validate_images($DOMDocument){
 
 			if($element->parentNode->nodeName == "figure"){
 				// This element is already wrapped in a figure tag, we only need to make sure it's placed right
-				$element = $element->parentNode;
+				$element = $element->parentNode;				
 			} else {
 				// Wrap this image into a figure tag
 				$figure = $DOMDocument->createElement('figure');
 				$element->parentNode->replaceChild($figure, $element);
 				$figure->appendChild($element);
-
 				// Let's continue working with the figure tag
 				$element = $figure;
 			}
-
-
+			if ( ampforwp_get_setting('fb-instant-feedback') ) {
+				$element->setAttribute( 'data-feedback', 'fb:likes, fb:comments' );
+			}
 			if($element->parentNode->nodeName != "body"){
 				// Let's find the highest container if it does not reside in the body already
 				$highestParent = $element->parentNode;
@@ -299,88 +297,28 @@ function ampforwp_fbia_video_element( $DOMDocument ){
 				$figure->appendChild($video);
 				$video = $figure;
 			}
+			if ( ampforwp_get_setting('fb-instant-feedback') ) {
+				$video->setAttribute( 'data-feedback', 'fb:likes, fb:comments' );
+			}
 	}
 	return $DOMDocument;
 }
 
-	function get_ia_placement_id(){
-		global $redux_builder_amp;
-		$instant_article_ad_id = $redux_builder_amp['fb-instant-article-ad-id'];
-		return $instant_article_ad_id;
-	}
+function get_ia_placement_id(){
+	global $redux_builder_amp;
+	$instant_article_ad_id = $redux_builder_amp['fb-instant-article-ad-id'];
+	return $instant_article_ad_id;
+}
 
-	function get_ia_ad_density(){
-		global $redux_builder_amp;
-		$instant_article_ad_density = $redux_builder_amp['fb-instant-article-ad-density-setup'];
-		return $instant_article_ad_density;
-	}
+function get_ia_ad_density(){
+	global $redux_builder_amp;
+	$instant_article_ad_density = $redux_builder_amp['fb-instant-article-ad-density-setup'];
+	return $instant_article_ad_density;
+}
 
-	function get_ia_analytics_code(){
- 		global $redux_builder_amp;
- 		$instant_article_analytics_code = $redux_builder_amp['fb-instant-article-analytics-code'];
- 		return $instant_article_analytics_code;
- 	}
+function get_ia_analytics_code(){
+	global $redux_builder_amp;
+	$instant_article_analytics_code = $redux_builder_amp['fb-instant-article-analytics-code'];
+	return $instant_article_analytics_code;
+}
  	
-/*function fb_gallery_shortcode($output, $attr, $instance){
-		$post = get_post();
-
-		$atts = shortcode_atts( array(
-			'order'      => 'ASC',
-			'orderby'    => 'menu_order ID',
-			'id'         => $post ? $post->ID : 0,
-			'itemtag'    => 'figure',
-			'icontag'    => 'div',
-			'captiontag' => 'figcaption',
-			'columns'    => 3,
-			'size'       => 'thumbnail',
-			'include'    => '',
-			'exclude'    => '',
-			'link'       => ''
-		), $attr, 'gallery' );
-
-		if ( ! empty( $atts['include'] ) ) {
-			$_attachments = get_posts( array( 'include' => $atts['include'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
-			$attachments = array();
-			foreach ( $_attachments as $key => $val ) {
-				$attachments[$val->ID] = $_attachments[$key];
-			}
-		} elseif ( ! empty( $atts['exclude'] ) ) {
-			$attachments = get_children( array( 'post_parent' => $id, 'exclude' => $atts['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
-		} else {
-			$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
-		}
-		if ( empty( $attachments ) ) {
-			return '';
-		}
-
-		// Build the gallery html output
-		$output = "<figure class=\"op-slideshow\">";
-
-		// Iterate over the available images
-		$i = 0;
-		foreach ( $attachments as $id => $attachment ) {
-			$attr = ( trim( $attachment->post_excerpt ) ) ? array( 'aria-describedby' => "gallery-$id" ) : '';
-			$image_output = wp_get_attachment_image( $id, "full", false, $attr );
-
-			$image_meta  = wp_get_attachment_metadata( $id );
-			$orientation = '';
-			if ( isset( $image_meta['height'], $image_meta['width'] ) ) {
-				$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
-			}
-			$output .= "<figure>";
-			$output .= "
-				$image_output";
-			if ( trim($attachment->post_excerpt) ) {
-				$output .= "
-					<figcaption>
-					" . wptexturize($attachment->post_excerpt) . "
-					</figcaption>";
-			}
-			$output .= "</figure>";
-		}
-
-
-		$output .= "</figure>";
-
-		return $output;
-	}*/	
