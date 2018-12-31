@@ -64,7 +64,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 												  var parts = value.split("; " + name + "=");
 												  if (parts.length == 2) return parts.pop().split(";").shift();
 												}
-												function ampforwp_gdpr(){console.log();
+												function ampforwp_gdpr(){
 											if(ampforwp_gdpr_getCookie(\'ampforwpcookie\') == \'1\'){document.getElementById(\'gdpr_c\').remove();}
 											}ampforwp_gdpr();
 											function ampforwp_gdrp_set(){document.getElementById(\'ampforwpConsent\').remove(); document.cookie = \'ampforwpcookie=1;expires;path=/\';}
