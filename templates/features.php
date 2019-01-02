@@ -6640,6 +6640,8 @@ add_action( 'init', 'swifttheme_footer_widgets_init' );
 function ampforwp_is_non_amp( $type="" ) {
 	global $redux_builder_amp;
 	$non_amp = false;
+	$amp_metas = array();
+	$ampforwp_amp_post_on_off_meta = '';
 	if ( false !== get_query_var( 'amp', false ) ) {
 		return false;
 	}
@@ -6678,10 +6680,7 @@ function ampforwp_is_non_amp( $type="" ) {
 		if ( is_feed() ) {
 			return false;
 		}
-		$ampforwp_amp_post_on_off_meta = get_post_meta( get_the_ID(),'ampforwp-amp-on-off',true);
-		if($ampforwp_amp_post_on_off_meta == 'hide-amp'){
-			return false;	
-		}
+		
 	}elseif(	(
 				ampforwp_get_setting('amp-design-selector') == 4)
 				&&
@@ -6704,9 +6703,15 @@ function ampforwp_is_non_amp( $type="" ) {
       return;
     }
     // Pages
-		if ( is_page() && false == $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-			return;
-		}
+    
+	if ( is_page() && false == $redux_builder_amp['amp-on-off-for-all-pages'] ) {
+		return;
+	}
+	$amp_metas = json_decode(get_post_meta( get_the_ID(),'ampforwp-post-metas',true), true );
+	$ampforwp_amp_post_on_off_meta = $amp_metas['ampforwp-amp-on-off'];
+	if($ampforwp_amp_post_on_off_meta == 'hide-amp'){
+		return false;	
+	}
 // Removing the AMP on login register etc of Theme My Login plugin	
     
 	if (function_exists('tml_register_default_actions')){
