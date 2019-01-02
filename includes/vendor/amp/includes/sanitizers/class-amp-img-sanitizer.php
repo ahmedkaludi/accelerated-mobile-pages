@@ -52,7 +52,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 			}
 
 			// Determine which images need their dimensions determined/extracted.
-			if ( '' === $node->getAttribute( 'width' ) || '' === $node->getAttribute( 'height' ) ) {
+			if ( ! is_numeric( $node->getAttribute( 'width' ) ) || ! is_numeric( $node->getAttribute( 'height' ) ) ) {
 				$need_dimensions[ $node->getAttribute( 'src' ) ][] = $node;
 			} else {
 				$this->adjust_and_replace_node( $node );
@@ -78,10 +78,35 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				if ( false === $dimensions ) {
 					$width = isset( $this->args['content_max_width'] ) ? $this->args['content_max_width'] : self::FALLBACK_WIDTH;
 					$height = self::FALLBACK_HEIGHT;
+					if ( isset( $dimensions['width'] ) ) {
+						$width = $dimensions['width'];
+					}
+					if ( isset( $dimensions['height'] ) ) {
+						$height = $dimensions['height'];
+					}
+					if ( ! is_numeric( $node->getAttribute( 'width' ) ) ) {
+						// Let width have the right aspect ratio based on the height attribute.
+						if ( is_numeric( $node->getAttribute( 'height' ) ) && isset( $dimensions['height'] ) && isset( $dimensions['width'] ) ) {
+							$width = ( floatval( $node->getAttribute( 'height' ) ) * $dimensions['width'] ) / $dimensions['height'];
+						}
+						$node->setAttribute( 'width', $width );
+						if ( ! isset( $dimensions['width'] ) ) {
+							$class .= ' amp-wp-unknown-width';
+						}
+					}
+					if ( ! is_numeric( $node->getAttribute( 'height' ) ) ) {
+						// Let height have the right aspect ratio based on the width attribute.
+						if ( is_numeric( $node->getAttribute( 'width' ) ) && isset( $dimensions['width'] ) && isset( $dimensions['height'] ) ) {
+							$height = ( floatval( $node->getAttribute( 'width' ) ) * $dimensions['height'] ) / $dimensions['width'];
+						}
+						$node->setAttribute( 'height', $height );
+						if ( ! isset( $dimensions['height'] ) ) {
+							$class .= ' amp-wp-unknown-height';
+						}
+					}
 					$node->setAttribute( 'width', $width );
 					$node->setAttribute( 'height', $height );
-					$class = $node->hasAttribute( 'class' ) ? $node->getAttribute( 'class' ) . ' amp-wp-unknown-size' : 'amp-wp-unknown-size';
-					$node->setAttribute( 'class', $class );
+					$node->setAttribute( 'class', trim( $class ) );
 				} else {
 					$node->setAttribute( 'width', $dimensions['width'] );
 					$node->setAttribute( 'height', $dimensions['height'] );
