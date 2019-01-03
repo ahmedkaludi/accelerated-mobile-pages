@@ -2346,7 +2346,7 @@ function ampforwp_output_widget_content_above_the_footer() {
 	}
 	if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
-			<div class="amp_widget_above_the_footer">
+			<div class="amp_widget_above_the_footer cntr">
 			<?php echo do_shortcode($sidebar_output); ?> </div>
 		</div>
 	<?php }
@@ -2530,7 +2530,7 @@ function ampforwp_add_sidebar_data( $data ) {
 			}
 		}
 			// Form script #1400
-			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_loop->get_amp_content());
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_below_loop->get_amp_content());
 			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
 				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
 						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
@@ -2554,6 +2554,13 @@ function ampforwp_add_sidebar_data( $data ) {
 				}
 			}
 		}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_below_header->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
+			}
 		// Add Styles
 		if ( $sanitized_data_below_header->get_amp_styles() ) {
 			foreach ($sanitized_data_below_header->get_amp_styles() as $key => $value ) {
@@ -2598,7 +2605,7 @@ function ampforwp_add_sidebar_data( $data ) {
 			}
 		}
 			// Form script #1400
-			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_loop->get_amp_content());
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_swift_sidebar->get_amp_content());
 			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
 				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
 						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
@@ -2623,7 +2630,7 @@ function ampforwp_add_sidebar_data( $data ) {
 			}
 		}
 			// Form script #1400
-			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_loop->get_amp_content());
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_swift_footer->get_amp_content());
 			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
 				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
 						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
