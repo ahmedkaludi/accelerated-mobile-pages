@@ -2432,6 +2432,29 @@ function ampforwp_modified_search_sidebar( $content ) {
 			$element->setAttribute('target', '_top');
 		}
 	}
+	// Remove http/https from Audio and Video URLs #1400
+	$video_nodes = $dom->getElementsByTagName( 'amp-video' );
+	$num_nodes = $video_nodes->length;
+	if ( 0 !== $num_nodes ) {
+		for ( $i = 0; $i < $video_nodes->length; ++$i ) {
+			$element = $video_nodes->item( $i );
+			$source = $element->childNodes->item(0);
+			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
+			$source = $element->childNodes->item(1);
+			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
+		}
+	}
+	$audio = $dom->getElementsByTagName( 'amp-audio' );
+	$num_nodes = $audio->length;
+	if ( 0 !== $num_nodes ) {
+		for ( $i = 0; $i < $audio->length; ++$i ) {
+			$element = $audio->item( $i );
+			$source = $element->childNodes->item(0);
+			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
+			$source = $element->childNodes->item(1);
+			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
+		}
+	}
 	$content = AMP_DOM_Utils::get_content_from_dom($dom);
 	return $content;
 }
