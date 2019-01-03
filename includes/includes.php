@@ -53,6 +53,7 @@ function ampforwp_add_admin_styling(){
 
 	// Localize the script with new data
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_builder_amp );
+    wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', wp_create_nonce('ampforwp-verify-request') );
 
     wp_enqueue_script( 'ampforwp_admin_js' );
 }

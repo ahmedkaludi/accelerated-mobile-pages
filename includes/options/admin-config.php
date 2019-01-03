@@ -3549,7 +3549,7 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true, 
                         'ajax'      => true, 
-                        'data-action'     => 'categories', 
+                        'data-action'     => 'ampforwp_categories', 
                         'data'      => 'categories',
                         ),  
                         array(
@@ -3568,7 +3568,7 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                         'multi'     => true,
                         'ajax'      => true,
-                        'data-action' => 'tags', 
+                        'data-action' => 'ampforwp_tags', 
                         'data'      => 'tags',
 
                        ),

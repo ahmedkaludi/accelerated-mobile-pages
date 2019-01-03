@@ -7494,10 +7494,14 @@ return $file_types;
 add_action('upload_mimes', 'ampforwp_upload_svg');
 
 // Ajax functions
-add_action( 'wp_ajax_categories', 'ampforwp_ajax_cats' );
+add_action( 'wp_ajax_ampforwp_categories', 'ampforwp_ajax_cats' );
 function ampforwp_ajax_cats(){
+	if(!wp_verify_nonce($_GET['security'],'ampforwp-verify-request') ){
+		echo json_encode(array('status'=>403,'message'=>'user request is not allowed')) ;
+		die;
+	}
 	$return = array();
- 	$categories = get_categories(array('search'=> $_GET['q'],'number'=>500));
+ 	$categories = get_categories(array('search'=> esc_html($_GET['q']),'number'=>500));
  	$categories_array = array();
    	if ( $categories ) :
         foreach ($categories as $cat ) {
@@ -7506,10 +7510,14 @@ function ampforwp_ajax_cats(){
     endif;
 	wp_send_json( $return );
 }
-add_action( 'wp_ajax_tags', 'ampforwp_ajax_tags' );
+add_action( 'wp_ajax_ampforwp_tags', 'ampforwp_ajax_tags' );
 function ampforwp_ajax_tags(){
+	if(!wp_verify_nonce($_GET['security'],'ampforwp-verify-request') ){
+		echo json_encode(array('status'=>403,'message'=>'user request is not allowed')) ;
+		die;
+	}
 	$return = array();
- 	$tags = get_tags(array('search'=> $_GET['q'],'number'=>500));
+ 	$tags = get_tags(array('search'=> esc_html($_GET['q']),'number'=>500));
    	if ( $tags ) :
         foreach ($tags as $tag ) {
                 $return[] = array($tag->term_id,$tag->name);// array( Tag ID, tag Name )

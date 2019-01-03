@@ -94,7 +94,8 @@
                             data: function (params) {
                                 return {
                                     q: params.term, // search query
-                                    action: action // AJAX action for admin-ajax.php
+                                    action: action, // AJAX action for admin-ajax.php
+                                    security: ampforwp_nonce
                                 };
                             },
                             processResults: function( data ) {
