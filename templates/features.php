@@ -2369,7 +2369,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
   ob_end_clean();
   
   if ( $non_sanitized_sidebar ) {
-	  $sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
+	  $sanitized_sidebar = new AMP_Content( $non_sanitized_sidebar,
 	    apply_filters( 'amp_content_embed_handlers', array(
 	          'AMP_Twitter_Embed_Handler' => array(),
 	          'AMP_YouTube_Embed_Handler' => array(),
@@ -2504,6 +2504,13 @@ function ampforwp_add_sidebar_data( $data ) {
 				}
 			}
 		}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_loop->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
+			}
 		// Add Styles
 		if ( $sanitized_data_above_loop->get_amp_styles() ) {
 			foreach ($sanitized_data_above_loop->get_amp_styles() as $key => $value ) {
@@ -2522,6 +2529,13 @@ function ampforwp_add_sidebar_data( $data ) {
 				}
 			}
 		}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_loop->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
+			}
 		// Add Styles
 		if ( $sanitized_data_below_loop->get_amp_styles() ) {
 			foreach ($sanitized_data_below_loop->get_amp_styles() as $key => $value ) {
@@ -2558,6 +2572,13 @@ function ampforwp_add_sidebar_data( $data ) {
 				}
 			}
 		}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_footer->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
+			}
 		// Add Styles
 		if ( $sanitized_data_above_footer->get_amp_styles() ) {
 			foreach ($sanitized_data_above_footer->get_amp_styles() as $key => $value ) {
@@ -2576,6 +2597,13 @@ function ampforwp_add_sidebar_data( $data ) {
 				}
 			}
 		}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_loop->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
+			}
 		// Add Styles
 		if ( $sanitized_data_swift_sidebar->get_amp_styles() ) {
 			foreach ($sanitized_data_swift_sidebar->get_amp_styles() as $key => $value ) {
@@ -2594,6 +2622,13 @@ function ampforwp_add_sidebar_data( $data ) {
 				}
 			}
 		}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_loop->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
+			}
 		// Add Styles
 		if ( $sanitized_data_swift_footer->get_amp_styles() ) {
 			foreach ($sanitized_data_swift_footer->get_amp_styles() as $key => $value ) {
