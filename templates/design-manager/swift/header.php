@@ -1,5 +1,10 @@
 <?php global $redux_builder_amp ?>
 <?php amp_header_core() ?>
+<?php
+do_action( 'levelup_head');
+
+if(!function_exists('levelup_check_hf_builder') || (function_exists('levelup_check_hf_builder') && !levelup_check_hf_builder('head'))){
+?>
 <?php if($redux_builder_amp['header-type'] == '1'){?>
 <header class="header h_m h_m_1">
     <?php do_action('ampforwp_header_top_design4'); ?>
@@ -411,9 +416,13 @@
     </header><!-- /. header-10 -->
 <?php }
 do_action("ampforwp_advance_header_layout_options");
+
+}
  ?>
 <div class="content-wrapper">
-<?php if($redux_builder_amp['primary-menu']){?>
+<?php
+if(!function_exists('levelup_check_hf_builder') || (function_exists('levelup_check_hf_builder') && !levelup_check_hf_builder('head'))){
+ if($redux_builder_amp['primary-menu']){?>
 <div class="p-m-fl">
 <?php if ( amp_menu(false) ) : ?>
   <div class="p-menu">
@@ -422,5 +431,6 @@ do_action("ampforwp_advance_header_layout_options");
   <?php endif; ?>
  <?php do_action('ampforwp_after_primary_menu');  ?>
 </div>
-<?php } ?>
+<?php } 
+} ?>
 
