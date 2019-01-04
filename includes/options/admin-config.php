@@ -5487,19 +5487,6 @@ $single_page_options = array(
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 1,
-                        'required'  => array(
-                                        array('amp-design-selector', '!=' , '3') 
-                                    )
-                ),
-                array(
-                        'id'       => 'ampforwp-footer-top-design3',
-                        'type'     => 'switch',
-                        'title'    => __('Back to Top link', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Enable / Disable Link to top of the page in the footer', 'accelerated-mobile-pages'),
-                        'true'      => 'true',
-                        'false'     => 'false',
-                        'default'   => 0,
-                        'required'  => array( array( 'amp-design-selector', '=' , '3' ) )
                 ),
 
                 array(

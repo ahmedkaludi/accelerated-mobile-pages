@@ -86,7 +86,8 @@
             </ul>
           </div>
           <?php } 
-          if ( '1' == $redux_builder_amp['ampforwp-footer-top-design3'] ) { ?>
+          if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
+          
             <p class="rightslink back-to-top">
              <?php  amp_back_to_top_link();
                   if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
