@@ -366,7 +366,7 @@ function ampforwp_sanitize_archive_desc(){
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
 				<?php echo $redux_builder_amp['css_editor']; ?>
 			</style>
-
+			<?php do_action('ampforwp_before_head', $thisTemplate);  ?>
 		</head>
 		<body <?php ampforwp_body_class($bodyClass); ?>>
 		<?php do_action('amp_start', $thisTemplate); ?>
