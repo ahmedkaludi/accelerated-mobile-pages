@@ -1139,24 +1139,6 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
     font-size: 20px
-} 
-.strikethrough  {
-  position: relative;
-  font-size: 30px !important;
-}
-.strikethrough:before {
-  position: absolute;
-  content: "";
-  left: -5px;
-  top: 55%;
-  right: -5px;
-  border-top: 4px solid;
-  border-color: inherit;
-  -webkit-transform:rotate(-5deg);
-  -moz-transform:rotate(-5deg);
-  -ms-transform:rotate(-5deg);
-  -o-transform:rotate(-5deg);
-  transform:rotate(-5deg);
 }
 .fp-cnt h1 span{
     text-decoration: underline;
