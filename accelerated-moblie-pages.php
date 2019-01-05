@@ -204,7 +204,18 @@ function ampforwp_add_custom_rewrite_rules() {
 			}
 		}
 	}
-
+	$post_types = ampforwp_get_all_post_types();
+		if ( $post_types ) {
+			foreach ($post_types as $post_type ) {
+				if ( 'post' !=  $post_type && 'page' != $post_type ){
+					add_rewrite_rule(
+				      $post_type.'\/amp/?$',
+				      'index.php?amp&post_type='.$post_type,
+				      'top'
+				    );
+				}
+			}
+		}
 	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
 	if ( $taxonomies ) {
 		foreach ( $taxonomies  as $key => $taxonomy ) { 
@@ -793,3 +804,18 @@ function ampforwp_sanitize_color( $color ) {
     sscanf( $color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
     return 'rgba('.$red.','.$green.','.$blue.','.$alpha.')';
 }
+
+// Post Types
+function ampforwp_get_all_post_types(){
+    global $redux_builder_amp;
+    $post_types          = array();
+    $selected_post_types = array();
+    $post_types = array('post' => 'post', 'page' => 'page');
+    if ( isset($redux_builder_amp['ampforwp-custom-type']) && $redux_builder_amp['ampforwp-custom-type'] ) {
+        foreach ($redux_builder_amp['ampforwp-custom-type'] as $key) {
+            $selected_post_types[$key] = $key;
+        }
+        $post_types = array_merge($post_types, $selected_post_types);
+    }
+    return $post_types;
+    }
