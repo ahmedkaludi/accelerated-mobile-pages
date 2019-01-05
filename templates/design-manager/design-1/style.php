@@ -336,25 +336,27 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
     max-width: 1000px;
 }
 <?php } ?>
-<?php // Back to Top CSS //
+<?php // Back to Top CSS // padding:16px 15px 11px 17px;
 if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
   .btt{
-    position: fixed;
-      bottom: 50px;
-      right: 10px;
-      padding: 9px 10px 6px 10px;
-      background: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(71, 71, 71, 0.5);
       color: #fff;
-      border-radius: 5px;
+      border-radius: 100%;
+      width: 50px;
+      height: 50px;
   }
-  .btt:hover{color:#fff;}
+  .btt:hover{color:#fff;background:#474747;}
   .btt:before{
     content: '\25be';
-    display:block;
-    font-size: 20px;
+    display: block;
+    font-size: 35px;
     font-weight: 600;
-    color:#fff;
-    line-height: 1;
+    color: #fff;
     transform: rotate(180deg);
+    text-align: center;
+    line-height: 1.5;
   }
 <?php } ?>

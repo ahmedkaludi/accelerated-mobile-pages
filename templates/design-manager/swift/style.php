@@ -1139,13 +1139,28 @@ if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
 	    color: #fff;
 	    border-radius: 5px;
 	}
-	.btt:before{
-		content: "\e316";
-    	font-family: 'icomoon';
-		display:block;
-		font-size: 20px;
-    	font-weight: 600;
-	}
+	.btt{
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(71, 71, 71, 0.5);
+      color: #fff;
+      border-radius: 100%;
+      width: 50px;
+      height: 50px;
+  }
+  .btt:hover{color:#fff;background:#474747;}
+  .btt:before{
+    content: "\e316";
+   	font-family: 'icomoon';
+    display:block;
+    font-size: 30px;
+    font-weight: 600;
+    color:#fff;
+    text-align: center;
+    line-height: 1;
+  }
+  .rr a#scrollToTopButton{color:#fff;}
 <?php } ?>
 <?php /*** New footer Features ***/
 if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_builder_amp['footer-customize-options']) { ?>
