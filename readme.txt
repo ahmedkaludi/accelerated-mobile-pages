@@ -194,5 +194,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Whenever Responsive AD is enabled then the AD should load on the screen without any effect to the normal mode AD in D1,2,3, and Swift #2531
 * Fixed: When Convert AMP to WP theme (Beta) is enabled GDPR popup isn't closing #2763
 * Fixed: If twitter embed code is added then other blockquotes tag are not working #2750
+* Fixed: Custom post type is showing a blank page in the swift theme #2512
+* Fixed: Conflict with the Schema and Structure data plugin #2777
 
 Full changelog available in changelog.txt
