@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.0
-Stable tag: 0.9.97.23
+Tested up to: 5.0.2
+Stable tag: 0.9.97.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -185,12 +185,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.23 (18th December 2018) =
-* Fixed: Sub menu items and arrows are not functioning in publisher theme. #2672
-* Fixed: Fatal error when Polylang(Core) is activated. #2657
-* Fixed: Improve coding in amp-page-builder.php #2725
-* Fixed: Escaping not done properly #2723
-* Fixed: Serialization problem with AMP settings data. #2717
-* Fixed: Whenever Convert AMP to WP theme (Beta) option is enabled Logo Image is being stretched. #2726
+= 0.9.97.24 (7th January 2019) =
+* Fixed: Performance issue #2762
+* Fixed: Need to add amp endpoint filter #2761
+* Fixed: When Hide AMP Option is enabled in PageEditor with Convert AMP to WP theme (Beta) enabled it's providing output as AMP Page #2735
+* Fixed: Whenever an image inserted, has width="100%" and height="100%", its giving Validation error. #2748
+* Fixed: Custom post type is showing a blank page in the swift theme #2512
+* Fixed: Whenever Responsive AD is enabled then the AD should load on the screen without any effect to the normal mode AD in D1,2,3, and Swift #2531
+* Fixed: When Convert AMP to WP theme (Beta) is enabled GDPR popup isn't closing #2763
+* Fixed: If twitter embed code is added then other blockquotes tag are not working #2750
 
 Full changelog available in changelog.txt
