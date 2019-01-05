@@ -2346,8 +2346,11 @@ function ampforwp_output_widget_content_above_the_footer() {
 	}
 	if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
-			<div class="amp_widget_above_the_footer cntr">
-			<?php echo do_shortcode($sidebar_output); ?> </div>
+	   		<div class="cntr">
+				<div class="amp_widget_above_the_footer">
+					<?php echo do_shortcode($sidebar_output); ?> 
+				</div>
+			</div>
 		</div>
 	<?php }
 }
@@ -5377,6 +5380,16 @@ function swifttheme_footer_widgets_init() {
 	        'description' => __( 'The Swift footer widget area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
 	        'before_widget' => '<div class="w-bl">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
+	    register_sidebar( array(
+	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'id' => 'ampforwp-above-footer',
+	        'description' => __( 'The Swift widget Above footer area', 'accelerated-mobile-pages' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="afw">',
 	        'after_widget' => '</div>',
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
