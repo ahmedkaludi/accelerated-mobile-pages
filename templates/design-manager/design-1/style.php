@@ -360,3 +360,83 @@ if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
     line-height: 1.5;
   }
 <?php } ?>
+<?php // Above Footer Widget CSS
+if ( is_active_sidebar( 'ampforwp-above-footer'  ) ) : ?>
+.amp_widget_above_the_footer{
+  display: inline-flex;
+    width: 100%;;
+  flex-wrap:wrap;
+  margin-top: 30px;
+}
+.afw{
+  margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 1 0 22%;
+    margin: 0 15px 30px;
+    line-height: 1.5;
+}
+.amp_widget_above_the_footer h4{
+  color: #222;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1818em;
+    margin:0px 0px 1.5em;
+    text-transform: uppercase;
+}
+.afw ul li, .afw ol li {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 0.5em 0;
+    list-style-type:none;
+    font-size:14px;
+}
+.afw ul li a, .afw ol li a, .afw a{
+  color:#000;
+  text-decoration: none;
+}
+.afw:not(.widget_tag_cloud) ul li + li {
+    margin-top: -1px;
+}
+.afw table {
+    border-collapse: collapse;
+    margin: 0 0 1.5em;
+    width: 100%;
+}
+.afw tr {
+    border-bottom: 1px solid #eee;
+}
+.afw ul{
+  padding:0;
+  margin:0;
+}
+.afw th, .afw td {
+    text-align: center;
+}
+.afw td {
+  padding: 0.4em;
+}
+.afw th:first-child, .afw td:first-child {
+    padding-left: 0;
+}
+.afw thead th {
+    border-bottom: 2px solid #bbb;
+    padding-bottom: 0.5em;
+    padding: 0.4em;
+}
+.afw .calendar_wrap caption{
+  font-size: 14px;
+    margin-bottom: 10px;
+}
+.afw label{
+  font-size: 14px;
+    margin-right: 6px;
+}
+<?php endif; ?>
+@media(max-width:480px){
+  <?php if ( is_active_sidebar( 'ampforwp-above-footer'  ) ) : ?>
+    .amp_widget_above_the_footer { display: inline-block;}
+    .afw{flex:1 0 100%;}
+  <?php endif; ?>
+}

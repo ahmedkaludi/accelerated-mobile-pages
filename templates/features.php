@@ -5373,6 +5373,16 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 }
 
 function swifttheme_footer_widgets_init() {
+	register_sidebar( array(
+	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'id' => 'ampforwp-above-footer',
+	        'description' => __( 'The Swift widget Above footer area', 'accelerated-mobile-pages' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="afw">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
  	if(ampforwp_design_selector()==4){
 	    register_sidebar( array(
 	        'name' => __( 'AMP Footer', 'accelerated-mobile-pages' ),
@@ -5384,16 +5394,7 @@ function swifttheme_footer_widgets_init() {
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
 	    ) );
-	    register_sidebar( array(
-	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
-	        'id' => 'ampforwp-above-footer',
-	        'description' => __( 'The Swift widget Above footer area', 'accelerated-mobile-pages' ),
-	        'class'=>'w-bl',
-	        'before_widget' => '<div class="afw">',
-	        'after_widget' => '</div>',
-	        'before_title' => '<h4>',
-	        'after_title' => '</h4>',
-	    ) );
+	    
 	    register_sidebar( array(
 	        'name' => __( 'AMP Sidebar', 'accelerated-mobile-pages' ),
 	        'id' => 'swift-sidebar',
