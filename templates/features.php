@@ -1644,28 +1644,6 @@ function ampforwp_new_dir( $dir ) {
 /**
  * Adds a meta box to the post editing screen for AMP on-off on specific pages
 */
-function ampforwp_get_all_post_types(){
-	global $redux_builder_amp;
-	$post_types 		 = array();
-	$selected_post_types = array();
-	if(ampforwp_get_setting('amp-on-off-for-all-posts')){
-			$post_type['post'] = 'post';
-		}
-	if(ampforwp_get_setting('amp-on-off-for-all-pages')){
-		$post_type['page'] = 'page';
-	}
-    $post_types = array('post' => 'post', 'page' => 'page');
-    if ( isset($redux_builder_amp['ampforwp-custom-type']) && $redux_builder_amp['ampforwp-custom-type'] ) {
-
-    	foreach ($redux_builder_amp['ampforwp-custom-type'] as $key) {
-    		$selected_post_types[$key] = $key;
-    	}
-    	$post_types = array_merge($post_types, $selected_post_types);
-    }
-
-    return $post_types;
-}
-
 function ampforwp_title_custom_meta() {
   global $redux_builder_amp;
 
