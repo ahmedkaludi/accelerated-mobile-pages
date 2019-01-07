@@ -2382,7 +2382,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
   ob_end_clean();
   
   if ( $non_sanitized_sidebar ) {
-	  $sanitized_sidebar = new AMP_Content( $non_sanitized_sidebar,
+	  $sanitized_sidebar = new AMPforWP_Content( $non_sanitized_sidebar,
 	    apply_filters( 'amp_content_embed_handlers', array(
 	          'AMP_Twitter_Embed_Handler' => array(),
 	          'AMP_YouTube_Embed_Handler' => array(),
