@@ -1120,7 +1120,7 @@ if(isset($redux_builder_amp['ftr1-gapping'])){
 ?>;
 width:100%; border-top: 1px solid <?php echo $redux_builder_amp['swift-footer-brdrclr']['rgba']?>;}
 <?php endif; ?>
-.f-w{display: inline-flex;width: 100%;flex-wrap:wrap;margin:-15px;}
+.f-w{display: inline-flex;width: 100%;flex-wrap:wrap;margin:15px -15px 0px;}
 .f-w-f2{text-align: center;border-top: 1px solid <?php echo $redux_builder_amp['swift-footer-brdrclr']['rgba']?>;
 padding:<?php
 if(isset($redux_builder_amp['ftr2-gapping'])){
@@ -1324,7 +1324,7 @@ else{ // Default Footer CSS ?>
     .f-w-f1 { padding: 45px 0px 10px 0px;}
     <?php endif; ?>
     .f-w-f2 {padding: 25px 0px;}
-    .f-w{display:block;}
+    .f-w{display:block;margin: 15px 0px 0px;}
     .w-bl{margin-bottom:40px;}
     .w-bl{flex:100%;}
     .w-bl ul li {margin-bottom: 11px;}
@@ -1335,10 +1335,6 @@ else{ // Default Footer CSS ?>
 			line-height:1.8;
 		<?php } ?>
 	}
-	<?php if ( is_active_sidebar( 'ampforwp-above-footer'  ) ) : ?>
-		.amp_widget_above_the_footer { display: inline-block;}
-		.afw{flex:1 0 100%;}
-	<?php endif; ?>
 }
 @media(max-width:425px){
     .footer {margin-top: 35px;}

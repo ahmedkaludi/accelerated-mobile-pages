@@ -409,12 +409,31 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
     display: inline-block;
     opacity: 0;
 }
-.w-bl .search-button:after{
-  content: "\e8b6";
-  display:inline-block;
-  font-family: 'icomoon';
-    font-size: 23px;
+.w-bl .search-button{
+    border: 1px solid;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin: 4px 4px 8px 8px;
+    position: relative;
     cursor: pointer;
+}
+.w-bl .search-button:after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+    width: 2px;
+    height: 9px;
+    box-shadow: inset 0 0 0 32px;
+    top: 0px;
+    border-radius: 0 0 1px 1px;
+    left: 14px;
 }
 .w-bl .search-field{
   border: 1px solid #ccc;

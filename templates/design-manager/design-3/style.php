@@ -675,7 +675,7 @@ if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
 <?php } ?>
 <?php // Above Footer Widget CSS
 if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampforwp-below-header'  ) || is_active_sidebar( 'ampforwp-above-loop'  ) || is_active_sidebar( 'ampforwp-below-loop'  ) ) : ?>
-.f-w{display: inline-flex;width:auto;flex-wrap:wrap;margin:-15px;}
+.f-w{display: inline-flex;width:auto;flex-wrap:wrap;}
 .w-bl{margin-left: 0;display: flex;flex-direction: column;position: relative;flex: 1 0 22%;margin:0 15px 30px;line-height:1.5;font-size:14px;}
 .w-bl h4{font-size: <?php echo $redux_builder_amp['swift-head-size'] ?>;font-weight: <?php echo $redux_builder_amp['swift-head-fntwgth'] ?>;margin-bottom: 20px;text-transform: uppercase;letter-spacing: 1px;padding-bottom: 4px;}
 .w-bl ul{padding:0;margin:0;}
@@ -723,12 +723,31 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
     display: inline-block;
     opacity: 0;
 }
-.w-bl .search-button:after{
-  content: "\e8b6";
-  display:inline-block;
-  font-family: 'icomoon';
-    font-size: 23px;
+.w-bl .search-button{
+    border: 1px solid;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin: 4px 4px 8px 8px;
+    position: relative;
     cursor: pointer;
+}
+.w-bl .search-button:after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+    width: 2px;
+    height: 9px;
+    box-shadow: inset 0 0 0 32px;
+    top: 0px;
+    border-radius: 0 0 1px 1px;
+    left: 14px;
 }
 .w-bl .search-field{
   border: 1px solid #ccc;
