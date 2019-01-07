@@ -5387,9 +5387,9 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 
 function swifttheme_footer_widgets_init() {
 	register_sidebar( array(
-	        'name' => __( 'AMP Widget Below Header', 'accelerated-mobile-pages' ),
+	        'name' => esc_html__( 'AMP Widget Below Header', 'accelerated-mobile-pages' ),
 	        'id' => 'ampforwp-below-header',
-	        'description' => __( 'This Widget will be display on Below Header area', 'accelerated-mobile-pages' ),
+	        'description' => esc_html__( 'This Widget will be display on Below Header area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
 	        'before_widget' => '<div class="w-bl">',
 	        'after_widget' => '</div>',
@@ -5397,9 +5397,9 @@ function swifttheme_footer_widgets_init() {
 	        'after_title' => '</h4>',
 	    ) );
 	register_sidebar( array(
-	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'name' => esc_html__( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
 	        'id' => 'ampforwp-above-loop',
-	        'description' => __( 'This Widget will be display on Above Loop area', 'accelerated-mobile-pages' ),
+	        'description' => esc_html__( 'This Widget will be display on Above Loop area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
 	        'before_widget' => '<div class="w-bl">',
 	        'after_widget' => '</div>',
@@ -5407,9 +5407,9 @@ function swifttheme_footer_widgets_init() {
 	        'after_title' => '</h4>',
 	    ) );
 	register_sidebar( array(
-	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'name' => esc_html__( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
 	        'id' => 'ampforwp-below-loop',
-	        'description' => __( 'This Widget will be display on Below loop area', 'accelerated-mobile-pages' ),
+	        'description' => esc_html__( 'This Widget will be display on Below loop area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
 	        'before_widget' => '<div class="w-bl">',
 	        'after_widget' => '</div>',
@@ -5417,9 +5417,9 @@ function swifttheme_footer_widgets_init() {
 	        'after_title' => '</h4>',
 	    ) );
 	register_sidebar( array(
-	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'name' => esc_html__( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
 	        'id' => 'ampforwp-above-footer',
-	        'description' => __( 'This Widget will be display on Above Footer area', 'accelerated-mobile-pages' ),
+	        'description' => esc_html__( 'This Widget will be display on Above Footer area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
 	        'before_widget' => '<div class="w-bl">',
 	        'after_widget' => '</div>',
@@ -5428,9 +5428,9 @@ function swifttheme_footer_widgets_init() {
 	    ) );
  	if(ampforwp_design_selector()==4){
 	    register_sidebar( array(
-	        'name' => __( 'AMP Footer', 'accelerated-mobile-pages' ),
+	        'name' => esc_html__( 'AMP Footer', 'accelerated-mobile-pages' ),
 	        'id' => 'swift-footer-widget-area',
-	        'description' => __( 'The Swift footer widget area', 'accelerated-mobile-pages' ),
+	        'description' => esc_html__( 'The Swift footer widget area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
 	        'before_widget' => '<div class="w-bl">',
 	        'after_widget' => '</div>',
@@ -5439,9 +5439,9 @@ function swifttheme_footer_widgets_init() {
 	    ) );
 	    
 	    register_sidebar( array(
-	        'name' => __( 'AMP Sidebar', 'accelerated-mobile-pages' ),
+	        'name' => esc_html__( 'AMP Sidebar', 'accelerated-mobile-pages' ),
 	        'id' => 'swift-sidebar',
-	        'description' => __( 'The Swift Sidebar', 'accelerated-mobile-pages' ),
+	        'description' => esc_html__( 'The Swift Sidebar', 'accelerated-mobile-pages' ),
 	        'class'=>'amp-sidebar',
 	        'before_widget' => '<div class="amp-sidebar">',
 	        'after_widget' => '</div>',
