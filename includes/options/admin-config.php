@@ -3099,16 +3099,11 @@ Redux::setSection( $opt_name, array(
         ) );
 /*---------------------*/
 
-    // Global Theme Settings
-  Redux::setSection($opt_name, array(
-        'title'      => __( 'Global', 'accelerated-mobile-pages' ),
-        'id'         => 'amp-theme-global-subsection',
-        'subsection' => true,
-        'fields'     => array(
-           array(
+     $theme = wp_get_theme();
+    $amp_fontparts = array(array(
                        'id' => 'colorscheme-section',
                        'type' => 'section',
-                       'title' => __('Color Scheme', 'accelerated-mobile-pages'),
+                       'title' => esc_html__('Color Scheme', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
@@ -3116,8 +3111,8 @@ Redux::setSection( $opt_name, array(
             // Swift
             array(
                     'id'        => 'swift-color-scheme',
-                    'title'     => __('Global Color Scheme', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'  => __('Choose the color for title, anchor link','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Global Color Scheme', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Choose the color for title, anchor link','accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
                     'color'      => '#005be2',
@@ -3141,7 +3136,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'        => 'amp-opt-color-rgba-colorscheme',
                     'type'      => 'color_rgba',
-                    'title'     => __('Color Scheme','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Color Scheme','accelerated-mobile-pages'),
                     'default'   => array(
                     'color'     => '#F42F42',
                     ),
@@ -3152,7 +3147,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'        => 'amp-opt-color-rgba-font',
                     'type'      => 'color_rgba',
-                    'title'     => __('Color Scheme Font Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Color Scheme Font Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#fff',
                     ),
@@ -3164,7 +3159,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'        => 'amp-opt-color-rgba-link',
                     'type'      => 'color_rgba',
-                    'title'     => __('Anchor Link Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Anchor Link Color','accelerated-mobile-pages'),
                     'default'   => array(
                     'color'     => '#f42f42',
                     ),
@@ -3176,7 +3171,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'        => 'amp-opt-color-rgba-link-design2',
                     'type'      => 'color_rgba',
-                    'title'     => __('Anchor Link Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Anchor Link Color','accelerated-mobile-pages'),
                     'default'   => array(
                     'color'     => '#0a89c0',
                     ),
@@ -3188,7 +3183,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'        => 'amp-opt-color-rgba-link-design1',
                     'type'      => 'color_rgba',
-                    'title'     => __('Anchor Link Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Anchor Link Color','accelerated-mobile-pages'),
                     'default'   => array(
                     'color'     => '#0a89c0',
                     ),
@@ -3199,7 +3194,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'        => 'amp-opt-color-rgba-colorscheme-call',
                     'type'      => 'color_rgba',
-                    'title'     => __('Call Button Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Call Button Color','accelerated-mobile-pages'),
                     'default'   => array(
                     'color'     => '#0a89c0',
                     ),
@@ -3208,35 +3203,45 @@ Redux::setSection( $opt_name, array(
                     )
              ),
             
-   array(
-               'id' => 'typography-section',
-               'type' => 'section',
-               'title' => __('Typography', 'accelerated-mobile-pages'),
-               'indent' => true,
-                /*'required' => array(
-                    array('amp-design-selector', '=' , '4')
-                ),*/
-                'layout_type' => 'accordion',
-                'accordion-open'=> 1,
-    ),
-          array(
+               array(
+                           'id' => 'typography-section',
+                           'type' => 'section',
+                           'title' => esc_html__('Typography', 'accelerated-mobile-pages'),
+                           'indent' => true,
+                            /*'required' => array(
+                                array('amp-design-selector', '=' , '4')
+                            ),*/
+                            'layout_type' => 'accordion',
+                            'accordion-open'=> 1,
+                ));
+    if('Level UP'==$theme->name){
+
+        $fonts_settings[] = array(
+                'id'       => 'ampforwp_page_levelup_manage_fonts',
+                'type'     => 'raw',
+                'desc' => 'Levelup theme using default fonts. <a href="'.admin_url( '/customize.php?autofocus[section]=theme_field_settings' ).'">Manage fonts</a>'
+            );
+       $amp_fontparts = array_merge($amp_fontparts ,$fonts_settings);    
+
+    }else{
+
+        $fonts_settings =  array(array(
                 'id'        =>'google_font_api_key',
                 'type'      =>'text',
-                'title'     =>__('Google Font API key','accelerated-mobile-pages'),
-                'tooltip-subtitle'  => __('You can get the Link <a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1#APIKey">form here</a>','accelerated-mobile-pages'),
+                'title'     =>esc_html__('Google Font API key','accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can get the Link <a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1#APIKey">form here</a>','accelerated-mobile-pages'),
                 'default'   =>'',
                 // 'required' => array(
                 //     array('amp-design-selector', '=' , '4')
                 // )
 
             ),
-
             array(
                 'id'       => 'amp_font_selector',
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-families',
-                'title'    => __( 'Global Font Family ', 'accelerated-mobile-pages' ),
-                'tooltip-subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
+                'title'    => esc_html__( 'Global Font Family ', 'accelerated-mobile-pages' ),
+                'tooltip-subtitle' => esc_html__( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'None',
                 ),
@@ -3246,14 +3251,13 @@ Redux::setSection( $opt_name, array(
                 // )
 
             ),
-
             array(
                 'id'       => 'amp_font_type',
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-family-weights',
                 'multi'    => true,
-                'title'    => __( 'Global Font Weight Selector', 'accelerated-mobile-pages' ),
-                'tooltip-subtitle' => __( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
+                'title'    => esc_html__( 'Global Font Weight Selector', 'accelerated-mobile-pages' ),
+                'tooltip-subtitle' => esc_html__( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'none',
                 ),
@@ -3263,21 +3267,21 @@ Redux::setSection( $opt_name, array(
                 // )
 
             ),
-          array(
+            array(
                 'id'        =>'google_current_font_data',
                 'type'      =>'text',
                 'class'     => 'hide',
-                'title'     =>__('Google Font Current Font','accelerated-mobile-pages'),
+                'title'     =>esc_html__('Google Font Current Font','accelerated-mobile-pages'),
                 'default'   =>'',
                 // 'required' => array(
                 //     array('amp-design-selector', '=' , '4')
                 // )
             ),
-             array(
+            array(
                     'id'       => 'content-font-family-enable',
                     'type'     => 'switch',
                     'class'    => 'ampforwp-google-font-class',
-                    'title'    => __('Content Font Selector', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Content Font Selector', 'accelerated-mobile-pages'),
                     'required' => array(
                                    // array('amp-design-selector', '=' , '4')
                                     ),
@@ -3286,12 +3290,12 @@ Redux::setSection( $opt_name, array(
                     //     array('amp-design-selector', '=' , '4')
                     // )   
             ),
-          array(
+            array(
                 'id'       => 'amp_font_selector_content_single',
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-families',
-                'title'    => __( 'Content Font Family Selector', 'accelerated-mobile-pages' ),
-                'tooltip-subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
+                'title'    => esc_html__( 'Content Font Family Selector', 'accelerated-mobile-pages' ),
+                'tooltip-subtitle' => esc_html__( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'None',
                 ),
@@ -3302,14 +3306,13 @@ Redux::setSection( $opt_name, array(
                 )
 
             ),
-
             array(
                 'id'       => 'amp_font_type_content_single',
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-family-weights',
                 'multi'    => true,
-                'title'    => __( 'Content Font Family Weight Selector', 'accelerated-mobile-pages' ),
-                'tooltip-subtitle' => __( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
+                'title'    => esc_html__( 'Content Font Family Weight Selector', 'accelerated-mobile-pages' ),
+                'tooltip-subtitle' => esc_html__( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'none',
                 ),
@@ -3320,21 +3323,23 @@ Redux::setSection( $opt_name, array(
                 )
 
             ),
-          array(
+            array(
                 'id'        =>'google_current_font_data_content_single',
                 'type'      =>'text',
                 'class'     => 'hide',
-                'title'     =>__('Google Font Current Font','accelerated-mobile-pages'),
+                'title'     =>esc_html__('Google Font Current Font','accelerated-mobile-pages'),
                 'default'   =>'',
                 // 'required' => array(
                 //     array('amp-design-selector', '=' , '4')
                 // )
-            ),
-
-          array(
+            )
+        );
+            $amp_fontparts = array_merge($amp_fontparts ,$fonts_settings);   
+    }
+    $global_settings = array(array(
                    'id' => 'general_sdbar',
                    'type' => 'section',
-                   'title' => __('General', 'accelerated-mobile-pages'),
+                   'title' => esc_html__('General', 'accelerated-mobile-pages'),
                    'indent' => true,
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
@@ -3343,7 +3348,7 @@ Redux::setSection( $opt_name, array(
           array(
                     'id'    => 'gnrl-sidebar',
                     'type'  => 'switch',
-                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
+                    'title' => esc_html__('Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
@@ -3351,7 +3356,7 @@ Redux::setSection( $opt_name, array(
                     'id'    => 'gbl-sidebar',
                     'class' => 'child_opt child_opt_arrow',
                     'type'  => 'switch',
-                    'title' => __('Homepage Sidebar', 'accelerated-mobile-pages'),
+                    'title' => esc_html__('Homepage Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array( array('gnrl-sidebar', '=' , '1') ),
             ),
@@ -3359,7 +3364,7 @@ Redux::setSection( $opt_name, array(
                     'id'        => 'sidebar-bgcolor',
                     'class' => 'child_opt child_opt_arrow',
                     'type'      => 'color_rgba',
-                    'title'     => __('Sidebar Background','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Sidebar Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#f7f7f7',
                     ),
@@ -3369,7 +3374,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'sbr-heading-color',
                     'type'     => 'color_rgba',
                     'class' => 'child_opt',
-                    'title'    => __('Heading', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Heading', 'accelerated-mobile-pages'),
                     'default'  => array(
                         'color'     => '#333',
                     ),
@@ -3381,7 +3386,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'sbr-text-color',
                     'type'     => 'color_rgba',
                     'class' => 'child_opt',
-                    'title'    => __('Text', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Text', 'accelerated-mobile-pages'),
                     'default'  => array(
                         'color'     => '#333',
                     ),
@@ -3393,7 +3398,7 @@ Redux::setSection( $opt_name, array(
                     'id'    => 'swift-sidebar',
                     'class' => 'child_opt child_opt_arrow',
                     'type'  => 'switch',
-                    'title' => __('Single Sidebar', 'accelerated-mobile-pages'),
+                    'title' => esc_html__('Single Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array('gnrl-sidebar', '=' , '1'), 
                                 
@@ -3402,7 +3407,7 @@ Redux::setSection( $opt_name, array(
            array(
                        'id' => 'design-advanced',
                        'type' => 'section',
-                       'title' => __('Advanced', 'accelerated-mobile-pages'),
+                       'title' => esc_html__('Advanced', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
@@ -3410,15 +3415,25 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'       => 'css_editor',
                     'type'     => 'ace_editor',
-                    'title'    => __('Custom CSS', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle' => __('You can customize the Stylesheet of the AMP version by using this option.', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Custom CSS', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('You can customize the Stylesheet of the AMP version by using this option.', 'accelerated-mobile-pages'),
                     'mode'     => 'css',
                     'theme'    => 'monokai',
                     'desc'     => '',
-                    'default'  => __('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages')
+                    'default'  => esc_html__('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages')
             ),
 
-        )
+        );
+$amp_fontparts = array_merge($amp_fontparts ,$global_settings); 
+    // Global Theme Settings
+  Redux::setSection($opt_name, array(
+        'title'      => esc_html__( 'Global', 'accelerated-mobile-pages' ),
+        'id'         => 'amp-theme-global-subsection',
+        'subsection' => true,
+        'fields'     => $amp_fontparts
+           
+
+          
     ));
 
     // Header Elements default Color
