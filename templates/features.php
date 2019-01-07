@@ -2292,9 +2292,13 @@ function ampforwp_output_widget_content_above_loop() {
 		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',do_shortcode($sidebar_output)); 
 	}
       if ( $sidebar_output ) { ?>
-	   	<div class="amp-wp-content widget-wrapper amp_widget_above_loop">
-		  <?php echo do_shortcode($sidebar_output); ?>
-		<div style="clear:both"></div>
+	   	<div class="cntr">
+	   		<div class="amp-wp-content widget-wrapper amp_widget_above_loop">
+	   			<div class="f-w">
+			  		<?php echo do_shortcode($sidebar_output); ?>
+					<div style="clear:both"></div>
+				</div>
+	  		</div>
 	  	</div> 
 	<?php }
 }
@@ -2311,8 +2315,11 @@ function ampforwp_output_widget_content_below_loop() {
 	}
     if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
-		   	<div class="amp_widget_below_loop">
-		  	<?php echo do_shortcode($sidebar_output); ?> </div>
+	   		<div class="cntr">
+		   		<div class="amp_widget_below_loop f-w">
+		  			<?php echo do_shortcode($sidebar_output); ?> 
+		  		</div>
+		  	</div>
 	  	</div> 
 	<?php } 
 }
@@ -2329,8 +2336,11 @@ function ampforwp_output_widget_content_below_the_header() {
 	}
 	if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
-		   	<div class="amp_widget_below_the_header">
-		  	<?php echo do_shortcode($sidebar_output); ?> </div>
+	   		<div class="cntr">
+			   	<div class="amp_widget_below_the_header f-w">
+			  		<?php echo do_shortcode($sidebar_output); ?> 
+			 	</div>
+			</div>
 	  	</div> 
 	<?php }
 }
@@ -2347,7 +2357,7 @@ function ampforwp_output_widget_content_above_the_footer() {
 	if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
 	   		<div class="cntr">
-				<div class="amp_widget_above_the_footer">
+				<div class="amp_widget_above_the_footer f-w">
 					<?php echo do_shortcode($sidebar_output); ?> 
 				</div>
 			</div>
@@ -5377,11 +5387,41 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 
 function swifttheme_footer_widgets_init() {
 	register_sidebar( array(
+	        'name' => __( 'AMP Widget Below Header', 'accelerated-mobile-pages' ),
+	        'id' => 'ampforwp-below-header',
+	        'description' => __( 'This Widget will be display on Below Header area', 'accelerated-mobile-pages' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="w-bl">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
+	register_sidebar( array(
+	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'id' => 'ampforwp-above-loop',
+	        'description' => __( 'This Widget will be display on Above Loop area', 'accelerated-mobile-pages' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="w-bl">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
+	register_sidebar( array(
+	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'id' => 'ampforwp-below-loop',
+	        'description' => __( 'This Widget will be display on Below loop area', 'accelerated-mobile-pages' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="w-bl">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
+	register_sidebar( array(
 	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
 	        'id' => 'ampforwp-above-footer',
-	        'description' => __( 'The Swift widget Above footer area', 'accelerated-mobile-pages' ),
+	        'description' => __( 'This Widget will be display on Above Footer area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
-	        'before_widget' => '<div class="afw">',
+	        'before_widget' => '<div class="w-bl">',
 	        'after_widget' => '</div>',
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
