@@ -1120,7 +1120,7 @@ if(isset($redux_builder_amp['ftr1-gapping'])){
 ?>;
 width:100%; border-top: 1px solid <?php echo $redux_builder_amp['swift-footer-brdrclr']['rgba']?>;}
 <?php endif; ?>
-.f-w{display: inline-flex;width: 100%;flex-wrap:wrap;}
+.f-w{display: inline-flex;width: 100%;flex-wrap:wrap;margin:-15px;}
 .f-w-f2{text-align: center;border-top: 1px solid <?php echo $redux_builder_amp['swift-footer-brdrclr']['rgba']?>;
 padding:<?php
 if(isset($redux_builder_amp['ftr2-gapping'])){

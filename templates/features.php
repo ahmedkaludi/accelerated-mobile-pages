@@ -2315,11 +2315,11 @@ function ampforwp_output_widget_content_below_loop() {
 	}
     if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
-	   		<div class="cntr">
+	   		
 		   		<div class="amp_widget_below_loop f-w">
 		  			<?php echo do_shortcode($sidebar_output); ?> 
 		  		</div>
-		  	</div>
+		  
 	  	</div> 
 	<?php } 
 }
