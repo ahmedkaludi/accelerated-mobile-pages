@@ -1,6 +1,9 @@
 <?php global $redux_builder_amp; ?>
 <?php if(!isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector'])){?>
-<?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ ?>
+<?php
+
+ $theme = wp_get_theme();
+ if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder())  && 'Level UP'!=$theme->name){ ?>
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 300;font-display: auto;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Light.ttf');}
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 400;font-display: auto;src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Regular.ttf');}
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 500;font-display: auto;src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Medium.ttf');} 
@@ -8,13 +11,20 @@
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 700;font-display: auto;src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Bold.ttf'); }
 <?php } // levelup condition ends ?>
 <?php } ?>
-body{<?php $fontFamily = "font-family: 'Poppins', sans-serif;";
+<?php
 $hovercolor = '';
 $hovercolor = ampforwp_get_setting('swift-hover-color-scheme');
 $hovercolor = $hovercolor['color'];
+?>
+body{<?php 
+if( 'Level UP'!=$theme->name){
+	$fontFamily = "font-family: 'Poppins', sans-serif;";
 if(isset($redux_builder_amp['amp_font_selector']) && $redux_builder_amp['amp_font_selector'] != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
 $fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';"; }  
-echo $fontFamily;?>
+echo $fontFamily;
+}
+
+?>
 font-size: 16px; line-height:1.25; }
 ol, ul{ list-style-position: inside }
 p, ol, ul, figure{ margin: 0 0 1em; padding: 0; }
@@ -46,8 +56,8 @@ amp-carousel > amp-img > img {object-fit: contain;}
 .amp-carousel-img img {object-fit: contain;}
 amp-instagram{box-sizing: initial;}
 figure.aligncenter amp-img {margin: 0 auto;}
-<?php 
-if(ampforwp_is_home() || (!ampforwp_is_front_page() && !is_plugin_active('levelup/levelup.php')) ) { ?>
+<?php global $post;
+if(!\Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) || !is_page()) { ?>
 .cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px}
 <?php } ?>
 <?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts?>
