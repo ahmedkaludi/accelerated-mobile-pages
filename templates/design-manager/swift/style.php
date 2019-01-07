@@ -43,7 +43,8 @@ amp-carousel > amp-img > img {object-fit: contain;}
 .amp-carousel-img img {object-fit: contain;}
 amp-instagram{box-sizing: initial;}
 figure.aligncenter amp-img {margin: 0 auto;}
-<?php if(!ampforwp_is_front_page() && !is_plugin_active('levelup/levelup.php')){ ?>
+<?php 
+if(ampforwp_is_home() || (!ampforwp_is_front_page() && !is_plugin_active('levelup/levelup.php')) ) { ?>
 .cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px}
 <?php } ?>
 <?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts?>
