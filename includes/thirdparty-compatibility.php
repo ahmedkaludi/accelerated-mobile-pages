@@ -93,7 +93,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 						  margin: auto;
 						}
 						/* Next & previous buttons */
-						.prev, .next {
+						.nonamp-prev, .nonamp-next {
 						  cursor: pointer;
 						  position: absolute;
 						  top: 50%;
@@ -108,12 +108,12 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 						  user-select: none;
 						}
 						/* Position the "next button" to the right */
-						.next {
+						.nonamp-next {
 						  right: 0;
 						  border-radius: 3px 0 0 3px;
 						}
 						/* On hover, add a black background color with a little bit see-through */
-						.prev:hover, .next:hover {
+						.nonamp-prev:hover, .nonamp-next:hover {
 						  background-color: rgba(0,0,0,0.8);
 						}
 						/* Caption text */
@@ -165,7 +165,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 						}
 						/* On smaller screens, decrease text size */
 						@media only screen and (max-width: 300px) {
-						  .prev, .next,.text {font-size: 11px}
+						  .nonamp-prev, .nonamp-next,.text {font-size: 11px}
 						}';
 					$galleryJs = '<script>
 									var slideIndex = 1;
@@ -218,8 +218,8 @@ function ampforwp_non_amp_gallery($matches){
 	$images = preg_replace_callback("/<img(.*?)>/", function($m){
 		return '<li class="mySlides fade">'.$m[0].'</li>';
 	}, $images);
-	$imagesHTML = '<ul class="slideshow-container">'.$images.'<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="next" onclick="plusSlides(1)">&#10095;</a></ul>';
+	$imagesHTML = '<ul class="slideshow-container">'.$images.'<a class="nonamp-prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="nonamp-next" onclick="plusSlides(1)">&#10095;</a></ul>';
 	return $imagesHTML;
 }
 
