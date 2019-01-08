@@ -57,7 +57,7 @@ amp-carousel > amp-img > img {object-fit: contain;}
 amp-instagram{box-sizing: initial;}
 figure.aligncenter amp-img {margin: 0 auto;}
 <?php global $post;
-if(!\Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) || !is_page()) { ?>
+if((class_exists('\Elementor\Plugin') && !\Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID)) || !is_page()) { ?>
 .cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px}
 <?php } ?>
 <?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts?>
