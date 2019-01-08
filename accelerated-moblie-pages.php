@@ -798,11 +798,11 @@ function ampforwp_get_data_consent(){
 }
 
 // Register widgets
-add_action('init', 'ampforwp_widgets',0);
+add_action('init', 'ampforwp_widgets',0.5);
 function ampforwp_widgets(){
-	add_action( 'widgets_init', 'register_widgets' );
+	add_action( 'widgets_init', 'ampforwp_register_widgets' );
 }
-function register_widgets() {
+function ampforwp_register_widgets() {
 	global $wp_widget_factory;
 	foreach ( $wp_widget_factory->widgets as $registered_widget ) {
 		$registered_widget_class_name = get_class( $registered_widget );
