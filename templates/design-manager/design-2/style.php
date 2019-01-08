@@ -430,7 +430,11 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
 if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
   .btt{
       position: fixed;
-      bottom: 20px;
+      <?php if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']) ){ ?>
+      bottom: 55px;
+      <?php } else { ?>
+        bottom: 20px;
+      <?php } ?>
       right: 20px;
       background: rgba(71, 71, 71, 0.5);
       color: #fff;
