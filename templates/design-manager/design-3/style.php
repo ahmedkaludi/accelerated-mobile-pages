@@ -170,7 +170,7 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 #footer .social_icons{ margin: 0px 20px 25px 20px; border-bottom: 1px solid #3c3c3c; padding-bottom: 25px; }
 #footer p{ margin: 0 }
 .back-to-top{padding-bottom: 8px;}
-.rightslink, #footer .rightslink a{ font-size:13px; color:#999 }
+.rightslink, #footer .rightslink a{ font-size:13px; color:#fff }
 .poweredby{ padding-top:10px; font-size:10px; }
 #footer .poweredby a{ color:#666 }
 .footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }
@@ -642,3 +642,31 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
     .w-bl{flex:1 0 100%;}
   <?php endif; ?>
 }
+<?php // Back to Top CSS //
+if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
+  .btt{
+      position: fixed;
+      <?php if( (is_single() && true == ampforwp_get_setting('enable-single-social-icons') ) || (is_page() && true == ampforwp_get_setting('ampforwp-page-sticky-social') ) ){ ?>
+      bottom: 55px;
+      <?php } else { ?>
+        bottom: 20px;
+      <?php } ?>
+      right: 20px;
+      background: rgba(71, 71, 71, 0.5);
+      color: #fff;
+      border-radius: 100%;
+      width: 50px;
+      height: 50px;
+  }
+  .btt:hover{color:#fff;background:#474747;}
+  .btt:before{
+    content: '\25be';
+    display: block;
+    font-size: 35px;
+    font-weight: 600;
+    color:#fff;
+    transform: rotate(180deg);
+    text-align: center;
+    line-height: 1.4;
+  }
+<?php } ?>

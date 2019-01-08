@@ -6257,19 +6257,6 @@ else{
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 1,
-                        'required'  => array(
-                                        array('amp-design-selector', '!=' , '3') 
-                                    )
-                ),
-                array(
-                        'id'       => 'ampforwp-footer-top-design3',
-                        'type'     => 'switch',
-                        'title'    => esc_html__('Back to Top link', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => esc_html__('Enable / Disable Link to top of the page in the footer', 'accelerated-mobile-pages'),
-                        'true'      => 'true',
-                        'false'     => 'false',
-                        'default'   => 0,
-                        'required'  => array( array( 'amp-design-selector', '=' , '3' ) )
                 ),
 
                 array(

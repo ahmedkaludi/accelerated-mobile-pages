@@ -7410,7 +7410,15 @@ function ampforwp_check_excerpt(){
 // Back to top 
 add_action( 'ampforwp_body_beginning' ,'ampforwp_back_to_top_markup');
 function ampforwp_back_to_top_markup(){
-	echo '<div id="backtotop"></div>';
+	global $redux_builder_amp;
+	if(true == ampforwp_get_setting('ampforwp-footer-top')){
+		echo '<div id="backtotop"></div>
+		<div id="marker">
+	      <amp-position-observer on="enter:hideAnim.start; exit:showAnim.start"
+	        layout="nodisplay">
+	      </amp-position-observer>
+	    </div>';
+	}
 }
 
 
@@ -7670,3 +7678,18 @@ function ampforwp_ajax_tags(){
     endif;
 	wp_send_json( $return );
 } 
+add_filter( 'amp_post_template_data', 'ampforwp_backtotop' );
+function ampforwp_backtotop( $data ) {
+	global $redux_builder_amp;
+	if(true == ampforwp_get_setting('ampforwp-footer-top')){
+			if ( empty( $data['amp_component_scripts']['amp-position-observer'] ) ) {
+				$data['amp_component_scripts']['amp-position-observer'] = 'https://cdn.ampproject.org/v0/amp-position-observer-0.1.js';
+			}
+			if ( empty( $data['amp_component_scripts']['amp-animation'] ) ) {
+				$data['amp_component_scripts']['amp-animation'] = 'https://cdn.ampproject.org/v0/amp-animation-0.1.js';
+			}
+			
+	}
+	return $data;
+} 
+

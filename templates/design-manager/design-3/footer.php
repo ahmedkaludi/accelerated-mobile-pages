@@ -86,11 +86,21 @@
             </ul>
           </div>
           <?php } 
-          if ( '1' == $redux_builder_amp['ampforwp-footer-top-design3'] ) { 
-            ?><p class="rightslink back-to-top">
-                <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top')); ?></a></p><?php 
-          }
-          ?><p class="rightslink"><?php
+           if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
+              <p class="rightslink back-to-top">
+                <?php  amp_back_to_top_link();
+                   if(true == ampforwp_get_setting('amp-footer-link-non-amp-page')){
+                    if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
+                      | <?php ampforwp_view_nonamp(); 
+                    }
+                    else{
+                      ampforwp_view_nonamp();
+                    }
+                  }
+              $allowed_html = ampforwp_wp_kses_allowed_html();
+              echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer'),$allowed_html);
+              ?> </p> <?php } ?>
+              <p class="rightslink"><?php
              $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>'; 
               echo strip_tags( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_tags );
               if ( '1' == $redux_builder_amp['amp-footer-link-non-amp-page'] ) {

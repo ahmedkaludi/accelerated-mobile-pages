@@ -425,8 +425,44 @@ function amp_non_amp_link(){
 // Back to Top
 function amp_back_to_top_link(){
 	 global $redux_builder_amp;
-    if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
-        <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top')); ?></a> 
+    if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
+        <a id="scrollToTopButton" title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ></a> 
+        <amp-animation id="showAnim"
+		  layout="nodisplay">
+		  <script type="application/json">
+		    {
+		      "duration": "400ms",
+		      "fill": "both",
+		      "iterations": "1",
+		      "direction": "alternate",
+		      "animations": [{
+		        "selector": "#scrollToTopButton",
+		        "keyframes": [{
+		          "opacity": "1",
+		          "visibility": "visible"
+		        }]
+		      }]
+		    }
+		  </script>
+		</amp-animation>
+		<amp-animation id="hideAnim"
+		  layout="nodisplay">
+		  <script type="application/json">
+		    {
+		      "duration": "400ms",
+		      "fill": "both",
+		      "iterations": "1",
+		      "direction": "alternate",
+		      "animations": [{
+		        "selector": "#scrollToTopButton",
+		        "keyframes": [{
+		          "opacity": "0",
+		          "visibility": "hidden"
+		        }]
+		      }]
+		    }
+		  </script>
+		</amp-animation>
       <?php }
 }
 

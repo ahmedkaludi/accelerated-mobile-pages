@@ -1540,3 +1540,34 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
     max-width: 1000px;
 }
 <?php } ?>
+<?php // Back to Top CSS //
+ if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
+	
+	.btt{
+      position: fixed;
+      <?php if( (is_single() && true == ampforwp_get_setting('enable-single-social-icons') ) || (is_page() && true == ampforwp_get_setting('ampforwp-page-sticky-social') ) ){ ?>
+      bottom: 55px;
+      <?php } else { ?>
+      	bottom: 20px;
+      <?php } ?>
+      right: 20px;
+      padding: 10px;
+      background: rgba(71, 71, 71, 0.5);
+      color: #fff;
+      border-radius: 100%;
+      width: 50px;
+      height: 50px;
+  }
+  .btt:hover{color:#fff;background:#474747;}
+  .btt:before{
+    content: "\e316";
+   	font-family: 'icomoon';
+    display:block;
+    font-size: 30px;
+    font-weight: 600;
+    color:#fff;
+    text-align: center;
+    line-height: 1;
+  }
+  .rr a#scrollToTopButton{color:#fff;}
+<?php } ?>
