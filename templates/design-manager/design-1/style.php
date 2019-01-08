@@ -16,9 +16,6 @@
 	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 ?>
 
-/*  Widgets styling */
-.amp-wp-content.widget-wrapper { margin: 20px 17px 17px 17px;}
-
 #statcounter{width: 1px;height:1px;} 
 @font-face {
   font-family: 'Merriweather';
