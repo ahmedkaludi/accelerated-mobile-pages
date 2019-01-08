@@ -7,32 +7,12 @@
 		<div class="cntr">
 			<div class="f-w">
 				<?php 
-				if ( is_active_widget(false,false,'search', true) || is_active_widget(false,false,'text', true) ) {
-					add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
-					add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar');
+				$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+				if ( $sanitized_sidebar) {
+					$sidebar_output = $sanitized_sidebar->get_amp_content();
+					$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
 				}
-				ob_start();
-				dynamic_sidebar('swift-footer-widget-area');
-				$swift_footer_widget = ob_get_contents();
-				ob_end_clean();
-				$sanitizer_obj = new AMPFORWP_Content( 
-									$swift_footer_widget,
-									array(), 
-									apply_filters( 'ampforwp_content_sanitizers', 
-										array( 'AMP_Img_Sanitizer' => array(), 
-											'AMP_Blacklist_Sanitizer' => array(),
-											'AMP_Style_Sanitizer' => array(), 
-											'AMP_Video_Sanitizer' => array(),
-					 						'AMP_Audio_Sanitizer' => array(),
-					 						'AMP_Iframe_Sanitizer' => array(
-												 'add_placeholder' => true,
-											 ),
-										) 
-									) 
-								);
-				 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
-				 $sanitized_footer_widget = apply_filters('ampforwp_modify_sidebars_content',$sanitized_footer_widget); 
-	              echo $sanitized_footer_widget; // amphtml content, no kses
+	            echo $sidebar_output; // amphtml content, no kses
 				?>
 			</div>
 		</div>

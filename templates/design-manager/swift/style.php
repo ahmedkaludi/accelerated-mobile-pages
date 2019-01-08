@@ -1090,7 +1090,7 @@ if(isset($redux_builder_amp['ftr1-gapping'])){
 ?>;
 width:100%; border-top: 1px solid <?php echo $redux_builder_amp['swift-footer-brdrclr']['rgba']?>;}
 <?php endif; ?>
-.f-w{display: inline-flex;width: 100%;flex-wrap:wrap;}
+.f-w{display: inline-flex;width: 100%;flex-wrap:wrap;margin:15px -15px 0px;}
 .f-w-f2{text-align: center;border-top: 1px solid <?php echo $redux_builder_amp['swift-footer-brdrclr']['rgba']?>;
 padding:<?php
 if(isset($redux_builder_amp['ftr2-gapping'])){
@@ -1101,13 +1101,64 @@ if(isset($redux_builder_amp['ftr2-gapping'])){
 }
 ?>;
 }
-.w-bl{margin-left: 0;display: flex;flex-direction: column;position: relative;flex: 1 0 22%;margin:0 15px 30px;line-height:1.5;}
+.w-bl{margin-left: 0;display: flex;flex-direction: column;position: relative;flex: 1 0 22%;margin:0 15px 30px;line-height:1.5;font-size:14px;}
 .w-bl h4{font-size: <?php echo $redux_builder_amp['swift-head-size'] ?>;font-weight: <?php echo $redux_builder_amp['swift-head-fntwgth'] ?>;margin-bottom: 20px;text-transform: uppercase;letter-spacing: 1px;padding-bottom: 4px;}
 .w-bl ul li, .ampforwp_wc_shortcode_title{list-style-type: none;margin-bottom: 15px;}
 .w-bl ul li:last-child{margin-bottom:0;}
 .w-bl ul li a{text-decoration: none;}
-.w-bl .menu li .sub-menu{display:none;}
-
+.w-bl .menu li .sub-menu, .w-bl .lb-x{display:none;}
+.w-bl .menu li .sub-menu, .w-bl .lb-x{display:none;}
+.w-bl table {
+    border-collapse: collapse;
+    margin: 0 0 1.5em;
+    width: 100%;
+}
+.w-bl tr {
+    border-bottom: 1px solid #eee;
+}
+.w-bl th, .w-bl td {
+    text-align: center;
+}
+.w-bl td {
+	padding: 0.4em;
+}
+.w-bl th:first-child, .w-bl td:first-child {
+    padding-left: 0;
+}
+.w-bl thead th {
+    border-bottom: 2px solid #bbb;
+    padding-bottom: 0.5em;
+    padding: 0.4em;
+}
+.w-bl .calendar_wrap caption{
+	font-size: 14px;
+    margin-bottom: 10px;
+}
+.w-bl form{
+	display:inline-flex;
+	flex-wrap:wrap;
+	align-items: center;
+}
+.w-bl .search-submit{
+	text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    line-height: 0;
+    display: inline-block;
+    opacity: 0;
+}
+.w-bl .search-button:after{
+	content: "\e8b6";
+	display:inline-block;
+	font-family: 'icomoon';
+    font-size: 23px;
+    cursor: pointer;
+}
+.w-bl .search-field{
+	border: 1px solid #ccc;
+    padding: 6px 10px;
+}
 .ampforwp_wc_shortcode_title{
 	margin-top: 12px;
     display: inline-block;
@@ -1217,7 +1268,7 @@ else{ // Default Footer CSS ?>
     .f-w-f1 { padding: 45px 0px 10px 0px;}
     <?php endif; ?>
     .f-w-f2 {padding: 25px 0px;}
-    .f-w{display:block;}
+    .f-w{display:block;margin: 15px 0px 0px;}
     .w-bl{margin-bottom:40px;}
     .w-bl{flex:100%;}
     .w-bl ul li {margin-bottom: 11px;}

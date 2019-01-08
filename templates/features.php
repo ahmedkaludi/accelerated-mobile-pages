@@ -3094,9 +3094,18 @@ function ampforwp_output_widget_content_above_loop() {
 	$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-above-loop');	
     if ( $sanitized_sidebar) {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
-		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output); 
+		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',do_shortcode($sidebar_output)); 
 	}
-      if ( $sidebar_output) {  echo $sidebar_output ; }
+      if ( $sidebar_output ) { ?>
+	   	<div class="cntr">
+	   		<div class="amp-wp-content widget-wrapper amp_widget_above_loop">
+	   			<div class="f-w">
+			  		<?php echo do_shortcode($sidebar_output); ?>
+					<div style="clear:both"></div>
+				</div>
+	  		</div>
+	  	</div> 
+	<?php }
 }
 
 add_action( 'ampforwp_home_below_loop' , 'ampforwp_output_widget_content_below_loop' );
@@ -3107,9 +3116,15 @@ function ampforwp_output_widget_content_below_loop() {
 	$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-below-loop');	
  if ( $sanitized_sidebar) {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
-		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output); 
+		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',do_shortcode($sidebar_output)); 
 	}
-    if ( $sidebar_output) : echo $sidebar_output;  endif; 
+    if ( $sidebar_output ) { ?>
+	   	<div class="amp-wp-content widget-wrapper">
+		   		<div class="amp_widget_below_loop f-w">
+		  			<?php echo do_shortcode($sidebar_output); ?> 
+		  		</div>
+	  	</div> 
+	<?php } 
 }
 
 add_action( 'ampforwp_after_header' , 'ampforwp_output_widget_content_below_the_header' );
@@ -3120,12 +3135,15 @@ function ampforwp_output_widget_content_below_the_header() {
 	 $sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-below-header');
      if ( $sanitized_sidebar) {
 		$sidebar_output = $sanitized_sidebar->get_amp_content(); 
-		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',do_shortcode($sidebar_output));
 	}
 	if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
-		   	<div class="amp_widget_below_the_header">
-		  	<?php echo $sidebar_output; ?> </div>
+	   		<div class="cntr">
+			   	<div class="amp_widget_below_the_header f-w">
+			  		<?php echo do_shortcode($sidebar_output); ?> 
+			 	</div>
+			</div>
 	  	</div> 
 	<?php }
 }
@@ -3137,12 +3155,15 @@ function ampforwp_output_widget_content_above_the_footer() {
 	$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-above-footer');
 	if ( $sanitized_sidebar) {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
-		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',do_shortcode($sidebar_output));
 	}
 	if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
-			<div class="amp_widget_above_the_footer">
-			<?php echo $sidebar_output; ?> </div>
+	   		<div class="cntr">
+				<div class="amp_widget_above_the_footer f-w">
+					<?php echo do_shortcode($sidebar_output); ?> 
+				</div>
+			</div>
 		</div>
 	<?php }
 }
@@ -3190,9 +3211,9 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
 	    )  ), array('non-content'=>'non-content')
 	  );
   }
-
+  // Allow some blacklisted tags #1400
+  add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
   if ( is_active_widget(false,false,'search') && $sanitized_sidebar) {
-	add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
 	add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar');
   }
   return $sanitized_sidebar;
@@ -3227,6 +3248,29 @@ function ampforwp_modified_search_sidebar( $content ) {
 			$element->setAttribute('target', '_top');
 		}
 	}
+	// Remove http/https from Audio and Video URLs #1400
+	$video_nodes = $dom->getElementsByTagName( 'amp-video' );
+	$num_nodes = $video_nodes->length;
+	if ( 0 !== $num_nodes ) {
+		for ( $i = 0; $i < $video_nodes->length; ++$i ) {
+			$element = $video_nodes->item( $i );
+			$source = $element->childNodes->item(0);
+			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
+			$source = $element->childNodes->item(1);
+			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
+		}
+	}
+	$audio = $dom->getElementsByTagName( 'amp-audio' );
+	$num_nodes = $audio->length;
+	if ( 0 !== $num_nodes ) {
+		for ( $i = 0; $i < $audio->length; ++$i ) {
+			$element = $audio->item( $i );
+			$source = $element->childNodes->item(0);
+			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
+			$source = $element->childNodes->item(1);
+			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
+		}
+	}
 	$content = AMP_DOM_Utils::get_content_from_dom($dom);
 	return $content;
 }
@@ -3255,15 +3299,19 @@ function ampforwp_sidebar_blacklist_tags($tags) {
 // Sidebar Scripts	
 add_filter( 'amp_post_template_data', 'ampforwp_add_sidebar_data' );
 function ampforwp_add_sidebar_data( $data ) {
-	$sanitized_data_above_loop 	 = '';
-	$sanitized_data_below_loop 	 = '';
-	$sanitized_data_below_header = '';
-	$sanitized_data_above_footer = '';
+	$sanitized_data_above_loop 	 	= '';
+	$sanitized_data_below_loop 	 	= '';
+	$sanitized_data_below_header 	= '';
+	$sanitized_data_above_footer 	= '';
+	$sanitized_data_swift_sidebar 	= '';
+	$sanitized_data_swift_footer  	= '';
 	// Get the Data
 	$sanitized_data_above_loop 	 = ampforwp_sidebar_content_sanitizer('ampforwp-above-loop');
 	$sanitized_data_below_loop 	 = ampforwp_sidebar_content_sanitizer('ampforwp-below-loop');
 	$sanitized_data_below_header = ampforwp_sidebar_content_sanitizer('ampforwp-below-header');
 	$sanitized_data_above_footer = ampforwp_sidebar_content_sanitizer('ampforwp-above-footer');
+	$sanitized_data_swift_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+	$sanitized_data_swift_footer = ampforwp_sidebar_content_sanitizer('swift-footer-widget-area');
 
 	if ( $sanitized_data_above_loop ) {
 		// Add Scripts
@@ -3272,6 +3320,13 @@ function ampforwp_add_sidebar_data( $data ) {
 				if( empty( $data['amp_component_scripts'][$key] ) ){
 					$data['amp_component_scripts'][$key]  = $value;
 				}
+			}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_loop->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
 			}
 		}
 		// Add Styles
@@ -3291,6 +3346,13 @@ function ampforwp_add_sidebar_data( $data ) {
 					$data['amp_component_scripts'][$key]  = $value;
 				}
 			}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_below_loop->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
+			}
 		}
 		// Add Styles
 		if ( $sanitized_data_below_loop->get_amp_styles() ) {
@@ -3308,6 +3370,13 @@ function ampforwp_add_sidebar_data( $data ) {
 				if( empty( $data['amp_component_scripts'][$key] ) ){
 					$data['amp_component_scripts'][$key]  = $value;
 				}
+			}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_below_header->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
 			}
 		}
 		// Add Styles
@@ -3327,10 +3396,67 @@ function ampforwp_add_sidebar_data( $data ) {
 					$data['amp_component_scripts'][$key]  = $value;
 				}
 			}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_footer->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
+			}
 		}
 		// Add Styles
 		if ( $sanitized_data_above_footer->get_amp_styles() ) {
 			foreach ($sanitized_data_above_footer->get_amp_styles() as $key => $value ) {
+				if( empty( $data['post_amp_styles'][$key] ) ){
+					$data['post_amp_styles'][$key]  = $value;
+				}
+			}
+		}
+	}
+	if ( $sanitized_data_swift_sidebar ) {		
+		// Add Scripts
+		if ( $sanitized_data_swift_sidebar->get_amp_scripts() ) {
+			foreach ($sanitized_data_swift_sidebar->get_amp_scripts() as $key => $value ) {
+				if( empty( $data['amp_component_scripts'][$key] ) ){
+					$data['amp_component_scripts'][$key]  = $value;
+				}
+			}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_swift_sidebar->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
+			}
+		}
+		// Add Styles
+		if ( $sanitized_data_swift_sidebar->get_amp_styles() ) {
+			foreach ($sanitized_data_swift_sidebar->get_amp_styles() as $key => $value ) {
+				if( empty( $data['post_amp_styles'][$key] ) ){
+					$data['post_amp_styles'][$key]  = $value;
+				}
+			}
+		}
+	}
+	if ( $sanitized_data_swift_footer ) {		
+		// Add Scripts
+		if ( $sanitized_data_swift_footer->get_amp_scripts() ) {
+			foreach ($sanitized_data_swift_footer->get_amp_scripts() as $key => $value ) {
+				if( empty( $data['amp_component_scripts'][$key] ) ){
+					$data['amp_component_scripts'][$key]  = $value;
+				}
+			}
+			// Form script #1400
+			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_swift_footer->get_amp_content());
+			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+				} 
+			}
+		}
+		// Add Styles
+		if ( $sanitized_data_swift_footer->get_amp_styles() ) {
+			foreach ($sanitized_data_swift_footer->get_amp_styles() as $key => $value ) {
 				if( empty( $data['post_amp_styles'][$key] ) ){
 					$data['post_amp_styles'][$key]  = $value;
 				}
@@ -6589,21 +6715,62 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 }
 
 function swifttheme_footer_widgets_init() {
- 	if(ampforwp_design_selector()==4){
-	    register_sidebar( array(
-	        'name' => esc_html__( 'AMP Footer', 'accelerated-mobile-pages' ),
-	        'id' => 'swift-footer-widget-area',
-	        'description' => esc_html__( 'The Swift footer widget area', 'accelerated-mobile-pages' ),
+	register_sidebar( array(
+	        'name' => __( 'AMP Widget Below Header', 'accelerated-mobile-pages' ),
+	        'id' => 'ampforwp-below-header',
+	        'description' => __( 'This Widget will be display on Below Header area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
 	        'before_widget' => '<div class="w-bl">',
 	        'after_widget' => '</div>',
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
 	    ) );
+	register_sidebar( array(
+	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'id' => 'ampforwp-above-loop',
+	        'description' => __( 'This Widget will be display on Above Loop area', 'accelerated-mobile-pages' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="w-bl">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
+	register_sidebar( array(
+	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'id' => 'ampforwp-below-loop',
+	        'description' => __( 'This Widget will be display on Below loop area', 'accelerated-mobile-pages' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="w-bl">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
+	register_sidebar( array(
+	        'name' => __( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'id' => 'ampforwp-above-footer',
+	        'description' => __( 'This Widget will be display on Above Footer area', 'accelerated-mobile-pages' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="w-bl">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
+ 	if(ampforwp_design_selector()==4){
 	    register_sidebar( array(
-	        'name' => esc_html__( 'AMP Sidebar', 'accelerated-mobile-pages' ),
+	        'name' => __( 'AMP Footer', 'accelerated-mobile-pages' ),
+	        'id' => 'swift-footer-widget-area',
+	        'description' => __( 'This Widget will be display on Above Footer area', 'accelerated-mobile-pages' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="w-bl">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
+	    
+	    register_sidebar( array(
+	        'name' => __( 'AMP Sidebar', 'accelerated-mobile-pages' ),
 	        'id' => 'swift-sidebar',
-	        'description' => esc_html__( 'The Swift Sidebar', 'accelerated-mobile-pages' ),
+	        'description' => __( 'The Swift Sidebar', 'accelerated-mobile-pages' ),
 	        'class'=>'amp-sidebar',
 	        'before_widget' => '<div class="amp-sidebar">',
 	        'after_widget' => '</div>',
