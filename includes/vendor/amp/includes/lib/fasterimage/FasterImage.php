@@ -38,28 +38,27 @@ class FasterImage
 
         $stream           = new Stream();
         $parser           = new ImageParser($stream);
-        $results = [];
-         $request = array();
+        $results          = [];
+        $request          = array();
         foreach ( array_values($urls) as $count => $uri ) {
-         $results[$uri] = array();
-        $request[$uri] = array(
-            'url' =>  $uri,
-            'type' => 'GET',
-        );
+            $results[$uri] = array();
+            $request[$uri] = array(
+                'url' =>  $uri,
+                'type' => 'GET',
+            );
         }
-         $options= array(
+        $options= array(
                     'timeout'=>$this->timeout,
                     'connect_timeout'=>$this->timeout,
                     'useragent'=>'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.110 Safari/537.36',
-                    'verify'=> 0,
-                    'verifyname'=>0,
+                    'verify'=> 1,
+                    'verifyname'=>1,
                     'follow_redirects'=>false,
                     'complete'=> function($response, $url) use(&$results, &$parser, &$stream){
                         $results[$url]['rounds'] = 0;
                         $results[$url]['bytes']  = 0;
                         $results[$url]['size']   = 'failed';
                         if( is_a( $response, 'Requests_Response' ) ){
-                            //$data[$key] = json_decode( $response->body );
                             $str = $response->body;
                             $results[$url]['bytes'] += strlen($str);
                             $results[$url]['rounds']++;
@@ -80,12 +79,10 @@ class FasterImage
                                  return -1;
                         }
                     }
-                    );
-        
-        $responseResults = \Requests::request_multiple($request , $options);
-    
-        return $results;
+        );
 
+        $responseResults = \Requests::request_multiple($request , $options);
+        return $results;
     }
 
     /**
