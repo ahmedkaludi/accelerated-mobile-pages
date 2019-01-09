@@ -640,3 +640,9 @@ function amp_author_meta( $args ) {
      } 
 	 
 }
+// Fallback for amp_call_now #2782
+if ( !function_exists('amp_call_now') ) {
+	function amp_call_now(){
+		ampforwp_call_button_html_output();
+	}
+}
