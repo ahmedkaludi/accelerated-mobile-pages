@@ -184,7 +184,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.24 (7th January 2019) =
+= 0.9.97.24 (9th January 2019) =
+* Added: Compatibility with new and all default WP widgets #1400
 * Fixed: Performance issue #2762
 * Fixed: Need to add amp endpoint filter #2761
 * Fixed: When Hide AMP Option is enabled in PageEditor with Convert AMP to WP theme (Beta) enabled it's providing output as AMP Page #2735
@@ -195,6 +196,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: If twitter embed code is added then other blockquotes tag are not working #2750
 * Fixed: Custom post type is showing a blank page in the swift theme #2512
 * Fixed: Conflict with the Schema and Structure data plugin #2777
+* Fixed: In the swift theme the Sticky social icons overlaps #2601
+* Fixed: " Top " Button functionality to be improved. #2529
+* Fixed: Drop down icon appearing twice #2785
 
 = 0.9.97.23 (18th December 2018) =
 * Fixed: Sub menu items and arrows are not functioning in publisher theme. #2672
