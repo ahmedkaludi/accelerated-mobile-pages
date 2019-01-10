@@ -93,10 +93,14 @@ if ( get_query_var( 'paged' ) ) {
 		      <div>
                   <a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
                   	<?php if ( ampforwp_has_post_thumbnail() ) { 
-						$thumb_url = ampforwp_get_post_thumbnail();
+						$thumb_url = ampforwp_get_post_thumbnail('url','full');
+						$thumb_url_array = ampforwp_aq_resize( $thumb_url, 450,270, true, false, true ); //resize & crop the image
+						$thumb_url = $thumb_url_array[0];
+						$thumb_width = $thumb_url_array[1];
+						$thumb_height = $thumb_url_array[2]; 
 						if($thumb_url){
 							?>
-							 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
+							 <amp-img src=<?php echo esc_url($thumb_url) ?> width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
 						<?php } 
 					}?>
                   <div class="featured_title">
