@@ -10,10 +10,15 @@ body{<?php $fontFamily = "font-family: 'Poppins', sans-serif;";
 if(isset($redux_builder_amp['amp_font_selector']) && $redux_builder_amp['amp_font_selector'] != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
 $fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';"; }  
 echo $fontFamily;?>
+<?php $swift_cs_color = '#005be2';
+$swift_cs = ampforwp_get_setting('swift-color-scheme');
+if( !empty($swift_cs['color']) ) {
+	$swift_cs_color = $swift_cs['color'];
+}?>
 font-size: 16px; line-height:1.25; }
 ol, ul{ list-style-position: inside }
 p, ol, ul, figure{ margin: 0 0 1em; padding: 0; }
-a, a:active, a:visited{ text-decoration: none; color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-color-scheme']['color']); ?>;}
+a, a:active, a:visited{ text-decoration: none; color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;}
 a:hover, a:active, a:focus{}
 pre{ white-space: pre-wrap;}
 .left{float:left}
@@ -239,7 +244,7 @@ if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && i
 .loop-category li a{color:#555;text-transform: uppercase;}
 .loop-category li:hover a{color:#005be2;}
 .fbp-cnt p, .fsp-cnt p{color:#444;font-size:13px;line-height:1.5;letter-spacing: 0.10px;word-break: break-word;}
-.fbp:hover h2 a, .fsp:hover h2 a{color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-color-scheme']['color']); ?>;}
+.fbp:hover h2 a, .fsp:hover h2 a{color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;}
 .fsp h2 a{color:#191919;}  
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
 .fsp-img {margin-bottom:10px;}
