@@ -2484,7 +2484,7 @@ add_action('amp_post_template_include_single','ampforwp_update_title_for_frontpa
 function ampforwp_update_title_for_frontpage() {
 	$check_custom_front_page = get_option('show_on_front');
 
-	if ( $check_custom_front_page == 'page' && is_home() ) {
+	if ( $check_custom_front_page == 'page' && ampforwp_is_home() ) {
 
 		remove_action( 'amp_post_template_head', 'amp_post_template_add_title' );
 		add_action('amp_post_template_head','ampforwp_frontpage_title_markup');
@@ -4824,6 +4824,7 @@ function ampforwp_add_blacklist_sanitizer($data){
 function ampforwp_generate_meta_desc($json=""){
 	global $post, $redux_builder_amp;
 	$desc = $post_id = '';
+	$post_id = $post->ID;
 	if ( $redux_builder_amp['ampforwp-seo-meta-description'] ) {
 		if ( ampforwp_is_home() || ampforwp_is_blog() ) {
 			$desc = addslashes( strip_tags( get_bloginfo( 'description' ) ) );
@@ -4878,11 +4879,20 @@ function ampforwp_generate_meta_desc($json=""){
 		if ( class_exists('All_in_One_SEO_Pack') && 2 == $redux_builder_amp['ampforwp-seo-selection'] ) {
 			$aisop_class = $aisop_desc = $opts = '';
 			$aisop_class = new All_in_One_SEO_Pack();
-			$aisop_desc = $aisop_class->get_main_description();
+			if ( ampforwp_is_home() ) {
+                $post_id = ampforwp_get_blog_details('id');
+                $post = get_post($post_id);
+            }
+           	$aisop_desc = $aisop_class->get_aioseop_description($post);
 			$opts = $aisop_class->get_current_options( array(), 'aiosp' );
 			if ( (is_category() || is_tax() || is_tag()) && $aisop_class->show_page_description() ) {
 				$aisop_desc = $opts['aiosp_description'];
 			}
+			if ( ampforwp_is_front_page() ) {
+                $post_id = ampforwp_get_frontpage_id();
+                $post = get_post($post_id);
+                $aisop_desc = $aisop_class->get_post_description( $post );
+            }
 			if ( $aisop_desc ) {
 				$desc = $aisop_desc;
 			}
