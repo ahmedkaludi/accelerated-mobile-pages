@@ -199,6 +199,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: In the swift theme the Sticky social icons overlaps #2601
 * Fixed: " Top " Button functionality to be improved. #2529
 * Fixed: Drop down icon appearing twice #2785
+* Fixed: Custom front page Meta description and content are not rendering for ALL in SEO plugin. #2702
+* Fixed: Hover color is not appearing properly #2787
 
 = 0.9.97.23 (18th December 2018) =
 * Fixed: Sub menu items and arrows are not functioning in publisher theme. #2672
