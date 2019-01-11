@@ -1195,6 +1195,8 @@ function ampforwp_remove_schema_data() {
 	// Removing Voux theme's lazyloading #2263
 	remove_filter( 'the_content', 'thb_lazy_images_filter', 200 );
 	remove_filter( 'wp_get_attachment_image_attributes', 'thb_lazy_low_quality', 10, 3 );
+	// Click Mag compatibility #2796
+	remove_filter( 'amp_post_template_file', 'mvp_amp_set_custom_template', 10, 3 );
 }
 
 // 22. Removing author links from comments Issue #180
