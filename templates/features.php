@@ -5398,7 +5398,7 @@ function swifttheme_footer_widgets_init() {
 	        'after_title' => '</h4>',
 	    ) );
 	register_sidebar( array(
-	        'name' => esc_html__( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'name' => esc_html__( 'AMP Widget Above Loop', 'accelerated-mobile-pages' ),
 	        'id' => 'ampforwp-above-loop',
 	        'description' => esc_html__( 'This Widget will be display on Above Loop area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
@@ -5408,7 +5408,7 @@ function swifttheme_footer_widgets_init() {
 	        'after_title' => '</h4>',
 	    ) );
 	register_sidebar( array(
-	        'name' => esc_html__( 'AMP Widget Above Footer', 'accelerated-mobile-pages' ),
+	        'name' => esc_html__( 'AMP Widget Below loop', 'accelerated-mobile-pages' ),
 	        'id' => 'ampforwp-below-loop',
 	        'description' => esc_html__( 'This Widget will be display on Below loop area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
