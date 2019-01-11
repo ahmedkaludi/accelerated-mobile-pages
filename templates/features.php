@@ -3707,8 +3707,8 @@ function ampforwp_posts_to_remove () {
 	$selected_cats 					= array();
 	$post_id_array 					= array();
 	$current_cats_ids 				= array();
-	if(isset($redux_builder_amp['hide-amp-categories2'])){
-		$get_categories_from_checkbox = $redux_builder_amp['hide-amp-categories2'];
+	if(ampforwp_get_setting('hide-amp-categories2') ) {
+		$get_categories_from_checkbox = ampforwp_get_setting('hide-amp-categories2');
 		if($get_categories_from_checkbox){
 			$get_selected_cats = array_filter($get_categories_from_checkbox);
 			foreach ($get_selected_cats as $key => $value) {
@@ -3726,7 +3726,7 @@ function ampforwp_posts_to_remove () {
 	    }
 	}
 	if( is_array(ampforwp_get_setting('hide-amp-tags-bulk-option2')))	{
-		$get_tags_checkbox =  array_values(array_filter($redux_builder_amp['hide-amp-tags-bulk-option2'])); 
+		$get_tags_checkbox =  array_values(array_filter(ampforwp_get_setting('hide-amp-tags-bulk-option2'))); 
 		$all_tags = get_the_tags(get_the_ID());
 		$tagsOnPost = array();
 		if ( $all_tags ) {
@@ -3744,8 +3744,8 @@ function ampforwp_posts_to_remove () {
 function is_category_amp_disabled(){
 	global $redux_builder_amp;
 	$current_cats_ids = array();
-	if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
-		if(is_tag() && is_array($redux_builder_amp['hide-amp-tags-bulk-option2']))	{
+	if(is_archive() && true == ampforwp_get_setting('ampforwp-archive-support') ){
+		if(is_tag() && is_array(ampforwp_get_setting('hide-amp-tags-bulk-option2'))){
 			$all_tags = get_the_tags();
 			$tagsOnPost = array();
 			if ( $all_tags ) {
@@ -3753,7 +3753,7 @@ function is_category_amp_disabled(){
 				$tagsOnPost[] = $tagsvalue->term_id;
 			}
 			}
-			$get_tags_checkbox =  array_values(array_filter($redux_builder_amp['hide-amp-tags-bulk-option2'])); 
+			$get_tags_checkbox =  array_values(array_filter(ampforwp_get_setting('hide-amp-tags-bulk-option2'))); 
 			
 			if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
 				return true;
@@ -3762,10 +3762,10 @@ function is_category_amp_disabled(){
 				return false;
 			}
 		}//tags check area closed
-		if( is_category() && is_array($redux_builder_amp['hide-amp-categories2'])){
+		if( is_category() && is_array(ampforwp_get_setting('hide-amp-categories2'))){
 			$categories = get_the_category();
 			$selected_cats = array();
-				$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories2']; 
+			$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories2'); 
 			$get_selected_cats = array_filter($get_categories_from_checkbox);
 			foreach ($get_selected_cats as $key => $value) {
 				$selected_cats[] = $value;
@@ -3795,8 +3795,8 @@ if ( ! function_exists('ampforwp_exclude_archive') ) {
 			return $exclude;
 		}
 		// Tags
-		if ( isset($redux_builder_amp['hide-amp-tags-bulk-option2']) && is_array($redux_builder_amp['hide-amp-tags-bulk-option2']) && 'tag' == $archive ) {
-			$exclude = array_values(array_filter($redux_builder_amp['hide-amp-tags-bulk-option2']));
+		if ( is_array(ampforwp_get_setting('hide-amp-tags-bulk-option2')) && 'tag' == $archive ) {
+			$exclude = array_values(array_filter(ampforwp_get_setting('hide-amp-tags-bulk-option2')));
 			return $exclude;
 		}
 	}
@@ -4393,6 +4393,7 @@ function ampforwp_yarpp_loop_query_for_inline_related_posts($reference_ID = null
 
 function ampforwp_inline_related_posts(){
 	global $post, $redux_builder_amp;
+	$inline_related_posts = '';
 		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-inline-related-posts'];		
 		$int_number_of_related_posts = (integer) $string_number_of_related_posts;
 
