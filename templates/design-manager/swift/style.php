@@ -62,7 +62,7 @@ amp-carousel > amp-img > img {object-fit: contain;}
 amp-instagram{box-sizing: initial;}
 figure.aligncenter amp-img {margin: 0 auto;}
 <?php global $post;
-if(class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) && is_page() ) {}
+if((class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) && is_page() ) || (class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) && ampforwp_is_front_page() ) ) {}
 else{ ?>.cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px} <?php } ?>
 <?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts?>
 @font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;font-display: auto;src:  local('icomoon'), local('icomoon'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.ttf');}
