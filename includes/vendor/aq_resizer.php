@@ -198,8 +198,14 @@ if(!class_exists('Aq_Resize')) {
                     throw $ex;
                 }
                 else {
+                    // Return the Original array
+                    return array (
+                                0 => $url,
+                                1 => $width,
+                                2 => $height
+                            );
                     // Return false, so that this patch is backwards-compatible.
-                    return false;
+                    //return false;
                 }
             }
         }
