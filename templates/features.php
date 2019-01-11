@@ -5060,12 +5060,9 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
 // 99. Merriweather Font Management
 add_filter( 'amp_post_template_data', 'ampforwp_merriweather_font_management' );
 function ampforwp_merriweather_font_management( $data ) {
-	global $redux_builder_amp;
-
-	if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] != 1) {
+	if ( 1 != ampforwp_get_setting('amp-design-selector') || ( false == ampforwp_get_setting('ampforwp-d1-font') && 1 == ampforwp_get_setting('amp-design-selector') ) ) {
 		unset($data['font_urls']['merriweather']);
 	}
-	
 	return $data;
 }
 
