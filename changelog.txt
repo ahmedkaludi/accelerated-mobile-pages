@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.9.97.25 (12th January 2019) =
+* Fixed: AMP Footer sidebar is not working in master #2800
+* Fixed: <i> tag not working in Title #2804
+
 = 0.9.97.24 (9th January 2019) =
 * Added: Compatibility with new and all default WP widgets #1400
 * Fixed: Performance issue #2762

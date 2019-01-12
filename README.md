@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.2
-Stable tag: 0.9.97.24
+Stable tag: 0.9.97.25
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.97.25 (12th January 2019) =
+* Fixed: AMP Footer sidebar is not working in master #2800
+* Fixed: <i> tag not working in Title #2804
+	
 = 0.9.97.24 (9th January 2019) =
 * Added: Compatibility with new and all default WP widgets #1400
 * Fixed: Performance issue #2762

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.2
-Stable tag: 0.9.97.24
+Stable tag: 0.9.97.25
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -185,22 +185,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.24 (9th January 2019) =
-* Added: Compatibility with new and all default WP widgets #1400
-* Fixed: Performance issue #2762
-* Fixed: Need to add amp endpoint filter #2761
-* Fixed: When Hide AMP Option is enabled in PageEditor with Convert AMP to WP theme (Beta) enabled it's providing output as AMP Page #2735
-* Fixed: Whenever an image inserted, has width="100%" and height="100%", its giving Validation error. #2748
-* Fixed: Custom post type is showing a blank page in the swift theme #2512
-* Fixed: Whenever Responsive AD is enabled then the AD should load on the screen without any effect to the normal mode AD in D1,2,3, and Swift #2531
-* Fixed: When Convert AMP to WP theme (Beta) is enabled GDPR popup isn't closing #2763
-* Fixed: If twitter embed code is added then other blockquotes tag are not working #2750
-* Fixed: Custom post type is showing a blank page in the swift theme #2512
-* Fixed: Conflict with the Schema and Structure data plugin #2777
-* Fixed: In the swift theme the Sticky social icons overlaps #2601
-* Fixed: " Top " Button functionality to be improved. #2529
-* Fixed: Drop down icon appearing twice #2785
-* Fixed: Custom front page Meta description and content are not rendering for ALL in SEO plugin. #2702
-* Fixed: Hover color is not appearing properly #2787
+= 0.9.97.25 (12th January 2019) =
+* Fixed: AMP Footer sidebar is not working in master #2800
+* Fixed: <i> tag not working in Title #2804
 
 Full changelog available in changelog.txt
