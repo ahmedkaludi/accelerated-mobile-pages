@@ -4947,10 +4947,10 @@ function ampforwp_url_purifier($url){
 	      $query_arg   = wp_parse_args($_SERVER['QUERY_STRING']);
 	      $query_name = '';
 			if(is_single()){
-				$query_name = $wp_query->query['name'];	
+				$query_name = isset($wp_query->query['name'])?$wp_query->query['name']:'';	
 			}
 			else{
-				$query_name = $wp_query->query['pagename'];
+				$query_name = isset($wp_query->query['pagename'])?$wp_query->query['pagename']:'';
 			}
 	      	if( ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) ){
            	 	unset($query_arg['q']);
