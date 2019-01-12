@@ -7,7 +7,7 @@
 		<div class="cntr">
 			<div class="f-w">
 				<?php 
-				$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+				$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-footer-widget-area');
 				if ( $sanitized_sidebar) {
 					$sidebar_output = $sanitized_sidebar->get_amp_content();
 					$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
