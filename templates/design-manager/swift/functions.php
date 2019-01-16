@@ -54,6 +54,26 @@ function ampforwp_swift_social_icons(){
 	<div class="ss-ic">
 						<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
 						<ul>
+							<?php if(ampforwp_get_setting('ampforwp-facebook-like-button')){?>
+							<li>
+							<?php if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) { ?>	
+								<div class="fb-like" 
+    								data-href="<?php echo esc_url(get_the_permalink());?>" 
+									data-layout="button_count" 
+    								data-action="like" 
+    								data-show-faces="true">
+  								</div>
+							<?php }
+							else { ?>
+								<amp-facebook-like width=90 height=28 style="margin-bottom: -7px;"
+				 					layout="fixed"
+				 					data-size="large"
+				    				data-layout="button_count"
+				    				data-href="<?php echo esc_url(get_the_permalink());?>">
+								</amp-facebook-like>
+							<?php } ?>
+							</li>
+							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-facebook-share']){?>
 							<li>
 								<a title="facebook share" class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php echo $amp_permalink; ?>"></a>
@@ -162,26 +182,7 @@ function ampforwp_swift_social_icons(){
 								<a title="pocket share" class="s_pk" target="_blank" href="https://getpocket.com/save?url=<?php echo $amp_permalink; ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
-							<?php if($redux_builder_amp['ampforwp-facebook-like-button']){?>
-							<li>
-							<?php if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) { ?>	
-								<div class="fb-like" 
-    								data-href="<?php echo esc_url(get_the_permalink());?>" 
-									data-layout="button_count" 
-    								data-action="like" 
-    								data-show-faces="true">
-  								</div>
-							<?php }
-							else { ?>
-								<amp-facebook-like width=90 height=28
-				 					layout="fixed"
-				 					data-size="large"
-				    				data-layout="button_count"
-				    				data-href="<?php echo esc_url(get_the_permalink());?>">
-								</amp-facebook-like>
-							<?php } ?>
-							</li>
-							<?php } ?>
+							
 
 						</ul>
 		            </div>
