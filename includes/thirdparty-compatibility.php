@@ -170,6 +170,25 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 	    }
 	    //For template pages
 	    switch ( true ) {
+	    	case ampforwp_is_front_page():
+				$templates[] = $filePath . "/front-page.php";
+				 foreach ( $templates as $key => $value ) {
+					if ( 'single' == $type && file_exists($value) ) {
+						$file = $value;
+						break;
+					}
+				}
+	    	break;
+	    	case ampforwp_is_home():
+				$templates[] = $filePath . "/home.php";
+				$templates[] = $filePath . "/index.php";
+				 foreach ( $templates as $key => $value ) { 
+					if ( 'single' == $type && file_exists($value) ) {
+						$file = $value;
+						break;
+					}
+				} 
+	    	break;
 	    	case (is_tax()):
 	    			$term = get_queried_object();
 					$templates = array();
