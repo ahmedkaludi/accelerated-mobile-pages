@@ -679,7 +679,7 @@ function ampforwp_new_dir( $dir ) {
 
 
 				 //Convert the Twitter embed into url for better sanitization #1010
-				  $content = preg_replace('/<blockquote(\s)class="twitter-(.*?)"[^>](.*?)<a href="(https:\/\/twitter.com\/Twitter\/status\/)(.*?)">(.*?)<\/blockquote>/', "https://twitter.com/Twitter/status/$5", $content);
+				  $content = preg_replace('/<blockquote(\s)class="twitter-(.*?)"[^>](.*?)<a href="(https:\/\/twitter.com\/([a-zA-Z0-9_]{1,20})\/status\/)(.*?)">(.*?)<\/blockquote>/', "$4$6", $content);
 				  // Convert the Soundcloud embed into URL to build amp-soundcloud
 				  $content = preg_replace('/<iframe .*(https?).*(\/\/api\.soundcloud\.com\/tracks\/)([0-9]+)(.*)<\/iframe>/', "$1:$2$3", $content);
 
