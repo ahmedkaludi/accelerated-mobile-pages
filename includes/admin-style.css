@@ -866,3 +866,25 @@ visibility: hidden;
 #finalized-import-structure-data-from-amp{
     margin-left:8px;vertical-align: baseline
 }
+.top_container {
+    width:100% !important;
+    margin-bottom: 2% !important;
+}
+.side_container {
+    width: 20% !important;
+    margin-left: 1% !important;
+    margin-right: 1% !important;
+    float: left !important;
+    margin-bottom: 2% !important;
+}
+.content_container {
+    margin:0px !important;
+    width: 70% !important;
+    margin-right: 0px !important;
+    float:right !important;
+    margin-bottom: 2% !important;
+}
+.disabled_container {
+    clear: both !important;
+    width: 100% !important;
+}

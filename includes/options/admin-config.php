@@ -4768,6 +4768,21 @@ $single_page_options = array(
                         ),
                         'required'  => array( array('amp-design-selector', '!=' , '4')),
                     ),
+                // Single Components Layout options
+                array(
+                        'id'      => 'd_4_single_components_layout',
+                        'type'    => 'sorter',
+                        'title'   => 'Components Layout Manager for Swift',
+                        'desc'    => 'Organize how you want the components to appear on the single',
+                        'layers'  => 'multiple',
+                        'options' => array(
+                            'top'=>array(),
+                            'side'=>array(),
+                            'content'=>array(),
+                            'disabled' => $customizer_options['disabled'],
+                        ),
+                        'required'  => array( array('amp-design-selector', '=' , '4')),
+                    ),
             // Swift
             array(
                     'id'    => 'single-design-type',
