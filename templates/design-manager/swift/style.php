@@ -348,11 +348,11 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
         #breadcrumbs a {color: #999;}
         #breadcrumbs a:hover {color: <?php echo $swift_cs_color; ?>;}
         .amp-post-title{font-size: 48px;line-height: 58px;color: #333;margin: 0;padding-top: 15px;}
-        <?php if (isset($redux_builder_amp['swift-social-position']) && 'above-content' == $redux_builder_amp['swift-social-position']){ ?>
+        <?php if ('above-content' ==  ampforwp_get_setting('swift-social-position')){ ?>
 	        .pg .ss-ic{padding-bottom: 10px;margin-bottom: 10px;border-bottom: none;margin-top: 15px;}
 	        .shr-txt{display:none;}
 	        .pg .cmts{margin-top: unset;}
-		<?php } ?>
+		<?php }else{ ?> .shr-txt {text-transform: uppercase;font-size: 12px;color: #666;font-weight: 400;margin-bottom: 12px;display: block;} <?php } ?>
         .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
         .cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-wrap: break-word;}
     <?php } else{ ?>

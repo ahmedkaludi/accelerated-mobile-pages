@@ -16,7 +16,7 @@ amp_header(); ?>
 			</div>
 		<?php } ?>
        <div class="pg">
-       		<?php if (isset($redux_builder_amp['swift-social-position']) && 'above-content' == $redux_builder_amp['swift-social-position']){
+       		<?php if ( 'above-content' == ampforwp_get_setting('swift-social-position') ){
 							ampforwp_swift_social_icons(); 
 			} ?>
 			<div class="cntn-wrp">
@@ -60,7 +60,7 @@ amp_header(); ?>
 
 			</div>
 			<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ 
-			if( is_page() && isset($redux_builder_amp['ampforwp-page-social']) && $redux_builder_amp['ampforwp-page-social'] && isset($redux_builder_amp['swift-social-position']) && 'above-content' != $redux_builder_amp['swift-social-position'] ) { ?>
+			if( is_page() && isset($redux_builder_amp['ampforwp-page-social']) && $redux_builder_amp['ampforwp-page-social'] && 'above-content' !=  ampforwp_get_setting('swift-social-position') ) { ?>
 				<div class="ss-ic">
 					<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
 					<ul>
