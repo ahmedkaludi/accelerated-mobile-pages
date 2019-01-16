@@ -451,7 +451,7 @@ if(!function_exists('ampforwp_findInternalUrl')){
 				return $url;
 			}
 		}
-		if ( false !== strpos($url, '#') && false === ampforwp_is_amp_inURL($url) ) {
+		if ( false !== strpos($url, '#') && false === ampforwp_is_amp_inURL($url) && !ampforwp_isexternal($url) ) {
 			$url_array = explode('#', $url);
 			if ( !empty($url_array) && '' !== $url_array[0]) {
 	      		$url = ampforwp_url_controller($url_array[0]).'#'.$url_array[1];
