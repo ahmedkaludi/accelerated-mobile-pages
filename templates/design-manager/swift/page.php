@@ -14,6 +14,9 @@ amp_header(); ?>
 			</div>
 		<?php } ?>
        <div class="pg">
+       		<?php if (  is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' ==  ampforwp_get_setting('swift-social-position') ){
+							ampforwp_swift_social_icons(); 
+			} ?>
 			<div class="cntn-wrp">
 				<?php if( ampforwp_get_setting('gbl-sidebar') == '1' && ampforwp_is_front_page() ){ ?>				
 					<div class="cntr pgb">
@@ -36,7 +39,7 @@ amp_header(); ?>
 				<?php } ?>
 			</div>
 			<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ 
-			if( is_page() && isset($redux_builder_amp['ampforwp-page-social']) && $redux_builder_amp['ampforwp-page-social'] ) { ?>
+			if( is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' !=  ampforwp_get_setting('swift-social-position') ) { ?>
 				<div class="ss-ic">
 					<span class="shr-txt"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' )); ?></span>
 					<ul>
