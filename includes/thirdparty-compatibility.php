@@ -451,8 +451,14 @@ if(!function_exists('ampforwp_findInternalUrl')){
 				return $url;
 			}
 		}
-	    if($url=='#'){ return $url; }
-	   	if(strpos($url, "#")!==false){
+		if ( false !== strpos($url, '#') && false === ampforwp_is_amp_inURL($url) ) {
+			$url_array = explode('#', $url);
+			if ( !empty($url_array) && '' !== $url_array[0]) {
+	      		$url = ampforwp_url_controller($url_array[0]).'#'.$url_array[1];
+				return $url;
+			}
+		}
+	    if( false === wp_http_validate_url($url) ) {
 	        return $url;
 	    }
 	    if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
