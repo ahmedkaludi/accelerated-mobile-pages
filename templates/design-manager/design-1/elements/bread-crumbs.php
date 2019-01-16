@@ -226,11 +226,7 @@ if ( isset($redux_builder_amp['ampforwp-bread-crumb']) && 1 == $redux_builder_am
             echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Search results for: ' . get_search_query() . '">
             ' . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-search-text'], 'Search results for')) . ': ' . get_search_query() . '</strong></li>';
            
-        } elseif ( is_404() ) {
-               
-            // 404 page
-            echo '<li>' . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-error-404-text'], 'Error 404')) . '</li>';
-        } 
+        }
         echo '</ul>';
       
     }?>

@@ -3997,14 +3997,6 @@ $e_commerce_support[] = array(
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
-                       'id'       => 'amp-translator-error-404-text',
-                       'type'     => 'text',
-                       'title'    => esc_html__('Error 404', 'accelerated-mobile-pages'),
-                       'default'  => esc_html__('Error 404','accelerated-mobile-pages'),
-                       'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
-                       'required' => array( 'amp-use-pot', '=' , 0 )
-                   ),
-                   array(
                        'id'       => 'amp-translator-footer-text',
                        'type'     => 'textarea',
                        'title'    => esc_html__('Footer', 'accelerated-mobile-pages'),
