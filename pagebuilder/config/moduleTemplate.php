@@ -355,12 +355,13 @@ $containerCommonSettings = array(
 	 						array(
 								'type'		=>'text',
 								'name'		=>"row_background_video",
-								'label'		=>"Background Video URL",
+								'label'		=> esc_html__( 'Background Video URL', 'accelerated-mobile-pages' ),
 								'tab'		=>'customizer',
 								'default'	=>'',
+								'helpmessage'	=> esc_html__('Your video should be 600px away from the top or not within the first 75% of the viewport and it should be added like - https://www.youtube.com/embed/XXXXXXXXXX', 'accelerated-mobile-pages'),
 								'content_type'=>'html',
 								'required'  => array('background_type'=>'video')
-								),
+							),
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"title",		
