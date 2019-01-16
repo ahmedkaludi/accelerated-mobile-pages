@@ -34,12 +34,14 @@ amp-wistia-player {margin:5px 0px;}
 .hide{display:none}
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: auto;
     font-style: normal;
     font-weight: 400;
     src:  local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url('<?php echo esc_url(plugin_dir_url(__FILE__).'fonts/robotoslab/RobotoSlab-Regular.ttf'); ?>');
 }
 @font-face {
     font-family: 'Roboto Slab';
+    font-display: auto;
     font-style: normal;
     font-weight: 700;
     src:  local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url('<?php echo esc_url(plugin_dir_url(__FILE__).'fonts/robotoslab/RobotoSlab-Bold.ttf'); ?>');
@@ -47,12 +49,14 @@ amp-wistia-player {margin:5px 0px;}
 
 @font-face {
     font-family: 'PT Serif';
+    font-display: auto;
     font-style: normal;
     font-weight: 400;
     src:  local('PT Serif'), local('PTSerif-Regular'), url('<?php echo esc_url(plugin_dir_url(__FILE__).'fonts/ptserif/PT_Serif-Web-Regular.ttf'); ?>');
 }
 @font-face {
     font-family: 'PT Serif';
+    font-display: auto;
     font-style: normal;
     font-weight: 700;
     src:  local('PT Serif Bold'), local('PTSerif-Bold'), url('<?php echo esc_url(plugin_dir_url(__FILE__).'fonts/ptserif/PT_Serif-Web-Bold.ttf'); ?>');
@@ -439,6 +443,7 @@ amp-user-notification button { background-color:  <?php echo ampforwp_sanitize_c
 .amp-wp-article-content img { max-width: 100%;}
 @font-face {
   font-family: 'icomoon';
+  font-display: auto;
   src:  url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.eot'); ?>');
   src:  url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.eot'); ?>') format('embedded-opentype'),
     url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.ttf'); ?>') format('truetype'),
