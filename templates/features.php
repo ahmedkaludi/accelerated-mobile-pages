@@ -7702,3 +7702,11 @@ function ampforwp_backtotop( $data ) {
 	return $data;
 } 
 
+// Jannah Theme Subtitle Support #2732 
+add_action('ampforwp_below_the_title','ampforwp_jannah_subtitle');
+function ampforwp_jannah_subtitle(){
+	if (function_exists('jannah_theme_name') && function_exists('tie_get_postdata')){?>
+		<h4 class="amp-wp-content"><?php echo esc_html(tie_get_postdata( 'tie_post_sub_title' ))?></h4>
+	<?php
+	} 
+}
