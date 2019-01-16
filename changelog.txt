@@ -1,8 +1,23 @@
 == Changelog ==
 
-= 0.9.97.25 (12th January 2019) =
+= 0.9.97.25 (16th January 2019) =
+* Added: Help message for background video of column setting of Page Builder #2716
+* Added: Review option in plugins page #2715
+* Added: Excerpt length option in Category module of Page Builder #2733
+* Added: Font Performance with font-display #2743
+* Added: Custom template for front-page & home-page #2714
 * Fixed: AMP Footer sidebar is not working in master #2800
 * Fixed: <i> tag not working in Title #2804
+* Fixed: alt attribute of <img> tag is not working when the image is inside the <a> tag #2617
+* Fixed: Remove the unnecessary code for '404 error' text in amp translation panel #2738
+* Fixed: Subtitle issue using with Jannah theme #2732
+* Fixed: Proper names given for AMP Widgets #2797
+* Fixed: Notice: Undefined index: hide-amp-tags-bulk-option2 and Undefined variable: inline_related_posts in features.php on line 4698 & 5546 #2795
+* Fixed: Quality of 'featured image slider' in Design3 #2779
+* Fixed: Embed Twits with twitter links #2798
+* Fixed: /amp in the telephone link when 'Change Internal Links to AMP' option enabled #2742
+* Fixed: Position of social sharing buttons 'above content' on pages #2809
+* Fixed: lang attribute in HTML tag #2808
 
 = 0.9.97.24 (9th January 2019) =
 * Added: Compatibility with new and all default WP widgets #1400
