@@ -1454,7 +1454,7 @@ function ampforwp_new_dir( $dir ) {
 				// Removing the type attribute from the <ul> (Improved after 0.9.63)
 				 $content = preg_replace('/<ul(.*?)\btype=".*?"(.*?)/','<ul $1',$content);
 				 //Convert the Twitter embed into url for better sanitization #1010
-				  $content = preg_replace('/<blockquote(\s)class="twitter-(.*?)"[^>](.*?)<a href="(https:\/\/twitter.com\/)(.*?)">(.*?)<\/blockquote>/si', "https://twitter.com/$5", $content);
+				  $content = preg_replace("/<blockquote(\s)class=\"twitter-(.*?)\"[^>](.*?)<a href=\"(https:\/\/twitter.com\/([a-zA-Z0-9_]{1,20})\/status\/)(.*?)\">(.*?)<\/blockquote>/si", "\n$4$6", $content);
 				  // Convert the Soundcloud embed into URL to build amp-soundcloud
 				  $content = preg_replace('/<iframe .*(https?).*(\/\/api\.soundcloud\.com\/tracks\/)([0-9]+)(.*)<\/iframe>/', "$1:$2$3", $content);
 				  // for readability attibute in div tag
