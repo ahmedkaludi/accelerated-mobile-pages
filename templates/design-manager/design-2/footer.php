@@ -20,19 +20,13 @@
             </nav>
           </div>
         <?php } ?>
-        <p><?php 
-         if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
-              <p class="rightslink back-to-top">
-                <?php  amp_back_to_top_link();
-                   if(true == ampforwp_get_setting('amp-footer-link-non-amp-page')){
-                    if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
-                      | <?php ampforwp_view_nonamp(); 
-                    }
-                  else{
-                    ampforwp_view_nonamp();
-                    }
-                  }
-              }
+        <p class="rightslink back-to-top"><?php 
+          if ( true == ampforwp_get_setting('ampforwp-footer-top') || true == ampforwp_get_setting('amp-footer-link-non-amp-page') ) {
+            amp_back_to_top_link();
+            if(true == ampforwp_get_setting('amp-footer-link-non-amp-page')){
+              ampforwp_view_nonamp();
+            }
+          };        
               $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>'; 
               echo strip_tags( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_tags );
         ?></p>
