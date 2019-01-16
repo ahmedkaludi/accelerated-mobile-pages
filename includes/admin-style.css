@@ -817,3 +817,18 @@ span.switch-text {
 #finalized-import-structure-data-from-amp{
     margin-left:8px;vertical-align: baseline
 }
+.ampforwp-rate-stars{
+    display:inline-block;
+    color:#ffb900;
+    position:relative;
+    top:3px;
+}
+.ampforwp-rate-stars svg{
+    fill:#ffb900;
+}
+.ampforwp-rate-stars svg:hover{
+    fill:#ffb900
+}
+.ampforwp-rate-stars svg:hover ~ svg{
+    fill:none;
+}
