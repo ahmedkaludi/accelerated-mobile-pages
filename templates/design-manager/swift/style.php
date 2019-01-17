@@ -1762,9 +1762,9 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
 	.sp-cnt .cntr {max-width: 100%;margin:0;width:100%;padding:0}	
 <?php } ?>
 <?php //Breadcrumbs
-if( is_singular() && 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
+if( is_singular() && true == ampforwp_get_setting('ampforwp-bread-crumb') ) {?>
 .breadcrumbs{padding-bottom: 8px;margin-bottom: 20px;
-<?php if( 1 == $redux_builder_amp['breadcrumb-border'] ) {?>
+<?php if( true == ampforwp_get_setting('breadcrumb-border') ) {?>
 border-bottom: 1px solid #eee;
 <?php }?>}
 .breadcrumb ul li,.breadcrumbs span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
