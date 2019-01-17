@@ -600,7 +600,7 @@ if ( ! function_exists('ampforwp_init') ) {
 		// Redirect the old url of amp page to the updated url. #1033 (Vendor Update)
 		add_filter( 'old_slug_redirect_url', 'ampforwp_redirect_old_slug_to_new_url' );
 
-		if ( class_exists( 'Jetpack' ) && ! (defined( 'IS_WPCOM' ) && IS_WPCOM) ) {
+		if ( class_exists( 'Jetpack' ) && ! (defined( 'IS_WPCOM' ) && IS_WPCOM) && ( defined('JETPACK__VERSION') && JETPACK__VERSION < 6.9 ) ) {
 			require_once( AMP__VENDOR__DIR__ . '/jetpack-helper.php' );
 		}
 		// AMP by Automattic Compatibility #2287
