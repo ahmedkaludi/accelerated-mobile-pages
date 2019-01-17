@@ -1643,27 +1643,19 @@ function ampforwp_replace_title_tags() {
 		 	}
 		 	$site_title = RankMath\Post::get_meta( 'title', $post_id );
 		}
+
+		// All in One SEO #2816
+		if ( class_exists('All_in_One_SEO_Pack') && ampforwp_is_front_page() ) {
+			$aiseop_title = $post = '';
+			$post = get_post($post_id);
+			$aiseop_title = get_post_meta( $post->ID, '_aioseop_title', true );
+			if ( !empty($aiseop_title) ) {
+				$site_title = $aiseop_title;
+			}
+			add_filter('aioseop_title', '__return_false');
+		}
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
-}
-
-
-add_action('amp_post_template_include_single','ampforwp_update_title_for_frontpage');
-function ampforwp_update_title_for_frontpage() {
-	$check_custom_front_page = get_option('show_on_front');
-
-	if ( $check_custom_front_page == 'page' && ampforwp_is_home() ) {
-
-		remove_action( 'amp_post_template_head', 'amp_post_template_add_title' );
-		add_action('amp_post_template_head','ampforwp_frontpage_title_markup');
-
-		add_filter('aioseop_title','ampforwp_aioseop_front_page_title');
-	}
-}
-// Custom Frontpage title for ALL in one SEO.
-function ampforwp_aioseop_front_page_title() {
-	$sep = ' | ';
-	return $site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
 }
 
 function ampforwp_frontpage_title_markup () { 
