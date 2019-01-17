@@ -472,7 +472,7 @@ namespace ReduxCore\ReduxFramework;
                 //}
 
                 if ( $remote_checks == true ) {
-                    $response = wp_remote_post( 'https://www.paypal.com/cgi-bin/webscr', array(
+                   /* $response = wp_remote_post( 'https://www.paypal.com/cgi-bin/webscr', array(
                         'sslverify'  => false,
                         'timeout'    => 60,
                         'user-agent' => 'ReduxFramework/' . ReduxFramework::$_version,
@@ -497,7 +497,7 @@ namespace ReduxCore\ReduxFramework;
                     } else {
                         $sysinfo['wp_remote_get']       = 'false';
                         $sysinfo['wp_remote_get_error'] = $response->get_error_message();
-                    }
+                    }*/
                 }
 
                 $active_plugins = (array) get_option( 'active_plugins', array() );
