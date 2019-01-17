@@ -171,6 +171,17 @@ $extension_listing_array = array(
                             'settingUrl'=>'{ampforwp-cta-subsection}',
                         ),
                         array(
+                            'name'=>'Classipress for AMP',
+                            'desc'=>'Amp Compatibility for Classipress Theme',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cf.png',
+                            'price'=>'$39',
+                            'url_link'=>'http://ampforwp.com/classipress-for-amp',
+                            'plugin_active_path'=> 'classipress-for-amp/classipress-for-amp.php',
+                            'item_name'=>'Classipress for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('classipress-for-amp/classipress-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Contact Form 7',
                             'label' => 'Contact Form 7',
                             'desc'=>'Add Contact Us Form in AMP.',
