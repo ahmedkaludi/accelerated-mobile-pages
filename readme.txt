@@ -185,7 +185,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.25 (16th January 2019) =
+= 0.9.97.25 (17th January 2019) =
 * Added: Help message for background video of column setting of Page Builder #2716
 * Added: Review option in plugins page #2715
 * Added: Excerpt length option in Category module of Page Builder #2733
@@ -203,5 +203,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: /amp in the telephone link when 'Change Internal Links to AMP' option enabled #2742
 * Fixed: Position of social sharing buttons 'above content' on pages #2809
 * Fixed: lang attribute in HTML tag #2808
+* Fixed: In footer, 'View non-AMP pages' is repeated twice when 'back to top link' option is enabled #2807
 
 Full changelog available in changelog.txt
