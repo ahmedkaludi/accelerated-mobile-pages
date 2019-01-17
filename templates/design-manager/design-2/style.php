@@ -109,6 +109,10 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
 .amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; margin-top:5px; }
 .amp-social-icon amp-img{ top: 4px; }
+amp-social-share[type="facebookmessenger"] {
+  background-image: url(https://img.icons8.com/color/100/000000/facebook-messenger.png);
+  max-height: 33px;   
+}
 .custom-amp-socialsharing-line{background:#00b900}
 .ampforwp-social-icons custom-amp-socialsharing-vk{background:#45668e}
 .amp-social-odnoklassniki{background:#ed812b}.amp-social-reddit{background:#ff4500}.amp-social-telegram{background:#61A8DE}.amp-social-tumblr{background:#35465c}.amp-social-digg{background:#005be2}.amp-social-stumbleupon{background:#eb4924}.amp-social-wechat{background:#7bb32e}.amp-social-viber{background:#8f5db7}.amp-social-hatena{background:#00a4de}.amp-social-pocket{background:#e8e8e8}

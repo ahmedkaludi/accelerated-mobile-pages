@@ -30,6 +30,12 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		<?php } ?>
+		<?php if(ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
+		<amp-social-share type="facebookmessenger"
+		    data-share-endpoint="fb-messenger://share"
+		    data-param-text="<?php echo esc_url($amp_permalink); ?>">
+		</amp-social-share>
+		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
 			$data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
 			<amp-social-share type="twitter"

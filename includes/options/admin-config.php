@@ -5952,13 +5952,21 @@ $single_page_options = array(
               'title'     =>  __('Facebook', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
-          // Facebook app ID
+          // Facebook Messenger ON/OFF
+          array(
+              'id'        =>  'enable-single-facebook-share-messenger',
+              'type'      =>  'switch',
+              'title'     =>  __('Facebook Messenger', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+         // Facebook app ID
           array(
                'id'       => 'amp-facebook-app-id',
+               'class' => 'child_opt child_opt_arrow',
                'title'    => __('Facebook App ID', 'accelerated-mobile-pages'),
                'tooltip-subtitle' => __('In order to use Facebook share you need to register an app ID, <a href="https://developers.facebook.com/apps" style="color:#93FCFF;" >You can register one here: https://developers.facebook.com/apps.', 'accelerated-mobile-pages'),
                'type'     => 'text',
-               'required'  => array(array('enable-single-facebook-share', '=' , '1'),array('amp-design-selector', '!=' , '4')),
+               'required' => array( array('enable-single-facebook-share-messenger', '=' , '1') ),
                'placeholder'  => __('Enter your facebook app id','accelerated-mobile-pages'),
                'default'  => '',
           ),
