@@ -798,7 +798,7 @@ function ampforwp_get_data_consent(){
 }
 
 // Register widgets
-add_action('init', 'ampforwp_widgets',0.5);
+add_action('init', 'ampforwp_widgets');
 function ampforwp_widgets(){
 	add_action( 'widgets_init', 'ampforwp_register_widgets' );
 }
