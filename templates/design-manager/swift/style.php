@@ -99,6 +99,14 @@ header .cntr{
 .h-ic a:after, .h-ic a:before{font-family: 'icomoon';font-size: 23px;<?php if(isset($redux_builder_amp['swift-element-color-control'] ['rgba']) && $redux_builder_amp['swift-element-color-control'] ['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>}
 <?php if ( true == ampforwp_get_setting('ampforwp-callnow-button') ) { ?>
 .h-call a:after{content: "\e0cd";}
+<?php
+$callnowcolor = ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call');
+	if ( !empty($callnowcolor['color']) ) { ?>
+		.h-call a:after{color:<?php echo $callnowcolor['color'];?>;}
+	<?php }
+ } ?>
+<?php if ( true == ampforwp_get_setting('ampforwp-callnow-button') ) { ?>
+.h-call a:after{content: "\e0cd";}
 <?php } ?>
 <?php if (function_exists('is_shop') && is_shop()){ ?>
 .h-shop a:after{align-self: center;}
