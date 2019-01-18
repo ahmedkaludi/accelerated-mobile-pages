@@ -91,7 +91,13 @@ namespace ReduxCore\ReduxFramework;
 
                 $sortlists = $this->value;
                 if($this->field['layers']=='multiple'){
-                    $sortlists = $this->field['options'];  
+                    foreach ($this->field['options'] as $key => $value) {
+                        if(!isset($sortlists[$key])){
+                            $sortlists[$key] = $value;
+                        }
+                    }
+                  //  $sortlists = $this->field['options'];  
+                
                 }
                 if ( ! empty( $sortlists ) ) {
                     foreach ( $sortlists as $section => $arr ) {
