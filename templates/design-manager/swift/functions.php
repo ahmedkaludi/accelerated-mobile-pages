@@ -58,7 +58,7 @@ function ampforwp_swift_social_icons(){
 						<ul>
 							<?php if(ampforwp_get_setting('ampforwp-facebook-like-button')){?>
 							<li>
-							<?php if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) { ?>	
+							<?php if( ampforwp_is_non_amp() && ampforwp_get_setting('ampforwp-amp-convert-to-wp')) { ?>	
 								<div class="fb-like" 
     								data-href="<?php echo esc_url(get_the_permalink());?>" 
 									data-layout="button_count" 
