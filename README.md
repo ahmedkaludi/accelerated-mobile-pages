@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.3
-Stable tag: 0.9.97.25
+Stable tag: 0.9.97.26
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,6 +183,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.26 (21st January 2019) =
+* Added: New Extension 'Classipress for AMP' array code #2822
+* Fixed: WP_Widget_Text conflict after v0.9.97.24 #2821
 
 = 0.9.97.25 (17th January 2019) =
 * Added: Help message for background video of column setting of Page Builder #2716
