@@ -6015,7 +6015,7 @@ $single_page_options = array(
                'title'    => esc_html__('Facebook App ID', 'accelerated-mobile-pages'),
                'tooltip-subtitle' => esc_html__('In order to use Facebook share you need to register an app ID, <a href="https://developers.facebook.com/apps" style="color:#93FCFF;" >You can register one here: https://developers.facebook.com/apps.', 'accelerated-mobile-pages'),
                'type'     => 'text',
-               'required'  => array(array('enable-single-facebook-share-messenger', '=' , '1')),
+               'required'  => array(array('enable-single-facebook-share-messenger', '=' , '1'),array('amp-design-selector', '!=' , '1'),array('amp-design-selector', '!=' , '2')),
                'placeholder'  => esc_html__('Enter your facebook app id','accelerated-mobile-pages'),
                'default'  => '',
           ),
