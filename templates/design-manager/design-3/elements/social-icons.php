@@ -3,7 +3,7 @@
 // Social share in AMP 
 $amp_permalink = "";
 $facebook_app_id = '';
-$facebook_app_id = ampforwp_get_setting('amp-facebook-app-id');
+$facebook_app_id = ampforwp_get_setting('amp-facebook-app-id-messenger');
 if ( ampforwp_get_setting('ampforwp-social-share-amp')  ) {
 	$amp_permalink = ampforwp_url_controller(get_the_permalink());
 } else{
@@ -46,7 +46,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 		<?php } ?>
 		<?php if(ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
 			<div class="ampforwp-custom-social">
-				<a title="facebook share messenger" href="fb-messenger://share/?link=<?php echo $amp_permalink; ?>&app_id=<?php echo $facebook_app_id ?>" class="amp-social-facebook-messenger">
+				<a title="facebook share messenger" href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink); ?>&app_id=<?php echo $facebook_app_id ?>" class="amp-social-facebook-messenger">
 				    <amp-img src="https://img.icons8.com/color/1000/1000000/facebook-messenger.png" width="50" height="45" />
 				</a>
 		    </div>
