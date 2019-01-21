@@ -173,7 +173,7 @@ $extension_listing_array = array(
                         array(
                             'name'=>'Classipress for AMP',
                             'desc'=>'Amp Compatibility for Classipress Theme',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cf.png',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cp.png',
                             'price'=>'$39',
                             'url_link'=>'http://ampforwp.com/classipress-for-amp',
                             'plugin_active_path'=> 'classipress-for-amp/classipress-for-amp.php',
