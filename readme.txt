@@ -186,7 +186,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.97.26 (21st January 2019) =
-* Added: New Extension 'Classipress for AMP' array code #2822
+* Added: Improve the Extension array code #2822
 * Fixed: WP_Widget_Text conflict after v0.9.97.24 #2821
 
 Full changelog available in changelog.txt
