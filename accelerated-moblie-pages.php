@@ -868,3 +868,5 @@ function ampforwp_add_plugin_meta_links($meta_fields, $file) {
     return $meta_fields;
   }
 }
+// AMPforWP Global Data variable
+$ampforwp_data = array();
