@@ -195,6 +195,17 @@ $extension_listing_array = array(
                             'settingUrl'=>'{ampforwp-cta-subsection}',
                         ),
                         array(
+                            'name'=>'Classipress for AMP',
+                            'desc'=>'Amp Compatibility for Classipress Theme',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cp.png',
+                            'price'=>'$19',
+                            'url_link'=>'http://ampforwp.com/classipress-for-amp',
+                            'plugin_active_path'=> 'classipress-for-amp/classipress-for-amp.php',
+                            'item_name'=>'Classipress for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('classipress-for-amp/classipress-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'AMP WooCommerce Pro',
                             'desc'=>'Advanced WooCommerce in AMP in two clicks.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/woo.png',
