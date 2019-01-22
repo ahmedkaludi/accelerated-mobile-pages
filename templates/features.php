@@ -7059,3 +7059,13 @@ function ampforwp_add_global_scripts($data){
 	}
 	return $data;
 }
+// WP Subtitle Support #2831
+add_action('ampforwp_below_the_title','ampforwp_wpsubtitle_support');
+if (! function_exists('ampforwp_wpsubtitle_support') ) {
+function ampforwp_wpsubtitle_support(){
+ 	if(class_exists('WPSubtitle')){?>
+	<h4 class="amp-wp-content"><?php the_subtitle(); ?></h4>
+<?php 
+}
+}
+}
