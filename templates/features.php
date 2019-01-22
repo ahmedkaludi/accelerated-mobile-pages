@@ -1658,12 +1658,6 @@ function ampforwp_replace_title_tags() {
 	}
 }
 
-function ampforwp_frontpage_title_markup () { 
-	$front_page_title = ampforwp_add_custom_title_tag();
-	$front_page_title = apply_filters('ampforwp_frontpage_title_filter', $front_page_title); 
-	?><title><?php echo esc_html( $front_page_title ); ?></title><?php
-}
-
 // 27. Clean the Defer issue
 	// Moved to functions.php
 
