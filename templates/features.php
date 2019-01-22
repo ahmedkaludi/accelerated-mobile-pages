@@ -7063,3 +7063,14 @@ function ampforwp_wpsubtitle_support(){
 }
 }
 }
+
+add_filter('ampforwp_is_amp_endpoint_takeover', "ampforwp_bulktool_takeover");
+if (! function_exists('ampforwp_bulktool_takeover') ) {
+function ampforwp_bulktool_takeover($data){
+	$bulk_option = ampforwp_get_setting('amp-pages-meta-default');
+	if(is_page() && $bulk_option == "hide"){
+		return false; 
+	}
+	return $data;
+}
+}
