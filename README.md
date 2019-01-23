@@ -185,6 +185,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.97.27 (23rd January 2019) =
+* Added: ampforwp_is_amp_endpoint_takeover filter added
 * Fixed: The attribute 'action' may not appear in tag 'FORM [method=POST]' #2835
 * Fixed: Image size smaller than recommended size Warning in Search console #2838
 
