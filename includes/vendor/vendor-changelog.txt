@@ -57,3 +57,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 30. FTP protocol has been whitelisted in anchor tags #2477
 31. Class AMP_Img_Sanitizer Updated #2748
 32. Widgets folder added in Vendor amp/includes #1400 
+33. Class AMP_Blacklist_Sanitizer updated #2835
