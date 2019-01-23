@@ -214,7 +214,7 @@ function ampforwp_analytics() {
 					<?php
 				}
 	// 10.12 Analytics Support added for AFS Analytics
-			if ( isset(ampforwp_get_setting('ampforwp-afs-analytics-switch')) && true == ampforwp_get_setting('ampforwp-afs-analytics-switch')) {
+			if ( ampforwp_get_setting('ampforwp-afs-analytics-switch') && true == ampforwp_get_setting('ampforwp-afs-analytics-switch')) {
 				$afs_account = ampforwp_get_setting('ampforwp-afs-siteid');
 				$afs_server = "www";
 				if ($afs_account > 99999)
