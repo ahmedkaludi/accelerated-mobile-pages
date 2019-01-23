@@ -63,3 +63,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 36. Added class-amp-gallery-block-sanitizer.php, class-amp-block-sanitizer.php in Vendor AMP Sanitizers and class-amp-core-block-handler.php in Vendor AMP Embed Handlers #2427
 37. class-amp-style-sanitizer.php updated #2745
 38. Class AMP_Img_Sanitizer Updated #2748
+39. Class AMP_Blacklist_Sanitizer updated #2835

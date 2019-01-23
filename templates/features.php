@@ -2364,7 +2364,12 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
   global $redux_builder_amp;
   $sanitized_sidebar     	= "";
   $non_sanitized_sidebar   	= "";
-  $sidebar_data 			= array();  
+  $sidebar_data 			= array();
+  $blacklist_array	 		= array();
+  // Remove some blacklist tags from sidebars only when search,archives and categories widgets are active #2835
+  if ( is_active_widget(false,false,'search') || is_active_widget(false,false,'archives') || is_active_widget(false,false,'categories') ) {
+  	$blacklist_array['non-content'] = true;
+  }
   ob_start();
   dynamic_sidebar( $sidebar );
   $non_sanitized_sidebar = ob_get_contents();
@@ -2386,7 +2391,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
 	    ) ),
 	    apply_filters(  'amp_sidebar_sanitizers', array(
 	           'AMP_Style_Sanitizer' => array(),
-	           'AMP_Blacklist_Sanitizer' => array(),
+	           'AMP_Blacklist_Sanitizer' => $blacklist_array,
 	           'AMP_Img_Sanitizer' => array(),
 	           'AMP_Video_Sanitizer' => array(),
 	           'AMP_Audio_Sanitizer' => array(),
@@ -2397,9 +2402,8 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
 	    )  ), array('non-content'=>'non-content')
 	  );
   }
-  // Allow some blacklisted tags #1400
-  add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
   if ( is_active_widget(false,false,'search') && $sanitized_sidebar) {
+  	// Allow some blacklisted tags #1400
 	add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar');
   }
   return $sanitized_sidebar;

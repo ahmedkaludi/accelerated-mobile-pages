@@ -19,6 +19,10 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 
 	public function sanitize() {
 		$blacklisted_tags = $this->get_blacklisted_tags();
+		// Blacklisted tags for non-content #2835
+		if ( true === $this->args['non-content'] ) {
+			$blacklisted_tags = ampforwp_sidebar_blacklist_tags($blacklisted_tags);
+		}
 		$blacklisted_attributes = $this->get_blacklisted_attributes();
 		$blacklisted_protocols = $this->get_blacklisted_protocols();
 
