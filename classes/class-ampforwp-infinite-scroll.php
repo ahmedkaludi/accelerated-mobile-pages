@@ -74,9 +74,16 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			$loop_link = $first_url = $first_title = $first_image = $second_url = $second_image = $second_title ='';
 			$single_links = $single_titles = $single_images = $classes = $pages = array();
 			if ( $this->is_loop ) {
-				$loop_link = $this->loop_link();
-				$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link.($this->paged+1));
-				$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link.($this->paged+2));
+				$loop_link 	= $this->loop_link();
+				$loop_link1 = $loop_link2 = '';
+				$loop_link1	= $loop_link.($this->paged+1);
+				$loop_link2 = $loop_link.($this->paged+2);
+				if ( true == ampforwp_get_setting('amp-core-end-point') ) {
+					$loop_link1 = ampforwp_url_controller($loop_link1);
+					$loop_link2 = ampforwp_url_controller($loop_link2);
+				}
+				$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link1);
+				$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link2);
 			}
 			if ( $this->is_single ) {
 				$pages = $this->single_post();
