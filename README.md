@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.3
-Stable tag: 0.9.97.26
+Stable tag: 0.9.97.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,6 +183,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.27 (23rd January 2019) =
+* Fixed: The attribute 'action' may not appear in tag 'FORM [method=POST]' #2835
+* Fixed: Image size smaller than recommended size Warning in Search console #2838
 
 = 0.9.97.26 (21st January 2019) =
 * Added: Improve the Extension array code #2822

@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.9.97.27 (23rd January 2019) =
+* Fixed: The attribute 'action' may not appear in tag 'FORM [method=POST]' #2835
+* Fixed: Image size smaller than recommended size Warning in Search console #2838
+
 = 0.9.97.26 (21st January 2019) =
 * Added: Improve the Extension array code #2822
 * Fixed: WP_Widget_Text conflict after v0.9.97.24 #2821
