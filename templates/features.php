@@ -7080,3 +7080,142 @@ function ampforwp_bulktool_takeover($data){
 	return $data;
 }
 }
+
+
+//Darkmode Features Start
+add_filter("ampforwp_body_class", 'ampforwp_darkmode_body_class', 10,2);
+add_action("amp_after_header","ampforwp_darkModeMarkup");
+add_filter('amp_post_template_data' , 'ampforwp_darkmode_data_script');
+add_action("wp_ajax_ampforwp_darkmode_action", 'ampforwp_darkmode_action');
+add_action("wp_ajax_nopriv_ampforwp_darkmode_action", 'ampforwp_darkmode_action');
+function ampforwp_darkmode_body_class($classes, $class){
+	if(ampforwp_get_setting('gnrl-dark-view') && isset($_COOKIE["ampforwp_is_darkmode_activated"]) && $_COOKIE["ampforwp_is_darkmode_activated"]=='true'){
+		$classes[] = 'darkmode';	
+	}
+	return $classes;
+}
+function ampforwp_darkmode_action(){
+	$domain_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+	header("Access-Control-Allow-Credentials: true");
+	header("Content-type: application/json");
+	header("Access-Control-Allow-Origin: ". str_replace('.', '-',site_url()) .".cdn.ampproject.org");
+	header("AMP-Access-Control-Allow-Source-Origin: " . $domain_url);
+    header("Access-Control-Expose-Headers: AMP-Access-Control-Allow-Source-Origin");
+    header("AMP-Redirect-To: ".ampforwp_url_controller(site_url()));
+        header("Access-Control-Expose-Headers: AMP-Redirect-To, AMP-Access-Control-Allow-Source-Origin");
+	$security = $_REQUEST['security'];
+	if(!wp_verify_nonce( $security, 'darkmodeAction' ) && !ampforwp_get_setting('gnrl-dark-view')){
+		return "false";die;
+	}
+	if(isset($_REQUEST['load']) && isset($_COOKIE["ampforwp_is_darkmode_activated"])){
+		$currentStatus = $_COOKIE["ampforwp_is_darkmode_activated"];
+	}else{
+	    $currentStatus = 'false';
+        if(isset($_COOKIE["ampforwp_is_darkmode_activated"])){
+        	$currentStatus = $_COOKIE["ampforwp_is_darkmode_activated"];
+        	if($currentStatus=='true'){
+        		$currentStatus = 'false';
+        	}else{ $currentStatus = 'true'; }
+        }
+        setcookie("ampforwp_is_darkmode_activated", $currentStatus, time()+30*24*60*60, '/');
+    }
+	echo $currentStatus;
+	die;
+}
+function ampforwp_darkModeMarkup(){
+	if(!ampforwp_get_setting('gnrl-dark-view')){
+		return false;
+	}
+	$ajaxUrl = wp_nonce_url( admin_url( "admin-ajax.php?action=ampforwp_darkmode_action"),'darkmodeAction', 'security');
+	$ajaxUrl = str_replace("http://", '//', $ajaxUrl);
+	?><amp-state id="darkmode"
+               credentials="include"
+               src=<?php echo $ajaxUrl."&load=1"; ?>>
+    </amp-state>
+    <form class="darkmode-button" 
+          method="post"
+          action-xhr="<?php echo $ajaxUrl; ?>"
+          target="_top"
+          on="submit:AMP.setState({
+                        darkmode: !darkmode
+                     });
+              submit-error:AMP.setState({
+                        darkmode: !darkmode
+                     });">
+      <amp-list width="56"
+                height="56"
+                credentials="include"
+                items="."
+                single-item
+                src="<?php echo $ajaxUrl."&load=1"; ?>">
+        <template type="amp-mustache">
+          <input type="submit"
+                 class="{{#.}}heart-fill{{/.}}{{^.}}heart-border{{/.}}"
+                 [class]="darkmode ? 'heart-fill' : 'heart-border'"
+                 value="" aria-label="darkmode Toggle">
+        </template>
+        <div placeholder>
+          <input type="submit" disabled
+                 class="heart-loading"
+                 value="" aria-label="darkmode placeholder">
+        </div>
+      </amp-list>
+    </form>
+    
+	<?php
+}
+
+
+function ampforwp_darkmode_data_script( $data ) {
+	if(!ampforwp_get_setting('gnrl-dark-view')){
+		return $data;
+	}
+     if ( empty( $data['amp_component_scripts']['amp-list'] ) ) {
+    	$data['amp_component_scripts']['amp-list'] = 'https://cdn.ampproject.org/v0/amp-list-latest.js';
+     }
+    if ( empty( $data['amp_component_scripts']['amp-mustache'] ) ) {
+     	$data['amp_component_scripts']['amp-mustache'] = 'https://cdn.ampproject.org/v0/amp-mustache-latest.js';
+    }
+    if ( empty( $data['amp_component_scripts']['amp-form'] ) ) {
+     	$data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-latest.js';
+    }
+    if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
+    	$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-latest.js';
+     }
+    
+    return $data;
+}
+add_action("amp_css", 'ampforwp_darkmode_css');
+	function ampforwp_darkmode_css(){
+	if(!ampforwp_get_setting('gnrl-dark-view')){
+		return false;
+	}
+	?>
+	.darkmode-button input[type=submit] {
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        border: none;
+        margin: 4px;
+        transition: background 300ms ease-in-out;
+      }
+      .darkmode-button amp-list {
+        margin: var(--space-2);
+      }
+      .darkmode-button .heart-fill {
+        background: url('data:image/svg+xml;utf8,<svg fill="%23000000" height="48" viewBox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+      }
+      .darkmode-button .heart-border {
+        background: url('data:image/svg+xml;utf8,<svg fill="%23000000" height="48" viewBox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>');
+      }
+      .darkmode-button .heart-loading,
+      .darkmode-button .heart-loading[placeholder] {
+        background: url('data:image/svg+xml;utf8,<svg fill="%23cccccc" height="48" viewBox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>');
+      }
+      .darkmode-button .darkmode-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }<?php
+}
+//Darkmode Features END
