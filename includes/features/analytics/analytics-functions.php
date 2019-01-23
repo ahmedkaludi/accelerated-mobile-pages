@@ -4,11 +4,11 @@ add_action('amp_post_template_footer','ampforwp_analytics',11);
 function ampforwp_analytics() {
 	// 10.1 Analytics Support added for Google Analytics
 	global $redux_builder_amp;
-	if ( true == $redux_builder_amp['ampforwp-ga-switch'] ){
+	if ( true == ampforwp_get_setting('ampforwp-ga-switch')){
 		$ga_fields = array();
 		$ampforwp_ga_fields = array();
 		$ga_account = '';
-		$ga_account = $redux_builder_amp['ga-feild'];
+		$ga_account = ampforwp_get_setting('ga-feild');
 		$ga_account = str_replace(' ', '', $ga_account);
 		$ga_fields = array(
 						'vars'=>array(
@@ -41,8 +41,8 @@ function ampforwp_analytics() {
 		}//code ends for supporting Google Analytics
 
 	// 10.2 Analytics Support added for segment.com
-	if ( true == $redux_builder_amp['ampforwp-Segment-switch'] ) { 
-		$segment = $redux_builder_amp['sa-feild']; 
+	if ( true == ampforwp_get_setting('ampforwp-Segment-switch') ) { 
+		$segment = ampforwp_get_setting('sa-feild'); 
 		$segment_fields = array(
 						'vars'=>array(
 							'writeKey'=>$segment,
@@ -61,13 +61,13 @@ function ampforwp_analytics() {
 	}
 
 	// 10.3 Analytics Support added for Piwik
-		if( true == $redux_builder_amp['ampforwp-Piwik-switch'] ) { ?>
+		if( true == ampforwp_get_setting('ampforwp-Piwik-switch')) { ?>
 				<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
 		<?php }
 
 		// 10.4 Analytics Support added for quantcast
-			if ( true == $redux_builder_amp['ampforwp-Quantcast-switch'] ) { 
-				$quantcast = $redux_builder_amp['amp-quantcast-analytics-code'];
+			if ( true == ampforwp_get_setting('ampforwp-Quantcast-switch')) { 
+				$quantcast = ampforwp_get_setting('amp-quantcast-analytics-code');
 				$quantcast_fields = array(
 						'vars'=>array(
 							'pcode'=>$quantcast,
@@ -87,9 +87,9 @@ function ampforwp_analytics() {
 				}
 
 		// 10.5 Analytics Support added for comscore
-			if ( true == $redux_builder_amp['ampforwp-comScore-switch'] ) { 
-			$comscore_c1 = $redux_builder_amp['amp-comscore-analytics-code-c1'];
-			$comscore_c2 = $redux_builder_amp['amp-comscore-analytics-code-c2'];
+			if ( true == ampforwp_get_setting('ampforwp-comScore-switch')) { 
+			$comscore_c1 = ampforwp_get_setting('amp-comscore-analytics-code-c1');
+			$comscore_c2 = ampforwp_get_setting('amp-comscore-analytics-code-c2');
 
 				$comscore_fields = array(
 						'vars'=>array(
@@ -109,14 +109,14 @@ function ampforwp_analytics() {
 				}
 
 	// 10.6 Analytics Support added for Effective Measure
-		if( true == $redux_builder_amp['ampforwp-Effective-switch'] ) { ?>
+		if( true == ampforwp_get_setting('ampforwp-Effective-switch')) { ?>
 			<!-- BEGIN EFFECTIVE MEASURE CODE -->
 			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php global $redux_builder_amp; echo $redux_builder_amp['eam-feild']; ?>" />
 			<!--END EFFECTIVE MEASURE CODE -->
 		<?php }
 
 	//	10.7 Analytics Support added for StatCounter
-		if( true == $redux_builder_amp['ampforwp-StatCounter-switch'] ) { ?>
+		if( true == ampforwp_get_setting('ampforwp-StatCounter-switch')) { ?>
 			<!-- BEGIN StatCounter CODE -->
 			<div id="statcounter">
 			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php global $redux_builder_amp; echo $redux_builder_amp['sc-feild']; ?>" >
@@ -126,7 +126,7 @@ function ampforwp_analytics() {
 		<?php }
 
 	//	10.8 Analytics Support added for Histats Analytics
-		if( true == $redux_builder_amp['ampforwp-Histats-switch'] ) { ?>
+		if( true == ampforwp_get_setting('ampforwp-Histats-switch')) { ?>
 			<!-- BEGIN Histats CODE -->
 			<div id="histats">
 			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="//sstatic1.histats.com/0.gif?<?php global $redux_builder_amp; echo $redux_builder_amp['histats-feild']; ?>&101" >
@@ -136,8 +136,8 @@ function ampforwp_analytics() {
 		<?php }
 
 	// 10.9 Analytics Support added for Yandex Metrika Analytics
-		if ( true == $redux_builder_amp['ampforwp-Yandex-switch'] ){ 
-		$yandex = $redux_builder_amp['amp-Yandex-Metrika-analytics-code'];
+		if ( true == ampforwp_get_setting('ampforwp-Yandex-switch')){ 
+		$yandex = ampforwp_get_setting('amp-Yandex-Metrika-analytics-code');
 		$yandex_fields = array(
 						'vars'=>array(
 							'counterId'=>$yandex,
@@ -166,8 +166,8 @@ function ampforwp_analytics() {
 				<?php }//code ends for supporting Yandex Metrika Analytics
 
 	// 10.10 Analytics Support added for Chartbeat Analytics
-		if ( true == $redux_builder_amp['ampforwp-Chartbeat-switch'] ){
-		$chartbeat = $redux_builder_amp['amp-Chartbeat-analytics-code'];
+		if ( true == ampforwp_get_setting('ampforwp-Chartbeat-switch')){
+		$chartbeat = ampforwp_get_setting('amp-Chartbeat-analytics-code');
 		$chartbeat_fields = array(
 						'vars'=>array(
 							'accountId'=>$chartbeat,
@@ -190,9 +190,9 @@ function ampforwp_analytics() {
 			}//code ends for supporting Chartbeat Analytics
 
 	// 10.11 Analytics Support added for Alexa Metrics
-			if ( true == $redux_builder_amp['ampforwp-Alexa-switch'] ) {
-				$alexa = $redux_builder_amp['ampforwp-alexa-account'];
-				$domain = $redux_builder_amp['ampforwp-alexa-domain'];
+			if ( true == ampforwp_get_setting('ampforwp-Alexa-switch')) {
+				$alexa = ampforwp_get_setting('ampforwp-alexa-account');
+				$domain = ampforwp_get_setting('ampforwp-alexa-domain');
 				$alexa_fields = array(
 						'vars'=>array(
 							'atrk_acct'=>$alexa,
@@ -214,8 +214,8 @@ function ampforwp_analytics() {
 					<?php
 				}
 	// 10.12 Analytics Support added for AFS Analytics
-			if ( isset($redux_builder_amp['ampforwp-afs-analytics-switch']) && true == $redux_builder_amp['ampforwp-afs-analytics-switch'] ) {
-				$afs_account = $redux_builder_amp['ampforwp-afs-siteid'];
+			if ( isset(ampforwp_get_setting('ampforwp-afs-analytics-switch')) && true == ampforwp_get_setting('ampforwp-afs-analytics-switch')) {
+				$afs_account = ampforwp_get_setting('ampforwp-afs-siteid');
 				$afs_server = "www";
 				if ($afs_account > 99999)
 					$afs_server = 'www1';
