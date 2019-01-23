@@ -699,7 +699,9 @@ function ampforwp_new_dir( $dir ) {
 				  $content = preg_replace('/\[gallery(.*?)\]/', '</p>[gallery$1]</p>', $content);
 				  // value attribute from anchor tag #2262
 				  $content = preg_replace('/<a(.*?)(value=".*?")(.*?)>/', '<a$1$3>', $content);
-
+				  //compatible with clyp it iframe embed #2836
+				 $content = preg_replace('/<iframe(.*?)src="https:\/\/clyp.it\/(.*?)"(.*?)>﻿<\/iframe>/', '<iframe src="https://clyp.it/$2" width="280px" height="200px"  $1 $3 ></iframe>', $content);
+				 
 				return $content;
 		}
 
