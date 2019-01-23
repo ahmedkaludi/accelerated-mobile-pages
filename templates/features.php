@@ -119,6 +119,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	99. Merriweather Font Management
 	100. Flags compatibility in Menu
 	101. Function for Logo attributes 
+	102. SD Feature Image Guidlines #2838
 */
 // AMP Components	
 // AMP LOGO
@@ -7709,4 +7710,21 @@ function ampforwp_jannah_subtitle(){
 		<h4 class="amp-wp-content"><?php echo esc_html(tie_get_postdata( 'tie_post_sub_title' ))?></h4>
 	<?php
 	} 
+}
+
+// SD Feature Image Guidlines #2838
+add_filter( 'amp_post_template_metadata', 'ampforwp_sd_feature_image_guidlines', 22, 1 );
+if ( ! function_exists('ampforwp_sd_feature_image_guidlines') ) {
+	function ampforwp_sd_feature_image_guidlines($metadata){
+		if ( isset($metadata['image']['width']) && $metadata['image']['width'] <= 1200  ){
+			$image_width = 1280;
+			$image_height = 720;
+			$image = ampforwp_aq_resize( $metadata['image']['url'], $image_width, $image_height, true, false, true );
+			$image_url = $image[0]; 
+			$metadata['image']['url'] = $image_url;
+			$metadata['image']['width'] = $image_width;
+			$metadata['image']['height'] = $image_height;
+		}
+		return $metadata;
+	}
 }
