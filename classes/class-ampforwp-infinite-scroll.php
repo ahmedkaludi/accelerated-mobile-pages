@@ -112,7 +112,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				'post__not_in' 		  => $exclude_ids,
 				'has_password' => false ,
 				'post_status'=> 'publish',
-				'posts_per_page' => ampforwp_get_setting('ampforwp-infinite-scroll-single-number')
+				'posts_per_page' => 2
 			  );
 			$query = new WP_Query( $query_args );
 			while ($query->have_posts()) {

@@ -2339,15 +2339,6 @@ Redux::setSection( $opt_name, array(
                         'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
                     ),
                     array(
-                        'id'       => 'ampforwp-infinite-scroll-single-number',
-                        'type'     => 'text',
-                        'class'    => 'child_opt child_opt_arrow',
-                        'title'    => esc_html__('Number of Posts(Single)', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Read more about it here: <a href="https://www.ampproject.org/docs/reference/components/amp-next-page" target="_blank">amp-next-page</a>','accelerated-mobile-pages'),
-                        'default' => 3,
-                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
-                    ),
-                    array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
                         'title'    => __('Internal Links in AMP', 'accelerated-mobile-pages'),
