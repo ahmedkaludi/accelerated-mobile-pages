@@ -1452,7 +1452,7 @@ $tabs = array(
                 $default = 3;
             }
             elseif ( function_exists('genesis_title') ) {
-                $default = 4;
+                $default = 'genesis';
             }
             elseif ( is_plugin_active('autodescription/autodescription.php') ) {
                 $default = 5;
@@ -1509,7 +1509,7 @@ $tabs = array(
                     '1'    => 'Yoast',
                     '2'    => 'All in One SEO',
                     '3'    => 'SEOPress',
-                    '4'    => 'Genesis',
+                    'genesis'    => 'Genesis',
                     '5'    => 'The SEO Framework',
                     '6'    => 'Rank Math SEO'
                 ),

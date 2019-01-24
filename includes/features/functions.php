@@ -214,7 +214,7 @@ function ampforwp_generate_meta_desc($json=""){
         }
 
         //Genesis #1013
-        if ( function_exists('genesis_meta') ) {
+        if ( function_exists('genesis_meta') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ) {
             $genesis_description = '';
             if ( is_home() && is_front_page() && ! $redux_builder_amp['amp-frontpage-select-option'] ) {
                 $genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
