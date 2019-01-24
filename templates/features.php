@@ -2401,6 +2401,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
 	           'AMP_Iframe_Sanitizer' => array(
 	             'add_placeholder' => true,
 	           ),
+	           'AMP_Tag_And_Attribute_Sanitizer' => array(), 
 	    )  ), array('non-content'=>'non-content')
 	  );
   }
