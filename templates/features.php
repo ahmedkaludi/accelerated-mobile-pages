@@ -1630,7 +1630,7 @@ function ampforwp_replace_title_tags() {
 			}
 		}
 		// The SEO Framework Compatibility #2670
-		if ( function_exists( 'the_seo_framework' ) ) {
+		if ( function_exists( 'the_seo_framework' ) && 'seo_framework' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 			$tsf_title = $ampforwp_tsf = '';
 			$ampforwp_tsf 	= \the_seo_framework();
 			$tsf_title 		= $ampforwp_tsf->get_title();

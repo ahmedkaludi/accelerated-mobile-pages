@@ -268,7 +268,7 @@ function ampforwp_generate_meta_desc($json=""){
             }
         }
         // The SEO Framework
-        if ( function_exists( 'the_seo_framework' ) && 5 == $redux_builder_amp['ampforwp-seo-selection'] ) {
+        if ( function_exists( 'the_seo_framework' ) && 'seo_framework' == ampforwp_get_setting('ampforwp-seo-selection') ) {
             $tsf_desc = $ampforwp_tsf = '';
             $ampforwp_tsf   = \the_seo_framework();
             $tsf_desc       = $ampforwp_tsf->get_description();

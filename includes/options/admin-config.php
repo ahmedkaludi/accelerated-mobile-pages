@@ -1454,8 +1454,8 @@ $tabs = array(
             elseif ( function_exists('genesis_title') ) {
                 $default = 'genesis';
             }
-            elseif ( is_plugin_active('autodescription/autodescription.php') ) {
-                $default = 5;
+            elseif ( function_exists( 'the_seo_framework' ) ) {
+                $default = 'seo_framework';
             }
             elseif ( is_plugin_active('seo-by-rank-math/rank-math.php') ) {
                 $default = 6;
@@ -1510,7 +1510,7 @@ $tabs = array(
                     '2'    => 'All in One SEO',
                     '3'    => 'SEOPress',
                     'genesis'    => 'Genesis',
-                    '5'    => 'The SEO Framework',
+                    'seo_framework'    => 'The SEO Framework',
                     '6'    => 'Rank Math SEO'
                 ),
                 'default'  => ampforwp_seo_default(),
