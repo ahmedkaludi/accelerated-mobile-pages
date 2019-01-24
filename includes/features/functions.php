@@ -140,6 +140,9 @@ function ampforwp_generate_meta_desc($json=""){
     global $post, $redux_builder_amp;
     $desc = $post_id = '';
     $post_id = $post->ID;
+    if ( ampforwp_is_front_page() ) {
+        $post_id = ampforwp_get_frontpage_id();
+    }
     if ( $redux_builder_amp['ampforwp-seo-meta-description'] ) {
         if ( ampforwp_is_home() || ampforwp_is_blog() ) {
             $desc = addslashes( strip_tags( get_bloginfo( 'description' ) ) );
@@ -274,6 +277,17 @@ function ampforwp_generate_meta_desc($json=""){
             $tsf_desc       = $ampforwp_tsf->get_description();
             if ( $tsf_desc ) {
                 $desc = $tsf_desc;
+            }
+        }
+        // Rank Math SEO #2701
+        if ( defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+            $rank_math_desc = '';
+            if ( ampforwp_is_blog() ) {
+                $post_id = ampforwp_get_blog_details('id');
+            }
+            $rank_math_desc = RankMath\Post::get_meta( 'description', $post_id );
+            if ( $rank_math_desc ) {
+                $desc = $rank_math_desc;
             }
         }
         // strip_shortcodes  strategy not working here so had to do this way

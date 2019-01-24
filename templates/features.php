@@ -1507,7 +1507,7 @@ function ampforwp_replace_title_tags() {
 		}
 		$post_id = $post->ID;
 		if ( ampforwp_is_front_page() ) {
-				$post_id = ampforwp_get_frontpage_id();
+			$post_id = ampforwp_get_frontpage_id();
 		}
 
 		//* We can filter this later if needed:
@@ -1639,7 +1639,7 @@ function ampforwp_replace_title_tags() {
 			}
 		}
 		// Custom Front Page Title From Rank Math SEO #2701
-		if ( defined( 'RANK_MATH_FILE' ) && '6' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+		if ( defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 		 	if ( ampforwp_is_blog() ) {
 		 		$post_id = ampforwp_get_blog_details('id');
 		 	}
@@ -5889,6 +5889,9 @@ function ampforwp_generate_canonical(){
 		$opts = $All_in_One_SEO_Pack->get_current_options( array(), 'aiosp' );
 		$canonical = $opts['aiosp_custom_link'];
 	}
+	elseif (defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+		$canonical = rank_math()->head->canonical( false );
+	}
 	return $canonical;
 }
 add_filter('amp_post_template_data', 'ampforwp_modified_canonical', 85);
@@ -7220,3 +7223,12 @@ add_action("amp_css", 'ampforwp_darkmode_css');
       }<?php
 }
 //Darkmode Features END
+
+// Rank Math SEO Compatibility #2701
+// og tags and Schema
+add_action('amp_post_template_head','ampforwp_rank_math');
+if ( ! function_exists('ampforwp_rank_math') ) {
+	function ampforwp_rank_math(){
+		do_action( 'rank_math/head' );
+	}
+}

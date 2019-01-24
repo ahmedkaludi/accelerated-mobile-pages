@@ -1457,8 +1457,8 @@ $tabs = array(
             elseif ( function_exists( 'the_seo_framework' ) ) {
                 $default = 'seo_framework';
             }
-            elseif ( is_plugin_active('seo-by-rank-math/rank-math.php') ) {
-                $default = 6;
+            elseif ( defined( 'RANK_MATH_FILE' ) ) {
+                $default = 'rank_math';
             }
             return $default;
         }
@@ -1511,7 +1511,7 @@ $tabs = array(
                     'seopress'    => 'SEOPress',
                     'genesis'    => 'Genesis',
                     'seo_framework'    => 'The SEO Framework',
-                    '6'    => 'Rank Math SEO'
+                    'rank_math'    => 'Rank Math SEO'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),
