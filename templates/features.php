@@ -1608,8 +1608,8 @@ function ampforwp_replace_title_tags() {
 				$site_title = $genesis_title;
 			}
 		}
-		// SEOPress
-		elseif ( is_plugin_active('wp-seopress/seopress.php') && 3 == $redux_builder_amp['ampforwp-seo-selection'] ) {
+		// SEOPress #1589
+		elseif ( is_plugin_active('wp-seopress/seopress.php') && 'seopress' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 			$seopress_title = $seopress_options = '';
 			$seopress_options = get_option("seopress_titles_option_name");
 			if ( get_post_meta($post_id,'_seopress_titles_title',true) ) {
