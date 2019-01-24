@@ -162,7 +162,7 @@ jQuery(function($) {
     }//Cloesed function  = optionSectionDevision
 
     var hideReduxLeftTabs = function(){
-         jQuery('ul.redux-group-menu > li.redux-group-tab-link-li').siblings('.redux-group-tab-link-li').each(function(key,Data){
+        jQuery('ul.redux-group-menu > li.redux-group-tab-link-li').siblings('.redux-group-tab-link-li').each(function(key,Data){
             if(key>3){
                 jQuery(this).attr("style","display:none;").addClass("otherSectionFields");
             }
@@ -454,6 +454,9 @@ jQuery(function($) {
     function ampforwp_font_generator() {
         gAPIkey = redux_data.google_font_api_key;
         disableGFonts = redux_data.amp_google_font_restrict;  
+        if($("#google_font_api_key").length>0){
+            $("#google_font_api_key").after("<input type='submit' value='Verify'>");
+        }
         if(gAPIkey=='' || typeof gAPIkey == 'undefined'){
             $('.ampforwp-google-font-restrict').css({'display':'none'});
         }
@@ -572,10 +575,6 @@ jQuery(function($) {
             });
         }
         function amp_font_selector_select_change(){
-
-               if($("#google_font_api_key").length>0){
-                    $("#google_font_api_key").after("<input type='submit' value='Verify'>");
-                }
                 if($('#amp_font_selector-select').length>0){
                     // Adding Default Font Family
                     $('#s2id_amp_font_selector-select a').removeClass('select2-default');
@@ -586,7 +585,7 @@ jQuery(function($) {
                     $('#s2id_amp_font_selector-select .select2-chosen').html(redux_data.amp_font_selector);
 
                     $('#amp_font_selector-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
-                    $('#amp_font_selector-select').select2('val',redux_data.amp_font_selector).trigger("change");
+                    $('#amp_font_selector-select').val(redux_data.amp_font_selector).trigger("change");
 
                     // Build select data
                     let fontData  = redux_data.google_current_font_data;
@@ -612,7 +611,6 @@ jQuery(function($) {
                             //s2.append($('<option>').text(e));
                             $('#amp_font_type-select option[value='+redux_data.amp_font_type[i]+']').attr('selected','selected').trigger('change');
                         }
-                        //$('#amp_font_type-select').select2('val',redux_data.amp_font_type)
                     }
                 }//#amp_font_selector-select closed
 
@@ -633,7 +631,7 @@ jQuery(function($) {
                     $('#s2id_amp_font_selector_content_single-select .select2-chosen').html(redux_data.amp_font_selector_content_single);
 
                     $('#amp_font_selector_content_single-select option[value="'+redux_data.amp_font_selector_content_single+'"]').attr("selected", "selected");
-                    $('#amp_font_selector_content_single-select').select2('val',redux_data.amp_font_selector_content_single).trigger("change");
+                    $('#amp_font_selector_content_single-select').val(redux_data.amp_font_selector_content_single).trigger("change");
 
 
                     // Build select data
@@ -641,9 +639,6 @@ jQuery(function($) {
                    // fontData = JSON.parse(fontData);
                    console.log(fontData);
                     if (! fontData.variants) {
-                        //$('.select2-search-choice').remove();
-                        //$('#amp_font_type-select').html('<option></option>');
-
                         for (var i in fontData.variants) {
                             $('#amp_font_selector_content_single-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>")).trigger('change');
                         }
