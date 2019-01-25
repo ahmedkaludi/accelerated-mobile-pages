@@ -1,11 +1,14 @@
 <?php 
 function ampforwp_framework_get_author_box( $args=array() ) { 
 global $post, $redux_builder_amp;
+// Simple Author Box compatibility #2268
+if( class_exists('Simple_Author_Box') ){
+    return;
+}
 $post_author = get_userdata($post->post_author);
 if ( ! is_array($args) ) {
     $args = array();
 }
-
 $avatar = false; //To show author Avater
 $avatar_size = 40;
 $author_description = false;

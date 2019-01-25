@@ -31,8 +31,7 @@
 
 <?php
 
-if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_single() ) {
-	if( $redux_builder_amp['amp-author-description'] ) { ?>
+if( ampforwp_get_setting( 'amp-author-description') && is_single() && !class_exists('Simple_Author_Box') ) { ?>
 	<div class="amp-wp-content amp_author_area ampforwp-meta-taxonomy">
 	    <div class="amp_author_area_wrapper">
 	        <?php $post_author = $this->get( 'post_author' );
@@ -64,7 +63,6 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	        <?php } ?>
 	    </div>
 	</div> <?php
-	}
 }
 
 do_action('ampforwp_after_meta_taxonomy_hook',$this);
