@@ -21,7 +21,7 @@ function ampforwp_analytics() {
 							)
 						)
 					);
-		if ( isset($redux_builder_amp['ampforwp-ga-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-ga-field-anonymizeIP'] ) {
+		if ( true == ampforwp_get_setting('ampforwp-ga-field-anonymizeIP')) {
 			$ga_fields['vars']['anonymizeIP'] = 'true';
 		}
 		if ( ampforwp_get_setting('ampforwp-ga-field-linker') == true ) {
@@ -29,8 +29,8 @@ function ampforwp_analytics() {
 				'enabled'=> true
 			);
 		}
-		$ampforwp_ga_fields = json_encode( $ga_fields);
 		$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
+		$ampforwp_ga_fields = json_encode( $ga_fields);
 	 ?>
 			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="googleanalytics" id="analytics1">
 				<script type="application/json">
@@ -62,7 +62,7 @@ function ampforwp_analytics() {
 
 	// 10.3 Analytics Support added for Piwik
 		if( true == ampforwp_get_setting('ampforwp-Piwik-switch')) { ?>
-				<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
+				<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo ampforwp_get_setting('pa-feild'); ?>"></amp-pixel>
 		<?php }
 
 		// 10.4 Analytics Support added for quantcast
@@ -111,7 +111,7 @@ function ampforwp_analytics() {
 	// 10.6 Analytics Support added for Effective Measure
 		if( true == ampforwp_get_setting('ampforwp-Effective-switch')) { ?>
 			<!-- BEGIN EFFECTIVE MEASURE CODE -->
-			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php global $redux_builder_amp; echo $redux_builder_amp['eam-feild']; ?>" />
+			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo ampforwp_get_setting('eam-feild'); ?>" />
 			<!--END EFFECTIVE MEASURE CODE -->
 		<?php }
 
@@ -119,7 +119,7 @@ function ampforwp_analytics() {
 		if( true == ampforwp_get_setting('ampforwp-StatCounter-switch')) { ?>
 			<!-- BEGIN StatCounter CODE -->
 			<div id="statcounter">
-			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php global $redux_builder_amp; echo $redux_builder_amp['sc-feild']; ?>" >
+			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo ampforwp_get_setting('sc-feild'); ?>" >
 			</amp-pixel> 
 			</div>
 			<!--END StatCounter CODE -->
@@ -129,7 +129,7 @@ function ampforwp_analytics() {
 		if( true == ampforwp_get_setting('ampforwp-Histats-switch')) { ?>
 			<!-- BEGIN Histats CODE -->
 			<div id="histats">
-			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="//sstatic1.histats.com/0.gif?<?php global $redux_builder_amp; echo $redux_builder_amp['histats-feild']; ?>&101" >
+			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="//sstatic1.histats.com/0.gif?<?php echo ampforwp_get_setting('histats-feild'); ?>&101" >
 			</amp-pixel> 
 			</div>
 			<!--END Histats CODE -->
@@ -264,7 +264,7 @@ add_action( 'amp_post_template_head' , 'ampforwp_analytics_clientid_api' );
 if( ! function_exists( ' ampforwp_analytics_clientid_api ' ) ) {
 	function ampforwp_analytics_clientid_api() {
 		global $redux_builder_amp;
-		if ( 1 == $redux_builder_amp['amp-analytics-select-option'] || 'googleanalytics' == $redux_builder_amp['amp-gtm-analytics-type']){ ?>
+		if ( true == ampforwp_get_setting('amp-analytics-select-option') || 'googleanalytics' == ampforwp_get_setting('amp-gtm-analytics-type')){ ?>
 			<meta name="amp-google-client-id-api" content="googleanalytics">
 		<?php }
 	}
@@ -274,7 +274,7 @@ if( ! function_exists( ' ampforwp_analytics_clientid_api ' ) ) {
 add_filter('amp_post_template_data','ampforwp_register_analytics_script', 20);
 function ampforwp_register_analytics_script( $data ){ 
 	global $redux_builder_amp;
-	if( true == $redux_builder_amp['ampforwp-ga-switch'] || true == $redux_builder_amp['ampforwp-Segment-switch'] || true == $redux_builder_amp['ampforwp-Quantcast-switch'] || true == $redux_builder_amp['ampforwp-comScore-switch'] || true == $redux_builder_amp['ampforwp-Yandex-switch'] || true == $redux_builder_amp['ampforwp-Chartbeat-switch']|| true == $redux_builder_amp['ampforwp-Alexa-switch'] || true == $redux_builder_amp['ampforwp-afs-analytics-switch'] ) {
+	if( true == ampforwp_get_setting('ampforwp-ga-switch') || true == ampforwp_get_setting('ampforwp-Segment-switch') || true == ampforwp_get_setting('ampforwp-Quantcast-switch') || true == ampforwp_get_setting('ampforwp-comScore-switch') || true == ampforwp_get_setting('ampforwp-Yandex-switch') || true == ampforwp_get_setting('ampforwp-Chartbeat-switch') || true == ampforwp_get_setting('ampforwp-Alexa-switch') || true == ampforwp_get_setting('ampforwp-afs-analytics-switch')) {
 		
 		if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
 			$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
