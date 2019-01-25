@@ -64,3 +64,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 37. class-amp-style-sanitizer.php updated #2745
 38. Class AMP_Img_Sanitizer Updated #2748
 39. Class AMP_Blacklist_Sanitizer updated #2835
+40. Class AMP_Blacklist_Sanitizer updated for inernal links 2391
