@@ -71,7 +71,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	 */
 	private function determine_dimensions( $need_dimensions ) {
 		$dimensions_by_url = AMP_Image_Dimension_Extractor::extract( array_keys( $need_dimensions ) );
-
+		$class = "";
 		foreach ( $dimensions_by_url as $url => $dimensions ) {
 			foreach ( $need_dimensions[ $url ] as $node ) {
 				// Provide default dimensions for images whose dimensions we couldn't fetch.
