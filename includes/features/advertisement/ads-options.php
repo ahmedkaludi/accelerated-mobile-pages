@@ -11,6 +11,7 @@
  Redux::setSection( $opt_name, array(
             'title'      => __( 'Advertisement', 'accelerated-mobile-pages' ),
             'desc' => $advertisementdesc,
+            'class'      => 'ampforwp_new_features ',
             'id'         => 'amp-ads',
             'subsection' => true,
             'fields'     => apply_filters('ampforwp_ads_option_fields', $fields = array() ),
