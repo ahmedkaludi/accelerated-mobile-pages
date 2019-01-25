@@ -866,33 +866,3 @@ visibility: hidden;
 #finalized-import-structure-data-from-amp{
     margin-left:8px;vertical-align: baseline
 }
-
-
-
-#d_4_single_components_layout .top_container, #d_4_single_components_layout .full_width_container  {
-    width:100% !important;
-    margin-bottom: 2% !important;
-}
-#d_4_single_components_layout .side_container {
-    width: 20% !important;
-    margin-left: 1% !important;
-    margin-right: 1% !important;
-    float: left !important;
-    margin-bottom: 2% !important;
-}
-#d_4_single_components_layout .content_container {
-    margin:0px !important;
-    width: 70% !important;
-    margin-right: 0px !important;
-    float:right !important;
-    margin-bottom: 2% !important;
-}
-#d_4_single_components_layout .disabled_container {
-    clear: both !important;
-    width: 100% !important;
-}
-#d_4_single_components_layout #d_4_single_components_layout_disabled li{
-    display: inline-flex;
-    width:20%;
-    margin-right:5px;
-}

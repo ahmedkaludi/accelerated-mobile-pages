@@ -4756,31 +4756,6 @@ function element_layout_customizer(){
 }
 $customizer_options = element_layout_customizer();
 
-function element_layout_customizer_swift(){
-    $new_options['top'] = array(
-                'bread_crumbs' => 'BreadCrumbs',
-                'title' => 'Title',
-            );
-    $new_options['full_width'] = array(
-                'featured_image' => 'Featured Image',
-            );
-    $new_options['side'] = array('content' => 'The Content',
-                'social_icons' => 'Social Icons',
-                'meta_info' => 'Meta Info',
-                'meta_taxonomy' => 'Category and Tags',
-                );
-    $new_options['content'] = array(
-                'content' => 'The Content',
-                'comments' => 'Comments',
-                'navigation' => 'Navigation',
-                'authorbox' => 'Author box',
-                'related_posts' => 'Related Posts'
-            );
-     $new_options['disabled'] = array( 'ad7' => 'Ad7',
-                                'ad8' => 'Ad8');
-    return $new_options;
-}
-$customizer_options_swift = element_layout_customizer_swift();
 $single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',
@@ -4803,21 +4778,6 @@ $single_page_options = array(
                         'required'  => array( array('amp-design-selector', '!=' , '4')),
                     ),
                 // Single Components Layout options
-                array(
-                        'id'      => 'd_4_single_components_layout',
-                        'type'    => 'sorter',
-                        'title'   => 'Components Layout Manager for Swift',
-                        'desc'    => 'Organize how you want the components to appear on the single',
-                        'layers'  => 'multiple',
-                        'options' => array(
-                            'top'=>$customizer_options_swift['top'],
-                            'full_width'=>$customizer_options_swift['full_width'],
-                            'side'=>$customizer_options_swift['side'],
-                            'content'=>$customizer_options_swift['content'],
-                            'disabled' => $customizer_options['disabled'],
-                        ),
-                        'required'  => array( array('amp-design-selector', '=' , '4')),
-                    ),
             // Swift
             array(
                     'id'    => 'single-design-type',

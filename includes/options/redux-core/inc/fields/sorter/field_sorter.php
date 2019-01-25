@@ -90,15 +90,7 @@ namespace ReduxCore\ReduxFramework;
                 }
 
                 $sortlists = $this->value;
-                if($this->field['layers']=='multiple'){
-                    foreach ($this->field['options'] as $key => $value) {
-                        if(!isset($sortlists[$key])){
-                            $sortlists[$key] = $value;
-                        }
-                    }
-                  //  $sortlists = $this->field['options'];  
                 
-                }
                 if ( ! empty( $sortlists ) ) {
                     foreach ( $sortlists as $section => $arr ) {
                         $sortlists[ $section ] = $this->replace_id_with_slug( $arr );
@@ -159,7 +151,7 @@ namespace ReduxCore\ReduxFramework;
                                 $filled = " filled";
                             }
 
-                            echo '<ul id="' . esc_attr($this->field['id'] . '_' . $group) . '" class="sortlist_' . esc_attr($this->field['id'] . $filled) . ' '.$group.'_container" data-id="' . esc_attr($this->field['id']) . '" data-group-id="' . esc_attr($group) . '">';
+                            echo '<ul id="' . esc_attr($this->field['id'] . '_' . $group) . '" class="sortlist_' . esc_attr($this->field['id'] . $filled) . '" data-id="' . esc_attr($this->field['id']) . '" data-group-id="' . esc_attr($group) . '">';
                             echo '<h3>' . esc_html($group) . '</h3>';
 
                             if ( ! isset( $sortlist['placebo'] ) ) {

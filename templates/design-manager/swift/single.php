@@ -1,96 +1,26 @@
 <?php global $redux_builder_amp; ?>
 <?php amp_header(); ?>
-
-
-<?php
-function ampforwp_swift_layout_manager($position){
-	$showData = ampforwp_get_setting('d_4_single_components_layout');
-	
-	if(isset($showData[$position])){
-		foreach($showData[$position] as $key=>$data){
-			switch ($key) {
-				case 'bread_crumbs':
-					if ( true == ampforwp_get_setting('ampforwp-bread-crumb') ) {
-						amp_breadcrumb();
-					}
-					break;
-				case 'title':
-					amp_title();
-					break;
-				case 'meta_info':
-					break;
-				case 'excerpt':
-					if( true == ampforwp_get_setting('enable-excerpt-single') ){ 
-						echo '<div class="tl-exc">';
-						    amp_excerpt(250);
-					    echo '</div>';
-					 }
-					# code...
-					break;
-				case 'meta_taxonomy':
-					amp_categories_list();
-					break;
-				case 'featured_image':
-					if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { 
-						echo '<div class="sf-img">';
-							 amp_featured_image();
-						echo '</div>';
-					}
-					break;
-				case 'content':
-					amp_content();
-					break;
-				case 'social_icons':
-					if (ampforwp_get_setting('swift-social-position') && 'default' == ampforwp_get_setting('swift-social-position')){
-						ampforwp_swift_social_icons(); 
-					}
-					break;
-				case 'authorbox':
-					if(!checkAMPforPageBuilderStatus(get_the_ID())){ 
-					 if( ampforwp_get_setting('amp-author-description') ) { 
-						 amp_author_box( 
-											array(	'avatar'=>true,
-													'avatar_size'=>60,
-													'author_description'=>true,
-													'ads_below_the_author'=>true)
-											); 
-						} 
-					 } 
-					break;
-				case 'navigation':
-					amp_post_navigation();
-					break;
-				case 'comments':
-					
-					?>
-					<div class="cmts">
-						<?php amp_comments();?>
-						<?php do_action('ampforwp_post_after_design_elements'); ?>
-					</div>
-					<?php
-					break;
-				case 'related_posts':
-					# code...
-					break;
-				
-				default:
-					# code...
-					break;
-			}
-		}
-	}
-}
-?>
-
-
-<?php if($redux_builder_amp['single-design-type'] == '1'){ ?>
+<?php if($redux_builder_amp['single-design-type'] == '1'){?>
 <div class="sp sgl">
 	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 		<div class="cntr">
-			<?php ampforwp_swift_layout_manager('top'); ?>
+			<?php if ( true == ampforwp_get_setting('ampforwp-bread-crumb') ) {
+				amp_breadcrumb();	
+			}?>	
+			<?php amp_categories_list();?>	
+			<?php amp_title(); ?>	
+			<?php if( true == ampforwp_get_setting('enable-excerpt-single') ){ ?>	
+				<div class="tl-exc">	
+				   <?php amp_excerpt(250); ?>	
+			    </div>	
+			<?php } ?>
 		</div>
-			<?php ampforwp_swift_layout_manager('full_width'); ?>
-	<?php } ?>
+			<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
+				<div class="sf-img">
+					<?php amp_featured_image();?>	
+				</div>	
+			<?php }	
+		} ?>
 	<div class="sp-cnt">
 		<div class="cntr">
 			<div class="sp-rl">
@@ -99,8 +29,7 @@ function ampforwp_swift_layout_manager($position){
 							ampforwp_swift_social_icons(); 
 						} ?>
 					<div class="cntn-wrp artl-cnt">
-					<?php ampforwp_swift_layout_manager('content'); ?>
-					<?php  
+					<?php amp_content(); 
 					if( ampforwp_get_setting('enable-add-this-option') ) {
 					global $redux_builder_amp;
 					$data_pub_id = ampforwp_get_setting('add-this-pub-id');
@@ -112,11 +41,27 @@ function ampforwp_swift_layout_manager($position){
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
 						ampforwp_swift_social_icons(); 
 					} ?>
-					
+					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>	
+ 					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>	
+						<?php amp_author_box( 	
+											array(	'avatar'=>true,	
+													'avatar_size'=>60,	
+													'author_description'=>true,	
+													'ads_below_the_author'=>true)	
+											); ?>	
+					<?php } ?>	
+					<?php amp_post_navigation();?>	
+					<div class="cmts">	
+						<?php amp_comments();?>	
+						<?php do_action('ampforwp_post_after_design_elements'); ?>	
+					</div>	
+					<?php } ?>
 				</div>
 				<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 				<div class="sp-lt">
-					<?php  ?>
+					<?php if (isset($redux_builder_amp['swift-social-position']) && 'default' == $redux_builder_amp['swift-social-position']){
+						ampforwp_swift_social_icons(); 	
+					} ?>
 		            <?php if( isset($redux_builder_amp['amp-author-name']) && $redux_builder_amp['amp-author-name'] ) { ?>
 			            <div class="sp-athr">
 			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
