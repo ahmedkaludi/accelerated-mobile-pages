@@ -3242,7 +3242,7 @@ Redux::setSection( $opt_name, array(
                 'id'        =>'google_font_api_key',
                 'type'      =>'text',
                 'title'     =>esc_html__('Google Font API key','accelerated-mobile-pages'),
-                'tooltip-subtitle'  => esc_html__('You can get the Link <a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1#APIKey">form here</a>','accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can get the Link ','accelerated-mobile-pages').'<a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1#APIKey">'.esc_html__('form here','accelerated-mobile-pages').'</a>',
                 'default'   =>'',
                 // 'required' => array(
                 //     array('amp-design-selector', '=' , '4')
