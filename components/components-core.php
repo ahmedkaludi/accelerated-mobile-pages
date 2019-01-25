@@ -412,9 +412,9 @@ function amp_footer_core(){
 		do_action('ampforwp_global_after_footer');
 		do_action('amp_end',$thisTemplate);
 	}
-
+	if( true == ampforwp_get_setting('ampforwp-footer-top') && 4 != ampforwp_get_setting('amp-design-selector')) { 
 	amp_back_to_top_link();
-	 
+	 }
 	// Close the body and Html tags ?>
 	</body>
 		</html><?php
