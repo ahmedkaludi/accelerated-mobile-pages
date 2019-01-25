@@ -278,7 +278,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'text',
 								'name'		=>'row_id',
-								'label'		=>'Row ID',
+								'label'		=>esc_html__('Row ID', 'accelerated-mobile-pages'),
 								'tab'    	=>'container_css',
 								'default'	=>'',
 								'content_type'=>'html',
