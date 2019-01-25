@@ -621,7 +621,7 @@ function amppb_post_content($content){
 				if(count($rowsData['cell_data'])>0){
 					switch ($rowsData['cells']) {
 						case '1':
-							$html .= rowData($rowsData['cell_data'],$rowsData['cells'],$moduleTemplate);
+							$html .= ampforwp_rowData($rowsData['cell_data'],$rowsData['cells'],$moduleTemplate);
 						break;
 						case '2':
 							$colData = array();
@@ -630,7 +630,7 @@ function amppb_post_content($content){
 							}
 							$html .= '<div class="col-2-wrap">';
 							foreach($colData as $data)
-								$html .= rowData($data,$rowsData['cells'],$moduleTemplate);
+								$html .= ampforwp_rowData($data,$rowsData['cells'],$moduleTemplate);
 							$html .= '</div>';
 						break;
 						
@@ -650,7 +650,7 @@ function amppb_post_content($content){
 	return do_shortcode($content);
 }
 
-function rowData($container,$col,$moduleTemplate){
+function ampforwp_rowData($container,$col,$moduleTemplate){
 	$ampforwp_show_excerpt = true;
 	$html = '';
 	if(count($container)>0){
