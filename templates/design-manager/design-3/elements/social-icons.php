@@ -19,7 +19,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 	$permalink = '';
 	if(ampforwp_get_setting('enable-single-twitter-share-link')){
 			$amp_permalink = wp_get_shortlink();
-		}
+	}
 		
 	?>
 <?php do_action('ampforwp_before_social_icons_hook',$this); ?>

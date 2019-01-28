@@ -50,8 +50,8 @@ function ampforwp_swift_social_icons(){
 		$amp_permalink = get_the_permalink();
 	}
 	if(ampforwp_get_setting('enable-single-twitter-share-link')){
-			$amp_permalink = wp_get_shortlink();
-		}
+		$amp_permalink = esc_url(wp_get_shortlink());
+	}
 ?>
 	<div class="ss-ic">
 						<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
