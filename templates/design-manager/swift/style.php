@@ -1782,3 +1782,13 @@ border-bottom: 1px solid #eee;
 .breadcrumbs li a:after, .breadcrumbs span a:after{content: "\e315";display: inline-block;color: #bdbdbd;font-family: 'icomoon';padding-left: 5px;font-size: 12px;position: relative;top: 1px;}
 .breadcrumbs li:last-child a:after {display: none;}
 <?php } //Breadcrumbs Ends?>
+
+@media (min-width: 768px){
+.wp-block-columns {
+    display:flex;
+}
+.wp-block-column {
+    max-width:50%;
+    margin: 0px 10px;
+}
+}
