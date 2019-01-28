@@ -764,3 +764,12 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
     .w-bl{flex:1 0 100%;}
   <?php endif; ?>
 }
+@media (min-width: 768px){
+.wp-block-columns {
+    display:flex;
+}
+.wp-block-column {
+    max-width:50%;
+    margin: 0px 10px;
+}
+}
