@@ -1239,7 +1239,7 @@ function ampforwp_sticky_social_icons(){
 			}
 			$permalink = '';
 			if(ampforwp_get_setting('enable-single-twitter-share-link')){
-			$permalink = wp_get_shortlink();
+			$permalink = esc_url(wp_get_shortlink());
 		}
 		else
 			$permalink = $amp_permalink;
