@@ -2481,9 +2481,6 @@ function ampforwp_replace_title_tags() {
 			}
 		}
 
-		remove_action( 'amp_post_template_head', 'amp_post_template_add_title' );
-		add_action('amp_post_template_head','ampforwp_frontpage_title_markup');
-
 		add_filter('aioseop_title','ampforwp_aioseop_front_page_title');
 		// All in One SEO #2816
 		if ( class_exists('All_in_One_SEO_Pack') && ampforwp_is_front_page() ) {
