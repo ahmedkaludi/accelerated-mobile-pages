@@ -6118,6 +6118,14 @@ $single_page_options = array(
                                 ),
             ),
             array(
+               'id' => 'ampforwp-gallery-lightbox', 
+               'type' => 'switch',
+               'title' => esc_html__('Lightbox for Gallery', 'accelerated-mobile-pages'),
+               'class' => 'child_opt child_opt_arrow',
+               'default'    =>  1,
+               'required'   =>  array('ampforwp-gallery-design-type' , '!=' , '3'),
+             ),
+            array(
                'id' => 'single-sneakp-section', 
                'type' => 'section',
                'title' => esc_html__('Content Sneak Peek', 'accelerated-mobile-pages'),
