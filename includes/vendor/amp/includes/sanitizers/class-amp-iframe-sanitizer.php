@@ -54,7 +54,11 @@ class AMP_Iframe_Sanitizer extends AMP_Base_Sanitizer {
 
 			$new_attributes = $this->enforce_fixed_height( $new_attributes );
 			$new_attributes = $this->enforce_sizes_attribute( $new_attributes );
-
+			//compatible with clyp it iframe embed #2836
+			if(strpos($new_attributes['src'], 'clyp.it')){
+			$new_attributes['width'] = 280;
+			$new_attributes['sizes'] = '(min-width: 280px) 280px, 100vw';
+			}
 			$new_node = AMP_DOM_Utils::create_node( $this->dom, 'amp-iframe', $new_attributes );
 
 			if ( true === $this->args['add_placeholder'] ) {
