@@ -1861,8 +1861,9 @@ function amp_gtm_add_gtm_support( $analytics ) {
    if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
 		$analytics['amp-gtm-googleanalytics']['config_data']['vars']['anonymizeIP'] = 'true';
 	}
+	$gtm_fields = '';
 	$gtm_fields = apply_filters('ampforwp_advance_gtm_analytics', $gtm_fields );
-	if(ampforwp_get_setting('ampforwp-gtm-field-advance-switch')){
+	if($gtm_fields && ampforwp_get_setting('ampforwp-gtm-field-advance-switch')){
 	$gtm_fields = preg_replace('!/\*.*?\*/!s', '', $gtm_fields); 
 	$analytics['amp-gtm-googleanalytics']['config_data'] = json_decode($gtm_fields, true);
 	}
@@ -1873,7 +1874,7 @@ add_filter('ampforwp_advance_gtm_analytics','ampforwp_add_advance_gtm_fields');
 function ampforwp_add_advance_gtm_fields($gtm_fields){
 	global $redux_builder_amp;
     $ampforwp_adv_gtm_fields = array();
-	$ampforwp_adv_gtm_fields = $redux_builder_amp['ampforwp-gtm-field-advance'];
+	$ampforwp_adv_gtm_fields = ampforwp_get_setting('ampforwp-gtm-field-advance');
 	if($ampforwp_adv_gtm_fields && ampforwp_get_setting('ampforwp-gtm-field-advance-switch')){
 		return $ampforwp_adv_gtm_fields;
 	}	
