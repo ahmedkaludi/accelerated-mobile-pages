@@ -4648,7 +4648,9 @@ if( !function_exists( 'ampforwp_carousel_class_magic' ) ){
 if( !function_exists('ampforwp_has_post_thumbnail')){
 	function ampforwp_has_post_thumbnail(){
 		global $post, $redux_builder_amp;
-		if(has_post_thumbnail()){
+		if(function_exists('has_post_video') && has_post_video($post->ID)){
+			return true;
+		}elseif(has_post_thumbnail()){
 			return true;
 		}
 		elseif(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
