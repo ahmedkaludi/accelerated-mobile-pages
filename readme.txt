@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.3
-Stable tag: 0.9.97.27
+Stable tag: 0.9.97.28
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -185,9 +185,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.27 (23rd January 2019) =
-* Added: ampforwp_is_amp_endpoint_takeover filter added
-* Fixed: The attribute 'action' may not appear in tag 'FORM [method=POST]' #2835
-* Fixed: Image size smaller than recommended size Warning in Search console #2838
+= 0.9.97.28 (29th January 2019) =
+* Added: Lightbox feature for Carousel #2731
+* Added: Specific filters to modify the analytics code #2653
+* Fixed: Homepage Blog CSS is loading on the custom frontpage in swift theme #2754
+* Fixed: Reset all & Reset section issue for redux framework #2722
+* Fixed: Transable redux fields for other plugins like wpml #2737
+* Fixed: Proper condition for Ads css #2758
+* Fixed: Jetpack stats pixel inserted twice since Jetpack v6.9 #2812
+* Fixed: AMP pagebuilder full width for posts #2765
+* Fixed: Undefined “non-content” in blacklist-sanitizer #2842
+* Fixed: Blog title is displaying on Homepage when static front page is selected in All in one SEO & Yoast #2816
 
 Full changelog available in changelog.txt
