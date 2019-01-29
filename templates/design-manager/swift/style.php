@@ -224,7 +224,7 @@ padding: <?php echo $redux_builder_amp['primary-menu-padding-control']['padding-
 <?php } ?>
 <?php //Home and Archive
 
-if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && is_shop()) ) { ?>
+if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_shop') && is_shop()) || ampforwp_is_blog() ) { ?>
 .hmp{margin-top:34px;display:inline-block;width:100%;  }
 .fbp{width:100%;display:inline-block;clear:both;margin:15px 15px 20px 15px;}
 .fbp-img a{display:block;line-height:0;}
