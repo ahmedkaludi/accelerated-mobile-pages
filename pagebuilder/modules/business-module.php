@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div {{if_id}}id="{{id}}"{{ifend_id}} class="bs-md">
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="bs-md {{user_class}}">
 	<div class="map blk">
 		<a href="{{map_lnk}}">
 			<span class="ico-pic icon-{{map_icon}}"></span>
@@ -315,6 +315,14 @@ return array(
 								'type'		=>'text',
 								'name'		=>"id",
 								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
 								'tab'		=>'advanced',
 								'default'	=>'',
 								'content_type'=>'html'

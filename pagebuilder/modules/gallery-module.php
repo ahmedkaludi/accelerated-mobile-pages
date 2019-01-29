@@ -1,6 +1,6 @@
 <?php 
 $output = 
-'<div {{if_id}}id="{{id}}"{{ifend_id}} class="amp-gallery-mod">
+'<div {{if_id}}id="{{id}}"{{ifend_id}} class="amp-gallery-mod {{user_class}}">
 	<div class="amp_gallery_wrapper">{{repeater}}</div>
 </div>
 ';
@@ -47,7 +47,15 @@ return array(
 							'tab'		=>'advanced',
 							'default'	=>'',
 							'content_type'=>'html'
-						),	
+						),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),	
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

@@ -1,6 +1,6 @@
 <?php 
 
-$output = '<amp-ad {{if_id}}id="{{id}}"{{ifend_id}} class="amp-ad-1"
+$output = '<amp-ad {{if_id}}id="{{id}}"{{ifend_id}} class="amp-ad-1 {{user_class}}"
 			type="adsense"
 			{{if_condition_ad_size_option==300x250}}width="300"{{ifend_condition_ad_size_option_300x250}}
 			{{if_condition_ad_size_option==336x280}}width="336"{{ifend_condition_ad_size_option_336x280}}
@@ -75,6 +75,14 @@ return array(
 								'type'		=>'text',
 								'name'		=>"id",
 								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
 								'tab'		=>'advanced',
 								'default'	=>'',
 								'content_type'=>'html'

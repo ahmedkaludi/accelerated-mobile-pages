@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div {{if_id}}id="{{id}}"{{ifend_id}} class="srvs">
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="srvs {{user_class}}">
 	<h2><a href="{{srvs_url}}">{{srvs_title}}</a></h2>
 	<span class="s-hdng">{{srvs_subhdng}}</span>
 	<div class="lst">
@@ -290,6 +290,14 @@ return array(
 								'type'		=>'text',
 								'name'		=>"id",
 								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
 								'tab'		=>'advanced',
 								'default'	=>'',
 								'content_type'=>'html'

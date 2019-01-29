@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx">{{repeater}}</div>';
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx {{user_class}}">{{repeater}}</div>';
 $css = '
 {{module-class}}.counter-mod{
 	margin:{{margin_css}};
@@ -133,6 +133,14 @@ return array(
 								'default'	=>'',
 								'content_type'=>'html'
 						),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

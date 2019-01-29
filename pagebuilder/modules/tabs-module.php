@@ -1,12 +1,12 @@
 <?php 
 $output = '
 {{if_condition_tabs_layout_type==1}}
-<amp-selector {{if_id}}id="{{id}}"{{ifend_id}} role="tablist" layout="container" class="ampTabContainer">
+<amp-selector {{if_id}}id="{{id}}"{{ifend_id}} role="tablist" layout="container" class="ampTabContainer {{user_class}}">
 	{{repeater_tab_content}}
 </amp-selector>
 {{ifend_condition_tabs_layout_type_1}}
 {{if_condition_tabs_layout_type==2}}
-<amp-selector {{if_id}}id="{{id}}"{{ifend_id}} role="tablist" layout="container" class="ampTabContainer">
+<amp-selector {{if_id}}id="{{id}}"{{ifend_id}} role="tablist" layout="container" class="ampTabContainer  {{user_class}}">
   {{repeater_tab2_content}}
 </amp-selector>
 {{ifend_condition_tabs_layout_type_2}}
@@ -461,6 +461,14 @@ return array(
 								'type'		=>'text',
 								'name'		=>"id",
 								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
 								'tab'		=>'advanced',
 								'default'	=>'',
 								'content_type'=>'html'

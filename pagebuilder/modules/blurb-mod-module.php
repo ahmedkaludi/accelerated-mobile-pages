@@ -1,5 +1,5 @@
 <?php 
-$output = '<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx">{{repeater}}</div>';
+$output = '<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx {{if_user_class}}{{user_class}}{{ifend_user_class}}">{{repeater}}</div>';
 $css = '
 {{if_condition_blurb_layout_type==1}}
 {{module-class}} .ln-fx{width:100%;display:flex; flex-wrap:wrap;margin:{{margin_css}};padding:{{padding_css}};}
@@ -312,6 +312,14 @@ return array(
 							'type'		=>'text',
 							'name'		=>"id",
 							'label'		=>'ID',
+							'tab'		=>'advanced',
+							'default'	=>'',
+							'content_type'=>'html'
+						),
+						array(
+							'type'		=>'text',
+							'name'		=>"user_class",
+							'label'		=>'Class',
 							'tab'		=>'advanced',
 							'default'	=>'',
 							'content_type'=>'html'

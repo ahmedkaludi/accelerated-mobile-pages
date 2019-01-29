@@ -1,6 +1,6 @@
 <?php 
 $output = '
-	<div {{if_id}}id="{{id}}"{{ifend_id}}>{{repeater}}</div>
+	<div {{if_id}}id="{{id}}"{{ifend_id}} class="{{user_class}}">{{repeater}}</div>
 ';
 $css = '
 {{module-class}}.list-mod{display:flex;flex-wrap: wrap;margin:{{margin_css}};max-width:{{lst-mod-wdth}};}
@@ -107,6 +107,14 @@ return array(
 								'type'		=>'text',
 								'name'		=>"id",
 								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
 								'tab'		=>'advanced',
 								'default'	=>'',
 								'content_type'=>'html'

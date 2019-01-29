@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div {{if_id}}id="{{id}}"{{ifend_id}} class="cta-tlt">
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="cta-tlt {{user_class}}">
 	<h2>{{content_title}}</h2>
 	{{if_condition_check_for_hdng_desc==1}}
 		<div class="cta-dsc">{{hdng_descrp}}</div>
@@ -208,6 +208,14 @@ return array(
 								'type'		=>'text',
 								'name'		=>"id",
 								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+	 					array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
 								'tab'		=>'advanced',
 								'default'	=>'',
 								'content_type'=>'html'

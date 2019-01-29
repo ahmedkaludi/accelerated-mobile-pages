@@ -1,5 +1,5 @@
 <?php
-$output = '<div {{if_id}}id="{{id}}"{{ifend_id}} class="amp_pb_module amp_blurb {{css_class}}"><img src="{{blurb_image}}" width="{{image_width}}" height="{{image_height}}" layout="responsive"/>
+$output = '<div {{if_id}}id="{{id}}"{{ifend_id}} class="amp_pb_module amp_blurb {{css_class}} {{user_class}}"><img src="{{blurb_image}}" width="{{image_width}}" height="{{image_height}}" layout="responsive"/>
 <h4>{{text_title}}</h4>
 <p>{{text_description}}</p>
 </div>'; 
@@ -54,6 +54,14 @@ return array(
 						'default'	=>'',
 						'content_type'=>'html'
 					),  
+					array(
+						'type'		=>'text',
+						'name'		=>"user_class",
+						'label'		=>'Class',
+						'tab'		=>'advanced',
+						'default'	=>'',
+						'content_type'=>'html'
+					),
 					),
 		'front_template'=> $output,
 		'front_css'=>'',	

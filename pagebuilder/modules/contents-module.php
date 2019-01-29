@@ -18,7 +18,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
   }
 }
  $output = '{{if_condition_content_layout_type==1}}
-            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cat_mod"><h4>{{content_title}}</h4>   
+            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cat_mod {{user_class}}"><h4>{{content_title}}</h4>   
                 <div class="wrap"><ul>{{category_selection}}</ul></div>
                 {{pagination_links}}    
             </div>
@@ -121,6 +121,14 @@ function ampforwp_content_module_pagination($args, $fieldValues){
                 'default' =>'',
                 'content_type'=>'html'
             ),
+            array(
+                'type'    =>'text',
+                'name'    =>"user_class",
+                'label'   =>'Class',
+                'tab'   =>'advanced',
+                'default' =>'',
+                'content_type'=>'html'
+              ),
             array(
                 'type'    =>'spacing',
                 'name'    =>"margin_css",

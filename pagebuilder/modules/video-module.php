@@ -1,7 +1,7 @@
 <?php 
 $output = '
 	{{if_condition_video_option==custom}}
-	<amp-video {{if_id}}id="{{id}}"{{ifend_id}} width="{{width}}" height="{{height}}" src="{{video_upload_link}}"
+	<amp-video {{if_id}}id="{{id}}"{{ifend_id}} class="{{user_class}}" width="{{width}}" height="{{height}}" src="{{video_upload_link}}"
 	 layout="responsive"   
 	  {{if_condition_custom_video_more_info==1}}poster="{{poster}}"
 	  artist="{{artist}}"
@@ -206,6 +206,14 @@ return array(
 							'type'		=>'text',
 							'name'		=>"id",
 							'label'		=>'ID',
+							'tab'		=>'advanced',
+							'default'	=>'',
+							'content_type'=>'html'
+						),
+						array(
+							'type'		=>'text',
+							'name'		=>"user_class",
+							'label'		=>'Class',
 							'tab'		=>'advanced',
 							'default'	=>'',
 							'content_type'=>'html'
