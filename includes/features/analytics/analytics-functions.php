@@ -74,7 +74,7 @@ function ampforwp_analytics() {
 							'labels'=>[ "AMPProject" ]
 							),
 					); 
-				$ampforwp_quantcast_fields = apply_filters('ampforwp_piwik_analytics', $ampforwp_quantcast_fields );
+				$ampforwp_quantcast_fields = apply_filters('ampforwp_quantcast_analytics', $ampforwp_quantcast_fields );
 				$ampforwp_quantcast_fields = json_encode( $quantcast_fields);
 
 				?>
