@@ -49,7 +49,7 @@ function ampforwp_analytics() {
 							'name'=>get_the_title()
 							),
 					);
-		$ampforwp_segment_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_segment_fields );
+		$ampforwp_segment_fields = apply_filters('ampforwp_segment_analytics', $ampforwp_segment_fields );
 		$ampforwp_segment_fields = json_encode( $segment_fields);
 					?>
 		<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="segment">
@@ -74,7 +74,7 @@ function ampforwp_analytics() {
 							'labels'=>[ "AMPProject" ]
 							),
 					); 
-				$ampforwp_quantcast_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_quantcast_fields );
+				$ampforwp_quantcast_fields = apply_filters('ampforwp_piwik_analytics', $ampforwp_quantcast_fields );
 				$ampforwp_quantcast_fields = json_encode( $quantcast_fields);
 
 				?>
@@ -97,7 +97,7 @@ function ampforwp_analytics() {
 							'c2'=>$comscore_c2
 							),
 					); 
-				$ampforwp_comscore_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_comscore_fields );
+				$ampforwp_comscore_fields = apply_filters('ampforwp_comscore_analytics', $ampforwp_comscore_fields );
 				$ampforwp_comscore_fields = json_encode( $comscore_fields);
 				?>
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="comscore">
@@ -155,7 +155,7 @@ function ampforwp_analytics() {
 						
 						)
 					); 
-				$ampforwp_yandex_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_yandex_fields );
+				$ampforwp_yandex_fields = apply_filters('ampforwp_yandex_analytics', $ampforwp_yandex_fields );
 				$ampforwp_yandex_fields = json_encode( $yandex_fields);
 				?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="metrika"> 
@@ -178,7 +178,7 @@ function ampforwp_analytics() {
 							),
 					
 					); 
-				$ampforwp_chartbeat_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_chartbeat_fields );
+				$ampforwp_chartbeat_fields = apply_filters('ampforwp_chartbeat_analytics', $ampforwp_chartbeat_fields );
 				$ampforwp_chartbeat_fields = json_encode( $chartbeat_fields);
 		 ?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="chartbeat">
@@ -200,7 +200,7 @@ function ampforwp_analytics() {
 							),
 					
 					); 
-				$ampforwp_alexa_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_alexa_fields );
+				$ampforwp_alexa_fields = apply_filters('ampforwp_alexa_analytics', $ampforwp_alexa_fields );
 				$ampforwp_alexa_fields = json_encode( $alexa_fields);
 
 			 ?>
@@ -246,7 +246,7 @@ function ampforwp_analytics() {
 							),
 					
 					); 
-				$ampforwp_afs_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_afs_fields );
+				$ampforwp_afs_fields = apply_filters('ampforwp_afs_analytics', $ampforwp_afs_fields );
 				$ampforwp_afs_fields = json_encode( $afs_fields);
 					 ?>
 				<!-- Start AFS Analytics Javascript -->
