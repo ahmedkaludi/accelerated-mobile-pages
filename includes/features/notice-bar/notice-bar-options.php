@@ -186,6 +186,95 @@ function ampforwp_notice_bar_options($opt_name){
                'default'   => 'Click Here',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
+             /*Amp App Banner Options*/
+            array(
+                  'id' => 'ampforwp-amp-app-banner-section',
+                  'type' => 'section',
+                  'title' => esc_html__('App Banner Support', 'accelerated-mobile-pages'),
+                  'indent' => true,
+                  'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+              ),
+            array(
+                'id'       => 'ampforwp-amp-app-banner',
+                'type'     => 'switch',
+                'title'     => esc_html__('Amp App Banner Support', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'     => esc_html__('To extend and promote the usage of the natively supported app banners on respective platforms. ex:- IOS, Android...etc'),
+                'default'  => 0
+            ),
+             array(
+               'class'  => 'child_opt',
+               'id'        =>'ampforwp-apple-app',
+               'type'      => 'switch',
+               'title'     => esc_html__('iOS app', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+                'tooltip-subtitle'     => __( ' You can get the iOS app in the meta data <a href="https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html" target="_blank">here</a>', 'accelerated-mobile-pages' ),
+               'false'     => 'Disabled',
+               'required' => array('ampforwp-amp-app-banner', '=' , '1'),
+           ),
+            array(
+                'id'        =>'ampforwp-apple-app-id',
+                'type'      => 'text',
+                'title'     => esc_html__('App ID', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => '',
+                'placeholder'=> '828256236',
+                'required'  => array(
+                  array('ampforwp-amp-app-banner', '=' , '1'),
+                  array('ampforwp-apple-app', '=' , '1'),
+                )
+            ),
+            array(
+                'id'        =>'ampforwp-apple-app-argument',
+                'type'      => 'text',
+                'title'     => esc_html__('App Argument', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => '',
+                'placeholder'=> 'medium://p/9ea61abf530f',
+                'required'  => array(
+                  array('ampforwp-amp-app-banner', '=' , '1'),
+                  array('ampforwp-apple-app', '=' , '1'),
+                )
+            ),
+             array(
+                'id'        =>'ampforwp-app-manifest-path',
+                'type'      => 'text',
+                'title'     => esc_html__('Android app Manifest Path', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => '',
+                'tooltip-subtitle'     => esc_html__( 'Provide the android app manifest path Ex: https://ampbyexample.com/amp-app-banner-manifest.json', 'accelerated-mobile-pages' ),
+                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+            ),
+            array(
+                'id'        =>'ampforwp-app-banner-image',
+                'type'      => 'media',
+                'url'      => true,
+                'title'     => esc_html__('App Banner Image', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => '',
+                'tooltip-subtitle'=>esc_html__('Upload a Image for the AMP App Banner Logo. (Recommended logo size: 50X50)', 'accelerated-mobile-pages'),
+                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+            ),
+            array(
+                'id'        =>'ampforwp-app-banner-text',
+                'type'      => 'text',
+                'title'     => esc_html__('App Banner Text', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => 'Learn more about AMP in the Medium App.',
+                'placeholder'=> '',
+                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+            ),
+            array(
+                'id'        =>'ampforwp-app-banner-button-text',
+                'type'      => 'text',
+                'title'     => esc_html__('App Banner Button Text', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => 'View in app',
+                'placeholder'=> '',
+                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+            ),
+            /*Amp App Banner Options*/
        ),
 
    ) );
