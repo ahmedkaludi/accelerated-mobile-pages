@@ -398,11 +398,10 @@ p.nocomments {padding: 10px;color: #fff;}
 .sf-img figure{margin:0;}
 .sf-img .wp-caption-text{width: 1100px;text-align: left;margin: 0 auto;color: #a1a1a1;font-size: 14px;line-height:20px;font-weight: 500;border-bottom: 1px solid #ccc;padding: 15px 0px;}
 .sf-img .wp-caption-text:before{content:"\e412";font-family: 'icomoon';position: relative;top: 4px;opacity: 0.4;font-size:24pxmargin-right: 5px;}
-<?php if (!checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
 .sp-cnt{margin-top: 40px;clear: both;width: 100%;display: inline-block; }
 .sp-rl{display:inline-flex;width:100%;}
-sp-rt{width: 72%;margin-left: 60px;flex-direction: column;justify-content: space-around;order: 1;} <?php } ?>
 .sp-lt{display: flex;flex-direction: column;flex: 1 0 20%;order: 0;max-width:237px;}
+.sp-rt{width: 72%;margin-left: 60px;flex-direction: column;justify-content: space-around;order: 1;}
 .ss-ic, .sp-athr, .amp-tags, .post-date{padding-bottom:20px;border-bottom:1px dotted #ccc;}
 .shr-txt, .athr-tx, .amp-tags > span:nth-child(1), .amp-related-posts-title, .related-title, .r-pf h3{margin-bottom: 12px;}
 .shr-txt, .athr-tx, .r-pf h3, .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date, .related-title{display: block;}
@@ -660,10 +659,8 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
 } ?>
 
 @media(max-width:1110px){
-<?php if (!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
     .cntr{width:100%;padding:0px 20px;}
     .sp-rt {margin-left: 30px;}
-<?php } ?>
 }
 @media(max-width:768px){
     .tl-exc {font-size: 14px;margin-top: 3px;line-height: 22px;}
@@ -690,9 +687,6 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
     	.srp li .rlp-image{width:40%;float:left;margin-right:20px;}
     	.srp li .rlp-cnt{width:54%;float:left;}
     <?php } //Related post Design 2 CSS Ends?>
-    <?php if (checkAMPforPageBuilderStatus(get_the_ID())){ ?>
-    	.sp-cnt{margin-top: 0;}
-    <?php } ?>
 }
 @media(max-width:480px){
 	.loop-wrapper{margin:0;}
@@ -1589,6 +1583,3 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
   }
   .rr a#scrollToTopButton{color:#fff;}
 <?php } ?>
-<?php if (checkAMPforPageBuilderStatus(get_the_ID())){ ?>
-	.sp-cnt .cntr {max-width: 100%;margin:0;width:100%;padding:0}	
-<?php } ?> 
