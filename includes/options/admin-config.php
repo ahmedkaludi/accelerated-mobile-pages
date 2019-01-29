@@ -1511,7 +1511,8 @@ $tabs = array(
                     'seopress'    => 'SEOPress',
                     'genesis'    => 'Genesis',
                     'seo_framework'    => 'The SEO Framework',
-                    'rank_math'    => 'Rank Math SEO'
+                    'rank_math'    => 'Rank Math SEO',
+                    'bridge'    => 'Bridge Qode SEO'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),

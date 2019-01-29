@@ -290,6 +290,10 @@ function ampforwp_generate_meta_desc($json=""){
                 $desc = $rank_math_desc;
             }
         }
+        //Bridge Qode SEO Compatibility #2538 
+        if ( function_exists('qode_header_meta') && 'bridge' == ampforwp_get_setting('ampforwp-seo-selection')){
+        $desc = get_post_meta($post_id, "qode_seo_description", true);
+        }
         // strip_shortcodes  strategy not working here so had to do this way
         // strips shortcodes
         $desc = preg_replace('/\[(.*?)\]/','', $desc);

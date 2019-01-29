@@ -1676,6 +1676,10 @@ function ampforwp_replace_title_tags() {
 			}
 			add_filter('aioseop_title', '__return_false');
 		}
+		//Bridge Qode SEO Compatibility #2538
+		if ( function_exists('qode_wp_title') && 'bridge' == ampforwp_get_setting('ampforwp-seo-selection')){
+		$site_title = get_post_meta($post_id, "qode_seo_title", true);
+		}
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
 }
