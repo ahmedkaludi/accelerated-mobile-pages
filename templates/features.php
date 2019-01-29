@@ -1525,13 +1525,14 @@ function ampforwp_replace_title_tags() {
 		global $redux_builder_amp, $post;
 		$site_title = '';
 		$genesis_title = '';
+		if ( ampforwp_is_front_page() ) {
+			$post_id = ampforwp_get_frontpage_id();
+			$post = get_post($post_id);
+		}
 		if ( !$post ) {
 			return;
 		}
 		$post_id = $post->ID;
-		if ( ampforwp_is_front_page() ) {
-			$post_id = ampforwp_get_frontpage_id();
-		}
 
 		//* We can filter this later if needed:
 		$sep = ' | ';
