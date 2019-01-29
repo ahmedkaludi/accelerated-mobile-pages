@@ -7255,3 +7255,12 @@ if ( ! function_exists('ampforwp_rank_math') ) {
 		do_action( 'rank_math/head' );
 	}
 }
+add_action('amp_meta','ampforwp_generator');
+if ( ! function_exists('ampforwp_generator') ) {
+function ampforwp_generator(){
+	if(true == ampforwp_get_setting('ampforwp-amp-convert-to-wp')){
+	?>
+	<meta name="generator" content="AMP for WP" />
+<?php } 
+} 
+}
