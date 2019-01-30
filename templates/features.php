@@ -7268,3 +7268,17 @@ function ampforwp_generator(){
 <?php } 
 } 
 }
+// Subtitles Plugin Support #2853
+add_action('ampforwp_below_the_title','ampforwp_subtitles_support');
+if ( ! function_exists('ampforwp_subtitles_support') ) {
+function ampforwp_subtitles_support(){
+if (class_exists('Subtitles')){
+	$post_id = get_the_ID();
+	$subtitle = "";
+	$subtitle = get_post_meta( $post_id, Subtitles::SUBTITLE_META_KEY, true );
+	?>
+	<h4 class="amp-wp-content"><?php echo esc_html($subtitle) ?></h4>
+<?php
+} 
+}
+}		 
