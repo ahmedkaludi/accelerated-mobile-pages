@@ -673,7 +673,10 @@ if(is_admin()){
 
 	add_action( 'redux/options/redux_builder_amp/saved', 'ampforwp_app_banner_manifest_create',10,2);
 	function ampforwp_app_banner_manifest_create($options, $changed_values){
-		if(isset($changed_values['ampforwp-amp-app-banner']) && $options['ampforwp-amp-app-banner'] == 1){
+
+		$changesExpected = array('ampforwp-amp-app-banner', 'ampforwp-apple-app', 'ampforwp-apple-app-id','ampforwp-apple-app-argument','ampforwp-app-manifest-path','ampforwp-app-banner-image','ampforwp-app-banner-text','ampforwp-app-banner-button-text');
+		$changedKeys = array_keys($changed_values);
+		if(array_intersect($changesExpected, $changedKeys) && $options['ampforwp-amp-app-banner'] == 1){
 			ampforwp_amp_app_banner_manifest_json();
 		}
 	}

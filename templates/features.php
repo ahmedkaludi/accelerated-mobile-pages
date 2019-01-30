@@ -6594,9 +6594,9 @@ if( ! function_exists( 'ampforwp_amp_app_banner_action' ) ) {
 		if( 1 == ampforwp_get_setting('ampforwp-amp-app-banner') ){
 			if( isset($redux_builder_amp['ampforwp-apple-app-id']) && $redux_builder_amp['ampforwp-apple-app-id']!='' ){
 			?>
-			<meta name="apple-itunes-app" content="app-id=<?php echo $redux_builder_amp['ampforwp-apple-app-id'];?>">
+			<meta name="apple-itunes-app" content="app-id=<?php echo $redux_builder_amp['ampforwp-apple-app-id']?>, app-argument=<?php echo $redux_builder_amp['ampforwp-apple-app-argument']?>">
 			<?php }	?>
-				<link rel="manifest" href="<?php echo AMPFORWP_PLUGIN_DIR_URI.'app-banner-manifest.json';?>">
+				<link rel="manifest" href="<?php echo  AMPFORWP_PLUGIN_DIR_URI.'app-banner-manifest.json';?>">
 			<?php
 		}
 	}
@@ -6614,44 +6614,60 @@ function ampforwp_amp_app_banner_markup(){
 			$banner_image = $redux_builder_amp['ampforwp-app-banner-image']['url'];
 		}
 		?>
-		<amp-app-banner layout="nodisplay" id="banner">
-			<div id="banner-logo">
-				<amp-img src="<?php echo $banner_image;?>" width="50" height="43" layout="fixed"></amp-img>
-			</div>
-		    <div id="banner-text"><?php echo $redux_builder_amp['ampforwp-app-banner-text'];?></div>
-			<div id="banner-action">
-				<button class="ampstart-btn mr1 caps" open-button><?php echo $redux_builder_amp['ampforwp-app-banner-button-text'];?></button>
-			</div>
+		<amp-app-banner layout="nodisplay" id="ampforwp-app-banner">
+			<!-- <div id="banner-logo"> -->
+				<amp-img src="<?php echo $banner_image;?>" width="50" height="43" layout="fixed"></amp-img><!-- 
+			</div> -->
+		    <div class="banner-text"><?php echo $redux_builder_amp['ampforwp-app-banner-text'];?></div>
+			<button class="ampstart-btn mr1 caps" open-button><?php echo $redux_builder_amp['ampforwp-app-banner-button-text'];?></button>
+			 
 		</amp-app-banner>
 		<?php
 	}
 }
 
-//add_action('wp_ajax_ampforwp_amp_app_banner_manifest_json','ampforwp_amp_app_banner_manifest_json');
+add_action('amp_post_template_css', 'ampforwp_amp_app_banner_css');
+function ampforwp_amp_app_banner_css(){ ?>
+amp-app-banner#ampforwp-app-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+#ampforwp-app-banner .banner-text {
+  flex: 1;
+  margin: 0;
+}
+#ampforwp-app-banner button {
+  border: none;
+  background: none;
+}
+<?php }
+
+add_action('wp_ajax_ampforwp_amp_app_banner_manifest_json','ampforwp_amp_app_banner_manifest_json');
 function ampforwp_amp_app_banner_manifest_json(){
 	global $redux_builder_amp;
 		require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
 		$siteUrl = site_url();
-		$ampUrl = ampforwp_url_controller($siteUrl);
+		$ampUrl = '.';
 		$site_title = get_bloginfo( 'name' );
 		$site_description = get_bloginfo( 'description' );
 
 		$jsonFilePath = fopen(AMPFORWP_PLUGIN_DIR."/app-banner-manifest.json", "w");
-		if($jsonFilePath){
-		$relatedApps = array();
 		$relatedApplications = array();
-		$relatedApplicationList = $redux_builder_amp['ampforwp-app-banner-related-applications'];
+		if($jsonFilePath){
+		$relatedApplicationList = $redux_builder_amp['ampforwp-app-manifest-path'];
 
-		$relatedArray = explode(",",$relatedApplicationList);
-		foreach($relatedArray as $val){
-			$relatedApps['platform'] = 'play';
-			$relatedApps['id'] = $val;
-			array_push($relatedApplications,$relatedApps);
-		}
+		//$relatedArray = explode(",",$relatedApplicationList);
+		//foreach($relatedArray as $val){
+			$relatedApplications['platform'] = 'play';
+			$relatedApplications['id'] = $relatedApplicationList;
+		//	array_push($relatedApplications,$relatedApps);
+		//}
 		
 		$iconArry = array();
-		$iconUrl = $redux_builder_amp['ampforwp-app-banner-icon']['url'];
-		$iconsList = array("36"=>"0.75","48"=>"1","72"=>"1.5","96"=>"2","144"=>"3","192"=>"4","512"=>"");
+		$iconUrl = $redux_builder_amp['ampforwp-app-banner-image']['url'];
+		$iconsList = array("36"=>"0.75","48"=>"1","72"=>"1.5","96"=>"2","144"=>"3","192"=>"4");
 		$icons = array();
 		
 		foreach( $iconsList as $iconKey => $iconVal){
@@ -6676,7 +6692,7 @@ function ampforwp_amp_app_banner_manifest_json(){
 					"background_color" => "#607D8B",
 					"theme_color" => "#607D8B",
 					"prefer_related_applications" => true,
-				  	'related_applications' => $relatedApplications,
+				  	'related_applications' => array($relatedApplications),
 				  	"icons" => $icons,
 
 				);
@@ -6692,7 +6708,6 @@ function ampforwp_amp_app_banner_manifest_json(){
 	}
 }
 /*Amp app banner support End #1314 */
-
 // #2497 Ivory Search Compatibility Added
 add_filter('ampforwp_menu_content','ampforwp_modify_ivory_search');
 if( ! function_exists(' ampforwp_modify_ivory_search ') ){

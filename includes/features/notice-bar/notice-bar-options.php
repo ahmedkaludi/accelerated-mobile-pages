@@ -209,7 +209,7 @@ function ampforwp_notice_bar_options($opt_name){
                'title'     => esc_html__('iOS app', 'accelerated-mobile-pages'),
                'default'   => '',
                'true'      => 'Enabled',
-                'tooltip-subtitle'     => __( ' You can get the iOS app in the meta data <a href="https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html" target="_blank">here</a>', 'accelerated-mobile-pages' ),
+                'tooltip-subtitle'     => __( "You can get the iOS app's meta data <a href='https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html' target='_blank'>here</a>", "accelerated-mobile-pages"),
                'false'     => 'Disabled',
                'required' => array('ampforwp-amp-app-banner', '=' , '1'),
            ),
@@ -240,10 +240,10 @@ function ampforwp_notice_bar_options($opt_name){
              array(
                 'id'        =>'ampforwp-app-manifest-path',
                 'type'      => 'text',
-                'title'     => esc_html__('Android app Manifest Path', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Android application ID', 'accelerated-mobile-pages'),
                 'class' => 'child_opt child_opt_arrow',
                 'default'   => '',
-                'tooltip-subtitle'     => esc_html__( 'Provide the android app manifest path Ex: https://ampbyexample.com/amp-app-banner-manifest.json', 'accelerated-mobile-pages' ),
+                // 'tooltip-subtitle'     => esc_html__( 'Provide the android app manifest path Ex: https://ampbyexample.com/amp-app-banner-manifest.json', 'accelerated-mobile-pages' ),
                 'required'  => array('ampforwp-amp-app-banner', '=' , '1')
             ),
             array(
