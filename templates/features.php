@@ -2405,7 +2405,7 @@ function ampforwp_remove_title_tags() {
 }
 function ampforwp_replace_title_tags() {
 
-	add_filter( 'pre_get_document_title', 'ampforwp_add_custom_title_tag', 10 );
+	add_filter( 'pre_get_document_title', 'ampforwp_add_custom_title_tag', 20 );
 	add_filter( 'wp_title', 'ampforwp_add_custom_title_tag', 10, 3 );
 
 	function ampforwp_add_custom_title_tag( $title = '', $sep = '', $seplocation = '' ) {
@@ -2520,7 +2520,6 @@ function ampforwp_replace_title_tags() {
 			}
 		}
 
-		add_filter('aioseop_title','ampforwp_aioseop_front_page_title');
 		// All in One SEO #2816
 		if ( class_exists('All_in_One_SEO_Pack') && ampforwp_is_front_page() ) {
 			$aiseop_title = $post = '';
