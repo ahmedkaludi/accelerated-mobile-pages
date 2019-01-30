@@ -597,7 +597,7 @@ function amppb_post_content($content){
 					if($field['content_type']=='html'){
 						$replace ='';
 						if($field['name'] == 'row_class'){
-							$replace .= 'ap_r_'.$rowsData['id']." ";
+							$replace .= 'ap_r_'.esc_attr($rowsData['id'])." ";
 						}
 						if(isset($rowsData['data'][$field['name']]) && !is_array($rowsData['data'][$field['name']])){
 							if($field['name']=='grid_type' && $rowsData['data'][$field['name']] == 'amppb-fluid' ){
