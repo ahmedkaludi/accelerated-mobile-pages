@@ -5101,7 +5101,7 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 				$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
 			}
 			else{
-				$menu =  preg_replace( '/&.*?;/', 'x', $menu ); // multi-byte characters converted to X
+				$menu =  preg_replace( '/&[^amp|#038].*?;/', 'x', $menu ); // multi-byte characters converted to X
 			}
 
 			// To Suppress Warnings
