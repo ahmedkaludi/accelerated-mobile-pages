@@ -4393,7 +4393,7 @@ function ampforwp_view_nonamp(){
   	}
   
    	if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
-   		$nofollow = 'rel="nofollow"';
+   		$nofollow = 'rel=nofollow';
    	}
    	if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
    		$ampforwp_backto_nonamp = '';
