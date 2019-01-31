@@ -3330,7 +3330,7 @@ function ampforwp_sidebar_blacklist_tags($tags) {
 	return $tags;
 }
 // Sidebar Scripts	
-add_filter( 'amp_post_template_data', 'ampforwp_add_sidebar_data' );
+add_filter( 'amp_post_template_data', 'ampforwp_add_sidebar_data', 25 );
 function ampforwp_add_sidebar_data( $data ) {
 	$sanitized_data_above_loop 	 	= '';
 	$sanitized_data_below_loop 	 	= '';
