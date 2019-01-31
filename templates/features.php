@@ -5458,7 +5458,7 @@ function swifttheme_footer_widgets_init() {
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
 	    ) );
-	    
+	    if(true == ampforwp_get_setting('gnrl-sidebar')){
 	    register_sidebar( array(
 	        'name' => esc_html__( 'AMP Sidebar', 'accelerated-mobile-pages' ),
 	        'id' => 'swift-sidebar',
@@ -5469,6 +5469,7 @@ function swifttheme_footer_widgets_init() {
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
 	    ) );
+		}
 	}
 }
 add_action( 'init', 'swifttheme_footer_widgets_init' );
