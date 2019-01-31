@@ -7325,3 +7325,113 @@ function ampforwp_amphtml_for_amptakeover() {
 }
 }
 }
+
+
+//Jetpack subscription Widget
+add_filter('ampforwp_modify_sidebars_content', 'ampforwp_jetpack_subscriber');
+function ampforwp_jetpack_subscriber($sidebar){
+	if(is_active_widget( false, false, 'blog_subscription', true )){
+		$action_url = admin_url('admin-ajax.php?action=ampforwp_jetpacksubscription_submit');
+		$sidebar = preg_replace('/<form(.*?)action="#"(.*?)id="subscribe-blog-blog_subscription-(.*?)"(.*?)>/', '<form$1action-xhr="'.$action_url.'"$2id="subscribe-blog-blog_subscription-$3"$4>',$sidebar);
+		$sidebar = preg_replace('/<input type="hidden" name="action" value="subscribe">/', '<input type="hidden" name="security_verify" value="'.wp_create_nonce( 'subscription_verify' ).'">', $sidebar);
+	}
+	return $sidebar;
+}
+
+
+function ampforwp_jetpacksubscription_submit(){
+	$errorMsg = '';
+	$siteUrl = parse_url(
+			get_site_url()
+		);
+    $domain_url = $siteUrl['scheme'] . '://' . $siteUrl['host'];
+    header("Content-type: application/json");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Origin: *.ampproject.org");
+    header("AMP-Access-Control-Allow-Source-Origin: ".$domain_url);
+	if(!class_exists('Jetpack_Subscriptions')){
+		$errorMsg = "Jetpack not loaded";
+	}
+	$security_verify = $_REQUEST['security_verify'];
+	if($errorMsg=='' && !wp_verify_nonce($security_verify, 'subscription_verify')){
+		$errorMsg = "User verification not failed";
+	}else{
+		$source = $_REQUEST['source'];
+		// Check the nonce.
+		if ( is_user_logged_in() ) {
+			check_admin_referer( 'blogsub_subscribe_' . get_current_blog_id() );
+		}
+		if ( empty( $_REQUEST['email'] ) )
+			return false;
+
+		$redirect_fragment = false;
+		if ( isset( $_REQUEST['redirect_fragment'] ) ) {
+			$redirect_fragment = preg_replace( '/[^a-z0-9_-]/i', '', $_REQUEST['redirect_fragment'] );
+		}
+		if ( !$redirect_fragment ) {
+			$redirect_fragment = 'subscribe-blog';
+		}
+
+		$subscribe = Jetpack_Subscriptions::subscribe(
+												$_REQUEST['email'],
+												0,
+												false,
+												array(
+													'source'         => 'widget',
+													'widget-in-use'  => is_active_widget( false, false, 'blog_subscription', true ) ? 'yes' : 'no',
+													'comment_status' => '',
+													'server_data'    => jetpack_subscriptions_cherry_pick_server_data(),
+												)
+		);
+
+		if ( is_wp_error( $subscribe ) ) {
+			$error = $subscribe->get_error_code();
+		} else {
+			$error = false;
+			foreach ( $subscribe as $response ) {
+				if ( is_wp_error( $response ) ) {
+					$error = $response->get_error_code();
+					break;
+				}
+			}
+		}
+
+		switch ( $error ) {
+			case false:
+				$result = 'success';
+				break;
+			case 'invalid_email':
+				$result = $error;
+				break;
+			case 'blocked_email':
+				$result = 'opted_out';
+				break;
+			case 'active':
+			case 'pending':
+				$result = 'already';
+				break;
+			default:
+				$result = 'error';
+				break;
+		}
+
+	
+		do_action( 'jetpack_subscriptions_form_submission', $result );
+		if(strpos($source, $domain_url)!==false ){
+			$redirect_url = $source."#$redirect_fragment";
+		}else{
+			$redirect_url = ampforwp_url_controller($domain_url)."#$redirect_fragment";
+		} 
+		$redirect_url = add_query_arg( 'subscribe', $result, $redirect_url);
+
+		header("AMP-Redirect-To: ".$redirect_url);
+		header("Access-Control-Expose-Headers: AMP-Redirect-To, AMP-Access-Control-Allow-Source-Origin"); 
+		die;
+	}
+	if($errorMsg){
+		header('HTTP/1.1 403 FORBIDDEN');
+		echo json_encode(array('message'=>$errorMsg));
+		die;
+	}
+}
+//Jetpack subscription Widget End
