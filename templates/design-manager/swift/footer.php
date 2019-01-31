@@ -42,7 +42,6 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 			<?php } }?>
 			<div class="rr">
 				<?php amp_non_amp_link(); ?>
-				<?php amp_back_to_top_link(); ?>
             <?php do_action('amp_footer_link'); ?>
 			</div>
 		</div>

@@ -1204,37 +1204,6 @@ if(isset($redux_builder_amp['ftr2-gapping'])){
 	border: 1px solid #ccc;
     padding: 6px 10px;
 }
-
-<?php // Back to Top CSS // ampforwp-above-footer
-if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
-	.btt{
-      position: fixed;
-      <?php if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']) ){ ?>
-      bottom: 55px;
-      <?php } else { ?>
-      	bottom: 20px;
-      <?php } ?>
-      right: 20px;
-      padding: 10px;
-      background: rgba(71, 71, 71, 0.5);
-      color: #fff;
-      border-radius: 100%;
-      width: 50px;
-      height: 50px;
-  }
-  .btt:hover{color:#fff;background:#474747;}
-  .btt:before{
-    content: "\e316";
-   	font-family: 'icomoon';
-    display:block;
-    font-size: 30px;
-    font-weight: 600;
-    color:#fff;
-    text-align: center;
-    line-height: 1;
-  }
-  .rr a#scrollToTopButton{color:#fff;}
-<?php } ?>
 <?php /*** New footer Features ***/
 if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_builder_amp['footer-customize-options']) { ?>
 .f-w{
