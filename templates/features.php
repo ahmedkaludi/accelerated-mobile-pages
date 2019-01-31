@@ -6955,9 +6955,12 @@ function ampforwp_goodlife_css(){
 }
 //Remove anchor link from images when lightbox is enabled #2695
 if(true == ampforwp_get_setting('ampforwp-amp-img-lightbox')){
-add_filter( 'the_content', 'ampforwp_remove_ahref_lightbox' );
+add_action('pre_amp_render_post','ampforwp_remove_ahref_lightbox');
+function ampforwp_remove_ahref_lightbox(){	
+add_filter( 'the_content', 'ampforwp_remove_ahref_lightbox_in_amp' );
 }
-function ampforwp_remove_ahref_lightbox( $content ) {
+}
+function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
 	$updated_content = preg_replace("/<a[^>]+\>(<img[^>]+\>)<\/a>/i", '$1', $content);
 	return $updated_content;
 }
