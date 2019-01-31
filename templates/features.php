@@ -3354,13 +3354,13 @@ function ampforwp_add_sidebar_data( $data ) {
 					$data['amp_component_scripts'][$key]  = $value;
 				}
 			}
-			// Form script #1400
-			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_loop->get_amp_content());
-			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
-				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
-						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
-				} 
-			}
+		}
+		// Form script #1400
+		$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_loop->get_amp_content());
+		if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+			if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+					$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+			} 
 		}
 		// Add Styles
 		if ( $sanitized_data_above_loop->get_amp_styles() ) {
@@ -3379,13 +3379,13 @@ function ampforwp_add_sidebar_data( $data ) {
 					$data['amp_component_scripts'][$key]  = $value;
 				}
 			}
-			// Form script #1400
-			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_below_loop->get_amp_content());
-			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
-				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
-						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
-				} 
-			}
+		}
+		// Form script #1400
+		$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_below_loop->get_amp_content());
+		if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+			if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+					$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+			} 
 		}
 		// Add Styles
 		if ( $sanitized_data_below_loop->get_amp_styles() ) {
@@ -3404,13 +3404,13 @@ function ampforwp_add_sidebar_data( $data ) {
 					$data['amp_component_scripts'][$key]  = $value;
 				}
 			}
-			// Form script #1400
-			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_below_header->get_amp_content());
-			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
-				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
-						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
-				} 
-			}
+		}
+		// Form script #1400
+		$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_below_header->get_amp_content());
+		if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+			if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+					$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+			} 
 		}
 		// Add Styles
 		if ( $sanitized_data_below_header->get_amp_styles() ) {
@@ -3429,13 +3429,13 @@ function ampforwp_add_sidebar_data( $data ) {
 					$data['amp_component_scripts'][$key]  = $value;
 				}
 			}
-			// Form script #1400
-			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_footer->get_amp_content());
-			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
-				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
-						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
-				} 
-			}
+		}
+		// Form script #1400
+		$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_above_footer->get_amp_content());
+		if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+			if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+					$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+			} 
 		}
 		// Add Styles
 		if ( $sanitized_data_above_footer->get_amp_styles() ) {
@@ -3454,13 +3454,13 @@ function ampforwp_add_sidebar_data( $data ) {
 					$data['amp_component_scripts'][$key]  = $value;
 				}
 			}
-			// Form script #1400
-			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_swift_sidebar->get_amp_content());
-			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
-				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
-						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
-				} 
-			}
+		}
+		// Form script #1400
+		$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_swift_sidebar->get_amp_content());
+		if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+			if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+					$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+			} 
 		}
 		// Add Styles
 		if ( $sanitized_data_swift_sidebar->get_amp_styles() ) {
@@ -3479,13 +3479,13 @@ function ampforwp_add_sidebar_data( $data ) {
 					$data['amp_component_scripts'][$key]  = $value;
 				}
 			}
-			// Form script #1400
-			$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_swift_footer->get_amp_content());
-			if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
-				if( empty( $data['amp_component_scripts']['amp-form'] ) ){
-						$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
-				} 
-			}
+		}
+		// Form script #1400
+		$dom = AMP_DOM_Utils::get_dom_from_content($sanitized_data_swift_footer->get_amp_content());
+		if ( 0 !== $dom->getElementsByTagName( 'form' )->length ) {
+			if( empty( $data['amp_component_scripts']['amp-form'] ) ){
+					$data['amp_component_scripts']['amp-form']  = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+			} 
 		}
 		// Add Styles
 		if ( $sanitized_data_swift_footer->get_amp_styles() ) {
