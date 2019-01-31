@@ -7435,3 +7435,16 @@ function ampforwp_jetpacksubscription_submit(){
 	}
 }
 //Jetpack subscription Widget End
+
+//  Compatibility with the footnotes plugin. #2447
+add_action('amp_post_template_css','ampforwp_footnote_support');
+if ( ! function_exists('ampforwp_footnote_support') ) {
+function ampforwp_footnote_support(){
+if(class_exists('MCI_Footnotes')){?>
+.footnote_tooltip {
+    display: none;
+}
+<?php 
+}
+}
+}
