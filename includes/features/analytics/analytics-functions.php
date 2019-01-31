@@ -71,7 +71,7 @@ function ampforwp_analytics() {
 				$quantcast_fields = array(
 						'vars'=>array(
 							'pcode'=>$quantcast,
-							'labels'=>[ "AMPProject" ]
+							'labels'=> array("AMPProject")
 							),
 					); 
 				$ampforwp_quantcast_fields = apply_filters('ampforwp_quantcast_analytics', $ampforwp_quantcast_fields );
