@@ -410,6 +410,7 @@ function amp_footer_core(){
 		do_action('ampforwp_global_after_footer');
 		do_action('amp_end',$thisTemplate);
 	}
+	amp_back_to_top_link();
 	// Close the body and Html tags ?>
 	</body>
 		</html><?php
@@ -629,3 +630,34 @@ function amp_author_meta( $args ) {
      } 
 	 
 }
+
+// amp-animation CSS #2819
+add_action('amp_post_template_css','ampforwp_backtotop_global_css');
+function ampforwp_backtotop_global_css(){
+if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
+  .btt{
+      position: fixed;
+      <?php if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']) ){ ?>
+      bottom: 55px;
+      <?php } else { ?>
+        bottom: 20px;
+      <?php } ?>
+      right: 20px;
+      background: rgba(71, 71, 71, 0.5);
+      color: #fff;
+      border-radius: 100%;
+      width: 50px;
+      height: 50px;
+  }
+  .btt:hover{color:#fff;background:#474747;}
+  .btt:before{
+    content: '\25be';
+    display: block;
+    font-size: 35px;
+    font-weight: 600;
+    color: #fff;
+    transform: rotate(180deg);
+    text-align: center;
+    line-height: 1.5;
+  }
+<?php } } ?>
