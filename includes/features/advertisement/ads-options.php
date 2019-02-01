@@ -431,9 +431,9 @@
                 $fields[] = array(
                     'id'        => 'enable-amp-ads-7',
                     'type'      => 'switch',
-                    'title'     => __('AD #7', 'accelerated-mobile-pages'),
+                    'title'     => esc_html__('AD #7', 'accelerated-mobile-pages'),
                     'default'   => 0,
-                    'desc'  => __('Place wherever you want by going to Design -> Single option', 'accelerated-mobile-pages'),
+                    'desc'  => esc_html__('Place wherever you want by going to Design -> Single option', 'accelerated-mobile-pages'),
                     'true'      => 'Enabled',
                     'false'     => 'Disabled',
                     'required' =>array('amp-design-selector', '!=' , '4')
@@ -461,8 +461,8 @@
                         'id'        =>'enable-amp-ads-text-feild-client-7',
                         'type'      => 'text',
                         'required'  => array('enable-amp-ads-7', '=' , '1'),
-                        'title'     => __('Data AD Client', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
+                        'title'     => esc_html__('Data AD Client', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'      => esc_html__('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
                         'default'   => '',
                         'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
                     );
@@ -470,8 +470,8 @@
                             'class' => 'child_opt',
                         'id'        => 'enable-amp-ads-text-feild-slot-7',
                         'type'      => 'text',
-                        'title'     => __('Data AD Slot', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
+                        'title'     => esc_html__('Data AD Slot', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'      => esc_html__('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
                         'default'   => '',
                         'required'  => array('enable-amp-ads-7', '=' , '1'),
                         'placeholder'=> '70XXXXXX12'
@@ -518,8 +518,8 @@
                         'id'        =>'enable-amp-ads-text-feild-client-8',
                         'type'      => 'text',
                         'required'  => array('enable-amp-ads-8', '=' , '1'),
-                        'title'     => __('Data AD Client', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
+                        'title'     => esc_html__('Data AD Client', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'      => esc_html__('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
                         'default'   => '',
                         'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
                     );
@@ -527,8 +527,8 @@
                             'class' => 'child_opt',
                         'id'        => 'enable-amp-ads-text-feild-slot-8',
                         'type'      => 'text',
-                        'title'     => __('Data AD Slot', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
+                        'title'     => esc_html__('Data AD Slot', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'      => esc_html__('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
                         'default'   => '',
                         'required'  => array('enable-amp-ads-8', '=' , '1'),
                         'placeholder'=> '70XXXXXX12'
@@ -589,7 +589,7 @@
                             'id'        =>'ampforwp-ads-sponsorship-label',
                             'type'      => 'text',
                             'required'  => array('ampforwp-ads-sponsorship', '=' , '1'),
-                            'title'     => __('Sponsorship Label Text', 'accelerated-mobile-pages'),
+                            'title'     => esc_html__('Sponsorship Label Text', 'accelerated-mobile-pages'),
                             'class' => 'child_opt child_opt_arrow',
                             'default'   => '',
                             'placeholder'=> 'Sponsored'
