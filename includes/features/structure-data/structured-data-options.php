@@ -166,10 +166,10 @@ function ampforwp_add_sd_fields($fields){
             );
             $fields[] =   array(  
                       'id'       => 'ampforwp-sd-multiple-images',  
-                      'title'    => __('High-resolution Images', 'accelerated-mobile-pages'), 
+                      'title'    => esc_html__('High-resolution Images', 'accelerated-mobile-pages'), 
                       'type'     => 'switch', 
                       'default'  => 0,  
-                      'tooltip-subtitle' => 'For best results, provide multiple high-resolution images (minimum of 300,000 pixels when multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1 <a href="https://developers.google.com/search/docs/data-types/article#article_types" target="_blank">Read more</a>' 
+                      'tooltip-subtitle' => esc_html__('For best results, provide multiple high-resolution images (minimum of 300,000 pixels when multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1 ', 'accelerated-mobile-pages'). '<a href="https://developers.google.com/search/docs/data-types/article#article_types" target="_blank">Read more</a>' 
             );
           }
     return $fields;
