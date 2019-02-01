@@ -729,8 +729,8 @@ if ( !is_plugin_active('amp/amp.php') ) {
 if(is_admin()){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/modules-upgrade.php' );
 }
-$redux_builder_amp = get_option('redux_builder_amp');
-if ( isset($redux_builder_amp['ampforwp-pagebuilder']) && true == $redux_builder_amp['ampforwp-pagebuilder'] ) {
+//$redux_builder_amp = get_option('redux_builder_amp');
+if ( ampforwp_get_setting('ampforwp-pagebuilder')== true){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
 }
 /**
@@ -776,6 +776,9 @@ function ampforwp_redux_class(){
 // Get Settings from Redux #2177
 function ampforwp_get_setting( $opt_name='' ){
 	global $redux_builder_amp;
+	if(empty($redux_builder_amp)){
+		$redux_builder_amp = get_option('redux_builder_amp');
+	}
 	$opt_value = '';
 	if ( isset($redux_builder_amp[$opt_name]) ) {
 		$opt_value = $redux_builder_amp[$opt_name];
