@@ -5322,7 +5322,7 @@ add_action('amp_post_template_css', 'ampforwp_google_fonts_generator');
 if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
   function ampforwp_google_fonts_generator() {
     global $redux_builder_amp;
-    if( isset($redux_builder_amp['amp_google_font_restrict']) && $redux_builder_amp['amp_google_font_restrict'] ){
+    if( 1!=ampforwp_get_setting('ampforwp-google-font-switch') || (isset($redux_builder_amp['amp_google_font_restrict']) && $redux_builder_amp['amp_google_font_restrict']) ){
     	return;
     }
 	if(isset($redux_builder_amp['google_current_font_data'])){
@@ -6832,6 +6832,9 @@ if( ! function_exists('ampforwp_font_selector') ) {
 	function ampforwp_font_selector( $container ) {
 		global $redux_builder_amp;
 		$fontFamily = '';
+		if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
+			return $fontFamily;
+		}
 		if(empty($container)) {
 			$container = 'body';
 		}

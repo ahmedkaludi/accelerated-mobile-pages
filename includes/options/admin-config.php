@@ -394,7 +394,7 @@ $ampforwp_extension_list_html = '';
 $ampforwp_nameOfUser = "";
 $ampforwp_is_productActivated = false;
 function ampforwp_sort_extension_array($a, $b){
-    if ($a['is_activated'] == $b['is_activated']) {
+    if ($a['is_activated'] == $b['is_activated'] && isset($a['label']) && isset($b['label'])) {
         return strcmp($a['label'], $b['label']);
     }
     return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
@@ -3228,7 +3228,16 @@ Redux::setSection( $opt_name, array(
        $amp_fontparts = array_merge($amp_fontparts ,$fonts_settings);    
 
     }else{
-
+        $selectedOption = get_option('redux_builder_amp',true);
+        if(!isset($selectedOption['amp-design-selector'])){
+            $selectedOption['amp-design-selector'] = '4';
+        }
+        $googleSupportFontEnabled = array('1','2','3','4');
+        $googleSupportFontEnabled = apply_filters( 'amp_theme_font_support',  $googleSupportFontEnabled);
+        $enabledGoogleFonts = false;
+        if(in_array($selectedOption['amp-design-selector'], $googleSupportFontEnabled) ){
+            $enabledGoogleFonts = true;
+        }
         $fonts_settings =  array(array(
                        'id' => 'ampforwp-d1-font',
                        'type' => 'switch',
@@ -3240,14 +3249,23 @@ Redux::setSection( $opt_name, array(
                          )
             ),
             array(
+                       'id' => 'ampforwp-google-font-switch',
+                       'type' => 'switch',
+                       'title' => esc_html__('Google Fonts', 'accelerated-mobile-pages'),
+                       'tooltip-subtitle'  => esc_html__('Enable/Disable Google Font','accelerated-mobile-pages'),
+                        'default'   => $enabledGoogleFonts,
+                       // 'required' => $fontEnabled,
+            ),
+            array(
                 'id'        =>'google_font_api_key',
                 'type'      =>'text',
                 'title'     =>esc_html__('Google Font API key','accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can get the Link ','accelerated-mobile-pages').'<a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1#APIKey">'.esc_html__('form here','accelerated-mobile-pages').'</a>',
                 'default'   =>'',
-                // 'required' => array(
+                 'required' => array(
+                        array('ampforwp-google-font-switch', '=', '1')
                 //     array('amp-design-selector', '=' , '4')
-                // )
+                 )
 
             ),
             array(
@@ -3260,9 +3278,10 @@ Redux::setSection( $opt_name, array(
                     '1' => 'None',
                 ),
                 'default'  => '',
-                // 'required' => array(
+                 'required' => array(
+                        array('ampforwp-google-font-switch', '=', '1')
                 //     array('amp-design-selector', '=' , '4')
-                // )
+                 )
 
             ),
             array(
@@ -3276,9 +3295,10 @@ Redux::setSection( $opt_name, array(
                     '1' => 'none',
                 ),
                 'default'  => '',
-                // 'required' => array(
+                 'required' => array(
+                    array('ampforwp-google-font-switch', '=', '1')
                 //     array('amp-design-selector', '=' , '4')
-                // )
+                )
 
             ),
             array(
@@ -3287,9 +3307,9 @@ Redux::setSection( $opt_name, array(
                 'class'     => 'hide',
                 'title'     =>esc_html__('Google Font Current Font','accelerated-mobile-pages'),
                 'default'   =>'',
-                // 'required' => array(
-                //     array('amp-design-selector', '=' , '4')
-                // )
+                'required' => array(
+                //    array('amp-design-selector', '=' , '4')
+                )
             ),
             array(
                     'id'       => 'content-font-family-enable',
@@ -3300,9 +3320,10 @@ Redux::setSection( $opt_name, array(
                                    // array('amp-design-selector', '=' , '4')
                                     ),
                     'default'  => '0' ,
-                    // 'required' => array(
-                    //     array('amp-design-selector', '=' , '4')
-                    // )   
+                    'required' => array(
+                        array('ampforwp-google-font-switch', '=', '1')
+                    //    array('amp-design-selector', '=' , '4')
+                    )   
             ),
             array(
                 'id'       => 'amp_font_selector_content_single',
@@ -3317,6 +3338,7 @@ Redux::setSection( $opt_name, array(
                 'required' => array(
                     //array('amp-design-selector', '=' , '4'),
                     array('content-font-family-enable', '=' , '1'),
+                    array('ampforwp-google-font-switch', '=', '1')
                 )
 
             ),
@@ -3333,7 +3355,8 @@ Redux::setSection( $opt_name, array(
                 'default'  => '',
                 'required' => array(
                    //array('amp-design-selector', '=' , '4'),
-                    array('content-font-family-enable', '=' , '1')
+                    array('content-font-family-enable', '=' , '1'),
+                    array('ampforwp-google-font-switch', '=', '1')
                 )
 
             ),
