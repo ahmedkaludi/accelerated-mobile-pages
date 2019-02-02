@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.9.97.30 (2nd February 2019) =
+* Fixed: Wrong title on the archive pages #2864
+* Fixed: data-loading-strategy attribute is double quoted #2863
+
 = 0.9.97.29 (31st January 2019) =
 * Fixed: Validation error due to Search Widget #2858
 * Fixed: Issue after upgrading analytics code #2859

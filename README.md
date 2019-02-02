@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.3
-Stable tag: 0.9.97.29
+Stable tag: 0.9.97.30
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,6 +183,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.30 (2nd February 2019) =
+* Fixed: Wrong title on the archive pages #2864
+* Fixed: data-loading-strategy attribute is double quoted #2863
 
 = 0.9.97.29 (31st January 2019) =
 * Fixed: Validation error due to Search Widget #2858
