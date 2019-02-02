@@ -1538,7 +1538,7 @@ function ampforwp_replace_title_tags() {
 			$title = ! empty( $post->post_title ) ? $post->post_title : $title;
 			$site_title = $title . $sep . get_option( 'blogname' );
 		} elseif ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) {
-            $site_title = strip_tags( ampforwp_modify_archive_title($title) . $sep . get_bloginfo( 'name' ) );
+            $site_title = strip_tags( get_the_archive_title('') . $sep . get_bloginfo( 'name' ) );
         }
 
 		if ( is_home() ) {
