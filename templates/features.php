@@ -1140,8 +1140,8 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_ad_optimize(){
 			global $redux_builder_amp;
 			$optimized_code = '';
-			if( isset( $redux_builder_amp['ampforwp-ads-data-loading-strategy'] ) && true == $redux_builder_amp['ampforwp-ads-data-loading-strategy']){
-				$optimized_code = 'data-loading-strategy="prefer-viewability-over-views"';
+			if( true == ampforwp_get_setting('ampforwp-ads-data-loading-strategy')){
+				$optimized_code = 'data-loading-strategy=prefer-viewability-over-views';
 			}
 			return $optimized_code;
 		}
