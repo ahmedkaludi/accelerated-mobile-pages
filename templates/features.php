@@ -2423,12 +2423,13 @@ function ampforwp_replace_title_tags() {
 
 		//* We can filter this later if needed:
 		$sep = ' | ';
+		$sep = apply_filters('ampforwp_title_seperator_type', $sep);
 
 		if ( is_singular() ) {
 			$title = ! empty( $post->post_title ) ? $post->post_title : $title;
 			$site_title = $title . $sep . get_option( 'blogname' );
 		} elseif ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) {
-			$site_title = strip_tags( get_the_archive_title( '' ) . $sep . get_the_archive_description( '' ) );
+			$site_title = strip_tags( get_the_archive_title( '' ) . $sep . get_bloginfo( 'name' ) );
 		}
 
 		if ( is_home() ) {
@@ -2532,7 +2533,24 @@ function ampforwp_replace_title_tags() {
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
 }
-
+function ampforwp_modify_archive_title( $title ) {
+    if ( is_category() ) {
+        $title = single_cat_title( '', false );
+    } elseif ( is_tag() ) {
+        $title = single_tag_title( '', false );
+    } elseif ( is_author() ) {
+        $title = '<span class="vcard">' . get_the_author() . '</span>';
+    } elseif ( is_post_type_archive() ) {
+        $title = post_type_archive_title( '', false );
+    } elseif ( is_tax() ) {
+        $title = single_term_title( '', false );
+    }  
+    return $title;
+}
+add_action( 'pre_amp_render_post', 'ampforwp_modify_archive_title_in_amp');
+function ampforwp_modify_archive_title_in_amp() {
+	add_filter( 'get_the_archive_title', 'ampforwp_modify_archive_title' );
+} 
 // 27. Clean the Defer issue
 	// TODO : Get back to this issue. #407
 		function ampforwp_the_content_filter_full( $content_buffer ) {
