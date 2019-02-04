@@ -7317,7 +7317,7 @@ if (class_exists('Subtitles')){
 	if(ampforwp_is_front_page()){
 		$post_id = ampforwp_get_frontpage_id();
 	}
-	// exit it no post id is available.
+	// exit if no post id is available.
 	if ( empty($post_id)) {
 		return;
 	}
