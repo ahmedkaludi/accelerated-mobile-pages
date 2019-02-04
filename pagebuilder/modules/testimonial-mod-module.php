@@ -173,7 +173,6 @@ return array(
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'Testimonial',	
 		           				'content_type'=>'html',
-		           				'required'  => array('testimonial_layout_type'=>array('1','2','3') )
 	 					),
 	 					array(		
 		 						'type'		=>'upload',		
@@ -182,7 +181,6 @@ return array(
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
-		           				'required'  => array('testimonial_layout_type'=>array('1','2','3') )
 	 						),
 	 					
 						array(		
@@ -192,7 +190,6 @@ return array(
 		           				'tab'       =>'design',
 		 						'default'	=>'Name',	
 		           				'content_type'=>'html',
-		           				'required'  => array('testimonial_layout_type'=>array('1','2','3') )
 	 						),
 						array(		
 		 						'type'		=>'text',		
@@ -201,7 +198,6 @@ return array(
 		           				'tab'       =>'design',
 		 						'default'	=>'Designation',	
 		           				'content_type'=>'html',
-		           				'required'  => array('testimonial_layout_type'=>array('1','2') )
 	 						),
 						
                 
