@@ -336,9 +336,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
 				$amp_url = untrailingslashit($current_search_url);
 			}
-
-			$amp_url = ampforwp_url_purifier($amp_url);
-
+			// WPML compatibility
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if( get_option('permalink_structure') && is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
 				global $sitepress_settings, $wp;
@@ -368,7 +366,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				    }
 				}
 			}
-
+			// URL Purifier
+			$amp_url = ampforwp_url_purifier($amp_url);
+			
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 	        if( $supported_amp_post_types) {					
@@ -1533,13 +1533,13 @@ function ampforwp_replace_title_tags() {
 
 		//* We can filter this later if needed:
 		$sep = ' | ';
-
+		$sep = apply_filters('ampforwp_title_seperator_type', $sep);
 		if ( is_singular() ) {
 			$title = ! empty( $post->post_title ) ? $post->post_title : $title;
 			$site_title = $title . $sep . get_option( 'blogname' );
 		} elseif ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) {
-			$site_title = strip_tags( get_the_archive_title( '' ) . $sep . get_the_archive_description( '' ) );
-		}
+            $site_title = strip_tags( get_the_archive_title('') . $sep . get_bloginfo( 'name' ) );
+        }
 
 		if ( is_home() ) {
 			// Custom frontpage
@@ -1683,7 +1683,25 @@ function ampforwp_replace_title_tags() {
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
 }
-
+function ampforwp_modify_archive_title( $title ) {
+    if ( is_category() ) {
+        $title = single_cat_title( '', false );
+    } elseif ( is_tag() ) {
+        $title = single_tag_title( '', false );
+    } elseif ( is_author() ) {
+        $title = '<span class="vcard">' . get_the_author() . '</span>';
+    } elseif ( is_post_type_archive() ) {
+        $title = post_type_archive_title( '', false );
+    } elseif ( is_tax() ) {
+        $title = single_term_title( '', false );
+    }
+  
+    return $title;
+}
+add_action( 'pre_amp_render_post', 'ampforwp_modify_archive_title_in_amp');
+function ampforwp_modify_archive_title_in_amp() {
+	add_filter( 'get_the_archive_title', 'ampforwp_modify_archive_title' );
+} 
 // 27. Clean the Defer issue
 	// Moved to functions.php
 
@@ -3475,7 +3493,7 @@ if ( ! function_exists('ampforwp_fbia_meta_tags') ) {
 		$url = get_permalink();
 		$url = add_query_arg( 'ia_markup', '1', $url );
 		// ia markup meta tag
-		if( isset($redux_builder_amp['fb-instant-crawler-ingestion']) && $redux_builder_amp['fb-instant-crawler-ingestion'] ) { ?>
+		if( ampforwp_get_setting('fb-instant-crawler-ingestion') ) { ?>
 			<meta property="ia:markup_url" content="<?php echo esc_url( $url ); ?>" />	
 		<?php }
 	}
@@ -5322,7 +5340,7 @@ add_action('amp_post_template_css', 'ampforwp_google_fonts_generator');
 if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
   function ampforwp_google_fonts_generator() {
     global $redux_builder_amp;
-    if( isset($redux_builder_amp['amp_google_font_restrict']) && $redux_builder_amp['amp_google_font_restrict'] ){
+    if( 1!=ampforwp_get_setting('ampforwp-google-font-switch') || (isset($redux_builder_amp['amp_google_font_restrict']) && $redux_builder_amp['amp_google_font_restrict']) ){
     	return;
     }
 	if(isset($redux_builder_amp['google_current_font_data'])){
@@ -6832,6 +6850,9 @@ if( ! function_exists('ampforwp_font_selector') ) {
 	function ampforwp_font_selector( $container ) {
 		global $redux_builder_amp;
 		$fontFamily = '';
+		if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
+			return $fontFamily;
+		}
 		if(empty($container)) {
 			$container = 'body';
 		}
@@ -7293,6 +7314,9 @@ if ( ! function_exists('ampforwp_subtitles_support') ) {
 function ampforwp_subtitles_support(){
 if (class_exists('Subtitles')){
 	$post_id = get_the_ID();
+	if(ampforwp_is_front_page()){
+	$post_id = ampforwp_get_frontpage_id();
+	}
 	$subtitle = "";
 	$subtitle = get_post_meta( $post_id, Subtitles::SUBTITLE_META_KEY, true );
 	?>
@@ -7301,12 +7325,6 @@ if (class_exists('Subtitles')){
 } 
 }
 }		 
-// WP-AppBox CSS
-add_action('amp_post_template_css', 'ampforwp_app_box_styles');
-function ampforwp_app_box_styles(){ ?>
-	.wpappbox{clear:both;background-color:#F9F9F9;line-height:1.4;color:#545450;margin:16px 0;font-size:15px;border:1px solid #E5E5E5;box-shadow:0 0 8px 1px rgba(0,0,0,.11);border-radius:8px;display:inline-block;width:100%}.wpappbox a{transition:all .3s ease-in-out 0s}.wpappbox.compact .appicon{height:66px;width:68px;float:left;padding:6px;margin-right:15px}.appicon amp-img{max-width:92px;height:92px;border-radius:5%}.wpappbox a:hover amp-img{opacity:.9;filter:alpha(opacity=90);-webkit-filter:grayscale(100%)}.wpappbox .appicon{position:relative;height:112px;width:112px;float:left;padding:10px;background:#FFF;text-align:center;border-right:1px solid #E5E5E5;border-top-left-radius:6px;border-bottom-left-radius:6px;margin-right:10px}.wpappbox .appdetails{margin-top:15px}.wpappbox .appbuttons a{font-size:13px;box-shadow:0 1px 3px 0 rgba(0,0,0,.15);background:#F1F1F1;border-bottom:0;color:#323232;padding:3px 5px;display:inline-block;margin:12px 0 0;border-radius:3px;cursor:pointer;font-weight:400}.wpappbox .appbuttons a:hover{color:#fff;background:#111}.wpappbox div.applinks,div.wpappbox.compact a.applinks{float:right;position:relative;background:#FFF;text-align:center;border-left:1px solid #E5E5E5;border-top-right-radius:6px;border-bottom-right-radius:6px}.wpappbox div.applinks{height:112px;width:92px;display:block}.wpappbox .apptitle,.wpappbox .developer{margin-bottom:15px}.wpappbox .developer a{color:#333}.wpappbox .apptitle a{font-size:18px;font-weight:500;color:#333}.wpappbox .apptitle a:hover,.wpappbox .developer a:hover{color:#5588b5}.wpappbox .appbuttons span,.wpappbox .qrcode{display:none}.wpappbox.screenshots>div.screenshots{width:auto;margin:0 auto;padding:10px;clear:both;border-top:1px solid #E5E5E5}.wpappbox .screenshots .slider>ul>li{padding:0;margin:0 6px 0 0;list-style-type:none;display:inline-block}.wpappbox .screenshots .slider{overflow-x:scroll;overflow-y:hidden;height:320px;margin-top:0}.wpappbox .screenshots .slider>ul{display:inline-flex;width:100%}.wpappbox .screenshots .slider>ul>li amp-img{max-width:200px;height:320px;display:inline-block}@media(max-width:500px){.appicon amp-img{max-width:70px;height:70px}.wpappbox .appicon,.wpappbox div.applinks{height:90px;width:90px;display:inline-block;vertical-align:middle;float:none}.wpappbox .apptitle a{font-size:14px}.wpappbox{font-size:13px;text-align:center;padding:10px 0}.wpappbox .apptitle,.wpappbox .developer{margin-bottom:6px}.wpappbox .appdetails{text-align:left;padding-left:10px}.wpappbox .screenshots .slider{height:290px}.wpappbox .screenshots .slider>ul>li amp-img{max-width:160px;height:280px}}
-	<?php // ampforwp_app_box_styles Function Ends 
-}
 
 // amphtml tag when AMP Takeover is enabled #2550
 add_action( 'amp_post_template_head', 'ampforwp_amphtml_for_amptakeover' );
@@ -7435,3 +7453,16 @@ function ampforwp_jetpacksubscription_submit(){
 	}
 }
 //Jetpack subscription Widget End
+
+//  Compatibility with the footnotes plugin. #2447
+add_action('amp_post_template_css','ampforwp_footnote_support');
+if ( ! function_exists('ampforwp_footnote_support') ) {
+function ampforwp_footnote_support(){
+if(class_exists('MCI_Footnotes')){?>
+.footnote_tooltip {
+    display: none;
+}
+<?php 
+}
+}
+}

@@ -49,7 +49,7 @@ function ampforwp_related_post_loop_query(){
 	$int_number_of_related_posts = (int)$string_number_of_related_posts;
 	$args = null;
 	$orderby = 'ID';
-    if( isset( $redux_builder_amp['ampforwp-single-order-of-related-posts'] ) && $redux_builder_amp['ampforwp-single-order-of-related-posts'] ){
+    if( ampforwp_get_setting('ampforwp-single-order-of-related-posts')){
 		$orderby = 'rand';
 	}
 	$args=array(

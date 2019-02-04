@@ -4,7 +4,7 @@ use AMPforWP\AMPVendor\AMP_HTML_Utils;
 global $redux_builder_amp;
 $loadComponent = array();
 $scriptComponent = array();
-$supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb','AMP-gdpr');
+$supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb','AMP-gdpr', 'AMP-google-font');
 //$removeScriptComponent = array('amp-carousel');'
 add_filter( 'amp_post_template_data', 'ampforwp_framework_add_and_form_scripts',20);
 function ampforwp_framework_add_and_form_scripts($data) {
@@ -206,17 +206,17 @@ function amp_author_box($args=array() ){
 }
 
 // Categories List
-function amp_categories_list( ){
+function amp_categories_list( $saperator = '' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-categories-tags']) && $loadComponent['AMP-categories-tags']==true){
-		ampforwp_framework_get_categories_list( );
+		ampforwp_framework_get_categories_list( $saperator );
 	}
 }
 // Tags List
-function amp_tags_list( ){
+function amp_tags_list( $saperator = '' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-categories-tags']) && $loadComponent['AMP-categories-tags']==true){
-		ampforwp_framework_get_tags_list( );
+		ampforwp_framework_get_tags_list( $saperator );
 	}
 }
 

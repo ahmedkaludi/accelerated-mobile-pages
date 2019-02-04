@@ -114,6 +114,11 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         $content_buffer = preg_replace('/!important/', '' , $content_buffer);
         if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){
         $content_buffer = preg_replace('/<a(.*?)href="#(.*?)"(.*?)>/', '<a $1 href="#" on="tap:$2.scrollTo(duration=1000)" $3>', $content_buffer);}
+        //  Compatibility with the footnotes plugin. #2447
+        if(class_exists('MCI_Footnotes')){
+        $content_buffer = preg_replace( '/<sup(.*?)id="(.*?)"(.*?)class="footnote_plugin_tooltip_text"(.*?)>(.*?)<\/sup>/m',  '
+        <sup$1id="$2"$3class="footnote_plugin_tooltip_text"$4><a href="#$2">$5</a></sup>', $content_buffer);
+        }
         $content_buffer = apply_filters('ampforwp_the_content_last_filter', $content_buffer);
 
     }

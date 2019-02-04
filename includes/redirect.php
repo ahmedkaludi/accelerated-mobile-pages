@@ -155,7 +155,7 @@ function ampforwp_page_template_redirect() {
       $isTablet = ! $mobile_detect->isTablet();
     }
     // No mobile redirection on oembeds #2003
-    if ( false !== strpos($wp->request, '/embed/') ) {
+    if ( function_exists('is_embed') && is_embed() ){
       return;
     }
     // Return if Dev mode is enabled

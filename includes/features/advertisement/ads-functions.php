@@ -495,8 +495,8 @@ if( !function_exists('ampforwp_ad_optimize')){
 			$redux_builder_amp = get_option('redux_builder_amp',true);
 		}
 		$optimized_code = '';
-		if( isset( $redux_builder_amp['ampforwp-ads-data-loading-strategy'] ) && true == $redux_builder_amp['ampforwp-ads-data-loading-strategy']){
-			$optimized_code = 'data-loading-strategy="prefer-viewability-over-views"';
+		if( true == ampforwp_get_setting('ampforwp-ads-data-loading-strategy')){
+			$optimized_code = 'data-loading-strategy=prefer-viewability-over-views';
 		}
 		return $optimized_code;
 	}

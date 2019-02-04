@@ -394,7 +394,7 @@ $ampforwp_extension_list_html = '';
 $ampforwp_nameOfUser = "";
 $ampforwp_is_productActivated = false;
 function ampforwp_sort_extension_array($a, $b){
-    if ($a['is_activated'] == $b['is_activated']) {
+    if ($a['is_activated'] == $b['is_activated'] && isset($a['label']) && isset($b['label'])) {
         return strcmp($a['label'], $b['label']);
     }
     return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
@@ -2176,12 +2176,12 @@ Redux::setSection( $opt_name, array(
                         array(
                            'id'       => 'amp-posts-meta-default',
                            'type'     => 'select',
-                           'title'    => __( 'Individual AMP Post (Bulk Edit)', 'accelerated-mobile-pages' ),
-                           'tooltip-subtitle' => __( 'Allows you to Show or Hide AMP for Posts from All posts, so it can be changed individually later. This option will change the Default value of AMP metabox in posts', 'accelerated-mobile-pages' ),
-                           'desc' => __( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
+                           'title'    => esc_html__( 'Individual AMP Post (Bulk Edit)', 'accelerated-mobile-pages' ),
+                           'tooltip-subtitle' => esc_html__( 'Allows you to Show or Hide AMP for Posts from All posts, so it can be changed individually later. This option will change the Default value of AMP metabox in posts', 'accelerated-mobile-pages' ),
+                           'desc' => esc_html__( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
                            'options'  => array(
-                               'show' => __('Show by Default', 'accelerated-mobile-pages' ),
-                               'hide' => __('Hide by default', 'accelerated-mobile-pages' ),
+                               'show' => esc_html__('Show by Default', 'accelerated-mobile-pages' ),
+                               'hide' => esc_html__('Hide by default', 'accelerated-mobile-pages' ),
                            ),
                            'default'  => 'show',
                            'required'=>array('amp-on-off-for-all-posts','=','1'),
@@ -3228,7 +3228,16 @@ Redux::setSection( $opt_name, array(
        $amp_fontparts = array_merge($amp_fontparts ,$fonts_settings);    
 
     }else{
-
+        $selectedOption = get_option('redux_builder_amp',true);
+        if(!isset($selectedOption['amp-design-selector'])){
+            $selectedOption['amp-design-selector'] = '4';
+        }
+        $googleSupportFontEnabled = array('1','2','3','4');
+        $googleSupportFontEnabled = apply_filters( 'amp_theme_font_support',  $googleSupportFontEnabled);
+        $enabledGoogleFonts = false;
+        if(in_array($selectedOption['amp-design-selector'], $googleSupportFontEnabled) ){
+            $enabledGoogleFonts = true;
+        }
         $fonts_settings =  array(array(
                        'id' => 'ampforwp-d1-font',
                        'type' => 'switch',
@@ -3240,14 +3249,23 @@ Redux::setSection( $opt_name, array(
                          )
             ),
             array(
+                       'id' => 'ampforwp-google-font-switch',
+                       'type' => 'switch',
+                       'title' => esc_html__('Google Fonts', 'accelerated-mobile-pages'),
+                       'tooltip-subtitle'  => esc_html__('Enable/Disable Google Font','accelerated-mobile-pages'),
+                        'default'   => $enabledGoogleFonts,
+                       // 'required' => $fontEnabled,
+            ),
+            array(
                 'id'        =>'google_font_api_key',
                 'type'      =>'text',
                 'title'     =>esc_html__('Google Font API key','accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can get the Link ','accelerated-mobile-pages').'<a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1#APIKey">'.esc_html__('form here','accelerated-mobile-pages').'</a>',
                 'default'   =>'',
-                // 'required' => array(
+                 'required' => array(
+                        array('ampforwp-google-font-switch', '=', '1')
                 //     array('amp-design-selector', '=' , '4')
-                // )
+                 )
 
             ),
             array(
@@ -3260,9 +3278,10 @@ Redux::setSection( $opt_name, array(
                     '1' => 'None',
                 ),
                 'default'  => '',
-                // 'required' => array(
+                 'required' => array(
+                        array('ampforwp-google-font-switch', '=', '1')
                 //     array('amp-design-selector', '=' , '4')
-                // )
+                 )
 
             ),
             array(
@@ -3276,9 +3295,10 @@ Redux::setSection( $opt_name, array(
                     '1' => 'none',
                 ),
                 'default'  => '',
-                // 'required' => array(
+                 'required' => array(
+                    array('ampforwp-google-font-switch', '=', '1')
                 //     array('amp-design-selector', '=' , '4')
-                // )
+                )
 
             ),
             array(
@@ -3287,9 +3307,9 @@ Redux::setSection( $opt_name, array(
                 'class'     => 'hide',
                 'title'     =>esc_html__('Google Font Current Font','accelerated-mobile-pages'),
                 'default'   =>'',
-                // 'required' => array(
-                //     array('amp-design-selector', '=' , '4')
-                // )
+                'required' => array(
+                //    array('amp-design-selector', '=' , '4')
+                )
             ),
             array(
                     'id'       => 'content-font-family-enable',
@@ -3300,9 +3320,10 @@ Redux::setSection( $opt_name, array(
                                    // array('amp-design-selector', '=' , '4')
                                     ),
                     'default'  => '0' ,
-                    // 'required' => array(
-                    //     array('amp-design-selector', '=' , '4')
-                    // )   
+                    'required' => array(
+                        array('ampforwp-google-font-switch', '=', '1')
+                    //    array('amp-design-selector', '=' , '4')
+                    )   
             ),
             array(
                 'id'       => 'amp_font_selector_content_single',
@@ -3317,6 +3338,7 @@ Redux::setSection( $opt_name, array(
                 'required' => array(
                     //array('amp-design-selector', '=' , '4'),
                     array('content-font-family-enable', '=' , '1'),
+                    array('ampforwp-google-font-switch', '=', '1')
                 )
 
             ),
@@ -3333,7 +3355,8 @@ Redux::setSection( $opt_name, array(
                 'default'  => '',
                 'required' => array(
                    //array('amp-design-selector', '=' , '4'),
-                    array('content-font-family-enable', '=' , '1')
+                    array('content-font-family-enable', '=' , '1'),
+                    array('ampforwp-google-font-switch', '=', '1')
                 )
 
             ),
@@ -4391,15 +4414,15 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
 
                         'id'        => 'excerpt-option',
                         'type'      => 'switch',
-                        'title'     => __('Excerpt', 'accelerated-mobile-pages'),
+                        'title'     => esc_html__('Excerpt', 'accelerated-mobile-pages'),
                         'default'   => '1',
                 ),
                 array(
                         'id'        =>'amp-design-1-excerpt',
                         'class' => 'child_opt',
                         'type'      =>'text',
-                        'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
-                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                        'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
+                        'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
                         'required' => array(
                          array('amp-design-selector', '=' , '1'),
                          array('excerpt-option', '=' , '1'),
@@ -4412,7 +4435,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                         'id'        => 'excerpt-option-design-1',
                         'class' => 'child_opt',
                         'type'      => 'switch',
-                        'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                        'title'     => esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
                         'default'   => '0',
                         'required' => array(
                          array('amp-design-selector', '=' , '1'),
@@ -4422,7 +4445,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                 array(
                         'id'        => 'ampforwp-design1-cats-home',
                         'type'      => 'switch',
-                        'title'     => __('Category label', 'accelerated-mobile-pages'),
+                        'title'     => esc_html__('Category label', 'accelerated-mobile-pages'),
                         'default'   => '0',
                         'required' => array(
                          array('amp-design-selector', '=' , '1'),
@@ -4434,8 +4457,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                         'id'        =>'amp-design-2-excerpt',
                         'class' => 'child_opt',
                         'type'      =>'text',
-                        'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
-                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                        'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
+                        'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
                         'required' => array(
                          array('amp-design-selector', '=' , '2'),   
                          array('excerpt-option', '=' , '1')
@@ -4448,7 +4471,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                         'id'        => 'excerpt-option-design-2',
                         'class' => 'child_opt',
                         'type'      => 'switch',
-                        'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                        'title'     =>  esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
                         'default'   => '0',
                         'required' => array(
                          array('amp-design-selector', '=' , '2'),
@@ -4461,8 +4484,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                         'id'        =>'amp-design-3-excerpt',
                         'class' => 'child_opt',
                         'type'      =>'text',
-                        'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
-                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                        'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
+                        'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
                         'required' => array(
                          array('amp-design-selector', '=' , '3'),
                          array('excerpt-option', '=' , '1') ),
@@ -4473,7 +4496,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                         'id'        => 'excerpt-option-design-3',
                         'class' => 'child_opt',
                         'type'      => 'switch',
-                        'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                        'title'     =>  esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
                         'default'   => '0',
                         'required' => array(
                          array('amp-design-selector', '=' , '3'),
@@ -4485,8 +4508,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                         'id'        =>'amp-swift-excerpt-len',
                         'class' => 'child_opt',
                         'type'      =>'text',
-                        'tooltip-subtitle'  =>__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
-                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                        'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
+                        'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
                         'required' => array(
                          array('amp-design-selector', '=' , '4'),
                          array('excerpt-option', '=' , '1'),
@@ -4498,7 +4521,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                         'id'        => 'excerpt-option-design-4',
                         'class' => 'child_opt',
                         'type'      => 'switch',
-                        'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                        'title'     => esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
                         'default'   => '0',
                         'required' => array(
                          array('amp-design-selector', '=' , '4'),
