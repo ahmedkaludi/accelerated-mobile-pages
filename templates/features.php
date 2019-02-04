@@ -7314,6 +7314,9 @@ if ( ! function_exists('ampforwp_subtitles_support') ) {
 function ampforwp_subtitles_support(){
 if (class_exists('Subtitles')){
 	$post_id = get_the_ID();
+	if(ampforwp_is_front_page()){
+	$post_id = ampforwp_get_frontpage_id();
+	}
 	$subtitle = "";
 	$subtitle = get_post_meta( $post_id, Subtitles::SUBTITLE_META_KEY, true );
 	?>
