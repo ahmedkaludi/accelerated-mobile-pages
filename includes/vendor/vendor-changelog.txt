@@ -58,3 +58,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 31. Class AMP_Img_Sanitizer Updated #2748
 32. Widgets folder added in Vendor amp/includes #1400 
 33. Class AMP_Blacklist_Sanitizer updated #2835
+34. class-amp-style-sanitizer.php updated #2745

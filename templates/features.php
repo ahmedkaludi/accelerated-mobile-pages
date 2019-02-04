@@ -7783,3 +7783,11 @@ if ( ! function_exists('ampforwp_sd_feature_image_guidlines') ) {
 		return $metadata;
 	}
 }
+// Gutenberg Modules CSS #2707
+add_action('amp_post_template_css', 'ampforwp_gutenberg_css');
+if ( ! function_exists('ampforwp_gutenberg_css') ) {
+	function ampforwp_gutenberg_css(){ ?>
+		.wp-block-button { color: #fff}
+		.wp-block-button a {background-color: #32373c;border-radius: 28px;color: inherit;display: inline-block;padding: 12px 24px;}
+	<?php }
+} 

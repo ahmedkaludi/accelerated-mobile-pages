@@ -69,6 +69,7 @@ return array(
 		 						'name'		=>"btn_link",		
 		 						'label'		=>'URL',
 		           				'tab'     =>'customizer',
+		           				'helpmessage'	=> esc_html__('Enter URL with Valid Protocol(http, https, mailto, sms, tel, viber, whatsapp, ftp)', 'accelerated-mobile-pages'),
 		 						'default'	=>'#',	
 		           				'content_type'=>'html',
 	 						),

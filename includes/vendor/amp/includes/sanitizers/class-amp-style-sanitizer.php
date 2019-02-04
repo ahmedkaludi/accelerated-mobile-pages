@@ -25,15 +25,16 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 		if ( $node->hasAttributes() && $node instanceof DOMElement ) {
 			$style = $node->getAttribute( 'style' );
 			$class = $node->getAttribute( 'class' );
+			$tagName = $node->tagName;
 
 			if ( $style ) {
 				$style = $this->process_style( $style );
 				if ( ! empty( $style ) ) {
 					$class_name = $this->generate_class_name( $style );
 					$new_class  = trim( $class . ' ' . $class_name );
-
+					$selector = $tagName.'.' . $class_name;
 					$node->setAttribute( 'class', $new_class );
-					$this->styles[ '.' . $class_name ] = $style;
+					$this->styles[ $selector ] = $style;
 				}
 
 				$node->removeAttribute( 'style' );
