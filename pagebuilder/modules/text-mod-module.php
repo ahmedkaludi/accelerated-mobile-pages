@@ -2,7 +2,7 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
-	{{content_title}}
+	 <div {{if_id}}id="{{id}}"{{ifend_id}} class="{{user_class}}">{{content_title}}</div>
 ';
 $css = '
 {{module-class}}.text-mod{width:100%;max-width:{{max-width}};text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};font-size:{{font-size}};
@@ -31,7 +31,22 @@ return array(
 		 						'default'	=>'Write your content in Text Editor',	
 		           				'content_type'=>'html',
 	 						),
-
+						 array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 	 					array(
 		 						'type'		=>'text',		
 		 						'name'		=>"font-size",		

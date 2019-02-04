@@ -1,7 +1,7 @@
 <?php 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
-$output = '<div class="ln-fx">{{repeater}}</div>';
+$output = '<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx {{if_user_class}}{{user_class}}{{ifend_user_class}}">{{repeater}}</div>';
 $css = '
 {{if_condition_blurb_layout_type==1}}
 {{module-class}} .ln-fx{width:100%;display:flex; flex-wrap:wrap;margin:{{margin_css}};padding:{{padding_css}};}
@@ -56,7 +56,7 @@ $css = '
 }
 
 
-';
+'; 
 global $redux_builder_amp;
 if(ampforwp_get_setting('amp-rtl-select-option')){
 	$css .= '/** RTL CSS **/
@@ -81,9 +81,9 @@ return array(
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Content',
+              'layout' => 'Layout',
               'design'=>'Design',
-              'advanced' => 'Advanced',
-			  'layout' => 'Layout'
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
 						array(    
@@ -297,19 +297,35 @@ return array(
                             ),
 								'content_type'=>'css',
 							),
-							array(
-								'type'		=>'spacing',
-								'name'		=>"padding_gpg",
-								'label'		=>'Padding',
-								'tab'		=>'design',
-								'default'	=>array(
-													'left'=>'30px',
-													'right'=>'30px',
-													'top'=>'50px',
-													'bottom'=>'50px'
-												),
-								'content_type'=>'css',
-							),
+						array(
+							'type'		=>'spacing',
+							'name'		=>"padding_gpg",
+							'label'		=>'Padding',
+							'tab'		=>'design',
+							'default'	=>array(
+												'left'=>'30px',
+												'right'=>'30px',
+												'top'=>'50px',
+												'bottom'=>'50px'
+											),
+							'content_type'=>'css',
+						),
+						array(
+							'type'		=>'text',
+							'name'		=>"id",
+							'label'		=>'ID',
+							'tab'		=>'advanced',
+							'default'	=>'',
+							'content_type'=>'html'
+						),
+						array(
+							'type'		=>'text',
+							'name'		=>"user_class",
+							'label'		=>'Class',
+							'tab'		=>'advanced',
+							'default'	=>'',
+							'content_type'=>'html'
+						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

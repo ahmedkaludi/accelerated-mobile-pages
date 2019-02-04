@@ -2,6 +2,7 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="{{user_class}}">
 {{if_condition_carousel_layout_type==1}}
 	<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
 		{{repeater_image}}
@@ -111,7 +112,23 @@ return array(
 	 												'left'  	=>'Left',
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
-	 						),	
+	 						),
+	 						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),	
+							array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

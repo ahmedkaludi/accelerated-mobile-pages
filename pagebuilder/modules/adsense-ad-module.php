@@ -1,7 +1,8 @@
 <?php 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
-$output = '<amp-ad class="amp-ad-1"
+
+$output = '<amp-ad {{if_id}}id="{{id}}"{{ifend_id}} class="amp-ad-1 {{user_class}}"
 			type="adsense"
 			{{if_condition_ad_size_option==300x250}}width="300"{{ifend_condition_ad_size_option_300x250}}
 			{{if_condition_ad_size_option==336x280}}width="336"{{ifend_condition_ad_size_option_336x280}}
@@ -30,6 +31,10 @@ $css ='';
 return array(
 		'label' =>'Advertisement',
 		'name' =>'adsense-ad',
+		'tabs' => array(
+              'customizer'=>'Content',
+              'advanced' => 'Advanced'
+        ),
 		'default_tab'=> 'customizer',
 		'fields' => array(
 						array(		
@@ -68,6 +73,22 @@ return array(
 		 						'helpmessage'	=> 'e.g. 896xxxxx12',
 		           				'content_type'	=> 'html',
 	 						),
+						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,

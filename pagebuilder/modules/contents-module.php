@@ -3,8 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 require_once  ABSPATH . WPINC . '/category.php';
  $output = '{{if_condition_content_layout_type==1}}
-            <div class="pb_mod cat_mod"><h4>{{content_title}}</h4>   
-                <div class="wrap"><ul>{{category_selection}}</ul></div>    
+            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cat_mod {{user_class}}"><h4>{{content_title}}</h4>   
             </div>
           {{ifend_condition_content_layout_type_1}}
           ';
@@ -55,9 +54,9 @@ require_once  ABSPATH . WPINC . '/category.php';
     'default_tab'=> 'customizer',
     'tabs' => array(
               'customizer'=>'Content',
+              'layout' => 'Layout',
               'container_css'=>'Design',
-              'advanced' => 'Advanced',
-              'layout' => 'Layout'
+              'advanced' => 'Advanced'
             ),
  		'fields' => array(
             array(    
@@ -84,6 +83,22 @@ require_once  ABSPATH . WPINC . '/category.php';
  						'default'	=>'Category',	
             'content_type'=>'html',
  						),
+            array(
+                'type'    =>'text',
+                'name'    =>"id",
+                'label'   =>'ID',
+                'tab'   =>'advanced',
+                'default' =>'',
+                'content_type'=>'html'
+            ),
+            array(
+                'type'    =>'text',
+                'name'    =>"user_class",
+                'label'   =>'Class',
+                'tab'   =>'advanced',
+                'default' =>'',
+                'content_type'=>'html'
+              ),
             array(
                 'type'    =>'spacing',
                 'name'    =>"margin_css",

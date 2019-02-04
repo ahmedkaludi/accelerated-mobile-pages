@@ -2,7 +2,7 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
-<div class="ln-fx">{{repeater}}</div>';
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx {{user_class}}">{{repeater}}</div>';
 $css = '
 .icons-mod{margin:{{margin_css}};padding:{{padding_css}};}
 .ln-fx{width:100%;display:inline-flex;}
@@ -42,6 +42,22 @@ return array(
 								'tab'		=>'design',
 								'default'	=>'#ffffff',
 								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
 							),
 						array(
 								'type'		=>'spacing',

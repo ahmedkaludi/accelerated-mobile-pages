@@ -2,7 +2,7 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
-<div class="cta-tlt">
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="cta-tlt {{user_class}}">
 	<h2>{{content_title}}</h2>
 </div>
 <div class="cta-btn">
@@ -143,6 +143,22 @@ return array(
 		 						'default'	=>' ',	
 		           				'content_type'=>'html',
 	 						),
+	 					array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+	 					array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

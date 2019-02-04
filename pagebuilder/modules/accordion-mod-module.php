@@ -12,7 +12,7 @@ function ampforwp_framework_pagebuilder_accordions_scripts( $data ) {
 		return $data;
 }
 $output = 
-'<amp-accordion>{{repeater}}</amp-accordion>';
+'<amp-accordion {{if_id}}id="{{id}}"{{ifend_id}} {{if_user_class}}class="{{user_class}}{{ifend_user_class}}">{{repeater}}</amp-accordion>';
 $css = '
 .accordion-mod{margin:{{margin_css}};padding:{{padding_css}};}
 amp-accordion section[expanded] .show-more {display: none;}
@@ -40,6 +40,22 @@ return array(
 								'tab'		=>'design',
 								'default'	=>'#555555',
 								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"id",
+								'label'		=>'ID',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"user_class",
+								'label'		=>'Class',
+								'tab'		=>'advanced',
+								'default'	=>'',
+								'content_type'=>'html'
 							),
 						array(
 								'type'		=>'spacing',
