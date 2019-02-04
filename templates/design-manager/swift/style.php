@@ -512,6 +512,9 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 	<?php } // H6 Ends
  // swift Content Heading Sizes Ends?>
 .cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-wrap: break-word;}
+.artl-cnt ul li{list-style-type: none;position: relative;padding-left: 20px;}
+.artl-cnt ol{ padding-left:20px;}
+.artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;left: 0;top: 12px;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
 .m-ctr {
 position: fixed;
