@@ -7791,3 +7791,24 @@ if ( ! function_exists('ampforwp_gutenberg_css') ) {
 		.wp-block-button a {background-color: #32373c;border-radius: 28px;color: inherit;display: inline-block;padding: 12px 24px;}
 	<?php }
 } 
+// Subtitles Plugin Support #2853
+add_action('ampforwp_below_the_title','ampforwp_subtitles_support');
+if ( ! function_exists('ampforwp_subtitles_support') ) {
+function ampforwp_subtitles_support(){
+if (class_exists('Subtitles')){
+	$post_id = get_the_ID();
+	if(ampforwp_is_front_page()){
+		$post_id = ampforwp_get_frontpage_id();
+	}	
+	// exit if no post id is available.
+	if (empty($post_id)){
+		return;
+	}
+	$subtitle = "";
+	$subtitle = get_post_meta( $post_id, Subtitles::SUBTITLE_META_KEY, true );
+	?>
+	<h4 class="amp-wp-content"><?php echo esc_html($subtitle) ?></h4>
+<?php
+} 
+}
+}	
