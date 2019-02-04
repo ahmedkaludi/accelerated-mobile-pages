@@ -106,9 +106,6 @@ $callnowcolor = ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call');
 		.h-call a:after{color:<?php echo $callnowcolor['color'];?>;}
 	<?php }
  } ?>
-<?php if ( true == ampforwp_get_setting('ampforwp-callnow-button') ) { ?>
-.h-call a:after{content: "\e0cd";}
-<?php } ?>
 <?php if (function_exists('is_shop') && is_shop()){ ?>
 .h-shop a:after{align-self: center;}
 <?php } ?>
