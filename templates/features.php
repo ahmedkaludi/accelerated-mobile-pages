@@ -336,9 +336,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
 				$amp_url = untrailingslashit($current_search_url);
 			}
-
-			$amp_url = ampforwp_url_purifier($amp_url);
-
+			// WPML compatibility
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if( get_option('permalink_structure') && is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
 				global $sitepress_settings, $wp;
@@ -368,7 +366,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				    }
 				}
 			}
-
+			// URL Purifier
+			$amp_url = ampforwp_url_purifier($amp_url);
+			
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 	        if( $supported_amp_post_types) {					
