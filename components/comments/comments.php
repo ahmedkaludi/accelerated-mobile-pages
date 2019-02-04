@@ -25,6 +25,9 @@ function ampforwp_framework_get_comments(){
 					// Gather comments for a specific page/post
 					$postID = $comments = $max_page =  "";
 					$postID = get_the_ID();
+					if ( ampforwp_is_front_page() ) {
+						$postID = ampforwp_get_frontpage_id();
+					}
 					$comments = get_comments(array(
 							'post_id' => $postID,
 							'status' => 'approve' //Change this to the type of comments to be displayed
@@ -105,7 +108,7 @@ function ampforwp_framework_get_comments(){
 					} // if ( $comments )
 					if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
 						<div class="amp-comment-button">
-							<?php if ( comments_open() ) { ?>
+							<?php if ( comments_open($postID) ) { ?>
 						    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment' ) ); ?></a> <?php
 							} else {
 								echo "<p class='nocomments'>". esc_html( ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) )." </p>";

@@ -7309,14 +7309,17 @@ function ampforwp_return_no_gap(){
 function ampforwp_get_comments_status(){
 	global $redux_builder_amp;
 	$display_comments_on = "";
-	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==false ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
+	if ( false == ampforwp_get_setting('ampforwp-display-on-pages') && true == ampforwp_get_setting('ampforwp-display-on-posts')  ) {
 		$display_comments_on =  is_single();
 	}
-	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==false ) ) {
+	if ( true == ampforwp_get_setting('ampforwp-display-on-pages') && false == ampforwp_get_setting('ampforwp-display-on-posts') ) {
 		$display_comments_on =  is_page();
 	}
-	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
+	if ( true == ampforwp_get_setting('ampforwp-display-on-pages') && true == ampforwp_get_setting('ampforwp-display-on-posts')) {
 		$display_comments_on =  is_singular();
+		if ( ampforwp_is_front_page() ) {
+			$display_comments_on =  ampforwp_is_front_page();
+		}
 	}
 	$display_comments_on = apply_filters('ampforwp_comments_visibility', $display_comments_on);
 	return $display_comments_on;
