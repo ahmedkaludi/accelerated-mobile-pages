@@ -786,7 +786,7 @@ function ampforwp_title_custom_meta() {
 	        add_meta_box( 'ampforwp_title_meta', esc_html__( 'AMP Settings for Current Post','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
 	      }
 	      // Pages
-          if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
+          if( ampforwp_get_setting('amp-on-off-for-all-pages') && $post_type == 'page' ) {
               add_meta_box( 'ampforwp_title_meta', esc_html__( 'AMP Settings for Current Page' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
           }
           // Custom Post Types
