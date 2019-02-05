@@ -1380,6 +1380,7 @@ body .modal-footer .del-btn-modal{
     background: #fff;
     border: 1px solid #dedada;
     box-shadow: none;
+    line-height: 30px;
 }
 .amppb-layout-button.saved-layout .del-btn:hover{
     background:#fff;
