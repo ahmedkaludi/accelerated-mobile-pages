@@ -7088,7 +7088,7 @@ function ampforwp_comments_sanitizer(){
 		foreach ($comments as $comment) {
 			$comment_text = get_comment_text($comment->comment_ID);
 			$comment_text = wpautop( $comment_text );
-	    	$sanitizer = new AMP_Content( $comment_text, apply_filters( 'amp_content_embed_handlers', array(
+	    	$sanitizer = new AMPforWP_Content( $comment_text, apply_filters( 'amp_content_embed_handlers', array(
 		          'AMP_Twitter_Embed_Handler' => array(),
 		          'AMP_YouTube_Embed_Handler' => array(),
 		          'AMP_DailyMotion_Embed_Handler' => array(),
