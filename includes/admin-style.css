@@ -711,7 +711,18 @@ visibility: hidden;
     padding-right: 50px;
     padding-left:0;
 }
-
+/** Show AMP Current Page RTL**/
+.rtl .meta-radio-two{
+    float:right;
+}
+.rtl .ampforwp-preview-button-container{
+    float: left;
+}
+.rtl .prfx-row-content{
+    width:100%;
+    display:inline-block;
+    clear:both;
+}
 #redux_builder_amp-hide-amp-categories .inner-child span:before{
     content: "- "
 }
