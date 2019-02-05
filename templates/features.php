@@ -1572,6 +1572,12 @@ function ampforwp_replace_title_tags() {
 			 		$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
 			 	}
 			}
+			if(ampforwp_is_home()){
+				$WPSEO_Frontend = WPSEO_Frontend::get_instance();
+				if ( $site_title ){
+					$site_title = $WPSEO_Frontend->get_title_from_options( 'title-home-wpseo' );
+				}
+			}
 		}
 
 		if ( is_search() ) {
