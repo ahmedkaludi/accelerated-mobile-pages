@@ -161,6 +161,10 @@ function ampforwp_icons_list_format(){
 
 add_action( 'wp_ajax_ampforwp_pb_cats', 'ampforwp_pb_cats');
 function ampforwp_pb_cats(){
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
 	$cats = $taxs = array();
 	$post = '';
 	$post = $_POST['selected_val'];

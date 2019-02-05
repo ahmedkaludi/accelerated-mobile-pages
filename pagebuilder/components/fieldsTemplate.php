@@ -40,10 +40,10 @@
         <div class="clearfix"></div>
     </div>
     
-    <div class="amp-form-control" :id="field.name" data-type="select" v-else-if="field.type=='select' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)" @change="changeOnSelect()">
+    <div class="amp-form-control" :id="field.name" data-type="select" v-else-if="field.type=='select' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         <div class="form-label">{{field.label}}</div>
         <div class="form-field">
-            <select type="text" class="full text" :id="field.id" :name="field.name" v-model="field.default" v-if="field.options_details.length!=0" :data-ajax="field.ajax" :data-ajax-dep="field.ajax_dep" :data-ajax-action="field.ajax_action">
+            <select type="text" class="full text" :id="field.id" :name="field.name" v-model="field.default" v-if="field.options_details.length!=0" :data-ajax="field.ajax" :data-ajax-dep="field.ajax_dep" :data-ajax-action="field.ajax_action" @change="changeOnSelect()">
                 <option value="">Select option</option>
                 <option 
                     v-for="(option, key, index) in field.options_details"

@@ -100,6 +100,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
 			$components_options = array(
 									"ajaxUrl"=>admin_url( 'admin-ajax.php' ),
+									"secure_nonce" => wp_create_nonce('verify_pb'),
 									"savedLayouts"=>$allPostLayout,
 									"startPagebuilder"=>($ampforwp_metas['use_ampforwp_page_builder']=='yes'? 1:0),
 									"checkedPageBuilder"=>$ampforwp_metas['ampforwp_page_builder_enable'],
