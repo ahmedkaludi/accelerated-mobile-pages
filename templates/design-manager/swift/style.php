@@ -1737,11 +1737,6 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
     max-width: 1000px;
 }
 <?php } ?>
-<?php if(ampforwp_get_setting('ampforwp-amp-menu-swift') == false){?>
-.hamb-mnu .h-nav{
-	display:none;
-}
-<?php } ?>
 <?php } // levelup condition ends here?>
 <?php if (checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 	.sp-cnt .cntr {max-width: 100%;margin:0;width:100%;padding:0}	

@@ -16,23 +16,16 @@ if (! function_exists( 'ampforwp_menu') ) {
 	      'amp-menu' => __( 'AMP Menu','accelerated-mobile-pages' ),
 	    )
 	  );
-	}
-	}
-	add_action( 'init', 'ampforwp_menu' );
-}
-
-// 1.2 Footer Menu	
-add_action( 'init', 'ampforwp_footermenu' );
-if ( ! function_exists( 'ampforwp_footermenu') ) {
-	function ampforwp_footermenu() {
-		register_nav_menus(
+	  }
+	  // 1.2 Footer Menu	
+	  register_nav_menus(
 			array(
 			  'amp-footer-menu' => __( 'AMP Footer Menu','accelerated-mobile-pages' ),
 			)
-		);
+		);	
 	}
+	add_action( 'init', 'ampforwp_menu' );
 }
-
 
 // 2. Newsletter code
 require_once( AMPFORWP_PLUGIN_DIR . '/includes/newsletter.php' );
