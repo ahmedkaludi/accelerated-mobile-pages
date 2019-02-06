@@ -1443,7 +1443,7 @@ $tabs = array(
             $default = '';
             include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
             if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
-                $default = 1;
+                $default = 'yoast';
             }
             elseif ( is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php') ) {
                 $default = 2;
@@ -1506,7 +1506,7 @@ $tabs = array(
                 'title'    => __('Select SEO Plugin', 'accelerated-mobile-pages'),
                 'placeholder' => 'Select the SEO Plugin',
                 'options'  => array(
-                    '1'    => 'Yoast',
+                    'yoast'    => 'Yoast',
                     '2'    => 'All in One SEO',
                     'seopress'    => 'SEOPress',
                     'genesis'    => 'Genesis',

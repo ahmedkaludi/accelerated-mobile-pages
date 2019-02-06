@@ -1526,6 +1526,10 @@ function ampforwp_replace_title_tags() {
 			$post_id = ampforwp_get_frontpage_id();
 			$post = get_post($post_id);
 		}
+		if ( ampforwp_is_blog() ) {
+			$post_id = ampforwp_get_blog_details('id');
+			$post = get_post($post_id);
+		}
 		if ( !$post ) {
 			return;
 		}
@@ -1561,28 +1565,29 @@ function ampforwp_replace_title_tags() {
 				$ID = ampforwp_get_blog_details('id');
 				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
 			}
-			// Custom Front Page Title From Yoast SEO #1163
-			if ( class_exists('WPSEO_Meta_Columns') && (ampforwp_is_front_page() || ampforwp_is_blog()) ) {
-			 	$ID = ampforwp_get_frontpage_id();
-			 	if ( ampforwp_is_blog() ) {
-			 		$ID = ampforwp_get_blog_details('id');
-			 	}
-			 	$fixed_title = WPSEO_Meta::get_value( 'title', $ID );
-			 	if ( $fixed_title ) {
-			 		$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
-			 	}
-			}
-			if(class_exists('WPSEO_Frontend') && ampforwp_is_home()){
-				$WPSEO_Frontend = WPSEO_Frontend::get_instance();
-				if ( $site_title ){
-					$site_title = $WPSEO_Frontend->get_title_from_options( 'title-home-wpseo' );
-				}
-			}
 		}
 
 		if ( is_search() ) {
 			$site_title = $redux_builder_amp['amp-translator-search-text'] . ' ' . get_search_query();
 		}
+
+		// Yoast SEO Title compatibility #2871
+		if( class_exists('WPSEO_Frontend') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') ) { 
+			$yoast_title = $WPSEO_Frontend = '';
+			$WPSEO_Frontend = WPSEO_Frontend::get_instance();
+			$yoast_title = $WPSEO_Frontend->title($site_title);
+			if ( ampforwp_is_home() ) {
+				$yoast_title = $WPSEO_Frontend->get_title_from_options( 'title-home-wpseo' );
+			}
+			// Custom Front Page Title From Yoast SEO #1163
+			if ( ampforwp_is_front_page() || ampforwp_is_blog() ) {
+				$yoast_title = WPSEO_Meta::get_value( 'title', $post_id );
+			}
+		 	if ( $yoast_title ) {
+		 		$site_title = apply_filters( 'wpseo_title', $yoast_title );
+		 	}
+		}
+
 		//Genesis #1013
 		if( function_exists('genesis_title') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ){
 			if(is_home() && is_front_page() && !$redux_builder_amp['amp-frontpage-select-option']){
