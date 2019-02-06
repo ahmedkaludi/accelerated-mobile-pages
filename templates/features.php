@@ -1572,6 +1572,12 @@ function ampforwp_replace_title_tags() {
 			 		$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
 			 	}
 			}
+			if(class_exists('WPSEO_Frontend') && ampforwp_is_home()){
+				$WPSEO_Frontend = WPSEO_Frontend::get_instance();
+				if ( $site_title ){
+					$site_title = $WPSEO_Frontend->get_title_from_options( 'title-home-wpseo' );
+				}
+			}
 		}
 
 		if ( is_search() ) {
@@ -1674,8 +1680,8 @@ function ampforwp_replace_title_tags() {
 			if ( !empty($aiseop_title) ) {
 				$site_title = $aiseop_title;
 			}
-			add_filter('aioseop_title', '__return_false');
 		}
+			add_filter('aioseop_title', '__return_false');
 		//Bridge Qode SEO Compatibility #2538
 		if ( function_exists('qode_wp_title') && 'bridge' == ampforwp_get_setting('ampforwp-seo-selection')){
 		$site_title = get_post_meta($post_id, "qode_seo_title", true);
@@ -2853,46 +2859,48 @@ function amp_latest_products_styling() {
 // 54. Change the default values of post meta for Posts, Pages and CPTs
 add_action('admin_head','ampforwp_change_default_amp_post_meta',12);
 function ampforwp_change_default_amp_post_meta() {
-	global $redux_builder_amp;
+	global $redux_builder_amp, $post;
 	$amp_post_metas = array();
-	$amp_post_metas = json_decode(get_post_meta( get_the_ID(),'ampforwp-post-metas',true), true );
-	$post_types = ampforwp_get_all_post_types();
-	if ( $post_types ) {
-		foreach ($post_types as $post_type ) {
-			$post_check_meta	= get_option('ampforwp_default_'.$post_type.'s_to');
-			$post_checker			= 'show';
-			$post_control			= $redux_builder_amp['amp-'.$post_type.'s-meta-default'];
-			$post_meta_to_update = 'default';
-
-			if ( $post_control  === 'hide' ) {
-				$post_checker				= 'hide';
-				$post_meta_to_update 		= 'hide-amp';
-			}
-			// Check and Run only if the value has been changed, else return
-			if ( get_option('ampforwp_default_'.$post_type.'s_to') !== $post_checker ) {
-				// Get all the pages and update the post meta
-				if( 'page' == $post_type ) {
-				    $pages = get_pages(array());
-				    foreach($pages as $page){
-						$amp_post_metas['ampforwp-amp-on-off'] = $meta_value_to_upate;
-						update_post_meta( $post_id, 'ampforwp-post-metas', json_encode($amp_post_metas) );
-				        //update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
-				    }
-				}
-				// Get all the pages and update the post meta
-				else {
-					$posts = get_posts(array('post_type'=>$post_type));
-					foreach($posts as $post){
-						$amp_post_metas['ampforwp-amp-on-off'] = $meta_value_to_upate;
-						update_post_meta( $post_id, 'ampforwp-post-metas', json_encode($amp_post_metas) );
-					    //update_post_meta($post->ID,'ampforwp-amp-on-off', $post_meta_to_update);
-					}
-				}
-				// Update the option as the process has been done and update an option
-				update_option('ampforwp_default_'.$post_type.'s_to', $post_checker);
-			}
+	// Hide AMP Bulk Tools For Posts
+	if ( 'post' == $post->post_type ) {
+		$post_check_meta	= get_option('ampforwp_default_posts_to');
+		$post_checker			= 'show';
+		$post_control			= ampforwp_get_setting('amp-posts-meta-default');
+		$post_meta_to_update = 'default';
+		if ( $post_control  === 'hide' ) {
+			$post_checker				= 'hide';
+			$post_meta_to_update 		= 'hide-amp';
 		}
-	}	
+		if ( $post_check_meta !== $post_checker ) {
+			$posts = get_posts(array('post_type'=>$post_type));
+			foreach($posts as $post){
+				$amp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas',true), true );
+				$amp_post_metas['ampforwp-amp-on-off'] = $post_meta_to_update;
+				update_post_meta( $post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
+			}
+			update_option('ampforwp_default_posts_to', $post_checker);
+		}
+	}
+	// Hide AMP Bulk Tools For Pages
+	if ( 'page' == $post->post_type ) {
+		$post_check_meta	= get_option('ampforwp_default_pages_to');
+		$post_checker			= 'show';
+		$post_control			= ampforwp_get_setting('amp-pages-meta-default');
+		$post_meta_to_update = 'default';
+		if ( $post_control  === 'hide' ) {
+			$post_checker				= 'hide';
+			$post_meta_to_update 		= 'hide-amp';
+		}
+		if ( $post_check_meta !== $post_checker ) {
+			$pages = get_pages(array());
+			foreach($pages as $page){
+			$amp_post_metas = json_decode(get_post_meta( $page->ID,'ampforwp-post-metas',true), true );
+				$amp_post_metas['ampforwp-amp-on-off'] = $post_meta_to_update;
+				update_post_meta( $page->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
+			}
+			update_option('ampforwp_default_pages_to', $post_checker);
+		}
+	}
 	return ;
 }
 
@@ -4949,55 +4957,43 @@ function ampforwp_url_purifier($url){
 			}
 			$quried_value 	= get_query_var($queried_var);
 			$url  = add_query_arg($queried_var,$quried_value, $url);
-			//$url = $url .'&'. $queried_var .'='. $quried_value;
 		}
-		/*if ( is_home() && get_query_var('paged') > 1 ) {
-			$quried_value = get_query_var('paged');
-			$url = add_query_arg('paged',$quried_value, $url);
-			if ( get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
-				$quried_value2 = get_query_var('page_id');
-				$url = add_query_arg('page_id',$quried_value2, $url);
-			}
-		}
-		elseif ( is_home() && get_query_var('paged') < 1 && get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
-			$quried_value2 = get_query_var('page_id');
-			$url = add_query_arg('page_id',$quried_value2, $url);
-		}*/
 	} else {
 		if ( is_singular() && true == $checker ) {
 			$url = untrailingslashit($url);
 		}
 		if ( is_home() || is_archive() || is_front_page() ) {
-	        if ( is_archive() && get_query_var('paged') > 1 || is_home() && get_query_var('paged') > 1 ) {
+	        if ( ( is_archive() || is_home() ) && get_query_var('paged') > 1 ) {
 	        	if ( true == $checker )
 	        		$url = trailingslashit($url).$endpointq;
 	        	else
 	          		$url = user_trailingslashit( trailingslashit($url) );
 	        } else {
-	        	if ( true == $checker )
+	        	if ( true == $checker && false == strpos($url, $endpointq) )
 	        		$url =  trailingslashit($url) . $endpointq;
-	        	else
-	          		$url = user_trailingslashit( trailingslashit($url) . $endpoint );
+	        	else {
+	        		if ( false == strpos($url, $endpoint) )
+	          			$url = user_trailingslashit( trailingslashit($url) . $endpoint );
+	          	}	
 	        }
       	}
 	}
 	if ( is_singular() && !empty($_SERVER['QUERY_STRING']) ) {
-	      $query_arg   = wp_parse_args($_SERVER['QUERY_STRING']);
-	      $query_name = '';
-			if(is_single()){
-				$query_name = isset($wp_query->query['name'])?$wp_query->query['name']:'';	
-			}
-			else{
-				$query_name = isset($wp_query->query['pagename'])?$wp_query->query['pagename']:'';
-			}
-	      	if( ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) ){
-           	 	unset($query_arg['q']);
-          	}
-	  		else if ( $query_name && isset( $query_arg['q'] ) ){ 
-	  			unset($query_arg['q']); 
-	  		}
-	      
-	      $url     = add_query_arg( $query_arg, $url);
+	    $query_arg   = wp_parse_args($_SERVER['QUERY_STRING']);
+	    $query_name = '';
+		if(is_single()){
+			$query_name = isset($wp_query->query['name'])?$wp_query->query['name']:'';	
+		}
+		else{
+			$query_name = isset($wp_query->query['pagename'])?$wp_query->query['pagename']:'';
+		}
+      	if( ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) ){
+       	 	unset($query_arg['q']);
+      	}
+  		else if ( $query_name && isset( $query_arg['q'] ) ){ 
+  			unset($query_arg['q']); 
+  		}      
+      	$url     = add_query_arg( $query_arg, $url);
 	}
 	return apply_filters( 'ampforwp_url_purifier', $url );
 }
@@ -7086,7 +7082,7 @@ function ampforwp_comments_sanitizer(){
 		foreach ($comments as $comment) {
 			$comment_text = get_comment_text($comment->comment_ID);
 			$comment_text = wpautop( $comment_text );
-	    	$sanitizer = new AMP_Content( $comment_text, apply_filters( 'amp_content_embed_handlers', array(
+	    	$sanitizer = new AMPforWP_Content( $comment_text, apply_filters( 'amp_content_embed_handlers', array(
 		          'AMP_Twitter_Embed_Handler' => array(),
 		          'AMP_YouTube_Embed_Handler' => array(),
 		          'AMP_DailyMotion_Embed_Handler' => array(),
@@ -7146,6 +7142,7 @@ if (! function_exists('ampforwp_bulktool_takeover') ) {
 function ampforwp_bulktool_takeover($data){
 	$bulk_option = ampforwp_get_setting('amp-pages-meta-default');
 	if(is_page() && $bulk_option == "hide" && (true == ampforwp_get_setting('ampforwp-amp-takeover') || true == ampforwp_get_setting('ampforwp-amp-convert-to-wp'))){
+		remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 		return false; 
 	}
 	return $data;
@@ -7457,16 +7454,3 @@ function ampforwp_jetpacksubscription_submit(){
 	}
 }
 //Jetpack subscription Widget End
-
-//  Compatibility with the footnotes plugin. #2447
-add_action('amp_post_template_css','ampforwp_footnote_support');
-if ( ! function_exists('ampforwp_footnote_support') ) {
-function ampforwp_footnote_support(){
-if(class_exists('MCI_Footnotes')){?>
-.footnote_tooltip {
-    display: none;
-}
-<?php 
-}
-}
-}

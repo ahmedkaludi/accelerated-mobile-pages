@@ -485,7 +485,7 @@ $ampforwp_metas = array();
 if ( empty( $post_id )) {
 	
 	$post_id = get_queried_object_id();
-if ( ampforwp_is_front_page() ) {
+	if ( ampforwp_is_front_page() ) {
 		$post_id = ampforwp_get_frontpage_id();
 	}
 	elseif ( ampforwp_polylang_front_page() ) {
@@ -495,7 +495,7 @@ if ( ampforwp_is_front_page() ) {
 
 $thisTemplate = new AMP_Post_Template($post_id); ?>
     <?php 
-    if ( 1 == $redux_builder_amp['amp-design-selector']  ) {
+    if ( 1 == ampforwp_get_setting('amp-design-selector')  ) {
 		do_action('ampforwp_inside_post_content_before',$thisTemplate); 
 	}
 	else{

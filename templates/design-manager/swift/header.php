@@ -95,9 +95,11 @@ if(!function_exists('levelup_check_hf_builder') || (function_exists('levelup_che
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
             <div class="head h_m_w">
+              <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true) {?>
                 <div class="h-nav">
                     <label for="offcanvas-menu" class="t-btn"></label>
                 </div><!--end menu-->
+                <?php } ?>
                 <div class="logo">
                     <?php amp_logo(); ?>
                 </div><!-- /.logo -->
@@ -220,9 +222,11 @@ if(!function_exists('levelup_check_hf_builder') || (function_exists('levelup_che
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
             <div class="head-2 h_m_w">
+                <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true) {?>
                 <div class="h-nav">
                    <label for="offcanvas-menu" class="t-btn"></label>
                 </div><!-- /.left-nav -->
+                <?php } ?>
                 <div class="h-logo">
                     <?php amp_logo(); ?>
                 </div>
@@ -362,9 +366,11 @@ if(!function_exists('levelup_check_hf_builder') || (function_exists('levelup_che
                             <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
                         </div>
                     <?php } ?>
+                    <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true) {?>
                     <div class="h-nav">
                        <label for="offcanvas-menu" class="t-btn"></label>
                     </div><!-- /.left-nav --> 
+                    <?php } ?>
                 </div>
             </div>
         </div>

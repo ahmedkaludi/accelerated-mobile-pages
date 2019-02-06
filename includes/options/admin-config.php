@@ -3715,7 +3715,10 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                     'true'      => 'true',
                     'false'     => 'false',
                     'default'   => '1',
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
+                    'required' => array(
+                    array('amp-design-selector', '=' , '4'),
+                    array('ampforwp-amp-menu-swift', '=' , '1')
+                ),
             ),
             array(
                     'id'             => 'primary-menu-padding-control',
