@@ -6768,7 +6768,19 @@ if( ! function_exists(' ampforwp_modify_ivory_search ') ){
 		return $menu;
 	}
 }
-
+add_action('amp_post_template_css','ampforwp_ivory_search_css');
+function ampforwp_ivory_search_css(){
+	if(class_exists('Ivory_Search')){?>
+		svg.icon.icon-search {
+		    display: none;
+		}
+		input.search-field {
+		    display: inline-block;
+		}
+		svg.search-icon {
+		    display: none;
+		}
+<?php } }
 // Ajax functions
 add_action( 'wp_ajax_categories', 'ampforwp_ajax_cats' );
 function ampforwp_ajax_cats(){
