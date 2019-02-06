@@ -324,8 +324,10 @@ if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 			$metadata['uploadDate'] = $metadata['datePublished'];
 			$metadata['thumbnailUrl'] = $structured_data_video_thumb_url;
 			$desc = $post->post_content;
-			$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '30' ) );	
-			$metadata['description'] = $desc;		       
+			$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '30' ) );
+			if($desc){	
+				$metadata['description'] = $desc;	
+			}	       
 		}
 		// Recipe
 		if ( isset($metadata['@type']) && 'Recipe' == $metadata['@type'] ) {
