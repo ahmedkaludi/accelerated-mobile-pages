@@ -84,7 +84,7 @@ header .cntr{
 <?php
 $callnowcolor = ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call');
 	if ( !empty($callnowcolor['color']) ) { ?>
-		.h-call a:after{color:<?php echo $callnowcolor['color'];?>;}
+		.h-call a:after{color:<?php echo ampforwp_sanitize_color($callnowcolor['color']);?>;}
 	<?php }
  } ?>
 .h-shop a:after{align-self: center;}
