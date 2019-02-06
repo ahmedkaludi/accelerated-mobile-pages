@@ -293,7 +293,20 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 .right a, .left a{background: <?php echo $swift_cs_color; ?>;padding: 8px 22px 12px 25px;color: #fff;line-height: 1;border-radius: 46px;font-size: 14px;display: inline-block;}
 .right a:after{content:"»";display: inline-block;padding-left: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: 1px;}
 .left a:before{content:"«";display: inline-block;padding-right: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: -1px;}
-
+.cntn-wrp.srch p { margin: 30px 0px 30px 0px; }
+.cntn-wrp.srch{
+font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;
+<?php
+ $fontFamily = "font-family: 'Arial, Helvetica, sans-serif'";
+if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
+	 $fontFamily = "font-family: 'Poppins', sans-serif;";
+	if(isset($redux_builder_amp['amp_font_selector_content_single']) && $redux_builder_amp['amp_font_selector_content_single'] != 1 && !empty($redux_builder_amp['amp_font_selector_content_single'])){ 
+		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_single']."';";
+	}  
+}
+echo $fontFamily;
+?>
+}
 @media(max-width:1110px){
     .amppb-fluid .col{max-width:95%}
     .sf-img .wp-caption-text{width:100%;padding:10px 40px;}
