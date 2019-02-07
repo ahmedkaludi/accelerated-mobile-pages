@@ -1523,7 +1523,7 @@ $tabs = array(
                'tooltip-subtitle'     => __('Adds Social and Open Graph Meta Tags from Yoast', 'accelerated-mobile-pages'),
                'title'    => __( 'Meta Tags from Yoast', 'accelerated-mobile-pages' ),
                'default'  => '1',
-               'required'  => array('ampforwp-seo-selection', '=' , '1'),
+               'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
            ),
            array(
                'class' => 'child_opt',
@@ -1532,7 +1532,7 @@ $tabs = array(
                'tooltip-subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'accelerated-mobile-pages'),
                'title'    => __( 'Yoast Description in ld+json', 'accelerated-mobile-pages' ),
                'default'  => 0,
-               'required'  => array('ampforwp-seo-selection', '=' , '1'),
+               'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
            ),
            array(
                'class' => 'child_opt',
@@ -1541,7 +1541,7 @@ $tabs = array(
                'tooltip-subtitle'     => __('Pull Canonical from Yoast for AMP pages', 'accelerated-mobile-pages'),
                'title'    => __( 'Canonical from Yoast', 'accelerated-mobile-pages' ),
                'default'  => 0,
-               'required'  => array('ampforwp-seo-selection', '=' , '1'),
+               'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
            ),
            array(
                 'id'       => 'ampforwp-seo-aioseo',

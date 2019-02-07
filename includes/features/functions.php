@@ -175,7 +175,7 @@ function ampforwp_generate_meta_desc($json=""){
         }
 
         // Yoast 
-        if ( class_exists('WPSEO_Frontend') && 1 == $redux_builder_amp['ampforwp-seo-selection'] ) {
+        if ( class_exists('WPSEO_Frontend') && 'yoast' == $redux_builder_amp['ampforwp-seo-selection'] ) {
             $front = $yoast_desc = '';
             $front = WPSEO_Frontend::get_instance();
             $yoast_desc = addslashes( strip_tags( $front->metadesc( false ) ) );
