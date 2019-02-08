@@ -3039,25 +3039,7 @@ Redux::setSection( $opt_name, array(
                 'img' => AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png',
             ),
         );
-    if(count(get_plugins())>0){
-        foreach (get_plugins() as $key => $value) {
-            $plugin = get_plugin_data(WP_PLUGIN_DIR.'/'.$key);
-            if(!empty($plugin['AMP'])){//$plugin['AMP']
-				$imageUrl = '';
-				if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR.$value['TextDomain'].'/screenshot.png')){
-					$imageUrl = plugins_url($value['TextDomain'].'/screenshot.png');
-				}
-                $themeDesign[] = array(
-                                    'demo_link' => $plugin['AMP Demo'],
-									'upgrade'=>true,
-									'title'=>$plugin['AMP'],
-									'value'=>$value['TextDomain'],
-									'alt'=>$plugin['AMP'],
-									'img'=>$imageUrl,
-								);
-            }
-        }
-    }
+    $themeDesign = apply_filters( 'ampforwp_custom_theme_install', $themeDesign );
     // Themes Section
  Redux::setSection( $opt_name, array(
                 'title'      => __( 'Themes', 'accelerated-mobile-pages' ),                'class' => 'ampforwp-new-element',
