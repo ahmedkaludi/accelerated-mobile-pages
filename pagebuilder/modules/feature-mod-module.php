@@ -119,7 +119,7 @@ return array(
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
-	 							'label' =>"Content Alignment",
+	 							'label' => esc_html__('Content Alignment','accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'center',
 	 							'options_details'=>array(
