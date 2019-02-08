@@ -5577,7 +5577,7 @@ $single_page_options = array(
                 array(
                         'id'       => 'ampforwp-footer-background-color-1',
                         'type'     => 'color_rgba',
-                        'title'    => __('Footer Background Color', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Footer Background Color', 'accelerated-mobile-pages'),
                         'default'   => array(
                                 'color' => '#FFFFFF'
                         ),
@@ -5588,7 +5588,7 @@ $single_page_options = array(
                 array(
                         'id'       => 'ampforwp-footer-background-color-2',
                         'type'     => 'color_rgba',
-                        'title'    => __('Footer Background Color', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Footer Background Color', 'accelerated-mobile-pages'),
                         'default'   => array(
                                 'color' => '#FFFFFF'
                         ),
@@ -5599,7 +5599,7 @@ $single_page_options = array(
                 array(
                         'id'       => 'ampforwp-footer-background-color-3',
                         'type'     => 'color_rgba',
-                        'title'    => __('Footer Background Color', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Footer Background Color', 'accelerated-mobile-pages'),
                         'default'   => array(
                                 'color' => '#151515'
                         ),
