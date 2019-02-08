@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.3
-Stable tag: 0.9.97.31
+Stable tag: 0.9.97.32
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,6 +183,17 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.32 (8th February 2019) =
+* Added: Rank Math SEO compatibility integrated #2701 & #2736
+* Added: New filter "ampforwp_modify_thumb_url_array" to modify the thumbnail #2739
+* Fixed: 'Call Button Color' option not working - code updated #2820
+* Fixed: Validation error when uploading YouTube video in Comments #2827
+* Fixed: When Mobile Redirection option is enabled then, fr (language symbol) is removed from the URL. #2721
+* Fixed: Category Module from Page Builder not displaying #2870
+* Fixed: The homepage displays the title of the first post in All in one SEO #2865
+* Fixed: Title mismatch in some posts with Yoast #2871
+
 
 = 0.9.97.31 (4th February 2019) =
 * Added: Subtitles plugin Compatibility #2853
