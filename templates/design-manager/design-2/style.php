@@ -151,7 +151,7 @@ $footer_back_color = $redux_builder_amp['ampforwp-footer-background-color-2']['c
 if (empty($footer_back_color)) {
  $footer_back_color = '#FFFFFF'; 
 } ?>
-#footer{ background: <?php echo sanitize_hex_color($footer_back_color);?>; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
+#footer{ background: <?php echo ampforwp_sanitize_color($footer_back_color);?>; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
 #footer p:first-child{ margin-bottom: 12px; }
 #footer p{ margin: 0 }
 .footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }
