@@ -87,7 +87,9 @@ function ampforwp_design_selector() {
       			return $redux_builder_amp['amp-design-selector'];
     	}
 		else {
-	    	return $redux_builder_amp['amp-design-selector'];
+			if(file_exists(WP_PLUGIN_DIR.'/'.$redux_builder_amp['amp-design-selector'].'/functions.php')){
+	    		return $redux_builder_amp['amp-design-selector'];
+			}else{ return 4; }
 		}
     	return 2;
     } 
