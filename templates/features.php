@@ -2524,16 +2524,24 @@ function ampforwp_replace_title_tags() {
 				$site_title = $genesis_title;
 			}
 		}
-
 		// All in One SEO #2816
-		if ( class_exists('All_in_One_SEO_Pack') && ampforwp_is_front_page() ) {
-			$aiseop_title = $post = '';
-			$aiseop_title = get_post_meta( $post_id, '_aioseop_title', true );
-			if ( !empty($aiseop_title) ) {
-				$site_title = $aiseop_title;
-			}
-			add_filter('aioseop_title', '__return_false');
-		}
+	   	if ( class_exists('All_in_One_SEO_Pack') && ( ampforwp_is_front_page() )) {
+	        $aiseop_title = $post = '';
+	        $aiseop_title = get_post_meta( $post_id, '_aioseop_title', true );
+	        if ( !empty($aiseop_title) ) {
+	          $site_title = $aiseop_title;
+	        }
+	        add_filter('aioseop_title', '__return_false');
+	    }
+	    if(class_exists('All_in_One_SEO_Pack') && ampforwp_is_home()){
+	        global $aioseop_options;
+	        if(!empty($aioseop_options['aiosp_home_title'])){
+	        	$aiseop_title = $aioseop_options['aiosp_home_title'];
+	        }
+	        if ( !empty($aiseop_title) ) {
+	           $site_title = $aiseop_title;
+	         }
+	     }
 		// Custom Front Page Title From Rank Math SEO #2701
 		if ( defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 		 	$site_title = RankMath\Post::get_meta( 'title', $post_id );
