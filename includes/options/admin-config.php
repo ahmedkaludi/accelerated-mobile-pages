@@ -1839,6 +1839,9 @@ Redux::setArgs( "redux_builder_amp", $args );
             elseif ( is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php') ) {
                 $default = 2;
             }
+            elseif ( defined( 'RANK_MATH_FILE' ) ) {
+                $default = 'rank_math';
+            }
             return $default;
         }
     }
@@ -1885,7 +1888,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'    => esc_html__('Select SEO Plugin', 'accelerated-mobile-pages'),
                 'options'  => array(
                     '1'       => 'Yoast',
-                    '2'     => 'All in One SEO'
+                    '2'     => 'All in One SEO',
+                    'rank_math' => 'Rank Math SEO'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),
