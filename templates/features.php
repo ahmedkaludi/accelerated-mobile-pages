@@ -2915,7 +2915,7 @@ function ampforwp_change_default_amp_post_meta() {
 add_action('amp_post_template_head','ampforwp_meta_description');
 function ampforwp_meta_description() {
 	global $redux_builder_amp;
-	if ( ! $redux_builder_amp['ampforwp-seo-meta-description'] || '6' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+	if ( ! $redux_builder_amp['ampforwp-seo-meta-description'] || 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 		return;
 	}
 	$desc = "";
