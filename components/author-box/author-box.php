@@ -77,33 +77,20 @@ if ( isset($args['show_time']) ) {
         </div>
         <?php } ?>
         <?php 
-        // yoast author twitter handle
-        $twitter = '';
-        include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
-        if (  class_exists('WPSEO_Frontend') ) {
-            global $post;
-            $twitter = get_the_author_meta( 'twitter', $post->post_author );
-        }
         echo '<div class="author-details '. $author_wrapper_class .'">';
         if ( true == $redux_builder_amp['ampforwp-author-page-url'] ){
             if ( function_exists('coauthors_posts_links') ) {
                 echo '<span class="author-name">' .$author_prefix . $author_link . ' </span>';
-                if($twitter){
-                    echo ' <span><a href="https://twitter.com/'.$twitter.'" target="_blank">@'.$twitter.'</a></span>';
-                }
+                echo ampforwp_yoast_twitter_handle();
             }
             else {
                 echo '<span class="author-name">' .$author_prefix . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $author_name ).'</a></span>';
-                if($twitter){
-                    echo ' <span><a href="https://twitter.com/'.$twitter.'" target="_blank">@'.$twitter.'</a></span>';
-                }
+                echo ampforwp_yoast_twitter_handle();
             }
         }
         else
             echo '<span class="author-name">' . $author_prefix . esc_html( $author_name ) . '</span>';
-        if($twitter){
-                    echo ' <span><a href="https://twitter.com/'.$twitter.'" target="_blank">@'.$twitter.'</a></span>';
-                }
+            echo ampforwp_yoast_twitter_handle();
 
         //to show date and time
         if ( $show_date || $show_time ) {

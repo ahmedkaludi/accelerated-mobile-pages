@@ -37,12 +37,6 @@ if( ampforwp_get_setting( 'amp-author-description') && is_single() && !class_exi
 	        <?php $post_author = $this->get( 'post_author' );
 		        $twitter = '';
 	            if ( $post_author ) {
-	            	// yoast author twitter handle
-			        	include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
-			            if ( class_exists('WPSEO_Frontend') ) {
-				        	global $post;
-				        	$twitter = get_the_author_meta( 'twitter', $post->post_author );
-				        }
 	            	//If Avatar is set up in WP user avatar: grab it
 	            	$author_avatar_url = ampforwp_get_wp_user_avatar();
 	            	//Else : Get the Gravatar
@@ -54,9 +48,7 @@ if( ampforwp_get_setting( 'amp-author-description') && is_single() && !class_exi
 	                    <?php
 	                }
 	                echo '"'.ampforwp_get_author_details( $post_author , 'meta-taxonomy' );  
-	                if($twitter){
-	             			echo ' <span><a href="https://twitter.com/'.$twitter.'" target="_blank">(@'.$twitter.') - </a></span>';
-	             		}
+	                echo ampforwp_yoast_twitter_handle();
 	             	echo  $post_author->description .'."';
 	             		 ?>
 
