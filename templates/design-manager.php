@@ -79,6 +79,9 @@ add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {
 
     global $redux_builder_amp;
+    if ( empty(ampforwp_get_setting('amp-design-selector'))) {
+    	return 4;
+    }
     if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] ) {
 		if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'.$redux_builder_amp['amp-design-selector'] . '/style.php') ) {
 			return $redux_builder_amp['amp-design-selector'];
@@ -89,7 +92,9 @@ function ampforwp_design_selector() {
 		else {
 			if(file_exists(WP_PLUGIN_DIR.'/'.$redux_builder_amp['amp-design-selector'].'/functions.php')){
 	    		return $redux_builder_amp['amp-design-selector'];
-			}else{ return 4; }
+			} else {
+				return 4;
+			}
 		}
     	return 2;
     } 
