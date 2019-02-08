@@ -768,3 +768,9 @@ if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
 		return '';
 	}
 }
+
+add_action( 'activated_plugin', 'ampforwp_remove_themeframework_active_transient' );
+add_action( 'deactivated_plugin', 'ampforwp_remove_themeframework_active_transient' );
+function ampforwp_remove_themeframework_active_transient(){
+	delete_transient( 'ampforwp_themeframework_active_plugins' );
+}

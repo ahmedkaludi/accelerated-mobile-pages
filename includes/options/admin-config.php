@@ -3039,6 +3039,33 @@ Redux::setSection( $opt_name, array(
                 'img' => AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png',
             ),
         );
+    $pluginsData = get_transient( 'ampforwp_themeframework_active_plugins' );
+    if($pluginsData){
+        $themeDesign =  array_merge($themeDesign, $pluginsData);
+    }else{
+        $activePlugins = get_option( 'active_plugins', array() );
+        if(count( $activePlugins)>0){
+            foreach ( $activePlugins as $key => $value) {
+                $plugin = get_plugin_data(WP_PLUGIN_DIR.'/'.$value);
+                if(!empty($plugin['AMP'])){//$plugin['AMP']
+                    $imageUrl = '';
+                    if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR.$plugin['TextDomain'].'/screenshot.png')){
+                        $imageUrl = plugins_url($plugin['TextDomain'].'/screenshot.png');
+                    }
+                    $pluginsData[$plugin['TextDomain']] = array(
+                                        'demo_link' => $plugin['AMP Demo'],
+                                        'upgrade'=>true,
+                                        'title'=>$plugin['AMP'],
+                                        'value'=>$plugin['TextDomain'],
+                                        'alt'=>$plugin['AMP'],
+                                        'img'=>$imageUrl,
+                                    );
+                }
+            }
+            set_transient( 'ampforwp_themeframework_active_plugins', $pluginsData );
+            $themeDesign =  array_merge($themeDesign, $pluginsData);
+        }
+    }
     $themeDesign = apply_filters( 'ampforwp_custom_theme_install', $themeDesign );
     // Themes Section
  Redux::setSection( $opt_name, array(
