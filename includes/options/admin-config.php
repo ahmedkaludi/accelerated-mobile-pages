@@ -3372,13 +3372,6 @@ Redux::setSection( $opt_name, array(
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
           array(
-                    'id'    => 'gnrl-dark-view',
-                    'type'  => 'switch',
-                    'title' => esc_html__('Darkview', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-          array(
                     'id'    => 'gbl-sidebar',
                     'class' => 'child_opt child_opt_arrow',
                     'type'  => 'switch',
@@ -3429,7 +3422,13 @@ Redux::setSection( $opt_name, array(
                     'required' => array('gnrl-sidebar', '=' , '1'), 
                                 
             ),
-            
+           array(
+                    'id'    => 'gnrl-dark-view',
+                    'type'  => 'switch',
+                    'title' => esc_html__('Darkview', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ), 
            array(
                        'id' => 'design-advanced',
                        'type' => 'section',

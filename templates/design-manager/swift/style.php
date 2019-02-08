@@ -931,7 +931,7 @@ if(is_single() ) { ?>
 }
 
 <?php } //is_single condition is added
-if (isset($redux_builder_amp['swift-sidebar']) && $redux_builder_amp['swift-sidebar']) { ?>
+if ( true == ampforwp_get_setting('gnrl-sidebar') &&  true == ampforwp_get_setting('swift-sidebar')){?>
 .sp-artl{
 	display:inline-flex;
 	width:100%;
