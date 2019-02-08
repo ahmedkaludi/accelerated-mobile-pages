@@ -7812,4 +7812,68 @@ if (class_exists('Subtitles')){
 <?php
 } 
 }
-}	
+}
+
+// AMPforWP Global Sanitizer
+add_action('pre_amp_render_post','ampforwp_comments_sanitizer');
+function ampforwp_comments_sanitizer(){
+    global $ampforwp_data;
+    $comments_scripts = array();
+    $comments = $postID = $comment_text = '';
+    $postID = get_the_ID();
+    if ( ampforwp_is_front_page() ) {
+        $postID = ampforwp_get_frontpage_id();
+    }
+    // Comments Scripts #2827
+    if ( ampforwp_get_comments_status() && true == ampforwp_get_setting('wordpress-comments-support') ) {
+        $comments = get_comments(array(
+                'post_id' => $postID,
+                'status' => 'approve' //Change this to the type of comments to be displayed
+        ) );
+        foreach ($comments as $comment) {
+            $comment_text = get_comment_text($comment->comment_ID);
+            $comment_text = wpautop( $comment_text );
+            $sanitizer = new AMPforWP_Content( $comment_text, apply_filters( 'amp_content_embed_handlers', array(
+                  'AMP_Twitter_Embed_Handler' => array(),
+                  'AMP_YouTube_Embed_Handler' => array(),
+                  'AMP_DailyMotion_Embed_Handler' => array(),
+                  'AMP_Vimeo_Embed_Handler' => array(),
+                  'AMP_SoundCloud_Embed_Handler' => array(),
+                  'AMP_Instagram_Embed_Handler' => array(),
+                  'AMP_Vine_Embed_Handler' => array(),
+                  'AMP_Facebook_Embed_Handler' => array(),
+                  'AMP_Pinterest_Embed_Handler' => array(),
+                  'AMP_Gallery_Embed_Handler' => array(),
+            ) ),  apply_filters(  'amp_sidebar_sanitizers', array(
+                   'AMP_Style_Sanitizer' => array(),
+                   'AMP_Blacklist_Sanitizer' => array(),
+                   'AMP_Img_Sanitizer' => array(),
+                   'AMP_Video_Sanitizer' => array(),
+                   'AMP_Audio_Sanitizer' => array(),
+                   'AMP_Playbuzz_Sanitizer' => array(),
+                   'AMP_Iframe_Sanitizer' => array(
+                     'add_placeholder' => true,
+                   ),
+            )  ) );
+            if ( !empty($sanitizer->get_amp_scripts()) ){
+                $comments_scripts = array_merge($comments_scripts, $sanitizer->get_amp_scripts());
+            }
+        }
+    }
+    $ampforwp_data['comments']['scripts'] = $comments_scripts;
+}
+// AMPforWP Global Scripts
+add_filter('amp_post_template_data','ampforwp_add_global_scripts');
+function ampforwp_add_global_scripts($data){
+    global $ampforwp_data;
+    // Add Comments Scripts #2827
+    $comments_scripts = $ampforwp_data['comments']['scripts'];
+    if ( !empty($comments_scripts) ) {
+        foreach ($comments_scripts as $key => $value ) {
+            if( empty( $data['amp_component_scripts'][$key] ) ){
+                $data['amp_component_scripts'][$key]  = $value;
+            }
+        }
+    }
+    return $data;
+}
