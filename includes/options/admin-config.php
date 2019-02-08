@@ -1834,7 +1834,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             $default = '';
             include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
             if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
-                $default = 1;
+                $default = 'yoast';
             }
             elseif ( is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php') ) {
                 $default = 2;
@@ -1887,7 +1887,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'type'     => 'select',
                 'title'    => esc_html__('Select SEO Plugin', 'accelerated-mobile-pages'),
                 'options'  => array(
-                    '1'       => 'Yoast',
+                    'yoast'       => 'Yoast',
                     '2'     => 'All in One SEO',
                     'rank_math' => 'Rank Math SEO'
                 ),
@@ -1900,7 +1900,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'     => esc_html__('Adds Social and Open Graph Meta Tags from Yoast', 'accelerated-mobile-pages'),
                'title'    => esc_html__( 'Meta Tags from Yoast', 'accelerated-mobile-pages' ),
                'default'  => '1',
-               'required'  => array('ampforwp-seo-selection', '=' , '1'),
+               'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
            ),
            array(
                'class' => 'child_opt',
@@ -1909,7 +1909,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'     => esc_html__('Adds Yoast Custom description to ld+json for AMP page', 'accelerated-mobile-pages'),
                'title'    => esc_html__( 'Yoast Description in ld+json', 'accelerated-mobile-pages' ),
                'default'  => 0,
-               'required'  => array('ampforwp-seo-selection', '=' , '1'),
+               'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
            ),
            array(
                'class' => 'child_opt',
@@ -1918,7 +1918,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'     => esc_html__('Pull Canonical from Yoast for AMP pages', 'accelerated-mobile-pages'),
                'title'    => esc_html__( 'Canonical from Yoast', 'accelerated-mobile-pages' ),
                'default'  => 0,
-               'required'  => array('ampforwp-seo-selection', '=' , '1'),
+               'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
            ),
            array(
                 'id'       => 'ampforwp-seo-aioseo',
