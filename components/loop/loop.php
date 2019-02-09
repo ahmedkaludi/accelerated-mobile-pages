@@ -398,7 +398,6 @@ function amp_loop_image( $data=array() ) {
 			$imageLink = amp_loop_permalink(true);
 			$post_id   = get_the_ID();
 			$post_thumbnail_id = get_post_thumbnail_id( $post_id );
-			$thumbnail_srcset  = wp_get_attachment_image_srcset( $post_thumbnail_id, 'large');
 			$loopImageData = array("post_id"			=>$post_id,
 									"image_url"			=>$thumb_url,
 									"width"				=>$thumb_width,
@@ -416,20 +415,11 @@ function amp_loop_image( $data=array() ) {
 				$imageClass			= $changesInImageData["image_class"];
 				$imageLink			= $changesInImageData["image_link"];
 			}
-			if(isset($redux_builder_amp['amp-design-selector'] ) && $redux_builder_amp['amp-design-selector'] == 3){
-				echo '<'.$tag.' class="loop-img '.$tag_class.'">';
-				echo '<a href="'.$imageLink.'">';
-				echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" srcset="'.$thumbnail_srcset.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
-				echo '</a>';
-				echo '</'.$tag.'>';
-			}
-			else{
-				echo '<'.$tag.' class="loop-img '.$tag_class.'">';
-				echo '<a href="'.$imageLink.'">';
-				echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
-				echo '</a>';
-				echo '</'.$tag.'>';
-			}
+			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
+			echo '<a href="'.$imageLink.'">';
+			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
+			echo '</a>';
+			echo '</'.$tag.'>';
 		}
      } 
 } 
