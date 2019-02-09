@@ -77,21 +77,25 @@ if ( is_customize_preview() ) {
 // Design Selector
 add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {
-
     global $redux_builder_amp;
-    if ( empty(ampforwp_get_setting('amp-design-selector'))) {
+
+    $design = '';
+	$design = ampforwp_get_setting('amp-design-selector');
+
+    if ( empty( $design )){
     	return 4;
-    }
-    if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] ) {
-		if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'.$redux_builder_amp['amp-design-selector'] . '/style.php') ) {
-			return $redux_builder_amp['amp-design-selector'];
+    }    
+
+    if ( $design) {
+		if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $design . '/style.php') ) {
+			return $design;
 		}
-		elseif ( 4 == $redux_builder_amp['amp-design-selector'] && file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift/style.php') ) {
-      			return $redux_builder_amp['amp-design-selector'];
+		elseif ( 4 == $design && file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift/style.php') ) {
+      			return 4;
     	}
 		else {
-			if(file_exists(WP_PLUGIN_DIR.'/'.$redux_builder_amp['amp-design-selector'].'/functions.php')){
-	    		return $redux_builder_amp['amp-design-selector'];
+			if ( file_exists( WP_PLUGIN_DIR.'/'.$design.'/functions.php' ) ){
+	    		return $design;
 			} else {
 				return 4;
 			}

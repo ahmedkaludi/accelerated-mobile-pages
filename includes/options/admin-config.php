@@ -3066,8 +3066,9 @@ Redux::setSection( $opt_name, array(
             set_transient( 'ampforwp_themeframework_active_plugins', $pluginsData );
         }
     }
-
-    $themeDesign =  array_merge($themeDesign, $pluginsData);
+    if ( is_array($pluginsData) ) {
+        $themeDesign =  array_merge($themeDesign, $pluginsData);
+    }
     $themeDesign = apply_filters( 'ampforwp_themeframe_available_designs', $themeDesign );
 
     // Themes Section
