@@ -7133,8 +7133,9 @@ function ampforwp_comments_sanitizer(){
 		           ),
 		    )  ) );
 		    if ( $sanitizer ) {
-		    	if ( !empty($sanitizer->get_amp_scripts()) ){
-		    		$comments_scripts = array_merge($comments_scripts, $sanitizer->get_amp_scripts());
+		    	$sanitizer_scripts = $sanitizer->get_amp_scripts();
+		    	if ( $sanitizer_scripts ){
+		    		$comments_scripts = array_merge($comments_scripts, $sanitizer_scripts);
 		    	}
 		    }
 		}
