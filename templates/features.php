@@ -7132,12 +7132,16 @@ function ampforwp_comments_sanitizer(){
 		             'add_placeholder' => true,
 		           ),
 		    )  ) );
-	    	if ( !empty($sanitizer->get_amp_scripts()) ){
-	    		$comments_scripts = array_merge($comments_scripts, $sanitizer->get_amp_scripts());
-	    	}
+		    if ( $sanitizer ) {
+		    	if ( !empty($sanitizer->get_amp_scripts()) ){
+		    		$comments_scripts = array_merge($comments_scripts, $sanitizer->get_amp_scripts());
+		    	}
+		    }
+		}
+		if ( $comments_scripts ) {
+			$ampforwp_data['comments']['scripts'] = $comments_scripts;
 		}
 	}
-	$ampforwp_data['comments']['scripts'] = $comments_scripts;
 }
 // AMPforWP Global Scripts
 add_filter('amp_post_template_data','ampforwp_add_global_scripts');
