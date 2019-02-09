@@ -2350,7 +2350,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'ampforwp-smooth-scrolling-for-links',
                         'type'     => 'switch',
                         'title'    => esc_html__('Smooth Scrolling For Links', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => esc_html__('Enable this option if you want smooth scrolling for all your links','accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable this option if you want smooth scrolling for jumping links','accelerated-mobile-pages'),
                         'default' => 0,
                     ),
                     // End-point option
