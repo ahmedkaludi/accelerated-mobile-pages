@@ -3039,10 +3039,11 @@ Redux::setSection( $opt_name, array(
                 'img' => AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png',
             ),
         );
+
+    $pluginsData = array();
     $pluginsData = get_transient( 'ampforwp_themeframework_active_plugins' );
-    if($pluginsData){
-        $themeDesign =  array_merge($themeDesign, $pluginsData);
-    }else{
+
+    if( empty( $pluginsData )){
         $activePlugins = get_option( 'active_plugins', array() );
         if(count( $activePlugins)>0){
             foreach ( $activePlugins as $key => $value) {
@@ -3053,26 +3054,26 @@ Redux::setSection( $opt_name, array(
                         $imageUrl = plugins_url($plugin['TextDomain'].'/screenshot.png');
                     }
                     $pluginsData[$plugin['TextDomain']] = array(
-                                        'demo_link' => $plugin['AMP Demo'],
-                                        'upgrade'=>true,
-                                        'title'=>$plugin['AMP'],
-                                        'value'=>$plugin['TextDomain'],
-                                        'alt'=>$plugin['AMP'],
-                                        'img'=>$imageUrl,
-                                    );
+                        'demo_link' => esc_html($plugin['AMP Demo']),
+                        'upgrade'   => true,
+                        'title'     => $plugin['AMP'],
+                        'value'     => esc_html($plugin['TextDomain']),
+                        'alt'       => esc_attr($plugin['AMP']),
+                        'img'       => esc_url($imageUrl),
+                    );
                 }
             }
             set_transient( 'ampforwp_themeframework_active_plugins', $pluginsData );
-            if($pluginsData){
-                $themeDesign =  array_merge($themeDesign, $pluginsData);
-            }
         }
     }
-    $themeDesign = apply_filters( 'ampforwp_custom_theme_install', $themeDesign );
+
+    $themeDesign =  array_merge($themeDesign, $pluginsData);
+    $themeDesign = apply_filters( 'ampforwp_themeframe_available_designs', $themeDesign );
+
     // Themes Section
  Redux::setSection( $opt_name, array(
-                'title'      => __( 'Themes', 'accelerated-mobile-pages' ),                'class' => 'ampforwp-new-element',
-
+        'title'      => __( 'Themes', 'accelerated-mobile-pages' ),                
+        'class' => 'ampforwp-new-element',
         'id'         => 'amp-theme-settings',
         'subsection' => true,
         'fields'     => array(
