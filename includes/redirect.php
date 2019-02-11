@@ -262,11 +262,11 @@ function ampforwp_page_template_redirect_archive() {
 
 // #1947 when nonamp=1 it should redirect to original link so that google
 
-function nonamp_query_vars_register($vars) {
+function ampforwp_nonamp_query_vars_register($vars) {
   $vars[] .= 'nonamp';
   return $vars;
 }
-add_filter( 'query_vars', 'nonamp_query_vars_register' );
+add_filter( 'query_vars', 'ampforwp_nonamp_query_vars_register' );
 
 add_action( 'template_redirect', 'ampforwp_redirect_to_orginal_url' );
 function ampforwp_redirect_to_orginal_url(){
