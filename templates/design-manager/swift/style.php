@@ -7,6 +7,9 @@
 @font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 700;src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Bold.ttf'); }
 <?php } ?>
 body{<?php $fontFamily = "font-family: 'Poppins', sans-serif;";
+$hovercolor = '';
+$hovercolor = ampforwp_get_setting('swift-hover-color-scheme');
+$hovercolor = $hovercolor['color'];
 if(isset($redux_builder_amp['amp_font_selector']) && $redux_builder_amp['amp_font_selector'] != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
 $fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';"; }  
 echo $fontFamily;?>
@@ -19,7 +22,9 @@ font-size: 16px; line-height:1.25; }
 ol, ul{ list-style-position: inside }
 p, ol, ul, figure{ margin: 0 0 1em; padding: 0; }
 a, a:active, a:visited{ text-decoration: none; color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;}
-a:hover, a:active, a:focus{}
+body a:hover{
+	color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;
+}
 pre{ white-space: pre-wrap;}
 .left{float:left}
 .right{float:right}
@@ -249,9 +254,9 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 .loop-wrapper{display: flex;flex-wrap: wrap;margin: -15px;}
 .loop-category li{display: inline-block;list-style-type: none;margin-right: 10px;font-size: 10px;font-weight: 600;letter-spacing: 1.5px;}
 .loop-category li a{color:#555;text-transform: uppercase;}
-.loop-category li:hover a{color:#005be2;}
+.loop-category li:hover a{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .fbp-cnt p, .fsp-cnt p{color:#444;font-size:13px;line-height:1.5;letter-spacing: 0.10px;word-break: break-word;}
-.fbp:hover h2 a, .fsp:hover h2 a{color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;}
+.fbp:hover h2 a, .fsp:hover h2 a{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .fsp h2 a{color:#191919;}  
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
 .fsp-img {margin-bottom:10px;}
@@ -398,6 +403,7 @@ p.nocomments {padding: 10px;color: #fff;}
 .tl-exc{font-size: 16px;color: #444;margin-top: 10px;line-height:20px;}
 .amp-category span:nth-child(1) {display: none;}
 .amp-category span a, .amp-category span{color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-color-scheme']['color']); ?>;font-size: 12px;font-weight: 500;text-transform: uppercase;}
+.amp-category span a:hover {color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .amp-category span:after{content:"/";display:inline-block;margin:0px 5px 0px 5px;position:relative;top:1px;color:rgba(0, 0, 0, 0.25);}
 .amp-category span:last-child:after{display:none;}
 .sp{width:100%;margin-top:20px;display:inline-block;}
@@ -417,6 +423,7 @@ p.nocomments {padding: 10px;color: #fff;}
 .shr-txt, .athr-tx, .r-pf h3, .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date, .related-title{text-transform: uppercase;font-size: 12px;color: #666;font-weight: 400;}
 .loop-date, .post-edit-link{display:inline-block;}
 .post-date .post-edit-link{color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-color-scheme']['color']); ?>;float: right;}
+.post-date .post-edit-link:hover{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .sp-athr, .amp-tags, .post-date{margin-top:20px;}
 .sp-athr .author-details a, .sp-athr .author-details, .amp-tags span a, .amp-tag {font-size: 15px;color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-color-scheme']['color']); ?>;font-weight: 400;line-height: 1.5;}
 .amp-tags .amp-tag:after{content: "/";display: inline-block;padding: 0px 10px;position: relative;top: -1px;color: #ccc;font-size: 12px;}
@@ -588,7 +595,7 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .sp-rt .amp-author {padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
 .sp-rt .amp-author-image{float:left;}
 .sp-rt .author-details a{color: #222;font-size: 14px;font-weight: 500;}
-.sp-rt .author-details a:hover{color:#005be2;text-decoration:underline;}
+.sp-rt .author-details a:hover{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;text-decoration:underline;}
 .amp-author-image amp-img{border-radius: 50%;margin: 0px 12px 5px 0px;display: block; width:50px;}
 .author-details p{margin: 0;font-size: 13px;line-height: 20px;color: #666;padding-top: 4px;}
 <?php } ?>
@@ -600,7 +607,7 @@ border-bottom: 1px solid #eee;
 <?php }?>}
 .breadcrumb ul li,.breadcrumbs span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
 .breadcrumb ul li a, .breadcrumbs span a{color: #999;letter-spacing: 1px;}
-.breadcrumb ul li a:hover, .breadcrumbs span a:hover{color:#005be2;}
+.breadcrumb ul li a:hover, .breadcrumbs span a:hover{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .breadcrumbs li a:after, .breadcrumbs span a:after{content: "\e315";display: inline-block;color: #bdbdbd;font-family: 'icomoon';padding-left: 5px;font-size: 12px;position: relative;top: 1px;}
 .breadcrumbs li:last-child a:after {display: none;}
 <?php } //Breadcrumbs Ends?>
@@ -610,7 +617,7 @@ border-bottom: 1px solid #eee;
 .prev{float: left;width: 45%;position:relative;margin-top:10px;}
 .prev span{text-transform: uppercase;font-size: 12px;color: #666;display: block;position: absolute;top: -26px;}
 .next span{text-transform: uppercase;font-size: 12px;color: #666;display: block;font-weight: 400;position: absolute;top: -26px;right:0}
-.next:hover a, .prev:hover a{color:<?php echo ampforwp_sanitize_color($redux_builder_amp['swift-color-scheme']['color']) ?>;}
+.next:hover a, .prev:hover a{color:<?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .prev:after{border-left:1px dotted #ccc;content: "";height: calc(100% - -10px);right: -50px;position: absolute;top: 50%;transform: translate(0px, -50%);width: 2px;}
 .ampforwp_post_pagination{width:100%;text-align:center;display:inline-block;}
 .ampforwp_post_pagination p{margin: 0;font-size: 18px;color: #444;font-weight: 500;margin-bottom:10px;}
@@ -641,7 +648,7 @@ border-bottom: 1px solid #eee;
 .loop-category li a{color:#555;text-transform: uppercase;}
 .loop-category li:hover a{color:#005be2;}
 .fsp-cnt p{color:#444;font-size:13px;line-height:20px;letter-spacing: 0.10px;word-break: break-word;}
-.fsp:hover h2 a{color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-color-scheme']['color']); ?>;}
+.fsp:hover h2 a{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .fsp h2 a{color:#191919;}  
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
 .fsp-img {margin-bottom:10px;}
@@ -1096,7 +1103,7 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 .f-menu ul li .sub-menu{display:none;}
 .f-menu ul li{display:inline-block;margin-right:20px;}
 .f-menu ul li a {padding:0;color:#7a7a7a;}
-.f-menu ul > li:hover a{color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-color-scheme']['color']) ?>;}
+.f-menu ul > li:hover a{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .f-menu{font-size:14px;line-height:1.4;margin-bottom:30px;}
 .rr{font-size: 12px;color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-footer-txt-clr']['rgba']) ?>;}
 .rr span{margin:0 10px 0 0px}

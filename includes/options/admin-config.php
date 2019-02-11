@@ -4374,6 +4374,18 @@ Redux::setSection( $opt_name, array(
                         array('amp-design-selector', '=' , '4')
                      )
             ),
+            array(
+                    'id'        => 'swift-hover-color-scheme',
+                    'title'     => esc_html__('Hover Color Scheme', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Choose the color when hover for title, anchor links','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'color'      => '#005be2',
+                     ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '4')
+                     )
+                ),    
              array(
                     'id'        => 'amp-opt-color-rgba-colorscheme',
                     'type'      => 'color_rgba',
