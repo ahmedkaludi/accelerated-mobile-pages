@@ -223,12 +223,6 @@ function ampforwp_add_custom_rewrite_rules() {
 			      'index.php?amp&post_type='.$post_type,
 			      'top'
 			    );
-			    // 	Custom Post Type Vs Post name(slug) Conflict #2374
-			    add_rewrite_rule(
-			      '(.+?)\/amp/?$',
-			      'index.php?amp&'.$post_type.'=$matches[1]',
-			      'top'
-			    );
 			}
 		}
 	}
