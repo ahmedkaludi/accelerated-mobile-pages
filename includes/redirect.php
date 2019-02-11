@@ -261,17 +261,25 @@ function ampforwp_page_template_redirect_archive() {
 }
 
 // #1947 when nonamp=1 it should redirect to original link so that google
+
+function nonamp_query_vars_register($vars) {
+  $vars[] .= 'nonamp';
+  return $vars;
+}
+add_filter( 'query_vars', 'nonamp_query_vars_register' );
+
 add_action( 'template_redirect', 'ampforwp_redirect_to_orginal_url' );
 function ampforwp_redirect_to_orginal_url(){
   $go_to_url  = "";
   $url        = "";
   $url = ampforwp_amphtml_generator();
-  if($url){
-    if(isset($_REQUEST['nonamp']) && $_REQUEST['nonamp'] == '1'){
+  $nonamp_checker = get_query_var( 'nonamp');
+   if($url){
+     if( $nonamp_checker == 1 ){ 
         $go_to_url = remove_query_arg('nonamp', $url);
         $go_to_url = explode('/', $go_to_url);
         $go_to_url = array_flip($go_to_url);
-          unset($go_to_url['amp']);
+        unset($go_to_url['amp']);
         $go_to_url = array_flip($go_to_url);     
         $go_to_url  = implode('/', $go_to_url);
  
@@ -284,6 +292,8 @@ function ampforwp_redirect_to_orginal_url(){
   }
   return;
 }
+// #1947 ends here
+
 //Auto redirect /amp to ?amp when 'Change End Point to ?amp' option is enabled #2480
 add_action('template_redirect', 'ampforwp_redirect_proper_qendpoint' );
 if ( ! function_exists('ampforwp_redirect_proper_qendpoint') ) {
