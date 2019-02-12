@@ -2889,7 +2889,7 @@ function ampforwp_change_default_amp_post_meta() {
 			$post_meta_to_update 		= 'hide-amp';
 		}
 		if ( $post_check_meta !== $post_checker ) {
-			$posts = get_posts(array('post_type'=>$post_type));
+			$posts = get_posts(array('post_type'=>$post->post_type,'posts_per_page'   => -1));
 			foreach($posts as $post){
 				$amp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas',true), true );
 				$amp_post_metas['ampforwp-amp-on-off'] = $post_meta_to_update;
