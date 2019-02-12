@@ -192,7 +192,7 @@ if (empty($footer_back_color)) {
 a.btt:hover {
     cursor: pointer;
 }
-<?php if ( is_singular() || $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false ) {  
+<?php if ( is_singular() || true == ampforwp_get_setting('amp-frontpage-select-option') && ampforwp_get_blog_details() == false ) {  
 if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 /* Single */
 .single-post main{ margin: 20px 17px 17px 17px; }
@@ -567,7 +567,7 @@ if ( class_exists('TablePress') ) { ?>
 @media (min-width: 768px) and (max-width: 1600px){ .tablepress{ overflow-x: none; } }
 @media (min-width: 320px) and (max-width: 767px){ .tablepress{ display: inline-block; overflow-x: scroll; } }
 <?php }  
-if ( ! is_home() && 1 == $redux_builder_amp['ampforwp-bread-crumb'] && ! checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
+if ( ! is_home() && true == ampforwp_get_setting('ampforwp-bread-crumb') && ! checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 .breadcrumb{width: 100%;}
 .breadcrumb ul, .category-single ul{ padding:0; margin:0;}
 .breadcrumb ul li{display:inline;}
