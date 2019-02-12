@@ -163,6 +163,9 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 	$related_post_permalink = ampforwp_url_controller( get_permalink() );
 	if ( isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
 		$related_post_permalink = get_permalink();
+		if ( ampforwp_get_setting('amp-mobile-redirection') ) {
+			$related_post_permalink = add_query_arg('nonamp','1',$related_post_permalink);
+		}
 	}
 	?>
 	<div class="related_link">
