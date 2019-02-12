@@ -1261,7 +1261,7 @@ function ampforwp_sticky_social_icons(){
 			}
 			$permalink = '';
 			if(ampforwp_get_setting('enable-single-twitter-share-link')){
-			$permalink = esc_url(wp_get_shortlink());
+			$permalink = wp_get_shortlink();
 		}
 		else
 			$permalink = $amp_permalink;
@@ -1277,7 +1277,7 @@ function ampforwp_sticky_social_icons(){
 	                            width="50"
 	                            height="28"
 	                            data-param-url=""
-                        		data-param-text="TITLE <?php echo $permalink.' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
+                        		data-param-text="TITLE <?php echo esc_url($permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
 	          ></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
