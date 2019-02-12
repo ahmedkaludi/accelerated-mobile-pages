@@ -65,7 +65,7 @@ if( !class_exists( 'ReduxFramework_extension_demolink_image_select' ) ) {
             $this->field_name = 'demolink_image_select';
             if ( empty( $this->extension_dir ) ) {
                 $this->extension_dir = trailingslashit( str_replace( '\\', '/', AMPFORWP_EXTENSION_DIR.'/'.$this->field_name ) );
-                $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
+                $this->extension_url = plugin_dir_url(__FILE__);
             }
             
             self::$theInstance = $this;
