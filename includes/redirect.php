@@ -278,3 +278,34 @@ function ampforwp_page_template_redirect_archive() {
     }
   }
 }
+// #1947 when nonamp=1 it should redirect to original link so that google
+function ampforwp_custom_query_var($vars) {
+  $vars[] = 'nonamp';
+  return $vars;
+}
+add_filter( 'query_vars', 'ampforwp_custom_query_var' );
+add_action( 'template_redirect', 'ampforwp_redirect_to_orginal_url' );
+function ampforwp_redirect_to_orginal_url(){
+  $go_to_url  = "";
+  $url        = "";
+  $url = ampforwp_amphtml_generator();
+  $nonamp_checker = get_query_var( 'nonamp');
+   if($url){
+     if( $nonamp_checker == 1 ){ 
+        $go_to_url = remove_query_arg('nonamp', $url);
+        $go_to_url = explode('/', $go_to_url);
+        $go_to_url = array_flip($go_to_url);
+        unset($go_to_url['amp']);
+        $go_to_url = array_flip($go_to_url);     
+        $go_to_url  = implode('/', $go_to_url);
+ 
+      wp_safe_redirect( $go_to_url, 301 );
+      exit;
+    }
+    else{
+      return;
+    }
+  }
+  return;
+}
+// #1947 ends here
