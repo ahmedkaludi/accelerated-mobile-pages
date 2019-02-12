@@ -1681,23 +1681,24 @@ function ampforwp_replace_title_tags() {
 		}
 
 		// All in One SEO #2816
-	   if ( class_exists('All_in_One_SEO_Pack') && ( ampforwp_is_front_page() )) {
+	  	if ( class_exists('All_in_One_SEO_Pack') && ampforwp_is_front_page() ){
 	        $aiseop_title = $post = '';
 	        $aiseop_title = get_post_meta( $post_id, '_aioseop_title', true );
 	        if ( !empty($aiseop_title) ) {
 	          $site_title = $aiseop_title;
 	        }
 	        add_filter('aioseop_title', '__return_false');
-	      }
-	      if(class_exists('All_in_One_SEO_Pack') && ampforwp_is_home()){
-	          global $aioseop_options;
-	          if(!empty($aioseop_options['aiosp_home_title'])){
-	            $aiseop_title = $aioseop_options['aiosp_home_title'];
-	          }
-	          if ( !empty($aiseop_title) ) {
-	            $site_title = $aiseop_title;
-	          }
-	        }
+	    }
+      	if(class_exists('All_in_One_SEO_Pack') && ampforwp_is_home() ){
+          	global $aioseop_options;
+          	if(!empty($aioseop_options['aiosp_home_title'])){
+            	$aiseop_title = $aioseop_options['aiosp_home_title'];
+          	}
+          	if ( !empty($aiseop_title) ) {
+            	$site_title = $aiseop_title;
+          	}
+          	add_filter('aioseop_title', '__return_false');
+        }
 		//Bridge Qode SEO Compatibility #2538
 		if ( function_exists('qode_wp_title') && 'bridge' == ampforwp_get_setting('ampforwp-seo-selection')){
 		$site_title = get_post_meta($post_id, "qode_seo_title", true);
