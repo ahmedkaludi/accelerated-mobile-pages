@@ -6776,7 +6776,12 @@ if( ! function_exists(' ampforwp_modify_ivory_search ') ){
 				if ( '' === $node->getAttribute( 'target' ) ) {
 					$node->setAttribute('target', '_top');
 				}
-				
+				if ( $node->getAttribute('action')){
+					$action_url = '';
+					$action_url = $node->getAttribute('action');
+					$action_url = preg_replace('#^http?:#', '', $action_url);
+					$node->setAttribute('action', $action_url);
+				}
 			}
 			$menu = $dom->saveHTML();
 		}
