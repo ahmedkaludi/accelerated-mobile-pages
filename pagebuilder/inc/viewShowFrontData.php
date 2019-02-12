@@ -499,7 +499,59 @@ function amppb_validateCss($css){
 	$css = preg_replace('/(([a-z -]*:(\s)*;))/', "", $css);
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
 	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
-	return $css;
+	return ampforwp_pb_autoCompileLess($css);
+}
+
+function ampforwp_pb_autoCompileLess($css)
+{
+	$completeCssMinifies = array();
+    preg_match_all("/@media\b[^{]*({((?:[^{}]+|(?1))*)})/si",$css,$matches,PREG_SET_ORDER);//$MatchingString now hold all strings matching $pattern.
+    foreach ($matches as $key => $value) {
+    	preg_match('/@media\s*(.*?)\s*{/', $value[0], $data);
+    	if(!isset($completeCssMinifies[$data[1]])){ $completeCssMinifies[$data[1]] = ''; }
+    	$completeCssMinifies[$data[1]] .= trim($value[2]);
+    }
+    // delete media query of cache
+    $css = preg_replace('/@media\b[^{]*({((?:[^{}]+|(?1))*)})/si', '', $css);
+
+    // add groups of media query at the end of CSS
+    $css = $css." \n";
+    foreach ($completeCssMinifies as $id => $val)
+    {
+        $css .= "\n" . '@media' . $id . '{' . $val . '}' . "\n";
+    }
+    //Remove multiple Spaces
+    //padding:\s*?(\d*px)\s*(\d*px)\s*(\d*px)\s*(\d*px)\s*?;
+    //"/(margin|padding):\s*?(\d*px)\s*(\d*px)\s*(\d*px)\s*(\d*px)\s*?\s*;/",
+    $css = preg_replace_callback(
+    "/(margin|padding):\s*?(auto|\d*(|px))\s*(auto|\d*(|px))\s*(auto|\d*(|px))\s*(auto|\d*(|px))\s*?\s*;/",
+    function($m) {
+    	if(count($m)!==0){
+        	$m[2] = trim($m[2]);
+        	$m[3] = trim($m[3]);
+        	$m[4] = trim($m[4]);
+        	$m[5] = trim($m[5]);
+        	if( ($m[2]==$m[6]) && ($m[4] == $m[8]) ){
+        		if ( $m[2] == $m[4] ) {
+        			return $m[1].":".$m[2].";";
+        		}
+        		if(trim($parts[0])==trim($m[1])){
+        			return $m[1].":".$m[2].";";
+        		}else{
+        			return $m[1].":".$m[2]." ".$m[4].";";
+        		}
+        	}
+        	else{
+        		return $m[0];
+        	}
+        }else{
+        	return $m[0];
+        }
+
+    },
+    $css);
+    // save CSS with groups of media query
+    return $css;
 }
 
 function amppb_post_content($content){
