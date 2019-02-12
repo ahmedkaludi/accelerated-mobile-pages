@@ -497,10 +497,10 @@ function amppb_validateCss($css){
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
 	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
 	
-	return autoCompileLess($css);
+	return ampforwp_pb_autoCompileLess($css);
 }
 
-function autoCompileLess($css)
+function ampforwp_pb_autoCompileLess($css)
 {
 	$completeCssMinifies = array();
     preg_match_all("/@media\b[^{]*({((?:[^{}]+|(?1))*)})/si",$css,$matches,PREG_SET_ORDER);//$MatchingString now hold all strings matching $pattern.
