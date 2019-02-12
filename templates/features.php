@@ -366,7 +366,6 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$amp_url = untrailingslashit($current_search_url);
 			}
 
-			$amp_url = ampforwp_url_purifier($amp_url);
 
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if( get_option('permalink_structure') && is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
@@ -445,6 +444,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				    }
 				}
 			}
+			// URL Purifier
+			$amp_url = ampforwp_url_purifier($amp_url);
 
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
@@ -6120,9 +6121,7 @@ function ampforwp_url_purifier($url){
 	$get_permalink_structure = get_option('permalink_structure');
 	$checker = $redux_builder_amp['amp-core-end-point'];
 	$endpointq = '?' . $endpoint;
-
 	if ( empty( $get_permalink_structure ) ) {
-
 		if ( is_home() || is_archive() || is_front_page() ) {
 			$url  = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $url);
 			if ( is_home() && get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
@@ -6136,7 +6135,6 @@ function ampforwp_url_purifier($url){
 			}
 		}
 		if ( is_archive() ) {
-
 			if ( is_archive() ) {
 				$queried_var 	= 'm';
 			}
@@ -6151,41 +6149,43 @@ function ampforwp_url_purifier($url){
 			}
 			$quried_value 	= get_query_var($queried_var);
 			$url  = add_query_arg($queried_var,$quried_value, $url);
-			//$url = $url .'&'. $queried_var .'='. $quried_value;
 		}
 	} else {
 		if ( is_singular() && true == $checker ) {
 			$url = untrailingslashit($url);
 		}
 		if ( is_home() || is_archive() || is_front_page() ) {
-	        if ( is_archive() && get_query_var('paged') > 1 || is_home() && get_query_var('paged') > 1 ) {
+	        if ( ( is_archive() || is_home() ) && get_query_var('paged') > 1 ) {
 	        	if ( true == $checker )
 	        		$url = trailingslashit($url).$endpointq;
 	        	else
 	          		$url = user_trailingslashit( trailingslashit($url) );
 	        } else {
-	        	if ( true == $checker )
+	        	if ( true == $checker && false == strpos($url, $endpointq) )
 	        		$url =  trailingslashit($url) . $endpointq;
-	        	else
-	          		$url = user_trailingslashit( trailingslashit($url) . $endpoint );
+	        	else {
+	        		if ( false == strpos($url, $endpoint) )
+	          			$url = user_trailingslashit( trailingslashit($url) . $endpoint );
+	          	}	
 	        }
       	}
 	}
-	if ( is_singular() && !empty( $_SERVER['QUERY_STRING'] ) ) {
+	if ( is_singular() && !empty($_SERVER['QUERY_STRING']) ) {
 	    $query_arg   = wp_parse_args($_SERVER['QUERY_STRING']);
 	    $query_name = '';
-		if( is_single() ){
-			$query_name = $wp_query->query['name'];
-		} else {
-			$query_name = $wp_query->query['pagename'];
+		if(is_single()){
+			$query_name = isset($wp_query->query['name'])?$wp_query->query['name']:'';	
 		}
-        if( ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) ){
-           	 	unset($query_arg['q']);
+		else{
+			$query_name = isset($wp_query->query['pagename'])?$wp_query->query['pagename']:'';
+		}
+      	if( ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) ){
+       	 	unset($query_arg['q']);
       	}
   		else if ( $query_name && isset( $query_arg['q'] ) ){ 
   			unset($query_arg['q']); 
-  		}
-        $url = add_query_arg( $query_arg, $url);
+  		}      
+      	$url     = add_query_arg( $query_arg, $url);
 	}
 	return apply_filters( 'ampforwp_url_purifier', $url );
 }
