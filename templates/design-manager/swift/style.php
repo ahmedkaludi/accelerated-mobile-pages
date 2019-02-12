@@ -60,7 +60,7 @@ header .cntr{
 }
 <?php if($redux_builder_amp['amp-sticky-header'] == '1'){?>
 .h_m{position:fixed;z-index:999;top:0px;width: 100vw;display:inline-block;
-	<?php if($redux_builder_amp['swift-background-scheme']['rgba']){?>background: <?php echo $redux_builder_amp['swift-background-scheme'] ['rgba'] ?>;<?php }?>
+	<?php if($redux_builder_amp['swift-background-scheme']['rgba']){?>background: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-background-scheme'] ['rgba']) ?>;<?php }?>
 	<?php if($redux_builder_amp['swift-border-line-control']){?>border-bottom: <?php echo $redux_builder_amp['swift-border-line-control'] ?>px solid;<?php } ?>
 	<?php if($redux_builder_amp['swift-border-color-control']['rgba']){?>border-color:<?php echo ampforwp_sanitize_color($redux_builder_amp['swift-border-color-control'] ['rgba']) ?>;<?php } ?>
 	<?php if($redux_builder_amp['swift-boxshadow-checkbox-control']){?>box-shadow:0px 0px 2px 2px #ccc;<?php }?>
@@ -71,7 +71,7 @@ header .cntr{
 <?php } else{ ?>
 .h_m{
 	position: static;
-	<?php if($redux_builder_amp['swift-background-scheme']['rgba']){?>background: <?php echo $redux_builder_amp['swift-background-scheme'] ['rgba'] ?>;<?php }?>
+	<?php if($redux_builder_amp['swift-background-scheme']['rgba']){?>background: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-background-scheme'] ['rgba']) ?>;<?php }?>
 	<?php if($redux_builder_amp['swift-border-line-control']){?>border-bottom: <?php echo $redux_builder_amp['swift-border-line-control'] ?>px solid;<?php } ?>
 	<?php if($redux_builder_amp['swift-border-color-control']['rgba']){?>border-color:<?php echo ampforwp_sanitize_color($redux_builder_amp['swift-border-color-control'] ['rgba']) ?>;<?php } ?>
 	<?php if($redux_builder_amp['swift-boxshadow-checkbox-control']){?>box-shadow:0px 0px 2px 2px #ccc;<?php }?>
@@ -132,7 +132,7 @@ if($redux_builder_amp['header-type'] == '3'){?>
 <?php //search overlay
 
 if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
-.lb-t {position: fixed;top: -50px;width: 100%;width: 100%;opacity: 0;-webkit-transition: opacity .5s ease-in-out;transition: opacity .5s ease-in-out;overflow: hidden;z-index:9;<?php if($redux_builder_amp['swift-header-overlay']['rgba']){?>background: <?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;<?php } ?>}
+.lb-t {position: fixed;top: -50px;width: 100%;width: 100%;opacity: 0;-webkit-transition: opacity .5s ease-in-out;transition: opacity .5s ease-in-out;overflow: hidden;z-index:9;<?php if($redux_builder_amp['swift-header-overlay']['rgba']){?>background: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-header-overlay'] ['rgba']) ?>;<?php } ?>}
 .lb-t img {margin: auto;position: absolute;top: 0;left:0;right:0;bottom: 0;max-height: 0%;max-width: 0%;border: 3px solid white;box-shadow: 0px 0px 8px rgba(0,0,0,.3);box-sizing: border-box;-webkit-transition: .5s ease-in-out;transition: .5s ease-in-out;}
 a.lb-x {display: block;width:50px;height:50px;box-sizing: border-box;background: tranparent;color: black;text-decoration: none;position: absolute;top: -80px;right: 0;-webkit-transition: .5s ease-in-out;transition: .5s ease-in-out;}
 a.lb-x:after {content: "\e5cd";font-family: 'icomoon';font-size: 30px;line-height: 0;display: block;text-indent: 1px;
@@ -990,7 +990,7 @@ if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() 
 <?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 .sdbr-right{
 	<?php if( isset($redux_builder_amp['sidebar-bgcolor']['rgba']) && $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
-		background:<?php echo $redux_builder_amp['sidebar-bgcolor']['rgba']?>;
+		background:<?php echo ampforwp_sanitize_color($redux_builder_amp['sidebar-bgcolor']['rgba'])?>;
 	<?php } ?>
 	display:flex;
 	flex-direction:column;
@@ -1206,7 +1206,7 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
 }
 .f-w-f1{
 	<?php if( $redux_builder_amp['swift-footer-bg']['rgba'] ) {?>
-		background:<?php echo $redux_builder_amp['swift-footer-bg']['rgba']?>; 
+		background:<?php echo ampforwp_sanitize_color($redux_builder_amp['swift-footer-bg']['rgba'])?>; 
 	<?php } ?>
 		font-size: <?php echo $redux_builder_amp['swift-footer1-cntnsize']?>; 
 	    line-height: 1.5;
