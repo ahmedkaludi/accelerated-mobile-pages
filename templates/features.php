@@ -6892,9 +6892,6 @@ function ampforwp_is_non_amp( $type="" ) {
 	if ( ampforwp_is_front_page() ) {
 		$post_id = ampforwp_get_frontpage_id();
 	}
-	if ( ampforwp_is_blog() ) {
-		$post_id = ampforwp_get_blog_details('id');
-	}
 	if ( false !== get_query_var( 'amp', false ) ) {
 		return false;
 	}
