@@ -1706,9 +1706,9 @@ if($redux_builder_amp['header-type'] == '10'){?>
 <?php } // Header 10 CSS Ends
 // image floats removed in mobile view #2525
 if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts 
-if(is_singular()){?>
+if(is_singular() || ampforwp_is_front_page()){?>
 @media(max-width:480px){
-.sp-rt .alignright , .sp-rt .alignleft {
+.content-wrapper .alignright , .content-wrapper .alignleft {
   float:none;
   margin:0 auto;
 }

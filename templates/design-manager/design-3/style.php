@@ -605,7 +605,7 @@ if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 1 ){ ?>
 
 <?php } 
 // image floats removed in mobile view #2525
-if(is_singular()){?>
+if(is_singular() || ampforwp_is_front_page()){?>
 @media(max-width:480px){
 .amp-wp-content .alignright , .amp-wp-content .alignleft {
   float:none;

@@ -386,7 +386,7 @@ if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 1 ){ ?>
 .full-post .amp-wp-post-content p{margin: 0px;color: #333;font-size: 15px;line-height: 26px;margin-bottom: 15px;word-wrap: break-word;}
 <?php } 
 // image floats removed in mobile view #2525
-if(is_singular()){?>
+if(is_singular() || ampforwp_is_front_page()){?>
 @media(max-width:480px){
 .amp-wp-content .alignright , .amp-wp-content .alignleft {
   float:none;
