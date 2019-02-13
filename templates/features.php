@@ -2621,8 +2621,8 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 }
 
 // 29. Remove analytics code if Already added by Glue or Yoast SEO (#370)
-	add_action('init','remove_analytics_code_if_available',20);
-	function remove_analytics_code_if_available(){
+	add_action('init','ampforwp_remove_analytics_code_if_available',20);
+	function ampforwp_remove_analytics_code_if_available(){
 		if ( class_exists('WPSEO_Options') && class_exists('YoastSEO_AMP') ) {
 			$yoast_glue_seo = get_option('wpseo_amp');
 
