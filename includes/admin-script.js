@@ -321,10 +321,10 @@ jQuery(function($) {
                 $('#s2id_amp_font_selector-select .select2-chosen').html(redux_data.amp_font_selector);
 
                 $('#amp_font_selector-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
-                $('#amp_font_selector-select').select2('val',redux_data.amp_font_selector).trigger("change");
+                $('#amp_font_selector-select').val(redux_data.amp_font_selector).trigger("change");
 
                 $('#amp_font_selector_content_single-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
-                $('#amp_font_selector_content_single-select').select2('val',redux_data.amp_font_selector).trigger("change");
+                $('#amp_font_selector_content_single-select').val(redux_data.amp_font_selector).trigger("change");
 
                 // Build select data
                 let fontData  = redux_data.google_current_font_data;
