@@ -101,7 +101,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
 						// variable to use later on when we want to extract its associted
 						// url.
 						if ( '' != $selected ) {
-							$arrNum = $x;
+							$arrNum = $k;
 						}
 						// No alt?  Set it to title.  We do this so the alt tag shows
 						// something.  It also makes HTML/SEO purists happy.
@@ -138,7 +138,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
 						// variable to use later on when we want to extract its associted
 						// url.
 						if ( '' != $selected ) {
-							$arrNum = $x;
+							$arrNum = $k;
 						}
 
 						// Add the option tag, with values.
@@ -171,11 +171,11 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
                     echo '<img src="#" class="redux-preview-image" style="visibility:hidden;" id="image_' . $this->field['id'] . '">';
                 } else {
                     $demo="#";
-                    if (isset($this->field['options'][ $arrNum - 1 ]['demo_link'])) {
-                        $demo = $this->field['options'][ $arrNum - 1 ]['demo_link'];
+                    if (isset($this->field['options'][ $arrNum  ]['demo_link'])) {
+                        $demo = $this->field['options'][ $arrNum ]['demo_link'];
                     }
-                    echo '<img src=' . esc_url($this->field['options'][ $arrNum - 1 ]['img']) . ' class="redux-preview-image" id="image_' . $this->field['id'] . '"  onclick="return window.open(\''.$demo.'\')">'; 
-                    if (isset($this->field['options'][ $arrNum - 1 ]['demo_link'])) {
+                    echo '<img src="' . esc_url($this->field['options'][ $arrNum ]['img']) . '" class="redux-preview-image" id="image_' . $this->field['id'] . '"  onclick="return window.open(\''.$demo.'\')">'; 
+                    if (isset($this->field['options'][ $arrNum ]['demo_link'])) {
                         echo '<a href="'. esc_url($demo) .'" id="theme-selected-demo-link" target="_blank">  
                                 Demo 
                             </a>';
