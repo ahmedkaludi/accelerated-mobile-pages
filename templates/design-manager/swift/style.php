@@ -967,8 +967,7 @@ if ( true == ampforwp_get_setting('gnrl-sidebar') &&  true == ampforwp_get_setti
 <?php } // sidebar CSS ends
 } // single design 4 ends?>
 <?php // Header and Archive Sidebar
-if ( (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar']) 
-	&& (isset($redux_builder_amp['gnrl-sidebar']) && $redux_builder_amp['gnrl-sidebar']) ) { ?>
+if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar') && is_active_sidebar( 'swift-sidebar' ) ) { ?>
 .b-w, .arch-dsgn{
 	display: flex;
 }
