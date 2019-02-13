@@ -2881,44 +2881,44 @@ add_action('admin_head','ampforwp_change_default_amp_post_meta',12);
 function ampforwp_change_default_amp_post_meta() {
 	global $redux_builder_amp, $post;
 	$amp_post_metas = array();
-	// Hide AMP Bulk Tools For Posts
-	if ( 'post' == $post->post_type ) {
-		$post_check_meta	= get_option('ampforwp_default_posts_to');
-		$post_checker			= 'show';
-		$post_control			= ampforwp_get_setting('amp-posts-meta-default');
-		$post_meta_to_update = 'default';
-		if ( $post_control  === 'hide' ) {
-			$post_checker				= 'hide';
-			$post_meta_to_update 		= 'hide-amp';
-		}
-		if ( $post_check_meta !== $post_checker ) {
-			$posts = get_posts(array('post_type'=>$post->post_type,'posts_per_page'   => -1));
-			foreach($posts as $post){
-				$amp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas',true), true );
-				$amp_post_metas['ampforwp-amp-on-off'] = $post_meta_to_update;
-				update_post_meta( $post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
+	$post_types = ampforwp_get_all_post_types();
+	if ( $post_types ) {
+		foreach ($post_types as $post_type ) {
+			$post_check_meta	= get_option('ampforwp_default_'.$post_type.'s_to');
+			$post_checker			= 'show';
+			$post_control			= $redux_builder_amp['amp-'.$post_type.'s-meta-default'];
+			$post_meta_to_update = 'default';
+			if ( $post_control  === 'hide' ) {
+				$post_checker				= 'hide';
+				$post_meta_to_update 		= 'hide-amp';
 			}
-			update_option('ampforwp_default_posts_to', $post_checker);
-		}
-	}
-	// Hide AMP Bulk Tools For Pages
-	if ( 'page' == $post->post_type ) {
-		$post_check_meta	= get_option('ampforwp_default_pages_to');
-		$post_checker			= 'show';
-		$post_control			= ampforwp_get_setting('amp-pages-meta-default');
-		$post_meta_to_update = 'default';
-		if ( $post_control  === 'hide' ) {
-			$post_checker				= 'hide';
-			$post_meta_to_update 		= 'hide-amp';
-		}
-		if ( $post_check_meta !== $post_checker ) {
-			$pages = get_pages(array());
-			foreach($pages as $page){
-			$amp_post_metas = json_decode(get_post_meta( $page->ID,'ampforwp-post-metas',true), true );
-				$amp_post_metas['ampforwp-amp-on-off'] = $post_meta_to_update;
-				update_post_meta( $page->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
+
+			// 		var_dump($post_check_meta);
+			// 		var_dump($post_type);
+			// var_dump($post_control);
+			// Check and Run only if the value has been changed, else return
+			if ( $post_check_meta !== $post_checker  ) {
+				// Get all the pages and update the post meta
+				if( 'page' == $post_type ) {
+				    $pages = get_pages(array());
+				    foreach($pages as $page){
+				    	$amp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas',true), true );
+						$amp_post_metas['ampforwp-amp-on-off'] = $post_meta_to_update;
+						update_post_meta( get_the_ID(), 'ampforwp-post-metas', json_encode($amp_post_metas) );
+				    }
+				}
+				// Get all the Posts and update the post meta
+				else {
+					$posts = get_posts(array('post_type'=>$post->post_type,'posts_per_page'   => -1));
+					foreach($posts as $post){
+						$amp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas',true), true );
+						$amp_post_metas['ampforwp-amp-on-off'] = $post_meta_to_update;
+						update_post_meta($post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
+					}
+				}
+				// Update the option as the process has been done and update an option
+				update_option('ampforwp_default_'.$post_type.'s_to', $post_checker);
 			}
-			update_option('ampforwp_default_pages_to', $post_checker);
 		}
 	}
 	return ;
