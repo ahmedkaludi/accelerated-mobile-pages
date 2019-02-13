@@ -541,3 +541,18 @@ function ampforwp_allows_tag_sanitizer($sanitizer_classes){
 	$sanitizer_classes['AMP_Tag_And_Attribute_Sanitizer'] = array();
 	return $sanitizer_classes;
 };
+
+add_action( 'activated_plugin', 'ampforwp_active_update_transient' );
+function ampforwp_active_update_transient($plugin){
+	delete_transient( 'ampforwp_themeframework_active_plugins' ); 
+}
+add_action( 'deactivated_plugin', 'ampforwp_deactivate_update_transient' );
+function ampforwp_deactivate_update_transient($plugin){
+	delete_transient( 'ampforwp_themeframework_active_plugins' ); 
+	$check_plugin  = strpos($plugin, ampforwp_get_setting('amp-design-selector'));
+	if ( false !== $check_plugin ) {
+		$selectedOption = get_option('redux_builder_amp',true);		
+		$selectedOption['amp-design-selector'] = 4;
+		update_option('redux_builder_amp',$selectedOption);
+	}
+}

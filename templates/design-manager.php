@@ -72,27 +72,26 @@ if ( is_customize_preview() ) {
 // Design Selector
 add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {
-
     global $redux_builder_amp;
-    if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] ) {
-		if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'.$redux_builder_amp['amp-design-selector'] . '/style.php') ) {
+    $design = '';
+	$design = ampforwp_get_setting('amp-design-selector');
+	if ( empty( $design )){
+    	return 4;
+    }
+
+    if ( $design ) {
+		if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $design . '/style.php') ) {
 			return $redux_builder_amp['amp-design-selector'];
 		}
-		elseif ( 4 == $redux_builder_amp['amp-design-selector'] && file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift/style.php') ) {
+		elseif ( 4 == $design && file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift/style.php') ) {
       			return $redux_builder_amp['amp-design-selector'];
     	}
 		else {
-			$plugin_data = get_plugins();
-	    	if ( count($plugin_data) > 0 ) {
-	    		foreach ( $plugin_data as $key => $data ) {
-	    			if ( $data['TextDomain'] == $redux_builder_amp['amp-design-selector'] ) {
-	    				if ( file_exists(AMPFORWP_MAIN_PLUGIN_DIR."/".$key) ) {
-	    					return $redux_builder_amp['amp-design-selector'];
-	    				}
-	    				break;
-	    			}
-	    		}
-	    	}
+			if ( file_exists( WP_PLUGIN_DIR.'/'.$design.'/functions.php' ) ){
+	    		return $design;
+			} else {
+				return 4;
+			}
 		}
     	return 2;
     } 
@@ -111,20 +110,7 @@ function ampforwp_stylesheet_file_insertion() {
         if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php') && 4 != $ampforwp_design_selector ) {
 	        //require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php';
 	    }else {
-	    	if ( 4 != $ampforwp_design_selector ) {
-		    	$plugin_data = get_plugins();
-		    	if ( count($plugin_data) > 0 ) {
-		    		foreach ( $plugin_data as $key => $data ) {
-		    			if ( $data['TextDomain'] == $ampforwp_design_selector ) {
-		    				if ( ! file_exists(AMPFORWP_MAIN_PLUGIN_DIR."/".$key) ) {
-		    					echo "plugin theme not exists";
-		    				}
-		    				break;
-		    			}
-		    		}
-		    	}
-    		}
-    		require AMPFORWP_PLUGIN_DIR."/components/theme-loader.php";
+	    	require AMPFORWP_PLUGIN_DIR."/components/theme-loader.php";
 	    }
 }
 
