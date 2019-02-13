@@ -786,3 +786,8 @@ function ampforwp_deactivate_update_transient($plugin){
 		update_option('redux_builder_amp',$selectedOption);
 	}
 }
+//Remove CSS header from the GoodLife Theme #2673
+add_action('pre_amp_render_post','ampforwp_goodlife_css');
+function ampforwp_goodlife_css(){
+	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
+}

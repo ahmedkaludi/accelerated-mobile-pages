@@ -7002,11 +7002,6 @@ function ampforwp_embedly_sanitizer( $sanitizer_classes ) {
   $sanitizer_classes[ 'AMPforWP_Embedly_Sanitizer' ] = array(); 
   return $sanitizer_classes;
 }
-//Remove CSS header from the GoodLife Theme #2673
-add_action('pre_amp_render_post','ampforwp_goodlife_css');
-function ampforwp_goodlife_css(){
-	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
-}
 //Remove anchor link from images when lightbox is enabled #2695
 add_action('pre_amp_render_post','ampforwp_remove_ahref_lightbox');
 function ampforwp_remove_ahref_lightbox(){	
