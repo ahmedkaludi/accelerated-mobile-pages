@@ -129,14 +129,12 @@ function ampforwp_analytics_options($opt_name){
     "triggers": {
         "trackPageview": {
             "on": "visible",
-            "request": "pageview",
-        },
+            "request": "pageview"
+        }
     /** 
      * Enter your Advanced Analytics code here
     */
-
     }
-}
 }','accelerated-mobile-pages')
                     ),
 
