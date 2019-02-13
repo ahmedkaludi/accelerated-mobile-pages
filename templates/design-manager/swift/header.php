@@ -3,7 +3,7 @@
 <?php
 do_action( 'levelup_head');
 
-if(!function_exists('levelup_check_hf_builder') || (function_exists('levelup_check_hf_builder') && !levelup_check_hf_builder('head'))){
+if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 ?>
 <?php if($redux_builder_amp['header-type'] == '1'){?>
 <header class="header h_m h_m_1">
@@ -427,7 +427,7 @@ do_action("ampforwp_advance_header_layout_options");
  ?>
 <div class="content-wrapper">
 <?php
-if(!function_exists('levelup_check_hf_builder') || (function_exists('levelup_check_hf_builder') && !levelup_check_hf_builder('head'))){
+if(!ampforwp_levelup_compatibility('hf_builder_head') ){
  if($redux_builder_amp['primary-menu']){?>
 <div class="p-m-fl">
 <?php if ( amp_menu(false) ) : ?>

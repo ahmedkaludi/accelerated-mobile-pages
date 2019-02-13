@@ -2,7 +2,7 @@
 <?php global $redux_builder_amp ?>
 <?php 
 do_action( 'levelup_foot');
-if(!function_exists('levelup_check_hf_builder') || (function_exists('levelup_check_hf_builder') && !levelup_check_hf_builder('foot'))) {
+if(!ampforwp_levelup_compatibility('hf_builder_foot') ){
 if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { ?>
 <footer class="footer">
 	<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>

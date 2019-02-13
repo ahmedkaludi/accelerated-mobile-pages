@@ -3115,7 +3115,6 @@ Redux::setSection( $opt_name, array(
         ) );
 /*---------------------*/
 
-     $theme = wp_get_theme();
     $amp_fontparts = array(
             array(
                        'id' => 'colorscheme-section',
@@ -3231,7 +3230,7 @@ Redux::setSection( $opt_name, array(
                             'layout_type' => 'accordion',
                             'accordion-open'=> 1,
                 ));
-    if('Level UP'==$theme->name){
+    if(ampforwp_levelup_compatibility('levelup_theme')){
 
         $fonts_settings[] = array(
                 'id'       => 'ampforwp_page_levelup_manage_fonts',

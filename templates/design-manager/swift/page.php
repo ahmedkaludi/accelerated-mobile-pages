@@ -2,7 +2,7 @@
 amp_header(); ?>
 <div <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>class="sp"<?php } ?>>
 	<div <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>class="cntr"<?php } ?>>
-		<?php if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts ?>
+		<?php if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts ?>
 		<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 			<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
 				amp_breadcrumb();
@@ -200,7 +200,7 @@ amp_header(); ?>
 					</ul>
 	            </div>
 	        	<?php } ?>
-	        <?php if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts ?>
+	        <?php if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts ?>
 				<div class="cmts">
 					<?php amp_comments();?>
 				</div>

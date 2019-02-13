@@ -1,7 +1,7 @@
 <?php global $redux_builder_amp; ?>
 <?php if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( !isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector']) ) ) {?>
 <?php
- if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder())  && 'Level UP'!=$theme->name){ ?>
+ if(!ampforwp_levelup_compatibility('levelup_theme_and_elementor')){ ?>
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 300;font-display: auto;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Light.ttf');}
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 400;font-display: auto;src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Regular.ttf');}
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 500;font-display: auto;src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Medium.ttf');} 
@@ -20,9 +20,8 @@ if( !empty($swift_cs['color']) ) {
 	$swift_cs_color = $swift_cs['color'];
 }?>
 body{<?php 
-	$theme = wp_get_theme();
 	$fontFamily = "font-family: 'Arial, Helvetica, sans-serif';";
-if( 'Level UP'!=$theme->name && 1==ampforwp_get_setting('ampforwp-google-font-switch')){
+if( !ampforwp_levelup_compatibility('levelup_theme') && 1==ampforwp_get_setting('ampforwp-google-font-switch')){
 	$fontFamily = "font-family: 'Poppins', sans-serif;";
 	if(ampforwp_get_setting('amp_font_selector') != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
 		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';";
@@ -63,9 +62,9 @@ amp-carousel > amp-img > img {object-fit: contain;}
 amp-instagram{box-sizing: initial;}
 figure.aligncenter amp-img {margin: 0 auto;}
 <?php global $post;
-if((class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) && is_page() ) || (class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) && ampforwp_is_front_page() ) ) {}
+if( class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) &&  (is_page() || ampforwp_is_front_page() )  ) {}
 else{ ?>.cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px} <?php } ?>
-<?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts?>
+<?php if(ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts?>
 @font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;font-display: auto;src:  local('icomoon'), local('icomoon'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.ttf');}
 header .cntr{
 <?php if( isset($redux_builder_amp['swift-width-control']) && $redux_builder_amp['swift-width-control']){?>
@@ -357,7 +356,7 @@ echo $fontFamily;
     .right a, .left a {padding: 10px 30px 14px;}
 }
 <?php } ?>
-<?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts?>
+<?php if( !ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts?>
 <?php //page and frontpage
 if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
     <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
@@ -792,7 +791,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
 }
 <?php } //Drop Cap CSS ends
 // Menu Search CSS
-if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts 
+if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts 
 if ( isset($redux_builder_amp['menu-search']) && $redux_builder_amp['menu-search'] ) { ?>
 .m-srch #amp-search-submit {
     cursor: pointer;
@@ -1130,7 +1129,7 @@ thead th {
 }
 <?php } //Header and Archive Sidebar CSS Ends ?>
 <?php 
-if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts 
+if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts 
 //Footer
 if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { ?>
 .footer{margin-top: 80px;}
@@ -1452,7 +1451,7 @@ if(isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp
   padding-bottom:40px;
 }
 <?php } ?>
-<?php if(!function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){  // Level up Condition starts ?>
+<?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 [class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 <?php if(true == ampforwp_get_setting('enable-amp-ads-1')||true == ampforwp_get_setting('enable-amp-ads-2')||true == ampforwp_get_setting('enable-amp-ads-3')||true == ampforwp_get_setting('enable-amp-ads-4')||true == ampforwp_get_setting('enable-amp-ads-5')||true == ampforwp_get_setting('enable-amp-ads-6')){?>
@@ -1706,7 +1705,7 @@ if($redux_builder_amp['header-type'] == '10'){?>
 }
 <?php } // Header 10 CSS Ends
 // image floats removed in mobile view #2525
-if( !function_exists('if_levelup_has_builder') || (function_exists('if_levelup_has_builder') && !if_levelup_has_builder()) ){ // Level up Condition starts 
+if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts 
 if(is_singular() || ampforwp_is_front_page()){?>
 @media(max-width:480px){
 .content-wrapper .alignright , .content-wrapper .alignleft {
