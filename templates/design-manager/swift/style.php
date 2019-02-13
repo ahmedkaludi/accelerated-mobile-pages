@@ -932,7 +932,8 @@ if (isset($redux_builder_amp['swift-sidebar']) && $redux_builder_amp['swift-side
 } // single design 4 ends?>
 <?php // Header and Archive Sidebar
 if ( (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar']) 
-	&& (isset($redux_builder_amp['gnrl-sidebar']) && $redux_builder_amp['gnrl-sidebar']) ) { ?>
+	&& (isset($redux_builder_amp['gnrl-sidebar']) && $redux_builder_amp['gnrl-sidebar']) ) { 
+	if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 .b-w, .arch-dsgn{
 	display: flex;
 }
@@ -984,7 +985,7 @@ if ( (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sideba
 	    display: inline-block;
 	}
 }
-<?php }
+<?php  endif; }
 if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) ) || ( true == ampforwp_get_setting('swift-sidebar') && is_single() ) ) { ?>
 /*** Sidebar CSS ***/
 <?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
