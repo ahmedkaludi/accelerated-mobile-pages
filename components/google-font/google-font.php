@@ -1,8 +1,9 @@
 <?php
 add_action( 'amp_post_template_css', 'ampforwp_theme_support_fonts' );
 function ampforwp_theme_support_fonts(){
- global $redux_builder_amp; ?>
-<?php if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( !isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector']) ) ) {?>
+ global $redux_builder_amp; 
+ $amp_font_selector = ampforwp_get_setting('amp_font_selector');
+if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( $amp_font_selector==1 || empty($amp_font_selector) ) ) {?>
 <?php
  if( !ampforwp_levelup_compatibility('levelup_theme_and_elementor') ){ ?>
 @font-face {font-family: 'Poppins';font-style: normal;font-weight: 300;font-display: auto;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Light.ttf');}
@@ -17,8 +18,8 @@ body{<?php
 	$fontFamily = "font-family: 'Arial, Helvetica, sans-serif';";
 if( 1==ampforwp_get_setting('ampforwp-google-font-switch')){
 	$fontFamily = "font-family: 'Poppins', sans-serif;";
-	if(ampforwp_get_setting('amp_font_selector') != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
-		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';";
+	if( $amp_font_selector != 1 && !empty( $amp_font_selector )){ 
+		$fontFamily = "font-family: '". $amp_font_selector ."';";
 	}
 }
 echo $fontFamily;
@@ -28,11 +29,12 @@ font-size: 16px; line-height:1.25; }
 	<?php if(is_single() ) { ?>
 		.cntn-wrp{
 		<?php
+		$amp_font_selector_content_single = ampforwp_get_setting('amp_font_selector_content_single');
 		 $fontFamily = "font-family: 'Arial, Helvetica, sans-serif'";
 		if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
 			 $fontFamily = "font-family: 'Poppins', sans-serif;";
-			if(isset($redux_builder_amp['amp_font_selector_content_single']) && $redux_builder_amp['amp_font_selector_content_single'] != 1 && !empty($redux_builder_amp['amp_font_selector_content_single'])){ 
-				$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_single']."';";
+			if( $amp_font_selector_content_single != 1 && !empty($amp_font_selector_content_single)){
+				$fontFamily = "font-family: '".$amp_font_selector_content_single."';";
 			}  
 		}
 		echo $fontFamily;
