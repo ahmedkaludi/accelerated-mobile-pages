@@ -2828,7 +2828,7 @@ add_action('template_redirect', 'ampforwp_dd_exclude_from_amp');
 function ampforwp_content_sanitizer( $content ) {
 	$amp_custom_post_content_input = $content;
 	if ( !empty( $amp_custom_post_content_input ) ) {
-		$amp_custom_content = new AMP_Content( $amp_custom_post_content_input,
+ 		$amp_custom_content = new AMPFORWP_Content( $amp_custom_post_content_input,
 				apply_filters( 'amp_content_embed_handlers', array(
 						'AMP_Twitter_Embed_Handler' => array(),
 						'AMP_YouTube_Embed_Handler' => array(),
@@ -4692,7 +4692,10 @@ if( !function_exists( 'ampforwp_carousel_class_magic' ) ){
 if( !function_exists('ampforwp_has_post_thumbnail')){
 	function ampforwp_has_post_thumbnail(){
 		global $post, $redux_builder_amp;
-		if(function_exists('has_post_video') && has_post_video($post->ID)){
+		if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
+ 			return true;
+		}
+		elseif(function_exists('has_post_video') && has_post_video($post->ID)){
 			return true;
 		}elseif(has_post_thumbnail()){
 			return true;
@@ -6818,7 +6821,7 @@ function checkAMPforPageBuilderStatus($postId){
 // Featured Video Plus: amp-iframe script #2394
 add_filter('amp_post_template_data', 'ampforwp_featured_video_plus_data');
 function ampforwp_featured_video_plus_data($data) {
-	if( function_exists('get_the_post_video') ) {
+	if( function_exists('get_the_post_video') || class_exists('Bunyad') ) {
 		if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 			$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
 		}
@@ -6830,7 +6833,11 @@ add_action('amp_post_template_css', 'ampforwp_featured_video_plus_css');
 function ampforwp_featured_video_plus_css(){ 
 	if( function_exists('get_the_post_video') ) {?>
 		.fvp-onload{display:none}
-<?php }}
+<?php }
+	if(class_exists('Bunyad')){ ?>
+		.amp-featured-image amp-iframe { height:100%; }
+<?php }
+}
 
 // Font Selector
 if( ! function_exists('ampforwp_font_selector') ) {

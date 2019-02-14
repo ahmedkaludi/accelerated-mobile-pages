@@ -11,7 +11,13 @@ function ampforwp_framework_get_featured_image(){
 	}
 	if( true == ampforwp_has_post_thumbnail() )	{
 		// Featured Video Plus Compatibility #2394 #2583
-		if(function_exists('has_post_video') && has_post_video($post_id)){
+		if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
+			global $wp_embed;
+			$videoContent = Bunyad::posts()->meta('featured_video');
+  		  	$featured_video = $wp_embed->autoembed($videoContent);
+ 			$amp_html = ampforwp_content_sanitizer($featured_video);
+  		}
+		elseif(function_exists('has_post_video') && has_post_video($post_id)){
 			ob_start();
 			get_the_post_video();
 			$videoContent = ob_get_contents();
