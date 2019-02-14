@@ -1880,21 +1880,21 @@ function ampforwp_gtm_support(){
 add_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
 function amp_gtm_add_gtm_support( $analytics ) {
 	global $redux_builder_amp;
-	$get_gtm_id = $redux_builder_amp['amp-gtm-id'];
+	$get_gtm_id = ampforwp_get_setting('amp-gtm-id');
 	$remove_spaces = str_replace(" ", "", $get_gtm_id); 
 
 	if ( ! is_array( $analytics ) ) {
 		$analytics = array();
 	}
 	$analytics['amp-gtm-googleanalytics'] = array(
-		'type' => $redux_builder_amp['amp-gtm-analytics-type'],
+		'type' => ampforwp_get_setting('amp-gtm-analytics-type'),
 		'attributes' => array(
 			'data-credentials' 	=> 'include',
 			'config'			=> 'https://www.googletagmanager.com/amp.json?id='. $remove_spaces .'&gtm.url=SOURCE_URL'
 		),
 		'config_data' => array(
 			'vars' => array(
-				'account' =>  $redux_builder_amp['amp-gtm-analytics-code'],
+				'account' =>  ampforwp_get_setting('amp-gtm-analytics-code'),
 			),
 			'triggers' => array(
 				'trackPageview' => array(
@@ -1904,7 +1904,7 @@ function amp_gtm_add_gtm_support( $analytics ) {
 			),
 		),
 	);
-   if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
+   if ( true == ampforwp_get_setting('ampforwp-gtm-field-anonymizeIP') ) {
 		$analytics['amp-gtm-googleanalytics']['config_data']['vars']['anonymizeIP'] = 'true';
 	}
 	$gtm_fields = '';
