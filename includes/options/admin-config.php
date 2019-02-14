@@ -1837,7 +1837,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 $default = 'yoast';
             }
             elseif ( is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php') ) {
-                $default = 2;
+                $default = 'aioseo';
             }
             elseif ( defined( 'RANK_MATH_FILE' ) ) {
                 $default = 'rank_math';
@@ -1888,7 +1888,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'    => esc_html__('Select SEO Plugin', 'accelerated-mobile-pages'),
                 'options'  => array(
                     'yoast'       => 'Yoast',
-                    '2'     => 'All in One SEO',
+                    'aioseo'     => 'All in One SEO',
                     'rank_math' => 'Rank Math SEO'
                 ),
                 'default'  => ampforwp_seo_default(),
@@ -1925,7 +1925,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'type'     => 'info',
                 'style'    => 'success',
                 'desc'     => esc_html__("All in One SEO works out of the Box with our plugin. It deosn't requires any extra config except Canonicals.", 'accelerated-mobile-pages'),
-                'required' => array('ampforwp-seo-selection', '=', '2')
+                'required' => array('ampforwp-seo-selection', '=', 'aioseo')
             ),
            array(
                'class' => 'child_opt',
@@ -1934,7 +1934,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'     => esc_html__('Pull Canonical from All In One SEO for AMP pages', 'accelerated-mobile-pages'),
                'title'    =>esc_html__( 'Canonical from All In One SEO', 'accelerated-mobile-pages' ),
                'default'  => 0,
-               'required'  => array('ampforwp-seo-selection', '=' , '2'),
+               'required'  => array('ampforwp-seo-selection', '=' , 'aioseo'),
            ),
             array(
                 'id' => 'ampforwp-seo-index-noindex-sub-section',
