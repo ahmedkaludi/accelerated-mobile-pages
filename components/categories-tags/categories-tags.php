@@ -12,10 +12,13 @@ function ampforwp_framework_get_categories_list( $saperator = '' ){
 		<div class="amp-category">
 				<span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories' ); ?></span>
 				<?php foreach ($ampforwp_categories as $key=>$cat ) {
-						if( true == $redux_builder_amp['ampforwp-archive-support'] && true == $redux_builder_amp['ampforwp-cats-tags-links-single']) {
+						if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
+								echo '<span class="amp-cat">'. $cat->name .'</span>';
+							}
+						elseif( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {
 								echo ('<span class="amp-cat amp-cat-'.$cat->term_id.'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) )   .'" > '. $cat->name .'</a></span>');//#934
 						} else {
-							 echo '<span class="amp-cat">'. $cat->name .'</span>';
+							 echo ('<span class="amp-cat amp-cat-'.$cat->term_id.'"><a href="'. get_category_link( $cat->term_id )  .'" > '. $cat->name .'</a></span>');
 						}
 						if(!empty($saperator) && count($ampforwp_categories)-1 > $key){
 							echo $saperator;

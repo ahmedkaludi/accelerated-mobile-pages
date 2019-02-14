@@ -24,11 +24,14 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
         global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-in-designthree'] , 'in' ) .' '); 
 
         foreach ($ampforwp_categories as $cat ) {
-          if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
+          if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
+                echo '<span class="amp-cat">'. $cat->name .'</span>';
+              }
+            elseif( true == ampforwp_get_setting('ampforwp-archive-support') &&  true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {
             echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) . '" >'.$cat->name .'</a></span>'); 
         } 
       else {
-        echo ('<span>'.$cat->name .'</span>');
+        echo ('<span class="amp-cat amp-cat-'.$cat->term_id.'"><a href="'. get_category_link( $cat->term_id )  .'" > '. $cat->name .'</a></span>');
       }
        }
 			?>

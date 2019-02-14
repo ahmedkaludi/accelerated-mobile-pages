@@ -12,10 +12,13 @@
 		<div class="amp-wp-meta amp-wp-tax-category">
 				<span><?php global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories:' ) .' ' ); ?></span>
 				<?php foreach ($ampforwp_categories as $cat ) {
-					if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] &&  isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
-							echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) .'" > '. $cat->name .'</a></span>');//#934
-						} else {
-							 echo '<span>'. $cat->name .'</span>';
+				if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
+                echo '<span class="amp-cat">'. $cat->name .'</span>';
+              	}
+           		elseif( true == ampforwp_get_setting('ampforwp-archive-support') &&  true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {
+						echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) .'" > '. $cat->name .'</a></span>');//#934
+				} else {
+						 echo ('<span class="amp-cat amp-cat-'.$cat->term_id.'"><a href="'. get_category_link( $cat->term_id )  .'" > '. $cat->name .'</a></span>');
 						}
 			} ?>
 		</div>
