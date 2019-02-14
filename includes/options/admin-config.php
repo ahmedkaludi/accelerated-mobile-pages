@@ -4916,7 +4916,6 @@ $single_page_options = array(
               'type'     => 'switch',
               'default'  =>  '1',
               'title'    => __('Categories & Tags Links', 'accelerated-mobile-pages'),
-              'required'  => array('ampforwp-archive-support', '=' , '1'),
            ),
           // Social Icons ON/OFF
           array(
