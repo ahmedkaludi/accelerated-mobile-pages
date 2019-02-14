@@ -6431,48 +6431,6 @@ if ( !function_exists('ampforwp_is_amp_endpoint_old') ) {
 }
 // End Fallbacks for Vendor AMP
 
-// 	Custom Post Type Vs Post name(slug) Conflict #2374
-add_action('pre_amp_render_post','ampforwp_page_cpt_same_slug');
-
-function ampforwp_page_cpt_same_slug(){
-	global $post;
-	if( !$post ){
-		return;
-	} 
-	$post_id = $conflict_slug = $is_slug_conflict = '';
-	$all_post_types = array();
-	$post_id = get_the_ID();
-	$all_post_types = get_post_types();
-	$conflict_slug = $post->post_name;
-	$is_slug_conflict = in_array($conflict_slug, $all_post_types);
-	if($is_slug_conflict){
-		add_filter('ampforwp_modify_endpoint', 'ampforwp_enable_endpoint_for_conflict_posts',10,4);
-	return true;
-	}
-	return false;
-}
-
-function ampforwp_enable_endpoint_for_conflict_posts($new_url, $url, $setting, $endpoint){
-
-	if('0' == $setting || empty($setting) ){
-		$new_url = add_query_arg('amp','1',$url);
-	}
-	
-	return $new_url;
-}
-
-// Function to check if the query and the post name are same #2361
-function ampforwp_is_query_post_same($haystack = '' , $needle = ''){
-  $result = '';
-  if(!empty($haystack) && !empty($needle)){
-    $result = strpos($haystack ,$needle);
-  }
-  if( ($result != false || is_int($result)) && !empty($result) ){
-    return true;
-  }
-  return false;
-}
-
 // rel="next" & rel="prev" pagination meta tags #2343
 add_action( 'amp_post_template_head', 'ampforwp_rel_next_prev' );	
 

@@ -223,6 +223,11 @@ function ampforwp_add_custom_rewrite_rules() {
 			      'index.php?amp&post_type='.$post_type,
 			      'top'
 			    );
+			    add_rewrite_rule(
+			      $post_type.'\/(.+?)\/amp\/?$',
+			      'index.php?amp&'.$post_type.'=$matches[1]',
+			      'top'
+			    );
 			}
 		}
 	}
