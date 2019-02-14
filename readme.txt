@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.3
-Stable tag: 0.9.97.33
+Stable tag: 0.9.97.34
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -185,15 +185,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.33 (13th February 2019) =
-* Fixed: Style sanitizer code updated #2387
-* Fixed: UTM Parameters when Mobile Redirection is enabled #2854
-* Fixed: ?nonamp=1 is not working properly #1947 & #2537
-* Fixed: All media queries load in single media query only #2711
-* Fixed: 'Hide AMP option' is not working when AMP take over is enabled #2880
-* Fixed: Swift Hover Color Changes #2751
-* Fixed: Google Font is not getting saved #2839
-* Fixed: Sidebar CSS condition code fixed #2757
-* Fixed: Performance improvement for ampforwp_stylesheet_file_insertion #2873
+= 0.9.97.34 (14th February 2019) =
+* Fixed: Backward Compatibility for Yoast and All in One SEO options #2894
 
 Full changelog available in changelog.txt

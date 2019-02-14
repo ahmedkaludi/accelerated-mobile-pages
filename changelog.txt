@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 0.9.97.34 (14th February 2019) =
+* Fixed: Backward Compatibility for Yoast and All in One SEO options #2894
+
 = 0.9.97.33 (13th February 2019) =
 * Fixed: Style sanitizer code updated #2387
 * Fixed: UTM Parameters when Mobile Redirection is enabled #2854
