@@ -2225,38 +2225,69 @@ Redux::setSection( $opt_name, array(
                         'data'      => 'tags',
 
                        ),
-                        array(
+                         array(
                            'id' => 'amp-version-rollback',
                            'type' => 'section',
-                           'title' => __('Rollback to Previous Version', 'accelerated-mobile-pages'),
+                           'title' => esc_html__('Rollback', 'accelerated-mobile-pages'),
                            'indent' => true,
                            'layout_type' => 'accordion',
                             'accordion-open'=> 1,
                          ),
                         array(
-                            'id'       => 'amp-tollback-btn',
-                            'type'     => 'text',
+                            'id'       => 'amp-rollback-switch',
+                            'type'     => 'switch',
+                            'title'    => esc_html__('Rollback to Previous Version', 'accelerated-mobile-pages'),
+                            //'subtitle' => esc_html__('Please Note: We do not recommend updating to a beta version on production sites.', 'accelerated-mobile-pages'),
+                            'default'  => false,
+                        ),
+                        array(
+                            'id'       => 'amp-rollback-version',
+                            'type'     => 'select',
                             'title'    => __('Rollback Version', 'accelerated-mobile-pages'),
-                            'default'   => 'Rollback'
+                            'default'   => 'Rollback',
+                            'options'  => array(
+                                               '0.9.97.32' => '0.9.97.32',
+                                               '0.9.97.31' => '0.9.97.31',
+                                           ),
+                            'required'=>array('amp-rollback-switch','=','1'),
+                        ),
+                        array(
+                            'id'       => 'ampforwp-rollback-btn',
+                            'type'     => 'info',
+                            'title'    =>  sprintf(
+                                            '<a href="%s" target="_blank" class="button">%s</a>',
+                                            wp_nonce_url( admin_url( 'admin-post.php?action=ampforwp_beta' ), 'ampforwp_beta' ),
+                                            sprintf( 
+                                                esc_html__( 'Activate', 'accelerated-mobile-pages' ))
+                                        ),
+                            'required'=>array('amp-rollback-switch','=','1'),
                         ),
                         array(
                            'id' => 'amp-beta-testing',
                            'type' => 'section',
-                           'title' => __('Become a Beta Tester', 'accelerated-mobile-pages'),
+                           'title' => esc_html__('Become a Beta Tester', 'accelerated-mobile-pages'),
                            'indent' => true,
                            'layout_type' => 'accordion',
                             'accordion-open'=> 1,
                          ),
                        array(
                             'id'       => 'amp-beta-link',
-                            'type'     => 'select',
-                            'title'    => __('Beta Tester', 'accelerated-mobile-pages'),
-                            'options'  => array(
-                                '1'    => 'Enable',
-                                '2'    => 'Disable'
-                            ),
-                            'default'  => '1',
+                            'type'     => 'switch',
+                            'title'    => esc_html__('Beta Tester', 'accelerated-mobile-pages'),
+                            'subtitle' => esc_html__('Please Note: We do not recommend updating to a beta version on production sites.', 'accelerated-mobile-pages'),
+                            'default'  => false,
                         ),
+                       array(
+                        'id'       => 'ampforwp-beta-testing',
+                        'type'     => 'info',
+                        'title'    =>  sprintf(
+                                        '<a href="%s" target="_blank" class="button">%s</a>',
+                                        wp_nonce_url( admin_url( 'admin-post.php?action=ampforwp_beta' ), 'ampforwp_beta' ),
+                                        sprintf( 
+                                            esc_html__( 'Activate', 'accelerated-mobile-pages' ))
+                                    ),
+                        'required'=>array('amp-beta-link','=','1'),
+                    ),
                     )
                        
                  )
@@ -2539,16 +2570,6 @@ Redux::setSection( $opt_name, array(
                          'title'    => __('Delete Data on Uninstall?', 'accelerated-mobile-pages'),
                         'default'   => 0,
                         'tooltip-subtitle'      => __('Enable this if you would like AMPforWP to completely remove all of its data when uninstalling via Plugins > Delete.'),
-                    ),
-                    array(
-                        'id'       => 'ampforwp-beta-testing',
-                        'type'     => 'info',
-                         'title'    => __('Beta Version'. sprintf(
-                                        '<a href="%s" target="_blank" class="button">%s</a>',
-                                        wp_nonce_url( admin_url( 'admin-post.php?action=ampforwp_beta' ), 'ampforwp_beta' ),
-                                        sprintf( 
-                                            __( 'Activate', 'accelerated-mobile-pages' ))
-                                    ), 'accelerated-mobile-pages'),
                     ),
    ),
 
