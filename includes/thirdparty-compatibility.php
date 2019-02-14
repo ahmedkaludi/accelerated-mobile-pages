@@ -26,6 +26,10 @@ function ampforwp_removing_sassy_social_share(){
 
 add_action('pre_amp_render_post','ampforwp_schema_lazy_load_remover');
 function ampforwp_schema_lazy_load_remover(){
+
+	var_dump(ampforwp_get_setting('ampforwp-seo-selection')); die;
+
+
 	remove_filter( 'wp_get_attachment_image_attributes', 'mts_image_lazy_load_attr', 10, 3 );
 	remove_filter('the_content', 'mts_content_image_lazy_load_attr');
 }
