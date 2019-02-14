@@ -6,6 +6,7 @@ function ampforwp_framework_get_featured_image(){
 	$featured_image = "";
 	$amp_html 		= "";
 	$caption 		= "";
+	$f_vid 			= "";
 	if( ampforwp_is_front_page() ){
 		$post_id = ampforwp_get_frontpage_id();
 	}
@@ -13,6 +14,7 @@ function ampforwp_framework_get_featured_image(){
 		// Featured Video Plus Compatibility #2394 #2583
 		if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
 			global $wp_embed;
+			$f_vid = 'f_vid';
 			$videoContent = Bunyad::posts()->meta('featured_video');
   		  	$featured_video = $wp_embed->autoembed($videoContent);
  			$amp_html = ampforwp_content_sanitizer($featured_video);
@@ -58,7 +60,7 @@ function ampforwp_framework_get_featured_image(){
 		}
 		
 		if( $amp_html ){ ?>
-			<figure class="amp-featured-image"> <?php  
+			<figure class="amp-featured-image <?php echo $f_vid; ?>"> <?php  
 				echo $amp_html;
 				 if ( $caption ) : ?>
 					<p class="wp-caption-text">

@@ -6832,7 +6832,8 @@ function ampforwp_featured_video_plus_css(){
 		.fvp-onload{display:none}
 <?php }
 	if(class_exists('Bunyad')){ ?>
-		.amp-featured-image amp-iframe { height:100%; }
+		.amp-featured-image amp-iframe { margin:auto; height:100%; }
+		.f_vid { background: #000; }
 <?php }
 }
 
