@@ -2892,10 +2892,6 @@ function ampforwp_change_default_amp_post_meta() {
 				$post_checker				= 'hide';
 				$post_meta_to_update 		= 'hide-amp';
 			}
-
-			// 		var_dump($post_check_meta);
-			// 		var_dump($post_type);
-			// var_dump($post_control);
 			// Check and Run only if the value has been changed, else return
 			if ( $post_check_meta !== $post_checker  ) {
 				// Get all the pages and update the post meta
