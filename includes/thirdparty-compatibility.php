@@ -556,3 +556,21 @@ function ampforwp_deactivate_update_transient($plugin){
 		update_option('redux_builder_amp',$selectedOption);
 	}
 }
+// #2894 Backward compatibility for SEO Options
+add_action( 'upgrader_process_complete', 'ampforwp_update_seo_options');
+function ampforwp_update_seo_options(){ 
+	$current_seo = ampforwp_get_setting('ampforwp-seo-selection');
+	if ( $current_seo != (1 || 2) ) {
+		return;
+	}
+	if ( 1 == $current_seo || 2 == $current_seo ) {
+		$selectedOption = get_option('redux_builder_amp',true);	
+		if ( 1 == $current_seo ) {
+			$selectedOption['ampforwp-seo-selection'] = 'yoast';
+		}
+		if ( 2 == $current_seo ) {
+			$selectedOption['ampforwp-seo-selection'] = 'aiseo';
+		}	
+		update_option('redux_builder_amp',$selectedOption);
+	}
+}
