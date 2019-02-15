@@ -23,6 +23,21 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
 }
+//for pagebuilder levelup option
+$levelup_info = sprintf('<a href="%s" target="_blank" >%s</a>',
+                                         admin_url('plugin-install.php?s=levelup&tab=search&type=term' ) ,
+                                        sprintf( 
+                                            esc_html__( 'AMP Designs for Elementor by LevelUP', 'accelerated-mobile-pages' ))
+                                    );
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+if(!is_plugin_active( 'levelup/levelup.php' )){
+    $levelup_checker = array( 
+                    'id'   => 'levelup_info_normal',
+                    'type' => 'info',
+                    'required' => array('ampforwp-elementor-levelup-pagebuilder', '=' , '1'),
+                    'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires '.$levelup_info.'.<br /> <div style="margin-top:4px;">(<a href="https://wplevelup.com/" target="_blank">Click here for more info</a>)</div></div>',               
+               );
+}
 // Display only If AMP Cache is Not Installed
 $cache_desc ="";
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -1421,6 +1436,14 @@ $tabs = array(
     
     ',
             ),
+            array(
+               'id'       => 'ampforwp-elementor-levelup-pagebuilder',
+               'type'     => 'switch',
+               'title'    => esc_html__('AMP Designs for Elementor by LevelUP', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the AMP Designs by LevelUp', 'accelerated-mobile-pages'),
+               'default'  => false
+            ),
+            $levelup_checker,
         )
        )
 
