@@ -1,6 +1,10 @@
 </div>
 <?php global $redux_builder_amp ?>
-<?php if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { ?>
+
+<?php 
+do_action( 'levelup_foot');
+if(!ampforwp_levelup_compatibility('hf_builder_foot') ){
+if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { ?>
 <footer class="footer">
 	<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
 	<div class="f-w-f1">
@@ -45,6 +49,7 @@
 	</div>
 </footer>
 <?php }
+}
 // Social share in AMP 
 	$amp_permalink = "";
 	if ( ampforwp_get_setting('ampforwp-social-share-amp')  ) {
