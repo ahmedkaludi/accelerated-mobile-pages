@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.3
-Stable tag: 0.9.97.34
+Stable tag: 0.9.97.35
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,6 +183,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.35 (15th February 2019) =
+* Added: Levelup Compatability #2718
+* Added: "Align Justify" Option in Page builder's text module #2665
+* Added: Default value for Swift Color Scheme #2793
+* Fixed: ampforwp prefix in the analytics function #2886 #2890
+* Fixed: "Below the Footer" ads option showing above and below the footer #2778
 
 = 0.9.97.34 (14th February 2019) =
 * Fixed: Backward Compatibility for Yoast and All in One SEO options #2894
