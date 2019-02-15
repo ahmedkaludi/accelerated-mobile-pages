@@ -2330,6 +2330,13 @@ Redux::setSection( $opt_name, array(
 
                     ),
                     array(
+                        'id'       => 'ampforwp-custom-amp-editor',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Custom AMP Editor', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable/Disable Custom AMP Editor.','accelerated-mobile-pages'),
+                        'default' => true,
+                    ),
+                    array(
                         'id'       => 'ampforwp-subdomain',
                         'type'     => 'switch',
                         'title'    => __('Use Subdomain As Endpoint', 'accelerated-mobile-pages'),
