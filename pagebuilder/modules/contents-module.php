@@ -362,7 +362,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
                      $content = get_the_content();    
                    }  
                  $excerptContent = ' 
-                 <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , $ampforwp_excerpt_length  ).'</p>';   
+                 <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'</p>';   
               }
                $title = get_the_title();
                $postid = get_the_ID();
