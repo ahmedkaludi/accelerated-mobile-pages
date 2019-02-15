@@ -754,7 +754,7 @@ function ampforwp_new_dir( $dir ) {
 		}
 
 		// Above Footer Global
-		add_action('amp_post_template_above_footer','ampforwp_footer_advert',10);
+		add_action('amp_post_template_footer','ampforwp_footer_advert',10);
 
 		function ampforwp_footer_advert() {
 			global $redux_builder_amp;
