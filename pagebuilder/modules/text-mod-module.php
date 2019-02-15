@@ -103,7 +103,9 @@ return array(
 	 							'options_details'=>array(
 	 												'center'    =>'Center',
 	 												'left'  	=>'Left',
-	 												'right'    =>'Right', 													),
+	 												'right'    =>'Right',
+	 												'justify'	=>'Justify'
+	 												),
 	 							'content_type'=>'css',
 	 						),
 	 					array(
