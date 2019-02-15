@@ -18,6 +18,9 @@ amp_header(); ?>
        <div class="pg">
        		<?php if (  is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' ==  ampforwp_get_setting('swift-social-position') ){
 							ampforwp_swift_social_icons(); 
+			}
+			if (  is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
+							ampforwp_swift_add_this_icons(); 
 			} ?>
 			<div class="cntn-wrp">
 				
@@ -61,7 +64,12 @@ amp_header(); ?>
 			</div>
 			<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ 
 			if( is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' !=  ampforwp_get_setting('swift-social-position') ) { ?>
-				<div class="ss-ic">
+ 				<div class="ss-ic"><?php
+ 					if( ampforwp_get_setting('enable-add-this-option') && 'above-content' !=  ampforwp_get_setting('swift-add-this-position')) { 
+ 						$data_pub_id = ampforwp_get_setting('add-this-pub-id');
+						$data_widget_id = ampforwp_get_setting('add-this-widget-id'); ?>
+						<amp-addthis width="290" height="92" data-pub-id="<?php echo $data_pub_id; ?>" data-widget-id="<?php echo $data_widget_id; ?>"></amp-addthis>
+					<?php } ?>
 					<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
 					<ul>
 						<?php if($redux_builder_amp['enable-single-facebook-share']){?>

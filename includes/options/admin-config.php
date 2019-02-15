@@ -4803,7 +4803,7 @@ function element_layout_customizer(){
         $new_options['enabled'] = array_merge($new_options['enabled'],$add_new_options);
         $offset = 4;
         $new_options['enabled'] = array_slice($new_options['enabled'], 0, $offset, true) +
-                   array('addthis' => 'AddThis') +
+                   array('addthis' => 'AddThis Social Icon') +
                    array_slice($new_options['enabled'], $offset, NULL, true);           
         $add_new_options = array(
             'ad7' => 'Ad7',
@@ -5940,6 +5940,20 @@ $single_page_options = array(
               'desc'=>'<a href="https://www.addthis.com/academy/how-to-install-addthis-inline-share-buttons-on-amp-accelerated-mobile-pages/" target="_blank">Click Here</a> to know how to Install AddThis Share Buttons on AMP',
               'default'   =>  false,
           ),
+           array(
+                'id'       => 'swift-add-this-position',
+                'type'     => 'select',
+                'title'    => __( 'Position', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                                'default' => 'Single Sidebar (left side)',
+                                'above-content' => 'Above Content',
+                                'below-content' => 'Below Content'
+                                ),
+                'default'  => 'default',
+                'required' => array(
+                                array('amp-design-selector', '=', '4'),
+                                array('enable-add-this-option', '=', '1') )
+            ), 
           array(
                'id'       => 'add-this-pub-id',
                'title'    => __('Enter Pub ID', 'accelerated-mobile-pages'),

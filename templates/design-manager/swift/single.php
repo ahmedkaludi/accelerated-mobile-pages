@@ -25,22 +25,22 @@
 		<div class="cntr">
 			<div class="sp-rl">
 				<div class="sp-rt">
-						<?php if (isset($redux_builder_amp['swift-social-position']) && 'above-content' == $redux_builder_amp['swift-social-position']){
+						<?php if (  'above-content' == ampforwp_get_setting('swift-social-position') ){
 							ampforwp_swift_social_icons(); 
-						} ?>
+						} 
+						if ( 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
+							ampforwp_swift_add_this_icons(); 
+						}	?>
 					<div class="cntn-wrp artl-cnt">
 					<?php amp_content(); 
-					if( ampforwp_get_setting('enable-add-this-option') ) {
-					global $redux_builder_amp;
-					$data_pub_id = ampforwp_get_setting('add-this-pub-id');
-					$data_widget_id = ampforwp_get_setting('add-this-widget-id');
-					$amp_addthis = '<amp-addthis width="320" height="92" data-pub-id="'.$data_pub_id.'" data-widget-id="'.$data_widget_id.'"></amp-addthis>';
-					echo $amp_addthis;
-					}?>
+					?>
 					</div>
-					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
-						ampforwp_swift_social_icons(); 
-					} ?>
+					<?php if (  'below-content' == ampforwp_get_setting('swift-social-position')){
+							ampforwp_swift_social_icons(); 
+						} 
+						if ( 'below-content' ==  ampforwp_get_setting('swift-add-this-position') ){
+							ampforwp_swift_add_this_icons(); 
+						} ?>
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>	
  					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>	
 						<?php amp_author_box( 	
@@ -59,9 +59,12 @@
 				</div>
 				<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 				<div class="sp-lt">
-					<?php if (isset($redux_builder_amp['swift-social-position']) && 'default' == $redux_builder_amp['swift-social-position']){
+					<?php if ( 'default' == ampforwp_get_setting('swift-social-position') ){
 						ampforwp_swift_social_icons(); 	
-					} ?>
+						}
+						if ( 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
+							ampforwp_swift_add_this_icons(); 
+						} ?>
 		            <?php if( isset($redux_builder_amp['amp-author-name']) && $redux_builder_amp['amp-author-name'] ) { ?>
 			            <div class="sp-athr">
 			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
