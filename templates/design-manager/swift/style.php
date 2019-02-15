@@ -1,11 +1,13 @@
 <?php global $redux_builder_amp; ?>
-<?php if(!isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector'])){?>
+<?php if(!isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector'])){
+if(!ampforwp_levelup_compatibility('levelup_theme_and_elementor')){ // Level up Condition starts ?>
 @font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 300;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Light.ttf');}
 @font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 400;src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Regular.ttf');}
 @font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 500;src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Medium.ttf');} 
 @font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 600;src: local('Poppins SemiBold'), local('Poppins-SemiBold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-SemiBold.ttf'); }
 @font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 700;src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Bold.ttf'); }
-<?php } ?>
+<?php } // Level up Condition ends 
+} ?>
 body{<?php $fontFamily = "font-family: 'Poppins', sans-serif;";
 $hovercolor = '';
 $hovercolor = ampforwp_get_setting('swift-hover-color-scheme');
@@ -48,11 +50,13 @@ amp-carousel > amp-img > img {object-fit: contain;}
 .amp-carousel-container {position: relative;width: 100%;height: 100%;} 
 .amp-carousel-img img {object-fit: contain;}
 amp-instagram{box-sizing: initial;}
+.wp-block-image.aligncenter amp-img {margin: 0 auto;}
+<?php global $post;
+if( class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) &&  (is_page() || ampforwp_is_front_page() )  ) {}
+else{ ?>.cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px} <?php } ?>
+<?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>
 @font-face {font-family: 'icomoon';font-display: auto;font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf');}
 .cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px}
-.wp-block-image.aligncenter amp-img {
- margin: 0 auto;
- }
 header .cntr{
 <?php if( isset($redux_builder_amp['swift-width-control']) && $redux_builder_amp['swift-width-control']){?>
 	max-width:<?php echo $redux_builder_amp['swift-width-control']?>;
@@ -234,6 +238,8 @@ padding: <?php echo $redux_builder_amp['primary-menu-padding-control']['padding-
 	.p-menu ul li.menu-item-has-children > a:after{display:none;}
 }
 <?php } ?>
+<?php } // Levelup condition ends ?>
+
 <?php //Home and Archive
 
 if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_shop') && is_shop()) || ampforwp_is_blog() ) { ?>
@@ -326,6 +332,7 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
     .right a, .left a {padding: 10px 30px 14px;}
 }
 <?php }?>
+<?php if( !ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts?>
 <?php //page and frontpage
 
 if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
@@ -379,6 +386,7 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 		blockquote p {font-size:20px;}
 	}
 <?php } ?>
+<?php } // Level Condition Ends?>
 <?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
 <?php // Single
 
@@ -758,6 +766,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
 }
 <?php } //Drop Cap CSS ends
 // Menu Search CSS
+if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts
 if ( isset($redux_builder_amp['menu-search']) && $redux_builder_amp['menu-search'] ) { ?>
 .m-srch #amp-search-submit {
     cursor: pointer;
@@ -869,6 +878,7 @@ a.btt:hover {
     cursor: pointer;
 }
 <?php } //Menu Copy Right CSS Ends
+} //level up CSS Ends
 if($redux_builder_amp['single-design-type'] == '4'){
 if(is_single() ) { ?>
 .sp-rt{
@@ -1094,7 +1104,7 @@ thead th {
 }
 <?php } //Header and Archive Sidebar CSS Ends ?>
 <?php 
-
+if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts 
 //Footer
 if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { ?>
 .footer{margin-top: 80px;}
@@ -1418,6 +1428,7 @@ if(isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp
   padding-bottom:40px;
 }
 <?php } ?>
+<?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 [class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 <?php if(true == ampforwp_get_setting('enable-amp-ads-1')||true == ampforwp_get_setting('enable-amp-ads-2')||true == ampforwp_get_setting('enable-amp-ads-3')||true == ampforwp_get_setting('enable-amp-ads-4')||true == ampforwp_get_setting('enable-amp-ads-5')||true == ampforwp_get_setting('enable-amp-ads-6')){?>
@@ -1435,7 +1446,7 @@ if( isset($redux_builder_amp['enable-amp-ads-6'] ) && $redux_builder_amp['enable
 	#amp-user-notification1 p {display: inline-block;margin: 20px 0px;}
 	amp-user-notification button {padding: 8px 10px;background: #005be2;color: #fff;margin-left: 5px;border: 0;}
 <?php } // Notice bar CSS Ends?>
-
+<?php } // Levelup Condition ends?>
 <?php 
 
 //RTL Styles 
@@ -1537,6 +1548,7 @@ a.lb-x{
 .amp-ad-wrapper{direction:ltr;}
 <?php } //RTL End ?>
 <?php 
+if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts 
 if (ampforwp_get_setting('enable-amp-ads-resp-1')){?>
 .amp-ad-1 {
     max-width: 1000px;
@@ -1572,6 +1584,7 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
     max-width: 1000px;
 }
 <?php } ?>
+<?php } // levelup condition ends here?>
 <?php if (checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 	.sp-cnt .cntr {max-width: 100%;margin:0;width:100%;padding:0}	
 <?php } ?> 
