@@ -874,17 +874,89 @@ jQuery(document).ready(function($){
 });//(document).ready Closed
 
 jQuery(document).ready(function($){
-$("#redux_builder_amp-swift-sidebar").on( 'change', function(){
-var value = $('#redux_builder_amp-swift-sidebar #swift-sidebar').val();
-if(value == 1){
-$("#single-design-type_2").attr('checked', true);
-}else {
-    $("#single-design-type_1").attr('checked', true);
-}
+    $("#redux_builder_amp-swift-sidebar").on( 'change', function(){
+        var value = $('#redux_builder_amp-swift-sidebar #swift-sidebar').val();
+        if(value == 1){
+            $("#single-design-type_2").attr('checked', true);
+        }else {
+            $("#single-design-type_1").attr('checked', true);
+        }
 
-});
+    });
+
+    $('#amp-rollback-switch').on('change', function(){
+         var self = $(this)
+        if(self.val()==1){
+            self.parents('table').find('#redux_builder_amp-amp-rollback-version').parents('tr').remove();
+            $.ajax({
+                url: ajaxurl,
+                method: 'post',
+                data: {action: 'ampforwp_get_rollbackdata',
+                        },
+                dataType: 'json',
+                success: function(response){
+                    if(response.status==200){
+                        var options='';
+                        $.each(response.versions, function(data, k){
+                            options += '<option value="'+k+'">'+data+'</option>';
+                        })
+                        self.parents('table').append('<tr class="fold">'+
+                                    '<th scope="row">'+
+                                        '<div class="redux_field_th">Rollback Version</div>'+
+                                    '</th>'+
+                                    '<td>'+
+                                        '<fieldset id="redux_builder_amp-amp-rollback-version" class="redux-field-container redux-field redux-container-select" data-id="amp-rollback-version">'+
+                                            '<select id="amp-rollback-version-select" data-placeholder="Select Version" name="redux_builder_amp[amp-rollback-version]" class="redux-select-item redux-select-item  select2-hidden-accessible" style="width: 40%;" rows="6">'+
+                                            options+
+                                            '</select>'+
+                                            '<a id="ampforwp-rollback-url" href="'+response.url+'" target="_blank" class="button" style="margin-left:10px">'+response.text+'</a>'+
+                                        '</fieldset>'+
+                                    '</td>'+
+                                '</tr>'
+                                
+                                );
+                        $('#amp-rollback-version-select').select2();
+                        versionUpdate();
+                    }
+                }
+
+            });
+
+
+
+        }else{
+            self.parents('table').find('#redux_builder_amp-amp-rollback-version').parents('tr').remove();
+        }
+       
+
+    });
+
+    var versionUpdate = function(){
+        $('#amp-rollback-version-select').on('change', function(){
+            $selectedVersion = $(this).val();
+            console.log($selectedVersion);
+            if($selectedVersion){
+                var rollbackUrl = $('#ampforwp-rollback-url').attr('href');
+                rollbackUrl = ampforwp_updateQueryStringParameter(rollbackUrl, 'changeversion', $selectedVersion);
+                 $('#ampforwp-rollback-url').attr('href', rollbackUrl);
+            }
+        });
+    }
+    versionUpdate();
+    
 
 }); 
+function ampforwp_updateQueryStringParameter(uri, key, value) {
+  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+  var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+  if (uri.match(re)) {
+    return uri.replace(re, '$1' + key + "=" + value + '$2');
+  }
+  else {
+    return uri + separator + key + "=" + value;
+  }
+}
+
 
 jQuery(window).on("YoastSEO:ready",function(){
 AmpForWpYoastAnalysis = function() {

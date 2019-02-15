@@ -2,26 +2,38 @@
 add_action( 'admin_post_ampforwp_beta', 'post_ampforwp_beta' );
 function post_ampforwp_beta(){
 	check_admin_referer('ampforwp_beta');
+	if(!current_user_can('install_plugins')){
+		wp_die(
+			'', esc_html__( 'Current user cannot install plugin', 'accelerated-mobile-pages' ), array(
+				'response' => 200,
+			)
+		);
+	}
 
 	$plugin_slug = basename( 'accelerated-mobile-pages', '.php' );
+	if($_GET['installation']=='beta'){
+		$getVersion = '0.90.97.34';
+	}elseif(isset($_GET['changeversion'])){
+		$getVersion = sanitize_text_field($_GET['changeversion']);
+	}
+	$beta = new AMPforWP_Beta(
+		[
+			'version' => 'beta',
+			'plugin_name' => 'accelerated-mobile-pages',
+			'plugin_slug' => $plugin_slug,
+			'package_url' => sprintf( 'https://downloads.wordpress.org/plugin/%s.%s.zip', $plugin_slug, $getVersion ),
+			'plugin_version'=> $getVersion,
+		]
+	);
 
-		$beta = new AMPforWP_Beta(
-			[
-				'version' => 'beta',
-				'plugin_name' => 'accelerated-mobile-pages',
-				'plugin_slug' => $plugin_slug,
-				'package_url' => sprintf( 'https://downloads.wordpress.org/plugin/%s.%s.zip', $plugin_slug, '0.6.0' ),
-
-			]
-		);
-
-		$beta->ampforwp_beta_run();
-		wp_die(
-			'', __( 'Activate the Beta', 'accelerated-mobile-pages' ), [
-				'response' => 200,
-			]
-		);
+	$beta->ampforwp_beta_run();
+	wp_die(
+		'', esc_html__( 'Activate the '.$getVersion, 'accelerated-mobile-pages' ), [
+			'response' => 200,
+		]
+	);
 }
+
 
 class AMPforWP_Beta {
 
@@ -32,6 +44,8 @@ class AMPforWP_Beta {
 	protected $plugin_name;
 
 	protected $plugin_slug;
+
+	protected $plugin_version;
 
 	public function __construct( $args = [] ) {
 		foreach ( $args as $key => $value ) {
@@ -68,7 +82,7 @@ class AMPforWP_Beta {
 			'url' => 'update.php?action=upgrade-plugin&plugin=' . rawurlencode( $this->plugin_name ),
 			'plugin' => $this->plugin_name,
 			'nonce' => 'upgrade-plugin_' . $this->plugin_name,
-			'title' => '<img src="' . $logo_url . '" alt="accelerated-mobile-pages">' . __( 'Activate the Beta Version', 'accelerated-mobile-pages' ),
+			'title' => '<img src="' . $logo_url . '" alt="accelerated-mobile-pages">' . esc_html__( 'Activate the '. $this->plugin_version .' Version', 'accelerated-mobile-pages' ),
 		];
 
 		$this->ampforwp_beta_page_styling();
@@ -106,4 +120,78 @@ class AMPforWP_Beta {
 		</style>
 		<?php
 	}
+
+
 }
+
+class AMPFORWP_ROLLBACK{
+	/*
+	* Rollback functions
+	*/
+	function __construct(){
+		add_action("wp_ajax_ampforwp_get_rollbackdata", array($this, 'ampforwp_get_rollbackdata'));
+	}
+	function ampforwp_get_rollbackdata(){
+		$allTags = $this->get_all_tags();
+		$activationUrl = wp_nonce_url( admin_url( 'admin-post.php?action=ampforwp_beta&changeversion='.(is_array($allTags)? key($allTags): '') ), 'ampforwp_beta' );
+		echo json_encode(array('status'=> 200, 'versions'=>$allTags, 'url' => $activationUrl, 'text'=>'Activate'));
+		wp_die();
+	}
+
+	public function get_all_tags(){
+		$plugins = get_site_transient( 'update_plugins' );
+		if( isset($plugins->response['accelerated-mobile-pages/accelerated-moblie-pages.php']) ){
+			delete_transient('ampforwp_plugin_all_tag_versions');
+		}
+		$transient = get_transient( 'ampforwp_plugin_all_tag_versions' );
+		if( is_array($transient) ){
+			$allversions = $transient;
+		}else{
+			$url = 'https://api.wordpress.org/plugins/info/1.0/accelerated-mobile-pages.json';
+			$response = wp_remote_get( $url );
+
+			// Do we have an error?
+			if ( wp_remote_retrieve_response_code( $response ) !== 200 ) {
+				return null;
+			}
+
+			// Nope: Return that bad boy
+			$svn_tags = wp_remote_retrieve_body( $response );
+			$allversions = $this->set_svn_versions_data( $svn_tags );
+			$allversions = array_reverse($allversions);
+			$allversions = array_combine($allversions, $allversions);
+			set_transient( 'ampforwp_plugin_all_tag_versions', $allversions );
+		}
+		return $allversions;
+	} 
+
+	function set_svn_versions_data($html){
+		if ( ( $json = json_decode( $html ) ) && ( $html != $json ) ) {
+			$versions = array_keys( (array) $json->versions );
+		} else {
+			$DOM = new DOMDocument();
+			$DOM->loadHTML( $html );
+
+			$versions = array();
+
+			$items = $DOM->getElementsByTagName( 'a' );
+
+			foreach ( $items as $item ) {
+				$href = str_replace( '/', '', $item->getAttribute( 'href' ) ); // Remove trailing slash
+
+				if ( strpos( $href, 'http' ) === false && '..' !== $href ) {
+					$versions[$href] = $href;
+				}
+			}
+		}
+		usort( $versions, 'version_compare' );
+		return $versions;
+
+
+	}
+}
+function ampforwp_rollback_call(){
+	$obj = new AMPFORWP_ROLLBACK();
+	return $obj;
+}
+ampforwp_rollback_call();

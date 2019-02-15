@@ -2260,30 +2260,7 @@ Redux::setSection( $opt_name, array(
                             'id'       => 'amp-rollback-switch',
                             'type'     => 'switch',
                             'title'    => esc_html__('Rollback to Previous Version', 'accelerated-mobile-pages'),
-                            //'subtitle' => esc_html__('Please Note: We do not recommend updating to a beta version on production sites.', 'accelerated-mobile-pages'),
                             'default'  => false,
-                        ),
-                        array(
-                            'id'       => 'amp-rollback-version',
-                            'type'     => 'select',
-                            'title'    => __('Rollback Version', 'accelerated-mobile-pages'),
-                            'default'   => 'Rollback',
-                            'options'  => array(
-                                               '0.9.97.32' => '0.9.97.32',
-                                               '0.9.97.31' => '0.9.97.31',
-                                           ),
-                            'required'=>array('amp-rollback-switch','=','1'),
-                        ),
-                        array(
-                            'id'       => 'ampforwp-rollback-btn',
-                            'type'     => 'info',
-                            'title'    =>  sprintf(
-                                            '<a href="%s" target="_blank" class="button">%s</a>',
-                                            wp_nonce_url( admin_url( 'admin-post.php?action=ampforwp_beta' ), 'ampforwp_beta' ),
-                                            sprintf( 
-                                                esc_html__( 'Activate', 'accelerated-mobile-pages' ))
-                                        ),
-                            'required'=>array('amp-rollback-switch','=','1'),
                         ),
                         array(
                            'id' => 'amp-beta-testing',
@@ -2305,7 +2282,7 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'info',
                         'title'    =>  sprintf(
                                         '<a href="%s" target="_blank" class="button">%s</a>',
-                                        wp_nonce_url( admin_url( 'admin-post.php?action=ampforwp_beta' ), 'ampforwp_beta' ),
+                                        wp_nonce_url( admin_url( 'admin-post.php?action=ampforwp_beta&installation=beta' ), 'ampforwp_beta' ),
                                         sprintf( 
                                             esc_html__( 'Activate', 'accelerated-mobile-pages' ))
                                     ),
