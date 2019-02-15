@@ -4000,7 +4000,7 @@ function ampforwp_visit_amp_in_admin_bar($admin_bar) {
 		    'id'     => 'view-amp',
 		    'title'  => 'Visit AMP',
 		    'href'   => ampforwp_url_controller( get_home_url() ),
-		    'meta'   => false
+		    'meta' => array('target' => '_blank')
 		);
 		$admin_bar->add_node( $args );
 	}       

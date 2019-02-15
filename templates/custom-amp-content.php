@@ -84,8 +84,10 @@ function ampforwp_custom_content_meta_register() {
     if ( isset( $redux_builder_amp['amp-meta-permissions'] ) && 'all' === $redux_builder_amp['amp-meta-permissions'] ) {
       $user_level = true;
     }
-
-    if ( $user_level ) {
+    // Custom AMP Editor Option #2626
+    $custom_amp_editor_option = true;
+    $custom_amp_editor_option = ampforwp_get_setting('ampforwp-custom-amp-editor');
+    if ( $user_level && $custom_amp_editor_option ) {
         if ( $redux_builder_amp['amp-on-off-for-all-posts'] ) {
           add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
         }
