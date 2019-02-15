@@ -7111,8 +7111,11 @@ function ampforwp_comments_sanitizer(){
 add_filter('amp_post_template_data','ampforwp_add_global_scripts');
 function ampforwp_add_global_scripts($data){
 	global $ampforwp_data;
+	$comments_scripts = array();	
 	// Add Comments Scripts #2827
-	$comments_scripts = $ampforwp_data['comments']['scripts'];
+	if ( $comments_scripts ) {
+	  $comments_scripts = $ampforwp_data['comments']['scripts'];
+	}
 	if ( !empty($comments_scripts) ) {
 		foreach ($comments_scripts as $key => $value ) {
 			if( empty( $data['amp_component_scripts'][$key] ) ){
