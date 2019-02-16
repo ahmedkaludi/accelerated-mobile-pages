@@ -7351,7 +7351,7 @@ if(!ampforwp_check_extensions()){
         'id'         => 'opt-choose',
         'subsection' => false,
        'desc' => $freepro_listing,
-        'icon' => 'el el-gift',
+        'icon' => 'el el-download',
     ) );
 }
 
