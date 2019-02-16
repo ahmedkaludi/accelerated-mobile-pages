@@ -1423,6 +1423,7 @@ if(isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
 
 <?php } ?>
+<?php } // levelup condition ends ?>
 <?php if(is_single() && $redux_builder_amp['enable-single-social-icons'] ){?>
 .body.single-post{
   padding-bottom:40px;
