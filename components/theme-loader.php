@@ -199,7 +199,7 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 				if ( ! empty( $object->post_type ) ) {
 					$template = get_page_template_slug( $object );
 					if ( $template && 0 === validate_file( $template ) ) {
-						$templates[] = $template;
+						$templates[] = AMPFORWP_CUSTOM_THEME .'/'.$template;
 					}
 
 					$name_decoded = urldecode( $object->post_name );
@@ -234,7 +234,7 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 
 				$templates = array();
 				if ( $template && 0 === validate_file( $template ) )
-					$templates[] = $template;
+					$templates[] = AMPFORWP_CUSTOM_THEME .'/'.$template;
 				if ( $pagename ) {
 					$pagename_decoded = urldecode( $pagename );
 					if ( $pagename_decoded !== $pagename ) {

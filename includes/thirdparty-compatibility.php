@@ -485,7 +485,7 @@ function ampforwp_non_amp_gallery($matches){
 				if ( ! empty( $object->post_type ) ) {
 					$template = get_page_template_slug( $object );
 					if ( $template && 0 === validate_file( $template ) ) {
-						$templates[] = $template;
+						$templates[] = $filePath.'/'.$template;
 					}
 
 					$name_decoded = urldecode( $object->post_name );
@@ -520,7 +520,7 @@ function ampforwp_non_amp_gallery($matches){
 
 				$templates = array();
 				if ( $template && 0 === validate_file( $template ) )
-					$templates[] = $template;
+					$templates[] = $filePath.'/'.$template;
 				if ( $pagename ) {
 					$pagename_decoded = urldecode( $pagename );
 					if ( $pagename_decoded !== $pagename ) {
