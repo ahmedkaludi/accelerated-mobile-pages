@@ -94,16 +94,26 @@ if(!class_exists('Aq_Resize')) {
                     $upload_url = str_replace(array( 0 => "$http_prefix", 1 => "$https_prefix"),$relative_prefix,$upload_url);
                 }
 
+                $is_cdn  = '';
+                $cdn_url = '';
 
                 // Check if $img_url is local.
                 if ( false === strpos( $url, $upload_url ) ) {
+                   
+                    $is_cdn  = true;
+                    $cdn_url_main = $cdn_url = $url;
                     // Return the original array
-                    return array (
-                        0 => $url,
-                        1 => $width,
-                        2 => $height
-                    );
-                    //throw new Aq_Exception('Image must be local: ' . $url);
+                    $wp_upload_dir = wp_upload_dir();
+
+                    $dir_baseurl    = $wp_upload_dir['baseurl'];
+                    $dir_baseurl    = explode('/', $dir_baseurl);
+                    $dir_name       = end($dir_baseurl); 
+                    $cdn_url        = explode($dir_name, $cdn_url);
+                    
+                    $hybid_url = $upload_url . $cdn_url[1];
+                    // this will append crop path in the url to generate the image locally 
+                    $url = $hybid_url;
+
                 }
                 // Define path of image.
                 $rel_path = str_replace( $upload_url, '', $url );
@@ -155,8 +165,6 @@ if(!class_exists('Aq_Resize')) {
                                         1 => $width,
                                         2 => $height
                                     );
-                           /* throw new Aq_Exception('Unable to get WP_Image_Editor: ' . 
-                                                   $editor->get_error_message() . ' (is GD or ImageMagick installed?)');*/
                         }
 
                         $resized_file = $editor->save();
@@ -169,6 +177,18 @@ if(!class_exists('Aq_Resize')) {
                         }
 
                     }
+                }
+
+                // Check if it is CDN then reglue the url to its original state
+                if ( $is_cdn ) {
+                    
+                    $img_url = explode('/', $img_url);
+                    $cdn_url = explode('/', $cdn_url_main);
+
+                    $img_end = end($img_url);
+                    $cdn_end = end($cdn_url);
+                    $cdn_url_main = str_replace($cdn_end, $img_end, $cdn_url_main);
+                    $img_url = $cdn_url_main;
                 }
 
                 // Okay, leave the ship.
@@ -197,7 +217,8 @@ if(!class_exists('Aq_Resize')) {
                     // Bubble up exception.
                     throw $ex;
                 }
-                else {
+                else 
+                {  
                     // Return the Original array
                     return array (
                                 0 => $url,
@@ -205,8 +226,8 @@ if(!class_exists('Aq_Resize')) {
                                 2 => $height
                             );
                     // Return false, so that this patch is backwards-compatible.
-                    //return false;
                 }
+                
             }
         }
 
