@@ -185,11 +185,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.35 (15th February 2019) =
+= 0.9.97.35 (16th February 2019) =
 * Added: Levelup Compatability #2718
 * Added: "Align Justify" Option in Page builder's text module #2665
 * Added: Default value for Swift Color Scheme #2793
 * Fixed: ampforwp prefix in the analytics function #2886 #2890
 * Fixed: "Below the Footer" ads option showing above and below the footer #2778
+* Fixed: Debug error undefined index comments #2887
 
 Full changelog available in changelog.txt
