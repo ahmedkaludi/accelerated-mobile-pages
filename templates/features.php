@@ -5081,7 +5081,8 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 
 // 98. Create Dynamic url of amp according to the permalink structure #1318
 function ampforwp_url_controller( $url, $nonamp = '' ) {
-	global $redux_builder_amp;
+	global $redux_builder_amp;	
+	global $wp;
 	$non_amp = false;
 	$non_amp = apply_filters( 'ampforwp_non_amp_links', $non_amp );
 	if($non_amp == true){
