@@ -153,6 +153,21 @@ function ampforwp_page_template_redirect() {
 
 
   if ( isset($redux_builder_amp['amp-mobile-redirection']) && $redux_builder_amp['amp-mobile-redirection'] ) {
+    $mobile_detect = $isTablet = '';
+    require_once AMPFORWP_PLUGIN_DIR.'/includes/vendor/Mobile_Detect.php';
+    // instantiate the Mobile detect class
+    $mobile_detect      = new AMPforWP_Mobile_Detect;
+    $isMobile           = $mobile_detect->isMobile();
+    $isTablet           = $mobile_detect->isTablet();
+    $isTabletUserAction = ampforwp_get_setting('amp-tablet-redirection');
+    
+    $redirectToAMP = false;
+    if( $isMobile && $isTabletUserAction && $isTablet ){  //Only For tablet
+      $redirectToAMP = true;
+    }else if($isMobile && !$isTablet){                    // Only for mobile
+      $redirectToAMP = true;
+    }
+
     // Return if Dev mode is enabled
     if ( isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode'] ) {
       return;
@@ -236,7 +251,7 @@ function ampforwp_page_template_redirect() {
         return;
     }
 
-    if ( wp_is_mobile() && 'mobile-on' == $_SESSION['ampforwp_amp_mode'] && 1 == $_GET['nonamp'] ) {
+    if ( $isMobile && 'mobile-on' == $_SESSION['ampforwp_amp_mode'] && 1 == $_GET['nonamp'] ) {
         // non mobile session variable creation
         session_start();
         $_SESSION['ampforwp_mobile'] = 'exit';
@@ -249,7 +264,7 @@ function ampforwp_page_template_redirect() {
       $url_to_redirect = ampforwp_url_controller($url_to_redirect);
     }
     // Check if we are on Mobile phones then start redirection process
-    if ( wp_is_mobile() ) {
+    if ( $redirectToAMP ) {
 
         if ( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp']) ) {
 

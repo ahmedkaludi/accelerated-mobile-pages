@@ -3604,6 +3604,15 @@ Redux::setSection( $opt_name, array(
 
                     ),
                     array(
+                        'id'       => 'amp-tablet-redirection',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'type'     => 'switch',
+                        'title'    => __('Tablets', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Enable/Disable Mobile redirection for Tablets.','accelerated-mobile-pages'),
+                        'default' => 1,
+                        'required' => array( 'amp-mobile-redirection', '=' , 1 )
+                    ),
+                    array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
                         'title'    => esc_html__('Change Internal Links to AMP', 'accelerated-mobile-pages'),

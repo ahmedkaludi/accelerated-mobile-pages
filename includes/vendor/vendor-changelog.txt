@@ -60,3 +60,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 33. Class AMP_Blacklist_Sanitizer updated #2835
 34. class-amp-style-sanitizer.php updated #2745
 35. Class AMP_Blacklist_Sanitizer updated for inernal links #2391
+36. Mobile detect library added from https://github.com/serbanghita/Mobile-Detect

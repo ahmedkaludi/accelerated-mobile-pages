@@ -1906,7 +1906,7 @@ function ampforwp_meta_redirection_status(){
 	global $post;
 	$ampforwp_redirection_post_on_off_meta = '';
 
-	if ( ! is_404() && ampforwp_is_search_has_results() ) {
+	if ( (! is_404() && ampforwp_is_search_has_results() )  && (is_singular() ||  ampforwp_is_front_page()) ) {
 		$ampforwp_redirection_post_on_off_meta = get_post_meta( $post->ID,'ampforwp-redirection-on-off',true);
 	}
 
