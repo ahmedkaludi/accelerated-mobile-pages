@@ -67,3 +67,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 40. Class AMP_Blacklist_Sanitizer updated for inernal links 2391
 41. class-amp-iframe-sanitizer.php updated #2836
 42. Updated check_attr_spec_rule_valid_url function and also added two more functions parse_protocol and extract_attribute_urls #2862
+43. Class AMP_Img_Sanitizer Updated #2893
