@@ -113,9 +113,42 @@ amp-social-share[type="facebookmessenger"] {
   background-image: url(https://img.icons8.com/color/100/000000/facebook-messenger.png);
   max-height: 33px;   
 }
+<?php if ( true == ampforwp_get_setting('enable-single-line-share') ) { ?>
 .custom-amp-socialsharing-line{background:#00b900}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 .ampforwp-social-icons custom-amp-socialsharing-vk{background:#45668e}
-.amp-social-odnoklassniki{background:#ed812b}.amp-social-reddit{background:#ff4500}.amp-social-telegram{background:#61A8DE}.amp-social-tumblr{background:#35465c}.amp-social-digg{background:#005be2}.amp-social-stumbleupon{background:#eb4924}.amp-social-wechat{background:#7bb32e}.amp-social-viber{background:#8f5db7}.amp-social-hatena{background:#00a4de}.amp-social-pocket{background:#e8e8e8}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-odnoklassniki-share') ) { ?>
+.amp-social-odnoklassniki{background:#ed812b}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-reddit-share') ) { ?>
+.amp-social-reddit{background:#ff4500}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-telegram-share') ) { ?>
+.amp-social-telegram{background:#61A8DE}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-tumblr-share') ) { ?>
+.amp-social-tumblr{background:#35465c}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-digg-share') ) { ?>
+.amp-social-digg{background:#005be2}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-stumbleupon-share') ) { ?>
+.amp-social-stumbleupon{background:#eb4924}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-wechat-share') ) { ?>
+.amp-social-wechat{background:#7bb32e}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-viber-share') ) { ?>
+.amp-social-viber{background:#8f5db7}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-hatena-bookmarks') ) { ?>
+.amp-social-hatena{background:#00a4de}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-pocket-share') ) { ?>
+.amp-social-pocket{background:#e8e8e8}
+<?php } ?>
 <?php }?>
 /* Header */
 header.container{line-height: 0;}
