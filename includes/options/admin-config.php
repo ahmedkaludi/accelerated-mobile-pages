@@ -2336,7 +2336,7 @@ Redux::setSection( $opt_name, array(
 
                     ),
                     array(
-                        'id'       => 'amp-mobile-redirection-tabs',
+                        'id'       => 'amp-tablet-redirection',
                         'class'    => 'child_opt child_opt_arrow',
                         'type'     => 'switch',
                         'title'    => __('Tablets', 'accelerated-mobile-pages'),

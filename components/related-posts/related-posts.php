@@ -179,7 +179,7 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 					$content = get_the_content();
 				}
 		?><p><?php 
-		echo wp_trim_words( strip_shortcodes( $content ) , '15' ); 
+		echo wp_trim_words( strip_shortcodes( $content ) , 15 ); 
 		?></p><?php 
 		} 
 		$show_author = (isset($argsdata['show_author'])? $argsdata['show_author'] : true);

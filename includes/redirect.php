@@ -153,7 +153,7 @@ function ampforwp_page_template_redirect() {
     $mobile_detect = new AMPforWP_Mobile_Detect;
     $isMobile = $mobile_detect->isMobile();
     $isTablet = $mobile_detect->isTablet();
-    $isTabletUserAction = ampforwp_get_setting('amp-mobile-redirection-tabs');
+    $isTabletUserAction = ampforwp_get_setting('amp-tablet-redirection');
     
     $redirectToAMP = false;
     if( $isMobile && $isTabletUserAction && $isTablet ){ //Only For tablet

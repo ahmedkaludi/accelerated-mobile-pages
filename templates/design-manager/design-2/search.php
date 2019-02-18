@@ -75,6 +75,7 @@
 					<?php  
 						$excerpt_length = ""; 
 						$excerpt_length = 15;
+						$excerpt_length = (int) $excerpt_length;
 						$final_content = ""; 					
 						$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
 
@@ -87,6 +88,7 @@
 						if($redux_builder_amp['excerpt-option-design-2']== true) {
 							$excerpt_length='';
 							$excerpt_length = $redux_builder_amp['amp-design-2-excerpt']; 
+							$excerpt_length = (int) $excerpt_length;
 							$final_content = ""; 					
 							$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
 
