@@ -4563,7 +4563,7 @@ function ampforwp_inline_related_posts(){
 						}else{
 							$content ='<p>'.get_the_content().'</p>';
 						}
-                    	$inline_related_posts .= '<p>'. wp_trim_words( strip_shortcodes( $content ) , (int) '15' ).'</p>
+                    	$inline_related_posts .= '<p>'. wp_trim_words( strip_shortcodes( $content ) , 15 ).'</p>
                 			</div>
            			 	</li>';							
 					}					     

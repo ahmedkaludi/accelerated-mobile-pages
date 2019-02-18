@@ -273,7 +273,8 @@ function ampforwp_content_module_pagination($args, $fieldValues){
  function ampforwp_contentHtml($the_query,$fieldValues,$loopHtml){	
  	$contenthtml = '';		
   $ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');
- 	$ampforwp_excerpt_length = (isset($fieldValues['ampforwp_excerpt_length'])? $fieldValues['ampforwp_excerpt_length']: '15');
+ 	$ampforwp_excerpt_length = (isset($fieldValues['ampforwp_excerpt_length'])? $fieldValues['ampforwp_excerpt_length']: 15);
+  $ampforwp_excerpt_length = (int) $ampforwp_excerpt_length;
   
  	if ( $the_query->have_posts() ) {	
          while ( $the_query->have_posts() ) {		
