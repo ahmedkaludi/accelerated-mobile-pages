@@ -4,6 +4,9 @@ use ReduxCore\ReduxFramework\Redux;
 if ( ! class_exists( 'ReduxCore\ReduxFramework\Redux' ) ) {
     return;
 }
+if ( ! function_exists( 'is_plugin_active' ) ) {
+  include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+}
 //Require features
 require_once AMPFORWP_PLUGIN_DIR."includes/features/advertisement/ads-options.php";
 require_once AMPFORWP_PLUGIN_DIR."includes/features/performance/performance-options.php";
@@ -18,18 +21,16 @@ $opt_name = "redux_builder_amp";
 $comment_desc = "";
 $amptfad = '<strong>DID YOU KNOW?</strong></br ><a href="https://ampforwp.com/amp-theme-framework/"  target="_blank">You can create your own <strong>Custom theme with AMP Theme Framework</strong></a>';
 // #1093 Display only If AMP Comments is Not Installed
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-   if(!is_plugin_active( 'amp-comments/amp-comments.php' )){
+if(!is_plugin_active( 'amp-comments/amp-comments.php' )){
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
 }
 //for pagebuilder levelup option
 $levelup_info = sprintf('<a href="%s" target="_blank" >%s</a>',
-                                         admin_url('plugin-install.php?s=levelup&tab=search&type=term' ) ,
+                                         admin_url('plugin-install.php?s=AMP+Designs+for+Elementor+by+LevelUP&tab=search&type=term' ) ,
                                         sprintf( 
                                             esc_html__( 'AMP Designs for Elementor by LevelUP', 'accelerated-mobile-pages' ))
                                     );
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if(!is_plugin_active( 'levelup/levelup.php' )){
     $levelup_checker = array( 
                     'id'   => 'levelup_info_normal',
@@ -38,17 +39,47 @@ if(!is_plugin_active( 'levelup/levelup.php' )){
                     'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires '.$levelup_info.'.<br /> <div style="margin-top:4px;">(<a href="https://wplevelup.com/" target="_blank">Click here for more info</a>)</div></div>',               
                );
 }
+$theme = wp_get_theme(); // gets the current theme
+if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ) || did_action( 'elementor/loaded' ) ){
+    $pb_title = '';
+    $pb_subtitle = '';
+    if(class_exists('Vc_Manager') ){
+       $pb_title =  esc_html__('WPBakery Page Builder compatible', 'accelerated-mobile-pages');
+       $pb_subtitle = 'WPBakery Page Builder';
+    }
+    if( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ){
+        $pb_title =  esc_html__('Divi Builder compatible', 'accelerated-mobile-pages');
+        $pb_subtitle = 'Divi Builder';
+    }
+    if(did_action( 'elementor/loaded' ) ){
+        $pb_title =  esc_html__('Elementor compatible', 'accelerated-mobile-pages');
+        $pb_subtitle = 'Elementor';
+    }
+    $pb_for_amp = array(
+               'id'       => 'ampforwp-pb-for-amp',
+               'type'     => 'switch',
+               'title'    => $pb_title,
+               'tooltip-subtitle' => esc_html__('Enable or Disable the '.$pb_subtitle.' for AMP', 'accelerated-mobile-pages'),
+               'default'  => false
+            ); 
+}
+if(!is_plugin_active( 'pagebuilder-for-amp/pagebuilder-for-amp.php' )){
+    $pb_for_amp_checker = array( 
+                    'id'   => 'wpbakery_info_normal',
+                    'type' => 'info',
+                    'required' => array('ampforwp-pb-for-amp', '=' , '1'), 
+                     'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">Page Builder For AMP</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">Click here for more info</a>)</div></div>',               
+               );
+}
 // Display only If AMP Cache is Not Installed
 $cache_desc ="";
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-   if(!is_plugin_active( 'amp-cache/ampforwp-cache.php' )){
+if(!is_plugin_active( 'amp-cache/ampforwp-cache.php' )){
 $cache_AD_URL = "http://ampforwp.com/amp-cache/#utm_source=options-panel&utm_medium=performance-tab&utm_campaign=AMP%20Plugin";
 $cache_desc = '<a href="'.$cache_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp_cache_b.png" width="560" height="85" /></a>';
 }
 // If CTA is not Activated
 $cta_desc = "";
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-   if(!is_plugin_active( 'AMP-cta/amp-cta.php' )){
+if(!is_plugin_active( 'AMP-cta/amp-cta.php' )){
 $cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
 $cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/cta-banner.png" width="560" height="85" /></a>';
 }
@@ -1200,7 +1231,6 @@ $tabs = array(
         return $options;
     }
     $amp_cpt_option = array();
-    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
     $ampforwp_cpt_plugin_check = is_plugin_active( 'amp-custom-post-type/amp-custom-post-type.php' );
     if ( false == $ampforwp_cpt_plugin_check ) {   
         $amp_cpt_option = array(
@@ -1422,19 +1452,7 @@ $tabs = array(
                 'id'       => 'ampforwp-page-builder-info',
                 'type'     => 'raw',
                 'required' => array('ampforwp-pagebuilder', '=', true ),
-                'desc' => '<div style="background: #FFF9C4;
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 0px;
-    left: 0;
-    line-height: 1.6;
-    position: absolute;
-    left: 0px;
-    font-size: 15px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
-    
-    <iframe style="position: absolute;left: 0px;margin-top: 67px;" width="600" height="400" src="https://www.youtube.com/embed/QTbkn2rHyqM" frameborder="0" allowfullscreen></iframe>
-    
-    ',
+                'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -28px -14px -18px -17px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /><div style="margin-top:4px;"><a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div></div>',
             ),
             array(
                'id'       => 'ampforwp-elementor-levelup-pagebuilder',
@@ -1444,14 +1462,15 @@ $tabs = array(
                'default'  => false
             ),
             $levelup_checker,
-        )
+            $pb_for_amp,
+            $pb_for_amp_checker,
+         )
        )
 
    ) ;
 
     $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
     $desc = '';
-    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
     if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
 
         $desc = '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>';
@@ -1691,8 +1710,6 @@ if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) || is_plugin_a
                'true'      => 'Enabled',
                'false'     => 'Disabled',
            );
-
-    include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
     if(!is_plugin_active( 'wpml-for-amp/wpml_for_amp.php' ) ){
             $multilanguage_support[]= array(
                 'id'   => 'info_normal_wpml',
@@ -1718,7 +1735,6 @@ if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) || is_plugin_a
             'true'      => 'Enabled',
             'false'     => 'Disabled',
         );
-    include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
     if(!is_plugin_active( 'polylang-for-amp/polylang-for-amp.php' ) ){
         $multilanguage_support[]= array(
                         'id'   => 'info_normal_polylang',
@@ -6824,7 +6840,7 @@ if(!ampforwp_check_extensions()){
         'id'   => 'info_normal',
         'type' => 'info',
            'required' => array('ampforwp-plugin-manager-core', '=' , '1'),
-                'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/plugins-manager" target="_blank">AMP Plugin Manager</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/plugins-manager" target="_blank">Click here for more info</a>)</div></div>',               
+                'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/plugins-manager" target="_blank">AMP Plugin Manager</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/plugins-manager" target="_blank">Click here for more info</a>)</div></div>',               
            ),
         )        
 ) );
