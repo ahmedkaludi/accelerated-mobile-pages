@@ -151,9 +151,9 @@ function ampforwp_page_template_redirect() {
     require_once AMPFORWP_PLUGIN_DIR.'/includes/vendor/Mobile_Detect.php';
     // instantiate the Mobile detect class
     $mobile_detect = new AMPforWP_Mobile_Detect;
-    $isTablet = false;
-    if ( ampforwp_get_setting('amp-mobile-redirection-tabs') ) {
-      $isTablet =  $mobile_detect->isTablet();
+    $isTablet = $mobile_detect->isTablet();
+    if ( false == ampforwp_get_setting('amp-mobile-redirection-tabs') ) {
+      $isTablet = ! $mobile_detect->isTablet();
     }
     // No mobile redirection on oembeds #2003
     if ( function_exists('is_embed') && is_embed() ){
@@ -224,7 +224,7 @@ function ampforwp_page_template_redirect() {
       $url_to_redirect = ampforwp_url_controller($url_to_redirect); 
     }
     // Check if we are on Mobile phones then start redirection process
-    if ( $mobile_detect->isMobile() || $isTablet ) {
+    if ( $mobile_detect->isMobile() && $isTablet ) {
 
         if ( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp']) ) {
 
