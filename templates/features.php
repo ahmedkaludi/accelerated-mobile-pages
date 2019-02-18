@@ -957,7 +957,7 @@ function ampforwp_meta_redirection_status(){
 	$ampforwp_redirection_post_on_off_meta = '';
 	$ampforwp_post_metas = array();
 
-	if ( ! is_404() && ampforwp_is_search_has_results() ) {
+	if ( (! is_404() && ampforwp_is_search_has_results())  && (is_singular() ||  ampforwp_is_front_page())) {
 		$ampforwp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas', true ), true);
     	$ampforwp_redirection_post_on_off_meta = $ampforwp_post_metas['ampforwp-redirection-on-off'];
 	}
