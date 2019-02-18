@@ -387,6 +387,10 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 	}
 <?php } ?>
 <?php } // Level Condition Ends?>
+<?php if(is_singular()){ ?>
+/** Pre tag Styling **/
+pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;margin-bottom: 20px;}
+<?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
 <?php // Single
 
@@ -440,10 +444,6 @@ p.nocomments {padding: 10px;color: #fff;}
 .sgl table {width: 100%;margin-bottom:25px;}
 .sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
 .sgl tr:nth-child(odd) td {background: #f7f7f7;}
-
-/** Pre tag Styling **/
-pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo ampforwp_sanitize_color($swift_cs_color)?>;margin-bottom: 20px;}
-
 <?php // Social Sharing Conditional CSS
 if($redux_builder_amp['swift-social-position'] == 'above-content'){?>
 .shr-txt{display:none;}
