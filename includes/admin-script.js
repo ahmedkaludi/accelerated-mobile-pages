@@ -575,3 +575,34 @@ function getQueryStringValue (key) {
   return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
 }  
 
+jQuery(window).on("YoastSEO:ready",function(){
+AmpForWpYoastAnalysis = function() {
+  YoastSEO.app.registerPlugin( 'ampForWpYoastAnalysis', {status: 'ready'} );
+
+  /**
+   * @param modification    {string}    The name of the filter
+   * @param callable        {function}  The callable
+   * @param pluginName      {string}    The plugin that is registering the modification.
+   * @param priority        {number}    (optional) Used to specify the order in which the callables
+   *                                    associated with a particular filter are called. Lower numbers
+   *                                    correspond with earlier execution.
+   */
+  YoastSEO.app.registerModification( 'content', this.myContentModification, 'ampForWpYoastAnalysis', 5 );
+}
+
+    /**
+     * Adds some text to the data...
+     *
+     * @param data The data to modify
+     */
+    AmpForWpYoastAnalysis.prototype.myContentModification = function(data) {
+        var pbdata  = $('#amp-page-builder-ready').val();
+        var takeover = redux_data['ampforwp-amp-takeover'];
+        var pb2 = $('input[name="ampforwp_page_builder_enable"]').val();
+        if ( takeover == 1 && 'yes' == pb2 ) {
+            data = pbdata;
+        }
+        return data;
+    };
+    new AmpForWpYoastAnalysis();
+}); 
