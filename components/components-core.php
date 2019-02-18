@@ -133,6 +133,7 @@ function amp_title(){
 // Excerpt
 function amp_excerpt( $no_of_words=15 ) {
 	global $redux_builder_amp, $post;
+	$no_of_words = (int) $no_of_words;
 	$post_id = '';
 
 	if ( ampforwp_is_front_page() ) {

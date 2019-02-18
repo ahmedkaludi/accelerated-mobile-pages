@@ -145,6 +145,7 @@
 			        <p class="<?php echo $class; ?>">
 					<?php 
 						$excerpt_length		='';
+						$excerpt_length	= (int) $excerpt_length;
 						$excerpt_length 	= $redux_builder_amp['amp-design-2-excerpt'];
 						$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
 

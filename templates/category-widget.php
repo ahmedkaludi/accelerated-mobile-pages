@@ -72,7 +72,7 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
                   } else {
                     $content = get_the_content();
                   } ?>
-                  <span class="ampforwp_cat_wdgt_excerpt_text"><?php echo wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , '15'  ); ?></span>
+                  <span class="ampforwp_cat_wdgt_excerpt_text"><?php echo wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) '15'  ); ?></span>
                 </div> <?php
               } ?>
 

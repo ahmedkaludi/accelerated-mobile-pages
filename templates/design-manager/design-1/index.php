@@ -105,6 +105,7 @@
 							} ?>
 						<p><?php global $redux_builder_amp;
 							if( ampforwp_check_excerpt() && !$is_full_content ) {
+								$excerpt_length = (int) $excerpt_length;
 								$excerpt_length = $redux_builder_amp['amp-design-1-excerpt'];
 								$final_content = ""; 					
 								$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );

@@ -173,6 +173,7 @@ if ( get_query_var( 'paged' ) ) {
 			        <p class="large-screen-excerpt-design-3">
 					<?php  
 						$excerpt_length	='';
+						$excerpt_length = (int) $excerpt_length;
 						$excerpt_length = 15;
 						$final_content 	= ""; 					
 						$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
@@ -184,6 +185,7 @@ if ( get_query_var( 'paged' ) ) {
 			        <p class="small-screen-excerpt-design-3" > <?php    
 						if($redux_builder_amp['excerpt-option-design-3']== true) {
 							$excerpt_length='';
+							$excerpt_length = (int) $excerpt_length;
 							$excerpt_length = $redux_builder_amp['amp-design-3-excerpt'];
 							$final_content  = "";  					
 							$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );

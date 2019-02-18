@@ -306,6 +306,7 @@ function amp_loop_date($args=array()){
 function amp_loop_excerpt($no_of_words=15,$tag = 'p'){
 	//excerpt
 	global $post,$redux_builder_amp;
+	$no_of_words = (int) $no_of_words;
 	if(has_excerpt()){
 		$content = get_the_excerpt();
 	}else{
