@@ -28,7 +28,6 @@ We try our best to provide support on WordPress.org forums. However, One-on-one 
 <strong>Bug Reports</strong><br>
 Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkaludi/Accelerated-Mobile-Pages). Please note GitHub is _not_ a support forum, and issues that aren't properly qualified as bugs will be closed.
 
-
 = Features: =
 
 * NEW - Gutenberg Support
@@ -181,6 +180,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 10. Homepage of Design One
 11. Pingdom Speed Report for AMP
 
+Device testing done through [BrowserStack](https://www.browserstack.com)
+![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
 
