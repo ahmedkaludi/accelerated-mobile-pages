@@ -178,20 +178,7 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('amp-woocommerce-pro/amp-woocommerce.php')? 1 : 2),
                             'settingUrl'=>'{ampforwp-wcp-subsection}',
                         ),
-                        array(
-                            'name'=>'ADS for WP',
-                            'label' => 'ADS for WP',
-                            'desc'=>'We are innovating in the Ads space by creating a Lightweight, Easy & Feature Rich Ad solution',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
-                            'price'=>'Free',
-                            'url_link'=>'http://ampforwp.com/ads-for-wp/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> 'ads-for-wp/ads-for-wp.php',
-                            'item_name'=>'ADS for WP',
-                            // 'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(is_plugin_active('ads-for-wp/ads-for-wp.php')? 1: 2),
-                            'settingUrl'=>admin_url('edit.php?post_type=ads-for-wp-ads'),
-                        ),
-                        array(
+                         array(
                             'name'=>'bbPress For AMP',
                             'label' => 'B bPress For AMP',
                             'desc'=>'Add bbPress Forum Compatibility to your AMP version',
