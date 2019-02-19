@@ -45,17 +45,30 @@ function ampforwp_content_module_pagination($args, $fieldValues){
     text-decoration: none;
     transition: background-color .3s;
 }
-
 .pagination a.active {
     background-color: dodgerblue;
     color: white;
 }
 .pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination{
+    width: 100%;
+    margin: 30px 0px 0px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
 @media(max-width:768px){
   .cat_mod ul li {flex-basis: calc(100% - 30px);margin: 10px 15px;}
   .cat_mod_l amp-img{width:100%;}
   .cat_mod .cat_mod_l{width: 40%;float: left;margin-right: 20px;}
   .cat_mod .cat_mod_r{width: 54%;float: left;margin-top: 0;}
+}
+@media(max-width:767px){
+  .pagination a{
+    padding:5px 12px;
+    font-size:16px;
+  }
 }
 @media (max-width: 480px){
   .cat_mod .cat_mod_l{width: 100%;float: none;margin-right: 0px;}
@@ -443,8 +456,8 @@ function ampforwp_content_module_pagination($args, $fieldValues){
           $first_page = add_query_arg( array( $pagination_text => 1 ), $queryUrl );
           $prev_page = add_query_arg( array( $pagination_text => $paged - 1 ), $queryUrl );
 
-          $pagination_links .= "<a href = ".$first_page."> First </a>";
-          $pagination_links .= "<a href = ".$prev_page."> Prev </a>";
+          $pagination_links .= "<a class='pagi-first' href = ".$first_page."> First </a>";
+          //$pagination_links .= "<a href = ".$prev_page."> Prev </a>";
         }
 
         $count = (integer) $fieldValues['show_no_page_links'];
@@ -465,11 +478,11 @@ function ampforwp_content_module_pagination($args, $fieldValues){
 
         if( $total_num_pages != 1 && $paged < $total_num_pages ){      
           $next_page = add_query_arg( array( $pagination_text => $paged + 1 ), $queryUrl );
-          $pagination_links .= "<a href =".$next_page." '> Next </a>";
+          //$pagination_links .= "<a  href =".$next_page." '> Next </a>";
         }
         if( $total_num_pages != $paged ){
           $next_page = add_query_arg( array( $pagination_text => $total_num_pages ), $queryUrl );
-          $pagination_links .= "<a href =".$next_page." > Last </a>";
+          $pagination_links .= "<a class='pagi-last' href =".$next_page." > Last </a>";
         }
         $pagination_links .= '</div>';
         
