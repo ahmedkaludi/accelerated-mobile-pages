@@ -654,7 +654,7 @@ function ampforwp_backtotop_global_css(){
 if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
-      <?php if( (is_single() && ampforwp_get_setting('enable-single-social-icons') || (is_page() && true == ampforwp_get_setting('ampforwp-page-sticky-social') ){ ?>
+      <?php if( (is_single() && ampforwp_get_setting('enable-single-social-icons') ) || (is_page() && true == ampforwp_get_setting('ampforwp-page-sticky-social') ) ) { ?>
       bottom: 55px;
       <?php } else { ?>
         bottom: 20px;
