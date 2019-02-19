@@ -832,10 +832,15 @@ function ampforwp_get_all_post_types(){
     $post_types          = array();
     $selected_post_types = array();
 
-    $post_types = array('post' => 'post', 'page' => 'page');
-    if ( isset($redux_builder_amp['ampforwp-custom-type']) && $redux_builder_amp['ampforwp-custom-type'] ) {
+    if( ampforwp_get_setting('amp-on-off-for-all-posts') ){
+    		$post_types['post'] = 'post';
+    }
+    if( ampforwp_get_setting('amp-on-off-for-all-pages') ){
+    	$post_types['page'] = 'page';
+    }
 
-        foreach ($redux_builder_amp['ampforwp-custom-type'] as $key) {
+   if ( ampforwp_get_setting('ampforwp-custom-type')) {
+        foreach (ampforwp_get_setting('ampforwp-custom-type') as $key) {
             $selected_post_types[$key] = $key;
         }
         $post_types = array_merge($post_types, $selected_post_types);

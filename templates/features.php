@@ -2742,8 +2742,10 @@ function ampforwp_auto_add_amp_in_link_check() {
 
 function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 	global $redux_builder_amp;
-	
-  if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point'] == 1){
+	if($item->type=='post_type' && !in_array($item->object, ampforwp_get_all_post_types()) ){
+		return $atts;
+	}
+  if(ampforwp_get_setting('amp-core-end-point') == 1){
 	    $atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) );
 		$atts['href'] = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $atts['href']);
 	}
