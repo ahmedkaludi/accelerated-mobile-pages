@@ -150,13 +150,10 @@ function amp_content_editor_title_callback( $post ) {
     		<?php esc_attr_e( 'Use This Content as AMP Content','accelerated-mobile-pages' )?>   </p>
         <p><?php esc_attr_e('If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.','accelerated-mobile-pages') ?></p>
     </label>
-    <?php
-    $content = get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
-     if(empty($content) && $amp_content_on_off=='yes'){ ?>
-    <p class="amp-editor-content" style="background: #FFF59D;padding: 8px 14px;width:96%;"><b>Note: </b> AMP contents is blank, Please enter content</p>
-  <?php } ?>
+
   <!--HTML content Ends here-->
   <?php
+  $content = get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
   $editor_id = 'ampforwp_custom_content_editor';
   wp_editor( $content, $editor_id );
 }
