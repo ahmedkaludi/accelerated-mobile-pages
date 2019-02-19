@@ -99,15 +99,48 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 #pagination .prev{ float: left }
 #pagination .next a, #pagination .prev a{ margin-bottom: 12px; background: #fefefe; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05); padding: 11px 15px; font-size: 12px; color: #666; }
 <?php 
- if(is_single() || is_page() ){?>
+if(ampforwp_get_setting('enable-single-social-icons') == true && is_single() || is_page() ){?>
 /* Sticky Social bar in Single */
 .ampforwp-social-icons-wrapper{ margin: 0.65em 0px 0.65em 0px; height: 28px; }
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
 .amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; margin-bottom:5px; }
 .amp-social-icon amp-img{ top: 4px; }
+<?php if ( true == ampforwp_get_setting('enable-single-line-share') ) { ?>
 .custom-amp-socialsharing-line{background:#00b900}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 .ampforwp-social-icons custom-amp-socialsharing-vk{background:#45668e}
-.amp-social-odnoklassniki{background:#ed812b}.amp-social-reddit{background:#ff4500}.amp-social-telegram{background:#0088cc}.amp-social-tumblr{background:#35465c}.amp-social-digg{background:#005be2}.amp-social-stumbleupon{background:#eb4924}.amp-social-wechat{background:#7bb32e}.amp-social-viber{background:#8f5db7}.amp-social-hatena{background:#00a4de}.amp-social-pocket{background:#e8e8e8}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-odnoklassniki-share') ) { ?>
+.amp-social-odnoklassniki{background:#ed812b}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-reddit-share') ) { ?>
+.amp-social-reddit{background:#ff4500}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-telegram-share') ) { ?>
+.amp-social-telegram{background:#61A8DE}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-tumblr-share') ) { ?>
+.amp-social-tumblr{background:#35465c}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-digg-share') ) { ?>
+.amp-social-digg{background:#005be2}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-stumbleupon-share') ) { ?>
+.amp-social-stumbleupon{background:#eb4924}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-wechat-share') ) { ?>
+.amp-social-wechat{background:#7bb32e}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-viber-share') ) { ?>
+.amp-social-viber{background:#8f5db7}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-hatena-bookmarks') ) { ?>
+.amp-social-hatena{background:#00a4de}
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-pocket-share') ) { ?>
+.amp-social-pocket{background:#e8e8e8}
+<?php } ?>
 <?php }?>
 /* Header */
 header.container{line-height: 0;}
