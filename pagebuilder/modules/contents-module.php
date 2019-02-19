@@ -209,7 +209,8 @@ require_once  ABSPATH . WPINC . '/category.php';
  function ampforwp_contentHtml($the_query,$fieldValues,$loopHtml){	
  	$contenthtml = '';
   $ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');
-  $ampforwp_excerpt_length = (isset($fieldValues['ampforwp_excerpt_length'])? $fieldValues['ampforwp_excerpt_length']: '15');
+  $ampforwp_excerpt_length = (isset($fieldValues['ampforwp_excerpt_length'])? $fieldValues['ampforwp_excerpt_length']: 15);
+  $ampforwp_excerpt_length = (int) $ampforwp_excerpt_length;
  	$ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');		
  	if ( $the_query->have_posts() ) {	
          while ( $the_query->have_posts() ) {		

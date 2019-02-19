@@ -125,6 +125,7 @@ function amp_title(){
 function amp_excerpt( $no_of_words=15 ) {
 	global $redux_builder_amp, $post;
 	$post_id = '';
+	$no_of_words = (int) $no_of_words;
 
 	if ( ampforwp_is_front_page() ) {
 		$post_id = ampforwp_get_frontpage_id();
