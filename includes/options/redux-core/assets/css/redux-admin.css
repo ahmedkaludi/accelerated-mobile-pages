@@ -1094,9 +1094,9 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     }
 
 }
-.redux-main #redux-footer-sticky {
+/*.redux-main #redux-footer-sticky {
     position: fixed;
     bottom: 0px;
     width: 68%;
     right: 60px;
-}
+}*/
