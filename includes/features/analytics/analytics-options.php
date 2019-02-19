@@ -122,7 +122,7 @@ function ampforwp_analytics_options($opt_name){
                         'mode'     => 'javascript',
                         'theme'    => 'monokai',
                         'desc'     => '',
-                        'default'  => esc_html__('{
+                        'default'  => '{
     "vars": {
         "account": "UA-xxxxxxx-x"  //Replace this with your Tracking ID
     },
@@ -135,7 +135,7 @@ function ampforwp_analytics_options($opt_name){
      * Enter your Advanced Analytics code here
     */
     }
-}','accelerated-mobile-pages')
+}'
                     ),
 
                       //GTM
@@ -205,7 +205,7 @@ function ampforwp_analytics_options($opt_name){
                         'mode'     => 'javascript',
                         'theme'    => 'monokai',
                         'desc'     => '',
-                        'default'  => esc_html__('{
+                        'default'  => '{
     "vars": {
         "account": "UA-xxxxxxx-x"  /*Replace this with your Tracking ID*/
     },
@@ -219,7 +219,7 @@ function ampforwp_analytics_options($opt_name){
     */
 
     }
-}','accelerated-mobile-pages')
+}'
                     ),
                         array(
                           'class' => 'child_opt',
