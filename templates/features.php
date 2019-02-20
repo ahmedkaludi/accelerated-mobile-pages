@@ -569,7 +569,7 @@ function ampforwp_new_dir( $dir ) {
 			}
 
 		// Facebook Like Script
-		if( true == $redux_builder_amp['ampforwp-facebook-like-button'] && (is_single() || $social_check_page ) && $social_check && (! checkAMPforPageBuilderStatus( get_the_ID() ) ) ){
+		if( true == ampforwp_get_setting('ampforwp-facebook-like-button') && (is_single() || true == ampforwp_get_setting('ampforwp-page-sticky-social') || $social_check_page ) && $social_check && (! checkAMPforPageBuilderStatus( get_the_ID() ) ) ){
 			if(empty($data['amp_component_scripts']['amp-facebook-like'])){
 				$data['amp_component_scripts']['amp-facebook-like'] = 'https://cdn.ampproject.org/v0/amp-facebook-like-0.1.js';
 			}
@@ -1267,6 +1267,18 @@ function ampforwp_sticky_social_icons(){
 			$permalink = $amp_permalink;
 			?>
 			 <div class="sticky_social">
+			<?php if ( true == ampforwp_get_setting('ampforwp-facebook-like-button')) {
+			$facebook_like_url = '';
+			$facebook_like_url = $amp_permalink;
+			if ( $facebook_like_url ) { ?>
+				<amp-facebook-like width=90 height=18 style="margin-bottom:-18px;"
+				 	layout="fixed"
+				 	data-size="large"
+				    data-layout="button_count"
+				    data-href="<?php echo esc_url($facebook_like_url); ?>">
+				</amp-facebook-like>
+			<?php }
+			} ?> 
 				<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 			    	<a title="facebook share" class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php echo $amp_permalink; ?>"></a>

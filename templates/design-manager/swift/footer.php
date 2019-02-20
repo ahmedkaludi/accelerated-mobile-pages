@@ -63,6 +63,26 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']) ){ ?>
 <div class="s_stk ss-ic">
 	<ul>
+		<?php if(ampforwp_get_setting('ampforwp-facebook-like-button')){?>
+		<li>
+			<?php if( ampforwp_is_non_amp() && ampforwp_get_setting('ampforwp-amp-convert-to-wp')) { ?>	
+					<div class="fb-like" 
+    						data-href="<?php echo esc_url(get_the_permalink());?>" 
+							data-layout="button_count" 
+    						data-action="like" 
+    						data-show-faces="true">
+  					</div>
+			<?php }
+					else { ?>
+						<amp-facebook-like width=100 height=20 style="margin: 0 auto;"
+				 			layout="fixed"
+				 			data-size="large"
+				    		data-layout="button_count"
+				    		data-href="<?php echo esc_url(get_the_permalink());?>">
+						</amp-facebook-like>
+							<?php } ?>
+			</li>
+			<?php } ?>
 		<?php if($redux_builder_amp['enable-single-facebook-share']){?>
 		<li>
 			<a title="facebook share" class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php echo esc_url($amp_permalink); ?>"></a>
