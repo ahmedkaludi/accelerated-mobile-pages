@@ -1121,7 +1121,7 @@ function ampforwp_remove_schema_data() {
  
 
 	// Thrive Content Builder
-	$ampforwp_metas = json_decode(get_post_meta(get_the_ID(),'ampforwp-post-metas',true),true);
+	$ampforwp_metas = json_decode(get_post_meta(ampforwp_get_the_ID(),'ampforwp-post-metas',true),true);
 	$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
 	if ($amp_custom_content_enable == 'yes') {
 		remove_filter( 'the_content', 'tve_editor_content', 10 );
