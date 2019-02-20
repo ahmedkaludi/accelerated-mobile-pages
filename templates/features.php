@@ -871,10 +871,6 @@ function ampforwp_title_callback( $post ) {
 		$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
 	}
 
-	$list_of_posts = ampforwp_posts_to_remove();
-	if ( $list_of_posts && $post->post_type == 'post' ) {
-		$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
-	} 
 	if ( ('post' == $post->post_type && true == ampforwp_get_setting('amp-on-off-for-all-posts')) || ('page' == $post->post_type && true == ampforwp_get_setting('amp-on-off-for-all-pages')) || ( 'post' !== $post->post_type && 'page' !== $post->post_type) ) { ?>
     <div>
     	<p><?php esc_html_e('Show/Hide AMP','accelerated-mobile-pages') ?></p>
@@ -1750,6 +1746,9 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 	$ampforwp_amp_post_on_off_meta = $amp_metas['ampforwp-amp-on-off'];
 	if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
 		$skip = true;
+		remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
+		// #999 Disable mobile redirection
+		remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
 	}
     return $skip;
 }
@@ -2258,7 +2257,7 @@ function ampforwp_talking_to_robots() {
 }
 
 // 41. Rewrite URL only on save #511
-function ampforwp_auto_flush_on_save($redux_builder_amp) {
+function ampforwp_auto_flush_on_save($redux_builder_amp, $this_transients_changed_values) {
 	if ( $redux_builder_amp['amp-on-off-for-all-pages'] == 1 || $redux_builder_amp['ampforwp-archive-support'] == 1 || $redux_builder_amp['fb-instant-article-switch'] == 1 ) {
 		global $wp_rewrite;
 		$wp_rewrite->flush_rules();
@@ -2273,8 +2272,90 @@ function ampforwp_auto_flush_on_save($redux_builder_amp) {
 		$redux_builder_amp['hide-amp-categories'] = '';
 	    update_option('redux_builder_amp',$redux_builder_amp);
 	 }
+
+
+	 if(isset($this_transients_changed_values['hide-amp-categories2'])){//ON CHANGE IN THIS OPTION
+	 	$needToEnableAmp = $needToRemove = array();
+	 	$differances = array_diff($redux_builder_amp['hide-amp-categories2'], $this_transients_changed_values['hide-amp-categories2']);
+	 	$differances2 = array_diff($this_transients_changed_values['hide-amp-categories2'],$redux_builder_amp['hide-amp-categories2']);
+	 	$differances = array_merge($differances,$differances2);
+	 	if(count($differances)>0){
+	 		foreach ($differances as $key => $diff) {
+	 			if(in_array($diff, $this_transients_changed_values['hide-amp-categories2']) ){
+	 				$needToEnableAmp[] = $diff;
+	 			}else if( in_array($diff, $redux_builder_amp['hide-amp-categories2']) ){
+	 				$needToRemove[] = $diff;
+	 			}
+	 		}
+	 	}
+		if(count($differances)>0){
+			$posts = get_posts(array('category'=>implode(',', $differances),'posts_per_page'   => -1));
+			foreach($posts as $post){
+				$amp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas',true), true );
+
+				$category = get_the_category($post->ID);
+				if(count($category)){
+					foreach ($category as $key => $cat) {
+						if(in_array($cat->term_id, $needToEnableAmp)){
+							$amp_post_metas['ampforwp-amp-on-off'] = 'default';
+							break;
+						}elseif(in_array($cat->term_id, $needToRemove)){
+							$amp_post_metas['ampforwp-amp-on-off'] = 'hide-amp';
+							break;
+						}
+					}
+				}
+				update_post_meta($post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
+			}
+		}
+	}
+	if(isset($this_transients_changed_values['hide-amp-tags-bulk-option2'])){//ON CHANGE IN THIS OPTION
+		$needToEnableAmp = $needToRemove = array();
+	 	$differances = array_diff($redux_builder_amp['hide-amp-tags-bulk-option2'], $this_transients_changed_values['hide-amp-tags-bulk-option2']);
+	 	$differances2 = array_diff($this_transients_changed_values['hide-amp-tags-bulk-option2'],$redux_builder_amp['hide-amp-tags-bulk-option2']);
+	 	$differances = array_merge($differances,$differances2);
+	 	if(count($differances)>0){
+	 		foreach ($differances as $key => $diff) {
+	 			if(in_array($diff, $this_transients_changed_values['hide-amp-tags-bulk-option2']) ){
+	 				$needToEnableAmp[] = $diff;
+	 			}else if( in_array($diff, $redux_builder_amp['hide-amp-tags-bulk-option2']) ){
+	 				$needToRemove[] = $diff;
+	 			}
+	 		}
+	 	}
+		if(count($differances)>0){
+			$args = array(
+					        'posts_per_page' => -1,
+					        'tax_query' => array(
+					            array(
+						                'taxonomy' => 'post_tag',
+						                'field' => 'term_id',
+						                'terms' => $differances,
+						            )
+					        )
+						    );
+			$posts = get_posts($args);
+			foreach($posts as $post){
+				$amp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas',true), true );
+				$terms = wp_get_post_terms($post->ID);
+				$currentCategory = array();
+				if(count($terms)){
+					foreach ($terms as $key => $cat) {
+						if(in_array($cat->term_id, $needToEnableAmp)){
+							$amp_post_metas['ampforwp-amp-on-off'] = 'default';
+							break;
+						}elseif(in_array($cat->term_id, $needToRemove)){
+							$amp_post_metas['ampforwp-amp-on-off'] = 'hide-amp';
+							break;
+						}
+					}
+				}
+				update_post_meta($post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
+			}
+		}
+	}
 }
-add_action("redux/options/redux_builder_amp/saved",'ampforwp_auto_flush_on_save', 10, 1);
+add_action("redux/options/redux_builder_amp/saved",'ampforwp_auto_flush_on_save', 10, 2);
 
 // 42. registeing AMP sidebars
 add_action('init', 'ampforwp_add_widget_support');
@@ -3878,19 +3959,7 @@ if ( ! function_exists('ampforwp_exclude_archive') ) {
 		}
 	}
 }
-add_filter( 'amp_skip_post', 'ampforwp_cat_specific_skip_amp_post', 10, 3 );
-function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
 
-	$skip_this_post = '';
-	$skip_this_post = ampforwp_posts_to_remove();
-	if ( $skip_this_post ) {
-	  $skip = true;
-	  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
-	  // #999 Disable mobile redirection
-	  remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
-	}	
-	return $skip;
-}
 
 // Exclude Posts from Loops based on Hide AMP Bulk Cats and Tags #2375
 add_filter('ampforwp_query_args', 'ampforwp_exclude_archive_args');
