@@ -207,7 +207,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 			$scriptArray[$ext_key] = sprintf(
 				'https://cdn.ampproject.org/v0/%s-%s.js',
 				$ext_key,
-				'latest'
+				'0.1'
 			);
 		}
 		if(count($scriptArray)>0){
