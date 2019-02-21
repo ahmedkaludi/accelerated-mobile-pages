@@ -40,6 +40,8 @@ if(!is_plugin_active( 'levelup/levelup.php' )){
                );
 }
 $theme = wp_get_theme(); // gets the current theme
+$pb_for_amp = array();
+$pb_for_amp_checker = array();
 if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ) || did_action( 'elementor/loaded' ) ){
     $pb_title = '';
     $pb_subtitle = '';
