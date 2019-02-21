@@ -7548,3 +7548,57 @@ function ampforwp_jetpacksubscription_submit(){
 	}
 }
 //Jetpack subscription Widget End
+
+// amp-bind for carousel with captions
+function ampforwp_carousel_bind_script($data){
+	if( 1 == ampforwp_get_setting('ampforwp-gallery-design-type') || 2 == ampforwp_get_setting('ampforwp-gallery-design-type') ){
+		if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
+			$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
+		}	
+	}
+	if( 3 == ampforwp_get_setting('ampforwp-gallery-design-type') || true == ampforwp_get_setting('ampforwp-gallery-lightbox') ){
+		if ( empty( $data['amp_component_scripts']['amp-image-lightbox'] ) ) {
+			$data['amp_component_scripts']['amp-image-lightbox'] = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
+		}
+	}
+	return $data;
+}
+// Gallery Styling
+if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
+  function ampforwp_additional_style_carousel_caption(){ ?>
+    .collapsible-captions {--caption-height: 32px; --image-height: 100%; --caption-padding:1rem; --button-size: 28px; --caption-color: #f5f5f5;; --caption-bg-color: #111;}
+    .collapsible-captions * {
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+      box-sizing: border-box;
+    }
+    .collapsible-captions .amp-carousel-container  {position: relative; width: 100%;}
+    .collapsible-captions amp-img img {object-fit: contain; }
+    .collapsible-captions figure { margin: 0; padding: 0; }
+    .collapsible-captions figcaption { position: absolute; bottom: 0;width: 100%;
+      max-height: var(--caption-height);margin-bottom:0;
+      line-height: var(--caption-height);
+      padding: 0 var(--button-size) 0 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: max-height 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      color: var(--caption-color);
+      background: rgba(0, 0, 0, 0.6);   
+    }
+    .collapsible-captions figcaption.expanded {
+      line-height: inherit;
+      white-space: normal;
+      text-overflow: auto;
+      max-height: 100px;
+      overflow: auto;
+    }
+    .collapsible-captions figcaption:focus { outline: none; border: none; }
+    .collapsible-captions figcaption span { display: block; position: absolute;
+      top: calc((var(--caption-height) - var(--button-size)) / 2);
+      right: 2px; width: var(--button-size); height: var(--button-size);
+      line-height: var(--button-size); text-align: center; font-size: 12px; color: inherit;
+      cursor: pointer; }
+  figcaption{ margin-bottom: 20px; }
+<?php }
+ }

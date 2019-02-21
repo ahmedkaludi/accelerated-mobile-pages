@@ -68,3 +68,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 41. class-amp-iframe-sanitizer.php updated #2836
 42. Updated check_attr_spec_rule_valid_url function and also added two more functions parse_protocol and extract_attribute_urls #2862
 43. Class AMP_Img_Sanitizer Updated #2893
+44. class-amp-gallery-block-sanitizer file Updated for new Gallery Designs #2868
