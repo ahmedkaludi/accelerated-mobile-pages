@@ -204,10 +204,14 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 	public function get_scripts() {
 		$scriptArray = array_fill_keys( $this->script_components, true );
 		foreach ( $scriptArray as $ext_key=>$ext_value ) {
+			$version = 'latest';
+			if ( 'amp-carousel' == $ext_key ) {
+				$version = '0.1';
+			}
 			$scriptArray[$ext_key] = sprintf(
 				'https://cdn.ampproject.org/v0/%s-%s.js',
 				$ext_key,
-				'0.1'
+				$version
 			);
 		}
 		if(count($scriptArray)>0){
