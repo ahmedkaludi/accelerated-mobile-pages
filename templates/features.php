@@ -373,7 +373,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				if($sitepress_settings[ 'language_negotiation_type' ] == 3){
 				  	if( is_singular() ){
 				  		$active_langs = $sitepress_settings['active_languages'];
-				  		$found == '';
+				  		$found = '';
 						$wpml_url =get_permalink( get_queried_object_id() );
 						$untrail_wpml_url = untrailingslashit($wpml_url);
 						$explode_url = explode('/', $untrail_wpml_url);
@@ -6460,7 +6460,7 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
  			// WPML COMPATIBILITY FOR LOOP 
  				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	 			if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
-					global $sitepress_settings;
+					global $sitepress_settings,$wp;
 	 				if($sitepress_settings[ 'language_negotiation_type' ] == 3){
 					        $current_archive_url = untrailingslashit($url);
 							$explode_path  	= explode("/",$current_archive_url);
