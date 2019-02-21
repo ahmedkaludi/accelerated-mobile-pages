@@ -3598,12 +3598,14 @@ function fb_instant_article_feed_function() {
 if ( ! function_exists('ampforwp_fbia_meta_tags') ) {
 	function ampforwp_fbia_meta_tags(){
 		global $redux_builder_amp;
+		// undefined index fb-instant-page-id #2610
 		$fb_page_id = '';
 		$fb_page_id = ampforwp_get_setting('fb-instant-page-id');
 		// Page ID meta Tag
 		if( $fb_page_id ) { ?>		
 			<meta property="fb:pages" content="<?php echo esc_attr( $fb_page_id ); ?>" />
 		<?php }
+		// undefined index fb-instant-page-id ends here #2610
 		$post = get_post();
 		// If there's no current post, return
 		if ( ! $post ) {
