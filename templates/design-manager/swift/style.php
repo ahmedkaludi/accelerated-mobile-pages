@@ -203,6 +203,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 	border-bottom: 1px solid <?php if(isset($redux_builder_amp['swift-element-menu-border-color']['rgba'])){echo $redux_builder_amp['swift-element-menu-border-color']['rgba'];}?>;
 	margin:0px 10px;
 }
+.m-menu .amp-menu li.menu-item-has-children ul {display: none;margin: 0;}
 .m-menu .amp-menu .sub-menu li:last-child{border:none;}
 .m-menu .amp-menu  a {padding: 7px 15px;}
 .m-menu > li{font-size:17px;}
