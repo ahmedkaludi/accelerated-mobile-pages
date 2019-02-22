@@ -979,12 +979,14 @@ AmpForWpYoastAnalysis = function() {
      * @param data The data to modify
      */
     AmpForWpYoastAnalysis.prototype.myContentModification = function(data) {
-        var pbdata  = $('#amp-page-builder-ready').val();
-        var takeover = redux_data['ampforwp-amp-takeover'];
-        var pb = redux_data['ampforwp-pagebuilder'];
-        var pb2 = $('input[name="ampforwp_page_builder_enable"]').val();
-        if ( takeover == 1 && pb == 1 && 'yes' == pb2 ) {
-            data = pbdata;
+        if($('#amp-page-builder-ready').length){
+            var pbdata  = $('#amp-page-builder-ready').val();
+            var takeover = redux_data['ampforwp-amp-takeover'];
+            var pb = redux_data['ampforwp-pagebuilder'];
+            var pb2 = $('input[name="ampforwp_page_builder_enable"]').val();
+            if ( takeover == 1 && pb == 1 && 'yes' == pb2 ) {
+                data = pbdata;
+            }
         }
         return data;
     };

@@ -907,6 +907,13 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 								 $replace = $contentArray[$field['name']];
 							}
 							if($replace!=""){
+								if(is_array($replace)){
+									if(count($replace)>0 && isset($replace[0])){
+										$replace = $replace[0];
+									}else{
+										$replace ='';
+									}
+								}
 
 								if(!is_array($replace)){
 									
