@@ -167,6 +167,10 @@ function ampforwp_page_template_redirect() {
     }else if($isMobile && !$isTablet){                    // Only for mobile
       $redirectToAMP = true;
     }
+    // No mobile redirection on oembeds #2003
+    if ( function_exists('is_embed') && is_embed() ){
+      return;
+    }
 
     // Return if Dev mode is enabled
     if ( isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode'] ) {
