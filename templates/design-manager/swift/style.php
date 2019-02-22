@@ -190,7 +190,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .m-ctr{<?php if($redux_builder_amp['header-overlay-width']){?>width:<?php echo $redux_builder_amp['header-overlay-width']?>;<?php } ?>height: 100%;position: absolute;z-index:99;padding: 2% 0% 100vh 0%;}
 .m-menu{display: inline-block;width: 100%;padding: 2px 20px 10px 20px;}
 .m-scrl{overflow-y: auto;display: inline-block;width: 100%;overflow: scroll;max-height: 94vh;}
-.m-menu .toggle:after{content: "\e313";font-family: 'icomoon';background-size: 16px;display: inline-block;top: 1px;padding: 5px;font-size:25px;transform: rotate(270deg);border-radius: 35px;color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;}
+.m-menu .amp-menu .toggle:after{content: "\e313";font-family: 'icomoon';background-size: 16px;display: inline-block;top: 1px;padding: 5px;font-size:25px;transform: rotate(270deg);border-radius: 35px;color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;}
 .m-menu .amp-menu li.menu-item-has-children:after{display:none;}
 .m-menu .amp-menu li ul{font-size:14px;}
 .m-menu .amp-menu {list-style-type: none;padding: 0;}
