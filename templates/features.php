@@ -5520,6 +5520,8 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 		$ampforwp_adv_ga_fields = str_replace('{title}', $title, $ampforwp_adv_ga_fields);
 		$ampforwp_adv_ga_fields = str_replace('{author_name}', $author_name, $ampforwp_adv_ga_fields);
 		$ampforwp_adv_ga_fields = str_replace('{author_id}', $author_id, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = preg_replace('!//.*!', '', $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = preg_replace('!/\*.*?\*/!s', '', $ampforwp_adv_ga_fields);
 		return $ampforwp_adv_ga_fields;
 	}	
 	return $ga_fields;	

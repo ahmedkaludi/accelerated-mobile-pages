@@ -2192,8 +2192,8 @@ Redux::setArgs( "redux_builder_amp", $args );
     "triggers": {
         "trackPageview": {
             "on": "visible",
-            "request": "pageview",
-        },
+            "request": "pageview"
+        }
     /** 
      * Enter your Advanced Analytics code here
     */
