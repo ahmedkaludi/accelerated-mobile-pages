@@ -212,6 +212,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 	.m-menu input{display:none}
 	.m-menu .amp-menu [id^=drop]:checked + label + ul{ display: block;}
 	.m-menu .amp-menu [id^=drop]:checked + .toggle:after{transform:rotate(360deg);}
+	.amp-menu li.menu-item-has-children ul {display: none;margin: 0;}
 /*New Syles*/
 <?php } ?>
 <?php //primary menu
