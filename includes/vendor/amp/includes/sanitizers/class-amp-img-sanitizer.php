@@ -71,46 +71,48 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	 */
 	private function determine_dimensions( $need_dimensions ) {
 		$dimensions_by_url = AMP_Image_Dimension_Extractor::extract( array_keys( $need_dimensions ) );
-
+		$class = "";
 		foreach ( $dimensions_by_url as $url => $dimensions ) {
 			foreach ( $need_dimensions[ $url ] as $node ) {
-				// Provide default dimensions for images whose dimensions we couldn't fetch.
-				if ( false === $dimensions ) {
-					$width = isset( $this->args['content_max_width'] ) ? $this->args['content_max_width'] : self::FALLBACK_WIDTH;
-					$height = self::FALLBACK_HEIGHT;
-					if ( isset( $dimensions['width'] ) ) {
-						$width = $dimensions['width'];
-					}
-					if ( isset( $dimensions['height'] ) ) {
-						$height = $dimensions['height'];
-					}
-					if ( ! is_numeric( $node->getAttribute( 'width' ) ) ) {
-						// Let width have the right aspect ratio based on the height attribute.
-						if ( is_numeric( $node->getAttribute( 'height' ) ) && isset( $dimensions['height'] ) && isset( $dimensions['width'] ) ) {
-							$width = ( floatval( $node->getAttribute( 'height' ) ) * $dimensions['width'] ) / $dimensions['height'];
-						}
-						$node->setAttribute( 'width', $width );
-						if ( ! isset( $dimensions['width'] ) ) {
-							$class .= ' amp-wp-unknown-width';
-						}
-					}
-					if ( ! is_numeric( $node->getAttribute( 'height' ) ) ) {
-						// Let height have the right aspect ratio based on the width attribute.
-						if ( is_numeric( $node->getAttribute( 'width' ) ) && isset( $dimensions['width'] ) && isset( $dimensions['height'] ) ) {
-							$height = ( floatval( $node->getAttribute( 'width' ) ) * $dimensions['height'] ) / $dimensions['width'];
-						}
-						$node->setAttribute( 'height', $height );
-						if ( ! isset( $dimensions['height'] ) ) {
-							$class .= ' amp-wp-unknown-height';
-						}
+				if ( ! $node instanceof DOMElement ) {
+					continue;
+				}
+				$class = $node->getAttribute( 'class' );
+				if ( ! $class ) {
+					$class = '';
+				}
+				if ( ! $dimensions ) {
+					$class .= ' amp-wp-unknown-size';
+				}
+				$width  = isset( $this->args['content_max_width'] ) ? $this->args['content_max_width'] : self::FALLBACK_WIDTH;
+				$height = self::FALLBACK_HEIGHT;
+				if ( isset( $dimensions['width'] ) ) {
+					$width = $dimensions['width'];
+				}
+				if ( isset( $dimensions['height'] ) ) {
+					$height = $dimensions['height'];
+				}
+				if ( ! is_numeric( $node->getAttribute( 'width' ) ) ) {
+					// Let width have the right aspect ratio based on the height attribute.
+					if ( is_numeric( $node->getAttribute( 'height' ) ) && isset( $dimensions['height'] ) && isset( $dimensions['width'] ) ) {
+						$width = ( floatval( $node->getAttribute( 'height' ) ) * $dimensions['width'] ) / $dimensions['height'];
 					}
 					$node->setAttribute( 'width', $width );
-					$node->setAttribute( 'height', $height );
-					$node->setAttribute( 'class', trim( $class ) );
-				} else {
-					$node->setAttribute( 'width', $dimensions['width'] );
-					$node->setAttribute( 'height', $dimensions['height'] );
+					if ( ! isset( $dimensions['width'] ) ) {
+						$class .= ' amp-wp-unknown-width';
+					}
 				}
+				if ( ! is_numeric( $node->getAttribute( 'height' ) ) ) {
+					// Let height have the right aspect ratio based on the width attribute.
+					if ( is_numeric( $node->getAttribute( 'width' ) ) && isset( $dimensions['width'] ) && isset( $dimensions['height'] ) ) {
+						$height = ( floatval( $node->getAttribute( 'width' ) ) * $dimensions['height'] ) / $dimensions['width'];
+					}
+					$node->setAttribute( 'height', $height );
+					if ( ! isset( $dimensions['height'] ) ) {
+						$class .= ' amp-wp-unknown-height';
+					}
+				}
+				$node->setAttribute( 'class', trim( $class ) );
 			}
 		}
 	}
