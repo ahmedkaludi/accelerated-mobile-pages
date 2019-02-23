@@ -103,9 +103,9 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 				$parent_node = $element->parentNode;
 				  
 				$allowed_tags = AMP_Allowed_Tags_Generated::get_allowed_tags();
-				 if(!isset($allowed_tags[$parent_node->nodeName])){
+ 				if( $parent_node->tagName != 'amp-state'){
  					$parent_node->removeChild( $element );
-				 }
+				}
  				if ( 'body' !== $parent_node->nodeName && AMP_DOM_Utils::is_node_empty( $parent_node ) ) {
 					$parent_node->parentNode->removeChild( $parent_node );
 				}
@@ -144,12 +144,13 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 	private function validate_a_node( $node ) {
 		// Get the href attribute
 		$href = $node->getAttribute( 'href' );
-
 		// If no href is set and this isn't an anchor, it's invalid
 		if ( empty( $href ) ) {
 			$id_attr = $node->getAttribute( 'id' );
 			$name = $node->getAttribute( 'name' );
-			if ( ! empty( $name_attr ) || ! empty( $id_attr ) ) {
+			$class = $node->getAttribute( 'class' );
+			$on = $node->getAttribute( 'on' );
+			if ( ! empty( $name_attr ) || ! empty( $id_attr ) || ! empty( $class ) || ! empty( $on ) ) {
 				// No further validation is required
 				return true;
 			} else {
