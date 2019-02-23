@@ -638,8 +638,15 @@ visibility: hidden;
 .backtoextensionlist{
     cursor: pointer;
 }
-
-
+.beta-tester-text .description{
+    padding: 0px 0px 0px 15px;
+}
+.beta-tester-text .redux_field_th{
+    padding: 24px 0px 34px 0px;
+}
+.beta-tester-text .redux_field_th span:first-child{
+    margin-top:7px;
+}
 #info-ampforwp-beta-mode-notice{color: #263238; margin: 20px; background: #FFF9C4;border-color: #908204;}
 
 .redux-container #redux-intro-text .dashicons-admin-generic:before, .activated-plugins { color: #666 }

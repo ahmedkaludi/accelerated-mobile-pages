@@ -2277,6 +2277,7 @@ Redux::setSection( $opt_name, array(
                          ),
                        array(
                             'id'       => 'amp-beta-link',
+                            'class'    => 'beta-tester-text',
                             'type'     => 'switch',
                             'title'    => esc_html__('Beta Tester', 'accelerated-mobile-pages'),
                             'subtitle' => esc_html__('Please Note: We do not recommend updating to a beta version on production sites.', 'accelerated-mobile-pages'),
@@ -2284,7 +2285,8 @@ Redux::setSection( $opt_name, array(
                         ),
                        array(
                         'id'       => 'ampforwp-beta-testing',
-                        'type'     => 'info',
+                        'class' => 'child_opt',
+                        'type'     => 'raw',
                         'title'    =>  sprintf(
                                         '<a href="%s" target="_blank" class="button">%s</a>',
                                         wp_nonce_url( admin_url( 'admin-post.php?action=ampforwp_beta&installation=beta' ), 'ampforwp_beta' ),
