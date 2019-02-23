@@ -884,6 +884,8 @@ function rowData($container,$col,$moduleTemplate){
 								if(is_array($replace)){
 									if(count($replace)>0){
 										$replace = $replace[0];
+									}else{
+										$replace ='';
 									}
 								}
 
