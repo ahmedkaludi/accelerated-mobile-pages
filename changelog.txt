@@ -1,5 +1,16 @@
 == Changelog ==
 
+= 0.9.97.37 (23th February 2019) =
+* Added: Static page template in AMP #2614 + #2900
+* Added: Font size and other values are properly sanitizing #2898
+* Fixed: Failed to parse script tag contents #2884
+* Fixed: PHP Notices after the v0.9.97.32 #2879
+* Fixed: oembed wordpress post renders as a full post in AMP #2003
+* Fixed: Gallery/Slider of AMP pagebuilder not working
+* Fixed: class are repeating number of times when image (icon) added in .svg format #2893
+* Fixed: Debug warnings with WPML #2899
+* Fixed: Issue with yoast content reading while amp pagebuilder image module selected #2910
+
 = 0.9.97.36 (19th February 2019) =
 * Added: Mobile and tablets Detects separately for 'Mobile Redirection' option #2436
 * Added: Scrolling bar for swift theme in chrome browser #2593

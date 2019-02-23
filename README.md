@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.3
-Stable tag: 0.9.97.36
+Stable tag: 0.9.97.37
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,17 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.37 (23th February 2019) =
+* Added: Static page template in AMP #2614 + #2900
+* Added: Font size and other values are properly sanitizing #2898
+* Fixed: Failed to parse script tag contents #2884
+* Fixed: PHP Notices after the v0.9.97.32 #2879
+* Fixed: oembed wordpress post renders as a full post in AMP #2003
+* Fixed: Gallery/Slider of AMP pagebuilder not working
+* Fixed: class are repeating number of times when image (icon) added in .svg format #2893
+* Fixed: Debug warnings with WPML #2899
+* Fixed: Issue with yoast content reading while amp pagebuilder image module selected #2910
 
 = 0.9.97.36 (19th February 2019) =
 * Added: Mobile and tablets Detects separately for 'Mobile Redirection' option #2436

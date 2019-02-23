@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.0.3
-Stable tag: 0.9.97.36
+Stable tag: 0.9.97.37
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -186,16 +186,15 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.36 (19th February 2019) =
-* Added: Mobile and tablets Detects separately for 'Mobile Redirection' option #2436
-* Added: Scrolling bar for swift theme in chrome browser #2593
-* Added: CSS condition when element markup is visible #2753
-* Fixed: Pre tags not rendering properly on pages #2823
-* Fixed: Logo resize should only apply when Resize setting is enable #2544
-* Fixed: When /?amp is enabled "Visit AMP" is redirecting to dashboard #2363
-* Fixed: ampforwp_wc_shortcode_title is loading globally #2756
-* Fixed: Extra CSS is causing validation error of 50kb #2592
-* Fixed: PHP warning issue in latest version of php #2895
-* Fixed: Yoast analysis is giving false readings for the SEO When AMPforWP Pagebuilder is enabled #2435
+= 0.9.97.37 (23th February 2019) =
+* Added: Static page template in AMP #2614 + #2900
+* Added: Font size and other values are properly sanitizing #2898
+* Fixed: Failed to parse script tag contents #2884
+* Fixed: PHP Notices after the v0.9.97.32 #2879
+* Fixed: oembed wordpress post renders as a full post in AMP #2003
+* Fixed: Gallery/Slider of AMP pagebuilder not working
+* Fixed: class are repeating number of times when image (icon) added in .svg format #2893
+* Fixed: Debug warnings with WPML #2899
+* Fixed: Issue with yoast content reading while amp pagebuilder image module selected #2910
 
 Full changelog available in changelog.txt
