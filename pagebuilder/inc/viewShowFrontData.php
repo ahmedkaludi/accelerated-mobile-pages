@@ -881,6 +881,11 @@ function rowData($container,$col,$moduleTemplate){
 								 $replace = $contentArray[$field['name']];
 							}
 							if($replace!=""){
+								if(is_array($replace)){
+									if(count($replace)>0){
+										$replace = $replace[0];
+									}
+								}
 
 								if(!is_array($replace)){
 									
