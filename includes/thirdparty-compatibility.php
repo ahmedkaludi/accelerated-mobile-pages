@@ -315,7 +315,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 				if ( ! empty( $object->post_type ) ) {
 					$template = get_page_template_slug( $object );
 					if ( $template && 0 === validate_file( $template ) ) {
-						$templates[] = $template;
+						$templates[] = $filePath.'/'.$template;
 					}
 
 					$name_decoded = urldecode( $object->post_name );
@@ -350,7 +350,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 
 				$templates = array();
 				if ( $template && 0 === validate_file( $template ) )
-					$templates[] = $template;
+					$templates[] = $filePath.'/'.$template;
 				if ( $pagename ) {
 					$pagename_decoded = urldecode( $pagename );
 					if ( $pagename_decoded !== $pagename ) {
