@@ -101,9 +101,12 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 					}
 				}
 				$parent_node = $element->parentNode;
-				$parent_node->removeChild( $element );
-
-				if ( 'body' !== $parent_node->nodeName && AMP_DOM_Utils::is_node_empty( $parent_node ) ) {
+				  
+				$allowed_tags = AMP_Allowed_Tags_Generated::get_allowed_tags();
+				 if(!isset($allowed_tags[$parent_node->nodeName])){
+ 					$parent_node->removeChild( $element );
+				 }
+ 				if ( 'body' !== $parent_node->nodeName && AMP_DOM_Utils::is_node_empty( $parent_node ) ) {
 					$parent_node->parentNode->removeChild( $parent_node );
 				}
 			}

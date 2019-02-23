@@ -33,6 +33,7 @@ require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-soundcloud-embed.
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-pinterest-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-wistia-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-polldaddy-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-playlist-embed-handler.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-core-block-handler.php' );
 
 class AMP_Post_Template {
@@ -273,6 +274,7 @@ class AMP_Post_Template {
 					'AMP_Facebook_Embed_Handler' => array(),
 					'AMP_Pinterest_Embed_Handler' => array(),
 					'AMP_Gallery_Embed_Handler' => array(),
+					'AMP_Playlist_Embed_Handler'    => array(),
 					'AMP_Wistia_Embed_Handler' => array(),
 					'AMP_Polldaddy_Embed_Handler' => array(),
 				), $this->post ),
