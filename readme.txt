@@ -188,7 +188,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 0.9.97.37 (23th February 2019) =
 * Added: Static page template in AMP #2614 + #2900
-* Added: Font size and other values are properly sanitizing #2898
+* Fixed: Font size and other values are properly sanitizing #2898
 * Fixed: Failed to parse script tag contents #2884
 * Fixed: PHP Notices after the v0.9.97.32 #2879
 * Fixed: oembed wordpress post renders as a full post in AMP #2003
