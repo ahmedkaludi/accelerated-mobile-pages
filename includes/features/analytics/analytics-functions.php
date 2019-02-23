@@ -134,7 +134,7 @@ function ampforwp_analytics() {
 		if( true == ampforwp_get_setting('ampforwp-Histats-switch')) { ?>
 			<!-- BEGIN Histats CODE -->
 			<div id="histats">
-			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="//sstatic1.histats.com/0.gif?<?php echo ampforwp_get_setting('histats-feild'); ?>&101" >
+			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="//sstatic1.histats.com/0.gif?<?php echo esc_attr(ampforwp_get_setting('histats-feild')); ?>&101" >
 			</amp-pixel> 
 			</div>
 			<!--END Histats CODE -->
