@@ -147,7 +147,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		// If no href is set and this isn't an anchor, it's invalid
 		if ( empty( $href ) ) {
 			$id_attr = $node->getAttribute( 'id' );
-			$name = $node->getAttribute( 'name' );
+			$name_attr = $node->getAttribute( 'name' );
 			$class = $node->getAttribute( 'class' );
 			$on = $node->getAttribute( 'on' );
 			if ( ! empty( $name_attr ) || ! empty( $id_attr ) || ! empty( $class ) || ! empty( $on ) ) {
