@@ -5089,6 +5089,17 @@ $single_page_options = array(
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
                                 ),
             ),
+         // Excerpt ON/OFF of Related Posts
+          array(
+              'id'        => 'enable-excerpt-single-related-posts',
+              'type'      => 'text',
+              'class'     => 'child_opt',
+              'title'     => esc_html__('Excerpt Length', 'accelerated-mobile-pages'),
+              'default'   => 15,
+              'tooltip-subtitle'  => esc_html__('Excerpt will be displayed on related posts', 'accelerated-mobile-pages'),
+              'required'  => array( 
+                array('ampforwp-single-related-posts-excerpt', '=' , '1') ),
+          ),
             array(
                     'id'       => 'ampforwp-single-related-posts-link',
                     'type'     => 'switch',

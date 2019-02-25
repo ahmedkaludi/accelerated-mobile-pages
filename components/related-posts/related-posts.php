@@ -178,8 +178,8 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 				}else{
 					$content = get_the_content();
 				}
-		?><p><?php 
-		echo wp_trim_words( strip_shortcodes( $content ) , 15 ); 
+		?><p><?php $excerpt_length = ampforwp_get_setting('enable-excerpt-single-related-posts');
+		echo wp_trim_words( strip_shortcodes( $content ) , $excerpt_length ); 
 		?></p><?php 
 		} 
 		$show_author = (isset($argsdata['show_author'])? $argsdata['show_author'] : true);
