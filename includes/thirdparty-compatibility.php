@@ -80,9 +80,9 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                 '/<amp-youtube\sdata-videoid="(.*?)"(.*?)><\/amp-youtube>/',
                  '<iframe src="https://www.youtube.com/embed/$1" style="width:100%;height:360px;" ></iframe>', $returnData);
 				$returnData = preg_replace_callback(
-                '/<amp-iframe\ssrc="(.*?)"(.*?)><\/amp-iframe>/', 
+                '/<amp-iframe(.*?)src="(.*?)"(.*?)><\/amp-iframe>/', 
                 function($matches){
-                	return '<iframe src="'.esc_url($matches[1]).'" style="width:100%;height:400px;" ></iframe>';
+                	return '<iframe src="'.esc_url($matches[2]).'" style="width:100%;height:400px;" ></iframe>';
                 }, $returnData);
 				// CSS
 				
