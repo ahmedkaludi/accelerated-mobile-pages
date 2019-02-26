@@ -3487,6 +3487,14 @@ Redux::setSection( $opt_name, array(
                     'required' => array('gnrl-sidebar', '=' , '1'), 
                                 
             ),
+            array(
+                      'id'       => 'page_sidebar',
+                      'class' => 'child_opt child_opt_arrow',
+                      'type'     => 'switch',
+                      'title'    => esc_html__('Page Sidebar', 'accelerated-mobile-pages'),
+                      'default'  =>  '0',
+                      'required' => array('gnrl-sidebar', '=' , '1'), 
+                  ),
            array(
                     'id'    => 'gnrl-dark-view',
                     'type'  => 'switch',
@@ -5876,12 +5884,6 @@ $single_page_options = array(
                   'tooltip-subtitle' => __('Enable Featured Image on Pages.'),
                   'required' => array('amp-design-selector','=','4'),
             ),
-            array(
-                      'id'       => 'page_sidebar',
-                      'type'     => 'switch',
-                      'default'  =>  '0',
-                      'title'    => __('Sidebar', 'accelerated-mobile-pages'),
-                  ),
             array(
                       'id'       => 'meta_page',
                       'type'     => 'switch',
