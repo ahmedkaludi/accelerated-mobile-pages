@@ -181,7 +181,7 @@ return array(
 						array(    
 				            'type'    =>'layout-image-picker',
 				            'name'    =>"tabs_layout_type",
-				            'label'   =>"Select Layout",
+				            'label'   =>esc_html__('Select Layout', 'accelerated-mobile-pages'),
 				            'tab'     =>'layout',
 				            'default' =>'1',    
 				            'options_details'=>array(
@@ -381,7 +381,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"tb2_hdng_fnt_sz",		
-		 						'label'		=>'Tab Heading Font Size',
+		 						'label'		=>esc_html__('Tab Heading Font Size', 'accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'17px',	
 		           				'content_type'=>'css',
@@ -390,7 +390,7 @@ return array(
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'tb2_hdng_font_type',		
-	 							'label' =>"Tab Heading Font Weight",
+	 							'label' =>esc_html__('Tab Heading Font Weight', 'accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'600',
 	 							'options_details'=>array(
@@ -406,7 +406,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"tb2_hdng_font_color",
-								'label'		=>'Tab Heading Color',
+								'label'		=>esc_html__('Tab Heading Color', 'accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#222',
 								'content_type'=>'css',
@@ -415,7 +415,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"tb2_hdng_bg_color",
-								'label'		=>'Tab Heading Background Color',
+								'label'		=>esc_html__('Tab Heading Background Color', 'accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#ccc',
 								'content_type'=>'css',
@@ -424,7 +424,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"tb2_cnt_fnt_sz",		
-		 						'label'		=>'Tab Content Font Size',
+		 						'label'		=>esc_html__('Tab Content Font Size', 'accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'16px',	
 		           				'content_type'=>'css',
@@ -433,7 +433,7 @@ return array(
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'tb2_cnt_font_type',		
-	 							'label' =>"Tab Content Font Weight",
+	 							'label' =>esc_html__('Tab Content Font Weight', 'accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'400',
 	 							'options_details'=>array(
@@ -449,7 +449,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"tb2_cnt_font_color",
-								'label'		=>'Tab Content Color',
+								'label'		=>esc_html__('Tab Content Color', 'accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#797f7f',
 								'content_type'=>'css',
@@ -575,7 +575,7 @@ return array(
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"tab_hdng2",		
-		 						'label'		=>'Tab Heading',
+		 						'label'		=>esc_html__('Tab Heading', 'accelerated-mobile-pages'),
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Tab Heading',	
 		           				'content_type'=>'html',
@@ -584,7 +584,7 @@ return array(
 	 						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"tab_content2",		
-		 						'label'		=>'Tab Content',
+		 						'label'		=>esc_html__('Tab Content', 'accelerated-mobile-pages'),
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Add your content Here....',	
 		           				'content_type'=>'html',
