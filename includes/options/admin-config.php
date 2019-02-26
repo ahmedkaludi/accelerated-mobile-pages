@@ -3889,7 +3889,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                 'tooltip-subtitle'  => __('Choose the color for Button Texxt','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'color'  => '#000',
+                    'rgba'  => 'rgb(0, 0, 0)',
                     ),
                 'required' => array(
                   array('signin-button-style','=',1)
@@ -3902,7 +3902,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                 'tooltip-subtitle'  => __('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'color'  => '#000',
+                    'rgba'  => 'rgb(0, 0, 0)',
                     ),
                 'required' => array(
                   array('signin-button-style','=',1)
