@@ -13,14 +13,14 @@ if (! function_exists( 'ampforwp_menu') ) {
 	if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true)	{
 	  register_nav_menus(
 	    array(
-	      'amp-menu' => __( 'AMP Menu','accelerated-mobile-pages' ),
+	      'amp-menu' => esc_html__( 'AMP Menu','accelerated-mobile-pages' ),
 	    )
 	  );
 	  }
 	  // 1.2 Footer Menu	
 	  register_nav_menus(
 			array(
-			  'amp-footer-menu' => __( 'AMP Footer Menu','accelerated-mobile-pages' ),
+			  'amp-footer-menu' => esc_html__( 'AMP Footer Menu','accelerated-mobile-pages' ),
 			)
 		);	
 	}

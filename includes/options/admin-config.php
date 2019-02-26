@@ -3709,13 +3709,13 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
            array(
                     'id'       => 'ampforwp-amp-menu-swift',
                     'type'     => 'switch',
-                    'title'    => __('Navigation Menu', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Navigation Menu', 'accelerated-mobile-pages'),
                     'required' => array('amp-design-selector', '=' , '4'),
                     'default'  => '1'         
             ),
             array(
                     'id'    => 'menu-type',
-                   'title'  => __('Menu Type', 'accelerated-mobile-pages'),
+                   'title'  => esc_html__('Menu Type', 'accelerated-mobile-pages'),
                    'type'   => 'image_select',
                    'class' => 'child_opt',
                    'options'=> array(
@@ -3736,7 +3736,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                     'id'       => 'menu-search',
                     'type'     => 'switch',
                     'class' => 'child_opt',
-                    'title'    => __('Menu Search', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Menu Search', 'accelerated-mobile-pages'),
                     'required' => array(
                     array('amp-design-selector', '=' , '4'),
                     array('ampforwp-amp-menu-swift', '=' , '1')
@@ -3747,7 +3747,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                 'id'       => 'amp-swift-menu-cprt',
                 'type'     => 'switch',
                 'class' => 'child_opt',
-                'title'    => __( 'Menu Copyright', 'accelerated-mobile-pages' ),
+                'title'    => esc_html__( 'Menu Copyright', 'accelerated-mobile-pages' ),
                 'required' => array(
                     array('amp-design-selector', '=' , '4'),
                     array('ampforwp-amp-menu-swift', '=' , '1')
