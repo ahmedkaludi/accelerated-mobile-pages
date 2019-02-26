@@ -1777,3 +1777,8 @@ border-bottom: 1px solid #eee;
     margin: 0px 10px;
 }
 }
+<?php if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){?>
+    html {
+	 scroll-behavior: smooth;
+	}
+<?php } ?>

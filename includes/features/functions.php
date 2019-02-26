@@ -112,8 +112,6 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         // xlink attribute causes Validatation Issues #1149
         $content_buffer = preg_replace('/xlink="href"/','',$content_buffer);
         $content_buffer = preg_replace('/!important/', '' , $content_buffer);
-        if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){
-        $content_buffer = preg_replace('/<a(.*?)href="#(.*?)"(.*?)>/', '<a $1 href="#" on="tap:$2.scrollTo(duration=1000)" $3>', $content_buffer);}
         //  Compatibility with the footnotes plugin. #2447
         if(class_exists('MCI_Footnotes')){
         $content_buffer = preg_replace( '/<sup(.*?)id="(.*?)"(.*?)class="footnote_plugin_tooltip_text"(.*?)>(.*?)<\/sup>/m',  '
