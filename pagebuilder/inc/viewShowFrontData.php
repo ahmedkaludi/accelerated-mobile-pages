@@ -605,7 +605,7 @@ function amppb_post_content($content){
 							}elseif($field['name']=='grid_type' && $rowsData['data'][$field['name']]=='amppb-fixed'){
 								$replace .= 'ap-fi';
 							}else{
-								$replace .= $rowsData['data'][$field['name']];
+								$replace .= esc_html($rowsData['data'][$field['name']]);
 							}
 						}else{
 							$replace .= '';
