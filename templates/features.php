@@ -5124,6 +5124,9 @@ function ampforwp_get_the_ID($post_id=''){
 	if(ampforwp_is_front_page()){
 	$post_id = ampforwp_get_frontpage_id();
 	}
+	if(ampforwp_is_blog()){
+	$post_id = ampforwp_get_blog_details('id');
+	}
 	return $post_id;
 }
 // 97. Change the format of the post date on Loops #1384
