@@ -3144,7 +3144,7 @@ function ampforwp_comment_button_url(){
 
   		$button_url = $button_url. '#commentform';
   	}
-  return esc_url( apply_filters( 'ampforwp_url_controller', $button_url ) );
+  return esc_url( apply_filters( 'ampforwp_comment_button_url', $button_url ) );
 }
 
 // 60. Remove Category Layout modification code added by TagDiv #842 and #796
@@ -3576,7 +3576,7 @@ function ampforwp_view_nonamp(){
    		$non_amp_url = '';
    	}
 
-	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url($non_amp_url) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html__( $redux_builder_amp['amp-translator-non-amp-page-text'], 'accelerated-mobile-pages') ;?></a> <?php
+	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url(apply_filters('ampforwp_view_nonamp', $non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html__( $redux_builder_amp['amp-translator-non-amp-page-text'], 'accelerated-mobile-pages') ;?></a> <?php
 	}
 }
 
