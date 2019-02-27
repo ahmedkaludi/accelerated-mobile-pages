@@ -791,6 +791,14 @@ function ampforwp_deactivate_update_transient($plugin){
 add_action('pre_amp_render_post','ampforwp_goodlife_css');
 function ampforwp_goodlife_css(){
 	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
+	/**
+	* toc 
+	**/
+	if(class_exists('toc')){
+		global $tic;
+	   	remove_filter( 'the_content', array($tic, 'the_content'), 100 );
+	   	add_filter('the_content', 'ampforwp_show_hide_toc');
+	}
 }
 
 
@@ -825,4 +833,152 @@ function ampforwp_levelup_compatibility($type='levelup_theme_and_elementor_check
 		break;
 	}
 	return $returnVal;
+}
+
+/**
+* toc 
+*/
+function ampforwp_show_hide_toc($content){
+   global $tic, $post;
+	$items = $css_classes = $anchor = '';
+	$custom_toc_position = strpos($content, '<!--TOC-->');
+	$find = $replace = array();
+	if ( $tic->is_eligible($custom_toc_position) ) {
+		$items = $tic->extract_headings($find, $replace, $content);
+		$options = $tic->get_options();
+
+		if ( $items ) {
+			// do we display the toc within the content or has the user opted
+			// to only show it in the widget?  if so, then we still need to 
+			// make the find/replace call to insert the anchors
+			if ( $options['show_toc_in_widget_only'] && (in_array(get_post_type(), $options['show_toc_in_widget_only_post_types'])) ) {
+				$content = $tic->mb_find_replace($find, $replace, $content);
+			}
+			else {
+				// wrapping css classes
+				switch( $options['wrapping'] ) {
+					case TOC_WRAPPING_LEFT:
+						$css_classes .= ' toc_wrap_left';
+						break;
+						
+					case TOC_WRAPPING_RIGHT:
+						$css_classes .= ' toc_wrap_right';
+						break;
+
+					case TOC_WRAPPING_NONE:
+					default:
+						// do nothing
+				}
+				
+				// colour themes
+				switch ( $options['theme'] ) {
+					case TOC_THEME_LIGHT_BLUE:
+						$css_classes .= ' toc_light_blue';
+						break;
+					
+					case TOC_THEME_WHITE:
+						$css_classes .= ' toc_white';
+						break;
+						
+					case TOC_THEME_BLACK:
+						$css_classes .= ' toc_black';
+						break;
+					
+					case TOC_THEME_TRANSPARENT:
+						$css_classes .= ' toc_transparent';
+						break;
+				
+					case TOC_THEME_GREY:
+					default:
+						// do nothing
+				}
+				
+				// bullets?
+				if ( $options['bullet_spacing'] )
+					$css_classes .= ' have_bullets';
+				else
+					$css_classes .= ' no_bullets';
+				
+				if ( $options['css_container_class'] ) $css_classes .= ' ' . $options['css_container_class'];
+
+				$css_classes = trim($css_classes);
+				
+				// an empty class="" is invalid markup!
+				if ( !$css_classes ) $css_classes = ' ';
+				
+				// add container, toc title and list items
+				$html = '<amp-accordion class="sample ' . $css_classes . '"><section expanded>';
+				if ( $options['show_heading_text'] ) {
+					$toc_title = $options['heading_text'];
+					if ( strpos($toc_title, '%PAGE_TITLE%') !== false ) $toc_title = str_replace( '%PAGE_TITLE%', get_the_title(), $toc_title );
+					if ( strpos($toc_title, '%PAGE_NAME%') !== false ) $toc_title = str_replace( '%PAGE_NAME%', get_the_title(), $toc_title );
+					$html .= '<p class="toc_title">' . htmlentities( $toc_title, ENT_COMPAT, 'UTF-8' ) . '</p>';
+				}
+				$html .= '<ul class="toc_list">' . $items . '</ul></section></amp-accordion>' . "\n";
+				
+				if ( $custom_toc_position !== false ) {
+					$find[] = '<!--TOC-->';
+					$replace[] = $html;
+					$content = ampforwp_toc_replace_content($find, $replace, $content);
+				}
+				else {	
+					if ( count($find) > 0 ) {
+						switch ( $options['position'] ) {
+							case TOC_POSITION_TOP:
+								$content = $html . ampforwp_toc_replace_content($find, $replace, $content);
+								break;
+							
+							case TOC_POSITION_BOTTOM:
+								$content = ampforwp_toc_replace_content($find, $replace, $content) . $html;
+								break;
+							
+							case TOC_POSITION_AFTER_FIRST_HEADING:
+								$replace[0] = $replace[0] . $html;
+								$content = ampforwp_toc_replace_content($find, $replace, $content);
+								break;
+						
+							case TOC_POSITION_BEFORE_FIRST_HEADING:
+							default:
+								$replace[0] = $html . $replace[0];
+								$content = ampforwp_toc_replace_content($find, $replace, $content);
+						}
+					}
+				}
+			}
+		}
+	}
+	else {
+		// remove <!--TOC--> (inserted from shortcode) from content
+		$content = str_replace('<!--TOC-->', '', $content);
+	}
+   return $content;
+}
+
+
+
+function ampforwp_toc_replace_content( &$find = false, &$replace = false, &$string = '' ){
+	if ( is_array($find) && is_array($replace) && $string ) {
+		// check if multibyte strings are supported
+		if ( function_exists( 'content' ) ) {
+			for ($i = 0; $i < count($find); $i++) {
+				$string = 
+					mb_substr( $string, 0, mb_strpos($string, $find[$i]) ) .	// everything befor $find
+					$replace[$i] .												// its replacement
+					mb_substr( $string, mb_strpos($string, $find[$i]) + mb_strlen($find[$i]) )	// everything after $find
+				;
+			}
+		}
+		else {
+			for ($i = 0; $i < count($find); $i++) {
+				$string = substr_replace(
+					$string,
+					$replace[$i],
+					strpos($string, $find[$i]),
+					strlen($find[$i])
+				);
+			}
+		}
+	}
+
+return $string;
 }
