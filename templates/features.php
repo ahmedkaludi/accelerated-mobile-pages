@@ -1035,37 +1035,6 @@ if ( ! function_exists('ampforwp_disable_new_relic_scripts') ) {
 		}
 }
 
-// 16. Remove Unwanted Scripts
-if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
-	add_action( 'wp_enqueue_scripts', 'ampforwp_remove_unwanted_scripts',20 );
-}
-function ampforwp_remove_unwanted_scripts() {
-  wp_dequeue_script('jquery');
-}
-// Remove Print Scripts and styles
-function ampforwp_remove_print_scripts() {
-		if ( ampforwp_is_amp_endpoint() ) {
-
-		    function ampforwp_remove_all_scripts() {
-		        global $wp_scripts;
-		        $wp_scripts->queue = array();
-		    }
-		    add_action('wp_print_scripts', 'ampforwp_remove_all_scripts', 100);
-		    function ampforwp_remove_all_styles() {
-		        global $wp_styles;
-		        $wp_styles->queue = array();
-		    }
-		    add_action('wp_print_styles', 'ampforwp_remove_all_styles', 100);
-
-				// Remove Print Emoji for Nextgen Gallery support
-				remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-				remove_action( 'wp_print_styles', 'print_emoji_styles' );
-
-
-		}
-}
-add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
-
 // 17. Archives Canonical in AMP version
 // function ampforwp_rel_canonical_archive() {
 //
@@ -1218,6 +1187,9 @@ function ampforwp_remove_schema_data() {
 	// Click Mag compatibility #2796
 	remove_filter( 'amp_post_template_file', 'mvp_amp_set_custom_template', 10, 3 );
 	remove_action('amp_post_template_head','mvp_amp_google_font');
+	// Digg Digg Compatibility
+    remove_filter('the_excerpt', 'dd_hook_wp_content');
+    remove_filter('the_content', 'dd_hook_wp_content');
 }
 
 // 22. Removing author links from comments Issue #180
@@ -2909,15 +2881,6 @@ if( !function_exists('ampforwp_checking_any_social_profiles') ) {
 
 // 50. Properly adding noditification Scritps the AMP way
 // Moved to notice-bar-functions.php
-
-//51. Adding Digg Digg compatibility with AMP
-function ampforwp_dd_exclude_from_amp() {
-if(ampforwp_is_amp_endpoint()) {
-    remove_filter('the_excerpt', 'dd_hook_wp_content');
-    remove_filter('the_content', 'dd_hook_wp_content');
-	}
-}
-add_action('template_redirect', 'ampforwp_dd_exclude_from_amp');
 
 //52. Adding a generalized sanitizer function for purifiying normal html to amp-html
 function ampforwp_content_sanitizer( $content ) {
