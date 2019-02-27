@@ -74,7 +74,7 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
   					</div>
 			<?php }
 					else { ?>
-						<amp-facebook-like width=100 height=20 style="margin: 0 auto;"
+						<amp-facebook-like width=75 height=35 style="margin: 0 auto;margin-top: 5px;"
 				 			layout="fixed"
 				 			data-size="large"
 				    		data-layout="button_count"
