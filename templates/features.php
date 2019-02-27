@@ -1796,24 +1796,6 @@ function ampforwp_lazy_loading_plugins_compatibility() {
     // Lazy Load
 		add_filter( 'lazyload_is_enabled', '__return_false', PHP_INT_MAX );
 }
-//
-// This Caused issue, Please see: https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/713
-//
-//add_action('amp_init','ampforwp_cache_compatible_activator');
-//function ampforwp_cache_compatible_activator(){
-//    add_action('template_redirect','ampforwp_cache_plugin_compatible');
-//}
-//function ampforwp_cache_plugin_compatible(){
-//    $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
-//    if ( ! $ampforwp_is_amp_endpoint ) {
-//        return;
-//    }
-//    /**
-//     * W3 total cache
-//     */
-//    add_filter( 'w3tc_minify_js_enable', array( $this, '_return_false' ) );
-//    add_filter( 'w3tc_minify_css_enable', array( $this, '_return_false' ) );
-//}
 
 //Removing bj loading for amp
 function ampforwp_remove_bj_load() {
@@ -4882,20 +4864,7 @@ add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
 
 			}
 		}
-//90. Set Header last modified information
-add_action('template_redirect', 'ampforwp_addAmpLastModifiedHeader',12);
-function ampforwp_addAmpLastModifiedHeader($headers) {
 
-    //Check if we are in a single post of any type (archive pages has not modified date)
-    $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
-
-    if( is_singular() && $ampforwp_is_amp_endpoint ) {
-        $post_id = get_queried_object_id();
-        if( $post_id ) {
-            header("Last-Modified: " . get_the_modified_time("D, d M Y H:i:s", $post_id) );
-        }
-    }
-}
 // 91. Comment Author Gravatar URL
 if( ! function_exists('ampforwp_get_comments_gravatar') ){
 	function ampforwp_get_comments_gravatar( $comment ) {
