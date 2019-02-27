@@ -3830,8 +3830,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
             ),
             array(
                 'id'        => 'signin-button',
-                'title'     => __('Call To Action', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'  => __('You can do the customization here ','accelerated-mobile-pages'),
+                'title'     => esc_html__('Call To Action', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can do the customization here ','accelerated-mobile-pages'),
                 'type'      => 'switch',
                 'default'   => '0',
                     'required' => array(
@@ -3841,8 +3841,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
             array(
                 'id'        => 'signin-button-text',
                 'class' => 'child_opt',
-                'title'     => __('CTA Text', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'  => __('You can write your required text ','accelerated-mobile-pages'),
+                'title'     => esc_html__('CTA Text', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can write your required text ','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => 'Sign up free',
                     'required' => array(
@@ -3852,8 +3852,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
             array(
                 'id'        => 'signin-button-link',
                 'class' => 'child_opt',
-                'title'     => __('CTA Link', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'  => __('You can add the Link here ','accelerated-mobile-pages'),
+                'title'     => esc_html__('CTA Link', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can add the Link here ','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '#',
                     'required' => array(
@@ -3863,8 +3863,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
             array(
                 'id'        => 'signin-button-style',
                 'class' => 'child_opt',
-                'title'     => __('CTA Styles', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'  => __('You can change the button here','accelerated-mobile-pages'),
+                'title'     => esc_html__('CTA Styles', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can change the button here','accelerated-mobile-pages'),
                 'type'      => 'switch',
                 'default'   => '0',
                     'required' => array(
@@ -3874,8 +3874,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
             array(
                 'id'        => 'signin-button-border-line',
                 'class' => 'child_opt',
-                'title'     => __('CTA Border Line', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'  => __('You can change the button border line','accelerated-mobile-pages'),
+                'title'     => esc_html__('CTA Border Line', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can change the button border line','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '2',
                     'required' => array(
@@ -3885,8 +3885,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
             array(
                 'id'        => 'signin-button-text-color',
                 'class' => 'child_opt',
-                'title'     => __('CTA Text Color', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'  => __('Choose the color for Button Texxt','accelerated-mobile-pages'),
+                'title'     => esc_html__('CTA Text Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Texxt','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'color'  => '#000',
@@ -3898,8 +3898,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
             array(
                 'id'        => 'signin-button-border-color',
                 'class' => 'child_opt',
-                'title'     => __('CTA Border Line Color', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'  => __('Choose the color for Button Border Line','accelerated-mobile-pages'),
+                'title'     => esc_html__('CTA Border Line Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'color'  => '#000',
@@ -3911,7 +3911,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
             array(
                     'id'    => 'border-type',
                     'class' => 'child_opt',
-                   'title'  => __('CTA Type', 'accelerated-mobile-pages'),
+                   'title'  => esc_html__('CTA Type', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Square',
@@ -3924,8 +3924,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
             array(
                 'id'        => 'border-radius',
                 'class' => 'child_opt',
-                'title'     => __('Customize Border Radius', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'  => __('You can change the border radius','accelerated-mobile-pages'),
+                'title'     => esc_html__('Customize Border Radius', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can change the border radius','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '10',
                     'required' => array(
