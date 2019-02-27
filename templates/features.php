@@ -6059,6 +6059,9 @@ function ampforwp_vuukle_comments_support() {
 function ampforwp_vuukle_comments_markup() {
 	global $redux_builder_amp;
 	$apiKey = $locale = '';
+	$tag_name ='';
+	$img = get_the_post_thumbnail_url();
+	$tags = get_the_tags($post->ID);
 	if( isset($redux_builder_amp['ampforwp-vuukle-comments-apiKey']) && $redux_builder_amp['ampforwp-vuukle-comments-apiKey'] !== ""){
 		$apiKey = $redux_builder_amp['ampforwp-vuukle-comments-apiKey'];
 	}
@@ -6069,6 +6072,14 @@ function ampforwp_vuukle_comments_markup() {
 	  if (!preg_match('#^http(s)?://#', $siteUrl)) {
 	      $siteUrl = 'http://' . $siteUrl;
 	  }
+	if($img ==  false){
+		$img = plugins_url('accelerated-mobile-pages/images/150x150.png');
+	}  
+   	if($tags){
+  		foreach($tags as $individual_tag) {
+ 				$tag_name = $individual_tag->name;
+			}
+   	}
 	  $urlParts = parse_url($siteUrl);
 	  $siteUrl = preg_replace('/^www\./', '', $urlParts['host']);// remove www
 
@@ -6077,7 +6088,9 @@ function ampforwp_vuukle_comments_markup() {
 	$srcUrl = add_query_arg('host' ,$siteUrl, $srcUrl);
 	$srcUrl = add_query_arg('id' , $post->ID, $srcUrl);
 	$srcUrl = add_query_arg('apiKey' , $apiKey, $srcUrl); 
-	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl); 
+	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl);
+	$srcUrl = add_query_arg('img' , esc_url($img), $srcUrl);
+	$srcUrl = add_query_arg('tags' , urlencode($tag_name), $srcUrl); 
 
 	$vuukle_html ='';
 	if ( $display_comments_on ) {
@@ -6099,7 +6112,7 @@ function ampforwp_add_vuukle_scripts( $data ) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
 			}
-			if ($redux_builder_amp['ampforwp-vuukle-Ads-before-comments']==1
+			if (ampforwp_get_setting('ampforwp-vuukle-Ads-before-comments')
 			 && empty( $data['amp_component_scripts']['amp-ad'] ) ) {
 				$data['amp_component_scripts']['amp-ad'] = 'https://cdn.ampproject.org/v0/amp-ad-0.1.js';
 			}
