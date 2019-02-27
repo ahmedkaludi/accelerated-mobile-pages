@@ -202,7 +202,7 @@ return array(
                         array(		
 	 						'type'		=>'text',		
 	 						'name'		=>"width",		
-	 						'label'		=>'Tab Width',
+	 						'label'		=>esc_html__('Tab Width', 'accelerated-mobile-pages'),
 	           				 'tab'      =>'customizer',
 	 						'default'	=>'90%',	
 	           				'content_type'=>'css',
@@ -225,7 +225,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"hdng_fnt_sz",		
-		 						'label'		=>'Tab Heading Font Size',
+		 						'label'		=>esc_html__('Tab Heading Font Size', 'accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
@@ -234,7 +234,7 @@ return array(
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'hdng_font_type',		
-	 							'label' =>"Tab Heading Font Weight",
+	 							'label' =>esc_html__('Tab Heading Font Weight', 'accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'600',
 	 							'options_details'=>array(
@@ -250,7 +250,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"hdng_font_color",
-								'label'		=>'Tab Heading Color',
+								'label'		=>esc_html__('Tab Heading Color', 'accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#fff',
 								'content_type'=>'css',
@@ -259,7 +259,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"hdng_bg_color",
-								'label'		=>'Tab Heading Background Color',
+								'label'		=>esc_html__('Tab Heading Background Color', 'accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#8898aa',
 								'content_type'=>'css',
@@ -268,7 +268,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"tlt_fnt_sz",		
-		 						'label'		=>'Tab Title Font Size',
+		 						'label'		=>esc_html__('Tab Title Font Size', 'accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'30px',	
 		           				'content_type'=>'css',
@@ -277,7 +277,7 @@ return array(
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'tlt_font_type',		
-	 							'label' =>"Tab Title Font Weight",
+	 							'label' =>esc_html__('Tab Title Font Weight', 'accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'600',
 	 							'options_details'=>array(
@@ -293,7 +293,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"tlt_font_color",
-								'label'		=>'Tab Title Color',
+								'label'		=>esc_html__('Tab Title Color', 'accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#000',
 								'content_type'=>'css',
@@ -302,7 +302,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"cnt_fnt_sz",		
-		 						'label'		=>'Tab Content Font Size',
+		 						'label'		=>esc_html__('Tab Content Font Size', 'accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
@@ -311,7 +311,7 @@ return array(
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'cnt_font_type',		
-	 							'label' =>"Tab Content Font Weight",
+	 							'label' =>esc_html__('Tab Content Font Weight', 'accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'400',
 	 							'options_details'=>array(
@@ -327,7 +327,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"cnt_font_color",
-								'label'		=>'Tab Content Color',
+								'label'		=>esc_html__('Tab Content Color', 'accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#797f7f',
 								'content_type'=>'css',
@@ -336,7 +336,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"btn_fnt_sz",		
-		 						'label'		=>'Tab Button Font Size',
+		 						'label'		=>esc_html__('Tab Button Font Size', 'accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
@@ -345,7 +345,7 @@ return array(
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'btn_font_type',		
-	 							'label' =>"Tab Button Font Weight",
+	 							'label' =>esc_html__('Tab Button Font Weight', 'accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'500',
 	 							'options_details'=>array(
@@ -361,7 +361,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"btn_font_color",
-								'label'		=>'Tab Button Color',
+								'label'		=>esc_html__('Tab Button Color', 'accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#797f7f',
 								'content_type'=>'css',
@@ -370,7 +370,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"btn_bg_color",
-								'label'		=>'Tab Button Background Color',
+								'label'		=>esc_html__('Tab Button Background Color', 'accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#ffffff',
 								'content_type'=>'css',
@@ -460,7 +460,7 @@ return array(
 						array(
 								'type'		=>'text',
 								'name'		=>"id",
-								'label'		=>'ID',
+								'label'		=>esc_html__('ID', 'accelerated-mobile-pages'),
 								'tab'		=>'advanced',
 								'default'	=>'',
 								'content_type'=>'html'
@@ -468,7 +468,7 @@ return array(
 						array(
 								'type'		=>'text',
 								'name'		=>"user_class",
-								'label'		=>'Class',
+								'label'		=>esc_html__('Class', 'accelerated-mobile-pages'),
 								'tab'		=>'advanced',
 								'default'	=>'',
 								'content_type'=>'html'
@@ -476,7 +476,7 @@ return array(
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
-								'label'		=>'Margin',
+								'label'		=>esc_html__('Margin', 'accelerated-mobile-pages'),
 								'tab'		=>'advanced',
 								'default'	=>
                             array(
@@ -490,7 +490,7 @@ return array(
 							array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
-								'label'		=>'Padding',
+								'label'		=>esc_html__('Padding', 'accelerated-mobile-pages'),
 								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>'0px',
@@ -519,7 +519,7 @@ return array(
 	          				array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"tab_hdng",		
-		 						'label'		=>'Tab Heading',
+		 						'label'		=>esc_html__('Tab Heading', 'accelerated-mobile-pages'),
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Tab Heading',	
 		           				'content_type'=>'html',
@@ -528,7 +528,7 @@ return array(
 			                array(		
 		 						'type'		=>'upload',		
 		 						'name'		=>"img_upload",		
-		 						'label'		=>'Upload',
+		 						'label'		=>esc_html__('Upload', 'accelerated-mobile-pages'),
 		           				'tab'     =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
@@ -538,7 +538,7 @@ return array(
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"tab_tlt",		
-		 						'label'		=>'Title',
+		 						'label'		=>esc_html__('Title', 'accelerated-mobile-pages'),
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Make Something Amazing',	
 		           				'content_type'=>'html',
@@ -547,7 +547,7 @@ return array(
 	 						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"content",		
-		 						'label'		=>'Content',
+		 						'label'		=>esc_html__('Content', 'accelerated-mobile-pages'),
 		           				'tab'       =>'customizer',
 		 						'default'	=>'<p>We believe the best way to learn is by putting your skills to 			use.</p>',	
 		           				'content_type'=>'html',
@@ -556,7 +556,7 @@ return array(
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"tab_btn",		
-		 						'label'		=>'Button Text',
+		 						'label'		=>esc_html__('Button Text', 'accelerated-mobile-pages'),
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Button',	
 		           				'content_type'=>'html',
@@ -565,7 +565,7 @@ return array(
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"btn_lnk",		
-		 						'label'		=>'Button Link',
+		 						'label'		=>esc_html__('Button Link', 'accelerated-mobile-pages'),
 		           				'tab'       =>'customizer',
 		 						'default'	=>'#',	
 		           				'content_type'=>'html',
