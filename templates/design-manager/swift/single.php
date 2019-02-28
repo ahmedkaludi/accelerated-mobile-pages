@@ -11,7 +11,7 @@
 			<?php amp_title(); ?>
 			<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
 				<div class="tl-exc">
-				   <?php amp_excerpt(20); ?>
+				   <?php amp_excerpt(250); ?>
 			    </div>
 			<?php } ?>
 		</div>
