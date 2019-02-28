@@ -40,6 +40,7 @@ add_amp_icon( array( 'widgets', 'search', 'shopping-cart' ) );
 
 // Swift Social Icons
 function ampforwp_swift_social_icons(){
+	if(true == ampforwp_get_setting('enable-single-post-social-icons')){
 	global $redux_builder_amp; 
 	$facebook_app_id = '';
 	$facebook_app_id = ampforwp_get_setting('amp-facebook-app-id-messenger');
@@ -198,7 +199,7 @@ function ampforwp_swift_social_icons(){
 
 						</ul>
 		            </div>
-<?php }
+<?php }}
 function ampforwp_swift_add_this_icons(){
 	 if( ampforwp_get_setting('enable-add-this-option') ) { 
 		$data_pub_id = ampforwp_get_setting('add-this-pub-id');

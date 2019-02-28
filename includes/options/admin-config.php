@@ -4960,7 +4960,15 @@ $single_page_options = array(
               'default'  =>  '1',
               'title'    => __('Categories & Tags Links', 'accelerated-mobile-pages'),
            ),
-          // Social Icons ON/OFF
+          //Social Icons ON/OFF
+          array(
+              'id'       => 'enable-single-post-social-icons',
+              'type'     => 'switch',
+              'default'  =>  '1',
+              'title'    => esc_html__('Social Icons', 'accelerated-mobile-pages'),
+              'required' => array('amp-design-selector' , '=' , '4')
+           ),
+          // Social Sticky Icons ON/OFF
           array(
               'id'        => 'enable-single-social-icons',
               'type'      => 'switch',
