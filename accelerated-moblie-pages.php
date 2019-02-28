@@ -465,7 +465,7 @@ function ampforwp_add_module_files() {
  * As we don't need plugin activation code to run everytime the site loads
 */
 if ( is_admin() ) {
-
+	add_action( 'plugins_loaded', 'amp_update_db_check' );
 	// Include Welcome page only on Admin pages
 	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
 
@@ -655,7 +655,6 @@ function amp_update_db_check() {
 	    }
     }
 }
-add_action( 'plugins_loaded', 'amp_update_db_check' );
 
 // Admin notice for AMP WordPress Theme
 add_action('admin_notices', 'ampforwp_ampwptheme_notice');

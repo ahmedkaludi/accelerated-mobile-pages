@@ -76,21 +76,22 @@ function ampforwp_content_module_pagination($args, $fieldValues){
 }
 {{ifend_condition_content_layout_type_1}}
 ';
+$options = '<option value="recent_option">Recent Posts</option>';		
+if ( is_admin() ) {
   $post_types = get_post_types(array('public'=>true));
   $post_types = get_option('ampforwp_cpt_generated_post_types');
   $post_types['post'] = 'post';
- $categories = get_categories( array(		
-                   'orderby' => 'name',		
-                   'order'   => 'ASC'		
-               ) );		
- $categoriesArray = array('recent_option'=>'Recent Posts');		
- $options = '<option value="recent_option">Recent Posts</option>';		
+ $categories = get_categories( array(   
+                   'orderby' => 'name',   
+                   'order'   => 'ASC'   
+               ) );   
+ $categoriesArray = array('recent_option'=>'Recent Posts');   
  foreach($categories as $category){		
   $categoryName = htmlspecialchars($category->name, ENT_QUOTES);
  	$categoriesArray[$category->term_id] = $categoryName;		
  	$options.= '<option value="'.$category->term_id.'">'.$categoryName.'</option>';		
  }		
-
+}
  return array(		
  		'label' =>'Category',		
  		'name' => 'contents',
