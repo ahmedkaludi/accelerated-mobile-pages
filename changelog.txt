@@ -1,5 +1,13 @@
 == Changelog ==
 
+= 0.9.97.38 (28th February 2019) =
+* Added: The Subtitle in the Facebook Instant Artical(FBIA) using of the Jannah Theme #2746
+* Fixed: Space missing in categories list for breadcrumb [Design-3] #2817
+* Fixed: Issue with Post Pagination ( Single ) #2624
+* Fixed: No match for the query in amp search then it's renderring to non-amp template when amp-takeover is enabled #2681
+* Fixed: Full excerpt length in single posts [swift] #2712
+* Fixed: Undefined variable warning in class-amp-img-sanitizer.php #2848
+
 = 0.9.97.37 (23th February 2019) =
 * Added: Static page template in AMP #2614 + #2900
 * Fixed: Font size and other values are properly sanitizing #2898
