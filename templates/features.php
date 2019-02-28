@@ -5844,7 +5844,7 @@ function ampforwp_minify_html_output($content_buffer){
                 $asis = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/(\s)+' . $mod), array('>', '<', '\\1'), $asis);
                 if ( $minify_html_comments != 'no' )
                     $asis = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $asis);
-                $asis = str_replace(array (chr(10), ' {', '{ ', ' }', '} ', '( ', ' )', ' :', ': ', ' ;', '; ', ' ,', ', ', ';}'), array('', '{', '{', '}', '}', '(', ')', ':', ':', ';', ';', ',', ',', '}'), $asis);
+                $asis = str_replace(array (chr(10), ' {', '{ ', ' }', '} ', '( ', ' )', ' :', ': ', ' ;', '; ', ' ,', ',', ';}'), array('', '{', '{', '}', '}', '(', ')', ':', ':', ';', ';', ',', ', ', '}'), $asis);
             }
         } else {
             $process = $split[$i];
