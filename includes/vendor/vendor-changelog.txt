@@ -71,3 +71,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 44. class-amp-gallery-block-sanitizer file Updated for new Gallery Designs #2868
 45. Added "Set Header: last modified information" code in amp.php #2773
 46. itms-services has been whitelisted in anchor tags #2922
+47. AMP Image Sanitizer Updated #2547

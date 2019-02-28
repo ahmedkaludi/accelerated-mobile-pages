@@ -12,6 +12,8 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 
 	protected $is_lightbox = false;
 
+	protected $is_pin_image = false;
+
 	protected $scripts = array();
 
 	public static $tag = 'img';
@@ -23,6 +25,9 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	
 	private static $script_slug_lightbox = 'amp-image-lightbox';
 	private static $script_src_lightbox = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
+
+	private static $script_slug_pin = 'amp-pinterest';
+	private static $script_src_pin = 'https://cdn.ampproject.org/v0/amp-pinterest-0.1.js';
 
 	public function sanitize() {
 
@@ -143,6 +148,20 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		}
 		$new_node = AMP_DOM_Utils::create_node( $this->dom, $new_tag, $new_attributes );
 		$node->parentNode->replaceChild( $new_node, $node );
+		if ( true == ampforwp_get_setting('ampforwp-pin-images') ) {
+			$captext = $attachment_id = '';
+			$data_description = 'amp-pinterest in action';
+			$attachment_id = attachment_url_to_postid($new_attributes['src']);
+			$captext = get_post( $attachment_id)->post_excerpt;
+			if($captext){
+				$data_description = $captext;
+			}
+			$pin_node = AMP_DOM_Utils::create_node( $this->dom, 'amp-pinterest', array('height'=>18, 'width'=>56, 'data-do'=>'buttonPin','data-url'=> get_permalink(),'data-media'=>$new_attributes['src'], 'data-description'=>$data_description) );
+			$pin_div_node = AMP_DOM_Utils::create_node( $this->dom, 'div', array('class'=>'ampforwp_pin_img') );
+			$pin_div_node->appendChild( $pin_node );
+			$new_node->parentNode->appendChild( $pin_div_node );
+			$this->is_pin_image = true;
+		}
 		if ( isset($new_attributes['on']) && '' != $new_attributes['on'] ) {
 			if(is_singular() || ampforwp_is_front_page()){
 				add_action('amp_post_template_footer', 'ampforwp_amp_img_lightbox');
@@ -167,6 +186,10 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	public function get_scripts() {
 		if ( $this->is_lightbox ) {
 			$this->scripts[self::$script_slug_lightbox] = self::$script_src_lightbox;
+		}
+
+		if ( $this->is_pin_image ) {
+			$this->scripts[self::$script_slug_pin] = self::$script_src_pin;
 		}
 
 		if ( $this->did_convert_elements ) {

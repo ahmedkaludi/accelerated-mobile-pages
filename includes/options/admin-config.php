@@ -6672,6 +6672,20 @@ $single_page_options = array(
                 array('enable-single-Tumblr-profile', '=' , '1')
               ),
           ),
+           array(
+           'id' => 'ampforwp-pinterest',
+           'type' => 'section',
+           'title' => esc_html__('Pinterest Save Button', 'accelerated-mobile-pages'),
+           'indent' => true,
+           'layout_type' => 'accordion',
+            'accordion-open'=> 1,
+         ),
+           array(
+              'id'        =>  'ampforwp-pin-images',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('Pinterest Save Button For Images', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
         )
     ) );
 
