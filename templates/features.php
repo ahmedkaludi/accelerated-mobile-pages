@@ -7230,7 +7230,7 @@ function ampforwp_paginated_post_content($content){
 		} else {
 		  	$paged = 1;
 		}
-	    if( $numpages >= 2 ){
+	    if( $numpages >= 2 && true == ampforwp_get_setting('amp-pagination') ){
 	      	return get_the_content();
 	    }
 	}
