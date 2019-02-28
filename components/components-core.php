@@ -156,7 +156,7 @@ function amp_excerpt( $no_of_words=15 ) {
 
 
 //Menus
-function amp_menu($echo=true,$type){
+function amp_menu($echo=true,$type=''){
 		global $loadComponent;
 		if(isset($loadComponent['AMP-menu']) && $loadComponent['AMP-menu']==true){
 			if ( false == $echo ) {
@@ -167,7 +167,7 @@ function amp_menu($echo=true,$type){
 		}
 	}
 // Alternative Menus
-function amp_alter_menu($echo=true,$type){
+function amp_alter_menu($echo=true,$type=''){
 		global $loadComponent;
 		if(isset($loadComponent['AMP-alter-menu']) && $loadComponent['AMP-alter-menu']==true){
 			if ( false == $echo ) {
