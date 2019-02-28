@@ -1,13 +1,13 @@
 <?php
 require_once AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-walker-nav-menu.php';
 
-function amp_menu_html($echo){
-	if( has_nav_menu( 'amp-menu' ) ) {
+function amp_menu_html($echo,$type){
+	if( has_nav_menu( $type ) ) {
 	    $menu_html_content = wp_nav_menu( array(
-	            'theme_location' => 'amp-menu',
+	            'theme_location' => $type,
 	            'container'=>'aside',
 	            'menu'=>'ul',
-	            'menu_class'=>'amp-menu',
+	            'menu_class'=>$type,
 	            'echo' => false,
 				'walker' => new Ampforwp_Walker_Nav_Menu()
 	        ) );
