@@ -34,6 +34,7 @@ class AMP_Allowed_Tags_Generated {
 								'geo',
 								'http',
 								'https',
+								'itms-services',
 								'mailto',
 								'maps',
 								'bbmi',
