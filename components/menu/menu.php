@@ -7,7 +7,7 @@ function amp_menu_html($echo,$type){
 	            'theme_location' => $type,
 	            'container'=>'aside',
 	            'menu'=>'ul',
-	            'menu_class'=>$type,
+	            'menu_class'=>'amp-menu',
 	            'echo' => false,
 				'walker' => new Ampforwp_Walker_Nav_Menu()
 	        ) );
