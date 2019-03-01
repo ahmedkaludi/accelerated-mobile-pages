@@ -840,9 +840,11 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 						if( !$show_no_of_posts ){
 							$show_no_of_posts = 3;
 						}
+						$posts_offset = (integer) $fieldValues['posts_offset'];
 						$args = array(
 								//'cat' => $fieldValues['category_selection'],
 								'posts_per_page' => $show_no_of_posts,
+								'offset' => $posts_offset,
 								'has_password' => false,
 								'ignore_sticky_posts' => 1,
 								'post_status'=> 'publish',
