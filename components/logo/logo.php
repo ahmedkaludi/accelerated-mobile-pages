@@ -6,16 +6,14 @@ function ampforwp_framework_get_logo(){
     do_action('amp_header_top');
     $set_rel_to_noamp=false;
     $ampforwp_home_url = user_trailingslashit( get_bloginfo('url') );
-    if ( true == ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
-      if ( ampforwp_get_setting('amp-on-off-support-for-non-amp-home-page') && ampforwp_get_setting('amp-mobile-redirection') ) {
-          $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
-          $set_rel_to_noamp = true;
-      }
-      else{
+    if ( true == ampforwp_get_setting('ampforwp-homepage-on-off-support') && !ampforwp_get_setting('amp-on-off-support-for-non-amp-home-page') ) {
         $ampforwp_home_url = ampforwp_url_controller( get_bloginfo('url') );
-      }
-    }?>
-    <?php $ampforwp_home_url = apply_filters('ampforwp_header_url', $ampforwp_home_url); ?>
+    }
+    if ( ampforwp_get_setting('amp-on-off-support-for-non-amp-home-page') && ampforwp_get_setting('amp-mobile-redirection') ) {
+        $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
+        $set_rel_to_noamp = true;
+    }
+    $ampforwp_home_url = apply_filters('ampforwp_header_url', $ampforwp_home_url); ?>
     <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {
       $alt = ampforwp_default_logo('alt'); 
       $logo_url = __( $redux_builder_amp['opt-media']['url'], 'accelerated-mobile-pages' ); ?>
