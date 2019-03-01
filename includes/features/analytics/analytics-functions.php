@@ -132,12 +132,12 @@ function ampforwp_analytics() {
 
 	//	10.8 Analytics Support added for Histats Analytics
 		if( true == ampforwp_get_setting('ampforwp-Histats-switch')) { 
-			$url = add_query_arg(esc_attr(ampforwp_get_setting('histats-feild')), '', '//sstatic1.histats.com/0.gif');
+			$url = add_query_arg(esc_attr(ampforwp_get_setting('histats-field')), '', '//sstatic1.histats.com/0.gif');
 			$url = add_query_arg('101', '', $url);	?>
 			<!-- BEGIN Histats CODE -->
 			<div id="histats">
-			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($url); ?>" >
-			</amp-pixel> 
+				<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url_raw($url); ?>" >
+				</amp-pixel> 
 			</div>
 			<!--END Histats CODE -->
 		<?php }

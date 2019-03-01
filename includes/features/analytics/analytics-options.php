@@ -414,7 +414,7 @@ function ampforwp_analytics_options($opt_name){
                         ),
                     ),
                        array(
-                          'id'       => 'histats-feild',
+                          'id'       => 'histats-field',
                           'type'     => 'text',
                           'title'    => esc_html__( 'Histats Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
