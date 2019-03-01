@@ -423,7 +423,7 @@ function ampforwp_analytics_options($opt_name){
                           ),
                           'tooltip-subtitle' => esc_html__( 'Enter your Histats Analytics ID.', 'accelerated-mobile-pages' ),
                           'desc' => 'Tutorial: <a href="https://ampforwp.com/tutorials/how-to-get-histats-analytics-id/">How to get Histats Analytics ID for AMP?</a>',
-                          'default'  => '',
+                          'default'  => ampforwp_get_setting('histats-feild'),
                       ),
                      // Yandex Metrika  
                        array(
