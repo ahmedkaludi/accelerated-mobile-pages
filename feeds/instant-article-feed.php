@@ -15,6 +15,7 @@
     <?php
     global $redux_builder_amp;
     $number_of_articles = $exclude_ids = '';
+    $exclude_cats = array();
     if( isset( $redux_builder_amp['ampforwp-fb-instant-article-posts'] ) && $redux_builder_amp['ampforwp-fb-instant-article-posts'] ){
         $number_of_articles = $redux_builder_amp['ampforwp-fb-instant-article-posts'];
         $number_of_articles = round( abs( floatval( $number_of_articles ) ) );
@@ -41,6 +42,10 @@
         $ia_args['tax_query']['taxonomy']   = $tax_object->taxonomy;
         $ia_args['tax_query']['field']      = 'id';
         $ia_args['tax_query']['terms']      = $tax_object->term_id;
+    }
+    if ( ampforwp_get_setting('hide-amp-ia-categories') ) {
+        $exclude_cats = array_values(array_filter(ampforwp_get_setting('hide-amp-ia-categories')));
+        $ia_args['category__not_in'] = $exclude_cats;
     }
     $ia_query = new WP_Query( $ia_args );
     while( $ia_query->have_posts() ) :
