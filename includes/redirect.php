@@ -192,6 +192,9 @@ function ampforwp_redirection() {
     if ( is_feed() ) { 
       return; 
     }
+    if(get_query_var( 'json' )){
+      return; 
+    }
     // #1192 Password Protected posts exclusion
     if ( post_password_required( $post ) ) { 
       return; 
