@@ -2598,7 +2598,11 @@ function ampforwp_modify_archive_title_in_amp() {
                 // xlink attribute causes Validatation Issues #1149
 				$content_buffer = preg_replace('/xlink="href"/','',$content_buffer);
 				$content_buffer = preg_replace('/!important/', '' , $content_buffer);
-
+				//  Compatibility with the footnotes plugin. #2447
+		        if(class_exists('MCI_Footnotes')){
+		        $content_buffer = preg_replace( '/<sup(.*?)id="(.*?)"(.*?)class="footnote_plugin_tooltip_text"(.*?)>(.*?)<\/sup>/m',  '
+		        <sup$1id="$2"$3class="footnote_plugin_tooltip_text"$4><a href="#$2">$5</a></sup>', $content_buffer);
+		        }
 				$content_buffer = apply_filters('ampforwp_the_content_last_filter', $content_buffer);
 
             }
