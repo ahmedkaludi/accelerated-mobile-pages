@@ -1784,4 +1784,16 @@ border-bottom: 1px solid #eee;
     html {
 	 scroll-behavior: smooth;
 	}
+<?php }
+// Dark View CSS
+if(true == ampforwp_get_setting('gnrl-dark-view')){?>
+.darkmode{
+	background:rgba(0,0,0,0.8);
+}
+.darkmode .h_m, .darkmode .p-m-fl{
+	background:transparent;
+}
+.darkmode .t-btn:after, .darkmode .amp-logo a, .darkmode .h-ic a:after, .darkmode .h-ic a:before, .darkmode .p-menu ul li a, .darkmode .breadcrumb ul li a, .darkmode .breadcrumbs span a, .darkmode .loop-category, .darkmode .fbp:hover h2 a, .darkmode .fsp:hover h2 a, .darkmode .fbp-cnt h2 a, .darkmode .at-dt, .darkmode .fbp-cnt p, .darkmode .fsp-cnt p, .darkmode .fsp h2 a, .darkmode .pt-dt, .darkmode .f-menu ul li a, .darkmode .rr, body.darkmode a:hover, .darkmode .amp-category span a, .darkmode .amp-category span:after, .darkmode .amp-category span, .darkmode .post-date .post-edit-link, .darkmode .has_thumbnail:hover .related_link a, .darkmode .amp-archive-title, .darkmode .amp-loop-label, .darkmode .loop-category li a, .darkmode .amp-post-title, .darkmode .cntn-wrp, .darkmode .shr-txt, .darkmode .athr-tx, .darkmode .r-pf h3, .darkmode .amp-tags > span:nth-child(1), .darkmode .amp-related-posts-title, .darkmode .post-date, .darkmode .related-title, .darkmode .sp-athr .author-details a, .darkmode .sp-athr .author-details, .darkmode .amp-tags span a, .darkmode .amp-tag, .darkmode .related_link a, .darkmode .prev span, .darkmode .next a, .darkmode .prev a, .darkmode a{color:#fff;}
+.darkmode .h_m, .darkmode .p-m-fl{border-color: rgba(251, 251, 251, 0.54);}
+.darkmode blockquote p:before{border-color:#fff;}
 <?php } ?>
