@@ -1787,11 +1787,11 @@ border-bottom: 1px solid #eee;
 <?php }
 // Dark View CSS
 if(true == ampforwp_get_setting('gnrl-dark-view')){?>
-.darkmode{background:rgba(0,0,0,0.8);}
-.darkmode .h_m, .darkmode .p-m-fl{background:transparent;}
-.darkmode .t-btn:after, .darkmode .amp-logo a, .darkmode .h-ic a:after, .darkmode .h-ic a:before, .darkmode .p-menu ul li a, .darkmode .breadcrumb ul li a, .darkmode .breadcrumbs span a, .darkmode .loop-category, .darkmode .fbp:hover h2 a, .darkmode .fsp:hover h2 a, .darkmode .fbp-cnt h2 a, .darkmode .at-dt, .darkmode .fbp-cnt p, .darkmode .fsp-cnt p, .darkmode .fsp h2 a, .darkmode .pt-dt, .darkmode .f-menu ul li a, .darkmode .rr, body.darkmode a:hover, .darkmode .amp-category span a, .darkmode .amp-category span:after, .darkmode .amp-category span, .darkmode .post-date .post-edit-link, .darkmode .has_thumbnail:hover .related_link a, .darkmode .amp-archive-title, .darkmode .amp-loop-label, .darkmode .loop-category li a, .darkmode .amp-post-title, .darkmode .cntn-wrp, .darkmode .shr-txt, .darkmode .athr-tx, .darkmode .r-pf h3, .darkmode .amp-tags > span:nth-child(1), .darkmode .amp-related-posts-title, .darkmode .post-date, .darkmode .related-title, .darkmode .sp-athr .author-details a, .darkmode .sp-athr .author-details, .darkmode .amp-tags span a, .darkmode .amp-tag, .darkmode .related_link a, .darkmode .prev span, .darkmode .next a, .darkmode .prev a, .darkmode a, .darkmode .p-menu ul li.menu-item-has-children > a:after{color:#fff;}
-.darkmode .h_m, .darkmode .p-m-fl{border-color: rgba(251, 251, 251, 0.54);}
-.darkmode blockquote p:before{border-color:#fff;}
-.darkmode .p-menu ul .sub-menu li a, 
-.darkmode .p-menu ul li.menu-item-has-children .sub-menu li a:after{color:#333;}
+.d{background:rgba(0,0,0,0.8);}
+.d .h_m, .d .p-m-fl{background:transparent;}
+.d .t-btn:after, .d .amp-logo a, .d .h-ic a:after, .d .h-ic a:before, .d .p-menu ul li a, .d .breadcrumb ul li a, .d .breadcrumbs span a, .d .loop-category, .d .fbp:hover h2 a, .d .fsp:hover h2 a, .d .fbp-cnt h2 a, .d .at-dt, .d .fbp-cnt p, .d .fsp-cnt p, .d .fsp h2 a, .d .pt-dt, .d .f-menu ul li a, .d .rr, body.d a:hover, .d .amp-category span a, .d .amp-category span:after, .d .amp-category span, .d .post-date .post-edit-link, .d .has_thumbnail:hover .related_link a, .d .amp-archive-title, .d .amp-loop-label, .d .loop-category li a, .d .amp-post-title, .d .cntn-wrp, .d .shr-txt, .d .athr-tx, .darkmode .r-pf h3, .d .amp-tags > span:nth-child(1), .d .amp-related-posts-title, .darkmode .post-date, .d .related-title, .d .sp-athr .author-details a, .d .sp-athr .author-details, .d .amp-tags span a, .d .amp-tag, .d .related_link a, .d .prev span, .d .next a, .d .prev a, .d a, .d .p-menu ul li.menu-item-has-children > a:after{color:#fff;}
+.d .h_m, .d .p-m-fl{border-color: rgba(251, 251, 251, 0.54);}
+.d blockquote p:before{border-color:#fff;}
+.d .p-menu ul .sub-menu li a, 
+.d .p-menu ul li.menu-item-has-children .sub-menu li a:after{color:#333;}
 <?php } ?>

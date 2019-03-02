@@ -7220,7 +7220,7 @@ add_action("wp_ajax_ampforwp_darkmode_action", 'ampforwp_darkmode_action');
 add_action("wp_ajax_nopriv_ampforwp_darkmode_action", 'ampforwp_darkmode_action');
 function ampforwp_darkmode_body_class($classes, $class){
 	if(ampforwp_get_setting('gnrl-dark-view') && isset($_COOKIE["ampforwp_is_darkmode_activated"]) && $_COOKIE["ampforwp_is_darkmode_activated"]=='true'){
-		$classes[] = 'darkmode';	
+		$classes[] = 'd';	
 	}
 	return $classes;
 }
