@@ -428,7 +428,7 @@ do_action("ampforwp_single_design_type_handle");
 							$sidebar_output = $sanitized_sidebar->get_amp_content();
 							$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
 						}
-			            echo $sidebar_output; // amphtml content, no kses
+			            echo do_shortcode($sidebar_output); // amphtml content, no kses
 					?>
 				</div>
 			<?php endif; ?>

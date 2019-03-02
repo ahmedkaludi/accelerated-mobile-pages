@@ -16,7 +16,7 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 					$sidebar_output = $sanitized_sidebar->get_amp_content();
 					$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
 				}
-	            echo $sidebar_output; // amphtml content, no kses
+	            echo do_shortcode($sidebar_output); // amphtml content, no kses
 				?>
 			</div>
 		</div>
