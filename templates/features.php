@@ -7609,7 +7609,7 @@ function ampforwp_sneak_peek_scripts($data) {
 // #1575 Thrive Content Support
 add_action('amp_init','ampforwp_thrive_architect_content');
 function ampforwp_thrive_architect_content(){
-	if(function_exists('tve_wp_action')){
+	if(function_exists('tve_wp_action') && !function_exists('et_setup_theme')){
 		add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
 	}
 }
