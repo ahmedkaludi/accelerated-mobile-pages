@@ -179,6 +179,9 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 					$content = get_the_content();
 				}
 		?><p><?php $excerpt_length = ampforwp_get_setting('enable-excerpt-single-related-posts');
+		if(empty($excerpt_length)){
+			$excerpt_length = 15;
+		}
 		echo wp_trim_words( strip_shortcodes( $content ) , $excerpt_length ); 
 		?></p><?php 
 		} 
