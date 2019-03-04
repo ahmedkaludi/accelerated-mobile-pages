@@ -7273,7 +7273,7 @@ function ampforwp_darkModeMarkup(){
                         darkmode: !darkmode
                      });">
       <amp-list width="150"
-                height="60"
+                height="34"
                 credentials="include"
                 items="."
                 single-item
