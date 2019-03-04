@@ -1790,4 +1790,8 @@ if(true == ampforwp_get_setting('gnrl-dark-view')){?>
 .d blockquote p:before{border-color:#fff;}
 .d .p-menu ul .sub-menu li a, 
 .d .p-menu ul li.menu-item-has-children .sub-menu li a:after{color:#333;}
+.dmv{display: flex;align-items: center;}
+.dm-txt{font-size:15px;margin-right:10px;color:#7a7a7a;font-weight: 500;}
+.d .dm-txt{color:#fff;}
+.darkmode-button{margin-top:20px;}
 <?php } ?>

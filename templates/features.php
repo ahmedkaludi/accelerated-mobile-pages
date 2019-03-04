@@ -7214,7 +7214,7 @@ function ampforwp_bulktool_takeover($data){
 
 //Darkmode Features Start
 add_filter("ampforwp_body_class", 'ampforwp_darkmode_body_class', 10,2);
-add_action("amp_after_header","ampforwp_darkModeMarkup");
+add_action("amp_footer_link","ampforwp_darkModeMarkup");
 add_filter('amp_post_template_data' , 'ampforwp_darkmode_data_script');
 add_action("wp_ajax_ampforwp_darkmode_action", 'ampforwp_darkmode_action');
 add_action("wp_ajax_nopriv_ampforwp_darkmode_action", 'ampforwp_darkmode_action');
@@ -7272,17 +7272,21 @@ function ampforwp_darkModeMarkup(){
               submit-error:AMP.setState({
                         darkmode: !darkmode
                      });">
-      <amp-list width="60"
-                height="34"
+      <amp-list width="150"
+                height="60"
                 credentials="include"
                 items="."
                 single-item
                 src="<?php echo $ajaxUrl."&load=1"; ?>">
         <template type="amp-mustache">
-          <button type="submit"
-                 class="{{#.}}heart-fill{{/.}}{{^.}}heart-border{{/.}}"
-                 [class]="darkmode ? 'heart-fill' : 'heart-border'"
-                 value="" aria-label="darkmode Toggle"></button>
+        	<div class="dmv">
+	        	<div class="dm-txt">Dark View</div>
+	          	<button type="submit"
+	                 class="{{#.}}heart-fill{{/.}}{{^.}}heart-border{{/.}}"
+	                 [class]="darkmode ? 'heart-fill' : 'heart-border'"
+	                 value="" aria-label="darkmode Toggle">
+	            </button>
+	        </div>
         </template>
         <div placeholder>
           <button type="submit" disabled
@@ -7329,7 +7333,7 @@ add_action("amp_css", 'ampforwp_darkmode_css');
         transition: .4s;
         transition: background 300ms ease-in-out;
         border-radius: 34px;
-        
+        position: relative;
       }
       .darkmode-button amp-list {
         margin: var(--space-2);
@@ -7340,7 +7344,7 @@ add_action("amp_css", 'ampforwp_darkmode_css');
 	    height: 26px;
 	    width: 26px;
 	    right: 4px;
-	    top: 11%;
+	    top: 12%;
 	    background-color: white;
 	    transition: .4s;
 	    border-radius:100%;
@@ -7357,14 +7361,14 @@ add_action("amp_css", 'ampforwp_darkmode_css');
 	    height: 26px;
 	    width: 26px;
 	    left: 4px;
-	    top: 11%;
+	    top: 12%;
 	    background-color: white;
 	    transition: .4s;
 	    border-radius:100%;
       }
       .darkmode-button .heart-loading:before,
       .darkmode-button .heart-loading[placeholder] {
-      
+      	margin-top:20px;
       }
       .darkmode-button .darkmode-container {
         display: flex;
