@@ -139,10 +139,10 @@ function validate_images($DOMDocument){
 
 				while($highestParent->parentNode->nodeName != "body"){
 					$highestParent = $highestParent->parentNode;
+					// Insert the figure tag before the highest parent which is not the body tag
+					$highestParent->parentNode->insertBefore($element, $highestParent);
 				}
 
-				// Insert the figure tag before the highest parent which is not the body tag
-				$highestParent->parentNode->insertBefore($element, $highestParent);
 			}
 		}
 
