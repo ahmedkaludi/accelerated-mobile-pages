@@ -366,7 +366,7 @@ return array(
 								'default'	=>0,
 								'options'	=>array(
 												array(
-													'label'=>'Lightbox',
+													'label'=>esc_html__('Lightbox','accelerated-mobile-pages'),
 													'value'=>'lightbox',
 												),
 											),
