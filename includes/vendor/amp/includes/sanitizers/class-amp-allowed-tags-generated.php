@@ -756,6 +756,71 @@ class AMP_Allowed_Tags_Generated {
 				),
 			),
 		),
+		'amp-date-countdown' => array(
+			array(
+				'attr_spec_list' => array(
+					'biggest-unit' => array(
+						'value_casei' => array(
+							'days',
+							'hours',
+							'minutes',
+							'seconds',
+						),
+					),
+					'end-date' => array(
+						'value_regex' => '\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d(:[0-5]\\d(\\.\\d+)?)?(Z|[+-][0-1][0-9]:[0-5][0-9])',
+					),
+					'locale' => array(
+						'value_casei' => array(
+							'de',
+							'en',
+							'es',
+							'fr',
+							'id',
+							'it',
+							'ja',
+							'ko',
+							'nl',
+							'pt',
+							'ru',
+							'th',
+							'tr',
+							'vi',
+							'zh-cn',
+							'zh-tw',
+						),
+					),
+					'media' => array(),
+					'noloading' => array(
+						'value' => '',
+					),
+					'offset-seconds' => array(
+						'value_regex' => '-?\\d+',
+					),
+					'template' => array(),
+					'timeleft-ms' => array(
+						'value_regex' => '\\d+',
+					),
+					'timestamp-ms' => array(
+						'value_regex' => '\\d{13}',
+					),
+					'timestamp-seconds' => array(
+						'value_regex' => '\\d{10}',
+					),
+					'when-ended' => array(
+						'value_casei' => array(
+							'continue',
+							'stop',
+						),
+					),
+				),
+				'tag_spec' => array(
+					'requires_extension' => array(
+						'amp-date-countdown',
+					),
+				),
+			),
+		),
 		'amp-date-picker' => array(
 			array(
 				'attr_spec_list' => array(
