@@ -87,10 +87,6 @@ function call_loops_standard($data=array()){
 	if ( is_archive() ) {
 		$exclude_ids = get_option('ampforwp_exclude_post');
 		$qobj = get_queried_object();
-		if ( $qobj  ){
-			$qobj_taxonomy 	= $qobj->taxonomy;
-			$qobj_term_id 	= $qobj->term_id;
-		}
 		if( !is_date() ){
 				$args = array(
 							'post_type'           => $post_type,
@@ -110,6 +106,23 @@ function call_loops_standard($data=array()){
 								        ),
 									);
 			}
+		}
+		if(is_date()){
+			$year     	= get_query_var('year');
+			$monthnum 	= get_query_var('monthnum');
+			$week 		= get_query_var('week');
+			$day 		= get_query_var('day');
+			$args 		= array( 'date_query' => array(
+						    array( 	'year' 	=> $year,
+						    		'month' => $monthnum,
+					    		 	'week' 	=> $week,
+					    		 	'day' 	=> $day )
+						  	),
+							'paged'               => esc_attr($paged),
+						'post__not_in' 		  => $exclude_ids,
+						'has_password' => false ,
+						'post_status'=> 'publish'
+						);
 		}
 	}
 	if ( is_home() ) {
