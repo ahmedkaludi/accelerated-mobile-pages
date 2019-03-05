@@ -35,7 +35,7 @@ if(true == ampforwp_get_setting('ampforwp-full-post-in-loop')){
 					    <?php amp_loop_date(); ?>
 					    <?php amp_author_box(); ?>
 					</div>
-				    <?php if(!$is_full_content){ if( ampforwp_check_excerpt() ) { amp_loop_excerpt(50); }}else{ amp_loop_all_content(); } ?>
+				    <?php if(!$is_full_content){ if( ampforwp_check_excerpt() ) { amp_loop_excerpt(50); }}else{ ampforwp_full_content_in_loop(); } ?>
 			    </div>
 			</div>
 		<?php } else { 
@@ -59,7 +59,7 @@ if(true == ampforwp_get_setting('ampforwp-full-post-in-loop')){
 				    	amp_loop_excerpt(ampforwp_get_setting('amp-swift-excerpt-len'));
 			    	} 
 			    	}else{
-			    		amp_loop_all_content();
+			    		ampforwp_full_content_in_loop();
 			    	}
 			    	?>
 				    <div class="pt-dt">

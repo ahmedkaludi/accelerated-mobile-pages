@@ -329,6 +329,46 @@ function amp_loop_all_content($tag = 'p'){
 	$fullContent = strip_shortcodes( get_the_content() );
 	echo '<'.$tag.'>'. $fullContent .'</'.$tag.'>';
 }
+function ampforwp_full_content_in_loop(){
+	$is_full_content = false;
+	if(true == ampforwp_get_setting('ampforwp-full-post-in-loop')){
+		$is_full_content = true;
+	} 
+	if($is_full_content){
+					ob_start();
+					the_content();
+					$content = ob_get_clean();
+		            $sanitizer_obj = new AMPFORWP_Content( $content,
+		                  array(
+          				    'AMP_Twitter_Embed_Handler'     => array(),
+          				    'AMP_YouTube_Embed_Handler'     => array(),
+			                'AMP_DailyMotion_Embed_Handler' => array(),
+			                'AMP_Vimeo_Embed_Handler'       => array(),
+			                'AMP_SoundCloud_Embed_Handler'  => array(),
+          				    'AMP_Instagram_Embed_Handler'   => array(),
+          				    'AMP_Vine_Embed_Handler'        => array(),
+          				    'AMP_Facebook_Embed_Handler'    => array(),
+			                'AMP_Pinterest_Embed_Handler'   => array(),
+          				    'AMP_Gallery_Embed_Handler'     => array(),
+              			), 
+		                  apply_filters( 'ampforwp_content_sanitizers', 
+		                    array( 'AMP_Img_Sanitizer' => array(), 
+		                      'AMP_Blacklist_Sanitizer' => array(),
+		                      'AMP_Style_Sanitizer' => array(), 
+		                      'AMP_Video_Sanitizer' => array(),
+		                      'AMP_Audio_Sanitizer' => array(),
+		                      'AMP_Gallery_Block_Sanitizer' => array(),
+		                      'AMP_Iframe_Sanitizer' => array(
+		                         'add_placeholder' => true,
+		                       ),
+		                    ) 
+		                  ) 
+		                );
+		        	$content =  $sanitizer_obj->get_amp_content();
+		        	$final_content = apply_filters( 'ampforwp_loop_content', $content );
+		        	echo $final_content;
+				}
+}
 
 function amp_loop_permalink($return,$amp_query_var ='amp'){
 	global $redux_builder_amp;
