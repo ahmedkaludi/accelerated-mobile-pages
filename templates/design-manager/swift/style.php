@@ -309,9 +309,6 @@ font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;
  $fontFamily = "font-family: 'Arial, Helvetica, sans-serif'";
 if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
 	 $fontFamily = "font-family: 'Poppins', sans-serif;";
-	if(isset($redux_builder_amp['amp_font_selector_content_single']) && $redux_builder_amp['amp_font_selector_content_single'] != 1 && !empty($redux_builder_amp['amp_font_selector_content_single'])){ 
-		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_single']."';";
-	}  
 }
 echo $fontFamily;
 ?>

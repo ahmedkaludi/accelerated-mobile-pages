@@ -12,10 +12,10 @@ amp_header() ?>
 				<div class="cntn-wrp srch ">
 					<p><?php
 						$message = '';
-						if(function_exists('ampforwp_translation') && ! empty(ampforwp_get_setting('amp-translator-search-no-found') ) ){
+						if(! empty(ampforwp_get_setting('amp-translator-search-no-found') ) ){
 							$message = ampforwp_translation( ampforwp_get_setting('amp-translator-search-no-found'), 'It seems we can\'t find what you\'re looking for.');
 						}
-	 					echo $message; ?>
+	 					echo esc_html($message); ?>
 	 				</p>
 			    </div>
  			<?php } ?>
