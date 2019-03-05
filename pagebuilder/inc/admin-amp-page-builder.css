@@ -1386,3 +1386,8 @@ body .modal-footer .del-btn-modal{
     background:#fff;
     color:red;
 }
+.edit-post-layout__content .modal-container {    
+    top: 100px;
+    left: 170px;
+    right: 300px;
+}
