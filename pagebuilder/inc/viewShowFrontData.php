@@ -584,7 +584,7 @@ function amppb_post_content($content){
 			if(isset($previousData['settingdata']) && isset($previousData['settingdata']['front_class'])){
 				$mainContentClass = $previousData['settingdata']['front_class'];
 			}
-			$html = '<div class="amp_pb '.$layoutNameClass.' '.$mainContentClass.'">';
+			$html = '<div class="amp_pb '.esc_attr( $layoutNameClass ) .' '.esc_attr( $mainContentClass) .'">';
 			$previousData = sortByIndex($previousData['rows']);
 
 			//rander its html

@@ -117,7 +117,7 @@ global $savedlayoutTemplate;
                                                     ?>
                                                     <img src="<?php echo $lay[$firstLayout]['preview_img']; ?>" @click="viewSpacialLayouts($event);"
                                                     data-info='<?php echo json_encode($lay); ?>'
-                                                    data-name='<?php echo $layoutName; ?>'
+                                                    data-name='<?php echo esc_attr( $layoutName ); ?>'
                                                     data-heading="<?php echo ucfirst($layoutName); ?>">
                                                     <?php } ?>
                                                 </div>
