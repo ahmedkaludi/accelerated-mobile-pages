@@ -31,12 +31,13 @@ $levelup_info = sprintf('<a href="%s" target="_blank" >%s</a>',
                                         sprintf( 
                                             esc_html__( 'AMP Designs for Elementor by LevelUP', 'accelerated-mobile-pages' ))
                                     );
+$levelup_checker = array();
 if(!is_plugin_active( 'levelup/levelup.php' )){
     $levelup_checker = array( 
                     'id'   => 'levelup_info_normal',
                     'type' => 'info',
                     'required' => array('ampforwp-elementor-levelup-pagebuilder', '=' , '1'),
-                    'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires '.$levelup_info.'.<br /> <div style="margin-top:4px;">(<a href="https://wplevelup.com/" target="_blank">Click here for more info</a>)</div></div>',               
+                    'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s '.$levelup_info.'.<br /> <div style="margin-top:4px;">(<a href="https://wplevelup.com/" target="_blank">%s</a>)</div></div>', esc_html__('ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__('This feature requires','accelerated-mobile-pages'),esc_html__( 'Click here for more info','accelerated-mobile-pages') ),               
                );
 }
 $theme = wp_get_theme(); // gets the current theme
@@ -46,21 +47,21 @@ if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' 
     $pb_title = '';
     $pb_subtitle = '';
     if(class_exists('Vc_Manager') ){
-       $pb_title =  esc_html__('WPBakery Page Builder compatible', 'accelerated-mobile-pages');
+       $pb_title =  'WPBakery Page Builder compatible';
        $pb_subtitle = 'WPBakery Page Builder';
     }
     if( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ){
-        $pb_title =  esc_html__('Divi Builder compatible', 'accelerated-mobile-pages');
+        $pb_title =  'Divi Builder compatible';
         $pb_subtitle = 'Divi Builder';
     }
     if(did_action( 'elementor/loaded' ) ){
-        $pb_title =  esc_html__('Elementor compatible', 'accelerated-mobile-pages');
+        $pb_title =  'Elementor compatible';
         $pb_subtitle = 'Elementor';
     }
     $pb_for_amp = array(
                'id'       => 'ampforwp-pb-for-amp',
                'type'     => 'switch',
-               'title'    => $pb_title,
+               'title'    => esc_html__($pb_title,'accelerated-mobile-pages'),
                'tooltip-subtitle' => esc_html__('Enable or Disable the '.$pb_subtitle.' for AMP', 'accelerated-mobile-pages'),
                'default'  => false
             ); 
@@ -70,7 +71,7 @@ if(!is_plugin_active( 'pagebuilder-for-amp/pagebuilder-for-amp.php' )){
                     'id'   => 'wpbakery_info_normal',
                     'type' => 'info',
                     'required' => array('ampforwp-pb-for-amp', '=' , '1'), 
-                     'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">Page Builder For AMP</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">Click here for more info</a>)</div></div>',               
+                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
                );
 }
 // Display only If AMP Cache is Not Installed
