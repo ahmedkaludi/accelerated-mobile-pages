@@ -980,7 +980,7 @@ AmpForWpYoastAnalysis = function() {
      */
     AmpForWpYoastAnalysis.prototype.myContentModification = function(data) {
         if($('#amp-page-builder-ready').length){
-            var pbdata  = $('#amp-page-builder-ready').val();
+            var pbdata  = $('#amp-page-builder-ready').html();
             var takeover = redux_data['ampforwp-amp-takeover'];
             var pb = redux_data['ampforwp-pagebuilder'];
             var pb2 = $('input[name="ampforwp_page_builder_enable"]').val();

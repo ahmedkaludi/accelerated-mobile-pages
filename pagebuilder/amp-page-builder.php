@@ -133,7 +133,7 @@ function ampforwp_call_page_builder(){
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	?>
 	<?php if(class_exists('WPSEO_Frontend')) { ?>
-	<textarea class="hide" id="amp-page-builder-ready"><?php echo stripcslashes( amppb_post_content('') ); ?></textarea>
+	<div class="hide" id="amp-page-builder-ready"><?php echo stripcslashes( amppb_post_content('') ); ?></div>
 	<?php } ?>
 	<div id="ampForWpPageBuilder_container">
 		<div id="start_amp_pb_post" class="start_amp_pb" data-postId="<?php echo esc_attr(get_the_ID()) ?>" v-if="startPagebuilder==0" @click="amppb_startFunction($event)"><?php echo esc_html__('Start the AMP Page Builder','accelerated-mobile-pages'); ?></div>
@@ -144,7 +144,6 @@ function ampforwp_call_page_builder(){
 		<div id="amp-page-builder" v-if="startPagebuilder==1">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
 	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php echo $previousData; ?>'>
-	        <textarea class="hide" id="amp-page-builder-ready"> <?php echo stripcslashes( amppb_post_content('') ); ?></textarea>
 	        <?php /* This is where we gonna add & manage rows */ ?>
 			<div id="sorted_rows" class="amppb-rows drop" >
 				<drop class="drop" :class="{'row-dropping':rowOverDrop}" @drop="handleDrop" @dragover="rowOverDrop = true"
