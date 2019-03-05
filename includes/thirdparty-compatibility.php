@@ -619,4 +619,12 @@ if(class_exists('MCI_Footnotes')){?>
 <?php 
 }
 }
-} 
+}
+
+// Simple Author Box Compatibility #2268
+add_action('amp_post_template_css', 'ampforwp_simple_author_box');
+function ampforwp_simple_author_box(){
+	if( class_exists('Simple_Author_Box') ){ ?>
+		.saboxplugin-wrap .saboxplugin-gravatar amp-img {max-width: 100px;height: auto;}
+	<?php }
+}
