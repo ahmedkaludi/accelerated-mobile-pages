@@ -1450,19 +1450,24 @@ add_action('pre_amp_render_post','ampforwp_add_proper_post_meta');
 function ampforwp_custom_twitter_title_homepage() {
 	//Added the opengraph for frontpage in AMP #2454
 		if(ampforwp_is_front_page()){
-			$get_title = ampforwp_get_setting('amp-frontpage-select-option-pages');
-			return get_the_title($get_title);
-
+			$title = '';
+			$title = WPSEO_Meta::get_value( 'twitter-title', ampforwp_get_frontpage_id() );
+			if (empty($title) ){
+				$title = get_the_title(ampforwp_get_frontpage_id());
+			}
+			return $title;
 		}
 		return  esc_attr( get_bloginfo( 'name' ) );
 }
 function ampforwp_custom_twitter_description_homepage() {
 	if(ampforwp_is_front_page()){
-			$get_excerpt = ampforwp_get_setting('amp-frontpage-select-option-pages');
-			return wp_trim_words(get_post_field('post_content', $get_excerpt), 26);
-			
+		$twitter_meta_desc = '';
+		$twitter_meta_desc = trim( WPSEO_Meta::get_value( 'twitter-description', ampforwp_get_frontpage_id() ) );
+		if (empty($twitter_meta_desc)){
+			$twitter_meta_desc = wp_trim_words(get_post_field('post_content', ampforwp_get_frontpage_id()), 26);
 		}
-	
+		return $twitter_meta_desc;			
+	}	
 	return  esc_attr( get_bloginfo( 'description' ) );
 }
 function ampforwp_custom_og_url_homepage() {
