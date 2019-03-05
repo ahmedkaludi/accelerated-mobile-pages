@@ -159,8 +159,8 @@ do_action("ampforwp_single_design_type_handle");
 			</div>
 		</div>
     <?php wp_reset_postdata(); }  } ?>
-<?php if($redux_builder_amp['rp_design_type'] == '3'){
-       if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
+<?php if(ampforwp_get_setting('rp_design_type') == '3'){
+       if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') ) {
 		$my_query = ampforwp_related_post_loop_query();
 	  	if( $my_query->have_posts() ) { $r_count = 1;?>
 	  	<div class="srp">
@@ -173,14 +173,14 @@ do_action("ampforwp_single_design_type_handle");
 			        ?>
 			        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 			        	<div class="rp-slide">
-			        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail()){?>
+			        	<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { if(ampforwp_has_post_thumbnail()){?>
 				            <div class="rlp-image">     
 				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>346,'image_crop_height'=>188) );?>
 							</div>
 						<?php } } ?>	
 						<div class="rlp-cnt">
 							<?php 
-							$show_excerpt_opt = $redux_builder_amp['ampforwp-single-related-posts-excerpt'];
+							$show_excerpt_opt = ampforwp_get_setting('ampforwp-single-related-posts-excerpt');
 							$argsdata = array(
 									'show_author' => false,
 									'show_excerpt' => $show_excerpt_opt
