@@ -599,7 +599,7 @@ AmpForWpYoastAnalysis = function() {
         if($('#amp-page-builder-ready').length){
             var pbdata  = $('#amp-page-builder-ready').html();
             var takeover = redux_data['ampforwp-amp-takeover'];
-            var pb2 = $('input[name="ampforwp_page_builder_enable"]').val();
+            var pb2 = $('input[name="ampforwp_page_builder_enable"]:checked').val();
             if ( takeover == 1 && 'yes' == pb2 ) {
                 data = pbdata;
             }
