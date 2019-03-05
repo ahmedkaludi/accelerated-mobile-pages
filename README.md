@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 0.9.97.38
+Stable tag: 0.9.97.39
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,19 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.39 (5th March 2019) =
+* Added: Compatibility with the Author Simple Box Plugin #2268
+* Added: Compatibility when short codes are added in AMP widgets #2552
+* Added: Compatibility with the footnotes plugin #2447
+* Added: ID Support on the AMP PageBuilder #2474
+* Added: embedly oembed support in wordpress #1160
+* Fixed: Dynamic Classes break issue in AMP PageBuilder #2515
+* Fixed: Debug Errors #2627
+* Fixed: Custom Front page is breaking in 0.9.97.16 #2589
+* Fixed: Date Archive not working with Swift Design #2514
+* Fixed: Background video and countdown timer is not showing in divi pagebuilder from core > 0.9.97.19 #2727
+* Fixed: Issue with pagebuilder when yoast plugin is active. #2933
 
 = 0.9.97.38 (28th February 2019) =
 * Added: The Subtitle in the Facebook Instant Artical(FBIA) using of the Jannah Theme #2746
