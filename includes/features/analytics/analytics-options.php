@@ -105,7 +105,10 @@ function ampforwp_analytics_options($opt_name){
                           'type'     => 'switch',
                           'title'    => esc_html__( 'AMP Linker', 'accelerated-mobile-pages' ),
                           'required' => array('ampforwp-ga-switch', '=' , '1'),
-                          'tooltip-subtitle' => esc_html__( '<a href="https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/amp/" target="_blank">Click Here</a> for more details on AMP Linker', 'accelerated-mobile-pages' ),
+                          'tooltip-subtitle' => sprintf( '<a href="%s" target="_blank">%s</a> %s', 
+                                            esc_url('https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/amp/'), 
+                                            esc_html( 'Click Here','accelerated-mobile-pages' ), 
+                                            esc_html( 'for more details on AMP Linker','accelerated-mobile-pages' ) ),
                           'default'  => 0,
                       ),
                       array(
@@ -113,7 +116,7 @@ function ampforwp_analytics_options($opt_name){
                         'id'       => 'ampforwp-ga-field-advance',
                         'type'     => 'ace_editor',
                         'title'    => esc_html__('Analytics Code in JSON Format', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle'    => esc_html__('Tutorial: <a href="https://ampforwp.com/tutorials/article/add-advanced-google-analytics-amp/" target="_blank">How To Add Advanced Google Analytics in AMP?</a>', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'    => sprintf( '%s<a href="%s" target="_blank">%s</a>', esc_html__( 'Tutorial: ','accelerated-mobile-pages' ), esc_url('https://ampforwp.com/tutorials/article/add-advanced-google-analytics-amp/'),  esc_html__( 'How To Add Advanced Google Analytics in AMP?','accelerated-mobile-pages' ) ),
                         'required' => array(
                             array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-ga-switch', '=' , '1'),
@@ -152,7 +155,7 @@ function ampforwp_analytics_options($opt_name){
                             'type'          => 'text',
                             'title'         => esc_html__('Tag Manager ID (Container ID)','accelerated-mobile-pages'),
                             'default'       => '',
-                            'tooltip-subtitle'  => esc_html__('Eg: GTM-5XXXXXP (<a href="https://ampforwp.com/tutorials/article/gtm-in-amp/" style="color:#f1f1f1;">Getting Started?</a>)','accelerated-mobile-pages'),
+                            'tooltip-subtitle'  => sprintf('Eg: GTM-5XXXXXP (<a href="%s" style="color:#f1f1f1;">%s</a>)', esc_url('https://ampforwp.com/tutorials/article/gtm-in-amp/'), esc_html( 'Getting Started?', 'accelerated-mobile-pages') ),
                             //  'validate' => 'not_empty',
                               'required' => array(
                                 array('amp-use-gtm-option', '=' , '1')
@@ -197,7 +200,11 @@ function ampforwp_analytics_options($opt_name){
                         'id'       => 'ampforwp-gtm-field-advance',
                         'type'     => 'ace_editor',
                         'title'    => esc_html__('Analytics Code in JSON Format', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle'    => esc_html__('Tutorial: <a href="https://ampforwp.com/tutorials/article/add-advanced-google-analytics-amp/" target="_blank">How To Add Advanced Google Analytics in AMP?</a>', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'    => sprintf('%s <a href="%s" target="_blank">%s</a>', 
+                                                esc_html__('Tutorial: ', 'accelerated-mobile-pages'),
+                                                esc_url( 'https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/amp/' ),
+                                                esc_html__('How To Add Advanced Google Analytics in AMP?', 'accelerated-mobile-pages')
+                                                ),
                         'required' => array(
                             array('amp-use-gtm-option', '=' , '1'),
                             array('ampforwp-gtm-field-advance-switch', '=' , '1')
@@ -236,7 +243,7 @@ function ampforwp_analytics_options($opt_name){
                         'id'       => 'ampforwp-ga-clientid-api-gtm',
                         'type' => 'info',
                         'style' => 'info',
-                        'desc' => '<a href="https://ampforwp.com/tutorials/article/set-google-amp-client-id-api/" target="_blank">Check this Tutorial to set it up</a>',
+                        'desc' => sprintf('<a href="%s" target="_blank">%s</a>', esc_url('https://ampforwp.com/tutorials/article/set-google-amp-client-id-api/'), esc_html__( 'Check this Tutorial to set it up', 'accelerated-mobile-pages' ) ),
                         'title'    => esc_html__('Set up Google AMP Client ID API', 'accelerated-mobile-pages'),
                         'required' => array(
                             array('amp-use-gtm-option', '=' , '1'),
