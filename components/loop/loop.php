@@ -108,9 +108,13 @@ function call_loops_standard($data=array()){
 		if(is_date()){
 			$year     	= get_query_var('year');
 			$monthnum 	= get_query_var('monthnum');
+			$week 		= get_query_var('week');
+			$day 		= get_query_var('day');
 			$args 		= array( 'date_query' => array(
-						    array( 'month' => $monthnum,
-						    		 'year' => $year  )
+						    array( 	'year' 	=> $year,
+						    		'month' => $monthnum,
+					    		 	'week' 	=> $week,
+					    		 	'day' 	=> $day )
 						  	),
 							'paged'               => esc_attr($paged),
 						'post__not_in' 		  => $exclude_ids,
