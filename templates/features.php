@@ -6963,8 +6963,10 @@ function ampforwp_photo_gallery_embed($data) {
 }
 add_filter('amp_content_embed_handlers','ampforwp_slide_anything_embed');
 function ampforwp_slide_anything_embed($data) {
-	require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-slide-anything-embed.php' );
-	$data['AMPFORWP_Slide_Anything_Embed_Handler'] = array();
+	if ( function_exists('cpt_slider_plugin_activation') ) {
+		require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-slide-anything-embed.php' );
+		$data['AMPFORWP_Slide_Anything_Embed_Handler'] = array();
+	}
 	return $data;
 }
 
