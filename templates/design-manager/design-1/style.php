@@ -465,3 +465,8 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
     margin: 0px 10px;
 }
 }
+<?php if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){?>
+    html {
+   scroll-behavior: smooth;
+  }
+<?php } ?> 

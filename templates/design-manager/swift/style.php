@@ -1802,4 +1802,9 @@ if(true == ampforwp_get_setting('gnrl-dark-view')){?>
 .dm-txt{font-size:15px;margin-right:10px;color:#7a7a7a;font-weight: 500;}
 .d .dm-txt{color:#fff;}
 .darkmode-button{margin-top:20px;}
-<?php } ?>
+<?php } 
+ if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){?>
+    html {
+	 scroll-behavior: smooth;
+	}
+<?php } ?> 

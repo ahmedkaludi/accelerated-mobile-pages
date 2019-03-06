@@ -7607,14 +7607,3 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
   figcaption{ margin-bottom: 20px; }
 <?php }
  }
-
-add_action('amp_post_template_css', 'ampforwp_smooth_scroll');
-if ( ! function_exists('ampforwp_smooth_scroll') ) {
-function ampforwp_smooth_scroll(){
-	if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){?>
-    html {
-	 scroll-behavior: smooth;
-	}
-<?php }
-}
-}
