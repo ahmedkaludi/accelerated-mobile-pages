@@ -2943,14 +2943,14 @@ function ampforwp_change_default_amp_post_meta() {
 				if( 'page' == $post_type ) {
 				    $pages = get_pages(array());
 				    foreach($pages as $page){
-				    	$amp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas',true), true );
+				    	$amp_post_metas = json_decode(get_post_meta( $page->ID,'ampforwp-post-metas',true), true );
 						$amp_post_metas['ampforwp-amp-on-off'] = $post_meta_to_update;
-						update_post_meta( get_the_ID(), 'ampforwp-post-metas', json_encode($amp_post_metas) );
+						update_post_meta( $page->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
 				    }
 				}
 				// Get all the Posts and update the post meta
 				else {
-					$posts = get_posts(array('post_type'=>$post->post_type,'posts_per_page'   => -1));
+					$posts = get_posts(array('post_type'=>$post_type,'posts_per_page'   => -1));
 					foreach($posts as $post){
 						$amp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas',true), true );
 						$amp_post_metas['ampforwp-amp-on-off'] = $post_meta_to_update;
