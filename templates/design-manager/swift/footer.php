@@ -124,8 +124,8 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 		</li>
 		<?php } ?>
 		<?php if(ampforwp_get_setting('enable-single-line-share') == true)  { 
-			$line_share = 'http://line.me/R/msg/text/?';
-			$amp_permalink = $line_share . $amp_permalink;	
+			$line_share = 'http://line.me/R/msg/text/';
+			$amp_permalink = add_query_arg($amp_permalink,'', $line_share );	
 			?>
 			<li>
 			<a title="line share" class="s_li" href="<?php echo esc_url($amp_permalink); ?>">

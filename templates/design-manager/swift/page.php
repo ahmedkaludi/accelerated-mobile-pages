@@ -113,9 +113,9 @@ amp_header(); ?>
 						</li>
 						<?php } ?>
 						<?php if(ampforwp_get_setting('enable-single-line-share') == true)  {
-							$line_share = 'http://line.me/R/msg/text/?';
+							$line_share = 'http://line.me/R/msg/text/';
 							$amp_permalink = get_the_permalink();
-							$amp_permalink = $line_share . $amp_permalink;
+							$amp_permalink = add_query_arg($amp_permalink,'', $line_share );
 							?>
 			<li>
 			<a title="line share" class="s_li" href="<?php echo esc_url($amp_permalink); ?>">

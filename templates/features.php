@@ -1280,8 +1280,8 @@ function ampforwp_sticky_social_icons(){
 								</a>
 	        <?php } ?>
 	        <?php if(ampforwp_get_setting('enable-single-line-share') == true)  { 
-	        	$line_share = 'http://line.me/R/msg/text/?';
-				$amp_permalink = $line_share . $amp_permalink;
+	        	$line_share = 'http://line.me/R/msg/text/';
+				$amp_permalink = add_query_arg($amp_permalink,'', $line_share );
 	        ?>
 			<a title="line share" href="<?php echo esc_url($amp_permalink); ?>">
 				<div class="amp-social-icon custom-amp-socialsharing-line">
