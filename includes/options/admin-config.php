@@ -3508,7 +3508,7 @@ Redux::setSection( $opt_name, array(
            array(
                     'id'    => 'gnrl-dark-view',
                     'type'  => 'switch',
-                    'title' => esc_html__('Darkview', 'accelerated-mobile-pages'),
+                    'title' => esc_html__('Darkview Switch', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ), 
