@@ -62,3 +62,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 35. Class AMP_Blacklist_Sanitizer updated for inernal links #2391
 36. Mobile detect library added from https://github.com/serbanghita/Mobile-Detect
 37. Class AMP_Img_Sanitizer Updated #2893
+38. Updated check_attr_spec_rule_valid_url function and also added two more functions parse_protocol and extract_attribute_urls #2862
