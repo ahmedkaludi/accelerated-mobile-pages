@@ -1585,3 +1585,8 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
 <?php if (checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 	.sp-cnt .cntr {max-width: 100%;margin:0;width:100%;padding:0}	
 <?php } ?> 
+<?php if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){?>
+    html {
+   scroll-behavior: smooth;
+  }
+<?php } ?>

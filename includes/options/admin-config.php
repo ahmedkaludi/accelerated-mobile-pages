@@ -3619,6 +3619,13 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => esc_html__('Enable if you want all your links inside the article to go to /amp/. All the outbound links will remain untouched.','accelerated-mobile-pages'),
                         'default' => 0,
                     ),
+                    array(
+                        'id'       => 'ampforwp-smooth-scrolling-for-links',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Smooth Scrolling For Links', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable this option if you want smooth scrolling for jumping links','accelerated-mobile-pages'),
+                        'default' => 0,
+                    ),
                     // End-point option
                      array(
                         'id'       => 'amp-core-end-point',

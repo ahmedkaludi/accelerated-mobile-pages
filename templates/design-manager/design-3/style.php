@@ -728,3 +728,8 @@ if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
     line-height: 1.4;
   }
 <?php } ?>
+<?php if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){?>
+    html {
+   scroll-behavior: smooth;
+  }
+<?php } ?>
