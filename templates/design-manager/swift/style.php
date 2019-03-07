@@ -1370,6 +1370,9 @@ if($redux_builder_amp['enable-single-vk-share']){?>
 .s_vk{background:#45668e;}
 .s_vk:after{content: "\e944";}
 <?php } 
+if(ampforwp_get_setting('enable-single-line-share') == true)  { ?>
+.s_li{background:#00cc00;}
+<?php } 
 if($redux_builder_amp['enable-single-reddit-share']){?>
 .s_rd{background:#ff4500;}
 .s_rd:after{content: "\e938";}
