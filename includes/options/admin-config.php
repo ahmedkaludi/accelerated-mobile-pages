@@ -4512,6 +4512,16 @@ Redux::setSection( $opt_name, array(
         }
         $fonts_settings =  array(
             array(
+                       'id' => 'ampforwp-d1-font',
+                       'type' => 'switch',
+                       'title' => esc_html__('Merriweather Font', 'accelerated-mobile-pages'),
+                       'tooltip-subtitle'  => esc_html__('Enable/Disable Merriweather Font','accelerated-mobile-pages'),
+                        'default'   => true,
+                        'required' => array(
+                            array('amp-design-selector', '=' , '1')
+                         )
+            ),
+            array(
                 'id'        =>'google_font_api_key',
                 'type'      =>'text',
                 'title'     =>esc_html__('Google Font API key','accelerated-mobile-pages'),

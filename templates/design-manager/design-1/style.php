@@ -16,7 +16,8 @@
 	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 ?>
 
-#statcounter{width: 1px;height:1px;} 
+#statcounter{width: 1px;height:1px;}
+<?php if ( true == ampforwp_get_setting('ampforwp-d1-font') ): ?> 
 @font-face {
   font-family: 'Merriweather';
   font-display: auto;
@@ -45,6 +46,7 @@
   font-weight: 700;
     src:  local('Merriweather Bold Italic'), local('Merriweather-BoldItalic'), url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/Merriweather-BoldItalic.ttf');
 }
+<?php endif; ?>
 .clearfix, .cb{clear:both}
 .alignright{ float: right; }
 .alignleft{ float: left; }
