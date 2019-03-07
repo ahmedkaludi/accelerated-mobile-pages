@@ -73,7 +73,7 @@
         <div class="form-label">{{field.label}}</div>     
         <div class="form-field">
             <label class="form-label-checkbox" v-for="(val,index) in field.options"  >
-                <input type="checkbox" :value="val.value" :checked="field.default" v-model="field.default"  v-bind:true-value="val.value" v-bind:false-value="0">
+                <input type="checkbox" :value="val.value" :checked="field.default" v-model="field.default"  v-bind:true-value="val.value" v-bind:false-value="0" v-on:change="$emit('change', $forceUpdate())">
                 {{val.label}}
             </label>
             <div class="help-msg" v-html="field.helpmessage"></div>
