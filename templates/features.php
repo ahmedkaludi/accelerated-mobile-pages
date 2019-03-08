@@ -4933,7 +4933,9 @@ if ( ! function_exists('ampforwp_gravatar_checker') ) {
 		} else {
 			$uri = sprintf( 'http://%d.gravatar.com/avatar/%s', $gravatar_server, $hash );
 		}
-		$headers = @get_headers($uri);
+		$args = array();
+		$args = get_avatar_data($email, $args);
+		$has_valid_avatar = $args['found_avatar'];
 		// If its 404
 		if (!preg_match("|200|", $headers[0])) {
 			$has_valid_avatar = FALSE;
