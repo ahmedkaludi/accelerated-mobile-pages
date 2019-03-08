@@ -35,20 +35,6 @@ function ampforwp_redirection() {
     }
   }
 
-  // #1947 when nonamp=1 it should redirect to original link
-  $url = ampforwp_amphtml_generator();
-  $nonamp_checker = get_query_var( 'nonamp');
-  if( $url && $nonamp_checker == 1 ){ 
-    $go_to_url = remove_query_arg('nonamp', $url);
-    $go_to_url = explode('/', $go_to_url);
-    $go_to_url = array_flip($go_to_url);
-    unset($go_to_url['amp']);
-    $go_to_url = array_flip($go_to_url);     
-    $go_to_url  = implode('/', $go_to_url);
-    wp_safe_redirect( $go_to_url, 301 );
-    exit;
-  }
-
   // AMP Takeover
   if ( ampforwp_get_setting('ampforwp-amp-takeover') && !ampforwp_is_non_amp() ) {
     $redirection_location = '';
@@ -257,6 +243,29 @@ function ampforwp_redirection() {
           return;
         }
     }
+    // #1947 when nonamp=1 it should redirect to original link
+    $go_to_url  = "";
+    $url        = "";
+    $url = ampforwp_amphtml_generator();
+    $nonamp_checker = get_query_var( 'nonamp');
+     if($url){
+     if( $nonamp_checker == 1 ){ 
+        $go_to_url = remove_query_arg('nonamp', $url);
+        $go_to_url = explode('/', $go_to_url);
+        $go_to_url = array_flip($go_to_url);
+        unset($go_to_url['amp']);
+        $go_to_url = array_flip($go_to_url);     
+        $go_to_url  = implode('/', $go_to_url);
+ 
+      wp_safe_redirect( $go_to_url, 301 );
+      exit;
+    }
+    else{
+      return;
+    }
+  }
+  session_destroy();
+  return;
   }
 }
 
