@@ -902,3 +902,17 @@ function ampforwp_sanitize_color( $color ) {
     sscanf( $color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
     return 'rgba('.$red.','.$green.','.$blue.','.$alpha.')';
 }
+// Fallback for FasterImage #2931
+add_filter('amp_process_fetched_images','ampforwp_process_fetched_images');
+function ampforwp_process_fetched_images($image_data){
+	$key = $attachment_id = $image = '';
+	$key = array_search (false, $image_data);
+	if ( $key ) {		
+		$attachment_id = attachment_url_to_postid($key);
+		$image = wp_get_attachment_image_src($attachment_id, 'full');
+		if ( $image ) {
+			$image_data['size'] = array($image['width'],$image['height']);
+		}
+	}
+	return $image_data;
+}

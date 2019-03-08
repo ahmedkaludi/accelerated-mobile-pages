@@ -223,6 +223,7 @@ class AMP_Image_Dimension_Extractor {
 	private static function process_fetched_images( $urls_to_fetch, $images, &$dimensions, $transient_expiration ) {
 		foreach ( $urls_to_fetch as $url_data ) {
 			$image_data = $images[ $url_data['url'] ];
+			$image_data = apply_filters('amp_process_fetched_images', $image_data);
 			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size'] ) {
 				$dimensions[ $url_data['url'] ] = false;
 				set_transient( $url_data['transient_name'], self::STATUS_FAILED_LAST_ATTEMPT, $transient_expiration );
