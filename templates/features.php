@@ -6616,6 +6616,7 @@ if ( ! function_exists('ampforwp_fb_chat_css') ) {
 		   background-position: center;
 		   border: 0;
 		   border-radius: 100%;
+		   cursor: pointer;
 		}
 		.amp-fb-chat-wrap {
 		   display: table;
@@ -6624,11 +6625,12 @@ if ( ! function_exists('ampforwp_fb_chat_css') ) {
 		   height:100%;
 		   margin:0 auto;
 		}
-		.fb-chat{position:fixed;top:70%;right:0;}
+		.fb-chat{position:fixed;top:70%;left:10px;}
 		<?php if ( 4 == ampforwp_get_setting('amp-design-selector') ){ ?>
 			.fb-chat-a:after{content: "\e948";font-family:icomoon;font-size:30px;}
-			.fb-chat-a{color:#fff;background:#0084ff;padding:5px;border-radius:5px;display:inline-block;}
+			.fb-chat-a{color:#fff;background:#0084ff;padding:5px;border-radius:5px;display:inline-block;    cursor: pointer;}
 			.fb-chat-btn{border:none;background:none}
+			.fb-chat-a:hover{color: #fff;background: #0084ff;}
 		<?php } else { ?>
 			.fb-chat-a{background-color:#0084ff;border-radius: 60%;padding:10px 10px 6px 10px;line-height:1;display:inline-block;}
 		<?php }	 
