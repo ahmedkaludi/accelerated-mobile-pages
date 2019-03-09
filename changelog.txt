@@ -1,5 +1,16 @@
 == Changelog ==
 
+= 0.9.97.40 (9th March 2019) =
+* Added: Smooth scrolling for anchors links and jumping links within a page #2062
+* Added: Option to Enable/Disable Merriweather font in Design-1
+* Fixed: External links are getting skipped #2862
+* Fixed: Social Share “LINE” does not show up in swift theme #2641
+* Fixed: Checkbox from menu listings in AMP theme framework #2618
+* Fixed: PHP Warning undefined index fb-instant-page #2610
+* Fixed: Instagram Posts not rendering in AMP #2629
+* Fixed: Instant articles Image issue #2929
+* Fixed: Default height & width values for amp-img when values are not set #2925
+
 = 0.9.97.39 (5th March 2019) =
 * Added: Compatibility with the Author Simple Box Plugin #2268
 * Added: Compatibility when short codes are added in AMP widgets #2552

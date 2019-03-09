@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 0.9.97.39
+Stable tag: 0.9.97.40
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -186,17 +186,15 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.39 (5th March 2019) =
-* Added: Compatibility with the Author Simple Box Plugin #2268
-* Added: Compatibility when short codes are added in AMP widgets #2552
-* Added: Compatibility with the footnotes plugin #2447
-* Added: ID Support on the AMP PageBuilder #2474
-* Added: embedly oembed support in wordpress #1160
-* Fixed: Dynamic Classes break issue in AMP PageBuilder #2515
-* Fixed: Debug Errors #2627
-* Fixed: Custom Front page is breaking in 0.9.97.16 #2589
-* Fixed: Date Archive not working with Swift Design #2514
-* Fixed: Background video and countdown timer is not showing in divi pagebuilder from core > 0.9.97.19 #2727
-* Fixed: Issue with pagebuilder when yoast plugin is active. #2933
+= 0.9.97.40 (9th March 2019) =
+* Added: Smooth scrolling for anchors links and jumping links within a page #2062
+* Added: Option to Enable/Disable Merriweather font in Design-1
+* Fixed: External links are getting skipped #2862
+* Fixed: Social Share “LINE” does not show up in swift theme #2641
+* Fixed: Checkbox from menu listings in AMP theme framework #2618
+* Fixed: PHP Warning undefined index fb-instant-page #2610
+* Fixed: Instagram Posts not rendering in AMP #2629
+* Fixed: Instant articles Image issue #2929
+* Fixed: Default height & width values for amp-img when values are not set #2925
 
 Full changelog available in changelog.txt

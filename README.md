@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 0.9.97.39
+Stable tag: 0.9.97.40
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,18 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.40 (9th March 2019) =
+* Added: Smooth scrolling for anchors links and jumping links within a page #2062
+* Added: Option to Enable/Disable Merriweather font in Design-1
+* Fixed: External links are getting skipped #2862
+* Fixed: Social Share “LINE” does not show up in swift theme #2641
+* Fixed: Checkbox from menu listings in AMP theme framework #2618
+* Fixed: PHP Warning undefined index fb-instant-page #2610
+* Fixed: Instagram Posts not rendering in AMP #2629
+* Fixed: Instant articles Image issue #2929
+* Fixed: Default height & width values for amp-img when values are not set #2925
+
 
 = 0.9.97.39 (5th March 2019) =
 * Added: Compatibility with the Author Simple Box Plugin #2268
