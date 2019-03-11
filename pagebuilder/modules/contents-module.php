@@ -388,11 +388,12 @@ if ( is_admin() ) {
                  $excerptContent = ' 
                  <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'</p>';   
               }
-              $loopdate = "";
-              $loopdate =  human_time_diff(
+               $loopdate = "";
+               $loopdate =  human_time_diff(
                 get_the_time('U', get_the_ID() ), 
                 current_time('timestamp') ) .' '. ampforwp_translation( ampforwp_get_setting('amp-translator-ago-date-text'),
                 'ago');
+               $loopdate = apply_filters('ampforwp_modify_post_date',$loopdate);
                $loopdate = '<p>'.$loopdate.'</p>';             
                $title = get_the_title();
                $postid = get_the_ID();
