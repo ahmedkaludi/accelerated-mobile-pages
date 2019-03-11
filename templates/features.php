@@ -6559,7 +6559,7 @@ add_action('upload_mimes', 'ampforwp_upload_svg');
 add_action('amp_init', 'ampforwp_fb_chat');
 if ( ! function_exists('ampforwp_fb_chat') ) {
 	function ampforwp_fb_chat() {
-		if ( true == ampforwp_get_setting('enable-single-facebook-chat') ) {
+		if ( true == ampforwp_get_setting('enable-single-facebook-chat') && true == ampforwp_get_setting('amp-facebook-chat-username') ) {
 			add_action('amp_post_template_footer','ampforwp_fb_chat_lightbox');
 			add_filter('amp_post_template_data', 'ampforwp_fb_chat_scripts');
 			add_action('amp_post_template_css', 'ampforwp_fb_chat_css');
@@ -6568,9 +6568,7 @@ if ( ! function_exists('ampforwp_fb_chat') ) {
 }
 if ( ! function_exists('ampforwp_fb_chat_lightbox') ) {
 	function ampforwp_fb_chat_lightbox(){ 
-	global $redux_builder_amp;
-	$page_id = ampforwp_get_setting('amp-facebook-chat-username'); 
-	if ( $page_id ){ ?>
+	$page_id = ampforwp_get_setting('amp-facebook-chat-username'); ?>
 		<div class="fb-chat">
 			<a class="fb-chat-a" on="tap:amp-fb-chat" > 
 			<?php if ( 4 != ampforwp_get_setting('amp-design-selector') ) {?>
@@ -6596,7 +6594,7 @@ if ( ! function_exists('ampforwp_fb_chat_lightbox') ) {
 			    </button>
 				</div>
 		</amp-lightbox>
-	<?php }	}
+	<?php }	
 }
 function ampforwp_fb_chat_scripts( $data ) {
 		if(empty($data['amp_component_scripts']['amp-facebook-page'])){
