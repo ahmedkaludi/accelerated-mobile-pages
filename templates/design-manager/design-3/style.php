@@ -168,7 +168,11 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 .amp-wp-post-content .small-screen-excerpt-design-3 {display: none;} .amp-wp-post-content .large-screen-excerpt-design-3 { display: block; }
 <?php } ?>
 /* Footer */
-#footer{ background: #151515; color: #eee; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
+<?php $footer_back_color = $redux_builder_amp['ampforwp-footer-background-color-3']['color'];
+if (empty($footer_back_color)) {
+ $footer_back_color = '#151515'; 
+} ?>
+#footer{ background: <?php echo ampforwp_sanitize_color($footer_back_color);?>; color: #eee; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
 #footer a{ color:#fff }
 #footer p:first-child{ margin-bottom: 12px; }
 #footer .social_icons{ margin: 0px 20px 25px 20px; border-bottom: 1px solid #3c3c3c; padding-bottom: 25px; }

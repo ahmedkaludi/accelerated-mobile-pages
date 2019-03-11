@@ -6358,6 +6358,39 @@ else{
                         'title'    => esc_html__('Make "View Non-AMP" link nofollow', 'accelerated-mobile-pages'),
                         'default'   => 0
                 ),
+                array(
+                        'id'       => 'ampforwp-footer-background-color-1',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Background Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#FFFFFF'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '1')
+                        )
+                ),
+                array(
+                        'id'       => 'ampforwp-footer-background-color-2',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Background Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#FFFFFF'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '2')
+                        )
+                ),
+                array(
+                        'id'       => 'ampforwp-footer-background-color-3',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Background Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#151515'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '3')
+                        )
+                ),
             array(
                    'id' => 'footer-tab-2',
                    'type' => 'section',

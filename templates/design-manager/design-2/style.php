@@ -168,7 +168,11 @@ main .amp-archive-heading{ background : none; box-shadow: none; padding: 5px; }
 <?php if(is_author()){ ?> .author-archive amp-img{border-radius: 50%;margin: 0px 8px 10px;display: block;}.author-archive{float: left;} .amp-wp-content .taxonomy-description{background: #f1f1f1; padding:0px} .page-title{padding:0} <?php } ?>
 
 /* Footer */
-#footer{ background : #fff; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
+<?php $footer_back_color = $redux_builder_amp['ampforwp-footer-background-color-2']['color'];
+if (empty($footer_back_color)) {
+ $footer_back_color = '#FFFFFF'; 
+} ?>
+#footer{ background: <?php echo ampforwp_sanitize_color($footer_back_color);?>; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
 #footer p:first-child{ margin-bottom: 12px; }
 #footer p{ margin: 0 }
 .footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }

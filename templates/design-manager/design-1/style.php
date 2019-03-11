@@ -127,6 +127,11 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
  margin: 0 auto;
  }
 /* Footer */
+<?php $footer_back_color = $redux_builder_amp['ampforwp-footer-background-color-1']['color'];
+if (empty($footer_back_color)) {
+  $footer_back_color = '#FFFFFF';
+}?>
+.amp-wp-footer{ background: <?php echo ampforwp_sanitize_color($footer_back_color);?>; }
 .footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }
 .footer_menu ul li{ display:inline; margin:0 10px; }
 .footer_menu ul li:first-child{ margin-left:0 }
