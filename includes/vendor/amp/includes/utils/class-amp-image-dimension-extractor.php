@@ -222,8 +222,17 @@ class AMP_Image_Dimension_Extractor {
 	 */
 	private static function process_fetched_images( $urls_to_fetch, $images, &$dimensions, $transient_expiration ) {
 		foreach ( $urls_to_fetch as $url_data ) {
+			$image = array();
+			$attachment_id = '';
 			$image_data = $images[ $url_data['url'] ];
-			$image_data = apply_filters('amp_process_fetched_images', $image_data);
+			// Fallback #2931
+			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size'] ) {	
+				$attachment_id = attachment_url_to_postid($url_data['url']);
+				$image = wp_get_attachment_image_src($attachment_id, 'full');
+				if ( $image ) {
+					$image_data['size'] = array($image[1],$image[2]);
+				}
+			}
 			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size'] ) {
 				$dimensions[ $url_data['url'] ] = false;
 				set_transient( $url_data['transient_name'], self::STATUS_FAILED_LAST_ATTEMPT, $transient_expiration );

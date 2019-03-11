@@ -74,3 +74,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 47. AMP Image Sanitizer Updated #2547
 48. AMP Image Sanitizer Updated #2925
 49. Updated Schema for author image #2919
+50. AMP_Image_Dimension_Extractor Updated #2931
