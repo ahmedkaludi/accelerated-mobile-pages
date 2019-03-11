@@ -36,8 +36,7 @@ class FasterImage
     public function batch(array $urls)
     {
 
-        $stream           = new Stream();
-        $parser           = new ImageParser($stream);
+       
         $results          = [];
         $request          = array();
         foreach ( array_values($urls) as $count => $uri ) {
@@ -50,11 +49,13 @@ class FasterImage
         $options= array(
                     'timeout'=>$this->timeout,
                     'connect_timeout'=>$this->timeout,
-                    'useragent'=>'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.110 Safari/537.36',
+                    'useragent'=>'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.110 Safari/537.36',
                     'verify'=> 1,
                     'verifyname'=>1,
-                    'follow_redirects'=>false,
-                    'complete'=> function($response, $url) use(&$results, &$parser, &$stream){
+                    'follow_redirects'=>true,
+                    'complete'=> function($response, $url) use(&$results){
+                        $stream           = new Stream();
+                        $parser           = new ImageParser($stream);
                         $results[$url]['rounds'] = 0;
                         $results[$url]['bytes']  = 0;
                         $results[$url]['size']   = 'failed';
