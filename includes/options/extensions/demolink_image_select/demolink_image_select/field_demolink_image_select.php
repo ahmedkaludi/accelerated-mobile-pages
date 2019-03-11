@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
 /**
  * Field Select Image
  *
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
+if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_demolink_image_select' ) ) {
     class ReduxFramework_demolink_image_select {
 
         /**
@@ -77,7 +77,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
                 }
 
                 // Process placeholder
-                $placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : esc_html__( 'Select an item', 'redux-framework' );
+                $placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : __( 'Select an item', 'accelerated-mobile-pages' );
 
                 if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
                     $select2_params = json_encode( $this->field['select2'] );

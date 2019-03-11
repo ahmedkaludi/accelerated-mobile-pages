@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
     // Fix for the GT3 page builder: http://www.gt3themes.com/wordpress-gt3-page-builder-plugin/
     /** @global string $pagenow */
     if ( has_action( 'ecpt_field_options_' ) ) {

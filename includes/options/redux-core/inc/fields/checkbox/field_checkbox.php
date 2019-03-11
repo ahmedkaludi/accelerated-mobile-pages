@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
 /**
  * Redux Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ if ( !defined ( 'ABSPATH' ) ) {
 }
 
 // Don't duplicate me!
-if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
+if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox' ) ) {
 
     /**
      * Main ReduxFramework_checkbox class

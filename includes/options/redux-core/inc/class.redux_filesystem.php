@@ -1,12 +1,12 @@
 <?php
 
-
+    namespace ReduxCore\ReduxFramework;
 
     if ( ! defined( 'ABSPATH' ) ) {
         exit;
     }
 
-    if ( ! class_exists( 'Redux_Filesystem' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Filesystem' ) ) {
         class Redux_Filesystem {
 
             /**
@@ -105,7 +105,7 @@
                 if ( self::$direct === null ) {
                     require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-base.php';
                     require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php';
-                    self::$direct = new WP_Filesystem_Direct( array() );
+                    self::$direct = new \WP_Filesystem_Direct( array() );
                 }
             }
 

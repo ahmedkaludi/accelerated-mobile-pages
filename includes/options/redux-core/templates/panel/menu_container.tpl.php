@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
 /**
  * The template for the menu container of the panel.
  *

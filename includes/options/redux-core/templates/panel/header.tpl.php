@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
     /**
      * The template for the panel header area.
      * Override this template by specifying the path where it is stored (templates_path) in your Redux config.
@@ -66,6 +67,7 @@
             <?php if ( ! empty( $this->parent->args['display_version'] ) ) { ?>
                 <span><?php echo wp_kses_post( $this->parent->args['display_version'] ); ?></span>
             <?php } ?>
+
         </div>
     <?php } ?>
 

@@ -1,6 +1,6 @@
 <?php
-
-    if ( ! class_exists( 'Redux_Customizer_Control_rAds' ) && ! class_exists( 'Redux_Customizer_section_rAds' ) ) {
+namespace ReduxCore\ReduxFramework;
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Customizer_Control_rAds' ) && ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Customizer_section_rAds' ) ) {
         /**
          * Customizer section representing widget area (sidebar).
          *
@@ -9,7 +9,7 @@
          * @since      4.1.0
          * @see        WP_Customize_Section
          */
-        class Redux_Customizer_section_rAds extends WP_Customize_Section {
+        class Redux_Customizer_section_rAds extends \WP_Customize_Section {
 
             /**
              * Type of this section.
@@ -27,7 +27,7 @@
             }
         }
 
-        class Redux_Customizer_Control_rAds extends WP_Customize_Control {
+        class Redux_Customizer_Control_rAds extends \WP_Customize_Control {
             public function render() {
             }
 

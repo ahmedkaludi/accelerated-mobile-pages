@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
 /**
  * Redux Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +21,7 @@
 // Exit if accessed directly
 if( !defined( 'ABSPATH' ) ) exit;
 // Don't duplicate me!
-if( !class_exists( 'ReduxFramework_extension_checkbox_hierarchy' ) ) {
+if( !class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_extension_checkbox_hierarchy' ) ) {
     /**
      * Main ReduxFramework checkbox_hierarchy extension class
      *
@@ -91,7 +92,7 @@ if( !class_exists( 'ReduxFramework_extension_checkbox_hierarchy' ) ) {
                         'dismiss'   => false
                     );
                     
-                    if (method_exists('Redux_Admin_Notices', 'set_notice')) {
+                    if (method_exists('ReduxCore\\ReduxFramework\\Redux_Admin_Notices', 'set_notice')) {
                         Redux_Admin_Notices::set_notice($data);
                     } else {
                         echo '<div class="error">';

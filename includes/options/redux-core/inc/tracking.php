@@ -1,9 +1,9 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
     /**
      * @package Redux_Tracking
      */
-    if ( ! class_exists( 'ReduxFramework' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework' ) ) {
         return;
     }
 
@@ -315,8 +315,8 @@
                     'release' => PHP_VERSION
                 );
 
-                $user_query     = new WP_User_Query( array( 'blog_id' => $blog_id, 'count_total' => true, ) );
-                $comments_query = new WP_Comment_Query();
+                $user_query     = new \WP_User_Query( array( 'blog_id' => $blog_id, 'count_total' => true, ) );
+                $comments_query = new \WP_Comment_Query();
                 $data           = array(
                     '_id'       => $this->options['hash'],
                     'localhost' => ( $_SERVER['REMOTE_ADDR'] === '127.0.0.1' ) ? 1 : 0,
@@ -472,7 +472,7 @@
             return $options;
         }
 
-        add_filter( 'redux/tracking/options', 'redux_tracking_additions' );
+        add_filter( 'redux/tracking/options', 'ReduxCore\\ReduxFramework\\redux_tracking_additions' );
 
         function redux_allow_tracking_callback() {
             // Verify that the incoming request is coming with the security nonce
@@ -496,6 +496,6 @@
             } // end if
         }
 
-        add_action( 'wp_ajax_redux_allow_tracking', 'redux_allow_tracking_callback' );
+        add_action( 'wp_ajax_redux_allow_tracking', 'ReduxCore\\ReduxFramework\\redux_allow_tracking_callback' );
 
     }

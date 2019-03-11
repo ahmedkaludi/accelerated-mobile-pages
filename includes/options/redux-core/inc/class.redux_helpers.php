@@ -1,12 +1,12 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
 // Exit if accessed directly
     if ( ! defined( 'ABSPATH' ) ) {
         exit;
     }
 
 // Don't duplicate me!
-    if ( ! class_exists( 'Redux_Helpers' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Helpers' ) ) {
 
         /**
          * Redux Helpers Class
@@ -139,8 +139,8 @@
                     'release' => PHP_VERSION
                 );
 
-                $user_query     = new WP_User_Query( array( 'blog_id' => $blog_id, 'count_total' => true, ) );
-                $comments_query = new WP_Comment_Query();
+                $user_query     = new \WP_User_Query( array( 'blog_id' => $blog_id, 'count_total' => true, ) );
+                $comments_query = new \WP_Comment_Query();
 
                 $data = array(
                     '_id'       => $hash,
@@ -472,7 +472,7 @@
                 //}
 
                 if ( $remote_checks == true ) {
-                    $response = wp_remote_post( 'https://www.paypal.com/cgi-bin/webscr', array(
+                   /* $response = wp_remote_post( 'https://www.paypal.com/cgi-bin/webscr', array(
                         'sslverify'  => false,
                         'timeout'    => 60,
                         'user-agent' => 'ReduxFramework/' . ReduxFramework::$_version,
@@ -497,7 +497,7 @@
                     } else {
                         $sysinfo['wp_remote_get']       = 'false';
                         $sysinfo['wp_remote_get_error'] = $response->get_error_message();
-                    }
+                    }*/
                 }
 
                 $active_plugins = (array) get_option( 'active_plugins', array() );

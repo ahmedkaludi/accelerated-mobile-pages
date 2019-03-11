@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
     /*
      * @package     Redux_Framework
      * @subpackage  Fields

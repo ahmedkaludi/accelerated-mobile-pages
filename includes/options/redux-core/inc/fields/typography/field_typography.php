@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
 /**
  * Class and Function List:
  * Function list:
@@ -475,9 +475,9 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                 }
 
                 echo '<div class="picker-wrapper">';
-                echo '<label>' . __( 'Font Color', 'redux-framework' ) . '</label>';
+                echo '<label>' . __( 'Font Color', 'accelerated-mobile-pages' ) . '</label>';
                 echo '<div id="' . $this->field['id'] . '_color_picker" class="colorSelector typography-color"><div style="background-color: ' . $this->value['color'] . '"></div></div>';
-                echo '<input data-default-color="' . $default . '" class="redux-color redux-typography-color ' . $this->field['class'] . '" original-title="' . __( 'Font color', 'redux-framework' ) . '" id="' . $this->field['id'] . '-color" name="' . $this->field['name'] . $this->field['name_suffix'] . '[color]' . '" type="text" value="' . $this->value['color'] . '" data-id="' . $this->field['id'] . '" />';
+                echo '<input data-default-color="' . $default . '" class="redux-color redux-typography-color ' . $this->field['class'] . '" original-title="' . __( 'Font color', 'accelerated-mobile-pages' ) . '" id="' . $this->field['id'] . '-color" name="' . $this->field['name'] . $this->field['name_suffix'] . '[color]' . '" type="text" value="' . $this->value['color'] . '" data-id="' . $this->field['id'] . '" />';
                 echo '</div>';
             }
 
@@ -887,7 +887,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                 }
 
                 $this->parent->font_groups['std'] = array(
-                    'text'     => __( 'Standard Fonts', 'redux-framework' ),
+                    'text'     => __( 'Standard Fonts', 'accelerated-mobile-pages' ),
                     'children' => array(),
                 );
 
@@ -988,7 +988,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
                     // optgroup
                     $this->parent->font_groups['google'] = array(
-                        'text'     => __( 'Google Webfonts', 'redux-framework' ),
+                        'text'     => __( 'Google Webfonts', 'accelerated-mobile-pages' ),
                         'children' => array(),
                     );
 

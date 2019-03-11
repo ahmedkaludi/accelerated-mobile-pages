@@ -441,27 +441,17 @@ if( !function_exists('ampforwp_upcomming_layouts_demo') ){
 			);
 	}
 }
-// Redux panel inclusion code
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	$amp_plugin_manager_version = array();
-	$plugin_manager_active = is_plugin_active('amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'); 
-	$amp_plugin_manager_active = is_plugin_active('plugin-manager/ampforwp-3rd-party-plugin-creator.php');
-	if ( $plugin_manager_active) {
-		$amp_plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php');
-		$amp_plugin_manager_version = $amp_plugin_manager['Version'];
-	}	
+require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
+require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
+add_action('after_setup_theme', 'ampforwp_include_options_file' );
+function ampforwp_include_options_file(){	
+	if ( is_admin() ) {
+		// Register all the main options	
+		require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
+		require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+	}
+}
 
-	if ( $amp_plugin_manager_active) {
-		$plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/plugin-manager/ampforwp-3rd-party-plugin-creator.php');
-		$amp_plugin_manager_version =  $plugin_manager['Version'];
-	}
-	if ( $plugin_manager_active || $amp_plugin_manager_active ) {
-		if ( (! class_exists( 'ReduxFramework' ) && $GLOBALS['pagenow']=='admin.php' && $_GET['page']=='amp_options') || is_plugin_active('redux-framework/redux-framework.php') || '1.0' == $amp_plugin_manager_version   ) {
-			require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
-		    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
-		}
-	}
-add_action('after_setup_theme', 'ampforwp_load_amp_options');
 function ampforwp_load_amp_options(){
 	if ( ! class_exists( 'ReduxFramework' ) ) {
 	    require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';

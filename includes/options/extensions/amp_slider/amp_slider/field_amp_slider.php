@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
 /**
  * Redux Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'ReduxFramework_amp_slider' ) ) {
+if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_amp_slider' ) ) {
     class ReduxFramework_amp_slider {
 
         /**

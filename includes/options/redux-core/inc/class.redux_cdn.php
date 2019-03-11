@@ -1,5 +1,5 @@
 <?php
-
+    namespace ReduxCore\ReduxFramework;
     /**
      * Redux Framework CDN Container Class
      *
@@ -13,7 +13,7 @@
         exit;
     }
 
-    if ( ! class_exists( 'Redux_CDN' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_CDN' ) ) {
         class Redux_CDN {
             static public $_parent;
             static private $_set;
@@ -61,7 +61,7 @@
                     $cdn_response = @wp_remote_get( $prefix . $src_cdn );
 
                     if ( is_wp_error( $cdn_response ) || wp_remote_retrieve_response_code( $cdn_response ) != '200' ) {
-                        if ( class_exists( 'Redux_VendorURL' ) ) {
+                        if ( class_exists( 'ReduxCore\\ReduxFramework\\Redux_VendorURL' ) ) {
                             $src = Redux_VendorURL::get_url( $handle );
 
                             if ( $register ) {
@@ -98,7 +98,7 @@
             }
 
             private static function _vendor_plugin( $register = true, $handle, $src_cdn, $deps, $ver, $footer_or_media, $is_script = true ) {
-                if ( class_exists( 'Redux_VendorURL' ) ) {
+                if ( class_exists( 'ReduxCore\\ReduxFramework\\Redux_VendorURL' ) ) {
                     $src = Redux_VendorURL::get_url( $handle );
 
                     if ( $register ) {

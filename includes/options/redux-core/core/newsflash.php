@@ -1,12 +1,12 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
     // Added by KP on March 31, 2015.  So, if something is buggered, it's probably my bad!  ;-)
 
     if ( ! defined( 'ABSPATH' ) ) {
         exit;
     }
 
-    if ( ! class_exists( 'reduxNewsflash' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\reduxNewsflash' ) ) {
         class reduxNewsflash {
             private $parent = null;
             private $notice_data = '';

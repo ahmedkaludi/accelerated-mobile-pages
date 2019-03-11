@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
     class Redux_P {
 
         public function __construct() {
@@ -255,6 +255,7 @@
                 }
 
                 if ( isset( $contents ) ) {
+                    
                 }
 
             } else {

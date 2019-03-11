@@ -1,5 +1,5 @@
 <?php
-
+    namespace ReduxCore\ReduxFramework;
     /**
      * Redux Framework Private Functions Container Class
      *
@@ -13,7 +13,7 @@
     }
 
 // Don't duplicate me!
-    if ( ! class_exists( 'Redux_Functions' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Functions' ) ) {
 
         /**
          * Redux Functions Class
@@ -225,6 +225,7 @@
                 } else {
 
                     if ( empty( $check ) ) {
+                        
                     }
                     $check = isset( $check['id'] ) ? $check['id'] : $check;
                     if ( ! empty( $check ) ) {

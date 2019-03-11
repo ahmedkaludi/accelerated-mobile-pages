@@ -1,10 +1,10 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
     if ( ! defined( 'ABSPATH' ) ) {
         exit;
     }
 
-    if ( ! class_exists( 'reduxCorePanel' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\reduxCorePanel' ) ) {
         /**
          * Class reduxCorePanel
          */

@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
     /**
      * Customizer section representing widget area (sidebar).
      *
@@ -8,7 +8,7 @@
      * @since      4.1.0
      * @see        WP_Customize_Section
      */
-    class Redux_Customizer_Panel extends WP_Customize_Panel {
+    class Redux_Customizer_Panel extends \WP_Customize_Panel {
 
         /**
          * Type of this panel.
@@ -111,7 +111,7 @@
                 <div class="accordion-section-title" tabindex="0">
 				<span class="preview-notice"><?php
                         /* translators: %s is the site/panel title in the Customizer */
-                        echo sprintf( __( 'You are customizing %s', 'accelerated-mobile-pages' ), '<strong class="panel-title">' . esc_html( $this->title ) . '</strong>' );
+                        echo sprintf( __( 'You are customizing %s', 'redux-framework' ), '<strong class="panel-title">' . esc_html( $this->title ) . '</strong>' );
                     ?></span>
                 </div>
                 <?php if ( ! empty( $this->description ) ) : ?>
@@ -139,7 +139,7 @@
                 <div class="accordion-section-title">
 				<span class="preview-notice"><?php
                         /* translators: %s is the site/panel title in the Customizer */
-                        echo sprintf( __( 'You are customizing %s', 'redux-framework' ), '<strong class="panel-title">{{ data.title }}</strong>' );
+                        echo sprintf( __( 'You are customizing %s', 'accelerated-mobile-pages' ), '<strong class="panel-title">{{ data.title }}</strong>' );
                     ?></span>
                     <# if ( data.description ) { #>
                         <button class="customize-help-toggle dashicons dashicons-editor-help" tabindex="0" aria-expanded="false">

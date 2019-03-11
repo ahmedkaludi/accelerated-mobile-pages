@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
 // Exit if accessed directly
     if ( ! defined( 'ABSPATH' ) ) {
         exit;
@@ -90,6 +90,7 @@
                 }
 
                 $sortlists = $this->value;
+                
                 if ( ! empty( $sortlists ) ) {
                     foreach ( $sortlists as $section => $arr ) {
                         $sortlists[ $section ] = $this->replace_id_with_slug( $arr );
@@ -142,7 +143,7 @@
 
                     if ( $sortlists ) {
                         echo '<fieldset id="' . esc_attr($this->field['id']) . '" class="redux-sorter-container redux-sorter">';
-
+                        
                         foreach ( $sortlists as $group => $sortlist ) {
                             $filled = "";
 

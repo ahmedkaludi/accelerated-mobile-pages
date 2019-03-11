@@ -1,10 +1,10 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
     if ( ! defined( 'ABSPATH' ) ) {
         exit;
     }
 
-    if ( ! class_exists( 'reduxCoreEnqueue' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\reduxCoreEnqueue' ) ) {
         class reduxCoreEnqueue {
             public $parent = null;
 
@@ -35,7 +35,7 @@
 
                 $this->enqueue_fields();
 
-                add_filter("redux/{$this->parent->args['opt_name']}/localize", array('Redux_Helpers', 'localize'));
+                add_filter("redux/{$this->parent->args['opt_name']}/localize", array('ReduxCore\\ReduxFramework\\Redux_Helpers', 'localize'));
 
                 $this->set_localized_data();
                 
@@ -303,8 +303,8 @@
                 // if( isset( $field['type'] ) && $field['type'] != 'callback' ) {
                 if ( isset( $field['type'] ) && $field['type'] != 'callback' ) {
 
-                    $field_class = 'ReduxFramework_' . $field['type'];
-
+                    $field_class = 'ReduxCore\\ReduxFramework\\ReduxFramework_' . $field['type'];
+                    $field_class_old = 'ReduxFramework_' . $field['type'];
                     /**
                      * Field class file
                      * filter 'redux/{opt_name}/field/class/{field.type}
@@ -320,7 +320,10 @@
                             }
                         }
 
-                        if ( ( method_exists( $field_class, 'enqueue' ) ) || method_exists( $field_class, 'localize' ) ) {
+                    if ( class_exists($field_class_old) ) {
+                        $field_class = $field_class_old;
+                    }
+                        if ( ( method_exists( $field_class, 'enqueue' ) ) || method_exists( $field_class, 'localize' )) {
 
                             if ( ! isset( $this->parent->options[ $field['id'] ] ) ) {
                                 $this->parent->options[ $field['id'] ] = "";

@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
 class Redux_Options_upload {
 
     /**

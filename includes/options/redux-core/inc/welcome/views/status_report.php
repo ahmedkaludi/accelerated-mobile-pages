@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
     /**
      * Admin View: Page - Status Report
      */

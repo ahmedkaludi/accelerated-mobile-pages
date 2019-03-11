@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
@@ -52,7 +52,7 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
                 $switch_text = '<span class="'.$class_on.'">'.$this->field['on'].'</span><span class="'.$class_off.'">'.$this->field['off'].'</span>';
             }           
             
-            echo '<div class="switch-options">
+             echo '<div class="switch-options">
                         <label class="ios7-switch">
                             <input class="switch-on-off" type="checkbox" '.($cb_enabled==' selected' ? 'checked' : '').' data-id="' . $this->field['id'] . '">
                             <span></span>
@@ -62,6 +62,8 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
             echo $switch_text;
             echo '</div>';
 
+            
+            
             /* echo '<div class="switch-options">';
             echo '<label class="cb-enable' . $cb_enabled . '" data-id="' . $this->field['id'] . '"><span>' . $this->field['on'] . '</span></label>';
             echo '<label class="cb-disable' . $cb_disabled . '" data-id="' . $this->field['id'] . '"><span>' . $this->field['off'] . '</span></label>';

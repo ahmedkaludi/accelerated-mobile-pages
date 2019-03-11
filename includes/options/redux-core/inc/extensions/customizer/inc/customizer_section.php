@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
 
     /**
      * Customizer section representing widget area (sidebar).
@@ -9,7 +9,7 @@
      * @since      4.1.0
      * @see        WP_Customize_Section
      */
-    class Redux_Customizer_Section extends WP_Customize_Section {
+    class Redux_Customizer_Section extends \WP_Customize_Section {
 
         /**
          * Type of this section.

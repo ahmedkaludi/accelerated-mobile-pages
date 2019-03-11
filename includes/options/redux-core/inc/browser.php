@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
 /**
  * File: Browser.php
  * Author: Chris Schuld (http://chrisschuld.com/)
