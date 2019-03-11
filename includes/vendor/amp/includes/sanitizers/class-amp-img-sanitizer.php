@@ -159,7 +159,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 			$pin_node = AMP_DOM_Utils::create_node( $this->dom, 'amp-pinterest', array('height'=>18, 'width'=>56, 'data-do'=>'buttonPin','data-url'=> get_permalink(),'data-media'=>$new_attributes['src'], 'data-description'=>$data_description) );
 			$pin_div_node = AMP_DOM_Utils::create_node( $this->dom, 'div', array('class'=>'ampforwp_pin_img') );
 			$pin_div_node->appendChild( $pin_node );
-			$new_node->parentNode->appendChild( $pin_div_node );
+			$new_node->appendChild( $pin_div_node );
 			$this->is_pin_image = true;
 		}
 		if ( isset($new_attributes['on']) && '' != $new_attributes['on'] ) {
