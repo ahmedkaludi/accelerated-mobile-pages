@@ -1097,12 +1097,15 @@ function ampforwp_get_attachment_id( $url , $imagetype='full') {
 		}
 
 	}
-	$imageDetails = wp_get_attachment_image_src($attachment_id, $imagetype, false);
-	if($imageDetails){
-		$image = get_post($attachment_id);
-		$caption = $image->post_excerpt;
-		$imageDetails['alt'] = get_post_meta($attachment_id,'_wp_attachment_image_alt', true);
-		$imageDetails['caption'] = $caption;
+	$imageDetails = array();
+	if ( $attachment_id ) {
+		$imageDetails = wp_get_attachment_image_src($attachment_id, $imagetype, false);
+		if($imageDetails){
+			$image = get_post($attachment_id);
+			$caption = $image->post_excerpt;
+			$imageDetails['alt'] = get_post_meta($attachment_id,'_wp_attachment_image_alt', true);
+			$imageDetails['caption'] = $caption;
+		}
 	}
 	return $imageDetails;
 }
