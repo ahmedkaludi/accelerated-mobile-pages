@@ -1,5 +1,14 @@
 == Changelog ==
 
+= 0.9.97.41 (11th March 2019) =
+* Added: Color picker for Footer Area #2320
+* Added: Compatibility with WP User Avatar plugin to show the gravatar #2772
+* Fixed: Options Panel not showing, says "You are not allowed to access this page" #2377
+* Fixed: faster-image libraries not being able to determine dimensions #2692
+* Fixed: Changes in endpoint to ?amp, Re-direct " /amp " to " ?amp " #2480
+* Fixed: Font style getting change on Custom Front page #2594
+* Fixed: When the user is directed to the AMP version of the page it changes the URL slighltly (swaps out characters) #2913
+
 = 0.9.97.40 (9th March 2019) =
 * Added: Smooth scrolling for anchors links and jumping links within a page #2062
 * Added: Option to Enable/Disable Merriweather font in Design-1
