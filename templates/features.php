@@ -1190,6 +1190,8 @@ function ampforwp_remove_schema_data() {
 	// Digg Digg Compatibility
     remove_filter('the_excerpt', 'dd_hook_wp_content');
     remove_filter('the_content', 'dd_hook_wp_content');
+    //Custom Frontpage not working when we select the option to display blog in enfold theme #2943
+	remove_filter('pre_option_page_for_posts', 'avia_page_for_posts_filter');
 }
 
 // 22. Removing author links from comments Issue #180
