@@ -574,6 +574,11 @@ function ampforwp_new_dir( $dir ) {
 				$data['amp_component_scripts']['amp-facebook-like'] = 'https://cdn.ampproject.org/v0/amp-facebook-like-0.1.js';
 			}
 		}
+		if(true == ampforwp_get_setting('ampforwp-facebook-like-button') && true == ampforwp_get_setting('enable-single-social-icons')){
+			if(empty($data['amp_component_scripts']['amp-facebook-like'])){
+				$data['amp_component_scripts']['amp-facebook-like'] = 'https://cdn.ampproject.org/v0/amp-facebook-like-0.1.js';
+			}
+		}
 		return $data;
 	}	
 
