@@ -14,7 +14,6 @@ use ReduxCore\ReduxFramework\Redux;
         'id'         => 'pwa-for-wp',
         'desc'      => '',
         'subsection' => true,
-        'class'      => 'ampforwp_new_features ',
         'fields'     => array(
             array(
                   'id' => 'ampforwp-pwa-for-wp',

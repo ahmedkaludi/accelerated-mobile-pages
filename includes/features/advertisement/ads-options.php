@@ -508,7 +508,7 @@
                 $fields[] =    array(
                             'id' => 'ampforwp-ads-section',
                             'type' => 'section',
-                            'title' => esc_html__('Introducing Ads for WP Plugin', 'accelerated-mobile-pages'),
+                            'title' => esc_html__('Introducing Ads for WP', 'accelerated-mobile-pages'),
                             'indent' => true,
                             'layout_type' => 'accordion',
                             'accordion-open'=> 1, 
@@ -517,7 +517,7 @@
                   'id'       => 'ampforwp-ads-module',
                   'type'     => 'raw',
                   'content'  => '<div class="ampforwp-ads-data-update">
-                                        '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? 'New Update available for Ads for WP:': 'Thank you for upgrading the Ads for WP').'
+                                        '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? 'A Revolutionary new Ad plugin from our team which is dedicated to make the #1 Ad solution in the world.': 'Thank you for upgrading the Ads for WP').'
                                         <div class="row">
                                             
                                                 '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? '

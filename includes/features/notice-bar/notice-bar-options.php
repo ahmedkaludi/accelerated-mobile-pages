@@ -13,7 +13,6 @@ function ampforwp_notice_bar_options($opt_name){
        'title'      => esc_html__( 'Notice Bar & GDPR', 'accelerated-mobile-pages' ),
           'desc'       => $cta_desc ,
        'id'         => 'amp-notifications',
-       'class'      => 'ampforwp_new_features ',
        'subsection' => true,
        'fields'     => array(
            array(
