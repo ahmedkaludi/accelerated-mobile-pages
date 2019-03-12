@@ -912,6 +912,8 @@ div#section-ampforwp-ads-section h3:before{
     position: relative;
     top: 1px;
     left: -6px;
+    font-size: 10px;
+    line-height: 10px;
 }
 .redux-main .redux-field-container{
     padding: 18px 10px 18px 0;
