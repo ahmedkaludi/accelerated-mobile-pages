@@ -2930,6 +2930,18 @@ function ampforwp_header_html_output() {
   if( $redux_builder_amp['amp-header-text-area-for-html'] ) {
     echo $redux_builder_amp['amp-header-text-area-for-html'] ;
   }
+  // amphtml tag when AMP Takeover is enabled #2550
+  if(ampforwp_get_setting('ampforwp-amp-takeover') == true){
+    $amp_url = "";
+    $amp_url = ampforwp_amphtml_generator();
+    $canonical_url = "";
+    $canonical_url 	= explode('/', $amp_url);
+	$canonical_url 	= array_flip($canonical_url);
+	unset($canonical_url['amp']); 
+	$canonical_url 	= array_flip($canonical_url);
+	$canonical_url = implode('/' , $canonical_url);
+    printf('<link rel="amphtml" href="%s" />', user_trailingslashit(esc_url($canonical_url)));
+}
 }
 
 
