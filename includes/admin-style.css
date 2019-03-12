@@ -805,7 +805,7 @@ visibility: hidden;
     font-size: 14px;
     color: #333;}
 .ampforwp-st-data-update .col-1{width: 30%;float: left;} 
-.ampforwp-st-data-update .col-3 li:before {
+.ampforwp-st-data-update .col-3 li:before , .ampforwp-ads-data-update .col-3 li:before{
     content: "\f147";
     font-family: dashicons;
     position: relative;
@@ -884,3 +884,21 @@ visibility: hidden;
 #finalized-import-structure-data-from-amp{
     margin-left:8px;vertical-align: baseline
 }
+
+div#section-amp-ads_1,table#section-table-amp-ads_1{
+    max-width: 69%; 
+}
+div#section-ampforwp-ads-section , table#section-table-ampforwp-ads-section{
+    max-width: 30%;
+    float: right;
+    position: relative;
+    margin-top: -37px;
+}
+ 
+div#section-amp-ads_2 {
+    clear: both;
+}
+
+div#ampforwp-adsforwp-activation-call{
+    margin-top: 20px;
+ }

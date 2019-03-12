@@ -21,42 +21,6 @@
  //
  add_filter('ampforwp_ads_option_fields', 'ampforwp_add_ads_fields');
  function ampforwp_add_ads_fields($fields){
-       $fields[] =    array(
-                            'id' => 'ampforwp-ads-section',
-                            'type' => 'section',
-                            'title' => esc_html__('Ads has been Improved!', 'accelerated-mobile-pages'),
-                            'indent' => true,
-                            'layout_type' => 'accordion',
-                            'accordion-open'=> 1, 
-                        );
-        $fields[] =   array(
-                  'id'       => 'ampforwp-ads-module',
-                  'type'     => 'raw',
-                  'content'  => '<div class="ampforwp-st-data-update">
-                                        '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? 'New Update available for Ads for WP:': 'Thank you for upgrading the Ads for WP').'
-                                        <div class="row">
-                                            
-                                                '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? '
-                                                <div class="col-3"><ul>
-                                                    <li>Add Unlimited Incontent Ads</li>
-                                                    <li>Group Ads</li>
-                                                    <li>Display type</li>
-                                                </ul> </div>' : '')
-                                            .'
-                                            <div class="col-1">
-                                                '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? 
-                                                    '
-                        <div class="install-now ampforwp-activation-call-module-upgrade button  " id="ampforwp-adsforwp-activation-call" data-secure="'.wp_create_nonce('verify_module').'">
-                            <p>Upgrade for Free</p>
-                        </div>' :
-                                                    '<a href="'.admin_url('admin.php?page=adsforwp&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Ads for WP settings</p></div></a>'
-                                                )
-                                                .'
-                                                 &nbsp;<a href="https://ampforwp.com/tutorials/article/what-is-ads-for-wp-update-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>
-                                            </div>
-                                    </div>' 
-                                    
-        );
         if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {
 
                 $fields[] = array(
@@ -541,7 +505,42 @@
                             'default'   => 0,
                             'required' => array('enable-amp-ads-8', '=' , '1'),
                     );           
-
+                $fields[] =    array(
+                            'id' => 'ampforwp-ads-section',
+                            'type' => 'section',
+                            'title' => esc_html__('Introducing Ads for WP Plugin', 'accelerated-mobile-pages'),
+                            'indent' => true,
+                            'layout_type' => 'accordion',
+                            'accordion-open'=> 1, 
+                        );
+        $fields[] =   array(
+                  'id'       => 'ampforwp-ads-module',
+                  'type'     => 'raw',
+                  'content'  => '<div class="ampforwp-ads-data-update">
+                                        '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? 'New Update available for Ads for WP:': 'Thank you for upgrading the Ads for WP').'
+                                        <div class="row">
+                                            
+                                                '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? '
+                                                <div class="col-3"><ul>
+                                                    <li>Add Unlimited Incontent Ads</li>
+                                                    <li>Group Ads</li>
+                                                    <li>Display type</li>
+                                                </ul> </div>' : '')
+                                            .'
+                                            <div>
+                                                '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? 
+                                                    '
+                        <div class="install-now ampforwp-activation-call-module-upgrade button  " id="ampforwp-adsforwp-activation-call" data-secure="'.wp_create_nonce('verify_module').'">
+                            <p>Upgrade for Free</p>
+                        </div>' :
+                                                    '<a href="'.admin_url('admin.php?page=adsforwp&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Ads for WP settings</p></div></a>'
+                                                )
+                                                .'
+                                                 &nbsp;<br/><a href="https://ampforwp.com/tutorials/article/what-is-ads-for-wp-update-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>
+                                            </div>
+                                    </div>' 
+                                    
+        );
                 $fields[] =     array(
                             'id' => 'amp-ads_2',
                            'type' => 'section',
