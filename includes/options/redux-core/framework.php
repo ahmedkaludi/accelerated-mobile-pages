@@ -638,7 +638,7 @@
 
                 $basepath = apply_filters( "redux/textdomain/basepath/{$this->args['opt_name']}", $basepath );
 
-                load_plugin_textdomain( 'redux-framework', false, $basepath . 'languages' );
+                load_plugin_textdomain( 'accelerated-mobile-pages', false, $basepath . 'languages' );
             }
             // _internationalization()
 
