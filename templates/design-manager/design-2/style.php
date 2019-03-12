@@ -475,6 +475,15 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
   flex-wrap:wrap;
   align-items: center;
 }
+.w-bl .search-submit{
+  	text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    line-height: 0;
+    display: inline-block;
+    opacity: 0;
+}
 .w-bl .search-button{
     border: 1px solid;
     width: 10px;
