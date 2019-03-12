@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 0.9.97.41
+Stable tag: 0.9.97.43
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -186,13 +186,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.41 (11th March 2019) =
-* Added: Color picker for Footer Area #2320
-* Added: Compatibility with WP User Avatar plugin to show the gravatar #2772
-* Fixed: Options Panel not showing, says "You are not allowed to access this page" #2377
-* Fixed: faster-image libraries not being able to determine dimensions #2692
-* Fixed: Changes in endpoint to ?amp, Re-direct " /amp " to " ?amp " #2480
-* Fixed: Font style getting change on Custom Front page #2594
-* Fixed: When the user is directed to the AMP version of the page it changes the URL slighltly (swaps out characters) #2913
+= 0.9.97.43 (12th March 2019) =
+* Fixed: Fallback for Redux classes #2377
+* Fixed: Search widget CSS for Design-2 #1400
+* Fixed: Navigation Menu CSS for Swift theme #2593
 
 Full changelog available in changelog.txt

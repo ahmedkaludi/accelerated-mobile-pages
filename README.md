@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 0.9.97.41
+Stable tag: 0.9.97.43
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,14 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.43 (12th March 2019) =
+* Fixed: Fallback for Redux classes #2377
+* Fixed: Search widget CSS for Design-2 #1400
+* Fixed: Navigation Menu CSS for Swift theme #2593
+
+= 0.9.97.42 (11th March 2019) =
+* Fixed: Incompatibility with AMP Plugin Manager
 
 = 0.9.97.41 (11th March 2019) =
 * Added: Color picker for Footer Area #2320

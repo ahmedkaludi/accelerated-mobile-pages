@@ -1,5 +1,13 @@
 == Changelog ==
 
+= 0.9.97.43 (12th March 2019) =
+* Fixed: Fallback for Redux classes #2377
+* Fixed: Search widget CSS for Design-2 #1400
+* Fixed: Navigation Menu CSS for Swift theme #2593
+
+= 0.9.97.42 (11th March 2019) =
+* Fixed: Incompatibility with AMP Plugin Manager
+
 = 0.9.97.41 (11th March 2019) =
 * Added: Color picker for Footer Area #2320
 * Added: Compatibility with WP User Avatar plugin to show the gravatar #2772
