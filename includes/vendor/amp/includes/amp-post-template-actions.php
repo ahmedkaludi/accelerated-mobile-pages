@@ -18,7 +18,7 @@ function amp_post_template_add_canonical( $amp_template ) {
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_meta_generator' );
 function amp_post_template_add_meta_generator() {
 	?>
-	<meta name="generator" content="AMP for WP" />
+	<meta name="generator" content="AMP for WP <?php echo AMPFORWP_VERSION ?>" />
 <?php
 }
 
