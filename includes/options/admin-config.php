@@ -5967,18 +5967,17 @@ $single_page_options = array(
           array(
               'id'        =>  'enable-single-facebook-chat',
               'type'      =>  'switch',
-              //'required'  => array('enable-single-social-icons', '=' , '1'),
-              'title'     =>  __('Facebook Live Chat', 'accelerated-mobile-pages'),
+              'title'     =>  esc_html__('Facebook Live Chat', 'accelerated-mobile-pages'),
               'default'   =>  false,
           ),
         // Facebook Page ID
           array(
                'id'       => 'amp-facebook-chat-username',
-               'title'    => __('Facebook Page ID', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => __('example: https://www.facebook.com/ampforwp/'),
+               'title'    => esc_html__('Facebook Page ID', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('example: ampforwp'),
                'type'     => 'text',
                'required'  => array('enable-single-facebook-chat', '=' , '1'),
-               'placeholder'  => __('Enter your facebook page id','accelerated-mobile-pages'),
+               'placeholder'  => esc_html__('Enter your facebook page id','accelerated-mobile-pages'),
                'default'  => '',
           ),
 

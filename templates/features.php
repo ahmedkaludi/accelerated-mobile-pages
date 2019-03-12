@@ -6582,7 +6582,7 @@ if ( ! function_exists('ampforwp_fb_chat_lightbox') ) {
 				<div class="amp-fb-chat-wrap">
  				<amp-facebook-page width="310" height="310"
 			       	layout="fixed"
-			       	data-href="https://www.facebook.com/<?=$page_id?>"
+			       	data-href="https://www.facebook.com/<?php echo esc_html($page_id)?>"
 			       	data-adapt-container-width="true"
 			       	data-show-facepile="true"
 			       	data-hide-cover="false"
