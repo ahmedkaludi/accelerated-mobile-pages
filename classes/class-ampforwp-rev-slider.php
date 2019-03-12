@@ -143,11 +143,12 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		}
 
 		/*Filter*/
-		$carousel_markup = '';
+		$carousel_markup = $amp_image_lightbox = '';
 		
 		$carousel_markup_all = array(
 			'1'=>array(
-						'main-html'=>'{{with_carousel}}',
+						'main-html'=>'{{with_carousel}}
+						{{amp_image_lightbox}}',
 						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption {{openbrack}}class{{closebrack}}="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span {{openbrack}}text{{closebrack}}="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
 						'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
 						'gallery_css' => '',
@@ -155,7 +156,9 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 						'scripts' => array()
 									),
 			'2' => array(
-						'main-html'=>'{{with_carousel}} {{with_carousel_thumbnail}}',
+						'main-html'=>'{{with_carousel}} 
+						{{with_carousel_thumbnail}}
+						{{amp_image_lightbox}}',
 						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption {{openbrack}}class{{closebrack}}="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span {{openbrack}}text{{closebrack}}="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
 						'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
 						'carousel_with_thumbnail_html'=>'<button on="tap:carousel-with-carousel-preview-{{unique_id}}.goToSlide(index={{unique_index}})" class="amp-carousel-slide amp-scrollable-carousel-slide">{{thumbnail}}</button>',
@@ -168,13 +171,7 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 									),
 			'3' => array(
 						'main-html'=>'<div class="gal_w">{{with_images}}</div>
-						<amp-image-lightbox id="gallery-lightbox" layout="nodisplay">
-					      <div on="tap:gallery-lightbox.close" role="button"
-					          tabindex="0">
-					          <button class="cls-btn" on="tap:gallery-lightbox.close"
-					            role="button" tabindex="0"></button>
-					      </div>
-					    </amp-image-lightbox>',
+						{{amp_image_lightbox}}',
 						'image-with-caption-html'=>'',
 						'image-without-caption-html' =>'{{main_images}}',
 						'gallery_css' => '
@@ -204,10 +201,17 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					'layout' => 'fill',
 					'class'  => 'amp-carousel-img',
 				);
-			if( isset($redux_builder_amp['ampforwp-gallery-design-type']) && $redux_builder_amp['ampforwp-gallery-design-type'] == 3  ){
+			if(  3 == ampforwp_get_setting('ampforwp-gallery-design-type') || true == ampforwp_get_setting('ampforwp-gallery-lightbox') ){
 				$design3_additional_attr = array('on'=> 'tap:gallery-lightbox', 'role'=>'button', 
                 	'tabindex'=>$key);
 				$amp_img_arr = array_merge($amp_img_arr, $design3_additional_attr);
+				$amp_image_lightbox = '<amp-image-lightbox id="gallery-lightbox" layout="nodisplay">
+					      <div on="tap:gallery-lightbox.close" role="button"
+					          tabindex="0">
+					          <button class="cls-btn" on="tap:gallery-lightbox.close"
+					            role="button" tabindex="0"></button>
+					      </div>
+					    </amp-image-lightbox>';
 			}
 			$amp_images[$key] = AMP_HTML_Utils::build_tag(
 				'amp-img',
@@ -295,6 +299,7 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		//last changes
 		$returnCompleteHtml = str_replace('{{with_carousel}}', $amp_carousel, $returnCompleteHtml);
 		$returnCompleteHtml = str_replace('{{with_carousel_thumbnail}}', $amp_carousel_thumbnail, $returnCompleteHtml);
+		$returnCompleteHtml = str_replace('{{amp_image_lightbox}}', $amp_image_lightbox, $returnCompleteHtml);
 		$returnCompleteHtml = str_replace('{{with_images}}', implode( PHP_EOL, $images ), $returnCompleteHtml);
 		return $returnCompleteHtml;
 	}
