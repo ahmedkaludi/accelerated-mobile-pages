@@ -245,14 +245,6 @@ function amp_post_pagination($args='' ){
 	}
 }
 
-// Call Now
-function amp_call_now(){
-	global $loadComponent;
-	if(isset($loadComponent['AMP-call-now']) && $loadComponent['AMP-call-now']==true){
-		amp_call_button_html_output();
-	}
-}
-
 // Breadcrumb
 function amp_breadcrumb(){
 	global $loadComponent;
