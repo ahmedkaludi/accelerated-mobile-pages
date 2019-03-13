@@ -1,5 +1,5 @@
  <script type="text/x-template" id="fields-data-template">
-    <div class="amp-form-control" :id="field.name" data-type="text" v-if="field.type=='text' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="text" v-if="field.type=='text' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         
         <div class="form-label">{{field.label}}</div>
         <div class="form-field"><input type="text" class="full text" :id="field.id" :name="field.name" :placeholder="field.placeholder"  v-model="field.default">
@@ -7,7 +7,7 @@
         </div>
          <div class="clearfix"></div>
     </div>
-    <div class="amp-form-control" :id="field.name" data-type="hidden" v-else-if="field.type=='hidden' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="hidden" v-else-if="field.type=='hidden' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label">{{field.label}}</div>
         <div class="form-field"><input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
         <div class="help-msg" v-html="field.helpmessage"></div>
@@ -15,7 +15,7 @@
         <div class="clearfix"></div>
     </div>
    
-    <div class="amp-form-control" :id="field.name" data-type="number" v-else-if="field.type=='number' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="number" v-else-if="field.type=='number' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label">{{field.label}}</div>
         <div class="form-field"><input type="number" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
         <div class="help-msg" v-html="field.helpmessage"></div>
@@ -24,7 +24,7 @@
     </div>
     
     <?php /*Normal Textarea*/?>
-    <div class="amp-form-control" :id="field.name" data-type='textarea' v-else-if="field.type=='textarea' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type='textarea' v-else-if="field.type=='textarea' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label">{{field.label}}</div>
         <div class="form-field"><textarea class="full textarea" :id="field.id" :name="field.name" v-model="field.default"></textarea>
         <div class="help-msg" v-html="field.helpmessage"></div>
@@ -32,7 +32,7 @@
         <div class="clearfix"></div>
     </div>
     
-    <div class="amp-form-control" :id="field.name" data-type="text-editor" v-else-if="field.type=='text-editor' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="text-editor" v-else-if="field.type=='text-editor' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label" style="margin-top: 10px;">{{field.label}}</div>
         <div class="form-field"><textarea-wysiwyg :default-text="field" :fieldindex="fieldkey"></textarea-wysiwyg>
         <div class="help-msg" v-html="field.helpmessage"></div>
@@ -40,7 +40,7 @@
         <div class="clearfix"></div>
     </div>
     
-    <div class="amp-form-control" :id="field.name" data-type="select" v-else-if="field.type=='select' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="select" v-else-if="field.type=='select' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label">{{field.label}}</div>
         <div class="form-field">
             <select type="text" class="full text" :id="field.id" :name="field.name" v-model="field.default" v-if="field.options_details.length!=0" :data-ajax="field.ajax" :data-ajax-dep="field.ajax_dep" :data-ajax-action="field.ajax_action" @change="changeOnSelect()">
@@ -58,7 +58,7 @@
         <div class="clearfix"></div>
     </div>
    
-    <div class="amp-form-control" :id="field.name" data-type="checkbox" v-else-if="field.type=='checkbox' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="checkbox" v-else-if="field.type=='checkbox' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label">{{field.label}}</div>     
         <div class="form-field">
             <label class="form-label-checkbox" v-for="(val,index) in field.options"  >
@@ -69,7 +69,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    <div class="amp-form-control" :id="field.name" data-type="checkbox_bool" v-else-if="field.type=='checkbox_bool' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="checkbox_bool" v-else-if="field.type=='checkbox_bool' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label">{{field.label}}</div>     
         <div class="form-field">
             <label class="form-label-checkbox" v-for="(val,index) in field.options"  >
@@ -81,7 +81,7 @@
         <div class="clearfix"></div>
     </div>
     
-    <div class="amp-form-control" :id="field.name" data-type="radio" v-else-if="field.type=='radio' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="radio" v-else-if="field.type=='radio' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label">{{field.label}}</div>
         <div class="form-field">
             <label  class="form-label-radio" v-for="(val,index) in field.options" >
@@ -92,7 +92,7 @@
         <div class="clearfix"></div>
     </div>
   
-    <div class="amp-form-control" :id="field.name" data-type="spacing" v-else-if="field.type=='spacing' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" style="clearfix" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="spacing" v-else-if="field.type=='spacing' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" style="clearfix" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label">{{field.label}}</div>
         <div class="form-field">
             <label class="amppb-mar-padd">
@@ -120,7 +120,7 @@
     
     
     
-    <div class="amppb-ftype-upload amp-form-control" :id="field.name" data-type="upload" v-else-if="field.type=='upload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amppb-ftype-upload amp-form-control" :id="field.name" data-type="upload" v-else-if="field.type=='upload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         
         <div class="form-label" style="position: relative;display: inline-block; width: 30%;">{{field.label}}</div>
         <div class="form-field">
@@ -138,7 +138,7 @@
     
     
 
-    <div class="amp-form-control" :id="field.name" data-type="icon-selector" v-else-if="field.type=='icon-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="icon-selector" v-else-if="field.type=='icon-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label">{{field.label}}</div>
         <div class="form-field">
             <span class="button" @click="openIconOptions=!openIconOptions;">Select Icon</span>
@@ -158,7 +158,7 @@
         <div class="clearfix"></div>
     </div>
 
-    <div class="amp-form-control" :id="field.name" data-type="gradient-selector" v-else-if="field.type=='gradient-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="gradient-selector" v-else-if="field.type=='gradient-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
             <div class="form-label">{{field.label}}</div>
             <div class="form-field">
                 <div style="width:40px;height:20px;display: inline-block;" :style="field.default"></div>
@@ -391,7 +391,7 @@
         <div class="clearfix"></div>
     </div>
 
-    <div class="amp-form-control" :id="field.name" data-type="color-picker" v-else-if="field.type=='color-picker' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="color-picker" v-else-if="field.type=='color-picker' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label label_txt">{{field.label}}</div>
         <div class="form-field color-wrapper"  style="line-height: 35px" >
             <color-picker :colorfield="field"></color-picker>
@@ -400,7 +400,7 @@
    
         <div class="clearfix"></div>
     </div>
-    <div class="amp-form-control" :id="field.name" data-type="layout-image-picker" v-else-if="field.type=='layout-image-picker' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+    <div class="amp-form-control" :id="field.name" data-type="layout-image-picker" v-else-if="field.type=='layout-image-picker' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field,repeater, repeterIndex)">
         <div class="form-label label_txt">{{field.label}}</div>
         <div class="form-field color-wrapper"  style="line-height: 35px" >
             <div  class="layout-image-picker" v-for="(option, key, index) in field.options_details"
