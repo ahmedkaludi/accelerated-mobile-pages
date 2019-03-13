@@ -3980,6 +3980,12 @@ if( ! function_exists(' ampforwp_youtube_modified_params ') ){
 			}
 			// Remove that param from URL
 			$amp_youtube['data-videoid'] = preg_replace('/&(.*)/', '', $amp_youtube['data-videoid']);
+			// Plyr Plugin Compatibility #1505
+			if ( class_exists('Plyr') ) {
+				$amp_youtube['data-param-rel'] 		= 0;
+				$amp_youtube['data-param-autoplay'] = 0;
+				$amp_youtube['data-param-showinfo'] = 0;
+			}
 		}
 		return $amp_youtube;
 	}
