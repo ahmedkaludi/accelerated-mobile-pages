@@ -517,7 +517,7 @@
                   'id'       => 'ampforwp-ads-module',
                   'type'     => 'raw',
                   'content'  => '<div class="ampforwp-ads-data-update">
-                                        '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? esc_html__('A Revolutionary new Ad plugin from our team which is dedicated to make the #1 Ad solution in the world.','accelerated-mobile-pages'): esc_html('Thank you for upgrading the Ads for WP','accelerated-mobile-pages')).'
+                                        '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? esc_html__('A Revolutionary new Ad plugin from our team which is dedicated to make the #1 Ad solution in the world.','accelerated-mobile-pages'): esc_html__('Thank you for upgrading the Ads for WP','accelerated-mobile-pages')).'
                                         <div class="row">
                                             
                                                 '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? '
