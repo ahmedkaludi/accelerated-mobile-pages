@@ -4952,17 +4952,14 @@ if ( ! function_exists('ampforwp_gravatar_checker') ) {
 		} else {
 			$uri = sprintf( 'http://%d.gravatar.com/avatar/%s', $gravatar_server, $hash );
 		}
-		$args = array();
-		$args = get_avatar_data($email, $args);
-		$has_valid_avatar = $args['found_avatar'];
-		// If its 404
-		if (!preg_match("|200|", $headers[0])) {
-			$has_valid_avatar = FALSE;
-		} 
-		// Else if it is 200
-		else {
-			$has_valid_avatar = TRUE;
-		}
+		$response = wp_remote_get(esc_url_raw($uri));
+ 		$response_code = wp_remote_retrieve_response_code($response);
+		//If its 404
+		if ($response_code!=200) {
+		 	$has_valid_avatar = FALSE;
+		}else {
+		 	$has_valid_avatar = TRUE;
+	 	}
 		return $has_valid_avatar;
 	}
 }
