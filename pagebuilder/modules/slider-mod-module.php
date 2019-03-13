@@ -2,13 +2,13 @@
 $output = '
 <div {{if_id}}id="{{id}}"{{ifend_id}} class="{{user_class}}">
 {{if_condition_carousel_layout_type==1}}
-	<amp-carousel {{if_condition_lightbox_gallery==lightbox}} lightbox {{ifend_condition_lightbox_gallery_1}}
+	<amp-carousel {{if_condition_lightbox_gallery==1}} lightbox {{ifend_condition_lightbox_gallery_1}}
 	width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
 		{{repeater_image}}
 	</amp-carousel>
 {{ifend_condition_carousel_layout_type_1}}
 {{if_condition_carousel_layout_type==2}}
-	<amp-carousel {{if_condition_lightbox_gallery==lightbox}} lightbox {{ifend_condition_lightbox_gallery_1}} id="carousel-with-preview-{{unique_cell_id}}" width="400" height="300" layout="responsive" type="slides">
+	<amp-carousel {{if_condition_lightbox_gallery==1}} lightbox {{ifend_condition_lightbox_gallery_1}} id="carousel-with-preview-{{unique_cell_id}}" width="400" height="300" layout="responsive" type="slides">
 		{{repeater_image}}
 	</amp-carousel>
 	<div class="slid-prv">
@@ -18,7 +18,7 @@ $output = '
 {{if_condition_carousel_layout_type==3}}
 <div class="amp-sld3">
 	<div class="amp-gallery">
-		<amp-carousel {{if_condition_lightbox_gallery==lightbox}} lightbox {{ifend_condition_lightbox_gallery_1}} class="howSectionImageInPhone" id="how-carousel" width="1024" height="682"
+		<amp-carousel {{if_condition_lightbox_gallery==1}} lightbox {{ifend_condition_lightbox_gallery_1}} class="howSectionImageInPhone" id="how-carousel" width="1024" height="682"
             layout="responsive" type="slides" loop [slide]="howSectionSelected.howSlide" on="slideChange:AMP.setState({howSectionSelected: {howSlide: event.index}})">
 		{{repeater_image}}
 		</amp-carousel>
@@ -37,7 +37,7 @@ $output = '
 {{ifend_condition_carousel_layout_type_3}}
 {{if_condition_carousel_layout_type==4}}
 	<div class="amp-sld4">
-		<amp-carousel  {{if_condition_lightbox_gallery==lightbox}} lightbox {{ifend_condition_lightbox_gallery_1}} id="card-carousel" height="300" type="carousel"  >
+		<amp-carousel  {{if_condition_lightbox_gallery==1}} lightbox {{ifend_condition_lightbox_gallery_1}} id="card-carousel" height="300" type="carousel"  >
 			{{repeater_testimonilas}}
 		</amp-carousel>
 	</div>
@@ -367,7 +367,7 @@ return array(
 								'options'	=>array(
 												array(
 													'label'=>esc_html__('Lightbox','accelerated-mobile-pages'),
-													'value'=>'lightbox',
+													'value'=>1,
 												),
 											),
 								'content_type'=>'html',
@@ -594,7 +594,7 @@ return array(
 	 						'label'		=>'amp-lightbox-gallery',
 	 						'default'	=>'https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js',	
 	           				'content_type'=>'js',
-	           				'required'  => array('lightbox_gallery'=>'lightbox'),
+	           				'required'  => array('lightbox_gallery'=>1),
  						),
  			),
 		'front_template'=> $output,
