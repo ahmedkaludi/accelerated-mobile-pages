@@ -709,13 +709,14 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 											}
 										}
 										if($moduleField['type']=="upload"){
-											$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
+											$image_alt = $imageUrl = $imageWidth = $imageHeight = $image_caption = '';
 											if( isset( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"] ) ) {
 												$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"];
 											 	$imageUrl = $replace[0];
 												$imageWidth = $replace[1];
 												$imageHeight = $replace[2];
 												$image_alt = (isset($replace['alt'])? $replace['alt']: "");
+												$image_caption = (isset($replace['caption'])? $replace['caption']: "");
 											}elseif($replace != ""){
 												$imageDetails = ampforwp_get_attachment_id( $replace);
 												if(is_array($imageDetails)){
@@ -723,6 +724,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 													$imageWidth = $imageDetails[1];
 													$imageHeight = $imageDetails[2];
 													$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
+													$image_caption = (isset($imageDetails['caption'])? $imageDetails['caption']: "");
 												}
 											}
 											$imageUrl = esc_url($imageUrl);
@@ -766,6 +768,15 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 															 ), 
 														 array($image_alt,
 														 	   $image_alt
+														 	), 
+														$repeaterFrontTemplate
+													);
+											$repeaterFrontTemplate = str_replace(
+														array('{{image_caption}}',
+															  '{{image_caption_'.$moduleField['name'].'}}'
+															 ), 
+														 array($image_caption,
+														 	   $image_caption
 														 	), 
 														$repeaterFrontTemplate
 													);
@@ -892,13 +903,14 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 								if(!is_array($replace)){
 									
 									if($field['type']=="upload"){
-										$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
+										$image_alt = $imageUrl = $imageWidth = $imageHeight = $image_caption = '';
 										if(isset($contentArray[$field['name']."_image_data"])){
 										 	$replace= $contentArray[$field['name']."_image_data"];
 										 	$imageUrl = $replace[0];
 											$imageWidth = $replace[1];
 											$imageHeight = $replace[2];
-											$image_alt = (isset($replace['alt'])? $replace['alt']: "");;
+											$image_alt = (isset($replace['alt'])? $replace['alt']: "");
+											$image_caption = (isset($replace['caption'])? $replace['caption']: "");
 										}elseif( $replace != "" ){
 											$imageDetails = ampforwp_get_attachment_id( $replace);
 											if(is_array($imageDetails)){
@@ -906,6 +918,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 												$imageWidth = $imageDetails[1];
 												$imageHeight = $imageDetails[2];	
 												$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
+												$image_caption = (isset($imageDetails['caption'])? $imageDetails['caption']: "");
 											}
 										}
 										$imageUrl    = esc_url($imageUrl);
@@ -943,6 +956,15 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 														 ), 
 													 array($image_alt,
 													 	   $image_alt
+													 	), 
+													$moduleFrontHtml
+												);
+										$moduleFrontHtml = str_replace(
+													array('{{image_caption}}',
+														  '{{image_caption_'.$field['name'].'}}'
+														 ), 
+													 array($image_caption,
+													 	   $image_caption
 													 	), 
 													$moduleFrontHtml
 												);
@@ -1060,9 +1082,15 @@ function ampforwp_get_attachment_id( $url , $imagetype='full') {
 		}
 
 	}
-	$imageDetails = wp_get_attachment_image_src($attachment_id, $imagetype, false);
-	if($imageDetails){
-		$imageDetails['alt'] = get_post_meta($attachment_id,'_wp_attachment_image_alt', true);
+	$imageDetails = array();
+	if ( $attachment_id ) {
+		$imageDetails = wp_get_attachment_image_src($attachment_id, $imagetype, false);
+		if($imageDetails){
+			$image = get_post($attachment_id);
+			$caption = $image->post_excerpt;
+			$imageDetails['alt'] = get_post_meta($attachment_id,'_wp_attachment_image_alt', true);
+			$imageDetails['caption'] = $caption;
+		}
 	}
 	return $imageDetails;
 }
