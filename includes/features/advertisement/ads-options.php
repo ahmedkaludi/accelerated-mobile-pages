@@ -517,21 +517,21 @@
                   'id'       => 'ampforwp-ads-module',
                   'type'     => 'raw',
                   'content'  => '<div class="ampforwp-ads-data-update">
-                                        '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? 'A Revolutionary new Ad plugin from our team which is dedicated to make the #1 Ad solution in the world.': 'Thank you for upgrading the Ads for WP').'
+                                        '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? esc_html__('A Revolutionary new Ad plugin from our team which is dedicated to make the #1 Ad solution in the world.','accelerated-mobile-pages'): esc_html('Thank you for upgrading the Ads for WP','accelerated-mobile-pages')).'
                                         <div class="row">
                                             
                                                 '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? '
                                                 <div class="col-3"><ul>
-                                                    <li>Add Unlimited Incontent Ads</li>
-                                                    <li>Group Ads</li>
-                                                    <li>Display type</li>
+                                                    <li>'. esc_html__('Add Unlimited Incontent Ads','accelerated-mobile-pages') .'</li>
+                                                    <li>'. esc_html__('Group Ads','accelerated-mobile-pages') .'</li>
+                                                    <li>'. esc_html__('Display type','accelerated-mobile-pages') .'</li>
                                                 </ul> </div>' : '')
                                             .'
                                             <div>
                                                 '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? 
                                                     '
                         <div class="install-now ampforwp-activation-call-module-upgrade button  " id="ampforwp-adsforwp-activation-call" data-secure="'.wp_create_nonce('verify_module').'">
-                            <p>Upgrade for Free</p>
+                            <p>' . esc_html__('Upgrade for Free','accelerated-mobile-pages') .'</p>
                         </div>' :
                                                     '<a href="'.admin_url('admin.php?page=adsforwp&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Ads for WP settings</p></div></a>'
                                                 )
