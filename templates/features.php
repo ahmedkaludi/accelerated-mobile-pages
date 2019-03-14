@@ -1531,10 +1531,10 @@ function ampforwp_custom_og_image_homepage() {
 		$image_id = WPSEO_Meta::get_value( 'opengraph-image-id', $post_id );
 		$image = wp_get_attachment_image_src($image_id,'full');
 		$image_tags = array(
-			'url'		=> $image_url,
 			'width'     => $image[1],
 			'height'    => $image[2],
 		);
+		$wpseo_og->og_tag( 'og:image', esc_url( $image_url ) );
 		foreach ( $image_tags as $key => $value ) {
 			if ( ! empty( $value ) ) {
 				$wpseo_og->og_tag( 'og:image:' . $key, $value );
