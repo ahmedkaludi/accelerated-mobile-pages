@@ -1843,6 +1843,9 @@ Redux::setArgs( "redux_builder_amp", $args );
             elseif ( defined( 'RANK_MATH_FILE' ) ) {
                 $default = 'rank_math';
             }
+            elseif ( function_exists('genesis_title') ) {
+                $default = 'genesis';
+            }
             return $default;
         }
     }
@@ -1890,7 +1893,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'options'  => array(
                     'yoast'       => 'Yoast',
                     'aioseo'     => 'All in One SEO',
-                    'rank_math' => 'Rank Math SEO'
+                    'rank_math' => 'Rank Math SEO',
+                    'genesis'    => 'Genesis',
                 ),
                 'default'  => ampforwp_seo_default(),
             ),

@@ -2484,7 +2484,7 @@ function ampforwp_replace_title_tags() {
 		}
 
 		//Genesis #1013
-		if(function_exists('genesis_title')){
+		if(function_exists('genesis_title') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ){
 			if(is_home() && is_front_page() && !$redux_builder_amp['amp-frontpage-select-option']){
 				// Determine the doctitle.
 			$genesis_title = genesis_get_seo_option( 'home_doctitle' ) ? genesis_get_seo_option( 'home_doctitle' ) : get_bloginfo( 'name' );
@@ -3005,7 +3005,7 @@ function ampforwp_talking_to_robots() {
   	$meta_content = "noindex,noarchive";
   }
   // Genesis
-  if ( function_exists('genesis_get_robots_meta_content') ) {
+  if ( function_exists('genesis_get_robots_meta_content') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ) {
   	$meta_content = genesis_get_robots_meta_content();
   }
   // All in One SEO #1720
@@ -5011,7 +5011,7 @@ function ampforwp_generate_meta_desc($json=""){
 		}
 
 		//Genesis #1013
-		if ( function_exists('genesis_meta') ) {
+		if ( function_exists('genesis_meta') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 			$genesis_description = '';
 			if ( is_home() && is_front_page() && ! $redux_builder_amp['amp-frontpage-select-option'] ) {
 				$genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
