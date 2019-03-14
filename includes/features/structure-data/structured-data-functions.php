@@ -381,3 +381,36 @@ if ( ! function_exists('ampforwp_sd_multiple_images') ) {
 		return $metadata;
 	}
 }
+// schema.org/SiteNavigationElement missing from menus #1229 & #2952
+add_action('amp_post_template_footer','ampforwp_sd_sitenavigation');
+function ampforwp_sd_sitenavigation(){
+    if (!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')) {
+	    $input = array();           
+	    $navObj = array();       
+	    $menuLocations = get_nav_menu_locations();        
+	    if(!empty($menuLocations) ){ 
+	        foreach($menuLocations as $type => $id){
+	            $menuItems = wp_get_nav_menu_items($id);
+	            if($menuItems){
+	                if($type == 'amp-menu' || $type == 'amp-footer-menu' ){                
+	                    foreach($menuItems as $items){
+	                      $navObj[] = array(
+	                             "@context"  => "https://schema.org",
+	                             "@type"     => "SiteNavigationElement",
+	                             "@id"       => trailingslashit(get_home_url()).$type,
+	                             "name"      => $items->title,
+	                             "url"       => $items->url
+	                      );
+
+	                    }
+	           		}                                                           
+	            }
+	        }
+	        if($navObj){  
+	            $input['@context'] = 'https://schema.org'; 
+	            $input['@graph']   = $navObj; ?>       
+	    		<script type="application/ld+json"><?php echo wp_json_encode( $input ); ?></script>
+	        <?php }
+	    }
+	}
+} 

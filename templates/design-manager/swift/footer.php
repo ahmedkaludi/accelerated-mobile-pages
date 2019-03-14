@@ -25,11 +25,11 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 		<div class="cntr">
 			<?php if(isset($redux_builder_amp['swift-menu']) && $redux_builder_amp['swift-menu'] == true ){ if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
 			<div class="f-menu">
-				<nav itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+				<nav>
 	              <?php
 	              $menu = wp_nav_menu( array(
 	                  'theme_location' => 'amp-footer-menu',
-	                  'link_before'     => '<span itemprop="name">',
+	                  'link_before'     => '<span>',
 	                  'link_after'     => '</span>',
 	                  'echo' => false
 	              ) );

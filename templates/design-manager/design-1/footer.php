@@ -5,12 +5,11 @@ wp_reset_postdata(); ?>
 	<div id="footer">
 		<?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
       <div class="footer_menu"> 
-           <?php // schema.org/SiteNavigationElement missing from menus #1229 ?>
-          <nav itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+          <nav>
                  <?php 
                  $menu = wp_nav_menu( array(
                       'theme_location' => 'amp-footer-menu',
-                      'link_before'     => '<span itemprop="name">',
+                      'link_before'     => '<span>',
                       'link_after'     => '</span>',
                       'echo' => false
                   ) );
