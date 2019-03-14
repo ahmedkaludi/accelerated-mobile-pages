@@ -895,9 +895,6 @@ div#section-ampforwp-ads-section , table#section-table-ampforwp-ads-section{
     margin-top: -37px;
 }
  
-div#section-amp-ads_2 {
-    clear: both;
-}
 div#section-ampforwp-ads-section:after {
     content: '';
 }
