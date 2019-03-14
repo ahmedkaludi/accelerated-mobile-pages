@@ -504,9 +504,11 @@
                             'title'     => esc_html__('Responsive Ad unit', 'accelerated-mobile-pages'),
                             'default'   => 0,
                             'required' => array('enable-amp-ads-8', '=' , '1'),
-                    );           
+                    ); 
+            }                   
                 $fields[] =    array(
                             'id' => 'ampforwp-ads-section',
+                            'class'=> is_plugin_active('ads-for-wp/ads-for-wp.php')? "adsactive": '',
                             'type' => 'section',
                             'title' => esc_html__('Introducing Ads for WP', 'accelerated-mobile-pages'),
                             'indent' => true,
@@ -515,6 +517,7 @@
                         );
         $fields[] =   array(
                   'id'       => 'ampforwp-ads-module',
+                  'class'=> is_plugin_active('ads-for-wp/ads-for-wp.php')? "adsactive": '',
                   'type'     => 'raw',
                   'content'  => '<div class="ampforwp-ads-data-update">
                                         '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? esc_html__('A Revolutionary new Ad plugin from our team which is dedicated to make the #1 Ad solution in the world.','accelerated-mobile-pages'): esc_html__('Thank you for upgrading the Ads for WP','accelerated-mobile-pages')).'
@@ -541,6 +544,7 @@
                                     </div>' 
                                     
         );
+        if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {
                 $fields[] =     array(
                             'id' => 'amp-ads_2',
                            'type' => 'section',
