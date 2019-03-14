@@ -51,12 +51,12 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 												<i></i><span>Posts</span></label>
 												</li>
 											   <li class="merlin__drawer--import-content__list-item status">
-												<input type="checkbox" name="amp-on-off-for-all-pages" class="checkbox" id="amp-on-pages" value="1" '.($redux_builder_amp['amp-on-off-for-all-pages']? 'checked': '').'>
+<input type="checkbox" name="amp-on-off-for-all-pages" class="checkbox" id="amp-on-pages" value="1" '.(ampforwp_get_setting('amp-on-off-for-all-pages')? 'checked': '').'>
 											    <label for="amp-on-pages">
 												<i></i><span>Pages</span></label>
 												</li>
 											   <li class="merlin__drawer--import-content__list-item status">
-												<input type="checkbox" name="ampforwp-homepage-on-off-support" class="checkbox" id="amp-on-home" value="1" '.($redux_builder_amp['ampforwp-homepage-on-off-support']? 'checked': '').'>
+<input type="checkbox" name="ampforwp-homepage-on-off-support" class="checkbox" id="amp-on-home" value="1" '.(ampforwp_get_setting('ampforwp-homepage-on-off-support')? 'checked': '').'>
 											    <label for="amp-on-home">
 												<i></i><span>Homepage</span></label>
 												</li>
