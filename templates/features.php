@@ -1528,7 +1528,18 @@ function ampforwp_custom_og_image_homepage() {
 		global $wpseo_og;
 		$post_id = ampforwp_get_frontpage_id();
 		$image_url = WPSEO_Meta::get_value( 'opengraph-image', $post_id );
-		$wpseo_og->og_tag( 'og:image', esc_url( $image_url ) );
+		$image_id = WPSEO_Meta::get_value( 'opengraph-image-id', $post_id );
+		$image = wp_get_attachment_image_src($image_id,'full');
+		$image_tags = array(
+			'url'		=> $image_url,
+			'width'     => $image[1],
+			'height'    => $image[2],
+		);
+		foreach ( $image_tags as $key => $value ) {
+			if ( ! empty( $value ) ) {
+				$wpseo_og->og_tag( 'og:image:' . $key, $value );
+			}
+		}
 	}
 }
 
