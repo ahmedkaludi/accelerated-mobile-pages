@@ -202,8 +202,8 @@ class AMP_Post_Template {
 				'name' => $this->get( 'blog_name' ),
 			),
 			'headline' => $post_title,
-			'datePublished' => date( 'c', $post_publish_timestamp ),
-			'dateModified' => date( 'c', $post_modified_timestamp ),
+			'datePublished' => date( 'c', get_the_date( 'U', $post->ID ) ),
+			'dateModified' => date( 'c', get_the_date( 'U', $post->ID ) ),
 			'author' => array(
 				'@type' => 'Person',
 				'name' => $post_author_name,
