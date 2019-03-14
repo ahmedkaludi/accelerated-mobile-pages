@@ -14,11 +14,7 @@ if ( is_customize_preview() ) {
 
 	// add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_simple_comment_button' );
 }
-add_action( 'amp_init', "ampforwp_design_customizer" );
-function ampforwp_design_customizer(){
-	if(!ampforwp_is_amp_endpoint()){
-		return false; 
-	}
+
 	$data = get_option( 'ampforwp_design' );
 
 	// Adding default Value
@@ -77,7 +73,6 @@ function ampforwp_design_customizer(){
 				}
 			}
 	}
-}
 
 
 // Design Selector
