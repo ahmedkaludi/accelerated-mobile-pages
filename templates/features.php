@@ -1394,8 +1394,8 @@ function ampforwp_add_proper_post_meta(){
 			// og url
 			add_filter('wpseo_opengraph_url', 'ampforwp_custom_og_url_homepage');		
 			// This is causing the 2nd debug issue reported in #740
-			// add_filter('wpseo_twitter_image', 'ampforwp_custom_og_image_homepage');
-			add_filter('wpseo_opengraph_image', 'ampforwp_custom_og_image_homepage');
+			add_action('wpseo_twitter', 'ampforwp_custom_twitter_image_homepage');
+			add_action('wpseo_add_opengraph_images', 'ampforwp_custom_og_image_homepage');
 		}
 	}
 }
@@ -1501,10 +1501,34 @@ function ampforwp_yoast_social_desc($type) {
 function ampforwp_custom_og_url_homepage() {
 	return esc_url( get_bloginfo( 'url' ) );
 }
+function ampforwp_custom_twitter_image_homepage($image){
+	$post_id = ampforwp_get_frontpage_id();
+	$post = get_post($post_id);
+	// twitter:image
+	$img = WPSEO_Meta::get_value('twitter-image', $post_id );
+	if ( $img !== '' ) {
+		$metatag_key = apply_filters( 'wpseo_twitter_metatag_key', 'name' );
+		$name = 'image';
+		$value = esc_url($img);
+		// Output meta.
+		echo '<meta ', esc_attr( $metatag_key ), '="twitter:', esc_attr( $name ), '" content="', $value, '" />', "\n";
+	}
+	// twitter:creator
+	$twitter = ltrim( trim( get_the_author_meta( 'twitter', $post->post_author ) ), '@' );
+	$twitter = apply_filters( 'wpseo_twitter_creator_account', $twitter );
+	if ( is_string( $twitter ) && $twitter !== '' ) {
+		echo '<meta ', esc_attr( 'name' ), '="twitter:', esc_attr( 'creator' ), '" content="','@' . $twitter, '" />', "\n";
+	}
+	elseif ( WPSEO_Options::get( 'twitter_site', '' ) !== '' && is_string( WPSEO_Options::get( 'twitter_site' ) ) ) {
+		echo '<meta ', esc_attr( 'name' ), '="twitter:', esc_attr( 'creator'), '" content="', '@' . WPSEO_Options::get( 'twitter_site' ), '" />', "\n";
+	}
+}
 function ampforwp_custom_og_image_homepage() {
 	if ( class_exists('WPSEO_Options') ) {
-		$options = WPSEO_Options::get_option( 'wpseo_social' );
-		return  $options['og_default_image'] ;
+		global $wpseo_og;
+		$post_id = ampforwp_get_frontpage_id();
+		$image_url = WPSEO_Meta::get_value( 'opengraph-image', $post_id );
+		$wpseo_og->og_tag( 'og:image', esc_url( $image_url ) );
 	}
 }
 
