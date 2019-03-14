@@ -3494,6 +3494,13 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => esc_html__('Add ia:markup meta tag. Find out more about<a href="https://developers.facebook.com/docs/instant-articles/crawler-ingestion" target="_blank">here</a> ', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
+                 array(
+                        'id'       => 'fb-instant-feedback',
+                        'type' => 'switch',
+                        'title'    => esc_html__('Feedback for Media', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Allow like and comment for media', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
                     array(
                         'id'       => 'fbia-header-text-area',
                         'type'     => 'textarea',

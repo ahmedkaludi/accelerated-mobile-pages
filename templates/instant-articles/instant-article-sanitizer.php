@@ -134,7 +134,9 @@ function ampforwp_fbia_validate_images($DOMDocument){
 				// Let's continue working with the figure tag
 				$element = $figure;
 			}
-
+			if ( ampforwp_get_setting('fb-instant-feedback') ) {
+ 				$element->setAttribute( 'data-feedback', 'fb:likes, fb:comments' );
+			}
 
 			if($element->parentNode->nodeName != "body"){
 				// Let's find the highest container if it does not reside in the body already
@@ -266,15 +268,18 @@ function ampforwp_fbia_video_element( $DOMDocument ){
 		$video = $video_elements->item( $i );
 
 		if($video->parentNode->nodeName == "figure"){
-				// This element is already wrapped in a figure tag, we only need to make sure it's placed right
-				$video = $video->parentNode;
-			} else {
-				// Wrap this video into a figure tag
-				$figure = $DOMDocument->createElement('figure');
-				$video->parentNode->replaceChild($figure, $video);
-				$figure->appendChild($video);
-				$video = $figure;
-			}
+			// This element is already wrapped in a figure tag, we only need to make sure it's placed right
+			$video = $video->parentNode;
+		} else {
+			// Wrap this video into a figure tag
+			$figure = $DOMDocument->createElement('figure');
+			$video->parentNode->replaceChild($figure, $video);
+			$figure->appendChild($video);
+			$video = $figure;
+		}
+		if ( ampforwp_get_setting('fb-instant-feedback') ) {
+			$video->setAttribute( 'data-feedback', 'fb:likes, fb:comments' );
+		}
 	}
 	return $DOMDocument;
 }
