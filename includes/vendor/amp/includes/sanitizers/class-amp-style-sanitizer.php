@@ -194,7 +194,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 
 		$elements = array();
 		foreach ( $xpath->query( '//*[ @style ]' ) as $element ) {
-			$elements[] = $element;
+			$elements[''] = $element;
 		}
 		foreach ( $elements as $element ) {
 			$this->collect_inline_styles( $element );
