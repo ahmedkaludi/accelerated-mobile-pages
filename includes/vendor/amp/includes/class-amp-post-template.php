@@ -170,6 +170,7 @@ class AMP_Post_Template {
 	}
 
 	private function build_post_data() {
+		global $post;
 		$post_author = '';
 		$post_author_name = '';
 		$post_author_image = '';
@@ -202,7 +203,7 @@ class AMP_Post_Template {
 				'name' => $this->get( 'blog_name' ),
 			),
 			'headline' => $post_title,
-			'datePublished' => date( 'c', get_the_date( 'U', $post->ID ) ),
+			'datePublished' => date( 'c', $post_publish_timestamp ),
 			'dateModified' => date( 'c', get_the_date( 'U', $post->ID ) ),
 			'author' => array(
 				'@type' => 'Person',
