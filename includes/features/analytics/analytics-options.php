@@ -107,8 +107,8 @@ function ampforwp_analytics_options($opt_name){
                           'required' => array('ampforwp-ga-switch', '=' , '1'),
                           'tooltip-subtitle' => sprintf( '<a href="%s" target="_blank">%s</a> %s', 
                                             esc_url('https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/amp/'), 
-                                            esc_html( 'Click Here','accelerated-mobile-pages' ), 
-                                            esc_html( 'for more details on AMP Linker','accelerated-mobile-pages' ) ),
+                                            esc_html__( 'Click Here','accelerated-mobile-pages' ), 
+                                            esc_html__( 'for more details on AMP Linker','accelerated-mobile-pages' ) ),
                           'default'  => 0,
                       ),
                       array(
