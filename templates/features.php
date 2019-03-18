@@ -569,12 +569,12 @@ function ampforwp_new_dir( $dir ) {
 			}
 
 		// Facebook Like Script
-		if( true == ampforwp_get_setting('ampforwp-facebook-like-button') && (is_single() || true == ampforwp_get_setting('ampforwp-page-sticky-social') || $social_check_page ) && $social_check && (! checkAMPforPageBuilderStatus( get_the_ID() ) ) ){
+		if( true == ampforwp_get_setting('ampforwp-facebook-like-button') && ( true == ampforwp_get_setting('ampforwp-page-sticky-social') || $social_check_page ) && $social_check && (! checkAMPforPageBuilderStatus( get_the_ID() ) ) ){
 			if(empty($data['amp_component_scripts']['amp-facebook-like'])){
 				$data['amp_component_scripts']['amp-facebook-like'] = 'https://cdn.ampproject.org/v0/amp-facebook-like-0.1.js';
 			}
 		}
-		if(true == ampforwp_get_setting('ampforwp-facebook-like-button') && true == ampforwp_get_setting('enable-single-social-icons')){
+		if(true == ampforwp_get_setting('ampforwp-facebook-like-button') && true == ampforwp_get_setting('enable-single-social-icons') || true == ampforwp_get_setting('enable-single-post-social-icons') && (! checkAMPforPageBuilderStatus( get_the_ID() ) )){
 			if(empty($data['amp_component_scripts']['amp-facebook-like'])){
 				$data['amp_component_scripts']['amp-facebook-like'] = 'https://cdn.ampproject.org/v0/amp-facebook-like-0.1.js';
 			}
