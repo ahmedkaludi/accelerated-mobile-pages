@@ -310,6 +310,7 @@ function amp_loop_date($args=array()){
     						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
     						'ago');
     }
+    $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
     echo '<div class="loop-date">'.esc_html($post_date).'</div>';
 }
 
