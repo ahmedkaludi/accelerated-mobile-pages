@@ -501,7 +501,7 @@ if( !function_exists('ampforwp_ad_optimize')){
 		}
 		$optimized_code = '';
 		if( true == ampforwp_get_setting('ampforwp-ads-data-loading-strategy')){
-			$optimized_code = 'data-loading-strategy=prefer-viewability-over-views';
+			$optimized_code = 'data-loading-strategy=1';
 		}
 		return $optimized_code;
 	}
