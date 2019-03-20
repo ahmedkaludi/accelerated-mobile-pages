@@ -2417,6 +2417,7 @@ class AMP_Allowed_Tags_Generated {
 					'[artwork]' => array(),
 					'[attribution]' => array(),
 					'[controls]' => array(),
+					'[dock]' => array(),
 					'[controlslist]' => array(),
 					'[loop]' => array(),
 					'[poster]' => array(),
@@ -2433,6 +2434,9 @@ class AMP_Allowed_Tags_Generated {
 					),
 					'controls' => array(
 						'value' => '',
+					),
+					'dock' => array(
+						'value' => '#dock-slot',
 					),
 					'controlslist' => array(),
 					'crossorigin' => array(),
@@ -2458,6 +2462,7 @@ class AMP_Allowed_Tags_Generated {
 					),
 					'placeholder' => array(),
 					'poster' => array(),
+					'dock' => array(),
 					'preload' => array(
 						'value_regex' => '(none|metadata|auto|)',
 					),
@@ -2489,6 +2494,7 @@ class AMP_Allowed_Tags_Generated {
 					'[artwork]' => array(),
 					'[attribution]' => array(),
 					'[controls]' => array(),
+					'[dock]' => array(),
 					'[controlslist]' => array(),
 					'[loop]' => array(),
 					'[poster]' => array(),
@@ -2505,6 +2511,9 @@ class AMP_Allowed_Tags_Generated {
 					),
 					'controls' => array(
 						'value' => '',
+					),
+					'dock' => array(
+						'value' => '#dock-slot',
 					),
 					'controlslist' => array(),
 					'crossorigin' => array(),
