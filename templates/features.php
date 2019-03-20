@@ -4989,8 +4989,8 @@ if ( ! function_exists('ampforwp_gravatar_checker') ) {
 		}
 		if($uri){
 		$response = wp_remote_get(esc_url_raw($uri));
-		}
  		$response_code = wp_remote_retrieve_response_code($response);
+		}
 		//If its 404
 		if ($response_code!=200) {
 		 	$has_valid_avatar = FALSE;
