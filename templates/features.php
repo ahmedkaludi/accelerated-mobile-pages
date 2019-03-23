@@ -1502,20 +1502,23 @@ function ampforwp_custom_og_url_homepage() {
 	return esc_url( get_bloginfo( 'url' ) );
 }
 function ampforwp_custom_twitter_image_homepage($image){
-	$post_id = ampforwp_get_frontpage_id();
-	$post = get_post($post_id);
-	// twitter:image
-	$img = WPSEO_Meta::get_value('twitter-image', $post_id );
-	if ( $img !== '' ) {
-		$metatag_key = apply_filters( 'wpseo_twitter_metatag_key', 'name' );
-		$name = 'image';
-		$value = esc_url($img);
-		// Output meta.
-		echo '<meta ', esc_attr( $metatag_key ), '="twitter:', esc_attr( $name ), '" content="', $value, '" />', "\n";
+	$twitter = '';
+	if ( ampforwp_get_the_ID() ) {
+		$post_id = ampforwp_get_the_ID();
+		$post = get_post($post_id);
+		// twitter:image
+		$img = WPSEO_Meta::get_value('twitter-image', $post_id );
+		if ( $img !== '' ) {
+			$metatag_key = apply_filters( 'wpseo_twitter_metatag_key', 'name' );
+			$name = 'image';
+			$value = esc_url($img);
+			// Output meta.
+			echo '<meta ', esc_attr( $metatag_key ), '="twitter:', esc_attr( $name ), '" content="', $value, '" />', "\n";
+		}
+		// twitter:creator
+		$twitter = ltrim( trim( get_the_author_meta( 'twitter', $post->post_author ) ), '@' );
+		$twitter = apply_filters( 'wpseo_twitter_creator_account', $twitter );
 	}
-	// twitter:creator
-	$twitter = ltrim( trim( get_the_author_meta( 'twitter', $post->post_author ) ), '@' );
-	$twitter = apply_filters( 'wpseo_twitter_creator_account', $twitter );
 	if ( is_string( $twitter ) && $twitter !== '' ) {
 		echo '<meta ', esc_attr( 'name' ), '="twitter:', esc_attr( 'creator' ), '" content="','@' . $twitter, '" />', "\n";
 	}
