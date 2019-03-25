@@ -982,3 +982,8 @@ function ampforwp_toc_replace_content( &$find = false, &$replace = false, &$stri
 
 return $string;
 }
+
+// Viewport appear more than once in Zox news theme. #2971
+if ( function_exists( 'mvp_setup' ) && ampforwp_get_setting('amp-design-selector') !=4 ) {
+remove_action( 'amp_post_template_head','ampforwp_add_meta_viewport', 9);
+}
