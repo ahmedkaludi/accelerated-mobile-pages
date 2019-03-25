@@ -2015,7 +2015,7 @@ Redux::setSection( $opt_name, array(
                         'type'      => 'text',
                         'title'     => __('Number of Posts', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('Enter the number of posts to generate for Instant Articles.', 'accelerated-mobile-pages'),
-                         'desc' => __('Leave this empty to generate All Posts.', 'accelerated-mobile-pages'),
+                         'desc' => __('Leave this empty to generate All Posts (500).', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1),
                         'default'   => '50'
                     ),
