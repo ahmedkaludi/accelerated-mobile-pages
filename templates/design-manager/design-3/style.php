@@ -34,6 +34,7 @@ amp-wistia-player {margin:5px 0px;}
 .amp-wp-content amp-iframe{max-width:100%}
 .amp-wp-article amp-addthis{margin-left: 150px;}
 .hide{display:none}
+ol, ul {list-style-position: inside;}
 @font-face {
     font-family: 'Roboto Slab';
     font-display: auto;

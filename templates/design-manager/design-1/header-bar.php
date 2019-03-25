@@ -30,7 +30,7 @@
     layout="nodisplay"
     side="right">
   <div class="toggle-navigationv2">
-      <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div> <?php
+      <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div> 
       <?php if( has_nav_menu( 'amp-menu' ) ) { ?>
       <nav id ="primary-amp-menu">
          <?php
