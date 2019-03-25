@@ -1637,7 +1637,7 @@ function ampforwp_replace_title_tags() {
 			}
 			// Custom Front Page Title From Yoast SEO #1163
 			if ( ampforwp_is_front_page() || ampforwp_is_blog() ) {
-				$yoast_title = WPSEO_Meta::get_value( 'title', $post_id );
+				$yoast_title = $WPSEO_Frontend->get_content_title( $post );
 			}
 		 	if ( $yoast_title ) {
 		 		$site_title = apply_filters( 'wpseo_title', $yoast_title );
