@@ -1375,3 +1375,11 @@ function ampforwp_seopress_social(){
 		}
 	}
 }
+
+add_filter('ait-theme-configuration', 'ampforwp_directory_theme_menu'); 
+function ampforwp_directory_theme_menu($configuration){ 
+if( function_exists('ampforwp_is_amp_endpoint') && class_exists('AitTheme')){
+		 unset($configuration['ait-theme-support'][1]); 
+	} 
+	return $configuration; 
+}
