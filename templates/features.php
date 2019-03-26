@@ -4028,7 +4028,7 @@ function ampforwp_rel_canonical_home_archive(){
 	$page                   = '' ;
 
 
-	if ( is_home() || is_front_page() ||  is_archive() && $redux_builder_amp['ampforwp-archive-support'] )	{
+	if ( (is_home() || is_front_page() || (is_archive() && $redux_builder_amp['ampforwp-archive-support']) ) && !defined('RANK_MATH_FILE') )	{
 		$current_archive_url = home_url( $wp->request );
 		$amp_url 	= trailingslashit($current_archive_url);
 		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
