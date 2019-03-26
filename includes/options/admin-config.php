@@ -31,19 +31,7 @@ $cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-
 $all_extensions_data = array();
 global $all_extensions_data;
 $extension_listing_array = array(
-                        array(
-                            'name'=>'ADS for WP',
-                            'desc'=>'A Revolutionary way of adding ADS in your WordPress',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
-                            'price'=>'Free',
-                            'url_link'=>'http://ampforwp.com/ads-for-wp/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> 'ads-for-wp/ads-for-wp.php',
-                            'item_name'=>'ADS for WP',
-                            'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(is_plugin_active('ads-for-wp/ads-for-wp.php')? 1: 2),
-                            'settingUrl'=>admin_url('edit.php?post_type=ads-for-wp-ads'),
-                        ),
-                        array(
+                         array(
                             'name'=>'Advanced AMP ADS',
                             'desc'=>'Add Advertisement directly in the content',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
