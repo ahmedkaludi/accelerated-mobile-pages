@@ -8,8 +8,8 @@
 	        $structured_data_main_logo = '';
 	        $ampforwp_sd_height = '';
 	        $ampforwp_sd_width = '';
-	        $ampforwp_sd_height = $redux_builder_amp['ampforwp-sd-logo-height'];
-	        $ampforwp_sd_width = $redux_builder_amp['ampforwp-sd-logo-width'];
+	        $ampforwp_sd_height = ampforwp_get_setting('ampforwp-sd-logo-height');
+	        $ampforwp_sd_width = ampforwp_get_setting('ampforwp-sd-logo-width');
 	        if (! empty( $redux_builder_amp['opt-media']['url'] ) ) {
 	          $structured_data_main_logo = $redux_builder_amp['opt-media']['url'];
 	        }
@@ -75,7 +75,7 @@
 					$structured_data_image_url = __($redux_builder_amp['amp-structured-data-placeholder-image']['url'], 'accelerated-mobile-pages');
 				}
 					$structured_data_image = $structured_data_image_url;
-					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
+					$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height'));
 					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
 
 					$metadata['image'] = array(
@@ -88,9 +88,8 @@
 			// Custom Structured Data information for Archive, Categories and tag pages.
 			if ( is_archive() ) {
 					$structured_data_image = __($redux_builder_amp['amp-structured-data-placeholder-image']['url'], 'accelerated-mobile-pages');
-					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
-					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
-
+					$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height'));
+					$structured_data_width = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-width'));
 					$structured_data_archive_title 	= "Archived Posts";
 					$structured_data_author				=  get_userdata( 1 );
 							if ( $structured_data_author ) {
@@ -168,8 +167,8 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 				$structured_data_image_url = __($redux_builder_amp['amp-structured-data-placeholder-image']['url'], 'accelerated-mobile-pages');
 			}
 			$structured_data_image =  $structured_data_image_url; //  Placeholder Image URL
-			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
-			$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']); //  Placeholder Image height
+			$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height')); //  Placeholder Image width
+			$structured_data_width = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-width')); //  Placeholder Image height
 			$current_url_in_pieces = explode( '/', $current_url );
 			if( ampforwp_is_front_page() ) {
 				 // ID of slected front page
@@ -249,9 +248,9 @@ function ampforwp_structured_data_type( $metadata ) {
 	$set_sd_post 	= '';
 	$set_sd_page 	= '';
 
-	$set_sd_post 	= $redux_builder_amp['ampforwp-sd-type-posts'];
-	$set_sd_page 	= $redux_builder_amp['ampforwp-sd-type-pages'];
-	$post_types = ampforwp_get_all_post_types();
+	$set_sd_post 	= ampforwp_get_setting('ampforwp-sd-type-posts');
+	$set_sd_page 	= ampforwp_get_setting('ampforwp-sd-type-pages');
+ 	$post_types 	= ampforwp_get_all_post_types();
 
 	if ( $post_types ) { // If there are any custom public post types.
     	foreach ( $post_types  as $post_type ) {
