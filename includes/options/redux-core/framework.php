@@ -735,7 +735,7 @@
                      *
                      * @param array $value option value to set global_variable with
                      */
-                    $GLOBALS[ $this->args['global_variable'] ] = apply_filters( "redux/options/{$this->args['opt_name']}/global_variable", $this->options );
+                    $GLOBALS[ $this->args['global_variable'] ] = (array) apply_filters( "redux/options/{$this->args['opt_name']}/global_variable", $this->options );
                     if ( isset ( $this->transients['last_save'] ) ) {
                         // Deprecated
                         $GLOBALS[ $this->args['global_variable'] ]['REDUX_last_saved'] = $this->transients['last_save'];

@@ -13,7 +13,7 @@
  * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
  * @license   Licensed GPLv3 for open source use
  */
-$redux_builder_amp = get_option('redux_builder_amp');
+$redux_builder_amp = (array) get_option('redux_builder_amp');
 $ampLogo="";
 if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-media']['url']!=""){
     $ampLogo = '<br/><br/><img src="'.$redux_builder_amp['opt-media']['url'].'" class="amp_install_logo_preview" />';

@@ -1207,7 +1207,7 @@ $tabs = array(
         return $value;
     }
     function ampforwp_custom_logo_dimensions_options(){
-        $selectedOption = get_option('redux_builder_amp',true);
+        $selectedOption = (array) get_option('redux_builder_amp',true);
         $opCheck = $selectedOption['ampforwp-custom-logo-dimensions'];
         if($opCheck==1){
             return 'prescribed';
@@ -3299,7 +3299,7 @@ Redux::setSection( $opt_name, array(
        $amp_fontparts = array_merge($amp_fontparts ,$fonts_settings);    
 
     }else{
-        $selectedOption = get_option('redux_builder_amp',true);
+        $selectedOption = (array) get_option('redux_builder_amp',true);
         if(!isset($selectedOption['amp-design-selector'])){
             $selectedOption['amp-design-selector'] = '4';
         }
@@ -3560,7 +3560,7 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
 
     // Header Elements default Color
     function ampforwp_get_element_default_color() {
-        $default_value = get_option('redux_builder_amp', true);
+        $default_value = (array) get_option('redux_builder_amp', true);
         $default_value = $default_value['amp-opt-color-rgba-colorscheme']['color'];
         if ( empty( $default_value ) ) {
           $default_value = '#333';
@@ -6780,7 +6780,7 @@ $single_page_options = array(
         )
 
     ) );
-   $redux_option = get_option('redux_builder_amp',true);
+   $redux_option = (array) get_option('redux_builder_amp',true);
    if ( 4 == $redux_option['amp-design-selector'] ) {
     $post_builder = '';
    }
