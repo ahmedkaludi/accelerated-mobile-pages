@@ -133,7 +133,7 @@ function ampforwp_call_page_builder(){
 	unset($backendRowSetting['front_common_css']);
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	?>
-	<?php if(class_exists('WPSEO_Frontend') && true == ampforwp_get_setting('ampforwp-yoast-seo-analysis') ) { ?>
+	<?php if(class_exists('WPSEO_Frontend') && true == ampforwp_get_setting('ampforwp-yoast-seo-analysis') && true == ampforwp_get_setting('ampforwp-amp-takeover') ) { ?>
 	<div class="hide" id="amp-page-builder-ready"><?php echo stripcslashes( amppb_post_content('') ); ?></div>
 	<?php } ?>
 	<div id="ampForWpPageBuilder_container">
