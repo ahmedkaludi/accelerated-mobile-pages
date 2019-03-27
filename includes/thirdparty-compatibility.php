@@ -991,7 +991,7 @@ remove_action( 'amp_post_template_head','ampforwp_add_meta_viewport', 9);
 // SEOPress Compatibility #1589
 add_action('amp_post_template_head', 'ampforwp_seopress_social');
 function ampforwp_seopress_social(){
-	$options = $facebook = $twitter = $advanced_options = '';
+	$options = $facebook = $twitter = $advanced_options = $seopress_social_og_title = $seopress_social_og_desc = '';
 	$post_id = ampforwp_get_the_ID();
 	$options = get_option("seopress_social_option_name");
 	$advanced_options = get_option("seopress_advanced_option_name");

@@ -1110,7 +1110,7 @@ function ampforwp_remove_schema_data() {
 	add_filter( 'do_rocket_lazyload', '__return_false' );
 
 	// Remove Popups and other elements added by Slider-in Plugin
-	define('WDSI_BOX_RENDERED', true, true);
+	define('WDSI_BOX_RENDERED', true, false); // when third argument is true, getting Deprecated debug warning in php 7.3.2
 	
 	// Remove Filters added by third party plugin through class
 	if ( function_exists('ampforwp_remove_filters_for_class')) {
