@@ -77,14 +77,14 @@ if ( ! function_exists('AMPforWP\\AMPVendor\\amp_prepare_render') ) {
 }
 if ( ! function_exists('AMPforWP\\AMPVendor\\amp_render') ) {
 	function amp_render() {
-		
+		global $ampforwpTemplate;
 		amp_load_classes();
 
 		$post_id = get_queried_object_id();
 		do_action( 'pre_amp_render_post', $post_id );
 
 		amp_add_post_template_actions();
-		$template = new AMP_Post_Template( $post_id );
+		$template = $ampforwpTemplate = new AMP_Post_Template( $post_id );
 		$template->load();
 		// Set Header: last modified information
 		if( is_singular() && $post_id ) {

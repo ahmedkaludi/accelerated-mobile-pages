@@ -76,3 +76,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 49. Updated Schema for author image #2919
 50. AMP_Image_Dimension_Extractor Updated #2931
 51. Added a filter called ampforwp_featured_image, so users can change the default size of featured image in single post. #2896
+52. Added $ampforwpTemplate in amp.php #2977
