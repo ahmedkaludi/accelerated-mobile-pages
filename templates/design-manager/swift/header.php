@@ -2,7 +2,6 @@
 <?php amp_header_core() ?>
 <?php
 do_action( 'levelup_head');
-$type='';
 if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 ?>
 <?php if($redux_builder_amp['header-type'] == '1'){?>
