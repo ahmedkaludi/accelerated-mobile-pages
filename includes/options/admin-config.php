@@ -1039,7 +1039,7 @@ $eu_iso_codes = array(
 
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
-$proDetailsProvide = '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> ';
+$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Upgrade to PRO</a> ';
 if($ampforwp_nameOfUser!=""){
     $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".$ampforwp_nameOfUser."</span> <a class='' href='".admin_url('admin.php?page=amp_options&tabid=opt-go-premium')."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
@@ -1150,10 +1150,7 @@ $tabs = array(
         ),
         'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' .
 
-                      sprintf( __( '  <h2 style="width: 150px;float: right;
-    padding: 8px 11px;background: #4CAF50;
-    font-size: 13px;margin: -40px 0 0 10px;
-    border-radius: 5px;line-height: 22px;position:relative;top:30px"><a style="color: #fff;text-decoration: none;" href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform">Like this plugin? <br /> Leave a 5 Star Rating</a></h2>We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' ), 'accelerated-mobile-pages' )                      
+                      sprintf( esc_html__( '  We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' ), 'accelerated-mobile-pages' )                      
 			               . '<div style="width:100%;margin:20px 0px 10px 0px" class="getstarted_wrapper">
             <div class="getstarted_options">
             <p><b>Getting Started</b></p>
@@ -1168,24 +1165,18 @@ $tabs = array(
             <p><b>Useful Links</b></p>
 				<ul class="getstarted_ul">
 					<li><a href="https://ampforwp.com/tutorials/article-categories/extension/" target="_blank">Extensions & Themes Docs</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/extending/" target="_blank">Developers Docs</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/developer-documentation/" target="_blank">Developers Docs</a></li>
 					<li><a href="https://ampforwp.com/amp-theme-framework/" target="_blank">Create a Custom Theme for AMP</a></li>
 					<li><a href="https://ampforwp.com/tutorials/article-categories/how-to/" target="_blank">General How To\'s</a></li>
 				</ul>  
             </div>
-            <div class="getstarted_options" style="padding-bottom: 33px;width: 16%;" >
-            <p><b>Get Stable Updates</b></p>
-                <ul class="getstarted_ul">
-                    <li style="list-style:none;"><a href="https://ampforwp.com/beta-test/" target="_blank">Become a Beta Tester and Help us Push Stable Updates</a></li>
-
-                </ul>  
-            </div>
             <div class="clear"></div>
             </div>'
-           . '<p><strong>' . __( '1. <a href="https://ampforwp.com/priority-support/" target="_blank">Fixing AMP Validation Errors</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.' ) . '</p>'
-			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/help/#support-forum" target="_blank">Community Support Forum</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.' ) . '</p>'
-			               . '<p><strong>' . __( '3. <a href="https://ampforwp.com/help/#contact" target="_blank">Hire Us / Other queries</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We try to answer each and every email, so remember to give us some time. For any other queries, please use the contact form. Please be descriptive as possible.' ) . '</p>'
-			               . '<p><strong>' . __( '4. <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'If you want to know whats new in the latest version of the plugin, then please use this link. ') . '</p>'
+           . '<p><strong>' . sprintf( '1. <a href="https://ampforwp.com/support/" target="_blank">%s</a>: ',esc_html__('Technical Customer Support','accelerated-mobile-pages')) . '</strong>' . esc_html__('We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.', 'accelerated-mobile-pages' ) . '</p>'
+                           . '<p><strong>' . sprintf( '2. <a href="https://github.com/ahmedkaludi/accelerated-mobile-pages/issues" target="_blank">%s</a>: ',esc_html__('Found a bug? Use GitHub','accelerated-mobile-pages' )) . '</strong>' . esc_html__( 'If you’ve discovered a bug in our software, the best place to report it is on GitHub. This is where the AMP developers are active. They’ll review your bug report and triage the bug. The more relevant details you add to your report, the faster bugs are usually solved. And please remember to search first, We think that most general tickets have been created already.', 'accelerated-mobile-pages' ) . '</p>'
+			               . '<p><strong>' . sprintf( '3. <a href="https://ampforwp.com/priority-support/" target="_blank">%s</a>: ',esc_html__('Priority Support','accelerated-mobile-pages' )) . '</strong>' . esc_html__( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.', 'accelerated-mobile-pages' ) . '</p>'
+			               . '<p><strong>' . sprintf( '4. <a href="https://ampforwp.com/hire/" target="_blank">%s</a>: ',esc_html__('Hire Us / Customization', 'accelerated-mobile-pages' )) . '</strong>' . esc_html__( 'We are your development backbone who specialises Backend and Frontend technologies. We have the capability to handle & solve the complex issues. If you have any customization, feel free to ask.', 'accelerated-mobile-pages' ) . '</p>'
+			               . '<p><strong>' . sprintf( '5. <a href="http://ampforwp.com/new/" target="_blank"> %s</a>: ',esc_html__('What\'s New in this Version?','accelerated-mobile-pages' )) . '</strong>' . esc_html__( 'If you want to know whats new in the latest version of the plugin, then please use this link.', 'accelerated-mobile-pages' ) . '</p>'
 
 						         . '</p></div>
                                  <br /><p><h3>Take AMP to the Next Level with Premium Extensions</h3></p>
