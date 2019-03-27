@@ -432,7 +432,12 @@ img.ampforwp-post-builder-img{
     width: 370px;
     border: 1px solid #eee;
 }
-.premium_features_btn{
+#redux-intro-text .technical_support_btn_txt{
+    background: #fdfdfd;
+    box-shadow: 0px 0px 6px #ddd;
+    color: #eb3548 !important;
+}
+.premium_features_btn,.technical_support_btn_txt{
     margin-left: 10px;
     font-size: 12px !important;
     padding: 6px 12px;
