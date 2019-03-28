@@ -1,5 +1,18 @@
 == Changelog ==
 
+= 0.9.97.44 (28th March 2019) =
+* Added: Captions feature in AMP page builder #2645
+* Added: Compatibility with the Youtube Oembed Plyr plugin #1505
+* Added: Caption option for gallery/slider module in pagebuilder #2790
+* Added: Like & share feature for every image in instant_articles #2764
+* Added: Genesis option in SEO settings #2386
+* Added: Improved the 'Setup AMP Feature' and 'Welcome to AMP' tabs & Enhance the Support button on AMP panel #2980
+* Fixed: AMP Theme Framework getting conflicted #2782
+* Fixed: Unwanted code for call-now component is being used #2652
+* Fixed: amphtml tag while AMP Takeover option is enabled #2550
+* Fixed: Debug warnings after 0.9.97.15 #2532
+* Fixed: 'Header design' section in "Header" tab removed when design-1,2 and 3 is active & minor improvements #2978
+
 = 0.9.97.43 (12th March 2019) =
 * Fixed: Fallback for Redux classes #2377
 * Fixed: Search widget CSS for Design-2 #1400
