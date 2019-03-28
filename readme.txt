@@ -13,7 +13,7 @@ AMP for WP is the most recommended AMP plugin by the community. Automatically ad
 == Description ==
 AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) functionality to your WordPress site. AMP makes your website faster for Mobile visitors.
 
-[What's New in this Version?](https://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://ampforwp.com/demo/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](https://ampforwp.com/community/)
+[What's New in this Version?](https://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://ampforwp.com/demo/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](https://ampforwp.com/help-center/)
 
 [youtube https://www.youtube.com/watch?v=Em1nsE_KaKw]
 
@@ -22,8 +22,8 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 <strong>Extensions</strong><br>
 Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Contact Form 7 Support](https://ampforwp.com/contact-form-7/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Email Opt-in Support](https://ampforwp.com/opt-in-forms/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [Call To Action Support](https://ampforwp.com/call-to-action/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin).
 
-<strong>Premium Support</strong><br>
-We try our best to provide support on WordPress.org forums. However, One-on-one email support is available to people who bought the [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) only. 
+<strong>Support</strong><br>
+We try our best to provide support on WordPress.org forums. However, We have a special [community support](https://ampforwp.com/help-center/) where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means a lot to us and so we try our best to reply each and every question that gets asked.
 
 <strong>Bug Reports</strong><br>
 Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkaludi/Accelerated-Mobile-Pages). Please note GitHub is _not_ a support forum, and issues that aren't properly qualified as bugs will be closed.
@@ -111,13 +111,11 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 = Getting Started: =
 **[1. User Documentation:](https://ampforwp.com/help/)** The AMP for WordPress plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
 
-**[2. Developer Docs:](https://ampforwp.com/help/#extend)** We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.
+**[2. Developer Docs:](https://ampforwp.com/tutorials/article-categories/developer-documentation/)** We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.
 
-**[3. Fixing AMP Validation Errors:](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin)** We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.
+**[3. Support:](https://ampforwp.com/help-center/)** We try our best to provide support on WordPress.org forums. However, We have a special community support where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means a lot to us and so we try our best to reply each and every question that gets asked.
 
-**[4. Community Support Forum:](https://ampforwp.com/help/#support-forum)** We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.
-
-**[5. Frequently Asked Questions:](https://ampforwp.com/faq/)** Some of the Frequently Asked questions.
+**[4. Premium Support:](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin)** We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.
 
 == Credits ==
 Some code used in this plugin was forked from 'AMP for WordPress' plugin https://wordpress.org/plugins/amp/ - License URI: http://www.gnu.org/licenses/gpl-2.0.html.
