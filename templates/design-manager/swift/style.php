@@ -2,11 +2,11 @@
 <?php if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( !isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector']) ) ) {?>
 <?php
  if(!ampforwp_levelup_compatibility('levelup_theme_and_elementor')){ ?>
-@font-face {font-family: 'Poppins';font-style: normal;font-weight: 300;font-display: auto;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Light.ttf');}
-@font-face {font-family: 'Poppins';font-style: normal;font-weight: 400;font-display: auto;src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Regular.ttf');}
-@font-face {font-family: 'Poppins';font-style: normal;font-weight: 500;font-display: auto;src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Medium.ttf');} 
-@font-face {font-family: 'Poppins';font-style: normal;font-weight: 600;font-display: auto;src: local('Poppins SemiBold'), local('Poppins-SemiBold'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-SemiBold.ttf'); }
-@font-face {font-family: 'Poppins';font-style: normal;font-weight: 700;font-display: auto;src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Bold.ttf'); }
+@font-face {font-family: 'Poppins';font-style: normal;font-weight: 300;font-display: swap;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Light.ttf');}
+@font-face {font-family: 'Poppins';font-style: normal;font-weight: 400;font-display: swap;src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Regular.ttf');}
+@font-face {font-family: 'Poppins';font-style: normal;font-weight: 500;font-display: swap;src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Medium.ttf');} 
+@font-face {font-family: 'Poppins';font-style: normal;font-weight: 600;font-display: swap;src: local('Poppins SemiBold'), local('Poppins-SemiBold'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-SemiBold.ttf'); }
+@font-face {font-family: 'Poppins';font-style: normal;font-weight: 700;font-display: swap;src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/Poppins-Bold.ttf'); }
 <?php } // levelup condition ends ?>
 <?php } ?>
 <?php
@@ -65,7 +65,7 @@ figure.aligncenter amp-img {margin: 0 auto;}
 if( class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) &&  (is_page() || ampforwp_is_front_page() )  ) {}
 else{ ?>.cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px} <?php } ?>
 <?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>
-@font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;font-display: auto;src:  local('icomoon'), local('icomoon'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.ttf');}
+@font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;font-display: swap;src:  local('icomoon'), local('icomoon'), url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.ttf');}
 header .cntr{
 <?php if( isset($redux_builder_amp['swift-width-control']) && $redux_builder_amp['swift-width-control']){?>
 	max-width:<?php echo $redux_builder_amp['swift-width-control']?>;
