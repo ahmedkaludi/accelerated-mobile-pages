@@ -69,7 +69,7 @@ function ampforwp_welcome_screen_content() {
  				<div class="amp_expert_user amp_user_onboarding_choose">
 	                <!--<div class="amp_user_avatar"></div>-->
 	                <!--<h3>Change log</h3>-->
-	                <?php require AMPFORWP_PLUGIN_DIR.'/includes/change-log.php';?>
+	                <?php require AMPFORWP_PLUGIN_DIR.'includes/change-log.php';?>
             	</div>
  			</div>
 
