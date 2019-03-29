@@ -1808,3 +1808,45 @@ if(true == ampforwp_get_setting('gnrl-dark-view')){?>
 	 scroll-behavior: smooth;
 	}
 <?php } ?> 
+
+<?php
+// Infinate Scroll Home & Archive page CSS
+if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_setting('ampforwp-infinite-scroll-home') ){?>
+	/** Home & Archive CSS **/
+	.body amp-next-page{
+	   margin:0px -30px 0px -30px
+	}
+	.amp-next-page-default-separator {
+	    padding-top: 30px;
+	    border:none;
+	}
+
+	@media(max-width:1024px){
+	    .body amp-next-page {
+	        margin: 0px -20px 0px -20px;
+	    }
+	    .amp-next-page-default-separator {
+	        padding-top: 10px;
+	    }
+	}
+	@media(max-width:480px){
+	    .body amp-next-page {
+	        margin: 0px;
+	    }
+	    .fsp, .fbp{
+		    margin:15px 0px;
+		}
+		.loop-wrapper{margin:0;display: inline-block;}
+	}
+
+<?php } // Infinate Scroll Single page CSS
+if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_setting('ampforwp-infinite-scroll-single') ){?>
+	.r-pf .fsp {
+	    margin: 15px;
+	}
+	@media(max-width:1024px){
+	    .body amp-next-page {
+		    margin: 0px 0px 0px 0px;
+		}
+	}
+<?php } ?>
