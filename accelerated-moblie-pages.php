@@ -905,14 +905,19 @@ function ampforwp_sanitize_color( $color ) {
 
 // AMP Plugins Manager compatibility #2976
 $plugins = array_flip(get_option('active_plugins'));
-if (isset($plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'] ) || isset($plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php'] )){
-	if ( isset($plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'] ) ){
-		$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php' );
-	}
-	else
-		$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php' );
+if (isset($plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'] ) ){
+	$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php' );
 	if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
 		unset($plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php']);
+		update_option('active_plugins', array_flip($plugins));
+		include_once( ABSPATH . 'wp-includes/pluggable.php' );
+		wp_redirect(admin_url());
+	}
+}
+elseif(isset($plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php'] )){
+	$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php' );
+	if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
+		unset($plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php']);
 		update_option('active_plugins', array_flip($plugins));
 		include_once( ABSPATH . 'wp-includes/pluggable.php' );
 		wp_redirect(admin_url());
