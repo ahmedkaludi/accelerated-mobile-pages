@@ -911,7 +911,7 @@ if (isset($plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'] )
 		unset($plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php']);
 		update_option('active_plugins', array_flip($plugins));
 		include_once( ABSPATH . 'wp-includes/pluggable.php' );
-		wp_redirect(admin_url());
+		wp_redirect(admin_url('plugins.php'));
 	}
 }
 elseif(isset($plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php'] )){
@@ -920,6 +920,6 @@ elseif(isset($plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creat
 		unset($plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php']);
 		update_option('active_plugins', array_flip($plugins));
 		include_once( ABSPATH . 'wp-includes/pluggable.php' );
-		wp_redirect(admin_url());
+		wp_redirect(admin_url('plugins.php'));
 	}
 }
