@@ -6154,7 +6154,7 @@ function ampforwp_vuukle_comments_support() {
 	}
 }
 function ampforwp_vuukle_comments_markup() {
-	global $redux_builder_amp;
+	global $redux_builder_amp,$post;
 	$apiKey = $locale = '';
 	$tag_name ='';
 	$img = get_the_post_thumbnail_url();
