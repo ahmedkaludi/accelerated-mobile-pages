@@ -904,6 +904,7 @@ function ampforwp_sanitize_color( $color ) {
 }
 
 // AMP Plugins Manager compatibility #2976
+// NOTE: Make sure to remove this code after 2-3 updates
 $ampforwp_active_plugins = array_flip(get_option('active_plugins'));
 if (isset($ampforwp_active_plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'] ) ){
 	$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php' );
