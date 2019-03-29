@@ -910,6 +910,7 @@ if (isset($plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'] )
 	if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
 		unset($plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php']);
 		update_option('active_plugins', array_flip($plugins));
+		update_option('amp-plugin-manager-older', true);
 		include_once( ABSPATH . 'wp-includes/pluggable.php' );
 		wp_redirect(admin_url('plugins.php'));
 	}
@@ -919,7 +920,19 @@ elseif(isset($plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creat
 	if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
 		unset($plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php']);
 		update_option('active_plugins', array_flip($plugins));
+		update_option('amp-plugin-manager-older', true);
 		include_once( ABSPATH . 'wp-includes/pluggable.php' );
 		wp_redirect(admin_url('plugins.php'));
+	}
+}
+
+add_action('admin_notices', 'ampforwp_plugins_manager_notice');
+function ampforwp_plugins_manager_notice(){
+	if ( true == get_option('amp-plugin-manager-older') ) { ?>
+		<div id="ampforwp_pluginmanager" class="notice-warning settings-error notice is-dismissible"><p><b><?php echo esc_html__('Attention: ','accelerated-mobile-pages');?></b><?php echo esc_html__('AMPforWP Plugin Manager has been deactivated and requires an upgrade. Please','accelerated-mobile-pages');?> <b><a target="_blank" href=<?php echo esc_url('https://ampforwp.com/plugins-manager/?update=plugins-manager#utm_source=plugin-page&utm_medium=plugin-manager-update&utm_campaign=update-notice');?>><?php echo esc_html__('Download &amp; install the latest version','accelerated-mobile-pages');?></a></b><?php echo esc_html__(' for free.','accelerated-mobile-pages');?>
+				</p>
+			</div>
+	<?php 
+	delete_option('amp-plugin-manager-older');
 	}
 }
