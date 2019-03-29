@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 0.9.97.44
+Stable tag: 0.9.97.44.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,17 +184,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.44 (28th March 2019) =
-* Added: Captions feature in AMP page builder #2645
-* Added: Compatibility with the Youtube Oembed Plyr plugin #1505
-* Added: Caption option for gallery/slider module in pagebuilder #2790
-* Added: Like & share feature for every image in instant_articles #2764
-* Added: Genesis option in SEO settings #2386
-* Added: Improved the 'Setup AMP Feature' and 'Welcome to AMP' tabs & Enhance the Support button on AMP panel #2980
-* Fixed: AMP Theme Framework getting conflicted #2782
-* Fixed: Unwanted code for call-now component is being used #2652
-* Fixed: amphtml tag while AMP Takeover option is enabled #2550
-* Fixed: Debug warnings after 0.9.97.15 #2532
-* Fixed: 'Header design' section in "Header" tab removed when design-1,2 and 3 is active & minor improvements #2978
+= 0.9.97.44.1 (29th March 2019) =
+* Fixed: Vuukle AMP integration code updated #2600
+* Fixed: Fatal Error with old Plugins manager v1.0 #2976
 
 Full changelog available in changelog.txt

@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.9.97.44.1 (29th March 2019) =
+* Fixed: Vuukle AMP integration code updated #2600
+* Fixed: Fatal Error with old Plugins manager v1.0 #2976
+
 = 0.9.97.44 (28th March 2019) =
 * Added: Captions feature in AMP page builder #2645
 * Added: Compatibility with the Youtube Oembed Plyr plugin #1505
