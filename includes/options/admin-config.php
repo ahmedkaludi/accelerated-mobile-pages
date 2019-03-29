@@ -2004,9 +2004,9 @@ Redux::setSection( $opt_name, array(
              array(
                         'id'       => 'ampforwp-fb-instant-article-posts',
                         'type'      => 'text',
-                        'title'     => __('Number of Posts', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Enter the number of posts to generate for Instant Articles.', 'accelerated-mobile-pages'),
-                         'desc' => __('Leave this empty to generate All Posts (500).', 'accelerated-mobile-pages'),
+                        'title'     => esc_html__('Number of Posts', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enter the number of posts to generate for Instant Articles.', 'accelerated-mobile-pages'),
+                         'desc' => esc_html__('Leave this empty to generate All Posts (500).', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1),
                         'default'   => '50'
                     ),
