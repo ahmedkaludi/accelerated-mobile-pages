@@ -1078,11 +1078,15 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 .beta_tester {
     float: left;
     margin-top: 12px;
-    margin-left: 20px
+    margin-left: 15px
 }
 .beta_tester a{
     text-decoration: none;
-    color: #999;
+background: #fff;
+    color: #4452a7;
+    padding: 6px 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
 }
 .beta_tester a:hover{
     text-decoration: underline;
