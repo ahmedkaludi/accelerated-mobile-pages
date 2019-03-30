@@ -1,7 +1,7 @@
 <?php
 add_action( 'template_redirect', 'ampforwp_redirection', 10 );
 function ampforwp_redirection() {
-  global $redux_builder_amp, $wp;
+  global $redux_builder_amp, $wp, $post;
   $hide_cats_amp = $url = '';
   $hide_cats_amp = is_category_amp_disabled();
   $go_to_url  = "";

@@ -15,9 +15,9 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                     <label for="offcanvas-menu" class="c-btn"></label>
                 </div><!--end menu-heading-->
 
-                <?php if ( amp_menu(false,$type) ) : ?>
+                <?php if ( amp_menu(false) ) : ?>
                     <nav class="m-menu">
-                       <?php amp_menu(true,$type);?>
+                       <?php amp_menu(true);?>
                     </nav><!--end slide-menu -->
                 <?php endif; ?>
                 <?php do_action('ampforwp_after_amp_menu');?>
@@ -143,9 +143,9 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <div class="menu-heading clearfix">
                     <label for="offcanvas-menu" class="c-btn"></label>
                 </div><!--end menu-heading-->
-                <?php if ( amp_menu(true,$type) ) : ?>
+                <?php if ( amp_menu(true) ) : ?>
                     <nav class="m-menu">
-                       <?php amp_menu(true,$type);?>
+                       <?php amp_menu(true);?>
                     </nav><!--end slide-menu -->
                 <?php endif; ?>
                 <?php do_action('ampforwp_after_amp_menu');?>
@@ -264,7 +264,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 </div><!--end menu-heading-->
                 <?php if ( amp_menu(false) ) : ?>
                     <nav class="m-menu">
-                       <?php amp_menu(true,$type);?>
+                       <?php amp_menu(true);?>
                     </nav><!--end slide-menu -->
                 <?php endif; ?>
                 <?php do_action('ampforwp_after_amp_menu');?>
@@ -429,7 +429,7 @@ do_action("ampforwp_advance_header_layout_options");
 if(!ampforwp_levelup_compatibility('hf_builder_head') ){
  if($redux_builder_amp['primary-menu']){?>
 <div class="p-m-fl">
-<?php if ( amp_menu(false,$type) ) : ?>
+<?php if ( amp_menu(false) ) : ?>
   <div class="p-menu">
     <?php amp_alter_menu(true,$type); ?>
   </div>
