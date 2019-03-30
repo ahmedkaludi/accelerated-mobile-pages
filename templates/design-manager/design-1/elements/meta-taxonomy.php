@@ -13,7 +13,7 @@
 				<span><?php global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories:' ) .' ' ); ?></span>
 				<?php foreach ($ampforwp_categories as $cat ) {
 				if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
-                echo '<span class="amp-cat">'. esc_attr($cat->name) .'</span>';
+                echo '<span class="amp-cat">'. esc_html($cat->name) .'</span>';
               	}
            		elseif( true == ampforwp_get_setting('ampforwp-archive-support') &&  true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {
 						echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) .'" > '. esc_attr($cat->name) .'</a></span>');//#934

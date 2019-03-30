@@ -13,7 +13,7 @@ function ampforwp_framework_get_categories_list( $saperator = '' ){
 				<span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories' ); ?></span>
 				<?php foreach ($ampforwp_categories as $key=>$cat ) {
 						if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
-								echo '<span class="amp-cat">'. esc_attr($cat->name) .'</span>';
+								echo '<span class="amp-cat">'. esc_html($cat->name) .'</span>';
 							}
 						elseif( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {
 								echo ('<span class="amp-cat amp-cat-'.$cat->term_id.'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) )   .'" > '. esc_attr($cat->name) .'</a></span>');//#934
