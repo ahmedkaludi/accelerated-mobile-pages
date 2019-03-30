@@ -178,14 +178,17 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			$href = esc_url($href);
 		}
 
-		/*  Why the code is commented?
+		/*  Why the below code is commented before?
 		 *  Issue was with multibyte string.
-		 *  For more info check: https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2556
+		 *  For more info check: https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2556 and https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2967
 		*/
-		/*if ( false === filter_var( $href, FILTER_VALIDATE_URL )
-			&& ! in_array( $protocol, $special_protocols, true ) ) {
-			return false;
-		}*/
+		if( false === $this->ampforwp_contains_any_multibyte($href) ){
+			echo 'hello'; die;
+			if ( false === filter_var( $href, FILTER_VALIDATE_URL )
+				&& ! in_array( $protocol, $special_protocols, true ) ) {
+				return false;
+			}
+		}
 
 		if ( ! in_array( $protocol, $valid_protocols, true ) ) {
 			return false;
@@ -227,6 +230,9 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		) );
 	}
 
+	private	function ampforwp_contains_any_multibyte($string){
+    	return !mb_check_encoding($string, 'ASCII') && mb_check_encoding($string, 'UTF-8');
+	}
 	private function get_blacklisted_tags() {
 		return $this->merge_defaults_with_args( 'add_blacklisted_tags', apply_filters('amp_blacklisted_tags' , array(
 			'script',
