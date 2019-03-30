@@ -680,9 +680,10 @@ function ampforwp_new_dir( $dir ) {
 
 	// 9. Advertisement code
 		// Below Header Global
+		if(!is_plugin_active( 'ads-for-wp/ads-for-wp.php' )){
 		add_action('ampforwp_after_header','ampforwp_header_advert');
 		add_action('ampforwp_design_1_after_header','ampforwp_header_advert');
-
+		}
 		function ampforwp_header_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
@@ -754,8 +755,9 @@ function ampforwp_new_dir( $dir ) {
 		}
 
 		// Above Footer Global
+		if(!is_plugin_active( 'ads-for-wp/ads-for-wp.php' )){
 		add_action('amp_post_template_footer','ampforwp_footer_advert',10);
-
+		}
 		function ampforwp_footer_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
@@ -827,9 +829,10 @@ function ampforwp_new_dir( $dir ) {
 		}
 
 		// Below Title Single
+		if(!is_plugin_active( 'ads-for-wp/ads-for-wp.php' )){
 		add_action('ampforwp_before_post_content','ampforwp_before_post_content_advert');
 		add_action('ampforwp_inside_post_content_before','ampforwp_before_post_content_advert');
-
+		}
 		function ampforwp_before_post_content_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
@@ -924,7 +927,9 @@ function ampforwp_new_dir( $dir ) {
 		}
 
 		// Below Content Single
+		if(!is_plugin_active( 'ads-for-wp/ads-for-wp.php' )){
 		add_action('ampforwp_after_post_content','ampforwp_after_post_content_advert');
+		}
 		function ampforwp_after_post_content_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
@@ -993,7 +998,9 @@ function ampforwp_new_dir( $dir ) {
 		}
 
 		// Below The Title
+		if(!is_plugin_active( 'ads-for-wp/ads-for-wp.php' )){
 		add_action('ampforwp_below_the_title','ampforwp_below_the_title_advert');
+		}
 		function ampforwp_below_the_title_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
@@ -1062,7 +1069,9 @@ function ampforwp_new_dir( $dir ) {
 		}
 
 		// Above Related post
+		if(!is_plugin_active( 'ads-for-wp/ads-for-wp.php' )){
 		add_action('ampforwp_above_related_post','ampforwp_above_related_post_advert');
+		}
 		function ampforwp_above_related_post_advert() {
 			global $redux_builder_amp;
 			$optimize = '';

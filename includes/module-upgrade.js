@@ -12,6 +12,8 @@ jQuery(document).ready(function($){
                 activate = '&activate=pwa';
             }else if(currentId=='ampforwp-structure-data-activation-call'){
                 activate = '&activate=structure_data';
+            }else if(currentId=='ampforwp-adsforwp-activation-call'){
+                activate = '&activate=adsforwp';
             }
             self.text( wp.updates.l10n.installing );
             $.ajax({
@@ -74,6 +76,19 @@ jQuery(document).ready(function($){
                     			self.removeClass('ampforwp-activation-call-module-upgrade');
 			                }
 			            });
+                        }else if(self.attr('id')=='ampforwp-adsforwp-activation-call'){
+                        msgplug = 'Ads for WP';
+                        self.text( 'Importing data...' );
+                        //Import Data
+                        jQuery.ajax({
+                            url: ajaxurl,
+                            type: 'post',
+                            data: 'action=ampforwp_import_modules_ads&verify_nonce='+nonce,
+                            success: function () {
+                                 self.html('<a href="'+response.redirect_url+'" style="text-decoration: none;color: #555;">Installed! - Let\'s Go to '+msgplug+' Settings</a>')
+                                self.removeClass('ampforwp-activation-call-module-upgrade');
+                            }
+                        });
                     }
                 },
                 error: function (jqXHR, exception) {

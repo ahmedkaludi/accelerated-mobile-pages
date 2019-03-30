@@ -738,7 +738,7 @@ span.switch-text {
     font-size: 14px;
     color: #333;}
 .ampforwp-st-data-update .col-1{width: 30%;float: left;} 
-.ampforwp-st-data-update .col-3 li:before {
+.ampforwp-st-data-update .col-3 li:before , .ampforwp-ads-data-update .col-3 li:before{
     content: "\f147";
     font-family: dashicons;
     position: relative;
@@ -831,4 +831,43 @@ span.switch-text {
 }
 .ampforwp-rate-stars svg:hover ~ svg{
     fill:none;
+}
+div#section-amp-ads_1,table#section-table-amp-ads_1{
+    max-width: 75%; 
+}
+div#section-ampforwp-ads-section , table#section-table-ampforwp-ads-section{
+    max-width: 24%;
+    float: right;
+    position: relative;
+    margin-top: -37px;
+}
+
+div#section-ampforwp-ads-section:after {
+    content: '';
+}
+
+div#section-ampforwp-ads-section h3:before{
+    content: "NEW";
+    color: #fff;
+    background: #4452a7;
+    padding: 5px 6px;
+    border-radius: 30px;
+    font-weight: normal;
+    position: relative;
+    top: 1px;
+    left: -6px;
+    font-size: 10px;
+    line-height: 10px;
+}
+.redux-main .redux-field-container{
+    padding: 18px 10px 18px 0;
+}
+.adsactive { 
+    max-width: 100%!important;
+    float: none!important;
+    margin-top:0!important;
+}
+.adsactive + #section-table-ampforwp-ads-section {
+    max-width:100%; 
+    float: none ;
 }

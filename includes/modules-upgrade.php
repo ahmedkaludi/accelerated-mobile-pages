@@ -62,6 +62,33 @@ function ampforwp_enable_modules_upgread(){
                         );
             $redirectSettingsUrl = admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp');
         break;
+        case 'adsforwp':
+            $nonceUrl = add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'ads-for-wp',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => wp_create_nonce( 'ads-for-wp' ),
+                                    ),
+                        network_admin_url( 'plugins.php' )
+                        );
+            $plugins[] = array(
+                            'name' => 'ads-for-wp',
+                            'path_' => 'https://downloads.wordpress.org/plugin/ads-for-wp.zip',
+                            'path' =>  add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'ads-for-wp',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => $nonceUrl,
+                                    )
+                                    ),
+                            'install' => 'ads-for-wp/ads-for-wp.php',
+                        );
+            $redirectSettingsUrl = admin_url('admin.php?page=adsforwp&tab=general&reference=ampforwp');
+        break;
         default:
             $plugins = array();
         break;
@@ -91,6 +118,9 @@ function ampforwp_admin_notice_module_reference_install() {
             case 'structured_data_options':
                 $message = 'AMPforWP Structured data Module has been Upgraded. You may configure it below:';
             break;
+            case 'adsforwp_options':
+                $message = 'AMPforWP AdsforWP Module has been Upgraded. You may configure it below:';
+            break;
         }
     }
     if($message){ ?>
@@ -105,9 +135,10 @@ add_action( 'admin_notices', 'ampforwp_admin_notice_module_reference_install' );
 
 
 /**
- *  Finish setub and Import default settings 
+ *  Finish setup and Import default settings 
  *
  */
+// Structured Data
 //On module upgrade
 add_action('wp_ajax_ampforwp_import_modules_scema', 'ampforwp_import_structure_data');
 function ampforwp_import_structure_data(){
@@ -206,4 +237,28 @@ function ampforwp_import_structure_data(){
     update_option('sd_data', $sd_data_update);
     update_option('ampforwp_structure_data_module_upgrade','migrated');
     return true;
-}   
+}
+// AdsforWP
+//On module upgrade
+add_action('wp_ajax_ampforwp_import_modules_ads', 'ampforwp_import_ads_data');
+function ampforwp_import_ads_data(){
+    global $redux_builder_amp;
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        exit();
+    }
+    // Exit if the user does not have proper permissions
+    if(! current_user_can( 'install_plugins' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        exit();
+    }
+    $adsforwp_object = new adsforwp_admin_common_functions();
+    $result = $adsforwp_object->adsforwp_migrate_ampforwp_ads();
+    $result = array_filter($result);
+    if($result){           
+        echo json_encode(array('status'=>'t', 'message'=>esc_html__('Data has been imported succeessfully','accelerated-mobile-pages')));            
+    }else{
+        echo json_encode(array('status'=>'f', 'message'=>esc_html__('Plugin data is not available or it is not activated','accelerated-mobile-pages')));
+    }
+    wp_die();  
+}       
