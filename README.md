@@ -184,6 +184,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 == Changelog ==
 
 = 0.9.97.44.1 (29th March 2019) =
+* Added: Advertisement AMP panel improved #2724
 * Fixed: Vuukle AMP integration code updated #2600
 * Fixed: Fatal Error with old Plugins manager v1.0 #2976
 
