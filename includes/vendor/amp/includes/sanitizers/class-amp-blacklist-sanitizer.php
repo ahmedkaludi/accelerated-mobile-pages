@@ -183,7 +183,6 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		 *  For more info check: https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2556 and https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2967
 		*/
 		if( false === $this->ampforwp_contains_any_multibyte($href) ){
-			echo 'hello'; die;
 			if ( false === filter_var( $href, FILTER_VALIDATE_URL )
 				&& ! in_array( $protocol, $special_protocols, true ) ) {
 				return false;
