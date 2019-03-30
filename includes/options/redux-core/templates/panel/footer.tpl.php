@@ -49,8 +49,8 @@ namespace ReduxCore\ReduxFramework;
                 <?php } ?>
 
             </div>
-        <?php } $beta_test_url = 'https://ampforwp.com/beta-test/';?>
-        <div class='beta_tester'><a href="<?php echo esc_url($beta_test_url);?>" target="_blank"><?php echo "Become a Beta Tester" ?></a></div>
+        <?php } $beta_test_url = 'https://wordpress.org/plugins/ads-for-wp/';?>
+        <div class='beta_tester'><a href="<?php echo esc_url($beta_test_url);?>" target="_blank"><?php echo "Just Launched: Ads for WP" ?></a></div>
 
         <div class="redux-action_bar">
             <span class="spinner"></span>
