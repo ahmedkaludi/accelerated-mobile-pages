@@ -905,28 +905,30 @@ function ampforwp_sanitize_color( $color ) {
 
 // AMP Plugins Manager compatibility #2976
 // NOTE: Make sure to remove this code after 2-3 updates
-$ampforwp_active_plugins = array_flip(get_option('active_plugins'));
-if (isset($ampforwp_active_plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'] ) ){
-	$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php' );
-	if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
-		unset($ampforwp_active_plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php']);
-		update_option('active_plugins', array_flip($ampforwp_active_plugins));
-		set_transient('amp-plugin-manager-older', true);
-		include_once( ABSPATH . 'wp-includes/pluggable.php' );
-		wp_redirect(admin_url('plugins.php'));
+if ( false == get_transient('amp-plugin-manager-older') ) {
+	$ampforwp_active_plugins = array_flip(get_option('active_plugins'));
+	if (isset($ampforwp_active_plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'] ) ){
+		$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php' );
+		if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
+			unset($ampforwp_active_plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php']);
+			update_option('active_plugins', array_flip($ampforwp_active_plugins));
+			set_transient('amp-plugin-manager-older', true);
+			include_once( ABSPATH . 'wp-includes/pluggable.php' );
+			wp_redirect(admin_url('plugins.php'));
+		}
 	}
-}
-elseif(isset($ampforwp_active_plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php'] )){
-	$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php' );
-	if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
-		unset($ampforwp_active_plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php']);
-		update_option('active_plugins', array_flip($ampforwp_active_plugins));
-		set_transient('amp-plugin-manager-older', true);
-		include_once( ABSPATH . 'wp-includes/pluggable.php' );
-		wp_redirect(admin_url('plugins.php'));
+	elseif(isset($ampforwp_active_plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php'] )){
+		$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php' );
+		if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
+			unset($ampforwp_active_plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php']);
+			update_option('active_plugins', array_flip($ampforwp_active_plugins));
+			set_transient('amp-plugin-manager-older', true);
+			include_once( ABSPATH . 'wp-includes/pluggable.php' );
+			wp_redirect(admin_url('plugins.php'));
+		}
 	}
-}
 
+}
 add_action('admin_notices', 'ampforwp_plugins_manager_notice');
 function ampforwp_plugins_manager_notice(){
 	if ( true == get_transient('amp-plugin-manager-older') ) { ?>
@@ -935,4 +937,8 @@ function ampforwp_plugins_manager_notice(){
 			</div>
 	<?php 
 	}
+}
+add_action( 'activate_plugin', 'ampforwp_active_update_transient1' );
+function ampforwp_active_update_transient1($plugin){
+	delete_transient( 'amp-plugin-manager-older' );
 }
