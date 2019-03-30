@@ -904,15 +904,14 @@ function ampforwp_sanitize_color( $color ) {
 }
 
 // AMP Plugins Manager compatibility #2976
-// NOTE: Make sure to remove this code after 2-3 updates
-if ( false == get_transient('amp-plugin-manager-older') ) {
+if ( false == get_transient('ampforwp-pm-disabler') ) {
 	$ampforwp_active_plugins = array_flip(get_option('active_plugins'));
 	if (isset($ampforwp_active_plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'] ) ){
 		$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php' );
 		if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
 			unset($ampforwp_active_plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php']);
 			update_option('active_plugins', array_flip($ampforwp_active_plugins));
-			set_transient('amp-plugin-manager-older', true);
+			set_transient('ampforwp-pm-disabler', true);
 			include_once( ABSPATH . 'wp-includes/pluggable.php' );
 			wp_redirect(admin_url('plugins.php'));
 		}
@@ -922,7 +921,7 @@ if ( false == get_transient('amp-plugin-manager-older') ) {
 		if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
 			unset($ampforwp_active_plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php']);
 			update_option('active_plugins', array_flip($ampforwp_active_plugins));
-			set_transient('amp-plugin-manager-older', true);
+			set_transient('ampforwp-pm-disabler', true);
 			include_once( ABSPATH . 'wp-includes/pluggable.php' );
 			wp_redirect(admin_url('plugins.php'));
 		}
@@ -931,14 +930,16 @@ if ( false == get_transient('amp-plugin-manager-older') ) {
 }
 add_action('admin_notices', 'ampforwp_plugins_manager_notice');
 function ampforwp_plugins_manager_notice(){
-	if ( true == get_transient('amp-plugin-manager-older') ) { ?>
+	if ( true == get_transient('ampforwp-pm-disabler') ) { ?>
 		<div id="ampforwp_pluginmanager" class="notice-warning settings-error notice is-dismissible"><p><b><?php echo esc_html__('Attention: ','accelerated-mobile-pages');?></b><?php echo esc_html__('AMPforWP Plugin Manager has been deactivated and requires an upgrade. Please','accelerated-mobile-pages');?> <b><a target="_blank" href=<?php echo esc_url('https://ampforwp.com/plugins-manager/?update=plugins-manager#utm_source=plugin-page&utm_medium=plugin-manager-update&utm_campaign=update-notice');?>><?php echo esc_html__('Download &amp; install the latest version','accelerated-mobile-pages');?></a></b><?php echo esc_html__(' for free.','accelerated-mobile-pages');?>
 				</p>
 			</div>
 	<?php 
 	}
 }
-add_action( 'activate_plugin', 'ampforwp_active_update_transient1' );
-function ampforwp_active_update_transient1($plugin){
-	delete_transient( 'amp-plugin-manager-older' );
+add_action( 'activate_plugin', 'ampforwp_delete_plugins_manager_transient' );
+function ampforwp_delete_plugins_manager_transient($plugin){
+	if ( strpos($plugin, 'ampforwp-3rd-party-plugin-creator.php') || strpos($plugin, 'accelerated-moblie-pages.php') ) {
+		delete_transient( 'ampforwp-pm-disabler' );
+	}
 }
