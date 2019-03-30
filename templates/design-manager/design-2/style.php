@@ -591,4 +591,20 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
     html {
 	 scroll-behavior: smooth;
 	}
+<?php } 
+// Infinate Scroll Home & Archive page CSS
+if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_setting('ampforwp-infinite-scroll-home') ){ ?>
+	amp-next-page{
+		margin:30px -22% 0px -22%;
+	}
+	@media(max-width:767px){
+		amp-next-page {
+	    	margin: 17px -2.6% 0px -2.5%;
+		}
+	}
+	@media(max-width:450px){
+		amp-next-page {
+		    margin: 17px -4.6% 0px -4.6%;
+		}
+	}
 <?php } ?>
