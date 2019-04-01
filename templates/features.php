@@ -8124,7 +8124,7 @@ if ( ! function_exists('ampforwp_sd_multiple_images') ) {
 	}
 }
 
-// ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
+// Get The ID for AMP #2867
 function ampforwp_get_the_ID($post_id=''){
 	$post_id = get_the_ID();
 	if(ampforwp_is_front_page()){
