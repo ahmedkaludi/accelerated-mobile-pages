@@ -104,13 +104,13 @@
 					      } ?>
 	      				</ul>
 	      			</div>
-		            <?php wp_reset_postdata(); } }?>
+		            <?php wp_reset_postdata(); } ?>
 				</div>
 				<?php } ?>
 		    </div>
 		</div>
 	</div>
-<?php  
+<?php  }
 do_action("ampforwp_single_design_type_handle");
 	?>
 <?php if($redux_builder_amp['rp_design_type'] == '2' || $redux_builder_amp['rp_design_type'] == '3'){
