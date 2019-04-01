@@ -72,8 +72,7 @@
 			            </div>
 
 		            <?php }
-		            if(ampforwp_get_setting('rp_design_type') == '1'){ 
-		            if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch')) {
+		            if ( ampforwp_get_setting('rp_design_type') == '1' && true == ampforwp_get_setting('ampforwp-single-related-posts-switch')) {
 					$my_query = ampforwp_related_post_loop_query();
 				  	if( $my_query->have_posts() ) { $r_count = 1;?>
 				  	<div class="srp">
@@ -111,7 +110,7 @@
 		    </div>
 		</div>
 	</div>
-<?php } 
+<?php  
 do_action("ampforwp_single_design_type_handle");
 	?>
 <?php if($redux_builder_amp['rp_design_type'] == '2' || $redux_builder_amp['rp_design_type'] == '3'){
