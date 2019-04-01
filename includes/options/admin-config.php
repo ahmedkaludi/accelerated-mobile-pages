@@ -2753,6 +2753,13 @@ function ampforwp_add_sd_fields($fields){
                               'tooltip-subtitle'    => esc_html__('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
                               'placeholder'  => esc_html__('When there is no thumbnail set for the video','accelerated-mobile-pages'),
                     );
+                $fields[] =   array(  
+                              'id'       => 'ampforwp-sd-multiple-images',  
+                              'title'    => esc_html__('High-resolution Images', 'accelerated-mobile-pages'), 
+                              'type'     => 'switch', 
+                              'default'  => 0,  
+                              'tooltip-subtitle' => esc_html__('For best results, provide multiple high-resolution images (minimum of 800,000 pixels when multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1 ', 'accelerated-mobile-pages'). '<a href="https://developers.google.com/search/docs/data-types/article#article_types" target="_blank">'.esc_html__('Read more','accelerated-mobile-pages').'</a>' 
+                    );
         }// is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') Closed
           
     return $fields;

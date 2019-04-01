@@ -8028,3 +8028,31 @@ function ampforwp_bulktool_takeover($data){
 	return $data;
 }
 }
+
+// Multiple Images #2259
+add_filter( 'amp_post_template_metadata', 'ampforwp_sd_multiple_images', 20, 1 );
+if ( ! function_exists('ampforwp_sd_multiple_images') ) {
+	function ampforwp_sd_multiple_images($metadata){
+		if ( ampforwp_get_setting('ampforwp-sd-multiple-images') ) {
+			if ( isset($metadata['image']['width']) && 1200 <= $metadata['image']['width'] ){
+				// 16x9
+				$image1_width = 1280;
+				$image1_height = 720;
+				$image1 = ampforwp_aq_resize( $metadata['image']['url'], $image1_width, $image1_height, true, false, true );
+				$image1_url = $image1[0];
+				// 4x3
+				$image2_width = 640;
+				$image2_height = 480;
+				$image2 = ampforwp_aq_resize( $metadata['image']['url'], $image2_width, $image2_height, true, false, true );
+				$image2_url = $image2[0];
+				// 1x1
+				$image3_width = 300;
+				$image3_height = 300;
+				$image3 = ampforwp_aq_resize( $metadata['image']['url'], $image3_width, $image3_height, true, false, true );
+				$image3_url = $image3[0];
+				$metadata['image'] = array($image3_url, $image2_url, $image1_url); 
+			}
+		}
+		return $metadata;
+	}
+}
