@@ -1459,7 +1459,7 @@ function ampforwp_yoast_social_title($type) {
 		if (empty($title) ){
 			$title = get_the_title($page_id);
 		}
-		return $title;
+		return esc_attr($title);
 	}
 	return  esc_attr( get_bloginfo( 'name' ) );
 }
@@ -1494,7 +1494,7 @@ function ampforwp_yoast_social_desc($type) {
 		if (empty($desc)){
 			$desc = wp_trim_words(get_post_field('post_content', $page_id), 26);
 		}
-		return $desc;			
+		return esc_attr($desc);			
 	}	
 	return  esc_attr( get_bloginfo( 'description' ) );
 }
