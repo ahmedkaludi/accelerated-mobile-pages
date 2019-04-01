@@ -6088,9 +6088,9 @@ if( ! function_exists('ampforwp_get_comments_gravatar') ){
 // Gravatar Checker
 if ( ! function_exists('ampforwp_gravatar_checker') ) {
 	function ampforwp_gravatar_checker( $email ) {
+		$uri = "";
 		// Craft a potential url and test its headers
 		$hash = md5(strtolower(trim($email)));
-		//$uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
 		$gravatar_server = 0;
 		if ( $hash ) {
 			$gravatar_server = hexdec( $hash[0] ) % 3;
@@ -6102,15 +6102,16 @@ if ( ! function_exists('ampforwp_gravatar_checker') ) {
 		} else {
 			$uri = sprintf( 'http://%d.gravatar.com/avatar/%s', $gravatar_server, $hash );
 		}
-		$headers = @get_headers($uri);
-		// If its 404
-		if (!preg_match("|200|", $headers[0])) {
-			$has_valid_avatar = FALSE;
-		} 
-		// Else if it is 200
-		else {
-			$has_valid_avatar = TRUE;
-		}
+		if($uri){
+		$response = wp_remote_get(esc_url_raw($uri));
+ 		$response_code = wp_remote_retrieve_response_code($response);
+ 		}
+		//If its 404
+		if ($response_code!=200) {
+		 	$has_valid_avatar = FALSE;
+		}else {
+		 	$has_valid_avatar = TRUE;
+	 	}
 		return $has_valid_avatar;
 	}
 }
