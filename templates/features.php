@@ -1520,10 +1520,10 @@ function ampforwp_custom_twitter_image_homepage($image){
 		$twitter = apply_filters( 'wpseo_twitter_creator_account', $twitter );
 	}
 	if ( is_string( $twitter ) && $twitter !== '' ) {
-		echo '<meta ', esc_attr( 'name' ), '="twitter:', esc_attr( 'creator' ), '" content="','@' . $twitter, '" />', "\n";
+		echo '<meta ', esc_attr( 'name' ), '="twitter:', esc_attr( 'creator' ), '" content="','@' . esc_attr($twitter), '" />', "\n";
 	}
 	elseif ( WPSEO_Options::get( 'twitter_site', '' ) !== '' && is_string( WPSEO_Options::get( 'twitter_site' ) ) ) {
-		echo '<meta ', esc_attr( 'name' ), '="twitter:', esc_attr( 'creator'), '" content="', '@' . WPSEO_Options::get( 'twitter_site' ), '" />', "\n";
+		echo '<meta ', esc_attr( 'name' ), '="twitter:', esc_attr( 'creator'), '" content="', '@' . esc_attr(WPSEO_Options::get( 'twitter_site' )), '" />', "\n";
 	}
 }
 function ampforwp_custom_og_image_homepage() {
@@ -1534,8 +1534,8 @@ function ampforwp_custom_og_image_homepage() {
 		$image_id = WPSEO_Meta::get_value( 'opengraph-image-id', $post_id );
 		$image = wp_get_attachment_image_src($image_id,'full');
 		$image_tags = array(
-			'width'     => $image[1],
-			'height'    => $image[2],
+			'width'     => esc_attr($image[1]),
+			'height'    => esc_attr($image[2]),
 		);
 		$wpseo_og->og_tag( 'og:image', esc_url( $image_url ) );
 		foreach ( $image_tags as $key => $value ) {
