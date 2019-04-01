@@ -65,15 +65,15 @@
 			            <div class="tags">
 			            	<?php amp_tags_list();?>
 			            </div>
-		            <?php } ?>
-		            <?php if($redux_builder_amp['rp_design_type'] == '1'){ 
+		            <?php } 
 		            if( true == $redux_builder_amp['swift-date'] ) { ?>
 			            <div class="post-date">
 			            	<?php amp_date(); ?><?php edit_post_link(); ?>
 			            </div>
 
 		            <?php }
-		            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
+		            if(ampforwp_get_setting('rp_design_type') == '1'){ 
+		            if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch')) {
 					$my_query = ampforwp_related_post_loop_query();
 				  	if( $my_query->have_posts() ) { $r_count = 1;?>
 				  	<div class="srp">
