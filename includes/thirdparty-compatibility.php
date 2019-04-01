@@ -985,10 +985,12 @@ return $string;
 }
 
 // Viewport appear more than once in Zox news theme. #2971
-if ( function_exists( 'mvp_setup' ) && ampforwp_get_setting('amp-design-selector') !=4 ) {
-remove_action( 'amp_post_template_head','ampforwp_add_meta_viewport', 9);
+add_action('pre_amp_render_post','ampforwp_zox_news_viewport');
+function ampforwp_zox_news_viewport(){
+	if ( function_exists( 'mvp_setup' ) && ampforwp_get_setting('amp-design-selector') != 4 ) {
+		remove_action( 'amp_post_template_head','ampforwp_add_meta_viewport');
+	}
 }
-
 // SEOPress Compatibility #1589
 add_action('amp_post_template_head', 'ampforwp_seopress_social');
 function ampforwp_seopress_social(){
