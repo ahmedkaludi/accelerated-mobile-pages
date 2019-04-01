@@ -1945,6 +1945,15 @@ if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {
                'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
            ),
            array(
+               'class' => 'child_opt',
+               'id'       => 'ampforwp-yoast-seo-analysis',
+               'type'     => 'switch',
+               'tooltip-subtitle'     => esc_html__('Get the Yoast Analysis from AMP PageBuilder Content', 'accelerated-mobile-pages'),
+               'title'    => esc_html__( 'Yoast Analysis for AMP PageBuilder', 'accelerated-mobile-pages' ),
+               'default'  => 1,
+               'required'  => array(array('ampforwp-seo-selection', '=' , 'yoast'),array('ampforwp-amp-takeover', '=' , '1')),
+           ),
+           array(
                 'id'       => 'ampforwp-seo-aioseo',
                 'type'     => 'info',
                 'style'    => 'success',
