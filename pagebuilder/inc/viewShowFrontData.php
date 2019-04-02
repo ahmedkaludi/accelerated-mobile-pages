@@ -492,11 +492,13 @@ function amp_pagebuilder_content_styles(){
 	echo amppb_validateCss($completeCssOfPB);
 } 
 function amppb_validateCss($css){
+	$css = str_replace('&quot;', '"', $css);
 	$css = str_replace(array('.amppb-fluid','.amppb-fixed'), array('.ap-fl','.ap-fi'), $css);
 	$css = preg_replace('/(([a-z -]*:(\s)*;))/', "", $css);
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
 	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
-	
+	$css = preg_replace('/\s\n+/', "", $css);
+
 	return ampforwp_pb_autoCompileLess($css);
 }
 

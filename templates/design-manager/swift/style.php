@@ -426,7 +426,7 @@ pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14
 <?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
 <?php // Single
 
-if(is_single() ) { ?>
+if(is_single() && !checkAMPforPageBuilderStatus(get_the_ID())) { ?>
 .cntn-wrp{
 <?php
  $fontFamily = "font-family: 'Arial, Helvetica, sans-serif'";
