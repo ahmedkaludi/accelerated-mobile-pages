@@ -1007,9 +1007,9 @@ function ampforwp_seopress_social(){
 				$current_url = trailingslashit(home_url(add_query_arg(array(), $wp->request)));
 			}
 			if (is_search()) {
-				$seopress_social_og_url = '<meta property="og:url" content="'.htmlspecialchars(urldecode(get_home_url().'/search/'.get_search_query())).'" />';
+				$seopress_social_og_url = '<meta property="og:url" content="'.esc_url(htmlspecialchars(urldecode(get_home_url().'/search/'.get_search_query()))).'" />';
 			} else {
-				$seopress_social_og_url = '<meta property="og:url" content="'.htmlspecialchars(urldecode($current_url),ENT_COMPAT, 'UTF-8').'" />';
+				$seopress_social_og_url = '<meta property="og:url" content="'.esc_url(htmlspecialchars(urldecode($current_url),ENT_COMPAT, 'UTF-8')).'" />';
 			}
 			//Hook on post OG URL - 'seopress_social_og_url'
 			if (has_filter('seopress_social_og_url')) {
@@ -1018,7 +1018,7 @@ function ampforwp_seopress_social(){
 			echo $seopress_social_og_url."\n";
 		}
 		if (isset($options['seopress_social_facebook_og'])) {
-			$seopress_social_og_site_name = '<meta property="og:site_name" content="'.get_bloginfo('name').'" />';
+			$seopress_social_og_site_name = '<meta property="og:site_name" content="'.esc_html(get_bloginfo('name')).'" />';
 			//Hook on post OG site name - 'seopress_social_og_site_name'
 			if (has_filter('seopress_social_og_site_name')) {
 				$seopress_social_og_site_name = apply_filters('seopress_social_og_site_name', $seopress_social_og_site_name);
@@ -1026,7 +1026,7 @@ function ampforwp_seopress_social(){
 			echo $seopress_social_og_site_name."\n";
 		}
 		if (isset($options['seopress_social_facebook_og'])) {
-			$seopress_social_og_locale = '<meta property="og:locale" content="'.get_locale().'" />';
+			$seopress_social_og_locale = '<meta property="og:locale" content="'.esc_attr(get_locale()).'" />';
 			//Polylang
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if ( is_plugin_active( 'polylang/polylang.php' ) || is_plugin_active( 'polylang-pro/polylang.php' )) {
@@ -1044,7 +1044,7 @@ function ampforwp_seopress_social(){
 
 					foreach ( $alternates as $lang ) {
 						$seopress_social_og_locale .= "\n";
-						$seopress_social_og_locale .= '<meta property="og:locale:alternate" content="'.$lang.'" />';
+						$seopress_social_og_locale .= '<meta property="og:locale:alternate" content="'.esc_attr($lang).'" />';
 					}
 				}
 			}
@@ -1176,12 +1176,12 @@ function ampforwp_seopress_social(){
 
 				//OG:IMAGE
 				$seopress_social_og_img = '';
-				$seopress_social_og_img .= '<meta property="og:image" content="'.$url.'" />';
+				$seopress_social_og_img .= '<meta property="og:image" content="'.esc_url($url).'" />';
 				$seopress_social_og_img .= "\n";
 
 				//OG:IMAGE:SECURE_URL IF SSL
 				if (is_ssl()) {
-					$seopress_social_og_img .= '<meta property="og:image:secure_url" content="'.$url.'" />';
+					$seopress_social_og_img .= '<meta property="og:image:secure_url" content="'.esc_url($url).'" />';
 					$seopress_social_og_img .= "\n";
 				}
 
