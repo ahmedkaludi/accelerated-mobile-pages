@@ -129,6 +129,10 @@ if ( get_query_var( 'paged' ) ) {
 				$thumb_url = ampforwp_get_post_thumbnail();
 				$thumb_width  	= ampforwp_get_post_thumbnail('width');
 				$thumb_height 	= ampforwp_get_post_thumbnail('height');
+				if(ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size')){
+					$thumb_width  	= ampforwp_get_setting('ampforwp-design-3-homepage-posts-width');
+					$thumb_height 	= ampforwp_get_setting('ampforwp-design-3-homepage-posts-height');
+				}
 				if($thumb_url){
 					?>
 					<div class="home-post_image">

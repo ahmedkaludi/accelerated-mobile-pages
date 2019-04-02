@@ -4625,16 +4625,15 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                 array(
                         'id'       => 'ampforwp-homepage-posts-image-modify-size',
                         'type'     => 'switch',
-                        'title'    => __('Override Homepage Thumbnail Size', 'accelerated-mobile-pages'),
-                        'required' => array( array( 'amp-design-selector','!=',3 ) ),
-                        'default'  => 0,
+                        'title'    => esc_html__('Override Homepage Thumbnail Size', 'accelerated-mobile-pages'),
+                         'default'  => 0,
                  ),
                 array(
                     'class' => 'child_opt child_opt_arrow',
                         'id'       => 'ampforwp-homepage-posts-design-1-2-width',
                         'type'     => 'text',
-                        'title'    => __('Image Width', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Defaults to 100', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Image Width', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Defaults to 100', 'accelerated-mobile-pages'),
                         'default'  => 100,
                         'required' => array(
                           array('amp-design-selector','!=',3),
@@ -4646,8 +4645,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                     'class' => 'child_opt',
                         'id'       => 'ampforwp-homepage-posts-design-1-2-height',
                         'type'     => 'text',
-                        'title'    => __('Image Height', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Defaults to 75', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Image Height', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Defaults to 75', 'accelerated-mobile-pages'),
                         'default'  => 75,
                         'required' => array(
                           array('amp-design-selector','!=',3),
@@ -4657,10 +4656,34 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                 ),
                 array(
                     'class' => 'child_opt',
+                        'id'       => 'ampforwp-design-3-homepage-posts-width',
+                        'type'     => 'text',
+                        'title'    => esc_html__('Image Width', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Defaults to 300', 'accelerated-mobile-pages'),
+                        'default'  => 300,
+                        'required' => array(
+                          array('amp-design-selector','=',3),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                ),
+                array(
+                    'class' => 'child_opt',
+                        'id'       => 'ampforwp-design-3-homepage-posts-height',
+                        'type'     => 'text',
+                        'title'    => esc_html__('Image Height', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Defaults to 300', 'accelerated-mobile-pages'),
+                        'default'  => 300,
+                        'required' => array(
+                          array('amp-design-selector','=',3),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                ),
+                array(
+                    'class' => 'child_opt',
                         'id'       => 'ampforwp-swift-homepage-posts-width',
                         'type'     => 'text',
-                        'title'    => __('Image Width', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Defaults to 346', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Image Width', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Defaults to 346', 'accelerated-mobile-pages'),
                         'default'  => 346,
                         'required' => array(
                           array('amp-design-selector','=',4),
@@ -4671,8 +4694,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                     'class' => 'child_opt',
                         'id'       => 'ampforwp-swift-homepage-posts-height',
                         'type'     => 'text',
-                        'title'    => __('Image Height', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Defaults to 188', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Image Height', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Defaults to 188', 'accelerated-mobile-pages'),
                         'default'  => 188,
                         'required' => array(
                           array('amp-design-selector','=',4),
