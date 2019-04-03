@@ -383,7 +383,7 @@ if ( ! function_exists('ampforwp_sd_multiple_images') ) {
 // schema.org/SiteNavigationElement missing from menus #1229 & #2952
 add_action('amp_post_template_footer','ampforwp_sd_sitenavigation');
 function ampforwp_sd_sitenavigation(){
-    if (!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')) {
+    if ( ! class_exists('saswp_fields_generator') ) {
 	    $input = array();           
 	    $navObj = array();       
 	    $menuLocations = get_nav_menu_locations();        
