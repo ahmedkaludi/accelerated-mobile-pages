@@ -1694,6 +1694,7 @@ function ampforwp_replace_title_tags() {
 		// SEOPress #1589
 		elseif ( is_plugin_active('wp-seopress/seopress.php') && 'seopress' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 			$seopress_title = ampforwp_get_seopress_title();
+			$seopress_title = ampforwp_seopress_title_sanitize($seopress_title);
 			if ( $seopress_title ) {
 				$site_title = $seopress_title;
 			}
@@ -1760,9 +1761,14 @@ function ampforwp_modify_archive_title( $title ) {
 function ampforwp_get_seopress_title(){
 	$seopress_title = $seopress_options = '';
 	$post_id = ampforwp_get_the_ID();
+	$post = get_post($post_id);
+	$seopress_get_current_cpt = get_post_type($post);
 	$seopress_options = get_option("seopress_titles_option_name");
 	if ( get_post_meta($post_id,'_seopress_titles_title',true) ) {
 		$seopress_title = get_post_meta($post_id,'_seopress_titles_title',true);
+	}
+	elseif ( isset($seopress_options['seopress_titles_single_titles'][$seopress_get_current_cpt]['title'])) {
+		$seopress_title = $seopress_options['seopress_titles_single_titles'][$seopress_get_current_cpt]['title'];
 	}
 	if ( ampforwp_is_home() || ampforwp_is_blog() ) {
 		$seopress_titles_template_variables_array = array('%%sitetitle%%','%%tagline%%');
@@ -1776,6 +1782,92 @@ function ampforwp_get_seopress_title(){
 	if ( $seopress_title ) {
 		return $seopress_title;
 	}
+}
+// Sanitize SEOPress Title #1589
+function ampforwp_seopress_title_sanitize($title){
+	$seopress_titles_template_variables_array = array(
+		'%%sep%%',
+		'%%sitetitle%%',
+		'%%sitename%%',
+		'%%tagline%%',
+		'%%post_title%%',
+		'%%post_excerpt%%',
+		'%%post_date%%',
+		'%%post_modified_date%%',
+		'%%post_author%%',
+		'%%post_category%%',
+		'%%post_tag%%',
+		'%%_category_title%%',
+		'%%_category_description%%',
+		'%%tag_title%%',
+		'%%tag_description%%',
+		'%%term_title%%',
+		'%%term_description%%',
+		'%%search_keywords%%',
+		'%%current_pagination%%',
+		'%%cpt_plural%%',
+		'%%archive_title%%',
+		'%%archive_date%%',
+		'%%archive_date_day%%',
+		'%%archive_date_month%%',
+		'%%archive_date_year%%',
+		'%%wc_single_cat%%',
+		'%%wc_single_tag%%',
+		'%%wc_single_short_desc%%',
+		'%%wc_single_price%%',
+		'%%wc_single_price_exc_tax%%',
+		'%%currentday%%',
+		'%%currentmonth%%',
+		'%%currentyear%%',
+		'%%currentdate%%',
+		'%%currenttime%%',
+	);
+	$sep = '';
+	$seopress_titles_sep_option = get_option("seopress_titles_option_name");
+	if (isset($seopress_titles_sep_option['seopress_titles_sep']) ) {
+		$sep = $seopress_titles_sep_option['seopress_titles_sep'];
+	} else {
+		$sep = '-';
+	}
+	$seopress_titles_template_replace_array = array(
+		$sep,
+		get_bloginfo('name'),
+		get_bloginfo('name'),
+		get_bloginfo('description'),
+		the_title_attribute('echo=0'),
+		$seopress_get_the_excerpt,
+		get_the_date(),
+		get_the_modified_date(),
+		$the_author_meta,
+		$post_category,
+		$post_tag,
+		single_cat_title('', false),
+		wp_trim_words(stripslashes_deep(wp_filter_nohtml_kses(category_description())),$seopress_excerpt_length),
+		single_tag_title('', false),
+		wp_trim_words(stripslashes_deep(wp_filter_nohtml_kses(tag_description())),$seopress_excerpt_length),
+		single_term_title('', false),
+		wp_trim_words(stripslashes_deep(wp_filter_nohtml_kses(term_description())),$seopress_excerpt_length),
+		$get_search_query,
+		$seopress_paged,
+		post_type_archive_title('', false),
+		get_the_archive_title(),
+		get_the_archive_title(),
+		get_query_var('day'),
+		get_query_var('monthnum'),
+		get_query_var('year'),
+		$woo_single_cat_html,
+		$woo_single_tag_html,
+		$seopress_get_the_excerpt,
+		$woo_single_price,
+		$woo_single_price_exc_tax,
+		date_i18n('j'),
+		date_i18n('F'),
+		date('Y'),
+		date_i18n( get_option( 'date_format' )),
+		current_time(get_option( 'time_format' )),
+	);
+	$seopress_titles_title_template = str_replace($seopress_titles_template_variables_array, $seopress_titles_template_replace_array, $title);
+	return $seopress_titles_title_template;
 }
 add_action( 'pre_amp_render_post', 'ampforwp_modify_archive_title_in_amp');
 function ampforwp_modify_archive_title_in_amp() {
