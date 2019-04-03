@@ -4351,6 +4351,11 @@ Redux::setSection( $opt_name, array(
     $pluginsData = get_transient( 'ampforwp_themeframework_active_plugins' );
     if( empty( $pluginsData )){
         $activePlugins = get_option( 'active_plugins', array() );
+        if(is_multisite()){
+            $activePlugins_multi = get_site_option('active_sitewide_plugins'); 
+            $activePlugins_multi = array_keys($activePlugins_multi); 
+            $activePlugins = array_merge($activePlugins, $activePlugins_multi); 
+        }
         if(count( $activePlugins)>0){
             foreach ( $activePlugins as $key => $value) {
                 $plugin = get_plugin_data(WP_PLUGIN_DIR.'/'.$value);
