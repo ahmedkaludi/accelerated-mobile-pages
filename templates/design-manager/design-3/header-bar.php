@@ -11,14 +11,13 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
       if( has_nav_menu( 'amp-menu' ) ) { ?>
         <div class="navigation_heading"><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-navigate-text'] , 'Navigate' )); ?></div>
       
-      <?php // Grand child support AND amp-accordion non critical error in Design 3 due to nav #1152
-         // schema.org/SiteNavigationElement missing from menus #1229 ?>
-      <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement"> 
+      <?php // Grand child support AND amp-accordion non critical error in Design 3 due to nav #1152 ?>
+      <nav id ="primary-amp-menu"> 
         <?php
         require_once AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-walker-nav-menu.php';
         $menu_html_content = wp_nav_menu( array(
             'theme_location' => 'amp-menu',
-            'link_before'     => '<span itemprop="name">',
+            'link_before'     => '<span>',
             'link_after'     => '</span>',
             'menu'=>'ul',
             'menu_class'=>'amp-menu',

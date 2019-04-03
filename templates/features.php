@@ -8135,3 +8135,36 @@ function ampforwp_get_the_ID($post_id=''){
 	}
 	return $post_id;
 }
+
+// schema.org/SiteNavigationElement missing from menus #1229 & #2952
+add_action('amp_post_template_footer','ampforwp_sd_sitenavigation');
+function ampforwp_sd_sitenavigation(){
+    if ( ! class_exists('saswp_fields_generator') ) {
+	    $input = array();           
+	    $navObj = array();       
+	    $menuLocations = get_nav_menu_locations();        
+	    if(!empty($menuLocations) ){ 
+	        foreach($menuLocations as $type => $id){
+	            $menuItems = wp_get_nav_menu_items($id);
+	            if($menuItems){
+	                if($type == 'amp-menu' || $type == 'amp-footer-menu' ){                      
+	                    foreach($menuItems as $items){
+	                      $navObj[] = array(
+	                             "@context"  => "https://schema.org",
+	                             "@type"     => "SiteNavigationElement",
+	                             "@id"       => trailingslashit(get_home_url()).$type,
+	                             "name"      => $items->title,
+	                             "url"       => $items->url
+	                      );
+ 	                    }
+	           		}                                                                 
+	            }
+	        }
+	        if($navObj){  
+	            $input['@context'] = 'https://schema.org'; 
+	            $input['@graph']   = $navObj; ?>       
+	    		<script type="application/ld+json"><?php echo wp_json_encode( $input ); ?></script>
+	        <?php }
+	    }
+	}
+}  

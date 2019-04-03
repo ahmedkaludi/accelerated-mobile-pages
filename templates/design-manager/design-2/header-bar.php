@@ -21,13 +21,12 @@
     side="right">
   <div class="toggle-navigationv2">
       <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
-        <?php // #1229 ?>
-        <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+        <nav id ="primary-amp-menu">
           <?php
           require_once AMPFORWP_PLUGIN_DIR.'/classes/class-ampforwp-walker-nav-menu.php';
           $menu_html_content = wp_nav_menu( array(
                                         'theme_location' => 'amp-menu' ,
-                                        'link_before'     => '<span itemprop="name">',
+                                        'link_before'     => '<span>',
                                         'link_after'     => '</span>',
                                         'menu'           =>'ul',
                                         'echo' => false,
