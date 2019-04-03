@@ -137,13 +137,13 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			$classes = array();
 			$design = ampforwp_get_setting('amp-design-selector');
 			if ( 1 == $design ) {
-				$classes = array("#pagination",".related_posts", ".amp-wp-footer",".amp-wp-header");
+				$classes = array("#pagination",".related_posts", ".amp-wp-footer",".amp-wp-header",".f-w");
 			}
 			if ( 2 == $design ) {
-				$classes = array("#headerwrap","#pagination","#footer",".nav_container",".related_posts");
+				$classes = array("#headerwrap","#pagination","#footer",".nav_container",".related_posts",".f-w");
 			}
 			if ( 3 == $design ) {
-				$classes = array("#headerwrap",".relatedpost",".footer_wrapper",".pagination-holder");
+				$classes = array("#headerwrap",".relatedpost",".footer_wrapper",".pagination-holder",".f-w");
 			}
 			if ( 4 == $design ) {
 				$classes = array(".p-m-fl",".loop-pagination",".footer",".r-pf",".srp ul",".srp h3","#pagination",".h_m_w", ".f-w");
