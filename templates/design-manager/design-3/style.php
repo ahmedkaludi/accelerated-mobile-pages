@@ -787,4 +787,12 @@ if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_set
   }
   #headerwrap{position:relative;}
   header{padding:0;}
+<?php }
+if ( is_singular() && false == ampforwp_get_setting('amp-opt-sticky-head') ){?>
+.amp-wp-content *[id]:before { 
+  display: block; 
+  content: " "; 
+  margin-top: -75px; 
+  height: 75px; 
+  visibility: hidden;}
 <?php } ?>

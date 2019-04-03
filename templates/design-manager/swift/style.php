@@ -1849,4 +1849,12 @@ if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_set
 		    margin: 0px 0px 0px 0px;
 		}
 	}
-<?php } ?>
+<?php }
+if(is_singular() && true == ampforwp_get_setting('amp-sticky-header')){?>
+.cntn-wrp *[id]:before { 
+  display: block; 
+  content: " "; 
+  margin-top: -75px; 
+  height: 75px; 
+  visibility: hidden;}
+<?php } ?>  
