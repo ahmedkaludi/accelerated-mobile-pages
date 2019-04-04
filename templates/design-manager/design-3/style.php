@@ -736,4 +736,10 @@ if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
     html {
    scroll-behavior: smooth;
   }
-<?php } ?>
+<?php }
+// Infinate Scroll Home & Archive page CSS
+if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_setting('ampforwp-infinite-scroll-home') ){?>
+  .amp_home_body .amp-next-page-default-separator {border:none;}
+  #headerwrap{position:relative;}
+  header{padding:0;}
+<?php } ?> 
