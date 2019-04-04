@@ -570,10 +570,10 @@ function ampforwp_new_dir( $dir ) {
 		// Facebook Like Script
 	    $fb_like = false;
 	    if ( true == ampforwp_get_setting('ampforwp-facebook-like-button') ){
-	      if ( is_single() && (true == ampforwp_get_setting('enable-single-social-icons') || ( $social_check && !checkAMPforPageBuilderStatus(get_the_ID())))) {
+	      if ( is_single() && (true == ampforwp_get_setting('enable-single-social-icons') || ( $social_check && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())))) {
 	        $fb_like = true;
 	      }
-	      if ( is_page() && ( true == ampforwp_get_setting('ampforwp-page-sticky-social') || ( $social_check_page && !checkAMPforPageBuilderStatus(get_the_ID()) ) ) ) {
+	      if ( is_page() && ( true == ampforwp_get_setting('ampforwp-page-sticky-social') || ( $social_check_page && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) ) ) {
 	        $fb_like = true;
 	      }
 	    }
