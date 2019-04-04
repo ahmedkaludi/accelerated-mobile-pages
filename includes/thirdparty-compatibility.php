@@ -755,67 +755,67 @@ function ampforwp_app_box_styles(){
 		    background-color: #FFF;
 		}
 		div.wpappbox.amazonapps a.applinks, div.wpappbox.amazonapps div.applinks {
-		    background: url(<?php echo $wpappbox_image_path.'amazonapps.png' ?>);
+		    background: url(<?php echo esc_url($wpappbox_image_path.'amazonapps.png'); ?>);
 		    background-repeat: no-repeat;
 		    background-size: auto 42px;
 		    background-position: center 7px;
 		}
 		div.wpappbox.appstore a.applinks, div.wpappbox.appstore div.applinks {
-			background: url(<?php echo $wpappbox_image_path.'appstore.png' ?>);
+			background: url(<?php echo esc_url($wpappbox_image_path.'appstore.png'); ?>);
 		    background-repeat: no-repeat;
 		    background-size: auto 42px;
 		    background-position: center 7px;
 		}
 		div.wpappbox.chromewebstore a.applinks, div.wpappbox.chromewebstore div.applinks{
-			background: url(<?php echo $wpappbox_image_path.'chromewebstore.png' ?>);
+			background: url(<?php echo esc_url($wpappbox_image_path.'chromewebstore.png'); ?>);
 		    background-repeat: no-repeat;
 		    background-size: auto 42px;
 		    background-position: center 7px;
 		}
 		div.wpappbox.firefoxaddon a.applinks, div.wpappbox.firefoxaddon div.applinks{
-			background: url(<?php echo $wpappbox_image_path.'firefoxaddon.png' ?>);
+			background: url(<?php echo esc_url($wpappbox_image_path.'firefoxaddon.png'); ?>);
 		    background-repeat: no-repeat;
 		    background-size: auto 42px;
 		    background-position: center 7px;
 		}
 		div.wpappbox.googleplay a.applinks, div.wpappbox.googleplay div.applinks{
-			background: url(<?php echo $wpappbox_image_path.'googleplay.png' ?>);
+			background: url(<?php echo esc_url($wpappbox_image_path.'googleplay.png'); ?>);
 		    background-repeat: no-repeat;
 		    background-size: auto 42px;
 		    background-position: center 7px;
 		}	
 		div.wpappbox.operaaddons a.applinks, div.wpappbox.operaaddons div.applinks{
-			background: url(<?php echo $wpappbox_image_path.'operaaddons.png' ?>);
+			background: url(<?php echo esc_url($wpappbox_image_path.'operaaddons.png'); ?>);
 		    background-repeat: no-repeat;
 		    background-size: auto 42px;
 		    background-position: center 7px;
 		}
 		div.wpappbox.steam a.applinks, div.wpappbox.steam div.applinks{
-			background: url(<?php echo $wpappbox_image_path.'steam.png' ?>);
+			background: url(<?php echo esc_url($wpappbox_image_path.'steam.png'); ?>);
 		    background-repeat: no-repeat;
 		    background-size: auto 42px;
 		    background-position: center 7px;
 		}
 		div.wpappbox.windowsstore a.applinks, div.wpappbox.windowsstore div.applinks{
-			background: url(<?php echo $wpappbox_image_path.'windowsstore.png' ?>);
+			background: url(<?php echo esc_url($wpappbox_image_path.'windowsstore.png'); ?>);
 		    background-repeat: no-repeat;
 		    background-size: auto 42px;
 		    background-position: center 7px;
 		}
 		div.wpappbox.wordpress a.applinks, div.wpappbox.wordpress div.applinks{
-			background: url(<?php echo $wpappbox_image_path.'wordpress.png' ?>);
+			background: url(<?php echo esc_url($wpappbox_image_path.'wordpress.png'); ?>);
 		    background-repeat: no-repeat;
 		    background-size: auto 42px;
 		    background-position: center 7px;
 		}
 		div.wpappbox.xda a.applinks, div.wpappbox.xda div.applinks{
-			background: url(<?php echo $wpappbox_image_path.'xda.png' ?>);
+			background: url(<?php echo esc_url($wpappbox_image_path.'xda.png'); ?>);
 		    background-repeat: no-repeat;
 		    background-size: auto 42px;
 		    background-position: center 7px;
 		}
 		div.wpappbox div.stars-monochrome {
-		    background: url(<?php echo $wpappbox_image_path.'stars-sprites-monochrome.png' ?>) no-repeat;
+		    background: url(<?php echo esc_url($wpappbox_image_path.'stars-sprites-monochrome.png'); ?>) no-repeat;
 		}
 		div.wpappbox div.rating-stars {
 		    width: 65px;
