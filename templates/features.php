@@ -5656,12 +5656,12 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 
     //for Single content Font Family
     if(ampforwp_get_setting('content-font-family-enable') && is_single()){
-    	if(isset($redux_builder_amp['google_current_font_data_content_single'])){
-			$font_data = json_decode(stripslashes($redux_builder_amp['google_current_font_data_content_single']));
+    	if(ampforwp_get_setting('google_current_font_data_content_single')){
+			$font_data = json_decode(stripslashes(ampforwp_get_setting('google_current_font_data_content_single')));
 		}
     	$font_output .= "\n";
-	    if(isset( $redux_builder_amp['amp_font_type_content_single'])){
-	    	$font_type = $redux_builder_amp['amp_font_type_content_single'];
+	    if( ampforwp_get_setting('amp_font_type_content_single') ){
+	    	$font_type = ampforwp_get_setting('amp_font_type_content_single');
 	    }
 	    if ( $font_type ) {
 		    foreach ($font_type as $key => $value) {
@@ -5720,11 +5720,11 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 		      	}
 
 		        $font_output .= "@font-face {  ";
-		        $font_output .= "font-family: " . $redux_builder_amp['amp_font_selector_content_single']. ';' ;
+		        $font_output .= "font-family: " . ampforwp_get_setting('amp_font_selector_content_single'). ';' ;
 		        $font_output .= "font-display: swap".';';
 		        $font_output .= "font-style: " . $font_style . ';';
 		        $font_output .= "font-weight: " . $font_weight . ';' ;
-		        $font_output .= "src: local('". $redux_builder_amp['amp_font_selector_content_single']." ".$font_local_weight." ".$font_local_type."'), local('". $redux_builder_amp['amp_font_selector_content_single']."-".$font_local_weight.$font_local_type."'), url(" .str_replace("http://", "https://", $font_data->files->$value) . ');' ;
+		        $font_output .= "src: local('". ampforwp_get_setting('amp_font_selector_content_single')." ".$font_local_weight." ".$font_local_type."'), local('". esc_attr(ampforwp_get_setting('amp_font_selector_content_single'))."-".$font_local_weight.$font_local_type."'), url(" .esc_url(str_replace("http://", "https://", $font_data->files->$value)) . ');' ;
 		        $font_output .= "}";
 		    }
 	    }
