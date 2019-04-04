@@ -34,7 +34,7 @@ font-size: 16px; line-height:1.25; }
 		if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
 			 $fontFamily = "font-family: 'Poppins', sans-serif;";
 			if( $amp_font_selector_content_single != 1 && !empty($amp_font_selector_content_single)){
-				$fontFamily = "font-family: '".$amp_font_selector_content_single."';";
+				$fontFamily = "font-family: '".esc_attr($amp_font_selector_content_single)."';";
 			}  
 		}
 		echo $fontFamily;

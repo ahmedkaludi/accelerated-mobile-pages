@@ -5720,11 +5720,11 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 		      	}
 
 		        $font_output .= "@font-face {  ";
-		        $font_output .= "font-family: " . ampforwp_get_setting('amp_font_selector_content_single'). ';' ;
+		        $font_output .= "font-family: " . esc_attr(ampforwp_get_setting('amp_font_selector_content_single')). ';' ;
 		        $font_output .= "font-display: swap".';';
-		        $font_output .= "font-style: " . $font_style . ';';
-		        $font_output .= "font-weight: " . $font_weight . ';' ;
-		        $font_output .= "src: local('". ampforwp_get_setting('amp_font_selector_content_single')." ".$font_local_weight." ".$font_local_type."'), local('". esc_attr(ampforwp_get_setting('amp_font_selector_content_single'))."-".$font_local_weight.$font_local_type."'), url(" .esc_url(str_replace("http://", "https://", $font_data->files->$value)) . ');' ;
+		        $font_output .= "font-style: " . esc_attr($font_style) . ';';
+		        $font_output .= "font-weight: " . esc_attr($font_weight) . ';' ;
+		        $font_output .= "src: local('". esc_attr(ampforwp_get_setting('amp_font_selector_content_single'))." ".esc_attr($font_local_weight)." ".esc_attr($font_local_type)."'), local('". esc_attr(ampforwp_get_setting('amp_font_selector_content_single'))."-".esc_attr($font_local_weight).$font_local_type."'), url(" .esc_url(str_replace("http://", "https://", $font_data->files->$value)) . ');' ;
 		        $font_output .= "}";
 		    }
 	    }
