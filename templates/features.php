@@ -7291,17 +7291,7 @@ function ampforwp_embedly_sanitizer( $sanitizer_classes ) {
   	}
 	return $sanitizer_classes;
 }
-//Remove anchor link from images when lightbox is enabled #2695
-add_action('pre_amp_render_post','ampforwp_remove_ahref_lightbox');
-function ampforwp_remove_ahref_lightbox(){	
-	if(true == ampforwp_get_setting('ampforwp-amp-img-lightbox')){
-		add_filter( 'the_content', 'ampforwp_remove_ahref_lightbox_in_amp' );
-	}
-}
-function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
-	$updated_content = preg_replace("/<a[^>]+\>(<img[^>]+\>)<\/a>/i", '$1', $content);
-	return $updated_content;
-}
+
 // Gutenberg Modules CSS
 add_action('amp_post_template_css', 'ampforwp_gutenberg_css');
 if ( ! function_exists('ampforwp_gutenberg_css') ) {
