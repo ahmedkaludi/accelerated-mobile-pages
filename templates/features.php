@@ -4039,15 +4039,16 @@ function ampforwp_posts_to_remove () {
 
 function is_category_amp_disabled(){
 	global $redux_builder_amp;
-	$current_cats_ids = array();
+	$current_cats_ids = $selected_cats = array();
+	$current_category = $current_cat_id = '';
 	if(is_archive() && true == ampforwp_get_setting('ampforwp-archive-support') ){
-		if(is_tag() && is_array(ampforwp_get_setting('hide-amp-tags-bulk-option2'))){
-			$all_tags = get_the_tags();
+		if(is_tag() && is_array(ampforwp_get_setting('hide-amp-tags-bulk-option2') ) )	{
+			$all_tags 	= get_the_tags();
 			$tagsOnPost = array();
 			if ( $all_tags ) {
-			foreach ($all_tags as $tagskey => $tagsvalue) {
-				$tagsOnPost[] = $tagsvalue->term_id;
-			}
+				foreach ($all_tags as $tagskey => $tagsvalue) {
+					$tagsOnPost[] = $tagsvalue->term_id;
+				}
 			}
 			$get_tags_checkbox =  array_values(array_filter(ampforwp_get_setting('hide-amp-tags-bulk-option2'))); 
 			
@@ -4058,24 +4059,33 @@ function is_category_amp_disabled(){
 				return false;
 			}
 		}//tags check area closed
-		if( is_category() && is_array(ampforwp_get_setting('hide-amp-categories2'))){
-			$categories = get_the_category();
-			$selected_cats = array();
-			$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories2'); 
-			$get_selected_cats = array_filter($get_categories_from_checkbox);
-			foreach ($get_selected_cats as $key => $value) {
-				$selected_cats[] = $value;
+		$categories = get_the_category();
+		if ( $categories) {
+			$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories2');
+			$current_category = get_category( get_query_var( 'cat' ) );
+			if ( $current_category ) {
+				$current_cat_id = $current_category->cat_ID;
 			}
-			foreach ($categories as $key => $cats) {
-				$current_cats_ids[] =$cats->cat_ID;
-			}  
-			if($selected_cats && $current_cats_ids){
-				if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
-			    	return true;
-			    }
-				else
-					return false;
-			}
+			// Check if get_categories_from_checkbox has some cats then only show
+			if ( $get_categories_from_checkbox ) {
+				$get_selected_cats = array_filter($get_categories_from_checkbox);
+				foreach ($get_selected_cats as $key => $value) {
+					$selected_cats[] = $value;
+				}
+				foreach ($categories as $key => $cats) {
+					$current_cats_ids[] =$cats->cat_ID;
+				} 
+				if( $selected_cats && ( $current_cats_ids || $current_cat_id) ) {
+					if ( in_array($current_cat_id, $selected_cats) ) {
+						return true;
+					}
+					elseif( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
+				    	return true;
+				    }
+					else
+						return false;
+				}
+			} 
 		}
 	}
 }
