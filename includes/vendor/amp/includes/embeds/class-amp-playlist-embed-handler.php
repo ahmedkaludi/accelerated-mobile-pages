@@ -102,6 +102,15 @@ class AMP_Playlist_Embed_Handler extends AMP_Base_Embed_Handler {
 		}
 		add_action( 'wp_playlist_scripts', 'wp_playlist_scripts' );
 	}
+	/**	
+	 * Enqueues the playlist styling.	
+	 *	
+	 * @return void	
+	 */	
+ 	public function ampforwp_playlist_styles() {	
+ 		 require_once( AMPFORWP_VENDOR_DIR .'/amp/includes/css/ampforwp-playlist-styles.php' ); 
+	}	
+ 	/**
  	/**
 	 * Gets AMP-compliant markup for the playlist shortcode.
 	 *
@@ -136,6 +145,7 @@ class AMP_Playlist_Embed_Handler extends AMP_Base_Embed_Handler {
 		$amp_state    = array(
 			'selectedIndex' => 0,
 		);
+		$this->ampforwp_playlist_styles();
 		ob_start();
 		?>
 		<div class="wp-playlist wp-audio-playlist wp-playlist-light">
@@ -201,6 +211,7 @@ class AMP_Playlist_Embed_Handler extends AMP_Base_Embed_Handler {
 		$width      = isset( $dimensions['width'] ) ? $dimensions['width'] : $content_width;
 		$height     = isset( $dimensions['height'] ) ? $dimensions['height'] : null;
 		$src_bound  = sprintf( '%s[%s.selectedIndex].videoUrl', $state_id, $state_id );
+		$this->ampforwp_playlist_styles();
 		ob_start();
 		?>
 		<div class="wp-playlist wp-video-playlist wp-playlist-light">
