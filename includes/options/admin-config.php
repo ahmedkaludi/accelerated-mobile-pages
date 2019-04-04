@@ -4562,9 +4562,9 @@ Redux::setSection( $opt_name, array(
                            'type' => 'section',
                            'title' => esc_html__('Typography', 'accelerated-mobile-pages'),
                            'indent' => true,
-                            /*'required' => array(
+                            'required' => array(
                                 array('amp-design-selector', '=' , '4')
-                            ),*/
+                            ),
                             'layout_type' => 'accordion',
                             'accordion-open'=> 1,
                 ));
@@ -4605,7 +4605,7 @@ Redux::setSection( $opt_name, array(
                'title' => esc_html__('Google Fonts', 'accelerated-mobile-pages'),
                'tooltip-subtitle'  => esc_html__('Enable/Disable Google Font','accelerated-mobile-pages'),
                 'default'   => $enabledGoogleFonts,
-               // 'required' => $fontEnabled,
+                'required' => array(array('amp-design-selector', '=' , '4'))
             ),
             array(
                 'id'        =>'google_font_api_key',
@@ -4658,7 +4658,8 @@ Redux::setSection( $opt_name, array(
                 'title'     =>esc_html__('Google Font Current Font','accelerated-mobile-pages'),
                 'default'   =>'',
                 'required' => array(
-                    array('amp-design-selector', '=' , '4')
+                    array('amp-design-selector', '=' , '4'),
+                    array('ampforwp-google-font-switch', '=', '1'),
                 )
             ),
             array(
@@ -4717,7 +4718,8 @@ Redux::setSection( $opt_name, array(
                 'title'     =>esc_html__('Google Font Current Font','accelerated-mobile-pages'),
                 'default'   =>'',
                 'required' => array(
-                    array('amp-design-selector', '=' , '4')
+                    array('amp-design-selector', '=' , '4'),
+                    array('ampforwp-google-font-switch', '=', '1'),
                 )
             )
         );
