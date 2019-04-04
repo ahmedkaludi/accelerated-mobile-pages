@@ -168,7 +168,7 @@ function amp_menu($echo=true){
 		}
 	}
 // Alternative Menus
-function amp_alter_menu($echo=true,$type=''){
+function amp_alter_menu($echo=true){
 		global $loadComponent;
 		if(isset($loadComponent['AMP-alter-menu']) && $loadComponent['AMP-alter-menu']==true){
 			if ( false == $echo ) {
