@@ -262,11 +262,13 @@ function amp_pagination($args =array()) {
 
     <div class="loop-pagination"><?php
 	    if ( get_next_posts_link( $args['next_text'], $amp_q->max_num_pages ) ) { 
-	    	echo '<div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ) .'</div>';
+    	 	$next_link = '<div class="right">'. apply_filters('ampforwp_next_posts_link',get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ), $paged) .'</div>';
+    	 	echo $next_link;
 	    }
 	    if ( get_previous_posts_link() ) { 
-     		echo '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ) .'</div>';
-    	}?>
+	    	$pre_link = '<div class="left">'.apply_filters('ampforwp_previous_posts_link',get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ), $paged )  .'</div>';
+	    	echo $pre_link;
+    	} ?>
 	    <div class="clearfix"></div>
 	</div><?php
 	

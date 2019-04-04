@@ -61,6 +61,7 @@
 			</div>
 		<?php } $i++; ?>
 		<?php endwhile; amp_loop('end');  ?>
+		<?php do_action('ampforwp_loop_before_pagination') ?>
 	<?php amp_pagination(); ?>
    </div>
    <?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>

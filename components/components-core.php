@@ -337,7 +337,7 @@ function amp_header_core(){
 	<html <?php echo esc_attr(ampforwp_amp_nonamp_convert('amp ')); ?><?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
 		<head>
 		<meta charset="utf-8"> 
-
+			<?php do_action('amp_experiment_meta', $thisTemplate); ?>
 		    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
 		    <?php 

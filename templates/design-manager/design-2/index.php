@@ -3,7 +3,8 @@
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
-  <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+	<?php do_action('amp_experiment_meta', $this); ?>
+  	<link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<style amp-custom>
 	<?php $this->load_parts( array( 'style' ) ); ?>
@@ -97,11 +98,11 @@
 	do_action('ampforwp_between_loop',$count,$this);
 		         $count++;
 	 endwhile;  ?>
-
+ 	<?php do_action('ampforwp_loop_before_pagination') ?>
 	<div class="amp-wp-content pagination-holder">
 		<div id="pagination">
-			<?php if ( get_next_posts_link('next', $q->max_num_pages) ){ ?><div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'] , 'Next') . ' &raquo;', $q->max_num_pages ) ?></div><?php }?>
-			<?php if ( get_previous_posts_link() ){ ?><div class="prev"><?php previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' ) ); ?></div><?php }?>
+			<?php if ( get_next_posts_link('next', $q->max_num_pages) ){ ?><div class="next"><?php echo apply_filters('ampforwp_next_posts_link',get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ).'&raquo;', 0), $paged);?></div><?php }?>
+			<?php if ( get_previous_posts_link() ){ ?><div class="prev"><?php echo apply_filters( 'ampforwp_previous_posts_link', get_previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' )), $paged ); ?></div><?php }?>
 			<div class="clearfix"></div>
 		</div>
 	</div>
