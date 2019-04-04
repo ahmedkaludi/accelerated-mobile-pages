@@ -1414,7 +1414,7 @@ if(isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp
 <?php } ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;bottom: 0;text-align: center;border: 0;}
 .s_stk ul{width:100%;display:inline-flex;}
-.s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;}
+.s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:35px}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
 
 <?php } ?>
