@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 0.9.97.44.2
+Stable tag: 0.9.97.45
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,16 +184,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.44.2 (1st April 2019) =
-* Added: Element folder files override in the Design One, Design Two and Design Three for the Child theme #2770
-* Added: High-resolution Images [Additional image guidelines] option added in structure data #2259
-* Fixed: Hide by default option from bulk tools is not working when amp takeover option is enabled #2832
-* Fixed: Space removed while checking in the ampforwp_onesignal_notifications_widget function #2569
-* Fixed: Display on User Avatar option #2942
-* Fixed: Edit page is getting blank when product module is used #2944
-* Fixed: YoastSEO post analysis broke & getting Uncaught TypeError: $ is not a function #2948
-* Fixed: Yoast meta data are not renderring correct content for custom homepage #2928
-* Fixed: Date format in Swift theme homepage/loop #2965
-* Fixed: Published Date Disappear When selecting Horizontal Design in Related Post [swift-theme] #2957
+= 0.9.97.45 (4th April 2019) =
+* Added: SeoPress compatibility integrated #1589
+* Added: WP Appbox compatibility integrated #2791
+* Added: Infinite Scroll feature integrated. #2682
+* Added: Facebook like button added in Sticky Social Share #2186
+* Added: Font family for Content in Single page #2122
+* Fixed: Custom post type categories not showing in amp pagebuilder #1993
+* Fixed: Duplicate SiteNavigationElement issue #2952
+* Fixed: AMP Theme Framework Multisite issue #2936
+* Fixed: Custom AMP Editor Content is Not rendering when Elementor is activated #2901
+* Fixed: Title issue on Homepage with Yoast if we select custom front page #2962
 
 Full changelog available in changelog.txt
