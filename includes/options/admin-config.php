@@ -1865,6 +1865,9 @@ if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {
             elseif ( function_exists('genesis_title') ) {
                 $default = 'genesis';
             }
+            elseif ( is_plugin_active('wp-seopress/seopress.php') ) {
+                $default = 'seopress';
+            }
             return $default;
         }
     }
@@ -1914,6 +1917,7 @@ if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {
                     'aioseo'     => 'All in One SEO',
                     'rank_math' => 'Rank Math SEO',
                     'genesis'    => 'Genesis',
+                    'seopress'    => 'SEOPress',
                 ),
                 'default'  => ampforwp_seo_default(),
             ),
