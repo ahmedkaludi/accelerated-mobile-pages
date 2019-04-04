@@ -389,6 +389,18 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 <?php if(is_singular()){ ?>
 /** Pre tag Styling **/
 pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;margin-bottom: 20px;}
+.cntn-wrp{
+<?php
+ $fontFamily = "font-family: 'Arial, Helvetica, sans-serif'";
+if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
+	 $fontFamily = "font-family: 'Poppins', sans-serif;";
+	if( ampforwp_get_setting('amp_font_selector_content_single') != 1 && !empty(ampforwp_get_setting('amp_font_selector_content_single')) ){ 
+		$fontFamily = "font-family: '".esc_attr(ampforwp_get_setting('amp_font_selector_content_single'))."';";
+	}  
+}
+echo $fontFamily;
+?>
+}
 <?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
 <?php // Single
