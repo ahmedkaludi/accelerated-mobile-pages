@@ -5655,7 +5655,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
     }
 
     //for Single content Font Family
-    if(ampforwp_get_setting('content-font-family-enable')){
+    if(ampforwp_get_setting('content-font-family-enable') && is_single()){
     	if(isset($redux_builder_amp['google_current_font_data_content_single'])){
 			$font_data = json_decode(stripslashes($redux_builder_amp['google_current_font_data_content_single']));
 		}
