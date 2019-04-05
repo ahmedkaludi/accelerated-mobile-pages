@@ -1850,7 +1850,7 @@ if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_set
 		}
 	}
 <?php }
-if(is_singular() && true == ampforwp_get_setting('amp-sticky-header')){?>
+if(is_singular() || ampforwp_is_front_page() && true == ampforwp_get_setting('amp-sticky-header')){?>
 .cntn-wrp *[id]:before { 
   display: block; 
   content: " "; 
