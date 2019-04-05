@@ -7127,18 +7127,21 @@ function checkAMPforPageBuilderStatus($postId){
   if( ampforwp_is_front_page() ){
 		$postId = ampforwp_get_frontpage_id();
 	}
-	if ( empty(  $postId ) ) {
-    return false;
-  }
-  $ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
-  $ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
-  //$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
-  
-	if( $ampforwp_pagebuilder_enable=='yes'){
-		return true;
-	}else{
-		return false;
+  if ( empty(  $postId ) ) {
+    $response = false;
+  }else{
+	  $ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
+	  $ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
+	  //$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	  
+		if( $ampforwp_pagebuilder_enable=='yes'){
+			$response = true;
+		}else{
+			$response = false;
+		}
+		$response = apply_filters( 'ampforwp_pagebuilder_status_modify', $response, $postId );
 	}
+	return $response;
 }
 
 // Featured Video Plus & video SmartMag theme Compatibility #2559: amp-iframe script #2394
