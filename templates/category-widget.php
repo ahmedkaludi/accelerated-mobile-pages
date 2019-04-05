@@ -132,7 +132,8 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
 
               $categories = get_categories( array(
                   'orderby' => 'name',
-                  'order'   => 'ASC'
+                  'order'   => 'ASC',
+                  'number'  => 500
               ) );
 
               echo '<option selected value="none">Recent Posts </option>';

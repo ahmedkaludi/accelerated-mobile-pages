@@ -85,7 +85,8 @@ if ( is_admin() ) {
   $post_types['post'] = 'post';
  $categories = get_categories( array(   
                    'orderby' => 'name',   
-                   'order'   => 'ASC'   
+                   'order'   => 'ASC',
+                   'number'  => 500   
                ) );   
  $categoriesArray = array('recent_option'=>'Recent Posts');   
  foreach($categories as $category){		
