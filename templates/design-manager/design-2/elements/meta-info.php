@@ -39,9 +39,9 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
                 echo '<span class="amp-cat">'. esc_html($cat->name) .'</span>';
               }
             elseif( true == ampforwp_get_setting('ampforwp-archive-support') &&  true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {
-            		echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) . '" >'. esc_html($cat->name) .'</a></span>');//#934
+            		echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'. esc_url(ampforwp_url_controller( get_category_link( $cat->term_id ) )) . '" >'. esc_html($cat->name) .'</a></span>');//#934
 				} else {
-					echo ('<span class="amp-cat amp-cat-'.$cat->term_id.'"><a href="'. get_category_link( $cat->term_id )  .'" > '. esc_html($cat->name) .'</a></span>');
+					echo ('<span class="amp-cat amp-cat-'.esc_attr($cat->term_id).'"><a href="'. esc_url(get_category_link( $cat->term_id ))  .'" > '. esc_html($cat->name) .'</a></span>');
 				}
       }
 
