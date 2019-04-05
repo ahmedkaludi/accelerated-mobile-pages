@@ -16,6 +16,7 @@ $output = '
 		{{repeater_button}}
 	</div>
 {{ifend_condition_carousel_layout_type_2}}
+</div>
 ';
 $css = '
 {{if_condition_carousel_layout_type==1}}
