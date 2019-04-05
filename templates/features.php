@@ -2438,14 +2438,15 @@ function ampforwp_auto_flush_on_save($redux_builder_amp, $this_transients_change
 					foreach ($category as $key => $cat) {
 						if(in_array($cat->term_id, $needToEnableAmp)){
 							$amp_post_metas['ampforwp-amp-on-off'] = 'default';
+							update_post_meta($post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
 							break;
 						}elseif(in_array($cat->term_id, $needToRemove)){
 							$amp_post_metas['ampforwp-amp-on-off'] = 'hide-amp';
+							update_post_meta($post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
 							break;
 						}
 					}
 				}
-				update_post_meta($post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
 			}
 		}
 	}
@@ -2483,14 +2484,15 @@ function ampforwp_auto_flush_on_save($redux_builder_amp, $this_transients_change
 					foreach ($terms as $key => $cat) {
 						if(in_array($cat->term_id, $needToEnableAmp)){
 							$amp_post_metas['ampforwp-amp-on-off'] = 'default';
+							update_post_meta($post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
 							break;
 						}elseif(in_array($cat->term_id, $needToRemove)){
 							$amp_post_metas['ampforwp-amp-on-off'] = 'hide-amp';
+							update_post_meta($post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
 							break;
 						}
 					}
 				}
-				update_post_meta($post->ID, 'ampforwp-post-metas', json_encode($amp_post_metas) );
 			}
 		}
 	}
