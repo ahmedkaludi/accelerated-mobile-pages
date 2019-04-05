@@ -47,15 +47,15 @@ if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' 
     $pb_title = '';
     $pb_subtitle = '';
     if(class_exists('Vc_Manager') ){
-       $pb_title =  'WPBakery Page Builder compatible';
+       $pb_title =  'WPBakery Page Builder Compatibility';
        $pb_subtitle = 'WPBakery Page Builder';
     }
     if( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ){
-        $pb_title =  'Divi Builder compatible';
+        $pb_title =  'Divi Builder Compatibility';
         $pb_subtitle = 'Divi Builder';
     }
     if(did_action( 'elementor/loaded' ) ){
-        $pb_title =  'Elementor compatible';
+        $pb_title =  'Elementor Compatibility';
         $pb_subtitle = 'Elementor';
     }
     $pb_for_amp = array(
