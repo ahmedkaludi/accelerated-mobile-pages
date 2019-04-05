@@ -180,7 +180,7 @@
             $term_id        = get_query_var('tag_id');
             $taxonomy       = 'post_tag';
             $args           = 'include=' . $term_id;
-            $terms          = get_terms( $taxonomy, $args );
+            $terms          = get_the_terms( $post->ID,'post_tag' );
             $get_term_id    = $terms[0]->term_id;
             $get_term_slug  = $terms[0]->slug;
             $get_term_name  = $terms[0]->name;

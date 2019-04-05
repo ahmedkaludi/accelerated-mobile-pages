@@ -2227,15 +2227,6 @@ Redux::setSection( $opt_name, array(
                            'required'=>array('amp-on-off-for-all-posts','=','1'),
                         ),
                         array(
-                        'id'        =>'hide-amp-categories',
-                        'type'      => 'checkbox_hierarchy',
-                        'title'     => __('Select Categories to Hide AMP'),
-                        'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
-                        'default'   => 0, 
-                        'data'      => 'category_list_hierarchy',
-                        'class'     => 'hide'
-                        ),
-                        array(
                         'id'        =>'hide-amp-categories2',
                         'type'      => 'select',
                         'title'     => __('Select Categories to Hide AMP'),
@@ -2245,15 +2236,6 @@ Redux::setSection( $opt_name, array(
                         'data-action'     => 'categories', 
                         'data'      => 'categories',
                         ),  
-                        array(
-                        'id'        =>'hide-amp-tags-bulk-option',
-                        'type'      => 'checkbox',
-                        'title'     => __('Select Tags to Hide AMP'),
-                        'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
-                        'default'   => 0, 
-                        'data'      => 'tags',
-                        'class'      => 'hide'
-                       ),
                         array(
                         'id'        =>'hide-amp-tags-bulk-option2',
                         'type'      => 'select',
