@@ -20,8 +20,8 @@ if( !empty($swift_cs['color']) ) {
 	$swift_cs_color = $swift_cs['color'];
 }?>
 body{<?php 
-	$fontFamily = "font-family: 'Arial, Helvetica, sans-serif';";
-if( !ampforwp_levelup_compatibility('levelup_theme') && 1==ampforwp_get_setting('ampforwp-google-font-switch')){
+	$fontFamily = "font-family: 'Arial', 'Helvetica', 'sans-serif';";
+if( !ampforwp_levelup_compatibility('levelup_theme') && 1==ampforwp_get_setting('ampforwp-google-font-switch') && ampforwp_get_setting('amp_font_type')){
 	$fontFamily = "font-family: 'Poppins', sans-serif;";
 	if(ampforwp_get_setting('amp_font_selector') != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
 		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';";
@@ -306,9 +306,7 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 .cntn-wrp.srch{
 font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;
 <?php
- $fontFamily = "font-family: 'Arial, Helvetica, sans-serif'";
 if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
-	 $fontFamily = "font-family: 'Poppins', sans-serif;";
 	if(ampforwp_get_setting('amp_font_selector_content_single') != 1 && !empty(ampforwp_get_setting('amp_font_selector_content_single')) ){ 	
 		$fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector_content_single')."';";	
 	}  
@@ -424,9 +422,7 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo $swift_cs_color?>;margin-bottom: 20px;}
 .cntn-wrp{
 <?php
- $fontFamily = "font-family: 'Arial, Helvetica, sans-serif'";
-if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
-	 $fontFamily = "font-family: 'Poppins', sans-serif;";
+if(1==ampforwp_get_setting('ampforwp-google-font-switch') && 1 == ampforwp_get_setting('content-font-family-enable')){
 	if( ampforwp_get_setting('amp_font_selector_content_single') != 1 && !empty(ampforwp_get_setting('amp_font_selector_content_single')) ){ 
 		$fontFamily = "font-family: '".esc_attr(ampforwp_get_setting('amp_font_selector_content_single'))."';";
 	}  
