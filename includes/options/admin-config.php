@@ -2569,6 +2569,16 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'default'   => 0
                     ),
+                    array(
+                        'id'       => 'ampforwp_font_icon',
+                        'type'     => 'select',
+                        'title'    => __('Google Font Icons', 'accelerated-mobile-pages'),
+                        'options'  => array(
+                            'swift-icons'       => 'Swift Default Icons',
+                            'fontawesome-icons'     => 'Font Awesome Icons'
+                        ),
+                        'default'  => 'swift-icons',
+                    ),
                     // Delete Data on Deletion
                     array(
                         'id'       => 'ampforwp-delete-on-uninstall',

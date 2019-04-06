@@ -106,7 +106,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                     <?php do_action('ampforwp_push_notification_widget') ?>
                     <?php if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
                         <div class="h-srch h-ic">
-                            <a title="search" class="lb icon-search" href="#search"></a>
+                            <a title="search" class="lb icon-src" href="#search"></a>
                             <div class="lb-btn"> 
                                 <div class="lb-t" id="search">
                                    <?php amp_search();?>
@@ -346,7 +346,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <div class="h-3">
                     <?php if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
                         <div class="h-srch h-ic">
-                            <a class="lb icon-search" href="#search"></a>
+                            <a class="lb icon-src" href="#search"></a>
                             <div class="lb-btn"> 
                                 <div class="lb-t" id="search">
                                    <?php amp_search();?>
