@@ -49,6 +49,26 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 				</div>
 			</div> <?php 
 		}
+	}else{
+		if (has_post_thumbnail( $post_id ) ){
+			$thumb_id = get_post_thumbnail_id($post_id);
+			$image_size = apply_filters( 'ampforwp_featured_image', 'full' ); 
+			$image = wp_get_attachment_image_src( $thumb_id, $image_size );
+				if( $image ) {	
+					if(empty($image[1])){
+					$image[1] = 750;
+					}
+					if(empty($image[2])){
+					$image[2] = 500;
+					}
+				$image_output = "<amp-img src='$image[0]' $srcet width='$image[1]' height='$image[2]' layout=responsive alt='$alt'></amp-img>";
+			?>
+			<figure class="amp-wp-article-featured-image">
+				<?php echo $image_output; ?>
+			</figure>
+			<?php 
+		}
+		}
 	}
 
 do_action('ampforwp_after_featured_image_hook',$this); ?>

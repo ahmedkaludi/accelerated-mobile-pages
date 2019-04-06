@@ -43,7 +43,13 @@ function ampforwp_framework_get_featured_image(){
 				$alt = get_the_title( $post_id );
 			}
 			$alt = esc_attr($alt);
-			if( $image ){			
+			if( $image ){
+				if(empty($image[1])){
+				$image[1] = 1000;
+				}
+				if(empty($image[2])){
+				$image[2] = 600;
+				}
 				$amp_html = "<amp-img src='$image[0]' $srcet width='$image[1]' height='$image[2]' layout=responsive alt='$alt'></amp-img>";
 			}
 		}
