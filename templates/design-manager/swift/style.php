@@ -19,9 +19,9 @@ $swift_cs = ampforwp_get_setting('swift-color-scheme');
 if( !empty($swift_cs['color']) ) {
 	$swift_cs_color = $swift_cs['color'];
 }?>
-body{<?php 
+body{<?php
 	$fontFamily = "font-family: 'Arial', 'Helvetica', 'sans-serif';";
-if( !ampforwp_levelup_compatibility('levelup_theme') && 1==ampforwp_get_setting('ampforwp-google-font-switch') && ampforwp_get_setting('amp_font_type')){
+if( !ampforwp_levelup_compatibility('levelup_theme') && 1==ampforwp_get_setting('ampforwp-google-font-switch') ){
 	$fontFamily = "font-family: 'Poppins', sans-serif;";
 	if(ampforwp_get_setting('amp_font_selector') != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
 		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';";
