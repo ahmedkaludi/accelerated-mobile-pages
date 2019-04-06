@@ -1008,12 +1008,19 @@ function ampforwp_show_hide_toc($content){
 					case TOC_THEME_TRANSPARENT:
 						$css_classes .= ' toc_transparent';
 						break;
+					case TOC_THEME_CUSTOM:
+						$css_classes .= ' toc_custom_background';
+						$css_classes .= ' toc_custom_border';
+						$css_classes .= ' toc_custom_title';
+						$css_classes .= ' toc_custom_links'; 
+						break;
 				
 					case TOC_THEME_GREY:
+						$css_classes .= ' toc_default';
 					default:
 						// do nothing
 				}
-				
+
 				// bullets?
 				if ( $options['bullet_spacing'] )
 					$css_classes .= ' have_bullets';
@@ -1033,7 +1040,7 @@ function ampforwp_show_hide_toc($content){
 					$toc_title = $options['heading_text'];
 					if ( strpos($toc_title, '%PAGE_TITLE%') !== false ) $toc_title = str_replace( '%PAGE_TITLE%', get_the_title(), $toc_title );
 					if ( strpos($toc_title, '%PAGE_NAME%') !== false ) $toc_title = str_replace( '%PAGE_NAME%', get_the_title(), $toc_title );
-					$html .= '<p class="toc_title">' . htmlentities( $toc_title, ENT_COMPAT, 'UTF-8' ) . '</p>';
+					$html .= '<h4 class="toc_title">' . htmlentities( $toc_title, ENT_COMPAT, 'UTF-8' ) . '</h4>';
 				}
 				$html .= '<ul class="toc_list">' . $items . '</ul></section></amp-accordion>' . "\n";
 				

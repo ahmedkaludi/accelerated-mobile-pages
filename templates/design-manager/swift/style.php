@@ -1857,4 +1857,46 @@ if(is_singular() || ampforwp_is_front_page() && true == ampforwp_get_setting('am
   margin-top: -75px; 
   height: 75px; 
   visibility: hidden;}
-<?php } ?>  
+<?php } 
+
+if(class_exists('toc') && (is_singular() || ampforwp_is_front_page())){
+	global $tic;
+	$options = $tic->get_options();
+	if($options['theme'] == TOC_THEME_GREY){ ?>
+	.toc_default {
+	background: #f9f9f9;
+	}
+	<?php } 
+ 	if($options['theme'] == TOC_THEME_BLACK){ ?>
+	.toc_black{
+	background:#000;
+	}
+	<?php }
+	if($options['theme'] == TOC_THEME_LIGHT_BLUE){ ?>
+	.toc_light_blue{
+	background: #edf6ff;
+	}
+	<?php } 
+	if($options['theme'] == TOC_THEME_WHITE || $options['theme'] == TOC_THEME_TRANSPARENT ){ ?>
+	.toc_white , .toc_transparent{
+	background: #fff;
+	}
+	<?php }
+	if($options['theme'] == TOC_THEME_CUSTOM){ ?>
+	.toc_custom_background{
+	background: <?php echo ampforwp_sanitize_color($options['custom_background_colour']) ?>;
+	}
+	.toc_custom_border{
+	border: 1px solid <?php echo ampforwp_sanitize_color($options['custom_border_colour']) ?>;
+	}
+	h4.toc_title{
+	color: <?php echo ampforwp_sanitize_color($options['custom_title_colour']) ?>;
+	}
+	.toc_list a{
+	color: <?php echo ampforwp_sanitize_color($options['custom_links_colour']) ?>;
+	}
+	.toc_list a:hover{	
+	color: <?php echo ampforwp_sanitize_color($options['custom_links_hover_colour']) ?>;
+	}
+<?php } }
+ 
