@@ -1362,7 +1362,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     top: 15px;
     font-size: 15px;"><b>'.esc_html__('Introducing  AMP Page Builder 3.0', 'accelerated-mobile-pages').'</b>,'.esc_html__('Re-Engineered in Vue.js!', 'accelerated-mobile-pages').'<br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">'.esc_html__('Learn how to use this Feature','accelerated-mobile-pages').'</a></div>
     
-    <iframe style="position: absolute;left: 0px;margin-top: 67px;" width="600" height="400" src="https://www.youtube.com/embed/QTbkn2rHyqM" frameborder="0" allowfullscreen></iframe>
+    <iframe style="left: 0px;margin-top: 67px;" width="600" height="400" src="https://www.youtube.com/embed/QTbkn2rHyqM" frameborder="0" allowfullscreen></iframe>
     
     ',
             ),
