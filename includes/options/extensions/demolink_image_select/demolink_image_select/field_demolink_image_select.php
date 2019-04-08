@@ -32,7 +32,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_demolink_image_s
                 $this->time = AMPFORWP_VERSION;
             }
             if ( empty( $this->extension_dir ) ) {
-            $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+            $this->extension_dir = trailingslashit( str_replace( '\\', '/', AMPFORWP_EXTENSION_DIR.'/demolink_image_select/demolink_image_select' ) );
             $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
             }    
             // Set default args for this field to avoid bad indexes. Change this to anything you use.
