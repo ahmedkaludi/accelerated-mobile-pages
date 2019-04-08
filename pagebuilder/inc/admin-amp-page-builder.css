@@ -1212,7 +1212,7 @@ Layout css
 /**** Font-Icons ****/
 @font-face {
   font-family: 'icomoon';
-  font-display: auto;
+  font-display: swap;
   src:
     url('../../templates/design-manager/swift/fonts/icomoon.ttf?wtrpmf') format('truetype'),
     url('../../templates/design-manager/swift/fonts/icomoon.woff?wtrpmf') format('woff'),

@@ -7076,7 +7076,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 
 	        $font_output .= "@font-face {  ";
 	        $font_output .= "font-family: " . $redux_builder_amp['amp_font_selector']. ';' ;
-	        $font_output .= "font-display: auto;";
+	        $font_output .= "font-display: swap;";
 	        $font_output .= "font-style: " . $font_style . ';';
 	        $font_output .= "font-weight: " . $font_weight . ';' ;
 	        $font_output .= "src: local('". $redux_builder_amp['amp_font_selector']." ".$font_local_weight." ".$font_local_type."'), local('". $redux_builder_amp['amp_font_selector']."-".$font_local_weight.$font_local_type."'), url(" .str_replace("http://", "https://", $font_data->files->$value) . ');' ;

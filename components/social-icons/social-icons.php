@@ -195,7 +195,7 @@ add_action('amp_post_template_css','amp_social_styles',11);
 function amp_social_styles(){ ?>
 @font-face {
   font-family: 'icomoon';
-  font-display: auto;
+  font-display: swap;
   src:  url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.eot');
   src:  url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.eot') format('embedded-opentype'),
     url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.ttf') format('truetype'),
