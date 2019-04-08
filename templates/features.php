@@ -6439,7 +6439,7 @@ function ampforwp_url_purifier($url){
 	        	if ( true == $checker && false == strpos($url, $endpointq) )
 	        		$url =  trailingslashit($url) . $endpointq;
 	        	else {
-	        		if ( false == strpos($url, $endpoint) )
+	        		if ( false == strpos($url, '/'.$endpoint) )
 	          			$url = user_trailingslashit( trailingslashit($url) . $endpoint );
 	          	}	
 	        }
