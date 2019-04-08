@@ -213,6 +213,9 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 				$version
 			);
 		}
+		if(count($scriptArray)>0){
+			remove_filter('the_content', 'wpautop');
+		}
 		return $scriptArray;
 	}
 
