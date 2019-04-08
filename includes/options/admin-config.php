@@ -2439,7 +2439,7 @@ if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {
                         'default' => ampforwp_get_default_analytics('8'),
                     ),
                        array(
-                          'id'       => 'histats-feild',
+                          'id'       => 'histats-field',
                           'type'     => 'text',
                           'title'    => esc_html__( 'Histats Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
@@ -2447,7 +2447,7 @@ if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {
                           ),
                           'tooltip-subtitle' => esc_html__( 'Enter your Histats Analytics ID.', 'accelerated-mobile-pages' ),
                           'desc' => 'Tutorial: <a href="https://ampforwp.com/tutorials/how-to-get-histats-analytics-id/">How to get Histats Analytics ID for AMP?</a>',
-                          'default'  => '',
+                          'default'  => ampforwp_get_setting('histats-feild'),
                       ),
                      // Yandex Metrika  
                        array(
