@@ -1219,9 +1219,9 @@ function ampforwp_seopress_social(){
 			  	if (!empty($seopress_video[0][0]['url']) && $seopress_video_disabled =='') {		
 					//do nothing
 				} else {
-					$seopress_social_og_author = '<meta property="article:author" content="'.seopress_social_accounts_facebook_option().'" />';
+					$seopress_social_og_author = '<meta property="article:author" content="'.$options['seopress_social_accounts_facebook'].'" />';
 					$seopress_social_og_author .= "\n";
-					$seopress_social_og_author .= '<meta property="article:publisher" content="'.seopress_social_accounts_facebook_option().'" />';
+					$seopress_social_og_author .= '<meta property="article:publisher" content="'.$options['seopress_social_accounts_facebook'].'" />';
 				}
 			}
 			if (isset($seopress_social_og_author)) {
@@ -1347,7 +1347,7 @@ function ampforwp_seopress_social(){
 			echo $seopress_social_app_id."\n";
 		}
 		if (isset($options['seopress_social_twitter_card'])) {
-			if ($options['seopress_social_twitter_card_img_size'] =='large') {
+			if ( isset($options['seopress_social_twitter_card_img_size']) && $options['seopress_social_twitter_card_img_size'] =='large') {
 				$seopress_social_twitter_card_summary = '<meta name="twitter:card" content="summary_large_image">';
 			} else {
 				$seopress_social_twitter_card_summary = '<meta name="twitter:card" content="summary" />';
@@ -1373,7 +1373,7 @@ function ampforwp_seopress_social(){
 
 				$seopress_social_twitter_card_creator .= '<meta name="twitter:creator" content="@'.get_the_author_meta('twitter').'" />';
 
-			} elseif ($options['seopress_social_twitter_card'] =='1' && $options['seopress_social_accounts_twitter'] !='' ) {
+			} elseif ($options['seopress_social_twitter_card'] =='1' && isset($options['seopress_social_accounts_twitter']) && $options['seopress_social_accounts_twitter'] !='' ) {
 				$seopress_social_twitter_card_creator .= '<meta name="twitter:creator" content="'.$options['seopress_social_accounts_twitter'].'" />';
 			}
 			//Hook on post Twitter card creator - 'seopress_social_twitter_card_creator'
@@ -1385,7 +1385,7 @@ function ampforwp_seopress_social(){
 			}
 		}
 		if (isset($options['seopress_social_twitter_card'])) {
-			$title = '';
+			$title = $seopress_social_twitter_card_title = '';
 			$title = ampforwp_get_seopress_title();
 			if ( is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_twitter_title',true) ){
 				$title = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_twitter_title',true);
@@ -1415,6 +1415,7 @@ function ampforwp_seopress_social(){
 		    }
 		}
 		if (isset($options['seopress_social_twitter_card'])) {
+			$seopress_social_twitter_card_desc = $description  = '';
 			$description = ampforwp_generate_meta_desc();
 			if ( is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_twitter_desc',true) ) {
 				$description = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_twitter_desc',true);

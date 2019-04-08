@@ -1794,6 +1794,7 @@ function ampforwp_get_seopress_title(){
 }
 // Sanitize SEOPress Title #1589
 function ampforwp_seopress_title_sanitize($title){
+	global $post;
 	$seopress_titles_template_variables_array = array(
 		'%%sep%%',
 		'%%sitetitle%%',
@@ -1832,11 +1833,109 @@ function ampforwp_seopress_title_sanitize($title){
 		'%%currenttime%%',
 	);
 	$sep = '';
+	$seopress_excerpt ='';
+	$seopress_excerpt_length = 50;
+	$seopress_excerpt_length = apply_filters('seopress_excerpt_length',$seopress_excerpt_length);
+	if ($seopress_excerpt !='') {
+		$seopress_get_the_excerpt = wp_trim_words(esc_attr(stripslashes_deep(wp_filter_nohtml_kses(strip_shortcodes($seopress_excerpt)))), $seopress_excerpt_length);
+	} elseif ($post !='') {
+		if (get_post_field('post_content', $post->ID) !='') {
+			$seopress_get_the_excerpt = wp_trim_words(esc_attr(stripslashes_deep(wp_filter_nohtml_kses(strip_shortcodes(get_post_field('post_content', $post->ID))))), $seopress_excerpt_length);
+		} else {
+			$seopress_get_the_excerpt = null;
+		}
+	} else {
+		$seopress_get_the_excerpt = null;
+	}
+	$seopress_paged = '';
+	if (get_query_var('paged') >='1') {
+		$seopress_paged = get_query_var('paged');
+	}
 	$seopress_titles_sep_option = get_option("seopress_titles_option_name");
 	if (isset($seopress_titles_sep_option['seopress_titles_sep']) ) {
 		$sep = $seopress_titles_sep_option['seopress_titles_sep'];
 	} else {
 		$sep = '-';
+	}
+	$the_author_meta ='';
+	if(is_single() || is_author()){
+		$the_author_meta = get_the_author_meta('display_name', $post->post_author);
+	}
+
+	$post_category ='';
+	if (is_single() && has_category()) {
+		$post_category_array = get_the_terms(get_the_id(), 'category');
+		$post_category = $post_category_array[0]->name;
+	}
+
+	$post_tag ='';
+	if (is_single() && has_tag()) {
+		$post_tag_array = get_the_terms(get_the_id(), 'post_tag');
+		$post_tag = $post_tag_array[0]->name;
+	}
+
+	$get_search_query ='';
+	if (get_search_query() !='') {
+		$get_search_query = '"'.get_search_query().'"';
+	}
+	
+	$get_search_query = apply_filters('seopress_get_search_query', $get_search_query);
+
+	if ($seopress_excerpt !='') {
+		$seopress_get_the_excerpt = wp_trim_words(esc_attr(stripslashes_deep(wp_filter_nohtml_kses(strip_shortcodes($seopress_excerpt)))), $seopress_excerpt_length);
+	} elseif ($post !='') {
+		if (get_post_field('post_content', $post->ID) !='') {
+			$seopress_get_the_excerpt = wp_trim_words(esc_attr(stripslashes_deep(wp_filter_nohtml_kses(strip_shortcodes(get_post_field('post_content', $post->ID))))), $seopress_excerpt_length);
+		} else {
+			$seopress_get_the_excerpt = null;
+		}
+	} else {
+		$seopress_get_the_excerpt = null;
+	}
+	
+	$woo_single_cat_html ='';
+	$woo_single_tag_html ='';
+	$woo_single_price ='';
+	$woo_single_price_exc_tax ='';
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	if ( is_plugin_active( 'woocommerce/woocommerce.php' )) {
+		if (is_product()) {
+			//Woo Cat product
+			$woo_single_cats = get_the_terms( $post->ID, 'product_cat' );
+	                         
+			if ( $woo_single_cats && ! is_wp_error( $woo_single_cats ) ) {
+			 
+			    $woo_single_cat = array();
+			 
+			    foreach ( $woo_single_cats as $term ) {
+			        $woo_single_cat[] = $term->name;
+			    }
+	                         
+			    $woo_single_cat_html = stripslashes_deep(wp_filter_nohtml_kses(join( ", ", $woo_single_cat )));
+			}
+
+			//Woo Tag product
+			$woo_single_tags = get_the_terms( $post->ID, 'product_tag' );
+	                         
+			if ( $woo_single_tags && ! is_wp_error( $woo_single_tags ) ) {
+			 
+			    $woo_single_tag = array();
+			 
+			    foreach ( $woo_single_tags as $term ) {
+			        $woo_single_tag[] = $term->name;
+			    }
+
+			    $woo_single_tag_html = stripslashes_deep(wp_filter_nohtml_kses(join( ", ", $woo_single_tag )));
+			}
+
+			//Woo Price
+			$product = wc_get_product($post->ID);
+			$woo_single_price = wc_get_price_including_tax( $product );
+
+			//Woo Price tax excluded
+			$product = wc_get_product($post->ID);
+			$woo_single_price_exc_tax = wc_get_price_excluding_tax( $product );
+		}
 	}
 	$seopress_titles_template_replace_array = array(
 		$sep,
