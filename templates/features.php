@@ -4134,9 +4134,17 @@ function ampforwp_rel_canonical_home_archive(){
 	$remove					= '';
 	$query_arg_array 		= '';
 	$page                   = '' ;
+	$show_canonical         = true ;
 
+	// RankMath canonical copatibility #2975
+	if ( defined('RANK_MATH_FILE') ) {
+		$show_canonical = false;
+		if( $_SERVER['SERVER_NAME'] === '127.0.0.1' || $_SERVER['SERVER_NAME'] === 'localhost' ) {
+			$show_canonical = true;
+		}
+	}
 
-	if ( (is_home() || is_front_page() || (is_archive() && $redux_builder_amp['ampforwp-archive-support']) ) && !defined('RANK_MATH_FILE') )	{
+	if ( (is_home() || is_front_page() || (is_archive() && $redux_builder_amp['ampforwp-archive-support']) ) && $show_canonical )	{
 		$current_archive_url = home_url( $wp->request );
 		$amp_url 	= trailingslashit($current_archive_url);
 		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
