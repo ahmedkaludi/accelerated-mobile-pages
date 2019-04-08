@@ -6068,6 +6068,14 @@ $single_page_options = array(
               'default'   =>  0,
           ),
 
+        // Social No Follow links 
+          array(
+              'id'        =>  'ampforwp-social-no-follow',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('No Follow All Your Social Links', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),  
+
           // Facebook Like 
           array(
               'id'        =>  'ampforwp-facebook-like-button',
