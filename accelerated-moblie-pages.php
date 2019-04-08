@@ -126,11 +126,15 @@ function ampforwp_add_custom_rewrite_rules() {
     );
 
     // For category pages
-    $rewrite_category = get_option('category_base');
-    if ( ! empty($rewrite_category) ) {
+    if ( false == get_transient('ampforwp_category_base') ) {
     	$rewrite_category = get_option('category_base');
-    } else {
-    	$rewrite_category = 'category';
+    	if (  empty($rewrite_category) ) {
+	    	$rewrite_category = 'category';
+	    }
+    	set_transient('ampforwp_category_base', $rewrite_category);
+    }
+    else{
+    	$rewrite_category = get_transient('ampforwp_category_base');
     }
 
     add_rewrite_rule(
@@ -146,7 +150,13 @@ function ampforwp_add_custom_rewrite_rules() {
     );
 
     // For category pages with Pagination (Custom Permalink Structure)
-	$permalink_structure = get_option('permalink_structure');
+    if ( false == get_transient('ampforwp_permalink_structure') ) {
+		$permalink_structure = get_option('permalink_structure');
+		set_transient('ampforwp_permalink_structure', $permalink_structure );
+    }
+    else{
+    	$permalink_structure = get_transient('ampforwp_permalink_structure');
+    }
 	$permalink_structure = preg_replace('/(%.*%)/', '', $permalink_structure);
 	$permalink_structure = preg_replace('/\//', '', $permalink_structure);
 	if ( $permalink_structure ) {
@@ -158,11 +168,15 @@ function ampforwp_add_custom_rewrite_rules() {
   	}
 
     // For tag pages
-	$rewrite_tag = get_option('tag_base');
-    if ( ! empty($rewrite_tag) ) {
-    	$rewrite_tag = get_option('tag_base');
-    } else {
-    	$rewrite_tag = 'tag';
+    if ( false ==  get_transient('ampforwp_tag_base') ) {   	
+		$rewrite_tag = get_option('tag_base');
+	    if ( empty($rewrite_tag) ) {
+	    	$rewrite_tag = 'tag';
+	    }
+	    set_transient('ampforwp_tag_base',$rewrite_tag);
+    }
+    else{
+    	$rewrite_tag = get_transient('ampforwp_tag_base');
     }
     add_rewrite_rule(
       $rewrite_tag.'\/(.+?)\/amp/?$',
@@ -196,19 +210,27 @@ function ampforwp_add_custom_rewrite_rules() {
       'top'
     );
 	//Rewrite rule for custom Taxonomies
-	$args = array(
-	  		'public'   => true,
-	  		'_builtin' => false,  
-	); 
-	$output = 'names'; // or objects
-	$operator = 'and'; // 'and' or 'or'
-	$taxonomies = get_taxonomies( $args, $output, $operator ); 
-
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-  	if(!is_plugin_active('amp-woocommerce-pro/amp-woocommerce.php' )) {
+	if ( false == get_transient('ampforwp_get_taxonomies') ) {		
+		$args = array(
+		  		'public'   => true,
+		  		'_builtin' => false,  
+		); 
+		$output = 'names'; // or objects
+		$operator = 'and'; // 'and' or 'or'
+		$taxonomies = get_taxonomies( $args, $output, $operator );
+		set_transient('ampforwp_get_taxonomies',$taxonomies);
+	}
+	else{
+		$taxonomies = get_transient('ampforwp_get_taxonomies');
+	}
+  	if(!function_exists('amp_woocommerce_pro_add_woocommerce_support') ) {
 		if( class_exists( 'WooCommerce' ) ) {
-			$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
-			
+			if( false == get_transient('ampforwp_woocommerce_permalinks') ) {
+				$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
+				set_transient('ampforwp_woocommerce_permalinks', $wc_permalinks);		
+			}else{
+				$wc_permalinks = get_transient('ampforwp_woocommerce_permalinks');
+			}
 			if ( $wc_permalinks ) {
 				$taxonomies = array_merge($taxonomies, $wc_permalinks);
 			}
