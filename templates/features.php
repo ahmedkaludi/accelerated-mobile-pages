@@ -7962,9 +7962,10 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
  }
  // Font Awesome Icons added for Swift
  add_action('amp_post_template_head', 'ampforwp_fontawesome_canonical_link');
-function ampforwp_fontawesome_canonical_link(){ ?>
+function ampforwp_fontawesome_canonical_link(){ 
+	if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <?php 
+        <?php }
     }
 // Design Manager for Design 1,2 and 3
 add_action('pre_amp_render_post', 'ampforwp_design_manager');
