@@ -445,6 +445,7 @@ if ( is_admin() ) {
             $rawhtml = ampforwp_replaceIfContentConditional("postdate", $postdate, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("image_alt", $image_alt, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("tags", $tags, $rawhtml);
+            $rawhtml = apply_filters( 'ampforwp_pb_cntmod_rawhtml', $rawhtml );
             $contenthtml .= $rawhtml;
             
          }    
