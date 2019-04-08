@@ -1,5 +1,6 @@
 <?php do_action('ampforwp_before_featured_image_hook',$this);
 global $redux_builder_amp, $post;
+$post_id 		= $post->ID;
 $amp_html = "";
 $caption = "";
 $featured_image = "";
