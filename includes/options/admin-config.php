@@ -14,6 +14,81 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
 }
+$wpbakery_for_ampchecker = $divi_pb_for_ampchecker = $elemntr_pb_for_ampchecker = array();
+if(!is_plugin_active( 'amp-pagebuilder-compatibility/amp-pagebuilder-compatibility.php' )){
+    $wpbakery_for_ampchecker = array( 
+                    'id'   => 'wpbakery_pb_for_amp_info_normal',
+                    'type' => 'info',
+                    'required' => array(
+                        array('ampforwp-wpbakery-pb-for-amp', '=' , true),  
+                        ),
+                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+               );
+    $divi_pb_for_ampchecker = array( 
+                    'id'   => 'divi_pb_for_amp_info_normal',
+                    'type' => 'info',
+                    'required' => array(
+                        array('ampforwp-divi-pb-for-amp', '=' , true),  
+                        ),
+                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+               );
+    $elemntr_pb_for_ampchecker = array( 
+                    'id'   => 'elemntr_pb_for_amp_info_normal',
+                    'type' => 'info',
+                    'required' => array(
+                        array('ampforwp-elementor-pb-for-amp', '=' , true),  
+                        ),
+                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+               );
+}   
+     $pb_for_amp[] =  array(
+                'id' => 'ampforwp-wpbakery-pb-for-amp-accor',
+                'type' => 'section',
+                'title' => esc_html__('WPBakery Page Builder Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+     $pb_for_amp[] = array(
+               'id'       => 'ampforwp-wpbakery-pb-for-amp',
+               'type'     => 'switch',
+               'title'    => esc_html__('WPBakery Page Builder Support','accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the WPBakery Page Builder support for AMP', 'accelerated-mobile-pages'),
+               'default'  => false
+            );
+    $pb_for_amp[] = $wpbakery_for_ampchecker;
+    $pb_for_amp[] =  array(
+                'id' => 'ampforwp-divi-pb-for-amp-accor',
+                'type' => 'section',
+                'title' => esc_html__('Divi Builder Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+    $pb_for_amp[] = array(
+               'id'       => 'ampforwp-divi-pb-for-amp',
+               'type'     => 'switch',
+               'title'    => esc_html__('Divi Builder Support','accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the Divi Builder support for AMP', 'accelerated-mobile-pages'),
+               'default'  => false
+            );
+    $pb_for_amp[] = $divi_pb_for_ampchecker;
+    $pb_for_amp[] =  array(
+                'id' => 'ampforwp-elementor-pb-for-amp-accor',
+                'type' => 'section',
+                'title' => esc_html__('Elementor Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+    $pb_for_amp[] = array(
+               'id'       => 'ampforwp-elementor-pb-for-amp',
+               'type'     => 'switch',
+               'title'    => esc_html__('Elementor Support','accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the Elementor support for AMP', 'accelerated-mobile-pages'),
+               'default'  => false
+            ); 
+    $pb_for_amp[] = $elemntr_pb_for_ampchecker;
 // Display only If AMP Cache is Not Installed
 $cache_desc ="";
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -1343,30 +1418,10 @@ Redux::setArgs( "redux_builder_amp", $args );
    // AMP Content Page Builder SECTION
    Redux::setSection( $opt_name, array(
        'title'      => esc_html__( 'Page Builder', 'accelerated-mobile-pages' ),
-      'class'       =>'',
        'id'         => 'amp-content-builder',
-       'class'      => 'ampforwp-new-element',
+       'class'      => 'ampforwp_new_features ',
        'subsection' => true,
-       'fields' => array( 
-            array(
-                'id'       => 'ampforwp-page-builder-info',
-                'type'     => 'raw',
-                'desc' => '<div style="background: #FFF9C4;
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 0px;
-    left: 0;
-    line-height: 1.6;
-    position: absolute;
-    left: 0px;
-    top: 15px;
-    font-size: 15px;"><b>'.esc_html__('Introducing  AMP Page Builder 3.0', 'accelerated-mobile-pages').'</b>,'.esc_html__('Re-Engineered in Vue.js!', 'accelerated-mobile-pages').'<br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">'.esc_html__('Learn how to use this Feature','accelerated-mobile-pages').'</a></div>
-    
-    <iframe style="left: 0px;margin-top: 67px;" width="600" height="400" src="https://www.youtube.com/embed/QTbkn2rHyqM" frameborder="0" allowfullscreen></iframe>
-    
-    ',
-            ),
-        )
+       'fields' => $pb_for_amp,
        )
 
    ) ;
