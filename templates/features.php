@@ -7457,7 +7457,7 @@ if (function_exists('jannah_theme_name') && function_exists('tie_get_postdata'))
 add_action( 'amp_post_template_css' , 'ampforwp_useanyfont' , 22 );
 if ( ! function_exists('ampforwp_useanyfont') ) {
 	function ampforwp_useanyfont(){
-		if ( is_plugin_active('use-any-font/use-any-font.php') ) {
+		if ( function_exists('uaf_activate') ) {
 			$uaf_use_absolute_font_path = get_option('uaf_use_absolute_font_path'); // Check if user want to use absolute font path.	
 			if (empty($uaf_use_absolute_font_path)){
 				$uaf_use_absolute_font_path = 0;
@@ -7483,7 +7483,7 @@ if ( ! function_exists('ampforwp_useanyfont') ) {
 							src: url('<?php echo $uaf_upload_url.$fontData['font_path'] ?>.eot');
 							src: local('<?php echo $fontData['font_name'] ?>'), url('<?php echo $uaf_upload_url.$fontData['font_path'] ?>.eot') format('embedded-opentype'), url('<?php echo $uaf_upload_url.$fontData['font_path'] ?>.woff') format('woff');
 						}		            
-		            	.<?php echo $fontData['font_name'] ?>{font-family: '<?php echo $fontData['font_name'] ?>' !important;}
+		            	.<?php echo $fontData['font_name'] ?>{font-family: '<?php echo $fontData['font_name'] ?>';}
 		        	<?php endforeach;
 				endif;
 
@@ -7492,7 +7492,7 @@ if ( ! function_exists('ampforwp_useanyfont') ) {
 				if (!empty($fontsImplementData)):
 					foreach ($fontsImplementData as $key=>$fontImplementData): ?>
 						<?php echo $fontImplementData['font_elements']; ?>{
-							font-family: '<?php echo $fontsData[$fontImplementData['font_key']]['font_name']; ?>' !important;
+							font-family: '<?php echo $fontsData[$fontImplementData['font_key']]['font_name']; ?>';
 						}
 					<?php endforeach;
 				endif;	
