@@ -7453,52 +7453,6 @@ if (function_exists('jannah_theme_name') && function_exists('tie_get_postdata'))
 } 
 }
 
-// Compatibility with Use Any Font plugin #2774
-add_action( 'amp_post_template_css' , 'ampforwp_useanyfont' , 22 );
-if ( ! function_exists('ampforwp_useanyfont') ) {
-	function ampforwp_useanyfont(){
-		if ( function_exists('uaf_activate') ) {
-			$uaf_use_absolute_font_path = get_option('uaf_use_absolute_font_path'); // Check if user want to use absolute font path.	
-			if (empty($uaf_use_absolute_font_path)){
-				$uaf_use_absolute_font_path = 0;
-			}		
-			$uaf_upload 	= wp_upload_dir();
-			$uaf_upload_dir = $uaf_upload['basedir'];
-			$uaf_upload_dir = $uaf_upload_dir . '/useanyfont/';
-			$uaf_upload_url = $uaf_upload['baseurl'];
-			$uaf_upload_url = $uaf_upload_url . '/useanyfont/';	
-			$uaf_upload_url = preg_replace('#^https?:#', '', $uaf_upload_url);
-			
-			if ($uaf_use_absolute_font_path == 0){ // If user use relative path
-				$url_parts = parse_url($uaf_upload_url);
-				@$uaf_upload_url = "$url_parts[path]$url_parts[query]$url_parts[fragment]";
-			}
-				$fontsRawData 	= get_option('uaf_font_data');
-				$fontsData		= json_decode($fontsRawData, true);
-				if (!empty($fontsData)):
-					foreach ($fontsData as $key=>$fontData): ?>
-						@font-face {
-							font-family: '<?php echo $fontData['font_name'] ?>';
-							font-style: normal;
-							src: url('<?php echo $uaf_upload_url.$fontData['font_path'] ?>.eot');
-							src: local('<?php echo $fontData['font_name'] ?>'), url('<?php echo $uaf_upload_url.$fontData['font_path'] ?>.eot') format('embedded-opentype'), url('<?php echo $uaf_upload_url.$fontData['font_path'] ?>.woff') format('woff');
-						}		            
-		            	.<?php echo $fontData['font_name'] ?>{font-family: '<?php echo $fontData['font_name'] ?>';}
-		        	<?php endforeach;
-				endif;
-
-				$fontsImplementRawData 	= get_option('uaf_font_implement');
-				$fontsImplementData		= json_decode($fontsImplementRawData, true);
-				if (!empty($fontsImplementData)):
-					foreach ($fontsImplementData as $key=>$fontImplementData): ?>
-						<?php echo $fontImplementData['font_elements']; ?>{
-							font-family: '<?php echo $fontsData[$fontImplementData['font_key']]['font_name']; ?>';
-						}
-					<?php endforeach;
-				endif;	
-		}
-	}
-}
 // AMPforWP Global Sanitizer
 add_action('pre_amp_render_post','ampforwp_comments_sanitizer');
 function ampforwp_comments_sanitizer(){
