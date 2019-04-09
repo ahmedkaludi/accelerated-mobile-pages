@@ -1898,7 +1898,6 @@ function ampforwp_seopress_title_sanitize($title){
 	$woo_single_tag_html ='';
 	$woo_single_price ='';
 	$woo_single_price_exc_tax ='';
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if ( class_exists('WooCommerce') ) {
 		if (is_product()) {
 			//Woo Cat product
