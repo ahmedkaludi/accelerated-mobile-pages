@@ -245,6 +245,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Pagebuilder Compatibility',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-pagebuilder-compatibility/amp-pagebuilder-compatibility.php')? 1 : 2),
+                            'settingUrl'=>'{amp-content-builder}',
                         ),
                         array(
                             'name'=>'Call To Action (CTA)',
