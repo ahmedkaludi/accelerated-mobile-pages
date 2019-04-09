@@ -25,55 +25,102 @@ if(!is_plugin_active( 'amp-comments/amp-comments.php' )){
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
 }
-//for pagebuilder levelup option
-$levelup_info = sprintf('<a href="%s" target="_blank" >%s</a>',
-                                         admin_url('plugin-install.php?s=AMP+Designs+for+Elementor+by+LevelUP&tab=search&type=term' ) ,
-                                        sprintf( 
-                                            esc_html__( 'AMP Designs for Elementor by LevelUP', 'accelerated-mobile-pages' ))
-                                    );
-$levelup_checker = array();
-if(!is_plugin_active( 'levelup/levelup.php' )){
-    $levelup_checker = array( 
-                    'id'   => 'levelup_info_normal',
+$wpbakery_for_ampchecker = $divi_pb_for_ampchecker = $elemntr_pb_for_ampchecker = array();
+if(!is_plugin_active( 'amp-pagebuilder-compatibility/amp-pagebuilder-compatibility.php' )){
+    $wpbakery_for_ampchecker = array( 
+                    'id'   => 'wpbakery_pb_for_amp_info_normal',
                     'type' => 'info',
-                    'required' => array('ampforwp-elementor-levelup-pagebuilder', '=' , '1'),
-                    'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s '.$levelup_info.'.<br /> <div style="margin-top:4px;">(<a href="https://wplevelup.com/" target="_blank">%s</a>)</div></div>', esc_html__('ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__('This feature requires','accelerated-mobile-pages'),esc_html__( 'Click here for more info','accelerated-mobile-pages') ),               
+                    'required' => array(
+                        array('ampforwp-wpbakery-pb-for-amp', '=' , true),  
+                        ),
+                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
                );
-}
-$theme = wp_get_theme(); // gets the current theme
-$pb_for_amp = array();
-$pb_for_amp_checker = array();
-if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ) || did_action( 'elementor/loaded' ) ){
-    $pb_title = '';
-    $pb_subtitle = '';
-    if(class_exists('Vc_Manager') ){
-       $pb_title =  'WPBakery Page Builder Compatibility';
-       $pb_subtitle = 'WPBakery Page Builder';
-    }
-    if( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ){
-        $pb_title =  'Divi Builder Compatibility';
-        $pb_subtitle = 'Divi Builder';
-    }
-    if(did_action( 'elementor/loaded' ) ){
-        $pb_title =  'Elementor Compatibility';
-        $pb_subtitle = 'Elementor';
-    }
-    $pb_for_amp = array(
-               'id'       => 'ampforwp-pb-for-amp',
+    $divi_pb_for_ampchecker = array( 
+                    'id'   => 'divi_pb_for_amp_info_normal',
+                    'type' => 'info',
+                    'required' => array(
+                        array('ampforwp-divi-pb-for-amp', '=' , true),  
+                        ),
+                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+               );
+    $elemntr_pb_for_ampchecker = array( 
+                    'id'   => 'elemntr_pb_for_amp_info_normal',
+                    'type' => 'info',
+                    'required' => array(
+                        array('ampforwp-elementor-pb-for-amp', '=' , true),  
+                        ),
+                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+               );
+}   
+    $pb_for_amp[] =  array(
+                'id' => 'ampforwp-pagebuilder-accor',
+                'type' => 'section',
+                'title' => esc_html__('AMPforWP PageBuilder', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+    $pb_for_amp[] = array(
+               'id'       => 'ampforwp-pagebuilder',
                'type'     => 'switch',
-               'title'    => esc_html__($pb_title,'accelerated-mobile-pages'),
-               'tooltip-subtitle' => esc_html__('Enable or Disable the '.$pb_subtitle.' for AMP', 'accelerated-mobile-pages'),
+               'title'    => esc_html__('AMPforWP PageBuilder', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the AMP PageBuilder', 'accelerated-mobile-pages'),
+               'default'  => true
+             );
+    $pb_for_amp[] = array(
+                'id'       => 'ampforwp-page-builder-info',
+                'type'     => 'raw',
+                'required' => array('ampforwp-pagebuilder', '=', true ),
+                'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -28px -14px -18px -17px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /><div style="margin-top:4px;"><a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div></div>',
+            );
+    $pb_for_amp[] =  array(
+                'id' => 'ampforwp-wpbakery-pb-for-amp-accor',
+                'type' => 'section',
+                'title' => esc_html__('WPBakery Page Builder Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+     $pb_for_amp[] = array(
+               'id'       => 'ampforwp-wpbakery-pb-for-amp',
+               'type'     => 'switch',
+               'title'    => esc_html__('WPBakery Page Builder Support','accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the WPBakery Page Builder support for AMP', 'accelerated-mobile-pages'),
+               'default'  => false
+            );
+    $pb_for_amp[] = $wpbakery_for_ampchecker;
+    $pb_for_amp[] =  array(
+                'id' => 'ampforwp-divi-pb-for-amp-accor',
+                'type' => 'section',
+                'title' => esc_html__('Divi Builder Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+    $pb_for_amp[] = array(
+               'id'       => 'ampforwp-divi-pb-for-amp',
+               'type'     => 'switch',
+               'title'    => esc_html__('Divi Builder Support','accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the Divi Builder support for AMP', 'accelerated-mobile-pages'),
+               'default'  => false
+            );
+    $pb_for_amp[] = $divi_pb_for_ampchecker;
+    $pb_for_amp[] =  array(
+                'id' => 'ampforwp-elementor-pb-for-amp-accor',
+                'type' => 'section',
+                'title' => esc_html__('Elementor Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+    $pb_for_amp[] = array(
+               'id'       => 'ampforwp-elementor-pb-for-amp',
+               'type'     => 'switch',
+               'title'    => esc_html__('Elementor Support','accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the Elementor support for AMP', 'accelerated-mobile-pages'),
                'default'  => false
             ); 
-}
-if(!is_plugin_active( 'pagebuilder-for-amp/pagebuilder-for-amp.php' )){
-    $pb_for_amp_checker = array( 
-                    'id'   => 'wpbakery_info_normal',
-                    'type' => 'info',
-                    'required' => array('ampforwp-pb-for-amp', '=' , '1'), 
-                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
-               );
-}
+    $pb_for_amp[] = $elemntr_pb_for_ampchecker;
 // Display only If AMP Cache is Not Installed
 $cache_desc ="";
 if(!is_plugin_active( 'amp-cache/ampforwp-cache.php' )){
@@ -1421,31 +1468,7 @@ $tabs = array(
        'id'         => 'amp-content-builder',
        'class'      => 'ampforwp-new-element',
        'subsection' => true,
-       'fields' => array( 
-            array(
-               'id'       => 'ampforwp-pagebuilder',
-               'type'     => 'switch',
-               'title'    => __('AMPforWP PageBuilder', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => __('Enable or Disable the AMP PageBuilder', 'accelerated-mobile-pages'),
-               'default'  => true
-             ),
-            array(
-                'id'       => 'ampforwp-page-builder-info',
-                'type'     => 'raw',
-                'required' => array('ampforwp-pagebuilder', '=', true ),
-                'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -28px -14px -18px -17px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /><div style="margin-top:4px;"><a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div></div>',
-            ),
-            array(
-               'id'       => 'ampforwp-elementor-levelup-pagebuilder',
-               'type'     => 'switch',
-               'title'    => esc_html__('AMP Designs for Elementor by LevelUP', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => esc_html__('Enable or Disable the AMP Designs by LevelUp', 'accelerated-mobile-pages'),
-               'default'  => false
-            ),
-            $levelup_checker,
-            $pb_for_amp,
-            $pb_for_amp_checker,
-         )
+       'fields' => $pb_for_amp,
        )
 
    ) ;
