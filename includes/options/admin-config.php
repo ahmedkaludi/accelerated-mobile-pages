@@ -428,7 +428,7 @@ foreach ($extension_listing_array as $key => $extension) {
                                 'customer_name'=> '',
                                 'customer_email'=> '',
                                 );
-        $selectedOption = get_option('redux_builder_amp',true);
+        $selectedOption = (array) get_option('redux_builder_amp',true);
         if(isset($selectedOption['amp-license'][$pathExploded])){
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
         }
@@ -1140,7 +1140,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         return $value;
     }
     function ampforwp_custom_logo_dimensions_options(){
-        $selectedOption = get_option('redux_builder_amp',true);
+        $selectedOption = (array) get_option('redux_builder_amp',true);
         $opCheck = $selectedOption['ampforwp-custom-logo-dimensions'];
         if($opCheck==1){
             return 'prescribed';
@@ -2110,7 +2110,7 @@ if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {
 
   function ampforwp_get_default_analytics($param=""){
     $options = $default = ''; 
-    $options = get_option('redux_builder_amp', true);
+    $options = (array) get_option('redux_builder_amp', true);
     $default = $options['amp-analytics-select-option'];
     if($param == $default){
         return true;
@@ -4578,7 +4578,7 @@ Redux::setSection( $opt_name, array(
        $amp_fontparts = array_merge($amp_fontparts ,$fonts_settings);    
 
     }else{
-        $selectedOption = get_option('redux_builder_amp',true);
+        $selectedOption = (array) get_option('redux_builder_amp',true);
         if(!isset($selectedOption['amp-design-selector'])){
             $selectedOption['amp-design-selector'] = '4';
         }
@@ -4823,7 +4823,7 @@ Redux::setSection( $opt_name, array(
 
     // Header Elements default Color
     function ampforwp_get_element_default_color() {
-        $default_value = get_option('redux_builder_amp', true);
+        $default_value = (array) get_option('redux_builder_amp', true);
         $default_value = $default_value['amp-opt-color-rgba-colorscheme']['color'];
         if ( empty( $default_value ) ) {
           $default_value = '#333';
@@ -7438,7 +7438,7 @@ else{
         )
 
     ) );
-   $redux_option = get_option('redux_builder_amp',true);
+   $redux_option = (array) get_option('redux_builder_amp',true);
    if ( 4 == $redux_option['amp-design-selector'] ) {
     $post_builder = '';
    }

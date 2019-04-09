@@ -1562,8 +1562,8 @@ function ampforwp_new_dir( $dir ) {
 	        $structured_data_main_logo = '';
 	        $ampforwp_sd_height = '';
 	        $ampforwp_sd_width = '';
-	        $ampforwp_sd_height = $redux_builder_amp['ampforwp-sd-logo-height'];
-	        $ampforwp_sd_width = $redux_builder_amp['ampforwp-sd-logo-width'];
+	        $ampforwp_sd_height = ampforwp_get_setting('ampforwp-sd-logo-height');
+	        $ampforwp_sd_width = ampforwp_get_setting('ampforwp-sd-logo-width');
 	        if (! empty( $redux_builder_amp['opt-media']['url'] ) ) {
 	          $structured_data_main_logo = $redux_builder_amp['opt-media']['url'];
 	        }
@@ -1633,8 +1633,8 @@ function ampforwp_new_dir( $dir ) {
 					$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
 				}
 					$structured_data_image = $structured_data_image_url;
-					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
-					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
+					$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height'));
+					$structured_data_width = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-width'));
 					$metadata['image'] = array(
 						'@type' 	=> 'ImageObject',
 						'url' 		=> $structured_data_image ,
@@ -1646,8 +1646,8 @@ function ampforwp_new_dir( $dir ) {
 			// Custom Structured Data information for Archive, Categories and tag pages.
 			if ( is_archive() ) {
 					$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
-					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
-					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
+					$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height'));
+					$structured_data_width = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-width'));
 
 					$structured_data_archive_title 	= "Archived Posts";
 					$structured_data_author				=  get_userdata( 1 );
@@ -2061,7 +2061,7 @@ function ampforwp_remove_schema_data() {
 	add_filter( 'do_rocket_lazyload', '__return_false' );
 
 	// Remove Popups and other elements added by Slider-in Plugin
-	define('WDSI_BOX_RENDERED', true, true);
+	define('WDSI_BOX_RENDERED', true, false); // when third argument is true, getting Deprecated debug warning in php 7.3.2
 	
 	// Remove Filters added by third party plugin through class
 	if ( function_exists('ampforwp_remove_filters_for_class')) {
@@ -3837,8 +3837,8 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 				$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
 			}
 			$structured_data_image =  $structured_data_image_url; //  Placeholder Image URL
-			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
-			$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']); //  Placeholder Image height
+			$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height')); //  Placeholder Image width
+			$structured_data_width = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-width')); //  Placeholder Image height
 			$current_url_in_pieces = explode( '/', $current_url );
 			if( ampforwp_is_front_page() ) {
 				 // ID of slected front page

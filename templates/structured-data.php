@@ -14,9 +14,9 @@ function ampforwp_structured_data_type( $metadata ) {
 	$set_sd_post 	= '';
 	$set_sd_page 	= '';
 
-	$set_sd_post 	= $redux_builder_amp['ampforwp-sd-type-posts'];
-	$set_sd_page 	= $redux_builder_amp['ampforwp-sd-type-pages'];
-	$post_types = ampforwp_get_all_post_types();
+	$set_sd_post 	= ampforwp_get_setting('ampforwp-sd-type-posts');
+	$set_sd_page 	= ampforwp_get_setting('ampforwp-sd-type-pages');
+	$post_types 	= ampforwp_get_all_post_types();
 
 	if ( $post_types ) { // If there are any custom public post types.
     	foreach ( $post_types  as $post_type ) {

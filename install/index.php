@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
  * @license   Licensed GPLv3 for open source use
  */
-$redux_builder_amp = get_option('redux_builder_amp');
+$redux_builder_amp = (array) get_option('redux_builder_amp');
 $ampLogo="";
 if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-media']['url']!=""){
     $ampLogo = '<br/><br/><img src="'.esc_url($redux_builder_amp['opt-media']['url']).'" class="amp_install_logo_preview" />';
@@ -61,7 +61,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 									'title'=>esc_html__('Select Pages','accelerated-mobile-pages'),
 									'description'=>esc_html__('Where you would like to enable AMP.','accelerated-mobile-pages'),
 									'fields'=>'<li class="merlin__drawer--import-content__list-item status status--pending">
-												<input type="checkbox" class="checkbox" name="amp-on-off-for-all-posts" id="amp-on-posts" '.($redux_builder_amp['amp-on-off-for-all-posts']? 'checked': '').'>
+												<input type="checkbox" class="checkbox" name="amp-on-off-for-all-posts" id="amp-on-posts" '.(ampforwp_get_setting('amp-on-off-for-all-posts')? 'checked': '').'>
 												<label for="amp-on-posts">
 												<i></i><span>Posts</span></label>
 												</li>
@@ -77,7 +77,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 												</li>
 											   
 											  <li class="merlin__drawer--import-content__list-item status">
-												<input type="checkbox" name="ampforwp-archive-support" class="checkbox" id="ampforwp-archive-support" value="1" '.($redux_builder_amp['ampforwp-archive-support']? 'checked': '').'>
+												<input type="checkbox" name="ampforwp-archive-support" class="checkbox" id="ampforwp-archive-support" value="1" '.(ampforwp_get_setting('ampforwp-archive-support')? 'checked': '').'>
 											   <label for="ampforwp-archive-support">
 											   <i></i><span>Category & Tags</span></label>
 												</li>
@@ -89,7 +89,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 									'description'=>esc_html__('Enter your Google Analytics Tracking code','accelerated-mobile-pages'),
 									'fields'=>'<li class="amp_install_center">
                                     <input type="hidden" name="amp-analytics-select-option" value="1">
-									<input type="text" name="ga-feild" id="ga-feild" value="'.($redux_builder_amp['ga-feild']? $redux_builder_amp['ga-feild'] : '').'">
+									<input type="text" name="ga-feild" id="ga-feild" value="'.(ampforwp_get_setting('ga-feild')? $redux_builder_amp['ga-feild'] : '').'">
 									<label for="ga-feild"></label>
 									</li>',
 									),
@@ -97,20 +97,19 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 									'title'=>esc_html__('Select Design','accelerated-mobile-pages'),
 									'description'=>'',
 									'fields'=>'<li class="amp_install_center"><select name="amp-design-selector" id="ampforwp-design-select">
-											<option value="1" '.($redux_builder_amp['amp-design-selector']==1? 'selected' : '').'>Design One</option>
-											<option value="2" '.($redux_builder_amp['amp-design-selector']==2? 'selected' : '').'>Design Two</option>
-											<option value="3" '.($redux_builder_amp['amp-design-selector']==3? 'selected' : '').'>Design Three</option>
-											<option value="4" '.($redux_builder_amp['amp-design-selector']==4? 'selected' : '').'>Swift</option>
+											<option value="1" '.(ampforwp_get_setting('amp-design-selector')==1? 'selected' : '').'>Design One</option>
+											<option value="2" '.(ampforwp_get_setting('amp-design-selector')==2? 'selected' : '').'>Design Two</option>
+											<option value="3" '.(ampforwp_get_setting('amp-design-selector')==3? 'selected' : '').'>Design Three</option>
+											<option value="4" '.(ampforwp_get_setting('amp-design-selector')==4? 'selected' : '').'>Swift</option>
 									</select>
  
 									<div>
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png" width="150" height="200" class="amp_install_theme_preview" id="design-1" style="'.($redux_builder_amp['amp-design-selector']==1 ? '': 'display:none' ).'">
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png" width="150" height="200" class="amp_install_theme_preview" id="design-2" style="'.($redux_builder_amp['amp-design-selector']==2 ? '': 'display:none' ).'">
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png" width="150" height="200" class="amp_install_theme_preview" id="design-3" style="'.($redux_builder_amp['amp-design-selector']==3 ? '': 'display:none' ).'">
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png" width="150" height="200" class="amp_install_theme_preview" id="design-4" style="'.($redux_builder_amp['amp-design-selector']==4 ? '': 'display:none' ).'">s
+									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png" width="150" height="200" class="amp_install_theme_preview" id="design-1" style="'.(ampforwp_get_setting('amp-design-selector')==1 ? '': 'display:none' ).'">
+									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png" width="150" height="200" class="amp_install_theme_preview" id="design-2" style="'.(ampforwp_get_setting('amp-design-selector')==2 ? '': 'display:none' ).'">
+									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png" width="150" height="200" class="amp_install_theme_preview" id="design-3" style="'.(ampforwp_get_setting('amp-design-selector')==3 ? '': 'display:none' ).'">
+									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png" width="150" height="200" class="amp_install_theme_preview" id="design-4" style="'.(ampforwp_get_setting('amp-design-selector')==4 ? '': 'display:none' ).'">
 									</div>
- 									</li>
-											   ',
+ 									</li>',
 									),
 									6=>array(
 									'title'=>esc_html__('Enjoy','accelerated-mobile-pages'),
