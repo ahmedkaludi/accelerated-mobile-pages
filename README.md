@@ -186,6 +186,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 = 0.9.97.46 (9th April 2019) =
 * Added: WP Subtitle compatibility integrated #2831
 * Added: New filter in page builder for Enable/disabled check #2998
+* Added: Additional Page Builder compatibility added #2643
 * Fixed: The tag 'p' is disallowed & auto added as child of tag 'amp-accordion' #2498
 * Fixed: Histats Not working #2909
 * Fixed: itemprop="image" is being removed from the AMP Pages #2585
