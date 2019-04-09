@@ -1899,7 +1899,7 @@ function ampforwp_seopress_title_sanitize($title){
 	$woo_single_price ='';
 	$woo_single_price_exc_tax ='';
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if ( is_plugin_active( 'woocommerce/woocommerce.php' )) {
+	if ( class_exists('WooCommerce') ) {
 		if (is_product()) {
 			//Woo Cat product
 			$woo_single_cats = get_the_terms( $post->ID, 'product_cat' );
