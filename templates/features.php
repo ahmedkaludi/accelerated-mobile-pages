@@ -2817,7 +2817,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
 
 function ampforwp_modified_search_sidebar( $content ) {
 	global $redux_builder_amp;
-	$dom = '';
+	$dom = $input_submit = '';
 	$dom = AMP_DOM_Utils::get_dom_from_content($content);
 	$nodes = $dom->getElementsByTagName( 'form' );
 	$num_nodes = $nodes->length;
@@ -2842,6 +2842,39 @@ function ampforwp_modified_search_sidebar( $content ) {
 				$element->setAttribute('action', $action_url);
 			}
 			$element->setAttribute('target', '_top');
+			$div_node = $element->getElementsByTagName('div');
+			$num_div_nodes = $div_node->length;
+			if ( 0 !== $num_div_nodes ) {
+				for ( $i = 0; $i < $num_div_nodes; ++$i ) {
+					$child_node = $div_node->item( $i );
+					$label = $element->getElementsByTagName('label')->item(0);
+					$element->appendChild($label);
+					$input_elements = $element->getElementsByTagName('input');
+					if ( 0 !== $input_elements->length ) {
+						for ( $i = 0; $i < $input_elements->length; ++$i ) {
+							$input_nodes[] = $input_elements->item( $i );
+						}
+					}
+					foreach ($input_nodes as $input_node ) {
+						$element->appendChild($input_node);
+					}	
+					$element->removeChild($child_node);
+				}
+			}
+			$input_nodes = $element->getElementsByTagName('input');
+			if ( 0 !== $input_nodes->length ) {
+				for ( $i = 0; $i < $input_nodes->length; ++$i ) {
+					$input_node = $input_nodes->item( $i );
+					if ( 'submit' !== $input_node->getAttribute('type') ) {
+						$input_submit = $dom->createElement('input');
+						$input_submit->setAttribute('type', 'submit');
+						$input_submit->setAttribute('class', 'search-submit');
+					}
+				}
+				if ( $input_submit ) {
+					$element->appendChild($input_submit);
+				}
+			}
 		}
 	}
 	// Remove http/https from Audio and Video URLs #1400

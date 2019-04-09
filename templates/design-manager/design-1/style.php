@@ -411,7 +411,7 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
   flex-wrap:wrap;
   align-items: center;
 }
-.w-bl .search-submit{
+.w-bl .search-submit,.w-bl .searchsubmit{
   text-indent: -9999px;
     padding: 0;
     margin: 0;

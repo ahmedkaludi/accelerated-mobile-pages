@@ -1372,7 +1372,7 @@ if(isset($redux_builder_amp['ftr2-gapping'])){
 	flex-wrap:wrap;
 	align-items: center;
 }
-.w-bl .search-submit{
+.w-bl .search-submit,.w-bl .searchsubmit{
 	text-indent: -9999px;
     padding: 0;
     margin: 0;
