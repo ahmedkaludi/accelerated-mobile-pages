@@ -1463,10 +1463,9 @@ $tabs = array(
 
    // AMP Content Page Builder SECTION
    Redux::setSection( $opt_name, array(
-       'title'      => __( 'Page Builder', 'accelerated-mobile-pages' ),
-      'class'       =>'',
-       'id'         => 'amp-content-builder',
-       'class'      => 'ampforwp-new-element',
+       'title'      => esc_html__( 'Page Builder', 'accelerated-mobile-pages' ),
+        'id'         => 'amp-content-builder',
+       'class'      => 'ampforwp_new_features ',
        'subsection' => true,
        'fields' => $pb_for_amp,
        )
