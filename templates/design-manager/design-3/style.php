@@ -569,7 +569,7 @@ if ( class_exists('TablePress') ) { ?>
 @media (min-width: 768px) and (max-width: 1600px){ .tablepress{ overflow-x: none; } }
 @media (min-width: 320px) and (max-width: 767px){ .tablepress{ display: inline-block; overflow-x: scroll; } }
 <?php }  
-if ( ! is_home() && true == ampforwp_get_setting('ampforwp-bread-crumb') && ! checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
+if(!is_home() && ((is_single() && true == ampforwp_get_setting('ampforwp-bread-crumb') ) || (is_page() && ampforwp_get_setting('ampforwp_pages_breadcrumbs')) ) && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
 .breadcrumb{width: 100%;}
 .breadcrumb ul, .category-single ul{ padding:0; margin:0;}
 .breadcrumb ul li{display:inline;}

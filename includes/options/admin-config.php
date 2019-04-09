@@ -5923,6 +5923,13 @@ $single_page_options = array(
                   'required' => array('amp-design-selector','=','4'),
             ),
             array(
+                  'id'       => 'ampforwp_pages_breadcrumbs',
+                  'type'     => 'switch',
+                  'default'  =>  '0',
+                  'title'    => esc_html__('Breadcrumbs', 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => esc_html__('Enable Breadcrumbs on Pages.','accelerated-mobile-pages'),
+            ),
+            array(
                       'id'       => 'meta_page',
                       'type'     => 'switch',
                       'default'  =>  '0',

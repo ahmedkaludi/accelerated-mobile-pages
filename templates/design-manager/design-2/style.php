@@ -383,7 +383,7 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 @media (min-width: 320px) and (max-width: 767px) {.tablepress { display: inline-block; overflow-x: scroll; } }
 <?php }  ?>
 .design_2_wrapper .amp-loop-list .amp-wp-meta {display: none;}
-<?php if(!is_home() && true == ampforwp_get_setting('ampforwp-bread-crumb') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
+<?php if(!is_home() && ((is_single() && true == ampforwp_get_setting('ampforwp-bread-crumb') ) || (is_page() && ampforwp_get_setting('ampforwp_pages_breadcrumbs')) ) && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
 .breadcrumb{line-height: 1;margin-bottom:6px;}
 .breadcrumb ul, .category-single ul, .breadcrumb div{padding:0; margin:0;}
 .breadcrumb ul li, .breadcrumbs span{display:inline;}

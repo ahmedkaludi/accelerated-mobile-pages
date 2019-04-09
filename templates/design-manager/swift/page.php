@@ -4,7 +4,7 @@ amp_header(); ?>
 	<div <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>class="cntr"<?php } ?>>
 		<?php if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts ?>
 		<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
-			<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
+			<?php if ( is_page() && true == ampforwp_get_setting('ampforwp_pages_breadcrumbs') ) {
 				amp_breadcrumb();
 			}?>
 		 	<?php amp_title(); ?>
