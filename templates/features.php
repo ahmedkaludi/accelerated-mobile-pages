@@ -569,6 +569,7 @@ function ampforwp_new_dir( $dir ) {
 			}
 		// Facebook Like Script
 	    $fb_like = false;
+	    $isBBPress = (!function_exists('is_bbpress') ? true :  (is_bbpress() ? false : true));
 	    if ( true == ampforwp_get_setting('ampforwp-facebook-like-button') ){
 	      if ( is_single() && (true == ampforwp_get_setting('enable-single-social-icons') || ( $social_check && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())))) {
 	        $fb_like = true;
@@ -577,7 +578,7 @@ function ampforwp_new_dir( $dir ) {
 	        $fb_like = true;
 	      }
 	    }
-	    if ( true == $fb_like ) {
+	    if ( true == $fb_like && ( $isBBPress || true == ampforwp_get_setting('enable-single-social-icons') )) {
 	      if(empty($data['amp_component_scripts']['amp-facebook-like'])){
 	        $data['amp_component_scripts']['amp-facebook-like'] = 'https://cdn.ampproject.org/v0/amp-facebook-like-0.1.js';
 	      }      
