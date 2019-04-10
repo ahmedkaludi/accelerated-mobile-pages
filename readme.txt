@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1.1
-Stable tag: 0.9.97.46
+Stable tag: 0.9.97.46.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,22 +184,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.46 (9th April 2019) =
-* Added: WP Subtitle compatibility integrated #2831
-* Added: New filter in page builder for Enable/disabled check #2998
-* Added: Additional Page Builder compatibility added #2643
-* Fixed: The tag 'p' is disallowed & auto added as child of tag 'amp-accordion' #2498
-* Fixed: Histats Not working #2909
-* Fixed: itemprop="image" is being removed from the AMP Pages #2585
-* Fixed: CSS pseudo-element not working when minify option is enabled #2907
-* Fixed: Directories path code improved, if the plugin is installed outside (/wp-content/plugins) #1531
-* Fixed: WP_debug warnings and notices #2958
-* Fixed: More than one canonical issue with Rank Math SEO Plugin #2975
-* Fixed: Background image or color in the 1st row of page builder is applied to all below row #2994
-* Fixed: Rare Distorted image aspect ratio issue with Gutenberg editor #2931
-* Fixed: Font family for Content in Single page code improved #2122
-* Fixed: Fatal Error due to SEO press plugin #3003
-* Fixed: Rare issue with Mobile redirection on Homepage after v0.9.97.32 #2972
-* Fixed: PageSpeed Score Improvement for all Designs #2979
+= 0.9.97.46.1 (10th April 2019) =
+* Fixed: Theme framework templates loading multiple times #2977
 
 Full changelog available in changelog.txt

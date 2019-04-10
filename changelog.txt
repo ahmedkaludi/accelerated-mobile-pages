@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 0.9.97.46.1 (10th April 2019) =
+* Fixed: Theme framework templates loading multiple times #2977
+
 = 0.9.97.46 (9th April 2019) =
 * Added: WP Subtitle compatibility integrated #2831
 * Added: New filter in page builder for Enable/disabled check #2998
