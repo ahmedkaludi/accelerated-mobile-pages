@@ -93,7 +93,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 						    $my_query->the_post();
 							$related_post_permalink = "";
 							$related_post_permalink = ampforwp_url_controller( get_permalink() );
-							if ( isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
+							if (  ampforwp_get_setting('ampforwp-single-related-posts-link') ) {
 								$related_post_permalink = get_permalink();
 							}?>
 							<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
