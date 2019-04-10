@@ -2376,29 +2376,6 @@ Redux::setSection( $opt_name, array(
                         'required' => array( 'ampforwp-subdomain', '=' , 1 )
                     ),
                     array(
-                        'id'       => 'ampforwp-infinite-scroll',
-                        'type'     => 'switch',
-                        'title'    => esc_html__('Infinite Scroll (Experimental)', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__('Read more about it here:', 'accelerated-mobile-pages'), esc_url('https://www.ampproject.org/docs/reference/components/amp-next-page'), esc_html__('amp-next-page','accelerated-mobile-pages')),
-                        'default' => false,
-                    ),
-                    array(
-                        'id'       => 'ampforwp-infinite-scroll-home',
-                        'type'     => 'switch',
-                        'class'    => 'child_opt child_opt_arrow',
-                        'title'    => esc_html__('Home & Archives', 'accelerated-mobile-pages'),
-                        'default' => true,
-                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
-                    ),
-                    array(
-                        'id'       => 'ampforwp-infinite-scroll-single',
-                        'type'     => 'switch',
-                        'class'    => 'child_opt child_opt_arrow',
-                        'title'    => esc_html__('Single', 'accelerated-mobile-pages'),
-                        'default' => true,
-                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
-                    ),
-                    array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
                         'title'    => __('Internal Links in AMP', 'accelerated-mobile-pages'),
@@ -3524,6 +3501,29 @@ Redux::setSection( $opt_name, array(
                       'default'  =>  '0',
                       'required' => array('gnrl-sidebar', '=' , '1'), 
                   ),
+            array(
+                        'id'       => 'ampforwp-infinite-scroll',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Infinite Scroll (Experimental)', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__('Read more about it here:', 'accelerated-mobile-pages'), esc_url('https://www.ampproject.org/docs/reference/components/amp-next-page'), esc_html__('amp-next-page','accelerated-mobile-pages')),
+                        'default' => false,
+                    ),
+                    array(
+                        'id'       => 'ampforwp-infinite-scroll-home',
+                        'type'     => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'    => esc_html__('Home & Archives', 'accelerated-mobile-pages'),
+                        'default' => true,
+                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
+                    ),
+                    array(
+                        'id'       => 'ampforwp-infinite-scroll-single',
+                        'type'     => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'    => esc_html__('Single', 'accelerated-mobile-pages'),
+                        'default' => true,
+                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
+                    ),
            array(
                     'id'    => 'gnrl-dark-view',
                     'type'  => 'switch',
