@@ -1,5 +1,6 @@
 <?php
 global $redux_builder_amp;
+$ampforwpTemplate = '';
 $loadComponent = array();
 $scriptComponent = array();
 $supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb','AMP-gdpr');
@@ -263,11 +264,12 @@ function amp_gdpr(){
 
 //Get Core of AMP HTML
 function amp_header_core(){
+	global $ampforwpTemplate;
 	$post_id = get_queried_object_id();
 	if ( ampforwp_polylang_front_page() ) {
 		$post_id = pll_get_post(get_option('page_on_front'));
 	}
-	$thisTemplate = new AMP_Post_Template($post_id);
+	$thisTemplate = $ampforwpTemplate;
 	global $redux_builder_amp;
 	$html_tag_attributes = AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) );
 	
@@ -365,11 +367,12 @@ function amp_header_core(){
 }
 
 function amp_header(){
+	global $ampforwpTemplate;
 	$post_id = get_queried_object_id();
 	if ( ampforwp_polylang_front_page() ) {
 		$post_id = pll_get_post(get_option('page_on_front'));
 	}
-	$thisTemplate = new AMP_Post_Template($post_id);
+	$thisTemplate = $ampforwpTemplate;
 	$thisTemplate->load_parts( array( 'header' ) ); 
 	do_action( 'amp_after_header', $thisTemplate );
 	do_action( 'ampforwp_after_header', $thisTemplate );
@@ -377,11 +380,12 @@ function amp_header(){
 <?php } 
 
 function amp_footer(){
+	global $ampforwpTemplate;
 	$post_id = get_queried_object_id();
 	if ( ampforwp_polylang_front_page() ) {
 		$post_id = pll_get_post(get_option('page_on_front'));
 	}
-	$thisTemplate = new AMP_Post_Template($post_id);		
+	$thisTemplate = $ampforwpTemplate;		
 	do_action( 'amp_before_footer', $thisTemplate );
 	do_action( 'amp_post_template_above_footer', $thisTemplate );
 
@@ -390,11 +394,12 @@ function amp_footer(){
 }
 
 function amp_footer_core(){
+	global $ampforwpTemplate;
 	$post_id = get_queried_object_id();
 	if ( ampforwp_polylang_front_page() ) {
 		$post_id = pll_get_post(get_option('page_on_front'));
 	}
-	$thisTemplate = new AMP_Post_Template($post_id);
+	$thisTemplate = $ampforwpTemplate;
 	if(ampforwp_amp_nonamp_convert("", "check")){
 		wp_footer();
 	}
@@ -461,8 +466,9 @@ function amp_back_to_top_link(){
 }
 
 function amp_loop_template(){
+	global $ampforwpTemplate;
 	$post_id = get_queried_object_id();
-	$thisTemplate = new AMP_Post_Template($post_id);
+	$thisTemplate = $ampforwpTemplate;
 	do_action('amp_before_loop',$thisTemplate);
 	$thisTemplate->load_parts( array( 'loop' ) );
 	do_action('amp_after_loop',$thisTemplate);
@@ -470,7 +476,7 @@ function amp_loop_template(){
 
 // The Content
 function amp_content($post_id= ''){ 
-	global $redux_builder_amp, $post;
+	global $redux_builder_amp, $post, $ampforwpTemplate;
 
 	if ( empty( $post_id )) {
 		$post_id = get_queried_object_id();
@@ -482,7 +488,7 @@ function amp_content($post_id= ''){
 		}
 	}
 
-	$thisTemplate = new AMP_Post_Template($post_id); 
+	$thisTemplate = $ampforwpTemplate; 
 	do_action('ampforwp_before_post_content',$thisTemplate); 
 	$amp_custom_content_enable = get_post_meta( $thisTemplate->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
 	// Normal Content
