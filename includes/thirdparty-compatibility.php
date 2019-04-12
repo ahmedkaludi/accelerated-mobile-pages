@@ -608,39 +608,6 @@ function ampforwp_update_seo_options(){
 	}
 }
 
-//Levelup Compatibility
-function ampforwp_levelup_compatibility($type='levelup_theme_and_elementor_check'){
-	//check theme
-	$returnVal = false;
-	switch($type){
-		case 'levelup_theme':
-			if(function_exists('levelup_theme_is_active')){
-				$returnVal = levelup_theme_is_active();
-			}
-		break;
-		case 'levelup_elementor':
-			if(function_exists('levelup_has_enable_elementor_builder')){
-				$returnVal = levelup_has_enable_elementor_builder();				
-			}
-		break;
-		case 'levelup_theme_and_elementor':
-			if(function_exists('levelup_theme_is_active') && function_exists('levelup_has_enable_elementor_builder')){
-				$returnVal = levelup_theme_is_active() && levelup_has_enable_elementor_builder();
-			}
-		break;
-		case 'hf_builder_foot':
-			if(function_exists('levelup_check_hf_builder')){
-				$returnVal = levelup_check_hf_builder('foot');
-			}
-		break;
-		case 'hf_builder_head':
-			if(function_exists('levelup_check_hf_builder')){
-				$returnVal = levelup_check_hf_builder('head');
-			}
-		break;
-	}
-	return $returnVal;
-}
 //Compatibility with the footnotes plugin. #2447
 add_action('amp_post_template_css','ampforwp_footnote_support');
 if ( ! function_exists('ampforwp_footnote_support') ) {

@@ -1,35 +1,35 @@
 <?php
+namespace AMPforWP\AMPVendor;
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-dom-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-html-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-string-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-wp-utils.php' );
 
-require_once( AMP__DIR__ . '/includes/utils/class-amp-dom-utils.php' );
-require_once( AMP__DIR__ . '/includes/utils/class-amp-html-utils.php' );
-require_once( AMP__DIR__ . '/includes/utils/class-amp-string-utils.php' );
-require_once( AMP__DIR__ . '/includes/utils/class-amp-wp-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/class-amp-content.php' );
 
-require_once( AMP__DIR__ . '/includes/class-amp-content.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-style-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-blacklist-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-img-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-video-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-iframe-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-audio-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-playbuzz-sanitizer.php' );
 
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-style-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-blacklist-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-img-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-video-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-iframe-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-audio-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-playbuzz-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-rule-spec.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-allowed-tags-generated.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-tag-and-attribute-sanitizer.php' );
 
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-rule-spec.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-allowed-tags-generated.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-tag-and-attribute-sanitizer.php' );
-
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-dailymotion-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-gallery-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-instagram-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-vine-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-facebook-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-vimeo-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-soundcloud-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-pinterest-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-wistia-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-dailymotion-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-gallery-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-instagram-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-vine-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-facebook-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-vimeo-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-soundcloud-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-pinterest-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-wistia-embed.php' );
 
 class AMP_Post_Template {
 	const SITE_ICON_SIZE = 32;
@@ -43,7 +43,7 @@ class AMP_Post_Template {
 	private $data;
 
 	public function __construct( $post_id ) {
-		$this->template_dir = apply_filters( 'amp_post_template_dir', AMP__DIR__ . '/templates' );
+		$this->template_dir = apply_filters( 'amp_post_template_dir', AMP__VENDOR__DIR__ . '/templates' );
 		if ( ampforwp_is_front_page() ) {
 			$post_id = ampforwp_get_frontpage_id();
 		}
@@ -109,7 +109,7 @@ class AMP_Post_Template {
 		if ( isset( $this->data[ $property ] ) ) {
 			return $this->data[ $property ];
 		} else {
-			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Called for non-existant key ("%s").', 'amp' ), esc_html( $property ) ), '0.1' );
+			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Called for non-existant key ("%s").', 'accelerated-mobile-pages' ), esc_html( $property ) ), '0.1' );
 		}
 
 		return $default;
@@ -118,7 +118,7 @@ class AMP_Post_Template {
 		if ( isset( $this->data[ $property ]  ) ) {
 			return $this->data[ $property ] = $value ;
 		} else {
-			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Called for non-existant key ("%s").', 'amp' ), esc_html( $property ) ), '0.1' );
+			_doing_it_wrong( __METHOD__, sprintf( __( 'Called for non-existant key ("%s").', 'accelerated-mobile-pages' ), esc_html( $property ) ), '0.1' );
 		}
 
 		return $value;
@@ -165,6 +165,7 @@ class AMP_Post_Template {
 	}
 
 	private function build_post_data() {
+		global $post;
 		$post_author = '';
 		$post_author_name = '';
 		$post_title = get_the_title( $this->ID );
@@ -240,8 +241,8 @@ class AMP_Post_Template {
 
 			$comments_link_url = get_comments_link( $this->ID );
 			$comments_link_text = $comments_open
-				? esc_html__( 'Leave a Comment', 'amp' )
-				: esc_html__( 'View Comments', 'amp' );
+				? esc_html__( 'Leave a Comment', 'accelerated-mobile-pages' )
+				: esc_html__( 'View Comments', 'accelerated-mobile-pages' );
 
 			$this->add_data( array(
 				'comments_link_url' => $comments_link_url,
@@ -436,7 +437,7 @@ class AMP_Post_Template {
 
 		$file = apply_filters( 'amp_post_template_file', $file, $template_type, $this->post );
 		if ( ! $this->is_valid_template( $file ) ) {
-			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Path validation for template (%s) failed. Path cannot traverse and must be located in `%s`.', 'amp' ), esc_html( $file ), 'WP_CONTENT_DIR' ), '0.1' );
+			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Path validation for template (%s) failed. Path cannot traverse and must be located in `%s`.', 'accelerated-mobile-pages' ), esc_html( $file ), 'WP_CONTENT_DIR' ), '0.1' );
 			return;
 		}
 

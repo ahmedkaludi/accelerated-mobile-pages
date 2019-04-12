@@ -1,25 +1,26 @@
 <?php
+namespace AMPforWP\AMPVendor;
 // Callbacks for adding AMP-related things to the admin.
 
-define( 'AMP_CUSTOMIZER_QUERY_VAR', 'customize_amp' );
+define( 'AMP_VENDOR_CUSTOMIZER_QUERY_VAR', 'customize_amp' );
 
 /**
  * Sets up the AMP template editor for the Customizer.
  */
 function amp_init_customizer() {
-	require_once( AMP__DIR__ . '/includes/admin/class-amp-customizer.php' );
+	require_once( AMP__VENDOR__DIR__ . '/includes/admin/class-amp-customizer.php' );
 
 	// Drop core panels (menus, widgets) from the AMP customizer
-	add_filter( 'customize_loaded_components', array( 'AMP_Template_Customizer', '_unregister_core_panels' ) );
+	add_filter( 'customize_loaded_components', array( 'AMPforWP\\AMPVendor\\AMP_Template_Customizer', '_unregister_core_panels' ) );
 
 	// Fire up the AMP Customizer
-	add_action( 'customize_register', array( 'AMP_Template_Customizer', 'init' ), 500 );
+	add_action( 'customize_register', array( 'AMPforWP\\AMPVendor\\AMP_Template_Customizer', 'init' ), 500 );
 
 	// Add some basic design settings + controls to the Customizer
-	add_action( 'amp_init', array( 'AMP_Customizer_Design_Settings', 'init' ) );
+	add_action( 'amp_init', array( 'AMPforWP\\AMPVendor\\AMP_Customizer_Design_Settings', 'init' ) );
 
 	// Add a link to the Customizer
-	add_action( 'admin_menu', 'amp_add_customizer_link' );
+	add_action( 'admin_menu', 'AMPforWP\\AMPVendor\\amp_add_customizer_link' );
 }
 
 /**
@@ -30,7 +31,7 @@ function amp_add_customizer_link() {
 	$menu_slug = add_query_arg( array(
 		'autofocus[panel]'         => AMP_Template_Customizer::PANEL_ID,
 		'return'                   => rawurlencode( admin_url() ),
-		AMP_CUSTOMIZER_QUERY_VAR   => true,
+		AMP_VENDOR_CUSTOMIZER_QUERY_VAR   => true,
 	), 'customize.php' );
 
 	// Add the theme page.

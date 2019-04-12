@@ -141,7 +141,7 @@ function amp_paginated_post_modify_canonical(){
 			$post_paginated_page='';
 			$post_paginated_page = get_query_var('page');
 			if($post_paginated_page){
-				remove_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
+				remove_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 				add_action('amp_post_template_head','amp_paginated_post_rel_canonical');
 			}
 		}

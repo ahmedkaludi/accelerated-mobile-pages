@@ -1,6 +1,6 @@
 <?php
-
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
+namespace AMPforWP\AMPVendor;
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
 
 /**
  * Converts <video> tags to <amp-video>
@@ -36,7 +36,7 @@ class AMP_Video_Sanitizer extends AMP_Base_Sanitizer {
 
 			$new_attributes = $this->enforce_fixed_height( $new_attributes );
 			$new_attributes = $this->enforce_sizes_attribute( $new_attributes );
-
+			$new_attributes["dock"] = "#dock-slot";
 			$new_node = AMP_DOM_Utils::create_node( $this->dom, 'amp-video', $new_attributes );
 
 			// TODO: `source` does not have closing tag, and DOMDocument doesn't handle it well.

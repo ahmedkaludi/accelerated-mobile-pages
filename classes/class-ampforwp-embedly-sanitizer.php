@@ -1,4 +1,6 @@
 <?php
+use AMPforWP\AMPVendor\AMP_Base_Sanitizer;
+use AMPforWP\AMPVendor\AMP_DOM_Utils;
 /**
  * Converts embedly-cards to <amp-embedly-card>
  */

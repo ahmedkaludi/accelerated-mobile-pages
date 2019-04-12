@@ -1,7 +1,7 @@
 <?php
-
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/utils/class-amp-image-dimension-extractor.php' );
+namespace AMPforWP\AMPVendor;
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-image-dimension-extractor.php' );
 
 /**
  * Converts <img> tags to <amp-img> or <amp-anim>
@@ -70,11 +70,13 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	 * @param array $need_dimensions List of Img src url to node mappings corresponding to images that need dimensions.
 	 */
 	private function determine_dimensions( $need_dimensions ) {
+
 		$dimensions_by_url = AMP_Image_Dimension_Extractor::extract( array_keys( $need_dimensions ) );
 		$class = "";
+
 		foreach ( $dimensions_by_url as $url => $dimensions ) {
 			foreach ( $need_dimensions[ $url ] as $node ) {
-				if ( ! $node instanceof DOMElement ) {
+				if ( ! $node instanceof \DOMElement ) {
 					continue;
 				}
 				$class = $node->getAttribute( 'class' );
@@ -84,6 +86,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				if ( ! $dimensions ) {
 					$class .= ' amp-wp-unknown-size';
 				}
+
 				$width  = isset( $this->args['content_max_width'] ) ? $this->args['content_max_width'] : self::FALLBACK_WIDTH;
 				$height = self::FALLBACK_HEIGHT;
 				if ( isset( $dimensions['width'] ) ) {
@@ -92,21 +95,26 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				if ( isset( $dimensions['height'] ) ) {
 					$height = $dimensions['height'];
 				}
+
 				if ( ! is_numeric( $node->getAttribute( 'width' ) ) ) {
+
 					// Let width have the right aspect ratio based on the height attribute.
 					if ( is_numeric( $node->getAttribute( 'height' ) ) && isset( $dimensions['height'] ) && isset( $dimensions['width'] ) ) {
 						$width = round( ( floatval( $node->getAttribute( 'height' ) ) * $dimensions['width'] ) / $dimensions['height'] );
 					}
+
 					$node->setAttribute( 'width', $width );
 					if ( ! isset( $dimensions['width'] ) ) {
 						$class .= ' amp-wp-unknown-width';
 					}
 				}
 				if ( ! is_numeric( $node->getAttribute( 'height' ) ) ) {
+
 					// Let height have the right aspect ratio based on the width attribute.
 					if ( is_numeric( $node->getAttribute( 'width' ) ) && isset( $dimensions['width'] ) && isset( $dimensions['height'] ) ) {
 						$height = round( ( floatval( $node->getAttribute( 'width' ) ) * $dimensions['height'] ) / $dimensions['width'] );
 					}
+
 					$node->setAttribute( 'height', $height );
 					if ( ! isset( $dimensions['height'] ) ) {
 						$class .= ' amp-wp-unknown-height';
@@ -135,6 +143,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		}
 		$new_node = AMP_DOM_Utils::create_node( $this->dom, $new_tag, $new_attributes );
 		$node->parentNode->replaceChild( $new_node, $node );
+		
 		if ( isset($new_attributes['on']) && '' != $new_attributes['on'] ) {
 			if(is_singular() || ampforwp_is_front_page()){
 				add_action('amp_post_template_footer', 'ampforwp_amp_img_lightbox');
@@ -160,6 +169,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		if ( $this->is_lightbox ) {
 			$this->scripts[self::$script_slug_lightbox] = self::$script_src_lightbox;
 		}
+
 
 		if ( $this->did_convert_elements ) {
 			$this->scripts[self::$script_slug] = self::$script_src;

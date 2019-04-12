@@ -1,4 +1,6 @@
 <?php
+use AMPforWP\AMPVendor\AMP_Post_Template;
+use AMPforWP\AMPVendor\AMP_HTML_Utils;
 global $redux_builder_amp;
 $ampforwpTemplate = '';
 $loadComponent = array();

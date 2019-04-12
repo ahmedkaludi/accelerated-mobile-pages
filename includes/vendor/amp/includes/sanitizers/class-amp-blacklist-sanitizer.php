@@ -1,6 +1,6 @@
 <?php
-
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
+namespace AMPforWP\AMPVendor;
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
 
 /**
  * Strips blacklisted tags and attributes from content.
@@ -41,7 +41,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		if($node->nodeName=='a' && $node->hasAttribute('href')){
 			$href = $node->getAttribute('href');
 			if ( $href ){
-				$node->setAttribute('href',ampforwp_findInternalUrl($href));
+				$node->setAttribute('href',\ampforwp_findInternalUrl($href));
 			}
 		}
 		

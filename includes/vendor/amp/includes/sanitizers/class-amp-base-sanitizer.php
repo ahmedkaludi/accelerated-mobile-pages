@@ -1,5 +1,5 @@
 <?php
-
+namespace AMPforWP\AMPVendor;
 abstract class AMP_Base_Sanitizer {
 	const FALLBACK_HEIGHT = 400;
 

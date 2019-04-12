@@ -1,5 +1,6 @@
 <?php
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
+namespace AMPforWP\AMPVendor;
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
 
 /**
  * Collects inline styles and outputs them in the amp-custom stylesheet.
@@ -89,7 +90,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 	 * @param DOMDocument $dom  Represents the HTML document to sanitize.
 	 * @param array       $args Args.
 	 */
-	public function __construct( DOMDocument $dom, array $args = array() ) {
+	public function __construct( \DOMDocument $dom, array $args = array() ) {
 		parent::__construct( $dom, $args );
 
 		$spec_name = 'style[amp-keyframes]';
@@ -165,7 +166,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 		 * Note that xpath is used to query the DOM so that the link and style elements will be
 		 * in document order. DOMNode::compareDocumentPosition() is not yet implemented.
 		 */
-		$xpath = new DOMXPath( $this->dom );
+		$xpath = new \DOMXPath( $this->dom );
 
 		$lower_case = 'translate( %s, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz" )'; // In XPath 2.0 this is lower-case().
 		$predicates = array(
@@ -190,11 +191,11 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 				$this->process_link_element( $element );
 			}
 		}
-
 		$elements = array();
 		foreach ( $xpath->query( '//*[ @style ]' ) as $element ) {
 			$elements[] = $element;
 		}
+
 		foreach ( $elements as $element ) {
 			$this->collect_inline_styles( $element );
 		}
@@ -282,7 +283,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 	 *
 	 * @param DOMElement $element Style element.
 	 */
-	private function process_style_element( DOMElement $element ) {
+	private function process_style_element( \DOMElement $element ) {
 		if ( $element->hasAttribute( 'amp-keyframes' ) ) {
 			$validity = $this->validate_amp_keyframe( $element );
 			if ( is_wp_error( $validity ) ) {
@@ -326,7 +327,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 	 *
 	 * @param DOMElement $element Link element.
 	 */
-	private function process_link_element( DOMElement $element ) {
+	private function process_link_element( \DOMElement $element ) {
 		$href = $element->getAttribute( 'href' );
 
 		// Allow font URLs.
@@ -419,7 +420,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 		// This logic could be in AMP_Tag_And_Attribute_Sanitizer, but since it only applies to amp-keyframes it seems unnecessary.
 		$next_sibling = $style->nextSibling;
 		while ( $next_sibling ) {
-			if ( $next_sibling instanceof DOMElement ) {
+			if ( $next_sibling instanceof \DOMElement ) {
 				return new WP_Error( 'mandatory_last_child', __( 'amp-keyframes is not last element in body.', 'amp' ) );
 			}
 			$next_sibling = $next_sibling->nextSibling;

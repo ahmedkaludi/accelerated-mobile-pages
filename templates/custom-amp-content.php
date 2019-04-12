@@ -1,4 +1,5 @@
 <?php
+use AMPforWP\AMPVendor\AMP_Content;
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

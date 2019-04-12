@@ -3,6 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+use AMPforWP\AMPVendor\AMP_Customizer_Design_Settings;
 class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings {
 	const NEW_COLOR_SCHEME = 'light';
 

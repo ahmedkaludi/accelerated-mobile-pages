@@ -1,21 +1,28 @@
 <?php
+namespace AMPforWP\AMPVendor;
 // Callbacks for adding content to an AMP template
 
-add_action( 'amp_post_template_head', 'amp_post_template_add_title' );
+add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_title' );
 function amp_post_template_add_title( $amp_template ) {
 	?>
 	<title><?php echo esc_html( $amp_template->get( 'document_title' ) ); ?></title>
 	<?php
 }
 
-add_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
+add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 function amp_post_template_add_canonical( $amp_template ) {
 	?>
 	<link rel="canonical" href="<?php echo esc_url( apply_filters('ampforwp_modify_rel_url',$amp_template->get( 'canonical_url' ) ) ); ?>" />
-	<?php
+   <?php
+}
+add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_meta_generator' );
+function amp_post_template_add_meta_generator() {
+	?>
+	<meta name="generator" content="AMP for WP <?php echo esc_attr(AMPFORWP_VERSION) ?>" />
+<?php
 }
 
-add_action( 'amp_post_template_head', 'amp_post_template_add_scripts' );
+add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_scripts' );
 function amp_post_template_add_scripts( $amp_template ) {
 	$scripts = $amp_template->get( 'amp_component_scripts', array() );
 	foreach ( $scripts as $element => $script ) : 
@@ -26,7 +33,7 @@ function amp_post_template_add_scripts( $amp_template ) {
 	<?php
 }
 
-add_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
+add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_fonts' );
 function amp_post_template_add_fonts( $amp_template ) {
 	$font_urls = $amp_template->get( 'font_urls', array() );
 	foreach ( $font_urls as $slug => $url ) : ?>
@@ -34,14 +41,14 @@ function amp_post_template_add_fonts( $amp_template ) {
 	<?php endforeach;
 }
 
-add_action( 'amp_post_template_head', 'amp_post_template_add_boilerplate_css' );
+add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_boilerplate_css' );
 function amp_post_template_add_boilerplate_css( $amp_template ) {
 	?>
 	<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 	<?php
 }
-if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') && ! is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') && !defined( 'RANK_MATH_FILE' ) ):
-add_action( 'amp_post_template_footer', 'amp_post_template_add_schemaorg_metadata' );
+if(! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') && !defined( 'RANK_MATH_FILE' ) && ! is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') ):
+add_action( 'amp_post_template_footer', 'AMPforWP\\AMPVendor\\amp_post_template_add_schemaorg_metadata' );
 function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	$metadata = $amp_template->get( 'metadata' );
 	if ( empty( $metadata ) ) {
@@ -53,7 +60,7 @@ function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 }
 endif;
 
-add_action( 'amp_post_template_css', 'amp_post_template_add_styles', 99 );
+add_action( 'amp_post_template_css', 'AMPforWP\\AMPVendor\\amp_post_template_add_styles', 99 );
 function amp_post_template_add_styles( $amp_template ) {
 	$styles = $amp_template->get( 'post_amp_styles' );
 	if ( ! empty( $styles ) ) {
@@ -65,7 +72,7 @@ function amp_post_template_add_styles( $amp_template ) {
 	}
 }
 
-add_action( 'amp_post_template_data', 'amp_post_template_add_analytics_script' );
+add_action( 'amp_post_template_data', 'AMPforWP\\AMPVendor\\amp_post_template_add_analytics_script' );
 function amp_post_template_add_analytics_script( $data ) {
 	if ( ! empty( $data['amp_analytics'] ) ) {
 		$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
@@ -73,7 +80,7 @@ function amp_post_template_add_analytics_script( $data ) {
 	return $data;
 }
 
-add_action( 'amp_post_template_footer', 'amp_post_template_add_analytics_data' );
+add_action( 'amp_post_template_footer', 'AMPforWP\\AMPVendor\\amp_post_template_add_analytics_data' );
 function amp_post_template_add_analytics_data( $amp_template ) {
 	$analytics_entries = $amp_template->get( 'amp_analytics' );
 	if ( empty( $analytics_entries ) ) {

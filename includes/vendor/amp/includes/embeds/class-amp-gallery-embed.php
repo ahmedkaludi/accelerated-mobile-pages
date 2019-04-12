@@ -1,6 +1,6 @@
 <?php
-//namespace AMPforWP\AMPVendor;
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php' );
+namespace AMPforWP\AMPVendor;
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php' );
 
 class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 	private static $script_slug = 'amp-carousel';
@@ -115,7 +115,6 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 		}
 
 		/*Filter*/
-		$carousel_markup = '';
 		$carousel_markup = $amp_image_lightbox = '';
 		
 		$carousel_markup_all = array(
@@ -160,7 +159,6 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 		$carousel_markup_all = apply_filters("ampforwp_manage_gallery_markup", $carousel_markup_all);
 		//Default markup
 		$markup =  $carousel_markup_all[1];
-
 		if( isset($redux_builder_amp['ampforwp-gallery-design-type']) &&  isset($carousel_markup_all[$redux_builder_amp['ampforwp-gallery-design-type'] ] ) ){
 			$markup =  $carousel_markup_all[$redux_builder_amp['ampforwp-gallery-design-type']];
 		}
@@ -278,9 +276,9 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 }// Class closed
 
 // Add Caption in the Gallery Image
-add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 3);
+add_filter('amp_gallery_images','AMPforWP\\AMPVendor\\ampforwp_new_gallery_images', 10, 3);
 function ampforwp_new_gallery_images($images_markup, $image, $markup_arr){
-	add_action('amp_post_template_css', 'ampforwp_additional_gallery_style');
+	add_action('amp_post_template_css', 'AMPforWP\\AMPVendor\\ampforwp_additional_gallery_style');
 	add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
 	add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
 	return $images_markup;
@@ -297,32 +295,8 @@ if( ! function_exists( 'ampforwp_additional_gallery_style' ) ){
 		}
 	}
 }
-// amp-bind for carousel with captions
-if( !function_exists('ampforwp_carousel_bind_script')){
-	function ampforwp_carousel_bind_script($data){
-		global $redux_builder_amp;
-		$design_type = '';
-		$design_type = $redux_builder_amp['ampforwp-gallery-design-type'];
-		if( $design_type == 1 || $design_type == 2 ){
-			if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
-				$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
-			}	
-		}elseif( $design_type == 3 ){
-			if ( empty( $data['amp_component_scripts']['amp-image-lightbox'] ) ) {
-				$data['amp_component_scripts']['amp-image-lightbox'] = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
-			}
-		}else{
-			if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
-				$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
-			}
-		}
 
-		
-	return $data;
-	}
-}
-
-add_filter('amp_thumbnail_images','ampforwp_new_thumbnail_images',10,3);
+add_filter('amp_thumbnail_images','AMPforWP\\AMPVendor\\ampforwp_new_thumbnail_images',10,3);
 function ampforwp_new_thumbnail_images($amp_images, $uniqueid, $markup_arr){
 	if(!isset($markup_arr['carousel_with_thumbnail_html'])){return '';}
 	$amp_thumb_image_buttons = '';
@@ -335,42 +309,3 @@ function ampforwp_new_thumbnail_images($amp_images, $uniqueid, $markup_arr){
 	}
 	return $amp_thumb_image_buttons;
 }
-
-if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
-	function ampforwp_additional_style_carousel_caption(){ ?>
-    .collapsible-captions {--caption-height: 32px; --image-height: 100%; --caption-padding:1rem; --button-size: 28px; --caption-color: #f5f5f5;; --caption-bg-color: #111;}
-    .collapsible-captions * {
-      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-      box-sizing: border-box;
-    }
-    .collapsible-captions .amp-carousel-container  {position: relative; width: 100%;}
-    .collapsible-captions amp-img img {object-fit: contain; }
-    .collapsible-captions figure { margin: 0; padding: 0; }
-    .collapsible-captions figcaption { position: absolute; bottom: 0;width: 100%;
-      max-height: var(--caption-height);margin-bottom:0;
-      line-height: var(--caption-height);
-      padding: 0 var(--button-size) 0 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: max-height 200ms cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 1000;
-      color: var(--caption-color);
-      background: rgba(0, 0, 0, 0.6);   
-    }
-    .collapsible-captions figcaption.expanded {
-      line-height: inherit;
-      white-space: normal;
-      text-overflow: auto;
-      max-height: 100px;
-      overflow: auto;
-    }
-    .collapsible-captions figcaption:focus { outline: none; border: none; }
-    .collapsible-captions figcaption span { display: block; position: absolute;
-      top: calc((var(--caption-height) - var(--button-size)) / 2);
-      right: 2px; width: var(--button-size); height: var(--button-size);
-      line-height: var(--button-size); text-align: center; font-size: 12px; color: inherit;
-      cursor: pointer; }
-	figcaption{ margin-bottom: 20px; }
-<?php }
- }
