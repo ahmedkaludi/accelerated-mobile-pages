@@ -458,3 +458,11 @@ function ampforwp_is_amp_inURL($url){
   }
   return true;
 }
+
+// Protocol Remover
+if ( ! function_exists('ampforwp_remove_protocol') ) {
+    function ampforwp_remove_protocol($url){
+        $url = preg_replace('#^https?://#', '', $url);
+        return $url;
+    }
+}
