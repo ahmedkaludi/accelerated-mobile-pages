@@ -8,8 +8,8 @@
 
 <channel>
     <title><?php bloginfo_rss('name'); ?></title>
-    <link><?php bloginfo_rss('url') ?></link>
-    <description><?php bloginfo_rss("description") ?></description>
+    <link><?php bloginfo_rss('url'); ?></link>
+    <description><?php bloginfo_rss("description"); ?></description>
     <lastBuildDate><?php echo mysql2date('c', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
     <language><?php bloginfo_rss( 'language' ); ?></language>
     <?php
