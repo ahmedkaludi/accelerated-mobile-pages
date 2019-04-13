@@ -1024,3 +1024,12 @@ function ampforwp_levelup_compatibility($type='levelup_theme_and_elementor_check
 	}
 	return $returnVal;
 }
+
+function ampforwp_amp_consent_check($attrs){
+
+	if( ampforwp_get_data_consent() ){
+		$attrs['data-block-on-consent'] = '';
+	}
+	$attrs = apply_filters( 'ampforwp_embedd_attrs_handler', $attrs );
+	return $attrs;
+}
