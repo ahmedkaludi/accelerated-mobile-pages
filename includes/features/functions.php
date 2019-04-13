@@ -378,3 +378,83 @@ function ampforwp_end_point_controller( $url, $check='' ) {
 	$new_url = apply_filters( 'ampforwp_modify_endpoint', $new_url, $url, $setting, $endpoint );
 	return $new_url;
 }
+
+if(!function_exists('ampforwp_isexternal')){
+  function ampforwp_isexternal($url) {
+    $components = parse_url($url);
+    if ( empty($components['host']) ) return false;  // we will treat url like '/relative.php' as relative
+    if ( strcasecmp($components['host'], $_SERVER['HTTP_HOST']) === 0 ) return false; // url host looks exactly like the local host
+    return strrpos(strtolower($components['host']), $_SERVER['HTTP_HOST']) !== strlen($components['host']) - strlen($_SERVER['HTTP_HOST']); // check if the url host is a subdomain
+  }//Function function_exists
+}// ampforwp_isexternal function_exists close
+if(!function_exists('ampforwp_findInternalUrl')){
+  function ampforwp_findInternalUrl($url){
+    global $redux_builder_amp;
+    if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
+        return $url;
+    }
+    $get_skip_media_path = array();
+    $skip_media_extensions = array();
+    $get_skip_media_path = pathinfo($url);
+    $skip_media_extensions = array('jpg','jpeg','gif','png');
+    if(isset($get_skip_media_path['extension'])){
+        if(!in_array($get_skip_media_path['extension'],$skip_media_extensions) && $get_skip_media_path['extension']){
+            $skip_media_extensions[] = $get_skip_media_path['extension'];
+        }
+    }
+    $skip_media_extensions = apply_filters( 'ampforwp_internal_links_skip_media', $skip_media_extensions );
+    if(isset($get_skip_media_path['extension'])){
+        if(in_array($get_skip_media_path['extension'],$skip_media_extensions)){
+            return $url;
+        }
+    }
+    if ( false !== strpos($url, '#') && false === ampforwp_is_amp_inURL($url) && !ampforwp_isexternal($url) ) {
+        $url_array = explode('#', $url);
+        if ( !empty($url_array) && '' !== $url_array[0]) {
+            $url = ampforwp_url_controller($url_array[0]).'#'.$url_array[1];
+            return $url;
+        }
+    }
+    if( false === wp_http_validate_url($url)) {
+        return $url; 
+    }
+
+    if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
+      // Skip the URL's that have edit link to it
+      $parts = parse_url($url);
+      if ( isset( $parts['query'] ) && ! empty( $parts['query'] ) ) {
+      parse_str($parts['query'], $query);
+          if ( (isset( $query['action'] ) && $query['action']) || (isset( $query['amp'] ) && $query['amp'] ) ) {
+              return $url;
+          }
+      }
+
+      $qmarkAmp = (isset($redux_builder_amp['amp-core-end-point']) ? $redux_builder_amp['amp-core-end-point']: false );//amp-core-end-point
+      if ( $qmarkAmp ){
+        $url = add_query_arg( 'amp', '1', $url);
+        return $url;
+      }
+      else{
+        if ( get_option('permalink_structure') ) {
+            if ( strpos($url, "?") && strpos($url, "=") ){
+                $url = explode('?', $url);
+                $url = ampforwp_url_controller($url[0]).'?'.$url[1];
+            }
+            else
+                $url = ampforwp_url_controller($url);
+        }
+        else
+            $url = add_query_arg( 'amp', '1', $url );
+      }
+      return $url;
+    }
+    return $url;
+  }// function Close
+}// function_exists ampforwp_findInternalUrl close
+function ampforwp_is_amp_inURL($url){
+  $urlArray = explode("/", $url);
+  if(!in_array(AMPFORWP_AMP_QUERY_VAR, $urlArray)){
+    return false;
+  }
+  return true;
+}
