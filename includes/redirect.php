@@ -249,6 +249,10 @@ function ampforwp_redirection() {
     $go_to_url  = "";
     $url        = "";
     $url = ampforwp_amphtml_generator();
+    if ( empty($url) ) {
+      $url = home_url( $wp->request );
+    }
+   // var_dump($url);
     $nonamp_checker = get_query_var( 'nonamp');
      if($url){
      if( $nonamp_checker == 1 ){ 
