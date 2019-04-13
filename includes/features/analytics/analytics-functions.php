@@ -175,7 +175,7 @@ function ampforwp_analytics() {
 	// 10.10 Analytics Support added for Chartbeat Analytics
 		if ( true == ampforwp_get_setting('ampforwp-Chartbeat-switch')){
 		$chartbeat = ampforwp_get_setting('amp-Chartbeat-analytics-code');
-		$chartbeat_fields = array(
+		$ampforwp_chartbeat_fields = array(
 						'vars'=>array(
 							'uid'=>$chartbeat,
 							'domain'=>ampforwp_remove_protocol(site_url()),
@@ -186,7 +186,7 @@ function ampforwp_analytics() {
 					
 					); 
 				$ampforwp_chartbeat_fields = apply_filters('ampforwp_chartbeat_analytics', $ampforwp_chartbeat_fields );
-				$ampforwp_chartbeat_fields = json_encode( $chartbeat_fields);
+				$ampforwp_chartbeat_fields = json_encode( $ampforwp_chartbeat_fields);
 		 ?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="chartbeat">
 					 <script type="application/json">
