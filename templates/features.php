@@ -6146,14 +6146,6 @@ function ampforwp_modified_canonical( $data ) {
 	return $data;
 }
 
-function ampforwp_amp_consent_check($attrs){
-
-	if( ampforwp_get_data_consent() ){
-		$attrs['data-block-on-consent'] = '';
-	}
-	$attrs = apply_filters( 'ampforwp_embedd_attrs_handler', $attrs );
-	return $attrs;
-}
 // #2220 Remove Space Shortcode by Pro Theme from THEMCO
 add_action('pre_amp_render_post','ampforwp_remove_space_shortcodes');
 function ampforwp_remove_space_shortcodes(){
