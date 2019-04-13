@@ -547,7 +547,7 @@ function ampforwp_new_dir( $dir ) {
  
 	// 6. Add required Javascripts for extra AMP features
 		// Code updated and added the JS proper way #336 
-	add_filter('amp_post_template_data','ampforwp_add_amp_social_share_script', 20);
+	add_filter('ampforwp_post_template_data','ampforwp_add_amp_social_share_script', 20);
 	function ampforwp_add_amp_social_share_script( $data ){
 		global $redux_builder_amp;
 		$social_check = $social_check_page = false;
@@ -2222,7 +2222,7 @@ function ampforwp_add_disqus_support() {
 	}
 }
 
-add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
+add_filter( 'ampforwp_post_template_data', 'ampforwp_add_disqus_scripts' );
 function ampforwp_add_disqus_scripts( $data ) {
 	global $redux_builder_amp;
 	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && is_singular() ) {
@@ -2270,7 +2270,7 @@ function ampforwp_facebook_comments_markup() {
 	}
 }
 
-add_filter( 'amp_post_template_data', 'ampforwp_add_fbcomments_scripts' );
+add_filter( 'ampforwp_post_template_data', 'ampforwp_add_fbcomments_scripts' );
 function ampforwp_add_fbcomments_scripts( $data ) {
 
 	global $redux_builder_amp;
@@ -6514,7 +6514,7 @@ function ampforwp_vuukle_comments_markup() {
 	}
 	return $vuukle_html;
 }
-add_filter( 'amp_post_template_data', 'ampforwp_add_vuukle_scripts' );
+add_filter( 'ampforwp_post_template_data', 'ampforwp_add_vuukle_scripts' );
 function ampforwp_add_vuukle_scripts( $data ) {
 	global $redux_builder_amp;
 	$display_comments_on = "";
@@ -6567,7 +6567,7 @@ function ampforwp_spotim_comments_markup() {
 	return $spotim_html;
 }
 //spotim script
-add_filter( 'amp_post_template_data', 'ampforwp_add_spotim_scripts' );
+add_filter( 'ampforwp_post_template_data', 'ampforwp_add_spotim_scripts' );
 function ampforwp_add_spotim_scripts( $data ) {
 	global $redux_builder_amp;
 	$display_comments_on = "";
@@ -6692,7 +6692,7 @@ if ( ! function_exists('ampforwp_content_sneak_peek') ) {
 		if ( isset($redux_builder_amp['content-sneak-peek']) && $redux_builder_amp['content-sneak-peek'] && is_single() && 'post' == get_post_type() ) {		
 			add_filter('ampforwp_modify_the_content', 'ampforwp_sneak_peek_content_modifier');
 			add_action('amp_post_template_css','ampforwp_sneak_peek_css');
-			add_filter('amp_post_template_data','ampforwp_sneak_peek_scripts');
+			add_filter('ampforwp_post_template_data','ampforwp_sneak_peek_scripts');
 		}
 
 	}
@@ -6929,7 +6929,7 @@ if ( ! function_exists('ampforwp_fb_chat') ) {
 	function ampforwp_fb_chat() {
 		if ( true == ampforwp_get_setting('enable-single-facebook-chat') && true == ampforwp_get_setting('amp-facebook-chat-username') ) {
 			add_action('amp_post_template_footer','ampforwp_fb_chat_lightbox');
-			add_filter('amp_post_template_data', 'ampforwp_fb_chat_scripts');
+			add_filter('ampforwp_post_template_data', 'ampforwp_fb_chat_scripts');
 			add_action('amp_post_template_css', 'ampforwp_fb_chat_css');
 		}
 	}
@@ -7322,7 +7322,7 @@ if( ! function_exists('ampforwp_font_selector') ) {
 		return $fontFamily;
 	}
 }
-add_filter( 'amp_post_template_data', 'ampforwp_backtotop' );
+add_filter( 'ampforwp_post_template_data', 'ampforwp_backtotop' );
 function ampforwp_backtotop( $data ) {
 	global $redux_builder_amp;
 	if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { 
@@ -7576,7 +7576,7 @@ function ampforwp_bulktool_takeover($data){
 //Darkmode Features Start
 add_filter("ampforwp_body_class", 'ampforwp_darkmode_body_class', 10,2);
 add_action("amp_footer_link","ampforwp_darkModeMarkup");
-add_filter('amp_post_template_data' , 'ampforwp_darkmode_data_script');
+add_filter('ampforwp_post_template_data' , 'ampforwp_darkmode_data_script');
 add_action("wp_ajax_ampforwp_darkmode_action", 'ampforwp_darkmode_action');
 add_action("wp_ajax_nopriv_ampforwp_darkmode_action", 'ampforwp_darkmode_action');
 function ampforwp_darkmode_body_class($classes, $class){
@@ -8015,4 +8015,12 @@ function ampforwp_nofollow_social_links(){
 	}else{
 		return;
 	}
+}
+
+// ampforwp_post_template_data filter
+add_filter('amp_post_template_data', 'ampforwp_post_template_data');
+function ampforwp_post_template_data( $data ) {
+	// Run through our filter 
+	$data = apply_filters('ampforwp_post_template_data', $data );
+	return $data;
 }

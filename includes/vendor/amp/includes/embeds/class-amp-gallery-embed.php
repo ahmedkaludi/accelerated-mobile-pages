@@ -279,7 +279,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 add_filter('amp_gallery_images','AMPforWP\\AMPVendor\\ampforwp_new_gallery_images', 10, 3);
 function ampforwp_new_gallery_images($images_markup, $image, $markup_arr){
 	add_action('amp_post_template_css', 'AMPforWP\\AMPVendor\\ampforwp_additional_gallery_style');
-	add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
+	add_filter('ampforwp_post_template_data','ampforwp_carousel_bind_script');
 	add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
 	return $images_markup;
 }
