@@ -247,7 +247,7 @@ function ampforwp_framework_get_spotim_comments(){
 }
 
 // Comments Scripts
-add_filter( 'amp_post_template_data', 'ampforwp_framework_comments_scripts' );
+add_filter( 'ampforwp_post_template_data', 'ampforwp_framework_comments_scripts' );
 function ampforwp_framework_comments_scripts( $data ) {
 
 	$facebook_comments_check = ampforwp_framework_get_facebook_comments();

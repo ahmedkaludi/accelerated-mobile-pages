@@ -6846,3 +6846,11 @@ if ( !function_exists('ampforwp_is_amp_endpoint_old') ) {
 	}
 }
 // End Fallbacks for Vendor AMP
+
+// ampforwp_post_template_data filter #2287
+add_filter('amp_post_template_data', 'ampforwp_post_template_data');
+function ampforwp_post_template_data( $data ) {
+	// Run through our filter 
+	$data = apply_filters('ampforwp_post_template_data', $data );
+	return $data;
+} 

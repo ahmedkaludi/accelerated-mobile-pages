@@ -11,7 +11,7 @@ function ampforwp_search_related_functions(){
 	     $redux_builder_amp['amp-design-selector'] == 2 ||
 	     $redux_builder_amp['amp-design-selector'] == 3 ) {
 
-				add_filter( 'amp_post_template_data', 'ampforwp_add_lightbox_and_form_scripts');
+				add_filter( 'ampforwp_post_template_data', 'ampforwp_add_lightbox_and_form_scripts');
 				add_action('ampforwp_search_form','ampforwp_the_search_form');
 	}
 }

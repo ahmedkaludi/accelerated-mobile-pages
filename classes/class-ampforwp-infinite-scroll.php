@@ -20,7 +20,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				// amp-next-page experiment meta tag
 				add_action('amp_experiment_meta', array( $this, 'amp_experiment_meta') );
 				// amp-next-page script
-				add_filter('amp_post_template_data', array( $this , 'amp_infinite_scroll_script') );
+				add_filter('ampforwp_post_template_data', array( $this , 'amp_infinite_scroll_script') );
 				// amp-next-page tag
 				if ( 4 != ampforwp_get_setting('amp-design-selector') ) 
 					add_action('ampforwp_above_related_post', array( $this , 'amp_next_page') );
@@ -31,7 +31,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				// amp-next-page experiment meta tag
 				add_action('amp_experiment_meta', array( $this, 'amp_experiment_meta') );
 				// amp-next-page script
-				add_filter('amp_post_template_data', array( $this , 'amp_infinite_scroll_script') );				
+				add_filter('ampforwp_post_template_data', array( $this , 'amp_infinite_scroll_script') );				
 				// amp-next-page tag
 				add_action('ampforwp_loop_before_pagination', array( $this , 'amp_next_page') );
 				// Next Posts Link
