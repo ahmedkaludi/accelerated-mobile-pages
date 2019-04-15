@@ -149,8 +149,13 @@ if ( get_query_var( 'paged' ) ) {
 				$thumb_width  	= ampforwp_get_post_thumbnail('width');
 				$thumb_height 	= ampforwp_get_post_thumbnail('height');
 				if(ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size')){
+					$thumb_id 			= get_post_thumbnail_id();
 					$thumb_width  	= ampforwp_get_setting('ampforwp-design-3-homepage-posts-width');
 					$thumb_height 	= ampforwp_get_setting('ampforwp-design-3-homepage-posts-height');
+					$thumb_url_modify 	= wp_get_attachment_image_src($thumb_id, 'full' , true);
+ 					$thumb_crop_url = ampforwp_aq_resize( $thumb_url_modify[0], $thumb_width , $thumb_height , true, false );
+					$thumb_url = $thumb_crop_url[0];
+					
 				}
 				if($thumb_url){
 					?>
