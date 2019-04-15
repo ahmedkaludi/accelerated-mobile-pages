@@ -6066,12 +6066,10 @@ $single_page_options = array(
 
          //End AddThis Support    
         array(
-           'id' => 'social-shre',
+           'id' => 'social-settings',
            'type' => 'section',
-           'title' => __('Social Sharing', 'accelerated-mobile-pages'),
+           'title' => esc_html__('Social Settings', 'accelerated-mobile-pages'),
            'indent' => true,
-           //'start'  => true,
-           //'label' => 'Tab 2',
            'layout_type' => 'accordion',
             'accordion-open'=> 1,
          ),
@@ -6104,7 +6102,14 @@ $single_page_options = array(
               'title'     =>  esc_html__('No Follow All Your Social Links', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),  
-
+          array(
+           'id' => 'social-shre',
+           'type' => 'section',
+           'title' => esc_html__('Social Sharing', 'accelerated-mobile-pages'),
+           'indent' => true,
+           'layout_type' => 'accordion',
+            'accordion-open'=> 1,
+         ),
           // Facebook Like 
           array(
               'id'        =>  'ampforwp-facebook-like-button',
@@ -6193,6 +6198,14 @@ $single_page_options = array(
               'type'      =>  'switch',
               'title'     =>  __('Pinterest', 'accelerated-mobile-pages'),
               'default'   =>  1,
+          ),
+         array(
+              'id'        =>  'ampforwp-pin-images',
+              'class'     => 'child_opt',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('Pinterest Save Button For Images', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+              'required'  => array('enable-single-pinterest-share', '=' , '1'),
           ),
           // LinkedIn ON/OFF
           array(
@@ -6737,20 +6750,6 @@ $single_page_options = array(
                 array('amp-design-selector', '=' , '3'),
                 array('enable-single-Tumblr-profile', '=' , '1')
               ),
-          ),
-           array(
-           'id' => 'ampforwp-pinterest',
-           'type' => 'section',
-           'title' => esc_html__('Pinterest Save Button', 'accelerated-mobile-pages'),
-           'indent' => true,
-           'layout_type' => 'accordion',
-            'accordion-open'=> 1,
-         ),
-           array(
-              'id'        =>  'ampforwp-pin-images',
-              'type'      =>  'switch',
-              'title'     =>  esc_html__('Pinterest Save Button For Images', 'accelerated-mobile-pages'),
-              'default'   =>  0,
           ),
         )
     ) );
