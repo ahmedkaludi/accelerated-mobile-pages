@@ -4913,7 +4913,10 @@ $single_page_options = array(
                             'enabled'  => $customizer_options['enabled'],
                             'disabled' => $customizer_options['disabled'],
                         ),
-                        'required'  => array( array('amp-design-selector', '!=' , '4')),
+                        'required'  => array( array('amp-design-selector', '=' , '1'),
+                                              array('amp-design-selector', '=' , '2'),
+                                              array('amp-design-selector', '=' , '3'),
+                                            ),
                     ),
                 // Single Components Layout options
             // Swift
