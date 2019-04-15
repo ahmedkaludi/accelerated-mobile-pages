@@ -6830,6 +6830,14 @@ if ( ! class_exists('AMP_Base_Sanitizer') && class_exists('AMPforWP\\AMPVendor\\
 if ( ! class_exists('AMP_HTML_Utils') && class_exists('AMPforWP\\AMPVendor\\AMP_HTML_Utils') ) {
 	class AMP_HTML_Utils extends AMPforWP\AMPVendor\AMP_HTML_Utils{}
 }
+// Class AMP_Blacklist_Sanitizer
+if ( ! class_exists('AMP_Blacklist_Sanitizer') ) {
+	if(defined('AMP__VENDOR__DIR__')){
+		$amp_blacklist_sanitizer =  realpath( AMP__VENDOR__DIR__ . 'includes/sanitizers/class-amp-blacklist-sanitizer.php') ;
+		include_once $amp_blacklist_sanitizer;
+		class AMP_Blacklist_Sanitizer extends AMPforWP\AMPVendor\AMP_Blacklist_Sanitizer{}
+	} 
+}
 // Function is_amp_endpoint
 add_action('pre_amp_render_post', 'ampforwp_is_amp_endpoint_old');
 if ( !function_exists('ampforwp_is_amp_endpoint_old') ) {
