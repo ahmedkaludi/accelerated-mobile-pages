@@ -375,7 +375,7 @@ font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;
 <?php
 if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
 	if(ampforwp_get_setting('amp_font_selector_content_single') != 1 && !empty(ampforwp_get_setting('amp_font_selector_content_single')) ){ 	
-		$fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector_content_single')."';";	
+		$fontFamily = "font-family: '".esc_attr(ampforwp_get_setting('amp_font_selector_content_single'))."';";	
 	}  
 }
 echo $fontFamily;
