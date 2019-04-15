@@ -675,12 +675,12 @@ function ampforwp_sab_uaf(){
 		if (!empty($fontsData)):
 			foreach ($fontsData as $key=>$fontData): ?>
 				@font-face {
-					font-family: '<?php echo $fontData['font_name'] ?>';
+					font-family: '<?php echo esc_html($fontData['font_name']); ?>';
 					font-style: normal;
-					src: url('<?php echo $uaf_upload_url.$fontData['font_path'] ?>.eot');
-					src: local('<?php echo $fontData['font_name'] ?>'), url('<?php echo $uaf_upload_url.$fontData['font_path'] ?>.eot') format('embedded-opentype'), url('<?php echo $uaf_upload_url.$fontData['font_path'] ?>.woff') format('woff');
+					src: url('<?php echo esc_url($uaf_upload_url.$fontData['font_path']); ?>.eot');
+					src: local('<?php echo esc_html($fontData['font_name']) ?>'), url('<?php echo esc_url($uaf_upload_url.$fontData['font_path']) ?>.eot') format('embedded-opentype'), url('<?php echo esc_url($uaf_upload_url.$fontData['font_path']) ?>.woff') format('woff');
 				}		            
-            	.<?php echo $fontData['font_name'] ?>{font-family: '<?php echo $fontData['font_name'] ?>';}
+            	.<?php echo $fontData['font_name'] ?>{font-family: '<?php echo esc_html($fontData['font_name']) ?>';}
         	<?php endforeach;
 		endif;
 
@@ -689,7 +689,7 @@ function ampforwp_sab_uaf(){
 		if (!empty($fontsImplementData)):
 			foreach ($fontsImplementData as $key=>$fontImplementData): ?>
 				<?php echo $fontImplementData['font_elements']; ?>{
-					font-family: '<?php echo $fontsData[$fontImplementData['font_key']]['font_name']; ?>';
+					font-family: '<?php echo esc_html($fontsData[$fontImplementData['font_key']]['font_name']); ?>';
 				}
 			<?php endforeach;
 		endif;	
