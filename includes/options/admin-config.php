@@ -1245,8 +1245,7 @@ $tabs = array(
         return $value;
     }
     function ampforwp_custom_logo_dimensions_options(){
-        $selectedOption = (array) get_option('redux_builder_amp',true);
-        $opCheck = $selectedOption['ampforwp-custom-logo-dimensions'];
+        $opCheck = ampforwp_get_setting('ampforwp-custom-logo-dimensions');
         if($opCheck==1){
             return 'prescribed';
         }else{

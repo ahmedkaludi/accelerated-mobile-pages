@@ -788,7 +788,7 @@ add_filter('amp_customizer_is_enabled', 'ampforwp_customizer_is_enabled');
 if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 	function ampforwp_customizer_is_enabled($value){
 		global $redux_builder_amp;
-		if ( 4 == $redux_builder_amp['amp-design-selector'] ) {
+		if ( 4 == ampforwp_get_setting('amp-design-selector') ) {
 			$value = false;
 		}
 		return $value;
