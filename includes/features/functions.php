@@ -146,7 +146,7 @@ function ampforwp_generate_meta_desc($json=""){
     if ( ampforwp_is_front_page() ) {
         $post_id = ampforwp_get_frontpage_id();
     }
-    if ( true == ampforwp_get_setting('ampforwp-seo-meta-description') || get_bloginfo( 'description' ) ) { 
+    if ( true == ampforwp_get_setting('ampforwp-seo-meta-description') || !empty($json) ) { 
         if ( ampforwp_is_home() || ampforwp_is_blog() ) {
             $desc = addslashes( strip_tags( get_bloginfo( 'description' ) ) );
         }

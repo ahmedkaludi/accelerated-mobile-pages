@@ -254,7 +254,6 @@ function ampforwp_redirection() {
     if ( empty($url) ) {
       $url = home_url( $wp->request );
     }
-   // var_dump($url);
     $nonamp_checker = get_query_var( 'nonamp');
      if($url){
      if( $nonamp_checker == 1 ){ 
