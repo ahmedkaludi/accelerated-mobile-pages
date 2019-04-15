@@ -1096,7 +1096,9 @@ function ampforwp_remove_schema_data() {
 
 	// Thrive Content Builder
 	$ampforwp_metas = json_decode(get_post_meta(ampforwp_get_the_ID(),'ampforwp-post-metas',true),true);
-	$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
+	if ( isset($ampforwp_metas['ampforwp_custom_content_editor_checkbox']) ) {
+		$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
+	}
 	if ($amp_custom_content_enable == 'yes') {
 		remove_filter( 'the_content', 'tve_editor_content', 10 );
 	}
@@ -7264,7 +7266,9 @@ function checkAMPforPageBuilderStatus($postId){
     $response = false;
   }else{
 	  $ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
-	  $ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
+	  if ( isset( $ampforwp_metas['ampforwp_page_builder_enable'] )) {
+	  	$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
+	  }
 	  //$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	  
 		if( $ampforwp_pagebuilder_enable=='yes'){

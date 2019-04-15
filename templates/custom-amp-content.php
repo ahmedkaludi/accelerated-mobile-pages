@@ -29,7 +29,9 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
         $amp_current_post_id = pll_get_post(get_option('page_on_front'));
       }
       $ampforwp_metas = json_decode(get_post_meta($amp_current_post_id,'ampforwp-post-metas',true),true); 
-      $amp_custom_post_content_check = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
+      if ( isset($ampforwp_metas['ampforwp_custom_content_editor_checkbox']) ) {
+        $amp_custom_post_content_check = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
+      }
       $amp_custom_post_content_input = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor', true);
 
       	if ( empty( $amp_custom_post_content_input ) ) {
