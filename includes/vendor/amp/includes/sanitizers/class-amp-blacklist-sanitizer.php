@@ -182,7 +182,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		 *  Issue was with multibyte string.
 		 *  For more info check: https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2556 and https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2967
 		*/
-		if( false === $this->ampforwp_contains_any_multibyte($href) ){
+		if( false === $this->contains_any_multibyte($href) ){
 			if ( false === filter_var( $href, FILTER_VALIDATE_URL )
 				&& ! in_array( $protocol, $special_protocols, true ) ) {
 				return false;
@@ -229,7 +229,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		) );
 	}
 
-	private	function ampforwp_contains_any_multibyte($string){
+	private	function contains_any_multibyte($string){
     	return !mb_check_encoding($string, 'ASCII') && mb_check_encoding($string, 'UTF-8');
 	}
 	private function get_blacklisted_tags() {
