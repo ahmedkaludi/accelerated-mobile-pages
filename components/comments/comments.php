@@ -256,9 +256,9 @@ function ampforwp_framework_comments_scripts( $data ) {
 	$is_pb_enabled = checkAMPforPageBuilderStatus(get_the_ID());	
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
-	$isBBPress = (!function_exists('is_bbpress') ? true :  (is_bbpress() ? false : true));
+	$isBBPress = (function_exists('is_bbpress') ? is_bbpress() : false );
 
-	if ( $facebook_comments_check && true ==  ampforwp_get_setting('ampforwp-facebook-comments-support') && $display_comments_on && !is_front_page()  && !$is_pb_enabled && $isBBPress ) {
+	if ( $facebook_comments_check && true ==  ampforwp_get_setting('ampforwp-facebook-comments-support') && $display_comments_on && !is_front_page()  && !$is_pb_enabled && !$isBBPress ) {
 			if ( empty( $data['amp_component_scripts']['amp-facebook-comments'] ) ) {
 				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
 			}
