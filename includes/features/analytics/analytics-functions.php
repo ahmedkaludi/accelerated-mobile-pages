@@ -207,14 +207,14 @@ function ampforwp_analytics() {
 							),
 					
 					); 
-				$ampforwp_alexa_fields = apply_filters('ampforwp_alexa_analytics', $alexa_fields );
-				$ampforwp_alexa_fields = json_encode( $alexa_fields,JSON_UNESCAPED_SLASHES);
+				$alexa_fields = apply_filters('ampforwp_alexa_analytics', $alexa_fields );
+				$alexa_fields = json_encode( $alexa_fields,JSON_UNESCAPED_SLASHES);
 
 			 ?>
 				<!-- Start Alexa AMP Certify Javascript -->
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="alexametrics">
 						<script type="application/json">
-						<?php echo $ampforwp_alexa_fields ?>
+						<?php echo $alexa_fields ?>
 						</script>
 					</amp-analytics>
 				<!-- End Alexa AMP Certify Javascript -->
