@@ -31,9 +31,11 @@ function ampforwp_redirection() {
     $checker =  explode('/', $current_url); 
      $amp_check = in_array('amp', $checker);
      if ( true == $amp_check && 'amp' == end($checker) ) {
-      $new_url = str_replace('/'.AMPFORWP_AMP_QUERY_VAR,'/'.$endpoint, $current_url );
-       wp_safe_redirect( $new_url );
-      exit;
+        $pos = strrpos( $current_url , '/'.AMPFORWP_AMP_QUERY_VAR);
+        $search_length  = strlen('/'.AMPFORWP_AMP_QUERY_VAR);
+        $new_url    = substr_replace( $current_url , $endpoint , $pos , $search_length );
+        wp_safe_redirect( $new_url );
+        exit;
     }
   }
 
