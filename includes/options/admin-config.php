@@ -2317,6 +2317,12 @@ Redux::setSection( $opt_name, array(
         )
     );
 
+$infinite_scroll_home_option = '';
+if(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')){
+    $infinite_scroll_home_option = 0;
+}else{
+    $infinite_scroll_home_option = 1;
+}
  // Advance Settings SECTION
 Redux::setSection( $opt_name, array(
    'title'      => __( 'Advance Settings', 'accelerated-mobile-pages' ),
@@ -3513,7 +3519,7 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'switch',
                         'class'    => 'child_opt child_opt_arrow',
                         'title'    => esc_html__('Home & Archives', 'accelerated-mobile-pages'),
-                        'default' => true,
+                        'default' =>  $infinite_scroll_home_option,
                         'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
                     ),
                     array(
