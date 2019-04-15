@@ -961,3 +961,11 @@ function ampforwp_amp_consent_check($attrs){
 	$attrs = apply_filters( 'ampforwp_embedd_attrs_handler', $attrs );
 	return $attrs;
 }
+
+// Fallback for Class AMP_Content sanitizer #2287
+add_action('pre_amp_render_post', 'ampforwp_vendor_amp_fallbacks');
+function ampforwp_vendor_amp_fallbacks(){
+	if ( ! class_exists('AMP_Content') ) {
+		class AMP_Content extends AMPforWP\AMPVendor\AMP_Content{}
+	}
+}
