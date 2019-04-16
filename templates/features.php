@@ -5196,21 +5196,7 @@ if( ! function_exists( 'ampforwp_get_author_details' ) ){
 }
 
 // 89. Facebook Pixel
-
-add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
-		function ampforwp_facebook_pixel() {
-
-			global $redux_builder_amp;
-			if( isset($redux_builder_amp['amp-fb-pixel']) && $redux_builder_amp['amp-fb-pixel'] ){
-				$amp_pixel = '<amp-pixel ';
-				if(ampforwp_get_data_consent()){
-					$amp_pixel .= 'data-block-on-consent';
-				}
-				$amp_pixel .= ' src="https://www.facebook.com/tr?id='.$redux_builder_amp['amp-fb-pixel-id'].'&ev=PageView&noscript=1"></amp-pixel>';
-				echo $amp_pixel;
-
-			}
-		}
+// Moved to analytics-functions.php
 
 // 91. Comment Author Gravatar URL
 if( ! function_exists('ampforwp_get_comments_gravatar') ){

@@ -86,6 +86,7 @@ function ampforwp_polylang_front_page() {
     }
     return false;
 }
+// Get The ID for AMP #2867
 function ampforwp_get_the_ID($post_id=''){
     $post_id = get_the_ID();
     if(ampforwp_is_front_page()){

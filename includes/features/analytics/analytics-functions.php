@@ -54,12 +54,12 @@ function ampforwp_analytics() {
 							'name'=>get_the_title()
 							),
 					);
-		$ampforwp_segment_fields = apply_filters('ampforwp_segment_analytics', $ampforwp_segment_fields );
-		$ampforwp_segment_fields = json_encode( $segment_fields);
+		$segment_fields = apply_filters('ampforwp_segment_analytics', $segment_fields );
+		$segment_fields = json_encode( $segment_fields);
 					?>
 		<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="segment">
 		<script type="application/json">
-			<?php echo $ampforwp_segment_fields ?>
+			<?php echo $segment_fields ?>
 			</script>
 		</amp-analytics>
 		<?php
@@ -79,13 +79,13 @@ function ampforwp_analytics() {
 							'labels'=> array("AMPProject")
 							),
 					); 
-				$ampforwp_quantcast_fields = apply_filters('ampforwp_quantcast_analytics', $ampforwp_quantcast_fields );
-				$ampforwp_quantcast_fields = json_encode( $quantcast_fields);
+				$quantcast_fields = apply_filters('ampforwp_quantcast_analytics', $quantcast_fields );
+				$quantcast_fields = json_encode( $quantcast_fields);
 
 				?>
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="quantcast">
 						<script type="application/json">
-							<?php echo $ampforwp_quantcast_fields ?>
+							<?php echo $quantcast_fields ?>
 						</script>
 					</amp-analytics>
 					<?php
@@ -102,12 +102,12 @@ function ampforwp_analytics() {
 							'c2'=>$comscore_c2
 							),
 					); 
-				$ampforwp_comscore_fields = apply_filters('ampforwp_comscore_analytics', $ampforwp_comscore_fields );
-				$ampforwp_comscore_fields = json_encode( $comscore_fields);
+				$comscore_fields = apply_filters('ampforwp_comscore_analytics', $comscore_fields );
+				$comscore_fields = json_encode( $comscore_fields);
 				?>
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="comscore">
 						<script type="application/json">
-							<?php echo $ampforwp_comscore_fields ?>
+							<?php echo $comscore_fields ?>
 					    </script>
 					</amp-analytics>
 					<?php
@@ -162,12 +162,12 @@ function ampforwp_analytics() {
 						
 						)
 					); 
-				$ampforwp_yandex_fields = apply_filters('ampforwp_yandex_analytics', $ampforwp_yandex_fields );
-				$ampforwp_yandex_fields = json_encode( $yandex_fields);
+				$yandex_fields = apply_filters('ampforwp_yandex_analytics', $yandex_fields );
+				$yandex_fields = json_encode( $yandex_fields);
 				?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="metrika"> 
 				<script type="application/json"> 
-					<?php echo $ampforwp_yandex_fields ?>
+					<?php echo $yandex_fields ?>
 				</script> 
 				</amp-analytics> 
 				<?php }//code ends for supporting Yandex Metrika Analytics
@@ -253,18 +253,31 @@ function ampforwp_analytics() {
 							),
 					
 					); 
-				$ampforwp_afs_fields = apply_filters('ampforwp_afs_analytics', $ampforwp_afs_fields );
-				$ampforwp_afs_fields = json_encode( $afs_fields);
+				$afs_fields = apply_filters('ampforwp_afs_analytics', $afs_fields );
+				$afs_fields = json_encode( $afs_fields);
 					 ?>
 				<!-- Start AFS Analytics Javascript -->
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="afsanalytics">
 						<script type="application/json">
-						 <?php echo $ampforwp_afs_fields ?> 
+						 <?php echo $afs_fields ?> 
 						</script>
 					</amp-analytics>
 				<!-- End AFS Analytics Javascript -->
 					<?php
 				}			
+}
+// 89. Facebook Pixel
+add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
+function ampforwp_facebook_pixel() {
+	global $redux_builder_amp;
+	if( ampforwp_get_setting('amp-fb-pixel') ){
+		$amp_pixel = '<amp-pixel ';
+		if(ampforwp_get_data_consent()){
+			$amp_pixel .= 'data-block-on-consent';
+		}
+		$amp_pixel .= ' src="https://www.facebook.com/tr?id='.esc_attr(ampforwp_get_setting('amp-fb-pixel-id')).'&ev=PageView&noscript=1"></amp-pixel>';
+		echo $amp_pixel;
+	}
 }
 // For Setting up Google AMP Client ID API
 add_action( 'amp_post_template_head' , 'ampforwp_analytics_clientid_api' );	
