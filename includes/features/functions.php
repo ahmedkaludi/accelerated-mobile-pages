@@ -86,6 +86,16 @@ function ampforwp_polylang_front_page() {
     }
     return false;
 }
+function ampforwp_get_the_ID($post_id=''){
+    $post_id = get_the_ID();
+    if(ampforwp_is_front_page()){
+    $post_id = ampforwp_get_frontpage_id();
+    }
+    if(ampforwp_is_blog()){
+    $post_id = ampforwp_get_blog_details('id');
+    }
+    return $post_id;
+}
 
 // 27. Clean the Defer issue
 // TODO : Get back to this issue. #407
