@@ -261,7 +261,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 									'layout' => 'fixed-height',
 									'class'  => 'carousel-preview'
 								),
-								implode( PHP_EOL, $amp_carousel_with_thumbnail_nav ));
+								implode( PHP_EOL, $images ));
 			
 			}
 		$amp_carousel_thumbnail = apply_filters('amp_gallery_markup', $amp_carousel_thumbnail);
