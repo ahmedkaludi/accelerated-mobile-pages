@@ -105,11 +105,16 @@ class AMP_Content_Sanitizer {
 	public static function sanitize( $content, $sanitizer_classes, $global_args = array() ) {
 		$scripts = array();
 		$styles = array();
+		$amp_base_sanitizer = '';
 		$dom = AMP_DOM_Utils::get_dom_from_content( $content );
 		if ( ! empty($sanitizer_classes) ) {
 			foreach ( $sanitizer_classes as $sanitizer_class => $args ) {
 				if ( class_exists('AMPforWP\\AMPVendor\\'.$sanitizer_class) ) {
 					$sanitizer_class = 'AMPforWP\\AMPVendor\\'.$sanitizer_class;
+					$amp_base_sanitizer = 'AMPforWP\\AMPVendor\\AMP_Base_Sanitizer';
+				}
+				else {
+					$amp_base_sanitizer = 'AMP_Base_Sanitizer';
 				}
 				if ( ! class_exists( $sanitizer_class ) ) {
 					_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) class does not exist', 'accelerated-mobile-pages' ), esc_html( $sanitizer_class ) ), '0.4.1' );
@@ -117,7 +122,7 @@ class AMP_Content_Sanitizer {
 				}
 
 				$sanitizer = new $sanitizer_class( $dom, array_merge( $global_args, $args ) );
-				if ( ! is_subclass_of( $sanitizer, 'AMPforWP\\AMPVendor\\AMP_Base_Sanitizer' ) ) {
+				if ( ! is_subclass_of( $sanitizer, $amp_base_sanitizer) ) {
 					_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) must extend `AMP_Base_Sanitizer`', 'accelerated-mobile-pages' ), esc_html( $sanitizer_class ) ), '0.1' );
 					continue;
 				}
