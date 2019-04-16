@@ -294,8 +294,8 @@ function ampforwp_structured_data_type( $metadata ) {
 	} 
 	if(isset($metadata['@type']) && $metadata['@type'] == 'NewsArticle'){
 	$post_id = ampforwp_get_the_ID();
-	$content = get_post_field('post_content', $post_id);
-	$metadata['articleBody'] = wp_strip_all_tags($content);
+	$content = $post->post_content;
+	$metadata['articleBody'] = esc_html($content);
 	}
 	return $metadata;
 }
