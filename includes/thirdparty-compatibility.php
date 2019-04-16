@@ -1431,10 +1431,7 @@ function ampforwp_seopress_social(){
 	}
 }
 //Menu css is not loading when directory plus theme is active. #2963
-add_filter('ait-theme-configuration', 'ampforwp_directory_theme_menu'); 
-function ampforwp_directory_theme_menu($configuration){ 
-if( function_exists('ampforwp_is_amp_endpoint') && class_exists('AitTheme')){
-		 unset($configuration['ait-theme-support'][1]); 
-	} 
-	return $configuration; 
+add_action('pre_amp_render_post', 'ampforwp_directory_theme_menu');
+function ampforwp_directory_theme_menu(){
+	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
 }
