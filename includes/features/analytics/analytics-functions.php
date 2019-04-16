@@ -312,36 +312,37 @@ if ( ! function_exists('amp_activate') ) {
 // Create GTM support
 add_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
 function amp_gtm_add_gtm_support( $analytics ) {
-	global $redux_builder_amp;
-	$gtm_id 	=	 "";
-	if ( ! is_array( $analytics ) ) {
-		$analytics = array();
-	}
-	$gtm_id 	= ampforwp_get_setting('amp-gtm-id');
-	$gtm_id 	= str_replace(" ", "", $gtm_id);
-	 
-	$analytics['amp-gtm-googleanalytics'] = array(
-		'type' => $redux_builder_amp['amp-gtm-analytics-type'],
-		'attributes' => array(
-			'data-credentials' 	=> 'include',
-			'config'			=> 'https://www.googletagmanager.com/amp.json?id='. esc_attr( $gtm_id ) .'&gtm.url=SOURCE_URL'
-		),
-		'config_data' => array(
-			'vars' => array(
-				'account' =>  $redux_builder_amp['amp-gtm-analytics-code'],
+	if ( true == ampforwp_get_setting('amp-use-gtm-option') ) {
+		global $redux_builder_amp;
+		$gtm_id 	=	 "";
+		if ( ! is_array( $analytics ) ) {
+			$analytics = array();
+		}
+		$gtm_id 	= ampforwp_get_setting('amp-gtm-id');
+		$gtm_id 	= str_replace(" ", "", $gtm_id);
+		 
+		$analytics['amp-gtm-googleanalytics'] = array(
+			'type' => $redux_builder_amp['amp-gtm-analytics-type'],
+			'attributes' => array(
+				'data-credentials' 	=> 'include',
+				'config'			=> 'https://www.googletagmanager.com/amp.json?id='. esc_attr( $gtm_id ) .'&gtm.url=SOURCE_URL'
 			),
-			'triggers' => array(
-				'trackPageview' => array(
-					'on' => 'visible',
-					'request' => 'pageview',
+			'config_data' => array(
+				'vars' => array(
+					'account' =>  $redux_builder_amp['amp-gtm-analytics-code'],
+				),
+				'triggers' => array(
+					'trackPageview' => array(
+						'on' => 'visible',
+						'request' => 'pageview',
+					),
 				),
 			),
-		),
-	);
-	if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
-		$analytics['amp-gtm-googleanalytics']['config_data']['vars']['anonymizeIP'] = 'true';
+		);
+		if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
+			$analytics['amp-gtm-googleanalytics']['config_data']['vars']['anonymizeIP'] = 'true';
+		}
 	}
-
 	return $analytics;
 }
 add_filter('ampforwp_advance_gtm_analytics','ampforwp_add_advance_gtm_fields');
