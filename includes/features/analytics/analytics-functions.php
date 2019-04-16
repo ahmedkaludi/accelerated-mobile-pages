@@ -54,12 +54,10 @@ function ampforwp_analytics() {
 							'name'=>get_the_title()
 							),
 					);
-		$segment_fields = apply_filters('ampforwp_segment_analytics', $segment_fields );
-		$segment_fields = json_encode( $segment_fields);
-					?>
+		$segment_fields = apply_filters('ampforwp_segment_analytics', $segment_fields );?>
 		<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="segment">
 		<script type="application/json">
-			<?php echo $segment_fields ?>
+			<?php echo json_encode( $segment_fields); ?>
 			</script>
 		</amp-analytics>
 		<?php
@@ -79,13 +77,10 @@ function ampforwp_analytics() {
 							'labels'=> array("AMPProject")
 							),
 					); 
-				$quantcast_fields = apply_filters('ampforwp_quantcast_analytics', $quantcast_fields );
-				$quantcast_fields = json_encode( $quantcast_fields);
-
-				?>
+				$quantcast_fields = apply_filters('ampforwp_quantcast_analytics', $quantcast_fields );?>
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="quantcast">
 						<script type="application/json">
-							<?php echo $quantcast_fields ?>
+							<?php echo json_encode( $quantcast_fields); ?>
 						</script>
 					</amp-analytics>
 					<?php
@@ -102,12 +97,10 @@ function ampforwp_analytics() {
 							'c2'=>$comscore_c2
 							),
 					); 
-				$comscore_fields = apply_filters('ampforwp_comscore_analytics', $comscore_fields );
-				$comscore_fields = json_encode( $comscore_fields);
-				?>
+				$comscore_fields = apply_filters('ampforwp_comscore_analytics', $comscore_fields );?>
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="comscore">
 						<script type="application/json">
-							<?php echo $comscore_fields ?>
+							<?php echo json_encode( $comscore_fields); ?>
 					    </script>
 					</amp-analytics>
 					<?php
@@ -162,12 +155,10 @@ function ampforwp_analytics() {
 						
 						)
 					); 
-				$yandex_fields = apply_filters('ampforwp_yandex_analytics', $yandex_fields );
-				$yandex_fields = json_encode( $yandex_fields);
-				?>
+				$yandex_fields = apply_filters('ampforwp_yandex_analytics', $yandex_fields );?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="metrika"> 
 				<script type="application/json"> 
-					<?php echo $yandex_fields ?>
+					<?php echo json_encode( $yandex_fields); ?>
 				</script> 
 				</amp-analytics> 
 				<?php }//code ends for supporting Yandex Metrika Analytics
@@ -185,12 +176,10 @@ function ampforwp_analytics() {
 							),
 					
 					); 
-				$ampforwp_chartbeat_fields = apply_filters('ampforwp_chartbeat_analytics', $ampforwp_chartbeat_fields );
-				$ampforwp_chartbeat_fields = json_encode( $ampforwp_chartbeat_fields);
-		 ?>
+				$ampforwp_chartbeat_fields = apply_filters('ampforwp_chartbeat_analytics', $ampforwp_chartbeat_fields );?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="chartbeat">
 					 <script type="application/json">
-					 <?php echo $ampforwp_chartbeat_fields ?>
+					 <?php echo json_encode( $ampforwp_chartbeat_fields); ?>
 					 </script>
 				</amp-analytics>
 				<?php
@@ -207,14 +196,11 @@ function ampforwp_analytics() {
 							),
 					
 					); 
-				$alexa_fields = apply_filters('ampforwp_alexa_analytics', $alexa_fields );
-				$alexa_fields = json_encode( $alexa_fields,JSON_UNESCAPED_SLASHES);
-
-			 ?>
+				$alexa_fields = apply_filters('ampforwp_alexa_analytics', $alexa_fields );?>
 				<!-- Start Alexa AMP Certify Javascript -->
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="alexametrics">
 						<script type="application/json">
-						<?php echo $alexa_fields ?>
+						<?php echo json_encode( $alexa_fields,JSON_UNESCAPED_SLASHES); ?>
 						</script>
 					</amp-analytics>
 				<!-- End Alexa AMP Certify Javascript -->
@@ -253,13 +239,11 @@ function ampforwp_analytics() {
 							),
 					
 					); 
-				$afs_fields = apply_filters('ampforwp_afs_analytics', $afs_fields );
-				$afs_fields = json_encode( $afs_fields);
-					 ?>
+				$afs_fields = apply_filters('ampforwp_afs_analytics', $afs_fields );?>
 				<!-- Start AFS Analytics Javascript -->
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="afsanalytics">
 						<script type="application/json">
-						 <?php echo $afs_fields ?> 
+						 <?php echo json_encode( $afs_fields); ?> 
 						</script>
 					</amp-analytics>
 				<!-- End AFS Analytics Javascript -->
