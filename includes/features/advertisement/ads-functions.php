@@ -522,3 +522,14 @@ function ampforwp_add_ads_scripts( $data ) {
 
 	return $data;
 }
+
+// CSS for ADS when AMP by Automattic is activated #2287
+if ( function_exists('amp_activate') ) {
+	add_action('amp_post_template_css', 'ampforwp_amp_ads_css');
+	if ( ! function_exists('ampforwp_amp_ads_css') ) {
+		function ampforwp_amp_ads_css(){ ?>
+			.amp-ad-wrapper {text-align: center}
+			.amp_ad_5{margin-left: auto; margin-right: auto;}
+		<?php }
+	}
+}
