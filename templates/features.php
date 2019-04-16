@@ -571,14 +571,14 @@ function ampforwp_new_dir( $dir ) {
 	    $fb_like = false;
 	    $isBBPress = (function_exists('is_bbpress') ? is_bbpress() : false );
 	    if ( true == ampforwp_get_setting('ampforwp-facebook-like-button') ){
-	      if ( is_single() && (true == ampforwp_get_setting('enable-single-social-icons') || ( $social_check && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())))) {
+	      if ( is_single() && (true == ampforwp_get_setting('enable-single-social-icons') || ( $social_check && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) && !$isBBPress)) {
 	        $fb_like = true;
 	      }
 	      if ( is_page() && ( true == ampforwp_get_setting('ampforwp-page-sticky-social') || ( $social_check_page && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) ) ) {
 	        $fb_like = true;
 	      }
 	    }
-	    if ( true == $fb_like && ( !$isBBPress || true == ampforwp_get_setting('enable-single-social-icons') )) {
+	    if ( true == $fb_like ) {
 	      if(empty($data['amp_component_scripts']['amp-facebook-like'])){
 	        $data['amp_component_scripts']['amp-facebook-like'] = 'https://cdn.ampproject.org/v0/amp-facebook-like-0.1.js';
 	      }      
