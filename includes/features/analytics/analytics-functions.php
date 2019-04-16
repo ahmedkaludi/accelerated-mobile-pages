@@ -285,6 +285,9 @@ function ampforwp_register_analytics_script( $data ){
 		}
 	}
 	return $data;
+}
+
+if ( ! function_exists('amp_activate') ) {
 	add_action('amp_init', 'amp_gtm_remove_analytics_code');
 	function amp_gtm_remove_analytics_code() {
 	  global $redux_builder_amp;
