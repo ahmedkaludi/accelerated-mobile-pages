@@ -7910,3 +7910,11 @@ function ampforwp_post_template_data( $data ) {
 	$data = apply_filters('ampforwp_post_template_data', $data );
 	return $data;
 }
+
+add_filter( 'amp_post_template_data', 'ampforwp_video_docking_script' );
+function ampforwp_video_docking_script( $data ) {
+	if ( $data['amp_component_scripts']['amp-video'] ) {
+		$data['amp_component_scripts']['amp-video-docking'] = 'https://cdn.ampproject.org/v0/amp-video-docking-0.1.js';
+	}
+		return $data;
+}
