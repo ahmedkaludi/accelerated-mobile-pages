@@ -6753,23 +6753,6 @@ function ampforwp_back_to_top_markup(){
 	}
 }
 
-// AMPforWP allowed html tags
-function ampforwp_wp_kses_allowed_html(){
-	$allowed_html = '';
-	$allowed_html = wp_kses_allowed_html( 'post' );
-	if( $allowed_html ) {
-		foreach ( $allowed_html as $tag => $atts ) {
-	      	if ( is_array($atts) ){
-	        	unset($allowed_html[$tag]['style']);
-	      	}
-	      	if ( 'form' == $tag ) {
-	      		unset($allowed_html[$tag]);
-	      	}
-	    }
-  	}
-  	return $allowed_html; 
-}
-
 function ampforwp_check_excerpt(){
 	global $redux_builder_amp;
 

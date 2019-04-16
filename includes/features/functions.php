@@ -466,3 +466,48 @@ if ( ! function_exists('ampforwp_remove_protocol') ) {
         return $url;
     }
 }
+
+/* AMPforWP allowed html tags #1950
+ * ampforwp_wp_kses_allowed_html()
+ * This fucntion can be heavy for sanitizing items.
+ * As it scans though all the generated AMP tags and attributes.
+ * Use it cautiously.
+ */ 
+function ampforwp_wp_kses_allowed_html(){
+    $allowed_html = $allowed_normal_html = $allowed_amp_tags = array();
+    $allowed_normal_html = wp_kses_allowed_html( 'post' );
+    if ( class_exists('AMP_Allowed_Tags_Generated') ) {
+        $allowed_amp_tags = AMP_Allowed_Tags_Generated::get_allowed_tags();
+        $allowed_atts = AMP_Allowed_Tags_Generated::get_allowed_attributes();
+        foreach ($allowed_atts as $att => $value) {
+            $allowed_atts[$att] = true;
+        }
+        foreach ($allowed_amp_tags as $amp_tag => $values ) {
+                $allowed_amp_tags[$amp_tag] = $allowed_atts;
+        }
+    }
+    $allowed_html = array_merge_recursive($allowed_normal_html, $allowed_amp_tags);
+    if( $allowed_html ) {
+        foreach ( $allowed_html as $tag => $atts ) {
+            if ( is_array($atts) ){
+                unset($allowed_html[$tag]['style']);
+            }
+            if ( 'a' == $tag ) {
+                $allowed_html[$tag]['data-toggle'] = true;
+            }
+            if ( 'label' == $tag ) {
+                $allowed_html[$tag]['aria-label'] = true;
+            }
+            if ( 'amp-img' == $tag ) {
+                $allowed_html[$tag] = array('width'=>true,'height'=>true,'src'=>true,'layout'=>true,'alt'=>true,'on'=>true,'role'=>true,'tabindex'=>true);
+            }
+        }
+        $allowed_html['input'] = array('class'=>true,'type'=>true,'id'=>true,'placeholder'=>true,'value'=>true,'name'=>true);
+    }
+    return $allowed_html; 
+}
+function ampforwp_wp_kses($data){
+    $allowed_html = ampforwp_wp_kses_allowed_html();
+    $data = wp_kses( stripslashes( $data ), $allowed_html );
+    return $data;
+}
