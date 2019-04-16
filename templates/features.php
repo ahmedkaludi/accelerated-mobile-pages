@@ -141,14 +141,6 @@ add_amp_theme_support('AMP-gdpr');
  	// Custom Post Types
  	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-custom-post-type.php';
  	
- 	// Load aq resizer only in AMP mode
- 	add_action('pre_amp_render_post','ampforwp_include_aqresizer');
- 	function ampforwp_include_aqresizer(){
- 		//Removed Jetpack Mobile theme option #2584
- 		remove_action('option_stylesheet', 'jetpack_mobile_stylesheet');
- 		require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
- 	}
- 	
  	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){
  		global $redux_builder_amp;
