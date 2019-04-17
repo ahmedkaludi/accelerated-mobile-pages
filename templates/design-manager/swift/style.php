@@ -869,12 +869,19 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
     .cntn-wrp p {font-size: 16px;}  
 }
 <?php } } ?>
-<?php if ( isset($redux_builder_amp['ampforwp-dropcap']) && $redux_builder_amp['ampforwp-dropcap'] ) { ?>
+<?php if ( true == ampforwp_get_setting('ampforwp-dropcap')) { ?>
 .cntn-wrp > p:first-of-type::first-letter{
     float: left;
-    font-size: 75px;
+    <?php $fontsize = ampforwp_get_setting('ampforwp-dropcap-font');
+     if (empty($fontsize)){?>font-size: 75px;<?php } else {?>	
+    font-size: <?php echo $fontsize ?>px;
+	<?php } ?>
     line-height: 1;
-    padding-right: 8px;
+    padding-right: 8px;	
+    <?php $color = ampforwp_get_setting('ampforwp-dropcap-color','color','sanitize_hex_color');
+	if (empty($color)){?>color: #000;<?php } else {?>	
+    color: <?php echo $color ?>;
+	<?php } ?>
 }
 <?php } //Drop Cap CSS ends
 // Menu Search CSS
