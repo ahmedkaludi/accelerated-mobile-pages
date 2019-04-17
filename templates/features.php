@@ -1264,7 +1264,7 @@ function ampforwp_sticky_social_icons(){
 	                            height="28"
 	                            <?php ampforwp_nofollow_social_links(); ?>
 	                            data-param-url=""
-                        		data-param-text="TITLE <?php echo esc_url($permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_html($data_param_data) ?>"
+                        		data-param-text="TITLE <?php echo esc_url($permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
 	          ></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
