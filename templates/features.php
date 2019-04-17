@@ -1,5 +1,4 @@
 <?php
-use AMPforWP\AMPVendor\AMP_DOM_Utils;
 use AMPforWP\AMPVendor\AMP_Content;
 /* This file will contain all the Extra FEATURES.
 0.9. AMP Design Manager Files
@@ -6635,7 +6634,10 @@ if ( ! class_exists('AMP_Base_Sanitizer') && class_exists('AMPforWP\\AMPVendor\\
 if ( ! class_exists('AMP_HTML_Utils') && class_exists('AMPforWP\\AMPVendor\\AMP_HTML_Utils') ) {
 	class AMP_HTML_Utils extends AMPforWP\AMPVendor\AMP_HTML_Utils{}
 }
-
+// Class AMP_DOM_Utils
+if ( ! class_exists('AMP_DOM_Utils') && class_exists('AMPforWP\\AMPVendor\\AMP_DOM_Utils') ) {
+	class AMP_DOM_Utils extends AMPforWP\AMPVendor\AMP_DOM_Utils{}
+}
 // Class AMP_Blacklist_Sanitizer
 if ( ! class_exists('AMP_Blacklist_Sanitizer') ) {
 	if(defined('AMP__VENDOR__DIR__')){
