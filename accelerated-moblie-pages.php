@@ -474,8 +474,12 @@ if ( is_admin() ) {
  			if ( ! isset($plugin))
  				$plugin = plugin_basename(__FILE__);
  				if ( $plugin === $plugin_file ) {
- 					$settings = array( 'settings' => '<a href="admin.php?page=amp_options&tab=8">' . esc_html__('Settings', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/extensions/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=features">' . esc_html__('Premium Features', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/membership/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=pro">' . esc_html__('Pro', 'accelerated-mobile-pages') . '</a>' );
-
+ 					$amp_activate = '';
+ 					if ( function_exists('amp_activate') ) {
+ 						$amp_activate = ' | <span style="color:black;">Status: Addon Mode</span style=>';
+ 					}
+ 					$settings = array( 'settings' => '<a href="admin.php?page=amp_options&tab=8">' . esc_html__('Settings', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/extensions/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=features">' . esc_html__('Premium Features', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/membership/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=pro">' . esc_html__('Pro', 'accelerated-mobile-pages') . '</a>'. $amp_activate );
+ 					
 					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					$actions = array_merge( $actions, $settings );
  				}
