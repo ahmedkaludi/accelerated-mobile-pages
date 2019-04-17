@@ -113,7 +113,7 @@ class AMP_Content_Sanitizer {
 					$sanitizer_class = 'AMPforWP\\AMPVendor\\'.$sanitizer_class;
 					$amp_base_sanitizer = 'AMPforWP\\AMPVendor\\AMP_Base_Sanitizer';
 				}
-				else {
+				elseif(function_exists('amp_activate') && class_exists('AMP_Base_Sanitizer') ) {
 					$amp_base_sanitizer = 'AMP_Base_Sanitizer';
 				}
 				if ( ! class_exists( $sanitizer_class ) ) {
