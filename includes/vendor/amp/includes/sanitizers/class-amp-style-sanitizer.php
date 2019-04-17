@@ -273,7 +273,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 
 		if ( ! $css_path || false !== strpos( '../', $css_path ) || 0 !== validate_file( $css_path ) || ! file_exists( $css_path ) ) {
 			/* translators: %s is stylesheet URL */
-			return new WP_Error( 'amp_css_path_not_found', sprintf( __( 'Unable to locate filesystem path for stylesheet %s.', 'amp' ), $src ) );
+			return new \WP_Error( 'amp_css_path_not_found', sprintf( __( 'Unable to locate filesystem path for stylesheet %s.', 'amp' ), $src ) );
 		}
 
 		return $css_path;
