@@ -1,5 +1,4 @@
 <?php
-use AMPforWP\AMPVendor\AMP_DOM_Utils;
 use AMPforWP\AMPVendor\AMP_Content;
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
@@ -6633,6 +6632,10 @@ if ( ! class_exists('AMP_Base_Sanitizer') && class_exists('AMPforWP\\AMPVendor\\
 // Class AMP_HTML_Utils
 if ( ! class_exists('AMP_HTML_Utils') && class_exists('AMPforWP\\AMPVendor\\AMP_HTML_Utils') ) {
 	class AMP_HTML_Utils extends AMPforWP\AMPVendor\AMP_HTML_Utils{}
+}
+// Class AMP_DOM_Utils
+if ( ! class_exists('AMP_DOM_Utils') && class_exists('AMPforWP\\AMPVendor\\AMP_DOM_Utils') ) {
+	class AMP_DOM_Utils extends AMPforWP\AMPVendor\AMP_DOM_Utils{}
 }
 // Class AMP_Blacklist_Sanitizer
 if ( ! class_exists('AMP_Blacklist_Sanitizer') ) {
