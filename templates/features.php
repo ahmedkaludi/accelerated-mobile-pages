@@ -131,10 +131,6 @@ add_amp_theme_support('AMP-gdpr');
 
 	// 0.9. AMP Design Manager Files
 	require AMPFORWP_PLUGIN_DIR  .'templates/design-manager.php';
-	// Custom AMP Content
-	require AMPFORWP_PLUGIN_DIR  .'templates/custom-amp-content.php';
-	// Custom AMPFORWP Sanitizers
- 	require AMPFORWP_PLUGIN_DIR  .'templates/custom-sanitizer.php';
 	// Custom Frontpage items
  	require AMPFORWP_PLUGIN_DIR  .'templates/frontpage-elements.php';
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ;

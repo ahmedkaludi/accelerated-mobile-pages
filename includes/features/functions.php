@@ -1,5 +1,9 @@
 <?php 
  add_amp_theme_support('AMP-gdpr');
+// Custom AMP Content
+require AMPFORWP_PLUGIN_DIR  .'templates/custom-amp-content.php';
+// Custom AMPFORWP Sanitizers
+require AMPFORWP_PLUGIN_DIR  .'templates/custom-sanitizer.php';
  //  Some Extra Styling for Admin area
 add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
 function ampforwp_add_admin_styling(){
@@ -644,4 +648,190 @@ function ampforwp_url_purifier($url){
         $url     = add_query_arg( $query_arg, $url);
     }
     return apply_filters( 'ampforwp_url_purifier', $url );
+}
+
+// Function ampforwp_amp_nonamp_convert
+if(!function_exists('ampforwp_amp_nonamp_convert')){
+    function ampforwp_amp_nonamp_convert($ampData, $type=""){
+        $returnData = '';
+        if("check" === $type){
+            return ampforwp_is_non_amp('non_amp_check_convert');
+        }
+        if(!ampforwp_is_non_amp('non_amp_check_convert')){
+            return $ampData;
+        }
+        switch($type){
+            case 'filter':
+                $returnData = str_replace(array(
+                                                "</amp-img>",
+                                                "amp-img",
+                                                "<style amp-custom>",
+                                                "<amp-sidebar ",
+                                                "</amp-sidebar>",
+                                                'on="tap:ampforwpConsent.dismiss"',
+                                                '<div id="post-consent-ui"',
+                                                'on="tap:ampforwpConsent.reject"',
+                                                'on="tap:ampforwpConsent.accept"'
+
+                                                ),
+                                            array(
+                                                "",
+                                                "img",
+                                                "<style type=\"text/css\">",
+                                                "<sidebar ",
+                                                "</sidebar>",
+                                                'onClick="ampforwp_gdrp_set()"',
+                                                '<script>
+                                                function ampforwp_gdpr_getCookie(name) {
+                                                  var value = "; " + document.cookie;
+                                                  var parts = value.split("; " + name + "=");
+                                                  if (parts.length == 2) return parts.pop().split(";").shift();
+                                                }
+                                                function ampforwp_gdpr(){
+                                            if(ampforwp_gdpr_getCookie(\'ampforwpcookie\') == \'1\'){document.getElementById(\'gdpr_c\').remove();}
+                                            }ampforwp_gdpr();
+                                            function ampforwp_gdrp_set(){document.getElementById(\'ampforwpConsent\').remove(); document.cookie = \'ampforwpcookie=1;expires;path=/\';}
+                                                </script><div id="post-consent-ui"',
+                                                'onClick="ampforwp_gdrp_set()"',
+                                                'onClick="ampforwp_gdrp_set()"',
+                                                )
+                                            , $ampData);
+
+                $returnData = preg_replace(
+                '/<amp-youtube\sdata-videoid="(.*?)"(.*?)><\/amp-youtube>/',
+                 '<iframe src="https://www.youtube.com/embed/$1" style="width:100%;height:360px;" ></iframe>', $returnData);
+                $returnData = preg_replace_callback(
+                '/<amp-iframe(.*?)src="(.*?)"(.*?)><\/amp-iframe>/', 
+                function($matches){
+                    return '<iframe src="'.esc_url($matches[2]).'" style="width:100%;height:400px;" ></iframe>';
+                }, $returnData);
+                // CSS
+                
+                if( false !== strpos($returnData, 'amp-carousel') ) {
+                    $galleryCss = '* {box-sizing: border-box}.mySlides{display: none}
+                        /* Slideshow container */
+                        .slideshow-container {
+                          max-width: 1000px;
+                          position: relative;
+                          margin: auto;
+                        }
+                        /* Next & previous buttons */
+                        .nonamp-prev, .nonamp-next {
+                          cursor: pointer;
+                          position: absolute;
+                          top: 50%;
+                          width: auto;
+                          padding: 16px;
+                          margin-top: -22px;
+                          color: white;
+                          font-weight: bold;
+                          font-size: 18px;
+                          transition: 0.6s ease;
+                          border-radius: 0 3px 3px 0;
+                          user-select: none;
+                        }
+                        /* Position the "next button" to the right */
+                        .nonamp-next {
+                          right: 0;
+                          border-radius: 3px 0 0 3px;
+                        }
+                        /* On hover, add a black background color with a little bit see-through */
+                        .nonamp-prev:hover, .nonamp-next:hover {
+                          background-color: rgba(0,0,0,0.8);
+                        }
+                        /* Caption text */
+                        .text {
+                          color: #f2f2f2;
+                          font-size: 15px;
+                          padding: 8px 12px;
+                          position: absolute;
+                          bottom: 8px;
+                          width: 100%;
+                          text-align: center;
+                        }
+                        /* Number text (1/3 etc) */
+                        .numbertext {
+                          color: #f2f2f2;
+                          font-size: 12px;
+                          padding: 8px 12px;
+                          position: absolute;
+                          top: 0;
+                        }
+                        /* The dots/bullets/indicators */
+                        .dot {
+                          cursor: pointer;
+                          height: 15px;
+                          width: 15px;
+                          margin: 0 2px;
+                          background-color: #bbb;
+                          border-radius: 50%;
+                          display: inline-block;
+                          transition: background-color 0.6s ease;
+                        }
+                        .active, .dot:hover {
+                          background-color: #717171;
+                        }
+                        /* Fading animation */
+                        .fade {
+                          -webkit-animation-name: fade;
+                          -webkit-animation-duration: 1.5s;
+                          animation-name: fade;
+                          animation-duration: 1.5s;
+                        }
+                        @-webkit-keyframes fade {
+                          from {opacity: .4} 
+                          to {opacity: 1}
+                        }
+                        @keyframes fade {
+                          from {opacity: .4} 
+                          to {opacity: 1}
+                        }
+                        /* On smaller screens, decrease text size */
+                        @media only screen and (max-width: 300px) {
+                          .nonamp-prev, .nonamp-next,.text {font-size: 11px}
+                        }';
+                    $galleryJs = '<script>
+                                    var slideIndex = 1;
+                                    showSlides(slideIndex);
+                                    function plusSlides(n) {
+                                      showSlides(slideIndex += n);
+                                    }
+                                    function currentSlide(n) {
+                                      showSlides(slideIndex = n);
+                                    }
+                                    function showSlides(n) {
+                                      var i;
+                                      var slides = document.getElementsByClassName("mySlides");
+                                      var dots = document.getElementsByClassName("dot");
+                                      if (n > slides.length) {slideIndex = 1}    
+                                      if (n < 1) {slideIndex = slides.length}
+                                      for (i = 0; i < slides.length; i++) {
+                                          slides[i].style.display = "none";  
+                                      }
+                                      for (i = 0; i < dots.length; i++) {
+                                          dots[i].className = dots[i].className.replace(" active", "");
+                                      }
+                                      slides[slideIndex-1].style.display = "block";  
+                                      dots[slideIndex-1].className += " active";
+                                    }
+                                    </script>';
+                }
+                $nonampCss = '
+                .cntr img{height:auto !important;}
+                img{height:auto;width:100%;}
+                .slid-prv{width:100%;text-align: center;margin-top: 10px;display: inline-block;}
+                .amp-featured-image img{width:100%;height:auto;}
+                .content-wrapper, .header, .header-2, .header-3{width:100% !important;}
+                .image-mod img{width:100%;}
+                ';
+                $re = '/<style\s*type="text\/css">(.*?)<\/style>/si';
+                $subst = "<style type=\"text/css\">$1 ".$nonampCss.$galleryCss."</style>";
+                $returnData = preg_replace($re, $subst, $returnData);
+
+                $returnData = preg_replace_callback('/<amp-carousel\s(.*?)>(.*?)<\/amp-carousel>/s', 'ampforwp_non_amp_gallery', $returnData );
+                $returnData = str_replace('</footer>', '</footer>'.$galleryJs, $returnData);
+            break;
+        }
+        return $returnData;
+    }
 }
