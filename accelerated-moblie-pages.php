@@ -730,6 +730,11 @@ function ampforwp_ampwptheme_notice() {
 			</div>
 		<?php }
 	}
+
+	// AMP with AMPforWP notice #2287
+	if ( function_exists('amp_activate') ) { ?>
+		<div class="notice-warning settings-error notice is-dismissible"><p><?php echo esc_html__('AMP by Automattic is activated so the AMPforWP is now in the "Addon Mode". ','accelerated-mobile-pages') ?><a href="https://ampforwp.com/tutorials/article-categories/setup-amp/amp-by-automattic-support" target="_blank"><?php echo esc_html__('Learn More','accelerated-mobile-pages'); ?></a></p></div>
+	<?php }
 }
 
 function ampforwp_update_notice() {
