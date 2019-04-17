@@ -441,6 +441,17 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('table-of-content-for-amp/table-of-content-for-amp.php')? 1 : 2),
                         ),
+                        array(
+                            'name'=>'The Events Calendar For Amp',
+                            'desc'=>'This is an extension of The Events Calendar For Amp',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/amp-SU.png',
+                            'price'=>'$19',
+                            'url_link'=>'https://ampforwp.com/the-events-calendar-for-amp/#utm_source=options-panel&utm_medium=extension-tab_shortcodes_ultimate&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'the-events-calendar-for-amp/the-events-calendar-for-amp.php',
+                            'item_name'=>'The Events Calendar For Amp',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('the-events-calendar-for-amp/the-events-calendar-for-amp.php')? 1 : 2),
+                        ),
 
                         array(
                             'name'=>'View All Extensions',
