@@ -1652,7 +1652,10 @@ if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
 <?php } 
 if(ampforwp_get_setting('enable-single-line-share') == true)  { ?>
 .s_li{background:#00cc00;}
-<?php } 	
+<?php }
+if(ampforwp_get_setting('enable-single-mewe-share') == true)  { ?>
+.s_mewe{background:#b8d6e6;}
+<?php }  	
 if($redux_builder_amp['enable-single-reddit-share']){?>
 .s_rd{background:#ff4500;}
 .s_rd:after{

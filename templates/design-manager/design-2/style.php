@@ -116,6 +116,10 @@ amp-social-share[type="facebookmessenger"] {
 <?php if ( true == ampforwp_get_setting('enable-single-line-share') ) { ?>
 .custom-amp-socialsharing-line{background:#00b900}
 <?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-mewe-share') ) { ?>
+.custom-amp-socialsharing-mewe{background:#b8d6e6}
+.amp-social-mewe{background:#b8d6e6}
+<?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 .ampforwp-social-icons custom-amp-socialsharing-vk{background:#45668e}
 <?php } ?>

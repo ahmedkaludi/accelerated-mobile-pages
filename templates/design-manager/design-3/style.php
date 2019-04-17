@@ -138,6 +138,7 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; }
 .amp-social-icon amp-img{ top: 4px; }
 .custom-amp-socialsharing-line{background:#00b900}
+.custom-amp-socialsharing-mewe{background:#b8d6e6}
 .sticky_social .whatsapp-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 .sticky_social .line-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 <?php }?>
@@ -218,6 +219,9 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .amp-social-icon-rounded{padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height: 1; display: inline-block; height: inherit; border-radius: 60px; }
 <?php if ( true == ampforwp_get_setting('enable-single-line-share') ) { ?>
 .amp-social-line{background:#00b900}
+<?php } 
+if(ampforwp_get_setting('enable-single-mewe-share') == true)  { ?>
+.amp-social-mewe{background:#b8d6e6;}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 .amp-social-vk{background:#45668e}
