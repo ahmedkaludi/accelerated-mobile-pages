@@ -799,4 +799,9 @@ if ( is_singular() || ampforwp_is_front_page() && false == ampforwp_get_setting(
   margin-top: -75px; 
   height: 75px; 
   visibility: hidden;}
+<?php } 
+if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
+  a#readmore-rp {
+      font-size: 13px;
+  }
 <?php } ?>

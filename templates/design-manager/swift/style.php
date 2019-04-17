@@ -2223,4 +2223,8 @@ if(class_exists('toc') && (is_singular() || ampforwp_is_front_page())){
 	color: <?php echo ampforwp_sanitize_color($options['custom_links_hover_colour']) ?>;
 	}
 <?php } }
- 
+if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
+	a#readmore-rp {
+	    font-size: 13px;
+	}
+<?php } ?>

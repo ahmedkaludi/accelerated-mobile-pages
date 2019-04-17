@@ -479,4 +479,9 @@ if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_set
   .single-post amp-next-page{
     margin-top:30px;
   }
+<?php } 
+if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
+  a#readmore-rp {
+      font-size: 13px;
+  }
 <?php } ?>
