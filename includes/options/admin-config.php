@@ -5230,6 +5230,17 @@ $single_page_options = array(
               'required'  => array( 
                 array('ampforwp-single-related-posts-excerpt', '=' , '1') ),
           ),
+          array(
+                 'id'        => 'excerpt-option-small-rp',
+                 'class' => 'child_opt',
+                 'type'      => 'switch',
+                 'title'     =>  esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                 'default'   => '0',
+                 'required' => array(
+                     array('amp-design-selector', '!=' , '4'),
+                     array('ampforwp-single-related-posts-excerpt', '=' , '1'),
+                    )                         
+                ),
             array(
                     'id'       => 'ampforwp-single-related-posts-link',
                     'type'     => 'switch',
