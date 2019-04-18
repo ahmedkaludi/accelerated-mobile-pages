@@ -54,7 +54,7 @@ function ampforwp_framework_get_comments(){
 			         						<?php } ?>
 												<div class="comment-author vcard">
 													 <?php
-													 printf(__('<b class="fn">%s</b> <span class="says">'.esc_html(ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says')).':</span>'), get_comment_author_link()) ?>
+													 printf(('<b class="fn">%s</b> <span class="says">'.esc_html(ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says')).':</span>'), get_comment_author_link()) ?>
 												</div>
 												<div class="comment-metadata">
 													<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
