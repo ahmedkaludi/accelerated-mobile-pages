@@ -978,3 +978,14 @@ function ampforwp_vendor_amp_fallbacks(){
 		class AMP_Content extends AMPforWP\AMPVendor\AMP_Content{}
 	}
 }
+// Class AMP_Blacklist_Sanitizer #2287
+add_action('plugins_loaded', 'ampforwp_sanitizers_loader');
+function ampforwp_sanitizers_loader(){
+	if ( ! class_exists('AMP_Blacklist_Sanitizer') ) {
+		if(defined('AMP__VENDOR__DIR__')){
+			$amp_blacklist_sanitizer =  realpath( AMP__VENDOR__DIR__ . 'includes/sanitizers/class-amp-blacklist-sanitizer.php') ;
+			require_once $amp_blacklist_sanitizer;
+			class AMP_Blacklist_Sanitizer extends AMPforWP\AMPVendor\AMP_Blacklist_Sanitizer{}
+		} 
+	}
+}
