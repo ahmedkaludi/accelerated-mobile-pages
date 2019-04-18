@@ -807,4 +807,5 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
 <?php } ?>
 .amp_widget_below_the_header.f-w amp-img {
     margin: 0 auto;
+    margin-top: 8px;
 }
