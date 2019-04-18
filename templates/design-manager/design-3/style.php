@@ -591,8 +591,10 @@ if(!is_home() && ((is_single() && true == ampforwp_get_setting('ampforwp-bread-c
 if ( (isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1']) || (isset($redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2']) ) { ?> .amp-ad-wrapper{ text-align: center } .amp_ad_1{ margin-top: 15px; margin-bottom: 10px; } .single-post .amp_ad_1{ margin-bottom: -15px; } .amp-ad-2{ margin-bottom: -5px; margin-top: 20px; } .amp-ad-wrapper{ text-align: center; margin-left: -13px; } <?php }
 if ( true == $redux_builder_amp['amp-pagination'] ) { ?>
 .ampforwp_post_pagination{width:100%;text-align:center;display:inline-block;}
-<?php }  
-echo $redux_builder_amp['css_editor']; 
+<?php } 
+$custom_css = ampforwp_get_setting('css_editor'); 
+$sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
+echo $sanitized_css;
 //} ?>
 <?php // Full Content in Loop CSS
 if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 1 ){ ?>

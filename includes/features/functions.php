@@ -835,3 +835,10 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
         return $returnData;
     }
 }
+function ampforwp_sanitize_i_amphtml($data){
+    if(empty($data)){
+        return $data;
+    }
+    $data = preg_replace_callback('/.i-amphtml-(.*?){(.*?)}/s',function($matches){ if(!empty($matched)){ return ''; } }, $data);
+    return $data;
+}
