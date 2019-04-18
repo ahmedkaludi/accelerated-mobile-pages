@@ -392,7 +392,6 @@ function amp_loop_image( $data=array() ) {
 		$imageSize 			= 'thumbnail';
 		$post_id 			= '';
 		$post_thumbnail_id 	= '';
-		$thumbnail_srcset	= '';
 
 		if ( isset($data['tag']) && $data['tag'] != "" ) {
 			$tag = $data['tag'];
@@ -460,9 +459,9 @@ function amp_loop_image( $data=array() ) {
 				$imageClass			= $changesInImageData["image_class"];
 				$imageLink			= $changesInImageData["image_link"];
 			}
-			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
-			echo '<a href="'.$imageLink.'">';
-			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
+			echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
+			echo '<a href="'.esc_url($imageLink).'">';
+			echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. $layout_responsive .' class="'.esc_attr($imageClass).'"></amp-img>';
 			echo '</a>';
 			echo '</'.$tag.'>';
 		}
