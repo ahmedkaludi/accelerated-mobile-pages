@@ -1760,7 +1760,7 @@ if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) || is_plugin_a
                 'id'   => 'info_normal_wpml',
                 'type' => 'info',
                 'required' => array('amp-enable-wpml', '=' , '1'),
-                 'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/wpml-for-amp/#utm_source=options-panel&utm_medium=wpml-tab_wpml_installation_link&utm_campaign=AMP%20Plugin" target="_blank">WPML extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/wpml-for-amp/#utm_source=options-panel&utm_medium=wpml-tab_wpml_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+                 'desc' => esc_html__('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/wpml-for-amp/#utm_source=options-panel&utm_medium=wpml-tab_wpml_installation_link&utm_campaign=AMP%20Plugin" target="_blank">WPML extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/wpml-for-amp/#utm_source=options-panel&utm_medium=wpml-tab_wpml_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>', 'accelerated-mobile-pages'),               
                    );
         }
     // Polylang Support 
@@ -2367,7 +2367,7 @@ $e_commerce_support[] =  array(
                'false'     => 'Disabled',
            );
 
-    if(!is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) && !is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ){
+    if(!function_exists( 'amp_woocommerce_add_woocommerce_support' ) && !function_exists( 'amp_woocommerce_pro_container_starts' ) ){
         $e_commerce_support[]= array(
             'id'   => 'info_normal_woocommerce',
             'type' => 'info',
@@ -2375,7 +2375,7 @@ $e_commerce_support[] =  array(
              'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/woocommerce/" target="_blank">AMP WooCommerce PRO extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/woocommerce/" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',               
                );
     }
-    elseif ( is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) && !is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ) {
+    elseif ( function_exists( 'amp_woocommerce_add_woocommerce_support' ) && !function_exists( 'amp_woocommerce_pro_container_starts' ) ) {
         $e_commerce_support[]= array(
             'id'   => 'info_normal_woocommerce_pro',
             'type' => 'info',
@@ -2383,7 +2383,7 @@ $e_commerce_support[] =  array(
             'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>Pro Version:</b> Everything in Free, and Archives, Gallery, Cart, Variants & Attributes, Rating & Reviews Support.<a href="https://ampforwp.com/woocommerce/" target="_blank"></a><br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/woocommerce/" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',               
         );
     }
-    elseif ( is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ) {
+    elseif ( function_exists( 'amp_woocommerce_pro_container_starts' ) ) {
         $e_commerce_support[]= array(
             'id'   => 'info_woocommerce_pro',
             'type' => 'info',
