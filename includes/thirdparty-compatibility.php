@@ -494,7 +494,7 @@ function ampforwp_sab_uaf(){
 					src: url('<?php echo esc_url($uaf_upload_url.$fontData['font_path']); ?>.eot');
 					src: local('<?php echo esc_html($fontData['font_name']) ?>'), url('<?php echo esc_url($uaf_upload_url.$fontData['font_path']) ?>.eot') format('embedded-opentype'), url('<?php echo esc_url($uaf_upload_url.$fontData['font_path']) ?>.woff') format('woff');
 				}		            
-            	.<?php echo $fontData['font_name'] ?>{font-family: '<?php echo esc_html($fontData['font_name']) ?>';}
+            	.<?php echo esc_html($fontData['font_name']) ?>{font-family: '<?php echo esc_html($fontData['font_name']) ?>';}
         	<?php endforeach;
 		endif;
 
