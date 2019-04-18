@@ -198,7 +198,7 @@ function ampforwp_swift_social_icons(){
 						<?php if ( true == ampforwp_get_setting('enable-single-mewe-share')){?>
 							<li>
 								<a title="mewe share" class="s_mewe" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://mewe.com/share?link=<?php echo esc_url($amp_permalink); ?>">
-								<amp-img src="<?php echo AMPFORWP_IMAGE_DIR . '/favicon-mewe.svg' ?>" width="15" height="15" /></a>
+								<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/favicon-mewe.svg') ?>" width="15" height="15" /></a>
 							</li>
 						<?php } ?>
 						</ul>
