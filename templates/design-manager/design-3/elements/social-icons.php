@@ -181,7 +181,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 		<?php if ( true == ampforwp_get_setting('enable-single-mewe-share') ) { ?>
 			<div class="ampforwp-custom-social"> 
 				<a title="mewe share" <?php ampforwp_nofollow_social_links(); ?> href="https://mewe.com/share?link=<?php echo esc_url($amp_permalink); ?>" target="_blank" class="amp-social-icon-rounded amp-social-mewe">
-					<amp-img src="<?php echo AMPFORWP_IMAGE_DIR . '/favicon-mewe.svg' ?>" width="16" height="16" />
+					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/favicon-mewe.svg') ?>" width="16" height="16" />
 				</a>
 			</div>
 		<?php } ?>

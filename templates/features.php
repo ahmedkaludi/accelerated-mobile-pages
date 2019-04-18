@@ -1371,7 +1371,7 @@ function ampforwp_sticky_social_icons(){
 		<?php if(true == ampforwp_get_setting('enable-single-mewe-share'))  {?>
 			<a title="mewe share" <?php ampforwp_nofollow_social_links(); ?> href="https://mewe.com/share?link=<?php echo esc_url($amp_permalink); ?>">
 				<div class="amp-social-icon custom-amp-socialsharing-mewe">
-					<amp-img src="<?php echo AMPFORWP_IMAGE_DIR . '/favicon-mewe.svg' ?>" width="50" height="20" />
+					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/favicon-mewe.svg') ?>" width="50" height="20" />
 				</div>
 			</a>
 		<?php } ?>
