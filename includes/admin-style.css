@@ -880,18 +880,35 @@ div#section-ampforwp-ads-section h3:before{
     opacity: 0.6;
 }
 .amp-watermark-wrapper{
-    background: green;
+    background: #fff;
+    box-shadow: 2px 2px 9px #333;
     opacity: 1;
+    border-radius: 6px;
     width: 40%;
     margin: 0px auto;
-    padding-left: 0px;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    position: absolute;
+    padding: 10px 30px 40px 30px;
     text-align: center;
     margin-top: 200px;
-}
+    left: 30%;
+    z-index: 999;}
 .amp-watermark-wrapper a{
     text-decoration: none;
     font-size:20px;
-     color:#fff;
+    color:#000;
+}
+.amp-watermark-wrapper h3{
+    margin: 16px 0 0px 0px;
+}
+.amp-watermark-wrapper p{
+    margin: 3px 0 20px 0;
+    color: #666;
+}
+.amp-watermark-wrapper span{
+    font-size: 16px;
+    background: #ed1c24;
+    color: #fff;
+    border-radius: 70px;
+    padding: 6px 15px 8px 16px;
+
 }
