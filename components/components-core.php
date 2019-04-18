@@ -219,17 +219,17 @@ function amp_author_box($args=array() ){
 }
 
 // Categories List
-function amp_categories_list( $saperator = '' ){
+function amp_categories_list( $separator = '' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-categories-tags']) && $loadComponent['AMP-categories-tags']==true){
-		ampforwp_framework_get_categories_list( $saperator );
+		ampforwp_framework_get_categories_list( $separator );
 	}
 }
 // Tags List
-function amp_tags_list( $saperator = '' ){
+function amp_tags_list( $separator = '' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-categories-tags']) && $loadComponent['AMP-categories-tags']==true){
-		ampforwp_framework_get_tags_list( $saperator );
+		ampforwp_framework_get_tags_list( $separator );
 	}
 }
 
