@@ -6978,17 +6978,16 @@ if(!ampforwp_check_extensions()){
     ) );
 }
 
-
+if(!ampforwp_check_extensions()){
 // Priority Support
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Fix AMP Errors', 'accelerated-mobile-pages' ),
-       // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+        'title'      => esc_html__( 'Fix AMP Errors', 'accelerated-mobile-pages' ),
         'id'         => 'opt-go-premium-support',
         'subsection' => false,
         'desc' => '        <a href="http://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-support-banner" src="'.AMPFORWP_IMAGE_DIR . '/priority-support-banner.png" width="345" height="500" /></a>',
         'icon' => 'el el-hand-right',
     ) );
-
+}
 
 
 // Plugin Manager
