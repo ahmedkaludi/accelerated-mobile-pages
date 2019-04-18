@@ -110,7 +110,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 				                    
 				                    <?php if ( isset($redux_builder_amp['ampforwp-single-related-posts-excerpt']) && true == $redux_builder_amp['ampforwp-single-related-posts-excerpt'] ) {
 				                    	$class = 'large-screen-excerpt';
-		                    			if ( true == $redux_builder_amp['excerpt-option-design-2'] ) {
+		                    			if ( true == ampforwp_get_setting('excerpt-option-small-rp') ) {
 											$class = 'small-screen-excerpt';
 										}
 					                    if(has_excerpt()){
@@ -123,7 +123,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 				                        if(empty($excerpt_length)){
 											$excerpt_length = 15;
 										}
-				                    	echo wp_trim_words( strip_shortcodes($content) , $excerpt_length ); ?></p><a id="readmore-rp" href="<?php echo esc_url( $related_post_permalink ); ?>"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-read-more'),'Read More') ?></a>
+				                    	echo wp_trim_words( strip_shortcodes($content) , $excerpt_length ); ?><br><a id="readmore-rp" href="<?php echo esc_url( $related_post_permalink ); ?>"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-read-more'),'Read More') ?></a></p>
 				                    <?php } ?>	
 				                </div>
 				            </li>
