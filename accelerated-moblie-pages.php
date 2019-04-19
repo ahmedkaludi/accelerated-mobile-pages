@@ -353,9 +353,15 @@ function ampforwp_rewrite_activation() {
 	set_transient( 'ampforwp_admin_notice_transient', true );
 
 }
-
+register_deactivation_hook( __FILE__, 'ampforwp_remove_deactivation', 20 );
+function ampforwp_remove_deactivation(){
+	delete_transient( 'ampforwp_automattic_activation_notice');
+}
 add_action( 'admin_init', 'ampforwp_flush_after_update');
 function ampforwp_flush_after_update() {
+	if(function_exists('amp_activate') && get_transient( 'ampforwp_automattic_activation_notice')!=2){
+		set_transient( 'ampforwp_automattic_activation_notice', 1 );
+	}
 	// Flushing rewrite urls ONLY on after Update is installed
 	$older_version = "";
 	$older_version = get_transient('ampforwp_current_version_check');
@@ -731,11 +737,6 @@ function ampforwp_ampwptheme_notice() {
 			</div>
 		<?php }
 	}
-
-	// AMP with AMPforWP notice #2287
-	if ( function_exists('amp_activate') ) { ?>
-		<div class="notice-warning settings-error notice is-dismissible"><p><?php echo esc_html__('AMP by Automattic is activated so the AMPforWP is now in the "Addon Mode". ','accelerated-mobile-pages') ?><a href="https://ampforwp.com/tutorials/article/guide-to-amp-by-automattic-compatibility-in-ampforwp/" target="_blank"><?php echo esc_html__('Learn More','accelerated-mobile-pages'); ?></a></p></div>
-	<?php }
 }
 
 function ampforwp_update_notice() {
@@ -1070,3 +1071,18 @@ function ampforwp_admin_notice(){
        
 	}      
 }
+// AMP with AMPforWP notice #2287
+add_action( 'admin_notices', 'ampforwp_automattic_activation' );
+function ampforwp_automattic_activation(){ 
+	
+	if ( function_exists('amp_activate') && get_transient( 'ampforwp_automattic_activation_notice' ) == 1) { ?>
+		<div id="ampforwp-automattic-notice" class="updated notice is-dismissible message notice notice-alt ampforwp-setup-notice"><p><?php echo esc_html__('AMP by Automattic is activated so the AMPforWP is now in the "Addon Mode". ','accelerated-mobile-pages') ?><a href="https://ampforwp.com/tutorials/article/guide-to-amp-by-automattic-compatibility-in-ampforwp/" target="_blank"><?php echo esc_html__('Learn More','accelerated-mobile-pages'); ?></a></p></div>
+	<?php } }
+
+add_action('wp_ajax_ampforwp_automattic_notice_delete','ampforwp_automattic_notice_delete');
+function ampforwp_automattic_notice_delete(){
+	if ( current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {   
+	  delete_transient( 'ampforwp_automattic_activation_notice');
+	  set_transient( 'ampforwp_automattic_activation_notice', 2 );
+	}
+} 
