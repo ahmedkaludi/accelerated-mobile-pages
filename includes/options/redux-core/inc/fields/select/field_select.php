@@ -118,7 +118,9 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
                 $redux_options = get_option('redux_builder_amp');
                 $options = $new_options = array();
                 if ( isset($this->field['data']) && 'categories' ==  $this->field['data'] ) {
-                    $options = $redux_options['hide-amp-categories'];
+                    if ( ampforwp_get_setting('hide-amp-categories') ) {
+                        $options = ampforwp_get_setting('hide-amp-categories');
+                    }
                     if ( is_array($options) ) {
                         $options = array_keys(array_filter($options));
                         foreach ($options as $option ) {
@@ -128,7 +130,9 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
                     }
                 }
                 elseif ( isset($this->field['data']) && 'tags' ==  $this->field['data'] ) {
-                    $options = $redux_options['hide-amp-tags-bulk-option'];
+                    if ( ampforwp_get_setting('hide-amp-tags-bulk-option') ) {
+                        $options = ampforwp_get_setting('hide-amp-tags-bulk-option');
+                    }
                     if ( is_array($options) ) {
                         $options = array_keys(array_filter($options));
                         foreach ($options as $option ) {
