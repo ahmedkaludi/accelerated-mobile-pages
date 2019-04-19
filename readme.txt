@@ -191,5 +191,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: PHP Warning illegal string offset When AMP layout plugin activate #2951
 * Fixed: CSS is getting breaked in GoodLife theme #2673
 * Fixed: PHP Debug errors in v0.9.97.46 #3011
+* Fixed: Fatal error call to undefined method WPSEO_Options #3008
 
 Full changelog available in changelog.txt
