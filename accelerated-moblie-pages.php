@@ -827,7 +827,7 @@ function ampforwp_get_setting( $opt_name='', $child_option='', $sanitize_method=
 			$opt_value = $redux_builder_amp[$opt_name][$child_option];
 		}
 	}
-	if ( '' !== $sanitize_method ){
+	if ( '' !== $sanitize_method && function_exists($sanitize_method) ){
 		return $sanitize_method($opt_value);
 	}
 	return $opt_value;
