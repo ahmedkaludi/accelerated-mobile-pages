@@ -900,3 +900,10 @@ function ampforwp_seopress_social(){
 		}
 	}
 }
+
+//Remove CSS header from the GoodLife Theme #2673
+add_action('pre_amp_render_post','ampforwp_goodlife_css');
+function ampforwp_goodlife_css(){
+	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
+	remove_action( 'amp_post_template_css', 'thb_amp_additional_css_styles' );
+}
