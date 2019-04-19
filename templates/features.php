@@ -1182,6 +1182,10 @@ function ampforwp_remove_schema_data() {
 
 	// Facebook Button by BestWebSoft Compatibility #1740
 	remove_filter( 'the_content', 'fcbkbttn_display_button' );
+	
+	// Click Mag compatibility #2796
+	remove_filter( 'amp_post_template_file', 'mvp_amp_set_custom_template', 10, 3 );
+	remove_action('amp_post_template_head','mvp_amp_google_font');
 
 	// Removing Voux theme's lazyloading #2263
 	remove_filter( 'the_content', 'thb_lazy_images_filter', 200 );
