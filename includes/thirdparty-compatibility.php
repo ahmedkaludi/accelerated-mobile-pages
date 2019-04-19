@@ -24,6 +24,17 @@ add_action('pre_amp_render_post','schema_lazy_load_remover');
 function schema_lazy_load_remover(){
 	remove_filter( 'wp_get_attachment_image_attributes', 'mts_image_lazy_load_attr', 10, 3 );
 	remove_filter('the_content', 'mts_content_image_lazy_load_attr');
+	//Remove CSS header from the GoodLife Theme #2673
+	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
+	remove_action( 'amp_post_template_css', 'thb_amp_additional_css_styles' );
+	/**
+	* toc 
+	**/
+	if(class_exists('toc')){
+		global $tic;
+	   	remove_filter( 'the_content', array($tic, 'the_content'), 100 );
+	   	add_filter('the_content', 'ampforwp_show_hide_toc');
+	}
 }
 
 //Updater to check license
@@ -677,20 +688,6 @@ function ampforwp_deactivate_update_transient($plugin){
 		$selectedOption = get_option('redux_builder_amp',true);		
 		$selectedOption['amp-design-selector'] = 4;
 		update_option('redux_builder_amp',$selectedOption);
-	}
-}
-//Remove CSS header from the GoodLife Theme #2673
-add_action('pre_amp_render_post','ampforwp_goodlife_css');
-function ampforwp_goodlife_css(){
-	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
-	remove_action( 'amp_post_template_css', 'thb_amp_additional_css_styles' );
-	/**
-	* toc 
-	**/
-	if(class_exists('toc')){
-		global $tic;
-	   	remove_filter( 'the_content', array($tic, 'the_content'), 100 );
-	   	add_filter('the_content', 'ampforwp_show_hide_toc');
 	}
 }
 
