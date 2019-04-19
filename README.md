@@ -191,6 +191,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: CSS is getting breaked in GoodLife theme #2673
 * Fixed: PHP Debug errors in v0.9.97.46 #3011
 * Fixed: Fatal error call to undefined method WPSEO_Options #3008
+* Fixed: Proper escaping in Alexa Analytics #2984
 
 = 0.9.97.46.1 (10th April 2019) =
 * Fixed: Theme framework templates loading multiple times #2977
