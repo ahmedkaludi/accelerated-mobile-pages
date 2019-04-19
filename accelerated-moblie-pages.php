@@ -350,6 +350,7 @@ function ampforwp_rewrite_activation() {
 
     // Set transient for Welcome page
 	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
+	set_transient( 'ampforwp_admin_notice_transient', true );
 
 }
 
@@ -1060,4 +1061,12 @@ function ampforwp_sanitizers_loader(){
 			class AMP_Blacklist_Sanitizer extends AMPforWP\AMPVendor\AMP_Blacklist_Sanitizer{}
 		} 
 	}
+}
+add_action( 'admin_notices', 'ampforwp_admin_notice' );
+function ampforwp_admin_notice(){ 
+    if( get_transient( 'ampforwp_admin_notice_transient' ) ){
+    echo '<div id="ampforwp-wizard-notice" class="updated notice is-dismissible message notice notice-alt ampforwp-setup-notice">
+        <p><span class="dashicons dashicons-thumbs-up"></span>'.esc_html__('Thank you for using AMPforWP plugin!', 'accelerated-mobile-pages').'<a href="'.esc_url( admin_url( 'plugins.php?page=ampforwptourinstaller&ampforwp_install=1' ) ).'"> '.esc_html__('Run a installation wizard', 'accelerated-mobile-pages') .'</a></p></div>'; 
+       
+	}      
 }

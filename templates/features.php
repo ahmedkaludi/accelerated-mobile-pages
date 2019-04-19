@@ -7823,3 +7823,9 @@ function ampforwp_webp_support() {
 			}
 	}
 }
+add_action('wp_ajax_ampforwp_notice_delete','ampforwp_notice_delete');
+function ampforwp_notice_delete(){
+	if ( current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {
+	  delete_transient( 'ampforwp_admin_notice_transient');
+	}
+}
