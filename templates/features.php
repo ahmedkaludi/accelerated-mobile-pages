@@ -3738,7 +3738,7 @@ function ampforwp_remove_sq_seo() {
 function ampforwp_view_nonamp(){
 	global $redux_builder_amp, $post, $wp;
   	$nofollow = $page = $amp_url = $non_amp_url = '';
-   	if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
+   	if( true == ampforwp_get_setting('ampforwp-nofollow-view-nonamp') ){
    		$nofollow = 'rel=nofollow';
    	}
 	$amp_url = untrailingslashit( home_url( $wp->request ) );
@@ -3761,7 +3761,7 @@ function ampforwp_view_nonamp(){
 	}
 	else
 		$non_amp_url = user_trailingslashit($non_amp_url);
-   	if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
+   	if ( true == ampforwp_get_setting('ampforwp-amp-takeover') ) {
    		$non_amp_url = '';
    	}
 
