@@ -1492,7 +1492,11 @@ function ampforwp_custom_og_url_homepage() {
 	return esc_url( get_bloginfo( 'url' ) );
 }
 function ampforwp_custom_twitter_image_homepage($image){
-	$twitter = '';
+	$twitter = $WPSEO_get = '';
+	$WPSEO_Options = WPSEO_Options::get_instance();
+ 	if( method_exists($WPSEO_Options, 'get') ){
+		$WPSEO_get = WPSEO_Options::get( 'twitter_site', '' );
+	}
 	if ( ampforwp_get_the_ID() ) {
 		$post_id = ampforwp_get_the_ID();
 		$post = get_post($post_id);
@@ -1512,7 +1516,7 @@ function ampforwp_custom_twitter_image_homepage($image){
 	if ( is_string( $twitter ) && $twitter !== '' ) {
 		echo '<meta ', esc_attr( 'name' ), '="twitter:', esc_attr( 'creator' ), '" content="','@' . esc_attr($twitter), '" />', "\n";
 	}
-	elseif ( WPSEO_Options::get( 'twitter_site', '' ) !== '' && is_string( WPSEO_Options::get( 'twitter_site' ) ) ) {
+	elseif ( $WPSEO_get !== '' && is_string( $WPSEO_get ) ) {
 		echo '<meta ', esc_attr( 'name' ), '="twitter:', esc_attr( 'creator'), '" content="', '@' . esc_attr(WPSEO_Options::get( 'twitter_site' )), '" />', "\n";
 	}
 }
