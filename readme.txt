@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1.1
-Stable tag: 0.9.97.46.1
+Stable tag: 0.9.97.47
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,7 +184,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.46.1 (10th April 2019) =
-* Fixed: Theme framework templates loading multiple times #2977
+= 0.9.97.47 (19th April 2019) =
+* Added: AMP by Automattic Compatibility integrated #2287
+* Added: Click Mag WP Theme compatibility integrated #2796
+* Added: New filter in contents-module of page builder for raw html #3001
+* Fixed: PHP Warning illegal string offset When AMP layout plugin activate #2951
+* Fixed: CSS is getting breaked in GoodLife theme #2673
+* Fixed: PHP Debug errors in v0.9.97.46 #3011
 
 Full changelog available in changelog.txt
