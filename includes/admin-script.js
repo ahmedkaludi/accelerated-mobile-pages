@@ -871,6 +871,15 @@ jQuery(document).ready(function($){
         });
     });
 
+    // Dismiss button functionlaity
+    $('#ampforwp-wizard-notice').on('click', 'button', function(){
+        var notice = {
+            'action': 'ampforwp_notice_delete',
+        };
+        jQuery.post(ajaxurl, notice, function(response) {     
+        });
+    });
+
 });//(document).ready Closed
 
 jQuery(document).ready(function($){
