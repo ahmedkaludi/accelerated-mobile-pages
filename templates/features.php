@@ -485,7 +485,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	// 2. Custom Design
 
 	// Add Homepage AMP file code
-	add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
+	//add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
 	function ampforwp_custom_template( $file, $type, $post ) {
         global $redux_builder_amp;
 	   	// Custom Homepage and Archive file
@@ -531,7 +531,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    return $file;
 	}
 
-add_filter('amp_post_template_dir','ampforwp_new_dir');
+//add_filter('amp_post_template_dir','ampforwp_new_dir');
 function ampforwp_new_dir( $dir ) {
 		global $redux_builder_amp;
 		if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) {
@@ -544,7 +544,7 @@ function ampforwp_new_dir( $dir ) {
 }
 
 	//3.5
-	add_filter( 'amp_post_template_file', 'ampforwp_empty_filter', 10, 3 );
+	//add_filter( 'amp_post_template_file', 'ampforwp_empty_filter', 10, 3 );
 	function ampforwp_empty_filter( $file, $type, $post ) {
 		if ( 'empty-filter' === $type ) {
 			$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/empty-filter.php';
@@ -6459,11 +6459,11 @@ if ( ! function_exists('ampforwp_sd_feature_image_guidlines') ) {
 		if ( isset($metadata['image']['width']) && $metadata['image']['width'] <= 1200  ){
 			$image_width = 1280;
 			$image_height = 720;
-			$image = ampforwp_aq_resize( $metadata['image']['url'], $image_width, $image_height, true, false, true );
+			/*$image = ampforwp_aq_resize( $metadata['image']['url'], $image_width, $image_height, true, false, true );
 			$image_url = $image[0]; 
 			$metadata['image']['url'] = $image_url;
 			$metadata['image']['width'] = $image_width;
-			$metadata['image']['height'] = $image_height;
+			$metadata['image']['height'] = $image_height;*/
 		}
 		return $metadata;
 	}

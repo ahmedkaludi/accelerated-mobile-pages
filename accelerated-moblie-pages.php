@@ -989,3 +989,55 @@ function ampforwp_sanitizers_loader(){
 		} 
 	}
 }
+
+
+
+
+add_filter("the_content", "sanitize_the_content_forninteen");
+function sanitize_the_content_forninteen($content){
+	require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-dom-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-html-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-string-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-wp-utils.php' );
+
+require_once( AMP__VENDOR__DIR__ . '/includes/class-amp-content.php' );
+
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-style-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-blacklist-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-img-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-video-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-iframe-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-audio-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-playbuzz-sanitizer.php' );
+
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-rule-spec.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-allowed-tags-generated.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-tag-and-attribute-sanitizer.php' );
+
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-dailymotion-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-gallery-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-instagram-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-vine-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-facebook-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-vimeo-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-soundcloud-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-pinterest-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-wistia-embed.php' );
+	$sanitizer_obj = new AMPFORWP_Content( $content,
+							array(), 
+							apply_filters( 'ampforwp_content_sanitizers', 
+								array( 'AMP_Img_Sanitizer' => array(), 
+									'AMP_Blacklist_Sanitizer' => array(),
+									'AMP_Style_Sanitizer' => array(), 
+									'AMP_Video_Sanitizer' => array(),
+			 						'AMP_Audio_Sanitizer' => array(),
+			 						'AMP_Iframe_Sanitizer' => array(
+										 'add_placeholder' => true,
+									 ),
+								) 
+							) 
+						);
+	 return $sanitizer_obj->get_amp_content();
+}
