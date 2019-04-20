@@ -7824,6 +7824,7 @@ function ampforwp_video_docking_script( $data ) {
 		return $data;
 }
 function ampforwp_webp_support() {
+	$post_id = ampforwp_get_the_ID();
 	if (has_post_thumbnail( $post_id ) ){
 				$thumb_id = get_post_thumbnail_id($post_id);
 				$image_size = apply_filters( 'ampforwp_featured_image', 'full' ); 
