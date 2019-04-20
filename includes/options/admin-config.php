@@ -3472,7 +3472,6 @@ Redux::setSection( $opt_name, array(
                    'indent' => true,
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
           array(
                     'id'    => 'gnrl-sidebar',
