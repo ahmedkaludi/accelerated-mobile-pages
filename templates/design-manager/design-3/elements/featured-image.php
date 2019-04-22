@@ -51,7 +51,7 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 			</div> <?php 
 		}
 	}else{
-		ampforwp_webp_support();
+		ampforwp_webp_featured_image();
 	}
 
 do_action('ampforwp_after_featured_image_hook',$this); ?>
