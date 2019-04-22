@@ -7462,14 +7462,14 @@ add_action("amp_css", 'ampforwp_darkmode_css');
 	}
 	?>
 	.darkmode-button button[type=submit] {
-        width: 60px;
-        height: 34px;
-        cursor: pointer;
-        border: none;
-        transition: .4s;
-        transition: background 300ms ease-in-out;
-        border-radius: 34px;
-        position: relative;
+        width: 56px;
+	    height: 26px;
+	    cursor: pointer;
+	     border: 1px solid #ffffff42;
+	    transition: .4s;
+	    transition: background 300ms ease-in-out;
+	    border-radius: 34px;
+	    position: relative;
       }
       .darkmode-button amp-list {
         margin: var(--space-2);
@@ -7477,30 +7477,46 @@ add_action("amp_css", 'ampforwp_darkmode_css');
       .darkmode-button .heart-fill:before{
       	position: absolute;
 	    content: "";
-	    height: 26px;
-	    width: 26px;
-	    right: 4px;
-	    top: 12%;
+	    height: 20px;
+	    width: 20px;
+	    right: 2px;
+	    top: 2px;
 	    background-color: white;
 	    transition: .4s;
-	    border-radius:100%;
-  		}
+	    border-radius: 100%;
+  	  }
+  	  .darkmode-button .heart-fill:after {
+	    content: "ON";
+	    font-size: 10px;
+	    color: #999;
+	    position: absolute;
+	    left: 6px;
+	    top: 6px;
+	  }
       .darkmode-button .heart-fill {
-       	background-color:green;
+       	background-color:#000;
       }
       .darkmode-button .heart-border{
-      	background-color:#7a7a7a;
+      	background-color:#444;
    	  }
+   	  .darkmode-button .heart-border:before {
+	    content: "OFF";
+	    font-size: 10px;
+	    color: #999;
+	    position: absolute;
+	    right: 6px;
+    	top: 6px;
+	  }
       .darkmode-button .heart-border:after{
-      	position: absolute;
+  	    position: absolute;
 	    content: "";
-	    height: 26px;
-	    width: 26px;
-	    left: 4px;
-	    top: 12%;
+	    height: 20px;
+	    width: 20px;
+	    left: 3px;
+	    top: 2px;
 	    background-color: white;
 	    transition: .4s;
-	    border-radius:100%;
+	    border-radius: 100%;
       }
       .darkmode-button .heart-loading:before,
       .darkmode-button .heart-loading[placeholder] {
