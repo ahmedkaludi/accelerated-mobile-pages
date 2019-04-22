@@ -212,9 +212,17 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if( is_front_page() && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
         return;
 	    }
-	    if ( is_archive() && !$redux_builder_amp['ampforwp-archive-support'] ) {
+	    if ( is_archive()  ) {
+	    	if(!ampforwp_get_setting('ampforwp-archive-support')){
 				return;
-			}
+	    	}
+	    	if( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat')){
+	    		return;
+	    	}
+	    	if( is_tag() && !ampforwp_get_setting('ampforwp-archive-support-tag') ){
+	    		return;
+	    	}
+		}
 		// #1192 Password Protected posts exclusion
 		if(post_password_required( $post )){
 				return;

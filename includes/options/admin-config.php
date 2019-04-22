@@ -1441,13 +1441,30 @@ $tabs = array(
                'default' => 0,
                'required' => array('amp-frontpage-select-option', '=' , '1'),
             ),
-
            array(
                'id'       => 'ampforwp-archive-support',
                'type'     => 'switch',
-               'title'    => __('Archives [Category & Tags]', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => __('Enable AMP Support on Archives.', 'accelerated-mobile-pages'),
+               'title'    => esc_html__('Archives [Category & Tags]', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable AMP Support on Archives.', 'accelerated-mobile-pages'),
                'default'  => '0'
+             ),
+            array(
+               'id'       => 'ampforwp-archive-support-cat',
+               'type'     => 'switch',
+               'class' => 'child_opt child_opt_arrow',
+               'title'    => esc_html__('Category', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable AMP Support on Categories.', 'accelerated-mobile-pages'),
+               'default'  => '1',
+               'required' => array('ampforwp-archive-support', '=' , '1')
+             ),
+             array(
+               'id'       => 'ampforwp-archive-support-tag',
+               'type'     => 'switch',
+               'class' => 'child_opt child_opt_arrow',
+               'title'    => esc_html__('Tags', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable AMP Support on Tags.', 'accelerated-mobile-pages'),
+               'default'  => '1',
+               'required' => array('ampforwp-archive-support', '=' , '1')
              ),
            $amp_cpt_option,
             array(
