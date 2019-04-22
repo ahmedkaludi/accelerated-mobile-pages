@@ -12,13 +12,15 @@ class AMP_Video_Sanitizer extends AMP_Base_Sanitizer {
 
 	private static $script_slug = 'amp-video';
 	private static $script_src = 'https://cdn.ampproject.org/v0/amp-video-0.1.js';
+	private static $script_slug_dock = 'amp-video-docking';
+	private static $script_src_dock = 'https://cdn.ampproject.org/v0/amp-video-docking-0.1.js';
 
 	public function get_scripts() {
 		if ( ! $this->did_convert_elements ) {
 			return array();
 		}
 
-		return array( self::$script_slug => self::$script_src );
+		return array( self::$script_slug => self::$script_src , self::$script_slug_dock => self::$script_src_dock  );
 	}
 
 	public function sanitize() {
