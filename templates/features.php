@@ -7174,28 +7174,28 @@ if ( ! function_exists('ampforwp_post_metas') ) {
 				// If metas array is empty, then add the previous metas in it
 				if( !isset($post_metas['ampforwp-amp-on-off'] ) || null == $post_metas['ampforwp-amp-on-off'] ) {
 					$post_metas['ampforwp-amp-on-off'] = get_post_meta($post_id,'ampforwp-amp-on-off',true);
-					//update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+					update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
 				}
 				if( !isset($post_metas['ampforwp-redirection-on-off'] ) || null == $post_metas['ampforwp-redirection-on-off'] ) {
 					$post_metas['ampforwp-redirection-on-off'] = get_post_meta($post_id,'ampforwp-redirection-on-off',true);
-					//update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+					update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
 				}
 				if( !isset($post_metas['ampforwp-ia-on-off'] ) || null == $post_metas['ampforwp-ia-on-off'] ) {
 					$post_metas['ampforwp-ia-on-off'] = get_post_meta($post_id,'ampforwp-ia-on-off',true);
-					//update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+					update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
 				}
 				if( !isset($post_metas['use_ampforwp_page_builder'] ) || null == $post_metas['use_ampforwp_page_builder'] ) {
 					$post_metas['use_ampforwp_page_builder'] = get_post_meta($post_id,'use_ampforwp_page_builder',true);
-					//update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+					update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
 				}
 				if( !isset($post_metas['ampforwp_page_builder_enable'] ) || null == $post_metas['ampforwp_page_builder_enable'] ) {
 					$post_metas['ampforwp_page_builder_enable'] = get_post_meta($post_id,'ampforwp_page_builder_enable',true);
-					//update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+					update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
 				}
 				if( !isset($post_metas['ampforwp_custom_content_editor_checkbox'] ) || null == $post_metas['ampforwp_custom_content_editor_checkbox'] ) {
 					$post_metas['ampforwp_custom_content_editor_checkbox'] = get_post_meta($post_id,'ampforwp_custom_content_editor_checkbox',true);
+					update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
 				}
-				update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
 					
 				// Delete the previous metas
 				if( isset($post_metas['ampforwp-amp-on-off'] ) ) {
