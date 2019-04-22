@@ -50,7 +50,10 @@ function amppbbase_admin_scripts( $hook_suffix ){
 					
 			$ampforwp_metas = array();
 			$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
-			$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];			
+			$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];	
+			if ( !$ampforwp_pagebuilder_enable ){
+				$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+			}
 			$previousData = get_post_meta($postId,'amp-page-builder');
 			//$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 			$previousData = isset($previousData[0])? $previousData[0]: null;
@@ -98,6 +101,9 @@ function amppbbase_admin_scripts( $hook_suffix ){
 				}
 			}
 			$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
+			if ( !isset($ampforwp_metas['ampforwp_page_builder_enable']) && null !== get_post_meta($postId,'ampforwp_page_builder_enable', true) ){
+				$ampforwp_metas['ampforwp_page_builder_enable'] = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+			}
 			$components_options = array(
 									"ajaxUrl"=>admin_url( 'admin-ajax.php' ),
 									"secure_nonce" => wp_create_nonce('verify_pb'),

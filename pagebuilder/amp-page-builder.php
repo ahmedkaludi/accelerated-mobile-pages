@@ -51,6 +51,7 @@ function amp_content_pagebuilder_title_callback( $post ){
 	if($amp_post_metas['use_ampforwp_page_builder'] == null  && 
 		get_post_meta( $amp_current_post_id, 'amp-page-builder', true ) != ''){
 		$amp_post_metas['use_ampforwp_page_builder'] = 'yes';
+		$amp_post_metas['ampforwp_page_builder_enable'] = 'yes';
 		update_post_meta( $amp_current_post_id, 'ampforwp-post-metas', json_encode($amp_post_metas) );
 	}
 	//Disable page builder
@@ -85,7 +86,11 @@ function ampforwp_call_page_builder(){
 	
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$layoutNameClass = get_post_meta($postId,'amp-page-builder-layout-name',true);
+	$ampforwp_stored_meta = json_decode(get_post_meta( $postId,'ampforwp-post-metas', true ), true);
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	if ( isset($ampforwp_stored_meta['ampforwp_page_builder_enable']) && '' != $ampforwp_stored_meta['ampforwp_page_builder_enable'] ) {
+		$ampforwp_pagebuilder_enable = $ampforwp_stored_meta['ampforwp_page_builder_enable'];
+	}
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	
 	$previousData = (str_replace("'", "&apos;", $previousData));
@@ -143,7 +148,7 @@ function ampforwp_call_page_builder(){
 	<div id="ampForWpPageBuilder_container">
 		<div id="start_amp_pb_post" class="start_amp_pb" data-postId="<?php echo esc_attr(get_the_ID()) ?>" v-if="startPagebuilder==0" @click="amppb_startFunction($event)"><?php echo esc_html__('Start the AMP Page Builder','accelerated-mobile-pages'); ?></div>
 		<div class="enable_ampforwp_page_builder" v-if="startPagebuilder==1">
-			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes"   v-model="checkedPageBuilder"><?php echo esc_html__('Use Builder','accelerated-mobile-pages'); ?></label>
+			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if ( isset ( $ampforwp_pagebuilder_enable ) ) checked( $ampforwp_pagebuilder_enable, 'yes' ); ?>  v-model="checkedPageBuilder"><?php echo esc_html__('Use Builder','accelerated-mobile-pages'); ?></label>
 			<label  @click="showModal = true;"><?php echo esc_html__('Pre-built AMP Layouts','accelerated-mobile-pages'); ?></label>
 		</div>
 		<div id="amp-page-builder" v-if="startPagebuilder==1">
