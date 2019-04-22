@@ -41,7 +41,7 @@
 			 								<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
 			 							<?php }   ?>         							
 										<div class="comment-author vcard">
-											<?php  printf(('<b class="fn">%s</b> <span class="says">'.esc_html(ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says')).':</span>'), get_comment_author_link()) ?>
+											<?php  printf('<b class="fn">%s</b> <span class="says">'.esc_html(ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says')).':</span>', get_comment_author_link()) ?>
 										</div>
 										<!-- .comment-author -->
 										<div class="comment-metadata">
