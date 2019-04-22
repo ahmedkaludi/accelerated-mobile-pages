@@ -1709,7 +1709,14 @@ if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
 <?php }
 if($redux_builder_amp['enable-single-stumbleupon-share']){?>
 .s_su{background:#eb4924;}
-.s_su:after{content: "\e93e";}
+.s_su:after{
+<?php if ( ampforwp_get_setting('ampforwp_font_icon') == 'swift-icons' ){ ?>
+	content: "\e93e";
+<?php }
+if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
+	content:"\f1a3";
+<?php } ?>
+}
 <?php }
 if($redux_builder_amp['enable-single-wechat-share']){?>
 .s_wc{background:#7bb32e;}
@@ -1751,7 +1758,11 @@ if(isset($redux_builder_amp['enable-single-hatena-bookmarks']) && $redux_builder
 	content: "\e948";
 <?php }
 if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
-	content:"\f39f";
+	content:"";
+	display:inline-block;
+	background-image:url(<?php echo AMPFORWP_IMAGE_DIR . '/hatena-img.png' ?>);
+	width:16px;
+	height:16px;
 <?php } ?>
 }
 <?php }

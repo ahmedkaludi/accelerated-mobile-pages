@@ -160,7 +160,15 @@ jQuery(function($) {
             })
         }
     }//Cloesed function  = optionSectionDevision
-
+    // Dismiss button functionlaity
+    $('#ampforwp-automattic-notice').on('click', 'button', function(){
+        var data_notice = {
+            'action': 'ampforwp_automattic_notice_delete',
+        };
+        jQuery.post(ajaxurl, data_notice, function(response) {   
+    
+        });
+    });
     var hideReduxLeftTabs = function(){
         jQuery('ul.redux-group-menu > li.redux-group-tab-link-li').siblings('.redux-group-tab-link-li').each(function(key,Data){
             if(key>3){

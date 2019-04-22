@@ -52,7 +52,7 @@ class AMP_Playlist_Embed_Handler extends AMP_Base_Embed_Handler {
 	 *
 	 * @var int
 	 */
-	const CAROUSEL_HEIGHT = 160;
+	const CAROUSEL_HEIGHT = 250;
 
 	/**
 	 * The pattern to get the playlist data.
@@ -169,7 +169,7 @@ class AMP_Playlist_Embed_Handler extends AMP_Base_Embed_Handler {
 						</div><?php 
 						$track_src = preg_replace('#^https?:#', '', $track['src']);
 						  ?>
-						<amp-audio width="auto" height="50" src="<?php echo esc_url( $track_src ); ?>"></amp-audio>
+						<amp-audio width="600" height="50" src="<?php echo esc_url( $track_src ); ?>"></amp-audio>
 					</div>
 				<?php endforeach; ?>
 			</amp-carousel>
@@ -315,17 +315,24 @@ class AMP_Playlist_Embed_Handler extends AMP_Base_Embed_Handler {
 		return '';
 	}
 	function ampforwp_playlist(){ ?>
-		.amp-carousel-slide .wp-playlist-current-item{display: inline-flex;align-items: center;margin-bottom: 20px;}
-		.amp-carousel-slide .wp-playlist-caption{margin-left:20px;}
-		 .amp-carousel-slide{background: #ccc;padding: 10px;border-radius: 3px;box-sizing: border-box;}
+		.amp-carousel-slide .wp-playlist-current-item{display: grid;grid-template-columns: 50px 1fr;align-items: center;margin-bottom: 20px;    grid-gap: 0px 20px;}
+		 .amp-carousel-slide{background: #ccc;padding: 10px;border-radius: 3px;box-sizing: border-box;    display: inline-grid;}
 		.wp-playlist-tracks{background: #f1f1f1;width: 100%;margin-top: 10px;padding: 30px;margin-bottom:20px;box-sizing: border-box;}
 		.wp-playlist-item{margin-bottom:15px;font-size: 16px;line-height: 1.4;}
 		.wp-playlist-item a{color:#333;}
 		.amp-carousel-slide amp-audio audio{width:100%;}
 		.wp-playlist-caption{cursor: pointer;} 
 		.wp-playlist-item.wp-playlist-playing, .wp-playlist-item.wp-playlist-playing a{color:#00b900;}
+		.amp-carousel-slide amp-audio{margin:0 auto;display:block;}
+		@media(max-width:767px){
+			.amp-carousel-slide amp-audio{max-width:300px}
+		}
 		@media(max-width:500px){
 			.wp-playlist-tracks {padding:20px;}
-		} <?php 
+		}
+		@media(max-width:400px){
+			.amp-carousel-slide amp-audio{max-width:240px}
+		}
+		 <?php 
 	}
 }

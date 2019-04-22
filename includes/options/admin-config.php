@@ -2685,7 +2685,7 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'ampforwp_font_icon',
                         'type'     => 'select',
-                        'title'    => __('Google Font Icons', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Google Font Icons', 'accelerated-mobile-pages'),
                         'options'  => array(
                             'swift-icons'       => 'Swift Default Icons',
                             'fontawesome-icons'     => 'Font Awesome Icons'
@@ -3472,7 +3472,6 @@ Redux::setSection( $opt_name, array(
                    'indent' => true,
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
           array(
                     'id'    => 'gnrl-sidebar',
