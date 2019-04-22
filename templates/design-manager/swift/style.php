@@ -2090,7 +2090,7 @@ if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && ( (is_single() && tr
 border-bottom: 1px solid #eee;
 <?php }?>}
 .breadcrumb ul li,.breadcrumbs span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
-.breadcrumb ul li a, .breadcrumbs span a{color: #999;letter-spacing: 1px;}
+.breadcrumb ul li a, .breadcrumbs span a, .breadcrumbs .bread-post{color: #999;letter-spacing: 1px;}
 .breadcrumb ul li a:hover, .breadcrumbs span a:hover{color: <?php echo $hovercolor; ?>;}
 .breadcrumbs li a:after, .breadcrumbs span a:after{
 <?php if ( ampforwp_get_setting('ampforwp_font_icon') == 'swift-icons' ){ ?>
