@@ -7844,3 +7844,10 @@ function ampforwp_notice_delete(){
 	  delete_transient( 'ampforwp_admin_notice_transient');
 	}
 }
+add_action('amp_post_template_data', 'ampforwp_design4_carousel');
+function ampforwp_design4_carousel($data){
+	if (  true == ampforwp_get_setting('ampforwp-single-related-posts-switch') ) {
+	  $data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
+	}
+	return($data);
+}
