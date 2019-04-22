@@ -7162,10 +7162,10 @@ if ( ! function_exists('ampforwp_old_metas_transient') ) {
 	}
 }
 
-add_action('wp', 'ampforwp_post_metas');
+add_action('admin_head', 'ampforwp_post_metas');
 if ( ! function_exists('ampforwp_post_metas') ) {
 	function ampforwp_post_metas(){
-		//if ( true == get_transient('ampforwp_old_post_metas') ) {
+		if ( true == get_transient('ampforwp_old_post_metas') ) {
 			$posts = get_posts();
 			foreach ($posts as $post) {
 				$post_id = $post->ID;
@@ -7218,7 +7218,7 @@ if ( ! function_exists('ampforwp_post_metas') ) {
 				}
 			}
 			delete_transient('ampforwp_old_post_metas');
-		//}
+		}
 	}
 }
 
