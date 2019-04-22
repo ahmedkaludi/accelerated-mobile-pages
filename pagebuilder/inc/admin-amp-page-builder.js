@@ -498,7 +498,7 @@ Vue.component('text-editor',{
 
 Vue.component('fields-data',{
 	template: '#fields-data-template',
-	props: ['field', 'fieldkey', 'defaulttab', 'completeFields','repeater', 'repeterIndex'],
+	props: ['field', 'fieldkey', 'defaulttab', 'completeFields','repeater'],
 	data:function(){
 		return {
 			iconSearch:'',
@@ -656,80 +656,13 @@ Vue.component('fields-data',{
 			field.default = icon.name;
 			this.$forceUpdate();
 		},
-		fieldShowHideCheck: function(field,repeater, repeterIndex){
+		fieldShowHideCheck: function(field){
 			var returnOpt = [];
-			//console.log(field.name);
 			returnOpt.push(true);
-				//console.log("aaya");
-				// console.log(field.required);
-				// console.log(repeater);
-				//console.log(JSON.stringify(app.modalcontent));
-			// if( repeater==1){//app.modalcontent.repeater.showFields
-			// 	//console.log(app.modalcontent.repeater.showFields[repeterIndex]);
-			// 	//var requiredCondition = field.required;
-			// 	app.modalcontent.repeater.showFields[repeterIndex].forEach(function(maindata, key){
-			// 		if(maindata.required){
-			// 			var requiredCondition = maindata.required;
-			// 			app.modalcontent.repeater.showFields[repeterIndex].forEach(function(secondarydata, key){
-			// 				 //console.log(requiredCondition[secondarydata.name]);
-			// 				 //console.log(secondarydata.default);
-			// 				if ( requiredCondition[secondarydata.name.replace('_'+repeterIndex,'')] ){
-			// 				 //console.log(requiredCondition[secondarydata.name.replace('_'+repeterIndex,'')]);
-			// 				 //console.log(maindata);
-			// 				// console.log(secondarydata);
-			// 					if (  requiredCondition[secondarydata.name.replace('_'+repeterIndex,'')] == secondarydata.default ) {
-			// 						returnOpt.push(true);
-
-			// 					}
-			// 					else{
-			// 						//returnOpt.push(false);
-			// 					}
-			// 				//console.log(requiredCondition);
-			// 				}
-			// 				/*else{
-			// 				}*/
-			// 				// console.log(secondarydata.name);
-			// 				//if(requiredCondition[secondarydata.name] == ) 
-			// 			});
-			// 		}
-			// 		//console.log(field.default);
-			// 		// if (requiredCondition[maindata.name+'_'+repeterIndex]) {
-			// 		// 	if( Array.isArray(requiredCondition[maindata.name]) ){
-			// 		// 			var length = requiredCondition[maindata.name].length
-			// 		// 			var checkingInArray = false;
-			// 		// 			for(var i = 0; i < length; i++) {
-			//   //                       if(requiredCondition[maindata.name][i] == maindata.default){
-			//   //                       	checkingInArray = true;
-			//   //                       	return false;	
-			//   //                       } 
-			//   //                   }
-			//   //                   if(checkingInArray){
-			//   //                   	returnOpt.push(true);
-			//   //                   }else{
-			//   //                   	returnOpt.push(false);
-			//   //                   }
-			// 		// 		}else 
-			// 		// 		// console.log(maindata.default);
-			// 		// 		// console.log(requiredCondition[maindata.name]);
-			// 		// 		if( maindata.default==requiredCondition[maindata.name+'_'+repeterIndex]){
-			// 		// 			//console.log("if me aaya");
-			// 		// 			returnOpt.push(true);
-			// 		// 		}else{
-			// 		// 			//console.log("else me aaya");
-			// 		// 			returnOpt.push(false);
-			// 		// 		}
-
-			// 		// }
-
-			// 	});
-
-			// }
-			// else 
-				if(field.required){
+			if(field.required){
 				var requiredCondition = field.required;
 
 					app.modalcontent.fields.forEach(function(maindata, key){
-						//console.log(requiredCondition[maindata.name]);
 						if(requiredCondition[maindata.name]){
 							if( Array.isArray(requiredCondition[maindata.name]) ){
 								var length = requiredCondition[maindata.name].length

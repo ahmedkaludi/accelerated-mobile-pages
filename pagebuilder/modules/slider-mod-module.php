@@ -350,10 +350,10 @@ return array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
 								'tab'		=>'customizer',
+								'label'		=>'Responsive',
 								'default'	=>array('responsive'),
 								'options'	=>array(
 												array(
-													'label'=>'Responsive',
 													'value'=>'responsive',
 												),
 											),
@@ -363,15 +363,30 @@ return array(
 								'type'		=>'checkbox_bool',
 								'name'		=>"lightbox_gallery",
 								'tab'		=>'customizer',
+								'label'		=>'Lightbox',
 								'default'	=>0,
 								'options'	=>array(
 												array(
-													'label'=>esc_html__('Lightbox','accelerated-mobile-pages'),
+													'label'=>esc_html__('Make a Lightbox for Images','accelerated-mobile-pages'),
 													'value'=>1,
 												),
 											),
 								'content_type'=>'html',
 							),
+				        array(		
+		 						'type'		=>'checkbox_bool',		
+		 						'name'		=>"img_hyperlink",		
+		 						'label'		=>'Hyperlink',
+		           				'tab'     	=>'customizer',
+		 						'default'	=>0,
+		 						'content_type'=>'html',	
+		           				'options'	=>array(
+												array(
+													'label'=>'Make an Hyperlink Image',
+													'value'=>1,
+												),
+											),
+	 						),
 				        array(
 								'type'		=>'text',
 								'name'		=>"text-size",
@@ -613,21 +628,24 @@ return array(
 		           				'required'  => array('carousel_layout_type'=>array('1','2','3')),
 
 	 						),
-	 						array(		
-		 						'type'		=>'checkbox_bool',		
-		 						'name'		=>"img_hyperlink",		
-		 						'label'		=>'Hyperlink',
-		           				'tab'     	=>'customizer',
-		 						'default'	=>0,
-		 						'content_type'=>'html',	
-		           				'options'	=>array(
-												array(
-													'label'=>'Make an Hyperlink Image',
-													'value'=>1,
-												),
-											),
+ 							array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"content_title",		
+		 						'label'		=>'Heading',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Heading',	
+		           				'content_type'=>'html',
+		           				'required'  => array('carousel_layout_type'=>'3'),
 	 						),
-
+	 						array(		
+		 						'type'		=>'text-editor',		
+		 						'name'		=>"content",		
+		 						'label'		=>'Content',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Description',	
+		           				'content_type'=>'html',
+		           				'required'  => array('carousel_layout_type'=>'3'),
+	 						),
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"hyperlink_link_img",		
@@ -649,24 +667,6 @@ return array(
 	 											),
 	 							'content_type'=>'html',
 	 							'required'  => array('img_hyperlink'=>'1'),
-	 						),
-							array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"content_title",		
-		 						'label'		=>'Heading',
-		           				'tab'       =>'customizer',
-		 						'default'	=>'Heading',	
-		           				'content_type'=>'html',
-		           				'required'  => array('carousel_layout_type'=>'3'),
-	 						),
-	 						array(		
-		 						'type'		=>'text-editor',		
-		 						'name'		=>"content",		
-		 						'label'		=>'Content',
-		           				'tab'       =>'customizer',
-		 						'default'	=>'Description',	
-		           				'content_type'=>'html',
-		           				'required'  => array('carousel_layout_type'=>'3'),
 	 						),
 	 						array(		
 		 						'type'		=>'text-editor',		

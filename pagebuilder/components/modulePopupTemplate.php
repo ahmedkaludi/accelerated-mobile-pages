@@ -38,7 +38,6 @@
                                 :fieldkey="key"
                                 :completeFields="modalcontent.fields"
                                 :repeater="0"
-                                :repeterIndex="0"
                                 :defaulttab="modalcontent.default_tab"
                             ></fields-data>
                             <div v-if="modalcontent.repeater && modalcontent.repeater.tab==modalcontent.default_tab" class="amp-repeaters" v-show="repeaterShowHideCheck(modalcontent)">
@@ -46,18 +45,17 @@
                                 <div class="heading">
                                 </div>
                                 
-                                <div v-for="(repeaterfields, repeterkey, index) in modalcontent.repeater.showFields" class="amp-repeat-field" :class="[{'amp-repeat-active': (repeterkey==0)}, 'repeater-'+ repeterkey]" >
-                                    <div class="amp-accordion-head amppb_accordion__panel"   v-on:click="repeaterAcoordian($event);"><span class="repeater_num">{{repeterkey+1}}</span> {{modalcontent.label}} Field
-                                        <span class="amp-accordion-label"> {{(repeterkey==0)? '(Hide)': '(Show)'}}</span>
+                                <div v-for="(repeaterfields, key, index) in modalcontent.repeater.showFields" class="amp-repeat-field" :class="[{'amp-repeat-active': (key==0)}, 'repeater-'+ key]" >
+                                    <div class="amp-accordion-head amppb_accordion__panel"   v-on:click="repeaterAcoordian($event);"><span class="repeater_num">{{key+1}}</span> {{modalcontent.label}} Field
+                                        <span class="amp-accordion-label"> {{(key==0)? '(Hide)': '(Show)'}}</span>
                                         <div class="right"
-                                             v-on:click="removeRepeaterSection(repeterkey, modalcontent.repeater.showFields)">Remove</div>
+                                             v-on:click="removeRepeaterSection(key, modalcontent.repeater.showFields)">Remove</div>
                                     </div>
-                                    <div class="amp-accordion-content" v-bind:class="{ active: (repeterkey==0),'hide': (repeterkey!=0) }">
+                                    <div class="amp-accordion-content" v-bind:class="{ active: (key==0),'hide': (key!=0) }">
                                         <fields-data v-for="(rfield, key, index) in repeaterfields"
                                             :field="rfield" 
                                             :key="key"
                                             :fieldkey="key"
-                                            :repeterIndex="repeterkey"
                                             :completeFields="modalcontent.fields"
                                             :repeater="1"
                                             :defaulttab="modalcontent.default_tab"
