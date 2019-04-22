@@ -7432,7 +7432,7 @@ function ampforwp_darkModeMarkup(){
                 src="<?php echo $ajaxUrl."&load=1"; ?>">
         <template type="amp-mustache">
         	<div class="dmv">
-	        	<div class="dm-txt">Dark View</div>
+	        	<div class="dm-txt">Dark Mode</div>
 	          	<button type="submit"
 	                 class="{{#.}}heart-fill{{/.}}{{^.}}heart-border{{/.}}"
 	                 [class]="darkmode ? 'heart-fill' : 'heart-border'"
