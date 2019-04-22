@@ -353,10 +353,6 @@ function ampforwp_rewrite_activation() {
 	set_transient( 'ampforwp_admin_notice_transient', true );
 
 }
-register_deactivation_hook( __FILE__, 'ampforwp_remove_deactivation', 20 );
-function ampforwp_remove_deactivation(){
-	delete_transient( 'ampforwp_automattic_activation_notice');
-}
 add_action( 'admin_init', 'ampforwp_flush_after_update');
 function ampforwp_flush_after_update() {
 	if(function_exists('amp_activate') && get_transient( 'ampforwp_automattic_activation_notice')!=2){
@@ -412,6 +408,8 @@ function ampforwp_rewrite_deactivate() {
 
 	// Remove transient for Welcome page
 	delete_transient( 'ampforwp_welcome_screen_activation_redirect');
+	// Remove admin notice after dismissing it
+	delete_transient( 'ampforwp_automattic_activation_notice');
 }
 
 if( !function_exists('ampforwp_upcomming_layouts_demo') ){
