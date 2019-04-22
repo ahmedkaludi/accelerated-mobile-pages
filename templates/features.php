@@ -2232,6 +2232,9 @@ function ampforwp_add_extra_functions() {
 	if ( $redux_builder_amp['amp-design-selector'] == 3 ) {
 		require AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-3/functions.php';
 	}
+	if( function_exists('rocket_load_textdomain') && get_rocket_option('minify_concatenate_js') == 1){
+		update_rocket_option( 'minify_concatenate_js', 0 );
+	}
 }
 
 //38. #529 editable archives
