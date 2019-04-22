@@ -874,7 +874,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
     float: left;
     <?php $fontsize = ampforwp_get_setting('ampforwp-dropcap-font');
      if (empty($fontsize)){?>font-size: 75px;<?php } else {?>	
-    font-size: <?php echo $fontsize ?>px;
+    font-size: <?php echo esc_html($fontsize) ?>px;
 	<?php } ?>
     line-height: 1;
     padding-right: 8px;	
