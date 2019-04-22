@@ -2240,6 +2240,9 @@ function ampforwp_add_extra_functions() {
 	if ( $redux_builder_amp['amp-design-selector'] == 3 ) {
 		require AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-3/functions.php';
 	}
+	if( function_exists('rocket_load_textdomain') && get_rocket_option('minify_concatenate_js') == 1){
+		update_rocket_option( 'minify_concatenate_js', 0 );
+	}
 }
 
 //38. #529 editable archives
@@ -7161,72 +7164,56 @@ function ampforwp_slide_anything_embed($data) {
 }
 
 // Post Metas
-add_action('save_post','ampforwp_old_metas_transient', 10, 2);
-if ( ! function_exists('ampforwp_old_metas_transient') ) {
-	function ampforwp_old_metas_transient($post_id,$post){
-		if ( null !== get_post_meta($post_id,'ampforwp-amp-on-off',true) ) {
-			set_transient('ampforwp_old_post_metas', true);
-		}
-	}
-}
-
-add_action('wp', 'ampforwp_post_metas');
+add_action('save_post','ampforwp_post_metas', 10, 2);
 if ( ! function_exists('ampforwp_post_metas') ) {
-	function ampforwp_post_metas(){
-		//if ( true == get_transient('ampforwp_old_post_metas') ) {
-			$posts = get_posts();
-			foreach ($posts as $post) {
-				$post_id = $post->ID;
-				$post_metas = array();
-				$post_metas = json_decode(get_post_meta($post_id,'ampforwp-post-metas',true),true);
-				// If metas array is empty, then add the previous metas in it
-				if( !isset($post_metas['ampforwp-amp-on-off'] ) || null == $post_metas['ampforwp-amp-on-off'] ) {
-					$post_metas['ampforwp-amp-on-off'] = get_post_meta($post_id,'ampforwp-amp-on-off',true);
-					//update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
-				}
-				if( !isset($post_metas['ampforwp-redirection-on-off'] ) || null == $post_metas['ampforwp-redirection-on-off'] ) {
-					$post_metas['ampforwp-redirection-on-off'] = get_post_meta($post_id,'ampforwp-redirection-on-off',true);
-					//update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
-				}
-				if( !isset($post_metas['ampforwp-ia-on-off'] ) || null == $post_metas['ampforwp-ia-on-off'] ) {
-					$post_metas['ampforwp-ia-on-off'] = get_post_meta($post_id,'ampforwp-ia-on-off',true);
-					//update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
-				}
-				if( !isset($post_metas['use_ampforwp_page_builder'] ) || null == $post_metas['use_ampforwp_page_builder'] ) {
-					$post_metas['use_ampforwp_page_builder'] = get_post_meta($post_id,'use_ampforwp_page_builder',true);
-					//update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
-				}
-				if( !isset($post_metas['ampforwp_page_builder_enable'] ) || null == $post_metas['ampforwp_page_builder_enable'] ) {
-					$post_metas['ampforwp_page_builder_enable'] = get_post_meta($post_id,'ampforwp_page_builder_enable',true);
-					//update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
-				}
-				if( !isset($post_metas['ampforwp_custom_content_editor_checkbox'] ) || null == $post_metas['ampforwp_custom_content_editor_checkbox'] ) {
-					$post_metas['ampforwp_custom_content_editor_checkbox'] = get_post_meta($post_id,'ampforwp_custom_content_editor_checkbox',true);
-				}
-				update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
-					
-				// Delete the previous metas
-				if( isset($post_metas['ampforwp-amp-on-off'] ) ) {
-					delete_post_meta($post_id,'ampforwp-amp-on-off');
-				}
-				if( isset($post_metas['ampforwp-redirection-on-off'] ) ) {
-					delete_post_meta($post_id,'ampforwp-redirection-on-off');
-				}
-				if( isset($post_metas['ampforwp-ia-on-off'] ) ) {
-					delete_post_meta($post_id,'ampforwp-ia-on-off');
-				}
-				if( isset($post_metas['use_ampforwp_page_builder'] ) ) {
-					delete_post_meta($post_id,'use_ampforwp_page_builder');
-				}
-				if( isset($post_metas['ampforwp_page_builder_enable'] ) ) {
-					delete_post_meta($post_id,'ampforwp_page_builder_enable');
-				}
-				if( isset($post_metas['ampforwp_custom_content_editor_checkbox'] ) ) {
-					delete_post_meta($post_id,'ampforwp_custom_content_editor_checkbox');
-				}
-			}
-			delete_transient('ampforwp_old_post_metas');
-		//}
+	function ampforwp_post_metas($post_id,$post){
+		$post_metas = array();
+		$post_metas = json_decode(get_post_meta($post_id,'ampforwp-post-metas',true),true);
+		// If metas array is empty, then add the previous metas in it
+		if( !isset($post_metas['ampforwp-amp-on-off'] ) || null == $post_metas['ampforwp-amp-on-off'] ) {
+			$post_metas['ampforwp-amp-on-off'] = get_post_meta($post_id,'ampforwp-amp-on-off',true);
+			update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+		}
+		if( !isset($post_metas['ampforwp-redirection-on-off'] ) || null == $post_metas['ampforwp-redirection-on-off'] ) {
+			$post_metas['ampforwp-redirection-on-off'] = get_post_meta($post_id,'ampforwp-redirection-on-off',true);
+			update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+		}
+		if( !isset($post_metas['ampforwp-ia-on-off'] ) || null == $post_metas['ampforwp-ia-on-off'] ) {
+			$post_metas['ampforwp-ia-on-off'] = get_post_meta($post_id,'ampforwp-ia-on-off',true);
+			update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+		}
+		if( !isset($post_metas['use_ampforwp_page_builder'] ) || null == $post_metas['use_ampforwp_page_builder'] ) {
+			$post_metas['use_ampforwp_page_builder'] = get_post_meta($post_id,'use_ampforwp_page_builder',true);
+			update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+		}
+		if( !isset($post_metas['ampforwp_page_builder_enable'] ) || null == $post_metas['ampforwp_page_builder_enable'] ) {
+			$post_metas['ampforwp_page_builder_enable'] = get_post_meta($post_id,'ampforwp_page_builder_enable',true);
+			update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+		}
+		if( !isset($post_metas['ampforwp_custom_content_editor_checkbox'] ) || null == $post_metas['ampforwp_custom_content_editor_checkbox'] ) {
+			$post_metas['ampforwp_custom_content_editor_checkbox'] = get_post_meta($post_id,'ampforwp_custom_content_editor_checkbox',true);
+			update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));
+		}
+			
+		// Delete the previous metas
+		if( isset($post_metas['ampforwp-amp-on-off'] ) ) {
+			delete_post_meta($post_id,'ampforwp-amp-on-off');
+		}
+		if( isset($post_metas['ampforwp-redirection-on-off'] ) ) {
+			delete_post_meta($post_id,'ampforwp-redirection-on-off');
+		}
+		if( isset($post_metas['ampforwp-ia-on-off'] ) ) {
+			delete_post_meta($post_id,'ampforwp-ia-on-off');
+		}
+		if( isset($post_metas['use_ampforwp_page_builder'] ) ) {
+			delete_post_meta($post_id,'use_ampforwp_page_builder');
+		}
+		if( isset($post_metas['ampforwp_page_builder_enable'] ) ) {
+			delete_post_meta($post_id,'ampforwp_page_builder_enable');
+		}
+		if( isset($post_metas['ampforwp_custom_content_editor_checkbox'] ) ) {
+			delete_post_meta($post_id,'ampforwp_custom_content_editor_checkbox');
+		}
 	}
 }
 
@@ -7486,14 +7473,14 @@ add_action("amp_css", 'ampforwp_darkmode_css');
 	}
 	?>
 	.darkmode-button button[type=submit] {
-        width: 60px;
-        height: 34px;
-        cursor: pointer;
-        border: none;
-        transition: .4s;
-        transition: background 300ms ease-in-out;
-        border-radius: 34px;
-        position: relative;
+        width: 56px;
+	    height: 26px;
+	    cursor: pointer;
+	     border: 1px solid #ffffff42;
+	    transition: .4s;
+	    transition: background 300ms ease-in-out;
+	    border-radius: 34px;
+	    position: relative;
       }
       .darkmode-button amp-list {
         margin: var(--space-2);
@@ -7501,30 +7488,46 @@ add_action("amp_css", 'ampforwp_darkmode_css');
       .darkmode-button .heart-fill:before{
       	position: absolute;
 	    content: "";
-	    height: 26px;
-	    width: 26px;
-	    right: 4px;
-	    top: 12%;
+	    height: 20px;
+	    width: 20px;
+	    right: 2px;
+	    top: 2px;
 	    background-color: white;
 	    transition: .4s;
-	    border-radius:100%;
-  		}
+	    border-radius: 100%;
+  	  }
+  	  .darkmode-button .heart-fill:after {
+	    content: "ON";
+	    font-size: 10px;
+	    color: #999;
+	    position: absolute;
+	    left: 6px;
+	    top: 6px;
+	  }
       .darkmode-button .heart-fill {
-       	background-color:green;
+       	background-color:#000;
       }
       .darkmode-button .heart-border{
-      	background-color:#7a7a7a;
+      	background-color:#444;
    	  }
+   	  .darkmode-button .heart-border:before {
+	    content: "OFF";
+	    font-size: 10px;
+	    color: #999;
+	    position: absolute;
+	    right: 6px;
+    	top: 6px;
+	  }
       .darkmode-button .heart-border:after{
-      	position: absolute;
+  	    position: absolute;
 	    content: "";
-	    height: 26px;
-	    width: 26px;
-	    left: 4px;
-	    top: 12%;
+	    height: 20px;
+	    width: 20px;
+	    left: 3px;
+	    top: 2px;
 	    background-color: white;
 	    transition: .4s;
-	    border-radius:100%;
+	    border-radius: 100%;
       }
       .darkmode-button .heart-loading:before,
       .darkmode-button .heart-loading[placeholder] {
