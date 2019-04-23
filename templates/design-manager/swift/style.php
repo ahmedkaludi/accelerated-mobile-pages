@@ -421,7 +421,7 @@ echo $fontFamily;
 <?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
 <?php // Single
 
-if(is_single() ) { ?>
+if(is_single() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) { ?>
 table {
     display: -webkit-box;
     overflow-x: auto;
