@@ -25,10 +25,10 @@ if(true == ampforwp_get_setting('ampforwp-full-post-in-loop')){
 			?>
 			<div class="fbp">
 				<?php if (ampforwp_has_post_thumbnail()  ) { $argsbig = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>723,'image_crop_height'=>394, 'responsive'=> true); ?>
-			    <div class="fbp-img">
+			    <div class="fbp-img fbp-c">
 			    	<?php amp_loop_image($argsbig); ?>
 			    </div> <?php } ?>
-			    <div class="fbp-cnt">
+			    <div class="fbp-cnt fbp-c">
 			    	<?php amp_loop_category(); ?>
 				    <?php amp_loop_title(); ?>
 				    <div class="at-dt">
