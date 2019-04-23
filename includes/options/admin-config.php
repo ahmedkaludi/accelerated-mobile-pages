@@ -3789,6 +3789,73 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
                       array('amp-design-selector', '=' , '3')
                     )
             ),
+              array(
+                    'id'        => 'amp-opt-color-rgba-menu-bg-color',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Menu Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#131313',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-menu-elements-color',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Navigation Menu Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#eeeeee',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-submenu-bgcolor',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Sub Menu Background Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#666666',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-submenu-hover-bgcolor',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Sub Menu Hover Background Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#666666',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-menu-label-color',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Navigate Label Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#aaa',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-menu-brdr-color',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Menu Border Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#555555',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+
            array(
                        'id' => 'header_section_2',
                        'type' => 'section',
