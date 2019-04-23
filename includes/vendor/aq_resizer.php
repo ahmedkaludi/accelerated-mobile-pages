@@ -117,8 +117,9 @@ if(!class_exists('Aq_Resize')) {
                 }
                 // Define path of image.
                 $rel_path = str_replace( $upload_url, '', $url );
-                $img_path = $upload_dir . $rel_path;
-
+                if($rel_path){
+                    $img_path = $upload_dir . $rel_path;
+                }
                 // Check if img path exists, and is an image indeed.
                 if ( ! file_exists( $img_path ) or ! getimagesize( $img_path ) )
                     throw new Aq_Exception('Image file does not exist (or is not an image): ' . $img_path);
