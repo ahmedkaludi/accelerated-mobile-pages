@@ -1591,12 +1591,6 @@
             }
         });
 
-        if($(".amp-preview-button").length>0){
-            $(".amp-preview-button").click(function(){
-                var srcLink = $("#amp-preview-iframe").attr('data-src');
-               $("#amp-preview-iframe").html("<iframe  src='"+srcLink+"'></iframe>");
-            });
-        }
     // $.redux.resizeAds = function() {
     //     var el = $( '#redux-header' );
     //     var maxWidth;

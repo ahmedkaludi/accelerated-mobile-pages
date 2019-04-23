@@ -947,7 +947,12 @@ jQuery(document).ready(function($){
        
 
     });
-
+    if($(".amp-preview-button").length>0){
+        $(".amp-preview-button").click(function(){
+            var srcLink = $("#amp-preview-iframe").attr('data-src');
+           $("#amp-preview-iframe").html("<iframe  src='"+srcLink+"'></iframe>");
+        });
+    }
     var versionUpdate = function(){
         $('#amp-rollback-version-select').on('change', function(){
             $selectedVersion = $(this).val();
@@ -960,8 +965,6 @@ jQuery(document).ready(function($){
         });
     }
     versionUpdate();
-    
-
 }); 
 function ampforwp_updateQueryStringParameter(uri, key, value) {
   var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
