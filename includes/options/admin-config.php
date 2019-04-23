@@ -477,7 +477,6 @@ $extension_listing_array = array(
                             'item_name'=>'WP Forms for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('wp-forms-for-amp/amp-wpforms.php')? 1 : 2),
-                            'settingUrl'=>'{ampforwp-wpf-subsection}',
                         ),
                         array(
                             'name'=>'WPML For AMP',
