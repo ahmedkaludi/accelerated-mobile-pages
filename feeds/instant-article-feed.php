@@ -19,7 +19,7 @@
         $number_of_articles = round( abs( floatval( $number_of_articles ) ) );
     }
     else{
-        $number_of_articles = -1;
+        $number_of_articles = 500;
     }
     $exclude_ids = get_option('ampforwp_ia_exclude_post');
     $ia_args = array(
