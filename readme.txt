@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1.1
-Stable tag: 0.9.97.47
+Stable tag: 0.9.97.48
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,14 +184,21 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.47 (19th April 2019) =
-* Added: AMP by Automattic Compatibility integrated #2287
-* Added: Click Mag WP Theme compatibility integrated #2796
-* Added: New filter in contents-module of page builder for raw html #3001
-* Fixed: PHP Warning illegal string offset When AMP layout plugin activate #2951
-* Fixed: CSS is getting breaked in GoodLife theme #2673
-* Fixed: PHP Debug errors in v0.9.97.46 #3011
-* Fixed: Fatal error call to undefined method WPSEO_Options #3008
-* Fixed: Proper escaping in Alexa Analytics #2984
+= 0.9.97.48 (23th April 2019) =
+* Added: Meta genertor #2543
+* Added: Bridge Qode SEO Compatibility integrated #2538
+* Added: Lazy Load of Smush and Smush Pro plugin Compatibility integrated #2990
+* Fixed: Validation errors occur when Wordpress Comments Option is enabled #2989
+* Fixed: Home page displays latest posts instead of custom page when enfold theme activate #2943
+* Fixed: API URL conflict with Mobile redirection #2917
+* Fixed: Instant Article fatal error #2968
+* Fixed: Undefined index fb-instant-page-id PHP notice #2570
+* Fixed: All media queries load in single media query only code updated #2711
+* Fixed: Instant Article feed code updated #3018
+* Fixed: Space after the "data:image/png" part of the base64 encoded CSS background image #2974
+* Fixed: GDPR consent is not working on ios #2876
+* Fixed: PHP Errors in latest version 0.9.97.46.1 after activation on fresh WP installation #3028
+* Fixed: Issue with moblie redirection with non-amp link #3021
+* Fixed: Cntr class automatically removed after activating elementor plugin in swift theme #3025
 
 Full changelog available in changelog.txt
