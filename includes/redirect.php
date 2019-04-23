@@ -314,6 +314,9 @@ function ampforwp_redirect_to_orginal_url(){
   $go_to_url  = "";
   $url        = "";
   $url = ampforwp_amphtml_generator();
+  if ( empty($url) ) {
+    $url = home_url( $wp->request );
+  }
   $nonamp_checker = get_query_var( 'nonamp');
    if($url){
      if( $nonamp_checker == 1 ){ 
