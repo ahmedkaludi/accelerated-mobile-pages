@@ -746,7 +746,7 @@ add_filter('amp_customizer_is_enabled', 'ampforwp_customizer_is_enabled');
 if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 	function ampforwp_customizer_is_enabled($value){
 		global $redux_builder_amp;
-		if ( 4 == $redux_builder_amp['amp-design-selector'] && ! function_exists('amp_activate') ) {
+		if ( 4 == ampforwp_get_setting('amp-design-selector') && ! function_exists('amp_activate') ) {
 			$value = false;
 		}
 		return $value;
@@ -756,6 +756,9 @@ if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 // Get Settings from Redux #2177
 function ampforwp_get_setting( $opt_name='' ){
 	global $redux_builder_amp;
+	if(empty($redux_builder_amp)){
+		$redux_builder_amp =  (array) get_option('redux_builder_amp');
+	}
 	$opt_value = '';
 	if ( isset($redux_builder_amp[$opt_name]) ) {
 		$opt_value = $redux_builder_amp[$opt_name];
