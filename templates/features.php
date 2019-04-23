@@ -6514,7 +6514,8 @@ function ampforwp_comments_sanitizer(){
 				'status' => 'approve' //Change this to the type of comments to be displayed
 		) );
 		foreach ($comments as $comment) {
-			$comment_text = get_comment_text($comment->comment_ID);
+			$comment_data = get_comment( $comment->comment_ID );
+			$comment_text =	$comment_data->comment_content;
 			$comment_text = wpautop( $comment_text );
 	    	$sanitizer = new AMPforWP_Content( $comment_text, apply_filters( 'amp_content_embed_handlers', array(
 		          'AMP_Twitter_Embed_Handler' => array(),
