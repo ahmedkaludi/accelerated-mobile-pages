@@ -136,7 +136,8 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 		if ( ! $this->did_convert_elements ) {
 			return array();
 		}
-		return $this->styles;
+		$styles = $this->ampforwp_remove_spaces_from_data_urls( $this->styles );
+ 		return $styles;
 	}
 
 	/**
@@ -569,4 +570,23 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 		$string = maybe_serialize( $data );
 		return 'amp-wp-inline-' . md5( $string );
 	}
+	private function ampforwp_remove_spaces_from_data_urls( $style_css ) {
+		$new_style_css = array();
+		if(is_array($style_css)){
+			foreach ($style_css as $key => $css) {
+				$css  = preg_replace_callback(
+				'/\burl\([^}]*?\)/',
+				function( $matches ) {
+					return preg_replace( '/\s+/', '', $matches[0] );
+				},
+					$css
+				);
+ 				$new_style_css[$key] = $css;
+	 		}	
+	 		if(!empty($new_style_css)){
+	 			$style_css = $new_style_css;
+	 		}
+	 	}
+  		return $style_css;
+ 	}
 }

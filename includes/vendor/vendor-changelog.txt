@@ -67,3 +67,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 40. Added itemprop attribute in amp-img #2585
 41. Added $ampforwpTemplate in amp.php #2977
 42. AMP_Content_Sanitizer updated #2287
+43. CSS syntax error in tag 'style amp-custom' - bad url #2974
