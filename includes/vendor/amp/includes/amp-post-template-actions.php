@@ -8,8 +8,9 @@ function amp_post_template_add_title( $amp_template ) {
 	<title><?php echo esc_html( $amp_template->get( 'document_title' ) ); ?></title>
 	<?php
 }
-
-add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+if(!class_exists('RankMath')){
+	add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+}
 function amp_post_template_add_canonical( $amp_template ) {
 	?>
 	<link rel="canonical" href="<?php echo esc_url( apply_filters('ampforwp_modify_rel_url',$amp_template->get( 'canonical_url' ) ) ); ?>" />

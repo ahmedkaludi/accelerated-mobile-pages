@@ -4222,8 +4222,9 @@ function ampforwp_rel_canonical_home_archive(){
 	  	if ( $page >= '2') { 
 			$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
 		} ?>
+		<?php if(!class_exists('RankMath')){?>
 		<link rel="canonical" href="<?php echo user_trailingslashit( esc_url( apply_filters('ampforwp_modify_rel_url', $amp_url ) ) ) ?>">
-	<?php }
+	<?php } }
 
 	if(is_search()){
 		$paged = get_query_var( 'paged' );
