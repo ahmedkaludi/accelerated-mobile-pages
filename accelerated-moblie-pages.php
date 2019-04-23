@@ -813,10 +813,9 @@ function ampforwp_get_all_post_types(){
 // is_search_enabled_in_ampforwp function ( Design 1,2 and 3 ) #2681
 if( !function_exists( 'is_search_enabled_in_ampforwp' ) ) {
 	function is_search_enabled_in_ampforwp() {
-		global $redux_builder_amp;
-		if( ( $redux_builder_amp['amp-design-selector']==1 && $redux_builder_amp['amp-design-1-search-feature'] ) ||
-	 			(	$redux_builder_amp['amp-design-selector']==2 && $redux_builder_amp['amp-design-2-search-feature'] ) ||
-				(	$redux_builder_amp['amp-design-selector']==3 && $redux_builder_amp['amp-design-3-search-feature'] ) ) {
+		if( ( ampforwp_get_setting('amp-design-selector')==1 && ampforwp_get_setting('amp-design-1-search-feature') ) ||
+	 			(	ampforwp_get_setting('amp-design-selector')==2 && ampforwp_get_setting('amp-design-2-search-feature') ) ||
+				(	ampforwp_get_setting('amp-design-selector')==3 && ampforwp_get_setting('amp-design-3-search-feature') ) ) {
 					return true;
 				}
 			return false;
