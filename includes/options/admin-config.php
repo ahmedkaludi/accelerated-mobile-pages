@@ -1515,6 +1515,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'rank_math' => 'Rank Math SEO',
                     'genesis'    => 'Genesis',
                     'seopress'    => 'SEOPress',
+                    'bridge'    => 'Bridge Qode SEO'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),
