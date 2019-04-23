@@ -3689,7 +3689,7 @@ if ( ! function_exists('ampforwp_fbia_meta_tags') ) {
 		$url = get_permalink();
 		$url = add_query_arg( 'ia_markup', '1', $url );
 		// ia markup meta tag
-		if( isset($redux_builder_amp['fb-instant-crawler-ingestion']) && $redux_builder_amp['fb-instant-crawler-ingestion'] ) { ?>
+		if( ampforwp_get_setting('fb-instant-crawler-ingestion') ) { ?>
 			<meta property="ia:markup_url" content="<?php echo esc_url( $url ); ?>" />	
 		<?php }
 	}
