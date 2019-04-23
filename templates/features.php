@@ -1190,6 +1190,8 @@ function ampforwp_remove_schema_data() {
 	// Removing Voux theme's lazyloading #2263
 	remove_filter( 'the_content', 'thb_lazy_images_filter', 200 );
 	remove_filter( 'wp_get_attachment_image_attributes', 'thb_lazy_low_quality', 10, 3 );
+	//Custom Frontpage not working when we select the option to display blog in enfold theme #2943
+	remove_filter('pre_option_page_for_posts', 'avia_page_for_posts_filter');
 }
 	
 // 22. Removing author links from comments Issue #180
