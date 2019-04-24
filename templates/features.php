@@ -405,7 +405,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 		if ( $amp_url ) {
 			printf('<link rel="amphtml" href="%s" />', esc_url($amp_url));
-			printf('<meta name="generator" content="AMP for WP <?php echo esc_attr(AMPFORWP_VERSION)?>" />', esc_url($amp_url));
+			printf('<meta name="generator" content="%s %s"/>', esc_html__('AMP for WP'), esc_attr(AMPFORWP_VERSION) );
 		}
 
 	} //end of ampforwp_home_archive_rel_canonical()
