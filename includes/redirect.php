@@ -2,13 +2,14 @@
 add_action( 'template_redirect', 'ampforwp_redirection', 10 );
 function ampforwp_redirection() {
   global $redux_builder_amp, $wp, $post;
-  $hide_cats_amp = $url = '';
+  $hide_cats_amp = $url = $archive_check = $go_to_url = '';
   $hide_cats_amp = is_category_amp_disabled();
-  $go_to_url  = "";
-  $url        = "";
   // Redirection for Homepage and Archive Pages when Turned Off from options panel
   if ( ampforwp_is_amp_endpoint() ) {
-    if ( (is_archive() && 0 == $redux_builder_amp['ampforwp-archive-support']) || true == $hide_cats_amp || ((ampforwp_is_home() || ampforwp_is_front_page()) && 0 == $redux_builder_amp['ampforwp-homepage-on-off-support']) ) {
+     if( (is_archive() && 0 == ampforwp_get_setting('ampforwp-archive-support')) || (is_category() && 0 == ampforwp_get_setting('ampforwp-archive-support-cat')) || (is_tag() && 0 == ampforwp_get_setting('ampforwp-archive-support-tag')) ){
+        $archive_check = true;
+      }
+    if ( ( true == $archive_check ) || true == $hide_cats_amp || ((ampforwp_is_home() || ampforwp_is_front_page()) && 0 == ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
       $url = $wp->request;
       if( ampforwp_is_home() && get_query_var('amp') ) {
         $url = 'amp';
