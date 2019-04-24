@@ -20,21 +20,6 @@ function ampforwp_catagory_base_removal_admin_notice(){
     </div>
 	<?php
 }
-
-
- add_action( 'current_screen', 'ampforwp_dependency_script' );
- function ampforwp_dependency_script(){
-	$current_screen = get_current_screen(); 
-	 if( $current_screen->id === "plugin-install" ) {
-		
-		function amp_enqueue_function_dependancies() {
-			wp_enqueue_script( 'AMPScriptDependanciesremove', plugins_url('dependencyScript.js', __FILE__), array( 'jquery' ) );
-		}
-		add_action( 'admin_enqueue_scripts', 'amp_enqueue_function_dependancies' );
-	}
- }
- 
- 
  
 add_filter( 'init', 'ampforwp_url_base_rewrite_rules', 100 );
 function ampforwp_url_base_rewrite_rules(){
