@@ -821,3 +821,35 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
     margin: 0 auto;
     margin-top: 8px;
 }
+<?php  // H1 - H6 Font Sizes 
+if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h1']){ ?>
+  .single-post main .amp-wp-article-content h1{font-size:<?php echo esc_html($redux_builder_amp['swift_h1_sz'])?>;}
+<?php } else { ?>
+  .single-post main .amp-wp-article-content h1 {font-size: 32px;}
+<?php } //H1 ends
+if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h2']){ ?>
+  .single-post main .amp-wp-article-content h2{font-size:<?php echo esc_html($redux_builder_amp['swift_h2_sz'])?>;}
+<?php } else { ?>
+  .single-post main .amp-wp-article-content h2 {font-size: 27px;}
+<?php } // H2 Ends
+if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h3']){ ?>
+  .single-post main .amp-wp-article-content h3{font-size:<?php echo esc_html($redux_builder_amp['swift_h3_sz'])?>;}
+<?php } else { ?>
+  .single-post main .amp-wp-article-content h3 {font-size: 24px;}
+<?php } // H3 Ends
+if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h4']){ ?> 
+  .single-post main .amp-wp-article-content h4{font-size:<?php echo esc_html($redux_builder_amp['swift_h4_sz'])?>;}
+<?php } else { ?>
+  .single-post main .amp-wp-article-content h4 {font-size: 20px;}
+<?php } // H4 Ends
+if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h5']){ ?>
+  .single-post main .amp-wp-article-content h5{font-size:<?php echo esc_html($redux_builder_amp['swift_h5_sz'])?>;}
+<?php } else { ?>
+  .single-post main .amp-wp-article-content h5 {font-size: 17px;}
+<?php } // H5 Ends
+if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h6']){ ?>
+  .single-post main .amp-wp-article-content h6{font-size:<?php echo esc_html($redux_builder_amp['swift_h6_sz'])?>;}
+<?php } else { ?>
+  .single-post main .amp-wp-article-content h6 {font-size: 15px;}
+<?php } // H6 Ends
+// swift Content Heading Sizes Ends?>

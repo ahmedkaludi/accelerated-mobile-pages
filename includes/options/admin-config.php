@@ -5462,38 +5462,11 @@ $single_page_options = array(
              'title'    => __( 'Link to Author Pages', 'accelerated-mobile-pages' ),
              'default'  => '0',
          ),
-            array(
-                'id'       => 'ampforwp-swift-recent-posts',
-                'type'     => 'switch',
-                'title'    => __('Recent Posts', 'accelerated-mobile-pages'),
-                'tooltip-subtitle' => __('To enable & disable recent posts', 'accelerated-mobile-pages'),
-                'default'  => 1,
-            ),
-            array(
-                    'id'    => 'single-new-features',
-                    'type'  => 'switch',
-                    'title' => __('Advanced Single Options', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-            ),
-            array(
-                    'id'       => 'breadcrumb-border',
-                    'type'     => 'switch',
-                    'title'    => __('Breadcrumbs Border', 'accelerated-mobile-pages'),
-                    'default'  => 0,
-                    'required' => array( array('single-new-features', '=' , '1'),array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
-                    'id'       => 'ampforwp-underline-content-links',
-                    'type'     => 'switch',
-                    'title'    => __('Underline on Links', 'accelerated-mobile-pages'),
-                    'default'  => 0,
-                    'required' => array( array('single-new-features', '=' , '1') ),
-            ),
-            // Content  h1 - h6 font sizes //#2059 
+         // Content  h1 - h6 font sizes //#2059 & #3035
             array(
                 'id'       => 'swift_cnt',
                 'type'     => 'switch',
-                'title'    => __( 'Heading Font Sizes', 'accelerated-mobile-pages' ),
+                'title'    => __( 'H1 - H6 Font Sizes', 'accelerated-mobile-pages' ),
                'default'   => 0,
                'tooltip-subtitle'  => __('Enable the Heading to add Font Sizes in single', 'accelerated-mobile-pages'),
             ),
@@ -5598,6 +5571,33 @@ $single_page_options = array(
                 'default'  => '15px',
                 'required' => array('swift_cnt_h6' , '=' , '1'),
                               array('swift_cnt' , '=' , '1')
+            ),
+            array(
+                'id'       => 'ampforwp-swift-recent-posts',
+                'type'     => 'switch',
+                'title'    => __('Recent Posts', 'accelerated-mobile-pages'),
+                'tooltip-subtitle' => __('To enable & disable recent posts', 'accelerated-mobile-pages'),
+                'default'  => 1,
+            ),
+            array(
+                    'id'    => 'single-new-features',
+                    'type'  => 'switch',
+                    'title' => __('Advanced Single Options', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+            ),
+            array(
+                    'id'       => 'breadcrumb-border',
+                    'type'     => 'switch',
+                    'title'    => __('Breadcrumbs Border', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array( array('single-new-features', '=' , '1'),array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'       => 'ampforwp-underline-content-links',
+                    'type'     => 'switch',
+                    'title'    => __('Underline on Links', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array( array('single-new-features', '=' , '1') ),
             ),
             array(
                        'id' => 'ampforwp-single_section_5',

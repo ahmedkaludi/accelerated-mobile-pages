@@ -576,7 +576,7 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 <?php } ?>
 
 .cntn-wrp{font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;}
-.sp-artl h1, h2, h3, h4, h5, h6{margin-bottom:5px;}
+.cntn-wrp h1, .cntn-wrp h2, .cntn-wrp h3, .cntn-wrp h4, .cntn-wrp h5, h6{margin-bottom:5px;}
 <?php // H1 - H6 Font Sizes 
 	if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h1']){ ?>
 		.cntn-wrp h1{font-size:<?php echo $redux_builder_amp['swift_h1_sz']?>;}
