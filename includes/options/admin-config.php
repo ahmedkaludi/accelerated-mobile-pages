@@ -5079,20 +5079,6 @@ $single_page_options = array(
                     'default'   => 1,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
-          // Lightbox 
-           array(
-              'id'       => 'ampforwp-amp-img-lightbox',
-              'type'     => 'switch',
-              'default'  =>  '0',
-              'title'    => __('Lightbox for Images', 'accelerated-mobile-pages'),
-           ),
-           // Dropcap 
-           array(
-              'id'       => 'ampforwp-dropcap',
-              'type'     => 'switch',
-              'default'  =>  '0',
-              'title'    => __('Dropcap', 'accelerated-mobile-pages'),
-           ),  
            array(
                 'class' => 'child_opt',
                 'id'       => 'ampforwp-dropcap-font',
@@ -5210,6 +5196,13 @@ $single_page_options = array(
              'title'    => __( 'Author Bio', 'accelerated-mobile-pages' ),
              'default'  => '1',
          ),
+         // Author Pages
+         array(
+             'id'       => 'ampforwp-author-page-url',
+             'type'     => 'switch',
+             'title'    => __( 'Link to Author Pages', 'accelerated-mobile-pages' ),
+             'default'  => '0',
+         ),
         // Pagination //#1015 
         array(
             'id'       => 'amp-pagination',
@@ -5220,7 +5213,7 @@ $single_page_options = array(
         ),
         array(
             'id'       => 'ampforwp-pagination-select',
-                'class' => 'child_opt child_opt_arrow',
+            'class' => 'child_opt child_opt_arrow',
             'type'     => 'select',
             'title'    => __('Post Pagination Type', 'accelerated-mobile-pages'),
             'options'  => array(
@@ -5229,6 +5222,13 @@ $single_page_options = array(
             ),
             'default'  => '1',
             'required' => array('amp-pagination' , '=' , '1'),
+        ),
+        array(
+            'id'       => 'ampforwp-swift-recent-posts',
+            'type'     => 'switch',
+            'title'    => __('Recent Posts below Related', 'accelerated-mobile-pages'),
+            'tooltip-subtitle' => __('To enable & disable recent posts', 'accelerated-mobile-pages'),
+            'default'  => 1,
         ),
             array(
                        'id' => 'ampforwp-single_section_3',
@@ -5455,13 +5455,20 @@ $single_page_options = array(
                    'layout_type' => 'accordion',
                     'accordion-open'=> 0,
              ),
-         // Author Pages
-         array(
-             'id'       => 'ampforwp-author-page-url',
-             'type'     => 'switch',
-             'title'    => __( 'Link to Author Pages', 'accelerated-mobile-pages' ),
-             'default'  => '0',
-         ),
+            // Lightbox 
+           array(
+              'id'       => 'ampforwp-amp-img-lightbox',
+              'type'     => 'switch',
+              'default'  =>  '0',
+              'title'    => __('Lightbox for Images', 'accelerated-mobile-pages'),
+           ),
+           // Dropcap 
+           array(
+              'id'       => 'ampforwp-dropcap',
+              'type'     => 'switch',
+              'default'  =>  '0',
+              'title'    => __('Dropcap', 'accelerated-mobile-pages'),
+           ),
          // Content  h1 - h6 font sizes //#2059 & #3035
             array(
                 'id'       => 'swift_cnt',
@@ -5573,13 +5580,6 @@ $single_page_options = array(
                               array('swift_cnt' , '=' , '1')
             ),
             array(
-                'id'       => 'ampforwp-swift-recent-posts',
-                'type'     => 'switch',
-                'title'    => __('Recent Posts', 'accelerated-mobile-pages'),
-                'tooltip-subtitle' => __('To enable & disable recent posts', 'accelerated-mobile-pages'),
-                'default'  => 1,
-            ),
-            array(
                     'id'    => 'single-new-features',
                     'type'  => 'switch',
                     'title' => __('Advanced Single Options', 'accelerated-mobile-pages'),
@@ -5587,6 +5587,7 @@ $single_page_options = array(
             ),
             array(
                     'id'       => 'breadcrumb-border',
+                    'class' => 'child_opt child_opt_arrow',
                     'type'     => 'switch',
                     'title'    => __('Breadcrumbs Border', 'accelerated-mobile-pages'),
                     'default'  => 0,
@@ -5594,6 +5595,7 @@ $single_page_options = array(
             ),
             array(
                     'id'       => 'ampforwp-underline-content-links',
+                    'class' => 'child_opt child_opt_arrow',
                     'type'     => 'switch',
                     'title'    => __('Underline on Links', 'accelerated-mobile-pages'),
                     'default'  => 0,
