@@ -5988,7 +5988,7 @@ function ampforwp_generate_canonical(){
 		$canonical = $opts['aiosp_custom_link'];
 	}
 	elseif (defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
-		$canonical = rank_math()->head->canonical( false );
+		$canonical = \RankMath\Paper\Paper::get()->get_canonical();
 	}
 	return $canonical;
 }
@@ -6588,6 +6588,14 @@ if ( ! function_exists('ampforwp_get_weglot_url') ) {
 add_action('amp_post_template_head','ampforwp_rank_math');
 if ( ! function_exists('ampforwp_rank_math') ) {
 	function ampforwp_rank_math(){
+		// Early Bail if Rank Math is not selected in SEO Plugin Integration.
+		if ( 'rank_math' !== ampforwp_get_setting('ampforwp-seo-selection') ) {
+			return;
+		}
+
+		// Remove Canonical & Title Tag added by the Rank Math plugin.
+		remove_all_actions( 'rank_math/head', 20 );
+		remove_all_actions( 'rank_math/head', 1 );
 		do_action( 'rank_math/head' );
 	}
 }
