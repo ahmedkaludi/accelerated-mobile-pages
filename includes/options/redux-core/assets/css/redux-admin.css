@@ -1103,3 +1103,81 @@ background: #fff;
     }
 
 }
+
+#redux_builder_amp-menu-type .redux-image-select li, #redux_builder_amp-single-design-type .redux-image-select li{
+    width:40%;
+    padding-right:30px;
+}
+/*** Menu Types CSS ***/
+#redux_builder_amp-menu-type ul.redux-image-select li{
+    width:45% ;
+    padding:0px 15px;
+}
+#redux_builder_amp-menu-type .redux-image-select li, #redux_builder_amp-single-design-type .redux-image-select li{
+    width:40%;
+    padding-right:30px;
+}
+/*** Related Post Desings ***/
+#redux_builder_amp-rp_design_type ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px;
+}
+#redux_builder_amp-ampforwp-gallery-design-type ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px;
+}
+.redux-image-select-selected{
+    position: relative;
+}
+.redux-image-select-selected:before{
+    content: " ";
+    display: block;
+    border: solid 20px rgb(19, 163, 21);
+    border-radius: 50px;
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: 0;
+    top: 0px;
+}
+.redux-image-select-selected:after{
+    content: " ";
+    display: block;
+    width: 0.3em;
+    height: 0.6em;
+    border: solid white;
+    border-width: 0 0.2em 0.2em 0;
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    transform: rotate(45deg);
+    font-size: 20px
+}
+.fp-cnt h1 span{
+    text-decoration: underline;
+}
+i.el.el-gift:after {
+    content: "offer";
+    font-size: 12px;
+    position: absolute;
+    bottom: -17px;
+    left: -4px;
+    color: #333;
+}
+i.el.el-gift:before{
+    color: #333;    
+}
+.redux-sidebar .redux-group-menu li a:hover i.el.el-gift:before,
+.redux-sidebar .redux-group-menu li a:hover i.el.el-gift:after{
+    color: #fff;
+}
+.redux-sidebar .redux-group-menu li.active a:hover i.el.el-gift:before,
+.redux-sidebar .redux-group-menu li.active a:hover i.el.el-gift:after{
+    color: #333;
+}
+a.bfcm {
+    text-align: center;
+    display: block;
+}
