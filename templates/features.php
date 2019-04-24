@@ -1199,6 +1199,11 @@ function ampforwp_remove_schema_data() {
     remove_filter('the_content', 'dd_hook_wp_content');
     //Custom Frontpage not working when we select the option to display blog in enfold theme #2943
 	remove_filter('pre_option_page_for_posts', 'avia_page_for_posts_filter');
+	// Publisher theme lazy load #3063
+	if( class_exists('Publisher') ){
+		remove_filter( 'post_thumbnail_html', 'publisher_lazy_loading_img_tags', 6 );
+		remove_filter( 'the_content', 'publisher_lazy_loading_img_tags', 6 );
+	}
 }
 
 // 22. Removing author links from comments Issue #180
