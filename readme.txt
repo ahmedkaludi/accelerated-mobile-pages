@@ -197,8 +197,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Instant Article feed code updated #3018
 * Fixed: Space after the "data:image/png" part of the base64 encoded CSS background image #2974
 * Fixed: GDPR consent is not working on ios #2876
-* Fixed: PHP Errors in latest version 0.9.97.46.1 after activation on fresh WP installation #3028
+* Fixed: PHP Errors in latest v0.9.97.46.1 after activation on fresh WP installation #3028
 * Fixed: Issue with moblie redirection with non-amp link #3021
 * Fixed: Cntr class automatically removed after activating elementor plugin in swift theme #3025
+* Fixed: Javascript Console errors after the v0.9.97.47 update #3079
 
 Full changelog available in changelog.txt
