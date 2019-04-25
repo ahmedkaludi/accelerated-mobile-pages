@@ -1204,6 +1204,20 @@ function ampforwp_remove_schema_data() {
 		remove_filter( 'post_thumbnail_html', 'publisher_lazy_loading_img_tags', 6 );
 		remove_filter( 'the_content', 'publisher_lazy_loading_img_tags', 6 );
 	}
+	// WP Rocket #3062
+	if ( function_exists('rocket_init') ) {
+		global $wp_filter;
+		remove_filter( 'wp_resource_hints', 'rocket_dns_prefetch', 10, 2 );
+		add_filter( 'do_rocket_lazyload', '__return_false' );
+		unset( $wp_filter['rocket_buffer'] );
+		// this filter is documented in inc/front/protocol.php.
+		$do_rocket_protocol_rewrite = apply_filters( 'do_rocket_protocol_rewrite', false );
+
+		if ( ( get_rocket_option( 'do_cloudflare', 0 ) && get_rocket_option( 'cloudflare_protocol_rewrite', 0 ) || $do_rocket_protocol_rewrite ) ) {
+			remove_filter( 'rocket_buffer', 'rocket_protocol_rewrite', PHP_INT_MAX );
+			remove_filter( 'wp_calculate_image_srcset', 'rocket_protocol_rewrite_srcset', PHP_INT_MAX );
+		}
+	}
 }
 
 // 22. Removing author links from comments Issue #180
