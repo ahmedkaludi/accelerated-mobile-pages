@@ -124,9 +124,9 @@
 do_action("ampforwp_single_design_type_handle");
 	?>
 <?php if($redux_builder_amp['rp_design_type'] == '2'){
-       if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
+       if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
 		$my_query = ampforwp_related_post_loop_query();
-	  	if( $my_query->have_posts() ) { $r_count = 1;?>
+	  	if( $my_query->have_posts() ) { $r_count = 1;?>	
 	  	<div class="srp">
 	  		<div class="cntr">
 	  		<?php ampforwp_related_post(); ?>
@@ -160,13 +160,13 @@ do_action("ampforwp_single_design_type_handle");
 		</div>
     <?php wp_reset_postdata(); }  } ?>
 <?php if(ampforwp_get_setting('rp_design_type') == '3'){
-       if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') ) {
+       if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
 		$my_query = ampforwp_related_post_loop_query();
 	  	if( $my_query->have_posts() ) { $r_count = 1;?>
 	  	<div class="srp">
 	  		<div class="cntr">
 	  		<?php ampforwp_related_post(); ?>
-	            <amp-carousel height="350" layout="fixed-height" type="carousel">
+	            <amp-carousel height="310" layout="fixed-height" type="carousel">
 			        <?php
 			          while( $my_query->have_posts() ) {
 			            $my_query->the_post();
