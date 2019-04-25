@@ -4145,33 +4145,35 @@ function is_category_amp_disabled(){
 				return false;
 			}
 		}//tags check area closed
-		$categories = get_the_category();
-		if ( $categories && is_category() ) {
-			$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories2');
-			$current_category = get_category( get_query_var( 'cat' ) );
-			if ( $current_category ) {
-				$current_cat_id = $current_category->cat_ID;
-			}
-			// Check if get_categories_from_checkbox has some cats then only show
-			if ( $get_categories_from_checkbox ) {
-				$get_selected_cats = array_filter($get_categories_from_checkbox);
-				foreach ($get_selected_cats as $key => $value) {
-					$selected_cats[] = $value;
+		if ( is_category() ) {
+			$categories = get_the_category();
+			if ( $categories ) {
+				$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories2');
+				$current_category = get_category( get_query_var( 'cat' ) );
+				if ( $current_category ) {
+					$current_cat_id = $current_category->cat_ID;
 				}
-				foreach ($categories as $key => $cats) {
-					$current_cats_ids[] =$cats->cat_ID;
-				} 
-				if( $selected_cats && ( $current_cats_ids || $current_cat_id) ) {
-					if ( in_array($current_cat_id, $selected_cats) ) {
-						return true;
+				// Check if get_categories_from_checkbox has some cats then only show
+				if ( $get_categories_from_checkbox ) {
+					$get_selected_cats = array_filter($get_categories_from_checkbox);
+					foreach ($get_selected_cats as $key => $value) {
+						$selected_cats[] = $value;
 					}
-					elseif( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
-				    	return true;
-				    }
-					else
-						return false;
-				}
-			} 
+					foreach ($categories as $key => $cats) {
+						$current_cats_ids[] =$cats->cat_ID;
+					} 
+					if( $selected_cats && ( $current_cats_ids || $current_cat_id) ) {
+						if ( in_array($current_cat_id, $selected_cats) ) {
+							return true;
+						}
+						elseif( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
+					    	return true;
+					    }
+						else
+							return false;
+					}
+				} 
+			}
 		}
 	}
 }
@@ -5801,10 +5803,12 @@ function ampforwp_is_non_amp( $type="" ) {
 	if ( is_page() && false == $redux_builder_amp['amp-on-off-for-all-pages'] ) {
 		return;
 	}
-	$amp_metas = json_decode(get_post_meta( get_the_ID(),'ampforwp-post-metas',true), true );
-	$ampforwp_amp_post_on_off_meta = $amp_metas['ampforwp-amp-on-off'];
-	if($ampforwp_amp_post_on_off_meta == 'hide-amp'){
-		return false;	
+	if ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) {
+		$amp_metas = json_decode(get_post_meta( get_the_ID(),'ampforwp-post-metas',true), true );
+		$ampforwp_amp_post_on_off_meta = $amp_metas['ampforwp-amp-on-off'];
+		if($ampforwp_amp_post_on_off_meta == 'hide-amp'){
+			return false;	
+		}
 	}
     // Removing the AMP on login register etc of Theme My Login plugin	
 	if (false === ampforwp_remove_login_tml() ){
