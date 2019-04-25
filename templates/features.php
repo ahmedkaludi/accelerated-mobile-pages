@@ -230,7 +230,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		    }
 		// #872 no-amphtml if selected as hide from settings
 		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
-			if(is_tag() &&  is_array($redux_builder_amp['hide-amp-tags-bulk-option']))	{
+			if(is_tag() &&  is_array(ampforwp_get_setting('hide-amp-tags-bulk-option')) )	{
 				$all_tags 	= get_the_tags();
 				$tagsOnPost = array();
 				if ( $all_tags ) {
@@ -246,7 +246,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}//tags area closed
 
 			$selected_cats = $current_cats_ids = array();
-			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
+			$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories'); 
 			// Check if $get_categories_from_checkbox has some cats then only show
 			if ( $get_categories_from_checkbox ) {
 				$get_selected_cats = array_filter($get_categories_from_checkbox);
@@ -1087,6 +1087,7 @@ add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
 // 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin 
 add_action( 'pre_amp_render_post', 'ampforwp_remove_schema_data' );
 function ampforwp_remove_schema_data() {
+	$amp_custom_content_enable = '';
 	remove_filter('the_content','display_rich_snippet');
     	// Ultimate Social Media PLUS Compatiblity Added
 	remove_filter('the_content','sfsi_plus_beforaftereposts');
@@ -4164,26 +4165,28 @@ function is_category_amp_disabled(){
 				return false;
 			}
 		}//tags check area closed
-		$categories = get_the_category();
-		if ( $categories) {
-			$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories2'); 
-			// Check if $get_categories_from_checkbox has some cats then only show
-			if ( $get_categories_from_checkbox ) {
-				$get_selected_cats = array_filter($get_categories_from_checkbox);
-				foreach ($get_selected_cats as $key => $value) {
-					$selected_cats[] = $value;
-				}
-				foreach ($categories as $key => $cats) {
-					$current_cats_ids[] =$cats->cat_ID;
-				}  
-				if($selected_cats && $current_cats_ids){
-					if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
-				    	return true;
-				    }
-					else
-						return false;
-				}
-			} 
+		if ( is_category() ) {
+			$categories = get_the_category();
+			if ( $categories) {
+				$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories2'); 
+				// Check if $get_categories_from_checkbox has some cats then only show
+				if ( $get_categories_from_checkbox ) {
+					$get_selected_cats = array_filter($get_categories_from_checkbox);
+					foreach ($get_selected_cats as $key => $value) {
+						$selected_cats[] = $value;
+					}
+					foreach ($categories as $key => $cats) {
+						$current_cats_ids[] =$cats->cat_ID;
+					}  
+					if($selected_cats && $current_cats_ids){
+						if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
+					    	return true;
+					    }
+						else
+							return false;
+					}
+				} 
+			}
 		}
 	}
 }
@@ -4386,51 +4389,8 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 function ampforwp_the_body_class(){ return ;}
 
 // 77. AMP Blog Details
-if( !function_exists('ampforwp_get_blog_details') ) {
-	function ampforwp_get_blog_details( $param = "" ) {
-		global $redux_builder_amp;
-		$current_url = '';
-		$output 	 = '';
-		$slug 		 = '';
-		$title 		 = '';
-		$blog_id 	 = '';
-		$current_url_in_pieces = array();
-		if(is_home() && get_option('show_on_front') == 'page' ) {
-			$current_url = home_url( $GLOBALS['wp']->request );
-			$current_url_in_pieces = explode( '/', $current_url );
-			$page_for_posts  =  get_option( 'page_for_posts' );
-			if( $page_for_posts ){
-				$post = get_post($page_for_posts);
-				if ( $post ) {
-					$slug = $post->post_name;
-					$title = $post->post_title;
-					$blog_id = $post->ID;
-				}						
-				switch ($param) {
-					case 'title':
-						$output = $title;
-						break;
-					case 'name':
-						$output = $slug;
-						break;
-					case 'id':
-						$output = $blog_id;
-						break;
-					default:
-						if( in_array( $slug , $current_url_in_pieces , true ) || get_query_var('page_id') == $blog_id ) {
-							$output = true;
-						}
-						else
-							$output = false;
-						break;
-				}
-			}
-			else
-				$output = false;
-		}
-		return $output;
-	}
-}
+// Moved to functions.php
+
 // 78. Saved Custom Post Types for AMP in Options for Structured Data
 add_action("redux/options/redux_builder_amp/saved",'ampforwp_save_custom_post_types_sd', 10, 1);
 if(! function_exists('ampforwp_save_custom_post_types_sd') ) {
@@ -5699,9 +5659,11 @@ function ampforwp_is_non_amp( $type="" ) {
 	if ( is_page() && false == $redux_builder_amp['amp-on-off-for-all-pages'] ) {
 		return;
 	}
-	$ampforwp_amp_post_on_off_meta = get_post_meta( $post_id,'ampforwp-amp-on-off',true);
-	if($ampforwp_amp_post_on_off_meta == 'hide-amp'){
-		return false;	
+	if ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) {
+		$ampforwp_amp_post_on_off_meta = get_post_meta( $post_id,'ampforwp-amp-on-off',true);
+		if($ampforwp_amp_post_on_off_meta == 'hide-amp'){
+			return false;	
+		}
 	}
 // Removing the AMP on login register etc of Theme My Login plugin	
     

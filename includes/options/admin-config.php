@@ -3324,8 +3324,11 @@ Redux::setSection( $opt_name, array(
 
     // Header Elements default Color
     function ampforwp_get_element_default_color() {
-        $default_value = (array) get_option('redux_builder_amp', true);
-        $default_value = $default_value['amp-opt-color-rgba-colorscheme']['color'];
+        $option = $default_value = '';
+        $option = ampforwp_get_setting('amp-opt-color-rgba-colorscheme');
+        if ( !empty($option['color']) ) {
+            $default_value = $option['color'];
+        }
         if ( empty( $default_value ) ) {
           $default_value = '#333';
         }

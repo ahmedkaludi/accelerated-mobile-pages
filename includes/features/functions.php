@@ -35,13 +35,13 @@ function ampforwp_is_front_page(){
     $get_front_page_reading_settings  = get_option('page_on_front');
 
     // Homepage support on   
-    $get_amp_homepage_settings        =  $redux_builder_amp['ampforwp-homepage-on-off-support'];
+    $get_amp_homepage_settings        =  ampforwp_get_setting('ampforwp-homepage-on-off-support');
 
     // AMP Custom front page from AMP panel
-    $get_custom_frontpage_settings    =  $redux_builder_amp['amp-frontpage-select-option'];
+    $get_custom_frontpage_settings    =  ampforwp_get_setting('amp-frontpage-select-option');
 
     // Frontpage id should be assigned
-    if ( isset($redux_builder_amp['amp-frontpage-select-option-pages'])) {
+    if ( ampforwp_get_setting('amp-frontpage-select-option-pages') ) {
         $get_amp_custom_frontpage_id      =  $redux_builder_amp['amp-frontpage-select-option-pages'];
     }
 
