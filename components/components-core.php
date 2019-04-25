@@ -693,7 +693,6 @@ if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
 
 // AddThis Support #2416
 function ampforwp_addThis_support(){
-	global $redux_builder_amp;
 	$data_pub_id = ampforwp_get_setting('add-this-pub-id');
 	$data_widget_id = ampforwp_get_setting('add-this-widget-id');
 	if ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social')) ) {
