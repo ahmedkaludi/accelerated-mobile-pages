@@ -31,6 +31,10 @@ function ampforwp_schema_lazy_load_remover(){
 	//Remove CSS header from the GoodLife Theme #2673
 	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
 	remove_action( 'amp_post_template_css', 'thb_amp_additional_css_styles' );
+	// Viewport appear more than once in Zox news theme. #2971
+	if ( function_exists( 'mvp_setup' ) && ampforwp_get_setting('amp-design-selector') != 4 ) {
+		remove_action( 'amp_post_template_head','ampforwp_add_meta_viewport');
+	}
 }
 
 //Updater to check license
