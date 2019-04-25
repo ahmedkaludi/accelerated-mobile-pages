@@ -38,7 +38,10 @@ a{ color: #312C7E; text-decoration: none }
 amp-anim { max-width: 100%; }
 amp-wistia-player {margin:5px 0px;}
 .amp-wp-content amp-iframe{max-width:100%}
+.amp-wp-article amp-addthis{margin-bottom: -89px;top: -113px;}
+@media screen and (min-width: 1025px){
 .amp-wp-article amp-addthis{margin-left: 150px;}
+}
 .hide{display:none}
 ol, ul {list-style-position: inside;}
 @font-face {

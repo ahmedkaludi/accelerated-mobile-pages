@@ -6195,7 +6195,7 @@ $single_page_options = array(
         array(
            'id' => 'add-this-support',
            'type' => 'section',
-           'title' => __('AddThis Support', 'accelerated-mobile-pages'),
+           'title' => esc_html__('AddThis Support', 'accelerated-mobile-pages'),
            'indent' => true,
            'layout_type' => 'accordion',
            'accordion-open'=> 1,
@@ -6204,14 +6204,14 @@ $single_page_options = array(
           array(
               'id'        =>  'enable-add-this-option',
               'type'      =>  'switch',
-              'title'     =>  __('Enable AddThis', 'accelerated-mobile-pages'),
-              'desc'=>'<a href="https://www.addthis.com/academy/how-to-install-addthis-inline-share-buttons-on-amp-accelerated-mobile-pages/" target="_blank">Click Here</a> to know how to Install AddThis Share Buttons on AMP',
+              'title'     =>  esc_html__('Enable AddThis', 'accelerated-mobile-pages'),
+              'desc'    =>sprintf('<a href="https://www.addthis.com/academy/how-to-install-addthis-inline-share-buttons-on-amp-accelerated-mobile-pages/" target="_blank">%s</a> %s',esc_html__('Click Here','accelerated-mobile-pages'),esc_html__('to know how to Install AddThis Share Buttons on AMP','accelerated-mobile-pages')),
               'default'   =>  false,
           ),
            array(
                 'id'       => 'swift-add-this-position',
                 'type'     => 'select',
-                'title'    => __( 'Position', 'accelerated-mobile-pages' ),
+                'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
                 'options'  => array(
                                 'default' => 'Single Sidebar (left side)',
                                 'above-content' => 'Above Content',
@@ -6224,18 +6224,18 @@ $single_page_options = array(
             ), 
           array(
                'id'       => 'add-this-pub-id',
-               'title'    => __('Enter Pub ID', 'accelerated-mobile-pages'),
+               'title'    => esc_html__('Enter Pub ID', 'accelerated-mobile-pages'),
                'type'     => 'text',
                'required'  => array('enable-add-this-option', '=' , '1'),
-               'placeholder'  => __('ra-xxxxxxxxxx','accelerated-mobile-pages'),
+               'placeholder'  => esc_html__('ra-xxxxxxxxxx','accelerated-mobile-pages'),
                'default'  => '',
           ),
           array(
                'id'       => 'add-this-widget-id',
-               'title'    => __('Enter Widget ID', 'accelerated-mobile-pages'),
+               'title'    => esc_html__('Enter Widget ID', 'accelerated-mobile-pages'),
                'type'     => 'text',
                'required'  => array('enable-add-this-option', '=' , '1'),
-               'placeholder'  => __('xxxx','accelerated-mobile-pages'),
+               'placeholder'  => esc_html__('xxxx','accelerated-mobile-pages'),
                'default'  => '',
           ),
 

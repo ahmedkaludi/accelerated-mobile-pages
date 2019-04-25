@@ -204,13 +204,6 @@ function ampforwp_swift_social_icons(){
 						</ul>
 		            </div>
 <?php }}
-function ampforwp_swift_add_this_icons(){
-	 if( ampforwp_get_setting('enable-add-this-option') ) { 
-		$data_pub_id = ampforwp_get_setting('add-this-pub-id');
-		$data_widget_id = ampforwp_get_setting('add-this-widget-id'); ?>
-		<amp-addthis width="290" height="92" data-pub-id="<?php echo $data_pub_id; ?>" data-widget-id="<?php echo $data_widget_id; ?>"></amp-addthis>
-<?php }  
-}
 // Remove default sticky social from Swift
 remove_action('amp_post_template_footer','ampforwp_sticky_social_icons');
 remove_action('amp_post_template_css','amp_social_styles',11);
