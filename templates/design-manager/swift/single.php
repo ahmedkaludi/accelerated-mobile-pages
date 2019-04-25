@@ -120,7 +120,7 @@
 		    </div>
 		</div>
 	</div>
-<?php } 
+<?php 
 do_action("ampforwp_single_design_type_handle");
 	?>
 <?php if($redux_builder_amp['rp_design_type'] == '2'){
@@ -228,10 +228,11 @@ do_action("ampforwp_single_design_type_handle");
 	<?php endwhile; amp_loop('end');  ?>
 	</div>
 </div>
-</div>
 <?php } ?>
+</div>
+<?php } // Single Design 1 ends here ?>
 <?php if($redux_builder_amp['single-design-type'] == '4'){?>
-	<div class="sp sgl">
+<div class="sp sgl">
 	<div class="cntr">
 		<div class="sp-wrap">
 			<div class="sp-artl">
@@ -497,7 +498,7 @@ do_action("ampforwp_single_design_type_handle");
 			</div><!-- /.sp-artl -->
 		</div><!-- /.sp-wrap -->
 	</div><!-- /.container -->
-<?php //} 
+<?php 
 do_action("ampforwp_single_design_type_handle");
 	?>
 </div>
