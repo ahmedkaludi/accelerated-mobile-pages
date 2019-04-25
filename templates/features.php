@@ -4150,7 +4150,7 @@ function is_category_amp_disabled(){
 			}
 		}//tags check area closed
 		$categories = get_the_category();
-		if ( $categories) {
+		if ( $categories && is_category() ) {
 			$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories2');
 			$current_category = get_category( get_query_var( 'cat' ) );
 			if ( $current_category ) {
