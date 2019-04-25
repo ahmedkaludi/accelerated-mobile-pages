@@ -120,10 +120,10 @@
 		    </div>
 		</div>
 	</div>
-<?php 
+<?php } // Single page design 1 ends here
 do_action("ampforwp_single_design_type_handle");
 	?>
-<?php if($redux_builder_amp['rp_design_type'] == '2'){
+<?php if( $redux_builder_amp['single-design-type'] == '1' && $redux_builder_amp['rp_design_type'] == '2'){
        if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
 		$my_query = ampforwp_related_post_loop_query();
 	  	if( $my_query->have_posts() ) { $r_count = 1;?>	
@@ -159,7 +159,7 @@ do_action("ampforwp_single_design_type_handle");
 			</div>
 		</div>
     <?php wp_reset_postdata(); }  } ?>
-<?php if(ampforwp_get_setting('rp_design_type') == '3'){
+<?php if( $redux_builder_amp['single-design-type'] == '1' && ampforwp_get_setting('rp_design_type') == '3'){
        if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
 		$my_query = ampforwp_related_post_loop_query();
 	  	if( $my_query->have_posts() ) { $r_count = 1;?>
@@ -229,10 +229,9 @@ do_action("ampforwp_single_design_type_handle");
 	</div>
 </div>
 <?php } ?>
-</div>
-<?php } // Single Design 1 ends here ?>
+</div> 
 <?php if($redux_builder_amp['single-design-type'] == '4'){?>
-<div class="sp sgl">
+	<div class="sp sgl">
 	<div class="cntr">
 		<div class="sp-wrap">
 			<div class="sp-artl">
@@ -498,7 +497,7 @@ do_action("ampforwp_single_design_type_handle");
 			</div><!-- /.sp-artl -->
 		</div><!-- /.sp-wrap -->
 	</div><!-- /.container -->
-<?php 
+<?php //} 
 do_action("ampforwp_single_design_type_handle");
 	?>
 </div>
