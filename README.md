@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1.1
-Stable tag: 0.9.97.48
+Stable tag: 0.9.97.49
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,18 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.49 (25th April 2019) =
+* Added: Addthis Support integrated #2416
+* Fixed: Getting validation Error when using the Ivory Search Plugin #2497
+* Fixed: Featured images or article images not showing in latest version #3063
+* Fixed: Condition improved for author box hook #2608
+* Fixed: After Update all AMP Pages Do Not Load and are Not Validated #3062 [ WP Rocket]
+* Fixed: PHP notice Undefined variable wp #3085
+* Fixed: PHP notice Undefined variable wp_query #2803
+* Fixed: Warning message while on WP customizes #3070
+* Fixed: Tag meta name 'viewport' appear more than once when Zox news theme is activate #2971
+* Fixed: PHP notice errors after activating amp-woocommerce plugin #3054
 
 = 0.9.97.48 (23th April 2019) =
 * Added: Meta genertor #2543
