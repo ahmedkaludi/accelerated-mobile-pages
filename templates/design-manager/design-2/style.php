@@ -30,6 +30,7 @@ a {	color: #312C7E;	text-decoration: none }
 .clearfix, .cb { clear: both }
 amp-iframe{ max-width: 100%; margin-bottom : 20px; }
 amp-anim { max-width: 100%; }
+.amp-wp-article amp-addthis{display: inherit;margin-top: -44px;}
 amp-wistia-player {margin:5px 0px;}
 .alignleft{ margin-right: 12px; margin-bottom:5px; float: left; }
 .alignright{ float:right; margin-left: 12px; margin-bottom:5px; }

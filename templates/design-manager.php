@@ -22,7 +22,7 @@ if ( is_customize_preview() ) {
 
 	// Adding default Value
 	if ($data['elements'] == '') {
-	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
+	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,addthis:1,comments:1,related_posts:1";
 	}
 
 	if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
@@ -53,6 +53,9 @@ if ( is_customize_preview() ) {
 				case 'social_icons:1':
 						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
 						define('AMPFORWP_DM_SOCIAL_CHECK','true');
+						break;
+				case 'addthis:1':
+						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_addthis' );
 						break;
 				case 'comments:1':
 						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
@@ -256,6 +259,18 @@ add_filter( 'amp_post_template_file', 'ampforwp_design_element_related_posts', 1
 function ampforwp_design_element_related_posts( $file, $type, $post ) {
 	if ( 'ampforwp-related-posts' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/related-posts.php';
+	}
+	return $file;
+}
+//Addthis
+function ampforwp_add_element_addthis( $meta_parts ) {
+	$meta_parts[] = 'ampforwp-addthis';
+	return $meta_parts;
+}
+ add_filter( 'amp_post_template_file', 'ampforwp_design_element_addthis', 10, 3 );
+ function ampforwp_design_element_addthis( $file, $type, $post ) {
+	if ( 'ampforwp-addthis' === $type ) {
+		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/addthis.php' ;
 	}
 	return $file;
 }

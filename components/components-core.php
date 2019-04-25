@@ -669,3 +669,21 @@ if ( !function_exists('amp_call_now') ) {
 		ampforwp_call_button_html_output();
 	}
 }
+// AddThis Support #2416
+function ampforwp_addThis_support(){
+	$data_pub_id = ampforwp_get_setting('add-this-pub-id');
+	$data_widget_id = ampforwp_get_setting('add-this-widget-id');
+	if ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social')) ) {
+	 	if( ampforwp_get_setting('enable-add-this-option') ) {
+	 		if( 4 == ampforwp_get_setting('amp-design-selector')){
+	 			$amp_addthis = '<amp-addthis width="290" height="92" data-pub-id="'.esc_html($data_pub_id).'" data-widget-id="'. esc_html($data_widget_id).'"></amp-addthis>';
+	 		}
+	 		else{
+				$amp_addthis = '<amp-addthis width="320" height="92" data-pub-id="'.esc_html($data_pub_id).'" data-widget-id="'.esc_html($data_widget_id).'"></amp-addthis>';
+			} 
+			do_action('ampforwp_before_social_icons_hook');
+			return $amp_addthis;
+			do_action('ampforwp_after_social_icons_hook');
+		}
+	}
+} 

@@ -6724,3 +6724,15 @@ function ampforwp_ivory_search_css(){
 		    display: none;
 		}
 <?php } }
+// AddThis Support
+add_filter('amp_post_template_data','ampforwp_register_addthis_script', 20);
+function ampforwp_register_addthis_script( $data ){ 
+	global $redux_builder_amp;
+	if( ampforwp_get_setting('enable-add-this-option') ) {
+		
+		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
+			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
+		}
+	}
+	return $data;
+}

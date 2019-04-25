@@ -18,6 +18,7 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
 ?>
 
 #statcounter{width: 1px;height:1px;}
+.amp-wp-article amp-addthis{margin-top: -68px;}
 <?php if ( true == ampforwp_get_setting('ampforwp-d1-font') ): ?> 
 @font-face {
   font-family: 'Merriweather';
