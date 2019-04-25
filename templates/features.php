@@ -2453,7 +2453,7 @@ function ampforwp_auto_flush_on_save($redux_builder_amp, $this_transients_change
 		$wp_rewrite->flush_rules();
 	}
 	$options = $new_options = array();
-	if ( is_array($redux_builder_amp['hide-amp-categories']) && !is_array($redux_builder_amp['hide-amp-categories2'])) {
+	if ( is_array(ampforwp_get_setting('hide-amp-categories')) && !is_array(ampforwp_get_setting('hide-amp-categories2')) ) {
 		$options = array_keys(array_filter($redux_builder_amp['hide-amp-categories'] ) );
 		foreach ($options as $option ) {
 			$new_options[] = $option;
@@ -4513,51 +4513,8 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 function ampforwp_the_body_class(){ return ;}
 
 // 77. AMP Blog Details
-if( !function_exists('ampforwp_get_blog_details') ) {
-	function ampforwp_get_blog_details( $param = "" ) {
-		global $redux_builder_amp;
-		$current_url = '';
-		$output 	 = '';
-		$slug 		 = '';
-		$title 		 = '';
-		$blog_id 	 = '';
-		$current_url_in_pieces = array();
-		if(is_home() && get_option('show_on_front') == 'page' ) {
-			$current_url = home_url( $GLOBALS['wp']->request );
-			$current_url_in_pieces = explode( '/', $current_url );
-			$page_for_posts  =  get_option( 'page_for_posts' );
-			if( $page_for_posts ){
-				$post = get_post($page_for_posts);
-				if ( $post ) {
-					$slug = $post->post_name;
-					$title = $post->post_title;
-					$blog_id = $post->ID;
-				}						
-				switch ($param) {
-					case 'title':
-						$output = $title;
-						break;
-					case 'name':
-						$output = $slug;
-						break;
-					case 'id':
-						$output = $blog_id;
-						break;
-					default:
-						if( in_array( $slug , $current_url_in_pieces , true ) || get_query_var('page_id') == $blog_id ) {
-							$output = true;
-						}
-						else
-							$output = false;
-						break;
-				}
-			}
-			else
-				$output = false;
-		}
-		return $output;
-	}
-}
+// Moved to functions.php
+
 // 78. Saved Custom Post Types for AMP in Options for Structured Data
 add_action("redux/options/redux_builder_amp/saved",'ampforwp_save_custom_post_types_sd', 10, 1);
 if(! function_exists('ampforwp_save_custom_post_types_sd') ) {

@@ -3619,8 +3619,8 @@ $amp_fontparts = array_merge($amp_fontparts ,$global_settings);
 
     // Header Elements default Color
     function ampforwp_get_element_default_color() {
-        $default_value = (array) get_option('redux_builder_amp', true);
-        $default_value = $default_value['amp-opt-color-rgba-colorscheme']['color'];
+        $default_value = '';
+        $default_value = ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color', 'ampforwp_sanitize_color');
         if ( empty( $default_value ) ) {
           $default_value = '#333';
         }

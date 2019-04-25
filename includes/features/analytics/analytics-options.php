@@ -2,8 +2,7 @@
 use ReduxCore\ReduxFramework\Redux;
 function ampforwp_get_default_analytics($param=""){
     $options = $default = ''; 
-    $options = (array) get_option('redux_builder_amp', true);
-    $default = $options['amp-analytics-select-option'];
+    $default = ampforwp_get_setting('amp-analytics-select-option');
     if($param == $default){
         return true;
     }
