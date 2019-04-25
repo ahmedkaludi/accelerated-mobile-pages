@@ -20,7 +20,7 @@ amp_header(); ?>
 							ampforwp_swift_social_icons(); 
 			}
 			if (  is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
-					echo ampforwp_addthis_support(); 
+					echo ampforwp_addThis_support(); 
 			} ?>
 			<div class="cntn-wrp">
 				
@@ -66,7 +66,7 @@ amp_header(); ?>
 			if( is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' !=  ampforwp_get_setting('swift-social-position') ) { ?>
  				<div class="ss-ic"><?php
  					if( ampforwp_get_setting('enable-add-this-option') && 'above-content' !=  ampforwp_get_setting('swift-add-this-position')) {
- 						echo ampforwp_addthis_support();
+ 						echo ampforwp_addThis_support();
  					} ?>
 					<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
 					<ul>
