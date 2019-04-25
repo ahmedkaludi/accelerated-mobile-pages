@@ -1083,6 +1083,7 @@ add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
 // 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin 
 add_action( 'pre_amp_render_post', 'ampforwp_remove_schema_data' );
 function ampforwp_remove_schema_data() {
+	$amp_custom_content_enable = '';
 	remove_filter('the_content','display_rich_snippet');
     	// Ultimate Social Media PLUS Compatiblity Added
 	remove_filter('the_content','sfsi_plus_beforaftereposts');
