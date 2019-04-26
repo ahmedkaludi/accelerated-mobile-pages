@@ -4224,11 +4224,7 @@ function ampforwp_rel_canonical_home_archive(){
 	// RankMath canonical copatibility #2975
 	if ( defined('RANK_MATH_FILE') ) {
 		$show_canonical = false;
-		if( $_SERVER['SERVER_NAME'] === '127.0.0.1' || $_SERVER['SERVER_NAME'] === 'localhost' ) {
-			$show_canonical = true;
-		}
 	}
-
 	if ( (is_home() || is_front_page() || (is_archive() && $redux_builder_amp['ampforwp-archive-support']) ) && $show_canonical )	{
 		$current_archive_url = home_url( $wp->request );
 		$amp_url 	= trailingslashit($current_archive_url);
@@ -4240,10 +4236,9 @@ function ampforwp_rel_canonical_home_archive(){
 	  	}
 	  	if ( $page >= '2') { 
 			$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
-		} ?>
-		<?php if(!class_exists('RankMath')){?>
+		} ?>	
 		<link rel="canonical" href="<?php echo user_trailingslashit( esc_url( apply_filters('ampforwp_modify_rel_url', $amp_url ) ) ) ?>">
-	<?php } }
+	<?php } 
 
 	if(is_search()){
 		$paged = get_query_var( 'paged' );
