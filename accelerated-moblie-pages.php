@@ -1000,9 +1000,9 @@ function ampforwp_vendor_is_amp_endpoint(){
 				__FUNCTION__,
 				sprintf(
 					/* translators: 1: is_amp_endpoint(), 2: ampforwp_is_amp_endpoint */
-					esc_html__( '%1$s is deprecated from AMPforWP, please use %2$s instead.', 'accelerated-mobile-pages' ),
+					esc_html__( '%1$s is deprecated from AMPforWP, please use %2$s instead. Check %3$s for more info', 'accelerated-mobile-pages' ),
 					'is_amp_endpoint()',
-					'ampforwp_is_amp_endpoint'
+					'ampforwp_is_amp_endpoint','https://ampforwp.com/tutorials/article/detect-amp-page-function/'
 				),
 				'5.1.1'
 			);
