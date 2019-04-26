@@ -86,6 +86,10 @@ if ( ! function_exists('AMPforWP\\AMPVendor\\amp_render') ) {
 		amp_add_post_template_actions();
 		$template = $ampforwpTemplate = new AMP_Post_Template( $post_id );
 		$template->load();
+		// Set Header: last modified information
+		if( is_singular() && $post_id ) {
+            header("Last-Modified: " . get_the_modified_time("D, d M Y H:i:s", $post_id) );
+	    }
 		exit;
 	}
 }

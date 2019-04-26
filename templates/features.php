@@ -1053,28 +1053,25 @@ function ampforwp_remove_unwanted_scripts() {
 }
 // Remove Print Scripts and styles
 function ampforwp_remove_print_scripts() {
-		if ( ampforwp_is_amp_endpoint() ) {
+	if ( ampforwp_is_amp_endpoint() ) {
+	    function ampforwp_remove_all_scripts() {
+	        global $wp_scripts;
+	        $wp_scripts->queue = array();
+	    }
+	    add_action('wp_print_scripts', 'ampforwp_remove_all_scripts', 100);
+	    function ampforwp_remove_all_styles() {
+	        global $wp_styles;
+	        $wp_styles->queue = array();
+	    }
+	    add_action('wp_print_styles', 'ampforwp_remove_all_styles', 100);
 
-		    function ampforwp_remove_all_scripts() {
-		        global $wp_scripts;
-		        $wp_scripts->queue = array();
-		    }
-		    add_action('wp_print_scripts', 'ampforwp_remove_all_scripts', 100);
-		    function ampforwp_remove_all_styles() {
-		        global $wp_styles;
-		        $wp_styles->queue = array();
-		    }
-		    add_action('wp_print_styles', 'ampforwp_remove_all_styles', 100);
-
-				// Remove Print Emoji for Nextgen Gallery support
-				remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-				remove_action( 'wp_print_styles', 'print_emoji_styles' );
-
-
-		}
+			// Remove Print Emoji for Nextgen Gallery support
+			remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+			remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	}
 }
 // TODO: Remove this function if its not in use
-add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
+// add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
 
 // 19. Remove Canonical tags
 function ampforwp_amp_remove_actions() {
@@ -1192,6 +1189,10 @@ function ampforwp_remove_schema_data() {
 	// Click Mag compatibility #2796
 	remove_filter( 'amp_post_template_file', 'mvp_amp_set_custom_template', 10, 3 );
 	remove_action('amp_post_template_head','mvp_amp_google_font');
+
+	// Digg Digg Compatibility
+    remove_filter('the_excerpt', 'dd_hook_wp_content');
+    remove_filter('the_content', 'dd_hook_wp_content');
 
 	// Removing Voux theme's lazyloading #2263
 	remove_filter( 'the_content', 'thb_lazy_images_filter', 200 );
@@ -2963,15 +2964,6 @@ if( !function_exists('ampforwp_checking_any_social_profiles') ) {
 
 // 50. Properly adding noditification Scritps the AMP way
 // Moved to notice-bar-functions.php
-
-//51. Adding Digg Digg compatibility with AMP
-function ampforwp_dd_exclude_from_amp() {
-if(ampforwp_is_amp_endpoint()) {
-    remove_filter('the_excerpt', 'dd_hook_wp_content');
-    remove_filter('the_content', 'dd_hook_wp_content');
-	}
-}
-add_action('template_redirect', 'ampforwp_dd_exclude_from_amp');
 
 //52. Adding a generalized sanitizer function for purifiying normal html to amp-html
 function ampforwp_content_sanitizer( $content ) {
@@ -4966,20 +4958,6 @@ if( ! function_exists( 'ampforwp_get_author_details' ) ){
 // 89. Facebook Pixel
 // Moved to analytics-functions.php
 
-//90. Set Header last modified information
-add_action('template_redirect', 'ampforwp_addAmpLastModifiedHeader', 12);
-function ampforwp_addAmpLastModifiedHeader($headers) {
-
-    //Check if we are in a single post of any type (archive pages has not modified date)
-    $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
-
-    if( is_singular() && $ampforwp_is_amp_endpoint ) {
-        $post_id = get_queried_object_id();
-        if( $post_id ) {
-            header("Last-Modified: " . get_the_modified_time("D, d M Y H:i:s", $post_id) );
-        }
-    }
-}
 // 91. Comment Author Gravatar URL
 if( ! function_exists('ampforwp_get_comments_gravatar') ){
 	function ampforwp_get_comments_gravatar( $comment ) {
