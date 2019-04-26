@@ -1,14 +1,4 @@
 <?php 
-add_filter( 'amp_post_template_data', 'ampforwp_framework_pagebuilder_accordions_scripts' );
-function ampforwp_framework_pagebuilder_accordions_scripts( $data ) {
-
-			if ( empty( $data['amp_component_scripts']['amp-accordion'] ) ) {
-				$data['amp_component_scripts']['amp-accordion'] = 'https://cdn.ampproject.org/v0/amp-accordion-0.1.js';
-			}
-		
-	
-		return $data;
-}
 $output = 
 '<amp-accordion {{if_id}}id="{{id}}"{{ifend_id}} {{if_user_class}}class="{{user_class}}{{ifend_user_class}}">{{repeater}}</amp-accordion>';
 $css = '
@@ -82,6 +72,13 @@ return array(
 												),
 								'content_type'=>'css',
 							),
+							array(		
+		 						'type'		=>'require_script',		
+		 						'name'		=>"accordion_script",		
+		 						'label'		=>'amp-accordion',
+		 						'default'	=>'https://cdn.ampproject.org/v0/amp-accordion-0.1.js',
+		 						'content_type'=>'js',
+	 						),
 
 			),
 		'front_template'=> $output,
