@@ -4224,6 +4224,9 @@ function ampforwp_rel_canonical_home_archive(){
 	// RankMath canonical copatibility #2975
 	if ( defined('RANK_MATH_FILE') ) {
 		$show_canonical = false;
+		if (class_exists('RankMath\\Helper') && \RankMath\Helper::is_module_active( 'amp' ) == false){
+			$show_canonical = true;
+		}	
 	}
 	if ( (is_home() || is_front_page() || (is_archive() && $redux_builder_amp['ampforwp-archive-support']) ) && $show_canonical )	{
 		$current_archive_url = home_url( $wp->request );
