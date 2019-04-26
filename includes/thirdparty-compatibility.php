@@ -1246,3 +1246,21 @@ add_action('pre_amp_render_post', 'ampforwp_directory_theme_menu');
 function ampforwp_directory_theme_menu(){
 	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
 }
+
+//AMP Woocommerce function
+function ampforwp_woocommerce_conditional_check(){	
+	$showSingleCss = false;
+	if(function_exists('is_product') && is_product()){
+		$showSingleCss = true;
+	}elseif(function_exists('is_cart') && is_cart()){
+		$showSingleCss = true;
+	}elseif(function_exists('is_shop') && is_shop()){
+		$showSingleCss = true;
+	}elseif(function_exists('is_checkout') && is_checkout()){
+		$showSingleCss = true;
+	}elseif(function_exists('is_account_page') && is_account_page()){
+		$showSingleCss = true;
+	}
+
+return apply_filters('ampforwp_woocommerce_conditional_check', $showSingleCss);
+}

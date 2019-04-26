@@ -489,7 +489,7 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 <?php } ?>
 <?php } // Level Condition Ends?>
 <?php //AMP Woocommerce condition starts
-if( (function_exists('is_product') && !is_product()) && (function_exists('is_cart') && !is_cart()) && (function_exists('is_shop') && !is_shop())  ) { ?>
+if( !ampforwp_woocommerce_conditional_check() ) { ?>
 <?php if(is_singular()){?>
 /** Pre tag Styling **/
 pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo $swift_cs_color?>;margin-bottom: 20px;}
@@ -1088,7 +1088,7 @@ a.btt:hover {
 <?php } //Menu Copy Right CSS Ends
  } //level up CSS Ends
  //AMP Woocommerce condition starts
-if( (function_exists('is_product') && !is_product()) && (function_exists('is_cart') && !is_cart()) && (function_exists('is_shop') && !is_shop())  ) { ?>
+if( !ampforwp_woocommerce_conditional_check() ) { ?>
 <?php if($redux_builder_amp['single-design-type'] == '4'){
 if(is_single() ) { ?>
 .sp-rt{
@@ -1205,7 +1205,7 @@ if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar')
 <?php }
 if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || ampforwp_is_blog() ) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() )  ) { 
 // AMP woocommerce condition starts
-if( (function_exists('is_product') && !is_product()) && (function_exists('is_cart') && !is_cart()) && (function_exists('is_shop') && !is_shop())  ) { ?>
+if( !ampforwp_woocommerce_conditional_check() ) { ?>
 /*** Sidebar CSS ***/
 <?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 .sdbr-right{
@@ -1542,7 +1542,7 @@ else{ // Default Footer CSS ?>
 <?php } ?>
 <?php } ?>
 <?php //AMP Woocommerce condition starts
-if( (function_exists('is_product') && !is_product()) && (function_exists('is_cart') && !is_cart()) && (function_exists('is_shop') && !is_shop())  ) { ?>
+if( !ampforwp_woocommerce_conditional_check() ) { ?>
 <?php
  //Sticky Social Icons
 if(is_single() || is_page() ) { ?>
