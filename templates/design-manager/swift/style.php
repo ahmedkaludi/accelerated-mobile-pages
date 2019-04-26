@@ -488,6 +488,8 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 	}
 <?php } ?>
 <?php } // Level Condition Ends?>
+<?php //AMP Woocommerce condition starts
+if( (function_exists('is_product') && !is_product()) && (function_exists('is_cart') && !is_cart()) && (function_exists('is_shop') && !is_shop())  ) { ?>
 <?php if(is_singular()){?>
 /** Pre tag Styling **/
 pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo $swift_cs_color?>;margin-bottom: 20px;}
@@ -502,7 +504,7 @@ echo $fontFamily;
 ?>
 }
 <?php } ?>
-<?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
+<?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){ ?>
 <?php // Single
 
 if(is_single() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) { ?>
@@ -618,14 +620,13 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 .artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;left: 0;top: 12px;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
 .m-ctr {
-position: fixed;
-overflow: scroll;
+	position: fixed;
+	overflow: scroll;
 }
-.m-scrl
-{
-display: inline-block;
-width: 100%;
-max-height: 94vh
+.m-scrl{
+	display: inline-block;
+	width: 100%;
+	max-height: 94vh;
 }
 <?php if($redux_builder_amp['rp_design_type'] == '1'){?>
 	.srp{margin-top:20px;}
@@ -890,6 +891,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
 	<?php } ?>
 }
 <?php } //Drop Cap CSS ends
+ } // //AMP Woocommerce condition Ends 
 // Menu Search CSS
 if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts 
 if ( isset($redux_builder_amp['menu-search']) && $redux_builder_amp['menu-search'] ) { ?>
@@ -1085,7 +1087,9 @@ a.btt:hover {
 }
 <?php } //Menu Copy Right CSS Ends
  } //level up CSS Ends
-if($redux_builder_amp['single-design-type'] == '4'){
+ //AMP Woocommerce condition starts
+if( (function_exists('is_product') && !is_product()) && (function_exists('is_cart') && !is_cart()) && (function_exists('is_shop') && !is_shop())  ) { ?>
+<?php if($redux_builder_amp['single-design-type'] == '4'){
 if(is_single() ) { ?>
 .sp-rt{
 	margin:0;
@@ -1145,7 +1149,8 @@ if ( true == ampforwp_get_setting('gnrl-sidebar') &&  true == ampforwp_get_setti
 
 }
 <?php } // sidebar CSS ends
-} // single design 4 ends?>
+} // single design 4 ends
+} // AMP woocommerce Condition  ends ?>
 <?php // Header and Archive Sidebar
 if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar') && is_active_sidebar( 'swift-sidebar' ) ) { ?>
 .b-w, .arch-dsgn{
@@ -1198,7 +1203,9 @@ if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar')
 }
 }
 <?php }
-if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || ampforwp_is_blog() ) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() )  ) { ?>
+if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || ampforwp_is_blog() ) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() )  ) { 
+// AMP woocommerce condition starts
+if( (function_exists('is_product') && !is_product()) && (function_exists('is_cart') && !is_cart()) && (function_exists('is_shop') && !is_shop())  ) { ?>
 /*** Sidebar CSS ***/
 <?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 .sdbr-right{
@@ -1306,7 +1313,8 @@ thead th {
     flex-basis: calc(100% - 30px);
 }
 }
-<?php } //Header and Archive Sidebar CSS Ends ?>
+<?php } // AMP woocommerce condition starts
+ }//Header and Archive Sidebar CSS Ends  ?>
 <?php 
 if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts 
 //Footer
@@ -1533,9 +1541,11 @@ else{ // Default Footer CSS ?>
 .footer{margin-top: 40px;}
 <?php } ?>
 <?php } ?>
+<?php //AMP Woocommerce condition starts
+if( (function_exists('is_product') && !is_product()) && (function_exists('is_cart') && !is_cart()) && (function_exists('is_shop') && !is_shop())  ) { ?>
 <?php
  //Sticky Social Icons
-if(is_single() || is_page() ){ ?>
+if(is_single() || is_page() ) { ?>
 .ss-ic ul li{
 <?php if ( ampforwp_get_setting('ampforwp_font_icon') == 'swift-icons' ){ ?>
 	font-family: 'icomoon';
@@ -1785,8 +1795,8 @@ if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
 .s_stk ul{width:100%;display:inline-flex;}
 .s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:35px}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
-
-<?php } ?>
+<?php } 
+ } // AMP Woocommerce condition ends ?>
 <?php } // levelup condition ends ?>
 <?php if(is_single() && $redux_builder_amp['enable-single-social-icons'] ){?>
 .body.single-post{
