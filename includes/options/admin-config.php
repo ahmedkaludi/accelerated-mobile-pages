@@ -5088,26 +5088,6 @@ $single_page_options = array(
                     'default'   => 1,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
-           array(
-                'class' => 'child_opt',
-                'id'       => 'ampforwp-dropcap-font',
-                'type'     => 'text',
-                'title'    => esc_html__('Font Size', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'    => esc_html__('Default font size is 75 pixels', 'accelerated-mobile-pages'),
-                'default' => '75',
-                 'required'=>array('ampforwp-dropcap','=', '1'),
-            ),
-            array(
-                    'class' => 'child_opt',
-                    'id'        => 'ampforwp-dropcap-color',
-                    'title'     => esc_html__('Color', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'  => esc_html__('Choose the color for dropcap','accelerated-mobile-pages'),
-                    'type'      => 'color_rgba',
-                    'default'   => array(
-                    'color'      => '#000',
-                     ),
-                    'required'=>array('ampforwp-dropcap','=', '1'),
-            ),  
          //Breadcrumb ON/OFF
           array(
               'id'       => 'ampforwp-bread-crumb',
@@ -5478,6 +5458,26 @@ $single_page_options = array(
               'default'  =>  '0',
               'title'    => __('Dropcap', 'accelerated-mobile-pages'),
            ),
+           array(
+                'class' => 'child_opt',
+                'id'       => 'ampforwp-dropcap-font',
+                'type'     => 'text',
+                'title'    => esc_html__('Font Size', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'    => esc_html__('Default font size is 75 pixels', 'accelerated-mobile-pages'),
+                'default' => '75',
+                 'required'=>array('ampforwp-dropcap','=', '1'),
+            ),
+            array(
+                    'class' => 'child_opt',
+                    'id'        => 'ampforwp-dropcap-color',
+                    'title'     => esc_html__('Color', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Choose the color for dropcap','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'color'      => '#000',
+                     ),
+                    'required'=>array('ampforwp-dropcap','=', '1'),
+            ),
          // Content  h1 - h6 font sizes //#2059 & #3035
             array(
                 'id'       => 'swift_cnt',
