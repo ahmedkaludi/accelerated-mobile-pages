@@ -378,7 +378,7 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;
 <?php
 if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
-	if($font_content != 1 && !empty($font_content) ){ 	
+	if(!empty($font_content) && $font_content != 1){ 	
 		$fontFamily = "font-family: '".esc_attr($font_content)."';";	
 	}  
 }
@@ -494,7 +494,7 @@ pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14
 .cntn-wrp{
 <?php  
 if(1==ampforwp_get_setting('ampforwp-google-font-switch') && 1 == ampforwp_get_setting('content-font-family-enable')){ 
-	if( $font_content != 1 && !empty($font_content) ){  
+	if(!empty($font_content) && $font_content != 1 ){  
 		$fontFamily = "font-family: '".esc_attr($font_content)."';";
 	}  
 }
