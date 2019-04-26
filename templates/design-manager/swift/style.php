@@ -1,4 +1,7 @@
-<?php global $redux_builder_amp; ?>
+<?php global $redux_builder_amp; 
+$font_content = '';
+$font_content = ampforwp_get_setting('amp_font_selector_content_single');
+?>
 <?php if(!isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector'])){
 if(!ampforwp_levelup_compatibility('levelup_theme_and_elementor')){ // Level up Condition starts ?>
 @font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 300;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Light.ttf');}
@@ -290,8 +293,8 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;
 <?php
 if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
-	if(ampforwp_get_setting('amp_font_selector_content_single') != 1 && !empty(ampforwp_get_setting('amp_font_selector_content_single')) ){ 	
-		$fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector_content_single')."';";	
+	if(!empty($font_content) && $font_content != 1){ 	
+		$fontFamily = "font-family: '".esc_attr($font_content)."';";
 	}  
 }
 echo $fontFamily;
@@ -409,9 +412,8 @@ pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14
 <?php
 
 if(1==ampforwp_get_setting('ampforwp-google-font-switch') && 1 == ampforwp_get_setting('content-font-family-enable')){
-
-	if( ampforwp_get_setting('amp_font_selector_content_single') != 1 && !empty(ampforwp_get_setting('amp_font_selector_content_single')) ){ 
-		$fontFamily = "font-family: '".esc_attr(ampforwp_get_setting('amp_font_selector_content_single'))."';";
+	if(!empty($font_content) && $font_content != 1){ 	
+		$fontFamily = "font-family: '".esc_attr($font_content)."';";
 	}  
 }
 echo $fontFamily;
