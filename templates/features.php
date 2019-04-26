@@ -4058,7 +4058,7 @@ function ampforwp_rel_canonical_home_archive(){
 	// RankMath canonical copatibility #2975
 	if ( defined('RANK_MATH_FILE') ) {
 		$show_canonical = false;
-		if( $_SERVER['SERVER_NAME'] === '127.0.0.1' || $_SERVER['SERVER_NAME'] === 'localhost' ) {
+		if (class_exists('RankMath\\Helper') && \RankMath\Helper::is_module_active( 'amp' ) == false){
 			$show_canonical = true;
 		}
 	}
