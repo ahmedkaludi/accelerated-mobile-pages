@@ -53,6 +53,6 @@ function amp_menu_styles(){
 
 		<?php
 	}?>
-	// AMP theme framework and AMP layouts and this is required
+	<?php /*AMP theme framework and AMP layouts and this is required*/ ?>
 	aside{width:150px}.amp-menu{list-style-type:none;margin:0;padding:0}.amp-menu li{position:relative;display:block}.amp-menu li.menu-item-has-children ul{display:none}.amp-menu li.menu-item-has-children:hover>ul{display:}.amp-menu li.menu-item-has-children>ul>li{padding-left:10px}.amp-menu>li a{padding:7px;display:block;margin-bottom:1px}.amp-menu>li ul{list-style-type:none;margin:0;padding:0;position:relative}.amp-menu input{display:none;}<?php 
 }
