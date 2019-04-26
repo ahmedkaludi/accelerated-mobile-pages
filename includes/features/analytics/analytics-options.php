@@ -317,7 +317,8 @@ function ampforwp_analytics_options($opt_name){
                             array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Piwik-switch', '=' , '1')
                           ),
-                          'desc'     => esc_html__( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'accelerated-mobile-pages' ),
+                          //'desc'     => esc_html__( '<a href="https://ampforwp.com/tutorials/article/how-to-add-matomo-piwik-analytics-in-amp/">Click Here</a>', 'accelerated-mobile-pages' ),
+                           'desc' => 'Tutorial: <a href="https://ampforwp.com/tutorials/article/how-to-add-matomo-piwik-analytics-in-amp/">How to add Matomo Piwik Analytics in AMP?</a>','accelerated-mobile-pages',
                           'tooltip-subtitle' => esc_html__('Enter your Matomo (Piwik) Analytics URL.', 'accelerated-mobile-pages' ),
                           'default'  => '#',
                       ),
