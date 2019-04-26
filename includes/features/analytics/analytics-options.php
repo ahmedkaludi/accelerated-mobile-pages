@@ -100,6 +100,15 @@ function ampforwp_analytics_options($opt_name){
                           'default'  => 1,
                       ),
                       array(
+                          'class'    => 'child_opt',
+                          'id'       => 'ampforwp-ga-field-linker',
+                          'type'     => 'switch',
+                          'title'    => esc_html__( 'AMP Linker', 'accelerated-mobile-pages' ),
+                          'required' => array('ampforwp-ga-switch', '=' , '1'),
+                          'tooltip-subtitle' => esc_html__( '<a href="https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/amp/" target="_blank">Click Here</a> for more details on AMP Linker', 'accelerated-mobile-pages' ),
+                          'default'  => 0,
+                      ),
+                      array(
                           'class' => 'child_opt',
                         'id'       => 'ampforwp-ga-field-advance',
                         'type'     => 'ace_editor',
