@@ -184,7 +184,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.49 (25th April 2019) =
+= 0.9.97.49 (26th April 2019) =
 * Added: Addthis Support integrated #2416
 * Fixed: Getting validation Error when using the Ivory Search Plugin #2497
 * Fixed: Featured images or article images not showing in latest version #3063
@@ -195,5 +195,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Warning message while on WP customizes #3070
 * Fixed: Tag meta name 'viewport' appear more than once when Zox news theme is activate #2971
 * Fixed: PHP notice errors after activating amp-woocommerce plugin #3054
+* Fixed: Fatal error - can't use function return value in write context #3087
 
 Full changelog available in changelog.txt
