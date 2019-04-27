@@ -229,40 +229,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		    	return;
 		    }
 		// #872 no-amphtml if selected as hide from settings
-		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
-			if(is_tag() &&  is_array(ampforwp_get_setting('hide-amp-tags-bulk-option')) )	{
-				$all_tags 	= get_the_tags();
-				$tagsOnPost = array();
-				if ( $all_tags ) {
-					foreach ($all_tags as $tagskey => $tagsvalue) {
-						$tagsOnPost[] = $tagsvalue->term_id;
-					}
-				}
-				$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
-				
-				if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
-					return;
-				}
-			}//tags area closed
-
-			$selected_cats = $current_cats_ids = array();
-			$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories'); 
-			// Check if $get_categories_from_checkbox has some cats then only show
-			if ( $get_categories_from_checkbox ) {
-				$get_selected_cats = array_filter($get_categories_from_checkbox);
-				foreach ($get_selected_cats as $key => $value) {
-					$selected_cats[] = $key;
-				}
-				$current_cats = get_the_category(get_the_ID());
-				if ( $current_cats ) {
-					foreach ($current_cats as $key => $cats) {
-	 					$current_cats_ids[] =$cats->cat_ID;
-	 				}
-	 				if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
-	 		      		return;
-	 		    	} 
-	 		    } 
-			} 
+		if ( is_category_amp_disabled() ) {
+			return;
 		}
       	if ( is_page() && ! $redux_builder_amp['amp-on-off-for-all-pages'] && ! is_home() && ! is_front_page() ) {
 			return;
