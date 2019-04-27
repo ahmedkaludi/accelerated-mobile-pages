@@ -3352,21 +3352,17 @@ if( ! function_exists(' ampforwp_youtube_modified_params ') ){
 function ampforwp_comment_button_url(){
 	global $redux_builder_amp;
 	$button_url = "";
-	$ampforwp_nonamp = "";
-	if($redux_builder_amp['amp-mobile-redirection']==1)
-        $ampforwp_nonamp =  '?nonamp=1';
-    else
-      $ampforwp_nonamp = '';
-
-  	if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
+	if(ampforwp_get_setting('amp-mobile-redirection')==1){
+       $button_url = add_query_arg( array( 'nonamp' => '1' ), get_permalink() );
+  		$button_url = $button_url. '#commentform';
+  	}
+  	elseif ( ampforwp_get_setting('ampforwp-amp-takeover') ) {
   		$button_url = user_trailingslashit(get_the_permalink()).'#comments';
   	}
   	else{
-  		$button_url = add_query_arg( array( 'nonamp' => '1' ), get_permalink() );
-
-  		$button_url = $button_url. '#commentform';
+  		$button_url = get_permalink(). '#commentform';
   	}
-  return esc_url( apply_filters( 'ampforwp_comment_button_url', $button_url ) );
+  	return esc_url( apply_filters( 'ampforwp_comment_button_url', $button_url ) );
 }
 
 // 60. Remove Category Layout modification code added by TagDiv #842 and #796
