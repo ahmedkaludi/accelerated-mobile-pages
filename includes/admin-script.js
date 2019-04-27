@@ -603,9 +603,14 @@ var redux_title_modify = function(){
         }
 
     });
-
     $('li.active .redux-group-tab-link-a').click();
-}
+    }
+    if($(".amp-preview-button").length>0){
+        $(".amp-preview-button").click(function(){
+            var srcLink = $("#amp-preview-iframe").attr('data-src');
+           $("#amp-preview-iframe").html("<iframe  src='"+srcLink+"'></iframe>");
+        });
+    }
 
 });
 
