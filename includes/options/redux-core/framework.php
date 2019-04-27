@@ -911,6 +911,7 @@
                         $args = wp_parse_args( $args, array() );
 
                         if ( $type == "categories" || $type == "category" ) {
+                            $args['number'] = apply_filters('ampforwp_number_of_categories', 500);
                             $cats = get_categories( $args );
                             if ( ! empty ( $cats ) ) {
                                 foreach ( $cats as $cat ) {
@@ -987,8 +988,8 @@
                                     $data[ $name ] = ucfirst( $name );
                                 }
                             }
-                        } else if ( $type == "tags" || $type == "tag" ) { // NOT WORKING!
-                            $args['number'] = 500;
+                        } else if ( $type == "tags" || $type == "tag" ) { 
+                            $args['number'] = apply_filters('ampforwp_number_of_tags', 500);
                             $tags = get_tags( $args );
                             if ( ! empty ( $tags ) ) {
                                 foreach ( $tags as $tag ) {
