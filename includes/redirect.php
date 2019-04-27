@@ -11,7 +11,7 @@ function ampforwp_redirection() {
   $hide_cats_amp = is_category_amp_disabled();
   // Redirection for Homepage and Archive Pages when Turned Off from options panel
   if ( ampforwp_is_amp_endpoint() ) {
-     if( (is_archive() && 0 == ampforwp_get_setting('ampforwp-archive-support')) || (is_category() && 0 == ampforwp_get_setting('ampforwp-archive-support-cat')) || (is_tag() && 0 == ampforwp_get_setting('ampforwp-archive-support-tag')) ){
+     if( is_archive() && 0 == ampforwp_get_setting('ampforwp-archive-support') ){
         $archive_check = true;
       }
     if ( ( true == $archive_check ) || true == $hide_cats_amp || ((ampforwp_is_home() || ampforwp_is_front_page()) && 0 == ampforwp_get_setting('ampforwp-homepage-on-off-support')) ) {
