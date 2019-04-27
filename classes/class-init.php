@@ -11,7 +11,6 @@ if ( ! class_exists( 'Ampforwp_Loader', false ) ) {
 		}
 		public function load_required_files() {
 			require AMPFORWP_PLUGIN_DIR . '/templates/features.php';
-			require AMPFORWP_PLUGIN_DIR . '/templates/instant-articles/instant-article-sanitizer.php';
 		}
 	}
 } ?>

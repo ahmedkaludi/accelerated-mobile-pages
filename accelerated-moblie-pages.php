@@ -505,7 +505,7 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 
 			require AMPFORWP_PLUGIN_DIR .'/includes/features/functions.php';
 			// Load Files required for the plugin to run
-			if(is_plugin_active('amp/amp.php')){
+			if( function_exists('amp_activate') ){
 				require_once AMPFORWP_PLUGIN_DIR."includes/features/amp_bridge.php";
 			}
 			else{

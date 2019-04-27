@@ -3641,10 +3641,10 @@ function ampforwp_view_nonamp(){
 add_action('init', 'ampforwp_fb_instant_article_feed_generator');
  
 function ampforwp_fb_instant_article_feed_generator() {
-	global $redux_builder_amp;
-	if( isset($redux_builder_amp['fb-instant-article-switch']) && $redux_builder_amp['fb-instant-article-switch'] ) {	
+	if( ampforwp_get_setting('fb-instant-article-switch') ) {	
 		add_feed('instant_articles', 'ampforwp_fb_instant_article_feed_function');
 		add_action( 'wp_head', 'ampforwp_fbia_meta_tags' );
+		require AMPFORWP_PLUGIN_DIR . '/templates/instant-articles/instant-article-sanitizer.php';
 	}
 }
 
