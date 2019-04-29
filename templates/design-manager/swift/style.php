@@ -1653,3 +1653,12 @@ if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_set
 		}
 	}
 <?php }
+// image floats removed in mobile view #2525
+if(is_singular() || ampforwp_is_front_page()){?>
+@media(max-width:480px){
+.content-wrapper .alignright , .content-wrapper .alignleft {
+  float:none;
+  margin:0 auto;
+}
+}
+<?php } ?>
