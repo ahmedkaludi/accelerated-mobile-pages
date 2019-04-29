@@ -1359,3 +1359,8 @@ body .modal-footer .del-btn-modal{
     color: #555;
     border-radius: 40px;
 }
+.edit-post-layout__content .modal-container {    
+    top: 100px;
+    left: 170px;
+    right: 300px;
+}
