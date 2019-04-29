@@ -907,3 +907,18 @@ function ampforwp_seopress_social(){
 		}
 	}
 }
+
+// yoast author twitter handle #2133
+if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
+	function ampforwp_yoast_twitter_handle() {
+		$twitter = '';
+		if (  class_exists('WPSEO_Frontend') ) {
+		    global $post;
+		    $twitter = get_the_author_meta( 'twitter', $post->post_author );
+		}
+		if($twitter){
+		    return ' <span><a href="https://twitter.com/'.esc_attr($twitter).'" target="_blank">@'.esc_html($twitter).'</a></span>';
+		}
+		return '';
+	}
+}
