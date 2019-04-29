@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1.1
-Stable tag: 0.9.97.49
+Stable tag: 0.9.97.50
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,21 +184,20 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.49 (26th April 2019) =
-* Added: Addthis Support integrated #2416
-* Added: A3 Lazy Load compatibility #2872
-* Added: Add support for AMP Linker #2546
-* Fixed: Getting validation Error when using the Ivory Search Plugin #2497
-* Fixed: Featured images or article images not showing in latest version #3063
-* Fixed: Condition improved for author box hook #2608
-* Fixed: After Update all AMP Pages Do Not Load and are Not Validated #3062 [ WP Rocket]
-* Fixed: PHP notice Undefined variable wp #3085
-* Fixed: PHP notice Undefined variable wp_query #2803
-* Fixed: Warning message while on WP customizes #3070
-* Fixed: Tag meta name 'viewport' appear more than once when Zox news theme is activate #2971
-* Fixed: PHP notice errors after activating amp-woocommerce plugin #3054
-* Fixed: Fatal error - can't use function return value in write context #3087
-* Fixed: AMP Frontpage: The mandatory tag ‘link rel=canonical’ is missing or incorrect with Rank Math #3061
-* Fixed: Fatal error - is_amp_endpoint issue #3055
+= 0.9.97.50 (29th April 2019) =
+* Added: New Icon of Telegram in all the Designs #2448
+* Added: Swift icon and Font awesome icon option added in Design's global section [Swift theme] #2992
+* Added: Category option added in Design's single section [Swift theme] #2551
+* Added: Yoast author twitter handle compatibility integrated #2133
+* Added: New function ampforwp_get_the_ID() created #2867
+* Fixed: Facebook comment and Like option gives an error when the bbPress plugin is enabled #3006
+* Fixed: When Gutenberg active left sidebar is not visible in page builder modules #2934
+* Fixed: AMP preview functionality showing blank in the preview mode #3029
+* Fixed: Image floats CSS improved in mobile mode #2525
+* Fixed: Related Posts Randomly in Swift theme #2308
+* Fixed: Pricing module content is not center in page builder #2921
+* Fixed: Background image of the page builder is zooming in IOS devices when the parallax effect is enabled #2844
+* Fixed: Footnotes compatibility code updated #2982
+* Fixed: Iframe is not loading when Convert AMP to WP theme (Beta) option is enabled [Swift theme] #2628
 
 Full changelog available in changelog.txt
