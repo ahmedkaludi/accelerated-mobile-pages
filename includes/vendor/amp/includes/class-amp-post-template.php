@@ -413,7 +413,7 @@ class AMP_Post_Template {
 			return false;
 		}
 
-		$image_size = apply_filters( 'ampforwp_featured_image', 'full' );
+		$image_size = apply_filters( 'ampforwp_featured_image_size', 'full' );
 		$post_image_src = wp_get_attachment_image_src( $post_image_id, $image_size );
 		
 		if ( is_array( $post_image_src ) ) {

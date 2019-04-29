@@ -7804,7 +7804,7 @@ function ampforwp_webp_featured_image() {
 	$post_id = ampforwp_get_the_ID();
 	if (has_post_thumbnail( $post_id ) ){
 				$thumb_id = get_post_thumbnail_id($post_id);
-				$image_size = apply_filters( 'ampforwp_featured_image', 'full' ); 
+				$image_size = apply_filters( 'ampforwp_featured_image_size', 'full' ); 
 				$image = wp_get_attachment_image_src( $thumb_id, $image_size );
 					if( $image ) {	
 						if(empty($image[1])){

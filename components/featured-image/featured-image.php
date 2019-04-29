@@ -28,7 +28,7 @@ function ampforwp_framework_get_featured_image(){
 			$amp_html = ampforwp_content_sanitizer($videoContent);
 		}elseif (has_post_thumbnail( $post_id ) ){
 		 	$thumb_id = get_post_thumbnail_id($post_id);
-		 	$image_size = apply_filters( 'ampforwp_featured_image', 'full' ); 
+		 	$image_size = apply_filters( 'ampforwp_featured_image_size', 'full' ); 
 			$image = wp_get_attachment_image_src( $thumb_id, $image_size ); 
 			$caption = get_the_post_thumbnail_caption( $post_id ); 
 			$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
