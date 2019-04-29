@@ -8,6 +8,7 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 			<ul class="amp-wp-meta amp-meta-wrapper">
 <?php $post_author = $this->get( 'post_author' ); ?>
 <?php if ( $post_author ) : ?>
+  <li>
 	<div class="amp-wp-meta amp-wp-byline">
   <?php if ( is_single() ) { 
     echo ampforwp_get_author_details( $post_author , 'meta-info' ); 
@@ -51,7 +52,7 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
 	</div>
 <?php endif; ?>
 
-
+</li>
 			</ul>
 	</div>
 </div>
