@@ -4347,7 +4347,6 @@ $single_page_options = array(
               'default'  =>  '1',
               'title'    => esc_html__('Categories', 'accelerated-mobile-pages'),
               'tooltip-subtitle' => esc_html__('Enable or Disable Categories in Single', 'accelerated-mobile-pages'),              
-             'required' => array( array('amp-design-selector', '!=' , '4') )
            ),
          //Tags  ON/OFF
          array(

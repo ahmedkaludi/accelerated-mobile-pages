@@ -7,6 +7,7 @@ global $post;
 function ampforwp_framework_get_categories_list(){
 	global $post, $redux_builder_amp;
 	 $ampforwp_categories = get_the_terms( $post->ID, 'category' );
+	 if(ampforwp_get_setting('ampforwp-cats-single') == '1'){
 		if ( $ampforwp_categories ) : ?>
 		<div class="amp-category">
 				<span><?php echo esc_html(ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories' )); ?></span>
@@ -19,6 +20,7 @@ function ampforwp_framework_get_categories_list(){
 			} ?>
 		</div>
 	<?php endif; 
+}
 }
 function ampforwp_framework_get_tags_list(){
 	global $post, $redux_builder_amp;
