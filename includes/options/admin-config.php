@@ -3295,6 +3295,25 @@ Redux::setSection( $opt_name, array(
                                     
                 ),
                 array(
+                       'id' => 'google-icons',
+                       'type' => 'section',
+                       'title' => esc_html__('Google Icon Library', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 1,
+                        'required' => array( array('amp-design-selector', '=' , '4') ),
+                ),
+                array(
+                    'id'       => 'ampforwp_font_icon',
+                    'type'     => 'select',
+                    'title'    => esc_html__('Icon Font Library', 'accelerated-mobile-pages'),
+                    'options'  => array(
+                        'swift-icons'       => 'Swift Icons',
+                        'fontawesome-icons'     => 'Font Awesome Icons'
+                    ),
+                    'default'  => 'swift-icons',
+                ),
+                array(
                            'id' => 'design-advanced',
                            'type' => 'section',
                            'title' => esc_html__('Advanced', 'accelerated-mobile-pages'),
