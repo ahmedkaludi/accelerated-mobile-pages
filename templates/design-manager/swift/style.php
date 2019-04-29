@@ -1982,6 +1982,7 @@ if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_set
 	}
 <?php }
 // image floats removed in mobile view #2525
+if( function_exists('if_is_levelup') && !if_is_levelup() && !if_levelup_has_builder() ){ // Level up Condition starts 
 if(is_singular() || ampforwp_is_front_page()){?>
 @media(max-width:480px){
 .content-wrapper .alignright , .content-wrapper .alignleft {
@@ -1990,3 +1991,4 @@ if(is_singular() || ampforwp_is_front_page()){?>
 }
 }
 <?php } ?>
+<?php } // levelup condition ends here?> 
