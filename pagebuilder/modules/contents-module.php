@@ -480,7 +480,7 @@ if ( is_admin() ) {
           $first_page = add_query_arg( array( $pagination_text => 1 ), $queryUrl );
           $prev_page = add_query_arg( array( $pagination_text => $paged - 1 ), $queryUrl );
 
-          $pagination_links .= "<a class='pagi-first' href = ".$first_page."> First </a>";
+          $pagination_links .= "<a class='pagi-first' href = ".esc_url($first_page)."> ".esc_html__('First','accelerated-mobile-pages')."</a>";
           //$pagination_links .= "<a href = ".$prev_page."> Prev </a>";
         }
 
@@ -492,10 +492,10 @@ if ( is_admin() ) {
         $endPage = min( $total_num_pages, $paged + $count);
         for($i = $startPage ; $i <= $endPage ; $i++){
           if( $paged == $i){
-              $pagination_links .= "<a class='active' href='#/' >". $i ."</a>";
+              $pagination_links .= "<a class='active' href='#/' >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
           }else{
             $allPages = add_query_arg( array( $pagination_text => $i ), $queryUrl );
-            $pagination_links .= "<a href =".$allPages." >". $i ."</a>";
+            $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html__($i. 'accelerated-mobile-pages')."</a>";
           }
 
         }
@@ -506,7 +506,7 @@ if ( is_admin() ) {
         }
         if( $total_num_pages != $paged ){
           $next_page = add_query_arg( array( $pagination_text => $total_num_pages ), $queryUrl );
-          $pagination_links .= "<a class='pagi-last' href =".$next_page." > Last </a>";
+          $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html__('Last', 'accelerated-mobile-pages')."</a>";
         }
         $pagination_links .= '</div>';
         
