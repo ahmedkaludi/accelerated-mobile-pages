@@ -7,6 +7,7 @@ function ampforwp_framework_get_featured_image(){
 	$amp_html 		= "";
 	$caption 		= "";
 	$f_vid 			= "";
+	$srcet 			= "";
 	if( ampforwp_is_front_page() ){
 		$post_id = ampforwp_get_frontpage_id();
 	}
