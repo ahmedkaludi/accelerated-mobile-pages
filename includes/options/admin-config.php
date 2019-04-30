@@ -6009,8 +6009,7 @@ else{
         )
 
     ) );
-   $redux_option = (array) get_option('redux_builder_amp',true);
-   if ( 4 == $redux_option['amp-design-selector'] ) {
+   if ( 4 == ampforwp_get_setting('amp-design-selector')) {
     $post_builder = '';
    }
    else{
