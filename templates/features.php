@@ -3916,7 +3916,7 @@ function ampforwp_rel_canonical_paginated_post(){
 add_action('ampforwp_after_post_content','ampforwp_post_pagination');
 
 
-// 70. Hide AMP by specific Categories & Tags #872s
+// 70. Hide AMP by specific Categories & Tags #872
 function ampforwp_posts_to_remove () {
 	if(ampforwp_get_setting('hide-amp-categories2')){
 		if ( has_category(array_filter(ampforwp_get_setting('hide-amp-categories2'))) ) {
@@ -4076,53 +4076,21 @@ global $redux_builder_amp;
 				}
 	return $supported_types;
 }
-
-
+// is_category_amp_disabled #872 & #2549
 function is_category_amp_disabled(){
-	global $redux_builder_amp;
-	$current_cats_ids = $selected_cats = array();
-	if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
+	if(is_archive() && ampforwp_get_setting('ampforwp-archive-support') ){
 		if(is_tag() && is_array(ampforwp_get_setting('hide-amp-tags-bulk-option2') ) )	{
-			$all_tags 	= get_the_tags();
-			$tagsOnPost = array();
-			if ( $all_tags ) {
-				foreach ($all_tags as $tagskey => $tagsvalue) {
-					$tagsOnPost[] = $tagsvalue->term_id;
-				}
-			}
-			$get_tags_checkbox =  array_values(array_filter(ampforwp_get_setting('hide-amp-tags-bulk-option2'))); 
-			
-			if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
+			if ( in_array(get_query_var( 'tag_id' ), ampforwp_get_setting('hide-amp-tags-bulk-option2')) ){
 				return true;
 			}
-			else{
-				return false;
-			}
 		}//tags check area closed
-		if ( is_category() ) {
-			$categories = get_the_category();
-			if ( $categories) {
-				$get_categories_from_checkbox =  ampforwp_get_setting('hide-amp-categories2'); 
-				// Check if $get_categories_from_checkbox has some cats then only show
-				if ( $get_categories_from_checkbox ) {
-					$get_selected_cats = array_filter($get_categories_from_checkbox);
-					foreach ($get_selected_cats as $key => $value) {
-						$selected_cats[] = $value;
-					}
-					foreach ($categories as $key => $cats) {
-						$current_cats_ids[] =$cats->cat_ID;
-					}  
-					if($selected_cats && $current_cats_ids){
-						if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
-					    	return true;
-					    }
-						else
-							return false;
-					}
-				} 
+		if ( is_category() && is_array(ampforwp_get_setting('hide-amp-categories2')) ) {
+			if ( in_array(get_query_var( 'cat' ), ampforwp_get_setting('hide-amp-categories2') ) ){
+				return true;
 			}
 		}
 	}
+	return false;
 }
 
 // 73. View AMP Site below View Site In Dashboard #1076
