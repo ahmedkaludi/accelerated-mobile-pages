@@ -7787,9 +7787,9 @@ function ampforwp_design_manager(){
 function ampforwp_nofollow_social_links(){
 	if(true == ampforwp_get_setting('ampforwp-social-no-follow')){
 		 echo 'rel=nofollow';
-	}else{
-		return;
+		 return;
 	}
+	return false;
 }
 
 // ampforwp_post_template_data filter
