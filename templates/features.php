@@ -6626,18 +6626,20 @@ function ampforwp_register_addthis_script( $data ){
 }
 
 function checkAMPforPageBuilderStatus($postId){
-	$postId = ampforwp_get_the_ID();
+	if ( empty($postId) ) {
+		$postId = ampforwp_get_the_ID();
+	}
 	if ( empty(  $postId ) ) {
-    $response = false;
-  }else{
-	  $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
-	  
+    	$response = false;
+	}else{
+		$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+		  
 		if( $ampforwp_pagebuilder_enable=='yes'){
 			$response = true;
 		}else{
 			$response = false;
 		}
-	  $response = apply_filters( 'ampforwp_pagebuilder_status_modify', $response, $postId );
+  		$response = apply_filters( 'ampforwp_pagebuilder_status_modify', $response, $postId );
 	}
 	return $response;
 }
