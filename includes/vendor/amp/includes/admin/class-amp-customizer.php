@@ -166,6 +166,6 @@ class AMP_Template_Customizer {
 	}
 
 	public static function is_amp_customizer() {
-		return ! empty( $_REQUEST[ 'AMP_CUSTOMIZER_QUERY_VAR' ] );
+		return ! empty( $_REQUEST[ AMP_VENDOR_CUSTOMIZER_QUERY_VAR ] );
 	}
 }
