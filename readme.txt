@@ -199,5 +199,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Background image of the page builder is zooming in IOS devices when the parallax effect is enabled #2844
 * Fixed: Footnotes compatibility code updated #2982
 * Fixed: Iframe is not loading when Convert AMP to WP theme (Beta) option is enabled [Swift theme] #2628
+* Fixed: PHP Warning Undefined variable #3103
 
 Full changelog available in changelog.txt

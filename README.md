@@ -198,6 +198,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Background image of the page builder is zooming in IOS devices when the parallax effect is enabled #2844
 * Fixed: Footnotes compatibility code updated #2982
 * Fixed: Iframe is not loading when Convert AMP to WP theme (Beta) option is enabled [Swift theme] #2628
+* Fixed: PHP Warning Undefined variable #3103
 
 = 0.9.97.49 (26th April 2019) =
 * Added: Addthis Support integrated #2416
