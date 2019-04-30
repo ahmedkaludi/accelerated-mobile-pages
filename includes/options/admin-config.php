@@ -51,6 +51,21 @@ if(!is_plugin_active( 'amp-pagebuilder-compatibility/amp-pagebuilder-compatibili
                );
 }   
      $pb_for_amp[] =  array(
+                'id' => 'ampforwp-pagebuilder-accor',
+                'type' => 'section',
+                'title' => esc_html__('AMPforWP PageBuilder', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+    $pb_for_amp[] = array(
+               'id'       => 'ampforwp-pagebuilder',
+               'type'     => 'switch',
+               'title'    => esc_html__('AMPforWP PageBuilder', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the AMP PageBuilder', 'accelerated-mobile-pages'),
+               'default'  => true
+             );
+     $pb_for_amp[] =  array(
                 'id' => 'ampforwp-wpbakery-pb-for-amp-accor',
                 'type' => 'section',
                 'title' => esc_html__('WPBakery Page Builder Compatibility', 'accelerated-mobile-pages'),

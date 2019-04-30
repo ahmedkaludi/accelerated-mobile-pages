@@ -713,10 +713,12 @@ if ( ! defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH') ) {
 }
 require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
 require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
-if ( !is_plugin_active('amp/amp.php') ) {
+if ( !function_exists('amp_activate') ) {
 	require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
-	require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
+	if ( ampforwp_get_setting('ampforwp-pagebuilder') ){
+		require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php');
+	} 
 }
 if(is_admin()){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/modules-upgrade.php' );
