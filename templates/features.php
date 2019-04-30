@@ -3916,43 +3916,15 @@ function ampforwp_rel_canonical_paginated_post(){
 add_action('ampforwp_after_post_content','ampforwp_post_pagination');
 
 
-// 70. Hide AMP by specific Categories #872
-
+// 70. Hide AMP by specific Categories & Tags #872s
 function ampforwp_posts_to_remove () {
-	global $redux_builder_amp;
-	$get_categories_from_checkbox 	= $current_cats = '';
-	$get_selected_cats 				= array();
-	$selected_cats 					= array();
-	$post_id_array 					= array();
-	$current_cats_ids 				= array();
 	if(ampforwp_get_setting('hide-amp-categories2')){
-		$get_categories_from_checkbox = ampforwp_get_setting('hide-amp-categories2');
-		if($get_categories_from_checkbox){
-			$get_selected_cats = array_filter($get_categories_from_checkbox);
-			foreach ($get_selected_cats as $key => $value) {
-				$selected_cats[] = $value;
-			}  
+		if ( has_category(array_filter(ampforwp_get_setting('hide-amp-categories2'))) ) {
+			return true;
 		}
-		$current_cats = get_the_category(get_the_ID());
-		if ( $current_cats ) {
-			foreach ($current_cats as $key => $cats) {
-				$current_cats_ids[] =$cats->cat_ID;
-			}
-		}
-		if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
-	    	return true;
-	    }
 	}
 	if( ampforwp_get_setting('hide-amp-tags-bulk-option2') )	{
-		$get_tags_checkbox =  array_values(array_filter(ampforwp_get_setting('hide-amp-tags-bulk-option2') )); 
-		$all_tags 	= get_the_tags(get_the_ID());
-		$tagsOnPost = array();
-		if ( $all_tags ) {
-			foreach ($all_tags as $tagskey => $tagsvalue) {
-				$tagsOnPost[] = $tagsvalue->term_id;
-			}
-		}			
-		if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
+		if ( has_tag(array_filter(ampforwp_get_setting('hide-amp-tags-bulk-option2') )) ) {
 			return true;
 		}
 	}
