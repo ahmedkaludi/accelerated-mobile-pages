@@ -2117,7 +2117,7 @@ border-bottom: 1px solid #eee;
 <?php }?>}
 .breadcrumb ul li,.breadcrumbs span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
 .breadcrumb ul li a, .breadcrumbs span a, .breadcrumbs .bread-post{color: #999;letter-spacing: 1px;}
-.breadcrumb ul li a:hover, .breadcrumbs span a:hover{color: <?php echo $hovercolor; ?>;}
+.breadcrumb ul li a:hover, .breadcrumbs span a:hover{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .breadcrumbs li a:after, .breadcrumbs span a:after{
 <?php if ( ampforwp_get_setting('ampforwp_font_icon') == 'swift-icons' ){ ?>
 	content: "\e315";font-family: 'icomoon';font-size: 12px;
