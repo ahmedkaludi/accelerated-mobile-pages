@@ -885,7 +885,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
 	<?php } ?>
     line-height: 1;
     padding-right: 8px;	
-    <?php $color = ampforwp_get_setting('ampforwp-dropcap-color','color','sanitize_hex_color');
+    <?php $color = ampforwp_get_setting('ampforwp-dropcap-color','color','ampforwp_sanitize_hex_color');
 	if (empty($color)){?>color: #000;<?php } else {?>	
     color: <?php echo $color ?>;
 	<?php } ?>
