@@ -133,10 +133,6 @@ function ampforwp_redirection() {
       $redirection_location = $home_url;
     }
 
-    // Removing the AMP on login register etc of Theme My Login plugin
-    if (false === ampforwp_remove_login_tml() ){
-      return;
-    }
     wp_safe_redirect( $redirection_location );
     exit;  
   }
