@@ -121,7 +121,7 @@ amp-social-share[type="facebookmessenger"] {
 .amp-social-mewe{background:#b8d6e6}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
-.ampforwp-social-icons custom-amp-socialsharing-vk{background:#45668e}
+.ampforwp-social-icons .custom-amp-socialsharing-vk, .amp-social-vk{background:#45668e}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-odnoklassniki-share') ) { ?>
 .amp-social-odnoklassniki{background:#ed812b}
