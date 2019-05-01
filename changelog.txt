@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 0.9.97.50.1 (1st May 2019) =
+* Fixed: Alignment problem when right sidebar is enable in blog page and there is no featured image in the posts #3057
+
 = 0.9.97.50 (29th April 2019) =
 * Added: New Icon of Telegram in all the Designs #2448
 * Added: Swift icon and Font awesome icon option added in Design's global section [Swift theme] #2992
