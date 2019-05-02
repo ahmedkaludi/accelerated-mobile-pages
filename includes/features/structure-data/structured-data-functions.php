@@ -90,7 +90,7 @@
 					$structured_data_image = __($redux_builder_amp['amp-structured-data-placeholder-image']['url'], 'accelerated-mobile-pages');
 					$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height'));
 					$structured_data_width = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-width'));
-					$structured_data_archive_title 	= get_the_archive_title();
+					$structured_data_archive_title 	= esc_html(get_the_archive_title());
 					$structured_data_author				=  get_userdata( 1 );
 							if ( $structured_data_author ) {
 								$structured_data_author 		= $structured_data_author->display_name ;
