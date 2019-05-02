@@ -194,7 +194,7 @@ if (empty($footer_back_color)) {
 a.btt:hover {
     cursor: pointer;
 }
-<?php if ( is_singular() || $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false ) { ?>
+<?php if ( is_singular() || true == ampforwp_get_setting('amp-frontpage-select-option') && ampforwp_get_blog_details() == false && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
 /* Single */
 .single-post main{ margin: 20px 17px 17px 17px; }
 .amp-wp-article-content{ font-family:'PT Serif', serif; }
@@ -304,6 +304,7 @@ main .amp-wp-content.relatedpost{ background: none; box-shadow: none; padding:0p
 .related-post_image amp-img{ width: 144%; left: -20%; }
 <?php }
 } ?>
+<?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>
 /* Comments */
 .page-numbers{ padding: 9px 10px; background: #fff; font-size: 14px; }
 .comment-body .comment-content{ font-family:'PT Serif', serif; margin-top: 2px; }
@@ -322,7 +323,7 @@ main .amp-wp-content.comments_list{ background: none; box-shadow: none; padding:
 .comments_list li li{ margin: 20px 20px 10px 20px; background: #f7f7f7; box-shadow: none; border: 1px solid #eee; }
 .comments_list li li li{ margin:20px 20px 10px 20px }
 .comment-content amp-img{max-width: 300px;}
-<?php } ?>
+<?php } }?>
 <?php if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_builder_amp['ampforwp-disqus-comments-support'] ) {?>
 .amp-disqus-comments { text-align:center } <?php 
 } ?>
@@ -565,7 +566,7 @@ if ( class_exists('TablePress') ) { ?>
 @media (min-width: 768px) and (max-width: 1600px){ .tablepress{ overflow-x: none; } }
 @media (min-width: 320px) and (max-width: 767px){ .tablepress{ display: inline-block; overflow-x: scroll; } }
 <?php }  
-if ( ! is_home() && 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) { ?>
+if ( ! is_home() && true == ampforwp_get_setting('ampforwp-bread-crumb') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) { ?>
 .breadcrumb{width: 100%;}
 .breadcrumb ul, .category-single ul{ padding:0; margin:0;}
 .breadcrumb ul li{display:inline;}
