@@ -92,10 +92,10 @@
 						$tag_id = $post_obj->term_id;
 						$tag_name = $post_obj->name;
                         $tag_link = get_tag_link($tag_id);
-						$tags_breadcrumbs .= '<li class="item-tag item-tag-' . $tag_id . ' item-tag-' . $tag_name . '"><a class="bread-tag bread-tag-' . $tag_id . ' bread-tag-' . $tag_name . '" href="' . esc_url(ampforwp_url_controller( $tag_link, $archive_non_amp )) . '" title="' . $tag_name . '">' . $tag_name . '</a></li>';
+						$tags_breadcrumbs .= '<li class="item-tag item-tag-' . esc_attr($tag_id) . ' item-tag-' . esc_attr($tag_name) . '"><a class="bread-tag bread-tag-' . esc_attr($tag_id) . ' bread-tag-' . esc_attr($tag_name) . '" href="' . esc_url(ampforwp_url_controller( $tag_link, $archive_non_amp )) . '" title="' . esc_attr($tag_name) . '">' . esc_html($tag_name) . '</a></li>';
 					}
                     if(ampforwp_get_setting('ampforwp-bread-crumb-post')){
-                            $tags_breadcrumbs .='<li class="item-post item-post-' . ampforwp_get_the_ID() . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';
+                            $tags_breadcrumbs .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';
                         } 
 					echo $tags_breadcrumbs;
 				}
@@ -120,7 +120,7 @@
 						$cat_link = get_category_link($cat_id);
 						$cat_display .=  '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. esc_url(ampforwp_url_controller( $cat_link, $archive_non_amp )).'" title="' . $parents . '">' . $parents . '</a></li>';
                         if(ampforwp_get_setting('ampforwp-bread-crumb-post')){
-                            $cat_display .='<li class="item-post item-post-' . ampforwp_get_the_ID() . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';
+                            $cat_display .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';
                         }
 					}
 				}
