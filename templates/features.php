@@ -2507,7 +2507,7 @@ function ampforwp_output_widget_content_above_loop() {
 	   		<div class="amp-wp-content widget-wrapper amp_widget_above_loop">
 	   			<div class="f-w">
 			  		<?php echo do_shortcode($sidebar_output); ?>
-					<div style="clear:both"></div>
+					<div class="cb"></div>
 				</div>
 	  		</div>
 	  	</div> 
