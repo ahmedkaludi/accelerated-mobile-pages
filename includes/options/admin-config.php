@@ -3508,7 +3508,7 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                 'id'        => 'signin-button',
-                'title'     => esc_html__('Button Customize', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Call To Action', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can do the customization here ','accelerated-mobile-pages'),
                 'type'      => 'switch',
                 'default'   => '0',
@@ -3518,7 +3518,8 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-text',
-                'title'     => esc_html__('Button Text', 'accelerated-mobile-pages'),
+                 'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('CTA Text', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can write your required text ','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => 'Sign up free',
@@ -3528,7 +3529,8 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-link',
-                'title'     => esc_html__('Button Link', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('CTA Link', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can add the Link here ','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '#',
@@ -3538,7 +3540,8 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-style',
-                'title'     => esc_html__('Button Styles', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('CTA Styles', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can change the button here','accelerated-mobile-pages'),
                 'type'      => 'switch',
                 'default'   => '0',
@@ -3548,7 +3551,8 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-border-line',
-                'title'     => esc_html__('Button Border Line', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('CTA Border Line', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can change the button border line','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '2',
@@ -3558,11 +3562,12 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-text-color',
-                'title'     => esc_html__('Button Text Color', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('CTA Text Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Texxt','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'rgba'  => 'rgb(0, 0, 0)',
+                    'color'  => '#000',
                     ),
                 'required' => array(
                   array('signin-button-style','=',1)
@@ -3570,11 +3575,12 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                 'id'        => 'signin-button-border-color',
-                'title'     => esc_html__('Button Border Line Color', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('CTA Border Line Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'rgba'  => 'rgb(0, 0, 0)',
+                     'color'  => '#000',
                     ),
                 'required' => array(
                   array('signin-button-style','=',1)
@@ -3582,7 +3588,8 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                     'id'    => 'border-type',
-                   'title'  => esc_html__('Border Type', 'accelerated-mobile-pages'),
+                    'class' => 'child_opt child_opt_arrow',
+                   'title'  => esc_html__('CTA Type', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Square',
@@ -3594,6 +3601,7 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                 'id'        => 'border-radius',
+                'class' => 'child_opt child_opt_arrow',
                 'title'     => esc_html__('Customize Border Radius', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can change the border radius','accelerated-mobile-pages'),
                 'type'      => 'text',
