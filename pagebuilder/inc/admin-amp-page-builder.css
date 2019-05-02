@@ -731,8 +731,7 @@ position: fixed;
     color: #23282d;
     font-weight: 600;  
 }
-.modal-body {
-    /* width: 100%; */
+.modal-mask .modal-body {
     overflow-y: auto;
     height: 92%;
     position: absolute;
