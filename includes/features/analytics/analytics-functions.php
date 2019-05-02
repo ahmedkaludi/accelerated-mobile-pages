@@ -168,11 +168,10 @@ function ampforwp_analytics() {
 		$chartbeat = ampforwp_get_setting('amp-Chartbeat-analytics-code');
 		$ampforwp_chartbeat_fields = array(
 						'vars'=>array(
-							'accountId'=>$chartbeat,
+							'uid'=>$chartbeat,
+							'domain'=>ampforwp_remove_protocol(site_url()),
 							'title'=>get_the_title(),
 							'authors'=>get_the_author_meta('display_name'),
-							'dashboardDomain'=>site_url()
-
 							),
 					
 					); 

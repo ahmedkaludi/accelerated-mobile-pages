@@ -732,3 +732,10 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
         return $returnData;
     }
 }
+// Protocol Remover
+if ( ! function_exists('ampforwp_remove_protocol') ) {
+    function ampforwp_remove_protocol($url){
+        $url = preg_replace('#^https?://#', '', $url);
+        return $url;
+    }
+}
