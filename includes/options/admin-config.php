@@ -1947,8 +1947,9 @@ if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) || is_plugin_a
                         'class' => 'child_opt child_opt_arrow', 
                          'id'       => 'ampforwp-number-of-fb-no-of-comments',
                          'type'     => 'text',
-                         'tooltip-subtitle'     => __('Enter the number of comments','accelerated-mobile-pages'),
-                         'title'    => __('No of Comments', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle'     => 
+                         sprintf('%s <a href="https://developers.facebook.com/docs/plugins/comments" target="_blank">%s</a>.',esc_html__( 'Enter the number of comments to show, Currently Facebook SDK limits this to max 100. For details, see the','accelerated-mobile-pages' ),esc_html__('Facebook comments documentation','accelerated-mobile-pages') ),
+                         'title'    => esc_html__('No of Comments', 'accelerated-mobile-pages'),
                          'default'  => 10,
                          'required' => array(
                             array('ampforwp-facebook-comments-support', '=' , 1),
