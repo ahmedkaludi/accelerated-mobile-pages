@@ -4532,7 +4532,9 @@ if( ! function_exists( 'featured_image_content_filter' ) ){
 			// Remove the figure (due to caption)
 			$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);
 			// Remove the amp-img 
+		  if(empty(has_post_thumbnail())){
 			$content = preg_replace('/<amp-img(.*)src="'.$featured_image.'"(.*?)<\/amp-img>/', '', $content);
+		  }
 		}
 	return $content;
 	}
