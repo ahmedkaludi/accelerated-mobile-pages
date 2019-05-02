@@ -849,14 +849,15 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 								'posts_per_page' => $fieldValues['show_total_posts'],
 								'has_password' => false,
 								'post_status'=> 'publish',
-								'tax_query' => array(
-												array(
-													'taxonomy'=>get_term($fieldValues['category_selection'])->taxonomy,
-													'field'=>'id',
-													'terms'=>$fieldValues['category_selection']
-													)
-												)
+								'post_type' => $fieldValues['post_type_selection']
 								);
+						if ( isset($fieldValues['category_selection']) && 'recent_option' !== $fieldValues['category_selection'] ) {
+							$args['tax_query'] = array(
+									array(
+										'taxonomy'=>(isset($fieldValues['category_selection']))?get_term($fieldValues['category_selection'])->taxonomy: '',
+										'field'=>'id',
+										'terms'=>$fieldValues['category_selection']));
+						}
 						//The Query
 						$the_query = new WP_Query( $args );
 						$totalLoopHtml = $moduleTemplate[$contentArray['type']]['front_loop_content'];
