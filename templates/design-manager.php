@@ -18,76 +18,22 @@ if ( is_customize_preview() ) {
 	// add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_simple_comment_button' );
 }
 
-	$data = get_option( 'ampforwp_design' );
-
-	// Adding default Value
-	if ($data['elements'] == '') {
-	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,addthis:1,comments:1,related_posts:1";
-	}
-
-	if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
-		$options = explode( ',', $data['elements'] );
-	};
-
-	if ($options): foreach ($options as $key=>$value) {
-		if ( ! is_customize_preview() ) {
-			switch ($value) {
-				case 'bread_crumbs:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_bread_crumbs' );
-						break;		
-				case 'title:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
-						break;
-				case 'meta_info:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_info' );
-						break;
-				case 'featured_image:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_featured_image' );
-						break;
-				case 'content:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_content' );
-						break;
-				case 'meta_taxonomy:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_taxonomy' );
-						break;
-				case 'social_icons:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
-						define('AMPFORWP_DM_SOCIAL_CHECK','true');
-						break;
-				case 'addthis:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_addthis' );
-						break;
-				case 'comments:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
-						break;
-				case 'related_posts:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
-						break;
-				// case 'comments:0':
-				// 		add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_simple_comment_button' );
-				// 		break;
-			}
-		}
-	}
-	endif;
-
-
 // Design Selector
 add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {
-    global $redux_builder_amp;
     $design = '';
 	$design = ampforwp_get_setting('amp-design-selector');
-	if ( empty( $design )){
-    	return 4;
-    }
 
-    if ( $design ) {
+    if ( empty( $design )){
+    	return 4;
+    }    
+
+    if ( $design) {
 		if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $design . '/style.php') ) {
-			return $redux_builder_amp['amp-design-selector'];
+			return $design;
 		}
 		elseif ( 4 == $design && file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift/style.php') ) {
-      			return $redux_builder_amp['amp-design-selector'];
+      			return 4;
     	}
 		else {
 			if ( file_exists( WP_PLUGIN_DIR.'/'.$design.'/functions.php' ) ){
@@ -113,7 +59,7 @@ function ampforwp_stylesheet_file_insertion() {
         if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php') && 4 != $ampforwp_design_selector ) {
 	        //require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php';
 	    }else {
-	    	require AMPFORWP_PLUGIN_DIR."/components/theme-loader.php";
+    		require AMPFORWP_PLUGIN_DIR."/components/theme-loader.php";
 	    }
 }
 
@@ -262,20 +208,24 @@ function ampforwp_design_element_related_posts( $file, $type, $post ) {
 	}
 	return $file;
 }
+
 //Addthis
 function ampforwp_add_element_addthis( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-addthis';
 	return $meta_parts;
 }
- add_filter( 'amp_post_template_file', 'ampforwp_design_element_addthis', 10, 3 );
- function ampforwp_design_element_addthis( $file, $type, $post ) {
+
+add_filter( 'amp_post_template_file', 'ampforwp_design_element_addthis', 10, 3 );
+
+function ampforwp_design_element_addthis( $file, $type, $post ) {
 	if ( 'ampforwp-addthis' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/addthis.php' ;
 	}
 	return $file;
 }
+
 // Empty meta parts when Pagebuilder is enabled
-add_filter('ampforwp_design_elements', 'ampforwp_empty_design_elements');
+add_filter('ampforwp_design_elements', 'ampforwp_empty_design_elements', 12);
 function ampforwp_empty_design_elements($meta_parts) {
 	if( checkAMPforPageBuilderStatus(get_the_ID()) ){
 		$meta_parts = array();

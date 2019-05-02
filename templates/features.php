@@ -6643,3 +6643,59 @@ function checkAMPforPageBuilderStatus($postId){
 	}
 	return $response;
 }
+
+// Design Manager for Design 1,2 and 3
+add_action('pre_amp_render_post', 'ampforwp_design_manager');
+function ampforwp_design_manager(){
+	if ( ( 1 || 2 || 3 ) == ampforwp_get_setting('amp-design-selector') ) {
+		global $redux_builder_amp;
+		$data = get_option( 'ampforwp_design' );
+		// Adding default Value
+		if ($data['elements'] == '') {
+		 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1,addthis:1,ad7:1,ad8:1";
+		}
+		if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
+			$options = explode( ',', $data['elements'] );
+		};
+		if(ampforwp_get_setting('d_1_3_single_components_layout')){
+			$options = array();
+			$options = $redux_builder_amp['d_1_3_single_components_layout']['enabled'];
+			foreach ($options as $key=>$value) {
+				switch ($key) {
+					case 'title':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
+							break;		
+					case 'meta_info':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_info' );
+							break;
+					case 'featured_image':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_featured_image' );
+							break;
+					case 'bread_crumbs':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_bread_crumbs' );
+							break;
+					case 'content':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_content' );
+							break;
+					case 'meta_taxonomy':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_taxonomy' );
+							break;
+					case 'social_icons':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
+							define('AMPFORWP_DM_SOCIAL_CHECK','true');
+							break;
+					case 'comments':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
+							break;
+					case 'related_posts':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
+							break;
+					case 'addthis':		
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_addthis' );
+							break;			
+				}
+			}
+		}
+	}
+}
