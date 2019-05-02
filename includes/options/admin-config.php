@@ -6206,8 +6206,12 @@ $single_page_options = array(
           array(
               'id'        =>  'enable-add-this-option',
               'type'      =>  'switch',
-              'title'     =>  esc_html__('Enable AddThis', 'accelerated-mobile-pages'),
-              'desc'    =>sprintf('<a href="https://www.addthis.com/academy/how-to-install-addthis-inline-share-buttons-on-amp-accelerated-mobile-pages/" target="_blank">%s</a> %s',esc_html__('Click Here','accelerated-mobile-pages'),esc_html__('to know how to Install AddThis Share Buttons on AMP','accelerated-mobile-pages')),
+              'title'     =>  esc_html__('AddThis Sharing', 'accelerated-mobile-pages'),
+
+               
+
+
+              'tooltip-subtitle'    => sprintf('%s <a href="https://www.addthis.com/register" target="_blank">%s</a>, %s <a href="https://www.addthis.com/academy/how-to-customize-your-share-buttons-on-the-amp-for-wp-plugin" target="_blank">%s</a>',esc_html__('You are using the default AddThis share buttons. To customize your share buttons, create a free account at','accelerated-mobile-pages'),esc_html__('AddThis.com','accelerated-mobile-pages'),esc_html__('then activate the Inline Share Buttons. Once your buttons are activated, replace the default Pub ID and Tool ID with your personalized IDs. For instructions, visit','accelerated-mobile-pages'),esc_html__('here','accelerated-mobile-pages')),
               'default'   =>  false,
           ),
            array(
@@ -6226,19 +6230,17 @@ $single_page_options = array(
             ), 
           array(
                'id'       => 'add-this-pub-id',
-               'title'    => esc_html__('Enter Pub ID', 'accelerated-mobile-pages'),
+               'title'    => esc_html__('Pub ID', 'accelerated-mobile-pages'),
                'type'     => 'text',
                'required'  => array('enable-add-this-option', '=' , '1'),
-               'placeholder'  => esc_html__('ra-xxxxxxxxxx','accelerated-mobile-pages'),
-               'default'  => '',
+               'default'  => esc_html__('ra-5cc8551aa4f16f5c','accelerated-mobile-pages'),
           ),
           array(
                'id'       => 'add-this-widget-id',
-               'title'    => esc_html__('Enter Widget ID', 'accelerated-mobile-pages'),
+               'title'    => esc_html__('Tool ID', 'accelerated-mobile-pages'),
                'type'     => 'text',
                'required'  => array('enable-add-this-option', '=' , '1'),
-               'placeholder'  => esc_html__('xxxx','accelerated-mobile-pages'),
-               'default'  => '',
+               'default'  => esc_html__('cwgj','accelerated-mobile-pages'),
           ),
 
          //End AddThis Support    
