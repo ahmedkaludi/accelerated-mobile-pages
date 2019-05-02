@@ -40,6 +40,20 @@ amp_header(); ?>
 						<?php } ?>
 					</div><!-- /.cntr -->
 				<?php } else { ?>
+					<?php if( true == ampforwp_get_setting('gnrl-sidebar') &&ampforwp_get_setting('page_sidebar') == '1' && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
+				<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
+				<div class="sdbr-right" style="float: right;" >
+					<?php 
+					$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+					if ( $sanitized_sidebar) {
+						$sidebar_output = $sanitized_sidebar->get_amp_content();
+						$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+					}
+		            echo do_shortcode($sidebar_output);
+					?>
+				</div>
+			<?php endif; ?>
+				<?php } ?>
 					<?php amp_content(); ?>
 				<?php } ?>
 			</div>

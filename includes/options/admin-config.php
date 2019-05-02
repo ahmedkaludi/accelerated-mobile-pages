@@ -3306,6 +3306,14 @@ Redux::setSection( $opt_name, array(
                                     
                 ),
                 array(
+                      'id'       => 'page_sidebar',
+                      'class' => 'child_opt child_opt_arrow',
+                      'type'     => 'switch',
+                      'title'    => esc_html__('Page Sidebar', 'accelerated-mobile-pages'),
+                      'default'  =>  '0',
+                      'required' => array('gnrl-sidebar', '=' , '1'), 
+                  ),
+                array(
                        'id' => 'google-icons',
                        'type' => 'section',
                        'title' => esc_html__('Google Icon Library', 'accelerated-mobile-pages'),

@@ -651,3 +651,15 @@ AmpForWpYoastAnalysis = function() {
     };
     new AmpForWpYoastAnalysis();
 }); 
+jQuery(document).ready(function($){
+$("#redux_builder_amp-swift-sidebar").on( 'change', function(){
+var value = $('#redux_builder_amp-swift-sidebar #swift-sidebar').val();
+if(value == 1){
+$("#single-design-type_2").attr('checked', true);
+}else {
+    $("#single-design-type_1").attr('checked', true);
+}
+
+});
+
+});
