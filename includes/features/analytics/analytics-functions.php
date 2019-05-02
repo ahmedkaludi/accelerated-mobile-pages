@@ -4,7 +4,11 @@ add_action('amp_post_template_footer','ampforwp_analytics',11);
 function ampforwp_analytics() {
 	// 10.1 Analytics Support added for Google Analytics
 	global $redux_builder_amp;
-	if ( true == ampforwp_get_setting('ampforwp-ga-switch')){
+	$ga_switch = ampforwp_get_setting('ampforwp-ga-switch');
+	if( true == ampforwp_get_setting('amp-use-gtm-option') ){ 
+		$ga_switch = update_option( 'ampforwp-ga-switch', 0);
+	}
+	if ( true == $ga_switch ){
 		$ga_fields = array();
 		$ampforwp_ga_fields = array();
 		$ga_account = '';
