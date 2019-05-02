@@ -5,7 +5,7 @@ Most of the code is taken from class-amp-gallery-embed.php and Photo Gallery Plu
 */
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php' );
 
-class AMPforWP_Photo_Gallery_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Handler {
+class AMPforWP_Photo_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
   private static $script_slug = 'amp-carousel';
   private static $script_src = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
 
