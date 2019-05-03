@@ -496,7 +496,7 @@ function amp_loop_template(){
 function amp_content($post_id= ''){ 
 global $redux_builder_amp, $post, $ampforwpTemplate;
 $ampforwp_metas = array();
-
+$amp_custom_content_enable = '';
 if ( empty( $post_id )) {
 	
 	$post_id = get_queried_object_id();
@@ -515,7 +515,9 @@ if ( empty( $post_id )) {
 		do_action('ampforwp_before_post_content',$ampforwpTemplate);
 	} 
     $ampforwp_metas = json_decode(get_post_meta($ampforwpTemplate->get( 'post_id' ),'ampforwp-post-metas',true),true); 
-	$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
+	if ( isset( $ampforwp_metas['ampforwp_custom_content_editor_checkbox'] )) {
+	  	$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
+	}
 	// Normal Content
 	if ( ! $amp_custom_content_enable ) {
 			$ampforwp_the_content = $ampforwpTemplate->get( 'post_amp_content' ); // amphtml content; no kses

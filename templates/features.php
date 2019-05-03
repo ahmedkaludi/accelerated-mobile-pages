@@ -7020,6 +7020,7 @@ function ampforwp_register_addthis_script( $data ){
 // PageBuilder Status fallback #2414
 function checkAMPforPageBuilderStatus($postId){
 	global $post, $redux_builder_amp;
+	$ampforwp_pagebuilder_enable = '';
 	$postId = (is_object($post)? $post->ID: '');
   
   if( ampforwp_is_front_page() ){
