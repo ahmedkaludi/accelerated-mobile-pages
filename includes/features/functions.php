@@ -739,3 +739,13 @@ if ( ! function_exists('ampforwp_remove_protocol') ) {
         return $url;
     }
 }
+// #3009
+if ( ! function_exists('ampforwp_sanitize_i_amphtml') ) {
+    function ampforwp_sanitize_i_amphtml($data){
+        if(empty($data)){
+            return $data;
+        }
+        $data = preg_replace_callback('/.i-amphtml-(.*?){(.*?)}/s',function($matches){ if(!empty($matched)){ return ''; } }, $data);
+        return $data;
+    }
+}

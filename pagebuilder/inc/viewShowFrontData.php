@@ -1033,7 +1033,9 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 	return $html;
 }
 function ampforwp_pagebuilder_module_style(){
-	echo $redux_builder_amp['css_editor'];
+	$custom_css = ampforwp_get_setting('css_editor'); 
+	$sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
+	echo $sanitized_css;
 }
 function sortByIndex($contentArray){
 	$completeSortedArray = array();
