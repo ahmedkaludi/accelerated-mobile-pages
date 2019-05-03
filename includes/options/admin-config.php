@@ -1776,8 +1776,13 @@ if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) || is_plugin_a
                 'id'   => 'info_normal_wpml',
                 'type' => 'info',
                 'required' => array('amp-enable-wpml', '=' , '1'),
-                 'desc' => esc_html__('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/wpml-for-amp/#utm_source=options-panel&utm_medium=wpml-tab_wpml_installation_link&utm_campaign=AMP%20Plugin" target="_blank">WPML extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/wpml-for-amp/#utm_source=options-panel&utm_medium=wpml-tab_wpml_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>', 'accelerated-mobile-pages'),               
-                   );
+                 'desc' =>sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>%s</b> %s<a href="https://ampforwp.com/wpml-for-amp/" target="_blank"> %s</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/wpml-for-amp/" target="_blank">%s</a>)</div></div>',
+                   esc_html__('ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),
+                   esc_html__('This feature requires','accelerated-mobile-pages'),
+                   esc_html__('WPML extension','accelerated-mobile-pages'),
+                   esc_html__('Click here for more info','accelerated-mobile-pages')
+             ),             
+            );
         }
     // Polylang Support 
         $multilanguage_support[] =  array(
