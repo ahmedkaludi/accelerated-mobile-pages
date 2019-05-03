@@ -6635,6 +6635,12 @@ if ( ! class_exists('AMP_Base_Sanitizer') && class_exists('AMPforWP\\AMPVendor\\
 
 	}
 }
+// Class AMP_Base_Embed_Handler
+if ( ! class_exists('AMP_Base_Embed_Handler') && class_exists('AMPforWP\\AMPVendor\\AMP_Base_Embed_Handler') ) {
+	abstract class AMP_Base_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Handler
+	{
+ 	}
+}
 // Class AMP_HTML_Utils
 if ( ! class_exists('AMP_HTML_Utils') && class_exists('AMPforWP\\AMPVendor\\AMP_HTML_Utils') ) {
 	class AMP_HTML_Utils extends AMPforWP\AMPVendor\AMP_HTML_Utils{}
