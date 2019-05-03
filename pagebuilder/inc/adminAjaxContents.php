@@ -109,6 +109,7 @@ function amppb_save_layout_data(){
 	if(count($posts_array)>0){
 		foreach ($posts_array as $key => $layoutData) {
 		$allPostLayout[] = array('post_title'=>$layoutData->post_title,
+								'post_id'=>$layoutData->ID,
 								'post_content'=>$layoutData->post_content,
 									);
 		}
@@ -117,7 +118,37 @@ function amppb_save_layout_data(){
 	exit;
 }
 
+add_action( 'wp_ajax_amppb_remove_saved_layout_data', 'amppb_remove_saved_layout_data');
+function amppb_remove_saved_layout_data(){
 
+	$layoutid = esc_attr($_POST['layoutid']);
+	$is_delete = wp_delete_post($layoutid);
+	$allPostLayout = array();
+	$args = array(
+				'posts_per_page'   => -1,
+				'orderby'          => 'date',
+				'order'            => 'DESC',
+				'post_type'        => 'amppb_layout',
+				'post_status'      => 'publish'
+				);
+	$posts_array = get_posts( $args );
+	if(count($posts_array)>0){
+		foreach ($posts_array as $key => $layoutData) {
+		$allPostLayout[] = array('post_title'=>$layoutData->post_title,
+								'post_id'=>$layoutData->ID,
+								'post_content'=>$layoutData->post_content,
+									);
+		}
+	}
+	if ( $is_delete ) {
+		echo json_encode(array("status"=>200,"data"=>$allPostLayout));
+		exit;
+	}
+	else{
+		echo json_encode(array("status"=>404,"data"=>$allPostLayout));
+		exit;
+	}	
+}
 
 // Ajax action to refresh the user image
 add_action( 'wp_ajax_ampforwp_get_image', 'ampforwp_get_image');

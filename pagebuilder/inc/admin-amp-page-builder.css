@@ -1363,3 +1363,6 @@ body .modal-footer .del-btn-modal{
     left: 170px;
     right: 300px;
 }
+.amppb-layout-bottom .del-btn{color:red;}
+.amppb-layout-bottom .del-btn:hover{color:red;}
+.layout-rem-msg{padding: 10px;color:blue;}

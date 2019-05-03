@@ -65,6 +65,7 @@ global $savedlayoutTemplate;
                                     </button>
                                     
                                 </div>
+                                <span class="layout-rem-msg" v-if="this.layoutMsg">{{this.layoutMsg}}</span>
                                 <div class="amppb-layout-library-wrapper" v-if="showsavedLayouts.length">
                                 <h4>List Of Saved Layouts</h4>
 
@@ -77,6 +78,7 @@ global $savedlayoutTemplate;
                                                         
                                                         <button type="button" class="button" :data-layout='layout.post_content' @click="importLayout($event)">Import</button>
                                                     </div>
+                                                    <button type="button" class="button button-info del-btn" :data-layout='layout.post_content' @click="removeSavedLayout(layout.post_id)">Remove</button>
                                                 </div>
                                             </div>
                                         </div>

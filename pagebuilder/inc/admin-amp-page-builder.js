@@ -21,7 +21,8 @@ Vue.component('amp-pagebuilder-modal', {
   		innerLayouts: '',
   		innerLayoutsHeading: '',
   		ampb_script_textarea: (app.mainContent.settingdata['scripts_data']? app.mainContent.settingdata['scripts_data']: ''),
-  		ampb_style_textarea: (app.mainContent.settingdata['style_data']? app.mainContent.settingdata['style_data']:'')
+  		ampb_style_textarea: (app.mainContent.settingdata['style_data']? app.mainContent.settingdata['style_data']:''),
+  		layoutMsg: ''
   	}
   },
   methods:{
@@ -36,6 +37,42 @@ Vue.component('amp-pagebuilder-modal', {
 		app.mainContent.settingdata['scripts_data'] = this.ampb_script_textarea;
 		app.mainContent.settingdata['style_data'] = this.ampb_style_textarea;
 		this.hidePageBuilderPopUp();
+	},
+	removeSavedLayout: function(postId){
+		var saveLayoutData = {
+							action: 'amppb_remove_saved_layout_data',
+							layoutid:postId,
+							verify_nonce: amppb_panel_options.secure_nonce
+							};
+		this.$http.post(amppb_panel_options.ajaxUrl+'?action=amppb_remove_saved_layout_data', 
+						saveLayoutData,
+						{
+						headers:{
+							responseType:'json'
+						},
+						responseType:'json',
+						emulateHTTP:true,
+						emulateJSON:true,
+						}
+					).then(function(response){
+						response =response.body;
+						if(response.status="200"){
+							this.layoutMsg = "Layout removed successfully!";
+							this.showsavedLayouts = response.data;
+							amppb_panel_options.savedLayouts = this.showsavedLayouts
+
+ 							this.save_layout = {name:"",url:""};
+						}
+						else
+							this.layoutMsg = "Try Again";
+					    setTimeout(() => {
+				          	this.layoutMsg = '';
+				      	},5000);
+					},
+					 //errorCallback
+					 function(){
+					 	alert('connection not establish');
+					 });
 	},
 	savePagebuildercustomLayout: function(event){
 		if(!this.save_layout.name && this.save_layout.name==""){

@@ -94,6 +94,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			if(count($posts_array)>0){
 				foreach ($posts_array as $key => $layoutData) {
 				$allPostLayout[] = array('post_title'=>$layoutData->post_title,
+										'post_id'=>$layoutData->ID,
 										'post_content'=>$layoutData->post_content,
 											);
 				}
