@@ -457,6 +457,17 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('the-events-calendar-for-amp/the-events-calendar-for-amp.php')? 1 : 2),
                         ),
+                        array(
+                            'name'=>'Table Of Content Plus For AMP',
+                            'desc'=>'This is an extension of Table Of Content For AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/amp-SU.png',
+                            'price'=>'$19',
+                            'url_link'=>'https://ampforwp.com/table-of-contents-plus/#utm_source=options-panel&utm_medium=extension-tab_tableofcontent&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'table-of-content-plus-for-amp/table-of-content-plus-for-amp.php',
+                            'item_name'=>'Table Of Content Plus For AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('table-of-content-plus-for-amp/table-of-content-plus-for-amp.php')? 1 : 2),
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
