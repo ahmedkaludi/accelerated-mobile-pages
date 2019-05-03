@@ -33,22 +33,16 @@
       <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
       <nav id ="primary-amp-menu">
         <?php
-        require_once AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-walker-nav-menu.php';
-          
-        $menu_html_content = wp_nav_menu( array(
-                                  'theme_location' => 'amp-menu' ,
-                                  'link_before'     => '<span>',
-                                  'link_after'     => '</span>',
-                                  'menu'=>'ul',
-                                  'echo' => false,
-                                  'menu_class' => 'menu amp-menu',
-                                  'walker' => new Ampforwp_Walker_Nav_Menu()
-                                ) );
-        $menu_html_content = apply_filters('ampforwp_menu_content', $menu_html_content);
-        $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
-        $sanitized_menu =  $sanitizer_obj->get_amp_content();
-        echo $sanitized_menu; // amphtml content, no kses
-        ?>
+        $menu_args = array(
+                        'theme_location' => 'amp-menu' ,
+                        'link_before'     => '<span>',
+                        'link_after'     => '</span>',
+                        'menu'=>'ul',
+                        'echo' => false,
+                        'menu_class' => 'menu amp-menu',
+                        'walker' => new Ampforwp_Walker_Nav_Menu()
+                    );     
+        amp_menu( true, $menu_args, 'header' );?>
     </nav>
     <?php do_action('ampforwp_after_amp_menu'); ?>
   </div>

@@ -129,6 +129,8 @@ add_amp_theme_support('AMP-logo');
 add_amp_theme_support('AMP-loop');
 // GDPR
 add_amp_theme_support('AMP-gdpr');
+// Menu
+add_amp_theme_support('AMP-menu');
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
 
