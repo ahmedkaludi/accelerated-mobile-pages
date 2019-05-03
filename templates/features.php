@@ -6750,3 +6750,45 @@ function ampforwp_fontawesome_canonical_link(){
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <?php }
     }
+
+// Yoast BreadCrumbs #1473
+add_action('pre_amp_render_post', 'ampforwp_yoast_breadcrumbs');
+if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
+	function ampforwp_yoast_breadcrumbs(){
+		if ( ampforwp_get_setting('ampforwp-yoast-bread-crumb') ) {
+			// Remove the separator of Yoast
+			add_filter('wpseo_breadcrumb_separator','ampforwp_yoast_breadcrumbs_sep');
+			function ampforwp_yoast_breadcrumbs_sep($sep) {
+				$sep = '';
+				return $sep;
+			}
+			// Remove xmlns:v to avoid validation error
+			add_filter('wpseo_breadcrumb_output','ampforwp_yoast_breadcrumbs_modified_output');
+			function ampforwp_yoast_breadcrumbs_modified_output($output){
+				$output = str_replace('xmlns:v="http://rdf.data-vocabulary.org/#"', '', $output);
+				return $output;
+			}
+			// Change the wrapper to div
+			add_filter('wpseo_breadcrumb_output_wrapper', 'ampforwp_yoast_breadcrumbs_wrapper');
+			function ampforwp_yoast_breadcrumbs_wrapper($wrap) {
+				$wrap = 'div';
+				return $wrap;
+			}
+			// Add the Breadcrumbs class to wrapper
+			add_filter('wpseo_breadcrumb_output_class','ampforwp_yoast_breadcrumbs_wrapper_class');
+			function ampforwp_yoast_breadcrumbs_wrapper_class($class) {
+				$class = 'breadcrumbs';
+				return $class;
+			}
+		}
+	}
+}
+function ampforwp_yoast_breadcrumbs_output(){
+	if ( class_exists('WPSEO_Options') ){
+		$breadcrumb = '';
+		if ( true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') && true === WPSEO_Options::get( 'breadcrumbs-enable' ) && function_exists('yoast_breadcrumb')) {
+			$breadcrumb = yoast_breadcrumb('','', false);
+			return $breadcrumb;
+		}
+	}
+}

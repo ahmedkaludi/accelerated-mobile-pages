@@ -4298,6 +4298,17 @@ Redux::setSection( $opt_name, array(
 
         )
     ));
+$yoast_breadcrumbs = '';
+if ( defined('WPSEO_FILE') ) {
+    $yoast_breadcrumbs = array(
+                          'id'       => 'ampforwp-yoast-bread-crumb',
+                          'type'     => 'switch',
+                          'default'  =>  false,
+                          'title'    => esc_html__('Breadcrumbs From Yoast', 'accelerated-mobile-pages'),
+                          'required' => array('ampforwp-bread-crumb' , '=' , 1),
+                          'class' => 'child_opt child_opt_arrow',
+                        );
+}
 if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
 $single_page_options = array(
                 array(
@@ -4385,6 +4396,7 @@ $single_page_options = array(
                 'default'  => 'category',
                 'required' => array('ampforwp-bread-crumb' , '=' , 1),
             ),
+          $yoast_breadcrumbs,
           //Categories  ON/OFF
          array(
               'id'       => 'ampforwp-cats-single',
