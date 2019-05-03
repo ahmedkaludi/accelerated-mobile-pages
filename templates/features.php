@@ -1145,6 +1145,7 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'wp_nav_menu_args', 'BF_Menus', 'walker_front', 10 );
 		// Removing Smush Pro Lazy Load plugin #2990
 		ampforwp_remove_filters_for_class( 'the_content', 'WP_Smush_Lazy_Load', 'set_lazy_load_attributes', 100 );
+		ampforwp_remove_filters_for_class( 'post_thumbnail_html', 'WP_Smush_Lazy_Load', 'set_lazy_load_attributes', 100 );
 		// Removing A3 Lazy Load plugin #2872
 		ampforwp_remove_filters_for_class( 'the_content', 'A3_Lazy_Load', 'filter_content_images', 100 );
 		//SiteOrigin Page builder compatibilty with AMP Frontpage
