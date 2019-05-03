@@ -1264,3 +1264,29 @@ function ampforwp_woocommerce_conditional_check(){
 
 return apply_filters('ampforwp_woocommerce_conditional_check', $showSingleCss);
 }
+// #3124 enfold theme shortcodes removed
+add_action('init','ampforwp_remove_enfold_theme_load_shortcodess',2);
+if(!function_exists('ampforwp_remove_enfold_theme_load_shortcodess')){
+	function ampforwp_remove_enfold_theme_load_shortcodess(){
+		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	  	$explode_path = explode('/', $url_path);  
+	    if ( 'amp' === end( $explode_path)   ) {
+			remove_filter('avia_load_shortcodes','add_shortcode_folder');
+	    }
+	}
+}
+
+add_action('pre_amp_render_post','ampforwp_remove_enfold_theme_shortcodes');
+if(!function_exists('ampforwp_remove_enfold_theme_shortcodes')){
+	function ampforwp_remove_enfold_theme_shortcodes(){
+		add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
+	}
+}
+
+if(!function_exists('ampforwp_remove_enfold_theme_shortcodes_tags')){
+	function ampforwp_remove_enfold_theme_shortcodes_tags($content){
+		$content = preg_replace('/\[av_(.*?)]/', ' ', $content);
+		$content = preg_replace('/\[\/av_(.*?)]/', ' ', $content);
+		 return $content;
+	}
+}
