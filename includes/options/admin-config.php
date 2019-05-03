@@ -5177,27 +5177,45 @@ $single_page_options = array(
               'title'     => __('Next-Previous Links', 'accelerated-mobile-pages'),
               'default'   => 1,
           ),
-         // Author name 
-         array(
-             'id'       => 'amp-author-name',
-             'type'     => 'switch',
-             'title'    => __( 'Author Name', 'accelerated-mobile-pages' ),
-             'default'  => '1',
-             'required' => array('amp-design-selector' , '=' , '4')
-         ),
-          // Author Bio
+        // Author Bio
          array(
              'id'       => 'amp-author-description',
              'type'     => 'switch',
-             'title'    => __( 'Author Bio', 'accelerated-mobile-pages' ),
+             'title'    => esc_html__( 'Author Bio', 'accelerated-mobile-pages' ),
              'default'  => '1',
          ),
+         // Author name 
+         array(
+             'id'       => 'amp-author-name',
+             'class' => 'child_opt child_opt_arrow',
+             'type'     => 'switch',
+             'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
+             'default'  => '1',
+             'required' => array(
+                array('amp-design-selector' , '=' , '4'),
+                array('amp-author-description' , '=' , '1'),
+            )
+         ),
+         // Author description
+         array(
+             'id'       => 'amp-author-box-description',
+             'class' => 'child_opt child_opt_arrow',
+             'type'     => 'switch',
+             'title'    => esc_html__( 'Author Description', 'accelerated-mobile-pages' ),
+             'default'  => '1',
+             'required' => array(
+                array('amp-design-selector' , '=' , '4'),
+                array('amp-author-description' , '=' , '1'),
+            )
+         ),        
          // Author Pages
          array(
              'id'       => 'ampforwp-author-page-url',
+             'class' => 'child_opt child_opt_arrow',
              'type'     => 'switch',
-             'title'    => __( 'Link to Author Pages', 'accelerated-mobile-pages' ),
+             'title'    => esc_html__( 'Link to Author Pages', 'accelerated-mobile-pages' ),
              'default'  => '0',
+             'required' => array('amp-author-description' , '=' , '1'),
          ),
         // Pagination //#1015 
         array(
