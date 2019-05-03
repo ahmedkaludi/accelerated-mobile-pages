@@ -1,19 +1,28 @@
 <?php
 require_once AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-walker-nav-menu.php';
 
-function amp_menu_html($echo){
-	if( has_nav_menu( 'amp-menu' ) ) {
-	    $menu_html_content = wp_nav_menu( array(
+function amp_menu_html($echo, $menu_args, $type){
+	if( has_nav_menu( 'amp-menu' ) || has_nav_menu( 'amp-footer-menu' ) ) {
+		if (empty($menu_args)){
+			$menu_args = array(
 	            'theme_location' => 'amp-menu',
 	            'container'=>'aside',
 	            'menu'=>'ul',
 	            'menu_class'=>'amp-menu',
 	            'echo' => false,
 				'walker' => new Ampforwp_Walker_Nav_Menu()
-	        ) );
+	        );
+		}
+	    $menu_html_content = wp_nav_menu( $menu_args );
 	    $menu_html_content = apply_filters('ampforwp_menu_content', $menu_html_content);
 	    $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
 	    $sanitized_menu =  $sanitizer_obj->get_amp_content();
+	    if ( 'header' == $type ) {
+	    	set_transient('ampforwp_header_menu', $sanitized_menu, 24*HOUR_IN_SECONDS );
+	    }
+	    elseif ('footer' == $type) {
+	    	set_transient('ampforwp_footer_menu', $sanitized_menu, 24*HOUR_IN_SECONDS );
+	    }
     	return $sanitized_menu;
 	}
 }

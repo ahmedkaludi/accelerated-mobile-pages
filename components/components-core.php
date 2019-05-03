@@ -151,16 +151,25 @@ function amp_excerpt( $no_of_words=15 ) {
 
 
 //Menus
-function amp_menu($echo=true){
-		global $loadComponent;
-		if(isset($loadComponent['AMP-menu']) && $loadComponent['AMP-menu']==true){
-			if ( false == $echo ) {
-				return amp_menu_html($echo);
-			}
-			else
-				echo amp_menu_html($echo);
+function amp_menu($echo=true, $menu_args=array(), $type='header'){
+	global $loadComponent;
+	if(isset($loadComponent['AMP-menu']) && $loadComponent['AMP-menu']==true){
+		if ( false != get_transient('ampforwp_header_menu') && 'header' == $type ){
+			$amp_menu = get_transient('ampforwp_header_menu');
 		}
+		elseif (false != get_transient('ampforwp_footer_menu') && 'footer' == $type) {
+			$amp_menu = get_transient('ampforwp_footer_menu');
+		}
+		else{
+			$amp_menu = amp_menu_html($echo, $menu_args, $type);
+		}
+		if ( false == $echo ) {
+			return $amp_menu;
+		}
+		else
+			echo $amp_menu;
 	}
+}
 
 // Social Icons component
 function amp_social( $social_icons="" ) {

@@ -28,16 +28,13 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 			<div class="f-menu">
 				<nav>
 	              <?php
-	              $menu = wp_nav_menu( array(
+	              $menu_args = array(
 	                  'theme_location' => 'amp-footer-menu',
 	                  'link_before'     => '<span>',
 	                  'link_after'     => '</span>',
 	                  'echo' => false
-	              ) );
-	              $menu = apply_filters('ampforwp_menu_content', $menu);
-	              $sanitizer_obj = new AMPFORWP_Content( $menu, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
-	              $sanitized_menu =  $sanitizer_obj->get_amp_content();
-	              echo $sanitized_menu;// amphtml content, no kses ?>
+	              );
+	              $menu = amp_menu(true, $menu_args, 'footer'); ?>
 	           </nav>
 			</div>
 			<?php } }?>
