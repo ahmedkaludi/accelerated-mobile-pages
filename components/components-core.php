@@ -152,6 +152,9 @@ function amp_excerpt( $no_of_words=15 ) {
 
 //Menus
 function amp_menu($echo=true, $menu_args=array(), $type='header'){
+	if ( ($type == 'header' && ! has_nav_menu( 'amp-menu' )) || ( 'footer' == $type && ! has_nav_menu( 'amp-footer-menu' ) ) ) {
+		return false;
+	}
 	global $loadComponent;
 	if(isset($loadComponent['AMP-menu']) && $loadComponent['AMP-menu']==true){
 		if ( false != get_transient('ampforwp_header_menu') && 'header' == $type ){

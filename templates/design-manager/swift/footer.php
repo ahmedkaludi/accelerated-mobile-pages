@@ -24,7 +24,7 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 	<?php endif; ?>
 	<div class="f-w-f2">
 		<div class="cntr">
-			<?php if(isset($redux_builder_amp['swift-menu']) && $redux_builder_amp['swift-menu'] == true ){ if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
+			<?php if( ampforwp_get_setting('swift-menu') ){ if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
 			<div class="f-menu">
 				<nav>
 	              <?php
