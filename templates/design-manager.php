@@ -23,7 +23,7 @@ if ( is_customize_preview() ) {
 	if ($data['elements'] == '') {
 	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,addthis:1,comments:1,related_posts:1";
 	}
-	if(!in_array('addthis:1', $data['elements'])){
+	if(!in_array('addthis:1', $data)){
 		$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,addthis:1,social_icons:1,comments:1,related_posts:1";
 	}
 
