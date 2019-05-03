@@ -249,7 +249,7 @@ if ( class_exists('TablePress') ) { ?>
 if( !is_home() && true == ampforwp_get_setting('ampforwp-bread-crumb') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
 .breadcrumb{line-height: 1; margin: 0.1em 16px 1.5em;}
 .breadcrumb ul{padding:0; margin:0;}
-.breadcrumb ul li{display:inline;}
+.breadcrumb ul li, .breadcrumbs span{display:inline;font-size:12px;}
 .breadcrumb ul li a, .breadcrumb ul li span{font-size:12px;}
 .breadcrumb ul li a::after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top: -1px;}
 .breadcrumb ul li:hover a::after{color:#c3c3c3;}
