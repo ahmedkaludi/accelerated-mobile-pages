@@ -729,3 +729,26 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
         return $returnData;
     }
 }
+
+// wp_update_nav_menu #3052
+//add_action('wp_update_nav_menu', 'ampforwp_wp_update_nav_menu', 10 , 2 );
+if ( ! function_exists('ampforwp_wp_update_nav_menu') ) {
+    function ampforwp_wp_update_nav_menu( $menu_id, $menu_data = null ) {
+        if ( false != get_transient('ampforwp_header_menu') ) {
+            $header_menu = get_term_by('name', 'AMP Menu', 'nav_menu');
+            $header_menu = wp_get_nav_menu_object('amp-menu');
+            $header_menu_id = $header_menu->term_id;
+            if ( 'amp-menu' == $header_menu_id ){
+                delete_transient('ampforwp_header_menu');
+            }
+        }
+        if ( false != get_transient('ampforwp_footer_menu') ) {
+            $footer_menu = get_term_by('name', 'AMP Footer Menu', 'nav_menu');
+            $menu_object = wp_get_nav_menu_object('amp-footer-menu');
+            $footer_menu_id = $footer_menu->term_id;
+            if ( 'amp-footer-menu' == $footer_menu_id ) {
+                delete_transient('ampforwp_footer_menu');
+            }
+        }
+    }
+}
