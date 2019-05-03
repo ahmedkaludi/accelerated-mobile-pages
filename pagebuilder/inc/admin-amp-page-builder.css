@@ -1366,3 +1366,32 @@ body .modal-footer .del-btn-modal{
 .amppb-layout-bottom .del-btn{color:red;}
 .amppb-layout-bottom .del-btn:hover{color:red;}
 .layout-rem-msg{padding: 10px;color:blue;}
+/** Saved layout CSS **/
+.amppb-layout-layout .amppb-layout-wrapper{
+    width:100%;
+}
+.amppb-layout-button.saved-layout{
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+}
+.ste-tlt{
+    border-bottom:1px solid transparent;
+}
+.amppb-layout-button.saved-layout .del-btn{
+    background: #fff;
+    border: 1px solid #dedada;
+    box-shadow: none;
+    line-height: 30px;
+    color:red;
+}
+.amppb-layout-button.saved-layout .del-btn:hover{
+    background:#fff;
+    color:red;
+}
+.edit-post-layout__content .modal-container {    
+    top: 100px;
+    left: 170px;
+    right: 300px;
+}

@@ -73,12 +73,11 @@ global $savedlayoutTemplate;
                                             <div class="amppb-layout-wrapper">
                                                 <div class="amppb-layout-screenshot" style="visibility:hidden;"></div>
                                                 <div class="amppb-layout-bottom">
-                                                    <h4 class="amppb-layout-title">{{layout.post_title}}</h4>
-                                                    <div class="amppb-layout-button">
-                                                        
+                                                    <h4 class="amppb-layout-title ste-tlt">{{layout.post_title}}</h4>
+                                                    <div class="amppb-layout-button saved-layout">
                                                         <button type="button" class="button" :data-layout='layout.post_content' @click="importLayout($event)">Import</button>
+                                                        <button type="button" class="button button-info del-btn" :data-layout='layout.post_content' @click="removeSavedLayout(layout.post_id)">Remove</button>
                                                     </div>
-                                                    <button type="button" class="button button-info del-btn" :data-layout='layout.post_content' @click="removeSavedLayout(layout.post_id)">Remove</button>
                                                 </div>
                                             </div>
                                         </div>
