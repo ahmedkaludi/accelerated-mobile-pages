@@ -44,7 +44,7 @@ return array(
 		           				'tab'      =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
-		           				'helpmessage'	=> '<a href="https://developers.google.com/maps/documentation/embed/get-api-key#quick-guide" target="_blank">Get API Key</a><br><b> Note - Enable this option only if your MAP is either 600px away from the top or not within the first 75% of the viewport</b>',
+		           				'helpmessage'	=> '<a href="https://developers.google.com/maps/documentation/embed/get-api-key#quick-guide" target="_blank">Get API Key</a><br><b> Note: According to the AMP standards - enable this option only if your MAP is either 600px away from the top or not within the first 75% of the viewport</b>',
 	 						),
 	 						array(		
 	 							'type'	=>'select',		
