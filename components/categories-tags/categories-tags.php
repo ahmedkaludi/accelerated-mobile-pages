@@ -12,18 +12,24 @@ function ampforwp_framework_get_categories_list( $separator = '' ){
 		<div class="amp-category">
 				<span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories' ); ?></span>
 				<?php foreach ($ampforwp_categories as $key=>$cat ) {
-						if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
-								echo '<span class="amp-cat"> '. esc_html($cat->name) .'</span>';
-							}
-						elseif( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {
-								echo ('<span class="amp-cat amp-cat-'.esc_attr($cat->term_id).'"><a href="'. esc_url(ampforwp_url_controller( get_category_link( $cat->term_id ) ))   .'" > '. esc_html($cat->name) .'</a></span>');//#934
-						} else {
-							 echo ('<span class="amp-cat amp-cat-'.esc_attr($cat->term_id).'"><a href="'. esc_url( get_category_link( $cat->term_id ))  .'" > '. esc_html($cat->name) .'</a></span>');
+					$term_id   = $cat->term_id;
+				    $term_name   = $cat->name;
+				    $term_url   = get_category_link( $cat->term_id );
+					if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
+						    $term_url =  false;
+					    } 
+					elseif( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {  	
+							// #934
+		            	     $term_url   = ampforwp_url_controller( $term_url );
+		         		}
+
+		            echo ('<span class="amp-cat amp-cat-'. esc_attr($term_id) . '" >
+		            '. (!empty($term_url)? ' <a href="'. esc_url( $term_url)  . '" > ':'').  esc_html($term_name). (!empty($term_url)?  '</a> ':'').' </span>');
+		          
+					if(!empty($separator) && count($ampforwp_categories)-1 > $key){
+							echo esc_html($separator);
 						}
-						if(!empty($separator) && count($ampforwp_categories)-1 > $key){
-							echo $separator;
-						}
-			} ?>
+					} ?>
 		</div>
 	<?php endif; 
 }	
