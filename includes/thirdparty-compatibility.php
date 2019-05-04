@@ -29,6 +29,8 @@ function schema_lazy_load_remover(){
 	remove_action( 'amp_post_template_css', 'thb_amp_additional_css_styles' );
 	//Menu css is not loading when directory plus theme is active. #2963
 	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
+	//Breadcrumbs issue with Rankmath in structured data #3111
+	add_filter('rank_math/snippet/breadcrumb','ampforwp_remove_rankmath_breadcrumb');
 	/**
 	* toc 
 	**/
@@ -1286,4 +1288,8 @@ if(!function_exists('ampforwp_remove_enfold_theme_shortcodes_tags')){
 		$content = preg_replace('/\[\/av_(.*?)]/', ' ', $content);
 		 return $content;
 	}
+}
+function ampforwp_remove_rankmath_breadcrumb($entity){
+	$entity = array();
+	return $entity;
 }
