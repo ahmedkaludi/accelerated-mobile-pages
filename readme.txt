@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1.1
-Stable tag: 0.9.97.50.1
+Stable tag: 0.9.97.51
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,24 +184,36 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.50.1 (1st May 2019) =
-* Fixed: Alignment problem when right sidebar is enable in blog page and there is no featured image in the posts #3057
-
-= 0.9.97.50 (29th April 2019) =
-* Added: New Icon of Telegram in all the Designs #2448
-* Added: Swift icon and Font awesome icon option added in Design's global section [Swift theme] #2992
-* Added: Category option added in Design's single section [Swift theme] #2551
-* Added: Yoast author twitter handle compatibility integrated #2133
-* Added: New function ampforwp_get_the_ID() created #2867
-* Fixed: Facebook comment and Like option gives an error when the bbPress plugin is enabled #3006
-* Fixed: When Gutenberg active left sidebar is not visible in page builder modules #2934
-* Fixed: AMP preview functionality showing blank in the preview mode #3029
-* Fixed: Image floats CSS improved in mobile mode #2525
-* Fixed: Related Posts Randomly in Swift theme #2308
-* Fixed: Pricing module content is not center in page builder #2921
-* Fixed: Background image of the page builder is zooming in IOS devices when the parallax effect is enabled #2844
-* Fixed: Footnotes compatibility code updated #2982
-* Fixed: Iframe is not loading when Convert AMP to WP theme (Beta) option is enabled [Swift theme] #2628
-* Fixed: PHP Warning Undefined variable #3103
+= 0.9.97.51 (6th May 2019) =
+* Added: Yoast seo breadcrumbs Support #1473
+* Added: Compatibility with UseAnyFont Plugin #2774
+* Added: Compatibility with Slide Anything plugin. #2891
+* Added: Compatibility with Clyp it iframe embed. #2836
+* Added: Compatibility with Lazy Load of Smush and Smush Pro plugin #2990
+* Fixed: Logo on the top of the menu shade looks strange. #3046
+* Fixed: Fatal error: Class 'AMP_Base_Embed_Handler' not found(Due to mediavine plugin) #3119
+* Fixed: Chartbeat Tag Has Incorrect Variables #3017
+* Fixed: If AMP page builder is enabled then unnecessary CSS is also integrated #2470
+* Fixed: Sidebar Improvement and Option for Pages #2499
+* Fixed: “Featured Image from The Content” option should not override the default Set featured image. #2503
+* Fixed: Widgets going out of alignments in Design 1,2 and 3 #2553
+* Fixed: No message if the search didn't find anything. in Swift #2557
+* Fixed: Header with CTA doesn't have the right options and defaults #2567
+* Fixed: Need to separate categories & tags with ( / or , ) in AMP theme framework single page. #2580
+* Fixed: Indentations are getting removed in lists of ul & ol tags. #2781
+* Fixed: When the custom front page has a custom pagination then the AMP pagination returns 404 #2843
+* Fixed: Text widget img element are overlapping with banner ads (Below the header) in design 3 #2845
+* Fixed: Sidebar option is off, do not show widget area in admin panel #2856
+* Fixed: Update Schema for author image #2919
+* Fixed: Sidebar Styling is not properly appearing in the Blog Page #2938
+* Fixed: 404 issue on custom post type pagination #2937
+* Fixed: Notice errors in design-1 sidebar menu when amp menu is unchecked. #2953
+* Fixed: Bootstrap min overriding modal body style. #2987
+* Fixed: Move infinite scroll settings to a correct place #3007
+* Fixed: Add Extension list for the events calendar for amp #3030
+* Fixed: Add Extension list for table of content #3040
+* Fixed: Strip CSS with i-amphtml- name prefix because its causing validation errors #3009
+* Fixed: Need to add an option to delete the saved layouts in pagebuilder. #2801
+* Fixed: Category module not working with recent posts from Version 0.9.97.45 #3117
 
 Full changelog available in changelog.txt

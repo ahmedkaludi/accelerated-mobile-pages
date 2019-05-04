@@ -1,5 +1,37 @@
 == Changelog ==
 
+= 0.9.97.51 (6th May 2019) =
+* Added: Yoast seo breadcrumbs Support #1473
+* Added: Compatibility with UseAnyFont Plugin #2774
+* Added: Compatibility with Slide Anything plugin. #2891
+* Added: Compatibility with Clyp it iframe embed. #2836
+* Added: Compatibility with Lazy Load of Smush and Smush Pro plugin #2990
+* Fixed: Logo on the top of the menu shade looks strange. #3046
+* Fixed: Fatal error: Class 'AMP_Base_Embed_Handler' not found(Due to mediavine plugin) #3119
+* Fixed: Chartbeat Tag Has Incorrect Variables #3017
+* Fixed: If AMP page builder is enabled then unnecessary CSS is also integrated #2470
+* Fixed: Sidebar Improvement and Option for Pages #2499
+* Fixed: “Featured Image from The Content” option should not override the default Set featured image. #2503
+* Fixed: Widgets going out of alignments in Design 1,2 and 3 #2553
+* Fixed: No message if the search didn't find anything. in Swift #2557
+* Fixed: Header with CTA doesn't have the right options and defaults #2567
+* Fixed: Need to separate categories & tags with ( / or , ) in AMP theme framework single page. #2580
+* Fixed: Indentations are getting removed in lists of ul & ol tags. #2781
+* Fixed: When the custom front page has a custom pagination then the AMP pagination returns 404 #2843
+* Fixed: Text widget img element are overlapping with banner ads (Below the header) in design 3 #2845
+* Fixed: Sidebar option is off, do not show widget area in admin panel #2856
+* Fixed: Update Schema for author image #2919
+* Fixed: Sidebar Styling is not properly appearing in the Blog Page #2938
+* Fixed: 404 issue on custom post type pagination #2937
+* Fixed: Notice errors in design-1 sidebar menu when amp menu is unchecked. #2953
+* Fixed: Bootstrap min overriding modal body style. #2987
+* Fixed: Move infinite scroll settings to a correct place #3007
+* Fixed: Add Extension list for the events calendar for amp #3030
+* Fixed: Add Extension list for table of content #3040
+* Fixed: Strip CSS with i-amphtml- name prefix because its causing validation errors #3009
+* Fixed: Need to add an option to delete the saved layouts in pagebuilder. #2801
+* Fixed: Category module not working with recent posts from Version 0.9.97.45 #3117
+
 = 0.9.97.50.1 (1st May 2019) =
 * Fixed: Alignment problem when right sidebar is enable in blog page and there is no featured image in the posts #3057
 
