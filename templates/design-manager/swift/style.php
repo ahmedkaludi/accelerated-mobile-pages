@@ -287,7 +287,7 @@ padding: <?php echo $redux_builder_amp['primary-menu-padding-control']['padding-
 <?php // Dropdown CSS
 	if($redux_builder_amp['drp-dwn']){?>
 	.p-menu ul li:hover>ul{display:block;z-index:9;padding: 7px 0px 7px 7px;
-     box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.30);background: #fff;border-radius: 4px;} 
+     box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.30);border-radius: 4px;} 
 	.p-menu li a{transition: all 0s ease-in-out 0s;}
 	.p-menu .amp-menu li ul{background: <?php echo $redux_builder_amp['primary-menu-background-scheme']['rgba']; ?>;left: 0;min-width: 200px;opacity: 1;position: absolute;top: 100%;visibility: hidden;text-align:left;}
 	.p-menu .amp-menu li ul li ul{left: 100%;top: 0;}

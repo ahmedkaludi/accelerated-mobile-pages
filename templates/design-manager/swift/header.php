@@ -143,7 +143,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <div class="menu-heading clearfix">
                     <label for="offcanvas-menu" class="c-btn"></label>
                 </div><!--end menu-heading-->
-                <?php if ( amp_menu(true) ) : ?>
+                <?php if ( amp_menu(false) ) : ?>
                     <nav class="m-menu">
                        <?php amp_menu(true);?>
                     </nav><!--end slide-menu -->
