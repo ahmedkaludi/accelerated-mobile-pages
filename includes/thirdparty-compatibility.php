@@ -27,6 +27,8 @@ function schema_lazy_load_remover(){
 	//Remove CSS header from the GoodLife Theme #2673
 	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
 	remove_action( 'amp_post_template_css', 'thb_amp_additional_css_styles' );
+	//Menu css is not loading when directory plus theme is active. #2963
+	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
 	/**
 	* toc 
 	**/
@@ -1240,11 +1242,6 @@ function ampforwp_seopress_social(){
 			}
 		}
 	}
-}
-//Menu css is not loading when directory plus theme is active. #2963
-add_action('pre_amp_render_post', 'ampforwp_directory_theme_menu');
-function ampforwp_directory_theme_menu(){
-	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
 }
 
 //AMP Woocommerce function
