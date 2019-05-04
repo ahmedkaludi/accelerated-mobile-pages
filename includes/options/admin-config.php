@@ -3787,7 +3787,7 @@ if(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')){
              array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
                     'type'      => 'color_rgba',
-                    'title'     => __('Header Background','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Header Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#FFFFFF',
                     ),
@@ -3798,7 +3798,7 @@ if(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')){
               array(
                     'id'        => 'amp-opt-color-rgba-headerelements',
                     'type'      => 'color_rgba',
-                    'title'     => __('Header Elements','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Header Elements','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => ampforwp_get_element_default_color(),
                     ),
@@ -3809,7 +3809,7 @@ if(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')){
               array(
                     'id'        => 'amp-opt-color-rgba-menu-bg-color',
                     'type'      => 'color_rgba',
-                    'title'     => __('Menu Background','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#131313',
                     ),
@@ -3820,7 +3820,7 @@ if(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')){
             array(
                     'id'        => 'amp-opt-color-rgba-menu-elements-color',
                     'type'      => 'color_rgba',
-                    'title'     => __('Navigation Menu Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Navigation Menu Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#eeeeee',
                     ),
@@ -3831,7 +3831,7 @@ if(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')){
             array(
                     'id'        => 'amp-opt-color-rgba-submenu-bgcolor',
                     'type'      => 'color_rgba',
-                    'title'     => __('Sub Menu Background Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Sub Menu Background Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#666666',
                     ),
@@ -3842,7 +3842,7 @@ if(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')){
             array(
                     'id'        => 'amp-opt-color-rgba-submenu-hover-bgcolor',
                     'type'      => 'color_rgba',
-                    'title'     => __('Sub Menu Hover Background Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Sub Menu Hover Background Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#666666',
                     ),
@@ -3853,7 +3853,7 @@ if(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')){
             array(
                     'id'        => 'amp-opt-color-rgba-menu-label-color',
                     'type'      => 'color_rgba',
-                    'title'     => __('Navigate Label Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Navigate Label Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#aaa',
                     ),
@@ -3864,7 +3864,7 @@ if(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')){
             array(
                     'id'        => 'amp-opt-color-rgba-menu-brdr-color',
                     'type'      => 'color_rgba',
-                    'title'     => __('Menu Border Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#555555',
                     ),

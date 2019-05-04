@@ -9,16 +9,8 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
   $get_customizer = new AMP_Post_Template( $post_id );
   // Get content width
   $colorscheme    = $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color'];
-  $headercolor    = $redux_builder_amp['amp-opt-color-rgba-headercolor']['color'];
-  $menubgcolor    = $redux_builder_amp['amp-opt-color-rgba-menu-bg-color']['color'];
-  $navmenucolor    = $redux_builder_amp['amp-opt-color-rgba-menu-elements-color']['color'];
-  $submenucolor    = $redux_builder_amp['amp-opt-color-rgba-submenu-bgcolor']['color'];
-  $submenuhovercolor    = $redux_builder_amp['amp-opt-color-rgba-submenu-hover-bgcolor']['color'];
-  $menulblcolor    = $redux_builder_amp['amp-opt-color-rgba-menu-label-color']['color'];
-  $menubdrcolor    = $redux_builder_amp['amp-opt-color-rgba-menu-brdr-color']['color'];
   $font_color     = $redux_builder_amp['amp-opt-color-rgba-font']['color'];
   $link_color     = $redux_builder_amp['amp-opt-color-rgba-link']['color'];
-  $headerelements = $redux_builder_amp['amp-opt-color-rgba-headerelements']['color'];
   $sticky_head    = $redux_builder_amp['amp-opt-sticky-head'];
 
   $content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
@@ -87,24 +79,34 @@ figure.aligncenter amp-img {
  }
 
 /* Slide Navigation code */
-amp-sidebar{ width: 280px;font-family: 'Roboto Slab', serif;background:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-menu-bg-color']['color']); ?>; }
+<?php
+  $headercolor          = ampforwp_get_setting('amp-opt-color-rgba-headercolor');
+  $headerelements       = ampforwp_get_setting('amp-opt-color-rgba-headerelements');
+  $menubgcolor          = ampforwp_get_setting('amp-opt-color-rgba-menu-bg-color');
+  $navmenucolor         = ampforwp_get_setting('amp-opt-color-rgba-menu-elements-color');
+  $submenucolor         = ampforwp_get_setting('amp-opt-color-rgba-submenu-bgcolor');
+  $submenuhovercolor    = ampforwp_get_setting('amp-opt-color-rgba-submenu-hover-bgcolor');
+  $menulblcolor         = ampforwp_get_setting('amp-opt-color-rgba-menu-label-color');
+  $menubdrcolor         = ampforwp_get_setting('amp-opt-color-rgba-menu-brdr-color'); 
+?>
+amp-sidebar{ width: 280px;font-family: 'Roboto Slab', serif;background:<?php echo $menubgcolor['color'];?>; }
 .amp-sidebar-image{ line-height: 100px; vertical-align:middle; }
 .amp-close-image{ top: 15px; left: 225px; cursor: pointer; }
-.navigation_heading{ padding: 20px 20px 15px 20px; color:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-menu-label-color']['color']); ?>; font-size: 10px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid <?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-menu-brdr-color']['color']); ?>; display: inline-block; width: 100%}
+.navigation_heading{ padding: 20px 20px 15px 20px; color:<?php echo $menulblcolor['color']; ?>; font-size: 10px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid <?php echo $menubdrcolor['color']; ?>; display: inline-block; width: 100%}
 .toggle-navigationv2 ul{ list-style-type: none; margin: 15px 0 0 0; padding: 0}
 .toggle-navigationv2 ul.amp-menu li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px; 
-color:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-menu-elements-color']['color']); ?>; width:94% }
+color:<?php echo $navmenucolor['color']; ?>; width:94% }
 .amp-menu li{position:relative}
-.toggle-navigationv2 ul.amp-menu li a:hover{background:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-submenu-hover-bgcolor']['color']); ?>;color:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-menu-elements-color']['color']); ?>;}
+.toggle-navigationv2 ul.amp-menu li a:hover{background:<?php echo $submenuhovercolor['color']; ?>;color:<?php echo $navmenucolor['color']; ?>;}
 .amp-menu li.menu-item-has-children ul{display:none;margin:0;position:relative;
-background:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-submenu-bgcolor']['color']); ?>;
+background:<?php echo $submenucolor['color'];?>;
 }
 .amp-menu li.menu-item-has-children .sub-menu li a span:before{
     content: '\25b8';
     position: relative;
     left: -6px;
     font-size: 10px;
-    color:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-menu-label-color']['color']); ?>;
+    color:<?php echo $menulblcolor['color']; ?>;
     top: -2px;
     z-index: 10000;
     line-height: 1;
@@ -120,8 +122,8 @@ background:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-submenu-bg
 }
 .amp-menu input{display:none}
 .amp-menu [id^=drop]:checked + label + ul{ display: block;}
-.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 12px 20px 10px 30px;right:0;font-size:13px;color:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-menu-elements-color']['color']); ?>;top:6px;z-index:10000;line-height:1}
-.toggle-navigationv2 .social_icons{ margin-top: 25px; border-top: 1px solid <?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-menu-brdr-color']['color']); ?>; padding: 25px 0px; color: #fff; width: 100%; }
+.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 12px 20px 10px 30px;right:0;font-size:13px;color:<?php echo $navmenucolor['color']; ?>;top:6px;z-index:10000;line-height:1}
+.toggle-navigationv2 .social_icons{ margin-top: 25px; border-top: 1px solid <?php echo $menubdrcolor['color']; ?>; padding: 25px 0px; color: #fff; width: 100%; }
 .menu-all-pages-container:after{ content: ""; clear: both }
 .toggle-text{ color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; display: inherit; text-align: center; }
 .toggle-text:before{ content: "..."; font-size: 32px; position: ; font-family: georgia; line-height: 0px; margin-left: 0px; letter-spacing: 1px; top: -3px; position: relative; padding-right: 10px; }
@@ -130,7 +132,7 @@ background:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-submenu-bg
 .cl-btn:after{
     content: "x";
     font-size: 16px;
-    color:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-menu-label-color']['color']); ?>;
+    color:<?php echo $menulblcolor['color']; ?>;
     position: absolute;
     right: 15px;
     top: 15px;
@@ -557,10 +559,10 @@ amp-user-notification button { background-color:  <?php echo esc_attr($redux_bui
 .social_icons li{ box-sizing: initial; display:inline-block; margin:5px; }
 .social_icons li a:before{ box-sizing: initial; color:#fff; padding: 10px; display: inline-block; border-radius: 70px; width: 18px; height: 18px; line-height: 20px; text-align: center; }
 #ampforwp_search_query_item { display: none; }
-#header, .headerlogo a{ background:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-headercolor']['color']); ?>  }
+#header, .headerlogo a{ background:<?php echo $headercolor['color']; ?>  }
 .comment-button-wrapper a, #pagination .next a, #pagination .prev a{ background: <?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']); ?> ; }
-.toast:after, .toast:before, .toast span{ background: <?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-headerelements']['color']); ?> ; }
-[class*=icono-], .headerlogo a{ color: <?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-headerelements']['color']); ?> }
+.toast:after, .toast:before, .toast span{ background: <?php echo $headerelements['color'];?>; }
+[class*=icono-], .headerlogo a{ color: <?php echo $headerelements['color'];?>; }
 #pagination .next a, #pagination .prev a , #pagination .next a, #pagination .prev a , .comment-button-wrapper a{ color:  <?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-font']['color']); ?> ;}
 <?php if ( ! has_nav_menu( 'amp-menu' ) ) { ?>
 .toggle-navigationv2 .social_icons { border-top: 0px; }
