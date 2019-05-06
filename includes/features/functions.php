@@ -157,7 +157,7 @@ function ampforwp_is_custom_field_featured_image(){
 function ampforwp_generate_meta_desc($json=""){
     global $post, $redux_builder_amp;
     $desc = $post_id = '';
-    $post_id = $post->ID;
+    $post_id = ampforwp_get_the_ID();
     if ( ampforwp_is_front_page() ) {
         $post_id = ampforwp_get_frontpage_id();
     }
@@ -173,7 +173,7 @@ function ampforwp_generate_meta_desc($json=""){
                 $desc = get_the_excerpt();
             } else {
                 global $post;
-                $id = $post->ID;
+                $id = ampforwp_get_the_ID();
                 $desc = $post->post_content;
             }
             $desc = preg_replace('/\[(.*?)\]/',' ', $desc);
@@ -338,7 +338,7 @@ if( !function_exists('ampforwp_get_blog_details') ) {
                 if ( $post ) {
                     $slug = $post->post_name;
                     $title = $post->post_title;
-                    $blog_id = $post->ID;
+                    $blog_id = ampforwp_get_the_ID();
                 }                       
                 switch ($param) {
                     case 'title':
