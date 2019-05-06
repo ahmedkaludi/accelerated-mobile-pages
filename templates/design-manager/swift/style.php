@@ -1104,7 +1104,7 @@ if(is_single() ) { ?>
 }
 
 <?php } //is_single condition is added
-if ( true == ampforwp_get_setting('gnrl-sidebar') &&  true == ampforwp_get_setting('swift-sidebar')){?>
+if ( true == ampforwp_get_setting('gnrl-sidebar') &&  true == ampforwp_get_setting('swift-sidebar') && 4 == ampforwp_get_setting('single-design-type')){?>
 .sp-artl{
 	display:inline-flex;
 	width:100%;

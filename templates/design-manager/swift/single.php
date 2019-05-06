@@ -123,7 +123,7 @@
 do_action("ampforwp_single_design_type_handle");
 	?>
 <?php if($redux_builder_amp['rp_design_type'] == '2' || $redux_builder_amp['rp_design_type'] == '3'){
-       if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
+       if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && 1 == ampforwp_get_setting('single-design-type')) {
 		$my_query = ampforwp_related_post_loop_query();
 	  	if( $my_query->have_posts() ) { $r_count = 1;?>
 	  	<div class="srp">
