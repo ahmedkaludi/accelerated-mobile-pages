@@ -50,7 +50,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 			<amp-social-share type="gplus"      width="50" height="28" <?php ampforwp_nofollow_social_links(); ?>></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-email-share'] == true)  { ?>
-			<amp-social-share type="email"      width="50" height="28"></amp-social-share>
+			<amp-social-share type="email"      width="50" height="28" <?php ampforwp_nofollow_social_links(); ?>></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-pinterest-share'] == true)  { ?>
 			<amp-social-share type="pinterest"  width="50" height="28" <?php ampforwp_nofollow_social_links(); ?>></amp-social-share>
