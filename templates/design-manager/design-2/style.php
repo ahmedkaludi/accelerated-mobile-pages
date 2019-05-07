@@ -616,7 +616,7 @@ if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_set
 	}
 <?php }
 if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
-	a#readmore-rp {
+	.related_posts .related_link a.readmore-rp {
 	    font-size: 13px;
 	}
 <?php } ?>

@@ -819,7 +819,7 @@ if ( is_singular() || ampforwp_is_front_page() && false == ampforwp_get_setting(
   visibility: hidden;}
 <?php } 
 if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
-  a#readmore-rp {
+  .related_posts .related_link a.readmore-rp {
       font-size: 13px;
   }
 <?php } ?>
