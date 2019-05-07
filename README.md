@@ -183,7 +183,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 0.9.97.51 (6th May 2019) =
+= 0.9.97.51 (7th May 2019) =
 * Added: Yoast seo breadcrumbs Support #1473
 * Added: Compatibility with UseAnyFont Plugin #2774
 * Added: Compatibility with Slide Anything plugin. #2891
@@ -214,6 +214,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Strip CSS with i-amphtml- name prefix because its causing validation errors #3009
 * Fixed: Need to add an option to delete the saved layouts in pagebuilder. #2801
 * Fixed: Category module not working with recent posts from Version 0.9.97.45 #3117
+* Fixed: Related posts appearing on the top #3151
 
 = 0.9.97.50.1 (1st May 2019) =
 * Fixed: Alignment problem when right sidebar is enable in blog page and there is no featured image in the posts #3057
