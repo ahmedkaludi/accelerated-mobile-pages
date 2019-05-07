@@ -216,5 +216,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Need to add an option to delete the saved layouts in pagebuilder. #2801
 * Fixed: Category module not working with recent posts from Version 0.9.97.45 #3117
 * Fixed: Related posts appearing on the top #3151
+* Fixed: Debug error in installation process #3134
 
 Full changelog available in changelog.txt
