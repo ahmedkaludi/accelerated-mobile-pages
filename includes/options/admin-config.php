@@ -3991,13 +3991,13 @@ Redux::setSection( $opt_name, array(
 
 
   //code for fetching categories to show as a list in redux settings
+    $categories_array = array();
     if(get_categories()){
        $categories = get_categories( array(
                                           'orderby' => 'name',
                                           'order'   => 'ASC',
                                           'number'  => 500
                                           ) );
-      $categories_array = array();
        if ( $categories ) :
             foreach ($categories as $cat ) {
                     $cat_id = $cat->cat_ID;
