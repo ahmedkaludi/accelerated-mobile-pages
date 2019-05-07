@@ -24,9 +24,9 @@ function ampforwp_framework_get_categories_list( $separator = '' ){
 		         		}
 
 		            echo ('<span class="amp-cat amp-cat-'. esc_attr($term_id) . '" >
-		            '. (!empty($term_url)? ' <a href="'. esc_url( $term_url)  . '" > ':'').  esc_html($term_name). (!empty($term_url)?  '</a> ':'').' </span>');
+		            '. ($term_url? ' <a href="'. esc_url( $term_url)  . '" > ':'').  esc_html($term_name). ($term_url?  '</a> ':'').' </span>');
 		          
-					if(!empty($separator) && count($ampforwp_categories)-1 > $key){
+					if($separator && count($ampforwp_categories)-1 > $key){
 							echo esc_html($separator);
 						}
 					} ?>
