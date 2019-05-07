@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.1.1
-Stable tag: 0.9.97.51
+Stable tag: 0.9.97.51.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.51.1 (7th May 2019) =
+* Fixed: Can’t use function return value in write context #3155
+* Fixed: Search results not showing for "Select Categories to Hide AMP" option inHide Amp Bulk Tool #3154
 
 = 0.9.97.51 (7th May 2019) =
 * Added: Yoast seo breadcrumbs Support #1473

@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.9.97.51.1 (7th May 2019) =
+* Fixed: Can’t use function return value in write context #3155
+* Fixed: Search results not showing for "Select Categories to Hide AMP" option inHide Amp Bulk Tool #3154
+
 = 0.9.97.51 (7th May 2019) =
 * Added: Yoast seo breadcrumbs Support #1473
 * Added: Compatibility with UseAnyFont Plugin #2774
