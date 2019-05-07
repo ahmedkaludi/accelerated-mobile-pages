@@ -35,7 +35,7 @@ add_action('amp_post_template_css','amp_menu_styles',11);
 function amp_menu_styles(){
 	$atf 	= '';
 	$design = ampforwp_get_setting('amp-design-selector');
-	if ( ( $design == ('1') ) || ( $design == ('2')  ) || ( $design == ('3')  ) || ( $design == ('4')  )  ) {}
+	if ( $design == ('1' || '2' || '3' || '4') ) {return;}
 	else {
 		$atf = true;?>
 		.amp-menu input{display:none;}
