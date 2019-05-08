@@ -5554,6 +5554,13 @@ else{
                 array('amp-design-selector', '=' , '4')
         ),
           ),
+          // MeWe
+          array(
+              'id'        =>  'enable-single-mewe-share',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('MeWe', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+        ),
         array(
                'id' => 'social-prfl',
                'type' => 'section',
