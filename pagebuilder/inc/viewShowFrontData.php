@@ -843,10 +843,11 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 								$fieldValues[$field['name']]= $contentArray[$field['name']];
 							}
 						}
-						
+						$posts_offset = (integer) $fieldValues['posts_offset'];
 						$args = array(
 								//'cat' => $fieldValues['category_selection'],
 								'posts_per_page' => $fieldValues['show_total_posts'],
+								'offset' => $posts_offset,
 								'has_password' => false,
 								'post_status'=> 'publish',
 								'post_type' => $fieldValues['post_type_selection']

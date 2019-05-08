@@ -164,6 +164,14 @@ if ( is_admin() ) {
  						'default'	=>'3',
             'content_type'=>'html',
  						),
+            array(    
+            'type'    =>'text',   
+            'name'    =>'posts_offset',
+            'label'   => esc_html__('Offset','accelerated-mobile-pages'),  
+            'tab'     =>'customizer',
+            'default' =>'0',
+            'content_type'=>'html',
+            ),
  						array(		
  						'type'		=>'select',
  						'name'		=>"ampforwp_show_excerpt",
