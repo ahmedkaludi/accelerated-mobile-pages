@@ -346,15 +346,19 @@ function ampforwp_redirect_to_orginal_url(){
 add_action('template_redirect', 'ampforwp_redirect_proper_qendpoint' );
 if ( ! function_exists('ampforwp_redirect_proper_qendpoint') ) {
   function ampforwp_redirect_proper_qendpoint($current_url){  
-    if ( ampforwp_is_amp_endpoint() && true == ampforwp_get_setting('amp-core-end-point') ){ 
-      global $wp;
+    if ( ampforwp_is_amp_endpoint() && true == ampforwp_get_setting('amp-core-end-point') ){
       $current_url = $endpoint = $new_url = '';
       $current_url = home_url($wp->request);
-      $endpoint = '?' . AMPFORWP_AMP_QUERY_VAR;
-      if ( false !== strpos($current_url, '/amp') ) {
-        $new_url = str_replace('/amp', $endpoint , $current_url );
-        wp_safe_redirect( $new_url );
-        exit;
+      $amp = AMPFORWP_AMP_QUERY_VAR;
+      $endpoint = '?'.$amp;
+      $checker =  explode('/', $current_url); 
+      $amp_check = in_array($amp, $checker);
+       if ( true == $amp_check && $amp == end($checker) ) {
+          $pos = strrpos( $current_url , '/'.$amp);
+          $search_length  = strlen('/'.$amp);
+          $new_url    = substr_replace( $current_url , $endpoint , $pos , $search_length );
+          wp_safe_redirect( $new_url );
+          exit;
       }
     }
   }
