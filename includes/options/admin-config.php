@@ -3591,7 +3591,7 @@ array_push($advanced_array, $amp_newspaper_Home_off, $global_settings =
                     'id'    => 'gnrl-dark-view',
                     'type'  => 'switch',
                     'title' => esc_html__('Dark Mode Switch', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'  => esc_html__('Enable this switch here, and check on front page Dark Mode option','accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Enabling this option, allows the user to switch between the dark mode & light mode view. The option will display in the footer section.','accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
