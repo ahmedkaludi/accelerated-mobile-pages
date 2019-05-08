@@ -19,6 +19,7 @@ require_once AMPFORWP_PLUGIN_DIR."includes/features/contact-form/contact-form-op
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
 $comment_desc = "";
+$newspaper_theme_check = array();
 $amptfad = '<strong>DID YOU KNOW?</strong></br ><a href="https://ampforwp.com/amp-theme-framework/"  target="_blank">You can create your own <strong>Custom theme with AMP Theme Framework</strong></a>';
 // #1093 Display only If AMP Comments is Not Installed
 if(!is_plugin_active( 'amp-comments/amp-comments.php' )){
@@ -3484,7 +3485,26 @@ Redux::setSection( $opt_name, array(
         );
             $amp_fontparts = array_merge($amp_fontparts ,$fonts_settings);   
     }
-    $advanced_array = array ( array(
+    if( function_exists('ampforwp_custom_theme_files_register') ){
+       global $redux_builder_amp;
+       $newspaper_theme_checker = ampforwp_get_setting('ampforwp-infinite-scroll-home');
+       if($newspaper_theme_checker){
+           $redux_builder_amp['ampforwp-infinite-scroll-home'] = false;
+           update_option( 'redux_builder_amp', $redux_builder_amp );
+       }
+    }
+    if( !function_exists('ampforwp_custom_theme_files_register') ){
+        $newspaper_theme_check = array(
+                        'id'       => 'ampforwp-infinite-scroll-home',
+                        'type'     => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'    => esc_html__('Home & Archives', 'accelerated-mobile-pages'),
+                        'default' => true,
+                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
+                    );
+    }
+    $global_settings = array(
+            array(
                    'id' => 'general_sdbar',
                    'type' => 'section',
                    'title' => esc_html__('General', 'accelerated-mobile-pages'),
@@ -3492,14 +3512,14 @@ Redux::setSection( $opt_name, array(
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
             ),
-          array(
+            array(
                     'id'    => 'gnrl-sidebar',
                     'type'  => 'switch',
                     'title' => esc_html__('Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
-          array(
+            array(
                     'id'    => 'gbl-sidebar',
                     'class' => 'child_opt child_opt_arrow',
                     'type'  => 'switch',
@@ -3564,22 +3584,9 @@ Redux::setSection( $opt_name, array(
                         'title'    => esc_html__('Infinite Scroll (Experimental)', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__('Read more about it here:', 'accelerated-mobile-pages'), esc_url('https://www.ampproject.org/docs/reference/components/amp-next-page'), esc_html__('amp-next-page','accelerated-mobile-pages')),
                         'default' => false,
-                    )
-);
-    $amp_newspaper_Home_off ='';
-       if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) )
-        {
-       $amp_newspaper_Home_off= array(
-                        'id'       => 'ampforwp-infinite-scroll-home',
-                        'type'     => 'switch',
-                        'class'    => 'child_opt child_opt_arrow',
-                        'title'    => esc_html__('Home & Archives', 'accelerated-mobile-pages'),
-                        'default' => true,
-                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
-                    );
-}
-array_push($advanced_array, $amp_newspaper_Home_off, $global_settings = 
-                    array(
+                    ),
+            $newspaper_theme_check,
+            array(
                         'id'       => 'ampforwp-infinite-scroll-single',
                         'type'     => 'switch',
                         'class'    => 'child_opt child_opt_arrow',
@@ -3633,20 +3640,15 @@ array_push($advanced_array, $amp_newspaper_Home_off, $global_settings =
                     'default'  => esc_html__('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages')
             ) 
         );
-$amp_fontparts = array_merge($amp_fontparts ,$advanced_array); 
+    $amp_fontparts = array_merge($amp_fontparts ,$global_settings);  
     // Global Theme Settings
   Redux::setSection($opt_name, array(
         'title'      => esc_html__( 'Global', 'accelerated-mobile-pages' ),
         'id'         => 'amp-theme-global-subsection',
         'subsection' => true,
         'fields'     => $amp_fontparts          
-    )
-);
-if(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')){
-    $selectedOption = get_option('redux_builder_amp',true);    
-    $selectedOption['ampforwp-infinite-scroll-home']=0;
-    update_option('redux_builder_amp',$selectedOption);
-}
+        )
+    );  
     // Header Elements default Color
     function ampforwp_get_element_default_color() {
         $default_value = '';
