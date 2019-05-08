@@ -12,11 +12,18 @@
 		<div class="amp-wp-meta amp-wp-tax-category">
 				<span><?php global $redux_builder_amp; printf(esc_attr( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories:' ) .' ' )); ?></span>
 				<?php foreach ($ampforwp_categories as $cat ) {
-					if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] &&  isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
-							echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) .'" > '. $cat->name .'</a></span>');//#934
-						} else {
-							 echo '<span>'. esc_attr($cat->name) .'</span>';
-						}
+					$term_id   = $cat->term_id;
+		            $term_name   = $cat->name;
+		            $term_url   = get_category_link( $cat->term_id );
+		          if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
+		                $term_url =  false;
+		              } 
+		          elseif( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {    
+		              // #934
+		                       $term_url   = ampforwp_url_controller( $term_url );
+		                }
+		                echo ('<span class="amp-cat amp-cat-'. esc_attr($term_id) . '" >
+		                '. (!empty($term_url)? ' <a href="'. esc_url( $term_url)  . '" > ':'').  esc_html($term_name). (!empty($term_url)?  '</a> ':'').' </span>');
 			} ?>
 		</div>
 	<?php endif; } ?>
