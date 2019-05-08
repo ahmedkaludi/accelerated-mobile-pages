@@ -10,6 +10,7 @@ if ( ! is_array($args) ) {
     $args = array();
 }
 $avatar = false; //To show author Avater
+$author_pub_name = false; //To show author name
 $avatar_size = 40;
 $author_description = false;
 $class = $author_prefix = $author_wrapper_class = '';
@@ -27,7 +28,9 @@ if ( function_exists('coauthors_posts_links') ) {
 }
 
 $author_image_wrapper = '';
-
+if ( isset($args['author_pub_name']) ) {
+    $author_pub_name = $args['author_pub_name'];
+}
 if ( isset($args['avatar']) ) {
     $avatar = $args['avatar'];
 }
@@ -80,20 +83,20 @@ if ( isset($args['show_time']) ) {
         echo '<div class="author-details '. $author_wrapper_class .'">';
         if ( true == ampforwp_get_setting('ampforwp-author-page-url') ){
             if ( function_exists('coauthors_posts_links') ) {
-                if( true == ampforwp_get_setting('amp-author-name') ){
+                if( $author_pub_name  ){
                     echo '<span class="author-name">' .esc_html($author_prefix) . esc_url($author_link) . ' </span>';
                     echo ampforwp_yoast_twitter_handle();
                 }
             }
             else {
-                if( true == ampforwp_get_setting('amp-author-name') ){
+                 if( $author_pub_name  ){
                     echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $author_name ).'</a></span>';
                     echo ampforwp_yoast_twitter_handle();
                 }
             }
         }
         else{
-            if( true == ampforwp_get_setting('amp-author-name') ){
+             if( $author_pub_name  ){
                 echo '<span class="author-name">' . esc_html($author_prefix) . esc_html( $author_name ) . '</span>';
                 echo ampforwp_yoast_twitter_handle();
             }

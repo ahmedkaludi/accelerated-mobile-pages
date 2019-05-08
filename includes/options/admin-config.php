@@ -5191,6 +5191,16 @@ $single_page_options = array(
               'title'     => __('Next-Previous Links', 'accelerated-mobile-pages'),
               'default'   => 1,
           ),
+        // Author name 
+         array(
+             'id'       => 'amp-author-name',
+             'type'     => 'switch',
+             'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
+             'default'  => '1',
+             'required' => array(
+                array('amp-design-selector' , '=' , '4'),
+            )
+         ),
         // Author Bio
          array(
              'id'       => 'amp-author-description',
@@ -5200,10 +5210,10 @@ $single_page_options = array(
          ),
          // Author name 
          array(
-             'id'       => 'amp-author-name',
+             'id'       => 'amp-author-bio-name',
              'class' => 'child_opt child_opt_arrow',
              'type'     => 'switch',
-             'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
+             'title'    => esc_html__( 'Author Bio Name', 'accelerated-mobile-pages' ),
              'default'  => '1',
              'required' => array(
                 array('amp-design-selector' , '=' , '4'),

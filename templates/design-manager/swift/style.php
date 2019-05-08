@@ -727,7 +727,7 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 	  padding-bottom:40px;
 	}
 <?php } ?>
-<?php if( 1 == $redux_builder_amp['amp-author-description'] ) {?>
+<?php if( true == ampforwp_get_setting('amp-author-description') ) {?>
 .sp-rt .amp-author {padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
 .sp-rt .amp-author-image{float:left;}
 .sp-rt .author-details a{color: #222;font-size: 14px;font-weight: 500;}

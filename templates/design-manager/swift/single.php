@@ -42,13 +42,16 @@
 							echo ampforwp_addThis_support();
 						} ?>
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>	
- 					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>	
-						<?php amp_author_box( 	
-											array(	'avatar'=>true,	
+ 					<?php if( true == ampforwp_get_setting('amp-author-description') ) { ?>	
+						<?php
+						$author_box = array( 'avatar'=>true,
 													'avatar_size'=>60,	
 													'author_description'=>true,	
-													'ads_below_the_author'=>true)	
-											); ?>	
+													'ads_below_the_author'=>true);
+						if( true == ampforwp_get_setting('amp-author-bio-name')){
+							$author_box['author_pub_name'] = true ;
+						}
+						amp_author_box( $author_box ); ?>	
 					<?php } ?>	
 					<?php amp_post_navigation();?>	
 					<div class="cmts">	
@@ -65,10 +68,12 @@
 						if ( 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
 								echo ampforwp_addThis_support(); 
 						} ?>
-		            <?php if( isset($redux_builder_amp['amp-author-name']) && $redux_builder_amp['amp-author-name'] ) { ?>
+		            <?php if( true == ampforwp_get_setting('amp-author-name') ) { ?>
 			            <div class="sp-athr">
 			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
-			            	<?php amp_author_box(); ?>
+			            	<?php amp_author_box( 
+										array('author_pub_name'=>true,)
+										); ?>
 			            </div>
 			         <?php } ?>   
 		            <?php if( true == $redux_builder_amp['ampforwp-tags-single'] && amp_tags_list()){ ?>
@@ -398,12 +403,16 @@ do_action("ampforwp_single_design_type_handle");
 						            	<?php amp_date(); ?><?php edit_post_link(); ?>
 						            </div>
 					            <?php }
-					             if( $redux_builder_amp['amp-author-description'] ) { ?>
-									<?php amp_author_box( 
-										array(	'avatar'=>true,
-												'avatar_size'=>60,
-												'author_description'=>true)
-										); ?>
+					             if( true == ampforwp_get_setting('amp-author-description') ) { ?>
+									<?php
+									$author_box = array( 'avatar'=>true,
+													'avatar_size'=>60,	
+													'author_description'=>true,	
+													'ads_below_the_author'=>true);
+								if( true == ampforwp_get_setting('amp-author-bio-name')){
+									$author_box['author_pub_name'] = true;
+								}
+								amp_author_box( $author_box );?>
 								<?php } ?>
 								<?php amp_post_navigation();?>
 								<div class="cmts">
