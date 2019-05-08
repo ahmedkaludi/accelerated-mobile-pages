@@ -198,8 +198,8 @@ class AMP_Post_Template {
 				'name' => $this->get( 'blog_name' ),
 			),
 			'headline' => $post_title,
-			'datePublished' => date( 'c', $post_publish_timestamp ),
-			'dateModified' => date( 'c', $post_modified_timestamp ),
+			'datePublished' => mysql2date( 'c', $post->post_date_gmt, false ),
+			'dateModified' => mysql2date( 'c', $post->post_modified_gmt, false ),
 			'author' => array(
 				'@type' => 'Person',
 				'name' => $post_author_name,
