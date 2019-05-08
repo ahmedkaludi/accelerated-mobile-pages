@@ -5,7 +5,7 @@ add_filter( 'amp_post_template_data', 'ampforwp_custom_post_content_sanitizer', 
 
 function ampforwp_custom_post_content_sanitizer( $data, $post ) {
     global $redux_builder_amp;
-
+    $amp_custom_post_content_check = '';
       if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] === 0 ) {
           return $data;
       }

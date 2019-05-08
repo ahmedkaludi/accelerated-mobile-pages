@@ -7035,7 +7035,7 @@ function checkAMPforPageBuilderStatus($postId){
 	  }
 	  //$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	  
-		if( $ampforwp_pagebuilder_enable=='yes'){
+		if( $ampforwp_pagebuilder_enable =='yes'){
 			$response = true;
 		}else{
 			$response = false;
