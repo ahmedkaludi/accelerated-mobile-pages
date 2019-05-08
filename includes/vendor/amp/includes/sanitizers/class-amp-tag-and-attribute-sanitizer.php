@@ -215,8 +215,8 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 			);
 		}
 		$checking_scripts = array("amp-carousel","amp-accordion");
-		$scriptArray = array_intersect($checking_scripts,$scriptArray);	
-		if(count($scriptArray)>0){
+		$script_intersect = array_intersect($checking_scripts,$scriptArray);	
+		if(count($script_intersect)>0){
 			remove_filter('the_content', 'wpautop');
 		}
 		return $scriptArray;
