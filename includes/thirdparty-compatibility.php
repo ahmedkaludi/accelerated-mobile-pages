@@ -35,6 +35,8 @@ function ampforwp_schema_lazy_load_remover(){
 	if ( function_exists( 'mvp_setup' ) && ampforwp_get_setting('amp-design-selector') != 4 ) {
 		remove_action( 'amp_post_template_head','ampforwp_add_meta_viewport');
 	}
+	//Menu css is not loading when directory plus theme is active. #2963
+	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
 }
 
 //Updater to check license
