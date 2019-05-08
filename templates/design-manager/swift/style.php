@@ -2002,3 +2002,12 @@ if(is_singular() || ampforwp_is_front_page()){?>
 }
 <?php } ?>
 <?php } // levelup condition ends here?> 
+@media (min-width: 768px){
+.wp-block-columns {
+    display:flex;
+}
+.wp-block-column {
+    max-width:50%;
+    margin: 0px 10px;
+}
+}
