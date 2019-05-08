@@ -42,7 +42,9 @@
 							echo ampforwp_addThis_support();
 						} ?>
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>	
- 					<?php if( true == ampforwp_get_setting('amp-author-description') ) { ?>	
+ 					<?php
+ 					$author_box = array();
+ 					if( true == ampforwp_get_setting('amp-author-description') ) { ?>	
 						<?php
 						$author_box = array( 'avatar'=>true,
 													'avatar_size'=>60,	
@@ -403,6 +405,7 @@ do_action("ampforwp_single_design_type_handle");
 						            	<?php amp_date(); ?><?php edit_post_link(); ?>
 						            </div>
 					            <?php }
+					            $author_box = array();
 					             if( true == ampforwp_get_setting('amp-author-description') ) { ?>
 									<?php
 									$author_box = array( 'avatar'=>true,
