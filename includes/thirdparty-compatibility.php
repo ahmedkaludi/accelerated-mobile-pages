@@ -1269,7 +1269,7 @@ if(!function_exists('ampforwp_remove_enfold_theme_load_shortcodess')){
 	function ampforwp_remove_enfold_theme_load_shortcodess(){
 		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
 	  	$explode_path = explode('/', $url_path);  
-	    if ( 'amp' === end( $explode_path)   ) {
+	    if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)   ) {
 			remove_filter('avia_load_shortcodes','add_shortcode_folder');
 	    }
 	}
