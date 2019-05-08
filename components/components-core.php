@@ -492,8 +492,13 @@ function amp_content($post_id= ''){
 		}
 	}
 
-	$thisTemplate = $ampforwpTemplate; 
-	do_action('ampforwp_before_post_content',$thisTemplate); 
+	$thisTemplate = $ampforwpTemplate;
+	 if ( 1 == ampforwp_get_setting('amp-design-selector')  ) {
+		do_action('ampforwp_inside_post_content_before',$thisTemplate); 
+	}
+	else{
+		do_action('ampforwp_before_post_content',$thisTemplate);
+	}
 	$amp_custom_content_enable = get_post_meta( $thisTemplate->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
 	// Normal Content
 	if ( ! $amp_custom_content_enable ) {
