@@ -39,6 +39,8 @@ function schema_lazy_load_remover(){
 	   	remove_filter( 'the_content', array($tic, 'the_content'), 100 );
 	   	add_filter('the_content', 'ampforwp_show_hide_toc');
 	}
+	// #3124 enfold theme shortcodes removed
+	add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
 }
 
 //Updater to check license
@@ -1275,18 +1277,11 @@ if(!function_exists('ampforwp_remove_enfold_theme_load_shortcodess')){
 	}
 }
 
-add_action('pre_amp_render_post','ampforwp_remove_enfold_theme_shortcodes');
-if(!function_exists('ampforwp_remove_enfold_theme_shortcodes')){
-	function ampforwp_remove_enfold_theme_shortcodes(){
-		add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
-	}
-}
-
 if(!function_exists('ampforwp_remove_enfold_theme_shortcodes_tags')){
 	function ampforwp_remove_enfold_theme_shortcodes_tags($content){
 		$content = preg_replace('/\[av_(.*?)]/', ' ', $content);
 		$content = preg_replace('/\[\/av_(.*?)]/', ' ', $content);
-		 return $content;
+		return $content;
 	}
 }
 function ampforwp_remove_rankmath_breadcrumb($entity){
