@@ -274,11 +274,11 @@ function amp_loop_title($data=array()){
 	if(isset($data['tag']) && $data['tag']!=""){
 		$tag = $data['tag'];
 	}
-	$attributes = 'class="loop-title"';
+	$attributes = 'loop-title';
 	if(isset($data['attributes']) && $data['attributes']!=""){
 		$attributes = $data['attributes'];
 	}
-	echo '<'.$tag.' '.$attributes.'>';
+	echo '<'.esc_attr($tag).' class="'.esc_attr($attributes).'" >';
 		if(!isset($data['link']) ){
 			echo '<a href="'. amp_loop_permalink(true) .'">';
 		}
@@ -287,7 +287,7 @@ function amp_loop_title($data=array()){
 		if(!isset($data['link']) ){
 			echo  '</a>';
 		}
-	echo '</'.$tag.'>';
+	echo '</'.esc_attr($tag).'>';
 }
 
 function amp_loop_date($args=array()){
