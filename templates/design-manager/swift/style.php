@@ -776,8 +776,10 @@ if( isset($redux_builder_amp['wordpress-comments-support']) && 1 == $redux_build
 .cmts-wrap a:hover{color:<?php echo ampforwp_sanitize_color($swift_cs_color) ?>;}
 .cmts-wrap .current{color:<?php echo ampforwp_sanitize_color($swift_cs_color) ?>;}
 <?php } // Comments Pagination CSS Ends
-if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_builder_amp['ampforwp-disqus-comments-support'] ) {?>
-.amp-disqus-comments { text-align:center } <?php 
+if ( true == ampforwp_get_setting('ampforwp-disqus-comments-support') ) {?>
+.amp-disqus-comments { text-align:center }
+.amp-disqus-comments amp-iframe, .amp-disqus-comments iframe{overflow: auto; overflow-y:scroll;-webkit-overflow-scrolling: touch;}
+.amp-disqus-comments iframe{width:100%;height:300px;}<?php 
 } ?>
 
 @media(max-width:1110px){
