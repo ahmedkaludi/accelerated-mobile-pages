@@ -715,25 +715,6 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .amp-author-image amp-img{border-radius: 50%;margin: 0px 12px 5px 0px;display: block; width:50px;}
 .author-details p{margin: 0;font-size: 13px;line-height: 20px;color: #666;padding-top: 4px;}
 <?php } ?>
-<?php //Breadcrumbs
-if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && is_singular() && true == ampforwp_get_setting('ampforwp-bread-crumb') ) {?>
-.breadcrumbs{padding-bottom: 8px;margin-bottom: 20px;
-<?php if( 1 == $redux_builder_amp['breadcrumb-border'] ) {?>
-border-bottom: 1px solid #eee;
-<?php }?>}
-.breadcrumb ul li,.breadcrumbs span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
-.breadcrumb ul li a, .breadcrumbs span a{color: #999;letter-spacing: 1px;}
-.breadcrumb ul li a:hover, .breadcrumbs span a:hover{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
-.breadcrumbs li a:after, .breadcrumbs span a:after{
-<?php if ( ampforwp_get_setting('ampforwp_font_icon') == 'swift-icons' ){ ?>
-	content: "\e315";font-family: 'icomoon';font-size: 12px;
-<?php }
-if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
-	content:"\f105";font-family: "Font Awesome 5 Free";font-weight:600;font-size:11px;
-<?php } ?>
-	display: inline-block;color: #bdbdbd;padding-left: 5px;position: relative;top: 1px;}
-.breadcrumbs li:last-child a:after {display: none;}
-<?php } //Breadcrumbs Ends?>
 #pagination{margin-top: 30px;border-top: 1px dotted #ccc;padding: 20px 5px 0px 5px;;font-size: 16px;line-height: 24px;font-weight:400;}
 .next{float: right;width: 45%;text-align:right;position:relative;margin-top:10px;}
 .next a, .prev a{color:#333;}
@@ -1946,6 +1927,18 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
 <?php if (checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 	.sp-cnt .cntr {max-width: 100%;margin:0;width:100%;padding:0}	
 <?php } ?> 
+<?php //Breadcrumbs
+if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && ( (is_single() && true == ampforwp_get_setting('ampforwp-bread-crumb')) || (is_page() && ampforwp_get_setting('ampforwp_pages_breadcrumbs')) )) {?>
+.breadcrumbs{padding-bottom: 8px;margin-bottom: 20px;
+<?php if( true == ampforwp_get_setting('breadcrumb-border') ) {?>
+border-bottom: 1px solid #eee;
+<?php }?>}
+.breadcrumb ul li,.breadcrumbs span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
+.breadcrumb ul li a, .breadcrumbs span a{color: #999;letter-spacing: 1px;}
+.breadcrumb ul li a:hover, .breadcrumbs span a:hover{color: <?php echo $hovercolor; ?>;}
+.breadcrumbs li a:after, .breadcrumbs span a:after{content: "\e315";display: inline-block;color: #bdbdbd;font-family: 'icomoon';padding-left: 5px;font-size: 12px;position: relative;top: 1px;}
+.breadcrumbs li:last-child a:after {display: none;}
+<?php } //Breadcrumbs Ends?>
 <?php if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){?>
     html {
    scroll-behavior: smooth;

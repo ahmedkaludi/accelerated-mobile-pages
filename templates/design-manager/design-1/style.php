@@ -250,7 +250,8 @@ amp-carousel{direction: ltr;} .tt-lb{float:right;margin-left:5px;}
 if ( class_exists('TablePress') ) { ?>
 .tablepress-table-description{clear:both;display:block}.tablepress{border-collapse:collapse;border-spacing:0;width:100%;margin-bottom:1em;border:none}.tablepress td,.tablepress th{padding:8px;border:none;background:0 0;text-align:left}.tablepress tbody td{vertical-align:top}.tablepress tbody td,.tablepress tfoot th{border-top:1px solid #ddd}.tablepress tbody tr:first-child td{border-top:0}.tablepress thead th{border-bottom:1px solid #ddd}.tablepress tfoot th,.tablepress thead th{background-color:#d9edf7;font-weight:700;vertical-align:middle}.tablepress .odd td{background-color:#f9f9f9}.tablepress .even td{background-color:#fff}.tablepress .row-hover tr:hover td{background-color:#f3f3f3}@media (min-width:768px) and (max-width:1600px){.tablepress{overflow-x:none}}@media (min-width:320px) and (max-width:767px){.tablepress{display:inline-block;overflow-x:scroll}}
 <?php }
-if( !is_home() && true == ampforwp_get_setting('ampforwp-bread-crumb') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
+if( !is_home() && ( (is_single() && true == ampforwp_get_setting('ampforwp-bread-crumb')) || (is_page() && ampforwp_get_setting('ampforwp_pages_breadcrumbs') ) ) && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
+.breadcrumb{line-height: 1; margin: 0.1em 16px 1.5em;}
 .breadcrumb{line-height: 1; margin: 0.1em 16px 1.5em;}
 .breadcrumb ul{padding:0; margin:0;}
 .breadcrumb ul li, .breadcrumbs span{display:inline;font-size:12px;}
