@@ -84,7 +84,7 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
   .custom-amp-socialsharing-line{background:#00b900}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
-.custom-amp-socialsharing-vk{background:#45668e}
+.custom-amp-socialsharing-vk, .amp-social-vk{background:#45668e}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-odnoklassniki-share') ) { ?>
 .amp-social-odnoklassniki{background:#ed812b}
