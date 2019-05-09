@@ -16,6 +16,7 @@ require_once AMPFORWP_PLUGIN_DIR."includes/features/contact-form/contact-form-op
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
 $comment_desc = "";
+$newspaper_theme_check = array();
 $amptfad = '<strong>DID YOU KNOW?</strong></br ><a href="https://ampforwp.com/amp-theme-framework/"  target="_blank">You can create your own <strong>Custom theme with AMP Theme Framework</strong></a>';
 // #1093 Display only If AMP Comments is Not Installed
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -3224,6 +3225,25 @@ Redux::setSection( $opt_name, array(
         );
             $amp_fontparts = array_merge($amp_fontparts ,$fonts_settings);   
     }
+    if( function_exists('ampforwp_custom_theme_files_register') ){
+       global $redux_builder_amp;
+       $newspaper_theme_checker = '';
+       $newspaper_theme_checker = ampforwp_get_setting('ampforwp-infinite-scroll-home');
+       if($newspaper_theme_checker){
+           $redux_builder_amp['ampforwp-infinite-scroll-home'] = false;
+           update_option( 'redux_builder_amp', $redux_builder_amp );
+       }
+    }
+    if( !function_exists('ampforwp_custom_theme_files_register') ){
+        $newspaper_theme_check = array(
+                        'id'       => 'ampforwp-infinite-scroll-home',
+                        'type'     => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'    => esc_html__('Home & Archives', 'accelerated-mobile-pages'),
+                        'default' => true,
+                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
+                    );
+    }
     $global_settings = array(
                 array(
                        'id' => 'general_sdbar',
@@ -3306,14 +3326,7 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__('Read more about it here:', 'accelerated-mobile-pages'), esc_url('https://www.ampproject.org/docs/reference/components/amp-next-page'), esc_html__('amp-next-page','accelerated-mobile-pages')),
                         'default' => false,
                     ),
-                    array(
-                        'id'       => 'ampforwp-infinite-scroll-home',
-                        'type'     => 'switch',
-                        'class'    => 'child_opt child_opt_arrow',
-                        'title'    => esc_html__('Home & Archives', 'accelerated-mobile-pages'),
-                        'default' => true,
-                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
-                    ),
+                    $newspaper_theme_check,
                     array(
                         'id'       => 'ampforwp-infinite-scroll-single',
                         'type'     => 'switch',
