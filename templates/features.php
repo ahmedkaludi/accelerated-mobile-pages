@@ -6832,3 +6832,19 @@ function ampforwp_rev_slider_embed($data) {
 	}
 	return $data;
 }
+// Photo Gallery by 10Web Compatibility #1811
+add_action('pre_amp_render_post', 'ampforwp_initialise_photo_gallery');
+if ( ! function_exists('ampforwp_initialise_photo_gallery') ) {
+	function ampforwp_initialise_photo_gallery(){
+		if ( class_exists('BWG') ) {
+			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-photo-gallery-embed.php';
+		}
+	}
+}
+add_filter('amp_content_embed_handlers','ampforwp_photo_gallery_embed');
+function ampforwp_photo_gallery_embed($data) {
+	if ( class_exists('BWG') ) {
+		$data['AMPforWP_Photo_Gallery_Embed_Handler'] = array();
+	}
+	return $data;
+}
