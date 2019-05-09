@@ -6749,8 +6749,8 @@ function ampforwp_ivory_search_css(){
 add_filter('amp_post_template_data','ampforwp_register_addthis_script', 20);
 function ampforwp_register_addthis_script( $data ){ 
 	global $redux_builder_amp;
-	if( ( ampforwp_get_setting('enable-add-this-option') && is_single() )|| (is_page() && ampforwp_get_setting('ampforwp-page-social')) ) {
-		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
+	if ( ampforwp_get_setting('enable-add-this-option') && ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social') ) ) )  {
+ 		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
 			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
 		}
 	}
