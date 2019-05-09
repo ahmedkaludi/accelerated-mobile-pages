@@ -309,6 +309,7 @@ function ampforwp_page_template_redirect_archive() {
 // #1947 when nonamp=1 it should redirect to original link so that google
 function ampforwp_custom_query_var($vars) {
   $vars[] = 'nonamp';
+  $vars[] = 'nonamphead';
   return $vars;
 }
 add_filter( 'query_vars', 'ampforwp_custom_query_var' );
@@ -322,6 +323,7 @@ function ampforwp_redirect_to_orginal_url(){
     $url = home_url( $wp->request );
   }
   $nonamp_checker = get_query_var( 'nonamp');
+  $nonamphead_checker = get_query_var( 'nonamphead');
    if($url){
      if( $nonamp_checker == 1 ){ 
         $go_to_url = remove_query_arg('nonamp', $url);
@@ -334,6 +336,10 @@ function ampforwp_redirect_to_orginal_url(){
       wp_safe_redirect( $go_to_url, 301 );
       exit;
     }
+    elseif($nonamphead_checker == 1){
+        session_unset();
+       }
+    
     else{
       return;
     }
