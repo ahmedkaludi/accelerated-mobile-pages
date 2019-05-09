@@ -6815,3 +6815,20 @@ function ampforwp_slide_anything_embed($data) {
 	}
 	return $data;
 }
+
+// Revolution Slider compatibility #1464
+add_action('pre_amp_render_post', 'ampforwp_initialise_rev_slider');
+if ( ! function_exists('ampforwp_initialise_rev_slider') ) {
+	function ampforwp_initialise_rev_slider(){
+		if ( class_exists('RevSliderOutput') ){
+			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-rev-slider.php';
+		}
+	}
+}
+add_filter('amp_content_embed_handlers','ampforwp_rev_slider_embed');
+function ampforwp_rev_slider_embed($data) {
+	if ( class_exists('RevSliderOutput') ){
+		$data['AMP_Rev_Slider_Embed_Handler'] = array();
+	}
+	return $data;
+}
