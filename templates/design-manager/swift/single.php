@@ -76,6 +76,11 @@
 			            	<?php amp_author_box( 
 										array('author_pub_name'=>true,)
 										); ?>
+							<?php
+							if(function_exists('wpsabox_author_box')){	
+								echo '<span class="author-details author-name">' .esc_html(get_the_author()).' </span>';
+							}
+							?>		
 			            </div>
 			         <?php } ?>   
 		            <?php if( true == $redux_builder_amp['ampforwp-tags-single'] && amp_tags_list()){ ?>
