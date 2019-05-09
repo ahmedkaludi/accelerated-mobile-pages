@@ -7838,7 +7838,9 @@ function ampforwp_notice_delete(){
 add_action('amp_post_template_data', 'ampforwp_design4_carousel');
 function ampforwp_design4_carousel($data){
 	if (  true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && ampforwp_get_setting('rp_design_type') == '3') {
-	  $data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
+		if ( empty( $data['amp_component_scripts']['amp-carousel'] ) ) {
+			$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
+		}
 	}
 	return($data);
 }
