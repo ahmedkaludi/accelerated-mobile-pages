@@ -144,6 +144,17 @@
                             'default'   => 0,
                             'required' => array('enable-amp-ads-2', '=' , '1'),
                         );
+                $fields[] =         array(
+                        'id'        =>'ampforwp-ads-data-loading-strategy-2',
+                        'class' => 'child_opt',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('Optimize For Viewability', 'accelerated-mobile-pages'),
+                        'default'   => ampforwp_get_setting('ampforwp-ads-data-loading-strategy'),
+                        'tooltip-subtitle'  => esc_html__('This will increase the loading speed of the Ads', 'accelerated-mobile-pages'),
+                        'true'      => 'Enabled',
+                        'false'     => 'Disabled',
+                        'required' => array('enable-amp-ads-2', '=' , '1'),
+                    );
                 // Ad 2 ends
 
                 // Ad 3 starts
@@ -276,6 +287,17 @@
                             'default'   => 0,
                             'required' => array('enable-amp-ads-4', '=' , '1'),
                         );
+                $fields[] =         array(
+                        'id'        =>'ampforwp-ads-data-loading-strategy-4',
+                        'class' => 'child_opt',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('Optimize For Viewability', 'accelerated-mobile-pages'),
+                        'default'   => ampforwp_get_setting('ampforwp-ads-data-loading-strategy'),
+                        'tooltip-subtitle'  => esc_html__('This will increase the loading speed of the Ads', 'accelerated-mobile-pages'),
+                        'true'      => 'Enabled',
+                        'false'     => 'Disabled',
+                        'required' => array('enable-amp-ads-4', '=' , '1'),
+                    );
                 // Ad 4 ends
 
                 //Ad 5 Starts
@@ -391,6 +413,17 @@
                             'default'   => 0,
                             'required' => array('enable-amp-ads-6', '=' , '1'),
                     );
+                $fields[] =         array(
+                        'id'        =>'ampforwp-ads-data-loading-strategy-6',
+                        'class' => 'child_opt',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('Optimize For Viewability', 'accelerated-mobile-pages'),
+                        'default'   => ampforwp_get_setting('ampforwp-ads-data-loading-strategy'),
+                        'tooltip-subtitle'  => esc_html__('This will increase the loading speed of the Ads', 'accelerated-mobile-pages'),
+                        'true'      => 'Enabled',
+                        'false'     => 'Disabled',
+                        'required' => array('enable-amp-ads-6', '=' , '1'),
+                    );
                 //Ad 7 Starts
                 $fields[] = array(
                     'id'        => 'enable-amp-ads-7',
@@ -448,6 +481,18 @@
                             'default'   => 0,
                             'required' => array('enable-amp-ads-7', '=' , '1'),
                     );
+                $fields[] =         array(
+                        'id'        =>'ampforwp-ads-data-loading-strategy-7',
+                        'class' => 'child_opt',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('Optimize For Viewability', 'accelerated-mobile-pages'),
+                         'desc'=>'Enable this option only if your Ads are either 600px away from the top or not within the first 75% of the viewport and <a href="https://www.ampproject.org/docs/reference/components/amp-iframe" target="_blank">Click here for more information</a>',
+                        'default'   => ampforwp_get_setting('ampforwp-ads-data-loading-strategy'),
+                        'tooltip-subtitle'  => esc_html__('This will increase the loading speed of the Ads', 'accelerated-mobile-pages'),
+                        'true'      => 'Enabled',
+                        'false'     => 'Disabled',
+                        'required' => array('enable-amp-ads-7', '=' , '1'),
+                    );
              //Ad 8 Starts
                 $fields[] =array(
                     'id'        => 'enable-amp-ads-8',
@@ -504,9 +549,21 @@
                             'title'     => esc_html__('Responsive Ad unit', 'accelerated-mobile-pages'),
                             'default'   => 0,
                             'required' => array('enable-amp-ads-8', '=' , '1'),
+                    );
+                $fields[] =    array(
+                        'id'        =>'ampforwp-ads-data-loading-strategy-8',
+                        'class' => 'child_opt',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('Optimize For Viewability', 'accelerated-mobile-pages'),
+                         'desc'=>'Enable this option only if your Ads are either 600px away from the top or not within the first 75% of the viewport and <a href="https://www.ampproject.org/docs/reference/components/amp-iframe" target="_blank">Click here for more information</a>',
+                        'default'   => ampforwp_get_setting('ampforwp-ads-data-loading-strategy'),
+                        'tooltip-subtitle'  => esc_html__('This will increase the loading speed of the Ads', 'accelerated-mobile-pages'),
+                        'true'      => 'Enabled',
+                        'false'     => 'Disabled',
+                        'required' => array('enable-amp-ads-8', '=' , '1'),
                     ); 
             }                   
-                $fields[] =    array(
+        $fields[] =    array(
                             'id' => 'ampforwp-ads-section',
                             'class'=> is_plugin_active('ads-for-wp/ads-for-wp.php')? "adsactive": '',
                             'type' => 'section',
@@ -544,34 +601,7 @@
                                     </div>' 
                                     
         );
-        if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {
-                $fields[] =     array(
-                            'id' => 'amp-ads_2',
-                           'type' => 'section',
-                           'title' => esc_html__('Ad Performance', 'accelerated-mobile-pages'),
-                           'indent' => true,
-                           'layout_type' => 'accordion',
-                           'accordion-open'=> 1,
-                );
-
-                $fields[] =     array(
-                            'id' => 'amp-ads_2',
-                           'type' => 'section',
-                           'title' => esc_html__('Ad Performance', 'accelerated-mobile-pages'),
-                           'indent' => true,
-                           'layout_type' => 'accordion',
-                           'accordion-open'=> 1,
-                );
-                $fields[] =    array(
-                        'id'        =>'ampforwp-ads-data-loading-strategy',
-                        'type'      => 'switch',
-                        'title'     => esc_html__('Optimize For Viewability', 'accelerated-mobile-pages'),
-                        'desc'=>'Enable this option only if your Ads are either 600px away from the top or not within the first 75% of the viewport and <a href="https://www.ampproject.org/docs/reference/components/amp-iframe" target="_blank">Click here for more information</a>',
-                        'default'   => 0,
-                        'tooltip-subtitle'  => esc_html__('This will increase the loading speed of the Ads', 'accelerated-mobile-pages'),
-                        'true'      => 'Enabled',
-                        'false'     => 'Disabled',
-                    );
+        if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {        
                 $fields[] =    array(
                             'id' => 'amp-ads_3',
                            'type' => 'section',
