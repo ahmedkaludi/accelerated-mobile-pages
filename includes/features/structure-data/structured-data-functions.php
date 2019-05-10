@@ -302,6 +302,9 @@ function ampforwp_structured_data_type( $metadata ) {
 	$content = $post->post_content;
 	$metadata['articleBody'] = esc_html($content);
 	}
+	if(function_exists('activate_wp_recipe_maker') || function_exists('activate_wp_recipe_maker_premium') && isset($metadata['@type']) && $metadata['@type'] == 'Recipe'){
+		return;
+	}
 	return $metadata;
 }
 // VideoObject
