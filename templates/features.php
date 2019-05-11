@@ -7003,17 +7003,6 @@ function ampforwp_ajax_tags(){
 	wp_send_json( $return );
 }
 
-// AddThis Support
-add_filter('amp_post_template_data','ampforwp_register_addthis_script', 20);
-function ampforwp_register_addthis_script( $data ){ 
-	global $redux_builder_amp;
-	if ( ampforwp_get_setting('enable-add-this-option') && ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social') ) ) )  {
- 		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
-			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
-		}
-	}
-	return $data;
-}
 
 // PageBuilder Status fallback #2414
 function checkAMPforPageBuilderStatus($postId){
@@ -7312,10 +7301,16 @@ function ampforwp_add_global_scripts($data){
 				$data['amp_component_scripts'][$key]  = $value;
 			}
 		}
-	} 
+	}
 	if (  true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && ampforwp_get_setting('rp_design_type') == '3') {
 		if ( empty( $data['amp_component_scripts']['amp-carousel'] ) ) {
 			$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
+		}
+	}
+	// AddThis Support #3068
+	if ( ampforwp_get_setting('enable-add-this-option') && ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social') ) ) )  {
+ 		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
+			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
 		}
 	}
 	return $data;
