@@ -7312,6 +7312,11 @@ function ampforwp_add_global_scripts($data){
 				$data['amp_component_scripts'][$key]  = $value;
 			}
 		}
+	} 
+	if (  true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && ampforwp_get_setting('rp_design_type') == '3') {
+		if ( empty( $data['amp_component_scripts']['amp-carousel'] ) ) {
+			$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
+		}
 	}
 	return $data;
 }
@@ -7834,13 +7839,4 @@ function ampforwp_notice_delete(){
 	if ( current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {
 	  delete_transient( 'ampforwp_admin_notice_transient');
 	}
-}
-add_action('amp_post_template_data', 'ampforwp_design4_carousel');
-function ampforwp_design4_carousel($data){
-	if (  true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && ampforwp_get_setting('rp_design_type') == '3') {
-		if ( empty( $data['amp_component_scripts']['amp-carousel'] ) ) {
-			$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
-		}
-	}
-	return($data);
 }
