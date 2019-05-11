@@ -269,11 +269,11 @@ do_action("ampforwp_single_design_type_handle");
 						<div class="sp-rl">
 							<div class="sp-rt">
 								<div class="cntn-wrp artl-cnt">
-								<?php	if ( 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
+								<?php	if ( 'above-content' ==  ampforwp_get_setting('swift-layout-addthis-pos') ){
 										echo ampforwp_addThis_support(); 
 								} ?>
 									<?php amp_content(); 
-									if ( 'below-content' ==  ampforwp_get_setting('swift-add-this-position') ){
+									if ( 'below-content' ==  ampforwp_get_setting('swift-layout-addthis-pos') ){
 											echo ampforwp_addThis_support();
 									}	?>
 								</div>
