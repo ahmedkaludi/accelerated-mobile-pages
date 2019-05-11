@@ -510,10 +510,6 @@ if( !function_exists('ampforwp_ad_optimize')){
 // Properly adding ad Script the AMP way
 add_filter( 'amp_post_template_data', 'ampforwp_add_ads_scripts' );
 function ampforwp_add_ads_scripts( $data ) {
-	global $redux_builder_amp;
-	if($redux_builder_amp==null){
-		$redux_builder_amp = get_option('redux_builder_amp',true);
-	}
 	if ( ampforwp_get_setting('enable-amp-ads-1') || ampforwp_get_setting('enable-amp-ads-2')   || ampforwp_get_setting('enable-amp-ads-3') || ampforwp_get_setting('enable-amp-ads-4') || ampforwp_get_setting('enable-amp-ads-5') || ampforwp_get_setting('enable-amp-ads-6') || ampforwp_get_setting('enable-amp-ads-7') || ampforwp_get_setting('enable-amp-ads-8') ) {
 					if ( empty( $data['amp_component_scripts']['amp-ad'] ) ) {
 						$data['amp_component_scripts']['amp-ad'] = 'https://cdn.ampproject.org/v0/amp-ad-0.1.js';
