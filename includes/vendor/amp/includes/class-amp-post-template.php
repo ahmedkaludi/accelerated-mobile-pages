@@ -312,7 +312,8 @@ class AMP_Post_Template {
 
 	private function build_post_featured_image() {
 		$post_id = $this->ID;
-		$featured_html = get_the_post_thumbnail( $post_id, 'large' );
+		$image_size = apply_filters( 'ampforwp_featured_image_size', 'large' );
+		$featured_html = get_the_post_thumbnail( $post_id, $image_size );
 
 		// Skip featured image if no featured image is available.
 		if ( ! $featured_html ) {
