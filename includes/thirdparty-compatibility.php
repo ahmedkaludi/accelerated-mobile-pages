@@ -1266,9 +1266,9 @@ function ampforwp_woocommerce_conditional_check(){
 return apply_filters('ampforwp_woocommerce_conditional_check', $showSingleCss);
 }
 // #3124 enfold theme shortcodes removed
-add_action('init','ampforwp_remove_enfold_theme_load_shortcodess',2);
-if(!function_exists('ampforwp_remove_enfold_theme_load_shortcodess')){
-	function ampforwp_remove_enfold_theme_load_shortcodess(){
+add_action('init','ampforwp_enfold_theme_compatibility',2);
+if(!function_exists('ampforwp_enfold_theme_compatibility')){
+	function ampforwp_enfold_theme_compatibility(){
 		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
 	  	$explode_path = explode('/', $url_path);  
 	    if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)   ) {
