@@ -18,8 +18,8 @@ require_once AMPFORWP_PLUGIN_DIR."includes/features/contact-form/contact-form-op
 
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
-$comment_desc = "";
-$newspaper_theme_check = array();
+$comment_desc = $addthis_pos = "";
+$newspaper_theme_check = $addthis_pos_opt = array();
 $amptfad = '<strong>DID YOU KNOW?</strong></br ><a href="https://ampforwp.com/amp-theme-framework/"  target="_blank">You can create your own <strong>Custom theme with AMP Theme Framework</strong></a>';
 // #1093 Display only If AMP Comments is Not Installed
 if(!is_plugin_active( 'amp-comments/amp-comments.php' )){
@@ -6206,7 +6206,19 @@ $single_page_options = array(
                   ),
             )
     ));
-
+    $addthis_pos_opt = array(   'above-content' => 'Above Content',
+                                'below-content' => 'Below Content'
+                                );
+    if(ampforwp_get_setting('single-design-type') == '1'){
+        $addthis_pos_opt['default'] = 'Single Sidebar (left side)';
+        $addthis_pos = 'default';
+    }
+    elseif(ampforwp_get_setting('single-design-type') == '6'){
+        $addthis_pos = 'above-content';
+    }
+    else{
+        $addthis_pos = 'below-content';
+    }
     // Social Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Social', 'accelerated-mobile-pages' ),
@@ -6263,12 +6275,8 @@ $single_page_options = array(
                 'id'       => 'swift-add-this-position',
                 'type'     => 'select',
                 'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
-                'options'  => array(
-                                'default' => 'Single Sidebar (left side)',
-                                'above-content' => 'Above Content',
-                                'below-content' => 'Below Content'
-                                ),
-                'default'  => 'default',
+                'options'  => $addthis_pos_opt,
+                'default'  => $addthis_pos,
                 'required' => array(
                                 array('amp-design-selector', '=', '4'),
                                 array('enable-add-this-option', '=', '1') )

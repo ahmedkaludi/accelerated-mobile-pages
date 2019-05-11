@@ -269,7 +269,13 @@ do_action("ampforwp_single_design_type_handle");
 						<div class="sp-rl">
 							<div class="sp-rt">
 								<div class="cntn-wrp artl-cnt">
-									<?php amp_content(); ?>
+								<?php	if ( 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
+										echo ampforwp_addThis_support(); 
+								} ?>
+									<?php amp_content(); 
+									if ( 'below-content' ==  ampforwp_get_setting('swift-add-this-position') ){
+											echo ampforwp_addThis_support();
+									}	?>
 								</div>
 								<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 								<div class="ss-ic">
