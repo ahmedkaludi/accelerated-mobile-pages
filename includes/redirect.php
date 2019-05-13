@@ -329,7 +329,12 @@ function ampforwp_redirect_to_orginal_url(){
         $go_to_url = remove_query_arg('nonamp', $url);
         $go_to_url = explode('/', $go_to_url);
         $go_to_url = array_flip($go_to_url);
-        unset($go_to_url['amp']);
+        if( true == ampforwp_get_setting('amp-core-end-point') || isset($go_to_url['?amp']) ){
+          unset($go_to_url['?amp']);
+        }
+        if( isset($go_to_url['amp']) ){
+          unset($go_to_url['amp']);
+        }
         $go_to_url = array_flip($go_to_url);     
         $go_to_url  = implode('/', $go_to_url);
  
