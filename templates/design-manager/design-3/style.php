@@ -777,3 +777,12 @@ if(is_singular() || ampforwp_is_front_page()){?>
     margin: 0px 10px;
 }
 }
+<?php
+if ( is_singular() && false == ampforwp_get_setting('amp-opt-sticky-head') ){?>
+.amp-wp-content *[id]:before { 
+  display: block; 
+  content: " "; 
+  margin-top: -75px; 
+  height: 75px; 
+  visibility: hidden;}
+<?php } ?> 

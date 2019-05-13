@@ -2013,3 +2013,12 @@ if(is_singular() || ampforwp_is_front_page()){?>
     margin: 0px 10px;
 }
 }
+<?php
+if(is_singular() && true == ampforwp_get_setting('amp-sticky-header')){?>
+.cntn-wrp *[id]:before { 
+  display: block; 
+  content: " "; 
+  margin-top: -75px; 
+  height: 75px; 
+  visibility: hidden;}
+<?php } ?>
