@@ -1291,13 +1291,15 @@ function ampforwp_remove_rankmath_breadcrumb($entity){
 //Need to AMP compatible with this plugin HTTP / HTTPS Remover #3123
 add_action('wp_loaded','ampforwp_http_remover_support');
 function ampforwp_http_remover_support(){
+	  if ( class_exists('HTTP_HTTPS_REMOVER')){
 	  $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
-      $explode_path = explode('/', $url_path);  
-      if ( class_exists('HTTP_HTTPS_REMOVER') && AMPFORWP_AMP_QUERY_VAR === end( $explode_path)   ) {
+      $explode_path = explode('/', $url_path);
+      if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)) {
         global $http_https_remover;
 		remove_action('wp_loaded', array(
 			$http_https_remover,
 			'letsGo'
 		), 99, 1);
     }
+	}
 }
