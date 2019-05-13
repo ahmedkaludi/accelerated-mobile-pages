@@ -495,10 +495,6 @@ function ampforwp_ads_sponsorship(){
 // Ads Optimize For Viewability
 if( !function_exists('ampforwp_ad_optimize')){
 	function ampforwp_ad_optimize(){
-		global $redux_builder_amp;
-		if($redux_builder_amp==null){
-			$redux_builder_amp = get_option('redux_builder_amp',true);
-		}
 		$optimized_code = '';
 		if( true == ampforwp_get_setting('ampforwp-ads-data-loading-strategy')){
 			$optimized_code = 'data-loading-strategy=1';
