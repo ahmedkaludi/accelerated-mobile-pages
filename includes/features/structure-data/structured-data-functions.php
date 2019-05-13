@@ -71,12 +71,12 @@
 
 			if ( $post_image_check == false) {
 
-				if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
-					$structured_data_image_url = __($redux_builder_amp['amp-structured-data-placeholder-image']['url'], 'accelerated-mobile-pages');
+				if (! empty( ampforwp_get_setting('amp-structured-data-placeholder-image','url') ) ) {
+					$structured_data_image_url = esc_url(ampforwp_get_setting('amp-structured-data-placeholder-image','url'));
 				}
 					$structured_data_image = $structured_data_image_url;
 					$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height'));
-					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
+					$structured_data_width = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-width'));
 
 					$metadata['image'] = array(
 						'@type' 	=> 'ImageObject',
@@ -87,7 +87,7 @@
 			}
 			// Custom Structured Data information for Archive, Categories and tag pages.
 			if ( is_archive() ) {
-					$structured_data_image = __($redux_builder_amp['amp-structured-data-placeholder-image']['url'], 'accelerated-mobile-pages');
+					$structured_data_image = esc_url( ampforwp_get_setting('amp-structured-data-placeholder-image','url') );
 					$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height'));
 					$structured_data_width = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-width'));
 					$structured_data_archive_title 	= esc_html(get_the_archive_title());
@@ -163,8 +163,8 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$structured_data_image_url = '';
 			$page = '';
 			// placeholder Image area
-			if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
-				$structured_data_image_url = __($redux_builder_amp['amp-structured-data-placeholder-image']['url'], 'accelerated-mobile-pages');
+			if (! empty( ampforwp_get_setting('amp-structured-data-placeholder-image','url') ) ) {
+				$structured_data_image_url = esc_url(ampforwp_get_setting('amp-structured-data-placeholder-image','url'));
 			}
 			$structured_data_image =  $structured_data_image_url; //  Placeholder Image URL
 			$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height')); //  Placeholder Image width
