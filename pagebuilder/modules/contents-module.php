@@ -397,7 +397,7 @@ if ( is_admin() ) {
                 current_time('timestamp') ) .' '. ampforwp_translation( ampforwp_get_setting('amp-translator-ago-date-text'),
                 'ago');
                $loopdate = apply_filters('ampforwp_modify_post_date',$loopdate);
-               $loopdate = '<p>'.$loopdate.'</p>';             
+               $loopdate = '<p>'.esc_html($loopdate).'</p>';      
                $title = get_the_title();
                $postid = get_the_ID();
                $author = get_the_author();
