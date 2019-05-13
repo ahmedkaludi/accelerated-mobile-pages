@@ -37,6 +37,8 @@ function ampforwp_schema_lazy_load_remover(){
 	}
 	//Menu css is not loading when directory plus theme is active. #2963
 	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
+	// #3124 enfold theme shortcodes removed
+	add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
 }
 
 //Updater to check license
@@ -963,5 +965,23 @@ if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
 		    return ' <span><a href="https://twitter.com/'.esc_attr($twitter).'" target="_blank">@'.esc_html($twitter).'</a></span>';
 		}
 		return '';
+	}
+}
+// #3124 enfold theme shortcodes removed
+add_action('init','ampforwp_enfold_theme_compatibility',2);
+if(!function_exists('ampforwp_enfold_theme_compatibility')){
+	function ampforwp_enfold_theme_compatibility(){
+		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	  	$explode_path = explode('/', $url_path);  
+	    if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)   ) {
+			remove_filter('avia_load_shortcodes','add_shortcode_folder');
+	    }
+	}
+}
+if(!function_exists('ampforwp_remove_enfold_theme_shortcodes_tags')){
+	function ampforwp_remove_enfold_theme_shortcodes_tags($content){
+		$content = preg_replace('/\[av_(.*?)]/', ' ', $content);
+		$content = preg_replace('/\[\/av_(.*?)]/', ' ', $content);
+		return $content;
 	}
 }
