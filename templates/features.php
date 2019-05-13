@@ -6481,6 +6481,9 @@ if ( ! function_exists('ampforwp_gutenberg_css') ) {
 	function ampforwp_gutenberg_css(){ ?>
 		.wp-block-button { color: #fff}
 		.wp-block-button a {background-color: #32373c;border-radius: 28px;color: inherit;display: inline-block;padding: 12px 24px;}
+		.wp-block-cover{position:relative;background-color: #000;background-size: cover;background-position: center center;min-height: 430px;width: 100%;margin: 1.5em 0 1.5em 0;display: flex;justify-content: center;align-items: center;overflow: hidden;}
+		.wp-block-cover-text{color: #fff;font-size: 2em;line-height: 1.25;z-index: 1;}
+		.wp-block-cover-image.has-background-dim::before, .wp-block-cover.has-background-dim::before {content: "";position: absolute;top: 0;left: 0;bottom: 0;right: 0;background-color: inherit;opacity: .5;z-index: 1;}
 	<?php }
 } 
 // Subtitles Plugin Support #2853
