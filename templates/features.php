@@ -814,8 +814,12 @@ function ampforwp_title_callback( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
     $ampforwp_stored_meta = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas', true ), true);
     $ampforwp_stored_meta['ampforwp-amp-on-off'] = array($ampforwp_stored_meta['ampforwp-amp-on-off']);
+    if(isset($ampforwp_stored_meta['ampforwp-redirection-on-off'])){
     $ampforwp_stored_meta['ampforwp-redirection-on-off'] = array($ampforwp_stored_meta['ampforwp-redirection-on-off']);
+	}
+	if(isset($ampforwp_stored_meta['ampforwp-ia-on-off'])){
     $ampforwp_stored_meta['ampforwp-ia-on-off'] = array($ampforwp_stored_meta['ampforwp-ia-on-off']);
+	}
     $preview_query_args = array();
 	$preview_link = $list_of_posts = $skip_this_post = '';
 	$preview_query_args = array(AMPFORWP_AMP_QUERY_VAR => 1);
