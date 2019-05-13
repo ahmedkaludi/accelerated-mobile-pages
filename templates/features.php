@@ -6487,12 +6487,12 @@ function ampforwp_sneak_peek_content_modifier($content){
 function ampforwp_sneak_peek_css(){
 	global $redux_builder_amp;
 	$height = $txt_color = $btn_color = '';
-	$height = $redux_builder_amp['content-sneak-peek-height'];
+	$height = ampforwp_get_setting('content-sneak-peek-height');
 	$btn_color = $redux_builder_amp['content-sneak-peek-btn-color']['color'];
 	$txt_color = $redux_builder_amp['content-sneak-peek-txt-color']['color'];?>
-	.fd-h{height: <?php echo $height; ?>;overflow: hidden;position: relative;}
+	.fd-h{height: <?php echo esc_attr($height); ?>;overflow: hidden;position: relative;}
     .fd-b-c{text-align: center;margin: 0px 0px 30px 0px;}
-    .fd-b-c .fd-b {border:none;border-radius: 5px;color: <?php echo $txt_color; ?>;font-size: 16px;font-weight: 700;padding: 12px 32px 12px 32px;background-color: <?php echo $btn_color; ?>;
+    .fd-b-c .fd-b {border:none;border-radius: 5px;color: <?php echo ampforwp_sanitize_color($txt_color); ?>;font-size: 16px;font-weight: 700;padding: 12px 32px 12px 32px;background-color: <?php echo ampforwp_sanitize_color($btn_color); ?>;
     }
     .fd-h:after {
 	    content: "";
