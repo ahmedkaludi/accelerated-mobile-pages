@@ -230,7 +230,11 @@ function ampforwp_pb_cats(){
 	$post = $_POST['selected_val'];
 	$taxs = get_object_taxonomies( $post );
 	if(!empty($taxs)){
- 		$cats = get_terms($taxs);
+ 		$cats = get_terms($taxs['0'],array(   
+                   'orderby' => 'name',   
+                   'order'   => 'ASC',
+                   'number'  => 500   
+               ) );
 	}
 	$return = array();
 	if($cats){
