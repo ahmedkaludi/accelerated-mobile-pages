@@ -6578,6 +6578,12 @@ function ampforwp_add_global_scripts($data){
             }
         }
     }
+    // AddThis Support #3068   
+	if ( ampforwp_get_setting('enable-add-this-option') && ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social') ) ) )  {
+ 		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
+			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
+		}
+	}
     return $data;
 }	
 if ( ! function_exists('ampforwp_get_weglot_url') ) {
@@ -6752,17 +6758,6 @@ function ampforwp_ivory_search_css(){
 		    display: none;
 		}
 <?php } }
-// AddThis Support
-add_filter('amp_post_template_data','ampforwp_register_addthis_script', 20);
-function ampforwp_register_addthis_script( $data ){ 
-	global $redux_builder_amp;
-	if ( ampforwp_get_setting('enable-add-this-option') && ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social') ) ) )  {
- 		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
-			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
-		}
-	}
-	return $data;
-}
 // Font Awesome Icons added for Swift
 add_action('amp_post_template_head', 'ampforwp_fontawesome_canonical_link');
 function ampforwp_fontawesome_canonical_link(){ 
