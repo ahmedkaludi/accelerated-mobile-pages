@@ -29,7 +29,9 @@
 				    <?php amp_loop_title(); ?>
 				    <div class="at-dt">
 					    <?php amp_loop_date(); ?>
-					    <?php amp_author_box(); ?>
+					     <?php amp_author_box( 
+										array('author_pub_name'=>true,)
+										); ?>
 					</div>
 				    <?php if( ampforwp_check_excerpt() ) { amp_loop_excerpt(50); } ?>
 			    </div>

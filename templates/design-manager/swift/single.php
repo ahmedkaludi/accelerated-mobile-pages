@@ -41,13 +41,18 @@
 							echo ampforwp_addThis_support();
 						} ?>
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
-					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
-						<?php amp_author_box( 
-											array(	'avatar'=>true,
-													'avatar_size'=>60,
-													'author_description'=>true,
-													'ads_below_the_author'=>true)
-											); ?>
+					<?php 
+ 						$author_box = array();
+						if( true == ampforwp_get_setting('amp-author-description') ) { ?>	
+						<?php
+						$author_box = array( 'avatar'=>true,
+													'avatar_size'=>60,	
+													'author_description'=>true,	
+													'ads_below_the_author'=>true);
+						if( true == ampforwp_get_setting('amp-author-bio-name')){
+							$author_box['author_pub_name'] = true ;
+						}
+						amp_author_box( $author_box ); ?>	
 					<?php } ?>
 					<?php amp_post_navigation();?>
 					<div class="cmts">
@@ -64,12 +69,14 @@
 						if ( 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
 								echo ampforwp_addThis_support(); 
 						} ?>
-		            <?php if( isset($redux_builder_amp['amp-author-name']) && $redux_builder_amp['amp-author-name'] ) { ?>
+		              <?php if( true == ampforwp_get_setting('amp-author-name') ) { ?>
 			            <div class="sp-athr">
-			            	<span class="athr-tx"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' )); ?></span>
-			            	<?php amp_author_box(); ?>
+			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
+			            	<?php amp_author_box( 
+										array('author_pub_name'=>true,)
+										); ?>
 			            </div>
-			         <?php } ?>   
+			         <?php } ?>    
 		            <?php if( true == $redux_builder_amp['ampforwp-tags-single'] && amp_tags_list()){ ?>
 			            <div class="tags">
 			            	<?php amp_tags_list();?>
@@ -188,7 +195,7 @@ do_action("ampforwp_single_design_type_handle");
 </div>
 </div>
 <?php } ?>
-<?php if($redux_builder_amp['single-design-type'] == '4'){?>
+<?php if($redux_builder_amp['single-design-type'] == '4'){ ?>
 	<div class="sp sgl">
 	<div class="cntr">
 		<div class="sp-wrap">
@@ -356,13 +363,17 @@ do_action("ampforwp_single_design_type_handle");
 						            	<?php amp_date(); ?><?php edit_post_link(); ?>
 						            </div>
 					            <?php }
-					             if( $redux_builder_amp['amp-author-description'] ) { ?>
-									<?php amp_author_box( 
-										array(	'avatar'=>true,
-												'avatar_size'=>60,
-												'author_description'=>true,
-												'ads_below_the_author'=>true)
-										); ?>
+					             $author_box = array();
+					              if( true == ampforwp_get_setting('amp-author-description') ) { ?>
+									<?php
+									$author_box = array( 'avatar'=>true,
+													'avatar_size'=>60,	
+													'author_description'=>true,	
+													'ads_below_the_author'=>true);
+								if( true == ampforwp_get_setting('amp-author-bio-name')){
+									$author_box['author_pub_name'] = true;
+								}
+								amp_author_box( $author_box );?>
 								<?php } ?>
 								<?php amp_post_navigation();?>
 								<div class="cmts">

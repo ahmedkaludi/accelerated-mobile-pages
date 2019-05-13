@@ -11,6 +11,7 @@ if ( ! is_array($args) ) {
 }
 
 $avatar = false; //To show author Avater
+$author_pub_name = false; //To show author name
 $avatar_size = 40;
 $author_description = false;
 $class = $author_prefix = $author_wrapper_class = '';
@@ -27,6 +28,10 @@ if ( function_exists('coauthors_posts_links') ) {
     $author_link = coauthors_posts_links($and_text,$and_text,null,null,false);
 }
 $author_image_wrapper = '';
+
+if ( isset($args['author_pub_name']) ) {
+    $author_pub_name = $args['author_pub_name'];
+}
 
 if ( isset($args['avatar']) ) {
     $avatar = $args['avatar'];
@@ -76,19 +81,26 @@ if ( isset($args['show_time']) ) {
         </div>
         <?php } ?>
         <?php echo '<div class="author-details '. esc_attr($author_wrapper_class) .'">';
-        if ( true == $redux_builder_amp['ampforwp-author-page-url'] ){
+        if ( true == ampforwp_get_setting('ampforwp-author-page-url') ){
             if ( function_exists('coauthors_posts_links') ) {
-                echo '<span class="author-name">' .esc_attr($author_prefix) . esc_attr($author_link) . ' </span>';
-                echo ampforwp_yoast_twitter_handle();
+                if( $author_pub_name  ){
+                    echo '<span class="author-name">' .esc_html($author_prefix) . esc_url($author_link) . ' </span>';
+                    echo ampforwp_yoast_twitter_handle();
+                }
             }
             else {
-                echo '<span class="author-name">' .esc_attr($author_prefix) . ' <a href="'. ampforwp_url_controller($author_link).'"> ' .esc_html( $author_name ).'</a></span>';
-                 echo ampforwp_yoast_twitter_handle();
+                if( $author_pub_name  ){
+                    echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $author_name ).'</a></span>';
+                    echo ampforwp_yoast_twitter_handle();
+                }
             }
         }
-        else
-            echo '<span class="author-name">' . esc_attr($author_prefix) . esc_html( $author_name ) . '</span>';
-            echo  ampforwp_yoast_twitter_handle();
+        else{
+            if( $author_pub_name  ){
+                echo '<span class="author-name">' . esc_html($author_prefix) . esc_html( $author_name ) . '</span>';
+                echo  ampforwp_yoast_twitter_handle();
+            }
+        }
 
         //to show date and time
         if ( $show_date || $show_time ) {
@@ -102,8 +114,10 @@ if ( isset($args['show_time']) ) {
          echo '</span>';
         }
         if ( $author_description ) {
-            $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
-        	echo "<p>".strip_tags($post_author->description,$allowed_tags)."</p>";
+            if( true == ampforwp_get_setting('amp-author-box-description') ){
+                $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
+                echo "<p>".strip_tags($post_author->description,$allowed_tags)."</p>";
+            }
         } ?>
         </div>
     </div>
