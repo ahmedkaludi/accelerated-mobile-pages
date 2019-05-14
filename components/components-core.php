@@ -364,7 +364,7 @@ function ampforwp_sanitize_archive_desc(){
 		    <?php do_action( 'amp_meta', $ampforwpTemplate ); ?>
 		    <?php 
 		    	if(ampforwp_amp_nonamp_convert("", "check")){
-		    		echo '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">';
+		    		echo '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=2,user-scalable=yes">';
 		    		wp_head();
 
 		    	}else{

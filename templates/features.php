@@ -3428,7 +3428,7 @@ function ampforwp_add_amp_gist_script( $data ){
 add_action( 'amp_post_template_head','ampforwp_add_meta_viewport', 9);
 function ampforwp_add_meta_viewport() {
 	$output = '';
-	$output = '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	$output = '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=2,user-scalable=yes">
 	';
 	echo apply_filters('ampforwp_modify_meta_viewport_filter',$output);
 	
