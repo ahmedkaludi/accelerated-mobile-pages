@@ -530,7 +530,7 @@ if ( is_admin() ) {
 if( ! function_exists('ampforwp_file_exists') ){
 	function ampforwp_file_exists($path){
 		if(file_exists($path)){ 
-			return require $path;
+			return require_once $path;
 		}
 		else{
 			return false;
