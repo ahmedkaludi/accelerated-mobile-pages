@@ -26,8 +26,7 @@ function ampforwp_header_advert() {
 		$responsive = true;
 	}
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-1'];
-	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-1'];
-	$optimize = ampforwp_ad_optimize();
+	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-1']; 
 	if ( isset($redux_builder_amp['enable-amp-ads-1']) && true == $redux_builder_amp['enable-amp-ads-1'] ) {
 		if ( 1 == $redux_builder_amp['enable-amp-ads-select-1'] ) {
 			$advert_width  = '300';
@@ -57,8 +56,7 @@ function ampforwp_header_advert() {
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_1">';
 		$output .= '<amp-ad class="amp-ad-1"
-					type="adsense" '. $optimize .'
-					width='. $advert_width .' height='. $advert_height . '
+					type="adsense" width='. $advert_width .' height='. $advert_height . '
 					data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-1'].'"
 					data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-1'] .'"';
 		if($is_dboc){
@@ -104,7 +102,9 @@ function ampforwp_footer_advert() {
 	}
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-2'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-2'];
-	$optimize = ampforwp_ad_optimize();
+	if( true == ampforwp_get_setting('ampforwp-ads-data-loading-strategy-2')){
+		$optimize = 'data-loading-strategy=1';
+	}
 	if ( isset($redux_builder_amp['enable-amp-ads-2']) && true == $redux_builder_amp['enable-amp-ads-2'] ) {
 		if($redux_builder_amp['enable-amp-ads-select-2'] == 1)  {
 			$advert_width  = '300';
@@ -165,7 +165,6 @@ function ampforwp_before_post_content_advert() {
 	if($redux_builder_amp==null){
 		$redux_builder_amp = get_option('redux_builder_amp',true);
 	}
-	$optimize = '';
 	$is_global = '';
 	$display_on = '';
 	$is_dboc = '';
@@ -180,8 +179,7 @@ function ampforwp_before_post_content_advert() {
 		$responsive = true;
 	}
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-3'];
-	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-3'];
-	$optimize = ampforwp_ad_optimize();
+	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-3'];  
 	if(isset($redux_builder_amp['made-amp-ad-3-global']) && $redux_builder_amp['made-amp-ad-3-global']){
 		if($redux_builder_amp['made-amp-ad-3-global'] == 1){
 			$is_global = is_single();
@@ -233,8 +231,7 @@ function ampforwp_before_post_content_advert() {
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_3">';
 				$output	.=	'<amp-ad class="amp-ad-3" 
-							type="adsense" '. $optimize .'
-							width='. $advert_width .' height='. $advert_height . '
+							type="adsense" width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-3'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .'"';
 				if($is_dboc){
@@ -281,7 +278,9 @@ function ampforwp_after_post_content_advert() {
 	}
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-4'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-4'];
-	$optimize = ampforwp_ad_optimize();
+	if( true == ampforwp_get_setting('ampforwp-ads-data-loading-strategy-4')){
+		$optimize = 'data-loading-strategy=1';
+	}
 	if ( isset($redux_builder_amp['enable-amp-ads-4']) && true == $redux_builder_amp['enable-amp-ads-4'] && is_single() ) {
 		if($redux_builder_amp['enable-amp-ads-select-4'] == 1)  {
 			$advert_width  = '300';
@@ -342,7 +341,6 @@ function ampforwp_below_the_title_advert() {
 	if($redux_builder_amp==null){
 		$redux_builder_amp = get_option('redux_builder_amp',true);
 	}
-	$optimize = '';
 	$is_dboc = '';
 	$is_dboc = ampforwp_get_data_consent();
 	$post_id = get_the_ID();
@@ -356,7 +354,6 @@ function ampforwp_below_the_title_advert() {
 	}
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-5'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-5'];
-	$optimize = ampforwp_ad_optimize();
 	if ( isset($redux_builder_amp['enable-amp-ads-5']) && true == $redux_builder_amp['enable-amp-ads-5'] && is_single() ) {
 		if($redux_builder_amp['enable-amp-ads-select-5'] == 1)  {
 			$advert_width  = '300';
@@ -386,8 +383,7 @@ function ampforwp_below_the_title_advert() {
   		}		
 		$output = '<div class="amp-ad-wrapper amp_ad_5">';
 		$output	.=	'<amp-ad class="amp-ad-5"
-					type="adsense" '. $optimize .'
-					width='. $advert_width .' height='. $advert_height . '
+					type="adsense" width='. $advert_width .' height='. $advert_height . '
 					data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-5'].'"
 					data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-5'] .'"';
 		if($is_dboc){
@@ -432,7 +428,9 @@ function ampforwp_above_related_post_advert() {
 	}
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-6'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-6'];
-	$optimize = ampforwp_ad_optimize();
+	if( true == ampforwp_get_setting('ampforwp-ads-data-loading-strategy-6')){
+		$optimize = 'data-loading-strategy=1';
+	}
 	if( isset($redux_builder_amp['enable-amp-ads-6']) && true == $redux_builder_amp['enable-amp-ads-6'] ) {
 		if($redux_builder_amp['enable-amp-ads-select-6'] == 1)  {
 			$advert_width  = '300';
@@ -492,16 +490,6 @@ function ampforwp_ads_sponsorship(){
 		return '<span>'.$redux_builder_amp['ampforwp-ads-sponsorship-label'].'</span>';
 	}
 }
-// Ads Optimize For Viewability
-if( !function_exists('ampforwp_ad_optimize')){
-	function ampforwp_ad_optimize(){
-		$optimized_code = '';
-		if( true == ampforwp_get_setting('ampforwp-ads-data-loading-strategy')){
-			$optimized_code = 'data-loading-strategy=1';
-		}
-		return $optimized_code;
-	}
-} 
 
 // Properly adding ad Script the AMP way
 add_filter( 'amp_post_template_data', 'ampforwp_add_ads_scripts' );

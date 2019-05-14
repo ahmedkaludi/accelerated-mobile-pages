@@ -1,9 +1,11 @@
 <?php
-
+	$optimize = '';
 	global $redux_builder_amp;
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-8'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-8'];
-
+	if( true == ampforwp_get_setting('ampforwp-ads-data-loading-strategy-8')){
+		$optimize = 'data-loading-strategy=1';
+	}
 	if ( ampforwp_get_setting('enable-amp-ads-8') ) {
 		
 		if(ampforwp_get_setting('enable-amp-ads-select-8') == 1)  {
@@ -39,7 +41,7 @@
 					$advert_height = '320';
 	      		}	
 	$output = '<div class="amp-ad-wrapper amp_ad_8">
-				<amp-ad class="amp-ad-8"
+				<amp-ad class="amp-ad-8" '. $optimize .'
 					type="adsense" 
 					width='. $advert_width .' height='. $advert_height . '
 					data-ad-client="'. $client_id .'"
