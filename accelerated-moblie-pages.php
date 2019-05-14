@@ -782,8 +782,16 @@ if ( !is_plugin_active('amp/amp.php') ) {
 if(is_admin()){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/modules-upgrade.php' );
 }
-//$redux_builder_amp = get_option('redux_builder_amp');
-if ( ampforwp_get_setting('ampforwp-pagebuilder')== true){
+$enablePb = false;
+if(is_admin()){
+	global $pagenow;
+	if( ('post.php' || 'post-new.php') == $pagenow ) {
+		$enablePb = true;
+	}
+}else{
+	$enablePb = true;
+}
+if ($enablePb && ampforwp_get_setting('ampforwp-pagebuilder')== true ){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
 }
 /**
