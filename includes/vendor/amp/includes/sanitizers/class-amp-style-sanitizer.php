@@ -411,7 +411,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 	 */
 	private function validate_amp_keyframe( $style ) {
 		if ( 'body' !== $style->parentNode->nodeName ) {
-			return new WP_Error( 'mandatory_body_child', __( 'amp-keyframes is not child of body element.', 'amp' ) );
+			return new \WP_Error( 'mandatory_body_child', __( 'amp-keyframes is not child of body element.', 'amp' ) );
 		}
 
 		if ( $this->keyframes_max_size && strlen( $style->textContent ) > $this->keyframes_max_size ) {
