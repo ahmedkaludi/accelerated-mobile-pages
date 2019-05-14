@@ -17,9 +17,10 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			$this->is_single = true == $this->is_single() ? $this->is_single() : $this->is_single;
 			$this->is_loop = true == $this->is_loop() ? $this->is_loop() : $this->is_loop;
 			$this->paged = $this->paged();
-			$type = get_post_type(ampforwp_get_the_ID());
-			$this->is_not_cpt = $this->is_post_type($type);
-			if ( $this->is_single && $this->is_not_cpt ){
+		   	if( 'post' === get_post_type(ampforwp_get_the_ID()) && $this->is_single() ){
+				$this->is_not_cpt = true;
+		    }
+		    if ( $this->is_single && $this->is_not_cpt ){
 				// amp-next-page experiment meta tag
 				add_action('amp_experiment_meta', array( $this, 'amp_experiment_meta') );
 				// amp-next-page script
@@ -61,10 +62,6 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			} else {
 			    return 1;
 			}
-		}
-		public function is_post_type($type){
-		    if($type == 'post') return true;
-		    return false;
 		}
 		public function amp_experiment_meta() {
 			echo '<meta name="amp-experiments-opt-in" content="amp-next-page">';
