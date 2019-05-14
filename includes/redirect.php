@@ -258,7 +258,7 @@ function ampforwp_page_template_redirect() {
         return;
     }
 
-    if ( $isMobile && 'mobile-on' == $_SESSION['ampforwp_amp_mode'] && 1 == $_GET['nonamp'] ) {
+    if ( $isMobile && isset($_GET['ampforwp_amp_mode']) && 'mobile-on' == $_SESSION['ampforwp_amp_mode'] && ( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) ){
         // non mobile session variable creation
         session_start();
         $_SESSION['ampforwp_mobile'] = 'exit';
@@ -272,6 +272,9 @@ function ampforwp_page_template_redirect() {
     }
     // Check if we are on Mobile phones then start redirection process
     if ( $redirectToAMP ) {
+      if(in_array($url_to_redirect, $_SESSION['nonamphead'])){
+         return;
+      }
 
         if ( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp']) ) {
 
@@ -342,8 +345,13 @@ function ampforwp_redirect_to_orginal_url(){
       exit;
     }
     elseif($nonamphead_checker == 1){
-        session_unset();
-       }
+    $go_to_url = home_url( $wp->request );
+    if($go_to_url){
+        $_SESSION['nonamphead'][ampforwp_url_controller($go_to_url)] = ampforwp_url_controller($go_to_url);
+      }
+      wp_safe_redirect( $go_to_url, 301 );
+      exit;
+    }
     
     else{
       return;
