@@ -221,7 +221,7 @@ function ampforwp_redirection() {
         return;
     }
 
-    if ( $mobile_detect->isMobile() && 'mobile-on' == $_SESSION['ampforwp_amp_mode'] && 1 == $_GET['nonamp'] ) {
+    if ( $mobile_detect->isMobile() && 'mobile-on' == $_SESSION['ampforwp_amp_mode'] && ( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) ){
         // non mobile session variable creation
         session_start();
         $_SESSION['ampforwp_mobile'] = 'exit';
