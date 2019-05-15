@@ -272,10 +272,6 @@ function ampforwp_page_template_redirect() {
     }
     // Check if we are on Mobile phones then start redirection process
     if ( $redirectToAMP ) {
-      if(in_array($url_to_redirect, $_SESSION['nonamphead'])){
-         return;
-      }
-
         if ( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp']) ) {
 
           $_SESSION['ampforwp_amp_mode'] = 'mobile-on';
@@ -312,7 +308,6 @@ function ampforwp_page_template_redirect_archive() {
 // #1947 when nonamp=1 it should redirect to original link so that google
 function ampforwp_custom_query_var($vars) {
   $vars[] = 'nonamp';
-  $vars[] = 'nonamphead';
   return $vars;
 }
 add_filter( 'query_vars', 'ampforwp_custom_query_var' );
@@ -326,7 +321,6 @@ function ampforwp_redirect_to_orginal_url(){
     $url = home_url( $wp->request );
   }
   $nonamp_checker = get_query_var( 'nonamp');
-  $nonamphead_checker = get_query_var( 'nonamphead');
    if($url){
      if( $nonamp_checker == 1 ){ 
         $go_to_url = remove_query_arg('nonamp', $url);
@@ -343,16 +337,7 @@ function ampforwp_redirect_to_orginal_url(){
  
       wp_safe_redirect( $go_to_url, 301 );
       exit;
-    }
-    elseif($nonamphead_checker == 1){
-    $go_to_url = home_url( $wp->request );
-    if($go_to_url){
-        $_SESSION['nonamphead'][ampforwp_url_controller($go_to_url)] = ampforwp_url_controller($go_to_url);
-      }
-      wp_safe_redirect( $go_to_url, 301 );
-      exit;
-    }
-    
+  }    
     else{
       return;
     }
