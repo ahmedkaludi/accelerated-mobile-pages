@@ -31,18 +31,27 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 = Features: =
 
 * NEW - Gutenberg Support
+* NEW - Divi and Elementor Support [More Info](https://ampforwp.com/woocommerce/)
+* NEW - Addthis Sharing Support
+* NEW - AMP Infinity Scroll Support
+* NEW - Revolution Slider plugin Support 
+* NEW - Photo Gallery by 10Web Support 
+* NEW - MEWE social network Support 
 * NEW - GDPR Compliance
-* NEW - Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
-* NEW Default Theme for AMP called Swift
-* NEW - 3 Pre-built AMP Layouts for Business websites and landing pages 
-* NEW - Alexa Metrics Compatibility added 
-* NEW - OneSignal Push Notifications integration 
-* NEW - Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
+* Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
+* New Default Theme for AMP called Swift
+* 3 Pre-built AMP Layouts for Business websites and landing pages 
+* Alexa Metrics Compatibility added 
+* OneSignal Push Notifications integration 
+* Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
 * Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
 * AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
 * Structured Data Options
 * Page Break / NextPage (Pagination) Support
 * Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
+* Graviry Form Support [More Info](https://ampforwp.com/gravity-forms/)
+* Caldera Form Support [More Info](https://ampforwp.com/caldera-forms-for-amp/)
+* Ninja Form Support [More Info](https://ampforwp.com/ninja-forms/)
 * Facebook Comments Support
 * Github Gist Support
 * Email Opt-in Subscription form support in AMP added
@@ -73,7 +82,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * User Friendly Theme Options Panel.
 * Unlimited Color Scheme.
 * Image Logo Upload.
-* Supports Posts and Pages.
+* Supports Posts and Pages and other custom post types.
 * Proper rel canonical tags which means that Google know the original page.
 * Overlay Navigation Menu bar.
 * Social Sharing in the Single.
