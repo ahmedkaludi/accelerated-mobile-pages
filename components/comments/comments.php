@@ -165,15 +165,14 @@ function ampforwp_framework_get_disqus_comments(){
 	}
 
 	if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
-		global $post; $post_slug=$post->post_name;
-
+		global $post; $post_slug=rawurlencode($post->post_name);
 		$disqus_script_host_url = "https://ampforwp.appspot.com/?api=". AMPFORWP_DISQUS_URL;
 
 		if( $redux_builder_amp['ampforwp-disqus-host-position'] == 0 ) {
 			$disqus_script_host_url = esc_url( $redux_builder_amp['ampforwp-disqus-host-file'] );
 		}
 
-		$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.get_permalink().'&disqus_name='. esc_url( $redux_builder_amp['ampforwp-disqus-comments-name'] ) ."/embed.js"  ;
+		$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.rawurlencode(get_permalink()).'&disqus_name='. esc_url( ampforwp_get_setting('ampforwp-disqus-comments-name') ) ."/embed.js"  ;
 		?>
 		<section class="amp-disqus-comments">
 			<amp-iframe
