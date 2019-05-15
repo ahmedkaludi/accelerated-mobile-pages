@@ -89,6 +89,7 @@ function call_loops_standard($data=array()){
 		$qobj = get_queried_object();
 		if( !is_date() ){
 				$args = array(
+							'no_found_rows' 	  => true,
 							'post_type'           => $post_type,
 							'orderby'             => 'date',
 							'ignore_sticky_posts' => 1,
@@ -129,6 +130,7 @@ function call_loops_standard($data=array()){
 		$exclude_ids = get_option('ampforwp_exclude_post');
 
 		$args = array(
+			'no_found_rows' 	  => true,
 			'post_type'           => 'post',
 			'orderby'             => 'date',
 			'paged'               => esc_attr($paged),
@@ -168,6 +170,7 @@ function call_loops_standard($data=array()){
 		$exclude_ids = get_option('ampforwp_exclude_post');
 		$exclude_ids[] = $post->ID;
 		$args =  array(
+			'no_found_rows' 	  => true,
 			'post_type'           => 'post',
 			'orderby'             => 'date',
 			'ignore_sticky_posts' => 1,
