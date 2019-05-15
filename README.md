@@ -31,7 +31,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 = Features: =
 
 * NEW - Gutenberg Support
-* NEW - Divi and Elementor Support [More Info](https://ampforwp.com/woocommerce/)
+* NEW - Divi and Elementor Support [More Info](https://ampforwp.com/amp-pagebuilder-compatibility/)
 * NEW - Addthis Sharing Support
 * NEW - AMP Infinity Scroll Support
 * NEW - Revolution Slider plugin Support 
