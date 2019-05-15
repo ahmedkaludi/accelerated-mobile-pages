@@ -11,16 +11,12 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 		private $paged;
 		private $is_single = false;
 		private $is_loop = false;
-		private $is_not_cpt = false;
 		function __construct()
 		{
 			$this->is_single = true == $this->is_single() ? $this->is_single() : $this->is_single;
 			$this->is_loop = true == $this->is_loop() ? $this->is_loop() : $this->is_loop;
 			$this->paged = $this->paged();
-		   	if( 'post' === get_post_type(ampforwp_get_the_ID()) && $this->is_single() ){
-				$this->is_not_cpt = true;
-		    }
-		    if ( $this->is_single && $this->is_not_cpt ){
+		    if ( $this->is_single && 'post' === get_post_type(ampforwp_get_the_ID()) ){
 				// amp-next-page experiment meta tag
 				add_action('amp_experiment_meta', array( $this, 'amp_experiment_meta') );
 				// amp-next-page script
