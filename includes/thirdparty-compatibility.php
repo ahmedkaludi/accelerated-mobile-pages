@@ -1293,6 +1293,9 @@ add_action('wp_loaded','ampforwp_http_remover_support');
 function ampforwp_http_remover_support(){
 	  if ( class_exists('HTTP_HTTPS_REMOVER')){
 	  $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	  if (true == ampforwp_get_setting('amp-core-end-point')) {
+	  $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_QUERY),'/' );
+	  }
       $explode_path = explode('/', $url_path);
       if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)) {
         global $http_https_remover;
