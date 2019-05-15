@@ -35,62 +35,62 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
       do_action('ampforwp_after_amp_menu'); ?>
         <div class="social_icons">
             <ul>
-              <?php global $redux_builder_amp;
-              if( $redux_builder_amp['enable-single-twittter-profile'] && $redux_builder_amp['enable-single-twittter-profile-url'] !== '') { ?>
+              <?php 
+              if( ampforwp_get_setting('enable-single-twittter-profile') && ampforwp_get_setting('enable-single-twittter-profile-url') !== '') { ?>
                 <li class="icon-twitter"><a title="twitter profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-twittter-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
 
-                <?php global $redux_builder_amp;
-                if( $redux_builder_amp['enable-single-facebook-profile']  && $redux_builder_amp['enable-single-facebook-profile-url'] !== '') { ?>
+                <?php
+                if( ampforwp_get_setting('enable-single-facebook-profile')  && ampforwp_get_setting('enable-single-facebook-profile-url') !== '') { ?>
                 <li class="icon-facebook"><a title="facebook profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-facebook-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
 
-                <?php global $redux_builder_amp;
-                if( $redux_builder_amp['enable-single-pintrest-profile']  && $redux_builder_amp['enable-single-pintrest-profile-url'] !== '') { ?>
+                <?php 
+                if( ampforwp_get_setting( 'enable-single-pintrest-profile')  && ampforwp_get_setting('enable-single-pintrest-profile-url') !== '') { ?>
                 <li class="icon-pinterest"><a title="pinterest profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-pintrest-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
 
-                <?php global $redux_builder_amp;
-                if( $redux_builder_amp['enable-single-google-plus-profile']  && $redux_builder_amp['enable-single-google-plus-profile-url'] !== '') { ?>
+                <?php
+                if( ampforwp_get_setting('enable-single-google-plus-profile')  && ampforwp_get_setting('enable-single-google-plus-profile-url') !== '') { ?>
                 <li class="icon-google-plus"><a title="google plus profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-google-plus-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
 
-                <?php global $redux_builder_amp;
-                if( $redux_builder_amp['enable-single-linkdin-profile']  && $redux_builder_amp['enable-single-linkdin-profile-url'] !== '') { ?>
+                <?php
+                if( ampforwp_get_setting('enable-single-linkdin-profile')  && ampforwp_get_setting('enable-single-linkdin-profile-url') !== '') { ?>
                 <li class="icon-linkedin"><a title="linkedin profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-linkdin-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
 
-                <?php global $redux_builder_amp;
-                if( $redux_builder_amp['enable-single-youtube-profile']  && $redux_builder_amp['enable-single-youtube-profile-url'] !== '') { ?>
+                <?php
+                if( ampforwp_get_setting('enable-single-youtube-profile')  && ampforwp_get_setting('enable-single-youtube-profile-url') !== '') { ?>
                 <li class="icon-youtube-play"><a title="youtube profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-youtube-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
 
-                <?php global $redux_builder_amp;
-                if( $redux_builder_amp['enable-single-instagram-profile']  && $redux_builder_amp['enable-single-instagram-profile-url'] !== '') { ?>
+                <?php
+                if( ampforwp_get_setting('enable-single-instagram-profile')  && ampforwp_get_setting('enable-single-instagram-profile-url') !== '') { ?>
                 <li class="icon-instagram"><a title="instagram profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-instagram-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
 
-                <?php global $redux_builder_amp;
-                if( $redux_builder_amp['enable-single-reddit-profile']  && $redux_builder_amp['enable-single-reddit-profile-url'] !== '') { ?>
+                <?php
+                if( ampforwp_get_setting('enable-single-reddit-profile')  && ampforwp_get_setting('enable-single-reddit-profile-url') !== '') { ?>
                 <li class="icon-reddit-alien"><a title="reddit profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-reddit-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
 
-                <?php global $redux_builder_amp;
-                if( $redux_builder_amp['enable-single-VKontakte-profile']  && $redux_builder_amp['enable-single-VKontakte-profile-url'] !== '') { ?>
+                <?php
+                if( ampforwp_get_setting('enable-single-VKontakte-profile')  && ampforwp_get_setting('enable-single-VKontakte-profile-url') !== '') { ?>
                 <li class="icon-vk"><a title="vkontakte profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-VKontakte-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
 
 
-                <?php global $redux_builder_amp;
-                if( $redux_builder_amp['enable-single-snapchat-profile']  && $redux_builder_amp['enable-single-snapchat-profile-url'] !== '') { ?>
+                <?php
+                if( ampforwp_get_setting('enable-single-snapchat-profile')  && ampforwp_get_setting('enable-single-snapchat-profile-url') !== '') { ?>
                 <li class="icon-snapchat-ghost"><a title="snapchat profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-snapchat-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
 
-                <?php global $redux_builder_amp;
-                if( $redux_builder_amp['enable-single-Tumblr-profile']   && $redux_builder_amp['enable-single-Tumblr-profile-url'] !== '') { ?>
+                <?php
+                if( ampforwp_get_setting('enable-single-Tumblr-profile')   && ampforwp_get_setting('enable-single-Tumblr-profile-url') !== '') { ?>
                 <li class="icon-tumblr"><a title="tumblr profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo $redux_builder_amp['enable-single-Tumblr-profile-url']; ?>" target ="_blank"></a></li>
                 <?php } ?>
-            </ul>
+</ul>
         </div>
   </div>
   <button class="cl-btn" on='tap:sidebar.toggle'  tabindex="-1"></button>
