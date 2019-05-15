@@ -346,16 +346,22 @@ function amp_loop_all_content($tag = 'p'){
 	echo ('<'.$tag.'>'. $fullContent .'</'.$tag.'>');
 }
 
-function amp_loop_permalink($return,$amp_query_var ='amp'){
-	global $redux_builder_amp;
-	if( $return ){
-		return ampforwp_url_controller( get_permalink() ) ;
+function amp_loop_permalink($return = ''){
+	if (is_single() && ampforwp_get_setting('ampforwp-single-related-posts-link')) {
+		return get_permalink();
 	}
-	if ( isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
-		echo esc_url(get_permalink());
+	return ampforwp_url_controller( get_permalink() ) ;
+}
+	
+if (! function_exists('amp_loop_get_permalink')){
+	function amp_loop_get_permalink(){
+		return amp_loop_permalink();
 	}
-	else
-		echo ampforwp_url_controller( get_permalink() );
+}
+if (! function_exists('amp_loop_the_permalink')){
+	function amp_loop_the_permalink(){
+		echo amp_loop_get_permalink();
+	}
 }
 function amp_loop_image( $data=array() ) {
 	global $ampLoopData, $counterOffset, $redux_builder_amp;
