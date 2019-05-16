@@ -74,13 +74,8 @@
 			            <div class="sp-athr">
 			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
 			            	<?php amp_author_box( 
-										array('author_pub_name'=>true,)
-										); ?>
-							<?php
-							if(function_exists('wpsabox_author_box')){	
-								echo '<span class="author-details author-name">' .esc_html(get_the_author()).' </span>';
-							}
-							?>		
+										array('author_pub_name'=>true,'published by'=>true)
+										); ?>	
 			            </div>
 			         <?php } ?>   
 		            <?php if( true == $redux_builder_amp['ampforwp-tags-single'] && amp_tags_list()){ ?>
