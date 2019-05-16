@@ -79,3 +79,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 52. Added $ampforwpTemplate in amp.php #2977
 53. CSS syntax error in tag 'style amp-custom' - bad url #2974
 54. AMP_Content_Sanitizer updated #2287
+55. Image sanitizer updated #3112
