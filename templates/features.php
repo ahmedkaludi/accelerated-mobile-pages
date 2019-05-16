@@ -2041,12 +2041,12 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 		if ( class_exists('WPSEO_Options') && class_exists('YoastSEO_AMP') ) {
 			$yoast_glue_seo = get_option('wpseo_amp');
 
-			if ( $yoast_glue_seo['analytics-extra'] ) {
+			if ( $yoast_glue_seo['analytics-extra'] && function_exists('amp_activate') ) {
 				remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
 				remove_action('amp_post_template_footer','ampforwp_analytics',11);
 			}
 
-			if ( class_exists('Yoast_GA_Options') ) {
+			if ( class_exists('Yoast_GA_Options') && function_exists('amp_activate') ) {
 				$UA = Yoast_GA_Options::instance()->get_tracking_code();
 				if ( $UA ) {
 					remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
