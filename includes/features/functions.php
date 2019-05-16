@@ -180,7 +180,6 @@ function ampforwp_generate_meta_desc($json=""){
             $desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
         }
         if ( ampforwp_is_front_page() ) {
-            $post_id = ampforwp_get_frontpage_id();
             $desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , 15 ) );
         }
 
@@ -191,7 +190,6 @@ function ampforwp_generate_meta_desc($json=""){
             $yoast_desc = addslashes( strip_tags( $front->metadesc( false ) ) );
             // Static front page
             if ( ampforwp_is_front_page() ) { 
-                $post_id = ampforwp_get_frontpage_id();
                 if ( class_exists('WPSEO_Meta') ) {
                     $yoast_desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
                 }
@@ -222,7 +220,6 @@ function ampforwp_generate_meta_desc($json=""){
                 $aisop_desc = $opts['aiosp_description'];
             }
             if ( ampforwp_is_front_page() ) {
-                $post_id = ampforwp_get_frontpage_id();
                 $post = get_post($post_id);
                 $aisop_desc = $aisop_class->get_post_description( $post );
             }
