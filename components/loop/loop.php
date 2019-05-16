@@ -271,14 +271,31 @@ function amp_pagination($args =array()) {
 function amp_loop_title($data=array()){
 	$data = array_filter($data);
 	$tag = 'h2';
+	$attributes = '';
 	if(isset($data['tag']) && $data['tag']!=""){
 		$tag = $data['tag'];
 	}
-	$attributes = 'loop-title';
+	$attribute = 'class="'.esc_attr('loop-title').'" ';
 	if(isset($data['attributes']) && $data['attributes']!=""){
 		$attributes = $data['attributes'];
+		if(false !== strpos($attributes,'=') ){
+			$attribute = '';
+			preg_match_all('/(.*?)=["|\'](.*?)["|\']/si', $attributes, $matches);	 
+			if(count($matches)>0){
+				foreach($matches[1] as $key=>$value){
+					if(isset($matches[2][$key])){
+						$attr_val = $matches[2][$key];
+						if($value == 'class'){
+							$attr_val .= ' '.esc_attr('loop-title');
+						}
+						$attribute .= esc_attr($value).'='.'"'.esc_attr($attr_val).'" ';
+					}
+				} 
+			}
+		}
 	}
-	echo '<'.esc_attr($tag).' class="'.esc_attr($attributes).'" >';
+	
+	echo '<'.esc_attr($tag).'  '. $attribute.' >';
 		if(!isset($data['link']) ){
 			echo '<a href="'. amp_loop_permalink(true) .'">';
 		}
