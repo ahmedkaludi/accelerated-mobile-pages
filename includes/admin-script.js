@@ -506,7 +506,9 @@ jQuery(function($) {
        
     }
         function ampforwp_fonts_select_data(data){
+            if(data){
             var values = Object.values(data.items);
+            }
             var allFonts = [];
 
             for (var i = 0; i < values.length; i++) {     
