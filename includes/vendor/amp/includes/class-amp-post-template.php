@@ -193,7 +193,6 @@ class AMP_Post_Template {
 			'post_modified_timestamp' => $post_modified_timestamp,
 			'post_author' => $post_author,
 		) );
-
 		$metadata = array(
 			'@context' => 'http://schema.org',
 			'@type' => 'BlogPosting',
@@ -204,14 +203,15 @@ class AMP_Post_Template {
 			),
 			'headline' => $post_title,
 			'datePublished' => mysql2date( 'c', $this->post->post_date_gmt, false ),
-			'dateModified' => mysql2date( 'c', $this->post->post_modified_gmt, false ),
 			'author' => array(
 				'@type' => 'Person',
 				'name' => $post_author_name,
 				'image' => $post_author_image,
 			),
 		);
-
+		if(isset($this->post->post_modified_gmt) && $this->post->post_modified_gmt ){
+			$metadata['dateModified'] = mysql2date( 'c', $this->post->post_modified_gmt, false );
+		}
 		$site_icon_url = $this->get( 'site_icon_url' );
 		if ( $site_icon_url ) {
 			$metadata['publisher']['logo'] = array(
