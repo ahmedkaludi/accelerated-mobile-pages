@@ -7830,7 +7830,7 @@ function ampforwp_webp_featured_image() {
 					$image_output = "<amp-img src='$image[0]' $srcet width='$image[1]' height='$image[2]' layout=responsive alt='$alt'></amp-img>";
 				?>
 				<figure class="amp-wp-article-featured-image">
-					<?php echo $image_output; ?>
+					<?php echo esc_html($image_output); ?>
 				</figure>
 				<?php 
 			}
