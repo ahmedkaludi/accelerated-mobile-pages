@@ -85,7 +85,7 @@ function call_loops_standard($data=array()){
 	$qobj_taxonomy = $qobj_term_id = "";
 
 	if ( is_archive() ) {
-		$exclude_ids = get_option('ampforwp_exclude_post');
+		$exclude_ids = ampforwp_exclude_posts();
 		$qobj = get_queried_object();
 		if( !is_date() ){
 				$args = array(
@@ -127,8 +127,7 @@ function call_loops_standard($data=array()){
 		}
 	}
 	if ( is_home() ) {
-		$exclude_ids = get_option('ampforwp_exclude_post');
-
+		$exclude_ids = ampforwp_exclude_posts();
 		$args = array(
 			'no_found_rows' 	  => true,
 			'post_type'           => 'post',
@@ -141,7 +140,7 @@ function call_loops_standard($data=array()){
 	}
 
 	if ( is_search() ) {
-		$exclude_ids = get_option('ampforwp_exclude_post');
+		$exclude_ids = ampforwp_exclude_posts();
 		$args = array(
 			's' 				  => get_search_query() ,
 			'ignore_sticky_posts' => 1,
@@ -152,7 +151,7 @@ function call_loops_standard($data=array()){
 		);
 	}
 	if(is_author()){
-		$exclude_ids = get_option('ampforwp_exclude_post');
+		$exclude_ids = ampforwp_exclude_posts();
 		$author = get_user_by( 'slug', get_query_var( 'author_name' ) );
 		$args =  array(
 			'author'        	  =>  $author->ID,
@@ -167,7 +166,7 @@ function call_loops_standard($data=array()){
 	}
 	if( is_single() ) {
 		global $post;
-		$exclude_ids = get_option('ampforwp_exclude_post');
+		$exclude_ids = ampforwp_exclude_posts();
 		$exclude_ids[] = $post->ID;
 		$args =  array(
 			'no_found_rows' 	  => true,

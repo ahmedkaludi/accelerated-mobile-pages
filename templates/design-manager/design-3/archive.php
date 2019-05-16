@@ -57,7 +57,7 @@ if ( get_query_var( 'paged' ) ) {
 	<?php $count = 1; ?>
 	<?php
 
-	    $exclude_ids = get_option('ampforwp_exclude_post');
+	    $exclude_ids = ampforwp_exclude_posts();
 
 		$q = new WP_Query( array(
 			'post_type'           => 'post',

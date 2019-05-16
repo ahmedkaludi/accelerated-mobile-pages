@@ -31,7 +31,7 @@
 	        $paged = 1;
 	    }
 
-	    $exclude_ids = get_option('ampforwp_exclude_post');
+	    $exclude_ids = ampforwp_exclude_posts();
 
 		$args = array(
 			'post_type'           => 'post',

@@ -39,8 +39,7 @@ class AMPFORWP_Woo_Widget extends WP_Widget {
     $ampforwp_number_of_products  = $instance[ 'num_of_products' ];
     $ampforwp_show_price          = $instance[ 'show_price' ];
 
-    $exclude_ids = get_option('ampforwp_exclude_post');
-    $exclude_ids = (array) $exclude_ids;
+    $exclude_ids = ampforwp_exclude_posts();
 
      $q = new WP_Query( array(
       'post_type'           => 'product',

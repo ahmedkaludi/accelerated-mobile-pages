@@ -773,41 +773,21 @@ function ampforwp_title_callback( $post ) {
 	$preview_link = $list_of_posts = $skip_this_post = '';
 	$preview_query_args = array(AMPFORWP_AMP_QUERY_VAR => 1);
 	$preview_link = get_preview_post_link($post, $preview_query_args );
-
-    	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save()
-    	// This code needs a rewrite.
-		if ( ! isset($ampforwp_stored_meta['ampforwp-amp-on-off'][0]) || $ampforwp_stored_meta['ampforwp-amp-on-off'][0] == 'hide-amp') {
-			$exclude_post_value = get_option('ampforwp_exclude_post');
-			if ( $exclude_post_value == null ) {
-				$exclude_post_value[] = 0;
-			}
-			if ( $exclude_post_value ) {
-				if ( ! in_array( $post->ID, $exclude_post_value ) ) {
-					$exclude_post_value[] = $post->ID;
-					update_option('ampforwp_exclude_post', $exclude_post_value);
-				}
-			}
-		} else {
-			$exclude_post_value = get_option('ampforwp_exclude_post');
-			if ( $exclude_post_value == null ) {
-				$exclude_post_value[] = 0;
-			}
-			if ( $exclude_post_value ) {
-				if ( in_array( $post->ID, $exclude_post_value ) ) {
-					$exclude_ids = array_diff($exclude_post_value, array($post->ID) );
-					update_option('ampforwp_exclude_post', $exclude_ids);
-				}
-			}
-
-		}
-
-		if ( empty( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] ) && $post->post_type == 'page' && ( isset($redux_builder_amp['amp-pages-meta-default']) && $redux_builder_amp['amp-pages-meta-default'] == 'hide' ) ) {
-			$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
-		}
-		$list_of_posts = ampforwp_posts_to_remove();
-		if ( $list_of_posts && $post->post_type == 'post' ) {
-			$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
-		} ?>
+	$exclude_post_value = array();
+	if ( ampforwp_posts_to_remove() && $post->post_type == 'post' ) {
+		$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
+	}
+	$exclude_post_value = ampforwp_exclude_posts();
+	// if hide-amp is selected, add it in the $exclude_post_value
+	if ( 'hide-amp' == $ampforwp_stored_meta['ampforwp-amp-on-off'][0] && 'page' != $post->post_type ) {
+		if ( ! in_array($post->ID, $exclude_post_value) ) {
+			$exclude_post_value[] = $post->ID;
+			set_transient('ampforwp_exclude_post_transient', $exclude_post_value);
+		} 
+	}
+	if ( empty( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] ) && $post->post_type == 'page' && ampforwp_get_setting('amp-pages-meta-default') == 'hide' ) {
+		$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
+	}?>
     <p>
         <div class="prfx-row-content">
             <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-one">
@@ -897,35 +877,7 @@ add_action( 'add_meta_boxes', 'ampforwp_mobile_redirection' );
  */
 function ampforwp_title_callback_redirection( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
-    $ampforwp_redirection_stored_meta = get_post_meta( $post->ID );
-
-    	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save()
-    	// This code needs a rewrite.
-		if ( !isset($ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0]) || $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0] == 'disable') {
-			$exclude_post_value = get_option('ampforwp_exclude_post');
-			if ( $exclude_post_value == null ) {
-				$exclude_post_value[] = 0;
-			}
-			if ( $exclude_post_value ) {
-				if ( ! in_array( $post->ID, $exclude_post_value ) ) {
-					$exclude_post_value[] = $post->ID;
-					update_option('ampforwp_exclude_post', $exclude_post_value);
-				}
-			}
-		} else {
-			$exclude_post_value = get_option('ampforwp_exclude_post');
-			if ( $exclude_post_value == null ) {
-				$exclude_post_value[] = 0;
-			}
-			if ( $exclude_post_value ) {
-				if ( in_array( $post->ID, $exclude_post_value ) ) {
-					$exclude_ids = array_diff($exclude_post_value, array($post->ID) );
-					update_option('ampforwp_exclude_post', $exclude_ids);
-				}
-			}
-
-		}
-        ?>
+    $ampforwp_redirection_stored_meta = get_post_meta( $post->ID );?>
     <p>
         <div class="prfx-row-content">
             <label for="meta-redirection-radio-one">
