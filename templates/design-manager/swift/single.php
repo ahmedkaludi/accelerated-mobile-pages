@@ -74,7 +74,7 @@
 			            <div class="sp-athr">
 			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
 			            	<?php amp_author_box( 
-										array('author_pub_name'=>true,'published by'=>true)
+										array('author_pub_name'=>true,'author_info'=>true)
 										); ?>	
 			            </div>
 			         <?php } ?>   

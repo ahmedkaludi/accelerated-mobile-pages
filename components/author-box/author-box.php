@@ -2,7 +2,7 @@
 function ampforwp_framework_get_author_box( $args=array() ) { 
 global $post, $redux_builder_amp;
 // Simple Author Box compatibility #2268
-if( class_exists('Simple_Author_Box') && !isset($args['published by'])){
+if( class_exists('Simple_Author_Box') && !isset($args['author_info'])){
     return;
 }
 $post_author = get_userdata($post->post_author);
