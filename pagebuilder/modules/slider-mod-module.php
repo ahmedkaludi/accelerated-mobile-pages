@@ -628,6 +628,20 @@ return array(
 		           				'required'  => array('carousel_layout_type'=>array('1','2','3')),
 
 	 						),
+	 						array(		
+		 						'type'		=>'checkbox_bool',		
+		 						'name'		=>"image_caption",		
+		 						'label'		=> esc_html__('Caption','accelerated-mobile-pages'),
+		           				'tab'     	=>'customizer',
+		 						'default'	=> 1,
+		 						'content_type'=>'html',	
+		           				'options'	=>array(
+												array(
+													'label'=>'Image Caption',
+													'value'=>1,
+												),
+											),
+	 						),
  							array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"content_title",		
@@ -711,7 +725,7 @@ return array(
 	          		array(
 	          			"image"=>'
 								{{if_condition_img_hyperlink==1}}<a href="{{hyperlink_link_img}}" {{if_condition_img_link_open==new_page}}target="_blank"{{ifend_condition_img_link_open_new_page}}>{{ifend_condition_img_hyperlink_1}}
-								{{if_img_upload}}<figure><amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img><figcaption>{{image_caption}}</figcaption></figure>{{ifend_img_upload}}{{if_condition_img_hyperlink==1}}</a>{{ifend_condition_img_hyperlink_1}}
+								{{if_img_upload}}<figure><amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{if_condition_image_caption==1}}<figcaption>{{image_caption}}</figcaption>{{ifend_condition_image_caption_1}}</figure>{{ifend_img_upload}}{{if_condition_img_hyperlink==1}}</a>{{ifend_condition_img_hyperlink_1}}
 							',
 						"button"=>'<button on="tap:carousel-with-preview-{{unique_cell_id}}.goToSlide(index={{repeater_unique}})">
 			        {{if_img_upload}}<amp-img src="{{img_upload-thumbnail}}" width="150" height="150" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
