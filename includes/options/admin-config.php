@@ -5369,6 +5369,16 @@ $single_page_options = array(
                      array('ampforwp-single-related-posts-excerpt', '=' , '1'),
                     )                         
                 ),
+          array(
+                 'id'        => 'excerpt-option-rp-read-more',
+                 'class' => 'child_opt',
+                 'type'      => 'switch',
+                 'title'     =>  esc_html__('Read More Link', 'accelerated-mobile-pages'),
+                 'default'   => '0',
+                 'required' => array(
+                     array('ampforwp-single-related-posts-excerpt', '=' , '1'),
+                    )                         
+                ),
             array(
                     'id'       => 'ampforwp-single-related-posts-link',
                     'type'     => 'switch',

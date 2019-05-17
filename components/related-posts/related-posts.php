@@ -183,9 +183,11 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 			$excerpt_length = 15;
 		}
 		echo wp_trim_words( strip_shortcodes( $content ) , $excerpt_length ); 
-		?></p><a class="readmore-rp" href="<?php echo esc_url( $related_post_permalink ); ?>"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-read-more'),'Read More') ?></a>
+		?></p>
+		<?php if (true == ampforwp_get_setting('excerpt-option-rp-read-more')){?>
+		<a class="readmore-rp" href="<?php echo esc_url( $related_post_permalink ); ?>"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-read-more'),'Read More') ?></a>
 		<?php 
-		} 
+		} }
 		$show_author = (isset($argsdata['show_author'])? $argsdata['show_author'] : true);
 		if($show_author){
 			$author_args = isset($argsdata['author_args'])? $argsdata['author_args'] : array();
