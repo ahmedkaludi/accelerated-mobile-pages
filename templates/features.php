@@ -3921,11 +3921,13 @@ function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
 add_filter('ampforwp_query_args', 'ampforwp_exclude_archive_args');
 function ampforwp_exclude_archive_args( $args ) {
 	global $redux_builder_amp;
-	if ( ampforwp_exclude_archive() ) {
-		$args['category__not_in'] = ampforwp_exclude_archive();
-	}
-	if ( ampforwp_exclude_archive('tag') ) {
-		$args['tag__not_in'] = ampforwp_exclude_archive('tag');
+	if ( ampforwp_is_home() || ampforwp_is_blog() ) {
+		if ( ampforwp_exclude_archive() ) {
+			$args['category__not_in'] = ampforwp_exclude_archive();
+		}
+		if ( ampforwp_exclude_archive('tag') ) {
+			$args['tag__not_in'] = ampforwp_exclude_archive('tag');
+		}
 	}
 	return $args;
 }
