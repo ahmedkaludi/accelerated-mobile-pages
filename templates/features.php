@@ -7244,7 +7244,7 @@ if (function_exists('jannah_theme_name') && function_exists('tie_get_postdata'))
 }
 
 // AMPforWP Global Sanitizer
-add_action('pre_amp_render_post','ampforwp_comments_sanitizer');
+add_action('pre_amp_render_post','ampforwp_comments_sanitizer',15);
 function ampforwp_comments_sanitizer(){
 	global $ampforwp_data;
 	$comments_scripts = array();
