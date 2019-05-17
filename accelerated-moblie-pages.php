@@ -527,8 +527,8 @@ if ( is_admin() ) {
 } // is_admin() closing
 
 // Fallback for file exists #3156
-if( ! function_exists('ampforwp_file_exists') ){
-	function ampforwp_file_exists($path){
+if( ! function_exists('ampforwp_require_file') ){
+	function ampforwp_require_file($path){
 		if(file_exists($path)){ 
 			return require_once $path;
 		}
@@ -593,9 +593,9 @@ add_action('init','ampforwp_plugin_init', 9);
 * customized output widget
 * to be used be used in before or after Loop
 */
-ampforwp_file_exists( AMPFORWP_PLUGIN_DIR.'/templates/category-widget.php' );
+ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/category-widget.php' );
 
-ampforwp_file_exists( AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php' );
+ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php' );
 
 
 /*
