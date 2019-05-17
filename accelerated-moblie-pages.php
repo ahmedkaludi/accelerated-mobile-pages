@@ -901,6 +901,9 @@ function ampforwp_get_all_post_types(){
     if( ampforwp_get_setting('amp-on-off-for-all-pages') ){
     	$post_types['page'] = 'page';
     }
+    if( ampforwp_get_setting('ampforwp-archive-support') && ampforwp_get_setting('ampforwp-archive-support-cat') ){
+    	$post_types['category'] = 'category';
+    }
 
    if ( ampforwp_get_setting('ampforwp-custom-type')) {
         foreach (ampforwp_get_setting('ampforwp-custom-type') as $key) {

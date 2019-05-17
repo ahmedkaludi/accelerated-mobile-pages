@@ -3061,7 +3061,7 @@ function ampforwp_auto_add_amp_in_link_check() {
 	global $redux_builder_amp;
 	$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 
-	if ( $ampforwp_is_amp_endpoint && $redux_builder_amp['ampforwp-auto-amp-menu-link'] == 1 ) {
+	if ( $ampforwp_is_amp_endpoint && ampforwp_get_setting('ampforwp-auto-amp-menu-link') == 1 ) {
 		add_filter( 'nav_menu_link_attributes', 'ampforwp_auto_add_amp_in_menu_link', 10, 3 );
 	}
 }
@@ -3069,6 +3069,9 @@ function ampforwp_auto_add_amp_in_link_check() {
 function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 	global $redux_builder_amp;
 	if($item->type=='post_type' && !in_array($item->object, ampforwp_get_all_post_types()) ){
+		return $atts;
+	}
+	if($item->type=='taxonomy' && !in_array($item->object, ampforwp_get_all_post_types()) ){
 		return $atts;
 	}
   if(ampforwp_get_setting('amp-core-end-point') == 1){
