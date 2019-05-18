@@ -15,8 +15,7 @@ if( $featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_c
   	} // Featured Video Plus Compatibility #2394 #2583
 	elseif(function_exists('has_post_video') && has_post_video($post->ID)){ 
 		ob_start();
-		get_the_post_video();
-		$videoContent = ob_get_contents();
+		$videoContent = get_the_post_video();
 		ob_clean();
 		ob_end_clean();
 		$amp_html = ampforwp_content_sanitizer($videoContent);
