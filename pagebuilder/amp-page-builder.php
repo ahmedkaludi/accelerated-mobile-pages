@@ -26,7 +26,7 @@ function ampforwp_pagebuilder_content_meta_register($post_type){
 	  	if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
 	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  'post' , 'normal', 'default' );
 	  	}
-	  	$frontpage_id = ampforwp_get_setting('amp-frontpage-select-option-pages');
+	  	$frontpage_id = ampforwp_get_the_ID();
 	  	// Page builder for pages
 	  	if ( ( true == ampforwp_get_setting('amp-on-off-for-all-pages') && $post_type == 'page' ) || ( true == ampforwp_get_setting('amp-frontpage-select-option') && $post_id == $frontpage_id )) {
 	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  'page' , 'normal', 'default' );

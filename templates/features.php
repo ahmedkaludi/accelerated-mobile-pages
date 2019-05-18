@@ -790,7 +790,7 @@ function ampforwp_title_custom_meta() {
 	        add_meta_box( 'ampforwp_title_meta', esc_html__( 'AMP Settings for Current Post','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
 	      }
 	      // Pages
-	      $frontpage_id = ampforwp_get_setting('amp-frontpage-select-option-pages');
+	      $frontpage_id = ampforwp_get_the_ID();
           if( ampforwp_get_setting('amp-on-off-for-all-pages') && $post_type == 'page' || ( true == ampforwp_get_setting('amp-frontpage-select-option') && $post_id == $frontpage_id ) ) {
               add_meta_box( 'ampforwp_title_meta', esc_html__( 'AMP Settings for Current Page' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
           }
