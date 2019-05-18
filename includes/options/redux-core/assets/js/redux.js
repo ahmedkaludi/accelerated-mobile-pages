@@ -1271,6 +1271,7 @@
                     position: 'fixed',
                     bottom: '0',
                     width: stickyWidth,
+                    left: 375
                 }
             );
             $( '#redux-footer' ).addClass( 'sticky-footer-fixed' );
