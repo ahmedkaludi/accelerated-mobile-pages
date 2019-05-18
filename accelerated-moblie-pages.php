@@ -350,7 +350,7 @@ function ampforwp_rewrite_activation() {
 
     // Set transient for Welcome page
 	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
-	set_transient( 'ampforwp_admin_notice_transient', true );
+    set_transient( 'ampforwp_admin_notice_transient', true );
 
 }
 add_action( 'admin_init', 'ampforwp_flush_after_update');
@@ -1086,21 +1086,21 @@ function ampforwp_sanitizers_loader(){
 		} 
 	}
 }
-add_action( 'admin_notices', 'ampforwp_admin_notice' );
-function ampforwp_admin_notice(){ 
-    if( get_transient( 'ampforwp_admin_notice_transient' ) ){
-    echo '<div id="ampforwp-wizard-notice" class="updated notice is-dismissible message notice notice-alt ampforwp-setup-notice">
-        <p><span class="dashicons dashicons-thumbs-up"></span>'.esc_html__('Thank you for using AMPforWP plugin!', 'accelerated-mobile-pages').'<a href="'.esc_url( admin_url( 'plugins.php?page=ampforwptourinstaller&ampforwp_install=1' ) ).'"> '.esc_html__('Run a installation wizard', 'accelerated-mobile-pages') .'</a></p></div>'; 
-       
-	}      
-}
+
 // AMP with AMPforWP notice #2287
 add_action( 'admin_notices', 'ampforwp_automattic_activation' );
 function ampforwp_automattic_activation(){ 
 	
 	if ( function_exists('amp_activate') && get_transient( 'ampforwp_automattic_activation_notice' ) == 1) { ?>
 		<div id="ampforwp-automattic-notice" class="updated notice is-dismissible message notice notice-alt ampforwp-setup-notice"><p><?php echo esc_html__('AMP by Automattic is activated so the AMPforWP is now in the "Addon Mode". ','accelerated-mobile-pages') ?><a href="https://ampforwp.com/tutorials/article/guide-to-amp-by-automattic-compatibility-in-ampforwp/" target="_blank"><?php echo esc_html__('Learn More','accelerated-mobile-pages'); ?></a></p></div>
-	<?php } }
+	<?php }
+	$wizard_nonce = wp_create_nonce( 'wizard_nonce' );
+	if( get_transient( 'ampforwp_admin_notice_transient' ) ){
+    echo '<div id="ampforwp-wizard-notice" class="updated notice is-dismissible message notice notice-alt ampforwp-setup-notice">
+        <p><span class="dashicons dashicons-thumbs-up"></span>'.esc_html__('Thank you for using AMPforWP plugin!', 'accelerated-mobile-pages').'<a href="'.esc_url( admin_url( 'plugins.php?page=ampforwptourinstaller&ampforwp_install=1&_wpnonce='. $wizard_nonce .' ') ).'"> '.esc_html__('Run a installation wizard', 'accelerated-mobile-pages') .'</a></p></div>'; 
+       
+	} 
+	}
 
 add_action('wp_ajax_ampforwp_automattic_notice_delete','ampforwp_automattic_notice_delete');
 function ampforwp_automattic_notice_delete(){
