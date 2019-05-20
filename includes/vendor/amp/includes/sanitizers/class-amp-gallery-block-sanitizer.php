@@ -110,19 +110,19 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 				}
 			}
 			// If not linking to anything then look for <amp-img>.
-			if ( empty( $images ) ) {
-				foreach ( $node->getElementsByTagName( 'amp-img' ) as $element ) {
-					$url = $element->getAttribute('src');
-					$width = $element->getAttribute('width');
-					$height = $element->getAttribute('height');
-					$attachment_id = attachment_url_to_postid($url);
+			foreach ( $node->getElementsByTagName( 'amp-img' ) as $element ) {
+				$url = $element->getAttribute('src');
+				$width = $element->getAttribute('width');
+				$height = $element->getAttribute('height');
+				$attachment_id = attachment_url_to_postid($url);
+				if ( empty( $images ) ) {
 					$images[] = $element;
-					$urls[] = apply_filters('amp_gallery_image_params', array(
-									'url' => $url,
-									'width' => $width,
-									'height' => $height,
-								),$attachment_id);
 				}
+				$urls[] = apply_filters('amp_gallery_image_params', array(
+								'url' => $url,
+								'width' => $width,
+								'height' => $height,
+							),$attachment_id);
 			}
 
 			// Skip if no images found.
