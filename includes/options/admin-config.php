@@ -5288,8 +5288,8 @@ $single_page_options = array(
         array(
             'id'       => 'ampforwp-swift-recent-posts',
             'type'     => 'switch',
-            'title'    => __('Recent Posts below Related', 'accelerated-mobile-pages'),
-            'tooltip-subtitle' => __('To enable & disable recent posts', 'accelerated-mobile-pages'),
+            'title'    => esc_html__('Recent Posts below Related', 'accelerated-mobile-pages'),
+            'tooltip-subtitle' => esc_html__('To enable & disable recent posts', 'accelerated-mobile-pages'),
             'default'  => 1,
         ),
             array(
@@ -5532,14 +5532,14 @@ $single_page_options = array(
               'id'       => 'ampforwp-amp-img-lightbox',
               'type'     => 'switch',
               'default'  =>  '0',
-              'title'    => __('Lightbox for Images', 'accelerated-mobile-pages'),
+              'title'    => esc_html__('Lightbox for Images', 'accelerated-mobile-pages'),
            ),
            // Dropcap 
            array(
               'id'       => 'ampforwp-dropcap',
               'type'     => 'switch',
               'default'  =>  '0',
-              'title'    => __('Dropcap', 'accelerated-mobile-pages'),
+              'title'    => esc_html__('Dropcap', 'accelerated-mobile-pages'),
            ),
            array(
                 'class' => 'child_opt',
@@ -5681,7 +5681,7 @@ $single_page_options = array(
                     'id'       => 'breadcrumb-border',
                     'class' => 'child_opt child_opt_arrow',
                     'type'     => 'switch',
-                    'title'    => __('Breadcrumbs Border', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Breadcrumbs Border', 'accelerated-mobile-pages'),
                     'default'  => 0,
                     'required' => array( array('single-new-features', '=' , '1'),array('amp-design-selector', '=' , '4') ),
             ),
@@ -5689,7 +5689,7 @@ $single_page_options = array(
                     'id'       => 'ampforwp-underline-content-links',
                     'class' => 'child_opt child_opt_arrow',
                     'type'     => 'switch',
-                    'title'    => __('Underline on Links', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Underline on Links', 'accelerated-mobile-pages'),
                     'default'  => 0,
                     'required' => array( array('single-new-features', '=' , '1') ),
             ),
