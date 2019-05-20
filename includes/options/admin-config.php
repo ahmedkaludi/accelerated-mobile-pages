@@ -168,7 +168,7 @@ $extension_listing_array = array(
                             'price'=>'$79',
                             'url_link'=>'http://ampforwp.com/ninja-forms/#utm_source=options-panel&utm_medium=extension-tab_gf&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-ninja-forms/amp-ninja-forms.php',
-                            'item_name'=>'Ninja Forms',
+                            'item_name'=>'Ninja Forms for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-ninja-forms/amp-ninja-forms.php')? 1 : 2),
                             'settingUrl'=>'{ampforwp-nf-subsection}',
