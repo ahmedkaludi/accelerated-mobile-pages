@@ -627,7 +627,7 @@ function ampforwp_url_purifier($url){
                         $url = user_trailingslashit( trailingslashit($url) . $endpoint ); 
                     }
                     if ( true == $amp_check ) {
-                        $url =  trailingslashit($url) . $endpointq;
+                        $url =  user_trailingslashit( trailingslashit($url) . $endpoint);
                         // to debug this code goto https://ampforwp.com/tag/amp
                     }  
                 }   
