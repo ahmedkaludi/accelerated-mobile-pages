@@ -317,9 +317,7 @@ function ampforwp_analytics_options($opt_name){
                             array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Piwik-switch', '=' , '1')
                           ),
-                          //'desc'     => esc_html__( '<a href="https://ampforwp.com/tutorials/article/how-to-add-matomo-piwik-analytics-in-amp/">Click Here</a>', 'accelerated-mobile-pages' ),
-                           'desc' => sprintf('%s<a href="%s" target="_blank">%s</a>', esc_html__( 'Tutorial: ','accelerated-mobile-pages' ), esc_url('https://ampforwp.com/tutorials/article/how-to-add-matomo-piwik-analytics-in-amp/'), esc_html__( 'How to add Matomo Piwik Analytics in AMP?','accelerated-mobile-pages') ),
-                          'tooltip-subtitle' => esc_html__('Enter your Matomo (Piwik) Analytics URL.', 'accelerated-mobile-pages' ),
+                          'tooltip-subtitle' => sprintf('%s<a href="%s" target="_blank">%s</a>', esc_html__( 'Tutorial: ','accelerated-mobile-pages' ), esc_url('https://ampforwp.com/tutorials/article/how-to-add-matomo-piwik-analytics-in-amp/'), esc_html__( 'How to add Matomo Piwik Analytics in AMP?','accelerated-mobile-pages') ),
                           'default'  => '#',
                       ),
                       // Quantcast 
