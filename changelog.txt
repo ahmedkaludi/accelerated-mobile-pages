@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 0.9.97.53 (20th May 2019) =
+* Fixed: 500 errors on posts that don't use WP Bakery #3183
+* Fixed: Hyperlink in amp pages including emoji - code improved #2967
+* Fixed: Errors in AMP social Icons #3033
+* Fixed: Code improved to fetch all Categories and tags in Featured Slider [Design -3] #2590
+* Fixed: Fatal error on posts with comments present in latest v0.9.97.52 #3191
+* Fixed: "View Desktop Version" feature is not working in mobile view #3192
+* Fixed: Improved the Extension array code #3206
+* Fixed: Fatal error Uncaught TypeError Argument 1 passed to DOMNode::replaceChild() #3203
+
 = 0.9.97.52 (15th May 2019) =
 * Added: Gutenberg Compatibility integrated #2427
 * Added: Gallery Designs for Gutenberg Gallery #2868

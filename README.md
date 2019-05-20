@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2
-Stable tag: 0.9.97.52
+Stable tag: 0.9.97.53
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,16 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.53 (20th May 2019) =
+* Fixed: 500 errors on posts that don't use WP Bakery #3183
+* Fixed: Hyperlink in amp pages including emoji - code improved #2967
+* Fixed: Errors in AMP social Icons #3033
+* Fixed: Code improved to fetch all Categories and tags in Featured Slider [Design -3] #2590
+* Fixed: Fatal error on posts with comments present in latest v0.9.97.52 #3191
+* Fixed: "View Desktop Version" feature is not working in mobile view #3192
+* Fixed: Improved the Extension array code #3206
+* Fixed: Fatal error Uncaught TypeError Argument 1 passed to DOMNode::replaceChild() #3203
 
 = 0.9.97.52 (15th May 2019) =
 * Added: Gutenberg Compatibility integrated #2427

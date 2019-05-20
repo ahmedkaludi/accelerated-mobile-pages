@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2
-Stable tag: 0.9.97.52
+Stable tag: 0.9.97.53
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,46 +194,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.52 (15th May 2019) =
-* Added: Gutenberg Compatibility integrated #2427
-* Added: Gallery Designs for Gutenberg Gallery #2868
-* Added: Gutenburg column support in AMP #2847
-* Added: Addthis Sharing option UX re-structured #3114
-* Added: Photo Gallery plugin compatibility integrated #1811
-* Added: Revolution Slider plugin compatibility integrated #1464
-* Added: Posts offset option on category module in AMP Page Builder #2647
-* Added: MEWE social network integrated #3020
-* Added: Font Size and Color options for Dropcap #3010
-* Added: Breadcrumbs feature for pages #2788
-* Added: More parameters for ampforwp_get_setting functions #2911
-* Fixed: Conditions for PageBuilder and Elementor for Page.php in Swift #3097
-* Fixed: Code updated of Infinite Scroll when AMP Newspaper Theme is active #3031
-* Fixed: Copy the Content in Custom AMP Editor is not working with Gutenberg #2824
-* Fixed: If GTM gets enabled after Enabling the Analytics, then both codes load in the frontend #3121
-* Fixed: P tag is missing when "copy the content" option is used in custom AMP editor #3122
-* Fixed: When AMP is disabled on Homepagepage ?nonamp=1 redirect to random pages(blog) #2904
-* Fixed: Issue with post title and "end point to ?amp" conflict #2991
-* Fixed: Unspecified Type in Structured data for catgories/tags #3071
-* Fixed: PHP Warning date() expects parameter 2 to be long, string given in #2959
-* Fixed: Disquss comment is not scrollable in IOS device #2970
-* Fixed: Vkontakte Share(social icon) does not open in a new tab #3089
-* Fixed: Condition for requiring a file improved #3080
-* Fixed: amp_content() used instead of AMP_Post_Template object in Design [ 1,2 and 3 ] #2700
-* Fixed: Hyperlink in amp pages including emoji not working #2967
-* Fixed: Unused amp js from amp pages removed #3086
-* Fixed: "WP Forms for AMP" setting link is incorrect #3060
-* Fixed: Navigation & alternate menu css is not loading when directory plus theme is active #2963
-* Fixed: link to non-amp under breadcrumbs when Archives support is off. #2885
-* Fixed: AddThis is causing validation error after Update - code updated #3068
-* Fixed: Content not rendering on AMP with the Enfold theme version 4.5.6 #3124
-* Fixed: Tags are also displaying in category selection in the AMP page builder's category module #3082
-* Fixed: Author name won´t show if you disable author bio in swift theme #3131
-* Fixed: Link to non amp feature not works for thumbnail in design one and two #3004
-* Fixed: Multibyte string links aren't working in AMP Version #2556
-* Fixed: Leave Comment link Not working with ?amp #3093
-* Fixed: When Sticky Header is enabled then Jump link's Title is getting hidden under the header #2915
-* Fixed: Facebook comments not displaying if we add number more than 100 in the number of comments #3032
-* Fixed: Featured image and link shared on twitter issues #3075
-* Fixed: Infinity Scroll Option is not working when ?amp option is enabled in version beta #2475
+= 0.9.97.53 (20th May 2019) =
+* Fixed: 500 errors on posts that don't use WP Bakery #3183
+* Fixed: Hyperlink in amp pages including emoji - code improved #2967
+* Fixed: Errors in AMP social Icons #3033
+* Fixed: Code improved to fetch all Categories and tags in Featured Slider [Design -3] #2590
+* Fixed: Fatal error on posts with comments present in latest v0.9.97.52 #3191
+* Fixed: "View Desktop Version" feature is not working in mobile view #3192
+* Fixed: Improved the Extension array code #3206
+* Fixed: Fatal error Uncaught TypeError Argument 1 passed to DOMNode::replaceChild() #3203
 
 Full changelog available in changelog.txt
