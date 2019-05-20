@@ -4001,27 +4001,6 @@ Redux::setSection( $opt_name, array(
           )
         )
       );
-
-
-  //code for fetching categories to show as a list in redux settings
-    $categories_array = array();
-    if(get_categories()){
-       $categories = get_categories( array(
-                                          'orderby' => 'name',
-                                          'order'   => 'ASC',
-                                          'number'  => 500
-                                          ) );
-       if ( $categories ) :
-            foreach ($categories as $cat ) {
-                    $cat_id = $cat->cat_ID;
-                    $key = "".$cat_id;
-                    //building associative array of ID-cat_name
-                    $categories_array[ $key ] = $cat->name;
-            }
-        endif;
-    }
-    //End of code for fetching categories to show as a list in redux settings
-
     
     $ampforwp_home_loop = array();
     $ampforwp_home_loop = get_option('ampforwp_custom_post_types');
@@ -4070,25 +4049,25 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'select',
                         'class'    => 'child_opt',
                         'title'    => esc_html__( 'Featured Slider Category', 'accelerated-mobile-pages' ),
-                        'options'  => $categories_array,
                         'required' => array(
                           array('amp-design-selector', '=' , '3'),
                           array('amp-design-3-featured-slider', '=' , '1'),
                           array('amp-design-3-featured-content', '=', '1'),
                         ),
+                        'ajax'      => true,
+                        'data-action' => 'categories', 
+                        'data'      => 'categories',
                   ),
                  array(
                     'id'       => 'amp-design-3-tag-selector',
                     'type'     => 'select',
                         'class'    => 'child_opt',
                     'title'    => esc_html__( 'Featured Slider from Tags', 'accelerated-mobile-pages' ),
-                    //'options'  => $tags_array,
                     'required' => array(
                     array('amp-design-selector', '=' , '3'),
                     array('amp-design-3-featured-slider', '=' , '1'),
                     array('amp-design-3-featured-content', '=' , '2'),
                         ),  
-                    //'multi'     => true,
                         'ajax'      => true,
                         'data-action' => 'tags', 
                         'data'      => 'tags',         
