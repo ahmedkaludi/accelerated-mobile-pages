@@ -1154,6 +1154,8 @@ function ampforwp_remove_schema_data() {
 		// Removing Smush Pro Lazy Load plugin #2990
 		ampforwp_remove_filters_for_class( 'the_content', 'WP_Smush_Lazy_Load', 'set_lazy_load_attributes', 100 );
 		ampforwp_remove_filters_for_class( 'post_thumbnail_html', 'WP_Smush_Lazy_Load', 'set_lazy_load_attributes', 100 );
+		//optimole plugin images get removed in AMP #3073
+		ampforwp_remove_filters_for_class( 'optml_content_url', 'Optml_Url_Replacer', 'build_image_url', 1, 2 );
 		//SiteOrigin Page builder compatibilty with AMP Frontpage
 		if ( ampforwp_is_front_page() ) {
 				ampforwp_remove_filters_for_class( 'the_content', 'SiteOrigin_Panels', 'generate_post_content', 10 );
