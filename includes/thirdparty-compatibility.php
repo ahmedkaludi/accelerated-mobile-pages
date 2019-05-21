@@ -41,6 +41,8 @@ function schema_lazy_load_remover(){
 	}
 	// #3124 enfold theme shortcodes removed
 	add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
+	// AMP is not working due to JCH Optimize Pro plugin #3185
+	remove_action('shutdown', 'jch_buffer_end', -1);
 }
 
 //Updater to check license
