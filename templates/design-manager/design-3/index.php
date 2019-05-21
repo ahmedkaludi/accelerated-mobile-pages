@@ -1,7 +1,7 @@
 <?php use AMPforWP\AMPVendor\AMP_HTML_Utils;?>
 <?php global $redux_builder_amp; 
 	$is_full_content = false;
-		if( ampforwp_get_setting('ampforwp-full-post-in-loop') ){
+		if(isset($redux_builder_amp['ampforwp-full-post-in-loop']) && $redux_builder_amp['ampforwp-full-post-in-loop']){
 			$is_full_content = true;
 		} ?>
 <!doctype html>
@@ -118,7 +118,7 @@ if ( get_query_var( 'paged' ) ) {
 		</div>
 <?php } ?>
 <?php do_action('ampforwp_home_above_loop') ?>
-<main <?php if( ampforwp_get_setting('ampforwp-full-post-in-loop') == 1 ){ ?> class="full-post"<?php } ?> >
+<main<?php if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 1 ){ ?> class="full-post"<?php } ?>>
 	<?php do_action('ampforwp_post_before_loop') ?>
 	<?php $count = 1; ?>
 	<?php
@@ -174,7 +174,7 @@ if ( get_query_var( 'paged' ) ) {
 				} ?>
 
 			<div class="amp-wp-post-content">
-				<?php if( ampforwp_get_setting('ampforwp-full-post-in-loop') == 0 ){ ?>
+				<?php if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 0 ){ ?>
                 <ul class="amp-wp-tags">
 					<?php foreach((get_the_category()) as $category) { 
 					if ( true == $redux_builder_amp['ampforwp-archive-support'] ) { ?>
@@ -254,7 +254,7 @@ if ( get_query_var( 'paged' ) ) {
 
               	if($redux_builder_amp['amp-design-selector'] == '3' && $redux_builder_amp['amp-design-3-featured-time'] == '1'){
                   		?>
-                <?php if( ampforwp_get_setting('ampforwp-full-post-in-loop') == 0 ){ ?>
+                <?php if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 0 ){ ?>
                 <div class="featured_time"><?php 
                 	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                     $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
