@@ -114,7 +114,7 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
                 }
 
                 $sortable = ( isset( $this->field['sortable'] ) && $this->field['sortable'] ) ? ' select2-sortable"' : "";
-                echo '<select ' . $multi . ' id="' . $this->field['id'] . '-select" data-placeholder="' . $placeholder . '" name="' . $this->field['name'] . $this->field['name_suffix'] . $nameBrackets . '" class="redux-select-item ' . 'redux-select-item'.$ajax. $this->field['class'] . $sortable . '"' . $width . ' rows="6" '.$action.'>';
+                echo '<select ' . $multi . ' id="' . $this->field['id'] . '-select" data-placeholder="' . $placeholder . '" name="' . $this->field['name'] . $this->field['name_suffix'] . $nameBrackets . '" class="redux-select-item ' . 'redux-select-item'.$ajax. ' ' . $this->field['class'] . $sortable . '"' . $width . ' rows="6" '.$action.'>';
                 $redux_options = get_option('redux_builder_amp');
                 $options = $new_options = array();
                 if ( isset($this->field['data']) && 'categories' ==  $this->field['data'] ) {
