@@ -843,20 +843,22 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 								$fieldValues[$field['name']]= $contentArray[$field['name']];
 							}
 						}
-						
+						$posts_offset = (integer) $fieldValues['posts_offset'];
 						$args = array(
 								//'cat' => $fieldValues['category_selection'],
 								'posts_per_page' => $fieldValues['show_total_posts'],
+								'offset' => $posts_offset,
 								'has_password' => false,
 								'post_status'=> 'publish',
-								'tax_query' => array(
-												array(
-													'taxonomy'=>get_term($fieldValues['category_selection'])->taxonomy,
-													'field'=>'id',
-													'terms'=>$fieldValues['category_selection']
-													)
-												)
+								'post_type' => $fieldValues['post_type_selection']
 								);
+						if ( isset($fieldValues['category_selection']) && 'recent_option' !== $fieldValues['category_selection'] ) {
+							$args['tax_query'] = array(
+									array(
+										'taxonomy'=>(isset($fieldValues['category_selection']))?get_term($fieldValues['category_selection'])->taxonomy: '',
+										'field'=>'id',
+										'terms'=>$fieldValues['category_selection']));
+						}
 						//The Query
 						$the_query = new WP_Query( $args );
 						$totalLoopHtml = $moduleTemplate[$contentArray['type']]['front_loop_content'];
@@ -1032,7 +1034,9 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 	return $html;
 }
 function ampforwp_pagebuilder_module_style(){
-	echo $redux_builder_amp['css_editor'];
+	$custom_css = ampforwp_get_setting('css_editor'); 
+	$sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
+	echo $sanitized_css;
 }
 function sortByIndex($contentArray){
 	$completeSortedArray = array();

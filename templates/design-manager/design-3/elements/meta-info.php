@@ -5,9 +5,10 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 <div class="amp-wp-content amp-wp-article-header ampforwp-meta-info">
 	<div class="amp-wp-content post-title-meta">
 
-			<ul class="amp-wp-meta amp-meta-wrapper">
+	<ul class="amp-wp-meta amp-meta-wrapper">
 <?php $post_author = $this->get( 'post_author' ); ?>
 <?php if ( $post_author ) : ?>
+  <li>
 	<div class="amp-wp-meta amp-wp-byline">
   <?php if ( is_single() ) { 
     echo ampforwp_get_author_details( $post_author , 'meta-info' ); 
@@ -24,12 +25,18 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
         global $redux_builder_amp; printf( esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-in-designthree'] , 'in' ) .' ')); 
 
         foreach ($ampforwp_categories as $cat ) {
-          if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
-            echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) . '" >'.esc_attr($cat->name) .'</a></span>'); 
-        } 
-      else {
-        echo ('<span>'.esc_attr($cat->name) .'</span>');
-      }
+            $term_id   = $cat->term_id;
+            $term_name   = $cat->name;
+            $term_url   = get_category_link( $cat->term_id );
+          if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
+                $term_url =  false;
+              } 
+          elseif( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {    
+              // #934
+                       $term_url   = ampforwp_url_controller( $term_url );
+                }
+                echo ('<span class="amp-cat amp-cat-'. esc_attr($term_id) . '" >
+                '. (!empty($term_url)? ' <a href="'. esc_url( $term_url)  . '" > ':'').  esc_html($term_name). (!empty($term_url)?  '</a> ':'').' </span>');
        }
 			?>
   	</span>
@@ -48,7 +55,7 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
 	</div>
 <?php endif; ?>
 
-
+      </li>
 			</ul>
 	</div>
 </div>

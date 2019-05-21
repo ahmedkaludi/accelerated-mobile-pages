@@ -9,7 +9,7 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 		$amp_html = $featured_image['amp_html'];
 		$caption = $featured_image['caption'];
 	}
-	if ( ampforwp_is_custom_field_featured_image() ) {
+	elseif  ( ampforwp_is_custom_field_featured_image() ) {
 		$amp_img_src 	= ampforwp_cf_featured_image_src();
 		$amp_img_width 	= ampforwp_cf_featured_image_src('width');
 		$amp_img_height = ampforwp_cf_featured_image_src('height');
@@ -17,7 +17,7 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 			$amp_html = "<amp-img src='$amp_img_src' width=$amp_img_width height=$amp_img_height layout=responsive ></amp-img>";
 		}
 	}
-	if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content()) {
+	elseif ( true == ampforwp_get_setting('ampforwp-featured-image-from-content') && ampforwp_get_featured_image_from_content()) {
 		$amp_html = ampforwp_get_featured_image_from_content();
 	}
 		if( $amp_html ) {	

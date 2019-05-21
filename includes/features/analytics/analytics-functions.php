@@ -4,7 +4,7 @@ add_action('amp_post_template_footer','ampforwp_analytics',11);
 function ampforwp_analytics() {
 	// 10.1 Analytics Support added for Google Analytics
 	global $redux_builder_amp;
-	if ( true == ampforwp_get_setting('ampforwp-ga-switch')){
+	if ( true == ampforwp_get_setting('ampforwp-ga-switch') && false == ampforwp_get_setting('amp-use-gtm-option') ){
 		$ga_fields = array();
 		$ampforwp_ga_fields = array();
 		$ga_account = '';
@@ -168,11 +168,10 @@ function ampforwp_analytics() {
 		$chartbeat = ampforwp_get_setting('amp-Chartbeat-analytics-code');
 		$ampforwp_chartbeat_fields = array(
 						'vars'=>array(
-							'accountId'=>$chartbeat,
+							'uid'=>$chartbeat,
+							'domain'=>ampforwp_remove_protocol(site_url()),
 							'title'=>get_the_title(),
 							'authors'=>get_the_author_meta('display_name'),
-							'dashboardDomain'=>site_url()
-
 							),
 					
 					); 

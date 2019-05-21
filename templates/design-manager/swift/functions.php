@@ -162,6 +162,12 @@ function ampforwp_swift_social_icons(){
 								<a class="s_pk" target="_blank" href="https://getpocket.com/save?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
+							<?php if ( true == ampforwp_get_setting('enable-single-mewe-share')){?>
+							<li>
+								<a title="mewe share" class="s_mewe" target="_blank" href="https://mewe.com/share?link=<?php echo esc_url($amp_permalink); ?>">
+								<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/favicon-mewe.svg') ?>" width="15" height="15" /></a>
+							</li>
+							<?php } ?>		
 							<?php if($redux_builder_amp['ampforwp-facebook-like-button']){?>
 							<li>
 							<?php if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) { ?>	

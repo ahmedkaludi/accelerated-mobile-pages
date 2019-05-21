@@ -49,7 +49,7 @@ function ampforwp_related_post_loop_query(){
 	$int_number_of_related_posts = (int)$string_number_of_related_posts;
 	$args = null;
 	$orderby = 'ID';
-	    if( isset( $redux_builder_amp['ampforwp-single-order-of-related-posts'] ) && $redux_builder_amp['ampforwp-single-order-of-related-posts'] ){
+	    if( true == ampforwp_get_setting('ampforwp-single-order-of-related-posts')){
 				$orderby = 'rand';
 			}
 	if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
@@ -117,7 +117,7 @@ function ampforwp_related_post(){
 function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() ){
 	global $redux_builder_amp;
 	$related_post_permalink = ampforwp_url_controller( get_permalink() );
-	if ( isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
+	if ( ampforwp_get_setting('ampforwp-single-related-posts-link') ) {
 		$related_post_permalink = get_permalink();
 	}
 	$show_image = (isset($data['show_image']) ? $data['show_image'] : true);

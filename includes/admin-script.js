@@ -603,9 +603,14 @@ var redux_title_modify = function(){
         }
 
     });
-
     $('li.active .redux-group-tab-link-a').click();
-}
+    }
+    if($(".amp-preview-button").length>0){
+        $(".amp-preview-button").click(function(){
+            var srcLink = $("#amp-preview-iframe").attr('data-src');
+           $("#amp-preview-iframe").html("<iframe  src='"+srcLink+"'></iframe>");
+        });
+    }
 
 });
 
@@ -646,3 +651,15 @@ AmpForWpYoastAnalysis = function() {
     };
     new AmpForWpYoastAnalysis();
 }); 
+jQuery(document).ready(function($){
+$("#redux_builder_amp-swift-sidebar").on( 'change', function(){
+var value = $('#redux_builder_amp-swift-sidebar #swift-sidebar').val();
+if(value == 1){
+$("#single-design-type_2").attr('checked', true);
+}else {
+    $("#single-design-type_1").attr('checked', true);
+}
+
+});
+
+});
