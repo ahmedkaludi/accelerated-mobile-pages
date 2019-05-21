@@ -18,6 +18,8 @@ require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-playbuzz-sani
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-rule-spec.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-allowed-tags-generated.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-tag-and-attribute-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-gallery-block-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-block-sanitizer.php' );
 
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
@@ -30,6 +32,7 @@ require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-vimeo-embed.php' 
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-soundcloud-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-pinterest-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-wistia-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-core-block-handler.php' );
 
 class AMP_Post_Template {
 	const SITE_ICON_SIZE = 32;
@@ -168,6 +171,7 @@ class AMP_Post_Template {
 		global $post;
 		$post_author = '';
 		$post_author_name = '';
+		$post_author_image = '';
 		$post_title = get_the_title( $this->ID );
 		$post_publish_timestamp = get_the_date( 'U', $this->ID );
 		$post_publish_timestamp = intval( $post_publish_timestamp );
@@ -176,6 +180,7 @@ class AMP_Post_Template {
 			$post_author = get_userdata( $this->post->post_author );
 			if ( $post_author ) {
 				$post_author_name = $post_author->display_name;
+				$post_author_image = get_avatar_url($post_author->ID, array('size' => 50));
 			}
 		}
 		$this->add_data( array(
@@ -196,11 +201,12 @@ class AMP_Post_Template {
 				'name' => $this->get( 'blog_name' ),
 			),
 			'headline' => $post_title,
-			'datePublished' => date( 'c', $post_publish_timestamp ),
-			'dateModified' => date( 'c', $post_modified_timestamp ),
+			'datePublished' => mysql2date( 'c', $post->post_date_gmt, false ),
+			'dateModified' => mysql2date( 'c', $post->post_modified_gmt, false ),
 			'author' => array(
 				'@type' => 'Person',
 				'name' => $post_author_name,
+				'image' => $post_author_image,
 			),
 		);
 
@@ -259,6 +265,7 @@ class AMP_Post_Template {
 
 			$amp_content = new AMP_Content( $new_post_content,
 				apply_filters( 'amp_content_embed_handlers', array(
+					'AMP_Core_Block_Handler' => array(),
 					'AMP_Twitter_Embed_Handler' => array(),
 					'AMP_YouTube_Embed_Handler' => array(),
 					'AMP_DailyMotion_Embed_Handler' => array(),
@@ -275,12 +282,14 @@ class AMP_Post_Template {
 					 'AMP_Style_Sanitizer' => array(),
 					 'AMP_Blacklist_Sanitizer' => array(),
 					 'AMP_Img_Sanitizer' => array(),
+					 'AMP_Gallery_Block_Sanitizer' => array(),
 					 'AMP_Video_Sanitizer' => array(),
 					 'AMP_Audio_Sanitizer' => array(),
 					 'AMP_Playbuzz_Sanitizer' => array(),
 					 'AMP_Iframe_Sanitizer' => array(
 						 'add_placeholder' => true,
 					 ),
+					 'AMP_Block_Sanitizer' => array(),
 				), $this->post ),
 				array(
 					'content_max_width' => $this->get( 'content_max_width' ),

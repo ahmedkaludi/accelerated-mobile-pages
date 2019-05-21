@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.1.1
-Stable tag: 0.9.97.49
+Tested up to: 5.2
+Stable tag: 0.9.97.53
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,18 +32,27 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 = Features: =
 
 * NEW - Gutenberg Support
+* NEW - Divi and Elementor Support [More Info](https://ampforwp.com/amp-pagebuilder-compatibility/)
+* NEW - Addthis Sharing Support
+* NEW - AMP Infinity Scroll Support
+* NEW - Revolution Slider plugin Support 
+* NEW - Photo Gallery by 10Web Support 
+* NEW - MEWE social network Support 
 * NEW - GDPR Compliance
-* NEW - Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
-* NEW Default Theme for AMP called Swift
-* NEW - 3 Pre-built AMP Layouts for Business websites and landing pages 
-* NEW - Alexa Metrics Compatibility added 
-* NEW - OneSignal Push Notifications integration 
-* NEW - Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
+* Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
+* New Default Theme for AMP called Swift
+* 3 Pre-built AMP Layouts for Business websites and landing pages 
+* Alexa Metrics Compatibility added 
+* OneSignal Push Notifications integration 
+* Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
 * Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
 * AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
 * Structured Data Options
 * Page Break / NextPage (Pagination) Support
 * Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
+* Graviry Form Support [More Info](https://ampforwp.com/gravity-forms/)
+* Caldera Form Support [More Info](https://ampforwp.com/caldera-forms-for-amp/)
+* Ninja Form Support [More Info](https://ampforwp.com/ninja-forms/)
 * Facebook Comments Support
 * Github Gist Support
 * Email Opt-in Subscription form support in AMP added
@@ -74,7 +83,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * User Friendly Theme Options Panel.
 * Unlimited Color Scheme.
 * Image Logo Upload.
-* Supports Posts and Pages.
+* Supports Posts and Pages and other custom post types.
 * Proper rel canonical tags which means that Google know the original page.
 * Overlay Navigation Menu bar.
 * Social Sharing in the Single.
@@ -105,6 +114,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * AMP Theme Framework Core Support Added. You can now create AMP templates of your own in just minutes. **[More](https://ampforwp.com/amp-theme-framework/)**
 * NEW - Make AMP & Non-AMP Same with just one click! 
 * NEW - Allows you to use AMP as primary website!
+
 
 **[JOIN CHAT GROUP COMMUNITY](https://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
@@ -184,21 +194,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.49 (26th April 2019) =
-* Added: Addthis Support integrated #2416
-* Added: A3 Lazy Load compatibility #2872
-* Added: Add support for AMP Linker #2546
-* Fixed: Getting validation Error when using the Ivory Search Plugin #2497
-* Fixed: Featured images or article images not showing in latest version #3063
-* Fixed: Condition improved for author box hook #2608
-* Fixed: After Update all AMP Pages Do Not Load and are Not Validated #3062 [ WP Rocket]
-* Fixed: PHP notice Undefined variable wp #3085
-* Fixed: PHP notice Undefined variable wp_query #2803
-* Fixed: Warning message while on WP customizes #3070
-* Fixed: Tag meta name 'viewport' appear more than once when Zox news theme is activate #2971
-* Fixed: PHP notice errors after activating amp-woocommerce plugin #3054
-* Fixed: Fatal error - can't use function return value in write context #3087
-* Fixed: AMP Frontpage: The mandatory tag ‘link rel=canonical’ is missing or incorrect with Rank Math #3061
-* Fixed: Fatal error - is_amp_endpoint issue #3055
+= 0.9.97.53 (20th May 2019) =
+* Fixed: 500 errors on posts that don't use WP Bakery #3183
+* Fixed: Hyperlink in amp pages including emoji - code improved #2967
+* Fixed: Errors in AMP social Icons #3033
+* Fixed: Code improved to fetch all Categories and tags in Featured Slider [Design -3] #2590
+* Fixed: Fatal error on posts with comments present in latest v0.9.97.52 #3191
+* Fixed: "View Desktop Version" feature is not working in mobile view #3192
+* Fixed: Improved the Extension array code #3206
+* Fixed: Fatal error Uncaught TypeError Argument 1 passed to DOMNode::replaceChild() #3203
 
 Full changelog available in changelog.txt

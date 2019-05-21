@@ -66,17 +66,17 @@ if ( ! defined( 'ABSPATH' ) ) {
         $attributes .= ' data-toggle="dropdown"';
     }
 
-    $item_output = $args->before;
+    $item_output = isset($args->before) ? $args->before : 1;
   
     $item_output .= '<a'. $attributes .'>';
-    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+    $item_output .= (isset($args->link_before) ? $args->link_before : 1 ). apply_filters( 'the_title', $item->title, $item->ID ) . (isset($args->link_after) ? $args->link_after : 1 );
     $item_output .= '</a>';
   
   // Add the caret if menu level is 0
     if ( $has_children > 0  ) {
         //$item_output .= '<label for="drop-"'.$depth.' class="toggle">+</label>';
     }
-    $item_output .= $args->after;
+    $item_output .= isset($args->after) ? $args->after : 1;
 
     $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
   }

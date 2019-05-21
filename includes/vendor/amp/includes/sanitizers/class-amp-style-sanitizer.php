@@ -256,7 +256,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 
 		if ( ! preg_match( '/\.(css|less|scss|sass)$/i', $src ) ) {
 			/* translators: %s is stylesheet URL */
-			return new WP_Error( 'amp_css_bad_file_extension', sprintf( __( 'Skipped stylesheet which does not have recognized CSS file extension (%s).', 'amp' ), $src ) );
+			return new \WP_Error( 'amp_css_bad_file_extension', sprintf( __( 'Skipped stylesheet which does not have recognized CSS file extension (%s).', 'amp' ), $src ) );
 		}
 
 		$includes_url = includes_url( '/' );
@@ -411,18 +411,18 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 	 */
 	private function validate_amp_keyframe( $style ) {
 		if ( 'body' !== $style->parentNode->nodeName ) {
-			return new WP_Error( 'mandatory_body_child', __( 'amp-keyframes is not child of body element.', 'amp' ) );
+			return new \WP_Error( 'mandatory_body_child', __( 'amp-keyframes is not child of body element.', 'amp' ) );
 		}
 
 		if ( $this->keyframes_max_size && strlen( $style->textContent ) > $this->keyframes_max_size ) {
-			return new WP_Error( 'max_bytes', __( 'amp-keyframes is too large', 'amp' ) );
+			return new \WP_Error( 'max_bytes', __( 'amp-keyframes is too large', 'amp' ) );
 		}
 
 		// This logic could be in AMP_Tag_And_Attribute_Sanitizer, but since it only applies to amp-keyframes it seems unnecessary.
 		$next_sibling = $style->nextSibling;
 		while ( $next_sibling ) {
 			if ( $next_sibling instanceof \DOMElement ) {
-				return new WP_Error( 'mandatory_last_child', __( 'amp-keyframes is not last element in body.', 'amp' ) );
+				return new \WP_Error( 'mandatory_last_child', __( 'amp-keyframes is not last element in body.', 'amp' ) );
 			}
 			$next_sibling = $next_sibling->nextSibling;
 		}

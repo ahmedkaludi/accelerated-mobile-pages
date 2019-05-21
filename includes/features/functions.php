@@ -25,8 +25,6 @@ function ampforwp_add_admin_styling(){
     // Localize the script with new data
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_builder_amp );
     wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', wp_create_nonce('ampforwp-verify-request') );
-
-
     wp_enqueue_script( 'ampforwp_admin_js' );
 }
 // 96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
@@ -724,6 +722,11 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                 $returnData = preg_replace(
                 '/<amp-youtube\sdata-videoid="(.*?)"(.*?)><\/amp-youtube>/',
                  '<iframe src="'. esc_url("https://www.youtube.com/embed/$1").'" style="width:100%;height:360px;" ></iframe>', $returnData);
+                $returnData = preg_replace_callback(
+                '/<amp-iframe(.*?)src="(.*?)"(.*?)><\/amp-iframe>/', 
+                function($matches){
+                    return '<iframe src="'.esc_url($matches[2]).'" style="width:100%;height:400px;" ></iframe>';
+                }, $returnData);
             break;
         }
         return $returnData;
@@ -756,3 +759,21 @@ if ( function_exists('ampforwp_menu_transient_on_save') ){
     }
 }
 add_action("redux/options/redux_builder_amp/saved",'ampforwp_menu_transient_on_save', 10, 2);
+
+// Protocol Remover
+if ( ! function_exists('ampforwp_remove_protocol') ) {
+    function ampforwp_remove_protocol($url){
+        $url = preg_replace('#^https?://#', '', $url);
+        return $url;
+    }
+}
+// #3009
+if ( ! function_exists('ampforwp_sanitize_i_amphtml') ) {
+    function ampforwp_sanitize_i_amphtml($data){
+        if(empty($data)){
+            return $data;
+        }
+        $data = preg_replace_callback('/.i-amphtml-(.*?){(.*?)}/s',function($matches){ if(!empty($matched)){ return ''; } }, $data);
+        return $data;
+    }
+}

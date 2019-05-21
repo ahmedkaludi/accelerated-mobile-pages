@@ -176,9 +176,14 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		if ( strpos($href, ' ') ){
 			$href = esc_url($href);
 		}
-		if ( false === filter_var( $href, FILTER_VALIDATE_URL )
-			&& ! in_array( $protocol, $special_protocols, true ) ) {
-			return false;
+		/*	Issue was with multibyte string.
+		 *  For more info check: https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2556 and https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2967
+		*/
+		if( false === $this->contains_any_multibyte($href) ){
+			if ( false === filter_var( $href, FILTER_VALIDATE_URL )
+				&& ! in_array( $protocol, $special_protocols, true ) ) {
+				return false;
+			}
 		}
 
 		if ( ! in_array( $protocol, $valid_protocols, true ) ) {
@@ -220,7 +225,14 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			'javascript',
 		) );
 	}
-
+	private	function contains_any_multibyte($string){
+    	if(function_exists('mb_check_encoding')){
+    		return !\mb_check_encoding($string, 'ASCII') && \mb_check_encoding($string, 'UTF-8');
+    	}
+    	else{
+    		return false;
+    	}
+	}
 	private function get_blacklisted_tags() {
 		return $this->merge_defaults_with_args( 'add_blacklisted_tags', apply_filters('amp_blacklisted_tags' , array(
 			'script',

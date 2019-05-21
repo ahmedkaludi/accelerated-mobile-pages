@@ -25,6 +25,11 @@ $css = '
 {{ifend_condition_pricing_layout_type_1}}
 
 ';
+if( ampforwp_get_setting('amp-design-selector') != 4 ) {
+ $css .= '@media(max-width:768px){
+	.pri-mod{flex:100%;margin:0px 0px 20px 0px;}
+}';
+}
 return array(
 		'label' =>'Pricing',
 		'name' =>'pricing-mod',

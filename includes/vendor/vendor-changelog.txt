@@ -68,3 +68,7 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 41. Added $ampforwpTemplate in amp.php #2977
 42. AMP_Content_Sanitizer updated #2287
 43. CSS syntax error in tag 'style amp-custom' - bad url #2974
+44. Updated Schema for author image #2919
+45. class-amp-iframe-sanitizer.php updated #2836
+45. Class-amp-gallery-block-sanitizer file Updated for new Gallery Designs #2868
+45. Added class-amp-gallery-block-sanitizer.php, class-amp-block-sanitizer.php in Vendor AMP Sanitizers and class-amp-core-block-handler.php in Vendor AMP Embed Handlers #2427

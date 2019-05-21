@@ -103,7 +103,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <div class="h-1">
                     <?php if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
                         <div class="h-srch h-ic">
-                            <a title="search" class="lb icon-search" href="#search"></a>
+                            <a title="search" class="lb icon-src" href="#search"></a>
                             <div class="lb-btn"> 
                                 <div class="lb-t" id="search">
                                    <?php amp_search();?>
@@ -114,7 +114,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                     <?php } ?>
                     <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
                         <div class="h-shop h-ic">
-                            <a href="<?php echo esc_url(ampforwp_wc_cart_page_url()); ?>" class="icon-shopping-cart"></a>
+                            <a href="<?php echo esc_url(ampforwp_wc_cart_page_url()); ?>" class="isc"></a>
                         </div>
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
@@ -232,7 +232,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                     <?php } ?>
                     <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
                         <div class="h-shop h-ic">
-                            <a href="<?php echo ampforwp_wc_cart_page_url(); ?>" class="icon-shopping-cart"></a>
+                            <a href="<?php echo ampforwp_wc_cart_page_url(); ?>" class="isc"></a>
                         </div>
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
@@ -341,7 +341,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <div class="h-3">
                     <?php if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
                         <div class="h-srch h-ic">
-                            <a class="lb icon-search" href="#search"></a>
+                            <a class="lb icon-src" href="#search"></a>
                             <div class="lb-btn"> 
                                 <div class="lb-t" id="search">
                                    <?php amp_search();?>
@@ -352,7 +352,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                     <?php } ?>
                     <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
                         <div class="h-shop h-ic">
-                            <a href="<?php echo ampforwp_wc_cart_page_url(); ?>" class="icon-shopping-cart"></a>
+                            <a href="<?php echo ampforwp_wc_cart_page_url(); ?>" class="isc"></a>
                         </div>
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>

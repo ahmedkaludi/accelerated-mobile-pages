@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.1.1
-Stable tag: 0.9.97.49
+Tested up to: 5.2
+Stable tag: 0.9.97.53
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,18 +31,27 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 = Features: =
 
 * NEW - Gutenberg Support
+* NEW - Divi and Elementor Support [More Info](https://ampforwp.com/amp-pagebuilder-compatibility/)
+* NEW - Addthis Sharing Support
+* NEW - AMP Infinity Scroll Support
+* NEW - Revolution Slider plugin Support 
+* NEW - Photo Gallery by 10Web Support 
+* NEW - MEWE social network Support 
 * NEW - GDPR Compliance
-* NEW - Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
-* NEW Default Theme for AMP called Swift
-* NEW - 3 Pre-built AMP Layouts for Business websites and landing pages 
-* NEW - Alexa Metrics Compatibility added 
-* NEW - OneSignal Push Notifications integration 
-* NEW - Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
+* Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
+* New Default Theme for AMP called Swift
+* 3 Pre-built AMP Layouts for Business websites and landing pages 
+* Alexa Metrics Compatibility added 
+* OneSignal Push Notifications integration 
+* Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
 * Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
 * AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
 * Structured Data Options
 * Page Break / NextPage (Pagination) Support
 * Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
+* Graviry Form Support [More Info](https://ampforwp.com/gravity-forms/)
+* Caldera Form Support [More Info](https://ampforwp.com/caldera-forms-for-amp/)
+* Ninja Form Support [More Info](https://ampforwp.com/ninja-forms/)
 * Facebook Comments Support
 * Github Gist Support
 * Email Opt-in Subscription form support in AMP added
@@ -73,7 +82,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * User Friendly Theme Options Panel.
 * Unlimited Color Scheme.
 * Image Logo Upload.
-* Supports Posts and Pages.
+* Supports Posts and Pages and other custom post types.
 * Proper rel canonical tags which means that Google know the original page.
 * Overlay Navigation Menu bar.
 * Social Sharing in the Single.
@@ -182,6 +191,119 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.53 (20th May 2019) =
+* Fixed: 500 errors on posts that don't use WP Bakery #3183
+* Fixed: Hyperlink in amp pages including emoji - code improved #2967
+* Fixed: Errors in AMP social Icons #3033
+* Fixed: Code improved to fetch all Categories and tags in Featured Slider [Design -3] #2590
+* Fixed: Fatal error on posts with comments present in latest v0.9.97.52 #3191
+* Fixed: "View Desktop Version" feature is not working in mobile view #3192
+* Fixed: Improved the Extension array code #3206
+* Fixed: Fatal error Uncaught TypeError Argument 1 passed to DOMNode::replaceChild() #3203
+
+= 0.9.97.52 (15th May 2019) =
+* Added: Gutenberg Compatibility integrated #2427
+* Added: Gallery Designs for Gutenberg Gallery #2868
+* Added: Gutenburg column support in AMP #2847
+* Added: Addthis Sharing option UX re-structured #3114
+* Added: Photo Gallery plugin compatibility integrated #1811
+* Added: Revolution Slider plugin compatibility integrated #1464
+* Added: Posts offset option on category module in AMP Page Builder #2647
+* Added: MEWE social network integrated #3020
+* Added: Font Size and Color options for Dropcap #3010
+* Added: Breadcrumbs feature for pages #2788
+* Added: More parameters for ampforwp_get_setting functions #2911
+* Fixed: Conditions for PageBuilder and Elementor for Page.php in Swift #3097
+* Fixed: Code updated of Infinite Scroll when AMP Newspaper Theme is active #3031
+* Fixed: Copy the Content in Custom AMP Editor is not working with Gutenberg #2824
+* Fixed: If GTM gets enabled after Enabling the Analytics, then both codes load in the frontend #3121
+* Fixed: P tag is missing when "copy the content" option is used in custom AMP editor #3122
+* Fixed: When AMP is disabled on Homepagepage ?nonamp=1 redirect to random pages(blog) #2904
+* Fixed: Issue with post title and "end point to ?amp" conflict #2991
+* Fixed: Unspecified Type in Structured data for catgories/tags #3071
+* Fixed: PHP Warning date() expects parameter 2 to be long, string given in #2959
+* Fixed: Disquss comment is not scrollable in IOS device #2970
+* Fixed: Vkontakte Share(social icon) does not open in a new tab #3089
+* Fixed: Condition for requiring a file improved #3080
+* Fixed: amp_content() used instead of AMP_Post_Template object in Design [ 1,2 and 3 ] #2700
+* Fixed: Hyperlink in amp pages including emoji not working #2967
+* Fixed: Unused amp js from amp pages removed #3086
+* Fixed: "WP Forms for AMP" setting link is incorrect #3060
+* Fixed: Navigation & alternate menu css is not loading when directory plus theme is active #2963
+* Fixed: link to non-amp under breadcrumbs when Archives support is off. #2885
+* Fixed: AddThis is causing validation error after Update - code updated #3068
+* Fixed: Content not rendering on AMP with the Enfold theme version 4.5.6 #3124
+* Fixed: Tags are also displaying in category selection in the AMP page builder's category module #3082
+* Fixed: Author name won´t show if you disable author bio in swift theme #3131
+* Fixed: Link to non amp feature not works for thumbnail in design one and two #3004
+* Fixed: Multibyte string links aren't working in AMP Version #2556
+* Fixed: Leave Comment link Not working with ?amp #3093
+* Fixed: When Sticky Header is enabled then Jump link's Title is getting hidden under the header #2915
+* Fixed: Facebook comments not displaying if we add number more than 100 in the number of comments #3032
+* Fixed: Featured image and link shared on twitter issues #3075
+* Fixed: Infinity Scroll Option is not working when ?amp option is enabled in version beta #2475
+
+= 0.9.97.51.2 (10th May 2019) =
+* Fixed: AddThis is causing validation error after Update #3068
+
+= 0.9.97.51.1 (7th May 2019) =
+* Fixed: Can’t use function return value in write context #3155
+* Fixed: Search results not showing for "Select Categories to Hide AMP" option inHide Amp Bulk Tool #3154
+
+= 0.9.97.51 (7th May 2019) =
+* Added: Yoast seo breadcrumbs Support #1473
+* Added: Compatibility with UseAnyFont Plugin #2774
+* Added: Compatibility with Slide Anything plugin. #2891
+* Added: Compatibility with Clyp it iframe embed. #2836
+* Added: Compatibility with Lazy Load of Smush and Smush Pro plugin #2990
+* Fixed: Logo on the top of the menu shade looks strange. #3046
+* Fixed: Fatal error: Class 'AMP_Base_Embed_Handler' not found(Due to mediavine plugin) #3119
+* Fixed: Chartbeat Tag Has Incorrect Variables #3017
+* Fixed: If AMP page builder is enabled then unnecessary CSS is also integrated #2470
+* Fixed: Sidebar Improvement and Option for Pages #2499
+* Fixed: “Featured Image from The Content” option should not override the default Set featured image. #2503
+* Fixed: Widgets going out of alignments in Design 1,2 and 3 #2553
+* Fixed: No message if the search didn't find anything. in Swift #2557
+* Fixed: Header with CTA doesn't have the right options and defaults #2567
+* Fixed: Need to separate categories & tags with ( / or , ) in AMP theme framework single page. #2580
+* Fixed: Indentations are getting removed in lists of ul & ol tags. #2781
+* Fixed: When the custom front page has a custom pagination then the AMP pagination returns 404 #2843
+* Fixed: Text widget img element are overlapping with banner ads (Below the header) in design 3 #2845
+* Fixed: Sidebar option is off, do not show widget area in admin panel #2856
+* Fixed: Update Schema for author image #2919
+* Fixed: Sidebar Styling is not properly appearing in the Blog Page #2938
+* Fixed: 404 issue on custom post type pagination #2937
+* Fixed: Notice errors in design-1 sidebar menu when amp menu is unchecked. #2953
+* Fixed: Bootstrap min overriding modal body style. #2987
+* Fixed: Move infinite scroll settings to a correct place #3007
+* Fixed: Add Extension list for the events calendar for amp #3030
+* Fixed: Add Extension list for table of content #3040
+* Fixed: Strip CSS with i-amphtml- name prefix because its causing validation errors #3009
+* Fixed: Need to add an option to delete the saved layouts in pagebuilder. #2801
+* Fixed: Category module not working with recent posts from Version 0.9.97.45 #3117
+* Fixed: Related posts appearing on the top #3151
+* Fixed: Debug error in installation process #3134
+
+= 0.9.97.50.1 (1st May 2019) =
+* Fixed: Alignment problem when right sidebar is enable in blog page and there is no featured image in the posts #3057
+
+= 0.9.97.50 (29th April 2019) =
+* Added: New Icon of Telegram in all the Designs #2448
+* Added: Swift icon and Font awesome icon option added in Design's global section [Swift theme] #2992
+* Added: Category option added in Design's single section [Swift theme] #2551
+* Added: Yoast author twitter handle compatibility integrated #2133
+* Added: New function ampforwp_get_the_ID() created #2867
+* Fixed: Facebook comment and Like option gives an error when the bbPress plugin is enabled #3006
+* Fixed: When Gutenberg active left sidebar is not visible in page builder modules #2934
+* Fixed: AMP preview functionality showing blank in the preview mode #3029
+* Fixed: Image floats CSS improved in mobile mode #2525
+* Fixed: Related Posts Randomly in Swift theme #2308
+* Fixed: Pricing module content is not center in page builder #2921
+* Fixed: Background image of the page builder is zooming in IOS devices when the parallax effect is enabled #2844
+* Fixed: Footnotes compatibility code updated #2982
+* Fixed: Iframe is not loading when Convert AMP to WP theme (Beta) option is enabled [Swift theme] #2628
+* Fixed: PHP Warning Undefined variable #3103
 
 = 0.9.97.49 (26th April 2019) =
 * Added: Addthis Support integrated #2416

@@ -85,7 +85,7 @@ $front_css = '
     background-position:{{align_type}};
     {{if_condition_check_for_parallax==1}}
 		min-height: 550px;
-	    background-attachment: fixed;
+	    background-attachment: initial;
 	{{ifend_condition_check_for_parallax_1}}
 }
 {{ifend_condition_background_type_image}}

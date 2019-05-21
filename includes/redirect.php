@@ -222,7 +222,7 @@ function ampforwp_redirection() {
         return;
     }
 
-    if ( $mobile_detect->isMobile() && 'mobile-on' == $_SESSION['ampforwp_amp_mode'] && 1 == $_GET['nonamp'] ) {
+    if ( $isMobile && (isset($_SESSION['ampforwp_amp_mode']) && 'mobile-on' == $_SESSION['ampforwp_amp_mode']) && ( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) ){
         // non mobile session variable creation
         session_start();
         $_SESSION['ampforwp_mobile'] = 'exit';
@@ -237,7 +237,6 @@ function ampforwp_redirection() {
     }
     // Check if we are on Mobile phones then start redirection process
     if ( $redirectToAMP ) {
-
         if ( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp']) ) {
 
           $_SESSION['ampforwp_amp_mode'] = 'mobile-on';
@@ -263,13 +262,18 @@ function ampforwp_redirection() {
         $go_to_url = remove_query_arg('nonamp', $url);
         $go_to_url = explode('/', $go_to_url);
         $go_to_url = array_flip($go_to_url);
-        unset($go_to_url['amp']);
+        if( true == ampforwp_get_setting('amp-core-end-point') || isset($go_to_url['?amp']) ){
+          unset($go_to_url['?amp']);
+        }
+        if( isset($go_to_url['amp']) ){
+          unset($go_to_url['amp']);
+        }
         $go_to_url = array_flip($go_to_url);     
         $go_to_url  = implode('/', $go_to_url);
  
       wp_safe_redirect( $go_to_url, 301 );
       exit;
-    }
+  }    
     else{
       return;
     }

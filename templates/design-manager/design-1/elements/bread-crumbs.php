@@ -1,5 +1,5 @@
 <?php  global $redux_builder_amp; 
-if ( isset($redux_builder_amp['ampforwp-bread-crumb']) && 1 == $redux_builder_amp['ampforwp-bread-crumb'] && !checkAMPforPageBuilderStatus(get_the_ID()) ) { 
+if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is_page() && ampforwp_get_setting('ampforwp_pages_breadcrumbs')) ) && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
     $home_non_amp = $archive_non_amp = '';
     if ( false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
         $home_non_amp = 'nonamp';

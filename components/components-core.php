@@ -214,17 +214,17 @@ function amp_author_box($args=array() ){
 }
 
 // Categories List
-function amp_categories_list( ){
+function amp_categories_list( $separator = '' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-categories-tags']) && $loadComponent['AMP-categories-tags']==true){
-		ampforwp_framework_get_categories_list( );
+		ampforwp_framework_get_categories_list( $separator );
 	}
 }
 // Tags List
-function amp_tags_list( ){
+function amp_tags_list( $separator = '' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-categories-tags']) && $loadComponent['AMP-categories-tags']==true){
-		ampforwp_framework_get_tags_list( );
+		ampforwp_framework_get_tags_list( $separator );
 	}
 }
 
@@ -371,7 +371,9 @@ function amp_header_core(){
 				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
-				<?php echo $redux_builder_amp['css_editor']; ?>
+				<?php $custom_css = ampforwp_get_setting('css_editor'); 
+					  $sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
+					  echo $sanitized_css; ?>
 			</style>
 			<?php do_action('ampforwp_before_head', $thisTemplate);  ?>
 		</head>
@@ -502,8 +504,13 @@ function amp_content($post_id= ''){
 		}
 	}
 
-	$thisTemplate = $ampforwpTemplate; 
-	do_action('ampforwp_before_post_content',$thisTemplate); 
+	$thisTemplate = $ampforwpTemplate;
+	 if ( 1 == ampforwp_get_setting('amp-design-selector')  ) {
+		do_action('ampforwp_inside_post_content_before',$thisTemplate); 
+	}
+	else{
+		do_action('ampforwp_before_post_content',$thisTemplate);
+	}
 	$amp_custom_content_enable = get_post_meta( $thisTemplate->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
 	// Normal Content
 	if ( ! $amp_custom_content_enable ) {
@@ -687,7 +694,7 @@ function ampforwp_addThis_support(){
 	$data_widget_id = ampforwp_get_setting('add-this-widget-id');
 	if ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social')) ) {
 	 	if( ampforwp_get_setting('enable-add-this-option') ) {
-	 		if( 4 == ampforwp_get_setting('amp-design-selector')){
+	 		if( 4 == ampforwp_get_setting('amp-design-selector') && 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
 	 			$amp_addthis = '<amp-addthis width="290" height="92" data-pub-id="'.esc_html($data_pub_id).'" data-widget-id="'. esc_html($data_widget_id).'"></amp-addthis>';
 	 		}
 	 		else{

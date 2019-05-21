@@ -35,6 +35,10 @@ function ampforwp_schema_lazy_load_remover(){
 	if ( function_exists( 'mvp_setup' ) && ampforwp_get_setting('amp-design-selector') != 4 ) {
 		remove_action( 'amp_post_template_head','ampforwp_add_meta_viewport');
 	}
+	//Menu css is not loading when directory plus theme is active. #2963
+	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
+	// #3124 enfold theme shortcodes removed
+	add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
 }
 
 //Updater to check license
@@ -479,6 +483,47 @@ function ampforwp_simple_author_box(){
 	if( class_exists('Simple_Author_Box') ){ ?>
 		.saboxplugin-wrap .saboxplugin-gravatar amp-img {max-width: 100px;height: auto;}
 	<?php }
+	// Compatibility with Use Any Font plugin #2774
+	if ( function_exists('uaf_activate') ) {
+		$uaf_use_absolute_font_path = get_option('uaf_use_absolute_font_path'); // Check if user want to use absolute font path.	
+		if (empty($uaf_use_absolute_font_path)){
+			$uaf_use_absolute_font_path = 0;
+		}		
+		$uaf_upload 	= wp_upload_dir();
+		$uaf_upload_dir = $uaf_upload['basedir'];
+		$uaf_upload_dir = $uaf_upload_dir . '/useanyfont/';
+		$uaf_upload_url = $uaf_upload['baseurl'];
+		$uaf_upload_url = $uaf_upload_url . '/useanyfont/';	
+		$uaf_upload_url = preg_replace('#^https?:#', '', $uaf_upload_url);
+		
+		if ($uaf_use_absolute_font_path == 0){ // If user use relative path
+			$url_parts = parse_url($uaf_upload_url);
+			@$uaf_upload_url = "$url_parts[path]$url_parts[query]$url_parts[fragment]";
+		}
+		$fontsRawData 	= get_option('uaf_font_data');
+		$fontsData		= json_decode($fontsRawData, true);
+		if (!empty($fontsData)):
+			foreach ($fontsData as $key=>$fontData): ?>
+				@font-face {
+					font-family: '<?php echo esc_html($fontData['font_name']); ?>';
+					font-style: normal;
+					src: url('<?php echo esc_url($uaf_upload_url.$fontData['font_path']); ?>.eot');
+					src: local('<?php echo esc_html($fontData['font_name']) ?>'), url('<?php echo esc_url($uaf_upload_url.$fontData['font_path']) ?>.eot') format('embedded-opentype'), url('<?php echo esc_url($uaf_upload_url.$fontData['font_path']) ?>.woff') format('woff');
+				}		            
+            	.<?php echo esc_html($fontData['font_name']) ?>{font-family: '<?php echo esc_html($fontData['font_name']) ?>';}
+        	<?php endforeach;
+		endif;
+
+		$fontsImplementRawData 	= get_option('uaf_font_implement');
+		$fontsImplementData		= json_decode($fontsImplementRawData, true);
+		if (!empty($fontsImplementData)):
+			foreach ($fontsImplementData as $key=>$fontImplementData): ?>
+				<?php echo $fontImplementData['font_elements']; ?>{
+					font-family: '<?php echo esc_html($fontsData[$fontImplementData['font_key']]['font_name']); ?>';
+				}
+			<?php endforeach;
+		endif;	
+	}
 }
 
 // WP-AppBox CSS #2791
@@ -905,5 +950,38 @@ function ampforwp_seopress_social(){
 			    }
 			}
 		}
+	}
+}
+
+// yoast author twitter handle #2133
+if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
+	function ampforwp_yoast_twitter_handle() {
+		$twitter = '';
+		if (  class_exists('WPSEO_Frontend') ) {
+		    global $post;
+		    $twitter = get_the_author_meta( 'twitter', $post->post_author );
+		}
+		if($twitter){
+		    return ' <span><a href="https://twitter.com/'.esc_attr($twitter).'" target="_blank">@'.esc_html($twitter).'</a></span>';
+		}
+		return '';
+	}
+}
+// #3124 enfold theme shortcodes removed
+add_action('init','ampforwp_enfold_theme_compatibility',2);
+if(!function_exists('ampforwp_enfold_theme_compatibility')){
+	function ampforwp_enfold_theme_compatibility(){
+		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	  	$explode_path = explode('/', $url_path);  
+	    if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)   ) {
+			remove_filter('avia_load_shortcodes','add_shortcode_folder');
+	    }
+	}
+}
+if(!function_exists('ampforwp_remove_enfold_theme_shortcodes_tags')){
+	function ampforwp_remove_enfold_theme_shortcodes_tags($content){
+		$content = preg_replace('/\[av_(.*?)]/', ' ', $content);
+		$content = preg_replace('/\[\/av_(.*?)]/', ' ', $content);
+		return $content;
 	}
 }

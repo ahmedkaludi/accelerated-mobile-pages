@@ -423,9 +423,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 		$explode_url 	= explode('/', $amp_url);
 		$explode_url 	= array_flip($explode_url);
-		unset($explode_url['amp']); 
+		unset($explode_url[AMPFORWP_AMP_QUERY_VAR]); 
 		$explode_url 	= array_flip($explode_url);
-		$amp_endpoint 	= array('amp');
+		$amp_endpoint 	= array(AMPFORWP_AMP_QUERY_VAR);
 		$offset 		= count($explode_url) - 2; 
 		array_splice( $explode_url, $offset, 0, $amp_endpoint );
 		$amp_url 		= implode('/', $explode_url);
@@ -580,9 +580,10 @@ function ampforwp_new_dir( $dir ) {
 
 		// Facebook Like Script
 		$fb_like = false;
+	    $isBBPress = (function_exists('is_bbpress') ? is_bbpress() : false );
 	    if ( true == ampforwp_get_setting('ampforwp-facebook-like-button') ){
-	      if ( is_single() && (true == ampforwp_get_setting('enable-single-social-icons') || ( $social_check && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())))) {
-	        $fb_like = true;
+	     if ( is_single() && (true == ampforwp_get_setting('enable-single-social-icons') || ( $social_check && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) && !$isBBPress)) {
+	        $fb_like = true;    
 	      }
 	      if ( is_page() && ( true == ampforwp_get_setting('ampforwp-page-sticky-social') || ( $social_check_page && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) ) ) {
 	        $fb_like = true;
@@ -1063,6 +1064,7 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'wp_nav_menu_args', 'BF_Menus', 'walker_front', 10 );
 		// Removing Smush Pro Lazy Load plugin #2990
 		ampforwp_remove_filters_for_class( 'the_content', 'WP_Smush_Lazy_Load', 'set_lazy_load_attributes', 100 );
+		ampforwp_remove_filters_for_class( 'post_thumbnail_html', 'WP_Smush_Lazy_Load', 'set_lazy_load_attributes', 100 );
 		// Removing A3 Lazy Load plugin #2872
 		ampforwp_remove_filters_for_class( 'the_content', 'A3_Lazy_Load', 'filter_content_images', 100 );
 		//SiteOrigin Page builder compatibilty with AMP Frontpage
@@ -1237,7 +1239,7 @@ function ampforwp_sticky_social_icons(){
 			</a>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-vk-share'] == true)  { ?>
-			<a title="vkontakte share" href="http://vk.com/share.php?url=<?php echo esc_url($amp_permalink); ?>">
+			<a title="vkontakte share" href="http://vk.com/share.php?url=<?php echo esc_url($amp_permalink); ?>" target="_blank">
 				<div class="amp-social-icon amp-social-vk"> 
 					<amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAzMDQuMzYgMzA0LjM2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMDQuMzYgMzA0LjM2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGcgaWQ9IlhNTElEXzFfIj4KCTxwYXRoIGlkPSJYTUxJRF84MDdfIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7IiBkPSJNMjYxLjk0NSwxNzUuNTc2YzEwLjA5Niw5Ljg1NywyMC43NTIsMTkuMTMxLDI5LjgwNywyOS45ODIgICBjNCw0LjgyMiw3Ljc4Nyw5Ljc5OCwxMC42ODQsMTUuMzk0YzQuMTA1LDcuOTU1LDAuMzg3LDE2LjcwOS02Ljc0NiwxNy4xODRsLTQ0LjM0LTAuMDJjLTExLjQzNiwwLjk0OS0yMC41NTktMy42NTUtMjguMjMtMTEuNDc0ICAgYy02LjEzOS02LjI1My0xMS44MjQtMTIuOTA4LTE3LjcyNy0xOS4zNzJjLTIuNDItMi42NDItNC45NTMtNS4xMjgtNy45NzktNy4wOTNjLTYuMDUzLTMuOTI5LTExLjMwNy0yLjcyNi0xNC43NjYsMy41ODcgICBjLTMuNTIzLDYuNDIxLTQuMzIyLDEzLjUzMS00LjY2OCwyMC42ODdjLTAuNDc1LDEwLjQ0MS0zLjYzMSwxMy4xODYtMTQuMTE5LDEzLjY2NGMtMjIuNDE0LDEuMDU3LTQzLjY4Ni0yLjMzNC02My40NDctMTMuNjQxICAgYy0xNy40MjItOS45NjgtMzAuOTMyLTI0LjA0LTQyLjY5MS0zOS45NzFDMzQuODI4LDE1My40ODIsMTcuMjk1LDExOS4zOTUsMS41MzcsODQuMzUzQy0yLjAxLDc2LjQ1OCwwLjU4NCw3Mi4yMiw5LjI5NSw3Mi4wNyAgIGMxNC40NjUtMC4yODEsMjguOTI4LTAuMjYxLDQzLjQxLTAuMDJjNS44NzksMC4wODYsOS43NzEsMy40NTgsMTIuMDQxLDkuMDEyYzcuODI2LDE5LjI0MywxNy40MDIsMzcuNTUxLDI5LjQyMiw1NC41MjEgICBjMy4yMDEsNC41MTgsNi40NjUsOS4wMzYsMTEuMTEzLDEyLjIxNmM1LjE0MiwzLjUyMSw5LjA1NywyLjM1NCwxMS40NzYtMy4zNzRjMS41MzUtMy42MzIsMi4yMDctNy41NDQsMi41NTMtMTEuNDM0ICAgYzEuMTQ2LTEzLjM4MywxLjI5Ny0yNi43NDMtMC43MTMtNDAuMDc5Yy0xLjIzNC04LjMyMy01LjkyMi0xMy43MTEtMTQuMjI3LTE1LjI4NmMtNC4yMzgtMC44MDMtMy42MDctMi4zOC0xLjU1NS00Ljc5OSAgIGMzLjU2NC00LjE3Miw2LjkxNi02Ljc2OSwxMy41OTgtNi43NjloNTAuMTExYzcuODg5LDEuNTU3LDkuNjQxLDUuMTAxLDEwLjcyMSwxMy4wMzlsMC4wNDMsNTUuNjYzICAgYy0wLjA4NiwzLjA3MywxLjUzNSwxMi4xOTIsNy4wNywxNC4yMjZjNC40MywxLjQ0OCw3LjM1LTIuMDk2LDEwLjAwOC00LjkwNWMxMS45OTgtMTIuNzM0LDIwLjU2MS0yNy43ODMsMjguMjExLTQzLjM2NiAgIGMzLjM5NS02Ljg1Miw2LjMxNC0xMy45NjgsOS4xNDMtMjEuMDc4YzIuMDk2LTUuMjc2LDUuMzg1LTcuODcyLDExLjMyOC03Ljc1N2w0OC4yMjksMC4wNDNjMS40MywwLDIuODc3LDAuMDIxLDQuMjYyLDAuMjU4ICAgYzguMTI3LDEuMzg1LDEwLjM1NCw0Ljg4MSw3Ljg0NCwxMi44MTdjLTMuOTU1LDEyLjQ1MS0xMS42NSwyMi44MjctMTkuMTc0LDMzLjI1MWMtOC4wNDMsMTEuMTI5LTE2LjY0NSwyMS44NzctMjQuNjIxLDMzLjA3MiAgIEMyNTIuMjYsMTYxLjU0NCwyNTIuODQyLDE2Ni42OTcsMjYxLjk0NSwxNzUuNTc2TDI2MS45NDUsMTc1LjU3NnogTTI2MS45NDUsMTc1LjU3NiIgZmlsbD0iI0ZGRkZGRiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" width="50" height="20" />
 				</div>
@@ -1267,7 +1269,8 @@ function ampforwp_sticky_social_icons(){
 		<?php if ( true == $redux_builder_amp['enable-single-telegram-share'] ) { ?>
 			<a title="telegram share" href="https://telegram.me/share/url?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(get_the_title()); ?>" target="_blank">
 				<div class="amp-social-icon amp-social-telegram"> 
-					<amp-img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjYgMjYiIGZpbGw9IiNmZmZmZmYiID48cGF0aCBkPSJNMCAydjguNUwxNSAxMyAwIDE1LjVWMjRsMjYtMTFMMCAyeiI+PC9wYXRoPjwvc3ZnPg==" width="50" height="20" />
+			    	<amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ1NS43MzEgNDU1LjczMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDU1LjczMSA0NTUuNzMxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGc+Cgk8cmVjdCB4PSIwIiB5PSIwIiBzdHlsZT0iZmlsbDojNjFBOERFOyIgd2lkdGg9IjQ1NS43MzEiIGhlaWdodD0iNDU1LjczMSIvPgoJPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik0zNTguODQ0LDEwMC42TDU0LjA5MSwyMTkuMzU5Yy05Ljg3MSwzLjg0Ny05LjI3MywxOC4wMTIsMC44ODgsMjEuMDEybDc3LjQ0MSwyMi44NjhsMjguOTAxLDkxLjcwNiAgIGMzLjAxOSw5LjU3OSwxNS4xNTgsMTIuNDgzLDIyLjE4NSw1LjMwOGw0MC4wMzktNDAuODgybDc4LjU2LDU3LjY2NWM5LjYxNCw3LjA1NywyMy4zMDYsMS44MTQsMjUuNzQ3LTkuODU5bDUyLjAzMS0yNDguNzYgICBDMzgyLjQzMSwxMDYuMjMyLDM3MC40NDMsOTYuMDgsMzU4Ljg0NCwxMDAuNnogTTMyMC42MzYsMTU1LjgwNkwxNzkuMDgsMjgwLjk4NGMtMS40MTEsMS4yNDgtMi4zMDksMi45NzUtMi41MTksNC44NDcgICBsLTUuNDUsNDguNDQ4Yy0wLjE3OCwxLjU4LTIuMzg5LDEuNzg5LTIuODYxLDAuMjcxbC0yMi40MjMtNzIuMjUzYy0xLjAyNy0zLjMwOCwwLjMxMi02Ljg5MiwzLjI1NS04LjcxN2wxNjcuMTYzLTEwMy42NzYgICBDMzIwLjA4OSwxNDcuNTE4LDMyNC4wMjUsMTUyLjgxLDMyMC42MzYsMTU1LjgwNnoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" width="50" height="20" />
+
 				</div>
 			</a>
 		<?php } ?>
@@ -1310,6 +1313,13 @@ function ampforwp_sticky_social_icons(){
 			<a title="pocket share" href="https://getpocket.com/save?url=<?php echo esc_url($amp_permalink); ?>" target="_blank">
 				<div class="amp-social-icon amp-social-pocket"> 
 					<amp-img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='2500' height='2251' viewBox='75.247 261.708 445.529 401.074'%3e%3cpath fill='%23EF4056' d='M114.219 261.708c-24.275 1.582-38.972 15.44-38.972 40.088v147.611c0 119.893 119.242 214.114 222.393 213.37 115.986-.837 223.137-98.779 223.137-213.37V301.796c0-24.741-15.626-38.693-40.088-40.088h-366.47zm93.943 120.079L297.64 466.8l89.571-85.013c40.088-16.835 57.574 28.927 41.111 42.321L311.685 535.443c-3.813 3.628-24.183 3.628-27.996 0L167.051 424.107c-15.72-14.789 4.743-61.295 41.111-42.32z'/%3e%3c/svg%3e" width="50" height="20" />
+				</div>
+			</a>
+		<?php } ?>
+		<?php if(true == ampforwp_get_setting('enable-single-mewe-share'))  {?>
+			<a title="mewe share" href="https://mewe.com/share?link=<?php echo esc_url($amp_permalink); ?>">
+				<div class="amp-social-icon custom-amp-socialsharing-mewe">
+					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/favicon-mewe.svg') ?>" width="50" height="20" />
 				</div>
 			</a>
 		<?php } ?>
@@ -2428,7 +2438,7 @@ function ampforwp_output_widget_content_above_loop() {
 	   		<div class="amp-wp-content widget-wrapper amp_widget_above_loop">
 	   			<div class="f-w">
 			  		<?php echo do_shortcode($sidebar_output); ?>
-					<div style="clear:both"></div>
+					<div class="cb"></div>
 				</div>
 	  		</div>
 	  	</div> 
@@ -3092,21 +3102,17 @@ if( ! function_exists(' ampforwp_youtube_modified_params ') ){
 function ampforwp_comment_button_url(){
 	global $redux_builder_amp;
 	$button_url = "";
-	$ampforwp_nonamp = "";
-	if($redux_builder_amp['amp-mobile-redirection']==1)
-        $ampforwp_nonamp =  '?nonamp=1';
-    else
-      $ampforwp_nonamp = '';
-
-  	if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
+	if(ampforwp_get_setting('amp-mobile-redirection')==1){
+		$button_url = add_query_arg( array( 'nonamp' => '1' ), get_permalink() );
+		$button_url = $button_url. '#commentform';
+	}
+	elseif ( ampforwp_get_setting('ampforwp-amp-takeover') ) {
   		$button_url = user_trailingslashit(get_the_permalink()).'#comments';
   	}
   	else{
-  		$button_url = add_query_arg( array( 'nonamp' => '1' ), get_permalink() );
-
-  		$button_url = $button_url. '#commentform';
+  		$button_url = get_permalink(). '#commentform';
   	}
-  return $button_url; 
+  	return $button_url; 
 }
 
 // 60. Remove Category Layout modification code added by TagDiv #842 and #796
@@ -4386,7 +4392,9 @@ if( ! function_exists( 'featured_image_content_filter' ) ){
 			// Remove the figure (due to caption)
 			$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);
 			// Remove the amp-img 
+		  if(false == has_post_thumbnail()){
 			$content = preg_replace('/<amp-img(.*)src="'.$featured_image.'"(.*?)<\/amp-img>/', '', $content);
+		  }
 		}
 	return $content;
 	}
@@ -4678,9 +4686,16 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
 // amp-bind for carousel with captions
 if( !function_exists('ampforwp_carousel_bind_script')){
 	function ampforwp_carousel_bind_script($data){
+	if( 1 == ampforwp_get_setting('ampforwp-gallery-design-type') || 2 == ampforwp_get_setting('ampforwp-gallery-design-type') ){
 		if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
 			$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
 		}	
+	}
+	if( 3 == ampforwp_get_setting('ampforwp-gallery-design-type') || true == ampforwp_get_setting('ampforwp-gallery-lightbox') ){
+		if ( empty( $data['amp_component_scripts']['amp-image-lightbox'] ) ) {
+			$data['amp_component_scripts']['amp-image-lightbox'] = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
+		}
+	}
 	return $data;
 	}
 }
@@ -5410,7 +5425,7 @@ function swifttheme_footer_widgets_init() {
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
 	    ) );
-	    
+	    if(true == ampforwp_get_setting('gnrl-sidebar')){
 	    register_sidebar( array(
 	        'name' => esc_html__( 'AMP Sidebar', 'accelerated-mobile-pages' ),
 	        'id' => 'swift-sidebar',
@@ -5421,6 +5436,7 @@ function swifttheme_footer_widgets_init() {
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
 	    ) );
+	    }
 	}
 }
 add_action( 'init', 'swifttheme_footer_widgets_init' );
@@ -6307,6 +6323,9 @@ if ( ! function_exists('ampforwp_gutenberg_css') ) {
 	function ampforwp_gutenberg_css(){ ?>
 		.wp-block-button { color: #fff}
 		.wp-block-button a {background-color: #32373c;border-radius: 28px;color: inherit;display: inline-block;padding: 12px 24px;}
+		.wp-block-cover{position:relative;background-color: #000;background-size: cover;background-position: center center;min-height: 430px;width: 100%;margin: 1.5em 0 1.5em 0;display: flex;justify-content: center;align-items: center;overflow: hidden;}
+		.wp-block-cover-text{color: #fff;font-size: 2em;line-height: 1.25;z-index: 1;}
+		.wp-block-cover-image.has-background-dim::before, .wp-block-cover.has-background-dim::before {content: "";position: absolute;top: 0;left: 0;bottom: 0;right: 0;background-color: inherit;opacity: .5;z-index: 1;}
 	<?php }
 } 
 // Subtitles Plugin Support #2853
@@ -6332,7 +6351,7 @@ if (class_exists('Subtitles')){
 }
 
 // AMPforWP Global Sanitizer
-add_action('pre_amp_render_post','ampforwp_comments_sanitizer');
+add_action('pre_amp_render_post','ampforwp_comments_sanitizer', 15);
 function ampforwp_comments_sanitizer(){
 	global $ampforwp_data;
 	$comments_scripts = array();
@@ -6400,6 +6419,12 @@ function ampforwp_add_global_scripts($data){
             }
         }
     }
+    // AddThis Support #3068   
+	if ( ampforwp_get_setting('enable-add-this-option') && ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social') ) ) )  {
+ 		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
+			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
+		}
+	}
     return $data;
 }	
 if ( ! function_exists('ampforwp_get_weglot_url') ) {
@@ -6470,6 +6495,12 @@ if ( ! class_exists('AMP_Base_Sanitizer') && class_exists('AMPforWP\\AMPVendor\\
 	{
 
 	}
+}
+// Class AMP_Base_Embed_Handler
+if ( ! class_exists('AMP_Base_Embed_Handler') && class_exists('AMPforWP\\AMPVendor\\AMP_Base_Embed_Handler') ) {
+	abstract class AMP_Base_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Handler
+	{
+ 	}
 }
 // Class AMP_HTML_Utils
 if ( ! class_exists('AMP_HTML_Utils') && class_exists('AMPforWP\\AMPVendor\\AMP_HTML_Utils') ) {
@@ -6568,15 +6599,95 @@ function ampforwp_ivory_search_css(){
 		    display: none;
 		}
 <?php } }
-// AddThis Support
-add_filter('amp_post_template_data','ampforwp_register_addthis_script', 20);
-function ampforwp_register_addthis_script( $data ){ 
-	global $redux_builder_amp;
-	if( ampforwp_get_setting('enable-add-this-option') ) {
-		
-		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
-			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
+// Font Awesome Icons added for Swift
+add_action('amp_post_template_head', 'ampforwp_fontawesome_canonical_link');
+function ampforwp_fontawesome_canonical_link(){ 
+  if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <?php }
+    }
+
+// Yoast BreadCrumbs #1473
+add_action('pre_amp_render_post', 'ampforwp_yoast_breadcrumbs');
+if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
+	function ampforwp_yoast_breadcrumbs(){
+		if ( ampforwp_get_setting('ampforwp-yoast-bread-crumb') ) {
+			// Remove the separator of Yoast
+			add_filter('wpseo_breadcrumb_separator','ampforwp_yoast_breadcrumbs_sep');
+			function ampforwp_yoast_breadcrumbs_sep($sep) {
+				$sep = '';
+				return $sep;
+			}
+			// Remove xmlns:v to avoid validation error
+			add_filter('wpseo_breadcrumb_output','ampforwp_yoast_breadcrumbs_modified_output');
+			function ampforwp_yoast_breadcrumbs_modified_output($output){
+				$output = str_replace('xmlns:v="http://rdf.data-vocabulary.org/#"', '', $output);
+				return $output;
+			}
+			// Change the wrapper to div
+			add_filter('wpseo_breadcrumb_output_wrapper', 'ampforwp_yoast_breadcrumbs_wrapper');
+			function ampforwp_yoast_breadcrumbs_wrapper($wrap) {
+				$wrap = 'div';
+				return $wrap;
+			}
+			// Add the Breadcrumbs class to wrapper
+			add_filter('wpseo_breadcrumb_output_class','ampforwp_yoast_breadcrumbs_wrapper_class');
+			function ampforwp_yoast_breadcrumbs_wrapper_class($class) {
+				$class = 'breadcrumbs';
+				return $class;
+			}
 		}
+	}
+}
+function ampforwp_yoast_breadcrumbs_output(){
+	if ( class_exists('WPSEO_Options') ){
+		$breadcrumb = '';
+		if ( true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') && true === WPSEO_Options::get( 'breadcrumbs-enable' ) && function_exists('yoast_breadcrumb')) {
+			$breadcrumb = yoast_breadcrumb('','', false);
+			return $breadcrumb;
+		}
+	}
+}
+
+// Slide Anything compatibility #2891
+add_filter('amp_content_embed_handlers','ampforwp_slide_anything_embed');
+function ampforwp_slide_anything_embed($data) {
+	if ( function_exists('cpt_slider_plugin_activation') ) {
+		require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-slide-anything-embed.php' );
+		$data['AMPFORWP_Slide_Anything_Embed_Handler'] = array();
+	}
+	return $data;
+}
+
+// Revolution Slider compatibility #1464
+add_action('pre_amp_render_post', 'ampforwp_initialise_rev_slider');
+if ( ! function_exists('ampforwp_initialise_rev_slider') ) {
+	function ampforwp_initialise_rev_slider(){
+		if ( class_exists('RevSliderOutput') ){
+			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-rev-slider.php';
+		}
+	}
+}
+add_filter('amp_content_embed_handlers','ampforwp_rev_slider_embed');
+function ampforwp_rev_slider_embed($data) {
+	if ( class_exists('RevSliderOutput') ){
+		$data['AMP_Rev_Slider_Embed_Handler'] = array();
+	}
+	return $data;
+}
+// Photo Gallery by 10Web Compatibility #1811
+add_action('pre_amp_render_post', 'ampforwp_initialise_photo_gallery');
+if ( ! function_exists('ampforwp_initialise_photo_gallery') ) {
+	function ampforwp_initialise_photo_gallery(){
+		if ( class_exists('BWG') ) {
+			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-photo-gallery-embed.php';
+		}
+	}
+}
+add_filter('amp_content_embed_handlers','ampforwp_photo_gallery_embed');
+function ampforwp_photo_gallery_embed($data) {
+	if ( class_exists('BWG') ) {
+		$data['AMPforWP_Photo_Gallery_Embed_Handler'] = array();
 	}
 	return $data;
 }
