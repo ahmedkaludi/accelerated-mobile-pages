@@ -1017,11 +1017,15 @@ function ampforwp_vendor_is_amp_endpoint(){
 if ( ! function_exists('ampforwp_exclude_posts') ) {
 	function ampforwp_exclude_posts(){
 		$exclude_post_values = array();
-		if ( false != get_transient('ampforwp_exclude_post_transient') ) {
-			$exclude_post_values = get_transient('ampforwp_exclude_post_transient');
+		$ampforwp_exclude_post_transient = get_transient('ampforwp_exclude_post_transient');
+		if ( false != $ampforwp_exclude_post_transient ) {
+			$exclude_post_values = $ampforwp_exclude_post_transient;
 		}
-		elseif (false != get_option('ampforwp_exclude_post') ) {
-			$exclude_post_values = get_option('ampforwp_exclude_post');
+		else{
+			$ampforwp_exclude_post = get_option('ampforwp_exclude_post');
+			if ( false != $ampforwp_exclude_post ) {
+				$exclude_post_values = $ampforwp_exclude_post;
+			}
 		}
 		return $exclude_post_values;
 	}
