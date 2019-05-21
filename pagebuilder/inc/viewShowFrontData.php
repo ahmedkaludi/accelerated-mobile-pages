@@ -789,6 +789,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 														 	), 
 														$repeaterFrontTemplate
 													);
+												$repeaterFrontTemplate = ampforwp_replaceIfContentConditional('image_caption', $image_caption, $repeaterFrontTemplate);
 											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
 										}else{
 											$replace = nl2br($replace);
@@ -993,6 +994,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 													 	), 
 													$moduleFrontHtml
 												);
+										$moduleFrontHtml = ampforwp_replaceIfContentConditional('image_caption', $image_caption, $moduleFrontHtml);
 										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], $imageUrl, $moduleFrontHtml);
 									}else{
 										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', esc_html( $replace), $moduleFrontHtml);
