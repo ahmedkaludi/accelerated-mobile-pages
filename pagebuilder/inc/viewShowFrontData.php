@@ -762,6 +762,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 														 array($imageWidth, $imageWidth), 
 														$repeaterFrontTemplate
 													);
+											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional('image_width', $imageWidth, $repeaterFrontTemplate);
 											$repeaterFrontTemplate = str_replace(
 														array('{{image_height}}',
 															  '{{image_height_'.$moduleField['name'].'}}'
@@ -771,6 +772,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 														 	), 
 														$repeaterFrontTemplate
 													);
+											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional('image_height', $imageHeight, $repeaterFrontTemplate);
 											$repeaterFrontTemplate = str_replace(
 														array('{{image_alt}}',
 															  '{{image_alt_'.$moduleField['name'].'}}'
@@ -780,6 +782,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 														 	), 
 														$repeaterFrontTemplate
 													);
+											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional('image_alt', $image_alt, $repeaterFrontTemplate);
 											$repeaterFrontTemplate = str_replace(
 														array('{{image_caption}}',
 															  '{{image_caption_'.$moduleField['name'].'}}'
@@ -971,11 +974,13 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 													 array($imageWidth,$imageWidth), 
 													$moduleFrontHtml
 												);
+										$moduleFrontHtml = ampforwp_replaceIfContentConditional('image_width', $imageWidth, $moduleFrontHtml);
 										$moduleFrontHtml = str_replace(
 													array('{{image_height}}','{{image_height_'.$field['name'].'}}'), 
 													 array($imageHeight,$imageHeight), 
 													$moduleFrontHtml
 												);
+										$moduleFrontHtml = ampforwp_replaceIfContentConditional('image_height', $imageHeight, $moduleFrontHtml);
 										$moduleFrontHtml = str_replace(
 													array('{{image_alt}}',
 														  '{{image_alt_'.$field['name'].'}}'
@@ -985,6 +990,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 													 	), 
 													$moduleFrontHtml
 												);
+										$moduleFrontHtml = ampforwp_replaceIfContentConditional('image_alt', $image_alt, $moduleFrontHtml);
 										$moduleFrontHtml = str_replace(
 													array('{{image_caption}}',
 														  '{{image_caption_'.$field['name'].'}}'
