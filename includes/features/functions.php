@@ -779,19 +779,19 @@ if ( ! function_exists('ampforwp_sanitize_i_amphtml') ) {
 }
 
 function checkAMPforPageBuilderStatus($postId){
-    global $post, $redux_builder_amp;
+    global $post;
     $postId = (is_object($post)? $post->ID: '');
   
-  if( ampforwp_is_front_page() ){
+    if( ampforwp_is_front_page() ){
         $postId = ampforwp_get_frontpage_id();
     }
     if ( empty(  $postId ) ) {
-    $response = false;
-  }else{
-  
+        $response = false;
+    }else{
+
       $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
       
-        if( $ampforwp_pagebuilder_enable=='yes'){
+        if( $ampforwp_pagebuilder_enable=='yes' && true == ampforwp_get_setting('ampforwp-pagebuilder')){
             $response = true;
         }else{
             $response = false;
