@@ -2,7 +2,7 @@
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
-Requires at least: 3.0
+Requires at least: 4.6
 Tested up to: 4.9.7
 Stable tag: 0.9.97.9
 License: GPLv2 or later

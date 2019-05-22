@@ -351,6 +351,7 @@ function ampforwp_rewrite_activation() {
     // Set transient for Welcome page
 	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
     set_transient( 'ampforwp_admin_notice_transient', true );
+    set_transient( 'ampforwp_wordpress_version_notice_transient', true );
 
 }
 add_action( 'admin_init', 'ampforwp_flush_after_update');
@@ -410,6 +411,9 @@ function ampforwp_rewrite_deactivate() {
 	delete_transient( 'ampforwp_welcome_screen_activation_redirect');
 	// Remove admin notice after dismissing it
 	delete_transient( 'ampforwp_automattic_activation_notice');
+	// Remove transient for Welcome page
+	delete_transient( 'ampforwp_wordpress_version_notice_transient');
+
 }
 
 if( !function_exists('ampforwp_upcomming_layouts_demo') ){
@@ -1099,6 +1103,10 @@ function ampforwp_automattic_activation(){
         <p><span class="dashicons dashicons-thumbs-up"></span>'.esc_html__('Thank you for using AMPforWP plugin!', 'accelerated-mobile-pages').'<a href="'.esc_url( admin_url( 'plugins.php?page=ampforwptourinstaller&ampforwp_install=1&_wpnonce='. $wizard_nonce .' ') ).'"> '.esc_html__('Run a installation wizard', 'accelerated-mobile-pages') .'</a></p></div>'; 
        
 	} 
+	if( version_compare( esc_attr( get_bloginfo( 'version' ) ), '4.6', '<=' ) && get_transient( 'ampforwp_wordpress_version_notice_transient' ) ){
+		echo '<div id="ampforwp-automattic-notice" class="updated notice is-dismissible message notice notice-alt ampforwp-setup-notice">
+        <p>'.esc_html__("It seems you're using oldest WordPress version, Please use latest version or above the v4.6", 'accelerated-mobile-pages') .'</p></div>'; 
+    }
 	}
 
 add_action('wp_ajax_ampforwp_automattic_notice_delete','ampforwp_automattic_notice_delete');
@@ -1106,7 +1114,10 @@ function ampforwp_automattic_notice_delete(){
 	if ( current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {   
 	  delete_transient( 'ampforwp_automattic_activation_notice');
 	  set_transient( 'ampforwp_automattic_activation_notice', 2 );
+	  // Remove transient for Welcome page
+	  delete_transient( 'ampforwp_wordpress_version_notice_transient');
 	}
+	exit();
 }
 // is_amp_endpoint Fallback #2287 #3055
 add_action('parse_query','ampforwp_vendor_is_amp_endpoint'); 

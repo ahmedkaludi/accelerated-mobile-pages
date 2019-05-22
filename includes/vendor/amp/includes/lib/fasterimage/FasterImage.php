@@ -82,7 +82,9 @@ class FasterImage
                     }
         );
 
-        $responseResults = \Requests::request_multiple($request , $options);
+        if( class_exists('Requests') ){
+            $responseResults = \Requests::request_multiple($request , $options);
+        }
         return $results;
     }
 
