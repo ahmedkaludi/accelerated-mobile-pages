@@ -126,15 +126,15 @@ function ampforwp_add_custom_rewrite_rules() {
     );
 
     // For category pages
-    if ( false == get_transient('ampforwp_category_base') ) {
+    $rewrite_category = '';
+    $rewrite_category = get_transient('ampforwp_category_base');
+
+    if ( false == $rewrite_category ) {
     	$rewrite_category = get_option('category_base');
     	if (  empty($rewrite_category) ) {
 	    	$rewrite_category = 'category';
 	    }
     	set_transient('ampforwp_category_base', $rewrite_category);
-    }
-    else{
-    	$rewrite_category = get_transient('ampforwp_category_base');
     }
 
     add_rewrite_rule(
