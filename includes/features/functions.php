@@ -777,3 +777,26 @@ if ( ! function_exists('ampforwp_sanitize_i_amphtml') ) {
         return $data;
     }
 }
+
+function checkAMPforPageBuilderStatus($postId){
+    global $post, $redux_builder_amp;
+    $postId = (is_object($post)? $post->ID: '');
+  
+  if( ampforwp_is_front_page() ){
+        $postId = ampforwp_get_frontpage_id();
+    }
+    if ( empty(  $postId ) ) {
+    $response = false;
+  }else{
+  
+      $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+      
+        if( $ampforwp_pagebuilder_enable=='yes'){
+            $response = true;
+        }else{
+            $response = false;
+        }
+      $response = apply_filters( 'ampforwp_pagebuilder_status_modify', $response, $postId );
+    }
+    return $response;
+}
