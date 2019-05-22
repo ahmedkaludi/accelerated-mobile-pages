@@ -16,14 +16,12 @@ if (! function_exists( 'ampforwp_menu') ) {
 	      'amp-menu' => esc_html__( 'AMP Menu','accelerated-mobile-pages' ),
 	    )
 	  );
-	  if(ampforwp_get_setting('primary-menu') == true)	{
-	  if(ampforwp_design_selector()==4){
+	  if(ampforwp_design_selector()==4 && ampforwp_get_setting('primary-menu') == true){
 	  register_nav_menus(
 	    array(
 	      'amp-alternative-menu' => esc_html__( 'AMP Alternative Menu - Below the Header','accelerated-mobile-pages' ),
 	    )
 	  );
-	  }
 	  }
 	  }
 	  // 1.2 Footer Menu	
