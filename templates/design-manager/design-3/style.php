@@ -8,9 +8,6 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
   $post_id = $post->ID;
   $get_customizer = new AMP_Post_Template( $post_id );
   // Get content width
-  $colorscheme    = ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color');
-  $font_color     = ampforwp_get_setting('amp-opt-color-rgba-font','color');
-  $link_color     = ampforwp_get_setting('amp-opt-color-rgba-link','color');
   $sticky_head    = ampforwp_get_setting('amp-opt-sticky-head');
 
   $content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
@@ -518,7 +515,7 @@ amp-carousel{direction: ltr;}
 a {  color: <?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color','ampforwp_sanitize_color'); ?> }
 body a {  color: <?php echo ampforwp_get_setting('amp-opt-color-rgba-link','color','ampforwp_sanitize_color'); ?> }
 
-.amp-wp-content blockquote { border-color:  <?php echo esc_attr(sanitize_hex_color( $header_background_color )); ?>; }
+.amp-wp-content blockquote { border-color:  <?php echo ampforwp_sanitize_color( $header_background_color ); ?>; }
 amp-user-notification { border-color:  <?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color','ampforwp_sanitize_color'); ?>;}
 amp-user-notification button { background-color:  <?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color','ampforwp_sanitize_color'); ?>;}
 <?php if ( true == ampforwp_get_setting('enable-single-social-icons') && is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
