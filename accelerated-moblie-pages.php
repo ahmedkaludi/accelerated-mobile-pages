@@ -840,7 +840,6 @@ function ampforwp_get_setting( $opt_name='', $child_option='', $sanitize_method=
 	if(empty($redux_builder_amp)){
 		$redux_builder_amp = get_option('redux_builder_amp');
 	}
-	$redux_builder_amp = apply_filters('ampforwp_modify_options',$redux_builder_amp);
 	$opt_value = '';
 	if ( isset($redux_builder_amp[$opt_name]) ) {
 		$opt_value = $redux_builder_amp[$opt_name];
