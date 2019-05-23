@@ -1124,7 +1124,7 @@ function ampforwp_automattic_activation(){
 	} 
 	if( version_compare( esc_attr( get_bloginfo( 'version' ) ), '4.6', '<=' ) && get_transient( 'ampforwp_wordpress_version_notice_transient' ) ){
 		echo '<div id="ampforwp-automattic-notice" class="updated notice is-dismissible message notice notice-alt ampforwp-setup-notice">
-        <p>'.esc_html__("It seems you're using oldest WordPress version, Please use latest version or above the v4.6", 'accelerated-mobile-pages') .'</p></div>'; 
+        <p>'.esc_html__("It seems you're using older version of WordPress, Please use v4.6 or above", 'accelerated-mobile-pages') .'</p></div>'; 
     }
 	}
 
