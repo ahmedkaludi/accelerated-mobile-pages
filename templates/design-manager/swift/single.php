@@ -127,8 +127,10 @@
 		    </div>
 		</div>
 	</div>
-<?php } // Single page design 1 ends here
+<?php 
 do_action("ampforwp_single_design_type_handle");
+} // Single page design 1 ends here
+
 	?>
 <?php if( $redux_builder_amp['single-design-type'] == '1' && $redux_builder_amp['rp_design_type'] == '2'){
        if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
