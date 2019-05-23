@@ -396,26 +396,38 @@ add_action('amp_post_template_footer','ampforwp_sd_sitenavigation');
 function ampforwp_sd_sitenavigation(){
     if ( ! class_exists('saswp_fields_generator') ) {
 	    $input = array();           
-	    $navObj = array();       
-	    $menuLocations = get_nav_menu_locations();        
+	    $navObj = array();
+	    if ( true == get_transient('ampforwp_header_sd_menu') && true == get_transient('ampforwp_footer_sd_menu') && false != get_transient('ampforwp_sd_menu') ) {
+	    	$navObj[] = get_transient('ampforwp_sd_menu');
+	    }
+	    $menuLocations = get_nav_menu_locations();
 	    if(!empty($menuLocations) ){ 
-	        foreach($menuLocations as $type => $id){
-	            $menuItems = wp_get_nav_menu_items($id);
-	            if($menuItems){
-	                if($type == 'amp-menu' || $type == 'amp-footer-menu' ){                
-	                    foreach($menuItems as $items){
-	                      $navObj[] = array(
-	                             "@context"  => "https://schema.org",
-	                             "@type"     => "SiteNavigationElement",
-	                             "@id"       => trailingslashit(get_home_url()).$type,
-	                             "name"      => $items->title,
-	                             "url"       => $items->url
-	                      );
+	    	if ( empty($navObj) ) {  
+		        foreach($menuLocations as $type => $id){
+	                if( ($type == 'amp-menu' && false == get_transient('ampforwp_header_sd_menu') ) || ($type == 'amp-footer-menu' &&  false == get_transient('ampforwp_footer_sd_menu')) ){
+			            $menuItems = wp_get_nav_menu_items($id);
+			            if($menuItems){
+		                    foreach($menuItems as $items){
+		                      $navObj[] = array(
+		                             "@context"  => "https://schema.org",
+		                             "@type"     => "SiteNavigationElement",
+		                             "@id"       => trailingslashit(get_home_url()).$type,
+		                             "name"      => $items->title,
+		                             "url"       => $items->url
+		                      );
 
-	                    }
-	           		}                                                           
-	            }
-	        }
+		                    }
+		           		}   
+		            }
+		            if ( 'amp-menu' == $type ) {
+		            	set_transient('ampforwp_header_sd_menu', true , 24*HOUR_IN_SECONDS );
+		            }
+		            if ( 'amp-footer-menu' == $type ) {
+		            	set_transient('ampforwp_footer_sd_menu', true , 24*HOUR_IN_SECONDS );
+		            }
+	            	set_transient('ampforwp_sd_menu', $navObj , 24*HOUR_IN_SECONDS );
+		        }
+		    }
 	        if($navObj){  
 	            $input['@context'] = 'https://schema.org'; 
 	            $input['@graph']   = $navObj; ?>       

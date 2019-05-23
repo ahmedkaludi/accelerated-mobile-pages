@@ -42,7 +42,7 @@
 	        $paged = 1;
 	    }
 
-	    $exclude_ids = get_option('ampforwp_exclude_post');
+	    $exclude_ids = ampforwp_exclude_posts();
 
 		$q = new WP_Query( apply_filters('ampforwp_query_args', array(
 			's' 				  => get_search_query() ,

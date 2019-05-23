@@ -108,12 +108,9 @@ function amppbbase_admin_scripts( $hook_suffix ){
 									);
 			wp_localize_script( 'amppb-admin', 'amppb_panel_options',$components_options);
 			wp_enqueue_script('amppb-admin');
-			add_action( 'admin_footer', 'js_templates',9999);
-	   
-	    
+			add_action( 'admin_footer', 'js_templates',9999);	    
     }
 }
-
 
 function js_templates() {
 	global $containerCommonSettings;
@@ -122,31 +119,7 @@ function js_templates() {
     global $savedlayoutTemplate;
 	include plugin_dir_path( __FILE__ ) . '/inc/js-templates.php';
 }
-function checkAMPforPageBuilderStatus($postId){
-	global $post, $redux_builder_amp;
-	$postId = (is_object($post)? $post->ID: '');
-  
-  if( ampforwp_is_front_page() ){
-		$postId = ampforwp_get_frontpage_id();
-	}
-	if ( empty(  $postId ) ) {
-    $response = false;
-  }else{
-  
-	  $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
-	  
-		if( $ampforwp_pagebuilder_enable=='yes'){
-			$response = true;
-		}else{
-			$response = false;
-		}
-	  $response = apply_filters( 'ampforwp_pagebuilder_status_modify', $response, $postId );
-	}
-	return $response;
-}
- 
+
 require_once AMP_PAGE_BUILDER.'inc/amppb_save_data.php';
 require_once AMP_PAGE_BUILDER.'inc/viewShowFrontData.php';
 require_once AMP_PAGE_BUILDER.'inc/adminAjaxContents.php';
-
-

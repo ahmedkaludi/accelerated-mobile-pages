@@ -102,7 +102,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 		public function single_post() {
 			global $post;
 			$pages = array();
-			$exclude_ids = get_option('ampforwp_exclude_post');
+			$exclude_ids = ampforwp_exclude_posts();
 			$exclude_ids[] = $post->ID;
 			$query_args =  array(
 				'post_type'           => get_post_type(),

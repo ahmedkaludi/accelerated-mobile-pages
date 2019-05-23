@@ -732,6 +732,34 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
         return $returnData;
     }
 }
+
+// wp_update_nav_menu #3052
+add_action('wp_update_nav_menu', 'ampforwp_wp_update_nav_menu', 10 , 1 );
+if ( ! function_exists('ampforwp_wp_update_nav_menu') ) {
+    function ampforwp_wp_update_nav_menu( $menu_id ) {
+        if ( false != get_transient('ampforwp_header_menu') ) {
+            delete_transient('ampforwp_header_menu');
+        }
+        if ( false != get_transient('ampforwp_footer_menu') ) {
+            delete_transient('ampforwp_footer_menu');
+        }
+    }
+}
+// Delete Menu Transients on Saving AMP Settings #3052
+if ( function_exists('ampforwp_menu_transient_on_save') ){
+    function ampforwp_menu_transient_on_save($redux_builder_amp, $this_transients_changed_values) {
+        if ( isset($this_transients_changed_values['amp-design-selector']) ) {
+            if ( false != get_transient('ampforwp_header_menu') ) {
+                    delete_transient('ampforwp_header_menu');
+                }
+            if ( false != get_transient('ampforwp_footer_menu') ) {
+                delete_transient('ampforwp_footer_menu');
+            }
+        }
+    }
+}
+add_action("redux/options/redux_builder_amp/saved",'ampforwp_menu_transient_on_save', 10, 2);
+
 // Protocol Remover
 if ( ! function_exists('ampforwp_remove_protocol') ) {
     function ampforwp_remove_protocol($url){
@@ -748,4 +776,27 @@ if ( ! function_exists('ampforwp_sanitize_i_amphtml') ) {
         $data = preg_replace_callback('/.i-amphtml-(.*?){(.*?)}/s',function($matches){ if(!empty($matched)){ return ''; } }, $data);
         return $data;
     }
+}
+
+function checkAMPforPageBuilderStatus($postId){
+    global $post;
+    $postId = (is_object($post)? $post->ID: '');
+  
+    if( ampforwp_is_front_page() ){
+        $postId = ampforwp_get_frontpage_id();
+    }
+    if ( empty(  $postId ) ) {
+        $response = false;
+    }else{
+
+      $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+      
+        if( $ampforwp_pagebuilder_enable=='yes' && true == ampforwp_get_setting('ampforwp-pagebuilder')){
+            $response = true;
+        }else{
+            $response = false;
+        }
+      $response = apply_filters( 'ampforwp_pagebuilder_status_modify', $response, $postId );
+    }
+    return $response;
 }
