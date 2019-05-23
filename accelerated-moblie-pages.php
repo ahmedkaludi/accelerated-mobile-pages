@@ -150,12 +150,11 @@ function ampforwp_add_custom_rewrite_rules() {
     );
 
     // For category pages with Pagination (Custom Permalink Structure)
-    if ( false == get_transient('ampforwp_permalink_structure') ) {
+	$permalink_structure = '';
+	$permalink_structure = get_transient('ampforwp_permalink_structure');
+    if ( false == $permalink_structure ) {
 		$permalink_structure = get_option('permalink_structure');
 		set_transient('ampforwp_permalink_structure', $permalink_structure );
-    }
-    else{
-    	$permalink_structure = get_transient('ampforwp_permalink_structure');
     }
 	$permalink_structure = preg_replace('/(%.*%)/', '', $permalink_structure);
 	$permalink_structure = preg_replace('/\//', '', $permalink_structure);
@@ -168,16 +167,16 @@ function ampforwp_add_custom_rewrite_rules() {
   	}
 
     // For tag pages
-    if ( false ==  get_transient('ampforwp_tag_base') ) {   	
+    $rewrite_tag = '';
+    $rewrite_tag = get_transient('ampforwp_tag_base');
+    if ( false == $rewrite_tag ) {   	
 		$rewrite_tag = get_option('tag_base');
 	    if ( empty($rewrite_tag) ) {
 	    	$rewrite_tag = 'tag';
 	    }
 	    set_transient('ampforwp_tag_base',$rewrite_tag);
     }
-    else{
-    	$rewrite_tag = get_transient('ampforwp_tag_base');
-    }
+
     add_rewrite_rule(
       $rewrite_tag.'\/(.+?)\/amp/?$',
       'index.php?amp=1&tag=$matches[1]',
@@ -210,7 +209,9 @@ function ampforwp_add_custom_rewrite_rules() {
       'top'
     );
 	//Rewrite rule for custom Taxonomies
-	if ( false == get_transient('ampforwp_get_taxonomies') ) {		
+	$taxonomies = '';
+	$taxonomies = get_transient('ampforwp_get_taxonomies');
+	if ( false == $taxonomies ) {		
 		$args = array(
 		  		'public'   => true,
 		  		'_builtin' => false,  
@@ -220,16 +221,14 @@ function ampforwp_add_custom_rewrite_rules() {
 		$taxonomies = get_taxonomies( $args, $output, $operator );
 		set_transient('ampforwp_get_taxonomies',$taxonomies);
 	}
-	else{
-		$taxonomies = get_transient('ampforwp_get_taxonomies');
-	}
+
   	if(!function_exists('amp_woocommerce_pro_add_woocommerce_support') ) {
 		if( class_exists( 'WooCommerce' ) ) {
-			if( false == get_transient('ampforwp_woocommerce_permalinks') ) {
+			$wc_permalinks = '';
+			$wc_permalinks = get_transient('ampforwp_woocommerce_permalinks');
+			if( false == $wc_permalinks ) {
 				$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
 				set_transient('ampforwp_woocommerce_permalinks', $wc_permalinks);		
-			}else{
-				$wc_permalinks = get_transient('ampforwp_woocommerce_permalinks');
 			}
 			if ( $wc_permalinks ) {
 				$taxonomies = array_merge($taxonomies, $wc_permalinks);
