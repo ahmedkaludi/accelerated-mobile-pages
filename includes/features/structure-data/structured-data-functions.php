@@ -400,9 +400,9 @@ function ampforwp_sd_sitenavigation(){
 	    if ( true == get_transient('ampforwp_header_sd_menu') && true == get_transient('ampforwp_footer_sd_menu') && false != get_transient('ampforwp_sd_menu') ) {
 	    	$navObj[] = get_transient('ampforwp_sd_menu');
 	    }
-	    $menuLocations = get_nav_menu_locations();        
+	    $menuLocations = get_nav_menu_locations();
 	    if(!empty($menuLocations) ){ 
-	    	if ( !empty($navObj) ) {  
+	    	if ( empty($navObj) ) {  
 		        foreach($menuLocations as $type => $id){
 	                if( ($type == 'amp-menu' && false == get_transient('ampforwp_header_sd_menu') ) || ($type == 'amp-footer-menu' &&  false == get_transient('ampforwp_footer_sd_menu')) ){
 			            $menuItems = wp_get_nav_menu_items($id);
