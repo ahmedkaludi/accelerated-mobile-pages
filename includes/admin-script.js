@@ -461,6 +461,10 @@ jQuery(function($) {
     ampforwp_font_generator();
     function ampforwp_font_generator() {
         gAPIkey = redux_data.google_font_api_key;
+        fontswitch = redux_data['ampforwp-google-font-switch'];
+        if(fontswitch != 1){
+            return;
+        }
         disableGFonts = redux_data.amp_google_font_restrict;  
         if($("#google_font_api_key").length>0){
             $("#google_font_api_key").after("<input type='submit' value='Verify'>");
