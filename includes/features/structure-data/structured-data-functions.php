@@ -404,7 +404,7 @@ function ampforwp_sd_sitenavigation(){
 	    if(!empty($menuLocations) ){ 
 	    	if ( empty($navObj) ) {  
 		        foreach($menuLocations as $type => $id){
-	                if( ($type == 'amp-menu' && false == get_transient('ampforwp_header_sd_menu') ) || ($type == 'amp-footer-menu' &&  false == get_transient('ampforwp_footer_sd_menu')) ){
+	                if( $type == 'amp-menu' || $type == 'amp-footer-menu' ){
 			            $menuItems = wp_get_nav_menu_items($id);
 			            if($menuItems){
 		                    foreach($menuItems as $items){
