@@ -35,36 +35,36 @@ add_action('amp_post_template_css','amp_menu_styles',11);
 function amp_menu_styles(){
 	$atf 	= '';
 	$design = ampforwp_get_setting('amp-design-selector');
-	if ( $design == (1 || 2 || 3) ) {
-		return;
+		if ( $design != 1 && $design != 2 && $design != 3 ) {
+			$atf = true;?>
+			.amp-menu input{display:none;}
+			.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ed1c24;top:0px;z-index:10000;line-height:1;cursor:pointer;}
+			<?php
+	 	
+	 	if ( ! defined('AMPFORWP_LAYOUTS_URL') ) { ?>
+			/** Dropdown CSS **/
+			amp-sidebar{padding:15px;}
+			.amp-sidebar-close{border-radius: 100%;cursor:pointer;}
+			.amp-search-wrapper{margin-bottom:15px;}
+			.amp-menu li.menu-item-has-children ul{display:none;margin:0;}
+			.amp-menu li.menu-item-has-children ul, .amp-menu li.menu-item-has-children ul ul{font-size:14px;}
+			.amp-menu input{display:none;}
+			.amp-menu [id^=drop]:checked + label + ul{ display: block;}
+			<?php
+		} elseif( $atf && defined('AMPFORWP_LAYOUTS_URL') ){?>
+
+			/** Dropdown CSS **/
+			amp-sidebar{padding:15px;}
+			.amp-sidebar-close{border-radius: 100%;cursor:pointer;}
+			.amp-search-wrapper{margin-bottom:15px;}
+			.amp-menu li.menu-item-has-children ul{display:none;margin:0;}
+			.amp-menu li.menu-item-has-children ul, .amp-menu li.menu-item-has-children ul ul{font-size:14px;}
+			.amp-menu input{display:none;}
+			.amp-menu [id^=drop]:checked + label + ul{ display: block;}
+
+			<?php
+		}?>
+		<?php /*AMP theme framework and AMP layouts and this is required*/ ?>
+		aside{width:150px}.amp-menu{list-style-type:none;margin:0;padding:0}.amp-menu li{position:relative;display:block}.amp-menu li.menu-item-has-children ul{display:none}.amp-menu li.menu-item-has-children:hover>ul{display:}.amp-menu li.menu-item-has-children>ul>li{padding-left:10px}.amp-menu>li a{padding:7px;display:block;margin-bottom:1px}.amp-menu>li ul{list-style-type:none;margin:0;padding:0;position:relative}.amp-menu input{display:none;}<?php 
 	}
-	$atf = true;?>
-	.amp-menu input{display:none;}
-	.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ed1c24;top:0px;z-index:10000;line-height:1;cursor:pointer;}
-	<?php
- 	if ( ! defined('AMPFORWP_LAYOUTS_URL') ) { ?>
-		/** Dropdown CSS **/
-		amp-sidebar{padding:15px;}
-		.amp-sidebar-close{border-radius: 100%;cursor:pointer;}
-		.amp-search-wrapper{margin-bottom:15px;}
-		.amp-menu li.menu-item-has-children ul{display:none;margin:0;}
-		.amp-menu li.menu-item-has-children ul, .amp-menu li.menu-item-has-children ul ul{font-size:14px;}
-		.amp-menu input{display:none;}
-		.amp-menu [id^=drop]:checked + label + ul{ display: block;}
-		<?php
-	} elseif( $atf && defined('AMPFORWP_LAYOUTS_URL') ){?>
-
-		/** Dropdown CSS **/
-		amp-sidebar{padding:15px;}
-		.amp-sidebar-close{border-radius: 100%;cursor:pointer;}
-		.amp-search-wrapper{margin-bottom:15px;}
-		.amp-menu li.menu-item-has-children ul{display:none;margin:0;}
-		.amp-menu li.menu-item-has-children ul, .amp-menu li.menu-item-has-children ul ul{font-size:14px;}
-		.amp-menu input{display:none;}
-		.amp-menu [id^=drop]:checked + label + ul{ display: block;}
-
-		<?php
-	}?>
-	<?php /*AMP theme framework and AMP layouts and this is required*/ ?>
-	aside{width:150px}.amp-menu{list-style-type:none;margin:0;padding:0}.amp-menu li{position:relative;display:block}.amp-menu li.menu-item-has-children ul{display:none}.amp-menu li.menu-item-has-children:hover>ul{display:}.amp-menu li.menu-item-has-children>ul>li{padding-left:10px}.amp-menu>li a{padding:7px;display:block;margin-bottom:1px}.amp-menu>li ul{list-style-type:none;margin:0;padding:0;position:relative}.amp-menu input{display:none;}<?php 
 }
