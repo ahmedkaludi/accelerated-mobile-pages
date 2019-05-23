@@ -35,12 +35,13 @@ add_action('amp_post_template_css','amp_menu_styles',11);
 function amp_menu_styles(){
 	$atf 	= '';
 	$design = ampforwp_get_setting('amp-design-selector');
-	if ( $design != (1 || 2 || 3) ) {
-		$atf = true;?>
-		.amp-menu input{display:none;}
-		.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ed1c24;top:0px;z-index:10000;line-height:1;cursor:pointer;}
-		<?php
- 	}
+	if ( $design == (1 || 2 || 3) ) {
+		return;
+	}
+	$atf = true;?>
+	.amp-menu input{display:none;}
+	.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ed1c24;top:0px;z-index:10000;line-height:1;cursor:pointer;}
+	<?php
  	if ( ! defined('AMPFORWP_LAYOUTS_URL') ) { ?>
 		/** Dropdown CSS **/
 		amp-sidebar{padding:15px;}
