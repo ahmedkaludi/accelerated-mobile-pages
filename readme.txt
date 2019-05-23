@@ -15,10 +15,6 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 [What's New in this Version?](https://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://ampforwp.com/demo/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](https://ampforwp.com/help-center/)
 
-[youtube https://www.youtube.com/watch?v=Em1nsE_KaKw]
-
-[youtube https://www.youtube.com/watch?v=QTbkn2rHyqM]
-
 <strong>Extensions</strong><br>
 Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Contact Form 7 Support](https://ampforwp.com/contact-form-7/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Email Opt-in Support](https://ampforwp.com/opt-in-forms/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [Call To Action Support](https://ampforwp.com/call-to-action/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin).
 
