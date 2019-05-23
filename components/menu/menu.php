@@ -38,7 +38,7 @@ function amp_menu_styles(){
 		if ( $design != 1 && $design != 2 && $design != 3 ) {
 			$atf = true;?>
 			.amp-menu input{display:none;}
-			.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ed1c24;top:0px;z-index:10000;line-height:1;cursor:pointer;}
+			
 			<?php
 	 	
 	 	if ( ! defined('AMPFORWP_LAYOUTS_URL') ) { ?>
@@ -50,6 +50,7 @@ function amp_menu_styles(){
 			.amp-menu li.menu-item-has-children ul, .amp-menu li.menu-item-has-children ul ul{font-size:14px;}
 			.amp-menu input{display:none;}
 			.amp-menu [id^=drop]:checked + label + ul{ display: block;}
+			.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ed1c24;top:0px;z-index:10000;line-height:1;cursor:pointer;}
 			<?php
 		} elseif( $atf && defined('AMPFORWP_LAYOUTS_URL') ){?>
 
