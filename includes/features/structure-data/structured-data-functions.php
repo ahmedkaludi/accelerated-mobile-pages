@@ -76,7 +76,7 @@
 				}
 					$structured_data_image = $structured_data_image_url;
 					$structured_data_height = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-height'));
-					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
+					$structured_data_width = intval(ampforwp_get_setting('amp-structured-data-placeholder-image-width'));
 
 					$metadata['image'] = array(
 						'@type' 	=> 'ImageObject',
