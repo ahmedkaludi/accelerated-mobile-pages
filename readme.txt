@@ -194,14 +194,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.53 (20th May 2019) =
-* Fixed: 500 errors on posts that don't use WP Bakery #3183
-* Fixed: Hyperlink in amp pages including emoji - code improved #2967
-* Fixed: Errors in AMP social Icons #3033
-* Fixed: Code improved to fetch all Categories and tags in Featured Slider [Design -3] #2590
-* Fixed: Fatal error on posts with comments present in latest v0.9.97.52 #3191
-* Fixed: "View Desktop Version" feature is not working in mobile view #3192
-* Fixed: Improved the Extension array code #3206
-* Fixed: Fatal error Uncaught TypeError Argument 1 passed to DOMNode::replaceChild() #3203
+= 0.9.97.54 (23rd May 2019) =
+* Fixed: HUGE PERFORMANCE Issues #3052
+* Fixed: Performance Issue with queries #2997
+* Fixed: Performance Issues with template_redirect hooks #2773 #2920
+* Fixed: Performance Issues with Design manager #2873
+* Fixed: Performance Issues with ampforwp_exclude_post option #3118
+* Fixed: Performance Issues with AMP Pagebuilder modules and settings which were loading By default #2323
+* Fixed: Performance Issues with Hide AMP Bulk Tools #2549
 
 Full changelog available in changelog.txt
