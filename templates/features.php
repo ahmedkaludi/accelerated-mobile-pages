@@ -2814,18 +2814,26 @@ function ampforwp_auto_add_amp_menu_link_insert() {
 }
 
 function ampforwp_auto_add_amp_in_link_check() {
-	global $redux_builder_amp;
 	$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
-
-	if ( $ampforwp_is_amp_endpoint && $redux_builder_amp['ampforwp-auto-amp-menu-link'] == 1 ) {
+	$add_amp_menu = get_transient('ampforwp_auto_add_amp_in_menu_link');
+	if ( false == $add_amp_menu || ( 'on' && 0 == ampforwp_get_setting('ampforwp-auto-amp-menu-link') ) ) {
+		delete_transient('ampforwp_header_menu');
+		delete_transient('ampforwp_footer_menu');
+		set_transient('ampforwp_auto_add_amp_in_menu_link', 'off');
+	}
+	if ( $ampforwp_is_amp_endpoint && ampforwp_get_setting('ampforwp-auto-amp-menu-link') == 1 ) {
+		if( 'off' == $add_amp_menu ) {
+			delete_transient('ampforwp_header_menu');
+			delete_transient('ampforwp_footer_menu');
+			set_transient('ampforwp_auto_add_amp_in_menu_link', 'on');
+		}
 		add_filter( 'nav_menu_link_attributes', 'ampforwp_auto_add_amp_in_menu_link', 10, 3 );
 	}
 }
 
 function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
-	global $redux_builder_amp;
-	
-  if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point'] == 1){
+
+  if(ampforwp_get_setting('amp-core-end-point') == 1 ){
 	    $atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) );
 		$atts['href'] = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $atts['href']);
 	}
