@@ -5425,9 +5425,9 @@ else{
           ),
          //End AddThis Support    
         array(
-           'id' => 'social-shre',
+           'id' => 'social-settings',
            'type' => 'section',
-           'title' => esc_html__('Social Sharing', 'accelerated-mobile-pages'),
+           'title' => esc_html__('Social Settings', 'accelerated-mobile-pages'),
            'indent' => true,
            'layout_type' => 'accordion',
             'accordion-open'=> 1,
@@ -5452,6 +5452,21 @@ else{
               'title'     =>  esc_html__('Social Share links to AMP', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ), 
+          // Social No Follow links 
+          array(
+              'id'        =>  'ampforwp-social-no-follow',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('No Follow All Your Social Links', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+          array(
+           'id' => 'social-shre',
+           'type' => 'section',
+           'title' => esc_html__('Social Sharing', 'accelerated-mobile-pages'),
+           'indent' => true,
+           'layout_type' => 'accordion',
+            'accordion-open'=> 1,
+         ),
           // Facebook Like 
           array(
               'id'        =>  'ampforwp-facebook-like-button',

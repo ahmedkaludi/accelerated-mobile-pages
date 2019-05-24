@@ -22,47 +22,47 @@
             <ul>
 
             <?php if ( ampforwp_get_setting('enable-single-twittter-profile') && '' !== ampforwp_get_setting('enable-single-twittter-profile-url') ) { ?>
-              <li class="icon-twitter"><a title="twitter profile" href="<?php echo esc_url($redux_builder_amp['enable-single-twittter-profile-url']); ?>" target ="_blank"></a></li>
+              <li class="icon-twitter"><a title="twitter profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-twittter-profile-url']); ?>" target ="_blank"></a></li>
               <?php } ?>
 
               <?php if ( ampforwp_get_setting('enable-single-facebook-profile') && '' !== ampforwp_get_setting('enable-single-facebook-profile-url') ) { ?>
-              <li class="icon-facebook"><a title="facebook profile" href="<?php echo esc_url($redux_builder_amp['enable-single-facebook-profile-url']); ?>" target ="_blank"></a></li>
+              <li class="icon-facebook"><a title="facebook profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-facebook-profile-url']); ?>" target ="_blank"></a></li>
               <?php } ?>
 
               <?php if ( ampforwp_get_setting('enable-single-pintrest-profile') && '' !== ampforwp_get_setting('enable-single-pintrest-profile-url') ) { ?>
-              <li class="icon-pinterest"><a title="pinterest profile" href="<?php echo esc_url($redux_builder_amp['enable-single-pintrest-profile-url']); ?>" target ="_blank"></a></li>
+              <li class="icon-pinterest"><a title="pinterest profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-pintrest-profile-url']); ?>" target ="_blank"></a></li>
               <?php } ?>
 
               <?php if ( ampforwp_get_setting('enable-single-google-plus-profile') && '' !== ampforwp_get_setting('enable-single-google-plus-profile-url') ) { ?>
-              <li class="icon-google-plus"><a title="google plus profile" href="<?php echo esc_url($redux_builder_amp['enable-single-google-plus-profile-url']); ?>" target ="_blank"></a></li>
+              <li class="icon-google-plus"><a title="google plus profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-google-plus-profile-url']); ?>" target ="_blank"></a></li>
               <?php } ?>
 
               <?php  if ( ampforwp_get_setting('enable-single-linkdin-profile') && '' !== ampforwp_get_setting('enable-single-linkdin-profile-url') ) { ?>
-              <li class="icon-linkedin"><a title="linkedin profile" href="<?php echo esc_url($redux_builder_amp['enable-single-linkdin-profile-url']); ?>" target ="_blank"></a></li>
+              <li class="icon-linkedin"><a title="linkedin profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-linkdin-profile-url']); ?>" target ="_blank"></a></li>
               <?php } ?>
 
               <?php  if ( ampforwp_get_setting('enable-single-youtube-profile') && '' !== ampforwp_get_setting('enable-single-youtube-profile-url') ) { ?>
-              <li class="icon-youtube-play"><a title="youtube profile" href="<?php echo esc_url($redux_builder_amp['enable-single-youtube-profile-url']); ?>" target ="_blank"></a></li>
+              <li class="icon-youtube-play"><a title="youtube profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-youtube-profile-url']); ?>" target ="_blank"></a></li>
               <?php } ?>
 
               <?php if ( ampforwp_get_setting('enable-single-instagram-profile') && '' !== ampforwp_get_setting('enable-single-instagram-profile-url') ) { ?>
-              <li class="icon-instagram"><a title="instagram profile" href="<?php echo esc_url($redux_builder_amp['enable-single-instagram-profile-url']); ?>" target ="_blank">  </a></li>
+              <li class="icon-instagram"><a title="instagram profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-instagram-profile-url']); ?>" target ="_blank">  </a></li>
               <?php } ?>
 
               <?php if ( ampforwp_get_setting('enable-single-reddit-profile') && '' !== ampforwp_get_setting('enable-single-reddit-profile-url') ) { ?>
-              <li class="icon-reddit-alien"><a title="reddit profile" href="<?php echo esc_url($redux_builder_amp['enable-single-reddit-profile-url']); ?>" target ="_blank"></a></li>
+              <li class="icon-reddit-alien"><a title="reddit profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-reddit-profile-url']); ?>" target ="_blank"></a></li>
               <?php } ?>
 
               <?php if ( ampforwp_get_setting('enable-single-VKontakte-profile') && '' !== ampforwp_get_setting('enable-single-VKontakte-profile-url') ) { ?>
-              <li class="icon-vk"><a title="vkontakte profile" href="<?php echo esc_url($redux_builder_amp['enable-single-VKontakte-profile-url']); ?>" target ="_blank"></a></li>
+              <li class="icon-vk"><a title="vkontakte profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-VKontakte-profile-url']); ?>" target ="_blank"></a></li>
               <?php } ?>
 
               <?php if ( ampforwp_get_setting('enable-single-snapchat-profile') && '' !== ampforwp_get_setting('enable-single-snapchat-profile-url') ) { ?>
-              <li class="icon-snapchat-ghost"><a title="snapchat profile" href="<?php echo esc_url($redux_builder_amp['enable-single-snapchat-profile-url']); ?>" target ="_blank"></a></li>
+              <li class="icon-snapchat-ghost"><a title="snapchat profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-snapchat-profile-url']); ?>" target ="_blank"></a></li>
               <?php } ?>
 
               <?php if ( ampforwp_get_setting('enable-single-Tumblr-profile') && '' !== ampforwp_get_setting('enable-single-Tumblr-profile-url') ) { ?>
-              <li class="icon-tumblr"><a title="tumblr profile" href="<?php echo esc_url($redux_builder_amp['enable-single-Tumblr-profile-url']); ?>" target ="_blank"></a></li>
+              <li class="icon-tumblr"><a title="tumblr profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-Tumblr-profile-url']); ?>" target ="_blank"></a></li>
               <?php } ?>
 
             </ul>
