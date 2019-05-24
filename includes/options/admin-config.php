@@ -2404,23 +2404,29 @@ $e_commerce_support[] =  array(
                'true'      => 'Enabled',
                'false'     => 'Disabled',
            );
-     if(!is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) && !is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ){
+    if(!function_exists( 'amp_woocommerce_add_woocommerce_support' ) && !function_exists( 'amp_woocommerce_pro_container_starts' ) ){
         $e_commerce_support[]= array(
             'id'   => 'info_normal_woocommerce',
             'type' => 'info',
             'required' => array('amp-enable-woocommerce', '=' , '1'),
-             'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires a free extension <a href="https://wordpress.org/plugins/amp-woocommerce/" target="_blank">AMP WooCommerce</a>.<br /> <div style="margin-top:4px;">(<a href="https://wordpress.org/plugins/amp-woocommerce/" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',               
-               );
+             'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/woocommerce/" target="_blank">AMP WooCommerce PRO extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/woocommerce/" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',
+             );
     }
-    elseif ( is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) && !is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ) {
+    elseif ( function_exists( 'amp_woocommerce_add_woocommerce_support' ) && !function_exists( 'amp_woocommerce_pro_container_starts' ) ) {
+
         $e_commerce_support[]= array(
             'id'   => 'info_normal_woocommerce_pro',
             'type' => 'info',
             'required' => array('amp-enable-woocommerce', '=' , '1'),
-            'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>Pro Version:</b> Everything in Free, and Archives, Gallery, Cart, Variants & Attributes, Rating & Reviews Support.<a href="https://ampforwp.com/woocommerce/" target="_blank"></a><br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/woocommerce/" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',                
-        );
+            'desc' =>sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>%s</b> %s<a href="https://ampforwp.com/wpml-for-amp/" target="_blank"> %s</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/wpml-for-amp/" target="_blank">%s</a>)</div></div>',
+                   esc_html__('ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),
+                   esc_html__('This feature requires','accelerated-mobile-pages'),
+                   esc_html__('WPML extension','accelerated-mobile-pages'),
+                   esc_html__('Click here for more info','accelerated-mobile-pages')
+             ),             
+            );
     }
-    elseif ( is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ) {
+    elseif ( function_exists( 'amp_woocommerce_pro_container_starts' ) ) {
         $e_commerce_support[]= array(
             'id'   => 'info_woocommerce_pro',
             'type' => 'info',
@@ -2451,7 +2457,7 @@ $e_commerce_support[] = array(
                         'id'   => 'info_normal_edd',
                         'type' => 'info',
                         'required' => array('amp-edd-support', '=' , '1'),
-                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/edd-for-amp/" target="_blank">EDD for AMP extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/edd-for-amp/" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',              
+                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/edd-for-amp/" target="_blank">EDD for AMP extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/edd-for-amp/" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',               
            );}
  
    // E Commerce SECTION
@@ -2460,7 +2466,7 @@ $e_commerce_support[] = array(
        'id'         => 'amp-e-commerce',
        'subsection' => true,
        'fields'     => $e_commerce_support
-    ) );
+   ) );
    
    // Translation Panel
            Redux::setSection( $opt_name, array(
