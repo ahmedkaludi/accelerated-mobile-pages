@@ -226,6 +226,7 @@ if ( is_admin() ) {
                               <div class="cat_mod_r">
                                 <a href="{{ampforwp_post_url}}">{{title}}</a>
                                 {{excerptContent}}
+                                {{loopdate}}
                                 </div>
                             </li></a> 
                        {{ifend_condition_content_layout_type_1}}
@@ -329,6 +330,13 @@ if ( is_admin() ) {
                  $excerptContent = ' 
                  <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , $ampforwp_excerpt_length  ).'</p>'; 
               }
+                $loopdate = "";
+                $loopdate =  human_time_diff(
+                get_the_time('U', get_the_ID() ), 
+                current_time('timestamp') ) .' '. ampforwp_translation( ampforwp_get_setting('amp-translator-ago-date-text'),
+                'ago');
+                $loopdate = apply_filters('ampforwp_modify_post_date',$loopdate);
+               $loopdate = '<p>'.esc_html($loopdate).'</p>';   
                $title = get_the_title();
                $postid = get_the_ID();
                $author = get_the_author();
@@ -345,6 +353,7 @@ if ( is_admin() ) {
                                 "{{height}}",
                                 "{{title}}",
                                 "{{excerptContent}}",
+                                "{{loopdate}}",
                                 "{{authorname}}",
                                 "{{postdate}}",
                                 "{{image_alt}}",
@@ -357,6 +366,7 @@ if ( is_admin() ) {
                                 $height,
                                 $title,
                                 $excerptContent,
+                                $loopdate,
                                 $author,
                                 $postdate,
                                 $image_alt,
@@ -369,6 +379,7 @@ if ( is_admin() ) {
             $rawhtml = ampforwp_replaceIfContentConditional("height", $height, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("title", $title, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("excerptContent", $excerptContent, $rawhtml);
+            $rawhtml = ampforwp_replaceIfContentConditional("loopdate", $loopdate, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("authorname", $author, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("postdate", $postdate, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("image_alt", $image_alt, $rawhtml);
