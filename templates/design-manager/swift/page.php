@@ -10,13 +10,11 @@ amp_header(); ?>
 		 	<?php amp_title(); ?>
 		<?php } ?>
 		<?php } // Level up Condition ends here?>
-		<?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>
-			<?php if ( isset($redux_builder_amp['featured_image_swift_page']) && $redux_builder_amp['featured_image_swift_page'] && ampforwp_has_post_thumbnail() ) { ?>
+			<?php if ( true == ampforwp_get_setting('featured_image_swift_page') && ampforwp_has_post_thumbnail() ) { ?>
 				<div class="sf-img">
 					<?php amp_featured_image();?>
 				</div>
 			<?php } ?>
-		<?php } ?>
        <div class="pg">
        		<?php if (  is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' ==  ampforwp_get_setting('swift-social-position') ){
 							ampforwp_swift_social_icons(); 
