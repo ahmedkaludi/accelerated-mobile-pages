@@ -1,5 +1,5 @@
 <?php
-if(function_exists('amp_activate')){
+if(is_plugin_active('amp/amp.php')){
 	add_action('amp_post_template_css' , 'ampforwp_notification_bar_css');
 	function ampforwp_notification_bar_css(){?>
 		#amp-user-notification1 p { display: inline-block; margin: 20px 0px; }
@@ -56,7 +56,7 @@ if ( ! function_exists('ampforwp_gdpr_init') ) {
 		if ( ampforwp_get_setting('amp-gdpr-compliance-switch')  ) {
 			// gdpr component 
 			add_action('amp_footer_link' , 'amp_gdpr' );
-			if ( function_exists('amp_activate') ) {
+			if ( is_plugin_active('amp/amp.php') ) {
 				add_action('amp_post_template_footer' , 'amp_gdpr' );
 			}
 		}

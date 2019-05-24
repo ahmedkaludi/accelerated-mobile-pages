@@ -1,18 +1,19 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
 function ampforwp_notice_bar_options($opt_name){
-	// If CTA is not Activated
-	$cta_desc = "";
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	   if(!is_plugin_active( 'AMP-cta/amp-cta.php' )){
-	$cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
-	$cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/cta-banner.png" width="560" height="85" /></a>';
-	}
+  // If CTA is not Activated
+  $cta_desc = "";
+  include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+     if(!is_plugin_active( 'AMP-cta/amp-cta.php' )){
+  $cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
+  $cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/cta-banner.png" width="560" height="85" /></a>';
+  }
  // Notifications SECTION
    Redux::setSection( $opt_name, array(
        'title'      => esc_html__( 'Notice Bar & GDPR', 'accelerated-mobile-pages' ),
           'desc'       => $cta_desc ,
        'id'         => 'amp-notifications',
+       'class'      => 'ampforwp_new_features ',
        'subsection' => true,
        'fields'     => array(
            array(
@@ -39,7 +40,7 @@ function ampforwp_notice_bar_options($opt_name){
            'class' => 'child_opt child_opt_arrow',
            'id'       => 'amp-notification-text',
            'title'    => esc_html__('Notice Content', 'accelerated-mobile-pages'),
-           'type'     => 'text',
+           'type'     => 'textarea',
            'required' => array('amp-enable-notifications', '=' , '1'),
            'default'  => esc_html__('This website uses cookies.','accelerated-mobile-pages'),
            'placeholder' => esc_html__('Enter Text here','accelerated-mobile-pages'),
@@ -52,6 +53,33 @@ function ampforwp_notice_bar_options($opt_name){
            'required' => array('amp-enable-notifications', '=' , '1'),
            'default'  => esc_html__('Accept','accelerated-mobile-pages'),
            'placeholder' => esc_html__('Enter Text here','accelerated-mobile-pages'),
+           ),
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-enable-links',
+               'type'      => 'switch',
+               'title'     => esc_html__('Link', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+               'required' => array('amp-enable-notifications', '=' , '1'),
+           ),
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-notice-bar-select-privacy-page',
+               'type'      => 'text',
+               'title'     => esc_html__('Enter the URL of Privacy Page', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => esc_html__('Enter URL of Privacy Page where the user can read your Website Privacy', 'accelerated-mobile-pages'),
+               'default'   => '#',
+               'required' => array('amp-enable-links', '=' , '1'),
+           ),
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-notice-bar-privacy-page-button-text',
+               'type'      => 'text',
+               'title'     => esc_html__('Privacy Page Button Text', 'accelerated-mobile-pages'),
+               'default'   => 'Read More',
+               'required' => array('amp-enable-links', '=' , '1'),
            ),
 
            array(
