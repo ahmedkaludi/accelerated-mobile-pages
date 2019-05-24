@@ -266,8 +266,21 @@ if(!function_exists('ampforwp_aq_resize')) {
             $url = $sitepress->convert_url( $url, $sitepress->get_default_language() );
         }
         /* WPML Fix */
+         /* EWWW Image Optimizer (ExactDN) Compatible*/
+        global $exactdn;
+        if ( class_exists( 'ExactDN' ) && $exactdn->get_exactdn_domain() ) {
+            $args  = array(
+                'resize' => "$width,$height",
+            );
+            $image = array(
+                0 => $exactdn->generate_url( $url, $args ),
+                1 => $width,
+                2 => $height,
+            );
+            return $image;
+        } 
         /* Jetpack Compatible*/
-        if( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) ) {
+        elseif( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) ) {
             $args = array(
                 'resize' => "$width,$height"
             );
@@ -277,7 +290,8 @@ if(!function_exists('ampforwp_aq_resize')) {
                         2 => $height
                     );
             return $image;
-        } else {
+        } 
+        else {
             $aq_resize = Aq_Resize::getInstance();
             return $aq_resize->process( $url, $width, $height, $crop, $single, $upscale );
         }
