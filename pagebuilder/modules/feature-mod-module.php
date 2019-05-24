@@ -7,7 +7,7 @@ $css = '
 .feature-mod{margin:{{margin_css}};padding:{{padding_css}};}
 {{if_condition_feature_layout_type==1}}
 {{module-class}} .ln-fx{width:100%;display:flex; flex-wrap:wrap;}
-.feat-blk{ margin: 0 3% 3% 0; background: {{background_color_picker}}; width: 47%; text-align: center;padding: 40px; position: relative;color: #26292c;}
+.feat-blk{ margin: 0 3% 3% 0; background: {{background_color_picker}}; width: 47%; text-align: {{align_type}};padding: 40px; position: relative;color: #26292c;}
 .feat-blk p{color: #333;font-size: 18px;padding-top:15px;}
 .feat-blk h3{font-size:28px;color:{{font_color_picker}};font-weight:400;padding-bottom:15px;}
 .feat-blk amp-img{margin:0 auto;width:100%}
@@ -119,7 +119,7 @@ return array(
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
-	 							'label' =>"Align",
+	 							'label' =>esc_html__('Content Alignment','accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'center',
 	 							'options_details'=>array(

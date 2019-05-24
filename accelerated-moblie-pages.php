@@ -733,7 +733,16 @@ require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
 if ( !function_exists('amp_activate') ) {
 	require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
-	if ( ampforwp_get_setting('ampforwp-pagebuilder') ){
+	$enablePb = false;
+	if(is_admin()){
+		global $pagenow;
+		if( ('post.php' || 'post-new.php') == $pagenow ) {
+			$enablePb = true;
+		}
+	}else{
+		$enablePb = true;
+	}
+	if ($enablePb && ampforwp_get_setting('ampforwp-pagebuilder')== true ){	
 		require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php');
 	} 
 }

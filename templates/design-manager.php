@@ -277,7 +277,7 @@ function ampforwp_add_element_addthis( $meta_parts ) {
 	return $file;
 }
 // Empty meta parts when Pagebuilder is enabled
-add_filter('ampforwp_design_elements', 'ampforwp_empty_design_elements');
+add_filter('ampforwp_design_elements', 'ampforwp_empty_design_elements', 12);
 function ampforwp_empty_design_elements($meta_parts) {
 	if( checkAMPforPageBuilderStatus(get_the_ID()) ){
 		$meta_parts = array();
