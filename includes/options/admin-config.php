@@ -6205,7 +6205,7 @@ if(!ampforwp_check_extensions()){
     ) );
 }
 
-
+if(!ampforwp_check_extensions()){
 // Priority Support
     Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'Fix AMP Errors', 'accelerated-mobile-pages' ),
@@ -6214,7 +6214,7 @@ if(!ampforwp_check_extensions()){
         'desc' => '        <a href="http://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-support-banner" src="'.AMPFORWP_IMAGE_DIR . '/priority-support-banner.png" width="345" height="500" /></a>',
         'icon' => 'el el-hand-right',
     ) );
-
+}
 // Plugin Manager
     Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'Plugins Manager', 'accelerated-mobile-pages' ),
