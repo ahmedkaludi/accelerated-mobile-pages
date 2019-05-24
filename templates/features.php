@@ -2911,7 +2911,7 @@ if( !function_exists('ampforwp_checking_any_social_profiles') ) {
 function ampforwp_content_sanitizer( $content ) {
 	$amp_custom_post_content_input = $content;
 	if ( !empty( $amp_custom_post_content_input ) ) {
-		$amp_custom_content = new AMP_Content( $amp_custom_post_content_input,
+		$amp_custom_content = new AMPFORWP_Content( $amp_custom_post_content_input,
 				apply_filters( 'amp_content_embed_handlers', array(
 						'AMP_Twitter_Embed_Handler' => array(),
 						'AMP_YouTube_Embed_Handler' => array(),
@@ -4723,7 +4723,9 @@ if( !function_exists( 'ampforwp_carousel_class_magic' ) ){
 if( !function_exists('ampforwp_has_post_thumbnail')){
 	function ampforwp_has_post_thumbnail(){
 		global $post, $redux_builder_amp;
-		if(has_post_thumbnail()){
+		if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
+ 			return true;
+		}elseif(has_post_thumbnail()){
 			return true;
 		}
 		elseif(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
@@ -6447,6 +6449,12 @@ function ampforwp_add_global_scripts($data){
 			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
 		}
 	}
+	// Featured video SmartMag theme Compatibility #2559:
+	if( function_exists('get_the_post_video') || class_exists('Bunyad') ) {
+		if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
+			$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
+		}
+	}
     return $data;
 }	
 if ( ! function_exists('ampforwp_get_weglot_url') ) {
@@ -6719,4 +6727,15 @@ function ampforwp_nofollow_social_links(){
 		return;
 	}
 	return false;
+}
+// Featured Video SmartMag theme Compatibility CSS #2559
+add_action('amp_post_template_css', 'ampforwp_featured_video_plus_css');
+function ampforwp_featured_video_plus_css(){ 
+	if( function_exists('get_the_post_video') ) {?>
+		.fvp-onload{display:none}
+<?php }
+	if(class_exists('Bunyad')){ ?>
+		.amp-featured-image amp-iframe, .amp-wp-article-featured-image amp-iframe { margin:auto; height:100%; }
+		.f_vid { background: #000; }
+<?php }
 }
