@@ -1177,11 +1177,11 @@ function ampforwp_sticky_social_icons(){
 			$image = ampforwp_get_post_thumbnail( 'url', 'full' );
 		}
 		$permalink = '';
-		if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
-			$permalink = $amp_permalink;
+		if(ampforwp_get_setting('enable-single-twitter-share-link')){
+			$permalink = wp_get_shortlink();
 		}
 		else
-			$permalink = wp_get_shortlink();
+			$permalink = $amp_permalink;
 		?>
 			<div class="sticky_social">
 			<?php if ( true == ampforwp_get_setting('ampforwp-facebook-like-button')) {
@@ -1206,7 +1206,7 @@ function ampforwp_sticky_social_icons(){
 	                            width="50"
 	                            height="28"
 	                            data-param-url=""
-                        		data-param-text="TITLE <?php echo esc_url($permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
+                        		data-param-text="TITLE <?php echo esc_url($permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_attr($data_param_data) ?>"
 	          ></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
