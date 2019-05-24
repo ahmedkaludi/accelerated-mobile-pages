@@ -21,10 +21,7 @@ function ampforwp_framework_get_featured_image(){
  			$amp_html = ampforwp_content_sanitizer($featured_video);
   		} // Featured Video Plus Compatibility #2394 #2583
 		elseif(function_exists('has_post_video') && has_post_video($post_id)){
-			ob_start();
 			$videoContent = get_the_post_video();
-			ob_clean();
-			ob_end_clean();
 			$amp_html = ampforwp_content_sanitizer($videoContent);
 
 		}elseif (has_post_thumbnail( $post_id ) ){
