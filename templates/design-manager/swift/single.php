@@ -126,11 +126,11 @@
 		    </div>
 		</div>
 	</div>
-<?php  }
-do_action("ampforwp_single_design_type_handle");
+<?php 
+do_action("ampforwp_single_design_type_handle"); 
 	?>
-<?php if($redux_builder_amp['rp_design_type'] == '2' || $redux_builder_amp['rp_design_type'] == '3'){
-       if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && 1 == ampforwp_get_setting('single-design-type')) {
+<?php if($redux_builder_amp['rp_design_type'] == '2'){
+        if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
 		$my_query = ampforwp_related_post_loop_query();
 	  	if( $my_query->have_posts() ) { $r_count = 1;?>
 	  	<div class="srp">
@@ -162,41 +162,81 @@ do_action("ampforwp_single_design_type_handle");
 				</ul>
 			</div>
 		</div>
-    <?php wp_reset_postdata(); }  } ?>	
-<?php if($redux_builder_amp['single-design-type'] == '1' && isset($redux_builder_amp['ampforwp-swift-recent-posts']) && $redux_builder_amp['ampforwp-swift-recent-posts']=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
-<div class="r-pf">
-	<div class="cntr">
-		<h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' )); ?></h3>
-	<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
-		<div class="fsp">
-			<?php if( ampforwp_has_post_thumbnail() ){
-				$width 	= 346;
-				$height = 188;
-				if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
-					$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
-					$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
-				}
-				$args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
-			    <div class="fsp-img">
-			    	<?php amp_loop_image($args); ?>
-			    </div>
-		    <?php } ?>
-		    <div class="fsp-cnt">
-		    	<?php amp_loop_category(); ?>
-			    <?php amp_loop_title(); ?>
-			    <?php amp_loop_excerpt(20); ?>
-			    <div class="pt-dt">
-			    	<?php amp_loop_date(); ?>
-			    </div>
-		    </div>
+    <?php wp_reset_postdata(); }  } ?>
+<?php if(ampforwp_get_setting('rp_design_type') == '3'){
+       if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
+		$my_query = ampforwp_related_post_loop_query();
+	  	if( $my_query->have_posts() ) { $r_count = 1;?>
+	  	<div class="srp">
+	  		<div class="cntr">
+	  		<?php ampforwp_related_post(); ?>
+	            <amp-carousel height="310" layout="fixed-height" type="carousel">
+			        <?php
+			          while( $my_query->have_posts() ) {
+			            $my_query->the_post();
+			        ?>
+			        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
+			        	<div class="rp-slide">
+			        	<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { if(ampforwp_has_post_thumbnail()){?>
+				            <div class="rlp-image">     
+				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>346,'image_crop_height'=>188) );?>
+							</div>
+						<?php } } ?>	
+							<div class="rlp-cnt">
+								<?php 
+								$show_excerpt_opt = ampforwp_get_setting('ampforwp-single-related-posts-excerpt');
+								$argsdata = array(
+										'show_author' => false,
+										'read_more' => false,
+										'show_excerpt' => $show_excerpt_opt
+											);
+								ampforwp_get_relatedpost_content($argsdata); ?> 
+					        </div>
+				    	</div>
+			        </li><?php
+	            			do_action('ampforwp_between_related_post',$r_count);
+	     							 $r_count++;
+			        }
+			      } ?>
+				</amp-carousel>
+			</div>
 		</div>
-	<?php endwhile; amp_loop('end');  ?>
+	<?php wp_reset_postdata(); }  } ?>	
+<?php if($redux_builder_amp['single-design-type'] == '1' && isset($redux_builder_amp['ampforwp-swift-recent-posts']) && $redux_builder_amp['ampforwp-swift-recent-posts']=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
+	<div class="r-pf">
+		<div class="cntr">
+			<h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' )); ?></h3>
+		<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
+			<div class="fsp">
+				<?php if( ampforwp_has_post_thumbnail() ){
+					$width 	= 346;
+					$height = 188;
+					if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
+						$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
+						$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
+					}
+					$args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+				    <div class="fsp-img">
+				    	<?php amp_loop_image($args); ?>
+				    </div>
+			    <?php } ?>
+			    <div class="fsp-cnt">
+			    	<?php amp_loop_category(); ?>
+				    <?php amp_loop_title(); ?>
+				    <?php amp_loop_excerpt(20); ?>
+				    <div class="pt-dt">
+				    	<?php amp_loop_date(); ?>
+				    </div>
+			    </div>
+			</div>
+		<?php endwhile; amp_loop('end');  ?>
+		</div>
 	</div>
+<?php } // Recent Posts End Here ?>
 </div>
-</div>
-<?php } ?>
+<?php } // Single Design 1 ends here  ?>
 <?php if($redux_builder_amp['single-design-type'] == '4'){ ?>
-	<div class="sp sgl">
+<div class="sp sgl">
 	<div class="cntr">
 		<div class="sp-wrap">
 			<div class="sp-artl">
@@ -474,7 +514,7 @@ do_action("ampforwp_single_design_type_handle");
 			</div><!-- /.sp-artl -->
 		</div><!-- /.sp-wrap -->
 	</div><!-- /.container -->
-<?php //} 
+<?php
 do_action("ampforwp_single_design_type_handle");
 	?>
 </div>

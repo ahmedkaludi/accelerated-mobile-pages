@@ -4564,6 +4564,10 @@ $single_page_options = array(
                         '2' => array(
                                 'alt'=>' Single Design With Sidebar ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-2.png'
+                                ),
+                        '3' => array(
+                                'alt'=>' Single Design With Sidebar ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-3.png'
                                 ),                       
                     ),
                    'default'=> '1',

@@ -6455,6 +6455,12 @@ function ampforwp_add_global_scripts($data){
 			$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
 		}
 	}
+	//Appearance option for Related Posts #1545
+	if (  true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && ampforwp_get_setting('rp_design_type') == '3') {
+		if ( empty( $data['amp_component_scripts']['amp-carousel'] ) ) {
+			$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
+		}
+	}
     return $data;
 }	
 if ( ! function_exists('ampforwp_get_weglot_url') ) {

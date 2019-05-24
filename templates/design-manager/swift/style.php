@@ -651,15 +651,15 @@ if($redux_builder_amp['rp_design_type'] == '3'){?>
 	    display: inline-block;
 	    width: 100%;
 	}
-	.srp ul{
-	    display: grid;
-	    grid-template-columns: 333px 333px 333px;
-	    grid-gap: 30px;
-	    width: 100%;
-	    overflow-x: scroll;
-	}
+	.has_thumbnail{width:333px;}
+	.amp-scrollable-carousel-slide{margin:0px 15px 0px 15px;}
 	.srp ul li{
 		list-style-type:none;
+	}
+	.rp-slide{
+		display: flex;
+	    flex-direction: column;
+	    justify-content: space-between;
 	}
 	.related_link{
 	    margin: 0px 0px 5px 0px;
@@ -670,7 +670,10 @@ if($redux_builder_amp['rp_design_type'] == '3'){?>
 	.has_thumbnail:hover .related_link a{
 		color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;
 	}
-	.related_link a{color:#191919;}
+	.rlp-image{margin-bottom:6px;}
+	.related_link p{white-space: pre-wrap;}
+	.amp-carousel li:last-child{margin-right:0;}
+	.related_link a{color:#191919;white-space: pre-wrap;} }
 <?php } // Related Posts Desing 3 Ends ?>
 .related_link{margin-top:10px;}
 .related_link a{color:#333;}

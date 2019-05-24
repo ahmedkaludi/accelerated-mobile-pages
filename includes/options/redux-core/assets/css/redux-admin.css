@@ -1110,7 +1110,7 @@ background: #fff;
 /*** Related Post Desings ***/
 #redux_builder_amp-rp_design_type ul{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 30px;
 }
 #redux_builder_amp-ampforwp-gallery-design-type ul{
