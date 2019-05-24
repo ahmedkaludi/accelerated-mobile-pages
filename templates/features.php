@@ -3260,7 +3260,7 @@ function ampforwp_frontpage_comments() {
 									<footer class="comment-meta">
 										<div class="comment-author vcard">
 											<?php
-											printf(esc_html__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
+											printf('<b class="fn">%s</b> <span class="says">'.esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-says-text'),'says')).':</span>', get_comment_author_link()) ?>
 										</div>
 										<!-- .comment-author -->
 										<div class="comment-metadata">
