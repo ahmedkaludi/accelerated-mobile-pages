@@ -298,11 +298,8 @@ function ampforwp_structured_data_type( $metadata ) {
 		}
 	}
 	if(isset($metadata['@type']) && $metadata['@type'] == 'NewsArticle'){
-	$post_id = ampforwp_get_the_ID();
-	$description=addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , 15 ) );
-	$content = get_post_field('post_content', $post_id);
-	$metadata['description'] = $description;
-	$metadata['articleBody'] = wp_strip_all_tags($content);
+	$content = $post->post_content;
+	$metadata['articleBody'] = esc_html($content);
 	}
 	return $metadata;
 }
