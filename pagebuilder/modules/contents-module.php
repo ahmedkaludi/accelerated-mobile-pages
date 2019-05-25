@@ -495,7 +495,7 @@ if ( is_admin() ) {
               $pagination_links .= "<a class='active' href='#/' >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
           }else{
             $allPages = add_query_arg( array( $pagination_text => $i ), $queryUrl );
-            $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html__($i. 'accelerated-mobile-pages')."</a>";
+            $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
           }
 
         }
