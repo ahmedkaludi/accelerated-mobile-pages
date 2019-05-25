@@ -1468,10 +1468,22 @@ Redux::setArgs( "redux_builder_amp", $args );
              ),
       )
     ) );//END
-
+    $pb_title = 'Page Builder';
+    $theme = wp_get_theme(); // gets the current theme
+    if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ) || did_action( 'elementor/loaded' ) ){
+        if(class_exists('Vc_Manager') ){
+           $pb_title =  'WPBakery Page Builder Support';
+        }
+        if( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ){
+            $pb_title =  'Divi Builder Support';
+        }
+        if(did_action( 'elementor/loaded' ) ){
+            $pb_title =  'Elementor Support';
+        }
+    }
    // AMP Content Page Builder SECTION
    Redux::setSection( $opt_name, array(
-       'title'      => esc_html__( 'Page Builder', 'accelerated-mobile-pages' ),
+       'title'      => esc_html__(  $pb_title, 'accelerated-mobile-pages' ),
        'id'         => 'amp-content-builder',
        'class'      => 'ampforwp_new_features ',
        'subsection' => true,
