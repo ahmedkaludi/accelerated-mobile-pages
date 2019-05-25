@@ -2,9 +2,27 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 require_once  ABSPATH . WPINC . '/category.php';
+add_filter('ampforwp_content_module_args','ampforwp_content_module_pagination',10,2);
+function ampforwp_content_module_pagination($args, $fieldValues){
+  if(isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1 ){
+      if( isset($_GET['pageno']) && $_GET['pageno']!=''){
+          $paged = $_GET['pageno'];
+      }else{
+          $paged = 1;
+      }
+      
+      $args['paged'] = $paged;
+      
+    return $args;
+  }else{
+
+    return $args;
+  }
+}
  $output = '{{if_condition_content_layout_type==1}}
-            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cat_mod {{user_class}}"><h4>{{content_title}}</h4>
-              <div class="wrap"><ul>{{category_selection}}</ul></div> 
+            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cat_mod {{user_class}}"><h4>{{content_title}}</h4>   
+                <div class="wrap"><ul>{{category_selection}}</ul></div>
+                {{pagination_links}}    
             </div>
           {{ifend_condition_content_layout_type_1}}
           ';
@@ -22,11 +40,37 @@ require_once  ABSPATH . WPINC . '/category.php';
 .cat_mod .cat_mod_r a{font-size: 16px;line-height: 1.3;font-weight: 500;color: #000;margin: 0px 0px 5px 0px;}
 .cat_mod .cat_mod_r p{color: {{text_color_picker}};font-size: 13px;line-height: 20px;letter-spacing: 0.10px;margin-bottom:0;}
 .cat_mod .cat_mod_l{width:100%;}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination{
+    width: 100%;
+    margin: 30px 0px 0px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
 @media(max-width:768px){
   .cat_mod ul li {flex-basis: calc(100% - 30px);margin: 10px 15px;}
   .cat_mod_l amp-img{width:100%;}
   .cat_mod .cat_mod_l{width: 40%;float: left;margin-right: 20px;}
   .cat_mod .cat_mod_r{width: 54%;float: left;margin-top: 0;}
+}
+@media(max-width:767px){
+  .pagination a{
+    padding:5px 12px;
+    font-size:16px;
+  }
 }
 @media (max-width: 480px){
   .cat_mod .cat_mod_l{width: 100%;float: none;margin-right: 0px;}
@@ -34,7 +78,6 @@ require_once  ABSPATH . WPINC . '/category.php';
 }
 {{ifend_condition_content_layout_type_1}}
 ';
-
 $options = '<option value="recent_option">Recent Posts</option>';
 $post_types = '';
 $categoriesArray = array();
@@ -45,7 +88,7 @@ if ( is_admin() ) {
  $categories = get_categories( array(   
                    'orderby' => 'name',   
                    'order'   => 'ASC',
-                   'number'  => 500 
+                   'number'  => 500   
                ) );   
  $categoriesArray = array('recent_option'=>'Recent Posts');   
  foreach($categories as $category){   
@@ -54,11 +97,9 @@ if ( is_admin() ) {
   $options.= '<option value="'.$category->term_id.'">'.$categoryName.'</option>';   
  }    
 }
-
-
- return array(		
- 		'label' =>'Category',		
- 		'name' => 'contents',
+ return array(    
+    'label' =>'Category',   
+    'name' => 'contents',
     'default_tab'=> 'customizer',
     'tabs' => array(
               'customizer'=>'Content',
@@ -66,7 +107,7 @@ if ( is_admin() ) {
               'container_css'=>'Design',
               'advanced' => 'Advanced'
             ),
- 		'fields' => array(
+    'fields' => array(
             array(    
             'type'    =>'layout-image-picker',
             'name'    =>"content_layout_type",
@@ -83,14 +124,14 @@ if ( is_admin() ) {
                           ),
             'content_type'=>'html',
             ),
-            array(		
- 						'type'		=>'text',		
- 						'name'		=>"content_title",		
- 						'label'		=>'Category Block',
+            array(    
+            'type'    =>'text',   
+            'name'    =>"content_title",    
+            'label'   =>'Category Block',
             'tab'     =>'customizer',
- 						'default'	=>'Category',	
+            'default' =>'Category', 
             'content_type'=>'html',
- 						),
+            ),
             array(
                 'type'    =>'text',
                 'name'    =>"id",
@@ -133,38 +174,38 @@ if ( is_admin() ) {
                           'bottom'=>'0px'
                         ),
                 'content_type'=>'css',
-              ),  		
-              array(    
-                'type'  =>'select',   
-                'name'  =>"post_type_selection",   
-                'label' =>"Select Post Type",
-                'tab'     =>'customizer',
-                'default' =>'post',    
-                'options' => $post_types,    
-                'options_details'=>$post_types ,
-                'content_type'=>'html',
-                'ajax'  => true,
-                'ajax_dep' => 'category_selection',
-                'ajax_action' => 'ampforwp_pb_cats'
               ),
- 						 array(		
- 							'type'	=>'select',		
- 							'name'  =>"category_selection",		
- 							'label' =>"Select Category",
+              array(    
+              'type'  =>'select',   
+              'name'  =>"post_type_selection",   
+              'label' =>"Select Post Type",
               'tab'     =>'customizer',
- 							'default' =>'recent_option',		
- 							'options' => $options,		
- 							'options_details'=>$categoriesArray	,
+              'default' =>'post',    
+              'options' => $post_types,    
+              'options_details'=>$post_types ,
               'content_type'=>'html',
- 						),		
- 						array(		
- 						'type'		=>'text',		
- 						'name'		=>"show_total_posts",
- 						'label'		=>'Count',		
+              'ajax'  => true,
+              'ajax_dep' => 'category_selection',
+              'ajax_action' => 'ampforwp_pb_cats'
+            ),        
+            array(    
+              'type'  =>'select',   
+              'name'  =>"category_selection",   
+              'label' =>"Select Category",
+              'tab'     =>'customizer',
+              'default' =>'recent_option',    
+              'options' => $options,    
+              'options_details'=>$categoriesArray ,
+              'content_type'=>'html',
+            ),    
+            array(    
+            'type'    =>'text',   
+            'name'    =>"show_total_posts",
+            'label'   =>'No. of Posts per Page',    
             'tab'     =>'customizer',
- 						'default'	=>'3',
+            'default' =>'3',
             'content_type'=>'html',
- 						),
+            ),
             array(    
             'type'    =>'text',   
             'name'    =>'posts_offset',
@@ -173,16 +214,16 @@ if ( is_admin() ) {
             'default' =>'0',
             'content_type'=>'html',
             ),
- 						array(		
- 						'type'		=>'select',
- 						'name'		=>"ampforwp_show_excerpt",
- 						'label'		=>"Excerpt",
+            array(    
+            'type'    =>'select',
+            'name'    =>"ampforwp_show_excerpt",
+            'label'   =>"Excerpt",
             'tab'     =>'customizer',
-						'default'	=>'yes',		
-						'options'	=> '<option value="yes">Yes</option><option value="no">No</option>',		
-						'options_details'=>array('yes'=>'Yes', 'no'=>'No'),
+            'default' =>'yes',    
+            'options' => '<option value="yes">Yes</option><option value="no">No</option>',    
+            'options_details'=>array('yes'=>'Yes', 'no'=>'No'),
             'content_type'=>'html',
- 						),
+            ),
             array(    
             'type'    =>'text',
             'name'    =>"ampforwp_excerpt_length",
@@ -210,12 +251,34 @@ if ( is_admin() ) {
             'content_type'=>'html',
             'required'  => array('content_layout_type' => 1),
             ),
+            array(
+                'type'    =>'checkbox_bool',
+                'name'    =>"pagination",
+                'tab'   =>'customizer',
+                'default' => 0,
+                'options' =>array(
+                        array(
+                          'label'=>'Pagination',
+                          'value'=>1,
+                        ),
+                      ),
+                'content_type'=>'html',
+              ),
+            array(    
+              'type'    =>'text',   
+              'name'    =>"show_no_page_links",    
+              'label'   =>'No. of PageLinks to Show',
+              'tab'     =>'customizer',
+              'default' => 5, 
+              'content_type'=>'html',
+              'required'  => array('pagination' => 1),
+            ),
 
             
- 					),		
- 		'front_template'=> $output,
+          ),    
+    'front_template'=> $output,
     'front_css'=>$frontCss,
-    'front_common_css'=>'',	
+    'front_common_css'=>'', 
     'front_loop_content'=>'  {{if_condition_content_layout_type==1}}
                           <li> 
 
@@ -234,19 +297,19 @@ if ( is_admin() ) {
 
                       
                           ',
- );		
- function ampforwp_contentHtml($the_query,$fieldValues,$loopHtml){	
- 	$contenthtml = '';
+ );   
+ function ampforwp_contentHtml($the_query,$fieldValues,$loopHtml){  
+  $contenthtml = '';    
   $ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');
   $ampforwp_excerpt_length = (isset($fieldValues['ampforwp_excerpt_length'])? $fieldValues['ampforwp_excerpt_length']: 15);
   $ampforwp_excerpt_length = (int) $ampforwp_excerpt_length;
- 	$ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');		
- 	if ( $the_query->have_posts() ) {	
-         while ( $the_query->have_posts() ) {		
-             $the_query->the_post();		
-             $ampforwp_post_url = get_permalink();	
+  
+  if ( $the_query->have_posts() ) { 
+         while ( $the_query->have_posts() ) {   
+             $the_query->the_post();    
+             $ampforwp_post_url = get_permalink();  
              $ampforwp_post_url = trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR;
-             $image = $height = $width = $image_alt = "";	
+             $image = $height = $width = $image_alt = ""; 
              if ( has_post_thumbnail() ) {  
                    $thumb_id = get_post_thumbnail_id();   
                    $image_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
@@ -294,7 +357,6 @@ if ( is_admin() ) {
                       $height = $new_height; 
                     }   
                   }
-
                   if ( ampforwp_get_setting('ampforwp-retina-images') ) {
                       $resolution = '';
                       $resolution = 2;
@@ -304,6 +366,7 @@ if ( is_admin() ) {
                       $width = $width * $resolution;
                       $height = $height * $resolution;
                     }
+                    
                   try{
                     if(function_exists('ampforwp_aq_resize')){
                       $thumb_url = ampforwp_aq_resize( $image, $width, $height, true, false ); //resize & crop the image
@@ -328,15 +391,15 @@ if ( is_admin() ) {
                      $content = get_the_content();    
                    }  
                  $excerptContent = ' 
-                 <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , $ampforwp_excerpt_length  ).'</p>'; 
+                 <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'</p>';   
               }
-                $loopdate = "";
-                $loopdate =  human_time_diff(
+               $loopdate = "";
+               $loopdate =  human_time_diff(
                 get_the_time('U', get_the_ID() ), 
                 current_time('timestamp') ) .' '. ampforwp_translation( ampforwp_get_setting('amp-translator-ago-date-text'),
                 'ago');
-                $loopdate = apply_filters('ampforwp_modify_post_date',$loopdate);
-               $loopdate = '<p>'.esc_html($loopdate).'</p>';   
+               $loopdate = apply_filters('ampforwp_modify_post_date',$loopdate);
+               $loopdate = '<p>'.esc_html($loopdate).'</p>';      
                $title = get_the_title();
                $postid = get_the_ID();
                $author = get_the_author();
@@ -387,12 +450,69 @@ if ( is_admin() ) {
             $rawhtml = apply_filters( 'ampforwp_pb_cntmod_rawhtml', $rawhtml );
             $contenthtml .= $rawhtml;
             
-         }		
- 		
-       		
- 		
-     }		
-     /* Restore original Post Data */		
+         }    
+      
+     }
+     
+     /* Restore original Post Data */   
      wp_reset_postdata();
-     return $contenthtml;		
+     $pagination_links = ampforwp_cat_pagination_links($the_query,$fieldValues);
+     //echo $contenthtml;
+     //die;
+
+     return array('contents'=>$contenthtml,'pagination_links' => $pagination_links);    
  }
+
+ function  ampforwp_cat_pagination_links($the_query,$fieldValues){
+        $pagination_links = '';
+        $pagination_text = 'pageno';
+        $queryUrl = esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) );
+        if( isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1){
+      
+        /*Pagination Sart*/
+        $total_num_pages = $the_query->max_num_pages;
+        if(isset($_GET[$pagination_text]) && $_GET[$pagination_text]!='' ){
+            $paged = $_GET[$pagination_text];
+        }else{
+            $paged = 1;
+        }
+        $pagination_links .= '<div class="pagination">';
+        if( $paged > 1){
+          
+          $first_page = add_query_arg( array( $pagination_text => 1 ), $queryUrl );
+          $prev_page = add_query_arg( array( $pagination_text => $paged - 1 ), $queryUrl );
+
+          $pagination_links .= "<a class='pagi-first' href = ".esc_url($first_page)."> ".esc_html__('First','accelerated-mobile-pages')."</a>";
+          //$pagination_links .= "<a href = ".$prev_page."> Prev </a>";
+        }
+
+        $count = (integer) $fieldValues['show_no_page_links'];
+        if( !$count ){
+            $count = 3;
+        }
+        $startPage = max( 1, $paged - $count);
+        $endPage = min( $total_num_pages, $paged + $count);
+        for($i = $startPage ; $i <= $endPage ; $i++){
+          if( $paged == $i){
+              $pagination_links .= "<a class='active' href='#/' >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
+          }else{
+            $allPages = add_query_arg( array( $pagination_text => $i ), $queryUrl );
+            $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
+          }
+
+        }
+
+        if( $total_num_pages != 1 && $paged < $total_num_pages ){      
+          $next_page = add_query_arg( array( $pagination_text => $paged + 1 ), $queryUrl );
+          //$pagination_links .= "<a  href =".$next_page." '> Next </a>";
+        }
+        if( $total_num_pages != $paged ){
+          $next_page = add_query_arg( array( $pagination_text => $total_num_pages ), $queryUrl );
+          $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html__('Last', 'accelerated-mobile-pages')."</a>";
+        }
+        $pagination_links .= '</div>';
+        
+        /*Pagination End*/
+        }
+        return  $pagination_links;
+     }

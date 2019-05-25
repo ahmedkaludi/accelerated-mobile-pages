@@ -844,9 +844,13 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 							}
 						}
 						$posts_offset = (integer) $fieldValues['posts_offset'];
+						$show_no_of_posts = (integer) $fieldValues['show_total_posts'];
+						if( !$show_no_of_posts ){
+							$show_no_of_posts = 3;
+						}
 						$args = array(
 								//'cat' => $fieldValues['category_selection'],
-								'posts_per_page' => $fieldValues['show_total_posts'],
+								'posts_per_page' => $show_no_of_posts,
 								'offset' => $posts_offset,
 								'has_password' => false,
 								'post_status'=> 'publish',
@@ -859,10 +863,13 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 										'field'=>'id',
 										'terms'=>$fieldValues['category_selection']));
 						}
+						$args = apply_filters('ampforwp_content_module_args', $args, $fieldValues);
 						//The Query
 						$the_query = new WP_Query( $args );
 						$totalLoopHtml = $moduleTemplate[$contentArray['type']]['front_loop_content'];
-						$totalLoopHtml = ampforwp_contentHtml($the_query,$fieldValues,$totalLoopHtml);
+						$totalLoopHtmlArray = ampforwp_contentHtml($the_query,$fieldValues,$totalLoopHtml);
+						$totalLoopHtml = $totalLoopHtmlArray['contents'];
+						$paginationLinksHtml = $totalLoopHtmlArray['pagination_links'];
 						if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 							foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
 								$totalLoopHtml = ampforwp_replaceIfContentConditional($field['name'], $fieldValues[$field['name']], $totalLoopHtml);
@@ -880,6 +887,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 
 						$moduleFrontHtml = str_replace('{{content_title}}', urldecode($fieldValues['content_title']), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
+						$moduleFrontHtml = str_replace('{{pagination_links}}', $paginationLinksHtml, $moduleFrontHtml);
 						/* Restore original Post Data */
 						wp_reset_postdata();
 						if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
