@@ -1,5 +1,39 @@
 == Changelog ==
 
+= 0.9.97.55 (27rd May 2019) =
+* Added: Related posts and Recent posts on custom posts types #2708
+* Added: Appearance Designs for Related Posts #1545
+* Added: Integration with EWWW IO and ExactDN. #2805
+* Added: rel = "nofollow" to the links of social platforms in menu and footer, in all designs #2999
+* Added: Option to display the Post title on Breadcrumb #3019
+* Added: Map module in AMP pagebuilder #1629
+* Added: Pagination support in category module of AMP pagebuilder #1676
+* Added: Time Stamp support in category module of AMP pagebuilder #2648
+* Added: Lightbox feature for Slider module of AMP pagebuilder #2646
+* Added: Privacy page option in Notice Bar (Cookie Consent) #2347
+* Added: SmartMag theme's Featured video Compatibility integrated #2559
+* Added: New filter to modify the links of breadcrumbs, comment button and the non-amp version link in footer #2664
+* Added: New filter to modify the single featured image #2896
+* Added: "AMPforWP PageBuilder" option added in the page builder section #2414
+* Fixed: PHP debug warning #3128
+* Fixed: Fatal error after update 0.9.97.51 #3156
+* Fixed: Unwanted code on username of comment in Design [1, 2 & 3] #3022
+* Fixed: Issues with Content Sneak Peak Feature #2504
+* Fixed: In Feature module of AMP pagebuilder, Bullet points are not aligned correctly #2554
+* Fixed: Image URL replacement on AMP page not correct and aq_resizer not working with cdn images #2659
+* Fixed: 'Twitter' Option and 'Pretty Permalinks for Twitter Share' Option generate the same URL #2662
+* Fixed: Need to align the Radio Button (Show/Hide) in the Arabic language #2818
+* Fixed: In NewsArticle, the ArticleBody and Description are missing from the AMP page #3005
+* Fixed: WP Subtitle Compatibility code updated #3175
+* Fixed: For Menu pages where AMP support is OFF, still getting added due to Auto Add AMP in Menu URL option #2897
+* Fixed: E-commerce section code updated #3012
+* Fixed: Pagebuilder section code updated #3014
+* Fixed: 'Fix AMP Errors' section should not be displayed if he's a premium customer #3027
+* Fixed: Use Ajax to fetch all Categories and tags in Featured Slider in Design-3 #2590
+* Fixed: Debug error after enabling redirection #3174
+* Fixed: The tag 'amp-next-page with inline config' appears more than once in the document #3214
+* Fixed: Correct conditions for PageBuilder and Elementor for Page.php in Swift #3097
+
 = 0.9.97.54 (23rd May 2019) =
 * Fixed: HUGE PERFORMANCE Issues #3052
 * Fixed: Performance Issues with queries #2997
