@@ -285,7 +285,7 @@ function ampforwp_update_option_category_base(){
 }
 // Delete category_base transient when it is updated #2924
 add_action('update_option_tag_base', 'ampforwp_update_option_tag_base');
-function ampforwp_update_option_category_base(){
+function ampforwp_update_option_tag_base(){
 	delete_transient('ampforwp_tag_base');
 }
 // Delete permalink_structure transient when it is updated #2924
