@@ -308,7 +308,8 @@ class AMP_Post_Template {
 
 	private function build_post_featured_image() {
 		$post_id = $this->ID;
-		$featured_html = get_the_post_thumbnail( $post_id, 'large' );
+		$image_size = apply_filters( 'ampforwp_featured_image_size', 'large' );
+		$featured_html = get_the_post_thumbnail( $post_id, $image_size );
 
 		// Skip featured image if no featured image is available.
 		if ( ! $featured_html ) {
@@ -409,7 +410,8 @@ class AMP_Post_Template {
 			return false;
 		}
 
-		$post_image_src = wp_get_attachment_image_src( $post_image_id, 'full' );
+		$image_size = apply_filters( 'ampforwp_featured_image_size', 'full' );
+ 		$post_image_src = wp_get_attachment_image_src( $post_image_id, $image_size );
 
 		if ( is_array( $post_image_src ) ) {
 			$post_image_meta = array(
