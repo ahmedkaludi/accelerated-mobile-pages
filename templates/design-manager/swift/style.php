@@ -1947,7 +1947,7 @@ if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && ( (is_single() && tr
 border-bottom: 1px solid #eee;
 <?php }?>}
 .breadcrumb ul li,.breadcrumbs span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
-.breadcrumb ul li a, .breadcrumbs span a{color: #999;letter-spacing: 1px;}
+.breadcrumb ul li a, .breadcrumbs span a, .breadcrumbs .bread-post{color: #999;letter-spacing: 1px;}
 .breadcrumb ul li a:hover, .breadcrumbs span a:hover{color: <?php echo $hovercolor; ?>;}
 .breadcrumbs li a:after, .breadcrumbs span a:after{content: "\e315";display: inline-block;color: #bdbdbd;font-family: 'icomoon';padding-left: 5px;font-size: 12px;position: relative;top: 1px;}
 .breadcrumbs li:last-child a:after {display: none;}

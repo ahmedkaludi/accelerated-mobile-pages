@@ -4433,6 +4433,15 @@ $single_page_options = array(
                 'default'  => 'category',
                 'required' => array('ampforwp-bread-crumb' , '=' , 1),
             ),
+          array(
+                        'class' => 'child_opt child_opt_arrow', 
+                        'id'       => 'ampforwp-bread-crumb-post',
+                        'type'     => 'switch',
+                        'tooltip-subtitle'     => esc_html__('enable or disable the post title on breadcrumb','accelerated-mobile-pages'),
+                        'title'    => esc_html__('Post title on Breadcrumb', 'accelerated-mobile-pages'),
+                        'default'  => '0',
+                        'required' => array('ampforwp-bread-crumb' , '=' , 1),
+            ),
           $yoast_breadcrumbs,
           //Categories  ON/OFF
          array(
