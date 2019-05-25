@@ -201,15 +201,16 @@ class AMP_Post_Template {
 				'name' => $this->get( 'blog_name' ),
 			),
 			'headline' => $post_title,
-			'datePublished' => mysql2date( 'c', $post->post_date_gmt, false ),
-			'dateModified' => mysql2date( 'c', $post->post_modified_gmt, false ),
+			'datePublished' => mysql2date( 'c', $this->post->post_date_gmt, false ),
 			'author' => array(
 				'@type' => 'Person',
 				'name' => $post_author_name,
 				'image' => $post_author_image,
 			),
 		);
-
+		if(isset($this->post->post_modified_gmt) && $this->post->post_modified_gmt ){
+			$metadata['dateModified'] = mysql2date( 'c', $this->post->post_modified_gmt, false );
+		}
 		$site_icon_url = $this->get( 'site_icon_url' );
 		if ( $site_icon_url ) {
 			$metadata['publisher']['logo'] = array(
