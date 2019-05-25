@@ -278,6 +278,25 @@ function ampforwp_add_custom_rewrite_rules() {
 	}
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules', 25 );
+// Delete category_base transient when it is updated #2924
+add_action('update_option_category_base', 'ampforwp_update_option_category_base');
+function ampforwp_update_option_category_base(){
+	delete_transient('ampforwp_category_base');
+}
+// Delete category_base transient when it is updated #2924
+add_action('update_option_tag_base', 'ampforwp_update_option_tag_base');
+function ampforwp_update_option_category_base(){
+	delete_transient('ampforwp_tag_base');
+}
+// Delete permalink_structure transient when it is updated #2924
+add_action('update_option_permalink_structure', 'ampforwp_update_option_permalink_structure');
+function ampforwp_update_option_permalink_structure(){
+	delete_transient('ampforwp_permalink_structure');
+	// Delete ampforwp_woocommerce_permalinks transient when it is updated #2924
+	if( class_exists( 'WooCommerce' ) ) {
+		delete_transient('ampforwp_woocommerce_permalinks');
+	}
+}
 // add re-write rule for Products
 add_action( 'init', 'ampforwp_custom_rewrite_rules_for_product_category' );
 if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
