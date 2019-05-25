@@ -4,12 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
 <div {{if_id}}id="{{id}}"{{ifend_id}} class="{{user_class}}">
 {{if_condition_carousel_layout_type==1}}
-	<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
+	<amp-carousel {{if_condition_lightbox_gallery==1}} lightbox {{ifend_condition_lightbox_gallery_1}}
+	width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
 		{{repeater_image}}
 	</amp-carousel>
 {{ifend_condition_carousel_layout_type_1}}
 {{if_condition_carousel_layout_type==2}}
-	<amp-carousel id="carousel-with-preview-{{unique_cell_id}}" width="400" height="300" layout="responsive" type="slides">
+	<amp-carousel {{if_condition_lightbox_gallery==1}} lightbox {{ifend_condition_lightbox_gallery_1}} id="carousel-with-preview-{{unique_cell_id}}" width="400" height="300" layout="responsive" type="slides">
 		{{repeater_image}}
 	</amp-carousel>
 	<div class="slid-prv">
@@ -101,7 +102,19 @@ return array(
 											),
 								'content_type'=>'html',
 							),
-
+				        array(
+								'type'		=>'checkbox_bool',
+								'name'		=>"lightbox_gallery",
+								'tab'		=>'customizer',
+								'default'	=>0,
+								'options'	=>array(
+												array(
+													'label'=>esc_html__('Lightbox','accelerated-mobile-pages'),
+													'value'=>1,
+												),
+											),
+								'content_type'=>'html',
+							),
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
@@ -164,7 +177,14 @@ return array(
 	 						'default'	=>'https://cdn.ampproject.org/v0/amp-carousel-0.1.js',	
 	           				'content_type'=>'js',
  						),
-
+							array(		
+							'type'		=>'require_script',		
+	 						'name'		=>"lightbox_script",		
+	 						'label'		=>'amp-lightbox-gallery',
+	 						'default'	=>'https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js',	
+	           				'content_type'=>'js',
+	           				'required'  => array('lightbox_gallery'=>1),
+ 						),
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
