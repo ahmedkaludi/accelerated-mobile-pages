@@ -502,7 +502,7 @@ body a {  color: <?php echo ampforwp_get_setting('amp-opt-color-rgba-link','colo
 
 .amp-wp-content blockquote { border-color:  <?php echo ampforwp_sanitize_color( $header_background_color ); ?>; }
 amp-user-notification { border-color:  <?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color','ampforwp_sanitize_color'); ?>;}
-amp-user-notification button { background-color:  <?php echo echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color','ampforwp_sanitize_color'); ?>;}
+amp-user-notification button { background-color:  <?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color','ampforwp_sanitize_color'); ?>;}
 <?php if ( true == ampforwp_get_setting('enable-single-social-icons') && is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
 .single-post footer { padding-bottom: 41px;}
 <?php } ?>
@@ -554,7 +554,7 @@ amp-user-notification button { background-color:  <?php echo echo ampforwp_get_s
 <?php } ?>
 <?php if ( ampforwp_get_setting('ampforwp-callnow-button') ) { ?>
 .callnow{ position: absolute; top: 15px; right: 20px }
-.callnow a:before { content: ""; position: absolute; right: 23px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call','color','ampforwp_sanitize_color'); ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
+.callnow a:before { content: ""; position: absolute; right: 23px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call','color','ampforwp_sanitize_color'); ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
 <?php } ?>
 <?php
 if ( class_exists('TablePress') ) { ?>
