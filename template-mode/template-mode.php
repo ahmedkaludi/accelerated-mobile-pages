@@ -23,6 +23,8 @@ Class AMPforWP_theme_mode{
 		    add_filter("ampforwp_the_content_last_filter",  array($this, "comment_form_conversion") );
 		    add_filter("amp_post_template_data", array($this, 'amp_comment_mustache_script') );
 		    
+		}else{
+			add_filter( 'plugin_action_links_accelerated-mobile-pages/accelerated-moblie-pages.php', array($this, 'ampforwp_plugin_settings_link'), 10, 4 );
 		}
 
 		add_action( 'wp_ajax_amp_theme_ajaxcomments',  array($this, 'amp_theme_ajaxcomments') ); 
@@ -31,6 +33,17 @@ Class AMPforWP_theme_mode{
 	function ampforwp_theme_mode_enable($opt){
 		return true;
 	}
+ 	
+	function ampforwp_plugin_settings_link( $actions, $plugin_file, $plugin_data, $context ) {
+				$amp_activate = '';
+				$amp_activate = array(' | <span style="color:black;">Status: Template Mode</span style=>');
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			$actions = array_merge( $actions, $amp_activate );
+		return $actions;
+	}
+
+
+
 	function amp_comment_mustache_script($data){
 		if ( comments_open()){
 			if ( empty( $data['amp_component_scripts']['amp-mustache'] ) ) {
