@@ -1161,16 +1161,6 @@ add_action('parse_query','ampforwp_vendor_is_amp_endpoint');
 function ampforwp_vendor_is_amp_endpoint(){
 	if ( ! function_exists('amp_activate') && ! function_exists('is_amp_endpoint' ) ) {
 		function is_amp_endpoint(){
-			_doing_it_wrong(
-				__FUNCTION__,
-				sprintf(
-					/* translators: 1: is_amp_endpoint(), 2: ampforwp_is_amp_endpoint */
-					esc_html__( '%1$s is deprecated from AMPforWP, please use %2$s instead. Check %3$s for more info', 'accelerated-mobile-pages' ),
-					'is_amp_endpoint()',
-					'ampforwp_is_amp_endpoint','https://ampforwp.com/tutorials/article/detect-amp-page-function/'
-				),
-				'5.1.1'
-			);
 			return false !== get_query_var( AMP_QUERY_VAR, false );
 		}
 	}
