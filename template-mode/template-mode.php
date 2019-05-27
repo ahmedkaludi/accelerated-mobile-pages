@@ -6,6 +6,20 @@ Class AMPforWP_theme_mode{
 
 	public function init(){
 		if(!is_admin()){
+			//redirect.php
+			remove_action( 'template_redirect', 'ampforwp_check_amp_page_status', 10 );
+			remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 10 );
+			remove_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 );
+			remove_filter( 'query_vars', 'ampforwp_custom_query_var' );
+			remove_action( 'template_redirect', 'ampforwp_redirect_to_orginal_url' );
+			remove_action('template_redirect', 'ampforwp_redirect_proper_qendpoint' );
+
+			//Main files
+			remove_action( 'init', 'ampforwp_add_custom_post_support',11);
+			remove_action( 'init', 'ampforwp_add_custom_rewrite_rules', 25 );
+			remove_action( 'init', 'ampforwp_custom_rewrite_rules_for_product_category' );
+
+
 			add_action(	'init', array($this, 'rm_wp_core'), 20 );
 			add_filter("ampforwp_is_amp_endpoint",  array($this, 'ampforwp_theme_mode_enable'));
 			add_action(	'init', array($this, 'dynamic_sidebar_callback_bkp') );
@@ -24,6 +38,7 @@ Class AMPforWP_theme_mode{
 		    add_filter("amp_post_template_data", array($this, 'amp_comment_mustache_script') );
 		    
 		}else{
+			require_once AMPFORWP_PLUGIN_DIR.'/template-mode/admin-settings.php';
 			add_filter( 'plugin_action_links_accelerated-mobile-pages/accelerated-moblie-pages.php', array($this, 'ampforwp_plugin_settings_link'), 10, 4 );
 		}
 
@@ -522,6 +537,9 @@ Class AMPforWP_theme_mode{
 
 
 }//Class Closed
-
-$ampforwp_theme_mode = new AMPforWP_theme_mode();
-$ampforwp_theme_mode->init();
+//add_action("after_setup_theme",function(){
+//if(get_theme_support('amp-template')){
+	$ampforwp_theme_mode = new AMPforWP_theme_mode();
+	$ampforwp_theme_mode->init();
+//}
+//});
