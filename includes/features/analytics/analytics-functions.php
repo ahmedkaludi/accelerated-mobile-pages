@@ -29,13 +29,13 @@ function ampforwp_analytics() {
 				'enabled'=> true
 			);
 		}
-		$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
 		$ampforwp_ga_fields = json_encode( $ga_fields);
 		if($ampforwp_ga_fields && ampforwp_get_setting('ampforwp-ga-field-advance-switch')){
 			$ampforwp_ga_fields = ampforwp_get_setting('ampforwp-ga-field-advance');
 			$ampforwp_ga_fields = preg_replace('!//.*!', '', $ampforwp_ga_fields);
 			$ampforwp_ga_fields = preg_replace('!/\*.*?\*/!s', '', $ampforwp_ga_fields);
 			}
+		$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
 	 		?>
 			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="googleanalytics" id="analytics1">
 				<script type="application/json">
