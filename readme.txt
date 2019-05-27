@@ -223,5 +223,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Debug error after enabling redirection #3174
 * Fixed: The tag 'amp-next-page with inline config' appears more than once in the document #3214
 * Fixed: Correct conditions for PageBuilder and Elementor for Page.php in Swift #3097
+* Fixed: is_amp_endpoint issue - code updated #3055
 
 Full changelog available in changelog.txt
