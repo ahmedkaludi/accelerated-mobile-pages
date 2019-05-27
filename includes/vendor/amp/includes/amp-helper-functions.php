@@ -41,7 +41,7 @@ function post_supports_amp( $post ) {
  * Note: will always return `false` if called before the `parse_query` hook.
  */
 function is_amp_endpoint() {
-	return true;//false !== get_query_var( AMP_QUERY_VAR, false );
+	return false !== get_query_var( AMP_QUERY_VAR, false );
 }
 
 function amp_get_asset_url( $file ) {

@@ -26,6 +26,7 @@ Class AMPforWP_theme_mode{
 			add_filter(	'amp_post_template_dir', array($this, 'template_mode_new_dir') );
 			add_filter( 'amp_post_template_file', array($this, 'custom_template_file_name'), 11, 3 );
 			add_filter(	"post_thumbnail_html", array($this, 'featured_image_html'), 11, 5 );
+			add_filter("language_attributes", array($this, 'add_amp_html_attr'), 10, 2);
 			add_filter(	"the_content", array($this, 'amp_the_content') );
 			add_action(	"levelup_head", array($this, 'amp_head_content') );
 			add_action(	"levelup_css", array($this, 'amp_head_css')	);
@@ -147,6 +148,7 @@ Class AMPforWP_theme_mode{
 		    remove_all_actions( 'comment_form' );
 		    remove_action( 'amp_post_template_head','ampforwp_add_meta_viewport', 9);
 		    remove_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
+		    remove_filter( 'amp_post_template_data', 'ampforwp_backtotop' );
 		    remove_filter('amp_post_template_dir','ampforwp_new_dir');
 		    remove_filter( 'amp_post_template_file', 'ampforwp_empty_filter', 10, 3 );
 	}
@@ -421,6 +423,11 @@ Class AMPforWP_theme_mode{
 		return $html;
 	}
 
+	public function add_amp_html_attr($output, $doctype){
+		$output .= ' amp ';
+		return $output;
+	}
+
 	public function amp_the_content($content){
 		global  $ampforwpTemplate;
 		if(empty($ampforwpTemplate)){ return $content; }
@@ -443,7 +450,16 @@ Class AMPforWP_theme_mode{
 		do_action( 'amp_css', $ampforwpTemplate ); 
 		
 		$stylesheetCss = $this->ampforwp_get_remote_content($stylesheetUri);
-		$stylesheetCss = str_replace("img", 'amp-img', $stylesheetCss);
+		$stylesheetCss = str_replace(" img", 'amp-img', $stylesheetCss);
+		$valuesrc = get_stylesheet_directory_uri();
+		$stylesheetCss .= preg_replace_callback('/url[(](.*?)[)]/', function($matches)use($valuesrc){
+                    $matches[1] = str_replace(array('"', "'"), array('', ''), $matches[1]);
+                        if(!wp_http_validate_url($matches[1]) && strpos($matches[1],"data:")===false){
+                            return 'url('.$valuesrc."/".$matches[1].")"; 
+                        }else{
+                            return $matches[0];
+                        }
+                    }, $stylesheetCss);
 		$css .= $stylesheetCss;
 		$css .= $redux_builder_amp['css_editor']; 
 		echo $this->css_sanitizer($css);
@@ -537,9 +553,10 @@ Class AMPforWP_theme_mode{
 
 
 }//Class Closed
-//add_action("after_setup_theme",function(){
-//if(get_theme_support('amp-template')){
-	$ampforwp_theme_mode = new AMPforWP_theme_mode();
-	$ampforwp_theme_mode->init();
-//}
-//});
+add_action("after_setup_theme", 'ampforwp_template_mode_is_activate');
+function ampforwp_template_mode_is_activate(){
+	if(get_theme_support('amp-template-mode')){
+		$ampforwp_theme_mode = new AMPforWP_theme_mode();
+		$ampforwp_theme_mode->init();
+	}
+};
