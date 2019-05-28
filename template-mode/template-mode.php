@@ -5,21 +5,10 @@ Class AMPforWP_theme_mode{
 	}	
 
 	public function init(){
+		
+		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedAction'));
+		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedMenuWidgets'), 11);
 		if(!is_admin()){
-			//redirect.php
-			remove_action( 'template_redirect', 'ampforwp_check_amp_page_status', 10 );
-			remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 10 );
-			remove_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 );
-			remove_filter( 'query_vars', 'ampforwp_custom_query_var' );
-			remove_action( 'template_redirect', 'ampforwp_redirect_to_orginal_url' );
-			remove_action('template_redirect', 'ampforwp_redirect_proper_qendpoint' );
-
-			//Main files
-			remove_action( 'init', 'ampforwp_add_custom_post_support',11);
-			remove_action( 'init', 'ampforwp_add_custom_rewrite_rules', 25 );
-			remove_action( 'init', 'ampforwp_custom_rewrite_rules_for_product_category' );
-
-
 			add_action(	'init', array($this, 'rm_wp_core'), 20 );
 			add_filter("ampforwp_is_amp_endpoint",  array($this, 'ampforwp_theme_mode_enable'));
 			add_action(	'init', array($this, 'dynamic_sidebar_callback_bkp') );
@@ -46,15 +35,48 @@ Class AMPforWP_theme_mode{
 		add_action( 'wp_ajax_amp_theme_ajaxcomments',  array($this, 'amp_theme_ajaxcomments') ); 
 		add_action( 'wp_ajax_nopriv_amp_theme_ajaxcomments',  array($this, 'amp_theme_ajaxcomments') ); 
 	}
+	static function removeUnusedMenuWidgets(){
+		unregister_nav_menu( 'amp-menu' );
+		unregister_nav_menu( 'amp-footer-menu' );
+
+		unregister_sidebar('ampforwp-above-loop');
+		unregister_sidebar('ampforwp-below-loop');
+		unregister_sidebar('ampforwp-below-header');
+		unregister_sidebar('ampforwp-above-footer');
+		unregister_sidebar('swift-footer-widget-area');
+		unregister_sidebar('swift-sidebar');
+	}
+	public static function removeUnusedAction(){
+		//redirect.php
+		remove_action( 'init', 'ampforwp_menu', 10 );
+		remove_action( 'init', 'ampforwp_footermenu', 10 );
+		remove_action( 'init', 'swifttheme_footer_widgets_init', 10 );
+		remove_action( 'init', 'ampforwp_add_widget_support', 10);
+		
+		remove_action( 'template_redirect', 'ampforwp_check_amp_page_status', 10 );
+		remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 10 );
+		remove_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 );
+		remove_filter( 'query_vars', 'ampforwp_custom_query_var' );
+		remove_action( 'template_redirect', 'ampforwp_redirect_to_orginal_url' );
+		remove_action('template_redirect', 'ampforwp_redirect_proper_qendpoint' );
+
+		//Main files
+		remove_action( 'init', 'ampforwp_add_custom_post_support',11);
+		remove_action( 'init', 'ampforwp_add_custom_rewrite_rules', 25 );
+		remove_action( 'init', 'ampforwp_custom_rewrite_rules_for_product_category' );
+
+
+
+	}
+
 	function ampforwp_theme_mode_enable($opt){
 		return true;
 	}
  	
 	function ampforwp_plugin_settings_link( $actions, $plugin_file, $plugin_data, $context ) {
-				$amp_activate = '';
-				$amp_activate = array(' | <span style="color:black;">Status: Template Mode</span style=>');
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			$actions = array_merge( $actions, $amp_activate );
+		$amp_activate = '';
+		$amp_activate = array(' | <span style="color:black;">Status: Template Mode</span style=>');
+		$actions = array_merge( $actions, $amp_activate );
 		return $actions;
 	}
 
@@ -452,7 +474,7 @@ Class AMPforWP_theme_mode{
 		$stylesheetCss = $this->ampforwp_get_remote_content($stylesheetUri);
 		$stylesheetCss = str_replace(" img", 'amp-img', $stylesheetCss);
 		$valuesrc = get_stylesheet_directory_uri();
-		$stylesheetCss .= preg_replace_callback('/url[(](.*?)[)]/', function($matches)use($valuesrc){
+		$stylesheetCss = preg_replace_callback('/url[(](.*?)[)]/', function($matches)use($valuesrc){
                     $matches[1] = str_replace(array('"', "'"), array('', ''), $matches[1]);
                         if(!wp_http_validate_url($matches[1]) && strpos($matches[1],"data:")===false){
                             return 'url('.$valuesrc."/".$matches[1].")"; 
@@ -559,4 +581,4 @@ function ampforwp_template_mode_is_activate(){
 		$ampforwp_theme_mode = new AMPforWP_theme_mode();
 		$ampforwp_theme_mode->init();
 	}
-};
+}
