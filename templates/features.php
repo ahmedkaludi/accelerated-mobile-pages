@@ -1487,17 +1487,16 @@ function ampforwp_yoast_social_title($type) {
 	//Added the opengraph for frontpage in AMP #2454
 	if(ampforwp_is_front_page() || ampforwp_is_blog() ){
 		$title = $page_id = '';
-		if ( ampforwp_is_front_page() ) {
-			$page_id = ampforwp_get_frontpage_id();
-		}
-		if ( ampforwp_is_blog() ){
-			$page_id = ampforwp_get_blog_details('id');
-		}
+		$page_id = ampforwp_get_the_ID();
+
 		if( 'og' == $type ) {
 			$title = WPSEO_Meta::get_value( 'opengraph-title', $page_id );
 		}
 		if( 'twitter' == $type ) {
 			$title = WPSEO_Meta::get_value('twitter-title',$page_id );
+		}
+		if (empty($title) ){
+			$title = get_post_meta($page_id, '_yoast_wpseo_title', true);
 		}
 		if (empty($title) ){
 			$title = get_the_title($page_id);
