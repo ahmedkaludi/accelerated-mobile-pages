@@ -190,21 +190,22 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.55 (27rd May 2019) =
-* Added: Related posts and Recent posts on custom posts types #2708
-* Added: Appearance Designs for Related Posts #1545
-* Added: Integration with EWWW IO and ExactDN. #2805
-* Added: rel = "nofollow" to the links of social platforms in menu and footer, in all designs #2999
-* Added: Option to display the Post title on Breadcrumb #3019
-* Added: Map module in AMP pagebuilder #1629
-* Added: Pagination support in category module of AMP pagebuilder #1676
-* Added: Time Stamp support in category module of AMP pagebuilder #2648
-* Added: Lightbox feature for Slider module of AMP pagebuilder #2646
-* Added: Privacy page option in Notice Bar (Cookie Consent) #2347
-* Added: SmartMag theme's Featured video Compatibility integrated #2559
-* Added: New filter to modify the links of breadcrumbs, comment button and the non-amp version link in footer #2664
-* Added: New filter to modify the single featured image #2896
-* Added: "AMPforWP PageBuilder" option added in the page builder section #2414
+= 0.9.97.55 (28th May 2019) =
+* Improvement: Rank Math compatibility with V1.0.24	#3177 
+* Improvement: Related posts and Recent posts on custom posts types #2708
+* Improvement: Appearance Designs for Related Posts #1545
+* Improvement: Integration with EWWW IO and ExactDN. #2805
+* Improvement: rel = "nofollow" to the links of social platforms in menu and footer, in all designs #2999
+* Improvement: Option to display the Post title on Breadcrumb #3019
+* Improvement: Map module in AMP pagebuilder #1629
+* Improvement: Pagination support in category module of AMP pagebuilder #1676
+* Improvement: Time Stamp support in category module of AMP pagebuilder #2648
+* Improvement: Lightbox feature for Slider module of AMP pagebuilder #2646
+* Improvement: Privacy page option in Notice Bar (Cookie Consent) #2347
+* Improvement: SmartMag theme's Featured video Compatibility integrated #2559
+* Improvement: New filter to modify the links of breadcrumbs, comment button and the non-amp version link in footer #2664
+* Improvement: New filter to modify the single featured image #2896
+* Improvement: "AMPforWP PageBuilder" option added in the page builder section #2414
 * Fixed: PHP debug warning #3128
 * Fixed: Fatal error after update 0.9.97.51 #3156
 * Fixed: Unwanted code on username of comment in Design [1, 2 & 3] #3022
