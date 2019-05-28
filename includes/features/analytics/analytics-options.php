@@ -126,7 +126,7 @@ function ampforwp_analytics_options($opt_name){
                         'desc'     => '',
                         'default'  => '{
     "vars": {
-        "account": "UA-xxxxxxx-x"  //Replace this with your Tracking ID
+        "account": "UA-xxxxxxx-x"  /*Replace this with your Tracking ID*/
     },
     "triggers": {
         "trackPageview": {
