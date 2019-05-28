@@ -332,7 +332,7 @@ if( !function_exists('ampforwp_get_blog_details') ) {
                 if ( $post ) {
                     $slug = $post->post_name;
                     $title = $post->post_title;
-                    $blog_id = ampforwp_get_the_ID();
+                    $blog_id = $post->ID;
                 }                       
                 switch ($param) {
                     case 'title':
