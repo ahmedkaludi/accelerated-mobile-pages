@@ -126,9 +126,8 @@
 				<?php } ?>
 		    </div>
 		</div>
-	</div>
-<?php 
-do_action("ampforwp_single_design_type_handle");
+	</div> <?php
+	do_action("ampforwp_single_design_type_handle_d1");
 } // Single page design 1 ends here
 
 	?>
@@ -517,9 +516,7 @@ do_action("ampforwp_single_design_type_handle");
 			</div><!-- /.sp-artl -->
 		</div><!-- /.sp-wrap -->
 	</div><!-- /.container -->
-<?php //} 
-do_action("ampforwp_single_design_type_handle");
-	?>
 </div>
 <?php }// New single desing Ends?>
+<?php do_action("ampforwp_single_design_type_handle");?>
 	<?php amp_footer()?>
