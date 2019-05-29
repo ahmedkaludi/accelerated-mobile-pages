@@ -362,7 +362,6 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	global $redux_builder_amp, $post;
 	$url = $title = $id = $author_id = $author_name = '';
 	$url = get_the_permalink();
-	var_dump($url);
 	if(!is_object($post)){ return $ga_fields; }
 	$title = $post->post_title;
 	$id = $post->ID;
