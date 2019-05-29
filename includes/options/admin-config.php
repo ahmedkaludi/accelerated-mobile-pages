@@ -4069,7 +4069,7 @@ Redux::setSection( $opt_name, array(
                           array('amp-design-3-featured-content', '=', '1'),
                         ),
                         'ajax'      => true,
-                        'data-action' => 'categories', 
+                        'data-action' => 'ampforwp_categories', 
                         'data'      => 'categories',
                   ),
                  array(
