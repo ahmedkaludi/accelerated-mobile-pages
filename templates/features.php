@@ -4209,16 +4209,7 @@ function ampforwp_rel_canonical_home_archive(){
 	$remove					= '';
 	$query_arg_array 		= '';
 	$page                   = '' ;
-	$show_canonical         = true ;
-
-	// RankMath canonical copatibility #2975
-	if ( defined('RANK_MATH_FILE') ) {
-		$show_canonical = false;
-		if (class_exists('RankMath\\Helper') && \RankMath\Helper::is_module_active( 'amp' ) == false){
-			$show_canonical = true;
-		}	
-	}
-	if ( (is_home() || is_front_page() || (is_archive() && $redux_builder_amp['ampforwp-archive-support']) ) && $show_canonical )	{
+	if ( is_home() || is_front_page() || (is_archive() && ampforwp_get_setting('ampforwp-archive-support')) )	{
 		$current_archive_url = home_url( $wp->request );
 		$amp_url 	= trailingslashit($current_archive_url);
 		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
