@@ -6029,27 +6029,6 @@ if ( ! function_exists('ampforwp_amp2wp_fb') ) {
 	}
 }
 
-// Backward Compatibility
-function ampforwp_correct_frontpage() {
-	return ampforwp_get_frontpage_id();
-}
-
-//Common function to get frontpageID
-function ampforwp_get_frontpage_id() {
-	global $redux_builder_amp;
-	$post_id = '';
-
-	//$post_id = get_the_ID();
-	if ( ampforwp_is_front_page() && $redux_builder_amp['amp-frontpage-select-option']==1 
-		&& isset( $redux_builder_amp['amp-frontpage-select-option-pages'] ) 
-		 ) { 
-		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-	}
-  
-	$post_id = apply_filters('ampforwp_modify_frontpage_id', $post_id);
-	return $post_id;
-}
-
 // Removing AMPHTML Added by Facebook's Instant Article's Plugin #2043
 add_action( 'wp', 'ampforwp_remove_instant_articles_amp_markup' );
 function ampforwp_remove_instant_articles_amp_markup(){

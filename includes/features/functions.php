@@ -102,6 +102,21 @@ function ampforwp_get_the_ID($post_id=''){
     return $post_id;
 }
 
+// Backward Compatibility
+function ampforwp_correct_frontpage() {
+    return ampforwp_get_frontpage_id();
+}
+
+//Common function to get frontpageID
+function ampforwp_get_frontpage_id() {
+    $post_id = '';
+    if ( ampforwp_is_front_page() ) { 
+        $post_id = ampforwp_get_setting('amp-frontpage-select-option-pages');
+    }
+    $post_id = apply_filters('ampforwp_modify_frontpage_id', $post_id);
+    return $post_id;
+}
+
 // 27. Clean the Defer issue
 // TODO : Get back to this issue. #407
 function ampforwp_the_content_filter_full( $content_buffer ) {
