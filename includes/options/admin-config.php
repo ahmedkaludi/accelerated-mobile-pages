@@ -3274,6 +3274,18 @@ Redux::setSection( $opt_name, array(
                         array('amp-design-selector', '=' , '4')
                      )
             ),
+            array(
+                    'id'        => 'swift-btn-hover-color-scheme',
+                    'title'     => esc_html__('Button Hover Color', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Choose the color when hover for Button','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'color'      => '#fff',
+                     ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '4')
+                     )
+            ),
              array(
                     'id'        => 'amp-opt-color-rgba-colorscheme',
                     'type'      => 'color_rgba',
