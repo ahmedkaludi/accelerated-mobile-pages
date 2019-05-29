@@ -284,7 +284,7 @@
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-twitter-share']){?>
 										<li>
-											<a title="twitter share" class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(htmlentities(rawurlencode(get_the_title()))); ?>">
+											<a title="twitter share" class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?>">
 											</a>
 										</li>
 										<?php } ?>
