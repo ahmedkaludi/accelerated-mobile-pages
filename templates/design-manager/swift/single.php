@@ -127,7 +127,7 @@
 		</div>
 	</div>
 <?php 
-do_action("ampforwp_single_design_type_handle"); 
+do_action("ampforwp_single_design_type_handle_d1"); 
 	?>
 <?php if($redux_builder_amp['rp_design_type'] == '2'){
         if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
@@ -514,9 +514,7 @@ do_action("ampforwp_single_design_type_handle");
 			</div><!-- /.sp-artl -->
 		</div><!-- /.sp-wrap -->
 	</div><!-- /.container -->
-<?php
-do_action("ampforwp_single_design_type_handle");
-	?>
 </div>
 <?php }// New single desing Ends?>
+<?php do_action("ampforwp_single_design_type_handle"); ?>
 	<?php amp_footer()?>
