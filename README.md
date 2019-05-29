@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.2
-Stable tag: 0.9.97.55
+Tested up to: 5.2.1
+Stable tag: 0.9.97.56
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -187,6 +187,9 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.56 (29th May 2019) =
+* Fixed: #3214 fix was causing conflict with AMP Layouts and content was getting blank
 
 = 0.9.97.55 (28th May 2019) =
 * Improvement: Rank Math compatibility with V1.0.24	#3177 

@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 0.9.97.56 (29th May 2019) =
+* Fixed: #3214 fix was causing conflict with AMP Layouts and content was getting blank
+
 = 0.9.97.55 (28th May 2019) =
 * Improvement: Rank Math compatibility with V1.0.24	#3177 
 * Improvement: Related posts and Recent posts on custom posts types #2708
