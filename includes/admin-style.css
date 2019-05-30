@@ -925,3 +925,11 @@ div#section-ampforwp-ads-section h3:before{
     padding: 6px 15px 8px 16px;
 
 }
+.redux-group-menu .template-mode-amp .el+.group_title:after{  
+content: "Template Mode"; 
+display: inline-block; 
+font-size: 10px;  
+text-transform: none; 
+width: 100%; 
+font-weight: normal; 
+}
