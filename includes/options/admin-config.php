@@ -1569,6 +1569,35 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => ampforwp_seo_default(),
             ),
+
+           array( 
+               'class' => 'child_opt child_opt_arrow',
+               'id'       => 'ampforwp-seo-rank_math-meta',
+               'type'     => 'switch',
+               'tooltip-subtitle'     => esc_html__('Adds Social and Open Graph Meta Tags from Rank Math', 'accelerated-mobile-pages'),
+               'title'    => esc_html__( 'Meta Tags from Rank Math', 'accelerated-mobile-pages' ),
+               'default'  => '1',
+               'required'  => array('ampforwp-seo-selection', '=' , 'rank_math'),
+           ),
+           array(
+               'class' => 'child_opt',
+               'id'       => 'ampforwp-seo-rank_math-schema',
+               'type'     => 'switch',
+               'tooltip-subtitle'     => esc_html__('Adds Rank Math ld+json for AMP page', 'accelerated-mobile-pages'),
+               'title'    => esc_html__( 'Rank Math ld+json data', 'accelerated-mobile-pages' ),
+               'default'  => '1',
+               'required'  => array('ampforwp-seo-selection', '=' , 'rank_math'),
+           ),
+           array(
+               'class' => 'child_opt',
+               'id'       => 'ampforwp-seo-rank_math-canonical',
+               'type'     => 'switch',
+               'tooltip-subtitle'     => esc_html__('Pull Canonical from Rank Math for AMP pages', 'accelerated-mobile-pages'),
+               'title'    => esc_html__( 'Canonical from Rank Math', 'accelerated-mobile-pages' ),
+               'default'  => '1',
+               'required'  => array('ampforwp-seo-selection', '=' , 'rank_math'),
+           ),
+
            array( 
                'class' => 'child_opt child_opt_arrow',
                'id'       => 'ampforwp-seo-yoast-meta',
