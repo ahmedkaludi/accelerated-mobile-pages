@@ -4790,7 +4790,35 @@ function ampforwp_inline_related_posts(){
 									$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . $thumb_url_2[1] . '" height="' . $thumb_url_2[2] . '" layout="responsive"></amp-img>';
 								}
 								else{
-									$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2 ).'" width="150" height="150" layout="responsive"></amp-img>';
+									$tag_open = $layout_responsive = $imageClass = $tag_close = '';
+									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 150 , 150 , true, false,true );
+									$thumb_url 		= $thumb_url_2[0];
+									$thumb_width 	= $thumb_url_2[1];
+									$thumb_height 	= $thumb_url_2[2];
+									$loopImageData = array(
+														"tag"				=>'',
+														"image_url"			=>$thumb_url,
+														"width"				=>$thumb_width,
+														"height"			=>$thumb_height,
+														"layout_responsive"	=>'layout="responsive"',
+														"image_class"		=>'',
+														"tag_class"			=>'',
+														);
+									$changesInImageData = apply_filters("ampforwp_modify_inline_rp_loop_image",$loopImageData);
+									if(!empty($changesInImageData) && is_array($changesInImageData)){
+										$tag 				= $changesInImageData["tag"];
+										$thumb_url			= $changesInImageData["image_url"];
+										$thumb_width		= $changesInImageData["width"];
+										$thumb_height		= $changesInImageData["height"];
+										$layout_responsive	= $changesInImageData["layout_responsive"];
+										$imageClass			= $changesInImageData["image_class"];
+										$tagClass			= $changesInImageData["tag_class"];
+										if(!empty($tag) && !empty($tagClass)){
+											$tag_open 	= '<'.$tag.' class="'.$tagClass.'">';
+											$tag_close	= '</'.$tag.'>';
+										}
+									}
+									$inline_related_posts .= ''.$tag_open.'<amp-img src="'.esc_url( $thumb_url ).'" width="'.$thumb_width.'" height="'.$thumb_height.'" '.$layout_responsive.' class="'.$imageClass.'"></amp-img>'.$tag_close.'';
 								}
 							} 
 							$inline_related_posts .='</a>';
