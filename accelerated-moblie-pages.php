@@ -626,6 +626,7 @@ ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php' );
 function ampforwp_bundle_core_amp_files(){
 	// Bundling Default plugin
 	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
+	require_once AMPFORWP_PLUGIN_DIR .'/template-mode/template-mode.php';
 
 	define( 'AMPFORWP__FILE__', __FILE__ );
 	if ( ! defined('AMP__VENDOR__DIR__') ) {
