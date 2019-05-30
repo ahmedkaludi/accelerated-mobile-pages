@@ -29,7 +29,7 @@
                     }
                   }
               $allowed_html = ampforwp_wp_kses_allowed_html();
-              echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer'),$allowed_html);
+              echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'All Rights Reserved'),$allowed_html);
               ?>
         </p>
         <?php do_action('amp_footer_link'); ?>

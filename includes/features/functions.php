@@ -377,11 +377,13 @@ if( !function_exists('ampforwp_get_blog_details') ) {
 
     // 56. Multi Translation Feature #540
 function ampforwp_translation( $redux_style_translation , $pot_style_translation ) {
- global $redux_builder_amp;
- $single_translation_enabled = $redux_builder_amp['amp-use-pot'];
+ $single_translation_enabled = ampforwp_get_setting('amp-use-pot');
    if ( !$single_translation_enabled ) {
      return $redux_style_translation;
    } else {
+        if(!empty($redux_style_translation)){
+            $pot_style_translation = $redux_style_translation;
+        }
      return __($pot_style_translation,'accelerated-mobile-pages');
    }
 }

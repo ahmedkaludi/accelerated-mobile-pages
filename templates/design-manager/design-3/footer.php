@@ -85,24 +85,13 @@
           </div>
           <?php } 
           if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
-          
             <p class="rightslink back-to-top">
-             <?php  amp_back_to_top_link();
-                  if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
-                    if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
-                      | <?php ampforwp_view_nonamp(); 
-                    }
-                    else{
-                      ampforwp_view_nonamp();
-                    }
-                  }
-              $allowed_html = ampforwp_wp_kses_allowed_html();
-              echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer'),$allowed_html);
+             <?php  amp_back_to_top_link(); 
               ?> </p> <?php } ?>
           <p class="rightslink">
             <?php
               $allowed_html = ampforwp_wp_kses_allowed_html();
-              echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_html );
+              echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'All Rights Reserved') ,$allowed_html );
               if ( '1' == $redux_builder_amp['amp-footer-link-non-amp-page'] ) {
                 if ( $redux_builder_amp['amp-translator-footer-text'] ) { ?> | <?php ampforwp_view_nonamp(); }
                 else {
