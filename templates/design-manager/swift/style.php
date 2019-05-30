@@ -49,7 +49,7 @@ body a:hover{
 pre{ white-space: pre-wrap;}
 .left{float:left}
 .right{float:right}
-.hidden, .hide{ display:none }
+.hidden, .hide, .logo .hide{ display:none }
 .clearfix{ clear:both }
 blockquote{ background: #f1f1f1; margin: 10px 0 20px 0; padding: 15px;}
 blockquote p:last-child {margin-bottom: 0;}
