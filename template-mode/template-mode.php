@@ -8,7 +8,7 @@ Class AMPforWP_theme_mode{
 		
 		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedAction'));
 		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedMenuWidgets'), 11);
-		if(!is_admin()){
+		if(!is_admin() && $GLOBALS['pagenow'] !== 'wp-login.php'  ){
 			add_action(	'init', array($this, 'rm_wp_core'), 20 );
 			add_filter("ampforwp_is_amp_endpoint",  array($this, 'ampforwp_theme_mode_enable'));
 			add_action(	'init', array($this, 'dynamic_sidebar_callback_bkp') );
@@ -541,6 +541,9 @@ Class AMPforWP_theme_mode{
 				$params
 			);
 		if ( is_callable($callback) ) {	
+			if($callback[0]->id_base=='search'){
+			 add_filter("amp_blacklisted_tags", array($this,'allow_search_form_widget'));
+			}
 			ob_start();
 			call_user_func_array($callback, $params);
 			$data = ob_get_clean();
@@ -567,6 +570,14 @@ Class AMPforWP_theme_mode{
 								) 
 							);
 		 return $sanitizer_obj->get_amp_content();
+	}
+	public function allow_search_form_widget($allowedArray){
+		$allowedArray = array_flip($allowedArray);
+		unset($allowedArray['form']);
+		unset($allowedArray['label']);
+		unset($allowedArray['input']);
+		$allowedArray = array_flip($allowedArray);
+		return $allowedArray;
 	}
 
 	public function author_meta_desctiption_amp($field, $user_id){
