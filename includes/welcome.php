@@ -49,14 +49,12 @@ function ampforwp_welcome_screen_content() {
 			<p><?php echo esc_html__('Our team works really hard to deliver good user experience to you.','accelerated-mobile-pages') ?></p></div>
 			<div class="getstarted_wrapper">
             <div class="amp_user_onboarding">
-            <?php if(!get_theme_support('amp-template-mode')){ ?>
             <div class="amp_new_user amp_user_onboarding_choose">
                 <div class="amp_user_avatar"></div>
                 <h3><?php echo esc_html__("I'm a New User!","accelerated-mobile-pages") ?></h3>
                 <p><?php echo esc_html__("We have recommend you to go through AMP installation wizard which helps setup the Basic AMP and get started immediatly.","accelerated-mobile-pages") ?></p>
                 <a href="<?php echo esc_url(wp_nonce_url(admin_url('plugins.php?page=ampforwptourinstaller&ampforwp_install=1'), '_wpnonce'));?>"><?php echo esc_html__("Run Installation Wizard","accelerated-mobile-pages") ?></a>
             </div>
-        	<?php } ?>
             <div class="amp_expert_user amp_user_onboarding_choose">
                 <div class="amp_user_avatar"></div>
                 <h3><?php echo esc_html__("I'm an Experienced User!","accelerated-mobile-pages") ?></h3>
@@ -68,13 +66,11 @@ function ampforwp_welcome_screen_content() {
             </div>
  			</div>
  			<div style="float:right; height: 640px;overflow:auto;">
- 				<?php if(!get_theme_support('amp-template-mode')){ ?>
  				<div class="amp_expert_user amp_user_onboarding_choose">
 	                <!--<div class="amp_user_avatar"></div>-->
 	                <!--<h3>Change log</h3>-->
 	                <?php require AMPFORWP_PLUGIN_DIR.'includes/change-log.php';?>
             	</div>
-            	<?php } ?>
  			</div>
 
 		    
@@ -84,7 +80,6 @@ function ampforwp_welcome_screen_content() {
 		    	<i class="dashicons dashicons-editor-help" style="font-size: 34px;margin-right: 18px;margin-top: -1px;"></i><?php echo esc_html__('Need Help?','accelerated-mobile-pages') ?>
 		    </h1>
 			<div class="amp_installed_text"><p><?php echo esc_html__('We\'re bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!','accelerated-mobile-pages') ?></p></div>
-			<?php if(!get_theme_support('amp-template-mode')){ ?>
             <div class="getstarted_options">
             <p><b><?php echo esc_html__("Getting Started","accelerated-mobile-pages") ?></b></p>
 				<ul class="getstarted_ul">
@@ -103,7 +98,6 @@ function ampforwp_welcome_screen_content() {
 					<li><a href="https://ampforwp.com/tutorials/article-categories/how-to/" target="_blank"><?php echo esc_html__("General How To's","accelerated-mobile-pages") ?></a></li>
 				</ul>  
             </div>
-        	<?php } ?>
             <div class="clear"></div>
             </div>
 
