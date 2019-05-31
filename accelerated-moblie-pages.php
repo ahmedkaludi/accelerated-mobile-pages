@@ -1055,3 +1055,43 @@ if ( ! function_exists('ampforwp_exclude_posts') ) {
 		return $exclude_post_values;
 	}
 }
+
+// Redux Options Enabler #2939
+add_filter( 'redux/options/redux_builder_amp/sections', 'ampforwp_redux_options_enabler',7,1 );
+function ampforwp_redux_options_enabler($sections){
+	$redux_enabled_options = array();
+	// apply_filters to get the options to enable them
+	$redux_enabled_options = apply_filters('ampforwp_options_enabler', $redux_enabled_options);
+	if(is_array($redux_enabled_options) ) {
+		foreach ($sections as $key => $section_value) {
+	    	if(count($section_value['fields'])>0){
+	    		foreach ($section_value['fields'] as $fieldkey => $field_value) { 
+	    			if(isset($field_value['required']) && in_array($field_value['id'], $redux_enabled_options) ){
+						unset($sections[$key]['fields'][$fieldkey]['required']);
+	    			}
+	    		}
+	    	}
+	    }
+	}
+    return $sections;
+}
+
+// Redux Options Remover #2939
+add_filter( 'redux/options/redux_builder_amp/sections', 'ampforwp_redux_options_remover',7,1 );
+function ampforwp_redux_options_remover($sections){
+	$redux_enabled_options = array();
+	// apply_filters to get the options to remove them
+	$redux_enabled_options = apply_filters('ampforwp_options_remover', $redux_enabled_options);
+	if(is_array($redux_enabled_options) ) {
+		foreach ($sections as $key => $section_value) {
+	    	if(count($section_value['fields'])>0){
+	    		foreach ($section_value['fields'] as $fieldkey => $field_value) { 
+	    			if(isset($field_value['required']) && in_array($field_value['id'], $redux_enabled_options) ){
+						unset($sections[$key]['fields'][$fieldkey]);
+	    			}
+	    		}
+	    	}
+	    }
+	}
+    return $sections;
+}
