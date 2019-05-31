@@ -4769,33 +4769,6 @@ $single_page_options = array(
                    'layout_type' => 'accordion',
                     'accordion-open'=> 0,
              ),
-            array(
-                'id'       => 'ampforwp-swift-recent-posts',
-                'type'     => 'switch',
-                'title'    => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
-                'tooltip-subtitle' => esc_html__('To enable & disable recent posts', 'accelerated-mobile-pages'),
-                'default'  => 1,
-            ),
-            array(
-                    'id'    => 'single-new-features',
-                    'type'  => 'switch',
-                    'title' => esc_html__('Advanced Single Options', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-            ),
-            array(
-                    'id'       => 'breadcrumb-border',
-                    'type'     => 'switch',
-                    'title'    => esc_html__('Breadcrumbs Border', 'accelerated-mobile-pages'),
-                    'default'  => 0,
-                    'required' => array( array('single-new-features', '=' , '1'),array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
-                    'id'       => 'ampforwp-underline-content-links',
-                    'type'     => 'switch',
-                    'title'    => esc_html__('Underline on Links', 'accelerated-mobile-pages'),
-                    'default'  => 0,
-                    'required' => array( array('single-new-features', '=' , '1') ),
-            ),
             // Content  h1 - h6 font sizes //#2059 
             array(
                 'id'       => 'swift_cnt',
@@ -4905,6 +4878,33 @@ $single_page_options = array(
                 'default'  => '15px',
                 'required' => array('swift_cnt_h6' , '=' , '1'),
                               array('swift_cnt' , '=' , '1')
+            ),
+            array(
+                'id'       => 'ampforwp-swift-recent-posts',
+                'type'     => 'switch',
+                'title'    => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
+                'tooltip-subtitle' => esc_html__('To enable & disable recent posts', 'accelerated-mobile-pages'),
+                'default'  => 1,
+            ),
+            array(
+                    'id'    => 'single-new-features',
+                    'type'  => 'switch',
+                    'title' => esc_html__('Advanced Single Options', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+            ),
+            array(
+                    'id'       => 'breadcrumb-border',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Breadcrumbs Border', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array( array('single-new-features', '=' , '1'),array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'       => 'ampforwp-underline-content-links',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Underline on Links', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array( array('single-new-features', '=' , '1') ),
             ),
             array(
                        'id' => 'ampforwp-single_section_5',
