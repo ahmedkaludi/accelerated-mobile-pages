@@ -3476,6 +3476,13 @@ Redux::setSection( $opt_name, array(
                         'accordion-open'=> 1,
             ),
             array(
+                    'id'       => 'ampforwp-amp-menu-swift',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Navigation Menu', 'accelerated-mobile-pages'),
+                    'required' => array('amp-design-selector', '=' , '4'),
+                    'default'  => '1'         
+            ),
+            array(
                     'id'    => 'menu-type',
                    'title'  => esc_html__('Menu Type', 'accelerated-mobile-pages'),
                    'type'   => 'image_select',
@@ -3486,15 +3493,19 @@ Redux::setSection( $opt_name, array(
                                 ),
                     ),
                    'default'=> '1',
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
+                    'required' =>   array(
+                                        array('amp-design-selector', '=' , '4'),
+                                        array('ampforwp-amp-menu-swift', '=' , '1')
+                                    ),
              ),
             array(
                     'id'       => 'menu-search',
                     'type'     => 'switch',
                     'title'    => esc_html__('Menu Search', 'accelerated-mobile-pages'),
-                    'required' => array(
-                    array('amp-design-selector', '=' , '4')
-                    ),
+                    'required' =>   array(
+                                        array('amp-design-selector', '=' , '4'),
+                                        array('ampforwp-amp-menu-swift', '=' , '1')
+                                    ),
                     'default'  => '1'         
             ),
             array(
@@ -3502,7 +3513,8 @@ Redux::setSection( $opt_name, array(
                 'type'     => 'switch',
                 'title'    => esc_html__( 'Menu Copyright', 'accelerated-mobile-pages' ),
                 'required' => array(
-                    array('amp-design-selector', '=' , '4')
+                    array('amp-design-selector', '=' , '4'),
+                    array('ampforwp-amp-menu-swift', '=' , '1')
                 ),
                 'default'  => '1'
             ),
@@ -3513,7 +3525,10 @@ Redux::setSection( $opt_name, array(
                     'true'      => 'true',
                     'false'     => 'false',
                     'default'   => '1',
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
+                    'required' => array( 
+                                    array('amp-design-selector', '=' , '4'),
+                                    array('ampforwp-amp-menu-swift', '=' , '1')
+                                ),
             ),
             array(
                     'id'             => 'primary-menu-padding-control',

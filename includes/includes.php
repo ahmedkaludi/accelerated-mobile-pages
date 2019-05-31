@@ -15,11 +15,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 // 1.1 AMP Header menu
 if (! function_exists( 'ampforwp_menu') ) {
 	function ampforwp_menu() {
+	if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true)	{
 	  register_nav_menus(
 	    array(
 	      'amp-menu' => esc_html__( 'AMP Menu','accelerated-mobile-pages' ),
 	    )
 	  );
+	  if(ampforwp_design_selector()==4 && ampforwp_get_setting('primary-menu') == true){
+	  register_nav_menus(
+	    array(
+	      'amp-alternative-menu' => esc_html__( 'AMP Alternative Menu - Below the Header','accelerated-mobile-pages' ),
+	    )
+	  );
+	  }
+	  }
+	  // 1.2 Footer Menu	
+	  if(ampforwp_get_setting('swift-menu') == true){
+	  register_nav_menus(
+			array(
+			  'amp-footer-menu' => esc_html__( 'AMP Footer Menu','accelerated-mobile-pages' ),
+			)
+		);	
+	}
 	}
 	add_action( 'init', 'ampforwp_menu' );
 }

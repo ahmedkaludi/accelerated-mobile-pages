@@ -94,9 +94,11 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
             <div class="head h_m_w">
+                <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true) {?>
                 <div class="h-nav">
                     <label for="offcanvas-menu" class="t-btn"></label>
                 </div><!--end menu-->
+                <?php } ?>
                 <div class="logo">
                     <?php amp_logo(); ?>
                 </div><!-- /.logo -->
@@ -137,6 +139,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
     <div class="hamb-mnu">
         <aside class="m-ctr">
             <div class="m-scrl">
+
                 <div class="menu-heading clearfix">
                     <label for="offcanvas-menu" class="c-btn"></label>
                 </div><!--end menu-heading-->
@@ -218,9 +221,11 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
             <div class="head-2 h_m_w">
+                <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true) {?>
                 <div class="h-nav">
                    <label for="offcanvas-menu" class="t-btn"></label>
                 </div><!-- /.left-nav -->
+                <?php } ?>
                 <div class="h-logo">
                     <?php amp_logo(); ?>
                 </div>
@@ -360,9 +365,11 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                             <a href="tel:<?php echo esc_attr($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
                         </div>
                     <?php } ?>
+                    <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true) {?>
                     <div class="h-nav">
                        <label for="offcanvas-menu" class="t-btn"></label>
                     </div><!-- /.left-nav --> 
+                    <?php } ?>
                 </div>
             </div>
         </div>
