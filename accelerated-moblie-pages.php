@@ -124,11 +124,15 @@ function ampforwp_add_custom_rewrite_rules() {
     );
 
     // For category pages
-    $rewrite_category = get_option('category_base');
-    if ( ! empty($rewrite_category) ) {
+    $rewrite_category = '';
+    $rewrite_category = get_transient('ampforwp_category_base');
+
+    if ( false == $rewrite_category ) {
     	$rewrite_category = get_option('category_base');
-    } else {
-    	$rewrite_category = 'category';
+    	if (  empty($rewrite_category) ) {
+	    	$rewrite_category = 'category';
+	    }
+    	set_transient('ampforwp_category_base', $rewrite_category);
     }
 
     add_rewrite_rule(
@@ -144,7 +148,12 @@ function ampforwp_add_custom_rewrite_rules() {
     );
 
     // For category pages with Pagination (Custom Permalink Structure)
-	$permalink_structure = get_option('permalink_structure');
+	$permalink_structure = '';
+	$permalink_structure = get_transient('ampforwp_permalink_structure');
+    if ( false == $permalink_structure ) {
+		$permalink_structure = get_option('permalink_structure');
+		set_transient('ampforwp_permalink_structure', $permalink_structure );
+    }
 	$permalink_structure = preg_replace('/(%.*%)/', '', $permalink_structure);
 	$permalink_structure = preg_replace('/\//', '', $permalink_structure);
 	if ( $permalink_structure ) {
@@ -156,12 +165,16 @@ function ampforwp_add_custom_rewrite_rules() {
   	}
 
     // For tag pages
-	$rewrite_tag = get_option('tag_base');
-    if ( ! empty($rewrite_tag) ) {
-    	$rewrite_tag = get_option('tag_base');
-    } else {
-    	$rewrite_tag = 'tag';
+    $rewrite_tag = '';
+    $rewrite_tag = get_transient('ampforwp_tag_base');
+    if ( false == $rewrite_tag ) {   	
+		$rewrite_tag = get_option('tag_base');
+	    if ( empty($rewrite_tag) ) {
+	    	$rewrite_tag = 'tag';
+	    }
+	    set_transient('ampforwp_tag_base',$rewrite_tag);
     }
+
     add_rewrite_rule(
       $rewrite_tag.'\/(.+?)\/amp/?$',
       'index.php?amp=1&tag=$matches[1]',
@@ -181,6 +194,12 @@ function ampforwp_add_custom_rewrite_rules() {
 	      'top'
 	    );
   	}
+  	// Rewrite rule for date archive
+  	add_rewrite_rule(
+      '([0-9]{4})/([0-9]{1,2})\/amp\/?$',
+      'index.php?year=$matches[1]&monthnum=$matches[2]&amp=1',
+      'top'
+    );
     // Rewrite rule for date archive with pagination #2289
   	add_rewrite_rule(
       '([0-9]{4})/([0-9]{1,2})/amp/'.$wp_rewrite->pagination_base.'/?([0-9]{1,})/?$',
@@ -188,41 +207,55 @@ function ampforwp_add_custom_rewrite_rules() {
       'top'
     );
 	//Rewrite rule for custom Taxonomies
-	$args = array(
-	  		'public'   => true,
-	  		'_builtin' => false,  
-	); 
-	$output = 'names'; // or objects
-	$operator = 'and'; // 'and' or 'or'
-	$taxonomies = get_taxonomies( $args, $output, $operator ); 
+	$taxonomies = '';
+	$taxonomies = get_transient('ampforwp_get_taxonomies');
+	if ( false == $taxonomies ) {		
+		$args = array(
+		  		'public'   => true,
+		  		'_builtin' => false,  
+		); 
+		$output = 'names'; // or objects
+		$operator = 'and'; // 'and' or 'or'
+		$taxonomies = get_taxonomies( $args, $output, $operator );
+		set_transient('ampforwp_get_taxonomies',$taxonomies);
+	}
 
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-  	if(!is_plugin_active('amp-woocommerce-pro/amp-woocommerce.php' )) {
+  	if(!function_exists('amp_woocommerce_pro_add_woocommerce_support') ) {
 		if( class_exists( 'WooCommerce' ) ) {
-			$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
-			
+			$wc_permalinks = '';
+			$wc_permalinks = get_transient('ampforwp_woocommerce_permalinks');
+			if( false == $wc_permalinks ) {
+				$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
+				set_transient('ampforwp_woocommerce_permalinks', $wc_permalinks);		
+			}
 			if ( $wc_permalinks ) {
 				$taxonomies = array_merge($taxonomies, $wc_permalinks);
 			}
 		}
 	}
 	$post_types = ampforwp_get_all_post_types();
-		if ( $post_types ) {
-			foreach ($post_types as $post_type ) {
-				if ( 'post' !=  $post_type && 'page' != $post_type ){
-					add_rewrite_rule(
-				      $post_type.'\/amp/?$',
-				      'index.php?amp&post_type='.$post_type,
-				      'top'
-				    );
-				    add_rewrite_rule(
+	if ( $post_types ) {
+		foreach ($post_types as $post_type ) {
+			if ( 'post' !=  $post_type && 'page' != $post_type ){
+				add_rewrite_rule(
+			      $post_type.'\/amp/?$',
+			      'index.php?amp&post_type='.$post_type,
+			      'top'
+			    );
+			    add_rewrite_rule(
+			      $post_type.'\/(.+?)\/amp\/?$',
+			      'index.php?amp&'.$post_type.'=$matches[1]',
+			      'top'
+			    );
+			    add_rewrite_rule(
 			      $post_type.'\/amp/'.$wp_rewrite->pagination_base.'/([0-9]{1,})/?$',
 			      'index.php?amp=1&post_type='.$post_type.'&paged=$matches[1]',
 			      'top'
-			  		 );
-				}
+			   );
 			}
 		}
+	}
+	
 	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
 	if ( $taxonomies ) {
 		foreach ( $taxonomies  as $key => $taxonomy ) { 
@@ -243,6 +276,25 @@ function ampforwp_add_custom_rewrite_rules() {
 	}
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules', 25 );
+// Delete category_base transient when it is updated #2924
+add_action('update_option_category_base', 'ampforwp_update_option_category_base');
+function ampforwp_update_option_category_base(){
+	delete_transient('ampforwp_category_base');
+}
+// Delete category_base transient when it is updated #2924
+add_action('update_option_tag_base', 'ampforwp_update_option_tag_base');
+function ampforwp_update_option_tag_base(){
+	delete_transient('ampforwp_tag_base');
+}
+// Delete permalink_structure transient when it is updated #2924
+add_action('update_option_permalink_structure', 'ampforwp_update_option_permalink_structure');
+function ampforwp_update_option_permalink_structure(){
+	delete_transient('ampforwp_permalink_structure');
+	// Delete ampforwp_woocommerce_permalinks transient when it is updated #2924
+	if( class_exists( 'WooCommerce' ) ) {
+		delete_transient('ampforwp_woocommerce_permalinks');
+	}
+}
 // add re-write rule for Products
 add_action( 'init', 'ampforwp_custom_rewrite_rules_for_product_category' );
 if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
