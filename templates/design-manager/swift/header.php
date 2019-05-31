@@ -385,7 +385,7 @@ do_action("ampforwp_advance_header_layout_options");
 if(!ampforwp_levelup_compatibility('hf_builder_head') ){
  if($redux_builder_amp['primary-menu']){?>
 <div class="p-m-fl">
-<?php if ( amp_menu(false) ) : ?>
+<?php if ( amp_alter_menu(false) ) : ?>
   <div class="p-menu">
     <?php amp_alter_menu(true); ?>
   </div>

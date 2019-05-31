@@ -176,12 +176,15 @@ function amp_menu($echo=true, $menu_args=array(), $type='header'){
 // Alternative Menus
 function amp_alter_menu($echo=true){
 	global $loadComponent;
+	if ( ! has_nav_menu('amp-alternative-menu') ) {
+		return false;
+	}
 	if(isset($loadComponent['AMP-alter-menu']) && $loadComponent['AMP-alter-menu']==true){
 		if ( false == $echo ) {
-			return amp_menu_html($echo ,'amp-alternative-menu');
+			return amp_menu_html($echo, array(),'amp-alternative-menu');
 		}
 		else
-			echo amp_menu_html($echo , 'amp-alternative-menu');
+			echo amp_menu_html($echo, array(), 'amp-alternative-menu');
 	}
 }
 

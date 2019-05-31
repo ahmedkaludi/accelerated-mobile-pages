@@ -2,13 +2,17 @@
 require_once AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-walker-nav-menu.php';
 
 function amp_menu_html($echo, $menu_args, $type){
-	if( has_nav_menu( 'amp-menu' ) || has_nav_menu( 'amp-footer-menu' ) ) {
+	$theme_location = 'amp-menu';
+	if ( 'amp-alternative-menu' == $type ) {
+		$theme_location = 'amp-alternative-menu';
+	}
+	if( has_nav_menu( 'amp-menu' ) || has_nav_menu( 'amp-footer-menu' ) || has_nav_menu( 'amp-alternative-menu' ) ) {
 		if ( !empty($menu_args) && isset($menu_args['walker']) ) {
 			$menu_args['walker'] = new Ampforwp_Walker_Nav_Menu();
 		}
 		if (empty($menu_args)){
 			$menu_args = array(
-	            'theme_location' => 'amp-menu',
+	            'theme_location' => $theme_location,
 	            'container'=>'aside',
 	            'menu'=>'ul',
 	            'menu_class'=>'amp-menu',
