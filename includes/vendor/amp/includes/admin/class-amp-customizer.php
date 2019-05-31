@@ -144,7 +144,7 @@ class AMP_Template_Customizer {
 	public function add_preview_scripts() {
 		wp_enqueue_script(
 			'amp-customizer',
-			AMPforWP\AMPVendor\amp_get_asset_url( 'js/amp-customizer-preview.js' ),
+			amp_get_asset_url( 'js/amp-customizer-preview.js' ),
 			array( 'jquery', 'customize-preview', 'wp-util' ),
 			$version = false,
 			$footer = true
