@@ -14,6 +14,7 @@ add_amp_theme_support('AMP-logo');
 add_amp_theme_support('AMP-social-icons');
 //Menu
 add_amp_theme_support('AMP-menu');
+add_amp_theme_support('AMP-alter-menu');
 //Call Now
 add_amp_theme_support('AMP-call-now');
 //Breadcrumb

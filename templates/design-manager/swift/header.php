@@ -387,7 +387,7 @@ if(!ampforwp_levelup_compatibility('hf_builder_head') ){
 <div class="p-m-fl">
 <?php if ( amp_menu(false) ) : ?>
   <div class="p-menu">
-    <?php amp_menu(); ?>
+    <?php amp_alter_menu(true); ?>
   </div>
   <?php endif; ?>
  <?php do_action('ampforwp_after_primary_menu');  ?>
