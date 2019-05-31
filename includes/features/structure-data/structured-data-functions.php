@@ -331,7 +331,10 @@ if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 			$metadata['uploadDate'] = $metadata['datePublished'];
 			$metadata['thumbnailUrl'] = $structured_data_video_thumb_url;
 			$desc = $post->post_content;
-			if($desc){	
+			if(ampforwp_is_home()){
+				$desc = get_bloginfo('description');
+			}
+			if($desc){
 				$desc = addslashes( wp_trim_words( strip_tags( $desc ) , 30 ) );
 				$metadata['description'] = $desc;	
 			}	       
