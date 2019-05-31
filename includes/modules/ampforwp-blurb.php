@@ -47,7 +47,7 @@
 		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
 
 
-        echo esc_html($before_widget);
+        echo $before_widget;
         
         $output .= '<div class="amp-wp-content amp_cb_module amp_cb_blurb">';
         
@@ -79,7 +79,7 @@
 			echo $sanitized_output; // amphtml content, no kses
 		} 
 
-		echo esc_html($after_widget);
+		echo $after_widget;
 
 	} // end widget
 
