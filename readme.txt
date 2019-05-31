@@ -190,6 +190,32 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.97.57 (31st May 2019) =
+* Improvements: Need to add description field in VideoObject Schema type #2846
+* Improvements: Create an option for H1-H6 Heading Font Sizes for all the designs. #3035
+* Improvements: Need to AMP compatible with this plugin HTTP / HTTPS Remover #3123
+* Improvements: Due to Enable image replacement option in optimole plugin images get removed in AMP #3073
+* Improvements: Author name not comes in AMP due to "Simple Author Box" plugin #3145
+* Improvements: Need hyperlink option on the slider module image #2932
+* Improvements: Need another menu for alternative menu which separate from main menu #2916
+* Improvements: Audio Playlist Support #2437
+* Improvements: Separate option to enable/disable Tags support im AMP #3016
+* Fixed: Controls under swift design should display when selected design is AMP theme framework #2939
+* Fixed: AMP Blurb Module shows code on frontend #3228
+* Fixed: Need to Use Ajax to fetch all Categories and tags in Featured Slider in D3 #2590
+* Fixed: copy the content stop working #3193
+* Fixed: mandatory tag 'link rel=canonical' is missing or incorrect on Homepage- when RankMath is active #3250
+* Fixed: Uncaught Error: Call to undefined function ampforwp_get_frontpage_id() #3242
+* Fixed: Liststyle (Circle) added beside Published by in Design3 in 0.9.97.53 #3222
+* Fixed: Version 0.9.97.52 Yoast Meta Information not being picked up #3207
+* Fixed: When navigation menu option is disabled then amp menu checkbox should be removed from menu appearance. #2548
+* Fixed: Needs to re-write function ampforwp_add_custom_rewrite_rules to improve performace #2924
+* Fixed: amp-next-page script of infinity scroll shouldn't load on other custom post type pages #3157
+* Fixed: Archive and Tag pages generating incorrect AMP HTML #3170
+* Fixed: Images are appearing twice #3186
+* Fixed: Debug error on Homepage #3135
+* Fixed: Font JavaScript is loading everywhere in console and breaking things in dashboard #3133
+* Fixed: Rewrite ampforwp_view_nonamp function to make it future proof #2710
 = 0.9.97.56 (29th May 2019) =
 * Fixed: #3214 fix was causing conflict with AMP Layouts and content was getting blank
 
