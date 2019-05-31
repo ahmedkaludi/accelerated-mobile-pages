@@ -580,8 +580,14 @@ function ampforwp_url_purifier($url){
                 if ( true == $checker && false == strpos($url, $endpointq) )
                     $url =  trailingslashit($url) . $endpointq;
                 else {
-                    if ( false == strpos($url, '/'.$endpoint) )
-                        $url = user_trailingslashit( trailingslashit($url) . $endpoint );
+                    $checker =  explode('/', $url);
+                    $amp_check = in_array($endpoint, $checker); 
+                    if ( false == $amp_check ) {
+                        $url = user_trailingslashit( trailingslashit($url) . $endpoint ); 
+                    }
+                    if ( true == $amp_check ) {
+                        $url =  user_trailingslashit( trailingslashit($url) . $endpoint);
+                    }  
                 }   
             }
         }
