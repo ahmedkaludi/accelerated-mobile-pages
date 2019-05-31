@@ -282,7 +282,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-twitter-share']){?>
 										<li>
-											<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>">
+											<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?>">
 											</a>
 										</li>
 										<?php } ?>
