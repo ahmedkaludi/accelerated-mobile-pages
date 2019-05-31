@@ -987,3 +987,22 @@ if(!function_exists('ampforwp_remove_enfold_theme_shortcodes_tags')){
 		return $content;
 	}
 }
+
+//Need to AMP compatible with this plugin HTTP / HTTPS Remover #3123
+add_action('wp_loaded','ampforwp_http_remover_support');
+function ampforwp_http_remover_support(){
+	if ( class_exists('HTTP_HTTPS_REMOVER')){
+	  	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	  	if (true == ampforwp_get_setting('amp-core-end-point')) {
+	  		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_QUERY),'/' );
+	  	}
+      	$explode_path = explode('/', $url_path);
+	    if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)) {
+	        global $http_https_remover;
+			remove_action('wp_loaded', array(
+				$http_https_remover,
+				'letsGo'
+			), 99, 1);
+	    }
+	}
+}
