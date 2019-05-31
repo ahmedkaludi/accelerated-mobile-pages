@@ -3,6 +3,7 @@ namespace AMPforWP\AMPVendor;
 require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-dom-utils.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-playlist-embed-handler.php' );
 
 class AMP_Content {
 	private $content;

@@ -104,9 +104,12 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 					}
 				}
 				$parent_node = $element->parentNode;
-				$parent_node->removeChild( $element );
+				$allowed_tags = AMP_Allowed_Tags_Generated::get_allowed_tags();
 
-				if ( 'body' !== $parent_node->nodeName && AMP_DOM_Utils::is_node_empty( $parent_node ) ) {
+				if( $parent_node->tagName != 'amp-state'){
+ 					$parent_node->removeChild( $element );
+				 }
+ 				if ( 'body' !== $parent_node->nodeName && AMP_DOM_Utils::is_node_empty( $parent_node ) ) {
 					$parent_node->parentNode->removeChild( $parent_node );
 				}
 			}
@@ -149,7 +152,9 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		if ( empty( $href ) ) {
 			$name_attr = $node->getAttribute( 'name' );
 			$id_attr = $node->getAttribute( 'id' );
-			if ( ! empty( $id_attr ) || ! empty( $name_attr ) ) {
+			$class = $node->getAttribute( 'class' );
+			$on = $node->getAttribute( 'on' );
+			if ( ! empty( $name_attr ) || ! empty( $id_attr ) || ! empty( $class ) || ! empty( $on ) ) {
 				// No further validation is required
 				return true;
 			} else {
