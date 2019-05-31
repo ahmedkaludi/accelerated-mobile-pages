@@ -16,7 +16,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			$this->is_single = true == $this->is_single() ? $this->is_single() : $this->is_single;
 			$this->is_loop = true == $this->is_loop() ? $this->is_loop() : $this->is_loop;
 			$this->paged = $this->paged();
-			if ( $this->is_single ){
+			if ( $this->is_single && 'post' === get_post_type(ampforwp_get_the_ID()) ){
 				// amp-next-page experiment meta tag
 				add_action('amp_experiment_meta', array( $this, 'amp_experiment_meta') );
 				// amp-next-page script
