@@ -84,7 +84,7 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .amp-close-image{ top: 15px; left: 225px; cursor: pointer; }
 .navigation_heading{ padding: 20px 20px 15px 20px; color: #aaa; font-size: 10px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #555; display: inline-block; width: 100%}
 .toggle-navigationv2 ul{ list-style-type: none; margin: 15px 0 0 0; padding: 0}
-.toggle-navigationv2 ul.amp-menu li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px; color:#eee; width:94% }
+.toggle-navigationv2 ul.amp-menu li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px; color:#eee; width:100% }
 .amp-menu li{position:relative}
 .toggle-navigationv2 ul.amp-menu li a:hover{background:#666;color:#fff}
 .amp-menu li.menu-item-has-children ul{display:none;margin:0;background:#666;position:relative;
