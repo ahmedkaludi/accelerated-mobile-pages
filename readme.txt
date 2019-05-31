@@ -216,6 +216,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Debug error on Homepage #3135
 * Fixed: Font JavaScript is loading everywhere in console and breaking things in dashboard #3133
 * Fixed: Rewrite ampforwp_view_nonamp function to make it future proof #2710
+* Fixed: if there's and apostrophe in the post title, it is published as random characters In twitter #2744
+
 = 0.9.97.56 (29th May 2019) =
 * Fixed: #3214 fix was causing conflict with AMP Layouts and content was getting blank
 
