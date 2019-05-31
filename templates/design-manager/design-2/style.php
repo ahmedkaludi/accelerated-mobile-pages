@@ -622,34 +622,34 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
 <?php } ?>
 .amp-wp-content h1, .amp-wp-content h2, .amp-wp-content h3, .amp-wp-content h4, .amp-wp-content h5, .amp-wp-content h6{margin: 15px 0px;}
 <?php  // H1 - H6 Font Sizes 
-if( ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h1') ) { ?>
-  .amp-wp-content h1{font-size:<?php echo esc_html($redux_builder_amp['swift_h1_sz'])?>;}
+if( ampforwp_get_setting('swift_cnt') &&  ampforwp_get_setting('swift_cnt_h1') ){ ?>
+  .amp-wp-content h1{font-size:<?php echo esc_html( ampforwp_get_setting('swift_h1_sz') )?>;}
 <?php } else { ?>
   .amp-wp-content h1 {font-size: 32px;}
 <?php } //H1 ends
-if( ampforwp_get_setting('swift_cnt') &&ampforwp_get_setting('swift_cnt_h2') ){ ?>
-  .amp-wp-content h2{font-size:<?php echo esc_html($redux_builder_amp['swift_h2_sz'])?>;}
+if( ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h2') ){ ?>
+  .amp-wp-content h2{font-size:<?php echo esc_html( ampforwp_get_setting('swift_h2_sz') )?>;}
 <?php } else { ?>
   .amp-wp-content h2 {font-size: 27px;}
 <?php } // H2 Ends
 if( ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h3') ){ ?>
-  .amp-wp-content h3{font-size:<?php echo esc_html($redux_builder_amp['swift_h3_sz'])?>;}
+  .amp-wp-content h3{font-size:<?php echo esc_html( ampforwp_get_setting('swift_h3_sz') )?>;}
 <?php } else { ?>
   .amp-wp-content h3 {font-size: 24px;}
 <?php } // H3 Ends
 if( ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h4') ){ ?> 
-  .amp-wp-content h4{font-size:<?php echo esc_html($redux_builder_amp['swift_h4_sz'])?>;}
+  .amp-wp-content h4{font-size:<?php echo esc_html( ampforwp_get_setting('swift_h4_sz') )?>;}
 <?php } else { ?>
   .amp-wp-content h4 {font-size: 20px;}
 <?php } // H4 Ends
 if( ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h5') ){ ?>
-  .amp-wp-content h5{font-size:<?php echo esc_html($redux_builder_amp['swift_h5_sz'])?>;}
+  .amp-wp-content h5{font-size:<?php echo esc_html( ampforwp_get_setting('swift_h5_sz') )?>;}
 <?php } else { ?>
   .amp-wp-content h5 {font-size: 17px;}
 <?php } // H5 Ends
-if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h6') ){ ?>
-  .amp-wp-content h6{font-size:<?php echo esc_html($redux_builder_amp['swift_h6_sz'])?>;}
+if( ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h6') ){ ?>
+  .amp-wp-content h6{font-size:<?php echo esc_html( ampforwp_get_setting('swift_h6_sz') )?>;}
 <?php } else { ?>
   .amp-wp-content h6 {font-size: 15px;}
 <?php } // H6 Ends
-// swift Content Heading Sizes Ends?> 
+// swift Content Heading Sizes Ends?>  
