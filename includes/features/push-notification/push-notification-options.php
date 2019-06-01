@@ -85,7 +85,7 @@ function ampforwp_push_notification_options($opt_name){
                             'true'      => 'true',
                             'false'     => 'false', 
                             'default'   =>  0,
-                            'tooltip-subtitle'  => '',
+                            //'tooltip-subtitle'  => '',
                             'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
                             ),
                     array(

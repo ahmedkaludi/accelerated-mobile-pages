@@ -208,7 +208,7 @@ function ampforwp_notice_bar_options($opt_name){
                'title'     => esc_html__('iOS app', 'accelerated-mobile-pages'),
                'default'   => '',
                'true'      => 'Enabled',
-                'tooltip-subtitle'     => esc_html__( "You can get the iOS app's meta data <a href='https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html' target='_blank'>here</a>", "accelerated-mobile-pages"),
+                'tooltip-subtitle'     => sprintf( '%s <a href="%s" target="_blank">%s</a>',esc_html__( "You can get the iOS app's meta data",'accelerated-mobile-pages'), esc_url('https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html'),esc_html__('here','accelerated-mobile-pages')),
                'false'     => 'Disabled',
                'required' => array('ampforwp-amp-app-banner', '=' , '1'),
            ),
