@@ -299,7 +299,7 @@ if( ! function_exists( 'ampforwp_additional_gallery_style' ) ){
 add_filter('amp_thumbnail_images','AMPforWP\\AMPVendor\\ampforwp_new_thumbnail_images',10,3);
 function ampforwp_new_thumbnail_images($amp_images, $uniqueid, $markup_arr){
 	if(!isset($markup_arr['carousel_with_thumbnail_html'])){return '';}
-	$amp_thumb_image_buttons = '';
+	$amp_thumb_image_buttons = array();
 	foreach ($amp_images as $key => $value) {
 		$returnHtml = $markup_arr['carousel_with_thumbnail_html'];
 		$returnHtml = str_replace('{{thumbnail}}', $value , $returnHtml);
