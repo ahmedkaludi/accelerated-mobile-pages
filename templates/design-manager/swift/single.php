@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp; ?>
 <?php amp_header(); ?>
-<?php if($redux_builder_amp['single-design-type'] == '1'){?>
+<?php if(ampforwp_get_setting('single-design-type') == '1'){?>
 <div class="sp sgl">
 	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 		<div class="cntr">
@@ -131,8 +131,8 @@
 } // Single page design 1 ends here
 
 	?>
-<?php if( $redux_builder_amp['single-design-type'] == '1' && $redux_builder_amp['rp_design_type'] == '2'){
-       if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
+<?php if( ampforwp_get_setting('single-design-type') == '1' && ampforwp_get_setting('rp_design_type') == '2'){
+       if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
 		$my_query = ampforwp_related_post_loop_query();
 	  	if( $my_query->have_posts() ) { $r_count = 1;?>	
 	  	<div class="srp">
@@ -167,7 +167,7 @@
 			</div>
 		</div>
     <?php wp_reset_postdata(); }  } ?>
-<?php if( $redux_builder_amp['single-design-type'] == '1' && ampforwp_get_setting('rp_design_type') == '3'){
+<?php if( ampforwp_get_setting('single-design-type') == '1' && ampforwp_get_setting('rp_design_type') == '3'){
        if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
 		$my_query = ampforwp_related_post_loop_query();
 	  	if( $my_query->have_posts() ) { $r_count = 1;?>
