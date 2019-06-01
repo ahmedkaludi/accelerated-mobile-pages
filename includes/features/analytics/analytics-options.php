@@ -311,6 +311,7 @@ function ampforwp_analytics_options($opt_name){
                     ),
                       array(
                           'id'       => 'pa-feild',
+                          'class' => 'child_opt',
                           'type'     => 'text',
                           'title'    => esc_html__( ' Matomo (Piwik) Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
