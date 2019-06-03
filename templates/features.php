@@ -338,9 +338,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				if($sitepress_settings[ 'language_negotiation_type' ] == 3){
 				  	if( is_singular() ){
 						$wpml_url =get_permalink( get_queried_object_id() );
+						$wpml_url = untrailingslashit($wpml_url);
 						$explode_url = explode('/', $wpml_url);
-						$append_amp = 'amp';
-						array_splice( $explode_url, 5, 0, $append_amp );
+						$append_amp = AMPFORWP_AMP_QUERY_VAR;
+						array_splice( $explode_url, count($explode_url), 0, $append_amp );
 						$impode_url = implode('/', $explode_url);
 						$amp_url = untrailingslashit($impode_url);
 				    }
@@ -351,18 +352,20 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 						$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
 						$query_arg_array = $wp->query_vars;
 						if( array_key_exists( 'paged' , $query_arg_array ) ) {
-							array_splice( $explode_path, -3, 0, $inserted );
+							array_splice( $explode_path, count($explode_path), 0, $inserted );
 						}
 						else{
-							array_splice( $explode_path, -1, 0, $inserted );
+							array_splice( $explode_path, count($explode_path), 0, $inserted );
 						}
 						$impode_url = implode('/', $explode_path);
 						$amp_url = $impode_url;
 				    }
 				}
 			}
-			// URL Purifier
-			$amp_url = ampforwp_url_purifier($amp_url);
+			if( !class_exists('SitePress') ){
+				// URL Purifier
+				$amp_url = ampforwp_url_purifier($amp_url);
+			}
 			
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
