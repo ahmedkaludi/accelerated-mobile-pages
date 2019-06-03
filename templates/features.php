@@ -332,34 +332,35 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$amp_url = untrailingslashit($current_search_url);
 			}
 			// WPML compatibility
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			if( get_option('permalink_structure') && is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
-				global $sitepress_settings, $wp;
-				if($sitepress_settings[ 'language_negotiation_type' ] == 3){
-				  	if( is_singular() ){
-						$wpml_url =get_permalink( get_queried_object_id() );
-						$wpml_url = untrailingslashit($wpml_url);
-						$explode_url = explode('/', $wpml_url);
-						$append_amp = AMPFORWP_AMP_QUERY_VAR;
-						array_splice( $explode_url, count($explode_url), 0, $append_amp );
-						$impode_url = implode('/', $explode_url);
-						$amp_url = untrailingslashit($impode_url);
-				    }
-				    if ( is_home()  || is_archive() ){
-				        global $wp;
-				        $current_archive_url = home_url( $wp->request );
-						$explode_path  	= explode("/",$current_archive_url);
-						$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
-						$query_arg_array = $wp->query_vars;
-						if( array_key_exists( 'paged' , $query_arg_array ) ) {
-							array_splice( $explode_path, count($explode_path), 0, $inserted );
-						}
-						else{
-							array_splice( $explode_path, count($explode_path), 0, $inserted );
-						}
-						$impode_url = implode('/', $explode_path);
-						$amp_url = $impode_url;
-				    }
+			if( class_exists('SitePress') ){
+				if( get_option('permalink_structure') ){
+					global $sitepress_settings, $wp;
+					if($sitepress_settings[ 'language_negotiation_type' ] == 3){
+					  	if( is_singular() ){
+							$wpml_url =get_permalink( get_queried_object_id() );
+							$wpml_url = untrailingslashit($wpml_url);
+							$explode_url = explode('/', $wpml_url);
+							$append_amp = AMPFORWP_AMP_QUERY_VAR;
+							array_splice( $explode_url, count($explode_url), 0, $append_amp );
+							$impode_url = implode('/', $explode_url);
+							$amp_url = untrailingslashit($impode_url);
+					    }
+					    if ( is_home()  || is_archive() ){
+					        global $wp;
+					        $current_archive_url = home_url( $wp->request );
+							$explode_path  	= explode("/",$current_archive_url);
+							$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
+							$query_arg_array = $wp->query_vars;
+							if( array_key_exists( 'paged' , $query_arg_array ) ) {
+								array_splice( $explode_path, count($explode_path), 0, $inserted );
+							}
+							else{
+								array_splice( $explode_path, count($explode_path), 0, $inserted );
+							}
+							$impode_url = implode('/', $explode_path);
+							$amp_url = $impode_url;
+					    }
+					}
 				}
 			}
 			if( !class_exists('SitePress') ){
