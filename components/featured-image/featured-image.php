@@ -52,7 +52,7 @@ function ampforwp_framework_get_featured_image(){
 				if(empty($image[2])){
 				$image[2] = 600;
 				}
-				$amp_html = "<amp-img src='$image[0]' $srcet width='$image[1]' height='$image[2]' layout=responsive alt='$alt'></amp-img>";
+				$amp_html = "<amp-img src='$image[0]' $srcet width='$image[1]' height='$image[2]' layout='responsive' alt='$alt'></amp-img>";
 			}
 		}
 		elseif ( ampforwp_is_custom_field_featured_image() ) {
@@ -60,7 +60,7 @@ function ampforwp_framework_get_featured_image(){
 			$amp_img_width 	= ampforwp_cf_featured_image_src('width');
 			$amp_img_height = ampforwp_cf_featured_image_src('height');
 			if( $amp_img_src ){			
-				$amp_html = "<amp-img src='$amp_img_src' width=$amp_img_width height=$amp_img_height layout=responsive ></amp-img>";
+				$amp_html = "<amp-img src='$amp_img_src' width=$amp_img_width height=$amp_img_height layout='responsive' ></amp-img>";
 			}
 		}
 		elseif( true == ampforwp_get_setting('ampforwp-featured-image-from-content') && ampforwp_get_featured_image_from_content() ){
