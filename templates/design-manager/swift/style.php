@@ -24,10 +24,7 @@ if( !empty($swift_cs['color']) ) {
 	$swift_cs_color = $swift_cs['color'];
 }
 
-$swift_btn_hvr = ampforwp_get_setting('swift-btn-hover-color-scheme');
-if( !empty($swift_btn_hvr['color']) ) {
-	$swift_btn_hvr_color = $swift_btn_hvr['color'];
-}?>
+$swift_btn_hvr_color = ampforwp_get_setting('swift-btn-hover-color-scheme','color','ampforwp_sanitize_color'); ?>
 body{<?php 
 	$fontFamily = "font-family: 'Arial', 'Helvetica', 'sans-serif';";
 if( !ampforwp_levelup_compatibility('levelup_theme') && 1==ampforwp_get_setting('ampforwp-google-font-switch') ){
