@@ -5281,15 +5281,15 @@ $single_page_options = array(
         array(
             'id'       => 'amp-pagination',
             'type'     => 'switch',
-            'title'    => __( 'Post Pagination', 'accelerated-mobile-pages' ),
+            'title'    => esc_html__( 'Post Pagination', 'accelerated-mobile-pages' ),
            'default'   => 1,
-           'tooltip-subtitle'  => __('Enable the feature to add Pagination in single', 'accelerated-mobile-pages'),
+           'tooltip-subtitle'  => esc_html__('Enable the feature to add Pagination in single', 'accelerated-mobile-pages'),
         ),
         array(
             'id'       => 'ampforwp-pagination-select',
             'class' => 'child_opt child_opt_arrow',
             'type'     => 'select',
-            'title'    => __('Post Pagination Type', 'accelerated-mobile-pages'),
+            'title'    => esc_html__('Post Pagination Type', 'accelerated-mobile-pages'),
             'options'  => array(
                 '1' => 'Numbering',
                 '2' => 'Next-Previous',
