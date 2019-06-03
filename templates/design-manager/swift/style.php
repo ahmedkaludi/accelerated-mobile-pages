@@ -491,7 +491,15 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 		blockquote p {font-size:20px;}
 	}
 <?php } ?>
-<?php } // Level Condition Ends?>
+<?php } // Level Condition Ends
+if(is_page()){ ?>
+	.pg table {width: 100%;margin-bottom:25px;overflow-x: auto;word-break: normal;}
+	.pg td {padding: 0.5em 1em;border: 1px solid #ddd;}
+	.pg tr:nth-child(odd) td {background: #f7f7f7;}
+	@media(max-width:767px){
+		.pg table{display: -webkit-box;}
+	}
+<?php } // page table css ends ?>
 <?php //AMP Woocommerce condition starts
 if( !ampforwp_woocommerce_conditional_check() ) { ?>
 <?php if(is_singular()){?>
