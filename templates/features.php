@@ -1238,7 +1238,10 @@ function ampforwp_remove_schema_data() {
 }
 
 //remove action for Woodmart theme lazyload feature 
-remove_action( 'init', 'woodmart_lazy_loading_init', 120 );
+add_action('amp_init','remove_lazyloading_woodmart_theme');
+function remove_lazyloading_woodmart_theme(){
+	remove_action( 'init', 'woodmart_lazy_loading_init', 120 );	
+}
 
 // 22. Removing author links from comments Issue #180
 if( ! function_exists( 'ampforwp_disable_comment_author_links' ) ) {
