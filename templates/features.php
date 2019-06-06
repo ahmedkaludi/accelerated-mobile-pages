@@ -5816,7 +5816,7 @@ add_filter('ampforwp_is_amp_endpoint_takeover','ampforwp_disable_takovr_elemento
 function ampforwp_disable_takovr_elementor_preview($data){
 
 	if ( did_action( 'elementor/loaded' ) ) {
-		if( \Elementor\Plugin::$instance->preview->is_preview_mode() || (\Elementor\Plugin::$instance->preview->is_editor() && \Elementor\Plugin::$instance->preview->is_editor_preview() )){
+		if( \Elementor\Plugin::$instance->preview->is_preview_mode() ){
 			return false;
 		}else{
 			return $data;
