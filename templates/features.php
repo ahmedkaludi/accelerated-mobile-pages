@@ -5811,6 +5811,20 @@ function ampforwp_is_non_amp( $type="" ) {
 	return $non_amp;
 }
 
+add_filter('ampforwp_is_amp_endpoint_takeover','ampforwp_disable_takovr_elementor_preview');
+
+function ampforwp_disable_takovr_elementor_preview($data){
+
+	if ( did_action( 'elementor/loaded' ) ) {
+		if( \Elementor\Plugin::$instance->preview->is_preview_mode() || (\Elementor\Plugin::$instance->preview->is_editor() && \Elementor\Plugin::$instance->preview->is_editor_preview() )){
+			return false;
+		}else{
+			return $data;
+		}
+	}
+	return $data;
+}
+
 function ampforwp_remove_login_tml(){
 if (function_exists('tml_register_default_actions')){
       $tml_pages = theme_my_login()->get_actions();
