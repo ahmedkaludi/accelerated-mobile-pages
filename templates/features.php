@@ -6660,6 +6660,9 @@ add_action( 'amp_post_template_head', 'ampforwp_rel_next_prev' );
 
 function ampforwp_rel_next_prev(){
     global $paged;
+    if(ampforwp_is_front_page()){
+    	return ;
+    }
     if ( get_previous_posts_link() ) { ?>
         <link rel="prev" href="<?php echo get_pagenum_link( $paged - 1 ); ?>" /><?php
     }
