@@ -4368,6 +4368,7 @@ $single_page_options = array(
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
+                        'required' => array( array('amp-design-selector', '=' , '4') ),
                 ),
             // Swift
             array(
@@ -4928,6 +4929,7 @@ $single_page_options = array(
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
+                        'required' => array('amp-design-selector', '=' , '4'),
                 ),
             array(
                    'id'    => 'ampforwp-gallery-design-type',
@@ -5057,6 +5059,7 @@ else{
                    'indent' => true,
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
              ),
                 // Swift
                   array(
