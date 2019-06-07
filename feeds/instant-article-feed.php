@@ -18,7 +18,7 @@
     $exclude_cats = array();
     if( isset( $redux_builder_amp['ampforwp-fb-instant-article-posts'] ) && $redux_builder_amp['ampforwp-fb-instant-article-posts'] ){
         $number_of_articles = $redux_builder_amp['ampforwp-fb-instant-article-posts'];
-        $number_of_articles = round( abs( floatval( $number_of_articles ) ) );
+        $number_of_articles = intval(( $number_of_articles ) );
     }
     else{
         $number_of_articles = 500;
