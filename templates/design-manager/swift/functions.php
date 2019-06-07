@@ -89,9 +89,10 @@ function ampforwp_swift_social_icons(){
 								<a title="facebook share messenger" class="s_fb_ms" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink); ?>&app_id=<?php echo esc_attr($facebook_app_id) ?>"></a>
 							</li>
 							<?php } ?>
-							<?php if($redux_builder_amp['enable-single-twitter-share']){?>
+							<?php if(ampforwp_get_setting('enable-single-twitter-share')){
+								$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle'); ?>
 							<li>
-								<a title="twitter share" class="s_tw" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://twitter.com/intent/tweet?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?>">
+								<a title="twitter share" class="s_tw" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://twitter.com/intent/tweet?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?>&via=<?php echo esc_attr($data_param_data); ?>">
 								</a>
 							</li>
 							<?php } ?>
