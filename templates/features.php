@@ -794,6 +794,14 @@ function ampforwp_title_callback( $post ) {
 			set_transient('ampforwp_exclude_post_transient', $exclude_post_value);
 		} 
 	}
+	if ( ( 'default' == $ampforwp_stored_meta['ampforwp-amp-on-off'][0] || !isset($ampforwp_stored_meta['ampforwp-amp-on-off'][0]) ) && 'page' != $post->post_type ) {
+		if ( in_array($post->ID, $exclude_post_value) ) {
+			$exclude_post_value = array_flip($exclude_post_value);
+			unset($exclude_post_value[$post->ID] );
+			$exclude_post_value = array_flip($exclude_post_value);
+			set_transient('ampforwp_exclude_post_transient', $exclude_post_value);
+		} 
+	}
 	if ( empty( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] ) && $post->post_type == 'page' && ampforwp_get_setting('amp-pages-meta-default') == 'hide' ) {
 		$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
 	}?>

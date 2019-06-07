@@ -1102,6 +1102,7 @@ if ( ! function_exists('ampforwp_exclude_posts') ) {
 			$ampforwp_exclude_post = get_option('ampforwp_exclude_post');
 			if ( false != $ampforwp_exclude_post ) {
 				$exclude_post_values = $ampforwp_exclude_post;
+				set_transient('ampforwp_exclude_post_transient', $exclude_post_values);
 			}
 		}
 		return $exclude_post_values;
