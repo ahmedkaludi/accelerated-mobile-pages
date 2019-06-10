@@ -422,9 +422,9 @@ function amp_loop_image( $data=array() ) {
 			$tag = $data['tag'];
 		}
 
-		if ( isset($data['responsive']) && $data['responsive'] == "layout='responsive'" ) {
+		if ( isset($data['responsive']) && ( $data['responsive'] == "responsive" || $data['responsive'] == 'true' ) ) {
 			$layout_responsive = "layout=responsive";
-		}elseif (isset($data['responsive']) && $data['responsive'] == "layout='fill'" ) {
+		}elseif (isset($data['responsive']) && $data['responsive'] == "fill" ) {
 			$layout_responsive = 'layout=fill';
 		}
 
