@@ -143,7 +143,7 @@ function ampforwp_call_page_builder(){
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	?>
 	<?php if(class_exists('WPSEO_Frontend') && true == ampforwp_get_setting('ampforwp-yoast-seo-analysis') && true == ampforwp_get_setting('ampforwp-amp-takeover') ) { ?>
-	<div class="hide" id="amp-page-builder-ready"><?php echo stripcslashes( amppb_post_content('') ); ?></div>
+	<script type="text/template" class="hide" id="amp-page-builder-ready"><?php echo stripcslashes( amppb_post_content('') ); ?></script></div>
 	<?php } ?>
 	<div id="ampForWpPageBuilder_container">
 		<div id="start_amp_pb_post" class="start_amp_pb" data-postId="<?php echo esc_attr(get_the_ID()) ?>" v-if="startPagebuilder==0" @click="amppb_startFunction($event)"><?php echo esc_html__('Start the AMP Page Builder','accelerated-mobile-pages'); ?></div>
