@@ -1237,11 +1237,6 @@ function ampforwp_remove_schema_data() {
 	remove_filter( 'the_content', 'us_filter_content_for_lazy_load', 99, 1 );
 }
 
-//remove action for Woodmart theme lazyload feature 
-add_action('amp_init','remove_lazyloading_woodmart_theme');
-function remove_lazyloading_woodmart_theme(){
-	remove_action( 'init', 'woodmart_lazy_loading_init', 120 );	
-}
 
 // 22. Removing author links from comments Issue #180
 if( ! function_exists( 'ampforwp_disable_comment_author_links' ) ) {
@@ -6387,6 +6382,8 @@ function ampforwp_thrive_architect_content(){
 	if(function_exists('tve_wp_action') && !function_exists('et_setup_theme')){
 		add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
 	}
+	//#3254 Remove action for Woodmart theme lazyload feature 
+	remove_action( 'init', 'woodmart_lazy_loading_init', 120 );	
 }
 function ampforwp_thrive_content($content){
 	$post_id = "";
