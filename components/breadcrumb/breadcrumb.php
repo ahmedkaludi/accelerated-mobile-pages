@@ -1,10 +1,9 @@
 <?php function amp_breadcrumb_output(){
-    global $redux_builder_amp; 
     $home_non_amp = $archive_non_amp = '';
-    if ( false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+    if ( false == ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
         $home_non_amp = 'nonamp';
     }
-    if ( false == $redux_builder_amp['ampforwp-archive-support'] ) {
+    if ( false == ampforwp_get_setting('ampforwp-archive-support') ) {
         $archive_non_amp = 'nonamp';
     } ?>
     <div class="amp-wp-content breadcrumb"> <?php 
@@ -15,15 +14,13 @@
     // Settings
     $breadcrums_id      = 'breadcrumbs';
     $breadcrums_class   = 'breadcrumbs';
-    $home_title         = ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-homepage-text'] , 'Homepage' );
+    $home_title         = ampforwp_translation(ampforwp_get_setting('amp-translator-breadcrumbs-homepage-text') , 'Homepage' );
       
     // If you have any custom post types with custom taxonomies, put the taxonomy name below (e.g. product_cat)
     $custom_taxonomy    = 'product_cat';
        
     // Get the query & post information
     global $post,$wp_query;
-    // Do not display on the homepage
-    if ( !ampforwp_polylang_front_page() && !is_front_page() ) {
        
         // Build the breadcrums
         echo '<ul id="' . $breadcrums_id . '" class="' . $breadcrums_class . '">';
@@ -31,40 +28,7 @@
         // Home page 
         echo '<li class="item-home"><a class="bread-link bread-home" href="' . esc_url(ampforwp_url_controller( get_home_url('', '/'), $home_non_amp )) . '" title="' . $home_title . '">' . $home_title . '</a></li>';
 
-        if ( is_archive() && !is_tax() && !is_category() && !is_tag() && !is_author() ) {
-
-
-            echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">' . post_type_archive_title($prefix, false) . '</strong></li>';
-        } else if  ( is_author() ) {
-                global $author;
-                
-                $userdata = get_userdata( $author ); 
-                $author_url= get_author_posts_url($userdata->ID);
-                $author_url = trailingslashit($author_url);
-                // Display author name
-                echo '<li class="item-current item-current-' . $userdata->user_nicename . '"><a class="bread-current bread-current-' . $userdata->user_nicename . '" title="' . $userdata->display_name . '" href="'. esc_url(ampforwp_url_controller( $author_url, $archive_non_amp )). '">' . 'Author: ' . $userdata->display_name . '</a></li>';
-
-        } else if ( is_archive() && is_tax() && !is_category() && !is_tag() ) {
-              
-            // If post is a custom post type
-            $post_type = get_post_type();
-              
-            // If it is a custom post type display name and link
-            if($post_type != 'post') {
-                  
-                $post_type_object = get_post_type_object($post_type);
-                $post_type_archive = get_post_type_archive_link($post_type);
-                if ( false != $post_type_archive){
-                    echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' .esc_url(ampforwp_url_controller( $post_type_archive, $archive_non_amp )) . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>'; 
-                }
-                else {
-                    echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><span class="bread-cat bread-custom-post-type-' . $post_type . '">' . $post_type_object->labels->name . '</span></li>';  
-                }             
-            }
-              
-            $custom_tax_name = get_queried_object()->name;
-            echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">' . $custom_tax_name . '</strong></li>';
-        } else if ( is_single() ) {
+        if ( is_single() ) {
               
             // If post is a custom post type
             $post_type = get_post_type();
@@ -150,10 +114,6 @@
                 echo '<li class="item-cat item-cat-' . $cat_id . ' item-cat-' . $cat_nicename . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $cat_nicename . '" href="' . esc_url(ampforwp_url_controller( $cat_link, $archive_non_amp )) . '" title="' . $cat_name . '">' . $cat_name . '</a></li>';                
             }  
               
-        } else if ( is_category() ) {
-               
-            // Category page
-            echo '<li class="item-current item-cat"><strong class="bread-current bread-cat">' . single_cat_title('', false) . '</strong></li>';
         } else if ( is_page() ) {
                
             // Standard page
@@ -178,65 +138,13 @@
                    
             } 
                
-        } else if ( is_tag() ) {
-               
-            // Tag page
-              
-            // Get tag information
-            $term_id        = get_query_var('tag_id');
-            $taxonomy       = 'post_tag';
-            $args           = 'include=' . $term_id;
-            $terms          = get_the_terms( $post->ID,'post_tag' );
-            $get_term_id    = $terms[0]->term_id;
-            $get_term_slug  = $terms[0]->slug;
-            $get_term_name  = $terms[0]->name;
-               
-            // Display the tag name
-            echo '<li class="item-current item-tag-' . $get_term_id . ' item-tag-' . $get_term_slug . '"><strong class="bread-current bread-tag-' . $get_term_id . ' bread-tag-' . $get_term_slug . '">' . $get_term_name . '</strong></li>';          
-        } else if ( is_day() ) {
-               
-            // Day archive
-               
-            // Year link
-            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . '</a></li>';
-            
-            // Month link
-            echo '<li class="item-month item-month-' . get_the_time('m') . '"><a class="bread-month bread-month-' . get_the_time('m') . '" href="' . get_month_link( get_the_time('Y'), get_the_time('m') ) . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </a></li>';
-            
-               
-            // Day display
-            echo '<li class="item-current item-' . get_the_time('j') . '"><strong class="bread-current bread-' . get_the_time('j') . '"> ' . get_the_time('jS') . ' ' . get_the_time('M') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </strong></li>';
-               
-        } else if ( is_month() ) {
-               
-            // Month Archive
-               
-            // Year link
-            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </a></li>';
-            
-            // Month display
-            echo '<li class="item-month item-month-' . get_the_time('m') . '"><strong class="bread-month bread-month-' . get_the_time('m') . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </strong></li>';
-               
-        } else if ( is_year() ) {
-               
-            // Display year archive
-            echo '<li class="item-current item-current-' . get_the_time('Y') . '"><strong class="bread-current bread-current-' . get_the_time('Y') . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives'). ' </strong></li>';
-               
-        }   else if ( get_query_var('paged') ) {
+        } else if ( get_query_var('paged') ) {
 
             // Paginated archives
-            echo '<li class="item-current item-current-' . get_query_var('paged') . '"><strong class="bread-current bread-current-' . get_query_var('paged') . '" title="Page ' . get_query_var('paged') . '">'. ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page') . ' ' . get_query_var('paged') . '</strong></li>';
+            echo '<li class="item-current item-current-' . get_query_var('paged') . '"><strong class="bread-current bread-current-' . get_query_var('paged') . '" title="Page ' . get_query_var('paged') . '">'. ampforwp_translation(ampforwp_get_setting('amp-translator-page-text'), 'Page') . ' ' . get_query_var('paged') . '</strong></li>';
                
-        } else if ( is_search() ) {
-           
-            // Search results page
-            echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Search results for: ' . get_search_query() . '">
-            ' . ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-search-text'], 'Search results for') . ': ' . get_search_query() . '</strong></li>';
-           
         }
         echo '</ul>';
-      
-    }
-}?>
+} ?>
 </div>
 <?php }
