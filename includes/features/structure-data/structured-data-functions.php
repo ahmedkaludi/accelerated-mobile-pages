@@ -243,7 +243,7 @@ function ampforwp_structured_data_type( $metadata ) {
 	if ( !is_array($metadata) ) {
 		return $metadata;
 	}
-	if(function_exists('activate_wp_recipe_maker') || function_exists('activate_wp_recipe_maker_premium') && isset($metadata['@type']) && $metadata['@type'] == 'Recipe'){
+	if((function_exists('activate_wp_recipe_maker') || function_exists('activate_wp_recipe_maker_premium')) && (isset($metadata['@type']) && $metadata['@type'] == 'Recipe')){
 		return;
 	}
 	global $redux_builder_amp, $post;
