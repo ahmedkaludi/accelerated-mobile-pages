@@ -4824,11 +4824,11 @@ function ampforwp_inline_related_posts(){
 										$imageClass			= $changesInImageData["image_class"];
 										$tagClass			= $changesInImageData["tag_class"];
 										if(!empty($tag) && !empty($tagClass)){
-											$tag_open 	= '<'.$tag.' class="'.$tagClass.'">';
+											$tag_open 	= '<'.$tag.' class="'.sanitize_html_class($tagClass).'">';
 											$tag_close	= '</'.$tag.'>';
 										}
 									}
-									$inline_related_posts .= ''.$tag_open.'<amp-img src="'.esc_url( $thumb_url ).'" width="'.$thumb_width.'" height="'.$thumb_height.'" '.$layout_responsive.' class="'.$imageClass.'"></amp-img>'.$tag_close.'';
+									$inline_related_posts .= ''.$tag_open.'<amp-img src="'.esc_url( $thumb_url ).'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '.$layout_responsive.' class="'.sanitize_html_class($imageClass).'"></amp-img>'.$tag_close.'';
 								}
 							} 
 							$inline_related_posts .='</a>';
