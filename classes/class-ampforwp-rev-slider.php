@@ -306,36 +306,6 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 }// Class closed
 
 // Add Caption in the Gallery Image
-add_filter('amp_gallery_images','AMPforWP\\AMPVendor\\ampforwp_new_gallery_images', 10, 3);
-function ampforwp_new_gallery_images($images_markup, $image, $markup_arr){
-	add_action('amp_post_template_css', 'AMPforWP\\AMPVendor\\ampforwp_additional_gallery_style');
-	add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
-	add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
-	return $images_markup;
-}
+add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 3);
 
-if( ! function_exists( 'ampforwp_additional_gallery_style' ) ){
-	function ampforwp_additional_gallery_style(){
-		global $redux_builder_amp,$carousel_markup_all;
-		$design_type = '';
-		$design_type = $redux_builder_amp['ampforwp-gallery-design-type'];
-		
-		if(isset($design_type) && $design_type!==''){
-			echo $carousel_markup_all[$design_type]['gallery_css'];
-		}
-	}
-}
-
-add_filter('amp_thumbnail_images','AMPforWP\\AMPVendor\\ampforwp_new_thumbnail_images',10,3);
-function ampforwp_new_thumbnail_images($amp_images, $uniqueid, $markup_arr){
-	if(!isset($markup_arr['carousel_with_thumbnail_html'])){return '';}
-	$amp_thumb_image_buttons = '';
-	foreach ($amp_images as $key => $value) {
-		$returnHtml = $markup_arr['carousel_with_thumbnail_html'];
-		$returnHtml = str_replace('{{thumbnail}}', $value , $returnHtml);
-		$returnHtml = str_replace('{{unique_id}}', $uniqueid , $returnHtml);
-		$returnHtml = str_replace('{{unique_index}}', $key , $returnHtml);
-		$amp_thumb_image_buttons[$key] = $returnHtml;
-	}
-	return $amp_thumb_image_buttons;
-}
+add_filter('amp_thumbnail_images','ampforwp_new_thumbnail_images',10,3);
