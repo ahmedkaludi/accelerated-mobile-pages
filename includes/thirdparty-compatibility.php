@@ -18,10 +18,10 @@ function ampforwp_removing_sassy_social_share(){
 	}
 }
 
-// Remove Schema theme Lazy Load #1170
 
-add_action('pre_amp_render_post','ampforwp_remover');
-function ampforwp_remover(){
+add_action('pre_amp_render_post','ampforwp_conflicting_remover');
+function ampforwp_conflicting_remover(){
+	// Remove Schema theme Lazy Load #1170
 	remove_filter( 'wp_get_attachment_image_attributes', 'mts_image_lazy_load_attr', 10, 3 );
 	remove_filter('the_content', 'mts_content_image_lazy_load_attr');
 	//Remove CSS header from the GoodLife Theme #2673
