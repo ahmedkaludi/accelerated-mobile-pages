@@ -2378,6 +2378,12 @@ Redux::setSection( $opt_name, array(
                             'default'  => false,
                         ),
                         array(
+                            'id'       => 'amp-rollback-switch-waiting',
+                            'type'     => 'info',
+                            'desc'    => esc_html__('Loading... Please wait', 'accelerated-mobile-pages'),
+                            'required'=>array('amp-rollback-switch','=','1'),
+                        ),
+                        array(
                            'id' => 'amp-beta-testing',
                            'type' => 'section',
                            'title' => esc_html__('Become a Beta Tester', 'accelerated-mobile-pages'),

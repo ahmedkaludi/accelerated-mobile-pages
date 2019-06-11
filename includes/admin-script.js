@@ -940,6 +940,7 @@ jQuery(document).ready(function($){
                                 );
                         $('#amp-rollback-version-select').select2();
                         versionUpdate();
+                        $('#info-amp-rollback-switch-waiting').hide();
                     }
                 }
 
