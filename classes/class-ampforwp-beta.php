@@ -9,7 +9,7 @@ function post_ampforwp_beta(){
 			)
 		);
 	}
-
+	$getVersion = '0.9.97.58';
 	$plugin_slug = basename( 'accelerated-mobile-pages', '.php' );
 	if($_GET['installation']=='beta'){
 		$getVersion = '0.90.97.34';
