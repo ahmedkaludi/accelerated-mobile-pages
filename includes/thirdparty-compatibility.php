@@ -1304,3 +1304,12 @@ function ampforwp_http_remover_support(){
 	    }
 	}
 }
+
+add_filter('rank_math/frontend/robots', 'ampforwp_rank_math_with_robot' );
+function ampforwp_rank_math_with_robot($robots){
+  	if( ampforwp_is_amp_endpoint() && ( ampforwp_is_front_page() || ampforwp_is_home() ) ){
+  		$robots['index'] = 'index';
+  		$robots['follow'] = 'follow';
+ 	} 
+  return $robots;
+}
