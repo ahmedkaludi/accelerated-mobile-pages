@@ -44,6 +44,23 @@ function ampforwp_analytics() {
 			<?php
 		}//code ends for supporting Google Analytics
 
+	// 10.2 Analytics Support added for clicky.com
+	if ( true == ampforwp_get_setting('amp-clicky-switch') ) { 
+		$clicky_site_id = ampforwp_get_setting('clicky-site-id'); 
+		$clicky_fields = array(
+						'vars'=>array(
+							'site_id'=> $clicky_site_id,
+							)
+					);
+		$clicky_fields = apply_filters('ampforwp_clicky_analytics', $clicky_fields );?>
+		<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="clicky">
+		<script type="application/json">
+			<?php echo json_encode( $clicky_fields); ?>
+			</script>
+		</amp-analytics>
+		<?php
+	}
+
 	// 10.2 Analytics Support added for segment.com
 	if ( true == ampforwp_get_setting('ampforwp-Segment-switch') ) { 
 		$segment = ampforwp_get_setting('sa-feild'); 
