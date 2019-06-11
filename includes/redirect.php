@@ -4,6 +4,20 @@ function ampforwp_redirection() {
   global $redux_builder_amp, $wp, $post;
   $hide_cats_amp = $url = $archive_check = $go_to_url = '';
   $hide_cats_amp = is_category_amp_disabled();
+  $current_url = $check = '';
+  $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
+                "https" : "http") . "://" . $_SERVER['HTTP_HOST'] .  
+                $_SERVER['REQUEST_URI'];              
+  $current_url = explode('/', $current_url);
+  $check    =  '?nonamp=1';
+  if (in_array( $check  , $current_url ) ) {
+      $current_url = array_flip($current_url);
+      unset($current_url['?nonamp=1']);
+      $current_url = array_flip($current_url);
+      $current_url = implode('/', $current_url);
+      wp_safe_redirect( $current_url );
+      exit;
+  }
   // No redirection if Post/Page is AMP Disabled #3287
   if ( ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) && false == get_post_meta( ampforwp_get_the_ID(),'ampforwp-amp-on-off',true) ) {
     return;
