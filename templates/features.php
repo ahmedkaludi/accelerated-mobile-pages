@@ -2789,25 +2789,6 @@ function ampforwp_modified_search_sidebar( $content ) {
 				$element->setAttribute('action', $action_url);
 			}
 			$element->setAttribute('target', '_top');
-			$div_node = $element->getElementsByTagName('div');
-			$num_div_nodes = $div_node->length;
-			if ( 0 !== $num_div_nodes ) {
-				for ( $i = 0; $i < $num_div_nodes; ++$i ) {
-					$child_node = $div_node->item( $i );
-					$label = $element->getElementsByTagName('label')->item(0);
-					$element->appendChild($label);
-					$input_elements = $element->getElementsByTagName('input');
-					if ( 0 !== $input_elements->length ) {
-						for ( $i = 0; $i < $input_elements->length; ++$i ) {
-							$input_nodes[] = $input_elements->item( $i );
-						}
-					}
-					foreach ($input_nodes as $input_node ) {
-						$element->appendChild($input_node);
-					}	
-					$element->removeChild($child_node);
-				}
-			}
 			$input_nodes = $element->getElementsByTagName('input');
 			if ( 0 !== $input_nodes->length ) {
 				for ( $i = 0; $i < $input_nodes->length; ++$i ) {
@@ -7784,5 +7765,21 @@ function ampforwp_notice_delete(){
 	$wizard_nonce = $_REQUEST['wizard_nonce'];
 	if ( wp_verify_nonce( $wizard_nonce, 'wizard_nonce' ) && current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {
 	  delete_transient( 'ampforwp_admin_notice_transient');
+	}
+}
+// Keep the default WordPress form for AMP #3000
+add_filter('get_search_form', 'ampforwp_search_form');
+if ( ! function_exists('ampforwp_search_form') ) {
+	function ampforwp_search_form($form){
+		if ( ampforwp_is_amp_endpoint() ) {	
+			$form = '<form role="search" ' . $aria_label . 'method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
+						<label>
+							<span class="screen-reader-text">' . _x( 'Search for:', 'label' ) . '</span>
+							<input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" value="' . get_search_query() . '" name="s" />
+						</label>
+						<input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button' ) . '" />
+					</form>';
+		}
+		return $form;
 	}
 }
