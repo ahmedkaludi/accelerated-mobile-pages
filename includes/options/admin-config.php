@@ -2226,8 +2226,9 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'fb-instant-crawler-ingestion',
                         'type' => 'switch',
-                        'title'    => __('Crawler Ingestion', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Add ia:markup meta tag. Find out more about <a href="https://developers.facebook.com/docs/instant-articles/crawler-ingestion" target="_blank">here</a> ', 'accelerated-mobile-pages'),
+                        'title'  => esc_html__('Crawler Ingestion', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', 
+                        esc_html__('Add ia:markup meta tag. Find out more about', 'accelerated-mobile-pages'), esc_url('https://developers.facebook.com/docs/instant-articles/crawler-ingestion'), esc_html__('here','accelerated-mobile-pages')),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
                     array(
