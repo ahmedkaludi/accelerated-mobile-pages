@@ -19,8 +19,11 @@ function ampforwp_redirection() {
       exit;
   }
   // No redirection if Post/Page is AMP Disabled #3287
-  if ( ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) && false == get_post_meta( ampforwp_get_the_ID(),'ampforwp-amp-on-off',true) ) {
-    return;
+  if ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) {
+    $amp_metas = json_decode(get_post_meta( ampforwp_get_the_ID(),'ampforwp-post-metas',true), true );
+    if ( 'hide-amp' == $amp_metas['ampforwp-amp-on-off'] ) {
+      return;
+    }
   }
   // Redirection for Homepage and Archive Pages when Turned Off from options panel
   if ( ampforwp_is_amp_endpoint() ) {
