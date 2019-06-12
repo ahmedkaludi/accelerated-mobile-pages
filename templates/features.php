@@ -7787,3 +7787,12 @@ if ( ! function_exists('ampforwp_search_form') ) {
 		return $form;
 	}
 }
+// Include Opengraph.php #3261
+add_action('pre_amp_render_post', 'ampforwp_include_opengraph');
+if ( ! function_exists('ampforwp_include_opengraph') ) {
+	function ampforwp_include_opengraph(){
+		if ( true == ampforwp_get_setting('ampforwp-seo-og-meta-tags') && '' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/opengraph.php";
+		}
+	}
+}
