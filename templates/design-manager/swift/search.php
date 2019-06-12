@@ -8,7 +8,7 @@ amp_header() ?>
 		<div class="arch-psts">
 			<?php amp_loop_template(); ?>
 			<?php 
-			if (empty(amp_loop_template())){ ?>
+			if ( false == amp_loop('start') ){ ?>
 				<div class="cntn-wrp srch ">
 					<p><?php
 						$message = '';
