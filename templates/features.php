@@ -268,6 +268,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if ( is_home() || is_front_page() || is_archive() ){
 	        global $wp;
 	        $current_archive_url = home_url( $wp->request );
+	        // If its custom permalink with /index.php/ #3279
+	        if ( is_archive() && false !== strpos($wp->matched_rule, 'index.php') && false === strpos($current_archive_url, 'index.php') ) {
+				$current_archive_url = home_url( 'index.php/' . $wp->request );
+			}
 	        $amp_url = trailingslashit($current_archive_url);
 	    } else {
 	      $amp_url = AMPforWP\AMPVendor\amp_get_permalink( get_queried_object_id() );
