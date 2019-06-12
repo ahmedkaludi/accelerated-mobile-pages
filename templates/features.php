@@ -3019,7 +3019,6 @@ function ampforwp_meta_description() {
 	if ( false == ampforwp_get_setting('ampforwp-seo-meta-description') || 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 		return;
 	}
-	$desc = "";
 	$desc = ampforwp_generate_meta_desc();
 	if ( $desc ) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
@@ -5772,7 +5771,7 @@ function ampforwp_resave_permalink( $option, $old_value, $value ){
  	}
 }
 
-// Canonical From Yoast #2118 and All in One SEO #1720
+// Canonical From Yoast #2118 and All in One SEO #1720 and Rank Math #2701
 function ampforwp_generate_canonical(){
 	global $redux_builder_amp;
 	$canonical = '';
@@ -5786,7 +5785,7 @@ function ampforwp_generate_canonical(){
 		$opts = $All_in_One_SEO_Pack->get_current_options( array(), 'aiosp' );
 		$canonical = $opts['aiosp_custom_link'];
 	}
-	elseif (defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+	elseif ( defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') && ampforwp_get_setting( 'ampforwp-seo-rank_math-canonical' ) ) {
 		$canonical = \RankMath\Paper\Paper::get()->get_canonical();
 	}
 	return $canonical;
@@ -6425,9 +6424,25 @@ if ( ! function_exists('ampforwp_rank_math') ) {
 		if ( 'rank_math' !== ampforwp_get_setting('ampforwp-seo-selection') ) {
 			return;
 		}
+
 		// Remove Canonical & Title Tag added by the Rank Math plugin.
 		remove_all_actions( 'rank_math/head', 20 );
 		remove_all_actions( 'rank_math/head', 1 );
+
+		// Remove meta tags added by the Rank Math plugin.
+		if ( ! ampforwp_get_setting( 'ampforwp-seo-rank_math-meta' ) ) {
+			$json_ld_data = isset( $wp_filter['rank_math/json_ld'] ) ? $wp_filter['rank_math/json_ld'] : '';
+			remove_all_actions( 'rank_math/opengraph/facebook' );
+			remove_all_actions( 'rank_math/opengraph/twitter' );
+			add_filter( 'rank_math/frontend/robots', function() {
+				return [];
+			});
+		}
+		// Remove ld+json data added by the Rank math plugin.
+		if ( ! ampforwp_get_setting( 'ampforwp-seo-rank_math-schema' ) ) {
+			remove_all_actions( 'rank_math/json_ld' );
+		}
+
 		do_action( 'rank_math/head' );
 	}
 }
