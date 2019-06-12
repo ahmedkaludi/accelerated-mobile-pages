@@ -37,9 +37,6 @@ function ampforwp_analytics_options($opt_name){
                             '11' => esc_html__('Alexa Metrics', 'accelerated-mobile-pages'),
                             '12' => esc_html__('AFS Analytics', 'accelerated-mobile-pages'),
                         ),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                         'default'  => '1',
                     ),  
 
