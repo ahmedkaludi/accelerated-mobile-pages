@@ -4555,6 +4555,9 @@ function ampforwp_enable_post_and_featured_image($show_image){
 
 // 82. Grab Featured Image from The Content
 function ampforwp_get_featured_image_from_content( $featured_image = "", $size="") {
+	if(get_the_post_thumbnail_url()){
+		return;
+	}
 	global $post, $posts;
 	$image_url = $image_width = $image_height = $output = $matches = $output_fig = $amp_html_sanitizer = $amp_html = $image_html = $featured_image_output = $matches_fig = $figure = $output_fig_image = $matches_fig_img = '';
 	ob_start();
@@ -7758,7 +7761,11 @@ function ampforwp_webp_featured_image() {
 					$image_output = "<amp-img src='$image[0]' width='$image[1]' height='$image[2]' layout='responsive' ></amp-img>";
 				?>
 				<figure class="amp-wp-article-featured-image">
-					<?php echo $image_output; ?>
+					<?php 
+					if(4 != ampforwp_get_setting('amp-design-selector')){
+						echo $image_output;
+					}
+					 ?>
 				</figure>
 				<?php 
 			}
