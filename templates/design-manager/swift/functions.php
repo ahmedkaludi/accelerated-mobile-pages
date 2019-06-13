@@ -68,6 +68,21 @@ function ampforwp_swift_social_icons(){
     								data-show-faces="true">
   								</div>
 							<?php }
+							else if(true == ampforwp_get_setting('ampforwp-facebook-like-button') && true == ampforwp_get_setting('ampforwp-facebook-like-data-action') ){
+								$fblikewidth = ampforwp_get_setting('ampforwp-facebook-like-width');
+								if(empty($fblikewidth)){
+									$fblikewidth = "140";
+								}
+								?>
+								<amp-facebook-like <?php echo "width=". $fblikewidth ."" ?> height=28 style="margin-bottom: -7px;"
+				 					layout="fixed"
+				 					data-size="large"
+				 					data-action="recommend"
+				    				data-layout="button_count" <?php ampforwp_nofollow_social_links(); ?>
+				    				data-href="<?php echo esc_url(get_the_permalink());?>">
+								</amp-facebook-like>
+
+							<?php }
 							else { ?>
 								<amp-facebook-like width=90 height=28 style="margin-bottom: -7px;"
 				 					layout="fixed"
