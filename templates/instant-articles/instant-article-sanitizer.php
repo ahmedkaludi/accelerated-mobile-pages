@@ -6,18 +6,82 @@ add_filter( 'fbia_content', 'address_tag');
 // DOM Document Filter
 if(class_exists("DOMDocument")){
 	add_filter( 'fbia_content_dom', 'list_items_with_content');
-	add_filter( 'fbia_content_dom', 'validate_images');
+	// add_filter( 'fbia_content_dom', 'validate_images');
 	add_filter( 'fbia_content_dom','resize_images');
-	// The empty P tags class should run last
+	// // The empty P tags class should run last
 	add_filter( 'fbia_content_dom','no_empty_p_tags');
-	// Wrap the Tables and Iframes inside Figure
+	// // Wrap the Tables and Iframes inside Figure
 	add_filter( 'fbia_content_dom','ampforwp_fbia_wrap_elements');
-	// Video Filter
+	// // Video Filter
 	add_filter( 'fbia_content_dom','ampforwp_fbia_video_element');
-	// Embeds sanitizer
+	// // Embeds sanitizer
 	add_filter( 'fbia_content_dom','ampforwp_fbia_wrap_embed_elements');
+	//Modify the post gallery content as per the Facebook instant articles rules
+	add_filter( 'post_gallery', 'ampforwp_gallery_shortcode_markup_modify', 10, 3 );
+}
+function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
+	$post = get_post();
 
-	}
+		$atts = shortcode_atts( array(
+			'order'      => 'ASC',
+			'orderby'    => 'menu_order ID',
+			'id'         => $post ? $post->ID : 0,
+			'itemtag'    => 'figure',
+			'icontag'    => 'div',
+			'captiontag' => 'figcaption',
+			'columns'    => 3,
+			'size'       => 'thumbnail',
+			'include'    => '',
+			'exclude'    => '',
+			'link'       => ''
+		), $attr, 'gallery' );
+
+		if ( ! empty( $atts['include'] ) ) {
+			$_attachments = get_posts( array( 'include' => $atts['include'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+			$attachments = array();
+			foreach ( $_attachments as $key => $val ) {
+				$attachments[$val->ID] = $_attachments[$key];
+			}
+		} elseif ( ! empty( $atts['exclude'] ) ) {
+			$attachments = get_children( array( 'post_parent' => $id, 'exclude' => $atts['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+		} else {
+			$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+		}
+		if ( empty( $attachments ) ) {
+			return '';
+		}
+
+		// Build the gallery html output
+		$output = "<figure class=\"op-slideshow\">";
+
+		// Iterate over the available images
+		$i = 0;
+		foreach ( $attachments as $id => $attachment ) {
+			$attr = ( trim( $attachment->post_excerpt ) ) ? array( 'aria-describedby' => "gallery-$id" ) : '';
+			$image_output = wp_get_attachment_image( $id, "full", false, $attr );
+
+			$image_meta  = wp_get_attachment_metadata( $id );
+			$orientation = '';
+			if ( isset( $image_meta['height'], $image_meta['width'] ) ) {
+				$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
+			}
+			$output .= "<figure>";
+			$output .= "
+				$image_output";
+			if ( trim($attachment->post_excerpt) ) {
+				// $output .= "
+				// 	<figcaption>
+				// 	" . wptexturize($attachment->post_excerpt) . "
+				// 	</figcaption>";
+			}
+			$output .= "</figure>";
+		}
+
+
+		$output .= "</figure>";
+
+		return $output;
+}
 function headlines($content){
 		// Replace h3, h4, h5, h6 with h2
 		$content = preg_replace(
