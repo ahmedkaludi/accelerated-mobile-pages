@@ -6368,7 +6368,9 @@ function ampforwp_spotim_vuukle_styling(){
 add_action('amp_init','ampforwp_thrive_architect_content');
 function ampforwp_thrive_architect_content(){
 	if(function_exists('tve_wp_action') && !function_exists('et_setup_theme')){
-		add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
+		if(checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
+			add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
+		}
 	}
 	//#3254 Remove action for Woodmart theme lazyload feature 
 	remove_action( 'init', 'woodmart_lazy_loading_init', 120 );	
