@@ -1285,7 +1285,7 @@ function ampforwp_sticky_social_icons(){
 			$permalink = $amp_permalink;
 			?>
 			 <div class="sticky_social">
-			<?php if ( true == ampforwp_get_setting('ampforwp-facebook-like-button')) {
+			<?php if ( true == ampforwp_get_setting('ampforwp-facebook-like-button') && false == ampforwp_get_setting('ampforwp-facebook-like-data-action')) {
 			$facebook_like_url = '';
 			$facebook_like_url = $amp_permalink;
 			if ( $facebook_like_url ) { ?>
@@ -1296,7 +1296,19 @@ function ampforwp_sticky_social_icons(){
 				    <?php ampforwp_nofollow_social_links(); ?> data-href="<?php echo esc_url($facebook_like_url); ?>">
 				</amp-facebook-like>
 			<?php }
-			} ?> 
+			}else{
+			$fblikewidth = ampforwp_get_setting('ampforwp-facebook-like-width');
+				if(empty($fblikewidth)){
+					$fblikewidth = "140";
+				}
+			?>
+			<amp-facebook-like <?php echo "width=". $fblikewidth ."" ?> height=18 style="margin-bottom:-18px;"
+				layout="fixed"
+				data-size="large"
+				data-action="recommend"
+				data-layout="button_count" <?php ampforwp_nofollow_social_links(); ?>
+				data-href="<?php echo esc_url(get_the_permalink());?>">
+			</amp-facebook-like><?php } ?> 
 				<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 			    	<a title="facebook share" class="s_fb" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://www.facebook.com/sharer.php?u=<?php echo $amp_permalink; ?>"></a>

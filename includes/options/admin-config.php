@@ -6433,6 +6433,23 @@ $single_page_options = array(
               'title'     =>  __('Facebook Like Button', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
+          array(
+              'id'        =>  'ampforwp-facebook-like-data-action',
+              'type'      =>  'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     =>  esc_html__('Recommend', 'accelerated-mobile-pages'),
+              'tooltip-subtitle'  => esc_html__('Recommend will be displayed on the button instead of like', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+              'required'  => array('ampforwp-facebook-like-button', '=' , '1'),
+          ),
+          array(
+              'id'        =>  'ampforwp-facebook-like-width',
+              'type'      =>  'text',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     =>  esc_html__('Enter the width of facebook like', 'accelerated-mobile-pages'),
+              'required'  => array('ampforwp-facebook-like-data-action', '=' , '1'),
+              'default'   =>  '140',
+          ),
           // Facebook ON/OFF
           array(
               'id'        =>  'enable-single-facebook-share',
