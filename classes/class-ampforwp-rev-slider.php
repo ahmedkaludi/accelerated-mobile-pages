@@ -48,21 +48,23 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		$ids = array();
 		$slides = $slider->getSlidesForOutput(true,'',$gal_ids);
 		$extParams = array();
+		$j = 0;
 		foreach ($slides as $slide) {
 			$isExternal = $slide->getParam('background_type', 'image');
 			if($isExternal == 'external'){
-				$extParams['url'] = esc_url($slide->getParam('slide_bg_external', ''));
-				$extParams['alt'] = esc_attr($slide->getParam('alt_attr', ''));
-				$extParams['img_title'] = esc_attr($slide->getParam('title_attr', ''));
-				$extParams['img_w'] = $slide->getParam('ext_width', '1920');
-				$extParams['img_h'] = $slide->getParam('ext_height', '1080');
+				$extParams[$j]['url'] = esc_url($slide->getParam('slide_bg_external', ''));
+				$extParams[$j]['alt'] = esc_attr($slide->getParam('alt_attr', ''));
+				$extParams[$j]['img_title'] = esc_attr($slide->getParam('title_attr', ''));
+				$extParams[$j]['img_w'] = $slide->getParam('ext_width', '1920');
+				$extParams[$j]['img_h'] = $slide->getParam('ext_height', '1080');
 			}elseif( $isExternal == 'image'){
 				$ids[] = $slide->getImageID();
 			}
+			$j++;
 		}
-		
+
 		$attr['ids'] = implode(',', $ids);
-		
+
 		if ( ! empty( $attr['ids'] ) ) {
 			// 'ids' is explicitly ordered, unless you specify otherwise.
 			if ( empty( $attr['orderby'] ) ) {
@@ -94,7 +96,7 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 				'orderby' => $atts['orderby'],
 				'fields' => 'ids',
 			) );
-		} elseif ( ! empty( $atts['exclude'] ) ) {
+		} elseif ( ! empty( $atts['exclude'] ) && $id != 0 ) {
 			$attachments = get_children( array(
 				'post_parent' => $id,
 				'exclude' => $atts['exclude'],
@@ -106,32 +108,36 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 				'fields' => 'ids',
 			) );
 		} else {
-			$attachments = get_children( array(
-				'post_parent' => $id,
-				'post_status' => 'inherit',
-				'post_type' => 'attachment',
-				'post_mime_type' => 'image',
-				'order' => $atts['order'],
-				'orderby' => $atts['orderby'],
-				'fields' => 'ids',
-			) );
+			if( $id != 0 ){
+				$attachments = get_children( array(
+					'post_parent' => $id,
+					'post_status' => 'inherit',
+					'post_type' => 'attachment',
+					'post_mime_type' => 'image',
+					'order' => $atts['order'],
+					'orderby' => $atts['orderby'],
+					'fields' => 'ids',
+				) );
+			}
 		}
-
-		if ( empty( $attachments ) ) {
-			return '';
-		}
-
 		$urls = array();
 		if( !empty($extParams) ){
-			$url = $extParams['url'];
-			$width = $extParams['img_w'];
-			$height = $extParams['img_h'];
-			$urls[] = apply_filters('amp_gallery_image_params', array(
-				'url' => $url,
-				'width' => $width,
-				'height' => $height,
-			),$attachment_id);
+			foreach ($extParams as $extkey => $extVal) {
+				$url = $extParams[$extkey]['url'];
+				$width = $extParams[$extkey]['img_w'];
+				$height = $extParams[$extkey]['img_h'];
+				$urls[] = apply_filters('amp_gallery_image_params', array(
+					'url' => $url,
+					'width' => $width,
+					'height' => $height,
+				),$attachment_id);
+			}
 		}
+
+		if ( empty( $attachments ) &&  empty($urls)) {
+			return '';
+		}
+		
 		foreach ( $attachments as $attachment_id ) {
 			list( $url, $width, $height ) = wp_get_attachment_image_src( $attachment_id, $atts['size'], true );
 
