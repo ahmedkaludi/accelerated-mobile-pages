@@ -97,6 +97,15 @@ function address_tag($content){
 			'<p>$1</p>',
 			$content
 		);
+		$content = preg_replace_callback('/<ul\sclass="wp-block-gallery(.*?)>(.*?)<\/ul>/', function($matches){
+			preg_match_all('/<li(.*?)><figure><img(.*?)>(.*?)<\/figure><\/li>/m', $matches[2], $images);
+			$imgs = '';
+			foreach($images[2] as $imgAttr){
+				$imgs .= '<figure><img '.$imgAttr.' ></figure>';
+			}
+			$figure_wrap = '<figure class="op-slideshow">'.$imgs.'</figure>';
+			return $figure_wrap;
+		}, $content);
 		return $content;
 	}
 function filter_dom($content){
