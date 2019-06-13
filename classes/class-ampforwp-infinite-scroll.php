@@ -149,13 +149,9 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				$classes = array(".p-m-fl",".loop-pagination",".footer",".r-pf",".srp ul",".srp h3","#pagination",".h_m_w", ".f-w");
 			}
 
-			$classes = apply_filters('ampforwp_infinite_scroll_exclude_items', $classes);
+			$classes = (array) apply_filters('ampforwp_infinite_scroll_exclude_items', $classes);
 			
-			if(is_array($classes)){
-             return json_encode($classes);
-            }else{
-             return '';
-            }
+			return json_encode($classes);
 		}
 		public function next_posts_link( $next_link , $paged ) {
 			// Change the next link to paged+3
