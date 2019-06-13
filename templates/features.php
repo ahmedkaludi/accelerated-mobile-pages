@@ -4726,7 +4726,9 @@ function ampforwp_inline_related_posts(){
                 );  
             } 			
 		}//end of block for custom Post types
-
+		if(true == ampforwp_get_setting('ampforwp-in-related-posts-days-switch')){
+			$date_range = strtotime ( '-' . ampforwp_get_setting('ampforwp-in-related-posts-days-text') .' day' ); 
+		}
 		if($redux_builder_amp['ampforwp-inline-related-posts-type']==2){
 		    $categories = get_the_category($post->ID);
 					if ($categories) {
@@ -4739,7 +4741,16 @@ function ampforwp_inline_related_posts(){
 							    'ignore_sticky_posts'=>1,
 								'has_password' => false ,
 								'post_status'=> 'publish',
-								'orderby'    => $orderby
+								'orderby'    => $orderby,
+								'date_query'        => array(
+			                        array(
+			                            'after' => array(
+			                                'year'  => date('Y', $date_range ),
+			                                'month' => date('m', $date_range ),
+			                                'day'   => date('d', $date_range ),
+			                            ),
+			                        )
+			                    )
 							);
 						}
 			} //end of block for categories
@@ -4748,6 +4759,7 @@ function ampforwp_inline_related_posts(){
 					$ampforwp_tags = get_the_tags($post->ID);
 						if ($ampforwp_tags) {
 										$tag_ids = array();
+										$date_range = strtotime ( '-' . ampforwp_get_setting('ampforwp-in-related-posts-days-text') .' day' );  
 										foreach($ampforwp_tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
 										$args=array(
 										   'tag__in' => $tag_ids,
@@ -4756,7 +4768,16 @@ function ampforwp_inline_related_posts(){
 										    'ignore_sticky_posts'=>1,
 											'has_password' => false ,
 											'post_status'=> 'publish',
-											'orderby'    => $orderby
+											'orderby'    => $orderby,
+											'date_query'        => array(
+					                        array(
+					                            'after' => array(
+					                                'year'  => date('Y', $date_range ),
+					                                'month' => date('m', $date_range ),
+					                                'day'   => date('d', $date_range ),
+					                            ),
+					                        )
+					                    )
 										);
 					}
 			}//end of block for tags
