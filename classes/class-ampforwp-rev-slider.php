@@ -47,12 +47,22 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		ob_end_clean();
 		$ids = array();
 		$slides = $slider->getSlidesForOutput(true,'',$gal_ids);
+		$extParams = array();
 		foreach ($slides as $slide) {
-			$ids[] = $slide->getImageID();
-
+			$isExternal = $slide->getParam('background_type', 'image');
+			if($isExternal == 'external'){
+				$extParams['url'] = esc_url($slide->getParam('slide_bg_external', ''));
+				$extParams['alt'] = esc_attr($slide->getParam('alt_attr', ''));
+				$extParams['img_title'] = esc_attr($slide->getParam('title_attr', ''));
+				$extParams['img_w'] = $slide->getParam('ext_width', '1920');
+				$extParams['img_h'] = $slide->getParam('ext_height', '1080');
+			}elseif( $isExternal == 'image'){
+				$ids[] = $slide->getImageID();
+			}
 		}
+		
 		$attr['ids'] = implode(',', $ids);
-
+		
 		if ( ! empty( $attr['ids'] ) ) {
 			// 'ids' is explicitly ordered, unless you specify otherwise.
 			if ( empty( $attr['orderby'] ) ) {
@@ -112,6 +122,16 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		}
 
 		$urls = array();
+		if( !empty($extParams) ){
+			$url = $extParams['url'];
+			$width = $extParams['img_w'];
+			$height = $extParams['img_h'];
+			$urls[] = apply_filters('amp_gallery_image_params', array(
+				'url' => $url,
+				'width' => $width,
+				'height' => $height,
+			),$attachment_id);
+		}
 		foreach ( $attachments as $attachment_id ) {
 			list( $url, $width, $height ) = wp_get_attachment_image_src( $attachment_id, $atts['size'], true );
 
@@ -151,7 +171,8 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 						{{amp_image_lightbox}}',
 						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption {{openbrack}}class{{closebrack}}="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span {{openbrack}}text{{closebrack}}="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
 						'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
-						'gallery_css' => '',
+						'gallery_css' => '.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}
+							.cls-btn:after{content:"X";display:inline-block;color:#fff;font-size:20px;padding:20px;}',
 
 						'scripts' => array()
 									),
@@ -165,7 +186,8 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 						'gallery_css' => '
 							.carousel-preview button{padding:0;}
 							.carousel-preview amp-img{height:40px;width:60px;position:relative;}
-							.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}
+							.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}
+							.cls-btn:after{content:"X";display:inline-block;color:#fff;font-size:20px;padding:20px;}
 							',
 						'scripts' => array()
 									),
@@ -193,7 +215,9 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		}
 
 		$amp_images = array();
+
 		foreach ( $args['images'] as $key => $image ) {
+
 			$amp_img_arr = array(
 					'src' => $image['url'],
 					'width' => $image['width'],
@@ -201,6 +225,7 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					'layout' => 'fill',
 					'class'  => 'amp-carousel-img',
 				);
+
 			if(  3 == ampforwp_get_setting('ampforwp-gallery-design-type') || true == ampforwp_get_setting('ampforwp-gallery-lightbox') ){
 				$design3_additional_attr = array('on'=> 'tap:gallery-lightbox', 'role'=>'button', 
                 	'tabindex'=>$key);
@@ -217,10 +242,16 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 				'amp-img',
 				$amp_img_arr
 			);
-
-			//Small Thumbnail Images
-			$thumb_url = ampforwp_aq_resize( $image['url'], 120, 60, true, false ); //resize & crop the image
-	           if($thumb_url!=false){
+			$upload_dir = wp_upload_dir();
+			$upload_url = $upload_dir['baseurl'];
+			if ( false === strpos( $url, $upload_url ) ) {
+				$smallimage  = $image['url'];
+	            $smallwidth = 120;
+	            $smallheight = 60;
+			}else{
+				//Small Thumbnail Images
+				$thumb_url = ampforwp_aq_resize( $image['url'], 120, 60, true, false ); //resize & crop the image
+	           	if($thumb_url!=false){
 					$smallimage   =  $thumb_url[0];
 					$smallwidth   =  $thumb_url[1];
 					$smallheight  =  $thumb_url[2];
@@ -229,7 +260,8 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 	            	$smallwidth = $image['width'];
 	            	$smallheight = $image['height'];
 	            }
-
+			}
+				
 	        $amp_images_small[$key] = AMP_HTML_Utils::build_tag(
 				'amp-img',
 				array(
