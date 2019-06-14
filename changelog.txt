@@ -1,5 +1,36 @@
 == Changelog ==
 
+= 0.9.97.58 (14th June 2019) =
+* Improvements: Option for H1-H6 Heading Font Sizes for all the designs #3035
+* Improvements: New filter to add the classes which have to be excluded in infinity scroll #3297
+* Improvements: Additional options for the Rank Math SEO plugin #3314
+* Fixed: After v0.9.97.57 error can't disable featured image #3272
+* Fixed: Amp options panel's section code improved #3205
+* Fixed: Matemo Switch UI issue #3041
+* Fixed: Redux options for translating the field #2460
+* Fixed: Problem with pagination links in AMP #3313
+* Fixed: AMP Page Builder options not working due to Groovy Menu Plugin #3226
+* Fixed: Analytics not working due to Glue for Yoast SEO & AMP plugin #3153
+* Fixed: Yoast Meta Description not being picked up #3290
+* Fixed: ampforwp_new_gallery_images called multiple times resulting Fatal Error #3296
+* Fixed: Error message comes after search in post or page in Swift theme #3309
+* Fixed: Pages redirect to /amp/amp after last update #3270
+* Fixed: Archive and Categoy not working properly with Swift design #3265
+* Fixed: Fatal error when remove author meta name and date on AMP posts/articles in design-2 #3260
+* Fixed: Lightbox for image does not work when link [anchor tag] attached to images #2695
+* Fixed: Webp as featured image is not working in the single posts #2996
+* Fixed: Redirection issue when visiting AMP version after clicking Non-AMP link in Header #2940
+* Fixed: code imporved in the amp_loop_image #3084
+* Fixed: Sidebar breaks the blog page design #3056
+* Fixed: In content related posts in Design-3 images are not showing #3109
+* Fixed: Close Button is not coming in iphone in swift theme #3107
+* Fixed: AMP strings are not translatable #3169
+* Fixed: Option Panel's tooltips code updated #3172
+* Fixed: Table style is not loading in AMP Page #3204
+* Fixed: H1 tag on Logo in design-swift #3231
+* Fixed: Color of button not working properly in design-swift #3216
+* Fixed: PHP Debug warning fixed #3128
+
 = 0.9.97.57 (31st May 2019) =
 * Improvements: Need to add description field in VideoObject Schema type #2846
 * Improvements: Create an option for H1-H6 Heading Font Sizes for all the designs. #3035
