@@ -148,7 +148,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			if ( 4 == $design ) {
 				$classes = array(".p-m-fl",".loop-pagination",".footer",".r-pf",".srp ul",".srp h3","#pagination",".h_m_w", ".f-w");
 			}
-
+			$classes = (array) apply_filters('ampforwp_infinite_scroll_exclude_items', $classes);
 			return json_encode($classes);
 		}
 		public function next_posts_link( $next_link , $paged ) {
