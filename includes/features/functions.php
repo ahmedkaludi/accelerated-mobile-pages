@@ -307,11 +307,8 @@ function ampforwp_generate_meta_desc($json=""){
         }
         // Rank Math SEO #2701
         if ( defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
-            $rank_math_desc = '';
             $rank_math_desc = RankMath\Post::get_meta( 'description', $post_id );
-            if ( $rank_math_desc ) {
-                $desc = $rank_math_desc;
-            }
+            $desc           = $rank_math_desc ? $rank_math_desc : $desc;
         }
         //Bridge Qode SEO Compatibility #2538 
         if ( function_exists('qode_header_meta') && 'bridge' == ampforwp_get_setting('ampforwp-seo-selection')){
