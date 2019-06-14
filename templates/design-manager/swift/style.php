@@ -11,10 +11,19 @@ if(!ampforwp_levelup_compatibility('levelup_theme_and_elementor')){ // Level up 
 @font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 700;src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Bold.ttf'); }
 <?php } // Level up Condition ends 
 } ?>
-body{<?php  
+<?php
 $hovercolor = '';
 $hovercolor = ampforwp_get_setting('swift-hover-color-scheme');
 $hovercolor = $hovercolor['color'];
+
+$swift_cs_color = '#005be2';
+$swift_btn_hvr_color = '#fff';
+$swift_cs = ampforwp_get_setting('swift-color-scheme');
+if( !empty($swift_cs['color']) ) {
+	$swift_cs_color = $swift_cs['color'];
+}
+$swift_btn_hvr_color = ampforwp_get_setting('swift-btn-hover-color-scheme','color'); ?>
+body{<?php  
 	$fontFamily = "font-family: 'Arial', 'Helvetica', 'sans-serif';";
 if( !ampforwp_levelup_compatibility('levelup_theme') && 1==ampforwp_get_setting('ampforwp-google-font-switch') ){
 	$fontFamily = "font-family: 'Poppins', sans-serif;";
@@ -22,13 +31,7 @@ if( !ampforwp_levelup_compatibility('levelup_theme') && 1==ampforwp_get_setting(
 		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';";
 	}
 }
-echo $fontFamily; ?>
-<?php $swift_cs_color = '#005be2';
-$swift_cs = ampforwp_get_setting('swift-color-scheme');
-if( !empty($swift_cs['color']) ) {
-	$swift_cs_color = $swift_cs['color'];
-}?>
-font-size: 16px; line-height:1.25; }
+echo $fontFamily; ?>font-size: 16px; line-height:1.25; }
 ol, ul{ list-style-position: inside }
 p, ol, ul, figure{ margin: 0 0 1em; padding: 0; }
 a, a:active, a:visited{ text-decoration: none; color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;}
@@ -370,6 +373,7 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 .amp-sub-archives ul li a{color:#005be2;}
 .loop-pagination{margin:20px 0px 20px 0px;}
 .right a, .left a{background: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;padding: 8px 22px 12px 25px;color: #fff;line-height: 1;border-radius: 46px;font-size: 14px;display: inline-block;}
+.right a:hover, .left a:hover{color: <?php echo ampforwp_sanitize_color($swift_btn_hvr_color) ?>;}
 .right a:after{content:"»";display: inline-block;padding-left: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: 1px;}
 .left a:before{content:"«";display: inline-block;padding-right: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: -1px;}
 .cntn-wrp.srch p { margin: 30px 0px 30px 0px; }
@@ -746,6 +750,7 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .form-submit #submit{background-color: #005be2;font-size: 14px;text-align: center;border-radius: 3px;font-weight: 500;color: #fff;cursor: pointer;margin: 0;border: 0;padding: 11px 21px;}
 #respond p {margin: 12px 0;}
 .amp-comment-button a{color: #fff;display: block;padding: 7px 0px 8px 0px;}
+.amp-comment-button a:hover{color:<?php echo ampforwp_sanitize_color($swift_btn_hvr_color) ?>;}
 .comment-form-comment #comment {border-color: #ccc;width: 100%;padding: 20px;}
 .cmts h3{margin: 0;font-size: 12px;padding-bottom: 6px;border-bottom: 1px solid #eee;font-weight: 400;letter-spacing: 0.5px;text-transform: uppercase;color: #444;}
 .cmts h3:after{content: "";display: block;width: 115px;border-bottom: 1px solid #005be2;position: relative;top: 7px;}
