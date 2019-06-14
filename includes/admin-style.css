@@ -571,8 +571,11 @@ visibility: hidden;
     right: -26px;
     margin-bottom: 6px !important;
     opacity: 0;
-    transition: opacity 0.3s;}
-
+    transition: opacity 0.3s;
+}
+.afw-help-subtitle a{
+    color:#fff;
+}
 .afw-tooltip .afw-help-subtitle::after {
     content: "";
     position: absolute;

@@ -254,13 +254,13 @@ function ampforwp_analytics_options($opt_name){
                     ),
                       array(
                           'id'       => 'pa-feild',
+                          'class' => 'child_opt',
                           'type'     => 'text',
                           'title'    => esc_html__( ' Matomo (Piwik) Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
                             array('ampforwp-Piwik-switch', '=' , '1')
                           ),
-                          'desc'     => esc_html__( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'accelerated-mobile-pages' ),
-                          'tooltip-subtitle' => esc_html__('Enter your Matomo (Piwik) Analytics URL.', 'accelerated-mobile-pages' ),
+                          'tooltip-subtitle' => sprintf('%s<a href="%s" target="_blank">%s</a>', esc_html__( 'Tutorial: ','accelerated-mobile-pages' ), esc_url('https://ampforwp.com/tutorials/article/how-to-add-matomo-piwik-analytics-in-amp/'), esc_html__( 'How to add Matomo Piwik Analytics in AMP?','accelerated-mobile-pages') ),
                           'default'  => '#',
                       ),
                       // Quantcast 
