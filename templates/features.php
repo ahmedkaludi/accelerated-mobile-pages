@@ -7801,7 +7801,7 @@ function ampforwp_webp_featured_image() {
 						if(empty($image[2])){
 						$image[2] = 500;
 						}
-					$image_output = "<amp-img src='$image[0]' width='$image[1]' height='$image[2]' layout='responsive' ></amp-img>";
+					$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' ></amp-img>";
 				?>
 				<figure class="amp-wp-article-featured-image">
 					<?php 
