@@ -325,8 +325,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}
 
 
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			if( get_option('permalink_structure') && is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+			if( class_exists('SitePress') ){
+			if( get_option('permalink_structure') ){
 				global $sitepress_settings, $wp;
 				if($sitepress_settings[ 'language_negotiation_type' ] == 3){
 				  	if( is_singular() ){
@@ -335,7 +335,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 						$wpml_url =get_permalink( get_queried_object_id() );
 						$untrail_wpml_url = untrailingslashit($wpml_url);
 						$explode_url = explode('/', $untrail_wpml_url);
-						$append_amp = 'amp';
+						$append_amp = AMPFORWP_AMP_QUERY_VAR;
 						foreach ($active_langs as $active_lang) {
 							foreach($explode_url as $a) {
 							     if (stripos('?lang='.$active_lang ,$a) !== false){
@@ -401,9 +401,12 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 						}
 				    }
 				}
+				}
 			}
-			// URL Purifier
-			$amp_url = ampforwp_url_purifier($amp_url);
+			if( !class_exists('SitePress') ){
+				// URL Purifier
+				$amp_url = ampforwp_url_purifier($amp_url);
+			}
 
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
