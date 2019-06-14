@@ -1651,7 +1651,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'amp-inspection-tool',
                'type'     => 'switch',
                'title'    => esc_html__('URL Inspection Tool Compatibility', 'accelerated-mobile-pages'),
-               'tooltip-subtitle'  => esc_html__("You can read about it <a target='_blank' href='https://webmasters.googleblog.com/2018/06/new-url-inspection-tool-more-in-search.html'>here</a>",'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => sprintf( '%s<a href="%s" target="_blank">%s</a>', esc_html__("You can read about it ",'accelerated-mobile-pages'),esc_url('https://webmasters.googleblog.com/2018/06/new-url-inspection-tool-more-in-search.html'),esc_html__('here','accelerated-mobile-pages')),
                'default' => 1,
             ),
            array(
@@ -2102,7 +2102,8 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'fb-instant-crawler-ingestion',
                         'type' => 'switch',
                         'title'    => esc_html__('Crawler Ingestion', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => esc_html__('Add ia:markup meta tag. Find out more about<a href="https://developers.facebook.com/docs/instant-articles/crawler-ingestion" target="_blank">here</a> ', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', 
+                        esc_html__('Add ia:markup meta tag. Find out more about', 'accelerated-mobile-pages'), esc_url('https://developers.facebook.com/docs/instant-articles/crawler-ingestion'), esc_html__('here','accelerated-mobile-pages')),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
                  array(
@@ -3654,7 +3655,7 @@ Redux::setSection( $opt_name, array(
                 'id'        => 'signin-button-text-color',
                 'class' => 'child_opt child_opt_arrow',
                 'title'     => esc_html__('CTA Text Color', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'  => esc_html__('Choose the color for Button Texxt','accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Text','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'color'  => '#000',
@@ -3704,7 +3705,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'ampforwp-amp-menu',
                     'type'     => 'switch',
                     'title'    => esc_html__('Navigation Menu', 'accelerated-mobile-pages'),
-                    'desc'       => esc_html__( 'Add Menus to your AMP pages by clicking on this ', 'accelerated-mobile-pages').'<a href="'.esc_url(trailingslashit(get_admin_url())).'nav-menus.php?action=locations">'.esc_html__('link', 'accelerated-mobile-pages').'</a>' ,
+                    'desc'       => sprintf( '%s <a href="%s" target="_blank">%s</a>',esc_html__( 'Add Menus to your AMP pages by clicking on this','accelerated-mobile-pages'), esc_url(trailingslashit(get_admin_url().'nav-menus.php?action=locations')),esc_html__('link','accelerated-mobile-pages')),
                     'tooltip-subtitle' => esc_html__('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
                     'true'      => 'true',
                     'false'     => 'false',
@@ -5102,7 +5103,7 @@ else{
                         'title' => esc_html__('Menu', 'accelerated-mobile-pages'),
                         'default'   => 1,
                         'required' => array( array('amp-design-selector', '=' , '4') ),
-                        'tooltip-subtitle'       => esc_html__( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'       => sprintf( '%s <a href="%s" target="_blank">%s</a>',esc_html__( 'Add Menus to your AMP pages by clicking on this','accelerated-mobile-pages'), esc_url(trailingslashit(get_admin_url().'nav-menus.php?action=locations')),esc_html__('link','accelerated-mobile-pages')),
                 ),
                 array(
                         'id'       => 'amp-footer-link-non-amp-page',
@@ -5559,7 +5560,7 @@ else{
           array(
                'id'       => 'amp-facebook-app-id',
                'title'    => esc_html__('Facebook App ID', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => esc_html__('In order to use Facebook share you need to register an app ID, <a href="https://developers.facebook.com/apps" target="_blank" style="color:#93FCFF;" >You can register one here: https://developers.facebook.com/apps.', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => sprintf( '%s <a style="color:#93FCFF;" href="%s" target="_blank">%s</a> %s <a style="color:#93FCFF;" href="%s" target="_blank">%s</a>',esc_html__('In order to use Facebook share you need to register an app ID','accelerated-mobile-pages'),esc_url("https://developers.facebook.com/apps"),esc_html__('here','accelerated-mobile-pages'),esc_html__('You can register one','accelerated-mobile-pages'),esc_url('https://developers.facebook.com/apps'),esc_html__('here','accelerated-mobile-pages') ),
                'type'     => 'text',
                'required'  => array('enable-single-facebook-share', '=' , '1'),
                'placeholder'  => esc_html__('Enter your facebook app id','accelerated-mobile-pages'),
