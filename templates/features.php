@@ -388,7 +388,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	}
 	function ampforwp_static_blog(){
 		global $page;
-		if ( is_front_page() && $page >= 2 && is_page() ) {
+		if ( ampforwp_is_front_page() && $page >= 2 && is_page() ) {
 			add_filter('ampforwp_modify_rel_canonical','ampforwp_modify_amphtml_static_blog');
 		}
 	}
