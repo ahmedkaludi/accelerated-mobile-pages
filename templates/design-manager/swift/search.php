@@ -1,4 +1,4 @@
-<?php global $redux_builder_amp;
+<?php global $redux_builder_amp, $search_found;
 amp_header() ?>
 <div class="cntr archive">
 	<div class="arch-tlt">
@@ -8,7 +8,7 @@ amp_header() ?>
 		<div class="arch-psts">
 			<?php amp_loop_template(); ?>
 			<?php 
-			if (empty(amp_loop_template())){ ?>
+			if ( false == $search_found ){ ?>
 				<div class="cntn-wrp srch ">
 					<p><?php
 						$message = '';
