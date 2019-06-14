@@ -200,6 +200,9 @@ function amp_loop($selection,$data=array()){
 		call_loops_standard($data);
         echo "<div class='loop-wrapper'>";
 	}
+	if ( false == $amp_q->have_posts() ) {
+		return;
+	}
 	if ( !isset($ampLoopData['no_data']) ) :
 		switch($selection){
 			case 'start':
