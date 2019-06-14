@@ -1947,27 +1947,6 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
     return $skip;
 }
 
-// 29. Remove analytics code if Already added by Glue or Yoast SEO (#370)
-	add_action('init','ampforwp_remove_analytics_code_if_available',20);
-	function ampforwp_remove_analytics_code_if_available(){
-		if ( class_exists('WPSEO_Options') && class_exists('YoastSEO_AMP') ) {
-			$yoast_glue_seo = get_option('wpseo_amp');
-
-			if ( $yoast_glue_seo['analytics-extra'] ) {
-				remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
-				remove_action('amp_post_template_footer','ampforwp_analytics',11);
-			}
-
-			if ( class_exists('Yoast_GA_Options') ) {
-				$UA = Yoast_GA_Options::instance()->get_tracking_code();
-				if ( $UA ) {
-					remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
-					remove_action('amp_post_template_footer','ampforwp_analytics',11);
-				}
-			}
-		}
-	}
-
 //30. TagDiv menu issue removed
 	add_action('init','ampforwp_remove_tagdiv_mobile_menu');
 	function ampforwp_remove_tagdiv_mobile_menu() {
