@@ -4446,7 +4446,8 @@ function ampforwp_inline_related_posts(){
 					}
 			}//end of block for tags
 			$my_query = new wp_query( $args );
-					if( $my_query->have_posts() ) { 
+					if( $my_query->have_posts() ) {
+				$inline_related_posts_img = '';
 				$inline_related_posts = '<div class="amp-wp-content relatedpost">
 						    <div class="related_posts">
 										<ol class="clearfix">
@@ -4471,11 +4472,17 @@ function ampforwp_inline_related_posts(){
 							if ( ampforwp_has_post_thumbnail() ) {
 								if( 4 == $redux_builder_amp['amp-design-selector'] ){
 									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 220 , 134 , true, false, true );
-									$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . esc_attr($thumb_url_2[1]) . '" height="' . esc_attr($thumb_url_2[2]) . '" layout="responsive"></amp-img>';
+									$inline_related_posts_img  = '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . esc_attr($thumb_url_2[1]) . '" height="' . esc_attr($thumb_url_2[2]) . '" layout="responsive"></amp-img>';
 								}
 								else{
-									$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2 ).'" width="150" height="150" layout="responsive"></amp-img>';
+									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 150 , 150 , true, false,true );
+									$thumb_url 		= $thumb_url_2[0];
+									$thumb_width 	= $thumb_url_2[1];
+									$thumb_height 	= $thumb_url_2[2];
+									$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" layout="responsive" ></amp-img>';
 								}
+								$inline_related_posts_img = apply_filters("ampforwp_modify_inline_rp_loop_image",$inline_related_posts_img);
+								$inline_related_posts .= $inline_related_posts_img;
 							} 
 							$inline_related_posts .='</a>';
 						}
