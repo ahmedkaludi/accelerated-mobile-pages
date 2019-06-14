@@ -1446,18 +1446,16 @@ function ampforwp_yoast_twitter_desc($desc){
 function ampforwp_yoast_social_desc($type) {
 	if(ampforwp_is_front_page() || ampforwp_is_blog()){
 		$desc = $page_id = '';
-		if ( ampforwp_is_front_page() ) {
-			$page_id = ampforwp_get_frontpage_id();
-		}
-		if ( ampforwp_is_blog() ){
-			$page_id = ampforwp_get_blog_details('id');
-		}
+		$page_id = ampforwp_get_the_ID();
 		if ( 'og' == $type ) {
 			$desc = trim( WPSEO_Meta::get_value( 'opengraph-description', $page_id ) );
 		}
 		if ( 'twitter' == $type ) {
 			$desc = trim( WPSEO_Meta::get_value( 'twitter-description', $page_id ) );
 		}
+		if (empty($desc) ){
+	 		$desc = get_post_meta($page_id, '_yoast_wpseo_metadesc', true); 
+	 	}
 		if (empty($desc)){
 			$desc = wp_trim_words(get_post_field('post_content', $page_id), 26);
 		}
