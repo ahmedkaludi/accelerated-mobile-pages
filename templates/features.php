@@ -388,12 +388,12 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	}
 	function ampforwp_static_blog(){
 		global $page;
-		$modify_canonical = false;
+		$modify_canonical = ampforwp_is_front_page();
 		$get_front_page_reading_settings  = get_option('page_on_front');
 		// Homepage support on   
-    	$get_amo_homepage_support        =  ampforwp_get_setting('ampforwp-homepage-on-off-support');
+    	$get_amp_homepage_support        =  ampforwp_get_setting('ampforwp-homepage-on-off-support');
 
-		if ( 'page' == get_option( 'show_on_front') && is_front_page() && $get_front_page_reading_settings && $get_amo_homepage_support ){
+		if ( 'page' == get_option( 'show_on_front') && is_front_page() && $get_front_page_reading_settings && $get_amp_homepage_support ){
 			$modify_canonical = true;
 		}
 		if ( true == $modify_canonical && $page >= 2 && is_page() ) {
