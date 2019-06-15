@@ -392,11 +392,9 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	$tags = get_the_tags( $id );
 	$focusKeyword = '';
 	$seoScore = '';
-	if( function_exists('is_plugin_active')){
-		if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
+	if( function_exists('wpseo_auto_load')){
 			$focusKeyword = get_post_meta($id, '_yoast_wpseo_focuskw', true); 
 			$seoScore = get_post_meta($id, '_yoast_wpseo_content_score', true); 
-		}
 	}
 	
 	$tagNames = '';
@@ -420,11 +418,9 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 		$ampforwp_adv_ga_fields = str_replace('{category}', $category_name, $ampforwp_adv_ga_fields);
 		$ampforwp_adv_ga_fields = str_replace('{published_at}', $published_at, $ampforwp_adv_ga_fields);
 		$ampforwp_adv_ga_fields = str_replace('{tags}', $tagNames, $ampforwp_adv_ga_fields);
-		if(function_exists('is_plugin_active')){
-			if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
+		if(function_exists('wpseo_auto_load')){
 				$ampforwp_adv_ga_fields = str_replace('{seo_score}', $seoScore, $ampforwp_adv_ga_fields);
 				$ampforwp_adv_ga_fields = str_replace('{focus_keyword}',$focusKeyword, $ampforwp_adv_ga_fields);
-			}
 		}
 		
 		return $ampforwp_adv_ga_fields;
