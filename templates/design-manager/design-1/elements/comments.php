@@ -81,7 +81,7 @@
 							'max_depth'   		=> 5,
 							'avatar_size'		=> 0,
 							'callback'			=> 'ampforwp_custom_translated_comment',
-							'reverse_top_level' => true //Show the latest comments at the top of the list
+							'reverse_top_level' => false //Show the latest comments at the top of the list
 						), $comments);  ?>
 				    </ul>
 				    <?php 
