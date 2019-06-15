@@ -1454,6 +1454,7 @@
                     });
                     parent.find('.form-table tr').filter(function () {
                         if(searchString==''){
+                            
                             $('.redux-tab-container').show();
                             $('.redux-tab-container').each(function(){
                                 $(this).find('.redux-tab-selector:first').click();
@@ -1461,6 +1462,9 @@
                             return false;
                         }
                         var item = $(this);
+                        if(item.hasClass('hide')){
+                            return false;
+                        }
                         var isMatch = true,
                             text = $(this).find('.redux_field_th').text().toLowerCase();
                         if ( !text || text == "" ) {
@@ -1473,11 +1477,10 @@
                         });
                         if (isMatch) {
                             $(this).show();
-                             $(this).parents('div.redux-group-tab').css('display','block');
+                            $(this).parents('div.redux-group-tab').css('display','block');
                         }
                         return isMatch;
                     }).show( function() { }); 
-
                     parent.find('.redux-group-tab').each(function() {
                         if (searchString != "") {
                             $(this).find("div.redux-section-field").each(function(){
@@ -1491,6 +1494,9 @@
                                 }
                             });
                         } else {
+                            $(this).find('.hide').each(function(){
+                                $(this).css('display','none');
+                            });
                             $(this).find("div.redux-section-field").each(function(){
                                 var divSectionId = $(this).attr('id');
                                 var splitResult = divSectionId.split("-");
