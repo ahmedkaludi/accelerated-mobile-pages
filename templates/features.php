@@ -4273,6 +4273,9 @@ function ampforwp_enable_post_and_featured_image($show_image){
 
 // 82. Grab Featured Image from The Content
 function ampforwp_get_featured_image_from_content( $featured_image = "", $size="") {
+	if(get_the_post_thumbnail_url()){
+		return;
+	}
 	global $post, $posts;
 	$image_url = $image_width = $image_height = $output = $matches = $output_fig = $amp_html_sanitizer = $amp_html = $image_html = $featured_image_output = $matches_fig = $figure = $output_fig_image = $matches_fig_img = '';
 	ob_start();
@@ -6656,4 +6659,30 @@ function ampforwp_featured_video_plus_css(){
 		.amp-featured-image amp-iframe, .amp-wp-article-featured-image amp-iframe { margin:auto; height:100%; }
 		.f_vid { background: #000; }
 <?php }
+}
+function ampforwp_webp_featured_image() {
+	$post_id = ampforwp_get_the_ID();
+	if (has_post_thumbnail( $post_id ) ){
+				$thumb_id = get_post_thumbnail_id($post_id);
+				$image_size = apply_filters( 'ampforwp_featured_image', 'full' ); 
+				$image = wp_get_attachment_image_src( $thumb_id, $image_size );
+					if( $image ) {	
+						if(empty($image[1])){
+						$image[1] = 750;
+						}
+						if(empty($image[2])){
+						$image[2] = 500;
+						}
+					$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' ></amp-img>";
+				?>
+				<figure class="amp-wp-article-featured-image">
+					<?php 
+					if(4 != ampforwp_get_setting('amp-design-selector')){
+						echo $image_output;
+					}
+					 ?>
+				</figure>
+				<?php 
+			}
+	}
 }

@@ -4,7 +4,13 @@ $amp_html 		= "";
 $caption 		= "";
 $featured_image = "";
 $featured_image = $this->get( 'featured_image' );
+$get_webp = $get_webp_type =  "";
+$get_webp = get_post_thumbnail_id($post->ID);
+$get_webp_type =  get_post_mime_type( $get_webp );
 if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) || true == $redux_builder_amp['ampforwp-featured-image-from-content'] || (class_exists('Bunyad') && Bunyad::posts()->meta('featured_video')) ){
+	if(strpos($get_webp_type, "webp") !== false ){
+	 ampforwp_webp_featured_image();
+	}
 	// Featured Video SmartMag theme Compatibility #2559
 	if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
 		global $wp_embed;
@@ -38,5 +44,7 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 			</figure>
 			<?php 
 		}
+	}else{
+		ampforwp_webp_featured_image();	
 	}
 do_action('ampforwp_after_featured_image_hook',$this);
