@@ -6392,6 +6392,10 @@ if ( ! function_exists('ampforwp_rank_math') ) {
 			add_filter( 'rank_math/frontend/robots', function() {
 				return [];
 			});
+		}else if(ampforwp_is_front_page()){
+			add_filter( 'rank_math/frontend/robots', function() {
+				return [];
+			});
 		}
 		// Remove ld+json data added by the Rank math plugin.
 		if ( ! ampforwp_get_setting( 'ampforwp-seo-rank_math-schema' ) ) {
