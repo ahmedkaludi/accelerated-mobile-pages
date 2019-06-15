@@ -432,6 +432,16 @@ img.ampforwp-post-builder-img{
     width: 370px;
     border: 1px solid #eee;
 }
+.extension_listing li.new-ext:before {
+    content: "New";
+    position: absolute;
+    background: red;
+    padding: 10px 6px;
+    border-radius: 60em;
+    top: 2px;
+    left: -1px;
+    color: #fff;
+}
 #redux-intro-text .technical_support_btn_txt{
     background: #fdfdfd;
     box-shadow: 0px 0px 6px #ddd;

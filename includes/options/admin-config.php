@@ -429,6 +429,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'Purge AMP CDN Cache',
+                            'class'=>'new-ext',
                             'label' => 'Purge AMP CDN Cache',
                             'desc'=>'Purge AMP CDN Cache on one click. Editors can update/purge the google cdn cache of amp post and pages in one click.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
@@ -602,12 +603,15 @@ foreach ($extension_listing_array as $key => $extension) {
             $ampforwp_extension_list_html .= "</ul><h3 style='display:block;'>All Extensions</h3><ul>";  
             $secondPageClickClass = 'goToSecondPage';
     }
-    $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.' '.$secondPageClickClass.'" data-ext-details=\''.json_encode($extension).'\' data-ext-secure="'.wp_create_nonce('verify_extension').'">
+    if ( isset($extension['class']) && $extension['class'] && !$currentStatus ) {
+        $secondPageClickClass = $secondPageClickClass. ' ' . $extension['class'];
+    }
+    $ampforwp_extension_list_html .= '<li class="first '.esc_attr($currentStatus).' '.esc_attr($secondPageClickClass).'" data-ext-details=\''.json_encode($extension).'\' data-ext-secure="'.wp_create_nonce('verify_extension').'">
         '.$onclickUrl.'
-        <div class="align_left"><img src="'.$extension['img_src'].'" /></div>
+        <div class="align_left"><img src="'.esc_url($extension['img_src']).'" /></div>
         <div class="extension_desc">
-        <h2>'.$extension['name'].'</h2>
-        <p>'.$extension['desc'].'</p>
+        <h2>'.esc_html($extension['name']).'</h2>
+        <p>'.esc_html($extension['desc']).'</p>
         '.$pluginReview.'
         </div>
     '.$onclickUrlclose.' '.$settingPageUrl.'</li>';
