@@ -194,6 +194,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Improvements: Option for H1-H6 Heading Font Sizes for all the designs #3035
 * Improvements: New filter to add the classes which have to be excluded in infinity scroll #3297
 * Improvements: Additional options for the Rank Math SEO plugin #3314
+* Improvements: Purge AMP CDN Cache added in Extension List #3324
 * Fixed: After v0.9.97.57 error can't disable featured image #3272
 * Fixed: Amp options panel's section code improved #3205
 * Fixed: Matemo Switch UI issue #3041
