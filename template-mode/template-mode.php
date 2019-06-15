@@ -544,7 +544,7 @@ Class AMPforWP_theme_mode{
 		return $this->ampforwp_template_mode_cnt_sanitizer($field);
 	}
 }//Class Closed
-add_action("after_setup_theme", 'ampforwp_template_mode_is_activate');
+add_action('after_setup_theme', 'ampforwp_template_mode_is_activate', 999);
 function ampforwp_template_mode_is_activate(){
 	if(get_theme_support('amp-template-mode')){
 		$ampforwp_theme_mode = new AMPforWP_theme_mode();
