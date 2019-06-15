@@ -10,7 +10,7 @@ function ampforwp_framework_get_logo(){
           $ampforwp_home_url = ampforwp_url_controller( get_bloginfo('url') );
         }
         if ( ampforwp_get_setting('amp-on-off-support-for-non-amp-home-page') && ampforwp_get_setting('amp-mobile-redirection') ) {
-        $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
+        $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamphead=1';
         $set_rel_to_noamp = true;
         }
         $ampforwp_home_url = apply_filters('ampforwp_header_url', $ampforwp_home_url); ?>
