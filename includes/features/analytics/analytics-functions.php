@@ -381,8 +381,8 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	$url = get_the_permalink();
 	$tag_names = array();
 	if(!is_object($post)){ return $ga_fields; }
-	$title = $post->post_title;
 	$id = ampforwp_get_the_ID();
+	$title = get_the_title($id);
 	$category_detail = get_the_category($id);//$post->ID
 	if ( ! empty( $category_detail ) ) {
 		foreach($category_detail as $cd){
@@ -406,7 +406,7 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	    }
 	    $tagNames = implode( ', ', $tag_names );
 	}
-	$author_id = $post->post_author;
+	$author_id = get_post_field( 'post_author', $id );
 	$author_name = get_the_author_meta( 'display_name' , $author_id );
 	$published_at = get_the_date( 'l F j, Y' , $id );
 	$ampforwp_adv_ga_fields = array();
