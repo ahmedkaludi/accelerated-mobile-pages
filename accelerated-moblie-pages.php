@@ -814,6 +814,14 @@ if(is_admin()){
 }else{
 	$enablePb = true;
 }
+	if(is_admin() && is_multisite()){
+		$current_url = $_SERVER['REQUEST_URI'];
+		$post_old = preg_match('/post\.php/', $current_url);
+		$post_new = preg_match('/post-new\.php/', $current_url);
+			if($post_old || $post_new){ 
+				$enablePb = true;
+			}
+	}
 if ($enablePb && ampforwp_get_setting('ampforwp-pagebuilder')== true ){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
 }
