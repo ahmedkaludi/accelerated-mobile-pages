@@ -1517,6 +1517,31 @@ $tabs = array(
                'default'  => '1',
                'required' => array('ampforwp-archive-support', '=' , '1')
              ),
+             array(
+               'id'       => 'ampforwp-archive-support-custom-tax',
+               'type'     => 'switch',
+               'title'    => esc_html__('Archives [Custom Taxonomy]', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable AMP Support on Archives for Custom Taxonomy.', 'accelerated-mobile-pages'),
+               'default'  => '1'
+             ),
+             array(
+               'id'       => 'ampforwp-archive-support-custom-tax-cat',
+               'type'     => 'switch',
+               'class' => 'child_opt child_opt_arrow',
+               'title'    => esc_html__('Custom Taxonomy Category', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable AMP Support on Custon Taxonomy Tags.', 'accelerated-mobile-pages'),
+               'default'  => '1',
+               'required' => array('ampforwp-archive-support-custom-tax', '=' , '1')
+             ),
+             array(
+               'id'       => 'ampforwp-archive-support-custom-tax-tag',
+               'type'     => 'switch',
+               'class' => 'child_opt child_opt_arrow',
+               'title'    => esc_html__('Custom Taxonomy Tags', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable AMP Support on Custom Taxonomy Category.', 'accelerated-mobile-pages'),
+               'default'  => '1',
+               'required' => array('ampforwp-archive-support-custom-tax', '=' , '1')
+             ),
            $amp_cpt_option,
             array(
                'id'       => 'ampforwp-amp-convert-to-wp',

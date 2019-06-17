@@ -263,13 +263,13 @@ function ampforwp_add_custom_rewrite_rules() {
 		foreach ( $taxonomies  as $key => $taxonomy ) { 
 			if ( ! empty( $taxonomy ) ) {
 			    add_rewrite_rule(
-			      $taxonomy.'\/(.+?)\/amp/?$',
+			      $taxonomy.'\/([^/]+)\/amp/?$',
 			      'index.php?amp&'.$key.'=$matches[1]',
 			      'top'
 			    );
 			    // For Custom Taxonomies with pages
 			    add_rewrite_rule(
-			      $taxonomy.'\/(.+?)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
+			      $taxonomy.'\/([^/]+)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
 			      'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
 			      'top'
 			    );
