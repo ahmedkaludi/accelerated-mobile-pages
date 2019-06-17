@@ -37,7 +37,10 @@ function ampforwp_is_front_page(){
     if ( ampforwp_get_setting('amp-frontpage-select-option-pages') ) {
         $get_amp_custom_frontpage_id      =  $redux_builder_amp['amp-frontpage-select-option-pages'];
     }
-
+    // Passing Frontpage id true for polylang static pages
+    if( !ampforwp_get_setting('amp-frontpage-select-option-pages') && 'page' === get_option( 'show_on_front' ) && (class_exists('polylang') || class_exists('Polylang_Pro')) ){
+          $get_amp_custom_frontpage_id = true; 
+        }
     // TRUE: When we have "Your latest posts" in reading settings and custom frontpage in amp
     if ( 'posts' == get_option( 'show_on_front') && is_home() && $get_amp_homepage_settings && $get_custom_frontpage_settings)
         return true;
