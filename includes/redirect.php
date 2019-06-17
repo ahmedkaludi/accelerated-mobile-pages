@@ -146,6 +146,10 @@ function ampforwp_redirection() {
       $redirection_location = get_the_permalink();
     }
 
+    $ampforwp_amp_post_on_off_meta = get_post_meta( $post_id,'ampforwp-amp-on-off',true);
+    if(false == $ampforwp_amp_post_on_off_meta){ 
+      return;
+    }
     /* Fallback, if for any reason, $redirection_location is still NULL
      * then redirect it to homepage. 
      */
