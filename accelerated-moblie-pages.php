@@ -858,7 +858,7 @@ if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 // Fallback for Redux class #2377
 add_action('after_setup_theme', 'ampforwp_redux_class' );
 function ampforwp_redux_class(){	
-	if ( !class_exists('Redux') && class_exists('ReduxCore\\ReduxFramework\\Redux') ) {
+	if ( !class_exists('Redux') && class_exists('ReduxCore\\ReduxFramework\\Redux') && !class_exists('QuadMenu') ) {
 		class Redux extends ReduxCore\ReduxFramework\Redux
 		{
 			# Do nothing, it will inherit all the methods
