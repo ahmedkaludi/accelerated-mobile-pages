@@ -11,7 +11,7 @@ if ( ! class_exists('AMPforWP_Subdomain_Endpoint') ) {
 		function __construct( )
 		{
 			$this->www = ( false === strpos( get_home_url() , '://www.') ) ? '://' : '://www.';
-			$this->amp = ampforwp_get_setting('ampforwp-subdomain-endpoint') ? ampforwp_get_setting('ampforwp-subdomain-endpoint') : 'amp';
+			$this->amp = ampforwp_get_setting('ampforwp-domain-endpoint') == 'subdomain' ? ampforwp_get_setting('ampforwp-subdomain-endpoint') : 'amp';
 			// Endpoint
 			add_filter('ampforwp_is_amp_endpoint', array( $this , 'amp_subdomain_endpoint') );
 			// AMPHTML

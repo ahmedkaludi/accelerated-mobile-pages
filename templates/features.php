@@ -3070,6 +3070,8 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
   if(ampforwp_get_setting('amp-core-end-point') == 1){
 	    $atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) );
 		$atts['href'] = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $atts['href']);
+	}elseif(ampforwp_get_setting('ampforwp-url-format') && 'afterdomain' == ampforwp_get_setting('ampforwp-domain-endpoint') ){
+		$atts['href'] = AMPforWP_Afterdomain_Endpoint::ampforwp_add_afterdomain($atts['href']);
 	}
   else{
      	$atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);

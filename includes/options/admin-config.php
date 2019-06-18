@@ -2557,20 +2557,35 @@ Redux::setSection( $opt_name, array(
                         'default' => true,
                     ),
                     array(
-                        'id'       => 'ampforwp-subdomain',
+                        'id'       => 'ampforwp-url-format',
                         'type'     => 'switch',
-                        'title'    => __('Use Subdomain As Endpoint', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('For Example amp.example.com','accelerated-mobile-pages'),
+                        'title'    => esc_html__('AMP URL Format', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('select URL format','accelerated-mobile-pages'),
                         'default' => 0,
                     ),
                     array(
-                        'id'       => 'ampforwp-subdomain-endpoint',
+                        'id'        => 'ampforwp-domain-endpoint',
+                        'class'     => 'child_opt child_opt_arrow',
+                        'type'      => 'select',
+                        'desc'      =>   sprintf('<br><strong>%s</strong> %s</br><br><strong>%s</strong> %s</br>', esc_html__('AfterDomain:', 'accelerated-mobile-pages'),esc_html__('https://example.com/amp/post/', 'accelerated-mobile-pages'),esc_html__('SubDomain:', 'accelerated-mobile-pages'),esc_html__('amp.example.com', 'accelerated-mobile-pages')),
+                        'options'   => array(
+                            'subdomain'     => 'Use Subdomain As Endpoint',
+                            'afterdomain'   => 'Use Endpoint AfterDomain',
+                        ),
+                        'default'   => 'afterdomain',
+                        'required'  => array( 'ampforwp-url-format', '=' , 1 )
+                    ),
+                    array(
+                        'id'    =>  'ampforwp-subdomain-endpoint',
                         'class'    => 'child_opt child_opt_arrow',
                         'type'     => 'text',
-                        'title'    => __('Enter Subdomain', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('For Example m or amp','accelerated-mobile-pages'),
+                         'title'    => esc_html__('Enter Subdomain', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('For Example m or amp','accelerated-mobile-pages'),
                         'default' => 'amp',
-                        'required' => array( 'ampforwp-subdomain', '=' , 1 )
+                        'required' => array(
+                                array( 'ampforwp-domain-endpoint', '=' , 'subdomain' ),
+                                array( 'ampforwp-url-format', '=' , 1 ),
+                            )
                     ),
                     array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',

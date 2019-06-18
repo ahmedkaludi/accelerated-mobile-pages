@@ -905,7 +905,7 @@ visibility: hidden;
 div#section-amp-ads_1,table#section-table-amp-ads_1{
     max-width: 75%; 
 }
-#section-table-amp-ads_1 > tbody > tr > td > fieldset .field-desc{
+#section-table-amp-ads_1 > tbody > tr > td > fieldset .field-desc,.redux-group-tab.amp-advance .form-table > tbody > tr > td > fieldset .field-desc{
     line-height: 1.5;
 }
 div#section-ampforwp-ads-section , table#section-table-ampforwp-ads-section{
