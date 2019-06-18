@@ -1494,10 +1494,12 @@
                                 }
                             });
                         } else {
-                            $(this).find('.hide').each(function(){
-                                $(this).css('display','none');
-                            });
+                            
                             $(this).find("div.redux-section-field").each(function(){
+                                var item = $(this);
+                                if(item.hasClass('hide')){
+                                    return false;
+                                }
                                 var divSectionId = $(this).attr('id');
                                 var splitResult = divSectionId.split("-");
                                 splitResult.splice(1, 0, "table");

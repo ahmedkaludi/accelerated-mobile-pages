@@ -2,7 +2,7 @@
 add_action( 'template_redirect', 'ampforwp_redirection', 10 );
 function ampforwp_redirection() {
   global $redux_builder_amp, $wp, $post;
-  $hide_cats_amp = $url = $archive_check = $go_to_url = '';
+  $hide_cats_amp = $url = $archive_check = $go_to_url = $archive_check_tax = '';
   $hide_cats_amp = is_category_amp_disabled();
   $current_url = $check = '';
   $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
@@ -31,10 +31,19 @@ function ampforwp_redirection() {
   }
   // Redirection for Homepage and Archive Pages when Turned Off from options panel
   if ( ampforwp_is_amp_endpoint() ) {
-     if( (is_archive() && 0 == ampforwp_get_setting('ampforwp-archive-support')) || (is_category() && 0 == ampforwp_get_setting('ampforwp-archive-support-cat')) || (is_tag() && 0 == ampforwp_get_setting('ampforwp-archive-support-tag')) ){
-        $archive_check = true;
+     if(is_tax()){
+        $term_id = get_queried_object()->term_id;
+        $term = get_term( $term_id );
+        $taxonomy_name = $term->taxonomy;
+        if((is_archive() && 0 == ampforwp_get_setting('ampforwp-archive-support-custom-tax') ) ||( is_taxonomy_hierarchical( $taxonomy_name ) && 0 == ampforwp_get_setting('ampforwp-archive-support-custom-tax-cat')) || ( !is_taxonomy_hierarchical( $taxonomy_name ) && 0 == ampforwp_get_setting('ampforwp-archive-support-custom-tax-tag'))){
+            $archive_check_tax = true;
+        }
+      }else{
+          if( (is_archive() && 0 == ampforwp_get_setting('ampforwp-archive-support')) || (is_category() && 0 == ampforwp_get_setting('ampforwp-archive-support-cat')) || (is_tag() && 0 == ampforwp_get_setting('ampforwp-archive-support-tag')) ){
+          $archive_check = true;
+        }
       }
-    if ( ( true == $archive_check ) || true == $hide_cats_amp || ((ampforwp_is_home() || ampforwp_is_front_page()) && 0 == ampforwp_get_setting('ampforwp-homepage-on-off-support')) ) {
+    if ( (true == $archive_check_tax) || ( true == $archive_check ) || true == $hide_cats_amp || ((ampforwp_is_home() || ampforwp_is_front_page()) && 0 == ampforwp_get_setting('ampforwp-homepage-on-off-support')) ) {
       $url = $wp->request;
       if( ampforwp_is_home() && get_query_var('amp') ) {
         $url = 'amp';

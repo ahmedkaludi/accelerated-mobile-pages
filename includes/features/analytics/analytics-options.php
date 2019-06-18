@@ -71,19 +71,6 @@ function ampforwp_analytics_options($opt_name){
                           'tooltip-subtitle' => esc_html__( 'Enter your Google Analytics ID. Example: UA-XXXXX-Y', 'accelerated-mobile-pages' ),
                           'default'  => 'UA-XXXXX-Y',
                       ),
-         
-                      // Advance Tracking options for Google Analytics
-                      array(
-                          'class' => 'child_opt',
-                          'id'       => 'ampforwp-ga-field-advance-switch',
-                          'type'     => 'switch',
-                          'title'    => esc_html__( 'Advanced Google Analytics', 'accelerated-mobile-pages' ),
-                          'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
-                            array('ampforwp-ga-switch', '=' , '1')
-                          ),
-                          'default'  => 0,
-                      ),
                       array(
                           'class' => 'child_opt',
                           'id'       => 'ampforwp-ga-field-anonymizeIP',
@@ -105,6 +92,18 @@ function ampforwp_analytics_options($opt_name){
                                             esc_url('https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/amp/'), 
                                             esc_html__( 'Click Here','accelerated-mobile-pages' ), 
                                             esc_html__( 'for more details on AMP Linker','accelerated-mobile-pages' ) ),
+                          'default'  => 0,
+                      ),
+                      // Advance Tracking options for Google Analytics
+                      array(
+                          'class' => 'child_opt',
+                          'id'       => 'ampforwp-ga-field-advance-switch',
+                          'type'     => 'switch',
+                          'title'    => esc_html__( 'Advanced Google Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('ampforwp-ga-switch', '=' , '1')
+                          ),
                           'default'  => 0,
                       ),
                       array(
