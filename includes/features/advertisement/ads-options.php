@@ -446,7 +446,6 @@
                         'id'        =>'ampforwp-ads-data-loading-strategy',
                         'type'      => 'switch',
                         'title'     => esc_html__('Optimize For Viewability', 'accelerated-mobile-pages'),
-                        'desc'=>'Enable this option only if your Ads are either 600px away from the top or not within the first 75% of the viewport and <a href="https://amp.dev/documentation/components/amp-ad.amp.html#attributes" target="_blank">Click here for more information</a>',
                         'default'   => 0,
                         'tooltip-subtitle'  => esc_html__('This will increase the loading speed of the Ads', 'accelerated-mobile-pages'),
                         'true'      => 'Enabled',
