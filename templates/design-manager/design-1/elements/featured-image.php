@@ -30,7 +30,7 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 			$amp_img_width 	= ampforwp_cf_featured_image_src('width');
 			$amp_img_height = ampforwp_cf_featured_image_src('height');
 			if( $amp_img_src ){			
-				$amp_html = "<amp-img src='$amp_img_src' width=$amp_img_width height=$amp_img_height layout=responsive ></amp-img>";
+				$amp_html = "<amp-img src='$amp_img_src' width=$amp_img_width height=$amp_img_height layout='responsive' ></amp-img>";
 			}
 		}
 		elseif ( true == ampforwp_get_setting('ampforwp-featured-image-from-content') && ampforwp_get_featured_image_from_content()) {

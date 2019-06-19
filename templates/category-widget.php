@@ -62,7 +62,7 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
               <?php if ( ampforwp_has_post_thumbnail() ) {
                   $thumb_url = ampforwp_get_post_thumbnail('url');
                   ?>
-                  <a href="<?php echo esc_url(ampforwp_url_controller($ampforwp_post_url));?>"><amp-img  class="ampforwp_wc_shortcode_img"  src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
+                  <a href="<?php echo esc_url(ampforwp_url_controller($ampforwp_post_url));?>"><amp-img  class="ampforwp_wc_shortcode_img"  src=<?php echo $thumb_url ?> width=150 height=150 layout="responsive"></amp-img></a>
               <?php } ?>
 
               <a class="ampforwp_wc_shortcode_title" href="<?php echo ampforwp_url_controller($ampforwp_post_url) ;?>">

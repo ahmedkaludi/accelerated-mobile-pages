@@ -42,7 +42,7 @@ function ampforwp_framework_get_featured_image(){
 				if(empty($image[2])){
 				$image[2] = 600;
 				}			
-				$amp_html = "<amp-img src='$image[0]' width='$image[1]' height='$image[2]' layout=responsive alt='$alt'></amp-img>";
+				$amp_html = "<amp-img src='$image[0]' width='$image[1]' height='$image[2]' layout='responsive' alt='$alt'></amp-img>";
 			}
 		}
 		elseif ( ampforwp_is_custom_field_featured_image() ) {
