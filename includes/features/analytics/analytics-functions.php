@@ -326,7 +326,10 @@ if ( ! function_exists('amp_activate') ) {
 	}
 }
 // Create GTM support
-add_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
+if(false == ampforwp_get_setting('ampforwp-gtm-field-advance-switch') ){
+	add_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
+}
+
 function amp_gtm_add_gtm_support( $analytics ) {
 	if ( true == ampforwp_get_setting('amp-use-gtm-option') ) {
 		global $redux_builder_amp;
@@ -357,22 +360,23 @@ function amp_gtm_add_gtm_support( $analytics ) {
 		);
 		if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
 			$analytics['amp-gtm-googleanalytics']['config_data']['vars']['anonymizeIP'] = 'true';
-		}
+		}	 		
 	}
 	return $analytics;
 }
-add_filter('ampforwp_advance_gtm_analytics','ampforwp_add_advance_gtm_fields');
-function ampforwp_add_advance_gtm_fields($gtm_fields){
-	global $redux_builder_amp;
-    $ampforwp_adv_gtm_fields = array();
-	$ampforwp_adv_gtm_fields = ampforwp_get_setting('ampforwp-gtm-field-advance');
-	if($ampforwp_adv_gtm_fields && ampforwp_get_setting('ampforwp-gtm-field-advance-switch')){
-		return $ampforwp_adv_gtm_fields;
-	}	
-
-	return $gtm_fields;	
+add_filter( 'ampforwp_body_beginning', 'ampforwp_add_advance_gtm_fields' );
+function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
+	if(true == ampforwp_get_setting('amp-use-gtm-option') && true == ampforwp_get_setting('ampforwp-gtm-field-advance-switch') ){
+			$ampforwp_adv_gtm_fields = "";
+			$ampforwp_adv_gtm_fields = ampforwp_get_setting('ampforwp-gtm-field-advance');
+			$ampforwp_adv_gtm_fields = preg_replace('!/\*.*?\*/!s', '', $ampforwp_adv_gtm_fields);
+			$ampforwp_adv_gtm_fields = preg_replace('/\n\s*\n/', '', $ampforwp_adv_gtm_fields);
+	 		?>
+			<amp-analytics id="<?php echo ampforwp_get_setting('amp-gtm-analytics-type'); ?>" type="googleanalytics" data-credentials="include" config="https://www.googletagmanager.com/amp.json?id=<?php echo ampforwp_get_setting('amp-gtm-id'); ?>&amp;gtm.url=SOURCE_URL"><script type="application/json"><?php echo $ampforwp_adv_gtm_fields ?></script></amp-analytics>
+			<?php
+		 }
+		 return $ampforwp_adv_gtm_fields;
 }
-
 // 83. Advance Analytics(Google Analytics)
 add_filter('ampforwp_advance_google_analytics','ampforwp_add_advance_ga_fields');
 function ampforwp_add_advance_ga_fields($ga_fields){
