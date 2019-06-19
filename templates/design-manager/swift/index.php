@@ -33,7 +33,9 @@
 										array('author_pub_name'=>true,)
 										); ?>
 					</div>
-				    <?php if( ampforwp_check_excerpt() ) { amp_loop_excerpt(50); } ?>
+				    <?php if( ampforwp_check_excerpt() ) { 
+				    amp_loop_excerpt(ampforwp_get_setting('amp-swift-excerpt-len'));
+			    	} ?>
 			    </div>
 			</div>
 		<?php } else { 

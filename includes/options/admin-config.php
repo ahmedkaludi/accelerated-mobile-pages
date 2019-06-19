@@ -4218,6 +4218,7 @@ Redux::setSection( $opt_name, array(
                 ),
                 array(
                         'id'        =>'amp-design-1-excerpt',
+                        'class' => 'child_opt',
                         'type'      =>'text',
                         'tooltip-subtitle'  =>esc_html__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
                         'title'     =>esc_html__('Excerpt Length','accelerated-mobile-pages'),
@@ -4227,6 +4228,17 @@ Redux::setSection( $opt_name, array(
                              ),
                         'validate'  =>'numeric',
                         'default'   =>'20',
+                ),
+                array(
+                        'id'        => 'excerpt-option-design-1',
+                        'class' => 'child_opt',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                        'default'   => '0',
+                        'required' => array(
+                         array('amp-design-selector', '=' , '1'),
+                         array('excerpt-option', '=' , '1'),
+                     )                        
                 ),
                 array(
                         'id'        => 'ampforwp-design1-cats-home',
@@ -4241,17 +4253,21 @@ Redux::setSection( $opt_name, array(
             // Excerpt Length for design2 #1122
                 array(
                         'id'        =>'amp-design-2-excerpt',
+                        'class' => 'child_opt',
                         'type'      =>'text',
                         'tooltip-subtitle'  =>esc_html__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
                         'title'     =>esc_html__('Excerpt Length','accelerated-mobile-pages'),
                         'required' => array(
-                         array('amp-design-selector', '=' , '2')),
+                         array('amp-design-selector', '=' , '2'),   
+                         array('excerpt-option', '=' , '1')
+                        ),
                         'validate'  =>'numeric',
                         'default'   =>'20',
                 ),
                 array(
 
                         'id'        => 'excerpt-option-design-2',
+                        'class' => 'child_opt',
                         'type'      => 'switch',
                         'title'     => esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
                         'default'   => '0',
@@ -4264,6 +4280,7 @@ Redux::setSection( $opt_name, array(
             // Excerpt Length for design3 #1122
                  array(
                         'id'        =>'amp-design-3-excerpt',
+                        'class' => 'child_opt',
                         'type'      =>'text',
                         'tooltip-subtitle'  =>esc_html__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
                         'title'     =>esc_html__('Excerpt Length','accelerated-mobile-pages'),
@@ -4275,6 +4292,7 @@ Redux::setSection( $opt_name, array(
                 ),
                 array(
                         'id'        => 'excerpt-option-design-3',
+                        'class' => 'child_opt',
                         'type'      => 'switch',
                         'title'     => esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
                         'default'   => '0',
@@ -4287,15 +4305,28 @@ Redux::setSection( $opt_name, array(
             // Excerpt length for Swift
                 array(
                         'id'        =>'amp-swift-excerpt-len',
+                        'class' => 'child_opt',
                         'type'      =>'text',
-                        'tooltip-subtitle'  =>__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
-                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                        'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
+                        'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
                         'required' => array(
-                         array('amp-design-selector', '=' , '4')),
+                         array('amp-design-selector', '=' , '4'),
+                         array('excerpt-option', '=' , '1'),
+                        ),
                         'validate'  =>'numeric',
                         'default'   =>'20',
                 ),    
- 
+                array(
+                        'id'        => 'excerpt-option-design-4',
+                        'class' => 'child_opt',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                        'default'   => '0',
+                        'required' => array(
+                         array('amp-design-selector', '=' , '4'),
+                         array('excerpt-option', '=' , '1'),
+                     )                         
+                ),      
              // Featured Time
                 array(
                         'id'        =>'amp-design-1-featured-time',
