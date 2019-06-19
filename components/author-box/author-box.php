@@ -84,7 +84,8 @@ if ( isset($args['show_time']) ) {
         if ( true == ampforwp_get_setting('ampforwp-author-page-url') ){
             if ( function_exists('coauthors_posts_links') ) {
                 if( $author_pub_name  ){
-                    echo '<span class="author-name">' .esc_html($author_prefix) . $author_link . ' </span>';
+                    $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
+                    echo '<span class="author-name">' .esc_html($author_prefix) . strip_tags($author_link, $allowed_tags) . ' </span>';
                     echo ampforwp_yoast_twitter_handle();
                 }
             }
