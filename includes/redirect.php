@@ -154,9 +154,12 @@ function ampforwp_redirection() {
     if ( ( is_single() && $redux_builder_amp['amp-on-off-for-all-posts'] ) || ( is_page() && $redux_builder_amp['amp-on-off-for-all-pages'] ) ) {
       $redirection_location = get_the_permalink();
     }
-
-    $ampforwp_amp_post_on_off_meta = get_post_meta( $post_id,'ampforwp-amp-on-off',true);
-    if(false == $ampforwp_amp_post_on_off_meta){ 
+   // Individual hide amp issue fixed when takeover is enabled #3329
+   $post_id = $amp_metas = $ampforwp_amp_post_on_off_meta = "";
+   $post_id = ampforwp_get_the_ID(); 
+   $amp_metas = json_decode(get_post_meta( $post_id,'ampforwp-post-metas',true), true );
+   $ampforwp_amp_post_on_off_meta = $amp_metas['ampforwp-amp-on-off'];
+   if($ampforwp_amp_post_on_off_meta === 'hide-amp'){
       return;
     }
     /* Fallback, if for any reason, $redirection_location is still NULL
