@@ -858,4 +858,8 @@ if( ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h6') ){
 <?php } else { ?>
   .single-post main .amp-wp-article-content h6 {font-size: 15px;}
 <?php } // H6 Ends
-// swift Content Heading Sizes Ends?> 
+if(class_exists('MCI_Footnotes')){ ?>
+  div#footnote_references_container{
+    display: unset;
+  }
+<?php } ?>

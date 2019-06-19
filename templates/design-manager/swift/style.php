@@ -2270,4 +2270,9 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
 	a.readmore-rp {
 	    font-size: 13px;
 	}
+<?php }
+if(class_exists('MCI_Footnotes')){ ?>
+	div#footnote_references_container{
+		display: unset;
+	}
 <?php } ?>
