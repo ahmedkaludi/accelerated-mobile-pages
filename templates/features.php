@@ -2045,7 +2045,7 @@ function ampforwp_add_disqus_support() {
 
 	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && 4 != $redux_builder_amp['amp-design-selector'] && $display_comments_on ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
-			global $post; $post_slug=$post->post_name;
+			global $post; $post_slug = rawurlencode($post->post_name);
 
 			$disqus_script_host_url = "https://ampforwp.appspot.com/?api=". AMPFORWP_DISQUS_URL;
 
@@ -2053,7 +2053,7 @@ function ampforwp_add_disqus_support() {
 				$disqus_script_host_url = esc_url( $redux_builder_amp['ampforwp-disqus-host-file'] );
 			}
 
-			$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.get_permalink().'&disqus_name='. esc_url( $redux_builder_amp['ampforwp-disqus-comments-name'] ) ."/embed.js"  ;
+			$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.rawurlencode(get_permalink()).'&disqus_name='. esc_url( $redux_builder_amp['ampforwp-disqus-comments-name'] ) ."/embed.js"  ;
 			?>
 			<section class="amp-wp-content post-comments amp-wp-article-content amp-disqus-comments" id="comments">
 				<amp-iframe
