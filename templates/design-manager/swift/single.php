@@ -255,7 +255,7 @@
 							   <?php amp_excerpt(20); ?>
 						    </div>
 						<?php } ?>
-						<?php if ( isset($redux_builder_amp['swift-featued-image']) && $redux_builder_amp['swift-featued-image'] && ampforwp_has_post_thumbnail() ) { ?>
+						<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
 							<div class="sf-img">
 								<?php amp_featured_image();?>
 							</div>
