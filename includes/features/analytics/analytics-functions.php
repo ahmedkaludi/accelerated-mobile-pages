@@ -277,7 +277,7 @@ if( ! function_exists( ' ampforwp_analytics_clientid_api ' ) ) {
 add_filter('amp_post_template_data','ampforwp_register_analytics_script', 20);
 function ampforwp_register_analytics_script( $data ){ 
 	global $redux_builder_amp;
-	if( true == ampforwp_get_setting('ampforwp-ga-switch') || true == ampforwp_get_setting('ampforwp-Segment-switch') || true == ampforwp_get_setting('ampforwp-Quantcast-switch') || true == ampforwp_get_setting('ampforwp-comScore-switch') || true == ampforwp_get_setting('ampforwp-Yandex-switch') || true == ampforwp_get_setting('ampforwp-Chartbeat-switch') || true == ampforwp_get_setting('ampforwp-Alexa-switch') || true == ampforwp_get_setting('ampforwp-afs-analytics-switch')) {
+	if( true == ampforwp_get_setting('ampforwp-ga-switch') || true == ampforwp_get_setting('ampforwp-Segment-switch') || true == ampforwp_get_setting('ampforwp-Quantcast-switch') || true == ampforwp_get_setting('ampforwp-comScore-switch') || true == ampforwp_get_setting('ampforwp-Yandex-switch') || true == ampforwp_get_setting('ampforwp-Chartbeat-switch') || true == ampforwp_get_setting('ampforwp-Alexa-switch') || true == ampforwp_get_setting('ampforwp-afs-analytics-switch') || true == ampforwp_get_setting('amp-use-gtm-option')) {
 		
 		if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
 			$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
@@ -311,6 +311,9 @@ if ( ! function_exists('amp_activate') ) {
 // Create GTM support
 add_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
 function amp_gtm_add_gtm_support( $analytics ) {
+	if(true == ampforwp_get_setting('ampforwp-gtm-field-advance-switch') ){
+		return $analytics;
+	}	
 	if ( true == ampforwp_get_setting('amp-use-gtm-option') ) {
 		global $redux_builder_amp;
 		$gtm_id 	=	 "";
@@ -321,14 +324,14 @@ function amp_gtm_add_gtm_support( $analytics ) {
 		$gtm_id 	= str_replace(" ", "", $gtm_id);
 		 
 		$analytics['amp-gtm-googleanalytics'] = array(
-			'type' => $redux_builder_amp['amp-gtm-analytics-type'],
+			'type' => ampforwp_get_setting('amp-gtm-analytics-type'),
 			'attributes' => array(
 				'data-credentials' 	=> 'include',
 				'config'			=> 'https://www.googletagmanager.com/amp.json?id='. esc_attr( $gtm_id ) .'&gtm.url=SOURCE_URL'
 			),
 			'config_data' => array(
 				'vars' => array(
-					'account' =>  $redux_builder_amp['amp-gtm-analytics-code'],
+					'account' =>  ampforwp_get_setting('amp-gtm-analytics-code'),
 				),
 				'triggers' => array(
 					'trackPageview' => array(
@@ -338,9 +341,28 @@ function amp_gtm_add_gtm_support( $analytics ) {
 				),
 			),
 		);
-		if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
+		if ( true == ampforwp_get_setting('ampforwp-gtm-field-anonymizeIP') ) {
 			$analytics['amp-gtm-googleanalytics']['config_data']['vars']['anonymizeIP'] = 'true';
 		}
 	}
+	$gtm_fields = '';
+	$gtm_fields = apply_filters('ampforwp_advance_gtm_analytics', $gtm_fields );
+	if($gtm_fields && ampforwp_get_setting('ampforwp-gtm-field-advance-switch')){
+	$gtm_fields = preg_replace('!/\*.*?\*/!s', '', $gtm_fields); 
+	$analytics['amp-gtm-googleanalytics']['config_data'] = json_decode($gtm_fields, true);
+	}
 	return $analytics;
+}
+add_filter( 'ampforwp_body_beginning', 'ampforwp_add_advance_gtm_fields' );
+function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
+	if(true == ampforwp_get_setting('amp-use-gtm-option') && true == ampforwp_get_setting('ampforwp-gtm-field-advance-switch') ){
+			$ampforwp_adv_gtm_fields = "";
+			$ampforwp_adv_gtm_fields = ampforwp_get_setting('ampforwp-gtm-field-advance');
+			$ampforwp_adv_gtm_fields = preg_replace('!/\*.*?\*/!s', '', $ampforwp_adv_gtm_fields);
+			$ampforwp_adv_gtm_fields = preg_replace('/\n\s*\n/', '', $ampforwp_adv_gtm_fields);
+	 		?>
+			<amp-analytics id="<?php echo ampforwp_get_setting('amp-gtm-analytics-type'); ?>" type="googleanalytics" data-credentials="include" config="https://www.googletagmanager.com/amp.json?id=<?php echo ampforwp_get_setting('amp-gtm-id'); ?>&amp;gtm.url=SOURCE_URL"><script type="application/json"><?php echo $ampforwp_adv_gtm_fields ?></script></amp-analytics>
+			<?php
+		 }
+		 return $ampforwp_adv_gtm_fields;
 }

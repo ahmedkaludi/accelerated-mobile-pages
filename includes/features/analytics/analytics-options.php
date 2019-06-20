@@ -75,19 +75,6 @@ function ampforwp_analytics_options($opt_name){
                           'tooltip-subtitle' => esc_html__( 'Enter your Google Analytics ID. Example: UA-XXXXX-Y', 'accelerated-mobile-pages' ),
                           'default'  => 'UA-XXXXX-Y',
                       ),
-         
-                      // Advance Tracking options for Google Analytics
-                      array(
-                          'class' => 'child_opt',
-                          'id'       => 'ampforwp-ga-field-advance-switch',
-                          'type'     => 'switch',
-                          'title'    => esc_html__( 'Advanced Google Analytics', 'accelerated-mobile-pages' ),
-                          'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
-                            array('ampforwp-ga-switch', '=' , '1')
-                          ),
-                          'default'  => 0,
-                      ),
                       array(
                           'class' => 'child_opt',
                           'id'       => 'ampforwp-ga-field-anonymizeIP',
@@ -105,7 +92,22 @@ function ampforwp_analytics_options($opt_name){
                           'type'     => 'switch',
                           'title'    => esc_html__( 'AMP Linker', 'accelerated-mobile-pages' ),
                           'required' => array('ampforwp-ga-switch', '=' , '1'),
-                          'tooltip-subtitle' => esc_html__( '<a href="https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/amp/" target="_blank">Click Here</a> for more details on AMP Linker', 'accelerated-mobile-pages' ),
+                          'tooltip-subtitle' => sprintf( '<a href="%s" target="_blank">%s</a> %s', 
+                                            esc_url('https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/amp/'), 
+                                            esc_html__( 'Click Here','accelerated-mobile-pages' ), 
+                            esc_html__( 'for more details on AMP Linker','accelerated-mobile-pages' ) ),             
+                          'default'  => 0,
+                      ),
+                      // Advance Tracking options for Google Analytics
+                      array(
+                          'class' => 'child_opt',
+                          'id'       => 'ampforwp-ga-field-advance-switch',
+                          'type'     => 'switch',
+                          'title'    => esc_html__( 'Advanced Google Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('ampforwp-ga-switch', '=' , '1')
+                          ),
                           'default'  => 0,
                       ),
                       array(
@@ -177,11 +179,49 @@ function ampforwp_analytics_options($opt_name){
                             'title'         => esc_html__('Analytics ID','accelerated-mobile-pages'),
                             'default'       => '',
                             'tooltip-subtitle'  => 'Eg: UA-XXXXXX-Y',
-                  // 'validate' => 'not_empty',
-                              'required' => array(
-                                array('amp-use-gtm-option', '=' , '1'),
-                              ),
+                            'required' => array(
+                              array('amp-use-gtm-option', '=' , '1'),
+                              array('ampforwp-gtm-field-advance-switch', '=' , '0'),
                         ),
+                        ),
+                      array(
+                          'class' => 'child_opt',
+                          'id'       => 'ampforwp-gtm-field-advance-switch',
+                          'type'     => 'switch',
+                          'title'    => esc_html__( 'Advanced Google Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                              array('amp-use-gtm-option', '=' , '1'),
+                        ),
+                          'default'  => 0,
+                      ),
+                        array(
+                          'class' => 'child_opt',
+                        'id'       => 'ampforwp-gtm-field-advance',
+                        'type'     => 'ace_editor',
+                        'title'    => esc_html__('Analytics Code in JSON Format', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'    => sprintf( '%s<a href="%s" target="_blank">%s</a>', esc_html__( 'Tutorial: ','accelerated-mobile-pages' ), esc_url('https://ampforwp.com/tutorials/article/add-advanced-google-analytics-amp/'),  esc_html__( 'How To Add Advanced Google Analytics in AMP?','accelerated-mobile-pages' ) ),
+                        'required' => array(
+                            array('amp-use-gtm-option', '=' , '1'),
+                            array('ampforwp-gtm-field-advance-switch', '=' , '1')
+                        ),
+                        'mode'     => 'javascript',
+                        'theme'    => 'monokai',
+                        'desc'     => '',
+                        'default'  => ('{
+                          "vars": {
+                              "account": "UA-xxxxxxx-x"  /*Replace this with your Tracking ID*/
+                          },
+                          "triggers": {
+                              "trackPageview": {
+                                  "on": "visible",
+                                  "request": "pageview"
+                              }
+                          /** 
+                           * Enter your Advanced Analytics code here
+                          */
+                          }
+                      }')
+                    ),
                         array(
                           'class' => 'child_opt',
                           'id'       => 'ampforwp-gtm-field-anonymizeIP',
