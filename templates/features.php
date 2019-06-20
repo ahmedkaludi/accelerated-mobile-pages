@@ -212,7 +212,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if( is_front_page() && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
         return;
 	    }
-	    if ( is_archive()  ) {
+	    if ( is_archive() && !is_tax() ) {
+
 	    	if(!ampforwp_get_setting('ampforwp-archive-support')){
 				return;
 	    	}
@@ -220,6 +221,21 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    		return;
 	    	}
 	    	if( is_tag() && !ampforwp_get_setting('ampforwp-archive-support-tag') ){
+	    		return;
+	    	}
+
+		}
+		if(is_archive() && is_tax()){
+			$term_id = get_queried_object()->term_id;
+	        $term = get_term( $term_id );
+	        $taxonomy_name = $term->taxonomy;
+	    	if(!ampforwp_get_setting('ampforwp-archive-support-custom-tax')){
+				return;
+	    	}
+	    	if( is_taxonomy_hierarchical( $taxonomy_name ) && !ampforwp_get_setting('ampforwp-archive-support-custom-tax-cat')){
+	    		return;
+	    	}
+	    	if( !is_taxonomy_hierarchical( $taxonomy_name ) && !ampforwp_get_setting('ampforwp-archive-support-custom-tax-tag') ){
 	    		return;
 	    	}
 		}
@@ -7832,4 +7848,40 @@ if ( ! function_exists('ampforwp_include_opengraph') ) {
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/opengraph.php";
 		}
 	}
+}
+
+//Saving all taxonomies in Transient
+add_action('init','ampforwp_generate_taxonomies_transient');
+function ampforwp_generate_taxonomies_transient(){
+	$taxonomies = get_transient('ampforwp_get_taxonomies');
+	$tax_arr = array();
+	$args = array(
+		  		'public'   => true,
+		  		'_builtin' => false,  
+		); 
+	$output = 'objects'; // or objects
+	$operator = 'and'; // 'and' or 'or'
+	$alltaxonomies = get_taxonomies( $args, $output, $operator );
+	if  ($alltaxonomies) {
+		foreach ($alltaxonomies as $taxKey => $taxVal) {
+			if( !empty($taxVal->rewrite['slug'])){
+				$tax_arr[$taxVal->rewrite['slug']] = $taxVal->rewrite['slug'];
+			}else{
+				$tax_arr[$taxVal->name] = $taxVal->name;
+			}
+		}
+	}
+	if ( false == $taxonomies ) {
+		set_transient('ampforwp_get_taxonomies',$tax_arr);
+	}else{
+		if(count($tax_arr) > count($taxonomies)){
+			$result = array_diff_assoc($tax_arr,$taxonomies);
+		}elseif( count($taxonomies) > count($tax_arr)){
+			$result = array_diff_assoc($taxonomies,$tax_arr);
+		}
+		if( !empty($result)){
+			delete_transient('ampforwp_get_taxonomies');
+		}
+	}
+	return $taxonomies;
 }
