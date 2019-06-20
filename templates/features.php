@@ -1170,7 +1170,7 @@ function ampforwp_remove_schema_data() {
 	}
 	//remove filter for Impreza theme lazyload feature 
 	remove_filter( 'the_content', 'us_filter_content_for_lazy_load', 99, 1 );
-	
+
 	// Publisher theme lazy load #3063
 	if( class_exists('Publisher') ){
 		remove_filter( 'post_thumbnail_html', 'publisher_lazy_loading_img_tags', 6 );
@@ -6434,6 +6434,18 @@ function ampforwp_bulktool_takeover($data){
 	}
 	return $data;
 }
+}
+
+add_filter('ampforwp_is_amp_endpoint_takeover','ampforwp_disable_takovr_elementor_preview');
+function ampforwp_disable_takovr_elementor_preview($data){
+	if ( did_action( 'elementor/loaded' ) ) {
+		if( \Elementor\Plugin::$instance->preview->is_preview_mode() ){
+			return false;
+		}else{
+			return $data;
+		}
+	}
+	return $data;
 }
 
 // Multiple Images #2259
