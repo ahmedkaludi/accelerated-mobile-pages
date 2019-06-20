@@ -47,7 +47,7 @@ function amp_post_template_add_boilerplate_css( $amp_template ) {
 	<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 	<?php
 }
-if(! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') && ! is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') && ( !defined( 'RANK_MATH_FILE' ) || ! ampforwp_get_setting('ampforwp-seo-rank_math-schema'))):
+if(!function_exists('ampforwp_with_scheme_app_output') && !function_exists('saswp_schema_markup_output') && ( ampforwp_get_setting('ampforwp-seo-selection') != "rank_math" || ! ampforwp_get_setting('ampforwp-seo-rank_math-schema'))):
 add_action( 'amp_post_template_footer', 'AMPforWP\\AMPVendor\\amp_post_template_add_schemaorg_metadata' );
 function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	$metadata = $amp_template->get( 'metadata' );
