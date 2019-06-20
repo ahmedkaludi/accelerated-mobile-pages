@@ -5978,19 +5978,6 @@ function ampforwp_back_to_top_markup(){
 	}
 }
 
-
-// Function to check if the query and the post name are same #2361
-function ampforwp_is_query_post_same($haystack = '' , $needle = ''){
-	$result = '';
-	if(!empty($haystack) && !empty($needle)){
-		$result = strpos($haystack ,$needle);
-	}
-	if( ($result != false || is_int($result)) && !empty($result) ){
-		return true;
-	}
-	return false;
-}
-
 // rel="next" & rel="prev" pagination meta tags #2343
 add_action( 'amp_post_template_head', 'ampforwp_rel_next_prev' );	
 

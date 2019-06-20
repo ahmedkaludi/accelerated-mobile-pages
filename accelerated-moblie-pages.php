@@ -248,6 +248,11 @@ function ampforwp_add_custom_rewrite_rules() {
 			      'top'
 			    );
 			    add_rewrite_rule(
+			      $post_type.'\/(.+?)\/amp\/?$',
+			      'index.php?amp&'.$post_type.'=$matches[1]',
+			      'top'
+			    );
+			    add_rewrite_rule(
 			      $post_type.'\/amp/'.$wp_rewrite->pagination_base.'/([0-9]{1,})/?$',
 			      'index.php?amp=1&post_type='.$post_type.'&paged=$matches[1]',
 			      'top'
