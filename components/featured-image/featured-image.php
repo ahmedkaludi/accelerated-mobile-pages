@@ -38,7 +38,6 @@ function ampforwp_framework_get_featured_image(){
 			}
 		 	$image_size = apply_filters( 'ampforwp_featured_image_size', $image_size ); 
 			$image = wp_get_attachment_image_src( $thumb_id, $image_size );
-			//print_r($image); die;
 			$caption = get_the_post_thumbnail_caption( $post_id ); 
 			$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
 			$thumbnail_srcset  = wp_get_attachment_image_srcset( $thumb_id, 'large');
