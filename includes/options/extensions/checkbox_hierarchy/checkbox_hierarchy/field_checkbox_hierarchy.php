@@ -47,7 +47,7 @@ if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox_hierarc
             }
             if ( empty( $this->extension_dir ) ) {
              $this->extension_dir = trailingslashit( str_replace( '\\', '/', AMPFORWP_EXTENSION_DIR.'/checkbox_hierarchy/checkbox_hierarchy' ) );
-            $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
+            $this->extension_url = plugin_dir_url(__FILE__);
             }
         }
         /**

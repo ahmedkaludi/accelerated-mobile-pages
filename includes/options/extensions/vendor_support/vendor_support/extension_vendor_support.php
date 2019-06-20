@@ -49,7 +49,7 @@ namespace ReduxCore\ReduxFramework;
             public function __construct( $parent = null ) {
                 if ( empty( $this->extension_dir ) ) {
                     $this->extension_dir = trailingslashit( str_replace( '\\', '/', AMPFORWP_EXTENSION_DIR.'/vendor_support/vendor_support' ) );
-                    //$this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
+                    //$this->extension_url = plugin_dir_url(__FILE__);
                     $this->extension_url = AMPFORWP_PLUGIN_DIR_URI.'includes/options/extensions/vendor_support/vendor_support/';
                 }
 
