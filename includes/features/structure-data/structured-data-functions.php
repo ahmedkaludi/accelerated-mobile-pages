@@ -251,7 +251,9 @@ function ampforwp_structured_data_type( $metadata ) {
 	$set_sd_post 	= ampforwp_get_setting('ampforwp-sd-type-posts');
 	$set_sd_page 	= ampforwp_get_setting('ampforwp-sd-type-pages');
  	$post_types 	= ampforwp_get_all_post_types();
-
+ 	if((function_exists('activate_wp_recipe_maker') || function_exists('activate_wp_recipe_maker_premium')) && (isset($set_sd_post) && $set_sd_post == 'Recipe')){
+		return;
+	}
 	if ( $post_types ) { // If there are any custom public post types.
     	foreach ( $post_types  as $post_type ) {
 
