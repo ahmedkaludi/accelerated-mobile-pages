@@ -400,6 +400,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 							}
 						}
 				    }
+				}else{
+					$amp_url = ampforwp_url_purifier($amp_url);
 				}
 				}
 			}
