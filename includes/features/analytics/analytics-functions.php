@@ -294,7 +294,7 @@ if( ! function_exists( ' ampforwp_analytics_clientid_api ' ) ) {
 add_filter('amp_post_template_data','ampforwp_register_analytics_script', 20);
 function ampforwp_register_analytics_script( $data ){ 
 	global $redux_builder_amp;
-	if( true == ampforwp_get_setting('ampforwp-ga-switch') || true == ampforwp_get_setting('ampforwp-Segment-switch') || true == ampforwp_get_setting('ampforwp-Quantcast-switch') || true == ampforwp_get_setting('ampforwp-comScore-switch') || true == ampforwp_get_setting('ampforwp-Yandex-switch') || true == ampforwp_get_setting('ampforwp-Chartbeat-switch') || true == ampforwp_get_setting('ampforwp-Alexa-switch') || true == ampforwp_get_setting('ampforwp-afs-analytics-switch')) {
+	if( true == ampforwp_get_setting('ampforwp-ga-switch') || true == ampforwp_get_setting('ampforwp-Segment-switch') || true == ampforwp_get_setting('ampforwp-Quantcast-switch') || true == ampforwp_get_setting('ampforwp-comScore-switch') || true == ampforwp_get_setting('ampforwp-Yandex-switch') || true == ampforwp_get_setting('ampforwp-Chartbeat-switch') || true == ampforwp_get_setting('ampforwp-Alexa-switch') || true == ampforwp_get_setting('ampforwp-afs-analytics-switch') || true == ampforwp_get_setting('amp-use-gtm-option')) {
 		
 		if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
 			$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
@@ -326,11 +326,11 @@ if ( ! function_exists('amp_activate') ) {
 	}
 }
 // Create GTM support
-if(false == ampforwp_get_setting('ampforwp-gtm-field-advance-switch') ){
-	add_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
-}
-
+add_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
 function amp_gtm_add_gtm_support( $analytics ) {
+	if(true == ampforwp_get_setting('ampforwp-gtm-field-advance-switch') ){
+		return;
+	}
 	if ( true == ampforwp_get_setting('amp-use-gtm-option') ) {
 		global $redux_builder_amp;
 		$gtm_id 	=	 "";
