@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.1
-Stable tag: 0.9.97.58
+Stable tag: 0.9.97.59
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -187,6 +187,40 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.59 (21th June 2019) =
+* Improvements: WP Recipe Maker & WP Recipe Maker PRO Schema compatibility added #3043
+* Improvements: Impreza Theme's lazyLoad Option compatibility integrated #3259
+* Improvements: WordPress Content Gallery integrated with Design - 1,2 & 3 #3255
+* Improvements: amp-recaptcha-input support added in allowed tag sanitizer #3315
+* Improvements: Yoast 11.4 Schema Compatibility #3332
+* Improvements: Google Tag Manager Advanced Option integrated #2660
+* Fixed: Disqus comments are not loading in the multilingual slug #3106
+* Fixed: Incorrect escaping done on author name when Link to Author Pages is enabled along with the Co-Authors plugin activate [ Theme-Swift ] #3162
+* Fixed: AMP Panel options code improved #2517
+* Fixed: License key code improved #2528
+* Fixed: When site url is different from home url #2881
+* Fixed: Related Posts Design is coming in all the single page designs in AMP Layouts #3091
+* Fixed: CM Tooltip Glossary custom post types are not working with /amp #2882
+* Fixed: Variables replacing in Advanced Google Analytics config code don't work #3237
+* Fixed: "Optimize For Viewability" option for Ads improved #3142
+* Fixed: Advertisement section Ads are not working through Google search result #2693
+* Fixed: When AMP takeover and yoast seo is activated,AMP page builder is not working #3292
+* Fixed: link="next" is appearing in the custom front page #3266
+* Fixed: 404 error when custom post type and page having same slug [Bug for the Rare use case] #2374
+* Fixed: Code improved for attribute layout=responsive in amp-img #3248
+* Fixed: Gallery Lightbox feature code improved #3184
+* Fixed: Elementor stops working when AMP Take Over is enabled #3284
+* Fixed: Activating Thrive lead plugin AMP Page builder doesn't work on the custom front page #3312
+* Fixed: To many redirection issue with hidden post in IOS #3287
+* Fixed: Gallery with GIF is not working #3304
+* Fixed: Indexing Issue of Plugin File #3271
+* Fixed: Post/page throwing an error on hiding AMP for that particular post/page if AMP takeover option is enabled. #3329
+* Fixed: Addthis Sharing default option code improved #3327
+* Fixed: When Custom frontpage option is enabled, it's not taking the Polylang static page id  #3330
+* Fixed: Webp image format as featured image is not working in the single posts #2996
+* Fixed: Improper amphtml on HomePage when WPML is activate #3341
+* Fixed: Schema not generating after 0.9.97.57 #3344
 
 = 0.9.97.58 (14th June 2019) =
 * Improvements: Option for H1-H6 Heading Font Sizes for all the designs #3035
