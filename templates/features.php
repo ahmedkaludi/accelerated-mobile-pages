@@ -1168,6 +1168,9 @@ function ampforwp_remove_schema_data() {
 			remove_filter( 'wp_calculate_image_srcset', 'rocket_protocol_rewrite_srcset', PHP_INT_MAX );
 		}
 	}
+	//remove filter for Impreza theme lazyload feature 
+	remove_filter( 'the_content', 'us_filter_content_for_lazy_load', 99, 1 );
+	
 	// Publisher theme lazy load #3063
 	if( class_exists('Publisher') ){
 		remove_filter( 'post_thumbnail_html', 'publisher_lazy_loading_img_tags', 6 );
