@@ -6697,7 +6697,7 @@ function ampforwp_webp_featured_image() {
 		$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' ></amp-img>";?>
 		<figure class="amp-wp-article-featured-image">
 			<?php 
-			if(4 != ampforwp_get_setting('amp-design-selector')){
+			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){
 				echo $image_output;
 			}
 			 ?>
