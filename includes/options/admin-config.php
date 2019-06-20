@@ -5494,6 +5494,41 @@ else{
         'desc'      => esc_html__('All the Social sharing and the social profile related settings are here','accelerated-mobile-pages'),
         'subsection' => true,
         'fields'     => array(
+            array(
+           'id' => 'social-settings',
+           'type' => 'section',
+           'title' => esc_html__('Social Settings', 'accelerated-mobile-pages'),
+           'indent' => true,
+           'layout_type' => 'accordion',
+            'accordion-open'=> 1,
+         ),
+        // Social Icons Position [Swift] #1722
+            array(
+                'id'       => 'swift-social-position',
+                'type'     => 'select',
+                'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                                'default' => 'Single Sidebar (left side)',
+                                'above-content' => 'Above Content',
+                                'below-content' => 'Below Content'
+                                ),
+                'default'  => 'default',
+                'required' => array(array('amp-design-selector', '=', '4') )
+            ), 
+        // Social Share links to AMP
+          array(
+              'id'        =>  'ampforwp-social-share-amp',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('Social Share links to AMP', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ), 
+          // Social No Follow links 
+          array(
+              'id'        =>  'ampforwp-social-no-follow',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('No Follow All Your Social Links', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
             // AddThis Support  
         array(
            'id' => 'add-this-support',
@@ -5509,7 +5544,7 @@ else{
               'type'      =>  'switch',
               'title'     =>  esc_html__('AddThis Sharing', 'accelerated-mobile-pages'),
               'tooltip-subtitle'    => sprintf('%s <a href="https://www.addthis.com/register" target="_blank">%s</a>, %s <a href="https://www.addthis.com/academy/how-to-customize-your-share-buttons-on-the-amp-for-wp-plugin" target="_blank">%s</a>',esc_html__('You are using the default AddThis share buttons. To customize your share buttons, create a free account at','accelerated-mobile-pages'),esc_html__('AddThis.com','accelerated-mobile-pages'),esc_html__('then activate the Inline Share Buttons. Once your buttons are activated, replace the default Pub ID and Tool ID with your personalized IDs. For instructions, visit','accelerated-mobile-pages'),esc_html__('here','accelerated-mobile-pages')),
-              'default'   =>  false,
+              'default'   =>  true,
           ),
            array(
                 'id'       => 'swift-add-this-position',
@@ -5520,7 +5555,7 @@ else{
                                 'above-content' => 'Above Content',
                                 'below-content' => 'Below Content'
                                 ),
-                'default'  => 'default',
+                'default'  => 'below-content',
                 'required' => array(
                                 array('amp-design-selector', '=', '4'),
                                 array('enable-add-this-option', '=', '1'),
@@ -5573,41 +5608,7 @@ else{
                'default'  => esc_html__('cwgj','accelerated-mobile-pages'),
           ),
          //End AddThis Support    
-        array(
-           'id' => 'social-settings',
-           'type' => 'section',
-           'title' => esc_html__('Social Settings', 'accelerated-mobile-pages'),
-           'indent' => true,
-           'layout_type' => 'accordion',
-            'accordion-open'=> 1,
-         ),
-        // Social Icons Position [Swift] #1722
-            array(
-                'id'       => 'swift-social-position',
-                'type'     => 'select',
-                'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
-                'options'  => array(
-                                'default' => 'Single Sidebar (left side)',
-                                'above-content' => 'Above Content',
-                                'below-content' => 'Below Content'
-                                ),
-                'default'  => 'default',
-                'required' => array(array('amp-design-selector', '=', '4') )
-            ), 
-        // Social Share links to AMP
-          array(
-              'id'        =>  'ampforwp-social-share-amp',
-              'type'      =>  'switch',
-              'title'     =>  esc_html__('Social Share links to AMP', 'accelerated-mobile-pages'),
-              'default'   =>  0,
-          ), 
-          // Social No Follow links 
-          array(
-              'id'        =>  'ampforwp-social-no-follow',
-              'type'      =>  'switch',
-              'title'     =>  esc_html__('No Follow All Your Social Links', 'accelerated-mobile-pages'),
-              'default'   =>  0,
-          ),
+        
           array(
            'id' => 'social-shre',
            'type' => 'section',
