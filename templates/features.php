@@ -364,6 +364,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 							$impode_url = implode('/', $explode_path);
 							$amp_url = $impode_url;
 					    }
+					}else{
+						$amp_url = ampforwp_url_purifier($amp_url);
 					}
 				}
 			}
