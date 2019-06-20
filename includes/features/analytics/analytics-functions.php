@@ -329,7 +329,7 @@ if ( ! function_exists('amp_activate') ) {
 add_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
 function amp_gtm_add_gtm_support( $analytics ) {
 	if(true == ampforwp_get_setting('ampforwp-gtm-field-advance-switch') ){
-		return;
+		return $analytics;
 	}
 	if ( true == ampforwp_get_setting('amp-use-gtm-option') ) {
 		global $redux_builder_amp;
