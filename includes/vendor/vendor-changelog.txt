@@ -73,3 +73,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 45. Class-amp-gallery-block-sanitizer file Updated for new Gallery Designs #2868
 45. Added class-amp-gallery-block-sanitizer.php, class-amp-block-sanitizer.php in Vendor AMP Sanitizers and class-amp-core-block-handler.php in Vendor AMP Embed Handlers #2427
 45. Added a filter called ampforwp_featured_image_size, so users can change the default size of featured image in single post. #2896
+46. Class-amp-gallery-block-sanitizer file updated for Gallery with GIF Image not working issue #3304
