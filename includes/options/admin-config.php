@@ -574,8 +574,7 @@ foreach ($extension_listing_array as $key => $extension) {
             }
         }
 
-        $pluginReview = '<input id="redux_builder_amp_amp-license_'.$pathExploded.'_license" type="text" value="'. str_replace(substr($amplicense, 0, strlen($amplicense)-4), '**', $amplicense).'"  onclick="return false;">  
-           <input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="hidden" value="'. $amplicense.'">
+        $pluginReview = '<input id="redux_builder_amp_amp-license_'.$pathExploded.'_license" type="text" value="'. str_replace(substr($amplicense, 0, strlen($amplicense)-4), '**', $amplicense).'"  onclick="return false;">
            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][item_name]" type="hidden" value="'.$extension['item_name'].'">';
             if (isset($extension['store_url'])){
             $pluginReview .= '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'">'; 
@@ -589,6 +588,7 @@ foreach ($extension_listing_array as $key => $extension) {
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][expires]" type="hidden" value="'.$allResponseData['expires'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][customer_name]" type="hidden" value="'.$allResponseData['customer_name'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][customer_email]" type="hidden" value="'.$allResponseData['customer_email'].'">
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="hidden" value="'. base64_encode($amplicense).'">
             ';
         
         $pluginReview .= $verify. "<br/>".$amp_license_response;
