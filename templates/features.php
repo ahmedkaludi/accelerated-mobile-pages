@@ -4368,31 +4368,7 @@ if( ! function_exists( 'featured_image_content_filter' ) ){
 }
 
 
-// 83. Advance Analytics(Google Analytics)
-add_filter('ampforwp_advance_google_analytics','ampforwp_add_advance_ga_fields');
-function ampforwp_add_advance_ga_fields($ga_fields){
-	global $redux_builder_amp, $post;
-	$url = $title = $id = $author_id = $author_name = '';
-	$url = get_the_permalink();
-	if(!is_object($post)){ return $ga_fields; }
-	$title = $post->post_title;
-	$id = $post->ID;
-	$author_id = $post->post_author;
-	$author_name = get_the_author_meta( 'display_name' , $author_id );
-	$ampforwp_adv_ga_fields = array();
-	$ampforwp_adv_ga_fields = $redux_builder_amp['ampforwp-ga-field-advance'];
-	if($ampforwp_adv_ga_fields && $redux_builder_amp['ampforwp-ga-field-advance-switch'])	{
-		$ampforwp_adv_ga_fields = str_replace('{url}', $url, $ampforwp_adv_ga_fields);
-		$ampforwp_adv_ga_fields = str_replace('{id}', $id, $ampforwp_adv_ga_fields);
-		$ampforwp_adv_ga_fields = str_replace('{title}', $title, $ampforwp_adv_ga_fields);
-		$ampforwp_adv_ga_fields = str_replace('{author_name}', $author_name, $ampforwp_adv_ga_fields);
-		$ampforwp_adv_ga_fields = str_replace('{author_id}', $author_id, $ampforwp_adv_ga_fields);
-		$ampforwp_adv_ga_fields = preg_replace('!//.*!', '', $ampforwp_adv_ga_fields);
-		$ampforwp_adv_ga_fields = preg_replace('!/\*.*?\*/!s', '', $ampforwp_adv_ga_fields);
-		return $ampforwp_adv_ga_fields;
-	}	
-	return $ga_fields;	
-}
+
 // 84. Inline Related Posts
 
 function ampforwp_inline_related_posts(){

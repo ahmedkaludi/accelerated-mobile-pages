@@ -29,12 +29,11 @@ function ampforwp_analytics() {
 				'enabled'=> true
 			);
 		}
-		$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
 		$ampforwp_ga_fields = json_encode( $ga_fields);
-		if($ampforwp_ga_fields && ampforwp_get_setting('ampforwp-ga-field-advance-switch')){
-			$ampforwp_ga_fields = ampforwp_get_setting('ampforwp-ga-field-advance');
-			$ampforwp_ga_fields = preg_replace('!//.*!', '', $ampforwp_ga_fields);
+		if( ampforwp_get_setting('ampforwp-ga-field-advance-switch') ){
+			$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
 			$ampforwp_ga_fields = preg_replace('!/\*.*?\*/!s', '', $ampforwp_ga_fields);
+			$ampforwp_ga_fields = preg_replace('/\n\s*\n/', '', $ampforwp_ga_fields);
 			}
 	 		?>
 			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="googleanalytics" id="analytics1">
@@ -44,6 +43,7 @@ function ampforwp_analytics() {
 			</amp-analytics>
 			<?php
 		}//code ends for supporting Google Analytics
+
 
 	// 10.2 Analytics Support added for segment.com
 	if ( true == ampforwp_get_setting('ampforwp-Segment-switch') ) { 
@@ -365,4 +365,47 @@ function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
 			<?php
 		 }
 		 return $ampforwp_adv_gtm_fields;
+}
+
+// 83. Advance Analytics(Google Analytics)
+add_filter('ampforwp_advance_google_analytics','ampforwp_add_advance_ga_fields');
+function ampforwp_add_advance_ga_fields($ga_fields){
+	global $redux_builder_amp, $post;
+	$url = $title = $id = $author_id = $author_name = '';
+	$url = get_the_permalink();
+	$tag_names = array();
+	if(!is_object($post)){ return $ga_fields; }
+	$title = $post->post_title;
+	$id = $post->ID;
+	$category_detail = get_the_category($id);//$post->ID
+	foreach($category_detail as $cd){
+		$category_name = $cd->cat_name;
+	}
+	$tags = get_the_tags( $id );
+	
+	$tagNames = '';
+	if( !empty($tags) ){
+	    foreach( $tags as $tag ) {
+	    	$tag_names[] = $tag->name;
+	    }
+	    $tagNames = implode( ', ', $tag_names );
+	}
+	$author_id = $post->post_author;
+	$author_name = get_the_author_meta( 'display_name' , $author_id );
+	$published_at = get_the_date( 'l F j, Y' , $id );
+	$ampforwp_adv_ga_fields = array();
+	$ampforwp_adv_ga_fields = ampforwp_get_setting('ampforwp-ga-field-advance');
+	if($ampforwp_adv_ga_fields)	{
+		$ampforwp_adv_ga_fields = str_replace('{url}', $url, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{id}', $id, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{title}', $title, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{author_id}', $author_id, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{author_name}', $author_name, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{category}', $category_name, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{published_at}', $published_at, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{tags}', $tagNames, $ampforwp_adv_ga_fields);
+		
+		return $ampforwp_adv_ga_fields;
+	}	
+	return $ga_fields;	
 }
