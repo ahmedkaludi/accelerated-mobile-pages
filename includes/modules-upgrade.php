@@ -166,7 +166,7 @@ function ampforwp_import_structure_data(){
             $sd_data_update['sd_default_image_height'] = $redux_builder_amp['amp-structured-data-placeholder-image-height'];
             $sd_data_update['sd_default_video_thumbnail'] = $redux_builder_amp['amporwp-structured-data-video-thumb-url'];
             $sd_data_update['saswp-for-amp'] = 1;
-            $sd_data_update['saswp-for-wordpress'] = 0;
+            $sd_data_update['saswp-for-wordpress'] = 1;
             $ampforwp_sd_type_posts = $redux_builder_amp['ampforwp-sd-type-posts'];
             $ampforwp_sd_type_pages = $redux_builder_amp['ampforwp-sd-type-pages'];
            
@@ -198,7 +198,7 @@ function ampforwp_import_structure_data(){
             }
             
             $schema_options_array = array('isAccessibleForFree'=>False,'notAccessibleForFree'=>0,'paywall_class_name'=>'');
-            update_post_meta( $insertedPageId, 'data_array', $post_data_array);
+            update_post_meta( $insertedPageId, 'data_group_array', $post_data_array);
             update_post_meta( $insertedPageId, 'schema_type', $ampforwp_sd_type_pages);
             update_post_meta( $insertedPageId, 'schema_options', $schema_options_array);
             }
@@ -229,7 +229,7 @@ function ampforwp_import_structure_data(){
                                                    );
                 }
                 $schema_options_array = array('isAccessibleForFree'=>False,'notAccessibleForFree'=>0,'paywall_class_name'=>'');
-                update_post_meta( $insertedPageId, 'data_array', $post_data_array);
+                update_post_meta( $insertedPageId, 'data_group_array', $post_data_array);
                 update_post_meta( $insertedPageId, 'schema_type', $ampforwp_sd_type_posts);
                 update_post_meta( $insertedPageId, 'schema_options', $schema_options_array);
             }
