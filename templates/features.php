@@ -1172,7 +1172,7 @@ function ampforwp_remove_schema_data() {
 	}
 	//remove filter for Impreza theme lazyload feature 
 	remove_filter( 'the_content', 'us_filter_content_for_lazy_load', 99, 1 );
-	
+
 	// Publisher theme lazy load #3063
 	if( class_exists('Publisher') ){
 		remove_filter( 'post_thumbnail_html', 'publisher_lazy_loading_img_tags', 6 );
@@ -6051,7 +6051,9 @@ function ampforwp_sneak_peek_scripts($data) {
 add_action('amp_init','ampforwp_thrive_architect_content');
 function ampforwp_thrive_architect_content(){
 	if(function_exists('tve_wp_action') && !function_exists('et_setup_theme')){
-		add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
+		if(checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
+			add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
+		}
 	}
 }
 function ampforwp_thrive_content($content){
@@ -6423,6 +6425,18 @@ function ampforwp_bulktool_takeover($data){
 	}
 	return $data;
 }
+}
+
+add_filter('ampforwp_is_amp_endpoint_takeover','ampforwp_disable_takovr_elementor_preview');
+function ampforwp_disable_takovr_elementor_preview($data){
+	if ( did_action( 'elementor/loaded' ) ) {
+		if( \Elementor\Plugin::$instance->preview->is_preview_mode() ){
+			return false;
+		}else{
+			return $data;
+		}
+	}
+	return $data;
 }
 
 // Multiple Images #2259
