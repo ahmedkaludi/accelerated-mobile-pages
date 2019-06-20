@@ -1095,6 +1095,10 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'the_content', 'A3_Lazy_Load', 'filter_content_images', 100 );
 		//optimole plugin images get removed in AMP #3073
 		ampforwp_remove_filters_for_class( 'optml_content_url', 'Optml_Url_Replacer', 'build_image_url', 1, 2 );
+		// Yoast Schema Compatibility #3332
+		if( ampforwp_get_setting('ampforwp-seo-selection') != "yoast"){
+			ampforwp_remove_filters_for_class( 'amp_post_template_head', 'WPSEO_Schema', 'json_ld', 9 );
+		}
 		//SiteOrigin Page builder compatibilty with AMP Frontpage
 		if ( ampforwp_is_front_page() ) {
 				ampforwp_remove_filters_for_class( 'the_content', 'SiteOrigin_Panels', 'generate_post_content', 10 );
