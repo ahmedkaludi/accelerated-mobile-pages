@@ -81,3 +81,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 54. AMP_Content_Sanitizer updated #2287
 55. Image sanitizer updated #3112
 56. class-amp-blacklist-sanitizer.php updated #3276
+57. Class-amp-gallery-block-sanitizer file updated for Gallery with GIF Image not working issue #3304
