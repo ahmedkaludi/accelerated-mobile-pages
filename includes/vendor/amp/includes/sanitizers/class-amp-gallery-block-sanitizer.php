@@ -109,6 +109,25 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 					$images[] = $element;
 				}
 			}
+
+			if( $node->getElementsByTagName( 'amp-anim' )){
+				foreach ( $node->getElementsByTagName( 'amp-anim' ) as $element ) {
+					$url = $element->getAttribute('src');
+					$width = $element->getAttribute('width');
+					$height = $element->getAttribute('height');
+					$attachment_id = attachment_url_to_postid($url);
+					if ( empty( $images ) ) {
+						$images[] = $element;
+					}
+					$urls[] = apply_filters('amp_gallery_image_params', array(
+								'url' => $url,
+								'width' => $width,
+								'height' => $height,
+							),$attachment_id);
+					
+				}
+			}
+
 			// If not linking to anything then look for <amp-img>.
 			foreach ( $node->getElementsByTagName( 'amp-img' ) as $element ) {
 				$url = $element->getAttribute('src');
@@ -341,14 +360,21 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 		if ( $amp_image_lightbox ) {
 			add_action('ampforwp_after_post_content', 'AMPforWP\\AMPVendor\\ampforwp_gallery_lightbox');
 		}
+		if($markup == 1){
+			add_action('amp_post_template_css', 'AMPforWP\\AMPVendor\\ampforwp_gal_des_1');
+		}
 		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
 		add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
 		return $amp_carousel;
 	}
 }
 
+function ampforwp_gal_des_1(){
+	echo '.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}.cls-btn:after{content:"X";display:inline-block;color:#fff;font-size:20px;padding:20px;}';
+}
+
 function ampforwp_gal_des_2(){
-	echo ".carousel-preview button{padding:0;}.carousel-preview amp-img{height:40px;width:60px;position:relative;}.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}";
+	echo ".carousel-preview button{padding:0;}.carousel-preview amp-img{height:40px;width:60px;position:relative;}.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}.cls-btn:after{content:\"X\";display:inline-block;color:#fff;font-size:20px;padding:20px;}";
 }
 function ampforwp_gal_des_3(){
 	echo '.gal_w{display:inline-block;width:100%}.gal_w amp-img{background:#f1f1f1;height:134px;width:150px;position: relative;float:left;margin:10px;}.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}.cls-btn:after{content:"X";display:inline-block;color:#fff;font-size:20px;padding:20px;}';
