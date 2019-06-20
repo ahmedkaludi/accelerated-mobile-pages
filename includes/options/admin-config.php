@@ -6385,7 +6385,7 @@ $single_page_options = array(
             array(
                 'id'       => 'swift-social-position',
                 'type'     => 'select',
-                'title'    => __( 'Position', 'accelerated-mobile-pages' ),
+                'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
                 'options'  => array(
                                 'default' => 'Single Sidebar (left side)',
                                 'above-content' => 'Above Content',
@@ -6399,7 +6399,7 @@ $single_page_options = array(
           array(
               'id'        =>  'ampforwp-social-share-amp',
               'type'      =>  'switch',
-              'title'     =>  __('Social Share links to AMP', 'accelerated-mobile-pages'),
+              'title'     =>  esc_html__('Social Share links to AMP', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
 
