@@ -6064,7 +6064,9 @@ function ampforwp_sneak_peek_scripts($data) {
 add_action('amp_init','ampforwp_thrive_architect_content');
 function ampforwp_thrive_architect_content(){
 	if(function_exists('tve_wp_action') && !function_exists('et_setup_theme')){
-		add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
+		if(checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
+			add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
+		}
 	}
 }
 function ampforwp_thrive_content($content){
