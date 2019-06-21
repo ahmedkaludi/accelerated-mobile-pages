@@ -107,6 +107,7 @@ function ampforwp_add_sd_fields($fields){
                       'url'      => true,
                       'title'    => __('Default Structured Data Logo', 'accelerated-mobile-pages'),
                       'tooltip-subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
+                      'default' => array('url' => ampforwp_default_logo_settings() ),
             );
             $fields[] =   array(
                       'id'       => 'ampforwp-sd-logo-dimensions',
@@ -139,6 +140,7 @@ function ampforwp_add_sd_fields($fields){
                       'title'   => __('Default Post Image', 'accelerated-mobile-pages'),
                       'tooltip-subtitle'    => __('Upload the Image you want to show as Placeholder Image.', 'accelerated-mobile-pages'),
                       'placeholder'  => __('when there is no featured image set in the post','accelerated-mobile-pages'),
+                      'default' => array('url' => AMPFORWP_IMAGE_DIR . '/SD-default-image.png' ),
             );
             $fields[] =   array(
                       'id'       => 'amp-structured-data-placeholder-image-width',
@@ -163,6 +165,7 @@ function ampforwp_add_sd_fields($fields){
                       'title'   => __('Default Thumbnail for VideoObject', 'accelerated-mobile-pages'),
                       'tooltip-subtitle'    => __('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
                       'placeholder'  => __('When there is no thumbnail set for the video','accelerated-mobile-pages'),
+                      'default' => array('url' => AMPFORWP_IMAGE_DIR . '/SD-default-image.png' ),
             );
             $fields[] =   array(  
                       'id'       => 'ampforwp-sd-multiple-images',  
