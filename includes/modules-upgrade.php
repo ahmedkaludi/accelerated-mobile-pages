@@ -166,7 +166,7 @@ function ampforwp_import_structure_data(){
             $sd_data_update['sd_default_image_height'] = $redux_builder_amp['amp-structured-data-placeholder-image-height'];
             $sd_data_update['sd_default_video_thumbnail'] = $redux_builder_amp['amporwp-structured-data-video-thumb-url'];
             $sd_data_update['saswp-for-amp'] = 1;
-            $sd_data_update['saswp-for-wordpress'] = 1;
+            $sd_data_update['saswp-for-wordpress'] = 0;
             $ampforwp_sd_type_posts = $redux_builder_amp['ampforwp-sd-type-posts'];
             $ampforwp_sd_type_pages = $redux_builder_amp['ampforwp-sd-type-pages'];
            
