@@ -64,7 +64,7 @@
 					<?php } ?>
 					<?php } ?>
 				</div>
-				<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
+				<?php if(!checkAMPforPageBuilderStatus(get_the_ID()) && (true == ampforwp_get_setting('enable-single-post-social-icons') || true == ampforwp_get_setting('amp-author-name') || true == ampforwp_get_setting('swift-date') || true == ampforwp_get_setting('ampforwp-single-related-posts-switch'))){ ?>
 				<div class="sp-lt">
 					<?php if ( 'default' == ampforwp_get_setting('swift-social-position') ){
 						ampforwp_swift_social_icons(); 	
