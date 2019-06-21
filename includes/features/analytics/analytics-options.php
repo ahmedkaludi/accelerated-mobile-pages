@@ -53,7 +53,7 @@ function ampforwp_analytics_options($opt_name){
                         'id' => 'ampforwp-ga-switch',
                         'type'  => 'switch',
                         'title' => 'Google Analytics',
-                        'default' => ampforwp_get_default_analytics('1'),
+                        'default' => 0,
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
                         ),
@@ -142,7 +142,7 @@ function ampforwp_analytics_options($opt_name){
                             'type'     => 'switch',
                             'title'    => esc_html__( 'Google Tag Manager', 'accelerated-mobile-pages' ),
                             'tooltip-subtitle' => esc_html__( 'Enable GTM Support in AMP.', 'accelerated-mobile-pages' ),
-                            'default'  => 1,
+                            'default'  => 0,
                         ),
                         array(
                             'class'=>'child_opt child_opt_arrow',
