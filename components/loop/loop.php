@@ -274,33 +274,33 @@ function amp_pagination($args =array()) {
 function amp_loop_title($data=array()){
 	$data = array_filter($data);
 	$tag = 'h2';
-	$attributes = '';
 	if(isset($data['tag']) && $data['tag']!=""){
 		$tag = $data['tag'];
 	}
-	$attribute = 'class="'.esc_attr('loop-title').'" ';
+	$attributes = 'class="loop-title"';
 	if(isset($data['attributes']) && $data['attributes']!=""){
 		$attributes = $data['attributes'];
-		if(false !== strpos($attributes,'=') ){
-			$attribute = '';
-			preg_match_all('/(.*?)=["|\'](.*?)["|\']/si', $attributes, $matches);	 
-			if(count($matches)>0){
-				foreach($matches[1] as $key=>$value){
-					if(isset($matches[2][$key])){
-						$attr_val = $matches[2][$key];
-						if($value == 'class'){
-							$attr_val .= ' '.esc_attr('loop-title');
-						}
-						$attribute .= esc_attr($value).'='.'"'.esc_attr($attr_val).'" ';
-					}
-				} 
-			}
+	}
+	// if $data is in key & value pair
+	$data_val = '';
+	foreach ($data as $key => $value) {
+		$data_attr .= $key;
+		if( $key != 'attributes' && $key != 'tag' ){
+			$data_val .= "".esc_attr($key)."='".esc_html($value)."' ";
 		}
 	}
-	
-	echo '<'.esc_attr($tag).'  '. $attribute.' >';
+	// if $data key is attributes & tag
+	$attr_val ='';
+	$attributes = explode('"', $attributes);
+	$attributes = str_replace('=','', $attributes);
+	for($i=0; $i < count($attributes); $i=$i+2) {
+		if( !empty($attributes[$i]) && !empty($attributes[$i+1]) ){
+			$attr_val .= "".esc_attr($attributes[$i])."='".esc_html($attributes[$i+1])."'";
+		}
+	}  
+	echo '<'.esc_attr($tag).' '.$attr_val.' '.$data_val.'>';
 		if(!isset($data['link']) ){
-			echo '<a href="'. amp_loop_permalink(true) .'">';
+			echo '<a href="'. esc_url(amp_loop_permalink(true)) .'">';
 		}
 	echo the_title('','',false);
 	
