@@ -430,9 +430,11 @@ Class AMPforWP_theme_mode{
 		return $output;
 	}
 	public function amp_the_content($content){
-		global  $ampforwpTemplate;
-		if(empty($ampforwpTemplate)){ return $content; }
-		return $ampforwpTemplate->get( 'post_amp_content' );
+	    global  $ampforwpTemplate;
+	    if(empty($ampforwpTemplate)){ return $content; }
+	    $new_content = $ampforwpTemplate->get( 'post_amp_content' );
+	    $new_content = apply_filters("ampforwp_template_mode_the_content", $new_content);
+	    return $new_content;
 	}
 	public function amp_head_content(){
 		global  $ampforwpTemplate;
