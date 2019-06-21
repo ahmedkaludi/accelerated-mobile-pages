@@ -18,6 +18,7 @@ Class AMPforWP_theme_mode{
 			add_action(	"levelup_head", array($this, 'amp_head_content') );
 			add_action(	"levelup_css", array($this, 'amp_head_css')	);
 			add_filter(	"get_search_form", array($this, 'search_form')	);
+			add_filter(	"get_custom_logo", array($this, 'get_custom_logo'), 10, 2	);
 			add_action(	"levelup_footer", array($this, 'amp_footer_content')	);
 		    add_action(	"get_avatar", array($this,'get_avatar'), 11,6);	    
 		    add_filter( "the_author_description", array($this, 'author_meta_desctiption_amp'),10, 2 );
@@ -71,11 +72,16 @@ Class AMPforWP_theme_mode{
 		return $actions;
 	}
 	function amp_comment_mustache_script($data){
+		if(isset($data['amp_component_scripts']['amp-next-page'])){
+			unset($data['amp_component_scripts']['amp-next-page']);
+		}
 		if ( comments_open()){
 			if ( empty( $data['amp_component_scripts']['amp-mustache'] ) ) {
 				$data['amp_component_scripts']['amp-mustache'] = 'https://cdn.ampproject.org/v0/amp-mustache-latest.js';
 			}
+			if ( empty( $data['amp_component_scripts']['amp-form'] ) ) {
 			$data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-latest.js';
+			}
 		}
 		return $data;
 	}
@@ -88,6 +94,11 @@ Class AMPforWP_theme_mode{
 		  header("AMP-Access-Control-Allow-Source-Origin:".$siteUrl['scheme'] . '://' . $siteUrl['host']);
 		  header("access-control-expose-headers:AMP-Access-Control-Allow-Source-Origin");
 		  header("Content-Type:application/json;charset=utf-8");
+		  if(wp_verify_nonce($_POST['amp_comment_form_nonce'], 'commentform_submission')){
+			$comment_status = array('response' => 'Nonce not verified' );
+			echo json_encode($comment_status);
+			die;
+			}
 		  $comment = wp_handle_comment_submission( wp_unslash( $_POST ) );
 		  $text_data = 'Comment Successfully submitted';
 		  if ($redux_builder_amp['amp-comments-Successful-message']){
@@ -124,13 +135,15 @@ Class AMPforWP_theme_mode{
 		  $comment_html = $text_data;
 		  $comment_status = array('response' => $comment_html );
 		  echo json_encode($comment_status);
-		  //echo $comment_html;
 		  die;
 	}
 	function comment_form_conversion($content){
+		//$content = strpos($content, 'id="commentform"');
+		if(strpos($content, 'id="commentform"')!==false){
 		$submit_url =  admin_url('admin-ajax.php?action=amp_theme_ajaxcomments');
 		$submit_url = str_replace("http:", "", $submit_url);
-		$mustache = '<div submit-success>
+		$comment_nonce = wp_create_nonce( 'commentform_submission' );
+		$mustache = '<input type="hidden" name="amp_comment_form_nonce" value="'.$comment_nonce.'"><div submit-success>
 						<template type="amp-mustache">
 							{{response}}
 						</template>
@@ -140,7 +153,8 @@ Class AMPforWP_theme_mode{
 					  	{{response}}
 						</template>
 					</div>';
-		$content = preg_replace("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)id=[\"|']commentform[\"|'](.*?)>/si", '<form$1action-xhr="'.$submit_url.'"$3id="commentform" $4 on="submit-success:commentform.reset()">'.$mustache, $content);
+		$content = preg_replace("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)id=[\"|']commentform[\"|'](.*?)>/s", '<form$1action-xhr="'.$submit_url.'"$3id="commentform" $4 on="submit-success:commentform.reset()">'.$mustache, $content);
+		}
 		return $content;
 	}
 	/**
@@ -460,7 +474,15 @@ Class AMPforWP_theme_mode{
 	}
 	public function search_form($form){
 		$form = $this->ampforwp_template_mode_cnt_sanitizer($form);
+		$form = preg_replace_callback("<form(.*?)action=[\"|'](.*?)[\"|'](.*?)>", function($matches){
+			$tag = '<form'.$matches[1].'action="'.$matches[2].'"'.$matches[3].'>';
+			return $tag;
+		}, $form);
 		return $form;
+	}
+	public function get_custom_logo($html, $blog_id){
+		$html = $this->ampforwp_template_mode_cnt_sanitizer($html);
+		return $html;
 	}
 	public function amp_footer_content(){
 		global  $ampforwpTemplate;
@@ -546,9 +568,9 @@ Class AMPforWP_theme_mode{
 }//Class Closed
 add_action('after_setup_theme', 'ampforwp_template_mode_is_activate', 999);
 function ampforwp_template_mode_is_activate(){
-	if(get_theme_support('amp-template-mode')){
+	if(get_theme_support('amp-template-mode') && !is_customize_preview()){
 		$ampforwp_theme_mode = new AMPforWP_theme_mode();
 		$ampforwp_theme_mode->init();
-		require_once AMPFORWP_PLUGIN_DIR.'/template-mode/template-helpers.php';
 	}
+	require_once AMPFORWP_PLUGIN_DIR.'/template-mode/template-helpers.php';
 } 
