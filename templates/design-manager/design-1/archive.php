@@ -108,7 +108,7 @@
 				} ?>
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
-		        <h1 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title() ?></a></h1>
+		        <h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title() ?></a></h2>
 				<?php 
 						if( $is_full_content ){
 							ampforwp_loop_full_content_featured_image();
