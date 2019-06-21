@@ -143,7 +143,7 @@ Class AMPforWP_theme_mode{
 		$submit_url =  admin_url('admin-ajax.php?action=amp_theme_ajaxcomments');
 		$submit_url = str_replace("http:", "", $submit_url);
 		$comment_nonce = wp_create_nonce( 'commentform_submission' );
-		$mustache = '<input type="hidden" name="amp_comment_form_nonce" value="'.$comment_nonce.'"><div submit-success>
+		$mustache = '<input type="hidden" name="amp_comment_form_nonce" value="'.esc_attr($comment_nonce).'"><div submit-success>
 						<template type="amp-mustache">
 							{{response}}
 						</template>
@@ -153,7 +153,7 @@ Class AMPforWP_theme_mode{
 					  	{{response}}
 						</template>
 					</div>';
-		$content = preg_replace("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)id=[\"|']commentform[\"|'](.*?)>/s", '<form$1action-xhr="'.$submit_url.'"$3id="commentform" $4 on="submit-success:commentform.reset()">'.$mustache, $content);
+		$content = preg_replace("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)id=[\"|']commentform[\"|'](.*?)>/s", '<form$1action-xhr="'.esc_url_raw($submit_url).'"$3id="commentform" $4 on="submit-success:commentform.reset()">'.$mustache, $content);
 		}
 		return $content;
 	}
