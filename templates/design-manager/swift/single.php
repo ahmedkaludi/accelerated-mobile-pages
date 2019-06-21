@@ -56,10 +56,12 @@
 						amp_author_box( $author_box ); ?>	
 					<?php } ?>	
 					<?php amp_post_navigation();?>	
+					<?php if ( true == ampforwp_get_setting('wordpress-comments-support')){ ?>
 					<div class="cmts">	
 						<?php amp_comments();?>	
 						<?php do_action('ampforwp_post_after_design_elements'); ?>	
 					</div>	
+					<?php } ?>
 					<?php } ?>
 				</div>
 				<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
