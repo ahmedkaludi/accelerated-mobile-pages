@@ -296,21 +296,6 @@ function ampforwp_redirection() {
           return;
         }
     }
-  if ( ampforwp_is_amp_endpoint() && true == ampforwp_get_setting('amp-core-end-point') ){
-    $current_url = $endpoint = $new_url = '';
-    $current_url = home_url($wp->request);
-    $amp = AMPFORWP_AMP_QUERY_VAR;
-    $endpoint = '?'.$amp;
-    $checker =  explode('/', $current_url); 
-    $amp_check = in_array($amp, $checker);
-    if ( true == $amp_check && $amp == end($checker) ) {
-      $pos = strrpos( $current_url , '/'.$amp);
-      $search_length  = strlen('/'.$amp);
-      $new_url    = substr_replace( $current_url , $endpoint , $pos , $search_length );
-      wp_safe_redirect( $new_url );
-      exit;
-    }
-  }
   session_destroy();
   return;
   }
