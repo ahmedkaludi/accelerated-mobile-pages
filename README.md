@@ -189,7 +189,9 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 == Changelog ==
 
 = 0.9.97.60 (22th June 2019) =
+* Feature: Need to add template-mode #3252
 * Fixed: Options panel loading issue after 0.9.97.59
+* Fixed: Single post main title should be H1 and sub title should be H2 or H3 in design-1 #3350
 
 = 0.9.97.59 (21th June 2019) =
 * Improvements: WP Recipe Maker & WP Recipe Maker PRO Schema compatibility added #3043
