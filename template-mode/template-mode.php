@@ -6,6 +6,7 @@ Class AMPforWP_theme_mode{
 		
 		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedAction'));
 		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedMenuWidgets'), 11);
+
 		if(!is_admin() && $GLOBALS['pagenow'] !== 'wp-login.php'  ){
 			add_action(	'init', array($this, 'rm_wp_core'), 20 );
 			add_filter("ampforwp_is_amp_endpoint",  array($this, 'ampforwp_theme_mode_enable'));
@@ -27,7 +28,7 @@ Class AMPforWP_theme_mode{
 		    
 		}else{
 			require_once AMPFORWP_PLUGIN_DIR.'/template-mode/admin-settings.php';
-			add_filter( 'plugin_action_links_accelerated-mobile-pages/accelerated-moblie-pages.php', array($this, 'ampforwp_plugin_settings_link'), 10, 4 );
+			add_filter( 'plugin_action_links_accelerated-mobile-pages/accelerated-moblie-pages.php', array($this, 'ampforwp_plugin_settings_link'), 999, 4 );
 		}
 		add_action( 'wp_ajax_amp_theme_ajaxcomments',  array($this, 'amp_theme_ajaxcomments') ); 
 		add_action( 'wp_ajax_nopriv_amp_theme_ajaxcomments',  array($this, 'amp_theme_ajaxcomments') ); 
@@ -67,7 +68,7 @@ Class AMPforWP_theme_mode{
  	
 	function ampforwp_plugin_settings_link( $actions, $plugin_file, $plugin_data, $context ) {
 		$amp_activate = '';
-		$amp_activate = array(' | <span style="color:black;">Status: Template Mode</span style=>');
+		$amp_activate = array('<span style="color:black;">'.esc_html__("Status: Template Mode", "accelerated-mobile-pages").'</span> |');
 		$actions = array_merge( $actions, $amp_activate );
 		return $actions;
 	}
@@ -89,9 +90,9 @@ Class AMPforWP_theme_mode{
 		global $redux_builder_amp;
 		  header("access-control-allow-credentials:true");
 		  header("access-control-allow-headers:Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token");
-		  header("Access-Control-Allow-Origin:".$_SERVER['HTTP_ORIGIN']);
+		  header("Access-Control-Allow-Origin:".esc_attr($_SERVER['HTTP_ORIGIN']) );
 		  $siteUrl = parse_url(  get_site_url() );
-		  header("AMP-Access-Control-Allow-Source-Origin:".$siteUrl['scheme'] . '://' . $siteUrl['host']);
+		  header("AMP-Access-Control-Allow-Source-Origin:".esc_attr($siteUrl['scheme']) . '://' . esc_attr($siteUrl['host']) );
 		  header("access-control-expose-headers:AMP-Access-Control-Allow-Source-Origin");
 		  header("Content-Type:application/json;charset=utf-8");
 		  if(wp_verify_nonce($_POST['amp_comment_form_nonce'], 'commentform_submission')){
@@ -103,7 +104,6 @@ Class AMPforWP_theme_mode{
 		  $text_data = 'Comment Successfully submitted';
 		  if ($redux_builder_amp['amp-comments-Successful-message']){
 		    $text_data = esc_html__( $redux_builder_amp['amp-comments-Successful-message'], 'accelerated-mobile-pages');
-		    
 		  }
 		        
 		  if ( is_wp_error( $comment ) ) {
@@ -138,7 +138,7 @@ Class AMPforWP_theme_mode{
 		  die;
 	}
 	function comment_form_conversion($content){
-		//$content = strpos($content, 'id="commentform"');
+		
 		if(strpos($content, 'id="commentform"')!==false){
 		$submit_url =  admin_url('admin-ajax.php?action=amp_theme_ajaxcomments');
 		$submit_url = str_replace("http:", "", $submit_url);
