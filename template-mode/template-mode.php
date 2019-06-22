@@ -476,7 +476,7 @@ Class AMPforWP_theme_mode{
 	}
 	public function search_form($form){
 		$form = preg_replace_callback("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)>/", function($matches){
-			$tag = '<form'.$matches[1].'action-xhr="'.$matches[2].'"'.$matches[3].'>';
+			$tag = '<form'.$matches[1].' target="_top" action="'.$matches[2].'"'.$matches[3].'>';
 			return $tag;
 		}, $form);
 		return $form;
