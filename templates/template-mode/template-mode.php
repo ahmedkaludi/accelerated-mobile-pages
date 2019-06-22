@@ -27,7 +27,7 @@ Class AMPforWP_theme_mode{
 		    add_filter("amp_post_template_data", array($this, 'amp_comment_mustache_script') );
 		    
 		}else{
-			require_once AMPFORWP_PLUGIN_DIR.'/template-mode/admin-settings.php';
+			require_once AMPFORWP_PLUGIN_DIR.'/templates/template-mode/admin-settings.php';
 			add_filter( 'plugin_action_links_accelerated-mobile-pages/accelerated-moblie-pages.php', array($this, 'ampforwp_plugin_settings_link'), 999, 4 );
 		}
 		add_action( 'wp_ajax_amp_theme_ajaxcomments',  array($this, 'amp_theme_ajaxcomments') ); 
@@ -592,5 +592,5 @@ function ampforwp_template_mode_is_activate(){
 		$ampforwp_theme_mode = new AMPforWP_theme_mode();
 		$ampforwp_theme_mode->init();
 	}
-	require_once AMPFORWP_PLUGIN_DIR.'/template-mode/template-helpers.php';
+	require_once AMPFORWP_PLUGIN_DIR.'/templates/template-mode/template-helpers.php';
 } 

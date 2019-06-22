@@ -37,7 +37,6 @@ if ( ! function_exists( 'ampforwp_settings_to_cache' ) ) {
 				        )
     				);
     	$template_mode = array_merge($template_mode, $seoSection);
-    	//print_r($sections);die;
     	$sections = array_merge($template_mode, $sections);
     	
         return $sections;
