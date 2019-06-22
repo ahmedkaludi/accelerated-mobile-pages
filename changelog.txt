@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 0.9.97.60 (22th June 2019) =
+* Fixed: Options panel loading issue after 0.9.97.59
+
 = 0.9.97.59 (21th June 2019) =
 * Improvements: WP Recipe Maker & WP Recipe Maker PRO Schema compatibility added #3043
 * Improvements: Impreza Theme's lazyLoad Option compatibility integrated #3259
