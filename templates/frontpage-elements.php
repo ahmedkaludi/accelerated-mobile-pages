@@ -41,7 +41,7 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 
 		<?php if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 			<header class="amp-wp-article-header ampforwp-title">
-				<h1 class="amp-wp-title"><?php echo get_the_title( $post_id );?></h1>
+				<h2 class="amp-wp-title"><?php echo get_the_title( $post_id );?></h2>
 			</header>
 			
 		<?php }  

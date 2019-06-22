@@ -58,7 +58,7 @@ global $redux_builder_amp, $wp; ?>
 					<?php }
 				}
 			}
-	    the_archive_title( '<h1 class="page-title">', '</h1>' );
+	    the_archive_title( '<h2 class="page-title">', '</h2>' );
 	    
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
@@ -104,7 +104,7 @@ global $redux_builder_amp, $wp; ?>
 				} ?>
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
-		        <h1 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title() ?></a></h1>
+		        <h3 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title() ?></a></h3>
 
 				<div class="amp-wp-content-loop">
 
