@@ -11,18 +11,19 @@
 	</style>
 </head>
 
-   
 <body <?php ampforwp_body_class('single-post design_1_wrapper');?>>
 	<?php do_action('ampforwp_body_beginning', $this); ?>
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
 	<?php do_action( 'below_the_header_design_1', $this ); ?>
 
-	<article class="amp-wp-article amp-wp-article-header">
-		<?php do_action('ampforwp_post_before_design_elements') ?>
-<h1 class="amp-wp-title"><?php global $redux_builder_amp; echo
-ampforwp_translation( $redux_builder_amp['amp-translator-fourohfour'], 'Oops! That page can’t be found.'); ?></h1>
-		<?php do_action('ampforwp_post_after_design_elements') ?>
-	</article>
+	<div class="amp-wp-article">
+		<article class="amp-wp-article-header">
+			<?php do_action('ampforwp_post_before_design_elements') ?>
+			<h2 class="amp-wp-title"><?php global $redux_builder_amp; echo
+			ampforwp_translation( $redux_builder_amp['amp-translator-fourohfour'], 'Oops! That page can’t be found.'); ?></h2>
+			<?php do_action('ampforwp_post_after_design_elements') ?>
+		</article>
+	</div>
 
 	<?php do_action( 'amp_post_template_above_footer', $this ); ?>
 	<?php $this->load_parts( array( 'footer' ) ); ?>
@@ -30,4 +31,3 @@ ampforwp_translation( $redux_builder_amp['amp-translator-fourohfour'], 'Oops! Th
 
 </body>
 </html>
-
