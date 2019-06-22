@@ -475,8 +475,8 @@ Class AMPforWP_theme_mode{
 		return $css;
 	}
 	public function search_form($form){
-		$form = preg_replace_callback("<form(.*?)action=[\"|'](.*?)[\"|'](.*?)>", function($matches){
-			$tag = '<form'.$matches[1].'action="'.$matches[2].'"'.$matches[3].'>';
+		$form = preg_replace_callback("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)>/", function($matches){
+			$tag = '<form'.$matches[1].'action-xhr="'.$matches[2].'"'.$matches[3].'>';
 			return $tag;
 		}, $form);
 		return $form;
