@@ -133,7 +133,7 @@ function ampforwp_leverage_browser_caching(){
             if ( ! $valid ) {
                 // Code does not have in htaccess file. let add them.
                 // Present code + plugin code.
-                $htaccess_cntn = $htaccess_cntn . code_to_add();
+                $htaccess_cntn = $htaccess_cntn . ampforwp_code_to_add_in_htaccess();
 
                 file_put_contents( $htaccess_file, $htaccess_cntn );
                 // Welcome.
@@ -158,7 +158,7 @@ function ampforwp_no_htaccess_notice(){
     $message .= '</p></div>';
     echo wp_kses_post( $message );
 }
-function code_to_add(){
+function ampforwp_code_to_add_in_htaccess(){
     $htaccess_cntn  = "\n";
     $htaccess_cntn .= '# LBROWSERCSTART Browser Caching' . "\n";
     $htaccess_cntn .= '<IfModule mod_expires.c>' . "\n";
