@@ -122,7 +122,8 @@ function call_loops_standard($data=array()){
 							'paged'               => esc_attr($paged),
 						'post__not_in' 		  => $exclude_ids,
 						'has_password' => false ,
-						'post_status'=> 'publish'
+						'post_status'=> 'publish',
+						'no_found_rows'	=> true
 						);
 		}
 	}
@@ -147,7 +148,8 @@ function call_loops_standard($data=array()){
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false ,
-			'post_status'		  => 'publish'
+			'post_status'		  => 'publish',
+			'no_found_rows'		  => true
 		);
 	}
 	if(is_author()){
@@ -161,7 +163,8 @@ function call_loops_standard($data=array()){
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false ,
-			'post_status'		  => 'publish'
+			'post_status'		  => 'publish',
+			'no_found_rows'		  => true
 		  );
 	}
 	if( is_single() ) {

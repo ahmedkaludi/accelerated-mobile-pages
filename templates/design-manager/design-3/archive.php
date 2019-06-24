@@ -62,6 +62,7 @@ if ( get_query_var( 'paged' ) ) {
 		$q = new WP_Query( array(
 			'post_type'           => 'post',
 			'orderby'             => 'date',
+			'no_found_rows' 	  => true,
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,

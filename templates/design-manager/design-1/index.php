@@ -43,7 +43,8 @@
 				'paged'               => esc_attr($paged),
 				'post__not_in' 		  => $exclude_ids,
                 'has_password' => false ,
-                'post_status'=> 'publish'
+                'post_status'=> 'publish',
+                'no_found_rows'	=> true
 			);
 			$filtered_args = apply_filters('ampforwp_query_args', $args);
 			$q = new WP_Query( $filtered_args ); 

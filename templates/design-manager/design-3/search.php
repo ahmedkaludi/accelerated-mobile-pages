@@ -52,6 +52,7 @@
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false ,
+			'no_found_rows' 	  => true,
 			'post_status'		  => 'publish'
 		) ) );
 		if ( function_exists( 'relevanssi_do_query' ) ) {

@@ -4428,6 +4428,7 @@ function ampforwp_inline_related_posts(){
 										    'ignore_sticky_posts'=>1,
 											'has_password' => false ,
 											'post_status'=> 'publish',
+											'no_found_rows' 	  => true,
 											'orderby'    => $orderby
 										);
 					}

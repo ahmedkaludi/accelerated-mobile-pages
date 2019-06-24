@@ -57,7 +57,8 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
 				'ignore_sticky_posts'=> 1,
 				'has_password' 		 => false ,
 				'post_status'		 => 'publish',
-				'orderby'    		 => $orderby
+				'orderby'    		 => $orderby,
+				'no_found_rows'		 => true
 			);
 	}
 }//end of block for tags

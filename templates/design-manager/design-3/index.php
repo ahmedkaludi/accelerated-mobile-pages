@@ -126,6 +126,7 @@ if ( get_query_var( 'paged' ) ) {
 				'paged'               => esc_attr($paged),
 				'post__not_in' 		  => $exclude_ids,
 				'has_password' => false,
+				'no_found_rows' 	  => true,
 				'post_status'=> 'publish'
 			);
 

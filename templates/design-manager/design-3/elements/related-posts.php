@@ -57,6 +57,7 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
 				    'ignore_sticky_posts'=> 1,
 						'has_password' 	 => false ,
 						'post_status'	 => 'publish',
+						'no_found_rows' 	  => true,
 						'orderby' 		 => $orderby,
 				);
 	}
