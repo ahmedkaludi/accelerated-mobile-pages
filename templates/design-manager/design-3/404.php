@@ -20,8 +20,8 @@
 <main>
 	<article class="amp-wp-content amp-loop-list">
 		<?php do_action('ampforwp_post_before_design_elements') ?>
-<h1 class="amp-wp-title"><?php global $redux_builder_amp; echo
-ampforwp_translation( $redux_builder_amp['amp-translator-fourohfour'], 'Oops! That page can’t be found.'); ?></h1>
+<h2 class="amp-wp-title"><?php global $redux_builder_amp; echo
+ampforwp_translation( $redux_builder_amp['amp-translator-fourohfour'], 'Oops! That page can’t be found.'); ?></h2>
 		<?php do_action('ampforwp_post_after_design_elements') ?>
 	</article>
 </main>

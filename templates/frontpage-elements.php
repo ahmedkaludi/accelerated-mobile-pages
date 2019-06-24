@@ -302,7 +302,7 @@ function ampforwp_design_2_frontpage_title() {
  	}
 	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 		<header class="amp-wp-article-header ampforwp-title">
-			<h1 class="amp-wp-title"><?php if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){$ID = get_option('page_on_front');}else{$ID = ampforwp_get_frontpage_id();}echo get_the_title( $ID );?></h1>
+			<h2 class="amp-wp-title"><?php if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){$ID = get_option('page_on_front');}else{$ID = ampforwp_get_frontpage_id();}echo get_the_title( $ID );?></h2>
 		</header>	
 		
 	<?php } 
@@ -319,7 +319,7 @@ function ampforwp_design_3_frontpage_title() {
  }
 	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 		<header class="amp-wp-article-header ampforwp-title amp-wp-content">
-			<h1 class="amp-wp-title"><?php 
+			<h2 class="amp-wp-title"><?php 
 			//WPML Static Front Page Support #1111
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
@@ -329,7 +329,7 @@ function ampforwp_design_3_frontpage_title() {
  				else{
 				$ID = ampforwp_get_frontpage_id();
 			}
-				echo get_the_title( $ID );?></h1>
+				echo get_the_title( $ID );?></h2>
 		</header> <?php 
 		
 	}

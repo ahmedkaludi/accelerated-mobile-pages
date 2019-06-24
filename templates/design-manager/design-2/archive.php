@@ -65,7 +65,7 @@
 					<?php }
 				}
 			} 
- 			the_archive_title( '<h1 class="page-title">', '</h1>' );
+ 			the_archive_title( '<h2 class="page-title">', '</h2>' );
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if ( get_query_var( 'paged' ) ) {
 		        $paged = get_query_var('paged');
@@ -124,7 +124,7 @@
 
 			<div class="amp-wp-post-content">
 
-				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h2>
+				<h3 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h3>
 				<?php 
 						if( $is_full_content ){
 							ampforwp_loop_full_content_featured_image();
