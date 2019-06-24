@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action('amp_post_template_head', 'ampforwp_default_og_tags', 50);
 if ( ! function_exists('ampforwp_default_og_tags') ) {
 	function ampforwp_default_og_tags(){
+		global $wp;
 		if ( true == ampforwp_get_setting('ampforwp-seo-og-meta-tags') && '' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 			$og_tags = array();
 			$post_id = $post = $locale = $type = $title = $site_title = $desc = $url = $pub_date = $mod_date = $image = $image_width = $image_height = '';
@@ -266,10 +267,10 @@ if ( ! function_exists('ampforwp_default_og_tags') ) {
 			  	$query_arg_array = $wp->query_vars;
 			  	if( array_key_exists( "page" , $query_arg_array  ) ) {
 				   $page = $wp->query_vars['page'];
+				  	if ( $page >= '2') { 
+						$url = trailingslashit( $url  . '?page=' . $page);
+					}
 			  	}
-			  	if ( $page >= '2') { 
-					$url = trailingslashit( $url  . '?page=' . $page);
-				}
 			}
 			$og_tags['og:url'] = $url;
 
