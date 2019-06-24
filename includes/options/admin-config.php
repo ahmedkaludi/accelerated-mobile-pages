@@ -5357,6 +5357,14 @@ $single_page_options = array(
               'title'     => __('Next-Previous Links', 'accelerated-mobile-pages'),
               'default'   => 1,
           ),
+          array(
+              'id'        => 'single-next-prev-to-nonamp',
+              'type'      => 'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     => esc_html__('Link to Non-AMP page', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'required' => array('enable-single-next-prev' , '=' , '1')       
+          ),
         // Author Bio
          array(
              'id'       => 'amp-author-description',
