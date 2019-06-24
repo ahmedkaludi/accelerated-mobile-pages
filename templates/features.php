@@ -2291,6 +2291,8 @@ function ampforwp_add_fbcomments_scripts( $data ) {
 function ampforwp_copat_wp_html_compression() {
 	remove_action('template_redirect', 'wp_html_compression_start', -1);
 	remove_action('get_header', 'wp_html_compression_start');
+	//Remove Action to remove CDN URL from BunnyCDN Plugin
+	remove_action("template_redirect", "doRewrite");
 }
 add_action('amp_init','ampforwp_copat_wp_html_compression');
 
