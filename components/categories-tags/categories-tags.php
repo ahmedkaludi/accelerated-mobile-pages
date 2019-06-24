@@ -24,7 +24,7 @@ function ampforwp_framework_get_categories_list( $separator = '' ){
 		         		}
 
 		            echo ('<span class="amp-cat amp-cat-'. esc_attr($term_id) . '" >
-		            '. ($term_url? ' <a href="'. esc_url( $term_url)  . '" > ':'').  esc_html($term_name). ($term_url?  '</a> ':'').' </span>');
+		            '. ($term_url? ' <a href="'. esc_url( $term_url)  . '" title="'. esc_html($term_name)  . '" > ':'').  esc_html($term_name). ($term_url?  '</a> ':'').' </span>');
 		          
 					if($separator && count($ampforwp_categories)-1 > $key){
 							echo esc_html($separator);
