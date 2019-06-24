@@ -502,7 +502,7 @@ function amp_pagebuilder_content_styles(){
 } 
 function amppb_validateCss($css){
 	$css = str_replace('&quot;', '"', $css);
-	$css = str_replace(array('.amppb-fluid','.amppb-fixed'), array('.ap-fl','.ap-fi'), $css);
+	$css = str_replace(array('.amppb-fluid','.amppb-fixed','.accordion-mod'), array('.ap-fl','.ap-fi','.apac'), $css);
 	$css = preg_replace('/(([a-z -]*:(\s)*;))/', "", $css);
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
 	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
@@ -1042,7 +1042,9 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
                
 				$moduleFrontHtml = ampforwp_replaceIfContentConditional('repeater_max_count', $repeaterUniqueId, $moduleFrontHtml);
 				}
-
+				if($contentArray['type'] == 'accordion-mod'){
+					$contentArray['type'] = str_replace('accordion-mod', 'apac', $contentArray['type']);
+				}
 				$html .= "<div class='amp_mod ap_m_".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
 				$html .= '</div>';
 				/*if($contentArray['type']=="text"){

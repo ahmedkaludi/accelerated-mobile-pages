@@ -463,7 +463,8 @@ Class AMPforWP_theme_mode{
                         }
                     }, $stylesheetCss);
 		$css .= $stylesheetCss;
-		$css .= $redux_builder_amp['css_editor']; 
+		$css .= ampforwp_get_setting('css_editor');
+		$css .= str_replace(array('.accordion-mod'), array('.apac'), $css);
 		echo $this->css_sanitizer($css);
 		echo "</style>";
 	}
