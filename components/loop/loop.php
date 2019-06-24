@@ -290,10 +290,7 @@ function amp_loop_title($data=array()){
 	}
 	// if $data key is attributes & tag
 	$attr_val ='';
-	if(!empty($data_attr)){
-		$data_attr = explode('s', $data_attr);
-	}	 
-	if(  in_array('attribute', $data_attr) || empty($data_attr) ){
+	if( false !== strpos($data_attr,'attributes') || empty($data_attr) ){
 		$attributes = 'class="loop-title"';
 		if(isset($data['attributes']) && $data['attributes']!=""){
 			$attributes = $data['attributes'];
@@ -302,7 +299,7 @@ function amp_loop_title($data=array()){
 		$attributes = str_replace('=','', $attributes);
 		for($i=0; $i < count($attributes); $i=$i+2) {
 			if( !empty($attributes[$i]) && !empty($attributes[$i+1]) ){
-				if($attributes[$i] == 'class' && $attributes[$i] >= 1){
+				if( $attributes[$i] == 'class' && $attributes[$i+1] != 'loop-title'){
 					$attributes[$i+1] .= ' '.esc_html('loop-title');
 				}
 				$attr_val .= "".esc_attr($attributes[$i])."='".esc_html($attributes[$i+1])."'";
