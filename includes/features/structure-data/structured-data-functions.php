@@ -30,7 +30,7 @@
 
 	        //code for adding 'description' meta from Yoast SEO
 
-	        if($redux_builder_amp['ampforwp-seo-yoast-description']){
+	        if('yoast' == ampforwp_get_setting('ampforwp-seo-selection') && ampforwp_get_setting('ampforwp-seo-yoast-description')){
 	         if ( class_exists('WPSEO_Frontend') ) {
 	           $front = WPSEO_Frontend::get_instance();
 	           $desc = $front->metadesc( false );

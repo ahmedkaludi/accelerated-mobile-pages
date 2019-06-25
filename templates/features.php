@@ -1496,7 +1496,7 @@ function ampforwp_add_proper_post_meta(){
 }
 
 function ampforwp_custom_yoast_meta_homepage(){
-	if ( ampforwp_get_setting('ampforwp-seo-yoast-meta') ) {
+	if ( 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && ampforwp_get_setting('ampforwp-seo-yoast-meta') ) {
 				if ( class_exists('WPSEO_Options')) {
 					if( method_exists('WPSEO_Options', 'get_option')){
 						$options = WPSEO_Options::get_option( 'wpseo_social' );
@@ -6187,11 +6187,11 @@ function ampforwp_generate_canonical(){
 	global $redux_builder_amp;
 	$canonical = '';
 	$canonical = $WPSEO_Frontend = $All_in_One_SEO_Pack = $opts = '';
-	if ( isset($redux_builder_amp['ampforwp-seo-yoast-canonical']) && true == $redux_builder_amp['ampforwp-seo-yoast-canonical'] && class_exists('WPSEO_Frontend') ) {
+	if ( 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && true == ampforwp_get_setting('ampforwp-seo-yoast-canonical') && class_exists('WPSEO_Frontend') ) {
 		$WPSEO_Frontend = WPSEO_Frontend::get_instance();
 		$canonical = $WPSEO_Frontend->canonical(false);
 	}
-	elseif ( isset($redux_builder_amp['ampforwp-seo-aioseo-canonical']) && true == $redux_builder_amp['ampforwp-seo-aioseo-canonical'] && class_exists('All_in_One_SEO_Pack') ) {
+	elseif ( 2 == ampforwp_get_setting('ampforwp-seo-selection') && true == ampforwp_get_setting('ampforwp-seo-aioseo-canonical') && class_exists('All_in_One_SEO_Pack') ) {
 		$All_in_One_SEO_Pack = new All_in_One_SEO_Pack();
 		$opts = $All_in_One_SEO_Pack->get_current_options( array(), 'aiosp' );
 		$canonical = $opts['aiosp_custom_link'];
