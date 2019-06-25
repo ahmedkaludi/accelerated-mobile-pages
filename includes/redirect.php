@@ -4,24 +4,7 @@ function ampforwp_redirection() {
   global $redux_builder_amp, $wp, $post;
   $hide_cats_amp = $url = $archive_check = $go_to_url = $archive_check_tax = '';
   $hide_cats_amp = is_category_amp_disabled();
-  $current_url = $check = '';
-  $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
-                "https" : "http") . "://" . $_SERVER['HTTP_HOST'] .  
-                $_SERVER['REQUEST_URI'];              
-  $current_url = explode('/', $current_url);
-  $check    =  '?nonamp=1';
-  if (( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) ){
-        session_start();
-        $_SESSION['ampforwp_mobile'] = 'exit';     
-  }
-  if (in_array( $check  , $current_url ) ) {
-      $current_url = array_flip($current_url);
-      unset($current_url['?nonamp=1']);
-      $current_url = array_flip($current_url);
-      $current_url = implode('/', $current_url);
-      wp_safe_redirect( $current_url );
-      exit;
-  }
+
   // No redirection if Post/Page is AMP Disabled #3287
   if ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) {
     $amp_metas = json_decode(get_post_meta( ampforwp_get_the_ID(),'ampforwp-post-metas',true), true );
@@ -58,6 +41,26 @@ function ampforwp_redirection() {
     }
   }
 
+  // Redirect ?nonamp=1 to normal url #3269
+  $current_url = $check = '';
+  $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
+                "https" : "http") . "://" . $_SERVER['HTTP_HOST'] .  
+                $_SERVER['REQUEST_URI'];              
+  $current_url = explode('/', $current_url);
+  $check    =  '?nonamp=1';
+  if (( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) ){
+        session_start();
+        $_SESSION['ampforwp_mobile'] = 'exit';     
+  }
+  if (in_array( $check  , $current_url ) ) {
+      $current_url = array_flip($current_url);
+      unset($current_url['?nonamp=1']);
+      $current_url = array_flip($current_url);
+      $current_url = implode('/', $current_url);
+      wp_safe_redirect( $current_url );
+      exit;
+  }
+  
   //Auto redirect /amp to ?amp when 'Change End Point to ?amp' option is enabled #2480
   if ( ampforwp_is_amp_endpoint() && true == ampforwp_get_setting('amp-core-end-point') ){
     $current_url = $endpoint = $new_url = '';
