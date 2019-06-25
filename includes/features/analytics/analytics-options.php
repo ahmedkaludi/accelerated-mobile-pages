@@ -545,7 +545,8 @@ function ampforwp_analytics_options($opt_name){
                           array('amp-use-gtm-option', '=' , '0'),
                           array('amp-clicky-switch', '=' , '1')
                         ),
-                        'default'  => 'YOUR_SITE_ID_HERE',
+                        'placeholder'  => esc_html__('YOUR_SITE_ID_HERE','accelerated-mobile-pages'),
+                        'default'  => '',
                     ),
 
                         )
