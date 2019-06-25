@@ -1496,9 +1496,7 @@ function ampforwp_add_proper_post_meta(){
 }
 
 function ampforwp_custom_yoast_meta_homepage(){
-	global $redux_builder_amp;
-	if ($redux_builder_amp['ampforwp-seo-yoast-meta']) {
-		if(! class_exists('YoastSEO_AMP') ) {
+	if ( ampforwp_get_setting('ampforwp-seo-yoast-meta') ) {
 				if ( class_exists('WPSEO_Options')) {
 					if( method_exists('WPSEO_Options', 'get_option')){
 						$options = WPSEO_Options::get_option( 'wpseo_social' );
@@ -1511,10 +1509,8 @@ function ampforwp_custom_yoast_meta_homepage(){
 					}
 				}
 				do_action( 'wpseo_opengraph' );
-
-		}//execute only if Glue is deactive
-		if(isset($redux_builder_amp['ampforwp-seo-custom-additional-meta']) && $redux_builder_amp['ampforwp-seo-custom-additional-meta']){
-			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
+		if( ampforwp_get_setting('ampforwp-seo-custom-additional-meta') ){
+			echo strip_tags(ampforwp_get_setting('ampforwp-seo-custom-additional-meta'), '<link><meta>' );
 		}
 	}
 }
