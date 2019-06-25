@@ -236,6 +236,12 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 if(ampforwp_get_setting('enable-single-mewe-share') == true)  { ?>
 .amp-social-mewe{background:#b8d6e6;}
 <?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) { ?>
+.custom-amp-socialsharing-flipboard{background:#f52828;position: relative;
+    top: -12px;}
+.amp-social-flipboard{background:#f52828;text-align: center;max-width: 18px;
+    max-height: 16px;}
+<?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 .amp-social-vk{background:#45668e}
 <?php } ?>

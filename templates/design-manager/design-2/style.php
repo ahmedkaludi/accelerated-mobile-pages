@@ -120,6 +120,12 @@ amp-social-share[type="facebookmessenger"] {
 .custom-amp-socialsharing-mewe{background:#b8d6e6}
 .amp-social-mewe{background:#b8d6e6}
 <?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) { ?>
+.custom-amp-socialsharing-flipboard{background:#f52828;position: relative;
+    top: -12px;}
+.amp-social-flipboard{background:#f52828;text-align: center;position: relative;
+    top: -12px;}
+<?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 .ampforwp-social-icons .custom-amp-socialsharing-vk, .amp-social-vk{background:#45668e}
 <?php } ?>
