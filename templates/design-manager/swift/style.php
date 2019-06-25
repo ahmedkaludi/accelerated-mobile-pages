@@ -1702,6 +1702,9 @@ if(ampforwp_get_setting('enable-single-line-share') == true)  { ?>
 if(ampforwp_get_setting('enable-single-mewe-share') == true)  { ?>
 .s_mewe{background:#b8d6e6;}
 <?php }  	
+if(ampforwp_get_setting('enable-single-flipboard-share') == true)  { ?>
+.s_flipboard{background:#f52828;}
+<?php }
 if($redux_builder_amp['enable-single-reddit-share']){?>
 .s_rd{background:#ff4500;}
 .s_rd:after{

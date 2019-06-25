@@ -46,7 +46,7 @@ function ampforwp_framework_get_tags_list( $separator = '' ){
 					<span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags' ); ?></span>
 					<?php foreach ( $ampforwp_tags as $key=>$tag ) {
 						if( true == $redux_builder_amp['ampforwp-archive-support'] && true == $redux_builder_amp['ampforwp-cats-tags-links-single'] ) {
-                			echo ('<span class="amp-tag amp-tag-'.$tag->term_id.'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ).'" > '.$tag->name .'</a></span>');//#934
+                			echo ('<span class="amp-tag amp-tag-'.$tag->term_id.'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ).'" title="'.esc_html($tag->name).'" > '.$tag->name .'</a></span>');//#934
 						} else {
 							 	echo ('<span class="amp-tag"> '.$tag->name.'</span>');
 						}

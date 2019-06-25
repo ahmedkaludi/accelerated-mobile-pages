@@ -6765,6 +6765,13 @@ $single_page_options = array(
               'title'     =>  esc_html__('MeWe', 'accelerated-mobile-pages'),
               'default'   =>  0,
         ),
+          // Flipboard
+          array(
+              'id'        =>  'enable-single-flipboard-share',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('Flipboard', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+        ),
         array(
                'id' => 'social-prfl',
                'type' => 'section',
