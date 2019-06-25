@@ -925,9 +925,15 @@ function ampforwp_get_all_post_types(){
     }
     if( ampforwp_get_setting('ampforwp-archive-support') && ampforwp_get_setting('ampforwp-archive-support-cat') ){
     	$post_types['category'] = 'category';
-    	$post_types['product_cat'] = 'product_cat';
     }
-
+    if( ampforwp_get_setting('ampforwp-archive-support-custom-tax') && ampforwp_get_setting('ampforwp-archive-support-custom-tax') ){
+    	if( ampforwp_get_setting('ampforwp-archive-support-custom-tax-cat') == true){
+    		$post_types['product_cat'] = 'product_cat';
+    	}
+    	if( ampforwp_get_setting('ampforwp-archive-support-custom-tax-tag') == true){
+    		$post_types['product_tag'] = 'product_tag';
+    	}
+    }
    if ( ampforwp_get_setting('ampforwp-custom-type')) {
         foreach (ampforwp_get_setting('ampforwp-custom-type') as $key) {
             $selected_post_types[$key] = $key;
