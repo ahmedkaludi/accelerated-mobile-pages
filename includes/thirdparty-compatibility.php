@@ -1274,7 +1274,7 @@ if(!function_exists('ampforwp_enfold_theme_compatibility')){
 		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
 	  	$explode_path = explode('/', $url_path);  
 	    if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)   ) {
-			remove_filter('avia_load_shortcodes','add_shortcode_folder');
+			remove_filter('avia_load_shortcodes','add_shortcode_folder',11);
 	    }
 	}
 }
