@@ -7,7 +7,7 @@ function amp_archive_title(){
 			$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 			if($curauth_url){ ?>
 				<div class="amp-wp-content author-img">
-					<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive" alt="gravatar"></amp-img>
+					<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive" alt="<?php echo esc_html(get_the_author()); ?>"></amp-img>
 				</div>
 			<?php }
 	}
@@ -499,7 +499,7 @@ function amp_loop_image( $data=array() ) {
 			}
 			echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
 			echo '<a href="'.esc_url($imageLink).'">';
-			echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="related post"></amp-img>';
+			echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. wp_kses_data(get_the_title(ampforwp_get_the_ID())) .'" ></amp-img>';
 			echo '</a>';
 			echo '</'.$tag.'>';
 		}
