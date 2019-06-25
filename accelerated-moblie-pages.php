@@ -209,7 +209,10 @@ function ampforwp_add_custom_rewrite_rules() {
       'top'
     );
 	//Rewrite rule for custom Taxonomies
-	$taxonomies = ampforwp_generate_taxonomies_transient();
+    if( function_exists('ampforwp_generate_taxonomies_transient')){
+    	//Rewrite rule for custom Taxonomies
+		$taxonomies = ampforwp_generate_taxonomies_transient();
+    }
 
   	if(!function_exists('amp_woocommerce_pro_add_woocommerce_support') ) {
 		if( class_exists( 'WooCommerce' ) ) {
