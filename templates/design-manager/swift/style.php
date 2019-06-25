@@ -519,7 +519,7 @@ echo $fontFamily;
 ?>
 }
 <?php } ?>
-<?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){ ?>
+<?php if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('single-design-type') == '4' ){ ?>
 <?php // Single
 
 if(is_single() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) { ?>
@@ -1114,7 +1114,7 @@ a.btt:hover {
  } //level up CSS Ends
  //AMP Woocommerce condition starts
 if( !ampforwp_woocommerce_conditional_check() ) { ?>
-<?php if($redux_builder_amp['single-design-type'] == '4'){
+<?php if( ampforwp_get_setting('single-design-type') == '4' ){
 if(is_single() ) { ?>
 .sp-rt{
 	margin:0;
