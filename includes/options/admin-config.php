@@ -5698,6 +5698,9 @@ $single_page_options = array(
               'type'     => 'switch',
               'default'  =>  '0',
               'title'    => esc_html__('Dropcap', 'accelerated-mobile-pages'),
+              'required'  => array(
+                    array('amp-design-selector', '=' , '4')
+                )
            ),
            array(
                 'class' => 'child_opt',
