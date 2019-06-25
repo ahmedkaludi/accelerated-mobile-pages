@@ -138,11 +138,6 @@
                    
             } 
                
-        } else if ( get_query_var('paged') ) {
-
-            // Paginated archives
-            echo '<li class="item-current item-current-' . get_query_var('paged') . '"><strong class="bread-current bread-current-' . get_query_var('paged') . '" title="Page ' . get_query_var('paged') . '">'. ampforwp_translation(ampforwp_get_setting('amp-translator-page-text'), 'Page') . ' ' . get_query_var('paged') . '</strong></li>';
-               
         }
         echo '</ul>';
 } ?>
