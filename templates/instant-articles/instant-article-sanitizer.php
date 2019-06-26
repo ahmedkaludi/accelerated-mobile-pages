@@ -1,5 +1,5 @@
 <?php
-add_filter( 'fbia_content', 'modify_gutenburg_gallery');
+add_filter( 'fbia_content', 'ampforwp_ia_modify_gutenburg_gallery');
 add_filter( 'fbia_content', 'headlines');
 add_filter( 'fbia_content', 'filter_dom');
 add_filter( 'fbia_content', 'address_tag');
@@ -60,7 +60,7 @@ function filter_dom($content){
 		return $content;
 	}
 
-function modify_gutenburg_gallery($content){
+function ampforwp_ia_modify_gutenburg_gallery($content){
 	
 	$allMatches = preg_replace_callback('/<ul\sclass=\"wp-block-gallery(.*?)\"(.*?)>(.*?)<\/ul>/', function($matches) {
         
