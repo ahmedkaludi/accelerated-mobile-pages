@@ -103,10 +103,13 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 			<a title="facebook share" class="s_fb" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://www.facebook.com/sharer.php?u=<?php echo esc_url($amp_permalink); ?>"></a>
 		</li>
 		<?php } ?>
-		<?php if(ampforwp_get_setting('enable-single-twitter-share')){
-			$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle'); ?>
+		<?php 
+		$data_param = '';
+		if(ampforwp_get_setting('enable-single-twitter-share')){
+			$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
+			$data_param = ( '' == $data_param_data ) ? '' : '&via='.$data_param_data.''; ?>
 		<li>
-			<a title="twitter share" class="s_tw" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://twitter.com/intent/tweet?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?>&via=<?php echo esc_attr($data_param_data); ?>">
+			<a title="twitter share" class="s_tw" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://twitter.com/intent/tweet?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?><?php echo esc_attr($data_param); ?>">
 			</a>
 		</li>
 		<?php } ?>
