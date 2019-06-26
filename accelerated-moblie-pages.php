@@ -926,7 +926,7 @@ function ampforwp_get_all_post_types(){
     if( ampforwp_get_setting('ampforwp-archive-support') && ampforwp_get_setting('ampforwp-archive-support-cat') ){
     	$post_types['category'] = 'category';
     }
-    if( ampforwp_get_setting('ampforwp-archive-support-custom-tax') && ampforwp_get_setting('ampforwp-archive-support-custom-tax') ){
+    if( ampforwp_get_setting('ampforwp-archive-support-custom-tax') == true ){
     	if( ampforwp_get_setting('ampforwp-archive-support-custom-tax-cat') == true){
     		$post_types['product_cat'] = 'product_cat';
     	}
