@@ -6431,7 +6431,7 @@ function ampforwp_thrive_architect_content(){
 	}
 	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
     $explode_path = explode('/', $url_path);
-    if ( in_array("amp", $explode_path)  ) {
+    if ( in_array( AMPFORWP_AMP_QUERY_VAR, $explode_path)  ) {
 		//#3254 Remove action for Woodmart theme lazyload feature 
 		remove_action( 'init', 'woodmart_lazy_loading_init', 120 );
 	}
