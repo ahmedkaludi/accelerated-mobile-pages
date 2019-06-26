@@ -172,8 +172,8 @@ main .amp-wp-content{ font-size: 18px; line-height: 29px; color:#111 }
 .single-post main .amp-wp-article-content h1, .single-post main .amp-wp-article-content h2, .single-post main .amp-wp-article-content h3, .single-post main .amp-wp-article-content h4, .single-post main .amp-wp-article-content h5, .single-post main .amp-wp-article-content h6{ font-family: 'Roboto Slab', serif; margin: 0px 0px 5px 0px; line-height: 1.6; }
 .home-post_image{ float: left; width:33%; padding-right: 2%; overflow:hidden; max-height: 225px }
 .amp-wp-title{ margin-top: 0px; }
-h3.amp-wp-title{ font-family: 'Roboto Slab', serif; font-weight: 700; font-size: 17px; margin-bottom: 7px; line-height: 1.3; }
-h3.amp-wp-title a{ color: #000; }
+h2.amp-wp-title , h3.amp-wp-title{ font-family: 'Roboto Slab', serif; font-weight: 700; font-size: 17px; margin-bottom: 7px; line-height: 1.3; }
+h2.amp-wp-title a ,h3.amp-wp-title a{ color: #000; }
 .amp-wp-tags{ list-style-type: none; padding: 0; margin: 0 0 9px 0; display: inline-flex; }
 .amp-wp-tags li{ display: inline; background: #F6F6F6; color: #9e9e9e; line-height: 1; border-radius: 50px; padding: 8px 18px; font-size: 12px; margin-right: 8px; top: -3px; position: relative; }
 .amp-wp-tags li a{ color: #9e9e9e; }
