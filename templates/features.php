@@ -1693,6 +1693,13 @@ function ampforwp_replace_title_tags() {
 
 		//* We can filter this later if needed:
 		$sep = ' | ';
+		if( class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') ) { 
+			$sep = WPSEO_Options::get( 'separator' );
+		}
+		if( defined( 'RANK_MATH_FILE' ) && class_exists('RankMath\\Helper') && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+			$sep = RankMath\Helper::get_settings( 'titles.title_separator' );
+			$sep = ' '.htmlentities( $sep, ENT_COMPAT, 'UTF-8', false ).' ';
+		}
 		$sep = apply_filters('ampforwp_title_seperator_type', $sep);
 		if ( is_singular() ) {
 			$title = ! empty( $post->post_title ) ? $post->post_title : $title;
@@ -1700,7 +1707,6 @@ function ampforwp_replace_title_tags() {
 		} elseif ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) {
             $site_title = strip_tags( get_the_archive_title('') . $sep . get_bloginfo( 'name' ) );
         }
-
 		if ( is_home() ) {
 			// Custom frontpage
 			$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
@@ -1815,10 +1821,12 @@ function ampforwp_replace_title_tags() {
 		}
 		// Custom Front Page Title From Rank Math SEO #2701
 		if ( defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
-		 	if ( ampforwp_is_blog() ) {
-		 		$post_id = ampforwp_get_blog_details('id');
+			$rank_math_title = '';
+			$post_id = ampforwp_get_the_ID();
+		 	$rank_math_title = RankMath\Post::get_meta( 'title', $post_id );
+		 	if ( $rank_math_title ) {
+		 		$site_title = $rank_math_title;
 		 	}
-		 	$site_title = RankMath\Post::get_meta( 'title', $post_id );
 		}
 
 		// All in One SEO #2816
