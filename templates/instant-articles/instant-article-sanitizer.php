@@ -1,7 +1,9 @@
 <?php
+add_filter( 'fbia_content', 'modify_gutenburg_gallery');
 add_filter( 'fbia_content', 'headlines');
 add_filter( 'fbia_content', 'filter_dom');
 add_filter( 'fbia_content', 'address_tag');
+
 
 // DOM Document Filter
 if(class_exists("DOMDocument")){
@@ -20,73 +22,8 @@ if(class_exists("DOMDocument")){
 	//Modify the post gallery content as per the Facebook instant articles rules
 	add_filter( 'post_gallery', 'ampforwp_gallery_shortcode_markup_modify', 10, 3 );
 }
-function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
-	$post = get_post();
-	$post_meta = get_post_meta( $post->ID);
-	$jsonData = $post_meta['ampforwp-post-metas'][0];
-	$arrData = json_decode($jsonData,true);
-		$atts = shortcode_atts( array(
-			'order'      => 'ASC',
-			'orderby'    => 'menu_order ID',
-			'id'         => $post ? $post->ID : 0,
-			'itemtag'    => 'figure',
-			'icontag'    => 'div',
-			'captiontag' => 'figcaption',
-			'columns'    => 3,
-			'size'       => 'thumbnail',
-			'include'    => '',
-			'exclude'    => '',
-			'link'       => ''
-		), $attr, 'gallery' );
-
-		if ( ! empty( $atts['include'] ) ) {
-			$_attachments = get_posts( array( 'include' => $atts['include'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
-			$attachments = array();
-			foreach ( $_attachments as $key => $val ) {
-				$attachments[$val->ID] = $_attachments[$key];
-			}
-		} elseif ( ! empty( $atts['exclude'] ) ) {
-			$attachments = get_children( array( 'post_parent' => $id, 'exclude' => $atts['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
-		} else {
-			$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
-		}
-		if ( empty( $attachments ) ) {
-			return '';
-		}
-
-		if($arrData['ampforwp-ia-on-off'] == 'default'){
-			// Build the gallery html output
-			$output = "<figure class=\"op-slideshow\">";
-
-			// Iterate over the available images
-				$i = 0;
-				foreach ( $attachments as $id => $attachment ) {
-					$attr = ( trim( $attachment->post_excerpt ) ) ? array( 'aria-describedby' => "gallery-$id" ) : '';
-					$image_output = wp_get_attachment_image( $id, "full", false, $attr );
-
-					$image_meta  = wp_get_attachment_metadata( $id );
-					$orientation = '';
-					if ( isset( $image_meta['height'], $image_meta['width'] ) ) {
-						$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
-					}
-					$output .= "<figure>";
-					$output .= $image_output;
-					if ( trim($attachment->post_excerpt) ) {
-						// $output .= "
-						// 	<figcaption>
-						// 	" . wptexturize($attachment->post_excerpt) . "
-						// 	</figcaption>";
-					}
-					$output .= "</figure>";
-				}
 
 
-			$output .= "</figure>";
-			return $output;
-		}
-
-		return $output;
-}
 function headlines($content){
 		// Replace h3, h4, h5, h6 with h2
 		$content = preg_replace(
@@ -122,6 +59,90 @@ function filter_dom($content){
 
 		return $content;
 	}
+
+function modify_gutenburg_gallery($content){
+	
+	$allMatches = preg_replace_callback('/<ul\sclass=\"wp-block-gallery(.*?)\"(.*?)>(.*?)<\/ul>/', function($matches) {
+        
+        return '<figure class="op-slideshow">'.$matches[3].'</figure>';
+    }, $content);
+    
+    $fbiagallery = preg_replace_callback('/<li(.*?)><figure><img(.*?)src=\"(.*?)\"(.*?)\/><\/figure><\/li>/', function($match) {
+       
+        return '<figure><img src="'.$match[3].'" /></figure>';
+    }, $allMatches);
+    return $fbiagallery;
+}
+
+function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
+	global $wp;
+	$post = get_post(ampforwp_get_the_ID());
+	if ( is_feed() && isset($wp->query_vars['feed']) && 'instant_articles' == $wp->query_vars['feed'] ) {
+		$post_meta = get_post_meta( $post->ID);
+		$jsonData = $post_meta['ampforwp-post-metas'][0];
+		$arrData = json_decode($jsonData,true);
+			$atts = shortcode_atts( array(
+				'order'      => 'ASC',
+				'orderby'    => 'menu_order ID',
+				'id'         => $post ? $post->ID : 0,
+				'itemtag'    => 'figure',
+				'icontag'    => 'div',
+				'captiontag' => 'figcaption',
+				'columns'    => 3,
+				'size'       => 'thumbnail',
+				'include'    => '',
+				'exclude'    => '',
+				'link'       => ''
+			), $attr, 'gallery' );
+
+			if ( ! empty( $atts['include'] ) ) {
+				$_attachments = get_posts( array( 'include' => $atts['include'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+				$attachments = array();
+				foreach ( $_attachments as $key => $val ) {
+					$attachments[$val->ID] = $_attachments[$key];
+				}
+			} elseif ( ! empty( $atts['exclude'] ) ) {
+				$attachments = get_children( array( 'post_parent' => $id, 'exclude' => $atts['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+			} else {
+				$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+			}
+			if ( empty( $attachments ) ) {
+				return '';
+			}
+
+			if($arrData['ampforwp-ia-on-off'] == 'default' ){
+				// Build the gallery html output
+				$output = "<figure class=\"op-slideshow\">";
+
+				// Iterate over the available images
+					$i = 0;
+					foreach ( $attachments as $id => $attachment ) {
+						$attr = ( trim( $attachment->post_excerpt ) ) ? array( 'aria-describedby' => "gallery-$id" ) : '';
+						$image_output = wp_get_attachment_image( $id, "full", false, $attr );
+
+						$image_meta  = wp_get_attachment_metadata( $id );
+						$orientation = '';
+						if ( isset( $image_meta['height'], $image_meta['width'] ) ) {
+							$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
+						}
+						$output .= "<figure>";
+						$output .= $image_output;
+						if ( trim($attachment->post_excerpt) ) {
+							// $output .= "
+							// 	<figcaption>
+							// 	" . wptexturize($attachment->post_excerpt) . "
+							// 	</figcaption>";
+						}
+						$output .= "</figure>";
+					}
+
+
+				$output .= "</figure>";
+				return $output;
+			}
+		}
+		return $output;
+}
 
 function get_content_DOM($content){
 		$libxml_previous_state = libxml_use_internal_errors( true );
