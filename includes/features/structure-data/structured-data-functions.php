@@ -70,8 +70,8 @@
 			$structured_data_image_url = '';
 
 			if ( $post_image_check == false) {
-
-				if (! empty( ampforwp_get_setting('amp-structured-data-placeholder-image','url') ) ) {
+					$placeholder = ampforwp_get_setting('amp-structured-data-placeholder-image','url');
+				if (! empty( $placeholder ) ) {
 					$structured_data_image_url = esc_url(ampforwp_get_setting('amp-structured-data-placeholder-image','url'));
 				}
 					$structured_data_image = $structured_data_image_url;
@@ -162,8 +162,9 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			// creating this to prevent errors
 			$structured_data_image_url = '';
 			$page = '';
+			$placeholder = ampforwp_get_setting('amp-structured-data-placeholder-image','url');
 			// placeholder Image area
-			if (! empty( ampforwp_get_setting('amp-structured-data-placeholder-image','url') ) ) {
+			if (! empty( $placeholder ) ) {
 				$structured_data_image_url = esc_url(ampforwp_get_setting('amp-structured-data-placeholder-image','url'));
 			}
 			$structured_data_image =  $structured_data_image_url; //  Placeholder Image URL
