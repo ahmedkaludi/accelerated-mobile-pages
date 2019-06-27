@@ -5,7 +5,7 @@ $amp_html 		= "";
 $caption 		= "";
 $featured_image = $this->get( 'featured_image' );
 
-if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) || true == $redux_builder_amp['ampforwp-featured-image-from-content'] || (class_exists('Bunyad') && Bunyad::posts()->meta('featured_video')) ){
+if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) || true == $redux_builder_amp['ampforwp-featured-image-from-content'] || (class_exists('Bunyad') && Bunyad::posts()->meta('featured_video')) || (function_exists('has_post_video') && has_post_video($post->ID))){
 
 		$get_webp = $get_webp_type =  "";
 		$get_webp = get_post_thumbnail_id($post->ID);
@@ -21,7 +21,12 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 			$videoContent = Bunyad::posts()->meta('featured_video');
 		  	$featured_video = $wp_embed->autoembed($videoContent);
 			$amp_html = ampforwp_content_sanitizer($featured_video);
-	  	}elseif (  $featured_image ) {
+	  	}
+	  	elseif (function_exists('has_post_video') && has_post_video($post->ID)){ 
+		$videoContent = get_the_post_video();
+		$amp_html = ampforwp_content_sanitizer($videoContent);
+		}
+		elseif (  $featured_image ) {
 			$amp_html = $featured_image['amp_html'];
 			$caption = $featured_image['caption']; 
 		}

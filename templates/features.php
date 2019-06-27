@@ -4612,6 +4612,8 @@ if( !function_exists('ampforwp_has_post_thumbnail')){
 		global $post, $redux_builder_amp;
 		if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
  			return true;
+		}elseif(function_exists('has_post_video') && has_post_video($post->ID)){
+			return true;
 		}elseif(has_post_thumbnail()){
 			return true;
 		}

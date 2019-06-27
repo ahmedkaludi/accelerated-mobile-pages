@@ -18,7 +18,12 @@ function ampforwp_framework_get_featured_image(){
 			$videoContent = Bunyad::posts()->meta('featured_video');
   		  	$featured_video = $wp_embed->autoembed($videoContent);
  			$amp_html = ampforwp_content_sanitizer($featured_video);
-  		}elseif (has_post_thumbnail( $post_id ) ){
+  		}
+  		// Featured Video Plus Compatibility #2394 #2583
+		elseif(function_exists('has_post_video') && has_post_video($post_id)){
+			$videoContent = get_the_post_video();
+			$amp_html = ampforwp_content_sanitizer($videoContent);
+		}elseif (has_post_thumbnail( $post_id ) ){
 		 	$thumb_id = get_post_thumbnail_id($post_id);
 		 	$post_content = $post->post_content;
 			if ( ampforwp_webp_featured_image() && true !== apply_filters('ampforwp_allow_featured_image', false) && ( false !== strpos( $post_content, 'wp-image-' . $thumb_id ) || false !== strpos( $post_content, 'attachment_' . $thumb_id ) ) ) {
