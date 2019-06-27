@@ -3568,7 +3568,7 @@ function ampforwp_view_nonamp(){
    		$non_amp_url = '';
    	}
 
-	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url(apply_filters('ampforwp_view_nonamp_url', $non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages') ;?></a> <?php
+	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url(apply_filters('ampforwp_view_nonamp_url', $non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?> title="<?php echo ampforwp_get_setting('amp-translator-non-amp-page-text') ?>"><?php echo esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages') ;?></a> <?php
 	}
 }
 
@@ -4711,7 +4711,7 @@ if( ! function_exists( 'ampforwp_get_author_details' ) ){
 					if ( function_exists('coauthors_posts_links') ) {
 						return '<span class="amp-wp-author author vcard">'. $post_author_url .'</span>';
 					}
-					return	'<span class="amp-wp-author author vcard"><a href="'.esc_url($post_author_url).'">'.esc_html( $post_author_name ).'</a></span>';
+					return	'<span class="amp-wp-author author vcard"><a href="'.esc_url($post_author_url).'"  title="'.esc_html( $post_author_name ).'" >'.esc_html( $post_author_name ).'</a></span>';
  				}
 				else { 
 					return '<span class="amp-wp-author author vcard">' .esc_html( $post_author_name ).'</span>';

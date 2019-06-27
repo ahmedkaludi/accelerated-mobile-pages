@@ -105,7 +105,8 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 	                  		</a>
 	                  	</div>
 			                <div class="related_link">
-			                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
+			                    <?php $title = get_the_title(); ?>
+			                    <a href="<?php echo esc_url( $related_post_permalink ); ?>" title="<?php echo esc_html( $title ); ?>" ><?php the_title(); ?></a>
 			                    <?php if ( isset($redux_builder_amp['ampforwp-single-related-posts-excerpt']) && true == $redux_builder_amp['ampforwp-single-related-posts-excerpt'] ) {
 			                    	$class = 'large-screen-excerpt-design-3';
 			                    	if ( true == $redux_builder_amp['excerpt-option-design-3'] ) {

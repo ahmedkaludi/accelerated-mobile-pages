@@ -155,6 +155,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 
 function ampforwp_get_relatedpost_content($argsdata=array()){
 	global $redux_builder_amp;
+	$title = get_the_title();
 	$related_post_permalink = ampforwp_url_controller( get_permalink() );
 	if ( ampforwp_get_setting('ampforwp-single-related-posts-link') ) {
 		$related_post_permalink = get_permalink();
@@ -164,7 +165,7 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 	}
 	?>
 	<div class="related_link">
-        <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
+        <a href="<?php echo esc_url( $related_post_permalink ); ?>" title="<?php echo esc_html( $title ); ?>"><?php the_title(); ?></a>
         <?php
         $show_excerpt = (isset($argsdata['show_excerpt'])? $argsdata['show_excerpt'] : true);
         if($show_excerpt){

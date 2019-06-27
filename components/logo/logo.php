@@ -1,6 +1,8 @@
 <?php
 function ampforwp_framework_get_logo(){
-  global $redux_builder_amp; ?>
+  global $redux_builder_amp;
+  $title = get_bloginfo();
+  ?>
   <div class="amp-logo">
     <?php
     do_action('amp_header_top');
@@ -17,7 +19,7 @@ function ampforwp_framework_get_logo(){
         <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {
           $alt = ampforwp_default_logo('alt'); 
           $logo_url = __( $redux_builder_amp['opt-media']['url'], 'accelerated-mobile-pages' ); ?>
-           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  >
+           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>" title="<?php echo esc_html( $title ); ?>" <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  >
              <amp-img src="<?php echo esc_url( $logo_url );  ?>" width="<?php echo esc_attr(ampforwp_default_logo('width')); ?>" height="<?php echo esc_attr(ampforwp_default_logo('height')); ?>" alt="<?php echo esc_attr($alt); ?>" class="amp-logo" layout="responsive"></amp-img></a>
              <?php if( ampforwp_is_home() || ampforwp_is_blog() ){ ?>
                     <h1 class="hide"> 

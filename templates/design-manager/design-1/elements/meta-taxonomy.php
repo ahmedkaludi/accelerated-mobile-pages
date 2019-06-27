@@ -23,7 +23,7 @@
 		                       $term_url   = ampforwp_url_controller( $term_url );
 		                }
 		                echo ('<span class="amp-cat amp-cat-'. esc_attr($term_id) . '" >
-		                '. (!empty($term_url)? ' <a href="'. esc_url( $term_url)  . '" > ':'').  esc_html($term_name). (!empty($term_url)?  '</a> ':'').' </span>');
+		                '. (!empty($term_url)? ' <a href="'. esc_url( $term_url)  . '" title="'.esc_html($cat->name).'" > ':'').  esc_html($term_name). (!empty($term_url)?  '</a> ':'').' </span>');
 			} ?>
 		</div>
 	<?php endif; } ?>
