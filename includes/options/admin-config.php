@@ -1972,8 +1972,9 @@ if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) || is_plugin_a
                      array(
                          'id'       => 'ampforwp-disqus-comments-support',
                          'type'     => 'switch',
-                         'title'    => __('Disqus', 'accelerated-mobile-pages'),
-                         'tooltip-subtitle' => __('Enable/Disable Disqus comments using this switch.', 'accelerated-mobile-pages'),
+                         'title'    => esc_html__('Disqus', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable/Disable Disqus comments using this switch', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-disqus-comments-in-amp/'), esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('to view the tutorial','accelerated-mobile-pages')),
                          'default'  => 0
                      ),
                      array(
