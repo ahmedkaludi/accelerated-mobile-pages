@@ -563,9 +563,9 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     width: 100%;
     font-weight: normal;
 }
-.redux-group-menu .design .el+.group_title:after{
+.redux-group-menu .design .el+.group_title:after, .redux-group-menu .diseno .el+.group_title:after{
 
-      content: "Customize Look & Feel";
+    content: "Customize Look & Feel";
     display: inline-block;
     font-size: 10px;
     text-transform: none;
