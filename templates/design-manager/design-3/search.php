@@ -60,7 +60,7 @@
 		}; ?>
 
      <?php global $redux_builder_amp; ?>
- 		<h1 class="amp-wp-content page-title archive-heading"><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query());?></h1>
+ 		<h2 class="amp-wp-content page-title archive-heading"><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query());?></h2>
 
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();?>
 
@@ -86,7 +86,7 @@
 					<?php }
 					} ?> 
                 </ul>
-				<h2 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_permalink() ); ?>"> <?php the_title(); ?></a></h2>
+				<h3 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_permalink() ); ?>"> <?php the_title(); ?></a></h3>
 				<?php if( ampforwp_check_excerpt() ) {
 					$class = 'large-screen-excerpt-design-3';
 					if ( true == $redux_builder_amp['excerpt-option-design-3'] ) {

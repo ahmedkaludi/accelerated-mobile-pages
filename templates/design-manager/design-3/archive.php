@@ -84,7 +84,7 @@ if ( get_query_var( 'paged' ) ) {
 					<?php }
 				}
 			}
- 			the_archive_title( '<h1 class="amp-wp-content page-title archive-heading">', '</h1>' );
+ 			the_archive_title( '<h2 class="amp-wp-content page-title archive-heading">', '</h2>' );
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
 				if($paged <= '1') {?>
@@ -153,7 +153,7 @@ if ( get_query_var( 'paged' ) ) {
 					<?php }
 					} ?> 
                 </ul>
-				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
+				<h3 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h3>
 					<?php if( ampforwp_check_excerpt() ) {
 						$class = 'large-screen-excerpt-design-3';
 						if ( true == $redux_builder_amp['excerpt-option-design-3'] ) {

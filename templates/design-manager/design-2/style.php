@@ -162,9 +162,9 @@ main .amp-wp-content{ margin-bottom: 12px;  padding: 15px; }
 .amp-loop-list, .featured-image-content, .the_content, .taxonomy-description{background: #fff; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05);}
 .home-post_image{ float: right; margin-left: 15px; margin-bottom: -6px; }
 .amp-wp-title{ margin-top: 0px; }
-h2.amp-wp-title{ line-height: 30px; }
-h2.amp-wp-title a{ font-weight: 300; color: #000; font-size: 20px; }
-h2.amp-wp-title , .amp-wp-post-content p{ margin: 0 0 0 5px; word-break: break-word;}
+h2.amp-wp-title , h3.amp-wp-title{ line-height: 30px; }
+h2.amp-wp-title a , h3.amp-wp-title a{ font-weight: 300; color: #000; font-size: 20px; }
+h2.amp-wp-title , h3.amp-wp-title , .amp-wp-post-content p{ margin: 0 0 0 5px; word-wrap: break-word;}
 /* For Excerpt */
 .amp-wp-post-content .large-screen-excerpt, .amp-wp-post-content .small-screen-excerpt {
 	display: block;
@@ -194,7 +194,7 @@ a.btt:hover {
 /* Single */
 .comment-button-wrapper{ margin-bottom: 0px; margin-top: 60px; text-align:center }
 .comment-button-wrapper a{ color: #fff; background: #312c7e; font-size: 13px; padding: 10px 20px 10px 20px; box-shadow: 0 0px 3px rgba(0,0,0,.04); border-radius: 80px; }
-h1.amp-wp-title{ text-align: center; margin: 0.7em 0px 0.6em 0px; font-size: 1.5em; }
+h2.amp-wp-title{ text-align: center; margin: 0.7em 0px 0.6em 0px; font-size: 1.5em; }
 .amp-wp-content.post-title-meta, .amp-wp-content.post-pagination-meta{ background: none; padding:  0; box-shadow:none }
 .post-pagination-meta{ min-height:75px }
 .single-post .post-pagination-meta{ min-height:auto }
