@@ -4029,7 +4029,7 @@ function ampforwp_visit_amp_in_admin_bar($admin_bar) {
 		    'id'     => 'view-amp',
 		    'title'  => 'Visit AMP',
 		    'href'   => ampforwp_url_controller( get_home_url() ),
-		    'meta'   => false
+		    'meta' => array('target' => '_blank')
 		);
 		$admin_bar->add_node( $args );
 	}       
@@ -4797,13 +4797,17 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 		
 		// Get all post types supported by AMP
 		$supported_amp_post_types = ampforwp_get_all_post_types();
+		$current_access = false;
 		// Check for Admin
 		if ( is_admin() ) {
 			$current_screen = get_current_screen();
+			$current_access = ('post' == $current_screen->base && 'add' != $current_screen->action);
+		}elseif(is_user_logged_in()){
+			$current_user = wp_get_current_user();
+			$current_access = current_user_can('edit_posts',$current_user );
+		}
 			// Check for Screen base, user ability to read and visibility
-			if ('post' == $current_screen->base 
-				&& 'add' != $current_screen->action 
-				&& current_user_can('read_post', $post->ID )
+			if ($current_access && current_user_can('read_post', $post->ID )
 				&& ( $wp_post_types[$post->post_type]->public )
 				&& ( $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
 				// Check if current post type is AMPed or not
@@ -4819,7 +4823,6 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 						'href'  => ampforwp_url_controller( get_permalink( $post->ID ) )
 					));
 				}
-			}
 		}
 	}
 }

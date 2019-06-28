@@ -1265,13 +1265,13 @@
     $.redux.stickyInfo = function() {
         var stickyWidth = $( '.redux-main' ).innerWidth() - 20;
 
-        if ( !$( '#info_bar' ).isOnScreen() && !$( '#redux-footer-sticky' ).isOnScreen() ) {
+        if ( !$( '#redux-footer-sticky' ).isOnScreen() && !$( '#redux-footer-sticky' ).isOnScreen() ) {
             $( '#redux-footer' ).css(
                 {
                     position: 'fixed',
                     bottom: '0',
                     width: stickyWidth,
-                    right: 21
+                    left: 379
                 }
             );
             $( '#redux-footer' ).addClass( 'sticky-footer-fixed' );
