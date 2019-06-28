@@ -177,8 +177,8 @@ main .amp-wp-content{ margin-bottom: 12px;  padding: 15px; }
 .home-post_image{ float: right; margin-left: 15px; margin-bottom: -6px; }
 .amp-wp-title{ margin-top: 0px; }
 h2.amp-wp-title , h3.amp-wp-title{ line-height: 30px; }
-h2.amp-wp-title a , h3.amp-wp-title a{ font-weight: 300; color: #000; font-size: 17px; }
-h3.amp-wp-title , .amp-wp-post-content p{ margin: 0 0 0 5px; word-wrap: break-word;}
+h2.amp-wp-title a , h3.amp-wp-title a{ font-weight: 300; color: #000; font-size: 20px; }
+h2.amp-wp-title , h3.amp-wp-title , .amp-wp-post-content p{ margin: 0 0 0 5px; word-wrap: break-word;}
 /* For Excerpt */
 .amp-wp-post-content .large-screen-excerpt, .amp-wp-post-content .small-screen-excerpt {
 	display: block;
