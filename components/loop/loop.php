@@ -284,6 +284,8 @@ function amp_pagination($args =array()) {
 
 /***
 * Get Title of post
+* Arguments: $data = array('class' => 'new-class test-class', 'data-attr-test'=> 'data-val');
+* Usage : amp_loop_title($data);
 */
 function amp_loop_title($data=array()){
 	$data = array_filter($data);
@@ -291,11 +293,36 @@ function amp_loop_title($data=array()){
 	if(isset($data['tag']) && $data['tag']!=""){
 		$tag = $data['tag'];
 	}
-	$attributes = 'class="loop-title"';
-	if(isset($data['attributes']) && $data['attributes']!=""){
-		$attributes = $data['attributes'];
+	// if $data is in key & value pair
+	$data_val = '';
+	foreach ($data as $key => $value) {
+		$data_attr .= $key;
+		if( $key != 'attributes' && $key != 'tag' ){
+			if($key == 'class'){
+				$value .= ' '.esc_html('loop-title');
+			}
+			$data_val .= "".esc_attr($key)."='".esc_html($value)."' ";
+		}
 	}
-	echo '<'.esc_attr($tag).' '.esc_attr($attributes).'>';
+	// if $data key is attributes & tag
+	$attr_val ='';
+	if( false !== strpos($data_attr,'attributes') || empty($data_attr) ){
+		$attributes = 'class="loop-title"';
+		if(isset($data['attributes']) && $data['attributes']!=""){
+			$attributes = $data['attributes'];
+		}
+		$attributes = explode('"', $attributes);
+		$attributes = str_replace('=','', $attributes);
+		for($i=0; $i < count($attributes); $i=$i+2) {
+			if( !empty($attributes[$i]) && !empty($attributes[$i+1]) ){
+				if( $attributes[$i] == 'class' && $attributes[$i+1] != 'loop-title'){
+					$attributes[$i+1] .= ' '.esc_html('loop-title');
+				}
+				$attr_val .= "".esc_attr($attributes[$i])."='".esc_html($attributes[$i+1])."'";
+			}
+		} 
+	}
+	echo '<'.esc_attr($tag).' '.$attr_val.' '.$data_val.'>';
 		if(!isset($data['link']) ){
 			echo '<a href="'. esc_url(amp_loop_permalink(true)) .'">';
 		}
@@ -304,7 +331,7 @@ function amp_loop_title($data=array()){
 		if(!isset($data['link']) ){
 			echo  '</a>';
 		}
-	echo '</'.$tag.'>';
+	echo '</'.esc_attr($tag).'>';
 }
 
 function amp_loop_date($args=array()){
