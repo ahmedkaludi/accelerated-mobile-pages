@@ -22,10 +22,9 @@ function ampforwp_removing_sassy_social_share(){
 	}
 }
 
-// Remove Schema theme Lazy Load #1170
-
-add_action('pre_amp_render_post','ampforwp_schema_lazy_load_remover');
-function ampforwp_schema_lazy_load_remover(){
+add_action('pre_amp_render_post','ampforwp_thirdparty_compatibility');
+function ampforwp_thirdparty_compatibility(){
+	// Remove Schema theme Lazy Load #1170
 	remove_filter( 'wp_get_attachment_image_attributes', 'mts_image_lazy_load_attr', 10, 3 );
 	remove_filter('the_content', 'mts_content_image_lazy_load_attr');
 	//Remove CSS header from the GoodLife Theme #2673
@@ -39,6 +38,8 @@ function ampforwp_schema_lazy_load_remover(){
 	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
 	// #3124 enfold theme shortcodes removed
 	add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
+	// AMP is not working due to JCH Optimize Pro plugin #3185
+	remove_action('shutdown', 'jch_buffer_end', -1);
 }
 
 //Updater to check license
