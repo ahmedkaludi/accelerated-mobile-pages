@@ -10,7 +10,7 @@ function ampforwp_redirection() {
   $hide_cats_amp = $url = $archive_check = $go_to_url = '';
   $hide_cats_amp = is_category_amp_disabled();
   // No redirection if Post/Page is AMP Disabled #3287
-  if ( ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) && false == get_post_meta( ampforwp_get_the_ID(),'ampforwp-amp-on-off',true) ) {
+  if ( ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) && 'hide-amp' == get_post_meta( ampforwp_get_the_ID(),'ampforwp-amp-on-off',true) ) {
     return;
   }
   // Redirection for Homepage and Archive Pages when Turned Off from options panel
