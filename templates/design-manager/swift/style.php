@@ -2041,4 +2041,12 @@ if(is_singular() && true == ampforwp_get_setting('amp-sticky-header')){?>
   margin-top: -75px; 
   height: 75px; 
   visibility: hidden;}
-<?php } ?>
+<?php } 
+if(class_exists('MCI_Footnotes')){ ?>
+	div#footnote_references_container{
+		display: unset;
+	}
+	.footnote_container_prepare p span:last-child {
+    	display:none;
+  	}
+<?php } ?> 
