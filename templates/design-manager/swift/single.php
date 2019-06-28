@@ -280,9 +280,13 @@ do_action("ampforwp_single_design_type_handle_d1");
 											<a class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>"></a>
 										</li>
 										<?php } ?>
-										<?php if($redux_builder_amp['enable-single-twitter-share']){?>
+										<?php 
+										$data_param = '';
+										if(ampforwp_get_setting('enable-single-twitter-share')){
+											$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
+											$data_param = ( '' == $data_param_data ) ? '' : '&via='.$data_param_data.''; ?>
 										<li>
-											<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?>">
+											<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?><?php echo esc_attr($data_param); ?>">
 											</a>
 										</li>
 										<?php } ?>
