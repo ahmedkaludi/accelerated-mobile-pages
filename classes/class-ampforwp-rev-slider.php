@@ -49,83 +49,32 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		$ids = array();
 		$slides = $slider->getSlidesForOutput(true,'',$gal_ids);
 		foreach ($slides as $slide) {
-			$ids[] = $slide->getImageID();
-
-		}
-		$attr['ids'] = implode(',', $ids);
-
-		if ( ! empty( $attr['ids'] ) ) {
-			// 'ids' is explicitly ordered, unless you specify otherwise.
-			if ( empty( $attr['orderby'] ) ) {
-				$attr['orderby'] = 'post__in';
+			$isExternal = $slide->getParam('background_type', 'image');
+			$img_data = wp_get_attachment_metadata( $slide->getImageID() );
+			
+			if($isExternal == 'external'){
+				$url = esc_url($slide->getParam('slide_bg_external', ''));
+				$imgalt = esc_attr($slide->getParam('alt_attr', ''));
+				$img_title = esc_attr($slide->getParam('title_attr', ''));
+				$img_w = $slide->getParam('ext_width', '1920');
+				$img_h = $slide->getParam('ext_height', '1080');
+				$urls[] = apply_filters('amp_gallery_image_params', array(
+					'url' => $url,
+					'width' => $img_w,
+					'height' => $img_h,
+				),$attachment_id);
+			}elseif( $isExternal == 'image'){
+				$img_data = wp_get_attachment_metadata( $slide->getImageID() );
+				$url = $slide->getImageUrl();
+				$attachment_id = $slide->getImageID();
+				$urls[] = apply_filters('amp_gallery_image_params', array(
+					'url' => $url,
+					'width' => $img_data['width'],
+					'height' => $img_data['height'],
+				),$attachment_id);
 			}
-			$attr['include'] = $attr['ids'];
 		}
-
-		$atts = shortcode_atts( array(
-			'order'      => 'ASC',
-			'orderby'    => 'menu_order ID',
-			'id'         => $post ? $post->ID : 0,
-			'include'    => '',
-			'exclude'    => '',
-			//'size'       => array( $this->args['width'], $this->args['height'] ),
-			//'size'		=> isset($attr['size'])? $attr['size']:'thumbnail',
-			'size'		=> 'large'
-		), $attr, 'gallery' );
-
-		$id = intval( $atts['id'] );
-
-		if ( ! empty( $atts['include'] ) ) {
-			$attachments = get_posts( array(
-				'include' => $atts['include'],
-				'post_status' => 'inherit',
-				'post_type' => 'attachment',
-				'post_mime_type' => 'image',
-				'order' => $atts['order'],
-				'orderby' => $atts['orderby'],
-				'fields' => 'ids',
-			) );
-		} elseif ( ! empty( $atts['exclude'] ) ) {
-			$attachments = get_children( array(
-				'post_parent' => $id,
-				'exclude' => $atts['exclude'],
-				'post_status' => 'inherit',
-				'post_type' => 'attachment',
-				'post_mime_type' => 'image',
-				'order' => $atts['order'],
-				'orderby' => $atts['orderby'],
-				'fields' => 'ids',
-			) );
-		} else {
-			$attachments = get_children( array(
-				'post_parent' => $id,
-				'post_status' => 'inherit',
-				'post_type' => 'attachment',
-				'post_mime_type' => 'image',
-				'order' => $atts['order'],
-				'orderby' => $atts['orderby'],
-				'fields' => 'ids',
-			) );
-		}
-
-		if ( empty( $attachments ) ) {
-			return '';
-		}
-
-		$urls = array();
-		foreach ( $attachments as $attachment_id ) {
-			list( $url, $width, $height ) = wp_get_attachment_image_src( $attachment_id, $atts['size'], true );
-
-			if ( ! $url ) {
-				continue;
-			}
-
-			$urls[] = apply_filters('amp_gallery_image_params', array(
-				'url' => $url,
-				'width' => $width,
-				'height' => $height,
-			),$attachment_id);
-		}
+		
 		return $this->render( array(
 			'images' => $urls,
 		) );
