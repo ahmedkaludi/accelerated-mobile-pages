@@ -171,7 +171,7 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
     }
     return $content_buffer;
 }
-add_action('wp_loaded', function(){ ob_start('ampforwp_the_content_filter_full'); }, 999);
+add_action('wp', function(){ ob_start('ampforwp_the_content_filter_full'); }, 999);
 
 
 // 74. Featured Image check from Custom Fields
