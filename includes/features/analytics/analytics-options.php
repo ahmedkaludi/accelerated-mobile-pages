@@ -470,7 +470,31 @@ function ampforwp_analytics_options($opt_name){
                           'default'  => '',
                           'desc' => 'example: 00000003',
                       ),   
-
+                    array(
+                        'required' => array(
+                          array('amp-use-gtm-option', '=' , '0'),
+                        ),
+                        'id'            =>'amp-clicky-switch',
+                        'type'          => 'switch',
+                        'title'         => esc_html__('Clicky Analytics','accelerated-mobile-pages'),
+                        'default'       => 0,
+                    ),
+                    array(
+                        'id'       => 'clicky-site-id',
+                        'type'     => 'text',
+                        'title'    => esc_html__( 'Clicky Site ID', 'accelerated-mobile-pages' ),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                            esc_html__( 'Enter your Clicky Analytics Site ID. If you dont have account in Clicky, Please click','accelerated-mobile-pages'),
+                            esc_url('https://clicky.com/help/faq/common/site-preferences'),
+                            esc_html__('here','accelerated-mobile-pages'),
+                            esc_html__( 'to create an account.','accelerated-mobile-pages' )
+                        ),
+                        'required' => array(
+                          array('amp-use-gtm-option', '=' , '0'),
+                          array('amp-clicky-switch', '=' , '1')
+                        ),
+                        'placeholder'  => esc_html__('YOUR_SITE_ID_HERE','accelerated-mobile-pages'),
+                    ),
 
                         )
             )
