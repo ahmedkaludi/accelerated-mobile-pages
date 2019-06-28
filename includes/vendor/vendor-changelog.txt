@@ -75,3 +75,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 45. Added a filter called ampforwp_featured_image_size, so users can change the default size of featured image in single post. #2896
 46. Class-amp-gallery-block-sanitizer file updated for Gallery with GIF Image not working issue #3304
 47. class-amp-allowed-tag-generated.php added amp-recaptcha-input support #3315
+48. Image sanitizer updated #3112

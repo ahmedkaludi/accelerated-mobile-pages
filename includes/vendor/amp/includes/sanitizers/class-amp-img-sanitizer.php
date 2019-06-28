@@ -99,7 +99,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				if ( ! is_numeric( $node->getAttribute( 'width' ) ) ) {
 
 					// Let width have the right aspect ratio based on the height attribute.
-					if ( is_numeric( $node->getAttribute( 'height' ) ) && isset( $dimensions['height'] ) && isset( $dimensions['width'] ) ) {
+					if ( is_numeric( $node->getAttribute( 'height' ) ) && isset( $dimensions['height'] ) && 0 !== $dimensions['height'] && isset( $dimensions['width'] ) ) {
 						$width = round( ( floatval( $node->getAttribute( 'height' ) ) * $dimensions['width'] ) / $dimensions['height'] );
 					}
 
@@ -111,7 +111,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				if ( ! is_numeric( $node->getAttribute( 'height' ) ) ) {
 
 					// Let height have the right aspect ratio based on the width attribute.
-					if ( is_numeric( $node->getAttribute( 'width' ) ) && isset( $dimensions['width'] ) && isset( $dimensions['height'] ) ) {
+					if ( is_numeric( $node->getAttribute( 'width' ) ) && isset( $dimensions['width'] ) && 0 !== $dimensions['width'] && isset( $dimensions['height'] ) ) {
 						$height = round( ( floatval( $node->getAttribute( 'width' ) ) * $dimensions['height'] ) / $dimensions['width'] );
 					}
 
