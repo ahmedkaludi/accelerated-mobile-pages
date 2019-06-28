@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.1
-Stable tag: 0.9.97.60
+Stable tag: 0.9.97.61
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,43 +190,46 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.60 (22th June 2019) =
-* Feature: Need to add template-mode #3252
-* Fixed: Options panel loading issue after 0.9.97.59
+= 0.9.97.61 (28th June 2019) =
+* Improvements: AMP option panel for better enhancement #2432
+* Improvements: Lighthouse score improved in all designs #3108
+* Improvements: Custom Taxonomy support added #3036
+* Improvements: Breadcrumbs code improved in all designs #3120
+* Improvements: Option to change featured image size in the AMP panel's single settings [ only in Swift theme] #3339
+* Improvements: Clicky Analytic compatibility integrated #3220
+* Improvements: Some Improvements in image sanitizer #3112
+* Improvements: Gallery Design integrated in Facebook instant article #3143
+* Improvements: Featured Video Plus plugin compatibility integrated #2583
+* Improvements: Performance improvement ! SELECT SQL_CALC_FOUND_ROWS #3336
+* Improvements: 'Featured Image from URL' plugin compatibility integrated #3365
+* Fixed: Images are blur in beta in design 2 #2541
+* Fixed: SRC set in the Featured Image #1619
+* Fixed: AMP Panel options code improved - 2 #3083
+* Fixed: Fatal error with an older version of Wordpress #3094
+* Fixed: Extra option in Analytics section removed #3037
+* Fixed: ?nonamp=1 should redirect to normal url #3269
+* Fixed: Recent comments shows first in ascending order #3325
+* Fixed: Footnotes not working properly #2982
+* Fixed: On twitter share Via twitter handle name is not shown in the tweet beside Url in Design-Swift #3286
+* Fixed: Fatal Error when activate quadmenu plugin #3308
+* Fixed: Default schema generated Page (Migrated from AMPforWP) or post (Migrated from AMPforWP)'s Target Location is showing empty by default #3343
+* Fixed: When auto add amp in menu option is enabled it is rendering the cache version menu for WPML site #3251
+* Fixed: External URL not working with Revolution Slider #3218
+* Fixed: Images are getting distorted in AMP when the lazy loading option is enabled in the WoodMart theme settings #3254
+* Fixed: More variables support in Advanced Google Analytics #3281
+* Fixed: When amp takeover is enabled, /amp is added at the end of category module url #3367
+* Fixed: Auto Add AMP in Menu URL option is is not working for the product category #3319
+* Fixed: Unnecessary CSS is loading in single amp product pages and also on cart pages #3038
+* Fixed: Swift Theme has doublequotes in related Post quotes issue #3045
+* Fixed: Wordpress Spanish language does not showing "Design" tab #3342
+* Fixed: Tittle attribute not generates in related posts in all designs #3346
+* Fixed: AMP optin short code is not rendering in AMP from footer widget #3349
 * Fixed: Single post main title should be H1 and sub title should be H2 or H3 in design-1 #3350
-
-= 0.9.97.59 (21th June 2019) =
-* Improvements: WP Recipe Maker & WP Recipe Maker PRO Schema compatibility added #3043
-* Improvements: Impreza Theme's lazyLoad Option compatibility integrated #3259
-* Improvements: WordPress Content Gallery integrated with Design - 1,2 & 3 #3255
-* Improvements: amp-recaptcha-input support added in allowed tag sanitizer #3315
-* Improvements: Yoast 11.4 Schema Compatibility #3332
-* Improvements: Google Tag Manager Advanced Option integrated #2660
-* Fixed: Disqus comments are not loading in the multilingual slug #3106
-* Fixed: Incorrect escaping done on author name when Link to Author Pages is enabled along with the Co-Authors plugin activate [ Theme-Swift ] #3162
-* Fixed: AMP Panel options code improved #2517
-* Fixed: License key code improved #2528
-* Fixed: When site url is different from home url #2881
-* Fixed: Related Posts Design is coming in all the single page designs in AMP Layouts #3091
-* Fixed: CM Tooltip Glossary custom post types are not working with /amp #2882
-* Fixed: Variables replacing in Advanced Google Analytics config code don't work #3237
-* Fixed: "Optimize For Viewability" option for Ads improved #3142
-* Fixed: Advertisement section Ads are not working through Google search result #2693
-* Fixed: When AMP takeover and yoast seo is activated,AMP page builder is not working #3292
-* Fixed: link="next" is appearing in the custom front page #3266
-* Fixed: 404 error when custom post type and page having same slug [Bug for the Rare use case] #2374
-* Fixed: Code improved for attribute layout=responsive in amp-img #3248
-* Fixed: Gallery Lightbox feature code improved #3184
-* Fixed: Elementor stops working when AMP Take Over is enabled #3284
-* Fixed: Activating Thrive lead plugin AMP Page builder doesn't work on the custom front page #3312
-* Fixed: To many redirection issue with hidden post in IOS #3287
-* Fixed: Gallery with GIF is not working #3304
-* Fixed: Indexing Issue of Plugin File #3271
-* Fixed: Post/page throwing an error on hiding AMP for that particular post/page if AMP takeover option is enabled. #3329
-* Fixed: Addthis Sharing default option code improved #3327
-* Fixed: When Custom frontpage option is enabled, it's not taking the Polylang static page id  #3330
-* Fixed: Webp image format as featured image is not working in the single posts #2996
-* Fixed: Improper amphtml on HomePage when WPML is activate #3341
-* Fixed: Schema not generating after 0.9.97.57 #3344
+* Fixed: ampforwp_the_content_filter_full function hook changed to work minify option in AMP cache plugin #3355
+* Fixed: AMP is not working due to JCH Optimize Pro plugin #3185
+* Fixed: AMP validation warning when Google Tag Manager Advanced Option is enabled #2660
+* Fixed: PHP Warning implode() Invalid arguments passed when Enfold theme is activate #3307
+* Fixed: Mobile redirection not working properly #3370
+* Fixed: Redirection code improved #3326
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
