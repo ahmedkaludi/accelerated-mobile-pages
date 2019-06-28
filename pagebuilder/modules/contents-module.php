@@ -307,8 +307,12 @@ if ( is_admin() ) {
   if ( $the_query->have_posts() ) { 
          while ( $the_query->have_posts() ) {   
              $the_query->the_post();    
-             $ampforwp_post_url = get_permalink();  
-             $ampforwp_post_url = trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR;
+             $ampforwp_post_url = get_permalink();
+             if(ampforwp_get_setting('ampforwp-amp-takeover') == true){ 
+             $ampforwp_post_url = trailingslashit($ampforwp_post_url);
+             }else{
+              $ampforwp_post_url = trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR;
+             }
              $image = $height = $width = $image_alt = ""; 
              if ( has_post_thumbnail() ) {  
                    $thumb_id = get_post_thumbnail_id();   
