@@ -6038,6 +6038,11 @@ function ampforwp_thrive_architect_content(){
 			add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
 		}
 	}
+	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+    if ( function_exists( 'ampforwp_is_amp_inURL' ) && ampforwp_is_amp_inURL($url_path)  ) {
+		//#3254 Remove action for Woodmart theme lazyload feature 
+		remove_action( 'init', 'woodmart_lazy_loading_init', 120 );
+	}
 }
 function ampforwp_thrive_content($content){
 	$post_id = "";
