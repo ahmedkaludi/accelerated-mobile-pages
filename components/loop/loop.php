@@ -270,6 +270,8 @@ function amp_pagination($args =array()) {
 
 /***
 * Get Title of post
+* Arguments: $data = array('class' => 'new-class test-class', 'data-attr-test'=> 'data-val');
+* Usage : amp_loop_title($data);
 */
 function amp_loop_title($data=array()){
 	$data = array_filter($data);
