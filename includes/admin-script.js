@@ -464,7 +464,20 @@ var reduxOptionTab = function(){
     });
 } 
 //reduxOptionTab();   
-
+ $( '.redux-action_bar input' ).on('click', function( e ) {
+    if($(".amp-ls-solve").length){
+        $(".amp-ls-solve").each(function(k,v){
+            var license = $(this).val();
+            if(license){
+                var patt = new RegExp("^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)?$");
+                if( patt.test(window.atob(license)) ){
+                   license = window.atob(license);
+                   $(this).val(license);
+                }
+            }
+        });//$(".amp-ls-solve") each closed
+   }
+});
 $(".redux-ampforwp-ext-activate").click(function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
@@ -473,7 +486,7 @@ $(".redux-ampforwp-ext-activate").click(function(){
     var license = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val();
 
     if(newlicense!='' && newlicense.indexOf("**")<0){
-        license = newlicense;
+        license = window.btoa(newlicense);
         $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val(license);
     }
 
@@ -486,7 +499,7 @@ $(".redux-ampforwp-ext-activate").click(function(){
         method: 'post',
         data: {action: 'ampforwp_get_licence_activate_update',
                ampforwp_license_activate:plugin_id,
-               license:license,
+               license:window.atob(license),
                item_name:item_name,
                store_url:store_url,
                plugin_active_path:plugin_active_path,
@@ -496,6 +509,7 @@ $(".redux-ampforwp-ext-activate").click(function(){
         success: function(response){
             currentThis.parents("li").find('.afw-license-response-message').remove();
             if(response.status=='200'){
+                $('#redux_builder_amp_amp-license_'+plugin_id+'_license').remove();
                 currentThis.parents("li").removeClass("not-active").removeClass("invalid").addClass("active").addClass("valid");
                 currentThis.html("Deactivate");
                 currentThis.after("<div class='afw-license-response-message'>"+response.message+'</div>');

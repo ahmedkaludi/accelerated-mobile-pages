@@ -553,6 +553,9 @@ foreach ($extension_listing_array as $key => $extension) {
                                 );
         $selectedOption = (array) get_option('redux_builder_amp',true);
         if(isset($selectedOption['amp-license'][$pathExploded])){
+            while ( strlen($selectedOption['amp-license'][$pathExploded]['license']) > 32 ) {
+                  $selectedOption['amp-license'][$pathExploded]['license'] = base64_decode($selectedOption['amp-license'][$pathExploded]['license']);
+            }
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
         }
         $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-activate">Activate</button>';
@@ -573,9 +576,10 @@ foreach ($extension_listing_array as $key => $extension) {
                 }else{ $amp_license_response = "Expired! <a href='https://accounts.ampforwp.com/order/?edd_license_key=".$amplicense."&download_id=".$allResponseData['item_name']."'>Renew your license</a>"; }
             }
         }
-
-        $pluginReview = '<input id="redux_builder_amp_amp-license_'.$pathExploded.'_license" type="text" value="'. str_replace(substr($amplicense, 0, strlen($amplicense)-4), '**', $amplicense).'"  onclick="return false;">
+        if ( '' == $allResponseData['success'] && '' == $allResponseData['success'] ) {        
+        $pluginReview = '<input id="redux_builder_amp_amp-license_'.$pathExploded.'_license" type="text" value=""  onclick="return false;">
            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][item_name]" type="hidden" value="'.$extension['item_name'].'">';
+        }
             if (isset($extension['store_url'])){
             $pluginReview .= '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'">'; 
             }
@@ -588,7 +592,7 @@ foreach ($extension_listing_array as $key => $extension) {
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][expires]" type="hidden" value="'.$allResponseData['expires'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][customer_name]" type="hidden" value="'.$allResponseData['customer_name'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][customer_email]" type="hidden" value="'.$allResponseData['customer_email'].'">
-            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="hidden" value="'. base64_encode($amplicense).'">
+            <input class="amp-ls-solve" name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="hidden" value="'. base64_encode($amplicense).'">
             ';
         
         $pluginReview .= $verify. "<br/>".$amp_license_response;
@@ -1572,7 +1576,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'type'     => 'switch',
                'title'     => esc_html__('Meta Description', 'accelerated-mobile-pages'),
                'tooltip-subtitle'     => esc_html__('The meta tag that displays in head', 'accelerated-mobile-pages'),
-               'default'  => 1
+               'default'  => 0
             ),
 
             array(
