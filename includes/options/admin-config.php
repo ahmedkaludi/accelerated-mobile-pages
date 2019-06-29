@@ -1653,7 +1653,7 @@ $tabs = array(
                'type'     => 'switch',
                'title'     => __('Meta Description', 'accelerated-mobile-pages'),
                'tooltip-subtitle'     => __('The meta tag that displays in head', 'accelerated-mobile-pages'),
-               'default'  => 0
+               'default'  => 1
             ),
 
             array(
