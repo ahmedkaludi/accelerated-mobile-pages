@@ -99,6 +99,28 @@ return array(
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
  						),
+ 						array(		
+	 						'type'		=>'text',		
+	 						'name'		=>"img_link",		
+	 						'label'		=>'Image Link',
+	           				'tab'     =>'customizer',
+	 						'default'	=>'',	
+	           				'content_type'=>'html',
+ 						),
+ 						array(		
+		 						'type'		=>'checkbox_bool',		
+		 						'name'		=>"img_link_newtab",		
+		 						'label'		=>'Open in NewTab',
+		           				'tab'     	=>'customizer',
+		 						'default'	=>0,
+		           				'options'	=>array(
+												array(
+													'label'=>'Check to open the image link in new tab.',
+													'value'=>1,
+												),
+											),
+		           				'content_type'=>'html',
+	 					),
  						array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
@@ -113,7 +135,7 @@ return array(
 								'content_type'=>'html',
 							),
               ),
-          'front_template'=>'{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}  alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}'
+          'front_template'=>'{{if_img_upload}}{{if_img_link}}<a href="{{img_link}}" {{if_condition_img_link_newtab==1}}target="_blank"{{ifend_condition_img_link_newtab_1}}>{{ifend_img_link}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}  alt="{{image_alt}}"></amp-img></a>{{ifend_img_upload}}'
           ),
 	);
 
