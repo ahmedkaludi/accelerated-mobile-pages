@@ -7238,44 +7238,58 @@ $single_page_options = array(
                 'default'  => '0'
             ),
             // Show Date As
-             array(
+            array(
+              'id'        => 'ampforwp-post-date-switch',
+              'type'      => 'switch',
+              'title'     => esc_html__('Enable Loop Post Date', 'accelerated-mobile-pages'),
+              'default'   => 1,
+              'tooltip-subtitle'  => esc_html__('Enable this option to show post data from Home page loop and Recent Posts loop.', 'accelerated-mobile-pages'),
+            ),
+            array(
                     'id'       => 'ampforwp-post-date-global',
                     'type'     => 'select',
-                    'title'    => __( 'Show Date As', 'accelerated-mobile-pages' ),
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'    => esc_html__( 'Show Date As', 'accelerated-mobile-pages' ),
                     'options'  => array(
                                     '1' => 'Published Date',
                                     '2' => 'Modified Date'
                                     ),
                     'default'  => '1',
+                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
             ), 
             // Date Format
              array(
                     'id'        =>'ampforwp-post-date-format',
                     'type'      =>'select',
-                    'title'     =>__('Date Format','accelerated-mobile-pages'),
-                    'tooltip-subtitle' => __('Select the Date Format of Posts', 'accelerated-mobile-pages'),
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     =>esc_html__('Date Format','accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Select the Date Format of Posts', 'accelerated-mobile-pages'),
                     'options'   => array(
                                     '1' => 'Ago',
                                     '2' => 'Traditional view'
                                     ), 
                     'default'   =>'1',
+                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
             ),
             array(
                     'id'        =>'ampforwp-post-date-format-text',
                     'type'      =>'text',
-                    'title'     =>__('Text for the Date Format','accelerated-mobile-pages'),
-                    'desc'  =>__('Example: English - % days ago, Spain - ago % days','accelerated-mobile-pages'),
-                    'required' => array( array('ampforwp-post-date-format', '=', '1') ),
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     =>esc_html__('Text for the Date Format','accelerated-mobile-pages'),
+                    'desc'  =>esc_html__('Example: English - % days ago, Spain - ago % days','accelerated-mobile-pages'),
                     'default'   =>'% days ago',
+                    'required' => array( array('ampforwp-post-date-format', '=', '1'),array('ampforwp-post-date-switch', '=' , '1') ),
             ),
         // Post Modified Date
-          array(
-              'id'        => 'post-modified-date',
-              'type'      => 'switch',
-              'title'     => __('Modified Date Notice', 'accelerated-mobile-pages'),
-              'default'   => 0,
-              'tooltip-subtitle'  => __('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
-          ),
+            array(
+                    'id'        => 'post-modified-date',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Modified Date Notice', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
+                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
+            ),
 
         )
 
