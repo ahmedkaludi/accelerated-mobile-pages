@@ -3913,6 +3913,17 @@ Redux::setSection( $opt_name, array(
                     array('amp-design-selector', '=' , '4')
                 )
             ),
+            array(
+                    'id'        => 'amp-d2-background-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Header Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#0a89c0',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '2')
+                    )
+            ),
              array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
                     'type'      => 'color_rgba',

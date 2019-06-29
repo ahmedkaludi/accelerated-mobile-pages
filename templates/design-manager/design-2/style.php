@@ -23,6 +23,8 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
 	$link_color              = $get_customizer->get_customizer_setting( 'link_color' );
 	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
 	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
+
+	$header_bg_clr          = ampforwp_get_setting('amp-d2-background-color','color');
 	?>
 
 /* Global Styling */
@@ -209,7 +211,7 @@ a.btt:hover {
     cursor: pointer;
 }
 .nav_container { 
-	background:  <?php echo sanitize_hex_color( $header_background_color ); ?>;
+	background:  <?php echo ampforwp_sanitize_color($header_bg_clr); ?>
 }
 .nav_container a, .nav_container a:hover, .nav_container a:focus{ 
 	color:<?php echo sanitize_hex_color( $header_color ); ?> 
