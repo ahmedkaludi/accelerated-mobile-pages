@@ -1572,7 +1572,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'type'     => 'switch',
                'title'     => esc_html__('Meta Description', 'accelerated-mobile-pages'),
                'tooltip-subtitle'     => esc_html__('The meta tag that displays in head', 'accelerated-mobile-pages'),
-               'default'  => 0
+               'default'  => 1
             ),
 
             array(

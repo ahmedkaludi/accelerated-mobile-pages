@@ -214,7 +214,7 @@ function ampforwp_generate_meta_desc($json=""){
         }
 
         // Yoast 
-        if ( class_exists('WPSEO_Frontend') && ('yoast' || 1) == $redux_builder_amp['ampforwp-seo-selection'] ) {
+        if ( class_exists('WPSEO_Frontend') && ('yoast' == ampforwp_get_setting('ampforwp-seo-selection') || 1 == ampforwp_get_setting('ampforwp-seo-selection'))) {
             $front = $yoast_desc = '';
             $front = WPSEO_Frontend::get_instance();
             $yoast_desc = addslashes( strip_tags( $front->metadesc( false ) ) );
@@ -238,7 +238,7 @@ function ampforwp_generate_meta_desc($json=""){
         } 
 
         // All in One SEO
-        if ( class_exists('All_in_One_SEO_Pack') && (2 || 'aioseo') == $redux_builder_amp['ampforwp-seo-selection'] ) {
+        if ( class_exists('All_in_One_SEO_Pack') && ( 'aioseo'  == ampforwp_get_setting('ampforwp-seo-selection') || 2 == ampforwp_get_setting('ampforwp-seo-selection'))) {
             $aisop_class = $aisop_desc = $opts = '';
             $aisop_class = new All_in_One_SEO_Pack();
             if ( ampforwp_is_home() ) {
