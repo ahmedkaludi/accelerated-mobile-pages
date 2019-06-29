@@ -18,7 +18,7 @@ Class AMPforWP_theme_mode{
 			add_filter(	"the_content", array($this, 'amp_the_content') );
 			add_action(	"levelup_head", array($this, 'amp_head_content') );
 			add_action(	"levelup_css", array($this, 'amp_head_css')	);
-			add_filter(	"get_search_form", array($this, 'search_form')	);
+			add_filter(	"get_search_form", array($this, 'search_form'), 99	);
 			add_filter(	"get_custom_logo", array($this, 'get_custom_logo'), 10, 2	);
 			add_action(	"levelup_footer", array($this, 'amp_footer_content')	);
 		    add_action(	"get_avatar", array($this,'get_avatar'), 11,6);	    
@@ -477,7 +477,7 @@ Class AMPforWP_theme_mode{
 	}
 	public function search_form($form){
 		$form = preg_replace_callback("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)>/", function($matches){
-			$tag = '<form'.$matches[1].'action-xhr="'.$matches[2].'"'.$matches[3].'>';
+			$tag = '<form'.$matches[1].' target="_top" action="'.str_replace("http:", '', $matches[2]).'"'.$matches[3].'>';
 			return $tag;
 		}, $form);
 		return $form;
