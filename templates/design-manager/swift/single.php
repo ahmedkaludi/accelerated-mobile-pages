@@ -320,7 +320,7 @@
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-whatsapp-share']){?>
 										<li>
-											<a title="whatsapp share" class="s_wp" target="_blank" href="whatsapp://send?text=<?php the_permalink(); ?>" data-action="share/whatsapp/share"></a>
+											<a title="whatsapp share" class="s_wp" target="_blank" href="https://api.whatsapp.com/send?text=<?php the_permalink(); ?>" data-action="share/whatsapp/share"></a>
 										</li>
 										<?php } ?>
 										<?php if(ampforwp_get_setting('enable-single-line-share') == true)  {
