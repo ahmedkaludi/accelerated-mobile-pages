@@ -4498,6 +4498,25 @@ $single_page_options = array(
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
+                    'id'    => 'swift-featued-image-size',
+                    'class' => 'child_opt child_opt_arrow',
+                    'type'  => 'select',
+                    'title'    => esc_html__('Size', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'     => esc_html__('Select Featured Image Size','accelerated-mobile-pages'),
+                    'options'  => array(
+                        'thumbnail' => 'Thumbnail',
+                        'medium' => 'Medium',
+                        'medium_large' => 'Medium Large',
+                        'large' => 'Large',
+                        'full' => 'Full',
+                    ),
+                    'default'  => 'full',
+                    'required' => array( 
+                                        array('amp-design-selector', '=' , '4'),
+                                        array('swift-featued-image', '=' , '1'),
+                                    ),
+            ),
+            array(
                     'id'    => 'swift-date',
                     'type'  => 'switch',
                     'title' => esc_html__('Published Date', 'accelerated-mobile-pages'),
