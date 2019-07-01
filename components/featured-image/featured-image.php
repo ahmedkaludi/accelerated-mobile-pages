@@ -7,6 +7,7 @@ function ampforwp_framework_get_featured_image(){
 	$amp_html 		= "";
 	$caption 		= "";
 	$f_vid 			= "";
+	$srcet 			= '';
 	if( ampforwp_is_front_page() ){
 		$post_id = ampforwp_get_frontpage_id();
 	}
@@ -33,6 +34,10 @@ function ampforwp_framework_get_featured_image(){
 			$image = wp_get_attachment_image_src( $thumb_id, $image_size );  
 			$caption = get_the_post_thumbnail_caption( $post_id ); 
 			$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
+			$thumbnail_srcset  = wp_get_attachment_image_srcset( $thumb_id, 'large');
+			if ( $thumbnail_srcset ) {
+				$srcet = "srcset='$thumbnail_srcset'";
+			}
 			if($thumb_alt){
 				$alt = $thumb_alt;
 			}
@@ -47,7 +52,7 @@ function ampforwp_framework_get_featured_image(){
 				if(empty($image[2])){
 				$image[2] = 600;
 				}			
-				$amp_html = "<amp-img src='$image[0]' width='$image[1]' height='$image[2]' layout='responsive' alt='$alt'></amp-img>";
+				$amp_html = "<amp-img src='$image[0]' $srcet width='$image[1]' height='$image[2]' layout=responsive alt='$alt'></amp-img>";
 			}
 		}
 		elseif ( ampforwp_is_custom_field_featured_image() ) {
