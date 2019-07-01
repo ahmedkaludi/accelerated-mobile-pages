@@ -45,6 +45,7 @@ function amp_content_pagebuilder_title_callback( $post ){
 	global $post;
 	$amp_current_post_id = $post->ID;
 	$content 		= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
+	$content 		= html_entity_decode($content);
 	$amp_post_metas = json_decode(get_post_meta( $amp_current_post_id,'ampforwp-post-metas',true), true );
 	
 	//previous data stored compatible

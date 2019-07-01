@@ -33,6 +33,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
         $amp_custom_post_content_check = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
       }
       $amp_custom_post_content_input = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor', true);
+      $amp_custom_post_content_input = html_entity_decode($amp_custom_post_content_input);
 
       	if ( empty( $amp_custom_post_content_input ) ) {
             $data['ampforwp_amp_content'] = false;
@@ -146,7 +147,8 @@ function amp_content_editor_title_callback( $post ) {
 
   wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
   $ampforwp_metas = json_decode(get_post_meta($amp_current_post_id,'ampforwp-post-metas',true),true);
-  $custom_amp_editor = get_post_meta($amp_current_post_id,'ampforwp_custom_content_editor',true);
+  $custom_amp_editor  = get_post_meta($amp_current_post_id,'ampforwp_custom_content_editor',true);
+  $custom_amp_editor  = html_entity_decode($custom_amp_editor);
   $amp_content_on_off = $ampforwp_metas['ampforwp_custom_content_editor_checkbox']; 
   $amp_content_on_off = esc_attr($amp_content_on_off);
  // $amp_content_on_off = '';
@@ -187,19 +189,19 @@ function amp_content_editor_meta_save( $post_id ) {
     //if there is data to be saved to DB
     // Save data of Custom AMP Editor
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {
-      update_post_meta($post_id, 'ampforwp_custom_content_editor', $_POST['ampforwp_custom_content_editor'] );
+      update_post_meta($post_id, 'ampforwp_custom_content_editor', sanitize_textarea_field( htmlentities($_POST[ 'ampforwp_custom_content_editor' ])) );
     }
     // Save data of Custom AMP Editor CheckBox
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) { 
       $ampforwp_metas['ampforwp_custom_content_editor_checkbox'] = null;      
       if ( isset($_POST['ampforwp_custom_content_editor_checkbox']) ) {
-        $ampforwp_metas['ampforwp_custom_content_editor_checkbox'] = $_POST[ 'ampforwp_custom_content_editor_checkbox' ];
+        $ampforwp_metas['ampforwp_custom_content_editor_checkbox'] = sanitize_text_field($_POST[ 'ampforwp_custom_content_editor_checkbox' ]);
       }
       update_post_meta($post_id, 'ampforwp-post-metas', json_encode($ampforwp_metas) );
     }
     // Save data of Sidebar Select
     if ( isset( $_POST['ampforwp_custom_sidebar_select'] ) ) {
-        update_post_meta($post_id, 'ampforwp_custom_sidebar_select', $_POST[ 'ampforwp_custom_sidebar_select' ] );
+        update_post_meta($post_id, 'ampforwp_custom_sidebar_select', sanitize_text_field($_POST['ampforwp_custom_sidebar_select'] ) );
     }
 }
 add_action ( 'save_post' , 'amp_content_editor_meta_save' );

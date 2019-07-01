@@ -20,7 +20,7 @@ function amppb_save_post( $post_id, $post ){
     $ampforwp_metas = json_decode(get_post_meta($post_id,'ampforwp-post-metas',true),true);
     /* == Save, Delete, or Update Page Builder Data == */
     
-    $ampforwp_metas['ampforwp_page_builder_enable'] = isset( $_POST['ampforwp_page_builder_enable'] ) ?  $_POST['ampforwp_page_builder_enable']  : null;
+    $ampforwp_metas['ampforwp_page_builder_enable'] = isset( $_POST['ampforwp_page_builder_enable'] ) ?  sanitize_text_field($_POST['ampforwp_page_builder_enable'])  : null;
     update_post_meta($post_id,'ampforwp-post-metas', json_encode($ampforwp_metas));
     
     /* Get (old) saved page builder data */

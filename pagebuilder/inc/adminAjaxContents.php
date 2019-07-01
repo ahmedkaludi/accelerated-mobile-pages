@@ -13,7 +13,7 @@ add_action("wp_ajax_enable_amp_pagebuilder", "enable_amp_pagebuilder");
 function enable_amp_pagebuilder(){
 	$ampforwp_metas = array();
 	if(isset($_POST['postId'])){
-		$postId = $_POST['postId'];
+		$postId = (int) $_POST['postId'];
 	}else{
 		echo json_encode(array('status'=>"500", 'Message'=>"post id not found"));
 	}

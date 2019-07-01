@@ -1209,6 +1209,7 @@ function ampforwp_vendor_is_amp_endpoint(){
 add_action( 'init', 'ampforwp_afterdomain_endpoint');
 if ( ! function_exists('ampforwp_afterdomain_endpoint') ) {
 	function ampforwp_afterdomain_endpoint(){
+
 		if( ampforwp_get_setting('ampforwp-url-format') && 'afterdomain' == ampforwp_get_setting('ampforwp-domain-endpoint') ) {
 			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-afterdomain.php';
 			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-afterdomain-rewrite-rules.php';
