@@ -5323,16 +5323,25 @@ $single_page_options = array(
               'required' => array('amp-design-selector' , '=' , '4')
            ),
           // Social Sticky Icons ON/OFF
-          array(
+            array(
               'id'        => 'enable-single-social-icons',
-              'type'     => 'select',
+              'type'     => 'switch',
+              'default'  =>  '1',
               'title'     => esc_html__('Sticky Social Icons', 'accelerated-mobile-pages'),
-                'options'  => array(
-                    'sticky-btm-icons'    => 'Sticky Icons at Bottom',
-                    'sticky-top-icons'     => 'Stcky Icons at Top'
+            ),
+                array(
+                    'class' => 'child_opt child_opt_arrow', 
+                    'id'       => 'ampforwp-sticky-icons-type',
+                    'type'     => 'select',
+                    'tooltip-subtitle'     => esc_html__('Select option to enable Sticky Icons at Top or Bottom','accelerated-mobile-pages'),
+                    'title'    => esc_html__('Sticky Icons Position', 'accelerated-mobile-pages'),
+                    'options'  => array(
+                                    'sticky-btm-icons'    => 'Sticky Icons at Bottom',
+                                    'sticky-top-icons'     => 'Sticky Icons at Top'
+                                ),
+                    'default'  => 'sticky-btm-icons',
+                    'required' => array('enable-single-social-icons' , '=' , 1),
                 ),
-                'default'  => 'sticky-btm-icons',
-          ),
           // Excerpt ON/OFF
           array(
               'id'        => 'enable-excerpt-single',

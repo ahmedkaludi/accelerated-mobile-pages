@@ -1818,26 +1818,28 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 }
 <?php } ?>
+<?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;
-<?php if ( ampforwp_get_setting('enable-single-social-icons') == 'sticky-btm-icons' ){ ?>
+<?php if ( ampforwp_get_setting('ampforwp-sticky-icons-type') == 'sticky-btm-icons' ){ ?>
  bottom: 0;
 <?php } 
-if ( ampforwp_get_setting('enable-single-social-icons') == 'sticky-top-icons' ){ ?>
+if ( ampforwp_get_setting('ampforwp-sticky-icons-type') == 'sticky-top-icons' ){ ?>
  top:0;
 <?php } ?>
 text-align: center;border: 0;z-index:9;}
 .s_stk ul{width:100%;display:inline-flex;}
 .s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:40px}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
-<?php } 
+<?php } //Sticky CSS Condition ends
+	}
  } // AMP Woocommerce condition ends ?>
 <?php } // levelup condition ends ?>
-<?php if(is_single() && ampforwp_get_setting('enable-single-social-icons') == 'sticky-btm-icons' ){?>
+<?php if(is_single() && ampforwp_get_setting('ampforwp-sticky-icons-type') == 'sticky-btm-icons' ){?>
 .body.single-post{
   padding-bottom:40px;
 }
 <?php } ?>
-<?php if(is_single() && ampforwp_get_setting('enable-single-social-icons') == 'sticky-top-icons' ){?>
+<?php if(is_single() && ampforwp_get_setting('ampforwp-sticky-icons-type') == 'sticky-top-icons' ){?>
 .body.single-post{
   padding-top:40px;
 }
