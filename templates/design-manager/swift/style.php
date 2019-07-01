@@ -739,11 +739,6 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .related_posts .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
 .related_posts .related_link p{color: #444;font-size: 13px;line-height: 20px;letter-spacing: 0.10px;}
 <?php } ?>
-<?php if(is_single() && $redux_builder_amp['enable-single-social-icons'] ){?>
-	.body.single-post{
-	  padding-bottom:40px;
-	}
-<?php } ?>
 <?php if( true == ampforwp_get_setting('amp-author-description') ) {?>
 .sp-rt .amp-author {padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
 .sp-rt .amp-author-image{float:left;}
@@ -1819,16 +1814,28 @@ if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
 <?php } ?>
 }
 <?php } ?>
-.s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;bottom: 0;text-align: center;border: 0;}
+.s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;
+<?php if ( ampforwp_get_setting('enable-single-social-icons') == 'sticky-btm-icons' ){ ?>
+ bottom: 0;
+<?php } 
+if ( ampforwp_get_setting('enable-single-social-icons') == 'sticky-top-icons' ){ ?>
+ top:0;
+<?php } ?>
+text-align: center;border: 0;z-index:9;}
 .s_stk ul{width:100%;display:inline-flex;}
-.s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:35px}
+.s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:40px}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
 <?php } 
  } // AMP Woocommerce condition ends ?>
 <?php } // levelup condition ends ?>
-<?php if(is_single() && $redux_builder_amp['enable-single-social-icons'] ){?>
+<?php if(is_single() && ampforwp_get_setting('enable-single-social-icons') == 'sticky-btm-icons' ){?>
 .body.single-post{
   padding-bottom:40px;
+}
+<?php } ?>
+<?php if(is_single() && ampforwp_get_setting('enable-single-social-icons') == 'sticky-top-icons' ){?>
+.body.single-post{
+  padding-top:40px;
 }
 <?php } ?>
 <?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>

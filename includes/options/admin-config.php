@@ -5326,9 +5326,13 @@ $single_page_options = array(
           // Social Sticky Icons ON/OFF
           array(
               'id'        => 'enable-single-social-icons',
-              'type'      => 'switch',
-              'title'     => __('Sticky Social Icons', 'accelerated-mobile-pages'),
-              'default'   => 1,
+              'type'     => 'select',
+              'title'     => esc_html__('Sticky Social Icons', 'accelerated-mobile-pages'),
+                'options'  => array(
+                    'sticky-btm-icons'    => 'Sticky Icons at Bottom',
+                    'sticky-top-icons'     => 'Stcky Icons at Top'
+                ),
+                'default'  => 'sticky-btm-icons',
           ),
           // Excerpt ON/OFF
           array(
