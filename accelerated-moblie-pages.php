@@ -800,20 +800,23 @@ if(is_admin()){
 $enablePb = false;
 if(is_admin()){
 	global $pagenow;
-	if( ('post.php' || 'post-new.php') == $pagenow ) {
-		$enablePb = true;
-	}
-}else{
-	$enablePb = true;
-}
-	if(is_admin() && is_multisite()){
+	if( is_multisite() ){
 		$current_url = $_SERVER['REQUEST_URI'];
 		$post_old = preg_match('/post\.php/', $current_url);
 		$post_new = preg_match('/post-new\.php/', $current_url);
 			if($post_old || $post_new){ 
 				$enablePb = true;
 			}
+	}elseif( ('post.php' || 'post-new.php') == $pagenow ) {
+		$enablePb = true;
 	}
+	if (defined('DOING_AJAX') && DOING_AJAX) {
+		$enablePb = true;
+	}
+	
+}else{
+	$enablePb = true;
+}
 if ($enablePb && ampforwp_get_setting('ampforwp-pagebuilder')== true ){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
 }
