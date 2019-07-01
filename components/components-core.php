@@ -41,11 +41,11 @@ function ampforwp_loadComponents($componentName){
 	if(empty($componentName)) return '';
 	$componentName = str_replace("AMP-", "", $componentName);
 
-	$file = AMP_FRAMEWORK_COMOPNENT_DIR_PATH.'/'.$componentName.'/'.$componentName.".php";
+	$file = AMP_FRAMEWORK_COMOPNENT_DIR_PATH.'/'.esc_attr($componentName).'/'.esc_attr($componentName).".php";
 	if(!file_exists($file)){
 		return '';
 	}
-	include_once($file);
+	include_once( esc_url($file));
 }
 
 // Icons
