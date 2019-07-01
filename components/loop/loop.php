@@ -294,7 +294,7 @@ function amp_loop_title($data=array()){
 		$tag = $data['tag'];
 	}
 	// if $data is in key & value pair
-	$data_val = '';
+	$data_val = $data_attr = '';
 	foreach ($data as $key => $value) {
 		$data_attr .= $key;
 		if( $key != 'attributes' && $key != 'tag' ){
@@ -306,7 +306,7 @@ function amp_loop_title($data=array()){
 	}
 	// if $data key is attributes & tag
 	$attr_val ='';
-	if( false !== strpos($data_attr,'attributes') || empty($data_attr) ){
+	if( (isset($data_attr) && false !== strpos($data_attr,'attributes')) || empty($data_attr) ){
 		$attributes = 'class="loop-title"';
 		if(isset($data['attributes']) && $data['attributes']!=""){
 			$attributes = $data['attributes'];
