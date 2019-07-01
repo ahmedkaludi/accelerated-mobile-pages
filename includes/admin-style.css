@@ -650,7 +650,26 @@ visibility: hidden;
 #info-ampforwp-beta-mode-notice{color: #263238; margin: 20px; background: #FFF9C4;border-color: #908204;}
 
 .redux-container #redux-intro-text .dashicons-admin-generic:before, .activated-plugins { color: #666 }
-
+#section-table-amp-beta-testing, .beta-tester-text, #redux_builder_amp-amp-beta-link{
+    position:relative;
+}
+.beta-tester-text td{
+    border-bottom: 1px solid #e5e5e5;
+}
+#section-table-amp-beta-testing .fold{
+    position: absolute;
+    left: 38%;
+    top: 0px;
+}
+#section-table-amp-beta-testing .fold .redux_field_th a{
+    margin:0px;
+}
+#section-table-amp-beta-testing .fold .redux_field_th{
+    padding:18px 0px 23px 0px;
+}
+#section-table-amp-beta-testing .beta-tester-text .redux_field_th span.description{
+    padding:0;
+}
 /*** RTL CSS ***/
 .rtl .redux_field_th span:first-child {
     right: auto;

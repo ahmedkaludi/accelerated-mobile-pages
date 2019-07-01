@@ -2449,7 +2449,6 @@ Redux::setSection( $opt_name, array(
                         ),
                        array(
                         'id'       => 'ampforwp-beta-testing',
-                        'class' => 'child_opt',
                         'type'     => 'raw',
                         'title'    =>  sprintf(
                                         '<a href="%s" target="_blank" class="button">%s</a>',
