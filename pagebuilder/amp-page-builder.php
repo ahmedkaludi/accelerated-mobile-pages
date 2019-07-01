@@ -43,7 +43,8 @@ function amp_content_pagebuilder_title_callback( $post ){
     }
 	global $post;
 	$amp_current_post_id = $post->ID;
-	$content 		= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
+	$content 	= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
+	$content 	= html_entity_decode($content);
 	
 	//previous data stored compatible
 	if(get_post_meta($amp_current_post_id ,'use_ampforwp_page_builder',true)==null && 
