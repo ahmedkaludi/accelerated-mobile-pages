@@ -45,7 +45,7 @@ function ampforwp_loadComponents($componentName){
 	if(!file_exists($file)){
 		return '';
 	}
-	include_once( esc_url($file));
+	include_once( esc_attr($file));
 }
 
 // Icons
