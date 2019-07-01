@@ -923,24 +923,49 @@ function ampforwp_get_all_post_types(){
     if( ampforwp_get_setting('amp-on-off-for-all-pages') ){
     	$post_types['page'] = 'page';
     }
+
     if( ampforwp_get_setting('ampforwp-archive-support') && ampforwp_get_setting('ampforwp-archive-support-cat') ){
     	$post_types['category'] = 'category';
     }
-    if( ampforwp_get_setting('ampforwp-archive-support-custom-tax') == true ){
-    	if( ampforwp_get_setting('ampforwp-archive-support-custom-tax-cat') == true){
-    		$post_types['product_cat'] = 'product_cat';
-    	}
-    	if( ampforwp_get_setting('ampforwp-archive-support-custom-tax-tag') == true){
-    		$post_types['product_tag'] = 'product_tag';
-    	}
-    }
-   if ( ampforwp_get_setting('ampforwp-custom-type')) {
-        foreach (ampforwp_get_setting('ampforwp-custom-type') as $key) {
-            $selected_post_types[$key] = $key;
+    if( ampforwp_get_setting('ampforwp-custom-type') ){
+        if( !empty(ampforwp_get_setting('ampforwp-custom-type')) ){
+        	if( ampforwp_get_setting('ampforwp-archive-support-custom-tax') == true ){
+	        	foreach ( ampforwp_get_setting('ampforwp-custom-type') as $custom_post ){
+		        	$taxonomies = get_object_taxonomies($custom_post, 'objects');	        
+					foreach($taxonomies as $terms){
+						$taxonomy_name = $terms->name;
+						$rewrite_slug = $terms->rewrite['slug'];
+						if( ampforwp_get_setting('ampforwp-archive-support-custom-tax-cat') == true){
+							if( is_taxonomy_hierarchical( $taxonomy_name )){
+								if( isset($terms->name) && !empty($terms->name)){
+									$post_types[$terms->name] = $terms->name;
+								}
+							}
+						}
+						if( ampforwp_get_setting('ampforwp-archive-support-custom-tax-tag') == true){
+							if(!is_taxonomy_hierarchical( $taxonomy_name)){
+								if( isset($terms->name) && !empty($terms->name)){
+									$post_types[$terms->name] = $terms->name;
+								}
+							}
+						}
+						
+					}
+		        }
+		        
+	    	}
         }
-        $post_types = array_merge($post_types, $selected_post_types);
+	}
+    
+   	if ( ampforwp_get_setting('ampforwp-custom-type')) {
+   		if( !empty(ampforwp_get_setting('ampforwp-custom-type')) ){
+	        foreach (ampforwp_get_setting('ampforwp-custom-type') as $key) {
+	            $selected_post_types[$key] = $key;
+	        }
+	        $post_types = array_merge($post_types, $selected_post_types);
+    	}
     }
-
+    
     return $post_types;
 }
 
