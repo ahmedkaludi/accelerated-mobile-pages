@@ -1,5 +1,5 @@
 <?php
-add_filter( 'post_gallery', 'ampforwp_gallery_shortcode_markup_modify', 10, 3 );
+
 add_filter( 'fbia_content', 'ampforwp_ia_modify_gutenburg_gallery');
 add_filter( 'fbia_content', 'headlines');
 add_filter( 'fbia_content', 'filter_dom');
@@ -18,6 +18,7 @@ if(class_exists("DOMDocument")){
 	add_filter( 'fbia_content_dom','ampforwp_fbia_video_element');
 	// // Embeds sanitizer
 	add_filter( 'fbia_content_dom','ampforwp_fbia_wrap_embed_elements');
+	add_filter( 'post_gallery', 'ampforwp_gallery_shortcode_markup_modify', 10, 3 );
 }
 
 function headlines($content){
@@ -210,7 +211,13 @@ function validate_images($DOMDocument){
 
 			if($element->parentNode->nodeName == "figure"){
 				// This element is already wrapped in a figure tag, we only need to make sure it's placed right
-				$element = $element->parentNode;				
+				$element = $element->parentNode;
+				if ( ampforwp_get_setting('fb-instant-feedback') ) {
+					$element->setAttribute( 'data-feedback', 'fb:likes, fb:comments' );
+				}
+				if ( 'figure' == $element->parentNode->nodeName && 'op-slideshow' == $element->parentNode->getAttribute('class') ) {
+					return $DOMDocument;
+				}
 			} else {
 				// Wrap this image into a figure tag
 				$figure = $DOMDocument->createElement('figure');
@@ -219,20 +226,14 @@ function validate_images($DOMDocument){
 				// Let's continue working with the figure tag
 				$element = $figure;
 			}
-			if ( ampforwp_get_setting('fb-instant-feedback') ) {
-				$element->setAttribute( 'data-feedback', 'fb:likes, fb:comments' );
-			}
 			if($element->parentNode->nodeName != "body"){
 				// Let's find the highest container if it does not reside in the body already
 				$highestParent = $element->parentNode;
-
-				while($highestParent->parentNode->nodeName != "body"){
+				while($highestParent->parentNode->nodeName != "body" ){
 					$highestParent = $highestParent->parentNode;
 				}
 				// Insert the figure tag before the highest parent which is not the body tag
-				if($highestParent->parentNode->nodeName == 'figure'){
-					$highestParent->parentNode->insertBefore($element, $highestParent);	
-				}
+				$highestParent->parentNode->insertBefore($element, $highestParent);	
 				
 			}
 		}
