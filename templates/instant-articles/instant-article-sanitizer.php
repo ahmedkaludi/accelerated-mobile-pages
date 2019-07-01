@@ -1,7 +1,8 @@
 <?php
+add_filter( 'post_gallery', 'ampforwp_gallery_shortcode_markup_modify', 10, 3 );
 add_filter( 'fbia_content', 'ampforwp_ia_modify_gutenburg_gallery');
 add_filter( 'fbia_content', 'headlines');
-//add_filter( 'fbia_content', 'filter_dom');
+add_filter( 'fbia_content', 'filter_dom');
 add_filter( 'fbia_content', 'address_tag');
 
 // DOM Document Filter
@@ -17,11 +18,7 @@ if(class_exists("DOMDocument")){
 	add_filter( 'fbia_content_dom','ampforwp_fbia_video_element');
 	// // Embeds sanitizer
 	add_filter( 'fbia_content_dom','ampforwp_fbia_wrap_embed_elements');
-
-	//Modify the post gallery content as per the Facebook instant articles rules
-	
 }
-add_filter( 'post_gallery', 'ampforwp_gallery_shortcode_markup_modify', 10, 3 );
 
 function headlines($content){
 		// Replace h3, h4, h5, h6 with h2
@@ -74,7 +71,6 @@ function ampforwp_ia_modify_gutenburg_gallery($content){
 }
 
 function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
-	
 	global $wp;
 	$post = get_post(ampforwp_get_the_ID());
 	if ( is_feed() && isset($wp->query_vars['feed']) && 'instant_articles' == $wp->query_vars['feed'] ) {
@@ -232,10 +228,12 @@ function validate_images($DOMDocument){
 
 				while($highestParent->parentNode->nodeName != "body"){
 					$highestParent = $highestParent->parentNode;
-					// Insert the figure tag before the highest parent which is not the body tag
-					$highestParent->parentNode->insertBefore($element, $highestParent);
 				}
-
+				// Insert the figure tag before the highest parent which is not the body tag
+				if($highestParent->parentNode->nodeName == 'figure'){
+					$highestParent->parentNode->insertBefore($element, $highestParent);	
+				}
+				
 			}
 		}
 
