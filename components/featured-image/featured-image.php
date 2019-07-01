@@ -37,7 +37,7 @@ function ampforwp_framework_get_featured_image(){
 			$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
 			$thumbnail_srcset  = wp_get_attachment_image_srcset( $thumb_id, $image_size);
 			if ( $thumbnail_srcset && 'full' == ampforwp_get_setting('swift-featued-image-size') ) {
-				$srcet = "srcset='$thumbnail_srcset'";
+				$srcet = $thumbnail_srcset;
 			}
 			if($thumb_alt){
 				$alt = $thumb_alt;
@@ -48,12 +48,15 @@ function ampforwp_framework_get_featured_image(){
 			$alt = esc_attr($alt);
 			if( $image ){
 				if(empty($image[1])){
-				$image[1] = 1000;
+					$image[1] = 1000;
 				}
 				if(empty($image[2])){
-				$image[2] = 600;
+					$image[2] = 600;
 				}
-				$amp_html = "<amp-img src='$image[0]' $srcet width='$image[1]' height='$image[2]' layout='responsive' alt='$alt'></amp-img>";
+				if ( empty($srcet) ) {
+					$srcet = $image[0];
+				}
+				$amp_html = "<amp-img src='".esc_url($image[0])."' srcset='".esc_html($srcet)."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout=responsive alt='".esc_attr($alt)."'></amp-img>";
 			}
 		}
 		elseif ( ampforwp_is_custom_field_featured_image() ) {
