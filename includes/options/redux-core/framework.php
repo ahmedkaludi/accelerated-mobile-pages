@@ -3236,8 +3236,16 @@
                     $addClass = ''; $style="";
                     $current_screen = get_current_screen(); 
                     if(is_object($current_screen) && $current_screen->parent_base=='amp_options'){
-                        $enabledOptions = array('automatic-amp-features','basic', 'design', 'opt-go-premium','opt-choose','ampforwp-theme-subsection');
+                        $enabledOptions = array(
+                            esc_html__('automatic-amp-features','accelerated-mobile-pages'),
+                            esc_html__('basic','accelerated-mobile-pages'),
+                            esc_html__('Design','accelerated-mobile-pages'),
+                            esc_html__('opt-go-premium','accelerated-mobile-pages'),
+                            esc_html__('opt-choose','accelerated-mobile-pages'),
+                            esc_html__('ampforwp-theme-subsection','accelerated-mobile-pages')); 
                         $enabledOptions = apply_filters('ampforwp_enabled_setting_options', $enabledOptions);
+                        $enabledOptions = array_map('remove_accents', $enabledOptions);
+                        $enabledOptions = array_map('strtolower', $enabledOptions);
                         if(!in_array($section['id'], $enabledOptions)){
                             $addClass = 'otherSectionFields';
                             $style="style='display:none;'";
