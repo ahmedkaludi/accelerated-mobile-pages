@@ -36,7 +36,7 @@ function ampforwp_framework_get_featured_image(){
 			$caption = get_the_post_thumbnail_caption( $post_id ); 
 			$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
 			$thumbnail_srcset  = wp_get_attachment_image_srcset( $thumb_id, $image_size);
-			if ( $thumbnail_srcset ) {
+			if ( $thumbnail_srcset && 'full' == ampforwp_get_setting('swift-featued-image-size') ) {
 				$srcet = "srcset='$thumbnail_srcset'";
 			}
 			if($thumb_alt){
