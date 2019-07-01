@@ -53,7 +53,7 @@ function ampforwp_load_pb_components($componentName){
 	if(!file_exists($file)){
 		return '';
 	}
-	include_once( esc_url($file));
+	include_once( esc_attr($file));
 }
 
 // Icons
