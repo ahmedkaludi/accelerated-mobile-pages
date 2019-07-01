@@ -120,13 +120,17 @@ if(!class_exists('Aq_Resize')) {
                     $dir_baseurl    = explode('/', $dir_baseurl);
                     $dir_name       = end($dir_baseurl); 
                     $cdn_url        = explode($dir_name, $cdn_url);
-                    
+                    if ( ! isset($cdn_url[1]) ) {
+                       $cdn_url = array();
+                       $cdn_url[1] = '';
+                    }
                     $hybid_url = $upload_url . $cdn_url[1];
                     // this will append crop path in the url to generate the image locally 
                     $url = $hybid_url;
                 }
                 // Define path of image.
                 $rel_path = str_replace( $upload_url, '', $url );
+                $img_path = '';
                 if($rel_path){
                     $img_path = $upload_dir . $rel_path;
                 }
