@@ -2586,6 +2586,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'ampforwp-url-format',
                         'type'     => 'switch',
                         'title'    => esc_html__('AMP URL Format', 'accelerated-mobile-pages'),
+                        'desc'     => sprintf('<strong>%s <a href="https://ampforwp.com/flush-rewrite-urls/"> %s </a> %s </br></strong>',esc_html__('Re-Save permalink when you enable this option, please have a look','accelerated-mobile-pages'),esc_html__('here','accelerated-mobile-pages'),esc_html__('on how to do it','accelerated-mobile-pages')),
                         'tooltip-subtitle' => esc_html__('select URL format','accelerated-mobile-pages'),
                         'default' => 0,
                     ),

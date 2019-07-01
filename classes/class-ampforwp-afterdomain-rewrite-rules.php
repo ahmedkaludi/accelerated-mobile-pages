@@ -74,9 +74,8 @@ class AmpforWP_Rewrite_Rules {
 	 * @since 1.0.0
 	 */
 	public static function add_rewrite_rules_hooks() {
-
-		$this->append_post_type_archive_rules();
-		$this->register_generator_hooks();
+		self::append_post_type_archive_rules();
+    	self::register_generator_hooks();
 	}
 
 	/**
