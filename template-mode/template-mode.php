@@ -25,6 +25,10 @@ Class AMPforWP_theme_mode{
 		    add_filter( "the_author_description", array($this, 'author_meta_desctiption_amp'),10, 2 );
 		    add_filter("ampforwp_the_content_last_filter",  array($this, "comment_form_conversion") );
 		    add_filter("amp_post_template_data", array($this, 'amp_comment_mustache_script') );
+		    //Remove admin bar
+		    show_admin_bar(false);
+		    add_filter('style_loader_tag', array($this, 'amp_mode_remove_type_attr'), 10, 2);
+			add_filter('script_loader_tag', array($this,'amp_mode_remove_type_attr'), 10, 2);
 		    
 		}else{
 			require_once AMPFORWP_PLUGIN_DIR.'/template-mode/admin-settings.php';
@@ -33,6 +37,11 @@ Class AMPforWP_theme_mode{
 		add_action( 'wp_ajax_amp_theme_ajaxcomments',  array($this, 'amp_theme_ajaxcomments') ); 
 		add_action( 'wp_ajax_nopriv_amp_theme_ajaxcomments',  array($this, 'amp_theme_ajaxcomments') ); 
 	}
+
+	function amp_mode_remove_type_attr($tag, $handle) {
+		return preg_replace( "/type=['\"]text/(javascript|css)['\"]/", '', $tag );
+	}
+
 	static function removeUnusedMenuWidgets(){
 		unregister_nav_menu( 'amp-menu' );
 		unregister_nav_menu( 'amp-footer-menu' );
