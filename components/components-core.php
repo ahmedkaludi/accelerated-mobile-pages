@@ -36,23 +36,24 @@ function add_amp_theme_support($componentName){
 	if($supportComponent){
 		if(in_array($componentName, $supportComponent)){
 			$loadComponent[$componentName] = true;
-			loadComponents($componentName);
+			ampforwp_load_pb_components($componentName);
 			return true;
 		}
 	}
 	return false;
 }
 //Include the Component file
-function loadComponents($componentName){
+function ampforwp_load_pb_components($componentName){
 	global $wpdb;
 	if(empty($componentName)) return '';
 	$componentName = str_replace("AMP-", "", $componentName);
 
-	$file = AMP_FRAMEWORK_COMOPNENT_DIR_PATH.'/'.$componentName.'/'.$componentName.".php";
+	$file = AMP_FRAMEWORK_COMOPNENT_DIR_PATH.'/'.esc_attr($componentName).'/'.esc_attr($componentName).".php";
+
 	if(!file_exists($file)){
 		return '';
 	}
-	include_once($file);
+	include_once( esc_url($file));
 }
 
 // Icons
