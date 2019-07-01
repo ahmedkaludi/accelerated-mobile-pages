@@ -110,7 +110,8 @@ if(!class_exists('Aq_Resize')) {
                     $dir_name       = end($dir_baseurl); 
                     $cdn_url        = explode($dir_name, $cdn_url);
                     if ( ! isset($cdn_url[1]) ) {
-                       $cdn_url[1] = null;
+                       $cdn_url = array();
+                       $cdn_url[1] = '';
                     }
                     $hybid_url = $upload_url . $cdn_url[1];
                     // this will append crop path in the url to generate the image locally 
