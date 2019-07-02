@@ -283,10 +283,10 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 /*New Syles*/
 <?php } ?>
 <?php //primary menu
-$pmenu_bg_clr           = ampforwp_get_setting('primary-menu-background-scheme','color');
-$pmenu_text_clr			= ampforwp_get_setting('primary-menu-text-scheme','color');
+$pmenu_bg_clr           = ampforwp_get_setting('primary-menu-background-scheme','rgba');
+$pmenu_text_clr			= ampforwp_get_setting('primary-menu-text-scheme','rgba');
 if( ampforwp_get_setting ('primary-menu') ){?>
-.p-m-fl{width:100%;border-bottom: 1px solid rgba(0, 0, 0, 0.05);background:<?php echo ampforwp_sanitize_color($pmenu_bg_clr); ?>}
+.p-m-fl{width:100%;border-bottom: 1px solid rgba(0, 0, 0, 0.05);background:<?php echo ampforwp_sanitize_color($pmenu_bg_clr); ?>;}
 .p-menu{width:100%;text-align:center;margin: 0px auto;
 	padding: <?php echo ' 0px ' .' '.esc_html(ampforwp_get_setting('primary-menu-padding-control')['padding-right']) .' 0px '.esc_html(ampforwp_get_setting('primary-menu-padding-control')['padding-left']) ; ?>;}
 .p-menu ul li{display: inline-block;margin-right: 21px;font-size: 12px;line-height: 20px;letter-spacing: 1px;font-weight: 400;position:relative;}
@@ -324,7 +324,10 @@ if( ampforwp_get_setting ('primary-menu') ){?>
 		.p-menu .amp-menu li ul li ul {left: 0px;top: 0;position: relative;box-shadow: none;border-top: 1px solid #ccc;padding: 0 0 0 10px;margin: 5px 0px 5px 0px;border-bottom: 1px solid #ccc;}
 	}
 	<?php } else { ?>
-	.p-menu{white-space: nowrap;overflow:scroll;}
+	.p-menu{white-space: nowrap;}
+		@media(max-width:768px){
+			.p-menu{over-flow:hidden;}
+		}
 <?php } // Dropdown CSS Ends
   } // Primary CSS Ends 
 } // Levelup condition ends ?>

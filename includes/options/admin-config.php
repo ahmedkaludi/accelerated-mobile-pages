@@ -4119,7 +4119,7 @@ Redux::setSection( $opt_name, array(
                 'title'     => __('Alt Menu Background', 'accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'rgba'  => 'rgb(239, 239, 239)',
+                    'rgba'  => 'rgba(239, 239, 239,1)',
                     ),
                     'required' => array(
                       array('primary-menu','=',1)
