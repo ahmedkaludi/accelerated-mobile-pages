@@ -1565,8 +1565,6 @@ else{ // Default Footer CSS ?>
 .footer{margin-top: 40px;}
 <?php } ?>
 <?php } ?>
-<?php //AMP Woocommerce condition starts
-if( !ampforwp_woocommerce_conditional_check() ) { ?>
 <?php
  //Sticky Social Icons
 if(is_single() || is_page() ) { ?>
@@ -1832,7 +1830,7 @@ text-align: center;border: 0;z-index:9;}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
 <?php } //Sticky CSS Condition ends
 	}
- } // AMP Woocommerce condition ends ?>
+ ?>
 <?php } // levelup condition ends ?>
 <?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
 <?php if(is_single() && ampforwp_get_setting('ampforwp-sticky-icons-type') == 'sticky-btm-icons' ){?>
