@@ -55,7 +55,7 @@ function amppb_save_layout_data(){
 
 	$allPostLayout = array();
 	$args = array(
-				'posts_per_page'   => -1,
+				'posts_per_page'   => 500,
 				'orderby'          => 'date',
 				'order'            => 'DESC',
 				'post_type'        => 'amppb_layout',
@@ -80,7 +80,7 @@ function amppb_remove_saved_layout_data(){
 	$is_delete = wp_delete_post($layoutid);
 	$allPostLayout = array();
 	$args = array(
-				'posts_per_page'   => -1,
+				'posts_per_page'   => 500,
 				'orderby'          => 'date',
 				'order'            => 'DESC',
 				'post_type'        => 'amppb_layout',
