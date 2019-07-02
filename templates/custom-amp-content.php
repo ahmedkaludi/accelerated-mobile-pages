@@ -180,21 +180,23 @@ function amp_content_editor_meta_save( $post_id ) {
     //if there is data to be saved to DB
     // Save data of Custom AMP Editor
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {
-      update_post_meta($post_id, 'ampforwp_custom_content_editor', sanitize_textarea_field( htmlentities($_POST[ 'ampforwp_custom_content_editor' ])) );
+      $ampforwp_custom_content_editor = sanitize_textarea_field( htmlentities($_POST[ 'ampforwp_custom_content_editor' ]));
+      update_post_meta($post_id, 'ampforwp_custom_content_editor',  $ampforwp_custom_content_editor);
     }
     // Save data of Custom AMP Editor CheckBox
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) { 
       $ampforwp_custom_editor_checkbox = null;      
       if ( isset($_POST['ampforwp_custom_content_editor_checkbox']) ) {
-        $ampforwp_custom_editor_checkbox = $_POST[ 'ampforwp_custom_content_editor_checkbox' ];
+        $ampforwp_custom_editor_checkbox = sanitize_text_field($_POST[ 'ampforwp_custom_content_editor_checkbox' ]);
       }
 
-      update_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', sanitize_text_field($ampforwp_custom_editor_checkbox) ); 
+      update_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', $ampforwp_custom_editor_checkbox ); 
     }
 
     // Save data of Sidebar Select
     if ( isset( $_POST['ampforwp_custom_sidebar_select'] ) ) {
-        update_post_meta($post_id, 'ampforwp_custom_sidebar_select', sanitize_text_field($_POST['ampforwp_custom_sidebar_select'] ) );
+      $ampforwp_custom_sidebar_select = sanitize_text_field($_POST['ampforwp_custom_sidebar_select'] );
+        update_post_meta($post_id, 'ampforwp_custom_sidebar_select', $ampforwp_custom_sidebar_select );
     }
 }
 add_action ( 'save_post' , 'amp_content_editor_meta_save' );

@@ -581,7 +581,7 @@
 
             public function save_network_page() {
 
-                $data = $this->_validate_options( $_POST[ $this->args['opt_name'] ] );
+                $data = $this->_validate_options( sanitize_text_field($_POST[ $this->args['opt_name'] ]) );
 
                 if ( ! empty ( $data ) ) {
                     $this->set_options( $data );
@@ -2843,7 +2843,7 @@
                     die();
                 }
 
-                $redux = ReduxFrameworkInstances::get_instance( $_POST['opt_name'] );
+                $redux = ReduxFrameworkInstances::get_instance( sanitize_text_field($_POST['opt_name']) );
 
                 if ( ! empty ( $_POST['data'] ) && ! empty ( $redux->args['opt_name'] ) ) {
 
@@ -2863,13 +2863,14 @@
                     //    }
                     //    unset($process);
                     //}
-                    $_POST['data'] = stripslashes( $_POST['data'] );
+
+                    $sanitized_data = esc_url_raw(stripslashes( $_POST['data'] ));
 
                     // Old method of saving, in case we need to go back! - kp
                     //parse_str( $_POST['data'], $values );
 
                     // New method to avoid input_var nonesense.  Thanks @harunbasic
-                    $values = $this->redux_parse_str( $_POST['data'] );
+                    $values = $this->redux_parse_str( $sanitized_data );
 
                     $values = $values[ $redux->args['opt_name'] ];
 
