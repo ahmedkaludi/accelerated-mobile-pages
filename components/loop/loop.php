@@ -334,7 +334,7 @@ function amp_loop_date($args=array()){
     						'ago');
     }
     $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
-    if( ampforwp_get_setting('ampforwp-post-date-switch') == true){
+    if( isset($redux_builder_amp['ampforwp-post-date-switch']) && $redux_builder_amp['ampforwp-post-date-switch'] == true){
     	echo '<div class="loop-date">'.$post_date.'</div>';
     }
 }
