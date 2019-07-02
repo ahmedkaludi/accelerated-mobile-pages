@@ -171,7 +171,7 @@
                 global $current_user;
 
                 // Get the notice id
-                $id = explode( '&', $_POST['id'] );
+                $id = explode( '&', sanitize_text_field($_POST['id']) );
                 $id = $id[0];
                 // Get the user id
                 $userid = $current_user->ID;

@@ -13,7 +13,7 @@ add_action("wp_ajax_enable_amp_pagebuilder", "enable_amp_pagebuilder");
 function enable_amp_pagebuilder(){
 	$ampforwp_metas = array();
 	if(isset($_POST['postId'])){
-		$postId = (int) $_POST['postId'];
+		$postId = intval($_POST['postId']);
 	}else{
 		echo json_encode(array('status'=>"500", 'Message'=>"post id not found"));
 	}
@@ -34,7 +34,7 @@ function amppb_export_layout_data(){
 	header( 'content-type: application/json' );
 	header( 'Content-Disposition: attachment; filename=layout-' . date( 'dmY' ) . '.json' );
 	
-	$export_data = wp_unslash( $_POST['export_layout_data'] );
+	$export_data = sanitize_textarea_field(wp_unslash( $_POST['export_layout_data'] ));
 	echo $export_data;
 	
 	wp_die();
@@ -55,7 +55,7 @@ function amppb_save_layout_data(){
 
 	$allPostLayout = array();
 	$args = array(
-				'posts_per_page'   => 500,
+				'posts_per_page'   => 200,
 				'orderby'          => 'date',
 				'order'            => 'DESC',
 				'post_type'        => 'amppb_layout',
@@ -76,11 +76,11 @@ function amppb_save_layout_data(){
 add_action( 'wp_ajax_amppb_remove_saved_layout_data', 'amppb_remove_saved_layout_data');
 function amppb_remove_saved_layout_data(){
 
-	$layoutid = $_POST['layoutid'];
+	$layoutid = intval($_POST['layoutid']);
 	$is_delete = wp_delete_post($layoutid);
 	$allPostLayout = array();
 	$args = array(
-				'posts_per_page'   => 500,
+				'posts_per_page'   => 200,
 				'orderby'          => 'date',
 				'order'            => 'DESC',
 				'post_type'        => 'amppb_layout',
@@ -167,7 +167,7 @@ function ampforwp_pb_cats(){
     }
 	$cats = $taxs = array();
 	$post = '';
-	$post = $_POST['selected_val'];
+	$post = sanitize_text_field($_POST['selected_val']);
 	$taxs = get_object_taxonomies( $post );
 	if(!empty($taxs)){
  		$cats = get_terms($taxs['0'],array(   

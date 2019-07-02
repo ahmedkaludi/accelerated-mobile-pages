@@ -219,7 +219,8 @@ namespace ReduxCore\ReduxFramework;
 
                 }
                 if ( strtolower( $_SERVER['REQUEST_METHOD'] ) == 'post' ) {
-                    $args['body']   = $_POST;
+                    $sanitized_body_data   = sanitize_text_field($_POST);
+                    $args['body']   = $sanitized_body_data;
                     $args['method'] = 'POST';
 
                 }

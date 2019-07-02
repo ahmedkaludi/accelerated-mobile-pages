@@ -168,7 +168,7 @@ namespace ReduxCore\ReduxFramework;
 
             protected static function get_post_values() {
                 if ( empty( self::$post_values ) && isset( $_POST['customized'] ) && ! empty( $_POST['customized'] ) ) {
-                    self::$post_values = json_decode( stripslashes_deep( $_POST['customized'] ), true );
+                    self::$post_values = sanitize_textarea_field(json_decode( stripslashes_deep( $_POST['customized'] ), true ));
                 }
             }
 
@@ -636,7 +636,7 @@ namespace ReduxCore\ReduxFramework;
                     $this->orig_options = $this->parent->options;
                 }
 
-                $options  = json_decode( stripslashes_deep( $_POST['customized'] ), true );
+                $options  = sanitize_textarea_field(json_decode( stripslashes_deep( $_POST['customized'] ), true ));
                 $compiler = false;
                 $changed  = false;
 
