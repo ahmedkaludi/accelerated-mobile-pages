@@ -1834,6 +1834,7 @@ text-align: center;border: 0;z-index:9;}
 	}
  } // AMP Woocommerce condition ends ?>
 <?php } // levelup condition ends ?>
+<?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
 <?php if(is_single() && ampforwp_get_setting('ampforwp-sticky-icons-type') == 'sticky-btm-icons' ){?>
 .body.single-post{
   padding-bottom:40px;
@@ -1843,7 +1844,8 @@ text-align: center;border: 0;z-index:9;}
 .body.single-post{
   padding-top:40px;
 }
-<?php } ?>
+<?php } 
+} //Sticky CSS Condition ends?>
 <?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
