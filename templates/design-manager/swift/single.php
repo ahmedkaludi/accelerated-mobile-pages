@@ -230,9 +230,11 @@
 		    	<?php amp_loop_category(); ?>
 			    <?php amp_loop_title(); ?>
 			    <?php amp_loop_excerpt(20); ?>
+			    <?php if( true == ampforwp_get_setting('amforwp-recentpost-date-switch')){?>
 			    <div class="pt-dt">
 			    	<?php amp_loop_date(); ?>
 			    </div>
+				<?php }?>
 		    </div>
 		</div>
 	<?php endwhile; amp_loop('end');  ?>
@@ -526,3 +528,4 @@
 <?php }// New single desing Ends?>
 <?php do_action("ampforwp_single_design_type_handle");?>
 	<?php amp_footer()?>
+//single.php

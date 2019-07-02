@@ -7265,9 +7265,27 @@ $single_page_options = array(
             array(
               'id'        => 'ampforwp-post-date-switch',
               'type'      => 'switch',
-              'title'     => esc_html__('Enable Loop Post Date', 'accelerated-mobile-pages'),
+              'title'     => esc_html__('Loop Post Date', 'accelerated-mobile-pages'),
               'default'   => 1,
               'tooltip-subtitle'  => esc_html__('Enable this option to show post data from Home page loop and Recent Posts loop.', 'accelerated-mobile-pages'),
+            ),
+            array(
+                    'id'        => 'amforwp-homepage-date-switch',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Homepage', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
+                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
+            ),
+            array(
+                    'id'        => 'amforwp-recentpost-date-switch',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
+                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
             ),
             array(
                     'id'       => 'ampforwp-post-date-global',
