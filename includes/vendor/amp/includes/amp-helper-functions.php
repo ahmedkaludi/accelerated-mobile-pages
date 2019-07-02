@@ -10,9 +10,11 @@ function amp_get_permalink( $post_id ) {
 	$structure = get_option( 'permalink_structure' );
 	if ( empty( $structure ) ) {
 		$amp_url = add_query_arg( AMP_QUERY_VAR, 1, get_permalink( $post_id ) );
-	} else {
- 			$amp_url = trailingslashit( get_permalink( $post_id ) );
- 			$amp_url = ampforwp_end_point_controller($amp_url);
+	} else { 
+			if(get_permalink( $post_id ) != false){
+ 				$amp_url = trailingslashit( get_permalink( $post_id ) );
+ 				$amp_url = ampforwp_end_point_controller($amp_url);
+ 			}
 	 	}
 
 	return apply_filters( 'amp_get_permalink', $amp_url, $post_id );
