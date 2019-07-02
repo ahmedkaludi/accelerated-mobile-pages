@@ -215,10 +215,9 @@ function ampforwp_deactivate_license() {
            update_option( 'redux_builder_amp', $selectedOption );
         }
         echo json_encode(array('status'=>200,"message"=>$message));
-       /* wp_redirect( admin_url( 'edit.php?post_type=tracked-plugin&page=' . AMP_ADS_LICENSE_PAGE ) );*/
         exit();
-
     }
+    exit();
 }
 add_action( 'wp_ajax_ampforwp_deactivate_license', 'ampforwp_deactivate_license' );
 
