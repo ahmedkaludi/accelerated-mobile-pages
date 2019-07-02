@@ -10,10 +10,11 @@
 	        $ampforwp_sd_width = '';
 	        $ampforwp_sd_height = ampforwp_get_setting('ampforwp-sd-logo-height');
 	        $ampforwp_sd_width = ampforwp_get_setting('ampforwp-sd-logo-width');
+	        $ampforwp_sd_logo =  ampforwp_get_setting('amp-structured-data-logo','url');
 	        if (! empty( $redux_builder_amp['opt-media']['url'] ) ) {
 	          $structured_data_main_logo = $redux_builder_amp['opt-media']['url'];
 	        }
-	        if (! empty( ampforwp_get_setting('amp-structured-data-logo','url') ) ) {
+	        if (! empty( $ampforwp_sd_logo ) ) {
 	          $structured_data_logo = esc_url( __(ampforwp_get_setting('amp-structured-data-logo','url'), 'accelerated-mobile-pages') );
 	        }
 	        if ( $structured_data_logo ) {
@@ -68,10 +69,11 @@
 			$structured_data_image = wp_get_attachment_image_src( $post_image_id, 'full' );
 			$post_image_check = $structured_data_image;
 			$structured_data_image_url = '';
+			$ampforwp_sd_img_placeholder = ampforwp_get_setting('amp-structured-data-placeholder-image','url');
 
 			if ( $post_image_check == false) {
 
-				if (! empty( ampforwp_get_setting('amp-structured-data-placeholder-image','url') ) ) {
+				if (! empty( $ampforwp_sd_img_placeholder ) ) {
 					$structured_data_image_url = esc_url(__(ampforwp_get_setting('amp-structured-data-placeholder-image','url'), 'accelerated-mobile-pages') );
 				}
 					$structured_data_image = $structured_data_image_url;
@@ -162,8 +164,9 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			// creating this to prevent errors
 			$structured_data_image_url = '';
 			$page = '';
+			$ampforwp_sd_img_placeholder = ampforwp_get_setting('amp-structured-data-placeholder-image','url');
 			// placeholder Image area
-			if (! empty( ampforwp_get_setting('amp-structured-data-placeholder-image','url') ) ) {
+			if (! empty( $ampforwp_sd_img_placeholder ) ) {
 				$structured_data_image_url = esc_url(__(ampforwp_get_setting('amp-structured-data-placeholder-image','url'), 'accelerated-mobile-pages'));
 			}
 			$structured_data_image =  $structured_data_image_url; //  Placeholder Image URL
@@ -319,9 +322,10 @@ if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 			$post_image_id = get_post_thumbnail_id( get_the_ID() );
 			$post_image = wp_get_attachment_image_src( $post_image_id, 'full' );
 			$structured_data_video_thumb_url = '';
+			$ampforwp_sd_video_thumb = ampforwp_get_setting('amporwp-structured-data-video-thumb-url','url') ;
 			// If there's no featured image, take default from settings
 			if ( false == $post_image ) {
-				if ( ! empty( ampforwp_get_setting('amporwp-structured-data-video-thumb-url','url') ) ) {
+				if ( ! empty( $sd_video_thumb ) ) {
 						$structured_data_video_thumb_url = esc_url( __(ampforwp_get_setting('amporwp-structured-data-video-thumb-url','url'), 'accelerated-mobile-pages') );
 					}
 			}
