@@ -198,6 +198,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvements: Featured Video Plus plugin compatibility integrated #2583
 * Improvements: Performance improvement ! SELECT SQL_CALC_FOUND_ROWS #3336
 * Improvements: 'Featured Image from URL' plugin compatibility integrated #3365
+* Improvements: Template-mode functionality added for group users to work on the main/AMP theme #3252
 * Fixed: Images are blur in beta in design 2 #2541
 * Fixed: SRC set in the Featured Image #1619
 * Fixed: AMP page builder is not showing when the AMPforWP plugin is activated from Network admin panel in Multisite #3322
@@ -231,6 +232,8 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Debug errors after 0.9.97.60 #3377
 * Fixed: Code improvements in loadComponents() #3384
 * Fixed: License key is visible in Source code #2528
+* Fixed: Fatal error can't use function return value in write context - 2 #3087
+* Fixed: Code improvements for security & performance related #3388
 
 = 0.9.97.60 (22th June 2019) =
 * Feature: Need to add template-mode #3252
