@@ -85,7 +85,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 
 			$allPostLayout = $ampforwp_metas = array();
 			$args = array(
-						'posts_per_page'   => -1,
+						'posts_per_page'   => 500,
 						'orderby'          => 'date',
 						'order'            => 'DESC',
 						'post_type'        => 'amppb_layout',
