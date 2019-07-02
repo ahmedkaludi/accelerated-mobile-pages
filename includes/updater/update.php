@@ -207,57 +207,6 @@ function ampforwp_deactivate_license() {
     }
 }
 add_action( 'wp_ajax_ampforwp_deactivate_license', 'ampforwp_deactivate_license' );
-//add_action( 'admin_init', 'ampforwp_deactivate_license');
-
-
-/************************************
-* this illustrates how to check if
-* a license key is still valid
-* the updater does this for you,
-* so this is only needed if you
-* want to do something custom
-*************************************/
-
-function ampforwp_check_extension_license() {
-
-    global $wp_version;
-
-    //$license = trim( get_option( 'amp_ads_license_key' ) );
-
-    $selectedOption = get_option('redux_builder_amp',true);
-    $license = '';//trim( get_option( 'amp_ads_license_key' ) );
-    $pluginItemName = '';
-    $pluginItemStoreUrl = '';
-    if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
-       $pluginsDetail = $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']];
-       $license = $pluginsDetail['license'];
-       $pluginItemName = $pluginsDetail['item_name'];
-       $pluginItemStoreUrl = $pluginsDetail['store_url'];
-    }
-
-    $api_params = array(
-        'edd_action' => 'check_license',
-        'license' => $license,
-        'item_name' => urlencode( $pluginItemName ),
-        'url'       => home_url()
-    );
-
-    // Call the custom API.
-    $response = wp_remote_post( $pluginItemStoreUrl, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
-
-    if ( is_wp_error( $response ) )
-        return false;
-
-    $license_data = json_decode( wp_remote_retrieve_body( $response ) );
-
-    if( $license_data->license == 'valid' ) {
-        echo 'valid'; exit;
-        // this license is still valid
-    } else {
-        echo 'invalid'; exit;
-        // this license is no longer valid
-    }
-}
 
 /**
  * This is a means of catching errors from the activation method above and displaying it to the customer
