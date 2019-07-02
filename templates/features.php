@@ -2737,7 +2737,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
   $blacklist_array	 		= array();
   // Remove some blacklist tags from sidebars only when search,archives and categories widgets are active #2835
   if ( is_active_widget(false,false,'search') || is_active_widget(false,false,'archives') || is_active_widget(false,false,'categories') ) {
-  	$blacklist_array['non-content'] = true;
+  	$blacklist_array['non-content'] = 'non-content';
   }
   ob_start();
   dynamic_sidebar( $sidebar );
