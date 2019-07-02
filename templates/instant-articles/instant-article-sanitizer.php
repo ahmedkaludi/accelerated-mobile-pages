@@ -3,6 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+add_filter( 'ampforwp_fbia_content', 'ampforwp_ia_modify_gutenburg_gallery');
 add_filter( 'ampforwp_fbia_content', 'ampforwp_fbia_headlines');
 add_filter( 'ampforwp_fbia_content', 'ampforwp_fbia_filter_dom');
 add_filter( 'ampforwp_fbia_content', 'ampforwp_fbia_address_tag');
@@ -19,7 +20,8 @@ if(class_exists("DOMDocument")){
 	// Video Filter
 	add_filter( 'ampforwp_fbia_content_dom','ampforwp_fbia_video_element');
 	// Embeds sanitizer
-	add_filter( 'fbia_content_dom','ampforwp_fbia_wrap_embed_elements');
+	add_filter( 'ampforwp_fbia_content_dom','ampforwp_fbia_wrap_embed_elements');
+	add_filter( 'post_gallery', 'ampforwp_gallery_shortcode_markup_modify', 10, 3 );
 	}
 function ampforwp_fbia_headlines($content){
 		// Replace h3, h4, h5, h6 with h2
@@ -47,6 +49,83 @@ function ampforwp_fbia_filter_dom($content){
 
 		return $content;
 	}
+function ampforwp_ia_modify_gutenburg_gallery($content){
+	
+	$allMatches = preg_replace_callback('/<ul\sclass=\"wp-block-gallery(.*?)\"(.*?)>(.*?)<\/ul>/', function($matches) {
+        
+        return '<figure class="op-slideshow">'.$matches[3].'</figure>';
+    }, $content);
+    
+    $fbiagallery = preg_replace_callback('/<li(.*?)><figure><img(.*?)src=\"(.*?)\"(.*?)\/><\/figure><\/li>/', function($match) {
+       
+        return '<figure><img src="'.$match[3].'" /></figure>';
+    }, $allMatches);
+    return $fbiagallery;
+}
+
+function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
+	global $wp;
+	$post = get_post(ampforwp_get_the_ID());
+	if ( is_feed() && isset($wp->query_vars['feed']) && 'instant_articles' == $wp->query_vars['feed'] ) {
+		
+			$atts = shortcode_atts( array(
+				'order'      => 'ASC',
+				'orderby'    => 'menu_order ID',
+				'id'         => $post ? $post->ID : 0,
+				'itemtag'    => 'figure',
+				'icontag'    => 'div',
+				'captiontag' => 'figcaption',
+				'columns'    => 3,
+				'size'       => 'thumbnail',
+				'include'    => '',
+				'exclude'    => '',
+				'link'       => ''
+			), $attr, 'gallery' );
+
+			if ( ! empty( $atts['include'] ) ) {
+				$_attachments = get_posts( array( 'include' => $atts['include'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+				$attachments = array();
+				foreach ( $_attachments as $key => $val ) {
+					$attachments[$val->ID] = $_attachments[$key];
+				}
+			} elseif ( ! empty( $atts['exclude'] ) ) {
+				$attachments = get_children( array( 'post_parent' => $id, 'exclude' => $atts['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+			} else {
+				$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+			}
+			if ( empty( $attachments ) ) {
+				return '';
+			}
+
+				// Build the gallery html output
+				$output = "<figure class=\"op-slideshow\">";
+				// Iterate over the available images
+					$i = 0;
+					foreach ( $attachments as $id => $attachment ) {
+						$attr = ( trim( $attachment->post_excerpt ) ) ? array( 'aria-describedby' => "gallery-$id" ) : '';
+						$image_output = wp_get_attachment_image( $id, "full", false, $attr );
+
+						$image_meta  = wp_get_attachment_metadata( $id );
+						$orientation = '';
+						if ( isset( $image_meta['height'], $image_meta['width'] ) ) {
+							$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
+						}
+						$output .= "<figure>";
+						$output .= $image_output;
+						if ( trim($attachment->post_excerpt) ) {
+							// $output .= "
+							// 	<figcaption>
+							// 	" . wptexturize($attachment->post_excerpt) . "
+							// 	</figcaption>";
+						}
+						$output .= "</figure>";
+					}
+				$output .= "</figure>";
+				return $output;
+		}
+
+		return $output;
+}
 
 function ampforwp_fbia_get_content_DOM($content){
 		$libxml_previous_state = libxml_use_internal_errors( true );
@@ -125,6 +204,12 @@ function ampforwp_fbia_validate_images($DOMDocument){
 			if($element->parentNode->nodeName == "figure"){
 				// This element is already wrapped in a figure tag, we only need to make sure it's placed right
 				$element = $element->parentNode;
+				if ( ampforwp_get_setting('fb-instant-feedback') ) {
+					$element->setAttribute( 'data-feedback', 'fb:likes, fb:comments' );
+				}
+				if ( 'figure' == $element->parentNode->nodeName && 'op-slideshow' == $element->parentNode->getAttribute('class') ) {
+					return $DOMDocument;
+				}
 			} else {
 				// Wrap this image into a figure tag
 				$figure = $DOMDocument->createElement('figure');
@@ -141,12 +226,11 @@ function ampforwp_fbia_validate_images($DOMDocument){
 			if($element->parentNode->nodeName != "body"){
 				// Let's find the highest container if it does not reside in the body already
 				$highestParent = $element->parentNode;
-
 				while($highestParent->parentNode->nodeName != "body"){
 					$highestParent = $highestParent->parentNode;
-					// Insert the figure tag before the highest parent which is not the body tag
-					$highestParent->parentNode->insertBefore($element, $highestParent);
 				}
+				// Insert the figure tag before the highest parent which is not the body tag
+				$highestParent->parentNode->insertBefore($element, $highestParent);
 
 			}
 		}
