@@ -161,11 +161,7 @@ function amp_content_editor_title_callback( $post ) {
     		<?php echo __( 'Use This Content as AMP Content','accelerated-mobile-pages' )?>   </p>
         <?php echo __('<p>If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.</p>','accelerated-mobile-pages') ?>
     </label>
-    <?php
-     if(empty($custom_amp_editor) && $amp_content_on_off=='yes'){ ?>
-    <p class="amp-editor-content" style="background: #FFF59D;padding: 8px 14px;width:96%;"><b>Note: </b> AMP contents is blank, Please enter content</p>
-  <?php } ?>
-
+    <div class="amp-editor-content" id="amp-editor-checker" style="background: #FFF59D;padding: 8px 14px;width:96%;margin-bottom:12px;"><b>Note: </b> AMP contents is blank, Please enter content</div>
   <!--HTML content Ends here-->
   <?php
   $content = $custom_amp_editor;
