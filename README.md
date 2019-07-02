@@ -188,11 +188,9 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 0.9.97.61 (28th June 2019) =
+= 0.9.97.61 (2nd July 2019) =
 * Improvements: AMP option panel for better enhancement #2432
 * Improvements: Lighthouse score improved in all designs #3108
-* Improvements: Custom Taxonomy support added #3036
-* Improvements: Breadcrumbs code improved in all designs #3120
 * Improvements: Option to change featured image size in the AMP panel's single settings [ only in Swift theme] #3339
 * Improvements: Clicky Analytic compatibility integrated #3220
 * Improvements: Some Improvements in image sanitizer #3112
@@ -202,6 +200,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvements: 'Featured Image from URL' plugin compatibility integrated #3365
 * Fixed: Images are blur in beta in design 2 #2541
 * Fixed: SRC set in the Featured Image #1619
+* Fixed: AMP page builder is not showing when the AMPforWP plugin is activated from Network admin panel in Multisite #3322
 * Fixed: AMP Panel options code improved - 2 #3083
 * Fixed: Fatal error with an older version of Wordpress #3094
 * Fixed: Extra option in Analytics section removed #3037
@@ -217,7 +216,6 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: More variables support in Advanced Google Analytics #3281
 * Fixed: When amp takeover is enabled, /amp is added at the end of category module url #3367
 * Fixed: Auto Add AMP in Menu URL option is is not working for the product category #3319
-* Fixed: Unnecessary CSS is loading in single amp product pages and also on cart pages #3038
 * Fixed: Swift Theme has doublequotes in related Post quotes issue #3045
 * Fixed: Wordpress Spanish language does not showing "Design" tab #3342
 * Fixed: Tittle attribute not generates in related posts in all designs #3346
@@ -229,6 +227,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: PHP Warning implode() Invalid arguments passed when Enfold theme is activate #3307
 * Fixed: Mobile redirection not working properly #3370
 * Fixed: Redirection code improved #3326
+* Fixed: Yoast Description does not output #3374
+* Fixed: Debug errors after 0.9.97.60 #3377
+* Fixed: Code improvements in loadComponents() #3384
+* Fixed: License key is visible in Source code #2528
 
 = 0.9.97.60 (22th June 2019) =
 * Feature: Need to add template-mode #3252
