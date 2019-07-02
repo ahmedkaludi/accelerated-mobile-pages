@@ -64,9 +64,11 @@ if(true == ampforwp_get_setting('ampforwp-full-post-in-loop')){
 			    		ampforwp_full_content_in_loop();
 			    	}
 			    	?>
+			    	<?php if( true == ampforwp_get_setting('amforwp-homepage-date-switch')){?>
 				    <div class="pt-dt">
 				    	<?php amp_loop_date(); ?>
 				    </div>
+					<?php }?>
 			    </div>
 			</div>
 		<?php } $i++; ?>
