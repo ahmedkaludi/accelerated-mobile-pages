@@ -42,7 +42,7 @@ function enable_amp_pagebuilder(){
         die;
 	}
 	if(isset($_POST['postId'])){
-		$postId = sanitize_text_field($_POST['postId']);
+		$postId = intval($_POST['postId']);
 	}else{
 		echo json_encode(array('status'=>"500", 'Message'=>"post id not found"));
 	}
@@ -121,7 +121,7 @@ function amppb_save_layout_data(){
 add_action( 'wp_ajax_amppb_remove_saved_layout_data', 'amppb_remove_saved_layout_data');
 function amppb_remove_saved_layout_data(){
 
-	$layoutid = sanitize_text_field($_POST['layoutid']);
+	$layoutid = intval($_POST['layoutid']);
 	$is_delete = wp_delete_post($layoutid);
 	$allPostLayout = array();
 	$args = array(
