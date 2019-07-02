@@ -7242,6 +7242,22 @@ $single_page_options = array(
        'id'         => 'ampforwp-date-section',
        'subsection' => true,
         'fields'     => array(
+            array(
+                    'id'        => 'amforwp-homepage-date-switch',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Homepage', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
+                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
+            ),
+            array(
+                    'id'        => 'amforwp-recentpost-date-switch',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
+                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
+            ),
                 array(
                    'id' => 'date-tab-1', 
                    'type' => 'section',
@@ -7250,6 +7266,7 @@ $single_page_options = array(
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
              ),
+
              // Date on Single Design 3
              array(
                 'id'       => 'amp-design-3-date-feature',
@@ -7262,35 +7279,11 @@ $single_page_options = array(
                 'default'  => '0'
             ),
             // Show Date As
-            array(
-              'id'        => 'ampforwp-post-date-switch',
-              'type'      => 'switch',
-              'title'     => esc_html__('Loop Post Date', 'accelerated-mobile-pages'),
-              'default'   => 1,
-              'tooltip-subtitle'  => esc_html__('Enable this option to show post data from Home page loop and Recent Posts loop.', 'accelerated-mobile-pages'),
-            ),
-            array(
-                    'id'        => 'amforwp-homepage-date-switch',
-                    'type'      => 'switch',
-                    'class' => 'child_opt child_opt_arrow',
-                    'title'     => esc_html__('Homepage', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
-                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
-            ),
-            array(
-                    'id'        => 'amforwp-recentpost-date-switch',
-                    'type'      => 'switch',
-                    'class' => 'child_opt child_opt_arrow',
-                    'title'     => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
-                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
-            ),
+            
+            
             array(
                     'id'       => 'ampforwp-post-date-global',
                     'type'     => 'select',
-                    'class' => 'child_opt child_opt_arrow',
                     'title'    => esc_html__( 'Show Date As', 'accelerated-mobile-pages' ),
                     'options'  => array(
                                     '1' => 'Published Date',
@@ -7303,7 +7296,6 @@ $single_page_options = array(
              array(
                     'id'        =>'ampforwp-post-date-format',
                     'type'      =>'select',
-                    'class' => 'child_opt child_opt_arrow',
                     'title'     =>esc_html__('Date Format','accelerated-mobile-pages'),
                     'tooltip-subtitle' => esc_html__('Select the Date Format of Posts', 'accelerated-mobile-pages'),
                     'options'   => array(
@@ -7316,7 +7308,6 @@ $single_page_options = array(
             array(
                     'id'        =>'ampforwp-post-date-format-text',
                     'type'      =>'text',
-                    'class' => 'child_opt child_opt_arrow',
                     'title'     =>esc_html__('Text for the Date Format','accelerated-mobile-pages'),
                     'desc'  =>esc_html__('Example: English - % days ago, Spain - ago % days','accelerated-mobile-pages'),
                     'default'   =>'% days ago',
@@ -7326,7 +7317,6 @@ $single_page_options = array(
             array(
                     'id'        => 'post-modified-date',
                     'type'      => 'switch',
-                    'class' => 'child_opt child_opt_arrow',
                     'title'     => esc_html__('Modified Date Notice', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'tooltip-subtitle'  => esc_html__('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
