@@ -252,17 +252,17 @@ function ampforwp_add_custom_rewrite_rules() {
 	
 	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
 	if ( $taxonomies ) {
-		foreach ( $taxonomies  as $key => $taxonomy ) { 
-			if ( ! empty( $taxonomy ) ) {
+		foreach ( $taxonomies  as $taxonomySlug => $taxonomyName ) { 
+			if ( ! empty( $taxonomySlug ) ) {
 			    add_rewrite_rule(
-			      $taxonomy.'\/([^/]+)\/amp/?$',
-			      'index.php?amp&'.$key.'=$matches[1]',
+			      $taxonomySlug.'\/([^/]+)\/amp/?$',
+			      'index.php?amp&'.$taxonomyName.'=$matches[1]',
 			      'top'
 			    );
 			    // For Custom Taxonomies with pages
 			    add_rewrite_rule(
-			      $taxonomy.'\/([^/]+)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
-			      'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
+			      $taxonomySlug.'\/([^/]+)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
+			      'index.php?amp&'.$taxonomyName.'=$matches[1]&paged=$matches[2]',
 			      'top'
 			    );
 			}

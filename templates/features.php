@@ -7851,7 +7851,7 @@ function ampforwp_generate_taxonomies_transient(){
 	if  ($alltaxonomies) {
 		foreach ($alltaxonomies as $taxKey => $taxVal) {
 			if( !empty($taxVal->rewrite['slug'])){
-				$tax_arr[$taxVal->rewrite['slug']] = $taxVal->rewrite['slug'];
+				$tax_arr[$taxVal->rewrite['slug']] = $taxVal->name;
 			}else{
 				$tax_arr[$taxVal->name] = $taxVal->name;
 			}
