@@ -430,8 +430,12 @@ echo $fontFamily;
     .fbp-cnt{margin:0;padding:12px;}
 }
 @media(max-width:425px){
-    .fbp {margin: 0px 15px 15px 15px;}
-    .fsp{margin:15px;}
+	.hmp .loop-wrapper {margin: 0;}
+    .hmp .fbp {margin: 0px 0px 15px 0px;}
+    .hmp .fsp {
+	    flex-basis: calc(100% - 0px);
+	    margin:15px 0px;
+	}
     .amp-archive-title, .amp-loop-label{padding:0 20px;}
     .amp-sub-archives {margin: 10px 0px 0px 30px;}
     .author-img {padding-left: 20px;}
