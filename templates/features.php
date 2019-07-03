@@ -1428,7 +1428,7 @@ function ampforwp_sticky_social_icons(){
 			</a>
 		<?php } ?>
 		<?php if(true == ampforwp_get_setting('enable-single-flipboard-share')){?>
-			<a title="flipboard share" <?php ampforwp_nofollow_social_links(); ?> href="https://share.flipboard.com/bookmarklet/popout?v=<?php echo get_the_title(ampforwp_get_the_ID()); ?>&url=<?php echo urlencode(esc_url($amp_permalink)); ?>">
+			<a title="flipboard share" <?php ampforwp_nofollow_social_links(); ?> href="https://share.flipboard.com/bookmarklet/popout?v=<?php echo esc_html(get_the_title()); ?>&url=<?php echo urlencode(esc_url($amp_permalink)); ?>">
 				<div class="amp-social-icon custom-amp-socialsharing-flipboard">
 					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/flipboard.png') ?>" width="15" height="15" />
 				</div>

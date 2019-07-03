@@ -198,7 +198,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 			</div>
 		<?php } ?>
 		<?php if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) { ?>
-			<a title="flipboard share" <?php ampforwp_nofollow_social_links(); ?> href="https://share.flipboard.com/bookmarklet/popout?v=<?php echo get_the_title(ampforwp_get_the_ID()); ?>&url=<?php echo urlencode(esc_url($amp_permalink)); ?>" target="_blank" class="amp-social-icon-rounded amp-social-flipboard">
+			<a title="flipboard share" <?php ampforwp_nofollow_social_links(); ?> href="https://share.flipboard.com/bookmarklet/popout?v=<?php echo esc_html(get_the_title()); ?>&url=<?php echo urlencode(esc_url($amp_permalink)); ?>" target="_blank" class="amp-social-icon-rounded amp-social-flipboard">
 				<div class="amp-social-icon amp-social-flipboard">
 					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/flipboard.png') ?>" width="16" height="16" />
 				</div>
