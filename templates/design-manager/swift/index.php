@@ -32,7 +32,10 @@ if(true == ampforwp_get_setting('ampforwp-full-post-in-loop')){
 			    	<?php amp_loop_category(); ?>
 				    <?php amp_loop_title(); ?>
 				    <div class="at-dt">
-					    <?php amp_loop_date(); ?>
+				    	<?php 
+				    	if( true == ampforwp_get_setting('amforwp-homepage-date-switch')){		amp_loop_date();
+						} 
+						?>
 					    <?php amp_author_box( 
 										array('author_pub_name'=>true,)
 										); ?>
