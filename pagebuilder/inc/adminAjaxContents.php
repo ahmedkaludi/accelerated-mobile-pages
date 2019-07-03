@@ -69,7 +69,13 @@ function amppb_export_layout_data(){
 	header( 'content-type: application/json' );
 	header( 'Content-Disposition: attachment; filename=layout-' . date( 'dmY' ) . '.json' );
 	
-	$export_data = sanitize_textarea_field(wp_unslash( $_POST['export_layout_data'] ));
+	if ( function_exists('sanitize_textarea_field') ) {
+		$export_data = sanitize_textarea_field(wp_unslash( $_POST['export_layout_data'] ));
+	}
+	else{
+		$unsan_export_data = wp_unslash( $_POST['export_layout_data'] );
+		$export_data = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $unsan_export_data ) ));
+	}
 	echo $export_data;
 	
 	wp_die();

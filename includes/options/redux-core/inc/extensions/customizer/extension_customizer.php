@@ -168,7 +168,13 @@ namespace ReduxCore\ReduxFramework;
 
             protected static function get_post_values() {
                 if ( empty( self::$post_values ) && isset( $_POST['customized'] ) && ! empty( $_POST['customized'] ) ) {
-                    self::$post_values = sanitize_textarea_field(json_decode( stripslashes_deep( $_POST['customized'] ), true ));
+                    if ( function_exists('sanitize_textarea_field') ) {
+                        self::$post_values = sanitize_textarea_field(json_decode( stripslashes_deep( $_POST['customized'] ), true ));
+                    }
+                    else{
+                        $post_values = json_decode( stripslashes_deep( $_POST['customized'] ), true );
+                        self::$post_values = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $post_values ) ) );
+                    }
                 }
             }
 
@@ -636,7 +642,14 @@ namespace ReduxCore\ReduxFramework;
                     $this->orig_options = $this->parent->options;
                 }
 
-                $options  = sanitize_textarea_field(json_decode( stripslashes_deep( $_POST['customized'] ), true ));
+                if ( function_exists('sanitize_textarea_field') ) {
+                    $options  = sanitize_textarea_field(json_decode( stripslashes_deep( $_POST['customized'] ), true ));
+                }
+                else{
+                    $unsanitized_options = json_decode( stripslashes_deep( $_POST['customized'] ), true );
+                    $options = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $unsanitized_options ) ));
+                }
+
                 $compiler = false;
                 $changed  = false;
 
