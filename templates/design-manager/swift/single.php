@@ -85,7 +85,7 @@
 			            	<?php amp_tags_list();?>
 			            </div>
 		            <?php } 
-		            if( true == $redux_builder_amp['swift-date'] ) { ?>
+		            if( true == ampforwp_get_setting('swift-date') ) { ?>
 			            <div class="post-date">
 			            	<?php amp_date(); ?><?php edit_post_link(); ?>
 			            </div>
@@ -415,7 +415,7 @@
 						            	<?php amp_tags_list();?>
 						            </div>
 					            <?php } 
-					            if( true == $redux_builder_amp['swift-date'] ) { ?>
+					            if( true == ampforwp_get_setting('swift-date') ) { ?>
 						            <div class="post-date">
 						            	<?php amp_date(); ?><?php edit_post_link(); ?>
 						            </div>

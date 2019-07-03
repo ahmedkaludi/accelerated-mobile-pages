@@ -564,28 +564,29 @@ if ( empty( $post_id )) {
 <?php }
 
 function amp_date( $args=array() ) {
-
-    global $redux_builder_amp;
-    if ( 2 == $redux_builder_amp['ampforwp-post-date-format'] ) {
+    if ( 2 == ampforwp_get_setting('ampforwp-post-date-format') ) {
     	$args = array('format' => 'traditional');
     }
-    if ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ) {
-      $post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
-        } else {
-          $post_date = human_time_diff(
+    if ( (isset($args['format']) && $args['format'] == 'traditional') && 2 == ampforwp_get_setting('ampforwp-post-date-global') ) {
+      	$post_date = esc_html( get_the_modified_date( get_option( 'date_format' )) ) . ' '.esc_html( get_the_modified_time());
+    }
+    elseif ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ){
+    	 $post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
+    }else{
+        $post_date = human_time_diff(
                     get_the_time('U', get_the_ID() ), 
-                    current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
+                    current_time('timestamp') ) .' '. ampforwp_translation(ampforwp_get_setting('amp-translator-ago-date-text'),
                     'ago');
-        }
-        $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
-        if(isset($args['custom_format']) && $args['custom_format']!=""){
-	    	$post_date = date($args['custom_format'],get_the_time('U', get_the_ID() ));
-	    }
-        if ( 'date' == $args || 'time' == $args ) {
-          echo $post_date .' ';
-        }
-        else
-          echo '<div class="loop-date">'.$post_date.'</div>';
+    }
+    $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
+   	if(isset($args['custom_format']) && $args['custom_format']!=""){
+	    $post_date = date($args['custom_format'],get_the_time('U', get_the_ID() ));
+	}
+    if ( 'date' == $args || 'time' == $args ) {
+        echo $post_date .' ';
+    }
+    else
+    echo '<div class="loop-date">'.$post_date.'</div>';
 }
 
 //Load font Compoment
