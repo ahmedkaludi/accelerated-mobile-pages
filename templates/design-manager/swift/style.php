@@ -542,7 +542,14 @@ p.nocomments {padding: 10px;color: #fff;}
 .sf-img {width: 100%;display: inline-block;height: auto;margin-top: 33px;}
 .sf-img figure{margin:0;}
 .sf-img .wp-caption-text{width: 1100px;text-align: left;margin: 0 auto;color: #a1a1a1;font-size: 14px;line-height:20px;font-weight: 500;border-bottom: 1px solid #ccc;padding: 15px 0px;}
-.sf-img .wp-caption-text:before{content:"\e412";font-family: 'icomoon';position: relative;top: 4px;opacity: 0.4;font-size:24pxmargin-right: 5px;}
+.sf-img .wp-caption-text:before{
+<?php if ( ampforwp_get_setting('ampforwp_font_icon') == 'swift-icons' ){ ?>
+	content:"\e412";font-family: 'icomoon';font-size:24px;
+<?php }
+ if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
+	content:"\f030";font-family: "Font Awesome 5 Free";font-weight:600;font-size: 20px;
+<?php } ?>
+	position: relative;top: 4px;opacity: 0.4;margin-right: 5px;}
 <?php if (!checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ){ ?>
 .sp-cnt{margin-top: 40px;clear: both;width: 100%;display: inline-block; }
 .sp-rl{display:inline-flex;width:100%;}
