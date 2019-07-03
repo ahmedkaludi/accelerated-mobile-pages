@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.2.1
-Stable tag: 0.9.97.61
+Tested up to: 5.2.2
+Stable tag: 0.9.97.62
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -188,6 +188,13 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 0.9.97.62 (3rd July 2019) =
+* Improvements: Change AddThis controls labels. #3359
+* Fixed: Alternative methods to sanitize(`sanitize_textarea_field`) for users who are using older then 4.7  #3394
+* Fixed: amp-addthis script is loading on WooCommerce product pages. #3393
+* Fixed: Page titles are changing when Rank math plugin active #3358
+* Fixed: Icons added in featured image caption not working properly with font awesome #3288
+
 = 0.9.97.61 (2nd July 2019) =
 * Improvements: AMP option panel for better enhancement #2432
 * Improvements: Lighthouse score improved in all designs #3108
@@ -233,7 +240,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Code improvements in loadComponents() #3384
 * Fixed: License key is visible in Source code #2528
 * Fixed: Fatal error can't use function return value in write context - 2 #3087
-* Fixed: Code improvements for security & performance related #3388
+* Fixed: Code improvements #3388
 
 = 0.9.97.60 (22th June 2019) =
 * Feature: Need to add template-mode #3252
