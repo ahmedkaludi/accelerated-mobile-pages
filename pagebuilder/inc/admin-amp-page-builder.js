@@ -589,7 +589,7 @@ Vue.component('fields-data',{
 
 		},
 		refresh_image: function(the_id,currentSelectfield,type,field){
-			console.log(type);
+			//console.log(type);
 			if(type=='tag'){
 				jQuery(currentSelectfield.$el).find('img').attr('src','../wp-includes/images/spinner.gif');
 				if(field[field['name']+'_image_data']){
@@ -598,7 +598,7 @@ Vue.component('fields-data',{
 			 	 	return ;
 			 	}
 			}else{
-				console.log(jQuery(currentSelectfield).parents('p'))
+				//console.log(jQuery(currentSelectfield).parents('p'))
 				jQuery(currentSelectfield).parents('p').find('img').attr('src','../wp-includes/images/spinner.gif');
 			}
 		        this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_get_image&id='+the_id, 
@@ -695,7 +695,7 @@ Vue.component('fields-data',{
 			returnOpt = returnOpt.filter(function(value, index, self) { 
 				    return self.indexOf(value) === index;
 					});
-			console.log(returnOpt);
+			//console.log(returnOpt);
 			if(field.required_type == 'or'){
 				var reqOpt = returnOpt.indexOf(true);
 				if( reqOpt!= -1){
@@ -718,7 +718,7 @@ Vue.component('fields-data',{
 			var dataAjax = this.field.ajax;//currentSelectfield.getAttribute("data-ajax-dep");
 			var dataAjaxDep = this.field.ajax_dep;//currentSelectfield.getAttribute("data-ajax-dep");
 			var ajaxAction = this.field.ajax_action;//currentSelectfield.getAttribute("data-ajax-action");
-			if(typeof dataAjax == 'undefined'){ console.log(dataAjax);  return ; }//return if Selectbox not allowed ajax
+			if(typeof dataAjax == 'undefined'){   return ; }//return if Selectbox not allowed ajax
 			this.$http.post(amppb_panel_options.ajaxUrl+'?action='+ajaxAction, 
 				{
 					'selected_val': this.field.default,
