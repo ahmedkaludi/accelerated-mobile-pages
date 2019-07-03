@@ -7242,20 +7242,7 @@ $single_page_options = array(
        'id'         => 'ampforwp-date-section',
        'subsection' => true,
         'fields'     => array(
-            array(
-                    'id'        => 'amforwp-homepage-date-switch',
-                    'type'      => 'switch',
-                    'title'     => esc_html__('Homepage', 'accelerated-mobile-pages'),
-                    'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
-            ),
-            array(
-                    'id'        => 'amforwp-recentpost-date-switch',
-                    'type'      => 'switch',
-                    'title'     => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
-                    'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
-            ),
+            
                 array(
                    'id' => 'date-tab-1', 
                    'type' => 'section',
@@ -7277,8 +7264,6 @@ $single_page_options = array(
                 'default'  => '0'
             ),
             // Show Date As
-            
-            
             array(
                     'id'       => 'ampforwp-post-date-global',
                     'type'     => 'select',
@@ -7316,6 +7301,28 @@ $single_page_options = array(
                     'title'     => esc_html__('Modified Date Notice', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'tooltip-subtitle'  => esc_html__('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
+            ),
+            array(
+                   'id' => 'date-tab-2', 
+                   'type' => 'section',
+                   'title' => esc_html__('Loops', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+            ),
+            array(
+                    'id'        => 'amforwp-homepage-date-switch',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Homepage', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
+            ),
+            array(
+                    'id'        => 'amforwp-recentpost-date-switch',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
             ),
 
         )
