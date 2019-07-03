@@ -177,8 +177,9 @@ if ( ! class_exists( 'ReduxFramework_image_select' ) ) {
                     }
 
                     echo '<li class="redux-image-select">';
+                    
                     echo '<label class="' . $selected . ' redux-image-select' . $is_preset_class . $this->field['id'] . '_' . $x . '" for="' . $this->field['id'] . '_' . ( array_search( $k, array_keys( $this->field['options'] ) ) + 1 ) . '">';
-
+                    
                     echo '<input type="radio" class="' . $this->field['class'] . '" id="' . $this->field['id'] . '_' . ( array_search( $k, array_keys( $this->field['options'] ) ) + 1 ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $theValue . '" ' . checked( $this->value, $theValue, false ) . $presets . $merge . '/>';
                     if ( ! empty( $this->field['tiles'] ) && $this->field['tiles'] == true ) {
                         echo '<span class="tiles ' . $v['class'] . '" style="background-image: url(' . $v['img'] . ');" rel="' . $v['img'] . '"">&nbsp;</span>';
@@ -189,7 +190,9 @@ if ( ! class_exists( 'ReduxFramework_image_select' ) ) {
                     if ( $v['title'] != '' ) {
                         echo '<br /><span>' . $v['title'] . '</span>';
                     }
-
+                    if(isset($v['before_label_close'])){
+                        echo "<div class='single-design-labels'>".$v['before_label_close']."</div>";
+                    }
                     echo '</label>';
                     echo '</li>';
 
