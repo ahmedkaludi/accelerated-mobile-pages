@@ -82,3 +82,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 55. Image sanitizer updated #3112
 56. class-amp-blacklist-sanitizer.php updated #3276
 57. Class-amp-gallery-block-sanitizer file updated for Gallery with GIF Image not working issue #3304
+57. amp_get_permalink() function updated for the post id zero #3381
