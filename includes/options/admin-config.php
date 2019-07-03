@@ -5559,7 +5559,7 @@ else{
         array(
            'id' => 'add-this-support',
            'type' => 'section',
-           'title' => esc_html__('AddThis Support', 'accelerated-mobile-pages'),
+           'title' => esc_html__('AddThis Share Buttons', 'accelerated-mobile-pages'),
            'indent' => true,
            'layout_type' => 'accordion',
            'accordion-open'=> 1,
@@ -5568,7 +5568,7 @@ else{
           array(
               'id'        =>  'enable-add-this-option',
               'type'      =>  'switch',
-              'title'     =>  esc_html__('AddThis Sharing', 'accelerated-mobile-pages'),
+              'title'     =>  esc_html__('Smart Sorting Share Buttons', 'accelerated-mobile-pages'),
               'tooltip-subtitle'    => sprintf('%s <a href="https://www.addthis.com/register" target="_blank">%s</a>, %s <a href="https://www.addthis.com/academy/how-to-customize-your-share-buttons-on-the-amp-for-wp-plugin" target="_blank">%s</a>',esc_html__('You are using the default AddThis share buttons. To customize your share buttons, create a free account at','accelerated-mobile-pages'),esc_html__('AddThis.com','accelerated-mobile-pages'),esc_html__('then activate the Inline Share Buttons. Once your buttons are activated, replace the default Pub ID and Tool ID with your personalized IDs. For instructions, visit','accelerated-mobile-pages'),esc_html__('here','accelerated-mobile-pages')),
               'default'   =>  true,
           ),
