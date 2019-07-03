@@ -1007,3 +1007,23 @@ function ampforwp_http_remover_support(){
 	    }
 	}
 }
+//AMP Woocommerce function
+function ampforwp_woocommerce_conditional_check(){	
+	$showSingleCss = false;
+	if(!defined('AMP_WOOCOMMERCE_PLUGIN_URI')){
+		$showSingleCss = false;
+	}else{
+		if(function_exists('is_product') && is_product()){
+			$showSingleCss = true;
+		}elseif(function_exists('is_cart') && is_cart()){
+			$showSingleCss = true;
+		}elseif(function_exists('is_shop') && is_shop()){
+			$showSingleCss = true;
+		}elseif(function_exists('is_checkout') && is_checkout()){
+			$showSingleCss = true;
+		}elseif(function_exists('is_account_page') && is_account_page()){
+			$showSingleCss = true;
+		}
+	}
+	return apply_filters('ampforwp_woocommerce_conditional_check', $showSingleCss);
+}
