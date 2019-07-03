@@ -1268,8 +1268,7 @@ function ampforwp_woocommerce_conditional_check(){
 			$showSingleCss = true;
 		}
 	}
-
-return apply_filters('ampforwp_woocommerce_conditional_check', $showSingleCss);
+	return apply_filters('ampforwp_woocommerce_conditional_check', $showSingleCss);
 }
 // #3124 enfold theme shortcodes removed
 add_action('init','ampforwp_enfold_theme_compatibility',2);
