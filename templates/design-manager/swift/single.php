@@ -528,4 +528,3 @@
 <?php }// New single desing Ends?>
 <?php do_action("ampforwp_single_design_type_handle");?>
 	<?php amp_footer()?>
-//single.php

@@ -5197,11 +5197,11 @@ $single_page_options = array(
                    'options'=> array(
                         '1' => array(
                                 'alt'=>' Single Design 1 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-3.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-design-1.png'
                                 ),
                         '4' => array(
                                 'alt'=>' Single Design With Sidebar ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-2.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-design-2.png'
                                 ),
                         
                     ),
