@@ -1778,11 +1778,23 @@ function ampforwp_replace_title_tags() {
 				$site_title = $tsf_title;
 			}
 		}
-		// Custom Front Page Title From Rank Math SEO #2701
+		// Title From Rank Math SEO #2701 & #3358
 		if ( defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 			$rank_math_title = '';
 			$post_id = ampforwp_get_the_ID();
-		 	$rank_math_title = RankMath\Post::get_meta( 'title', $post_id );
+		 	if( ampforwp_is_home() || ampforwp_is_blog() ) {
+		 		$rank_math_title = RankMath\Paper\Paper::get_from_options( 'homepage_title' );
+		 	}
+		 	if ( ampforwp_is_front_page() || is_singular() || ampforwp_is_blog() ) {
+		 		$rank_math_title = RankMath\Post::get_meta( 'title', $post_id );
+		 	}
+		 	if ( is_archive() ) {
+		 		$object = get_queried_object();
+				$rank_math_title = RankMath\Term::get_meta( 'title', $object, $object->taxonomy );
+				if ( '' == $rank_math_title ) {
+					$rank_math_title = RankMath\Paper\Paper::get_from_options( "tax_{$object->taxonomy}_title", $object );
+				}
+		 	}
 		 	if ( $rank_math_title ) {
 		 		$site_title = $rank_math_title;
 		 	}
