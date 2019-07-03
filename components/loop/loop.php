@@ -334,9 +334,8 @@ function amp_loop_date($args=array()){
     						'ago');
     }
     $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
-    if( ampforwp_get_setting('ampforwp-post-date-switch') == true){
-    	echo '<div class="loop-date">'.$post_date.'</div>';
-    }
+    echo '<div class="loop-date">'.$post_date.'</div>';
+    
 }
 
 function amp_loop_excerpt($no_of_words=15,$tag = 'p'){

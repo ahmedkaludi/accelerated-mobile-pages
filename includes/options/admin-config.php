@@ -7246,17 +7246,15 @@ $single_page_options = array(
                     'id'        => 'amforwp-homepage-date-switch',
                     'type'      => 'switch',
                     'title'     => esc_html__('Homepage', 'accelerated-mobile-pages'),
-                    'default'   => 0,
+                    'default'   => 1,
                     'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
-                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
             ),
             array(
                     'id'        => 'amforwp-recentpost-date-switch',
                     'type'      => 'switch',
                     'title'     => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
-                    'default'   => 0,
+                    'default'   => 1,
                     'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
-                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
             ),
                 array(
                    'id' => 'date-tab-1', 
@@ -7290,7 +7288,6 @@ $single_page_options = array(
                                     '2' => 'Modified Date'
                                     ),
                     'default'  => '1',
-                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
             ), 
             // Date Format
              array(
@@ -7303,7 +7300,6 @@ $single_page_options = array(
                                     '2' => 'Traditional view'
                                     ), 
                     'default'   =>'1',
-                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
             ),
             array(
                     'id'        =>'ampforwp-post-date-format-text',
@@ -7311,7 +7307,7 @@ $single_page_options = array(
                     'title'     =>esc_html__('Text for the Date Format','accelerated-mobile-pages'),
                     'desc'  =>esc_html__('Example: English - % days ago, Spain - ago % days','accelerated-mobile-pages'),
                     'default'   =>'% days ago',
-                    'required' => array( array('ampforwp-post-date-format', '=', '1'),array('ampforwp-post-date-switch', '=' , '1') ),
+                    'required' => array( array('ampforwp-post-date-format', '=', '1') ),
             ),
         // Post Modified Date
             array(
@@ -7320,7 +7316,6 @@ $single_page_options = array(
                     'title'     => esc_html__('Modified Date Notice', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'tooltip-subtitle'  => esc_html__('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
-                    'required' => array( array('ampforwp-post-date-switch', '=' , '1') ),
             ),
 
         )
