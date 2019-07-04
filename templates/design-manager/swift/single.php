@@ -692,39 +692,7 @@
 	            </div>
 			</div>
 			<div class="sgl7-right">
-				<?php if( ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
-					<div class="r-pf">
-						<div class="cntr">
-							<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
-						<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
-							<div class="fsp">
-								<?php if( ampforwp_has_post_thumbnail() ){
-									$width 	= 346;
-									$height = 188;
-									if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
-										$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
-										$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
-									}
-									$args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
-								    <div class="fsp-img">
-								    	<?php amp_loop_image($args); ?>
-								    </div>
-							    <?php } ?>
-							    <div class="fsp-cnt">
-							    	<?php amp_loop_category(); ?>
-								    <?php amp_loop_title(); ?>
-								    <?php amp_loop_excerpt(20); ?>
-								    <?php if( true == ampforwp_get_setting('amforwp-recentpost-date-switch')){?>
-								    <div class="pt-dt">
-								    	<?php amp_loop_date(); ?>
-								    </div>
-									<?php }?>
-							    </div>
-							</div>
-						<?php endwhile; amp_loop('end');  ?>
-						</div>
-					</div>
-				<?php } ?>
+				
 			</div>
 		</div><!--/.sgl7-artl -->
 	</div><!-- /.cntr -->
