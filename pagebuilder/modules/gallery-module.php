@@ -30,7 +30,7 @@ return array(
 	 						),
 						array(
 								'type'		=>'checkbox',
-								'name'		=>"logo_image_layout",
+								'name'		=>"image_layout",
 								'tab'		=>'customizer',
 								'label'		=>'Responsive',
 								'default'	=>array('responsive'),
@@ -120,7 +120,7 @@ return array(
           'fields'=>array(
 		                array(		
 	 						'type'		=>'upload',		
-	 						'name'		=>"logo_img_upload",		
+	 						'name'		=>"img_upload",		
 	 						'label'		=>'Image',
 	           				'tab'     =>'customizer',
 	 						'default'	=>'',	
@@ -150,7 +150,7 @@ return array(
 	 						),
  						
               ),
-          'front_template'=>'{{if_condition_logo_img_link==1}}<a href="{{logo_img_url}}" {{if_condition_logo_img_link_open==new_page}}target="_blank"{{ifend_condition_logo_img_link_open_new_page}}>{{ifend_condition_logo_img_link_1}}{{if_logo_img_upload}}<amp-img src="{{logo_img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_logo_image_layout}}layout="{{logo_image_layout}}"{{ifend_logo_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_logo_img_upload}}{{if_condition_logo_img_link==1}}</a>{{ifend_condition_logo_img_link_1}}'
+          'front_template'=>'{{if_condition_logo_img_link==1}}<a href="{{logo_img_url}}" {{if_condition_logo_img_link_open==new_page}}target="_blank"{{ifend_condition_logo_img_link_open_new_page}}>{{ifend_condition_logo_img_link_1}}{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}{{if_condition_logo_img_link==1}}</a>{{ifend_condition_logo_img_link_1}}'
           ),
 	);
 
