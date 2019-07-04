@@ -2306,3 +2306,189 @@ if(class_exists('MCI_Footnotes')){ ?>
 		display:none;
 	}
 <?php } ?>
+<?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
+	<?php if( ampforwp_get_setting('single-design-type') == '7' ){ ?>
+	.sp{
+		width:100%;
+		display:inline-block;
+		margin-top:20px;
+	}
+	.sgl-7 .cntr, header .cntr{
+		max-width:1021px;
+	}
+	.sgl7-tlt{
+		width:100%;
+		display:inline-block;
+		margin:0 auto;
+	}
+	.amp-post-title{
+		font-size: 48px;
+		line-height:1.2;
+		font-weight:700;
+		color: #222;
+		letter-spacing: -.02em;
+	}
+	.sgl-7 .breadcrumbs{
+		margin-bottom: 5px;
+	}
+	.sgl-7 .breadcrumb ul li{
+		text-transform: capitalize;
+		margin-right: 3px;
+	}	
+	.sgl-7 .breadcrumb ul li a {
+	    color: #c3c3c3;
+	    letter-spacing:0px
+	}
+	.sgl-7 .breadcrumbs li a:after, .sgl-7 .breadcrumbs span a:after{
+		padding-left: 3px;
+    	top: 2px;
+	}
+	.tl-exc{
+		font-size: 16px;
+    	line-height: 1.6;
+    	font-style: italic;
+	    color: #999;
+	    padding: 5px 0 8px;
+	    margin: 13px 0;
+	    border-bottom: 1px dashed #f1f1f1;
+	    border-top: 1px dashed #f1f1f1;
+	}
+	.author-info{
+		display:inline-flex;
+		width:100%;
+		flex-wrap:wrap;
+		font-size:13px;
+		line-height:1.2;
+		color:#444;
+		margin-bottom: 20px;
+	}
+	.author-name a{
+	    color:#222;
+	    font-weight:700;
+	}
+	.loop-date:before{
+		content:"-";
+		display:inline-block;
+		margin:0px 6px;
+	}
+	.sgl7-artl{
+		display:inline-flex;
+		width:100%;
+		flex-wrap:wrap;
+	}
+	.sgl7-left{
+		width:70%;
+		flex:1 0 70%;
+		padding-right:30px;
+	}
+	.sgl7-right{
+		flex:1 0 30%;
+	}
+	.cntn-wrp{
+		font-size: 17px;
+	    color: #222;
+	    line-height: 1.8;
+	    word-wrap: break-word;
+	    margin-top: 24px;
+	}
+	.cntn-wrp h1, .cntn-wrp h2, .cntn-wrp h3, .cntn-wrp h4, .cntn-wrp h5, .cntn-wrp h6{
+		line-height:1.7;
+		font-weight: 400;
+		display: inline-block;
+	}
+	.cntn-wrp h1{
+		font-size:32px;
+		margin:30px 0px 20px 0px;
+	}
+	.cntn-wrp h2{
+		font-size:27px;
+		margin:30px 0px 20px 0px;
+	}
+	.cntn-wrp h3{
+		font-size:24px;
+		margin:15px 0px 15px 0px;
+	}
+	.cntn-wrp h4{
+		font-size:20px;
+		margin:8px 0px 15px 0px;
+	}
+	.cntn-wrp h5{
+		font-size:18px;
+		margin:4px 0px 11px 0px;
+	}
+	.cntn-wrp h6{
+		font-size:15px;
+		margin:4px 0px 10px 0px;
+	}
+	.cntn-wrp p{
+		margin-bottom:24px;
+	}
+	.cntn-wrp table {
+	    width: 100%;
+	    color:#444;
+	    margin-bottom: 15px;
+	}
+	.cntn-wrp table td, .cntn-wrp table th {
+	    border: 1px solid #e6e6e6;
+	    padding: 2px 8px;
+	}
+	.cntn-wrp blockquote{
+		background-color: #fcfcfc;
+	    border-left-style: solid;
+	    border-width: 2px;
+	    border-color: #1581c5;
+	    padding: 15px 23px 0;
+	    position: relative;
+	    top: 6px;
+	}
+	.sgl-7 .ss-ic{
+		display:inline-flex;
+		flex-wrap:wrap;
+		width:100%;
+		margin-top: 20px;
+		align-items: center;
+
+	}
+	.sgl-7 .ss-ic .shr-txt{
+		text-transform: uppercase;
+	    font-weight: 700;
+	    font-size: 15px;
+	    margin-right: 20px;
+	}
+	.sgl-7 .ss-ic ul li a{
+		display:flex;
+		align-items: center;
+		margin-bottom:0px;
+		font-size: 18px;
+    	padding: 8px;
+	}
+	.sgl-7 .ss-ic ul li .s_fb {
+	    padding: 7px 10px;
+	    font-size: 18px;
+	}
+	.sgl-7 .ss-ic ul li .s_fb:before{
+		content: "Facebook";
+	    display: inline-block;
+	    order: 1;
+	    padding-left: 10px;
+	    font-size: 13px;
+	    font-weight: 700;
+	    font-family: 'PT Sans';
+	    border-left: 1px solid rgba(255,255,255,.1);
+	    margin-left: 10px;
+	}
+	.sgl-7 .ss-ic ul li .s_tw:before{
+		content: "Twitter";
+	    display: inline-block;
+	    order: 1;
+	    padding-left: 10px;
+	    font-size: 13px;
+	    font-weight: 700;
+	    font-family: 'PT Sans';
+	    border-left: 1px solid rgba(255,255,255,.25);
+	    margin-left: 10px;
+    	letter-spacing: 0.5px;
+	}
+
+	<?php } // single Desing 7 ends here
+} // AMP Woocommerce condition ends here ?>

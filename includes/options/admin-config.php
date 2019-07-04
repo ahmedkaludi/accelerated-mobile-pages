@@ -5205,6 +5205,11 @@ $single_page_options = array(
                                 'alt'=>' Single Design With Sidebar ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'images/single-design-2.png'
                                 ),
+                        '7' => array(
+                                "before_label_close"=> "<span class='sdl'>Design 2</span><a class='sdlnk' href='".esc_url(AMPFORWP_PLUGIN_DIR_URI."images/single-design-2.png'")." target='_blank'>Preview</a>",
+                                'alt'=>' Single Design With Recent Posts ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'images/single-3.png'
+                                ),
                         
                     ),
                    'default'=> '1',
