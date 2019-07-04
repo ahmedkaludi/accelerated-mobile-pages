@@ -143,7 +143,7 @@ $front_css = '
 }
 {{ifend_condition_background_type_image}}
 
-{{row-class}}.amppb-fluid{width:{{fluid-width}};}
+{{row-class}}.amppb-fluid{width:{{fluid-width}};{{if_fluid-height}}height:{{fluid-height}};{{ifend_fluid-height}}}
 {{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{margin:0 auto;max-width:{{fluid-wrapper}}; }
 
 {{if_condition_col_2_align==1}}
@@ -153,7 +153,7 @@ $front_css = '
 	}
 {{ifend_condition_col_2_align_1}}
 
-{{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
+{{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};{{if_fixed-height}}height:{{fixed-height}};{{ifend_fixed-height}}margin: 0 auto;}
 
 {{row-class}}{
 	{{if_condition_check_for_brdr==1}}
@@ -452,6 +452,15 @@ $containerCommonSettings = array(
 							),
 							array(
 								'type'		=>'text',
+								'name'		=>"fixed-height",
+								'label'		=>'Height',
+								'tab'		=>'customizer',
+								'default'	=>'',
+								'content_type'=>'css',
+								'required'  => array('grid_type'=>'amppb-fixed')
+							),
+							array(
+								'type'		=>'text',
 								'name'		=>"content-width",
 								'label'		=>'Content Width',
 								'tab'		=>'customizer',
@@ -466,6 +475,15 @@ $containerCommonSettings = array(
 								'label'		=>'Width',
 								'tab'		=>'customizer',
 								'default'	=>'100%',
+								'content_type'=>'css',
+								'required'  => array('grid_type'=>'amppb-fluid')
+							),
+							array(
+								'type'		=>'text',
+								'name'		=>"fluid-height",
+								'label'		=>'Height',
+								'tab'		=>'customizer',
+								'default'	=>'',
 								'content_type'=>'css',
 								'required'  => array('grid_type'=>'amppb-fluid')
 							),
