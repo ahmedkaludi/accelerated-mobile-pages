@@ -291,7 +291,7 @@ function amp_loop_title($data=array()){
 		}
 	}
 	// if $data key is attributes & tag
-	$attr_val ='';
+	$data_val = $data_attr = $attr_val = '';
 	if( false !== strpos($data_attr,'attributes') || empty($data_attr) ){
 		$attributes = 'class="loop-title"';
 		if(isset($data['attributes']) && $data['attributes']!=""){
