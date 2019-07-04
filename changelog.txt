@@ -1,6 +1,6 @@
 == Changelog ==
 
-= 0.9.97.62 (3rd July 2019) =
+= 0.9.97.63 (4th July 2019) =
 * Improvements: Change AddThis controls labels. #3359
 * Fixed: Alternative methods to sanitize(`sanitize_textarea_field`) for users who are using older then 4.7  #3394
 * Fixed: amp-addthis script is loading on WooCommerce product pages. #3393
