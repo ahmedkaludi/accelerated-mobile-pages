@@ -23,8 +23,10 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
 	$link_color              = $get_customizer->get_customizer_setting( 'link_color' );
 	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
 	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
-
 	$header_bg_clr          = ampforwp_get_setting('amp-d2-background-color','color');
+	if(empty($header_bg_clr)){
+		$header_bg_clr ='#0a89c0';
+	}
 	?>
 
 /* Global Styling */
