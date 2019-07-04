@@ -65,7 +65,7 @@ class AmpforWP_Rewrite_Rules {
 	 */
 	public function init() {
 
-		add_action( 'init', array( $this, 'add_rewrite_rules_hooks' ), 9e4 );
+		add_action( 'init', array( $this, 'add_rewrite_rules_hooks' ), 94 );
 	}
 
 	/**
@@ -73,9 +73,9 @@ class AmpforWP_Rewrite_Rules {
 	 *
 	 * @since 1.0.0
 	 */
-	public static function add_rewrite_rules_hooks() {
-		self::append_post_type_archive_rules();
-    	self::register_generator_hooks();
+	public function add_rewrite_rules_hooks() {
+		$this->append_post_type_archive_rules();
+    	$this->register_generator_hooks();
 	}
 
 	/**
