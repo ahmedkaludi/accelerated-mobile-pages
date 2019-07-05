@@ -145,6 +145,9 @@ amp-social-share[type="facebookmessenger"] {
 .custom-amp-socialsharing-flipboard{background:#f52828}
 .amp-social-flipboard{background:#f52828;text-align: center;}
 <?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-facebook-share-messenger') ) { ?>
+.amp-social-icon.amp-social-facebookmessenger {background: #87ceeb;text-align: center;}
+<?php } ?>
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
 .comment-button-wrapper a{border-style:solid;border-color:#c2c2c2;border-width:1px 1px 2px;border-radius:4px;background-color:transparent;color:#0a89c0;cursor:pointer;display:block;font-size:14px;font-weight:600;text-align:center;line-height:18px;margin:0 auto;max-width:200px;padding:11px 16px;text-decoration:none;width:50%;-webkit-transition:background-color .2s ease;transition:background-color .2s ease}
 .close-nav,.comments_list div,.related_posts ol li,.toggle-navigation ul,.toggle-navigationv2 ul li a{display:inline-block}main .amp-wp-content.comments_list{background:0 0;box-shadow:none;max-width:1030px}.comments_list h3{font-size:14px;font-weight:700;letter-spacing:.4px;margin:25px 0 10px;color:#333}.comments_list{margin:2.5em 16px}.comments_list ul{margin:0;padding:0}.comments_list ul.children{padding-bottom:10px;margin-left:4%;width:96%}

@@ -58,8 +58,8 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 		<?php } ?>
 		<?php if(ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
 			<div class="ampforwp-custom-social">
-				<a title="facebook share messenger" <?php ampforwp_nofollow_social_links(); ?> href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink); ?>&app_id=<?php echo esc_attr($facebook_app_id) ?>" class="amp-social-facebook-messenger">
-				    <amp-img src="https://img.icons8.com/color/1000/1000000/facebook-messenger.png" width="50" height="45" />
+				<a title="facebook share messenger" <?php ampforwp_nofollow_social_links(); ?> href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink); ?>&app_id=<?php echo esc_attr($facebook_app_id) ?>" class="amp-social-facebook-messenger amp-social-icon-rounded">
+				    <amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/messenger.png') ?>" width="16" height="16" />
 				</a>
 		    </div>
 		<?php } ?>
