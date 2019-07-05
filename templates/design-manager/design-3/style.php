@@ -9,10 +9,8 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
   $get_customizer = new AMP_Post_Template( $post_id );
   // Get content width
   $colorscheme    = ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color');
-  $headercolor    = ampforwp_get_setting('amp-opt-color-rgba-headercolor','color');
   $font_color     = ampforwp_get_setting('amp-opt-color-rgba-font','color');
   $link_color     = ampforwp_get_setting('amp-opt-color-rgba-link','color');
-  $headerelements = ampforwp_get_setting('amp-opt-color-rgba-headerelements','color');
   $sticky_head    = ampforwp_get_setting('amp-opt-sticky-head');
 
   $content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
@@ -79,22 +77,59 @@ figure.aligncenter amp-img {
  margin: 0 auto;
  }
 /* Slide Navigation code */
-amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', serif; }
+<?php
+  $headercolor          = ampforwp_get_setting('amp-opt-color-rgba-headercolor','color');
+  $headerelements       = ampforwp_get_setting('amp-opt-color-rgba-headerelements','color');
+  $menubgcolor          = ampforwp_get_setting('amp-opt-color-rgba-menu-bg-color','color');
+  $navmenucolor         = ampforwp_get_setting('amp-opt-color-rgba-menu-elements-color','color');
+  $submenucolor         = ampforwp_get_setting('amp-opt-color-rgba-submenu-bgcolor','color');
+  $submenuhovercolor    = ampforwp_get_setting('amp-opt-color-rgba-submenu-hover-bgcolor','color');
+  $menulblcolor         = ampforwp_get_setting('amp-opt-color-rgba-menu-label-color','color');
+  $menubdrcolor         = ampforwp_get_setting('amp-opt-color-rgba-menu-brdr-color','color');
+
+//when the fields are empty default value will load
+if(empty($headercolor)){
+    $headercolor ='#FFFFFF';
+}
+if(empty($headerelements)){
+    $headerelements ='#F42F42';
+}
+if(empty($menubgcolor)){
+    $menubgcolor ='#131313';
+}
+if(empty($navmenucolor)){
+    $navmenucolor ='#eeeeee';
+}
+if(empty($submenucolor)){
+    $submenucolor ='#666666';
+}
+if(empty($submenuhovercolor)){
+    $submenuhovercolor ='#666666';
+}
+if(empty($menulblcolor)){
+    $menulblcolor ='#aaaaaa';
+}
+if(empty($menubdrcolor)){
+    $menubdrcolor ='#555555';
+}
+?>
+amp-sidebar{ width: 280px;font-family: 'Roboto Slab', serif;background:<?php echo ampforwp_sanitize_color($menubgcolor);?>; }
 .amp-sidebar-image{ line-height: 100px; vertical-align:middle; }
 .amp-close-image{ top: 15px; left: 225px; cursor: pointer; }
-.navigation_heading{ padding: 20px 20px 15px 20px; color: #aaa; font-size: 10px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #555; display: inline-block; width: 100%}
+.navigation_heading{ padding: 20px 20px 15px 20px; color: <?php echo ampforwp_sanitize_color($menulblcolor); ?>; font-size: 10px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid <?php echo ampforwp_sanitize_color($menubdrcolor); ?>; display: inline-block; width: 100%}
 .toggle-navigationv2 ul{ list-style-type: none; margin: 15px 0 0 0; padding: 0}
-.toggle-navigationv2 ul.amp-menu li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px; color:#eee; width:100% }
+.toggle-navigationv2 ul.amp-menu li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px;      color:<?php echo ampforwp_sanitize_color($navmenucolor); ?>; width:100% }
 .amp-menu li{position:relative}
-.toggle-navigationv2 ul.amp-menu li a:hover{background:#666;color:#fff}
-.amp-menu li.menu-item-has-children ul{display:none;margin:0;background:#666;position:relative;
+.toggle-navigationv2 ul.amp-menu li a:hover{background:<?php echo ampforwp_sanitize_color($submenuhovercolor); ?>;color:<?php echo ampforwp_sanitize_color($navmenucolor); ?>;}
+.amp-menu li.menu-item-has-children ul{display:none;margin:0;position:relative;
+background:<?php echo ampforwp_sanitize_color($submenucolor);?>;
 }
 .amp-menu li.menu-item-has-children .sub-menu li a span:before{
     content: '\25b8';
     position: relative;
     left: -6px;
     font-size: 10px;
-    color: #a9a9a9;
+    color:<?php echo ampforwp_sanitize_color($menulblcolor); ?>;
     top: -2px;
     z-index: 10000;
     line-height: 1;
@@ -103,17 +138,15 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
       padding: 15px 0px 15px 20px;
 }
 .amp-menu li.menu-item-has-children .sub-menu .sub-menu li a{
-    padding: 15px 0px 15px 30px;
+    padding: 15px 0px 15px 33px;
 }
-
-.amp-menu li.menu-item-has-children ul ul{background:#444}
-.amp-menu li.menu-item-has-children ul ul ul{background:#666}
-
+.amp-menu li.menu-item-has-children .sub-menu .sub-menu .sub-menu li a{
+  padding: 15px 0px 15px 45px;
+}
 .amp-menu input{display:none}
 .amp-menu [id^=drop]:checked + label + ul{ display: block;}
-.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 12px 20px 10px 30px;right:0;font-size:13px;color:#ccc;top:6px;z-index:10000;line-height:1}
-
-.toggle-navigationv2 .social_icons{ margin-top: 25px; border-top: 1px solid #555; padding: 25px 0px; color: #fff; width: 100%; }
+.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 12px 20px 10px 30px;right:0;font-size:13px;color:<?php echo ampforwp_sanitize_color($navmenucolor); ?>;top:6px;z-index:10000;line-height:1}
+.toggle-navigationv2 .social_icons{ margin-top: 25px; border-top: 1px solid <?php echo ampforwp_sanitize_color($menubdrcolor); ?>; padding: 25px 0px; color: #fff; width: 100%; }
 .menu-all-pages-container:after{ content: ""; clear: both }
 .toggle-text{ color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; display: inherit; text-align: center; }
 .toggle-text:before{ content: "..."; font-size: 32px; position: ; font-family: georgia; line-height: 0px; margin-left: 0px; letter-spacing: 1px; top: -3px; position: relative; padding-right: 10px; }
@@ -122,7 +155,7 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .cl-btn:after{
     content: "x";
     font-size: 16px;
-    color: #999;
+    color:<?php echo ampforwp_sanitize_color($menulblcolor); ?>;
     position: absolute;
     right: 15px;
     top: 15px;
@@ -546,10 +579,10 @@ amp-user-notification button { background-color:  <?php echo ampforwp_get_settin
 .social_icons li{ box-sizing: initial; display:inline-block; margin:5px; }
 .social_icons li a:before{ box-sizing: initial; color:#fff; padding: 10px; display: inline-block; border-radius: 70px; width: 18px; height: 18px; line-height: 20px; text-align: center; }
 #ampforwp_search_query_item { display: none; }
-#header, .headerlogo a{ background:<?php echo ampforwp_get_setting('amp-opt-color-rgba-headercolor','color','ampforwp_sanitize_color'); ?>  }
+#header, .headerlogo a{ background:<?php echo ampforwp_sanitize_color($headercolor); ?>  }
 .comment-button-wrapper a, #pagination .next a, #pagination .prev a{ background: <?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color','ampforwp_sanitize_color'); ?> ; }
-.toast:after, .toast:before, .toast span{ background: <?php echo ampforwp_get_setting('amp-opt-color-rgba-headerelements','color','ampforwp_sanitize_color'); ?> ; }
-[class*=icono-], .headerlogo a{ color: <?php echo ampforwp_get_setting('amp-opt-color-rgba-headerelements','color','ampforwp_sanitize_color'); ?> }
+.toast:after, .toast:before, .toast span{ background: <?php echo ampforwp_sanitize_color($headerelements);?>; }
+[class*=icono-], .headerlogo a{ color: <?php echo ampforwp_sanitize_color($headerelements);?>; }
 #pagination .next a, #pagination .prev a , #pagination .next a, #pagination .prev a ,.comment-button-wrapper a{ color:  <?php echo ampforwp_get_setting('amp-opt-color-rgba-font','color','ampforwp_sanitize_color'); ?> ;}
 <?php if ( ! has_nav_menu( 'amp-menu' ) ) { ?>
 .toggle-navigationv2 .social_icons { border-top: 0px; }
