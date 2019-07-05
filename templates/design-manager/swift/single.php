@@ -691,9 +691,20 @@
 					</ul>
 	            </div>
 			</div>
-			<div class="sgl7-right">
-				
-			</div>
+			<?php if( ampforwp_get_setting('swift-sidebar') == '1' && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
+				<div class="sgl7-right">
+					<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
+						<?php 
+						$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+						if ( $sanitized_sidebar) {
+							$sidebar_output = $sanitized_sidebar->get_amp_content();
+							$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+						}
+			            echo do_shortcode($sidebar_output);
+						?>
+					<?php endif; ?>
+				</div>
+			<?php } ?>
 		</div><!--/.sgl7-artl -->
 	</div><!-- /.cntr -->
 </div><!-- /.sgl-7 -->
