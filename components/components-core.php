@@ -386,7 +386,8 @@ function amp_header_core(){
 				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
-				<?php $custom_css = ampforwp_get_setting('css_editor'); 
+				<?php $custom_css = ampforwp_get_setting('css_editor');
+					  $custom_css = str_replace(array('.accordion-mod'), array('.apac'), $custom_css);
 					  $sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
 					  echo $sanitized_css; ?>
 			</style>

@@ -280,7 +280,8 @@ if( ( isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enab
 if ( true == $redux_builder_amp['amp-pagination'] ) { ?>
 .ampforwp_post_pagination{width:100%;text-align:center;display:inline-block;}
 <?php }
-$custom_css = ampforwp_get_setting('css_editor'); 
+$custom_css = ampforwp_get_setting('css_editor');
+$custom_css = str_replace(array('.accordion-mod'), array('.apac'), $custom_css);
 $sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
 echo $sanitized_css;
 //} ?>
