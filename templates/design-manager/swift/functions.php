@@ -96,7 +96,7 @@ function ampforwp_swift_social_icons(){
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-whatsapp-share']){?>
 							<li>
-								<a class="s_wp" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="whatsapp://send?text=<?php echo esc_url($amp_permalink); ?>" data-action="share/whatsapp/share"></a>
+								<a class="s_wp" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://api.whatsapp.com/send?text=<?php echo esc_url($amp_permalink); ?>" data-action="share/whatsapp/share"></a>
 							</li>
 							<?php } ?>
 							<?php if(ampforwp_get_setting('enable-single-line-share') == true)  { 
