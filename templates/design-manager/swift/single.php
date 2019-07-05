@@ -539,17 +539,17 @@
 				   <?php amp_excerpt(20); ?>
 			    </div>
 			<?php } ?>
+			<div class="author-info">
+					<?php amp_author_box( 
+						array('author_pub_name'=>true,
+								'author_prefix'=> ampforwp_translation( ampforwp_get_setting('amp-translator-by-text').' ', 'By ' )
+							) 
+					); ?>
+				<?php amp_date(array('custom_format'=>'F d, Y') ); ?>
+			</div>
 		</div>
 		<div class="sgl7-artl">
 			<div class="sgl7-left">
-				<div class="author-info">
-						<?php amp_author_box( 
-							array('author_pub_name'=>true,
-									'author_prefix'=> ampforwp_translation( ampforwp_get_setting('amp-translator-by-text').' ', 'By ' )
-								) 
-						); ?>
-					<?php amp_date(array('custom_format'=>'F d, Y') ); ?>
-				</div>
 				<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
 					<div class="sf-img">
 						<?php amp_featured_image();?>
@@ -693,6 +693,35 @@
 			</div>
 			<?php if( ampforwp_get_setting('swift-sidebar') == '1' && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
 				<div class="sgl7-right">
+					<?php if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
+						<div class="r-pf">
+							<h3><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' ); ?></h3>
+							<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
+								<div class="rcp">
+									<?php if( ampforwp_has_post_thumbnail() ){
+										$width 	= 100;
+										$height = 75;
+										if( true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') ){
+											$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
+											$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
+										}
+										$args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+									    <div class="rcp-img">
+									    	<?php amp_loop_image($args); ?>
+									    </div>
+								    <?php } ?>
+								    <div class="rcp-cnt">
+									    <?php amp_loop_title(); ?>
+									    <?php if( true == ampforwp_get_setting('amforwp-recentpost-date-switch')){?>
+									    <div class="pt-dt">
+									    	<?php amp_loop_date(); ?>
+									    </div>
+										<?php }?>
+								    </div>
+								</div>
+							<?php endwhile; amp_loop('end');  ?>
+						</div>
+						<?php } // Recent Posts Condition ends ?>
 					<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 						<?php 
 						$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');

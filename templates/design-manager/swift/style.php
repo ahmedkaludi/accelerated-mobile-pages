@@ -1230,7 +1230,8 @@ if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar')
 }
 }
 <?php }
-if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || ampforwp_is_blog() ) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() )  ) { 
+
+if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || ampforwp_is_blog() ) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() && ampforwp_get_setting('single-design-type') == '4')  ) { 
 // AMP woocommerce condition starts
 if( !ampforwp_woocommerce_conditional_check() ) { ?>
 /*** Sidebar CSS ***/
@@ -1341,7 +1342,7 @@ thead th {
 }
 }
 <?php } // AMP woocommerce condition starts
- }//Header and Archive Sidebar CSS Ends  ?>
+ }//Header and Archive Sidebar CSS Ends ?>
 <?php 
 if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts 
 //Footer
@@ -2344,7 +2345,7 @@ if(class_exists('MCI_Footnotes')){ ?>
     	font-style: italic;
 	    color: #999;
 	    padding: 5px 0 8px;
-	    margin: 13px 0;
+	    margin: 13px 0 0px;
 	    border-bottom: 1px dashed #f1f1f1;
 	    border-top: 1px dashed #f1f1f1;
 	}
@@ -2355,13 +2356,13 @@ if(class_exists('MCI_Footnotes')){ ?>
 		font-size:13px;
 		line-height:1.2;
 		color:#444;
-		margin-bottom: 20px;
+		margin-top: 15px;
 	}
 	.author-name a{
 	    color:#222;
 	    font-weight:700;
 	}
-	.loop-date:before{
+	.author-info .loop-date:before{
 		content:"-";
 		display:inline-block;
 		margin:0px 6px;
@@ -2370,14 +2371,12 @@ if(class_exists('MCI_Footnotes')){ ?>
 		display:inline-flex;
 		width:100%;
 		flex-wrap:wrap;
+		margin-top: 20px;
 	}
 	.sgl7-left{
 		width:70%;
 		flex:1 0 70%;
 		padding-right:30px;
-	}
-	.sgl7-right{
-		flex:1 0 30%;
 	}
 	.cntn-wrp{
 		font-size: 17px;
@@ -2484,6 +2483,96 @@ if(class_exists('MCI_Footnotes')){ ?>
 	    margin-left: 10px;
     	letter-spacing: 0.5px;
 	}
+<?php	
+if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) { 
+	if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
+	/*** Sidebar CSS ***/
+	.sgl7-right{
+		flex:1 0 30%;
+		padding-top: 20px;
+	}
+	.amp-sidebar{
+		width:100%;
+		display:inline-block;
+		margin-bottom:20px;
+	}
+	.amp-sidebar h4{
+		font-size: 13px;
+	    line-height: 1.5;
+	    background-color: #222;
+	    color: #fff;
+	    font-weight: 700;
+	    display: inline-block;
+	    padding: 1px 22px;
+	    border-radius: 3px;
+	    margin-bottom: 20px;
+	}
+	.amp-sidebar ul li {
+		display:inline-block;
+		list-style-type:none;
+		margin-bottom: 20px;
+	}
+	.amp-sidebar ul li a{
+		color: #111;
+		font-size: 13px;
+    	font-weight: 600;
+    	line-height: 1.4;
+    	margin: 0 0 7px;
+	}
+	.amp-sidebar ul li .post-date{
+		font-size: 12px;
+	    color: #444;
+	    line-height: 1.5;
+	    display: block;
+	    margin-top: 10px;
+	}
+	<?php if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
+		.r-pf{
+			width:100%;
+			display:inline-block;
+			margin-bottom:20px;
+		}
+		.r-pf h3{
+			font-size: 13px;
+		    line-height: 1.5;
+		    background-color: #222;
+		    color: #fff;
+		    font-weight: 700;
+		    display: inline-block;
+		    padding: 1px 22px;
+		    border-radius: 3px;
+		    margin-bottom: 20px;
+		}
+		.rcp{
+			display:inline-flex;
+			width:100%;
+			flex-wrap:wrap;
+			margin-bottom: 20px;
+		}
+		.rcp-img{
+			flex:1 0 34%;
+		}
+		.rcp-cnt{
+			flex:1 0 66%;
+			padding-left:15px;
+		}
+		.rcp-cnt .loop-title a{
+			color: #111;
+			font-size: 13px;
+	    	font-weight: 600;
+	    	line-height: 1.2;
+	    	margin: 0 0 7px;
+		}
+		.rcp-cnt .loop-date{
+			font-size: 12px;
+		    color: #444;
+		    line-height: 1.5;
+		    display: block;
+		    margin-top: 10px;
+		}
+	<?php } // Recent Posts Ends ?>
+	<?php endif; 
+	} // sidebar condition ends here ?>
 
 	<?php } // single Desing 7 ends here
 } // AMP Woocommerce condition ends here ?>
