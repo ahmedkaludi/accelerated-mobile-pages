@@ -2558,7 +2558,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
   $blacklist_array	 		= array();
   // Remove some blacklist tags from sidebars only when search,archives and categories widgets are active #2835
   if ( is_active_widget(false,false,'search') || is_active_widget(false,false,'archives') || is_active_widget(false,false,'categories') ) {
-  	$blacklist_array['non-content'] = true;
+  	$blacklist_array['non-content'] = 'non-content';
   }
   ob_start();
   dynamic_sidebar( $sidebar );
@@ -6715,5 +6715,22 @@ function ampforwp_webp_featured_image() {
 			 ?>
 		</figure>
 		<?php 
+	}
+}
+
+// Keep the default WordPress form for AMP #3000
+add_filter('get_search_form', 'ampforwp_search_form');
+if ( ! function_exists('ampforwp_search_form') ) {
+	function ampforwp_search_form($form){
+		if ( ampforwp_is_amp_endpoint() ) {	
+			$form = '<form role="search" ' . $aria_label . 'method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
+						<label>
+							<span class="screen-reader-text">' . _x( 'Search for:', 'label' ) . '</span>
+							<input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" value="' . get_search_query() . '" name="s" />
+						</label>
+						<input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button' ) . '" />
+					</form>';
+		}
+		return $form;
 	}
 }
