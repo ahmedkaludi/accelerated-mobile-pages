@@ -165,6 +165,9 @@ amp-social-share[type="facebookmessenger"] {
 <?php if ( true == ampforwp_get_setting('enable-single-pocket-share') ) { ?>
 .amp-social-pocket{background:#e8e8e8}
 <?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-facebook-share-messenger') ) { ?>
+.amp-social-icon.amp-social-facebookmessenger {background: #87ceeb;text-align: center;}
+<?php } ?>
 <?php }?>
 
 /* Header */
