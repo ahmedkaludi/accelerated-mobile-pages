@@ -1535,8 +1535,8 @@ $tabs = array(
                'default'  => '1',
                'required' => array('ampforwp-archive-support', '=' , '1')
              ),
+             $amp_cpt_option,
             $amp_custom_tax_option,
-            $amp_cpt_option,
            array(
                'id'       => 'ampforwp-amp-takeover',
                'type'     => 'switch',
