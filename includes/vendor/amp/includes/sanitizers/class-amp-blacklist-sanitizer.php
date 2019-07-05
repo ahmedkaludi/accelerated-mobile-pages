@@ -43,6 +43,10 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			if ( $href ){
 				$node->setAttribute('href',\ampforwp_findInternalUrl($href));
 			}
+			// Adding rel="noreferrer" to external links to prevent security vulnerabilities #3276
+			if ( \ampforwp_isexternal($href) ) {
+				$node->setAttribute('rel', 'noreferrer');
+			}
 		}
 		
 		// Some nodes may contain valid content but are themselves invalid.

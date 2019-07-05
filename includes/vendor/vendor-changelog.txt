@@ -76,3 +76,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 46. Class-amp-gallery-block-sanitizer file updated for Gallery with GIF Image not working issue #3304
 47. class-amp-allowed-tag-generated.php added amp-recaptcha-input support #3315
 48. Image sanitizer updated #3112
+49. class-amp-blacklist-sanitizer.php updated #3276
