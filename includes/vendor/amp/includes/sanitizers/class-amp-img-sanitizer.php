@@ -56,6 +56,14 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				continue;
 			}
 
+			if( $node->getAttribute( 'src' )){
+				if (strpos($node->getAttribute( 'src' ), '../wp-content') !== false) {
+				    $site_url = get_site_url();
+				    $image_complete_src = str_replace('../wp-content', $site_url.'/wp-content', $node->getAttribute( 'src' ));
+				    $node->setAttribute('src',$image_complete_src);
+				}
+			}
+			
 			// Determine which images need their dimensions determined/extracted.
 			if ( ! is_numeric( $node->getAttribute( 'width' ) ) || ! is_numeric( $node->getAttribute( 'height' ) ) ) {
 				$need_dimensions[ $node->getAttribute( 'src' ) ][] = $node;
