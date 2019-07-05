@@ -1821,13 +1821,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 <?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;
-<?php if ( ampforwp_get_setting('ampforwp-sticky-icons-type') == 'sticky-btm-icons' ){ ?>
- bottom: 0;
-<?php } 
-if ( ampforwp_get_setting('ampforwp-sticky-icons-type') == 'sticky-top-icons' ){ ?>
- top:0;
-<?php } ?>
-text-align: center;border: 0;z-index:9;}
+text-align: center;border: 0;z-index:9;bottom:0;}
 .s_stk ul{width:100%;display:inline-flex;}
 .s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:40px}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
@@ -1841,12 +1835,13 @@ text-align: center;border: 0;z-index:9;}
   padding-bottom:40px;
 }
 <?php } ?>
-<?php if(is_single() && ampforwp_get_setting('ampforwp-sticky-icons-type') == 'sticky-top-icons' ){?>
-.body.single-post{
-  padding-top:40px;
+.s_stk{
+	z-index:99999;
 }
-<?php } 
-} //Sticky CSS Condition ends?>
+.adsforwp-stick-ad, amp-sticky-ad{
+	padding-bottom:40px;
+}
+<?php } //Sticky CSS Condition ends?>
 <?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
