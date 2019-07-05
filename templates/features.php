@@ -588,13 +588,13 @@ function ampforwp_new_dir( $dir ) {
 		if ( is_page() && isset($redux_builder_amp['ampforwp-page-social']) && $redux_builder_amp['ampforwp-page-social'] )	{
 			$social_check_page = true;
 		}		
-		if ( '4' === $redux_builder_amp['amp-design-selector'] ) {
+		if ( '4' === ampforwp_get_setting('amp-design-selector') ) {
 			$social_check = true;
 		}
-		if ( '4' !== $redux_builder_amp['amp-design-selector'] && defined('AMPFORWP_DM_SOCIAL_CHECK') && 'true' === AMPFORWP_DM_SOCIAL_CHECK ) {
+		if ( '4' !== ampforwp_get_setting('amp-design-selector') && defined('AMPFORWP_DM_SOCIAL_CHECK') && 'true' === AMPFORWP_DM_SOCIAL_CHECK ) {
 			$social_check = true;
 		}
-		if( $redux_builder_amp['enable-single-social-icons'] == true || defined('AMPFORWP_DM_SOCIAL_CHECK') && AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
+		if( ampforwp_get_setting('enable-single-social-icons') == true || defined('AMPFORWP_DM_SOCIAL_CHECK') && AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
 				if( (is_singular() || $social_check_page ) &&  is_socialshare_or_socialsticky_enabled_in_ampforwp() ) {
 					if ( empty( $data['amp_component_scripts']['amp-social-share'] ) ) {
 						$data['amp_component_scripts']['amp-social-share'] = 'https://cdn.ampproject.org/v0/amp-social-share-0.1.js';
@@ -1212,7 +1212,7 @@ function ampforwp_sticky_social_icons(){
 	} else{
 		$amp_permalink = get_the_permalink();
 	}
-	if( ($redux_builder_amp['enable-single-social-icons'] == true && is_single()) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']))  { 
+	if( (ampforwp_get_setting('enable-single-social-icons') == true && is_single()) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']))  { 
 		$image = '';
 		if ( ampforwp_has_post_thumbnail( ) ){
 			$image = ampforwp_get_post_thumbnail( 'url', 'full' );
