@@ -1554,6 +1554,9 @@ Redux::setArgs( "redux_builder_amp", $args );
             elseif ( is_plugin_active('wp-seopress/seopress.php') ) {
                 $default = 'seopress';
             }
+            elseif ( function_exists( 'the_seo_framework' ) ) {
+                $default = 'seo_framework';
+            }
             return $default;
         }
     }
@@ -1604,7 +1607,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'rank_math' => 'Rank Math SEO',
                     'genesis'    => 'Genesis',
                     'seopress'    => 'SEOPress',
-                    'bridge'    => 'Bridge Qode SEO'
+                    'bridge'    => 'Bridge Qode SEO',
+                    'seo_framework'    => 'The SEO Framework',
                 ),
                 'default'  => ampforwp_seo_default(),
             ),

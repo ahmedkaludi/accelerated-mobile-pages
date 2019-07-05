@@ -1743,7 +1743,16 @@ function ampforwp_replace_title_tags() {
 		}
 		//Bridge Qode SEO Compatibility #2538
 		if ( function_exists('qode_wp_title') && 'bridge' == ampforwp_get_setting('ampforwp-seo-selection')){
-		$site_title = get_post_meta($post_id, "qode_seo_title", true);
+			$site_title = get_post_meta($post_id, "qode_seo_title", true);
+		}
+		// The SEO Framework Compatibility #2670
+		if ( function_exists( 'the_seo_framework' ) && 'seo_framework' == ampforwp_get_setting('ampforwp-seo-selection')  ) {
+			$tsf_title = $ampforwp_tsf = '';
+			$ampforwp_tsf 	= \the_seo_framework();
+			$tsf_title 		= $ampforwp_tsf->get_title();
+			if ( $tsf_title ) {
+				$site_title = $tsf_title;
+			}
 		}
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}

@@ -323,6 +323,15 @@ function ampforwp_generate_meta_desc($json=""){
         if ( function_exists('qode_header_meta') && 'bridge' == ampforwp_get_setting('ampforwp-seo-selection')){
         $desc = get_post_meta($post_id, "qode_seo_description", true);
         }
+        // The SEO Framework
+        if ( function_exists( 'the_seo_framework' ) && 'seo_framework' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+            $tsf_desc = $ampforwp_tsf = '';
+            $ampforwp_tsf   = \the_seo_framework();
+            $tsf_desc       = $ampforwp_tsf->get_description();
+            if ( $tsf_desc ) {
+                $desc = $tsf_desc;
+            }
+        }
         // strip_shortcodes  strategy not working here so had to do this way
         // strips shortcodes
         $desc = preg_replace('/\[(.*?)\]/','', $desc);
