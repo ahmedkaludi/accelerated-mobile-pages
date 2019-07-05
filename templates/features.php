@@ -1586,6 +1586,13 @@ function ampforwp_replace_title_tags() {
 
 		//* We can filter this later if needed:
 		$sep = ' | ';
+		if( class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') ) { 
+			$sep = WPSEO_Options::get( 'separator' );
+		}
+		if( defined( 'RANK_MATH_FILE' ) && class_exists('RankMath\\Helper') && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+			$sep = RankMath\Helper::get_settings( 'titles.title_separator' );
+			$sep = ' '.htmlentities( $sep, ENT_COMPAT, 'UTF-8', false ).' ';
+		}
 		$sep = apply_filters('ampforwp_title_seperator_type', $sep);
 
 		if ( is_singular() ) {
