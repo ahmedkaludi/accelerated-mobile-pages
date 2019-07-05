@@ -1330,6 +1330,7 @@ $tabs = array(
         $options = get_option('ampforwp_cpt_generated_post_types');
         return $options;
     }
+
     $amp_cpt_option = array();
     $ampforwp_cpt_plugin_check = is_plugin_active( 'amp-custom-post-type/amp-custom-post-type.php' );
     if ( false == $ampforwp_cpt_plugin_check ) {   
@@ -1342,36 +1343,23 @@ $tabs = array(
                     'options' => ampforwp_get_cpt_generated_post_types(),
                 );
     }
+    function ampforwp_get_generated_custom_taxonomies(){
+        $taxonomies = '';
+        $taxonomies = get_transient('ampforwp_get_taxonomies');
+        return $taxonomies;
+    }
     $amp_custom_tax_option = array();
-    $amp_custom_tax_cat_option = array();
-    $amp_custom_tax_tag_option = array();
-    $taxonomies = get_transient('ampforwp_get_taxonomies');
-    if( $taxonomies != false){
+    $taxonomies = ampforwp_get_generated_custom_taxonomies();
+
+    if( !empty($taxonomies) && $taxonomies != false){
         $amp_custom_tax_option = array(
-               'id'       => 'ampforwp-archive-support-custom-tax',
-               'type'     => 'switch',
-               'title'    => esc_html__('Archives [Custom Taxonomy]', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => esc_html__('Enable AMP Support on Archives for Custom Taxonomy.', 'accelerated-mobile-pages'),
-               'default'  => '0'
-             );
-        $amp_custom_tax_cat_option =  array(
-               'id'       => 'ampforwp-archive-support-custom-tax-cat',
-               'type'     => 'switch',
-               'class' => 'child_opt child_opt_arrow',
-               'title'    => esc_html__('Custom Taxonomy Category', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => esc_html__('Enable AMP Support on Custon Taxonomy Tags.', 'accelerated-mobile-pages'),
-               'default'  => '0',
-               'required' => array('ampforwp-archive-support-custom-tax', '=' , '1')
-             );
-        $amp_custom_tax_tag_option =  array(
-               'id'       => 'ampforwp-archive-support-custom-tax-tag',
-               'type'     => 'switch',
-               'class' => 'child_opt child_opt_arrow',
-               'title'    => esc_html__('Custom Taxonomy Tags', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => esc_html__('Enable AMP Support on Custom Taxonomy Category.', 'accelerated-mobile-pages'),
-               'default'  => '0',
-               'required' => array('ampforwp-archive-support-custom-tax', '=' , '1')
-             );
+                    'id'      => 'ampforwp-custom-taxonomies',
+                    'type'    => 'select',
+                    'title'   => __('Custom Taxonomies', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'   => __('Enable AMP Support on Archives for Custom Taxonomies.', 'accelerated-mobile-pages'),
+                    'multi'   => true,
+                    'options' => ampforwp_get_generated_custom_taxonomies(),
+                );
     }
     // AMP to WP Default value
     function ampforwp_amp2wp_default(){
@@ -1548,9 +1536,7 @@ $tabs = array(
                'required' => array('ampforwp-archive-support', '=' , '1')
              ),
             $amp_custom_tax_option,
-            $amp_custom_tax_cat_option,
-            $amp_custom_tax_tag_option,
-           $amp_cpt_option,
+            $amp_cpt_option,
            array(
                'id'       => 'ampforwp-amp-takeover',
                'type'     => 'switch',

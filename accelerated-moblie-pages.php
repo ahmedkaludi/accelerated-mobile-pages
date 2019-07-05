@@ -252,7 +252,7 @@ function ampforwp_add_custom_rewrite_rules() {
 	
 	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
 	if ( $taxonomies ) {
-		foreach ( $taxonomies  as $taxonomySlug => $taxonomyName ) { 
+		foreach ( $taxonomies  as  $taxonomyName => $taxonomySlug ) { 
 			if ( ! empty( $taxonomySlug ) ) {
 			    add_rewrite_rule(
 			      $taxonomySlug.'\/([^/]+)\/amp/?$',
@@ -930,35 +930,18 @@ function ampforwp_get_all_post_types(){
     if( ampforwp_get_setting('ampforwp-archive-support') && ampforwp_get_setting('ampforwp-archive-support-cat') ){
     	$post_types['category'] = 'category';
     }
-    if( ampforwp_get_setting('ampforwp-custom-type') ){
-        if( ampforwp_get_setting('ampforwp-archive-support-custom-tax') == true ){
-        	foreach ( ampforwp_get_setting('ampforwp-custom-type') as $custom_post ){
-	        	$taxonomies = get_object_taxonomies($custom_post, 'objects');
-	        	if(!empty($taxonomies) ){
-	        		foreach($taxonomies as $terms){
-						$taxonomy_name = $terms->name;
-						$rewrite_slug = $terms->rewrite['slug'];
-						if( ampforwp_get_setting('ampforwp-archive-support-custom-tax-cat') == true){
-							if( is_taxonomy_hierarchical( $taxonomy_name )){
-								if( isset($terms->name) && !empty($terms->name)){
-									$post_types[$terms->name] = $terms->name;
-								}
-							}
-						}
-						if( ampforwp_get_setting('ampforwp-archive-support-custom-tax-tag') == true){
-							if(!is_taxonomy_hierarchical( $taxonomy_name)){
-								if( isset($terms->name) && !empty($terms->name)){
-									$post_types[$terms->name] = $terms->name;
-								}
-							}
-						}
-						
-					}
-	        	}	
-	        }
-
-	    }
-	}
+   
+	$custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
+	if( !empty($custom_taxonomies) ){
+		foreach($custom_taxonomies as $taxonomy){
+			$terms = get_taxonomy( $taxonomy );
+			$taxonomy_name = $terms->name;
+			//$rewrite_slug = $terms->rewrite['slug'];
+			if( isset($terms->name) && !empty($terms->name)){
+				$post_types[$terms->name] = $terms->name;
+			}
+		}
+	}  
    
    	if ( ampforwp_get_setting('ampforwp-custom-type')) {
         foreach (ampforwp_get_setting('ampforwp-custom-type') as $key) {

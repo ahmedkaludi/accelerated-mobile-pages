@@ -13,13 +13,17 @@ function ampforwp_redirection() {
     }
   }
   // Redirection for Homepage and Archive Pages when Turned Off from options panel
+  
   if ( ampforwp_is_amp_endpoint() ) {
      if(is_tax()){
         $term_id = get_queried_object()->term_id;
         $term = get_term( $term_id );
         $taxonomy_name = $term->taxonomy;
-        if((is_archive() && 0 == ampforwp_get_setting('ampforwp-archive-support-custom-tax') ) ||( is_taxonomy_hierarchical( $taxonomy_name ) && 0 == ampforwp_get_setting('ampforwp-archive-support-custom-tax-cat')) || ( !is_taxonomy_hierarchical( $taxonomy_name ) && 0 == ampforwp_get_setting('ampforwp-archive-support-custom-tax-tag'))){
-            $archive_check_tax = true;
+        $custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
+        if(!empty($custom_taxonomies)){
+          if(( is_archive() && !in_array($taxonomy_name, $custom_taxonomies) ) ){
+              $archive_check_tax = true;
+          }
         }
       }else{
           if( (is_archive() && 0 == ampforwp_get_setting('ampforwp-archive-support')) || (is_category() && 0 == ampforwp_get_setting('ampforwp-archive-support-cat')) || (is_tag() && 0 == ampforwp_get_setting('ampforwp-archive-support-tag')) ){

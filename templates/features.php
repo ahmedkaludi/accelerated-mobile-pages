@@ -228,15 +228,14 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			$term_id = get_queried_object()->term_id;
 	        $term = get_term( $term_id );
 	        $taxonomy_name = $term->taxonomy;
-	    	if(!ampforwp_get_setting('ampforwp-archive-support-custom-tax')){
-				return;
-	    	}
-	    	if( is_taxonomy_hierarchical( $taxonomy_name ) && !ampforwp_get_setting('ampforwp-archive-support-custom-tax-cat')){
-	    		return;
-	    	}
-	    	if( !is_taxonomy_hierarchical( $taxonomy_name ) && !ampforwp_get_setting('ampforwp-archive-support-custom-tax-tag') ){
-	    		return;
-	    	}
+	        $custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
+	        if(!empty($custom_taxonomies)){
+	        	if( !in_array( $taxonomy_name, $custom_taxonomies)){
+		        	return;
+		        }
+	        }else{
+	        	return;
+	        }
 		}
 		// #1192 Password Protected posts exclusion
 		if(post_password_required( $post )){
