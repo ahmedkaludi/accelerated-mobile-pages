@@ -86,6 +86,31 @@ figure.aligncenter amp-img {
   $menulblcolor         = ampforwp_get_setting('amp-opt-color-rgba-menu-label-color','color');
   $menubdrcolor         = ampforwp_get_setting('amp-opt-color-rgba-menu-brdr-color','color');
 
+//when the fields are empty default value will load
+if(empty($headercolor)){
+    $headercolor ='#FFFFFF';
+}
+if(empty($headerelements)){
+    $headerelements ='#F42F42';
+}
+if(empty($menubgcolor)){
+    $menubgcolor ='#131313';
+}
+if(empty($navmenucolor)){
+    $navmenucolor ='#eeeeee';
+}
+if(empty($submenucolor)){
+    $submenucolor ='#666666';
+}
+if(empty($submenuhovercolor)){
+    $submenuhovercolor ='#666666';
+}
+if(empty($menulblcolor)){
+    $menulblcolor ='#aaaaaa';
+}
+if(empty($menubdrcolor)){
+    $menubdrcolor ='#555555';
+}
 ?>
 amp-sidebar{ width: 280px;font-family: 'Roboto Slab', serif;background:<?php echo ampforwp_sanitize_color($menubgcolor);?>; }
 .amp-sidebar-image{ line-height: 100px; vertical-align:middle; }
