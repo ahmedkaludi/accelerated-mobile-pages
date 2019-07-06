@@ -1838,7 +1838,7 @@ text-align: center;border: 0;z-index:9;bottom:0;}
 .s_stk{
 	z-index:99999;
 }
-.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{
+.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad, .body.single-post .amp-sticky-ads{
 	padding-bottom:40px;
 }
 <?php } //Sticky CSS Condition ends?>
