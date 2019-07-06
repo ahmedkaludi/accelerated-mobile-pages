@@ -428,6 +428,7 @@ echo $fontFamily;
     .fsp-cnt{width:100%;float:none;padding: 0px 15px 0px 14px;}
     .fsp{border:none; padding:0;}
     .fbp-cnt{margin:0;padding:12px;}
+    .tg:checked + .hamb-mnu > .m-ctr .c-btn{ position:absolute; right:-25px; top:5px; }
 }
 @media(max-width:425px){
 	.hmp .loop-wrapper {margin: 0;}
