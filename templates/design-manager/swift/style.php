@@ -2502,7 +2502,7 @@ if(class_exists('MCI_Footnotes')){ ?>
 	.rlp-wrap ul{
 		display: inline-grid;
     	grid-template-columns: 1fr 1fr 1fr;
-    	grid-gap: 0px 25px;
+    	grid-gap: 25px;
 	}
 	.rlp-wrap ul li{
 		list-style-type:none;

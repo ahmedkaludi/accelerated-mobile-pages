@@ -240,8 +240,10 @@
 	<?php endwhile; amp_loop('end');  ?>
 	</div>
 </div>
-<?php } ?>
-</div> 
+<?php } 
+if(ampforwp_get_setting('single-design-type') == '1'){ ?>
+</div> <!-- /. sgl design-1 -->
+<?php } // single design 1 div ends here ?>
 <?php if($redux_builder_amp['single-design-type'] == '4'){?>
 	<div class="sp sgl">
 	<div class="cntr">
@@ -782,7 +784,6 @@
 		</div><!--/.sgl7-artl -->
 	</div><!-- /.cntr -->
 </div><!-- /.sgl-7 -->
-
 <?php } //Single Design 7 Ends Here ?>
 <?php do_action("ampforwp_single_design_type_handle");?>
 	<?php amp_footer()?>
