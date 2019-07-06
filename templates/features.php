@@ -6415,10 +6415,6 @@ function ampforwp_thrive_architect_content(){
 		//#3254 Remove action for Woodmart theme lazyload feature 
 		remove_action( 'init', 'woodmart_lazy_loading_init', 120 );
 	}
-	// Save option is not showing with a basix theme #3366
-	if(function_exists('addPanelCSS')){
-		remove_action( 'admin_enqueue_scripts', 'addPanelCSS' );
-	}
 }
 function ampforwp_thrive_content($content){
 	$post_id = "";

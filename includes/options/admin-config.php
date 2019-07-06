@@ -7,6 +7,10 @@ if ( ! class_exists( 'ReduxCore\ReduxFramework\Redux' ) ) {
 if ( ! function_exists( 'is_plugin_active' ) ) {
   include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 }
+// Save option is not showing with a basix theme #3366
+    if(class_exists( 'ReduxCore\ReduxFramework\Redux' ) && function_exists('addPanelCSS')){
+        remove_action( 'admin_enqueue_scripts', 'addPanelCSS' );
+    }
 //Require features
 require_once AMPFORWP_PLUGIN_DIR."includes/features/advertisement/ads-options.php";
 require_once AMPFORWP_PLUGIN_DIR."includes/features/performance/performance-options.php";
