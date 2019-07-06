@@ -2420,6 +2420,9 @@ if(class_exists('MCI_Footnotes')){ ?>
 	    width: 100%;
 	    color:#444;
 	    margin-bottom: 15px;
+	    display: -webkit-box;
+    	overflow-x: auto;
+    	word-break: normal;
 	}
 	.cntn-wrp table td, .cntn-wrp table th {
 	    border: 1px solid #e6e6e6;
@@ -2510,7 +2513,7 @@ if(class_exists('MCI_Footnotes')){ ?>
 	.rlp-cnt{margin-top:10px;}
 	.related_link a{
 		font-size: 15px;
-		line-height:1.3;
+		line-height:1.2;
 		font-weight: 600;
 		color:#111;
 		transition:all 0.2s ease-in-out 0s;
@@ -2638,6 +2641,49 @@ if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) {
 	<?php } // Recent Posts Ends ?>
 	<?php endif;  
 	} // sidebar condition ends here ?>
-
+	/** Responsive **/
+	@media(max-width:1060px){
+		.sgl-7 .cntr, header .cntr {
+		    max-width: 100%;
+		    padding:0px 15px;
+		}
+	}
+	@media(max-width:980px){
+		.amp-post-title {
+    		font-size: 40px;
+    	}
+	}
+	@media(max-width:767px){
+		.sgl7-left {
+		    width: 100%;
+		    flex: 1 0 100%;
+		    padding-right: 0;
+		    margin-bottom: 20px;
+		}
+		.amp-post-title {
+    		font-size: 32px;
+    	}
+		.rlp-wrap ul {
+	    	grid-gap: 20px;
+	    }
+	    .sgl-7 .ss-ic .shr-txt{
+		    margin: 0px 0px 10px 0px;
+		    border-bottom: 1px solid #eee;
+		    width: 100%;
+		    padding-bottom: 10px;
+		}
+	    .sgl-7 .ss-ic ul li {
+	    	margin-bottom:10px;
+	   }
+	}
+	@media(max-width:450px){
+		.rlp-wrap ul {
+	    	grid-template-columns: 1fr;
+	    }
+	    .rlp-wrap ul li {
+		    border-bottom: 1px solid #eee;
+		    padding-bottom: 15px;
+		}
+	}
 	<?php } // single Desing 7 ends here
 } // AMP Woocommerce condition ends here ?>

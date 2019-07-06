@@ -706,7 +706,7 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 							        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 							        	<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { if(ampforwp_has_post_thumbnail()){?>
 								            <div class="rlp-image">     
-								                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>200,'image_crop_height'=>150) );?>
+								                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>300,'image_crop_height'=>150) );?>
 								                <div class="rlp-categ">
 													<?php amp_categories_list(',', 1);  ?>
 												</div>
@@ -746,8 +746,8 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 							<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
 								<div class="rcp">
 									<?php if( ampforwp_has_post_thumbnail() ){
-										$width 	= 100;
-										$height = 75;
+										$width 	= 200;
+										$height = 140;
 										if( true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') ){
 											$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
 											$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
