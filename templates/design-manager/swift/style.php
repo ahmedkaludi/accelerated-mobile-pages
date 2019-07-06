@@ -1831,15 +1831,13 @@ text-align: center;border: 0;z-index:9;bottom:0;}
  ?>
 <?php } // levelup condition ends ?>
 <?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
-<?php if(is_single() && ampforwp_get_setting('ampforwp-sticky-icons-type') == 'sticky-btm-icons' ){?>
 .body.single-post{
   padding-bottom:40px;
 }
-<?php } ?>
 .s_stk{
 	z-index:99999;
 }
-.adsforwp-stick-ad, amp-sticky-ad{
+.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{
 	padding-bottom:40px;
 }
 <?php } //Sticky CSS Condition ends?>

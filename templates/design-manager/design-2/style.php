@@ -370,9 +370,11 @@ body a {color: <?php echo $redux_builder_amp['amp-opt-color-rgba-link-design2'][
 .comment-button-wrapper a { background:  <?php echo sanitize_hex_color( $header_background_color ); ?>; }
 amp-user-notification { border-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;; }
 amp-user-notification button { background-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;; }
-<?php if( $redux_builder_amp['enable-single-social-icons'] == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() )  { ?>
+<?php if( ampforwp_get_setting('enable-single-social-icons') == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() )  { ?>
 .single-post footer { padding-bottom: 40px; }
 .amp-ad-2{ margin-bottom: 50px; }
+.body.single-post .sticky_social{z-index:99999;}
+.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{padding-bottom:40px;}
 <?php } ?>
 /**/
 .amp-wp-author:before{ content: " <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-by-text'], 'By '); ?>  "; }
