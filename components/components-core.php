@@ -221,10 +221,10 @@ function amp_author_box($args=array() ){
 }
 
 // Categories List
-function amp_categories_list( $separator = '' ){
+function amp_categories_list( $separator = '', $showlimit = 'all' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-categories-tags']) && $loadComponent['AMP-categories-tags']==true){
-		ampforwp_framework_get_categories_list( $separator );
+		ampforwp_framework_get_categories_list( $separator, $showlimit );
 	}
 }
 // Tags List

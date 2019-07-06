@@ -690,7 +690,52 @@
 
 					</ul>
 	            </div>
-			</div>
+	            <?php if( ampforwp_get_setting('single-design-type') == '7') {
+				       if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
+						$my_query = ampforwp_related_post_loop_query();
+					  	if( $my_query->have_posts() ) { $r_count = 1;?>	
+					  	<div class="rlp-wrap">
+					  		<?php ampforwp_related_post(); ?>
+					            <ul class="clearfix">
+							        <?php
+							          while( $my_query->have_posts() ) {
+							            $my_query->the_post();
+							        ?>
+							        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
+							        	<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { if(ampforwp_has_post_thumbnail()){?>
+								            <div class="rlp-image">     
+								                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>200,'image_crop_height'=>150) );?>
+								                <div class="rlp-categ">
+													<?php amp_categories_list(',', 1);  ?>
+												</div>
+											</div>
+										<?php } } ?>	
+										<div class="rlp-cnt">
+											<?php 
+											$show_excerpt_opt = $redux_builder_amp['ampforwp-single-related-posts-excerpt'];
+											$argsdata = array(
+													'show_author' => false,
+													'show_excerpt' => $show_excerpt_opt
+														);
+											ampforwp_get_relatedpost_content($argsdata); ?> 
+								        </div>
+							        </li>
+							        <?php
+					            		do_action('ampforwp_between_related_post',$r_count);
+					     				$r_count++;
+							        }
+							      } ?>
+								</ul>
+						</div>
+				    <?php wp_reset_postdata(); }  
+					}  // Related Posts Ends here ?>
+				<?php if ( true == ampforwp_get_setting('wordpress-comments-support')){ ?>
+					<div class="cmts">	
+						<?php amp_comments();?>	
+						<?php do_action('ampforwp_post_after_design_elements'); ?>	
+					</div>	
+				<?php } ?>	
+			</div><!-- /.sgl7-left -->
 			<?php if( ampforwp_get_setting('swift-sidebar') == '1' && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
 				<div class="sgl7-right">
 					<?php if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>

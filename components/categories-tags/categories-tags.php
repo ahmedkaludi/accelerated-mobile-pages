@@ -4,8 +4,9 @@ TODO: 1: Connect with options panel(archive support and translational panel)
 2: Do we have to change the classes names as well?
 */
 global $post;
-function ampforwp_framework_get_categories_list( $separator = '' ){
+function ampforwp_framework_get_categories_list( $separator = '',$showlimit = 'all' ){
 	global $post, $redux_builder_amp;
+	$count = 1;
 	 $ampforwp_categories = get_the_terms( $post->ID, 'category' );
 	 	if(ampforwp_get_setting('ampforwp-cats-single') == '1'){
 		if ( $ampforwp_categories ) : ?>
@@ -25,10 +26,13 @@ function ampforwp_framework_get_categories_list( $separator = '' ){
 
 		            echo ('<span class="amp-cat amp-cat-'. esc_attr($term_id) . '" >
 		            '. ($term_url? ' <a href="'. esc_url( $term_url)  . '" title="'. esc_html($term_name)  . '" > ':'').  esc_html($term_name). ($term_url?  '</a> ':'').' </span>');
-		          
+		          	if($showlimit!='all' && $showlimit==$count){
+		          		break;
+		          	}
 					if($separator && count($ampforwp_categories)-1 > $key){
 							echo esc_html($separator);
 						}
+						$count++;
 					} ?>
 		</div>
 	<?php endif; 
