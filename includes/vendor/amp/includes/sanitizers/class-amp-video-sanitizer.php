@@ -85,6 +85,7 @@ class AMP_Video_Sanitizer extends AMP_Base_Sanitizer {
 				case 'poster':
 				case 'class':
 				case 'sizes':
+				case 'id':
 					$out[ $name ] = $value;
 					break;
 
