@@ -906,6 +906,40 @@ jQuery(document).ready(function($){
         }
 
     });
+    
+    
+    $("#redux_builder_amp-ampforwp-display-on-posts").on('change','input[type=checkbox]', function(){
+        var pageVal = $('#ampforwp-display-on-pages').val();
+            if($(this).is(":checked")) {
+                $('#section-ampforwp-comments').show();
+                $('#section-table-ampforwp-comments').show();
+            }else{
+                if(pageVal==0){
+                    $('#section-ampforwp-comments').hide();
+                    $('#section-table-ampforwp-comments').hide();
+                }else{
+                    $('#section-ampforwp-comments').show();
+                    $('#section-table-ampforwp-comments').show();
+                }
+            }
+    });
+    $("#redux_builder_amp-ampforwp-display-on-pages").on('change','input[type=checkbox]', function(){
+        var postVal = $('#ampforwp-display-on-posts').val();
+            if($(this).is(":checked")) {
+                $('#section-ampforwp-comments').show();
+                $('#section-table-ampforwp-comments').show();
+            }else{
+                if(postVal == 0){
+                    $('#section-ampforwp-comments').hide();
+                    $('#section-table-ampforwp-comments').hide();
+                }else{
+                    $('#section-ampforwp-comments').show();
+                    $('#section-table-ampforwp-comments').show();
+                }
+              
+            }
+    });
+
 
     $('#amp-rollback-switch').on('change', function(){
          var self = $(this)
@@ -1019,3 +1053,4 @@ AmpForWpYoastAnalysis = function() {
     };
     new AmpForWpYoastAnalysis();
 }); 
+
