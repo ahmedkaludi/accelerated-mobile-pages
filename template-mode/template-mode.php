@@ -485,10 +485,7 @@ Class AMPforWP_theme_mode{
 		return $css;
 	}
 	public function search_form($form){
-		$form = preg_replace_callback("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)>/", function($matches){
-			$tag = '<form'.$matches[1].' target="_top" action="'.str_replace("http:", '', $matches[2]).'"'.$matches[3].'>';
-			return $tag;
-		}, $form);
+		$form = $this->amp_form_sanitization($form);
 		return $form;
 	}
 	public function get_custom_logo($html, $blog_id){
@@ -542,8 +539,50 @@ Class AMPforWP_theme_mode{
 				$data = preg_replace("/http?[s]?:/", "", $data);
 				$data = str_replace(" action=", 'target="_top" action=', $data);
 			}
+			$data = amp_form_sanitization($data);
 			echo $this->ampforwp_template_mode_cnt_sanitizer($data);
 		}
+	}
+	public function amp_form_sanitization($data){
+		if(strpos($data, "<form")!==false){
+			$dom = new DOMDocument;
+			@$dom->loadHTML($data);
+			$xp = new DOMXPath($dom);
+			$query = '//form';
+
+			$elements = array();
+			foreach ( $xp->query($query) as $element ) {
+				$elements[] = $element;
+			}
+			foreach ($elements as $key => $element) {
+				$node_name = strtolower( $element->nodeName );
+				if( $element->getAttribute('method')=='post' ){
+					if($node_name=='form'){
+						if($element->hasAttribute('action') && !$element->hasAttribute('action-xhr')){
+							$url = str_replace("http:", "https:", $element->getAttribute('action'));
+							$element->setAttribute('action-xhr', $url);
+							$element->removeAttribute('action');
+						}else{
+							$scheme = is_ssl() ? 'https://' : 'http://';
+
+							$path = "{$scheme}{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+							$path = str_replace("http:", "https:", $path);
+							$element->setAttribute('action-xhr', esc_url($path) );
+						}
+					}
+				}elseif( $element->getAttribute('method')=='get' ){
+					if( !$element->hasAttribute('target') ){
+						$element->setAttribute('target', "_top");
+					}
+					$url = str_replace("http:", "https:", $element->getAttribute('action'));
+					$element->setAttribute('action', $url);
+				}
+			}
+			$changesData = $dom->savehtml();
+			preg_match('/<body>(.*?)<\/body>/s', $changesData, $matches);
+			$data = isset($matches[1])? $matches[1] : $data;
+		}
+		return $data;
 	}
 	/**
 	* Remove Sanitize any content
