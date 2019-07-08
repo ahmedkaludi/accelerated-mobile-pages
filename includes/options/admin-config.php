@@ -3670,7 +3670,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'sbr-heading-color',
                     'type'     => 'color_rgba',
                     'class' => 'child_opt',
-                    'title'    => esc_html__('Heading', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Heading color', 'accelerated-mobile-pages'),
                     'default'  => array(
                         'color'     => '#333',
                     ),
@@ -3694,7 +3694,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'sbr-text-color',
                     'type'     => 'color_rgba',
                     'class' => 'child_opt',
-                    'title'    => esc_html__('Text', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Text color', 'accelerated-mobile-pages'),
                     'default'  => array(
                         'color'     => '#333',
                     ),

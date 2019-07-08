@@ -1239,16 +1239,31 @@ if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar')
 }
 }
 <?php }
-
+// Sidebar bar color option fields declaration
+$sbar_bg_clr           		= ampforwp_get_setting('sidebar-bgcolor','color');
+$sbar_heading_clr			= ampforwp_get_setting('sbr-heading-color','color');
+$sbar_link_clr				= ampforwp_get_setting('sdr-lnk-color','color');
+$sbar_text_clr				= ampforwp_get_setting('sbr-text-color','color');
+if(empty($sbar_bg_clr)){
+	$sbar_bg_clr ='#f7f7f7';
+}
+if(empty($sbar_heading_clr)){
+	$sbar_heading_clr ='#333333';
+}
+if(empty($sbar_link_clr)){
+	$sbar_link_clr ='#005be2';
+}
+if(empty($sbar_text_clr)){
+	$sbar_text_clr ='#333333';
+}
 if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || ampforwp_is_blog() ) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() && ampforwp_get_setting('single-design-type') == '4')  ) { 
 // AMP woocommerce condition starts
+
 if( !ampforwp_woocommerce_conditional_check() ) { ?>
 /*** Sidebar CSS ***/
 <?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 .sdbr-right{
-	<?php if( isset($redux_builder_amp['sidebar-bgcolor']['rgba']) && $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
-		background:<?php echo $redux_builder_amp['sidebar-bgcolor']['rgba']?>;
-	<?php } ?>
+	background:<?php echo ampforwp_sanitize_color($sbar_bg_clr); ?>;
 	display:flex;
 	flex-direction:column;
 	width:30%;
@@ -1257,9 +1272,7 @@ if( !ampforwp_woocommerce_conditional_check() ) { ?>
 	padding:20px;
 	font-size: 14px;
     line-height: 1.5;
-   	<?php if(isset($redux_builder_amp['sbr-text-color']['rgba']) &&  $redux_builder_amp['sbr-text-color']['rgba'] ) {?>
-		color: <?php echo $redux_builder_amp['sbr-text-color']['rgba'] ?>;
-	<?php } ?>
+	color: <?php echo ampforwp_sanitize_color($sbar_text_clr); ?>;
 }
 .amp-sidebar ul li{
 	list-style-type: none;
@@ -1280,7 +1293,7 @@ if( !ampforwp_woocommerce_conditional_check() ) { ?>
     padding-left: 24px
 }
 .amp-sidebar ul li a:hover, .calendar_wrap a:hover{
-	box-shadow: inset 0 0 0 rgba(0, 0, 0, 0), 0 3px 0 <?php echo ampforwp_get_setting('sdr-lnk-color')['color']?>;
+	box-shadow: inset 0 0 0 rgba(0, 0, 0, 0), 0 3px 0 <?php echo ampforwp_sanitize_color($sbar_link_clr); ?>;
 }
 .sgl .calendar_wrap td{
 	padding:10px;
@@ -1301,14 +1314,10 @@ thead th {
 	opacity:0.5;
 }
 .amp-sidebar a, .amp-sidebar a:hover{
-	<?php if( ampforwp_get_setting('sdr-lnk-color')['color'] ) {?>
-	color: <?php echo ampforwp_get_setting('sdr-lnk-color')['color'] ?>;
-	<?php } ?>
+	color: <?php echo ampforwp_sanitize_color($sbar_link_clr); ?>;
 }
 .amp-sidebar h4{
-<?php if(isset($redux_builder_amp['sbr-heading-color']['rgba']) &&  $redux_builder_amp['sbr-heading-color']['rgba'] ) {?>
-	color: <?php echo $redux_builder_amp['sbr-heading-color']['rgba'] ?>;
-<?php } ?>
+	color: <?php echo ampforwp_sanitize_color($sbar_heading_clr); ?>;
     font-size: 12px;
     text-transform: uppercase;
     margin-bottom: 2em;
@@ -2581,7 +2590,8 @@ if(class_exists('MCI_Footnotes')){ ?>
 		}
 <?php } // Recent Posts Ends 
 if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) { 
-	if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
+	if ( is_active_sidebar( 'swift-sidebar' ) ) : 
+		?>
 	/*** Sidebar CSS ***/
 	.amp-sidebar{
 		width:100%;
@@ -2589,22 +2599,14 @@ if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) {
 		padding:20px;
 		font-size: 14px;
     	line-height: 1.5;
-		<?php if( ampforwp_get_setting('sbr-text-color')['rgba'] ) {?>
-		color: <?php echo ampforwp_get_setting('sbr-text-color')['rgba'] ?>;
-		<?php } ?>
-		<?php if( ampforwp_get_setting('sidebar-bgcolor')['rgba'] ){?>
-		background:<?php echo ampforwp_get_setting('sidebar-bgcolor')['rgba'] ?>;
-		<?php } ?>
+		color: <?php echo ampforwp_sanitize_color($sbar_text_clr); ?>;
+		background:<?php echo ampforwp_sanitize_color($sbar_bg_clr); ?>;
 	}
 	.amp-sidebar h4{
 		font-size: 13px;
 	    line-height: 1.5;
-	    <?php if( ampforwp_get_setting('sidebar-bgcolor')['rgba'] ) {?>
-	    background-color: <?php echo ampforwp_get_setting('sbr-heading-color')['rgba'] ?>;
-		<?php } ?>
-	    <?php if( ampforwp_get_setting('sidebar-bgcolor')['rgba'] ) {?>
-		color: <?php echo ampforwp_get_setting('sidebar-bgcolor')['rgba'] ?>;
-		<?php } ?>
+	    background-color: <?php echo ampforwp_sanitize_color($sbar_heading_clr); ?>;
+		color: <?php echo ampforwp_sanitize_color($sbar_bg_clr); ?>;
 	    font-weight: 700;
 	    display: inline-block;
 	    padding: 1px 22px;
@@ -2618,9 +2620,7 @@ if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) {
 	    padding-bottom:10px;
 	}
 	.amp-sidebar ul li a{
-		<?php if( ampforwp_get_setting('sdr-lnk-color')['color'] ) {?>
-		color: <?php echo ampforwp_get_setting('sdr-lnk-color')['color'] ?>;
-		<?php } ?>
+		color: <?php echo ampforwp_sanitize_color($sbar_link_clr); ?>;
 		font-size: 13px;
     	font-weight: 600;
     	line-height: 1.4;
