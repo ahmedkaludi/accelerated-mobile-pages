@@ -612,6 +612,7 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 .sp-athr{margin-top:0;}
 .sp-rt .ss-ic{padding-bottom: 10px;margin-bottom: 20px;}
 <?php } ?>
+.cntn-wrp{font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;}
 .artl-cnt ul li, .artl-cnt ol li{list-style-type: none;position: relative;padding-left: 20px;}
 .artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;left: 0;top: 12px;}
 .artl-cnt ol li {counter-increment: step-counter;}
@@ -891,7 +892,6 @@ if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('s
 	.amp-disqus-comments iframe{width:100%;height:300px;}<?php 
 	} // ampforwp-disqus-comments ends here 
 	//swift Content Heading Sizes Starts ?>
-	.cntn-wrp{font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;}
 	.cntn-wrp h1, .cntn-wrp h2, .cntn-wrp h3, .cntn-wrp h4, .cntn-wrp h5, h6{margin-bottom:5px;}
 	<?php // H1 - H6 Font Sizes 
 	if( ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h1') ){ ?>
@@ -2385,7 +2385,13 @@ if(class_exists('MCI_Footnotes')){ ?>
 		flex:1 0 70%;
 		padding-right:30px;
 	}
-	.cntn-wrp{margin-top:24px;}
+	.cntn-wrp{
+		font-size: 17px;
+	    color: #222;
+	    line-height: 1.8;
+	    word-wrap: break-word;
+	    margin-top: 24px;
+	}
 	.cntn-wrp table {
 	    width: 100%;
 	    color:#444;
