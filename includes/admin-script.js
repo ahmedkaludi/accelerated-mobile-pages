@@ -906,35 +906,40 @@ jQuery(document).ready(function($){
         }
 
     });
-    
-    
+    //Toggle Post and Page comments panel based on options 
+    var pageComments = $('#ampforwp-display-on-pages').val();
+    var postComments = $('#ampforwp-display-on-posts').val();
+    if( pageComments ==0 && postComments == 0 ){
+        $('#section-ampforwp-comments').hide();
+        $('#section-table-ampforwp-comments tbody').hide();
+    }
     $("#redux_builder_amp-ampforwp-display-on-posts").on('change','input[type=checkbox]', function(){
-        var pageVal = $('#ampforwp-display-on-pages').val();
+        var pageComments = $('#ampforwp-display-on-pages').val();
             if($(this).is(":checked")) {
                 $('#section-ampforwp-comments').show();
-                $('#section-table-ampforwp-comments').show();
+                $('#section-table-ampforwp-comments tbody').show();
             }else{
-                if(pageVal==0){
+                if(pageComments==0){
                     $('#section-ampforwp-comments').hide();
-                    $('#section-table-ampforwp-comments').hide();
+                    $('#section-table-ampforwp-comments tbody').hide();
                 }else{
                     $('#section-ampforwp-comments').show();
-                    $('#section-table-ampforwp-comments').show();
+                    $('#section-table-ampforwp-comments tbody').show();
                 }
             }
     });
     $("#redux_builder_amp-ampforwp-display-on-pages").on('change','input[type=checkbox]', function(){
-        var postVal = $('#ampforwp-display-on-posts').val();
+        var postComments = $('#ampforwp-display-on-posts').val();
             if($(this).is(":checked")) {
                 $('#section-ampforwp-comments').show();
-                $('#section-table-ampforwp-comments').show();
+                $('#section-table-ampforwp-comments tbody').show();
             }else{
-                if(postVal == 0){
+                if(postComments == 0){
                     $('#section-ampforwp-comments').hide();
-                    $('#section-table-ampforwp-comments').hide();
+                    $('#section-table-ampforwp-comments tbody').hide();
                 }else{
                     $('#section-ampforwp-comments').show();
-                    $('#section-table-ampforwp-comments').show();
+                    $('#section-table-ampforwp-comments tbody').show();
                 }
               
             }
