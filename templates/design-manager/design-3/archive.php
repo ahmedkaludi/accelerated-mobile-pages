@@ -87,7 +87,12 @@ if ( get_query_var( 'paged' ) ) {
 					<?php }
 				}
 			}
+			if(ampforwp_default_logo()){
+			the_archive_title( '<h1 class="amp-wp-content page-title archive-heading">', '</h1>' );
+			}else{
  			the_archive_title( '<h2 class="amp-wp-content page-title archive-heading">', '</h2>' );
+ 			}
+ 			
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
 				if($paged <= '1') {?>

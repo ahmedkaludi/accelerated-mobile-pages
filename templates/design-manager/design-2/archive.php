@@ -65,7 +65,11 @@
 					<?php }
 				}
 			} 
+			if(ampforwp_default_logo()){
+			the_archive_title( '<h1 class="page-title">', '</h1>' );
+			}else{
  			the_archive_title( '<h2 class="page-title">', '</h2>' );
+ 			}
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if ( get_query_var( 'paged' ) ) {
 		        $paged = get_query_var('paged');

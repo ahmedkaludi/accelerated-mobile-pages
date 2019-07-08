@@ -51,10 +51,12 @@
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false ,
 			'post_status'		  => 'publish'
-		) ) ); ?>
-
+		) ) ); 
+		if(ampforwp_default_logo()){?>
+ 		<h1 class="amp-wp-content page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?></h1>
+ 		<?php }else{?>
  		<h2 class="amp-wp-content page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?></h2>
-
+ 		<?php } ?>
  		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();?>
 
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">

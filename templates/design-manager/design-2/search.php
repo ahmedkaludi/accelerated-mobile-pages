@@ -50,8 +50,12 @@
 			'post_status'		  => 'publish'
 		) ) ); ?>
 		<div class="amp-wp-content amp-archive-heading">
+		<?php if(ampforwp_default_logo()){?>
+		<h1 class="page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?></h1>
+		<?php }else{?>	
 		<h2 class="page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?></h2>
  		</div>
+ 		<?php } ?>
 		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 			$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() ); ?>
 		<div class="amp-wp-content amp-loop-list">

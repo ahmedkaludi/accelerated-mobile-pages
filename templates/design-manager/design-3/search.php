@@ -57,9 +57,12 @@
 
 
 
-     <?php global $redux_builder_amp; ?>
- 		<h2 class="amp-wp-content page-title archive-heading"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();?></h2>
-
+     <?php global $redux_builder_amp;
+     	if(ampforwp_default_logo()){?>
+ 		<h1 class="amp-wp-content page-title archive-heading"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();?></h1>
+ 	<?php }else{?>
+	<h2 class="amp-wp-content page-title archive-heading"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();?></h2>
+ 	<?php } ?>
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();?>
 
 		<div class="amp-wp-content amp-loop-list">
