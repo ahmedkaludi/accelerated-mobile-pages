@@ -3649,6 +3649,14 @@ Redux::setSection( $opt_name, array(
                       'required' => array('gnrl-sidebar', '=' , '1'), 
                   ),
             array(
+                   'id' => 'sdbar__clr_customize',
+                   'class' => 'child_opt child_opt_arrow',
+                   'type' => 'switch',
+                   'title' => esc_html__('Colors Customization', 'accelerated-mobile-pages'),
+                   'default'=> 0,
+                   'required' => array('gnrl-sidebar', '=' , '1'),
+            ),
+            array(
                     'id'        => 'sidebar-bgcolor',
                     'class' => 'child_opt child_opt_arrow',
                     'type'      => 'color_rgba',
@@ -3656,7 +3664,7 @@ Redux::setSection( $opt_name, array(
                     'default'   => array(
                         'color'     => '#f7f7f7',
                     ),
-                    'required' => array( array('gnrl-sidebar', '=',1) )
+                    'required' => array( array('sdbar__clr_customize', '=',1) )
             ),
             array(
                     'id'       => 'sbr-heading-color',
@@ -3667,7 +3675,19 @@ Redux::setSection( $opt_name, array(
                         'color'     => '#333',
                     ),
                     'required' => array(
-                      array('gnrl-sidebar','=',1)
+                      array('sdbar__clr_customize','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'sdr-lnk-color',
+                    'type'     => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'    => esc_html__('Link Color', 'accelerated-mobile-pages'),
+                    'default'  => array(
+                        'color'     => '#005be2',
+                    ),
+                    'required' => array(
+                      array('sdbar__clr_customize','=',1)
                     )           
             ),
             array(
@@ -3679,7 +3699,7 @@ Redux::setSection( $opt_name, array(
                         'color'     => '#333',
                     ),
                     'required' => array(
-                      array('gnrl-sidebar','=',1)
+                      array('sdbar__clr_customize','=',1)
                     )           
             ),
             array(

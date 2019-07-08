@@ -738,11 +738,10 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 					</div>	
 				<?php } ?>	
 			</div><!-- /.sgl7-left -->
-			<?php if( ampforwp_get_setting('swift-sidebar') == '1' && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
-				<div class="sgl7-right">
-					<?php if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
-						<div class="r-pf">
-							<h3><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' ); ?></h3>
+			<div class="sgl7-right">
+				<?php if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
+					<div class="r-pf">
+						<h3><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' ); ?></h3>
 							<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
 								<div class="rcp">
 									<?php if( ampforwp_has_post_thumbnail() ){
@@ -767,20 +766,21 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 								    </div>
 								</div>
 							<?php endwhile; amp_loop('end');  ?>
-						</div>
-						<?php } // Recent Posts Condition ends ?>
-					<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
-						<?php 
-						$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
-						if ( $sanitized_sidebar) {
-							$sidebar_output = $sanitized_sidebar->get_amp_content();
-							$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
-						}
-			            echo do_shortcode($sidebar_output);
-						?>
-					<?php endif; ?>
-				</div>
-			<?php } ?>
+					</div>
+					<?php } // Recent Posts Condition ends ?>
+					<?php if( ampforwp_get_setting('swift-sidebar') == '1' && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
+						<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
+							<?php 
+							$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+							if ( $sanitized_sidebar) {
+								$sidebar_output = $sanitized_sidebar->get_amp_content();
+								$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+							}
+				            echo do_shortcode($sidebar_output);
+							?>
+						<?php endif; 
+					} // single sidebar ends here ?>
+			</div>
 		</div><!--/.sgl7-artl -->
 	</div><!-- /.cntr -->
 </div><!-- /.sgl-7 -->
