@@ -41,6 +41,8 @@ function ampforwp_thirdparty_compatibility(){
 	add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
 	// AMP is not working due to JCH Optimize Pro plugin #3185
 	remove_action('shutdown', 'jch_buffer_end', -1);
+	//Safia theme video compatibility in amp #3138
+	add_filter('the_content', 'ampforwp_safia_theme');
 }
 
 add_filter('ampforwp_the_content_last_filter','ampforwp_builder_show_on_front');
@@ -1314,4 +1316,26 @@ function ampforwp_http_remover_support(){
 			), 99, 1);
 	    }
 	}
+}
+
+function ampforwp_safia_theme($content){
+	global $post;
+	if(!function_exists('get_post_custom') || !function_exists('tie_video')){
+		return $content;
+	}
+	$get_meta = get_post_custom($post->ID);
+	if( empty( $get_meta["tie_video_url"][0] ) ){
+		return $content;
+	}
+		ob_start();
+		?>
+			<div class="single-post-video">
+				<?php tie_video(); ?>
+			</div>
+		<?php
+		
+		$videoContent = ob_get_contents();
+		ob_get_clean();
+		$content = $videoContent.$content;
+	return $content;
 }
