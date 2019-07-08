@@ -202,6 +202,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		$post_id = '';
 		$endpoint_check = false;
 		$endpoint_check = ampforwp_get_setting('amp-core-end-point');
+		$target = array();
 	    if( is_attachment() ) {
         return;
 	    }
@@ -228,11 +229,17 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			$term_id = get_queried_object()->term_id;
 	        $term = get_term( $term_id );
 	        $taxonomy_name = $term->taxonomy;
+	        $tax_obj = get_taxonomy( $taxonomy_name );
+	        $target[] = $taxonomy_name;
+	        if(isset($tax_obj->rewrite['slug']) && !empty($tax_obj->rewrite['slug']) ){
+	        	$rewrite_slug = $tax_obj->rewrite['slug'];
+	        	$target[] = $rewrite_slug;
+	        }
 	        $custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
 	        if(!empty($custom_taxonomies)){
-	        	if( !in_array( $taxonomy_name, $custom_taxonomies)){
-		        	return;
-		        }
+	        	if(count(array_intersect($custom_taxonomies, $target)) == 0){
+	        		return;
+	        	}
 	        }else{
 	        	return;
 	        }

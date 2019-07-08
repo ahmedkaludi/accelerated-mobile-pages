@@ -4,7 +4,7 @@ function ampforwp_redirection() {
   global $redux_builder_amp, $wp, $post;
   $hide_cats_amp = $url = $archive_check = $go_to_url = $archive_check_tax = '';
   $hide_cats_amp = is_category_amp_disabled();
-
+  $target = array();
   // No redirection if Post/Page is AMP Disabled #3287
   if ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) {
     $amp_metas = json_decode(get_post_meta( ampforwp_get_the_ID(),'ampforwp-post-metas',true), true );
@@ -19,9 +19,15 @@ function ampforwp_redirection() {
         $term_id = get_queried_object()->term_id;
         $term = get_term( $term_id );
         $taxonomy_name = $term->taxonomy;
+        $target[] = $taxonomy_name;
+        $tax_obj = get_taxonomy( $taxonomy_name );
+        if(isset($tax_obj->rewrite['slug']) && !empty($tax_obj->rewrite['slug']) ){
+          $rewrite_slug = $tax_obj->rewrite['slug'];
+          $target[] = $rewrite_slug;
+        }
         $custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
         if(!empty($custom_taxonomies)){
-          if(( is_archive() && !in_array($taxonomy_name, $custom_taxonomies) ) ){
+          if(( is_archive() && count(array_intersect($custom_taxonomies, $target))==0 ) ){
               $archive_check_tax = true;
           }
         }
