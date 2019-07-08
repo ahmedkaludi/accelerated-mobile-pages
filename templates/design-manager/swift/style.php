@@ -285,6 +285,12 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php //primary menu
 $pmenu_bg_clr           = ampforwp_get_setting('primary-menu-background-scheme','rgba');
 $pmenu_text_clr			= ampforwp_get_setting('primary-menu-text-scheme','rgba');
+if(empty($pmenu_bg_clr)){
+	$pmenu_bg_clr ='rgba(239, 239, 239,1)';
+}
+if(empty($pmenu_text_clr)){
+	$pmenu_text_clr ='rgba(53, 53, 53,1)';
+}
 if( ampforwp_get_setting ('primary-menu') ){?>
 .p-m-fl{width:100%;border-bottom: 1px solid rgba(0, 0, 0, 0.05);background:<?php echo ampforwp_sanitize_color($pmenu_bg_clr); ?>;}
 .p-menu{width:100%;text-align:center;margin: 0px auto;
@@ -294,9 +300,10 @@ if( ampforwp_get_setting ('primary-menu') ){?>
 	color:<?php echo ampforwp_sanitize_color($pmenu_text_clr); ?>;
 	padding: <?php echo esc_html(ampforwp_get_setting('primary-menu-padding-control')['padding-top']) .' 0px '.esc_html(ampforwp_get_setting('primary-menu-padding-control')['padding-bottom'])  .' 0px' ; ?>;display:inline-block;}
 .p-menu input{display:none}
+.p-menu .amp-menu .toggle:after{display:none;}
 <?php // Dropdown CSS
 	if($redux_builder_amp['drp-dwn']){?>
-	.p-menu ul li ul{display:block;padding: 7px 0px 7px 7px;
+	.p-menu ul li ul{display:block;padding: 7px;
      box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.30);border-radius: 4px;}
 	.p-menu .amp-menu [id^=drop]:checked + label + ul{display:block;z-index:9;}
 	.p-menu li a{transition: all 0s ease-in-out 0s;}
@@ -317,10 +324,11 @@ if( ampforwp_get_setting ('primary-menu') ){?>
 	.p-menu .amp-menu [id^=drop]:checked + .toggle:after {
 	    transform: rotate(-180deg);
 	}
+	.p-menu .amp-menu li.menu-item-has-children>ul>li{padding:0;}
 	@media(max-width:768px){
 		.p-menu{white-space: nowrap;overflow: scroll;}
 		.p-menu ul li{position: unset;}
-		.p-menu .amp-menu .dropdown-toggle + [id^=drop]:checked + label + ul {position: absolute;left: 10px;top: 106px;right: 10px;bottom: auto;}
+		.p-menu .amp-menu .dropdown-toggle + [id^=drop]:checked + label + ul {position: absolute;left: 10px;top: 107px;right: 10px;bottom: auto;}
 		.p-menu .amp-menu li ul li ul {left: 0px;top: 0;position: relative;box-shadow: none;border-top: 1px solid #ccc;padding: 0 0 0 10px;margin: 5px 0px 5px 0px;border-bottom: 1px solid #ccc;}
 	}
 	<?php } else { ?>
