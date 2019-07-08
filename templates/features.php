@@ -1251,11 +1251,15 @@ add_action('amp_post_template_footer','ampforwp_sticky_social_icons');
 function ampforwp_sticky_social_icons(){
 	global $redux_builder_amp;
 	// Social share in AMP 
-	$amp_permalink = "";
+	$amp_permalink = $facebook_app_id = $amp_permalink_fb_messenger = "";
+	$facebook_app_id = ampforwp_get_setting('amp-facebook-app-id-messenger');
 	if ( ampforwp_get_setting('ampforwp-social-share-amp')  ) {
 		$amp_permalink = ampforwp_url_controller(get_the_permalink());
 	} else{
 		$amp_permalink = get_the_permalink();
+	}
+	if($facebook_app_id){
+		$amp_permalink_fb_messenger = untrailingslashit($amp_permalink). '&app_id='. $facebook_app_id;
 	}
 /*	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if( !is_plugin_active( 'amp-cta/amp-cta.php' ) )  {*/
@@ -1300,6 +1304,13 @@ function ampforwp_sticky_social_icons(){
 			    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 			    	<a title="facebook share" class="s_fb" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://www.facebook.com/sharer.php?u=<?php echo $amp_permalink; ?>"></a>
 			  	<?php } ?>
+			  	<?php if(true == ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
+			<a title="facebook share messenger"  <?php ampforwp_nofollow_social_links(); ?> target="_blank" href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink_fb_messenger); ?>">
+				<div class="amp-social-icon amp-social-facebookmessenger">
+					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/messenger.png') ?>" width="20" height="20" />
+				</div>
+			</a>
+		<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
 	          $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
 	          <amp-social-share type="twitter"

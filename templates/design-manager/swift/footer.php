@@ -50,11 +50,15 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 <?php }
 }
 // Social share in AMP 
-	$amp_permalink = "";
+	$amp_permalink = $facebook_app_id = $amp_permalink_fb_messenger = '';
+	$facebook_app_id = ampforwp_get_setting('amp-facebook-app-id-messenger');
 	if ( ampforwp_get_setting('ampforwp-social-share-amp')  ) {
 		$amp_permalink = ampforwp_url_controller(get_the_permalink());
 	} else{
 		$amp_permalink = get_the_permalink();
+	}
+	if($facebook_app_id){
+		$amp_permalink_fb_messenger = untrailingslashit($amp_permalink). '&app_id='. $facebook_app_id;
 	}
 	if(ampforwp_get_setting('enable-single-twitter-share-link')){
 			$amp_permalink = wp_get_shortlink();
@@ -101,6 +105,15 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 		<?php if($redux_builder_amp['enable-single-facebook-share']){?>
 		<li>
 			<a title="facebook share" class="s_fb" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://www.facebook.com/sharer.php?u=<?php echo esc_url($amp_permalink); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if(true == ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
+			<li>
+			<a title="facebook share messenger"  <?php ampforwp_nofollow_social_links(); ?> target="_blank" href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink_fb_messenger); ?>">
+				<div class="amp-social-icon amp-social-facebookmessenger">
+					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/messenger.png') ?>" width="20" height="20" />
+				</div>
+			</a>
 		</li>
 		<?php } ?>
 		<?php 

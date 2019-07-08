@@ -146,7 +146,7 @@ amp-social-share[type="facebookmessenger"] {
 .amp-social-flipboard{background:#f52828;text-align: center;}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-facebook-share-messenger') ) { ?>
-.amp-social-icon.amp-social-facebookmessenger {background: #87ceeb;text-align: center;}
+.amp-social-icon.amp-social-facebookmessenger {background: #d5e1e6;text-align: center;}
 <?php } ?>
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
 .comment-button-wrapper a{border-style:solid;border-color:#c2c2c2;border-width:1px 1px 2px;border-radius:4px;background-color:transparent;color:#0a89c0;cursor:pointer;display:block;font-size:14px;font-weight:600;text-align:center;line-height:18px;margin:0 auto;max-width:200px;padding:11px 16px;text-decoration:none;width:50%;-webkit-transition:background-color .2s ease;transition:background-color .2s ease}

@@ -166,7 +166,7 @@ amp-social-share[type="facebookmessenger"] {
 .amp-social-pocket{background:#e8e8e8}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-facebook-share-messenger') ) { ?>
-.amp-social-icon.amp-social-facebookmessenger {background: #87ceeb;text-align: center;}
+.amp-social-icon.amp-social-facebookmessenger {background: #d5e1e6;text-align: center;}
 <?php } ?>
 <?php }?>
 
