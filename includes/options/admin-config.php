@@ -4430,14 +4430,40 @@ Redux::setSection( $opt_name, array(
                         'required' => array(array('amp-design-selector', '=' , '3') ), 
                         'default'   =>'1',
                 ),
-
-            // Homepage thumbnail
+                array(
+                       'id' => 'ampforwp-homepage-section-loop',
+                       'type' => 'section',
+                       'title' => esc_html__('Loop Display Controls', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 1,
+                ),
+                array(
+                        'id'       => 'ampforwp-homepage-loop-type',
+                        'type'     => 'select',
+                        'title'    => esc_html__( 'Post Type in Loop', 'accelerated-mobile-pages' ),
+                        'options'  => $ampforwp_home_loop,
+                        'default'   => 'post',
+                ),
+                array(
+                        'id'       => 'ampforwp-homepage-loop-cats',
+                        'type'     => 'select',
+                        'title'    => esc_html__( 'Exclude Categories', 'accelerated-mobile-pages' ),
+                        'data'  => 'categories',
+                        'multi'    => true
+                ),
+                array(
+                    'id'    => 'ampforwp-homepage-loop-readmore-link',
+                    'type'  => 'switch',
+                    'title' => esc_html__('Read More Link', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                ),
+                // Homepage thumbnail
                 array(
                         'id'       => 'ampforwp-homepage-posts-image-modify-size',
                         'type'     => 'switch',
-                        'title'    => esc_html__('Override Homepage Thumbnail Size', 'accelerated-mobile-pages'),
-                        'required' => array( array( 'amp-design-selector','!=',3 ) ),
-                        'default'  => 0,
+                        'title'    => esc_html__('Change Image Size', 'accelerated-mobile-pages'),
+                         'default'  => 0,
                  ),
                 array(
                     'class' => 'child_opt child_opt_arrow',
@@ -4467,6 +4493,30 @@ Redux::setSection( $opt_name, array(
                 ),
                 array(
                     'class' => 'child_opt',
+                        'id'       => 'ampforwp-design-3-homepage-posts-width',
+                        'type'     => 'text',
+                        'title'    => esc_html__('Image Width', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Defaults to 300', 'accelerated-mobile-pages'),
+                        'default'  => 300,
+                        'required' => array(
+                          array('amp-design-selector','=',3),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                ),
+                array(
+                    'class' => 'child_opt',
+                        'id'       => 'ampforwp-design-3-homepage-posts-height',
+                        'type'     => 'text',
+                        'title'    => esc_html__('Image Height', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Defaults to 300', 'accelerated-mobile-pages'),
+                        'default'  => 300,
+                        'required' => array(
+                          array('amp-design-selector','=',3),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                ),
+                array(
+                    'class' => 'child_opt',
                         'id'       => 'ampforwp-swift-homepage-posts-width',
                         'type'     => 'text',
                         'title'    => esc_html__('Image Width', 'accelerated-mobile-pages'),
@@ -4488,34 +4538,6 @@ Redux::setSection( $opt_name, array(
                           array('amp-design-selector','=',4),
                           array('ampforwp-homepage-posts-image-modify-size','=',1)
                         )
-                ),
-                array(
-                       'id' => 'ampforwp-homepage-section-loop',
-                       'type' => 'section',
-                       'title' => esc_html__('Loop Display Controls', 'accelerated-mobile-pages'),
-                       'indent' => true,
-                       'layout_type' => 'accordion',
-                        'accordion-open'=> 1,
-                ),
-                array(
-                        'id'       => 'ampforwp-homepage-loop-type',
-                        'type'     => 'select',
-                        'title'    => esc_html__( 'Post Type in Loop', 'accelerated-mobile-pages' ),
-                        'options'  => $ampforwp_home_loop,
-                        'default'   => 'post',
-                ),
-                array(
-                        'id'       => 'ampforwp-homepage-loop-cats',
-                        'type'     => 'select',
-                        'title'    => esc_html__( 'Exclude Categories', 'accelerated-mobile-pages' ),
-                        'data'  => 'categories',
-                        'multi'    => true
-                ),
-                array(
-                    'id'    => 'ampforwp-homepage-loop-readmore-link',
-                    'type'  => 'switch',
-                    'title' => esc_html__('Read More Link', 'accelerated-mobile-pages'),
-                    'default'   => 0,
                 ),
 
 
