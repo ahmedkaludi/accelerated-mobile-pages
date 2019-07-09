@@ -24,7 +24,7 @@ Class AMPforWP_theme_mode{
 		    add_action(	"get_avatar", array($this,'get_avatar'), 11,6);	    
 		    add_filter( "the_author_description", array($this, 'author_meta_desctiption_amp'),10, 2 );
 		    add_filter("ampforwp_the_content_last_filter",  array($this, "comment_form_conversion") );
-		    add_filter("amp_post_template_data", array($this, 'amp_comment_mustache_script') );
+		    add_filter("amp_post_template_data", array($this, 'amp_comment_mustache_script'), 11 );
 		    //Remove admin bar
 		    if( is_user_logged_in() ){
 				$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
@@ -102,6 +102,7 @@ Class AMPforWP_theme_mode{
 			$data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-latest.js';
 			}
 		}
+		unset($data['amp_component_scripts']['amp-addthis']);
 		return $data;
 	}
 	function amp_theme_ajaxcomments(){
@@ -554,7 +555,7 @@ Class AMPforWP_theme_mode{
 				$data = preg_replace("/http?[s]?:/", "", $data);
 				$data = str_replace(" action=", 'target="_top" action=', $data);
 			}
-			$data = amp_form_sanitization($data);
+			$data = $this->amp_form_sanitization($data);
 			echo $this->ampforwp_template_mode_cnt_sanitizer($data);
 		}
 	}
