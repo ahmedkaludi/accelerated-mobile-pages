@@ -867,13 +867,14 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 								'post_status'=> 'publish',
 								'post_type' => $fieldValues['post_type_selection']
 							);
-						if ( isset($fieldValues['category_selection']) && 'recent_option' !== $fieldValues['category_selection'] ) {
+						if ( (isset($fieldValues['taxonomy_selection']) && 'recent_option' !== $fieldValues['taxonomy_selection']) &&  (isset($fieldValues['category_selection']) && 'recent_option' !== $fieldValues['category_selection'])) {
 							$args['tax_query'] = array(
 													array(
-														'taxonomy'=>(isset($fieldValues['category_selection']))?get_term($fieldValues['category_selection'])->taxonomy: '',
+														'taxonomy'=>$fieldValues['taxonomy_selection'],
 														'field'=>'id',
 														'terms'=>$fieldValues['category_selection']) );
 						}
+						
 						$args = apply_filters('ampforwp_content_module_args', $args, $fieldValues);
 						//The Query
 						$the_query = new WP_Query( $args );

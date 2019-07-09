@@ -8,8 +8,9 @@ function ampforwp_content_module_pagination($args, $fieldValues){
       }else{
           $paged = 1;
       }
-      
+      $offset = ( $paged - 1 ) * $args['posts_per_page'] + $args['offset'];
       $args['paged'] = $paged;
+      $args['offset'] = $offset;
       
     return $args;
   }else{
@@ -181,6 +182,19 @@ if ( is_admin() ) {
               'default' =>'post',    
               'options' => $post_types,    
               'options_details'=>$post_types ,
+              'content_type'=>'html',
+              'ajax'  => true,
+              'ajax_dep' => 'taxonomy_selection',
+              'ajax_action' => 'ampforwp_pb_taxonomy'
+            ),
+            array(    
+              'type'  =>'select',   
+              'name'  =>"taxonomy_selection",   
+              'label' =>"Select Taxonomy",
+              'tab'     =>'customizer',
+              'default' =>'',    
+              'options' => $options,    
+              'options_details'=>$categoriesArray ,
               'content_type'=>'html',
               'ajax'  => true,
               'ajax_dep' => 'category_selection',
@@ -495,11 +509,15 @@ if ( is_admin() ) {
         $startPage = max( 1, $paged - $count);
         $endPage = min( $total_num_pages, $paged + $count);
         for($i = $startPage ; $i <= $endPage ; $i++){
-          if( $paged == $i){
+          if( $paged == $i && $startPage!=$endPage){
               $pagination_links .= "<a class='active' href='#/' >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
           }else{
             $allPages = add_query_arg( array( $pagination_text => $i ), $queryUrl );
-            $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
+            if($startPage!=$endPage){
+              $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
+            }
+            
+            
           }
 
         }
