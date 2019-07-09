@@ -1860,9 +1860,16 @@ text-align: center;border: 0;z-index:9;bottom:0;}
 .s_stk{
 	z-index:99999;
 }
-.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad, .body.single-post .amp-sticky-ads{
-	padding-bottom:40px;
+.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{
+	padding-bottom:45px;
+	padding-top:5px;
 }
+.body.single-post .ampforwp-sticky-custom-ad{
+	bottom: 40px;
+    padding: 3px 0px 0px;
+}
+.body.single-post .afw a{line-height:0;}
+.body.single-post amp-sticky-ad amp-sticky-ad-top-padding{height:0px;}
 <?php } //Sticky CSS Condition ends?>
 <?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}

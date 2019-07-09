@@ -565,7 +565,13 @@ amp-user-notification button { background-color:  <?php echo ampforwp_get_settin
 <?php if ( true == ampforwp_get_setting('enable-single-social-icons') && is_socialshare_or_socialsticky_enabled_in_ampforwp() && is_single() ) { ?>
 .single-post footer { padding-bottom: 41px;}
 .body.single-post .sticky_social{z-index:99999;}
-.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad, .body.single-post .amp-sticky-ads{padding-bottom:41px;}
+.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{padding-top:3px;padding-bottom:48px;}
+.body.single-post .ampforwp-sticky-custom-ad{
+  bottom: 43px;
+  padding: 4px 0px 0px;
+}
+.body.single-post .afw a{line-height:0;}
+.body.single-post amp-sticky-ad amp-sticky-ad-top-padding{height:0px;}
 <?php } ?>
 .amp-wp-author:before{ content: " <?php global $redux_builder_amp; echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ));?>  ";}
 .ampforwp-tax-category span:last-child:after { content: ' ';}

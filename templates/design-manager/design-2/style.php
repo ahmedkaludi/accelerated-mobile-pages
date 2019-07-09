@@ -374,7 +374,13 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 .single-post footer { padding-bottom: 40px; }
 .amp-ad-2{ margin-bottom: 50px; }
 .body.single-post .sticky_social{z-index:99999;}
-.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad, .body.single-post .amp-sticky-ads{padding-bottom:40px;}
+.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{padding-top:4px;padding-bottom:48px;}
+.body.single-post .ampforwp-sticky-custom-ad{
+	bottom: 43px;
+    padding: 4px 0px 0px;
+}
+.body.single-post .afw a{line-height:0;}
+.body.single-post amp-sticky-ad amp-sticky-ad-top-padding{height:0px;}
 <?php } ?>
 /**/
 .amp-wp-author:before{ content: " <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-by-text'], 'By '); ?>  "; }
