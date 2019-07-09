@@ -481,7 +481,7 @@ amp-user-notification button{ padding: 8px 10px; background: #000; color: #fff; 
 amp-user-notification button:hover{ cursor: pointer }
 .amp-not-privacy{color:<?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color','ampforwp_sanitize_color'); ?>;text-decoration: none;font-size: 15px;margin-left: 2px;}
 <?php } ?>
-.archive-heading{padding: 10px 15px 0 15px;}
+.archive-heading,.taxonomy-description{padding: 10px 15px 0 15px;}
 /* Responsive */
 @media screen and (min-width: 650px) { table {display: inline-table;}  }
 @media screen and (max-width: 768px){ .amp-wp-meta{ margin:10px 0px 15px 0px } .home-post_image{ width: 40%; } .amp-loop-list .amp-wp-post-content{ width: 58%; } .amp-loop-list .featured_time{line-height:1} .single-post main .amp-wp-content h1{  line-height:1.4;  font-size: 30px;}  }
