@@ -2676,6 +2676,9 @@ if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) {
 		.amp-post-title {
     		font-size: 40px;
     	}
+    	.sgl7-right{
+	    	padding-left: 20px;
+	    }
 	}
 	@media(max-width:767px){
 		.sgl7-left {
@@ -2684,6 +2687,7 @@ if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) {
 		    padding-right: 0;
 		    margin-bottom: 20px;
 		}
+		.sgl7-right{padding:0;}
 		.amp-post-title {
     		font-size: 32px;
     	}
