@@ -906,12 +906,14 @@ jQuery(document).ready(function($){
         }
 
     });
-    //Toggle Post and Page comments panel based on options 
-    var pageComments = $('#ampforwp-display-on-pages').val();
-    var postComments = $('#ampforwp-display-on-posts').val();
-    if( pageComments ==0 && postComments == 0 ){
-        $('#section-ampforwp-comments').hide();
-        $('#section-table-ampforwp-comments tbody').hide();
+    //Toggle Post and Page comments panel based on options
+    if($('#ampforwp-display-on-pages').length>0 && $('#ampforwp-display-on-posts').length>0){
+        var pageComments = $('#ampforwp-display-on-pages').val();
+        var postComments = $('#ampforwp-display-on-posts').val();
+        if( pageComments ==0 && postComments == 0 ){
+            $('#section-ampforwp-comments').hide();
+            $('#section-table-ampforwp-comments tbody').hide();
+        }
     }
     $("#redux_builder_amp-ampforwp-display-on-posts").on('change','input[type=checkbox]', function(){
         var pageComments = $('#ampforwp-display-on-pages').val();
