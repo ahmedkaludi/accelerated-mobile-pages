@@ -188,7 +188,35 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 0.9.97.63 (4th July 2019) =
+= 0.9.97.63 (9th July 2019) =
+* Improvements: Custom Taxonomy support #3036
+* Improvements: Option to change the Navigation part background color and element color for Design-3 #3034
+* Improvements: Compatibility with the SEO Framework Plugin #2670
+* Improvements: Facebook Messenger Icon in social share icons #2806
+* Improvements: Option to change the Homepage Thumbnail size in design-3 theme #2986
+* Improvements: Changed prefix class of whatsapp to Api #3369
+* Improvements: Colour changing feature in Navigation bar in a design-2 #3059
+* Improvements: Google Lighthouse Audit Score improved #3276
+* Improvements: AMP option panel compatibility with a basix theme #3366
+* Improvements: Template mode code improved #3357
+* Fixed: PHP debug warning #3128
+* Fixed: Proper alignment of description in Design-3 #3385
+* Fixed: 'Modified Date' option not working when Date Format 'Traditional view' is selected #3383
+* Fixed: When Parmalinks in "/index.php/%year%/%monthnum%/%day%/%postname%/" format category not working #3279
+* Fixed: Separator Character's of Rank math plugin is not working on AMP pages #3335
+* Fixed: SVG images not rendering in AMP #3208
+* Fixed: Improvements code in Search form widget #3000
+* Fixed: Dynamically change accordion-mod class name to reduce the styling size #3334
+* Fixed: Social sticky icons to show on top as well as it is getting hidden behind sticky ads #3126
+* Fixed: Font icons not loading in master and beta #3382
+* Fixed: Yoast SEO Data not loading in AMP when 'Glue for Yoast SEO & AMP' plugin is active #3338
+* Fixed: When AMP Comments is disabled, div of comments is loading #3345
+* Fixed: Error 500 PHP 5.3.3 Fallback support #3333
+* Fixed: Debug warnings after recent update #3400
+* Fixed: Video sanitizer not allowing the "id" attribute #3406
+* Fixed: Check if function_exists('get_rocket_option') #3417
+
+= 0.9.97.62 (4th July 2019) =
 * Improvements: Change AddThis controls labels. #3359
 * Fixed: Alternative methods to sanitize(`sanitize_textarea_field`) for users who are using older then 4.7  #3394
 * Fixed: amp-addthis script is loading on WooCommerce product pages. #3393

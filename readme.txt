@@ -190,58 +190,32 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.63 (4th July 2019) =
-* Improvements: Change AddThis controls labels. #3359
-* Fixed: Alternative methods to sanitize(`sanitize_textarea_field`) for users who are using older then 4.7  #3394
-* Fixed: amp-addthis script is loading on WooCommerce product pages. #3393
-* Fixed: Page titles are changing when Rank math plugin active #3358
-* Fixed: Icons added in featured image caption not working properly with font awesome #3288
-
-= 0.9.97.61 (2nd July 2019) =
-* Improvements: AMP option panel for better enhancement #2432
-* Improvements: Lighthouse score improved in all designs #3108
-* Improvements: Option to change featured image size in the AMP panel's single settings [ only in Swift theme] #3339
-* Improvements: Clicky Analytic compatibility integrated #3220
-* Improvements: Some Improvements in image sanitizer #3112
-* Improvements: Gallery Design integrated in Facebook instant article #3143
-* Improvements: Featured Video Plus plugin compatibility integrated #2583
-* Improvements: Performance improvement ! SELECT SQL_CALC_FOUND_ROWS #3336
-* Improvements: 'Featured Image from URL' plugin compatibility integrated #3365
-* Improvements: Template-mode functionality added for group users to work on the main/AMP theme #3252
-* Fixed: Images are blur in beta in design 2 #2541
-* Fixed: SRC set in the Featured Image #1619
-* Fixed: AMP page builder is not showing when the AMPforWP plugin is activated from Network admin panel in Multisite #3322
-* Fixed: AMP Panel options code improved - 2 #3083
-* Fixed: Fatal error with an older version of Wordpress #3094
-* Fixed: Extra option in Analytics section removed #3037
-* Fixed: ?nonamp=1 should redirect to normal url #3269
-* Fixed: Recent comments shows first in ascending order #3325
-* Fixed: Footnotes not working properly #2982
-* Fixed: On twitter share Via twitter handle name is not shown in the tweet beside Url in Design-Swift #3286
-* Fixed: Fatal Error when activate quadmenu plugin #3308
-* Fixed: Default schema generated Page (Migrated from AMPforWP) or post (Migrated from AMPforWP)'s Target Location is showing empty by default #3343
-* Fixed: When auto add amp in menu option is enabled it is rendering the cache version menu for WPML site #3251
-* Fixed: External URL not working with Revolution Slider #3218
-* Fixed: Images are getting distorted in AMP when the lazy loading option is enabled in the WoodMart theme settings #3254
-* Fixed: More variables support in Advanced Google Analytics #3281
-* Fixed: When amp takeover is enabled, /amp is added at the end of category module url #3367
-* Fixed: Auto Add AMP in Menu URL option is is not working for the product category #3319
-* Fixed: Swift Theme has doublequotes in related Post quotes issue #3045
-* Fixed: Wordpress Spanish language does not showing "Design" tab #3342
-* Fixed: Tittle attribute not generates in related posts in all designs #3346
-* Fixed: AMP optin short code is not rendering in AMP from footer widget #3349
-* Fixed: Single post main title should be H1 and sub title should be H2 or H3 in design-1 #3350
-* Fixed: ampforwp_the_content_filter_full function hook changed to work minify option in AMP cache plugin #3355
-* Fixed: AMP is not working due to JCH Optimize Pro plugin #3185
-* Fixed: AMP validation warning when Google Tag Manager Advanced Option is enabled #2660
-* Fixed: PHP Warning implode() Invalid arguments passed when Enfold theme is activate #3307
-* Fixed: Mobile redirection not working properly #3370
-* Fixed: Redirection code improved #3326
-* Fixed: Yoast Description does not output #3374
-* Fixed: Debug errors after 0.9.97.60 #3377
-* Fixed: Code improvements in loadComponents() #3384
-* Fixed: License key is visible in Source code #2528
-* Fixed: Fatal error can't use function return value in write context - 2 #3087
-* Fixed: Code improvements #3388
+= 0.9.97.63 (9th July 2019) =
+* Improvements: Custom Taxonomy support #3036
+* Improvements: Option to change the Navigation part background color and element color for Design-3 #3034
+* Improvements: Compatibility with the SEO Framework Plugin #2670
+* Improvements: Facebook Messenger Icon in social share icons #2806
+* Improvements: Option to change the Homepage Thumbnail size in design-3 theme #2986
+* Improvements: Changed prefix class of whatsapp to Api #3369
+* Improvements: Colour changing feature in Navigation bar in a design-2 #3059
+* Improvements: Google Lighthouse Audit Score improved #3276
+* Improvements: AMP option panel compatibility with a basix theme #3366
+* Improvements: Template mode code improved #3357
+* Fixed: PHP debug warning #3128
+* Fixed: Proper alignment of description in Design-3 #3385
+* Fixed: 'Modified Date' option not working when Date Format 'Traditional view' is selected #3383
+* Fixed: When Parmalinks in "/index.php/%year%/%monthnum%/%day%/%postname%/" format category not working #3279
+* Fixed: Separator Character's of Rank math plugin is not working on AMP pages #3335
+* Fixed: SVG images not rendering in AMP #3208
+* Fixed: Improvements code in Search form widget #3000
+* Fixed: Dynamically change accordion-mod class name to reduce the styling size #3334
+* Fixed: Social sticky icons to show on top as well as it is getting hidden behind sticky ads #3126
+* Fixed: Font icons not loading in master and beta #3382
+* Fixed: Yoast SEO Data not loading in AMP when 'Glue for Yoast SEO & AMP' plugin is active #3338
+* Fixed: When AMP Comments is disabled, div of comments is loading #3345
+* Fixed: Error 500 PHP 5.3.3 Fallback support #3333
+* Fixed: Debug warnings after recent update #3400
+* Fixed: Video sanitizer not allowing the "id" attribute #3406
+* Fixed: Check if function_exists('get_rocket_option') #3417
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
