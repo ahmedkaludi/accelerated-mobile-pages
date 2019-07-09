@@ -18,14 +18,28 @@ Class AMPforWP_theme_mode{
 			add_filter(	"the_content", array($this, 'amp_the_content') );
 			add_action(	"levelup_head", array($this, 'amp_head_content') );
 			add_action(	"levelup_css", array($this, 'amp_head_css')	);
-			add_filter(	"get_search_form", array($this, 'search_form')	);
+			add_filter(	"get_search_form", array($this, 'search_form'), 99	);
 			add_filter(	"get_custom_logo", array($this, 'get_custom_logo'), 10, 2	);
 			add_action(	"levelup_footer", array($this, 'amp_footer_content')	);
 		    add_action(	"get_avatar", array($this,'get_avatar'), 11,6);	    
 		    add_filter( "the_author_description", array($this, 'author_meta_desctiption_amp'),10, 2 );
 		    add_filter("ampforwp_the_content_last_filter",  array($this, "comment_form_conversion") );
-		    add_filter("amp_post_template_data", array($this, 'amp_comment_mustache_script') );
-		    
+		    add_filter("amp_post_template_data", array($this, 'amp_comment_mustache_script'), 11 );
+		    //Remove admin bar
+		    if( is_user_logged_in() ){
+				$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
+				if($pref==="true"){
+					add_action("wp_body_open", function(){
+				    	wp_admin_bar_render();
+					});
+					add_action( 'admin_bar_init', array($this,'init_admin_bar'));
+					add_action( 'wp_before_admin_bar_render', function(){
+						remove_action( 'wp_before_admin_bar_render', 'wp_customize_support_script' );
+					},9);
+					add_action( 'admin_bar_menu', array($this, 'remove_adminbar_search'));
+				}
+			}
+
 		}else{
 			require_once AMPFORWP_PLUGIN_DIR.'/templates/template-mode/admin-settings.php';
 			add_filter( 'plugin_action_links_accelerated-mobile-pages/accelerated-moblie-pages.php', array($this, 'ampforwp_plugin_settings_link'), 999, 4 );
@@ -84,6 +98,7 @@ Class AMPforWP_theme_mode{
 			$data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-latest.js';
 			}
 		}
+		unset($data['amp_component_scripts']['amp-addthis']);
 		return $data;
 	}
 	function amp_theme_ajaxcomments(){
@@ -451,6 +466,12 @@ Class AMPforWP_theme_mode{
 		do_action( 'amp_post_template_css', $ampforwpTemplate ); 
 		do_action( 'amp_css', $ampforwpTemplate ); 
 		
+		if( is_user_logged_in() ){
+			$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
+			if($pref==="true"){
+				$css .= $this->ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
+			}
+		}
 		$stylesheetCss = $this->ampforwp_get_remote_content($stylesheetUri);
 		$stylesheetCss = str_replace(" img", 'amp-img', $stylesheetCss);
 		$valuesrc = get_stylesheet_directory_uri();
@@ -464,7 +485,7 @@ Class AMPforWP_theme_mode{
                     }, $stylesheetCss);
 		$css .= $stylesheetCss;
 		$css .= ampforwp_get_setting('css_editor');
-		$css .= str_replace(array('.accordion-mod'), array('.apac'), $css); 
+		$css = str_replace(array('.accordion-mod'), array('.apac'), $css);
 		echo $this->css_sanitizer($css);
 		echo "</style>";
 	}
@@ -476,10 +497,7 @@ Class AMPforWP_theme_mode{
 		return $css;
 	}
 	public function search_form($form){
-		$form = preg_replace_callback("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)>/", function($matches){
-			$tag = '<form'.$matches[1].' target="_top" action="'.$matches[2].'"'.$matches[3].'>';
-			return $tag;
-		}, $form);
+		$form = $this->amp_form_sanitization($form);
 		return $form;
 	}
 	public function get_custom_logo($html, $blog_id){
@@ -533,8 +551,50 @@ Class AMPforWP_theme_mode{
 				$data = preg_replace("/http?[s]?:/", "", $data);
 				$data = str_replace(" action=", 'target="_top" action=', $data);
 			}
+			$data = $this->amp_form_sanitization($data);
 			echo $this->ampforwp_template_mode_cnt_sanitizer($data);
 		}
+	}
+	public function amp_form_sanitization($data){
+		if(strpos($data, "<form")!==false){
+			$dom = new DOMDocument;
+			@$dom->loadHTML($data);
+			$xp = new DOMXPath($dom);
+			$query = '//form';
+
+			$elements = array();
+			foreach ( $xp->query($query) as $element ) {
+				$elements[] = $element;
+			}
+			foreach ($elements as $key => $element) {
+				$node_name = strtolower( $element->nodeName );
+				if( $element->getAttribute('method')=='post' ){
+					if($node_name=='form'){
+						if($element->hasAttribute('action') && !$element->hasAttribute('action-xhr')){
+							$url = str_replace("http:", "https:", $element->getAttribute('action'));
+							$element->setAttribute('action-xhr', $url);
+							$element->removeAttribute('action');
+						}else{
+							$scheme = is_ssl() ? 'https://' : 'http://';
+
+							$path = "{$scheme}{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+							$path = str_replace("http:", "https:", $path);
+							$element->setAttribute('action-xhr', esc_url($path) );
+						}
+					}
+				}elseif( $element->getAttribute('method')=='get' ){
+					if( !$element->hasAttribute('target') ){
+						$element->setAttribute('target', "_top");
+					}
+					$url = str_replace("http:", "https:", $element->getAttribute('action'));
+					$element->setAttribute('action', $url);
+				}
+			}
+			$changesData = $dom->savehtml();
+			preg_match('/<body>(.*?)<\/body>/s', $changesData, $matches);
+			$data = isset($matches[1])? $matches[1] : $data;
+		}
+		return $data;
 	}
 	/**
 	* Remove Sanitize any content
@@ -585,6 +645,17 @@ Class AMPforWP_theme_mode{
 	}
 	public function author_meta_desctiption_amp($field, $user_id){
 		return $this->ampforwp_template_mode_cnt_sanitizer($field);
+	}
+
+	/*
+	* Admin bar
+	*/
+	public function init_admin_bar(){
+		remove_action( 'wp_head', '_admin_bar_bump_cb' );
+	 	remove_action( 'wp_head', 'wp_admin_bar_header' );
+	}
+	public function remove_adminbar_search($wp){
+		$wp->remove_node('search');
 	}
 }//Class Closed
 add_action('after_setup_theme', 'ampforwp_template_mode_is_activate', 999);
