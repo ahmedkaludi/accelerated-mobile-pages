@@ -55,13 +55,15 @@
 						amp_author_box( $author_box ); ?>	
 					<?php } ?>
 					<?php amp_post_navigation();?>
+					<?php if ( true == ampforwp_get_setting('wordpress-comments-support')){ ?>
 					<div class="cmts">
 						<?php amp_comments();?>
 						<?php do_action('ampforwp_post_after_design_elements'); ?>
 					</div>
 					<?php } ?>
+					<?php } ?>
 				</div>
-				<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
+				<?php if(!checkAMPforPageBuilderStatus(get_the_ID()) && (true == ampforwp_get_setting('enable-single-post-social-icons') || true == ampforwp_get_setting('amp-author-name') || true == ampforwp_get_setting('swift-date') || true == ampforwp_get_setting('ampforwp-single-related-posts-switch'))){ ?>
 				<div class="sp-lt">
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'default' == $redux_builder_amp['swift-social-position']){
 						ampforwp_swift_social_icons(); 
