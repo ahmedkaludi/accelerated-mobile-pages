@@ -1169,7 +1169,7 @@ function ampforwp_remove_schema_data() {
 		unset( $wp_filter['rocket_buffer'] );
 		// this filter is documented in inc/front/protocol.php.
 		$do_rocket_protocol_rewrite = apply_filters( 'do_rocket_protocol_rewrite', false );
- 		if ( ( get_rocket_option( 'do_cloudflare', 0 ) && get_rocket_option( 'cloudflare_protocol_rewrite', 0 ) || $do_rocket_protocol_rewrite ) ) {
+ 		if ( function_exists('get_rocket_option') && ( get_rocket_option( 'do_cloudflare', 0 ) && get_rocket_option( 'cloudflare_protocol_rewrite', 0 ) || $do_rocket_protocol_rewrite ) ) {
 			remove_filter( 'rocket_buffer', 'rocket_protocol_rewrite', PHP_INT_MAX );
 			remove_filter( 'wp_calculate_image_srcset', 'rocket_protocol_rewrite_srcset', PHP_INT_MAX );
 		}
