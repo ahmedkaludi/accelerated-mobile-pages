@@ -361,10 +361,21 @@ body a {color: <?php echo ampforwp_sanitize_color($redux_builder_amp['amp-opt-co
 .nav_container a{ color:<?php echo sanitize_hex_color( $header_color ); ?> }
 amp-user-notification { border-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;; }
 amp-user-notification button { background-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;; }
-<?php if( $redux_builder_amp['enable-single-social-icons'] == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() )  { ?>
+<?php if( ampforwp_get_setting('enable-single-social-icons') == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() && is_single() )  { ?>
 .single-post footer { padding-bottom: 40px; }
 .amp-ad-2{ margin-bottom: 50px; }
-<?php } ?>
+.body.single-post .sticky_social{z-index:99999;}
+.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{padding-top:4px;padding-bottom:48px;}
+.body.single-post .ampforwp-sticky-custom-ad{
+	bottom: 43px;
+    padding: 4px 0px 0px;
+}
+.body.single-post .afw a{line-height:0;}
+.body.single-post amp-sticky-ad amp-sticky-ad-top-padding{height:0px;}
+<?php }  
+if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
+  .btt{z-index:9999;}
+<?php } // advanced ads type 3 ends here ?>
 /**/
 .amp-wp-author:before{ content: " <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-by-text'], 'By '); ?>  "; }
 .ampforwp-tax-category span:first-child:after { content: ' '; }

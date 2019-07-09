@@ -733,11 +733,6 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .related_posts .related_link p{word-break: break-word;color: #444;font-size: 13px;line-height: 20px;
 letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 <?php } ?>
-<?php if(is_single() && $redux_builder_amp['enable-single-social-icons'] ){?>
-	.body.single-post{
-	  padding-bottom:40px;
-	}
-<?php } ?>
 <?php if( true == ampforwp_get_setting('amp-author-description') ) { ?>
 .sp-rt .amp-author {padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
 .sp-rt .amp-author-image{float:left;}
@@ -1807,18 +1802,35 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 }
 <?php } ?>
+<?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;bottom: 0;text-align: center;border: 0;}
 .s_stk ul{width:100%;display:inline-flex;}
-.s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:35px}
+.s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:40px}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
-
-<?php } ?>
+<?php } //Sticky CSS Condition ends
+ } ?>
 <?php } // levelup condition ends ?>
-<?php if(is_single() && $redux_builder_amp['enable-single-social-icons'] ){?>
+<?php if( ampforwp_get_setting('enable-single-social-icons')  && is_single() ) { ?>
 .body.single-post{
   padding-bottom:40px;
 }
-<?php } ?>
+.s_stk{
+	z-index:99999;
+}
+.body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{
+	padding-bottom:45px;
+	padding-top:5px;
+}
+.body.single-post .ampforwp-sticky-custom-ad{
+	bottom: 40px;
+    padding: 3px 0px 0px;
+}
+.body.single-post .afw a{line-height:0;}
+.body.single-post amp-sticky-ad amp-sticky-ad-top-padding{height:0px;}
+<?php } //Sticky CSS Condition ends?>
+<?php if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
+	.btt{z-index:9999;}
+<?php } // advanced ads type 3 ends here ?>
 <?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 [class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
