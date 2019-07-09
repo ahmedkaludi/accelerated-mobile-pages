@@ -1121,6 +1121,7 @@ if( isset($redux_builder_amp['amp-swift-menu-cprt']) && $redux_builder_amp['amp-
 a.btt:hover {
     cursor: pointer;
 }
+.btt{z-index:9999;}
 <?php } //Menu Copy Right CSS Ends
  } //level up CSS Ends
  //AMP Woocommerce condition starts
