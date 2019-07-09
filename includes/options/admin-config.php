@@ -4922,12 +4922,40 @@ Redux::setSection( $opt_name, array(
                         'required' => array(array('amp-design-selector', '=' , '3') ), 
                         'default'   =>'1',
                 ),
-
-            // Homepage thumbnail
+                
+                array(
+                       'id' => 'ampforwp-homepage-section-loop',
+                       'type' => 'section',
+                       'title' => esc_html__('Loop Display Controls', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 1,
+                ),
+                array(
+                        'id'       => 'ampforwp-homepage-loop-type',
+                        'type'     => 'select',
+                        'title'    => esc_html__( 'Post Type in Loop', 'accelerated-mobile-pages' ),
+                        'options'  => $ampforwp_home_loop,
+                        'default'   => 'post',
+                ),
+                array(
+                        'id'       => 'ampforwp-homepage-loop-cats',
+                        'type'     => 'select',
+                        'title'    => esc_html__( 'Exclude Categories', 'accelerated-mobile-pages' ),
+                        'data'  => 'categories',
+                        'multi'    => true
+                ),
+                array(
+                    'id'    => 'ampforwp-homepage-loop-readmore-link',
+                    'type'  => 'switch',
+                    'title' => esc_html__('Read More Link', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                ),
+                // Homepage thumbnail
                 array(
                         'id'       => 'ampforwp-homepage-posts-image-modify-size',
                         'type'     => 'switch',
-                        'title'    => esc_html__('Override Homepage Thumbnail Size', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Change Image Size', 'accelerated-mobile-pages'),
                          'default'  => 0,
                  ),
                 array(
@@ -5004,39 +5032,10 @@ Redux::setSection( $opt_name, array(
                           array('ampforwp-homepage-posts-image-modify-size','=',1)
                         )
                 ),
-                
-                array(
-                       'id' => 'ampforwp-homepage-section-loop',
-                       'type' => 'section',
-                       'title' => __('Loop Display Controls', 'accelerated-mobile-pages'),
-                       'indent' => true,
-                       'layout_type' => 'accordion',
-                        'accordion-open'=> 1,
-                ),
-                array(
-                        'id'       => 'ampforwp-homepage-loop-type',
-                        'type'     => 'select',
-                        'title'    => __( 'Post Type in Loop', 'accelerated-mobile-pages' ),
-                        'options'  => $ampforwp_home_loop,
-                        'default'   => 'post',
-                ),
-                array(
-                        'id'       => 'ampforwp-homepage-loop-cats',
-                        'type'     => 'select',
-                        'title'    => __( 'Exclude Categories', 'accelerated-mobile-pages' ),
-                        'data'  => 'categories',
-                        'multi'    => true
-                ),
-                array(
-                    'id'    => 'ampforwp-homepage-loop-readmore-link',
-                    'type'  => 'switch',
-                    'title' => __('Read More Link', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                ),
                 array(
                     'id'    => 'ampforwp-full-post-in-loop',
                     'type'  => 'switch',
-                    'title' => __('Full Content in Loop', 'accelerated-mobile-pages'),
+                    'title' => esc_html__('Full Content in Loop', 'accelerated-mobile-pages'),
                     'default'   => 0,
                 )
 
