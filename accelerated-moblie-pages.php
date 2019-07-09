@@ -252,7 +252,14 @@ function ampforwp_add_custom_rewrite_rules() {
 	
 	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
 	if ( $taxonomies ) {
-		foreach ( $taxonomies  as  $taxonomyName => $taxonomySlug ) { 
+		$taxonomySlug = '';
+		foreach ( $taxonomies  as  $taxonomyName => $taxonomyLabel ) {
+			$taxonomies = get_taxonomy( $taxonomyName );
+			if(isset($taxonomies->rewrite['slug']) && !empty($taxonomies->rewrite['slug']) ){
+				$taxonomySlug = $taxonomies->rewrite['slug'];
+			}else{
+				$taxonomySlug = $taxonomyName;
+			}
 			if ( ! empty( $taxonomySlug ) ) {
 			    add_rewrite_rule(
 			      $taxonomySlug.'\/([^/]+)\/amp/?$',
@@ -930,7 +937,6 @@ function ampforwp_get_all_post_types(){
     if( ampforwp_get_setting('ampforwp-archive-support') && ampforwp_get_setting('ampforwp-archive-support-cat') ){
     	$post_types['category'] = 'category';
     }
-   
 	$custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
 	if( !empty($custom_taxonomies) ){
 		foreach($custom_taxonomies as $taxonomy){
@@ -949,7 +955,6 @@ function ampforwp_get_all_post_types(){
         }
         $post_types = array_merge($post_types, $selected_post_types);
     }
-    
     return $post_types;
 }
 

@@ -19,15 +19,10 @@ function ampforwp_redirection() {
         $term_id = get_queried_object()->term_id;
         $term = get_term( $term_id );
         $taxonomy_name = $term->taxonomy;
-        $target[] = $taxonomy_name;
-        $tax_obj = get_taxonomy( $taxonomy_name );
-        if(isset($tax_obj->rewrite['slug']) && !empty($tax_obj->rewrite['slug']) ){
-          $rewrite_slug = $tax_obj->rewrite['slug'];
-          $target[] = $rewrite_slug;
-        }
+        
         $custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
         if(!empty($custom_taxonomies)){
-          if(( is_archive() && count(array_intersect($custom_taxonomies, $target))==0 ) ){
+          if(( is_archive() && !in_array( $taxonomy_name,$custom_taxonomies) ) ){
               $archive_check_tax = true;
           }
         }
