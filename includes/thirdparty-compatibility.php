@@ -486,6 +486,10 @@ function ampforwp_totalplus_comp_admin() {
 	$screen = get_current_screen();
 	if ( 'toplevel_page_amp_options' == $screen->base ) {
 		remove_action('admin_enqueue_scripts', 'total_plus_admin_scripts', 100);
+		// Save option is not showing with a basix theme #3366
+		if(function_exists('addPanelCSS')){
+			remove_action( 'admin_enqueue_scripts', 'addPanelCSS');
+		}
 	}
 }
 // Simple Author Box Compatibility #2268 and Use Any Font Compatibility #2774
