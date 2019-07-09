@@ -40,13 +40,17 @@ add_amp_icon( array( 'widgets', 'search', 'shopping-cart' ) );
 
 // Swift Social Icons
 function ampforwp_swift_social_icons(){
-	global $redux_builder_amp; 
+	global $redux_builder_amp;
+	$amp_permalink = $facebook_app_id = $amp_permalink_fb_messenger = '';
+	$facebook_app_id = ampforwp_get_setting('amp-facebook-app-id-messenger');
 	// Social share in AMP 
-	$amp_permalink = "";
 	if ( ampforwp_get_setting('ampforwp-social-share-amp')  ) {
 		$amp_permalink = ampforwp_url_controller(get_the_permalink());
 	} else{
 		$amp_permalink = get_the_permalink();
+	}
+	if($facebook_app_id){
+		$amp_permalink_fb_messenger = untrailingslashit($amp_permalink). '&app_id='. $facebook_app_id;
 	}
 	if(ampforwp_get_setting('enable-single-twitter-share-link')){
 		$amp_permalink =  wp_get_shortlink();
@@ -58,6 +62,11 @@ function ampforwp_swift_social_icons(){
 							<?php if($redux_builder_amp['enable-single-facebook-share']){?>
 							<li>
 								<a class="s_fb" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://www.facebook.com/sharer.php?u=<?php echo esc_url($amp_permalink); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if(ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
+							<li>
+								<a title="facebook share messenger" class="s_fb_ms" target="_blank" href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink_fb_messenger); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php 

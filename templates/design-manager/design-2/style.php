@@ -112,6 +112,13 @@ if(ampforwp_get_setting('enable-single-social-icons') == true && is_single() || 
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
 .amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; margin-bottom:5px; }
 .amp-social-icon amp-img{ top: 4px; }
+amp-social-share[type="facebookmessenger"] {
+  background-image: url(https://img.icons8.com/color/100/000000/facebook-messenger.png);
+  max-height: 33px;   
+}
+<?php if ( true == ampforwp_get_setting('enable-single-facebook-share-messenger') ) { ?>
+.amp-social-icon.amp-social-facebookmessenger {background: #d5e1e6;text-align: center;}
+<?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-line-share') ) { ?>
 .custom-amp-socialsharing-line{background:#00b900}
 <?php } ?>

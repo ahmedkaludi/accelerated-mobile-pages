@@ -5742,15 +5742,31 @@ else{
           // Facebook app ID
           array(
                'id'       => 'amp-facebook-app-id',
+               'class' => 'child_opt child_opt_arrow',
                'title'    => esc_html__('Facebook App ID', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => sprintf( '%s <a style="color:#93FCFF;" href="%s" target="_blank">%s</a> %s <a style="color:#93FCFF;" href="%s" target="_blank">%s</a>',esc_html__('In order to use Facebook share you need to register an app ID','accelerated-mobile-pages'),esc_url("https://developers.facebook.com/apps"),esc_html__('here','accelerated-mobile-pages'),esc_html__('You can register one','accelerated-mobile-pages'),esc_url('https://developers.facebook.com/apps'),esc_html__('here','accelerated-mobile-pages') ),
+               'tooltip-subtitle' => esc_html__('In order to use Facebook share you need to register an app ID, <a href="https://developers.facebook.com/apps" style="color:#93FCFF;" >You can register one here: https://developers.facebook.com/apps.', 'accelerated-mobile-pages'),
                'type'     => 'text',
-               'required'  => array('enable-single-facebook-share', '=' , '1'),
+               'required'  => array(array('enable-single-facebook-share', '=' , '1'),array('amp-design-selector', '!=' , '4')),
                'placeholder'  => esc_html__('Enter your facebook app id','accelerated-mobile-pages'),
                'default'  => '',
-               'required' => array(
-                    array('amp-design-selector', '!=' , '4')
-                ),
+          ),
+          // Facebook Messenger ON/OFF
+          array(
+              'id'        =>  'enable-single-facebook-share-messenger',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('Facebook Messenger', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+          // Facebook app ID
+          array(
+               'id'       => 'amp-facebook-app-id-messenger',
+               'title'    => esc_html__('Facebook App ID', 'accelerated-mobile-pages'),
+               'class' => 'child_opt child_opt_arrow',
+               'tooltip-subtitle' => sprintf( '%s <a style="color:#93FCFF;" href="%s" target="_blank">%s</a> %s <a style="color:#93FCFF;" href="%s" target="_blank">%s</a>',esc_html__('In order to use Facebook share you need to register an app ID','accelerated-mobile-pages'),esc_url("https://developers.facebook.com/apps"),esc_html__('here','accelerated-mobile-pages'),esc_html__('You can register one','accelerated-mobile-pages'),esc_url('https://developers.facebook.com/apps'),esc_html__('here','accelerated-mobile-pages') ),
+               'type'     => 'text',
+               'required'  => array('enable-single-facebook-share-messenger', '=' , '1'),
+               'placeholder'  => esc_html__('Enter your facebook app id','accelerated-mobile-pages'),
+               'default'  => '',
           ),
           // Twitter ON/OFF
           array(

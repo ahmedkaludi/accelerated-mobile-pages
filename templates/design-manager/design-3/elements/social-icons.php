@@ -1,10 +1,14 @@
 <?php global $redux_builder_amp, $post; 
 // Social share in AMP 
-$amp_permalink = "";
+$amp_permalink = $facebook_app_id = $amp_permalink_fb_messenger = '';
+$facebook_app_id = ampforwp_get_setting('amp-facebook-app-id-messenger');
 if ( ampforwp_get_setting('ampforwp-social-share-amp')  ) {
 	$amp_permalink = ampforwp_url_controller(get_the_permalink());
 } else{
 	$amp_permalink = get_the_permalink();
+}
+if($facebook_app_id){
+	$amp_permalink_fb_messenger = untrailingslashit($amp_permalink). '&app_id='. $facebook_app_id;
 }
 $image = '';
 if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social']) && true == $redux_builder_amp['ampforwp-page-social']) ) { 
@@ -37,6 +41,13 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 			<div class="ampforwp-custom-social">
 				<a title="facebook share" <?php ampforwp_nofollow_social_links(); ?> href="https://www.facebook.com/dialog/share?app_id=<?php echo esc_attr($redux_builder_amp['amp-facebook-app-id']); ?>&display=page&href=<?php echo esc_url($amp_permalink); ?>" class="amp-social-icon-rounded amp-social-facebook">
 				    <amp-img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDg2LjAzNyAxMDA3IiBmaWxsPSIjZmZmZmZmIiA+PHBhdGggZD0iTTEyNCAxMDA1VjUzNkgwVjM2N2gxMjRWMjIzQzEyNCAxMTAgMTk3IDUgMzY2IDVjNjggMCAxMTkgNyAxMTkgN2wtNCAxNThzLTUyLTEtMTA4LTFjLTYxIDAtNzEgMjgtNzEgNzV2MTIzaDE4M2wtOCAxNjlIMzAydjQ2OUgxMjMiPjwvcGF0aD48L3N2Zz4=" width="16" height="16" />
+				</a>
+		    </div>
+		<?php } ?>
+		<?php if(ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
+			<div class="ampforwp-custom-social">
+				<a title="facebook share messenger" <?php ampforwp_nofollow_social_links(); ?> href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink_fb_messenger); ?>" class="amp-social-facebook-messenger amp-social-icon-rounded">
+				    <amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/messenger.png') ?>" width="16" height="16" />
 				</a>
 		    </div>
 		<?php } ?>
