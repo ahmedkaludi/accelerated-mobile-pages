@@ -1853,7 +1853,7 @@ text-align: center;border: 0;z-index:9;bottom:0;}
 	}
  ?>
 <?php } // levelup condition ends ?>
-<?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
+<?php if( ampforwp_get_setting('enable-single-social-icons')  && is_single() ) { ?>
 .body.single-post{
   padding-bottom:40px;
 }
