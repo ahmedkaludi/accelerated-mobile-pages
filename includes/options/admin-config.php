@@ -1328,8 +1328,8 @@ Redux::setArgs( "redux_builder_amp", $args );
         $amp_custom_tax_option = array(
                     'id'      => 'ampforwp-custom-taxonomies',
                     'type'    => 'select',
-                    'title'   => __('Custom Taxonomies', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'   => __('Enable AMP Support on Archives for Custom Taxonomies.', 'accelerated-mobile-pages'),
+                    'title'   => esc_html__('Custom Taxonomies', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'   => esc_html__('Enable AMP Support on Archives for Custom Taxonomies.', 'accelerated-mobile-pages'),
                     'multi'   => true,
                     'options' => ampforwp_get_generated_custom_taxonomies(),
                 );
