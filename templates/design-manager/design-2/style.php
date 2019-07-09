@@ -370,7 +370,7 @@ body a {color: <?php echo $redux_builder_amp['amp-opt-color-rgba-link-design2'][
 .comment-button-wrapper a { background:  <?php echo sanitize_hex_color( $header_background_color ); ?>; }
 amp-user-notification { border-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;; }
 amp-user-notification button { background-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;; }
-<?php if( ampforwp_get_setting('enable-single-social-icons') == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() )  { ?>
+<?php if( ampforwp_get_setting('enable-single-social-icons') == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() && is_single() )  { ?>
 .single-post footer { padding-bottom: 40px; }
 .amp-ad-2{ margin-bottom: 50px; }
 .body.single-post .sticky_social{z-index:99999;}
