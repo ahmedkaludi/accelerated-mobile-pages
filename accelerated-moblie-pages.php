@@ -207,18 +207,10 @@ function ampforwp_add_custom_rewrite_rules() {
       'top'
     );
 	//Rewrite rule for custom Taxonomies
-	$taxonomies = '';
-	$taxonomies = get_transient('ampforwp_get_taxonomies');
-	if ( false == $taxonomies ) {		
-		$args = array(
-		  		'public'   => true,
-		  		'_builtin' => false,  
-		); 
-		$output = 'names'; // or objects
-		$operator = 'and'; // 'and' or 'or'
-		$taxonomies = get_taxonomies( $args, $output, $operator );
-		set_transient('ampforwp_get_taxonomies',$taxonomies);
-	}
+    if( function_exists('ampforwp_generate_taxonomies_transient')){
+    	//Rewrite rule for custom Taxonomies
+		$taxonomies = ampforwp_generate_taxonomies_transient();
+    }
 
   	if(!function_exists('amp_woocommerce_pro_add_woocommerce_support') ) {
 		if( class_exists( 'WooCommerce' ) ) {
@@ -263,17 +255,24 @@ function ampforwp_add_custom_rewrite_rules() {
 	
 	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
 	if ( $taxonomies ) {
-		foreach ( $taxonomies  as $key => $taxonomy ) { 
-			if ( ! empty( $taxonomy ) ) {
+		$taxonomySlug = '';
+		foreach ( $taxonomies  as  $taxonomyName => $taxonomyLabel ) {
+			$taxonomies = get_taxonomy( $taxonomyName );
+			if(isset($taxonomies->rewrite['slug']) && !empty($taxonomies->rewrite['slug']) ){
+				$taxonomySlug = $taxonomies->rewrite['slug'];
+			}else{
+				$taxonomySlug = $taxonomyName;
+			}
+			if ( ! empty( $taxonomySlug ) ) {
 			    add_rewrite_rule(
-			      $taxonomy.'\/(.+?)\/amp/?$',
-			      'index.php?amp&'.$key.'=$matches[1]',
+			      $taxonomySlug.'\/([^/]+)\/amp/?$',
+			      'index.php?amp&'.$taxonomyName.'=$matches[1]',
 			      'top'
 			    );
 			    // For Custom Taxonomies with pages
 			    add_rewrite_rule(
-			      $taxonomy.'\/(.+?)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
-			      'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
+			      $taxonomySlug.'\/([^/]+)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
+			      'index.php?amp&'.$taxonomyName.'=$matches[1]&paged=$matches[2]',
 			      'top'
 			    );
 			}

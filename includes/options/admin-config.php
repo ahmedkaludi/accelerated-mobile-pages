@@ -1317,7 +1317,23 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'options' => ampforwp_get_cpt_generated_post_types(),
                 );
     }
-
+    function ampforwp_get_generated_custom_taxonomies(){
+        $taxonomies = '';
+        $taxonomies = get_transient('ampforwp_get_taxonomies');
+        return $taxonomies;
+    }
+    $amp_custom_tax_option = array();
+    $taxonomies = ampforwp_get_generated_custom_taxonomies();
+    if( !empty($taxonomies) && $taxonomies != false){
+        $amp_custom_tax_option = array(
+                    'id'      => 'ampforwp-custom-taxonomies',
+                    'type'    => 'select',
+                    'title'   => __('Custom Taxonomies', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'   => __('Enable AMP Support on Archives for Custom Taxonomies.', 'accelerated-mobile-pages'),
+                    'multi'   => true,
+                    'options' => ampforwp_get_generated_custom_taxonomies(),
+                );
+    }
     // AMP to WP Default value
     function ampforwp_amp2wp_default(){
         $default = 0;
@@ -1490,6 +1506,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'required' => array('ampforwp-archive-support', '=' , '1')
              ),
            $amp_cpt_option,
+           $amp_custom_tax_option,
             array(
                'id'       => 'ampforwp-amp-convert-to-wp',
                'type'     => 'switch',

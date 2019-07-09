@@ -6758,3 +6758,35 @@ if ( ! function_exists('ampforwp_search_form') ) {
 		return $form;
 	}
 }
+
+//Saving all taxonomies in Transient
+add_action('init','ampforwp_generate_taxonomies_transient');
+function ampforwp_generate_taxonomies_transient(){
+	$taxonomies = get_transient('ampforwp_get_taxonomies');
+	$tax_arr = array();
+	$args = array(
+		  		'public'   => true,
+		  		'_builtin' => false,  
+		); 
+	$output = 'objects'; // or objects
+	$operator = 'and'; // 'and' or 'or'
+	$alltaxonomies = get_taxonomies( $args, $output, $operator );
+	if  ($alltaxonomies) {
+		foreach ($alltaxonomies as $taxKey => $taxVal) {
+			$tax_arr[$taxVal->name] = $taxVal->labels->singular_name;
+		}
+	}
+	if ( false == $taxonomies ) {
+		set_transient('ampforwp_get_taxonomies',$tax_arr);
+	}else{
+		if(count($tax_arr) > count($taxonomies)){
+			$result = array_diff_assoc($tax_arr,$taxonomies);
+		}elseif( count($taxonomies) > count($tax_arr)){
+			$result = array_diff_assoc($taxonomies,$tax_arr);
+		}
+		if( !empty($result)){
+			delete_transient('ampforwp_get_taxonomies');
+		}
+	}
+	return $taxonomies;
+}
