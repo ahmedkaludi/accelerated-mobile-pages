@@ -381,7 +381,10 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 }
 .body.single-post .afw a{line-height:0;}
 .body.single-post amp-sticky-ad amp-sticky-ad-top-padding{height:0px;}
-<?php } ?>
+<?php }  
+if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
+  .btt{z-index:9999;}
+<?php } // advanced ads type 3 ends here ?>
 /**/
 .amp-wp-author:before{ content: " <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-by-text'], 'By '); ?>  "; }
 .ampforwp-tax-category span:first-child:after { content: ' '; }

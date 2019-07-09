@@ -1121,7 +1121,6 @@ if( isset($redux_builder_amp['amp-swift-menu-cprt']) && $redux_builder_amp['amp-
 a.btt:hover {
     cursor: pointer;
 }
-.btt{z-index:9999;}
 <?php } //Menu Copy Right CSS Ends
  } //level up CSS Ends
  //AMP Woocommerce condition starts
@@ -1872,6 +1871,9 @@ text-align: center;border: 0;z-index:9;bottom:0;}
 .body.single-post .afw a{line-height:0;}
 .body.single-post amp-sticky-ad amp-sticky-ad-top-padding{height:0px;}
 <?php } //Sticky CSS Condition ends?>
+<?php if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
+	.btt{z-index:9999;}
+<?php } // advanced ads type 3 ends here ?>
 <?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
