@@ -7879,11 +7879,7 @@ function ampforwp_generate_taxonomies_transient(){
 	$alltaxonomies = get_taxonomies( $args, $output, $operator );
 	if  ($alltaxonomies) {
 		foreach ($alltaxonomies as $taxKey => $taxVal) {
-			if( !empty($taxVal->rewrite['slug'])){
-				$tax_arr[$taxVal->rewrite['slug']] = $taxVal->name;
-			}else{
-				$tax_arr[$taxVal->name] = $taxVal->name;
-			}
+			$tax_arr[$taxVal->name] = $taxVal->labels->singular_name;
 		}
 	}
 	if ( false == $taxonomies ) {
