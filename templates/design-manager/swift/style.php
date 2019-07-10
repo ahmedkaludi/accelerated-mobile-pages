@@ -1629,6 +1629,14 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php }	
 if($redux_builder_amp['enable-single-twitter-share'] || $redux_builder_amp['enbl-tw']){?>
 .s_tw{background:#1da1f2;}
+<?php if(function_exists('mvp_setup')){?>
+.zox_tw:after{ <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
+	content: "\e942";
+<?php }?>
+	font-family: 'icomoon';
+	color: #1da1f2;
+}
+<?php } ?>
 .s_tw:after{
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
 	content: "\e942";
