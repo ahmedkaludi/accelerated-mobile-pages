@@ -7900,10 +7900,3 @@ function ampforwp_generate_taxonomies_transient(){
 	}
 	return $taxonomies;
 }
-ampforwp_add_scripts();
-function ampforwp_add_scripts(){
-	global $scriptComponent;
-	if ( empty( $scriptComponent['amp-form'] ) ) {
-			$scriptComponent['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
-		}
-}
