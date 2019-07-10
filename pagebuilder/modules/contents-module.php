@@ -484,9 +484,17 @@ if ( is_admin() ) {
         $pagination_text = 'pageno';
         $queryUrl = esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) );
         if( isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1){
-      
         /*Pagination Sart*/
-        $total_num_pages = $the_query->max_num_pages;
+        $offset = $fieldValues['posts_offset'];
+        $per_page = $the_query->query['posts_per_page'];
+        $offset_num = ceil($offset/$per_page);
+        
+        if( $the_query->max_num_pages == $offset_num ){
+          $total_num_pages = $the_query->max_num_pages;
+        }else{
+          $total_num_pages = $the_query->max_num_pages - $offset_num;
+        }
+
         if(isset($_GET[$pagination_text]) && $_GET[$pagination_text]!='' ){
             $paged = $_GET[$pagination_text];
         }else{
@@ -521,12 +529,11 @@ if ( is_admin() ) {
           }
 
         }
-
         if( $total_num_pages != 1 && $paged < $total_num_pages ){      
           $next_page = add_query_arg( array( $pagination_text => $paged + 1 ), $queryUrl );
           //$pagination_links .= "<a  href =".$next_page." '> Next </a>";
         }
-        if( $total_num_pages != $paged ){
+        if( $total_num_pages != $paged){
           $next_page = add_query_arg( array( $pagination_text => $total_num_pages ), $queryUrl );
           $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html__('Last', 'accelerated-mobile-pages')."</a>";
         }
