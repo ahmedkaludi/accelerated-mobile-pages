@@ -7413,7 +7413,30 @@ if(!ampforwp_check_extensions()){
         'icon' => 'el el-hand-right',
     ) );
 }
-
+if(!function_exists('ampforwp_create_controls_for_plugin_manager')){
+    // Plugin Manager
+    Redux::setSection( $opt_name, array(
+        'title'      => esc_html__( 'Plugins Manager', 'accelerated-mobile-pages' ),
+        'id'         => 'opt-plugins-manager',
+        'subsection' => false,
+        'desc'  => 'You can Disable Plugins only in AMP which are causing AMP validation errors. <a href="http://ampforwp.com/plugins-manager" target="_blank">More Information.</a>',
+        'icon'  => 'el el-magic',
+        'fields' => array(
+            array(
+                'id'       => 'ampforwp-plugin-manager-core',
+                'type'     => 'switch',
+                'title'    => esc_html__('Enable Plugin Manager', 'accelerated-mobile-pages'),
+                'default'   => 0
+            ),
+           array(
+           'id'   => 'info_normal',
+           'type' => 'info',
+           'required' => array('ampforwp-plugin-manager-core', '=' , '1'),
+                'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/plugins-manager" target="_blank">AMP Plugin Manager</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/plugins-manager" target="_blank">Click here for more info</a>)</div></div>',               
+           ),
+        )        
+) );
+}
 if( ! function_exists('ampforwp_redux_clean') ) {
     function ampforwp_redux_clean( $var ) {
         return sanitize_text_field( $var );
