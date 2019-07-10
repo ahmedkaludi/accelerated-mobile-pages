@@ -2000,7 +2000,14 @@ border-bottom: 1px solid #eee;
 .breadcrumb ul li,.breadcrumbs span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
 .breadcrumb ul li a, .breadcrumbs span a, .breadcrumbs .bread-post{color: #999;letter-spacing: 1px;}
 .breadcrumb ul li a:hover, .breadcrumbs span a:hover{color: <?php echo $hovercolor; ?>;}
-.breadcrumbs li a:after, .breadcrumbs span a:after{content: "\e315";display: inline-block;color: #bdbdbd;font-family: 'icomoon';padding-left: 5px;font-size: 12px;position: relative;top: 1px;}
+.breadcrumbs li a:after, .breadcrumbs span a:after{
+<?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
+	content: "\e315";font-family: 'icomoon';font-size: 12px;
+<?php }
+if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
+	content:"\f105";font-family: "Font Awesome 5 Free";font-weight:600;font-size:11px;
+<?php } ?>
+	display: inline-block;color: #bdbdbd;padding-left: 5px;position: relative;top: 1px;}
 .breadcrumbs li:last-child a:after {display: none;}
 <?php } //Breadcrumbs Ends?>
 <?php if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){?>
