@@ -317,7 +317,7 @@ if( ampforwp_get_setting ('primary-menu') ){?>
 		content: "\e313";font-family: 'icomoon';font-size: 16px;top: 3px;transform: rotate(360deg);
 		<?php }
 	if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
-		content:"\f107";font-family: "Font Awesome 5 Free";font-weight:600;font-size:14px;right: 6px;top: 1px;
+		content:"\f107";font-family: "Font Awesome 5 Free";font-weight:600;font-size:14px;right: 0px;top: 1px;
 	<?php } ?>
 	display: inline-block;position:relative;padding:0px;line-height:0;
 	color:<?php echo ampforwp_sanitize_color($pmenu_text_clr); ?>;}
