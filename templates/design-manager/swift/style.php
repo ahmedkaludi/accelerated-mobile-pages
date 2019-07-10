@@ -2517,7 +2517,7 @@ if(class_exists('MCI_Footnotes')){ ?>
 		color:#111;
 		transition:all 0.2s ease-in-out 0s;
 	}
-	.related_link a:hover{
+	.rlp-wrap ul li:hover .related_link a{
 		color:#1581c5;
 	}
 	.related_link p{
@@ -2590,6 +2590,9 @@ if(class_exists('MCI_Footnotes')){ ?>
 	    	font-weight: 600;
 	    	line-height: 1.2;
 	    	margin: 0 0 7px;
+		}
+		.rcp:hover .rcp-cnt .loop-title a{
+			color:#1581c5;
 		}
 		.rcp-cnt .loop-date{
 			font-size: 12px;
