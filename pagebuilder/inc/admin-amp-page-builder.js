@@ -115,7 +115,6 @@ Vue.component('amp-pagebuilder-modal', {
 		var currentComponent = this;
 		var filename  = event.target.name;
 		var files = event.target.files;
-		// console.log(files);
 		var fileCount = event.target.files.length;
 		if(fileCount>0){
 			var rawFile = files[0];
@@ -589,7 +588,7 @@ Vue.component('fields-data',{
 
 		},
 		refresh_image: function(the_id,currentSelectfield,type,field){
-			//console.log(type);
+			
 			if(type=='tag'){
 				jQuery(currentSelectfield.$el).find('img').attr('src','../wp-includes/images/spinner.gif');
 				if(field[field['name']+'_image_data']){
@@ -598,7 +597,7 @@ Vue.component('fields-data',{
 			 	 	return ;
 			 	}
 			}else{
-				//console.log(jQuery(currentSelectfield).parents('p'))
+				
 				jQuery(currentSelectfield).parents('p').find('img').attr('src','../wp-includes/images/spinner.gif');
 			}
 		        this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_get_image&id='+the_id, 
@@ -626,7 +625,7 @@ Vue.component('fields-data',{
 									field[field['name']+'_image_data'] = response.data.front_image;
 									jQuery(currentSelectfield.$el).find('img').attr('src',response.data.detail[0]);
 								}else{
-									//console.log(jQuery(currentSelectfield).parents('p'))
+									
 									field[field['name']+'_image_data'] = response.data.front_image;
 									jQuery(currentSelectfield).parents('p').find('img').attr('src',response.data.detail[0]);
 								}
@@ -695,7 +694,7 @@ Vue.component('fields-data',{
 			returnOpt = returnOpt.filter(function(value, index, self) { 
 				    return self.indexOf(value) === index;
 					});
-			//console.log(returnOpt);
+			
 			if(field.required_type == 'or'){
 				var reqOpt = returnOpt.indexOf(true);
 				if( reqOpt!= -1){
