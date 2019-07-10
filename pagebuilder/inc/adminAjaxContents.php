@@ -181,6 +181,7 @@ function ampforwp_pb_taxonomy(){
 	    	$return[$taxonomies->name] = $taxonomies->labels->singular_name.'('.$taxonomy.')';
 	    }
     }
+    $return['recent_option']= 'Recent Posts';
 	echo json_encode(array('success'=>true,'data'=>$return));
 	exit;
     
