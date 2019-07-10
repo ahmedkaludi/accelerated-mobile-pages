@@ -45,14 +45,6 @@ function ampforwp_thirdparty_compatibility(){
 	add_filter('the_content', 'ampforwp_safia_theme');
 }
 
-add_filter('ampforwp_the_content_last_filter','ampforwp_builder_show_on_front');
-function ampforwp_builder_show_on_front($content){
-	if(class_exists('Themify_Builder')){
-		$content = preg_replace('/<link rel="preload"(.*?)as="style"\/>/', '', $content);
-	}
-	return $content;
-}
-
 //Updater to check license
 require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
 
