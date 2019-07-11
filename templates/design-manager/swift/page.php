@@ -185,6 +185,12 @@ amp_header(); ?>
 						<li>
 							<a title="pocket share" class="s_pk" target="_blank" href="https://getpocket.com/save?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 						</li>
+						<?php } 
+						if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) {?>
+							<li>
+								<a title="flipboard share" class="s_fd" target="_blank" href="https://share.flipboard.com/bookmarklet/popout?v=<?php echo esc_html(get_the_title()); ?>&url=<?php echo urlencode(esc_url($amp_permalink)); ?>">
+								<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/flipboard.png') ?>" width="15" height="15" /></a>
+							</li>
 						<?php } ?>
 						<?php if($redux_builder_amp['ampforwp-facebook-like-button']){?>
 						<li>

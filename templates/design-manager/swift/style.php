@@ -1852,6 +1852,9 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 }
 <?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) {?>
+.s_fd{background:#f52828}
+<?php } ?>
 <?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;
 text-align: center;border: 0;z-index:9;bottom:0;}
