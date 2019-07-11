@@ -5742,7 +5742,7 @@ function swifttheme_footer_widgets_init() {
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
 	    ) );
- 	if(ampforwp_design_selector()==4){
+ 	if(ampforwp_design_selector()==4 || ampforwp_design_selector()==3){
 	    register_sidebar( array(
 	        'name' => esc_html__( 'AMP Footer', 'accelerated-mobile-pages' ),
 	        'id' => 'swift-footer-widget-area',
