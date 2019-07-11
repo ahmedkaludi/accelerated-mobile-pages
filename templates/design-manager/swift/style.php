@@ -597,9 +597,6 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 .amp-tags .amp-tag:after{content: "/";display: inline-block;padding: 0px 10px;position: relative;top: -1px;color: #ccc;font-size: 12px;}
 .amp-tags .amp-tag:last-child:after{display:none;}
 .ss-ic li:before{border-radius: 2px;text-align:center;padding: 4px 6px;}
-.sgl table {width: 100%;margin-bottom:25px;}
-.sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
-.sgl tr:nth-child(odd) td {background: #f7f7f7;}
 
 <?php // Social Sharing Conditional CSS
 if($redux_builder_amp['swift-social-position'] == 'above-content'){?>
@@ -926,6 +923,10 @@ if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('s
 	<?php } // H6 Ends
  	// swift Content Heading Sizes Ends?>
 	.cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-wrap: break-word;} 
+	/** Content Tables CSS **/
+	.sgl table, .sgl-7 table{width: 100%;margin-bottom:25px;display: -webkit-box;overflow-x: auto;word-break: normal;}
+	.sgl td, .sgl-7 td {padding: 0.5em 1em;border: 1px solid #ddd;}
+	.sgl tr:nth-child(odd) td, .sgl-7 tr:nth-child(odd) td{background: #f7f7f7;}
 <?php  } // Design 1,4 7 comments condition ends here
 } // //AMP Woocommerce condition Ends 
 // Menu Search CSS
@@ -2348,9 +2349,6 @@ if(class_exists('MCI_Footnotes')){ ?>
 		display:inline-block;
 		margin-top:20px;
 	}
-	.sgl-7 .cntr, header .cntr{
-		max-width:1021px;
-	}
 	.sgl7-tlt{
 		width:100%;
 		display:inline-block;
@@ -2360,24 +2358,10 @@ if(class_exists('MCI_Footnotes')){ ?>
 		font-size: 48px;
 		line-height:1.2;
 		font-weight:700;
-		color: #222;
+		color: #333;
 		letter-spacing: -.02em;
 	}
-	.sgl-7 .breadcrumbs{
-		margin-bottom: 5px;
-	}
-	.sgl-7 .breadcrumb ul li{
-		text-transform: capitalize;
-		margin-right: 3px;
-	}	
-	.sgl-7 .breadcrumb ul li a {
-	    color: #c3c3c3;
-	    letter-spacing:0px
-	}
-	.sgl-7 .breadcrumbs li a:after, .sgl-7 .breadcrumbs span a:after{
-		padding-left: 3px;
-    	top: 2px;
-	}
+	.sgl-7 .breadcrumbs{margin-bottom:10px;}
 	.tl-exc{
 		font-size: 16px;
     	line-height: 1.6;
@@ -2417,23 +2401,11 @@ if(class_exists('MCI_Footnotes')){ ?>
 		flex:1 0 68%;
 	}
 	.cntn-wrp{
-		font-size: 17px;
-	    color: #222;
-	    line-height: 1.8;
+		font-size: 18px;
+	    color: #000;
+	    line-height: 1.7;
 	    word-wrap: break-word;
 	    margin-top: 24px;
-	}
-	.cntn-wrp table {
-	    width: 100%;
-	    color:#444;
-	    margin-bottom: 15px;
-	    display: -webkit-box;
-    	overflow-x: auto;
-    	word-break: normal;
-	}
-	.cntn-wrp table td, .cntn-wrp table th {
-	    border: 1px solid #e6e6e6;
-	    padding: 2px 8px;
 	}
 	.cntn-wrp blockquote{
 		background-color: #fcfcfc;
@@ -2462,35 +2434,12 @@ if(class_exists('MCI_Footnotes')){ ?>
 		display:flex;
 		align-items: center;
 		margin-bottom:0px;
-		font-size: 18px;
+		font-size: 15px;
     	padding: 8px;
 	}
 	.sgl-7 .ss-ic ul li .s_fb {
 	    padding: 7px 10px;
 	    font-size: 18px;
-	}
-	.sgl-7 .ss-ic ul li .s_fb:before{
-		content: "Facebook";
-	    display: inline-block;
-	    order: 1;
-	    padding-left: 10px;
-	    font-size: 13px;
-	    font-weight: 700;
-	    font-family: 'PT Sans';
-	    border-left: 1px solid rgba(255,255,255,.1);
-	    margin-left: 10px;
-	}
-	.sgl-7 .ss-ic ul li .s_tw:before{
-		content: "Twitter";
-	    display: inline-block;
-	    order: 1;
-	    padding-left: 10px;
-	    font-size: 13px;
-	    font-weight: 700;
-	    font-family: 'PT Sans';
-	    border-left: 1px solid rgba(255,255,255,.25);
-	    margin-left: 10px;
-    	letter-spacing: 0.5px;
 	}
 <?php if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-single-related-posts-switch')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 	.rlp-wrap{
