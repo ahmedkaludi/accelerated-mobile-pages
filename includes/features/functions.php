@@ -1041,14 +1041,13 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
 <?php }
  }
 
-add_filter( 'amp_post_template_data', 'ampforwp_add_scripts_in_search' );
+add_filter( 'amp_post_template_data', 'ampforwp_add_scripts_in_search', 11);
 function ampforwp_add_scripts_in_search( $data ) {
-    global $scriptComponent;
-    if ( is_search() && empty( $scriptComponent['amp-form'] ) ) {
-        $scriptComponent['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+    if ( is_search() && empty( $data['amp_component_scripts']['amp-form'] ) ) {
+        $data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';   
     }
-    if ( is_search() && empty( $scriptComponent['amp-iframe'] ) ) {
-        $scriptComponent['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
+    if ( is_search() && empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
+        $data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';   
     }
     return $data;
 }
