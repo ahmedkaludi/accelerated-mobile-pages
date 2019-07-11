@@ -58,8 +58,8 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 
 			if( $node->getAttribute( 'src' )){
 				if (strpos($node->getAttribute( 'src' ), '../wp-content') !== false) {
-				    $site_url = get_site_url();
-				    $image_complete_src = str_replace('../wp-content', $site_url.'/wp-content', $node->getAttribute( 'src' ));
+				    $site_url = content_url();
+				    $image_complete_src = str_replace('../wp-content', $site_url, $node->getAttribute( 'src' ));
 				    $node->setAttribute('src',$image_complete_src);
 				}
 			}
