@@ -7419,7 +7419,10 @@ if(!function_exists('ampforwp_create_controls_for_plugin_manager')){
         'title'      => esc_html__( 'Plugins Manager', 'accelerated-mobile-pages' ),
         'id'         => 'opt-plugins-manager',
         'subsection' => false,
-        'desc'  => 'You can Disable Plugins only in AMP which are causing AMP validation errors. <a href="http://ampforwp.com/plugins-manager" target="_blank">More Information.</a>',
+        'desc' => sprintf('%s <a href="http://ampforwp.com/plugins-manager" target="_blank"> %s</a>',
+                esc_html__('You can Disable Plugins only in AMP which are causing AMP validation errors.','accelerated-mobile-pages'),
+                esc_html__('More Information.','accelerated-mobile-pages')
+             ), 
         'icon'  => 'el el-magic',
         'fields' => array(
             array(
@@ -7431,8 +7434,13 @@ if(!function_exists('ampforwp_create_controls_for_plugin_manager')){
            array(
            'id'   => 'info_normal',
            'type' => 'info',
-           'required' => array('ampforwp-plugin-manager-core', '=' , '1'),
-                'desc' => '<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/plugins-manager" target="_blank">AMP Plugin Manager</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/plugins-manager" target="_blank">Click here for more info</a>)</div></div>',               
+           'required' => array('ampforwp-plugin-manager-core', '=' , '1'), 
+            'desc' =>sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/plugins-manager" target="_blank">%s</a>.<br /><div style="margin-top:4px;">(<a href="https://ampforwp.com/plugins-manager" target="_blank">%s</a>)</div></div>',
+                esc_html__('ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),
+                esc_html__('This feature requires','accelerated-mobile-pages'),
+                esc_html__('AMP Plugin Manager','accelerated-mobile-pages'),
+                esc_html__('Click here for more info','accelerated-mobile-pages')
+             ),              
            ),
         )        
 ) );

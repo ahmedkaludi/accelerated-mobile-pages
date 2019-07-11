@@ -717,22 +717,6 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .related_posts .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
 .related_posts .related_link p{color: #444;font-size: 13px;line-height: 20px;letter-spacing: 0.10px;}
 <?php } ?>
-<?php if( true == ampforwp_get_setting('amp-author-description') ) {?>
-.sp-rt .amp-author {padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
-.sp-rt .amp-author-image{float:left;}
-.sp-rt .author-details a{color: #222;font-size: 14px;font-weight: 500;}
-.sp-rt .author-details a:hover{color: <?php echo $hovercolor; ?>;text-decoration:underline;}
-.amp-author-image amp-img{border-radius: 50%;margin: 0px 12px 5px 0px;display: block; width:50px;}
-.author-details p{margin: 0;font-size: 13px;line-height: 20px;color: #666;padding-top: 4px;}
-<?php } ?>
-#pagination{margin-top: 30px;border-top: 1px dotted #ccc;padding: 20px 5px 0px 5px;;font-size: 16px;line-height: 24px;font-weight:400;}
-.next{float: right;width: 45%;text-align:right;position:relative;margin-top:10px;}
-.next a, .prev a{color:#333;}
-.prev{float: left;width: 45%;position:relative;margin-top:10px;}
-.prev span{text-transform: uppercase;font-size: 12px;color: #666;display: block;position: absolute;top: -26px;}
-.next span{text-transform: uppercase;font-size: 12px;color: #666;display: block;font-weight: 400;position: absolute;top: -26px;right:0}
-.next:hover a, .prev:hover a{color:<?php echo $hovercolor ?>;}
-.prev:after{border-left:1px dotted #ccc;content: "";height: calc(100% - -10px);right: -50px;position: absolute;top: 50%;transform: translate(0px, -50%);width: 2px;}
 <?php if ( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) {?>
 .ampforwp_post_pagination{width:100%;text-align:center;display:inline-block;}
 .ampforwp_post_pagination p{margin: 0;font-size: 18px;color: #444;font-weight: 500;margin-bottom:10px;}
@@ -851,6 +835,7 @@ blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-he
 	<?php } ?>
 }
 <?php } //Drop Cap CSS ends
+if(is_single() ) { 
 if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('single-design-type') == '4' || ampforwp_get_setting('single-design-type') == '7' ){ 
 	if( true == ampforwp_get_setting('wordpress-comments-support')){ ?>
 	.cmts{width:100%;display:inline-block;clear:both;margin-top:40px;}
@@ -927,7 +912,28 @@ if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('s
 	.sgl table, .sgl-7 table{width: 100%;margin-bottom:25px;display: -webkit-box;overflow-x: auto;word-break: normal;}
 	.sgl td, .sgl-7 td {padding: 0.5em 1em;border: 1px solid #ddd;}
 	.sgl tr:nth-child(odd) td, .sgl-7 tr:nth-child(odd) td{background: #f7f7f7;}
+
+	<?php //
+	 if( true == ampforwp_get_setting('amp-author-description') ) {?>
+	.sp-rt .amp-author, .sgl7-left .amp-author{padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
+	.sp-rt .amp-author-image, .sgl7-left .amp-author-image{float:left;}
+	.sp-rt .author-details a, .sgl7-left .author-details a{color: #222;font-size: 14px;font-weight: 500;}
+	.sp-rt .author-details a:hover, .sgl7-left .author-details a:hover{color: <?php echo $hovercolor; ?>;text-decoration:underline;}
+	.amp-author-image amp-img{border-radius: 50%;margin: 0px 12px 5px 0px;display: block; width:50px;}
+	.author-details p{margin: 0;font-size: 13px;line-height: 20px;color: #666;padding-top: 4px;}
+	<?php } 
+	// Pagination CSS Starts 
+	?>
+	#pagination{margin-top: 30px;border-top: 1px dotted #ccc;padding: 20px 5px 0px 5px;;font-size: 16px;line-height: 24px;font-weight:400;}
+	.next{float: right;width: 45%;text-align:right;position:relative;margin-top:10px;}
+	.next a, .prev a{color:#333;}
+	.prev{float: left;width: 45%;position:relative;margin-top:10px;}
+	.prev span{text-transform: uppercase;font-size: 12px;color: #666;display: block;position: absolute;top: -26px;}
+	.next span{text-transform: uppercase;font-size: 12px;color: #666;display: block;font-weight: 400;position: absolute;top: -26px;right:0}
+	.next:hover a, .prev:hover a{color:<?php echo $hovercolor ?>;}
+	.prev:after{border-left:1px dotted #ccc;content: "";height: calc(100% - -10px);right: -50px;position: absolute;top: 50%;transform: translate(0px, -50%);width: 2px;}
 <?php  } // Design 1,4 7 comments condition ends here
+} // is single condition ends
 } // //AMP Woocommerce condition Ends 
 // Menu Search CSS
 if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts 

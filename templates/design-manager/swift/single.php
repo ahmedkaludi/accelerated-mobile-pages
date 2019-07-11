@@ -560,6 +560,19 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 				<div class="cntn-wrp artl-cnt">
 					<?php amp_content(); ?>
 				</div>
+				<?php $author_box = array();
+				if( true == ampforwp_get_setting('amp-author-description') ) { ?>	
+					<?php
+					$author_box = array( 'avatar'=>true,
+												'avatar_size'=>60,	
+												'author_description'=>true,	
+												'ads_below_the_author'=>true);
+					if( true == ampforwp_get_setting('amp-author-bio-name')){
+						$author_box['author_pub_name'] = true ;
+					}
+					amp_author_box( $author_box ); ?>	
+				<?php } ?>	
+				<?php amp_post_navigation();?>
 				<div class="ss-ic">
 					<span class="shr-txt"><?php echo ampforwp_translation( ampforwp_get_setting('amp-translator-share-text'), 'Share' ); ?></span>
 					<ul>
