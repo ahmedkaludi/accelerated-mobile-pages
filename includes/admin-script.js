@@ -952,12 +952,15 @@ jQuery(document).ready(function($){
        $('#swift-sidebar').val(1);
        $("input[data-id=gnrl-sidebar]").prop('checked', true);
        $("input[data-id=swift-sidebar]").prop('checked', true);
+       $('#gnrl-sidebar').closest('tr').nextAll('tr.child_opt_arrow.fold').removeClass("hide");
+       
     });
     $('.single-design-type_3').on('click',function(){
        $('#gnrl-sidebar').val(1);
        $('#swift-sidebar').val(1);
        $("input[data-id=gnrl-sidebar]").prop('checked', true);
        $("input[data-id=swift-sidebar]").prop('checked', true);
+       $('#gnrl-sidebar').closest('tr').nextAll('tr.child_opt_arrow.fold').removeClass("hide");
     });
     $('#amp-rollback-switch').on('change', function(){
          var self = $(this)
