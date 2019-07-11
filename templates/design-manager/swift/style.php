@@ -617,11 +617,6 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 .sp-athr{margin-top:0;}
 .sp-rt .ss-ic{padding-bottom: 10px;margin-bottom: 20px;}
 <?php } ?>
-.cntn-wrp{font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;}
-.artl-cnt ul li, .artl-cnt ol li{list-style-type: none;position: relative;padding-left: 20px;}
-.artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;left: 0;top: 12px;}
-.artl-cnt ol li {counter-increment: step-counter;}
-.artl-cnt ol li::before {content: counter(step-counter);font-size: 16px;color: #000;position: absolute;left: 0px;line-height: 1.2;top: 6px;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
 .m-ctr {
 	position: fixed;
@@ -920,8 +915,12 @@ if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('s
 	.sgl table, .sgl-7 table{width: 100%;margin-bottom:25px;display: -webkit-box;overflow-x: auto;word-break: normal;}
 	.sgl td, .sgl-7 td {padding: 0.5em 1em;border: 1px solid #ddd;}
 	.sgl tr:nth-child(odd) td, .sgl-7 tr:nth-child(odd) td{background: #f7f7f7;}
-
-	<?php //
+	.cntn-wrp{font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;}
+	.artl-cnt ul li, .artl-cnt ol li{list-style-type: none;position: relative;padding-left: 20px;}
+	.artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;left: 0;top: 12px;}
+	.artl-cnt ol li {counter-increment: step-counter;}
+	.artl-cnt ol li::before {content: counter(step-counter);font-size: 16px;color: #000;position: absolute;left: 0px;line-height: 1.2;top: 6px;}
+	<?php 
 	 if( true == ampforwp_get_setting('amp-author-description') ) {?>
 	.sp-rt .amp-author, .sgl7-left .amp-author{padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
 	.sp-rt .amp-author-image, .sgl7-left .amp-author-image{float:left;}
@@ -2360,7 +2359,7 @@ if(class_exists('MCI_Footnotes')){ ?>
 	}
 <?php } ?>
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
-	<?php if( ampforwp_get_setting('single-design-type') == '7' ){ ?>
+<?php if( ampforwp_get_setting('single-design-type') == '7' ){ ?>
 	.sp{
 		width:100%;
 		display:inline-block;
@@ -2394,7 +2393,7 @@ if(class_exists('MCI_Footnotes')){ ?>
 		width:100%;
 		flex-wrap:wrap;
 		font-size:13px;
-		line-height:1.2;
+		line-height:1.5;
 		color:#444;
 		margin-top: 15px;
 	}
@@ -2402,10 +2401,13 @@ if(class_exists('MCI_Footnotes')){ ?>
 	    color:#222;
 	    font-weight:700;
 	}
-	.author-info .loop-date:before{
+	.author-info .amp-author:after{
 		content:"-";
 		display:inline-block;
 		margin:0px 6px;
+	}
+	.author-info .amp-author{
+	    display: flex;
 	}
 	.sgl7-artl{
 		display:inline-flex;
@@ -2418,10 +2420,6 @@ if(class_exists('MCI_Footnotes')){ ?>
 		flex:1 0 68%;
 	}
 	.cntn-wrp{
-		font-size: 18px;
-	    color: #000;
-	    line-height: 1.7;
-	    word-wrap: break-word;
 	    margin-top: 24px;
 	}
 	.cntn-wrp blockquote{
@@ -2437,13 +2435,14 @@ if(class_exists('MCI_Footnotes')){ ?>
 		display:inline-flex;
 		flex-wrap:wrap;
 		width:100%;
-		margin-top: 20px;
-		align-items: center;
-
+		margin: 30px 0px 20px;
+	    align-items: center;
+	    border-bottom: 1px solid #e0e0e0;
+	    padding-bottom: 20px;
 	}
 	.sgl-7 .ss-ic .shr-txt{
 		text-transform: uppercase;
-	    font-weight: 700;
+	    font-weight: 500;
 	    font-size: 15px;
 	    margin-right: 20px;
 	}
@@ -2458,7 +2457,43 @@ if(class_exists('MCI_Footnotes')){ ?>
 	    padding: 7px 10px;
 	    font-size: 18px;
 	}
-<?php if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-single-related-posts-switch')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
+<?php if( true == ampforwp_get_setting('ampforwp-cats-single') ) { ?>
+	.amp-category span:nth-child(1){
+		display:none;
+	}
+	.author-info .amp-category:before{
+		content:"-";
+		display:inline-block;
+		margin:0px 6px;
+	}
+	.amp-category .amp-cat:after{
+		content:",";
+		display:inline-block;
+	}
+	.amp-category .amp-cat:last-child:after{ display:none;}
+<?php }//category CSS ends
+if( true == ampforwp_get_setting('ampforwp-tags-single') ) { ?>
+	.amp-tags > span:nth-child(1){
+	    text-transform: uppercase;
+	    font-size: 12px;
+	    color: #666;
+	    font-weight: 400;
+	}
+	.amp-tags{
+		width:100%;
+		display:inline-block;
+	}
+	.amp-tag a{
+		border:1px solid <?php echo $hovercolor; ?>;
+		padding: 5px 10px 5px 10px;
+	    font-size: 13px;
+	    margin: 0px 5px;
+	    line-height: 1.2;
+	    display: inline-block;
+	    border-radius: 50px;
+	}
+<?php } // Tag CSS ends 
+if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-single-related-posts-switch')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 	.rlp-wrap{
 		width:100%;
 		display:inline-block;
@@ -2521,14 +2556,16 @@ if(class_exists('MCI_Footnotes')){ ?>
 	    border-radius: 0 3px 0 0;
 	    background: #000;
 	    color: #fff;
-	    padding: 2px 5px 3px 5px;
+	    padding: 3px 5px 2px 5px;
 	    display: inline-block;
+	    text-transform: uppercase;
 	}
-<?php } // Related Posts Ends Here 	 ?>
-<?php if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
+<?php } // Related Posts Ends Here 
+if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 		.sgl7-right{
 			flex:1 0 32%;
 			padding-left: 30px;
+			word-break: break-word;
 		}
 		.r-pf{
 			width:100%;
@@ -2539,11 +2576,12 @@ if(class_exists('MCI_Footnotes')){ ?>
 		    line-height: 1.5;
 		    background-color: #222;
 		    color: #fff;
-		    font-weight: 700;
+		    font-weight: 600;
 		    display: inline-block;
 		    padding: 1px 22px;
 		    border-radius: 3px;
 		    margin-bottom: 20px;
+		    letter-spacing: 0.5px;
 		}
 		.rcp{
 			display:inline-flex;
@@ -2657,7 +2695,7 @@ if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) {
 	    	padding-left: 20px;
 	    }
 	}
-	@media(max-width:767px){
+	@media(max-width:768px){
 		.sgl7-left {
 		    width: 100%;
 		    flex: 1 0 100%;

@@ -532,7 +532,7 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 <div class="sp sgl-7">
 	<div class="cntr">
 		<div class="sgl7-tlt">
-			<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
+			<?php if ( true == ampforwp_get_setting('ampforwp-bread-crumb') ) {
 				amp_breadcrumb();
 			}?>
 			<?php amp_title(); ?>
@@ -542,12 +542,13 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 			    </div>
 			<?php } ?>
 			<div class="author-info">
-					<?php amp_author_box( 
-						array('author_pub_name'=>true,
-								'author_prefix'=> ampforwp_translation( ampforwp_get_setting('amp-translator-by-text').' ', 'By ' )
-							) 
-					); ?>
+				<?php amp_author_box( 
+					array('author_pub_name'=>true,
+							'author_prefix'=> ampforwp_translation( ampforwp_get_setting('amp-translator-by-text').' ', 'By ' )
+						) 
+				); ?>
 				<?php amp_date(array('custom_format'=>'F d, Y') ); ?>
+				<?php amp_categories_list();?>	
 			</div>
 		</div>
 		<div class="sgl7-artl">
@@ -705,6 +706,11 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 
 					</ul>
 	            </div>
+	            <?php if( true == ampforwp_get_setting('ampforwp-tags-single') && amp_tags_list()){ ?>
+		            <div class="tags">
+		            	<?php amp_tags_list();?>
+		            </div>
+	            <?php } ?>
 	            <?php if( ampforwp_get_setting('single-design-type') == '7') {
 				       if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
 						$my_query = ampforwp_related_post_loop_query();
@@ -727,10 +733,10 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 										<?php } } ?>	
 										<div class="rlp-cnt">
 											<?php 
-											$show_excerpt_opt = $redux_builder_amp['ampforwp-single-related-posts-excerpt'];
+											$show_excerpt_opt = ampforwp_get_setting('ampforwp-single-related-posts-excerpt');
 											$argsdata = array(
 													'show_author' => false,
-													'show_excerpt' => $show_excerpt_opt
+													'show_excerpt' => false
 														);
 											ampforwp_get_relatedpost_content($argsdata); ?> 
 								        </div>
