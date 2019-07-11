@@ -2852,7 +2852,7 @@
                     //    }
                     //    unset($process);
                     //}
-                    $sanitized_data = filter_var(stripslashes( $_POST['data'] ), FILTER_SANITIZE_STRING);
+                    $sanitized_data = filter_var(stripslashes( $_POST['data'] ), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
                     // Old method of saving, in case we need to go back! - kp
                     //parse_str( $_POST['data'], $values );
