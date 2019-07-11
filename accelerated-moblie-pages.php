@@ -1152,9 +1152,9 @@ function ampforwp_sanitizers_loader(){
 // AMP with AMPforWP notice #2287
 add_action( 'admin_notices', 'ampforwp_automattic_activation' );
 function ampforwp_automattic_activation(){ 
-	
+	$automattic_wizard_nonce = wp_create_nonce( 'automattic_wizard_nonce' );
 	if ( function_exists('amp_activate') && get_transient( 'ampforwp_automattic_activation_notice' ) == 1) { ?>
-		<div id="ampforwp-automattic-notice" class="updated notice is-dismissible message notice notice-alt ampforwp-setup-notice"><p><?php echo esc_html__('AMP by Automattic is activated so the AMPforWP is now in the "Addon Mode". ','accelerated-mobile-pages') ?><a href="https://ampforwp.com/tutorials/article/guide-to-amp-by-automattic-compatibility-in-ampforwp/" target="_blank"><?php echo esc_html__('Learn More','accelerated-mobile-pages'); ?></a></p></div>
+		<div id="ampforwp-automattic-notice" class="updated notice is-dismissible message notice notice-alt ampforwp-setup-notice"><p><?php echo esc_html__('AMP by Automattic is activated so the AMPforWP is now in the "Addon Mode". ','accelerated-mobile-pages') ?><a href="https://ampforwp.com/tutorials/article/guide-to-amp-by-automattic-compatibility-in-ampforwp&_wpnonce=<?php echo $automattic_wizard_nonce ?>" target="_blank"><?php echo esc_html__('Learn More','accelerated-mobile-pages'); ?></a></p></div>
 	<?php }
 	$wizard_nonce = wp_create_nonce( 'wizard_nonce' );
 	if( get_transient( 'ampforwp_admin_notice_transient' ) ){
@@ -1170,8 +1170,8 @@ function ampforwp_automattic_activation(){
 
 add_action('wp_ajax_ampforwp_automattic_notice_delete','ampforwp_automattic_notice_delete');
 function ampforwp_automattic_notice_delete(){
-	if ( current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {   
-	  delete_transient( 'ampforwp_automattic_activation_notice');
+	$automattic_wizard_nonce = $_REQUEST['automattic_wizard_nonce'];
+	if ( wp_verify_nonce( $automattic_wizard_nonce, 'automattic_wizard_nonce' ) && current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {   
 	  set_transient( 'ampforwp_automattic_activation_notice', 2 );
 	  // Remove transient for Welcome page
 	  delete_transient( 'ampforwp_wordpress_version_notice_transient');
