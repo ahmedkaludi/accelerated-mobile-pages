@@ -2504,11 +2504,12 @@ if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('am
 	    line-height: 1.5;
 	    background-color: #222;
 	    color: #fff;
-	    font-weight: 700;
+	    font-weight: 600;
 	    display: inline-block;
 	    padding: 1px 22px;
 	    border-radius: 3px;
 	    margin-bottom: 20px;
+	    letter-spacing: 0.5px;
 	}
 	.rlp-wrap ul{
 		display: inline-grid;
@@ -2600,7 +2601,7 @@ if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('am
 			color: #111;
 			font-size: 13px;
 	    	font-weight: 600;
-	    	line-height: 1.2;
+	    	line-height: 1.3;
 	    	margin: 0 0 7px;
 		}
 		.rcp:hover .rcp-cnt .loop-title a{
@@ -2632,7 +2633,7 @@ if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) {
 	    line-height: 1.5;
 	    background-color: <?php echo ampforwp_sanitize_color($sbar_heading_clr); ?>;
 		color: <?php echo ampforwp_sanitize_color($sbar_bg_clr); ?>;
-	    font-weight: 700;
+	    font-weight: 600;
 	    display: inline-block;
 	    padding: 1px 22px;
 	    border-radius: 3px;
