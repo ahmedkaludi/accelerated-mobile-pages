@@ -928,6 +928,19 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                                       slides[slideIndex-1].style.display = "block";  
                                       dots[slideIndex-1].className += " active";
                                     }
+                                    function currentDiv(n) {
+                                      showDivs(slideIndex = n);
+                                    }
+                                    function showDivs(n) {
+                                      var i;
+                                      var x = document.getElementsByClassName("mySlides");
+                                      if (n > x.length) {slideIndex = 1}
+                                      if (n < 1) {slideIndex = x.length}
+                                      for (i = 0; i < x.length; i++) {
+                                        x[i].style.display = "none";
+                                      }
+                                      x[slideIndex].style.display = "block";
+                                    }
                                     </script>';
                 }
                 $nonampCss = '
@@ -943,6 +956,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                 $returnData = preg_replace($re, $subst, $returnData);
 
                 $returnData = preg_replace_callback('/<amp-carousel\s(.*?)>(.*?)<\/amp-carousel>/s', 'ampforwp_non_amp_gallery', $returnData );
+                $returnData = preg_replace('/on="tap(.*?).goToSlide(.*?)"/', 'onclick="currentDiv$2"', $returnData);
                 $returnData = str_replace('</footer>', '</footer>'.$galleryJs, $returnData);
             break;
         }
