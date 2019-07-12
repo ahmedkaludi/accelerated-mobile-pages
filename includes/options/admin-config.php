@@ -6460,6 +6460,20 @@ $single_page_options = array(
               'tooltip-subtitle'    => sprintf('%s <a href="https://www.addthis.com/register" target="_blank">%s</a>, %s <a href="https://www.addthis.com/academy/how-to-customize-your-share-buttons-on-the-amp-for-wp-plugin" target="_blank">%s</a>',esc_html__('You are using the default AddThis share buttons. To customize your share buttons, create a free account at','accelerated-mobile-pages'),esc_html__('AddThis.com','accelerated-mobile-pages'),esc_html__('then activate the Inline Share Buttons. Once your buttons are activated, replace the default Pub ID and Tool ID with your personalized IDs. For instructions, visit','accelerated-mobile-pages'),esc_html__('here','accelerated-mobile-pages')),
               'default'   =>  true,
           ),
+            array(
+               'id' => 'addthis-floating-share',
+               'type' => 'switch',
+               'class' => 'child_opt child_opt_arrow',
+               'title' => esc_html__('Addthis Floating Share', 'accelerated-mobile-pages'),
+               'default'  =>  '0',
+            ),
+            array(
+               'id' => 'addthis-inline-share',
+               'type' => 'switch',
+               'class' => 'child_opt child_opt_arrow',
+               'title' => esc_html__('Addthis Inline Share', 'accelerated-mobile-pages'),
+               'default'  =>  '1',
+            ),
            array(
                 'id'       => 'swift-add-this-position',
                 'type'     => 'select',
@@ -6475,6 +6489,7 @@ $single_page_options = array(
                                 array('amp-design-selector', '=', '4'),
                                 array('enable-add-this-option', '=', '1'),
                                 array('single-design-type', '=', '1'),
+                                array('addthis-inline-share', '=', '1'),
                                  )
             ), 
            array(
@@ -6492,6 +6507,7 @@ $single_page_options = array(
                                 array('enable-add-this-option', '=', '1'),
                                 array('single-design-type', '!=', '1'),
                                 array('single-design-type', '!=', '6'),
+                                array('addthis-inline-share', '=', '1'),
                                  )
             ), 
            array(
@@ -6508,6 +6524,7 @@ $single_page_options = array(
                                 array('amp-design-selector', '=', '4'),
                                 array('enable-add-this-option', '=', '1'),
                                 array('single-design-type', '=', '6'),
+                                array('addthis-inline-share', '=', '1'),
                                  )
             ), 
           array(
