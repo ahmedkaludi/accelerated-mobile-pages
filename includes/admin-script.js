@@ -162,8 +162,10 @@ jQuery(function($) {
     }//Cloesed function  = optionSectionDevision
     // Dismiss button functionlaity
     $('#ampforwp-automattic-notice').on('click', 'button', function(){
+        var nonce = $('#ampforwp-automattic-notice').attr('data-nonce');
         var data_notice = {
             'action': 'ampforwp_automattic_notice_delete',
+            'security': nonce,
         };
         jQuery.post(ajaxurl, data_notice, function(response) {   
     
