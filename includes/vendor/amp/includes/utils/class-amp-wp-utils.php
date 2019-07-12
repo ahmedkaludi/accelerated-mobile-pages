@@ -7,7 +7,7 @@ class AMP_WP_Utils {
 	 * This can be removed once 4.8 is out and we bump up our min supported WP version.
 	 */
 	public static function parse_url( $url, $component = -1 ) {
-		$parsed = wp_parse_url( $url, $component );
+		$parsed = \wp_parse_url( $url, $component );
 
 		// Because < 4.7 always returned a full array regardless of component
 		if ( -1 !== $component && is_array( $parsed ) ) {
