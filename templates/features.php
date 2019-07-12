@@ -548,7 +548,7 @@ function ampforwp_new_dir( $dir ) {
 		if ( is_page() && isset($redux_builder_amp['ampforwp-page-social']) && $redux_builder_amp['ampforwp-page-social'] )	{
 			$social_check_page = true;
 		}		
-		if ( '4' === $redux_builder_amp['amp-design-selector'] ) {
+		if ( '4' === ampforwp_get_setting('amp-design-selector') && true == ampforwp_get_setting('enable-single-post-social-icons') ) {
 			$social_check = true;
 		}
 		if ( '4' !== $redux_builder_amp['amp-design-selector'] && defined('AMPFORWP_DM_SOCIAL_CHECK') && 'true' === AMPFORWP_DM_SOCIAL_CHECK ) {
@@ -565,7 +565,7 @@ function ampforwp_new_dir( $dir ) {
 	    $fb_like = false;
 	    $isBBPress = (function_exists('is_bbpress') ? is_bbpress() : false );
 	    if ( true == ampforwp_get_setting('ampforwp-facebook-like-button') ){
-	      if ( is_single() && (true == ampforwp_get_setting('enable-single-social-icons') || ( $social_check && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) && !$isBBPress)) {
+	      if ( is_single() && ( true == ampforwp_get_setting('enable-single-social-icons') || $social_check ) && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && !$isBBPress) {
 	        $fb_like = true;
 	      }
 	      if ( is_page() && ( true == ampforwp_get_setting('ampforwp-page-sticky-social') || ( $social_check_page && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) ) ) {
