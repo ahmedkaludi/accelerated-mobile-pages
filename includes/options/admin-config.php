@@ -5334,13 +5334,7 @@ $single_page_options = array(
               'title'    => esc_html__('Social Icons', 'accelerated-mobile-pages'),
               'required' => array('amp-design-selector' , '=' , '4')
            ),
-          // Social Sticky Icons ON/OFF
-            array(
-              'id'        => 'enable-single-social-icons',
-              'type'     => 'switch',
-              'default'  =>  '1',
-              'title'     => esc_html__('Sticky Social Icons', 'accelerated-mobile-pages'),
-            ),
+          
                 
           // Excerpt ON/OFF
           array(
@@ -6402,40 +6396,12 @@ $single_page_options = array(
 
     // Social Section
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Social', 'accelerated-mobile-pages' ),
+        'title'      => __( 'Social Sharing', 'accelerated-mobile-pages' ),
         'id'         => 'amp-social',
         'desc'      => __('All the Social sharing and the social profile related settings are here','accelerated-mobile-pages'),
         'subsection' => true,
         'fields'     => array(
-        array(
-           'id' => 'social-chat',
-           'type' => 'section',
-           'title' => __('Chat', 'accelerated-mobile-pages'),
-           'indent' => true,
-           //'start'  => true,
-           //'label' => 'Tab 2',
-           'layout_type' => 'accordion',
-            'accordion-open'=> 1,
-         ),
-        // Facebook chat ON/OFF
-          array(
-              'id'        =>  'enable-single-facebook-chat',
-              'type'      =>  'switch',
-              'title'     =>  esc_html__('Facebook Live Chat', 'accelerated-mobile-pages'),
-              'default'   =>  false,
-          ),
-        // Facebook Page ID
-          array(
-               'id'       => 'amp-facebook-chat-username',
-               'title'    => esc_html__('Facebook Page ID', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => esc_html__('example: ampforwp'),
-               'type'     => 'text',
-               'required'  => array('enable-single-facebook-chat', '=' , '1'),
-               'placeholder'  => esc_html__('Enter your facebook page id','accelerated-mobile-pages'),
-               'default'  => '',
-          ),
-
-          
+        
         array(
            'id' => 'social-settings',
            'type' => 'section',
@@ -6493,6 +6459,7 @@ $single_page_options = array(
            array(
                 'id'       => 'swift-add-this-position',
                 'type'     => 'select',
+                'class' => 'child_opt child_opt_arrow',
                 'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
                 'options'  => array( 
                                 'default'       => 'Single Sidebar (left side)', 
@@ -6509,6 +6476,7 @@ $single_page_options = array(
            array(
                 'id'       => 'swift-layout-addthis-pos',
                 'type'     => 'select',
+                'class' => 'child_opt child_opt_arrow',
                 'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
                 'options'  => array(
                                 'above-content' => 'Above Content',
@@ -6525,6 +6493,7 @@ $single_page_options = array(
            array(
                 'id'       => 'swift-layout-6-addthis-pos',
                 'type'     => 'select',
+                'class' => 'child_opt child_opt_arrow',
                 'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
                 'options'  => array(
                                 'above-content' => 'Above Content',
@@ -6541,6 +6510,7 @@ $single_page_options = array(
                'id'       => 'add-this-pub-id',
                'title'    => esc_html__('Pub ID', 'accelerated-mobile-pages'),
                'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
                'required'  => array('enable-add-this-option', '=' , '1'),
                'default'  => esc_html__('ra-5cc8551aa4f16f5c','accelerated-mobile-pages'),
           ),
@@ -6548,11 +6518,29 @@ $single_page_options = array(
                'id'       => 'add-this-widget-id',
                'title'    => esc_html__('Tool ID', 'accelerated-mobile-pages'),
                'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
                'required'  => array('enable-add-this-option', '=' , '1'),
                'default'  => esc_html__('cwgj','accelerated-mobile-pages'),
           ),
 
-         //End AddThis Support    
+         //End AddThis Support
+         //Start Social Sticky Icon
+        array(
+           'id' => 'sticky-social-settings',
+           'type' => 'section',
+           'title' => esc_html__('Sticky Social', 'accelerated-mobile-pages'),
+           'indent' => true,
+           'layout_type' => 'accordion',
+           'accordion-open'=> 1,
+        ), 
+        // Social Sticky Icons ON/OFF
+        array(
+          'id'        => 'enable-single-social-icons',
+          'type'     => 'switch',
+          'default'  =>  '1',
+          'title'     => esc_html__('Sticky Social Sharing bar', 'accelerated-mobile-pages'),
+        ),
+         //End Social Sticky Icon   
           array(
            'id' => 'social-shre',
            'type' => 'section',
@@ -6999,6 +6987,35 @@ $single_page_options = array(
                       array('enbl-tbl','=',1)
                     )           
             ),
+            array(
+           'id' => 'social-chat',
+           'type' => 'section',
+           'title' => __('Chat', 'accelerated-mobile-pages'),
+           'indent' => true,
+           //'start'  => true,
+           //'label' => 'Tab 2',
+           'layout_type' => 'accordion',
+            'accordion-open'=> 1,
+         ),
+        // Facebook chat ON/OFF
+          array(
+              'id'        =>  'enable-single-facebook-chat',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('Facebook Live Chat', 'accelerated-mobile-pages'),
+              'default'   =>  false,
+          ),
+        // Facebook Page ID
+          array(
+               'id'       => 'amp-facebook-chat-username',
+               'title'    => esc_html__('Facebook Page ID', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('example: ampforwp'),
+               'type'     => 'text',
+               'required'  => array('enable-single-facebook-chat', '=' , '1'),
+               'placeholder'  => esc_html__('Enter your facebook page id','accelerated-mobile-pages'),
+               'default'  => '',
+          ),
+
+          
           array(
        'id' => 'social-media-profiles-subsection',
        'type' => 'section',
