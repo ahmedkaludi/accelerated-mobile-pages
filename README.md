@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.2
-Stable tag: 0.9.97.63
+Stable tag: 0.9.97.64
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -187,6 +187,33 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 0.9.97.64 (12th July 2019) =
+* Improvements: Performance improvement -- Meta Value Queries #3392
+* Improvements: h1 tag on the archive, search and author pages #3323
+* Improvements: Flipboard as a social sharing option in AMP added #3348
+* Improvements: Comscore new variable for AMP in Analytics #3378
+* Improvements: Option for Leverage Browser Caching in the performance settings #3298
+* Improvements: External link option for images in Gallery(Logo) module of AMP Pagebuilder #3375
+* Fixed: Auto Add AMP in Menu URL option is not working for the product category #3319
+* Fixed: Horizontal scrolling issue on the homepage #3217
+* Fixed: Vuukle comments Toggle UX bug #3399
+* Fixed: Unnecessary CSS is loading in single amp product pages and also on cart pages. #3038
+* Fixed: Improper amphtml is getting created in the ngg_tag Url when NextGEN Gallery is used #3381
+* Fixed: Tutorial link for Disqus comments section #3362
+* Fixed: Empty Display property in menu.php #3387
+* Fixed: Images and text does not Zoom in & out with mobile devices in amp version #3233
+* Fixed: Custom CSS code got optimized after 0.9.97.61 update #3410
+* Fixed: Breadcrumbs icons are not connected to icons font family #3418
+* Fixed: In swift Single Design 2 sidebar CSS are not loading in Search page #3430
+* Fixed: Notice to be removed after dismissing it after installing AMP #3053
+* Fixed: Plugins manager showing twice in options panel #3328
+* Fixed: Amp scripts not appending in the head in Search pages when added in sidebar #3404
+* Fixed: Conflict issue with Themify Builder #3376
+* Fixed: Remove the Gap between Header and AMP Pagebuilder module #2534
+* Fixed: Image is not loading when the source of it starting from ../wp-content #3403
+* Fixed: PHP Warning at the top of the site: array_merge(): Expected parameter 1 to be an array #3434
+
 
 = 0.9.97.63 (9th July 2019) =
 * Improvements: Custom Taxonomy support #3036

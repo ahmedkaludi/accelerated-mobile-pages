@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.2
-Stable tag: 0.9.97.63
+Stable tag: 0.9.97.64
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,32 +190,30 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.63 (9th July 2019) =
-* Improvements: Custom Taxonomy support #3036
-* Improvements: Option to change the Navigation part background color and element color for Design-3 #3034
-* Improvements: Compatibility with the SEO Framework Plugin #2670
-* Improvements: Facebook Messenger Icon in social share icons #2806
-* Improvements: Option to change the Homepage Thumbnail size in design-3 theme #2986
-* Improvements: Changed prefix class of whatsapp to Api #3369
-* Improvements: Colour changing feature in Navigation bar in a design-2 #3059
-* Improvements: Google Lighthouse Audit Score improved #3276
-* Improvements: AMP option panel compatibility with a basix theme #3366
-* Improvements: Template mode code improved #3357
-* Fixed: PHP debug warning #3128
-* Fixed: Proper alignment of description in Design-3 #3385
-* Fixed: 'Modified Date' option not working when Date Format 'Traditional view' is selected #3383
-* Fixed: When Parmalinks in "/index.php/%year%/%monthnum%/%day%/%postname%/" format category not working #3279
-* Fixed: Separator Character's of Rank math plugin is not working on AMP pages #3335
-* Fixed: SVG images not rendering in AMP #3208
-* Fixed: Improvements code in Search form widget #3000
-* Fixed: Dynamically change accordion-mod class name to reduce the styling size #3334
-* Fixed: Social sticky icons to show on top as well as it is getting hidden behind sticky ads #3126
-* Fixed: Font icons not loading in master and beta #3382
-* Fixed: Yoast SEO Data not loading in AMP when 'Glue for Yoast SEO & AMP' plugin is active #3338
-* Fixed: When AMP Comments is disabled, div of comments is loading #3345
-* Fixed: Error 500 PHP 5.3.3 Fallback support #3333
-* Fixed: Debug warnings after recent update #3400
-* Fixed: Video sanitizer not allowing the "id" attribute #3406
-* Fixed: Check if function_exists('get_rocket_option') #3417
+= 0.9.97.64 (12th July 2019) =
+* Improvements: Performance improvement -- Meta Value Queries #3392
+* Improvements: h1 tag on the archive, search and author pages #3323
+* Improvements: Flipboard as a social sharing option in AMP added #3348
+* Improvements: Comscore new variable for AMP in Analytics #3378
+* Improvements: Option for Leverage Browser Caching in the performance settings #3298
+* Improvements: External link option for images in Gallery(Logo) module of AMP Pagebuilder #3375
+* Fixed: Auto Add AMP in Menu URL option is not working for the product category #3319
+* Fixed: Horizontal scrolling issue on the homepage #3217
+* Fixed: Vuukle comments Toggle UX bug #3399
+* Fixed: Unnecessary CSS is loading in single amp product pages and also on cart pages. #3038
+* Fixed: Improper amphtml is getting created in the ngg_tag Url when NextGEN Gallery is used #3381
+* Fixed: Tutorial link for Disqus comments section #3362
+* Fixed: Empty Display property in menu.php #3387
+* Fixed: Images and text does not Zoom in & out with mobile devices in amp version #3233
+* Fixed: Custom CSS code got optimized after 0.9.97.61 update #3410
+* Fixed: Breadcrumbs icons are not connected to icons font family #3418
+* Fixed: In swift Single Design 2 sidebar CSS are not loading in Search page #3430
+* Fixed: Notice to be removed after dismissing it after installing AMP #3053
+* Fixed: Plugins manager showing twice in options panel #3328
+* Fixed: Amp scripts not appending in the head in Search pages when added in sidebar #3404
+* Fixed: Conflict issue with Themify Builder #3376
+* Fixed: Remove the Gap between Header and AMP Pagebuilder module #2534
+* Fixed: Image is not loading when the source of it starting from ../wp-content #3403
+* Fixed: PHP Warning at the top of the site: array_merge(): Expected parameter 1 to be an array #3434
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
