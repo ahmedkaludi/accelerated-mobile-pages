@@ -772,7 +772,7 @@ if ( ! function_exists('ampforwp_wp_update_nav_menu') ) {
     }
 }
 // Delete Menu Transients on Saving AMP Settings #3052
-if ( function_exists('ampforwp_menu_transient_on_save') ){
+if ( ! function_exists('ampforwp_menu_transient_on_save') ){
     function ampforwp_menu_transient_on_save($redux_builder_amp, $this_transients_changed_values) {
         if ( isset($this_transients_changed_values['amp-design-selector']) ) {
             if ( false != get_transient('ampforwp_header_menu') ) {
