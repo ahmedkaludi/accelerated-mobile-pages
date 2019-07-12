@@ -64,6 +64,13 @@ use ReduxCore\ReduxFramework\Redux;
                'tooltip-subtitle'     => __('Improve the Page Speed and Loading time with Minification option', 'accelerated-mobile-pages'),
                'default'  => 0
            ),
+           array(
+               'id'       => 'ampforwp_leverage_browser_caching_mode',
+               'type'     => 'switch',
+               'title'     => esc_html__('Leverage Browser Caching', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'     => esc_html__('Improve the Page Speed and Loading time with Leverage Browser Caching option', 'accelerated-mobile-pages'),
+               'default'  => 0
+           )
        )
 
   )

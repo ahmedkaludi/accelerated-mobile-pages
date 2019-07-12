@@ -74,3 +74,94 @@ function ampforwp_minify_html_output($content_buffer){
     return $content_buffer;
 
 }
+
+
+if( true == ampforwp_get_setting('ampforwp_leverage_browser_caching_mode')){
+    ampforwp_leverage_browser_caching();
+}else{
+    ampforwp_leverage_browser_caching_remove();
+}
+
+function ampforwp_leverage_browser_caching_remove(){
+    $htaccess_file = wp_normalize_path( ABSPATH . '.htaccess' );
+    if ( file_exists( $htaccess_file ) ) {
+
+        if ( is_readable( $htaccess_file ) && is_writable( $htaccess_file ) ) {
+            $unique_string    = 'AMPFORWPLBROWSERCSTART';
+            $htaccess_cntn    = file_get_contents( $htaccess_file );
+            $valid            = false;
+
+            if ( strpos( $htaccess_cntn, $unique_string ) !== false ) {
+                $valid = true;
+            }
+            if ( $valid ) {
+                $pattern          = '/#\s?AMPFORWPLBROWSERCSTART.*?AMPFORWPLBROWSERCEND/s';
+                $htaccess_cntn    = preg_replace( $pattern, '', $htaccess_cntn );
+                $htaccess_cntn    = preg_replace( "/\n+/","\n", $htaccess_cntn );
+                file_put_contents( $htaccess_file, $htaccess_cntn );
+            }
+        } else {
+            
+        }
+    } else {
+        
+    }
+}
+function ampforwp_leverage_browser_caching(){
+    $htaccess_file = wp_normalize_path( ABSPATH . '.htaccess' );
+    if ( file_exists( $htaccess_file ) ) {
+        if ( is_readable( $htaccess_file ) && is_writable( $htaccess_file ) ) {
+            $unique_string    = 'AMPFORWPLBROWSERCSTART';
+            $htaccess_cntn    = file_get_contents( $htaccess_file );
+            $valid            = false;
+            if ( strpos( $htaccess_cntn, $unique_string ) !== false ) {
+                $valid = true;
+            }
+            if ( ! $valid ) {
+                $htaccess_cntn = $htaccess_cntn . ampforwp_code_to_add_in_htaccess();
+                file_put_contents( $htaccess_file, $htaccess_cntn );
+            }
+        } else {
+            add_action( 'admin_notices', 'ampforwp_no_htaccess_access_notice' );
+        }
+    }else {
+        add_action( 'admin_notices', 'ampforwp_no_htaccess_notice');
+    }
+}
+
+function ampforwp_no_htaccess_access_notice(){
+    $message = '<div class="error"><p>';
+    $message .= esc_html__( 'Accelerated Mobile Pages: htaccess file is not readable or writable for Leverage Browser Caching. Please change permission of htaccess file.', 'accelerated-mobile-pages' );
+    $message .= '</p></div>';
+    echo wp_kses_post( $message );
+}
+function ampforwp_no_htaccess_notice(){
+    $message = '<div class="error"><p>';
+    $message .= esc_html__( 'Accelerated Mobile Pages: htaccess file not found. This plugin works only for Apache server. If you are using Apace server, please create it.', 'accelerated-mobile-pages' );
+    $message .= '</p></div>';
+    echo wp_kses_post( $message );
+}
+function ampforwp_code_to_add_in_htaccess(){
+    $htaccess_cntn  = "\n";
+    $htaccess_cntn .= '# AMPFORWPLBROWSERCSTART Browser Caching' . "\n";
+    $htaccess_cntn .= '<IfModule mod_expires.c>' . "\n";
+    $htaccess_cntn .= 'ExpiresActive On' . "\n";
+    $htaccess_cntn .= 'ExpiresByType image/gif "access 1 year"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType image/jpg "access 1 year"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType image/jpeg "access 1 year"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType image/png "access 1 year"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType image/x-icon "access 1 year"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType text/css "access 3 month"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType text/javascript "access 3 month"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType text/html "access 3 month"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/javascript "access 3 month"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/x-javascript "access 3 month"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/xhtml-xml "access 3 month"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/pdf "access 3 month"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/x-shockwave-flash "access 3 month"' . "\n";
+    $htaccess_cntn .= 'ExpiresDefault "access 3 month"' . "\n";
+    $htaccess_cntn .= '</IfModule>' . "\n";
+    $htaccess_cntn .= '# END Caching AMPFORWPLBROWSERCEND' . "\n";
+
+    return $htaccess_cntn;
+}
