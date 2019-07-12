@@ -2864,7 +2864,7 @@
                     //    unset($process);
                     //}
 
-                    $sanitized_data = esc_url_raw(stripslashes( $_POST['data'] ));
+                    $sanitized_data = filter_var(stripslashes( $_POST['data'] ), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
                     // Old method of saving, in case we need to go back! - kp
                     //parse_str( $_POST['data'], $values );
