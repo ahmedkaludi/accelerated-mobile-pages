@@ -1101,6 +1101,10 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'the_content', 'A3_Lazy_Load', 'filter_content_images', 100 );
 		//optimole plugin images get removed in AMP #3073
 		ampforwp_remove_filters_for_class( 'optml_content_url', 'Optml_Url_Replacer', 'build_image_url', 1, 2 );
+		//Removed style tag appending before Html tag for themify pagebuilder #3376 
+		ampforwp_remove_filters_for_class( 'the_content', 'Themify_Builder', 'builder_show_on_front', 11 );
+		ampforwp_remove_filters_for_class( 'the_content', 'Themify_Builder', 'builder_clear_static_content', 1 );
+		
 		// Yoast Schema Compatibility #3332
 		if( ampforwp_get_setting('ampforwp-seo-selection') != "yoast"){
 			ampforwp_remove_filters_for_class( 'amp_post_template_head', 'WPSEO_Schema', 'json_ld', 9 );
