@@ -904,7 +904,18 @@ function ampforwp_get_all_post_types(){
     	$post_types['category'] = 'category';
     }
 
-   if ( ampforwp_get_setting('ampforwp-custom-type')) {
+    $custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
+	if( !empty($custom_taxonomies) ){
+		foreach($custom_taxonomies as $taxonomy){
+			$terms = get_taxonomy( $taxonomy );
+			$taxonomy_name = $terms->name;
+			if( isset($terms->name) && !empty($terms->name)){
+				$post_types[$terms->name] = $terms->name;
+			}
+		}
+	}
+	 
+   	if ( ampforwp_get_setting('ampforwp-custom-type')) {
         foreach (ampforwp_get_setting('ampforwp-custom-type') as $key) {
             $selected_post_types[$key] = $key;
         }
