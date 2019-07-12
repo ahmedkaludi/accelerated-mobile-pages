@@ -947,21 +947,17 @@ jQuery(document).ready(function($){
             }
     });
 
-    $('.single-design-type_2').on('click',function(){
-       $('#gnrl-sidebar').val(1);
-       $('#swift-sidebar').val(1);
-       $("input[data-id=gnrl-sidebar]").prop('checked', true);
-       $("input[data-id=swift-sidebar]").prop('checked', true);
-       $('#gnrl-sidebar').closest('tr').nextAll('tr.child_opt_arrow.fold').removeClass("hide");
-       
+    $('.redux-image-select label img').click(function(){
+        var selectedSingleDesign = $(this).parents('label.redux-image-select').attr('for');
+        if(selectedSingleDesign=='single-design-type_2' || selectedSingleDesign=='single-design-type_3'){
+            $("input[data-id=gnrl-sidebar]").prop('checked', true).trigger( 'change' );
+            $("input[data-id=swift-sidebar]").prop('checked', true).trigger( 'change' );
+        }else{
+            $("input[data-id=gnrl-sidebar]").prop('checked', false).trigger( 'change' );
+            $("input[data-id=swift-sidebar]").prop('checked', false).trigger( 'change' );
+        }
     });
-    $('.single-design-type_3').on('click',function(){
-       $('#gnrl-sidebar').val(1);
-       $('#swift-sidebar').val(1);
-       $("input[data-id=gnrl-sidebar]").prop('checked', true);
-       $("input[data-id=swift-sidebar]").prop('checked', true);
-       $('#gnrl-sidebar').closest('tr').nextAll('tr.child_opt_arrow.fold').removeClass("hide");
-    });
+    
     $('#amp-rollback-switch').on('change', function(){
          var self = $(this)
         if(self.val()==1){
