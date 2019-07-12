@@ -131,6 +131,7 @@ amp-social-share[type="facebookmessenger"] {
     top: -12px;}
 .amp-social-flipboard{background:#f52828;text-align: center;position: relative;
     top: -12px;}
+.amp-social-flipboard amp-img {top: 2px;}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 .ampforwp-social-icons .custom-amp-socialsharing-vk, .amp-social-vk{background:#45668e}
