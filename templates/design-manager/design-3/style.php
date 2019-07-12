@@ -175,7 +175,8 @@ background:<?php echo ampforwp_sanitize_color($submenucolor);?>;
 /* Sticky Social bar in Single */
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
 .amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; }
-.amp-social-icon amp-img{ top: 8px; }
+.amp-social-icon amp-img{ top: 4px; }
+.amp-social-icon.custom-amp-socialsharing-flipboard amp-img ,.amp-social-icon.amp-social-flipboard amp-img {top: 6px;}
 a.amp-social-facebook-messenger,.amp-social-facebookmessenger{background:#d5e1e6;}
 .custom-amp-socialsharing-line{background:#00b900}
 .custom-amp-socialsharing-mewe{background:#b8d6e6}

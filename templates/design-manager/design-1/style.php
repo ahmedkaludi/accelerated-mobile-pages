@@ -144,7 +144,7 @@ amp-social-share[type="facebookmessenger"] {
 <?php if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) { ?>
 .custom-amp-socialsharing-flipboard{background:#f52828}
 .amp-social-flipboard{background:#f52828;text-align: center;}
-.amp-social-flipboard amp-img {top: 2px;}
+.amp-social-flipboard amp-img , .amp-social-icon.custom-amp-socialsharing-flipboard amp-img {top: 2px;}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-facebook-share-messenger') ) { ?>
 .amp-social-icon.amp-social-facebookmessenger {background: #d5e1e6;text-align: center;}

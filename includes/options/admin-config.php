@@ -1617,6 +1617,9 @@ $tabs = array(
             elseif ( defined( 'RANK_MATH_FILE' ) ) {
                 $default = 'rank_math';
             }
+            elseif ( class_exists('SQ_Classes_ObjController') ) {
+                $default = 'squirrly';
+            }
             return $default;
         }
     }
@@ -1677,7 +1680,8 @@ $tabs = array(
                     'genesis'    => 'Genesis',
                     'seo_framework'    => 'The SEO Framework',
                     'rank_math'    => 'Rank Math SEO',
-                    'bridge'    => 'Bridge Qode SEO'
+                    'bridge'    => 'Bridge Qode SEO',
+                    'squirrly'    => 'Squirrly SEO'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),
