@@ -1272,7 +1272,7 @@ if(empty($sbar_link_clr)){
 if(empty($sbar_text_clr)){
 	$sbar_text_clr ='#333333';
 }
-if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || ampforwp_is_blog() ) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() && ampforwp_get_setting('single-design-type') == '4')  ) { 
+if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || is_search() || ampforwp_is_blog() ) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() && ampforwp_get_setting('single-design-type') == '4')  ) { 
 // AMP woocommerce condition starts
 
 if( !ampforwp_woocommerce_conditional_check() ) { ?>
