@@ -9284,6 +9284,34 @@ class AMP_Allowed_Tags_Generated {
 						'error_message' => 'CSS !important',
 						'regex' => '!important',
 					),
+					'css_spec' => array(
+						'allowed_at_rules' => array(
+							'font-face',
+							'keyframes',
+							'media',
+							'page',
+							'supports',
+						),
+						'declaration' => array(),
+						'font_url_spec' => array(
+							'allow_empty' => true,
+							'protocol' => array(
+								'https',
+								'http',
+								'data',
+							),
+						),
+						'image_url_spec' => array(
+							'allow_empty' => true,
+							'protocol' => array(
+								'https',
+								'http',
+								'data',
+								'absolute',
+							),
+						),
+						'validate_keyframes' => false,
+					),
 					'max_bytes' => 50000,
 					'max_bytes_spec_url' => 'https://www.ampproject.org/docs/reference/spec#maximum-size',
 				),
