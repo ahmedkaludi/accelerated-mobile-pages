@@ -1866,7 +1866,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                          'id'       => 'ampforwp-disqus-comments-support',
                          'type'     => 'switch',
                          'title'    => esc_html__('Disqus', 'accelerated-mobile-pages'),
-                         'tooltip-subtitle' => esc_html__('Enable/Disable Disqus comments using this switch.', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable/Disable Disqus comments using this switch and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-disqus-comments-in-amp/'), esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('to view the tutorial','accelerated-mobile-pages')),
                          'default'  => 0
                      ),
                      array(
