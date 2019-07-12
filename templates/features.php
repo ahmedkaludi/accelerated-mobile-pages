@@ -3244,6 +3244,17 @@ function ampforwp_add_meta_viewport() {
 	$output = '';
 	$output = '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=2,user-scalable=yes">
 	';
+	if(!class_exists( 'AMPforWP_Mobile_Detect') && !ampforwp_get_setting('amp-mobile-redirection')){
+		ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/includes/vendor/Mobile_Detect.php ');
+	}
+	if(class_exists('AMPforWP_Mobile_Detect')){
+		$mobile_detect = new AMPforWP_Mobile_Detect;
+	    $isMobile = $mobile_detect->isMobile();
+	    $isTablet = $mobile_detect->isTablet();
+	    if( $isMobile || $isTablet ){
+	    	$output = '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">';
+	    }
+	}
 	echo apply_filters('ampforwp_modify_meta_viewport_filter',$output);
 	
 }
