@@ -326,7 +326,7 @@ function ampforwp_analytics_options($opt_name){
                         'id'            =>'amp-comscore-analytics-code-c1',
                         'type'          => 'text',
                         'title'         => esc_html__('C1','accelerated-mobile-pages'),
-                        'default'       => 1,
+                        'default'       => '',
                         'required' => array(
                         array('ampforwp-comScore-switch', '=' , '1')),
                       ),

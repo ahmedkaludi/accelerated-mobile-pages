@@ -112,6 +112,9 @@ function ampforwp_analytics() {
 							'c1'=>$comscore_c1,
 							'c2'=>$comscore_c2
 							),
+						'extraUrlParams'=> array(
+							'comscorekw'=> 'amp'
+						),
 					); 
 				$comscore_fields = apply_filters('ampforwp_comscore_analytics', $comscore_fields );?>
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="comscore">
