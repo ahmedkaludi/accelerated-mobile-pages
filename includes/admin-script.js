@@ -672,14 +672,52 @@ AmpForWpYoastAnalysis = function() {
     new AmpForWpYoastAnalysis();
 }); 
 jQuery(document).ready(function($){
-$("#redux_builder_amp-swift-sidebar").on( 'change', function(){
-var value = $('#redux_builder_amp-swift-sidebar #swift-sidebar').val();
-if(value == 1){
-$("#single-design-type_2").attr('checked', true);
-}else {
-    $("#single-design-type_1").attr('checked', true);
-}
-
-});
-
+    $("#redux_builder_amp-swift-sidebar").on( 'change', function(){
+        var value = $('#redux_builder_amp-swift-sidebar #swift-sidebar').val();
+        if(value == 1){
+        $("#single-design-type_2").attr('checked', true);
+        }else {
+            $("#single-design-type_1").attr('checked', true);
+        }
+    });
+    //Toggle Post and Page comments panel based on options
+    if($('#ampforwp-display-on-pages').length>0 && $('#ampforwp-display-on-posts').length>0){
+        var pageComments = $('#ampforwp-display-on-pages').val();
+        var postComments = $('#ampforwp-display-on-posts').val();
+        if( pageComments ==0 && postComments == 0 ){
+            $('#section-ampforwp-comments').hide();
+            $('#section-table-ampforwp-comments tbody').hide();
+        }
+    }
+    $("#redux_builder_amp-ampforwp-display-on-posts").on('change','input[type=checkbox]', function(){
+        var pageComments = $('#ampforwp-display-on-pages').val();
+            if($(this).is(":checked")) {
+                $('#section-ampforwp-comments').show();
+                $('#section-table-ampforwp-comments tbody').show();
+            }else{
+                if(pageComments==0){
+                    $('#section-ampforwp-comments').hide();
+                    $('#section-table-ampforwp-comments tbody').hide();
+                }else{
+                    $('#section-ampforwp-comments').show();
+                    $('#section-table-ampforwp-comments tbody').show();
+                }
+            }
+    });
+    $("#redux_builder_amp-ampforwp-display-on-pages").on('change','input[type=checkbox]', function(){
+        var postComments = $('#ampforwp-display-on-posts').val();
+            if($(this).is(":checked")) {
+                $('#section-ampforwp-comments').show();
+                $('#section-table-ampforwp-comments tbody').show();
+            }else{
+                if(postComments == 0){
+                    $('#section-ampforwp-comments').hide();
+                    $('#section-table-ampforwp-comments tbody').hide();
+                }else{
+                    $('#section-ampforwp-comments').show();
+                    $('#section-table-ampforwp-comments tbody').show();
+                }
+              
+            }
+    });
 });
