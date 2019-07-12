@@ -725,9 +725,6 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .fsp-cnt .loop-category{margin-bottom:8px;}
 .fsp-cnt .loop-category li {font-weight: 500;}
 .pt-dt{font-size:11px;color:#808080;margin: 8px 0px 0px 0px;display: inline-flex;}
-blockquote{margin-bottom:20px;}
-blockquote p {font-size: 34px; line-height: 1.4; font-weight: 700; position: relative; padding: 30px 0 0 0; }
-blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-height: 40px;display: inline-block;position: absolute;top: 0;}
 
 @media(max-width:1110px){
 <?php if (!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>
@@ -922,6 +919,9 @@ if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('s
 		top: 2px;
 	<?php } ?>
 		position: relative;opacity: 0.4;margin-right: 5px;}
+	blockquote{margin-bottom:20px;}
+	blockquote p {font-size: 34px; line-height: 1.4; font-weight: 700; position: relative; padding: 30px 0 0 0; }
+	blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-height: 40px;display: inline-block;position: absolute;top: 0;}
 	<?php 
 	 if( true == ampforwp_get_setting('amp-author-description') ) {?>
 	.sp-rt .amp-author, .sgl7-left .amp-author{padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
@@ -2427,15 +2427,6 @@ if(class_exists('MCI_Footnotes')){ ?>
 	.cntn-wrp{
 	    margin-top: 24px;
 	}
-	.cntn-wrp blockquote{
-		background-color: #fcfcfc;
-	    border-left-style: solid;
-	    border-width: 2px;
-	    border-color: #1581c5;
-	    padding: 15px 23px 0;
-	    position: relative;
-	    top: 6px;
-	}
 	.sgl-7 .ss-ic{
 		display:inline-flex;
 		flex-wrap:wrap;
@@ -2673,7 +2664,6 @@ if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) {
 	}
 	.amp-sidebar .tagcloud a, .wp_widget_tag_cloud a {
 	    border: 1px solid #d1d1d1;
-	    -webkit-box-shadow: none;
 	    box-shadow: none;
 	    display: inline-block;
 	    margin-bottom:5px;
@@ -2683,6 +2673,7 @@ if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) {
 	    width: auto;
 	    word-wrap: break-word;
 	    z-index: 0;
+	    color: <?php echo ampforwp_sanitize_color($sbar_link_clr); ?>;
 	}
 	<?php endif;  
 	} // sidebar condition ends here ?>
