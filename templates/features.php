@@ -1852,6 +1852,14 @@ function ampforwp_replace_title_tags() {
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
 }
+// Squirrly SEO Compatibility #3421
+add_filter('sq_current_post', 'ampforwp_sq_current_post');
+function ampforwp_sq_current_post($post){
+	if ( 'squirrly' == ampforwp_get_setting('ampforwp-seo-selection') && ampforwp_is_amp_endpoint() && ( ampforwp_is_front_page() || ampforwp_is_blog() ) ){
+		$post = get_post(ampforwp_get_the_ID());
+	}
+	return $post;
+}
 function ampforwp_modify_archive_title( $title ) {
     if ( is_category() ) {
         $title = single_cat_title( '', false );
