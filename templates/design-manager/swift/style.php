@@ -820,7 +820,7 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 	<?php } ?>
 }
 <?php } //Drop Cap CSS ends
-if(is_single() ) { 
+if( is_single() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) {  
 if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('single-design-type') == '4' || ampforwp_get_setting('single-design-type') == '7' ){ 
 	if( true == ampforwp_get_setting('wordpress-comments-support')){ ?>
 	.cmts{width:100%;display:inline-block;clear:both;margin-top:40px;}
@@ -941,7 +941,7 @@ if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('s
 	.next span{text-transform: uppercase;font-size: 12px;color: #666;display: block;font-weight: 400;position: absolute;top: -26px;right:0}
 	.next:hover a, .prev:hover a{color:<?php echo $hovercolor ?>;}
 	.prev:after{border-left:1px dotted #ccc;content: "";height: calc(100% - -10px);right: -50px;position: absolute;top: 50%;transform: translate(0px, -50%);width: 2px;}
-<?php  } // Design 1,4 7 comments condition ends here
+<?php  } // Design 1,4 7 condition ends here
 } // is single condition ends
 } // //AMP Woocommerce condition Ends 
 // Menu Search CSS
@@ -2360,8 +2360,9 @@ if(class_exists('MCI_Footnotes')){ ?>
 		display:none;
 	}
 <?php } ?>
-<?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
-<?php if( ampforwp_get_setting('single-design-type') == '7' ){ ?>
+<?php if( is_single() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { 
+if( !ampforwp_woocommerce_conditional_check() ) { 
+if( ampforwp_get_setting('single-design-type') == '7' ){ ?>
 	.sp{
 		width:100%;
 		display:inline-block;
@@ -2726,4 +2727,5 @@ if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) {
 		}
 	}
 	<?php } // single Desing 7 ends here
-} // AMP Woocommerce condition ends here ?>
+} // AMP Woocommerce condition ends here 
+} // is single condition ends here ?>
