@@ -160,7 +160,17 @@ jQuery(function($) {
             })
         }
     }//Cloesed function  = optionSectionDevision
-
+    // Dismiss button functionlaity
+    $('#ampforwp-automattic-notice').on('click', 'button', function(){
+        var nonce = $('#ampforwp-automattic-notice').attr('data-nonce');
+        var data_notice = {
+            'action': 'ampforwp_automattic_notice_delete',
+            'security': nonce,
+        };
+        jQuery.post(ajaxurl, data_notice, function(response) {   
+    
+        });
+    });
     var hideReduxLeftTabs = function(){
          jQuery('ul.redux-group-menu > li.redux-group-tab-link-li').siblings('.redux-group-tab-link-li').each(function(key,Data){
            if(key>3 && jQuery(this).hasClass("otherSectionFields")){
@@ -637,6 +647,17 @@ var redux_title_modify = function(){
 function getQueryStringValue (key) {  
   return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
 }  
+
+jQuery(document).ready(function($){
+    // Dismiss button functionlaity
+    $('#ampforwp-wizard-notice').on('click', 'button', function(){
+        var notice = {
+            'action': 'ampforwp_notice_delete',
+        };
+        jQuery.post(ajaxurl, notice, function(response) {     
+        });
+    });
+});//(document).ready Closed
 
 jQuery(window).on("YoastSEO:ready",function(){
 AmpForWpYoastAnalysis = function() {
