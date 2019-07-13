@@ -87,10 +87,14 @@
 					<?php }
 					} ?> 
                 </ul>
-				<h3 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_permalink() ); ?>"> <?php the_title(); ?></a></h3>
-
-
 				<?php
+        		$title_name = '<a href="'.ampforwp_url_controller( get_permalink() ).'">'.get_the_title().'</a>';
+        		if( ampforwp_default_logo() ){ ?>
+    		   		<h2 class="amp-wp-title"><?php echo $title_name; ?></h2>
+				<?php }else{ ?>
+					<h3 class="amp-wp-title"><?php echo $title_name ?></h3>
+				<?php }
+					
 				if( ampforwp_check_excerpt() ) {
 					if(has_excerpt()){
 						$content = get_the_excerpt();

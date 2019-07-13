@@ -376,14 +376,14 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 .loop-category li:hover a{color: <?php echo $hovercolor; ?>;}
 .fbp-cnt p, .fsp-cnt p{color:#444;font-size:13px;line-height:1.5;letter-spacing: 0.10px;word-wrap: break-word;}
 .fbp:hover h2 a, .fsp:hover h2 a{color: <?php echo $hovercolor; ?>;}
-.fsp h2 a{color:#191919;}
+.fsp h2 a, .fsp h3 a{color:#191919;}
 <?php if(true == ampforwp_get_setting('ampforwp-full-post-in-loop')){ ?>  
 .fsp{flex-basis: calc(100%);}
 <?php }else{ ?> 
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
 <?php } ?>
 .fsp-img {margin-bottom:10px;}
-.fsp h2{margin:0px 0px 5px 0px;font-size:20px;line-height:1.4;font-weight:500;}
+.fsp h2, .fsp h3{margin:0px 0px 5px 0px;font-size:20px;line-height:1.4;font-weight:500;}
 .at-dt{font-size:11px;color:#808080;margin:12px 0px 9px 0px; display: inline-flex;}
 .pt-dt{font-size:11px;color:#808080;margin: 8px 0px 0px 0px;display: inline-flex;}
 .arch-tlt{margin:30px 0px 30px;display:inline-block;width:100%;}
@@ -718,10 +718,10 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .loop-category li:hover a{color:#005be2;}
 .fsp-cnt p{color:#444;font-size:13px;line-height:20px;letter-spacing: 0.10px;word-wrap: break-word;}
 .fsp:hover h2 a{color: <?php echo $hovercolor; ?>;}
-.fsp h2 a{color:#191919;}  
+.fsp h2 a, .fsp h3 a{color:#191919;}  
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
 .fsp-img {margin-bottom:10px;}
-.fsp h2{margin:0px 0px 5px 0px;font-size:20px;line-height:25px;font-weight:500;}
+.fsp h2, .fsp h3{margin:0px 0px 5px 0px;font-size:20px;line-height:25px;font-weight:500;}
 .fsp-cnt .loop-category{margin-bottom:8px;}
 .fsp-cnt .loop-category li {font-weight: 500;}
 .pt-dt{font-size:11px;color:#808080;margin: 8px 0px 0px 0px;display: inline-flex;}
@@ -798,7 +798,7 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 @media(max-width:425px){
     .sp-rt .amp-author {margin-bottom: 10px;}
     #pagination {margin: 20px 0px 10px 0px;}
-    .fsp h2 {font-size: 24px;font-weight:600;}
+    .fsp h2, .fsp h3 {font-size: 24px;font-weight:600;}
     .r-pf h3{padding: 15px 0px 0px 15px;}
 }
 @media(max-width:320px){
@@ -2241,7 +2241,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 if(true == ampforwp_get_setting('gnrl-dark-view')){?>
 .d{background:rgba(0,0,0,0.8);}
 .d .h_m, .d .p-m-fl{background:transparent;}
-.d .t-btn:after, .d .amp-logo a, .d .h-ic a:after, .d .h-ic a:before, .d .p-menu ul li a, .d .breadcrumb ul li a, .d .breadcrumbs span a, .d .loop-category, .d .fbp:hover h2 a, .d .fsp:hover h2 a, .d .fbp-cnt h2 a, .d .at-dt, .d .fbp-cnt p, .d .fsp-cnt p, .d .fsp h2 a, .d .pt-dt, .d .f-menu ul li a, .d .rr, body.d a:hover, .d .amp-category span a, .d .amp-category span:after, .d .amp-category span, .d .post-date .post-edit-link, .d .has_thumbnail:hover .related_link a, .d .amp-archive-title, .d .amp-loop-label, .d .loop-category li a, .d .amp-post-title, .d .cntn-wrp, .d .shr-txt, .d .athr-tx, .darkmode .r-pf h3, .d .amp-tags > span:nth-child(1), .d .amp-related-posts-title, .darkmode .post-date, .d .related-title, .d .sp-athr .author-details a, .d .sp-athr .author-details, .d .amp-tags span a, .d .amp-tag, .d .related_link a, .d .prev span, .d .next a, .d .prev a, .d a, .d .p-menu ul li.menu-item-has-children > a:after{color:#fff;}
+.d .t-btn:after, .d .amp-logo a, .d .h-ic a:after, .d .h-ic a:before, .d .p-menu ul li a, .d .breadcrumb ul li a, .d .breadcrumbs span a, .d .loop-category, .d .fbp:hover h2 a, .d .fsp:hover h2 a, .d .fbp-cnt h2 a, .d .at-dt, .d .fbp-cnt p, .d .fsp-cnt p, .d .fsp h2 a, .d .fsp h3 a, .d .pt-dt, .d .f-menu ul li a, .d .rr, body.d a:hover, .d .amp-category span a, .d .amp-category span:after, .d .amp-category span, .d .post-date .post-edit-link, .d .has_thumbnail:hover .related_link a, .d .amp-archive-title, .d .amp-loop-label, .d .loop-category li a, .d .amp-post-title, .d .cntn-wrp, .d .shr-txt, .d .athr-tx, .darkmode .r-pf h3, .d .amp-tags > span:nth-child(1), .d .amp-related-posts-title, .darkmode .post-date, .d .related-title, .d .sp-athr .author-details a, .d .sp-athr .author-details, .d .amp-tags span a, .d .amp-tag, .d .related_link a, .d .prev span, .d .next a, .d .prev a, .d a, .d .p-menu ul li.menu-item-has-children > a:after{color:#fff;}
 .d .h_m, .d .p-m-fl{border-color: rgba(251, 251, 251, 0.17);}
 .d blockquote p:before{border-color:#fff;}
 .d .p-menu ul .sub-menu li a, 

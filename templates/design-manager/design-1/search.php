@@ -60,9 +60,14 @@
  		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();?>
 
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
-
-		        <h3 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_permalink() );?>"><?php the_title() ?></a></h3>
-
+	        	<?php
+	        		$title_name = '<a href="'.ampforwp_url_controller( get_permalink() ).'">'.get_the_title().'</a>';
+	        		if( ampforwp_default_logo() ){ ?>
+	    		   		<h2 class="amp-wp-title"><?php echo $title_name; ?></h2>
+					<?php }else{ ?>
+						<h3 class="amp-wp-title"><?php echo $title_name ?></h3>
+					<?php }
+	        	?>
 				<div class="amp-wp-content-loop">
 
 		          <div class="amp-wp-meta">

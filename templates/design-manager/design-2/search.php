@@ -66,9 +66,14 @@
 					<?php amp_loop_image($image_args); ?>
 				<?php } ?>
 			<div class="amp-wp-post-content">
-				<h3 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h3>
-
-				<?php
+				<?php 
+        		$title_name = '<a href="'.esc_url( $ampforwp_amp_post_url ).'">'.get_the_title().'</a>';
+        		if( ampforwp_default_logo() ){ ?>
+    		   		<h2 class="amp-wp-title"><?php echo $title_name; ?></h2>
+				<?php }else{ ?>
+					<h3 class="amp-wp-title"><?php echo $title_name ?></h3>
+				<?php }
+				
 				if( ampforwp_check_excerpt() ) {
 				 	if(has_excerpt()){
 						$content = get_the_excerpt();
