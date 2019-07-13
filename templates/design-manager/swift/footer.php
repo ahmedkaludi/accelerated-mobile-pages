@@ -215,6 +215,13 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/favicon-mewe.svg') ?>" width="15" height="15" /></a>
 			</li>
 		<?php } ?>
+		<?php if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) { ?>
+			<li>
+				<a title="flipboard share" class="s_flipboard" <?php ampforwp_nofollow_social_links(); ?> href="https://share.flipboard.com/bookmarklet/popout?v=<?php echo esc_html(get_the_title(ampforwp_get_the_ID())); ?>&url=<?php echo urlencode(esc_url($amp_permalink)); ?>" target="_blank">
+					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/flipboard.png') ?>" width="15" height="15" />
+				</a>
+			</li>
+		<?php } ?>		
 	</ul>
 </div>
 <?php } 

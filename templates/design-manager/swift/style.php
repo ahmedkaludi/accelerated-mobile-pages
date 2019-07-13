@@ -1697,7 +1697,10 @@ if(ampforwp_get_setting('enable-single-line-share') == true)  { ?>
 <?php }
 if(ampforwp_get_setting('enable-single-mewe-share') == true)  { ?>
 .s_mewe{background:#b8d6e6;}
-<?php }  	
+<?php }
+if(ampforwp_get_setting('enable-single-flipboard-share') == true)  { ?>
+.s_flipboard{background:#f52828;}
+<?php }	
 if($redux_builder_amp['enable-single-reddit-share']){?>
 .s_rd{background:#ff4500;}
 .s_rd:after{
@@ -1811,6 +1814,9 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 	content:"\f265";
 <?php } ?>
 }
+<?php } ?>
+<?php if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) {?>
+.s_fd{background:#f52828}
 <?php } ?>
 <?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;bottom: 0;text-align: center;border: 0;}
