@@ -1054,14 +1054,3 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
   figcaption{ margin-bottom: 20px; }
 <?php }
  }
-
-add_filter( 'amp_post_template_data', 'ampforwp_add_scripts_in_search', 11);
-function ampforwp_add_scripts_in_search( $data ) {
-    if ( is_search() && empty( $data['amp_component_scripts']['amp-form'] ) ) {
-        $data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';   
-    }
-    if ( is_search() && empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
-        $data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';   
-    }
-    return $data;
-}
