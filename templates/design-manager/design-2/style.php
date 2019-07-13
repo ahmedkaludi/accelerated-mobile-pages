@@ -99,12 +99,14 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 #searchsubmit{opacity:0}
 .hide{display:none}
 .headerlogo a, [class*=icono-]{ color: #F42F42 }
+<?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
 /* Pagination */
 .amp-wp-content.pagination-holder { background: none; padding: 0; box-shadow: none; height: auto; min-height: auto; }
 #pagination{ width: 100%; margin-top: 15px; }
 #pagination .next{ float: right; margin-bottom: 10px; }
 #pagination .prev{ float: left }
 #pagination .next a, #pagination .prev a{ margin-bottom: 12px; background: #fefefe; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05); padding: 11px 15px; font-size: 12px; color: #666; }
+<?php } // AMP Woocommerce condition ends ?>
 <?php 
 if(ampforwp_get_setting('enable-single-social-icons') == true && is_single() || is_page() ){?>
 /* Sticky Social bar in Single */
@@ -204,6 +206,10 @@ a.btt:hover {
 .nav_container { 
 	background:  <?php echo ampforwp_sanitize_color($header_bg_clr); ?>
 }
+.nav_container a, .nav_container a:hover, .nav_container a:focus{ 
+	color:<?php echo sanitize_hex_color( $header_color ); ?> 
+}
+<?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
 <?php if(is_singular() || is_home() && true == ampforwp_get_setting('amp-frontpage-select-option') && ampforwp_get_blog_details() == false && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ){ ?>
 /* Single */
 .comment-button-wrapper{ margin-bottom: 0px; margin-top: 60px; text-align:center }
@@ -402,6 +408,7 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
 @media (min-width: 768px) and (max-width: 1600px) {.tablepress { overflow-x: none; } }
 @media (min-width: 320px) and (max-width: 767px) {.tablepress { display: inline-block; overflow-x: scroll; } }
 <?php }  ?>
+<?php } // AMP Woocommerce condition Ends Here?>
 .design_2_wrapper .amp-loop-list .amp-wp-meta {display: none;}
 <?php if(!is_home() && ((is_single() && true == ampforwp_get_setting('ampforwp-bread-crumb') ) || (is_page() && ampforwp_get_setting('ampforwp_pages_breadcrumbs')) ) && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
 .breadcrumb{line-height: 1;margin-bottom:6px;}
@@ -418,7 +425,7 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
 .amp-carousel-container {position: relative;width: 100%;height: 100%;} 
 .amp-carousel-img img {object-fit: contain;}
 /* Slide Navigation code */
-.amp-menu li{position:relative}
+.amp-menu li{position:relative;margin:0;}
 .amp-menu li.menu-item-has-children ul{display:none;margin:0;background:#222}
 .amp-menu li.menu-item-has-children ul ul{background:#444}
 .amp-menu input{display:none}
