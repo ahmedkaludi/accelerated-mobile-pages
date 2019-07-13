@@ -207,6 +207,7 @@ function ampforwp_add_custom_rewrite_rules() {
       'top'
     );
 	//Rewrite rule for custom Taxonomies
+	$taxonomies = array();
     if( function_exists('ampforwp_generate_taxonomies_transient')){
     	//Rewrite rule for custom Taxonomies
 		$taxonomies = ampforwp_generate_taxonomies_transient();
