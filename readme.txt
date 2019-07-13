@@ -190,16 +190,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.64 (12th July 2019) =
+= 0.9.97.64 (13th July 2019) =
 * Improvements: Performance improvement -- Meta Value Queries #3392
 * Improvements: h1 tag on the archive, search and author pages #3323
 * Improvements: Flipboard as a social sharing option in AMP added #3348
 * Improvements: Comscore new variable for AMP in Analytics #3378
 * Improvements: Option for Leverage Browser Caching in the performance settings #3298
-* Improvements: External link option for images in Gallery(Logo) module of AMP Pagebuilder #3375
 * Fixed: Auto Add AMP in Menu URL option is not working for the product category #3319
 * Fixed: Horizontal scrolling issue on the homepage #3217
 * Fixed: Vuukle comments Toggle UX bug #3399
+* Fixed: Basic amp components to work in the content #2713
 * Fixed: Unnecessary CSS is loading in single amp product pages and also on cart pages. #3038
 * Fixed: Improper amphtml is getting created in the ngg_tag Url when NextGEN Gallery is used #3381
 * Fixed: Tutorial link for Disqus comments section #3362
