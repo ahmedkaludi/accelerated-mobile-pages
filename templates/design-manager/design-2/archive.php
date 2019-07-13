@@ -134,7 +134,11 @@
 				<?php }else{ ?>
 					<h3 class="amp-wp-title"><?php echo $title_name ?></h3>
 				<?php }
-					
+				
+				if( $is_full_content ){
+					ampforwp_loop_full_content_featured_image();
+				}
+
 				if( ampforwp_check_excerpt() && !$is_full_content ) {
 					$class = 'large-screen-excerpt';
 					if ( true == $redux_builder_amp['excerpt-option-design-2'] ) {
