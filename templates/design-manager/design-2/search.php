@@ -55,7 +55,11 @@
 		};?>
 
 		<div class="amp-wp-content amp-archive-heading">
-		<h2 class="page-title"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query());?></h2>
+		<?php if( ampforwp_default_logo() ){ ?>
+			<h1 class="page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?></h1>
+		<?php }else{ ?>	
+			<h2 class="page-title"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query());?></h2>
+		<?php } ?>
  		</div>
 		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 			$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() ); ?>
@@ -67,7 +71,13 @@
 					<?php amp_loop_image($image_args); ?>
 				<?php } ?>
 			<div class="amp-wp-post-content">
-				<h3 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h3>
+				<?php 
+					$title_name = '<a href="'.esc_url( $ampforwp_amp_post_url ).'">'.get_the_title().'</a>';
+					if( ampforwp_default_logo() ){ ?>
+						<h2 class="amp-wp-title"><?php echo $title_name; ?></h2>
+					<?php }else{ ?>
+					<h3 class="amp-wp-title"><?php echo $title_name ?></h3>
+					<?php } ?>
 				<?php if( ampforwp_check_excerpt() ) {
 					$class = 'large-screen-excerpt';
 					if ( true == $redux_builder_amp['excerpt-option-design-2'] ) {

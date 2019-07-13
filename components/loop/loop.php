@@ -14,7 +14,11 @@ function amp_archive_title(){
 }
 	if ( is_archive() ) {
 		$description = $sanitizer = $arch_desc = '';
-	    the_archive_title( '<h3 class="amp-archive-title">', '</h3>' );
+	    if(ampforwp_default_logo()){
+	   		the_archive_title( '<h1 class="amp-archive-title">', '</h1>' );
+		}else{
+			the_archive_title( '<h2 class="amp-archive-title">', '</h2>' );
+		}
 	    $description 	= get_the_archive_description();
 		$sanitizer = new AMPFORWP_Content( $description, array(), 
 			apply_filters( 'ampforwp_content_sanitizers',
@@ -65,7 +69,12 @@ function amp_archive_title(){
 		if(function_exists('ampforwp_translation')){
 			$label = ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:');
 		}
-		echo '<h3 class="amp-loop-label">'.esc_attr($label) . '  ' . esc_attr(get_search_query()).'</h3>';
+
+		if(ampforwp_default_logo()){
+			echo '<h1 class="amp-loop-label">'.$label . '  ' . get_search_query().'</h1>';	
+		}else{	
+			echo '<h2 class="amp-loop-label">'.$label . '  ' . get_search_query().'</h2>';
+		}
 	}
 }
 
@@ -290,6 +299,13 @@ function amp_pagination($args =array()) {
 function amp_loop_title($data=array()){
 	$data = array_filter($data);
 	$tag = 'h2';
+	if ( is_archive() || is_search() ) {
+		if(ampforwp_default_logo()){
+	   		$tag = 'h2';
+		}else{
+			$tag = 'h3';
+		}
+	}
 	if(isset($data['tag']) && $data['tag']!=""){
 		$tag = $data['tag'];
 	}
