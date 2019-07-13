@@ -17,12 +17,13 @@ if ( ! class_exists('AMPforWP_Afterdomain_Endpoint') ) {
 			add_filter('ampforwp_url_controller', array( $this , 'ampforwp_url_controller') );
 		}
 		public function amp_afterdomain_amphtml( $amphtml ) {
-			$amphtml = str_replace('/amp', '', $amphtml);
+			$amphtml = str_replace('/'.AMPFORWP_AMP_QUERY_VAR.'', '', $amphtml);
 			$amphtml = $this->ampforwp_add_afterdomain($amphtml);
 			return $amphtml;
 		}
 
 		public function ampforwp_add_afterdomain($url){
+			$delimiter = '';
 			$site_domain = str_replace(
 							array(
 								'http://www.',
@@ -67,8 +68,7 @@ if ( ! class_exists('AMPforWP_Afterdomain_Endpoint') ) {
 		}
 
 		public function ampforwp_url_controller( $url ) {
-
-			$url = str_replace('/amp', '', $url);
+			$url = str_replace('/'.AMPFORWP_AMP_QUERY_VAR.'', '', $url);
 			$url = $this->ampforwp_add_afterdomain($url);
 			return $url;
 		}
