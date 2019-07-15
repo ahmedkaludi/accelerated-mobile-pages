@@ -6474,6 +6474,7 @@ $single_page_options = array(
                'class' => 'child_opt child_opt_arrow',
                'title' => esc_html__('Addthis Floating Share', 'accelerated-mobile-pages'),
                'default'  =>  '0',
+               'required' => array(array('enable-add-this-option', '=', '1'))
             ),
             array(
                'id' => 'addthis-inline-share',
@@ -6481,6 +6482,7 @@ $single_page_options = array(
                'class' => 'child_opt child_opt_arrow',
                'title' => esc_html__('Addthis Inline Share', 'accelerated-mobile-pages'),
                'default'  =>  '1',
+               'required' => array(array('enable-add-this-option', '=', '1'))
             ),
            array(
                 'id'       => 'swift-add-this-position',
