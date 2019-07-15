@@ -3934,6 +3934,129 @@ Redux::setSection( $opt_name, array(
                             array('amp-design-selector', '!=' , '4')
                         )
             ),
+            // Design 1 Fields
+            array(
+                    'id'        => 'amp-d1-background-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Header Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#0a89c0',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+              array(
+                    'id'        => 'amp-d1-elements-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Header Elements Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color' => '#ffffff',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-sidebar-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#efefef',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-menu-bg-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Menu Elements Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#fafafa',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-menu-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Menu Elements Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#0a89c0',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-submenu-bg-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Sub Menu Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#ffffff',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-menu-brdr-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#efefef',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-menu-icon-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Menu Arrow Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#ccc',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-cross-btn-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Close Button Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#ffffff',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-cross-bg-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Close Button Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'rgba'     => 'rgba(0, 0, 0, 0.25)',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-cross-hover-color',
+                    'type'      => 'color_rgba',
+                    'title'     => esc_html__('Close Button Hover color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'rgba'     => 'rgba(0, 0, 0, 0.45)',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1')
+                    )
+            ),
+            // Design 2 Fields
             array(
                     'id'        => 'amp-d2-background-color',
                     'type'      => 'color_rgba',
@@ -4055,6 +4178,7 @@ Redux::setSection( $opt_name, array(
                       array('amp-design-selector', '=' , '2')
                     )
             ),
+            // Design 3 Fields
              array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
                     'type'      => 'color_rgba',
