@@ -408,7 +408,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'text',
 								'name'		=>'row_id',
-								'label'		=>esc_html__('Row ID', 'accelerated-mobile-pages'),
+								'label'		=> esc_html__('Row ID', 'accelerated-mobile-pages'),
 								'tab'    	=>'container_css',
 								'default'	=>'',
 								'content_type'=>'html',
@@ -617,7 +617,7 @@ $containerCommonSettings = array(
 	 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_mp4video_controls",
-                                'label'     => 'Show Video Controls',
+                                'label'     => esc_html__('Show Video Controls', 'accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -657,7 +657,7 @@ $containerCommonSettings = array(
 	 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_youtube_controls",
-                                'label'     => 'Show Video Controls',
+                                'label'     => esc_html__('Show Video Controls', 'accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -672,7 +672,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_modestbranding",
-                                'label'     => 'Enable Modestbranding(Hide Youtube Logo)',
+                                'label'     => esc_html__('Enable Modestbranding(Hide Youtube Logo)','accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -687,7 +687,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_youtube_loop",
-                                'label'     => 'Enable Video Loop',
+                                'label'     => esc_html__('Enable Video Loop','accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -702,7 +702,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_youtube_rel",
-                                'label'     => 'Show RelatedVideos',
+                                'label'     => esc_html__('Show RelatedVideos','accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -717,7 +717,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_youtube_autoplay",
-                                'label'     =>'Enable Autoplay',
+                                'label'     => esc_html__('Enable Autoplay','accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -732,7 +732,7 @@ $containerCommonSettings = array(
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"title",		
-		 						'label'		=>'Background Video Heading',
+		 						'label'		=> esc_html__('Background Video Heading','accelerated-mobile-pages'),
 		           				 'tab'      =>'customizer',
 		 						'default'	=>'Heading',	
 		           				'content_type'=>'html',
@@ -742,7 +742,7 @@ $containerCommonSettings = array(
 	 						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"content_title",		
-		 						'label'		=>'Background Video Content',
+		 						'label'		=> esc_html__('Background Video Content','accelerated-mobile-pages'),
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'Write your content in Text Editor',	
 		           				'content_type'=>'html',
@@ -752,7 +752,7 @@ $containerCommonSettings = array(
 	 						array(
 		 						'type'		=>'text',		
 		 						'name'		=>"tlt_size",		
-		 						'label'		=>'Heading Font Size',
+		 						'label'		=> esc_html__('Heading Font Size','accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'35px',	
 		           				'content_type'=>'css',
@@ -762,7 +762,7 @@ $containerCommonSettings = array(
 	 						array(    
 				                'type'  =>'select',   
 				                'name'  =>'tlt_wgt',    
-				                'label' =>"Heading Font Weight",
+				                'label' => esc_html__("Heading Font Weight",'accelerated-mobile-pages'),
 				                'tab'     =>'design',
 				                'default' =>'600',
 				                'options_details'=>array(
@@ -779,7 +779,7 @@ $containerCommonSettings = array(
 			              	array(
 		 						'type'		=>'text',		
 		 						'name'		=>"letter_spacing",		
-		 						'label'		=>'Heading Letter Spacing',
+		 						'label'		=> esc_html__('Heading Letter Spacing','accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'1px',	
 		           				'content_type'=>'css',
@@ -789,7 +789,7 @@ $containerCommonSettings = array(
 	 						array(
 		 						'type'		=>'text',		
 		 						'name'		=>"tlt_ln_hgt",		
-		 						'label'		=>'Heading Line Height',
+		 						'label'		=> esc_html__('Heading Line Height','accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'1.7',	
 		           				'content_type'=>'css',
@@ -799,7 +799,7 @@ $containerCommonSettings = array(
 	 						array(
 								'type'		=>'color-picker',
 								'name'		=>"tlt_color",
-								'label'		=>'Heading Color',
+								'label'		=> esc_html__('Heading Color','accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css',
@@ -809,7 +809,7 @@ $containerCommonSettings = array(
 							array(
 		 						'type'		=>'text',		
 		 						'name'		=>"cnt_size",		
-		 						'label'		=>'Content Font Size',
+		 						'label'		=> esc_html__('Content Font Size','accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
@@ -819,7 +819,7 @@ $containerCommonSettings = array(
 	 						array(    
 				                'type'  =>'select',   
 				                'name'  =>'cnt_font_type',    
-				                'label' =>"Content Font Weight",
+				                'label' => esc_html__("Content Font Weight",'accelerated-mobile-pages'),
 				                'tab'     =>'design',
 				                'default' =>'400',
 				                'options_details'=>array(
@@ -836,7 +836,7 @@ $containerCommonSettings = array(
 	 						array(
 		 						'type'		=>'text',		
 		 						'name'		=>"cnt_ln_hgt",		
-		 						'label'		=>'Content Line Height',
+		 						'label'		=> esc_html__('Content Line Height','accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'1.7',	
 		           				'content_type'=>'css',
@@ -846,7 +846,7 @@ $containerCommonSettings = array(
 	 						array(
 								'type'		=>'color-picker',
 								'name'		=>"cnt_color",
-								'label'		=>'Content Color',
+								'label'		=> esc_html__('Content Color','accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css',
@@ -856,7 +856,7 @@ $containerCommonSettings = array(
 							array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_overlay",
-                                'label'     => 'Background Video Overlay',
+                                'label'     => esc_html__('Background Video Overlay','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -872,7 +872,7 @@ $containerCommonSettings = array(
                             array(
 								'type'		=>'color-picker',
 								'name'		=>"overlay_cnt_color",
-								'label'		=>'Background Video Content Color',
+								'label'		=> esc_html__('Background Video Content Color','accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#fff',
 								'content_type'=>'css',
@@ -882,7 +882,7 @@ $containerCommonSettings = array(
 	 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_parallax",
-                                'label'     => 'Parallax Effect',
+                                'label'     => esc_html__('Parallax Effect','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -897,7 +897,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_slant",
-                                'label'     => 'Slant Background',
+                                'label'     => esc_html__('Slant Background','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -912,7 +912,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_enbtp",
-                                'label'     => 'Enable Top',
+                                'label'     => esc_html__('Enable Top','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -927,7 +927,7 @@ $containerCommonSettings = array(
                             array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type_slant',		
-	 							'label' =>"Slant Position",
+	 							'label' => esc_html__("Slant Position",'accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'left',
 	 							'options_details'=>array(
@@ -939,7 +939,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_enbbt",
-                                'label'     => 'Enable Bottom',
+                                'label'     => esc_html__('Enable Bottom','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -954,7 +954,7 @@ $containerCommonSettings = array(
                             array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type_slate_btn',		
-	 							'label' =>"Slant Position",
+	 							'label' => esc_html__("Slant Position",'accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'lft',
 	 							'options_details'=>array(
@@ -966,7 +966,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'color-picker',
 								'name'		=>"color_picker",
-								'label'		=>'Background Color',
+								'label'		=> esc_html__('Background Color','accelerated-mobile-pages'),
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'content_type'=>'css',
@@ -976,7 +976,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'gradient-selector',
 								'name'		=>"selected_gradient",
-								'label'		=>'Background Gradient',
+								'label'		=> esc_html__('Background Gradient', 'accelerated-mobile-pages'),
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'content_type'=>'css',
@@ -1040,7 +1040,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'checkbox',
 								'name'		=>"shadow",
-								'label'		=>'Background Shadow',
+								'label'		=> esc_html__('Background Shadow','accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>array(),
 								'options'	=>array(
@@ -1055,7 +1055,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'checkbox_bool',
 								'name'		=>"col_2_align",
-								'label'		=>'Column 2 Alignment at center',
+								'label'		=> esc_html__('Column 2 Alignment at center','accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=> 0,
 								'options'	=>array(
@@ -1070,7 +1070,7 @@ $containerCommonSettings = array(
 							array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_slant_trnsm",
-                                'label'     => 'Slant Transform Shape',
+                                'label'     => esc_html__('Slant Transform Shape','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -1085,7 +1085,7 @@ $containerCommonSettings = array(
                             array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"top_align",		
-		 						'label'		=>'Top Adjustment',
+		 						'label'		=> esc_html__('Top Adjustment','accelerated-mobile-pages'),
 		           				 'tab'      =>'design',
 		 						'default'	=>'0px',	
 		           				'content_type'=>'css',
@@ -1094,7 +1094,7 @@ $containerCommonSettings = array(
                             array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"slant_rotate_top",		
-		 						'label'		=>'Slant Rotate',
+		 						'label'		=> esc_html__('Slant Rotate','accelerated-mobile-pages') ,
 		           				 'tab'      =>'design',
 		 						'default'	=>'7',	
 		           				'content_type'=>'css',
@@ -1103,7 +1103,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_respn_align",
-                                'label'     => 'Responsive Top Adjustment',
+                                'label'     => esc_html__('Responsive Top Adjustment','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   => 0,
                                 'options'   =>array(
@@ -1118,7 +1118,7 @@ $containerCommonSettings = array(
                             array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"res_top_align",		
-		 						'label'		=>'Top Adjustment',
+		 						'label'		=> esc_html__('Top Adjustment','accelerated-mobile-pages'),
 		           				 'tab'      =>'design',
 		 						'default'	=>'0px',	
 		           				'content_type'=>'css',
@@ -1128,7 +1128,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
-								'label'		=>'Set Margin',
+								'label'		=>esc_html__('Set Margin','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>
 					                            array(
@@ -1142,7 +1142,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
-								'label'		=>'Set Padding',
+								'label'		=> esc_html__('Set Padding','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>array(
 													'top'=>'20px',
@@ -1156,7 +1156,7 @@ $containerCommonSettings = array(
 							array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_brdr",
-                                'label'     => 'Border',
+                                'label'     => esc_html__('Border','accelerated-mobile-pages'),
                                 'tab'       =>'container_css',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -1170,7 +1170,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'spacing',
 								'name'		=>"border_sz",
-								'label'		=>'Border width',
+								'label'		=> esc_html__('Border width','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>array(
 													'top'=>'0px',
@@ -1184,7 +1184,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'color-picker',
 								'name'		=>"border_clr_pkr",
-								'label'		=>'Border Color',
+								'label'		=> esc_html__('Border Color','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>'#ccc',
 								'required'  => array('check_for_brdr'=>1),
@@ -1194,7 +1194,7 @@ $containerCommonSettings = array(
 							array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_pdng",
-                                'label'     => 'Responsive Padding',
+                                'label'     => esc_html__('Responsive Padding','accelerated-mobile-pages'),
                                 'tab'       =>'container_css',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -1208,7 +1208,7 @@ $containerCommonSettings = array(
                             array(
 								'type'		=>'spacing',
 								'name'		=>"res_pdng",
-								'label'		=>'Set Padding',
+								'label'		=> esc_html__('Set Padding','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>array(
 													'top'=>'0px',
@@ -1223,7 +1223,7 @@ $containerCommonSettings = array(
 							array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_mrgn",
-                                'label'     => 'Responsive Margin',
+                                'label'     => esc_html__('Responsive Margin','accelerated-mobile-pages'),
                                 'tab'       =>'container_css',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -1237,7 +1237,7 @@ $containerCommonSettings = array(
                             array(
 								'type'		=>'spacing',
 								'name'		=>"res_mrgn",
-								'label'		=>'Set Margin',
+								'label'		=> esc_html__('Set Margin','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>
 				                            array(
