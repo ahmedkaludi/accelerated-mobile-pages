@@ -43,6 +43,10 @@ function ampforwp_thirdparty_compatibility(){
 	remove_action('shutdown', 'jch_buffer_end', -1);
 	//Safia theme video compatibility in amp #3138
 	add_filter('the_content', 'ampforwp_safia_theme');
+	//ShortPixel Plugin Compatibility to remove picture tag in amp #3439
+    remove_filter( 'the_content', 'shortPixelConvertImgToPictureAddWebp', 10000 );
+	remove_filter( 'the_excerpt', 'shortPixelConvertImgToPictureAddWebp', 10000 );
+	remove_filter( 'post_thumbnail_html', 'shortPixelConvertImgToPictureAddWebp');
 }
 
 //Updater to check license
