@@ -3934,6 +3934,14 @@ Redux::setSection( $opt_name, array(
                       array('amp-design-selector', '=' , '2')
                     )
             ),
+            array(
+                       'id' => 'header_design_section',
+                       'type' => 'section',
+                       'title' => __('Header Designs', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 1,
+            ),
              array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
                     'type'      => 'color_rgba',
@@ -3970,7 +3978,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-opt-color-rgba-menu-elements-color',
                     'type'      => 'color_rgba',
-                    'title'     => esc_html__('Navigation Menu Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Menu Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#eeeeee',
                     ),
@@ -4003,7 +4011,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-opt-color-rgba-menu-label-color',
                     'type'      => 'color_rgba',
-                    'title'     => esc_html__('Navigate Label Color','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Menu Label Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#aaa',
                     ),
