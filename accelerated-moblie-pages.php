@@ -1183,7 +1183,7 @@ function ampforwp_automattic_notice_delete(){
 // is_amp_endpoint Fallback #2287 #3055
 add_action('parse_query','ampforwp_vendor_is_amp_endpoint'); 
 function ampforwp_vendor_is_amp_endpoint(){
-	if ( ! function_exists('amp_activate') && ! function_exists('is_amp_endpoint' ) ) {
+	if ( ! function_exists('amp_activate') && ! function_exists('is_amp_endpoint' ) && ! defined('ADSFORWP_PLUGIN_DIR') ) {
 		function is_amp_endpoint(){
 			return false !== get_query_var( AMP_QUERY_VAR, false );
 		}
