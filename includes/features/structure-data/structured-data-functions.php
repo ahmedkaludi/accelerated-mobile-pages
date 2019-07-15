@@ -389,7 +389,7 @@ if ( ! function_exists('ampforwp_sd_multiple_images') ) {
 				$image3_height = 300;
 				$image3 = ampforwp_aq_resize( $metadata['image']['url'], $image3_width, $image3_height, true, false, true );
 				$image3_url = $image3[0];
-				$metadata['image'] = array($image3_url, $image2_url, $image1_url); 
+				$metadata['image'] = array($image1_url, $image2_url, $image3_url); 
 			}
 		}
 		return $metadata;
