@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.64 (13th July 2019) =
+= 0.9.97.64 (15th July 2019) =
 * Improvements: Performance improvement -- Meta Value Queries #3392
 * Improvements: h1 tag on the archive, search and author pages #3323
 * Improvements: Flipboard as a social sharing option in AMP added #3348
