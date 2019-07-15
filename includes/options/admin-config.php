@@ -5494,7 +5494,7 @@ $single_page_options = array(
                     'title'    => esc_html__('Featured Image Type', 'accelerated-mobile-pages'),
                     'tooltip-subtitle'     => esc_html__('Select Featured Image Size','accelerated-mobile-pages'),
                     'options'  => array(
-                        '1' => 'Stretching Image',
+                        '1' => 'Full Screen Image',
                         '2' => 'Image Fit above the Content',
                     ),
                     'default'  => '1',
