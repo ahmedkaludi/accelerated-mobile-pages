@@ -6408,9 +6408,9 @@ $single_page_options = array(
 
     // Social Section
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Social Sharing', 'accelerated-mobile-pages' ),
+        'title'      => esc_html__( 'Social Sharing', 'accelerated-mobile-pages' ),
         'id'         => 'amp-social',
-        'desc'      => __('All the Social sharing and the social profile related settings are here','accelerated-mobile-pages'),
+        'desc'      => esc_html__('All the Social sharing and the social profile related settings are here','accelerated-mobile-pages'),
         'subsection' => true,
         'fields'     => array(
         
@@ -7021,10 +7021,8 @@ $single_page_options = array(
             array(
            'id' => 'social-chat',
            'type' => 'section',
-           'title' => __('Chat', 'accelerated-mobile-pages'),
+           'title' => esc_html__('Chat', 'accelerated-mobile-pages'),
            'indent' => true,
-           //'start'  => true,
-           //'label' => 'Tab 2',
            'layout_type' => 'accordion',
             'accordion-open'=> 1,
          ),
