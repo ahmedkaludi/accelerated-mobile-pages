@@ -47,9 +47,9 @@ if( ampforwp_get_setting( 'amp-author-description') && is_single() && !class_exi
 	                    <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>
 	                    <?php
 	                }
-	                echo '"'.ampforwp_get_author_details( $post_author , 'meta-taxonomy' );  
+	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );  
 	                echo ampforwp_yoast_twitter_handle();
-	             	echo  $post_author->description .'."';
+	             	echo  $post_author->description;
 	             		 ?>
 
 	        <?php } ?>
