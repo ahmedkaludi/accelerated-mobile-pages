@@ -570,7 +570,14 @@ p.nocomments {padding: 10px;color: #fff;}
 .sp{width:100%;margin-top:20px;display:inline-block;}
 <?php } ?>
 .amp-post-title{font-size:48px;line-height:58px;color: #333;margin:0;padding-top:15px;}
-.sf-img {width: 100%;display: inline-block;height: auto;margin-top: 33px;}
+.sf-img {width: 100%;display: inline-block;height: auto;
+<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
+	margin-top: 33px;
+<?php } 
+if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
+	margin-bottom: 33px;
+<?php } ?>
+}
 <?php if (!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>
 .sp-cnt{margin-top: 40px;clear: both;width: 100%;display: inline-block; }
 .sp-rl{display:inline-flex;width:100%;}
@@ -774,7 +781,13 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
     .rlp-cnt {width: 100%;float: none;}
     .amp-post-title {font-size: 32px;line-height: 44px;}
     .amp-category span a {font-size: 12px;}
-    .sf-img{margin-top:20px;}
+    .sf-img{
+    <?php if ( ampforwp_get_setting('swift-featued-image-type') == 1 ) { ?>
+    	margin-top:20px;
+    <?php }  
+    if ( ampforwp_get_setting('swift-featued-image-type') == 2 ) { ?>
+    	margin-bottom:20px;
+	<?php } ?>}
     .sp{margin-top: 20px;}
     .menu-btn a{padding:10px 20px;font-size:14px;}
     .next, .prev{float: none;width: 100%;}
@@ -903,7 +916,14 @@ if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('s
 	.artl-cnt ol li {counter-increment: step-counter;}
 	.artl-cnt ol li::before {content: counter(step-counter);font-size: 16px;color: #000;position: absolute;left: 0px;line-height: 1.2;top: 6px;}
 	.sf-img figure{margin:0;}
-	.sf-img .wp-caption-text{width: 1100px;text-align: left;margin: 0 auto;color: #a1a1a1;font-size: 14px;line-height:20px;font-weight: 500;border-bottom: 1px solid #ccc;padding: 15px 0px;}
+	.sf-img .wp-caption-text{
+	<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
+		width: 1100px;
+	<?php }
+	if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
+		width:100%;
+	<?php } ?>
+	text-align: left;margin: 0 auto;color: #a1a1a1;font-size: 14px;line-height:20px;font-weight: 500;border-bottom: 1px solid #ccc;padding: 15px 0px;}
 	.sf-img .wp-caption-text:before{
 	<?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
 		content:"\e412";
