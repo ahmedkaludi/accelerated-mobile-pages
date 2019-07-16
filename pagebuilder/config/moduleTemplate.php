@@ -52,9 +52,9 @@ if(!function_exists("ampforwp_module_templates")){
 	}//Function closed
 }//If Fucntion check closed
 
-//Row Contents, embvideo,mp4video,youtubevideo
+//Row Contents, video,mp4video,youtubevideo
 $output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row_class}} {{grid_type}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
-	{{if_condition_background_type==embvideo}}
+	{{if_condition_background_type==video}}
 	<div class="amp_video">
 		<div class="amp-txt">
 	      <h1>{{title}}</h1>
@@ -64,13 +64,13 @@ $output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row
 	          sandbox="allow-scripts allow-same-origin"
 	          layout="responsive"
 	          frameborder="0"
-	          src="{{row_background_embvideo}}">
+	          src="{{row_background_video}}">
 	    </amp-iframe>
     	{{if_condition_check_for_overlay==1}}
     		<div class="overlay"></div>
     	{{ifend_condition_check_for_overlay_1}}
     </div>
-    {{ifend_condition_background_type_embvideo}}
+    {{ifend_condition_background_type_video}}
     {{if_condition_background_type==mp4video}}
 	<div class="amp_video">
 		<div class="amp-txt">
@@ -209,7 +209,7 @@ $front_css = '
 	{{ifend_condition_align_type_slate_btn_rht}}    
  }
 {{ifend_condition_check_for_enbbt_1}}
-{{if_condition_background_type==embvideo}}
+{{if_condition_background_type==video}}
 {{row-class}} .amp_video{
   position: relative;
 }
@@ -253,7 +253,7 @@ $front_css = '
 	color:{{overlay_cnt_color}};
 }
 {{ifend_condition_check_for_overlay_1}}
-{{ifend_condition_background_type_embvideo}}
+{{ifend_condition_background_type_video}}
 
 {{if_condition_background_type==mp4video}}
 {{row-class}} .amp_video{
@@ -516,7 +516,7 @@ $containerCommonSettings = array(
 	 												'color'=>'Color',
 	 												'gradient'=>'Gradient',
 	 												'image'=>'Background Image',
-	 												'embvideo'=>'Background Video(EmbVideo)',
+	 												'video'=>'Background Video(EmbVideo)',
 	 												'mp4video'=>'Background Video(Mp4Vide0)',
 	 												'youtubevideo'=>'Background Video(YoutubeVideo)',
 	 													),
@@ -529,7 +529,7 @@ $containerCommonSettings = array(
 		 						'label'		=>'amp-iframe',
 		 						'default'	=>'https://cdn.ampproject.org/v0/amp-iframe-0.1.js',
 		 						'content_type'=>'js',
-		           				'required'  => array('background_type'=>'embvideo'),
+		           				'required'  => array('background_type'=>'video'),
 	 						),
 	 						array(		
 		 						'type'		=>'require_script',		
@@ -596,13 +596,13 @@ $containerCommonSettings = array(
 								),
 	 						array(
 								'type'		=>'text',
-								'name'		=>"row_background_embvideo",
+								'name'		=>"row_background_video",
 								'label'		=> esc_html__( 'Background EmbVideo URL', 'accelerated-mobile-pages' ),
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'helpmessage'	=> esc_html__('Your video should be 600px away from the top or not within the first 75% of the viewport and it should be added like - https://www.youtube.com/embed/XXXXXXXXXX', 'accelerated-mobile-pages'),
 								'content_type'=>'html',
-								'required'  => array('background_type'=>'embvideo')
+								'required'  => array('background_type'=>'video')
 								),
 	 						array(
 								'type'		=>'text',
@@ -737,7 +737,7 @@ $containerCommonSettings = array(
 		 						'default'	=>'Heading',	
 		           				'content_type'=>'html',
 		           				'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(		
 		 						'type'		=>'text-editor',		
@@ -747,7 +747,7 @@ $containerCommonSettings = array(
 		 						'default'	=>'Write your content in Text Editor',	
 		           				'content_type'=>'html',
 		           				'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(
 		 						'type'		=>'text',		
@@ -757,7 +757,7 @@ $containerCommonSettings = array(
 		 						'default'	=>'35px',	
 		           				'content_type'=>'css',
 		           				'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(    
 				                'type'  =>'select',   
@@ -774,7 +774,7 @@ $containerCommonSettings = array(
 				                                ),
 				                'content_type'=>'css',
 				                'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 			              	),
 			              	array(
 		 						'type'		=>'text',		
@@ -784,7 +784,7 @@ $containerCommonSettings = array(
 		 						'default'	=>'1px',	
 		           				'content_type'=>'css',
 		           				'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(
 		 						'type'		=>'text',		
@@ -794,7 +794,7 @@ $containerCommonSettings = array(
 		 						'default'	=>'1.7',	
 		           				'content_type'=>'css',
 		           				'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(
 								'type'		=>'color-picker',
@@ -804,7 +804,7 @@ $containerCommonSettings = array(
 								'default'	=>'#333',
 								'content_type'=>'css',
 								'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 							),
 							array(
 		 						'type'		=>'text',		
@@ -814,7 +814,7 @@ $containerCommonSettings = array(
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
 		           				'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(    
 				                'type'  =>'select',   
@@ -831,7 +831,7 @@ $containerCommonSettings = array(
 				                                ),
 				                'content_type'=>'css',
 				                'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 			              	),
 	 						array(
 		 						'type'		=>'text',		
@@ -841,7 +841,7 @@ $containerCommonSettings = array(
 		 						'default'	=>'1.7',	
 		           				'content_type'=>'css',
 		           				'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(
 								'type'		=>'color-picker',
@@ -851,7 +851,7 @@ $containerCommonSettings = array(
 								'default'	=>'#333',
 								'content_type'=>'css',
 								'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 							),
 							array(
                                 'type'      =>'checkbox_bool',
@@ -867,7 +867,7 @@ $containerCommonSettings = array(
                                             ),
                                 'content_type'=>'html',
                                 'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'))
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
                             ),
                             array(
 								'type'		=>'color-picker',
@@ -877,7 +877,7 @@ $containerCommonSettings = array(
 								'default'	=>'#fff',
 								'content_type'=>'css',
 								'required_type' => 'or',
-		           				'required'  => array('background_type'=> array('embvideo','mp4video','youtubevideo'), 'check_for_overlay'=>1)
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'), 'check_for_overlay'=>1)
 							),
 	 						array(
                                 'type'      =>'checkbox_bool',
