@@ -108,6 +108,7 @@ function ampforwp_leverage_browser_caching_remove(){
     }
 }
 function ampforwp_leverage_browser_caching(){
+    global $pagenow;
     $htaccess_file = wp_normalize_path( ABSPATH . '.htaccess' );
     if ( file_exists( $htaccess_file ) ) {
         if ( is_readable( $htaccess_file ) && is_writable( $htaccess_file ) ) {
@@ -122,10 +123,14 @@ function ampforwp_leverage_browser_caching(){
                 file_put_contents( $htaccess_file, $htaccess_cntn );
             }
         } else {
-            add_action( 'admin_notices', 'ampforwp_no_htaccess_access_notice' );
+            if( $pagenow == 'admin.php' && isset($_GET['page']) && esc_attr($_GET['page']) == 'amp_options'){
+                add_action( 'admin_notices', 'ampforwp_no_htaccess_access_notice' );
+            }
         }
     }else {
-        add_action( 'admin_notices', 'ampforwp_no_htaccess_notice');
+        if( $pagenow == 'admin.php' && isset($_GET['page']) && esc_attr($_GET['page']) == 'amp_options'){
+            add_action( 'admin_notices', 'ampforwp_no_htaccess_notice');
+        }
     }
 }
 
@@ -137,7 +142,7 @@ function ampforwp_no_htaccess_access_notice(){
 }
 function ampforwp_no_htaccess_notice(){
     $message = '<div class="error"><p>';
-    $message .= esc_html__( 'Accelerated Mobile Pages: htaccess file not found. This plugin works only for Apache server. If you are using Apace server, please create it.', 'accelerated-mobile-pages' );
+    $message .= esc_html__( 'Accelerated Mobile Pages: htaccess file not found. Please create htaccess in your root folder. Leverage Browser Caching works only for Apache server at this moment. If you are using NginX then please disable Leverage Browser Caching from AMP options panel -> Performance -> Leverage Browser Caching', 'accelerated-mobile-pages' );
     $message .= '</p></div>';
     echo wp_kses_post( $message );
 }
