@@ -5756,7 +5756,7 @@ function swifttheme_footer_widgets_init() {
 	    register_sidebar( array(
 	        'name' => esc_html__( 'AMP Footer', 'accelerated-mobile-pages' ),
 	        'id' => 'swift-footer-widget-area',
-	        'description' => esc_html__( 'The Swift footer widget area', 'accelerated-mobile-pages' ),
+	        'description' => esc_html__( 'The Footer widget area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
 	        'before_widget' => '<div class="w-bl">',
 	        'after_widget' => '</div>',
