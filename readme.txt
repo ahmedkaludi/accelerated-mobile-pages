@@ -195,7 +195,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Disqus comment is not working after version 0.9.97.63 #3446
 * Fixed: Uncaught Error: Call to undefined method WPSEO_Options::get() for Yoast Premium #3447
 * Fixed: Message: when Leverage Browser Caching is not supported #3449
-* Fixed: $depth parameter missing in filter 'nav_menu_item_id' #3454
+* Fixed: Added the missing parameter $depth in filter 'nav_menu_item_id' #3454
 
 = 0.9.97.64 (15th July 2019) =
 * Improvements: Performance improvement -- Meta Value Queries #3392
