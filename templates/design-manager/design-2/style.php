@@ -247,11 +247,32 @@ pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14
 
 /* Footer */
 <?php
-$footer_back_color = $redux_builder_amp['ampforwp-footer-background-color-2']['color'];
+$footer_back_color    = ampforwp_get_setting('ampforwp-footer-background-color-2','color');
+$footer_hdng_color    = ampforwp_get_setting('d2-footer-hdng-color','color');
+$footer_txt_color     = ampforwp_get_setting('d2-footer-txt-color','color');
+$footer_link_color    = ampforwp_get_setting('d2-footer-link-color','color');
+$footer_brdr_color    = ampforwp_get_setting('d2-footer-brdr-color','color');
+
 if (empty($footer_back_color)) {
  $footer_back_color = '#FFFFFF'; 
-} ?>
-#footer{ background: <?php echo ampforwp_sanitize_color($footer_back_color);?>; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
+} 
+if (empty($footer_hdng_color)) {
+ $footer_hdng_color = '#222222'; 
+} 
+if (empty($footer_txt_color)) {
+ $footer_txt_color = '#222222'; 
+} 
+if (empty($footer_link_color)) {
+ $footer_link_color = '#0a89c0'; 
+} 
+if (empty($footer_brdr_color)) {
+ $footer_brdr_color = '#eeeeee'; 
+} 
+
+
+?>
+#footer{ background: <?php echo ampforwp_sanitize_color($footer_back_color);?>; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0;color: <?php echo ampforwp_sanitize_color($footer_txt_color);?>;}
+#footer a{color:<?php echo ampforwp_sanitize_color($footer_link_color);?>;}
 #footer p:first-child{ margin-bottom: 12px; }
 #footer p{ margin: 0 }
 .footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }
@@ -742,3 +763,62 @@ if(class_exists('MCI_Footnotes')){ ?>
 		display:none;
 	}
 <?php } ?>
+<?php // Footer Widget Satyling
+if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
+.f-w-blk {
+  max-width: 1000px;
+  margin: 0 auto 20px auto;
+  padding:20px 0px 0px 0px;
+  border-bottom: 1px solid <?php echo ampforwp_sanitize_color($footer_brdr_color);?>;
+}
+.d3f-w .w-bl h4 {
+    font-size: 12px;
+    font-weight: 500;
+    margin:0px 0px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 4px;
+    color:<?php echo ampforwp_sanitize_color( $footer_hdng_color ); ?>
+}
+.d3f-w .w-bl ul{
+    margin:0;
+    padding:0;
+}
+.d3f-w .w-bl ul li {
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+.d3f-w {
+    display: inline-flex;
+    width: 100%;
+    flex-wrap: wrap;
+    text-align: left;
+}
+.d3f-w .w-bl {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 1 0 22%;
+    margin: 0 15px 30px;
+    line-height: 1.5;
+    font-size: 14px;
+    padding:0;
+}
+@media (max-width: 1000px){
+  .d3f-w .f-w {
+    margin: 0;
+  }
+  .d3f-w .w-bl{
+    flex: 1 0 18%;
+    margin:0px 10px 20px;
+  }
+}
+@media (max-width: 480px){
+  .d3f-w .w-bl {
+      flex: 100%;
+  }
+  .f-w-blk {
+    padding: 20px 10px 0px 10px;
+  }
+}
+<?php endif; ?>

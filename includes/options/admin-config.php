@@ -6511,7 +6511,7 @@ $single_page_options = array(
                         'type'     => 'color_rgba',
                         'title'    => esc_html__('Footer Heading Color', 'accelerated-mobile-pages'),
                         'default'   => array(
-                                'color' => '#aaaaaa'
+                                'color' => '#222222'
                         ),
                         'required'  => array(
                             array('amp-design-selector', '=' , '2')
@@ -6522,7 +6522,7 @@ $single_page_options = array(
                         'type'     => 'color_rgba',
                         'title'    => esc_html__('Footer Text Color', 'accelerated-mobile-pages'),
                         'default'   => array(
-                                'color' => '#eeeeee'
+                                'color' => '#222222'
                         ),
                         'required'  => array(
                             array('amp-design-selector', '=' , '2')
@@ -6544,18 +6544,7 @@ $single_page_options = array(
                         'type'     => 'color_rgba',
                         'title'    => esc_html__('Footer Border Color', 'accelerated-mobile-pages'),
                         'default'   => array(
-                                'color' => '#3c3c3c'
-                        ),
-                        'required'  => array(
-                            array('amp-design-selector', '=' , '2')
-                        )
-                ),
-                array(
-                        'id'       => 'd2-footer-cpr-color',
-                        'type'     => 'color_rgba',
-                        'title'    => esc_html__('Footer Copyrights Color', 'accelerated-mobile-pages'),
-                        'default'   => array(
-                                'color' => '#ffffff'
+                                'color' => '#eeeeee'
                         ),
                         'required'  => array(
                             array('amp-design-selector', '=' , '2')
