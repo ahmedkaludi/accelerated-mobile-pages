@@ -223,7 +223,7 @@ function ampforwp_add_custom_rewrite_rules() {
 				$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
 				set_transient('ampforwp_woocommerce_permalinks', $wc_permalinks);		
 			}
-			if ( $wc_permalinks ) {
+			if ( $wc_permalinks && !empty($taxonomies) ) {
 				$taxonomies = array_merge($taxonomies, $wc_permalinks);
 			}
 		}
