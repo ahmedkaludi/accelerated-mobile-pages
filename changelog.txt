@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 0.9.97.65 (16th July 2019) =
+* Fixed: PHP Warning at the top of the site: array_merge(): Expected parameter 1 to be an array #3434
+* Fixed: Disqus comment is not working after version 0.9.97.63 #3446
+* Fixed: Uncaught Error: Call to undefined method WPSEO_Options::get() for Yoast Premium #3447
+* Fixed: Message: when Leverage Browser Caching is not supported #3449
+
 = 0.9.97.64 (15th July 2019) =
 * Improvements: Performance improvement -- Meta Value Queries #3392
 * Improvements: h1 tag on the archive, search and author pages #3323
