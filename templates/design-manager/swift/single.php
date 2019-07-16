@@ -582,6 +582,7 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 					amp_author_box( $author_box ); ?>	
 				<?php } ?>	
 				<?php amp_post_navigation();?>
+				<?php if ( true == ampforwp_get_setting('enable-single-social-icons') || true == ampforwp_get_setting('enable-single-post-social-icons') ) { ?>
 				<div class="ss-ic">
 					<span class="shr-txt"><?php echo ampforwp_translation( ampforwp_get_setting('amp-translator-share-text'), 'Share' ); ?></span>
 					<ul>
@@ -714,6 +715,7 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 
 					</ul>
 	            </div>
+	        <?php } ?>
 	            <?php if( true == ampforwp_get_setting('ampforwp-tags-single') && amp_tags_list()){ ?>
 		            <div class="tags">
 		            	<?php amp_tags_list();?>
