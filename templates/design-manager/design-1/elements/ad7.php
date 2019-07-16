@@ -1,12 +1,14 @@
 <?php
 	$optimize = '';
+	$output = $advert_width = $advert_height = $client_id = $data_slot = '';
+	global $redux_builder_amp;
 	global $redux_builder_amp;
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-7'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-7'];
 	if( true == ampforwp_get_setting('ampforwp-ads-data-loading-strategy-7')){
 		$optimize = 'data-loading-strategy=1';
 	}
-	if ( ampforwp_get_setting('enable-amp-ads-7') ) {
+	if ( ampforwp_get_setting('enable-amp-ads-7')  && ampforwp_get_setting('enable-amp-ads-type-7') == 'adsense' ) {
 		
 		if(ampforwp_get_setting('enable-amp-ads-select-7') == 1)  {
 						$advert_width  = '300';
@@ -45,10 +47,12 @@
 					type="adsense" 
 					width='. $advert_width .' height='. $advert_height . '
 					data-ad-client="'. $client_id .'"
-					data-ad-slot="'.  $data_slot .'"></amp-ad></div>';
-					
-	echo $output;				
-		
+					data-ad-slot="'.  $data_slot .'"></amp-ad>';
+	$output .= ampforwp_ads_sponsorship();
+	$output .= '</div>';
 	}
+	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
+	$output = apply_filters('ampforwp_modify_ad_7',$output );		
+	echo $output;	
  
 ?>

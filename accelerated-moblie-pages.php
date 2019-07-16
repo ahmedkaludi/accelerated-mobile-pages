@@ -589,6 +589,7 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 			}
 			//Other Features
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/advertisement/ads-functions.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/advertisement/mgid-ads-functions.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/performance/performance-functions.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/analytics/analytics-functions.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/structure-data/structured-data-functions.php";
