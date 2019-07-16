@@ -218,19 +218,45 @@ pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14
 <?php } // AMP Woocommerce CSS ends ?>
 /* Footer */
 <?php 
-$footer_back_color = ampforwp_get_setting('ampforwp-footer-background-color-3','color','ampforwp_sanitize_color');
+$footer_back_color = ampforwp_get_setting('ampforwp-footer-background-color-3','color');
+$footer_hdbg_color = ampforwp_get_setting('d3-footer-hdng-color','color');
+$footer_text_color = ampforwp_get_setting('d3-footer-txt-color','color');
+$footer_link_color = ampforwp_get_setting('d3-footer-link-color','color');
+$footer_brdr_color = ampforwp_get_setting('d3-footer-brdr-color','color');
+$footer_cpr_color  = ampforwp_get_setting('d3-footer-cpr-color','color');
+$footer_pwrd_color = ampforwp_get_setting('d3-footer-pwrd-color','color');
+
 if (empty($footer_back_color)) {
  $footer_back_color = '#151515'; 
-} ?>
-#footer{ background: <?php echo ampforwp_sanitize_color($footer_back_color);?>; color: #eee; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
-#footer a{ color:#fff }
+}
+if (empty($footer_hdbg_color)) {
+ $footer_hdbg_color = '#aaaaaa'; 
+}  
+if (empty($footer_text_color)) {
+ $footer_text_color = '#eeeeee'; 
+} 
+if (empty($footer_link_color)) {
+ $footer_link_color = '#ffffff'; 
+} 
+if (empty($footer_brdr_color)) {
+ $footer_brdr_color = '#3c3c3c'; 
+} 
+if (empty($footer_cpr_color)) {
+ $footer_cpr_color = '#ffffff'; 
+} 
+if (empty($footer_pwrd_color)) {
+ $footer_pwrd_color = '#666666'; 
+} 
+?>
+#footer{ background: <?php echo ampforwp_sanitize_color($footer_back_color);?>; color: <?php echo ampforwp_sanitize_color($footer_text_color);?>; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
+#footer a{ color:<?php echo ampforwp_sanitize_color( $footer_link_color ); ?>; }
 #footer p:first-child{ margin-bottom: 12px; }
-#footer .social_icons{ margin: 0px 20px 25px 20px; border-bottom: 1px solid #3c3c3c; padding-bottom: 25px; }
+#footer .social_icons{ margin: 0px 20px 25px 20px; border-bottom: 1px solid <?php echo ampforwp_sanitize_color($footer_pwrd_color);?>; padding-bottom: 25px; }
 #footer p{ margin: 0 }
 .back-to-top{padding-bottom: 8px;}
-.rightslink, #footer .rightslink a{ font-size:13px; color:#fff }
+.rightslink, #footer .rightslink a{ font-size:13px; color: <?php echo ampforwp_sanitize_color($footer_cpr_color);?>; }
 .poweredby{ padding-top:10px; font-size:10px; }
-#footer .poweredby a{ color:#666 }
+#footer .poweredby a{ color:<?php echo ampforwp_sanitize_color( $footer_pwrd_color ); ?>; }
 .footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }
 .footer_menu ul li{ display:inline; margin:0 10px; }
 .footer_menu ul li:first-child{ margin-left:0 }
@@ -921,3 +947,62 @@ if(class_exists('MCI_Footnotes')){ ?>
     display:none;
   }
 <?php } ?>
+<?php // Footer Widget Satyling
+if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
+.f-w-blk {
+    max-width: 1100px;
+    margin:0 auto;
+    border-bottom: 1px solid <?php echo ampforwp_sanitize_color($footer_pwrd_color);?>;
+    margin-bottom: 30px;
+}
+.d3f-w .w-bl h4 {
+    font-size: 12px;
+    font-weight: 500;
+    margin:0px 0px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 4px;
+    color:<?php echo ampforwp_sanitize_color( $footer_hdbg_color ); ?>
+}
+.d3f-w .w-bl ul{
+    margin:0;
+    padding:0;
+}
+.d3f-w .w-bl ul li {
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+.d3f-w {
+    display: inline-flex;
+    width: 100%;
+    flex-wrap: wrap;
+    text-align: left;
+}
+.d3f-w .w-bl {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 1 0 22%;
+    margin: 0 15px 30px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+@media (max-width: 1000px){
+  .f-w-blk{ 
+      max-width:100%;
+      padding:0px 10px;
+  }
+  .d3f-w .f-w {
+    margin: 0;
+  }
+  .d3f-w .w-bl{
+    flex: 1 0 18%;
+    margin:0px 10px 20px;
+  }
+}
+@media (max-width: 480px){
+  .d3f-w .w-bl {
+      flex: 100%;
+  }
+}
+<?php endif; ?>
