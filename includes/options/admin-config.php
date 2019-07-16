@@ -6428,6 +6428,72 @@ $single_page_options = array(
                             array('amp-design-selector', '=' , '1')
                         )
                 ),
+                array(
+                        'id'       => 'd1-footer-hdng-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Heading Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#353535'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '1')
+                        )
+                ),
+                array(
+                        'id'       => 'd1-footer-txt-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Text Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#353535'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '1')
+                        )
+                ),
+                array(
+                        'id'       => 'd1-footer-link-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Link Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#0a89c0'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '1')
+                        )
+                ),
+                array(
+                        'id'       => 'd1-footer-link-hvr-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Link Hover Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#353535'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '1')
+                        )
+                ),
+                array(
+                        'id'       => 'd1-footer-brdr-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Border Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#c2c2c2'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '1')
+                        )
+                ),
+                array(
+                        'id'       => 'd1-footer-cpr-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Copyrights Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#696969'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '1')
+                        )
+                ),
                 // Design 2
                 array(
                         'id'       => 'ampforwp-footer-background-color-2',
@@ -6435,6 +6501,61 @@ $single_page_options = array(
                         'title'    => esc_html__('Footer Background Color', 'accelerated-mobile-pages'),
                         'default'   => array(
                                 'color' => '#FFFFFF'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '2')
+                        )
+                ),
+                array(
+                        'id'       => 'd2-footer-hdng-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Heading Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#aaaaaa'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '2')
+                        )
+                ),
+                array(
+                        'id'       => 'd2-footer-txt-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Text Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#eeeeee'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '2')
+                        )
+                ),
+                array(
+                        'id'       => 'd2-footer-link-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Link Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#0a89c0'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '2')
+                        )
+                ),
+                array(
+                        'id'       => 'd2-footer-brdr-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Border Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#3c3c3c'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '=' , '2')
+                        )
+                ),
+                array(
+                        'id'       => 'd2-footer-cpr-color',
+                        'type'     => 'color_rgba',
+                        'title'    => esc_html__('Footer Copyrights Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#ffffff'
                         ),
                         'required'  => array(
                             array('amp-design-selector', '=' , '2')
