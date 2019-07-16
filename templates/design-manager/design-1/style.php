@@ -281,6 +281,8 @@ if (empty($footer_cpr_color)) {
 .footer_menu ul li:first-child{ margin-left:0 }
 .footer_menu ul li:last-child{ margin-right:0 }
 .footer_menu ul ul{ display:none }
+#footer{padding:20px 0px 0px 0px}
+#footer h2, .cpr-links{padding:0px 16px;}
 a.btt:hover {
     cursor: pointer;
 }

@@ -35,25 +35,25 @@ wp_reset_postdata(); ?>
         </div>
     <?php } ?>
 		<h2><?php echo esc_html( $this->get( 'blog_name' ) ); ?></h2>
-		<p class="copyright_txt">
-			<?php
-			$allowed_html = ampforwp_wp_kses_allowed_html();
-			echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'All Rights Reserved' ) , $allowed_html) ;
- 		?>
-		</p>
-
-		
-    <p class="back-to-top">
-    <?php amp_back_to_top_link();
-             if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
-                if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
-                  | <?php ampforwp_view_nonamp(); 
-                }
-                else{
-                  ampforwp_view_nonamp();
-                }
-              } ?>
-    </p>
+    <div class="cpr-links">
+  		<p class="copyright_txt">
+  			<?php
+  			$allowed_html = ampforwp_wp_kses_allowed_html();
+  			echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'All Rights Reserved' ) , $allowed_html) ;
+   		?>
+  		</p>
+      <p class="back-to-top">
+      <?php amp_back_to_top_link();
+               if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
+                  if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
+                    | <?php ampforwp_view_nonamp(); 
+                  }
+                  else{
+                    ampforwp_view_nonamp();
+                  }
+                } ?>
+      </p>
+  </div>
   </div>
 </footer><?php do_action('amp_footer_link'); ?>
 <?php do_action('ampforwp_global_after_footer'); ?>
