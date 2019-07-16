@@ -67,9 +67,9 @@
 					<?php if ( true == ampforwp_get_setting('wordpress-comments-support') || true == ampforwp_get_setting('ampforwp-disqus-comments-support') || true == ampforwp_get_setting('ampforwp-facebook-comments-support') ||true == ampforwp_get_setting('ampforwp-vuukle-comments-support') ||true == ampforwp_get_setting('ampforwp-spotim-comments-support') ){ ?>
 					<div class="cmts">	
 						<?php amp_comments();?>	
-						<?php do_action('ampforwp_post_after_design_elements'); ?>	
 					</div>	
 					<?php } ?>
+						<?php do_action('ampforwp_post_after_design_elements'); ?>	
 					<?php } ?>
 				</div>
 				<?php if(!checkAMPforPageBuilderStatus(get_the_ID()) && (true == ampforwp_get_setting('enable-single-post-social-icons') || true == ampforwp_get_setting('amp-author-name') || true == ampforwp_get_setting('swift-date') || true == ampforwp_get_setting('ampforwp-single-related-posts-switch'))){ ?>
