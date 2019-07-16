@@ -1680,7 +1680,7 @@ function ampforwp_replace_title_tags() {
 
 		//* We can filter this later if needed:
 		$sep = ' | ';
-		if( class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') ) { 
+		if( class_exists('WPSEO_Options') && method_exists('WPSEO_Options', 'get') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') ) { 
 			$sep = WPSEO_Options::get( 'separator' );
 		}
 		if( defined( 'RANK_MATH_FILE' ) && class_exists('RankMath\\Helper') && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
@@ -2487,7 +2487,7 @@ function ampforwp_talking_to_robots() {
 	  	}
   	}
   	// Meta Robots Tag From Yoast #1563
-  	if ( class_exists('WPSEO_Frontend') && false == $redux_builder_amp['amp-inspection-tool']) {
+  	if ( class_exists('WPSEO_Frontend') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selections') && false == ampforwp_get_setting('amp-inspection-tool')) {
 		$class_instance = '';
 	    $class_instance = WPSEO_Frontend::get_instance();
 	    // robots() will return and print the meta robots tag
@@ -6512,7 +6512,7 @@ if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
 	}
 }
 function ampforwp_yoast_breadcrumbs_output(){
-	if ( class_exists('WPSEO_Options') ){
+	if ( class_exists('WPSEO_Options') && method_exists('WPSEO_Options', 'get') ){
 		$breadcrumb = '';
 		if ( true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') && true === WPSEO_Options::get( 'breadcrumbs-enable' ) && function_exists('yoast_breadcrumb')) {
 			$breadcrumb = yoast_breadcrumb('','', false);
