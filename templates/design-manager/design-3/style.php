@@ -251,7 +251,7 @@ if (empty($footer_pwrd_color)) {
 #footer{ background: <?php echo ampforwp_sanitize_color($footer_back_color);?>; color: <?php echo ampforwp_sanitize_color($footer_text_color);?>; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
 #footer a{ color:<?php echo ampforwp_sanitize_color( $footer_link_color ); ?>; }
 #footer p:first-child{ margin-bottom: 12px; }
-#footer .social_icons{ margin: 0px 20px 25px 20px; border-bottom: 1px solid <?php echo ampforwp_sanitize_color($footer_pwrd_color);?>; padding-bottom: 25px; }
+#footer .social_icons{ margin: 0px 20px 25px 20px; border-bottom: 1px solid <?php echo ampforwp_sanitize_color($footer_brdr_color);?>; padding-bottom: 25px; }
 #footer p{ margin: 0 }
 .back-to-top{padding-bottom: 8px;}
 .rightslink, #footer .rightslink a{ font-size:13px; color: <?php echo ampforwp_sanitize_color($footer_cpr_color);?>; }
@@ -952,7 +952,7 @@ if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
 .f-w-blk {
     max-width: 1100px;
     margin:0 auto;
-    border-bottom: 1px solid <?php echo ampforwp_sanitize_color($footer_pwrd_color);?>;
+    border-bottom: 1px solid <?php echo ampforwp_sanitize_color($footer_brdr_color);?>;
     margin-bottom: 30px;
 }
 .d3f-w .w-bl h4 {
