@@ -7845,6 +7845,14 @@ $single_page_options = array(
                     'tooltip-subtitle'  => esc_html__('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
             ),
             array(
+                    'id'        => 'below-content-date',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Below the Content', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('Enable option to show the date below the content.', 'accelerated-mobile-pages'),
+                    'required' => array(array('amp-design-selector', '=' , '4')),
+            ),
+            array(
                    'id' => 'date-tab-2', 
                    'type' => 'section',
                    'title' => esc_html__('Loops', 'accelerated-mobile-pages'),

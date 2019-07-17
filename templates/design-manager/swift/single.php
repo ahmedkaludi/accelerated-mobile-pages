@@ -48,7 +48,11 @@
 						} 
 						if ( 'below-content' ==  ampforwp_get_setting('swift-add-this-position') ){
 							echo ampforwp_addThis_support();
-						} ?>
+						} 
+						if( ampforwp_get_setting('below-content-date') == true){
+							amp_loop_date();
+						}
+						?>
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>	
  					<?php
  					$author_box = array();
