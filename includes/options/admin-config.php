@@ -4245,6 +4245,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'        => 'amp-d1-sidebar-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#efefef',
@@ -4257,6 +4258,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d1-menu-bg-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Elements Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#fafafa',
@@ -4269,6 +4271,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d1-menu-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Elements Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#0a89c0',
@@ -4281,6 +4284,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d1-submenu-bg-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Sub Menu Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#ffffff',
@@ -4293,6 +4297,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d1-menu-brdr-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#efefef',
@@ -4305,6 +4310,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d1-menu-icon-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Arrow Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#ccc',
@@ -4317,6 +4323,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d1-cross-btn-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Close Button Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#ffffff',
@@ -4329,6 +4336,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d1-cross-bg-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Close Button Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'rgba'     => 'rgba(0, 0, 0, 0.25)',
@@ -4341,6 +4349,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d1-cross-hover-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Close Button Hover color','accelerated-mobile-pages'),
                     'default'   => array(
                         'rgba'     => 'rgba(0, 0, 0, 0.45)',
@@ -4354,6 +4363,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d2-sidebar-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#efefef',
@@ -4366,6 +4376,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d2-menu-bg-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Elements Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#fafafa',
@@ -4378,6 +4389,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d2-menu-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Elements Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#0a89c0',
@@ -4390,6 +4402,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d2-submenu-bg-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Sub Menu Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#ffffff',
@@ -4402,6 +4415,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d2-menu-brdr-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#efefef',
@@ -4414,6 +4428,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d2-menu-icon-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Arrow Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#ccc',
@@ -4426,6 +4441,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d2-cross-btn-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Close Button Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#ffffff',
@@ -4438,6 +4454,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d2-cross-bg-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Close Button Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'rgba'     => 'rgba(0, 0, 0, 0.25)',
@@ -4450,6 +4467,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-d2-cross-hover-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Close Button Hover color','accelerated-mobile-pages'),
                     'default'   => array(
                         'rgba'     => 'rgba(0, 0, 0, 0.45)',
@@ -4463,6 +4481,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-opt-color-rgba-menu-bg-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#131313',
@@ -4475,6 +4494,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-opt-color-rgba-menu-elements-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Elements Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#eeeeee',
@@ -4487,6 +4507,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-opt-color-rgba-submenu-bgcolor',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Sub Menu Background Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#666666',
@@ -4499,6 +4520,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-opt-color-rgba-submenu-hover-bgcolor',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Sub Menu Hover Background Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#666666',
@@ -4511,6 +4533,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-opt-color-rgba-menu-label-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Label Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#aaa',
@@ -4523,6 +4546,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'        => 'amp-opt-color-rgba-menu-brdr-color',
                     'type'      => 'color_rgba',
+                    'class' => 'child_opt',
                     'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#555555',
