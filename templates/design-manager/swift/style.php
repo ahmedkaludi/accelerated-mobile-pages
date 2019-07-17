@@ -617,7 +617,6 @@ if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
 .apt-post-date:before{
 	content: "-";
     margin-left: 5px;
-    color: #666;
     padding-right: 2px;
 }
 .apt-athr .author-details, .apt-athr .author-details a{

@@ -208,12 +208,7 @@
 			            	<?php amp_tags_list();?>
 			            </div>
 		            <?php } 
-		            if( true == ampforwp_get_setting('swift-date') ) { ?>
-			            <div class="post-date">
-			            	<?php amp_date(); ?><?php edit_post_link(); ?>
-			            </div>
-		            <?php } ?>
-		        	<?php } // left sidebar condition disabled?>
+		        	} // left sidebar condition disabled?>
  					<?php
  					$author_box = array();
  					if( true == ampforwp_get_setting('amp-author-description') ) { ?>	
