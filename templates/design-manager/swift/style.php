@@ -2380,6 +2380,12 @@ if(class_exists('MCI_Footnotes')){ ?>
 		display:none;
 	}
 <?php } ?>
+<?php // Notification CSS
+if( ampforwp_get_setting('amp-enable-notifications') && ampforwp_get_setting('enable-single-social-icons') && is_single() ) { ?>
+amp-user-notification{
+	bottom:40px;
+}
+<?php } //amp-enable-notifications Condition Ends Here ?>
 <?php if( is_single() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { 
 if( !ampforwp_woocommerce_conditional_check() ) { 
 if( ampforwp_get_setting('single-design-type') == '7' ){ ?>
