@@ -2842,14 +2842,6 @@ function ampforwp_modified_search_sidebar( $content ) {
 				$amp_query_variable = 'amp';
 				$amp_query_variable_val = '1';
 			}
-			$input = $dom->createElement('input');
-			$input->setAttribute('type', 'text');
-			$input->setAttribute('placeholder', 'AMP');
-			$input->setAttribute('value', $amp_query_variable_val);
-			$input->setAttribute('name', $amp_query_variable);
-			$input->setAttribute('class', 'hide');
-			$input->setAttribute('id', 'ampforwp_search_query_item');
-			$element->appendChild($input);
 			if ( ! $element->hasAttribute('action-xhr') ){
 				$action_url = $element->getAttribute('action');
 				$action_url = preg_replace('#^http?:#', '', $action_url);

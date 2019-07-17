@@ -1310,6 +1310,15 @@ if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() 
 if( !ampforwp_woocommerce_conditional_check() ) { ?>
 /*** Sidebar CSS ***/
 <?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
+.amp-sidebar .search-submit, .amp-sidebar .searchsubmit{
+	text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    line-height: 0;
+    display: inline-block;
+    opacity: 0;
+}
 .sdbr-right{
 	background:<?php echo ampforwp_sanitize_color($sbar_bg_clr); ?>;
 	display:flex;
