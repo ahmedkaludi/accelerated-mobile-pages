@@ -293,7 +293,7 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 											echo ampforwp_addThis_support();
 									}	?>
 								</div>
-								<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
+								<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) && ( true == ampforwp_get_setting('enable-single-social-icons') || true == ampforwp_get_setting('enable-single-post-social-icons') ) ) { ?>
 								<div class="ss-ic">
 									<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
 									<ul>
