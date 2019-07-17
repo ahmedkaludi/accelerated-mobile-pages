@@ -125,7 +125,7 @@ namespace ReduxCore\ReduxFramework;
                         <?php // $this->parent->args['opt_name'] is sanitized in the ReduxFramework class, no need to re-sanitize it. ?>
                         <textarea id="import-code-value" name="<?php echo $this->parent->args['opt_name']; ?>[import_code]" class="large-text noUpdate" rows="10"></textarea>
                     </div>
-                    <p id="redux-import-action"><input type="submit" id="redux-import" name="import" class="button-primary" value="<?php esc_html_e( 'Import', 'redux-framework' ) ?>">&nbsp;&nbsp;<span><?php echo esc_html( apply_filters( 'redux-import-warning', __( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'redux-framework' ) ) ) ?></span></p>
+                    <p id="redux-import-action"><input type="submit" id="redux-import" name="import" class="button-primary" value="<?php esc_html_e( 'Import', 'redux-framework' ) ?>">&nbsp;&nbsp;<span><?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'redux-framework' ) ) ) ?></span></p>
 
                     <div class="hr"/>
                     <div class="inner"><span>&nbsp;</span></div></div>
