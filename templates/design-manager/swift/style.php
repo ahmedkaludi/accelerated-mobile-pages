@@ -581,7 +581,19 @@ if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
 <?php if (!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>
 .sp-cnt{margin-top: 40px;clear: both;width: 100%;display: inline-block; }
 .sp-rl{display:inline-flex;width:100%;}
-.sp-rt{width: 72%;margin-left: 60px;flex-direction: column;justify-content: space-around;order: 1;} <?php } ?>
+.sp-rt{
+<?php if( true == ampforwp_get_setting('single-design1-left-sidebar') ){ ?>
+	width: 72%;
+	margin-left: 60px;
+	order: 1;
+<?php } else { ?>
+	width:100%;
+	margin-left:0;
+<?php } // left sidebar ends ?>
+	flex-direction: column;
+	justify-content: space-around;
+} 
+<?php } ?>
 <?php if(true == ampforwp_get_setting('enable-single-post-social-icons') || true == ampforwp_get_setting('amp-author-name') || true == ampforwp_get_setting('swift-date') || true == ampforwp_get_setting('ampforwp-single-related-posts-switch')){ ?>
 .sp-lt{display: flex;flex-direction: column;flex: 1 0 20%;order: 0;max-width:237px;}
 <?php } ?>

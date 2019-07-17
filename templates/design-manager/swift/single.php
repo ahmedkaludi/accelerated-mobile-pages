@@ -76,68 +76,70 @@
 						<?php do_action('ampforwp_post_after_design_elements'); ?>	
 					<?php } ?>
 				</div>
+				<?php if( true == ampforwp_get_setting('single-design1-left-sidebar') ) {?>
 				<?php if(!checkAMPforPageBuilderStatus(get_the_ID()) && (true == ampforwp_get_setting('enable-single-post-social-icons') || true == ampforwp_get_setting('amp-author-name') || true == ampforwp_get_setting('swift-date') || true == ampforwp_get_setting('ampforwp-single-related-posts-switch'))){ ?>
-				<div class="sp-lt">
-					<?php if ( 'default' == ampforwp_get_setting('swift-social-position') ){
-						ampforwp_swift_social_icons(); 	
-						}
-						if ( 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
-								echo ampforwp_addThis_support(); 
-						} ?>
-		            <?php if( true == ampforwp_get_setting('amp-author-name') ) { ?>
-			            <div class="sp-athr">
-			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
-			            	<?php amp_author_box( 
-										array('author_pub_name'=>true,'author_info'=>true)
-										); ?>	
-			            </div>
-			         <?php } ?>   
-		            <?php if( true == $redux_builder_amp['ampforwp-tags-single'] && amp_tags_list()){ ?>
-			            <div class="tags">
-			            	<?php amp_tags_list();?>
-			            </div>
-		            <?php } 
-		            if( true == ampforwp_get_setting('swift-date') ) { ?>
-			            <div class="post-date">
-			            	<?php amp_date(); ?><?php edit_post_link(); ?>
-			            </div>
-		            <?php } ?>
-		            <?php if($redux_builder_amp['rp_design_type'] == '1'){
-		            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
-					$my_query = ampforwp_related_post_loop_query();
-				  	if( $my_query->have_posts() ) { $r_count = 1;?>
-				  	<div class="srp">
-			            <ul class="clearfix">
-					        <?php ampforwp_related_post(); ?>
-					        <?php
-					          while( $my_query->have_posts() ) {
-					            $my_query->the_post();
-					        ?>
-					        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
-					        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail()){?>
-						            <div class="rlp-image">     
-						                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
-									</div>
-								<?php } } ?>	
-								<div class="rlp-cnt">
-									<?php 
-									$show_excerpt_opt = $redux_builder_amp['ampforwp-single-related-posts-excerpt'];
-									$argsdata = array(
-											'show_author' => false,
-											'show_excerpt' =>$show_excerpt_opt
-												);
-									ampforwp_get_relatedpost_content($argsdata); ?> 
-						        </div>
-					        </li><?php
-			            			do_action('ampforwp_between_related_post',$r_count);
-                 							 $r_count++;
-					        }
-					      } ?>
-	      				</ul>
-	      			</div>
-		            <?php wp_reset_postdata(); }  } ?>
-				</div>
+					<div class="sp-lt">
+						<?php if ( 'default' == ampforwp_get_setting('swift-social-position') ){
+							ampforwp_swift_social_icons(); 	
+							}
+							if ( 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
+									echo ampforwp_addThis_support(); 
+							} ?>
+			            <?php if( true == ampforwp_get_setting('amp-author-name') ) { ?>
+				            <div class="sp-athr">
+				            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
+				            	<?php amp_author_box( 
+											array('author_pub_name'=>true,'author_info'=>true)
+											); ?>	
+				            </div>
+				         <?php } ?>   
+			            <?php if( true == ampforwp_get_setting('ampforwp-tags-single') && amp_tags_list()){ ?>
+				            <div class="tags">
+				            	<?php amp_tags_list();?>
+				            </div>
+			            <?php } 
+			            if( true == ampforwp_get_setting('swift-date') ) { ?>
+				            <div class="post-date">
+				            	<?php amp_date(); ?><?php edit_post_link(); ?>
+				            </div>
+			            <?php } ?>
+			            <?php if(ampforwp_get_setting('rp_design_type') == '1'){
+			            if (  ampforwp_get_setting('ampforwp-single-related-posts-switch') ) {
+						$my_query = ampforwp_related_post_loop_query();
+					  	if( $my_query->have_posts() ) { $r_count = 1;?>
+					  	<div class="srp">
+				            <ul class="clearfix">
+						        <?php ampforwp_related_post(); ?>
+						        <?php
+						          while( $my_query->have_posts() ) {
+						            $my_query->the_post();
+						        ?>
+						        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
+						        	<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { if(ampforwp_has_post_thumbnail()){?>
+							            <div class="rlp-image">     
+							                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
+										</div>
+									<?php } } ?>	
+									<div class="rlp-cnt">
+										<?php 
+										$show_excerpt_opt = ampforwp_get_setting('ampforwp-single-related-posts-excerpt');
+										$argsdata = array(
+												'show_author' => false,
+												'show_excerpt' =>$show_excerpt_opt
+													);
+										ampforwp_get_relatedpost_content($argsdata); ?> 
+							        </div>
+						        </li><?php
+				            			do_action('ampforwp_between_related_post',$r_count);
+	                 							 $r_count++;
+						        }
+						      } ?>
+		      				</ul>
+		      			</div>
+			            <?php wp_reset_postdata(); }  } ?>
+					</div>
 				<?php } ?>
+				<?php } // Left sidebar condition ends ?>
 		    </div>
 		</div>
 	</div> <?php

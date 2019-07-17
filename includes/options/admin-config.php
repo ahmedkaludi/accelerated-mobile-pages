@@ -6143,6 +6143,13 @@ $single_page_options = array(
                               array('swift_cnt' , '=' , '1')
             ),
             array(
+                    'id'    => 'single-design1-left-sidebar',
+                    'type'  => 'switch',
+                    'title' => __('Left Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'required'   =>  array('ampforwp-gallery-design-type' , '=' , '1'),
+            ),
+            array(
                     'id'    => 'single-new-features',
                     'type'  => 'switch',
                     'title' => __('Advanced Single Options', 'accelerated-mobile-pages'),
