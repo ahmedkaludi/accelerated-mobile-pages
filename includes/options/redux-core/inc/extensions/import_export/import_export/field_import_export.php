@@ -104,7 +104,7 @@ namespace ReduxCore\ReduxFramework;
                 // $this->parent->args['opt_name'] is sanitized in the ReduxFramework class, no need to re-sanitize it.
                 $link = esc_url( admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name'] . '&secret=' . $secret ) );
                 ?>
-                    <p><?php esc_html_e( 'Copy Data To Import All Your Settings', 'redux-framework' ) ?></p>              
+                    <p><?php esc_html_e( 'Copy Data To Export All Your Settings', 'redux-framework' ) ?></p>              
 <?php // esc_html_e( 'Copy The Data to Export Your Settings', 'redux-framework' ) ?>
                     <p></p>
                     <textarea class="large-text noUpdate" id="redux-export-code" rows="10"></textarea>
