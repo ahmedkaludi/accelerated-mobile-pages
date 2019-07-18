@@ -336,13 +336,13 @@ if( ampforwp_get_setting ('primary-menu') ){?>
 	@media(max-width:768px){
 		.p-menu{white-space: nowrap;overflow: scroll;}
 		.p-menu ul li{position: unset;}
-		.p-menu .amp-menu .dropdown-toggle + [id^=drop]:checked + label + ul {position: absolute;left: 10px;top: 107px;right: 10px;bottom: auto;}
+		.p-menu .amp-menu .dropdown-toggle + [id^=drop]:checked + label + ul {position: absolute;left: 10px;top: 106px;right: 10px;bottom: auto;}
 		.p-menu .amp-menu li ul li ul {left: 0px;top: 0;position: relative;box-shadow: none;border-top: 1px solid #ccc;padding: 0 0 0 10px;margin: 5px 0px 5px 0px;border-bottom: 1px solid #ccc;}
 	}
 	<?php } else { ?>
 	.p-menu{white-space: nowrap;}
 		@media(max-width:768px){
-			.p-menu{over-flow:hidden;}
+			.p-menu{overflow: scroll;}
 		}
 <?php } // Dropdown CSS Ends
   } // Primary CSS Ends 
