@@ -569,10 +569,10 @@ function amp_date( $args=array() ) {
     	$args = array('format' => 'traditional');
     }
     if ( (isset($args['format']) && $args['format'] == 'traditional') && 2 == ampforwp_get_setting('ampforwp-post-date-global') ) {
-      	$post_date =  get_the_modified_date( get_option( 'date_format' )). ' '. get_the_modified_time();
+      	$post_date =  get_the_modified_date( get_option( 'date_format' ));
     }
     elseif ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ){
-    	 $post_date =  get_the_date(). ' '. get_the_time();
+    	 $post_date =  get_the_date();
     }else{
         $post_date = human_time_diff(
                     get_the_time('U', get_the_ID() ), 
