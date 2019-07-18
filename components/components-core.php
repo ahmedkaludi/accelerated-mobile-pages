@@ -497,9 +497,8 @@ function amp_loop_template(){
 
 // The Content
 function amp_content($post_id= ''){ 
-global $redux_builder_amp, $post;
+global $redux_builder_amp, $post, $ampforwpTemplate;
 $ampforwp_metas = array();
-$ampforwpTemplate = new AMP_Post_Template( $post_id );
 $amp_custom_content_enable = '';
 if ( empty( $post_id )) {
 	

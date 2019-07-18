@@ -37,6 +37,8 @@ class AMP_Content {
 
 	private function transform() {
 		$content = $this->content;
+		// Check for AMP Components #3422
+		AMP_Content_Sanitizer::sanitize($content, array('AMP_Tag_And_Attribute_Sanitizer'=> array()  ) );
 		// First, embeds + the_content filter
 		$embed_handlers = $this->register_embed_handlers();
 		if( (!empty($this->args)) && (!empty($this->args['non-content'])) ){

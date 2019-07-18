@@ -62,6 +62,15 @@ function ampforwp_non_amp_gallery($matches){
 <a class="nonamp-next" onclick="plusSlides(1)">&#10095;</a></ul>';
 	return $imagesHTML;
 }
+function ampforwp_non_amp_gallery_testimonial($matches){
+	$images =  $matches[3];
+	$images = preg_replace_callback("/<img(.*?)>/", function($m){
+		return '<li class="mySlides-tsml">'.$m[0].'</li>';
+	}, $images);
+	$imagesHTML = '<ul class="slideshow-container-tsml">'.$images.'<a class="nonamp-prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="nonamp-next" onclick="plusSlides(1)">&#10095;</a></ul>';
+	return $imagesHTML;
+}
 
 //Facility to create child theme For AMP
 	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_header_file', 20, 3 );

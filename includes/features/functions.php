@@ -960,6 +960,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                 $subst = "<style type=\"text/css\">$1 ".$nonampCss.$galleryCss."</style>";
                 $returnData = preg_replace($re, $subst, $returnData);
                 // Sliders
+                $returnData = preg_replace_callback('/<amp-carousel\s(.*?)id="card-carousel"(.*?)>(.*?)<\/amp-carousel>/s', 'ampforwp_non_amp_gallery_testimonial', $returnData );
                 $returnData = preg_replace_callback('/<amp-carousel\s(.*?)>(.*?)<\/amp-carousel>/s', 'ampforwp_non_amp_gallery', $returnData );
                 $returnData = preg_replace('/on="tap(.*?).goToSlide(.*?)"/', 'onclick="currentDiv$2"', $returnData);
                 $returnData = preg_replace('/<span on="tap:AMP\.setState\((.*?)\s:\showSectionSelected\.howSlide - 1(.*?)\)(.*?)/', '<span onclick="plusSlides(-1)$3"', $returnData);
