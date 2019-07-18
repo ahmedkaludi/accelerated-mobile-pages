@@ -905,7 +905,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                           .nonamp-prev, .nonamp-next,.text {font-size: 11px}
                         }';
                     $galleryJs = '<script>
-                                    var slideIndex = 1;
+                                    var slideIndex = 0;
                                     showSlides(slideIndex);
                                     function plusSlides(n) {
                                       showSlides(slideIndex += n);
@@ -917,16 +917,21 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                                       var i;
                                       var slides = document.getElementsByClassName("mySlides");
                                       var dots = document.getElementsByClassName("dot");
-                                      if (n > slides.length) {slideIndex = 1}    
-                                      if (n < 1) {slideIndex = slides.length}
+                                      var heads = document.getElementsByClassName("heads");
+                                      if (n >= slides.length) {slideIndex = 0}    
+                                      if (n < 0) {slideIndex = slides.length-1}
                                       for (i = 0; i < slides.length; i++) {
                                           slides[i].style.display = "none";  
                                       }
                                       for (i = 0; i < dots.length; i++) {
-                                          dots[i].className = dots[i].className.replace(" active", "");
+                                          dots[i].className = dots[i].className.replace(" how-current", "");
                                       }
-                                      slides[slideIndex-1].style.display = "block";  
-                                      dots[slideIndex-1].className += " active";
+                                      for (i = 0; i < heads.length; i++) {
+                                          heads[i].className = heads[i].className.replace(" how-current", "");
+                                      }
+                                      slides[slideIndex].style.display = "block";  
+                                      dots[slideIndex].className += " how-current";
+                                      heads[slideIndex].className += " how-current";
                                     }
                                     function currentDiv(n) {
                                       showDivs(slideIndex = n);
@@ -935,7 +940,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                                       var i;
                                       var x = document.getElementsByClassName("mySlides");
                                       if (n > x.length) {slideIndex = 1}
-                                      if (n < 1) {slideIndex = x.length}
+                                      if (n < 0) {slideIndex = x.length}
                                       for (i = 0; i < x.length; i++) {
                                         x[i].style.display = "none";
                                       }
@@ -954,9 +959,13 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                 $re = '/<style\s*type="text\/css">(.*?)<\/style>/si';
                 $subst = "<style type=\"text/css\">$1 ".$nonampCss.$galleryCss."</style>";
                 $returnData = preg_replace($re, $subst, $returnData);
-
+                // Sliders
                 $returnData = preg_replace_callback('/<amp-carousel\s(.*?)>(.*?)<\/amp-carousel>/s', 'ampforwp_non_amp_gallery', $returnData );
                 $returnData = preg_replace('/on="tap(.*?).goToSlide(.*?)"/', 'onclick="currentDiv$2"', $returnData);
+                $returnData = preg_replace('/<span on="tap:AMP\.setState\((.*?)\s:\showSectionSelected\.howSlide - 1(.*?)\)(.*?)/', '<span onclick="plusSlides(-1)$3"', $returnData);
+                $returnData = preg_replace('/<span on="tap:AMP\.setState\((.*?)\s:\showSectionSelected\.howSlide \+ 1(.*?)\)(.*?)>/', '<span onclick="plusSlides(+1)$3">', $returnData);
+                $returnData = preg_replace('/<span class="(.*?)"(.*?){howSlide:\s(.*?)}}\)(.*?)>/', '<span class="dot" onclick="currentSlide($3) $4>', $returnData);
+                $returnData = preg_replace('/<div class="(.*?)"(.*?){howSlide:\s(.*?)}}\)(.*?)>/', '<div class="amp-cnt heads" onclick="currentSlide($3) $4>', $returnData);
                 $returnData = str_replace('</footer>', '</footer>'.$galleryJs, $returnData);
             break;
         }
