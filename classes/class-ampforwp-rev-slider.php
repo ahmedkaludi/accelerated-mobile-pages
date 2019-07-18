@@ -47,7 +47,7 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		ob_end_clean();
 		$ids = array();
 		$slides = $slider->getSlidesForOutput(true,'',$gal_ids);
-		
+		$attachment_id = '';
 		foreach ($slides as $slide) {
 			$bgtype = $slide->getParam('background_type', 'image');
 			$img_data = wp_get_attachment_metadata( $slide->getImageID() );
@@ -201,7 +201,7 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 			$upload_dir = wp_upload_dir();
 			$upload_url = $upload_dir['baseurl'];
 			if( $tag_type == 'amp-img'){
-				if ( false === strpos( $url, $upload_url ) ) {
+				if ( false === strpos( $image['url'], $upload_url ) ) {
 					$smallimage  = $image['url'];
 		            $smallwidth = 120;
 		            $smallheight = 60;
