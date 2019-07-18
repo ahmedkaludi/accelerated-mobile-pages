@@ -5753,7 +5753,7 @@ $single_page_options = array(
                     'id'        => 'amforwp-recentpost-date-switch',
                     'type'      => 'switch',
                     'class' => 'child_opt child_opt_arrow',
-                    'title'     => esc_html__('Display Date', 'accelerated-mobile-pages'),
+                    'title'     => esc_html__('Recent Posts Date', 'accelerated-mobile-pages'),
                     'default'   => 1,
                     'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
