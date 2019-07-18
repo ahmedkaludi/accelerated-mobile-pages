@@ -704,6 +704,7 @@ if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
 <?php // Notification CSS
 if( ampforwp_get_setting('amp-enable-notifications') && ampforwp_get_setting('enable-single-social-icons') && is_single() ) { ?>
 amp-user-notification{
-  bottom:46px;
+  bottom:42px;
+  z-index: 999999;
 }
 <?php } //amp-enable-notifications Condition Ends Here ?>
