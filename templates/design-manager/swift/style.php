@@ -1349,15 +1349,6 @@ if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() 
 if( !ampforwp_woocommerce_conditional_check() ) { ?>
 /*** Sidebar CSS ***/
 <?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
-.amp-sidebar .search-submit, .amp-sidebar .searchsubmit{
-	text-indent: -9999px;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    line-height: 0;
-    display: inline-block;
-    opacity: 0;
-}
 .sdbr-right{
 	background:<?php echo ampforwp_sanitize_color($sbar_bg_clr); ?>;
 	display:flex;
@@ -1391,19 +1382,26 @@ if( !ampforwp_woocommerce_conditional_check() ) { ?>
 .amp-sidebar ul li a:hover, .calendar_wrap a:hover{
 	box-shadow: inset 0 0 0 rgba(0, 0, 0, 0), 0 3px 0 <?php echo ampforwp_sanitize_color($sbar_link_clr); ?>;
 }
-.amp-sidebar .screen-reader-text{
-	display:block;
-	margin-bottom:5px;
+.amp-sidebar form{
+  display:inline-flex;
+  flex-wrap:wrap;
+  align-items: center;
 }
-.amp-sidebar #s{
-    border: 1px solid #ddd;
-    padding: 10px;
+.amp-sidebar .search-submit{
+  text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    line-height: 0;
+    display: inline-block;
+    opacity: 0;
 }
-.amp-sidebar #searchsubmit{
-	padding: 10px 15px;
-    background: #fff;
-    border: 1px solid #ddd;
-    cursor: pointer
+.amp-sidebar .hide{
+    display: none;
+}
+.amp-sidebar .search-field{
+    border: 1px solid #ccc;
+    padding: 6px 10px;
 }
 .sgl .calendar_wrap td{
 	padding:10px;

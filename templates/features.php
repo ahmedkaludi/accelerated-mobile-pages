@@ -7857,12 +7857,11 @@ add_filter('get_search_form', 'ampforwp_search_form');
 if ( ! function_exists('ampforwp_search_form') ) {
 	function ampforwp_search_form($form){
 		if ( ampforwp_is_amp_endpoint() ) {	
-			$form = '<form role="search" method="get" id="searchform" class="searchform" action="' . esc_url( home_url( '/' ) ) . '" target="_top">
-					<div>
-						<label class="screen-reader-text" for="s">' . _x( 'Search for:', 'label' ) . '</label>
-						<input type="text" value="" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" name="s" id="s">
-						<input type="submit" id="searchsubmit" value="' . esc_attr_x( 'Search', 'submit button' ) . '">
-					</div>
+			$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" target="_top">
+					<label>
+						<span class="screen-reader-text">' . _x( 'Search for:', 'label' ) . '</span>
+						<input type="text" value="" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" name="s" class="search-field">
+					</label>
 					<input type="text" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" value="1" name="amp" class="hide" id="ampforwp_search_query_item">
 				</form>';
 		}
