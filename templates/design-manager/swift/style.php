@@ -1391,6 +1391,20 @@ if( !ampforwp_woocommerce_conditional_check() ) { ?>
 .amp-sidebar ul li a:hover, .calendar_wrap a:hover{
 	box-shadow: inset 0 0 0 rgba(0, 0, 0, 0), 0 3px 0 <?php echo ampforwp_sanitize_color($sbar_link_clr); ?>;
 }
+.amp-sidebar .screen-reader-text{
+	display:block;
+	margin-bottom:5px;
+}
+.amp-sidebar #s{
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+.amp-sidebar #searchsubmit{
+	padding: 10px 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer
+}
 .sgl .calendar_wrap td{
 	padding:10px;
 }
