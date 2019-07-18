@@ -197,7 +197,7 @@ $css = '
     display: inline-block;
     color: #fff;
     position: absolute;
-    top: -1px;
+    top: 5px;
     font-weight: 500;
     font-size: 22px;
     right: 0px;
@@ -210,7 +210,7 @@ $css = '
     display: inline-block;
     color: #fff;
     position: absolute;
-    top: -1px;
+    top: 5px;
     font-weight: 500;
     font-size: 22px;
     right: 0px;
@@ -271,8 +271,8 @@ if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['
 			    display: inline-block;
 			    color: #fff;
 			    position: relative;
-			    top: -1px;
-			    left:1px;
+			    top: 5px;
+			    left:0px;
 			    font-weight: 500;
 			    font-size: 22px;
 			}
@@ -283,8 +283,8 @@ if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['
 			    display: inline-block;
 			    color: #fff;
 			    position: relative;
-			    top: -1px;
-			    right: 1px;
+			    top: 5px;
+			    right: 0px;
 			    font-weight: 500;
 			    font-size: 22px;
 			}';

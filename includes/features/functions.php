@@ -831,27 +831,32 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                         }
                         /* Next & previous buttons */
                         .nonamp-prev, .nonamp-next {
-                          cursor: pointer;
-                          position: absolute;
-                          top: 50%;
-                          width: auto;
-                          padding: 16px;
-                          margin-top: -22px;
-                          color: white;
-                          font-weight: bold;
-                          font-size: 18px;
-                          transition: 0.6s ease;
-                          border-radius: 0 3px 3px 0;
-                          user-select: none;
+                            cursor: pointer;
+                            position: absolute;
+                            top: 50%;
+                            width: auto;
+                            padding: 10px 15px 10px 15px;
+                            margin-top: 0;
+                            color: white;
+                            font-weight: bold;
+                            font-size: 16px;
+                            transition: 0.6s ease;
+                            border-radius: 0 3px 3px 0;
+                            user-select: none;
+                            background-color: rgba(0,0,0,0.5);
                         }
                         /* Position the "next button" to the right */
                         .nonamp-next {
                           right: 0;
                           border-radius: 3px 0 0 3px;
                         }
+                        .nonamp-prev{
+                            left:0;
+                            border-radius: 3px 0 0 3px;
+                        }
                         /* On hover, add a black background color with a little bit see-through */
                         .nonamp-prev:hover, .nonamp-next:hover {
-                          background-color: rgba(0,0,0,0.8);
+                          color:#fff;
                         }
                         /* Caption text */
                         .text {
@@ -955,6 +960,21 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                 .amp-featured-image img{width:100%;height:auto;}
                 .content-wrapper, .header, .header-2, .header-3{width:100% !important;}
                 .image-mod img{width:100%;}
+                .slideshow-container-tsml{
+                    display: flex;
+                    overflow-x: scroll;
+                    width: 100%;
+                }
+                .cardContent li{
+                    list-style-type:none;
+                }
+                .mySlides-tsml img{
+                    width: 50px;
+                }
+                .slideshow-container-tsml .nonamp-prev, .slideshow-container-tsml .nonamp-next{
+                    opacity:0;
+                    z-index: -1;
+                }
                 ';
                 $re = '/<style\s*type="text\/css">(.*?)<\/style>/si';
                 $subst = "<style type=\"text/css\">$1 ".$nonampCss.$galleryCss."</style>";
