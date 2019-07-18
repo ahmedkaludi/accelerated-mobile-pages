@@ -1740,8 +1740,12 @@ if($redux_builder_amp['enable-single-twitter-share'] || $redux_builder_amp['enbl
 <?php if(function_exists('mvp_setup')){?>
 .zox_tw:after{ <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
 	content: "\e942";
-<?php }?>
 	font-family: 'icomoon';
+<?php }?>
+<?php if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
+content:"\f099";
+font-family:"Font Awesome 5 Brands";
+<?php } ?>
 	color: #1da1f2;
 }
 <?php } ?>
