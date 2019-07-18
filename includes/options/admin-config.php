@@ -5332,7 +5332,14 @@ Redux::setSection( $opt_name, array(
                     'type'  => 'switch',
                     'title' => esc_html__('Full Content in Loop', 'accelerated-mobile-pages'),
                     'default'   => 0,
-                )
+                ),
+                array(
+                    'id'        => 'amforwp-homepage-date-switch',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Date in Loop', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
+                ),
 
 
         )
@@ -5742,6 +5749,15 @@ $single_page_options = array(
             'tooltip-subtitle' => esc_html__('To enable & disable recent posts', 'accelerated-mobile-pages'),
             'default'  => 1,
         ),
+        array(
+                    'id'        => 'amforwp-recentpost-date-switch',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Display Date', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
+                    'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
+            ),
             array(
                        'id' => 'ampforwp-single_section_3',
                        'type' => 'section',
@@ -7859,29 +7875,7 @@ $single_page_options = array(
                     'tooltip-subtitle'  => esc_html__('Enable option to show the date below the content.', 'accelerated-mobile-pages'),
                     'required' => array(array('amp-design-selector', '=' , '4')),
             ),
-            array(
-                   'id' => 'date-tab-2', 
-                   'type' => 'section',
-                   'title' => esc_html__('Loops', 'accelerated-mobile-pages'),
-                   'indent' => true,
-                   'layout_type' => 'accordion',
-                    'accordion-open'=> 1,
-            ),
-            array(
-                    'id'        => 'amforwp-homepage-date-switch',
-                    'type'      => 'switch',
-                    'title'     => esc_html__('Homepage', 'accelerated-mobile-pages'),
-                    'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
-            ),
-            array(
-                    'id'        => 'amforwp-recentpost-date-switch',
-                    'type'      => 'switch',
-                    'title'     => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
-                    'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
-            ),
-
+            
         )
 
     ) );
