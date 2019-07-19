@@ -18,7 +18,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 	?>
 <?php do_action('ampforwp_before_social_icons_hook',$this); ?>
 	<div class="amp-wp-content post-pagination-meta ampforwp-social-icons-wrapper ampforwp-social-icons">
-		<?php if( true == $redux_builder_amp['ampforwp-facebook-like-button'] ) {
+		<?php if( true == ampforwp_get_setting('ampforwp-facebook-like-button') ) {
 			$facebook_like_url = '';
 			$facebook_like_url = $amp_permalink;
 			if( $facebook_like_url ){ ?>
