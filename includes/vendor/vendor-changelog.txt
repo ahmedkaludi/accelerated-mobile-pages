@@ -81,3 +81,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 51. amp_get_permalink() function updated for the post id zero #3381
 52. Added code for Image is not loading when source of it starting from ../wp-content issue in class-amp-wistia-embed.php #3403
 53. Updated class-amp-wistia-embed.php #3386
+54. Added class_exists('SQ_Classes_ObjController') condition to amp_post_template_add_schemaorg_metadata for Squirrly SEO Compatibility #3421

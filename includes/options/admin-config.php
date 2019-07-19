@@ -1574,6 +1574,9 @@ Redux::setArgs( "redux_builder_amp", $args );
             elseif ( function_exists( 'the_seo_framework' ) ) {
                 $default = 'seo_framework';
             }
+            elseif ( class_exists('SQ_Classes_ObjController') ) {
+                $default = 'squirrly';
+            }
             return $default;
         }
     }
@@ -1626,6 +1629,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'seopress'    => 'SEOPress',
                     'bridge'    => 'Bridge Qode SEO',
                     'seo_framework'    => 'The SEO Framework',
+                    'squirrly'    => 'Squirrly SEO'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),
