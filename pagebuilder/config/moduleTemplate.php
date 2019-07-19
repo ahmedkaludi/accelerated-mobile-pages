@@ -73,6 +73,45 @@ $output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row
     	{{ifend_condition_check_for_overlay_1}}
     </div>
     {{ifend_condition_background_type_video}}
+    {{if_condition_background_type==mp4video}}
+	<div class="amp_video">
+		<div class="amp-txt">
+	      <h1>{{title}}</h1>
+	      {{content_title}}
+	  	</div>
+		<amp-video class="vdo" width="720" height="405"
+			{{if_condition_enable_mp4video_autoplay==1}}autoplay{{ifend_condition_enable_mp4video_autoplay_1}}
+			src="{{row_background_mp4video}}"
+			layout="responsive"
+			{{if_condition_enable_mp4video_controls==1}}controls{{ifend_condition_enable_mp4video_controls_1}}>
+		</amp-video>
+    	{{if_condition_check_for_overlay==1}}
+    		<div class="overlay"></div>
+    	{{ifend_condition_check_for_overlay_1}}
+    </div>
+    {{ifend_condition_background_type_mp4video}}
+    {{if_condition_background_type==youtubevideo}}
+	<div class="amp_video">
+		<div class="amp-txt">
+	      <h1>{{title}}</h1>
+	      {{content_title}}
+	  	</div>
+		<amp-youtube class="vdo" width="480" height="270"
+               layout="responsive"
+               {{if_condition_enable_youtube_controls==1}}data-param-controls=1{{ifend_condition_enable_youtube_controls_1}}
+               {{if_condition_enable_youtube_controls==0}}data-param-controls=0{{ifend_condition_enable_youtube_controls_0}}
+               {{if_condition_enable_modestbranding==1}}data-param-modestbranding="1"{{ifend_condition_enable_modestbranding_1}}
+               {{if_condition_enable_youtube_rel==1}}data-param-rel="1"{{ifend_condition_enable_youtube_rel_1}}
+               {{if_condition_enable_youtube_rel==0}}data-param-rel="0"{{ifend_condition_enable_youtube_rel_0}}
+               {{if_condition_enable_youtube_loop==1}}data-param-playlist="{{row_background_youtubevideo}}"{{ifend_condition_enable_youtube_loop_1}}
+               data-videoid="{{row_background_youtubevideo}}"
+               {{if_condition_enable_youtube_autoplay==1}}autoplay{{ifend_condition_enable_youtube_autoplay_1}}>
+  		</amp-youtube>
+    	{{if_condition_check_for_overlay==1}}
+    		<div class="overlay"></div>
+    	{{ifend_condition_check_for_overlay_1}}
+    </div>
+    {{ifend_condition_background_type_youtubevideo}}
     ';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
@@ -102,7 +141,6 @@ $front_css = '
 	{{ifend_condition_check_for_brdr_1}}
 	color: {{font_color_picker}};
 	background-color: {{color_picker}};
-	{{if_selected_gradient}}{{selected_gradient}};{{ifend_selected_gradient}}
 	margin: {{margin_css}};
 	padding:{{padding_css}};
 	
@@ -193,6 +231,97 @@ $front_css = '
 }
 {{ifend_condition_check_for_overlay_1}}
 {{ifend_condition_background_type_video}}
+
+{{if_condition_background_type==mp4video}}
+{{row-class}} .amp_video{
+  position: relative;
+}
+{{row-class}} .amp_video .amp-txt{
+  	font-size: {{cnt_size}};
+  	line-height: {{cnt_ln_hgt}};
+  	font-weight: {{cnt_font_type}};
+  	{{if_condition_check_for_overlay==0}}
+  		color:{{cnt_color}};
+  	{{ifend_condition_check_for_overlay_0}}
+	position: absolute;
+	top: 10%;
+	bottom: auto;
+	left: 20%;
+	right: 20%;
+	margin: 0 auto;
+	text-align: center;
+	z-index: 9;
+}
+{{row-class}} .amp-txt h1{
+  font-size: {{tlt_size}};
+  font-weight: {{tlt_wgt}};
+  letter-spacing: {{letter_spacing}};
+  line-height: {{tlt_ln_hgt}};
+  {{if_condition_check_for_overlay==0}}
+  	color:{{tlt_color}};
+  {{ifend_condition_check_for_overlay_0}}
+  margin-bottom:20px;
+}
+{{if_condition_check_for_overlay==1}}
+{{row-class}} .overlay{
+	background: #000;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	opacity: 0.4;
+}
+{{row-class}} .amp-txt{
+	color:{{overlay_cnt_color}};
+}
+{{ifend_condition_check_for_overlay_1}}
+{{ifend_condition_background_type_mp4video}}
+{{if_condition_background_type==youtubevideo}}
+{{row-class}} .amp_video{
+  position: relative;
+}
+{{row-class}} .amp_video .amp-txt{
+  	font-size: {{cnt_size}};
+  	line-height: {{cnt_ln_hgt}};
+  	font-weight: {{cnt_font_type}};
+  	{{if_condition_check_for_overlay==0}}
+  		color:{{cnt_color}};
+  	{{ifend_condition_check_for_overlay_0}}
+	position: absolute;
+	top: 10%;
+	bottom: auto;
+	left: 20%;
+	right: 20%;
+	margin: 0 auto;
+	text-align: center;
+	z-index: 9;
+}
+{{row-class}} .amp-txt h1{
+  font-size: {{tlt_size}};
+  font-weight: {{tlt_wgt}};
+  letter-spacing: {{letter_spacing}};
+  line-height: {{tlt_ln_hgt}};
+  {{if_condition_check_for_overlay==0}}
+  	color:{{tlt_color}};
+  {{ifend_condition_check_for_overlay_0}}
+  margin-bottom:20px;
+}
+{{if_condition_check_for_overlay==1}}
+{{row-class}} .overlay{
+	background: #000;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	opacity: 0.4;
+}
+{{row-class}} .amp-txt{
+	color:{{overlay_cnt_color}};
+}
+{{ifend_condition_check_for_overlay_1}}
+{{ifend_condition_background_type_youtubevideo}}
 
 @media(max-width:768px){
 	{{row-class}}.amppb-fluid{width:100%;}
@@ -318,14 +447,16 @@ $containerCommonSettings = array(
 							array(		
 	 							'type'	=>'select',		
 	 							'name'  =>"background_type",		
-	 							'label' =>"Background Type",
+	 							'label' => esc_html__("Background Type", 'accelerated-mobile-pages' ),
 								'tab'     =>'customizer',
 	 							'default' =>'color',
 	 							'options_details'=>array(
 	 												'color'=>'Color',
 	 												'gradient'=>'Gradient',
 	 												'image'=>'Background Image',
-	 												'video'=>'Background Video'
+	 												'video'=>'Background Video (Third Party Embed)',
+	 												'mp4video'=>'Background Video (MP4)',
+	 												'youtubevideo'=>'Background Video (Youtube)',
 	 													),
 	 							'content_type'=>'html',
 	 							'output_format'=>''
@@ -337,6 +468,22 @@ $containerCommonSettings = array(
 		 						'default'	=>'https://cdn.ampproject.org/v0/amp-iframe-0.1.js',
 		 						'content_type'=>'js',
 		           				'required'  => array('background_type'=>'video'),
+	 						),
+	 						array(		
+		 						'type'		=>'require_script',		
+		 						'name'		=>"embeded_script",		
+		 						'label'		=>'amp-iframe',
+		 						'default'	=>'https://cdn.ampproject.org/v0/amp-video-0.1.js',
+		 						'content_type'=>'js',
+		           				'required'  => array('background_type'=>'mp4video'),
+	 						),
+	 						array(		
+		 						'type'		=>'require_script',		
+		 						'name'		=>"embeded_script",		
+		 						'label'		=>'amp-iframe',
+		 						'default'	=>'https://cdn.ampproject.org/v0/amp-youtube-0.1.js',
+		 						'content_type'=>'js',
+		           				'required'  => array('background_type'=>'youtubevideo'),
 	 						),
 	 						array(		
 	 							'type'	=>'select',		
@@ -363,44 +510,172 @@ $containerCommonSettings = array(
 	 						array(
 								'type'		=>'text',
 								'name'		=>"row_background_video",
-								'label'		=> esc_html__( 'Background Video URL', 'accelerated-mobile-pages' ),
+								'label'		=> esc_html__( 'Third Party Embed URL', 'accelerated-mobile-pages' ),
 								'tab'		=>'customizer',
 								'default'	=>'',
-								'helpmessage'	=> esc_html__('Your video should be 600px away from the top or not within the first 75% of the viewport and it should be added like - https://www.youtube.com/embed/XXXXXXXXXX', 'accelerated-mobile-pages'),
+								'helpmessage'	=> esc_html__('Your video should be 600px away from the top or not within the first 75% of the viewport and it should be added like - https://player.vimeo.com/video/140261016', 'accelerated-mobile-pages'),
 								'content_type'=>'html',
 								'required'  => array('background_type'=>'video')
 							),
+	 						array(
+								'type'		=>'text',
+								'name'		=>"row_background_mp4video",
+								'label'		=> esc_html__( 'MP4 Video URL', 'accelerated-mobile-pages' ),
+								'tab'		=>'customizer',
+								'default'	=>'',
+								'helpmessage'	=> esc_html__('Please add you mp4 video source url', 'accelerated-mobile-pages'),
+								'content_type'=>'html',
+								'required'  => array('background_type'=>'mp4video')
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"enable_mp4video_controls",
+                                'label'     => esc_html__('Controls', 'accelerated-mobile-pages'),
+                                'tab'		=>'customizer',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+		           				'required'  => array('background_type'=> 'mp4video')
+                            ),
+                            array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"enable_mp4video_autoplay",
+                                'label'     =>'Autoplay',
+                                'tab'		=>'customizer',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+		           				'required'  => array('background_type'=> 'mp4video')
+                            ),
+                            array(
+								'type'		=>'text',
+								'name'		=>"row_background_youtubevideo",
+								'label'		=> esc_html__( 'Youtube Video ID', 'accelerated-mobile-pages' ),
+								'tab'		=>'customizer',
+								'default'	=>'',
+								'helpmessage'	=> esc_html__('Please add you youtube video ID', 'accelerated-mobile-pages'),
+								'content_type'=>'html',
+								'required'  => array('background_type'=>'youtubevideo')
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"enable_youtube_controls",
+                                'label'     => esc_html__('Controls', 'accelerated-mobile-pages'),
+                                'tab'		=>'customizer',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+		           				'required'  => array('background_type'=> 'youtubevideo')
+                            ),
+                            array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"enable_modestbranding",
+                                'label'     => esc_html__('Hide Youtube Logo','accelerated-mobile-pages'),
+                                'tab'		=>'customizer',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+		           				'required'  => array('background_type'=> 'youtubevideo')
+                            ),
+                            array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"enable_youtube_loop",
+                                'label'     => esc_html__('Video Loop','accelerated-mobile-pages'),
+                                'tab'		=>'customizer',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+		           				'required'  => array('background_type'=> 'youtubevideo')
+                            ),
+                            array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"enable_youtube_rel",
+                                'label'     => esc_html__('Related Videos','accelerated-mobile-pages'),
+                                'tab'		=>'customizer',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+		           				'required'  => array('background_type'=> 'youtubevideo')
+                            ),
+                            array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"enable_youtube_autoplay",
+                                'label'     => esc_html__('Autoplay','accelerated-mobile-pages'),
+                                'tab'		=>'customizer',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+		           				'required'  => array('background_type'=> 'youtubevideo')
+                            ),
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"title",		
-		 						'label'		=>'Background Video Heading',
+		 						'label'		=> esc_html__('Video Heading','accelerated-mobile-pages'),
 		           				 'tab'      =>'customizer',
-		 						'default'	=>'Heading',	
+		 						'default'	=>'',	
 		           				'content_type'=>'html',
-		           				'required'  => array('background_type'=>'video')
+		           				'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"content_title",		
-		 						'label'		=>'Background Video Content',
+		 						'label'		=> esc_html__('Video Content','accelerated-mobile-pages'),
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'Write your content in Text Editor',	
+		 						'default'	=>'',	
 		           				'content_type'=>'html',
-		           				'required'  => array('background_type'=>'video')
+		           				'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(
 		 						'type'		=>'text',		
 		 						'name'		=>"tlt_size",		
-		 						'label'		=>'Heading Font Size',
+		 						'label'		=> esc_html__('Heading Font Size','accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'35px',	
 		           				'content_type'=>'css',
-		           				'required'  => array('background_type'=>'video')
+		           				'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(    
 				                'type'  =>'select',   
 				                'name'  =>'tlt_wgt',    
-				                'label' =>"Heading Font Weight",
+				                'label' => esc_html__("Heading Font Weight",'accelerated-mobile-pages'),
 				                'tab'     =>'design',
 				                'default' =>'600',
 				                'options_details'=>array(
@@ -411,48 +686,53 @@ $containerCommonSettings = array(
 				                                    '700'   =>'Bold',
 				                                ),
 				                'content_type'=>'css',
-				                'required'  => array('background_type'=>'video')
+				                'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 			              	),
 			              	array(
 		 						'type'		=>'text',		
 		 						'name'		=>"letter_spacing",		
-		 						'label'		=>'Heading Letter Spacing',
+		 						'label'		=> esc_html__('Heading Letter Spacing','accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'1px',	
 		           				'content_type'=>'css',
-		           				'required'  => array('background_type'=>'video')
+		           				'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(
 		 						'type'		=>'text',		
 		 						'name'		=>"tlt_ln_hgt",		
-		 						'label'		=>'Heading Line Height',
+		 						'label'		=> esc_html__('Heading Line Height','accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'1.7',	
 		           				'content_type'=>'css',
-		           				'required'  => array('background_type'=>'video')
+		           				'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(
 								'type'		=>'color-picker',
 								'name'		=>"tlt_color",
-								'label'		=>'Heading Color',
+								'label'		=> esc_html__('Heading Color','accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css',
-								'required'  => array('background_type'=>'video')
+								'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 							),
 							array(
 		 						'type'		=>'text',		
 		 						'name'		=>"cnt_size",		
-		 						'label'		=>'Content Font Size',
+		 						'label'		=> esc_html__('Content Font Size','accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
-		           				'required'  => array('background_type'=>'video')
+		           				'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(    
 				                'type'  =>'select',   
 				                'name'  =>'cnt_font_type',    
-				                'label' =>"Content Font Weight",
+				                'label' => esc_html__("Content Font Weight",'accelerated-mobile-pages'),
 				                'tab'     =>'design',
 				                'default' =>'400',
 				                'options_details'=>array(
@@ -463,30 +743,33 @@ $containerCommonSettings = array(
 				                                    '700'   =>'Bold',
 				                                ),
 				                'content_type'=>'css',
-				                'required'  => array('background_type'=>'video')
+				                'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 			              	),
 	 						array(
 		 						'type'		=>'text',		
 		 						'name'		=>"cnt_ln_hgt",		
-		 						'label'		=>'Content Line Height',
+		 						'label'		=> esc_html__('Content Line Height','accelerated-mobile-pages'),
 		           				 'tab'     =>'design',
 		 						'default'	=>'1.7',	
 		           				'content_type'=>'css',
-		           				'required'  => array('background_type'=>'video')
+		           				'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 	 						),
 	 						array(
 								'type'		=>'color-picker',
 								'name'		=>"cnt_color",
-								'label'		=>'Content Color',
+								'label'		=> esc_html__('Content Color','accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css',
-								'required'  => array('background_type'=>'video')
+								'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
 							),
 							array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_overlay",
-                                'label'     => 'Background Video Overlay',
+                                'label'     => esc_html__('Background Video Overlay','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -496,21 +779,23 @@ $containerCommonSettings = array(
                                                 )
                                             ),
                                 'content_type'=>'html',
-                                'required'  => array('background_type'=>'video')
+                                'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
                             ),
                             array(
 								'type'		=>'color-picker',
 								'name'		=>"overlay_cnt_color",
-								'label'		=>'Background Video Content Color',
+								'label'		=> esc_html__('Background Video Content Color','accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>'#fff',
 								'content_type'=>'css',
-								'required'  => array('background_type'=>'video', 'check_for_overlay'=>1)
+								'required_type' => 'or',
+		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'), 'check_for_overlay'=>1)
 							),
 	 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_parallax",
-                                'label'     => 'Parallax Effect',
+                                'label'     => esc_html__('Parallax Effect','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -525,7 +810,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_slant",
-                                'label'     => 'Slant Background',
+                                'label'     => esc_html__('Slant Background','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -540,7 +825,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_enbtp",
-                                'label'     => 'Enable Top',
+                                'label'     => esc_html__('Enable Top','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -555,7 +840,7 @@ $containerCommonSettings = array(
                             array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type_slant',		
-	 							'label' =>"Slant Position",
+	 							'label' => esc_html__("Slant Position",'accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'left',
 	 							'options_details'=>array(
@@ -563,11 +848,11 @@ $containerCommonSettings = array(
 	 												'right'    =>'Right', 																						),
 	 							'content_type'=>'css',
 	 							'required'  => array('check_for_slant'=>1, 'check_for_enbtp'=>1)
-	 							),
+	 						),
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_enbbt",
-                                'label'     => 'Enable Bottom',
+                                'label'     => esc_html__('Enable Bottom','accelerated-mobile-pages'),
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -582,7 +867,7 @@ $containerCommonSettings = array(
                             array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type_slate_btn',		
-	 							'label' =>"Slant Position",
+	 							'label' => esc_html__("Slant Position",'accelerated-mobile-pages'),
 								'tab'     =>'design',
 	 							'default' =>'lft',
 	 							'options_details'=>array(
@@ -602,14 +887,14 @@ $containerCommonSettings = array(
 								'required'  => array('background_type'=>'color')
 							),
 							array(
-								'type'		=>'gradient-selector',
-								'name'		=>"selected_gradient",
-								'label'		=>'Background Gradient',
+								'type'		=>'color-picker',
+								'name'		=>"color_picker",
+								'label'		=> esc_html__('Background Color','accelerated-mobile-pages'),
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'content_type'=>'css',
-								'output_format'=>"%default%",
-								'required'  => array('background_type'=>'gradient')
+								'output_format'=>"background: %default%",
+								'required'  => array('background_type'=>'color')
 							),
 
 							/*array(
@@ -668,7 +953,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'checkbox',
 								'name'		=>"shadow",
-								'label'		=>'Background Shadow',
+								'label'		=>esc_html__('Background Shadow','accelerated-mobile-pages'),
 								'tab'		=>'design',
 								'default'	=>array(),
 								'options'	=>array(
@@ -683,7 +968,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
-								'label'		=>'Set Margin',
+								'label'		=>esc_html__('Set Margin','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>
 					                            array(
@@ -697,7 +982,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
-								'label'		=>'Set Padding',
+								'label'		=> esc_html__('Set Padding','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>array(
 													'top'=>'20px',
@@ -711,7 +996,7 @@ $containerCommonSettings = array(
 							array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_brdr",
-                                'label'     => 'Border',
+                                'label'     => esc_html__('Border','accelerated-mobile-pages'),
                                 'tab'       =>'container_css',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -725,7 +1010,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'spacing',
 								'name'		=>"border_sz",
-								'label'		=>'Border width',
+								'label'		=> esc_html__('Border width','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>array(
 													'top'=>'0px',
@@ -739,7 +1024,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'color-picker',
 								'name'		=>"border_clr_pkr",
-								'label'		=>'Border Color',
+								'label'		=> esc_html__('Border Color','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>'#ccc',
 								'required'  => array('check_for_brdr'=>1),
@@ -749,7 +1034,7 @@ $containerCommonSettings = array(
 							array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_pdng",
-                                'label'     => 'Responsive Padding',
+                                'label'     => esc_html__('Responsive Padding','accelerated-mobile-pages'),
                                 'tab'       =>'container_css',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -763,7 +1048,7 @@ $containerCommonSettings = array(
                             array(
 								'type'		=>'spacing',
 								'name'		=>"res_pdng",
-								'label'		=>'Set Padding',
+								'label'		=> esc_html__('Set Padding','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>array(
 													'top'=>'0px',
@@ -778,7 +1063,7 @@ $containerCommonSettings = array(
 							array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_mrgn",
-                                'label'     => 'Responsive Margin',
+                                'label'     => esc_html__('Responsive Margin','accelerated-mobile-pages'),
                                 'tab'       =>'container_css',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -792,7 +1077,7 @@ $containerCommonSettings = array(
                             array(
 								'type'		=>'spacing',
 								'name'		=>"res_mrgn",
-								'label'		=>'Set Margin',
+								'label'		=> esc_html__('Set Margin','accelerated-mobile-pages'),
 								'tab'		=>'container_css',
 								'default'	=>
 				                            array(

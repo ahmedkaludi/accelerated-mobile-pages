@@ -655,7 +655,9 @@ Vue.component('fields-data',{
 		},
 		fieldShowHideCheck: function(field){
 			var returnOpt = [];
-			returnOpt.push(true);
+			if( !field.required_type){
+				returnOpt.push(true);
+			}
 			if(field.required){
 				var requiredCondition = field.required;
 
@@ -667,7 +669,9 @@ Vue.component('fields-data',{
 								for(var i = 0; i < length; i++) {
 			                        if(requiredCondition[maindata.name][i] == maindata.default){
 			                        	checkingInArray = true;
-			                        	return false;	
+			                        	if( !field.required_type){
+			                        		return false;	
+			                        	}
 			                        } 
 			                    }
 			                    if(checkingInArray){
@@ -688,10 +692,19 @@ Vue.component('fields-data',{
 				    return self.indexOf(value) === index;
 					});
 
-			if(returnOpt.length==1 && returnOpt[0]==true){
-				return true;
+			if(field.required_type == 'or'){
+				var reqOpt = returnOpt.indexOf(true);
+				if( reqOpt!= -1){
+					return true;
+				}else{
+					return false;
+				}
 			}else{
-				return false;
+				if(returnOpt.length==1 && returnOpt[0]==true){
+					return true;
+				}else{
+					return false;
+				}
 			}
 			return false;
 		},
