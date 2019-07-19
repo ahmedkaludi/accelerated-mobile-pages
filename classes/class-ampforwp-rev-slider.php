@@ -35,7 +35,9 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		if($order !== '') $order = explode(',', $order);
 		
         $sliderAlias = ($alias != '') ? $alias : RevSliderFunctions::getVal($args,0);
-		
+		if( ! method_exists('RevSliderFunctionsWP', 'check_for_shortcodes') ) {
+			return;
+		}
 		$gal_ids = RevSliderFunctionsWP::check_for_shortcodes($mid_content); 
 		ob_start();
 		if(!empty($gal_ids)){ //add a gallery based slider
