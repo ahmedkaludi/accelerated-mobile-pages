@@ -202,6 +202,18 @@ $extension_listing_array = array(
                             'settingUrl'=>'{ampforwp-nf-subsection}',
                         ),
                         array(
+                            'name'=>'Pinterest for AMP',
+                            'label' => 'Pinterest for AMP',
+                            'desc'=>'Pinterest compatibility with AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/amp-icon.png',
+                            'price'=>'$19',
+                            'url_link'=>'https://ampforwp.com/addons/pinterest-for-amp/#utm_source=options-panel&utm_medium=extension-tab_polylang-for-amp&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'pinterest-for-amp/pinterest-for-amp.php',
+                            'item_name'=>'Pinterest for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('pinterest-for-amp/pinterest-for-amp.php')? 1: 2),
+                        ),
+                        array(
                             'name'=>'WP Forms for AMP',
                             'desc'=>'Add WP Forms Support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/wpf.png',
