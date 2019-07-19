@@ -516,9 +516,9 @@ $containerCommonSettings = array(
 	 												'color'=>'Color',
 	 												'gradient'=>'Gradient',
 	 												'image'=>'Background Image',
-	 												'video'=>'Background Video(EmbVideo)',
-	 												'mp4video'=>'Background Video(Mp4Vide0)',
-	 												'youtubevideo'=>'Background Video(YoutubeVideo)',
+	 												'video'=>'Background Video (Third Party Embed)',
+	 												'mp4video'=>'Background Video (MP4)',
+	 												'youtubevideo'=>'Background Video (Youtube)',
 	 													),
 	 							'content_type'=>'html',
 	 							'output_format'=>''
@@ -597,17 +597,17 @@ $containerCommonSettings = array(
 	 						array(
 								'type'		=>'text',
 								'name'		=>"row_background_video",
-								'label'		=> esc_html__( 'Background EmbVideo URL', 'accelerated-mobile-pages' ),
+								'label'		=> esc_html__( 'Third Party Embed URL', 'accelerated-mobile-pages' ),
 								'tab'		=>'customizer',
 								'default'	=>'',
-								'helpmessage'	=> esc_html__('Your video should be 600px away from the top or not within the first 75% of the viewport and it should be added like - https://www.youtube.com/embed/XXXXXXXXXX', 'accelerated-mobile-pages'),
+								'helpmessage'	=> esc_html__('Your video should be 600px away from the top or not within the first 75% of the viewport and it should be added like - https://player.vimeo.com/video/140261016', 'accelerated-mobile-pages'),
 								'content_type'=>'html',
 								'required'  => array('background_type'=>'video')
 								),
 	 						array(
 								'type'		=>'text',
 								'name'		=>"row_background_mp4video",
-								'label'		=> esc_html__( 'Background Mp4Video URL', 'accelerated-mobile-pages' ),
+								'label'		=> esc_html__( 'MP4 Video URL', 'accelerated-mobile-pages' ),
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'helpmessage'	=> esc_html__('Please add you mp4 video source url', 'accelerated-mobile-pages'),
@@ -617,7 +617,7 @@ $containerCommonSettings = array(
 	 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_mp4video_controls",
-                                'label'     => esc_html__('Show Video Controls', 'accelerated-mobile-pages'),
+                                'label'     => esc_html__('Controls', 'accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -632,7 +632,7 @@ $containerCommonSettings = array(
 	 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_mp4video_autoplay",
-                                'label'     =>'Enable Autoplay',
+                                'label'     =>'Autoplay',
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -647,7 +647,7 @@ $containerCommonSettings = array(
 	 						array(
 								'type'		=>'text',
 								'name'		=>"row_background_youtubevideo",
-								'label'		=> esc_html__( 'Background YoutubeVideo ID', 'accelerated-mobile-pages' ),
+								'label'		=> esc_html__( 'Youtube Video ID', 'accelerated-mobile-pages' ),
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'helpmessage'	=> esc_html__('Please add you youtube video ID', 'accelerated-mobile-pages'),
@@ -657,7 +657,7 @@ $containerCommonSettings = array(
 	 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_youtube_controls",
-                                'label'     => esc_html__('Show Video Controls', 'accelerated-mobile-pages'),
+                                'label'     => esc_html__('Controls', 'accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -672,7 +672,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_modestbranding",
-                                'label'     => esc_html__('Enable Modestbranding(Hide Youtube Logo)','accelerated-mobile-pages'),
+                                'label'     => esc_html__('Hide Youtube Logo','accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -687,7 +687,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_youtube_loop",
-                                'label'     => esc_html__('Enable Video Loop','accelerated-mobile-pages'),
+                                'label'     => esc_html__('Video Loop','accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -702,7 +702,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_youtube_rel",
-                                'label'     => esc_html__('Show RelatedVideos','accelerated-mobile-pages'),
+                                'label'     => esc_html__('Related Videos','accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -717,7 +717,7 @@ $containerCommonSettings = array(
                             array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"enable_youtube_autoplay",
-                                'label'     => esc_html__('Enable Autoplay','accelerated-mobile-pages'),
+                                'label'     => esc_html__('Autoplay','accelerated-mobile-pages'),
                                 'tab'		=>'customizer',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -732,9 +732,9 @@ $containerCommonSettings = array(
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"title",		
-		 						'label'		=> esc_html__('Background Video Heading','accelerated-mobile-pages'),
+		 						'label'		=> esc_html__('Video Heading','accelerated-mobile-pages'),
 		           				 'tab'      =>'customizer',
-		 						'default'	=>'Heading',	
+		 						'default'	=>'',	
 		           				'content_type'=>'html',
 		           				'required_type' => 'or',
 		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
@@ -742,9 +742,9 @@ $containerCommonSettings = array(
 	 						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"content_title",		
-		 						'label'		=> esc_html__('Background Video Content','accelerated-mobile-pages'),
+		 						'label'		=> esc_html__('Video Content','accelerated-mobile-pages'),
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'Write your content in Text Editor',	
+		 						'default'	=>'',	
 		           				'content_type'=>'html',
 		           				'required_type' => 'or',
 		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
