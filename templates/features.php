@@ -1181,6 +1181,11 @@ function ampforwp_remove_schema_data() {
 	//remove filter for Impreza theme lazyload feature 
 	remove_filter( 'the_content', 'us_filter_content_for_lazy_load', 99, 1 );
 
+	if( function_exists('rehub_framework_register_scripts')){
+		remove_filter("ampforwp_template_locate", "rhampforwp_update_template_folder");
+		remove_filter('amp_post_template_file', 'rehub_amp_delete_custom_title_section',11,3);
+	}
+	
 	// Publisher theme lazy load #3063
 	if( class_exists('Publisher') ){
 		remove_filter( 'post_thumbnail_html', 'publisher_lazy_loading_img_tags', 6 );
