@@ -4561,8 +4561,13 @@ Redux::setSection( $opt_name, array(
                           array('ampforwp-homepage-posts-image-modify-size','=',1)
                         )
                 ),
-
-
+                array(
+                    'id'        => 'amforwp-homepage-date-switch',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Date in Loop', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
+                ),
         )
     ));
 $yoast_breadcrumbs = '';
@@ -4817,6 +4822,15 @@ $single_page_options = array(
             'tooltip-subtitle' => esc_html__('To enable & disable recent posts', 'accelerated-mobile-pages'),
             'default'  => 1,
         ),
+        array(
+                    'id'        => 'amforwp-recentpost-date-switch',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Recent Posts Date', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
+                    'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
+            ),
             array(
                        'id' => 'ampforwp-single_section_3',
                        'type' => 'section',

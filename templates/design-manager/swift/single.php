@@ -235,9 +235,11 @@ do_action("ampforwp_single_design_type_handle_d1");
 			    	<?php amp_loop_category(); ?>
 				    <?php amp_loop_title(); ?>
 				    <?php amp_loop_excerpt(20); ?>
-				    <div class="pt-dt">
-				    	<?php amp_loop_date(); ?>
-				    </div>
+				<?php if( true == ampforwp_get_setting('amforwp-recentpost-date-switch')){?>
+					    <div class="pt-dt">
+					    	<?php amp_loop_date(); ?>
+					    </div>
+				<?php }?>
 			    </div>
 			</div>
 		<?php endwhile; amp_loop('end');  ?>
@@ -503,9 +505,11 @@ do_action("ampforwp_single_design_type_handle_d1");
 							    	<?php amp_loop_category(); ?>
 								    <?php amp_loop_title(); ?>
 								    <?php amp_loop_excerpt(20); ?>
-								    <div class="pt-dt">
-								    	<?php amp_loop_date(); ?>
-								    </div>
+				<?php if( true == ampforwp_get_setting('amforwp-recentpost-date-switch')){?>
+							    <div class="pt-dt">
+							    	<?php amp_loop_date(); ?>
+							    </div>
+				<?php }?>
 							    </div>
 							</div>
 						<?php endwhile; amp_loop('end');  ?>

@@ -28,8 +28,11 @@
 			    	<?php amp_loop_category(); ?>
 				    <?php amp_loop_title(); ?>
 				    <div class="at-dt">
-					    <?php amp_loop_date(); ?>
-					     <?php amp_author_box( 
+					    <?php 
+				    	if( true == ampforwp_get_setting('amforwp-homepage-date-switch')){	amp_loop_date();
+						} 
+						?>
+					    <?php amp_author_box( 
 										array('author_pub_name'=>true,)
 										); ?>
 					</div>
@@ -58,9 +61,11 @@
 				    <?php if( ampforwp_check_excerpt() ) { 
 				    amp_loop_excerpt(ampforwp_get_setting('amp-swift-excerpt-len'));
 			    	} ?>	
+				    <?php if( true == ampforwp_get_setting('amforwp-homepage-date-switch')){?>
 				    <div class="pt-dt">
 				    	<?php amp_loop_date(); ?>
 				    </div>
+					<?php }?>
 			    </div>
 			</div>
 		<?php } $i++; ?>
