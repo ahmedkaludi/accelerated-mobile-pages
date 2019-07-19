@@ -158,12 +158,12 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         $content_buffer = preg_replace( '/<sup(.*?)id="footnote_plugin_tooltip_(.*?)"(.*?)class="footnote_plugin_tooltip_text"(.*?)>(.*?)<\/sup>/m',  '
         <sup$1id="footnote_plugin_tooltip_$2"$3class="footnote_plugin_tooltip_text"$4><a href="#footnote_plugin_reference_$2">$5</a></sup>', $content_buffer);
         }
+        if(function_exists('ampforwp_amp_nonamp_convert') && ampforwp_amp_nonamp_convert("", "check")){
+          $content_buffer = ampforwp_amp_nonamp_convert($content_buffer, "filter");
+        }
         $content_buffer = apply_filters('ampforwp_the_content_last_filter', $content_buffer);
-
     }
-    if(function_exists('ampforwp_amp_nonamp_convert') && ampforwp_amp_nonamp_convert("", "check")){
-      $content_buffer = ampforwp_amp_nonamp_convert($content_buffer, "filter");
-    }
+    
     return $content_buffer;
 }
 add_action('wp', function(){ ob_start('ampforwp_the_content_filter_full'); }, 999);
