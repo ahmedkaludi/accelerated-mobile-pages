@@ -1650,6 +1650,18 @@ if(ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
 .s_fb_ms:after{content: "\e935";}	
 <?php }	
 if($redux_builder_amp['enable-single-twitter-share'] || $redux_builder_amp['enbl-tw']){?>
+<?php if(function_exists('mvp_setup')){?>
+.zox_tw:after{ <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
+	content: "\e942";
+	font-family: 'icomoon';
+<?php }?>
+<?php if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
+content:"\f099";
+font-family:"Font Awesome 5 Brands";
+<?php } ?>
+	color: #1da1f2;
+}
+<?php } ?>
 .s_tw{background:#1da1f2;}
 .s_tw:after{
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>

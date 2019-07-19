@@ -969,7 +969,12 @@ if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
 		    $twitter = get_the_author_meta( 'twitter', $post->post_author );
 		}
 		if($twitter){
-		    return ' <span><a href="https://twitter.com/'.esc_attr($twitter).'" target="_blank">@'.esc_html($twitter).'</a></span>';
+			if ( function_exists('mvp_setup') ) {
+				return ' <span><a class="zox_tw" href="https://twitter.com/'.esc_attr($twitter).'" target="_blank"></a></span>';
+			}else{
+				return ' <span><a href="https://twitter.com/'.esc_attr($twitter).'" target="_blank">@'.esc_html($twitter).'</a></span>';
+			}
+		    
 		}
 		return '';
 	}
