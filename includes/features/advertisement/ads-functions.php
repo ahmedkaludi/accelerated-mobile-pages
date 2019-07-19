@@ -17,6 +17,7 @@ function ampforwp_header_advert() {
 		$redux_builder_amp = get_option('redux_builder_amp',true);
 	}
 	$is_dboc = '';
+	$output = $advert_width = $advert_height = $client_id = $data_slot = '';
 	$is_dboc = ampforwp_get_data_consent();
 	$post_id = get_the_ID();
 	if ( ampforwp_is_front_page() ) {
@@ -32,7 +33,7 @@ function ampforwp_header_advert() {
 	}
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-1'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-1'];
-	if ( isset($redux_builder_amp['enable-amp-ads-1']) && true == $redux_builder_amp['enable-amp-ads-1'] ) {
+	if ( ampforwp_get_setting('enable-amp-ads-1')  && ampforwp_get_setting('enable-amp-ads-type-1') == 'adsense' ) {
 		if ( 1 == $redux_builder_amp['enable-amp-ads-select-1'] ) {
 			$advert_width  = '300';
 			$advert_height = '250';
@@ -77,9 +78,10 @@ function ampforwp_header_advert() {
 			$output .= '></amp-ad>';
 		$output .= ampforwp_ads_sponsorship();
 		$output .= ' </div>';
-		$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-		echo $output;
 	}
+	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
+	$output = apply_filters('ampforwp_modify_ad_1',$output );
+	echo $output;
 }
 
 // Above Footer Global
@@ -90,6 +92,7 @@ function ampforwp_footer_advert() {
 	}
 	$optimize = '';
 	$is_dboc = '';
+	$output = $advert_width = $advert_height = $client_id = $data_slot = '';
 	$is_dboc = ampforwp_get_data_consent();
 	$post_id = get_the_ID();
 	if ( ampforwp_is_front_page() ) {
@@ -106,7 +109,7 @@ function ampforwp_footer_advert() {
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-2'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-2'];
 	$optimize = ampforwp_ad_optimize();
-	if ( isset($redux_builder_amp['enable-amp-ads-2']) && true == $redux_builder_amp['enable-amp-ads-2'] ) {
+	if ( ampforwp_get_setting('enable-amp-ads-2') && ampforwp_get_setting('enable-amp-ads-type-1') == 'adsense' ) {
 		if($redux_builder_amp['enable-amp-ads-select-2'] == 1)  {
 			$advert_width  = '300';
 			$advert_height = '250';
@@ -151,9 +154,10 @@ function ampforwp_footer_advert() {
 			$output .= '></amp-ad>';
 		$output .= ampforwp_ads_sponsorship();
 		$output	.=   ' </div>';
-		$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-		echo $output;
 	}
+	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
+	$output = apply_filters('ampforwp_modify_ad_2',$output );
+	echo $output;
 }
 
 // Above Post Content
@@ -165,6 +169,7 @@ function ampforwp_before_post_content_advert() {
 	$is_global = '';
 	$display_on = '';
 	$is_dboc = '';
+	$output = $advert_width = $advert_height = $client_id = $data_slot = '';
 	$is_dboc = ampforwp_get_data_consent();
 	$post_id = get_the_ID();
 	// If page builder is enabled then 'Return' and show no ads  
@@ -199,7 +204,7 @@ function ampforwp_before_post_content_advert() {
 				$display_on = is_singular();
 			}
 			
-			if ( isset($redux_builder_amp['enable-amp-ads-3']) && true == $redux_builder_amp['enable-amp-ads-3'] && $display_on ) {
+			if ( ampforwp_get_setting('enable-amp-ads-3')  && ampforwp_get_setting('enable-amp-ads-type-1') == 'adsense' && $display_on  ) {
 				if($redux_builder_amp['enable-amp-ads-select-3'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';
@@ -244,9 +249,10 @@ function ampforwp_before_post_content_advert() {
 					$output .= '></amp-ad>';
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
-				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-				echo $output;
 			}
+			$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
+			$output = apply_filters('ampforwp_modify_ad_3',$output );
+			echo $output;
 		}
 	}
 }
@@ -262,6 +268,7 @@ function ampforwp_after_post_content_advert() {
 	$optimize = '';
 	$post_id = get_the_ID();
 	$is_dboc = '';
+	$output = $advert_width = $advert_height = $client_id = $data_slot = '';
 	$is_dboc = ampforwp_get_data_consent();
 	// If page builder is enabled then 'Return' and show no ads  
   	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
@@ -274,7 +281,7 @@ function ampforwp_after_post_content_advert() {
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-4'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-4'];
 	$optimize = ampforwp_ad_optimize();
-	if ( isset($redux_builder_amp['enable-amp-ads-4']) && true == $redux_builder_amp['enable-amp-ads-4'] && is_single() ) {
+	if ( ampforwp_get_setting('enable-amp-ads-4')  && ampforwp_get_setting('enable-amp-ads-type-4') == 'adsense' && is_single()  ) {
 		if($redux_builder_amp['enable-amp-ads-select-4'] == 1)  {
 			$advert_width  = '300';
 			$advert_height = '250';
@@ -319,9 +326,10 @@ function ampforwp_after_post_content_advert() {
 			$output .= '></amp-ad>';
 		$output .= ampforwp_ads_sponsorship();
 		$output	.=   ' </div>';
-		$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-		echo $output;
 	}
+	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
+	$output = apply_filters('ampforwp_modify_ad_4',$output );
+	echo $output;
 }
 
 // Below The Title
@@ -331,6 +339,7 @@ function ampforwp_below_the_title_advert() {
 		$redux_builder_amp = get_option('redux_builder_amp',true);
 	}
 	$is_dboc = '';
+	$output = $advert_width = $advert_height = $client_id = $data_slot = '';
 	$is_dboc = ampforwp_get_data_consent();
 	$post_id = get_the_ID();
 	// If page builder is enabled then 'Return' and show no ads  
@@ -343,7 +352,7 @@ function ampforwp_below_the_title_advert() {
 	}
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-5'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-5'];
-	if ( isset($redux_builder_amp['enable-amp-ads-5']) && true == $redux_builder_amp['enable-amp-ads-5'] && is_single() ) {
+	if ( ampforwp_get_setting('enable-amp-ads-5')  && ampforwp_get_setting('enable-amp-ads-type-5') == 'adsense' && is_single()  ) {
 		if($redux_builder_amp['enable-amp-ads-select-5'] == 1)  {
 			$advert_width  = '300';
 			$advert_height = '250';
@@ -388,9 +397,10 @@ function ampforwp_below_the_title_advert() {
 			$output .= '></amp-ad>';
 		$output .= ampforwp_ads_sponsorship();
 		$output	.=   ' </div>';
-		$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-		echo $output;
 	}
+	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
+	$output = apply_filters('ampforwp_modify_ad_5',$output );
+	echo $output;
 }
 
 
@@ -402,6 +412,7 @@ function ampforwp_above_related_post_advert() {
 	}
 	$optimize = '';
 	$is_dboc = '';
+	$output = $advert_width = $advert_height = $client_id = $data_slot = '';
 	$is_dboc = ampforwp_get_data_consent();
 	$post_id = get_the_ID();
 	// If page builder is enabled then 'Return' and show no ads  
@@ -415,7 +426,7 @@ function ampforwp_above_related_post_advert() {
 	$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-6'];
 	$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-6'];
 	$optimize = ampforwp_ad_optimize();
-	if( isset($redux_builder_amp['enable-amp-ads-6']) && true == $redux_builder_amp['enable-amp-ads-6'] ) {
+	if ( ampforwp_get_setting('enable-amp-ads-6')  && ampforwp_get_setting('enable-amp-ads-type-6') == 'adsense' ) {
 		if($redux_builder_amp['enable-amp-ads-select-6'] == 1)  {
 			$advert_width  = '300';
 			$advert_height = '250';
@@ -460,9 +471,10 @@ function ampforwp_above_related_post_advert() {
 			$output .= '></amp-ad>';
 		$output .= ampforwp_ads_sponsorship();
 		$output	.=   ' </div>';
-		$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-		echo $output;
 	}
+	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
+	$output = apply_filters('ampforwp_modify_ad_6',$output );
+	echo $output;
 }
 // Ads Sponsorship output
 function ampforwp_ads_sponsorship(){
