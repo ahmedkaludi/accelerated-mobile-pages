@@ -6414,7 +6414,7 @@ function ampforwp_add_global_scripts($data){
         }
     }
     // AddThis Support #3068   
-	if ( ampforwp_get_setting('enable-add-this-option') && ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social') ) ) && !ampforwp_woocommerce_conditional_check() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) )  {
+	if ( ampforwp_get_setting('enable-add-this-option') && ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social') ) ) && !ampforwp_woocommerce_conditional_check() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && ( ampforwp_get_setting('addthis-floating-share') == true || ampforwp_get_setting('addthis-inline-share') == true))  {
  		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
 			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
 		}
