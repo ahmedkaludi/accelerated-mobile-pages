@@ -4800,10 +4800,10 @@ if( ! function_exists( 'ampforwp_get_author_details' ) ){
 					if ( function_exists('coauthors_posts_links') ) {
 						return	$post_author_url;
 					}
-	                return	'<a href="' . esc_url($post_author_url) . ' "><strong>' . esc_html( $post_author_name ) . ' </strong></a>:'; 
+	                return	'<a href="' . esc_url($post_author_url) . ' "><strong>' . esc_html( $post_author_name ) . '</strong></a>: '; 
 	                 }
                 	else{ 
-                		return '<strong> ' . esc_html( $post_author_name) . ' </strong>:';
+                		return '<strong> ' . esc_html( $post_author_name) . '</strong>: ';
                 	}
 				break;
 		}
