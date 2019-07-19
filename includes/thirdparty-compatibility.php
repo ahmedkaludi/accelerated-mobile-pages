@@ -1031,3 +1031,14 @@ function ampforwp_woocommerce_conditional_check(){
 	}
 	return apply_filters('ampforwp_woocommerce_conditional_check', $showSingleCss);
 }
+
+// Gallery Images
+function ampforwp_non_amp_gallery($matches){
+	$images =  $matches[2];
+	$images = preg_replace_callback("/<img(.*?)>/", function($m){
+		return '<li class="mySlides fade">'.$m[0]. /* $m[0] is already sanitized, XSS OK */'</li>';
+	}, $images);
+	$imagesHTML = '<ul class="slideshow-container">'.$images. /* $images is already sanitized, XSS OK */'<a class="nonamp-prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="nonamp-next" onclick="plusSlides(1)">&#10095;</a></ul>';
+	return $imagesHTML;
+}

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.2
-Stable tag: 0.9.97.65
+Stable tag: 0.9.98
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,37 +190,42 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98 (19th July 2019) =
+* Improvements: Option to remove date from Homepage and also in Recent posts #3363
+* Improvements: Option for amp-youtube Embed video attributes in row module of AMP Pagebuilder #3373
+* Improvements: Menu sidebar background and elements color changing option for Design 1, 2 #3402
+* Improvements: MGID Ad support in AMP FOR WP #3431
+* Improvements: Sizes of featured image option for single 1 #3433
+* Improvements: Addthis floating share button feature in amp #3424
+* Improvements: Wistia Plugin Compatibility integrated #3386
+* Improvements: Squirrly SEO  Compatibility integrated #3421
+* Improvements: image-slider compatibility added in AMP sanitizer #3422
+* Improvements: Compatability issue with ShortPixel Image Optimizer #3439
+* Improvements: Improve the Search form (Sidebar) design #3425
+* Improvements: AMP footer widget in design three #3411
+* Improvements: Extension list added for AMP Email Extension #3144
+* Improvements: Extension list added for Pinterest for AMP Extension #3195
+* Improvements: Extension list added for Liveblog For AMP Extension #3194
+* Fixed: Close menu button is not showing when a user comes from Google search #3401
+* Fixed: When High-resolution Images option is enabled images link should be generated from higher-order to lower-order in schema markup #3442
+* Fixed: Sticky Social Icons setting should be moved to Social Tab and some changes #3426
+* Fixed: Fall back the header type code in the backend if a user has not selected any header type #3419
+* Fixed: Revolution Slider not working perfectly when a user is inserting video #3311
+* Fixed: Call to action option should be automatically enabled if the user selected header type-2 #3420
+* Fixed: Double quotes on the author area #3441
+* Fixed: Twitter URL is displaying instead of an icon when Zox news theme is active #3409
+* Fixed: Extension code array issue #3438
+* Fixed: Validation error due to amp-facebook-like #3427
+* Fixed: Fatal error cannot redeclare is_amp_endpoint() (previously declared) #3415
+* Fixed: Sticky Social Icons and cookies banner style issue #3452
+* Fixed: Validation error the extension 'amp-next-page' was found on this page, but is unused please remove this extension #3463
+* Fixed: gallery/slider module is not working when Convert AMP to WP theme (Beta) option is enabled #2771
+
 = 0.9.97.65 (16th July 2019) =
 * Fixed: PHP Warning at the top of the site: array_merge(): Expected parameter 1 to be an array #3434
 * Fixed: Disqus comment is not working after version 0.9.97.63 #3446
 * Fixed: Uncaught Error: Call to undefined method WPSEO_Options::get() for Yoast Premium #3447
 * Fixed: Message: when Leverage Browser Caching is not supported #3449
 * Fixed: Added the missing parameter $depth in filter 'nav_menu_item_id' #3454
-
-= 0.9.97.64 (15th July 2019) =
-* Improvements: Performance improvement -- Meta Value Queries #3392
-* Improvements: h1 tag on the archive, search and author pages #3323
-* Improvements: Flipboard as a social sharing option in AMP added #3348
-* Improvements: Comscore new variable for AMP in Analytics #3378
-* Improvements: Option for Leverage Browser Caching in the performance settings #3298
-* Fixed: Auto Add AMP in Menu URL option is not working for the product category #3319
-* Fixed: Horizontal scrolling issue on the homepage #3217
-* Fixed: Vuukle comments Toggle UX bug #3399
-* Fixed: Basic amp components to work in the content #2713
-* Fixed: Unnecessary CSS is loading in single amp product pages and also on cart pages. #3038
-* Fixed: Improper amphtml is getting created in the ngg_tag Url when NextGEN Gallery is used #3381
-* Fixed: Tutorial link for Disqus comments section #3362
-* Fixed: Empty Display property in menu.php #3387
-* Fixed: Images and text does not Zoom in & out with mobile devices in amp version #3233
-* Fixed: Custom CSS code got optimized after 0.9.97.61 update #3410
-* Fixed: Breadcrumbs icons are not connected to icons font family #3418
-* Fixed: In swift Single Design 2 sidebar CSS are not loading in Search page #3430
-* Fixed: Notice to be removed after dismissing it after installing AMP #3053
-* Fixed: Plugins manager showing twice in options panel #3328
-* Fixed: Amp scripts not appending in the head in Search pages when added in sidebar #3404
-* Fixed: Conflict issue with Themify Builder #3376
-* Fixed: Remove the Gap between Header and AMP Pagebuilder module #2534
-* Fixed: Image is not loading when the source of it starting from ../wp-content #3403
-* Fixed: PHP Warning at the top of the site: array_merge(): Expected parameter 1 to be an array #3434
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

@@ -733,17 +733,152 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                                                 'onClick="ampforwp_gdrp_set()"',
                                                 )
                                             , $ampData);
+                // CSS
+                
+                if( false !== strpos($returnData, 'amp-carousel') ) {
+                    $galleryCss = '* {box-sizing: border-box}.mySlides{display: none}
+                        /* Slideshow container */
+                        .slideshow-container {
+                          max-width: 1000px;
+                          position: relative;
+                          margin: auto;
+                        }
+                        /* Next & previous buttons */
+                        .nonamp-prev, .nonamp-next {
+                            cursor: pointer;
+                            position: absolute;
+                            top: 50%;
+                            width: auto;
+                            padding: 10px 15px 10px 15px;
+                            margin-top: 0;
+                            color: white;
+                            font-weight: bold;
+                            font-size: 16px;
+                            transition: 0.6s ease;
+                            border-radius: 0 3px 3px 0;
+                            user-select: none;
+                            background-color: rgba(0,0,0,0.5);
+                        }
+                        /* Position the "next button" to the right */
+                        .nonamp-next {
+                          right: 0;
+                          border-radius: 3px 0 0 3px;
+                        }
+                        .nonamp-prev{
+                            left:0;
+                            border-radius: 3px 0 0 3px;
+                        }
+                        /* On hover, add a black background color with a little bit see-through */
+                        .nonamp-prev:hover, .nonamp-next:hover {
+                          color:#fff;
+                        }
+                        /* Caption text */
+                        .text {
+                          color: #f2f2f2;
+                          font-size: 15px;
+                          padding: 8px 12px;
+                          position: absolute;
+                          bottom: 8px;
+                          width: 100%;
+                          text-align: center;
+                        }
+                        /* Number text (1/3 etc) */
+                        .numbertext {
+                          color: #f2f2f2;
+                          font-size: 12px;
+                          padding: 8px 12px;
+                          position: absolute;
+                          top: 0;
+                        }
+                        /* The dots/bullets/indicators */
+                        .dot {
+                          cursor: pointer;
+                          height: 15px;
+                          width: 15px;
+                          margin: 0 2px;
+                          background-color: #bbb;
+                          border-radius: 50%;
+                          display: inline-block;
+                          transition: background-color 0.6s ease;
+                        }
+                        .active, .dot:hover {
+                          background-color: #717171;
+                        }
+                        /* Fading animation */
+                        .fade {
+                          -webkit-animation-name: fade;
+                          -webkit-animation-duration: 1.5s;
+                          animation-name: fade;
+                          animation-duration: 1.5s;
+                        }
+                        @-webkit-keyframes fade {
+                          from {opacity: .4} 
+                          to {opacity: 1}
+                        }
+                        @keyframes fade {
+                          from {opacity: .4} 
+                          to {opacity: 1}
+                        }
+                        /* On smaller screens, decrease text size */
+                        @media only screen and (max-width: 300px) {
+                          .nonamp-prev, .nonamp-next,.text {font-size: 11px}
+                        }';
+                    $galleryJs = '<script>
+                                    var slideIndex = 0;
+                                    showSlides(slideIndex);
+                                    function plusSlides(n) {
+                                      showSlides(slideIndex += n);
+                                    }
+                                    function currentSlide(n) {
+                                      showSlides(slideIndex = n);
+                                    }
+                                    function showSlides(n) {
+                                      var i;
+                                      var slides = document.getElementsByClassName("mySlides");
+                                      var dots = document.getElementsByClassName("dot");
+                                      var heads = document.getElementsByClassName("heads");
+                                      if (n >= slides.length) {slideIndex = 0}    
+                                      if (n < 0) {slideIndex = slides.length-1}
+                                      for (i = 0; i < slides.length; i++) {
+                                          slides[i].style.display = "none";  
+                                      }
+                                      for (i = 0; i < dots.length; i++) {
+                                          dots[i].className = dots[i].className.replace(" how-current", "");
+                                      }
+                                      for (i = 0; i < heads.length; i++) {
+                                          heads[i].className = heads[i].className.replace(" how-current", "");
+                                      }
+                                      slides[slideIndex].style.display = "block";  
+                                      dots[slideIndex].className += " how-current";
+                                      heads[slideIndex].className += " how-current";
+                                    }
+                                    function currentDiv(n) {
+                                      showDivs(slideIndex = n);
+                                    }
+                                    function showDivs(n) {
+                                      var i;
+                                      var x = document.getElementsByClassName("mySlides");
+                                      if (n > x.length) {slideIndex = 1}
+                                      if (n < 0) {slideIndex = x.length}
+                                      for (i = 0; i < x.length; i++) {
+                                        x[i].style.display = "none";
+                                      }
+                                      x[slideIndex].style.display = "block";
+                                    }
+                                    </script>';
+                }
 
                 $nonampCss = '
                 .cntr img{height:auto !important;}
                 img{height:auto;}
+                .slid-prv{width:100%;text-align: center;margin-top: 10px;display: inline-block;}
                 .amp-featured-image img{width:100%;height:auto;}
                 .content-wrapper, .header, .header-2, .header-3{width:100% !important;}
                 .image-mod img{width:100%;}
                 
                 ';
                 $re = '/<style\s*type="text\/css">(.*?)<\/style>/si';
-                $subst = "<style type=\"text/css\">$1 ".$nonampCss."</style>";
+                $subst = "<style type=\"text/css\">$1 ".$nonampCss.$galleryCss."</style>";
                 $returnData = preg_replace($re, $subst, $returnData);
                 $returnData = preg_replace(
                 '/<amp-youtube\sdata-videoid="(.*?)"(.*?)><\/amp-youtube>/',
@@ -753,6 +888,11 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                 function($matches){
                     return '<iframe src="'.esc_url($matches[2]).'" style="width:100%;height:400px;" ></iframe>';
                 }, $returnData);
+                $returnData = preg_replace_callback('/<amp-carousel\s(.*?)>(.*?)<\/amp-carousel>/s', 'ampforwp_non_amp_gallery', $returnData );
+                $returnData = preg_replace('/on="tap(.*?).goToSlide(.*?)"/', 'onclick="currentDiv$2"', $returnData);
+                $returnData = preg_replace('/<span on="tap:AMP\.setState\((.*?)\s:\showSectionSelected\.howSlide - 1(.*?)\)(.*?)/', '<span onclick="plusSlides(-1)$3"', $returnData);
+                $returnData = preg_replace('/<span on="tap:AMP\.setState\((.*?)\s:\showSectionSelected\.howSlide \+ 1(.*?)\)(.*?)>/', '<span onclick="plusSlides(+1)$3">', $returnData);
+                $returnData = str_replace('</footer>', '</footer>'.$galleryJs, $returnData);
             break;
         }
         return $returnData;
