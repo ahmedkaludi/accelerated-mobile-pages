@@ -3,6 +3,20 @@ global $redux_builder_amp;
 wp_reset_postdata(); ?>
 <footer class="amp-wp-footer">
 	<div id="footer">
+    <?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
+        <div class="f-w-blk">
+            <div class="d3f-w">
+              <?php 
+              $sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-footer-widget-area');
+              if ( $sanitized_sidebar) {
+                $sidebar_output = $sanitized_sidebar->get_amp_content();
+                $sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+              } 
+              echo do_shortcode($sidebar_output); 
+              ?>
+            </div>
+        </div>
+    <?php endif; ?>
 		<?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
       <div class="footer_menu"> 
           <nav>
@@ -18,6 +32,7 @@ wp_reset_postdata(); ?>
         </div>
     <?php } ?>
 		<h2><?php echo esc_attr( $this->get( 'blog_name' ) ); ?></h2>
+    <div class="cpr-links">
 		<p class="copyright_txt"><?php
 			$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
       echo strip_tags( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'All Rights Reserved') ,$allowed_tags );
@@ -30,7 +45,7 @@ wp_reset_postdata(); ?>
     }
     echo "</p>";
       }; 
-    ?>
+    ?></div>
   </div>
 </footer><?php do_action('amp_footer_link'); ?>
 <?php do_action('ampforwp_global_after_footer'); ?>
