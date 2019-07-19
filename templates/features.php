@@ -2658,6 +2658,20 @@ function ampforwp_modified_search_sidebar( $content ) {
 				$element->setAttribute('action', $action_url);
 			}
 			$element->setAttribute('target', '_top');
+			$input_nodes = $element->getElementsByTagName('input');
+			if ( 0 !== $input_nodes->length ) {
+				for ( $i = 0; $i < $input_nodes->length; ++$i ) {
+					$input_node = $input_nodes->item( $i );
+					if ( 'submit' !== $input_node->getAttribute('type') ) {
+						$input_submit = $dom->createElement('input');
+						$input_submit->setAttribute('type', 'submit');
+						$input_submit->setAttribute('class', 'search-submit');
+					}
+				}
+				if ( $input_submit ) {
+					$element->appendChild($input_submit);
+				}
+			}
 		}
 	}
 	// Remove http/https from Audio and Video URLs #1400
