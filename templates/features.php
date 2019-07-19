@@ -2652,14 +2652,6 @@ function ampforwp_modified_search_sidebar( $content ) {
 				$amp_query_variable = 'amp';
 				$amp_query_variable_val = '1';
 			}
-			$input = $dom->createElement('input');
-			$input->setAttribute('type', 'text');
-			$input->setAttribute('placeholder', 'AMP');
-			$input->setAttribute('value', $amp_query_variable_val);
-			$input->setAttribute('name', $amp_query_variable);
-			$input->setAttribute('class', 'hide');
-			$input->setAttribute('id', 'ampforwp_search_query_item');
-			$element->appendChild($input);
 			if ( ! $element->hasAttribute('action-xhr') ){
 				$action_url = $element->getAttribute('action');
 				$action_url = preg_replace('#^http?:#', '', $action_url);
@@ -6776,14 +6768,16 @@ function ampforwp_webp_featured_image() {
 add_filter('get_search_form', 'ampforwp_search_form');
 if ( ! function_exists('ampforwp_search_form') ) {
 	function ampforwp_search_form($form){
-		if ( ampforwp_is_amp_endpoint() ) {	
-			$form = '<form role="search" method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
-						<label>
-							<span class="screen-reader-text">' . _x( 'Search for:', 'label' ) . '</span>
-							<input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" value="' . get_search_query() . '" name="s" />
-						</label>
-						<input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button' ) . '" />
-					</form>';
+		if ( ampforwp_is_amp_endpoint() ) {
+		$placeholder = ampforwp_translation(ampforwp_get_setting('ampforwp-search-placeholder'), 'Type Here' );
+		$widgetlabel = ampforwp_translation(ampforwp_get_setting('ampforwp-search-widget-label'), 'Search for:' );	
+			$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" target="_top">
+					<label>
+						<span class="screen-reader-text">' . esc_html__( $widgetlabel, 'accelerated-mobile-pages' ) . '</span>
+						<input type="text" value="" placeholder="' . esc_html__( $placeholder, 'accelerated-mobile-pages' ) . '" name="s" class="search-field">
+					</label>
+					<input type="text" placeholder="' . esc_html__( $placeholder, 'accelerated-mobile-pages' ) . '" value="1" name="amp" class="hide" id="ampforwp_search_query_item">
+				</form>';
 		}
 		return $form;
 	}

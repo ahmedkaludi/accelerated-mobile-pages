@@ -1282,6 +1282,27 @@ if( !ampforwp_woocommerce_conditional_check() ) { ?>
 .amp-sidebar ul li a:hover, .calendar_wrap a:hover{
 	box-shadow: inset 0 0 0 rgba(0, 0, 0, 0), 0 3px 0 <?php echo ampforwp_sanitize_color($swift_cs_color) ?>;
 }
+.amp-sidebar form{
+  display:inline-flex;
+  flex-wrap:wrap;
+  align-items: center;
+}
+.amp-sidebar .search-submit{
+  text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    line-height: 0;
+    display: inline-block;
+    opacity: 0;
+}
+.amp-sidebar .hide{
+    display: none;
+}
+.amp-sidebar .search-field{
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+}
 .sgl .calendar_wrap td{
 	padding:10px;
 }
