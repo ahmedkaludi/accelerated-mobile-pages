@@ -23,9 +23,9 @@ function ampforwp_mgid_markup_ad_1($output){
 						<amp-ad class="amp-ad-1"
 							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
 							type="mgid"
-							data-publisher="'.esc_html( $data_pub ).'"
-							data-widget="'.esc_html( $data_wid ).'"
-							data-container="'.esc_html( $data_cont ).'">
+							data-publisher="'.esc_attr( $data_pub ).'"
+							data-widget="'.esc_attr( $data_wid ).'"
+							data-container="'.esc_attr( $data_cont ).'">
 						</amp-ad>
 		 				'.ampforwp_ads_sponsorship().'
 		 			</div>';
@@ -44,9 +44,9 @@ function ampforwp_mgid_markup_ad_2($output){
 						<amp-ad class="amp-ad-2"
 							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-2')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
 							type="mgid"
-							data-publisher="'.esc_html( $data_pub ).'"
-							data-widget="'.esc_html( $data_wid ).'"
-							data-container="'.esc_html( $data_cont ).'">
+							data-publisher="'.esc_attr( $data_pub ).'"
+							data-widget="'.esc_attr( $data_wid ).'"
+							data-container="'.esc_attr( $data_cont ).'">
 						</amp-ad>
 		 				'.ampforwp_ads_sponsorship().'
 		 			</div>';
@@ -65,9 +65,9 @@ function ampforwp_mgid_markup_ad_3($output){
 						<amp-ad class="amp-ad-3"
 							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-3')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
 							type="mgid"
-							data-publisher="'.esc_html( $data_pub ).'"
-							data-widget="'.esc_html( $data_wid ).'"
-							data-container="'.esc_html( $data_cont ).'">
+							data-publisher="'.esc_attr( $data_pub ).'"
+							data-widget="'.esc_attr( $data_wid ).'"
+							data-container="'.esc_attr( $data_cont ).'">
 						</amp-ad>
 		 				'.ampforwp_ads_sponsorship().'
 		 			</div>';
@@ -86,9 +86,9 @@ function ampforwp_mgid_markup_ad_4($output){
 						<amp-ad class="amp-ad-4"
 							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-4')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
 							type="mgid"
-							data-publisher="'.esc_html( $data_pub ).'"
-							data-widget="'.esc_html( $data_wid ).'"
-							data-container="'.esc_html( $data_cont ).'">
+							data-publisher="'.esc_attr( $data_pub ).'"
+							data-widget="'.esc_attr( $data_wid ).'"
+							data-container="'.esc_attr( $data_cont ).'">
 						</amp-ad>
 		 				'.ampforwp_ads_sponsorship().'
 		 			</div>';
@@ -107,9 +107,9 @@ function ampforwp_mgid_markup_ad_5($output){
 						<amp-ad class="amp-ad-5"
 							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-5')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
 							type="mgid"
-							data-publisher="'.esc_html( $data_pub ).'"
-							data-widget="'.esc_html( $data_wid ).'"
-							data-container="'.esc_html( $data_cont ).'">
+							data-publisher="'.esc_attr( $data_pub ).'"
+							data-widget="'.esc_attr( $data_wid ).'"
+							data-container="'.esc_attr( $data_cont ).'">
 						</amp-ad>
 		 				'.ampforwp_ads_sponsorship().'
 		 			</div>';
@@ -128,9 +128,9 @@ function ampforwp_mgid_markup_ad_6($output){
 						<amp-ad class="amp-ad-6"
 							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-6')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
 							type="mgid"
-							data-publisher="'.esc_html( $data_pub ).'"
-							data-widget="'.esc_html( $data_wid ).'"
-							data-container="'.esc_html( $data_cont ).'">
+							data-publisher="'.esc_attr( $data_pub ).'"
+							data-widget="'.esc_attr( $data_wid ).'"
+							data-container="'.esc_attr( $data_cont ).'">
 						</amp-ad>
 		 				'.ampforwp_ads_sponsorship().'
 		 			</div>';
@@ -149,9 +149,9 @@ function ampforwp_mgid_markup_ad_7($output){
 						<amp-ad class="amp-ad-7"
 							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-7')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
 							type="mgid"
-							data-publisher="'.esc_html( $data_pub ).'"
-							data-widget="'.esc_html( $data_wid ).'"
-							data-container="'.esc_html( $data_cont ).'">
+							data-publisher="'.esc_attr( $data_pub ).'"
+							data-widget="'.esc_attr( $data_wid ).'"
+							data-container="'.esc_attr( $data_cont ).'">
 						</amp-ad>
 		 				'.ampforwp_ads_sponsorship().'
 		 			</div>';
@@ -170,9 +170,9 @@ function ampforwp_mgid_markup_ad_8($output){
 						<amp-ad class="amp-ad-8"
 							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-8')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
 							type="mgid"
-							data-publisher="'.esc_html( $data_pub ).'"
-							data-widget="'.esc_html( $data_wid ).'"
-							data-container="'.esc_html( $data_cont ).'">
+							data-publisher="'.esc_attr( $data_pub ).'"
+							data-widget="'.esc_attr( $data_wid ).'"
+							data-container="'.esc_attr( $data_cont ).'">
 						</amp-ad>
 		 				'.ampforwp_ads_sponsorship().'
 		 			</div>';
