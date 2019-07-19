@@ -3157,13 +3157,22 @@ Redux::setSection( $opt_name, array(
                    array(
                       'id'       => 'ampforwp-search-placeholder',
                       'type'     => 'text',
-                      'title'    => __('Type Here', 'accelerated-mobile-pages'),
-                      'default'  => 'Type Here','accelerated-mobile-pages'),
-                      'desc' => __('This is the text that gets shown in for Search Box','accelerated-mobile-pages'),
-                      'placeholder'=>__('write here','accelerated-mobile-pages'),
+                      'title'    => esc_html__('Type Here', 'accelerated-mobile-pages'),
+                      'default'  => esc_html__('Type Here','accelerated-mobile-pages'),
+                      'desc' => esc_html__('This is the text that gets shown in for Search Box','accelerated-mobile-pages'),
+                      'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
                       'required' => array( 'amp-use-pot', '=' , 0 )
 
                   ),
+                    array(
+                      'id'       => 'ampforwp-search-widget-label',
+                      'type'     => 'text',
+                      'title'    => esc_html__('Search Widget Label', 'accelerated-mobile-pages'),
+                      'default'  => esc_html__('Search for:','accelerated-mobile-pages'),
+                      'desc' => esc_html__('This is the text that gets shown as Search Box Label','accelerated-mobile-pages'),
+                      'required' => array( 'amp-use-pot', '=' , 0 )
+                  ),
+                   
                   array(
                      'id'       => 'ampforwp-search-label',
                      'type'     => 'text',
@@ -3171,10 +3180,10 @@ Redux::setSection( $opt_name, array(
                      'desc' => __('This is the text that gets shown above Search Box','accelerated-mobile-pages'),
                      'default'  => __('Type your search query and hit enter: ','accelerated-mobile-pages'),
                      'placeholder'=>__('write here','accelerated-mobile-pages'),
-                     'required' => array( 'amp-use-pot', '=' , 0 )
+                     'required' => array( 'amp-use-pot', '=' , 0 ),
 
                  )
-    ) );
+    ) ));
 
 
 // Appearance Section

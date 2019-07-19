@@ -7856,13 +7856,15 @@ function ampforwp_notice_delete(){
 add_filter('get_search_form', 'ampforwp_search_form');
 if ( ! function_exists('ampforwp_search_form') ) {
 	function ampforwp_search_form($form){
-		if ( ampforwp_is_amp_endpoint() ) {	
+		if ( ampforwp_is_amp_endpoint() ) {
+		$placeholder = ampforwp_translation(ampforwp_get_setting('ampforwp-search-placeholder'), 'Type Here' );
+		$widgetlabel = ampforwp_translation(ampforwp_get_setting('ampforwp-search-widget-label'), 'Search for:' );	
 			$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" target="_top">
 					<label>
-						<span class="screen-reader-text">' . _x( 'Search for:', 'label' ) . '</span>
-						<input type="text" value="" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" name="s" class="search-field">
+						<span class="screen-reader-text">' . esc_html__( $widgetlabel, 'accelerated-mobile-pages' ) . '</span>
+						<input type="text" value="" placeholder="' . esc_html__( $placeholder, 'accelerated-mobile-pages' ) . '" name="s" class="search-field">
 					</label>
-					<input type="text" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" value="1" name="amp" class="hide" id="ampforwp_search_query_item">
+					<input type="text" placeholder="' . esc_html__( $placeholder, 'accelerated-mobile-pages' ) . '" value="1" name="amp" class="hide" id="ampforwp_search_query_item">
 				</form>';
 		}
 		return $form;
