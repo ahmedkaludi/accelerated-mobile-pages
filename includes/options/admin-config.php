@@ -355,6 +355,19 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')? 1 : 2),
                             'settingUrl'=>'{ampforwp-theme-subsection}',
                         ),
+                        array(
+                            'name'=>'AMP Email',
+                            'label' => 'AMP Email',
+                            'desc'=>'You can send emails with AMP features(AMP4Email).',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/email.png',
+                            'price'=>'$29.99',
+                            'url_link'=>'https://ampforwp.com/addons/amp-email/#utm_source=options-panel&utm_medium=extension-tab_amp-comments&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-email/amp-email.php',
+                            'item_name'=>'AMP Email',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-email/amp-email.php')? 1: 2),
+                            'settingUrl'=>'',
+                        ),
 
                         array(
                             'name'=>'ACF for AMP',
@@ -493,7 +506,7 @@ $extension_listing_array = array(
                             'desc'=>'This is an extension of The Events Calendar For Amp',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/amp-SU.png',
                             'price'=>'$19',
-                            'url_link'=>'https://ampforwp.com/the-events-calendar-for-amp/#utm_source=options-panel&utm_medium=extension-tab_shortcodes_ultimate&utm_campaign=AMP%20Plugin',
+                            'url_link'=>'https://ampforwp.com/addons/the-event-calender-for-amp/#utm_source=options-panel&utm_medium=extension-tab_shortcodes_ultimate&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'the-events-calendar-for-amp/the-events-calendar-for-amp.php',
                             'item_name'=>'The Event Calender for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
