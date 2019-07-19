@@ -1477,6 +1477,46 @@ class AMP_Allowed_Tags_Generated {
 				),
 			),
 		),
+		'amp-image-slider' => array(
+			array(
+				'attr_spec_list' => array(
+					'disable-hint-reappear' => array(),
+					'initial-slider-position' => array(
+						'value_regex' => '0(\\.[0-9]+)?|1(\\.0+)?',
+					),
+					'media' => array(),
+					'noloading' => array(
+						'value' => array(
+							'',
+						),
+					),
+					'step-size' => array(
+						'value_regex' => '0(\\.[0-9]+)?|1(\\.0+)?',
+					),
+				),
+				'tag_spec' => array(
+					'amp_layout' => array(
+						'supported_layouts' => array(
+							2,
+							9,
+							1,
+							4,
+						),
+					),
+					'child_tags' => array(
+						'child_tag_name_oneof' => array(
+							'amp-img',
+							'div',
+						),
+						'mandatory_min_num_child_tags' => 2,
+					),
+					'requires_extension' => array(
+						'amp-image-slider',
+					),
+					'spec_url' => 'https://amp.dev/documentation/components/amp-image-slider',
+				),
+			),
+		),
 		'amp-img' => array(
 			array(
 				'attr_spec_list' => array(
