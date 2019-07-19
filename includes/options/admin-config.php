@@ -5355,6 +5355,7 @@ Redux::setSection( $opt_name, array(
                     'title'     => esc_html__('Video in Loop', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'tooltip-subtitle'  => esc_html__('Enable this option to show featured video for each post of Home page loop'),
+                    'required' => array( array('swift-featued-video','=',1) )
                 ),
 
         )
