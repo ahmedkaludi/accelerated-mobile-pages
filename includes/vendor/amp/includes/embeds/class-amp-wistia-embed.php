@@ -4,7 +4,7 @@ require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-base-embed-handle
 
 class AMP_Wistia_Embed_Handler extends AMP_Base_Embed_Handler {
 	const SHORT_URL_HOST = 'wistia.com';
-	const URL_PATTERN = '#https?:\/\/(?:www|support|fast)\.wistia\.com/(?:v/|embed/|medias/)(?:medias/)?#i';
+	const URL_PATTERN = '#https?:\/\/(?:www|support|fast|(.*?))\.wistia\.com/(?:v/|embed/|medias/)(?:medias/)?#i';
 	const RATIO = 0.5625;
 
 	protected $DEFAULT_WIDTH = 512;

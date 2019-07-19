@@ -80,3 +80,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 50. Added id atttribute allowed in amp-video sanitizer #3406
 51. amp_get_permalink() function updated for the post id zero #3381
 52. Added code for Image is not loading when source of it starting from ../wp-content issue in class-amp-wistia-embed.php #3403
+53. Updated class-amp-wistia-embed.php #3386
