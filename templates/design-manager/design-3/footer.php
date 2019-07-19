@@ -1,7 +1,21 @@
 <?php global $redux_builder_amp;
   wp_reset_postdata();?>
   <footer class="footer_wrapper container">
-      <div id="footer">      
+      <div id="footer">
+      <?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
+          <div class="f-w-blk">
+              <div class="d3f-w">
+                <?php 
+                $sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-footer-widget-area');
+                if ( $sanitized_sidebar) {
+                  $sidebar_output = $sanitized_sidebar->get_amp_content();
+                  $sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+                } 
+                echo do_shortcode($sidebar_output); 
+                ?>
+              </div>
+          </div>
+        <?php endif; ?>       
         <?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
           <div class="footer_menu">
            <nav>

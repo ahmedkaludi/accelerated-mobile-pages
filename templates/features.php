@@ -5393,11 +5393,11 @@ function swifttheme_footer_widgets_init() {
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
 	    ) );
- 	if(ampforwp_design_selector()==4){
+ 	if(ampforwp_design_selector()==4 || ampforwp_design_selector()==3 || ampforwp_design_selector()==2 || ampforwp_design_selector()==1){
 	    register_sidebar( array(
 	        'name' => esc_html__( 'AMP Footer', 'accelerated-mobile-pages' ),
 	        'id' => 'swift-footer-widget-area',
-	        'description' => esc_html__( 'This Widget will be display on Above Footer area', 'accelerated-mobile-pages' ),
+	        'description' => esc_html__( 'The Footer widget area', 'accelerated-mobile-pages' ),
 	        'class'=>'w-bl',
 	        'before_widget' => '<div class="w-bl">',
 	        'after_widget' => '</div>',
