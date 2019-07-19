@@ -49,10 +49,10 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		$ids = array();
 		$slides = $slider->getSlidesForOutput(true,'',$gal_ids);
 		foreach ($slides as $slide) {
-			$isExternal = $slide->getParam('background_type', 'image');
+			$bgtype = $slide->getParam('background_type', 'image');
 			$img_data = wp_get_attachment_metadata( $slide->getImageID() );
 			
-			if($isExternal == 'external'){
+			if($bgtype == 'external'){
 				$url = esc_url($slide->getParam('slide_bg_external', ''));
 				$imgalt = esc_attr($slide->getParam('alt_attr', ''));
 				$img_title = esc_attr($slide->getParam('title_attr', ''));
@@ -62,8 +62,9 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					'url' => $url,
 					'width' => $img_w,
 					'height' => $img_h,
+					'bgtype' => $bgtype
 				),$attachment_id);
-			}elseif( $isExternal == 'image'){
+			}elseif( $bgtype == 'image'){
 				$img_data = wp_get_attachment_metadata( $slide->getImageID() );
 				$url = $slide->getImageUrl();
 				$attachment_id = $slide->getImageID();
@@ -71,6 +72,17 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					'url' => $url,
 					'width' => $img_data['width'],
 					'height' => $img_data['height'],
+					'bgtype' => $bgtype
+				),$attachment_id);
+			}elseif( $bgtype == 'youtube' ){
+				$youtube_id = $slide->getParam('slide_bg_youtube', '');
+				$cover_img = $slide->getImageUrl();
+				$urls[] = apply_filters('amp_gallery_image_params', array(
+					'url' => $youtube_id,
+					'width' => '480',
+					'height' => '270',
+					'bgtype' => $bgtype,
+					'cover_img' => $cover_img
 				),$attachment_id);
 			}
 		}
@@ -146,14 +158,29 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		}
 
 		$amp_images = array();
+		$tag_type = '';
 		foreach ( $args['images'] as $key => $image ) {
-			$amp_img_arr = array(
+			if($image['bgtype'] =="image" || $image['bgtype'] =="external" ){
+				$amp_img_arr = array(
 					'src' => $image['url'],
 					'width' => $image['width'],
 					'height' => $image['height'],
 					'layout' => 'fill',
 					'class'  => 'amp-carousel-img',
 				);
+				$tag_type = 'amp-img';
+			}elseif( $image['bgtype'] =="youtube"){
+				$amp_img_arr = array(
+					'data-videoid'=> $image['url'],
+					'width' => $image['width'],
+					'height' => $image['height'],
+					'layout'=>'responsive',
+					'class'  => 'amp-carousel-img',
+					'data-param-playlist'=> $image['url'],
+					'data-param-modestbranding'=> '1'
+				);
+				$tag_type = 'amp-youtube';
+			}
 			if(  3 == ampforwp_get_setting('ampforwp-gallery-design-type') || true == ampforwp_get_setting('ampforwp-gallery-lightbox') ){
 				$design3_additional_attr = array('on'=> 'tap:gallery-lightbox', 'role'=>'button', 
                 	'tabindex'=>$key);
@@ -167,21 +194,35 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					    </amp-image-lightbox>';
 			}
 			$amp_images[$key] = AMP_HTML_Utils::build_tag(
-				'amp-img',
+				$tag_type,
 				$amp_img_arr
 			);
 
-			//Small Thumbnail Images
-			$thumb_url = ampforwp_aq_resize( $image['url'], 120, 60, true, false ); //resize & crop the image
-	           if($thumb_url!=false){
-					$smallimage   =  $thumb_url[0];
-					$smallwidth   =  $thumb_url[1];
-					$smallheight  =  $thumb_url[2];
-	            }else{
-	            	$smallimage  = $image['url'];
-	            	$smallwidth = $image['width'];
-	            	$smallheight = $image['height'];
-	            }
+			$upload_dir = wp_upload_dir();
+			$upload_url = $upload_dir['baseurl'];
+			if( $tag_type == 'amp-img'){
+				if ( false === strpos( $image['url'], $upload_url ) ) {
+					$smallimage  = $image['url'];
+		            $smallwidth = 120;
+		            $smallheight = 60;
+				}else{
+					//Small Thumbnail Images
+					$thumb_url = ampforwp_aq_resize( $image['url'], 120, 60, true, false ); //resize & crop the image
+		           	if($thumb_url!=false){
+						$smallimage   =  $thumb_url[0];
+						$smallwidth   =  $thumb_url[1];
+						$smallheight  =  $thumb_url[2];
+		            }else{
+		            	$smallimage  = $image['url'];
+		            	$smallwidth = $image['width'];
+		            	$smallheight = $image['height'];
+		            }
+				}
+			}elseif( $tag_type == 'amp-youtube'){
+	            	$smallimage  = $image['cover_img'];
+	            	$smallwidth = 120;
+	            	$smallheight = 60;
+			}
 
 	        $amp_images_small[$key] = AMP_HTML_Utils::build_tag(
 				'amp-img',
