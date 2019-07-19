@@ -4619,6 +4619,23 @@ $single_page_options = array(
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
+                    'id'    => 'swift-featued-image-type',
+                    'class' => 'child_opt child_opt_arrow',
+                    'type'  => 'select',
+                    'title'    => esc_html__('Featured Image Type', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'     => esc_html__('Select Featured Image Size','accelerated-mobile-pages'),
+                    'options'  => array(
+                        '1' => 'Full Screen Image',
+                        '2' => 'Image Fit above the Content',
+                    ),
+                    'default'  => '1',
+                    'required' => array( 
+                                        array('amp-design-selector', '=' , '4'),
+                                        array('swift-featued-image', '=' , '1'),
+                                        array('rp_design_type', '=' , '1')
+                                    ),
+            ),
+            array(
                     'id'    => 'swift-featued-image-size',
                     'class' => 'child_opt child_opt_arrow',
                     'type'  => 'select',
