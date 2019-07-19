@@ -869,7 +869,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                 }
 
                 $nonampCss = '
-                .cntr img{height:auto !important;}
+                .cntr img{width:100%;height:auto !important;}
                 img{height:auto;}
                 .slid-prv{width:100%;text-align: center;margin-top: 10px;display: inline-block;}
                 .amp-featured-image img{width:100%;height:auto;}
