@@ -3676,7 +3676,7 @@ Redux::setSection( $opt_name, array(
                 'title'     => esc_html__('Call To Action', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can do the customization here ','accelerated-mobile-pages'),
                 'type'      => 'switch',
-                'default'   => '0',
+                'default'   => '1',
                     'required' => array(
                       array('header-type','=',2)
                     )  
