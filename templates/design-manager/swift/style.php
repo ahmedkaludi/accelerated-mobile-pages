@@ -2128,4 +2128,10 @@ if(class_exists('MCI_Footnotes')){ ?>
 	.footnote_container_prepare p span:last-child {
     	display:none;
   	}
-<?php } ?> 
+<?php } ?>
+<?php // Notification CSS
+if( ampforwp_get_setting('amp-enable-notifications') && ampforwp_get_setting('enable-single-social-icons') && is_single() ) { ?>
+amp-user-notification{
+	bottom:40px;
+}
+<?php } //amp-enable-notifications Condition Ends Here ?> 
