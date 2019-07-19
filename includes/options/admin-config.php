@@ -5349,7 +5349,13 @@ Redux::setSection( $opt_name, array(
                     'default'   => 1,
                     'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
                 ),
-
+                array(
+                    'id'        => 'amforwp-homepage-featured-video',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Video in Loop', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show featured video for each post of Home page loop'),
+                ),
 
         )
     ));
@@ -5589,6 +5595,23 @@ $single_page_options = array(
                                         array('swift-featued-image', '=' , '1'),
                                     ),
             ),
+            //Feature video Start
+            array(
+                    'id'    => 'swift-featued-video',
+                    'type'  => 'switch',
+                    'title' => esc_html__('Featured Video', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'       => 'ampforwp-featured-video-metakey',
+                    'type'     => 'text',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'    => esc_html__('Video Metakey Name', 'accelerated-mobile-pages'),
+                    'default'  => '',
+                    'required' => array( array('amp-design-selector', '=' , '4'),array('swift-featued-video', '=' , '1')),
+            ),
+            //Feature video End
             // Author name 
             array(
                  'id'       => 'amp-author-name',

@@ -212,6 +212,46 @@ function amp_featured_image( ){
 	}
 }
 
+//Featured Video
+function amp_featured_video(){
+	global $post;
+	$post_id = '';
+	$videoID = '';
+	$video_id = '';	
+	$post_id = $post->ID;
+	if ( function_exists('ampforwp_get_the_ID')) {
+		$post_id = ampforwp_get_the_ID();
+	}
+	$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+	$youtubelink = get_post_meta($post_id, $metaKey, true);
+	if (  $youtubelink ) {
+		if(strpos($youtubelink, 'youtu.be')> 0){
+			$video_id = explode("youtu.be/", $youtubelink);
+			$videoID = $video_id[1];
+		}elseif( strpos($youtubelink, 'youtube.com/watch')> 0){
+			$video_id = explode("?v=", $youtubelink);
+			if (empty($video_id[1])){
+			    $video_id = explode("/v/", $youtubelink);
+			}
+			$video_id = explode("&", $video_id[1]);
+			$videoID = $video_id[0];
+		}elseif( strpos($youtubelink, 'youtube.com/embed')> 0){
+			$video_id = explode("/", $youtubelink);
+			$videoID = end($video_id);
+		}
+		$container_start = '<div class="amp-wp-article-featured-image amp-wp-content featured-image-content"> 
+						<div class="post-featured-img"> 
+							<figure class="amp-wp-article-featured-image wp-caption">';
+		$container_end = '</figure></div></div>';	
+		if(!empty($videoID)){
+			echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>' . $container_end;
+		}
+	} else {
+		return amp_featured_image();
+	}
+	return;
+}
+
 // Author Box
 function amp_author_box($args=array() ){
 	global $loadComponent;

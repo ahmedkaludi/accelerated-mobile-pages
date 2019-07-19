@@ -439,7 +439,10 @@ if (! function_exists('amp_loop_the_permalink')){
 
 function amp_loop_image( $data=array() ) {
 	global $ampLoopData, $counterOffset, $redux_builder_amp;
-	if (ampforwp_has_post_thumbnail()  ) {
+	if( ampforwp_get_setting('amforwp-homepage-featured-video') && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) ){
+			amp_featured_video();
+	}else{
+		if (ampforwp_has_post_thumbnail()  ) {
 
 		$tag 				= 'div';
 		$tag_class 			= '';
@@ -524,6 +527,8 @@ function amp_loop_image( $data=array() ) {
 			echo '</'.$tag.'>';
 		}
      } 
+	}
+	
 } 
 
 // Category

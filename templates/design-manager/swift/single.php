@@ -31,13 +31,24 @@
 			</div>
 		<?php } // left sidebar ends ?>
 		</div>
-			<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
-				<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
+			<?php 
+			if(ampforwp_get_setting('swift-featued-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+				if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
 					<div class="sf-img">
-						<?php amp_featured_image();?>	
+						<?php amp_featured_video();?>
 					</div>	
-				<?php }	// Swift Featured Image Type 1
+					<?php	
+				}
+			}else{
+				if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
+					<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
+						<div class="sf-img">
+							<?php amp_featured_image();?>	
+						</div>	
+					<?php }	// Swift Featured Image Type 1
+				}
 			}
+			
 		} ?>
 	<div class="sp-cnt">
 		<div class="cntr">
@@ -50,13 +61,25 @@
 							echo ampforwp_addThis_support(); 
 						}	?>
 					<div class="cntn-wrp artl-cnt">
-						<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
-							<?php if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
+						<?php 
+						if(ampforwp_get_setting('swift-featued-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+							if(ampforwp_get_setting('swift-featued-image-type') == 2){
+								?>
 								<div class="sf-img">
-									<?php amp_featured_image();?>	
-								</div>	
-							<?php }	// Swift Featured Image Type 2
-						} // Swift Featured Image ?>
+									<?php amp_featured_video();?>
+								</div>
+								<?php
+							}
+						}else{
+							if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
+								<?php if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
+									<div class="sf-img">
+										<?php amp_featured_image();?>	
+									</div>	
+								<?php }	// Swift Featured Image Type 2
+							} // Swift Featured Image 
+						}
+						?>
 						<?php amp_content(); ?>
 					</div>
 					<?php if (  'below-content' == ampforwp_get_setting('swift-social-position')){
