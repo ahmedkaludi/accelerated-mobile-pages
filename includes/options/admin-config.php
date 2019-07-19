@@ -4723,13 +4723,7 @@ $single_page_options = array(
               'default'  =>  '1',
               'title'    => esc_html__('Categories & Tags Links', 'accelerated-mobile-pages'),
            ),
-          // Social Icons ON/OFF
-          array(
-              'id'        => 'enable-single-social-icons',
-              'type'      => 'switch',
-              'title'     => esc_html__('Sticky Social Icons', 'accelerated-mobile-pages'),
-              'default'   => 1,
-          ),
+          
           // Excerpt ON/OFF
           array(
               'id'        => 'enable-excerpt-single',
@@ -5671,7 +5665,7 @@ else{
 
     // Social Section
     Redux::setSection( $opt_name, array(
-        'title'      => esc_html__( 'Social', 'accelerated-mobile-pages' ),
+        'title'      => esc_html__( 'Social Sharing', 'accelerated-mobile-pages' ),
         'id'         => 'amp-social',
         'desc'      => esc_html__('All the Social sharing and the social profile related settings are here','accelerated-mobile-pages'),
         'subsection' => true,
@@ -5731,6 +5725,7 @@ else{
            array(
                 'id'       => 'swift-add-this-position',
                 'type'     => 'select',
+                'class' => 'child_opt child_opt_arrow',
                 'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
                 'options'  => array( 
                                 'default'       => 'Single Sidebar (left side)', 
@@ -5747,6 +5742,7 @@ else{
            array(
                 'id'       => 'swift-layout-addthis-pos',
                 'type'     => 'select',
+                'class' => 'child_opt child_opt_arrow',
                 'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
                 'options'  => array(
                                 'above-content' => 'Above Content',
@@ -5763,6 +5759,7 @@ else{
            array(
                 'id'       => 'swift-layout-6-addthis-pos',
                 'type'     => 'select',
+                'class' => 'child_opt child_opt_arrow',
                 'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
                 'options'  => array(
                                 'above-content' => 'Above Content',
@@ -5779,6 +5776,7 @@ else{
                'id'       => 'add-this-pub-id',
                'title'    => esc_html__('Pub ID', 'accelerated-mobile-pages'),
                'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
                'required'  => array('enable-add-this-option', '=' , '1'),
                'default'  => esc_html__('ra-5cc8551aa4f16f5c','accelerated-mobile-pages'),
           ),
@@ -5786,11 +5784,28 @@ else{
                'id'       => 'add-this-widget-id',
                'title'    => esc_html__('Tool ID', 'accelerated-mobile-pages'),
                'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
                'required'  => array('enable-add-this-option', '=' , '1'),
                'default'  => esc_html__('cwgj','accelerated-mobile-pages'),
           ),
          //End AddThis Support    
-        
+        //Start Social Sticky Icon
+        array(
+           'id' => 'sticky-social-settings',
+           'type' => 'section',
+           'title' => esc_html__('Sticky Social', 'accelerated-mobile-pages'),
+           'indent' => true,
+           'layout_type' => 'accordion',
+           'accordion-open'=> 1,
+        ), 
+        // Social Sticky Icons ON/OFF
+        array(
+          'id'        => 'enable-single-social-icons',
+          'type'     => 'switch',
+          'default'  =>  '1',
+          'title'     => esc_html__('Sticky Social Sharing bar', 'accelerated-mobile-pages'),
+        ),
+         //End Social Sticky Icon  
           array(
            'id' => 'social-shre',
            'type' => 'section',
