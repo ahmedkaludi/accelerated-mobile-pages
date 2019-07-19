@@ -22,3 +22,4 @@ $search_found = true; ?>
     </div>
 </div>
 <?php endwhile; amp_loop('end');  ?>
+<?php do_action('ampforwp_loop_before_pagination') ?>
