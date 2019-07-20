@@ -3935,13 +3935,10 @@ Redux::setSection( $opt_name, array(
             array(
                        'id' => 'header_design_section',
                        'type' => 'section',
-                       'title' => __('Header Designs Options', 'accelerated-mobile-pages'),
+                       'title' => esc_html__('Header Design Options', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
-                        'required'  => array(
-                            array('amp-design-selector', '!=' , '4')
-                        )
             ),
             // Design 1 Fields
             array(
@@ -4012,6 +4009,26 @@ Redux::setSection( $opt_name, array(
                       array('amp-design-selector', '=' , '3')
                     )
             ),
+            // Design 4 Fields
+              array(
+                'id'        => 'swift-background-scheme',
+                'title'     => esc_html__('Header Background', 'accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'color'  => '#fff',
+                ),
+                'required' => array('header-type', '<' , '8')     
+              ),
+              array(  
+                'id'        => 'swift-element-color-control',
+                'title'     => esc_html__('Header Elements', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Color of the Text and Icons on top of Header','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'color'  => '#333',
+                ),
+                'required' => array('header-type', '<' , '8')
+              ),
            array(
                        'id' => 'header_section_2',
                        'type' => 'section',
@@ -4715,21 +4732,6 @@ Redux::setSection( $opt_name, array(
                         array('border-line','=',1)
                       )  
               ),
-
-
-            array(
-                    'class' => 'child_opt',
-                'id'        => 'swift-background-scheme',
-                'title'     => __('Header Background', 'accelerated-mobile-pages'),
-                'type'      => 'color_rgba',
-                'default'   => array(
-                    'color'  => '#fff',
-                    ),
-                    'required' => array(
-                        array('customize-options','=',1),
-                        array('header-type', '<' , '8')
-                    )  
-              ),
               array(
                     'class' => 'child_opt',
                     'id'        => 'swift-header-overlay',
@@ -4741,20 +4743,6 @@ Redux::setSection( $opt_name, array(
                     'required' => array(
                         array('customize-options','=',1)
                       )
-              ),
-              array(
-                    'class' => 'child_opt',
-                    'id'        => 'swift-element-color-control',
-                    'title'     => __('Header Elements', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'  => __('Color of the Text and Icons on top of Header','accelerated-mobile-pages'),
-                    'type'      => 'color_rgba',
-                    'default'   => array(
-                        'color'  => '#333',
-                     ),
-                    'required' => array(
-                        array('customize-options','=',1),
-                        array('header-type', '<' , '8')
-                    )
               ),
               array(
                     'class' => 'child_opt',
