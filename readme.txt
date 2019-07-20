@@ -35,10 +35,10 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * NEW - Photo Gallery by 10Web Support 
 * NEW - MEWE social network Support 
 * NEW - GDPR Compliance
+* Out of the box compatiblity for Yoast SEO, All in One Seo, Rank Math, Genesis, SEOPress, Bridge Qode SEO, The SEO Framework and Squrilly SEO Plugin.
 * Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * New Default Theme for AMP called Swift
 * 3 Pre-built AMP Layouts for Business websites and landing pages 
-* Alexa Metrics Compatibility added 
 * OneSignal Push Notifications integration 
 * Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
 * Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
@@ -66,7 +66,6 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Star Ratings
 * Drag & Drop Page builder Added 
 * 4 Designs for AMP 
-* Yoast SEO support on AMP pages and other SEO plugins
 * AMP WooCommerce Support 
 * Switch on/off Support for Pages & Posts on AMP
 * Translation Panel & RTL
@@ -75,6 +74,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Recent Comments list
 * Automatically integrate AMP to your website.
 * Google Adsense (AMP-AD) Support with 4 different Ad slots across the layout! The First Plugin to have this capability.
+* Built in MGID Ads Support with 6 different ad slots.
 * Google Analytics Support.
 * User Friendly Theme Options Panel.
 * Unlimited Color Scheme.
@@ -96,11 +96,10 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * RTL Support
 * Custom AMP FrontPage
 * Notifications
-* Chartbeat, Hi-stats, Yandex Metrika, Piwik, Segment.com, StatCounter, Effective Measure and comScore Support 
+* Alexa Metrics, Chartbeat, Hi-stats, Yandex Metrika, Piwik, Segment.com, StatCounter, Effective Measure and comScore Builtin Support
 * Incontent & DoubleClick Support
 * Great Support & Active Development.
 * Widgets & WooCommerce 
-* Genesis SEO Support 
 * Breadcrumb Support added 
 * Facebook Instant Articles Support Added
 * AMP Installation Wizard that makes it easy to setup for new users.
