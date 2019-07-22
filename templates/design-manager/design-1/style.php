@@ -102,6 +102,7 @@ if(empty($cross_btn_hvr_clr)){
 .amp-wp-unknown-size img{ object-fit: contain; }
 amp-iframe{ max-width: 100%; margin-bottom : 20px; }
 amp-wistia-player {margin:5px 0px;}
+.hide{display:none}
 .amp-wp-article amp-addthis{bottom: -38px;}
 .amp-wp-content,.amp-wp-title-bar div {<?php if ( $content_max_width > 0 ) : ?> margin: 0 auto;max-width: <?php echo esc_attr(sprintf( '%dpx', $content_max_width )); ?>; <?php endif; ?> }
 html{background: <?php echo sanitize_hex_color( $header_background_color ); ?>;} body{background: <?php echo sanitize_hex_color( $theme_color ); ?>;color: <?php echo sanitize_hex_color( $text_color ); ?>;font-family: 'Merriweather', 'Times New Roman', Times, Serif;font-weight: 300;line-height: 1.75em;}
@@ -335,7 +336,6 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 .searchform{ background: transparent; left: 20%; position: absolute; top: 35%; width: 60%; max-width: 100%; transition-delay: 0.5s; }
 .searchform input{ background: transparent; border: 1px solid #666; color: #f7f7f7; font-size: 14px; font-weight: 400; line-height: 1; letter-spacing: 0.3px; text-transform: capitalize; padding: 20px 0px 20px 30px; margin-top: 15px; width: 100%; }
 #searchsubmit{opacity:0}
-.hide{display:none}
 <?php } // search condition ends ?>
 .amp-wp-header .ampforwp-search-nav-wrapper{ padding: 0; }
 .ampforwp-search-nav-wrapper .searchmenu{ margin-top: 20px; }
@@ -502,9 +502,6 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
     line-height: 0;
     display: inline-block;
     opacity: 0;
-}
-.hide {
-    display: none;
 }
 .w-bl .search-field{
   border: 1px solid #ccc;

@@ -85,6 +85,7 @@ amp-wistia-player {margin:5px 0px;}
 .aligncenter{ text-align:center; margin: 0 auto }
 #statcounter{width: 1px;height:1px;}
 ol, ul {list-style-position: inside;}
+.hide{display:none}
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {
     <?php if ( $content_max_width > 0 ) : ?>
@@ -143,7 +144,6 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .searchform{ background: transparent; left: 20%; position: absolute; top: 35%; width: 60%; max-width: 100%; transition-delay: 0.5s; }
 .searchform input{ background: transparent; border: 1px solid #666; color: #f7f7f7; font-size: 14px; font-weight: 400; line-height: 1; letter-spacing: 0.3px; text-transform: capitalize; padding: 20px 0px 20px 30px; margin-top: 15px; width: 100%; }
 #searchsubmit{opacity:0}
-.hide{display:none}
 <?php } // search condition ends ?>
 .headerlogo a, [class*=icono-]{ color: #F42F42 }
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
@@ -601,9 +601,6 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
     line-height: 0;
     display: inline-block;
     opacity: 0;
-}
-.hide{
-    display: none;
 }
 .w-bl .search-field{
   border: 1px solid #ccc;
