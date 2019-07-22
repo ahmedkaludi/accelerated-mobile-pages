@@ -73,7 +73,7 @@ function ampforwp_get_search_form() {
 		$action_url = '';
 		$amp_query_variable = '';
 		$amp_query_variable_val = '';
-		$label = ampforwp_translation(isset($redux_builder_amp['ampforwp-search-label']) && $redux_builder_amp['ampforwp-search-label'], 'Type your search query and hit enter');
+		$label = esc_html__(ampforwp_translation(ampforwp_get_setting('ampforwp-search-label'), 'Type your search query and hit enter'));
 		$action_url = esc_url( get_bloginfo('url') );
 		$action_url = preg_replace('#^http?:#', '', $action_url);
 		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
@@ -81,11 +81,11 @@ function ampforwp_get_search_form() {
 			$amp_query_variable = 'amp';
 			$amp_query_variable_val = '1';
 		}
-	  $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . $action_url  .'">
+	  $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . esc_url($action_url)  .'">
 <div>
-<label class="screen-reader-text" for="s">' . $label . '</label>
-<input type="text" placeholder="AMP" value="'.$amp_query_variable_val.'" name="'.$amp_query_variable.'" class="hide" id="ampforwp_search_query_item" />
-<input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
+<label class="screen-reader-text" for="s">' . esc_html__($label,'accelerated-mobile-pages') . '</label>
+<input type="text" placeholder="AMP" value="'.esc_attr($amp_query_variable_val).'" name="'.esc_attr($amp_query_variable).'" class="hide" id="ampforwp_search_query_item" />
+<input type="text" placeholder="'.esc_attr($placeholder).'" value="' . get_search_query() . '" name="s" id="s" />
 <input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
 </div>
 </form>';
