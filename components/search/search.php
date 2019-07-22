@@ -5,7 +5,7 @@ function ampforwp_framework_get_search_form() {
 		$action_url = '';
 		$amp_query_variable = '';
 		$amp_query_variable_val = '';
-		$label = ampforwp_translation(isset($redux_builder_amp['ampforwp-search-label']) && $redux_builder_amp['ampforwp-search-label'], 'Type your search query and hit enter');
+		$label = esc_html__(ampforwp_translation(ampforwp_get_setting('ampforwp-search-label'), 'Type your search query and hit enter'));
 		$action_url = ( get_bloginfo('url') );
 		$action_url = preg_replace('#^http?:#', '', $action_url);
 		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
