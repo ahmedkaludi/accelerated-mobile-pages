@@ -8009,3 +8009,12 @@ function ampforwp_is_gutenberg_active() {
 	$use_block_editor = ( get_option( 'classic-editor-replace' ) === 'no-replace' );
 	return $use_block_editor;
 }
+
+add_action('ampforwp_after_post_content','ampforwp_date_below_the_content');
+if ( ! function_exists('ampforwp_date_below_the_content') ) {
+	function ampforwp_date_below_the_content(){
+		if( ampforwp_get_setting('below-content-date') == true){
+			amp_loop_date();
+		}
+	}
+}

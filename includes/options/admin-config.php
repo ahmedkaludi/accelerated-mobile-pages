@@ -7898,7 +7898,6 @@ $single_page_options = array(
                     'title'     => esc_html__('Below the Content', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'tooltip-subtitle'  => esc_html__('Enable option to show the date below the content.', 'accelerated-mobile-pages'),
-                    'required' => array(array('amp-design-selector', '=' , '4')),
             ),
             
         )

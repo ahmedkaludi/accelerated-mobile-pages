@@ -231,9 +231,6 @@ amp_header(); ?>
 					</ul>
 	            </div>
 	        	<?php } ?>
-	        	<?php if(is_page() && true == ampforwp_get_setting('ampforwp-page-social') && true ==  ampforwp_get_setting('below-content-date')){
-	        		amp_loop_date();
-	        	}?>
 	        <?php if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts ?>
 				<div class="cmts">
 					<?php amp_comments();?>
