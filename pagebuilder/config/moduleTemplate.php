@@ -499,7 +499,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
-								'label'		=>'Text Font',
+								'label'		=> esc_html__( 'Overlay Text Color', 'accelerated-mobile-pages' ),
 								'tab'		=>'customizer',
 								'default'	=>'#000',
 								'content_type'=>'css',
