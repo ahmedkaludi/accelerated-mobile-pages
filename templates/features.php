@@ -6111,12 +6111,7 @@ function amforwp_remove_tp_image_href( $orig_table){
 	$j = 0;
 	foreach ($orig_table['data'] as $cols) {
 		for($i=0;$i< count($cols);$i++){
-			preg_match('/<a(.*?)><img(.*?)><\/a>/', $cols[$i], $matches);
-			if( $matches){
-				$tablepressData[$j][$i] = preg_replace("/<a[^>]+\>(<img[^>]+\>)<\/a>/i",'$1', $cols[$i]);
-			}else{
-				$tablepressData[$j][$i] = $cols[$i];
-			}
+			$tablepressData[$j][$i] = preg_replace("/<a[^>]+\>(<img[^>]+\>)<\/a>/i",'$1', $cols[$i]);
 		}
 	$j++;	
 	}
