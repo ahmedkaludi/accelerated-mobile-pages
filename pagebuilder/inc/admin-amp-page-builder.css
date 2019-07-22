@@ -672,7 +672,7 @@ position: fixed;
 .modal-header{ 
     background: #fff;
     width: 100%;
-    z-index: 99;
+    z-index: 999;
     border-bottom: 1px solid #D8D8D8;
     position: relative;
     padding-left: 20px;   
