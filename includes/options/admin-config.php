@@ -1401,6 +1401,7 @@ $tabs = array(
                 'title'    => __('Resize', 'accelerated-mobile-pages'),
                 'type'     => 'switch',
                 'default'  => 0,
+                'required'=>array('opt-media','!=',''),
             ),
             array(
                 'id'       => 'ampforwp-custom-logo-dimensions-options',
