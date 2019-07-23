@@ -38,6 +38,10 @@ function ampforwp_add_sd_fields($fields){
                                 'indent' => true,
                                 'layout_type' => 'accordion',
                                 'accordion-open'=> 1, 
+                                'links' => array(
+                                    "Schema & Structured Data" => "#section-ampforwp-sd_1",
+                                    "Default Values Setup" => "#section-ampforwp-sd_2",
+                                ),
                             );
                 $fields[] =   array(
                           'id'       => 'ampforwp-sd-module',

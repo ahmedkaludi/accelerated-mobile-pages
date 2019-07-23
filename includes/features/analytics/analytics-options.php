@@ -47,6 +47,10 @@ function ampforwp_analytics_options($opt_name){
                       'indent' => true,
                       'layout_type' => 'accordion',
                         'accordion-open'=> 1, 
+                        'links' => array(
+                            "Primary Analytic Providers" => "#section-ampforwp-analytics_1",
+                            "General Analytics Providers" => "#section-ampforwp-analytics_2",
+                        ),
                   ),
                         // Google Analytics                 
                      array(

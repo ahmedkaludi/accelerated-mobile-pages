@@ -30,6 +30,10 @@
                        'indent' => true,
                        'layout_type' => 'accordion',
                        'accordion-open'=> 1,
+                       'links' => array(
+                            "Advertisement Positions" => "#section-amp-ads_1",
+                            "General" => "#section-amp-ads_3",
+                        ),
                 );
                     // Ad 1 Starts
                 $fields[] =    array(

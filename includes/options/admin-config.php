@@ -1636,6 +1636,12 @@ $tabs = array(
                   'indent' => true,
                   'layout_type' => 'accordion',
                   'accordion-open'=> 1,
+                  'links' => array(
+                            "General" => "#section-ampforwp-seo-general-section",
+                            "SEO Plugin Integration" => "#section-ampforwp-seo-plugins-section",
+                            "Advanced Indexing" => "#section-ampforwp-seo-index-noindex-sub-section",
+                            
+                        ),
               ),
             array(
                'id'       => 'ampforwp-seo-meta-description',
@@ -2353,6 +2359,11 @@ Redux::setSection( $opt_name, array(
                            'indent' => true,
                            'layout_type' => 'accordion',
                             'accordion-open'=> 0,
+                            'links' => array(
+                                "Hide AMP Bulk Tools" => "#section-amp-pages-tools",
+                                "Rollback" => "#section-amp-version-rollback",
+                                "Become a Beta Tester" => "#section-amp-beta-testing",
+                            ),
                          ),
                         array(
                            'id'       => 'amp-pages-meta-default',
@@ -3324,6 +3335,14 @@ Redux::setSection( $opt_name, array(
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
+                        'links' => array(
+                            "Color Scheme" => "#section-colorscheme-section",
+                            "Typography" => "#section-typography-section",
+                            "General" => "#section-general_sdbar",
+                            "Google Icon Library" => "#section-google-icons",
+                            "Advanced" => "#section-design-advanced",
+                             
+                        ),
             ),
             // Swift
             array(
@@ -3809,6 +3828,13 @@ Redux::setSection( $opt_name, array(
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
                         'required' => array( array('amp-design-selector', '=' , '4') ),
+                        'links' => array(
+                            "Header Design" => "#section-header_section_1",
+                            "Header Settings" => "#section-header_section_3",
+                            "Header Design Options" => "#section-header_design_section",
+                            "Navigation Menu Design" => "#section-header_section_2",
+                            "Advanced Header Options" => "#section-header-tab-2",
+                        ),
             ),
             array(
                     'id'    => 'header-type',
@@ -5490,6 +5516,14 @@ $single_page_options = array(
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
+                        'links' => array(
+                            "Single Post Design" => "#section-ampforwp-single_section_1",
+                            "Single Elements" => "#section-ampforwp-single_section_2",
+                            "Related Post Settings" => "#section-ampforwp-single_section_3",
+                            "General" => "#section-single-tab-2",
+                            "WordPress Content Gallery" => "#section-ampforwp-single_section_5",
+                            "Content Sneak Peek" => "#section-single-sneakp-section",
+                        ),
                 ),
                 // Single Components Layout options
                 array(
@@ -6404,6 +6438,11 @@ $single_page_options = array(
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
+                    'links' => array(
+                            "Footer Design" => "#section-footer-tab-1",
+                            "General" => "#section-footer-tab-3",
+                            "Advanced Footer Options" => "#section-footer-tab-2",
+                        ),
              ),
                 // Swift
                   array(
@@ -6961,6 +7000,14 @@ $single_page_options = array(
            'indent' => true,
            'layout_type' => 'accordion',
             'accordion-open'=> 1,
+            'links' => array(
+                            "Social Settings" => "#section-social-settings",
+                            "AddThis Share Buttons" => "#section-add-this-support",
+                            "Sticky Social" => "#section-sticky-social-settings",
+                            "Social Sharing" => "#section-social-shre",
+                            "Social Media Profile Links" => "#section-social-prfl",
+                            "Chat" => "#section-social-chat",
+                        ),
          ),
         // Social Icons Position [Swift] #1722
             array(

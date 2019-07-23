@@ -971,3 +971,12 @@ text-transform: none;
 width: 100%; 
 font-weight: normal; 
 } 
+a.top_design_tabs {
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+    padding: 5px;
+}
+a.top_design_tabs:hover {
+    text-decoration: underline;
+}

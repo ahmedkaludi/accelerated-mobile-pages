@@ -88,7 +88,13 @@ namespace ReduxCore\ReduxFramework;
                 elseif(isset($this->field['accordion-open']) && $this->field['accordion-open']==0){
                     $classModify .= " afw-accordion-tab-close";
                 }
-
+                $symbol=true;
+                foreach ($this->field['links'] as $key => $value) {
+                    if(!$symbol) { echo '  |'; }
+                    $symbol=false;
+                    echo "<a class='top_design_tabs' href='$value'>$key</a>";
+                    echo $symbol;    
+                }               
                 echo '<div id="section-' . esc_attr($this->field['id']) . '" class="redux-section-field redux-field ' . esc_attr($this->field['style']) . ' ' . esc_attr($this->field['class']) . ' '.$classModify.'">';
 
                 if ( ! empty( $this->field['title'] ) ) {
