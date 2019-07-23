@@ -88,3 +88,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 60. Added id atttribute allowed in amp-video sanitizer #3406
 61. Added class_exists('SQ_Classes_ObjController') condition to amp_post_template_add_schemaorg_metadata for Squirrly SEO Compatibility #3421
 62. class-amp-content.php updated #3422
+63. whitelisted skype in anchor tags #3475
