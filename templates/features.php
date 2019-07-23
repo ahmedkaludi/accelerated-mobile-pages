@@ -794,6 +794,9 @@ function ampforwp_title_callback( $post ) {
 	global $redux_builder_amp;
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
     $ampforwp_stored_meta = get_post_meta( $post->ID );
+    if(!isset($ampforwp_stored_meta['ampforwp-amp-on-off'])){
+    	$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'default';
+    }
     $preview_query_args = array();
 	$preview_link = $list_of_posts = $skip_this_post = '';
 	$preview_query_args = array(AMPFORWP_AMP_QUERY_VAR => 1);
