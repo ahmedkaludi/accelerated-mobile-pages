@@ -8047,9 +8047,7 @@ function ampforwp_pagebuilder_has_content($response, $postId){
 	if ( isset( $ampforwp_metas['ampforwp_page_builder_enable'] )) {
 	  	$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
 	  	if( $ampforwp_pagebuilder_enable =='yes'){
-			$saved_data = get_post_meta( $postId, 'amp-page-builder', true );
-			$data =  json_decode($saved_data,true);
-			if(empty($data['rows'])){
+			if(empty(amppb_post_content(''))){
 				$response = false;
 			}
 		}
