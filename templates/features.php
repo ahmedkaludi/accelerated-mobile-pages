@@ -8040,3 +8040,19 @@ if ( ! function_exists('ampforwp_date_below_the_content') ) {
 		}
 	}
 }
+
+add_filter('ampforwp_pagebuilder_status_modify','ampforwp_pagebuilder_has_content',10,2);
+function ampforwp_pagebuilder_has_content($response, $postId){
+	$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
+	if ( isset( $ampforwp_metas['ampforwp_page_builder_enable'] )) {
+	  	$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
+	  	if( $ampforwp_pagebuilder_enable =='yes'){
+			$saved_data = get_post_meta( $postId, 'amp-page-builder', true );
+			$data =  json_decode($saved_data,true);
+			if(empty($data['rows'])){
+				$response = false;
+			}
+		}
+	}
+	return $response;
+}
