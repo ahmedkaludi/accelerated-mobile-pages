@@ -3919,7 +3919,7 @@ Redux::setSection( $opt_name, array(
                     'required' => array(
                         array('amp-design-selector', '=' , '3')
                     ),
-                    'default'  => '0'
+                    'default'  => '1'
             ),
              
              array(
