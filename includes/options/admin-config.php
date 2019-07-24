@@ -3915,7 +3915,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'       => 'amp-design-3-search-feature',
                     'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'title'    => esc_html__( 'Search', 'accelerated-mobile-pages' ),
                     'required' => array(
                         array('amp-design-selector', '=' , '3')
                     ),
