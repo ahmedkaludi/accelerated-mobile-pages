@@ -21,11 +21,6 @@ function ampforwp_code_module_replacement($moduleFrontHtml,$moduleTemplate, $con
 	}
 	return $moduleFrontHtml;
 }
-function ampforwp_runCompleteCode($moduleFrontHtml){
-	if(!empty($moduleFrontHtml)){
-		return $moduleFrontHtml;
-	}
-}
 
 $output = '{{code_content}}';
 $css = '

@@ -438,7 +438,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 				if($postKey=='opt-media' && $postValue!=""){
 					
 					$postValue = json_decode(stripcslashes($postValue),true);
-					$redux_builder_amp[$postKey] = $postValue;
+					$redux_builder_amp[$postKey] = sanitize_text_field($postValue);
 				}elseif(isset($redux_builder_amp[$postKey]) && $postValue!=""){
 					$redux_builder_amp[$postKey] = sanitize_text_field($postValue);
 				} 
