@@ -54,6 +54,7 @@ pre{ white-space: pre-wrap;}
 .left{float:left}
 .right{float:right}
 .hidden, .hide, .logo .hide{ display:none }
+.screen-reader-text {border: 0;clip: rect(1px, 1px, 1px, 1px);clip-path: inset(50%);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;word-wrap: normal;}
 .clearfix{ clear:both }
 blockquote{ background: #f1f1f1; margin: 10px 0 20px 0; padding: 15px;}
 blockquote p:last-child {margin-bottom: 0;}
