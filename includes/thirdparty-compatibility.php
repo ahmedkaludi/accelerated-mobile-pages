@@ -31,7 +31,7 @@ function ampforwp_thirdparty_compatibility(){
 	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
 	//Validation errors in amp category page due to HotWP PRO #3455
 	if(function_exists('hotwp_get_option') && is_category()){
-		add_filter('single_cat_title' , 'ampforwp_hotwp_remove_cat_title' );
+		add_filter('single_cat_title' , true );
 		add_action( 'ampforwp_after_header' , 'ampforwp_hotwp_add_cat_title');
 		add_action( 'below_the_header_design_1' , 'ampforwp_hotwp_add_cat_title');
 	}
