@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.2
-Stable tag: 0.9.98.1
+Stable tag: 0.9.98.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -188,6 +188,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 0.9.98.2 (25nd July 2019) =
+* Fixed: Menu design issue in Design 3 #3489
+* Fixed: Fatal error when latest version of Smush pro plugin activated #3487
+* Fixed: After Version 0.9.98 update, Background Type gradient options are not showing in Row module of AMP pagebuilder  #3490
+* Fixed: Undefined index ampforwp-amp-on-off #3474
+* Fixed: Search bar is not showing in design three after enabling the search option in header option panel #3484
+* Fixed: Code improvements to avoid the conflict with another plugin #3482
 
 = 0.9.98.1 (22nd July 2019) =
 * Fixed: Logo and headline comes togeather after .98 update #3472
