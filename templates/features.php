@@ -5250,15 +5250,78 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 				&& ( $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
 				// Check if current post type is AMPed or not
 				if( $supported_amp_post_types && in_array($post->post_type, $supported_amp_post_types) ){
+
 					// If AMP on Posts or Pages is off then do nothing
 					if($post->post_type == 'post' && !$redux_builder_amp['amp-on-off-for-all-posts'] || $post->post_type == 'page' && !$redux_builder_amp['amp-on-off-for-all-pages']) {
 						return;
 					}
-					$post_type_title = ucfirst($post->post_type);
+
+					if( is_archive() && is_category() ){
+
+						if(!ampforwp_get_setting('ampforwp-archive-support') || !ampforwp_get_setting('ampforwp-archive-support-cat') ){
+
+							return ;
+						}
+
+
+					}elseif( is_archive() && is_tag() ){
+
+						if(!ampforwp_get_setting('ampforwp-archive-support') || !ampforwp_get_setting('ampforwp-archive-support-tag') ){
+							return ;
+						}
+					}elseif( is_archive() && is_tax()){
+
+						$taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
+						$term_id = get_queried_object()->term_id;
+
+						if(empty($taxonomies)){
+							return ;
+						}else{
+
+							foreach($taxonomies as $tax_slug){
+								$taxObj = get_term_by('id', $term_id, $tax_slug);
+								if( empty($taxObj)){
+									return ;
+								}else{
+									continue;
+								}
+							}
+						}
+					}
+					
+					
+					if( is_archive() && is_category()){
+						$term_id = get_queried_object()->term_id;
+						$termObj = get_term( $term_id);
+						$taxonomy_objects = get_object_taxonomies( 'post', 'objects' );
+						$post_type_title = $taxonomy_objects[$termObj->taxonomy]->labels->singular_name;
+							
+						if(ampforwp_get_setting('ampforwp-archive-support') == true && ampforwp_get_setting('ampforwp-archive-support-cat') == true){
+							$current_url = get_term_link($term_id);
+						}
+					}elseif( is_archive() && is_tag()){
+						$term_id = get_queried_object()->term_id;
+						$termObj = get_term( $term_id);
+						$taxonomy_objects = get_object_taxonomies( 'post', 'objects' );
+						$post_type_title = $taxonomy_objects[$termObj->taxonomy]->labels->singular_name;
+						if(ampforwp_get_setting('ampforwp-archive-support') == true && ampforwp_get_setting('ampforwp-archive-support-tag') == true){
+							$current_url = get_term_link($term_id);
+						}
+					}elseif(is_archive() && is_tax()){
+						$term_id = get_queried_object()->term_id;
+						$termObj = get_term( $term_id);
+						$taxonomy_objects = get_object_taxonomies( 'post', 'objects' );
+						$post_type_title = $taxonomy_objects[$termObj->taxonomy]->labels->singular_name;
+						$current_url = get_term_link($term_id);
+					}elseif(!is_archive() && is_singular()){
+						$post_type_title = ucfirst($post->post_type);
+						$current_url = get_permalink( $post->ID );
+					}
+					
 					$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . $post_type_title . ' (AMP)' ,
-						'href'  => ampforwp_url_controller( get_permalink( $post->ID ) )
+						'href'  => ampforwp_url_controller( $current_url )
 					));
 				}
 			}		
