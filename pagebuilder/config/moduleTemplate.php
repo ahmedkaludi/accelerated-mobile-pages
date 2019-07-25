@@ -141,6 +141,7 @@ $front_css = '
 	{{ifend_condition_check_for_brdr_1}}
 	color: {{font_color_picker}};
 	background-color: {{color_picker}};
+	{{if_selected_gradient}}{{selected_gradient}};{{ifend_selected_gradient}}
 	margin: {{margin_css}};
 	padding:{{padding_css}};
 	
@@ -718,6 +719,16 @@ $containerCommonSettings = array(
 								'content_type'=>'css',
 								'required_type' => 'or',
 		           				'required'  => array('background_type'=> array('video','mp4video','youtubevideo'))
+							),
+							array(
+								'type'		=>'gradient-selector',
+								'name'		=>"selected_gradient",
+								'label'		=> esc_html__('Background Gradient', 'accelerated-mobile-pages'),
+								'tab'		=>'customizer',
+								'default'	=>'',
+								'content_type'=>'css',
+								'output_format'=>"%default%",
+								'required'  => array('background_type'=>'gradient')
 							),
 							array(
 		 						'type'		=>'text',		
