@@ -567,7 +567,7 @@ if( ! function_exists('ampforwp_require_file') ){
 
 // AMP endpoint Verifier
 function ampforwp_is_amp_endpoint() {
-	if ( ampforwp_is_non_amp() && ! is_admin()) {
+	if ( (function_exists('ampforwp_is_non_amp') && ampforwp_is_non_amp()) && ! is_admin()) {
 		return apply_filters('ampforwp_is_amp_endpoint_takeover', ampforwp_is_non_amp() );
 	}
 	else {
@@ -1107,7 +1107,7 @@ function ampforwp_sanitizers_loader(){
 	}
 }
 // is_amp_endpoint Fallback #2287 #3055
-add_action('parse_query','ampforwp_vendor_is_amp_endpoint'); 
+add_action('widgets_init','ampforwp_vendor_is_amp_endpoint'); 
 function ampforwp_vendor_is_amp_endpoint(){
 	global $pagenow;
 	if ( ! function_exists('amp_activate') && ! function_exists('is_amp_endpoint' ) && 'plugins.php' !== $pagenow ) {
