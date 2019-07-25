@@ -48,6 +48,9 @@ jQuery(function($) {
                             return false;
                         }
                         var item = $(this);
+                        if(item.hasClass('hide')){
+                            return false;
+                        }
                         var isMatch = true,
                             text = $(this).find('.redux_field_th').text().toLowerCase();
                         if ( !text || text == "" ) {
@@ -63,8 +66,7 @@ jQuery(function($) {
                              $(this).parents('div.redux-group-tab').css('display','block');
                         }
                         return isMatch;
-                    }).show( function() { }); 
-
+                    }).show( function() { });
                     parent.find('.redux-group-tab').each(function() {
                         if (searchString != "") {
                             $(this).find("div.redux-section-field").each(function(){
@@ -79,6 +81,10 @@ jQuery(function($) {
                             });
                         } else {
                             $(this).find("div.redux-section-field").each(function(){
+                                var item = $(this);
+                                if(item.hasClass('hide')){
+                                    return false;
+                                }
                                 var divSectionId = $(this).attr('id');
                                 var splitResult = divSectionId.split("-");
                                 splitResult.splice(1, 0, "table");
@@ -87,6 +93,17 @@ jQuery(function($) {
                                 if(totalTr>0){
                                     $(this).show();
                                 }
+                            });
+                            $(this).find('.form-table-section tbody').each(function(){
+                                $(this).find('tr').each(function (i, el) {
+                                    var item = $(this);
+                                    if(item.hasClass('hide')){
+                                        item.hide();
+                                    }
+                                    if(item.hasClass('redux-section-indent-start')){
+                                        item.hide();
+                                    }
+                                });
                             });
                         }
                     }); // parent.find('.redux-group-tab') Closed
