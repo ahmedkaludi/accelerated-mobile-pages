@@ -36,7 +36,7 @@ function amppb_save_post( $post_id, $post ){
     $saved_data = get_post_meta( $post_id, 'amp-page-builder', true );
  
     /* Get new submitted data and sanitize it. */
-    $submitted_data = isset( $request['amp-page-builder'] ) ?  filter_var( $request['amp-page-builder'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES)  : null;
+    $submitted_data = isset( $request['amp-page-builder'] ) ? wp_kses_post($request['amp-page-builder']) : null;
     $submitted_data = (str_replace(array("'","<script>","</script>"), array("&apos;","",""), $submitted_data));
     $submitted_data = wp_slash($submitted_data);
     
