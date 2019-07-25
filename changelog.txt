@@ -6,6 +6,7 @@
 * Fixed: After Version 0.9.98 update, Background Type gradient options are not showing in Row module of AMP pagebuilder  #3490
 * Fixed: Undefined index ampforwp-amp-on-off #3474
 * Fixed: Search bar is not showing in design three after enabling the search option in header option panel #3484
+* Fixed: Content blank if Color Attribute is in Span tag #3497
 
 = 0.9.98.1 (22nd July 2019) =
 * Fixed: Logo and headline comes togeather after .98 update #3472

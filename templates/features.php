@@ -706,8 +706,6 @@ function ampforwp_new_dir( $dir ) {
 				  $content = preg_replace('/<iframe .*(https?).*(\/\/api\.soundcloud\.com\/tracks\/)([0-9]+)(.*)<\/iframe>/', "$1:$2$3", $content);
 				  // for readability attibute in div tag
 				  $content = preg_replace('/readability=[^>]*/', '', $content);
-				  // removing color from span tag
-				  $content = preg_replace('/<span(.*?)(color=".*?")(.*?)>/', '<span$1$3>', $content);
 				  // removing sl-processed attribute
 				  $content = preg_replace('/(<[^>]+) sl-processed=".*?"/', '$1', $content);
 				  // ga-on
