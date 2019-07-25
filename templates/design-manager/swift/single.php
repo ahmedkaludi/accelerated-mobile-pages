@@ -736,8 +736,10 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 							'author_prefix'=> ampforwp_translation( ampforwp_get_setting('amp-translator-by-text').' ', 'By ' )
 						) 
 				); ?>
-				<?php amp_date(array('custom_format'=>'F d, Y') ); ?>
-				<?php amp_categories_list();?>	
+				<?php //amp_date(array('custom_format'=>'F d, Y') ); ?>
+				<?php amp_date(); ?>
+				<?php amp_categories_list();?>
+				<?php edit_post_link(); ?>	
 			</div>
 		</div>
 		<div class="sgl7-artl">

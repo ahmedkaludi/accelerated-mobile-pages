@@ -2556,6 +2556,19 @@ if( ampforwp_get_setting('single-design-type') == '7' ){ ?>
 	    padding: 7px 10px;
 	    font-size: 18px;
 	}
+	.post-edit-link{
+		text-transform: uppercase;
+	    font-size: 12px;
+	    font-weight: 400;
+	    font-style: italic;
+	    letter-spacing: 0.5px;
+	}
+	.post-edit-link:before{
+		content:"-";
+		display:inline-block;
+		margin:0px 6px;
+		color:#222;
+	}
 <?php if( true == ampforwp_get_setting('ampforwp-cats-single') ) { ?>
 	.amp-category span:nth-child(1){
 		display:none;
