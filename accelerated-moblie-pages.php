@@ -560,7 +560,7 @@ if( ! function_exists('ampforwp_require_file') ){
 
 // AMP endpoint Verifier
 function ampforwp_is_amp_endpoint() {
-	if ( function_exists('ampforwp_is_non_amp') && ampforwp_is_non_amp() && ! is_admin()) {
+	if ( (function_exists('ampforwp_is_non_amp') && ampforwp_is_non_amp()) && ! is_admin()) {
 		return apply_filters('ampforwp_is_amp_endpoint_takeover', ampforwp_is_non_amp() );
 	}
 	else {
