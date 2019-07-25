@@ -897,17 +897,6 @@ $containerCommonSettings = array(
 								'output_format'=>"background: %default%",
 								'required'  => array('background_type'=>'color')
 							),
-							array(
-								'type'		=>'color-picker',
-								'name'		=>"color_picker",
-								'label'		=> esc_html__('Background Color','accelerated-mobile-pages'),
-								'tab'		=>'customizer',
-								'default'	=>'',
-								'content_type'=>'css',
-								'output_format'=>"background: %default%",
-								'required'  => array('background_type'=>'color')
-							),
-
 							/*array(
 								'type'		=>'checkbox',
 								'name'		=>"want_border",
