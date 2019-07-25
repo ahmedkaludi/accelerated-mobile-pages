@@ -9,6 +9,9 @@ if(!defined('AMPFORWP_LAYOUTS_FILE')){
 		$header_bg_color = 'rgba(255,255,255,1)';
 	}
 }
+if ( empty($header_bg_color)) {
+	$header_bg_color = 'rgba(255,255,255,1)';	
+}
 $ampforwp_font_icon = ampforwp_get_setting('ampforwp_font_icon');
 if ( empty($ampforwp_font_icon) ) {
 	$ampforwp_font_icon = 'swift-icons';

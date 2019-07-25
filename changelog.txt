@@ -7,6 +7,7 @@
 * Fixed: Undefined index ampforwp-amp-on-off #3474
 * Fixed: Search bar is not showing in design three after enabling the search option in header option panel #3484
 * Fixed: Content blank if Color Attribute is in Span tag #3497
+* Fixed: Sticky Header has no background color when scrolling. #3498
 
 = 0.9.98.1 (22nd July 2019) =
 * Fixed: Logo and headline comes togeather after .98 update #3472
