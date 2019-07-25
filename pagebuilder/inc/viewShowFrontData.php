@@ -649,7 +649,7 @@ function amppb_post_content($content){
 			$content = $html;	
 		}
 	}
-	return do_shortcode($content);
+	return $content;
 }
 
 function ampforwp_rowData($container,$col,$moduleTemplate){
