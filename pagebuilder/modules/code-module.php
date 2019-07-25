@@ -23,7 +23,7 @@ function ampforwp_code_module_replacement($moduleFrontHtml,$moduleTemplate, $con
 }
 function ampforwp_runCompleteCode($moduleFrontHtml){
 	if(!empty($moduleFrontHtml)){
-		return eval( "?>". $moduleFrontHtml . "<?php " );
+		return $moduleFrontHtml;
 	}
 }
 
