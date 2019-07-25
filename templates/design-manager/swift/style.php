@@ -2568,6 +2568,8 @@ if( ampforwp_get_setting('single-design-type') == '7' ){ ?>
 	.amp-category .amp-cat:after{
 		content:",";
 		display:inline-block;
+		margin-right: 5px;
+		color:<?php echo $swift_cs_color; ?>;
 	}
 	.amp-category .amp-cat:last-child:after{ display:none;}
 <?php }//category CSS ends
@@ -2583,7 +2585,7 @@ if( true == ampforwp_get_setting('ampforwp-tags-single') ) { ?>
 		display:inline-block;
 	}
 	.amp-tag a{
-		border:1px solid <?php echo $hovercolor; ?>;
+		border:1px solid <?php echo $swift_cs_color; ?>;
 		padding: 5px 10px 5px 10px;
 	    font-size: 13px;
 	    margin: 0px 5px;
