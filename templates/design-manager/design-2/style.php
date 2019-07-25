@@ -137,7 +137,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 [class*=icono-]:after, [class*=icono-]:before { content: ''; pointer-events: none; }
 .icono-search:before{ position: absolute; left: 50%; -webkit-transform: rotate(270deg); -ms-transform: rotate(270deg); transform: rotate(270deg); width: 2px; height: 9px; box-shadow: inset 0 0 0 32px; top: 0px; border-radius: 0 0 1px 1px; left: 14px; }
 [class*=icono-] { display: inline-block; vertical-align: middle; position: relative; font-style: normal; color: #f42; text-align: left; text-indent: -9999px; direction: ltr }
-<?php if( true == ampforwp_get_setting('amp-design-1-search-feature') ) {  ?>
+<?php if( true == ampforwp_get_setting('amp-design-2-search-feature') ) {  ?>
 .icono-search { -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%) }
 .icono-search { border: 1px solid; width: 10px; height: 10px; border-radius: 50%; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); margin: 4px 4px 8px 8px; }
 .searchform label{ color: #f7f7f7; display: block; font-size: 10px; letter-spacing: 0.3px; line-height: 0; opacity:0.6 }
