@@ -537,7 +537,7 @@ function ampforwp_pb_autoCompileLess($css)
         		if ( $m[2] == $m[4] ) {
         			return $m[1].":".$m[2].";";
         		}
-        		if(trim($parts[0])==trim($m[1])){
+        		if(trim($m[0])==trim($m[1])){
         			return $m[1].":".$m[2].";";
         		}else{
         			return $m[1].":".$m[2]." ".$m[4].";";
