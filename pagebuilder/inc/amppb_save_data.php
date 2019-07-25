@@ -29,14 +29,14 @@ function amppb_save_post( $post_id, $post ){
     
     /* == Save, Delete, or Update Page Builder Data == */
  
-    $ampforwp_pagebuilder_enable = isset( $request['ampforwp_page_builder_enable'] ) ?  sanitize_text_field($request['ampforwp_page_builder_enable'])  : null;
+    $ampforwp_pagebuilder_enable = isset( $request['ampforwp_page_builder_enable'] ) ?  $request['ampforwp_page_builder_enable']  : null;
     update_post_meta( $post_id, 'ampforwp_page_builder_enable', $ampforwp_pagebuilder_enable );
     
     /* Get (old) saved page builder data */
     $saved_data = get_post_meta( $post_id, 'amp-page-builder', true );
  
     /* Get new submitted data and sanitize it. */
-    $submitted_data = isset( $request['amp-page-builder'] ) ?  htmlentities($request['amp-page-builder'])  : null;
+    $submitted_data = isset( $request['amp-page-builder'] ) ?  $request['amp-page-builder']  : null;
     $submitted_data = (str_replace(array("'","<script>","</script>"), array("&apos;","",""), $submitted_data));
     $submitted_data = wp_slash($submitted_data);
     
