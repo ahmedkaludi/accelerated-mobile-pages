@@ -958,9 +958,9 @@ if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('s
  	// swift Content Heading Sizes Ends?>
 	.cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-wrap: break-word;} 
 	/** Content Tables CSS **/
-	.sgl table, .sgl-7 table{width: 100%;margin-bottom:25px;display: -webkit-box;overflow-x: auto;word-break: normal;}
-	.sgl td, .sgl-7 td {padding: 0.5em 1em;border: 1px solid #ddd;}
-	.sgl tr:nth-child(odd) td, .sgl-7 tr:nth-child(odd) td{background: #f7f7f7;}
+	.sgl table, .sgl7-left table{width: 100%;margin-bottom:25px;display: -webkit-box;overflow-x: auto;word-break: normal;}
+	.sgl td, .sgl7-left td {padding: 0.5em 1em;border: 1px solid #ddd;}
+	.sgl tr:nth-child(odd) td, .sgl7-left tr:nth-child(odd) td{background: #f7f7f7;}
 	.cntn-wrp{font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;}
 	.artl-cnt ul li, .artl-cnt ol li{list-style-type: none;position: relative;padding-left: 20px;}
 	.artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;left: 0;top: 12px;}
