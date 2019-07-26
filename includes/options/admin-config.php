@@ -4968,6 +4968,8 @@ $single_page_options = array(
                     'type'  => 'switch',
                     'title' => esc_html__('Featured Image', 'accelerated-mobile-pages'),
                     'default'   => 1,
+                    'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show featured image in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
@@ -5011,6 +5013,8 @@ $single_page_options = array(
                     'type'  => 'switch',
                     'title' => esc_html__('Published Date', 'accelerated-mobile-pages'),
                     'default'   => 1,
+                    'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show published date in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
          //Breadcrumb ON/OFF
@@ -5019,6 +5023,8 @@ $single_page_options = array(
               'type'     => 'switch',
               'default'  =>  '1',
               'title'    => esc_html__('Breadcrumbs', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show breadcrumbs in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
            ),
           //Breadcrumb for Tags
           array(
@@ -5050,7 +5056,8 @@ $single_page_options = array(
               'type'     => 'switch',
               'default'  =>  '1',
               'title'    => esc_html__('Categories', 'accelerated-mobile-pages'),
-              'tooltip-subtitle' => esc_html__('Enable or Disable Categories in Single', 'accelerated-mobile-pages'),              
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show categories in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),           
            ),
          //Tags  ON/OFF
          array(
@@ -5058,6 +5065,8 @@ $single_page_options = array(
               'type'     => 'switch',
               'default'  =>  '1',
               'title'    => esc_html__('Tags', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show tags in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
            ),
           //Categories and Tags Links
           array(
@@ -5065,6 +5074,8 @@ $single_page_options = array(
               'type'     => 'switch',
               'default'  =>  '1',
               'title'    => esc_html__('Categories & Tags Links', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to make categories and tags links in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
            ),
           
           // Excerpt ON/OFF
@@ -5073,7 +5084,8 @@ $single_page_options = array(
               'type'      => 'switch',
               'title'     => esc_html__('Excerpt', 'accelerated-mobile-pages'),
               'default'   => 0,
-              'tooltip-subtitle'  => esc_html__('Excerpt will be displayed above content', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show excerpt in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
           ),
           //deselectable next previous links
           array(
@@ -5081,6 +5093,8 @@ $single_page_options = array(
               'type'      => 'switch',
               'title'     => esc_html__('Next-Previous Links', 'accelerated-mobile-pages'),
               'default'   => 1,
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show next and previous links in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
           ),
            // Author name 
          array(
@@ -5088,6 +5102,8 @@ $single_page_options = array(
              'type'     => 'switch',
              'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
              'default'  => '1',
+             'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show author name in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
              'required' => array(
                 array('amp-design-selector' , '=' , '4'),
             )
@@ -5098,6 +5114,8 @@ $single_page_options = array(
              'type'     => 'switch',
              'title'    => esc_html__( 'Author Bio', 'accelerated-mobile-pages' ),
              'default'  => '1',
+             'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show author bio in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
          ),
          // Author name 
          array(
@@ -5138,7 +5156,8 @@ $single_page_options = array(
             'type'     => 'switch',
             'title'    => esc_html__( 'Post Pagination', 'accelerated-mobile-pages' ),
            'default'   => 1,
-           'tooltip-subtitle'  => esc_html__('Enable the feature to add Pagination in single', 'accelerated-mobile-pages'),
+           'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show pagination in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
         ),
         array(
             'id'       => 'ampforwp-pagination-select',
@@ -5156,7 +5175,8 @@ $single_page_options = array(
             'id'       => 'ampforwp-swift-recent-posts',
             'type'     => 'switch',
             'title'    => esc_html__('Recent Posts below Related', 'accelerated-mobile-pages'),
-            'tooltip-subtitle' => esc_html__('To enable & disable recent posts', 'accelerated-mobile-pages'),
+            'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show recent posts in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
             'default'  => 1,
         ),
         array(
@@ -5181,6 +5201,8 @@ $single_page_options = array(
                     'id'       => 'ampforwp-single-related-posts-switch',
                     'type'     => 'switch',
                     'title'    => esc_html__( 'Related Posts', 'accelerated-mobile-pages' ),
+                    'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show related posts in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
                    'default'   => 1,
             ),
             array(
@@ -5301,7 +5323,8 @@ $single_page_options = array(
                     'id'       => 'ampforwp-inline-related-posts',
                     'type'     => 'switch',
                     'title'    => esc_html__('In-Content Related Post', 'accelerated-mobile-pages'),
-                'tooltip-subtitle' => esc_html__('Insert Related Posts between the content', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show inline related posts in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
                 'default'  => 0,
             ),
             array(
@@ -5368,6 +5391,8 @@ $single_page_options = array(
               'type'     => 'switch',
               'default'  =>  '0',
               'title'    => esc_html__('Lightbox for Images', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show lightbox for images in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
            ),
            // Dropcap 
            array(
@@ -5375,6 +5400,8 @@ $single_page_options = array(
               'type'     => 'switch',
               'default'  =>  '0',
               'title'    => esc_html__('Dropcap', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show dropcap in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
               'required'  => array(
                     array('amp-design-selector', '=' , '4')
                 )
@@ -5405,7 +5432,8 @@ $single_page_options = array(
                 'type'     => 'switch',
                 'title'    =>  esc_html__( 'H1 - H6 Font Sizes', 'accelerated-mobile-pages' ),
                'default'   => 0,
-               'tooltip-subtitle'  => esc_html__('Enable the Heading to add Font Sizes in single', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to change default heading size in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
             ),
             array(
                 'id'       => 'swift_cnt_h1',
@@ -5513,6 +5541,8 @@ $single_page_options = array(
                     'id'    => 'single-new-features',
                     'type'  => 'switch',
                     'title' => esc_html__('Advanced Single Options', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to use advanced options for single posts in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
                     'default'   => 0,
             ),
             array(
@@ -5542,6 +5572,8 @@ $single_page_options = array(
                    'id'    => 'ampforwp-gallery-design-type',
                    'title'  => esc_html__('Select Gallery Designs', 'accelerated-mobile-pages'),
                    'class' => 'child_opt child_opt_arrow',
+                   'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Select the design which you want for displaying the gallery in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
                    'type'   => 'image_select',
                    'options'=> array(
                         '1' => array(
@@ -5568,6 +5600,8 @@ $single_page_options = array(
                'type' => 'switch',
                'title' => esc_html__('Lightbox for Gallery', 'accelerated-mobile-pages'),
                'class' => 'child_opt child_opt_arrow',
+               'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to show lightbox for gallery in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
                'default'    =>  1,
                'required'   =>  array('ampforwp-gallery-design-type' , '!=' , '3'),
              ),
@@ -5583,6 +5617,8 @@ $single_page_options = array(
                 'id'       => 'content-sneak-peek',
                 'type'     => 'switch',
                 'title'    => esc_html__('Content Sneak Peek', 'accelerated-mobile-pages'),
+                'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to hide all your content and show just a preview of your content in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
                 'default'  => 0,
             ),
             array(
