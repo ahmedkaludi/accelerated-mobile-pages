@@ -110,7 +110,7 @@ if(!class_exists('Aq_Resize')) {
                 $cdn_url = '';
 
 
-                // Check if $img_url is local.
+                // Check if $img_url is not local.
                 if ( false === strpos( $url, $upload_url ) ) {
                     $is_cdn  = true;
                     $cdn_url_main = $cdn_url = $url;
@@ -136,9 +136,14 @@ if(!class_exists('Aq_Resize')) {
                 }
 
                 // Check if img path exists, and is an image indeed.
-                if ( ! file_exists( $img_path ) or ! getimagesize( $img_path ) )
-                    throw new Aq_Exception('Image file does not exist (or is not an image): ' . $img_path);
-
+                if ( ! file_exists( $img_path ) or ! getimagesize( $img_path ) ){
+                    // Return the Original CDN array
+                    return array (
+                                0 => $cdn_url_main,
+                                1 => $width,
+                                2 => $height
+                            );
+                }
                 // Get image info.
                 $info = pathinfo( $img_path );
                 $ext = $info['extension'];
