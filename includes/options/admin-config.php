@@ -5801,7 +5801,7 @@ $single_page_options = array(
         array(
             'id'       => 'ampforwp-swift-recent-posts',
             'type'     => 'switch',
-            'title'    => esc_html__('Recent Posts below Related', 'accelerated-mobile-pages'),
+            'title'    => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
             'tooltip-subtitle' => esc_html__('To enable & disable recent posts', 'accelerated-mobile-pages'),
             'default'  => 1,
         ),

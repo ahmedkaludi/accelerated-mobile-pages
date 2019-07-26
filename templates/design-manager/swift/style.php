@@ -1343,7 +1343,7 @@ if(empty($sbar_link_clr)){
 if(empty($sbar_text_clr)){
 	$sbar_text_clr ='#333333';
 }
-if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || is_search() || ampforwp_is_blog() ) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() && ampforwp_get_setting('single-design-type') == '4')  ) { 
+if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || is_search() || ampforwp_is_blog() ) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() && (ampforwp_get_setting('single-design-type') == '4' || ampforwp_get_setting('single-design-type') == '7')  ) ) {
 // AMP woocommerce condition starts
 
 if( !ampforwp_woocommerce_conditional_check() ) { ?>
@@ -1360,6 +1360,8 @@ if( !ampforwp_woocommerce_conditional_check() ) { ?>
 	font-size: 14px;
     line-height: 1.5;
 	color: <?php echo ampforwp_sanitize_color($sbar_text_clr); ?>;
+	display:inline-block;
+	width:100%;
 }
 .amp-sidebar ul li{
 	list-style-type: none;
@@ -1472,7 +1474,7 @@ thead th {
     flex-basis: calc(100% - 30px);
 }
 }
-<?php } // AMP woocommerce condition starts
+<?php } // AMP woocommerce condition ends
  }//Header and Archive Sidebar CSS Ends ?>
 <?php 
 if( !ampforwp_levelup_compatibility('levelup_elementor') ){ // Level up Condition starts 
@@ -2728,73 +2730,7 @@ if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('am
 		    display: block;
 		    margin-top: 10px;
 		}
-<?php } // Recent Posts Ends 
-if (  true == ampforwp_get_setting('swift-sidebar') && is_singular()  ) { 
-	if ( is_active_sidebar( 'swift-sidebar' ) ) : 
-		?>
-	/*** Sidebar CSS ***/
-	.amp-sidebar{
-		width:100%;
-		display:inline-block;
-		padding:20px;
-		font-size: 14px;
-    	line-height: 1.5;
-		color: <?php echo ampforwp_sanitize_color($sbar_text_clr); ?>;
-		background:<?php echo ampforwp_sanitize_color($sbar_bg_clr); ?>;
-	}
-	.amp-sidebar h4{
-		font-size: 13px;
-	    line-height: 1.5;
-	    background-color: <?php echo ampforwp_sanitize_color($sbar_heading_clr); ?>;
-		color: <?php echo ampforwp_sanitize_color($sbar_bg_clr); ?>;
-	    font-weight: 600;
-	    display: inline-block;
-	    padding: 1px 22px;
-	    border-radius: 3px;
-	    margin-bottom: 20px;
-	}
-	.amp-sidebar ul li {
-		list-style-type:none;
-		margin-bottom: 10px;
-	    border-bottom: 1px solid #ddd;
-	    padding-bottom:10px;
-	}
-	.amp-sidebar ul li a{
-		color: <?php echo ampforwp_sanitize_color($sbar_link_clr); ?>;
-		font-size: 13px;
-    	font-weight: 600;
-    	line-height: 1.4;
-    	margin: 0 0 7px;
-	}
-	.amp-sidebar ul li .post-date{
-		font-size: 12px;
-	    color: #444;
-	    line-height: 1.5;
-	    display: block;
-	    margin-top: 10px;
-	}
-	.amp-sidebar .tagcloud ul li {
-	    float: left;
-	    border-top: 0;
-	    border-bottom: 0;
-	    padding: 0;
-	    margin: 4px 4px 0 0;
-	}
-	.amp-sidebar .tagcloud a, .wp_widget_tag_cloud a {
-	    border: 1px solid #d1d1d1;
-	    box-shadow: none;
-	    display: inline-block;
-	    margin-bottom:5px;
-	    padding: 4px 10px 5px;
-	    position: relative;
-	    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.3s ease-in-out;
-	    width: auto;
-	    word-wrap: break-word;
-	    z-index: 0;
-	    color: <?php echo ampforwp_sanitize_color($sbar_link_clr); ?>;
-	}
-	<?php endif;  
-	} // sidebar condition ends here ?>
+<?php } // Recent Posts Ends  ?>
 	/** Responsive **/
 	@media(max-width:1060px){
 		.sgl-7 .cntr, header .cntr {
