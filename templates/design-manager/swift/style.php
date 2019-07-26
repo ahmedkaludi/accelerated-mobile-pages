@@ -2622,9 +2622,9 @@ if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('am
 	    color: #fff;
 	    font-weight: 600;
 	    display: inline-block;
-	    padding: 1px 22px;
+	    padding: 3px 22px;
 	    border-radius: 3px;
-	    margin-bottom: 20px;
+	    margin-bottom: 15px;
 	    letter-spacing: 0.5px;
 	}
 	.rlp-wrap ul{
@@ -2697,7 +2697,7 @@ if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('am
 		    color: #fff;
 		    font-weight: 600;
 		    display: inline-block;
-		    padding: 1px 22px;
+		    padding: 3px 22px;
 		    border-radius: 3px;
 		    margin-bottom: 20px;
 		    letter-spacing: 0.5px;
