@@ -5546,19 +5546,19 @@ $single_page_options = array(
                    'type'   => 'image_select',
                    'options'=> array(
                         '1' => array(
-                                "before_label_close"=> "<span class='sdl'>Design 1</span><a class='sdlnk' href='".esc_url(AMPFORWP_PLUGIN_DIR_URI."images/single-design-1.png'")." target='_blank'>Preview</a>",
+                                "before_label_close"=> "<span class='sdl'>Design 1</span><a class='sdlnk' href='".esc_url(AMPFORWP_PLUGIN_DIR_URI."images/single-design-1.png'")."' target='_blank'>Preview</a>",
                                 'alt'=>' Single Design 1 ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'images/single-design-1.png',
                                 ),
                         '4' => array(
-                                "before_label_close"=> "<span class='sdl'>Design 2</span><a class='sdlnk' href='".esc_url(AMPFORWP_PLUGIN_DIR_URI."images/single-design-2.png'")." target='_blank'>Preview</a>",
+                                "before_label_close"=> "<span class='sdl'>Design 2</span><a class='sdlnk' href='".esc_url(AMPFORWP_PLUGIN_DIR_URI."images/single-design-2.png'")."' target='_blank'>Preview</a>",
                                 'alt'=>' Single Design With Sidebar ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'images/single-design-2.png'
                                 ),
                         '7' => array(
-                                "before_label_close"=> "<span class='sdl'>Design 2</span><a class='sdlnk' href='".esc_url(AMPFORWP_PLUGIN_DIR_URI."images/single-design-2.png'")." target='_blank'>Preview</a>",
+                                "before_label_close"=> "<span class='sdl'>Design 3</span><a class='sdlnk' href='".esc_url(AMPFORWP_PLUGIN_DIR_URI."images/single-design-3.png'")."' target='_blank'>Preview</a>",
                                 'alt'=>' Single Design With Recent Posts ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'images/single-3.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'images/single-design-3.png'
                                 ),
                         
                     ),
