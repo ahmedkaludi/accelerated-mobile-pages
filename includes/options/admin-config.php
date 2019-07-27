@@ -12,6 +12,7 @@ require_once AMPFORWP_PLUGIN_DIR."includes/features/structure-data/structured-da
 require_once AMPFORWP_PLUGIN_DIR."includes/features/notice-bar/notice-bar-options.php";
 require_once AMPFORWP_PLUGIN_DIR."includes/features/push-notification/push-notification-options.php";
 require_once AMPFORWP_PLUGIN_DIR."includes/features/contact-form/contact-form-options.php";
+require_once AMPFORWP_PLUGIN_DIR."includes/features/pagebuilders-support/pagebuilders_support.php";
 
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
@@ -24,7 +25,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
 }
-$wpbakery_for_ampchecker = $divi_pb_for_ampchecker = $elemntr_pb_for_ampchecker = array();
+/*$wpbakery_for_ampchecker = $divi_pb_for_ampchecker = $elemntr_pb_for_ampchecker = array();
 if(!is_plugin_active( 'amp-pagebuilder-compatibility/amp-pagebuilder-compatibility.php' )){
     $wpbakery_for_ampchecker = array( 
                     'id'   => 'wpbakery_pb_for_amp_info_normal',
@@ -114,7 +115,7 @@ if(!is_plugin_active( 'amp-pagebuilder-compatibility/amp-pagebuilder-compatibili
                'default'  => false
             ); 
     $pb_for_amp[] = $elemntr_pb_for_ampchecker;
-
+*/
 $all_extensions_data = array();
 global $all_extensions_data;
 $extension_listing_array = array(
@@ -1261,6 +1262,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 )   
         );
         ampforwp_admin_advertisement_options($opt_name);
+        ampforwp_page_builders_support_options($opt_name);
         ampforwp_admin_performance_options($opt_name);
         ampforwp_analytics_options($opt_name);
         ampforwp_structure_data_options($opt_name);
@@ -1562,7 +1564,7 @@ Redux::setArgs( "redux_builder_amp", $args );
              ),
       )
     ) );//END
-    $pb_title = 'Page Builder';
+/*    $pb_title = 'Page Builder';
     $theme = wp_get_theme(); // gets the current theme
     if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ) || did_action( 'elementor/loaded' ) ){
         if(class_exists('Vc_Manager') ){
@@ -1584,7 +1586,7 @@ Redux::setArgs( "redux_builder_amp", $args );
        'fields' => $pb_for_amp,
        )
 
-   ) ;
+   ) ;*/
 
     // Ads Section
     if ( ! function_exists('amp_activate') ) {
@@ -1825,6 +1827,8 @@ Redux::setArgs( "redux_builder_amp", $args );
   );
 
   if ( ! function_exists('amp_activate') ) {
+    // PageBuilders section
+    ampforwp_page_builders_support_options($opt_name);
     // Performance section
     ampforwp_admin_performance_options($opt_name);
     // Analytics section
