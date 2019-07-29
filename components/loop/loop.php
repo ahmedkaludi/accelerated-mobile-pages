@@ -536,12 +536,15 @@ function amp_loop_category(){
 	global $redux_builder_amp;
 	if(count(get_the_category()) > 0){
 		echo ' <ul class="loop-category">';
-		
 			foreach((get_the_category()) as $category) {
-				if ( false == $redux_builder_amp['ampforwp-archive-support'] ) {
-				echo '<li class="amp-cat-'. $category->term_id.'">'. $category->cat_name.'</li>';
+				if(ampforwp_get_setting('ampforwp-cats-tags-links-single') == true){
+					$cat_link = get_category_link( $category->term_id );
+					if(ampforwp_get_setting('ampforwp-archive-support-cat') == true && ampforwp_get_setting('ampforwp-archive-support') == true){
+	                    $cat_link = ampforwp_url_controller( $cat_link );
+	                }
+	                echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.esc_url($cat_link).'">'. esc_html($category->cat_name).'</a></li>';
 				}else{
-				echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.ampforwp_url_controller( get_category_link( $category->term_id ) ).'">'. $category->cat_name.'</a></li>';	
+					echo '<li class="amp-cat-'. $category->term_id.'">'. esc_html($category->cat_name).'</li>';
 				}
 			}
 		

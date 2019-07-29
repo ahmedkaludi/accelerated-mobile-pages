@@ -23,17 +23,16 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
   	<span class="amp-wp-meta amp-wp-tax-category ampforwp-tax-category  ">
       <?php
         global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-in-designthree'] , 'in' ) .' '); 
-
         foreach ($ampforwp_categories as $cat ) {
-          if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
-                echo '<span class="amp-cat">'. esc_html($cat->name) .'</span>';
-              }
-            elseif( true == ampforwp_get_setting('ampforwp-archive-support') &&  true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {
-            echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'.esc_url(ampforwp_url_controller( get_category_link( $cat->term_id ) )). '" >'. esc_html($cat->name) .'</a></span>'); 
-        } 
-      else {
-        echo ('<span class="amp-cat amp-cat-'.esc_attr($cat->term_id).'"><a href="'. esc_url(get_category_link( $cat->term_id ))  .'" > '. esc_html($cat->name) .'</a></span>');
-      }
+          if( true == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
+            $cat_link = get_category_link( $cat->term_id );
+            if( true == ampforwp_get_setting('ampforwp-archive-support') &&  true == ampforwp_get_setting('ampforwp-archive-support-cat')){
+              $cat_link = ampforwp_url_controller(get_category_link( $cat->term_id ));
+            }
+            echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'.esc_url($cat_link). '" >'. esc_html($cat->name) .'</a></span>'); 
+          }else{
+            echo '<span class="amp-cat">'. esc_html($cat->name) .'</span>';
+          }
        }
 			?>
   	</span>
