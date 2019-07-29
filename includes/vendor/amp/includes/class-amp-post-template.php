@@ -351,7 +351,7 @@ class AMP_Post_Template {
 
 		$this->add_data_by_key( 'featured_image', array(
 			'amp_html' => $sanitized_html,
-			'caption' => $featured_image->post_excerpt,
+			'caption' => isset($featured_image)? $featured_image->post_excerpt : '',
 		) );
 
 		if ( $featured_scripts ) {
