@@ -542,7 +542,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 	private function validate_cdata_for_node( $element, $cdata_spec ) {
 		if ( isset( $cdata_spec['blacklisted_cdata_regex'] ) ) {
 			if ( preg_match( '@' . $cdata_spec['blacklisted_cdata_regex']['regex'] . '@u', $element->textContent ) ) {
-				return new WP_Error( $cdata_spec['blacklisted_cdata_regex']['error_message'] );
+				return new \WP_Error( $cdata_spec['blacklisted_cdata_regex']['error_message'] );
 			}
 		}
 		return true;
