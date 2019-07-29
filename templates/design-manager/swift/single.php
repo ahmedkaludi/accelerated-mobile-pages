@@ -750,7 +750,17 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 					</div>
 				<?php } ?>
 				<div class="cntn-wrp artl-cnt">
+					<?php
+					if ('above-content' ==  ampforwp_get_setting('swift-layout-addthis-pos')){
+						echo ampforwp_addThis_support();
+					}
+					?>
 					<?php amp_content(); ?>
+					<?php 
+					if ( 'below-content' ==  ampforwp_get_setting('swift-layout-addthis-pos') ){
+						echo ampforwp_addThis_support();
+					}
+					?>
 				</div>
 				<?php $author_box = array();
 				if( true == ampforwp_get_setting('amp-author-description') ) { ?>	
