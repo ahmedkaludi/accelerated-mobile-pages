@@ -28,6 +28,8 @@ $menu_icon_clr          = ampforwp_get_setting('amp-d1-menu-icon-color','color')
 $cross_btn_clr          = ampforwp_get_setting('amp-d1-cross-btn-color','color');
 $cross_btn_bg_clr       = ampforwp_get_setting('amp-d1-cross-bg-color','rgba');
 $cross_btn_hvr_clr      = ampforwp_get_setting('amp-d1-cross-hover-color','rgba');
+$colorschemetxt_clr     = ampforwp_get_setting('amp-opt-color-rgba-font-d1','rgba');
+$colorschemebg_clr      = ampforwp_get_setting('amp-opt-color-rgba-colorscheme-d1','rgba');
 
 if(empty($header_bg_clr)){
   $header_bg_clr ='#0a89c0';
@@ -61,7 +63,15 @@ if(empty($cross_btn_bg_clr)){
 }
 if(empty($cross_btn_hvr_clr)){
   $cross_btn_hvr_clr ='rgba(0, 0, 0, 0.45)';
-} ?>
+} 
+if(empty($colorschemebg_clr)){
+  $colorschemebg_clr ='#ffffff';
+}
+if(empty($colorschemetxt_clr)){
+  $colorschemetxt_clr ='#0a89c0';
+}
+
+?>
 #statcounter{width: 1px;height:1px;}
 .amp-wp-article amp-addthis{bottom: -38px;margin-left: 6px;}
 <?php if ( true == ampforwp_get_setting('ampforwp-d1-font') ): ?> 
@@ -138,6 +148,13 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
 .amp-wp-home .amp-wp-content p{display:inline-block;width:100%}.ampforwp-custom-index .amp-wp-title a {text-decoration: none;color: <?php echo sanitize_hex_color( $text_color ); ?>;}.comment-button-wrapper a,.related_posts ol{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif}.amp-wp-meta{display:flex}.amp-wp-posted-on{display:initial}
 <?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>
 #pagination .next,#pagination .prev{display:inline-block}.ampforwp-custom-index .amp-wp-content{margin-bottom:30px}.pagination-holder{margin:1.5em 16px}#pagination .next{float:right}.amp-wp-home .amp-wp-content p{display:inline}.home-post-image{float:right;margin:0 0 10px 20px}.amp-wp-article-content amp-img{max-width:100%}.amp-wp-meta.amp-wp-tax-category,.amp-wp-meta.amp-wp-tax-tag{margin:0}.amp-wp-meta.amp-wp-tax-tag{display:initial}
+.post-pagination-meta .next{margin-bottom:10px;}
+#pagination .next a, #pagination .prev a, .comment-button-wrapper a{
+  background:<?php echo ampforwp_sanitize_color( $colorschemebg_clr ); ?>;
+  padding:10px;
+  display:inline-block;
+   color:<?php echo ampforwp_sanitize_color( $colorschemetxt_clr ); ?>;
+}
 <?php } // AMP Woocommerce CSS Ends ?>
 .ampforwp-social-icons{margin:1.5em 16px}.amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; margin-bottom:5px; }
 .amp-social-icon amp-img{ top: 4px; }
@@ -194,7 +211,7 @@ amp-social-share[type="facebookmessenger"] {
 .amp-social-flipboard amp-img , .amp-social-icon.custom-amp-socialsharing-flipboard amp-img {top: 2px;}
 <?php } ?>
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
-.comment-button-wrapper a{border-style:solid;border-color:#c2c2c2;border-width:1px 1px 2px;border-radius:4px;background-color:transparent;color:#0a89c0;cursor:pointer;display:block;font-size:14px;font-weight:600;text-align:center;line-height:18px;margin:0 auto;max-width:200px;padding:11px 16px;text-decoration:none;width:50%;-webkit-transition:background-color .2s ease;transition:background-color .2s ease}.close-nav,.comments_list div,.related_posts ol li,.toggle-navigation ul,.toggle-navigationv2 ul li a{display:inline-block}main .amp-wp-content.comments_list{background:0 0;box-shadow:none;max-width:1030px}.comments_list h3{font-size:14px;font-weight:700;letter-spacing:.4px;margin:25px 0 10px;color:#333}.comments_list{margin:2.5em 16px}.comments_list ul{margin:0;padding:0}.comments_list ul.children{padding-bottom:10px;margin-left:4%;width:96%}
+.comment-button-wrapper a{border-style:solid;border-color:#c2c2c2;border-width:1px 1px 2px;border-radius:4px;cursor:pointer;display:block;font-size:14px;font-weight:600;text-align:center;line-height:18px;margin:0 auto;max-width:200px;padding:11px 16px;text-decoration:none;width:50%;-webkit-transition:background-color .2s ease;transition:background-color .2s ease}.close-nav,.comments_list div,.related_posts ol li,.toggle-navigation ul,.toggle-navigationv2 ul li a{display:inline-block}main .amp-wp-content.comments_list{background:0 0;box-shadow:none;max-width:1030px}.comments_list h3{font-size:14px;font-weight:700;letter-spacing:.4px;margin:25px 0 10px;color:#333}.comments_list{margin:2.5em 16px}.comments_list ul{margin:0;padding:0}.comments_list ul.children{padding-bottom:10px;margin-left:4%;width:96%}
 
 
 .comments_list ul li p{margin:0;font-size:14px;clear:both;padding-top:5px; word-break:break-word;}

@@ -36,6 +36,9 @@ $menu_icon_clr          = ampforwp_get_setting('amp-d2-menu-icon-color','color')
 $cross_btn_clr          = ampforwp_get_setting('amp-d2-cross-btn-color','color');
 $cross_btn_bg_clr       = ampforwp_get_setting('amp-d2-cross-bg-color','rgba');
 $cross_btn_hvr_clr      = ampforwp_get_setting('amp-d2-cross-hover-color','rgba');
+$colorschemetxt_clr     = ampforwp_get_setting('amp-opt-color-rgba-font-d2','rgba');
+$colorschemebg_clr      = ampforwp_get_setting('amp-opt-color-rgba-colorscheme-d2','rgba');
+
 
 if(empty($header_bg_clr)){
 	$header_bg_clr ='#0a89c0';
@@ -69,6 +72,12 @@ if(empty($cross_btn_bg_clr)){
 }
 if(empty($cross_btn_hvr_clr)){
 	$cross_btn_hvr_clr ='rgba(0, 0, 0, 0.45)';
+}
+if(empty($colorschemebg_clr)){
+  $colorschemebg_clr ='#fefefe';
+}
+if(empty($colorschemetxt_clr)){
+  $colorschemetxt_clr ='#666666';
 }
 
 ?>
@@ -150,9 +159,14 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 /* Pagination */
 .amp-wp-content.pagination-holder { background: none; padding: 0; box-shadow: none; height: auto; min-height: auto; }
 #pagination{ width: 100%; margin-top: 15px; }
-#pagination .next{ float: right; margin-bottom: 10px; }
+#pagination .next{ float: right;}
 #pagination .prev{ float: left }
-#pagination .next a, #pagination .prev a{ margin-bottom: 12px; background: #fefefe; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05); padding: 11px 15px; font-size: 12px; color: #666; }
+#pagination .next a, #pagination .prev a{ margin-bottom: 12px; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05); padding: 11px 15px; font-size: 12px;}
+#pagination .next a, #pagination .prev a{
+	color:<?php echo ampforwp_sanitize_color( $colorschemetxt_clr ); ?>;
+    background:<?php echo ampforwp_sanitize_color( $colorschemebg_clr ); ?>;
+    display:inline-block;
+}
 <?php } // AMP Woocommerce condition ends ?>
 <?php 
 if(ampforwp_get_setting('enable-single-social-icons') == true && is_single() || is_page() ){?>
