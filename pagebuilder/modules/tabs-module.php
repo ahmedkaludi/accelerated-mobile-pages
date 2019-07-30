@@ -56,11 +56,18 @@ $css = '
 	font-weight:{{hdng_font_type}};
 }
 {{module-class}} .tabButton[selected]+.tabContent {
-    display: grid;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 50px;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 0px 60px;
     align-items:center;
+}
+{{module-class}} .tabButton[selected]+.tabContent .tab-img{
+	flex-basis: calc(45%);
+    margin-right: 8%;
+}
+{{module-class}} .tabButton[selected]+.tabContent .tab-cntn {
+    flex: 1 0 40%;
 }
 {{module-class}} .tab-cntn h3{
 	color:{{tlt_font_color}};
@@ -113,14 +120,17 @@ $css = '
 	{{module-class}} .tabButton {
 		margin-bottom:15px;
 	}
+	{{module-class}} .tabButton[selected]+.tabContent .tab-img{
+		flex-basis: calc(100%);
+	    margin-right: 0;
+	}
 }
 @media(max-width:600px){
 	{{module-class}} .tabButton[selected]+.tabContent{
-		grid-template-columns: 1fr;
 		margin-top:15px;
 	}
-	{{module-class}} .tab-cntn{
-		margin-top:30px;
+	{{module-class}} .tab-img{
+		margin-bottom:30px;
 	}
 }
 {{ifend_condition_tabs_layout_type_1}}
@@ -599,10 +609,11 @@ return array(
 									    <h2>{{tab_hdng}}</h2>
 									</div>
 									<div role="tabpanel" class="tabContent">
+										{{if_img_upload}}
 										<div class="tab-img animate fadeInLeft">
-											{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>
-											{{ifend_img_upload}}
+											<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>
 									    </div>
+									    {{ifend_img_upload}}
 									    <div class="tab-cntn animate fadeInRight">
 									    	<h3>{{tab_tlt}}</h3>
 									    	{{content}}
