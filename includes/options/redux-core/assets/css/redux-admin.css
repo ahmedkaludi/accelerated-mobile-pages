@@ -1189,3 +1189,9 @@ a.bfcm {
     box-shadow: none;
     border: none;
 }
+fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
+    margin: 20px 0px;
+}
+.opt-go-amp-cache span.description {
+    margin-left: 13px;
+}
