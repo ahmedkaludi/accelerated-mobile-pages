@@ -744,3 +744,23 @@ function ampforwp_addthis_floating_social_share(){
 		}
 	}
 }
+// start custom amp script #3443
+if(!function_exists('amp_start_custom_script')){
+	function amp_start_custom_script($custom_url){
+		$amp_script = '';
+		if( !empty($custom_url) && ampforwp_get_setting('ampforwp-custom-amp-script') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { 
+			$amp_script = '<amp-script layout="container" src="'.esc_url($custom_url).'"> ';
+		}
+		echo $amp_script;
+	}
+}
+// end custom amp script #3443
+if(!function_exists('amp_end_custom_script')){
+	function amp_end_custom_script(){
+		$amp_script = '';
+		if( ampforwp_get_setting('ampforwp-custom-amp-script') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ){
+			$amp_script = '</amp-script>';
+		}
+		echo $amp_script;
+	}
+}

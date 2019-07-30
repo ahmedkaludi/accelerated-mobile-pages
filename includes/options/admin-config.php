@@ -2302,6 +2302,16 @@ Redux::setSection( $opt_name, array(
                     )   
                  )
     );
+$amp_custom_script = array();
+if( is_plugin_active('amp-theme-framework/amp-theme.php') ){
+        $amp_custom_script = array(
+                        'id'       => 'ampforwp-custom-amp-script',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Custom AMP Script', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__("amp-script is in active development and under experimental availability. It's subject to breaking API changes and should not yet be used in production,", 'accelerated-mobile-pages'),esc_url('https://amp.dev/documentation/components/amp-script/'),esc_html__('for more info','accelerated-mobile-pages')),
+                        'default' => 0,
+                    );
+}
 
  // Advance Settings SECTION
 Redux::setSection( $opt_name, array(
@@ -2329,6 +2339,7 @@ Redux::setSection( $opt_name, array(
                         'default' => 1,
                         'required' => array( 'amp-mobile-redirection', '=' , 1 )
                     ),
+                    $amp_custom_script,
                     array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
