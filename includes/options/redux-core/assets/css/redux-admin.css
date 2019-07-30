@@ -1205,3 +1205,24 @@ a.bfcm {
     color: #fff;
     text-decoration: none;
 }
+/** Single page css **/
+#section-table-ampforwp-single_section_1 tr.fold{
+    width:100%;
+    display: inline-block;
+}
+#section-table-ampforwp-single_section_1 tr.fold.hide{
+    display:none;
+}
+#section-table-ampforwp-single_section_1 tr.fold th{
+    display:inline-block;
+    width:100%;
+}
+#redux_builder_amp-single-design-type ul{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px 30px;
+}
+.fold #redux_builder_amp-single-design-type .redux-image-select li {
+    width:100%;
+}
