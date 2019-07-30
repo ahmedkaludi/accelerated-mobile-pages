@@ -6130,6 +6130,10 @@ function ampforwp_thrive_architect_content(){
     if ( function_exists( 'ampforwp_is_amp_inURL' ) && ampforwp_is_amp_inURL($url_path)  ) {
 		//#3254 Remove action for Woodmart theme lazyload feature 
 		remove_action( 'init', 'woodmart_lazy_loading_init', 120 );
+		//CDN Enabler Compatibility for product images
+		if( class_exists('CDN_Enabler')){
+			remove_action('template_redirect', [ 'CDN_Enabler', 'handle_rewrite_hook']);
+		}
 	}
 }
 function ampforwp_thrive_content($content){
