@@ -646,7 +646,7 @@ function amppb_post_content($content){
 				$html .= '</div>';
 		}
 		if(!empty($html)){
-			$content = $html;	
+			$content = do_shortcode($html);
 		}
 	}
 	return $content;
