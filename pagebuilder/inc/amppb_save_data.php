@@ -8,6 +8,10 @@ add_action( 'save_post', 'amppb_save_post', 10, 2 );
 /**
  * Save Page Builder Data When Saving Page
  */
+function ampforwp_isjson($string) {
+ json_decode($string);
+ return (json_last_error() == JSON_ERROR_NONE);
+}
 function amppb_save_post( $post_id, $post ){
  
     /* Stripslashes Submitted Data */
@@ -36,7 +40,7 @@ function amppb_save_post( $post_id, $post ){
     $saved_data = get_post_meta( $post_id, 'amp-page-builder', true );
  
     /* Get new submitted data and sanitize it. */
-    $submitted_data = isset( $request['amp-page-builder'] ) ? wp_kses_post($request['amp-page-builder']) : null;
+    $submitted_data = isset( $request['amp-page-builder'] ) &&  ampforwp_isjson($request['amp-page-builder']) ? $request['amp-page-builder'] : null;
     $submitted_data = (str_replace(array("'","<script>","</script>"), array("&apos;","",""), $submitted_data));
     $submitted_data = wp_slash($submitted_data);
     
