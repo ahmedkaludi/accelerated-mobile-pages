@@ -89,9 +89,11 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		}
 		// Version 6.0+
 		elseif ( defined('RS_REVISION') && 6.0 <= RS_REVISION ) {
+			extract(shortcode_atts(array('alias'	=> ''), $args, 'rev_slider'));
+			extract(shortcode_atts(array('settings' => ''), $args, 'rev_slider'));
+			extract(shortcode_atts(array('order'	=> ''), $args, 'rev_slider'));
 			extract(shortcode_atts(array('usage'	=> ''), $args, 'rev_slider'));
 			$output = new RevSliderOutput();
-			
 			$slider_alias = ($alias != '') ? $alias : $output->get_val($args, 0); //backwards compatibility
 			
 			$output->set_custom_order($order);
@@ -109,8 +111,8 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 			foreach ($slides as $slide) {
 				$bgtype = $slide->get_param(array('bg', 'type'),'');
 				$image_id = $slide->image_id;
+				$url = $slide->image_url;
 				if ( '' == $image_id ) {
-					$url = $slide->image_url;
 					$image_id = attachment_url_to_postid($url);
 				}
 				$img_data = wp_get_attachment_metadata( $image_id );
