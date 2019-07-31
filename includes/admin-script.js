@@ -220,8 +220,7 @@ jQuery(function($) {
         });
     }
     $(document).ready(function() {
-
-
+        
     $('#redux_builder_amp-header-type li.redux-image-select').on('click', function(){
         var current_header = $( this ).find('input');
         var current_header_type = $( current_header ).attr('value');
@@ -552,11 +551,13 @@ jQuery(function($) {
                $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
                $('#amp_font_selector_content_single-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
             }
+            $('#amp_font_selector-select').append($('<option value="Sans-serif" data-font-number="'+ i +'"> Sans-serif </option>'));
+               $('#amp_font_selector_content_single-select').append($('<option value="Sans-serif" data-font-number="'+ i +'"> Sans-serif </option>'));
 
             //console.log( values.length);
             //console.log( values[0].family );
             //console.table(  values);
-            
+
             $('#amp_font_selector-select, #amp_font_selector_content_single-select').on('change', function() {
                 var select = $('option:selected', this).attr('data-font-number');
                 var fontVariants = data.items[select].variants ;
@@ -589,14 +590,55 @@ jQuery(function($) {
                 }
 
             });
+             
         }
-        function amp_font_selector_select_change(){
+        $('#redux_builder_amp-amp-design-selector select').on('change',function(){
+            amp_font_selector_select_change('design_change', $(this).val());
+        });
+        function amp_font_selector_select_change(callType='', currentdesign=4){
+           
                 if($('#amp_font_selector-select').length>0){
                     // Adding Default Font Family
                     $('#s2id_amp_font_selector-select a').removeClass('select2-default');
                     
                     if(redux_data.amp_font_selector==''){
-                        redux_data.amp_font_selector = 'Poppins'
+                        switch(redux_data['amp-design-selector']){
+                            case '1':
+                                redux_data.amp_font_selector = 'Merriweather'
+                            break;
+                            case '2':
+                                redux_data.amp_font_selector = 'Sans-serif'
+                            break;
+                            case '3':
+                                redux_data.amp_font_selector = 'Roboto Slab'
+                            break;
+                            case '4':
+                                redux_data.amp_font_selector = 'Poppins'
+                            break;
+                            default:
+                                redux_data.amp_font_selector = 'Poppins'
+                            break;
+                        }
+                        
+                    }
+                    if(callType=='design_change'){
+                    switch(currentdesign){
+                            case '1':
+                                redux_data.amp_font_selector = 'Merriweather'
+                            break;
+                            case '2':
+                                redux_data.amp_font_selector = 'Sans-serif'
+                            break;
+                            case '3':
+                                redux_data.amp_font_selector = 'Roboto Slab'
+                            break;
+                            case '4':
+                                redux_data.amp_font_selector = 'Poppins'
+                            break;
+                            default:
+                                redux_data.amp_font_selector = 'Poppins'
+                            break;
+                        }
                     }
                     $('#s2id_amp_font_selector-select .select2-chosen').html(redux_data.amp_font_selector);
 
@@ -606,7 +648,7 @@ jQuery(function($) {
                     // Build select data
                     let fontData  = redux_data.google_current_font_data;
                    // fontData = JSON.parse(fontData);
-                   console.log(fontData);
+                   //console.log(fontData);
                     if (! fontData.variants) {
                         //$('.select2-search-choice').remove();
                         //$('#amp_font_type-select').html('<option></option>');
@@ -644,6 +686,45 @@ jQuery(function($) {
                     if(redux_data.amp_font_selector_content_single==''){
                         redux_data.amp_font_selector_content_single = 'Poppins'
                     }
+                    if(redux_data.amp_font_selector_content_single==''){
+                        switch(redux_data['amp-design-selector']){
+                            case '1':
+                                redux_data.amp_font_selector_content_single = 'Merriweather'
+                            break;
+                            case '2':
+                                redux_data.amp_font_selector_content_single = 'Sans-serif'
+                            break;
+                            case '3':
+                                redux_data.amp_font_selector_content_single = 'Roboto Slab'
+                            break;
+                            case '4':
+                                redux_data.amp_font_selector_content_single = 'Poppins'
+                            break;
+                            default:
+                                redux_data.amp_font_selector_content_single = 'Poppins'
+                            break;
+                        }
+                        
+                    }
+                    if(callType=='design_change'){
+                    switch(currentdesign){
+                            case '1':
+                                redux_data.amp_font_selector_content_single = 'Merriweather'
+                            break;
+                            case '2':
+                                redux_data.amp_font_selector_content_single = 'Sans-serif'
+                            break;
+                            case '3':
+                                redux_data.amp_font_selector_content_single = 'PT Serif'
+                            break;
+                            case '4':
+                                redux_data.amp_font_selector_content_single = 'Poppins'
+                            break;
+                            default:
+                                redux_data.amp_font_selector_content_single = 'Poppins'
+                            break;
+                        }
+                    }
                     $('#s2id_amp_font_selector_content_single-select .select2-chosen').html(redux_data.amp_font_selector_content_single);
 
                     $('#amp_font_selector_content_single-select option[value="'+redux_data.amp_font_selector_content_single+'"]').attr("selected", "selected");
@@ -653,7 +734,7 @@ jQuery(function($) {
                     // Build select data
                     let fontData  = redux_data.google_current_font_data_content_single;
                    // fontData = JSON.parse(fontData);
-                   console.log(fontData);
+                   //console.log(fontData);
                     if (! fontData.variants) {
                         for (var i in fontData.variants) {
                             $('#amp_font_selector_content_single-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>")).trigger('change');
