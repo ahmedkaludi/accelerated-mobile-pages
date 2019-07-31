@@ -1186,12 +1186,11 @@ a.bfcm {
 .single-design-labels{
     width: 100%;
     display: inline-grid;
-    margin-bottom: 20px;
     grid-template-columns: 1fr 1fr;
     grid-gap: 0px 5px;
 }
 .single-design-labels .sdl{
-    padding:10px 0px;
+    padding:7px 0px;
     width: 100%;
     text-align: center;
     background: #455A64;
@@ -1199,7 +1198,7 @@ a.bfcm {
 }
 .single-design-labels .sdlnk{
     width: 100%;
-    padding:10px 0px;
+    padding:7px 0px;
     text-align: center;
     background: #455A64;
     color: #fff;
@@ -1218,11 +1217,23 @@ a.bfcm {
     width:100%;
 }
 #redux_builder_amp-single-design-type ul{
-    display: grid;
+    display: inline-grid;
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 10px 30px;
+    grid-gap: 30px;
 }
 .fold #redux_builder_amp-single-design-type .redux-image-select li {
     width:100%;
+    padding:0px;
+}
+@media(max-width:1200px){
+    #redux_builder_amp-single-design-type ul{
+        grid-gap: 20px;
+    }
+}
+@media(max-width:600px){
+    #redux_builder_amp-single-design-type ul{
+        grid-template-columns: 1fr;
+    }
+
 }
