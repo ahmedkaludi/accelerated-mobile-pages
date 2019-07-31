@@ -2307,8 +2307,8 @@ if( is_plugin_active('amp-theme-framework/amp-theme.php') ){
         $amp_custom_script = array(
                         'id'       => 'ampforwp-custom-amp-script',
                         'type'     => 'switch',
-                        'title'    => esc_html__('Custom AMP Script', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__("amp-script is in active development and under experimental availability. It's subject to breaking API changes and should not yet be used in production,", 'accelerated-mobile-pages'),esc_url('https://amp.dev/documentation/components/amp-script/'),esc_html__('for more info','accelerated-mobile-pages')),
+                        'title'    => esc_html__('Custom Script in AMP', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__("amp-script is in active development and under experimental availability. It's subject to breaking API changes and should not yet be used in production,", 'accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-add-custom-scripts-in-amp-using-amp-theme-framework-plugin/'),esc_html__('for more info','accelerated-mobile-pages')),
                         'default' => 0,
                     );
 }
