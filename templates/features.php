@@ -767,20 +767,21 @@ function ampforwp_title_custom_meta() {
           if( $post_type == 'amp-cta' || $post_type == 'amp-optin' ) {
 							continue;
           }
-          // Posts
-	      if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
-	        add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
-	      }
-	      // Pages
-          if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
-              add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
+          if(ampforwp_role_based_access_options() == true){
+	          // Posts
+		      if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
+		        add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
+		      }
+		      // Pages
+	          if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
+	              add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
+	          }
+	          // Custom Post Types
+	          if( $post_type !== 'page' && $post_type !== 'post' ) {
+	            add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', $post_type,'side' );          
+	          }
           }
-          // Custom Post Types
-          if( $post_type !== 'page' && $post_type !== 'post' ) {
-            add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', $post_type,'side' );          
-          }
-          
-          }
+        }
 
         }
     }
@@ -6839,4 +6840,15 @@ function ampforwp_generate_taxonomies_transient(){
 		}
 	}
 	return $taxonomies;
+}
+
+function ampforwp_role_based_access_options(){
+	$currentUser = wp_get_current_user();
+    $amp_roles = ampforwp_get_setting('ampforwp-role-based-access');
+    $currentuserrole = (array) $currentUser->roles;
+    $hasrole = array_intersect( $currentuserrole, $amp_roles );
+    if( empty($hasrole)){
+    	return false;
+    }
+    return true;
 }

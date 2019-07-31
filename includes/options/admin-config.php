@@ -1357,6 +1357,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'options' => ampforwp_get_cpt_generated_post_types(),
                 );
     }
+    function ampforwp_get_user_roles(){
+        global $wp_roles;
+        $allroles = array();
+        foreach ( $wp_roles->roles as $key=>$value ){
+            $allroles[$key] = $value['name'];
+        }
+        return $allroles;
+    }
     function ampforwp_get_generated_custom_taxonomies(){
         $taxonomies = '';
         $taxonomies = get_transient('ampforwp_get_taxonomies');
@@ -2532,6 +2540,15 @@ Redux::setSection( $opt_name, array(
                         'true'      => 'true',                
                         'false'     => 'false',
                         'default'   => 0
+                    ),
+                    array(
+                        'id'      => 'ampforwp-role-based-access',
+                        'type'    => 'select',
+                        'title'   => __('Role Based Access', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'   => __('Allows Administrator to show AMP Options based on User Role.', 'accelerated-mobile-pages'),
+                        'multi'   => true,
+                        'options' => ampforwp_get_user_roles(),
+                        'default'  => array('administrator','editor')
                     ),
                     // Delete Data on Deletion
                     array(

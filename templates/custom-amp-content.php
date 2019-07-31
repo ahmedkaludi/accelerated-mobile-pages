@@ -90,6 +90,7 @@ function ampforwp_custom_content_meta_register() {
     }
 
     if ( $user_level ) {
+      if(ampforwp_role_based_access_options() == true){
         if ( $redux_builder_amp['amp-on-off-for-all-posts'] ) {
           add_meta_box( 'custom_content_editor', esc_html__( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
         }
@@ -110,7 +111,8 @@ function ampforwp_custom_content_meta_register() {
         // Assign Pagebuilder Meta Box // Legecy pagebuilder
         if ( $redux_builder_amp['ampforwp-content-builder'] ) {
           add_meta_box( 'custom_content_sidebar', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_sidebar_callback', 'page','side', 'default' );
-        }  
+        }
+      } 
     }
 
 }

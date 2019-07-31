@@ -22,16 +22,18 @@ function ampforwp_pagebuilder_content_meta_register($post_type){
     }
 
     if ( $user_level && ( current_user_can('edit_posts') || current_user_can('edit_pages') ) ) {
-		// Page builder for posts
-	  	if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
-	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  'post' , 'normal', 'default' );
-	  	}
-	  	// Page builder for pages
-	  	if ( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
-	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  'page' , 'normal', 'default' );
-	  	}
-	  	if( (isset($redux_builder_amp['ampforwp-custom-type']) && is_array($redux_builder_amp['ampforwp-custom-type'] ) ) && in_array($post_type, $redux_builder_amp['ampforwp-custom-type']) ){
-	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
+    	if(ampforwp_role_based_access_options() == true){
+			// Page builder for posts
+		  	if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
+		  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  'post' , 'normal', 'default' );
+		  	}
+		  	// Page builder for pages
+		  	if ( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
+		  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  'page' , 'normal', 'default' );
+		  	}
+		  	if( (isset($redux_builder_amp['ampforwp-custom-type']) && is_array($redux_builder_amp['ampforwp-custom-type'] ) ) && in_array($post_type, $redux_builder_amp['ampforwp-custom-type']) ){
+		  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
+		  	}
 	  	}
 	  	
 	}
