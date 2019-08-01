@@ -1195,3 +1195,11 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
 .opt-go-amp-cache span.description {
     margin-left: 13px;
 }
+.redux-group-menu .ampforwp-new-ux .el+.group_title:after{
+      content: "Quick & Easy";
+    display: inline-block;
+    font-size: 10px;
+    text-transform: none;
+    width: 100%;
+    font-weight: normal;
+}

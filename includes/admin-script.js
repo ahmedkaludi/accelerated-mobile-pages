@@ -759,3 +759,32 @@ jQuery(document).ready(function($){
             }
     });
 });
+
+
+// AMPforWP New UX
+jQuery(document).ready(function($) {
+    $('.redux-group-menu').find('.redux-group-tab-link-li').each(function(){
+        $(this).on('click', function(){
+            if($(this).hasClass('ampforwp-new-ux')){
+                $('div.sticky-footer-fixed').addClass('hide');
+            }
+            else{
+                $('div.sticky-footer-fixed').removeClass('hide');
+            }
+        });
+    });
+    $('#section-table-ampforwp-ux-section').find('.button').each(function(){
+        //console.log($(this));
+        $(this).on('click', function(){
+            var className = $(this).parent().attr('data-id');
+            //console.log($(this).parents());
+            $(this).parents().find('#redux_builder_amp-ampforwp-ux-section-right-2').addClass('hide');
+            $('#redux_builder_amp-ampforwp-ux-section-panel').removeClass('hide');
+            $('div.'+className).show();
+            $('div.'+className).siblings().hide();
+
+        });
+
+    });
+
+});

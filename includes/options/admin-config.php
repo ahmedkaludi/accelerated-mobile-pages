@@ -1271,6 +1271,168 @@ Redux::setArgs( "redux_builder_amp", $args );
         ampforwp_admin_contact_form_options($opt_name);
     }
 
+    // New UX
+        Redux::setSection( $opt_name, array(
+            'title'      => esc_html__( 'Setup', 'accelerated-mobile-pages' ),
+            'id'         => 'ampforwp-new-ux',
+            'desc'   => esc_html__('Quick & Easy Setup', 'accelerated-mobile-pages'),
+            'fields'     => array(
+               array(
+                            'id' => 'ampforwp-ux-section',
+                            'class'=> '',
+                            'type' => 'section',
+                            'indent' => true,
+                            'layout_type' => 'accordion',
+                            'accordion-open'=> 1, 
+                        ),
+               array(
+                           'id' => 'website-type',
+                           'type' => 'raw',
+                           'title' => esc_html__('Website Type', 'accelerated-mobile-pages'),
+                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">SELECT</div>'
+            ),
+               array(
+                           'id' => 'amp-need',
+                           'type' => 'raw',
+                           'title' => esc_html__('Where do you need AMP?', 'accelerated-mobile-pages'),
+                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">CHOOSE</div>'
+            ),
+               array(
+                           'id' => 'design-presentation',
+                           'type' => 'raw',
+                           'title' => esc_html__('Design and Presentation', 'accelerated-mobile-pages'),
+                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">SET UP</div>'
+            ),
+               array(
+                           'id' => 'analytics-tracking',
+                           'type' => 'raw',
+                           'title' => esc_html__('Analytics Tracking', 'accelerated-mobile-pages'),
+                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">CONFIG</div>'
+            ),
+               array(
+                           'id' => 'privacy-settings',
+                           'type' => 'raw',
+                           'title' => esc_html__('Privacy Settings', 'accelerated-mobile-pages'),
+                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">CHOOSE</div>'
+            ),
+               array(
+                           'id' => '3rd-party',
+                           'type' => 'raw',
+                           'title' => esc_html__('3rd Party Compatibility', 'accelerated-mobile-pages'),
+                           'content'  => '<div class="button btn-list " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">View List</div>'
+            ),
+               array(
+                           'id' => 'validate-amp',
+                           'type' => 'raw',
+                           'title' => esc_html__("Let's Validate Your AMP Pages", 'accelerated-mobile-pages'),
+                           'content'  => '<div class="button btn-white " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">CONNECT</div>'
+            ),
+               array(
+                            'id' => 'ampforwp-ux-section-right',
+                           'type' => 'section',
+                           'indent' => true,
+                           'layout_type' => 'accordion',
+                           'accordion-open'=> 1,
+                ),
+                array(
+                  'id'       => 'ampforwp-ux-section-panel',
+                  'class'       => '',
+                  'type'     => 'raw',
+                  'content'  => '<div class="ampforwp-ux-right">
+                                    <div class="hide website-type">
+                                        <h2>What`s your Website Type?</h2>
+                                        <select class="ampforwp-ux-select">
+                                        <option>Choose here</option>
+                                        <option>Blog</option>
+                                        <option>WebPages</option>
+                                        </select>
+                                    </div>
+                                    <div class="hide amp-need">
+                                        <h2>Where do you want AMP?</h2>
+                                        <select class="ampforwp-ux-select">
+                                        <option>Choose here</option>
+                                        </select>
+                                    </div>
+                                    <div class="hide design-presentation">
+                                        <h2>Design and Presentation</h2>
+                                        <select class="ampforwp-ux-select">
+                                        <option>Choose here</option>
+                                        </select>
+                                    </div>
+                                    <div class="hide analytics-tracking">
+                                        <h2>Analytics Tracking</h2>
+                                        <select class="ampforwp-ux-select">
+                                        <option>Choose here</option>
+                                        </select>
+                                    </div>
+                                    <div class="hide privacy-settings">
+                                        <h2>Privacy Settings</h2>
+                                        <select class="ampforwp-ux-select">
+                                        <option>Choose here</option>
+                                        </select>
+                                    </div>
+                                    <div class="hide 3rd-party">
+                                        <h2>3rd Party Compatibility</h2>
+                                        <select class="ampforwp-ux-select">
+                                        <option>Choose here</option>
+                                        </select>
+                                    </div>
+                                    <div class="hide validate-amp">
+                                        <h2>3rd Party Compatibility</h2>
+                                        <select class="ampforwp-ux-select">
+                                        <option>Choose here</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="ampforwp-ux-right-bottom">
+                                    <div class="feedback">
+                                        <i></i>
+                                        <p>Feedback</p>
+                                    </div>
+                                    <div class="help">
+                                        <i></i>
+                                        <p>Help</p>
+                                    </div>
+                                    <div class="review">
+                                        <i></i>
+                                        <p>Review</p>
+                                    </div>
+                                </div>
+                                ',
+                                    
+            ),
+                array(
+                    'id' => 'ampforwp-ux-section-right-2',
+                   'type' => 'section',
+                   'indent' => true,
+                   'layout_type' => 'accordion',
+                   'accordion-open'=> 1,
+                ),
+                array(
+                  'id'       => 'ampforwp-ux-section-right-2',
+                  'class'       => '',
+                  'type'     => 'raw',
+                  'content' => '<div class="ampforwp-ux-docs">
+                                    <i class="icon-docs"></i>
+                                    <h3>Documentation</h3>
+                                    <p>Tutorials and articles to help you setup</p>
+                                    <a href="#">View Docs</a>
+                                </div>
+                                <div class="ampforwp-ux-ask">
+                                    <i class="icon-ask"></i>
+                                    <h3>Ask a support Question</h3>
+                                    <p>Our team of 20+ devs are here to help</p>
+                                    <a href="#">Support</a>
+                                </div>
+                                <div class="ampforwp-ux-pro">
+                                    <i class="icon-pro"></i>
+                                    <h3>Upgrade to PRO</h3>
+                                    <p>Get AMP to the Next Level with the Premium Features </p>
+                                    <a href="#">At 10% OFF</a>
+                                </div>',
+              ),
+           )));
+
     Redux::setSection( $opt_name, array(
         'title' => esc_html__( 'Settings', 'accelerated-mobile-pages' ),
         'id'    => 'basic',

@@ -936,3 +936,47 @@ text-transform: none;
 width: 100%; 
 font-weight: normal; 
 } 
+.redux-main .btn-red{
+    color: #d60000;
+    border-color: #d60000;
+    background: none;
+}
+.redux-main .btn-white{
+    color: black;
+    border-color: black;
+    background: none;
+}
+.redux-main .btn-list{
+    border-style: none;
+    background: none;
+    box-shadow: none;
+}
+#section-table-ampforwp-ux-section .button{
+    float: right;
+}
+#redux_builder_amp-website-type .redux_field_th,#redux_builder_amp-amp-need .redux_field_th,#redux_builder_amp-design-presentation .redux_field_th,#redux_builder_amp-analytics-tracking .redux_field_th,#redux_builder_amp-privacy-settings .redux_field_th,#redux_builder_amp-3rd-party .redux_field_th,#redux_builder_amp-validate-amp .redux_field_th{
+    float: left;
+    width:100px;
+}
+div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-right{
+    max-width: 40%;
+    float: right;
+    position: relative;
+    margin-top: -37px;
+}
+div#section-ampforwp-ux-section,table#section-table-ampforwp-ux-section{
+        max-width: 60%;
+}
+div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::after{
+    display: none;
+}
+#redux_builder_amp-ampforwp-ux-section-right-2 .ampforwp-ux-docs ,#redux_builder_amp-ampforwp-ux-section-right-2 .ampforwp-ux-ask , #redux_builder_amp-ampforwp-ux-section-right-2 .ampforwp-ux-pro{
+    background: #ffffff;
+    padding: 15px 12px;
+    width: 200px;
+    border: 1px solid #eee;
+    margin: 5px auto;
+}
+.ampforwp-new-ux #section-table-ampforwp-ux-section, .ampforwp-new-ux #section-table-ampforwp-ux-section-right{
+    border: none;
+}

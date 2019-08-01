@@ -3239,6 +3239,7 @@
                     if(is_object($current_screen) && $current_screen->parent_base=='amp_options'){
                         $enabledOptions = array(
                             esc_html__('automatic-amp-features','accelerated-mobile-pages'),
+                            esc_html__('ampforwp-new-ux','accelerated-mobile-pages'),
                             esc_html__('basic','accelerated-mobile-pages'),
                             esc_html__('Design','accelerated-mobile-pages'),
                             esc_html__('opt-go-premium','accelerated-mobile-pages'),
