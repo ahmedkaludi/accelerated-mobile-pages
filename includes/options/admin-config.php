@@ -1644,8 +1644,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'type'     => 'switch',
                'title'     => esc_html__('OpenGraph Meta Tags', 'accelerated-mobile-pages'),
                'tooltip-subtitle'     => esc_html__('Enable/Disable Default OpenGraph Meta Tags', 'accelerated-mobile-pages'),
-               'default'  => 1,
-               'required'  => array('ampforwp-seo-selection', '=' , ''),
+               'default'  => 0,
             ),
             array(
                'id'       => 'ampforwp-seo-custom-additional-meta',
