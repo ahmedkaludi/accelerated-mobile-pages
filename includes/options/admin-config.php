@@ -1639,7 +1639,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'     => esc_html__('The meta tag that displays in head', 'accelerated-mobile-pages'),
                'default'  => 1
             ),
-
+            array(
+               'id'       => 'ampforwp-seo-og-meta-tags',
+               'type'     => 'switch',
+               'title'     => esc_html__('OpenGraph Meta Tags', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'     => esc_html__('Enable/Disable Default OpenGraph Meta Tags', 'accelerated-mobile-pages'),
+               'default'  => 1,
+               'required'  => array('ampforwp-seo-selection', '=' , ''),
+            ),
             array(
                'id'       => 'ampforwp-seo-custom-additional-meta',
                'type'     => 'textarea',
