@@ -63,7 +63,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			$totalmodules = 1;
 			if(!empty($previousData)){
 				$jsonData = json_decode($previousData,true);
-				if(isset($jsonData['rows']) && count($jsonData['rows'])>0){
+				if((isset($jsonData['rows']) && count($jsonData['rows']))>0){
 					$totalRows = $jsonData['totalrows'];
 					$totalmodules = $jsonData['totalmodules'];
 					$previousData = ($jsonData);
