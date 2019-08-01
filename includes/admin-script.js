@@ -552,8 +552,9 @@ jQuery(function($) {
                $('#amp_font_selector_content_single-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
             }
             $('#amp_font_selector-select').append($('<option value="Sans-serif" data-font-number="'+ i +'"> Sans-serif </option>'));
-               $('#amp_font_selector_content_single-select').append($('<option value="Sans-serif" data-font-number="'+ i +'"> Sans-serif </option>'));
-
+            $('#amp_font_selector_content_single-select').append($('<option value="Sans-serif" data-font-number="'+ i +'"> Sans-serif </option>'));
+            $('#amp_font_selector-select').append($('<option value="Segoe UI" data-font-number="'+ i +'"> Segoe UI </option>'));
+            $('#amp_font_selector_content_single-select').append($('<option value="Segoe UI" data-font-number="'+ i +'"> Segoe UI </option>'));
             //console.log( values.length);
             //console.log( values[0].family );
             //console.table(  values);
