@@ -5688,13 +5688,25 @@ add_action('pre_amp_render_post','ampforwp_remove_ahref_lightbox');
 function ampforwp_remove_ahref_lightbox(){	
 	if(true == ampforwp_get_setting('ampforwp-amp-img-lightbox')){
 		add_filter( 'the_content', 'ampforwp_remove_ahref_lightbox_in_amp' );
+		add_filter('tablepress_table_render_data','amforwp_remove_tp_image_href');
 	}
 }
 function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
 	$updated_content = preg_replace("/<a[^>]+\>(<img[^>]+\>)<\/a>/i", '$1', $content);
 	return $updated_content;
 }
-
+function amforwp_remove_tp_image_href( $orig_table){
+	$tablepressData = array();
+	$j = 0;
+	foreach ($orig_table['data'] as $cols) {
+		for($i=0;$i< count($cols);$i++){
+			$tablepressData[$j][$i] = preg_replace("/<a[^>]+\>(<img[^>]+\>)<\/a>/i",'$1', $cols[$i]);
+		}
+		$j++;	
+	}
+	$orig_table['data'] = $tablepressData;
+	return $orig_table;
+}
 // amp-image-lightbox #1892
 if ( ! function_exists('ampforwp_amp_img_lightbox') ) {
 	function ampforwp_amp_img_lightbox(){ 
