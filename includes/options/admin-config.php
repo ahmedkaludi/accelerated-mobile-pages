@@ -1786,6 +1786,8 @@ Redux::setArgs( "redux_builder_amp", $args );
             }
             elseif ( class_exists('SQ_Classes_ObjController') ) {
                 $default = 'squirrly';
+            }elseif ( class_exists('Smartcrawl_Loader')){
+                $default = 'smartcrawl';
             }
             return $default;
         }
@@ -1839,7 +1841,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'seopress'    => 'SEOPress',
                     'bridge'    => 'Bridge Qode SEO',
                     'seo_framework'    => 'The SEO Framework',
-                    'squirrly'    => 'Squirrly SEO'
+                    'squirrly'    => 'Squirrly SEO',
+                    'smartcrawl'    => 'SmartCrawl'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),

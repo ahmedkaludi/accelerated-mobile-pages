@@ -215,7 +215,17 @@ function ampforwp_generate_meta_desc($json=""){
         if ( ampforwp_is_front_page() ) {
             $desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , 15 ) );
         }
-
+        //Smartcrawl #3473
+        if( class_exists('Smartcrawl_Loader') && 'smartcrawl' == ampforwp_get_setting('ampforwp-seo-selection') ){
+            $metadesc = Smartcrawl_Meta_Value_Helper::get()->get_description();
+            $metadesc = wp_kses(
+                strip_tags( stripslashes( $metadesc ) ),
+                array(), array()
+            );
+            if ( ! empty( $metadesc ) ) {
+                $desc = $metadesc;
+            }
+        }
         // Yoast 
         if ( class_exists('WPSEO_Frontend') && ('yoast' == ampforwp_get_setting('ampforwp-seo-selection') || 1 == ampforwp_get_setting('ampforwp-seo-selection'))) {
             $front = $yoast_desc = '';
@@ -335,6 +345,7 @@ function ampforwp_generate_meta_desc($json=""){
                 $desc = $tsf_desc;
             }
         }
+
         // strip_shortcodes  strategy not working here so had to do this way
         // strips shortcodes
         $desc = preg_replace('/\[(.*?)\]/','', $desc);
