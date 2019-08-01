@@ -809,7 +809,9 @@ Vue.component('textarea-wysiwyg', {
 		editor.on( 'blur hide', function onEditorBlur() {
 				componentPoint.defaultText.default = wp.editor.getContent(textareaId);
 		});
-
+		jQuery("#"+textareaId).on('change', function(){
+      	componentPoint.defaultText.default = wp.editor.getContent(textareaId);
+    	});
 	}
   	
   },
