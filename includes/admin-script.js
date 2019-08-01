@@ -709,7 +709,7 @@ jQuery(function($) {
                     if(callType=='design_change'){
                     switch(currentdesign){
                             case '1':
-                                redux_data.amp_font_selector_content_single = 'Merriweather'
+                                redux_data.amp_font_selector_content_single = 'Segoe UI'
                             break;
                             case '2':
                                 redux_data.amp_font_selector_content_single = 'Sans-serif'
