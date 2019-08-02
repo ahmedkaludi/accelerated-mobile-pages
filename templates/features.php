@@ -804,13 +804,13 @@ function ampforwp_title_callback( $post ) {
 	}
 	$exclude_post_value = ampforwp_exclude_posts();
 	// if hide-amp is selected, add it in the $exclude_post_value
-	if ( 'hide-amp' == $ampforwp_stored_meta['ampforwp-amp-on-off'][0] && 'page' != $post->post_type ) {
+	if ( 'hide-amp' == ( isset($ampforwp_stored_meta['ampforwp-amp-on-off'][0]) && $ampforwp_stored_meta['ampforwp-amp-on-off'][0] ) && 'page' != $post->post_type ) {
 		if ( ! in_array($post->ID, $exclude_post_value) ) {
 			$exclude_post_value[] = $post->ID;
 			set_transient('ampforwp_exclude_post_transient', $exclude_post_value);
 		} 
 	}
-	if ( ( 'default' == $ampforwp_stored_meta['ampforwp-amp-on-off'][0] || !isset($ampforwp_stored_meta['ampforwp-amp-on-off'][0]) ) && 'page' != $post->post_type ) {
+	if ( ( 'default' == ( isset($ampforwp_stored_meta['ampforwp-amp-on-off'][0]) && $ampforwp_stored_meta['ampforwp-amp-on-off'][0] ) || !isset($ampforwp_stored_meta['ampforwp-amp-on-off'][0]) ) && 'page' != $post->post_type ) {
 		if ( in_array($post->ID, $exclude_post_value) ) {
 			$exclude_post_value = array_flip($exclude_post_value);
 			unset($exclude_post_value[$post->ID] );
