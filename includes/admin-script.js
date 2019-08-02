@@ -551,8 +551,8 @@ jQuery(function($) {
                $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
                $('#amp_font_selector_content_single-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
             }
-            $('#amp_font_selector-select').append($('<option value="Sans-serif" data-font-number="'+ i +'"> Sans-serif </option>'));
-            $('#amp_font_selector_content_single-select').append($('<option value="Sans-serif" data-font-number="'+ i +'"> Sans-serif </option>'));
+            $('#amp_font_selector-select').append($('<option value="sans-serif" data-font-number="'+ i +'"> sans-serif </option>'));
+            $('#amp_font_selector_content_single-select').append($('<option value="sans-serif" data-font-number="'+ i +'"> sans-serif </option>'));
             $('#amp_font_selector-select').append($('<option value="Segoe UI" data-font-number="'+ i +'"> Segoe UI </option>'));
             $('#amp_font_selector_content_single-select').append($('<option value="Segoe UI" data-font-number="'+ i +'"> Segoe UI </option>'));
             //console.log( values.length);
@@ -597,7 +597,6 @@ jQuery(function($) {
             amp_font_selector_select_change('design_change', $(this).val());
         });
         function amp_font_selector_select_change(callType='', currentdesign=4){
-           
                 if($('#amp_font_selector-select').length>0){
                     // Adding Default Font Family
                     $('#s2id_amp_font_selector-select a').removeClass('select2-default');
@@ -608,7 +607,7 @@ jQuery(function($) {
                                 redux_data.amp_font_selector = 'Merriweather'
                             break;
                             case '2':
-                                redux_data.amp_font_selector = 'Sans-serif'
+                                redux_data.amp_font_selector = 'sans-serif'
                             break;
                             case '3':
                                 redux_data.amp_font_selector = 'Roboto Slab'
@@ -628,7 +627,7 @@ jQuery(function($) {
                                 redux_data.amp_font_selector = 'Merriweather'
                             break;
                             case '2':
-                                redux_data.amp_font_selector = 'Sans-serif'
+                                redux_data.amp_font_selector = 'sans-serif'
                             break;
                             case '3':
                                 redux_data.amp_font_selector = 'Roboto Slab'
@@ -693,7 +692,7 @@ jQuery(function($) {
                                 redux_data.amp_font_selector_content_single = 'Merriweather'
                             break;
                             case '2':
-                                redux_data.amp_font_selector_content_single = 'Sans-serif'
+                                redux_data.amp_font_selector_content_single = 'sans-serif'
                             break;
                             case '3':
                                 redux_data.amp_font_selector_content_single = 'Roboto Slab'
@@ -713,7 +712,7 @@ jQuery(function($) {
                                 redux_data.amp_font_selector_content_single = 'Segoe UI'
                             break;
                             case '2':
-                                redux_data.amp_font_selector_content_single = 'Sans-serif'
+                                redux_data.amp_font_selector_content_single = 'sans-serif'
                             break;
                             case '3':
                                 redux_data.amp_font_selector_content_single = 'PT Serif'
