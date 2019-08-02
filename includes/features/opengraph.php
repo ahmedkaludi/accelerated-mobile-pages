@@ -291,14 +291,18 @@ if ( ! function_exists('ampforwp_default_og_tags') ) {
 
 			// og:image
 			$image = ampforwp_get_post_thumbnail('url', 'full');
-			$image_width = ampforwp_get_post_thumbnail('width', 'full');
-			$image_height = ampforwp_get_post_thumbnail('height', 'full');
-			$og_tags['og:image'] = $image;
-			$og_tags['og:image:width'] = $image_width;
-			$og_tags['og:image:height'] = $image_height;
+			if ( $image ) {
+				$image_width = ampforwp_get_post_thumbnail('width', 'full');
+				$image_height = ampforwp_get_post_thumbnail('height', 'full');
+				$og_tags['og:image'] = $image;
+				$og_tags['og:image:width'] = $image_width;
+				$og_tags['og:image:height'] = $image_height;
+			}
 
 			foreach ( $og_tags as $property => $content ) {
-				echo '<meta property="', esc_attr( $property ), '" content="', esc_attr( $content ), '" />', "\n";
+				if ( $content ) {
+					echo '<meta property="', esc_attr( $property ), '" content="', esc_attr( $content ), '" />', "\n";
+				}
 			}
 		}
 	}
