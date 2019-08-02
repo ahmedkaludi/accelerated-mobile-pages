@@ -21,7 +21,7 @@
 					}else{
 						echo ('<span>'.esc_html($tag->name).'</span>');
 					}
-
+				}
 				//if RTL is ON
 				if($redux_builder_amp['amp-rtl-select-option']) {
 					echo '<span class="tt-lb">'.esc_attr( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ).'</span>';
