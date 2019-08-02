@@ -15,15 +15,15 @@
 					$term_id   = $cat->term_id;
 		            $term_name   = $cat->name;
 		            $term_url   = get_category_link( $cat->term_id );
-		          if(false == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
-		                $term_url =  false;
-		              } 
-		          elseif( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-cats-tags-links-single')) {    
-		              // #934
-		                       $term_url   = ampforwp_url_controller( $term_url );
-		                }
-		                echo ('<span class="amp-cat amp-cat-'. esc_attr($term_id) . '" >
-		                '. (!empty($term_url)? ' <a href="'. esc_url( $term_url)  . '" title="'.esc_html($cat->name).'" > ':'').  esc_html($term_name). (!empty($term_url)?  '</a> ':'').' </span>');
+		          	if(true == ampforwp_get_setting('ampforwp-cats-tags-links-single')){
+						$cat_link = get_category_link( $cat->term_id );
+						if(true == ampforwp_get_setting('ampforwp-cats-tags-links-single') && ampforwp_get_setting('ampforwp-archive-support-cat') == true ){
+							$cat_link = ampforwp_url_controller($cat_link);
+						}
+		                echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'. esc_url($cat_link) .'" title="'.esc_html($cat->name).'" > '. esc_html($cat->name) .'</a></span>');//#934
+					}else{
+						echo '<span class="amp-cat">'. esc_html($cat->name) .'</span>';
+					}
 			} ?>
 		</div>
 	<?php endif; } ?>
@@ -39,11 +39,15 @@
 					  		 printf( esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ));
 							 		}
 						foreach ($ampforwp_tags as $tag) {
-							if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
-	                				echo ('<span class="amp-tag-'.esc_attr($tag->term_id).'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ).'" >'.$tag->name .'</a></span>');//#934
-							} else {
-							 	echo ('<span>'.esc_attr($tag->name).'</span>');
-						}
+							if(ampforwp_get_setting('ampforwp-cats-tags-links-single') == true){
+								$tag_link = get_tag_link( $tag->term_id );
+								if(ampforwp_get_setting('ampforwp-archive-support') == true && ampforwp_get_setting('ampforwp-archive-support-tag') == true){
+									$tag_link = ampforwp_url_controller($tag_link);
+								}
+								echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'.esc_url($tag_link).'" >'.esc_html($tag->name) .'</a></span>');//#934
+							}else{
+								echo ('<span>'.esc_html($tag->name).'</span>');
+							}
 						}
 						if($redux_builder_amp['amp-rtl-select-option']) {
 						  	echo '<span class="tt-lb">'.esc_attr( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ).'</span>';

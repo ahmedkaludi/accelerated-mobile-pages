@@ -6,14 +6,19 @@
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
 		<?php do_action('ampforwp_before_meta_taxonomy_hook',$this); ?>
 		<div class="amp-wp-meta amp-wp-content ampforwp-tax-tag">
-				<?php foreach ($ampforwp_tags as $tag) {
-				if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single'] ) {
-             			 echo ('<span class="amp-tag-'.esc_attr($tag->term_id).'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ) .'" >'. esc_attr($tag->name)  .'</a></span>');//#934 
-        		}
-        		 else {
-		         	 echo '<span>'. esc_attr($tag->name) .'</span>';
-		        	}
-				} ?>
+				<?php 
+				foreach ($ampforwp_tags as $tag) {
+					if( ampforwp_get_setting('ampforwp-cats-tags-links-single') == true){
+						$tag_link = get_tag_link( $tag->term_id );
+						if( ampforwp_get_setting('ampforwp-archive-support') == true && ampforwp_get_setting('ampforwp-archive-support-tag') == true){
+							$tag_link = ampforwp_url_controller(get_tag_link( $tag->term_id ));
+						}
+						echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'.esc_url($tag_link).'" >'.esc_html($tag->name).'</a></span>');//#934 
+					}else{
+						echo '<span>'.esc_html($tag->name).'</span>';
+					}
+				} 
+				?>
 		</div>
 <?php endif;?>
 </div> <?php } ?>
