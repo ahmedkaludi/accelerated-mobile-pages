@@ -50,7 +50,7 @@ function ampforwp_framework_get_tags_list($separator=''){
 							if( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-archive-support-tag')){
 								$url = ampforwp_url_controller($url);
 							}
-							$anchorTag = '<a href="'.$url.'" title="'.esc_html($tag->name).'">';
+							$anchorTag = '<a href="'.esc_url($url).'" title="'.esc_html($tag->name).'">';
 							$anchorClose = "</a>";
 							echo ('<span class="amp-tag amp-tag-'.esc_attr($tag->term_id).'">'.$anchorTag.esc_html($tag->name).$anchorClose.'</span>');
 						}else{

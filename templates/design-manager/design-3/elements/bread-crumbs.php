@@ -91,7 +91,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                         if(ampforwp_get_setting('ampforwp-archive-support-tag') == true && ampforwp_get_setting('ampforwp-archive-support') == true){
                             $tag_link = ampforwp_url_controller( $tag_link );
                         }
-                        $tags_breadcrumbs .= '<li class="item-tag item-tag-' . $tag_id . ' item-tag-' . $tag_name . '"><a class="bread-tag bread-tag-' . $tag_id . ' bread-tag-' . $tag_name . '" href="' . esc_url($tag_link) . '" title="'.esc_attr($tag_name).'">'.esc_html($tag_name).'</a></li>';                 
+                        $tags_breadcrumbs .= '<li class="item-tag item-tag-' . esc_attr($tag_id) . ' item-tag-' . esc_attr($tag_name) . '"><a class="bread-tag bread-tag-' . esc_attr($tag_id) . ' bread-tag-' . esc_attr($tag_name) . '" href="' . esc_url($tag_link) . '" title="'.esc_attr($tag_name).'">'.esc_html($tag_name).'</a></li>';                 
                     }
                     if(ampforwp_get_setting('ampforwp-bread-crumb-post')){
                          $tags_breadcrumbs .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';

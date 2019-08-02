@@ -123,7 +123,7 @@
                         if(ampforwp_get_setting('ampforwp-archive-support-cat') == true && ampforwp_get_setting('ampforwp-archive-support') == true){
                             $cat_link = ampforwp_url_controller( $cat_link );
                         }
-                        $cat_display .=  '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. esc_url($cat_link).'" title="' . esc_attr($parents) . '">' . esc_html($parents) . '</a></li>';
+                        $cat_display .=  '<li class="item-cat item-cat-' . esc_attr($cat_id) . '"><a class="bread-cat bread-cat-' . esc_attr($cat_id) . ' bread-cat-' . $parents. '" href="'. esc_url($cat_link).'" title="' . esc_attr($parents) . '">' . esc_html($parents) . '</a></li>';
                          if(ampforwp_get_setting('ampforwp-bread-crumb-post')){
                             $cat_display .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';
                         }
@@ -148,7 +148,7 @@
               
             // Check if the post is in a category
             if(!empty($last_category)) {
-                echo $cat_display;
+                echo $cat_display; // Escaped above
     
             // Else if post is in a custom taxonomy
             } else if(!empty($cat_id)) {
