@@ -1525,7 +1525,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'type'     => 'switch',
                'title'    => esc_html__('Archives [Category & Tags]', 'accelerated-mobile-pages'),
                'tooltip-subtitle' => esc_html__('Enable AMP Support on Archives.', 'accelerated-mobile-pages'),
-               'default'  => '0'
+               'default'  => '1'
              ),
            array(
                'id'       => 'ampforwp-archive-support-cat',
@@ -1547,14 +1547,6 @@ Redux::setArgs( "redux_builder_amp", $args );
              ),
            $amp_cpt_option,
            $amp_custom_tax_option,
-            array(
-               'id'       => 'ampforwp-amp-convert-to-wp',
-               'type'     => 'switch',
-               'title'    => esc_html__('Convert AMP to WP theme (Beta)', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => esc_html__('It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design)', 'accelerated-mobile-pages'),
-               'default'  => ampforwp_amp2wp_default(),
-               'required' => array('amp-design-selector', '=' , '4'),
-             ),
            array(
                'id'       => 'ampforwp-amp-takeover',
                'type'     => 'switch',
@@ -1908,7 +1900,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'class' => 'child_opt child_opt_arrow', 
                          'id'       => 'ampforwp-display-avatar',
                          'type'     => 'switch',
-                         'title'    => esc_html__('Display on User Avatar', 'accelerated-mobile-pages'),
+                         'title'    => esc_html__('User Avatar', 'accelerated-mobile-pages'),
                          'tooltip-subtitle' => esc_html__('Enable/Disable user Avatar.', 'accelerated-mobile-pages'),
                          'default'  => 1,
                           'required' => array('wordpress-comments-support' , '=' , 1
@@ -2358,6 +2350,14 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => 'Enable this option when /amp/ is giving 404 after resaving the permalink settings.',
                         'desc'     => esc_html__( 'Making endpoints to ?amp will help you get the amp in tricky setups with taxonomies & post typs. Question mark in the url will not make any difference in the SEO.' ),
                     ),
+                    array(
+                   'id'       => 'ampforwp-amp-convert-to-wp',
+                   'type'     => 'switch',
+                   'title'    => esc_html__('Convert AMP to WP theme (Beta)', 'accelerated-mobile-pages'),
+                   'tooltip-subtitle' => esc_html__('It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design)', 'accelerated-mobile-pages'),
+                   'default'  => ampforwp_amp2wp_default(),
+                   'required' => array('amp-design-selector', '=' , '4'),
+             ), 
                     array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
@@ -5016,6 +5016,16 @@ $single_page_options = array(
                                         array('swift-featued-image', '=' , '1'),
                                     ),
             ),
+            // Author name 
+            array(
+                 'id'       => 'amp-author-name',
+                 'type'     => 'switch',
+                 'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
+                 'default'  => '1',
+                 'required' => array(
+                    array('amp-design-selector' , '=' , '4'),
+                )
+             ),
             array(
                     'id'    => 'swift-date',
                     'type'  => 'switch',
@@ -5036,7 +5046,7 @@ $single_page_options = array(
                 'id'       => 'ampforwp-bread-crumb-type',
                 'type'     => 'select',
                 'tooltip-subtitle'     => esc_html__('Select option to enable breadcrumb with tags or category','accelerated-mobile-pages'),
-                'title'    => esc_html__('Select Breadcrumb Type', 'accelerated-mobile-pages'),
+                'title'    => esc_html__('Breadcrumb Type', 'accelerated-mobile-pages'),
                 'options'  => array(
                     'tags' => 'Tags',
                     'category' => 'Category',
@@ -5091,17 +5101,7 @@ $single_page_options = array(
               'type'      => 'switch',
               'title'     => esc_html__('Next-Previous Links', 'accelerated-mobile-pages'),
               'default'   => 1,
-          ),
-           // Author name 
-         array(
-             'id'       => 'amp-author-name',
-             'type'     => 'switch',
-             'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
-             'default'  => '1',
-             'required' => array(
-                array('amp-design-selector' , '=' , '4'),
-            )
-         ),
+         ),    
         // Author Bio
          array(
              'id'       => 'amp-author-description',
@@ -5114,7 +5114,7 @@ $single_page_options = array(
              'id'       => 'amp-author-bio-name',
              'class' => 'child_opt child_opt_arrow',
              'type'     => 'switch',
-             'title'    => esc_html__( 'Author Bio Name', 'accelerated-mobile-pages' ),
+             'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
              'default'  => '1',
              'required' => array(
                 array('amp-design-selector' , '=' , '4'),

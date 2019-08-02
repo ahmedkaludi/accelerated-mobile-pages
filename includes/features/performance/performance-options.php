@@ -60,9 +60,9 @@ use ReduxCore\ReduxFramework\Redux;
            array(
                'id'       => 'ampforwp_cache_minimize_mode',
                'type'     => 'switch',
-               'title'     => __('Minify', 'accelerated-mobile-pages'),
-               'tooltip-subtitle'     => __('Improve the Page Speed and Loading time with Minification option', 'accelerated-mobile-pages'),
-               'default'  => 0
+               'title'     => esc_html__('Minify', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'     => esc_html__('Improve the Page Speed and Loading time with Minification option', 'accelerated-mobile-pages'),
+               'default'  => 1
            ),
            array(
                'id'       => 'ampforwp_leverage_browser_caching_mode',
