@@ -32,7 +32,7 @@ namespace ReduxCore\ReduxFramework;
         //$active = ( ( is_numeric($this->parent->current_tab) && $this->parent->current_tab == $k ) || ( !is_numeric($this->parent->current_tab) && $this->parent->current_tab === $k )  ) ? ' style="display: block;"' : '';
          $hide_wrapper = '';
         if(function_exists('amp_activate') ){
-            $enabledOptions = array('basic','amp-e-commerce','disqus-comments','opt-text-subsection','amp-content-builder', 'amp-seo', 'fb-instant-article', 'hide-amp-section','amp-advance', 'amp-translator', 'design', 'amp-theme-settings', 'amp-theme-global-subsection', 'amp-theme-header-settings','amp-theme-homepage-settings', 'amp-single', 'amp-theme-footer-settings', 'amp-theme-page-settings', 'amp-social', 'ampforwp-date-section', 'amp-design');
+            $enabledOptions = array('basic','amp-e-commerce','disqus-comments','opt-text-subsection', 'amp-seo', 'fb-instant-article', 'hide-amp-section','amp-advance', 'amp-translator', 'design', 'amp-theme-settings', 'amp-theme-global-subsection', 'amp-theme-header-settings','amp-theme-homepage-settings', 'amp-single', 'amp-theme-footer-settings', 'amp-theme-page-settings', 'amp-social', 'ampforwp-date-section', 'amp-design');
             $enabledOptions = apply_filters( 'ampforwp_standalone_mode_wrapper', $enabledOptions );
             if(in_array($section['id'], $enabledOptions)){
                  $hide_wrapper = '<div class="ampforwp_addon_mode"><div class="hide-wrapper"></div><div class="amp-watermark-wrapper"><a class="amp-watermark" href="https://ampforwp.com/tutorials/article/guide-to-amp-by-automattic-compatibility-in-ampforwp/" target="_blank">
