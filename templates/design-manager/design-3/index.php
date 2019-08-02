@@ -104,7 +104,7 @@ if ( get_query_var( 'paged' ) ) {
 		            	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                     	$post_date = apply_filters('ampforwp_modify_post_date',$post_date);
                     	echo esc_attr($post_date); ?></div>
-		            <h1><?php the_title() ?></h1>
+		            <h2><?php the_title() ?></h2>
 		        </div>
                   </a>
 		      </div>
