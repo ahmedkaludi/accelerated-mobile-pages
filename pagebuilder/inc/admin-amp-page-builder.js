@@ -798,7 +798,6 @@ Vue.component('textarea-wysiwyg', {
   props: [ 'defaultText','fieldindex' ],
   mounted: function() {
   	var componentPoint = this;
-	console.log(jQuery(this.$el));
 	var useEditor = wp.oldEditor;
  	if(!useEditor){
     	useEditor = wp.editor;
