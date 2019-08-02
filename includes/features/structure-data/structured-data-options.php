@@ -108,6 +108,7 @@ function ampforwp_add_sd_fields($fields){
                               'url'      => true,
                               'title'    => esc_html__('Default Structured Data Logo', 'accelerated-mobile-pages'),
                               'tooltip-subtitle' => esc_html__('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
+                               'default' => array('url' => ampforwp_default_logo_settings() ),
                     );
                 $fields[] =   array(
                               'id'       => 'ampforwp-sd-logo-dimensions',
@@ -140,6 +141,7 @@ function ampforwp_add_sd_fields($fields){
                               'title'   => esc_html__('Default Post Image', 'accelerated-mobile-pages'),
                               'tooltip-subtitle'    => esc_html__('Upload the Image you want to show as Placeholder Image.', 'accelerated-mobile-pages'),
                               'placeholder'  => esc_html__('when there is no featured image set in the post','accelerated-mobile-pages'),
+                              'default' => array('url' => AMPFORWP_IMAGE_DIR . '/SD-default-image.png' ),
                     );
                 $fields[] =   array(
                               'id'       => 'amp-structured-data-placeholder-image-width',
@@ -164,6 +166,7 @@ function ampforwp_add_sd_fields($fields){
                               'title'   => esc_html__('Default Thumbnail for VideoObject', 'accelerated-mobile-pages'),
                               'tooltip-subtitle'    => esc_html__('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
                               'placeholder'  => esc_html__('When there is no thumbnail set for the video','accelerated-mobile-pages'),
+                              'default' => array('url' => AMPFORWP_IMAGE_DIR . '/SD-default-image.png' ),
                     );
                 $fields[] =   array(  
                               'id'       => 'ampforwp-sd-multiple-images',  
