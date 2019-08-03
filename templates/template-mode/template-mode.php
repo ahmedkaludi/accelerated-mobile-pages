@@ -466,12 +466,6 @@ Class AMPforWP_theme_mode{
 		do_action( 'amp_post_template_css', $ampforwpTemplate ); 
 		do_action( 'amp_css', $ampforwpTemplate ); 
 		
-		if( is_user_logged_in() ){
-			$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
-			if($pref==="true"){
-				$css .= $this->ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
-			}
-		}
 		$stylesheetCss = $this->ampforwp_get_remote_content($stylesheetUri);
 		$stylesheetCss = str_replace(" img", 'amp-img', $stylesheetCss);
 		$valuesrc = get_stylesheet_directory_uri();
@@ -486,6 +480,12 @@ Class AMPforWP_theme_mode{
 		$css .= $stylesheetCss;
 		$css .= ampforwp_get_setting('css_editor');
 		$css = str_replace(array('.accordion-mod'), array('.apac'), $css);
+		if( is_user_logged_in() ){
+			$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
+			if($pref==="true"){
+				$css .= $this->ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
+			}
+		}
 		echo $this->css_sanitizer($css);
 		echo "</style>";
 	}
@@ -645,6 +645,12 @@ Class AMPforWP_theme_mode{
 	}
 	public function author_meta_desctiption_amp($field, $user_id){
 		return $this->ampforwp_template_mode_cnt_sanitizer($field);
+	}
+
+	public static function content_sanitize($content){
+		$selfobj = new self();
+		$content = $selfobj->ampforwp_template_mode_cnt_sanitizer($content);
+		return $content;
 	}
 
 	/*

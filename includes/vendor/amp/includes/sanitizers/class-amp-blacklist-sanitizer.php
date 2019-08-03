@@ -40,12 +40,18 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 
 		if($node->nodeName=='a' && $node->hasAttribute('href')){
 			$href = $node->getAttribute('href');
-			if ( $href ){
-				$node->setAttribute('href',\ampforwp_findInternalUrl($href));
-			}
+			$node->setAttribute('href', \ampforwp_findInternalUrl($href));
 			// Adding rel="noreferrer" to external links to prevent security vulnerabilities #3276
 			if ( \ampforwp_isexternal($href) ) {
-				$node->setAttribute('rel', 'noreferrer');
+				if ($node->hasAttribute('rel') ){
+					$rel = $node->getAttribute('rel');
+					if(strpos($rel, 'nofollow') !== false){
+						$node->setAttribute('rel', 'nofollow noreferrer');
+					}else{
+						$node->setAttribute('rel', 'noreferrer');
+					}
+				}
+				
 			}
 		}
 		
@@ -176,8 +182,8 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			$href = untrailingslashit( get_home_url() ) . $href;
 		}
 
-		$valid_protocols = array( 'http', 'https', 'mailto', 'sms', 'tel', 'viber', 'whatsapp' , 'ftp');
-		$special_protocols = array( 'tel', 'sms' ); // these ones don't valid with `filter_var+FILTER_VALIDATE_URL`
+		$valid_protocols = array( 'http', 'https', 'mailto', 'sms', 'tel', 'viber', 'whatsapp' , 'ftp','skype');
+		$special_protocols = array( 'tel', 'sms','skype' ); // these ones don't valid with `filter_var+FILTER_VALIDATE_URL`
 		$protocol = strtok( $href, ':' );
 
 		/* Convert space into %20 and esc url so it can work with the correct 

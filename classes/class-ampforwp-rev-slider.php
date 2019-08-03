@@ -26,66 +26,126 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 	}
 
 	public function shortcode( $args, $mid_content = null ) {
-		global $post;
-		extract(shortcode_atts(array('alias' => ''), $args, 'rev_slider'));
+		global $post,$revSliderVersion;
+		extract(shortcode_atts(array('alias'	=> ''), $args, 'rev_slider'));
 		extract(shortcode_atts(array('settings' => ''), $args, 'rev_slider'));
-		extract(shortcode_atts(array('order' => ''), $args, 'rev_slider'));
-		
-		if($settings !== '') $settings = json_decode(str_replace(array('({', '})', "'"), array('[', ']', '"'), $settings) ,true);
-		if($order !== '') $order = explode(',', $order);
-		
-        $sliderAlias = ($alias != '') ? $alias : RevSliderFunctions::getVal($args,0);
-		if( ! method_exists('RevSliderFunctionsWP', 'check_for_shortcodes') ) {
-			return;
-		}
-		$gal_ids = RevSliderFunctionsWP::check_for_shortcodes($mid_content); 
-		ob_start();
-		if(!empty($gal_ids)){ //add a gallery based slider
-			$slider = RevSliderOutput::putSlider($sliderAlias, '', $gal_ids);
-		}else{
-			$slider = RevSliderOutput::putSlider($sliderAlias, '', array(), $settings, $order);
-		}
-		$content = ob_get_contents();
-		ob_clean();
-		ob_end_clean();
-		$ids = array();
-		$slides = $slider->getSlidesForOutput(true,'',$gal_ids);
-		foreach ($slides as $slide) {
-			$bgtype = $slide->getParam('background_type', 'image');
-			$img_data = wp_get_attachment_metadata( $slide->getImageID() );
+		extract(shortcode_atts(array('order'	=> ''), $args, 'rev_slider'));
+		// Below version 6.0
+		if( !empty($revSliderVersion) && 6 > $revSliderVersion ){
+			if($settings !== '') $settings = json_decode(str_replace(array('({', '})', "'"), array('[', ']', '"'), $settings) ,true);
+			if($order !== '') $order = explode(',', $order);
 			
-			if($bgtype == 'external'){
-				$url = esc_url($slide->getParam('slide_bg_external', ''));
-				$imgalt = esc_attr($slide->getParam('alt_attr', ''));
-				$img_title = esc_attr($slide->getParam('title_attr', ''));
-				$img_w = $slide->getParam('ext_width', '1920');
-				$img_h = $slide->getParam('ext_height', '1080');
-				$urls[] = apply_filters('amp_gallery_image_params', array(
-					'url' => $url,
-					'width' => $img_w,
-					'height' => $img_h,
-					'bgtype' => $bgtype
-				),$attachment_id);
-			}elseif( $bgtype == 'image'){
+	        $sliderAlias = ($alias != '') ? $alias : RevSliderFunctions::getVal($args,0);
+			$gal_ids = RevSliderFunctionsWP::check_for_shortcodes($mid_content); 
+			ob_start();
+			if(!empty($gal_ids)){ //add a gallery based slider
+				$slider = RevSliderOutput::putSlider($sliderAlias, '', $gal_ids);
+			}else{
+				$slider = RevSliderOutput::putSlider($sliderAlias, '', array(), $settings, $order);
+			}
+			$content = ob_get_contents();
+			ob_clean();
+			ob_end_clean();
+			$ids = array();
+			$slides = $slider->getSlidesForOutput(true,'',$gal_ids);
+			foreach ($slides as $slide) {
+				$bgtype = $slide->getParam('background_type', 'image');
 				$img_data = wp_get_attachment_metadata( $slide->getImageID() );
-				$url = $slide->getImageUrl();
-				$attachment_id = $slide->getImageID();
-				$urls[] = apply_filters('amp_gallery_image_params', array(
-					'url' => $url,
-					'width' => $img_data['width'],
-					'height' => $img_data['height'],
-					'bgtype' => $bgtype
-				),$attachment_id);
-			}elseif( $bgtype == 'youtube' ){
-				$youtube_id = $slide->getParam('slide_bg_youtube', '');
-				$cover_img = $slide->getImageUrl();
-				$urls[] = apply_filters('amp_gallery_image_params', array(
-					'url' => $youtube_id,
-					'width' => '480',
-					'height' => '270',
-					'bgtype' => $bgtype,
-					'cover_img' => $cover_img
-				),$attachment_id);
+				
+				if($bgtype == 'external'){
+					$url = esc_url($slide->getParam('slide_bg_external', ''));
+					$imgalt = esc_attr($slide->getParam('alt_attr', ''));
+					$img_title = esc_attr($slide->getParam('title_attr', ''));
+					$img_w = $slide->getParam('ext_width', '1920');
+					$img_h = $slide->getParam('ext_height', '1080');
+					$urls[] = apply_filters('amp_gallery_image_params', array(
+						'url' => $url,
+						'width' => $img_w,
+						'height' => $img_h,
+						'bgtype' => $bgtype
+					),$attachment_id);
+				}elseif( $bgtype == 'image'){
+					$img_data = wp_get_attachment_metadata( $slide->getImageID() );
+					$url = $slide->getImageUrl();
+					$attachment_id = $slide->getImageID();
+					$urls[] = apply_filters('amp_gallery_image_params', array(
+						'url' => $url,
+						'width' => $img_data['width'],
+						'height' => $img_data['height'],
+						'bgtype' => $bgtype
+					),$attachment_id);
+				}elseif( $bgtype == 'youtube' ){
+					$youtube_id = $slide->getParam('slide_bg_youtube', '');
+					$cover_img = $slide->getImageUrl();
+					$urls[] = apply_filters('amp_gallery_image_params', array(
+						'url' => $youtube_id,
+						'width' => '480',
+						'height' => '270',
+						'bgtype' => $bgtype,
+						'cover_img' => $cover_img
+					),$attachment_id);
+				}
+			}
+		}
+		// Version 6.0+
+		elseif ( defined('RS_REVISION') && 6.0 <= RS_REVISION ) {
+			extract(shortcode_atts(array('alias'	=> ''), $args, 'rev_slider'));
+			extract(shortcode_atts(array('settings' => ''), $args, 'rev_slider'));
+			extract(shortcode_atts(array('order'	=> ''), $args, 'rev_slider'));
+			extract(shortcode_atts(array('usage'	=> ''), $args, 'rev_slider'));
+			$output = new RevSliderOutput();
+			$slider_alias = ($alias != '') ? $alias : $output->get_val($args, 0); //backwards compatibility
+			
+			$output->set_custom_order($order);
+			$output->set_custom_settings($settings);
+
+			$gallery_ids = $output->check_for_shortcodes($mid_content); //check for example on gallery shortcode and do stuff
+			if($gallery_ids !== false) $output->set_gallery_ids($gallery_ids);
+			
+			ob_start();
+			$slider = $output->add_slider_to_stage($slider_alias, $usage);
+			$content = ob_get_contents();
+			ob_clean();
+			ob_end_clean();
+			$slides = $slider->get_slides_for_output(true,'',$gallery_ids);
+			foreach ($slides as $slide) {
+				$bgtype = $slide->get_param(array('bg', 'type'),'');
+				$image_id = $slide->image_id;
+				$url = $slide->image_url;
+				if ( '' == $image_id ) {
+					$image_id = attachment_url_to_postid($url);
+				}
+				$img_data = wp_get_attachment_metadata( $image_id );
+				if($bgtype == 'external'){
+					$url = esc_url($slide->get_param(array('bg','externalSrc'), ''));
+					$imgalt = esc_attr($slide->get_param('alt_attr', ''));
+					$img_title = esc_attr($slide->get_param('title_attr', ''));
+					$img_w = $slide->get_param('ext_width', '1920');
+					$img_h = $slide->get_param('ext_height', '1080');
+					$urls[] = apply_filters('amp_gallery_image_params', array(
+						'url' => $url,
+						'width' => $img_w,
+						'height' => $img_h,
+						'bgtype' => $bgtype
+					),$image_id);
+				}elseif( $bgtype == 'image'){
+					$urls[] = apply_filters('amp_gallery_image_params', array(
+						'url' => $url,
+						'width' => $img_data['width'],
+						'height' => $img_data['height'],
+						'bgtype' => $bgtype
+					),$image_id);
+				}elseif( $bgtype == 'youtube' ){
+					$youtube_id = $slide->get_param(array('bg','youtube'), '');
+					$cover_img = $slide->get_param(array('bg','image'), '');
+					$urls[] = apply_filters('amp_gallery_image_params', array(
+						'url' => $youtube_id,
+						'width' => '480',
+						'height' => '270',
+						'bgtype' => $bgtype,
+						'cover_img' => $cover_img
+					),$image_id);
+				}
 			}
 		}
 		

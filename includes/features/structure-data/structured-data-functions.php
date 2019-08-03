@@ -112,25 +112,26 @@
 					);
 					$metadata['headline'] = $structured_data_archive_title;
 			}
+			if ( ! function_exists('amp_activate') ) {
+				// Get Image metadata from the Custom Field
+				if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
+					$metadata['image'] = array(
+							'@type' 	=> 'ImageObject',
+							'url' 		=> ampforwp_cf_featured_image_src('url') ,
+							'width' 	=> ampforwp_cf_featured_image_src('width'),
+							'height' 	=> ampforwp_cf_featured_image_src('height'),
+					);	
+				}
 
-			// Get Image metadata from the Custom Field
-			if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
-				$metadata['image'] = array(
-						'@type' 	=> 'ImageObject',
-						'url' 		=> ampforwp_cf_featured_image_src('url') ,
-						'width' 	=> ampforwp_cf_featured_image_src('width'),
-						'height' 	=> ampforwp_cf_featured_image_src('height'),
-				);	
-			}
-
-			// Get image metadata from The Content
-			if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content() ){
-				$metadata['image'] = array(
-						'@type' 	=> 'ImageObject',
-						'url' 		=> ampforwp_get_featured_image_from_content('url') ,
-						'width' 	=> ampforwp_get_featured_image_from_content('width'),
-						'height' 	=> ampforwp_get_featured_image_from_content('height'),
-				);
+				// Get image metadata from The Content
+				if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content() ){
+					$metadata['image'] = array(
+							'@type' 	=> 'ImageObject',
+							'url' 		=> ampforwp_get_featured_image_from_content('url') ,
+							'width' 	=> ampforwp_get_featured_image_from_content('width'),
+							'height' 	=> ampforwp_get_featured_image_from_content('height'),
+					);
+				}
 			}
 
 			if( in_array( "image" , $metadata )  ) {

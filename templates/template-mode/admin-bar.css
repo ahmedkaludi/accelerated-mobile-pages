@@ -1049,3 +1049,6 @@ html:lang(he-il) .rtl #wpadminbar *  {
 		display: none;
 	}
 }
+html{
+	margin-top: 32px;
+}

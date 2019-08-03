@@ -660,7 +660,6 @@ padding-right:20px;
 <?php } else{ ?>
 padding-left: 20px;
 <?php } ?>
-padding-left: 20px;
 }
 .artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;top:12px;
 <?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) {?> 

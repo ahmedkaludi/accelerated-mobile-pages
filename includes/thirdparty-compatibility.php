@@ -44,6 +44,11 @@ function ampforwp_thirdparty_compatibility(){
 	remove_filter( 'the_content', 'shortPixelConvertImgToPictureAddWebp', 10000 );
 	remove_filter( 'the_excerpt', 'shortPixelConvertImgToPictureAddWebp', 10000 );
 	remove_filter( 'post_thumbnail_html', 'shortPixelConvertImgToPictureAddWebp');
+	
+	//Validation errors in amp category page due to HotWP PRO #3455
+	if(function_exists('hotwp_get_option') && is_category()){
+		remove_all_filters('get_the_archive_title');
+	}
 }
 
 //Updater to check license

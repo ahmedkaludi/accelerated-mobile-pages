@@ -189,7 +189,7 @@ function ampforwp_generate_meta_desc($json=""){
     global $post, $redux_builder_amp;
     $desc = $post_id = '';
     $post_id = ampforwp_get_the_ID();
-    if ( true == ampforwp_get_setting('ampforwp-seo-meta-description') || !empty($json) ) {
+    if ( true == ampforwp_get_setting('ampforwp-seo-meta-desc') || !empty($json) ) {
         if ( ampforwp_is_home() || ampforwp_is_blog() ) {
             $desc = addslashes( strip_tags( get_bloginfo( 'description' ) ) );
         }

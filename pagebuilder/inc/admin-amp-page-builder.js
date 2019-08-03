@@ -798,27 +798,36 @@ Vue.component('textarea-wysiwyg', {
   props: [ 'defaultText','fieldindex' ],
   mounted: function() {
   	var componentPoint = this;
-	console.log(jQuery(this.$el));
+	var useEditor = wp.oldEditor;
+ 	if(!useEditor){
+    	useEditor = wp.editor;
+  	}
 	var textareaId = jQuery(this.$el).find('textarea').attr('id');
-	if(wp.editor){
-		wp.editor.initialize(textareaId, {
+	if(useEditor){
+		useEditor.initialize(textareaId, {
 									tinymce: true,
 									quicktags: true,
 								})
 		var editor = window.tinymce.get( textareaId );
 		editor.on( 'blur hide', function onEditorBlur() {
-				componentPoint.defaultText.default = wp.editor.getContent(textareaId);
+				componentPoint.defaultText.default = useEditor.getContent(textareaId);
 		});
-
+		jQuery("#"+textareaId).on('change', function(){
+      	componentPoint.defaultText.default = useEditor.getContent(textareaId);
+    	});
 	}
   	
   },
   
   beforeDestroy: function() {
   	var componentPoint = this;
-  	if(wp.editor){
+  	var useEditor = wp.oldEditor;
+ 	if(!useEditor){
+    	useEditor = wp.editor;
+  	}
+  	if(useEditor){
   		var textareaId = jQuery(this.$el).find('textarea').attr('id');
-  		wp.editor.remove(textareaId);
+  		useEditor.remove(textareaId);
 	}
   }
 });

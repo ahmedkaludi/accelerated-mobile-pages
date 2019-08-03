@@ -475,10 +475,11 @@ do_action("ampforwp_single_design_type_handle_d1");
 						            			do_action('ampforwp_between_related_post',$r_count);
 			                 							 $r_count++;
 								        }
-								      } ?>
+								       ?>
 				      				</ul>
 				      			</div>
-					            <?php wp_reset_postdata(); } 
+					            <?php }
+					            wp_reset_postdata(); } 
 					        	} ?>
 							</div><!-- /.sp-rt -->
 					    </div><!-- /.sp-rl -->
