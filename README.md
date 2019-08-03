@@ -218,8 +218,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 0.9.98.2 (25ND JULY 2019) =
 * Fixed: Menu design issue in Design 3 #3489
 * Fixed: Fatal error when latest version of Smush pro plugin activated #3487
-* Fixed: After Version 0.9.98 update, Background Type gradient options are not showing in Row module of AMP pagebuilder #3490
-* Fixed: Undefined index ampforwp-amp-on-off #3474
+* Fixed: After Version 0.9.98 update, Background Type gradient options are not showing in Row module of AMP pagebuilder #3490* Fixed: Undefined index ampforwp-amp-on-off #3474
 * Fixed: Search bar is not showing in design three after enabling the search option in header option panel #3484
 * Fixed: Content blank if Color Attribute is in Span tag #3497
 * Fixed: Sticky Header has no background color when scrolling. #3498

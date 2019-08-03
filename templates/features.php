@@ -706,8 +706,6 @@ function ampforwp_new_dir( $dir ) {
 				  $content = preg_replace('/<iframe .*(https?).*(\/\/api\.soundcloud\.com\/tracks\/)([0-9]+)(.*)<\/iframe>/', "$1:$2$3", $content);
 				  // for readability attibute in div tag
 				  $content = preg_replace('/readability=[^>]*/', '', $content);
-				  // removing color from span tag
-				  $content = preg_replace('/<span(.*?)(color=".*?")(.*?)>/', '<span$1$3>', $content);
 				  // removing sl-processed attribute
 				  $content = preg_replace('/(<[^>]+) sl-processed=".*?"/', '$1', $content);
 				  // ga-on
@@ -796,6 +794,9 @@ function ampforwp_title_callback( $post ) {
 	global $redux_builder_amp;
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
     $ampforwp_stored_meta = get_post_meta( $post->ID );
+    if(!isset($ampforwp_stored_meta['ampforwp-amp-on-off'])){
+    	$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'default';
+    }
     $preview_query_args = array();
 	$preview_link = $list_of_posts = $skip_this_post = '';
 	$preview_query_args = array(AMPFORWP_AMP_QUERY_VAR => 1);
