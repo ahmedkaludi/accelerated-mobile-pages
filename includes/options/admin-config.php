@@ -7913,7 +7913,7 @@ $single_page_options = array(
                     'default'  => '1',
             ), 
             // Date Format
-             array(
+            array(
                     'id'        =>'ampforwp-post-date-format',
                     'type'      =>'select',
                     'title'     =>esc_html__('Date Format','accelerated-mobile-pages'),
@@ -7934,18 +7934,15 @@ $single_page_options = array(
             ),
         // Post Modified Date
             array(
-                    'id'        => 'post-modified-date',
-                    'type'      => 'switch',
-                    'title'     => esc_html__('Modified Date Notice', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                    'tooltip-subtitle'  => esc_html__('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
-            ),
-            array(
-                    'id'        => 'below-content-date',
-                    'type'      => 'switch',
-                    'title'     => esc_html__('Below the Content', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                    'tooltip-subtitle'  => esc_html__('Enable option to show the date below the content.', 'accelerated-mobile-pages'),
+                    'id'        =>'ampforwp-post-date-modified',
+                    'type'      =>'select',
+                    'title'     =>esc_html__('Date Notice','accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Select Date Format of Posts', 'accelerated-mobile-pages'),
+                    'options'   => array(
+                                    'modified' => 'Modified Date',
+                                    'below' => 'Below Content'
+                                    ), 
+                    'default'   =>'',
             ),
             
         )

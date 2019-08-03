@@ -3332,17 +3332,17 @@ function ampforwp_call_button_html_output(){
 add_action('ampforwp_after_post_content','ampforwp_add_modified_date');
 function ampforwp_add_modified_date($post_object){
 	global $redux_builder_amp;
-	if ( is_single() && $redux_builder_amp['post-modified-date'] && ( ! checkAMPforPageBuilderStatus( get_the_ID() ) ) ) { ?>
+	if ( is_single() && ampforwp_get_setting('ampforwp-post-date-modified') == 'modified' && ( ! checkAMPforPageBuilderStatus( get_the_ID() ) ) ) {
+		?>
 		<div class="ampforwp-last-modified-date">
 			<p> <?php
-				if( $post_object->get( 'post_modified_timestamp' ) !== $post_object->get( 'post_publish_timestamp' ) ){
-					echo esc_html(
+				echo esc_html(
 						sprintf(
-							_x( ampforwp_translation( $redux_builder_amp['amp-translator-modified-date-text'],'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference', 'accelerated-mobile-pages' ),
-							date_i18n( get_option( 'date_format' ) , $post_object->get( 'post_modified_timestamp' ) )
+							_x( ampforwp_translation( ampforwp_get_setting('amp-translator-modified-date-text'),'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference', 'accelerated-mobile-pages' ),amp_loop_date()					
 						)
 					);
-			echo get_the_modified_time();	} ?>
+				echo get_the_modified_time();	
+			?>
 			</p>
 		</div> <?php
 	}
@@ -8083,7 +8083,7 @@ function ampforwp_is_gutenberg_active() {
 add_action('ampforwp_after_post_content','ampforwp_date_below_the_content');
 if ( ! function_exists('ampforwp_date_below_the_content') ) {
 	function ampforwp_date_below_the_content(){
-		if( ampforwp_get_setting('below-content-date') == true){
+		if( ampforwp_get_setting('ampforwp-post-date-modified') == 'below'){
 			amp_loop_date();
 		}
 	}
