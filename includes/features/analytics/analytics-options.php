@@ -54,7 +54,7 @@ function ampforwp_analytics_options($opt_name){
                         'id' => 'ampforwp-ga-switch',
                         'type'  => 'switch',
                         'title' => 'Google Analytics',
-                        'default' => 0,
+                        'default' => ampforwp_get_default_analytics('1'),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
                         ),
