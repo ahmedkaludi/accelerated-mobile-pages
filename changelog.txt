@@ -24,6 +24,7 @@
 * Fixed: After the upgrade, AMP Page Builder is not working! #3506
 * Fixed: Page builder content getting blank when we hit save. #3513
 * Fixed: Wp editor not loading when Using Page builder (with Gutenberg) #3517
+* Fixed: Single design 2 in Swift broken in one specific use case #3532
 
 = 0.9.98.2 (25ND JULY 2019) =
 * Fixed: Menu design issue in Design 3 #3489
