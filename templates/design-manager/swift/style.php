@@ -654,10 +654,29 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 	<?php } // H6 Ends
  // swift Content Heading Sizes Ends?>
 .cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-break: break-word;}
-.artl-cnt ul li, .artl-cnt ol li{list-style-type: none;position: relative;padding-left: 20px;}
-.artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;left: 0;top: 12px;}
+.artl-cnt ul li, .artl-cnt ol li{list-style-type: none;position: relative;
+<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) {?> 
+padding-right:20px;
+<?php } else{ ?>
+padding-left: 20px;
+<?php } ?>
+padding-left: 20px;
+}
+.artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;top:12px;
+<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) {?> 
+	right:0;
+<?php } else{ ?>
+	left: 0px;
+<?php } ?>
+}
 .artl-cnt ol li {counter-increment: step-counter;}
-.artl-cnt ol li::before {content: counter(step-counter);font-size: 16px;color: #000;position: absolute;left: 0px;line-height: 1.2;top: 6px;}
+.artl-cnt ol li::before {content: counter(step-counter);font-size: 16px;color: #000;position: absolute;
+<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) {?> 
+	right:0;
+<?php } else{ ?>
+	left: 0px;
+<?php } ?>
+line-height: 1.2;top: 6px;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
 .m-ctr {
 position: fixed;
