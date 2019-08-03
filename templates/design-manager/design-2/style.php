@@ -83,7 +83,7 @@ body{
   	<?php if( 1 == ampforwp_get_setting('ampforwp-google-font-switch') ) {
       $fontFamily = "font-family: sans-serif;";
       if(ampforwp_get_setting('amp_font_selector') != 1 && !empty(ampforwp_get_setting('amp_font_selector') )){ 
-        $fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector')."';";
+        $fontFamily = "font-family: ".ampforwp_get_setting('amp_font_selector').";";
       }
     }
     echo $fontFamily; ?>
@@ -95,7 +95,7 @@ $font_content = ampforwp_get_setting('amp_font_selector_content_single'); ?>
 	<?php $fontFamily = "font-family: sans-serif;"; 
     if(1==ampforwp_get_setting('ampforwp-google-font-switch') && 1 == ampforwp_get_setting('content-font-family-enable')){ 
       if(!empty($font_content) && $font_content != 1 ){  
-        $fontFamily = "font-family: '".esc_attr($font_content)."';";
+        $fontFamily = "font-family: ".esc_attr($font_content).";";
       }  
     }
 echo $fontFamily; // secondary font family ends here ?>
