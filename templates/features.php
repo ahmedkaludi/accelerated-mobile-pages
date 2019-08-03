@@ -6907,14 +6907,11 @@ if ( ! function_exists('ampforwp_include_opengraph') ) {
 
 add_filter('ampforwp_pagebuilder_status_modify','ampforwp_pagebuilder_has_content',10,2);
 function ampforwp_pagebuilder_has_content($response, $postId){
-	$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
-	if ( isset( $ampforwp_metas['ampforwp_page_builder_enable'] )) {
-	  	$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
-	  	if( $ampforwp_pagebuilder_enable =='yes'){
+	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	if ( isset( $ampforwp_pagebuilder_enable ) && $ampforwp_pagebuilder_enable == 'yes') {
 			if(empty(amppb_post_content(''))){
 				$response = false;
 			}
-		}
 	}
 	return $response;
 }
