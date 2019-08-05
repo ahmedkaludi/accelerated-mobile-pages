@@ -795,7 +795,12 @@ jQuery(document).ready(function($) {
     // Website type
     $('.ampforwp-ux-select').on('change', function(e){
         // Update Values in Structured data
-        $('#ampforwp-sd-type-posts-select').val($(this).val());
+        //Posts
+        $("select[id=ampforwp-sd-type-posts-select]").val($(this).val());
+        $("span[id=select2-ampforwp-sd-type-posts-select-container]").text($(this).val());
+        // Pages
+        $("select[id=ampforwp-sd-type-pages-select]").val($(this).val());
+        $("span[id=select2-ampforwp-sd-type-pages-select-container]").text($(this).val());
         // Save changes in redux
         if ( $( this ).attr( 'opt_name' ) == redux.args.opt_name + '[defaults]' ) {
             // Defaults button clicked
