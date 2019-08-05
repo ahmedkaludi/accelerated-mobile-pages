@@ -1322,12 +1322,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                            'content'  => '<div class="button btn-list " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">View List</div>'
             ),
                array(
-                           'id' => 'validate-amp',
-                           'type' => 'raw',
-                           'title' => esc_html__("Let's Validate Your AMP Pages", 'accelerated-mobile-pages'),
-                           'content'  => '<div class="button btn-white " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">CONNECT</div>'
-            ),
-               array(
                             'id' => 'ampforwp-ux-section-right',
                            'type' => 'section',
                            'indent' => true,
@@ -1342,49 +1336,181 @@ Redux::setArgs( "redux_builder_amp", $args );
                                     <div class="hide website-type">
                                         <h2>What`s your Website Type?</h2>
                                         <select class="ampforwp-ux-select">
-                                        <option>Choose here</option>
-                                        <option>Blog</option>
-                                        <option>WebPages</option>
+                                        <option value="choose">Choose here</option>
+                                        <option value="BlogPosting" '.(ampforwp_get_setting('ampforwp-sd-type-posts')=='BlogPosting'?'selected':'').'>Blog</option>
+                                        <option value="NewsArticle" '.(ampforwp_get_setting('ampforwp-sd-type-posts')=='NewsArticle'?'selected':'').'>News</option>
                                         </select>
                                     </div>
                                     <div class="hide amp-need">
-                                        <h2>Where do you want AMP?</h2>
-                                        <select class="ampforwp-ux-select">
+                                        <h2>Where do you need AMP?</h2>
+                                        <input type="checkbox" name="amp-ux-homepage">Homepage<br>
+                                        <p>Do you use Custom FrontPage?</p><input type="checkbox">Y<input type="checkbox">N
+                                        <pre><select class="ampforwp-ux-select">
                                         <option>Choose here</option>
-                                        </select>
+                                        </select></pre>
+                                        <input type="checkbox" name="amp-ux-posts">Posts<br>
+                                        <input type="checkbox" name="amp-ux-pages">Pages<br>
+                                        <input type="checkbox" name="amp-ux-archives">Archives<br>
                                     </div>
                                     <div class="hide design-presentation">
-                                        <h2>Design and Presentation</h2>
-                                        <select class="ampforwp-ux-select">
-                                        <option>Choose here</option>
-                                        </select>
+                                        <h2>Setup Your Logo</h2>
+                                        <fieldset id="amp-ux-opt-media" class="redux-field-container redux-field redux-container-media" data-id="opt-media" data-type="media"><input type="hidden" class="data" data-mode="image"><input type="hidden" class="library-filter" data-lib-filter=""><input type="hidden" class="upload-id " name="amp-ux-logo-id" id="amp-ux-logo-id" value=""><input type="hidden" class="upload-height" name="amp-ux-logo-height" id="amp-ux-logo-height" value=""><input type="hidden" class="upload-width" name="amp-ux-logo-width" id="amp-ux-logo-width" value=""><input type="hidden" class="upload-thumbnail" name="amp-ux-logo-thumb" id="amp-ux-logo-thumb" value=""><div class="hide screenshot"><a class="of-uploaded-image" href="" target="_blank"><img class="redux-option-image" id="image_opt-media" src="" alt="" target="_blank" rel="external"></a></div><div class="upload_button_div"><span class="button media_upload_button" id="opt-media-media">Upload</span><span class="button remove-image hide" id="reset_opt-media" rel="opt-media">Remove</span></div>
+                                        </fieldset>
+
+                                        <div class="redux-color-rgba-container " data-id="amp-ux-color-scheme" data-show-input="1" data-show-initial="" data-show-alpha="1" data-show-palette="" data-show-palette-only="" data-show-selection-palette="" data-max-palette-size="10" data-allow-empty="1" data-clickout-fires-change="" data-choose-text="Choose" data-cancel-text="Cancel" data-input-text="Select Color" data-show-buttons="1" data-palette="null">
+                                            <h2>Color Scheme</h2>
+                                            <input name="amp-ux-color" id="amp-ux-color-scheme-color" class="redux-color-rgba" type="text" value="#005be2" data-color="rgba(0,91,226,1)" data-id="amp-ux-color-scheme" data-current-color="#005be2" data-block-id="amp-ux-color-scheme" data-output-transparent="" style="display: none;"><div class="sp-replacer sp-light redux-color-rgba undefined"><div class="sp-preview"><div class="sp-preview-inner" style="background-color: rgb(195, 17, 184);"></div></div><div class="sp-dd">Select Color</div></div><input type="hidden" class="redux-hidden-color" data-id="amp-ux-color-scheme-color" id="swift-color-scheme-color" value="#005be2"><input type="hidden" class="redux-hidden-alpha" data-id="amp-ux-color-scheme-alpha" name="amp-ux-color-alpha" id="swift-color-scheme-alpha" value="1"><input type="hidden" class="redux-hidden-rgba" data-id="amp-ux-color-scheme-rgba" name="amp-ux-color-scheme-rgba" id="swift-color-scheme-rgba" value="rgba(0,91,226,1)">
+                                        </div>
                                     </div>
                                     <div class="hide analytics-tracking">
-                                        <h2>Analytics Tracking</h2>
-                                        <select class="ampforwp-ux-select">
-                                        <option>Choose here</option>
+                                        <div>
+                                        <h2>Setup Analytics Tracking</h2>
+                                        <select class="ampforwp-ux-analytics-select">
+                                        <option>Google Analytics</option>
+                                        <option>Facebook Pixel</option>
+                                        <option>Segment Analytics</option>
+                                        <option>Matomo (Piwik) Analytics</option>
+                                        <option>Quantcast Measurement</option>
+                                        <option>comScore</option>
+                                        <option>Effective Measure</option>
+                                        <option>StatCounter</option>
+                                        <option>Histats Analytics</option>
+                                        <option>Yandex Metrika</option>
+                                        <option>Chartbeat Analytics</option>
+                                        <option>Alexa Metrics</option>
+                                        <option>AFS Analytics</option>
+                                        <option>Clicky Analytics</option>
                                         </select>
+                                        </div>
+                                        <div>
+                                        <div class="amp-ux-ga hide">
+                                            <h4>Your Tracking ID</h4>
+                                            <input type="text" class="google-analytics"><br>
+                                        </div>
+                                        <div class="amp-ux-fp hide">
+                                            <h4>Facebook Pixel ID</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-sw hide">
+                                            <h4>SEGMENT WRITE KEY</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-mp hide">
+                                            <h4>Your Matomo (Piwik) Analytics Tracking ID</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-qm hide">
+                                            <h4>Your Quantcast Measurement Tracking ID</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-cs hide">
+                                            <h4>C1</h4>
+                                            <input type="text" class=""><br>
+                                            <h4>C2</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-em hide">
+                                            <h4>Your Effective Measure Tracking ID</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-sc hide">
+                                            <h4>Your StatCounter Tracking ID</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-ha hide">
+                                            <h4>Your Histats Analytics Tracking ID</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-ym hide">
+                                            <h4>Yandex Metrika Analytics ID</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-ca hide">
+                                            <h4>Chartbeat Analytics ID</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-am hide">
+                                            <h4>Alexa Metrics Account</h4>
+                                            <input type="text" class=""><br>
+                                            <h4>Alexa Metrics Domain</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-afs hide">
+                                            <h4>Website ID</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        <div class="amp-ux-cl hide">
+                                            <h4>Clicky Site ID</h4>
+                                            <input type="text" class=""><br>
+                                        </div>
+                                        </div>
                                     </div>
                                     <div class="hide privacy-settings">
-                                        <h2>Privacy Settings</h2>
-                                        <select class="ampforwp-ux-select">
-                                        <option>Choose here</option>
-                                        </select>
+                                        <h2>Cookie Notice Bar</h2>
+                                        <label class="ios7-switch">
+                                            <input class="switch-on-off" type="checkbox" data-id="amp-ux-notice-switch">
+                                            <span></span>
+                                        </label>
+                                        <p>Cookie Bar allows you to discreetly inform visitors that your website uses cookies.</p>
+                                        <h2>GDPR</h2>
+                                        <label class="ios7-switch">
+                                            <input class="switch-on-off" type="checkbox" data-id="amp-ux-gdpr-switch">
+                                            <span></span>
+                                        </label>
+                                        <p>Comply with European privacy regulations(GDPR). Recommended for EU Citizens.</p>
                                     </div>
                                     <div class="hide 3rd-party">
-                                        <h2>3rd Party Compatibility</h2>
-                                        <select class="ampforwp-ux-select">
-                                        <option>Choose here</option>
-                                        </select>
-                                    </div>
-                                    <div class="hide validate-amp">
-                                        <h2>3rd Party Compatibility</h2>
-                                        <select class="ampforwp-ux-select">
-                                        <option>Choose here</option>
-                                        </select>
+                                        <div class="amp-ux-seo">
+                                            <h2>SEO</h2>
+                                            <select class="ampforwp-ux-seo-select">
+                                            <option>Yoast SEO</option>
+                                            <option>All in One SEO</option>
+                                            <option>Rank Math SEO</option>
+                                            <option>Genesis</option>
+                                            <option>SEOPress</option>
+                                            <option>Bridge Qode SEO</option>
+                                            <option>The SEO Framework</option>
+                                            <option>Squirrly SEO</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <h2>Contact Form 7</h2>
+                                            <label class="ios7-switch">
+                                            <input class="switch-on-off" type="checkbox" data-id="amp-ux-cf7-switch">
+                                            <span></span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <h2>Elementor</h2>
+                                            <label class="ios7-switch">
+                                            <input class="switch-on-off" type="checkbox" data-id="amp-ux-elem-switch">
+                                            <span></span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <h2>WooCommerce</h2>
+                                            <label class="ios7-switch">
+                                            <input class="switch-on-off" type="checkbox" data-id="amp-ux-wc-switch">
+                                            <span></span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <h2>Schema</h2>
+                                            <label class="ios7-switch">
+                                            <input class="switch-on-off" type="checkbox" data-id="amp-ux-schema-switch">
+                                            <span></span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <h2>Ads</h2>
+                                            <label class="ios7-switch">
+                                            <input class="switch-on-off" type="checkbox" data-id="amp-ux-ads-switch">
+                                            <span></span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="ampforwp-ux-right-bottom">
+                                <div class="ampforwp-ux-right-bottom hide">
                                     <div class="feedback">
                                         <i></i>
                                         <p>Feedback</p>

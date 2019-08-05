@@ -774,16 +774,45 @@ jQuery(document).ready(function($) {
         });
     });
     $('#section-table-ampforwp-ux-section').find('.button').each(function(){
-        //console.log($(this));
         $(this).on('click', function(){
             var className = $(this).parent().attr('data-id');
-            //console.log($(this).parents());
             $(this).parents().find('#redux_builder_amp-ampforwp-ux-section-right-2').addClass('hide');
             $('#redux_builder_amp-ampforwp-ux-section-panel').removeClass('hide');
+            $('div.ampforwp-ux-right-bottom').removeClass('hide');
             $('div.'+className).show();
             $('div.'+className).siblings().hide();
 
         });
+
+    });
+    // Upload media button
+    $(this).find( '.media_upload_button' ).unbind().on(
+        'click', function( event ) {
+            redux.field_objects.media.addFile( event, $( this ).parents( 'fieldset.redux-field:first' ) );
+        }
+    );
+
+    // Website type
+    $('.ampforwp-ux-select').on('change', function(e){
+        // Update Values in Structured data
+        $('#ampforwp-sd-type-posts-select').val($(this).val());
+        // Save changes in redux
+        if ( $( this ).attr( 'opt_name' ) == redux.args.opt_name + '[defaults]' ) {
+            // Defaults button clicked
+            if ( !confirm( redux.args.reset_confirm ) ) {
+                return false;
+            }
+        } else if ( $( this ).attr( 'name' ) == redux.args.opt_name + '[defaults-section]' ) {
+            // Default section clicked
+            if ( !confirm( redux.args.reset_section_confirm ) ) {
+                return false;
+            }
+        }
+        window.onbeforeunload = null;
+        if ( redux.args.ajax_save === true ) {
+            $.redux.ajax_save( $( this ) );
+            e.preventDefault();
+        }
 
     });
 

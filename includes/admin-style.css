@@ -980,3 +980,10 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .ampforwp-new-ux #section-table-ampforwp-ux-section, .ampforwp-new-ux #section-table-ampforwp-ux-section-right{
     border: none;
 }
+.ampforwp-ux-right-bottom{
+    margin-top:55%;
+}
+.privacy-settings label{
+    float: right;
+    top: -40px;
+}
