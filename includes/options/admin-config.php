@@ -5419,6 +5419,7 @@ $single_page_options = array(
             'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
                         esc_html__('Enable this option to show recent posts in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
             'default'  => 1,
+            'required' => array('amp-design-selector' , '=' , '4'),
         ),
         array(
                     'id'        => 'amforwp-recentpost-date-switch',
