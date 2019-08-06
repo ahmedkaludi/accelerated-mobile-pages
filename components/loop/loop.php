@@ -442,10 +442,7 @@ if (! function_exists('amp_loop_the_permalink')){
 
 function amp_loop_image( $data=array() ) {
 	global $ampLoopData, $counterOffset, $redux_builder_amp;
-	if( ampforwp_get_setting('amforwp-homepage-featured-video') && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) ){
-			amp_featured_video();
-	}else{
-		if (ampforwp_has_post_thumbnail()  ) {
+		if (ampforwp_has_post_thumbnail()  || (ampforwp_get_setting('amforwp-homepage-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))) {
 
 		$tag 				= 'div';
 		$tag_class 			= '';
@@ -523,15 +520,42 @@ function amp_loop_image( $data=array() ) {
 				$imageClass			= $changesInImageData["image_class"];
 				$imageLink			= $changesInImageData["image_link"];
 			}
-			echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
-			echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
-			echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
-			echo '</a>';
-			echo '</'.$tag.'>';
+		$post_id   = get_the_ID();
+		$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+		$youtubelink = get_post_meta($post_id, $metaKey, true);
+		if (  !empty($youtubelink) && ampforwp_get_setting('amforwp-homepage-featured-video') == true) {
+			if(strpos($youtubelink, 'youtu.be')> 0){
+				$video_id = explode("youtu.be/", $youtubelink);
+				$videoID = $video_id[1];
+			}elseif( strpos($youtubelink, 'youtube.com/watch')> 0){
+				$video_id = explode("?v=", $youtubelink);
+				if (empty($video_id[1])){
+				    $video_id = explode("/v/", $youtubelink);
+				}
+				$video_id = explode("&", $video_id[1]);
+				$videoID = $video_id[0];
+			}elseif( strpos($youtubelink, 'youtube.com/embed')> 0){
+				$video_id = explode("/", $youtubelink);
+				$videoID = end($video_id);
+			}
+			$container_start = '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
+			$container_end = '</'.$tag.'>';
+			if(!empty($videoID)){
+				echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>' . $container_end;
+			}
+		}else{
+			if(ampforwp_has_post_thumbnail()){
+				echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
+				echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
+				echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
+				echo '</a>';
+				echo '</'.$tag.'>';
+			}
+			
 		}
-     } 
-	}
-	
+			
+		}
+     }
 } 
 
 // Category

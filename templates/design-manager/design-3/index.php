@@ -144,7 +144,7 @@ if ( get_query_var( 'paged' ) ) {
 		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 
 		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() ){?>amp-loop-list-noimg<?php } ?>">
-			<?php if ( ampforwp_has_post_thumbnail() && !$is_full_content ) {  
+			<?php if ( (ampforwp_has_post_thumbnail() && !$is_full_content ) || (ampforwp_get_setting('amforwp-homepage-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) {  
 				$thumb_url 	  	= ampforwp_get_post_thumbnail('url');
 				$thumb_width  	= ampforwp_get_post_thumbnail('width');
 				$thumb_height 	= ampforwp_get_post_thumbnail('height');
@@ -157,7 +157,31 @@ if ( get_query_var( 'paged' ) ) {
 					$thumb_url = $thumb_crop_url[0];
 					
 				}
-				if($thumb_url){
+				$post_id   = get_the_ID();
+				$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+				$youtubelink = get_post_meta($post_id, $metaKey, true);
+				if (  !empty($youtubelink) && ampforwp_get_setting('amforwp-homepage-featured-video') == true) {
+					if(strpos($youtubelink, 'youtu.be')> 0){
+						$video_id = explode("youtu.be/", $youtubelink);
+						$videoID = $video_id[1];
+					}elseif( strpos($youtubelink, 'youtube.com/watch')> 0){
+						$video_id = explode("?v=", $youtubelink);
+						if (empty($video_id[1])){
+						    $video_id = explode("/v/", $youtubelink);
+						}
+						$video_id = explode("&", $video_id[1]);
+						$videoID = $video_id[0];
+					}elseif( strpos($youtubelink, 'youtube.com/embed')> 0){
+						$video_id = explode("/", $youtubelink);
+						$videoID = end($video_id);
+					}
+					$container_start = '<div class="home-post_image">';
+					$container_end = '</div>';
+					if(!empty($videoID)){
+						echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>' . $container_end;
+					}
+				}else{
+					if($thumb_url){
 					?>
 					<div class="home-post_image">
 						<a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
@@ -170,8 +194,10 @@ if ( get_query_var( 'paged' ) ) {
 							></amp-img>
 						</a>
 					</div>
-				<?php }
-				} ?>
+				<?php 
+					}
+				}
+			} ?>
 
 			<div class="amp-wp-post-content">
 				<?php if( ampforwp_get_setting('ampforwp-full-post-in-loop') == 0 ){ ?>

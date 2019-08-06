@@ -5631,15 +5631,15 @@ $single_page_options = array(
                     'type'  => 'switch',
                     'title' => esc_html__('Featured Video', 'accelerated-mobile-pages'),
                     'default'   => 0,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
+                    //'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
                     'id'       => 'ampforwp-featured-video-metakey',
                     'type'     => 'text',
                     'class' => 'child_opt child_opt_arrow',
-                    'title'    => esc_html__('Video Metakey Name', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Custom Field Name', 'accelerated-mobile-pages'),
                     'default'  => ampforwp_featured_video_default(),
-                    'required' => array( array('amp-design-selector', '=' , '4'),array('swift-featued-video', '=' , '1')),
+                    'required' => array( array('swift-featued-video', '=' , '1')),
             ),
             //Feature video End
             // Author name 

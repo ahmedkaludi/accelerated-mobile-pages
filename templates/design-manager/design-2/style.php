@@ -832,3 +832,7 @@ amp-user-notification{
   z-index: 999999;
 }
 <?php } //amp-enable-notifications Condition Ends Here ?>
+.home-post_image amp-youtube{
+	width:100px;
+	height:75px;
+}
