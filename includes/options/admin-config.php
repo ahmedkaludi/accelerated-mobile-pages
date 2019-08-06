@@ -1343,11 +1343,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                                     </div>
                                     <div class="hide amp-need">
                                         <h2>Where do you need AMP?</h2>
-                                        <input type="checkbox" name="amp-ux-homepage">Homepage<br>
-                                        <p>Do you use Custom FrontPage?</p><input type="checkbox">Y<input type="checkbox">N
-                                        <pre><select class="ampforwp-ux-select">
-                                        <option>Choose here</option>
-                                        </select></pre>
+                                        <input type="checkbox" id="amp-ux-homepage" name="amp-ux-homepage">Homepage<br>
+                                        <div class="amp-ux-frontpage hide">
+                                            <p>Do you use Custom FrontPage?</p><input id="amp-ux-frontpage-yes" type="checkbox">Y<input id="amp-ux-frontpage-no" type="checkbox">N
+                                            <pre><select id="amp-ux-frontpage-select" class="amp-ux-frontpage-select hide">
+                                            <option>Choose here</option>
+                                            </select></pre>
+                                        </div>
                                         <input type="checkbox" name="amp-ux-posts">Posts<br>
                                         <input type="checkbox" name="amp-ux-pages">Pages<br>
                                         <input type="checkbox" name="amp-ux-archives">Archives<br>

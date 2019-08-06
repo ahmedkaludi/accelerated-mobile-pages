@@ -821,4 +821,30 @@ jQuery(document).ready(function($) {
 
     });
 
+    // AMP Requirement
+    // Homepage and Frontpage
+    $('input[id="amp-ux-homepage"]').click(function(){
+            if($(this).prop("checked") == true){
+                $('.amp-ux-frontpage').show();
+                $('input[id="amp-ux-frontpage-yes"]').click(function(){
+                    if($(this).prop("checked") == true){
+                        $('.amp-ux-frontpage-select').show();
+                    }
+                    else if($(this).prop("checked") == false ){
+                         $('.amp-ux-frontpage-select').hide();
+                    }
+                });
+                $('input[id="amp-ux-frontpage-no"]').click(function(){
+                    if($(this).prop("checked") == true){
+                        $('.amp-ux-frontpage-select').hide();
+                    }
+                });
+                //alert("Checkbox is checked.");
+            }
+            else if($(this).prop("checked") == false){
+                $('.amp-ux-frontpage').hide();
+                //alert("Checkbox is unchecked.");
+            }
+        });
+
 });
