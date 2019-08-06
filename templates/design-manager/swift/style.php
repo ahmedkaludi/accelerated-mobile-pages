@@ -275,8 +275,12 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 display: inline-block;top: 1px;padding: 5px;
 <?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
 	transform: rotate(450deg);
+	left:0;
+	right:auto;
 <?php } else{ ?>
 	transform: rotate(270deg);
+	right:0;
+	left:auto;
 <?php } ?>
 cursor: pointer;border-radius: 35px;color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-overlay-color-control']['rgba'])?>;}
 .m-menu .amp-menu li.menu-item-has-children:after{display:none;}
