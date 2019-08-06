@@ -441,7 +441,7 @@ if(is_admin()){
 		if(isset($changed_values['amp-pages-meta-default']) && $options['amp-pages-meta-default']=='hide'){
 			delete_transient('ampforwp_current_version_check');
 		}
-		if( ( isset($changed_values['ampforwp_css_tree_shaking']) && $options['ampforwp_css_tree_shaking']=='0' ) ||  isset($changed_values['amp-design-selector']) ){
+		if( ( isset($changed_values['ampforwp_css_tree_shaking']) && $options['ampforwp_css_tree_shaking']=='0' ) ||  isset($changed_values['amp-design-selector']) || isset($changed_values['css_editor']) ){
 			$upload_dir = wp_upload_dir(); 
 	      	$user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
 	      	if(file_exists($user_dirname)){
