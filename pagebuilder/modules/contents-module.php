@@ -252,7 +252,7 @@ if ( is_admin() ) {
             array(    
             'type'    =>'text',
             'name'    =>"ampforwp_read_more",
-            'label'   =>"Read More Text",
+            'label'   => esc_html__("Read More Text","accelerated-mobile-pages"),
             'tab'     =>'customizer',
             'default' =>'',    
             'content_type'=>'html',
