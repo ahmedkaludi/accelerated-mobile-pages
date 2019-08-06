@@ -5508,7 +5508,13 @@ function element_layout_customizer(){
         return $new_options;
 }
 $customizer_options = element_layout_customizer();
-
+function ampforwp_featured_video_default(){
+            $default = '';
+            if(class_exists('CSCO_Fonts_Settings')){
+                $default = 'csco_post_embed';
+            }
+            return $default;
+        }
 $single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',
@@ -5632,7 +5638,7 @@ $single_page_options = array(
                     'type'     => 'text',
                     'class' => 'child_opt child_opt_arrow',
                     'title'    => esc_html__('Video Metakey Name', 'accelerated-mobile-pages'),
-                    'default'  => '',
+                    'default'  => ampforwp_featured_video_default(),
                     'required' => array( array('amp-design-selector', '=' , '4'),array('swift-featued-video', '=' , '1')),
             ),
             //Feature video End
