@@ -423,7 +423,7 @@ if ( is_admin() ) {
                   if(isset($fieldValues['ampforwp_read_more']) && !empty($fieldValues['ampforwp_read_more']) ){
                     $readMore = $fieldValues['ampforwp_read_more'];
                   }   
-                 $excerptContent = '<p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'<a href="'.$ampforwp_post_url.'" > '.$readMore.'</a></p>';
+                 $excerptContent = '<p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'<a href="'.esc_url($ampforwp_post_url).'" > '.esc_html($readMore).'</a></p>';
               }
                $loopdate = "";
                $loopdate =  human_time_diff(
