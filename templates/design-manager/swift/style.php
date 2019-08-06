@@ -272,7 +272,13 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 	content:"\f107";font-family: "Font Awesome 5 Free";font-weight:600;font-size:20px;
 <?php } ?>
-display: inline-block;top: 1px;padding: 5px;transform: rotate(270deg);cursor: pointer;border-radius: 35px;color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-overlay-color-control']['rgba'])?>;}
+display: inline-block;top: 1px;padding: 5px;
+<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
+	transform: rotate(450deg);
+<?php } else{ ?>
+	transform: rotate(270deg);
+<?php } ?>
+cursor: pointer;border-radius: 35px;color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-overlay-color-control']['rgba'])?>;}
 .m-menu .amp-menu li.menu-item-has-children:after{display:none;}
 .m-menu .amp-menu li ul{font-size:14px;}
 .m-menu .amp-menu {list-style-type: none;padding: 0;}
@@ -289,7 +295,11 @@ display: inline-block;top: 1px;padding: 5px;transform: rotate(270deg);cursor: po
 .m-menu .amp-menu a {padding: 7px 15px;}
 .m-menu > li{font-size:17px;}
 /*New Syles*/
+<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
+	.m-menu .toggle {float :left;}
+<?php } else{ ?>
 	.m-menu .toggle {float :right;}
+<?php } ?>
 	.m-menu input{display:none}
 	.m-menu .amp-menu [id^=drop]:checked + label + ul{ display: block;}
 	.m-menu .amp-menu [id^=drop]:checked + .toggle:after{transform:rotate(360deg);}
