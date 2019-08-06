@@ -40,6 +40,10 @@ function ampforwp_content_module_pagination($args, $fieldValues){
 .cat_mod .cat_mod_r a{font-size: 16px;line-height: 1.3;font-weight: 500;color: #000;margin: 0px 0px 5px 0px;}
 .cat_mod .cat_mod_r p{color: {{text_color_picker}};font-size: 13px;line-height: 20px;letter-spacing: 0.10px;margin-bottom:0;}
 .cat_mod .cat_mod_l{width:100%;}
+.cat_mod .cat_mod_r p a{
+  font-size:13px;
+  color:#005be2;
+}
 .pagination a {
     color: black;
     float: left;
@@ -234,6 +238,15 @@ if ( is_admin() ) {
             'required'  => array('ampforwp_show_excerpt' => 'yes'),
             ),
             array(    
+            'type'    =>'text',
+            'name'    =>"ampforwp_read_more",
+            'label'   =>esc_html__("Read More Text","accelerated-mobile-pages"),
+            'tab'     =>'customizer',
+            'default' =>'',    
+            'content_type'=>'html',
+            'required'  => array('ampforwp_show_excerpt' => 'yes'),
+            ),
+            array(    
             'type'    =>'text',   
             'name'    =>"img-width-1",    
             'label'   =>'Image Width',
@@ -388,14 +401,17 @@ if ( is_admin() ) {
               }
 
               $excerptContent = "";
+              $readMore = "";
               if( $ampforwp_show_excerpt == 'yes' ) {     
                    if( has_excerpt() ) {    
                      $content = get_the_excerpt();    
                    } else {   
                      $content = get_the_content();    
                    }  
-                 $excerptContent = ' 
-                 <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'</p>';   
+                 if(isset($fieldValues['ampforwp_read_more']) && !empty($fieldValues['ampforwp_read_more']) ){
+                    $readMore = $fieldValues['ampforwp_read_more'];
+                  }   
+                 $excerptContent = '<p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'<a href="'.esc_url($ampforwp_post_url).'" > '.esc_html($readMore).'</a></p>';
               }
                $loopdate = "";
                $loopdate =  human_time_diff(
@@ -420,6 +436,7 @@ if ( is_admin() ) {
                                 "{{height}}",
                                 "{{title}}",
                                 "{{excerptContent}}",
+                                "{{readMore}}",
                                 "{{loopdate}}",
                                 "{{authorname}}",
                                 "{{postdate}}",
@@ -433,6 +450,7 @@ if ( is_admin() ) {
                                 $height,
                                 $title,
                                 $excerptContent,
+                                $readMore,
                                 $loopdate,
                                 $author,
                                 $postdate,
@@ -446,6 +464,7 @@ if ( is_admin() ) {
             $rawhtml = ampforwp_replaceIfContentConditional("height", $height, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("title", $title, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("excerptContent", $excerptContent, $rawhtml);
+            $rawhtml = ampforwp_replaceIfContentConditional("readMore", $readMore, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("loopdate", $loopdate, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("authorname", $author, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("postdate", $postdate, $rawhtml);

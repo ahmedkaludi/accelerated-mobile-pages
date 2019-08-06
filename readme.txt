@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.2
-Stable tag: 0.9.98.3
+Stable tag: 0.9.98.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.4 (6th AUGUST 2019) =
+* Improvements: Pagebuilder Compatibility Options in 'AMP By Automattic' Addon Mode Settings #3507
+* Fixed: Design is breaking in swift theme when RTL option is enabled #3527
+* Fixed: Validation error when width and height is empty in the logo #3530
+* Fixed: 'Read more' link in excerpt for category module of AMP page builder #3510
+* Fixed: Mobile redirection causing extra redirects from /amp to /amp/ #3459
+* Fixed: "Recent Posts below Related Posts" option should show only when it is available for the theme #3528
+
 = 0.9.98.3 (2nd AUGUST 2019) =
 * Improvements: OpenGraph Support in AMP #3261
 * Improvements: Compatibility integrated with Cloudflare stream. #3230
@@ -214,14 +222,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Page builder content getting blank when we hit save. #3513
 * Fixed: Wp editor not loading when Using Page builder (with Gutenberg) #3517
 * Fixed: Single design 2 in Swift broken in one specific use case #3532
-
-= 0.9.98.2 (25ND JULY 2019) =
-* Fixed: Menu design issue in Design 3 #3489
-* Fixed: Fatal error when latest version of Smush pro plugin activated #3487
-* Fixed: After Version 0.9.98 update, Background Type gradient options are not showing in Row module of AMP pagebuilder #3490
-* Fixed: Undefined index ampforwp-amp-on-off #3474
-* Fixed: Search bar is not showing in design three after enabling the search option in header option panel #3484
-* Fixed: Content blank if Color Attribute is in Span tag #3497
-* Fixed: Sticky Header has no background color when scrolling. #3498
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

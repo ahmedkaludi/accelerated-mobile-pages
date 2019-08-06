@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.2
-Stable tag: 0.9.98.3
+Stable tag: 0.9.98.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -188,6 +188,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 0.9.98.4 (6th AUGUST 2019) =
+* Improvements: Pagebuilder Compatibility Options in 'AMP By Automattic' Addon Mode Settings #3507
+* Fixed: Design is breaking in swift theme when RTL option is enabled #3527
+* Fixed: Validation error when width and height is empty in the logo #3530
+* Fixed: 'Read more' link in excerpt for category module of AMP page builder #3510
+* Fixed: Mobile redirection causing extra redirects from /amp to /amp/ #3459
+* Fixed: "Recent Posts below Related Posts" option should show only when it is available for the theme #3528
 
 = 0.9.98.3 (2nd AUGUST 2019) =
 * Improvements: OpenGraph Support in AMP #3261
