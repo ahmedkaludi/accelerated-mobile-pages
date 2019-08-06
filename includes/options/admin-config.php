@@ -5168,6 +5168,7 @@ $single_page_options = array(
             'title'    => esc_html__('Recent Posts below Related', 'accelerated-mobile-pages'),
             'tooltip-subtitle' => esc_html__('To enable & disable recent posts', 'accelerated-mobile-pages'),
             'default'  => 1,
+            'required' => array('amp-design-selector' , '=' , '4'),
         ),
         array(
                     'id'        => 'amforwp-recentpost-date-switch',
