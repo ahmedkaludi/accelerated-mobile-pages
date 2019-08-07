@@ -5510,7 +5510,7 @@ function element_layout_customizer(){
 $customizer_options = element_layout_customizer();
 function ampforwp_featured_video_default(){
             $default = '';
-            if(class_exists('CSCO_Fonts_Settings')){
+            if(function_exists( 'csco_setup' )){
                 $default = 'csco_post_embed';
             }
             return $default;
