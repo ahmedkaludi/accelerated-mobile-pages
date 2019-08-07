@@ -652,7 +652,11 @@ function ampforwp_bundle_core_amp_files(){
 	require_once ( AMP__VENDOR__DIR__ . '/includes/widgets/class-amp-widget-media-video.php' );
 	require_once ( AMP__VENDOR__DIR__ . '/includes/widgets/class-amp-widget-recent-comments.php' );
 	require_once ( AMP__VENDOR__DIR__ . '/includes/widgets/class-amp-widget-text.php' );
-
+	//Removed JNews AMP Extender #3526
+	if ( function_exists( 'jnews_get_option' ) ){
+		remove_action( 'plugins_loaded', 'jnews_amp' );
+		remove_filter( 'amp_content_sanitizers', 'jnews_amp_content_sanitize');
+	}
 } 
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
 
