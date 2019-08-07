@@ -83,3 +83,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 53. Updated class-amp-wistia-embed.php #3386
 54. Added class_exists('SQ_Classes_ObjController') condition to amp_post_template_add_schemaorg_metadata for Squirrly SEO Compatibility #3421
 55. class-amp-content.php updated #3422
+56. class-amp-img-sanitizer.php updated code to single quotes from alt attribute's content #3422
