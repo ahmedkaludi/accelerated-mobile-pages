@@ -4294,7 +4294,7 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 		    // Ensure that we always coerce class to being an array.
 		    $class = array();
 		}
-
+		$classes[] = get_post_type();
 		$classes = array_map( 'esc_attr', $classes );
 	    $classes = apply_filters( 'ampforwp_body_class', $classes, $class );
 	 
