@@ -194,7 +194,7 @@ if ( is_admin() ) {
             array(    
               'type'  =>'select',   
               'name'  =>"taxonomy_selection",   
-              'label' =>"Select Taxonomy",
+              'label' => esc_html__("Select Taxonomy","accelerated-mobile-pages"),
               'tab'     =>'customizer',
               'default' =>'',    
               'options' => $options,    
