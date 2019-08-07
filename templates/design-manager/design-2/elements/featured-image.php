@@ -37,7 +37,7 @@ if( $featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_c
 	elseif( true == ampforwp_get_setting('ampforwp-featured-image-from-content') && ampforwp_get_featured_image_from_content() ){
 		$amp_html = ampforwp_get_featured_image_from_content();
 	}
-	if( ampforwp_get_setting('amforwp-homepage-featured-video') && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) ){
+	if(!empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('ampforwp-featured-video') == true ){
 			?>
 			<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
 				<figure class="amp-wp-article-featured-image wp-caption">

@@ -32,7 +32,7 @@
 		<?php } // left sidebar ends ?>
 		</div>
 			<?php 
-			if(ampforwp_get_setting('swift-featued-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+			if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
 				if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
 					<div class="sf-img">
 						<?php amp_featured_video();?>
@@ -62,7 +62,7 @@
 						}	?>
 					<div class="cntn-wrp artl-cnt">
 						<?php 
-						if(ampforwp_get_setting('swift-featued-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+						if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
 							if(ampforwp_get_setting('swift-featued-image-type') == 2){
 								?>
 								<div class="sf-img">

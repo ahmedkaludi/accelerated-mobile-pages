@@ -7465,7 +7465,7 @@ function ampforwp_add_global_scripts($data){
 			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
 		}
 	}
-	if( ampforwp_get_setting('swift-featued-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+	if( ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
 		if ( empty( $data['amp_component_scripts']['amp-youtube'] ) ) {
 			$data['amp_component_scripts']['amp-youtube'] = 'https://cdn.ampproject.org/v0/amp-youtube-0.1.js';
 		}

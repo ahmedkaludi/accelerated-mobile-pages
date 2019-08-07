@@ -214,6 +214,7 @@ function amp_featured_image( ){
 
 //Featured Video
 function amp_featured_video($design_type='',$amp_thumnail = ''){
+
 	global $post;
 	$post_id = '';
 	$videoID = '';
@@ -225,6 +226,7 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 	$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
 	$youtubelink = get_post_meta($post_id, $metaKey, true);
 	if (  !empty($youtubelink) ) {
+
 		if(strpos($youtubelink, 'youtu.be')> 0){
 			$video_id = explode("youtu.be/", $youtubelink);
 			$videoID = $video_id[1];
@@ -248,9 +250,31 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 		}
 	}else{
 		if($design_type == 4 && !empty($amp_thumnail)){
-			echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
+			if(ampforwp_get_setting('single-design-type') == 1){
+				echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
+			}elseif(ampforwp_get_setting('single-design-type') == 4){
+				if(is_array($amp_thumnail)){
+					if ( $amp_thumnail['thumb_url'] && $amp_thumnail['show_image'] ) {
+					echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
+					}
+				}else{
+					echo $amp_thumnail;	
+				}
+			}elseif( ampforwp_get_setting('single-design-type') == 7){
+				if(is_array($amp_thumnail)){
+					if ( $amp_thumnail['thumb_url'] && $amp_thumnail['show_image'] ) {
+					echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
+					}
+				}else{
+					echo $amp_thumnail;	
+				}
+			}
 		}elseif($design_type == 3 && !empty($amp_thumnail) ){
-			echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
+			if(is_array($amp_thumnail)){
+				echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
+			}else{
+				echo $amp_thumnail;	
+			}
 		}elseif($design_type == 1 && !empty($amp_thumnail) ){
 			echo $amp_thumnail;
 		}elseif($design_type == 2 && !empty($amp_thumnail) ){
@@ -259,7 +283,6 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 			return amp_featured_image();	
 		}
 	}
-	return;
 }
 
 // Author Box
