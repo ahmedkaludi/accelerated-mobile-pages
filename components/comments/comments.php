@@ -225,8 +225,8 @@ function ampforwp_framework_get_vuukle_comments(){
 
  	$vuukle_html = '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
 
-		<div overflow tabindex="0" role="button" aria-label="Show comments">Show comments</div>';
-	echo $vuukle_html;
+		<div overflow tabindex="0" role="button" aria-label="Show comments">'.esc_html__('Show comments','accelerated-mobile-pages').'</div>';
+	echo $vuukle_html; // escaped above
 }
 
 function ampforwp_framework_get_spotim_comments(){
@@ -241,9 +241,9 @@ function ampforwp_framework_get_spotim_comments(){
 	$spotim_html = '<amp-iframe width="375" height="815" resizable sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation" layout="responsive"
 	  frameborder="0" src="'.esc_url($srcUrl).'">
 	  <amp-img placeholder height="815" layout="fill" src="//amp.spot.im/loader.png"></amp-img>
-	  <div overflow class="spot-im-amp-overflow" tabindex="0" role="button" aria-label="Read more">Load more...</div>
+	  <div overflow class="spot-im-amp-overflow" tabindex="0" role="button" aria-label="Read more">'.esc_html__('Load more...','accelerated-mobile-pages').'</div>
 	</amp-iframe>';
-	echo $spotim_html;
+	echo $spotim_html; // escaped above
 }
 
 // Comments Scripts

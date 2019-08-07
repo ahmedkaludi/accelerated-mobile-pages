@@ -57,7 +57,7 @@ function ampforwp_framework_get_tags_list($separator=''){
 							echo ('<span class="amp-tag"> '.esc_html($tag->name).'</span>');
 						}
 						if(!empty($separator) && count($ampforwp_tags)-1 > $key){
-							echo $separator;
+							echo esc_html($separator);
 						}
 					}?>
 				</div>
