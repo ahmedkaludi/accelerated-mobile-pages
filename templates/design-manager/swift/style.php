@@ -2175,4 +2175,16 @@ if( ampforwp_get_setting('amp-enable-notifications') && ampforwp_get_setting('en
 amp-user-notification{
 	bottom:40px;
 }
-<?php } //amp-enable-notifications Condition Ends Here ?> 
+<?php } //amp-enable-notifications Condition Ends Here
+if( true == ampforwp_get_setting('gnrl-sidebar') && true == ampforwp_get_setting('page_sidebar') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ){?>
+.cntn-wrp{
+    float: left;
+    max-width: 69%;
+}
+@media only screen and (max-width: 768px) {
+  .cntn-wrp{ 
+    float: none;
+    max-width:100%;
+  }
+}
+<?php } ?>

@@ -23,6 +23,8 @@ amp_header(); ?>
 					echo ampforwp_addThis_support(); 
 			} ?>
 			<div class="cntn-wrp">
+				<?php amp_content(); ?>
+			</div>	
 				<?php if( ampforwp_get_setting('gbl-sidebar') == '1' && ampforwp_is_front_page() ){ ?>				
 					<div class="<?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>cntr <?php } ?>pgb">
 						<div class="pg-lft">
@@ -54,9 +56,7 @@ amp_header(); ?>
 				</div>
 			<?php endif; ?>
 				<?php } ?>
-					<?php amp_content(); ?>
 				<?php } ?>
-			</div>
 			<?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ 
 			if( is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' !=  ampforwp_get_setting('swift-social-position') ) { ?>
 				<div class="ss-ic"><?php
