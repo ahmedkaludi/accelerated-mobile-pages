@@ -5571,7 +5571,7 @@ $single_page_options = array(
                     'id'       => 'ampforwp-number-of-recent-posts',
                     'type'     => 'text',
                 'class' => 'child_opt',
-                    'title'    => __('Number of Recent Post', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Number of Recent Post', 'accelerated-mobile-pages'),
                     'validate' => 'numeric',
                     'default'  => '6',
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
