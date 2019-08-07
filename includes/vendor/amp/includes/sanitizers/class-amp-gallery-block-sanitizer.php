@@ -127,9 +127,12 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 					
 				}
 			}
-
+			$fig_item = $node->getElementsByTagName( 'figure');
+			$ni =0;
 			// If not linking to anything then look for <amp-img>.
 			foreach ( $node->getElementsByTagName( 'amp-img' ) as $element ) {
+				$caption = $fig_item->item($ni)->nodeValue;
+				$ni++;
 				$url = $element->getAttribute('src');
 				$width = $element->getAttribute('width');
 				$height = $element->getAttribute('height');
@@ -141,6 +144,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 								'url' => $url,
 								'width' => $width,
 								'height' => $height,
+								'caption' => $caption
 							),$attachment_id);
 			}
 
@@ -221,6 +225,9 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 	}
 
 	public function render( $args, $node ) {
+		//var_dump($args);
+		//exit;
+
 		global $redux_builder_amp,$carousel_styling;
 		$this->did_convert_elements = true;
 		
@@ -247,6 +254,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 					'src' => $image['url'],
 					'width' => $image['width'],
 					'height' => $image['height'],
+					'caption' => $image['caption'],
 					'layout' => 'fill',
 					'class'  => 'amp-carousel-img',
 				);
