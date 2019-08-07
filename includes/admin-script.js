@@ -802,17 +802,6 @@ jQuery(document).ready(function($) {
         $("select[id=ampforwp-sd-type-pages-select]").val($(this).val());
         $("span[id=select2-ampforwp-sd-type-pages-select-container]").text($(this).val());
         // Save changes in redux
-        if ( $( this ).attr( 'opt_name' ) == redux.args.opt_name + '[defaults]' ) {
-            // Defaults button clicked
-            if ( !confirm( redux.args.reset_confirm ) ) {
-                return false;
-            }
-        } else if ( $( this ).attr( 'name' ) == redux.args.opt_name + '[defaults-section]' ) {
-            // Default section clicked
-            if ( !confirm( redux.args.reset_section_confirm ) ) {
-                return false;
-            }
-        }
         window.onbeforeunload = null;
         if ( redux.args.ajax_save === true ) {
             $.redux.ajax_save( $( this ) );
@@ -825,10 +814,19 @@ jQuery(document).ready(function($) {
     // Homepage and Frontpage
     $('input[id="amp-ux-homepage"]').click(function(){
             if($(this).prop("checked") == true){
-                $('.amp-ux-frontpage').show();
+                $('.amp-ux-frontpage').removeClass('hide');
                 $('input[id="amp-ux-frontpage-yes"]').click(function(){
                     if($(this).prop("checked") == true){
-                        $('.amp-ux-frontpage-select').show();
+                        // FrontPage
+                        $("input[data-id=amp-frontpage-select-option]").prop('checked', true).trigger( 'change' );
+                        $("input[id=amp-frontpage-select-option]").val(1);
+                        $('.amp-ux-frontpage-select').removeClass('hide');
+                        $('#amp-ux-frontpage-no').prop('checked', false);
+                            $('.amp-ux-frontpage-select').on('change', function(e){
+                                $("select[id=amp-frontpage-select-option-pages-select]").val($(this).val());
+                                $("span[id=select2-amp-frontpage-select-option-pages-select-container]").text($(this).val());
+
+                            });
                     }
                     else if($(this).prop("checked") == false ){
                          $('.amp-ux-frontpage-select').hide();
@@ -837,14 +835,22 @@ jQuery(document).ready(function($) {
                 $('input[id="amp-ux-frontpage-no"]').click(function(){
                     if($(this).prop("checked") == true){
                         $('.amp-ux-frontpage-select').hide();
+                        $('#amp-ux-frontpage-yes').prop('checked', false);
                     }
                 });
-                //alert("Checkbox is checked.");
             }
             else if($(this).prop("checked") == false){
                 $('.amp-ux-frontpage').hide();
-                //alert("Checkbox is unchecked.");
             }
         });
+        $('#amp-ux-home-section-btn').click(function(){
+            // Save changes in redux
+            window.onbeforeunload = null;
+            if ( redux.args.ajax_save === true ) {
+                $.redux.ajax_save( $( this ) );
+                e.preventDefault();
+            }
+        });
+
 
 });

@@ -1271,7 +1271,21 @@ Redux::setArgs( "redux_builder_amp", $args );
         ampforwp_admin_contact_form_options($opt_name);
     }
 
-    // New UX
+    // New AMP UX
+    $amp_ux_page = '';
+    if( ampforwp_get_setting('redux_builder_amp-amp-frontpage-select-option') ) {
+        $frontpage = get_post( ampforwp_get_setting('amp-frontpage-select-option-pages') );
+        $amp_ux_page = '<option value="'.$frontpage->ID.'">'.$frontpage->post_title.'</option>';
+    }
+    else{
+        $amp_ux_page = '<option>Choose here</option>';
+        $amp_ux_pages = get_pages(array('posts_per_page'=>'500'));
+        if ( !empty($amp_ux_pages) ) {
+            foreach ( $amp_ux_pages as $page ) {
+                $amp_ux_page .= '<option value="'.$page->ID.'">'. $page->post_title.'</option>';
+            }
+        }
+    }
         Redux::setSection( $opt_name, array(
             'title'      => esc_html__( 'Setup', 'accelerated-mobile-pages' ),
             'id'         => 'ampforwp-new-ux',
@@ -1346,13 +1360,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                                         <input type="checkbox" id="amp-ux-homepage" name="amp-ux-homepage">Homepage<br>
                                         <div class="amp-ux-frontpage hide">
                                             <p>Do you use Custom FrontPage?</p><input id="amp-ux-frontpage-yes" type="checkbox">Y<input id="amp-ux-frontpage-no" type="checkbox">N
-                                            <pre><select id="amp-ux-frontpage-select" class="amp-ux-frontpage-select hide">
-                                            <option>Choose here</option>
+                                            <pre><select id="amp-ux-frontpage-select" class="amp-ux-frontpage-select hide">'.$amp_ux_page.'
                                             </select></pre>
                                         </div>
                                         <input type="checkbox" name="amp-ux-posts">Posts<br>
                                         <input type="checkbox" name="amp-ux-pages">Pages<br>
                                         <input type="checkbox" name="amp-ux-archives">Archives<br>
+                                        <div class="button btn-white " id="amp-ux-home-section-btn" data-secure="'.wp_create_nonce('verify_module').'">Done</div>
                                     </div>
                                     <div class="hide design-presentation">
                                         <h2>Setup Your Logo</h2>
