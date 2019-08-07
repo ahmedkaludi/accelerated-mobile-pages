@@ -54,7 +54,7 @@ function ampforwp_thirdparty_compatibility(){
 	remove_filter( 'the_excerpt', 'shortPixelConvertImgToPictureAddWebp', 10000 );
 	remove_filter( 'post_thumbnail_html', 'shortPixelConvertImgToPictureAddWebp');
 	//Validation error with Authentic theme #3535
-	remove_filter( 'amp_post_template_data', 'csco_amp_post_template_data', 10, 2 );
+	//remove_filter( 'amp_post_template_data', 'csco_amp_post_template_data', 10, 2 );
 }
 
 //Updater to check license

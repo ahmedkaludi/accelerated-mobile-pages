@@ -290,11 +290,14 @@
 						            $my_query->the_post();
 						        ?>
 						        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
-						        	<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { if(ampforwp_has_post_thumbnail()){?>
+						  		<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { 
+						        	if(ampforwp_has_post_thumbnail()){?>
 							            <div class="rlp-image">     
 							                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
 										</div>
-									<?php } } ?>	
+									<?php 
+										} 
+									} ?>	
 									<div class="rlp-cnt">
 										<?php 
 										$show_excerpt_opt = ampforwp_get_setting('ampforwp-single-related-posts-excerpt');

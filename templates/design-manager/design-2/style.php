@@ -836,3 +836,8 @@ amp-user-notification{
 	width:100px;
 	height:75px;
 }
+.has_related_thumbnail .loop-img amp-youtube{
+  width:150px;
+  float:left;
+  margin-right:15px;
+}

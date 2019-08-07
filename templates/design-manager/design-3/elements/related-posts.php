@@ -99,13 +99,21 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 							<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
 								<div class="related-post_image">
 	                            <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-							<?php if ( ampforwp_has_post_thumbnail() ) { 
+							<?php if ( ampforwp_has_post_thumbnail() || ampforwp_get_setting('swift-featued-video') == true) { 
 							$thumb_url = ampforwp_get_post_thumbnail();
 							$thumb_width  	= ampforwp_get_post_thumbnail('width');
 							$thumb_height 	= ampforwp_get_post_thumbnail('height');
-							if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
+							$image_attr = array();
+							if( ampforwp_get_setting('swift-featued-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) ){
+								$image_attr['thumb_url'] = ampforwp_get_post_thumbnail();
+								$image_attr['thumb_width'] = ampforwp_get_post_thumbnail('width');
+								$image_attr['thumb_height'] = ampforwp_get_post_thumbnail('height');
+								amp_featured_video(3,$image_attr);
+							}else{
+								if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
 				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo $thumb_width; ?> height=<?php echo $thumb_height; ?> layout="responsive"></amp-img>
 							<?php } 
+								}
 							}?>
 	                  		</a>
 	                  	</div>

@@ -213,7 +213,7 @@ function amp_featured_image( ){
 }
 
 //Featured Video
-function amp_featured_video($amp_html = ''){
+function amp_featured_video($design_type='',$amp_thumnail = ''){
 	global $post;
 	$post_id = '';
 	$videoID = '';
@@ -247,10 +247,17 @@ function amp_featured_video($amp_html = ''){
 			echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>' . $container_end;
 		}
 	}else{
-		if( !empty($amp_html)){
-			echo $amp_html;
+		if($design_type == 4 && !empty($amp_thumnail)){
+			echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
+		}elseif($design_type == 3 && !empty($amp_thumnail) ){
+			echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
+		}elseif($design_type == 1 && !empty($amp_thumnail) ){
+			echo $amp_thumnail;
+		}elseif($design_type == 2 && !empty($amp_thumnail) ){
+			echo $amp_thumnail;
+		}else{
+			return amp_featured_image();	
 		}
-		return amp_featured_image();
 	}
 	return;
 }
