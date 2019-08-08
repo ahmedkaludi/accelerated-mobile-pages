@@ -569,6 +569,7 @@ function amp_loop_image( $data=array() ) {
 		}
 			
 		}else{
+			
 			if (  ampforwp_get_setting('ampforwp-featured-video')==true && !empty($youtubelink) && (ampforwp_get_setting('amforwp-homepage-featured-video') == true || is_singular())) {
 
 				if(strpos($youtubelink, 'youtu.be')> 0){

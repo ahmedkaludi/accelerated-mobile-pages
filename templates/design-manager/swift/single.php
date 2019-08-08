@@ -406,7 +406,7 @@
 		<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
 	<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
 		<div class="fsp">
-			<?php if( ampforwp_has_post_thumbnail() ){
+			<?php if( ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))){
 				$width 	= 346;
 				$height = 188;
 				if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
@@ -685,7 +685,7 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 						<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
 							<div class="fsp">
 								<?php
-								if(ampforwp_has_post_thumbnail()){
+								if(ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))){
 									$width 	= 346;
 									$height = 188;
 									if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
