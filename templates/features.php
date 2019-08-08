@@ -1408,6 +1408,9 @@ function ampforwp_add_proper_post_meta(){
 	if ( class_exists('WPSEO_Options') ) {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta_homepage' );
 		// Homepage/Frontpage/Blog
+		if(ampforwp_is_front_page()){
+			add_action('pre_amp_render_post','ampforwp_yoast_the_excerpt',33);
+		}
 		if(is_home()){
 			// Title
 			add_filter('wpseo_opengraph_title', 'ampforwp_yoast_opengraph_title');
@@ -1488,6 +1491,24 @@ function ampforwp_yoast_opengraph_desc($desc){
 	}
 	return $desc;
 }
+
+function ampforwp_yoast_the_excerpt(){
+	add_filter('get_the_excerpt','ampforwp_yoast_excerpt',9);
+}
+function ampforwp_yoast_excerpt($desc){
+	 if(ampforwp_is_front_page()){
+	 	$get_meta_excerpt = get_post_meta(ampforwp_get_the_ID());
+	 	if(isset($get_meta_excerpt['_yoast_wpseo_metadesc'])){
+	 		$desc = $get_meta_excerpt['_yoast_wpseo_metadesc'];
+	 	}
+	 	if ( ! is_string( $desc ) || ( is_string( $desc ) && $desc === '' ) ) {
+	 		$post = get_post(ampforwp_get_the_ID());
+	 		$desc = wp_trim_words( strip_shortcodes( $post->post_content ) , 15 );
+	 	}
+	 }
+	return $desc;
+}
+
 function ampforwp_yoast_twitter_desc($desc){
 	if ( ampforwp_yoast_social_desc('twitter') ){
 		$desc = ampforwp_yoast_social_desc('twitter');
