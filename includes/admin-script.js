@@ -985,7 +985,7 @@ jQuery(document).ready(function($){
         if(value == 1){
             $("#single-design-type_2").attr('checked', true);
         }else {
-            $("#single-design-type_1").attr('checked', true);
+            //$("#single-design-type_1").attr('checked', true);
         }
 
     });
