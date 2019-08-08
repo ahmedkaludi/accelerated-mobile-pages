@@ -388,5 +388,5 @@ function ampforwp_gallery_lightbox(){
 					            role="button" tabindex="0"></button>
 					      </div>
 					    </amp-image-lightbox>';
-	echo $amp_image_lightbox;
+	echo $amp_image_lightbox; // nothing to escaped
 }

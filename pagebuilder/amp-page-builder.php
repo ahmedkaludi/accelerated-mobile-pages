@@ -143,7 +143,7 @@ function ampforwp_call_page_builder(){
 		</div>
 		<div id="amp-page-builder" v-if="startPagebuilder==1">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
-	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php echo $previousData; ?>'>
+	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php echo $previousData; // nothing to escaped ?>'>
 	        <?php /* This is where we gonna add & manage rows */ ?>
 			<div id="sorted_rows" class="amppb-rows drop" >
 				<drop class="drop" :class="{'row-dropping':rowOverDrop}" @drop="handleDrop" @dragover="rowOverDrop = true"
@@ -277,7 +277,7 @@ function ampforwp_call_page_builder(){
 		</div><!-- .amppb-rows -->
 
 		<div class="modules-options">
-         	<div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; ?>">
+         	<div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; // nothing to escaped ?>">
 	        	<drag class="drag" :transfer-data='{type: "column",value: "col-1",rowSettingJson:<?php echo json_encode($backendRowSetting); ?>}' :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-1" class="amppb-add-row button-primary button-large module-col-1" data-template="col-1"
 				    >1 Column</span>

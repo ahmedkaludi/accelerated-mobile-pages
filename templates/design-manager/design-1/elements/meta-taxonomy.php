@@ -77,7 +77,7 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	                } 
 	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );
 	               	echo ampforwp_yoast_twitter_handle();  
-	               	echo $post_author->description;
+	               	echo esc_html($post_author->description);
 	            } ?>
 	    </div>
 	</div> <?php

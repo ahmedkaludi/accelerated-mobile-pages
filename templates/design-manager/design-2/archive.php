@@ -28,7 +28,7 @@
 	$amp_component_scripts = $sanitizer->amp_scripts;
 	if ( $sanitizer && $amp_component_scripts) {	
 		foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { ?>
-			<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo esc_url($ampforwp_js_file); ?>" async></script> <?php
+			<script custom-element="<?php echo esc_html($ampforwp_service); ?>"  src="<?php echo esc_url($ampforwp_js_file); ?>" async></script> <?php
 		}
 	}?>
 	<style amp-custom>
@@ -126,9 +126,9 @@
 				<?php 
 					$title_name = '<a href="'.esc_url( $ampforwp_amp_post_url ).'">'.get_the_title().'</a>';
 					if( ampforwp_default_logo() ){ ?>
-						<h2 class="amp-wp-title"><?php echo $title_name; ?></h2>
+						<h2 class="amp-wp-title"><?php echo $title_name; // escaped above ?></h2>
 					<?php }else{ ?>
-						<h3 class="amp-wp-title"><?php echo $title_name ?></h3>
+						<h3 class="amp-wp-title"><?php echo $title_name; // escaped above ?></h3>
 					<?php } ?> 
 				<?php if( ampforwp_check_excerpt() ) {
 					$class = 'large-screen-excerpt';
