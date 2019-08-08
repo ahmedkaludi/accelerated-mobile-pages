@@ -957,7 +957,7 @@ function checkAMPforPageBuilderStatus($postId){
 
       $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
       
-        if( $ampforwp_pagebuilder_enable=='yes' && true == ampforwp_get_setting('ampforwp-pagebuilder')){
+        if( $ampforwp_pagebuilder_enable=='yes' && true == ampforwp_get_setting('ampforwp-pagebuilder') && !empty(amppb_post_content('')) ){
             $response = true;
         }else{
             $response = false;
