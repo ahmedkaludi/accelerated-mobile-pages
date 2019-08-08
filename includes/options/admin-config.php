@@ -1363,20 +1363,18 @@ Redux::setArgs( "redux_builder_amp", $args );
                                             <pre><select id="amp-ux-frontpage-select" class="amp-ux-frontpage-select hide">'.$amp_ux_page.'
                                             </select></pre>
                                         </div>
-                                        <input type="checkbox" name="amp-ux-posts">Posts<br>
-                                        <input type="checkbox" name="amp-ux-pages">Pages<br>
-                                        <input type="checkbox" name="amp-ux-archives">Archives<br>
+                                        <input type="checkbox" id="amp-ux-posts" name="amp-ux-posts">Posts<br>
+                                        <input type="checkbox" id="amp-ux-pages" name="amp-ux-pages">Pages<br>
+                                        <input type="checkbox" id="amp-ux-archives" name="amp-ux-archives">Archives<br>
                                         <div class="button btn-white " id="amp-ux-home-section-btn" data-secure="'.wp_create_nonce('verify_module').'">Done</div>
                                     </div>
                                     <div class="hide design-presentation">
                                         <h2>Setup Your Logo</h2>
-                                        <fieldset id="amp-ux-opt-media" class="redux-field-container redux-field redux-container-media" data-id="opt-media" data-type="media"><input type="hidden" class="data" data-mode="image"><input type="hidden" class="library-filter" data-lib-filter=""><input type="hidden" class="upload-id " name="amp-ux-logo-id" id="amp-ux-logo-id" value=""><input type="hidden" class="upload-height" name="amp-ux-logo-height" id="amp-ux-logo-height" value=""><input type="hidden" class="upload-width" name="amp-ux-logo-width" id="amp-ux-logo-width" value=""><input type="hidden" class="upload-thumbnail" name="amp-ux-logo-thumb" id="amp-ux-logo-thumb" value=""><div class="hide screenshot"><a class="of-uploaded-image" href="" target="_blank"><img class="redux-option-image" id="image_opt-media" src="" alt="" target="_blank" rel="external"></a></div><div class="upload_button_div"><span class="button media_upload_button" id="opt-media-media">Upload</span><span class="button remove-image hide" id="reset_opt-media" rel="opt-media">Remove</span></div>
+                                        <fieldset id="amp-ux-opt-media" class="redux-field-container redux-field redux-container-media" data-id="opt-media" data-type="media"><input placeholder="No media selected" type="text" class="upload large-text " id="amp-ux-opt-media-url" value="" readonly="readonly"><input type="hidden" class="data" data-mode="image"><input type="hidden" class="library-filter" data-lib-filter=""><input type="hidden" class="upload-id " name="amp-ux-logo-id" id="amp-ux-logo-id" value=""><input type="hidden" class="upload-height" name="amp-ux-logo-height" id="amp-ux-logo-height" value=""><input type="hidden" class="upload-width" name="amp-ux-logo-width" id="amp-ux-logo-width" value=""><input type="hidden" class="upload-thumbnail" name="amp-ux-logo-thumb" id="amp-ux-logo-thumb" value=""><div class="hide screenshot"><a class="of-uploaded-image" href="" target="_blank"><img class="redux-option-image" id="image_opt-media" src="" alt="" target="_blank" rel="external"></a></div><div class="upload_button_div"><span class="button media_upload_button" id="opt-media-media">Upload</span><span class="button remove-image hide" id="reset_opt-media" rel="opt-media">Remove</span></div>
                                         </fieldset>
 
-                                        <div class="redux-color-rgba-container " data-id="amp-ux-color-scheme" data-show-input="1" data-show-initial="" data-show-alpha="1" data-show-palette="" data-show-palette-only="" data-show-selection-palette="" data-max-palette-size="10" data-allow-empty="1" data-clickout-fires-change="" data-choose-text="Choose" data-cancel-text="Cancel" data-input-text="Select Color" data-show-buttons="1" data-palette="null">
-                                            <h2>Color Scheme</h2>
-                                            <input name="amp-ux-color" id="amp-ux-color-scheme-color" class="redux-color-rgba" type="text" value="#005be2" data-color="rgba(0,91,226,1)" data-id="amp-ux-color-scheme" data-current-color="#005be2" data-block-id="amp-ux-color-scheme" data-output-transparent="" style="display: none;"><div class="sp-replacer sp-light redux-color-rgba undefined"><div class="sp-preview"><div class="sp-preview-inner" style="background-color: rgb(195, 17, 184);"></div></div><div class="sp-dd">Select Color</div></div><input type="hidden" class="redux-hidden-color" data-id="amp-ux-color-scheme-color" id="swift-color-scheme-color" value="#005be2"><input type="hidden" class="redux-hidden-alpha" data-id="amp-ux-color-scheme-alpha" name="amp-ux-color-alpha" id="swift-color-scheme-alpha" value="1"><input type="hidden" class="redux-hidden-rgba" data-id="amp-ux-color-scheme-rgba" name="amp-ux-color-scheme-rgba" id="swift-color-scheme-rgba" value="rgba(0,91,226,1)">
-                                        </div>
+                                        <fieldset id="amp-ux-color-scheme" class="redux-field-container redux-field redux-container-color_rgba" data-id="amp-ux-color-scheme" data-type="color_rgba"><div class="redux-color-rgba-container " data-id="amp-ux-color-scheme" data-show-input="1" data-show-initial="" data-show-alpha="1" data-show-palette="" data-show-palette-only="" data-show-selection-palette="" data-max-palette-size="10" data-allow-empty="1" data-clickout-fires-change="" data-choose-text="Choose" data-cancel-text="Cancel" data-input-text="Select Color" data-show-buttons="1" data-palette="null"><input id="amp-ux-color-scheme-color" class="redux-color-rgba" type="text" value="" data-color="" data-id="amp-ux-color-scheme" data-current-color="" data-block-id="amp-ux-color-scheme" data-output-transparent="" style="display: none;"><div class="sp-replacer sp-light redux-color-rgba undefined"><div class="sp-preview"><div class="sp-preview-inner sp-clear-display" style="background-color: transparent;"></div></div><div class="sp-dd">Select Color</div></div><input type="hidden" class="redux-hidden-color" data-id="amp-ux-color-scheme-color" id="amp-ux-color-scheme-color" value=""><input type="hidden" class="redux-hidden-alpha" data-id="swift-color-scheme-alpha"  id="amp-ux-color-scheme-alpha" value=""><input type="hidden" class="redux-hidden-rgba" data-id="amp-ux-color-scheme-rgba"  id="amp-ux-color-scheme-rgba" value=""></div></fieldset>
+                                        <div class="button btn-white " id="amp-ux-design-section-btn" data-secure="'.wp_create_nonce('verify_module').'">Done</div>
                                     </div>
                                     <div class="hide analytics-tracking">
                                         <div>
@@ -1464,29 +1462,32 @@ Redux::setArgs( "redux_builder_amp", $args );
                                     <div class="hide privacy-settings">
                                         <h2>Cookie Notice Bar</h2>
                                         <label class="ios7-switch">
-                                            <input class="switch-on-off" type="checkbox" data-id="amp-ux-notice-switch">
+                                            <input id="amp-ux-notice-switch" class="amp-ux-switch-on-off" type="checkbox" data-id="amp-ux-notice-switch">
                                             <span></span>
                                         </label>
+                                        <input type="hidden" class="checkbox checkbox-input " id="amp-ux-notice-switch" value="">
                                         <p>Cookie Bar allows you to discreetly inform visitors that your website uses cookies.</p>
                                         <h2>GDPR</h2>
                                         <label class="ios7-switch">
-                                            <input class="switch-on-off" type="checkbox" data-id="amp-ux-gdpr-switch">
+                                            <input id="amp-ux-gdpr-switch" class="switch-on-off" type="checkbox" data-id="amp-ux-gdpr-switch">
                                             <span></span>
                                         </label>
+                                        <input type="hidden" class="checkbox checkbox-input " id="amp-ux-gdpr-switch" value="">
                                         <p>Comply with European privacy regulations(GDPR). Recommended for EU Citizens.</p>
                                     </div>
                                     <div class="hide 3rd-party">
                                         <div class="amp-ux-seo">
                                             <h2>SEO</h2>
                                             <select class="ampforwp-ux-seo-select">
-                                            <option>Yoast SEO</option>
-                                            <option>All in One SEO</option>
-                                            <option>Rank Math SEO</option>
-                                            <option>Genesis</option>
-                                            <option>SEOPress</option>
-                                            <option>Bridge Qode SEO</option>
-                                            <option>The SEO Framework</option>
-                                            <option>Squirrly SEO</option>
+                                            <option>Select</option>
+                                            <option value="yoast" '.(ampforwp_get_setting('ampforwp-seo-selection')=='yoast'?'selected':'').'>Yoast SEO</option>
+                                            <option value="aioseo" '.(ampforwp_get_setting('ampforwp-seo-selection')=='aioseo'?'selected':'').'>All in One SEO</option>
+                                            <option value="rank_math" '.(ampforwp_get_setting('ampforwp-seo-selection')=='rank_math'?'selected':'').'>Rank Math SEO</option>
+                                            <option value="genesis" '.(ampforwp_get_setting('ampforwp-seo-selection')=='genesis'?'selected':'').'>Genesis</option>
+                                            <option value="seopress" '.(ampforwp_get_setting('ampforwp-seo-selection')=='seopress'?'selected':'').'>SEOPress</option>
+                                            <option value="bridge" '.(ampforwp_get_setting('ampforwp-seo-selection')=='bridge'?'selected':'').'>Bridge Qode SEO</option>
+                                            <optionvalue="seo_framework" '.(ampforwp_get_setting('ampforwp-seo-selection')=='seo_framework'?'selected':'').'>The SEO Framework</option>
+                                            <option value="squirrly" '.(ampforwp_get_setting('ampforwp-seo-selection')=='squirrly'?'selected':'').'>Squirrly SEO</option>
                                             </select>
                                         </div>
                                         <div>
