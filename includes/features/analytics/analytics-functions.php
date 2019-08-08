@@ -12,13 +12,19 @@ function ampforwp_analytics() {
 		$ga_account = str_replace(' ', '', $ga_account);
 		$ga_fields = array(
 						'vars'=>array(
-							'account'=>$ga_account,
+							'gtag_id'=>$ga_account,
 							),
-						'triggers'=> array(
-							'trackPageview'=> array(
+					);
+
+		$ga_fields['vars']['config'] = array(
+						$ga_account=> array(
+								'groups'=>'default',
+						)
+					);
+		$ga_fields['vars']['triggers'] = array(
+						'trackPageview'=> array(
 								'on'=>'visible',
 								'request'=>'pageview'
-							)
 						)
 					);
 		if ( true == ampforwp_get_setting('ampforwp-ga-field-anonymizeIP')) {
@@ -36,7 +42,7 @@ function ampforwp_analytics() {
 			$ampforwp_ga_fields = preg_replace('/\n\s*\n/', '', $ampforwp_ga_fields);
 			}
 	 		?>
-			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="googleanalytics" id="analytics1">
+			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="gtag" id="analytics1" data-credentials="include" >
 				<script type="application/json">
 					<?php echo $ampforwp_ga_fields; ?>
 				</script>
