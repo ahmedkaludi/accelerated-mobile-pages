@@ -442,7 +442,7 @@ if (! function_exists('amp_loop_the_permalink')){
 
 function amp_loop_image( $data=array() ) {
 	global $ampLoopData, $counterOffset, $redux_builder_amp;
-		if (ampforwp_has_post_thumbnail()  || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))) {
+		if (ampforwp_has_post_thumbnail()  || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('amforwp-homepage-featured-video') == true)) {
 		$tag 				= 'div';
 		$tag_class 			= '';
 		$layout_responsive 	= '';
@@ -498,7 +498,12 @@ function amp_loop_image( $data=array() ) {
 			$thumb_width = $thumb_url_array[1];
 			$thumb_height = $thumb_url_array[2];
 		}
+		$post_id   = get_the_ID();
+		$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+		$youtubelink = get_post_meta($post_id, $metaKey, true);
+
 		if ( $thumb_url ) {
+			
 			$imageLink = amp_loop_permalink(true);
 			$post_id   = get_the_ID();
 			$post_thumbnail_id = get_post_thumbnail_id( $post_id );
@@ -519,11 +524,10 @@ function amp_loop_image( $data=array() ) {
 				$imageClass			= $changesInImageData["image_class"];
 				$imageLink			= $changesInImageData["image_link"];
 			}
-		$post_id   = get_the_ID();
-		$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-		$youtubelink = get_post_meta($post_id, $metaKey, true);
+		
 		if(ampforwp_get_setting('ampforwp-featured-video')==true ){
 			if (  !empty($youtubelink) && (ampforwp_get_setting('amforwp-homepage-featured-video') == true || is_singular())) {
+
 				if(strpos($youtubelink, 'youtu.be')> 0){
 					$video_id = explode("youtu.be/", $youtubelink);
 					$videoID = $video_id[1];
@@ -564,6 +568,29 @@ function amp_loop_image( $data=array() ) {
 			
 		}
 			
+		}else{
+			if (  ampforwp_get_setting('ampforwp-featured-video')==true && !empty($youtubelink) && (ampforwp_get_setting('amforwp-homepage-featured-video') == true || is_singular())) {
+
+				if(strpos($youtubelink, 'youtu.be')> 0){
+					$video_id = explode("youtu.be/", $youtubelink);
+					$videoID = $video_id[1];
+				}elseif( strpos($youtubelink, 'youtube.com/watch')> 0){
+					$video_id = explode("?v=", $youtubelink);
+					if (empty($video_id[1])){
+					    $video_id = explode("/v/", $youtubelink);
+					}
+					$video_id = explode("&", $video_id[1]);
+					$videoID = $video_id[0];
+				}elseif( strpos($youtubelink, 'youtube.com/embed')> 0){
+					$video_id = explode("/", $youtubelink);
+					$videoID = end($video_id);
+				}
+				$container_start = '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
+				$container_end = '</'.$tag.'>';
+				if(!empty($videoID)){
+					echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>' . $container_end;
+				}
+			}
 		}
      }
 } 

@@ -225,8 +225,9 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 	}
 	$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
 	$youtubelink = get_post_meta($post_id, $metaKey, true);
-	if (  !empty($youtubelink) ) {
 
+	if (  !empty($youtubelink) ) {
+		
 		if(strpos($youtubelink, 'youtu.be')> 0){
 			$video_id = explode("youtu.be/", $youtubelink);
 			$videoID = $video_id[1];
