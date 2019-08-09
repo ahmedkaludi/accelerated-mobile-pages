@@ -2250,17 +2250,17 @@ function ampforwp_editable_archvies_title($title) {
 //39. #560 Header and Footer Editable html enabled script area
 add_action('amp_post_template_footer','ampforwp_footer_html_output',11);
 function ampforwp_footer_html_output() {
-  global $redux_builder_amp;
-  if( $redux_builder_amp['amp-footer-text-area-for-html'] ) {
-    echo $redux_builder_amp['amp-footer-text-area-for-html'] ;
+
+  if( ampforwp_get_setting('amp-footer-text-area-for-html') ) {
+    echo ampforwp_get_setting('amp-footer-text-area-for-html') ;
   }
 }
 
 add_action('amp_post_template_head','ampforwp_header_html_output',11);
 function ampforwp_header_html_output() {
-  global $redux_builder_amp;
-  if( $redux_builder_amp['amp-header-text-area-for-html'] ) {
-    echo $redux_builder_amp['amp-header-text-area-for-html'] ;
+
+  if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
+    echo ampforwp_get_setting('amp-header-text-area-for-html') ;
   }
   // amphtml tag when AMP Takeover is enabled #2550
   if(ampforwp_get_setting('ampforwp-amp-takeover') == true){
@@ -4127,9 +4127,9 @@ function ampforwp_visit_amp_in_admin_bar($admin_bar) {
 // Things to be added in the Body Tag #1064
 add_action('ampforwp_body_beginning','ampforwp_body_beginning_html_output',11);
 function ampforwp_body_beginning_html_output(){
-	global $redux_builder_amp;
-  	if( $redux_builder_amp['amp-body-text-area'] ) {
-    	echo $redux_builder_amp['amp-body-text-area'] ;
+
+  	if( ampforwp_get_setting('amp-body-text-area') ) {
+    	echo ampforwp_get_setting('amp-body-text-area') ;
   }
 }
 
@@ -5415,7 +5415,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 	    }
 	}
 
-    echo $font_output;
+    echo $font_output; // escaped above
   }
 }
 
@@ -6843,7 +6843,7 @@ function ampforwp_webp_featured_image() {
 		<figure class="amp-wp-article-featured-image">
 			<?php 
 			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){
-				echo $image_output;
+				echo $image_output; // escaped above
 			}
 			 ?>
 		</figure>

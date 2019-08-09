@@ -54,7 +54,7 @@ if ( get_query_var( 'paged' ) ) {
 		  <amp-carousel width="450"
 		      height="270" layout="responsive"
 		      type="slides" <?php echo esc_attr($autoplay.' ');
-		      echo $delay; ?> >
+		      echo esc_html($delay); ?> >
 		<?php
 		  global $redux_builder_amp;
 		  if( ( isset($redux_builder_amp['amp-design-3-featured-content']) && $redux_builder_amp['amp-design-3-featured-content'] == '1' ) && (isset($redux_builder_amp['amp-design-3-category-selector']) && $redux_builder_amp['amp-design-3-category-selector'] ) ){

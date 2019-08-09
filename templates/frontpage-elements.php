@@ -104,7 +104,7 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 				}		
 			}
 			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
-			echo $ampforwp_the_content;
+			echo $ampforwp_the_content; // amphtml content; no kses
 			do_action( 'ampforwp_after_post_content', $template );
 			?>
 
@@ -188,7 +188,7 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
 				}
 			}
 			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
-			echo $ampforwp_the_content;
+			echo $ampforwp_the_content; // amphtml content; no kses
 			do_action( 'ampforwp_after_post_content', $template ); ?>
 
 		</div>
@@ -275,7 +275,7 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 					}
 				}	
 				$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
-				echo $ampforwp_the_content;
+				echo $ampforwp_the_content; // amphtml content; no kses
 				do_action( 'ampforwp_after_post_content', $template ); ?>
 
 			</div>
