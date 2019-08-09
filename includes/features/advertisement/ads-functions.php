@@ -138,7 +138,7 @@ function ampforwp_footer_advert() {
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_2">';
 		$output	.=	'<amp-ad class="amp-ad-2" 
-					type="adsense" '. esc_html($optimize) .'
+					type="adsense" '. esc_attr($optimize) .'
 					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
 					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-2').'"
 					data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-2') .'"';
@@ -310,7 +310,7 @@ function ampforwp_after_post_content_advert() {
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_4">';
 		$output	.=	'<amp-ad class="amp-ad-4"
-					type="adsense" '. esc_html($optimize) .'
+					type="adsense" '. esc_attr($optimize) .'
 					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
 					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-4').'"
 					data-ad-slot="'. ampforwp_get_setting('enable-amp-ads-text-feild-slot-4') .'"';
@@ -455,7 +455,7 @@ function ampforwp_above_related_post_advert() {
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_6">';
 		$output	.=	'<amp-ad class="amp-ad-6"
-					type="adsense" '. esc_html($optimize) .'
+					type="adsense" '. esc_attr($optimize) .'
 					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
 					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-6').'"
 					data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-6') .'"';
