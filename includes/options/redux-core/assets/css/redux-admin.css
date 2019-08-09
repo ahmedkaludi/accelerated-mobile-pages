@@ -1184,3 +1184,8 @@ a.bfcm {
     text-align: center;
     display: block;
 }
+#info-info_normal_amp_popup.redux-notice-field{
+    padding: 0;
+    box-shadow: none;
+    border: none;
+} 
