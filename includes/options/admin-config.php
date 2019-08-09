@@ -1413,6 +1413,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'    => esc_html__('Resize', 'accelerated-mobile-pages'),
                 'type'     => 'switch',
                 'default'  => 0,
+                'required'=>array('opt-media','!=',''),
             ),
             array(
                 'id'       => 'ampforwp-custom-logo-dimensions-options',
