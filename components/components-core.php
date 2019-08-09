@@ -275,7 +275,7 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 			if(is_array($amp_thumnail) && !empty($amp_thumnail['thumb_url'])){
 				echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
 			}else{
-				if(is_single()){
+				if(!is_array($amp_thumnail)){
 					echo $amp_thumnail;		
 				}
 			}
