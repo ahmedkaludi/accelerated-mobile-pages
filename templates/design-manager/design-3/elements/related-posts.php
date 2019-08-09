@@ -95,8 +95,28 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 							$related_post_permalink = ampforwp_url_controller( get_permalink() );
 							if (  ampforwp_get_setting('ampforwp-single-related-posts-link') ) {
 								$related_post_permalink = get_permalink();
-							}?>
-							<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
+							}
+							$noimgClass = '';
+							if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
+								if( empty(get_post_meta(get_the_ID(),'csco_post_embed',true) ) ) {
+						 			if( ampforwp_has_post_thumbnail()){
+						 				$noimgClass = "has_related_thumbnail";
+						 			}else{
+						 				$noimgClass = "no_related_thumbnail";
+						 			}
+						 		}else{
+						 			$noimgClass = "has_related_thumbnail";
+						 		}
+							}else{
+								if( ampforwp_has_post_thumbnail()){
+									$noimgClass = "has_related_thumbnail";
+								}else{
+									$noimgClass = "no_related_thumbnail";
+								}
+							}
+
+							?>
+							<li class="<?php echo $noimgClass; ?>">
 								<div class="related-post_image">
 	                            <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 							<?php if ( ampforwp_has_post_thumbnail() || ampforwp_get_setting('ampforwp-featured-video') == true) { 

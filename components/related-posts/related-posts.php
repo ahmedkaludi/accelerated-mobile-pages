@@ -123,7 +123,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 	?>
 	<a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 	    <?php
-	    if (ampforwp_has_post_thumbnail() || ampforwp_get_setting('ampforwp-featured-video') == true) {
+	    if (ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))) {
 	    	$thumb_url = ampforwp_get_post_thumbnail('url', $imagetype);
 			$thumb_width = ampforwp_get_post_thumbnail('width', $imagetype);
 			$thumb_height = ampforwp_get_post_thumbnail('height', $imagetype);

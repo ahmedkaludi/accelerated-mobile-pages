@@ -271,10 +271,13 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 				}
 			}
 		}elseif($design_type == 3 && !empty($amp_thumnail) ){
-			if(is_array($amp_thumnail)){
+	
+			if(is_array($amp_thumnail) && !empty($amp_thumnail['thumb_url'])){
 				echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
 			}else{
-				echo $amp_thumnail;	
+				if(is_single()){
+					echo $amp_thumnail;		
+				}
 			}
 		}elseif($design_type == 1 && !empty($amp_thumnail) ){
 			echo $amp_thumnail;
