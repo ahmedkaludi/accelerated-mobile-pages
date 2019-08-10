@@ -82,7 +82,7 @@ figure.aligncenter amp-img {margin: 0 auto;}
 if( class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) &&  (is_page() || ampforwp_is_front_page() ) && ( function_exists( 'amp_pagebuilder_compatibility_init' ) || class_exists('Elementor_For_Amp') ) ) { }
 else{ ?>.cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px} <?php } ?>
 <?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts 
-if ( $ampforwp_font_icon  == 'swift-icons' ){ ?>
+if ( $ampforwp_font_icon  == 'swift-icons' || ( $ampforwp_font_icon == 'fontawesome-icons'  && checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) ){ ?>
 @font-face {font-family: 'icomoon';font-display: swap;font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf');}
 <?php } // Swift icomoon icons condition ends ?> 
 header .cntr{
