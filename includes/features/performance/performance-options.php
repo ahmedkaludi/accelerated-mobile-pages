@@ -41,6 +41,22 @@ use ReduxCore\ReduxFramework\Redux;
   )
 
   );
+
+  $nginx_notfication = array();
+
+  $server_name = $_SERVER['SERVER_SOFTWARE'];
+  if (preg_match("/nginx/", $server_name)){
+    $nginx_notfication = array( 
+                    'id'   => 'ampforwp_leverage_ngix_option',
+                    'type' => 'info',
+                    'required' => array(
+                         array('ampforwp_leverage_browser_caching_mode', '=' , true),  
+                        ),
+                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://www.digitalocean.com/community/questions/leverage-browser-caching-for-nginx" target="_blank">%s</a>.<br /></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'To enable leverage browser caching for Nginx please read', 'accelerated-mobile-pages' ),esc_html__( 'This 
+                      Article', 'accelerated-mobile-pages')),               
+               );
+  }
+
   // Performance SECTION
   Redux::setSection( $opt_name, array(
         'title'      => __( 'Performance', 'accelerated-mobile-pages' ),
@@ -70,7 +86,8 @@ use ReduxCore\ReduxFramework\Redux;
                'title'     => esc_html__('Leverage Browser Caching', 'accelerated-mobile-pages'),
                'tooltip-subtitle'     => esc_html__('Improve the Page Speed and Loading time with Leverage Browser Caching option', 'accelerated-mobile-pages'),
                'default'  => 0
-           )
+           ),
+           $nginx_notfication
        )
 
   )
