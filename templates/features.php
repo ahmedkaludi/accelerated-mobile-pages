@@ -4112,7 +4112,7 @@ function is_category_amp_disabled(){
 add_action( 'admin_bar_menu', 'ampforwp_visit_amp_in_admin_bar',999 );
 function ampforwp_visit_amp_in_admin_bar($admin_bar) {
 	global $redux_builder_amp;
-	if ( ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
+	if ( ampforwp_get_setting('ampforwp-homepage-on-off-support') && false == ampforwp_get_setting('ampforwp-amp-takeover') ) {
 		$args = array(
 		    'parent' => 'site-name',
 		    'id'     => 'view-amp',
