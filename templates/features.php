@@ -8008,6 +8008,10 @@ if( ampforwp_get_setting('ampforwp_css_tree_shaking') ){
 	add_filter('ampforwp_the_content_last_filter','ampforwp_purify_amphtml',11);
 } 
 function ampforwp_purify_amphtml($completeContent){
+	if( function_exists('amp_pagebuilder_compatibility_init') ){
+		// compatibility with AMP Pagebuilder Compatibility
+		return $completeContent;
+	}
 	//for fonts
 	$completeContent = str_replace(array('"\\', "'\\"), array('":backSlash:',"':backSlash:"), $completeContent);   
 	/***Replacements***/
