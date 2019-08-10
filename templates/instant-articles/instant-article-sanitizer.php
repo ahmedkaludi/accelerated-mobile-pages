@@ -102,7 +102,7 @@ function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
 				// Iterate over the available images
 					$i = 0;
 					foreach ( $attachments as $id => $attachment ) {
-						$attr = ( trim( $attachment->post_caption ) ) ? array( 'aria-describedby' => "gallery-$id" ) : '';
+						$attr = ( trim( $attachment->post_excerpt) ) ? array( 'aria-describedby' => "gallery-$id" ) : '';
 						$image_output = wp_get_attachment_image( $id, "full", false, $attr );
 
 						$image_meta  = wp_get_attachment_metadata( $id );
