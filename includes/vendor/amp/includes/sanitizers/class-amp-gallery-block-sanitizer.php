@@ -225,9 +225,6 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 	}
 
 	public function render( $args, $node ) {
-		//var_dump($args);
-		//exit;
-
 		global $redux_builder_amp,$carousel_styling;
 		$this->did_convert_elements = true;
 		
