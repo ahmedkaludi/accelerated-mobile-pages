@@ -209,17 +209,33 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if( is_front_page() && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
         return;
 	    }
-	     if ( is_archive()  ) {
+	     // Skip this condition for woocommerce product archive and shop pages.
+	     if( function_exists('amp_woocommerce_pro_add_woocommerce_support') && (function_exists('is_product_category') && !is_product_category()) && (function_exists('is_product_tag') && !is_product_tag()) && (function_exists('is_shop') && !is_shop() ) ){
+		     if ( is_archive() ) {
+		    	if(!ampforwp_get_setting('ampforwp-archive-support')){
+					return;
+				}
+		    	if( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat') ){
+		    		return;
+		    	}
+		    	if( is_tag() && !ampforwp_get_setting('ampforwp-archive-support-tag') ){
+		    		return;
+		    	}
+			}
+	    }
+
+	  // When amp woocommerce pro plugin is not active.
+      if ( is_archive() && !function_exists('amp_woocommerce_pro_add_woocommerce_support') ) {
 	    	if(!ampforwp_get_setting('ampforwp-archive-support')){
 				return;
 			}
-	    	if( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat')){
+	    	if( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat') ){
 	    		return;
 	    	}
 	    	if( is_tag() && !ampforwp_get_setting('ampforwp-archive-support-tag') ){
 	    		return;
 	    	}
-		}
+	    }
 		// #1192 Password Protected posts exclusion
 		if(post_password_required( $post )){
 				return;

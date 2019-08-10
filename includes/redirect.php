@@ -27,7 +27,7 @@ function ampforwp_redirection() {
           }
         }
       }else{
-          if( (is_archive() && 0 == ampforwp_get_setting('ampforwp-archive-support')) || (is_category() && 0 == ampforwp_get_setting('ampforwp-archive-support-cat')) || (is_tag() && 0 == ampforwp_get_setting('ampforwp-archive-support-tag')) ){
+          if( ( (function_exists('is_shop') && !is_shop() ) && is_archive() &&  0 == ampforwp_get_setting('ampforwp-archive-support')) || ( !function_exists('is_shop') &&is_archive() &&  0 == ampforwp_get_setting('ampforwp-archive-support')) || (is_category() && 0 == ampforwp_get_setting('ampforwp-archive-support-cat')) || (is_tag() && 0 == ampforwp_get_setting('ampforwp-archive-support-tag')) ){
           $archive_check = true;
         }
       }
