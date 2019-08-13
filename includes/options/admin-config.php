@@ -3098,6 +3098,14 @@ Redux::setSection( $opt_name, array(
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
+                       'id'       => 'amp-translator-published-date-text',
+                       'type'     => 'text',
+                       'title'    => __('This post was last published on ', 'accelerated-mobile-pages'),
+                       'default'  => __('This Post was last published on ','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
                        'id'       => 'amp-translator-modified-date-text',
                        'type'     => 'text',
                        'title'    => __('This post was last modified on ', 'accelerated-mobile-pages'),
@@ -7944,16 +7952,35 @@ $single_page_options = array(
                     'required' => array( array('ampforwp-post-date-format', '=', '1') ),
             ),
         // Post Modified Date
+            // Post Modified Date
             array(
-                    'id'        =>'ampforwp-post-date-modified',
+              'id'        => 'post-modified-date',
+              'type'      => 'switch',
+              'title'     => esc_html__('Date Notice', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'tooltip-subtitle'  => esc_html__('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
+            ),
+            array(
+                    'id'        =>'ampforwp-post-date-notice-type',
                     'type'      =>'select',
-                    'title'     =>esc_html__('Date Notice','accelerated-mobile-pages'),
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     =>esc_html__('Notice Type','accelerated-mobile-pages'),
                     'tooltip-subtitle' => esc_html__('Select Date Format of Posts', 'accelerated-mobile-pages'),
                     'options'   => array(
-                                    'modified' => 'Modified Date',
-                                    'below' => 'Below Content'
+                                    'modified' => 'Modified Date Notice',
+                                    'publisher' => 'Publisher date Notice'
                                     ), 
-                    'default'   =>'',
+                    'default'   =>'modified',
+                    'required' => array( array('post-modified-date', '=', '1') ),
+            ),
+            array(
+              'id'        => 'ampforwp-post-date-notice-time',
+              'class' => 'child_opt child_opt_arrow',
+              'type'      => 'switch',
+              'title'     => esc_html__('Time', 'accelerated-mobile-pages'),
+              'default'   => 1,
+              'tooltip-subtitle'  => esc_html__('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
+              'required' => array( array('ampforwp-post-date-notice-type', '!=', ''),array('post-modified-date', '=', '1') ),
             ),
             
         )
