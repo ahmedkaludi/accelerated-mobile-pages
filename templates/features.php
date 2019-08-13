@@ -6810,7 +6810,8 @@ function ampforwp_webp_featured_image() {
 			if(empty($image[2])){
 			$image[2] = 500;
 			}
-		$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' ></amp-img>";?>
+			$alt = get_the_title( $post_id );
+		$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' alt='".esc_attr($alt)."' ></amp-img>";?>
 		<figure class="amp-wp-article-featured-image">
 			<?php 
 			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){

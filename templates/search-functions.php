@@ -41,10 +41,10 @@ function ampforwp_search_button_html_output(){
 	     $redux_builder_amp['amp-design-2-search-feature'] ||
 			 $redux_builder_amp['amp-design-3-search-feature'] ) { ?>
         <div class="searchmenu">
-					<button on="tap:search-icon">
-						<i class="icono-search"></i>
-					</button>
-				</div>
+			<button on="tap:search-icon" aria-label="Search">
+				<i class="icono-search"></i>
+			</button>
+		</div>
    <?php }
  	}
 }
