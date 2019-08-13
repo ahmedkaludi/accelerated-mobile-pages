@@ -10,7 +10,7 @@ if ( is_customize_preview() ) {
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_featured_image' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_content' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_taxonomy' );
-	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
+	//add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_bread_crumbs' );
@@ -59,7 +59,7 @@ if ( is_customize_preview() ) {
 						define('AMPFORWP_DM_SOCIAL_CHECK','true');
 						break;
 				case 'addthis:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_addthis' );
+						//add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_addthis' );
 						break;
 				case 'comments:1':
 						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );

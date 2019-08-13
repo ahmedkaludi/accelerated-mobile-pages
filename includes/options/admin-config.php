@@ -6724,9 +6724,9 @@ else{
                                 ),
                 'default'  => 'below-content',
                 'required' => array(
-                                array('amp-design-selector', '=', '4'),
+                                //array('amp-design-selector', '=', '4'),
                                 array('enable-add-this-option', '=', '1'),
-                                array('single-design-type', '=', '1'),
+                               // array('single-design-type', '=', '1'),
                                 array('addthis-inline-share', '=', '1'),
                                  )
             ), 

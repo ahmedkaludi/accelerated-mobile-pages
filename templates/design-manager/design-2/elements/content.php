@@ -1,8 +1,20 @@
 <div class="amp-wp-article-content">
+	<?php if (isset($redux_builder_amp['swift-social-position']) && 'above-content' == $redux_builder_amp['swift-social-position']){
+							ampforwp_swift_social_icons(); 
+						}
+						if ( 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
+							echo ampforwp_addThis_support(); 
+						}	?>
 	<!--Post Content here-->
 	<div class="amp-wp-content the_content">
 		<?php amp_content(); ?>
 	</div>
+	<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
+						ampforwp_swift_social_icons(); 
+						}
+						if ( 'below-content' ==  ampforwp_get_setting('swift-add-this-position') ){
+							echo ampforwp_addThis_support();
+						} ?>
 	<!--Post Content Ends here-->
 
 	<!--Post Next-Previous Links-->
