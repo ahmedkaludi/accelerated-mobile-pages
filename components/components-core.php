@@ -225,9 +225,8 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 	}
 	$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
 	$youtubelink = get_post_meta($post_id, $metaKey, true);
-
 	if (  !empty($youtubelink) ) {
-		
+
 		if(strpos($youtubelink, 'youtu.be')> 0){
 			$video_id = explode("youtu.be/", $youtubelink);
 			$videoID = $video_id[1];
@@ -249,10 +248,13 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 		if(!empty($videoID)){
 			echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>' . $container_end;
 		}
+
 	}else{
 		if($design_type == 4 && !empty($amp_thumnail)){
 			if(ampforwp_get_setting('single-design-type') == 1){
-				echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
+				if( !empty($amp_thumnail['thumb_url']) && $amp_thumnail['show_image']){
+					echo '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive"></amp-img>';
+				}
 			}elseif(ampforwp_get_setting('single-design-type') == 4){
 				if(is_array($amp_thumnail)){
 					if ( $amp_thumnail['thumb_url'] && $amp_thumnail['show_image'] ) {

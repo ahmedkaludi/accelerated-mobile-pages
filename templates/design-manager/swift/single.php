@@ -286,12 +286,30 @@
 				            <ul class="clearfix">
 						        <?php ampforwp_related_post(); ?>
 						        <?php
+						        $noimgClass = '';
 						          while( $my_query->have_posts() ) {
 						            $my_query->the_post();
+						            if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
+											if( empty(get_post_meta(get_the_ID(),'csco_post_embed',true) ) ) {
+									 			if( ampforwp_has_post_thumbnail()){
+									 				$noimgClass = "has_thumbnail";
+									 			}else{
+									 				$noimgClass = "no_thumbnail";
+									 			}
+									 		}else{
+									 			$noimgClass = "has_thumbnail";
+									 		}
+										}else{
+											if( ampforwp_has_post_thumbnail()){
+												$noimgClass = "has_thumbnail";
+											}else{
+												$noimgClass = "no_thumbnail";
+											}
+										}
 						        ?>
-						        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
+						        <li class="<?php echo $noimgClass; ?>">
 						  		<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { 
-						        	if(ampforwp_has_post_thumbnail()){?>
+						        	if(ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){?>
 							            <div class="rlp-image">     
 							                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
 										</div>
@@ -334,11 +352,29 @@
 	  		<?php ampforwp_related_post(); ?>
 	            <ul class="clearfix">
 			        <?php
+			        $noimgClass = "";
 			          while( $my_query->have_posts() ) {
 			            $my_query->the_post();
+			            if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
+							if( empty(get_post_meta(get_the_ID(),'csco_post_embed',true) ) ) {
+					 			if( ampforwp_has_post_thumbnail()){
+					 				$noimgClass = "has_thumbnail";
+					 			}else{
+					 				$noimgClass = "no_thumbnail";
+					 			}
+					 		}else{
+					 			$noimgClass = "has_thumbnail";
+					 		}
+						}else{
+							if( ampforwp_has_post_thumbnail()){
+								$noimgClass = "has_thumbnail";
+							}else{
+								$noimgClass = "no_thumbnail";
+							}
+						}
 			        ?>
-			        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
-			        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail()){?>
+			        <li class="<?php echo $noimgClass; ?>">
+			        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))){?>
 				            <div class="rlp-image">     
 				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>346,'image_crop_height'=>188) );?>
 							</div>
@@ -370,10 +406,28 @@
 	  		<?php ampforwp_related_post(); ?>
 	            <amp-carousel height="310" layout="fixed-height" type="carousel">
 			        <?php
+			        $noimgClass = "";
 			          while( $my_query->have_posts() ) {
 			            $my_query->the_post();
+			            if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
+							if( empty(get_post_meta(get_the_ID(),'csco_post_embed',true) ) ) {
+					 			if( ampforwp_has_post_thumbnail()){
+					 				$noimgClass = "has_thumbnail";
+					 			}else{
+					 				$noimgClass = "no_thumbnail";
+					 			}
+					 		}else{
+					 			$noimgClass = "has_thumbnail";
+					 		}
+						}else{
+							if( ampforwp_has_post_thumbnail()){
+								$noimgClass = "has_thumbnail";
+							}else{
+								$noimgClass = "no_thumbnail";
+							}
+						}
 			        ?>
-			        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
+			        <li class="<?php echo $noimgClass; ?>">
 			        	<div class="rp-slide">
 			        	<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { if(ampforwp_has_post_thumbnail()){?>
 				            <div class="rlp-image">     
