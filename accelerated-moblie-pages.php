@@ -908,7 +908,7 @@ function ampforwp_get_all_post_types(){
 	if( !empty($custom_taxonomies) ){
 		foreach($custom_taxonomies as $taxonomy){
 			$terms = get_taxonomy( $taxonomy );
-			$taxonomy_name = $terms->name;
+			$taxonomy_name = ( isset($terms->name) ? $terms->name : '' );
 			if( isset($terms->name) && !empty($terms->name)){
 				$post_types[$terms->name] = $terms->name;
 			}
