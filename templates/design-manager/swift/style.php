@@ -541,6 +541,7 @@ table {
     overflow-x: auto;
     word-break: normal;
 }
+.artl-cnt table{ margin: 0 auto; text-align: center; width: 100%; display: inline-block; } .artl-cnt table tbody{ display: inline-block; }
 p.nocomments {padding: 10px;color: #fff;}
 <?php if($redux_builder_amp['single-new-features'] && $redux_builder_amp['ampforwp-underline-content-links']){ ?> 
 .artl-cnt a{
