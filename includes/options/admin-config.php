@@ -6724,9 +6724,9 @@ else{
                                 ),
                 'default'  => 'below-content',
                 'required' => array(
-                                //array('amp-design-selector', '=', '4'),
+                                array('amp-design-selector', '=', '4'),
                                 array('enable-add-this-option', '=', '1'),
-                               // array('single-design-type', '=', '1'),
+                                array('single-design-type', '=', '1'),
                                 array('addthis-inline-share', '=', '1'),
                                  )
             ), 
@@ -6762,6 +6762,22 @@ else{
                                 array('amp-design-selector', '=', '4'),
                                 array('enable-add-this-option', '=', '1'),
                                 array('single-design-type', '=', '6'),
+                                array('addthis-inline-share', '=', '1'),
+                                 )
+            ), 
+           array(
+                'id'       => 'design-1-2-3-addthis-pos',
+                'type'     => 'select',
+                'class' => 'child_opt child_opt_arrow',
+                'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                                'above-content' => 'Above Content',
+                                'below-content' => 'Below Content'
+                                ),
+                'default'  => 'below-content',
+                'required' => array(
+                                array('amp-design-selector', '!=', '4'),
+                                array('enable-add-this-option', '=', '1'),
                                 array('addthis-inline-share', '=', '1'),
                                  )
             ), 
