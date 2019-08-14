@@ -6243,6 +6243,8 @@ else{
               'id'        =>  'ampforwp-social-share-amp',
               'type'      =>  'switch',
               'title'     =>  esc_html__('Social Share links to AMP', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to share all your social links to AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-share-social-links-to-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
               'default'   =>  0,
           ), 
           // Social No Follow links 
@@ -6250,6 +6252,8 @@ else{
               'id'        =>  'ampforwp-social-no-follow',
               'type'      =>  'switch',
               'title'     =>  esc_html__('No Follow All Your Social Links', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to add no-follow to all your social links and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-no-follow-to-all-your-social-share-links/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
               'default'   =>  0,
           ),
             // AddThis Support  
