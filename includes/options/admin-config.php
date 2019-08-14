@@ -1303,13 +1303,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                            'id' => 'website-type',
                            'type' => 'raw',
                            'title' => esc_html__('Website Type', 'accelerated-mobile-pages'),
-                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">SELECT</div>'
+                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'" data-href="ampforwp-ux-website-type-section">SELECT</div>',
             ),
                array(
                            'id' => 'amp-need',
                            'type' => 'raw',
                            'title' => esc_html__('Where do you need AMP?', 'accelerated-mobile-pages'),
-                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">CHOOSE</div>'
+                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'" data-href="ampforwp-ux-need-type-section">CHOOSE</div>',
             ),
                array(
                            'id' => 'design-presentation',
@@ -1337,12 +1337,54 @@ Redux::setArgs( "redux_builder_amp", $args );
             ),
                array(
                             'id' => 'ampforwp-ux-section-right',
+                            'class' => 'ampforwp-ux-section-right',
                            'type' => 'section',
                            'indent' => true,
                            'layout_type' => 'accordion',
                            'accordion-open'=> 1,
                 ),
-                array(
+               // Website Type
+               array(
+                            'id' => 'ampforwp-ux-website-type-section',
+                            'class' => 'ampforwp-ux-section-right ampforwp-ux-website-type-section',
+                           'type' => 'section',
+                           'indent' => true,
+                ),
+               array(
+                    'id'       => 'amp-website-type-select',
+                    'title'    => esc_html__('What\'s your Website Type', 'accelerated-mobile-pages'),
+                    'type'     => 'select',
+                    'class'    => 'amp-website-type-select',
+                    'options'  => array('BlogPosting'=>'Blog','NewsArticle'=>'News'),
+                    'default'  => 'BlogPosting',
+                ),
+               
+               array(
+                            'id' => 'ampforwp-ux-need-type-section',
+                            'class' => 'ampforwp-ux-section-right ampforwp-ux-need-type-section',
+                           'type' => 'section',
+                           'indent' => true,
+                ),
+               array(
+                'id'       => 'amp-ux-posts',
+                'class'       => 'amp-ux-posts',
+                'title'    => esc_html__('Posts', 'accelerated-mobile-pages'),
+                'type'     => 'checkbox',
+                'default'  => 1,
+                ),
+               array(
+                'id'       => 'amp-ux-need-section-btn',
+                'type'     => 'raw',
+                'content'  => '<div class="button btn-red " id="amp-ux-need-section-btn" data-secure="'.wp_create_nonce('verify_module').'">Done</div>'
+                ),
+
+               /*array(
+                           'id' => 'amp-ux-website-type-section',
+                           'type' => 'raw',
+                           'title' => esc_html__('3rd Party Compatibility', 'accelerated-mobile-pages'),
+                           'content'  => '<div class="button btn-list " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">View List</div>'
+                ),*/
+                /*array(
                   'id'       => 'ampforwp-ux-section-panel',
                   'class'       => '',
                   'type'     => 'raw',
@@ -1543,13 +1585,11 @@ Redux::setArgs( "redux_builder_amp", $args );
                                 </div>
                                 ',
                                     
-            ),
-                array(
+            ),*/
+                /*array(
                     'id' => 'ampforwp-ux-section-right-2',
                    'type' => 'section',
                    'indent' => true,
-                   'layout_type' => 'accordion',
-                   'accordion-open'=> 1,
                 ),
                 array(
                   'id'       => 'ampforwp-ux-section-right-2',
@@ -1573,7 +1613,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                                     <p>Get AMP to the Next Level with the Premium Features </p>
                                     <a href="#">At 10% OFF</a>
                                 </div>',
-              ),
+              ),*/
            )));
 
     Redux::setSection( $opt_name, array(

@@ -781,6 +781,11 @@ jQuery(document).ready(function($){
 
 // AMPforWP New UX
 jQuery(document).ready(function($) {
+    $('div.ampforwp-new-ux').find('div.ampforwp-ux-section-right').each(function(){
+        var selector = 'data-id="'+$(this).attr('id').replace('section-','')+'"';
+        $(this).parent().find($('table['+selector+']')).addClass('ampforwp-ux-section-right');
+        $(this).parent().find($('table['+selector+']')).hide();
+    });
     $('.redux-group-menu').find('.redux-group-tab-link-li').each(function(){
         $(this).on('click', function(){
             if($(this).hasClass('ampforwp-new-ux')){
@@ -791,17 +796,28 @@ jQuery(document).ready(function($) {
             }
         });
     });
-    $('#section-table-ampforwp-ux-section').find('.button').each(function(){
-        $(this).on('click', function(){
-            var className = $(this).parent().attr('data-id');
-            $(this).parents().find('#redux_builder_amp-ampforwp-ux-section-right-2').addClass('hide');
-            $('#redux_builder_amp-ampforwp-ux-section-panel').removeClass('hide');
-            $('div.ampforwp-ux-right-bottom').removeClass('hide');
-            $('div.'+className).show();
-            $('div.'+className).siblings().hide();
+    $('#section-table-ampforwp-ux-section').find('.button').on('click', function(){
 
-        });
-
+        var table = $('table[data-id="'+$(this).attr('data-href')+'"]').parent().find('table.fadeInRight');
+        // fadeInRight present
+        if( table.hasClass('fadeInRight') && table.hasClass('ampforwp-ux-section-right') ) {
+            if( table.attr('data-id') == $(this).attr('data-href') ) {
+                //nothing
+            }
+            else{
+                // remove others
+                table.removeClass('fadeInRight');
+                table.hide();
+                // show current
+                $('table[data-id="'+$(this).attr('data-href')+'"]').addClass('fadeInRight');
+                $('table[data-id="'+$(this).attr('data-href')+'"]').show();
+            }
+        }
+        else{
+            $('table[data-id="'+$(this).attr('data-href')+'"]').addClass('fadeInRight');
+            $('table[data-id="'+$(this).attr('data-href')+'"]').show();
+        }
+   
     });
     // Upload media button
     $(this).find( '.media_upload_button' ).unbind().on(
@@ -811,8 +827,11 @@ jQuery(document).ready(function($) {
     );
 
     // Website type
-    $('.ampforwp-ux-select').on('change', function(e){
+    $('#amp-website-type-select-select').on('change', function(e){
         // Update Values in Structured data
+        // console.log($('#select2-amp-website-type-select-select-container').text());
+        // console.log($(this).val());
+        console.log($(this).val());
         //Posts
         $("select[id=ampforwp-sd-type-posts-select]").val($(this).val());
         $("span[id=select2-ampforwp-sd-type-posts-select-container]").text($(this).val());
@@ -827,7 +846,28 @@ jQuery(document).ready(function($) {
         }
 
     });
-
+    $('input[id="redux_builder_amp_amp-ux-posts').click(function(){
+        console.log($(this));
+        if($(this).prop("checked") == true){
+            if($('input[id="amp-on-off-for-all-posts"]').val() != 1 ) {
+                $("input[data-id=amp-on-off-for-all-posts]").prop('checked', true).trigger( 'change' );
+                $("input[id=amp-on-off-for-all-posts]").val(1);
+            }
+        }
+        else if( $(this).prop("checked") == false && $('input[id="amp-on-off-for-all-posts"]').val() == 1 ){
+            $("input[data-id=amp-on-off-for-all-posts]").prop('checked', false).trigger( 'change' );
+            $("input[id=amp-on-off-for-all-posts]").val(0);
+        }
+    });
+    // Save changes in redux AMP Enabler section
+    $('#amp-ux-need-section-btn').click(function(){
+        window.onbeforeunload = null;
+        if ( redux.args.ajax_save === true ) {
+            $.redux.ajax_save( $( this ) );
+            e.preventDefault();
+        }
+    });
+/*
     // AMP Requirement
     // Homepage and Frontpage
     $('input[id="amp-ux-homepage"]').click(function(){
@@ -940,14 +980,7 @@ jQuery(document).ready(function($) {
             $("input[id=amp-gdpr-compliance-switch]").val(0);
         }
     });
-    // Save changes in redux AMP Enabler section
-    $('#amp-ux-home-section-btn').click(function(){
-        window.onbeforeunload = null;
-        if ( redux.args.ajax_save === true ) {
-            $.redux.ajax_save( $( this ) );
-            e.preventDefault();
-        }
-    });
+    
 
     // SEO Section
     $('.ampforwp-ux-seo-select').on('change', function(e){
@@ -971,6 +1004,8 @@ jQuery(document).ready(function($) {
             $('#redux_builder_amp-opt-media .screenshot').show();
             $('.redux-option-image').attr('src', $('#amp-ux-logo-thumb').val());
         }
-    });
+    });*/
+
+    
 
 });
