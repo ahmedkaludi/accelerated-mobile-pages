@@ -1075,3 +1075,12 @@ function ampforwp_role_based_access_options(){
     }
     return true;
 }
+if( class_exists('Smartcrawl_OpenGraph_Printer') || class_exists('Smartcrawl_Schema_Printer') || class_exists('Smartcrawl_Twitter_Printer')){
+    add_action('pre_amp_render_post','ampforwp_smartcrawl_og_metadata');
+}
+function ampforwp_smartcrawl_og_metadata(){
+    $ogObj = new Smartcrawl_OpenGraph_Printer();
+    $twitterObj = new Smartcrawl_Twitter_Printer();
+    add_action('amp_post_template_head',array( $ogObj, 'dispatch_og_tags_injection'));
+    add_action('amp_post_template_head', array( $twitterObj, 'dispatch_tags_injection' ) );
+}
