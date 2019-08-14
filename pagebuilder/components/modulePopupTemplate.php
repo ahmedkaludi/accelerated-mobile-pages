@@ -75,8 +75,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
                     </div>
 
                     <div class="modal-footer">
+                        <div class="footer-block">
                         <slot name="footer form-control">
-                            <input type="button" v-if="modalcontent.settingType!='row'" class="button button-info del-btn-modal" value="Delete" @click="removeModule()">
+                            <input type="button" v-if="modalcontent.settingType!='row'" class="button button-info del-btn-modal com-del-but" value="Delete" @click="removeModule()">
 
                             <button type="button" @click="saveModulePopupdata(modalcontent.fields)" class="button modal-default-button save-btn-modal button-primary">
                                 Save Module
@@ -85,6 +86,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
                                 Close
                             </button>
                         </slot>
+                    </div>
                     </div>
 
                 </div>
