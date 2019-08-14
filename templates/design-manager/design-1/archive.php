@@ -132,7 +132,7 @@
 							</time>
           </div>
 
-				<?php if (ampforwp_has_post_thumbnail() && !$is_full_content ) {
+				<?php if ( (ampforwp_has_post_thumbnail() && !$is_full_content) || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) {
 					$width = 100;
 					$height = 75;
 					if ( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) {

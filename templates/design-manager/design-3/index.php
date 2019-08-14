@@ -177,7 +177,9 @@ if ( get_query_var( 'paged' ) ) {
 			 			if( ampforwp_has_post_thumbnail()){
 			 				$noimgClass = " ";
 			 			}else{
-			 				$noimgClass = "amp-loop-list-noimg";
+			 				if(!$is_full_content){
+			 					$noimgClass = "amp-loop-list-noimg";
+			 				}
 			 			}
 			 		}else{
 			 			$noimgClass = " ";
@@ -186,7 +188,9 @@ if ( get_query_var( 'paged' ) ) {
 					if( ampforwp_has_post_thumbnail()){
 						$noimgClass = " ";
 					}else{
-						$noimgClass = "amp-loop-list-noimg";
+						if(!$is_full_content){
+							$noimgClass = "amp-loop-list-noimg";
+						}
 					}
 				}
 		 	?>
