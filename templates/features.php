@@ -432,7 +432,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
-	        if( $supported_amp_post_types) {					
+	        if( $supported_amp_post_types || ampforwp_is_front_page() ) {				
 				return $amp_url;
 			}
 		}
