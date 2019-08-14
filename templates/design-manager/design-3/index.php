@@ -173,7 +173,8 @@ if ( get_query_var( 'paged' ) ) {
 		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		 		$noimgClass = "";
 			 	if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-					if( empty(get_post_meta(get_the_ID(),'csco_post_embed',true) ) ) {
+			 		$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+					if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
 			 			if( ampforwp_has_post_thumbnail()){
 			 				$noimgClass = " ";
 			 			}else{

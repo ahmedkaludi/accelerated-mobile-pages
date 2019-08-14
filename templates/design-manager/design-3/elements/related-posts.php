@@ -98,7 +98,8 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 							}
 							$noimgClass = '';
 							if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-								if( empty(get_post_meta(get_the_ID(),'csco_post_embed',true) ) ) {
+								$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+								if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
 						 			if( ampforwp_has_post_thumbnail()){
 						 				$noimgClass = "has_related_thumbnail";
 						 			}else{
