@@ -3345,8 +3345,10 @@ function ampforwp_add_modified_date($post_object){
 							date_i18n( get_option( 'date_format' ) , $date )
 						)
 					);
-					echo get_the_modified_time();
-				}elseif($date_notice_type == "publisher"){
+					if(true == ampforwp_get_setting('ampforwp-post-date-notice-time')){
+						echo get_the_modified_time();
+					}
+				}elseif($date_notice_type == "published"){
 					$date_notice_text = ampforwp_get_setting('amp-translator-published-date-text');
 					$date = $post_object->get( 'post_publish_timestamp' );
 					echo esc_html(
@@ -3355,7 +3357,9 @@ function ampforwp_add_modified_date($post_object){
 							date_i18n( get_option( 'date_format' ) , $date )
 						)
 					);
-					echo get_the_modified_time();
+					if(true == ampforwp_get_setting('ampforwp-post-date-notice-time')){
+						echo get_the_modified_time();
+					}
 				}
 
 				?>

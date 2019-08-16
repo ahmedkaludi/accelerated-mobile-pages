@@ -7951,6 +7951,14 @@ $single_page_options = array(
                     'default'   =>'% days ago',
                     'required' => array( array('ampforwp-post-date-format', '=', '1') ),
             ),
+            array(
+                    'id'        =>'ampforwp-post-time',
+                    'type'      =>'switch',
+                    'title'     => esc_html__('Time','accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Enable or Disable Time In Posts', 'accelerated-mobile-pages'),
+                    'default'   =>'1',
+                    'required' => array( array('ampforwp-post-date-format', '=', '2') ),
+            ),
         // Post Modified Date
             // Post Modified Date
             array(
@@ -7968,7 +7976,7 @@ $single_page_options = array(
                     'tooltip-subtitle' => esc_html__('Select Date Format of Posts', 'accelerated-mobile-pages'),
                     'options'   => array(
                                     'modified' => 'Modified Date Notice',
-                                    'publisher' => 'Publisher date Notice'
+                                    'published' => 'Published Date Notice'
                                     ), 
                     'default'   =>'modified',
                     'required' => array( array('post-modified-date', '=', '1') ),

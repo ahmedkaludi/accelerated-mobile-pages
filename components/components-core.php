@@ -646,10 +646,16 @@ function amp_date( $args=array() ) {
     if ( 2 == ampforwp_get_setting('ampforwp-post-date-format') ) {
     	$args = array('format' => 'traditional');
     }
-    if ( (isset($args['format']) && $args['format'] == 'traditional') && 2 == ampforwp_get_setting('ampforwp-post-date-global') ) {
-      	$post_date =  get_the_modified_date( get_option( 'date_format' ));
+    if ( true == ampforwp_get_setting('ampforwp-post-time') && (isset($args['format']) && $args['format'] == 'traditional') && 2 == ampforwp_get_setting('ampforwp-post-date-global') ) {
+      	$post_date =  get_the_modified_date( get_option( 'date_format' )). ' '. get_the_modified_time();
     }
-    elseif ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ){
+    elseif ( false == ampforwp_get_setting('ampforwp-post-time') && (isset($args['format']) && $args['format'] == 'traditional') && 2 == ampforwp_get_setting('ampforwp-post-date-global') ){
+    	 $post_date =  get_the_modified_date( get_option( 'date_format' ));
+    }
+    elseif ( true == ampforwp_get_setting('ampforwp-post-time') && (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ){
+    	 $post_date =  get_the_date(). ' '. get_the_time();
+    }
+    elseif ( false == ampforwp_get_setting('ampforwp-post-time') ){
     	 $post_date =  get_the_date();
     }else{
         $post_date = human_time_diff(
