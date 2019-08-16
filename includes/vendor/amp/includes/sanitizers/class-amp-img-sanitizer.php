@@ -197,8 +197,6 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 			switch ( $name ) {
 				case 'src':
 				case 'alt':
-					$out[ $name ] = str_replace("'", " ", $value);
-					break;
 				case 'class':
 				case 'srcset':
 				case 'sizes':
