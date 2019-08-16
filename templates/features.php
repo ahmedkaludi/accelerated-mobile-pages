@@ -211,17 +211,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    }
 	     // Skip this condition for woocommerce product archive and shop pages.
 	     if( function_exists('amp_woocommerce_pro_add_woocommerce_support') && (function_exists('is_product_category') && !is_product_category()) && (function_exists('is_product_tag') && !is_product_tag()) && (function_exists('is_shop') && !is_shop() ) ){
-		     if ( is_archive() ) {
-		    	if(!ampforwp_get_setting('ampforwp-archive-support')){
+		    	if( is_archive() && ( !ampforwp_get_setting('ampforwp-archive-support') || ( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat') ) || ( is_tag() && !ampforwp_get_setting('ampforwp-archive-support-tag') ))){
 					return;
-				}
-		    	if( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat') ){
-		    		return;
-		    	}
-		    	if( is_tag() && !ampforwp_get_setting('ampforwp-archive-support-tag') ){
-		    		return;
-		    	}
-			}
+				}	
 	    }
 
 	  // When amp woocommerce pro plugin is not active.
