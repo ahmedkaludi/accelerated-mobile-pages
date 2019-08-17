@@ -191,10 +191,13 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 		if(empty($excerpt_length)){
 			$excerpt_length = 15;
 		}
+		if (true == ampforwp_get_setting('excerpt-option-rp-read-more')){
+				$content .= '...';
+		}
 		echo wp_trim_words( strip_shortcodes( $content ) , $excerpt_length ); 
-		?></p>
+		?>
 		<?php if (true == ampforwp_get_setting('excerpt-option-rp-read-more')){?>
-		<a class="readmore-rp" href="<?php echo esc_url( $related_post_permalink ); ?>"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-read-more'),'Read More') ?></a>
+		<a class="readmore-rp" href="<?php echo esc_url( $related_post_permalink ); ?>"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-read-more'),'Read More') ?></a></p>
 		<?php 
 		} }
 		$show_author = (isset($argsdata['show_author'])? $argsdata['show_author'] : true);

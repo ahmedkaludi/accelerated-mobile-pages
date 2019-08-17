@@ -903,6 +903,7 @@ if ( is_singular() || ampforwp_is_front_page() && false == ampforwp_get_setting(
 if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
   .related_posts .related_link a.readmore-rp {
       font-size: 13px;
+      color:#999;
   }
 <?php } ?>
 .amp_widget_below_the_header.f-w amp-img {
