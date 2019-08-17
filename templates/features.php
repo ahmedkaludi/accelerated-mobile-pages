@@ -5643,7 +5643,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
     	$font_type = $redux_builder_amp['amp_font_type'];
     }
 
-    if ( $font_type ) {
+    if ( $font_type && ampforwp_get_setting('amp_font_selector') != 'Segoe UI') {
 	    foreach ($font_type as $key => $value) {
 			// Font Weight generator
 			$font_weight = (int) $value;
@@ -5718,7 +5718,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 	    if( ampforwp_get_setting('amp_font_type_content_single') ){
 	    	$font_type = ampforwp_get_setting('amp_font_type_content_single');
 	    }
-	    if ( $font_type ) {
+	    if ( $font_type && ampforwp_get_setting('amp_font_selector_content_single') != 'Segoe UI') {
 		    foreach ($font_type as $key => $value) {
 				// Font Weight generator
 				$font_weight = (int) $value;
