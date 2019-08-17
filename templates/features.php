@@ -8109,14 +8109,6 @@ function ampforwp_is_gutenberg_active() {
 	return $use_block_editor;
 }
 
-add_action('ampforwp_after_post_content','ampforwp_date_below_the_content');
-if ( ! function_exists('ampforwp_date_below_the_content') ) {
-	function ampforwp_date_below_the_content(){
-		if( ampforwp_get_setting('ampforwp-post-date-modified') == 'below'){
-			amp_loop_date();
-		}
-	}
-}
 
 add_filter('ampforwp_pagebuilder_status_modify','ampforwp_pagebuilder_has_content',10,2);
 function ampforwp_pagebuilder_has_content($response, $postId){

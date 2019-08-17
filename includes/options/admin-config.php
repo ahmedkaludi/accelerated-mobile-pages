@@ -3100,17 +3100,17 @@ Redux::setSection( $opt_name, array(
                    array(
                        'id'       => 'amp-translator-published-date-text',
                        'type'     => 'text',
-                       'title'    => __('This post was last published on ', 'accelerated-mobile-pages'),
-                       'default'  => __('This Post was last published on ','accelerated-mobile-pages'),
-                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'title'    => esc_html__('This post was last published on ', 'accelerated-mobile-pages'),
+                       'default'  => esc_html__('This post was last published on ','accelerated-mobile-pages'),
+                       'placeholder'=> esc_html__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-modified-date-text',
                        'type'     => 'text',
-                       'title'    => __('This post was last modified on ', 'accelerated-mobile-pages'),
-                       'default'  => __('This post was last modified on ','accelerated-mobile-pages'),
-                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'title'    => esc_html__('This post was last modified on ', 'accelerated-mobile-pages'),
+                       'default'  => esc_html__('This post was last modified on ','accelerated-mobile-pages'),
+                       'placeholder'=> esc_html__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
