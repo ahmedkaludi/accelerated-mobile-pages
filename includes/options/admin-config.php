@@ -3100,8 +3100,8 @@ Redux::setSection( $opt_name, array(
                    array(
                        'id'       => 'amp-translator-published-date-text',
                        'type'     => 'text',
-                       'title'    => esc_html__('This post was last published on ', 'accelerated-mobile-pages'),
-                       'default'  => esc_html__('This post was last published on ','accelerated-mobile-pages'),
+                       'title'    => esc_html__('This post was published on ', 'accelerated-mobile-pages'),
+                       'default'  => esc_html__('This post was published on ','accelerated-mobile-pages'),
                        'placeholder'=> esc_html__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
