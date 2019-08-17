@@ -2724,7 +2724,7 @@ Redux::setSection( $opt_name, array(
                         'id'        => 'amforwp-homepage-featured-video',
                         'type'      => 'switch',
                         'class'    => 'child_opt child_opt_arrow',
-                        'title'     => esc_html__('Video in Loop', 'accelerated-mobile-pages'),
+                        'title'     => esc_html__('Video in Home page Loop', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => esc_html__('Enable this option to show featured video in Home page loop', 'accelerated-mobile-pages'),
                         'default'   => 0,
                         'tooltip-subtitle'  => esc_html__('Enable this option to show featured video for each post of Home page loop'),

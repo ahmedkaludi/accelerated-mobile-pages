@@ -8,7 +8,7 @@ $featured_image = $this->get( 'featured_image' );
 $get_webp = $get_webp_type =  "";
 $get_webp = get_post_thumbnail_id($post->ID);
 $get_webp_type =  get_post_mime_type( $get_webp );
-if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) || true == $redux_builder_amp['ampforwp-featured-image-from-content'] || (function_exists('has_post_video') && has_post_video($post->ID)) || (ampforwp_get_setting('amforwp-homepage-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))){
+if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) || true == $redux_builder_amp['ampforwp-featured-image-from-content'] || (function_exists('has_post_video') && has_post_video($post->ID)) || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))){
 	if(strpos($get_webp_type, "webp") !== false ){
 	 ampforwp_webp_featured_image();
 	}

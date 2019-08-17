@@ -438,7 +438,7 @@ if (! function_exists('amp_loop_the_permalink')){
 
 function amp_loop_image( $data=array() ) {
 	global $ampLoopData, $counterOffset, $redux_builder_amp;
-		if (ampforwp_has_post_thumbnail()  || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('amforwp-homepage-featured-video') == true)) {
+		if (ampforwp_has_post_thumbnail()  || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) {
 		$tag 				= 'div';
 		$tag_class 			= '';
 		$layout_responsive 	= '';
@@ -499,7 +499,7 @@ function amp_loop_image( $data=array() ) {
 		$youtubelink = get_post_meta($post_id, $metaKey, true);
 		$featuredVideo = "";
 		if(ampforwp_get_setting('ampforwp-featured-video')==true){
-			if (  !empty($youtubelink) && (ampforwp_get_setting('amforwp-homepage-featured-video') == true || is_singular())) {
+			if (  !empty($youtubelink) && (ampforwp_get_setting('amforwp-homepage-featured-video') == true || is_singular() || is_archive())) {
 
 				if(strpos($youtubelink, 'youtu.be')> 0){
 					$video_id = explode("youtu.be/", $youtubelink);

@@ -214,17 +214,17 @@ function amp_featured_image( ){
 
 //Featured Video
 function amp_featured_video($design_type='',$amp_thumnail = ''){
-
 	global $post;
 	$post_id = '';
 	$videoID = '';
 	$video_id = '';	
 	$post_id = $post->ID;
-	if ( function_exists('ampforwp_get_the_ID')) {
-		$post_id = ampforwp_get_the_ID();
-	}
+	// if ( function_exists('ampforwp_get_the_ID') ) {
+	// 	$post_id = ampforwp_get_the_ID();
+	// }
 	$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
 	$youtubelink = get_post_meta($post_id, $metaKey, true);
+
 	if (  !empty($youtubelink) ) {
 
 		if(strpos($youtubelink, 'youtu.be')> 0){

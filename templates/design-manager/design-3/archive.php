@@ -164,7 +164,7 @@ if ( get_query_var( 'paged' ) ) {
 				$post_id   = get_the_ID();
 				$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
 				$youtubelink = get_post_meta($post_id, $metaKey, true);
-				if (!empty($youtubelink) && (ampforwp_get_setting('amforwp-homepage-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('ampforwp-featured-video') == true) ) {
+				if (!empty($youtubelink) && (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('ampforwp-featured-video') == true) ) {
 					if(strpos($youtubelink, 'youtu.be')> 0){
 						$video_id = explode("youtu.be/", $youtubelink);
 						$videoID = $video_id[1];
