@@ -216,7 +216,7 @@ function ampforwp_generate_meta_desc($json=""){
             $desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , 15 ) );
         }
         //Smartcrawl #3473
-        if( class_exists('Smartcrawl_Loader') && 'smartcrawl' == ampforwp_get_setting('ampforwp-seo-selection') ){
+        if( class_exists('Smartcrawl_Meta_Value_Helper') && class_exists('Smartcrawl_Loader') && 'smartcrawl' == ampforwp_get_setting('ampforwp-seo-selection') ){
             $metadesc = Smartcrawl_Meta_Value_Helper::get()->get_description();
             $metadesc = wp_kses(
                 strip_tags( stripslashes( $metadesc ) ),
