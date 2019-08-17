@@ -7,11 +7,14 @@
     if ( false == $redux_builder_amp['ampforwp-archive-support'] ) {
         $archive_non_amp = 'nonamp';
     } ?>
-    <div class="amp-wp-content breadcrumb"> <?php 
+     <?php 
     if ( ampforwp_yoast_breadcrumbs_output() ) {
-        echo ampforwp_yoast_breadcrumbs_output();
+        echo '<div class="amp-wp-content breadcrumb">';
+            echo ampforwp_yoast_breadcrumbs_output();
+        echo '</div>';
         return;
     }
+    echo '<div class="amp-wp-content breadcrumb">';
     // Settings
     $breadcrums_id      = 'breadcrumbs';
     $breadcrums_class   = 'breadcrumbs';
@@ -244,6 +247,6 @@
         }
         echo '</ul>';
       
-    }?>
+    } ?>
 </div>
 <?php }
