@@ -2012,7 +2012,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                   'layout_type' => 'accordion',
                     'accordion-open'=> 1,
               ),
-           array(
+            array(
                 'id'       => 'ampforwp-seo-selection',
                 'type'     => 'select',
                 'title'    => esc_html__('Select SEO Plugin', 'accelerated-mobile-pages'),
@@ -2028,6 +2028,15 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'smartcrawl'    => 'SmartCrawl'
                 ),
                 'default'  => ampforwp_seo_default(),
+            ),
+            array(
+               'class' => 'child_opt',
+               'id'       => 'ampforwp-smartcrawl-canonical',
+               'type'     => 'switch',
+               'tooltip-subtitle'     => esc_html__('Pull Canonical from SmartCrawl for AMP pages', 'accelerated-mobile-pages'),
+               'title'    => esc_html__( 'Canonical from SmartCrawl', 'accelerated-mobile-pages' ),
+               'default'  => 0,
+               'required'  => array('ampforwp-seo-selection', '=' , 'smartcrawl'),
             ),
            array( 
                'class' => 'child_opt child_opt_arrow',
