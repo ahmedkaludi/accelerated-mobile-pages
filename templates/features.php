@@ -8082,6 +8082,7 @@ if(!function_exists('ampforwp_gutenberg_block_styles')){
 function ampforwp_is_gutenberg_active() {
 	$gutenberg    = false;
 	$block_editor = false;
+	$use_block_editor = '';
 	if ( has_filter( 'replace_editor', 'gutenberg_init' ) ) {
 		$gutenberg = true;
 	}
@@ -8091,8 +8092,8 @@ function ampforwp_is_gutenberg_active() {
 	if ( ! $gutenberg && ! $block_editor ) {
 		return false;
 	}
-	include_once ABSPATH . 'wp-admin/includes/plugin.php';
-	if ( ! is_plugin_active( 'classic-editor/classic-editor.php' ) ) {
+	
+	if ( !class_exists('Classic_Editor') ) {
 		return true;
 	}
 	$use_block_editor = ( get_option( 'classic-editor-replace' ) === 'no-replace' );
