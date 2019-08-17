@@ -2901,8 +2901,8 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'      => 'ampforwp-role-based-access',
                         'type'    => 'select',
-                        'title'   => __('Role Based Access', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle'   => __('Allows Administrator to show AMP Options based on User Role.', 'accelerated-mobile-pages'),
+                        'title'   => esc_html__('Role Based Access', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'   => esc_html__('Allows Administrator to show AMP Options based on User Role.', 'accelerated-mobile-pages'),
                         'multi'   => true,
                         'options' => ampforwp_get_user_roles(),
                         'default'  => array('administrator','editor')
