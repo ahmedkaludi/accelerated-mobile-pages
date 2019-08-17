@@ -4828,9 +4828,6 @@ function ampforwp_inline_related_posts(){
                 );  
             } 			
 		}//end of block for custom Post types
-		if(true == ampforwp_get_setting('ampforwp-in-related-posts-days-switch')){
-			$date_range = strtotime ( '-' . ampforwp_get_setting('ampforwp-in-related-posts-days-text') .' day' ); 
-		}
 		if($redux_builder_amp['ampforwp-inline-related-posts-type']==2){
 		    $categories = get_the_category($post->ID);
 					if ($categories) {
@@ -4844,15 +4841,6 @@ function ampforwp_inline_related_posts(){
 								'has_password' => false ,
 								'post_status'=> 'publish',
 								'orderby'    => $orderby,
-								'date_query'        => array(
-			                        array(
-			                            'after' => array(
-			                                'year'  => date('Y', $date_range ),
-			                                'month' => date('m', $date_range ),
-			                                'day'   => date('d', $date_range ),
-			                            ),
-			                        )
-			                    )
 							);
 						}
 			} //end of block for categories
@@ -4860,8 +4848,7 @@ function ampforwp_inline_related_posts(){
 		 if($redux_builder_amp['ampforwp-inline-related-posts-type']==1) {
 					$ampforwp_tags = get_the_tags($post->ID);
 						if ($ampforwp_tags) {
-										$tag_ids = array();
-										$date_range = strtotime ( '-' . ampforwp_get_setting('ampforwp-in-related-posts-days-text') .' day' );  
+										$tag_ids = array();  
 										foreach($ampforwp_tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
 										$args=array(
 										   'tag__in' => $tag_ids,
@@ -4871,18 +4858,21 @@ function ampforwp_inline_related_posts(){
 											'has_password' => false ,
 											'post_status'=> 'publish',
 											'orderby'    => $orderby,
-											'date_query'        => array(
-					                        array(
-					                            'after' => array(
-					                                'year'  => date('Y', $date_range ),
-					                                'month' => date('m', $date_range ),
-					                                'day'   => date('d', $date_range ),
-					                            ),
-					                        )
-					                    )
 										);
 					}
 			}//end of block for tags
+		if(true == ampforwp_get_setting('ampforwp-in-related-posts-days-switch')){
+			$date_range = strtotime ( '-' . ampforwp_get_setting('ampforwp-in-related-posts-days-text') .' day' );
+			$args['date_query'] = array(
+						            array(
+						                'after' => array(
+						                    'year'  => date('Y', $date_range ),
+						                    'month' => date('m', $date_range ),
+						                    'day'   => date('d', $date_range ),
+						                	),
+						            	)
+						       		);  
+		}                   
 			$my_query = new wp_query( $args );
 			if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
 				$yarpp_query = ampforwp_yarpp_loop_query_for_inline_related_posts();
