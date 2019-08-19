@@ -6177,10 +6177,28 @@ function ampforwp_thrive_architect_content(){
 		remove_action( 'init', 'woodmart_lazy_loading_init', 120 );
 		//CDN Enabler Compatibility for product images
 		if( class_exists('CDN_Enabler')){
-			remove_action('template_redirect', [ 'CDN_Enabler', 'handle_rewrite_hook']);
+		add_action('template_redirect', array(new ampforwp_cdn_enabler_disable(), 'pre_get_options'), 9);
 		}
 	}
 }
+
+class ampforwp_cdn_enabler_disable{
+	private $excluded_urls = array();
+	public function __construct() {}
+	public function pre_get_options() {
+		global $post;
+		if (!isset($post) || !isset($post->ID)) { return; }
+		add_filter('option_cdn_enabler', array($this, 'add_exclusions'));
+	}
+	function add_exclusions($options) {
+		if (!is_array($options)) { return $options; }
+		$this->excluded_urls[] = 'wp-content';
+		$urls = implode(',', $this->excluded_urls);
+		$options['excludes'] = empty($options['excludes'])?$urls:$options['excludes'].','.$urls;
+		return $options;
+	}
+}
+
 function ampforwp_thrive_content($content){
 	$post_id = "";
 	if ( ampforwp_is_front_page() ){
@@ -6621,6 +6639,7 @@ if ( !function_exists('ampforwp_is_amp_endpoint_old') ) {
 			class AMP_Post_Template extends AMPforWP\AMPVendor\AMP_Post_Template{}
 		}
 	}
+	
 }
 // End Fallbacks for Vendor AMP
 
@@ -6886,3 +6905,5 @@ function ampforwp_generate_taxonomies_transient(){
 	}
 	return $taxonomies;
 }
+
+
