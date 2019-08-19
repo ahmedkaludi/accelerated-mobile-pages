@@ -1184,6 +1184,19 @@ if($ampforwp_nameOfUser!=""){
 if(function_exists('amp_activate') ){
     $proDetailsProvide = "<a class='premium_features_btn_txt' href=\"#\"> AMP by Automattic compatibility has been activated</a>";
 }
+
+$user = wp_get_current_user();
+$permissions = "manage_options";
+$amp_access = ampforwp_get_setting('ampforwp-role-based-access');
+
+if( array_intersect( 'administrator', $user->roles ) ) {
+    $permissions = "manage_options";
+}elseif( in_array( 'editor', $user->roles ) && in_array('editor', $amp_access) ){
+    $permissions = 'edit_pages';
+}elseif( in_array( 'author', $user->roles ) && in_array('author', $amp_access)){
+    $permissions = 'edit_posts';
+}
+
 $args = array(
     // TYPICAL -> Change these values as you need/desire
     'opt_name'              => 'redux_builder_amp', // This is where your data is stored in the database and also becomes your global variable name.
@@ -1204,7 +1217,7 @@ $args = array(
     // OPTIONAL -> Give you extra features
     'page_priority'         => null, // Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
     'page_parent'           => 'themes.php', // For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
-    'page_permissions'      => 'manage_options', // Permissions needed to access the options panel.
+    'page_permissions'      => $permissions, // Permissions needed to access the options panel.
     'last_tab'              => '', // Force your panel to always open to a specific tab (by id)
     'page_icon'             => 'icon-themes', // Icon displayed in the admin panel next to your menu_title
     'page_slug'             => 'amp_options', // Page slug used to denote the panel
@@ -1726,6 +1739,10 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'multi'   => true,
                     'options' => ampforwp_get_generated_custom_taxonomies(),
                 );
+    }
+    $show_for_admin = '';
+    if(!current_user_can('administrator') ){
+        $show_for_admin = 'hide';
     }
     // AMP to WP Default value
     function ampforwp_amp2wp_default(){
@@ -2901,6 +2918,16 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'      => 'ampforwp-role-based-access',
                         'type'    => 'select',
+                        'title'   => esc_html__('Role Based Access', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'   => esc_html__('Allows Administrator to show AMP Options based on User Role.', 'accelerated-mobile-pages'),
+                        'multi'   => true,
+                        'options' => ampforwp_get_user_roles(),
+                        'default'  => array('administrator','editor')
+                    ),
+                    array(
+                        'id'      => 'ampforwp-role-based-access',
+                        'type'    => 'select',
+                        'class'   => $show_for_admin,
                         'title'   => esc_html__('Role Based Access', 'accelerated-mobile-pages'),
                         'tooltip-subtitle'   => esc_html__('Allows Administrator to show AMP Options based on User Role.', 'accelerated-mobile-pages'),
                         'multi'   => true,
