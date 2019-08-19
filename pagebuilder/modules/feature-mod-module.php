@@ -58,6 +58,23 @@ return array(
 				                          ),
 				            'content_type'=>'html',
 				            ),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'heading_tags',		
+	 							'label' => esc_html__('Heading Tags','accelerated-mobile-pages'),
+								'tab'     =>'customizer',
+	 							'default' =>'h3',
+	 							'options_details'=>array(
+	 												'h1'  	=>'Heading H1',
+	 												'h2'    =>'Heading H2',
+	 												'h3'    =>'Heading H3',
+	 												'h4'    =>'Heading H4',
+	 												'h5'    =>'Heading H5',
+	 												'h6'    =>'Heading H6'
+	 											),
+	 							'content_type'=>'html',
+	 							'required'  =>  array('feature_layout_type'=> 1),
+	 					),
 						 array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
@@ -82,6 +99,7 @@ return array(
 		           				'content_type'=>'css',
 		           				'required'  => array('feature_layout_type'=> 1)
 	 						),
+				        
 				         array(
 				                'type'    =>'checkbox_bool',
 				                'name'    =>"check_for_btn",
@@ -97,7 +115,6 @@ return array(
 				                'content_type'=>'html',
 				                'required'  => array('feature_layout_type'=> 1)
 				            ),
-	 					
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"background_color_picker",
@@ -299,7 +316,7 @@ return array(
               ),
           'front_template'=>
         '{{if_condition_feature_layout_type==1}}<div class="feat-blk">
-      		<h3 class="t-txt">{{content_title}}</h3>
+      		{{if_heading_tags}}<{{heading_tags}} class="t-txt">{{content_title}}</{{heading_tags}}>{{ifend_heading_tags}}
 			{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 			<p>{{content}}</p>
 			{{if_condition_check_for_btn==1}}
