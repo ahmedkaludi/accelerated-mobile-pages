@@ -5654,7 +5654,7 @@ $single_page_options = array(
                     'type'     => 'switch',
                     'title'    => esc_html__( 'Related Posts', 'accelerated-mobile-pages' ),
                     'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
-                        esc_html__('Enable this option to show related posts in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
+                        esc_html__('Enable this option to show related posts in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-related-posts-on-single-pages/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
                    'default'   => 1,
             ),
             array(
@@ -5776,7 +5776,7 @@ $single_page_options = array(
                     'type'     => 'switch',
                     'title'    => esc_html__('In-Content Related Post', 'accelerated-mobile-pages'),
                     'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
-                        esc_html__('Enable this option to show inline related posts in AMP and', 'accelerated-mobile-pages'), esc_url('#'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
+                        esc_html__('Enable this option to show inline related posts in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-in-content-related-posts-on-single-pages/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
                 'default'  => 0,
             ),
             array(
