@@ -2770,6 +2770,7 @@ class AMP_Allowed_Tags_Generated {
 			array(
 				'attr_spec_list' => array(
 					'[data-videoid]' => array(),
+					'[dock]' => array(),
 					'autoplay' => array(),
 					'credentials' => array(
 						'value_regex_casei' => '(include|omit)',
@@ -2779,6 +2780,9 @@ class AMP_Allowed_Tags_Generated {
 					),
 					'data-videoid' => array(
 						'value_regex' => '[^=/?:]+',
+					),
+					'dock' => array(
+						'value' => '#dock-slot',
 					),
 					'lightbox' => array(),
 					'lightbox-exclude' => array(

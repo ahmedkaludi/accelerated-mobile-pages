@@ -17,6 +17,8 @@ class AMPforWP_YouTube_Embed_Handler extends AMP_Base_Embed_Handler {
 
 	private static $script_slug = 'amp-youtube';
 	private static $script_src = 'https://cdn.ampproject.org/v0/amp-youtube-0.1.js';
+	private static $script_slug_dock = 'amp-video-docking';
+	private static $script_src_dock = 'https://cdn.ampproject.org/v0/amp-video-docking-0.1.js';
 
 	function __construct( $args = array() ) {
 		parent::__construct( $args );
@@ -43,7 +45,7 @@ class AMPforWP_YouTube_Embed_Handler extends AMP_Base_Embed_Handler {
 			return array();
 		}
 
-		return array( self::$script_slug => self::$script_src );
+		return array( self::$script_slug => self::$script_src , self::$script_slug_dock => self::$script_src_dock );
 	}
 
 	public function shortcode( $attr ) {
@@ -88,6 +90,7 @@ class AMPforWP_YouTube_Embed_Handler extends AMP_Base_Embed_Handler {
 				'layout' => 'responsive',
 				'width' => $this->args['width'],
 				'height' => $this->args['height'],
+				'dock' => '#dock-slot',
 				);
 		$attrs = ampforwp_amp_consent_check( $attrs );
 		return AMP_HTML_Utils::build_tag('amp-youtube',apply_filters('amp_youtube_params', $attrs) );
