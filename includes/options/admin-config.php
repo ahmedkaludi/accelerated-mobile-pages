@@ -2549,8 +2549,8 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'fb-instant-article-ad-id',
                         'type'     => 'text',
                         'title'    => esc_html__('Enter your Audience Network Placement ID', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => esc_html__('You can find out more about this <a href="https://developers.facebook.com/docs/instant-articles/monetization/audience-network">here</a>. ', 'accelerated-mobile-pages'),
-                        'desc' => esc_html__('<a href="https://ampforwp.com/tutorials/article/how-to-enter-audience-network-placement-id-of-advertisement-in-the-instant-article/" target="_blank">Click here</a> on how to get Audience Network Placement Id.', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s">%s</a>.', esc_html__('You can find out more about this','accelerated-mobile-pages'), esc_url('https://developers.facebook.com/docs/instant-articles/monetization/audience-network'),esc_html__('here','accelerated-mobile-pages') ),
+                        'desc' => sprintf('<a href="%s" target="_blank">%s</a> %s', esc_url('https://ampforwp.com/tutorials/article/how-to-enter-audience-network-placement-id-of-advertisement-in-the-instant-article/'), esc_html__('Click here','accelerated-mobile-pages'), esc_html__('on how to get Audience Network Placement Id.','accelerated-mobile-pages')),
                         'required'  => array('fb-instant-article-ad-type', '=', '1')
                     ),
                     array(
