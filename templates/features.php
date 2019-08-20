@@ -725,6 +725,7 @@ function ampforwp_new_dir( $dir ) {
 				  $content = preg_replace('/[^\[]\[gallery(.*?)\]/', '</p>[gallery$1]</p>', $content);
 				  // value attribute from anchor tag #2262
 				  $content = preg_replace('/<a(.*?)(value=".*?")(.*?)>/', '<a$1$3>', $content);
+				  $content = preg_replace('/<script id="(.*?)">(.*?)playerId:\s\'(.*?)\'(.*?)mediaId:\s\'(.*?)\'(.*?)<\/script>/s', '<amp-connatix-player data-player-id="$3" data-media-id = "$5" layout="responsive" width="16" height="9"></amp-connatix-player>', $content);
 
 				return $content;
 		}
