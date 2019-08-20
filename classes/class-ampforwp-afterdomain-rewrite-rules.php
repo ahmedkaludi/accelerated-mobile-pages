@@ -609,7 +609,7 @@ add_action( 'init',  'ampforwp_append_index_rewrite_rule',99   );
 
 function ampforwp_add_rewrite() {
 		ampforwp_add_rewrite_start_point( AMPFORWP_AMP_QUERY_VAR, EP_ALL );
-		// "Automattic AMP for WordPress" Plugin Compatibility
+		// "Automattic AMP for WordPress" Plugin Compatibility & for the existing user with /amp at the end of the url
 		$amp_query_variable = defined( 'AMP_QUERY_VAR' ) ? AMP_QUERY_VAR : AMPFORWP_AMP_QUERY_VAR;
 		ampforwp_add_rewrite_end_point( $amp_query_variable, EP_ALL );
 }

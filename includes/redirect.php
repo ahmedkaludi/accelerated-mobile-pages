@@ -341,6 +341,30 @@ function ampforwp_redirection() {
   session_destroy();
   return;
   }
+  if( ampforwp_get_setting('ampforwp-url-format') && 'afterdomain' == ampforwp_get_setting('ampforwp-domain-endpoint')  ) {
+    if( ampforwp_is_front_page() || ampforwp_is_home() || ampforwp_is_blog() ){
+      return;
+    }
+    $current_url = $endpoint = $new_url = '';
+    $current_url = home_url($wp->request);
+    $amp = AMPFORWP_AMP_QUERY_VAR; 
+    $endpoint = '/'.$amp;
+    $checker =  explode('/', $current_url); 
+    $amp_check = in_array($amp, $checker);
+    if ( true == $amp_check && $amp == end($checker) ) {
+      $unset_amp = array_flip($checker);
+      if( isset($unset_amp['amp']) ){
+        unset($unset_amp['amp']);
+      }
+      $unset_amp = array_flip($unset_amp);
+      $current_url  = implode('/', $unset_amp);
+      $pos = strlen( home_url() );
+      $search_length  = strlen('/'.$amp);
+      $new_url    = substr_replace( $current_url , $endpoint , $pos , 0 );
+      wp_safe_redirect( $new_url );
+      exit;
+    }
+  }
 }
 
 // #1947 when nonamp=1 it should redirect to original link so that google
