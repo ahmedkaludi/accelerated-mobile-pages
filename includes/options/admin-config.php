@@ -1197,6 +1197,83 @@ if( array_intersect( 'administrator', $user->roles ) ) {
     $permissions = 'edit_posts';
 }
 
+//get All design
+function amp_extra_plugin_theme_header($headers){
+    $headers['AMP Theme Name'] = "AMP";
+    $headers['AMP Theme Demo'] = "AMP Demo";
+    return $headers;
+}
+add_filter("extra_plugin_headers","amp_extra_plugin_theme_header");
+$themeDesign = array(
+        array(
+            'demo_link' => 'https://ampforwp.com/demo/#one',
+            'upgrade'=>true,
+            'title'=>esc_html__('Design One', 'accelerated-mobile-pages' ),
+            'value'=>1,
+            'alt'=>esc_html__('Design One', 'accelerated-mobile-pages' ),
+            'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png',
+        ),
+        array(
+            'demo_link' => 'https://ampforwp.com/demo/#two',
+            'upgrade'=>true,
+            'title'=>esc_html__('Design Two', 'accelerated-mobile-pages' ),
+            'value'=>2,
+            'alt'=>esc_html__('Design Two', 'accelerated-mobile-pages' ),
+            'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png',
+        ),
+        array(
+            'demo_link' => 'https://ampforwp.com/demo/#three',
+            'upgrade'=>true,
+            'title'=>esc_html__('Design Three', 'accelerated-mobile-pages' ),
+            'value'=>3,
+            'alt'=>esc_html__('Design Three', 'accelerated-mobile-pages' ),
+            'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png',
+        ),
+        array(
+            'demo_link' => 'https://ampforwp.com/demo/amp-pagebuilder/amp/',
+            'upgrade' => true,
+            'title' => esc_html__('Swift', 'accelerated-mobile-pages' ),
+            'value' => 4,
+            'alt' => esc_html__('Swift', 'accelerated-mobile-pages' ),
+            'img' => AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png',
+        ),
+    );
+
+$pluginsData = array();
+$pluginsData = get_transient( 'ampforwp_themeframework_active_plugins' );
+if( empty( $pluginsData )){
+    $activePlugins = get_option( 'active_plugins', array() );
+    if(is_multisite()){
+        $activePlugins_multi = get_site_option('active_sitewide_plugins'); 
+        $activePlugins_multi = array_keys($activePlugins_multi); 
+        $activePlugins = array_merge($activePlugins, $activePlugins_multi); 
+    }
+    if(count( $activePlugins)>0){
+        foreach ( $activePlugins as $key => $value) {
+            $plugin = get_plugin_data(WP_PLUGIN_DIR.'/'.$value);
+            if(!empty($plugin['AMP'])){//$plugin['AMP']
+                $imageUrl = '';
+                if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR.$plugin['TextDomain'].'/screenshot.png')){
+                    $imageUrl = plugins_url($plugin['TextDomain'].'/screenshot.png');
+                }
+                $pluginsData[$plugin['TextDomain']] = array(
+                    'demo_link' => esc_html($plugin['AMP Demo']),
+                    'upgrade'   => true,
+                    'title'     => $plugin['AMP'],
+                    'value'     => esc_html($plugin['TextDomain']),
+                    'alt'       => esc_attr($plugin['AMP']),
+                    'img'       => esc_url($imageUrl),
+                );
+            }
+        }
+        set_transient( 'ampforwp_themeframework_active_plugins', $pluginsData );
+    }
+}
+if ( is_array($pluginsData) ) {
+    $themeDesign =  array_merge($themeDesign, $pluginsData);
+}
+$themeDesign = apply_filters( 'ampforwp_themeframe_available_designs', $themeDesign );
+
 $args = array(
     // TYPICAL -> Change these values as you need/desire
     'opt_name'              => 'redux_builder_amp', // This is where your data is stored in the database and also becomes your global variable name.
@@ -2684,8 +2761,8 @@ Redux::setSection( $opt_name, array(
                     )   
                  )
     );
-$amp_custom_script = array();
-if( is_plugin_active('amp-theme-framework/amp-theme.php') ){
+$amp_custom_script = array(); 
+if(  count($themeDesign) > 4 ){
         $amp_custom_script = array(
                         'id'       => 'ampforwp-custom-amp-script',
                         'type'     => 'switch',
@@ -3391,83 +3468,6 @@ Redux::setSection( $opt_name, array(
               'desc'  => ''
 
         ));
-
-    //get All design
-    function amp_extra_plugin_theme_header($headers){
-        $headers['AMP Theme Name'] = "AMP";
-        $headers['AMP Theme Demo'] = "AMP Demo";
-        return $headers;
-    }
-    add_filter("extra_plugin_headers","amp_extra_plugin_theme_header");
-    $themeDesign = array(
-			array(
-                'demo_link' => 'https://ampforwp.com/demo/#one',
-				'upgrade'=>true,
-				'title'=>esc_html__('Design One', 'accelerated-mobile-pages' ),
-				'value'=>1,
-				'alt'=>esc_html__('Design One', 'accelerated-mobile-pages' ),
-				'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png',
-			),
-			array(
-                'demo_link' => 'https://ampforwp.com/demo/#two',
-				'upgrade'=>true,
-				'title'=>esc_html__('Design Two', 'accelerated-mobile-pages' ),
-				'value'=>2,
-				'alt'=>esc_html__('Design Two', 'accelerated-mobile-pages' ),
-				'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png',
-			),
-			array(
-                'demo_link' => 'https://ampforwp.com/demo/#three',
-				'upgrade'=>true,
-				'title'=>esc_html__('Design Three', 'accelerated-mobile-pages' ),
-				'value'=>3,
-				'alt'=>esc_html__('Design Three', 'accelerated-mobile-pages' ),
-				'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png',
-			),
-            array(
-                'demo_link' => 'https://ampforwp.com/demo/amp-pagebuilder/amp/',
-                'upgrade' => true,
-                'title' => esc_html__('Swift', 'accelerated-mobile-pages' ),
-                'value' => 4,
-                'alt' => esc_html__('Swift', 'accelerated-mobile-pages' ),
-                'img' => AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png',
-            ),
-        );
-    
-    $pluginsData = array();
-    $pluginsData = get_transient( 'ampforwp_themeframework_active_plugins' );
-    if( empty( $pluginsData )){
-        $activePlugins = get_option( 'active_plugins', array() );
-        if(is_multisite()){
-            $activePlugins_multi = get_site_option('active_sitewide_plugins'); 
-            $activePlugins_multi = array_keys($activePlugins_multi); 
-            $activePlugins = array_merge($activePlugins, $activePlugins_multi); 
-        }
-        if(count( $activePlugins)>0){
-            foreach ( $activePlugins as $key => $value) {
-                $plugin = get_plugin_data(WP_PLUGIN_DIR.'/'.$value);
-                if(!empty($plugin['AMP'])){//$plugin['AMP']
-                    $imageUrl = '';
-                    if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR.$plugin['TextDomain'].'/screenshot.png')){
-                        $imageUrl = plugins_url($plugin['TextDomain'].'/screenshot.png');
-                    }
-                    $pluginsData[$plugin['TextDomain']] = array(
-                        'demo_link' => esc_html($plugin['AMP Demo']),
-                        'upgrade'   => true,
-                        'title'     => $plugin['AMP'],
-                        'value'     => esc_html($plugin['TextDomain']),
-                        'alt'       => esc_attr($plugin['AMP']),
-                        'img'       => esc_url($imageUrl),
-                    );
-                }
-            }
-            set_transient( 'ampforwp_themeframework_active_plugins', $pluginsData );
-        }
-    }
-    if ( is_array($pluginsData) ) {
-        $themeDesign =  array_merge($themeDesign, $pluginsData);
-    }
-    $themeDesign = apply_filters( 'ampforwp_themeframe_available_designs', $themeDesign );
 
     // Themes Section
  Redux::setSection( $opt_name, array(
