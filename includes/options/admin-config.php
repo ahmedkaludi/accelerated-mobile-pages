@@ -2761,8 +2761,9 @@ Redux::setSection( $opt_name, array(
                     )   
                  )
     );
-$amp_custom_script = array(); 
-if(  count($themeDesign) > 4 ){
+$amp_custom_script = array();
+$themeDesign_data = ( is_array($themeDesign) ? count( $themeDesign ) : '' );
+if( $themeDesign_data > 4 ){
         $amp_custom_script = array(
                         'id'       => 'ampforwp-custom-amp-script',
                         'type'     => 'switch',
