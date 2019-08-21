@@ -6908,3 +6908,51 @@ function ampforwp_generate_taxonomies_transient(){
 }
 
 
+add_filter( 'amp_post_template_data', 'ampforwp_add_comments_scripts_core', 12 );
+function ampforwp_add_comments_scripts_core( $data ) {
+	if(! function_exists('amp_comments_settings') ) {
+		if(comments_open(ampforwp_get_the_ID())){
+		    if ( is_singular() || ( function_exists('ampforwp_is_front_page') && ampforwp_is_front_page() ) || is_archive() ) {
+		        if ( empty( $data['amp_component_scripts']['amp-form'] ) ) {
+		            $data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+		        }
+		            // Adding amp-bind Script
+		        if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
+		            $data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
+		        }
+
+		        if( empty($data['amp_component_scripts']['amp-mustache'])) {
+		            $data['amp_component_scripts']['amp-mustache']='https://cdn.ampproject.org/v0/amp-mustache-latest.js';
+		         } 
+		    }
+		}
+	}
+	return $data;
+}
+
+if(! function_exists('amp_comments_settings') ) {
+    if( isset($redux_builder_amp['wordpress-comments-support']) && comments_open() && true == $redux_builder_amp['wordpress-comments-support'] ) {
+        add_action('ampforwp_after_header', 'amp_comments_form_state_core'); 
+        function amp_comments_form_state_core() { ?>
+             <amp-state id="formData">
+                      <script type="application/json">
+                      { 
+                        "submit": {
+                            "success": "cmnt-hide",
+                            "error"  : "show"
+                        }
+                      }
+                      </script>
+            </amp-state>
+            <?php 
+        }
+	}
+	add_action('amp_post_template_css', 'amp_comments_add_styling_core'); 
+	function amp_comments_add_styling_core() {
+	    echo ".cmnt-hide{display:none}";
+	    echo ".cmts h3{margin-bottom:6px}";
+	    echo "#add-comment-block label { font-size: 14px;color: #444;min-width: 55px;display: inline-block;}";
+	    echo "#add-comment-block .required {color:red}";
+	    echo "#add-comment-block input {width: 100%;margin-top: 5px;}";
+	}
+}

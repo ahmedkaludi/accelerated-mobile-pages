@@ -1090,3 +1090,55 @@ function ampforwp_smartcrawl_og_metadata(){
     add_action('amp_post_template_head',array( $ogObj, 'dispatch_og_tags_injection'));
     add_action('amp_post_template_head', array( $twitterObj, 'dispatch_tags_injection' ) );
 }
+
+if(! function_exists('amp_comments_settings') ) {
+    function amp_comment_submit(){
+      global $redux_builder_amp;
+      header("access-control-allow-credentials:true");
+      header("access-control-allow-headers:Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token");
+      header("Access-Control-Allow-Origin:".$_SERVER['HTTP_ORIGIN']);
+      $siteUrl = parse_url(  get_site_url() );
+      header("AMP-Access-Control-Allow-Source-Origin:".$siteUrl['scheme'] . '://' . $siteUrl['host']);
+      header("access-control-expose-headers:AMP-Access-Control-Allow-Source-Origin");
+      header("Content-Type:application/json;charset=utf-8");
+      $comment = wp_handle_comment_submission( wp_unslash( $_POST ) );
+      $text_data = '';
+      if ($redux_builder_amp['amp-comments-Successful-message_core']){
+        $text_data = esc_html__( $redux_builder_amp['amp-comments-Successful-message_core'], 'accelerated-mobile-pages');
+        
+      }
+            
+      if ( is_wp_error( $comment ) ) {
+        $error_data = intval( $comment->get_error_data() );
+        if ( ! empty( $error_data ) ) {
+          $comment_html = $comment->get_error_message();
+          $comment_html = str_replace("&#8217;","'",$comment_html);
+          $comment_status = array('response' => $comment_html );
+          echo json_encode($comment_status);
+          die;
+        } else {
+          wp_die( 'Unknown error' );
+        }
+      }
+     
+      $user = wp_get_current_user();
+      do_action('set_comment_cookies', $comment, $user);
+     
+      $comment_depth = 1;
+      $comment_parent = $comment->comment_parent;
+      while( $comment_parent ){
+        $comment_depth++;
+        $parent_comment = get_comment( $comment_parent );
+        $comment_parent = $parent_comment->comment_parent;
+      }
+     
+      $GLOBALS['comment'] = $comment;
+      $GLOBALS['comment_depth'] = $comment_depth;
+      $comment_html = $text_data;
+      $comment_status = array('response' => $comment_html );
+      echo json_encode($comment_status);
+      die;
+    }
+    add_action( 'wp_ajax_amp_comment_submit', 'amp_comment_submit' ); 
+    add_action( 'wp_ajax_nopriv_amp_comment_submit', 'amp_comment_submit' ); 
+}

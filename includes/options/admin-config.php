@@ -2314,36 +2314,180 @@ Redux::setArgs( "redux_builder_amp", $args );
     ampforwp_push_notification_options($opt_name);
   }
 
-// comments 
- Redux::setSection( $opt_name, array(
-    'title'      => esc_html__( 'Comments', 'accelerated-mobile-pages' ),
-    'desc' => $comment_desc,
-    'id'         => 'disqus-comments',
-    'subsection' => true,
-    'fields'     => array(
-    	array(  
-	            'id' => 'ampforwp-display-comments',
-	            'type' => 'section',
-	            'title' => esc_html__('Display', 'accelerated-mobile-pages'),
-	            'indent' => true,
-	            'layout_type' => 'accordion',
-	            'accordion-open'=> 1, 
-	          ),
-	      array(
-	                 'id'       => 'ampforwp-display-on-pages',
-	                 'type'     => 'switch',
-	                 'title'    => esc_html__('Display on Pages', 'accelerated-mobile-pages'),
-	                 'tooltip-subtitle' => esc_html__('Enable/Disable comments on pages using this switch.', 'accelerated-mobile-pages'),
-	                 'default'  => 1
-	             ),
-	       array(
-	                 'id'       => 'ampforwp-display-on-posts',
-	                 'type'     => 'switch',
-	                 'title'    => esc_html__('Display on Posts', 'accelerated-mobile-pages'),
-	                 'tooltip-subtitle' => esc_html__('Enable/Disable comments on posts using this switch.', 'accelerated-mobile-pages'),
-	                 'default'  => 1
-	             ),
-    	
+$core_comment_section = array(
+                            array(
+                            'id' => 'ampforwp-comments_setup_core',
+                            'type' => 'section',
+                            'title' => esc_html__('Settings', 'accelerated-mobile-pages'),
+                            'indent' => true,
+                            'layout_type' => 'accordion',
+                            'accordion-open'=> 1,
+                            'required' => array('wordpress-comments-support' , '=' , 1
+                                        ),
+                           ),
+                            array(
+                                'id'       => 'ampforwp-cmt-section_core',
+                                'type'     => 'select',
+                                'title'    => __( 'Display comment form', 'accelerated-mobile-pages' ),
+                                'options'  => array(
+                                     '1' => __('Above the comments list', 'accelerated-mobile-pages' ),
+                                     '2' => __('Below the comments list', 'accelerated-mobile-pages' ),
+                                 ),
+                                'default'  => '2',
+                                'required' => array('wordpress-comments-support' , '=' , 1
+                                        ),
+                               
+                            ),
+                            array(
+                                   'id'       => 'amp-cmt-reply_core',
+                                   'type'     => 'switch',
+                                   'title'    => __('Reply on specific comment', 'accelerated-mobile-pages'),
+                                   'desc'  => __('Enable or disable the reply feature on specific comment','accelerated-mobile-pages'),
+                                   'default'  => '0',
+                                   'required' => array('wordpress-comments-support' , '=' , 1
+                                        ),
+                            ), 
+                            array(
+                               'id' => 'translation_core',
+                               'type' => 'section',
+                               'title' => esc_html__('Translation Panel', 'accelerated-mobile-pages'),
+                                'indent' => true,
+                                'layout_type' => 'accordion',
+                                'accordion-open'=> 1,
+                                'required' => array('wordpress-comments-support' , '=' , 1),
+                            ),
+                            
+                       array(
+                               'id'       => 'amp-comments-translator-leave-a-reply_core',
+                               'type'     => 'text',
+                               'title'    => __('Leave a Reply', 'accelerated-mobile-pages'),
+                               'default'  => __('Leave a Reply','accelerated-mobile-pages'),
+                               'required' => array(
+                                                    array( 'amp-use-pot', '=' , 0 ),
+                                                    array('wordpress-comments-support' , '=' , 1)
+                                                 )
+                           ),
+                       array(
+                               'id'       => 'amp-comments-translator-specific-cmt-reply_core',
+                               'type'     => 'text',
+                               'title'    => __('Reply', 'accelerated-mobile-pages'),
+                               'default'  => __('Translate Here','accelerated-mobile-pages'),
+                               'required' => array(
+                                                    array( 'amp-use-pot', '=' , 0 ),
+                                                    array('wordpress-comments-support' , '=' , 1)
+                                                )
+                           ),
+                      
+                        array(
+                               'id'       => 'amp-comments-Successful-message_core',
+                               'type'     => 'text',
+                               'title'    => __('Thank You Message', 'accelerated-mobile-pages'),
+                                'default'  => __('Thank you for submitting comment, we will review it and will get back to you.','accelerated-mobile-pages'),
+
+                               'required' => array(
+                                                    array( 'amp-use-pot', '=' , 0 ),
+                                                    array('wordpress-comments-support' , '=' , 1)
+                                                )
+                           ),
+                            
+                       array(
+                               'id'       => 'amp-comments-translator-cancel-reply-text_core',
+                               'type'     => 'text',
+                               'title'    => __('Cancel reply', 'accelerated-mobile-pages'),
+                               'default'  => __('Cancel reply','accelerated-mobile-pages'),
+                               'required' => array(
+                                                    array( 'amp-use-pot', '=' , 0 ),
+                                                    array('wordpress-comments-support' , '=' , 1)
+                                                )
+                           ),
+                       array(
+                               'id'       => 'amp-comments-translator-post-comment-text_core',
+                               'type'     => 'text',
+                               'title'    => __('Post Comment', 'accelerated-mobile-pages'),
+                               'default'  => __('Post Comment','accelerated-mobile-pages'),
+                               'required' => array('wordpress-comments-support' , '=' , 1),
+                           ),
+                       array(
+                               'id'       => 'amp-comments-translator-loggedin-text_core',
+                               'type'     => 'text',
+                               'title'    => __('Logged in as', 'accelerated-mobile-pages'),
+                               'default'  => __('Logged in as','accelerated-mobile-pages'),
+                               'required' => array('wordpress-comments-support' , '=' , 1),
+                           ),
+                       array(
+                               'id'       => 'amp-comments-translator-logout-text_core',
+                               'type'     => 'text',
+                               'title'    => __('Log Out', 'accelerated-mobile-pages'),
+                               'default'  => __('Log Out','accelerated-mobile-pages'),
+                               'required' => array('wordpress-comments-support' , '=' , 1),
+                           ),
+                       array(
+                               'id'       => 'amp-comments-translator-name-text_core',
+                               'type'     => 'text',
+                               'title'    => __('Name', 'accelerated-mobile-pages'),
+                               'default'  => __('Name','accelerated-mobile-pages'),
+                               'required' => array('wordpress-comments-support' , '=' , 1),
+                           ),
+                       array(
+                               'id'       => 'amp-comments-translator-email-text_core',
+                               'type'     => 'text',
+                               'title'    => __('Email', 'accelerated-mobile-pages'),
+                               'default'  => __('Email','accelerated-mobile-pages'),
+                               'required' => array('wordpress-comments-support' , '=' , 1),
+                           ),
+                       array(
+                               'id'       => 'amp-comments-translator-website-text_core',
+                               'type'     => 'text',
+                               'title'    => __('Website', 'accelerated-mobile-pages'),
+                               'default'  => __('Website','accelerated-mobile-pages'),
+                               'required' => array('wordpress-comments-support' , '=' , 1),
+                           ),
+                       array(
+                               'id'       => 'amp-comments-translator-your-email-address-text_core',
+                               'type'     => 'text',
+                               'title'    => __('Your email address will not be published.', 'accelerated-mobile-pages'),
+                               'default'  => __('Your email address will not be published.','accelerated-mobile-pages'),
+                               'required' => array('wordpress-comments-support' , '=' , 1),
+                           ),
+                       array(
+                               'id'       => 'amp-comments-translator-required-fields-text_core',
+                               'type'     => 'text',
+                               'title'    => __('Required fields are marked', 'accelerated-mobile-pages'),
+                               'default'  => __('Required fields are marked','accelerated-mobile-pages'),
+                               'required' => array('wordpress-comments-support' , '=' , 1),
+                           ),
+                       array(
+                               'id'       => 'amp-comments-translator-Comment-text_core',
+                               'type'     => 'text',
+                               'title'    => __('Comment', 'accelerated-mobile-pages'),
+                               'default'  => __('Comment','accelerated-mobile-pages'),
+                               'required' => array('wordpress-comments-support' , '=' , 1),
+                           ),          
+                    );
+$comments_field = array(
+        array(  
+                'id' => 'ampforwp-display-comments',
+                'type' => 'section',
+                'title' => esc_html__('Display', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+              ),
+          array(
+                     'id'       => 'ampforwp-display-on-pages',
+                     'type'     => 'switch',
+                     'title'    => esc_html__('Display on Pages', 'accelerated-mobile-pages'),
+                     'tooltip-subtitle' => esc_html__('Enable/Disable comments on pages using this switch.', 'accelerated-mobile-pages'),
+                     'default'  => 1
+                 ),
+           array(
+                     'id'       => 'ampforwp-display-on-posts',
+                     'type'     => 'switch',
+                     'title'    => esc_html__('Display on Posts', 'accelerated-mobile-pages'),
+                     'tooltip-subtitle' => esc_html__('Enable/Disable comments on posts using this switch.', 'accelerated-mobile-pages'),
+                     'default'  => 1
+                 ),
+        
         array(  
             'id' => 'ampforwp-comments',
             'type' => 'section',
@@ -2508,8 +2652,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                             array('ampforwp-spotim-comments-support', '=' , 1),
                          ),
                     ),
+                );
 
-                 )
+if(! function_exists('amp_comments_settings') ) {
+    for($ccf=0;$ccf<count($core_comment_section);$ccf++){
+        array_push($comments_field, $core_comment_section[$ccf]);
+    }
+}
+// comments 
+ Redux::setSection( $opt_name, array(
+    'title'      => esc_html__( 'Comments', 'accelerated-mobile-pages' ),
+    'desc' => $comment_desc,
+    'id'         => 'disqus-comments',
+    'subsection' => true,
+    'fields'     => $comments_field,
  ) );
 
 function ampforwp_fb_instant_article() {
