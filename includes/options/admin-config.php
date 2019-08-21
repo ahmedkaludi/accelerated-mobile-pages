@@ -2312,8 +2312,6 @@ Redux::setArgs( "redux_builder_amp", $args );
     ampforwp_notice_bar_options($opt_name);
     // Push Notifications section
     ampforwp_push_notification_options($opt_name);
-   // Contact Form section
-    ampforwp_admin_contact_form_options($opt_name);
   }
 
 // comments 
@@ -3029,8 +3027,137 @@ Redux::setSection( $opt_name, array(
 
 ) );
 
-// WooCommerce Compatibility
-$e_commerce_support[] =  array(
+// Extension Compatibility
+
+// contact form 7 
+$all_extension_support[] =  array(
+                'id' => 'ampforwp-cfs_1',
+                'type' => 'section',
+                'title' => esc_html__('CF7 Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+              );
+$all_extension_support[] =  array(
+                   'id'        =>'amp-enable-contactform',
+                   'type'      => 'switch',
+                   'title'     => esc_html__('Contact Form 7 Support', 'accelerated-mobile-pages'),
+                   'default'   => '',
+                   'true'      => 'Enabled',
+                   'false'     => 'Disabled',
+               );
+        if(!function_exists('amp_cf7_plugin_init') ){
+                $all_extension_support[]= array(
+                    'id'   => 'info_normal_cf7',
+                    'type' => 'info',
+                    'required' => array('amp-enable-contactform', '=' , '1'),
+                    'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/contact-form-7/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/contact-form-7/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Contact Form 7 extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),             
+                );
+            }
+// Gravity Forms 
+            $all_extension_support[] =  array(
+                'id' => 'ampforwp-cfs_2',
+                'type' => 'section',
+                'title' => esc_html__('Gravity Forms Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+            $all_extension_support[] = array(
+                'id'        =>'amp-enable-gravityforms_support',
+                'type'      => 'switch',
+                'title'     => esc_html__('Gravity Forms Support', 'accelerated-mobile-pages'),
+                'default'   => '',
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            );
+        if(!function_exists('amp_gravity_forms_plugin_init') ){
+            $all_extension_support[]= array(
+                            'id'   => 'info_normal_gf',
+                            'type' => 'info',
+                            'required' => array('amp-enable-gravityforms_support', '=' , '1'),
+                            'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/gravity-forms/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/gravity-forms/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Gravity Forms extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )), 
+                                   
+            );
+        }
+        // Ninja Forms 
+            $all_extension_support[] =  array(
+                'id' => 'ampforwp-ninja-forms',
+                'type' => 'section',
+                'title' => esc_html__('Ninja Forms Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+            $all_extension_support[] = array(
+                'id'        =>'amp-enable-ninja-forms-support',
+                'type'      => 'switch',
+                'title'     => esc_html__('Ninja Forms Support', 'accelerated-mobile-pages'),
+                'default'   => '',
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ); 
+        if(!function_exists('ampforwp_ninja_initiate_plugin') ){
+            $all_extension_support[]= array(
+                            'id'   => 'info_normal_2',
+                            'type' => 'info',
+                            'required' => array('amp-enable-ninja-forms-support', '=' , '1'),
+                            'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/ninja-forms/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/ninja-forms/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Ninja Forms extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),              
+            );          
+            }  
+// Caldera Forms Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-caldera-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('Caldera Forms Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-caldera-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('Caldera Forms Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('amp_cf_plugin_init') ){   
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_caldera',
+                        'type' => 'info',
+                        'required' => array('amp-caldera-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/caldera-forms-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/caldera-forms-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Caldera Forms for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )), 
+                                      
+           );  
+    }    
+    
+// WP Forms Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-wpforms-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('WP Forms Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-wpforms-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('WP Forms Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('ampforwp_wpforms_forms_shortcode') ){ 
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_wpforms',
+                        'type' => 'info',
+                        'required' => array('amp-wpforms-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/wp-forms/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/wp-forms/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'WP Forms for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+        ); 
+    }                        
+$all_extension_support[] =  array(
             'id' => 'ampforwp-woocommerce',
             'type' => 'section',
             'title' => esc_html__('WooCommerce Compatibility', 'accelerated-mobile-pages'),
@@ -3038,7 +3165,7 @@ $e_commerce_support[] =  array(
             'layout_type' => 'accordion',
             'accordion-open'=> 1, 
           );
-$e_commerce_support[] =  array(
+$all_extension_support[] =  array(
                'id'        =>'amp-enable-woocommerce',
                'type'      => 'switch',
                'title'     => esc_html__('WooCommerce Support', 'accelerated-mobile-pages'),
@@ -3047,7 +3174,7 @@ $e_commerce_support[] =  array(
                'false'     => 'Disabled',
            );
     if(!function_exists( 'amp_woocommerce_add_woocommerce_support' ) && !function_exists( 'amp_woocommerce_pro_container_starts' ) ){
-        $e_commerce_support[]= array(
+        $all_extension_support[]= array(
             'id'   => 'info_normal_woocommerce',
             'type' => 'info',
             'required' => array('amp-enable-woocommerce', '=' , '1'),
@@ -3056,7 +3183,7 @@ $e_commerce_support[] =  array(
     }
     elseif ( function_exists( 'amp_woocommerce_add_woocommerce_support' ) && !function_exists( 'amp_woocommerce_pro_container_starts' ) ) {
 
-        $e_commerce_support[]= array(
+        $all_extension_support[]= array(
             'id'   => 'info_normal_woocommerce_pro',
             'type' => 'info',
             'required' => array('amp-enable-woocommerce', '=' , '1'),
@@ -3069,7 +3196,7 @@ $e_commerce_support[] =  array(
             );
     }
     elseif ( function_exists( 'amp_woocommerce_pro_container_starts' ) ) {
-        $e_commerce_support[]= array(
+        $all_extension_support[]= array(
             'id'   => 'info_woocommerce_pro',
             'type' => 'info',
             'style' => 'success',
@@ -3078,7 +3205,7 @@ $e_commerce_support[] =  array(
         );
     }
  // EDD Compatibility
-$e_commerce_support[] =  array(
+$all_extension_support[] =  array(
             'id' => 'ampforwp-edd-compatibility',
             'type' => 'section',
             'title' => esc_html__('Easy Digital Downloads Compatibility', 'accelerated-mobile-pages'),
@@ -3086,7 +3213,7 @@ $e_commerce_support[] =  array(
             'layout_type' => 'accordion',
             'accordion-open'=> 1, 
           );
-$e_commerce_support[] = array(
+$all_extension_support[] = array(
                'id'        =>'amp-edd-support',
                'type'      => 'switch',
                'title'     => esc_html__('Easy Digital Downloads Support', 'accelerated-mobile-pages'),
@@ -3094,20 +3221,277 @@ $e_commerce_support[] = array(
                'true'      => 'Enabled',
                'false'     => 'Disabled',
            );
-    if(!is_plugin_active( 'edd-for-amp/edd-for-amp.php' ) ){
-        $e_commerce_support[]= array(
+    if(!function_exists('amp_edd_post_support')){
+        $all_extension_support[]= array(
                         'id'   => 'info_normal_edd',
                         'type' => 'info',
                         'required' => array('amp-edd-support', '=' , '1'),
-                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/edd-for-amp/" target="_blank">EDD for AMP extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/edd-for-amp/" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',               
-           );}
- 
-   // E Commerce SECTION
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/edd-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/edd-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'EDD for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),        
+           );
+    }
+// Email Opt-in Forms Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-opt-in-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('Email Opt-in Forms Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-opt-in-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('Email Opt-in Forms Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('amp_optin_form_output')){
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_opt-in',
+                        'type' => 'info',
+                        'required' => array('amp-opt-in-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/opt-in-forms/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/opt-in-forms/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Email Opt-in Forms for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )), 
+                                    
+           );        
+    }
+// Ratings for AMP
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-amp-ratings-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('Ratings for AMP', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-ratings-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('Ratings for AMP', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('get_amp_rating_rating_markup')){
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_ratings',
+                        'type' => 'info',
+                        'required' => array('amp-ratings-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/amp-ratings/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/amp-ratings/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Ratings for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),             
+           );    
+    }                    
+// WPML Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-wpml-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('WPML Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-wpml-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('WPML Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+ if(!function_exists('amp_wpml_plugin_updater')){   
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_wpml',
+                        'type' => 'info',
+                        'required' => array('amp-wpml-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/wpml-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/wpml-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'WPML for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),              
+           );
+    }
+    // Polylang Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-polylang-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('Polylang Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-polylang-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('Polylang Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('amp_polylang_plugin_updater')){
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_polylang',
+                        'type' => 'info',
+                        'required' => array('amp-polylang-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/polylang-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/polylang-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Polylang for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),
+                                   
+           ); 
+       } 
+    // bbPress Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-bbPress-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('bbPress Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-bbPress-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('bbPress Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('amp_bbpress_plugin_updater')){
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_bbPress',
+                        'type' => 'info',
+                        'required' => array('amp-bbPress-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/bbpress/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/bbpress/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'bbPress for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),
+                                      
+           );
+    }
+     // Shortcodes Ultimate Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-su-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('Shortcodes Ultimate Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-su-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('Shortcodes Ultimate Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('amp_su_shortcodes_ulitmate_notices')){
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_su',
+                        'type' => 'info',
+                        'required' => array('amp-su-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/shortcodes-ultimate/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/shortcodes-ultimate/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Shortcodes Ultimate for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),
+                                   
+           ); 
+       } 
+    // Table of Content Plus Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-toc-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('Table of Content Plus Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-toc-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('Table of Content Plus Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('toc_amp_initiate')){
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_toc',
+                        'type' => 'info',
+                        'required' => array('amp-toc-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/table-of-contents-plus/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/table-of-contents-plus/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Table of Content Plus for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),
+                                   
+           ); 
+    }
+    // Classipress Theme Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-classipress-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('Classipress Theme Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-classipress-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('Classipress Theme Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('amp_classi_press_compatibility')){
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_classipress',
+                        'type' => 'info',
+                        'required' => array('amp-classipress-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/classipress-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/classipress-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Classipress Theme for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),
+                                      
+           );
+    }
+    // LiveBlog Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-liveBlog-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('LiveBlog Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-liveBlog-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('LiveBlog Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('liveblogforamp_plugin_updater')){
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_liveBlog',
+                        'type' => 'info',
+                        'required' => array('amp-liveBlog-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/addons/liveblog-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/addons/liveblog-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'LiveBlog for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),
+                                       
+           );   
+    }
+    // The Event Calender Compatibility
+$all_extension_support[] =  array(
+            'id' => 'ampforwp-event-calender-compatibility',
+            'type' => 'section',
+            'title' => esc_html__('The Event Calender Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$all_extension_support[] = array(
+               'id'        =>'amp-event-calender-support',
+               'type'      => 'switch',
+               'title'     => esc_html__('The Event Calender Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!function_exists('tec_amp_compatibility_orgs_venues_support')){
+        $all_extension_support[]= array(
+                        'id'   => 'info_normal_event-calender',
+                        'type' => 'info',
+                        'required' => array('amp-event-calender-support', '=' , '1'),
+                        'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/addons/the-event-calender-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/addons/the-event-calender-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'The Event Calender for AMP extension', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),
+        );
+    }                                           
+   // Extension Compatibility Section
    Redux::setSection( $opt_name, array(
-       'title'      => esc_html__( 'E-Commerce', 'accelerated-mobile-pages' ),
+       'title'      => esc_html__( 'Extension Compatibility', 'accelerated-mobile-pages' ),
        'id'         => 'amp-e-commerce',
        'subsection' => true,
-       'fields'     => $e_commerce_support
+       'fields'     => $all_extension_support
    ) );
    
    // Translation Panel
