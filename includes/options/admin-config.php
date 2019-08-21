@@ -1189,7 +1189,7 @@ $user = wp_get_current_user();
 $permissions = "manage_options";
 $amp_access = ampforwp_get_setting('ampforwp-role-based-access');
 
-if( array_intersect( 'administrator', $user->roles ) ) {
+if( in_array( 'administrator', $user->roles ) ) {
     $permissions = "manage_options";
 }elseif( in_array( 'editor', $user->roles ) && in_array('editor', $amp_access) ){
     $permissions = 'edit_pages';
@@ -3110,6 +3110,7 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'amp-meta-permissions',
                         'type'     => 'select',
+                        'class'    => 'hide',
                         'title'    => esc_html__('Show Metabox in Post Editor to', 'accelerated-mobile-pages'),
                         'options'  => array(
                             'all'       => 'All users who can post',
