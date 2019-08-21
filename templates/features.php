@@ -4322,9 +4322,19 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 		    $class = array();
 		}
 
-		if(is_tax() || is_category() || is_tag()){
-			$classes[] = get_post_type();
-			$classes[] = $post->post_name;
+		if(is_tax()){
+			$term = get_queried_object();
+		
+			if ( isset( $term->term_id ) ) {
+				$term_class = sanitize_html_class( $term->slug, $term->term_id );
+				if ( is_numeric( $term_class ) || ! trim( $term_class, '-' ) ) {
+					$term_class = $term->term_id;
+				}
+
+				$classes[] = 'tax-' . sanitize_html_class( $term->taxonomy );
+				$classes[] = 'term-' . $term_class;
+				$classes[] = 'term-' . $term->term_id;
+			}
 		}else{
 			$classes[] = get_post_type();
 		}
