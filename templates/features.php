@@ -5864,7 +5864,7 @@ function ampforwp_generate_canonical(){
 		$All_in_One_SEO_Pack = new All_in_One_SEO_Pack();
 		$opts = $All_in_One_SEO_Pack->get_current_options( array(), 'aiosp' );
 		$canonical = $opts['aiosp_custom_link'];
-	}elseif( ampforwp_get_setting('ampforwp-smartcrawl-canonical') == true && class_exists('Smartcrawl_Loader') && function_exists('smartcrawl_get_value') ){
+	}elseif( ampforwp_get_setting('ampforwp-smartcrawl-canonical') == true && class_exists('Smartcrawl_Loader') && function_exists('smartcrawl_get_value') && 'smartcrawl' == ampforwp_get_setting('ampforwp-seo-selection') ){
 		$canonical = smartcrawl_get_value( 'canonical', ampforwp_get_the_ID() );
 	}elseif ( defined( 'RANK_MATH_FILE' ) && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') && ampforwp_get_setting( 'ampforwp-seo-rank_math-canonical' ) ) {
 		$canonical = \RankMath\Paper\Paper::get()->get_canonical();
