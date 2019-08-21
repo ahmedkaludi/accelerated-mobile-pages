@@ -6191,8 +6191,34 @@ function ampforwp_thrive_architect_content(){
 		add_action('template_redirect', array(new ampforwp_cdn_enabler_disable(), 'pre_get_options'), 9);
 		}
 	}
+	if ( function_exists( 'ampforwp_is_amp_inURL' ) && ampforwp_is_amp_inURL($url_path)  ){
+		if( class_exists('AddHierarchyParentToPost\PluginClass')){
+			add_filter('pre_get_posts','ampforwp_parent_hierarchy_post', 6);
+		}
+	}
 }
-
+function ampforwp_parent_hierarchy_post($query){
+	$pType = 'post';
+	if( $query->is_main_query() && !is_admin() ) {
+		$obj = new  AddHierarchyParentToPost\PluginClass();
+		$possible_post_path = trailingslashit( preg_replace_callback('/(.*?)\/((page|feed|rdf|rss|rss2|atom)\/.*)/i', function($matches) { return $matches[1]; } ,  $obj->path_after_blog() ) );
+		
+		if(substr_count($possible_post_path, "/") >= 2) {
+			$possible_post_path = str_replace("/amp/", "", $possible_post_path);
+			$post=get_page_by_path($possible_post_path, OBJECT, $pType); 
+			if ($post){
+				$query->parse_query( array('post_type'=>array($pType), 'amp'=>1) ) ;  //better than ;
+				$query->is_home		= false; 
+				$query->is_single	= true; 
+				$query->is_singular	= true; 
+				$query->queried_object_id = $post->ID;  
+				$query->set('page_id',$post->ID);
+				return $query;
+			}
+		}
+	}
+	return $query;
+}
 class ampforwp_cdn_enabler_disable{
 	private $excluded_urls = array();
 	public function __construct() {}
