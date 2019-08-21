@@ -112,8 +112,8 @@
                     $category_name = get_category($last_category);
                     $get_cat_parents = rtrim(get_category_parents($last_category->term_id, false, ','),',');
                     if(class_exists( 'WPSEO_Options' )){
-                        if(isset(get_post_meta(ampforwp_get_the_ID())['_yoast_wpseo_primary_category'][0])){
-                        $primary_cateogory = get_post_meta(ampforwp_get_the_ID())['_yoast_wpseo_primary_category'][0];
+                    $primary_cateogory = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_primary_category', true);
+                    if(isset($primary_cateogory) && $primary_cateogory!=""){
                         $pcname = get_the_category_by_ID($primary_cateogory);
                         $category_name = $pcname;
                         $get_cat_parents = rtrim(get_category_parents($primary_cateogory, false, ','),',');
