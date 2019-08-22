@@ -127,7 +127,7 @@ $avia_pb_for_ampchecker = array(
     $pb_for_amp[] =  array(
                 'id' => 'ampforwp-avia-pb-for-amp-accor',
                 'type' => 'section',
-                'title' => esc_html__('AMP Avia (Enfold) Compatibility', 'accelerated-mobile-pages'),
+                'title' => esc_html__('Avia(Enfold) Compatibility', 'accelerated-mobile-pages'),
                 'indent' => true,
                 'layout_type' => 'accordion',
                 'accordion-open'=> 1, 
@@ -135,7 +135,7 @@ $avia_pb_for_ampchecker = array(
     $pb_for_amp[] = array(
                'id'       => 'ampforwp-avia-pb-for-amp',
                'type'     => 'switch',
-               'title'    => esc_html__('AMP Avia pagebuilder(Enfold) (BETA)','accelerated-mobile-pages'),
+               'title'    => esc_html__('Avia(Enfold) Support','accelerated-mobile-pages'),
                'tooltip-subtitle' => esc_html__('Enable or Disable the Avia support for AMP', 'accelerated-mobile-pages'),
                'default'  => false
             ); 
