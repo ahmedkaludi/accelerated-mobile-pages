@@ -54,7 +54,7 @@ function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	if ( empty( $metadata ) ) {
 		return;
 	}
-	if(ampforwp_get_setting('ampforwp-seo-yoast-schema') == true && ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' ){
+	if(ampforwp_get_setting('ampforwp-seo-yoast-schema') == false && ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' ){
 	?>
 	<script type="application/ld+json"><?php echo wp_json_encode( $metadata ); ?></script>
 	<?php
