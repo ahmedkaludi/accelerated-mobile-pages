@@ -1361,6 +1361,11 @@ $tabs = array(
                     'options' => ampforwp_get_generated_custom_taxonomies(),
                 );
     }
+    $design_types = ampforwp_get_setting('amp-design-selector');
+    $secondary_text = 'Content';
+    if($design_types == 1 || $design_types == 2 || $design_types == 3){
+        $secondary_text = 'Secondary';
+    }
     // AMP to WP Default value
     function ampforwp_amp2wp_default(){
         $default = 0;
@@ -3595,8 +3600,8 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'content-font-family-enable',
                     'type'     => 'switch',
-                    'class'    => 'ampforwp-google-font-class',
-                    'title'    => esc_html__('Content Font Selector', 'accelerated-mobile-pages'),
+                    'class'    => 'ampforwp-google-font-class secondary-font-selector',
+                    'title'    => esc_html__($secondary_text.' Font Selector', 'accelerated-mobile-pages'),
                     'required' => array(
                                    // array('amp-design-selector', '=' , '4')
                                     ),
@@ -3609,8 +3614,8 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'       => 'amp_font_selector_content_single',
                 'type'     => 'select',
-                'class'    => 'ampforwp-google-font-class ampwp-font-families',
-                'title'    => esc_html__( 'Content Font Family Selector', 'accelerated-mobile-pages' ),
+                'class'    => 'ampforwp-google-font-class ampwp-font-families secondary-font-family-selector',
+                'title'    => esc_html__( $secondary_text.' Font Family Selector', 'accelerated-mobile-pages' ),
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'None',
@@ -3626,9 +3631,9 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'       => 'amp_font_type_content_single',
                 'type'     => 'select',
-                'class'    => 'ampforwp-google-font-class ampwp-font-family-weights',
+                'class'    => 'ampforwp-google-font-class ampwp-font-family-weights secondary-font-family-weights',
                 'multi'    => true,
-                'title'    => esc_html__( 'Content Font Family Weight Selector', 'accelerated-mobile-pages' ),
+                'title'    => esc_html__( $secondary_text.' Font Family Weight Selector', 'accelerated-mobile-pages' ),
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'none',

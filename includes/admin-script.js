@@ -595,6 +595,15 @@ jQuery(function($) {
         }
         $('#redux_builder_amp-amp-design-selector select').on('change',function(){
             amp_font_selector_select_change('design_change', $(this).val());
+            if( $(this).val() == 1 || $(this).val() == 2 || $(this).val() == 3){
+                $('.amp-theme-global-subsection').find('.secondary-font-selector th div').text('Secondary Font Selector');
+                $('.amp-theme-global-subsection').find('.secondary-font-family-selector th div').text('Secondary Font Family Selector');
+                $('.amp-theme-global-subsection').find('.secondary-font-family-weights th div').text('Secondary Font Family Weight Selector');
+            }else{
+                $('.amp-theme-global-subsection').find('.secondary-font-selector th div').text('Content Font Selector');
+                $('.amp-theme-global-subsection').find('.secondary-font-family-selector th div').text('Content Font Family Selector');
+                $('.amp-theme-global-subsection').find('.secondary-font-family-weights th div').text('Content Font Family Weight Selector');
+            }
         });
         function amp_font_selector_select_change(callType='', currentdesign=4){
                 if($('#amp_font_selector-select').length>0){
