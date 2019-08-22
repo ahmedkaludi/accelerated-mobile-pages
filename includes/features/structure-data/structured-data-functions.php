@@ -257,14 +257,16 @@ function ampforwp_structured_data_type( $metadata ) {
  	if((function_exists('activate_wp_recipe_maker') || function_exists('activate_wp_recipe_maker_premium')) && (isset($set_sd_post) && $set_sd_post == 'Recipe')){
 		return;
 	}
+
 	if ( $post_types ) { // If there are any custom public post types.
     	foreach ( $post_types  as $post_type ) {
-
         	if ( isset( $post->post_type ) && ('page' == $post->post_type || 'post' == $post->post_type) ) {
         		continue;
         	}
-        	
 	       	if ( isset( $post->post_type ) && $post->post_type == $post_type ) {
+	       		if( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type.''] ) ){
+	       			return;
+	       		}
         		if ( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type.''] ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
 					return;
 				}
@@ -275,8 +277,14 @@ function ampforwp_structured_data_type( $metadata ) {
         	}
         }
     }
+   
 
-	if ( empty( $set_sd_post ) && is_single() && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {;
+    if( $post->post_type == "post" && empty( $set_sd_post )){
+    	return;
+    }elseif($post->post_type == "page" && empty( $set_sd_page )) {
+    	return;
+    }
+	if ( empty( $set_sd_post ) && is_single() && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
 		return;
 	}
 
