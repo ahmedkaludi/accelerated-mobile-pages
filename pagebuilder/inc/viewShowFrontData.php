@@ -646,10 +646,10 @@ function amppb_post_content($content){
 				$html .= '</div>';
 		}
 		if(!empty($html)){
-			$content = $html;	
+			$content = do_shortcode($html);	
 		}
 	}
-	return do_shortcode($content);
+	return $content;
 }
 
 function ampforwp_rowData($container,$col,$moduleTemplate){

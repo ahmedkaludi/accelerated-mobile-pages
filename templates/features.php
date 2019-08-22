@@ -723,7 +723,7 @@ function ampforwp_new_dir( $dir ) {
 				   // aria-current
 				  $content = preg_replace('/(<[^>]+) aria-current=".*?"/', '$1', $content);
 				  // Gallery Break fix 
-				  $content = preg_replace('/\[gallery(.*?)\]/', '</p>[gallery$1]</p>', $content);
+				  $content = preg_replace('/[^\[]\[gallery(.*?)\]/', '</p>[gallery$1]</p>', $content);
 				  // value attribute from anchor tag #2262
 				  $content = preg_replace('/<a(.*?)(value=".*?")(.*?)>/', '<a$1$3>', $content);
 				  //Compatibility with Cloudflare stream. #3230
