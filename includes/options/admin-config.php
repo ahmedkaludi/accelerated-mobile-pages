@@ -1804,7 +1804,11 @@ Redux::setArgs( "redux_builder_amp", $args );
         $roles = '';
         $metabox_access = ampforwp_get_setting('amp-meta-permissions');
         if($metabox_access == 'admin'){
-            $roles = array('administrator');
+            if(empty(ampforwp_get_setting('ampforwp-role-based-access'))){
+                $roles = array('administrator');
+            }else{
+                $roles = ampforwp_get_setting('ampforwp-role-based-access');
+            }
         }else{
             if(empty(ampforwp_get_setting('ampforwp-role-based-access'))){
                 $roles = array('administrator','editor');
@@ -3106,16 +3110,6 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => esc_html__('Select the Resolution', 'accelerated-mobile-pages'),
                         'default'   => '2',   
                         'required' => array('ampforwp-retina-images', '=', 1)
-                    ),
-                    array(
-                        'id'       => 'amp-meta-permissions',
-                        'type'     => 'select',
-                        'title'    => esc_html__('Show Metabox in Post Editor to', 'accelerated-mobile-pages'),
-                        'options'  => array(
-                            'all'       => 'All users who can post',
-                            'admin'     => 'Only to Admin'
-                        ),
-                        'default'  => 'all',
                     ),
                      array(
                         'id'       => 'ampforwp-development-mode',

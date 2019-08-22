@@ -759,38 +759,27 @@ function ampforwp_title_custom_meta() {
 
     $post_types = ampforwp_get_all_post_types();
 
-    $user_level = '';
-    $user_level = current_user_can( 'manage_options' );
-
-    if (  isset( $redux_builder_amp['amp-meta-permissions'] ) && $redux_builder_amp['amp-meta-permissions'] == 'all' ) {
-    	$user_level = true;
-    }
-
-    if ( $post_types && $user_level ) { // If there are any custom public post types.
-
+    if ( $post_types && (ampforwp_role_based_access_options() == true && ( current_user_can('edit_posts') || current_user_can('edit_pages') ) ) ) { // If there are any custom public post types.
         foreach ( $post_types  as $post_type ) {
-
-          if( $post_type == 'amp-cta' || $post_type == 'amp-optin' ) {
+          	if( $post_type == 'amp-cta' || $post_type == 'amp-optin' ) {
 							continue;
-          }
-          if(ampforwp_role_based_access_options() == true){
+          	}
 	          // Posts
-		      if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
-		        add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
-		      }
-		      // Pages
-	          if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
-	              add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
-	          }
-	          // Custom Post Types
-	          if( $post_type !== 'page' && $post_type !== 'post' ) {
-	            add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', $post_type,'side' );          
-	          }
-          }
+			if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
+			add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
+			}
+			// Pages
+			if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
+			  add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
+			}
+			// Custom Post Types
+			if( $post_type !== 'page' && $post_type !== 'post' ) {
+			add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', $post_type,'side' );          
+			}
         }
 
-        }
     }
+}
 
 add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
 
@@ -876,14 +865,7 @@ function ampforwp_mobile_redirection() {
   	global $redux_builder_amp;
     $post_types = ampforwp_get_all_post_types();
 
-    $user_level = '';
-    $user_level = current_user_can( 'manage_options' );
-
-    if (  isset( $redux_builder_amp['amp-meta-permissions'] ) && $redux_builder_amp['amp-meta-permissions'] == 'all' ) {
-    	$user_level = true;
-    }
-
-    if ( $post_types && $user_level ) { // If there are any custom public post types.
+    if ( $post_types && ampforwp_role_based_access_options() == true ) { // If there are any custom public post types.
 
         foreach ( $post_types  as $post_type ) {
 
@@ -6265,12 +6247,8 @@ add_action( 'add_meta_boxes', 'ampforwp_ia_meta_box' );
 if ( ! function_exists('ampforwp_ia_meta_box') ) {
 	function ampforwp_ia_meta_box() {
 		global $redux_builder_amp, $post;
-	    $user_level = '';
-	    $user_level = current_user_can( 'manage_options' );
-	    if (  isset( $redux_builder_amp['amp-meta-permissions'] ) && $redux_builder_amp['amp-meta-permissions'] == 'all' ) {
-	    	$user_level = true;
-	    }
-	    if ( $user_level ) { 
+	   
+	    if ( ampforwp_role_based_access_options() == true ) { 
 		    if( true == $redux_builder_amp['fb-instant-article-switch'] && $post->post_type == 'post' ) {
 		    	add_meta_box( 'ampforwp_ia_meta', esc_html__( 'Show Instant Article for Current Post?','accelerated-mobile-pages' ), 'ampforwp_ia_meta_callback', 'post','side' );      
 		    }

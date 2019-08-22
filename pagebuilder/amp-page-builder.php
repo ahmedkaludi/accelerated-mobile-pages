@@ -14,29 +14,19 @@ add_action('add_meta_boxes','ampforwp_pagebuilder_content_meta_register', 10 ,1)
 function ampforwp_pagebuilder_content_meta_register($post_type){
 	global $redux_builder_amp;
 
-    $user_level = '';
-    $user_level = current_user_can( 'manage_options' );
-
-    if (  isset( $redux_builder_amp['amp-meta-permissions'] ) && $redux_builder_amp['amp-meta-permissions'] == 'all' ) {
-    	$user_level = true;
-    }
-
-    if ( $user_level && ( current_user_can('edit_posts') || current_user_can('edit_pages') ) ) {
-    	if(ampforwp_role_based_access_options() == true){
-			// Page builder for posts
-		  	if( ampforwp_get_setting('amp-on-off-for-all-posts') && $post_type == 'post' ) {
-		  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  'post' , 'normal', 'default' );
-		  	}
-		  	// Page builder for pages
-		  	if ( ampforwp_get_setting('amp-on-off-for-all-pages') && $post_type == 'page' ) {
-		  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  'page' , 'normal', 'default' );
-		  	}
-		  	if( (is_array(ampforwp_get_setting('ampforwp-custom-type') ) ) && in_array($post_type, ampforwp_get_setting('ampforwp-custom-type') ) ){
-		  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
-		  	}
+	if(ampforwp_role_based_access_options() == true && ( current_user_can('edit_posts') || current_user_can('edit_pages') )){
+		// Page builder for posts
+	  	if( ampforwp_get_setting('amp-on-off-for-all-posts') && $post_type == 'post' ) {
+	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  'post' , 'normal', 'default' );
 	  	}
-	  	
-	}
+	  	// Page builder for pages
+	  	if ( ampforwp_get_setting('amp-on-off-for-all-pages') && $post_type == 'page' ) {
+	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  'page' , 'normal', 'default' );
+	  	}
+	  	if( (is_array(ampforwp_get_setting('ampforwp-custom-type') ) ) && in_array($post_type, ampforwp_get_setting('ampforwp-custom-type') ) ){
+	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
+	  	}
+  	}
 }
 
 function amp_content_pagebuilder_title_callback( $post ){
