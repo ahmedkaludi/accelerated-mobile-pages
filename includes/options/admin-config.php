@@ -2070,7 +2070,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             elseif ( defined( 'RANK_MATH_FILE' ) ) {
                 $default = 'rank_math';
             }
-            elseif ( function_exists('genesis_title') ) {
+            elseif ( function_exists('genesis_theme_support') ) {
                 $default = 'genesis';
             }
             elseif ( is_plugin_active('wp-seopress/seopress.php') ) {
