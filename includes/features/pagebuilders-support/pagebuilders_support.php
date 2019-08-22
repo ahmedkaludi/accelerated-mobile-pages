@@ -111,7 +111,7 @@ $avia_pb_for_ampchecker = array(
     $pb_for_amp[] =  array(
                 'id' => 'ampforwp-avada-pb-for-amp-accor',
                 'type' => 'section',
-                'title' => esc_html__('AMP Avada (Fusion builder) Compatibility', 'accelerated-mobile-pages'),
+                'title' => esc_html__('Avada(Fusion builder) Compatibility', 'accelerated-mobile-pages'),
                 'indent' => true,
                 'layout_type' => 'accordion',
                 'accordion-open'=> 1, 
@@ -119,10 +119,10 @@ $avia_pb_for_ampchecker = array(
     $pb_for_amp[] = array(
                'id'       => 'ampforwp-avada-pb-for-amp',
                'type'     => 'switch',
-               'title'    => esc_html__('AMP Avada (Fusion builder) (BETA)','accelerated-mobile-pages'),
+               'title'    => esc_html__('Avada(Fusion builder) Support','accelerated-mobile-pages'),
                'tooltip-subtitle' => esc_html__('Enable or Disable the Avada support for AMP', 'accelerated-mobile-pages'),
                'default'  => false
-            ); 
+            );  
     $pb_for_amp[] = $avada_pb_for_ampchecker;
     $pb_for_amp[] =  array(
                 'id' => 'ampforwp-avia-pb-for-amp-accor',
