@@ -3110,7 +3110,6 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'amp-meta-permissions',
                         'type'     => 'select',
-                        'class'    => 'hide',
                         'title'    => esc_html__('Show Metabox in Post Editor to', 'accelerated-mobile-pages'),
                         'options'  => array(
                             'all'       => 'All users who can post',
