@@ -935,4 +935,10 @@ font-size: 10px;
 text-transform: none; 
 width: 100%; 
 font-weight: normal; 
-} 
+}
+.afp{
+    background: #FFF59D;
+    padding: 8px 14px;
+    margin-top: 7px;
+    display: inline-block;
+}
