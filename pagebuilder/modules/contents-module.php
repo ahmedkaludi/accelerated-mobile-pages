@@ -10,8 +10,9 @@ function ampforwp_content_module_pagination($args, $fieldValues){
       }else{
           $paged = 1;
       }
-      
+      $offset = ( $paged - 1 ) * $args['posts_per_page'] + $args['offset'];
       $args['paged'] = $paged;
+      $args['offset'] = $offset;
       
     return $args;
   }else{
