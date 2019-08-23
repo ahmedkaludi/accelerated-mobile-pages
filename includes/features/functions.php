@@ -21,7 +21,8 @@ function ampforwp_add_admin_styling($hook_suffix){
         $redux_data = $redux_builder_amp;
     }
     if( current_user_can("manage_options") && $hook_suffix == 'options-reading.php' && 0 == $redux_builder_amp['amp-frontpage-select-option']) {
-        $redux_data['frontpage'] = false;
+        $redux_data['frontpage'] = 'false';
+        $redux_data['admin_url'] = esc_url(admin_url("admin.php?page=amp_options&tabid=opt-text-subsection#redux_builder_amp-amp-frontpage-select-option"));
     }
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
 

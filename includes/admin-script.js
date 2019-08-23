@@ -1119,8 +1119,10 @@ jQuery(document).ready(function($){
         });
     }
     versionUpdate();
-    if ( false == redux_data['frontpage']){
-        $('#page_on_front').parent('label').append('<p class="afp"><b>Note: This is not your AMP FrontPage, you can </b><a class="" href="http://localhost/weekly/wp-admin/admin.php?page=amp_options&amp;tabid=opt-text-subsection#redux_builder_amp-amp-frontpage-select-option">set one from here</a></span>');
+
+    // AMP FrontPage notice in Reading Settings #2348
+    if ( 'false' == redux_data.frontpage){
+        $('#page_on_front').parent('label').append('<p class="afp"><b>We have detected that you have not setup the FrontPage for AMP, </b><a href="'+redux_data.admin_url+'">Click here to setup</a></span>');
     }
 }); 
 function ampforwp_updateQueryStringParameter(uri, key, value) {
