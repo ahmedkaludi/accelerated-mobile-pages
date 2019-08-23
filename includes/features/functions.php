@@ -20,6 +20,12 @@ function ampforwp_add_admin_styling($hook_suffix){
     if( current_user_can("manage_options") && $hook_suffix=='toplevel_page_amp_options' ){
         $redux_data = $redux_builder_amp;
     }
+    if( current_user_can("manage_options") && $hook_suffix=='options-reading.php' && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
+        if ( get_option('page_on_front') != $redux_builder_amp['amp-frontpage-select-option-pages'] ) {
+            $redux_data = $redux_builder_amp['amp-frontpage-select-option-pages'];
+        }
+    }
+
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
 
     wp_enqueue_script( 'ampforwp_admin_js' );
