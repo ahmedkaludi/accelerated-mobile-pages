@@ -4661,7 +4661,7 @@ Redux::setSection( $opt_name, array(
                 array(
                        'id' => 'google-icons',
                        'type' => 'section',
-                       'title' => esc_html__('Google Icon Library', 'accelerated-mobile-pages'),
+                       'title' => esc_html__('Font Icon Library', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
