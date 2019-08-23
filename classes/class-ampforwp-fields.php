@@ -108,7 +108,11 @@ class AMPforWP_Fields
 	}
 
 	public function ampforwp_field_color(){
-
+		if ( !empty($this->title) ) {
+			$output .= '<h2>'.$this->title.'</h2>';
+		}
+		$output .= '<input type="color" id="'.$this->id.'" class="'.$this->class.'"><br>';
+		echo $output;
 	}
 	public function ampforwp_field_text(){
 		if ( !empty($this->title) ) {
