@@ -37,6 +37,10 @@ class AMPforWP_Fields
 		if ( 'select' == $type ) {
 			$this->ampforwp_field_select($fields);
 		}
+		// Text
+		if ( 'text' == $type ) {
+			$this->ampforwp_field_text($fields);
+		}
 		// Checkbox
 		if ( 'checkbox' == $type ) {
 			$this->ampforwp_field_checkbox($fields);
@@ -105,6 +109,13 @@ class AMPforWP_Fields
 
 	public function ampforwp_field_color(){
 
+	}
+	public function ampforwp_field_text(){
+		if ( !empty($this->title) ) {
+			$output .= '<h2>'.$this->title.'</h2>';
+		}
+		$output .= '<input type="text" id="'.$this->id.'" class="'.$this->class.'"><br>';
+		echo $output;
 	}
 
 }?>
