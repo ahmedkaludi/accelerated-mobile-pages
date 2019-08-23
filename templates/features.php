@@ -7109,3 +7109,46 @@ function ampforwp_head_css(){
 			return apply_filters('ampforwp_view_nonamp_url', $non_amp_url);
 		}
 }
+
+// Post Meta Revisions #3548 -- start here --
+add_filter( '_wp_post_revision_field_amp_page_builder', 'ampforwp_meta_rev_pb_field', 22, 2 );
+add_action( 'save_post',                   'ampforwp_meta_rev_save_post', 10, 2 );
+add_action( 'wp_restore_post_revision',    'ampforwp_meta_restore_revision', 10, 2 );
+add_filter( '_wp_post_revision_fields',    'ampforwp_meta_rev_fields' );
+
+function ampforwp_meta_rev_fields( $fields ) {
+	$fields['post_title'] = 'Title';
+	$fields['post_content'] = 'Content';
+	$fields['post_excerpt'] = 'Excerpt';
+	$fields['amp-page-builder'] = 'AMP Page Builder';
+	return $fields;
+}
+
+function ampforwp_meta_rev_pb_field( $value, $field ) {
+	global $revision;
+	return get_metadata( 'post', $revision->ID, $field, true );
+
+}
+
+function ampforwp_meta_restore_revision( $post_id, $revision_id ) {
+	$post     = get_post( $post_id );
+	$revision = get_post( $revision_id );
+	$meta     = get_metadata( 'post', $revision->ID, 'amp-page-builder', true );
+	if ( false === $meta ) {
+		delete_post_meta( $post_id, 'amp-page-builder' );
+	}
+	else{
+		update_post_meta( $post_id, 'amp-page-builder', $meta );
+	}
+}
+
+function ampforwp_meta_rev_save_post( $post_id, $post ) {
+	if ( $parent_id = wp_is_post_revision( $post_id ) ) {
+		$parent = get_post( $parent_id );
+		$pb_meta = get_post_meta( $parent->ID, 'amp-page-builder', true );
+		if ( false !== $pb_meta ){
+			add_metadata( 'post', $post_id, 'amp-page-builder', $pb_meta );
+		}
+	}
+}
+// Post Meta Revisions #3548 -- end here --
