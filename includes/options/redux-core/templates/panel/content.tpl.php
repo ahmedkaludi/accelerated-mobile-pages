@@ -84,6 +84,7 @@ namespace ReduxCore\ReduxFramework;
             do_action( "redux/page/{$this->parent->args['opt_name']}/section/after", $section );
         }
         //}
+        include AMPFORWP_PLUGIN_DIR.'classes/ampforwp-fields.php';
     ?></div><?php
     //print '</div>';
     }

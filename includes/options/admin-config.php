@@ -1393,37 +1393,37 @@ Redux::setArgs( "redux_builder_amp", $args );
                            'id' => 'website-type',
                            'type' => 'raw',
                            'title' => esc_html__('Website Type', 'accelerated-mobile-pages'),
-                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'" data-href="ampforwp-ux-website-type-section">SELECT</div>',
+                           'content'  => '<div class="button btn-red drawer_button " data-id="website-type" data-secure="'.wp_create_nonce('verify_module').'" data-href="ampforwp-ux-website-type-section">SELECT</div>',
             ),
                array(
                            'id' => 'amp-need',
                            'type' => 'raw',
                            'title' => esc_html__('Where do you need AMP?', 'accelerated-mobile-pages'),
-                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'" data-href="ampforwp-ux-need-type-section">CHOOSE</div>',
+                           'content'  => '<div class="button btn-red drawer_button " data-secure="'.wp_create_nonce('verify_module').'" data-href="ampforwp-ux-need-type-section">CHOOSE</div>',
             ),
                array(
                            'id' => 'design-presentation',
                            'type' => 'raw',
                            'title' => esc_html__('Design and Presentation', 'accelerated-mobile-pages'),
-                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">SET UP</div>'
+                           'content'  => '<div class="button btn-red drawer_button " data-href="ampforwp-ux-design-section" data-secure="'.wp_create_nonce('verify_module').'">SET UP</div>'
             ),
                array(
                            'id' => 'analytics-tracking',
                            'type' => 'raw',
                            'title' => esc_html__('Analytics Tracking', 'accelerated-mobile-pages'),
-                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">CONFIG</div>'
+                           'content'  => '<div class="button btn-red drawer_button " data-href="ampforwp-ux-analytics-section" data-secure="'.wp_create_nonce('verify_module').'">CONFIG</div>'
             ),
                array(
                            'id' => 'privacy-settings',
                            'type' => 'raw',
                            'title' => esc_html__('Privacy Settings', 'accelerated-mobile-pages'),
-                           'content'  => '<div class="button btn-red " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">CHOOSE</div>'
+                           'content'  => '<div class="button btn-red drawer_button " data-href="ampforwp-ux-privacy-section" data-secure="'.wp_create_nonce('verify_module').'">CHOOSE</div>'
             ),
                array(
                            'id' => '3rd-party',
                            'type' => 'raw',
                            'title' => esc_html__('3rd Party Compatibility', 'accelerated-mobile-pages'),
-                           'content'  => '<div class="button btn-list " id="website-type-btn" data-secure="'.wp_create_nonce('verify_module').'">View List</div>'
+                           'content'  => '<div class="button btn-list drawer_button " data-href="ampforwp-ux-thirdparty-section" data-secure="'.wp_create_nonce('verify_module').'">View List</div>'
             ),
                array(
                             'id' => 'ampforwp-ux-section-right',
@@ -1434,27 +1434,55 @@ Redux::setArgs( "redux_builder_amp", $args );
                            'accordion-open'=> 1,
                 ),
                // Website Type
-               array(
+               /*array(
                             'id' => 'ampforwp-ux-website-type-section',
-                            'class' => 'ampforwp-ux-section-right ampforwp-ux-website-type-section',
+                            'class' => 'ampforwp-ux-section-right website-type-section',
+                            'data-href' => 'website-type-section',
                            'type' => 'section',
                            'indent' => true,
-                ),
-               array(
+                ),*/
+                // $ampforwp_fields->section_start(),
+                // $ampforwp_fields->setField('select',array('title'=>'Select','class'=>'select_class','id'=>'select_id','options'=>array('Blog'=>'Blog','News'=>'News'),'default'=>'Blog')),
+                // $ampforwp_fields->section_end(),
+               /*array(
                     'id'       => 'amp-website-type-select',
                     'title'    => esc_html__('What\'s your Website Type', 'accelerated-mobile-pages'),
                     'type'     => 'select',
                     'class'    => 'amp-website-type-select',
                     'options'  => array('BlogPosting'=>'Blog','NewsArticle'=>'News'),
                     'default'  => 'BlogPosting',
-                ),
-               
+                ),*/
                array(
                             'id' => 'ampforwp-ux-need-type-section',
-                            'class' => 'ampforwp-ux-section-right ampforwp-ux-need-type-section',
+                            'class' => 'ampforwp-ux-section-right need-type-section',
                            'type' => 'section',
                            'indent' => true,
                 ),
+               array(
+                'id'       => 'amp-ux-homepage',
+                'class'       => 'amp-ux-homepage',
+                'title'    => esc_html__('Homepage', 'accelerated-mobile-pages'),
+                'type'     => 'checkbox',
+                'default'  => 1,
+                ),
+               array(
+                'id'       => 'amp-ux-frontpage',
+                'class'       => 'amp-ux-frontpage child_opt',
+                'title'    => esc_html__('FrontPage', 'accelerated-mobile-pages'),
+                'type'     => 'checkbox',
+                'default'  => 0,
+                'required' => array(array('amp-ux-homepage','=', 1))
+                ),
+               array(
+                'id'       => 'amp-ux-frontpage-select',
+                'class'       => 'amp-ux-frontpage-select child_opt',
+                'title'    => esc_html__('Select FrontPage', 'accelerated-mobile-pages'),
+                'type'     => 'select',
+                'default'  => ampforwp_get_setting('amp-frontpage-select-option-pages'),
+                'data'  => 'pages',
+                'required' => array(array('amp-ux-frontpage','=', 1))
+                ),
+
                array(
                 'id'       => 'amp-ux-posts',
                 'class'       => 'amp-ux-posts',
@@ -1463,11 +1491,132 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'default'  => 1,
                 ),
                array(
+                'id'       => 'amp-ux-pages',
+                'class'       => 'amp-ux-pages',
+                'title'    => esc_html__('Pages', 'accelerated-mobile-pages'),
+                'type'     => 'checkbox',
+                'default'  => 1,
+                ),
+               array(
+                'id'       => 'amp-ux-archives',
+                'class'       => 'amp-ux-archives',
+                'title'    => esc_html__('Archives', 'accelerated-mobile-pages'),
+                'type'     => 'checkbox',
+                'default'  => 1,
+                ),
+               array(
                 'id'       => 'amp-ux-need-section-btn',
                 'type'     => 'raw',
                 'content'  => '<div class="button btn-red " id="amp-ux-need-section-btn" data-secure="'.wp_create_nonce('verify_module').'">Done</div>'
                 ),
-
+               array(
+                            'id' => 'ampforwp-ux-design-section',
+                            'class' => 'ampforwp-ux-section-right design-type-section',
+                           'type' => 'section',
+                           'indent' => true,
+                ),
+                   array(
+                    'id'       => 'amp-ux-opt-media',
+                    'class'       => 'amp-ux-opt-media',
+                    'title'    => esc_html__('Logo', 'accelerated-mobile-pages'),
+                    'type'     => 'media',
+                    'default'  => ampforwp_get_setting('opt-media'),
+                    ),
+                   array(
+                    'id'       => 'amp-ux-color-scheme',
+                    'class'       => 'amp-ux-color-scheme',
+                    'title'    => esc_html__('Global Color Scheme', 'accelerated-mobile-pages'),
+                    'type'     => 'color_rgba',
+                    'default'  => ampforwp_get_setting('swift-color-scheme'),
+                    ),
+               array(
+                            'id' => 'ampforwp-ux-analytics-section',
+                            'class' => 'ampforwp-ux-section-right analytics-type-section',
+                           'type' => 'section',
+                           'indent' => true,
+                ),
+               array(
+                'id'       => 'amp-ux-posts2',
+                'class'       => 'amp-ux-posts',
+                'title'    => esc_html__('Posts', 'accelerated-mobile-pages'),
+                'type'     => 'checkbox',
+                'default'  => 1,
+                ),
+               array(
+                            'id' => 'ampforwp-ux-privacy-section',
+                            'class' => 'ampforwp-ux-section-right privacy-type-section',
+                           'type' => 'section',
+                           'indent' => true,
+                ),
+               array(
+                   'id'        =>'amp-ux-notice-switch',
+                   'type'      => 'switch',
+                   'title'     => esc_html__('Cookie Notice Bar', 'accelerated-mobile-pages'),
+                   'default'   => '',
+                   'tooltip-subtitle'  => esc_html__('Cookie Bar allows you to discreetly inform visitors that your website uses cookies.', 'accelerated-mobile-pages'),
+                   'true'      => 'Enabled',
+                   'false'     => 'Disabled',
+                ),
+               array(
+                   'id'        =>'amp-ux-gdpr-switch',
+                   'type'      => 'switch',
+                   'title'     => esc_html__('GDPR', 'accelerated-mobile-pages'),
+                   'default'   => 0,
+                   'tooltip-subtitle' => 'Comply with European privacy regulations(GDPR). Recommended for EU Citizens.',
+                ),
+               array(
+                            'id' => 'ampforwp-ux-thirdparty-section',
+                            'class' => 'ampforwp-ux-section-right thirdparty-type-section',
+                           'type' => 'section',
+                           'indent' => true,
+                ),
+               array(
+                'id'       => 'ampforwp-ux-seo-select',
+                'type'     => 'select',
+                'title'    => esc_html__('SEO', 'accelerated-mobile-pages'),
+                'options'  => array(
+                    'yoast'       => 'Yoast',
+                    'aioseo'     => 'All in One SEO',
+                    'rank_math' => 'Rank Math SEO',
+                    'genesis'    => 'Genesis',
+                    'seopress'    => 'SEOPress',
+                    'bridge'    => 'Bridge Qode SEO',
+                    'seo_framework'    => 'The SEO Framework',
+                    'squirrly'    => 'Squirrly SEO',
+                    'smartcrawl'    => 'SmartCrawl',
+                ),
+                'default'  => ampforwp_get_setting('ampforwp-seo-selection')
+            ),
+               array(
+                'id'       => 'amp-ux-cf7-switch',
+                'title'    => esc_html__('Contact Form 7', 'accelerated-mobile-pages'),
+                'type'     => 'select',
+                'default'  => 0,
+                ),
+               array(
+                'id'       => 'amp-ux-elem-switch',
+                'title'    => esc_html__('Elementor', 'accelerated-mobile-pages'),
+                'type'     => 'select',
+                'default'  => 0,
+                ),
+               array(
+                'id'       => 'amp-ux-wc-switch',
+                'title'    => esc_html__('WooCommerce', 'accelerated-mobile-pages'),
+                'type'     => 'select',
+                'default'  => 0,
+                ),
+               array(
+                'id'       => 'amp-ux-schema-switch',
+                'title'    => esc_html__('Schema', 'accelerated-mobile-pages'),
+                'type'     => 'select',
+                'default'  => 0,
+                ),
+               array(
+                'id'       => 'amp-ux-ads-switch',
+                'title'    => esc_html__('Ads', 'accelerated-mobile-pages'),
+                'type'     => 'select',
+                'default'  => 0,
+                ),
                /*array(
                            'id' => 'amp-ux-website-type-section',
                            'type' => 'raw',
