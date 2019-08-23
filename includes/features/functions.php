@@ -149,8 +149,14 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         $content_buffer = preg_replace("/onclick=[^>]*/", "", $content_buffer);
         $content_buffer = preg_replace("/<\\/?thrive_headline(.|\\s)*?>/",'',$content_buffer);
         // Remove Extra styling added by other Themes/ Plugins
-        $content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)<!doctype html>/','<!doctype html>',$content_buffer);
-        $content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)(\/\*)/','$4',$content_buffer);
+        preg_match('/(<style(.*?)>(.*?)<\/style>)<!doctype html>/', $content_buffer, $m1);
+        if($m1){
+            $content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)<!doctype html>/','<!doctype html>',$content_buffer);
+        }
+        preg_match('/(<style(.*?)>(.*?)<\/style>)(\/\*)/', $content_buffer, $m2);
+        if($m2){
+            $content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)(\/\*)/','$4',$content_buffer);
+        }
         $content_buffer = preg_replace("/<\\/?g(.|\\s)*?>/",'',$content_buffer);
         $content_buffer = preg_replace('/(<[^>]+) spellcheck="false"/', '$1', $content_buffer);
         $content_buffer = preg_replace('/(<[^>]+) spellcheck="true"/', '$1', $content_buffer);
@@ -175,7 +181,13 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
     }
     return $content_buffer;
 }
-add_action('wp', function(){ ob_start('ampforwp_the_content_filter_full'); }, 999);
+
+if(class_exists('AMP_Options_Manager')){
+    $amp_options = AMP_Options_Manager::get_options();
+    if( $amp_options['theme_support'] != 'standard' && function_exists('amp_activate')){
+        add_action('wp', function(){ ob_start('ampforwp_the_content_filter_full'); }, 999);
+    }
+}
 
 
 // 74. Featured Image check from Custom Fields
