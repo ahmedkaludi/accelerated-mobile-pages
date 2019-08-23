@@ -1119,6 +1119,9 @@ jQuery(document).ready(function($){
         });
     }
     versionUpdate();
+    if ( false == redux_data['frontpage']){
+        $('#page_on_front').parent('label').append('<p class="afp"><b>Note: This is not your AMP FrontPage, you can </b><a class="" href="http://localhost/weekly/wp-admin/admin.php?page=amp_options&amp;tabid=opt-text-subsection#redux_builder_amp-amp-frontpage-select-option">set one from here</a></span>');
+    }
 }); 
 function ampforwp_updateQueryStringParameter(uri, key, value) {
   var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
