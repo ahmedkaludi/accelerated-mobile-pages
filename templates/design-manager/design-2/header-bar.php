@@ -1,5 +1,6 @@
 <?php global $redux_builder_amp; ?>
-<header class="container">
+<?php do_action('ampforwp_admin_menu_bar_front'); ?>
+<header class="container design2-header">
   <div id="headerwrap">
       <div id="header">
         <?php do_action('ampforwp_header_top_design2'); ?>

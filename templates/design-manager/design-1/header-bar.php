@@ -1,4 +1,5 @@
 <?php global $redux_builder_amp; ?>
+<?php do_action('ampforwp_admin_menu_bar_front'); ?>
 <header id="#top" class="amp-wp-header">
   <div class="ampforwp-logo-area" >
     <?php do_action('ampforwp_header_top_design1'); ?>
