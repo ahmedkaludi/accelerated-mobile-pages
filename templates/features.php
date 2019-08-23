@@ -243,9 +243,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		      }
 		    }
 		// no-amphtml for search
-		    if(is_search()){
-		    	return;
-		    }
+		    // if(is_search()){
+		    // 	return;
+		    // }
 		// #872 no-amphtml if selected as hide from settings
 		if ( is_category_amp_disabled() ) {
 			return;
