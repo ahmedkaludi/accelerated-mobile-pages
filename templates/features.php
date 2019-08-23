@@ -6204,7 +6204,19 @@ function ampforwp_thrive_architect_content(){
 		//#3254 Remove action for Woodmart theme lazyload feature 
 		remove_action( 'init', 'woodmart_lazy_loading_init', 120 );
 	}
+	if( class_exists('CDN_Enabler')){
+		add_filter('option_cdn_enabler', 'ampforwp_add_exclusions_cdn_enabler');
+	}
 }
+
+function ampforwp_add_exclusions_cdn_enabler($options){
+	if (!is_array($options)) { return $options; }
+	$excluded_urls[] = 'wp-content';
+	$urls = implode(',', $excluded_urls);
+	$options['excludes'] = empty($options['excludes'])?$urls:$options['excludes'].','.$urls;
+	return $options;
+}
+
 function ampforwp_thrive_content($content){
 	$post_id = "";
 	if ( ampforwp_is_front_page() ){
