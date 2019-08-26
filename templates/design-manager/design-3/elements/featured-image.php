@@ -5,7 +5,7 @@ $amp_html 		= "";
 $caption 		= "";
 $featured_image = $this->get( 'featured_image' );
 
-if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) || true == $redux_builder_amp['ampforwp-featured-image-from-content'] || (class_exists('Bunyad') && Bunyad::posts()->meta('featured_video')) || (function_exists('has_post_video') && has_post_video($post->ID))){
+if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) || true == $redux_builder_amp['ampforwp-featured-image-from-content'] || (class_exists('Bunyad') && Bunyad::posts()->meta('featured_video')) || (function_exists('has_post_video') && has_post_video($post->ID))  || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))){
 
 		$get_webp = $get_webp_type =  "";
 		$get_webp = get_post_thumbnail_id($post->ID);
@@ -41,20 +41,31 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 		elseif ( true == ampforwp_get_setting('ampforwp-featured-image-from-content') && ampforwp_get_featured_image_from_content() ){
 			$amp_html = ampforwp_get_featured_image_from_content();
 		}
-		if( $amp_html ) {	
+		if( !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('ampforwp-featured-video') == true ){
 			?>
 			<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
-				<div class="post-featured-img">
-					<figure class="amp-wp-article-featured-image wp-caption">
-						<?php echo $amp_html; // amphtml content; no kses ?>
-						<?php if ( $caption ) : ?>
-							<p class="wp-caption-text">
-								<?php echo wp_kses_data( $caption ); ?>
-							</p>
-						<?php endif; ?> 
-					</figure>
-				</div>
-			</div> <?php 
+				<figure class="amp-wp-article-featured-image wp-caption">
+				<?php
+				amp_featured_video(3,$amp_html);?>
+			</figure>
+		</div>
+				<?php
+		}else{
+			if( $amp_html ) {	
+				?>
+				<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
+					<div class="post-featured-img">
+						<figure class="amp-wp-article-featured-image wp-caption">
+							<?php echo $amp_html; // amphtml content; no kses ?>
+							<?php if ( $caption ) : ?>
+								<p class="wp-caption-text">
+									<?php echo wp_kses_data( $caption ); ?>
+								</p>
+							<?php endif; ?> 
+						</figure>
+					</div>
+				</div> <?php 
+			}
 		}
 	}else{
 		ampforwp_webp_featured_image();

@@ -57,7 +57,7 @@
 		$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() ); ?>
 
 		<div class="amp-wp-content amp-loop-list">
-		<?php if ( ampforwp_has_post_thumbnail() ) { 
+		<?php if ( ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('amforwp-homepage-featured-video') == true) ) { 
 			$width = 100;
 			$height = 75;
 			if ( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) {

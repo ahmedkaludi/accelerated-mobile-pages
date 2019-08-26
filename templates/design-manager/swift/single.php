@@ -15,13 +15,24 @@
 			    </div>
 			<?php } ?>
 		</div>
-		<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
-			<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
-			<div class="sf-img">
-				<?php amp_featured_image();?>
-			</div>
-			<?php }	// Swift Featured Image Type 1
+		<?php 
+		if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+				if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
+					<div class="sf-img">
+						<?php amp_featured_video();?>
+					</div>	
+					<?php	
+				}
+		}else{
+			if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
+				<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
+				<div class="sf-img">
+					<?php amp_featured_image();?>
+				</div>
+				<?php }	// Swift Featured Image Type 1
+			}
 		}
+		
 	} ?>
 	<div class="sp-cnt">
 		<div class="cntr">
@@ -34,13 +45,25 @@
 							echo ampforwp_addThis_support(); 
 						}	?>
 					<div class="cntn-wrp artl-cnt">
-						<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
+						<?php
+						if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+							if(ampforwp_get_setting('swift-featued-image-type') == 2){
+								?>
+								<div class="sf-img">
+									<?php amp_featured_video();?>
+								</div>
+								<?php
+							}
+						}else{
+							if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
 							<?php if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
 								<div class="sf-img">
 									<?php amp_featured_image();?>	
 								</div>	
 							<?php }	// Swift Featured Image Type 2
-						} // Swift Featured Image ?>
+							} // Swift Featured Image
+						}
+						?>
 						<?php amp_content(); ?>
 					</div>
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
@@ -265,12 +288,22 @@ do_action("ampforwp_single_design_type_handle_d1");
 							   <?php amp_excerpt(20); ?>
 						    </div>
 						<?php } ?>
-						<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
+						<?php 
+						if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+						?>
+							<div class="sf-img">
+								<?php amp_featured_video();?>
+							</div>	
+							<?php
+						}else{
+							if(ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
 							<div class="sf-img">
 								<?php amp_featured_image();?>
 							</div>
 						<?php }
-					}?>
+						}
+					}
+					?>
 					<div class="sp-cnt">
 						<div class="sp-rl">
 							<div class="sp-rt">

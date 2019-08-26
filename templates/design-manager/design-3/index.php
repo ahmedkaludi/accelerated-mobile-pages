@@ -88,16 +88,45 @@ if ( get_query_var( 'paged' ) ) {
 		?>
 		      <div>
                   <a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
-                  	<?php if ( ampforwp_has_post_thumbnail() ) { 
+                  	<?php if ( ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) { 
 						$thumb_url = ampforwp_get_post_thumbnail('url','full');
 						$thumb_url_array = ampforwp_aq_resize( $thumb_url, 450,270, true, false, true ); //resize & crop the image
 						$thumb_url = $thumb_url_array[0];
 						$thumb_width = $thumb_url_array[1];
 						$thumb_height = $thumb_url_array[2]; 
-						if($thumb_url){
-							?>
-							 <amp-img src=<?php echo esc_url($thumb_url) ?> width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
-						<?php } 
+						$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+						$youtubelink = get_post_meta(get_the_ID(), $metaKey, true);
+						if((ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('amforwp-homepage-featured-video') == true)){
+							if (  !empty($youtubelink) ) {
+								if(strpos($youtubelink, 'youtu.be')> 0){
+									$video_id = explode("youtu.be/", $youtubelink);
+									$videoID = $video_id[1];
+								}elseif( strpos($youtubelink, 'youtube.com/watch')> 0){
+									$video_id = explode("?v=", $youtubelink);
+									if (empty($video_id[1])){
+									    $video_id = explode("/v/", $youtubelink);
+									}
+									$video_id = explode("&", $video_id[1]);
+									$videoID = $video_id[0];
+								}elseif( strpos($youtubelink, 'youtube.com/embed')> 0){
+									$video_id = explode("/", $youtubelink);
+									$videoID = end($video_id);
+								}
+								if(!empty($videoID)){
+									echo '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>';
+								}
+							}else{
+								if($thumb_url){
+								?>
+								 <amp-img src=<?php echo esc_url($thumb_url) ?> width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
+							<?php }
+							}
+						}else{
+							if($thumb_url){
+								?>
+								 <amp-img src=<?php echo esc_url($thumb_url) ?> width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
+							<?php }
+						} 
 					}?>
                   <div class="featured_title">
 		            <div class="featured_time"><?php 
@@ -138,10 +167,34 @@ if ( get_query_var( 'paged' ) ) {
 		if( ampforwp_is_blog() && $blog_title){  ?>
 			<h1 class="amp-wp-content page-title archive-heading"><?php echo esc_attr($blog_title) ?></h1>
 		<?php }	
-		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
+		if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); 
+			$noimgClass = "";
+		 	if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
+		 		$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+				if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
+		 			if( ampforwp_has_post_thumbnail()){
+		 				$noimgClass = " ";
+		 			}else{
+		 				if(!$is_full_content){
+		 					$noimgClass = "amp-loop-list-noimg";
+		 				}
+		 			}
+		 		}else{
+		 			$noimgClass = " ";
+		 		}
+			}else{
+				if( ampforwp_has_post_thumbnail()){
+					$noimgClass = " ";
+				}else{
+					if(!$is_full_content){
+						$noimgClass = "amp-loop-list-noimg";
+					}
+				}
+			}
+		?>
 
-		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() ){?>amp-loop-list-noimg<?php } ?>">
-			<?php if ( ampforwp_has_post_thumbnail() ) {  
+		<div class="amp-wp-content amp-loop-list <?php echo $noimgClass;?>">
+			<?php if ( ampforwp_has_post_thumbnail() || (ampforwp_get_setting('amforwp-homepage-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('ampforwp-featured-video') == true) ) {  
 				$thumb_url 	  	= ampforwp_get_post_thumbnail('url');
 				$thumb_width  	= ampforwp_get_post_thumbnail('width');
 				$thumb_height 	= ampforwp_get_post_thumbnail('height');
@@ -153,20 +206,46 @@ if ( get_query_var( 'paged' ) ) {
  					$thumb_crop_url = ampforwp_aq_resize( $thumb_url_modify[0], $thumb_width , $thumb_height , true, false );
 					$thumb_url = $thumb_crop_url[0];
 				}
-				if($thumb_url){
-					?>
-					<div class="home-post_image">
-						<a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
-							<amp-img
-								layout="responsive"
-								src=<?php echo esc_url( $thumb_url ); ?>
-								<?php ampforwp_thumbnail_alt(); ?>
-								width=<?php echo esc_attr($thumb_width); ?>
-								height=<?php echo esc_attr($thumb_height); ?>
-							></amp-img>
-						</a>
-					</div>
-				<?php }
+				$post_id   = get_the_ID();
+				$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+				$youtubelink = get_post_meta($post_id, $metaKey, true);
+					if (!empty($youtubelink) && (ampforwp_get_setting('amforwp-homepage-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('ampforwp-featured-video') == true) ) {
+						if(strpos($youtubelink, 'youtu.be')> 0){
+							$video_id = explode("youtu.be/", $youtubelink);
+							$videoID = $video_id[1];
+						}elseif( strpos($youtubelink, 'youtube.com/watch')> 0){
+							$video_id = explode("?v=", $youtubelink);
+							if (empty($video_id[1])){
+							    $video_id = explode("/v/", $youtubelink);
+							}
+							$video_id = explode("&", $video_id[1]);
+							$videoID = $video_id[0];
+						}elseif( strpos($youtubelink, 'youtube.com/embed')> 0){
+							$video_id = explode("/", $youtubelink);
+							$videoID = end($video_id);
+						}
+						$container_start = '<div class="home-post_image">';
+						$container_end = '</div>';
+						if(!empty($videoID)){
+							echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>' . $container_end;
+						}
+					}else{
+						if($thumb_url){
+						?>
+						<div class="home-post_image">
+							<a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
+								<amp-img
+									layout="responsive"
+									src=<?php echo esc_url( $thumb_url ); ?>
+									<?php ampforwp_thumbnail_alt(); ?>
+									width=<?php echo $thumb_width; ?>
+									height=<?php echo $thumb_height; ?>
+								></amp-img>
+							</a>
+						</div>
+					<?php 
+						}
+					}
 				} ?>
 
 			<div class="amp-wp-post-content">

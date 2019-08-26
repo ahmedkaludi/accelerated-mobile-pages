@@ -787,4 +787,16 @@ amp-user-notification{
   bottom:41px;
   z-index: 999999;
 }
-<?php } //amp-enable-notifications Condition Ends Here ?>   
+<?php } //amp-enable-notifications Condition Ends Here 
+if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+?>
+.home-post_image amp-youtube{
+	width:100px;
+	height:75px;
+}
+.has_related_thumbnail .loop-img amp-youtube{
+  width:150px;
+  float:left;
+  margin-right:15px;
+}
+<?php } ?>
