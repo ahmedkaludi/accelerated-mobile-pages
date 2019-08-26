@@ -267,11 +267,11 @@ function ampforwp_structured_data_type( $metadata ) {
 	       		if( empty( ampforwp_get_setting('ampforwp-sd-type-'.$post_type) ) ){
 	       			return;
 	       		}
-        		if ( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type] ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
+        		if ( empty( ampforwp_get_setting('ampforwp-sd-type-'.$post_type) ) && ampforwp_get_setting('ampforwp-seo-yoast-description') == 0 ) {
 					return;
 				}
 				if(isset($metadata['@type']) && $metadata['@type']){
-        			$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type];
+        			$metadata['@type'] = ampforwp_get_setting('ampforwp-sd-type-'.$post_type);
         		}
         		return $metadata;
         	}

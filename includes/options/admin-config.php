@@ -2358,7 +2358,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'ampforwp-seo-yoast-schema',
                'type'     => 'switch',
                'tooltip-subtitle'     => esc_html__('Fetch Schema from the Yoast Seo for AMP Pages', 'accelerated-mobile-pages'),
-               'title'    => esc_html__( 'Fetch Schema from Yoast', 'accelerated-mobile-pages' ),
+               'title'    => esc_html__( 'Schema from Yoast', 'accelerated-mobile-pages' ),
                'default'  => 0,
                'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
            ),
