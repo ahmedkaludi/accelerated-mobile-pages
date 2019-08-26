@@ -2303,6 +2303,13 @@ Redux::setSection( $opt_name, array(
     );
 
  // Advance Settings SECTION
+function ampforwp_featured_video_default(){
+            $default = '';
+            if(function_exists( 'csco_setup' )){
+                $default = 'csco_post_embed';
+            }
+            return $default;
+}
 Redux::setSection( $opt_name, array(
    'title'      => esc_html__( 'Advance Settings', 'accelerated-mobile-pages' ),
    'desc'       => esc_html__( 'This section has some advanced settings, please use it with care','accelerated-mobile-pages'),
@@ -2430,7 +2437,7 @@ Redux::setSection( $opt_name, array(
                             'class' => 'child_opt child_opt_arrow',
                             'title'    => esc_html__('Custom Field Name', 'accelerated-mobile-pages'),
                             'tooltip-subtitle' => esc_html__('Please paste the custom field name for which the Youtube video url has been added which is used for the post.', 'accelerated-mobile-pages'),
-                            'default'  => '',
+                            'default'  => ampforwp_featured_video_default(),
                             'required' => array( array('ampforwp-featured-video', '=' , '1')),
                     ),
                     array(
