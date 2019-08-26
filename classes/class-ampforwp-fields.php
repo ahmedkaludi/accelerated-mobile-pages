@@ -10,6 +10,7 @@ class AMPforWP_Fields
 	private $title = '';
 	private $desc = '';
 	private $default = '';
+	private $selected = '';
 	private $options = array();
 
 	public function setField( $type = '', $fields=array() ){
@@ -46,8 +47,8 @@ class AMPforWP_Fields
 			$this->ampforwp_field_checkbox($fields);
 		}
 		// Upload
-		if ( 'upload' == $type ) {
-			$this->ampforwp_field_upload($fields);
+		if ( 'media' == $type ) {
+			$this->ampforwp_field_media($fields);
 		}
 		// Color
 		if ( 'color' == $type ) {
@@ -81,7 +82,13 @@ class AMPforWP_Fields
 		$output .= '<select id="'.$this->id.'" class="'.$this->class.'">';
 		if ( !empty($this->options) ) {
 			foreach ( $this->options as $option_key => $option_value ) {
-				$output .= '<option value="'.$option_key.'">'.$option_value.'</option>';
+				if( $option_key == $this->default ) {
+					$this->selected = 'selected';
+				}
+				else{
+					$this->selected = '';
+				}
+				$output .= '<option value="'.$option_key.'" '.$this->selected.'>'.$option_value.'</option>';
 			}
 		}
 		$output .= '</select>';
@@ -96,15 +103,36 @@ class AMPforWP_Fields
 			$output .= '<h2>'.$this->title.'</h2>';
 		}
 		$output .= '<label class="ios7-switch">
-                    	<input id="'.$this->id.'" class="'.$this->class.'" type="checkbox" data-id="'.$this->id.'">
+                    	<input id="'.$this->id.'" class="switch-on-off '.$this->class.'" type="checkbox" data-id="'.$this->id.'">
                         <span></span>
                     </label>
-                    <input type="hidden" class="checkbox checkbox-input " id="'.$this->field.'" value="">';
+                    <input type="hidden" class="checkbox checkbox-input " id="'.$this->id.'" value="">';
 		echo $output;
 	}
 
-	public function ampforwp_field_upload(){
-
+	public function ampforwp_field_media(){
+		if ( !empty($this->title) ) {
+			$output .= '<h2>'.$this->title.'</h2>';
+		}
+		$output .= '<div id="amp-ux-opt-media" class="amp-ux-opt-media-container" data-id="opt-media" data-type="media">
+				<input placeholder="No media selected" type="text" class="upload large-text hide" id="amp-ux-opt-media-url" value="" readonly="readonly">
+				<input type="hidden" class="data" data-mode="image">
+				<input type="hidden" class="library-filter" data-lib-filter="">
+				<input type="hidden" class="upload-id " name="amp-ux-logo-id" id="amp-ux-logo-id" value="">
+				<input type="hidden" class="upload-height" name="amp-ux-logo-height" id="amp-ux-logo-height" value="">
+				<input type="hidden" class="upload-width" name="amp-ux-logo-width" id="amp-ux-logo-width" value="">
+				<input type="hidden" class="upload-thumbnail" name="amp-ux-logo-thumb" id="amp-ux-logo-thumb" value="">
+				<div class="hide screenshot">
+					<a class="of-uploaded-image" href="" target="_blank">
+						<img class="redux-option-image" id="image_opt-media" src="" alt="" target="_blank" rel="external">
+					</a>
+				</div>
+				<div class="upload_button_div">
+					<span class="button media_upload_button" id="opt-media-media">Upload</span>
+					<span class="button remove-image hide" id="reset_opt-media" rel="opt-media">Remove</span>
+				</div>
+        </div>';
+        echo $output;
 	}
 
 	public function ampforwp_field_color(){

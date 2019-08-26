@@ -897,6 +897,12 @@ jQuery(document).ready(function($) {
             $("input[id=ampforwp-archive-support]").val(0);
         }
     });
+    // Upload media button
+    $(this).find( '.media_upload_button' ).unbind().on(
+        'click', function( event ) {
+            redux.field_objects.media.addFile( event, $( this ).parents( 'div.amp-ux-opt-media-container:first' ) );
+        }
+    );
     // Save changes in redux AMP Enabler section
     $('#amp-ux-need-section-btn').click(function(){
         window.onbeforeunload = null;
