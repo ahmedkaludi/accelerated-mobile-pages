@@ -1150,3 +1150,56 @@ if(! function_exists('amp_comments_settings') ) {
     add_action( 'wp_ajax_amp_comment_submit', 'amp_comment_submit' ); 
     add_action( 'wp_ajax_nopriv_amp_comment_submit', 'amp_comment_submit' ); 
 }
+
+add_action("redux/options/redux_builder_amp/saved",'ampforwp_debug_mode_enable', 10, 2);
+function ampforwp_debug_mode_enable(){
+    global $redux_builder_amp;
+    if(isset($redux_builder_amp['ampforwp-debug-mode'])){
+        $dm = $redux_builder_amp['ampforwp-debug-mode'];
+        $config_file = wp_normalize_path( ABSPATH . 'wp-config.php' );
+        if ( file_exists( $config_file ) ) {
+            if ( is_readable( $config_file ) && is_writable( $config_file ) ) {
+                $config_cont    = file_get_contents( $config_file );
+                $config_cont1 = ampforwp_wp_config_code_to_add_in_config();
+                $rep_false_txt = "";
+                $rep_true_txt = "";
+                if(strpos("$config_cont","define('WP_DEBUG', false)")!==false){
+                    $rep_false_txt = "define('WP_DEBUG', false)";
+                }elseif(strpos("$config_cont","define('WP_DEBUG',false)")!==false){
+                    $rep_false_txt = "define('WP_DEBUG',false)";
+                }
+
+                if(strpos("$config_cont","define('WP_DEBUG', true)")!==false){
+                    $rep_true_txt = "define('WP_DEBUG', true)";
+                }
+                elseif(strpos("$config_cont","define('WP_DEBUG',true)")!==false){
+                    $rep_true_txt = "define('WP_DEBUG',true)";
+                }
+                if (defined('WP_DEBUG')) {
+                    if($dm==0){
+                        $config_cont = str_replace("$rep_true_txt","$config_cont1",$config_cont);
+                    }else{
+                        $config_cont = str_replace("$rep_false_txt","$config_cont1",$config_cont);
+                    }
+                    file_put_contents( $config_file, $config_cont );    
+                }
+            }
+        }
+    }
+}
+
+function  ampforwp_wp_config_code_to_add_in_config(){
+    global $redux_builder_amp;
+    $dm = $redux_builder_amp['ampforwp-debug-mode'];
+    $debug_mod = "";
+    $amp_mode = "";
+    if (defined('WP_DEBUG')) {
+        if($dm==1){
+            $debug_mod = "define('WP_DEBUG', true)";
+        }else{
+            $debug_mod = "define('WP_DEBUG', false)";
+        }
+    }
+    $config_cont = "$debug_mod";
+    return $config_cont;
+}

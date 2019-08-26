@@ -3103,6 +3103,14 @@ if( $themeDesign_data > 4 ){
                     );
 }
 
+$debug_default = 0;
+if(defined('WP_DEBUG')){
+    if(true===WP_DEBUG){
+        $debug_default = 1;
+    }else{
+        $debug_default = 0;
+    }
+}
  // Advance Settings SECTION
 Redux::setSection( $opt_name, array(
    'title'      => esc_html__( 'Advance Settings', 'accelerated-mobile-pages' ),
@@ -3110,7 +3118,22 @@ Redux::setSection( $opt_name, array(
    'id'         => 'amp-advance',
    'subsection' => true,
    'fields'     => array(
-
+                    array(
+                        'id'       => 'ampforwp-debug-mode',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Debug Mode', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('
+                        Enable/Disable AMP Debug Mode for as per your debug experience','accelerated-mobile-pages'),
+                        'default' => $debug_default,
+                    ),
+                    array(
+                        'id'       => 'ampforwp-debug-mode-notice',
+                        'type'     => 'info',
+                        'style'    => 'critical',
+                        'desc'     => esc_html__('Take a backup of your wp-config.php file before saving it. By enable/disable it will change WP_DEBUG as true/false.', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Debug Mode', 'accelerated-mobile-pages'),
+                        'required' => array('ampforwp-debug-mode', '=', 1)
+                    ),
                     array(
                         'id'       => 'amp-mobile-redirection',
                         'type'     => 'switch',
@@ -3118,7 +3141,6 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => esc_html__('
                         Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','accelerated-mobile-pages'),
                         'default' => 0,
-
                     ),
                     array(
                         'id'       => 'amp-tablet-redirection',
