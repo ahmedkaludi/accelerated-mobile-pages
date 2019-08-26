@@ -57,12 +57,13 @@ amp_header(); ?>
 			<?php endif; ?>
 				<?php } ?>
 				<?php } ?>
-			<?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ 
+			<?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
+				
+			if( ampforwp_get_setting('enable-add-this-option') == true && 'above-content' !=  ampforwp_get_setting('swift-add-this-position')) {
+				echo ampforwp_addThis_support();
+			} 
 			if( is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' !=  ampforwp_get_setting('swift-social-position') ) { ?>
-				<div class="ss-ic"><?php
- 					if( ampforwp_get_setting('enable-add-this-option') && 'above-content' !=  ampforwp_get_setting('swift-add-this-position')) {
- 						echo ampforwp_addThis_support();
- 					} ?>
+				<div class="ss-ic">
 					<span class="shr-txt"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' )); ?></span>
 					<ul>
 						<?php if($redux_builder_amp['enable-single-facebook-share']){?>
