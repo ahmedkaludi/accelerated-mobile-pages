@@ -703,8 +703,10 @@ jQuery(document).ready(function($){
        }
     });
     var sfp  = $('#front-static-pages input[type=radio][checked=checked]');
-    if(sfp[0].value == 'page'){
-        $('.afp').show();
+    if ( sfp[0] ) {
+        if(sfp[0].value == 'page'){
+            $('.afp').show();
+        }
     }
 
 });//(document).ready Closed
