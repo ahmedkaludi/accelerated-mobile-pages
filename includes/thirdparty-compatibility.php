@@ -441,21 +441,6 @@ if(is_admin()){
 		if(isset($changed_values['amp-pages-meta-default']) && $options['amp-pages-meta-default']=='hide'){
 			delete_transient('ampforwp_current_version_check');
 		}
-		if( ( isset($changed_values['ampforwp_css_tree_shaking']) && $options['ampforwp_css_tree_shaking']=='0' ) ||  isset($changed_values['amp-design-selector']) || isset($changed_values['css_editor']) ){
-			$upload_dir = wp_upload_dir(); 
-	      	$user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
-	      	if(file_exists($user_dirname)){
-	        	$files = glob($user_dirname . '/*');
-	        	//Loop through the file list.
-	        	foreach($files as $file){
-	          	//Make sure that this is a file and not a directory.
-	          		if(is_file($file) && strpos($file, '_transient')!==false ){
-	            		//Use the unlink function to delete the file.
-	            		unlink($file);
-	          		}
-	        	}
-	      	}
-		}
 	}
 
 	add_action( 'redux/options/redux_builder_amp/saved', 'ampforwp_app_banner_manifest_create',10,2);
