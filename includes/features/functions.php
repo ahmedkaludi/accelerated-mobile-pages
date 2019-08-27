@@ -1129,6 +1129,7 @@ function ampforwp_tree_shaking_purify_amphtml($completeContent){
             if(strpos($sheet, '-keyframes')!==false){
                 $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
             }
+            $sheet = apply_filters("ampforwp_tree_shaking_add_css", $sheet);
             $completeContent = preg_replace("/<style\samp-custom>(.*?)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
         }
 
