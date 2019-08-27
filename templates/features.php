@@ -1493,7 +1493,7 @@ function ampforwp_yoast_the_excerpt(){
 }
 function ampforwp_yoast_excerpt($desc){
 	 if(ampforwp_is_front_page()){
-	 	$get_meta_excerpt = get_post_meta(ampforwp_get_the_ID())['_yoast_wpseo_metadesc'];
+	 	$get_meta_excerpt = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_metadesc', true);
 	 	if(isset($get_meta_excerpt)){
 	 		$desc = $get_meta_excerpt;
 	 	}
