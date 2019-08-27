@@ -690,10 +690,23 @@ jQuery(document).ready(function($){
         jQuery.post(ajaxurl, notice, function(response) {     
         });
     });
+
     // AMP FrontPage notice in Reading Settings #2348
     if ( 'false' == redux_data.frontpage){
-        $('#page_on_front').parent('label').append('<p class="afp"><b>We have detected that you have not setup the FrontPage for AMP, </b><a href="'+redux_data.admin_url+'">Click here to setup</a></span>');
+        $('#page_on_front').parent('label').append('<p class="afp" style="display:none"><b>We have detected that you have not setup the FrontPage for AMP, </b><a href="'+redux_data.admin_url+'">Click here to setup</a></span>');
     }
+    $('#front-static-pages input[type=radio][name=show_on_front]').on('change', function(e) {
+       if ( this.value == 'page') {
+        $('.afp').show();
+       } else {
+        $('.afp').hide();
+       }
+    });
+    var sfp  = $('#front-static-pages input[type=radio][checked=checked]');
+    if(sfp[0].value == 'page'){
+        $('.afp').show();
+    }
+
 });//(document).ready Closed
 
 jQuery(window).on("YoastSEO:ready",function(){
