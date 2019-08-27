@@ -1052,3 +1052,6 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .amp-fields-content{
     margin-top: 30%;
 }
+#beacon-container .BeaconContainer{
+    max-height: 520px !important;
+}
