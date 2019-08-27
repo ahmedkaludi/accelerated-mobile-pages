@@ -4293,7 +4293,7 @@ Redux::setSection( $opt_name, array(
                     'type'      => 'color_rgba',
                     'title'     => esc_html__('Color Scheme','accelerated-mobile-pages'),
                     'default'   => array(
-                    'color'     => '#B20B12',
+                    'color'     => '#F42F42',
                     ),
                     'required' => array(
                         array('amp-design-selector', '=' , '3')
@@ -4316,7 +4316,7 @@ Redux::setSection( $opt_name, array(
                     'type'      => 'color_rgba',
                     'title'     => esc_html__('Anchor Link Color','accelerated-mobile-pages'),
                     'default'   => array(
-                    'color'     => '#B20B12',
+                    'color'     => '#f42f42',
                     ),
                     'required' => array(
                         array('amp-design-selector', '=' , '3')
