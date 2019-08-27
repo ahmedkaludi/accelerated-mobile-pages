@@ -46,7 +46,6 @@ class AMPFORWP_Tree_Shaking_Transient{
 		        }
 		        $result = @fwrite( $ifp, json_encode($value) );
 			    fclose( $ifp );
-			    //  set_transient($transient_option, true, 30 * 24 * 60);
 			}
 
 		}
@@ -96,7 +95,7 @@ class AMPFORWP_Tree_Shaking_Transient{
 						$datetime1 = date_create($file_date);
 
 						$get_current_date =  date('Y-m-d');
-						$datetime2 = date_create('2019-07-14');
+						$datetime2 = date_create($get_current_date);
 
 						$interval = date_diff($datetime1, $datetime2);
 
