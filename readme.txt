@@ -189,7 +189,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.98.5 (23rd AUGUST 2019) =
+= 0.9.98.5 (27th AUGUST 2019) =
 * Improvements: Featured Video Compatibility by using the Cusrom Fields #3444
 * Improvements: Compatibility integrated with CDN enabler #3515
 * Improvements: banner ux section of AMP panel settings improved #3470
@@ -213,7 +213,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Icons not loading When Icon Font Library is selected to Font Awesome from the AMP options #3501
 * Fixed: Shortcode placed with double brackets (i.e., [[shortcode]]) should not execute #3481
 * Fixed: One signal push notification should work properly on AMP if any CDN plugin is used #3340
-* Fixed: In 'Add On' mode when amp is in standard mode frontend is getting blank screen #3508
 * Fixed: Extra options are being displayed after the search is completed in the AMP Options Panel #2874
 * Fixed: In alt attribute's content single quotes should removed #3492
 * Fixed: "amphtml" is not generatiing in sorce code when it comes to search results pages in non AMP #3458
