@@ -71,33 +71,16 @@ function ampforwp_framework_get_featured_image(){
 			$amp_html = ampforwp_get_featured_image_from_content();
 			$amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
 		}
-		if( ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
-			?>
-			<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
-				<figure class="amp-wp-article-featured-image wp-caption">
-				<?php
-					amp_featured_video(4,$amp_html);
-					if ( $caption ) : ?>
-						<p class="wp-caption-text">
-							<?php echo wp_kses_data( $caption ); ?>
-						</p>
-					<?php endif; ?>
-				</figure>
-			</div>
-				<?php
-		}else{
-			if( $amp_html ){ ?>
-				<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  
-					echo $amp_html; // escaped above
-					 if ( $caption ) : ?>
-						<p class="wp-caption-text">
-							<?php echo wp_kses_data( $caption ); ?>
-						</p>
-					<?php endif; ?>
-				</figure>
-			<?php do_action('ampforwp_after_featured_image_hook');
-			}
+		if( $amp_html ){ ?>
+			<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  
+				echo $amp_html; // escaped above
+				 if ( $caption ) : ?>
+					<p class="wp-caption-text">
+						<?php echo wp_kses_data( $caption ); ?>
+					</p>
+				<?php endif; ?>
+			</figure>
+		<?php do_action('ampforwp_after_featured_image_hook');
 		}
-		
 	}
 }

@@ -8,7 +8,7 @@ if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
 <?php while(amp_loop('start')):
 $search_found = true; ?>
 <div class="fsp">
-	<?php if(ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){ $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+	<?php if(ampforwp_has_post_thumbnail()){ $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
     <div class="fsp-img">
     	<?php amp_loop_image($args); ?>
     </div><?php } ?>
