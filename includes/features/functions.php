@@ -135,10 +135,9 @@ function ampforwp_get_frontpage_id() {
 // 27. Clean the Defer issue
 // TODO : Get back to this issue. #407
 function ampforwp_the_content_filter_full( $content_buffer ) {
-    if ( (!function_exists('amp_activate') && function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) 
+    if ((!is_plugin_active('amp/amp.php') && function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) 
         || 
-        ( function_exists('amp_activate') && function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) ) {
-         
+        (is_plugin_active('amp/amp.php') && function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() )) {
         $content_buffer = preg_replace("/' defer='defer/", "", $content_buffer);
         $content_buffer = preg_replace("/' defer onload='/", "", $content_buffer);
         $content_buffer = preg_replace("/' defer /", "", $content_buffer);
@@ -560,9 +559,6 @@ function ampforwp_include_aqresizer(){
     //Removed Jetpack Mobile theme option #2584
     remove_action('option_stylesheet', 'jetpack_mobile_stylesheet');
     require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
-    if( ampforwp_get_setting('ampforwp_css_tree_shaking') ){ 
-        add_filter('ampforwp_the_content_last_filter','ampforwp_tree_shaking_purify_amphtml',11);
-    }
 }
 
 // 98. Create Dynamic url of amp according to the permalink structure #1318
@@ -1092,71 +1088,3 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
   figcaption{ margin-bottom: 20px; }
 <?php }
  }
- // Tree shaking feature #2949 --- starts here --- 
-function ampforwp_tree_shaking_purify_amphtml($completeContent){
-      
-    if( function_exists('amp_pagebuilder_compatibility_init') ){
-        // compatibility with AMP Pagebuilder Compatibility
-        return $completeContent;
-    }
-    //for fonts
-    $completeContent = str_replace(array('"\\', "'\\"), array('":backSlash:',"':backSlash:"), $completeContent);   
-    /***Replacements***/
-    if(!empty($completeContent)){
-        $tmpDoc = new DOMDocument();
-        libxml_use_internal_errors(true);
-        $tmpDoc->loadHTML($completeContent);
-        // AMP_treeshaking_Style_Sanitizer class is added in the vendor/amp/includes/sanitizers
-        if( AMPforWP\AMPVendor\AMP_treeshaking_Style_Sanitizer::has_required_php_css_parser()){ 
-
-            $sheet = '';
-
-            $arg['allow_dirty_styles'] = false;
-            $obj = new AMPforWP\AMPVendor\AMP_treeshaking_Style_Sanitizer($tmpDoc, $arg);
-            $datatrack = $obj->sanitize();
-            // return json_encode($datatrack);
-
-            $data = $obj->get_stylesheets();
-            //return json_encode($data);
-
-            $comment = $obj->get_comments();
-            //return json_encode($comment);
-
-            foreach($data as $styles){
-                $sheet .= $styles;
-            }
-            $sheet = stripcslashes($sheet);
-            if(strpos($sheet, '-keyframes')!==false){
-                $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
-            }
-            $completeContent = preg_replace("/<style\samp-custom>(.*?)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
-        }
-
-    }
-    //for fonts
-    $completeContent = str_replace(array('":backSlash:', "':backSlash:"), array('"\\', "'\\"), $completeContent);
-        
-    return $completeContent;
-}
-
-if(is_admin()){
-    add_action( 'redux/options/redux_builder_amp/saved', 'ampforwp_clear_tree_shaking',10,2);
-    function ampforwp_clear_tree_shaking($options, $changed_values){ 
-        if( ( isset($changed_values['ampforwp_css_tree_shaking']) && $options['ampforwp_css_tree_shaking']=='0' ) ||  isset($changed_values['amp-design-selector']) || isset($changed_values['css_editor']) ){
-            $upload_dir = wp_upload_dir(); 
-            $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
-            if(file_exists($user_dirname)){
-                $files = glob($user_dirname . '/*');
-                //Loop through the file list.
-                foreach($files as $file){
-                //Make sure that this is a file and not a directory.
-                    if(is_file($file) && strpos($file, '_transient')!==false ){
-                        //Use the unlink function to delete the file.
-                        unlink($file);
-                    }
-                }
-            }
-        }
-    }
-}
-// Tree shaking feature #2949 --- ends here ---

@@ -8016,6 +8016,52 @@ function ampforwp_generate_taxonomies_transient(){
 	return $taxonomies;
 }
 
+if( ampforwp_get_setting('ampforwp_css_tree_shaking') ){
+	add_filter('ampforwp_the_content_last_filter','ampforwp_purify_amphtml',11);
+} 
+function ampforwp_purify_amphtml($completeContent){
+	if( function_exists('amp_pagebuilder_compatibility_init') ){
+		// compatibility with AMP Pagebuilder Compatibility
+		return $completeContent;
+	}
+	//for fonts
+	$completeContent = str_replace(array('"\\', "'\\"), array('":backSlash:',"':backSlash:"), $completeContent);   
+	/***Replacements***/
+	if(!empty($completeContent)){
+		$tmpDoc = new DOMDocument();
+		libxml_use_internal_errors(true);
+		$tmpDoc->loadHTML($completeContent);
+		if( AMPforWP\AMPVendor\AMP_treeshaking_Style_Sanitizer::has_required_php_css_parser()){ 
+
+			$sheet = '';
+
+			$arg['allow_dirty_styles'] = false;
+			$obj = new AMPforWP\AMPVendor\AMP_treeshaking_Style_Sanitizer($tmpDoc, $arg);
+			$datatrack = $obj->sanitize();
+			// return json_encode($datatrack);
+
+			$data = $obj->get_stylesheets();
+			//return json_encode($data);
+
+			$comment = $obj->get_comments();
+			//return json_encode($comment);
+
+			foreach($data as $styles){
+				$sheet .= $styles;
+			}
+			$sheet = stripcslashes($sheet);
+			if(strpos($sheet, '-keyframes')!==false){
+				$sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
+			}
+			$completeContent = preg_replace("/<style\samp-custom>(.*?)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
+		}
+
+	}
+	//for fonts
+	$completeContent = str_replace(array('":backSlash:', "':backSlash:"), array('"\\', "'\\"), $completeContent);
+		
+	return $completeContent;
+}
 
 if(ampforwp_get_setting('ampforwp_css_tree_shaking') == true && ampforwp_is_gutenberg_active()){
 	add_action('amp_post_template_css','ampforwp_gutenberg_block_styles');

@@ -788,6 +788,7 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 	 */
 	private function fetch_external_stylesheet( $url ) {
 		$cache_key = md5( $url );
+		//$contents  = get_transient( $cache_key );
 		$contents = \AMPforWP\AMPVendor\AMPFORWP_Tree_Shaking_Transient::ampforwp_get_file_transient( $cache_key );
 		if ( false === $contents ) {
 			$r = wp_remote_get( $url );
@@ -799,6 +800,7 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 			} else {
 				$contents = wp_remote_retrieve_body( $r );
 			}
+			//set_transient( $cache_key, $contents, MONTH_IN_SECONDS );
 			\AMPforWP\AMPVendor\AMPFORWP_Tree_Shaking_Transient::ampforwp_set_file_transient( $cache_key, $contents, MONTH_IN_SECONDS );
 		}
 		return $contents;
@@ -854,6 +856,7 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 		if ( wp_using_ext_object_cache() ) {
 			$parsed = wp_cache_get( $cache_key, $cache_group );
 		} else {
+			//$parsed = get_transient( $cache_key . $cache_group );
 			$parsed = \AMPforWP\AMPVendor\AMPFORWP_Tree_Shaking_Transient::ampforwp_get_file_transient( $cache_key . $cache_group );
 		} 
 
@@ -883,6 +886,7 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 				wp_cache_set( $cache_key, $parsed, $cache_group );
 			} else {
 				// The expiration is to ensure transient doesn't stick around forever since no LRU flushing like with external object cache.
+				//set_transient( $cache_key . $cache_group, $parsed, MONTH_IN_SECONDS );
 				\AMPforWP\AMPVendor\AMPFORWP_Tree_Shaking_Transient::ampforwp_set_file_transient( $cache_key . $cache_group, $parsed, MONTH_IN_SECONDS );
 			} 
 		}
