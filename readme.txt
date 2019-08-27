@@ -190,7 +190,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.98.5 (27th AUGUST 2019) =
-* Improvements: Featured Video Compatibility by using the Cusrom Fields #3444
 * Improvements: Compatibility integrated with CDN enabler #3515
 * Improvements: banner ux section of AMP panel settings improved #3470
 * Improvements: Reduces the size of auto inline css ro avoid validation errors #3115
