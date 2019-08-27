@@ -70,13 +70,13 @@ if ( isset($args['show_time']) ) {
 }
 
  ?>
-    <div class="amp-author <?php echo $class; ?>">
+    <div class="amp-author <?php echo esc_attr($class); ?>">
         <?php if ( $avatar ) {
     $author_avatar_url = ampforwp_get_wp_user_avatar();
     if( null == $author_avatar_url ){
        $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
     } ?>
-        <div class="amp-author-image <?php echo $author_image_wrapper; ?>">
+        <div class="amp-author-image <?php echo esc_attr($author_image_wrapper); ?>">
             <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo esc_attr($avatar_size); ?>" height="<?php echo esc_attr($avatar_size); ?>" layout="fixed"></amp-img> 
         </div>
         <?php } ?>

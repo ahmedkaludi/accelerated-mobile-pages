@@ -99,7 +99,7 @@
                     if(ampforwp_get_setting('ampforwp-bread-crumb-post')){
                          $tags_breadcrumbs .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';
                     }
-                    echo $tags_breadcrumbs;
+                    echo $tags_breadcrumbs; // Escaped above
                 }
             }
             if(ampforwp_get_setting('ampforwp-bread-crumb-type') == 'category'){
@@ -178,7 +178,7 @@
                 }
                    
                 // Display parent pages
-                echo $parents;
+                echo $parents; // Escaped above
                    
                 // Current page
                    

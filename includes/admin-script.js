@@ -48,6 +48,9 @@ jQuery(function($) {
                             return false;
                         }
                         var item = $(this);
+                        if(item.hasClass('hide')){
+                            return false;
+                        }
                         var isMatch = true,
                             text = $(this).find('.redux_field_th').text().toLowerCase();
                         if ( !text || text == "" ) {
@@ -63,8 +66,7 @@ jQuery(function($) {
                              $(this).parents('div.redux-group-tab').css('display','block');
                         }
                         return isMatch;
-                    }).show( function() { }); 
-
+                    }).show( function() { });
                     parent.find('.redux-group-tab').each(function() {
                         if (searchString != "") {
                             $(this).find("div.redux-section-field").each(function(){
@@ -79,6 +81,10 @@ jQuery(function($) {
                             });
                         } else {
                             $(this).find("div.redux-section-field").each(function(){
+                                var item = $(this);
+                                if(item.hasClass('hide')){
+                                    return false;
+                                }
                                 var divSectionId = $(this).attr('id');
                                 var splitResult = divSectionId.split("-");
                                 splitResult.splice(1, 0, "table");
@@ -88,6 +94,17 @@ jQuery(function($) {
                                     $(this).show();
                                 }
                             });
+                            $(this).find('.form-table-section tbody').each(function(){
+                                $(this).find('tr').each(function (i, el) {
+                                    var item = $(this);
+                                    if(item.hasClass('hide')){
+                                        item.hide();
+                                    }
+                                    if(item.hasClass('redux-section-indent-start')){
+                                        item.hide();
+                                    }
+                                });
+                            });
                         }
                     }); // parent.find('.redux-group-tab') Closed
                 },
@@ -96,7 +113,23 @@ jQuery(function($) {
                 captureLength:0
             });
         }
+    $('.redux-container').each(function() {
+        if (!$(this).hasClass('redux-no-sections')) {
+            $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls" style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');
+            $('.redux-amp-search-icon').click(function(){
+                $('.redux_field_search').toggle('slide');
+            });
+            reduxOptionSearch();
+        }
+    });
 
+    $(".redux_field_search").keypress(function (evt) {
+        //Deterime where our character code is coming from within the event
+        var charCode = evt.charCode || evt.keyCode;
+        if (charCode  == 13) { //Enter key's keycode
+            return false;
+        }
+    });
     //option panel Section Division
     var optionSectionDevision = function(){
         $('.afw-accordion-header').click(function(){
@@ -657,6 +690,25 @@ jQuery(document).ready(function($){
         jQuery.post(ajaxurl, notice, function(response) {     
         });
     });
+
+    // AMP FrontPage notice in Reading Settings #2348
+    if ( 'false' == redux_data.frontpage){
+        $('#page_on_front').parent('label').append('<p class="afp" style="display:none"><b>We have detected that you have not setup the FrontPage for AMP, </b><a href="'+redux_data.admin_url+'">Click here to setup</a></span>');
+    }
+    $('#front-static-pages input[type=radio][name=show_on_front]').on('change', function(e) {
+       if ( this.value == 'page') {
+        $('.afp').show();
+       } else {
+        $('.afp').hide();
+       }
+    });
+    var sfp  = $('#front-static-pages input[type=radio][checked=checked]');
+    if ( sfp[0] ) {
+        if(sfp[0].value == 'page'){
+            $('.afp').show();
+        }
+    }
+
 });//(document).ready Closed
 
 jQuery(window).on("YoastSEO:ready",function(){

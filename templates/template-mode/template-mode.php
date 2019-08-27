@@ -486,7 +486,7 @@ Class AMPforWP_theme_mode{
 				$css .= $this->ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
 			}
 		}
-		echo $this->css_sanitizer($css);
+		echo $this->css_sanitizer($css); // sanitized above
 		echo "</style>";
 	}
 	private function css_sanitizer($css){

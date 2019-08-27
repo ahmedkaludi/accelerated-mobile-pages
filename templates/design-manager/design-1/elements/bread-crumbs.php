@@ -96,7 +96,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                     if(ampforwp_get_setting('ampforwp-bread-crumb-post')){
                         $tags_breadcrumbs .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';
                     }
-                    echo $tags_breadcrumbs;
+                    echo $tags_breadcrumbs; // escaped above
                 }
             }
             
@@ -147,7 +147,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
               
             // Check if the post is in a category
             if(!empty($last_category)) {
-                echo $cat_display;
+                echo $cat_display; // escaped above
     
             // Else if post is in a custom taxonomy
             } else if(!empty($cat_id)) {
@@ -177,7 +177,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                 }
                    
                 // Display parent pages
-                echo $parents;
+                echo $parents; // escaped above
                    
                 // Current page
                    

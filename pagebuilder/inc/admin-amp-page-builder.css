@@ -744,7 +744,7 @@ position: fixed;
     padding: 0px 0px;
     margin-top: 50px;
     border-top: 1px solid #D8D8D8;
-    z-index: 99;
+    z-index: 1;
     position: relative;
 }
 .modal-content{

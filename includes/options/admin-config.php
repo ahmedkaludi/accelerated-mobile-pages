@@ -1413,6 +1413,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'    => esc_html__('Resize', 'accelerated-mobile-pages'),
                 'type'     => 'switch',
                 'default'  => 0,
+                'required'=>array('opt-media','!=',''),
             ),
             array(
                 'id'       => 'ampforwp-custom-logo-dimensions-options',
@@ -2302,6 +2303,13 @@ Redux::setSection( $opt_name, array(
     );
 
  // Advance Settings SECTION
+function ampforwp_featured_video_default(){
+            $default = '';
+            if(function_exists( 'csco_setup' )){
+                $default = 'csco_post_embed';
+            }
+            return $default;
+}
 Redux::setSection( $opt_name, array(
    'title'      => esc_html__( 'Advance Settings', 'accelerated-mobile-pages' ),
    'desc'       => esc_html__( 'This section has some advanced settings, please use it with care','accelerated-mobile-pages'),
@@ -2415,6 +2423,7 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,
                         
                     ),
+                    
                     // Featured Image from Custom Fields
                     array(
                         'id'       => 'ampforwp-custom-fields-featured-image-switch',
@@ -4214,7 +4223,7 @@ Redux::setSection( $opt_name, array(
                     'required' => array(
                         array('amp-design-selector', '=' , '3')
                     ),
-                    'default'  => '0'
+                    'default'  => '1'
             ),
              
              array(
@@ -6242,6 +6251,8 @@ else{
               'id'        =>  'ampforwp-social-share-amp',
               'type'      =>  'switch',
               'title'     =>  esc_html__('Social Share links to AMP', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to share all your social links to AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-share-social-links-to-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
               'default'   =>  0,
           ), 
           // Social No Follow links 
@@ -6249,6 +6260,8 @@ else{
               'id'        =>  'ampforwp-social-no-follow',
               'type'      =>  'switch',
               'title'     =>  esc_html__('No Follow All Your Social Links', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to add no-follow to all your social links and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-no-follow-to-all-your-social-share-links/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
               'default'   =>  0,
           ),
             // AddThis Support  

@@ -10,8 +10,9 @@ function ampforwp_content_module_pagination($args, $fieldValues){
       }else{
           $paged = 1;
       }
-      
+      $offset = ( $paged - 1 ) * $args['posts_per_page'] + $args['offset'];
       $args['paged'] = $paged;
+      $args['offset'] = $offset;
       
     return $args;
   }else{
@@ -489,7 +490,11 @@ if ( is_admin() ) {
  function  ampforwp_cat_pagination_links($the_query,$fieldValues){
         $pagination_links = '';
         $pagination_text = 'pageno';
-        $queryUrl = esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) );
+        if( ampforwp_is_front_page()){
+          $queryUrl = esc_url( ampforwp_url_controller(home_url()) );
+        }else{
+          $queryUrl = esc_url(ampforwp_url_controller(get_permalink(ampforwp_get_the_ID())));
+        }
         if( isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1){
       
         /*Pagination Sart*/

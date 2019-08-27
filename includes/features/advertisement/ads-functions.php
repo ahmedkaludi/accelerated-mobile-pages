@@ -63,9 +63,9 @@ function ampforwp_header_advert() {
 		$output = '<div class="amp-ad-wrapper amp_ad_1">';
 		$output .= '<amp-ad class="amp-ad-1"
 					type="adsense"
-					width='. $advert_width .' height='. $advert_height . '
-					data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-1'].'"
-					data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-1'] .'"';
+					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
+					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-1').'"
+					data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-1') .'"';
 		if($is_dboc){
 			$output .= 'data-block-on-consent';
 		}
@@ -81,7 +81,7 @@ function ampforwp_header_advert() {
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 	$output = apply_filters('ampforwp_modify_ad_1',$output );
-	echo $output;
+	echo $output; // escaped above 
 }
 
 // Above Footer Global
@@ -138,10 +138,10 @@ function ampforwp_footer_advert() {
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_2">';
 		$output	.=	'<amp-ad class="amp-ad-2" 
-					type="adsense" '. $optimize .'
-					width='. $advert_width .' height='. $advert_height . '
-					data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-2'].'"
-					data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-2'] .'"';
+					type="adsense" '. esc_attr($optimize) .'
+					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
+					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-2').'"
+					data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-2') .'"';
 		if($is_dboc){
 			$output .= 'data-block-on-consent';
 		}
@@ -157,7 +157,7 @@ function ampforwp_footer_advert() {
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 	$output = apply_filters('ampforwp_modify_ad_2',$output );
-	echo $output;
+	echo $output; // escaped above
 }
 
 // Above Post Content
@@ -234,9 +234,9 @@ function ampforwp_before_post_content_advert() {
 				$output = '<div class="amp-ad-wrapper amp_ad_3">';
 				$output	.=	'<amp-ad class="amp-ad-3" 
 							type="adsense"
-							width='. $advert_width .' height='. $advert_height . '
-							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-3'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .'"';
+							width='. esc_attr($advert_width).' height='. esc_attr($advert_height) . '
+							data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-3').'"
+							data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-3') .'"';
 				if($is_dboc){
 					$output .= 'data-block-on-consent';
 				}
@@ -252,7 +252,7 @@ function ampforwp_before_post_content_advert() {
 			}
 			$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 			$output = apply_filters('ampforwp_modify_ad_3',$output );
-			echo $output;
+			echo $output; // escaped above
 		}
 	}
 }
@@ -310,10 +310,10 @@ function ampforwp_after_post_content_advert() {
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_4">';
 		$output	.=	'<amp-ad class="amp-ad-4"
-					type="adsense" '. $optimize .'
-					width='. $advert_width .' height='. $advert_height . '
-					data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-4'].'"
-					data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-4'] .'"';
+					type="adsense" '. esc_attr($optimize) .'
+					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
+					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-4').'"
+					data-ad-slot="'. ampforwp_get_setting('enable-amp-ads-text-feild-slot-4') .'"';
 		if($is_dboc){
 			$output .= 'data-block-on-consent';
 		}
@@ -329,7 +329,7 @@ function ampforwp_after_post_content_advert() {
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 	$output = apply_filters('ampforwp_modify_ad_4',$output );
-	echo $output;
+	echo $output; // escaped above
 }
 
 // Below The Title
@@ -382,9 +382,9 @@ function ampforwp_below_the_title_advert() {
 		$output = '<div class="amp-ad-wrapper amp_ad_5">';
 		$output	.=	'<amp-ad class="amp-ad-5"
 					type="adsense"
-					width='. $advert_width .' height='. $advert_height . '
-					data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-5'].'"
-					data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-5'] .'"';
+					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
+					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-5').'"
+					data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-5') .'"';
 		if($is_dboc){
 			$output .= 'data-block-on-consent';
 		}
@@ -400,7 +400,7 @@ function ampforwp_below_the_title_advert() {
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 	$output = apply_filters('ampforwp_modify_ad_5',$output );
-	echo $output;
+	echo $output; // escaped above
 }
 
 
@@ -455,10 +455,10 @@ function ampforwp_above_related_post_advert() {
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_6">';
 		$output	.=	'<amp-ad class="amp-ad-6"
-					type="adsense" '. $optimize .'
-					width='. $advert_width .' height='. $advert_height . '
-					data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-6'].'"
-					data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-6'] .'"';
+					type="adsense" '. esc_attr($optimize) .'
+					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
+					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-6').'"
+					data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-6') .'"';
 		if($is_dboc){
 			$output .= 'data-block-on-consent';
 		}
@@ -474,7 +474,7 @@ function ampforwp_above_related_post_advert() {
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 	$output = apply_filters('ampforwp_modify_ad_6',$output );
-	echo $output;
+	echo $output; // escaped above
 }
 // Ads Sponsorship output
 function ampforwp_ads_sponsorship(){

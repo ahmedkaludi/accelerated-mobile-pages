@@ -173,7 +173,7 @@ function amp_menu($echo=true, $menu_args=array(), $type='header'){
 			return $amp_menu;
 		}
 		else
-			echo $amp_menu;
+			echo $amp_menu; // escaped above
 	}
 }
 // Alternative Menus
@@ -391,7 +391,7 @@ function amp_header_core(){
 				<?php $custom_css = ampforwp_get_setting('css_editor');
 					  $custom_css = str_replace(array('.accordion-mod'), array('.apac'), $custom_css);
 					  $sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
-					  echo $sanitized_css; ?>
+					  echo $sanitized_css; // sanitized above ?>
 			</style>
 			<?php do_action('ampforwp_before_head', $thisTemplate);  ?>
 		</head>

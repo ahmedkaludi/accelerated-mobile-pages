@@ -76,7 +76,7 @@ function amppb_export_layout_data(){
 		$unsan_export_data = wp_unslash( $_POST['export_layout_data'] );
 		$export_data = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $unsan_export_data ) ));
 	}
-	echo $export_data;
+	echo $export_data; // escaped above
 	
 	wp_die();
 }

@@ -27,10 +27,13 @@ function ampforwp_redirection() {
           }
         }
       }else{
-          if( (is_archive() && 0 == ampforwp_get_setting('ampforwp-archive-support')) || (is_category() && 0 == ampforwp_get_setting('ampforwp-archive-support-cat')) || (is_tag() && 0 == ampforwp_get_setting('ampforwp-archive-support-tag')) ){
+          if( ( (function_exists('is_shop') && !is_shop() ) && is_archive() &&  0 == ampforwp_get_setting('ampforwp-archive-support')) || ( !function_exists('is_shop') &&is_archive() &&  0 == ampforwp_get_setting('ampforwp-archive-support')) || (is_category() && 0 == ampforwp_get_setting('ampforwp-archive-support-cat')) || (is_tag() && 0 == ampforwp_get_setting('ampforwp-archive-support-tag')) ){
           $archive_check = true;
         }
       }
+      if( !function_exists('amp_woocommerce_pro_add_woocommerce_support') && ( (function_exists('is_product_category') && is_product_category()) || (function_exists('is_product_tag') && is_product_tag()) || (function_exists('is_shop') && is_shop() ) )){
+            $archive_check = true;
+       }
     if ( (true == $archive_check_tax) || ( true == $archive_check ) || true == $hide_cats_amp || ((ampforwp_is_home() || ampforwp_is_front_page()) && 0 == ampforwp_get_setting('ampforwp-homepage-on-off-support')) ) {
       $url = $wp->request;
       if( ampforwp_is_home() && get_query_var('amp') ) {

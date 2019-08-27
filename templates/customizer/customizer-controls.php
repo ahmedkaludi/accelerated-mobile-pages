@@ -40,7 +40,7 @@ class AMPFORWP_Customize_Control_Sortable_Checkboxes extends WP_Customize_Contro
 		<?php } // add label if needed. ?>
 
 		<?php if ( !empty( $this->description ) ){ ?>
-			<span class="description customize-control-description"><?php echo $this->description; ?></span>
+			<span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
 		<?php } // add desc if needed. ?>
 
 		<?php

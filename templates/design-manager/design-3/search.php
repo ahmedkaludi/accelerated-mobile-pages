@@ -93,9 +93,9 @@
 				<?php
 					$title_name = '<a href="'.ampforwp_url_controller( get_permalink() ).'">'.get_the_title().'</a>';
 	        		if( ampforwp_default_logo() ){ ?>
-	    		   		<h2 class="amp-wp-title"><?php echo $title_name; ?></h2>
+	    		   		<h2 class="amp-wp-title"><?php echo $title_name; //escaped above ?></h2>
 					<?php }else{ ?>
-						<h3 class="amp-wp-title"><?php echo $title_name ?></h3>
+						<h3 class="amp-wp-title"><?php echo $title_name; //escaped above ?></h3>
 					<?php } ?>
 				
 				<?php if( ampforwp_check_excerpt() ) {

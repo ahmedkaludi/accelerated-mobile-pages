@@ -61,7 +61,7 @@ if ( ! class_exists('AMP_Widget_Categories') ) {
 					$dropdown,
 					1
 				);
-				echo $dropdown; // WPCS: XSS OK.
+				echo $dropdown; // WPCS: XSS OK. escaped above
 				echo '</form>';
 			else :
 				?>

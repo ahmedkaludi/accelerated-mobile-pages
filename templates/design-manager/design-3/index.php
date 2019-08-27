@@ -39,7 +39,7 @@ if ( get_query_var( 'paged' ) ) {
 <?php if( $redux_builder_amp['amp-design-3-featured-slider'] == 1 && $paged === 1 ) {
 		$num_posts = 4;$autoplay = 'autoplay';$delay = 'delay="4000"';
 		if ( isset($redux_builder_amp['ampforwp-featur-slider-autop-delay']) && $redux_builder_amp['ampforwp-featur-slider-autop-delay'] ) {
-			$delay = 'delay="'.$redux_builder_amp["ampforwp-featur-slider-autop-delay"].'"';
+			$delay = 'delay="'.esc_attr( ampforwp_get_setting("ampforwp-featur-slider-autop-delay") ).'"';
 		}
 		if ( isset($redux_builder_amp['ampforwp-featur-slider-num-posts']) && $redux_builder_amp['ampforwp-featur-slider-num-posts'] ) {
 			$num_posts = $redux_builder_amp['ampforwp-featur-slider-num-posts'];
@@ -54,7 +54,7 @@ if ( get_query_var( 'paged' ) ) {
 		  <amp-carousel width="450"
 		      height="270" layout="responsive"
 		      type="slides" <?php echo esc_attr($autoplay.' ');
-		      echo $delay; ?> >
+		      echo $delay; //escaped above ?> >
 		<?php
 		  global $redux_builder_amp;
 		  if( ( isset($redux_builder_amp['amp-design-3-featured-content']) && $redux_builder_amp['amp-design-3-featured-content'] == '1' ) && (isset($redux_builder_amp['amp-design-3-category-selector']) && $redux_builder_amp['amp-design-3-category-selector'] ) ){

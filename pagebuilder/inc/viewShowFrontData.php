@@ -61,7 +61,7 @@ function ampforwp_pagebuilder_header_html_output(){
 		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
 		if(isset($previousData['settingdata']['scripts_data']) && $previousData['settingdata']['scripts_data']!=""){
-			echo $previousData['settingdata']['scripts_data'];
+			echo $previousData['settingdata']['scripts_data']; // nothing to escaped
 		}
 	}
 }
@@ -646,10 +646,10 @@ function amppb_post_content($content){
 				$html .= '</div>';
 		}
 		if(!empty($html)){
-			$content = $html;	
+			$content = do_shortcode($html);	
 		}
 	}
-	return do_shortcode($content);
+	return $content;
 }
 
 function ampforwp_rowData($container,$col,$moduleTemplate){
@@ -1055,7 +1055,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 function ampforwp_pagebuilder_module_style(){
 	$custom_css = ampforwp_get_setting('css_editor'); 
 	$sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
-	echo $sanitized_css;
+	echo $sanitized_css; //sanitize above
 }
 function sortByIndex($contentArray){
 	$completeSortedArray = array();

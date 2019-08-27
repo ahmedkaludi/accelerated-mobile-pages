@@ -278,7 +278,7 @@ function ampforwp_facebook_pixel() {
 			$amp_pixel .= 'data-block-on-consent';
 		}
 		$amp_pixel .= ' src="https://www.facebook.com/tr?id='.esc_attr(ampforwp_get_setting('amp-fb-pixel-id')).'&ev=PageView&noscript=1"></amp-pixel>';
-		echo $amp_pixel;
+		echo $amp_pixel; // escaped above 
 	}
 }
 // For Setting up Google AMP Client ID API

@@ -209,17 +209,25 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if( is_front_page() && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
         return;
 	    }
-	     if ( is_archive()  ) {
+	     // Skip this condition for woocommerce product archive and shop pages.
+	     if( function_exists('amp_woocommerce_pro_add_woocommerce_support') && (function_exists('is_product_category') && !is_product_category()) && (function_exists('is_product_tag') && !is_product_tag()) && (function_exists('is_shop') && !is_shop() ) ){
+		    	if( is_archive() && ( !ampforwp_get_setting('ampforwp-archive-support') || ( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat') ) || ( is_tag() && !ampforwp_get_setting('ampforwp-archive-support-tag') ))){
+					return;
+				}	
+	    }
+
+	  // When amp woocommerce pro plugin is not active.
+      if ( is_archive() && !function_exists('amp_woocommerce_pro_add_woocommerce_support') ) {
 	    	if(!ampforwp_get_setting('ampforwp-archive-support')){
 				return;
 			}
-	    	if( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat')){
+	    	if( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat') ){
 	    		return;
 	    	}
 	    	if( is_tag() && !ampforwp_get_setting('ampforwp-archive-support-tag') ){
 	    		return;
 	    	}
-		}
+	    }
 		// #1192 Password Protected posts exclusion
 		if(post_password_required( $post )){
 				return;
@@ -235,9 +243,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		      }
 		    }
 		// no-amphtml for search
-		    if(is_search()){
-		    	return;
-		    }
+		    // if(is_search()){
+		    // 	return;
+		    // }
 		// #872 no-amphtml if selected as hide from settings
 		if ( is_category_amp_disabled() ) {
 			return;
@@ -416,7 +424,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
-	        if( $supported_amp_post_types) {					
+	        if( $supported_amp_post_types || ampforwp_is_front_page() ) {				
 				return $amp_url;
 			}
 		}
@@ -715,7 +723,7 @@ function ampforwp_new_dir( $dir ) {
 				   // aria-current
 				  $content = preg_replace('/(<[^>]+) aria-current=".*?"/', '$1', $content);
 				  // Gallery Break fix 
-				  $content = preg_replace('/\[gallery(.*?)\]/', '</p>[gallery$1]</p>', $content);
+				  $content = preg_replace('/[^\[]\[gallery(.*?)\]/', '</p>[gallery$1]</p>', $content);
 				  // value attribute from anchor tag #2262
 				  $content = preg_replace('/<a(.*?)(value=".*?")(.*?)>/', '<a$1$3>', $content);
 				  //Compatibility with Cloudflare stream. #3230
@@ -857,9 +865,15 @@ function ampforwp_title_callback( $post ) {
 	            </div>
 	        </div>
     	</div>
-	</div>
-   
-<?php }
+	</div>   
+<?php 
+	if ( get_option('page_on_front') == $post->ID && false == $redux_builder_amp['amp-frontpage-select-option'] ) {
+		echo sprintf(('<p class="afp"><b> %s </b> <a class="" target= "_blank" href="%s">%s</a></p>'), esc_html__('We have detected that you have not setup the FrontPage for AMP,','accelerated-mobile-pages'),admin_url("admin.php?page=amp_options&tabid=opt-text-subsection#redux_builder_amp-ampforwp-homepage-on-off-support"),esc_html__('Click here to setup','accelerated-mobile-pages'));
+	}
+	if ( true == $redux_builder_amp['amp-frontpage-select-option'] && $post->ID == $redux_builder_amp['amp-frontpage-select-option-pages'] ) {
+		echo sprintf('<p>%s</p>', esc_html__('AMP FrontPage'));
+	}
+}
 
 /**
  * Adds a meta box to the post editing screen for Mobile Redirection on-off on specific pages
@@ -2219,6 +2233,14 @@ function ampforwp_add_fbcomments_scripts( $data ) {
 function ampforwp_copat_wp_html_compression() {
 	remove_action('template_redirect', 'wp_html_compression_start', -1);
 	remove_action('get_header', 'wp_html_compression_start');
+	
+	if( class_exists('BunnyCDN') ){
+		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+		if( function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
+			//Remove Action to remove CDN URL from BunnyCDN Plugin
+			remove_action("template_redirect", "doRewrite");
+		}
+	}
 }
 add_action('amp_init','ampforwp_copat_wp_html_compression');
 
@@ -2250,17 +2272,17 @@ function ampforwp_editable_archvies_title($title) {
 //39. #560 Header and Footer Editable html enabled script area
 add_action('amp_post_template_footer','ampforwp_footer_html_output',11);
 function ampforwp_footer_html_output() {
-  global $redux_builder_amp;
-  if( $redux_builder_amp['amp-footer-text-area-for-html'] ) {
-    echo $redux_builder_amp['amp-footer-text-area-for-html'] ;
+
+  if( ampforwp_get_setting('amp-footer-text-area-for-html') ) {
+    echo ampforwp_get_setting('amp-footer-text-area-for-html') ;
   }
 }
 
 add_action('amp_post_template_head','ampforwp_header_html_output',11);
 function ampforwp_header_html_output() {
-  global $redux_builder_amp;
-  if( $redux_builder_amp['amp-header-text-area-for-html'] ) {
-    echo $redux_builder_amp['amp-header-text-area-for-html'] ;
+
+  if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
+    echo ampforwp_get_setting('amp-header-text-area-for-html') ;
   }
   // amphtml tag when AMP Takeover is enabled #2550
   if(ampforwp_get_setting('ampforwp-amp-takeover') == true){
@@ -4112,7 +4134,7 @@ function is_category_amp_disabled(){
 add_action( 'admin_bar_menu', 'ampforwp_visit_amp_in_admin_bar',999 );
 function ampforwp_visit_amp_in_admin_bar($admin_bar) {
 	global $redux_builder_amp;
-	if ( ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
+	if ( ampforwp_get_setting('ampforwp-homepage-on-off-support') && false == ampforwp_get_setting('ampforwp-amp-takeover') ) {
 		$args = array(
 		    'parent' => 'site-name',
 		    'id'     => 'view-amp',
@@ -4127,9 +4149,9 @@ function ampforwp_visit_amp_in_admin_bar($admin_bar) {
 // Things to be added in the Body Tag #1064
 add_action('ampforwp_body_beginning','ampforwp_body_beginning_html_output',11);
 function ampforwp_body_beginning_html_output(){
-	global $redux_builder_amp;
-  	if( $redux_builder_amp['amp-body-text-area'] ) {
-    	echo $redux_builder_amp['amp-body-text-area'] ;
+
+  	if( ampforwp_get_setting('amp-body-text-area') ) {
+    	echo ampforwp_get_setting('amp-body-text-area') ;
   }
 }
 
@@ -5415,7 +5437,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 	    }
 	}
 
-    echo $font_output;
+    echo $font_output; // escaped above
   }
 }
 
@@ -6196,7 +6218,19 @@ function ampforwp_thrive_architect_content(){
 		//#3254 Remove action for Woodmart theme lazyload feature 
 		remove_action( 'init', 'woodmart_lazy_loading_init', 120 );
 	}
+	if( class_exists('CDN_Enabler')){
+		add_filter('option_cdn_enabler', 'ampforwp_add_exclusions_cdn_enabler');
+	}
 }
+
+function ampforwp_add_exclusions_cdn_enabler($options){
+	if (!is_array($options)) { return $options; }
+	$excluded_urls[] = 'wp-content';
+	$urls = implode(',', $excluded_urls);
+	$options['excludes'] = empty($options['excludes'])?$urls:$options['excludes'].','.$urls;
+	return $options;
+}
+
 function ampforwp_thrive_content($content){
 	$post_id = "";
 	if ( ampforwp_is_front_page() ){
@@ -6843,7 +6877,7 @@ function ampforwp_webp_featured_image() {
 		<figure class="amp-wp-article-featured-image">
 			<?php 
 			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){
-				echo $image_output;
+				echo $image_output; // escaped above
 			}
 			 ?>
 		</figure>

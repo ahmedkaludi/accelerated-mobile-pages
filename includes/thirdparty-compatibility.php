@@ -44,7 +44,8 @@ function ampforwp_thirdparty_compatibility(){
 	remove_filter( 'the_content', 'shortPixelConvertImgToPictureAddWebp', 10000 );
 	remove_filter( 'the_excerpt', 'shortPixelConvertImgToPictureAddWebp', 10000 );
 	remove_filter( 'post_thumbnail_html', 'shortPixelConvertImgToPictureAddWebp');
-	
+	//Validation error with Authentic theme #3535
+	remove_filter( 'amp_post_template_data', 'csco_amp_post_template_data', 10, 2 );
 	//Validation errors in amp category page due to HotWP PRO #3455
 	if(function_exists('hotwp_get_option') && is_category()){
 		remove_all_filters('get_the_archive_title');
@@ -528,7 +529,7 @@ function ampforwp_simple_author_box(){
 		$fontsImplementData		= json_decode($fontsImplementRawData, true);
 		if (!empty($fontsImplementData)):
 			foreach ($fontsImplementData as $key=>$fontImplementData): ?>
-				<?php echo $fontImplementData['font_elements']; ?>{
+				<?php echo $fontImplementData['font_elements']; // escaped above ?>{
 					font-family: '<?php echo esc_html($fontsData[$fontImplementData['font_key']]['font_name']); ?>';
 				}
 			<?php endforeach;
@@ -599,7 +600,7 @@ function ampforwp_seopress_social(){
 				if (has_filter('seopress_social_og_url')) {
 					$seopress_social_og_url = apply_filters('seopress_social_og_url', $seopress_social_og_url);
 			    }			
-				echo $seopress_social_og_url."\n";
+				echo $seopress_social_og_url."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_facebook_og'])) {
 				$seopress_social_og_site_name = '<meta property="og:site_name" content="'.esc_html(get_bloginfo('name')).'" />';
@@ -607,7 +608,7 @@ function ampforwp_seopress_social(){
 				if (has_filter('seopress_social_og_site_name')) {
 					$seopress_social_og_site_name = apply_filters('seopress_social_og_site_name', $seopress_social_og_site_name);
 			    }
-				echo $seopress_social_og_site_name."\n";
+				echo $seopress_social_og_site_name."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_facebook_og'])) {
 				$seopress_social_og_locale = '<meta property="og:locale" content="'.esc_attr(get_locale()).'" />';
@@ -637,7 +638,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_og_locale = apply_filters('seopress_social_og_locale', $seopress_social_og_locale);
 			    }
 				if (isset($seopress_social_og_locale) && $seopress_social_og_locale !='') {
-					echo $seopress_social_og_locale."\n";
+					echo $seopress_social_og_locale."\n"; // escaped above
 				}
 			}
 			if (isset($options['seopress_social_facebook_og'])) {
@@ -664,7 +665,7 @@ function ampforwp_seopress_social(){
 					if (has_filter('seopress_social_og_type')) {
 						$seopress_social_og_type = apply_filters('seopress_social_og_type', $seopress_social_og_type);
 				    }
-					echo $seopress_social_og_type."\n";
+					echo $seopress_social_og_type."\n"; // escaped above
 				}
 			}
 			if ( isset($options['seopress_social_facebook_og']) && ( isset($options['seopress_social_accounts_facebook']) && '' != $options['seopress_social_accounts_facebook'] ) ) {
@@ -686,7 +687,7 @@ function ampforwp_seopress_social(){
 					if (has_filter('seopress_social_og_author')) {
 						$seopress_social_og_author = apply_filters('seopress_social_og_author', $seopress_social_og_author);
 				    }
-					echo $seopress_social_og_author."\n";
+					echo $seopress_social_og_author."\n"; // escaped above
 				}
 			}
 			if (isset($options['seopress_social_facebook_og'])) {
@@ -711,7 +712,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_og_title = apply_filters('seopress_social_og_title', $seopress_social_og_title);
 			    }
 			    if (isset($seopress_social_og_title) && $seopress_social_og_title !='') {
-			    	echo $seopress_social_og_title;
+			    	echo $seopress_social_og_title; // escaped above
 			    }
 			}
 
@@ -733,7 +734,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_og_desc = apply_filters('seopress_social_og_desc', $seopress_social_og_desc);
 			    }
 			    if (isset($seopress_social_og_desc) && $seopress_social_og_desc !='') {
-			    	echo $seopress_social_og_desc;
+			    	echo $seopress_social_og_desc; // escaped above
 				}
 			}
 			if (isset($options['seopress_social_facebook_og'])) {
@@ -787,21 +788,21 @@ function ampforwp_seopress_social(){
 						$seopress_social_og_img = apply_filters('seopress_social_og_thumb', $seopress_social_og_img);
 				    }
 				    if (isset($seopress_social_og_img) && $seopress_social_og_img !='') {
-			    		echo $seopress_social_og_img;
+			    		echo $seopress_social_og_img; // escaped above
 				    }
 				}
 			}
 			if (isset($options['seopress_social_facebook_og']) && isset($options['seopress_social_facebook_link_ownership_id'])) {
 				$seopress_social_link_ownership_id = '<meta property="fb:pages" content="'.esc_attr($options['seopress_social_facebook_link_ownership_id']).'" />';	
-				echo $seopress_social_link_ownership_id."\n";
+				echo $seopress_social_link_ownership_id."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_facebook_og']) && isset($options['seopress_social_facebook_link_ownership_id']) ) {
 				$seopress_social_admin_id = '<meta property="fb:admins" content="'.esc_attr($options['seopress_social_facebook_admin_id']).'" />';		
-				echo $seopress_social_admin_id."\n";
+				echo $seopress_social_admin_id."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_facebook_og']) && isset($options['seopress_social_facebook_link_ownership_id']) ) {
 				$seopress_social_app_id = '<meta property="fb:app_id" content="'.esc_attr($options['seopress_social_facebook_app_id']).'" />';		
-				echo $seopress_social_app_id."\n";
+				echo $seopress_social_app_id."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_twitter_card'])) {
 				if ( isset($options['seopress_social_twitter_card_img_size']) && $options['seopress_social_twitter_card_img_size'] =='large') {
@@ -813,7 +814,7 @@ function ampforwp_seopress_social(){
 				if (has_filter('seopress_social_twitter_card_summary')) {
 					$seopress_social_twitter_card_summary = apply_filters('seopress_social_twitter_card_summary', $seopress_social_twitter_card_summary);
 			    }
-				echo $seopress_social_twitter_card_summary."\n";
+				echo $seopress_social_twitter_card_summary."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_twitter_card']) && isset($options['seopress_social_accounts_twitter']) ) {
 				$seopress_social_twitter_card_site = '<meta name="twitter:site" content="'.esc_attr($options['seopress_social_accounts_twitter']).'" />';	
@@ -821,7 +822,7 @@ function ampforwp_seopress_social(){
 				if (has_filter('seopress_social_twitter_card_site')) {
 					$seopress_social_twitter_card_site = apply_filters('seopress_social_twitter_card_site', $seopress_social_twitter_card_site);
 			    }
-				echo $seopress_social_twitter_card_site."\n";
+				echo $seopress_social_twitter_card_site."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_twitter_card'])) {
 				//Init
@@ -838,7 +839,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_twitter_card_creator = apply_filters('seopress_social_twitter_card_creator', $seopress_social_twitter_card_creator);
 			    }
 			    if (isset($seopress_social_twitter_card_creator) && $seopress_social_twitter_card_creator !='') {
-			    	echo $seopress_social_twitter_card_creator."\n";
+			    	echo $seopress_social_twitter_card_creator."\n"; // escaped above
 				}
 			}
 			if (isset($options['seopress_social_twitter_card'])) {
@@ -868,7 +869,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_twitter_card_title = apply_filters('seopress_social_twitter_card_title', $seopress_social_twitter_card_title);
 			    }
 			    if (isset($seopress_social_twitter_card_title) && $seopress_social_twitter_card_title !='') {
-			    	echo $seopress_social_twitter_card_title."\n";
+			    	echo $seopress_social_twitter_card_title."\n"; // escaped above
 			    }
 			}
 			if (isset($options['seopress_social_twitter_card'])) {
@@ -896,7 +897,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_twitter_card_desc = apply_filters('seopress_social_twitter_card_desc', $seopress_social_twitter_card_desc);
 			    }
 			    if (isset($seopress_social_twitter_card_desc) && $seopress_social_twitter_card_desc !='') {
-			    	echo $seopress_social_twitter_card_desc."\n";
+			    	echo $seopress_social_twitter_card_desc."\n"; // escaped above
 			    }
 			}
 			if (isset($options['seopress_social_twitter_card'])) {
@@ -957,7 +958,7 @@ function ampforwp_seopress_social(){
 						$seopress_twitter_img = apply_filters('seopress_social_og_thumb', $seopress_twitter_img);
 				    }
 				    if (isset($seopress_twitter_img) && $seopress_twitter_img !='') {
-				    	echo $seopress_twitter_img;
+				    	echo $seopress_twitter_img; // escaped above
 				    }
 				}
 			}
