@@ -170,7 +170,6 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         <sup$1id="footnote_plugin_tooltip_$2"$3class="footnote_plugin_tooltip_text"$4><a href="#footnote_plugin_reference_$2">$5</a></sup>', $content_buffer);
         }
         $content_buffer = apply_filters('ampforwp_the_content_last_filter', $content_buffer);
-
     }
     if(function_exists('ampforwp_amp_nonamp_convert') && ampforwp_amp_nonamp_convert("", "check")){
       $content_buffer = ampforwp_amp_nonamp_convert($content_buffer, "filter");
@@ -178,12 +177,8 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
     return $content_buffer;
 }
 
-if(class_exists('AMP_Options_Manager')){
-    $amp_options = AMP_Options_Manager::get_options();
-    if( $amp_options['theme_support'] != 'standard' && function_exists('amp_activate')){
-        add_action('wp', function(){ ob_start('ampforwp_the_content_filter_full'); }, 999);
-    }
-}
+add_action('wp', function(){ ob_start('ampforwp_the_content_filter_full'); }, 999);
+   
 
 // 74. Featured Image check from Custom Fields
 function ampforwp_is_custom_field_featured_image(){

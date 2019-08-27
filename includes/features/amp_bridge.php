@@ -79,15 +79,16 @@ add_filter("ampforwp_the_content_last_filter", "ampforwp_add_basic_hooks");
 function ampforwp_add_basic_hooks($content_buffer){
 	global $ampforwpMainArray;
 
-	// Below Header Global
+	//Below Header Global
 	$content_buffer = preg_replace('[<article(.*?)>]', $ampforwpMainArray['ampforwp_after_header']."\n<article$1> " , $content_buffer, 1);
-	// Below Title Single
-	$content_buffer = preg_replace('#<article(.+?)>(.+?)<\/header>(.+?)<div(.*?)>#si',  "<article$1> $2</header>$3".$ampforwpMainArray['ampforwp_before_post_content']."\n<div$4>" , $content_buffer);
-
-
+	if (preg_match("#<article(.+?)>(.+?)<\/header>(.+?)<div(.*?)>#si", $content_buffer, $match)){
+		// Below Title Single
+		$content_buffer = preg_replace('#<article(.+?)>(.+?)<\/header>(.+?)<div(.*?)>#si',  "<article$1> $2</header>$3".$ampforwpMainArray['ampforwp_before_post_content']."\n<div$4>" , $content_buffer);
+	}	
 	$content_buffer = preg_replace('#<article(.+?)>(.+?)<footer(.+?)>#si',  "<article$1>$2".$ampforwpMainArray['ampforwp_after_post_content']."<footer$3>" , $content_buffer);
-
-	$content_buffer = preg_replace('#<article(.+?)>(.+?)<\/header>#si',  "<article$1>$2".$ampforwpMainArray['ampforwp_below_the_title']."\n</header>" , $content_buffer);
+	if (preg_match("#<article(.+?)>(.+?)<\/header>#si", $content_buffer, $match)){
+		$content_buffer = preg_replace('#<article(.+?)>(.+?)<\/header>#si',  "<article$1>$2".$ampforwpMainArray['ampforwp_below_the_title']."\n</header>" , $content_buffer);
+	}
 
 	$content_buffer = preg_replace('#<body(.+?)>(.+?)<header(.+?)>#si',  "<body$1>".$ampforwpMainArray['ampforwp_body_beginning']."\n$2<header$3>" , $content_buffer);
 	$content_buffer = preg_replace('#<\/article>(.+?)<\/footer>#si',  "</article>$1</footer>".$ampforwpMainArray['ampforwp_global_after_footer'] , $content_buffer);
