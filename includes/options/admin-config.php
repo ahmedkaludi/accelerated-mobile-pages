@@ -6395,7 +6395,7 @@ $single_page_options = array(
                 'title'    => esc_html__('Recent Posts below Related', 'accelerated-mobile-pages'),
                 'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
                             esc_html__('Enable this option to show recent posts in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-recent-posts-below-related-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
-                'default'  => 1,
+                'default'  => 0,
                 'required' => array('amp-design-selector' , '=' , '3'),
             ),
             array(

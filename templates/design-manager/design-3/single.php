@@ -36,7 +36,7 @@
 						while( amp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
 							<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
 								<div class="related-post_image">
-	                            <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+	                            <a href="<?php echo esc_url( amp_loop_permalink() ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 							<?php if ( ampforwp_has_post_thumbnail() ) { 
 							$thumb_url 		= ampforwp_get_post_thumbnail();
 							$thumb_width  	= ampforwp_get_post_thumbnail('width');
