@@ -4692,7 +4692,7 @@ Redux::setSection( $opt_name, array(
                 array(
                     'id'       => 'ampforwp_font_icon',
                     'type'     => 'select',
-                    'title'    => esc_html__('Icon Font Library', 'accelerated-mobile-pages'),
+                    'title'    => esc_html__('Font Icon Library', 'accelerated-mobile-pages'),
                     'options'  => array(
                         'swift-icons'       => 'Swift Icons',
                         'fontawesome-icons'     => 'Font Awesome Icons'
