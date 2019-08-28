@@ -23,10 +23,10 @@
 		<?php do_action('ampforwp_post_before_design_elements') ?>
 		<?php $this->load_parts( apply_filters( 'ampforwp_design_elements', array( 'empty-filter' ) ) ); ?>
 		<?php do_action('ampforwp_post_after_design_elements') ?>
-		<?php if(isset($redux_builder_amp['ampforwp-design3-recent-posts']) && $redux_builder_amp['ampforwp-design3-recent-posts']=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) {?>
-					<div class="amp-wp-content relatedpost">
+		<?php if(true==ampforwp_get_setting('ampforwp-design3-recent-posts') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {?>
+					<div class="amp-wp-content relatedpost recentpost">
 						 <div class="related_posts">
-						<span class="related-title"><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' )); ?></span>
+						<span class="related-title"><?php echo esc_attr(ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' )); ?></span>
 						<ol class="clearfix">
 						<?php 
 						$number_of_posts = 6;
@@ -41,7 +41,7 @@
 							$thumb_url 		= ampforwp_get_post_thumbnail();
 							$thumb_width  	= ampforwp_get_post_thumbnail('width');
 							$thumb_height 	= ampforwp_get_post_thumbnail('height');
-							if( $thumb_url && true == $redux_builder_amp['amforwp-design3-recentpost-image-switch'] ) { ?>
+							if( $thumb_url && true == ampforwp_get_setting('amforwp-design3-recentpost-image-switch') ) { ?>
 				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
 							<?php } 
 							}?>
@@ -51,9 +51,9 @@
 			                    <?php $title = get_the_title(); ?>
 			                    <a href="<?php echo esc_url( $related_post_permalink ); ?>" title="<?php echo esc_html( $title ); ?>" ><?php the_title(); ?></a>
 			                    <?php 
-			                    if ( isset($redux_builder_amp['amforwp-design3-recentpost-date-switch']) && true == $redux_builder_amp['amforwp-design3-recentpost-date-switch'] ) {
+			                    if (true == ampforwp_get_setting('amforwp-design3-recentpost-date-switch') ) {
 			                    		amp_loop_date();
-			                   		 }
+			                   		}
 			                     ?>
 			                </div>
 		            		</li>

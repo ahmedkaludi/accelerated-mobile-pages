@@ -369,6 +369,7 @@ main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bot
  if ( ampforwp_get_setting('ampforwp-single-select-type-of-related') ) { ?>
 /* Related Posts */
 main .amp-wp-content.relatedpost{ background: none; box-shadow: none; padding:0px 0 0 0; margin:1.8em auto 1.5em auto }
+.recentpost .loop-date{font-size:14px;}
 .single-post main,.related-title,.single-post .comments_list h3{ font-size: 20px; color: #777; font-family:'Roboto Slab', serif; border-bottom: 1px solid #eee; font-weight: 400; padding-bottom: 1px; margin-bottom: 10px; }
 .related-title {display:block}
 .related_posts ol{ list-style-type:none; margin:0; padding:0 }
