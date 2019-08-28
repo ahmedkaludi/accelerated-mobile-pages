@@ -781,6 +781,36 @@ jQuery(document).ready(function($){
 
 // AMPforWP New UX
 jQuery(document).ready(function($) {
+    var saveChangesInRedux = function($this){
+        if ( redux.args.ajax_save === true ) {
+            $.redux.ajax_save( $this, true );
+        }
+    }
+    // Ajax start
+    $('.ampforwp-new-ux').ajaxStart(function () {
+        $('.amp-ux-loading').show();
+    });
+    // Ajax Stop
+    $('.ampforwp-new-ux').ajaxStop(function () {
+        $('.amp-ux-loading').hide();
+        $('.amp-ux-check').show();
+        $('.amp-ux-check').html('&#10004;');
+        if($('.amp-ux-warning').hasClass('el-warning-sign')){
+            $('.amp-ux-warning').removeClass('el el-warning-sign').addClass('el el-ok');
+        }
+    });
+    function hexToRgbA(hex){
+        var c;
+        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length== 3){
+                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
+        }
+        throw new Error('Bad Hex');
+    }
     $('#section-table-ampforwp-ux-website-type-section').addClass('drawer');
     $('div.ampforwp-new-ux').find('div.ampforwp-ux-section-right').each(function(){
         var selector = 'data-id="'+$(this).attr('id').replace('section-','')+'"';
@@ -799,24 +829,15 @@ jQuery(document).ready(function($) {
         });
     });
     // Website type
-    $('#amp-website-type-select-select').on('change', function(e){
+    $('#ampforwp-ux-select').on('change', function(e){
         // Update Values in Structured data
         //Posts
         $("select[id=ampforwp-sd-type-posts-select]").val($(this).val());
         $("span[id=select2-ampforwp-sd-type-posts-select-container]").text($(this).val());
-        // Pages
-        $("select[id=ampforwp-sd-type-pages-select]").val($(this).val());
-        $("span[id=select2-ampforwp-sd-type-pages-select-container]").text($(this).val());
-        // Save changes in redux
-        window.onbeforeunload = null;
-        if ( redux.args.ajax_save === true ) {
-            $.redux.ajax_save( $( this ) );
-            e.preventDefault();
-        }
-
+        saveChangesInRedux($(this));
     });
     // Homepage
-    $('input[id="redux_builder_amp_amp-ux-homepage"]').click(function(){
+    $('input[id="amp-ux-homepage"]').click(function(){
         if($(this).prop("checked") == true){
                     console.log('Homepage true');
             $('.amp-ux-frontpage').show();
@@ -853,7 +874,6 @@ jQuery(document).ready(function($) {
             //console.log($(this).text());
             $("select[id=amp-frontpage-select-option-pages-select]").val($(this).val());
             // var pageName = $('span[id=select2-amp-ux-frontpage-select-select-container]').text();
-            console.log(thistxt);
             $("span[id=select2-amp-frontpage-select-option-pages-select-container]").show().text(thistxt);
         }
     });
@@ -897,19 +917,39 @@ jQuery(document).ready(function($) {
             $("input[id=ampforwp-archive-support]").val(0);
         }
     });
-    // Upload media button
-    $(this).find( '.media_upload_button' ).unbind().on(
+    // Design and Presentation Section
+    $('.media-amp-ux-opt-media' ).unbind().on(
         'click', function( event ) {
             redux.field_objects.media.addFile( event, $( this ).parents( 'div.amp-ux-opt-media-container:first' ) );
+            $('.media-button-select').on('click', function(){
+                if ( $('#amp-ux-opt-media-url').val() != '' ){
+                    $('input[id="redux_builder_amp[opt-media][url]"]').val($('#amp-ux-opt-media-url').val());
+                    $('input[id="redux_builder_amp[opt-media][height]"]').val($('#amp-ux-logo-height').val());
+                    $('input[id="redux_builder_amp[opt-media][width]').val($('#amp-ux-logo-width').val());
+                    $('input[id="redux_builder_amp[opt-media][thumbnail]').val($('#amp-ux-logo-thumb').val());
+                    $('#redux_builder_amp-opt-media .screenshot').show();
+                    $('.redux-option-image').attr('src', $('#amp-ux-logo-thumb').val());
+                    saveChangesInRedux($(this));
+                }
+            });
         }
     );
-    // Save changes in redux AMP Enabler section
-    $('#amp-ux-need-section-btn').click(function(){
-        window.onbeforeunload = null;
-        if ( redux.args.ajax_save === true ) {
-            $.redux.ajax_save( $( this ) );
-            e.preventDefault();
-        }
+    // Global Color Scheme
+    $('.amp-ux-color-scheme').change(function(){
+        $('input[data-id="swift-color-scheme-color"]').val($(this).val());
+        var rgba = hexToRgbA($(this).val());
+        var color = $('.ampforwp-ux-website-type-section .sp-preview-inner').css('background-color');
+        $('fieldset[data-id="swift-color-scheme"] .sp-preview-inner').css('background-color', color);
+        $('input[data-id="swift-color-scheme-rgba"]').val(rgba);
+        $('input[id="swift-color-scheme-color"]').attr('data-color',rgba);
+        $('input[id="swift-color-scheme-color"]').attr('data-current-color',$(this).val());
+        $('input[id="swift-color-scheme-color"]').attr('value',$(this).val());
+        saveChangesInRedux($(this));
+    });
+    // Analytics
+    $('#text_id').on('blur', function(){
+        console.log($(this));
+        $('#ga-feild').val($(this).val());
     });
     /*$('#section-table-ampforwp-ux-section').find('.button').on('click', function(){
 
@@ -982,10 +1022,10 @@ jQuery(document).ready(function($) {
             e.preventDefault();
         }
     });*/
-/*
+
     // AMP Requirement
     // Homepage and Frontpage
-    $('input[id="amp-ux-homepage"]').click(function(){
+    /*$('input[id="amp-ux-homepage"]').click(function(){
         if($(this).prop("checked") == true){
             $('.amp-ux-frontpage').removeClass('hide');
             $('input[id="amp-ux-frontpage-yes"]').click(function(){
@@ -1021,7 +1061,8 @@ jQuery(document).ready(function($) {
             $("input[data-id=ampforwp-homepage-on-off-support]").prop('checked', false).trigger( 'change' );
             $("input[id=ampforwp-homepage-on-off-support]").val(0);
         }
-    });
+        saveChangesInRedux($(this));
+    });*//*
     // Posts, Pages and Archives
     $('input[id="amp-ux-posts"]').click(function(){
         if($(this).prop("checked") == true){
@@ -1059,7 +1100,7 @@ jQuery(document).ready(function($) {
             $("input[id=ampforwp-archive-support]").val(0);
         }
     });
-
+    */
     // Privacy Settings Section
     $('input[id="amp-ux-notice-switch"]').click(function(){
         if($(this).prop("checked") == true){
@@ -1067,6 +1108,7 @@ jQuery(document).ready(function($) {
             if($('input[id="amp-enable-notifications"]').val() != 1 ) {
                 $("input[data-id=amp-enable-notifications]").prop('checked', true).trigger( 'change' );
                 $("input[id=amp-enable-notifications]").val(1);
+                $(this).val(1);
             }
             if($('input[id="amp-ux-gdpr-switch"]').val() == 1 ) {
                 $("input[data-id=amp-ux-gdpr-switch]").prop('checked', false).trigger( 'change' );
@@ -1076,8 +1118,11 @@ jQuery(document).ready(function($) {
         else if( $(this).prop("checked") == false && $('input[id="amp-enable-notifications"]').val() == 1 ){
             $("input[data-id=amp-enable-notifications]").prop('checked', false).trigger( 'change' );
             $("input[id=amp-enable-notifications]").val(0);
+            $(this).val(0);
         }
+        saveChangesInRedux($(this));
     });
+    /*
     $('input[id="amp-ux-gdpr-switch"]').click(function(){
         if($(this).prop("checked") == true){
             $(this).val(1);
@@ -1108,22 +1153,9 @@ jQuery(document).ready(function($) {
             e.preventDefault();
         }
     });
+*/  
 
-    // Design and Presentation Section
-    $('#amp-ux-design-section-btn').click( function(){
-        if ( $('#amp-ux-opt-media-url').val() != '' ){
-            $('input[id="redux_builder_amp[opt-media][url]"]').val($('#amp-ux-opt-media-url').val());
-            $('input[id="redux_builder_amp[opt-media][height]"]').val($('#amp-ux-logo-height').val());
-            $('input[id="redux_builder_amp[opt-media][width]').val($('#amp-ux-logo-width').val());
-            $('input[id="redux_builder_amp[opt-media][thumbnail]').val($('#amp-ux-logo-thumb').val());
-            $('#redux_builder_amp-opt-media .screenshot').show();
-            $('.redux-option-image').attr('src', $('#amp-ux-logo-thumb').val());
-        }
-    });*/
-
-    
-
-
+// Drawer
 var drawer,
     drawerElem,
     iconElem;

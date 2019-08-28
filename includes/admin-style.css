@@ -1020,7 +1020,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     transform: translateX(100%);
     background: white;
     position: fixed;
-    z-index: 5;
+    z-index: 999;
     opacity: 0.001;
     -webkit-box-shadow: @shadow;
     -moz-box-shadow: @shadow;
@@ -1051,6 +1051,32 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 
 .amp-fields-content{
     margin-top: 30%;
+}
+.redux-main .amp-ux-image{
+    max-width: 150px;
+    max-height: 150px;
+}
+/* Loader */
+.amp-ux-loading {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #3498db;
+  width: 2px;
+  height: 2px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  float: right;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 #beacon-container .BeaconContainer{
     max-height: 520px !important;

@@ -38,10 +38,12 @@
         }
     );
 
-    $.redux.ajax_save = function( button ) {
-
+    $.redux.ajax_save = function( button, $no_fade = '' ) {
+        
         var overlay = $( document.getElementById( 'redux_ajax_overlay' ) );
-        overlay.fadeIn();
+        if ( true != $no_fade ){
+            overlay.fadeIn();
+        }
 
         // Add the loading mechanism
         jQuery( '.redux-action_bar .spinner' ).addClass( 'is-active' );

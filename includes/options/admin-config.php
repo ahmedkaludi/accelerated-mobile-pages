@@ -1452,7 +1452,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'options'  => array('BlogPosting'=>'Blog','NewsArticle'=>'News'),
                     'default'  => 'BlogPosting',
                 ),*/
-               array(
+               /*array(
                             'id' => 'ampforwp-ux-need-type-section',
                             'class' => 'ampforwp-ux-section-right need-type-section',
                            'type' => 'section',
@@ -1508,7 +1508,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'id'       => 'amp-ux-need-section-btn',
                 'type'     => 'raw',
                 'content'  => '<div class="button btn-red " id="amp-ux-need-section-btn" data-secure="'.wp_create_nonce('verify_module').'">Done</div>'
-                ),
+                ),*/
                array(
                             'id' => 'ampforwp-ux-design-section',
                             'class' => 'ampforwp-ux-section-right design-type-section',
