@@ -1,17 +1,15 @@
 <?php
-global $redux_builder_amp;
-if($redux_builder_amp['ampforwp-facebook-comments-support']==0 && $redux_builder_amp['ampforwp-disqus-comments-support']==0 && $redux_builder_amp['ampforwp-vuukle-comments-support']==0 && $redux_builder_amp['ampforwp-spotim-comments-support']==0){
-if( isset($redux_builder_amp['ampforwp-cmt-section_core']) && $redux_builder_amp['ampforwp-cmt-section_core'] == 1 ){
+if(ampforwp_get_setting('ampforwp-facebook-comments-support')==false && ampforwp_get_setting('ampforwp-disqus-comments-support')==false && ampforwp_get_setting('ampforwp-vuukle-comments-support')==false && ampforwp_get_setting('ampforwp-spotim-comments-support')==false){
+	if(ampforwp_get_setting('ampforwp-cmt-section_core') == 1 ){
 		add_action('ampforwp_before_comment_hook_core','ampforwp_comment_form_core');
 	}
 	else{
-		if( isset($redux_builder_amp['ampforwp-cmt-section_core']) &&  $redux_builder_amp['ampforwp-cmt-section_core'] == 2) {
+		if( ampforwp_get_setting('ampforwp-cmt-section_core') == 2) {
 			add_action('ampforwp_after_comment_hook_core','ampforwp_comment_form_core');
 		}
 }
 }
 function ampforwp_comment_form_core( $args = array(), $post_id = null ) {
-	global $redux_builder_amp;
 	if ( null === $post_id )
 		$post_id = get_the_ID();
 
@@ -30,38 +28,35 @@ function ampforwp_comment_form_core( $args = array(), $post_id = null ) {
 	$html_req = ( $req ? " required='required'" : '' );
 	$html5    = 'html5' === $args['format'];
 	$fields   =  array(
-		'author' => '<p class="comment-form-author">' . '<label for="author">' .  esc_html__( $redux_builder_amp['amp-comments-translator-name-text_core'], 'accelerated-mobile-pages') . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
+		'author' => '<p class="comment-form-author">' . '<label for="author">' .  esc_html__( ampforwp_get_setting('amp-comments-translator-name-text_core'), 'accelerated-mobile-pages') . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
 		            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" maxlength="245"' . $aria_req . $html_req . ' /></p>',
-		'email'  => '<p class="comment-form-email"><label for="email">' .  esc_html__( $redux_builder_amp['amp-comments-translator-email-text_core'], 'accelerated-mobile-pages') . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
+		'email'  => '<p class="comment-form-email"><label for="email">' .  esc_html__( ampforwp_get_setting('amp-comments-translator-email-text_core'), 'accelerated-mobile-pages') . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
 		            '<input id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" maxlength="100" aria-describedby="email-notes"' . $aria_req . $html_req  . ' /></p>',
-		'url'    => '<p class="comment-form-url"><label for="url">' .  esc_html__( $redux_builder_amp['amp-comments-translator-website-text_core'], 'accelerated-mobile-pages') . '</label> ' .
+		'url'    => '<p class="comment-form-url"><label for="url">' .  esc_html__( ampforwp_get_setting('amp-comments-translator-website-text_core'), 'accelerated-mobile-pages') . '</label> ' .
 		            '<input id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" maxlength="200" /></p>',
 	);
 
-	$required_text = sprintf( ' ' . esc_html__( $redux_builder_amp['amp-comments-translator-required-fields-text_core'], 'accelerated-mobile-pages') . '%s', '<span class="required">*</span>' );
+	$required_text = sprintf( ' ' . esc_html__( ampforwp_get_setting('amp-comments-translator-required-fields-text_core'), 'accelerated-mobile-pages') . '%s', '<span class="required">*</span>' );
 
 	$submit_url =  admin_url('admin-ajax.php?action=amp_comment_submit');
 	$fields = apply_filters( 'comment_form_default_fields', $fields );
 	$defaults = array(
 		'fields'               => $fields,
-		'comment_field'        => '<p [class]="formData.submit.success" class="comment-form-comment"><label for="comment">' . esc_html__( $redux_builder_amp['amp-comments-translator-Comment-text_core'], 'accelerated-mobile-pages') . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p>
+		'comment_field'        => '<p [class]="formData.submit.success" class="comment-form-comment"><label for="comment">' . esc_html__( ampforwp_get_setting('amp-comments-translator-Comment-text_core'), 'accelerated-mobile-pages') . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p>
 		<input type="hidden" name="amp_cptch_hidden" value="1" >',
 
-		'must_log_in'          => '<p class="must-log-in">' . sprintf(
-		                     
-		                              __( 'You must be <a href="%s">logged in</a> to post a comment.' ),
-		                              wp_login_url( apply_filters( 'the_permalink', $login_url ) )
+		'must_log_in'          => '<p class="must-log-in">' . sprintf('You must be <a href="%s">logged in</a> to post a comment.',
+		                              esc_url(wp_login_url( apply_filters( 'the_permalink', $login_url )),'accelerated-mobile-pages')
 		                          ) . '</p>',
 
 		'logged_in_as'         => '<p [class]="formData.submit.success" class="logged-in-as">' . sprintf(
-		                          
-		                              __( '<a href="%1$s" aria-label="%2$s">'.$redux_builder_amp['amp-comments-translator-loggedin-text_core'].' %3$s</a>. <a href="%4$s">'. $redux_builder_amp['amp-comments-translator-logout-text_core'] .'?</a>' ),
-		                              get_edit_user_link(),
-		                              esc_attr( sprintf( __( 'Logged in as %s. Edit your profile.' ), $user_identity ) ),
-		                              $user_identity,
-		                              wp_logout_url( apply_filters( 'the_permalink', $login_url ) )
+		                               '<a href="%s" aria-label="%s">'.ampforwp_get_setting('amp-comments-translator-loggedin-text_core').' %s</a>. <a href="%s">'. ampforwp_get_setting('amp-comments-translator-logout-text_core') .'?</a>',
+		                              esc_url(get_edit_user_link(),'accelerated-mobile-pages'),
+		                              sprintf('Logged in as %s. Edit your profile.', esc_html__($user_identity,'accelerated-mobile-pages')),
+		                              esc_html__($user_identity,'accelerated-mobile-pages'),
+		                              esc_url(wp_logout_url( apply_filters( 'the_permalink', $login_url ) ),'accelerated-mobile-pages')
 		                          ) . '</p>',
-		'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' .  	esc_html__( $redux_builder_amp['amp-comments-translator-your-email-address-text_core'], 'accelerated-mobile-pages') . '</span>'. ( $req ? $required_text : '' ) . '</p>',
+		'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' .  	esc_html__( ampforwp_get_setting('amp-comments-translator-your-email-address-text_core'), 'accelerated-mobile-pages') . '</span>'. ( $req ? $required_text : '' ) . '</p>',
 		'comment_notes_after'  => '',
 		'action'               => $submit_url,
 		'id_form'              => 'commentform',
@@ -69,14 +64,14 @@ function ampforwp_comment_form_core( $args = array(), $post_id = null ) {
 		'class_form'           => 'comment-form',
 		'class_submit'         => 'submit',
 		'name_submit'          => 'submit',
-		'title_reply'          => $redux_builder_amp['amp-comments-translator-leave-a-reply_core'],
-		'title_reply_to'       => __( 'Leave a Reply to %s' ),
+		'title_reply'          => ampforwp_get_setting('amp-comments-translator-leave-a-reply_core'),
+		'title_reply_to'       => esc_html__( 'Leave a Reply to %s','accelerated-mobile-pages' ),
 		'title_reply_before'   => '<h3 id="reply-title" class="comment-reply-title">',
 		'title_reply_after'    => '</h3>',
 		'cancel_reply_before'  => ' <small>',
 		'cancel_reply_after'   => '</small>',
-		'cancel_reply_link'    => esc_html__( $redux_builder_amp['amp-comments-translator-cancel-reply-text_core'], 'accelerated-mobile-pages'),
-		'label_submit'         => esc_html__( $redux_builder_amp['amp-comments-translator-post-comment-text_core'], 'accelerated-mobile-pages'),
+		'cancel_reply_link'    => esc_html__( ampforwp_get_setting('amp-comments-translator-cancel-reply-text_core'), 'accelerated-mobile-pages'),
+		'label_submit'         => esc_html__( ampforwp_get_setting('amp-comments-translator-post-comment-text_core'), 'accelerated-mobile-pages'),
 		'submit_button'        => '<input on="tap:amp-comment-body.hide,reply-title.hide" name="%1$s" type="submit" id="%2$s" class="%3$s" value="%4$s" role="submit" tabindex="2"/>',
 		'submit_field'         => '<p id="ampCommentsButton" [class]="formData.submit.success" class="form-submit">%1$s %2$s</p>',
 		'format'               => 'xhtml',

@@ -18,7 +18,7 @@ function ampforwp_framework_get_comments(){
 			 ampforwp_framework_get_spotim_comments();
 		}
 	  
-		if ( isset($redux_builder_amp['wordpress-comments-support']) && true == $redux_builder_amp['wordpress-comments-support'] ) {
+		if ( ampforwp_get_setting('wordpress-comments-support') == true) {
 			do_action('ampforwp_before_comment_hook_core'); 
 			do_action('ampforwp_before_comment_hook'); 
 		?>

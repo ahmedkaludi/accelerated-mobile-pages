@@ -2490,10 +2490,10 @@ $core_comment_section = array(
                             array(
                                 'id'       => 'ampforwp-cmt-section_core',
                                 'type'     => 'select',
-                                'title'    => __( 'Display comment form', 'accelerated-mobile-pages' ),
+                                'title'    => esc_html__( 'Display comment form', 'accelerated-mobile-pages' ),
                                 'options'  => array(
-                                     '1' => __('Above the comments list', 'accelerated-mobile-pages' ),
-                                     '2' => __('Below the comments list', 'accelerated-mobile-pages' ),
+                                     '1' => esc_html__('Above the comments list', 'accelerated-mobile-pages' ),
+                                     '2' => esc_html__('Below the comments list', 'accelerated-mobile-pages' ),
                                  ),
                                 'default'  => '2',
                                 'required' => array('wordpress-comments-support' , '=' , 1
@@ -2503,8 +2503,8 @@ $core_comment_section = array(
                             array(
                                    'id'       => 'amp-cmt-reply_core',
                                    'type'     => 'switch',
-                                   'title'    => __('Reply on specific comment', 'accelerated-mobile-pages'),
-                                   'desc'  => __('Enable or disable the reply feature on specific comment','accelerated-mobile-pages'),
+                                   'title'    => esc_html__('Reply on specific comment', 'accelerated-mobile-pages'),
+                                   'desc'  => esc_html__('Enable or disable the reply feature on specific comment','accelerated-mobile-pages'),
                                    'default'  => '0',
                                    'required' => array('wordpress-comments-support' , '=' , 1
                                         ),
@@ -2522,8 +2522,8 @@ $core_comment_section = array(
                        array(
                                'id'       => 'amp-comments-translator-leave-a-reply_core',
                                'type'     => 'text',
-                               'title'    => __('Leave a Reply', 'accelerated-mobile-pages'),
-                               'default'  => __('Leave a Reply','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Leave a Reply', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Leave a Reply','accelerated-mobile-pages'),
                                'required' => array(
                                                     array( 'amp-use-pot', '=' , 0 ),
                                                     array('wordpress-comments-support' , '=' , 1)
@@ -2532,8 +2532,8 @@ $core_comment_section = array(
                        array(
                                'id'       => 'amp-comments-translator-specific-cmt-reply_core',
                                'type'     => 'text',
-                               'title'    => __('Reply', 'accelerated-mobile-pages'),
-                               'default'  => __('Translate Here','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Reply', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Translate Here','accelerated-mobile-pages'),
                                'required' => array(
                                                     array( 'amp-use-pot', '=' , 0 ),
                                                     array('wordpress-comments-support' , '=' , 1)
@@ -2543,8 +2543,8 @@ $core_comment_section = array(
                         array(
                                'id'       => 'amp-comments-Successful-message_core',
                                'type'     => 'text',
-                               'title'    => __('Thank You Message', 'accelerated-mobile-pages'),
-                                'default'  => __('Thank you for submitting comment, we will review it and will get back to you.','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Thank You Message', 'accelerated-mobile-pages'),
+                                'default'  => esc_html__('Thank you for submitting comment, we will review it and will get back to you.','accelerated-mobile-pages'),
 
                                'required' => array(
                                                     array( 'amp-use-pot', '=' , 0 ),
@@ -2555,8 +2555,8 @@ $core_comment_section = array(
                        array(
                                'id'       => 'amp-comments-translator-cancel-reply-text_core',
                                'type'     => 'text',
-                               'title'    => __('Cancel reply', 'accelerated-mobile-pages'),
-                               'default'  => __('Cancel reply','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Cancel reply', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Cancel reply','accelerated-mobile-pages'),
                                'required' => array(
                                                     array( 'amp-use-pot', '=' , 0 ),
                                                     array('wordpress-comments-support' , '=' , 1)
@@ -2565,64 +2565,64 @@ $core_comment_section = array(
                        array(
                                'id'       => 'amp-comments-translator-post-comment-text_core',
                                'type'     => 'text',
-                               'title'    => __('Post Comment', 'accelerated-mobile-pages'),
-                               'default'  => __('Post Comment','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Post Comment', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Post Comment','accelerated-mobile-pages'),
                                'required' => array('wordpress-comments-support' , '=' , 1),
                            ),
                        array(
                                'id'       => 'amp-comments-translator-loggedin-text_core',
                                'type'     => 'text',
-                               'title'    => __('Logged in as', 'accelerated-mobile-pages'),
-                               'default'  => __('Logged in as','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Logged in as', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Logged in as','accelerated-mobile-pages'),
                                'required' => array('wordpress-comments-support' , '=' , 1),
                            ),
                        array(
                                'id'       => 'amp-comments-translator-logout-text_core',
                                'type'     => 'text',
-                               'title'    => __('Log Out', 'accelerated-mobile-pages'),
-                               'default'  => __('Log Out','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Log Out', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Log Out','accelerated-mobile-pages'),
                                'required' => array('wordpress-comments-support' , '=' , 1),
                            ),
                        array(
                                'id'       => 'amp-comments-translator-name-text_core',
                                'type'     => 'text',
-                               'title'    => __('Name', 'accelerated-mobile-pages'),
-                               'default'  => __('Name','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Name', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Name','accelerated-mobile-pages'),
                                'required' => array('wordpress-comments-support' , '=' , 1),
                            ),
                        array(
                                'id'       => 'amp-comments-translator-email-text_core',
                                'type'     => 'text',
-                               'title'    => __('Email', 'accelerated-mobile-pages'),
-                               'default'  => __('Email','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Email', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Email','accelerated-mobile-pages'),
                                'required' => array('wordpress-comments-support' , '=' , 1),
                            ),
                        array(
                                'id'       => 'amp-comments-translator-website-text_core',
                                'type'     => 'text',
-                               'title'    => __('Website', 'accelerated-mobile-pages'),
-                               'default'  => __('Website','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Website', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Website','accelerated-mobile-pages'),
                                'required' => array('wordpress-comments-support' , '=' , 1),
                            ),
                        array(
                                'id'       => 'amp-comments-translator-your-email-address-text_core',
                                'type'     => 'text',
-                               'title'    => __('Your email address will not be published.', 'accelerated-mobile-pages'),
-                               'default'  => __('Your email address will not be published.','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Your email address will not be published.', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Your email address will not be published.','accelerated-mobile-pages'),
                                'required' => array('wordpress-comments-support' , '=' , 1),
                            ),
                        array(
                                'id'       => 'amp-comments-translator-required-fields-text_core',
                                'type'     => 'text',
-                               'title'    => __('Required fields are marked', 'accelerated-mobile-pages'),
-                               'default'  => __('Required fields are marked','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Required fields are marked', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Required fields are marked','accelerated-mobile-pages'),
                                'required' => array('wordpress-comments-support' , '=' , 1),
                            ),
                        array(
                                'id'       => 'amp-comments-translator-Comment-text_core',
                                'type'     => 'text',
-                               'title'    => __('Comment', 'accelerated-mobile-pages'),
-                               'default'  => __('Comment','accelerated-mobile-pages'),
+                               'title'    => esc_html__('Comment', 'accelerated-mobile-pages'),
+                               'default'  => esc_html__('Comment','accelerated-mobile-pages'),
                                'required' => array('wordpress-comments-support' , '=' , 1),
                            ),          
                     );

@@ -1095,7 +1095,7 @@ function ampforwp_smartcrawl_og_metadata(){
 }
 
 if(! function_exists('amp_comments_settings') ) {
-    function amp_comment_submit(){
+    function ampforwp_comment_submit(){
       global $redux_builder_amp;
       header("access-control-allow-credentials:true");
       header("access-control-allow-headers:Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token");
@@ -1142,8 +1142,8 @@ if(! function_exists('amp_comments_settings') ) {
       echo json_encode($comment_status);
       die;
     }
-    add_action( 'wp_ajax_amp_comment_submit', 'amp_comment_submit' ); 
-    add_action( 'wp_ajax_nopriv_amp_comment_submit', 'amp_comment_submit' ); 
+    add_action( 'wp_ajax_amp_comment_submit', 'ampforwp_comment_submit' ); 
+    add_action( 'wp_ajax_nopriv_amp_comment_submit', 'ampforwp_comment_submit' ); 
 }
 
 add_action("redux/options/redux_builder_amp/saved",'ampforwp_debug_mode_enable', 10, 2);
