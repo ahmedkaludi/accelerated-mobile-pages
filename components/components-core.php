@@ -246,7 +246,7 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 							<figure class="amp-wp-article-featured-image wp-caption">';
 		$container_end = '</figure></div></div>';	
 		if(!empty($videoID)){
-			echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>' . $container_end;
+			echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.esc_attr($videoID).'"></amp-youtube>' . $container_end;
 		}
 
 	}else{

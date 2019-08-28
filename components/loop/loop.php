@@ -518,7 +518,7 @@ function amp_loop_image( $data=array() ) {
 				$container_start = '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
 				$container_end = '</'.$tag.'>';
 				if(!empty($videoID)){
-					$featuredVideo = $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>' . $container_end;
+					$featuredVideo = $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.esc_attr($videoID).'"></amp-youtube>' . $container_end;
 				}
 			}
 		}

@@ -117,7 +117,7 @@ if ( get_query_var( 'paged' ) ) {
 									$videoID = end($video_id);
 								}
 								if(!empty($videoID)){
-									echo '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>';
+									echo '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.esc_attr($videoID).'"></amp-youtube>';
 								}
 							}else{
 								if($thumb_url){
@@ -231,7 +231,7 @@ if ( get_query_var( 'paged' ) ) {
 					$container_start = '<div class="home-post_image">';
 					$container_end = '</div>';
 					if(!empty($videoID)){
-						echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.$videoID.'"></amp-youtube>' . $container_end;
+						echo $container_start. '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.esc_attr($videoID).'"></amp-youtube>' . $container_end;
 					}
 				}else{
 					if($thumb_url){
