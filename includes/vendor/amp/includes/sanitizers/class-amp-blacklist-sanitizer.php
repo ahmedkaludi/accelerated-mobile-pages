@@ -40,6 +40,15 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 
 		if($node->nodeName=='a' && $node->hasAttribute('href')){
 			$href = $node->getAttribute('href');
+			if( strpos($href,'tel') ){
+				$disallowed = array('http://', 'https://');
+				foreach($disallowed as $d){
+			      if(strpos($href, $d) === 0) {
+			         $href = str_replace($d, '', $href);
+			      }
+			   }
+			   $node->setAttribute('href',$href);
+			}
 			if ( $href ){
 				$node->setAttribute('href',\ampforwp_findInternalUrl($href));
 			}
