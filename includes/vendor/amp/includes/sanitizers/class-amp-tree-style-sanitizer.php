@@ -2151,7 +2151,7 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 	 */
 	private function finalize_stylesheet_set( $stylesheet_set ) {
 		$max_bytes         = $stylesheet_set['cdata_spec']['max_bytes'] - strlen( $stylesheet_set['source_map_comment'] );
-		$is_too_much_css   = $stylesheet_set['total_size'] < $max_bytes;
+		$is_too_much_css   = $stylesheet_set['total_size'] > $max_bytes;
 		 
 		$should_tree_shake = (
 			'always' === $stylesheet_set['remove_unused_rules'] || (
