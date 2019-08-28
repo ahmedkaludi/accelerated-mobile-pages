@@ -49,7 +49,7 @@
 	                  	</div>
 			                <div class="related_link">
 			                    <?php $title = get_the_title(); ?>
-			                    <a href="<?php echo esc_url( $related_post_permalink ); ?>" title="<?php echo esc_html( $title ); ?>" ><?php the_title(); ?></a>
+			                    <a href="<?php echo esc_url( amp_loop_permalink() ); ?>" title="<?php echo esc_html( $title ); ?>" ><?php the_title(); ?></a>
 			                    <?php 
 			                    if (true == ampforwp_get_setting('amforwp-design3-recentpost-date-switch') ) {
 			                    		amp_loop_date();
