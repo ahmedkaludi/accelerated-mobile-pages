@@ -2684,9 +2684,9 @@ if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('am
 			flex:1 0 28%;
 			margin-left: 30px;
 			word-break: break-word;
-			<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
-			background:<?php echo ampforwp_sanitize_color($sbar_bg_clr); ?>;
-			<?php endif; ?>
+			<?php if ( ampforwp_get_setting('swift-sidebar') == true && ampforwp_get_setting('gnrl-sidebar') == true ) { ?>
+			background: <?php echo ampforwp_sanitize_color($sbar_bg_clr); ?>;
+			<?php } ?>
 		}
 		.r-pf{
 			width:100%;		
