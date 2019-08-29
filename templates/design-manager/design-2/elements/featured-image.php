@@ -42,8 +42,12 @@ if( $featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_c
 			?>
 			<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
 				<figure class="amp-wp-article-featured-image wp-caption">
-				<?php
-				amp_featured_video(2,$amp_html);?>
+				<?php echo amp_featured_video(2,$amp_html);?>
+				<?php if ( $caption ) : ?>
+						<p class="wp-caption-text">
+							<?php echo wp_kses_data( $caption ); ?>
+						</p>
+				<?php endif; ?>
 			</figure>
 		</div>
 				<?php

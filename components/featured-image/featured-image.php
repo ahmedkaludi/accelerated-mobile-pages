@@ -11,7 +11,7 @@ function ampforwp_framework_get_featured_image(){
 	if( ampforwp_is_front_page() ){
 		$post_id = ampforwp_get_frontpage_id();
 	}
-	if( true == ampforwp_has_post_thumbnail() )	{
+	if( true == ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) )	{
  		// Featured Video SmartMag theme Compatibility CSS #2559
 		if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
 			global $wp_embed;
@@ -73,18 +73,15 @@ function ampforwp_framework_get_featured_image(){
 		}
 		if( ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
 			?>
-			<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
-				<figure class="amp-wp-article-featured-image wp-caption">
-				<?php
-					amp_featured_video(4,$amp_html);
-					if ( $caption ) : ?>
+			<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>">
+				<?php echo amp_featured_video(4,$amp_html);?>
+					<?php if ( $caption ) : ?>
 						<p class="wp-caption-text">
 							<?php echo wp_kses_data( $caption ); ?>
 						</p>
 					<?php endif; ?>
-				</figure>
-			</div>
-				<?php
+			</figure>
+			<?php do_action('ampforwp_after_featured_image_hook');
 		}else{
 			if( $amp_html ){ ?>
 				<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  

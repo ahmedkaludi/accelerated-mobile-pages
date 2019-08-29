@@ -17,9 +17,27 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 					<?php
 				    while( $my_query->have_posts() ) {
 					    $my_query->the_post();
-					    
+					    $noimgClass = '';
+							if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
+								$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+								if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
+						 			if( ampforwp_has_post_thumbnail()){
+						 				$noimgClass = "has_thumbnail";
+						 			}else{
+						 				$noimgClass = "no_thumbnail";
+						 			}
+						 		}else{
+						 			$noimgClass = "has_thumbnail";
+						 		}
+							}else{
+								if( ampforwp_has_post_thumbnail()){
+									$noimgClass = "has_thumbnail";
+								}else{
+									$noimgClass = "no_thumbnail";
+								}
+							}
 					?>
-						<li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
+						<li class="<?php echo $noimgClass; ?>">
 				            <?php
 				            $related_post_permalink = ampforwp_url_controller( get_permalink() );
 				            if ( $show_image ) {
@@ -155,10 +173,10 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 	    	$image_attr['thumb_width'] = $thumb_url_array[1];
 	    	$image_attr['thumb_height'] = $thumb_url_array[2];
 	    	$image_attr['show_image'] = $show_image;
-	    	amp_featured_video(4,$image_attr);
+	    	echo amp_featured_video(4,$image_attr);
 	    }else{
 	     if ( $thumb_url && $show_image ) { ?>
-	    	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo $thumb_width; ?>" height="<?php echo $thumb_height; ?>" layout="responsive"></amp-img>
+	    	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo esc_attr($thumb_width); ?>" height="<?php echo esc_attr($thumb_height); ?>" layout="responsive"></amp-img>
 		<?php }
 			}
 		} ?>
