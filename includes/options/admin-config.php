@@ -1366,6 +1366,10 @@ $tabs = array(
     if($design_types == 1 || $design_types == 2 || $design_types == 3){
         $secondary_text = 'Secondary';
     }
+    $hide_single_sidebar = '';
+    if(ampforwp_get_setting('single-design-type') == 1){
+        $hide_single_sidebar = 'hide'; 
+    }
     // AMP to WP Default value
     function ampforwp_amp2wp_default(){
         $default = 0;
@@ -3703,11 +3707,11 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                     'id'    => 'swift-sidebar',
-                    'class' => 'child_opt child_opt_arrow',
+                    'class' => 'child_opt child_opt_arrow '.$hide_single_sidebar,
                     'type'  => 'switch',
                     'title' => esc_html__('Single Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 0,
-                    'required' => array('gnrl-sidebar', '=' , '1'), 
+                    'required' => array(array('gnrl-sidebar', '=' , '1'),array('single-design-type','!=','1')), 
                                 
             ),
             array(
@@ -5549,6 +5553,7 @@ function ampforwp_featured_video_default(){
             }
             return $default;
         }
+
 $single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',

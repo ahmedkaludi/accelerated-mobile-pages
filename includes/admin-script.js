@@ -989,33 +989,6 @@ jQuery(document).ready(function($){
 });//(document).ready Closed
 
 jQuery(document).ready(function($){
-    $("#redux_builder_amp-swift-sidebar").on( 'change', function(){
-        var sidebarSingle = $('#redux_builder_amp-swift-sidebar #swift-sidebar').val();
-        $("#single-design-type_1").parents('ul').find('li').each(function(k,v){
-            $(this).find('label.redux-image-select-selected').removeClass('redux-image-select-selected');
-        });
-        if(sidebarSingle == 1){
-            $("#single-design-type_2").parent('label').addClass('redux-image-select-selected');
-            $("#single-design-type_2").attr('checked', true);
-        }else {
-            $("#single-design-type_1").parent('label').addClass('redux-image-select-selected');
-            $("#single-design-type_1").attr('checked', true);
-        }
-
-    });
-    $("#redux_builder_amp-gnrl-sidebar").on( 'change', function(){
-        var sidebar = $('#redux_builder_amp-gnrl-sidebar #gnrl-sidebar').val();
-        $("#single-design-type_1").parents('ul').find('li').each(function(k,v){
-            $(this).find('label.redux-image-select-selected').removeClass('redux-image-select-selected');
-        });
-        if(sidebar == 1){
-            $("#single-design-type_2").parent('label').addClass('redux-image-select-selected');
-            $("#single-design-type_2").attr('checked', true);
-        }else{
-            $("#single-design-type_1").parent('label').addClass('redux-image-select-selected');
-            $("#single-design-type_1").attr('checked', true).trigger("change");
-        }   
-    });
     //Toggle Post and Page comments panel based on options
     if($('#ampforwp-display-on-pages').length>0 && $('#ampforwp-display-on-posts').length>0){
         var pageComments = $('#ampforwp-display-on-pages').val();
