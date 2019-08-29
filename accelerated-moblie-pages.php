@@ -1232,7 +1232,6 @@ function ampforwp_disable_wp_debug(){
             }
         }
     }
-	set_transient( 'ampforwp_disable_wp_debug_notice', 1 );
 	exit();
 }
 
