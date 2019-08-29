@@ -7527,7 +7527,7 @@ function ampforwp_darkmode_action(){
 	header("Access-Control-Allow-Origin: ". str_replace('.', '-',site_url()) .".cdn.ampproject.org");
 	header("AMP-Access-Control-Allow-Source-Origin: " . $domain_url);
     header("Access-Control-Expose-Headers: AMP-Access-Control-Allow-Source-Origin");
-    header("AMP-Redirect-To: ".esc_url($_SERVER['HTTP_REFERER']) );
+    header("AMP-Redirect-To: ".wp_get_referer() );
         header("Access-Control-Expose-Headers: AMP-Redirect-To, AMP-Access-Control-Allow-Source-Origin");
 	$security = $_REQUEST['security'];
 	if(!wp_verify_nonce( $security, 'darkmodeAction' ) && !ampforwp_get_setting('gnrl-dark-view')){
