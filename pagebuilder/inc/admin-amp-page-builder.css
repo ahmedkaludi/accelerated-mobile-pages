@@ -768,9 +768,6 @@ position: fixed;
     background: #f1f1f1;
     z-index: 100;
     display: inline-block;}
-.rtl .modal-footer{
-    width: 77%;float: right;
-}
 .modal-footer .del-btn-modal{
     left: 215px;
     position: relative;
@@ -780,10 +777,6 @@ position: fixed;
     color: #bc0b0b;
 }
 
-.rtl .modal-footer .del-btn-modal{
-   left: 0;
-   float: left;
-}
 .modal-footer .del-btn-modal:hover{
         background: #455A64; color: #fff
 }
@@ -1302,22 +1295,36 @@ a.amppb_accordion__panel:hover {
 }
 
 /*** RTL CSS ***/
+.rtl #pagebilder_content h2 span{
+    padding-right: 29px
+}
+.rtl #pagebilder_content h2 span:before{
+    left: auto;
+    right: 10px;
+}
 .rtl .amppb-module .module_label {
-    left: -35px;
+    left: -15px;
 }
 .rtl #amp-page-builder .form-label{
- margin-right:10px;
+    margin-right:10px;
 }
 .rtl .amp-accordion-head .amp-accordion-label {
     position: static;
     float: left;
 }
-
 .rtl .amppb_accordion__panel .right {
     float: left;
     margin-left: 20px;
 }
-
+.rtl .modal-footer .del-btn-modal {
+    float: left;
+}
+.rtl .amppb-setting-right{
+    float: left;
+}
+.rtl .amppb-setting-right span {
+    float: left;
+}
 
 .layout-image-picker img{
     width:100%;
