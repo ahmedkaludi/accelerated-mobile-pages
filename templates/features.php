@@ -7107,12 +7107,13 @@ function ampforwp_head_css(){
 }
 
 // Post Meta Revisions #3548 -- start here --
-add_filter( '_wp_post_revision_field_amp_page_builder', 'ampforwp_meta_rev_pb_field', 22, 2 );
-add_action( 'save_post',                   'ampforwp_meta_rev_save_post', 10, 2 );
+add_filter( '_wp_post_revision_field_amp_page_builder', 'ampforwp_meta_revi_pb_field', 22, 2 );
+add_action( 'save_post',                   'ampforwp_meta_revi_save_post', 10, 2 );
 add_action( 'wp_restore_post_revision',    'ampforwp_meta_restore_revision', 10, 2 );
-add_filter( '_wp_post_revision_fields',    'ampforwp_meta_rev_fields' );
+add_filter( '_wp_post_revision_fields',    'ampforwp_meta_revi_fields' );
 
-function ampforwp_meta_rev_fields( $fields ) {
+// Displaying the meta field on the revisions screen
+function ampforwp_meta_revi_fields( $fields ) {
 	$fields['post_title'] = 'Title';
 	$fields['post_content'] = 'Content';
 	$fields['post_excerpt'] = 'Excerpt';
@@ -7120,12 +7121,14 @@ function ampforwp_meta_rev_fields( $fields ) {
 	return $fields;
 }
 
-function ampforwp_meta_rev_pb_field( $value, $field ) {
+// Displaying the meta field on the revisions screen
+function ampforwp_meta_revi_pb_field( $value, $field ) {
 	global $revision;
 	return get_metadata( 'post', $revision->ID, $field, true );
 
 }
 
+// Reverting to the correct revision of the meta field when a post is reverted
 function ampforwp_meta_restore_revision( $post_id, $revision_id ) {
 	$post     = get_post( $post_id );
 	$revision = get_post( $revision_id );
@@ -7138,7 +7141,11 @@ function ampforwp_meta_restore_revision( $post_id, $revision_id ) {
 	}
 }
 
-function ampforwp_meta_rev_save_post( $post_id, $post ) {
+// Storing a revision of the meta field when a post is saved
+function ampforwp_meta_revi_save_post( $post_id, $post ) {
+	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+		return;
+	}
 	if ( $parent_id = wp_is_post_revision( $post_id ) ) {
 		$parent = get_post( $parent_id );
 		$pb_meta = get_post_meta( $parent->ID, 'amp-page-builder', true );
