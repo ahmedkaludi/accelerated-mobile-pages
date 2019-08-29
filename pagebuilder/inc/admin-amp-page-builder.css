@@ -768,7 +768,7 @@ position: fixed;
     background: #f1f1f1;
     z-index: 100;
     display: inline-block;}
-.modal-footer .footer-block{
+.rtl .modal-footer{
     width: 77%;float: right;
 }
 .modal-footer .del-btn-modal{
@@ -779,8 +779,9 @@ position: fixed;
     box-shadow: none;
     color: #bc0b0b;
 }
-.modal-footer .com-del-but{
-    left: 0;
+
+.rtl .modal-footer .del-btn-modal{
+   left: 0;
    float: left;
 }
 .modal-footer .del-btn-modal:hover{
