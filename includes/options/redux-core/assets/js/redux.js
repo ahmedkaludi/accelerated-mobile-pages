@@ -141,6 +141,12 @@
                         jQuery( '.redux_ajax_save_error' ).slideDown();
                         jQuery( "html, body" ).animate( {scrollTop: 0}, "slow" );
                     }
+                    if( true == $no_fade ) {
+                        console.log(button);
+                        button.parents('div.ux-field-container').find('.amp-ux-loading').addClass('hide');
+                        button.parents('div.ux-field-container').find('.amp-ux-check').removeClass('hide');
+                        button.parents('div.ux-field-container').find('.amp-ux-check').html('&#10004;');
+                    }
                 }
             }
         );

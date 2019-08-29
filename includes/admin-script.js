@@ -781,24 +781,98 @@ jQuery(document).ready(function($){
 
 // AMPforWP New UX
 jQuery(document).ready(function($) {
-    var saveChangesInRedux = function($this){
+    var new_data = JSON.parse(amp_fields);
+    var saveChangesInRedux = function($current){
+        // loader
+        if ( $current.parents('div.ux-field-container').find('.amp-ux-loader').length == 0 ){
+            $current.parents('div.ux-field-container').append('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
+        }
+        else{
+            $current.parents('div.ux-field-container').find('.amp-ux-loading').removeClass('hide');
+            $current.parents('div.ux-field-container').find('.amp-ux-check').addClass('hide');
+        }
+        // Save
+        window.onbeforeunload = null;
         if ( redux.args.ajax_save === true ) {
-            $.redux.ajax_save( $this, true );
+            $.redux.ajax_save( $current, true );
         }
+        /*setTimeout(function(){ 
+            $current.parents('div.ux-field-container').find('.amp-ux-loader').remove();
+         }, 5000);*/
+        // end loader
+
     }
-    // Ajax start
-    $('.ampforwp-new-ux').ajaxStart(function () {
-        $('.amp-ux-loading').show();
-    });
-    // Ajax Stop
-    $('.ampforwp-new-ux').ajaxStop(function () {
-        $('.amp-ux-loading').hide();
-        $('.amp-ux-check').show();
-        $('.amp-ux-check').html('&#10004;');
-        if($('.amp-ux-warning').hasClass('el-warning-sign')){
-            $('.amp-ux-warning').removeClass('el el-warning-sign').addClass('el el-ok');
+    
+    var ampCheckRequired = function($current){
+        var self = $current;
+        var current_id = self.attr('id');
+        var current_value = self.val();
+        var new_data = JSON.parse(amp_fields);
+        if( self.attr('type') == 'checkbox' ) {
+            if(self.prop("checked") == true){
+                current_value = 1;
+            }
+            else if(self.prop("checked") == false){
+                current_value = 0;
+            }
         }
-    });
+        $.each(new_data, function(key,value) {
+            if (value.field_data.required ){
+                var required = value.field_data.required;
+                var child_element = $('#'+value.field_data.id);
+                var check = true;
+                switch(required[1]){
+                    case '=':
+                        if( required[0] == current_id){
+                            if(  required[2] == current_value){
+                                if( value.field_type == 'checkbox' ) {
+                                    $(child_element).parent().parent('div').removeClass('hide');
+                                }
+                                else{
+
+                                    $(child_element).parent('div').removeClass('hide');
+                                }
+                            }
+                            else{
+                                if( value.field_type == 'checkbox' ) {
+                                    $(child_element).parent().parent('div').addClass('hide');
+                                }
+                                else{
+                                    $(child_element).parent('div').addClass('hide');
+                                }
+                            }
+                        }
+                    break;
+
+                    case '!=':
+                        if( required[0] == current_id ) {
+                            if(required[2] != current_value){
+                                $(child_element).parent('div').removeClass('hide');
+                            }
+                            else{
+                                $(child_element).parent('div').addClass('hide');
+                            }
+                        }
+                    break;
+
+                    case 'in_array':
+                        if( required[0] == current_id ){
+                            if(jQuery.inArray(current_value,required[2]) ){
+                                $(child_element).parent('div').removeClass('hide');
+                            }
+                            else{
+                                $(child_element).parent('div').addClass('hide');
+                            }
+                        }
+                    break;
+
+                    default:
+                    break;
+                }
+            }
+        });
+    };
+
     function hexToRgbA(hex){
         var c;
         if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
@@ -834,13 +908,14 @@ jQuery(document).ready(function($) {
         //Posts
         $("select[id=ampforwp-sd-type-posts-select]").val($(this).val());
         $("span[id=select2-ampforwp-sd-type-posts-select-container]").text($(this).val());
-        saveChangesInRedux($(this));
+        //console.log($(this));
+        //saveChangesInRedux($(this));
     });
     // Homepage
     $('input[id="amp-ux-homepage"]').click(function(){
         if($(this).prop("checked") == true){
-                    console.log('Homepage true');
             $('.amp-ux-frontpage').show();
+            $(this).attr('value', 1);
 
             if($('input[id="ampforwp-homepage-on-off-support"]').val() != 1 ) {
                 $("input[data-id=ampforwp-homepage-on-off-support]").prop('checked', true).trigger( 'change' );
@@ -852,21 +927,20 @@ jQuery(document).ready(function($) {
             $("input[data-id=ampforwp-homepage-on-off-support]").prop('checked', false).trigger( 'change' );
             $("input[id=ampforwp-homepage-on-off-support]").val(0);
         }
+        //saveChangesInRedux($(this));
     });
     // Frontpage
-    $('input[id="redux_builder_amp_amp-ux-frontpage"]').click(function(){
-                    console.log('Frontpage true');
-                if($(this).prop("checked") == true){
-                    // FrontPage
-                    $("input[data-id=amp-frontpage-select-option]").prop('checked', true).trigger( 'change' );
-                    $("input[id=amp-frontpage-select-option]").val(1);
-                    $('.amp-ux-frontpage-select').removeClass('hide');
-                    /**/
-                }
-                else if($(this).prop("checked") == false ){
-                     $('.amp-ux-frontpage-select').hide();
-                }
-            });
+    $('input[id="amp-ux-frontpage"]').click(function(){
+        if($(this).prop("checked") == true){
+            // FrontPage
+            $("input[data-id=amp-frontpage-select-option]").prop('checked', true).trigger( 'change' );
+            $("input[id=amp-frontpage-select-option]").val(1);
+            $('.amp-ux-frontpage-select').removeClass('hide');
+        }
+        else if($(this).prop("checked") == false ){
+             $('.amp-ux-frontpage-select').hide();
+        }
+    });
     $('.amp-ux-frontpage-select').on('change', function(e){
         var thisvalue = $(this).val();
         var thistxt = $('option[value='+'"'+thisvalue+'"]').html();
@@ -878,8 +952,7 @@ jQuery(document).ready(function($) {
         }
     });
     // Posts
-    $('input[id="redux_builder_amp_amp-ux-posts').click(function(){
-        console.log($(this));
+    $('input[id="amp-ux-posts').click(function(){
         if($(this).prop("checked") == true){
             if($('input[id="amp-on-off-for-all-posts"]').val() != 1 ) {
                 $("input[data-id=amp-on-off-for-all-posts]").prop('checked', true).trigger( 'change' );
@@ -892,7 +965,7 @@ jQuery(document).ready(function($) {
         }
     });
     // Pages
-    $('input[id="redux_builder_amp_amp-ux-pages"]').click(function(){
+    $('input[id="amp-ux-pages"]').click(function(){
         if($(this).prop("checked") == true){
             if($('input[id="amp-on-off-for-all-pages"]').val() != 1 ) {
                 $("input[data-id=amp-on-off-for-all-pages]").prop('checked', true).trigger( 'change' );
@@ -905,7 +978,7 @@ jQuery(document).ready(function($) {
         }
     });
     // Archives
-    $('input[id="redux_builder_amp_amp-ux-archives"]').click(function(){
+    $('input[id="amp-ux-archives"]').click(function(){
         if($(this).prop("checked") == true){
             if($('input[id="ampforwp-archive-support"]').val() != 1 ) {
                 $("input[data-id=ampforwp-archive-support]").prop('checked', true).trigger( 'change' );
@@ -929,7 +1002,7 @@ jQuery(document).ready(function($) {
                     $('input[id="redux_builder_amp[opt-media][thumbnail]').val($('#amp-ux-logo-thumb').val());
                     $('#redux_builder_amp-opt-media .screenshot').show();
                     $('.redux-option-image').attr('src', $('#amp-ux-logo-thumb').val());
-                    saveChangesInRedux($(this));
+                    //saveChangesInRedux($(this));
                 }
             });
         }
@@ -944,11 +1017,10 @@ jQuery(document).ready(function($) {
         $('input[id="swift-color-scheme-color"]').attr('data-color',rgba);
         $('input[id="swift-color-scheme-color"]').attr('data-current-color',$(this).val());
         $('input[id="swift-color-scheme-color"]').attr('value',$(this).val());
-        saveChangesInRedux($(this));
+        //saveChangesInRedux($(this));
     });
     // Analytics
     $('#text_id').on('blur', function(){
-        console.log($(this));
         $('#ga-feild').val($(this).val());
     });
     /*$('#section-table-ampforwp-ux-section').find('.button').on('click', function(){
@@ -1120,7 +1192,7 @@ jQuery(document).ready(function($) {
             $("input[id=amp-enable-notifications]").val(0);
             $(this).val(0);
         }
-        saveChangesInRedux($(this));
+        //saveChangesInRedux($(this));
     });
     /*
     $('input[id="amp-ux-gdpr-switch"]').click(function(){
@@ -1154,6 +1226,26 @@ jQuery(document).ready(function($) {
         }
     });
 */  
+$.each(new_data, function(key,value) {
+        ampCheckRequired($('#'+value.field_data.id));
+    });
+// Required && saved Condition JS
+    $(".amp-ux-field").on({
+        click: function() {
+            // Handle click...
+            if ( 'checkbox' == $(this).attr('type') ){
+                ampCheckRequired($(this));
+                saveChangesInRedux($(this));
+            }
+        },
+        change: function() {
+            // Handle change...
+            if ( 'checkbox' != $(this).attr('type') ){
+                ampCheckRequired($(this));
+                saveChangesInRedux($(this));
+            }
+        },
+    });
 
 // Drawer
 var drawer,
@@ -1628,7 +1720,8 @@ function DrawerIcon(icon) {
         }
     })();
 }
-
+    
+    // Debug Mode
     $("#disable_config").click(function(){
         var data = {
             action: 'ampforwp_disable_wp_debug',

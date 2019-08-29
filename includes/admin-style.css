@@ -1060,6 +1060,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     max-width: 150px;
     max-height: 150px;
 }
+.amp-ux-checkbox-container h4{display: inline;}
 /* Loader */
 .amp-ux-loading {
   border: 8px solid #f3f3f3;

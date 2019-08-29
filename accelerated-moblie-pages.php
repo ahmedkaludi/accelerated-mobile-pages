@@ -1276,3 +1276,6 @@ if( ! function_exists( 'accelerated_moblie_pages_start_plugin_tracking' ) ) {
 	}
 	accelerated_moblie_pages_start_plugin_tracking();
 }
+// Global UX Fields
+$amp_ux_fields = array();
+require_once AMPFORWP_PLUGIN_DIR."includes/ampforwp-fields-array.php";

@@ -14,7 +14,7 @@ function ampforwp_include_aqresizer(){
  //  Some Extra Styling for Admin area
 add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
 function ampforwp_add_admin_styling($hook_suffix){
-    global $redux_builder_amp;
+    global $redux_builder_amp, $amp_ux_fields;
     // Style file to add or modify css inside admin area
     wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style.css', false, AMPFORWP_VERSION );
     wp_enqueue_style( 'ampforwp_admin_css' );
@@ -27,6 +27,8 @@ function ampforwp_add_admin_styling($hook_suffix){
     if( current_user_can("manage_options") && $hook_suffix=='toplevel_page_amp_options' ){
         $redux_data = $redux_builder_amp;
     }
+    $amp_fields = json_encode($amp_ux_fields, true);
+    wp_localize_script( 'ampforwp_admin_js', 'amp_fields', $amp_fields );
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
     wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', wp_create_nonce('ampforwp-verify-request') );
     wp_enqueue_script( 'ampforwp_admin_js' );

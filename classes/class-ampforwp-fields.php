@@ -12,13 +12,24 @@ class AMPforWP_Fields
 	private $default = '';
 	private $selected = '';
 	private $options = array();
+	private $required = array();
 
+	public function createFields($fields_array){
+		if ( is_array($fields_array) ) {
+			foreach ($fields_array as $field_array ) {
+				$this->setField($field_array['field_type'], $field_array['field_data']);
+			}
+		}
+	}
 	public function setField( $type = '', $fields=array() ){
 		if( '' == $type ) {
 			return false;
 		}
 		if( !empty($fields) ){
 			if ( isset($fields['class']) ) {
+				if ( $type != 'section_start' && $type != 'section_end' ) {
+					$fields['class'] .= ' amp-ux-field';
+				}
 				$this->class = $fields['class'];
 			}
 			if ( isset($fields['title']) ) {
@@ -30,6 +41,9 @@ class AMPforWP_Fields
 			if ( isset($fields['default']) ) {
 				$this->default = $fields['default'];
 			}
+			if ( isset($fields['required']) ) {
+				$this->required = $fields['required'];
+			}
 			if ( isset($fields['options']) && is_array($fields['options']) ){
 				$this->options = $fields['options'];
 			}
@@ -37,7 +51,7 @@ class AMPforWP_Fields
 		// Select
 		if ( 'select' == $type ) {
 			$this->ampforwp_field_select($fields);
-			$this->loading();
+			//$this->loading();
 		}
 		// Text
 		if ( 'text' == $type ) {
@@ -59,7 +73,14 @@ class AMPforWP_Fields
 		if ( 'switch' == $type ) {
 			$this->ampforwp_field_switch($fields);
 		}
-		// 
+		// Section Start
+		if ( 'section_start' == $type ) {
+			$this->section_start($fields);
+		}
+		// Section end
+		if ( 'section_end' == $type ) {
+			$this->section_end($fields);
+		}
 	}
 	// Section Start
 	public function section_start($fields = array()){
@@ -77,10 +98,16 @@ class AMPforWP_Fields
 		echo '</div></div>';
 	}
 	public function ampforwp_field_select($fields){
-		if ( !empty($this->title) ) {
-			$output = '<h2>'.$this->title.'</h2>';
+		$required = $hide = '';
+		if ( !empty($this->required) ) {
+			$required = 'required="'.$this->required[0].'"';
+			$hide = 'hide';
 		}
-		$output .= '<select id="'.$this->id.'" class="'.$this->class.'">';
+		$output = '<div class="ux-field-container amp-ux-select-container '.$hide.'">';
+		if ( !empty($this->title) ) {
+			$output .= '<h2>'.$this->title.'</h2>';
+		}
+		$output .= '<select id="'.$this->id.'" class="'.$this->class.'" '.$required.' >';
 		if ( !empty($this->options) ) {
 			foreach ( $this->options as $option_key => $option_value ) {
 				if( $option_key == $this->default ) {
@@ -92,16 +119,32 @@ class AMPforWP_Fields
 				$output .= '<option value="'.$option_key.'" '.$this->selected.'>'.$option_value.'</option>';
 			}
 		}
-		$output .= '</select>';
+		$output .= '</select></div>';
 		echo $output;
 	}
 	public function ampforwp_field_checkbox($fields){
-		$output = '<br><input type="checkbox" id="'.$this->id.'" name="'.$this->id.'">'.$this->title.'<br>';
+		$required = $hide = $checked = '';
+		if ( !empty($fields['required']) ) {
+			$required = 'required="'.$this->required[0].'"';
+			$hide = 'hide';
+		}
+		if ( isset($fields['default']) && '1' == $fields['default'] ){
+			$checked = 'checked';
+		}
+		$output = '<div class="ux-field-container amp-ux-checkbox-container '.$hide.'">
+				<label><input type="checkbox" class="'.$this->class.'" id="'.$this->id.'" '.$required.'' . $checked.'>'.$this->title.'</label></div>';
 		echo $output;
 	}
 	public function ampforwp_field_switch($fields){
+		$required = '';
+		if ( !empty($fields['required']) ) {
+			$required = 'required="'.$this->required[0].'"';
+			$this->class .= ' hide';
+			$hide = 'hide';
+		}
+		$output = '<div class="ux-field-container amp-ux-switch-container '.$hide.'"';
 		if ( !empty($this->title) ) {
-			$output = '<h2>'.$this->title.'</h2>';
+			$output .= '<h2>'.$this->title.'</h2>';
 		}
 		if ( 1 == $this->default ) {
 			$this->selected = 'checked';
@@ -112,7 +155,7 @@ class AMPforWP_Fields
                         <span></span>
                     </label>
                     <input type="hidden" class="checkbox checkbox-input " id="'.$this->id.'" value="'.$this->default.'">
-                    </div>';
+                    </div></div>';
 		echo $output;
 	}
 
@@ -121,6 +164,11 @@ class AMPforWP_Fields
 		if ( !empty($this->title) ) {
 			$output = '<h2>'.$this->title.'</h2>';
 		}
+		$required = '';
+		/*if ( !empty($this->required) ) {
+			$required = 'required="'.$this->required[0].'"';
+			$this->class .= ' hide';
+		}*/
 		if ( is_array($this->default) ) {
 			$id = $this->default['id'];
 			$url = $this->default['url'];
@@ -153,6 +201,11 @@ class AMPforWP_Fields
 		if ( !empty($this->title) ) {
 			$output = '<h2>'.$this->title.'</h2>';
 		}
+		$required = '';
+		if ( !empty($this->required) ) {
+			$required = 'required="'.$this->required[0].'"';
+			$this->class .= ' hide';
+		}
 		$this->selected = $this->default ? 'value="'.$this->default.'"' : "";
 		$output .= '<input type="color" id="'.$this->id.'" class="'.$this->class.'" '.$this->selected.'><br>';
 		echo $output;
@@ -160,6 +213,11 @@ class AMPforWP_Fields
 	public function ampforwp_field_text(){
 		if ( !empty($this->title) ) {
 			$output = '<h2>'.$this->title.'</h2>';
+		}
+		$required = '';
+		if ( !empty($this->required) ) {
+			$required = 'required="'.$this->required[0].'"';
+			$this->class .= ' hide';
 		}
 		$output .= '<input type="text" id="'.$this->id.'" class="'.$this->class.'"><br>';
 		echo $output;

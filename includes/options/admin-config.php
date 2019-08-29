@@ -1509,7 +1509,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'type'     => 'raw',
                 'content'  => '<div class="button btn-red " id="amp-ux-need-section-btn" data-secure="'.wp_create_nonce('verify_module').'">Done</div>'
                 ),*/
-               array(
+               /*array(
                             'id' => 'ampforwp-ux-design-section',
                             'class' => 'ampforwp-ux-section-right design-type-section',
                            'type' => 'section',
@@ -1528,7 +1528,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'title'    => esc_html__('Global Color Scheme', 'accelerated-mobile-pages'),
                     'type'     => 'color_rgba',
                     'default'  => ampforwp_get_setting('swift-color-scheme'),
-                    ),
+                    ),*/
                array(
                             'id' => 'ampforwp-ux-analytics-section',
                             'class' => 'ampforwp-ux-section-right analytics-type-section',
