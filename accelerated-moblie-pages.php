@@ -1218,16 +1218,20 @@ function ampforwp_disable_wp_debug(){
     if ( file_exists( $config_file ) ) {
         if ( is_readable( $config_file ) && is_writable( $config_file ) ) {
             $config_cont    = file_get_contents( $config_file );
-            $debug_mod = "define('WP_DEBUG', false)";
-            $rep_true_txt = "";
-            if(strpos("$config_cont","define('WP_DEBUG', true)")!==false){
-                $rep_true_txt = "define('WP_DEBUG', true)";
-            }
-            elseif(strpos("$config_cont","define('WP_DEBUG',true)")!==false){
-                $rep_true_txt = "define('WP_DEBUG',true)";
-            }
+            $str_arr = explode(";", $config_cont);
+            $wp_con = "define('WP_DEBUG', true)";
+			for($i=0;$i<count($str_arr);$i++){
+				$find_str = $str_arr[$i];
+				$len = strlen($find_str);
+				if (preg_match("/WP_DEBUG\b/", $find_str)) {
+					if (preg_match("/\bdefine/", $find_str)) {
+						$wp_con = $find_str;
+					}
+				}
+			}
+            $debug_mod = "\ndefine('WP_DEBUG', false)";
             if (defined('WP_DEBUG')) {
-                $config_cont = str_replace("$rep_true_txt","$debug_mod",$config_cont);
+                $config_cont = str_replace($wp_con,$debug_mod,$config_cont);
                 file_put_contents( $config_file, $config_cont );    
             }
         }
