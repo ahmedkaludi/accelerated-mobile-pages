@@ -6980,14 +6980,15 @@ function ampforwp_front_admin_menu_bar(){
 		    	wp_admin_bar_render();
 			});
 			add_action( 'admin_bar_init', 'ampforwp_init_admin_bar');
-			add_action( 'wp_before_admin_bar_render', function(){
-				remove_action( 'wp_before_admin_bar_render', 'wp_customize_support_script' );
-			},9);
+			add_action( 'wp_before_admin_bar_render','ampforwp_remove_before_admin_bar_redner',9);
 			add_action( 'admin_bar_menu',  'ampforwp_remove_admin_menu_front',999);
 			add_action('amp_post_template_css', 'ampforwp_head_css'); 
 			
 		}
 	}
+}
+function ampforwp_remove_before_admin_bar_redner(){
+	remove_action( 'wp_before_admin_bar_render', 'wp_customize_support_script' );
 }
 function ampforwp_init_admin_bar(){
 	remove_action( 'wp_head', '_admin_bar_bump_cb' );
@@ -7000,11 +7001,8 @@ function ampforwp_head_css(){
 			$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
 			if($pref==="true"){
 				$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
-				$css .= ampforwp_get_remote_content(site_url()."/wp-includes/css/dashicons.min.css");
-
-				$css .= ampforwp_get_setting('css_editor');
+				$css .= ampforwp_get_remote_content(includes_url()."/css/dashicons.min.css");
 				$css .= ".header,.amp-wp-header,.design2-header,.design3-header{margin-top:33px;}#headerwrap{position:initial}#wp-admin-bar-my-account .avatar{float: right;margin-top: 6px;}#wp-admin-bar-wpseo-notifications .yoast-issue-counter{float: right;}";
-				$css = str_replace(array('.accordion-mod'), array('.apac'), $css);
 				echo css_sanitizer($css);
 			}
 		}
@@ -7039,7 +7037,6 @@ function ampforwp_head_css(){
 		        'id'        => 'my-account',
 		        'title'      => $title
 		  ) );
-
 		$user_info = $wp_admin_bar->get_node('user-info');
 		$title = $user_info->title;
 		$dom->loadHTML($title);
@@ -7049,7 +7046,7 @@ function ampforwp_head_css(){
 			$src = $im->getAttribute('src'); 
 		}
 		$authname = get_the_author_meta('nickname');
-		$title = '<span style="background: url('.$src.');background-repeat: no-repeat;height: 64px;position: absolute;width: 100px;top: 13px;left: -70px;" class="display-name"></span><span class="display-name">'.$authname.'<span>';
+		$title = '<span style="background: url('.esc_url($src).');background-repeat: no-repeat;height: 64px;position: absolute;width: 100px;top: 13px;left: -70px;" class="display-name"></span><span class="display-name">'.esc_html__($authname,'accelerated-mobile-pages').'<span>';
 		 $wp_admin_bar->add_menu( array(
 		        'id'        => 'user-info',
 		        'title'      => $title
@@ -7083,7 +7080,7 @@ function ampforwp_head_css(){
 		$amp_url = untrailingslashit( home_url( $wp->request ) );
 		$amp_url = explode('/', $amp_url);
 		$amp_url = array_flip($amp_url);
-		unset($amp_url['amp']);
+		unset($amp_url[AMPFORWP_AMP_QUERY_VAR]);
 		$non_amp_url = array_flip($amp_url);
 		$non_amp_url = implode('/', $non_amp_url);
 		$query_arg_array 	= $wp->query_vars;
