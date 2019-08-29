@@ -470,10 +470,9 @@ function ampforwp_analytics_options($opt_name){
                           'default'  => '',
                           'desc' => 'example: 00000003',
                       ),   
+                    //Clicky Analytics
                     array(
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
+                
                         'id'            =>'amp-clicky-switch',
                         'type'          => 'switch',
                         'title'         => esc_html__('Clicky Analytics','accelerated-mobile-pages'),
@@ -490,7 +489,6 @@ function ampforwp_analytics_options($opt_name){
                             esc_html__( 'to create an account.','accelerated-mobile-pages' )
                         ),
                         'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
                           array('amp-clicky-switch', '=' , '1')
                         ),
                         'placeholder'  => esc_html__('YOUR_SITE_ID_HERE','accelerated-mobile-pages'),
