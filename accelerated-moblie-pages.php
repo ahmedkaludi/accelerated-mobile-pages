@@ -1191,6 +1191,57 @@ function ampforwp_automattic_activation(){
 	}
 }
 
+add_action('admin_notices', 'ampforwp_wp_config_mode');
+function ampforwp_wp_config_mode(){
+	$wp_config = 0;
+	$wp_config = get_transient('ampforwp_disable_wp_debug_notice');
+	if(defined('WP_DEBUG')){
+		if(WP_DEBUG==true && $wp_config==0){
+	?>
+			<div class="notice-warning settings-error notice is-dismissible amp-update-notice-text-box amp-debug-mode-recommend">
+				<p>
+					<b>
+						<?php echo esc_html__('Recommendation: ','accelerated-mobile-pages');?>
+					</b>
+					<?php echo esc_html__('AMPforWP Plugin finds the debug mode enabled, it is recommended to disable the debug mode. Please take a backup of your wp_config.php file before clicking on disable button.','accelerated-mobile-pages');?>
+					
+				</p>
+				<a id="disable_config"><?php echo esc_html__('Disable Now','accelerated-mobile-pages');?></a>
+				<a id="skip_config"><?php echo esc_html__('Yeah ! I now this. Ignore it!','accelerated-mobile-pages');?></a>
+			</div><?php 
+		}
+	}
+}
+add_action('wp_ajax_ampforwp_disable_wp_debug','ampforwp_disable_wp_debug');
+function ampforwp_disable_wp_debug(){
+    $config_file = wp_normalize_path( ABSPATH . 'wp-config.php' );
+    if ( file_exists( $config_file ) ) {
+        if ( is_readable( $config_file ) && is_writable( $config_file ) ) {
+            $config_cont    = file_get_contents( $config_file );
+            $debug_mod = "define('WP_DEBUG', false)";
+            $rep_true_txt = "";
+            if(strpos("$config_cont","define('WP_DEBUG', true)")!==false){
+                $rep_true_txt = "define('WP_DEBUG', true)";
+            }
+            elseif(strpos("$config_cont","define('WP_DEBUG',true)")!==false){
+                $rep_true_txt = "define('WP_DEBUG',true)";
+            }
+            if (defined('WP_DEBUG')) {
+                $config_cont = str_replace("$rep_true_txt","$debug_mod",$config_cont);
+                file_put_contents( $config_file, $config_cont );    
+            }
+        }
+    }
+	set_transient( 'ampforwp_disable_wp_debug_notice', 1 );
+	exit();
+}
+
+add_action('wp_ajax_ampforwp_skip_wp_debug','ampforwp_skip_wp_debug');
+function ampforwp_skip_wp_debug(){
+	set_transient( 'ampforwp_disable_wp_debug_notice', 1 );
+	exit();
+}
+
 add_action('wp_ajax_ampforwp_automattic_notice_delete','ampforwp_automattic_notice_delete');
 function ampforwp_automattic_notice_delete(){
 	$automattic_wizard_nonce = $_REQUEST['security'];

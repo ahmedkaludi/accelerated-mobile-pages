@@ -3119,22 +3119,6 @@ Redux::setSection( $opt_name, array(
    'subsection' => true,
    'fields'     => array(
                     array(
-                        'id'       => 'ampforwp-debug-mode',
-                        'type'     => 'switch',
-                        'title'    => esc_html__('Debug Mode', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => esc_html__('
-                        Enable/Disable AMP Debug Mode for as per your debug experience','accelerated-mobile-pages'),
-                        'default' => $debug_default,
-                    ),
-                    array(
-                        'id'       => 'ampforwp-debug-mode-notice',
-                        'type'     => 'info',
-                        'style'    => 'critical',
-                        'desc'     => esc_html__('Take a backup of your wp-config.php file before saving it. By enable/disable it will change WP_DEBUG as true/false.', 'accelerated-mobile-pages'),
-                        'title'    => esc_html__('Debug Mode', 'accelerated-mobile-pages'),
-                        'required' => array('ampforwp-debug-mode', '=', 1)
-                    ),
-                    array(
                         'id'       => 'amp-mobile-redirection',
                         'type'     => 'switch',
                         'title'    => esc_html__('Mobile Redirection', 'accelerated-mobile-pages'),

@@ -1628,4 +1628,21 @@ function DrawerIcon(icon) {
         }
     })();
 }
+
+    $("#disable_config").click(function(){
+        var data = {
+            action: 'ampforwp_disable_wp_debug',
+        };
+        $.post(ajaxurl, data, function(response) {
+            $(".amp-debug-mode-recommend").remove();
+        });
+    }); 
+    $("#skip_config").click(function(){
+        var data = {
+            action: 'ampforwp_skip_wp_debug',
+        };
+        $.post(ajaxurl, data, function(response) {
+            $(".amp-debug-mode-recommend").remove();
+        });
+    });
 });

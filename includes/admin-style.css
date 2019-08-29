@@ -179,6 +179,10 @@ body #toplevel_page_amp_options .wp-menu-image{
     text-transform: uppercase;
     border: 1px solid rgba(207, 216, 220, 0.9);
 }
+.amp-debug-mode-recommend a{
+    top: 0px;
+    cursor:pointer;
+}
 .amp-update-notice-dismiss{
     display:inline-block;float:right;height: 70px;background: #333;width: 50px;text-align: center;
 }
