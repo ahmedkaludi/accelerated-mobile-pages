@@ -507,43 +507,42 @@ function amp_loop_image( $data=array() ) {
 				$featuredVideo = amp_featured_video($design_type,$amp_thumnail);
 			}
 		}
-
-		if ( $thumb_url ) {
-			$imageLink = amp_loop_permalink(true);
-			$post_id   = get_the_ID();
-			$post_thumbnail_id = get_post_thumbnail_id( $post_id );
-			$loopImageData = array("post_id"			=>$post_id,
-									"image_url"			=>$thumb_url,
-									"width"				=>$thumb_width,
-									"height"			=>$thumb_height,
-									"layout_responsive"	=>$layout_responsive,
-									"image_class"		=>$imageClass,
-									"image_link"		=>$imageLink
-									);
-			$changesInImageData = apply_filters("ampforwp_loop_image_update",$loopImageData);
-			if(!empty($changesInImageData) && is_array($changesInImageData)){
-				$thumb_url			= $changesInImageData["image_url"];
-				$thumb_width		= $changesInImageData["width"];
-				$thumb_height		= $changesInImageData["height"];
-				$layout_responsive	= $changesInImageData["layout_responsive"];
-				$imageClass			= $changesInImageData["image_class"];
-				$imageLink			= $changesInImageData["image_link"];
-			}
-			
-			if(!empty($featuredVideo) ){
+		
+		if(!empty($featuredVideo) ){
 				echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
 				echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
 				echo $featuredVideo;
 				echo '</a>';
 				echo '</'.$tag.'>';
-			}else{
-				if(ampforwp_has_post_thumbnail()){
-					echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
-					echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
-					echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
-					echo '</a>';
-					echo '</'.$tag.'>';
+		}else{
+			
+			if ( $thumb_url ) {
+				$imageLink = amp_loop_permalink(true);
+				$post_id   = get_the_ID();
+				$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+				$loopImageData = array("post_id"			=>$post_id,
+										"image_url"			=>$thumb_url,
+										"width"				=>$thumb_width,
+										"height"			=>$thumb_height,
+										"layout_responsive"	=>$layout_responsive,
+										"image_class"		=>$imageClass,
+										"image_link"		=>$imageLink
+										);
+				$changesInImageData = apply_filters("ampforwp_loop_image_update",$loopImageData);
+				if(!empty($changesInImageData) && is_array($changesInImageData)){
+					$thumb_url			= $changesInImageData["image_url"];
+					$thumb_width		= $changesInImageData["width"];
+					$thumb_height		= $changesInImageData["height"];
+					$layout_responsive	= $changesInImageData["layout_responsive"];
+					$imageClass			= $changesInImageData["image_class"];
+					$imageLink			= $changesInImageData["image_link"];
 				}
+				echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
+				echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
+				echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
+				echo '</a>';
+				echo '</'.$tag.'>';
+				
 			}
 		}
      }
