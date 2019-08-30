@@ -453,7 +453,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'text',
 								'name'		=>"fixed-height",
-								'label'		=>'Height',
+								'label'		=> esc_html__('Height', 'accelerated-mobile-pages' ),
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'content_type'=>'css',
@@ -481,7 +481,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'text',
 								'name'		=>"fluid-height",
-								'label'		=>'Height',
+								'label'		=> esc_html__('Height', 'accelerated-mobile-pages' ),
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'content_type'=>'css',
