@@ -873,6 +873,9 @@ jQuery(document).ready(function($) {
         });
     };
 
+    // Color Picker
+    $('div.amp-ux-color-container').find('input').wpColorPicker({});
+
     function hexToRgbA(hex){
         var c;
         if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
@@ -1008,17 +1011,18 @@ jQuery(document).ready(function($) {
         }
     );
     // Global Color Scheme
-    $('.amp-ux-color-scheme').change(function(){
-        $('input[data-id="swift-color-scheme-color"]').val($(this).val());
-        var rgba = hexToRgbA($(this).val());
-        var color = $('.ampforwp-ux-website-type-section .sp-preview-inner').css('background-color');
-        $('fieldset[data-id="swift-color-scheme"] .sp-preview-inner').css('background-color', color);
+    $('.amp-ux-color-container .iris-picker').on('focusout',function(){
+        var color = $('.amp-ux-color-scheme').val();
+        var bgcolor = $('.amp-ux-color-container .wp-color-result').css('background-color');
+        var rgba = hexToRgbA(color);
+        $('fieldset[data-id="swift-color-scheme"] .sp-preview-inner').css('background-color', bgcolor);
         $('input[data-id="swift-color-scheme-rgba"]').val(rgba);
         $('input[id="swift-color-scheme-color"]').attr('data-color',rgba);
-        $('input[id="swift-color-scheme-color"]').attr('data-current-color',$(this).val());
-        $('input[id="swift-color-scheme-color"]').attr('value',$(this).val());
-        //saveChangesInRedux($(this));
+        $('input[id="swift-color-scheme-color"]').attr('data-current-color',color);
+        $('input[id="swift-color-scheme-color"]').attr('value',color);
+        saveChangesInRedux($(this));
     });
+
     // Analytics
     $('#text_id').on('blur', function(){
         $('#ga-feild').val($(this).val());

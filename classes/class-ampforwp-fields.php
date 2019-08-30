@@ -229,7 +229,7 @@ class AMPforWP_Fields
 			$output .= '<h2>'.$this->title.'</h2>';
 		}
 		$this->selected = $this->default ? 'value="'.$this->default.'"' : "";
-		$output .= '<input type="color" id="'.$this->id.'" class="'.$this->class.'" '.$this->selected.'>';
+		$output .= '<input type="text" id="'.$this->id.'" class="'.$this->class.'" '.$this->selected.'>';
 		$output .= '</div>';
 		echo $output;
 	}
