@@ -117,7 +117,7 @@
 								<?php } } ?>	
 								<div class="rlp-cnt">
 									<?php 
-									$show_excerpt_opt = $redux_builder_amp['ampforwp-single-related-posts-excerpt'];
+									$show_excerpt_opt = ampforwp_get_setting('ampforwp-single-related-posts-excerpt');
 									$argsdata = array(
 											'show_author' => false,
 											'show_excerpt' => $show_excerpt_opt
@@ -159,9 +159,11 @@ do_action("ampforwp_single_design_type_handle_d1");
 							</div>
 						<?php } } ?>	
 						<div class="rlp-cnt">
-							<?php $argsdata = array(
-									'show_author' => false,
-									'show_excerpt' =>false
+							<?php
+							$show_excerpt_opt = ampforwp_get_setting('ampforwp-single-related-posts-excerpt');
+							$argsdata = array(
+									'show_author' =>  false,
+									'show_excerpt' => $show_excerpt_opt
 										);
 							ampforwp_get_relatedpost_content($argsdata); ?> 
 				        </div>
