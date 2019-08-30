@@ -1686,7 +1686,7 @@ function ampforwp_replace_title_tags() {
 		}
 
 		//Genesis #1013
-		if(function_exists('genesis_title') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ){
+		if(function_exists('genesis_theme_support') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ){
 			if(is_home() && is_front_page() && !$redux_builder_amp['amp-frontpage-select-option']){
 				// Determine the doctitle.
 			$genesis_title = genesis_get_seo_option( 'home_doctitle' ) ? genesis_get_seo_option( 'home_doctitle' ) : get_bloginfo( 'name' );
