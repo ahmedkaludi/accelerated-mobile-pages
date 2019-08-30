@@ -103,7 +103,7 @@ function ampforwp_enable_modules_upgread(){
 
 function ampforwp_admin_notice_module_reference_install() {
     // Exit if the user does not have proper permissions
-    if(! current_user_can( 'manage_options' ) && !is_admin() ) {
+    if(! current_user_can( 'manage_options' )) {
         return ;
     }
 

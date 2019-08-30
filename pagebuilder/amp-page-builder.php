@@ -75,7 +75,8 @@ function ampforwp_call_page_builder(){
 		$postId = $post->ID;
 	}
 	if(isset($_GET['post_id'])){
-		$postId = sanitize_text_field( wp_unslash($_GET['post_id']));
+		$id = intval($_GET['post_id']);
+		$postId = sanitize_text_field( wp_unslash($id));
 	}
 	add_thickbox();
 	

@@ -257,7 +257,8 @@ require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
 				}
 	    	break;
 	    	case (is_archive()):
-	    		$post_types = array_filter( (array) get_query_var( 'post_type' ) );
+	    	$ptype = esc_attr(get_query_var( 'post_type' ));
+	    		$post_types = array_filter( (array) $ptype );
 				$templates = array();
 				if ( count( $post_types ) == 1 ) {
 					$post_type = reset( $post_types );
@@ -281,8 +282,8 @@ require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
 					//return '';
 					break;
 				}
-
-				$post_types = array_filter( (array) get_query_var( 'post_type' ) );
+				$ptype = esc_attr(get_query_var( 'post_type' ));
+				$post_types = array_filter( (array) $ptype );
 
 				$templates = array();
 

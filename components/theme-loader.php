@@ -134,7 +134,8 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 				}
 	    	break;
 	    	case (is_archive()):
-	    		$post_types = array_filter( (array) get_query_var( 'post_type' ) );
+	    		$p_type = esc_attr(get_query_var( 'post_type' ));
+	    		$post_types = array_filter( (array) $p_type );
 				$templates = array();
 				if ( count( $post_types ) == 1 ) {
 					$post_type = reset( $post_types );
@@ -158,8 +159,8 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 					//return '';
 					break;
 				}
-
-				$post_types = array_filter( (array) get_query_var( 'post_type' ) );
+				$p_type = esc_attr(get_query_var( 'post_type' ));
+				$post_types = array_filter( (array) $p_type );
 
 				$templates = array();
 

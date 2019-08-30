@@ -6,7 +6,7 @@ add_filter('ampforwp_content_module_args','ampforwp_content_module_pagination',1
 function ampforwp_content_module_pagination($args, $fieldValues){
   if(isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1 ){
       if( isset($_GET['pageno']) && $_GET['pageno']!=''){
-          $paged = $_GET['pageno'];
+          $paged = intval($_GET['pageno']);
       }else{
           $paged = 1;
       }
@@ -500,7 +500,7 @@ if ( is_admin() ) {
         /*Pagination Sart*/
         $total_num_pages = $the_query->max_num_pages;
         if(isset($_GET[$pagination_text]) && $_GET[$pagination_text]!='' ){
-            $paged = $_GET[$pagination_text];
+            $paged = intval($_GET[$pagination_text]);
         }else{
             $paged = 1;
         }

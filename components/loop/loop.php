@@ -2,7 +2,9 @@
 function amp_archive_title(){
 	global $redux_builder_amp;
 	if( is_author() ){
-		$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
+		$author_name = esc_attr(get_query_var('author_name'));
+		$author = esc_attr(get_query_var('author'));
+		$curauth = (get_query_var('author_name')) ? get_user_by('slug', $author_name) : get_userdata($author);
 		if( true == ampforwp_gravatar_checker($curauth->user_email) ){
 			$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 			if($curauth_url){ ?>
@@ -123,10 +125,10 @@ function call_loops_standard($data=array()){
 			$week 		= get_query_var('week');
 			$day 		= get_query_var('day');
 			$args 		= array( 'date_query' => array(
-						    array( 	'year' 	=> $year,
-						    		'month' => $monthnum,
-					    		 	'week' 	=> $week,
-					    		 	'day' 	=> $day )
+						    array( 	'year' 	=> esc_attr($year),
+						    		'month' => esc_attr($monthnum),
+					    		 	'week' 	=> esc_attr($week),
+					    		 	'day' 	=> esc_attr($day) )
 						  	),
 							'paged'               => esc_attr($paged),
 						'post__not_in' 		  => $exclude_ids,
@@ -163,7 +165,8 @@ function call_loops_standard($data=array()){
 	}
 	if(is_author()){
 		$exclude_ids = ampforwp_exclude_posts();
-		$author = get_user_by( 'slug', get_query_var( 'author_name' ) );
+		$author = esc_attr(get_query_var( 'author_name' ));
+		$author = get_user_by( 'slug', $author);
 		$args =  array(
 			'author'        	  =>  $author->ID,
 			'post_type'           => 'post',
@@ -269,6 +272,7 @@ function amp_pagination($args =array()) {
 	} else {
 	    $paged = 1;
 	}
+	$paged = esc_attr($paged);
 	$pre_link = '';
 	if(!isset($args['previous_text']) || $args['previous_text']==''){
 		$args['previous_text'] = 'Show previous Posts';
