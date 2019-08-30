@@ -5547,6 +5547,8 @@ function ampforwp_featured_video_default(){
             $default = '';
             if(function_exists( 'csco_setup' )){
                 $default = 'csco_post_embed';
+            }elseif(function_exists('tie_video')){
+                $default = 'tie_video_url';
             }
             return $default;
         }

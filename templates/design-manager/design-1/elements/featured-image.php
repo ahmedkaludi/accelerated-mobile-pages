@@ -38,12 +38,13 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 		$amp_html = ampforwp_get_featured_image_from_content();
 	}
 		if(!empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('ampforwp-featured-video') == true){
-
+				$featured_video = amp_featured_video(1,$amp_html);
+				if(empty($featured_video)){
+					$featured_video = $amp_html;
+				}
 			?>
 			<figure class="amp-wp-article-featured-image wp-caption">
-				<?php echo amp_featured_video(1,$amp_html);
-				
-				?>
+				<?php echo $featured_video;?>
 				<?php if ( $caption ) : ?>
 						<p class="wp-caption-text">
 							<?php echo wp_kses_data( $caption ); ?>

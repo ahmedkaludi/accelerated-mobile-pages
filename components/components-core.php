@@ -221,9 +221,14 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 	$post_id = get_the_ID();
 	
 	$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-	$youtubelink = get_post_meta($post_id, $metaKey, true);
+	$youtubelink = get_post_meta($post_id, $metaKey,true);
 	$featured_video = '';
-
+	if( function_exists('tie_video')){
+		$display_video = get_post_meta($post_id,'tie_post_head',true);
+		if($display_video != 'video'){
+			return $featured_video;
+		}
+	}
 	if(ampforwp_get_setting('ampforwp-featured-video')==true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && !empty($youtubelink)){
 		if(strpos($youtubelink, 'youtu.be')> 0){
 			$video_id = explode("youtu.be/", $youtubelink);

@@ -500,14 +500,14 @@ function amp_loop_image( $data=array() ) {
 		$amp_thumnail['thumb_height'] = $thumb_height;
 		$amp_thumnail['show_image'] = true;
 		$design_type = ampforwp_get_setting('amp-design-selector');
-		if( (ampforwp_is_home() || ampforwp_is_blog() ) && ampforwp_get_setting('amforwp-homepage-featured-video') == true){
-			$featuredVideo = amp_featured_video($design_type,$amp_thumnail);
+		if( ampforwp_is_home() && ampforwp_get_setting('amforwp-homepage-featured-video') == true){
+				$featuredVideo = amp_featured_video($design_type,$amp_thumnail);
 		}else{
 			if(is_singular() || is_archive()){
 				$featuredVideo = amp_featured_video($design_type,$amp_thumnail);
 			}
 		}
-		
+
 		if ( $thumb_url ) {
 			$imageLink = amp_loop_permalink(true);
 			$post_id   = get_the_ID();
@@ -529,6 +529,7 @@ function amp_loop_image( $data=array() ) {
 				$imageClass			= $changesInImageData["image_class"];
 				$imageLink			= $changesInImageData["image_link"];
 			}
+			
 			if(!empty($featuredVideo) ){
 				echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
 				echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';

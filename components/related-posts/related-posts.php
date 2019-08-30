@@ -173,7 +173,14 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 	    	$image_attr['thumb_width'] = $thumb_url_array[1];
 	    	$image_attr['thumb_height'] = $thumb_url_array[2];
 	    	$image_attr['show_image'] = $show_image;
-	    	echo amp_featured_video(4,$image_attr);
+	    	$featured_video = amp_featured_video(4,$image_attr);
+	    	if(empty($featured_video) ){
+	    		if ( $thumb_url && $show_image ) { ?>
+		    	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo esc_attr($thumb_width); ?>" height="<?php echo esc_attr($thumb_height); ?>" layout="responsive"></amp-img>
+			<?php }
+	    	}else{
+	    		echo $featured_video;
+	    	}
 	    }else{
 	     if ( $thumb_url && $show_image ) { ?>
 	    	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo esc_attr($thumb_width); ?>" height="<?php echo esc_attr($thumb_height); ?>" layout="responsive"></amp-img>

@@ -172,6 +172,21 @@ if ( get_query_var( 'paged' ) ) {
 						$featured_video = amp_featured_video(3,$amp_thumnail);
 						if(!empty($featured_video)){
 							echo $container_start.''.$featured_video.''.$container_end;
+						}else{
+							if($thumb_url){
+						?>
+							<div class="home-post_image">
+								<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
+									<amp-img
+									layout="responsive"
+									src=<?php echo esc_url($thumb_url); ?>
+									<?php ampforwp_thumbnail_alt(); ?>
+									width=<?php echo esc_attr($thumb_width); ?>
+									height=<?php echo esc_attr($thumb_height); ?>
+								></amp-img>
+							</a>
+							</div>
+						<?php } 
 						}
 					}else{
 						if($thumb_url){
@@ -182,8 +197,8 @@ if ( get_query_var( 'paged' ) ) {
 								layout="responsive"
 								src=<?php echo esc_url($thumb_url); ?>
 								<?php ampforwp_thumbnail_alt(); ?>
-								width=<?php echo $thumb_width; ?>
-								height=<?php echo $thumb_height; ?>
+								width=<?php echo esc_attr($thumb_width); ?>
+								height=<?php echo esc_attr($thumb_height); ?>
 							></amp-img>
 						</a>
 						</div>
