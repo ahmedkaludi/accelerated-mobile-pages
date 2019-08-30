@@ -142,10 +142,9 @@
                         jQuery( "html, body" ).animate( {scrollTop: 0}, "slow" );
                     }
                     if( true == $no_fade ) {
-                        console.log(button);
-                        button.parents('div.ux-field-container').find('.amp-ux-loading').addClass('hide');
-                        button.parents('div.ux-field-container').find('.amp-ux-check').removeClass('hide');
-                        button.parents('div.ux-field-container').find('.amp-ux-check').html('&#10004;');
+                        $('div.amp-ux-section-container').find('.amp-ux-loading').addClass('hide');
+                        $('div.amp-ux-section-container').find('.amp-ux-check').removeClass('hide');
+                        $('div.amp-ux-section-container').find('.amp-ux-check').html('&#10004;');
                     }
                 }
             }

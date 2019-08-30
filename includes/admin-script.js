@@ -784,21 +784,21 @@ jQuery(document).ready(function($) {
     var new_data = JSON.parse(amp_fields);
     var saveChangesInRedux = function($current){
         // loader
-        if ( $current.parents('div.ux-field-container').find('.amp-ux-loader').length == 0 ){
-            $current.parents('div.ux-field-container').append('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
+        if ( $('div.amp-ux-section-container').find('.amp-ux-loader').length == 0 ){
+            $('div.amp-ux-section-container').prepend('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
         }
         else{
-            $current.parents('div.ux-field-container').find('.amp-ux-loading').removeClass('hide');
-            $current.parents('div.ux-field-container').find('.amp-ux-check').addClass('hide');
+            $('div.amp-ux-section-container').find('.amp-ux-loading').removeClass('hide');
+            $('div.amp-ux-section-container').find('.amp-ux-check').addClass('hide');
         }
         // Save
         window.onbeforeunload = null;
         if ( redux.args.ajax_save === true ) {
             $.redux.ajax_save( $current, true );
         }
-        /*setTimeout(function(){ 
-            $current.parents('div.ux-field-container').find('.amp-ux-loader').remove();
-         }, 5000);*/
+        setTimeout(function(){ 
+            $('div.amp-ux-main-section').find('.amp-ux-loader').remove();
+         }, 5000);
         // end loader
 
     }

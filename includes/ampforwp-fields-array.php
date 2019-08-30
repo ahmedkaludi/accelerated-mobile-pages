@@ -5,6 +5,7 @@ foreach ($pages as $page ) {
 	$options[$page->ID] = $page->post_title;
 }
 $amp_ux_fields = array(
+					array('field_type'=>'main_section_start', 'field_data'=>array('id'=>'amp-ux-main-section','class'=>'amp-ux-main-section')),
 					// Website type 
 					array('field_type'=>'section_start',
 						'field_data'=>array('id'=>'ampforwp-ux-website-type-section','class'=>'section-1 amp-ux-website-type-section')
@@ -50,7 +51,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'color',
 						'field_data'=>array('title'=>'Global Color Scheme','class'=>'amp-ux-color-scheme','id'=>'amp-ux-color-scheme','default'=>ampforwp_get_setting('swift-color-scheme','color'))
 					),
-					array('field_type'=>'section_end', 'field_data'=>array())
+					array('field_type'=>'section_end', 'field_data'=>array()),
 
 					//Analytics
 					// array('field_type'=>'section_start',
@@ -61,6 +62,7 @@ $amp_ux_fields = array(
 					// ),
 					// array('field_type'=>'section_end', 'field_data'=>array()),
 
+					array('field_type'=>'main_section_end','field_data'=>array()),
 					// // Privacy Settings
 					// array('field_type'=>'section_start',
 					// 	'field_data'=>array('id'=>'ampforwp-ux-privacy-section','class'=>'section-1 ampforwp-ux-privacy-section')

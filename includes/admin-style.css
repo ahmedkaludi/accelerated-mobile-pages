@@ -1061,7 +1061,14 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     max-height: 150px;
 }
 .amp-ux-checkbox-container h4{display: inline;}
+.redux-main .amp-ux-upload{float: none}
+.redux-sidebar .redux-group-tab-link-a .amp-ux-warning{color: yellow;}
+.redux-main .btn-red{margin-top: -6%;margin-left: 50%}
 /* Loader */
+.amp-ux-loader{
+    margin-top: 25%;
+    margin-bottom: -20%;
+}
 .amp-ux-loading {
   border: 8px solid #f3f3f3;
   border-radius: 50%;
@@ -1070,7 +1077,6 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
   height: 2px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
-  float: right;
 }
 
 /* Safari */

@@ -27,7 +27,7 @@ class AMPforWP_Fields
 		}
 		if( !empty($fields) ){
 			if ( isset($fields['class']) ) {
-				if ( $type != 'section_start' && $type != 'section_end' ) {
+				if ( $type != 'section_start' && $type != 'section_end' && $type != 'main_section_start' && $type != 'main_section_end') {
 					$fields['class'] .= ' amp-ux-field';
 				}
 				$this->class = $fields['class'];
@@ -73,6 +73,13 @@ class AMPforWP_Fields
 		if ( 'switch' == $type ) {
 			$this->ampforwp_field_switch($fields);
 		}
+		// Main section
+		if ( 'main_section_start' == $type ) {
+			$this->main_section_start($fields);
+		}
+		if ( 'main_section_end' == $type ) {
+			$this->main_section_end($fields);
+		}
 		// Section Start
 		if ( 'section_start' == $type ) {
 			$this->section_start($fields);
@@ -82,6 +89,19 @@ class AMPforWP_Fields
 			$this->section_end($fields);
 		}
 	}
+	// Main Section
+	public function main_section_start($fields = array() ) {
+		if ( isset($fields['class']) ) {
+				$this->class = $fields['class'];
+		}
+		if ( isset($fields['id']) ) {
+			$this->id = $fields['id'];
+		}
+		echo '<div id="'.$this->id.'" class="'.$this->class.'">';
+	}
+	public function main_section_end($fields = array() ) {
+		echo '</div>';
+	}
 	// Section Start
 	public function section_start($fields = array()){
 		if ( isset($fields['class']) ) {
@@ -90,7 +110,7 @@ class AMPforWP_Fields
 		if ( isset($fields['id']) ) {
 			$this->id = $fields['id'];
 		}
-		echo '<div id="'.$this->id.'" class="drawer '.$this->class.'">
+		echo '<div id="'.$this->id.'" class="drawer '.$this->class.' amp-ux-section-container">
 				<div class="amp-fields-content">';
 	}
 	// Section End
@@ -100,8 +120,8 @@ class AMPforWP_Fields
 	public function ampforwp_field_select($fields){
 		$required = $hide = '';
 		if ( !empty($this->required) ) {
-			$required = 'required="'.$this->required[0].'"';
-			$hide = 'hide';
+			$required = 'required="'.$fields['required'][0].'"';
+			$hide = ' hide';
 		}
 		$output = '<div class="ux-field-container amp-ux-select-container '.$hide.'">';
 		if ( !empty($this->title) ) {
@@ -160,9 +180,10 @@ class AMPforWP_Fields
 	}
 
 	public function ampforwp_field_media(){
+		$output = '<div class="ux-field-container amp-ux-media-container">';
 		$id = $url = $width = $height = '';
 		if ( !empty($this->title) ) {
-			$output = '<h2>'.$this->title.'</h2>';
+			$output .= '<h2>'.$this->title.'</h2>';
 		}
 		$required = '';
 		/*if ( !empty($this->required) ) {
@@ -174,8 +195,8 @@ class AMPforWP_Fields
 			$url = $this->default['url'];
 			$width = $this->default['width'];
 			$height = $this->default['height'];
+			$hide = 'hide';
 		}
-		$hide = empty($this->default) ? 'hide' : '';
 
 		$output .= '<div id="'.$this->id.'" class="'.$this->class.'" data-id="opt-media" data-type="media">
 				<input placeholder="No media selected" type="text" class="upload large-text hide" id="amp-ux-opt-media-url" value="'.$id.'" readonly="readonly">
@@ -190,34 +211,37 @@ class AMPforWP_Fields
 						<img class="redux-option-image amp-ux-image" id="image_opt-media" src="'.$url.'" alt="" target="_blank" rel="external">
 					</a>
 				</div>
-				<div class="upload_button_div">
+				<div class="upload_button_div amp-ux-upload">
 					<span class="button media_upload_button media-'.$this->id.'" id="opt-media-media">Upload</span>				
-				</div>
-        </div>';
+				</div>';
+			$output .= '</div></div>';
         echo $output;
 	}
 
 	public function ampforwp_field_color(){
-		if ( !empty($this->title) ) {
-			$output = '<h2>'.$this->title.'</h2>';
-		}
-		$required = '';
+		/*$required = '';
 		if ( !empty($this->required) ) {
 			$required = 'required="'.$this->required[0].'"';
 			$this->class .= ' hide';
+		}*/
+		$output = '<div class="ux-field-container amp-ux-color-container">';
+		if ( !empty($this->title) ) {
+			$output .= '<h2>'.$this->title.'</h2>';
 		}
 		$this->selected = $this->default ? 'value="'.$this->default.'"' : "";
-		$output .= '<input type="color" id="'.$this->id.'" class="'.$this->class.'" '.$this->selected.'><br>';
+		$output .= '<input type="color" id="'.$this->id.'" class="'.$this->class.'" '.$this->selected.'>';
+		$output .= '</div>';
 		echo $output;
 	}
-	public function ampforwp_field_text(){
+	public function ampforwp_field_text($fields){
+		$required = '';
+		if ( !empty($fields['required']) ) {
+			$required = 'required="'.$this->required[0].'"';
+			$hide .= ' hide';
+		}
+		$output = '<div class="ux-field-container amp-ux-text-container '.$hide.'"';
 		if ( !empty($this->title) ) {
 			$output = '<h2>'.$this->title.'</h2>';
-		}
-		$required = '';
-		if ( !empty($this->required) ) {
-			$required = 'required="'.$this->required[0].'"';
-			$this->class .= ' hide';
 		}
 		$output .= '<input type="text" id="'.$this->id.'" class="'.$this->class.'"><br>';
 		echo $output;
