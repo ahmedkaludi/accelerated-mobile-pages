@@ -905,6 +905,8 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
   .related_posts .related_link a.readmore-rp {
       font-size: 13px;
       color:#999;
+      font-weight:normal;
+      margin-left: 5px;
   }
 <?php } ?>
 .amp_widget_below_the_header.f-w amp-img {

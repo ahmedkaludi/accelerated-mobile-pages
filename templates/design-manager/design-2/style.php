@@ -723,8 +723,10 @@ if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_set
 <?php }
 if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
 	.related_posts .related_link a.readmore-rp {
-	    font-size: 13px;
-	    color:#999;
+		font-size: 13px;
+		margin-left: 5px;
+		color: #999;
+		font-weight: normal;
 	}
 <?php } ?>
 .amp-wp-content.the_content h1, .amp-wp-content.the_content h2, .amp-wp-content.the_content h3, .amp-wp-content.the_content h4, .amp-wp-content.the_content h5, .amp-wp-content.the_content h6{margin: 15px 0px;}
