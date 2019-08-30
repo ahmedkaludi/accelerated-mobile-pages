@@ -264,14 +264,14 @@ function ampforwp_structured_data_type( $metadata ) {
         		continue;
         	}
 	       	if ( isset( $post->post_type ) && $post->post_type == $post_type ) {
-	       		if( empty( ampforwp_get_setting('ampforwp-sd-type-'.$post_type) ) ){
+	       		if( empty( ampforwp_get_setting('ampforwp-sd-type-'.esc_attr($post_type)) ) ){
 	       			return;
 	       		}
-        		if ( empty( ampforwp_get_setting('ampforwp-sd-type-'.$post_type) ) && ampforwp_get_setting('ampforwp-seo-yoast-description') == 0 ) {
+        		if ( empty( ampforwp_get_setting('ampforwp-sd-type-'.esc_attr($post_type)) ) && ampforwp_get_setting('ampforwp-seo-yoast-description') == 0 ) {
 					return;
 				}
 				if(isset($metadata['@type']) && $metadata['@type']){
-        			$metadata['@type'] = ampforwp_get_setting('ampforwp-sd-type-'.$post_type);
+        			$metadata['@type'] = ampforwp_get_setting('ampforwp-sd-type-'.esc_attr($post_type));
         		}
         		return $metadata;
         	}
