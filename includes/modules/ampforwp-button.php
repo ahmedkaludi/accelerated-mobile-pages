@@ -190,6 +190,8 @@
 	 * Registers and enqueues admin-specific JavaScript.
 	 */
 	public function register_admin_scripts() {
+		$builder_data['amp_icon_check'] = AMPFORWP_IMAGE_DIR . '/amp-icon-check.png';
+        wp_localize_script( 'ampforwp-builder-script', 'builder_script_data', $builder_data );
 		wp_enqueue_script( 'ampforwp-builder-script',  plugins_url('/modules/js/amp.js' , dirname(__FILE__) ) , array( 'jquery' ), false, true );
 
 	} // end register_admin_scripts

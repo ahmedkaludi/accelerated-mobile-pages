@@ -3331,7 +3331,7 @@
                 require_once 'core/panel.php';
                 if(is_admin()){
                     echo '<div class="a-f-wp-help"><div class="a-f-wp-help-message">
-                        <a target="_blank" href="http://ampforwp.com/support/?utm_source=options-panel&utm_medium=contact_link_btn&utm_campaign=AMP%20Plugin"> <img src="https://ampforwp.com/wp-content/uploads/2017/03/chatbox-img-1.png" /></a>
+                        <a target="_blank" href="http://ampforwp.com/support/?utm_source=options-panel&utm_medium=contact_link_btn&utm_campaign=AMP%20Plugin"> <img src="'.AMPFORWP_IMAGE_DIR . '/amp-img-conv.png'.'" /></a>
 
                         </div>
                         <div class="a-f-wp-help-container">

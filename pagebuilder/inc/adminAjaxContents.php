@@ -46,7 +46,7 @@ function enable_amp_pagebuilder(){
 	}else{
 		echo json_encode(array('status'=>"500", 'Message'=>"post id not found"));
 	}
-	if(isset($postId) && get_post_meta($postId,'use_ampforwp_page_builder', true)!=='yes'){
+	if(isset($postId) && get_post_meta($postId,'use_ampforwp_page_builder', true)!=='yes' && current_user_can('edit_posts')){
 		update_post_meta($postId, 'use_ampforwp_page_builder','yes');
 		echo json_encode(array('status'=>200, 'Message'=>"Pagebuilder Started successfully"));
 	}else{
