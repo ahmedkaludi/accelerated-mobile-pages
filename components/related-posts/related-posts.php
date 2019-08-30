@@ -17,27 +17,11 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 					<?php
 				    while( $my_query->have_posts() ) {
 					    $my_query->the_post();
-					    $noimgClass = '';
-							if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-								$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-								if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
-						 			if( ampforwp_has_post_thumbnail()){
-						 				$noimgClass = "has_thumbnail";
-						 			}else{
-						 				$noimgClass = "no_thumbnail";
-						 			}
-						 		}else{
-						 			$noimgClass = "has_thumbnail";
-						 		}
-							}else{
-								if( ampforwp_has_post_thumbnail()){
-									$noimgClass = "has_thumbnail";
-								}else{
-									$noimgClass = "no_thumbnail";
-								}
-							}
+					    $imageclass = 'has_thumbnail';
+						$noimageclass = 'no_thumbnail';
+						$noimgClass = ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass);
 					?>
-						<li class="<?php echo $noimgClass; ?>">
+						<li class="<?php echo esc_attr($noimgClass); ?>">
 				            <?php
 				            $related_post_permalink = ampforwp_url_controller( get_permalink() );
 				            if ( $show_image ) {

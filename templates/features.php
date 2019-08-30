@@ -4894,27 +4894,12 @@ function ampforwp_inline_related_posts(){
 						$related_post_permalink = get_permalink();
 						$related_post_permalink = trailingslashit($related_post_permalink);
 						$related_post_permalink = ampforwp_url_controller( $related_post_permalink );
-							$noimgClass = '';
-							if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-								$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-								if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
-						 			if( ampforwp_has_post_thumbnail()){
-						 				$noimgClass = "has_related_thumbnail";
-						 			}else{
-						 				$noimgClass = "no_related_thumbnail";
-						 			}
-						 		}else{
-						 			$noimgClass = "has_related_thumbnail";
-						 		}
-							}else{
-								if( ampforwp_has_post_thumbnail()){
-									$noimgClass = "has_related_thumbnail";
-								}else{
-									$noimgClass = "no_related_thumbnail";
-								}
-							}
-						
-						$inline_related_posts .= '<li class="'.$noimgClass.'">';
+							
+						$imageclass = 'has_related_thumbnail';
+						$noimageclass = 'no_related_thumbnail';
+						$noimgClass = ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass);
+							
+						$inline_related_posts .= '<li class="'.esc_attr($noimgClass).'">';
 						if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) {
                             $inline_related_posts .= '<a href="'.esc_url( $related_post_permalink ).'" rel="bookmark" title="'.get_the_title().'">';
 			          
@@ -8099,4 +8084,27 @@ function ampforwp_pagebuilder_has_content($response, $postId){
 		}
 	}
 	return $response;
+}
+
+function ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass){
+	$thumbClass = '';
+	if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
+		$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+		if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
+ 			if( ampforwp_has_post_thumbnail()){
+ 				$thumbClass = $imageclass;
+ 			}else{
+ 				$thumbClass = $noimageclass;
+ 			}
+ 		}else{
+ 			$thumbClass = $imageclass;
+ 		}
+	}else{
+		if( ampforwp_has_post_thumbnail()){
+			$thumbClass = $imageclass;
+		}else{
+			$thumbClass = $noimageclass;
+		}
+	}
+	return $thumbClass;
 }

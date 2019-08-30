@@ -97,28 +97,11 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 								$related_post_permalink = get_permalink();
 							} 
 
-							$noimgClass = '';
-							if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-								$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-								if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
-						 			if( ampforwp_has_post_thumbnail()){
-						 				$noimgClass = "has_related_thumbnail";
-						 			}else{
-						 				$noimgClass = "no_related_thumbnail";
-						 			}
-						 		}else{
-						 			$noimgClass = "has_related_thumbnail";
-						 		}
-							}else{
-								if( ampforwp_has_post_thumbnail()){
-									$noimgClass = "has_related_thumbnail";
-								}else{
-									$noimgClass = "no_related_thumbnail";
-								}
-							}
-							
+							$imageclass = 'has_related_thumbnail';
+							$noimageclass = 'no_related_thumbnail';
+							$noimgClass = ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass);
 							?>
-							<li class="<?php echo $noimgClass ?>">
+							<li class="<?php echo esc_attr($noimgClass); ?>">
 							<?php if ( ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) {
 								if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) {
 									$width = 150;

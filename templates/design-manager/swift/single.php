@@ -281,29 +281,11 @@
 						        $noimgClass = '';
 						          while( $my_query->have_posts() ) {
 						            $my_query->the_post();
-						            if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-						            		$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-											if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true))){
-									 			if( ampforwp_has_post_thumbnail()){
-
-									 				$noimgClass = "has_thumbnail";
-									 				
-									 			}else{
-									 				
-									 				$noimgClass = "no_thumbnail";
-									 			}
-									 		}else{
-									 			$noimgClass = "has_thumbnail";
-									 		}
-										}else{
-											if( ampforwp_has_post_thumbnail()){
-												$noimgClass = "has_thumbnail";
-											}else{
-												$noimgClass = "no_thumbnail";
-											}
-										}
+						            $imageclass = 'has_thumbnail';
+									$noimageclass = 'no_thumbnail';
+									$noimgClass = ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass);
 						        ?>
-						        <li class="<?php echo $noimgClass; ?>">
+						        <li class="<?php echo esc_attr($noimgClass); ?>">
 						  		<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { 
 						        	if(ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){?>
 							            <div class="rlp-image">     
@@ -351,27 +333,11 @@
 			        $noimgClass = "";
 			          while( $my_query->have_posts() ) {
 			            $my_query->the_post();
-			            if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-			            	$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-							if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
-					 			if( ampforwp_has_post_thumbnail()){
-					 				$noimgClass = "has_thumbnail";
-					 			}else{
-					 				$noimgClass = "no_thumbnail";
-					 			}
-					 		}else{
-					 			$noimgClass = "has_thumbnail";
-					 		}
-						}else{
-							if( ampforwp_has_post_thumbnail()){
-								$noimgClass = "has_thumbnail";
-							}else{
-								$noimgClass = "no_thumbnail";
-							}
-						}
-
+			            $imageclass = 'has_thumbnail';
+						$noimageclass = 'no_thumbnail';
+						$noimgClass = ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass);
 			        ?>
-			        <li class="<?php echo $noimgClass; ?>">
+			        <li class="<?php echo esc_attr($noimgClass); ?>">
 			        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))){?>
 				            <div class="rlp-image">     
 				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>346,'image_crop_height'=>188) );?>
@@ -407,26 +373,11 @@
 			        $noimgClass = "";
 			          while( $my_query->have_posts() ) {
 			            $my_query->the_post();
-			            if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-			            	$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-							if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
-					 			if( ampforwp_has_post_thumbnail()){
-					 				$noimgClass = "has_thumbnail";
-					 			}else{
-					 				$noimgClass = "no_thumbnail";
-					 			}
-					 		}else{
-					 			$noimgClass = "has_thumbnail";
-					 		}
-						}else{
-							if( ampforwp_has_post_thumbnail()){
-								$noimgClass = "has_thumbnail";
-							}else{
-								$noimgClass = "no_thumbnail";
-							}
-						}
+			            $imageclass = 'has_thumbnail';
+						$noimageclass = 'no_thumbnail';
+						$noimgClass = ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass);
 			        ?>
-			        <li class="<?php echo $noimgClass; ?>">
+			        <li class="<?php echo esc_attr($noimgClass); ?>">
 			        	<div class="rp-slide">
 			        	<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { if(ampforwp_has_post_thumbnail()){?>
 				            <div class="rlp-image">     
@@ -708,29 +659,14 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 							  		<?php ampforwp_related_post(); ?>
 						            <ul class="clearfix">
 								        <?php
-								          while( $my_query->have_posts() ) {
+								        while( $my_query->have_posts() ) {
 								            $my_query->the_post();
 								            $noimgClass = '';
-										if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-											$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-											if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
-									 			if( ampforwp_has_post_thumbnail()){
-									 				$noimgClass = "has_thumbnail";
-									 			}else{
-									 				$noimgClass = "no_thumbnail";
-									 			}
-									 		}else{
-									 			$noimgClass = "has_thumbnail";
-									 		}
-										}else{
-											if( ampforwp_has_post_thumbnail()){
-												$noimgClass = "has_thumbnail";
-											}else{
-												$noimgClass = "no_thumbnail";
-											}
-										}
+										$imageclass = 'has_thumbnail';
+										$noimageclass = 'no_thumbnail';
+										$noimgClass = ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass);
 								        ?>
-								        <li class="<?php echo $noimgClass;?>">
+								        <li class="<?php echo esc_attr($noimgClass);?>">
 								        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
 									            <div class="rlp-image">     
 									                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
@@ -1032,27 +968,11 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 							        <?php
 							          while( $my_query->have_posts() ) {
 							            $my_query->the_post();
-							            $noimgClass = '';
-										if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-											$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-											if( empty(get_post_meta(get_the_ID(),$fvideo_metakey,true) ) ) {
-									 			if( ampforwp_has_post_thumbnail()){
-									 				$noimgClass = "has_thumbnail";
-									 			}else{
-									 				$noimgClass = "no_thumbnail";
-									 			}
-									 		}else{
-									 			$noimgClass = "has_thumbnail";
-									 		}
-										}else{
-											if( ampforwp_has_post_thumbnail()){
-												$noimgClass = "has_thumbnail";
-											}else{
-												$noimgClass = "no_thumbnail";
-											}
-										}
+							            $imageclass = 'has_thumbnail';
+										$noimageclass = 'no_thumbnail';
+										$noimgClass = ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass);
 							        ?>
-							        <li class="<?php echo $noimgClass; ?>">
+							        <li class="<?php echo esc_attr($noimgClass); ?>">
 							        	<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { if(ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){?>
 								            <div class="rlp-image">     
 								                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>300,'image_crop_height'=>150) );?>
