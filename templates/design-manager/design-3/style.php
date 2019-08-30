@@ -1015,4 +1015,22 @@ amp-user-notification{
   bottom:41px;
   z-index: 999999;
 }
-<?php } //amp-enable-notifications Condition Ends Here ?>
+<?php } //amp-enable-notifications Condition Ends Here 
+if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) ){
+?>
+.home-post-image{
+  width:100px;
+  height:75px;
+}
+.has_related_thumbnail .related-post_image amp-youtube{
+  width:150px;
+  float:left;
+  margin-right:15px;
+}
+.ampforwp-inline-related-post .related_posts li amp-youtube{
+  margin: 0;
+  width: 100px;
+  float: left;
+  margin-right: 15px;
+}
+<?php } ?>
