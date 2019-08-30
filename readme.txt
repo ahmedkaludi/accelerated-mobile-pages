@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.2
-Stable tag: 0.9.98.5
+Stable tag: 0.9.98.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+
+= 0.9.98.6 (30th AUGUST 2019) =
+* Improvements: Structured Data improvements #3567
+* Fixed: Plugin removes Telegram links #3578
+* Fixed: amp-addthis validation error on pages #3580
+* Fixed: Spot.IM Comments not working on all designs #3568
+* Fixed: Incorrect title tags being generated #3565
+
 = 0.9.98.5 (27th AUGUST 2019) =
 * Improvements: Compatibility integrated with CDN enabler #3515
 * Improvements: banner ux section of AMP panel settings improved #3470
@@ -217,13 +225,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: "amphtml" is not generatiing in sorce code when it comes to search results pages in non AMP #3458
 * Fixed: Woocommerce archives and shop page support should not be dependent on Archives [Category & Tags] option #3558
 * Fixed: noreferrer is getting added automatically, it should have what ever the user passes #3566
-
-= 0.9.98.4 (6th AUGUST 2019) =
-* Improvements: Pagebuilder Compatibility Options in 'AMP By Automattic' Addon Mode Settings #3507
-* Fixed: Design is breaking in swift theme when RTL option is enabled #3527
-* Fixed: Validation error when width and height is empty in the logo #3530
-* Fixed: 'Read more' link in excerpt for category module of AMP page builder #3510
-* Fixed: Mobile redirection causing extra redirects from /amp to /amp/ #3459
-* Fixed: "Recent Posts below Related Posts" option should show only when it is available for the theme #3528
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

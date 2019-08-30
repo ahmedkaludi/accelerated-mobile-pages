@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.2
-Stable tag: 0.9.98.5
+Stable tag: 0.9.98.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -188,6 +188,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 0.9.98.6 (30th AUGUST 2019) =
+* Improvements: Structured Data improvements #3567
+* Fixed: Plugin removes Telegram links #3578
+* Fixed: amp-addthis validation error on pages #3580
+* Fixed: Spot.IM Comments not working on all designs #3568
+* Fixed: Incorrect title tags being generated #3565
 
 = 0.9.98.5 (27th AUGUST 2019) =
 * Improvements: Compatibility integrated with CDN enabler #3515
