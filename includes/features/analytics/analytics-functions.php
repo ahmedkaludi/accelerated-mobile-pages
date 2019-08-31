@@ -385,6 +385,7 @@ function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
 			$ampforwp_adv_gtm_fields = ampforwp_get_setting('ampforwp-gtm-field-advance');
 			$ampforwp_adv_gtm_fields = preg_replace('!/\*.*?\*/!s', '', $ampforwp_adv_gtm_fields);
 			$ampforwp_adv_gtm_fields = preg_replace('/\n\s*\n/', '', $ampforwp_adv_gtm_fields);
+			$ampforwp_adv_gtm_fields = preg_replace('/\/\/(.*?)\s(.*)/m', '$2', $ampforwp_adv_gtm_fields);
 	 		?>
 			<amp-analytics id="<?php echo ampforwp_get_setting('amp-gtm-analytics-type'); ?>" type="googleanalytics" data-credentials="include" config="https://www.googletagmanager.com/amp.json?id=<?php echo ampforwp_get_setting('amp-gtm-id'); ?>&amp;gtm.url=SOURCE_URL"><script type="application/json"><?php echo $ampforwp_adv_gtm_fields ?></script></amp-analytics>
 			<?php
