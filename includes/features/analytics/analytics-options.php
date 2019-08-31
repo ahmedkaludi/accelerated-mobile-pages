@@ -37,6 +37,8 @@ function ampforwp_analytics_options($opt_name){
                             '11' => esc_html__('Alexa Metrics', 'accelerated-mobile-pages'),
                             '12' => esc_html__('AFS Analytics', 'accelerated-mobile-pages'),
                             '13' => esc_html__('Adobe Analytics', 'accelerated-mobile-pages'),
+                            '14' => esc_html__('Facebook Pixel', 'accelerated-mobile-pages'),
+                            '15' => esc_html__('Clicky Analytics', 'accelerated-mobile-pages'),
                         ),
                         'default'  => '1',
                     ),  

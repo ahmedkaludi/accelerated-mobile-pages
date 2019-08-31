@@ -1063,7 +1063,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .amp-ux-checkbox-container h4{display: inline;}
 .redux-main .amp-ux-upload{float: none}
 .redux-sidebar .redux-group-tab-link-a .amp-ux-warning{color: yellow;}
-.redux-main .btn-red{margin-top: -6%;margin-left: 50%}
+.amp-ux-section-field .button{margin-top: -6%;margin-left: 50%}
 /* Loader */
 .amp-ux-loader{
     margin-top: 25%;

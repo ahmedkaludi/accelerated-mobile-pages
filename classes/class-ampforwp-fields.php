@@ -32,20 +32,50 @@ class AMPforWP_Fields
 				}
 				$this->class = $fields['class'];
 			}
+			else{
+				$this->class = '';
+			}
 			if ( isset($fields['title']) ) {
 				$this->title = $fields['title'];
+			}
+			else{
+				$this->title = '';
 			}
 			if ( isset($fields['id']) ) {
 				$this->id = $fields['id'];
 			}
+			else{
+				$this->id = '';
+			}
 			if ( isset($fields['default']) ) {
 				$this->default = $fields['default'];
+			}
+			else{
+				$this->default = '';
 			}
 			if ( isset($fields['required']) ) {
 				$this->required = $fields['required'];
 			}
+			else{
+				$this->required = '';
+			}
 			if ( isset($fields['options']) && is_array($fields['options']) ){
 				$this->options = $fields['options'];
+			}
+			else{
+				$this->options = '';
+			}
+			if ( isset($fields['data-href']) ) {
+				$this->data_href = ' data-href="'.$fields['data-href'].'"';
+			}
+			else{
+				$this->data_href = '';
+			}
+			if ( isset($fields['data-text']) ) {
+				$this->data_text = ' data-text="'.$fields['data-text'].'"';
+			}
+			else{
+				$this->data_text = '';
 			}
 		}
 		// Select
@@ -118,16 +148,17 @@ class AMPforWP_Fields
 		echo '</div></div>';
 	}
 	public function ampforwp_field_select($fields){
-		$required = $hide = '';
+		$required = $hide = $hrf_id = '';
+		$data_num = 1;
 		if ( !empty($this->required) ) {
-			$required = 'required="'.$fields['required'][0].'"';
+			$required = 'required="'.$this->required[0].'"';
 			$hide = ' hide';
 		}
 		$output = '<div class="ux-field-container amp-ux-select-container '.$hide.'">';
 		if ( !empty($this->title) ) {
 			$output .= '<h2>'.$this->title.'</h2>';
 		}
-		$output .= '<select id="'.$this->id.'" class="'.$this->class.'" '.$required.' >';
+		$output .= '<select id="'.$this->id.'" class="'.$this->class.'" '.$required.' '.$this->data_href.'>';
 		if ( !empty($this->options) ) {
 			foreach ( $this->options as $option_key => $option_value ) {
 				if( $option_key == $this->default ) {
@@ -136,8 +167,15 @@ class AMPforWP_Fields
 				else{
 					$this->selected = '';
 				}
-				$output .= '<option value="'.$option_key.'" '.$this->selected.'>'.$option_value.'</option>';
+				$output .= '<option value="'.$option_key.'" '.$this->selected.' data-num="'.$data_num.'">'.$option_value.'</option>';
+				$data_num ++;
 			}
+		}
+		if( $this->data_href ){
+			if ( isset($fields['data-href-id']) ) {
+				$hrf_id = $fields['data-href-id'];
+			}
+			$output .= '<input type="hidden" value="'.$this->default.'" id="'.$hrf_id.'">';
 		}
 		$output .= '</select></div>';
 		echo $output;
@@ -235,15 +273,15 @@ class AMPforWP_Fields
 	}
 	public function ampforwp_field_text($fields){
 		$required = '';
-		if ( !empty($fields['required']) ) {
+		if ( !empty($this->required) ) {
 			$required = 'required="'.$this->required[0].'"';
 			$hide .= ' hide';
 		}
-		$output = '<div class="ux-field-container amp-ux-text-container '.$hide.'"';
+		$output = '<div class="ux-field-container amp-ux-text-container '.$hide.'">';
 		if ( !empty($this->title) ) {
-			$output = '<h2>'.$this->title.'</h2>';
+			$output .= '<h2>'.$this->title.'</h2>';
 		}
-		$output .= '<input type="text" id="'.$this->id.'" class="'.$this->class.'"><br>';
+		$output .= '<input type="text" id="'.$this->id.'" class="'.$this->class.'" '.$this->data_text.' value="'.$this->default.'"></div>';
 		echo $output;
 	}
 
