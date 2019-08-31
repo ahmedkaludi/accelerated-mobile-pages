@@ -1728,6 +1728,15 @@ Redux::setArgs( "redux_builder_amp", $args );
            ),
            array(
                'class' => 'child_opt',
+               'id'       => 'ampforwp-seo-yoast-schema',
+               'type'     => 'switch',
+               'tooltip-subtitle'     => esc_html__('Fetch Schema from the Yoast Seo for AMP Pages', 'accelerated-mobile-pages'),
+               'title'    => esc_html__( 'Schema from Yoast', 'accelerated-mobile-pages' ),
+               'default'  => 0,
+               'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
+           ),
+           array(
+               'class' => 'child_opt',
                'id'       => 'ampforwp-yoast-seo-analysis',
                'type'     => 'switch',
                'tooltip-subtitle'     => esc_html__('Get the Yoast Analysis from AMP PageBuilder Content', 'accelerated-mobile-pages'),

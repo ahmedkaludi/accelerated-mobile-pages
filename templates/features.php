@@ -1208,8 +1208,16 @@ function ampforwp_remove_schema_data() {
 		remove_filter( 'post_thumbnail_html', 'publisher_lazy_loading_img_tags', 6 );
 		remove_filter( 'the_content', 'publisher_lazy_loading_img_tags', 6 );
 	}
+	if(ampforwp_get_setting('ampforwp-seo-yoast-schema') == false && ampforwp_get_setting('ampforwp-seo-selection') == 'yoast'){
+		if( class_exists('WPSEO_Schema') ){
+			add_filter('wpseo_json_ld_output', 'ampforwp_remove_yoast_json', 10, 1);
+		}
+	}
 }
-	
+function ampforwp_remove_yoast_json($data){
+    $data = array();
+    return $data;
+}	
 // 22. Removing author links from comments Issue #180
 if( ! function_exists( 'ampforwp_disable_comment_author_links' ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
