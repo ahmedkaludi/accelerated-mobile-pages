@@ -1,11 +1,14 @@
 == Changelog ==
 
-= 0.9.98.6 (30th AUGUST 2019) =
+= 0.9.98.6 (31th AUGUST 2019) =
 * Improvements: Structured Data improvements #3567
+* Improvements: Addthis share button's postion field in 1,2 and 3 designs #3553
+* Fixed: Rare issue AMP settings are not getting saved showing popup error "There was a problem with your action. Please try again or reload the page." #3494
 * Fixed: Plugin removes Telegram links #3578
 * Fixed: amp-addthis validation error on pages #3580
 * Fixed: Spot.IM Comments not working on all designs #3568
 * Fixed: Incorrect title tags being generated #3565
+* Fixed: Reduce the size of auto inline css. #3115
 
 = 0.9.98.5 (27th AUGUST 2019) =
 * Improvements: Compatibility integrated with CDN enabler #3515
