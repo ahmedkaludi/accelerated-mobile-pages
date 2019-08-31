@@ -148,11 +148,15 @@ $amp_ux_fields = array(
 
 					array('field_type'=>'section_end', 'field_data'=>array()),
 
-					// // Privacy Settings
-					// array('field_type'=>'section_start',
-					// 	'field_data'=>array('id'=>'ampforwp-ux-privacy-section','class'=>'section-1 ampforwp-ux-privacy-section')
-					// ),
-					// array('field_type'=>'section_end', 'field_data'=>array()),
+					// Privacy Settings
+					array('field_type'=>'section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-privacy-section','class'=>'section-1 ampforwp-ux-privacy-section')
+					),
+					array('field_type'=>'switch','field_data'=>array('title'=>'Cookie Notice Bar','id'=>'amp-ux-notice-switch','class'=>'amp-ux-notice-switch amp-ux-switch-on-off','data-id'=>'amp-ux-notice-switch','desc'=>'Cookie Bar allows you to discreetly inform visitors that your website uses cookies.','default'=>ampforwp_get_setting('amp-enable-notifications'))
+					),
+					array('field_type'=>'switch','field_data'=>array('title'=>'GDPR','id'=>'amp-ux-gdpr-switch','class'=>'amp-ux-gdpr-switch amp-ux-switch-on-off','data-id'=>'amp-ux-gdpr-switch','desc'=>'Comply with European privacy regulations(GDPR). Recommended for EU Citizens.','default'=>ampforwp_get_setting('amp-gdpr-compliance-switch'))
+					),
+					array('field_type'=>'section_end', 'field_data'=>array()),
 
 					// // 3rd Party
 					// array('field_type'=>'section_start',

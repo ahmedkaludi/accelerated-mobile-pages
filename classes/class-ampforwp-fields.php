@@ -77,6 +77,12 @@ class AMPforWP_Fields
 			else{
 				$this->data_text = '';
 			}
+			if ( isset($fields['desc']) ) {
+				$this->desc = $fields['desc'];
+			}
+			else{
+				$this->desc = '';
+			}
 		}
 		// Select
 		if ( 'select' == $type ) {
@@ -195,10 +201,10 @@ class AMPforWP_Fields
 	}
 	public function ampforwp_field_switch($fields){
 		$required = '';
-		if ( !empty($fields['required']) ) {
+		if ( !empty($this->required) ) {
 			$required = 'required="'.$this->required[0].'"';
 			$this->class .= ' hide';
-			$hide = 'hide';
+			$hide = ' hide';
 		}
 		$output = '<div class="ux-field-container amp-ux-switch-container '.$hide.'"';
 		if ( !empty($this->title) ) {
@@ -207,13 +213,20 @@ class AMPforWP_Fields
 		if ( 1 == $this->default ) {
 			$this->selected = 'checked';
 		}
+		else{
+			$this->selected = '';
+		}
 		$output .= '<div class="switch-options">
 					<label class="ios7-switch">
                     	<input id="'.$this->id.'" '.$this->selected.' class="switch-on-off '.$this->class.'" type="checkbox" data-id="'.$this->id.'" value="'.$this->default.'">
                         <span></span>
                     </label>
                     <input type="hidden" class="checkbox checkbox-input " id="'.$this->id.'" value="'.$this->default.'">
-                    </div></div>';
+                    </div>';
+        if( $this->desc ){
+        	$output .= '<p class="amp-ux-switch-text">'.$this->desc.'</p>';
+        }
+        $output .= '</div>';
 		echo $output;
 	}
 
@@ -223,11 +236,6 @@ class AMPforWP_Fields
 		if ( !empty($this->title) ) {
 			$output .= '<h2>'.$this->title.'</h2>';
 		}
-		$required = '';
-		/*if ( !empty($this->required) ) {
-			$required = 'required="'.$this->required[0].'"';
-			$this->class .= ' hide';
-		}*/
 		if ( is_array($this->default) ) {
 			$id = $this->default['id'];
 			$url = $this->default['url'];
@@ -257,11 +265,7 @@ class AMPforWP_Fields
 	}
 
 	public function ampforwp_field_color(){
-		/*$required = '';
-		if ( !empty($this->required) ) {
-			$required = 'required="'.$this->required[0].'"';
-			$this->class .= ' hide';
-		}*/
+		
 		$output = '<div class="ux-field-container amp-ux-color-container">';
 		if ( !empty($this->title) ) {
 			$output .= '<h2>'.$this->title.'</h2>';

@@ -1050,11 +1050,14 @@ jQuery(document).ready(function($) {
             if($('input[id="amp-enable-notifications"]').val() != 1 ) {
                 $("input[data-id=amp-enable-notifications]").prop('checked', true).trigger( 'change' );
                 $("input[id=amp-enable-notifications]").val(1);
-                $(this).val(1);
             }
             if($('input[id="amp-ux-gdpr-switch"]').val() == 1 ) {
                 $("input[data-id=amp-ux-gdpr-switch]").prop('checked', false).trigger( 'change' );
                 $("input[id=amp-amp-ux-gdpr-switch]").val(0);
+            }
+            if($('input[id="amp-gdpr-compliance-switch"]').val() == 1 ) {
+                $("input[data-id=amp-gdpr-compliance-switch]").prop('checked', false).trigger( 'change' );
+                $("input[id=amp-gdpr-compliance-switch]").val(0);
             }
         }
         else if( $(this).prop("checked") == false && $('input[id="amp-enable-notifications"]').val() == 1 ){
@@ -1062,9 +1065,8 @@ jQuery(document).ready(function($) {
             $("input[id=amp-enable-notifications]").val(0);
             $(this).val(0);
         }
-        //saveChangesInRedux($(this));
     });
-    /*
+    
     $('input[id="amp-ux-gdpr-switch"]').click(function(){
         if($(this).prop("checked") == true){
             $(this).val(1);
@@ -1075,6 +1077,10 @@ jQuery(document).ready(function($) {
             if($('input[id="amp-ux-notice-switch"]').val() == 1 ) {
                 $("input[data-id=amp-ux-notice-switch]").prop('checked', false).trigger( 'change' );
                 $("input[id=amp-ux-notice-switch]").val(0);
+            }
+            if($('input[id="amp-enable-notifications"]').val() == 1 ) {
+                $("input[data-id=amp-enable-notifications]").prop('checked', false).trigger( 'change' );
+                $("input[id=amp-enable-notifications]").val(0);
             }
         }
         else if( $(this).prop("checked") == false && $('input[id="amp-gdpr-compliance-switch"]').val() == 1 ){
