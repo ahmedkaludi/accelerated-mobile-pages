@@ -626,8 +626,8 @@ if(class_exists('MCI_Footnotes')){ ?>
   div#footnote_references_container{
     display: unset;
   }
-  .footnote_container_prepare p span:last-child {
-    display:none;
+  #fn_span{
+    margin-left: 14px;
   }
 <?php } ?>
 <?php // Footer Widget Satyling
