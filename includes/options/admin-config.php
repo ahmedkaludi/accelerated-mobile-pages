@@ -3560,7 +3560,7 @@ Redux::setSection( $opt_name, array(
                         'mode'     => 'css',
                         'theme'    => 'monokai',
                         'desc'     => '',
-                        'default'  => esc_html__('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages')
+                        'default'  => ''
                 ),
             );
     $amp_fontparts = array_merge($amp_fontparts ,$global_settings); 
