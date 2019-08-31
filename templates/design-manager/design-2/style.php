@@ -801,4 +801,16 @@ amp-user-notification{
   bottom:41px;
   z-index: 999999;
 }
-<?php } //amp-enable-notifications Condition Ends Here ?>   
+<?php } //amp-enable-notifications Condition Ends Here ?>
+.ampforwp_post_pagination span:not(:first-child) {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #0a89c0;
+    border-radius: 50%;
+    display: inline-block;
+    
+}
+.ampforwp_post_pagination span{
+  margin-left: 10px;
+}

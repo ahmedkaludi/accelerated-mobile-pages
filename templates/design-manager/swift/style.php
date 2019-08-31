@@ -2185,3 +2185,11 @@ if( true == ampforwp_get_setting('gnrl-sidebar') && true == ampforwp_get_setting
   }
 }
 <?php } ?>
+.ampforwp_post_pagination span:not(:first-child) {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;
+    border-radius: 50%;
+    display: inline-block;
+}
