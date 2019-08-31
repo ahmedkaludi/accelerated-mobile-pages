@@ -1245,21 +1245,68 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
         font-size: 12px;
     }
     #redux_builder_amp-menu-type ul.redux-image-select li {
-        width: 39%;
+        width: 42%;
+        padding-bottom: 20px;
     }
     table.form-table, .form-table>thead, .form-table>tbody, .form-table>tbody>tr>th, .form-table>tbody>tr>td, .form-table>tbody>tr {
         vertical-align: top;
     }
     .amppb-layout-layout {
-        width: 100%!important;
+        width: 44%!important;
         margin: 0px 0px 25px 0px;
     }
     #redux_builder_amp-menu-type .redux-image-select li, #redux_builder_amp-single-design-type .redux-image-select li {
-        width: 43%;
-        padding-right: 20px;
+        width: 45%;
+        padding: 0px 20px 15px 0px;
     }
     #redux_save, #redux-defaults-section, #redux-defaults{
         padding:12px 18px 16px 18px;
+    }
+    #section-table-ampforwp_themes_swift_layout_head .amp_layouts_container  td, #section-table-header_section_1 td{
+        width: 100%;
+    }
+    .amp_layout{width:100%;}
+    .amp_layout .amppb-layout-layout:nth-child(odd){
+        margin-right:0;
+    }
+    .redux-image-select-selected:after {
+        width: 0.2em;
+        height: 0.5em;
+        left: 8px;
+        top: 3px;
+    }
+    .redux-image-select-selected:before {
+        border: solid 12px rgb(19, 163, 21);
+    }
+    #redux_builder_amp-header-type, #redux_builder_amp-menu-type, #redux_builder_amp-single-design-type{
+        padding-top:0px;
+    }
+    .section-table-header_section_1 .redux_field_th, #section-table-header_section_2 tr.fold:nth-child(3) .redux_field_th, #section-table-ampforwp-single_section_1 tr.fold:nth-child(2) .redux_field_th{
+        padding:10px 0px;
+    }
+    .extension_listing li{
+        width:100%;
+        float: none;
+    }
+    .redux-main .form-table-section-indented .redux-main .mini, 
+    .redux-main .form-table-section-indented input[type=text].mini{
+        width:50px !important;
+    }
+    .redux-container-spacing .field-spacing-input .add-on{
+        padding: 7px 0px;
+        font-size: 7px;
+    }
+    #redux_builder_amp-primary-menu-padding-control{
+        height:80px;
+    }
+    #section-table-header_section_2 tr.fold:nth-child(3) td{
+        width:100%;
+    }
+    #section-table-ampforwp-single_section_1 tr.fold:nth-child(2) td{
+        width:100%;
+    }
+    #redux_builder_amp-rp_design_type ul, #redux_builder_amp-ampforwp-gallery-design-type ul{
+        grid-gap: 10px;
     }
 
 }
