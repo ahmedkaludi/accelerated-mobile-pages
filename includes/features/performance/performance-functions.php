@@ -65,7 +65,7 @@ function ampforwp_minify_html_output($content_buffer){
     if ( $minify_html_xhtml == 'yes' && strtolower( substr( ltrim( $buffer ), 0, 15 ) ) == '<!doctype html>' )
         $buffer = str_replace( ' />', '>', $buffer );
     if ( $minify_html_relative == 'yes' )
-        $buffer = str_replace( array ( 'https://' . $_SERVER['HTTP_HOST'] . '/', 'http://' . $_SERVER['HTTP_HOST'] . '/', '//' . $_SERVER['HTTP_HOST'] . '/' ), array( '/', '/', '/' ), $buffer );
+        $buffer = str_replace( array ( 'https://' . AMPFROWP_HOST_NAME . '/', 'http://' . AMPFROWP_HOST_NAME . '/', '//' . AMPFROWP_HOST_NAME . '/' ), array( '/', '/', '/' ), $buffer );
     if ( $minify_html_scheme == 'yes' )
         $buffer = str_replace( array( 'http://', 'https://' ), '//', $buffer );
      

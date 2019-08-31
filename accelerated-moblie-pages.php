@@ -22,6 +22,12 @@ define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
 define('AMPFORWP_VERSION','0.9.98.6');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
+if(!defined('AMPFROWP_HOST_NAME')){
+	$urlinfo = get_bloginfo('url');
+	$url = parse_url($urlinfo);
+	$host = $url['host'];
+	define('AMPFROWP_HOST_NAME', $host);
+}
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
     $ampforwp_slug = '';

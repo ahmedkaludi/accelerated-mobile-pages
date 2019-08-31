@@ -1102,10 +1102,7 @@ $single_extension_listing = '
 ';
 
 $upcomingLayoutsDesign = '';
-$layouts = array();
-if( is_admin() ){
-    $layouts = ampforwp_upcomming_layouts_demo();
-}
+$layouts = ampforwp_upcomming_layouts_demo();
 if(is_array($layouts)){
     foreach($layouts as $k=>$val){
     	$upcomingLayoutsDesign .=  '<div class="amp_layout_upcomming"> 
