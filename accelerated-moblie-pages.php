@@ -1199,22 +1199,24 @@ function ampforwp_automattic_notice_delete(){
 
 add_action('admin_init','ampforwp_replace_redux_comments');
 function ampforwp_replace_redux_comments(){
-	$replaced_redux_comments = get_transient('replaced_redux_comments');
-	if(!$replaced_redux_comments){
-		set_transient('replaced_redux_comments',1);
-		$redux = get_option('redux_builder_amp');
-	    $search = '/******* Paste your Custom CSS in this Editor *******/';
-		$rep = str_replace("$search", "", $redux);
-		$search = '/** 
-	     * Enter your Advanced Analytics code here
-	    */';
-		$rep = str_replace("$search", "", $rep);
-		$search = ' /** 
-	       * Enter your Advanced Analytics code here
-	      */';
-		$rep = str_replace("$search", "", $rep);
-		$search = ' //Replace this with your Tracking ID';
-		$rep = str_replace("$search", "", $rep);
-		update_option('redux_builder_amp', $rep);
+	if(current_user_can( 'manage_options' )){
+		$replaced_redux_comments = get_transient('replaced_redux_comments');
+		if(!$replaced_redux_comments){
+			$redux = get_option('redux_builder_amp');
+		    $search = '/******* Paste your Custom CSS in this Editor *******/';
+			$rep = str_replace("$search", "", $redux);
+			$search = '/** 
+		     * Enter your Advanced Analytics code here
+		    */';
+			$rep = str_replace("$search", "", $rep);
+			$search = ' /** 
+		       * Enter your Advanced Analytics code here
+		      */';
+			$rep = str_replace("$search", "", $rep);
+			$search = ' //Replace this with your Tracking ID';
+			$rep = str_replace("$search", "", $rep);
+			update_option('redux_builder_amp', $rep);
+			set_transient('replaced_redux_comments',1);
+		}
 	}
 }
