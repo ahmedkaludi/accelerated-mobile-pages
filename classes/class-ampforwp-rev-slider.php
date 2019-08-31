@@ -60,9 +60,9 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					$img_h = $slide->getParam('ext_height', '1080');
 					$urls[] = apply_filters('amp_gallery_image_params', array(
 						'url' => $url,
-						'width' => $img_w,
-						'height' => $img_h,
-						'bgtype' => $bgtype
+						'width' => intval($img_w),
+						'height' => intval($img_h),
+						'bgtype' => esc_attr($bgtype)
 					),$attachment_id);
 				}elseif( $bgtype == 'image'){
 					$img_data = wp_get_attachment_metadata( $slide->getImageID() );
@@ -70,9 +70,9 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					$attachment_id = $slide->getImageID();
 					$urls[] = apply_filters('amp_gallery_image_params', array(
 						'url' => $url,
-						'width' => $img_data['width'],
-						'height' => $img_data['height'],
-						'bgtype' => $bgtype
+						'width' => intval($img_data['width']),
+						'height' => intval($img_data['height']),
+						'bgtype' => esc_attr($bgtype)
 					),$attachment_id);
 				}elseif( $bgtype == 'youtube' ){
 					$youtube_id = $slide->getParam('slide_bg_youtube', '');
@@ -81,7 +81,7 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 						'url' => $youtube_id,
 						'width' => '480',
 						'height' => '270',
-						'bgtype' => $bgtype,
+						'bgtype' => esc_attr($bgtype),
 						'cover_img' => $cover_img
 					),$attachment_id);
 				}
@@ -124,26 +124,26 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					$img_h = $slide->get_param('ext_height', '1080');
 					$urls[] = apply_filters('amp_gallery_image_params', array(
 						'url' => $url,
-						'width' => $img_w,
-						'height' => $img_h,
-						'bgtype' => $bgtype
+						'width' => intval($img_w),
+						'height' => intval($img_h),
+						'bgtype' => esc_attr($bgtype)
 					),$image_id);
 				}elseif( $bgtype == 'image'){
 					$urls[] = apply_filters('amp_gallery_image_params', array(
 						'url' => $url,
-						'width' => $img_data['width'],
-						'height' => $img_data['height'],
-						'bgtype' => $bgtype
+						'width' => intval($img_data['width']),
+						'height' => intval($img_data['height']),
+						'bgtype' => esc_attr($bgtype)
 					),$image_id);
 				}elseif( $bgtype == 'youtube' ){
 					$youtube_id = $slide->get_param(array('bg','youtube'), '');
 					$cover_img = $slide->get_param(array('bg','image'), '');
 					$urls[] = apply_filters('amp_gallery_image_params', array(
-						'url' => $youtube_id,
+						'url' => esc_url($youtube_id),
 						'width' => '480',
 						'height' => '270',
-						'bgtype' => $bgtype,
-						'cover_img' => $cover_img
+						'bgtype' => esc_attr($bgtype),
+						'cover_img' => esc_attr($cover_img)
 					),$image_id);
 				}
 			}
