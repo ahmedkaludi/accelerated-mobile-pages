@@ -1594,9 +1594,11 @@ function DrawerIcon(icon) {
 }
     
     // Debug Mode
-    $("#disable_config").click(function(){
+     $("#disable_config").click(function(){
+
         var data = {
             action: 'ampforwp_disable_wp_debug',
+            verify_nonce:$("#ampforwp_debug_nonce").val()
         };
         $.post(ajaxurl, data, function(response) {
             $(".amp-debug-mode-recommend").remove();
@@ -1605,6 +1607,7 @@ function DrawerIcon(icon) {
     $("#skip_config").click(function(){
         var data = {
             action: 'ampforwp_skip_wp_debug',
+            verify_nonce:$("#ampforwp_debug_nonce").val()
         };
         $.post(ajaxurl, data, function(response) {
             $(".amp-debug-mode-recommend").remove();
