@@ -1088,22 +1088,9 @@ jQuery(document).ready(function($) {
             $("input[id=amp-gdpr-compliance-switch]").val(0);
         }
     });
-    
-
-    // SEO Section
-    $('.ampforwp-ux-seo-select').on('change', function(e){
-        $("select[id=ampforwp-seo-selection-select]").val($(this).val());
-        $("span[id=select2-ampforwp-seo-selection-select-container]").text($(this).children("option").filter(":selected").text());
-        // Save changes
-        window.onbeforeunload = null;
-        if ( redux.args.ajax_save === true ) {
-            $.redux.ajax_save( $( this ) );
-            e.preventDefault();
-        }
-    });
-*/  
 
 
+// Required condition for each field
 $.each(new_data, function(key,value) {
         ampCheckRequired($('#'+value.field_data.id));
     });
