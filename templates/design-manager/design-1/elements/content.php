@@ -2,9 +2,17 @@
 <?php do_action('ampforwp_before_content_hook',$this); ?>
 
 <div class="amp-wp-article-content">
+	<?php 
+	if ( 'above-content' ==  ampforwp_get_setting('design-1-2-3-addthis-pos') ){
+		echo ampforwp_addThis_support(); 
+	}	?>
 	<div class="amp-wp-content the_content">
 	<?php amp_content(); ?>
 	</div>
+	<?php 
+	if ( 'below-content' ==  ampforwp_get_setting('design-1-2-3-addthis-pos') ){
+		echo ampforwp_addThis_support();
+	} ?>
 	<!--Post Next-Previous Links-->
 	<?php
 		if($redux_builder_amp['enable-single-next-prev'] && !is_page() ) { ?>

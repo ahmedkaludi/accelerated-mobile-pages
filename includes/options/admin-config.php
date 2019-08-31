@@ -6356,6 +6356,22 @@ else{
                                 array('addthis-inline-share', '=', '1'),
                                  )
             ), 
+           array(
+                'id'       => 'design-1-2-3-addthis-pos',
+                'type'     => 'select',
+                'class' => 'child_opt child_opt_arrow',
+                'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                                'above-content' => 'Above Content',
+                                'below-content' => 'Below Content'
+                                ),
+                'default'  => 'below-content',
+                'required' => array(
+                                array('amp-design-selector', '!=', '4'),
+                                array('enable-add-this-option', '=', '1'),
+                                array('addthis-inline-share', '=', '1'),
+                                 )
+            ), 
           array(
                'id'       => 'add-this-pub-id',
                'title'    => esc_html__('Pub ID', 'accelerated-mobile-pages'),

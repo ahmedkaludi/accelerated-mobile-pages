@@ -715,6 +715,7 @@ function ampforwp_addThis_support(){
 	$amp_addthis = '';
 	if ( ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social')) ) && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) {
 	 	if( ampforwp_get_setting('enable-add-this-option') ) {
+	
 	 		if( 4 == ampforwp_get_setting('amp-design-selector') && 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
 	 			$addthisWidth = 290; 
 	 		}
