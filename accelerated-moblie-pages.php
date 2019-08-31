@@ -26,7 +26,7 @@ if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
 	$url = parse_url($urlinfo);
 	$host = $url['host'];
-	define('AMPFROWP_HOST_NAME', $host);
+	define('AMPFROWP_HOST_NAME', esc_attr($host));
 }
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
