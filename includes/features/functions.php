@@ -172,10 +172,10 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         $fotenote_collapse_link = '';
         $fotenote_collapse = MCI_Footnotes_Convert::toBool(MCI_Footnotes_Settings::instance()->get(MCI_Footnotes_Settings::C_BOOL_REFERENCE_CONTAINER_COLLAPSE));
         if( $fotenote_collapse == true ){
-            $fotenote_collapse_link = 'on="tap:footnote_references_container.show"';
+            $fotenote_collapse_link = 'on="tap:footnote_references_container.show" role="click" tabindex="1" ';
             $content_buffer = preg_replace( '/<div id=(.*?)footnote_references_container(.*?)\s/m','<div id=$1footnote_references_container$2 hidden ',$content_buffer);
 
-            $content_buffer = preg_replace( '/<div\s(.*?)<a\s(.*?)\+(.*)/m','<div $1 <a on="tap:footnote_references_container.show" $2 + <span on="tap:footnote_references_container.hide" id="fn_span" role="click" tabindex="1" > - </span> $3',$content_buffer);
+            $content_buffer = preg_replace( '/<div\s(.*?)<a\s(.*?)\+(.*)/m','<div $1 <a on="tap:footnote_references_container.show" $2 + <span on="tap:footnote_references_container.hide" id="fn_span" role="click" tabindex="2" > - </span> $3',$content_buffer);
         }
         $content_buffer = preg_replace( '/<sup(.*?)id="footnote_plugin_tooltip_(.*?)"(.*?)class="footnote_plugin_tooltip_text"(.*?)>(.*?)<\/sup>/m',  '
         <sup$1id="footnote_plugin_tooltip_$2" '.$fotenote_collapse_link.' $3class="footnote_plugin_tooltip_text"$4><a href="#footnote_plugin_reference_$2" id="fn_plugin_refer" >$5</a></sup>', $content_buffer);
