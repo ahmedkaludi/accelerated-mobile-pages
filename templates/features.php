@@ -6854,7 +6854,14 @@ function ampforwp_webp_featured_image() {
 			if(empty($image[2])){
 			$image[2] = 500;
 			}
-			$alt = get_the_title( $post_id );
+			$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
+			if($thumb_alt){
+				$alt = $thumb_alt;
+			}
+			else{
+				$alt = get_the_title( $post_id );
+			}
+			$alt = convert_chars( stripslashes( $alt ) );
 		$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' alt='".esc_attr($alt)."' ></amp-img>";?>
 		<figure class="amp-wp-article-featured-image">
 			<?php 
