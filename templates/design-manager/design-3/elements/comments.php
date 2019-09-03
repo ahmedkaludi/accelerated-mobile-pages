@@ -150,13 +150,13 @@ function ampforwp_comment_form_design3( $args = array(), $post_id = null ) {
 	);
 
 	$required_text = sprintf( ' ' . esc_html__( ampforwp_get_setting('amp-comments-translator-required-fields-text_core'), 'accelerated-mobile-pages') . '%s', '<span class="required">*</span>' );
-
+	$nonce = wp_create_nonce( "ampforwp_comment_publish" );
 	$submit_url =  admin_url('admin-ajax.php?action=amp_comment_submit');
 	$fields = apply_filters( 'comment_form_default_fields', $fields );
 	$defaults = array(
 		'fields'               => $fields,
 		'comment_field'        => '<p [class]="formData.submit.success" class="comment-form-comment"><label for="comment">' . esc_html__( ampforwp_get_setting('amp-comments-translator-Comment-text_core'), 'accelerated-mobile-pages') . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p>
-		<input type="hidden" name="amp_cptch_hidden" value="1" >',
+		<input type="hidden" name="amp_cptch_hidden" value="1" ><input type="hidden" name="amp_cmnt_nonce" value="'.$nonce.'">',
 
 		'must_log_in'          => '<p class="must-log-in">' . sprintf('You must be <a href="%s">logged in</a> to post a comment.',
 		                              esc_url(wp_login_url( apply_filters( 'the_permalink', $login_url )),'accelerated-mobile-pages')
