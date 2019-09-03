@@ -49,12 +49,14 @@ function ampforwp_related_post_loop_query(){
 	$int_number_of_related_posts = (int)$string_number_of_related_posts;
 	$args = null;
 	$orderby = 'ID';
+	$exclude = array($post->ID);
+	$exclude = apply_filters('ampforwp_exclude_related_post_filter' , $exclude );
     if( true == ampforwp_get_setting('ampforwp-single-order-of-related-posts')){
 			$orderby = 'rand';
 		}
 	$args=array(
 	'post_type'	   => get_post_type($post),
-    'post__not_in' => array($post->ID),
+    'post__not_in' => $exclude,
     'posts_per_page'=> $int_number_of_related_posts,
     'orderby' => $orderby,
     'ignore_sticky_posts'=>1,
