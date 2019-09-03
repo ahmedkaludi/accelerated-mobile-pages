@@ -22,7 +22,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 			$facebook_like_url = '';
 			$facebook_like_url = $amp_permalink;
 			if( $facebook_like_url ){ ?>
-				<amp-facebook-like width=90 height=28
+				<amp-facebook-like width=90 height=28 style="max-height: 28px;"
 				 	layout="fixed"
 				 	data-size="large"
 				    data-layout="button_count"
