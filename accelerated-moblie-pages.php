@@ -1242,6 +1242,8 @@ function ampforwp_replace_redux_comments(){
 			$rep 		= preg_replace( $pattern, $replace,$gml_val);
 			$search 	= '/***EnteryourAdvancedAnalyticscodehere*/';
 			$rep 		= str_replace("$search", "", $rep);
+	      	$search 	= '/*ReplacethiswithyourTrackingID*/';
+	      	$rep 		= str_replace("$search", "", $rep);
 
 			$jsonstr 	= "";
 			for($i=0;$i<strlen($rep);$i++){
