@@ -1205,24 +1205,57 @@ function ampforwp_automattic_notice_delete(){
 
 add_action('admin_init','ampforwp_replace_redux_comments');
 function ampforwp_replace_redux_comments(){
+
 	if(current_user_can( 'manage_options' )){
-		$replaced_redux_comments = get_transient('replaced_redux_comments');
+	$replaced_redux_comments = get_transient('replaced_redux_comments_updated');
+
 		if(!$replaced_redux_comments){
-			$redux = get_option('redux_builder_amp');
+		    $redux_val   = get_option('redux_builder_amp',true);  
+
 		    $search = '/******* Paste your Custom CSS in this Editor *******/';
-			$rep = str_replace("$search", "", $redux);
-			$search = '/** 
-		     * Enter your Advanced Analytics code here
-		    */';
-			$rep = str_replace("$search", "", $rep);
-			$search = ' /** 
-		       * Enter your Advanced Analytics code here
-		      */';
-			$rep = str_replace("$search", "", $rep);
-			$search = ' //Replace this with your Tracking ID';
-			$rep = str_replace("$search", "", $rep);
-			update_option('redux_builder_amp', $rep);
-			set_transient('replaced_redux_comments',1);
-		}
-	}
+		    $rep = str_replace("$search", "", $redux_val);
+
+			//FOR GA
+			$pattern 	= '/\s*/m';
+			$replace 	= '';
+
+			$ga_val   	= $redux_val['ampforwp-ga-field-advance'];
+			$rep 		= preg_replace( $pattern, $replace,$ga_val);
+			$search 	= '/***EnteryourAdvancedAnalyticscodehere*/';
+			$rep 		= str_replace("$search", "", $rep);
+			$search 	= '//ReplacethiswithyourTrackingID';
+			$rep 		= str_replace("$search", "", $rep);
+			$jsonstr 	= "";
+			
+			for($i=0;$i<strlen($rep);$i++){
+				$resp = $rep[$i];
+				$jsonstr.=$resp;
+				if($resp=='{' || $resp=='}'){
+					$jsonstr.=PHP_EOL;
+				}
+			}
+		    $redux_val['ampforwp-ga-field-advance'] = $jsonstr;
+		    // GA CLOSE
+		      
+			//FOR GTM
+			$gml_val   	= $redux_val['ampforwp-gtm-field-advance'];
+			$rep 		= preg_replace( $pattern, $replace,$gml_val);
+			$search 	= '/***EnteryourAdvancedAnalyticscodehere*/';
+			$rep 		= str_replace("$search", "", $rep);
+
+			$jsonstr 	= "";
+			for($i=0;$i<strlen($rep);$i++){
+				$resp = $rep[$i];
+				$jsonstr.=$resp;
+				if($resp=='{' || $resp=='}'){
+					$jsonstr.=PHP_EOL;
+				}
+			}
+			//GTM CLOSE
+
+			$redux_val['ampforwp-gtm-field-advance'] = $jsonstr;
+			update_option('redux_builder_amp',$redux_val);
+			set_transient('replaced_redux_comments_updated',1);
+	    }
+ 	}
 }
