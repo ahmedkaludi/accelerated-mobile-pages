@@ -61,6 +61,7 @@ function ampforwp_redirection() {
       unset($current_url['?nonamp=1']);
       $current_url = array_flip($current_url);
       $current_url = implode('/', $current_url);
+      $current_url = trailingslashit($current_url);
       wp_safe_redirect( $current_url );
       exit;
   }
