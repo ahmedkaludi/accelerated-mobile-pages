@@ -509,6 +509,7 @@ function amp_loop_image( $data=array() ) {
 		}
 		
 		if(!empty($featuredVideo) ){
+				$imageLink = amp_loop_permalink(true);
 				echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
 				echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
 				echo $featuredVideo;
@@ -542,10 +543,9 @@ function amp_loop_image( $data=array() ) {
 				echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
 				echo '</a>';
 				echo '</'.$tag.'>';
-				
 			}
 		}
-     }
+    }
 } 
 
 // Category
