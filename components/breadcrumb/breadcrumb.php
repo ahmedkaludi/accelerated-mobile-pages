@@ -191,7 +191,7 @@
             // Get tag information
             $term_id        = get_query_var('tag_id');
             $taxonomy       = 'post_tag';
-            $args           = 'include=' . $term_id;
+            $args           = 'include=' . intval($term_id);
             $terms          = get_terms( $taxonomy, $args );
             $get_term_id    = $terms[0]->term_id;
             $get_term_slug  = $terms[0]->slug;

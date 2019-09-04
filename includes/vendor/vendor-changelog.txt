@@ -84,3 +84,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 54. Added class_exists('SQ_Classes_ObjController') condition to amp_post_template_add_schemaorg_metadata for Squirrly SEO Compatibility #3421
 55. class-amp-content.php updated #3422
 56. whitelisted skype in anchor tags #3475
+57. Telegram links has been whitelisted in anchor tags #3578

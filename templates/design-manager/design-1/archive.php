@@ -48,7 +48,9 @@ global $redux_builder_amp, $wp; ?>
 
 	  <?php if ( is_archive() ) {
 	  	if( is_author() ){
-			$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
+	  		$author_name = get_query_var('author_name');
+	  		$author = get_query_var('author');
+			$curauth = (get_query_var('author_name')) ? get_user_by('slug', esc_attr($author_name)) : get_userdata(esc_attr($author));
 				if( true == ampforwp_gravatar_checker($curauth->user_email) ){
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>

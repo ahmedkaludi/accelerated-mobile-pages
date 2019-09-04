@@ -1208,8 +1208,16 @@ function ampforwp_remove_schema_data() {
 		remove_filter( 'post_thumbnail_html', 'publisher_lazy_loading_img_tags', 6 );
 		remove_filter( 'the_content', 'publisher_lazy_loading_img_tags', 6 );
 	}
+	if(ampforwp_get_setting('ampforwp-seo-yoast-schema') == false && ampforwp_get_setting('ampforwp-seo-selection') == 'yoast'){
+		if( class_exists('WPSEO_Schema') ){
+			add_filter('wpseo_json_ld_output', 'ampforwp_remove_yoast_json', 10, 1);
+		}
+	}
 }
-	
+function ampforwp_remove_yoast_json($data){
+    $data = array();
+    return $data;
+}	
 // 22. Removing author links from comments Issue #180
 if( ! function_exists( 'ampforwp_disable_comment_author_links' ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
@@ -1686,7 +1694,7 @@ function ampforwp_replace_title_tags() {
 		}
 
 		//Genesis #1013
-		if(function_exists('genesis_title') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ){
+		if(function_exists('genesis_theme_support') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ){
 			if(is_home() && is_front_page() && !$redux_builder_amp['amp-frontpage-select-option']){
 				// Determine the doctitle.
 			$genesis_title = genesis_get_seo_option( 'home_doctitle' ) ? genesis_get_seo_option( 'home_doctitle' ) : get_bloginfo( 'name' );
@@ -1994,9 +2002,9 @@ function ampforwp_seopress_title_sanitize($title){
 		post_type_archive_title('', false),
 		get_the_archive_title(),
 		get_the_archive_title(),
-		get_query_var('day'),
-		get_query_var('monthnum'),
-		get_query_var('year'),
+		esc_attr(get_query_var('day')),
+		esc_attr(get_query_var('monthnum')),
+		esc_attr(get_query_var('year')),
 		$woo_single_cat_html,
 		$woo_single_tag_html,
 		$seopress_get_the_excerpt,
@@ -6045,18 +6053,18 @@ function ampforwp_spotim_comments_support() {
 	}
 }
 function ampforwp_spotim_comments_markup() {
-	global $post, $redux_builder_amp; 
+	global $post;
 	$display_comments_on = false;
 	$display_comments_on = ampforwp_get_comments_status();
 	if (! $display_comments_on ) {
 		return '';
 	}
 	$spotId ='';
-	if( isset($redux_builder_amp['ampforwp-spotim-comments-apiKey']) && $redux_builder_amp['ampforwp-spotim-comments-apiKey'] !== ""){
-		$spotId = $redux_builder_amp['ampforwp-spotim-comments-apiKey'];
+	if( true == ampforwp_get_setting('ampforwp-spotim-comments-apiKey') && ampforwp_get_setting('ampforwp-spotim-comments-apiKey') !== ""){
+		$spotId = ampforwp_get_setting('ampforwp-spotim-comments-apiKey');
 	}
-	$srcUrl = 'https://amp.spot.im/production.html?';
-	$srcUrl = add_query_arg('spotId' ,get_permalink(), $srcUrl);
+	$srcUrl = 'https://amp.spot.im/production.html?spot_im_highlight_immediate=true';
+	$srcUrl = add_query_arg('spotId' ,$spotId, $srcUrl);
 	$srcUrl = add_query_arg('postId' , $post->ID, $srcUrl);
 	$spotim_html = '<amp-iframe width="375" height="815" resizable sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation" layout="responsive"
 	  frameborder="0" src="'.esc_url($srcUrl).'">

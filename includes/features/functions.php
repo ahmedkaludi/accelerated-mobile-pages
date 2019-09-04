@@ -426,10 +426,10 @@ if ( ! function_exists( 'ampforwp_isexternal ') ) {
         if ( empty($components['host']) ) return false;  
         
         // url host looks exactly like the local host
-        if ( strcasecmp($components['host'], $_SERVER['HTTP_HOST']) === 0 ) return false; 
+        if ( strcasecmp($components['host'], AMPFROWP_HOST_NAME) === 0 ) return false; 
         
         // check if the url host is a subdomain
-        return strrpos(strtolower($components['host']), $_SERVER['HTTP_HOST']) !== strlen($components['host']) - strlen($_SERVER['HTTP_HOST']); 
+        return strrpos(strtolower($components['host']), AMPFROWP_HOST_NAME) !== strlen($components['host']) - strlen(AMPFROWP_HOST_NAME); 
     }
 } // end ampforwp_isexternal
 

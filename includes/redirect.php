@@ -51,7 +51,7 @@ function ampforwp_redirection() {
   // Redirect ?nonamp=1 to normal url #3269
   $current_url = $check = '';
   $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
-                "https" : "http") . "://" . $_SERVER['HTTP_HOST'] .  
+                "https" : "http") . "://" . AMPFROWP_HOST_NAME .  
                 $_SERVER['REQUEST_URI'];              
   $current_url = explode('/', $current_url);
   $check    =  '?nonamp=1';

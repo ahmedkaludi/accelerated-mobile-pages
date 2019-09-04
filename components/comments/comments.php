@@ -230,13 +230,13 @@ function ampforwp_framework_get_vuukle_comments(){
 }
 
 function ampforwp_framework_get_spotim_comments(){
-	global $post, $redux_builder_amp; 
+	global $post;
 	$spotId ='';
-	if( isset($redux_builder_amp['ampforwp-spotim-comments-apiKey']) && $redux_builder_amp['ampforwp-spotim-comments-apiKey'] !== ""){
-		$spotId = $redux_builder_amp['ampforwp-spotim-comments-apiKey'];
+	if( true == ampforwp_get_setting('ampforwp-spotim-comments-apiKey') && ampforwp_get_setting('ampforwp-spotim-comments-apiKey') !== ""){
+		$spotId = ampforwp_get_setting('ampforwp-spotim-comments-apiKey');
 	}
-	$srcUrl = 'https://amp.spot.im/production.html?';
-	$srcUrl = add_query_arg('spotId' ,get_permalink(), $srcUrl);
+	$srcUrl = 'https://amp.spot.im/production.html?spot_im_highlight_immediate=true';
+	$srcUrl = add_query_arg('spotId' ,$spotId, $srcUrl);
 	$srcUrl = add_query_arg('postId' , $post->ID, $srcUrl);
 	$spotim_html = '<amp-iframe width="375" height="815" resizable sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation" layout="responsive"
 	  frameborder="0" src="'.esc_url($srcUrl).'">

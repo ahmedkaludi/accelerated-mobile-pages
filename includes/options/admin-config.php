@@ -1102,20 +1102,17 @@ $single_extension_listing = '
 ';
 
 $upcomingLayoutsDesign = '';
-$layouts = array();
-if( is_admin() ){
-    $layouts = ampforwp_upcomming_layouts_demo();
-}
+$layouts = ampforwp_upcomming_layouts_demo();
 if(is_array($layouts)){
     foreach($layouts as $k=>$val){
     	$upcomingLayoutsDesign .=  '<div class="amp_layout_upcomming"> 
         <div class="amppb_ad-layout-layout">
             <div class="amppb_ad-layout-wrapper">
             <div class="amppb_ad-layout_pro"><a href="https://ampforwp.com/amp-layouts/" target="_blank">PRO</a></div>
-                <h4 class="amppb_ad-layout-title">'.$val['name'].'</h4>
-                <div class="amppb_ad-layout-screenshot"> <img src="'.$val['image'].'" onclick="window.open(\''.$val['link'].'\')"> </div>
+                <h4 class="amppb_ad-layout-title">'.esc_html($val['name']).'</h4>
+                <div class="amppb_ad-layout-screenshot"> <img src="'.esc_url($val['image']).'" onclick="window.open(\''.esc_url($val['link']).'\')"> </div>
                 <div class="amppb_ad-layout-button">
-                    <a target="_blank" href="'.$val['link'].'" class="button">View Theme</a> 
+                    <a target="_blank" href="'.esc_url($val['link']).'" class="button">'. esc_html__('View Theme','accelerated-mobile-pages').'</a> 
                 </div>
             </div>
         </div>
@@ -1177,9 +1174,9 @@ $eu_iso_codes = array(
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
 $proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Upgrade to PRO</a> ';
 if($ampforwp_nameOfUser!=""){
-    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".$ampforwp_nameOfUser."</span> <a class='' href='".admin_url('admin.php?page=amp_options&tabid=opt-go-premium')."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
+    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url(admin_url('admin.php?page=amp_options&tabid=opt-go-premium'))."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
-    $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".admin_url('admin.php?tabid=opt-go-premium&page=amp_options')."'>Enter license here</a></span>";
+    $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".esc_url(admin_url('admin.php?tabid=opt-go-premium&page=amp_options'))."'>Enter license here</a></span>";
 }
 if(function_exists('amp_activate') ){
     $proDetailsProvide = "<a class='premium_features_btn_txt' href=\"#\"> AMP by Automattic compatibility has been activated</a>";
@@ -1598,7 +1595,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             elseif ( defined( 'RANK_MATH_FILE' ) ) {
                 $default = 'rank_math';
             }
-            elseif ( function_exists('genesis_title') ) {
+            elseif ( function_exists('genesis_theme_support') ) {
                 $default = 'genesis';
             }
             elseif ( is_plugin_active('wp-seopress/seopress.php') ) {
@@ -1723,6 +1720,15 @@ Redux::setArgs( "redux_builder_amp", $args );
                'type'     => 'switch',
                'tooltip-subtitle'     => esc_html__('Pull Canonical from Yoast for AMP pages', 'accelerated-mobile-pages'),
                'title'    => esc_html__( 'Canonical from Yoast', 'accelerated-mobile-pages' ),
+               'default'  => 0,
+               'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
+           ),
+           array(
+               'class' => 'child_opt',
+               'id'       => 'ampforwp-seo-yoast-schema',
+               'type'     => 'switch',
+               'tooltip-subtitle'     => esc_html__('Fetch Schema from the Yoast Seo for AMP Pages', 'accelerated-mobile-pages'),
+               'title'    => esc_html__( 'Schema from Yoast', 'accelerated-mobile-pages' ),
                'default'  => 0,
                'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
            ),
@@ -3554,7 +3560,7 @@ Redux::setSection( $opt_name, array(
                         'mode'     => 'css',
                         'theme'    => 'monokai',
                         'desc'     => '',
-                        'default'  => esc_html__('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages')
+                        'default'  => ''
                 ),
             );
     $amp_fontparts = array_merge($amp_fontparts ,$global_settings); 
@@ -6347,6 +6353,22 @@ else{
                                 array('amp-design-selector', '=', '4'),
                                 array('enable-add-this-option', '=', '1'),
                                 array('single-design-type', '=', '6'),
+                                array('addthis-inline-share', '=', '1'),
+                                 )
+            ), 
+           array(
+                'id'       => 'design-1-2-3-addthis-pos',
+                'type'     => 'select',
+                'class' => 'child_opt child_opt_arrow',
+                'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                                'above-content' => 'Above Content',
+                                'below-content' => 'Below Content'
+                                ),
+                'default'  => 'below-content',
+                'required' => array(
+                                array('amp-design-selector', '!=', '4'),
+                                array('enable-add-this-option', '=', '1'),
                                 array('addthis-inline-share', '=', '1'),
                                  )
             ), 

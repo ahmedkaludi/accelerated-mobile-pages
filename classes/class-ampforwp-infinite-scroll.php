@@ -51,10 +51,12 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			return false;
 		} 
 		public function paged() {
-			if ( get_query_var( 'paged' ) ) {
-			    return get_query_var('paged');
-			} elseif ( get_query_var( 'page' ) ) {
-			    return get_query_var('page');
+			$paged = get_query_var( 'paged' );
+			$page = get_query_var( 'page' );
+			if ( $paged ) {
+			    return intval($paged);
+			} elseif ( $page ) {
+			    return intval($page);
 			} else {
 			    return 1;
 			}

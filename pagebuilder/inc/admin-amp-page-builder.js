@@ -56,15 +56,17 @@ Vue.component('amp-pagebuilder-modal', {
 						}
 					).then(function(response){
 						response =response.body;
-						if(response.status="200"){
+						if(response.status=="200"){
 							this.layoutMsg = "Layout removed successfully!";
 							this.showsavedLayouts = response.data;
-							amppb_panel_options.savedLayouts = this.showsavedLayouts
-
+							amppb_panel_options.savedLayouts = this.showsavedLayouts;
  							this.save_layout = {name:"",url:""};
 						}
-						else
+						else if(response.status=="404"){
 							this.layoutMsg = "Try Again";
+						}else if(response.status=="403"){
+							this.layoutMsg = "Sorry! You don't have permission to delete the layout.";
+						}
 					    setTimeout(() => {
 				          	this.layoutMsg = '';
 				      	},5000);

@@ -568,7 +568,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 	 */
 	private function generate_class_name( $data ) {
 		$string = maybe_serialize( $data );
-		return 'amp-wp-inline-' . substr(md5($string), 0, 7);
+		return 'acss'.substr(md5($string), 0, 5);
 	}
 	private function ampforwp_remove_spaces_from_data_urls( $style_css ) {
 		$new_style_css = array();

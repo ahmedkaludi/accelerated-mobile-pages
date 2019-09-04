@@ -123,16 +123,13 @@ function ampforwp_analytics_options($opt_name){
                         'desc'     => '',
                         'default'  => ('{
     "vars": {
-        "account": "UA-xxxxxxx-x"  //Replace this with your Tracking ID
+        "account": "UA-xxxxxxx-x"
     },
     "triggers": {
         "trackPageview": {
             "on": "visible",
             "request": "pageview"
         }
-    /** 
-     * Enter your Advanced Analytics code here
-    */
     }
 }')
                     ),
@@ -213,9 +210,6 @@ function ampforwp_analytics_options($opt_name){
                                   "on": "visible",
                                   "request": "pageview"
                               }
-                          /** 
-                           * Enter your Advanced Analytics code here
-                          */
                           }
                       }')
                     ),
