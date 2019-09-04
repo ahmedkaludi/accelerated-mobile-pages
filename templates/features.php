@@ -5382,11 +5382,11 @@ function amp_vimeo_parse_url_video_id($tok){
 // Cart Page URL
 if( ! function_exists( 'ampforwp_wc_cart_page_url' ) ){
 	function ampforwp_wc_cart_page_url(){
-	 	if( function_exists('amp_woocommerce_pro_add_woocommerce_support')  && function_exists('get_cart_url') ){
+	 	if( function_exists('amp_woocommerce_pro_add_woocommerce_support')){
 		    global $woocommerce;
-		    $cart_url = $woocommerce->cart->get_cart_url();
+		    $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : $woocommerce->cart->get_cart_url();
 		    $cart_url = ampforwp_url_controller($cart_url);
-		    return $cart_url;;
+		    return $cart_url;
 	 	}
 	 	else
 	 		return '#'; 
