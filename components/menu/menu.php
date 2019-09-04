@@ -24,7 +24,17 @@ function amp_menu_html($echo, $menu_args, $type){
 	    $menu_html_content = apply_filters('ampforwp_menu_content', $menu_html_content);
 	    $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
 	    $sanitized_menu =  $sanitizer_obj->get_amp_content();
-	    if ( !class_exists('Sitepress') ) {
+
+	    $menu_cache = true;
+	    if ( class_exists('Sitepress') ) {
+	    	 $menu_cache = false;
+	    }
+	    if(defined('QTX_VERSION')){ // FOR qTranslate-X 
+	    	 $menu_cache = false;
+	    }
+
+	    $menu_cache = apply_filters('ampforwp_menu_cache',$menu_cache);
+	    if ($menu_cache) {
 		    if ( 'header' == $type ) {
 		    	set_transient('ampforwp_header_menu', $sanitized_menu, 24*HOUR_IN_SECONDS );
 		    }
