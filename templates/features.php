@@ -949,9 +949,11 @@ function ampforwp_title_callback( $post ) {
 			set_transient('ampforwp_exclude_post_transient', $exclude_post_value);
 		} 
 	}
-	if ( empty( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] ) && $post->post_type == 'page' && ampforwp_get_setting('amp-pages-meta-default') == 'hide' ) {
+	
+	if ($post->post_type == 'page' && ampforwp_get_setting('amp-pages-meta-default') == 'hide' ) {
 		$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
-	}?>
+	}
+	?>
     <p>
         <div class="prfx-row-content">
             <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-one">
