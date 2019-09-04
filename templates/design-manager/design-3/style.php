@@ -355,7 +355,7 @@ if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }
 figure amp-img{ max-width:100%; }
-figcaption{ font-size: 11px; line-height: 1.6; margin-bottom: 11px; background: #eee; padding: 6px 8px; }
+figcaption{ font-size: 11px; line-height: 1.6; margin-bottom: 11px; background: #eee; padding: 6px 8px;text-align:center; }
 .amp-wp-byline amp-img{ display: none; }
 .amp-wp-author{ margin-right: 1px; }
 .amp-wp-meta, .amp-wp-meta a{ font-size: 13px; color: #575757; margin: 20px 0px 20px 0px; padding: 0; }
