@@ -13,7 +13,6 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 	// Custom Template Files
 	function ampforwp_designing_custom_template( $file, $type, $post ) {
 	 global $redux_builder_amp;
-
 		// 404 Template
 	 	if( 'single' === $type && is_404() ) {
 			$file = AMPFORWP_CUSTOM_THEME . '/404.php';
@@ -242,5 +241,10 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 	    if ( 'single' === $type && ampforwp_polylang_front_page() && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
 			$file = AMPFORWP_CUSTOM_THEME . '/page.php';
 		}
+
+		$check_404 = ampforwp_check_404_url();
+		if( 'single' === $type && $check_404==true) {
+			$file = AMPFORWP_CUSTOM_THEME . '/404.php';
+	 	}
 	 	return $file;
 	}

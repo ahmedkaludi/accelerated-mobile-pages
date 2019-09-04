@@ -482,6 +482,132 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		}
 	}
 
+	function ampforwp_check_404_url(){
+		global $wp;
+		$current_archive_url 	= '';
+		$amp_url				= '';
+		$remove					= '';
+		$query_arg_array 		= '';
+		$page                   = '' ;
+		$canonical = "";
+		$req_url = $_SERVER['REQUEST_URI'];
+		$exhost = explode("/", $req_url);
+		if ( is_home() || is_front_page() || (is_archive() && ampforwp_get_setting('ampforwp-archive-support')) )	{
+			$current_archive_url = home_url( $wp->request );
+			$amp_url 	= trailingslashit($current_archive_url);
+			
+			$qstr = explode("?",$req_url);
+			if(count($qstr)==1){
+				$find_amp = 0;
+				$build_url = array();
+				for($i=1;$i<count($exhost)-1;$i++){
+					$str = $exhost[$i];
+					if($str==AMPFORWP_AMP_QUERY_VAR){
+						$find_amp++;
+					}
+					if($find_amp==0 || $find_amp>1){
+						$build_url[] = $str;
+					}
+				}
+
+				$amp_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}/".implode("/", $build_url)."/";
+			}else{
+				$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
+				$amp_url 	= str_replace($remove, '', $amp_url);
+			}
+		  	$query_arg_array = $wp->query_vars;
+		  	if( array_key_exists( "page" , $query_arg_array  ) ) {
+			   $page = $wp->query_vars['page'];
+		  	}
+		  	if ( $page >= '2') { 
+				$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
+			} 
+			$canonical = user_trailingslashit( esc_url($amp_url ) );
+		 }
+		if(is_search()){
+			return false;
+		}
+		if($canonical==""){
+			global $ampforwpTemplate;
+			$canonical = $ampforwpTemplate->get('canonical_url'); 
+		}
+
+		$host = "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+		if(strrpos($host, "?page_id=")){
+			return false;
+		}
+		if(strrpos($host, "?p=")){
+			return false;
+		}
+		$search = AMPFORWP_AMP_QUERY_VAR;
+		$pos = strrpos($host, $search);
+	   	if($pos !== false){
+	       	$subject = substr_replace($host, "", $pos, strlen($search));
+	   	}
+	   	$subject = str_replace('//','/',$subject);
+	   	
+	   	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$subject";
+		$actual_link = str_replace('&amp=1','',$actual_link);
+		$actual_link = str_replace('&=1','',$actual_link);
+		
+		$post_paginated_page='';
+		$new_canonical_url = '';
+		$permalink_structure = '';
+		$permalink_structure = get_option('permalink_structure');
+		global $post;
+	    $current_post_id = $post->ID;
+	    $new_canonical_url = get_permalink($current_post_id);
+	    $new_canonical_url = trailingslashit($new_canonical_url);
+		$post_paginated_page = get_query_var('page');
+		if($post_paginated_page){
+			if('' == $permalink_structure){
+				$new_canonical_url = add_query_arg('page',$post_paginated_page,$new_canonical_url);
+			}
+			else{
+				$new_canonical_url = $new_canonical_url.$post_paginated_page;
+			}
+			$canonical = $new_canonical_url; 
+		} 
+
+		if(ampforwp_get_setting('ampforwp-amp-takeover')==true){
+			$pos = strrpos($actual_link, $search);
+			if($subject==""){
+				return false;
+			}else if($pos!==false){
+				return false;
+			}else{
+				return true;
+			}
+		}
+		$pos = strrpos($actual_link, $search);
+		if(!$pos){
+			$canonical 		= str_replace("%2F", "&", $canonical);
+			$check_query 	= explode("?", $canonical);
+			if(count($check_query)>1){
+				$get_query 		= explode("&", $check_query[1]);
+				$check_query1 	= explode("?", $actual_link);
+				$get_query1 	= explode("&", $check_query1[1]);
+				for($i=0;$i<count($get_query1);$i++){
+					$str = $get_query1[$i];
+					if(!in_array($str, $get_query)){
+						return true;
+					}
+				}
+			}else{
+				$check_query 	= explode("/", $canonical);
+				$check_query1 	= explode("/", $actual_link);
+				for($i=0;$i<count($check_query1);$i++){
+					$str = $check_query1[$i];
+					if($str!="?=1"){
+						if(!in_array($str, $check_query)){
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 	// 2. Custom Design
 
 	// Add Homepage AMP file code
@@ -527,6 +653,12 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		// For Frontpage
 		if ( 'single' === $type && ampforwp_polylang_front_page() && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
 			$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
+		}
+
+		$check_404 = ampforwp_check_404_url();
+		if($check_404==true && 'single' === $type){
+			add_filter('ampforwp_modify_rel_url','ampforwp_404_canonical');
+	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/404.php';
 		}
 	    return $file;
 	}
