@@ -233,6 +233,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		      if(function_exists('is_checkout') && is_checkout()){
 		        return;
 		      }
+		      if(function_exists('is_account_page') && is_account_page()){
+		        return;
+		      }
 		    }
 		// no-amphtml for search
 		    if(is_search()){
