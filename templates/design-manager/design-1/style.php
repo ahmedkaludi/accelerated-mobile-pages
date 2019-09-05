@@ -706,3 +706,6 @@ amp-user-notification{
 .ampforwp_post_pagination span{
   margin-left: 10px;
 }
+amp-facebook-like{
+  max-height: 28px;
+}

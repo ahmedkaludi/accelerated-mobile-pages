@@ -2193,3 +2193,6 @@ if( true == ampforwp_get_setting('gnrl-sidebar') && true == ampforwp_get_setting
     border-radius: 50%;
     display: inline-block;
 }
+amp-facebook-like{
+	max-height: 28px;
+}
