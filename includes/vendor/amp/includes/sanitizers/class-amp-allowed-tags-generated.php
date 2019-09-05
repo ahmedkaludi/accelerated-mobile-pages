@@ -403,6 +403,7 @@ class AMP_Allowed_Tags_Generated {
 							'allow_relative' => true,
 							'allowed_protocol' => array(
 								'https',
+								'http',
 							),
 						),
 					),
