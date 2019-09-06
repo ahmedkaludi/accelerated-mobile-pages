@@ -1429,6 +1429,7 @@ function ampforwp_add_proper_post_meta(){
 	if ( class_exists('WPSEO_Options') ) {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta_homepage' );
 		// Homepage/Frontpage/Blog
+		add_action('pre_amp_render_post','ampforwp_yoast_the_excerpt',33);
 		if(is_home()){
 			// Title
 			add_filter('wpseo_opengraph_title', 'ampforwp_yoast_opengraph_title');
@@ -1444,7 +1445,22 @@ function ampforwp_add_proper_post_meta(){
 		}
 	}
 }
-
+function ampforwp_yoast_the_excerpt(){
+	add_filter('get_the_excerpt','ampforwp_yoast_excerpt',9);
+}
+function ampforwp_yoast_excerpt($desc){
+	 if(ampforwp_is_front_page()){
+	 	$get_meta_excerpt = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_metadesc', true);
+	 	if(isset($get_meta_excerpt)){
+	 		$desc = $get_meta_excerpt;
+	 	}
+	 	if ( ! is_string( $desc ) || ( is_string( $desc ) && $desc === '' ) ) {
+	 		$post_content = get_post(ampforwp_get_the_ID())->post_content;
+	 		$desc = wp_trim_words( strip_shortcodes( $post_content ) , 15 );
+	 	}
+	 }
+	return $desc;
+}
 function ampforwp_custom_yoast_meta_homepage(){
 	if ( ampforwp_get_setting('ampforwp-seo-yoast-meta') ) {
 				if ( class_exists('WPSEO_Options')) {
