@@ -4715,10 +4715,14 @@ function ampforwp_add_related_post_after_paragraph($matches)
 // Add extra key=>value pair into the attachment array
 add_filter('amp_gallery_image_params','ampforwp_gallery_new_params', 10, 2);
 function ampforwp_gallery_new_params($urls, $attachment_id ){
+	$img_caption = $urls['caption'];
 	$new_urls = array();
 	$captext = '';
 	$caption = array();
-	$captext = get_post( $attachment_id)->post_excerpt;
+	$captext = $img_caption;
+	if($captext==""){
+		$captext = get_post( $attachment_id)->post_excerpt;
+	}
 	if($captext){
 		// Append only when caption is present
 		$caption = array('caption'=>$captext);
