@@ -23,14 +23,16 @@ amp_header(); ?>
 			<?php if (  is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
 					echo ampforwp_addThis_support(); 
 				}
-				amp_content(); 
+				if(!ampforwp_is_front_page()){
+					amp_content();
+				}
 				if( ampforwp_get_setting('enable-add-this-option') == true && 'above-content' !=  ampforwp_get_setting('swift-add-this-position')) {
 				echo ampforwp_addThis_support();
 			}?>
 			</div>	
 				<?php if( ampforwp_get_setting('gbl-sidebar') == '1' && ampforwp_is_front_page() ){ ?>				
 					<div class="<?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>cntr <?php } ?>pgb">
-						<div class="pg-lft">
+						<div class="cntn-wrp pg-lft">
 							<?php amp_content(); ?>
 						</div>
 						<?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
