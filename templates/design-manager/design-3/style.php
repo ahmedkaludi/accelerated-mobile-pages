@@ -274,7 +274,7 @@ a.btt:hover {
 .ampforwp-title{ padding: 0px 0px 0px 0px; margin-top: 12px; margin-bottom: 12px; }
 .comment-button-wrapper{ margin-bottom: 50px; margin-top: 30px; text-align:center }
 .comment-button-wrapper a{ color: #fff; background: #312c7e; font-size: 14px; padding: 12px 22px 12px 22px; font-family: 'Roboto Slab', serif; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; }
-h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; font-family: 'Roboto Slab', serif; }
+h1.amp-wp-title, h2.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; font-family: 'Roboto Slab', serif; }
 .post-pagination-meta{ min-height:75px }
 .single-post .post-pagination-meta{ font-size:15px; font-family:sans-serif; min-height:auto; margin-top:-5px; line-height:26px; }
 .single-post .post-pagination-meta span{ font-weight:bold }

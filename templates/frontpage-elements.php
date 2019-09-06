@@ -31,20 +31,23 @@ function ampforwp_frontpage_file() {
 function ampforwp_design_1_frontpage_content( $template, $post_id ){ 
 	global $redux_builder_amp;
 	//WPML Static Front Page Support #1111
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+	if( function_exists('wpml_core_loads_first')){
  	$post_id = get_option('page_on_front');
  	
 	 }
 	$amp_custom_content_enable = get_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', true);?>
 	<article class="amp-wp-article">
 
-		<?php if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
+		<?php if( $redux_builder_amp['ampforwp-title-on-front-page'] && !ampforwp_default_logo()) { ?>
 			<header class="amp-wp-article-header ampforwp-title">
 				<h2 class="amp-wp-title"><?php echo get_the_title( $post_id );?></h2>
-			</header>
-			
-		<?php }  
+			</header>	
+		<?php }
+		else{ ?>
+			<header class="amp-wp-article-header ampforwp-title">
+				<h1 class="amp-wp-title"><?php echo get_the_title( $post_id );?></h1>
+			</header>	
+		<?php } 
 		do_action('ampforwp_before_featured_image_hook', $template ); ?>
 		<?php 	$featured_image = $template->get( 'featured_image' );
 			if ( $featured_image )  {
@@ -123,8 +126,7 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 function ampforwp_design_2_frontpage_content($template, $post_id){ 
 	global $redux_builder_amp;
 	//WPML Static Front Page Support #1111
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+	if( function_exists('wpml_core_loads_first')){
  		$post_id = get_option('page_on_front'); 	
  	} 
  	do_action( 'ampforwp_design_2_frontpage_title', $template ); 
@@ -207,8 +209,7 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
 function ampforwp_design_3_frontpage_content($template, $post_id){ 
 	global $redux_builder_amp;
 	//WPML Static Front Page Support #1111
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+	if( function_exists('wpml_core_loads_first')){
  	$post_id = get_option('page_on_front');
  	
  	}
@@ -296,34 +297,33 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 function ampforwp_design_2_frontpage_title() {
 	global  $redux_builder_amp; 
 	//WPML Static Front Page Support #1111
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+	if( function_exists('wpml_core_loads_first')){
  	$post_id = get_option('page_on_front');
  	
  	}
-	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
+	if( $redux_builder_amp['ampforwp-title-on-front-page'] && !ampforwp_default_logo() ) { ?>
 		<header class="amp-wp-article-header ampforwp-title">
-			<h2 class="amp-wp-title"><?php if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){$ID = get_option('page_on_front');}else{$ID = ampforwp_get_frontpage_id();}echo get_the_title( $ID );?></h2>
+			<h2 class="amp-wp-title"><?php if( function_exists('wpml_core_loads_first' )){$ID = get_option('page_on_front');}else{$ID = ampforwp_get_frontpage_id();}echo get_the_title( $ID );?></h2>
 		</header>	
-		
-	<?php } 
+	<?php }else{ ?>
+		<header class="amp-wp-article-header ampforwp-title">
+			<h1 class="amp-wp-title"><?php if( function_exists('wpml_core_loads_first' )){$ID = get_option('page_on_front');}else{$ID = ampforwp_get_frontpage_id();}echo get_the_title( $ID );?></h1>
+		</header>
+	<?php }
 }
 
 // Frontpage Title for Design #3 
 function ampforwp_design_3_frontpage_title() { 
-	global  $redux_builder_amp;
 	//WPML Static Front Page Support #1111
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+	if( function_exists('wpml_core_loads_first')){
  	$post_id = get_option('page_on_front');
  	
- }
-	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
-		<header class="amp-wp-article-header ampforwp-title amp-wp-content">
+ 	} ?>
+ <header class="amp-wp-article-header ampforwp-title amp-wp-content">
+	<?php if( true == ampforwp_get_setting('ampforwp-title-on-front-page') && !ampforwp_default_logo() ) { ?>
 			<h2 class="amp-wp-title"><?php 
 			//WPML Static Front Page Support #1111
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+			if( function_exists('wpml_core_loads_first')){
  				$ID = get_option('page_on_front');
  	
  				}
@@ -331,7 +331,20 @@ function ampforwp_design_3_frontpage_title() {
 				$ID = ampforwp_get_frontpage_id();
 			}
 				echo get_the_title( $ID );?></h2>
-		</header> <?php 
-		
-	}
-}
+		 <?php 
+			}else{ ?>
+			<h1 class="amp-wp-title"><?php 
+			//WPML Static Front Page Support #1111
+			if( function_exists('wpml_core_loads_first')){
+ 				$ID = get_option('page_on_front');
+ 	
+ 				}
+ 			else{
+				$ID = ampforwp_get_frontpage_id();
+			}
+				echo get_the_title( $ID );?></h1>
+		 <?php
+	} ?>
+	</header>
+
+<?php } 
