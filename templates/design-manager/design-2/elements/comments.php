@@ -2,7 +2,9 @@
 	global $redux_builder_amp;
 	if(ampforwp_get_setting('ampforwp-facebook-comments-support')==false && ampforwp_get_setting('ampforwp-disqus-comments-support')==false && ampforwp_get_setting('ampforwp-vuukle-comments-support')==false && ampforwp_get_setting('ampforwp-spotim-comments-support')==false){
 	if(ampforwp_get_setting('ampforwp-cmt-section_core') == 1 ){
-			ampforwp_comment_form_design2($args = array(), $post_id = null);
+			if(comments_open(ampforwp_get_the_ID())){
+				ampforwp_comment_form_design2($args = array(), $post_id = null);
+			}
 		}
 	}
 	$enable_comments = "";
@@ -114,16 +116,17 @@
 			} ?>
 		</div><?php 
 	} // end if ( $enable_comments ) 
-
 do_action('ampforwp_after_comment_hook', $this);
 if(ampforwp_get_setting('ampforwp-facebook-comments-support')==false &&ampforwp_get_setting('ampforwp-disqus-comments-support')==false && ampforwp_get_setting('ampforwp-vuukle-comments-support')==false && ampforwp_get_setting('ampforwp-spotim-comments-support')==false){
-if( ampforwp_get_setting('ampforwp-cmt-section_core') == 2 ){
-		ampforwp_comment_form_design2($args = array(), $post_id = null);
+	if( ampforwp_get_setting('ampforwp-cmt-section_core') == 2 ){
+		if(comments_open(ampforwp_get_the_ID())){
+			ampforwp_comment_form_design2($args = array(), $post_id = null);
+		}
 	}
 }
 
 function ampforwp_comment_form_design2( $args = array(), $post_id = null ) {
-	if(! function_exists('amp_comments_settings') ) {
+	if(! defined( 'AMP_COMMENTS_VERSION' )) {
 	if ( null === $post_id )
 		$post_id = get_the_ID();
 

@@ -1,10 +1,10 @@
 <?php
 if(ampforwp_get_setting('ampforwp-facebook-comments-support')==false && ampforwp_get_setting('ampforwp-disqus-comments-support')==false && ampforwp_get_setting('ampforwp-vuukle-comments-support')==false && ampforwp_get_setting('ampforwp-spotim-comments-support')==false){
-	if(ampforwp_get_setting('ampforwp-cmt-section_core') == 1 ){
+	if(ampforwp_get_setting('ampforwp-cmt-section_core') == 1 && comments_open()){
 		add_action('ampforwp_before_comment_hook_core','ampforwp_comment_form_core');
 	}
 	else{
-		if( ampforwp_get_setting('ampforwp-cmt-section_core') == 2) {
+		if( ampforwp_get_setting('ampforwp-cmt-section_core') == 2 && comments_open()) {
 			add_action('ampforwp_after_comment_hook_core','ampforwp_comment_form_core');
 		}
 }

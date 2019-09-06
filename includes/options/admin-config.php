@@ -2379,7 +2379,7 @@ $comments_field = array(
                     ),
                 );
 
-if(! function_exists('amp_comments_settings') ) {
+if(! defined( 'AMP_COMMENTS_VERSION' )) {
     for($ccf=0;$ccf<count($core_comment_section);$ccf++){
         array_push($comments_field, $core_comment_section[$ccf]);
     }

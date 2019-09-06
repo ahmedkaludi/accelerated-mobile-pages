@@ -19,7 +19,9 @@ function ampforwp_framework_get_comments(){
 		}
 	  
 		if ( ampforwp_get_setting('wordpress-comments-support') == true) {
-			do_action('ampforwp_before_comment_hook_core'); 
+			if(comments_open($postID)){
+				do_action('ampforwp_before_comment_hook_core'); 
+			}
 			do_action('ampforwp_before_comment_hook'); 
 		?>
 				<div class="amp-comments">
@@ -120,8 +122,10 @@ function ampforwp_framework_get_comments(){
 						</div> <?php 
 					}?>
 				</div>
-			<?php 
-			do_action('ampforwp_after_comment_hook_core');
+			<?php
+			if(comments_open($postID)){
+				do_action('ampforwp_after_comment_hook_core');
+			}
 			do_action('ampforwp_after_comment_hook');
 		}
 	} // end $display_comments_on
@@ -293,8 +297,7 @@ function ampforwp_framework_comments_scripts( $data ) {
 	}
 		return $data;
 }
-
-if(! function_exists('amp_comments_settings') ) {
+if(! defined( 'AMP_COMMENTS_VERSION' ) && comments_open($postID)) {
 	require_once 'core-comment-form.php';
 }
 

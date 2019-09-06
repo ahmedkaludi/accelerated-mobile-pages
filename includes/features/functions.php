@@ -1105,7 +1105,7 @@ function ampforwp_smartcrawl_og_metadata(){
     add_action('amp_post_template_head', array( $twitterObj, 'dispatch_tags_injection' ) );
 }
 
-if(! function_exists('amp_comments_settings') ) {
+if(! defined( 'AMP_COMMENTS_VERSION' )) {
     function ampforwp_comment_submit(){
       if(wp_verify_nonce( $_POST[ 'amp_cmnt_nonce' ],'ampforwp_comment_publish')){
           global $redux_builder_amp;

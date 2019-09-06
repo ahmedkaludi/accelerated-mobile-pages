@@ -1,8 +1,10 @@
 <?php 
 global $redux_builder_amp;
-if(ampforwp_get_setting('ampforwp-facebook-comments-support')==false && ampforwp_get_setting('ampforwp-disqus-comments-support')==false && $redux_builder_amp['ampforwp-vuukle-comments-support']==0 && $redux_builder_amp['ampforwp-spotim-comments-support']==0){
-if( isset($redux_builder_amp['ampforwp-cmt-section_core']) && $redux_builder_amp['ampforwp-cmt-section_core'] == 1 ){
-		ampforwp_comment_form_design1($args = array(), $post_id = null);
+if(ampforwp_get_setting('ampforwp-facebook-comments-support')==false && ampforwp_get_setting('ampforwp-disqus-comments-support')==false && ampforwp_get_setting('ampforwp-vuukle-comments-support')==false && ampforwp_get_setting('ampforwp-spotim-comments-support')==0){
+if( ampforwp_get_setting('ampforwp-cmt-section_core') == 1 ){
+		if(comments_open(ampforwp_get_the_ID())){
+			ampforwp_comment_form_design1($args = array(), $post_id = null);
+		}
 	}
 }
 	do_action('ampforwp_before_comment_hook', $this); 
@@ -120,7 +122,9 @@ if( isset($redux_builder_amp['ampforwp-cmt-section_core']) && $redux_builder_amp
 do_action('ampforwp_after_comment_hook', $this);
 if(ampforwp_get_setting('ampforwp-facebook-comments-support')==false && ampforwp_get_setting('ampforwp-disqus-comments-support')==false && ampforwp_get_setting('ampforwp-vuukle-comments-support')==false && ampforwp_get_setting('ampforwp-spotim-comments-support')==false){
 if(ampforwp_get_setting('ampforwp-cmt-section_core') == 2 ){
-		ampforwp_comment_form_design1($args = array(), $post_id = null);
+		if(comments_open(ampforwp_get_the_ID())){
+			ampforwp_comment_form_design1($args = array(), $post_id = null);
+		}
 	}
 }
 
