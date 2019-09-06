@@ -1230,7 +1230,11 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
     }
     .redux-main .form-table-section-indented input[type=text] {
         width: 72% !important;
-        padding:4px 10px;
+        padding: 4px 6px;
+        font-size: 14px;
+    }
+    .redux-container-spacing .select_wrapper{
+        margin-top:2px !important;
     }
     #section-ampforwp-ads-section, #section-ampforwp-ads-section, #info-info_theme_framework{
         display:none;
@@ -1290,14 +1294,17 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
     }
     .redux-main .form-table-section-indented .redux-main .mini, 
     .redux-main .form-table-section-indented input[type=text].mini{
-        width:50px !important;
+        width:60px !important;
     }
     .redux-container-spacing .field-spacing-input .add-on{
-        padding: 7px 0px;
-        font-size: 7px;
+        padding: 4px 3px !important;
+        font-size: 14px !important;
+    }
+    .redux-container-spacing .field-spacing-input .add-on i{
+        font-size:12px;
     }
     #redux_builder_amp-primary-menu-padding-control{
-        height:80px;
+        height:110px;
     }
     #section-table-header_section_2 tr.fold:nth-child(3) td{
         width:100%;
