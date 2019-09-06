@@ -1682,10 +1682,6 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 }	
 <?php }	
-if(ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
-.s_fb_ms{color:#fff;background:#3b5998;}
-.s_fb_ms:after{content: "\e935";}	
-<?php }	
 if($redux_builder_amp['enable-single-twitter-share'] || $redux_builder_amp['enbl-tw']){?>
 <?php if(function_exists('mvp_setup')){?>
 .zox_tw:after{ <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
