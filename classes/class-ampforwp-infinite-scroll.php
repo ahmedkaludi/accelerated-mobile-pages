@@ -45,8 +45,13 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			return false;
 		}
 		public function is_loop() {
+			$script = true;
 			if ( (ampforwp_is_home() || is_archive()) && true == ampforwp_get_setting('ampforwp-infinite-scroll-home') ) {
-				return true;
+				if( function_exists('is_product_category') && is_product_category() || function_exists('is_product_tag') && is_product_tag() || function_exists('is_shop') && is_shop()){
+					$script = false;
+				}
+				$script = apply_filters('ampforwp_modify_infinite_scroll_script', $script);
+				return $script;
 			}
 			return false;
 		} 
