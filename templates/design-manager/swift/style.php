@@ -1285,7 +1285,7 @@ if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar')
 	}
 }
 <?php }
-if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || is_search() || ampforwp_is_blog()) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() ) ) { 
+if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || is_search() || ampforwp_is_blog()) || ( true == ampforwp_get_setting('swift-sidebar') || true == ampforwp_get_setting('page_sidebar') && is_singular() ) ) { 
 // AMP woocommerce condition starts
 if( !ampforwp_woocommerce_conditional_check() ) { ?>
 /*** Sidebar CSS ***/
@@ -2214,3 +2214,16 @@ amp-facebook-like{
   top:6px;
   margin-right:-5px;
 }
+<?php
+if( true == ampforwp_get_setting('gnrl-sidebar') && true == ampforwp_get_setting('page_sidebar') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ){?>
+.amp-single-page .cntn-wrp{
+    float: left;
+    max-width: 69%;
+}
+@media only screen and (max-width: 768px) {
+  .amp-single-page .cntn-wrp{ 
+    float: none;
+    max-width:100%;
+  }
+}
+<?php }
