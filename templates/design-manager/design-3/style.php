@@ -469,11 +469,12 @@ pre{ white-space: pre-wrap; }
   position:relative;
 }
 #sidebar[open]+#designthree #header:after{
-    content: "X";
+    content: "✖"; 
     color: #f42f42;
     position: absolute;
     right: 20px;
     top: 10px;
+    font-size: 20px;
 }
 <?php } // Right overlay ends here?>
 .hamburgermenu{ float:left; position:relative; z-index: 9999; }
