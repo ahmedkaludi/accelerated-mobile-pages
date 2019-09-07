@@ -87,7 +87,7 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
                     $nameBrackets = "[]";
                 }
 
-                $placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : __( 'Select an option', 'accelerated-mobile-pages' );
+                $placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : __( 'Select the SEO Plugin', 'accelerated-mobile-pages' );
 
                 if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
                     $select2_params = json_encode( $this->field['select2'] );
