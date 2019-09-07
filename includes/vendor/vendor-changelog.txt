@@ -85,3 +85,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 55. class-amp-content.php updated #3422
 56. whitelisted skype in anchor tags #3475
 57. Telegram links has been whitelisted in anchor tags #3578
+58. Improvement in iframe #3563
