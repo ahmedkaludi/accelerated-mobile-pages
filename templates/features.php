@@ -315,6 +315,11 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			if( array_key_exists( 'paged' , $query_arg_array ) ) {
 				if ( (is_home() || is_archive()) && $wp->query_vars['paged'] >= '2' ) {
 					$new_url 		=  home_url('/');
+					// If its custom permalink with /index.php/ #3537
+					if ( (is_home() || is_archive()) && false !== strpos($wp->matched_rule, 'index.php') && false === strpos( home_url( $wp->request ), 'index.php') ) {
+						$new_url = home_url( 'index.php' );
+						$new_url = trailingslashit($new_url);
+					}
 					$category_path 	= $wp->request;
 					if ( null != $category_path && true != $endpoint_check) {
 						$explode_path  	= explode("/",$category_path);
