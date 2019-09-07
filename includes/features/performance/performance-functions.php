@@ -151,6 +151,17 @@ function ampforwp_code_to_add_in_htaccess(){
     $htaccess_cntn .= '# AMPFORWPLBROWSERCSTART Browser Caching' . "\n";
     $htaccess_cntn .= '<IfModule mod_expires.c>' . "\n";
     $htaccess_cntn .= 'ExpiresActive On' . "\n";
+    $htaccess_cntn .= 'AddType application/vnd.ms-fontobject .eot' . "\n";
+    $htaccess_cntn .= 'AddType application/x-font-ttf .ttf' . "\n";
+    $htaccess_cntn .= 'AddType application/x-font-opentype .otf' . "\n";
+    $htaccess_cntn .= 'AddType application/x-font-woff .woff' . "\n";
+    $htaccess_cntn .= 'AddType image/svg+xml .svg' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/vnd.ms-fontobject "access 1 year"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/x-font-ttf "access 1 year"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/x-font-opentype "access 1 year"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/x-font-woff "access 1 year"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType image/svg+xml "access 1 year"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType image/webp "access 1 year"' . "\n";
     $htaccess_cntn .= 'ExpiresByType image/gif "access 1 year"' . "\n";
     $htaccess_cntn .= 'ExpiresByType image/jpg "access 1 year"' . "\n";
     $htaccess_cntn .= 'ExpiresByType image/jpeg "access 1 year"' . "\n";
@@ -167,6 +178,5 @@ function ampforwp_code_to_add_in_htaccess(){
     $htaccess_cntn .= 'ExpiresDefault "access 3 month"' . "\n";
     $htaccess_cntn .= '</IfModule>' . "\n";
     $htaccess_cntn .= '# END Caching AMPFORWPLBROWSERCEND' . "\n";
-
     return $htaccess_cntn;
 }

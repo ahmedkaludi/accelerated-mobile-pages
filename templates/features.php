@@ -2189,7 +2189,7 @@ function ampforwp_add_disqus_support() {
 					layout="<?php echo esc_attr($layout) ?>"
 					sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 					frameborder="0"
-					src="<?php echo esc_url($disqus_url) ?>" >
+					src="<?php echo esc_url($disqus_url) ?>" title="<?php echo esc_html__('Disqus Comments','accelerated-mobile-pages'); ?>">
 					<div overflow tabindex="0" role="button" aria-label="Read more"><?php echo esc_html__('Disqus Comments Loading...','accelerated-mobile-pages') ?></div>
 				</amp-iframe>
 			</section>
@@ -4582,9 +4582,8 @@ function ampforwp_inline_related_posts(){
 				$inline_related_posts_img = '';
 				$inline_related_posts = '<div class="amp-wp-content relatedpost">
 						    <div class="related_posts">
-										<ol class="clearfix">
-						<span class="related-title">'.esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' )).'</span>';
-						
+							<span class="related-title">'.esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' )).'</span>
+							<ol class="clearfix">';			
 				    while( $my_query->have_posts() ) {
 					    $my_query->the_post();
 						$related_post_permalink = get_permalink();
@@ -6909,7 +6908,15 @@ function ampforwp_webp_featured_image() {
 			if(empty($image[2])){
 			$image[2] = 500;
 			}
-		$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' ></amp-img>";?>
+		$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
+			if($thumb_alt){
+				$alt = $thumb_alt;
+			}
+			else{
+				$alt = get_the_title( $post_id );
+			}
+			$alt = convert_chars( stripslashes( $alt ) );
+		$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' alt='".esc_attr($alt)."' ></amp-img>";?>
 		<figure class="amp-wp-article-featured-image">
 			<?php 
 			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){

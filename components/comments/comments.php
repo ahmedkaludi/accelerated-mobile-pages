@@ -184,7 +184,7 @@ function ampforwp_framework_get_disqus_comments(){
 				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 				frameborder="0"
 				<?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>
-				src="<?php echo esc_url($disqus_url); ?>" >
+				src="<?php echo esc_url($disqus_url); ?>" title="<?php echo esc_html__('Disqus Comments.','accelerated-mobile-pages'); ?>">
 				<div overflow tabindex="0" role="button" aria-label="Read more"><?php echo esc_html__('Disqus Comments Loading...','accelerated-mobile-pages') ?></div>
 			</amp-iframe>
 		</section>
