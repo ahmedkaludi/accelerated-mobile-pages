@@ -1008,4 +1008,5 @@ amp-user-notification{
 }
 amp-facebook-like{
   max-height: 28px;
+  bottom: 8px;
 }
