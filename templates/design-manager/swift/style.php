@@ -2196,4 +2196,5 @@ if( true == ampforwp_get_setting('gnrl-sidebar') && true == ampforwp_get_setting
 amp-facebook-like{
 	max-height: 28px;
 	top:6px;
+	margin-right:-5px;
 }
