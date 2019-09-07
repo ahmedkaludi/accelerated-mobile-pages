@@ -406,7 +406,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 											<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
 										</li>
 										<?php } ?>
-										<?php if(ampforwp_get_setting('ampforwp-facebook-like-button')){				s?>
+										<?php if(ampforwp_get_setting('ampforwp-facebook-like-button')){?>
 										<li>
 											<amp-facebook-like width=90 height=28
 							 					layout="fixed"
