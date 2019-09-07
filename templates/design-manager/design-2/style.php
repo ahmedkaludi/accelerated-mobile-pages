@@ -788,3 +788,6 @@ amp-user-notification{
   z-index: 999999;
 }
 <?php } //amp-enable-notifications Condition Ends Here ?>   
+amp-facebook-like{
+  max-height: 28px;
+}

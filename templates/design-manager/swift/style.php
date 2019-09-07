@@ -2209,3 +2209,8 @@ amp-user-notification{
 	bottom:40px;
 }
 <?php } //amp-enable-notifications Condition Ends Here ?> 
+amp-facebook-like{
+  max-height: 28px;
+  top:6px;
+  margin-right:-5px;
+}
