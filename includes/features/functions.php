@@ -429,7 +429,12 @@ if ( ! function_exists( 'ampforwp_isexternal ') ) {
         if ( strcasecmp($components['host'], AMPFROWP_HOST_NAME) === 0 ) return false; 
         
         // check if the url host is a subdomain
-        return strrpos(strtolower($components['host']), AMPFROWP_HOST_NAME) !== strlen($components['host']) - strlen(AMPFROWP_HOST_NAME); 
+        $check =  strrpos(strtolower($components['host']), $_SERVER['HTTP_HOST']) !== strlen($components['host']) - strlen($_SERVER['HTTP_HOST']);// #3561 - it's returing empty that is why it's creating broken link. So checking empty condition and returning 1 to not create amp link.
+        if($check==""){ 
+            return 1;
+        }else{
+            return $check; 
+        }
     }
 } // end ampforwp_isexternal
 
