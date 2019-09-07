@@ -86,3 +86,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 56. whitelisted skype in anchor tags #3475
 57. Telegram links has been whitelisted in anchor tags #3578
 58. Improvement in iframe #3563
+59. Condition added in Wistia sanitizer to disable scripts when AMP Page Builder is enabled. #3587

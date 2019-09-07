@@ -75,7 +75,12 @@ class AMP_Wistia_Embed_Handler extends AMP_Base_Embed_Handler {
 			return AMP_HTML_Utils::build_tag( 'a', array( 'href' => esc_url( $args['url'] ), 'class' => 'amp-wp-embed-fallback' ), esc_html( $args['url'] ) );
 		}
 
-		$this->did_convert_elements = true;
+		if ( checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) {
+			$this->did_convert_elements = false;
+		} else {
+			$this->did_convert_elements = true;
+		}
+		
 		$attrs = array(
 				'data-media-hashed-id' => $args['video_id'],
 				'width' => $this->args['width'],
