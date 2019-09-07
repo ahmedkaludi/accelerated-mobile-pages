@@ -1797,6 +1797,9 @@ function ampforwp_replace_title_tags() {
 		 	}
 		 	if ( ampforwp_is_front_page() || is_singular() || ampforwp_is_blog() ) {
 		 		$rank_math_title = RankMath\Post::get_meta( 'title', $post_id );
+		 		if(empty($rank_math_title)){
+		 			$rank_math_title = RankMath\Paper\Paper::get()->get_title();
+		 		}
 		 	}
 		 	if ( is_archive() ) {
 		 		$object = get_queried_object();
