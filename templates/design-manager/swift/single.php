@@ -117,7 +117,7 @@
 								<?php } } ?>	
 								<div class="rlp-cnt">
 									<?php 
-									$show_excerpt_opt = $redux_builder_amp['ampforwp-single-related-posts-excerpt'];
+									$show_excerpt_opt = ampforwp_get_setting('ampforwp-single-related-posts-excerpt');
 									$argsdata = array(
 											'show_author' => false,
 											'show_excerpt' => $show_excerpt_opt
@@ -159,9 +159,11 @@ do_action("ampforwp_single_design_type_handle_d1");
 							</div>
 						<?php } } ?>	
 						<div class="rlp-cnt">
-							<?php $argsdata = array(
-									'show_author' => false,
-									'show_excerpt' =>false
+							<?php
+							$show_excerpt_opt = ampforwp_get_setting('ampforwp-single-related-posts-excerpt');
+							$argsdata = array(
+									'show_author' =>  false,
+									'show_excerpt' => $show_excerpt_opt
 										);
 							ampforwp_get_relatedpost_content($argsdata); ?> 
 				        </div>
@@ -404,7 +406,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 											<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
 										</li>
 										<?php } ?>
-										<?php if(ampforwp_get_setting('ampforwp-facebook-like-button')){				s?>
+										<?php if(ampforwp_get_setting('ampforwp-facebook-like-button')){?>
 										<li>
 											<amp-facebook-like width=90 height=28
 							 					layout="fixed"

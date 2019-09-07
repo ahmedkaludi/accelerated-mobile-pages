@@ -72,7 +72,7 @@ box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-bo
 amp-iframe { max-width: 100%; margin-bottom : 20px; }
 amp-wistia-player {margin:5px 0px;}
 .wp-caption {padding: 0;}
-.wp-caption-text {font-size: 12px;line-height: 1.5em;margin: 0;padding: .66em 10px .75em;text-align: center;}
+figcaption ,.wp-caption-text {font-size: 12px;line-height: 1.5em;margin: 0;padding: .66em 10px .75em;text-align: center;}
 amp-carousel > amp-img > img {object-fit: contain;}
 .amp-carousel-container {position: relative;width: 100%;height: 100%;} 
 .amp-carousel-img img {object-fit: contain;}
@@ -559,6 +559,7 @@ table {
     overflow-x: auto;
     word-break: normal;
 }
+.artl-cnt table{ margin: 0 auto; text-align: center; width: 100%; display: inline-block; } .artl-cnt table tbody{ display: inline-block; }
 p.nocomments {padding: 10px;color: #fff;}
 <?php if($redux_builder_amp['single-new-features'] && $redux_builder_amp['ampforwp-underline-content-links']){ ?> 
 .artl-cnt a{
@@ -1284,7 +1285,7 @@ if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar')
 	}
 }
 <?php }
-if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || is_search() || ampforwp_is_blog()) || ( true == ampforwp_get_setting('swift-sidebar') && is_singular() ) ) { 
+if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || is_search() || ampforwp_is_blog()) || ( true == ampforwp_get_setting('swift-sidebar') || true == ampforwp_get_setting('page_sidebar') && is_singular() ) ) { 
 // AMP woocommerce condition starts
 if( !ampforwp_woocommerce_conditional_check() ) { ?>
 /*** Sidebar CSS ***/
@@ -1680,10 +1681,6 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 	content:"\f39f";
 <?php } ?>
 }	
-<?php }	
-if(ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
-.s_fb_ms{color:#fff;background:#3b5998;}
-.s_fb_ms:after{content: "\e935";}	
 <?php }	
 if($redux_builder_amp['enable-single-twitter-share'] || $redux_builder_amp['enbl-tw']){?>
 <?php if(function_exists('mvp_setup')){?>
@@ -2212,3 +2209,21 @@ amp-user-notification{
 	bottom:40px;
 }
 <?php } //amp-enable-notifications Condition Ends Here ?> 
+amp-facebook-like{
+  max-height: 28px;
+  top:6px;
+  margin-right:-5px;
+}
+<?php
+if( true == ampforwp_get_setting('gnrl-sidebar') && true == ampforwp_get_setting('page_sidebar') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ){?>
+.amp-single-page .cntn-wrp{
+    float: left;
+    max-width: 69%;
+}
+@media only screen and (max-width: 768px) {
+  .amp-single-page .cntn-wrp{ 
+    float: none;
+    max-width:100%;
+  }
+}
+<?php }

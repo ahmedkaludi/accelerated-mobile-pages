@@ -289,7 +289,7 @@ a.btt:hover {
 /* Single */
 .comment-button-wrapper{ margin-bottom: 0px; margin-top: 60px; text-align:center }
 .comment-button-wrapper a{ color: #fff; background: #312c7e; font-size: 13px; padding: 10px 20px 10px 20px; box-shadow: 0 0px 3px rgba(0,0,0,.04); border-radius: 80px; }
-h2.amp-wp-title{ text-align: center; margin: 0.7em 0px 0.6em 0px; font-size: 1.5em; }
+h1.amp-wp-title , h2.amp-wp-title{ text-align: center; margin: 0.7em 0px 0.6em 0px; font-size: 1.5em; }
 .amp-wp-content.post-title-meta, .amp-wp-content.post-pagination-meta{ background: none; padding:  0; box-shadow:none }
 .post-pagination-meta{ min-height:75px }
 .single-post .post-pagination-meta{ min-height:auto }
@@ -303,7 +303,7 @@ li.amp-wp-tax-category{ float: right }
 .amp-wp-byline, .amp-wp-posted-on{ float: left }
 .amp-wp-content amp-img{ max-width: 100%; }
 figure{ margin: 0; }
-figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px 8px; }
+figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px 8px;text-align:center; }
 
 .amp-wp-author:before{ content: "By "; color: #555; }
 .amp-wp-author{ margin-right: 1px; }
@@ -788,3 +788,6 @@ amp-user-notification{
   z-index: 999999;
 }
 <?php } //amp-enable-notifications Condition Ends Here ?>   
+amp-facebook-like{
+  max-height: 28px;
+}

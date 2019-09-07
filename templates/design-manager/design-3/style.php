@@ -274,7 +274,7 @@ a.btt:hover {
 .ampforwp-title{ padding: 0px 0px 0px 0px; margin-top: 12px; margin-bottom: 12px; }
 .comment-button-wrapper{ margin-bottom: 50px; margin-top: 30px; text-align:center }
 .comment-button-wrapper a{ color: #fff; background: #312c7e; font-size: 14px; padding: 12px 22px 12px 22px; font-family: 'Roboto Slab', serif; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; }
-h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; font-family: 'Roboto Slab', serif; }
+h1.amp-wp-title, h2.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; font-family: 'Roboto Slab', serif; }
 .post-pagination-meta{ min-height:75px }
 .single-post .post-pagination-meta{ font-size:15px; font-family:sans-serif; min-height:auto; margin-top:-5px; line-height:26px; }
 .single-post .post-pagination-meta span{ font-weight:bold }
@@ -355,10 +355,10 @@ if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }
 figure amp-img{ max-width:100%; }
-figcaption{ font-size: 11px; line-height: 1.6; margin-bottom: 11px; background: #eee; padding: 6px 8px; }
+figcaption{ font-size: 11px; line-height: 1.6; margin-bottom: 11px; background: #eee; padding: 6px 8px;text-align:center; }
 .amp-wp-byline amp-img{ display: none; }
 .amp-wp-author{ margin-right: 1px; }
-.amp-wp-meta, .amp-wp-meta a{ font-size: 13px; color: #acacac; margin: 20px 0px 20px 0px; padding: 0; }
+.amp-wp-meta, .amp-wp-meta a{ font-size: 13px; color: #575757; margin: 20px 0px 20px 0px; padding: 0; }
 .amp-ad-wrapper{ text-align: center }
 .the_content p{ margin-top: 0px; margin-bottom: 30px; word-break: break-word; }
 .amp-wp-tax-tag{ }
@@ -491,7 +491,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .amp-carousel-slide h2{ font-size: 30px; font-family: 'PT Serif', serif; margin: 0; font-weight: normal; line-height: 38px; color: #fff; padding: 10px 20px 20px 20px; }
 .amp-featured-area .amp-carousel-slide amp-img:before{ z-index:100; bottom: 0; content: ""; display: block; height: 100%; position:absolute; width: 100%; background: -webkit-gradient(linear, 50% 0%, 50% 75%, color-stop(0%, rgba(0,0,0,0)), color-stop(150%, #000000)) repeat scroll 0 0 rgba(0,0,0,0.2); background: -webkit-linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); background: -moz-linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); background: -o-linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); background: linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); }
 .featured_title{ position:absolute; z-index:110; bottom:0 }
-.featured_meta{ color:#acacac; font-size:12px; margin:0 15px; }
+.featured_meta{ color:#575757; font-size:12px; margin:0 15px; }
 .featured_meta_left{ float:left }
 .featured_meta_right{ float:right }
 .featured_time{ font-size: 12px; color: #fff; opacity: 0.8; padding-left: 20px;}
@@ -669,7 +669,7 @@ if(!is_home() && ((is_single() && true == ampforwp_get_setting('ampforwp-bread-c
 .breadcrumb ul, .category-single ul{ padding:0; margin:0;}
 .breadcrumb ul li{display:inline;}
 .breadcrumb ul li a, .breadcrumb ul li span, .breadcrumbs span{ font-size:12px;}
-.breadcrumb .bread-post{color: #acacac;}
+.breadcrumb .bread-post{color: #575757;}
 .breadcrumb ul li a::after, .breadcrumbs span a:after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top:-1px}
 .breadcrumb ul li:hover a::after{color:#c3c3c3;}
 .breadcrumb ul li:last-child a::after{display:none;}
@@ -989,3 +989,7 @@ amp-user-notification{
   z-index: 999999;
 }
 <?php } //amp-enable-notifications Condition Ends Here ?>  
+amp-facebook-like{
+  max-height: 28px;
+  bottom: 8px;
+}

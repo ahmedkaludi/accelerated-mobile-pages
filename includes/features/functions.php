@@ -149,8 +149,14 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         $content_buffer = preg_replace("/onclick=[^>]*/", "", $content_buffer);
         $content_buffer = preg_replace("/<\\/?thrive_headline(.|\\s)*?>/",'',$content_buffer);
         // Remove Extra styling added by other Themes/ Plugins
-        $content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)<!doctype html>/','<!doctype html>',$content_buffer);
-        $content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)(\/\*)/','$4',$content_buffer);
+        preg_match('/(<style(.*?)>(.*?)<\/style>)<!doctype html>/', $content_buffer, $m1);
+        if($m1){
+            $content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)<!doctype html>/','<!doctype html>',$content_buffer);
+        }
+        preg_match('/(<style(.*?)>(.*?)<\/style>)(\/\*)/', $content_buffer, $m2);
+        if($m2){
+            $content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)(\/\*)/','$4',$content_buffer);
+        }
         $content_buffer = preg_replace("/<\\/?g(.|\\s)*?>/",'',$content_buffer);
         $content_buffer = preg_replace('/(<[^>]+) spellcheck="false"/', '$1', $content_buffer);
         $content_buffer = preg_replace('/(<[^>]+) spellcheck="true"/', '$1', $content_buffer);
@@ -429,7 +435,12 @@ if ( ! function_exists( 'ampforwp_isexternal ') ) {
         if ( strcasecmp($components['host'], AMPFROWP_HOST_NAME) === 0 ) return false; 
         
         // check if the url host is a subdomain
-        return strrpos(strtolower($components['host']), AMPFROWP_HOST_NAME) !== strlen($components['host']) - strlen(AMPFROWP_HOST_NAME); 
+        $check =  strrpos(strtolower($components['host']), $_SERVER['HTTP_HOST']) !== strlen($components['host']) - strlen($_SERVER['HTTP_HOST']);// #3561 - it's returing empty that is why it's creating broken link. So checking empty condition and returning 1 to not create amp link.
+        if($check==""){ 
+            return 1;
+        }else{
+            return $check; 
+        }
     }
 } // end ampforwp_isexternal
 

@@ -25,7 +25,7 @@ function ampforwp_footer() {
 <?php if($redux_builder_amp['amp-enable-notifications'] == true && (isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] == 0) ) { ?>
 	<!-- Thanks to @nicholasgriffintn for Cookie Notification Code-->
   <amp-user-notification layout=nodisplay id="amp-user-notification1">
-       <p><?php echo esc_html__(ampforwp_get_setting('amp-notification-text'),'accelerated-mobile-pages'); ?> </p>
+       <p><?php $cookie_message = ampforwp_get_setting('amp-notification-text'); echo strip_tags($cookie_message, '<span><a><b><i><br>');?></p>
        <?php if ( ampforwp_get_setting('amp-enable-links') ){ ?>
 	       <a class="amp-not-privacy amp-not-page-link" href="<?php echo esc_url( ampforwp_get_setting('amp-notice-bar-select-privacy-page')); ?>" target="_blank"><?php echo esc_attr(ampforwp_get_setting('amp-notice-bar-privacy-page-button-text')); ?>
 	       </a> 

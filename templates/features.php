@@ -315,6 +315,11 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			if( array_key_exists( 'paged' , $query_arg_array ) ) {
 				if ( (is_home() || is_archive()) && $wp->query_vars['paged'] >= '2' ) {
 					$new_url 		=  home_url('/');
+					// If its custom permalink with /index.php/ #3537
+					if ( (is_home() || is_archive()) && false !== strpos($wp->matched_rule, 'index.php') && false === strpos( home_url( $wp->request ), 'index.php') ) {
+						$new_url = home_url( 'index.php' );
+						$new_url = trailingslashit($new_url);
+					}
 					$category_path 	= $wp->request;
 					if ( null != $category_path && true != $endpoint_check) {
 						$explode_path  	= explode("/",$category_path);
@@ -1429,6 +1434,7 @@ function ampforwp_add_proper_post_meta(){
 	if ( class_exists('WPSEO_Options') ) {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta_homepage' );
 		// Homepage/Frontpage/Blog
+		add_action('pre_amp_render_post','ampforwp_yoast_the_excerpt',33);
 		if(is_home()){
 			// Title
 			add_filter('wpseo_opengraph_title', 'ampforwp_yoast_opengraph_title');
@@ -1444,9 +1450,24 @@ function ampforwp_add_proper_post_meta(){
 		}
 	}
 }
-
+function ampforwp_yoast_the_excerpt(){
+	add_filter('get_the_excerpt','ampforwp_yoast_excerpt',9);
+}
+function ampforwp_yoast_excerpt($desc){
+	 if(ampforwp_is_front_page()){
+	 	$get_meta_excerpt = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_metadesc', true);
+	 	if(isset($get_meta_excerpt)){
+	 		$desc = $get_meta_excerpt;
+	 	}
+	 	if ( ! is_string( $desc ) || ( is_string( $desc ) && $desc === '' ) ) {
+	 		$post_content = get_post(ampforwp_get_the_ID())->post_content;
+	 		$desc = wp_trim_words( strip_shortcodes( $post_content ) , 15 );
+	 	}
+	 }
+	return $desc;
+}
 function ampforwp_custom_yoast_meta_homepage(){
-	if ( ampforwp_get_setting('ampforwp-seo-yoast-meta') ) {
+	if ( 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && ampforwp_get_setting('ampforwp-seo-yoast-meta') ) {
 				if ( class_exists('WPSEO_Options')) {
 					if( method_exists('WPSEO_Options', 'get_option')){
 						$options = WPSEO_Options::get_option( 'wpseo_social' );
@@ -1781,6 +1802,9 @@ function ampforwp_replace_title_tags() {
 		 	}
 		 	if ( ampforwp_is_front_page() || is_singular() || ampforwp_is_blog() ) {
 		 		$rank_math_title = RankMath\Post::get_meta( 'title', $post_id );
+		 		if(empty($rank_math_title)){
+		 			$rank_math_title = RankMath\Paper\Paper::get()->get_title();
+		 		}
 		 	}
 		 	if ( is_archive() ) {
 		 		$object = get_queried_object();
@@ -2165,7 +2189,7 @@ function ampforwp_add_disqus_support() {
 					layout="<?php echo esc_attr($layout) ?>"
 					sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 					frameborder="0"
-					src="<?php echo esc_url($disqus_url) ?>" >
+					src="<?php echo esc_url($disqus_url) ?>" title="<?php echo esc_html__('Disqus Comments','accelerated-mobile-pages'); ?>">
 					<div overflow tabindex="0" role="button" aria-label="Read more"><?php echo esc_html__('Disqus Comments Loading...','accelerated-mobile-pages') ?></div>
 				</amp-iframe>
 			</section>
@@ -3679,6 +3703,7 @@ function ampforwp_view_nonamp(){
 	} 
 
 	if ( ampforwp_get_setting('amp-mobile-redirection') ) {
+		$non_amp_url = user_trailingslashit($non_amp_url);
 		$non_amp_url = add_query_arg('nonamp','1',$non_amp_url);
 	}
 	else
@@ -4557,9 +4582,8 @@ function ampforwp_inline_related_posts(){
 				$inline_related_posts_img = '';
 				$inline_related_posts = '<div class="amp-wp-content relatedpost">
 						    <div class="related_posts">
-										<ol class="clearfix">
-						<span class="related-title">'.esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' )).'</span>';
-						
+							<span class="related-title">'.esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' )).'</span>
+							<ol class="clearfix">';			
 				    while( $my_query->have_posts() ) {
 					    $my_query->the_post();
 						$related_post_permalink = get_permalink();
@@ -4699,10 +4723,14 @@ function ampforwp_add_related_post_after_paragraph($matches)
 // Add extra key=>value pair into the attachment array
 add_filter('amp_gallery_image_params','ampforwp_gallery_new_params', 10, 2);
 function ampforwp_gallery_new_params($urls, $attachment_id ){
+	$img_caption = $urls['caption'];
 	$new_urls = array();
 	$captext = '';
 	$caption = array();
-	$captext = get_post( $attachment_id)->post_excerpt;
+	$captext = $img_caption;
+	if($captext==""){
+		$captext = get_post( $attachment_id)->post_excerpt;
+	}
 	if($captext){
 		// Append only when caption is present
 		$caption = array('caption'=>$captext);
@@ -5288,12 +5316,11 @@ function amp_vimeo_parse_url_video_id($tok){
 // Cart Page URL
 if( ! function_exists( 'ampforwp_wc_cart_page_url' ) ){
 	function ampforwp_wc_cart_page_url(){
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	 	if( is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ){
+		if(function_exists('amp_woocommerce_pro_add_woocommerce_support') && (function_exists('wc_get_cart_url') || function_exists('get_cart_url'))){
 		    global $woocommerce;
-		    $cart_url = $woocommerce->cart->get_cart_url();
+		    $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : $woocommerce->cart->get_cart_url();
 		    $cart_url = ampforwp_url_controller($cart_url);
-		    return $cart_url;;
+		    return $cart_url;
 	 	}
 	 	else
 	 		return '#'; 
@@ -5906,11 +5933,11 @@ function ampforwp_generate_canonical(){
 	global $redux_builder_amp;
 	$canonical = '';
 	$canonical = $WPSEO_Frontend = $All_in_One_SEO_Pack = $opts = '';
-	if ( isset($redux_builder_amp['ampforwp-seo-yoast-canonical']) && true == $redux_builder_amp['ampforwp-seo-yoast-canonical'] && class_exists('WPSEO_Frontend') ) {
+	if ( 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && true == ampforwp_get_setting('ampforwp-seo-yoast-canonical') && class_exists('WPSEO_Frontend') ) {
 		$WPSEO_Frontend = WPSEO_Frontend::get_instance();
 		$canonical = $WPSEO_Frontend->canonical(false);
 	}
-	elseif ( isset($redux_builder_amp['ampforwp-seo-aioseo-canonical']) && true == $redux_builder_amp['ampforwp-seo-aioseo-canonical'] && class_exists('All_in_One_SEO_Pack') ) {
+	elseif ( 'aioseo' == ampforwp_get_setting('ampforwp-seo-selection') && true == ampforwp_get_setting('ampforwp-seo-aioseo-canonical') && class_exists('All_in_One_SEO_Pack') ) {
 		$All_in_One_SEO_Pack = new All_in_One_SEO_Pack();
 		$opts = $All_in_One_SEO_Pack->get_current_options( array(), 'aiosp' );
 		$canonical = $opts['aiosp_custom_link'];
@@ -6881,7 +6908,15 @@ function ampforwp_webp_featured_image() {
 			if(empty($image[2])){
 			$image[2] = 500;
 			}
-		$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' ></amp-img>";?>
+		$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
+			if($thumb_alt){
+				$alt = $thumb_alt;
+			}
+			else{
+				$alt = get_the_title( $post_id );
+			}
+			$alt = convert_chars( stripslashes( $alt ) );
+		$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' alt='".esc_attr($alt)."' ></amp-img>";?>
 		<figure class="amp-wp-article-featured-image">
 			<?php 
 			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){

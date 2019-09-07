@@ -118,11 +118,13 @@ function amp_title(){
 		do_action('ampforwp_above_the_title'); 
 		$ampforwp_title = get_the_title($ID);
 		$ampforwp_title =  apply_filters('ampforwp_filter_single_title', $ampforwp_title);
-		if(!empty($ampforwp_title)){
+		if(!empty($ampforwp_title) && ampforwp_default_logo()){
 		?>
-		<h1 class="amp-post-title"><?php echo wp_kses_data( $ampforwp_title ); ?></h1>
+			<h1 class="amp-post-title"><?php echo wp_kses_data( $ampforwp_title ); ?></h1>
 		<?php
-		}
+		}else{?>
+			<h2 class="amp-post-title"><?php echo wp_kses_data( $ampforwp_title ); ?></h2>
+		<?php }
 		do_action('ampforwp_below_the_title');
     }
 }

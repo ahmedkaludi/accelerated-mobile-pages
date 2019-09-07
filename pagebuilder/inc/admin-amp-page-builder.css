@@ -1295,8 +1295,16 @@ a.amppb_accordion__panel:hover {
 }
 
 /*** RTL CSS ***/
+.rtl #pagebilder_content h2 span{
+    padding-right: 29px
+}
+.rtl #pagebilder_content h2 span:before{
+    left: auto;
+    right: 10px;
+}
+
 .rtl .amppb-module .module_label {
-    left: -35px;
+    left: -15px;
 }
 .rtl #amp-page-builder .form-label{
  margin-right:10px;
@@ -1310,7 +1318,15 @@ a.amppb_accordion__panel:hover {
     float: left;
     margin-left: 20px;
 }
-
+.rtl .modal-footer .del-btn-modal {
+    float: left;
+}
+.rtl .amppb-setting-right{
+    float: left;
+}
+.rtl .amppb-setting-right span {
+    float: left;
+}
 
 .layout-image-picker img{
     width:100%;

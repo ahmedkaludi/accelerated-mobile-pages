@@ -44,6 +44,7 @@ function ampforwp_notice_bar_options($opt_name){
            'required' => array('amp-enable-notifications', '=' , '1'),
            'default'  => esc_html__('This website uses cookies.','accelerated-mobile-pages'),
            'placeholder' => esc_html__('Enter Text here','accelerated-mobile-pages'),
+           'tooltip-subtitle' => esc_html__('Enter the message you want to show in the notice bar. You can also paste HTML in it but only <span><a><b><i><br> tags are allowed.', 'accelerated-mobile-pages'),
            ),
            array(
            'class' => 'child_opt',
