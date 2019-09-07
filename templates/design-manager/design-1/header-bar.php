@@ -29,7 +29,7 @@
 <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
 <amp-sidebar id='sidebar'
     layout="nodisplay"
-    side="right">
+    side="<?php echo (ampforwp_get_setting('header-overlay-position-d1') == 1 )? 'right':'left'; ?>">
   <div class="toggle-navigationv2">
       <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
       <nav id ="primary-amp-menu">

@@ -4677,6 +4677,21 @@ Redux::setSection( $opt_name, array(
                       array('ampforwp-amp-menu', '=' , '1')
                     )
             ),
+            array(
+                  //'class' => 'child_opt',
+                  'id'    => 'header-overlay-position-d1',
+                  'title'  => esc_html__('Menu Overlay Position', 'accelerated-mobile-pages'),
+                  'type'   => 'select',
+                  'options'=> array(
+                      '1' =>  'Right',
+                      '2' =>  'Left'
+                    ),
+                    'default'=> '1',
+                    'required' => array(
+                        array('amp-design-selector', '=' , '1'),
+                        array('ampforwp-amp-menu', '=' , '1')
+                  )    
+            ),
             // Design 2 Menu Options
             array(
                     'id'        => 'amp-d2-sidebar-color',
