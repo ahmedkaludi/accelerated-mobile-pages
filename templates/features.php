@@ -3703,6 +3703,7 @@ function ampforwp_view_nonamp(){
 	} 
 
 	if ( ampforwp_get_setting('amp-mobile-redirection') ) {
+		$non_amp_url = user_trailingslashit($non_amp_url);
 		$non_amp_url = add_query_arg('nonamp','1',$non_amp_url);
 	}
 	else
