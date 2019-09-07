@@ -3,7 +3,13 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
 <amp-sidebar id='sidebar'
     layout="nodisplay"
     <?php if ( true == $redux_builder_amp['amp-rtl-select-option'] ) 
-        { echo 'side="right"';} else{ echo 'side="left"'; } ?>>
+        { echo 'side="right"';} else{ 
+          if( ampforwp_get_setting('header-overlay-position-d3') == 1 ){
+            echo 'side="left"';
+          }else{
+            echo 'side="right"';
+           } 
+          }?> >
     <?php global $redux_builder_amp; ?>
     <div class="toggle-navigationv2">
 

@@ -4907,8 +4907,8 @@ Redux::setSection( $opt_name, array(
                   'title'  => esc_html__('Menu Overlay Position', 'accelerated-mobile-pages'),
                   'type'   => 'select',
                   'options'=> array(
-                      '1' =>  'Right',
-                      '2' =>  'Left'
+                      '1' =>  'Left',
+                      '2' =>  'Right'
                     ),
                     'default'=> '1',
                     'required' => array(
