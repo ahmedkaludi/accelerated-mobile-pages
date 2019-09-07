@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.2
-Stable tag: 0.9.98.7
+Stable tag: 0.9.98.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,39 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.8 (7th SEPTEMBER 2019) =
+* Improvements: AMP Option panel in mobile view #2603
+* Improvements: Need to make compatible with yoast seo primary category option #3551
+* Improvements: The "redirect chain" report taking extra steps to process. #3575
+* Improvements: Rank math Titles & Meta compatibility #3592
+* Improvements: Improvement in iframe #3563
+* Improvements: optimize the TEL link to remove validation and provide better UX #3581
+* Fixed: Need to check function exist get_cart_url as it is getting fatal error when only amp woocommere is active. #3584
+* Fixed: Change Internal Links to AMP #3561
+* Fixed: Rare issue with Yoast SEO/Excerpt #3511
+* Fixed: lighthouse issues #3547
+* Fixed: Gallery Captions not working #3536
+* Fixed: Table is not aligning properly in amp version #3549
+* Fixed: Getting Debug error ( cdn_url_main ) #3555
+* Fixed: Delete button gone in page builder in RTL language #3545
+* Fixed: caption design is different when comparing Gutenberg and classic editor #3573
+* Fixed: Image is not aligned properly #3542
+* Fixed: The extension 'amp-wistia-player' was found on this page, but is unused. Please remove this extension. #3587
+* Fixed: No Index issue #2303
+* Fixed: Need to create a basic tutorial for each elements of single in Swift #3499
+* Fixed: Facebook like button is not aligned properly #3589
+* Fixed: h1 was changed to h2 in the custom frontpage title after update #3546
+* Fixed: When using JNews AMP Extender, It makes posts blank #3526
+* Fixed: Infinite scroll script is adding in woocommerce archive pages #3570
+* Fixed: Clicky analytics option getting hidden when GTM is on #3585
+* Fixed: In add on mode when amp is in standard mode frontend is getting blank screen. #3508
+* Fixed: Proper escaping in facebook instant article #3564
+* Fixed: No Icon in Facebook Message when Font Awesome Icon type selected #3572
+* Fixed: yoast breadcrumb making all ul list in capital letters #3540
+* Fixed: Comments should be removed in the out put of Analytics Code #3593
+* Fixed: Related post excerpt is not working with horizontal design #3595
+* Fixed: Issue in Breacrumb if category has a comma #3598
+* Fixed: After last update the cookie bar text shows the html code (a href) instead of creating a link. #3617
 
 = 0.9.98.6 (31th AUGUST 2019) =
 * Improvements: Structured Data improvements #3567
@@ -199,34 +232,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Spot.IM Comments not working on all designs #3568
 * Fixed: Incorrect title tags being generated #3565
 * Fixed: Reduce the size of auto inline css. #3115
-
-= 0.9.98.5 (27th AUGUST 2019) =
-* Improvements: Compatibility integrated with CDN enabler #3515
-* Improvements: banner ux section of AMP panel settings improved #3470
-* Improvements: Reduces the size of auto inline css ro avoid validation errors #3115
-* Improvements: Tooltip to show description about "Social Share links to AMP" and "No Follow All Your Social Links" #3456
-* Improvements: Avada pagebuilder compatibility feature integrated ( it will work when 'AMP PageBuilder Compatibility' extension is activate) #3550
-* Improvements: Avia pagebuilder(Enfold) feature integrated ( it will work when 'AMP PageBuilder Compatibility' extension is activate) #3559
-* Improvements: Filters to show or hide option on admin settings for Template-mode #3562
-* Fixed: When AMP Page builder is checked with Empty Content,Container is missing on AMP view #3488
-* Fixed: Validation error when adding featured video with Authentic theme #3535
-* Fixed: User Experience issue with Custom Home Page #2348
-* Fixed: Serach option should be enabled by default when user selected the design-3 #3485
-* Fixed: Logo's resize option should only display when the image is present #3471
-* Fixed: Row module settings popup header is overlapped while scrolling the options in AMP Page Builder #3467
-* Fixed: labeling of the 'Text font' option in 'Row module settings' of AMP Page builder renamed #3468
-* Fixed: When AMP takeover is enabled, the 'visit amp' on admin header should disabled #3502
-* Fixed: Homepage amphtml not getting generated when there are no posts added. #3504
-* Fixed: AMP cache description is getting overlap with the Checkbox description when amp cache extension is activate #3512
-* Fixed: Category module's pagination of AMP Page builder is not working #3509
-* Fixed: There is closing tag of 'a' tag in header-bar.php of design bar, for which there is no opening tag #3479
-* Fixed: Icons not loading When Icon Font Library is selected to Font Awesome from the AMP options #3501
-* Fixed: Shortcode placed with double brackets (i.e., [[shortcode]]) should not execute #3481
-* Fixed: One signal push notification should work properly on AMP if any CDN plugin is used #3340
-* Fixed: Extra options are being displayed after the search is completed in the AMP Options Panel #2874
-* Fixed: In alt attribute's content single quotes should removed #3492
-* Fixed: "amphtml" is not generatiing in sorce code when it comes to search results pages in non AMP #3458
-* Fixed: Woocommerce archives and shop page support should not be dependent on Archives [Category & Tags] option #3558
-* Fixed: noreferrer is getting added automatically, it should have what ever the user passes #3566
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
