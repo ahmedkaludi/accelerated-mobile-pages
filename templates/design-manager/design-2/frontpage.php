@@ -14,6 +14,7 @@ $template = new AMP_Post_Template( $post_id );?>
 	<?php $template->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $template ); ?>
 	</style>
+	<?php do_action('ampforwp_last_head', $template);  ?>
 </head>
 <body <?php ampforwp_body_class('single-post design_2_wrapper');?> >
 	<?php do_action('ampforwp_body_beginning', $template); ?>

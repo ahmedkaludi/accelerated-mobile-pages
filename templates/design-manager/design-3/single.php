@@ -11,6 +11,7 @@
 		<?php $this->load_parts( array( 'style' ) ); ?>
 		<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
+	<?php do_action('ampforwp_last_head', $this);  ?>
 </head>
  
 <body <?php ampforwp_body_class('design_3_wrapper');?> >

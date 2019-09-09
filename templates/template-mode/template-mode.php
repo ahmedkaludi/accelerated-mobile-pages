@@ -486,6 +486,7 @@ Class AMPforWP_theme_mode{
 		$css = str_replace(array('.accordion-mod'), array('.apac'), $css);
 		echo $this->css_sanitizer($css);
 		echo "</style>";
+		do_action('ampforwp_last_head', $ampforwpTemplate);
 	}
 	private function css_sanitizer($css){
 		$css = preg_replace( '/\s*!important/', '', $css, -1, $important_count );

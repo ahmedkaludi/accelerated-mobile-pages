@@ -22,6 +22,27 @@ function amp_post_template_add_meta_generator() {
 <?php
 }
 
+add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_cached_link' );
+function amp_post_template_add_cached_link($amp_template) {
+	?>
+			<link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+	<?php
+	$scripts = $amp_template->get( 'amp_component_scripts', array() );
+	foreach ( $scripts as $element => $script ) : 
+		if (strpos($script, "amp-experiment") || strpos($script, "amp-dynamic-css-classes") || strpos($script, "amp-story")) { 
+	?>
+		<link rel="preload" as="script" href="<?php echo esc_url( $script ); ?>">
+	<?php } endforeach; 
+
+	// IF GOOGLE FONT EXIST.
+	$font_urls = $amp_template->get( 'font_urls', array() );
+	foreach ( $font_urls as $slug => $url ) : 
+		if (strpos($url, "fonts.googleapis.com")) { 
+	?>
+		<link rel="preconnect dns-prefetch" href="https://fonts.gstatic.com/" crossorigin>
+	<?php } endforeach;
+}
+
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_scripts' );
 function amp_post_template_add_scripts( $amp_template ) {
 	$scripts = $amp_template->get( 'amp_component_scripts', array() );
@@ -29,7 +50,7 @@ function amp_post_template_add_scripts( $amp_template ) {
 		$custom_type = ($element == 'amp-mustache') ? 'template' : 'element'; ?>
 		<script custom-<?php echo esc_attr( $custom_type ); ?>="<?php echo esc_attr( $element ); ?>" src="<?php echo esc_url( $script ); ?>" async></script>
 	<?php endforeach; ?>
-	<script src="<?php echo esc_url( $amp_template->get( 'amp_runtime_script' ) ); ?>" async></script>
+		<script src="<?php echo esc_url( $amp_template->get( 'amp_runtime_script' ) ); ?>" async></script>
 	<?php
 }
 
@@ -41,7 +62,7 @@ function amp_post_template_add_fonts( $amp_template ) {
 	<?php endforeach;
 }
 
-add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_boilerplate_css' );
+add_action( 'ampforwp_last_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_boilerplate_css' );
 function amp_post_template_add_boilerplate_css( $amp_template ) {
 	?>
 	<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
