@@ -6235,6 +6235,15 @@ $single_page_options = array(
               'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
                         esc_html__('Enable this option to show lightbox for images in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-lightbox-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
            ),
+           array(
+                'id'       => 'ampforwp-lightbox-external-links',
+                'class'    => 'child_opt',
+                'type'     => 'switch',
+                'title'    => esc_html__('External Links', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'    => esc_html__('This will show lightbox on your external links also', 'accelerated-mobile-pages'),
+                'default'  => '1',
+                'required' => array('ampforwp-amp-img-lightbox','=', '1'),
+            ),
            // Dropcap 
            array(
               'id'       => 'ampforwp-dropcap',
