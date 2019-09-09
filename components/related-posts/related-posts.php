@@ -54,16 +54,18 @@ function ampforwp_related_post_loop_query(){
     if( true == ampforwp_get_setting('ampforwp-single-order-of-related-posts')){
 			$orderby = 'rand';
 		}
-	$args=array(
-	'post_type'	   => get_post_type($post),
-    'post__not_in' => $exclude,
-    'posts_per_page'=> $int_number_of_related_posts,
-    'orderby' => $orderby,
-    'ignore_sticky_posts'=>1,
-	'has_password' => false ,
-	'post_status'=> 'publish',
-	'no_found_rows'	=> true
-	);
+	if(is_array($exclude)){
+		$args=array(
+		'post_type'	   => get_post_type($post),
+	    'post__not_in' => $exclude,
+	    'posts_per_page'=> $int_number_of_related_posts,
+	    'orderby' => $orderby,
+	    'ignore_sticky_posts'=>1,
+		'has_password' => false ,
+		'post_status'=> 'publish',
+		'no_found_rows'	=> true
+		);
+	}
 	if($redux_builder_amp['ampforwp-single-select-type-of-related']==2 && 'post' == $post->post_type ){
 	    $categories = get_the_category($post->ID);
 		if ($categories) {
