@@ -7141,7 +7141,13 @@ function ampforwp_head_css(){
 			if($pref==="true"){
 				$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
 				$css .= ampforwp_get_remote_content(includes_url()."/css/dashicons.min.css");
-				$css .= ".header,.amp-wp-header,.design2-header,.design3-header{margin-top:33px;}#headerwrap{position:initial}#wp-admin-bar-my-account .avatar{float: right;margin-top: 6px;}#wp-admin-bar-wpseo-notifications .yoast-issue-counter{float: right;}";
+				$css .= ".header,.amp-wp-header,.design2-header,.design3-header{margin-top:33px;}#headerwrap{top:32px;}#wp-admin-bar-my-account .avatar{float: right;margin-top: 6px;}#wp-admin-bar-wpseo-notifications .yoast-issue-counter{float: right;}
+				@media(max-width:782px){
+					.header, .amp-wp-header, .design2-header, .design3-header{
+						    margin-top: 46px;
+					}
+					#headerwrap{top:46px;}
+				}";
 				echo css_sanitizer($css);
 			}
 		}
