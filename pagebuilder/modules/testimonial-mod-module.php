@@ -1,6 +1,15 @@
 <?php 
 $output = '
-	<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx {{user_class}}">{{repeater}}</div>
+{{if_condition_testimonial_layout_type==1}}
+	<div {{if_id}}id="{{id}}"{{ifend_id}} class="ln-fx {{user_class}}">{{repeater_design_1}}</div>
+{{ifend_condition_testimonial_layout_type_1}}
+
+{{if_condition_testimonial_layout_type==3}}
+	<amp-carousel class="testi-slider" type="slides" width="1200" height="450" layout="responsive" data-next-button-aria-label="Go to next slide"
+  		data-previous-button-aria-label="Go to previous slide"">
+  		{{repeater_design_3}}
+	</amp-carousel>
+{{ifend_condition_testimonial_layout_type_3}}
 ';
 $css = '
 {{if_condition_testimonial_layout_type==1}}
@@ -21,6 +30,120 @@ $css = '
 	.testi-mod{width: 100%;margin-right:0}
 }
 {{ifend_condition_testimonial_layout_type_1}}
+
+{{if_condition_testimonial_layout_type==3}}
+amp-carousel .testi-mod-3{
+	width: 650px;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background:{{d3-tst_bg_color}};
+    padding:5% 6% 3% 6%;
+    border-radius: 10px;
+    box-shadow: 0 10px 16px 0 rgba(8, 8, 8, 0.14), 0 1px 9px 0 rgba(0,0,0,0.10);
+}
+.testi-mod-3 amp-img{
+	max-width: 80px;
+    max-height: 80px;
+    border-radius: 100px;
+    margin:0 auto;
+}
+.testi-mod-blk blockquote {
+    border:none;
+    quotes: " " "\201D" "" "";
+    margin: 0px 0px 30px 0px;
+}
+.testi-mod-blk blockquote p {
+	font-size: {{d3-tst-size}};
+	line-height:1.4;
+    padding: 50px 0px 0px 0px;
+    font-weight: 400;
+     color: {{d3-tst_color}};
+    font-family: sans-serif;
+}
+.testi-mod-blk blockquote p:before { 
+	content: open-quote;
+	width:auto;
+	border:none;
+} 
+.testi-mod-blk blockquote p:after { 
+	content: close-quote;
+	font-weight: bold;
+	font-size:80px;
+	color:{{d3-bquote_color}};
+	font-family:Georgia, "Times New Roman", Times, serif;
+	position: absolute;
+    top: 10px;
+    line-height: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.testi-mod-blk{
+	text-align:center;
+}
+.testi-mod-blk h4{
+	font-size: {{d3-txt-size}};
+    line-height: 1.2;
+    margin-top: 10px;
+    font-weight: 600;
+    color: {{d3-aut_color_picker}};
+}
+.testi-mod-blk span{
+	font-size: {{d3-dsg-size}};
+    color: {{d3-dsg_color}};
+    display: inherit;
+}
+amp-carousel.testi-slider .amp-carousel-button-prev{
+	left: 22%;
+	border-radius: 100px;
+}
+amp-carousel.testi-slider .amp-carousel-button-next {
+    right: 22%;
+    border-radius: 100px;
+}
+
+
+
+@media(max-width:991px){
+	amp-carousel{
+		min-height:400px;
+	}
+	amp-carousel.testi-slider .amp-carousel-button-prev{
+		left: 30px;
+	}
+	amp-carousel.testi-slider .amp-carousel-button-next {
+		right: 30px;
+	}
+}
+
+@media(max-width:768px){
+	.testi-mod-blk blockquote p:after{
+		top:20px;
+	}
+}
+
+@media(max-width:650px){
+	amp-carousel .testi-mod-3{
+		width:100%;
+		padding:40px 30px 20px 30px;
+	}
+	.testi-mod-blk blockquote p {
+    	font-size: 18px;
+    }
+    amp-carousel.testi-slider .amp-carousel-button-prev{
+		left: 10px;
+	}
+	amp-carousel.testi-slider .amp-carousel-button-next {
+		right: 10px;
+	}
+}
+
+{{ifend_condition_testimonial_layout_type_3}}
+
 ';
 global $redux_builder_amp;
 if(ampforwp_get_setting('amp-rtl-select-option')){
@@ -57,6 +180,11 @@ return array(
 				                              'label'=>'',
 				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/testmon-1.png'
 				                            ),
+				                            array(
+				                              'value'=>'3',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/testmon-3.png'
+				                            ),
 				                            
 				                          ),
 				            'content_type'=>'html',
@@ -68,7 +196,8 @@ return array(
 			                    'tab'       =>'design',
 			                    'default'   =>'13px',
 			                    'content_type'=>'css',
-			                    
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(1,2))
 			                ),
 						array(
 								'type'		=>'color-picker',
@@ -77,6 +206,8 @@ return array(
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css',
+								'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(1,2))
 								
 							),
 			            array(
@@ -86,6 +217,8 @@ return array(
 			                    'tab'       =>'design',
 			                    'default'   =>'13px',
 			                    'content_type'=>'css',
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(1,2))
 			                    
 			                ),
 			            array(
@@ -95,6 +228,8 @@ return array(
 			                    'tab'       =>'design',
 			                    'default'   =>'#333',
 			                    'content_type'=>'css',
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(1,2))
 			                    
 			                ),
 			            array(
@@ -104,6 +239,8 @@ return array(
 			                    'tab'       =>'design',
 			                    'default'   =>'18px',
 			                    'content_type'=>'css',
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(1,2))
 			                    
 			                ),
 			            array(
@@ -113,8 +250,98 @@ return array(
 			                    'tab'       =>'design',
 			                    'default'   =>'#333',
 			                    'content_type'=>'css',
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(1,2))
 			                    
 			                ),
+			            // Design 3 Fields
+			            array(
+			                    'type'      =>'color-picker',
+			                    'name'      =>"d3-tst_bg_color",
+			                    'label'     =>'Testimonial Background Color',
+			                    'tab'       =>'design',
+			                    'default'   =>'#ECF3FE',
+			                    'content_type'=>'css',
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(3))
+			                    
+			                ),
+			             array(
+			                    'type'      =>'text',
+			                    'name'      =>"d3-tst-size",
+			                    'label'     =>'Testimonial Font Size',
+			                    'tab'       =>'design',
+			                    'default'   =>'25px',
+			                    'content_type'=>'css',
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(3))
+			                    
+			                ),
+			            array(
+			                    'type'      =>'color-picker',
+			                    'name'      =>"d3-tst_color",
+			                    'label'     =>'Testimonial Text Color',
+			                    'tab'       =>'design',
+			                    'default'   =>'#888',
+			                    'content_type'=>'css',
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(3))
+			                    
+			                ),
+			            array(
+			                    'type'      =>'text',
+			                    'name'      =>"d3-txt-size",
+			                    'label'     =>'Author Font Size',
+			                    'tab'       =>'design',
+			                    'default'   =>'13px',
+			                    'content_type'=>'css',
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(3))
+			                ),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"d3-aut_color_picker",
+								'label'		=>'Author Text Color',
+								'tab'		=>'design',
+								'default'	=>'#777',
+								'content_type'=>'css',
+								'required_type'=>'or',
+								'required'  => array('testimonial_layout_type'=> array(3))
+								
+							),
+						array(
+			                    'type'      =>'text',
+			                    'name'      =>"d3-dsg-size",
+			                    'label'     =>'Designation Font Size',
+			                    'tab'       =>'design',
+			                    'default'   =>'10px',
+			                    'content_type'=>'css',
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(3))
+			                    
+			                ),
+			            array(
+			                    'type'      =>'color-picker',
+			                    'name'      =>"d3-dsg_color",
+			                    'label'     =>'Designation Text Color',
+			                    'tab'       =>'design',
+			                    'default'   =>'#333',
+			                    'content_type'=>'css',
+			                    'required_type'=>'or',
+			                    'required'  => array('testimonial_layout_type'=> array(3))
+			                ),
+			            array(
+			                    'type'      =>'color-picker',
+			                    'name'      =>"d3-bquote_color",
+			                    'label'     =>'Blockquote Icon Color',
+			                    'tab'       =>'design',
+			                    'default'   =>'#9FBEFA',
+			                    'required_type'=>'or',
+			                    'content_type'=>'css',
+			                    'required'  => array('testimonial_layout_type'=> array(3))
+			                ),
+
+			            //Common Fields for all Designs
 			            array(
 								'type'		=>'text',
 								'name'		=>"id",
@@ -202,23 +429,35 @@ return array(
 						
                 
               ),
-          'front_template'=>
-        '{{if_condition_testimonial_layout_type==1}}
-	        <div class="testi-mod">
-				<div class="testi-cont">
-					{{content}}
-				</div>
-				<div class="auth-info">
-					<div class="auth-img">
-						{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
-					</div>
-					<div class="auth-cntn">
-						<h5>{{content_title}}</h5>
-						<span>{{auth_desig}}</span>
-					</div>
-				</div>
-			</div>
-		{{ifend_condition_testimonial_layout_type_1}}'
+          'front_template'=> array(
+				        "design_1" => '{{if_condition_testimonial_layout_type==1}}
+					        <div class="testi-mod">
+								<div class="testi-cont">
+									{{content}}
+								</div>
+								<div class="auth-info">
+									<div class="auth-img">
+										{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
+									</div>
+									<div class="auth-cntn">
+										<h5>{{content_title}}</h5>
+										<span>{{auth_desig}}</span>
+									</div>
+								</div>
+							</div>
+						{{ifend_condition_testimonial_layout_type_1}} ',
+
+						"design_3" => '{{if_condition_testimonial_layout_type==3}}
+							<div class="testi-mod-3">
+								<div class="testi-mod-blk">
+									<blockquote>{{content}}</blockquote>
+									{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
+									<h4>{{content_title}}</h4>
+									<span>{{auth_desig}}</span>
+								</div>
+							</div>
+						{{ifend_condition_testimonial_layout_type_3}}'
+					)
           ),
 	);
 
