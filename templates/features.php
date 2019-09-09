@@ -7275,6 +7275,9 @@ function ampforwp_meta_revi_pb_field( $value, $field ) {
 
 // Reverting to the correct revision of the meta field when a post is reverted
 function ampforwp_meta_restore_revision( $post_id, $revision_id ) {
+	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+		return;
+	}
 	$post     = get_post( $post_id );
 	$revision = get_post( $revision_id );
 	$meta     = get_metadata( 'post', $revision->ID, 'amp-page-builder', true );
