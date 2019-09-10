@@ -7254,13 +7254,13 @@ function ampforwp_head_css(){
 }
 
 // Post Meta Revisions #3548 -- start here --
-add_filter( '_wp_post_revision_field_amp_page_builder', 'ampforwp_meta_revi_pb_field', 22, 2 );
-add_action( 'save_post',                   'ampforwp_meta_revi_save_post', 10, 2 );
-add_action( 'wp_restore_post_revision',    'ampforwp_meta_restore_revision', 10, 2 );
-add_filter( '_wp_post_revision_fields',    'ampforwp_meta_revi_fields' );
+add_filter( '_wp_post_revision_fields', 'ampforwp_pb_revision_fields');
+add_filter( '_wp_post_revision_field_amp_page_builder', 'ampforwp_pb_revision_data_display', 22, 2 );
+add_action( 'wp_restore_post_revision','ampforwp_pb_restore_revision', 10, 2 );
+add_action( 'save_post', 'ampforwp_pb_save_data', 10, 2 );
 
 // Displaying the meta field on the revisions screen
-function ampforwp_meta_revi_fields( $fields ) {
+function ampforwp_pb_revision_fields( $fields ) {
 	$fields['post_title'] = 'Title';
 	$fields['post_content'] = 'Content';
 	$fields['post_excerpt'] = 'Excerpt';
@@ -7269,14 +7269,13 @@ function ampforwp_meta_revi_fields( $fields ) {
 }
 
 // Displaying the meta field on the revisions screen
-function ampforwp_meta_revi_pb_field( $value, $field ) {
+function ampforwp_pb_revision_data_display( $value, $field ) {
 	global $revision;
 	return get_metadata( 'post', $revision->ID, $field, true );
-
 }
 
 // Reverting to the correct revision of the meta field when a post is reverted
-function ampforwp_meta_restore_revision( $post_id, $revision_id ) {
+function ampforwp_pb_restore_revision( $post_id, $revision_id ) {
 	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
 		return;
 	}
@@ -7292,7 +7291,7 @@ function ampforwp_meta_restore_revision( $post_id, $revision_id ) {
 }
 
 // Storing a revision of the meta field when a post is saved
-function ampforwp_meta_revi_save_post( $post_id, $post ) {
+function ampforwp_pb_save_data( $post_id, $post ) {
 	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
 		return;
 	}
