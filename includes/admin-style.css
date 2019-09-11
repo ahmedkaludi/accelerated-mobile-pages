@@ -980,3 +980,10 @@ a.top_design_tabs {
 a.top_design_tabs:hover {
     text-decoration: underline;
 }
+#redux-import-file-type{
+    display: none;
+}
+#admin-import-file-name{
+    color:red;
+    font-weight: bold;
+}
