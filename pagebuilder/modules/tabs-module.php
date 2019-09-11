@@ -49,7 +49,7 @@ $css = '
     width: 100%;
     order: 1;
 }
-{{module-class}} .tabButton h2{
+{{module-class}} amp-selector .tabButton h2{
 	color:{{hdng_bg_color}};
 	padding: 4px 15px 5px 15px;
 	font-size:{{hdng_fnt_sz}};
