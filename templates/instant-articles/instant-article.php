@@ -1,3 +1,8 @@
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
 <!doctype html>
     <html lang="en" prefix="op: http://media.facebook.com/op#">
     <?php global $redux_builder_amp; ?>

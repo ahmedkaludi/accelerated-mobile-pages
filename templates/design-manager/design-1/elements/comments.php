@@ -1,4 +1,8 @@
-<?php do_action('ampforwp_before_comment_hook',$this);
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+do_action('ampforwp_before_comment_hook',$this);
 	global $redux_builder_amp;
 	$enable_comments = "";
 	$display_comments_on = "";

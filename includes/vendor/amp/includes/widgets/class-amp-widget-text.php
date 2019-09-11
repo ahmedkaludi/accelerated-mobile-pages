@@ -1,5 +1,7 @@
 <?php
-	
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if ( class_exists( 'WP_Widget_Text' ) && ! class_exists('AMP_Widget_Text') ) {
 	/**
 	 * Class AMP_Widget_Text

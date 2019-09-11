@@ -1,4 +1,8 @@
-<?php $categories = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'accelerated-mobile-pages' ) ); ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+$categories = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'accelerated-mobile-pages' ) ); ?>
 <?php if ( $categories ) : ?>
 	<li class="amp-wp-tax-category">
 		<span class="screen-reader-text">Categories:</span>

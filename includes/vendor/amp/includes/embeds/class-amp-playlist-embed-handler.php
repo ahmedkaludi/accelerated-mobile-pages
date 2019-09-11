@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Class AMP_Playlist_Embed_Handler
  *

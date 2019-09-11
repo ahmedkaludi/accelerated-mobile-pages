@@ -4,6 +4,9 @@ use AMPforWP\AMPVendor\AMP_DOM_Utils;
 /**
  * Converts Instagram embeds to <amp-instagram>
  */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class AMPFORWP_Instagram_Embed_Sanitizer extends AMP_Base_Sanitizer {
 private $instagram_medias = array();
 const URL_PATTERN = '#http(s?)://(www\.)?instagr(\.am|am\.com)/p/([^/?]+)#i';

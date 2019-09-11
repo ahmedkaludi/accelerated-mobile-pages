@@ -1,3 +1,8 @@
+<?php 
+	if ( ! defined( 'ABSPATH' ) ) {
+	    exit;
+	}
+?>
 <!doctype html>
 <html amp <?php language_attributes(); ?>>
 <head>

@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp; ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp; ?>
 <header class="container">
   <div id="headerwrap">
       <div id="header">

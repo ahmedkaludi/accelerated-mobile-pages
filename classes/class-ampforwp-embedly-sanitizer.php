@@ -4,6 +4,9 @@ use AMPforWP\AMPVendor\AMP_DOM_Utils;
 /**
  * Converts embedly-cards to <amp-embedly-card>
  */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class AMPforWP_Embedly_Sanitizer extends AMP_Base_Sanitizer {
 private $embedly_cards = array();
 private static $script_slug = 'amp-embedly-card';

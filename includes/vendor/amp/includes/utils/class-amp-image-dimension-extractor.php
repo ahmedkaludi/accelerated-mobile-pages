@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class AMP_Image_Dimension_Extractor {
 	static $callbacks_registered = false;
 	const STATUS_FAILED_LAST_ATTEMPT = 'failed';

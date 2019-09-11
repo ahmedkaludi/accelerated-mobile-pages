@@ -1,4 +1,8 @@
-<?php class AMPFORWP_Button_Widget extends WP_Widget {
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+class AMPFORWP_Button_Widget extends WP_Widget {
 
 	/*--------------------------------------------------*/
 	/* Constructor

@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp; ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp; ?>
 <?php amp_header(); ?>
 <?php if(ampforwp_get_setting('single-design-type') == '1'){?>
 <div class="sp sgl">

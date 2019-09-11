@@ -1,6 +1,8 @@
 <?php
  use ReduxCore\ReduxFramework\Redux;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
  function ampforwp_admin_advertisement_options($opt_name){
     $advertisementdesc = '';
     if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) && !is_plugin_active( 'ads-for-wp/ads-for-wp.php' ) ){

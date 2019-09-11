@@ -8,6 +8,9 @@
 	 * @package 	ReduxFramework/Templates
 	 * @version     3.5.8.3
 	 */
+	if ( ! defined( 'ABSPATH' ) ) {
+	    exit;
+	}
 ?>
 <div id="redux-sticky-padder" style="display: none;">&nbsp;</div>
 <div id="redux-footer-sticky">

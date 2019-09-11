@@ -3,6 +3,9 @@
 	@data parameter have options for
 	show_excerpt
 */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_framework_get_related_posts($argsdata=array()){
  	global $post,  $redux_builder_amp;
  	$show_image = (isset($argsdata['show_image']) ? $argsdata['show_image'] : true);

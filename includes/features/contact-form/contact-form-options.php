@@ -1,5 +1,8 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
  function ampforwp_admin_contact_form_options($opt_name){
 	 // contact form 7 
 	$forms_support[] =  array(

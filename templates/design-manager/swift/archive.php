@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp;
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp;
 amp_header() ?>
 <div class="cntr archive">
 	<div class="arch-tlt">

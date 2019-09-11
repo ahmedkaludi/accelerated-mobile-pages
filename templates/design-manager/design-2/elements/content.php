@@ -1,3 +1,8 @@
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
 <div class="amp-wp-article-content">
 	<?php 
 

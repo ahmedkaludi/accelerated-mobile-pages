@@ -1,4 +1,7 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Loading the Components
 // Big Post Image
 add_image_size( 'amp-featured-large', 723, 394, true ); 

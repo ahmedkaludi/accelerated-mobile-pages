@@ -8,6 +8,9 @@
 	 * @package 	ReduxFramework/Templates
 	 * @version     3.5.7.8
 	 */
+	if ( ! defined( 'ABSPATH' ) ) {
+	    exit;
+	}
 ?>
 <div id="redux-sticky">
 	<div id="info_bar">

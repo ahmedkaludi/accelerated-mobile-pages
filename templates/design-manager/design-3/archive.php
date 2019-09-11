@@ -1,4 +1,8 @@
-<?php use AMPforWP\AMPVendor\AMP_HTML_Utils;?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+use AMPforWP\AMPVendor\AMP_HTML_Utils;?>
 <?php global $redux_builder_amp, $wp, $wp_query;  ?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>

@@ -1,5 +1,7 @@
 <?php namespace FasterImage\Exception;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Class InvalidImageException
  *

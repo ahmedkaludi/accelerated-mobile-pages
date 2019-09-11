@@ -1,4 +1,7 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
  add_amp_theme_support('AMP-gdpr');
 // Custom AMP Content
 require AMPFORWP_PLUGIN_DIR  .'templates/custom-amp-content.php';

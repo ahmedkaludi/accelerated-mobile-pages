@@ -1,6 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Class AMP_DOM_Utils
  *

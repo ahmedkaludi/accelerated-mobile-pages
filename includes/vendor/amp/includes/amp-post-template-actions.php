@@ -1,7 +1,9 @@
 <?php
 namespace AMPforWP\AMPVendor;
 // Callbacks for adding content to an AMP template
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_title' );
 function amp_post_template_add_title( $amp_template ) {
 	?>

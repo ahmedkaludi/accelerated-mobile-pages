@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
 <div class="amp-wp-article-content">
 	<?php 
 	if ( 'above-content' ==  ampforwp_get_setting('design-1-2-3-addthis-pos') ){

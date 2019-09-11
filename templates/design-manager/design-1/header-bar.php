@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp; ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp; ?>
 <header id="#top" class="amp-wp-header">
   <div class="ampforwp-logo-area" >
     <?php do_action('ampforwp_header_top_design1'); ?>

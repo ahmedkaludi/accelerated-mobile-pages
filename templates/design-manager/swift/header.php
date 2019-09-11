@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp ?>
 <?php amp_header_core() ?>
 <?php
 do_action( 'levelup_head');

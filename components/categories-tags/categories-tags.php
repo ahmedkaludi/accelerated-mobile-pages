@@ -3,6 +3,9 @@
 TODO: 1: Connect with options panel(archive support and translational panel)
 2: Do we have to change the classes names as well?
 */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 global $post;
 function ampforwp_framework_get_categories_list( $separator = '' ){
 	global $post, $redux_builder_amp;

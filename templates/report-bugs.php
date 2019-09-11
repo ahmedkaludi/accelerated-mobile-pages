@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if ( ! function_exists( 'ampforwp_reporting_bugs' ) ) {
 	function ampforwp_reporting_bugs($sections){
 

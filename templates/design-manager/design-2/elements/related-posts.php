@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 global $post, $redux_builder_amp;
 do_action('ampforwp_above_related_post',$this); //Above Related Posts
 $string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		

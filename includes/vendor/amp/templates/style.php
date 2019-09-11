@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Get content width
 $content_max_width       = absint( $this->get( 'content_max_width' ) );
 

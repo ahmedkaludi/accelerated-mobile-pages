@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if(!function_exists('ampforwp_framework_get_sideabr')){
 	function ampforwp_framework_get_sideabr($data=array()){
 		if(!isset($data['action'])){

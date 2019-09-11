@@ -1,5 +1,8 @@
-
-<?php do_action('ampforwp_before_meta_info_hook',$this); ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+do_action('ampforwp_before_meta_info_hook',$this); ?>
 <?php global $redux_builder_amp;
 if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 <div class="amp-wp-content amp-wp-article-header ampforwp-meta-info">

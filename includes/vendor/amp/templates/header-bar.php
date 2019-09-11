@@ -1,3 +1,8 @@
+<?php 
+	if ( ! defined( 'ABSPATH' ) ) {
+	    exit;
+	}
+?>
 <header id="#top" class="amp-wp-header">
 	<div>
 		<a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">

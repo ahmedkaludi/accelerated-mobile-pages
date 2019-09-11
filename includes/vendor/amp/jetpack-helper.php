@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Jetpack bits.
 
 add_action( 'pre_amp_render_post', 'AMPforWP\\AMPVendor\\amp_jetpack_mods' );

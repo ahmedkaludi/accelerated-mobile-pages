@@ -1,5 +1,7 @@
 <?php namespace WillWashburn\Stream;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 use WillWashburn\Stream\Exception\StreamBufferTooSmallException;
 
 

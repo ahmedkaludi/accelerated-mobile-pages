@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if(is_plugin_active('amp/amp.php')){
 	add_action('amp_post_template_css' , 'ampforwp_notification_bar_css');
 	function ampforwp_notification_bar_css(){?>

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 //  Advertisement code
 if( !class_exists('adsforwp_output_functions') ){
 	add_action('ampforwp_after_header','ampforwp_header_advert');

@@ -1,5 +1,7 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // 94. OneSignal Push Notifications
 add_action( 'ampforwp_body_beginning' , 'ampforwp_onesignal_notifications' , 11 );
 if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){

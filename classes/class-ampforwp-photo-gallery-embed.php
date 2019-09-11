@@ -2,6 +2,10 @@
 /* 
 Most of the code is taken from class-amp-gallery-embed.php and Photo Gallery Plugin https://wordpress.org/plugins/photo-gallery/
 */
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php' );
 
 class AMPforWP_Photo_Gallery_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Handler {

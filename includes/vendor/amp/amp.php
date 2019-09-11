@@ -1,5 +1,8 @@
-<?php
+<?php 
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Plugin Name: AMP
  * Description: Add AMP support to your WordPress site.

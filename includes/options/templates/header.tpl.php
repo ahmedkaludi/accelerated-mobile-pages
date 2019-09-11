@@ -8,6 +8,9 @@
 	 * @package 	ReduxFramework/Templates
 	 * @version     3.5.4.18
 	 */
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
     $tip_title = __( 'Developer Mode Enabled', 'accelerated-mobile-pages' );
 
     if ( $this->parent->dev_mode_forced ) {

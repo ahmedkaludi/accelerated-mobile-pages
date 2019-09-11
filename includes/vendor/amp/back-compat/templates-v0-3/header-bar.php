@@ -1,4 +1,8 @@
-<?php $site_icon_url = $this->get( 'site_icon_url' ); ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+$site_icon_url = $this->get( 'site_icon_url' ); ?>
 
 <nav class="amp-wp-title-bar">
 	<div>

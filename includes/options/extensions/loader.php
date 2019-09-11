@@ -5,6 +5,9 @@ namespace ReduxCore\ReduxFramework;
  * 
  * More on loading on extensions is here https://github.com/ReduxFramework/redux-extensions-loader
 */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if(!function_exists('ampforwp_register_custom_extension_loader')) :
     function ampforwp_register_custom_extension_loader($ReduxFramework) {
         $path    = AMPFORWP_PLUGIN_DIR.'/includes/options/extensions/';

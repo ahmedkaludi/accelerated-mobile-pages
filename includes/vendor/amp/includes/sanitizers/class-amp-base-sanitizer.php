@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 abstract class AMP_Base_Sanitizer {
 	const FALLBACK_HEIGHT = 400;
 

@@ -4,6 +4,10 @@
 * Note: For performance reasons the component will render a maximum of three documents (total) on screen at one time. This limit may be changed or removed in the future.
 * Read more about it here: https://www.ampproject.org/docs/reference/components/amp-next-page 
 */
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 
 	class AMPforWP_Infinite_Scroll
