@@ -132,6 +132,17 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 						$class .= ' amp-wp-unknown-height';
 					}
 				}
+			if ( ! is_numeric( $node->getAttribute( 'srcset' ) ) && true == ampforwp_get_setting('ampforwp-amp-img-lightbox')) {
+				$image_src = $node->getAttribute( 'src' );
+		 		$img_name = explode('/',$image_src);
+		    	$img_name = end($img_name);
+		    	$img_croped = explode('-',$img_name);
+		    	$img_croped = end($img_croped);
+		    	$img_ext = explode('.',$img_croped);
+		    	$img_ext = end($img_ext);
+		    	$new_img_url = str_replace("-$img_croped",".$img_ext",$image_src);
+		    	$node->setAttribute( 'srcset', $new_img_url );	 
+			}
 				$node->setAttribute( 'class', trim( $class ) );
 			}
 		}
