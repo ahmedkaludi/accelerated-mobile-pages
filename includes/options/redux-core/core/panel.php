@@ -103,7 +103,7 @@ namespace ReduxCore\ReduxFramework;
                     if ( current_user_can( 'administrator' ) ) {
                         global $wpdb;
                         echo "<br /><pre>";
-                        print_r( $wpdb->queries );
+                        print_r( esc_sql($wpdb->queries) );
                         echo "</pre>";
                     }
 
