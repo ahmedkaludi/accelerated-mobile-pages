@@ -36,6 +36,7 @@ $menu_icon_clr          = ampforwp_get_setting('amp-d2-menu-icon-color','color')
 $cross_btn_clr          = ampforwp_get_setting('amp-d2-cross-btn-color','color');
 $cross_btn_bg_clr       = ampforwp_get_setting('amp-d2-cross-bg-color','rgba');
 $cross_btn_hvr_clr      = ampforwp_get_setting('amp-d2-cross-hover-color','rgba');
+
 $colorschemetxt_clr     = ampforwp_get_setting('amp-opt-color-rgba-font-d2','rgba');
 $colorschemebg_clr      = ampforwp_get_setting('amp-opt-color-rgba-colorscheme-d2','rgba');
 
@@ -171,8 +172,8 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 #pagination .prev{ float: left }
 #pagination .next a, #pagination .prev a{ margin-bottom: 12px; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05); padding: 11px 15px; font-size: 12px;}
 #pagination .next a, #pagination .prev a{
-	color:<?php echo ampforwp_sanitize_color( $colorschemetxt_clr ); ?>;
-    background:<?php echo ampforwp_sanitize_color( $colorschemebg_clr ); ?>;
+	color:#666666;
+    background:#fefefe;
     display:inline-block;
 }
 <?php } // AMP Woocommerce condition ends ?>
