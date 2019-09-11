@@ -8118,7 +8118,6 @@ function ampforwp_import_settings_from_file(){
 			if ( ! empty ( $content ) ) {
 				$imported_options = json_decode( $content, true );
 			}
-			$plugin_options = get_option('redux_builder_amp');
 			if ( ! empty ( $imported_options ) && is_array( $imported_options ) && isset ( $imported_options['redux-backup'] ) && $imported_options['redux-backup'] == '1' ) {
 				echo $content;
 			}
