@@ -54,6 +54,7 @@ $css = '
 	padding: 4px 15px 5px 15px;
 	font-size:{{hdng_fnt_sz}};
 	font-weight:{{hdng_font_type}};
+	margin:0px;
 }
 {{module-class}} .tabButton[selected]+.tabContent {
     width: 100%;
