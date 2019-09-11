@@ -536,7 +536,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		}
 
 		$host = "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-		if(strrpos($host, "?page_id=")){
+		if(strrpos($host, "?page_id=") || strrpos($host, "page")){
 			return false;
 		}
 		if(strrpos($host, "?p=")){
