@@ -49,15 +49,12 @@ function ampforwp_related_post_loop_query(){
 	$int_number_of_related_posts = (int)$string_number_of_related_posts;
 	$args = null;
 	$orderby = 'ID';
-	$exclude = array($post->ID);
-	$exclude = apply_filters('ampforwp_exclude_related_post_filter' , $exclude );
     if( true == ampforwp_get_setting('ampforwp-single-order-of-related-posts')){
 			$orderby = 'rand';
 		}
-	if(is_array($exclude)){
 		$args=array(
 		'post_type'	   => get_post_type($post),
-	    'post__not_in' => $exclude,
+	    'post__not_in' => array($post->ID),
 	    'posts_per_page'=> $int_number_of_related_posts,
 	    'orderby' => $orderby,
 	    'ignore_sticky_posts'=>1,
@@ -65,7 +62,7 @@ function ampforwp_related_post_loop_query(){
 		'post_status'=> 'publish',
 		'no_found_rows'	=> true
 		);
-	}
+	$args = apply_filters('ampforwp_modify_related_post_filter' , $args );
 	if($redux_builder_amp['ampforwp-single-select-type-of-related']==2 && 'post' == $post->post_type ){
 	    $categories = get_the_category($post->ID);
 		if ($categories) {
