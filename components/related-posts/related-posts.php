@@ -62,7 +62,6 @@ function ampforwp_related_post_loop_query(){
 		'post_status'=> 'publish',
 		'no_found_rows'	=> true
 		);
-	$args = apply_filters('ampforwp_modify_related_post_filter' , $args );
 	if($redux_builder_amp['ampforwp-single-select-type-of-related']==2 && 'post' == $post->post_type ){
 	    $categories = get_the_category($post->ID);
 		if ($categories) {
@@ -97,6 +96,7 @@ function ampforwp_related_post_loop_query(){
 					            	)
 					       		); 
 	}
+	$args = apply_filters('ampforwp_modify_related_post_filter' , $args );
 	$my_query = new wp_query( $args );
 
 	return $my_query;
