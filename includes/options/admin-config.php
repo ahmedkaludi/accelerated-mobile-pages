@@ -4515,124 +4515,7 @@ Redux::setSection( $opt_name, array(
                     'required' => array(array('amp-design-selector', '!=' , '4')),
 
             ),
-            // Design1 Menu Options
-             array(
-                    'id'        => 'amp-d1-sidebar-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#efefef',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d1-menu-bg-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Elements Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#fafafa',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d1-menu-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Elements Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#0a89c0',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d1-submenu-bg-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Sub Menu Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#ffffff',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d1-menu-brdr-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#efefef',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d1-menu-icon-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Arrow Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#ccc',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d1-cross-btn-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Close Button Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#ffffff',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d1-cross-bg-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Close Button Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'rgba'     => 'rgba(0, 0, 0, 0.25)',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d1-cross-hover-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Close Button Hover color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'rgba'     => 'rgba(0, 0, 0, 0.45)',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
+            // Design 1 Menu slider position option
             array(
                   'id'    => 'header-overlay-position-d1',
                   'title'  => esc_html__('Menu Overlay Position', 'accelerated-mobile-pages'),
@@ -4647,124 +4530,7 @@ Redux::setSection( $opt_name, array(
                         array('ampforwp-amp-menu', '=' , '1')
                   )    
             ),
-            // Design 2 Menu Options
-            array(
-                    'id'        => 'amp-d2-sidebar-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#efefef',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d2-menu-bg-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Elements Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#fafafa',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d2-menu-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Elements Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#0a89c0',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d2-submenu-bg-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Sub Menu Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#ffffff',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d2-menu-brdr-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#efefef',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d2-menu-icon-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Arrow Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#ccc',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d2-cross-btn-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Close Button Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#ffffff',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d2-cross-bg-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Close Button Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'rgba'     => 'rgba(0, 0, 0, 0.25)',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-d2-cross-hover-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Close Button Hover color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'rgba'     => 'rgba(0, 0, 0, 0.45)',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
+            // Design 2 Menu slide poistion option
             array(
                   'id'    => 'header-overlay-position-d2',
                   'title'  => esc_html__('Menu Overlay Position', 'accelerated-mobile-pages'),
@@ -4779,85 +4545,7 @@ Redux::setSection( $opt_name, array(
                         array('ampforwp-amp-menu', '=' , '1')
                   )    
             ),
-            // Design 3 Menu Options
-            array(
-                    'id'        => 'amp-opt-color-rgba-menu-bg-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#131313',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-opt-color-rgba-menu-elements-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Elements Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#eeeeee',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-opt-color-rgba-submenu-bgcolor',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Sub Menu Background Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#666666',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-opt-color-rgba-submenu-hover-bgcolor',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Sub Menu Hover Background Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#666666',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-opt-color-rgba-menu-label-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Label Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#aaa',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
-            array(
-                    'id'        => 'amp-opt-color-rgba-menu-brdr-color',
-                    'type'      => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#555555',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3'),
-                      array('ampforwp-amp-menu', '=' , '1')
-                    )
-            ),
+            // Design 3 Menu slider position option
             array(
                   'id'    => 'header-overlay-position-d3',
                   'title'  => esc_html__('Menu Overlay Position', 'accelerated-mobile-pages'),
@@ -4872,7 +4560,6 @@ Redux::setSection( $opt_name, array(
                         array('ampforwp-amp-menu', '=' , '1')
                   )    
             ),
-
 
            array(
                        'id' => 'header_section_3',
@@ -5049,7 +4736,336 @@ Redux::setSection( $opt_name, array(
                       array('amp-design-selector', '=' , '3')
                     )
             ),
-             // Tab 1 end    
+            // Navigation Menu Designs Options for Design 1, 2 and 3
+            array(
+                   'id' => 'navigation_design_section',
+                   'type' => 'section',
+                   'title' => __('Navigation Menu Design Options', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+                    'required'  => array(
+                        array('amp-design-selector', '!=' , '4'),
+                        array('ampforwp-amp-menu', '=' , '1'),
+                    )
+            ),
+            // Design1 Menu Color Options
+             array(
+                    'id'        => 'amp-d1-sidebar-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#efefef',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-menu-bg-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Elements Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#fafafa',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-menu-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Elements Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#0a89c0',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-submenu-bg-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Sub Menu Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#ffffff',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-menu-brdr-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#efefef',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-menu-icon-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Arrow Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#ccc',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-cross-btn-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Close Button Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#ffffff',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-cross-bg-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Close Button Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'rgba'     => 'rgba(0, 0, 0, 0.25)',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d1-cross-hover-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Close Button Hover color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'rgba'     => 'rgba(0, 0, 0, 0.45)',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '1'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            // Design 2 Menu Color Options
+            array(
+                    'id'        => 'amp-d2-sidebar-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#efefef',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '2'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d2-menu-bg-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Elements Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#fafafa',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '2'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d2-menu-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Elements Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#0a89c0',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '2'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d2-submenu-bg-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Sub Menu Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#ffffff',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '2'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d2-menu-brdr-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#efefef',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '2'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d2-menu-icon-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Arrow Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#ccc',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '2'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d2-cross-btn-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Close Button Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#ffffff',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '2'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d2-cross-bg-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Close Button Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'rgba'     => 'rgba(0, 0, 0, 0.25)',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '2'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-d2-cross-hover-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Close Button Hover color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'rgba'     => 'rgba(0, 0, 0, 0.45)',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '2'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            // Design 3 Menu color options
+            array(
+                    'id'        => 'amp-opt-color-rgba-menu-bg-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#131313',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-menu-elements-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Elements Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#eeeeee',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-submenu-bgcolor',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Sub Menu Background Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#666666',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-submenu-hover-bgcolor',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Sub Menu Hover Background Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#666666',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-menu-label-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Label Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#aaa',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-menu-brdr-color',
+                    'type'      => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'     => esc_html__('Menu Border Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#555555',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3'),
+                      array('ampforwp-amp-menu', '=' , '1')
+                    )
+            ),
+
+            // Tab 1 end    
             // Tab 2
             array(
                    'id' => 'header-tab-2',
