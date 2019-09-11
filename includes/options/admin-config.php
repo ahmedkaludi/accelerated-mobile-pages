@@ -1508,7 +1508,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         global $wp_roles;
         $allroles = array();
         foreach ( $wp_roles->roles as $key=>$value ){
-            $allroles[$key] = $value['name'];
+            $allroles[esc_attr($key)] = esc_html($value['name']);
         }
         return $allroles;
     }
