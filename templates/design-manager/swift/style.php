@@ -676,6 +676,9 @@ padding-right:20px;
 padding-left: 20px;
 <?php } ?>
 }
+.ampforwp-inline-related-post .artl-cnt ul li, .artl-cnt ol li{
+	position: unset;
+}
 .artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;top:12px;
 <?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) {?> 
 	right:0;

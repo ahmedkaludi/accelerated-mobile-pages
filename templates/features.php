@@ -4592,6 +4592,18 @@ function ampforwp_inline_related_posts(){
 										);
 					}
 			}//end of block for tags
+			if(true == ampforwp_get_setting('ampforwp-in-content-related-posts-days-switch')){
+            $date_range = strtotime ( '-' . ampforwp_get_setting('ampforwp-in-content-related-posts-days-text') .' day' );
+            $args['date_query'] = array(
+                                    array(
+                                        'after' => array(
+                                            'year'  => date('Y', esc_html($date_range) ),
+                                            'month' => date('m', esc_html($date_range) ),
+                                            'day'   => date('d', esc_html($date_range)),
+                                            ),
+                                        )
+                                    );  
+            } 
 			$my_query = new wp_query( $args );
 					if( $my_query->have_posts() ) {
 				$inline_related_posts_img = '';
