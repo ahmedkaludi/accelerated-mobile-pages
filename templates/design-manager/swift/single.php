@@ -215,7 +215,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 			</div>
 		</div>
 	<?php wp_reset_postdata(); }  } ?>	
-<?php if($redux_builder_amp['single-design-type'] == '1' && isset($redux_builder_amp['ampforwp-swift-recent-posts']) && $redux_builder_amp['ampforwp-swift-recent-posts']=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
+<?php if(ampforwp_get_setting('single-design-type') == true && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 	<div class="r-pf">
 		<div class="cntr">
 			<h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' )); ?></h3>
@@ -235,9 +235,11 @@ do_action("ampforwp_single_design_type_handle_d1");
 			    <?php } ?>
 			    <div class="fsp-cnt">
 			    	<?php amp_loop_category(); ?>
-				    <?php amp_loop_title(); ?>
-				    <?php amp_loop_excerpt(20); ?>
-				<?php if( true == ampforwp_get_setting('amforwp-recentpost-date-switch')){?>
+				   	<?php amp_loop_title(); ?>
+				    <?php if( true == ampforwp_get_setting('amforwp-recentpost-excerpt-switch') ){
+				   				amp_loop_excerpt(20);
+				   			}
+				   		if( true == ampforwp_get_setting('amforwp-recentpost-date-switch')){ ?>
 					    <div class="pt-dt">
 					    	<?php amp_loop_date(); ?>
 					    </div>
@@ -486,7 +488,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 							</div><!-- /.sp-rt -->
 					    </div><!-- /.sp-rl -->
 					</div><!-- /.sp-cntn -->
-					<?php if( $redux_builder_amp['single-design-type'] == '4' && isset($redux_builder_amp['ampforwp-swift-recent-posts']) && $redux_builder_amp['ampforwp-swift-recent-posts']=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) {?>
+					<?php if( $redux_builder_amp['single-design-type'] == '4' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) {?>
 					<div class="r-pf">
 						<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
 						<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
@@ -507,7 +509,9 @@ do_action("ampforwp_single_design_type_handle_d1");
 							    <div class="fsp-cnt">
 							    	<?php amp_loop_category(); ?>
 								    <?php amp_loop_title(); ?>
-								    <?php amp_loop_excerpt(20); ?>
+								    <?php if( true == ampforwp_get_setting('amforwp-recentpost-excerpt-switch') ){
+							   				amp_loop_excerpt(20);
+							   			} ?>
 				<?php if( true == ampforwp_get_setting('amforwp-recentpost-date-switch')){?>
 							    <div class="pt-dt">
 							    	<?php amp_loop_date(); ?>

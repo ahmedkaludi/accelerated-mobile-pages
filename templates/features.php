@@ -7005,3 +7005,23 @@ function ampforwp_import_settings_from_file(){
 		}
 	}
 }
+
+add_filter('ampforwp_loop_image_update','ampforwp_recentpost_link_to_nonamp');
+function ampforwp_recentpost_link_to_nonamp($image_link_data){
+	if( true == ampforwp_get_setting('ampforwp-recentpost-posts-link') ){
+		$image_link_data['image_link'] = get_permalink();
+	}else{
+		$image_link_data['image_link'] = ampforwp_url_controller( get_permalink() ) ;
+	}
+	return $image_link_data;
+}
+#3596 link to nonamp option on title for recent posts
+add_filter('ampforwp_loop_permalink_update','ampforwp_recentpost_title_link_to_nonamp');
+function ampforwp_recentpost_title_link_to_nonamp($title_link){
+	if( true == ampforwp_get_setting('ampforwp-recentpost-posts-link') ){
+		$title_link  = get_permalink();
+	}else{
+		$title_link  = ampforwp_url_controller( get_permalink() ) ;
+	}
+	return $title_link;
+}
