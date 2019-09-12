@@ -28,8 +28,7 @@
 							if(true == ampforwp_get_setting('single-next-prev-to-nonamp')){
 								$next_link = get_permalink( $next_post->ID );
 							} ?>
-						<a href="<?php echo esc_url($next_link); ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php } ?>
-
+						<a href="<?php echo esc_url($next_link); ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a>
 						</div>
 					<?php }
 					$prev_post = get_previous_post();
@@ -41,8 +40,7 @@
 								$prev_link = get_permalink( $prev_post->ID );
 							} ?>
 							<a href="<?php echo esc_url($prev_link); ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php } ?>
-						</div>
-					<?php } ?>
+						</div>					
 					<div class="clearfix"></div>
 				</div>
 			</div>

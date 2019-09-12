@@ -43,8 +43,7 @@
 								} ?>
 								   <a href="<?php echo esc_url($prev_link); ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php } ?>
 	
-						</div>
-					<?php } ?>
+						</div> 
 					<div class="cb"></div>
 				</div>
 			</div>
