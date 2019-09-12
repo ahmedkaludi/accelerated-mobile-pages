@@ -4350,7 +4350,20 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 		    // Ensure that we always coerce class to being an array.
 		    $class = array();
 		}
-
+		if(is_tax()){
+			$term = get_queried_object();
+			if ( isset( $term->term_id ) ) {
+				$term_class = sanitize_html_class( $term->slug, $term->term_id );
+				if ( is_numeric( $term_class ) || ! trim( $term_class, '-' ) ) {
+					$term_class = $term->term_id;
+				}
+				$classes[] = 'tax-' . sanitize_html_class( $term->taxonomy );
+				$classes[] = 'term-' . $term_class;
+				$classes[] = 'term-' . $term->term_id;
+			}
+		}else{
+			$classes[] = get_post_type();
+		}
 		$classes = array_map( 'esc_attr', $classes );
 	    $classes = apply_filters( 'ampforwp_body_class', $classes, $class );
 	 
