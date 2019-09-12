@@ -5138,7 +5138,15 @@ $single_page_options = array(
                 'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
                 esc_html__('Enable this option to show next and previous links in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-next-previous-links-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
 
-         ),    
+         ),   
+         array(
+              'id'        => 'single-next-prev-to-nonamp',
+              'type'      => 'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     => esc_html__('Link to Non-AMP page', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'required' => array('enable-single-next-prev' , '=' , '1')       
+          ), 
         // Author Bio
          array(
              'id'       => 'amp-author-description',

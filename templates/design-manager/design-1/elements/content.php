@@ -20,18 +20,29 @@
 			<div class="amp-wp-content post-pagination-meta">
 				<div id="pagination">
 					<?php $next_post = get_next_post();
-					if (!empty( $next_post )) { ?>
+					if (!empty( $next_post )) { 
+						if(false == ampforwp_get_setting('single-next-prev-to-nonamp')){ ?>
 						<div class="next">
-							<?php $next_text = $next_post->post_title; ?>
-								<a href="<?php echo ampforwp_url_controller( get_permalink( $next_post->ID ) ); ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a>
+							<?php $next_text = $next_post->post_title;
+								$next_link = ampforwp_url_controller( get_permalink( $next_post->ID ));
+								if(true == ampforwp_get_setting('single-next-prev-to-nonamp')){
+								$next_link = get_permalink( $next_post->ID );
+								} ?>
+								<a href="<?php echo esc_url($next_link); ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
+									 } ?>		
 						</div>
 					<?php } 
 					
 					$prev_post = get_previous_post();
 					if (!empty( $prev_post )) { ?>
 						<div class="prev">
-							<?php $prev_text = $prev_post->post_title; ?>
-							<a href="<?php echo ampforwp_url_controller( get_permalink( $prev_post->ID ) ); ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a>
+							<?php $prev_text = $prev_post->post_title;
+							 	$prev_link = ampforwp_url_controller( get_permalink( $prev_post->ID ));
+								if(true == ampforwp_get_setting('single-next-prev-to-nonamp')){
+								$prev_link = get_permalink( $prev_post->ID );
+								} ?>
+								   <a href="<?php echo esc_url($prev_link); ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php } ?>
+	
 						</div>
 					<?php } ?>
 					<div class="cb"></div>
