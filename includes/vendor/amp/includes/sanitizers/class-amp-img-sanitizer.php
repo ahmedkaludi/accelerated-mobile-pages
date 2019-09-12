@@ -138,8 +138,8 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		    	$img_name = end($img_name);
 		    	$img_croped = explode('-',$img_name);
 		    	$img_croped = end($img_croped);
-		    	$img_ext = explode('.',$img_croped);
-		    	$img_ext = end($img_ext);
+		    	$img_ext = wp_check_filetype($image_src);
+		    	$img_ext = $img_ext['ext'];
 		    	$new_img_url = str_replace("-$img_croped",".$img_ext",$image_src);
 		    	$node->setAttribute( 'srcset', $new_img_url );	 
 			}
