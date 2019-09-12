@@ -942,3 +942,11 @@ font-weight: normal;
     margin-top: 7px;
     display: inline-block;
 }
+
+#redux-import-file-type{
+    display: none;
+}
+#admin-import-file-name{
+    color:red;
+    font-weight: bold;
+}

@@ -93,36 +93,7 @@ namespace ReduxCore\ReduxFramework;
 
                 // $this->field['type'] && $this->field['id'] is sanitized in the ReduxFramework class, no need to re-sanitize it.
                 ?>
-                    <h4><?php esc_html_e( 'Import Options', 'redux-framework' ); ?></h4>
-
-                    <p>
-                        <a href="javascript:void(0);" id="redux-import-code-button" class="button-secondary">
-                            <?php esc_html_e( 'Import from File', 'redux-framework' ); ?>
-                        </a> 
-                        <a href="javascript:void(0);" id="redux-import-link-button" class="button-secondary">
-                            <?php esc_html_e( 'Import from URL', 'redux-framework' ) ?>
-                        </a>
-                    </p>
-
-                    <div id="redux-import-code-wrapper">
-                        <p class="description" id="import-code-description">
-                            <?php echo esc_html( apply_filters( 'redux-import-file-description', __( 'Input your backup file below and hit Import to restore your sites options from a backup.', 'accelerated-mobile-pages' ) ) ); ?>
-                        </p>
-                        <?php // $this->parent->args['opt_name'] is sanitized in the ReduxFramework class, no need to re-sanitize it. ?>
-                        <textarea id="import-code-value" name="<?php echo $this->parent->args['opt_name']; ?>[import_code]" class="large-text noUpdate" rows="2"></textarea>
-                    </div>
-
-                    <div id="redux-import-link-wrapper">
-                        <p class="description" id="import-link-description"><?php echo esc_html( apply_filters( 'redux-import-link-description', __( 'Input the URL to another sites options set and hit Import to load the options from that site.', 'accelerated-mobile-pages' ) ) ); ?></p>
-                        <?php // $this->parent->args['opt_name'] is sanitized in the ReduxFramework class, no need to re-sanitize it. ?>
-                        <textarea class="large-text noUpdate" id="import-link-value" name="<?php echo $this->parent->args['opt_name'] ?>[import_link]" rows="2"></textarea>
-                    </div>
-
-                    <p id="redux-import-action"><input type="submit" id="redux-import" name="import" class="button-primary" value="<?php esc_html_e( 'Import', 'redux-framework' ) ?>">&nbsp;&nbsp;<span><?php echo esc_html( apply_filters( 'redux-import-warning', __( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'redux-framework' ) ) ) ?></span></p>
-
-                    <div class="hr"/>
-                    <div class="inner"><span>&nbsp;</span></div></div>
-                    <h4><?php esc_html_e( 'Export Options', 'redux-framework' ) ?></h4>
+                   <h4><?php esc_html_e( 'Export Options', 'redux-framework' ) ?></h4>
 
                     <div class="redux-section-desc">
                         <p class="description">
@@ -133,15 +104,37 @@ namespace ReduxCore\ReduxFramework;
                 // $this->parent->args['opt_name'] is sanitized in the ReduxFramework class, no need to re-sanitize it.
                 $link = esc_url( admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name'] . '&secret=' . $secret ) );
                 ?>
+                    <p><?php esc_html_e( 'Copy Data To Export All Your Settings', 'redux-framework' ) ?></p>              
+                    <p></p>
+                    <?php
+                        $backup_options = get_option('redux_builder_amp');
+                        $backup_options['redux-backup'] = '1';
+                        $content = json_encode( $backup_options );
+                    ?>
+                    <textarea class="large-text noUpdate" id="redux-export-code" rows="10" readonly="true"><?php echo $content;?></textarea>
+                    <a href="<?php echo $link; ?>" id="redux-export-code-dl" class="button-primary"><?php esc_html_e( 'Download Data File', 'redux-framework' ) ?></a>
+                    <p class="description">
+                    <?php echo esc_html( apply_filters( 'redux-backup-description', __( 'Download a backup file of your settings', 'accelerated-mobile-pages' ) ) ) ?>
+                    </p>
+                    <h4><?php esc_html_e( 'Import Options', 'redux-framework' ); ?></h4>
                     <p>
-                        <a href="javascript:void(0);" id="redux-export-code-copy" class="button-secondary"><?php esc_html_e( 'Copy Data', 'redux-framework' ) ?></a>
-                        <a href="<?php echo $link; ?>" id="redux-export-code-dl" class="button-primary"><?php esc_html_e( 'Download Data File', 'redux-framework' ) ?></a>
-                        <a href="javascript:void(0);" id="redux-export-link" class="button-secondary"><?php esc_html_e( 'Copy Export URL', 'redux-framework' ) ?></a>
+                       <?php esc_html_e( 'Paste The Code Here To Import Your Settings', 'redux-framework' ); ?>
                     </p>
 
                     <p></p>
-                    <textarea class="large-text noUpdate" id="redux-export-code" rows="2"></textarea>
-                    <textarea class="large-text noUpdate" id="redux-export-link-value" data-url="<?php echo $link; ?>" rows="2"><?php echo $link; ?></textarea>
+                    <div id="redux-import-code-wrapper">
+                        <textarea id="import-code-value" name="<?php echo $this->parent->args['opt_name']; ?>[import_code]" class="large-text noUpdate" rows="10"></textarea>
+                    </div>
+                     <p id="redux-import-action">
+                        <input type="submit" id="redux-import" name="import" class="button-primary" value="<?php esc_html_e( 'Import', 'redux-framework' ) ?>">&nbsp;&nbsp; 
+                        <input type="button" id="redux-import-from-file" name="import_from_file" class="button-primary" value="<?php esc_html_e( 'Import From File', 'redux-framework' ) ?>">&nbsp;&nbsp;
+                        <input type="file" id="redux-import-file-type" accept=".json">
+                        <input type="hidden" id="ampforwp_import_nonce" value="<?php $nonce = wp_create_nonce('ampforwp_import_file'); echo $nonce;?>">
+                        <span><?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'redux-framework' ) ) ) ?></span></p>
+                        <p id="admin-import-file-name"></p>
+
+                    <div class="hr"/>
+                    <div class="inner"><span>&nbsp;</span></div></div>
 
                 <?php
             }

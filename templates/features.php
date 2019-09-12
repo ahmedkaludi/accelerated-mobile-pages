@@ -6988,3 +6988,20 @@ if ( ! function_exists('ampforwp_include_opengraph') ) {
     }
   }
 }
+
+add_action('wp_ajax_ampforwp_import_file_from_file','ampforwp_import_settings_from_file');
+function ampforwp_import_settings_from_file(){
+	$security = $_POST['security'];
+	if ( wp_verify_nonce( $security, 'ampforwp_import_file' ) && current_user_can( 'manage_options' ) ) {
+		if(isset($_FILES["file"]["tmp_name"])){
+			$content = file_get_contents($_FILES["file"]["tmp_name"]);
+			if ( ! empty ( $content ) ) {
+				$imported_options = json_decode( $content, true );
+			}
+			$plugin_options = get_option('redux_builder_amp');
+			if ( ! empty ( $imported_options ) && is_array( $imported_options ) && isset ( $imported_options['redux-backup'] ) && $imported_options['redux-backup'] == '1' ) {
+				echo $content;
+			}
+		}
+	}
+}
