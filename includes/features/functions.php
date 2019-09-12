@@ -10,6 +10,12 @@ function ampforwp_include_aqresizer(){
     //Removed Jetpack Mobile theme option #2584
     remove_action('option_stylesheet', 'jetpack_mobile_stylesheet');
     require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
+    /*
+    Enable Treeshaking
+    */
+    if( ampforwp_get_setting('ampforwp_css_tree_shaking') ){ 
+        add_filter('ampforwp_the_content_last_filter','ampforwp_tree_shaking_purify_amphtml',11);
+    }
 }
  //  Some Extra Styling for Admin area
 add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
