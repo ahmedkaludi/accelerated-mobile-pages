@@ -96,6 +96,7 @@ function ampforwp_related_post_loop_query(){
 					            	)
 					       		); 
 	}
+	$args = apply_filters('ampforwp_component_related_post_args' , $args );
 	$my_query = new wp_query( $args );
 
 	return $my_query;
