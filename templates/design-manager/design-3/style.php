@@ -881,7 +881,11 @@ if ( is_singular() && false == ampforwp_get_setting('amp-opt-sticky-head') ){?>
   margin-top: -75px; 
   height: 75px; 
   visibility: hidden;}
-<?php } ?>
+<?php if(class_exists('MCI_Footnotes')){ ?>
+  .amp-wp-content *[id]:before{
+  display: inline-block;
+  }
+<?php } }  ?>
 
 <?php  // H1 - H6 Font Sizes 
 if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h1') ){ ?>
@@ -919,8 +923,8 @@ if(class_exists('MCI_Footnotes')){ ?>
   div#footnote_references_container{
     display: unset;
   }
-  .footnote_container_prepare p span:last-child {
-    display:none;
+  #fn_span{
+    margin-left: 14px;
   }
 <?php } ?>
 <?php // Footer Widget Satyling
