@@ -57,6 +57,17 @@ switch ($analytics_default_option) {
 	default:
 		break;
 }
+
+$structure_data_options =  array(
+					                'BlogPosting'   => 'Blog',
+					                'NewsArticle'   => 'News',
+					                'Recipe'        => 'Recipe',
+					                'Product'       => 'Product',
+					                'VideoObject'   => 'Video Object',
+					                'Article'       => 'Article',
+					                'WebPage'       => 'WebPage'
+					            );
+$amp_website_type = ampforwp_get_setting('ampforwp-sd-type-posts');
 $amp_ux_fields = array(
 					array('field_type'=>'main_section_start', 'field_data'=>array('id'=>'amp-ux-main-section','class'=>'amp-ux-main-section')),
 					// Website type 
@@ -64,7 +75,7 @@ $amp_ux_fields = array(
 						'field_data'=>array('id'=>'ampforwp-ux-website-type-section','class'=>'section-1 amp-ux-website-type-section')
 					),
 					array('field_type'=>'select',
-						'field_data'=>array('title'=>'What\'s your Website Type','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-select','options'=>array('BlogPosting'=>'Blog','NewsArticle'=>'News'),'default'=>(ampforwp_get_setting('ampforwp-sd-type-posts')))
+						'field_data'=>array('title'=>'What\'s your Website Type','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-select','options'=>$structure_data_options,'default'=>$amp_website_type)
 					),
 					array('field_type'=>'section_end','field_data'=>array()),
 

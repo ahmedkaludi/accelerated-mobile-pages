@@ -1109,10 +1109,10 @@ var drawer,
     drawerElem,
     iconElem;
 window.addEventListener("load", function (e) {
-    var list = document.getElementsByClassName("drawer_button");
+    var list = document.getElementsByClassName("amp-ux-section-field");
     for (var i = 0; i < list.length; i++) {
         // list[i] is a node with the desired class name
-        iconElem = document.getElementsByClassName("drawer_button")[i];
+        iconElem = document.getElementsByClassName("amp-ux-section-field")[i];
         var attr = list[i].getAttribute('data-href');
         var table = $('table[data-id="'+attr+'"]');
         if( ! table.hasClass(attr) ){

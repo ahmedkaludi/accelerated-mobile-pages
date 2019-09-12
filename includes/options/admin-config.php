@@ -1387,34 +1387,63 @@ Redux::setArgs( "redux_builder_amp", $args );
             }
         }
     }
-
+    if(!function_exists('ampforwp_generate_ux_admin_button')){
+        function ampforwp_generate_ux_admin_button($id='',$type='',$label=''){
+            $option = "";
+            if($type=="button"){
+                $option = '<div class="button btn-red">'.$label.'</div>';
+            }else{
+                $option = '<div class="button btn-list">'.$label.'</div>';
+            }
+            return $option;
+        }
+    }
+   
     Redux::setSection( $opt_name, array(
             'title'      => esc_html__( 'Setup', 'accelerated-mobile-pages' ),
             'id'         => 'ampforwp-new-ux',
             'icon'         => 'el el-warning amp-ux-warning',
             'desc'   => '<div class="amp-ux-section">
                             <h2 class="amp-section-desc">Quick &amp; Easy Setup</h2>
-                        <div class="amp-ux-section-fields">
-
-                        <div class="amp-ux-section-field">
-                            <div class="" style="padding: 0px 0px 10px;">Website Type</div><div class="button btn-red drawer_button " data-id="website-type" data-href="ampforwp-ux-website-type-section">SELECT</div>
-                        </div>
-
-                        <div class="amp-ux-section-field">
-                            <div class="" style="padding: 0px 0px 10px;">Where do you need AMP?</div><div class="button btn-red drawer_button " data-href="ampforwp-ux-need-type-section">CHOOSE</div>
-                        </div>
-                        <div class="amp-ux-section-field">
-                            <div class="" style="padding: 0px 0px 10px;">Design and Presentation</div><div class="button btn-red drawer_button " data-href="ampforwp-ux-design-section">SET UP</div>
-                            </div>
-                        <div class="amp-ux-section-field">
-                            <div class="" style="padding: 0px 0px 10px;">Analytics Tracking</div><div class="button btn-red drawer_button " data-href="ampforwp-ux-analytics-section" >CONFIG</div>
-                            </div>
-                        <div class="amp-ux-section-field">
-                            <div class="" style="padding: 0px 0px 10px;">Privacy Settings</div><div class="button btn-red drawer_button " data-href="ampforwp-ux-privacy-section">CHOOSE</div>
-                            </div>
-                        <div class="amp-ux-section-field">
-                            <div class="" style="padding: 0px 0px 10px;">3rd Party Compatibility</div><div class="button btn-list drawer_button " data-href="ampforwp-ux-thirdparty-section">View List</div>
-                        </div>
+                            <div class="amp-ux-section-fields">
+                                <div class="amp-ux-section-field" data-id="website-type" data-href="ampforwp-ux-website-type-section">
+                                   <div class="amp-ux-elem-field">
+                                        <h4 class="amp-ux-elem-title">Website Type</h4>
+                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-website-type-section","button","SELECT").'</div>
+                                    </div>
+                                </div>
+                                <div class="amp-ux-section-field" data-href="ampforwp-ux-need-type-section">
+                                    <div class="amp-ux-elem-field">
+                                        <h4 class="amp-ux-elem-title">
+                                            Where do you need AMP?
+                                        </h4>
+                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-need-type-section","button","CHOOSE").'</div>
+                                    </div>
+                                </div>
+                                <div class="amp-ux-section-field" data-href="ampforwp-ux-design-section">
+                                   <div class="amp-ux-elem-field">
+                                        <h4 class="amp-ux-elem-title">Design and Presentation</h4>
+                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-design-section","button","SET UP").'</div>
+                                    </div>
+                                </div>
+                                <div class="amp-ux-section-field" data-href="ampforwp-ux-analytics-section">
+                                     <div class="amp-ux-elem-field">
+                                        <h4 class="amp-ux-elem-title">Analytics Tracking</h4>
+                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-analytics-section","button","CONFIG").'</div>
+                                    </div>
+                                </div>
+                                <div class="amp-ux-section-field" data-href="ampforwp-ux-privacy-section">
+                                     <div class="amp-ux-elem-field">
+                                        <h4 class="amp-ux-elem-title">Privacy Settings</h4>
+                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-privacy-section","button","CHOOSE").'</div>
+                                    </div>
+                                </div>
+                                <div class="amp-ux-section-field" data-href="ampforwp-ux-thirdparty-section">
+                                    <div class="amp-ux-elem-field">
+                                        <h4 class="amp-ux-elem-title">3rd Party Compatibility</h4>
+                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-thirdparty-section","label","View List").'</div>
+                                    </div>
+                                </div>
                     </div></div>',
 ));
 

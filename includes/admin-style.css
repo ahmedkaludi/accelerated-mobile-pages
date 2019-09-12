@@ -992,6 +992,17 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     top: -40px;
 }
 
+.amp-ux-section-field{
+    width: 60%;
+    padding: 1px 37px 13px 10px;
+    border-bottom: 1px solid #d7d7d757;
+}
+.amp-ux-elem-but-block{
+    display: inline-block;
+    float: right;
+    margin-top: -28px;
+    text-align: center;
+}
  .drawer_bg {
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
@@ -1063,7 +1074,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .amp-ux-checkbox-container h4{display: inline;}
 .redux-main .amp-ux-upload{float: none}
 .redux-sidebar .redux-group-tab-link-a .amp-ux-warning{color: yellow;}
-.amp-ux-section-field .button{margin-top: -6%;margin-left: 50%}
+.amp-ux-section-field .button{margin-top: -6%;width:80px;}
 /* Loader */
 .amp-ux-loader{
     margin-top: 25%;
