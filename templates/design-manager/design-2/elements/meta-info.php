@@ -14,18 +14,15 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 			echo ampforwp_get_author_details( $post_author , 'meta-info' ); ?>
 		<li class="amp-wp-meta-date"> <?php global $redux_builder_amp;
 		$date = get_the_date( get_option( 'date_format' ) );
-		if(true == ampforwp_get_setting('ampforwp-post-time') && 1 == ampforwp_get_setting('ampforwp-post-date-global')){
-				$date .= ' '. get_the_time();
-			}
-		elseif(false == ampforwp_get_setting('ampforwp-post-time') && 1 == ampforwp_get_setting('ampforwp-post-date-global')){
-				$date = get_the_date( get_option( 'date_format' ));
-			}
-		elseif( true == ampforwp_get_setting('ampforwp-post-time') && 2 == ampforwp_get_setting('ampforwp-post-date-global')){
-			$date = get_the_modified_date( get_option( 'date_format' )) . ', ' . get_the_modified_time() ;
+		if(1 == ampforwp_get_setting('ampforwp-post-date-global') && true == ampforwp_get_setting('ampforwp-post-time')){
+		    $date = $date . ', ' . get_the_time();
 		}
-		elseif( false == ampforwp_get_setting('ampforwp-post-time')){
-				$date = get_the_modified_date( get_option( 'date_format' ));
-			}
+		if( 2 == ampforwp_get_setting('ampforwp-post-date-global')) {
+		    $date = get_the_modified_date( get_option( 'date_format' ) );
+		}
+		if( 2 == ampforwp_get_setting('ampforwp-post-date-global') && true == ampforwp_get_setting('ampforwp-post-time')){
+		    $date = get_the_modified_date( get_option( 'date_format' ) ) . ', ' . get_the_modified_time();
+		}
 		echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text'], 'On') . ' ' . $date ) ?></li>
 		<?php }  ?>
 	</div>
