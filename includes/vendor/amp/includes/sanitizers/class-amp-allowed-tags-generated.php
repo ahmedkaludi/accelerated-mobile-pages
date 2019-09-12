@@ -699,6 +699,37 @@ class AMP_Allowed_Tags_Generated {
 				),
 			),
 		),
+		'amp-connatix-player' => array(
+			array(
+				'attr_spec_list' => array(
+					'data-player-id' => array(
+						'mandatory' => true,
+					),
+					'media' => array(),
+					'noloading' => array(
+						'value' => array(
+							'',
+						),
+					),
+				),
+				'tag_spec' => array(
+					'amp_layout' => array(
+						'supported_layouts' => array(
+							6,
+							2,
+							3,
+							7,
+							1,
+							4,
+						),
+					),
+					'requires_extension' => array(
+						'amp-connatix-player',
+					),
+					'spec_url' => 'https://www.ampproject.org/docs/reference/components/amp-connatix-player',
+				),
+			),
+		),
 		'amp-consent' => array(
 			array(
 				'attr_spec_list' => array(
