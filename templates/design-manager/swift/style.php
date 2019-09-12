@@ -2230,3 +2230,9 @@ if( true == ampforwp_get_setting('gnrl-sidebar') && true == ampforwp_get_setting
   }
 }
 <?php }
+
+if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
+	a.readmore-rp {
+	    font-size: 13px;
+	}
+<?php }

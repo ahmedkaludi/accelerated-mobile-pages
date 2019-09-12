@@ -5327,6 +5327,38 @@ $single_page_options = array(
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
                                 ),
             ),
+            // Excerpt ON/OFF of Related Posts
+          array(
+              'id'        => 'enable-excerpt-single-related-posts',
+              'type'      => 'text',
+              'class'     => 'child_opt',
+              'title'     => esc_html__('Excerpt Length', 'accelerated-mobile-pages'),
+              'default'   => 15,
+              'tooltip-subtitle'  => esc_html__('Excerpt will be displayed on related posts', 'accelerated-mobile-pages'),
+              'required'  => array( 
+                array('ampforwp-single-related-posts-excerpt', '=' , '1') ),
+          ),
+          array(
+                 'id'        => 'excerpt-option-small-rp',
+                 'class' => 'child_opt',
+                 'type'      => 'switch',
+                 'title'     =>  esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                 'default'   => '0',
+                 'required' => array(
+                     array('amp-design-selector', '!=' , '4'),
+                     array('ampforwp-single-related-posts-excerpt', '=' , '1'),
+                    )                         
+                ),
+          array(
+                 'id'        => 'excerpt-option-rp-read-more',
+                 'class' => 'child_opt',
+                 'type'      => 'switch',
+                 'title'     =>  esc_html__('Read More Link', 'accelerated-mobile-pages'),
+                 'default'   => '0',
+                 'required' => array(
+                     array('ampforwp-single-related-posts-excerpt', '=' , '1'),
+                    )                         
+                ),
             array(
                     'id'       => 'ampforwp-single-related-posts-link',
                     'type'     => 'switch',

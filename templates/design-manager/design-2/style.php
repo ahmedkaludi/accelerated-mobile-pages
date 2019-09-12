@@ -791,3 +791,12 @@ amp-user-notification{
 amp-facebook-like{
   max-height: 28px;
 }
+<?php 
+if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
+	.related_posts .related_link a.readmore-rp {
+	    font-size: 13px;
+		margin-left: 5px;
+		color: #999;
+		font-weight: normal;
+	}
+<?php }
