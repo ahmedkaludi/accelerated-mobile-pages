@@ -767,8 +767,8 @@ function ampforwp_new_dir( $dir ) {
  * Adds a meta box to the post editing screen for AMP on-off on specific pages
 */
 function ampforwp_title_custom_meta() {
-  global $redux_builder_amp;
-
+    global $redux_builder_amp;
+    global $post_id;
     $post_types = ampforwp_get_all_post_types();
 
     $user_level = '';
@@ -790,7 +790,8 @@ function ampforwp_title_custom_meta() {
 	        add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
 	      }
 	      // Pages
-          if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
+          $frontpage_id = ampforwp_get_the_ID();
+          if( ampforwp_get_setting('amp-on-off-for-all-pages') && $post_type == 'page' || ( true == ampforwp_get_setting('amp-frontpage-select-option') && $post_id == $frontpage_id ) ) {
               add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
           }
           // Custom Post Types
