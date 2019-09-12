@@ -141,7 +141,9 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		    	$img_ext = wp_check_filetype($image_src);
 		    	$img_ext = $img_ext['ext'];
 		    	$new_img_url = str_replace("-$img_croped",".$img_ext",$image_src);
-		    	$node->setAttribute( 'srcset', esc_url($new_img_url) );	 
+		    	if ( $new_img_url ) {
+		    		$node->setAttribute( 'srcset', esc_url($new_img_url) );
+		    	}
 			}
 				$node->setAttribute( 'class', trim( $class ) );
 			}
