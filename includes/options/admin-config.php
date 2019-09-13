@@ -581,8 +581,10 @@ foreach ($extension_listing_array as $key => $extension) {
 
     $onclickUrl = '<a href="'.$extension['url_link'].'" target="_blank">';
     $onclickUrlclose = '</a>';
-    $settingPageUrl = '';
+    $settingPageUrl = $pluginReview = '';
+    if(isset($extension['is_activated']) && $extension['is_activated']!=1){
     $pluginReview = '<div class="extension_btn">From: '.$extension['price'].'</div>';
+    }
     if($extension['plugin_active_path'] != "" && is_plugin_active($extension['plugin_active_path']) ){
         $ampforwp_is_productActivated = true;
         $currentStatus = "not-active invalid";
