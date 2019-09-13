@@ -1433,6 +1433,16 @@ Redux::setArgs( "redux_builder_amp", $args );
                     }else{
                         $option = '<div class="button btn-red">'.$label.'</div>';
                     }
+                }else if($id=="ampforwp-ux-privacy-section"){
+                    $setup_txt = ampforwp_get_setup_info('ampforwp-ux-privacy-section');
+                    if($setup_txt!=""){
+                    $option = '<div class="filled-lbl-blk">
+                                    <p class="msg">'.$setup_txt.'</p>
+                                    <span class="lbl">Change</span>
+                                </div>';
+                    }else{
+                        $option = '<div class="button btn-red">'.$label.'</div>';
+                    }
                 }else{
                     $option = '<div class="button btn-red">'.$label.'</div>';
                 }

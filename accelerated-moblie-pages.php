@@ -926,6 +926,17 @@ if(!function_exists('ampforwp_get_setup_info')){
             if($afs_c!=""){$analytic_arr[]="AFS Analytics";}
             if($clicky_side_id!=""){$analytic_arr[]="Clicky Analytics";}
             $ux_content = implode(", ", $analytic_arr);
+		}else if($ux_option=="ampforwp-ux-privacy-section"){
+			$ux_cookie_enable = ampforwp_get_setting('amp-enable-notifications');
+			$ux_compiance_switch = ampforwp_get_setting('amp-gdpr-compliance-switch');
+			$policy_arr = array();
+			if($ux_cookie_enable){
+				$policy_arr[] = "Cookie Consent";
+			}
+			if($ux_compiance_switch){
+				$policy_arr[] = "GDPR";
+			}
+			$ux_content = implode(", ", $policy_arr);
 		}
 		return $ux_content;
 	}
