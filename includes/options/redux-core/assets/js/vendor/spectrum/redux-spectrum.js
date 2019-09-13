@@ -143,6 +143,7 @@
 
     function instanceOptions(o, callbackContext) {
         var opts = $.extend({}, defaultOpts, o);
+        opts.clickoutFiresChange = true;
         opts.callbacks = {
             'move': bind(opts.move, callbackContext),
             'change': bind(opts.change, callbackContext),
