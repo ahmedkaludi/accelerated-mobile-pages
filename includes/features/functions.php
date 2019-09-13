@@ -1159,3 +1159,14 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
   figcaption{ margin-bottom: 20px; }
 <?php }
  }
+
+ function ampforwp_role_based_access_options(){
+    $currentUser = wp_get_current_user();
+    $amp_roles = ampforwp_get_setting('ampforwp-role-based-access');
+    $currentuserrole = (array) $currentUser->roles;
+    $hasrole = array_intersect( $currentuserrole, $amp_roles );
+    if( empty($hasrole)){
+        return false;
+    }
+    return true;
+}

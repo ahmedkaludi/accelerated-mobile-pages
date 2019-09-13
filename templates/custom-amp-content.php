@@ -82,14 +82,8 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
 function ampforwp_custom_content_meta_register() {
     global $redux_builder_amp;
     global $post_id;
-    $user_level = '';
-    $user_level = current_user_can( 'manage_options' );
 
-    if ( isset( $redux_builder_amp['amp-meta-permissions'] ) && 'all' === $redux_builder_amp['amp-meta-permissions'] ) {
-      $user_level = true;
-    }
-
-    if ( $user_level ) {
+    if( ampforwp_role_based_access_options() == true && ( current_user_can('edit_posts') || current_user_can('edit_pages') ) ){
         if ( $redux_builder_amp['amp-on-off-for-all-posts'] ) {
           add_meta_box( 'custom_content_editor', esc_html__( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
         }
