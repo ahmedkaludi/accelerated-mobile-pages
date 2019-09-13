@@ -584,6 +584,7 @@ function ampforwp_url_purifier($url){
     $queried_var                = "";
     $quried_value               = "";
     $query_arg                  = "";
+    $wpml_lang_checker          = true;
     $endpoint                   = AMPFORWP_AMP_QUERY_VAR;
     $get_permalink_structure = get_option('permalink_structure');
     $checker = $redux_builder_amp['amp-core-end-point'];
@@ -621,7 +622,87 @@ function ampforwp_url_purifier($url){
         if ( is_singular() && true == $checker ) {
             $url = untrailingslashit($url);
         }
-        if ( is_home() || is_archive() || is_front_page() ) {
+        // WPML compatibility
+        if( class_exists('SitePress') ){
+        if( get_option('permalink_structure') ){
+            global $sitepress_settings, $wp;
+            $wpml_lang_checker = false;
+            if($sitepress_settings[ 'language_negotiation_type' ] == 3){
+                if( is_singular() ){
+                    $active_langs = $sitepress_settings['active_languages'];
+                    $found = '';
+                    $wpml_url =get_permalink( get_queried_object_id() );
+                    $untrail_wpml_url = untrailingslashit($wpml_url);
+                    $explode_url = explode('/', $untrail_wpml_url);
+                    $append_amp = AMPFORWP_AMP_QUERY_VAR;
+                    foreach ($active_langs as $active_lang) {
+                        foreach($explode_url as $a) {
+                             if (stripos('?lang='.$active_lang ,$a) !== false){
+                                    $url = add_query_arg('amp','1',$wpml_url);
+                                    $found = 'found';
+                                    break 2;
+                            }
+                        }
+                    }
+                    if($found == ''){
+                        array_splice( $explode_url, count($explode_url), 0, $append_amp );
+                        $impode_url = implode('/', $explode_url);
+                        $url = untrailingslashit($impode_url);
+                    }
+                }
+                if ( is_home()  || is_archive() ){
+                    global $wp;
+                    $current_archive_url = home_url( $wp->request );
+                    $explode_path   = explode("/",$current_archive_url);
+                    $inserted       = array(AMPFORWP_AMP_QUERY_VAR);
+                    $query_arg_array = $wp->query_vars;
+                    if( array_key_exists( 'paged' , $query_arg_array ) ) {
+                        $active_langs = $sitepress_settings['active_languages'];
+                         $found = '';
+                        foreach ($active_langs as $active_lang) {
+                             
+                            foreach($explode_path as $a) {
+                                 if (stripos('?lang='.$active_lang ,$a) !== false){
+                                        $url = add_query_arg('amp','1',$current_archive_url);
+                                        $found = 'found';
+                                        break 2;
+                                }
+                            }
+                         }
+                        if($found == ''){
+                            array_splice( $explode_path, count($explode_path), 0, $inserted );
+                            $impode_url = implode('/', $explode_path);
+                            $url = $impode_url;
+                         
+                        }
+                    }
+                    else{
+                        $active_langs = $sitepress_settings['active_languages'];
+                         $found = '';
+                        foreach ($active_langs as $active_lang) {
+                             
+                            foreach($explode_path as $a) {
+                                 if (stripos('?lang='.$active_lang ,$a) !== false){
+                                    $url = add_query_arg('amp','1',$current_archive_url);
+                                    $found = 'found';
+                                    break 2;
+                                }
+                            }
+                         }
+                        if($found == ''){
+                            array_splice( $explode_path, count($explode_path), 0, $inserted );
+                            $impode_url = implode('/', $explode_path);
+                            $url = $impode_url;
+                         
+                        }
+                    }
+                }
+            }else{
+                $wpml_lang_checker = true;
+            }
+            }
+        }
+        if ( true == $wpml_lang_checker && ( is_home() || is_archive() || is_front_page() ) ) {
             if ( ( is_archive() || is_home() ) && get_query_var('paged') > 1 ) {
                 if ( true == $checker )
                     $url = trailingslashit($url).$endpointq;
