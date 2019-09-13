@@ -109,6 +109,10 @@ class AMPforWP_Fields
 		if ( 'switch' == $type ) {
 			$this->ampforwp_field_switch($fields);
 		}
+		// Notification
+		if ( 'notification' == $type ) {
+			$this->ampforwp_field_notification($fields);
+		}
 		// Main section
 		if ( 'main_section_start' == $type ) {
 			$this->main_section_start($fields);
@@ -243,7 +247,10 @@ class AMPforWP_Fields
 			$height = $this->default['height'];
 			$hide = 'hide';
 		}
-
+		$opt_med_url = ampforwp_get_setting('opt-media','url');
+		if($opt_med_url!=""){
+			$hide = '';
+		}
 		$output .= '<div id="'.$this->id.'" class="'.$this->class.'" data-id="opt-media" data-type="media">
 				<input placeholder="No media selected" type="text" class="upload large-text hide" id="amp-ux-opt-media-url" value="'.$id.'" readonly="readonly">
 				<input type="hidden" class="data" data-mode="image">
@@ -293,5 +300,20 @@ class AMPforWP_Fields
 		$output = '<span class="hide amp-ux-check"></span><div class="hide amp-ux-loading"></div><br>';
 		echo $output;
 	}
-
+	public function ampforwp_field_notification($fields){
+		$class = "";
+		if($fields['type']=="warning"){
+			$class = "warning";
+		}else if($fields['type']=="error"){
+			$class = "error";
+		}else if($fields['type']=="success"){
+			$class = "success";
+		}
+		$output = '<div class="ux-field-container amp-ux-notif-container '.$class.'">';
+		if ( !empty($this->desc) ) {
+			$output .= '<p>'.$this->desc.'</p>';
+		}
+		$output .= '</div>';
+		echo $output;
+	}
 }?>

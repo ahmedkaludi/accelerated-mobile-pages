@@ -46,12 +46,9 @@ switch ($analytics_default_option) {
 		$analytics_default = 'ampforwp-afs-analytics-switch';
 		break;
 	case '13': 
-		$analytics_default = 'ampforwp-afs-analytics-switch';
-		break;
-	case '14': 
 		$analytics_default = 'amp-fb-pixel';
 		break;
-	case '15': 
+	case '14': 
 		$analytics_default = 'amp-clicky-switch';
 		break;
 	default:
@@ -155,6 +152,8 @@ $amp_ux_fields = array(
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Website ID','id'=>'amp-ux-afs','class'=>'amp-ux-afs analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-afs-analytics-switch'),'data-href'=>'ampforwp-afs-analytics-switch','data-text'=>'ampforwp-afs-siteid','default'=>ampforwp_get_setting('ampforwp-afs-siteid'))
 					),
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Clicky Site ID','id'=>'amp-ux-cl','class'=>'amp-ux-cl analytics-text','required'=>array('ampforwp-ux-analytics-select','=','amp-clicky-switch'),'data-href'=>'amp-clicky-switch','data-text'=>'clicky-site-id','default'=>ampforwp_get_setting('clicky-site-id'))
+					),
+					array('field_type'=>'notification', 'field_data'=>array('title'=>'More Analytics Settings','type'=>'warning','desc'=>sprintf( 'Please click <a href="javascript:void(0);" id="ampforwp-goto-analytics">%s</a> settings.',esc_html__('here for advance analytics','accelerated-mobile-pages' )))
 					),
 
 					array('field_type'=>'section_end', 'field_data'=>array()),

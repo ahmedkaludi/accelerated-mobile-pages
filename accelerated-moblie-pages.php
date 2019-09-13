@@ -871,6 +871,65 @@ function ampforwp_get_setting( $opt_name='', $child_option='', $sanitize_method=
 	return $opt_value;
 }
 
+// Setup funtion
+if(!function_exists('ampforwp_get_setup_info')){
+	function ampforwp_get_setup_info($ux_option=''){
+		$ux_content = "";
+		if($ux_option=="ampforwp-ux-website-type-section"){
+			$ux_content = ampforwp_get_setting('ampforwp-sd-type-posts');
+		}else if($ux_option=="ampforwp-ux-need-type-section"){
+			$home   = ampforwp_get_setting('ampforwp-homepage-on-off-support');
+            $posts  = ampforwp_get_setting('amp-on-off-for-all-posts');
+            $pages  = ampforwp_get_setting('amp-on-off-for-all-pages');
+            $archive = ampforwp_get_setting('ampforwp-archive-support');
+            $ntype_arr = array();
+            if($home==1){$ntype_arr[] = "Home";}
+            if($posts==1){$ntype_arr[] = "Posts";}
+            if($pages==1){$ntype_arr[] = "Pages";}
+            if($archive==1){$ntype_arr[] = "Archive";}
+            $ux_content = implode(", ", $ntype_arr);
+		}else if($ux_option=="ampforwp-ux-design-section"){
+            $ux_content = ampforwp_get_setting('opt-media','url');
+		}else if($ux_option=="ampforwp-ux-analytics-section"){
+            $ga_field       = ampforwp_get_setting('ga-feild');
+            $amp_fb_pixel_id = ampforwp_get_setting('amp-fb-pixel-id');
+            $sa_feild = ampforwp_get_setting('sa-feild');
+            $pa_feild = ampforwp_get_setting('pa-feild');
+            $quantcast_c = ampforwp_get_setting('amp-quantcast-analytics-code');
+            $comscore_c1 = ampforwp_get_setting('amp-comscore-analytics-code-c1');
+            $comscore_c1 = ampforwp_get_setting('amp-comscore-analytics-code-c2');
+            $eam_c = ampforwp_get_setting('eam-feild');
+            $sc_c = ampforwp_get_setting('sc-feild');
+            $histats_c = ampforwp_get_setting('histats-field');
+            $yemdex_c = ampforwp_get_setting('amp-Yandex-Metrika-analytics-code');
+            $chartbeat_c = ampforwp_get_setting('amp-Chartbeat-analytics-code');
+            $alexa_c = ampforwp_get_setting('ampforwp-alexa-account');
+            $alexa_d = ampforwp_get_setting('ampforwp-alexa-domain');
+            $afs_c = ampforwp_get_setting('ampforwp-afs-siteid');
+            $clicky_side_id = ampforwp_get_setting('clicky-site-id');
+           	
+            $analytics_txt = "";
+            $analytic_arr = array();
+            if($ga_field!="UA-XXXXX-Y"){$analytic_arr[]="Google Analytics";}
+            if($amp_fb_pixel_id!=""){$analytic_arr[]="Facebook Pixel";}
+            if($sa_feild!="SEGMENT-WRITE-KEY"){$analytic_arr[]="Segment Analytics";}
+            if($pa_feild!="#"){ $analytic_arr[]="Matomo Analytics";}
+            if($quantcast_c!=""){ $analytic_arr[]="Quantcast Measurement";}
+            if($comscore_c1!="" && $comscore_c1!=""){$analytic_arr[]="comScore";}
+            if($eam_c!="#"){$analytic_arr[]="Effective Measure";}
+            if($sc_c!="#"){$analytic_arr[]="StatCounter";}
+            if($histats_c!=""){$analytic_arr[]="Histats Analytics";}
+            if($yemdex_c!=""){$analytic_arr[]="Yandex Metrika";}
+            if($chartbeat_c!=""){$analytic_arr[]="Chartbeat Analytics";}
+            if($alexa_c!=""){$analytic_arr[]="Alexa Metrics";}
+            if($alexa_c!="" && $alexa_d!=""){$analytic_arr[]="Alexa Metrics";}
+            if($afs_c!=""){$analytic_arr[]="AFS Analytics";}
+            if($clicky_side_id!=""){$analytic_arr[]="Clicky Analytics";}
+            $ux_content = implode(", ", $analytic_arr);
+		}
+		return $ux_content;
+	}
+}
 // Register widgets
 add_action('amp_init', 'ampforwp_widgets');
 function ampforwp_widgets(){

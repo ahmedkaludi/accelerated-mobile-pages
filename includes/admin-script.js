@@ -782,24 +782,11 @@ jQuery(document).ready(function($){
 jQuery(document).ready(function($) {
     var new_data = JSON.parse(amp_fields);
     var saveChangesInRedux = function($current){
-        // loader
-        if ( $('div.amp-ux-section-container').find('.amp-ux-loader').length == 0 ){
-            $('div.amp-ux-section-container').prepend('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
-        }
-        else{
-            $('div.amp-ux-section-container').find('.amp-ux-loading').removeClass('hide');
-            $('div.amp-ux-section-container').find('.amp-ux-check').addClass('hide');
-        }
         // Save
         window.onbeforeunload = null;
         if ( redux.args.ajax_save === true ) {
             $.redux.ajax_save( $current, true );
         }
-        setTimeout(function(){ 
-            $('div.amp-ux-main-section').find('.amp-ux-loader').remove();
-         }, 5000);
-        // end loader
-
     }
     
     var ampCheckRequired = function($current){
@@ -902,6 +889,93 @@ jQuery(document).ready(function($) {
             }
         });
     });
+
+    function set_ux_selected_val(){
+        var active_drower = localStorage.getItem('ampforwp_current_drawer_click');
+        var thishtml = "";
+        var button = '';
+        if(active_drower=='ampforwp-ux-website-type-section'){
+              thishtml = $("#ampforwp-ux-select option:selected").text();
+        }else if(active_drower=='ampforwp-ux-need-type-section'){
+              var need_type_arr = [];
+              $(".amp-ux-field").each(function(){
+                    var thisid = $(this).attr('id');
+                    if(thisid=="amp-ux-homepage" || thisid=="amp-ux-frontpage" || thisid=="amp-ux-posts" || thisid=="amp-ux-pages" || thisid=="amp-ux-archives"){
+                        if($(this).prop('checked')){
+                           if(thisid=="amp-ux-homepage"){
+                                need_type_arr.push('Home');
+                           }else if(thisid=="amp-ux-posts"){
+                                need_type_arr.push('Posts');
+                           }else if(thisid=="amp-ux-pages"){
+                                need_type_arr.push('Pages');
+                           }else if(thisid=="amp-ux-archives"){
+                                need_type_arr.push('Archives');
+                           }
+                        }
+                    }
+                    thishtml = need_type_arr.toString().replace(/,/g, ", ");
+              });
+              button = "CHOOSE";
+        }else if(active_drower=='ampforwp-ux-design-section'){
+            thishtml = "Configured";
+            button = "SET UP";
+        }else if(active_drower=='ampforwp-ux-analytics-section'){
+            var ga_field       = $('#ga-feild').val();
+            var amp_fb_pixel_id = $('#amp-fb-pixel-id').val();
+            var sa_feild = $('#sa-feild').val();
+            var pa_feild = $('#pa-feild').val();
+            var quantcast_c = $('#amp-quantcast-analytics-code').val();
+            var comscore_c1 = $('#amp-comscore-analytics-code-c1').val();
+            var comscore_c1 = $('#amp-comscore-analytics-code-c2').val();
+            var eam_c = $('#eam-feild').val();
+            var sc_c = $('#sc-feild').val();
+            var histats_c = $('#histats-field').val();
+            var yemdex_c = $('#amp-Yandex-Metrika-analytics-code').val();
+            var chartbeat_c = $('#amp-Chartbeat-analytics-code').val();
+            var alexa_c = $('#ampforwp-alexa-account').val();
+            var alexa_d = $('#ampforwp-alexa-domain').val();
+            var afs_c = $('#ampforwp-afs-siteid').val();
+            var clicky_side_id = $('#clicky-site-id').val();
+            var analytics_txt = "";
+            var analytic_arr = [];
+            if(ga_field!="UA-XXXXX-Y"){analytic_arr.push("Google Analytics");}
+            if(amp_fb_pixel_id!=""){analytic_arr.push("Facebook Pixel");}
+            if(sa_feild!="SEGMENT-WRITE-KEY"){analytic_arr.push("Segment Analytics");}
+            if(pa_feild!="#"){ analytic_arr.push("Matomo Analytics");}
+            if(quantcast_c!=""){ analytic_arr.push("Quantcast Measurement");}
+            if(comscore_c1!="" && comscore_c1!=""){analytic_arr.push("comScore");}
+            if(eam_c!="#"){analytic_arr.push("Effective Measure");}
+            if(sc_c!="#"){analytic_arr.push("StatCounter");}
+            if(histats_c!=""){analytic_arr.push("Histats Analytics");}
+            if(yemdex_c!=""){analytic_arr.push("Yandex Metrika");}
+            if(chartbeat_c!=""){analytic_arr.push("Chartbeat Analytics");}
+            if(alexa_c!=""){analytic_arr.push("Alexa Metrics");}
+            if(alexa_c!="" && alexa_d!=""){analytic_arr.push("Alexa Metrics");}
+            if(afs_c!=""){analytic_arr.push("AFS Analytics");}
+            if(clicky_side_id!=""){analytic_arr.push("Clicky Analytics");}
+            thishtml = analytic_arr.toString().replace(/,/g, ", ");
+            button = "CONFIG";
+        }else if(active_drower=='ampforwp-ux-privacy-section'){
+            button = "CHOOSE";
+        }else if(active_drower=='ampforwp-ux-thirdparty-section'){
+            
+        }
+        var option = '';
+        if(thishtml!=""){
+             option = '<div class="filled-lbl-blk">'+
+                            '<p class="msg">'+thishtml+'</p>'+
+                            '<span class="lbl">Change</span>'+
+                        '</div>';
+        }else{
+             option = '<div class="button btn-red">'+button+'</div>';
+        }
+        
+        $("[data-href="+active_drower+"]").find("div.amp-ux-elem-but-block").html(option);
+    }
+    $("#ampforwp-goto-analytics").click(function(){
+        $("#2_section_group_li").click();
+        $("#9_section_group_li_a").click();
+    });
     // Website type
     $('#ampforwp-ux-select').on('change', function(e){
         // Update Values in Structured data
@@ -998,6 +1072,8 @@ jQuery(document).ready(function($) {
                     $('input[id="redux_builder_amp[opt-media][thumbnail]').val($('#amp-ux-logo-thumb').val());
                     $('#redux_builder_amp-opt-media .screenshot').show();
                     $('.redux-option-image').attr('src', $('#amp-ux-logo-thumb').val());
+                    saveChangesInRedux($(this));
+                    set_ux_selected_val();
                 }
             });
         }
@@ -1081,7 +1157,24 @@ jQuery(document).ready(function($) {
         }
     });
 
+    $(".amp-ux-section-field").click(function(){
+        var track = $(this).attr('data-href');
+        localStorage.setItem('ampforwp_current_drawer_click',track);
+    });
 
+function ampforwp_ux_save_loader(event){
+    // loader
+    if ( event.closest("div.ux-field-container").find('.amp-ux-loader').length == 0 ){
+        event.closest("div.ux-field-container").append('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
+    }
+    else{
+        event.closest("div.ux-field-container").find('.amp-ux-loading').removeClass('hide');
+        event.closest("div.ux-field-container").find('.amp-ux-check').addClass('hide');
+    }
+    setTimeout(function(){ 
+        event.closest("div.ux-field-container").find('.amp-ux-loader').remove();
+     }, 800);
+}
 // Required condition for each field
 $.each(new_data, function(key,value) {
         ampCheckRequired($('#'+value.field_data.id));
@@ -1093,6 +1186,8 @@ $.each(new_data, function(key,value) {
             if ( 'checkbox' == $(this).attr('type') ){
                 ampCheckRequired($(this));
                 saveChangesInRedux($(this));
+                ampforwp_ux_save_loader($(this));
+                set_ux_selected_val();
             }
         },
         change: function() {
@@ -1100,6 +1195,8 @@ $.each(new_data, function(key,value) {
             if ( 'checkbox' != $(this).attr('type') ){
                 ampCheckRequired($(this));
                 saveChangesInRedux($(this));
+                ampforwp_ux_save_loader($(this));
+                set_ux_selected_val();
             }
         },
     });
@@ -1143,11 +1240,10 @@ window.addEventListener("load", function (e) {
     drawer.resetIconOnClick();*/
 });
 
-
 /* Drawer Library */
 function Drawer(drawerElem) {
     "use strict";
-
+    drawerElem = drawerElem;
     function checkMobile(a) {
         return /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4));
     }

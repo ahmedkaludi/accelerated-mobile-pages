@@ -1389,11 +1389,53 @@ Redux::setArgs( "redux_builder_amp", $args );
             }
         }
     }
-    if(!function_exists('ampforwp_generate_ux_admin_button')){
+   if(!function_exists('ampforwp_generate_ux_admin_button')){
         function ampforwp_generate_ux_admin_button($id='',$type='',$label=''){
             $option = "";
             if($type=="button"){
-                $option = '<div class="button btn-red">'.$label.'</div>';
+                if($id=="ampforwp-ux-website-type-section"){
+                    $amp_website_type = ampforwp_get_setup_info('ampforwp-ux-website-type-section');
+                    if($amp_website_type){
+                    $option = '<div class="filled-lbl-blk">
+                                    <p class="msg">'.$amp_website_type.'</p>
+                                    <span class="lbl">Change</span>
+                                </div>';
+                    }else{
+                        $option = '<div class="button btn-red">'.$label.'</div>';
+                    }
+                }else if($id=="ampforwp-ux-need-type-section"){
+                    $need_type=ampforwp_get_setup_info('ampforwp-ux-need-type-section');
+                    if($need_type!=""){
+                    $option = '<div class="filled-lbl-blk">
+                                    <p class="msg">'.$need_type.'</p>
+                                    <span class="lbl">Change</span>
+                                </div>';
+                    }else{
+                        $option = '<div class="button btn-red">'.$label.'</div>';
+                    }
+                }else if($id=="ampforwp-ux-design-section"){
+                    $opt_med_url = ampforwp_get_setup_info('ampforwp-ux-design-section');
+                    if($opt_med_url!=""){
+                    $option = '<div class="filled-lbl-blk">
+                                    <p class="msg">Configured</p>
+                                    <span class="lbl">Change</span>
+                                </div>';
+                    }else{
+                        $option = '<div class="button btn-red">'.$label.'</div>';
+                    }
+                }else if($id=="ampforwp-ux-analytics-section"){
+                    $analytics_txt = ampforwp_get_setup_info('ampforwp-ux-analytics-section');
+                    if($analytics_txt!=""){
+                    $option = '<div class="filled-lbl-blk">
+                                    <p class="msg">'.$analytics_txt.'</p>
+                                    <span class="lbl">Change</span>
+                                </div>';
+                    }else{
+                        $option = '<div class="button btn-red">'.$label.'</div>';
+                    }
+                }else{
+                    $option = '<div class="button btn-red">'.$label.'</div>';
+                }
             }else{
                 $option = '<div class="button btn-list">'.$label.'</div>';
             }
