@@ -90,17 +90,37 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 							$related_post_permalink = ampforwp_url_controller( get_permalink() );
 							if (  ampforwp_get_setting('ampforwp-single-related-posts-link') ) {
 								$related_post_permalink = get_permalink();
-							} ?>
-							<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
+							} 
+							$imageclass = 'has_related_thumbnail';
+							$noimageclass = 'no_related_thumbnail';
+							$noimgClass = ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass);
+							?>
+							<li class="<?php echo esc_attr($noimgClass); ?>">
 								<div class="related-post_image">
 	                            <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-							<?php if ( ampforwp_has_post_thumbnail() ) { 
+							<?php if ( ampforwp_has_post_thumbnail() || ampforwp_get_setting('ampforwp-featured-video') == true ) { 
 							$thumb_url = ampforwp_get_post_thumbnail();
 							$thumb_width  	= ampforwp_get_post_thumbnail('width');
 							$thumb_height 	= ampforwp_get_post_thumbnail('height');
-							if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
+							$image_attr = array();
+							if( ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) ){
+								$image_attr['thumb_url'] = ampforwp_get_post_thumbnail();
+								$image_attr['thumb_width'] = ampforwp_get_post_thumbnail('width');
+								$image_attr['thumb_height'] = ampforwp_get_post_thumbnail('height');
+								$image_attr['show_image'] = true;
+								$featured_video = amp_featured_video(3,$image_attr);
+								if(empty($featured_video) ){
+									if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
+				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
+							<?php }
+								}else{
+									echo $featured_video;
+								}
+							}else{
+								if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
 				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
 							<?php } 
+								} 
 							}?>
 	                  		</a>
 	                  	</div>

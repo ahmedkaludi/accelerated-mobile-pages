@@ -11,7 +11,7 @@ function ampforwp_framework_get_featured_image(){
 	if( ampforwp_is_front_page() ){
 		$post_id = ampforwp_get_frontpage_id();
 	}
-	if( true == ampforwp_has_post_thumbnail() )	{
+	if( true == ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) )	{
 		// Featured Video SmartMag theme Compatibility #2559
 		if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
 			global $wp_embed;
@@ -71,16 +71,33 @@ function ampforwp_framework_get_featured_image(){
 			$amp_html = ampforwp_get_featured_image_from_content();
 			$amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
 		}
-		if( $amp_html ){ ?>
-			<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  
-				echo $amp_html; // escaped above
-				 if ( $caption ) : ?>
-					<p class="wp-caption-text">
-						<?php echo wp_kses_data( $caption ); ?>
-					</p>
-				<?php endif; ?>
+		if( ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+			$featured_video = amp_featured_video(4,$amp_html);
+			if(empty($featured_video)){
+				$featured_video = $amp_html;
+			}
+			?>
+			<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>">
+					<?php echo $featured_video;?>
+					<?php if ( $caption ) : ?>
+						<p class="wp-caption-text">
+							<?php echo wp_kses_data( $caption ); ?>
+						</p>
+					<?php endif; ?>
 			</figure>
-		<?php do_action('ampforwp_after_featured_image_hook');
+			<?php do_action('ampforwp_after_featured_image_hook');
+		}else{
+			if( $amp_html ){ ?>
+				<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  
+					echo $amp_html;
+					 if ( $caption ) : ?>
+						<p class="wp-caption-text">
+							<?php echo wp_kses_data( $caption ); ?>
+						</p>
+					<?php endif; ?>
+				</figure>
+			<?php do_action('ampforwp_after_featured_image_hook');
+			}
 		}
 	}
 }
