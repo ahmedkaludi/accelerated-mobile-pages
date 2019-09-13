@@ -275,9 +275,11 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 				$featured_video = $amp_thumnail;
 			}
 		}elseif($design_type == 2 && !empty($amp_thumnail) ){
-			$responsiveLayout = '';
-			if( !ampforwp_is_home() ){
-				$responsiveLayout = 'layout=responsive';
+			$responsiveLayout = 'layout=responsive';
+			if( ampforwp_is_home() ){
+				$responsiveLayout = '';
+			}elseif( is_archive()){
+				$responsiveLayout = '';
 			}
 			if(is_array($amp_thumnail) ){	
 				if(!empty($amp_thumnail['thumb_url']) && $amp_thumnail['show_image']){
