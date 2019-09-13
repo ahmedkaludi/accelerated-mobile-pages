@@ -362,7 +362,7 @@ function amp_loop_date($args=array()){
     	$args['format'] = 'traditional';
     }
 	if(isset($args['format']) && $args['format']=='traditional'){
-		$post_date = get_the_date() . ' '. get_the_time();
+		$post_date = get_the_date();
     }else{
     	$post_date =  human_time_diff(
     						get_the_time('U', get_the_ID() ), 

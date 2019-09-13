@@ -7317,7 +7317,16 @@ else{
        'id'         => 'ampforwp-date-section',
        'subsection' => true,
         'fields'     => array(
-            // Date on Single Design 3
+            
+                array(
+                   'id' => 'date-tab-1', 
+                   'type' => 'section',
+                   'title' => esc_html__('General', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+             ),
+                // Date on Single Design 3
              array(
                 'id'       => 'amp-design-3-date-feature',
                 'type'     => 'switch',
@@ -7328,14 +7337,6 @@ else{
                 'tooltip-subtitle'     => esc_html__('Display date along with author and category in posts', 'accelerated-mobile-pages' ),
                 'default'  => '0'
             ),
-                array(
-                   'id' => 'date-tab-1', 
-                   'type' => 'section',
-                   'title' => esc_html__('General', 'accelerated-mobile-pages'),
-                   'indent' => true,
-                   'layout_type' => 'accordion',
-                    'accordion-open'=> 1,
-             ),
             // Show Date As
              array(
                     'id'       => 'ampforwp-post-date-global',
@@ -7366,6 +7367,14 @@ else{
                     'desc'  =>esc_html__('Example: English - % days ago, Spain - ago % days','accelerated-mobile-pages'),
                     'required' => array( array('ampforwp-post-date-format', '=', '1') ),
                     'default'   =>'% days ago',
+            ),
+            array(
+                    'id'        =>'ampforwp-post-time',
+                    'type'      =>'switch',
+                    'title'     => esc_html__('Time','accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Enable or Disable Time In Posts', 'accelerated-mobile-pages'),
+                    'default'   =>'1',
+                    'required' => array( array('ampforwp-post-date-format', '=', '2') ),
             ),
         // Post Modified Date
             array(
