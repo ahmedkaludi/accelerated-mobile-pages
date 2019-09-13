@@ -5232,6 +5232,15 @@ $single_page_options = array(
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
         array(
+                    'id'        => 'amforwp-recentpost-image-switch',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Image', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop'),
+                    'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
+            ),
+        array(
                     'id'        => 'amforwp-recentpost-excerpt-switch',
                     'type'      => 'switch',
                     'class' => 'child_opt child_opt_arrow',
@@ -5246,6 +5255,15 @@ $single_page_options = array(
                     'class' => 'child_opt',
                     'title'    => esc_html__('Link to Non-AMP', 'accelerated-mobile-pages'),
                     'default'  => 0,
+                    'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
+            ),
+        array(
+                    'id'       => 'ampforwp-number-of-recent-posts',
+                    'type'     => 'text',
+                'class' => 'child_opt',
+                    'title'    => esc_html__('Number of Recent Post', 'accelerated-mobile-pages'),
+                    'validate' => 'numeric',
+                    'default'  => '6',
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
             array(
