@@ -15,7 +15,7 @@
 			    </div>
 			<?php } ?>
 		</div>
-		<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
+		<?php if ( (ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail()) || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) { ?>
 			<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
 			<div class="sf-img">
 				<?php amp_featured_image();?>
@@ -297,7 +297,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 							   <?php amp_excerpt(20); ?>
 						    </div>
 						<?php } ?>
-						<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
+						<?php if ( ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) { ?>
 							<div class="sf-img">
 								<?php amp_featured_image();?>
 							</div>
