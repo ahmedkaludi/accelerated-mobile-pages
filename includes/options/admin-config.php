@@ -4787,86 +4787,8 @@ Redux::setSection( $opt_name, array(
                     array('amp-design-selector', '=' , '4')
                 )
             ),
-            array(
-                       'id' => 'header_design_section',
-                       'type' => 'section',
-                       'title' => __('Header Designs Options', 'accelerated-mobile-pages'),
-                       'indent' => true,
-                       'layout_type' => 'accordion',
-                        'accordion-open'=> 1,
-                        'required'  => array(
-                            array('amp-design-selector', '!=' , '4')
-                        )
-            ),
-            // Design 1 Fields
-            array(
-                    'id'        => 'amp-d1-background-color',
-                    'type'      => 'color_rgba',
-                    'title'     => esc_html__('Header Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#0a89c0',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1')
-                    )
-            ),
-              array(
-                    'id'        => 'amp-d1-elements-color',
-                    'type'      => 'color_rgba',
-                    'title'     => esc_html__('Header Elements Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color' => '#ffffff',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '1')
-                    )
-            ),
-            // Design 2 Fields
-            array(
-                    'id'        => 'amp-d2-background-color',
-                    'type'      => 'color_rgba',
-                    'title'     => esc_html__('Header Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#0a89c0',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2')
-                    )
-            ),
-              array(
-                    'id'        => 'amp-d2-elements-color',
-                    'type'      => 'color_rgba',
-                    'title'     => esc_html__('Header Elements Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color' => '#ffffff',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '2')
-                    )
-            ), 
-            // Design 3 Fields
-             array(
-                    'id'        => 'amp-opt-color-rgba-headercolor',
-                    'type'      => 'color_rgba',
-                    'title'     => esc_html__('Header Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#FFFFFF',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    )
-            ),
-              array(
-                    'id'        => 'amp-opt-color-rgba-headerelements',
-                    'type'      => 'color_rgba',
-                    'title'     => esc_html__('Header Elements','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => ampforwp_get_element_default_color(),
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    )
-            ),
+            
+            
             // Navigation Menu Designs Options for Design 1, 2 and 3
             array(
                    'id' => 'navigation_design_section',
