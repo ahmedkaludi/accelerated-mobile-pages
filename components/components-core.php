@@ -225,15 +225,17 @@ function amp_featured_image( ){
 }
 
 //Featured Video
-function amp_featured_video($design_type='',$amp_thumnail = ''){
+function amp_featured_video($design_type='',$amp_thumbnail = ''){
 	global $post;
 	$post_id = '';
-	$videoID = '';
+	$videoID = $metaKey = '';
 	$video_id = '';	
 	$post_id = get_the_ID();
 	
 	$metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-	$youtubelink = get_post_meta($post_id, $metaKey,true);
+	if ( $metaKey ) {
+		$youtubelink = get_post_meta($post_id, $metaKey,true);
+	}
 	$featured_video = '';
 	if( function_exists('tie_video')){
 		$display_video = get_post_meta($post_id,'tie_post_head',true);
@@ -260,45 +262,45 @@ function amp_featured_video($design_type='',$amp_thumnail = ''){
 			$featured_video = '<amp-youtube width="1000" height="563" layout="responsive" data-videoid="'.esc_attr($videoID).'"></amp-youtube>';
 		}
 	}else{
-		if($design_type == 4 && !empty($amp_thumnail)){
+		if($design_type == 4 && !empty($amp_thumbnail)){
 			if(ampforwp_get_setting('single-design-type') == 1 || ampforwp_get_setting('single-design-type') == 4 || ampforwp_get_setting('single-design-type') == 7 ){
-				if(is_array($amp_thumnail)){
-					if( !empty($amp_thumnail['thumb_url']) && $amp_thumnail['show_image']){
-						$featured_video = '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.esc_attr($amp_thumnail['thumb_width']).'" height="'.esc_attr($amp_thumnail['thumb_height']).'" layout="responsive" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
+				if(is_array($amp_thumbnail)){
+					if( !empty($amp_thumbnail['thumb_url']) && $amp_thumbnail['show_image']){
+						$featured_video = '<amp-img src="'.esc_url( $amp_thumbnail['thumb_url'] ).'" width="'.esc_attr($amp_thumbnail['thumb_width']).'" height="'.esc_attr($amp_thumbnail['thumb_height']).'" layout="responsive" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
 					}
 				}else{
-					$featured_video = $amp_thumnail;
+					$featured_video = $amp_thumbnail;
 				}
 			}
-		}elseif($design_type == 3 && !empty($amp_thumnail) ){
-			if(is_array($amp_thumnail) ){
-				if(!empty($amp_thumnail['thumb_url']) && $amp_thumnail['show_image']){
-					$featured_video = '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
-				}
-			}else{
-				$featured_video = $amp_thumnail;
-			}
-		}elseif($design_type == 1 && !empty($amp_thumnail) ){
-			if(is_array($amp_thumnail) ){
-				if(!empty($amp_thumnail['thumb_url']) && $amp_thumnail['show_image']){
-					$featured_video = '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" layout="responsive" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
+		}elseif($design_type == 3 && !empty($amp_thumbnail) ){
+			if(is_array($amp_thumbnail) ){
+				if(!empty($amp_thumbnail['thumb_url']) && $amp_thumbnail['show_image']){
+					$featured_video = '<amp-img src="'.esc_url( $amp_thumbnail['thumb_url'] ).'" width="'.esc_attr($amp_thumbnail['thumb_width']).'" height="'.esc_attr($amp_thumbnail['thumb_height']).'" layout="responsive" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
 				}
 			}else{
-				$featured_video = $amp_thumnail;
+				$featured_video = $amp_thumbnail;
 			}
-		}elseif($design_type == 2 && !empty($amp_thumnail) ){
+		}elseif($design_type == 1 && !empty($amp_thumbnail) ){
+			if(is_array($amp_thumbnail) ){
+				if(!empty($amp_thumbnail['thumb_url']) && $amp_thumbnail['show_image']){
+					$featured_video = '<amp-img src="'.esc_url( $amp_thumbnail['thumb_url'] ).'" width="'.esc_attr($amp_thumbnail['thumb_width']).'" height="'.esc_attr($amp_thumbnail['thumb_height']).'" layout="responsive" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
+				}
+			}else{
+				$featured_video = $amp_thumbnail;
+			}
+		}elseif($design_type == 2 && !empty($amp_thumbnail) ){
 			$responsiveLayout = 'layout=responsive';
 			if( ampforwp_is_home() ){
 				$responsiveLayout = '';
 			}elseif( is_archive()){
 				$responsiveLayout = '';
 			}
-			if(is_array($amp_thumnail) ){	
-				if(!empty($amp_thumnail['thumb_url']) && $amp_thumnail['show_image']){
-					$featured_video = '<amp-img src="'.esc_url( $amp_thumnail['thumb_url'] ).'" width="'.$amp_thumnail['thumb_width'].'" height="'.$amp_thumnail['thumb_height'].'" '.esc_attr($responsiveLayout).' alt="'. esc_html(get_the_title()) .'" ></amp-img>';
+			if(is_array($amp_thumbnail) ){	
+				if(!empty($amp_thumbnail['thumb_url']) && $amp_thumbnail['show_image']){
+					$featured_video = '<amp-img src="'.esc_url( $amp_thumbnail['thumb_url'] ).'" width="'.esc_attr($amp_thumbnail['thumb_width']).'" height="'.esc_attr($amp_thumbnail['thumb_height']).'" '.esc_attr($responsiveLayout).' alt="'. esc_html(get_the_title()) .'" ></amp-img>';
 				}
 			}else{
-				$featured_video = $amp_thumnail;
+				$featured_video = $amp_thumbnail;
 			}
 		}
 	}

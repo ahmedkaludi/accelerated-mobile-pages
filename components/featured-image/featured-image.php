@@ -78,7 +78,7 @@ function ampforwp_framework_get_featured_image(){
 			}
 			?>
 			<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>">
-					<?php echo $featured_video;?>
+					<?php echo $featured_video;// XSS ok,escaped above?>
 					<?php if ( $caption ) : ?>
 						<p class="wp-caption-text">
 							<?php echo wp_kses_data( $caption ); ?>
@@ -89,7 +89,7 @@ function ampforwp_framework_get_featured_image(){
 		}else{
 			if( $amp_html ){ ?>
 				<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  
-					echo $amp_html;
+					echo $amp_html; // XSS ok,escaped above
 					 if ( $caption ) : ?>
 						<p class="wp-caption-text">
 							<?php echo wp_kses_data( $caption ); ?>

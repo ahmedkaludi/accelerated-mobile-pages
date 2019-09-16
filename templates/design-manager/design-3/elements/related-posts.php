@@ -114,7 +114,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
 							<?php }
 								}else{
-									echo $featured_video;
+									echo $featured_video; // XSS ok,escaped above
 								}
 							}else{
 								if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>

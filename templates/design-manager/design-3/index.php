@@ -102,7 +102,7 @@ if ( get_query_var( 'paged' ) ) {
 							$amp_thumnail['show_image'] = true;
 							$featured_video = amp_featured_video(3,$amp_thumnail);
 							if ( !empty($featured_video) ) {
-								echo $featured_video;
+								echo $featured_video; // XSS ok,escaped above
 							}else{
 								if($thumb_url){
 								?>
@@ -203,7 +203,7 @@ if ( get_query_var( 'paged' ) ) {
 						if(!empty($featured_video) ){
 							$container_start = '<div class="home-post_image">';
 							$container_end = '</div>';
-							echo $container_start.''.$featured_video.''.$container_end;
+							echo $container_start.''.$featured_video.''.$container_end; // XSS ok,escaped above
 						}else{
 							if($thumb_url){
 							?>
