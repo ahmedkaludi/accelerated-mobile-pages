@@ -362,7 +362,7 @@ function amp_loop_date($args=array()){
     	$args['format'] = 'traditional';
     }
 	if(isset($args['format']) && $args['format']=='traditional'){
-		$post_date = get_the_date() . ' '. get_the_time();
+		$post_date = get_the_date();
     }else{
     	$post_date =  human_time_diff(
     						get_the_time('U', get_the_ID() ), 
@@ -405,9 +405,12 @@ function amp_loop_all_content($tag = 'p'){
 
 function amp_loop_permalink($return = ''){
 	if (is_single() && ampforwp_get_setting('ampforwp-single-related-posts-link')) {
-		return get_permalink();
+		$url =  get_permalink();
+	}else{
+		$url = ampforwp_url_controller( get_permalink() ) ;
 	}
-	return ampforwp_url_controller( get_permalink() ) ;
+	$url = apply_filters('ampforwp_loop_permalink_update',$url);
+	return $url;
 }
 	
 if (! function_exists('amp_loop_get_permalink')){

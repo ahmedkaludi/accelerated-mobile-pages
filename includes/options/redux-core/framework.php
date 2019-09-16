@@ -3279,7 +3279,7 @@
                                 if ( ! $display ) {
                                     continue;
                                 }
-
+                                $sections[ $nextK ] = apply_filters('ampforwp_remove_unused_options',$sections[ $nextK ]);
                                 $hide_sub = '';
                                 if ( isset ( $sections[ $nextK ]['hidden'] ) ) {
                                     $hide_sub = ( $sections[ $nextK ]['hidden'] == true ) ? ' hidden ' : '';

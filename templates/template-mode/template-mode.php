@@ -7,7 +7,7 @@ Class AMPforWP_theme_mode{
 		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedAction'));
 		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedMenuWidgets'), 11);
 
-		if(!is_admin() && $GLOBALS['pagenow'] !== 'wp-login.php'  ){
+		if(!is_admin() && $GLOBALS['pagenow'] !== 'wp-login.php' && (!is_preview() && !isset($_GET['elementor-preview'])) ){
 			add_action(	'init', array($this, 'rm_wp_core'), 20 );
 			add_filter("ampforwp_is_amp_endpoint",  array($this, 'ampforwp_theme_mode_enable'));
 			add_action(	'init', array($this, 'dynamic_sidebar_callback_bkp') );
@@ -570,16 +570,18 @@ Class AMPforWP_theme_mode{
 				$node_name = strtolower( $element->nodeName );
 				if( $element->getAttribute('method')=='post' ){
 					if($node_name=='form'){
-						if($element->hasAttribute('action') && !$element->hasAttribute('action-xhr')){
-							$url = str_replace("http:", "https:", $element->getAttribute('action'));
-							$element->setAttribute('action-xhr', $url);
-							$element->removeAttribute('action');
-						}else{
-							$scheme = is_ssl() ? 'https://' : 'http://';
+						if(!$element->hasAttribute('action-xhr')){
+							if($element->hasAttribute('action')){
+								$url = str_replace("http:", "https:", $element->getAttribute('action'));
+								$element->setAttribute('action-xhr', $url);
+								$element->removeAttribute('action');
+							}else{
+								$scheme = is_ssl() ? 'https://' : 'http://';
 
-							$path = "{$scheme}{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-							$path = str_replace("http:", "https:", $path);
-							$element->setAttribute('action-xhr', esc_url($path) );
+								$path = "{$scheme}{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+								$path = str_replace("http:", "https:", $path);
+								$element->setAttribute('action-xhr', esc_url($path) );
+							}
 						}
 					}
 				}elseif( $element->getAttribute('method')=='get' ){

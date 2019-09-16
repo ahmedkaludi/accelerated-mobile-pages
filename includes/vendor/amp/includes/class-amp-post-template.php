@@ -35,6 +35,14 @@ require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-wistia-embed.php'
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-core-block-handler.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-playlist-embed-handler.php' );
 
+if ( file_exists( AMPFORWP_PLUGIN_DIR .'includes/vendor/css-parser/autoload.php' ) ) {
+	require_once AMPFORWP_PLUGIN_DIR .'includes/vendor/css-parser/autoload.php';
+}
+
+require_once( AMP__VENDOR__DIR__ . 'includes/sanitizers/class-amp-tree-style-sanitizer.php' );
+
+require_once( AMPFORWP_PLUGIN_DIR . 'includes/vendor/css-parser/parser-helper-function.php' );
+
 class AMP_Post_Template {
 	const SITE_ICON_SIZE = 32;
 	const CONTENT_MAX_WIDTH = 600;
