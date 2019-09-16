@@ -79,21 +79,19 @@ function ampforwp_framework_get_featured_image(){
 			if(empty($featured_video)){
 				$featured_video = $amp_html;
 			}
-			if ( ! empty($featured_video)) {
-				$data = '<figure class="amp-featured-image teeest'.esc_html($f_vid).'">';
-				$data .= $featured_video;// XSS ok,escaped above
-				if ( $caption ) :
-				$data .='<p class="wp-caption-text">';
-				$data .= wp_kses_data( $caption );
-				$data .='</p>';
-				endif;
-				$data .='</figure>';
-				return $data;
-			}
+			$data = '<figure class="amp-featured-image '.esc_html($f_vid).'">';
+			$data .= $featured_video;// XSS ok,escaped above
+			if ( $caption ) :
+			$data .='<p class="wp-caption-text">';
+			$data .= wp_kses_data( $caption );
+			$data .='</p>';
+			endif;
+			$data .='</figure>';
+			return $data;
 			do_action('ampforwp_after_featured_image_hook');
 		}else{
 			if( $amp_html ){ ?>
-				<figure class="amp-featured-image test<?php echo esc_html($f_vid); ?>"> <?php  
+				<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  
 					echo $amp_html; // XSS ok,escaped above
 					 if ( $caption ) : ?>
 						<p class="wp-caption-text">

@@ -1,6 +1,5 @@
 <?php global $redux_builder_amp; ?>
-<?php amp_header(); 
-$f_v = amp_featured_video( 4, amp_featured_image()); ?>
+<?php amp_header(); ?>
 <?php if(ampforwp_get_setting('single-design-type') == '1'){?>
 <div class="sp sgl">
 	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
@@ -16,12 +15,12 @@ $f_v = amp_featured_video( 4, amp_featured_image()); ?>
 			    </div>
 			<?php } ?>
 		</div>
-		<?php
+		<?php 
 		if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
-			if(ampforwp_get_setting('swift-featued-image-type') == 1 && $f_v){
+			if(ampforwp_get_setting('swift-featued-image-type') == 1  ){
 				?>
 				<div class="sf-img">
-					<?php echo $f_v;// XXS ok ?>
+					<?php echo amp_featured_video( 4, amp_featured_image());?>
 				</div>
 				<?php
 			}
@@ -49,10 +48,10 @@ $f_v = amp_featured_video( 4, amp_featured_image()); ?>
 					<div class="cntn-wrp artl-cnt">
 						<?php 
 						if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
-							if(ampforwp_get_setting('swift-featued-image-type') == 2 && $f_v){
+							if(ampforwp_get_setting('swift-featued-image-type') == 2 ){
 								?>
 								<div class="sf-img">
-									<?php echo $f_v;// XXS ok?>
+									<?php echo amp_featured_video( 4, amp_featured_image());?>
 								</div>
 								<?php
 							}
