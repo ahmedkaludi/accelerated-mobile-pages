@@ -126,33 +126,10 @@ if ( get_query_var( 'paged' ) ) {
 	  		if (isset($redux_builder_amp['ampforwp-custom-type-amp-endpoint']) && $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
 	  			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . '?amp';
 	  		}
-			}
-		if( (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ){
-			$fvideo_metakey = ampforwp_get_setting('ampforwp-featured-video-metakey');
-			if( empty(get_post_meta(get_the_ID(),$fvideo_metakey ,true) ) ) {
-	 			if( ampforwp_has_post_thumbnail()){
-	 				$noimgClass = " ";
-	 			}else{
-	 				if(!$is_full_content){
-	 					$noimgClass = "amp-loop-list-noimg";
-	 				}
-	 			}
-	 		}else{
-	 			$noimgClass = " ";
-	 		}
-		}else{
-			if( ampforwp_has_post_thumbnail()){
-				$noimgClass = " ";
-			}else{
-				if(!$is_full_content){
-					$noimgClass = "amp-loop-list-noimg";
-				}
-			}
-		}
-		?>
+			}?>
 
-		<div class="amp-wp-content amp-loop-list <?php echo $noimgClass; ?>">
-			<?php if ( ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) {
+		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() ) {  ?>amp-loop-list-noimg<?php } ?>">
+			<?php if ( ampforwp_has_post_thumbnail() ) {
 				$thumb_url = ampforwp_get_post_thumbnail();
 				$thumb_width  	= ampforwp_get_post_thumbnail('width');
 				$thumb_height 	= ampforwp_get_post_thumbnail('height');
@@ -160,48 +137,20 @@ if ( get_query_var( 'paged' ) ) {
 					$thumb_width  	= ampforwp_get_setting('ampforwp-design-3-homepage-posts-width');
 					$thumb_height 	= ampforwp_get_setting('ampforwp-design-3-homepage-posts-height');
 				}
-				if (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) && ampforwp_get_setting('ampforwp-featured-video') == true ) {
-						$amp_thumnail['thumb_url'] = $thumb_url;
-						$amp_thumnail['thumb_width'] = $thumb_width;
-						$amp_thumnail['thumb_height'] = $thumb_height;
-						$amp_thumnail['show_image'] = true;
-						$container_start = '<div class="home-post_image">';
-						$container_end = '</div>';
-						$featured_video = amp_featured_video(3,$amp_thumnail);
-						if(!empty($featured_video)){
-							echo $container_start.''.$featured_video.''.$container_end;
-						}else{
-							if($thumb_url){
-						?>
-							<div class="home-post_image">
-								<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
-									<amp-img
-									layout="responsive"
-									src=<?php echo esc_url($thumb_url); ?>
-									<?php ampforwp_thumbnail_alt(); ?>
-									width=<?php echo esc_attr($thumb_width); ?>
-									height=<?php echo esc_attr($thumb_height); ?>
-								></amp-img>
-							</a>
-							</div>
-						<?php } 
-						}
-					}else{
-						if($thumb_url){
-						?>
-						<div class="home-post_image">
-							<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
-								<amp-img
-								layout="responsive"
-								src=<?php echo esc_url($thumb_url); ?>
-								<?php ampforwp_thumbnail_alt(); ?>
-								width=<?php echo esc_attr($thumb_width); ?>
-								height=<?php echo esc_attr($thumb_height); ?>
-							></amp-img>
-						</a>
-						</div>
-					<?php } 
-					} 
+				if($thumb_url){
+					?>
+					<div class="home-post_image">
+						<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
+							<amp-img
+							layout="responsive"
+							src=<?php echo esc_url($thumb_url); ?>
+							<?php ampforwp_thumbnail_alt(); ?>
+							width=<?php echo esc_attr($thumb_width); ?>
+							height=<?php echo esc_attr($thumb_height); ?>
+						></amp-img>
+					</a>
+				</div>
+				<?php } 
 			}?>
 
 			<div class="amp-wp-post-content">

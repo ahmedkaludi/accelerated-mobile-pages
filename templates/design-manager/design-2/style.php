@@ -800,21 +800,3 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
 		font-weight: normal;
 	}
 <?php }
-if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')) ){
-?>
-.home-post_image amp-youtube{
-	width:100px;
-	height:75px;
-}
-.has_related_thumbnail .loop-img amp-youtube{
-  width:150px;
-  float:left;
-  margin-right:15px;
-}
-.ampforwp-inline-related-post .related_posts li amp-youtube{
-  margin: 0;
-  width: 100px;
-  float: left;
-  margin-right: 15px;
-}
-<?php } ?>

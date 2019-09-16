@@ -113,7 +113,7 @@
 			} ?>
 
 		<div class="amp-wp-content amp-loop-list">
-			<?php if ( ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) {  
+			<?php if ( ampforwp_has_post_thumbnail() ) {  
 				$width = 100;
 				$height = 75;
 				if ( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) {

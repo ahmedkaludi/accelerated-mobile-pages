@@ -88,13 +88,9 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 							$related_post_permalink = ampforwp_url_controller( get_permalink() );
 							if ( ampforwp_get_setting('ampforwp-single-related-posts-link') ) {
 								$related_post_permalink = get_permalink();
-							} 
-							$imageclass = 'has_related_thumbnail';
-							$noimageclass = 'no_related_thumbnail';
-							$noimgClass = ampforwp_classes_basedon_thumbnail($imageclass,$noimageclass);
-							?>
-							<li class="<?php echo esc_attr($noimgClass); ?>">
-							<?php if ( ampforwp_has_post_thumbnail() || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) {
+							} ?>
+							<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
+							<?php if ( ampforwp_has_post_thumbnail() ) {
 								if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) {
 									$width = 150;
 									$height = 150;

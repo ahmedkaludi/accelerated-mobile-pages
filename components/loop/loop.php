@@ -425,16 +425,14 @@ if (! function_exists('amp_loop_the_permalink')){
 }
 function amp_loop_image( $data=array() ) {
 	global $ampLoopData, $counterOffset, $redux_builder_amp;
-	if (ampforwp_has_post_thumbnail()  || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) {
+	if (ampforwp_has_post_thumbnail()  ) {
 
 		$tag 				= 'div';
 		$tag_class 			= '';
 		$layout_responsive 	= '';
 		$imageClass 		= '';
 		$imageSize 			= 'thumbnail';
-		$post_id 			= '';
-		$post_thumbnail_id 	= '';
-		$featuredVideo = '';
+
 		if ( isset($data['tag']) && $data['tag'] != "" ) {
 			$tag = $data['tag'];
 		}
@@ -481,56 +479,30 @@ function amp_loop_image( $data=array() ) {
 			$thumb_width = $thumb_url_array[1];
 			$thumb_height = $thumb_url_array[2];
 		}
-
-		$amp_thumnail['thumb_url'] = $thumb_url;
-		$amp_thumnail['thumb_width'] = $thumb_width;
-		$amp_thumnail['thumb_height'] = $thumb_height;
-		$amp_thumnail['show_image'] = true;
-		$design_type = ampforwp_get_setting('amp-design-selector');
-
-		if( ampforwp_is_home() && ampforwp_get_setting('amforwp-homepage-featured-video') == true){
-				$featuredVideo = amp_featured_video($design_type,$amp_thumnail);
-		}else{
-			if(is_singular() || is_archive()){
-				$featuredVideo = amp_featured_video($design_type,$amp_thumnail);
+		if ( $thumb_url ) {
+			$imageLink = amp_loop_permalink(true);
+			$loopImageData = array("post_id"	=>get_the_ID(),
+									"image_url"			=>$thumb_url,
+									"width"				=>$thumb_width,
+									"height"			=>$thumb_height,
+									"layout_responsive"	=>$layout_responsive,
+									"image_class"		=>$imageClass,
+									"image_link"		=>$imageLink
+									);
+			$changesInImageData = apply_filters("ampforwp_loop_image_update",$loopImageData);
+			if(!empty($changesInImageData) && is_array($changesInImageData)){
+				$thumb_url			= $changesInImageData["image_url"];
+				$thumb_width		= $changesInImageData["width"];
+				$thumb_height		= $changesInImageData["height"];
+				$layout_responsive	= $changesInImageData["layout_responsive"];
+				$imageClass			= $changesInImageData["image_class"];
+				$imageLink			= $changesInImageData["image_link"];
 			}
-		}
-
-		if(!empty($featuredVideo) ){
-				$imageLink = amp_loop_permalink(true);
-				echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
-				echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
-				echo $featuredVideo;
-				echo '</a>';
-				echo '</'.$tag.'>';
-		}else{
-			if ( $thumb_url ) {
-				$imageLink = amp_loop_permalink(true);
-				$post_id   = get_the_ID();
-				$post_thumbnail_id = get_post_thumbnail_id( $post_id );
-				$loopImageData = array("post_id"			=>$post_id,
-										"image_url"			=>$thumb_url,
-										"width"				=>$thumb_width,
-										"height"			=>$thumb_height,
-										"layout_responsive"	=>$layout_responsive,
-										"image_class"		=>$imageClass,
-										"image_link"		=>$imageLink
-										);
-				$changesInImageData = apply_filters("ampforwp_loop_image_update",$loopImageData);
-				if(!empty($changesInImageData) && is_array($changesInImageData)){
-					$thumb_url			= $changesInImageData["image_url"];
-					$thumb_width		= $changesInImageData["width"];
-					$thumb_height		= $changesInImageData["height"];
-					$layout_responsive	= $changesInImageData["layout_responsive"];
-					$imageClass			= $changesInImageData["image_class"];
-					$imageLink			= $changesInImageData["image_link"];
-				}
-				echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
-				echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
-				echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. esc_html(get_the_title()) .'" ></amp-img>';
-				echo '</a>';
-				echo '</'.$tag.'>';
-			}
+			echo '<'.esc_attr($tag).' class="loop-img '.esc_attr($tag_class).'">';
+			echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
+			echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. esc_html(get_the_title()) .'"></amp-img>';
+			echo '</a>';
+			echo '</'.esc_attr($tag).'>';
 		}
      } 
 } 
