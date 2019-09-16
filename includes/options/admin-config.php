@@ -3954,6 +3954,30 @@ Redux::setSection( $opt_name, array(
               ),
              // Design 2
              array(
+                    'id'        => 'design2-global-color-scheme',
+                    'title'     => esc_html__('Global Color Scheme', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Choose your Global Color','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'color'      => '#0a89c0',
+                     ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '2')
+                     )
+            ),
+            array(
+                    'id'        => 'design2-global-font-color-scheme',
+                    'title'     => esc_html__('Color Scheme Font Color', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Choose your Font Color','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'color'      => '#ffffff',
+                     ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '2')
+                     )
+            ),
+             array(
                     'id'        => 'amp-opt-color-rgba-link-design2',
                     'type'      => 'color_rgba',
                     'title'     => esc_html__('Anchor Link Color','accelerated-mobile-pages'),

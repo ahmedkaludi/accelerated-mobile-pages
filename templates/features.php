@@ -7248,12 +7248,11 @@ if(! defined( 'AMP_COMMENTS_VERSION' )) {
 		.comment-form-comment label{ margin-bottom: 5px; display: inline-block;}
 		.form-submit{ margin-top:15px; }
 		.comment-notes{font-size:10px}
-		.design_2_wrapper .form-submit #submit{  background: #555;
+		.design_2_wrapper .form-submit #submit{
 		    border: 0;
 		    border-radius: 40px;
 		    padding: 11px 22px;
 		    font-size: 14px;
-		    color: #fff;
 		    line-height: 1;
 		    box-shadow: 0 0px 3px rgba(0,0,0,.04);
 		    border-radius: 80px; }
