@@ -192,7 +192,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.98.9 (13th SEPTEMBER 2019) =
+= 0.9.98.9 (16th SEPTEMBER 2019) =
 
 * Improvements: Need to implement Tree Shaking feature to remove access css from the AMP pages #2949
 * Improvements: Featured Video Compatibility #3444
@@ -224,39 +224,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Template mode: Need to changes/fixes #3590
 * Fixed: The lightbox should not work for the image if any external link is added in its anchor tag. #3599
 * Fixed: Improper amphtml on HomePage when WPML is activate #3341
+* Fixed: The GDPR consent not working due to passed as string. #3658
 
-= 0.9.98.8 (7th SEPTEMBER 2019) =
-* Improvements: AMP Option panel in mobile view #2603
-* Improvements: Need to make compatible with yoast seo primary category option #3551
-* Improvements: The "redirect chain" report taking extra steps to process. #3575
-* Improvements: Rank math Titles & Meta compatibility #3592
-* Improvements: Improvement in iframe #3563
-* Improvements: optimize the TEL link to remove validation and provide better UX #3581
-* Fixed: Need to check function exist get_cart_url as it is getting fatal error when only amp woocommere is active. #3584
-* Fixed: Change Internal Links to AMP #3561
-* Fixed: Rare issue with Yoast SEO/Excerpt #3511
-* Fixed: lighthouse issues #3547
-* Fixed: Gallery Captions not working #3536
-* Fixed: Table is not aligning properly in amp version #3549
-* Fixed: Getting Debug error ( cdn_url_main ) #3555
-* Fixed: Delete button gone in page builder in RTL language #3545
-* Fixed: caption design is different when comparing Gutenberg and classic editor #3573
-* Fixed: Image is not aligned properly #3542
-* Fixed: The extension 'amp-wistia-player' was found on this page, but is unused. Please remove this extension. #3587
-* Fixed: No Index issue #2303
-* Fixed: Need to create a basic tutorial for each elements of single in Swift #3499
-* Fixed: Facebook like button is not aligned properly #3589
-* Fixed: h1 was changed to h2 in the custom frontpage title after update #3546
-* Fixed: When using JNews AMP Extender, It makes posts blank #3526
-* Fixed: Infinite scroll script is adding in woocommerce archive pages #3570
-* Fixed: Clicky analytics option getting hidden when GTM is on #3585
-* Fixed: In add on mode when amp is in standard mode frontend is getting blank screen. #3508
-* Fixed: Proper escaping in facebook instant article #3564
-* Fixed: No Icon in Facebook Message when Font Awesome Icon type selected #3572
-* Fixed: yoast breadcrumb making all ul list in capital letters #3540
-* Fixed: Comments should be removed in the out put of Analytics Code #3593
-* Fixed: Related post excerpt is not working with horizontal design #3595
-* Fixed: Issue in Breacrumb if category has a comma #3598
-* Fixed: After last update the cookie bar text shows the html code (a href) instead of creating a link. #3617
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

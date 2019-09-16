@@ -192,7 +192,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.98.9 (13th SEPTEMBER 2019) =
+= 0.9.98.9 (16th SEPTEMBER 2019) =
 
 * Improvements: Need to implement Tree Shaking feature to remove access css from the AMP pages #2949
 * Improvements: Featured Video Compatibility #3444
@@ -224,6 +224,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Template mode: Need to changes/fixes #3590
 * Fixed: The lightbox should not work for the image if any external link is added in its anchor tag. #3599
 * Fixed: Improper amphtml on HomePage when WPML is activate #3341
+* Fixed: The GDPR consent not working due to passed as string. #3658
 
 = 0.9.98.8 (7th SEPTEMBER 2019) =
 * Improvements: AMP Option panel in mobile view #2603
