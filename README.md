@@ -127,6 +127,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 == Credits ==
 Some code used in this plugin was forked from 'AMP for WordPress' plugin https://wordpress.org/plugins/amp/ - License URI: http://www.gnu.org/licenses/gpl-2.0.html.
 Mobile & Tablet detection library used https://github.com/serbanghita/Mobile-Detect - License URI: https://github.com/serbanghita/Mobile-Detect/blob/master/LICENSE.txt
+PHP CSS Parser library used https://github.com/sabberworm/PHP-CSS-Parser - License URI: https://github.com/sabberworm/PHP-CSS-Parser#license (PHP-CSS-Parser is freely distributable under the terms of an MIT-style license.)
 
 == Installation ==
 **[Visit Help area for the Documentation:](https://ampforwp.com/help/)**
