@@ -3964,7 +3964,31 @@ Redux::setSection( $opt_name, array(
                         array('amp-design-selector', '=' , '2')
                     )
               ),
-              // Design 1 
+              // Design 1
+              array(
+                    'id'        => 'design1-global-color-scheme',
+                    'title'     => esc_html__('Global Color Scheme', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Choose your Global Color','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'color'      => '#0a89c0',
+                     ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '1')
+                     )
+            ),
+            array(
+                    'id'        => 'design1-global-font-color-scheme',
+                    'title'     => esc_html__('Color Scheme Font Color', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Choose your Font Color','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'color'      => '#ffffff',
+                     ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '1')
+                     )
+            ), 
              array(
                     'id'        => 'amp-opt-color-rgba-link-design1',
                     'type'      => 'color_rgba',
