@@ -30,10 +30,6 @@ $global_color_scheme    = ampforwp_get_setting('design2-global-color-scheme','co
 $header_font_color      = ampforwp_get_setting('design2-global-font-color-scheme','color');
 $anchor_links_color     = ampforwp_get_setting('amp-opt-color-rgba-link-design2','color');
 
-$header_bg_clr          = ampforwp_get_setting('amp-d2-background-color','color');
-$header_elements_clr    = ampforwp_get_setting('amp-d2-elements-color','color');
-
-
 $menu_sidebar_clr       = ampforwp_get_setting('amp-d2-sidebar-color','color');
 $menu_bg_clr            = ampforwp_get_setting('amp-d2-menu-bg-color','color');
 $menu_elements_clr      = ampforwp_get_setting('amp-d2-menu-color','color');
