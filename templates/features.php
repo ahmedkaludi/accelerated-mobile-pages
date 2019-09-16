@@ -4570,7 +4570,7 @@ function ampforwp_inline_related_posts(){
 								$amp_thumnail['show_image'] = true;
 								$featured_video = amp_featured_video(ampforwp_get_setting('amp-design-selector'),$amp_thumnail);
 								if(!empty($featured_video) ){
-									$inline_related_posts_img = $featured_video; // XSS ok,escaped above
+									$inline_related_posts_img = $featured_video;
 								}
 
 								$inline_related_posts_img = apply_filters("ampforwp_modify_inline_rp_loop_image",$inline_related_posts_img);

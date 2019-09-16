@@ -49,7 +49,7 @@ if( $featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_c
 			?>
 			<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
 					<figure class="amp-wp-article-featured-image wp-caption">
-					<?php echo $featured_video; // XSS ok,escaped above?>
+					<?php echo $featured_video;?>
 					<?php if ( $caption ) : ?>
 							<p class="wp-caption-text">
 								<?php echo wp_kses_data( $caption ); ?>

@@ -169,7 +169,7 @@ if ( get_query_var( 'paged' ) ) {
 						$container_end = '</div>';
 						$featured_video = amp_featured_video(3,$amp_thumnail);
 						if(!empty($featured_video)){
-							echo $container_start.''.$featured_video.''.$container_end; // XSS ok,escaped above
+							echo $container_start.''.$featured_video.''.$container_end;
 						}else{
 							if($thumb_url){
 						?>

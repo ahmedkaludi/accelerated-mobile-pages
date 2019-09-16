@@ -500,7 +500,7 @@ function amp_loop_image( $data=array() ) {
 				$imageLink = amp_loop_permalink(true);
 				echo '<'.$tag.' class="loop-img '.esc_attr($tag_class).'">';
 				echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
-				echo $featuredVideo; // XSS ok,escaped above
+				echo $featuredVideo;
 				echo '</a>';
 				echo '</'.$tag.'>';
 		}else{

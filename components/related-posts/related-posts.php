@@ -157,7 +157,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 		    	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo esc_attr($thumb_width); ?>" height="<?php echo esc_attr($thumb_height); ?>" layout="responsive"></amp-img>
 			<?php }
 	    	}else{
-	    		echo $featured_video; // XSS ok,escaped above
+	    		echo $featured_video;
 	    	}
 	    }else{
 	     if ( $thumb_url && $show_image ) { ?>
