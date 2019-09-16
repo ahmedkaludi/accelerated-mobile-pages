@@ -16,7 +16,7 @@
 			<?php } ?>
 		</div>
 		<?php if ( (ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail()) || (ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))) ) { ?>
-			<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1 && ampforwp_has_post_thumbnail() ) { ?>
+			<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
 			<div class="sf-img">
 				<?php amp_featured_image();?>
 			</div>

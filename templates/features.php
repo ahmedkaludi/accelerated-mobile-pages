@@ -4718,27 +4718,23 @@ if( !function_exists( 'ampforwp_carousel_class_magic' ) ){
 if( !function_exists('ampforwp_has_post_thumbnail')){
 	function ampforwp_has_post_thumbnail(){
 		global $post, $redux_builder_amp;
-		$show = false;
 		if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
- 			$show = true;
+ 			return true;
 		}elseif(function_exists('has_post_video') && has_post_video($post->ID)){
-			$show = true;
+			return true;
 		}elseif(has_post_thumbnail()){
-			$show = true;
+			return true;
 		}
 		elseif(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
-			$show = true;
+			return true;
 		}
 		elseif(isset($redux_builder_amp['ampforwp-featured-image-from-content']) && $redux_builder_amp['ampforwp-featured-image-from-content'] == true){
 			if( ampforwp_get_featured_image_from_content() || ampforwp_get_featured_image_from_content('url') ){				
-				$show = true;
+				return true;
 			}
 		}
 		else
-			$show = false;
-
-		$show = apply_filters('ampforwp_has_post_thumbnail', $show);
-		return $show;
+			return false;
 	}
 }
 // Get Post Thumbnail URL
