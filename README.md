@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.3
-Stable tag: 0.9.98.8
+Stable tag: 0.9.98.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 * NEW - Gutenberg Support
 * NEW - Divi and Elementor Support [More Info](https://ampforwp.com/amp-pagebuilder-compatibility/)
+* NEW - Improved CSS Optimization (Tree Shaking)
 * NEW - Addthis Sharing Support
 * NEW - AMP Infinity Scroll Support
 * NEW - Revolution Slider plugin Support 
@@ -125,6 +126,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 == Credits ==
 Some code used in this plugin was forked from 'AMP for WordPress' plugin https://wordpress.org/plugins/amp/ - License URI: http://www.gnu.org/licenses/gpl-2.0.html.
 Mobile & Tablet detection library used https://github.com/serbanghita/Mobile-Detect - License URI: https://github.com/serbanghita/Mobile-Detect/blob/master/LICENSE.txt
+PHP CSS Parser library used https://github.com/sabberworm/PHP-CSS-Parser - License URI: https://github.com/sabberworm/PHP-CSS-Parser#license (PHP-CSS-Parser is freely distributable under the terms of an MIT-style license.)
 
 == Installation ==
 **[Visit Help area for the Documentation:](https://ampforwp.com/help/)**
@@ -188,6 +190,39 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 0.9.98.9 (16th SEPTEMBER 2019) =
+
+* Improvements: Need to implement Tree Shaking feature to remove access css from the AMP pages #2949
+* Improvements: Need to save Post Meta Field Revisions in WordPress #3548
+* Improvements: Add Role based Access to all the options #3480
+* Improvements: Need to improve import/export option. #3364
+* Improvements: Need to make compatibility with amp-connatix-player component #3524
+* Improvements: "Recent Posts below related posts" feature need to implement for the design three #3531
+* Improvements: Need to improve color picker library in AMP FOR WP Plugin #3461
+* Improvements: Recent Posts below Related needs new options #3518
+* Improvements: Excerpt length feature request for related post #2908
+* Improvements: Need to add the option date below the content #3445
+* Improvements: Need to hide time in traditional view option. #3453
+* Improvements: Add feature to go to non AMP page on next and previous links #3253
+* Improvements: Create a filter to Exclude Posts from Related Posts #3582
+* Improvements: Need to add a filter to remove options in sidebar in AMP #3416
+* Improvements: allow option to change the heading tag of Featured module #3560
+* Improvements: AAWP plugin for AMP compatibility in Extension list #3591
+* Fixed: Individual AMP Page (Bulk Edit) "hide by default" option not working #3610
+* Fixed: In Recent Posts below Related need to add which present in below below related post #3596
+* Fixed: Need to shift the Header Background Option and Header Elements option on top in Swift theme #3462
+* Fixed: Need to add 'By Last X Days' option for "In-Content Related Posts" #3219
+* Fixed: Need to add unique class name custom post type #3539
+* Fixed: Need to add Convert AMP to WP theme (Beta) tutorial link in tooltip of this option #3552
+* Fixed: Need to connect with Collapse references by default option of the footnotes plugin. #3586
+* Fixed: Do not generate the AMPhtml for Woocommerce Account Page #3619
+* Fixed: Need to place page builder in custom homepage even amp support is off on pages. #2914
+* Fixed: Need to allow the user to navigate if user is using iframe #3601
+* Fixed: Template mode: Need to changes/fixes #3590
+* Fixed: The lightbox should not work for the image if any external link is added in its anchor tag. #3599
+* Fixed: Improper amphtml on HomePage when WPML is activate #3341
+* Fixed: The GDPR consent not working due to passed as string. #3658
 
 = 0.9.98.8 (7th SEPTEMBER 2019) =
 * Improvements: AMP Option panel in mobile view #2603

@@ -13,6 +13,12 @@ function ampforwp_include_aqresizer(){
     //Removed Jetpack Mobile theme option #2584
     remove_action('option_stylesheet', 'jetpack_mobile_stylesheet');
     require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
+    /*
+    Enable Treeshaking
+    */
+    if( ampforwp_get_setting('ampforwp_css_tree_shaking') ){ 
+        add_filter('ampforwp_the_content_last_filter','ampforwp_tree_shaking_purify_amphtml',11);
+    }
 }
  //  Some Extra Styling for Admin area
 add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
@@ -173,8 +179,15 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         $content_buffer = preg_replace('/!important/', '' , $content_buffer);
         //  Compatibility with the footnotes plugin. #2447
         if(class_exists('MCI_Footnotes')){
+        $footnote_collapse_link = '';
+        $footnote_collapse = MCI_Footnotes_Convert::toBool(MCI_Footnotes_Settings::instance()->get(MCI_Footnotes_Settings::C_BOOL_REFERENCE_CONTAINER_COLLAPSE));
+        if( $footnote_collapse == true ){
+            $footnote_collapse_link = 'on="tap:footnote_references_container.show" role="click" tabindex="1" ';
+            $content_buffer = preg_replace( '/<div id=(.*?)footnote_references_container(.*?)\s/m','<div id=$1footnote_references_container$2 hidden ',$content_buffer);
+            $content_buffer = preg_replace( '/<div\s(.*?)<a\s(.*?)\+(.*)/m','<div $1 <a on="tap:footnote_references_container.show" $2 + <span on="tap:footnote_references_container.hide" id="fn_span" role="click" tabindex="2" > - </span> $3',$content_buffer);
+        }
         $content_buffer = preg_replace( '/<sup(.*?)id="footnote_plugin_tooltip_(.*?)"(.*?)class="footnote_plugin_tooltip_text"(.*?)>(.*?)<\/sup>/m',  '
-        <sup$1id="footnote_plugin_tooltip_$2"$3class="footnote_plugin_tooltip_text"$4><a href="#footnote_plugin_reference_$2">$5</a></sup>', $content_buffer);
+        <sup$1id="footnote_plugin_tooltip_$2" '.$footnote_collapse_link.' $3class="footnote_plugin_tooltip_text"$4><a href="#footnote_plugin_reference_$2" id="fn_plugin_refer" >$5</a></sup>', $content_buffer);
         }
         $content_buffer = apply_filters('ampforwp_the_content_last_filter', $content_buffer);
 
@@ -574,6 +587,7 @@ function ampforwp_url_purifier($url){
     $queried_var                = "";
     $quried_value               = "";
     $query_arg                  = "";
+    $wpml_lang_checker          = true;
     $endpoint                   = AMPFORWP_AMP_QUERY_VAR;
     $get_permalink_structure = get_option('permalink_structure');
     $checker = $redux_builder_amp['amp-core-end-point'];
@@ -611,7 +625,87 @@ function ampforwp_url_purifier($url){
         if ( is_singular() && true == $checker ) {
             $url = untrailingslashit($url);
         }
-        if ( is_home() || is_archive() || is_front_page() ) {
+        // WPML compatibility
+        if( class_exists('SitePress') ){
+        if( get_option('permalink_structure') ){
+            global $sitepress_settings, $wp;
+            $wpml_lang_checker = false;
+            if($sitepress_settings[ 'language_negotiation_type' ] == 3){
+                if( is_singular() ){
+                    $active_langs = $sitepress_settings['active_languages'];
+                    $found = '';
+                    $wpml_url =get_permalink( get_queried_object_id() );
+                    $untrail_wpml_url = untrailingslashit($wpml_url);
+                    $explode_url = explode('/', $untrail_wpml_url);
+                    $append_amp = AMPFORWP_AMP_QUERY_VAR;
+                    foreach ($active_langs as $active_lang) {
+                        foreach($explode_url as $a) {
+                             if (stripos('?lang='.$active_lang ,$a) !== false){
+                                    $url = add_query_arg('amp','1',$wpml_url);
+                                    $found = 'found';
+                                    break 2;
+                            }
+                        }
+                    }
+                    if($found == ''){
+                        array_splice( $explode_url, count($explode_url), 0, $append_amp );
+                        $impode_url = implode('/', $explode_url);
+                        $url = untrailingslashit($impode_url);
+                    }
+                }
+                if ( is_home()  || is_archive() ){
+                    global $wp;
+                    $current_archive_url = home_url( $wp->request );
+                    $explode_path   = explode("/",$current_archive_url);
+                    $inserted       = array(AMPFORWP_AMP_QUERY_VAR);
+                    $query_arg_array = $wp->query_vars;
+                    if( array_key_exists( 'paged' , $query_arg_array ) ) {
+                        $active_langs = $sitepress_settings['active_languages'];
+                         $found = '';
+                        foreach ($active_langs as $active_lang) {
+                             
+                            foreach($explode_path as $a) {
+                                 if (stripos('?lang='.$active_lang ,$a) !== false){
+                                        $url = add_query_arg('amp','1',$current_archive_url);
+                                        $found = 'found';
+                                        break 2;
+                                }
+                            }
+                         }
+                        if($found == ''){
+                            array_splice( $explode_path, count($explode_path), 0, $inserted );
+                            $impode_url = implode('/', $explode_path);
+                            $url = $impode_url;
+                         
+                        }
+                    }
+                    else{
+                        $active_langs = $sitepress_settings['active_languages'];
+                         $found = '';
+                        foreach ($active_langs as $active_lang) {
+                             
+                            foreach($explode_path as $a) {
+                                 if (stripos('?lang='.$active_lang ,$a) !== false){
+                                    $url = add_query_arg('amp','1',$current_archive_url);
+                                    $found = 'found';
+                                    break 2;
+                                }
+                            }
+                         }
+                        if($found == ''){
+                            array_splice( $explode_path, count($explode_path), 0, $inserted );
+                            $impode_url = implode('/', $explode_path);
+                            $url = $impode_url;
+                         
+                        }
+                    }
+                }
+            }else{
+                $wpml_lang_checker = true;
+            }
+            }
+        }
+        if ( true == $wpml_lang_checker && ( is_home() || is_archive() || is_front_page() ) ) {
             if ( ( is_archive() || is_home() ) && get_query_var('paged') > 1 ) {
                 if ( true == $checker )
                     $url = trailingslashit($url).$endpointq;
@@ -1068,3 +1162,14 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
   figcaption{ margin-bottom: 20px; }
 <?php }
  }
+
+ function ampforwp_role_based_access_options(){
+    $currentUser = wp_get_current_user();
+    $amp_roles = ampforwp_get_setting('ampforwp-role-based-access');
+    $currentuserrole = (array) $currentUser->roles;
+    $hasrole = array_intersect( $currentuserrole, $amp_roles );
+    if( empty($hasrole)){
+        return false;
+    }
+    return true;
+}

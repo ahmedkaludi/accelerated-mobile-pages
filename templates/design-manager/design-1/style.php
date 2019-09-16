@@ -303,7 +303,7 @@ a.btt:hover {
 amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
 <?php if( true == ampforwp_get_setting('ampforwp-single-select-type-of-related') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ){ ?>
-.related_posts span{display: block;}.related_posts ol{list-style-type:none;margin:0;padding:0}.related_posts ol li{width:100%;margin-bottom:12px;padding:0}.related_posts .related_link a{color:#000;font-size:18px}.related_posts ol li amp-img{width:100px;float:left;margin-right:15px}.related_posts ol li p{font-size:12px;color:#999;line-height:1.2;margin:7px 0 0}.no_related_thumbnail{padding:15px 18px} main .amp-wp-content.relatedpost{background:0 0;box-shadow:none;max-width:1030px}.relatedpost{margin:2em 16px}.related_posts span{font-size:14px;font-weight:700;letter-spacing:.4px;margin:25px 0 10px;color:#333;    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+.related_posts span{display: block;}.related_posts ol{list-style-type:none;margin:0;padding:0}.related_posts ol li{width:100%;margin-bottom:12px;padding:0}.related_posts .related_link a{color:#000;font-size:18px}.related_posts ol li amp-img{width:100px;float:left;margin-right:15px}.related_posts ol li p{font-size:14px;color:#999;line-height:1.2;margin:7px 0 0}.no_related_thumbnail{padding:15px 18px} main .amp-wp-content.relatedpost{background:0 0;box-shadow:none;max-width:1030px}.relatedpost{margin:2em 16px}.related_posts span{font-size:14px;font-weight:700;letter-spacing:.4px;margin:25px 0 10px;color:#333;    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
 .related_posts ol li{display:inline-block}
 <?php } ?>
 <?php if( is_singular() || is_home() && true == ampforwp_get_setting('amp-frontpage-select-option') && ampforwp_get_blog_details() == false && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
@@ -612,8 +612,8 @@ if(class_exists('MCI_Footnotes')){ ?>
   div#footnote_references_container{
     display: unset;
   }
-  .footnote_container_prepare p span:last-child {
-    display:none;
+  #fn_span{
+    margin-left: 14px;
   }
 <?php } ?>
 <?php // Footer Widget Satyling
@@ -683,3 +683,9 @@ amp-user-notification{
 amp-facebook-like{
   max-height: 28px;
 }
+<?php if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
+  .related_posts .related_link a.readmore-rp {
+      font-size: 13px;
+      color:#999;
+  }
+<?php }

@@ -73,6 +73,13 @@ if ( ! defined( 'ABSPATH' ) ) {
                'title'     => esc_html__('Leverage Browser Caching', 'accelerated-mobile-pages'),
                'tooltip-subtitle'     => esc_html__('Improve the Page Speed and Loading time with Leverage Browser Caching option', 'accelerated-mobile-pages'),
                'default'  => 0
+           ),
+           array(
+               'id'       => 'ampforwp_css_tree_shaking',
+               'type'     => 'switch',
+               'title'     => esc_html__('Optimize CSS (beta)', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'     => esc_html__('Improve size of the CSS and Page Speed with Tree Shaking Feature,', 'accelerated-mobile-pages'),
+               'default'  => 0
            )
        )
 

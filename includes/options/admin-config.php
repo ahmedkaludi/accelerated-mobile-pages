@@ -539,6 +539,17 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('table-of-content-plus-for-amp/table-of-content-plus-for-amp.php')? 1 : 2),
                         ),
+                    array(
+                            'name'=>'AAWP for AMP',
+                            'desc'=>'Automatically Adds Amazon Affiliates Compatibility to your AMP version',
+                            'img_src'=> AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$39',
+                            'url_link'=>'http://ampforwp.com/addons/aawp-for-amp/',
+                            'plugin_active_path'=> 'aawp-for-amp/aawp-for-amp.php',
+                            'item_name'=>'AAWP for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(function_exists('aawp_for_amp_plugin_updater')? 1 : 2),
+                        ),    
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
@@ -1184,6 +1195,19 @@ if($ampforwp_nameOfUser!=""){
 if(function_exists('amp_activate') ){
     $proDetailsProvide = "<a class='premium_features_btn_txt' href=\"#\"> AMP by Automattic compatibility has been activated</a>";
 }
+
+$user = wp_get_current_user();
+$permissions = "manage_options";
+$amp_access = ampforwp_get_setting('ampforwp-role-based-access');
+
+if( in_array( 'administrator', $user->roles ) ) {
+    $permissions = "manage_options";
+}elseif( in_array( 'editor', $user->roles ) && in_array('editor', $amp_access) ){
+    $permissions = 'edit_pages';
+}elseif( in_array( 'author', $user->roles ) && in_array('author', $amp_access)){
+    $permissions = 'edit_posts';
+}
+
 $args = array(
     // TYPICAL -> Change these values as you need/desire
     'opt_name'              => 'redux_builder_amp', // This is where your data is stored in the database and also becomes your global variable name.
@@ -1204,7 +1228,7 @@ $args = array(
     // OPTIONAL -> Give you extra features
     'page_priority'         => null, // Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
     'page_parent'           => 'themes.php', // For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
-    'page_permissions'      => 'manage_options', // Permissions needed to access the options panel.
+    'page_permissions'      => $permissions, // Permissions needed to access the options panel.
     'last_tab'              => '', // Force your panel to always open to a specific tab (by id)
     'page_icon'             => 'icon-themes', // Icon displayed in the admin panel next to your menu_title
     'page_slug'             => 'amp_options', // Page slug used to denote the panel
@@ -1357,6 +1381,32 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'options' => ampforwp_get_cpt_generated_post_types(),
                 );
     }
+    function ampforwp_get_user_roles(){
+        global $wp_roles;
+        $allroles = array();
+        foreach ( $wp_roles->roles as $key=>$value ){
+            $allroles[esc_attr($key)] = esc_html($value['name']);
+        }
+        return $allroles;
+    }
+    function ampforwp_default_user_roles(){
+        $roles = '';
+        $metabox_access = ampforwp_get_setting('amp-meta-permissions');
+        if($metabox_access == 'admin'){
+            if(empty(ampforwp_get_setting('ampforwp-role-based-access'))){
+                $roles = array('administrator');
+            }else{
+                $roles = ampforwp_get_setting('ampforwp-role-based-access');
+            }
+        }else{
+            if(empty(ampforwp_get_setting('ampforwp-role-based-access'))){
+                $roles = array('administrator','editor');
+            }else{
+                $roles = ampforwp_get_setting('ampforwp-role-based-access');
+            } 
+        }
+        return $roles;
+    }
     function ampforwp_get_generated_custom_taxonomies(){
         $taxonomies = '';
         $taxonomies = get_transient('ampforwp_get_taxonomies');
@@ -1373,6 +1423,10 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'multi'   => true,
                     'options' => ampforwp_get_generated_custom_taxonomies(),
                 );
+    }
+    $show_for_admin = '';
+    if(!current_user_can('administrator') ){
+        $show_for_admin = 'hide';
     }
     // AMP to WP Default value
     function ampforwp_amp2wp_default(){
@@ -2371,7 +2425,7 @@ Redux::setSection( $opt_name, array(
                    'id'       => 'ampforwp-amp-convert-to-wp',
                    'type'     => 'switch',
                    'title'    => esc_html__('Convert AMP to WP theme (Beta)', 'accelerated-mobile-pages'),
-                   'tooltip-subtitle' => esc_html__('It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design)', 'accelerated-mobile-pages'),
+                   'tooltip-subtitle'  => sprintf( '%s<a href="%s" target="_blank">%s</a>%s', esc_html__("It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design and ",'accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-convert-your-non-amp-website-to-amp/'),esc_html__('Click Here','accelerated-mobile-pages'),esc_html__(' for more info','accelerated-mobile-pages')),
                    'default'  => ampforwp_amp2wp_default(),
                    'required' => array('amp-design-selector', '=' , '4'),
              ), 
@@ -2545,6 +2599,16 @@ Redux::setSection( $opt_name, array(
                         'true'      => 'true',                
                         'false'     => 'false',
                         'default'   => 0
+                    ),
+                    array(
+                        'id'      => 'ampforwp-role-based-access',
+                        'type'    => 'select',
+                        'class'   => $show_for_admin,
+                        'title'   => esc_html__('Role Based Access', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'   => esc_html__('Allows Administrator to show AMP Options based on User Role.', 'accelerated-mobile-pages'),
+                        'multi'   => true,
+                        'options' => ampforwp_get_user_roles(),
+                        'default'  => ampforwp_default_user_roles()
                     ),
                     // Delete Data on Deletion
                     array(
@@ -2876,6 +2940,14 @@ $e_commerce_support[] = array(
                        'title'    => esc_html__('ago', 'accelerated-mobile-pages'),
                        'default'  => esc_html__('ago','accelerated-mobile-pages'),
                        'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
+                       'id'       => 'amp-translator-published-date-text',
+                       'type'     => 'text',
+                       'title'    => esc_html__('This post was published on ', 'accelerated-mobile-pages'),
+                       'default'  => esc_html__('This post was published on ','accelerated-mobile-pages'),
+                       'placeholder'=> esc_html__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
@@ -4275,13 +4347,10 @@ Redux::setSection( $opt_name, array(
             array(
                        'id' => 'header_design_section',
                        'type' => 'section',
-                       'title' => __('Header Designs Options', 'accelerated-mobile-pages'),
+                       'title' => esc_html__('Header Design Options', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
-                        'required'  => array(
-                            array('amp-design-selector', '!=' , '4')
-                        )
             ),
             // Design 1 Fields
             array(
@@ -4352,6 +4421,26 @@ Redux::setSection( $opt_name, array(
                       array('amp-design-selector', '=' , '3')
                     )
             ),
+            // Design 4 Fields
+              array(
+                'id'        => 'swift-background-scheme',
+                'title'     => esc_html__('Header Background', 'accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'color'  => '#fff',
+                ),
+                'required' => array('header-type', '<' , '8')     
+              ),
+              array(  
+                'id'        => 'swift-element-color-control',
+                'title'     => esc_html__('Header Elements', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Color of the Text and Icons on top of Header','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'color'  => '#333',
+                ),
+                'required' => array('header-type', '<' , '8')
+              ),  
              // Tab 1 end    
             // Tab 2
             array(
@@ -4488,20 +4577,6 @@ Redux::setSection( $opt_name, array(
                         array('border-line','=',1)
                       )  
               ),
-
-
-            array(
-                    'class' => 'child_opt',
-                'id'        => 'swift-background-scheme',
-                'title'     => esc_html__('Header Background', 'accelerated-mobile-pages'),
-                'type'      => 'color_rgba',
-                'default'   => array(
-                    'rgba'  => 'rgba(255, 255, 255, 255)',
-                    ),
-                    'required' => array(
-                      array('customize-options','=',1)
-                    )  
-              ),
               array(
                     'class' => 'child_opt',
                     'id'        => 'swift-header-overlay',
@@ -4510,19 +4585,6 @@ Redux::setSection( $opt_name, array(
                     'default'   => array(
                         'rgba'  => 'rgba(20, 20, 22, 0.9)',
                          ),
-                    'required' => array(
-                        array('customize-options','=',1)
-                      )
-              ),
-              array(
-                    'class' => 'child_opt',
-                    'id'        => 'swift-element-color-control',
-                    'title'     => esc_html__('Header Elements', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'  => esc_html__('Color of the Text and Icons on top of Header','accelerated-mobile-pages'),
-                    'type'      => 'color_rgba',
-                    'default'   => array(
-                        'color'  => '#333',
-                     ),
                     'required' => array(
                         array('customize-options','=',1)
                       )
@@ -5140,7 +5202,15 @@ $single_page_options = array(
                 'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
                 esc_html__('Enable this option to show next and previous links in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-next-previous-links-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
 
-         ),    
+         ),   
+         array(
+              'id'        => 'single-next-prev-to-nonamp',
+              'type'      => 'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     => esc_html__('Link to Non-AMP page', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'required' => array('enable-single-next-prev' , '=' , '1')       
+          ), 
         // Author Bio
          array(
              'id'       => 'amp-author-description',
@@ -5225,6 +5295,41 @@ $single_page_options = array(
                     'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
+        array(
+                    'id'        => 'amforwp-recentpost-image-switch',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Image', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop'),
+                    'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
+            ),
+        array(
+                    'id'        => 'amforwp-recentpost-excerpt-switch',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Excerpt', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop'),
+                    'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
+            ),
+        array(
+                    'id'       => 'ampforwp-recentpost-posts-link',
+                    'type'     => 'switch',
+                    'class' => 'child_opt',
+                    'title'    => esc_html__('Link to Non-AMP', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
+            ),
+        array(
+                    'id'       => 'ampforwp-number-of-recent-posts',
+                    'type'     => 'text',
+                'class' => 'child_opt',
+                    'title'    => esc_html__('Number of Recent Post', 'accelerated-mobile-pages'),
+                    'validate' => 'numeric',
+                    'default'  => '6',
+                    'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
+            ),
             array(
                        'id' => 'ampforwp-single_section_3',
                        'type' => 'section',
@@ -5304,6 +5409,38 @@ $single_page_options = array(
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
                                 ),
             ),
+            // Excerpt ON/OFF of Related Posts
+          array(
+              'id'        => 'enable-excerpt-single-related-posts',
+              'type'      => 'text',
+              'class'     => 'child_opt',
+              'title'     => esc_html__('Excerpt Length', 'accelerated-mobile-pages'),
+              'default'   => 15,
+              'tooltip-subtitle'  => esc_html__('Excerpt will be displayed on related posts', 'accelerated-mobile-pages'),
+              'required'  => array( 
+                array('ampforwp-single-related-posts-excerpt', '=' , '1') ),
+          ),
+          array(
+                 'id'        => 'excerpt-option-small-rp',
+                 'class' => 'child_opt',
+                 'type'      => 'switch',
+                 'title'     =>  esc_html__('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                 'default'   => '0',
+                 'required' => array(
+                     array('amp-design-selector', '!=' , '4'),
+                     array('ampforwp-single-related-posts-excerpt', '=' , '1'),
+                    )                         
+                ),
+          array(
+                 'id'        => 'excerpt-option-rp-read-more',
+                 'class' => 'child_opt',
+                 'type'      => 'switch',
+                 'title'     =>  esc_html__('Read More Link', 'accelerated-mobile-pages'),
+                 'default'   => '0',
+                 'required' => array(
+                     array('ampforwp-single-related-posts-excerpt', '=' , '1'),
+                    )                         
+                ),
             array(
                     'id'       => 'ampforwp-single-related-posts-link',
                     'type'     => 'switch',
@@ -5357,6 +5494,42 @@ $single_page_options = array(
                                     array('ampforwp-related-posts-days-switch', '=' , '1'),
                                 ),
             ),
+             // DESIGN 3 RECENT POST BELOW RELATED
+            array(
+                'id'       => 'ampforwp-design3-recent-posts',
+                'type'     => 'switch',
+                'title'    => esc_html__('Recent Posts below Related', 'accelerated-mobile-pages'),
+                'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                            esc_html__('Enable this option to show recent posts in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-recent-posts-below-related-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
+                'default'  => 0,
+                'required' => array('amp-design-selector' , '=' , '3'),
+            ),
+            array(
+                        'id'        => 'amforwp-design3-recentpost-date-switch',
+                        'type'      => 'switch',
+                        'class' => 'child_opt child_opt_arrow',
+                        'title'     => esc_html__('Recent Posts Date', 'accelerated-mobile-pages'),
+                        'default'   => 1,
+                        'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
+                        'required' => array('ampforwp-design3-recent-posts' , '=' , '1'),
+                ),
+            array(
+                        'id'        => 'amforwp-design3-recentpost-image-switch',
+                        'type'      => 'switch',
+                        'class' => 'child_opt child_opt_arrow',
+                        'title'     => esc_html__('Image', 'accelerated-mobile-pages'),
+                        'default'   => 1,
+                        'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop'),
+                        'required' => array('ampforwp-design3-recent-posts' , '=' , '1'),
+                ),
+            array(
+                        'id'       => 'ampforwp-design3-number-of-recent-posts',
+                        'type'     => 'text',
+                    'class' => 'child_opt',
+                        'title'    => esc_html__('Number of Recent Post', 'accelerated-mobile-pages'),
+                        'default'  => '6',
+                        'required' => array('ampforwp-design3-recent-posts' , '=' , '1'),
+                ),
             array(
                     'id'       => 'ampforwp-inline-related-posts',
                     'type'     => 'switch',
@@ -5417,6 +5590,24 @@ $single_page_options = array(
                     'required' => array( array('ampforwp-inline-related-posts', '=' , '1'),array('ampforwp-inline-related-posts-display-type', '=' , 'paragraphs') ),
             ),
             array(
+                    'id'       => 'ampforwp-in-content-related-posts-days-switch',
+                    'type'     => 'switch',
+                    'class' => 'child_opt',
+                    'title'    => esc_html__('By Last X Days', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Show In Content Related Posts From Past Few Days', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array('ampforwp-inline-related-posts', '=' , '1'),                     
+            ),
+            array(
+                    'id'       => 'ampforwp-in-content-related-posts-days-text',
+                    'type'     => 'text',
+                    'class' => 'child_opt',
+                    'title'    => esc_html__('Number of Days', 'accelerated-mobile-pages'),
+                    'validate' => 'numeric',
+                    'default'  => '7',
+                    'required' => array('ampforwp-in-content-related-posts-days-switch', '=' , '1'),  
+                ),
+            array(
                    'id' => 'single-tab-2',
                    'type' => 'section',
                    'title' => esc_html__('General', 'accelerated-mobile-pages'),
@@ -5434,6 +5625,15 @@ $single_page_options = array(
                esc_html__('Enable this option to show lightbox for images in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-lightbox-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
 
            ),
+           array(
+                'id'       => 'ampforwp-lightbox-external-links',
+                'class'    => 'child_opt',
+                'type'     => 'switch',
+                'title'    => esc_html__('External Links', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'    => esc_html__('This will show lightbox on your external links also', 'accelerated-mobile-pages'),
+                'default'  => '1',
+                'required' => array('ampforwp-amp-img-lightbox','=', '1'),
+            ),
            // Dropcap 
            array(
               'id'       => 'ampforwp-dropcap',
@@ -7120,7 +7320,16 @@ else{
        'id'         => 'ampforwp-date-section',
        'subsection' => true,
         'fields'     => array(
-            // Date on Single Design 3
+            
+                array(
+                   'id' => 'date-tab-1', 
+                   'type' => 'section',
+                   'title' => esc_html__('General', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+             ),
+                // Date on Single Design 3
              array(
                 'id'       => 'amp-design-3-date-feature',
                 'type'     => 'switch',
@@ -7131,14 +7340,6 @@ else{
                 'tooltip-subtitle'     => esc_html__('Display date along with author and category in posts', 'accelerated-mobile-pages' ),
                 'default'  => '0'
             ),
-                array(
-                   'id' => 'date-tab-1', 
-                   'type' => 'section',
-                   'title' => esc_html__('General', 'accelerated-mobile-pages'),
-                   'indent' => true,
-                   'layout_type' => 'accordion',
-                    'accordion-open'=> 1,
-             ),
             // Show Date As
              array(
                     'id'       => 'ampforwp-post-date-global',
@@ -7170,14 +7371,44 @@ else{
                     'required' => array( array('ampforwp-post-date-format', '=', '1') ),
                     'default'   =>'% days ago',
             ),
+            array(
+                    'id'        =>'ampforwp-post-time',
+                    'type'      =>'switch',
+                    'title'     => esc_html__('Time','accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Enable or Disable Time In Posts', 'accelerated-mobile-pages'),
+                    'default'   =>'1',
+                    'required' => array( array('ampforwp-post-date-format', '=', '2') ),
+            ),
         // Post Modified Date
-          array(
+            array(
               'id'        => 'post-modified-date',
               'type'      => 'switch',
-              'title'     => esc_html__('Modified Date Notice', 'accelerated-mobile-pages'),
+              'title'     => esc_html__('Date Notice', 'accelerated-mobile-pages'),
               'default'   => 0,
               'tooltip-subtitle'  => esc_html__('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
-          ),        
+            ),
+            array(
+                    'id'        =>'ampforwp-post-date-notice-type',
+                    'type'      =>'select',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     =>esc_html__('Notice Type','accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Select Date Format of Posts', 'accelerated-mobile-pages'),
+                    'options'   => array(
+                                    'modified' => 'Modified Date Notice',
+                                    'published' => 'Published Date Notice'
+                                    ), 
+                    'default'   =>'modified',
+                    'required' => array( array('post-modified-date', '=', '1') ),
+            ),
+            array(
+              'id'        => 'ampforwp-post-date-notice-time',
+              'class' => 'child_opt child_opt_arrow',
+              'type'      => 'switch',
+              'title'     => esc_html__('Time', 'accelerated-mobile-pages'),
+              'default'   => 1,
+              'tooltip-subtitle'  => esc_html__('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
+              'required' => array( array('ampforwp-post-date-notice-type', '!=', ''),array('post-modified-date', '=', '1') ),
+            ),        
         )
 
     ) );

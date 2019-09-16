@@ -372,6 +372,7 @@ main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bot
  if ( ampforwp_get_setting('ampforwp-single-select-type-of-related') ) { ?>
 /* Related Posts */
 main .amp-wp-content.relatedpost{ background: none; box-shadow: none; padding:0px 0 0 0; margin:1.8em auto 1.5em auto }
+.recentpost .loop-date{font-size:14px;}
 .single-post main,.related-title,.single-post .comments_list h3{ font-size: 20px; color: #777; font-family:'Roboto Slab', serif; border-bottom: 1px solid #eee; font-weight: 400; padding-bottom: 1px; margin-bottom: 10px; }
 .related-title {display:block}
 .related_posts ol{ list-style-type:none; margin:0; padding:0 }
@@ -884,7 +885,11 @@ if ( is_singular() && false == ampforwp_get_setting('amp-opt-sticky-head') ){?>
   margin-top: -75px; 
   height: 75px; 
   visibility: hidden;}
-<?php } ?>
+<?php if(class_exists('MCI_Footnotes')){ ?>
+  .amp-wp-content *[id]:before{
+  display: inline-block;
+  }
+<?php } }  ?>
 
 <?php  // H1 - H6 Font Sizes 
 if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h1') ){ ?>
@@ -922,8 +927,8 @@ if(class_exists('MCI_Footnotes')){ ?>
   div#footnote_references_container{
     display: unset;
   }
-  .footnote_container_prepare p span:last-child {
-    display:none;
+  #fn_span{
+    margin-left: 14px;
   }
 <?php } ?>
 <?php // Footer Widget Satyling
@@ -996,3 +1001,12 @@ amp-facebook-like{
   max-height: 28px;
   bottom: 8px;
 }
+<?php
+if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
+  a.related_posts .related_link a.readmore-rp {
+      font-size: 13px;
+      color:#999;
+      font-weight:normal;
+      margin-left: 5px;
+  }
+<?php }

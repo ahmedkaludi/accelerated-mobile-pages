@@ -9,7 +9,15 @@ $css = '
 {{module-class}} .ln-fx{width:100%;display:flex; flex-wrap:wrap;}
 .feat-blk{ margin: 0 3% 3% 0; background: {{background_color_picker}}; width: 47%; text-align: {{align_type}};padding: 40px; position: relative;color: #26292c;}
 .feat-blk p{color: #333;font-size: 18px;padding-top:15px;}
-.feat-blk h3{font-size:28px;color:{{font_color_picker}};font-weight:400;padding-bottom:15px;}
+.feat-blk h1{font-size:28px;}
+.feat-blk h2{font-size:25px;}
+.feat-blk h3{font-size:22px;}
+.feat-blk h4{font-size:19px;}
+.feat-blk h5{font-size:17px;}
+.feat-blk h6{font-size:15px;}
+.feat-blk h1, .feat-blk h2, .feat-blk h3, .feat-blk h4, .feat-blk h5, .feat-blk h6{
+	color:{{font_color_picker}};font-weight:400;padding-bottom:15px;
+}
 .feat-blk amp-img{margin:0 auto;width:100%}
 .feat-blk amp-img{width:{{img_width}};}
 {{if_condition_check_for_btn==1}}
@@ -58,6 +66,23 @@ return array(
 				                          ),
 				            'content_type'=>'html',
 				            ),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'heading_tags',		
+	 							'label' => esc_html__('Heading Tags','accelerated-mobile-pages'),
+								'tab'     =>'customizer',
+	 							'default' =>'h3',
+	 							'options_details'=>array(
+	 												'h1'  	=>'H1',
+	 												'h2'    =>'H2',
+	 												'h3'    =>'H3',
+	 												'h4'    =>'H4',
+	 												'h5'    =>'H5',
+	 												'h6'    =>'H6'
+	 											),
+	 							'content_type'=>'html',
+	 							'required'  =>  array('feature_layout_type'=> 1),
+	 					),
 						 array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
@@ -299,7 +324,7 @@ return array(
               ),
           'front_template'=>
         '{{if_condition_feature_layout_type==1}}<div class="feat-blk">
-      		<h3 class="t-txt">{{content_title}}</h3>
+      		{{if_heading_tags}}<{{heading_tags}} class="t-txt">{{content_title}}</{{heading_tags}}>{{ifend_heading_tags}}
 			{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 			<p>{{content}}</p>
 			{{if_condition_check_for_btn==1}}
