@@ -31,8 +31,7 @@
 * Fixed: Need to allow the user to navigate if user is using iframe #3601
 * Fixed: Template mode: Need to changes/fixes #3590
 * Fixed: The lightbox should not work for the image if any external link is added in its anchor tag. #3599
-* Fixed: Improper amphtml on HomePage when WPML is activate#3341
-* Fixed: Small sized images are getting stretched in the lightbox. #3602
+* Fixed: Improper amphtml on HomePage when WPML is activate #3341
 
 = 0.9.98.8 (7th SEPTEMBER 2019) =
 * Improvements: AMP Option panel in mobile view #2603
