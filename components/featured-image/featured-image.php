@@ -71,24 +71,21 @@ function ampforwp_framework_get_featured_image(){
 			$amp_html = ampforwp_get_featured_image_from_content();
 			$amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
 		}
-
 		if( ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
-
 			$featured_video = amp_featured_video(4,$amp_html);
-
 			if(empty($featured_video)){
 				$featured_video = $amp_html;
 			}
-			$data = '<figure class="amp-featured-image '.esc_html($f_vid).'">';
-			$data .= $featured_video;// XSS ok,escaped above
-			if ( $caption ) :
-			$data .='<p class="wp-caption-text">';
-			$data .= wp_kses_data( $caption );
-			$data .='</p>';
-			endif;
-			$data .='</figure>';
-			return $data;
-			do_action('ampforwp_after_featured_image_hook');
+			?>
+			<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>">
+					<?php echo $featured_video;// XSS ok,escaped above?>
+					<?php if ( $caption ) : ?>
+						<p class="wp-caption-text">
+							<?php echo wp_kses_data( $caption ); ?>
+						</p>
+					<?php endif; ?>
+			</figure>
+			<?php do_action('ampforwp_after_featured_image_hook');
 		}else{
 			if( $amp_html ){ ?>
 				<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  
