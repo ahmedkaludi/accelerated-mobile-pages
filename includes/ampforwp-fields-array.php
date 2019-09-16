@@ -54,7 +54,36 @@ switch ($analytics_default_option) {
 	default:
 		break;
 }
-
+ if ( ! function_exists('ampforwp_get_seo_default') ) {
+        function ampforwp_get_seo_default() {
+            $default = '';
+            include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+            if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
+                $default = 'yoast';
+            }
+            elseif ( is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php') ) {
+                $default = 'aioseo';
+            }
+            elseif ( defined( 'RANK_MATH_FILE' ) ) {
+                $default = 'rank_math';
+            }
+            elseif ( function_exists('genesis_theme_support') ) {
+                $default = 'genesis';
+            }
+            elseif ( is_plugin_active('wp-seopress/seopress.php') ) {
+                $default = 'seopress';
+            }
+            elseif ( function_exists( 'the_seo_framework' ) ) {
+                $default = 'seo_framework';
+            }
+            elseif ( class_exists('SQ_Classes_ObjController') ) {
+                $default = 'squirrly';
+            }elseif ( class_exists('Smartcrawl_Loader')){
+                $default = 'smartcrawl';
+            }
+            return $default;
+        }
+    }
 $structure_data_options =  array(
 					                'BlogPosting'   => 'Blog',
 					                'NewsArticle'   => 'News',
@@ -64,6 +93,19 @@ $structure_data_options =  array(
 					                'Article'       => 'Article',
 					                'WebPage'       => 'WebPage'
 					            );
+$seo_options =  array(
+		                ''       => 'Choose SEO',
+		                'yoast'       => 'Yoast',
+	                    'aioseo'     => 'All in One SEO',
+	                    'rank_math' => 'Rank Math SEO',
+	                    'genesis'    => 'Genesis',
+	                    'seopress'    => 'SEOPress',
+	                    'bridge'    => 'Bridge Qode SEO',
+	                    'seo_framework'    => 'The SEO Framework',
+	                    'squirrly'    => 'Squirrly SEO',
+	                    'smartcrawl'    => 'SmartCrawl'
+		            );
+
 $amp_website_type = ampforwp_get_setting('ampforwp-sd-type-posts');
 $amp_ux_fields = array(
 					array('field_type'=>'main_section_start', 'field_data'=>array('id'=>'amp-ux-main-section','class'=>'amp-ux-main-section')),
@@ -168,10 +210,91 @@ $amp_ux_fields = array(
 					),
 					array('field_type'=>'section_end', 'field_data'=>array()),
 
-					// // 3rd Party
-					// array('field_type'=>'section_start',
-					// 	'field_data'=>array('id'=>'ampforwp-ux-thirdparty-section','class'=>'section-1 ampforwp-ux-thirdparty-section')
-					// ),
-					// array('field_type'=>'section_end', 'field_data'=>array()),
-					array('field_type'=>'main_section_end','field_data'=>array()),
+					 // 3rd Party
+					 array('field_type'=>'section_start',
+					 	'field_data'=>array('id'=>'ampforwp-ux-thirdparty-section','class'=>'section-1 ampforwp-ux-thirdparty-section')
+					 ),
+					 array('field_type'=>'select',
+						'field_data'=>array('title'=>'SEO','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-seo-select','options'=>$seo_options,'default'=>ampforwp_get_seo_default())
+					 ),
 				);
+$check_extension = ampforwp_get_setup_info('ampforwp_ux_extension_check');
+for($ex=0;$ex<count($check_extension);$ex++){
+	$active_ext = $check_extension[$ex];
+	if($active_ext=="contact_form_7"){
+		$is_active = 0;
+		if(function_exists('amp_cf7_plugin_init') ){
+			$is_active = 1;
+		}
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Contact Form 7 for AMP",'id'=>"amp-ux-ext-contact-form7",'class'=>'amp-ux-ext-contact-form7-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-contact-form7-switch','desc'=>'','default'=>$is_active)
+		);
+	}
+	if($active_ext=="ninja_forms"){
+		$is_active = 0;
+		if(function_exists('ampforwp_ninja_initiate_plugin') ){
+			$is_active = 1;
+		}
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Ninja Forms for AMP",'id'=>"amp-ux-ext-ninja-form",'class'=>'amp-ux-ext-ninja-form-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-ninja-form-switch','desc'=>'','default'=>$is_active)
+		);
+	}
+	if($active_ext=="caldera_forms"){
+		$is_active = 0;
+		if(function_exists('amp_cf_plugin_init') ){
+			$is_active = 1;
+		}
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Caldera Forms for AMP",'id'=>"amp-ux-ext-caldera-form",'class'=>'amp-ux-ext-caldera-form-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-caldera-form-switch','desc'=>'','default'=>$is_active)
+		);
+	}
+	if($active_ext=="wpforms"){
+		$is_active = 0;
+		if(function_exists('ampforwp_wpforms_forms_shortcode') ){
+			$is_active = 1;
+		}
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"WP Forms for AMP",'id'=>"amp-ux-ext-wp-form",'class'=>'amp-ux-ext-wp-form-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-wp-form-switch','desc'=>'','default'=>$is_active)
+		);
+	}
+	if($active_ext=="woocommerce"){
+		$is_active = 0;
+		if(function_exists('amp_woocommerce_pro_add_woocommerce_support') ){
+			$is_active = 1;
+		}
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"WooCommerce for AMP",'id'=>"amp-ux-ext-woocommerce",'class'=>'amp-ux-ext-woocommerce-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-woocommerce-switch','desc'=>'','default'=>$is_active)
+		);
+	}
+	if($active_ext=="easy_digital_downloads"){
+		$is_active = 0;
+		if(function_exists('amp_edd_post_support')){
+			$is_active = 1;
+		}
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Easy Digital Downloads",'id'=>"amp-ux-ext-edd",'class'=>'amp-ux-ext-edd-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-edd-switch','desc'=>'','default'=>$is_active)
+		);
+	}
+	if($active_ext=="polylang"){
+		$is_active = 0;
+		if(function_exists('amp_polylang_plugin_updater')){
+			$is_active = 1;
+		}
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Polylang for AMP",'id'=>"amp-ux-ext-polylang",'class'=>'amp-ux-ext-polylang-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-polylang-switch','desc'=>'','default'=>$is_active)
+		);
+	}
+	if($active_ext=="bbpress"){
+		$is_active = 0;
+		if(function_exists('amp_bbpress_plugin_updater')){
+			$is_active = 1;
+		}
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"bbPress for AMP",'id'=>"amp-ux-ext-bbpress",'class'=>'amp-ux-ext-bbpress-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-bbpress-switch','desc'=>'','default'=>$is_active)
+		);
+	}
+	if($active_ext=="shortcodes"){
+		$is_active = 0;
+		if(function_exists('amp_su_shortcodes_ulitmate_notices')){
+			$is_active = 1;
+		}
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Shortcodes for AMP",'id'=>"amp-ux-ext-shortcodes",'class'=>'amp-ux-ext-shortcodes-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-shortcodes-switch','desc'=>'','default'=>$is_active)
+		);
+	}
+}
+$close_extenstion = array('field_type'=>'section_end', 'field_data'=>array());
+$close_field = array('field_type'=>'main_section_end','field_data'=>array());
+array_push($amp_ux_fields, $close_extenstion);
+array_push($amp_ux_fields, $close_field);

@@ -1105,6 +1105,39 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     max-width: 150px;
     max-height: 150px;
 }
+.ux-field-container .switch-options{
+    position: relative;
+    top: -34px;
+    left: 80%;
+    display: inline-block;
+}
+.ux-field-container .amp-ux-switch-text{
+   margin: -22px 0px 50px 0px;
+}
+.ux-field-container .amp-ux-switch-text{
+   margin: -22px 0px 50px 0px;
+}
+
+.ux-field-container .switch-options .ios7-switch:hover input:focus:checked + span{
+    box-shadow: inset 0 0 0 2em #ef0e4e;
+}
+.ux-field-container .switch-options .ios7-switch input:checked + span{
+    box-shadow: inset 0 0 0 2em #ef0e4e;
+    border: 3px solid #ef0e4e;
+}
+
+.ux-field-container .switch-options .ios7-switch input:checked + span:after{
+    background: white;
+    border: 2px solid #ef0e4e;
+    margin-top:-2px;
+}
+.ux-field-container #ampforwp-ux-seo-select{
+    position: relative;
+    top: -40px;
+    left: 40%;
+}
+
+
 .amp-ux-checkbox-container h4{display: inline;}
 .redux-main .amp-ux-upload{float: none}
 .redux-sidebar .redux-group-tab-link-a .amp-ux-warning{color: yellow;}

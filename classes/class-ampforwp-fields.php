@@ -210,7 +210,7 @@ class AMPforWP_Fields
 			$this->class .= ' hide';
 			$hide = ' hide';
 		}
-		$output = '<div class="ux-field-container amp-ux-switch-container '.$hide.'"';
+		$output = '<div class="ux-field-container amp-ux-switch-container '.$hide.'">';
 		if ( !empty($this->title) ) {
 			$output .= '<h2>'.$this->title.'</h2>';
 		}

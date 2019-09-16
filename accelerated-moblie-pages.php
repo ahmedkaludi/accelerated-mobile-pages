@@ -502,6 +502,9 @@ function ampforwp_include_options_file(){
 		// Register all the main options	
 		require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
 		require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+		// Global UX Fields
+		$amp_ux_fields = array();
+		require_once AMPFORWP_PLUGIN_DIR."includes/ampforwp-fields-array.php";
 	}
 }
 
@@ -937,6 +940,36 @@ if(!function_exists('ampforwp_get_setup_info')){
 				$policy_arr[] = "GDPR";
 			}
 			$ux_content = implode(", ", $policy_arr);
+		}else if($ux_option=="ampforwp_ux_extension_check"){
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php');
+			$ux_content = array();
+			if(defined('WPCF7_VERSION')){
+				$ux_content[] = 'contact_form_7';
+			}
+			if(class_exists('Ninja_Forms')){
+				$ux_content[] = 'ninja_forms';
+			}
+			if(function_exists('caldera_forms_fallback_shortcode')){
+				$ux_content[] = 'caldera_forms';
+			}
+			if(function_exists('wpforms')){
+				$ux_content[] = 'wpforms';
+			}
+			if(function_exists('WC')){
+				$ux_content[] = 'woocommerce';
+			}
+			if(class_exists('Easy_Digital_Downloads')){
+				$ux_content[] = 'easy_digital_downloads';
+			}
+			if(defined('POLYLANG_BASENAME')){
+				$ux_content[] = 'polylang';
+			}
+			if(class_exists('bbPress')){
+				$ux_content[] = 'bbpress';
+			}
+			if(function_exists('activate_shortcodes_ultimate')){
+				$ux_content[] = 'shortcodes';
+			}
 		}
 		return $ux_content;
 	}
@@ -1362,6 +1395,3 @@ if( ! function_exists( 'accelerated_moblie_pages_start_plugin_tracking' ) ) {
 	}
 	accelerated_moblie_pages_start_plugin_tracking();
 }
-// Global UX Fields
-$amp_ux_fields = array();
-require_once AMPFORWP_PLUGIN_DIR."includes/ampforwp-fields-array.php";
