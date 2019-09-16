@@ -3918,12 +3918,13 @@ Redux::setSection( $opt_name, array(
                         array('amp-design-selector', '=' , '4')
                      )
             ),
+            // Design 3 
              array(
                     'id'        => 'amp-opt-color-rgba-colorscheme',
                     'type'      => 'color_rgba',
-                    'title'     => esc_html__('Color Scheme','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Global Color Scheme','accelerated-mobile-pages'),
                     'default'   => array(
-                    'color'     => '#AD0B15',
+                    'color'     => '#f42f42',
                     ),
                     'required' => array(
                         array('amp-design-selector', '=' , '3')
@@ -3940,13 +3941,12 @@ Redux::setSection( $opt_name, array(
                       array('amp-design-selector', '=' , '3')
                     )
               ), 
-              // Design 3  
              array(
                     'id'        => 'amp-opt-color-rgba-link',
                     'type'      => 'color_rgba',
                     'title'     => esc_html__('Anchor Link Color','accelerated-mobile-pages'),
                     'default'   => array(
-                    'color'     => '#AD0B15',
+                    'color'     => '#f42f42',
                     ),
                     'required' => array(
                         array('amp-design-selector', '=' , '3')

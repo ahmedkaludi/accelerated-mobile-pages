@@ -7259,7 +7259,7 @@ if(! defined( 'AMP_COMMENTS_VERSION' )) {
 		.design_3_wrapper .form-submit #submit{
 		    font-size: 14px; padding: 12px 22px 12px 22px; font-family: 'Roboto Slab', serif;
 		    border-radius: 2px; text-transform: uppercase; margin-left:0px; letter-spacing: 1px;
-		    color: #fff;border: 0;background: <?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color'); ?>;
+		    border: 0;
 		    }
 		.design_2_wrapper .ampforwp-comments{ background: #fff; padding: 10px 20px; box-shadow: 0 2px 3px rgba(0,0,0,.05); }
 		.design_1_wrapper .form-submit #submit{
