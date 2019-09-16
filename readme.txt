@@ -195,7 +195,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 0.9.98.9 (16th SEPTEMBER 2019) =
 
 * Improvements: Need to implement Tree Shaking feature to remove access css from the AMP pages #2949
-* Improvements: Featured Video Compatibility #3444
 * Improvements: Need to save Post Meta Field Revisions in WordPress #3548
 * Improvements: Add Role based Access to all the options #3480
 * Improvements: Need to improve import/export option. #3364
