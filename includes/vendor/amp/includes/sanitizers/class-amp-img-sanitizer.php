@@ -53,16 +53,19 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		if ( ! is_numeric( $node->getAttribute( 'srcset' ) ) && true == ampforwp_get_setting('ampforwp-amp-img-lightbox')) {
 				if(!$node->getAttribute( 'srcset' )){
 					$image_src = $node->getAttribute( 'src' );
-				 	$img_name = explode('/',$image_src);
-				    $img_name = end($img_name);
-				    $img_croped = explode('-',$img_name);
-				    $img_croped = end($img_croped);
-				    $img_ext = wp_check_filetype($image_src);
-				    $img_ext = $img_ext['ext'];
-				    $new_img_url = str_replace("-$img_croped",".$img_ext",$image_src);
-				    if ( $new_img_url ) {
-				    	$node->setAttribute( 'srcset', esc_url($new_img_url) );
-				    }
+					preg_match('/(.*-(\d{3}x\d{3}.))/', $image_src , $image_src_matches);
+					if($image_src_matches){
+					 	$img_name = explode('/',$image_src);
+					    $img_name = end($img_name);
+					    $img_croped = explode('-',$img_name);
+					    $img_croped = end($img_croped);
+					    $img_ext = wp_check_filetype($image_src);
+					    $img_ext = $img_ext['ext'];
+					    $new_img_url = str_replace("-$img_croped",".$img_ext",$image_src);
+					    if ( $new_img_url ) {
+					    	$node->setAttribute( 'srcset', esc_url($new_img_url) );
+					    }
+					}
 				}
 		}
 			if( $node->getAttribute( 'src' )){
