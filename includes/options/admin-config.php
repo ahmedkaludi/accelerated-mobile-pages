@@ -2103,6 +2103,17 @@ Redux::setArgs( "redux_builder_amp", $args );
                'required'  => array('amp-inspection-tool', '=' , '0'),
                'switch-text' => true,
            ),
+           array(
+               'id'       => 'ampforwp-robots-search-pages',
+               'type'     => 'switch',
+               'title'    => esc_html__('Search Pages', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => esc_html__("Enable it to set Indexing for Search Pages",'accelerated-mobile-pages'),
+               'default' => 1,
+               'on' => 'index',
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
+           ),
        )
   )
   );
