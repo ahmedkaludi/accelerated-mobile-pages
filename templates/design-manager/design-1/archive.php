@@ -76,7 +76,7 @@ global $redux_builder_amp, $wp; ?>
 		    }
 				if($paged <= '1') {?>
 					<div class="amp-wp-content taxonomy-description">
-						<?php echo $arch_desc;// amphtml content, no kses ?>
+						<?php echo do_shortcode($arch_desc);// amphtml content, no kses ?>
 				    </div> <?php
 				}
 			}

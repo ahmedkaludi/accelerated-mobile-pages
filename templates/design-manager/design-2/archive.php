@@ -78,7 +78,7 @@
 		    }
 				if($paged <= '1') {?>
 					<div class="amp-wp-content taxonomy-description">
-						<?php echo $arch_desc;// amphtml content, No kses ?>
+						<?php echo do_shortcode($arch_desc);// amphtml content, No kses ?>
 				  </div> <?php
 				}
 			}
