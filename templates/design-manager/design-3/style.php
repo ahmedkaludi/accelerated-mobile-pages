@@ -191,7 +191,7 @@ header{ padding-bottom:50px; }
   header{ padding-bottom:0px; }
 #headerwrap{ position: relative;}
 <?php } ?>
-#header <?php if(is_single()){ ?> h2 <?php } else{?>h1<?php }?>{ text-align: center; font-size: 16px; position: relative; font-weight: bold; line-height: 50px; padding: 0; margin: 0; text-transform: uppercase }
+#header h1{ text-align: center; font-size: 16px; position: relative; font-weight: bold; line-height: 50px; padding: 0; margin: 0; text-transform: uppercase }
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
 main .amp-wp-content{ font-size: 18px; line-height: 29px; color:#111 }
 .amp-wp-meta.amp-meta-wrapper{list-style-type:none;}
