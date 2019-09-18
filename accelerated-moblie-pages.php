@@ -513,7 +513,7 @@ add_action('after_setup_theme','ampforwp_add_module_files');
 function ampforwp_add_module_files() {
 	
 	global $redux_builder_amp;
-	if ( isset($redux_builder_amp['ampforwp-content-builder']) && $redux_builder_amp['ampforwp-content-builder'] ) {
+	if ( function_exists('ampforwp_custom_theme_files_register') ) {
 		if ( ! function_exists( 'bstw' ) ) {
 			require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/tinymce-widget/tinymce-widget.php';
 		}

@@ -2548,7 +2548,7 @@ function ampforwp_add_widget_support() {
 			'after_title'   => '</h4></span>'
 		));
 
-		if ( isset($redux_builder_amp['ampforwp-content-builder']) && $redux_builder_amp['ampforwp-content-builder'] ) {
+		if ( function_exists('ampforwp_custom_theme_files_register') ) {
     $desc = "<b>Update: <a target='_blank' href='https://ampforwp.com/tutorials/article/amp-page-builder-installation/'>Introducing PageBuilder 2.0</a></b><br />Drag and Drop the AMP Modules in this Widget Area and then assign this widget area to a page <a href=http://ampforwp.com/tutorials/page-builder>(Need Help?)</a>";
     $placeholder = 'PLACEHOLDER';
 			register_sidebar(array(
@@ -3501,7 +3501,7 @@ function ampforwp_apply_layout_builder_on_pages($post_id) {
 		$post_id = ampforwp_get_frontpage_id();
 	}
 
-	if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+	if ( function_exists('ampforwp_custom_theme_files_register') ) {
 		if ( is_page() ) {
 			$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 		}
@@ -3583,7 +3583,7 @@ function ampforwp_builder_checker() {
 	$pagebuilder_check 	= '';
 	$post_id 			= '';
 	$is_legacy_enabled 	= '';
-	$is_legacy_enabled  = ampforwp_get_setting('ampforwp-content-builder');
+	$is_legacy_enabled  = function_exists('ampforwp_custom_theme_files_register');
 	if ( $post ) {
 		$post_id = $post->ID;
 	}
