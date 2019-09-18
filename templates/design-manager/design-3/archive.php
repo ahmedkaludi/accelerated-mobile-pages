@@ -96,7 +96,7 @@ if ( get_query_var( 'paged' ) ) {
 			if( $arch_desc ) {  
 				if($paged <= '1') {?>
 					<div class="taxonomy-description">
-						<?php echo $arch_desc;// amphtml content, no kses ?>
+						<?php echo do_shortcode($arch_desc);// amphtml content, no kses ?>
 				  </div>
 			  </div> <?php
 				}
