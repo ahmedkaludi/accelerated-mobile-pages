@@ -113,6 +113,10 @@ class AMPforWP_Fields
 		if ( 'notification' == $type ) {
 			$this->ampforwp_field_notification($fields);
 		}
+		// Label
+		if ( 'footer' == $type ) {
+			$this->ampforwp_field_footer($fields);
+		}
 		// Main section
 		if ( 'main_section_start' == $type ) {
 			$this->main_section_start($fields);
@@ -301,6 +305,12 @@ class AMPforWP_Fields
 		echo $output;
 	}
 	public function ampforwp_field_notification($fields){
+		$required = $hide = $hrf_id = '';
+		$data_num = 1;
+		if ( !empty($this->required) ) {
+			$required = 'required="'.$this->required[0].'"';
+			$hide = ' hide';
+		}
 		$class = "";
 		if($fields['type']=="warning"){
 			$class = "warning";
@@ -309,11 +319,27 @@ class AMPforWP_Fields
 		}else if($fields['type']=="success"){
 			$class = "success";
 		}
-		$output = '<div class="ux-field-container amp-ux-notif-container '.$class.'">';
+		if($this->default==1){
+			$hide = "";
+		}
+		$output = '<div class="ux-field-container amp-ux-notif-container '.$class.' '.$hide.'" id="'.$this->id.'" '.$required.'>';
 		if ( !empty($this->desc) ) {
 			$output .= '<p>'.$this->desc.'</p>';
 		}
 		$output .= '</div>';
 		echo $output;
 	}
+
+	public function ampforwp_field_footer($fields){
+		$output = '<div class="ux-field-container ux-field-footer" id="'.$this->id.'">';
+		foreach($fields as $f){
+			$output .= '<div class="ux-field-foot-cont">
+							<i class="ux-foot-icon '.$f['icon'].'"></i>
+							<p>'.$f['desc'].'</p>
+						</div>';
+		}
+		$output .= '</div>';
+		echo $output;
+	}
+
 }?>

@@ -970,6 +970,30 @@ if(!function_exists('ampforwp_get_setup_info')){
 			if(function_exists('activate_shortcodes_ultimate')){
 				$ux_content[] = 'shortcodes';
 			}
+			if(class_exists('toc')){
+				$ux_content[] = 'toc';
+			}
+			if(class_exists('WPCOM_Liveblog')){
+				$ux_content[] = 'liveblog';
+			}
+			if(defined('TRIBE_EVENTS_FILE')){
+				$ux_content[] = 'eventcalendar';
+			}
+			if(function_exists('run_wp_recipe_maker') || function_exists('yasr_fs') || function_exists('wp_review_constants') || function_exists('postratings_init') || class_exists('WPCustomerReviews3') || defined('KKSR_PLUGIN') || function_exists('taqyeem_init') || class_exists('Multi_Rating')){
+				$ux_content[] = 'ratings';
+			}
+			if(class_exists('GFForms')){
+				$ux_content[] = 'gravityform';
+			}
+			if(function_exists('cp_display_version_warning')){
+				$ux_content[] = 'classipress';
+			}
+			if(function_exists('elementor_load_plugin_textdomain') || function_exists('et_divi_theme_body_class')){
+				$ux_content[] = 'elementor';
+			}
+			if(function_exists('wpml_upgrade')){
+				$ux_content[] = 'wpml';
+			}
 		}
 		return $ux_content;
 	}

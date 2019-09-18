@@ -815,7 +815,6 @@ jQuery(document).ready(function($) {
                                     $(child_element).parent().parent('div').removeClass('hide');
                                 }
                                 else{
-
                                     $(child_element).parent('div').removeClass('hide');
                                 }
                             }
@@ -967,8 +966,6 @@ jQuery(document).ready(function($) {
             }
             thishtml = policy_arr.toString().replace(/,/g, ", ");
             button = "CHOOSE";
-        }else if(active_drower=='ampforwp-ux-thirdparty-section'){
-            
         }
         var option = '';
         if(thishtml!=""){
@@ -981,6 +978,19 @@ jQuery(document).ready(function($) {
         }
         
         $("[data-href="+active_drower+"]").find("div.amp-ux-elem-but-block").html(option);
+        var has_warning = false;
+        $(".amp-ux-elem-but-block").each(function(){
+             if($(this).children().hasClass('btn-red')){
+                has_warning = true;
+             }
+        });
+        if(has_warning){
+            $(".ux-setup-icon").removeClass("amp-ux-warning-okay");
+            $(".ux-setup-icon").addClass("amp-ux-warning");
+        }else{
+            $(".ux-setup-icon").removeClass("amp-ux-warning");
+            $(".ux-setup-icon").addClass("amp-ux-warning-okay");
+        }
     }
     $("#ampforwp-goto-analytics").click(function(){
         $("#2_section_group_li").click();
@@ -1185,6 +1195,15 @@ function ampforwp_ux_save_loader(event){
         event.closest("div.ux-field-container").find('.amp-ux-loader').remove();
      }, 800);
 }
+
+function ampforwp_check_required(value,required){
+    if(value==0){
+        $("[required="+required+"]").addClass("hide");
+    }else{
+        $("[required="+required+"]").removeClass("hide");
+    }
+}
+
 // Required condition for each field
 $.each(new_data, function(key,value) {
         ampCheckRequired($('#'+value.field_data.id));
@@ -1193,20 +1212,33 @@ $.each(new_data, function(key,value) {
     $(".amp-ux-field").on({
         click: function() {
             // Handle click...
-            if ( 'checkbox' == $(this).attr('type') ){
-                ampCheckRequired($(this));
-                saveChangesInRedux($(this));
-                ampforwp_ux_save_loader($(this));
-                set_ux_selected_val();
+            if($(this).hasClass("amp-ux-extension-switch")){
+                if($(this).prop('checked')==true){
+                    $(this).val(1);
+                }else{
+                     $(this).val(0);
+                }
+                ampforwp_check_required($(this).val(),$(this).attr('id'));
+            }else{
+                if ( 'checkbox' == $(this).attr('type') ){
+                    ampCheckRequired($(this));
+                    saveChangesInRedux($(this));
+                    ampforwp_ux_save_loader($(this));
+                    set_ux_selected_val();
+                }
             }
         },
         change: function() {
             // Handle change...
-            if ( 'checkbox' != $(this).attr('type') ){
-                ampCheckRequired($(this));
-                saveChangesInRedux($(this));
-                ampforwp_ux_save_loader($(this));
-                set_ux_selected_val();
+            if($(this).hasClass("amp-ux-extension-switch")){
+               
+            }else{
+                if ( 'checkbox' != $(this).attr('type') ){
+                    ampCheckRequired($(this));
+                    saveChangesInRedux($(this));
+                    ampforwp_ux_save_loader($(this));
+                    set_ux_selected_val();
+                }
             }
         },
     });

@@ -991,9 +991,89 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     float: right;
     top: -40px;
 }
-
-.amp-ux-section-field{
+.amp-ux-section-fields{
     width: 60%;
+    float: left;
+}
+.amp-ux-section-right{
+    float: right;
+    width:35%;
+}
+.amp-ux-section-right .amp-ux-fly-block{
+    box-shadow: 0px 0px 10px #e9e9e9;
+    border-radius: 4px;
+    border: 1px solid #e9e9e9;
+    padding: 0px 25px 10px 25px;
+    width: 70%;
+    margin-bottom: 20px;
+}
+.amp-ux-section-right .amp-ux-fly-block .amp-ux-fly-foot-icon{
+   float: right;
+    background-image: url(../images/ux-view-fly.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20px;
+    width: 15px;
+}
+.amp-ux-fly-icon{
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-left: -15px;
+    border-radius: 50%;
+    background: #999999;
+    margin-top: 21px;
+    margin-right: 10px;
+}
+.amp-ux-fly-icon.amp-ux-doc-icon{
+    background-image: url(../images/ux-documentation.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 20px auto;
+    background-size: 20px auto;
+}
+.amp-ux-fly-icon.amp-ux-conf-support-icon{
+    background-image: url(../images/ux-support.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 20px auto;
+    background-size: 20px auto;
+}
+.amp-ux-fly-icon.amp-ux-conf-upg-icon{
+    background: none;
+    background-image: url(../images/ux-upgrade.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 50px auto;
+    background-size: 50px auto;
+}
+.ux-field-footer .ux-foot-icon{
+    height: 25px;
+    width: 50px;
+    float: left;
+    cursor: pointer;
+}
+.ux-field-footer .ux-send-feedback-icon{
+    background-image: url(../images/ux-feedback.png);
+    background-repeat: no-repeat;
+    background-position: center;
+   
+}
+.ux-field-footer .ux-help-icon{
+    background-image: url(../images/ux-help.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+.ux-field-footer .ux-review-icon{
+    background-image: url(../images/ux-star.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.amp-ux-section-right .amp-ux-fly-block .amp-ux-fly-desc{
+    margin-top: -10px;
+}
+.amp-ux-section-field{
     padding: 1px 37px 13px 10px;
     border-bottom: 1px solid #d7d7d757;
     cursor: pointer;
@@ -1036,6 +1116,37 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .amp-ux-notif-container.success{
    border-right: 5px solid green;
    border-left: 5px solid green;
+}
+#ampforwp-ux-thirdparty-section .amp-fields-content .amp-ux-switch-container{
+    margin-bottom: -25px;
+}
+#ampforwp-ux-thirdparty-section{
+    max-height: 100%;
+    overflow: auto;
+}
+.amp-ux-warning-okay{
+    background-image: url(../images/amp-ux-warning-okay.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 30px auto;
+    background-size: 30px auto;
+    height: 44px;
+    width: 31px;
+}
+.amp-ux-warning{
+    background-image: url(../images/amp-ux-warning.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 30px auto;
+    background-size: 30px auto;
+    height: 44px;
+    width: 31px;
+}
+.ux-field-container.ux-field-footer{
+    position: fixed;
+    bottom: 110px;
+    border-top: 1px solid #d7d7d7;
+    width: 85%;
 }
  .drawer_bg {
     position: fixed;

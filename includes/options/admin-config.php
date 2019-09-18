@@ -1452,11 +1452,24 @@ Redux::setArgs( "redux_builder_amp", $args );
             return $option;
         }
     }
-   
+     $setup_ids = array(
+                        'ampforwp-ux-website-type-section',
+                        'ampforwp-ux-need-type-section',
+                        'ampforwp-ux-design-section',
+                        'ampforwp-ux-analytics-section',
+                        'ampforwp-ux-privacy-section'
+                    );
+    $amp_ux_icon = "amp-ux-warning-okay";
+    for($sid = 0; $sid < count($setup_ids); $sid++ ){
+        $check = ampforwp_get_setup_info($setup_ids[$sid]);
+        if($check==""){
+            $amp_ux_icon = "amp-ux-warning";
+        }
+    }
     Redux::setSection( $opt_name, array(
             'title'      => esc_html__( 'Setup', 'accelerated-mobile-pages' ),
             'id'         => 'ampforwp-new-ux',
-            'icon'         => 'el el-warning amp-ux-warning',
+            'icon'         => "el el-warning ux-setup-icon $amp_ux_icon",
             'desc'   => '<div class="amp-ux-section">
                             <h2 class="amp-section-desc">Quick &amp; Easy Setup</h2>
                             <div class="amp-ux-section-fields">
@@ -1498,7 +1511,43 @@ Redux::setArgs( "redux_builder_amp", $args );
                                         <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-thirdparty-section","label","View List").'</div>
                                     </div>
                                 </div>
-                    </div></div>',
+                            </div>
+                            <div class="amp-ux-section-right">
+                                <div class="amp-ux-fly-block">
+                                    <div class="amp-ux-fly-icon amp-ux-doc-icon"></div>
+                                    <div class="amp-ux-fly-title"><h4>Documentation</h4></div>
+                                    <div class="amp-ux-fly-desc"><p>Tutorials and articles to help you setup.</p></div>
+                                    <div class="amp-ux-fly-foot">
+                                        <div class="amp-ux-fly-foot-msg">
+                                            View Docs
+                                            <i class="amp-ux-fly-foot-icon"></i>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="amp-ux-fly-block">
+                                    <div class="amp-ux-fly-icon amp-ux-conf-support-icon"></div>
+                                    <div class="amp-ux-fly-title"><h4>Ask a Support Question</h4></div>
+                                    <div class="amp-ux-fly-desc"><p>Our team of 20+ devs are here to help.</p></div>
+                                    <div class="amp-ux-fly-foot">
+                                        <div class="amp-ux-fly-foot-msg">
+                                            Support
+                                            <i class="amp-ux-fly-foot-icon"></i>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="amp-ux-fly-block">
+                                    <div class="amp-ux-fly-icon amp-ux-conf-upg-icon"></div>
+                                    <div class="amp-ux-fly-title"><h4>Upgrade to PRO</h4></div>
+                                    <div class="amp-ux-fly-desc"><p>Get AMP to the Next Level with the premium features.</p></div>
+                                    <div class="amp-ux-fly-foot">
+                                        <div class="amp-ux-fly-foot-msg">
+                                            At 10% OFF
+                                            <i class="amp-ux-fly-foot-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>',
 ));
 
     Redux::setSection( $opt_name, array(
