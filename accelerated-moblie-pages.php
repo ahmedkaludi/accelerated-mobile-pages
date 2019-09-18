@@ -1331,7 +1331,7 @@ function ampforwp_wp_config_mode(){
 			if(WP_DEBUG==true && $wp_config==0){
 		?>
 				<div class="notice-warning settings-error notice is-dismissible amp-update-notice-text-box amp-debug-mode-recommend">
-					<input type="hidden" value="<?php echo $wp_debug_nonce;?>" id="ampforwp_debug_nonce">
+					<input type="hidden" value="<?php echo esc_attr($wp_debug_nonce);?>" id="ampforwp_debug_nonce">
 					<p>
 						<b>
 							<?php echo esc_html__('Recommendation: ','accelerated-mobile-pages');?>
