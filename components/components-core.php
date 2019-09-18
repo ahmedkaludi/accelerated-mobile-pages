@@ -381,7 +381,7 @@ function amp_header_core(){
 		    		wp_head();
 
 		    	}else{
-		    		if(is_search() && false == ampforwp_get_setting('ampforwp-robots-search-pages') ){?>
+		    		if(is_search() && false == ampforwp_get_setting('amp-inspection-tool') && false == ampforwp_get_setting('ampforwp-robots-search-pages')){?>
 		    			<meta name="robots" content="noindex,nofollow"/>
 		    		<?php }
 		    		do_action( 'amp_post_template_head', $thisTemplate );
