@@ -780,6 +780,19 @@ jQuery(document).ready(function($){
 
 // AMPforWP New UX #3520
 jQuery(document).ready(function($) {
+    setTimeout(function(){
+        var cls = $('.ampforwp-new-ux' ).hasClass('active');
+        if(cls){
+            $('#redux-footer-sticky').hide();
+        }
+    },10);
+    $(".redux-group-tab-link-li").click(function(){
+            if($(this).hasClass('ampforwp-new-ux')){
+                $('#redux-footer-sticky').hide();
+            }else{
+                $('#redux-footer-sticky').show();
+            }
+    });
     var new_data = JSON.parse(amp_fields);
     var saveChangesInRedux = function($current){
         // Save
@@ -977,7 +990,9 @@ jQuery(document).ready(function($) {
              option = '<div class="button btn-red">'+button+'</div>';
         }
         
-        $("[data-href="+active_drower+"]").find("div.amp-ux-elem-but-block").html(option);
+        if("ampforwp-ux-thirdparty-section" !=active_drower){
+            $("[data-href="+active_drower+"]").find("div.amp-ux-elem-but-block").html(option);
+        }
         var has_warning = false;
         $(".amp-ux-elem-but-block").each(function(){
              if($(this).children().hasClass('btn-red')){
@@ -1454,9 +1469,9 @@ function Drawer(drawerElem) {
             return;
         }
         if (opened) {
-            document.addEventListener(typeMove, isMobile ? onMovedOpen : onMovedOpenDesktop);
+            //document.addEventListener(typeMove, isMobile ? onMovedOpen : onMovedOpenDesktop);
         } else {
-            document.addEventListener(typeMove, isMobile ? onMovedNoOpen : onMovedNoOpenDesktop);
+            //document.addEventListener(typeMove, isMobile ? onMovedNoOpen : onMovedNoOpenDesktop);
         }
     });
 

@@ -264,9 +264,9 @@ class AMPforWP_Fields
 				<input type="hidden" class="upload-width" name="amp-ux-logo-width" id="amp-ux-logo-width" value="'.$width.'">
 				<input type="hidden" class="upload-thumbnail" name="amp-ux-logo-thumb" id="amp-ux-logo-thumb" value="'.$url.'">
 				<div class="screenshot '.$hide.'">
-					<a class="of-uploaded-image" href="" target="_blank">
-						<img class="redux-option-image amp-ux-image" id="image_opt-media" src="'.$url.'" alt="" target="_blank" rel="external">
-					</a>
+					
+					<img class="redux-option-image amp-ux-image" id="image_opt-media" src="'.$url.'" alt="" target="_blank" rel="external">
+					
 				</div>
 				<div class="upload_button_div amp-ux-upload">
 					<span class="button media_upload_button media-'.$this->id.'" id="opt-media-media">Upload</span>				
