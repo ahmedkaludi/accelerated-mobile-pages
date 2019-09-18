@@ -1514,37 +1514,43 @@ Redux::setArgs( "redux_builder_amp", $args );
                             </div>
                             <div class="amp-ux-section-right">
                                 <div class="amp-ux-fly-block">
-                                    <div class="amp-ux-fly-icon amp-ux-doc-icon"></div>
-                                    <div class="amp-ux-fly-title"><h4>Documentation</h4></div>
-                                    <div class="amp-ux-fly-desc"><p>Tutorials and articles to help you setup.</p></div>
-                                    <div class="amp-ux-fly-foot">
-                                        <div class="amp-ux-fly-foot-msg">
-                                            View Docs
-                                            <i class="amp-ux-fly-foot-icon"></i>
+                                    <a href="https://ampforwp.com/tutorials/" target="_blank">
+                                        <div class="amp-ux-fly-icon amp-ux-doc-icon"></div>
+                                        <div class="amp-ux-fly-title"><h4>Documentation</h4></div>
+                                        <div class="amp-ux-fly-desc"><p>Tutorials and articles to help you setup.</p></div>
+                                        <div class="amp-ux-fly-foot">
+                                            <div class="amp-ux-fly-foot-msg">
+                                                View Docs
+                                                <i class="amp-ux-fly-foot-icon"></i>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div> 
                                 <div class="amp-ux-fly-block">
-                                    <div class="amp-ux-fly-icon amp-ux-conf-support-icon"></div>
-                                    <div class="amp-ux-fly-title"><h4>Ask a Support Question</h4></div>
-                                    <div class="amp-ux-fly-desc"><p>Our team of 20+ devs are here to help.</p></div>
-                                    <div class="amp-ux-fly-foot">
-                                        <div class="amp-ux-fly-foot-msg">
-                                            Support
-                                            <i class="amp-ux-fly-foot-icon"></i>
+                                    <a href="https://ampforwp.com/support/" target="_blank">
+                                        <div class="amp-ux-fly-icon amp-ux-conf-support-icon"></div>
+                                        <div class="amp-ux-fly-title"><h4>Ask a Support Question</h4></div>
+                                        <div class="amp-ux-fly-desc"><p>Our team of 20+ devs are here to help.</p></div>
+                                        <div class="amp-ux-fly-foot">
+                                            <div class="amp-ux-fly-foot-msg">
+                                                Support
+                                                <i class="amp-ux-fly-foot-icon"></i>
+                                            </div>
                                         </div>
-                                    </div>
+                                     </a>
                                 </div> 
                                 <div class="amp-ux-fly-block">
-                                    <div class="amp-ux-fly-icon amp-ux-conf-upg-icon"></div>
-                                    <div class="amp-ux-fly-title"><h4>Upgrade to PRO</h4></div>
-                                    <div class="amp-ux-fly-desc"><p>Get AMP to the Next Level with the premium features.</p></div>
-                                    <div class="amp-ux-fly-foot">
-                                        <div class="amp-ux-fly-foot-msg">
-                                            At 10% OFF
-                                            <i class="amp-ux-fly-foot-icon"></i>
+                                    <a href="https://ampforwp.com/membership/" target="_blank">
+                                        <div class="amp-ux-fly-icon amp-ux-conf-upg-icon"></div>
+                                        <div class="amp-ux-fly-title"><h4>Upgrade to PRO</h4></div>
+                                        <div class="amp-ux-fly-desc"><p>Get AMP to the Next Level with the premium features.</p></div>
+                                        <div class="amp-ux-fly-foot">
+                                            <div class="amp-ux-fly-foot-msg">
+                                                At 10% OFF
+                                                <i class="amp-ux-fly-foot-icon"></i>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>',
@@ -1932,6 +1938,19 @@ Redux::setArgs( "redux_builder_amp", $args );
         }
     }
  // SEO SECTION
+
+    $seo_options = array(
+                    'yoast'       => 'Yoast',
+                    'aioseo'     => 'All in One SEO',
+                    'rank_math' => 'Rank Math SEO',
+                    'genesis'    => 'Genesis',
+                    'seopress'    => 'SEOPress',
+                    'bridge'    => 'Bridge Qode SEO',
+                    'seo_framework'    => 'The SEO Framework',
+                    'squirrly'    => 'Squirrly SEO',
+                    'smartcrawl'    => 'SmartCrawl'
+                );
+
   Redux::setSection( $opt_name, array(
       'title'      => esc_html__( 'SEO', 'accelerated-mobile-pages' ),
       'id'         => 'amp-seo',
@@ -1972,17 +1991,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'id'       => 'ampforwp-seo-selection',
                 'type'     => 'select',
                 'title'    => esc_html__('Select SEO Plugin', 'accelerated-mobile-pages'),
-                'options'  => array(
-                    'yoast'       => 'Yoast',
-                    'aioseo'     => 'All in One SEO',
-                    'rank_math' => 'Rank Math SEO',
-                    'genesis'    => 'Genesis',
-                    'seopress'    => 'SEOPress',
-                    'bridge'    => 'Bridge Qode SEO',
-                    'seo_framework'    => 'The SEO Framework',
-                    'squirrly'    => 'Squirrly SEO',
-                    'smartcrawl'    => 'SmartCrawl'
-                ),
+                'options'  => $seo_options,
                 'default'  => ampforwp_seo_default(),
             ),
             array(

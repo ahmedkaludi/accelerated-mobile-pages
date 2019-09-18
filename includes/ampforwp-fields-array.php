@@ -93,31 +93,22 @@ $structure_data_options =  array(
 					                'Article'       => 'Article',
 					                'WebPage'       => 'WebPage'
 					            );
-$seo_options =  array(
-		                ''       => 'Choose SEO',
-		                'yoast'       => 'Yoast',
-	                    'aioseo'     => 'All in One SEO',
-	                    'rank_math' => 'Rank Math SEO',
-	                    'genesis'    => 'Genesis',
-	                    'seopress'    => 'SEOPress',
-	                    'bridge'    => 'Bridge Qode SEO',
-	                    'seo_framework'    => 'The SEO Framework',
-	                    'squirrly'    => 'Squirrly SEO',
-	                    'smartcrawl'    => 'SmartCrawl'
-		            );
 
 $amp_ux_common = array(
 						'field_type'=>'footer', 
 						'field_data'=>array(
 											array(
 												'desc'=>"Send Feedback",
-												'icon'=>'ux-send-feedback-icon'
+												'icon'=>'ux-send-feedback-icon',
+												'url'=>'https://ampforwp.com/support/',
 											),array(
 												'desc'=>"Help",
-												'icon'=>'ux-help-icon'
+												'icon'=>'ux-help-icon',
+												'url'=>'https://ampforwp.com/tutorials/',
 											),array(
 												'desc'=>"Review",
-												'icon'=>'ux-review-icon'
+												'icon'=>'ux-review-icon',
+												'url'=>'https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?rate=5#new-post',
 											),
 										)
 					);

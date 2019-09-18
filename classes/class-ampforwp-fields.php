@@ -333,9 +333,16 @@ class AMPforWP_Fields
 	public function ampforwp_field_footer($fields){
 		$output = '<div class="ux-field-container ux-field-footer" id="'.$this->id.'">';
 		foreach($fields as $f){
-			$output .= '<div class="ux-field-foot-cont">
+			$a_open = "";
+			$a_close = "";
+			if(isset($f['url'])){
+				$a_open = '<a href="'.$f['url'].'" target="_blank">';
+				$a_close = "</a>";
+			}
+
+			$output .= '<div class="ux-field-foot-cont">'.$a_open.'
 							<i class="ux-foot-icon '.$f['icon'].'"></i>
-							<p>'.$f['desc'].'</p>
+							<p>'.$f['desc'].'</p>'.$a_close.'
 						</div>';
 		}
 		$output .= '</div>';

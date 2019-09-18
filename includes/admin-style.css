@@ -1007,6 +1007,10 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     width: 70%;
     margin-bottom: 20px;
 }
+.amp-ux-fly-block a{
+    text-decoration: none;
+    color:#666;
+}
 .amp-ux-section-right .amp-ux-fly-block .amp-ux-fly-foot-icon{
    float: right;
     background-image: url(../images/ux-view-fly.png);
@@ -1052,6 +1056,11 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     width: 50px;
     float: left;
     cursor: pointer;
+    
+}
+.ux-field-foot-cont a{
+    text-decoration: none;
+    color: #333333;
 }
 .ux-field-footer .ux-send-feedback-icon{
     background-image: url(../images/ux-feedback.png);
