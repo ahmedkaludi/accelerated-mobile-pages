@@ -371,7 +371,7 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 .amp-wp-header .ampforwp-search-nav-wrapper{ padding: 0; }
 .ampforwp-search-nav-wrapper .searchmenu{ margin-top: 20px; }
 .headerlogo a, [class*=icono-]{ top:0; }
-.amp-logo <?php if(is_single()){ ?> h1 <?php } else{?>h1<?php }?>{font-size: 1em; font-weight: 400; line-height: 1.75em; margin: 0;}
+.amp-logo h1{font-size: 1em; font-weight: 400; line-height: 1.75em; margin: 0;}
 .amp-logo{display:inline-block}
 .amp-wp-header a, .headerlogo a, [class*=icono-] {color: <?php echo ampforwp_sanitize_color( $header_font_color ); ?>;text-decoration: none;}
 @media screen and (min-width: 650px) { table {display: inline-table;}  }

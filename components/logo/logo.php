@@ -26,9 +26,8 @@ function ampforwp_framework_get_logo(){
                        <?php  bloginfo('name'); ?> 
                     </h1>
              <?php } ?>
-          <?php } else { if(is_single()){ ?>
-          <h1> <?php } else{?><h1><?php }?>
-          <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  ><?php bloginfo('name'); ?></a><?php if(is_single()){?></h1><?php } else{?></h1><?php }
+          <?php } else { ?><h1>
+          <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  ><?php bloginfo('name'); ?></a></h1><?php 
          } ?>
     </div>
  <?php }
