@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.3
-Stable tag: 0.9.98.9
+Stable tag: 0.9.98.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,20 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 0.9.98.10 (18th SEPTEMBER 2019) =
+
+* Improvements: Upgrade the analtyics integration with gtag.js #3538
+* Improvements: Need to optimize css classes #3650
+* Fixed: Small sized images are getting stretched in the lightbox. #3602
+* Fixed: Gutenberg Audio Module not working #3597
+* Fixed: Table (thead-th) styling issue after update #3661
+* Fixed: Issue with the post titles in single page (two H2 tags if logo is not inserted) #3641
+* Fixed: search results pages are showing up as 'no index' #3646
+* Fixed: Need to add support of shortcode in category pages #3653
+* Fixed: Custom post description migrates to image description #3606
+* Fixed: AMP for WP conflict with the CDN Enabler plugin #3631
+* Fixed: Warning in Error Log #3655
 
 = 0.9.98.9 (16th SEPTEMBER 2019) =
 
