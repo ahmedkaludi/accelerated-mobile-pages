@@ -1011,6 +1011,10 @@ jQuery(document).ready(function($) {
         $("#2_section_group_li").click();
         $("#9_section_group_li_a").click();
     });
+    $("[data-href=ampforwp-ux-advertisement-section]").click(function(){
+        $("#2_section_group_li").click();
+        $("#4_section_group_li_a").click();
+    });
     // Website type
     $('#ampforwp-ux-select').on('change', function(e){
         // Update Values in Structured data
@@ -1266,19 +1270,22 @@ window.addEventListener("load", function (e) {
     var list = document.getElementsByClassName("amp-ux-section-field");
     for (var i = 0; i < list.length; i++) {
         // list[i] is a node with the desired class name
-        iconElem = document.getElementsByClassName("amp-ux-section-field")[i];
         var attr = list[i].getAttribute('data-href');
-        var table = $('table[data-id="'+attr+'"]');
-        if( ! table.hasClass(attr) ){
-            table.addClass(attr);
+        if(attr!='ampforwp-ux-advertisement-section'){
+            iconElem = document.getElementsByClassName("amp-ux-section-field")[i];
+            
+            var table = $('table[data-id="'+attr+'"]');
+            if( ! table.hasClass(attr) ){
+                table.addClass(attr);
+            }
+            var div = $('div[id="'+attr+'"]');
+            if( ! div.hasClass(attr) ){
+                div.addClass(attr);
+            }
+            drawerElem = document.getElementsByClassName(attr)[0];
+            drawer = new Drawer(drawerElem);
+            drawer.setDrawerIcon(new DrawerIcon(iconElem));
         }
-        var div = $('div[id="'+attr+'"]');
-        if( ! div.hasClass(attr) ){
-            div.addClass(attr);
-        }
-        drawerElem = document.getElementsByClassName(attr)[0];
-        drawer = new Drawer(drawerElem);
-        drawer.setDrawerIcon(new DrawerIcon(iconElem));
     }
     //Use methods
     /*drawer.onOpenListener(function () {

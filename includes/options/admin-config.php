@@ -1505,6 +1505,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                                         <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-privacy-section","button","CHOOSE").'</div>
                                     </div>
                                 </div>
+                                <div class="amp-ux-section-field" data-href="ampforwp-ux-advertisement-section">
+                                    <div class="amp-ux-elem-field">
+                                        <h4 class="amp-ux-elem-title">Advertisement</h4>
+                                        <div class="amp-ux-elem-but-block">View Setup</div>
+                                    </div>
+                                </div> 
                                 <div class="amp-ux-section-field" data-href="ampforwp-ux-thirdparty-section">
                                     <div class="amp-ux-elem-field">
                                         <h4 class="amp-ux-elem-title">3rd Party Compatibility</h4>
