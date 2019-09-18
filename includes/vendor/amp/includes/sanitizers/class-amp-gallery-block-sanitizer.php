@@ -142,8 +142,8 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
     				$img_name = end($img_name);
     				$img_croped = explode('-',$img_name);
     				$img_croped = end($img_croped);
-    				$img_ext = explode('.',$img_croped);
-    				$img_ext = end($img_ext);
+    				$filetype = wp_check_filetype($img_croped);
+					$img_ext = $filetype['ext'];
     				$new_img_url = str_replace("-$img_croped",".$img_ext",$url);
     				$attachment_id = attachment_url_to_postid($new_img_url);
 				}
