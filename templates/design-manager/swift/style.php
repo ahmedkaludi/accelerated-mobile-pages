@@ -202,7 +202,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 	line-height: 0;display: block;text-indent: 1px;
 <?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-overlay-color-control']['rgba'])?>;<?php } ?> }
-.lb-t:target {opacity: 1;top: 0;bottom: 0;left:0;z-index:1;}
+.lb-t:target {opacity: 1;top: 0;bottom: 0;left:0;z-index:2;}
 .lb-t:target img {max-height: 100%;max-width: 100%;}
 .lb-t:target a.lb-x {top: 25px;}
 .lb img{cursor:pointer;}
