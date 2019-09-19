@@ -204,6 +204,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Custom post description migrates to image description #3606
 * Fixed: AMP for WP conflict with the CDN Enabler plugin #3631
 * Fixed: Warning in Error Log #3655
+* Fixed: Incorrect placeholder "Select the SEO Plugin" in drop-down in AMP option Panel #3663
 
 = 0.9.98.9 (16th SEPTEMBER 2019) =
 
