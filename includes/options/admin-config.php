@@ -7185,6 +7185,13 @@ else{
            'layout_type' => 'accordion',
             'accordion-open'=> 1,
          ),
+        // Social Icons Option #3613
+        array(
+              'id'        =>  'ampforwp-social-share',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('Social Share', 'accelerated-mobile-pages'),
+              'default'   =>  1,
+          ), 
         // Social Icons Position [Swift] #1722
             array(
                 'id'       => 'swift-social-position',
