@@ -6311,7 +6311,7 @@ $single_page_options = array(
                    'title' => esc_html__('General', 'accelerated-mobile-pages'),
                    'indent' => true,
                    'layout_type' => 'accordion',
-                    'accordion-open'=> 0,
+                   'accordion-open'=> 1,
              ),
             // Lightbox 
            array(

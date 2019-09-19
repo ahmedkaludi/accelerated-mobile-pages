@@ -356,6 +356,7 @@ right:0;  z-index: 99999;
 /*** Layout Screenshot-Image CSS ***/
 #redux_builder_amp-ampforwp_layouts_core .amppb_ad-layout-layout {
     margin-bottom: 30px;
+    width: 29%;
 }
 
 /*** Layout Screenshot-Image CSS End ***/
@@ -1296,4 +1297,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 }
 #beacon-container .BeaconContainer{
     max-height: 520px !important;
+}
+.select2-container {
+    max-width: 40%;
 }
