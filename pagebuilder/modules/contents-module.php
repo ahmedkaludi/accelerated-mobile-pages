@@ -21,7 +21,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
   }
 }
  $output = '{{if_condition_content_layout_type==1}}
-            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cat_mod {{user_class}}"><h4>{{content_title}}</h4>   
+            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cm {{user_class}}"><h4>{{content_title}}</h4>   
                 <div class="wrap"><ul>{{category_selection}}</ul></div>
                 {{pagination_links}}    
             </div>
@@ -32,32 +32,32 @@ function ampforwp_content_module_pagination($args, $fieldValues){
  $frontCss = '
 {{if_condition_content_layout_type==1}}
 .wrap{width:100%;display:inline-block;margin-top:10px;}
-.cat_mod ul{display: flex;flex-wrap: wrap;margin: -15px;padding:0;list-style-type:none;}
-.cat_mod ul li {margin: 15px 15px 25px 15px;flex-basis: calc(33.33% - 30px);}
-.cat_mod .cat_mod_l{line-height:0;}
-.cat_mod {margin:{{margin_css}};padding:{{padding_css}};}
-.cat_mod h4{border-bottom: 2px solid #eee;padding-bottom: 8px;margin-bottom: 5px;font-size:18px;color: #191919;font-weight: 600;}
-.cat_mod .cat_mod_r{display:flex;flex-direction: column;margin-top: 6px;}
-.cat_mod .cat_mod_r a{font-size: 16px;line-height: 1.3;font-weight: 500;color: #000;margin: 0px 0px 5px 0px;}
-.cat_mod .cat_mod_r p{color: {{text_color_picker}};font-size: 13px;line-height: 20px;letter-spacing: 0.10px;margin-bottom:0;}
-.cat_mod .cat_mod_l{width:100%;}
-.cat_mod .cat_mod_r p a{
+.cm ul{display: flex;flex-wrap: wrap;margin: -15px;padding:0;list-style-type:none;}
+.cm ul li {margin: 15px 15px 25px 15px;flex-basis: calc(33.33% - 30px);}
+.cm .cml{line-height:0;}
+.cm {margin:{{margin_css}};padding:{{padding_css}};}
+.cm h4{border-bottom: 2px solid #eee;padding-bottom: 8px;margin-bottom: 5px;font-size:18px;color: #191919;font-weight: 600;}
+.cm .cmr{display:flex;flex-direction: column;margin-top: 6px;}
+.cm .cmr a{font-size: 16px;line-height: 1.3;font-weight: 500;color: #000;margin: 0px 0px 5px 0px;}
+.cm .cmr p{color: {{text_color_picker}};font-size: 13px;line-height: 20px;letter-spacing: 0.10px;margin-bottom:0;}
+.cm .cml{width:100%;}
+.cm .cmr p a{
   font-size:13px;
   color:#005be2;
 }
-.pagination a {
+.cmp a {
     color: black;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
 }
-.pagination a.active {
+.cmp a.active {
     background-color: dodgerblue;
     color: white;
 }
-.pagination a:hover:not(.active) {background-color: #ddd;}
-.pagination{
+.cmp a:hover:not(.active) {background-color: #ddd;}
+.cmp{
     width: 100%;
     margin: 30px 0px 0px 0px;
     display: flex;
@@ -66,20 +66,20 @@ function ampforwp_content_module_pagination($args, $fieldValues){
     justify-content: center;
 }
 @media(max-width:768px){
-  .cat_mod ul li {flex-basis: calc(100% - 30px);margin: 10px 15px;}
-  .cat_mod_l amp-img{width:100%;}
-  .cat_mod .cat_mod_l{width: 40%;float: left;margin-right: 20px;}
-  .cat_mod .cat_mod_r{width: 54%;float: left;margin-top: 0;}
+  .cm ul li {flex-basis: calc(100% - 30px);margin: 10px 15px;}
+  .cml amp-img{width:100%;}
+  .cm .cml{width: 40%;float: left;margin-right: 20px;}
+  .cm .cmr{width: 54%;float: left;margin-top: 0;}
 }
 @media(max-width:767px){
-  .pagination a{
+  .cmp a{
     padding:5px 12px;
     font-size:16px;
   }
 }
 @media (max-width: 480px){
-  .cat_mod .cat_mod_l{width: 100%;float: none;margin-right: 0px;}
-  .cat_mod .cat_mod_r{width: 100%;float: none;margin-top:6px;}
+  .cm .cml{width: 100%;float: none;margin-right: 0px;}
+  .cm .cmr{width: 100%;float: none;margin-top:6px;}
 }
 {{ifend_condition_content_layout_type_1}}
 ';
@@ -296,11 +296,11 @@ if ( is_admin() ) {
     'front_loop_content'=>'  {{if_condition_content_layout_type==1}}
                           <li> 
 
-                              <div class="cat_mod_l"> 
+                              <div class="cml"> 
                                <a href="{{ampforwp_post_url}}">
                                {{if_image}}<amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="responsive" alt="{{image_alt}}"> </amp-img>{{ifend_image}}</a>
                               </div>
-                              <div class="cat_mod_r">
+                              <div class="cmr">
                                 <a href="{{ampforwp_post_url}}">{{title}}</a>
                                 {{excerptContent}}
                                 {{loopdate}}
@@ -504,7 +504,7 @@ if ( is_admin() ) {
         }else{
             $paged = 1;
         }
-        $pagination_links .= '<div class="pagination">';
+        $pagination_links .= '<div class="cmp">';
         if( $paged > 1){
           
           $first_page = add_query_arg( array( $pagination_text => 1 ), $queryUrl );

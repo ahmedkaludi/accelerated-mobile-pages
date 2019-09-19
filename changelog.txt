@@ -1,5 +1,19 @@
 == Changelog ==
 
+= 0.9.98.10 (18th SEPTEMBER 2019) =
+
+* Improvements: Upgrade the analtyics integration with gtag.js #3538
+* Improvements: Need to optimize css classes #3650
+* Fixed: Small sized images are getting stretched in the lightbox. #3602
+* Fixed: Gutenberg Audio Module not working #3597
+* Fixed: Table (thead-th) styling issue after update #3661
+* Fixed: Issue with the post titles in single page (two H2 tags if logo is not inserted) #3641
+* Fixed: search results pages are showing up as 'no index' #3646
+* Fixed: Need to add support of shortcode in category pages #3653
+* Fixed: Custom post description migrates to image description #3606
+* Fixed: AMP for WP conflict with the CDN Enabler plugin #3631
+* Fixed: Warning in Error Log #3655
+
 = 0.9.98.9 (16th SEPTEMBER 2019) =
 
 * Improvements: Need to implement Tree Shaking feature to remove access css from the AMP pages #2949

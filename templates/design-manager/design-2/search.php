@@ -4,7 +4,8 @@
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
-	<meta name="robots" content="noindex,nofollow"/>
+	<?php if(is_search() && false == ampforwp_get_setting('amp-inspection-tool') && false == ampforwp_get_setting('ampforwp-robots-search-pages')){?>
+	<meta name="robots" content="noindex,nofollow"/><?php } ?>
   <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<?php $paged = get_query_var( 'paged' );
 		$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();

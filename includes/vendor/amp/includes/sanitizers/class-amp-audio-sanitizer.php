@@ -28,7 +28,11 @@ class AMP_Audio_Sanitizer extends AMP_Base_Sanitizer {
 			$old_attributes = AMP_DOM_Utils::get_node_attributes_as_assoc_array( $node );
 
 			$new_attributes = $this->filter_attributes( $old_attributes );
-
+			if(isset($new_attributes['src'])){
+				$src = $new_attributes['src'];
+				$new_src = str_replace("http:", '', $src);
+				$new_attributes['src'] = $new_src;
+			}
 			$new_node = AMP_DOM_Utils::create_node( $this->dom, 'amp-audio', $new_attributes );
 
 			// TODO: `source` does not have closing tag, and DOMDocument doesn't handle it well.
