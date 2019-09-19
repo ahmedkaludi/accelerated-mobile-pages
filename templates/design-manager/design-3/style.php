@@ -482,19 +482,6 @@ pre{ white-space: pre-wrap; }
   0% { max-height: 100vh; overflow: hidden; } 
   100% { max-height: none; overflow: visible; } 
 }
-<?php if (ampforwp_get_setting('header-overlay-position-d3') == 2 ) {?>
-#header{
-  position:relative;
-}
-#sidebar[open]+#designthree #header:after{
-    content: "✖"; 
-    color: #f42f42;
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 20px;
-}
-<?php } // Right overlay ends here?>
 .hamburgermenu{ float:left; position:relative; z-index: 9999; }
 
 /* Category 3 */
