@@ -17,11 +17,46 @@ if ( in_array(ampforwp_get_setting('amp-design-selector'), array(1,2,3)) ) {
 	$designCss = '{{module-class}} amp-carousel.testi3-slider, {{module-class}} .testi-mod-blk blockquote{
 					background:transparent;
 				}
-
+				{{module-class}} amp-carousel .testi-mod-3{
+					box-sizing:border-box;
+				}
+				{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-prev{
+					left: 0px;
+				}
+				{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-next {
+					right: 0px;
+				}
+				{{module-class}} .testi-mod-blk blockquote{
+					padding:0;
+				}
+				.amp-wp-content.the_content {{module-class}} .testi-mod-blk h4{
+					font-size: {{d3-txt-size}};
+				    line-height: 1.2;
+				    margin-top: 10px;
+				    font-weight: 600;
+				    color: {{d3-aut_color_picker}};
+				}
 				';
 }
-
-
+if ( in_array(ampforwp_get_setting('amp-design-selector'), array(4)) ) { 
+	$designCss ='{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-prev{
+					left: 22%;
+					border-radius: 100px;
+				}
+				{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-next {
+				    right: 22%;
+				    border-radius: 100px;
+				}
+				{{module-class}} .testi-mod-blk h4{
+					font-size: {{d3-txt-size}};
+				    line-height: 1.2;
+				    margin-top: 10px;
+				    font-weight: 600;
+				    color: {{d3-aut_color_picker}};
+				}
+				
+				';
+}
 $css = '
 {{if_condition_testimonial_layout_type==1}}
 .testimonial-mod{margin:{{margin_css}};padding:{{padding_css}};}
@@ -45,8 +80,6 @@ $css = '
 {{if_condition_testimonial_layout_type==3}}
 
 '.$designCss .'
-
-
 {{module-class}} amp-carousel .testi-mod-3{
 	width: 650px;
     height: auto;
@@ -110,37 +143,26 @@ $css = '
 	text-align:center;
 	position:relative;
 }
-{{module-class}} .testi-mod-blk h4{
-	font-size: {{d3-txt-size}};
-    line-height: 1.2;
-    margin-top: 10px;
-    font-weight: 600;
-    color: {{d3-aut_color_picker}};
-}
+
 {{module-class}} .testi-mod-blk span{
 	font-size: {{d3-dsg-size}};
     color: {{d3-dsg_color}};
     display: inherit;
 }
-{{module-class}} amp-carousel.testi-slider .amp-carousel-button-prev{
-	left: 22%;
+{{module-class}} amp-carousel{
+	min-height:600px;
+}
+{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-prev, {{module-class}} amp-carousel.testi3-slider .amp-carousel-button-next{
 	border-radius: 100px;
 }
-{{module-class}} amp-carousel.testi-slider .amp-carousel-button-next {
-    right: 22%;
-    border-radius: 100px;
-}
-
 
 
 @media(max-width:991px){
-	{{module-class}} amp-carousel{
-		min-height:400px;
-	}
-	{{module-class}} amp-carousel.testi-slider .amp-carousel-button-prev{
+	
+	{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-prev{
 		left: 30px;
 	}
-	{{module-class}} amp-carousel.testi-slider .amp-carousel-button-next {
+	{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-next {
 		right: 30px;
 	}
 }
@@ -149,6 +171,9 @@ $css = '
 	{{module-class}} .testi-mod-blk blockquote p:after{
 		top:20px;
 	}
+	{{module-class}} amp-carousel{
+		min-height:450px;
+	}
 }
 
 @media(max-width:650px){
@@ -156,14 +181,17 @@ $css = '
 		width:100%;
 		padding:40px 30px 20px 30px;
 	}
-	{{module-class}} .testi-mod-blk blockquote p {
+	{{module-class}} .testi-mod-blk blockquote.blqut div {
     	font-size: 18px;
     }
-    {{module-class}} amp-carousel.testi-slider .amp-carousel-button-prev{
+    {{module-class}} amp-carousel.testi3-slider .amp-carousel-button-prev{
 		left: 10px;
 	}
-	{{module-class}} amp-carousel.testi-slider .amp-carousel-button-next {
+	{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-next {
 		right: 10px;
+	}
+	{{module-class}} amp-carousel .testi-mod-3{
+		box-shadow: none;
 	}
 }
 
