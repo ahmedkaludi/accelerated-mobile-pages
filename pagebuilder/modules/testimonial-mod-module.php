@@ -5,12 +5,23 @@ $output = '
 {{ifend_condition_testimonial_layout_type_1}}
 
 {{if_condition_testimonial_layout_type==3}}
-	<amp-carousel class="testi-slider" type="slides" width="1200" height="450" layout="responsive" data-next-button-aria-label="Go to next slide"
+	
+	<amp-carousel {{if_id}}id="{{id}}"{{ifend_id}} class="testi3-slider {{user_class}}" type="slides" width="1200" height="450" layout="responsive" data-next-button-aria-label="Go to next slide"
   		data-previous-button-aria-label="Go to previous slide"">
   		{{repeater_design_3}}
 	</amp-carousel>
 {{ifend_condition_testimonial_layout_type_3}}
 ';
+
+if ( in_array(ampforwp_get_setting('amp-design-selector'), array(1,2,3)) ) {
+	$designCss = '{{module-class}} amp-carousel.testi3-slider, {{module-class}} .testi-mod-blk blockquote{
+					background:transparent;
+				}
+
+				';
+}
+
+
 $css = '
 {{if_condition_testimonial_layout_type==1}}
 .testimonial-mod{margin:{{margin_css}};padding:{{padding_css}};}
@@ -32,7 +43,11 @@ $css = '
 {{ifend_condition_testimonial_layout_type_1}}
 
 {{if_condition_testimonial_layout_type==3}}
-amp-carousel .testi-mod-3{
+
+'.$designCss .'
+
+
+{{module-class}} amp-carousel .testi-mod-3{
 	width: 650px;
     height: auto;
     margin: 0 auto;
@@ -45,31 +60,40 @@ amp-carousel .testi-mod-3{
     border-radius: 10px;
     box-shadow: 0 10px 16px 0 rgba(8, 8, 8, 0.14), 0 1px 9px 0 rgba(0,0,0,0.10);
 }
-.testi-mod-3 amp-img{
+{{module-class}} .testi-mod-3 amp-img{
 	max-width: 80px;
     max-height: 80px;
     border-radius: 100px;
     margin:0 auto;
 }
-.testi-mod-blk blockquote {
+{{module-class}} .testi-mod-blk blockquote {
     border:none;
     quotes: " " "\201D" "" "";
     margin: 0px 0px 30px 0px;
 }
-.testi-mod-blk blockquote p {
+{{module-class}} .testi-mod-blk blockquote.blqut div p{
+	font-size:100%;
+	line-height:1.4;
+	padding:0px;
+	font-weight:normal;
+}
+{{module-class}} .testi-mod-blk blockquote.blqut div{
 	font-size: {{d3-tst-size}};
 	line-height:1.4;
     padding: 50px 0px 0px 0px;
     font-weight: 400;
-     color: {{d3-tst_color}};
+    color: {{d3-tst_color}};
     font-family: sans-serif;
 }
-.testi-mod-blk blockquote p:before { 
+{{module-class}} .testi-mod-blk blockquote.blqut div:before { 
 	content: open-quote;
 	width:auto;
 	border:none;
-} 
-.testi-mod-blk blockquote p:after { 
+}
+{{module-class}} .testi-mod-blk blockquote.blqut div p:before {  
+	display:none;
+}
+{{module-class}} .testi-mod-blk blockquote.blqut div:after { 
 	content: close-quote;
 	font-weight: bold;
 	font-size:80px;
@@ -82,26 +106,27 @@ amp-carousel .testi-mod-3{
     right: 0;
     margin: 0 auto;
 }
-.testi-mod-blk{
+{{module-class}} .testi-mod-blk{
 	text-align:center;
+	position:relative;
 }
-.testi-mod-blk h4{
+{{module-class}} .testi-mod-blk h4{
 	font-size: {{d3-txt-size}};
     line-height: 1.2;
     margin-top: 10px;
     font-weight: 600;
     color: {{d3-aut_color_picker}};
 }
-.testi-mod-blk span{
+{{module-class}} .testi-mod-blk span{
 	font-size: {{d3-dsg-size}};
     color: {{d3-dsg_color}};
     display: inherit;
 }
-amp-carousel.testi-slider .amp-carousel-button-prev{
+{{module-class}} amp-carousel.testi-slider .amp-carousel-button-prev{
 	left: 22%;
 	border-radius: 100px;
 }
-amp-carousel.testi-slider .amp-carousel-button-next {
+{{module-class}} amp-carousel.testi-slider .amp-carousel-button-next {
     right: 22%;
     border-radius: 100px;
 }
@@ -109,35 +134,35 @@ amp-carousel.testi-slider .amp-carousel-button-next {
 
 
 @media(max-width:991px){
-	amp-carousel{
+	{{module-class}} amp-carousel{
 		min-height:400px;
 	}
-	amp-carousel.testi-slider .amp-carousel-button-prev{
+	{{module-class}} amp-carousel.testi-slider .amp-carousel-button-prev{
 		left: 30px;
 	}
-	amp-carousel.testi-slider .amp-carousel-button-next {
+	{{module-class}} amp-carousel.testi-slider .amp-carousel-button-next {
 		right: 30px;
 	}
 }
 
 @media(max-width:768px){
-	.testi-mod-blk blockquote p:after{
+	{{module-class}} .testi-mod-blk blockquote p:after{
 		top:20px;
 	}
 }
 
 @media(max-width:650px){
-	amp-carousel .testi-mod-3{
+	{{module-class}} amp-carousel .testi-mod-3{
 		width:100%;
 		padding:40px 30px 20px 30px;
 	}
-	.testi-mod-blk blockquote p {
+	{{module-class}} .testi-mod-blk blockquote p {
     	font-size: 18px;
     }
-    amp-carousel.testi-slider .amp-carousel-button-prev{
+    {{module-class}} amp-carousel.testi-slider .amp-carousel-button-prev{
 		left: 10px;
 	}
-	amp-carousel.testi-slider .amp-carousel-button-next {
+	{{module-class}} amp-carousel.testi-slider .amp-carousel-button-next {
 		right: 10px;
 	}
 }
@@ -430,7 +455,7 @@ return array(
                 
               ),
           'front_template'=> array(
-				        "design_1" => '{{if_condition_testimonial_layout_type==1}}
+				        "design_1" => '
 					        <div class="testi-mod">
 								<div class="testi-cont">
 									{{content}}
@@ -444,19 +469,17 @@ return array(
 										<span>{{auth_desig}}</span>
 									</div>
 								</div>
-							</div>
-						{{ifend_condition_testimonial_layout_type_1}} ',
+							</div>',
 
-						"design_3" => '{{if_condition_testimonial_layout_type==3}}
+						"design_3" => '
 							<div class="testi-mod-3">
 								<div class="testi-mod-blk">
-									<blockquote>{{content}}</blockquote>
+									<blockquote class="blqut"><div class="testi3-cntn">{{content}}</div></blockquote>
 									{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 									<h4>{{content_title}}</h4>
 									<span>{{auth_desig}}</span>
 								</div>
-							</div>
-						{{ifend_condition_testimonial_layout_type_3}}'
+							</div>'
 					)
           ),
 	);
