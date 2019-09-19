@@ -153,7 +153,7 @@ $front_css = '
 	}
 {{ifend_condition_col_2_align_1}}
 
-{{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};{{if_fixed-height}}height:{{fixed-height}};{{ifend_fixed-height}}margin: 0 auto;}
+{{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
 	{{if_condition_check_for_brdr==1}}
@@ -161,6 +161,7 @@ $front_css = '
 		border-color: {{border_clr_pkr}};
     	border-style: solid;
 	{{ifend_condition_check_for_brdr_1}}
+	{{if_fixed-height}}height:{{fixed-height}};{{ifend_fixed-height}}
 	color: {{font_color_picker}};
 	background-color: {{color_picker}};
 	{{if_selected_gradient}}{{selected_gradient}};{{ifend_selected_gradient}}
