@@ -1019,8 +1019,13 @@ jQuery(document).ready(function($) {
     $('#ampforwp-ux-select').on('change', function(e){
         // Update Values in Structured data
         //Posts
-        $("select[id=ampforwp-sd-type-posts-select]").val($(this).val());
-        $("span[id=select2-ampforwp-sd-type-posts-select-container]").text($(this).val());
+        if($("select[id=ampforwp-sd-type-posts-select]").val()!=undefined){
+            $("select[id=ampforwp-sd-type-posts-select]").val($(this).val());
+            $("span[id=select2-ampforwp-sd-type-posts-select-container]").text($(this).val());
+        }else{
+            $("select[id=ampforwp-sd-type-category-select]").val($(this).val());
+            $("span[id=select2-ampforwp-sd-type-category-select-container]").text($(this).val());
+        }
     });
     // Homepage
     $('input[id="amp-ux-homepage"]').click(function(){
@@ -1193,6 +1198,7 @@ jQuery(document).ready(function($) {
         else if( $(this).prop("checked") == false && $('input[id="amp-gdpr-compliance-switch"]').val() == 1 ){
             $("input[data-id=amp-gdpr-compliance-switch]").prop('checked', false).trigger( 'change' );
             $("input[id=amp-gdpr-compliance-switch]").val(0);
+            $(this).val(0);
         }
     });
 
@@ -1756,4 +1762,131 @@ function DrawerIcon(icon) {
             $(".amp-debug-mode-recommend").remove();
         });
     });
+
+
+    $('.ampforwp_install_ux_plugin').click(function(e){
+        var self = $(this);
+        self.parent('.ios7-switch').html('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
+        var nonce = self.attr('data-secure');
+   
+        var currentId = self.attr('id');
+        var activate = '';
+        if(currentId=='amp-ux-ext-pwafwp'){
+            activate = '&activate=pwa';
+        }else if(currentId=='amp-ux-ext-ssd'){
+            activate = '&activate=structure_data';
+        }else if(currentId=='amp-ux-ext-afwp'){
+            activate = '&activate=adsforwp';
+        }
+        console.log( wp.updates.l10n.installing );
+        
+        $.ajax({
+            url: ajaxurl,
+            type: 'post',
+            data: 'action=ampforwp_enable_modules_upgread'+activate+'&verify_nonce='+nonce,
+            dataType: 'json',
+            success: function (response){
+                if(response.status==200){
+                     if(self.hasClass('not-exist')){
+                        //To installation
+                        wp.updates.installPlugin(
+                        {
+                                slug: response.slug,
+                                success: function(pluginresponse){
+                                    console.log(pluginresponse.activateUrl);
+                                    wpActivateModulesUpgrage(pluginresponse.activateUrl, self, response, nonce)
+                                }
+                            }
+                        );
+                    }else{
+                        var activateUrl = self.attr('data-url');
+                        wpActivateModulesUpgrage(activateUrl, self, response, nonce)
+                    }
+                }else{
+                    alert(response.message)
+                }
+                
+            }
+        });
+    });
+    function ampforwp_generate_plugin_ulr(url){
+         url = '<a target="_blank" href="'+url+'" class="afw-plugin-url"><i class="el el-cog"></i></a>';
+         return url;
+    }
+    var wpActivateModulesUpgrage = function(url, self, response, nonce){
+        if (typeof url === 'undefined' || !url) {
+            return;
+        }
+         console.log( 'Activating...' );
+         jQuery.ajax(
+            {
+                async: true,
+                type: 'GET',
+                //data: dataString,
+                url: url,
+                success: function () {
+                    var msgplug = '';
+                    if(self.attr('id')=='amp-ux-ext-pwafwp'){
+                        msgplug = 'PWA';
+                        console.log("PWA Activated");
+                        var res_url = ampforwp_generate_plugin_ulr(response.redirect_url);
+                        $('.amp-ux-ext-pwafwp').html(res_url);
+                        $("[required=amp-ux-ext-pwafwp]").addClass("hide");
+                    }else if(self.attr('id')=='amp-ux-ext-ssd'){
+                        msgplug = 'Structure Data';
+                        //Import Data
+                        jQuery.ajax({
+                            url: ajaxurl,
+                            type: 'post',
+                            data: 'action=ampforwp_import_modules_scema&verify_nonce='+nonce,
+                            success: function () {
+                                console.log("Structure Data Activated");
+                                var res_url = ampforwp_generate_plugin_ulr(response.redirect_url);
+                                $('.amp-ux-ext-ssd').html(res_url);
+                                $("[required=amp-ux-ext-ssd]").addClass("hide");
+                            }
+                        });
+                        }else if(self.attr('id')=='amp-ux-ext-afwp'){
+                        msgplug = 'Ads for WP';
+                        self.text( 'Importing data...' );
+                        //Import Data
+                        jQuery.ajax({
+                            url: ajaxurl,
+                            type: 'post',
+                            data: 'action=ampforwp_import_modules_ads&verify_nonce='+nonce,
+                            success: function () {
+                                console.log("Ads for WP");
+                                var res_url = ampforwp_generate_plugin_ulr(response.redirect_url);
+                              $('.amp-ux-ext-afwp').html(res_url);
+                              $("[required=amp-ux-ext-afwp]").addClass("hide");
+                            }
+                        });
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status === 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status === 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    console.log(msg);
+                },
+            }
+        );
+    }
+
+
+
+
 });

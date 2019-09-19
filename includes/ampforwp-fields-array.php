@@ -113,6 +113,10 @@ $amp_ux_common = array(
 										)
 					);
 $amp_website_type = ampforwp_get_setting('ampforwp-sd-type-posts');
+if($amp_website_type==""){
+	$amp_website_type = ampforwp_get_setting('ampforwp-sd-type-category');
+}
+
 $amp_ux_fields = array(
 					array('field_type'=>'main_section_start', 'field_data'=>array('id'=>'amp-ux-main-section','class'=>'amp-ux-main-section')),
 					// Website type 
@@ -228,7 +232,68 @@ $amp_ux_fields = array(
 						'field_data'=>array('title'=>'SEO','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-seo-select','options'=>$seo_options,'default'=>ampforwp_get_seo_default())
 					 ),
 				);
+
+$is_sdfwp = "not-exist";
+$ampforwp_admin_url = admin_url();
+$stdfwp_active_url = '';
+$sd_default = 0;
+if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."schema-and-structured-data-for-wp/structured-data-for-wp.php")){
+	if(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')){
+		$is_sdfwp = "inactive";
+		$stdfwp_active_url = $ampforwp_admin_url.'plugins.php?_wpnonce=aee8c3b8ee&action=activate&plugin=schema-and-structured-data-for-wp/structured-data-for-wp.php';
+	}else{
+		$is_sdfwp = "active";
+		$stdfwp_active_url = $ampforwp_admin_url.'admin.php?page=structured_data_options&amp;tab=general&amp;reference=ampforwp';
+		$sd_default = 2;
+	}
+}
+$is_afwp = "not-exist";
+$afwp_active_url = '';
+$afwp_default = 0;
+if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."ads-for-wp/ads-for-wp.php")){
+	if(!is_plugin_active('ads-for-wp/ads-for-wp.php')){
+		$is_afwp = "inactive";
+		$afwp_active_url = $ampforwp_admin_url.'plugins.php?_wpnonce=c430bbc603&action=activate&plugin=ads-for-wp/ads-for-wp.php';
+
+	}else{
+		$is_afwp = "active";
+		$afwp_active_url = $ampforwp_admin_url.'admin.php?page=adsforwp&amp;tab=general&amp;reference=ampforwp';
+		$afwp_default = 2;
+	}
+}
+
+$is_pwa = "not-exist";
+$pwa_active_url = '';
+$pwa_default = 0;
+if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."pwa-for-wp/pwa-for-wp.php")){
+	if(!is_plugin_active('pwa-for-wp/pwa-for-wp.php')){
+		$is_pwa = "inactive";
+		$pwa_active_url = $ampforwp_admin_url.'plugins.php?_wpnonce=736acb6f1b&action=activate&plugin=pwa-for-wp/pwa-for-wp.php';
+	}else{
+		$is_pwa = "active";
+		$pwa_active_url = $ampforwp_admin_url.'admin.php?page=pwaforwp&amp;reference=ampforwp';
+		$pwa_default = 2;
+	}
+}
+
+$sasd_class = "amp-ux-extension-switch amp-ux-switch-on-off ampforwp_install_ux_plugin $is_sdfwp";
+$afwp_class = "amp-ux-extension-switch amp-ux-switch-on-off ampforwp_install_ux_plugin $is_afwp";
+$pwa_class = "amp-ux-extension-switch amp-ux-switch-on-off ampforwp_install_ux_plugin $is_pwa";
+
+$ux_secure = wp_create_nonce('verify_module');
 $check_extension = ampforwp_get_setup_info('ampforwp_ux_extension_check');
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Schema & Structured Data",'id'=>"amp-ux-ext-ssd",'class'=>$sasd_class,'data-id'=>'amp-ux-ext-ssd-switch','desc'=>'','data-secure'=>$ux_secure,'default'=>$sd_default,'data-url'=>esc_url($stdfwp_active_url)));
+
+$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-ssd','=',0),'default'=>0));
+
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Ads for WP",'id'=>"amp-ux-ext-afwp",'class'=>$afwp_class,'data-id'=>'amp-ux-ext-afwp-switch','desc'=>'','data-secure'=>$ux_secure,'default'=>$afwp_default,'data-url'=>esc_url($afwp_active_url)));
+
+$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-afwp','=',0),'default'=>0));
+
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"PWA for WP",'id'=>"amp-ux-ext-pwafwp",'class'=>$pwa_class,'data-id'=>'amp-ux-ext-pwafwp-switch','desc'=>'','data-secure'=>$ux_secure,'default'=>$pwa_default,'data-url'=>esc_url($pwa_active_url)));
+
+$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-pwafwp','=',0),'default'=>0));
+
 for($ex=0;$ex<count($check_extension);$ex++){
 	$active_ext = $check_extension[$ex];
 	if($active_ext=="wpml"){
