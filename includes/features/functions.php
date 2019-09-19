@@ -232,10 +232,7 @@ function ampforwp_generate_meta_desc($json=""){
         //Smartcrawl #3473
         if( class_exists('Smartcrawl_Meta_Value_Helper') && class_exists('Smartcrawl_Loader') && 'smartcrawl' == ampforwp_get_setting('ampforwp-seo-selection') ){
             $metadesc = Smartcrawl_Meta_Value_Helper::get()->get_description();
-            $metadesc = wp_kses(
-                strip_tags( stripslashes( $metadesc ) ),
-                array(), array()
-            );
+            $metadesc = strip_tags( stripslashes( $metadesc ) );
             if ( ! empty( $metadesc ) ) {
                 $desc = $metadesc;
             }
