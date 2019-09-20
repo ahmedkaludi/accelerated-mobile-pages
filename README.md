@@ -191,6 +191,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.11 (20th SEPTEMBER 2019) =
+* Improvements: Improved AMP Advertisement option panel
+* Fixed: Mobile redirection causing extra redirects from /amp to /amp/ #3660
+* Fixed: The lightbox should not work for the image if any external link is added in its anchor tag. #3599
+
 = 0.9.98.10 (18th SEPTEMBER 2019) =
 
 * Improvements: Upgrade the analtyics integration with gtag.js #3538

@@ -87,7 +87,7 @@ function ampforwp_enable_modules_upgread(){
                                     ),
                             'install' => 'ads-for-wp/ads-for-wp.php',
                         );
-            $redirectSettingsUrl = admin_url('admin.php?page=adsforwp&tab=general&reference=ampforwp');
+            $redirectSettingsUrl = admin_url('edit.php?post_type=adsforwp');
         break;
         default:
             $plugins = array();

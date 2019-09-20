@@ -85,7 +85,7 @@ jQuery(document).ready(function($){
                             type: 'post',
                             data: 'action=ampforwp_import_modules_ads&verify_nonce='+nonce,
                             success: function () {
-                                 self.html('<a href="'+response.redirect_url+'" style="text-decoration: none;color: #555;">Installed! - Let\'s Go to '+msgplug+' Settings</a>')
+                                 self.html('<a href="'+response.redirect_url+'" style="text-decoration: none;">Go to Ads Settings</a>')
                                 self.removeClass('ampforwp-activation-call-module-upgrade');
                             }
                         });
