@@ -650,7 +650,7 @@ function ampforwp_url_purifier($url){
                     if($found == ''){
                         array_splice( $explode_url, count($explode_url), 0, $append_amp );
                         $impode_url = implode('/', $explode_url);
-                        $url = untrailingslashit($impode_url);
+                        $url = user_trailingslashit($impode_url);
                     }
                 }
                 if ( is_home()  || is_archive() ){
@@ -695,7 +695,7 @@ function ampforwp_url_purifier($url){
                         if($found == ''){
                             array_splice( $explode_path, count($explode_path), 0, $inserted );
                             $impode_url = implode('/', $explode_path);
-                            $url = $impode_url;
+                            $url = user_trailingslashit($impode_url);
                          
                         }
                     }
