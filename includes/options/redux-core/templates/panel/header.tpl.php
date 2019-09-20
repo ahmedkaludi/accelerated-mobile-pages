@@ -61,13 +61,7 @@ namespace ReduxCore\ReduxFramework;
                 </div>
             
             <?php } ?>
-
-            <h2><?php echo wp_kses_post( $this->parent->args['display_name'] ); ?></h2>
-
-            <?php if ( ! empty( $this->parent->args['display_version'] ) ) { ?>
-                <span><?php echo wp_kses_post( $this->parent->args['display_version'] ); ?></span>
-            <?php } ?>
-
+            <h2></h2>
         </div>
     <?php } ?>
 

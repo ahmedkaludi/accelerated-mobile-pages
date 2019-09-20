@@ -1456,8 +1456,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'ampforwp-ux-website-type-section',
                         'ampforwp-ux-need-type-section',
                         'ampforwp-ux-design-section',
-                        'ampforwp-ux-analytics-section',
-                        'ampforwp-ux-privacy-section'
+                        'ampforwp-ux-analytics-section'
                     );
     $amp_ux_icon = "amp-ux-warning-okay";
     for($sid = 0; $sid < count($setup_ids); $sid++ ){
@@ -1470,13 +1469,21 @@ Redux::setArgs( "redux_builder_amp", $args );
             'title'      => esc_html__( 'Setup', 'accelerated-mobile-pages' ),
             'id'         => 'ampforwp-new-ux',
             'icon'         => "el el-warning ux-setup-icon $amp_ux_icon",
+            'fields'     => array(      
+                                   array(       
+                                               'id' => 'ampforwp-setup-ux-website-type',        
+                                               'type' => 'text',        
+                                               'title' => '',       
+                                               'default'=>''        
+                                    )       
+                               ),
             'desc'   => '<div class="amp-ux-section">
                             <h2 class="amp-section-desc">Quick &amp; Easy Setup</h2>
                             <div class="amp-ux-section-fields">
                                 <div class="amp-ux-section-field" data-id="website-type" data-href="ampforwp-ux-website-type-section">
                                    <div class="amp-ux-elem-field">
                                         <h4 class="amp-ux-elem-title">Website Type</h4>
-                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-website-type-section","button","SELECT").'</div>
+                                        <div class="amp-ux-elem-but-block amp-ux-valid-require">'.ampforwp_generate_ux_admin_button("ampforwp-ux-website-type-section","button","SELECT").'</div>
                                     </div>
                                 </div>
                                 <div class="amp-ux-section-field" data-href="ampforwp-ux-need-type-section">
@@ -1484,19 +1491,19 @@ Redux::setArgs( "redux_builder_amp", $args );
                                         <h4 class="amp-ux-elem-title">
                                             Where do you need AMP?
                                         </h4>
-                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-need-type-section","button","CHOOSE").'</div>
+                                        <div class="amp-ux-elem-but-block amp-ux-valid-require">'.ampforwp_generate_ux_admin_button("ampforwp-ux-need-type-section","button","CHOOSE").'</div>
                                     </div>
                                 </div>
                                 <div class="amp-ux-section-field" data-href="ampforwp-ux-design-section">
                                    <div class="amp-ux-elem-field">
                                         <h4 class="amp-ux-elem-title">Design and Presentation</h4>
-                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-design-section","button","SET UP").'</div>
+                                        <div class="amp-ux-elem-but-block amp-ux-valid-require">'.ampforwp_generate_ux_admin_button("ampforwp-ux-design-section","button","SET UP").'</div>
                                     </div>
                                 </div>
                                 <div class="amp-ux-section-field" data-href="ampforwp-ux-analytics-section">
                                      <div class="amp-ux-elem-field">
                                         <h4 class="amp-ux-elem-title">Analytics Tracking</h4>
-                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-analytics-section","button","CONFIG").'</div>
+                                        <div class="amp-ux-elem-but-block amp-ux-valid-require">'.ampforwp_generate_ux_admin_button("ampforwp-ux-analytics-section","button","CONFIG").'</div>
                                     </div>
                                 </div>
                                 <div class="amp-ux-section-field" data-href="ampforwp-ux-privacy-section">
@@ -1516,47 +1523,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                                         <h4 class="amp-ux-elem-title">3rd Party Compatibility</h4>
                                         <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-thirdparty-section","label","View List").'</div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="amp-ux-section-right">
-                                <div class="amp-ux-fly-block">
-                                    <a href="https://ampforwp.com/tutorials/" target="_blank">
-                                        <div class="amp-ux-fly-icon amp-ux-doc-icon"></div>
-                                        <div class="amp-ux-fly-title"><h4>Documentation</h4></div>
-                                        <div class="amp-ux-fly-desc"><p>Tutorials and articles to help you setup.</p></div>
-                                        <div class="amp-ux-fly-foot">
-                                            <div class="amp-ux-fly-foot-msg">
-                                                View Docs
-                                                <i class="amp-ux-fly-foot-icon"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div> 
-                                <div class="amp-ux-fly-block">
-                                    <a href="https://ampforwp.com/support/" target="_blank">
-                                        <div class="amp-ux-fly-icon amp-ux-conf-support-icon"></div>
-                                        <div class="amp-ux-fly-title"><h4>Ask a Support Question</h4></div>
-                                        <div class="amp-ux-fly-desc"><p>Our team of 20+ devs are here to help.</p></div>
-                                        <div class="amp-ux-fly-foot">
-                                            <div class="amp-ux-fly-foot-msg">
-                                                Support
-                                                <i class="amp-ux-fly-foot-icon"></i>
-                                            </div>
-                                        </div>
-                                     </a>
-                                </div> 
-                                <div class="amp-ux-fly-block">
-                                    <a href="https://ampforwp.com/membership/" target="_blank">
-                                        <div class="amp-ux-fly-icon amp-ux-conf-upg-icon"></div>
-                                        <div class="amp-ux-fly-title"><h4>Upgrade to PRO</h4></div>
-                                        <div class="amp-ux-fly-desc"><p>Get AMP to the Next Level with the premium features.</p></div>
-                                        <div class="amp-ux-fly-foot">
-                                            <div class="amp-ux-fly-foot-msg">
-                                                At 10% OFF
-                                                <i class="amp-ux-fly-foot-icon"></i>
-                                            </div>
-                                        </div>
-                                    </a>
                                 </div>
                             </div>
                         </div>',
@@ -8177,3 +8143,30 @@ Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extension
 /*
 * <--- END SECTIONS
 */
+
+        
+if(!function_exists('ampforwp_option_panel_view_popup')){       
+    function ampforwp_option_panel_view_popup(){        
+    echo '<div class="ampforwp-option-panel-view-pop" role="dialog">        
+          <div class="m-dialog">        
+            <!-- Modal content-->       
+            <div class="m-content">     
+              <div class="m-header">        
+                <h1 class="m-title">Select your user type</h1>      
+              </div>        
+              <div class="m-body">      
+                    <div class="option-button b1">      
+                        <h2>Easy View</h2>      
+                        <p>For Beginers</p>     
+                    </div>      
+                    <div class="option-button b2">      
+                        <h2>Full View</h2>      
+                        <p>For Experts</p>      
+                    </div>      
+              </div>        
+            </div>      
+          </div>        
+        </div>';        
+    }       
+    //ampforwp_option_panel_view_popup();     
+}

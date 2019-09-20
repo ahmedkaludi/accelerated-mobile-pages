@@ -85,11 +85,12 @@ switch ($analytics_default_option) {
         }
     }
 $structure_data_options =  array(
-					                'BlogPosting'   => 'Blog',
-					                'NewsArticle'   => 'News',
+					                ''   => 'Select Option',
+					                'Blog'   => 'Blog',
+					                'News'   => 'News',
 					                'Recipe'        => 'Recipe',
 					                'Product'       => 'Product',
-					                'VideoObject'   => 'Video Object',
+					                'Video Object'   => 'Video Object',
 					                'Article'       => 'Article',
 					                'WebPage'       => 'WebPage'
 					            );
@@ -112,11 +113,7 @@ $amp_ux_common = array(
 											),
 										)
 					);
-$amp_website_type = ampforwp_get_setting('ampforwp-sd-type-posts');
-if($amp_website_type==""){
-	$amp_website_type = ampforwp_get_setting('ampforwp-sd-type-category');
-}
-
+$amp_website_type = ampforwp_get_setting('ampforwp-setup-ux-website-type');
 $amp_ux_fields = array(
 					array('field_type'=>'main_section_start', 'field_data'=>array('id'=>'amp-ux-main-section','class'=>'amp-ux-main-section')),
 					// Website type 
@@ -237,10 +234,20 @@ $is_sdfwp = "not-exist";
 $ampforwp_admin_url = admin_url();
 $stdfwp_active_url = '';
 $sd_default = 0;
+function ampforwp_wp_plugin_action_link( $plugin, $action = 'activate' ) {
+	if ( strpos( $plugin, '/' ) ) {
+		$plugin = str_replace( '\/', '%2F', $plugin );
+	}
+	$url = sprintf( admin_url( 'plugins.php?action=' . $action . '&plugin=%s&plugin_status=all&paged=1&s' ), $plugin );
+	$url = wp_nonce_url( $url, $action . '-plugin_' . $plugin );
+	return $url;
+}
 if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."schema-and-structured-data-for-wp/structured-data-for-wp.php")){
 	if(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')){
 		$is_sdfwp = "inactive";
-		$stdfwp_active_url = $ampforwp_admin_url.'plugins.php?_wpnonce=aee8c3b8ee&action=activate&plugin=schema-and-structured-data-for-wp/structured-data-for-wp.php';
+		$plugin_file = "schema-and-structured-data-for-wp/structured-data-for-wp.php";
+		$stdfwp_active_url = ampforwp_wp_plugin_action_link( $plugin_file, 'activate' );
+
 	}else{
 		$is_sdfwp = "active";
 		$stdfwp_active_url = $ampforwp_admin_url.'admin.php?page=structured_data_options&amp;tab=general&amp;reference=ampforwp';
@@ -253,8 +260,8 @@ $afwp_default = 0;
 if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."ads-for-wp/ads-for-wp.php")){
 	if(!is_plugin_active('ads-for-wp/ads-for-wp.php')){
 		$is_afwp = "inactive";
-		$afwp_active_url = $ampforwp_admin_url.'plugins.php?_wpnonce=c430bbc603&action=activate&plugin=ads-for-wp/ads-for-wp.php';
-
+		$plugin_file = "ads-for-wp/ads-for-wp.php";
+		$afwp_active_url = ampforwp_wp_plugin_action_link( $plugin_file, 'activate' );
 	}else{
 		$is_afwp = "active";
 		$afwp_active_url = $ampforwp_admin_url.'admin.php?page=adsforwp&amp;tab=general&amp;reference=ampforwp';
@@ -268,7 +275,8 @@ $pwa_default = 0;
 if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."pwa-for-wp/pwa-for-wp.php")){
 	if(!is_plugin_active('pwa-for-wp/pwa-for-wp.php')){
 		$is_pwa = "inactive";
-		$pwa_active_url = $ampforwp_admin_url.'plugins.php?_wpnonce=736acb6f1b&action=activate&plugin=pwa-for-wp/pwa-for-wp.php';
+		$plugin_file = "pwa-for-wp/pwa-for-wp.php";
+		$pwa_active_url = ampforwp_wp_plugin_action_link( $plugin_file, 'activate' );
 	}else{
 		$is_pwa = "active";
 		$pwa_active_url = $ampforwp_admin_url.'admin.php?page=pwaforwp&amp;reference=ampforwp';
