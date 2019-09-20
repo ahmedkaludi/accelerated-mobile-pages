@@ -5798,13 +5798,13 @@ function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
 			if($matches[3][$i] == $matches[6][$i]){
 				$href = $matches[3][$i];
 				$href_src = str_replace( '/', '\/', $href );
-				$updated_content = preg_replace('/<a(.*?)href=\"'.$href_src.'\"(.*?)>(<img(.*?)src=\"'.$href_src.'\"(.*?)\/>)<\/a>/i', '$3', $content);
+				$content = preg_replace('/<a(.*?)href=\"'.$href_src.'\"(.*?)>(<img(.*?)src=\"'.$href_src.'\"(.*?)\/>)<\/a>/i', '$3', $content);
 				
 			}
 		}
 	}
 
-	return $updated_content;
+	return $content;
 }
 
 // amp-image-lightbox #1892
