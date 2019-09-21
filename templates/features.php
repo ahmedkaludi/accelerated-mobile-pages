@@ -4882,7 +4882,8 @@ function ampforwp_inline_related_posts(){
 					$my_query = $yarpp_query;
 				}
 			}
-					if( $my_query->have_posts() ) { 
+			if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
+				if( $my_query->have_posts() ) { 
 				$inline_related_posts_img = '';
 				$inline_related_posts = '<div class="amp-wp-content relatedpost">
 						    <div class="related_posts">
@@ -4953,7 +4954,9 @@ function ampforwp_inline_related_posts(){
 						    </div>
 						</div>';
 					}
+
 	      wp_reset_postdata();
+	  } //pagebuilder condition ends here
 	      return $inline_related_posts;
 //related posts code ends here
 }

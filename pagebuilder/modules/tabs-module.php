@@ -51,10 +51,11 @@ $css = '
 }
 {{module-class}} amp-selector .tabButton h2{
 	color:{{hdng_bg_color}};
-	padding: 4px 15px 5px 15px;
+	padding: 6px 15px 5px 15px;
 	font-size:{{hdng_fnt_sz}};
 	font-weight:{{hdng_font_type}};
 	margin:0px;
+	line-height: 1.4
 }
 {{module-class}} .tabButton[selected]+.tabContent {
     width: 100%;
