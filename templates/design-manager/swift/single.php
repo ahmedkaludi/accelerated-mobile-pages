@@ -84,11 +84,11 @@
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 					<?php if( true != ampforwp_get_setting('single-design1-left-sidebar') ) { ?>
 					<div class="ss-ic">
-						<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
+						<span class="shr-txt"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-share-text'), 'Share' ); ?></span>
 						<ul>
 							<?php if( ampforwp_get_setting('enable-single-facebook-share') ){?>
 							<li>
-								<a title="facebook share" class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>"></a>
+								<a title="facebook share" class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php esc_url(the_permalink()); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php 
@@ -97,18 +97,18 @@
 								$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
 								$data_param = ( '' == $data_param_data ) ? '' : '&via='.$data_param_data.''; ?>
 							<li>
-								<a title="twitter share" class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?><?php echo esc_attr($data_param); ?>">
+								<a title="twitter share" class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php esc_url(the_permalink()); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?><?php echo esc_attr($data_param); ?>">
 								</a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-gplus-share') ){?>
 							<li>
-								<a title="google plus share" class="s_gp" target="_blank" href="https://plus.google.com/share?url=<?php the_permalink(); ?>"></a>
+								<a title="google plus share" class="s_gp" target="_blank" href="https://plus.google.com/share?url=<?php esc_url(the_permalink()); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-email-share') ){?>
 							<li>
-								<a title="email" class="s_em" target="_blank" href="mailto:?subject=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&body=<?php the_permalink(); ?>"></a>
+								<a title="email" class="s_em" target="_blank" href="mailto:?subject=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&body=<?php esc_url(the_permalink()); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-pinterest-share') ){
@@ -122,12 +122,12 @@
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-linkedin-share') ){?>
 							<li>
-								<a title="linkedin share" class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a title="linkedin share" class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php esc_url(the_permalink()); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-whatsapp-share') ){?>
 							<li>
-								<a title="whatsapp share" class="s_wp" target="_blank" href="https://api.whatsapp.com/send?text=<?php the_permalink(); ?>" data-action="share/whatsapp/share"></a>
+								<a title="whatsapp share" class="s_wp" target="_blank" href="https://api.whatsapp.com/send?text=<?php esc_url(the_permalink()); ?>" data-action="share/whatsapp/share"></a>
 							</li>
 							<?php } ?>
 							<?php if(ampforwp_get_setting('enable-single-line-share') == true)  {
@@ -144,62 +144,62 @@
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-vk-share') ){?>
 							<li>
-								<a title="vkontakte share" class="s_vk" target="_blank" href="http://vk.com/share.php?url=<?php the_permalink(); ?>"></a>
+								<a title="vkontakte share" class="s_vk" target="_blank" href="http://vk.com/share.php?url=<?php esc_url(the_permalink()); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-odnoklassniki-share') ){?>
 							<li>
-								<a title="odnoklassniki share" class="s_od" target="_blank" href="https://ok.ru/dk?st.cmd=addShare&st._surl=<?php the_permalink(); ?>"></a>
+								<a title="odnoklassniki share" class="s_od" target="_blank" href="https://ok.ru/dk?st.cmd=addShare&st._surl=<?php esc_url(the_permalink()); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-reddit-share') ){?>
 							<li>
-								<a title="reddit share" class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a title="reddit share" class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php esc_url(the_permalink()); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-tumblr-share') ){?>
 							<li>
-								<a title="tumblr share" class="s_tb" target="_blank" href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php the_permalink(); ?>"></a>
+								<a title="tumblr share" class="s_tb" target="_blank" href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php esc_url(the_permalink()); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-telegram-share') ){?>
 							<li>
-								<a title="telegram share" class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a title="telegram share" class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php esc_url(the_permalink()); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-digg-share') ){?>
 							<li>
-								<a title="digg share" class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a title="digg share" class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php esc_url(the_permalink()); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-stumbleupon-share') ){?>
 							<li>
-								<a title="stumbleupon share" class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a title="stumbleupon share" class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php esc_url(the_permalink()); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('enable-single-wechat-share') ){?>
 							<li>
-								<a title="wechat share" class="s_wc" target="_blank" href="http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url=<?php the_permalink(); ?>"></a>
+								<a title="wechat share" class="s_wc" target="_blank" href="http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url=<?php esc_url(the_permalink()); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if(ampforwp_get_setting('enable-single-viber-share') ){?>
 							<li>
-								<a title="viber share" class="s_vb" target="_blank" href="viber://forward?text=<?php the_permalink(); ?>"></a>
+								<a title="viber share" class="s_vb" target="_blank" href="viber://forward?text=<?php esc_url(the_permalink()); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if ( ampforwp_get_setting('enable-single-hatena-bookmarks') ){?>
 							<li>
-								<a title="hatena share" class="s_hb" target="_blank" href="http://b.hatena.ne.jp/entry/<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a title="hatena share" class="s_hb" target="_blank" href="http://b.hatena.ne.jp/entry/<?php esc_url(the_permalink()); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if ( ampforwp_get_setting('enable-single-pocket-share') ){?>
 							<li>
-								<a title="pocket share" class="s_pk" target="_blank" href="https://getpocket.com/save?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a title="pocket share" class="s_pk" target="_blank" href="https://getpocket.com/save?url=<?php esc_url(the_permalink()); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if ( ampforwp_get_setting('enable-single-yummly-share') ){?>
 							<li>
-								<a title="yummly share" class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
+								<a title="yummly share" class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php esc_url(the_permalink()); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
 							</li>
 							<?php } ?>
 							<?php if( ampforwp_get_setting('ampforwp-facebook-like-button') ){?>
