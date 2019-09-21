@@ -1,7 +1,7 @@
 <?php 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
-$output = '<{{header_type}} {{if_id}}id="{{id}}"{{ifend_id}} class="h-txt {{user_class}}">{{content_title}}</{{header_type}}>';
+$output = '<{{if_header_type}}{{header_type}} {{if_id}}id="{{id}}"{{ifend_id}} class="h-txt {{user_class}}">{{content_title}}</{{header_type}}>{{ifend_header_type}}';
 $css = '
 {{module-class}}{width:100%;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .h-txt{font-size:{{text-size}};color:{{font_color_picker}};letter-spacing:{{letter-spacing}};font-weight:{{font_type}};line-height:{{line-height}};}
@@ -16,6 +16,23 @@ return array(
               'advanced' => 'Advanced'
             ),
 		'fields' => array(
+						array(
+	 							'type'	=>'select',		
+	 							'name'  =>"header_type",		
+	 							'label' =>"Heading Type",
+								'tab'     =>'customizer',
+	 							'default' =>'h1',
+	 							'options_details'=>array(
+	 												'h1'=>'H1',
+	 												'h2'=>'H2',
+	 												'h3'=>'H3',
+	 												'h4'=>'H4',
+	 												'h5'=>'H5',
+	 												'h6'=>'H6'
+	 													),
+	 							'content_type'=>'html',
+	 							'output_format'=>''
+	 					),
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"content_title",		
@@ -23,6 +40,7 @@ return array(
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'Heading',	
 		           				'content_type'=>'html',
+		           				'required'  	=>  array('header_type'=> array('h1','h2','h3','h4','h5','h6'))
 	 						),
 	 					array(		
 		 						'type'		=>'text',		
@@ -47,24 +65,7 @@ return array(
 		           				 'tab'     =>'design',
 		 						'default'	=>'0px',	
 		           				'content_type'=>'css',
-	 						),
-	 					array(
-	 							'type'	=>'select',		
-	 							'name'  =>"header_type",		
-	 							'label' =>"Heading Type",
-								'tab'     =>'customizer',
-	 							'default' =>'h1',
-	 							'options_details'=>array(
-	 												'h1'=>'H1',
-	 												'h2'=>'H2',
-	 												'h3'=>'H3',
-	 												'h4'=>'H4',
-	 												'h5'=>'H5',
-	 												'h6'=>'H6'
-	 													),
-	 							'content_type'=>'html',
-	 							'output_format'=>''
-	 						),
+	 						),	
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'font_type',		
