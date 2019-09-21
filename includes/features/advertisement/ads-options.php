@@ -1039,10 +1039,10 @@
                                             <div>
                                                 '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? 
                                                     '
-                        <div class="install-now ampforwp-activation-call-module-upgrade button  " id="ampforwp-adsforwp-activation-call" data-secure="'.wp_create_nonce('verify_module').'">
+                        <div class="install-now ampforwp-activation-call-module-upgrade button button-primary" id="ampforwp-adsforwp-activation-call" data-secure="'.wp_create_nonce('verify_module').'">
                             <p>' . esc_html__('Upgrade for Free','accelerated-mobile-pages') .'</p>
                         </div>' :
-                                                    '<a href="'.admin_url('admin.php?page=adsforwp&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Ads for WP settings</p></div></a>'
+                                                    '<a href="'.admin_url('edit.php?post_type=adsforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Ads for WP settings</p></div></a>'
                                                 )
                                                 .'
                                                  &nbsp;<br/><a href="https://ampforwp.com/tutorials/article/what-is-ads-for-wp-update-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>

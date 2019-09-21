@@ -933,6 +933,37 @@ div#section-ampforwp-ads-section h3:before{
     font-size: 10px;
     line-height: 10px;
 }
+/* Do not copy this code as it is already in the master 
+    STARTS FROM HERE 
+*/
+@media only screen and (max-width: 1400px) and (min-width: 1191px) {
+    div#section-ampforwp-ads-section h3 {
+        font-size: 12px;
+    }
+    div#section-ampforwp-ads-section h3:before {
+        content: "";
+        display: none;
+    }
+}
+@media only screen and (max-width: 1190px) {
+    div#section-ampforwp-ads-section{
+        margin-top: 20px;
+    }
+    div#section-amp-ads_1, table#section-table-amp-ads_1,
+    div#section-ampforwp-ads-section, table#section-table-ampforwp-ads-section {
+        max-width: 100%;
+        float:none;
+    }
+}
+#ampforwp-adsforwp-activation-call a{
+    color: #fff;
+}
+#ampforwp-adsforwp-activation-call {
+    max-width:170px;
+}
+/* Do not copy this code as it is already in the master 
+    ENDS HERE
+*/
 .redux-main .redux-field-container{
     padding: 18px 10px 18px 0;
 }
