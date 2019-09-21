@@ -4821,7 +4821,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'amp-sticky-header', 
                 "type"      =>"switch",
-                'title'     =>"Sticky Header ",
+                'title'     => esc_html__( 'Sticky Header', 'accelerated-mobile-pages' ),
                 'default'   => 0,
                 'required'  => array(
                     array('amp-design-selector', '=' , '4')
@@ -4833,7 +4833,7 @@ Redux::setSection( $opt_name, array(
             array(
                    'id' => 'navigation_design_section',
                    'type' => 'section',
-                   'title' => __('Navigation Menu Design Options', 'accelerated-mobile-pages'),
+                   'title' => esc_html__('Navigation Menu Design Options', 'accelerated-mobile-pages'),
                    'indent' => true,
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
