@@ -8040,16 +8040,21 @@ if(ampforwp_get_setting('ampforwp_css_tree_shaking') == true && ampforwp_is_gute
 }
 if(!function_exists('ampforwp_gutenberg_block_styles')){
 	function ampforwp_gutenberg_block_styles(){
+		$gutenberg_styles = '';
 		ob_start();
 		wp_print_styles('wp-block-library');
 		$block_css .= ob_get_contents();
 	    ob_end_clean();
 	    preg_match("/href='(.*?)'/", $block_css, $matches);
 	    $style_path = explode('?', $matches[1]);
-	    $response = wp_remote_get( $style_path[0] );
-	   	if ( is_array( $response ) ) {
-	    	echo $response['body'];
-		}
+	    $gutenberg_styles = get_transient('ampforwp_gutenberg_styles');
+	    if($gutenberg_styles == false){
+	    	$response = wp_remote_get( $style_path[0] );
+	    	if( is_array($response) ){
+		   		set_transient('ampforwp_gutenberg_styles', $response['body'], 24 * HOUR_IN_SECONDS );
+			}
+	    }
+	    echo $gutenberg_styles;
 	}
 }
 
