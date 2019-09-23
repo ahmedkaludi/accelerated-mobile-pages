@@ -1147,7 +1147,6 @@ if(is_single() ) { ?>
 .sp-artl .srp ul{
     display: flex;
     flex-wrap: wrap;
-    margin: -15px;
 }
 .sp-artl .srp .has_thumbnail{
     margin: 15px;
@@ -1155,6 +1154,11 @@ if(is_single() ) { ?>
 }
 .sf-img .wp-caption-text{
 	width:100%;
+}
+@media(min-width:768px){
+li.has_thumbnail:nth-child(even) {
+    margin-left: 50px;
+}
 }
 @media(max-width:768px){
 .sp-artl .srp .has_thumbnail{
@@ -1175,7 +1179,6 @@ if ( true == ampforwp_get_setting('gnrl-sidebar') &&  true == ampforwp_get_setti
     padding-right: 20px;
 }
 .sp-artl .srp .has_thumbnail{
-    margin: 15px;
 	flex-basis: calc(49.33% - 30px);
 }
 .sp-artl .fsp{
