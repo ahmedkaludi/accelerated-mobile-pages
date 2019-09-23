@@ -56,8 +56,8 @@ body #toplevel_page_amp_options .wp-menu-image{
     height: 100%;
 }
 .ampforwp-option-panel-view-pop .m-dialog{
-    width: 37%;
-    background: white;
+    width: 30%;
+    background: linear-gradient(to left,#eb3349,#476790);
     height: 200px;
     padding: 5px;
     border-radius: 5px;
@@ -67,12 +67,13 @@ body #toplevel_page_amp_options .wp-menu-image{
 
 .ampforwp-option-panel-view-pop .m-title{
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAMAAABrrFhUAAAAqFBMVEUAAADuHSTwHib5JCv/TEzuHCTuHSXuHCTuHSX/JzbuHCTuHCTyICjuHCTuHSTuHCTvHSbzHyfuHCXuHCT/KirtHSTuHSTtHCTuHCTvHSXuHSXwHyfuHST0IinxHiXuHSXyHybuHCTyIynuHCTtHCTwHSXwHiXwHibvHybuHSXvHCXvHSXuHSXuHCTuHSXvHSXuHSTuHCXvHSb1HyruHibvHCTuHCTtHCRUu4DRAAAAN3RSTlMA7jEOA/L5650Jz9Ukt47ATRv7sAbmhPapXFYgaBY3cSjFEtrJUURALndsYt6iiXuSlkcYO3/h34n5UgAADa5JREFUeNrs22lz2jAQBuDXN74wl8EBQrihQAoBkv3//6x3M50iy9cKp9PncyaZ1yOt1isH//2nlqGvxsfmc7j0D7Fj2WRbWvy28MLk9LobTh7x73L1fbPraZRu4Ien8dXAv8VYHxO/Qzm8dfurf2Q1tIcnr0OFLBr7KT603rnpUzlxY/hR90N7Fw6oCp3Z8eMthMsuoir5rx/pGRjjiKrnfWrjQ7g2BsSjE7ZM1Nz8ySdOcX+EGgtOA2KXTFBTky6pMVvVcSecZ6TOYl+3R7CZkVqLhzo9gmtE6vlD1MQ0pPvwNqgBo2nT3XTvfiiaY4fuye4buCfdo3uLV7gbt9mhGui2cR/rA9WDNsYdGA2qj2gE1bY+ldNxFr43i8JotvT82KZytBbU2g+oGNsPT0+rSTDHn4yR3to1u55FBTV7UMdIqIC42x9OTUiMWsdkQQUsR1Blu6C8vJeHEbJ7bH2e2ZSTtoIa4wHl4jw/zJGf2zod6rgNci7/t88TFBd88uq2DXItf+t5baIkvRnX6TTYWJRZ+OCiCuY5GVBmY3Ba2ZSRX+kQ29hHlNUr+Iwpo+UK71RPHF9MMHmlbKIzOGwTyibpgYP5QpmEG3AJGh3KIjJQvV5CWXQn4DR6sSkD7xFVMyLKYKaDWzuhDA4BqvXokZyzhwprn+RiHVUysuRvzKFG7zggKSdAdXoRSXkTqDPqktShjaqYCclYOxNKtQ4k4xmoyAvJhBeo5p5IJnIV9T+dT7iHlUYSXVNJ/xtfcR+jJUk0UN6KJMI57qXXJIk+ytrYtVz+v7Q0SrdDOVuLUr1dkZfibTBEGcaCUs3muLdeg1JZU5SQUKrQRQ18plS+y3YAPJtQyHh+wm1PXEfBdkBpPkOlwKctBB5sSvPAUwCeoNI2pi6EzhZHGUgoRecBKukO2QHEJg6l8FwUsKcUgzNU0jXZtHf6RikaVReAjvr8fg+pAqfaMmD4xX8fR366Sn/KIjErQE6N+tS/7/lPkFrbJOb1kMu6Puff9/wHF3JDSnFEHu6BxJ7BRJyf1shiR2KDADk0SSw0oZCu5anifRKLkJ3eIaGZCybi/LFRRekaIyvTI6G3OZiI89MKWZkRCWmXCt6BOldIMORPkN0lLt8OGQ4JfYIEQ37tsarzSy9dAUMopGuFuq4+Cc2QxdQmkXgOdXSt2EM3o5LzsbAeBeBXfquNnC6OuIS7kLrWowDoWvGPntalmvioFgVA1wTtS8ky4LiQ2JCIdYEyuiZpYGWNTPFVPGO4YiiQv+Sum5CIYyDVmUQ8E6roWuk/2iCRY9EFMIEQW357i4LmGgloRrGl04AqulbF1ea+2EHQJQFnDgHG/H4PxS1J4GBCKCCRPRTRtYp2nd4p0A6e8jfRjPmbKEIeZgmR+SDvaxRjfvEYsPRL7RV5Lxm7EGDMT2uUdCSBBAK+uiNQnr+BsgyNbrPnOV+DQggw5o8NlNbPeRI2SGADAb781EJ5c4tu83GLMcg1T+bNn6AKzVxlcEwCZwjw5XceUYWLnaevjfIcmwz5OS5fX+g2rYe/XEhgBX66xlN1Rx16JykxuzwFgze/1UZVnrPfb0aKBoHy/DRGSfIBl/XXHmiTQBvcdI3x1HnLugd2ipogef5BgAr1s+6B8F4fw+ga6+cnU7rNwZ/cgWCvuBDgyr80Uallthfcc9aVwp3f3qKcrHv7mK1pXIOVrrH/7/fczjTj8emmNxOM3vOXHQMWmHN25lkOwc/gpGsqJg+rLB3uUMkkRJ6/iarI63szwwDRgQBT/oULBmGGlzxP/Rmga5LJC/c5YLv4zejIuyAF+V/AIpAPutZ02xzv+PPHBngspK95R7rJwzv+/NQCk4Z02J/QO8GS5M+fgMte0OTgN19tCdA1+fWriiJg4CdXUANHeMedn4bg40hmwzrdFIOFrim/fetKvp7eS4qEgvxaG4yOkhrXlPzrOX9+2oNTS3Lj05V8SMCfPwKrkWSPe3TTFICa/IMAvCy6qYcfNLrFNgGe/OpH7zO6KcB3hqobEV3L+f0qdy94Tj0FQ1X5KQG3V/E5KB6ZnNjyq38AD6kDrzHd9KQqP1kjMNvQTY3UNmHFkF8g3m0fv7pc2l+Nvgq+mX6z/Ur/ZjKZPpooqC1u9cR90ERV/uy0ZINCTLpplnqFHNQu/xfu7rRJTSAIA3ArDJcHgoLxwCOuR/YyrtH+//8sRyVlVeIcwHRL5fma2qq8igPTTM/UqFO3VDe6nqQc1MT8iHuLRSFf9fYsbWZ+vNh8Q+gqyiF+M/NXbFzpqUoir3jPppn5cWVzqUwBP2X3B4hm5n+z+iycKApGUSPzZ4nV9XJdxVxx3cT84wVU01f9njy8J25gfm9gecO1A/wkmQz+T/lla6XaqiugcfnTrfUt99qqMaBx+af2142vFM/JT/9TfvVdIMN7omblxwlFTSxRrCbt/E/5pU+CiplS1qj8LzQvxxzFawEPaphlzcovq4u76plSZWEHrZpDDYoZb0u5PGIGlV2alh981Yz3q+12WWeMNj1DfanqVn+RtRRU9YE2LaG+Qvm4/2z7g982LT8slMWFqWwpaVVngeWRtSzpIy6sLxDZCrTkCFZ8UV7khf1VgsnlSaBCynxy3Ek9zN0ftAXUMyqK4vMPzk/hD6PRyHXd3/+YLC4R0p4Poe8JPKiXCc6A2Fww5Qdf/azXk10g1AZMu9efNd0AXwkGoPr7t/fBmp2mY2D+qHULsCXMr98c5U2zd8YGyLVZ8sOb5hnLwfsKoLZA5Fif86rrCbw+ahRcsuQ/a7/g4aM2Ue9x5IeptiUsf9AGWgeW/NDXvvrZSvuqaPVY8kOkfc4q8CGDwIB6/DdPt5Fdi5ScjCU/TAx64gK86xUoBar89I+bHZMNKLtAZ8+U320Z9MSt+LeQCV+Zbrx7o3dNGXfrJPSZ8kNgtD1OwL2V5IIrfyiM2iGm0jkJjVGHqUkLpqpqg75/PHOBRM6VH3qGS27XrHvpHTyu/EVquJfWkbObw33S1H/p55tD0x2Xxg7Y94UtP0TGL9w7fHtKd8ds5ceDJJXnGL/SjsG6mO95q2++U/KKbVPhOV9+R5RYchQxbSudCLb8cJT+AvQj080BrOrxnd4Y+mW+1CRluRNO+PLDEktVenrIMCkufL78owxLPd8OOI7X+MSXH+Yl37q6sg8snYEtA8aje9xr2Us6RyTeUMjJ+PLDS+nd8mco4SUkxYk5UHI35Q8Z+UTc4L5jzA/LCsfMLFBmZ6cMyJg/ESjxbLKmmGSvzz7nwT2fKh01taVcr7bgzL9DmfdqA8d4Vr8MyJh/tKk4oL8g2VE7OWN+OKLMqeq9Awf2yoATIDYbay4A87mKrZOf3IgxPwyx8tobtyP/WztlwJQuv/5bHJ/rHOK/rVMGZMy/ErUWn0Uo05rVLwOmU6AWyhOIwuhtqtTTCKqZM+aHoG73wdD68s1EMOafoNTG7AuceWj5XthjzN8V9f/3OSqGgRrfiScZRZkGAIzNyxZWh4GixZcfTiiVHqy0fQVV52XeAOjNLfUfDC32MWwZ80/xptbhBUnLWiefk/Hl33vWNiGbW+vlD/jyt4XFn26Mct4HGNvd/oJa10e57DOUM2uhnFiYlwHZ8p9fUWFnt6PLX5U5/nnMkd+JbHfg9VHh2gUT337l3wE9J0aF2IXyRk+o4LeNyoBc+c8RKvhnuLE0DKAwyJVz5e++osoHyT4A3hQ0DinieA/02j5RC26/1t4WbsSUfy+w6gCgHwaUcl0ZUHDkn3qo4iegoB8GlAJXVQbkyT9HtQ/C/m7E+Kx4zyi+AbnwhGo58eebyQb5Z5b83QjVAqqt+W8uLtwxExz5pwLVhi5NjUX/M+iJBVALA9RYh1Cf+wk1/N2/Y0eLPv8qQo2OAzaMYtTJ3b9/OCugNhGocU0IJloS0QJ4zYao49v7EopX1Ao+A5/RcYw6VgehboZarRfgstugCkURqu2j3lMbOCS3UVk7VSOYcKqkXx2g5i4F6okPsC2J0ID/xQFK7ssGDfgUY7ITo4lWTjcajuZXNHFdAYVwiEZE/wwUwmWGRjoJ0HADNOOdZmCbc/TRzPozkMnRUPq2B5sO7wINDUMg9IzGrvkK7CiWERoLXCA1FWju6bn+1RhOeymay4HaqoMleMNtCNW5+0BgCf4H0AsDLGXce+5CFcXkUwtLiRNgMRFY0iZ46UIZ52k/wrJyF5isIizPHx4HM9Ardsu3P8/djbv8NT8DPbEOLpNviXs3+WL65RT7WE18BlYTgXW0NuveW3Dqv+fv/VPwNlx3/BTxpsGXP9wK0s2R7YCfexxjQwSf4SG6MTbBZg8PM2/ho6XvITzQOcDHig/wYO01Ps5mAA3wvR17XUEQhuIAPp1OJTVNu0myErt7yRLP+79ZCEH0IUhTO0q/N/hvbOfiFfAb8tElKGhcge7NTZ+goR0V6Ba73AgqNBWgOyyzCTqUR9ANIUEYvyR5IbQv4pTglS8YtMrwJIJbwEfQlulMJ32QqwI0jzkW9st/cq1Ybja9scT88t+cgQLNkJ1z39I/iOlmAl8aJXskDW89wdYMWe3w6hJpxa9G26dOAdUoxswKyJDQfJWNp59ED2O+QzTnNMvVr6tELZfA8EqIQiM2T9ahp99ddRL1bX19EMW1bvu0PxX+b2ju+lzNg3GzPMcAAAAASUVORK5CYII=") !important;
-    background-size: 30px;
+    background-size: 35px;
     background-repeat: no-repeat;
-    background-position: 50px 0px;
+    background-position: 25px 0px;
     text-align: center;
     height: 30px;
-    padding: 4px 0px 0px 20px;
+    padding: 6px 0px 0px 20px;
+    color:#5f0707;
 }
 .ampforwp-option-panel-view-pop .m-body{
    padding: 15px;
@@ -89,14 +90,87 @@ body #toplevel_page_amp_options .wp-menu-image{
 }
 .ampforwp-option-panel-view-pop .option-button p{
     margin-top: -10px;
+    color:#fff;
 }
-
+.m-body .mb-msg{
+    margin-top: -20px;
+    color: #fff;
+}
 .ampforwp-option-panel-view-pop .option-button h2{
-   border: 1px solid #d7d7d7;
-    padding: 12px;
-    background: white;
+   padding: 12px;
+  background: #90e8e4;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px #fff;
 }
-
+.ampforwp-option-panel-view-pop .option-button h2:hover {
+  background: #57a7e6;
+  color: white;
+}
+.ampforwp-option-panel-view-pop .option-button h2:active {
+  background: #57a7e6;
+}
+.switch--vertical {
+    width: 12rem;
+    height: 100%;
+    position: relative;
+    margin: 5px;
+    background: linear-gradient(to right,#eb3349,#f45c43);
+    box-shadow: 0em 0.15em 0.65em 0em rgba(0,0,0,0.25)
+}
+.switch--vertical input {
+   height: 35%;
+    width: 32px;
+    right: 4px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    cursor: pointer;
+    background: #1e8cbe;
+    opacity: 0;
+}
+.switch--vertical .visible{
+    opacity: unset;
+}
+.switch--vertical label {
+    font-size: 16px;
+    line-height: 3rem;
+    display: block;
+    width: 8rem;
+    height: 50%;
+    margin-left: 10px;
+    color: #fff;
+    opacity: 0.33;
+    transition: opacity 0.25s ease;
+    cursor: pointer;
+    font-weight: bold;
+}
+.switch--vertical input:checked {
+    z-index: 1;
+}
+.switch--vertical input:checked + label {
+    opacity: 1;
+    cursor: default;
+}
+.switch--vertical .toggle-outside {
+    background: #fff;
+    position: absolute;
+    width: 28px;
+    height: 88%;
+    right: 2px;
+    top: 1px;
+    border-radius: 2rem;
+    padding: 0.25rem;
+    overflow: hidden;
+    transition: 0.25s ease all;
+    
+}
+.switch--vertical #radio-c{
+    top: 4px;
+}
+.switch--vertical #radio-d{
+    top: 58px;
+}
 /* Mobile preview button and preview Iframe Styling #1082 */
 .col-sm-12 {
     width: 100%;

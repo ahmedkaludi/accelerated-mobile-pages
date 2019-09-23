@@ -3212,6 +3212,10 @@
                     $icon = str_replace( 'el-icon-', 'el el-', $icon );
                 }
 
+                if (!preg_match("/\bux-setup-icon\b/i", $icon, $match))  {
+                    $icon = "";
+                }
+               
                 $hide_section = '';
                 if ( isset ( $section['hidden'] ) ) {
                     $hide_section = ( $section['hidden'] == true ) ? ' hidden ' : '';

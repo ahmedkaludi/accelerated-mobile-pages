@@ -8148,30 +8148,3 @@ Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extension
 /*
 * <--- END SECTIONS
 */
-
-        
-if(!function_exists('ampforwp_option_panel_view_popup')){       
-    function ampforwp_option_panel_view_popup(){        
-    echo '<div class="ampforwp-option-panel-view-pop" role="dialog">        
-          <div class="m-dialog">        
-            <!-- Modal content-->       
-            <div class="m-content">     
-              <div class="m-header">        
-                <h1 class="m-title">Select your user type</h1>      
-              </div>        
-              <div class="m-body">      
-                    <div class="option-button b1">      
-                        <h2>Easy View</h2>      
-                        <p>For Beginers</p>     
-                    </div>      
-                    <div class="option-button b2">      
-                        <h2>Full View</h2>      
-                        <p>For Experts</p>      
-                    </div>      
-              </div>        
-            </div>      
-          </div>        
-        </div>';        
-    }       
-    //ampforwp_option_panel_view_popup();     
-}

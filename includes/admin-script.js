@@ -1214,7 +1214,7 @@ jQuery(document).ready(function($) {
 
 function ampforwp_ux_save_loader(event){
     // loader
-    if ( event.closest("div.ux-field-container").find('.amp-ux-loader').length == 0 ){
+  /*  if ( event.closest("div.ux-field-container").find('.amp-ux-loader').length == 0 ){
         event.closest("div.ux-field-container").append('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
     }
     else{
@@ -1223,7 +1223,7 @@ function ampforwp_ux_save_loader(event){
     }
     setTimeout(function(){ 
         event.closest("div.ux-field-container").find('.amp-ux-loader').remove();
-     }, 800);
+     }, 800);*/
 }
 
 function ampforwp_check_required(value,required){
@@ -1892,6 +1892,90 @@ function DrawerIcon(icon) {
     }
 
 
+    function amp_option_panel_view_func(){
+    if(amp_option_panel_view!="1" && amp_option_panel_view!="2"){
+            $('html, body').animate({scrollTop:0},500);
+            var amp_opt_view_pop = '<div class="ampforwp-option-panel-view-pop" role="dialog">'+
+                      '<div class="m-dialog">'+
+                        '<div class="m-content">'+     
+                          '<div class="m-header">'+        
+                            '<h1 class="m-title">AMP OPTION VIEW TYPE</h1>'+
+                          '</div>'+
+                          '<div class="m-body">'+
+                                '<p class="mb-msg">Please select AMP Option view type as per your use experience.</p>'+
+                                '<div class="option-button b1">'+
+                                    '<h2 class="amp-opt-view" id="amp-opt-easy-view">EASY VIEW</h2>'+
+                                    '<p>For Beginers</p>'+
+                                '</div>'+
+                                '<div class="option-button b2">'+
+                                    '<h2 class="amp-opt-view" id="amp-opt-full-view">FULL VIEW</h2>'+
+                                    '<p>For Experts</p>'+     
+                                '</div>'+
+                          '</div>'+ 
+                        '</div>'+   
+                      '</div>'+     
+                    '</div>';
+                    $("body").prepend(amp_opt_view_pop);
+                    setTimeout(function(){
+                        $("body").css({'overflow':'hidden'});
+                    },510);
+        } 
+        
+    }
+    amp_option_panel_view_func();
 
+    $(".amp-opt-view").click(function(){
+         var thisid = $(this).attr('id');
+         amp_options_hide_show(thisid);
+         $(".ampforwp-option-panel-view-pop").remove();
+         if(thisid=='amp-opt-easy-view'){
+            $("#radio-c").css('opacity','unset');
+            $("#radio-d").css('opacity',0);
+            $("#radio-c").prop("checked", true);
+         }else if(thisid=='amp-opt-full-view'){
+            $("#radio-d").css('opacity','unset');
+            $("#radio-c").css('opacity',0);
+            $("#radio-d").prop("checked", true);
+         }
+    });
+    function amp_options_hide_show(id){
+         var opt_type = 0;
+         if(id=='amp-opt-easy-view' || id=='radio-c'){
+            opt_type = 1;
+            $(".amp-full-view-options").slideUp();
+         }else if(id=='amp-opt-full-view' || id=='radio-d'){
+            opt_type = 2;
+            $(".amp-full-view-options").slideDown();
+         }
+         $.ajax({
+            url: ajaxurl,
+            method: 'post',
+            data: {
+                    action:     'ampforwp_set_option_panel_view',
+                    option_type: opt_type,
+                    verify_nonce: ampforwp_nonce
+                 },
+            dataType: 'json',
+            success: function(response){
 
+            }
+        });
+         $("body").css({'overflow':'auto'});
+         $("#1_section_group_li_a").click();
+    }
+
+    $(".amp-opt-change").click(function(){
+        var thisid = $(this).attr('id');
+        $(".amp-opt-change").each(function(){
+            $(this).css('opacity',0);
+        });
+        $(this).css('opacity',0);
+        if(thisid=='radio-c'){
+            $("#radio-c").css('opacity','unset');
+        }else if(thisid=='radio-d'){
+            $("#radio-d").css('opacity','unset');
+        }
+        amp_options_hide_show(thisid);
+    });
 });
+

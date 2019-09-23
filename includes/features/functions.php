@@ -28,6 +28,14 @@ function ampforwp_add_admin_styling($hook_suffix){
         $redux_data = $redux_builder_amp;
     }
     $amp_fields = json_encode($amp_ux_fields, true);
+    
+    $screen = get_current_screen();
+    if ( 'toplevel_page_amp_options' == $screen->base ) {
+        $opt = get_option("ampforwp_option_panel_view_type");
+        wp_localize_script( 'ampforwp_admin_js', 'amp_option_panel_view', $opt);
+    }else{
+        wp_localize_script( 'ampforwp_admin_js', 'amp_option_panel_view', "2");
+    }
     wp_localize_script( 'ampforwp_admin_js', 'amp_fields', $amp_fields );
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
     wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', wp_create_nonce('ampforwp-verify-request') );

@@ -7346,3 +7346,20 @@ if(! defined( 'AMP_COMMENTS_VERSION' )) {
 		}
 	}
 }
+
+add_action( 'wp_ajax_ampforwp_set_option_panel_view', 'ampforwp_set_option_panel_view' );
+function ampforwp_set_option_panel_view(){
+	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp-verify-request') ){
+		echo json_encode(array('status'=>403,'message'=>'user request is not allowed')) ;
+		die;
+	}
+	$opt_type = intval($_POST['option_type']);
+	if($opt_type==1 || $opt_type==2){
+		$opt = get_option("ampforwp_option_panel_view_type");
+		if($opt){
+			update_option("ampforwp_option_panel_view_type", $opt_type);
+		}else{
+			add_option("ampforwp_option_panel_view_type", $opt_type);
+		}
+	}
+}
