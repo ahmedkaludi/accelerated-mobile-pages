@@ -5802,8 +5802,8 @@ function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
 			if($matches[3][$i] == $matches[6][$i] || strpos($matches[6][$i], $href_url) !== false){
 				$href = $matches[3][$i];
 				$src = $matches[6][$i];
-				$href_src = str_replace( '/', '\/', $href );
-				$image_src = str_replace( '/', '\/', $src );
+				$href_src = str_replace( '/', '\/', esc_url($href) );
+				$image_src = str_replace( '/', '\/', esc_url($src) );
 				$content = preg_replace('/<a(.*?)href=\"'.$href_src.'\"(.*?)>(<img(.*?)src=\"'.$image_src.'\"(.*?)\/>)<\/a>/i', '$3', $content);	
 			}
 		}
