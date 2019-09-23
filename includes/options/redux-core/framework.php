@@ -3211,9 +3211,12 @@
                 if ( strpos( $icon, 'el-icon-' ) !== false ) {
                     $icon = str_replace( 'el-icon-', 'el el-', $icon );
                 }
-
                 if (!preg_match("/\bux-setup-icon\b/i", $icon, $match))  {
                     $icon = "";
+                }else{
+                    $string ='<span class="ampforwp-setup-not-tt"><span class="setup-tt">
+                           Your setup is not completed. Please setup for better AMP Experience.
+                        </span></span>';
                 }
                
                 $hide_section = '';

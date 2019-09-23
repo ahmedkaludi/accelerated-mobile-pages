@@ -61,7 +61,11 @@ namespace ReduxCore\ReduxFramework;
                 </div>
             
             <?php } ?>
-            <h2></h2>
+            <h2 class="ampforwp-tooltip">
+                <span class="tooltiptext">
+                    <?php echo "AMPforWP v-".$this->parent->args['display_version'];?>
+                </span>
+            </h2>
         </div>
     <?php } ?>
 

@@ -1468,7 +1468,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     Redux::setSection( $opt_name, array(
             'title'      => esc_html__( 'Setup', 'accelerated-mobile-pages' ),
             'id'         => 'ampforwp-new-ux',
-            'icon'         => "el el-warning ux-setup-icon $amp_ux_icon",
+            'icon'       => "el el-warning ux-setup-icon $amp_ux_icon",
             'fields'     => array(      
                                    array(       
                                                'id' => 'ampforwp-setup-ux-website-type',        

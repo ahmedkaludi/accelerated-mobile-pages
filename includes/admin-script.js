@@ -1575,7 +1575,7 @@ function Drawer(drawerElem) {
     (function () {
         drawerBg = document.createElement("DIV");
         drawerBg.className = "drawer_bg";
-        drawerBg.id = "drawer_bg";
+       // drawerBg.id = "drawer_bg";
         drawerElem.parentElement.insertBefore(drawerBg, drawerElem);
         drawerBg.onclick = function () {
             if (opened) {
@@ -1976,6 +1976,12 @@ function DrawerIcon(icon) {
             $("#radio-d").css('opacity','unset');
         }
         amp_options_hide_show(thisid);
+    });
+    $('.amp-ux-warning').on('mouseover', function (event) {
+        $('.ampforwp-setup-not-tt').css({'visibility':'visible'});
+    })
+    .on('mouseout', function (event) {
+       $('.ampforwp-setup-not-tt').css({'visibility':'hidden'});
     });
 });
 

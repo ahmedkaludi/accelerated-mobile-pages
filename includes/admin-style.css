@@ -171,6 +171,54 @@ body #toplevel_page_amp_options .wp-menu-image{
 .switch--vertical #radio-d{
     top: 58px;
 }
+.ampforwp-tooltip {
+    cursor: pointer;
+  position: relative;
+}
+
+.ampforwp-tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 110%;
+  font-size:12px;
+}
+
+
+.ampforwp-tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+.ampforwp-tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.ampforwp-setup-not-tt{
+    position: absolute;
+    z-index: 9;
+    background: black;
+    color: #a0a5aa;
+    padding: 5px;
+    top: 118px;
+    left: 10%;
+    width: 250px;
+    border-radius: 5px;
+    visibility: hidden;
+}
+
 /* Mobile preview button and preview Iframe Styling #1082 */
 .col-sm-12 {
     width: 100%;
