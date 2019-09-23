@@ -2035,7 +2035,10 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'type'     => 'switch',
                 'default'  =>  false,
                 'title'    => esc_html__('Breadcrumbs From Yoast', 'accelerated-mobile-pages'),
-                'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
+                'required'  => array(
+                    array('ampforwp-bread-crumb', '=' , '1'),
+                    array('ampforwp-seo-selection', '=' , 'yoast')
+                ),
             ),
            array(
                'class' => 'child_opt',
