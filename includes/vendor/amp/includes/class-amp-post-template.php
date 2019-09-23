@@ -441,6 +441,8 @@ class AMP_Post_Template {
 		if ( $lang ) {
 			$attributes['lang'] = $lang;
 		}
+		
+       $attributes = apply_filters('ampforwp_modify_html_attributes', $attributes);
 
 		$this->add_data_by_key( 'html_tag_attributes', $attributes );
 	}
