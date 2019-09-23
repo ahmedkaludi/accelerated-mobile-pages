@@ -1149,7 +1149,6 @@ if(is_single() ) { ?>
     flex-wrap: wrap;
 }
 .sp-artl .srp .has_thumbnail{
-    margin: 15px;
     flex-basis: calc(33.33% - 30px);
 }
 .sf-img .wp-caption-text{
