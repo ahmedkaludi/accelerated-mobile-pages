@@ -55,6 +55,8 @@ function ampforwp_swift_social_icons(){
 	}
 	if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
 		$twitter_amp_permalink =  wp_get_shortlink();
+	}else{
+		$twitter_amp_permalink = $amp_permalink;
 	}
 	?>
 	<div class="ss-ic">
