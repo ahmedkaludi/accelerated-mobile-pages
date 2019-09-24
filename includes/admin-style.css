@@ -1518,6 +1518,6 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 #beacon-container .BeaconContainer{
     max-height: 520px !important;
 }
-.select2-container {
+#redux_builder_amp-amp-design-selector .select2-container {
     max-width: 40%;
 }
