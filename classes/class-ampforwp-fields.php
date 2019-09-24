@@ -224,6 +224,7 @@ class AMPforWP_Fields
 	public function ampforwp_field_switch($fields){
 
 		$required = '';
+		$hide = '';
 		if ( !empty($this->required) ) {
 			$required = 'required="'.$this->required[0].'"';
 			$this->class .= ' hide';
@@ -239,7 +240,7 @@ class AMPforWP_Fields
 		else{
 			$this->selected = '';
 		}
-		if($fields['data-url']!="" && 2 == $this->default){
+		if(isset($fields['data-url']) && $fields['data-url']!="" && 2 == $this->default){
 			$output .= '<div class="switch-options">
 				<label class="ios7-switch '.esc_attr($this->id).'">
                 	<a target="_blank" href="'.esc_url($fields['data-url']).'" class="afw-plugin-url"><i class="el el-cog"></i></a>
@@ -312,6 +313,7 @@ class AMPforWP_Fields
 	}
 	public function ampforwp_field_text($fields){
 		$required = '';
+		$hide = '';
 		if ( !empty($this->required) ) {
 			$required = 'required="'.esc_attr($this->required[0]).'"';
 			$hide .= ' hide';
