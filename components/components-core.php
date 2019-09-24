@@ -585,6 +585,9 @@ function amp_date( $args=array() ) {
     elseif ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ){
     	 $post_date =  get_the_date(). ' '. get_the_time();
     }else{
+    	if(defined('ECWD_VERSION')){
+    		date_default_timezone_set('UTC');
+    	}
         $post_date = human_time_diff(
                     get_the_time('U', get_the_ID() ), 
                     current_time('timestamp') ) .' '. ampforwp_translation(ampforwp_get_setting('amp-translator-ago-date-text'),
