@@ -237,14 +237,7 @@ $is_sdfwp = "not-exist";
 $ampforwp_admin_url = admin_url();
 $stdfwp_active_url = '';
 $sd_default = 0;
-function ampforwp_wp_plugin_action_link( $plugin, $action = 'activate' ) {
-	if ( strpos( $plugin, '/' ) ) {
-		$plugin = str_replace( '\/', '%2F', $plugin );
-	}
-	$url = sprintf( admin_url( 'plugins.php?action=' . $action . '&plugin=%s&plugin_status=all&paged=1&s' ), $plugin );
-	$url = wp_nonce_url( $url, $action . '-plugin_' . $plugin );
-	return $url;
-}
+
 if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."schema-and-structured-data-for-wp/structured-data-for-wp.php")){
 	if(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')){
 		$is_sdfwp = "inactive";
