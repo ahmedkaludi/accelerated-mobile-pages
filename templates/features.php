@@ -6896,6 +6896,13 @@ function ampforwp_nofollow_social_links(){
 	}
 	return false;
 }
+function ampforwp_nofollow_notification(){
+	if(true == ampforwp_get_setting('ampforwp-notifications-nofollow')){
+		echo 'rel=nofollow';
+		return;
+	}
+	return false;
+}
 // Featured Video SmartMag theme Compatibility CSS #2559
 add_action('amp_post_template_css', 'ampforwp_featured_video_plus_css');
 function ampforwp_featured_video_plus_css(){ 

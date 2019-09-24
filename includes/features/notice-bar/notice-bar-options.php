@@ -37,6 +37,14 @@ function ampforwp_notice_bar_options($opt_name){
                'required'  => array('amp-gdpr-compliance-switch', '=' , '0')
            ),
            array(
+               'id'        =>'ampforwp-notifications-nofollow',
+               'type'      => 'switch',
+               'title'     => esc_html__('No Follow to notification link', 'accelerated-mobile-pages'),
+               'default'   => 0,
+               'tooltip-subtitle'  => esc_html__('Add nofollow to the notification link.', 'accelerated-mobile-pages'),
+               'required' => array('amp-enable-notifications', '=' , '1'),
+           ),
+           array(
            'class' => 'child_opt child_opt_arrow',
            'id'       => 'amp-notification-text',
            'title'    => esc_html__('Notice Content', 'accelerated-mobile-pages'),
