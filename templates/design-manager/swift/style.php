@@ -2203,3 +2203,23 @@ amp-facebook-like{
 <?php if(is_page()){?>
 .ss-ic li a{display: initial;}
 <?php }
+if(true == ampforwp_get_setting('signin-button') && '2' == ampforwp_get_setting('cta-responsive-view')){
+	$color = ampforwp_get_setting('signin-button-text-color','rgba');
+	$border_color = ampforwp_get_setting('signin-button-border-color','rgba');
+	if($color == 'rgba(0,0,0,1)'){
+		$color = '#fff';
+	}
+	if($border_color == 'rgba(0,0,0,1)'){
+		$border_color = '#fff';
+	}
+	?>
+	.h-sing.cta-res{display:none}
+	@media(max-width:480px){ 
+	.h-2 .h-sing {display:none} 
+	.h-sing.cta-res {display: block;}
+	.h-sing a {margin-left: 25px;
+    color: <?php echo ampforwp_sanitize_color($color) ?>;   
+    border-color: <?php echo ampforwp_sanitize_color($border_color) ?>;
+	}
+	}
+<?php } ?>
