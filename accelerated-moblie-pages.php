@@ -96,6 +96,13 @@ function ampforwp_add_custom_rewrite_rules() {
         'top'
     );
 
+    // For Pagination with index.php
+    add_rewrite_rule(
+        'index.php/amp/'.$wp_rewrite->pagination_base.'/([0-9]{1,})/?$',
+        'index.php?amp=1&paged=$matches[1]',
+        'top'
+    );
+    
 	// For /Blog page with Pagination
 	if( ampforwp_name_blog_page() ) {
 	    add_rewrite_rule(
