@@ -4882,7 +4882,6 @@ function ampforwp_inline_related_posts(){
 					$my_query = $yarpp_query;
 				}
 			}
-			if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
 				if( $my_query->have_posts() ) { 
 				$inline_related_posts_img = '';
 				$inline_related_posts = '<div class="amp-wp-content relatedpost">
@@ -4956,22 +4955,23 @@ function ampforwp_inline_related_posts(){
 					}
 
 	      wp_reset_postdata();
-	  } //pagebuilder condition ends here
 	      return $inline_related_posts;
 //related posts code ends here
 }
 
 add_action('pre_amp_render_post','ampforwp_add_inline_related_posts');
 function ampforwp_add_inline_related_posts(){
-	global $redux_builder_amp;
-	if($redux_builder_amp['ampforwp-inline-related-posts'] == 1 && is_single() && ampforwp_inline_related_posts() ){
-		if( isset($redux_builder_amp['ampforwp-inline-related-posts-display-type']) && $redux_builder_amp['ampforwp-inline-related-posts-display-type']=='middle' ){
-			add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts');
-		}else{
-			add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts_by_paragraph');
+	if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
+		global $redux_builder_amp;
+		if($redux_builder_amp['ampforwp-inline-related-posts'] == 1 && is_single() && ampforwp_inline_related_posts() ){
+			if( isset($redux_builder_amp['ampforwp-inline-related-posts-display-type']) && $redux_builder_amp['ampforwp-inline-related-posts-display-type']=='middle' ){
+				add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts');
+			}else{
+				add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts_by_paragraph');
+			}
+			
 		}
-		
-	}
+	} //pagebuilder condition ends here
 }
 function ampforwp_generate_inline_related_posts($content){
 	global $post;
