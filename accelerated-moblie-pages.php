@@ -1426,3 +1426,14 @@ if( ! function_exists( 'accelerated_moblie_pages_start_plugin_tracking' ) ) {
 	}
 	accelerated_moblie_pages_start_plugin_tracking();
 }
+
+if(!function_exists('ampforwp_wp_plugin_action_link')){
+	function ampforwp_wp_plugin_action_link( $plugin, $action = 'activate' ) {
+		if ( strpos( $plugin, '/' ) ) {
+			$plugin = str_replace( '\/', '%2F', $plugin );
+		}
+		$url = sprintf( admin_url( 'plugins.php?action=' . $action . '&plugin=%s&plugin_status=all&paged=1&s' ), $plugin );
+		$url = wp_nonce_url( $url, $action . '-plugin_' . $plugin );
+		return $url;
+	}
+}

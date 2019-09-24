@@ -8,12 +8,16 @@ jQuery(document).ready(function($){
             self.addClass('updating-message');
             var currentId = self.attr('id');
             var activate = '';
+            var adsforwp_is_active = "";
+            var adsforwp_act_url = "";
             if(currentId=='ampforwp-pwa-activation-call'){
                 activate = '&activate=pwa';
             }else if(currentId=='ampforwp-structure-data-activation-call'){
                 activate = '&activate=structure_data';
             }else if(currentId=='ampforwp-adsforwp-activation-call'){
                 activate = '&activate=adsforwp';
+                adsforwp_is_active = $(".ampforwp-activation-url").attr('id');
+                adsforwp_act_url = $(".ampforwp-activation-url").val();
             }
             self.text( wp.updates.l10n.installing );
             $.ajax({
@@ -24,15 +28,31 @@ jQuery(document).ready(function($){
                 success: function (response){
                     if(response.status==200){
                     	//To installation
-                    	wp.updates.installPlugin(
-                        {
-	                            slug: response.slug,
-	                            success: function(pluginresponse){
-	                            	//wp.updates.installPluginSuccess(pluginresponse);
-	                                wpActivateModulesUpgrage(pluginresponse.activateUrl, self, response, nonce)
-								}
-							}
-						);
+                        if(currentId=='ampforwp-adsforwp-activation-call'){
+                            if(adsforwp_is_active=='not-exist'){
+                                wp.updates.installPlugin(
+                                {
+                                        slug: response.slug,
+                                        success: function(pluginresponse){
+                                            //wp.updates.installPluginSuccess(pluginresponse);
+                                            wpActivateModulesUpgrage(pluginresponse.activateUrl, self, response, nonce)
+                                        }
+                                    }
+                                );
+                            }else{
+                                wpActivateModulesUpgrage(adsforwp_act_url, self, response, nonce)
+                            }
+                        }else{
+                        	wp.updates.installPlugin(
+                            {
+    	                            slug: response.slug,
+    	                            success: function(pluginresponse){
+    	                            	//wp.updates.installPluginSuccess(pluginresponse);
+    	                                wpActivateModulesUpgrage(pluginresponse.activateUrl, self, response, nonce)
+    								}
+    							}
+    						);
+                        }
                     }else{
                         alert(response.message)
                     }
@@ -86,7 +106,7 @@ jQuery(document).ready(function($){
                             data: 'action=ampforwp_import_modules_ads&verify_nonce='+nonce,
                             success: function () {
                                  self.html('<a href="'+response.redirect_url+'" style="text-decoration: none;">Go to Ads Settings</a>')
-                                self.removeClass('ampforwp-activation-call-module-upgrade');
+                                 self.removeClass('ampforwp-activation-call-module-upgrade');
                             }
                         });
                     }
