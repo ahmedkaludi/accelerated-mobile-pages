@@ -7168,6 +7168,7 @@ else{
             array(
                 'id'       => 'swift-social-position',
                 'type'     => 'select',
+                'class' => 'child_opt child_opt_arrow',
                 'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
                 'options'  => array(
                                 'default' => 'Single Sidebar (left side)',
@@ -7175,21 +7176,25 @@ else{
                                 'below-content' => 'Below Content'
                                 ),
                 'default'  => 'default',
-                'required' => array(array('amp-design-selector', '=', '4') )
+                'required' => array(array('amp-design-selector', '=', '4'),array('ampforwp-social-share', '=', '1') )
             ), 
         // Social Share links to AMP
           array(
               'id'        =>  'ampforwp-social-share-amp',
               'type'      =>  'switch',
+              'class' => 'child_opt child_opt_arrow',
               'title'     =>  esc_html__('Social Share links to AMP', 'accelerated-mobile-pages'),
               'default'   =>  0,
+              'required' => array(array('ampforwp-social-share', '=', '1'))
           ), 
           // Social No Follow links 
           array(
               'id'        =>  'ampforwp-social-no-follow',
               'type'      =>  'switch',
+              'class' => 'child_opt child_opt_arrow',
               'title'     =>  esc_html__('No Follow All Your Social Links', 'accelerated-mobile-pages'),
               'default'   =>  0,
+              'required' => array(array('ampforwp-social-share', '=', '1'))
           ),
             // AddThis Support  
         array(
@@ -7334,6 +7339,7 @@ else{
            'indent' => true,
            'layout_type' => 'accordion',
             'accordion-open'=> 1,
+            'required' => array(array('ampforwp-social-share', '=', '1'))
          ),
           // Facebook Like 
           array(
