@@ -653,6 +653,7 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 .cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:15px 0px 30px 0px;word-break: break-word;}
 .artl-cnt ul li, .artl-cnt ol li{list-style-type: none;position: relative;padding-left: 20px;}
 .artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;left: 0;top: 12px;}
+.artl-cnt ol li{position:relative;}
 .artl-cnt ol li {counter-increment: step-counter;}
 .artl-cnt ol li::before {content: counter(step-counter);font-size: 16px;color: #000;position: absolute;left: 0px;line-height: 1.2;top: 6px;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
@@ -2222,4 +2223,9 @@ if(true == ampforwp_get_setting('signin-button') && '2' == ampforwp_get_setting(
     border-color: <?php echo ampforwp_sanitize_color($border_color) ?>;
 	}
 	}
-<?php } ?>
+<?php }
+if(true == ampforwp_get_setting('amp-rtl-select-option')){?>
+.breadcrumbs li a:after, .breadcrumbs span a:after{
+	content: "\e314";
+}
+<?php }
