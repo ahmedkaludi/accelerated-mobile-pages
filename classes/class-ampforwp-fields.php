@@ -184,7 +184,7 @@ class AMPforWP_Fields
 		}
 		$output = '<div class="ux-field-container amp-ux-select-container '.$hide.'">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2>'.esc_html__($this->title).'</h2>';
+			$output .= '<h2 class="dfdfddf">'.esc_html__($this->title).'</h2>';
 		}
 		$output .= '<select id="'.$this->id.'" class="'.$this->class.'" '.$required.' '.$this->data_href.'>';
 		if ( !empty($this->options) ) {

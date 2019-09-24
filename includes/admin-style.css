@@ -1378,12 +1378,6 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     height: 44px;
     width: 31px;
 }
-.ux-field-container.ux-field-footer{
-    position: relative;
-    top: 50px;
-    border-top: 1px solid #d7d7d7;
-    width: 85%;
-}
  .drawer_bg {
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
@@ -1445,9 +1439,6 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     right: 0px;
 }
 
-.amp-fields-content{
-    padding:20px;
-}
 .redux-main .amp-ux-image{
     max-width: 150px;
     max-height: 150px;
@@ -1520,4 +1511,73 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 }
 #redux_builder_amp-amp-design-selector .select2-container {
     max-width: 40%;
+}
+
+/** Design Improvements of AMP Option Panel**/
+.amp-fields-content{
+    padding: 20px;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 15px;
+    line-height: 1.4;
+}
+.ux-field-container h2{
+    font-size: 20px;
+    font-weight: 400;
+    margin: 22px 0px;
+    line-height: 1.2;
+}
+.ux-field-container select.amp-ux-field{
+    border: none;
+    background: #f9f9f9;
+    width: 200px;
+    padding: 6px 10px;
+    height: 100%;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+    color: #222;
+    box-shadow: none;
+}
+.ux-field-container.ux-field-footer{
+    border-top: 1px solid #eee;
+    width: 100%;
+    margin-top: 200px;
+}
+.ux-field-container input.emty-input{
+    display:none;
+}
+.amp-ux-checkbox-container{
+    margin-bottom: 10px;
+}
+.amp-ux-checkbox-container input[type=checkbox]{
+    margin-right: 8px;
+}
+.amp-ux-checkbox-container input[type=checkbox]:checked{
+    background:#f04a46;
+    border: 1px solid #f04a46;
+}
+.amp-ux-checkbox-container input[type=checkbox]:checked:before{
+    color:#fff;
+    font-size: 20px;
+}
+/*.ux-field-container.amp-ux-select-container h2{
+    font-size: 12px;
+    color: #333;
+    margin: 10px 0px 12px 0px;
+}
+.ux-field-container.amp-ux-select-container{
+    margin: 0px auto 20px;
+    width: 230px;
+}*/
+.ux-field-container select.amp-ux-frontpage-select {
+    width: 100%;
+}
+#amp-ux-frontpage-select{
+    margin-bottom: 20px;
+}
+.amp-ux-color-container{
+    margin-top: 20px;
+    display: inline-block;
+    width: 100%;
 }

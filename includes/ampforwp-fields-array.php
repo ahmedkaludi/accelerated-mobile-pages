@@ -121,7 +121,7 @@ $amp_ux_fields = array(
 						'field_data'=>array('id'=>'ampforwp-ux-website-type-section','class'=>'section-1 amp-ux-website-type-section')
 					),
 					array('field_type'=>'select',
-						'field_data'=>array('title'=>'What\'s your Website Type','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-select','options'=>$structure_data_options,'default'=>$amp_website_type)
+						'field_data'=>array('title'=>'What\'s your Website Type?','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-select','options'=>$structure_data_options,'default'=>$amp_website_type)
 					),
 					$amp_ux_common,
 					array('field_type'=>'section_end','field_data'=>array()),
@@ -131,6 +131,9 @@ $amp_ux_fields = array(
 				    	'field_data'=>array('id'=>'ampforwp-ux-need-type-section',
 						'class'=>'section-2 amp-ux-need-section')
 				    ),
+				    array('field_type'=>'text',
+						'field_data'=>array('title'=>'Where do you need AMP?','class'=>'ampforwp-ux-select emty-input','id'=>'ampforwp-ux-select')
+					),
 					array('field_type'=>'checkbox',
 						'field_data'=>array('title'=>'Homepage','class'=>'amp-ux-homepage','id'=>'amp-ux-homepage','default'=>ampforwp_get_setting('ampforwp-homepage-on-off-support'))
 					),
@@ -138,7 +141,7 @@ $amp_ux_fields = array(
 						'field_data'=>array('title'=>'FrontPage','class'=>'amp-ux-frontpage','id'=>'amp-ux-frontpage','required'=>array('amp-ux-homepage','=','1'),'default'=>ampforwp_get_setting('amp-frontpage-select-option'))
 					),
 					array('field_type'=>'select',
-						'field_data'=>array('title'=>'Select FrontPage','class'=>'amp-ux-frontpage-select child_opt child_opt_arrow','id'=>'amp-ux-frontpage-select', 'options'=>$options, 'required'=>array('amp-ux-frontpage','=','1'),'default'=>ampforwp_get_setting('amp-frontpage-select-option-pages')
+						'field_data'=>array('title'=>'Select Custom Front Page','class'=>'amp-ux-frontpage-select child_opt child_opt_arrow','id'=>'amp-ux-frontpage-select', 'options'=>$options, 'required'=>array('amp-ux-frontpage','=','1'),'default'=>ampforwp_get_setting('amp-frontpage-select-option-pages')
 						)
 					),
 					array('field_type'=>'checkbox',
@@ -158,7 +161,7 @@ $amp_ux_fields = array(
 						'field_data'=>array('id'=>'ampforwp-ux-design-section','class'=>'section-1 ampforwp-ux-design-section')
 					),
 					array('field_type'=>'media',
-						'field_data'=>array('title'=>'Logo','class'=>'amp-ux-opt-media-container','id'=>'amp-ux-opt-media', 'default'=>array('id'=>ampforwp_get_setting('opt-media','id'),'url'=>ampforwp_get_setting('opt-media','url'),'width'=>ampforwp_get_setting('opt-media','width'),'height'=>ampforwp_get_setting('opt-media','height')))
+						'field_data'=>array('title'=>'Setup Your Logo','class'=>'amp-ux-opt-media-container','id'=>'amp-ux-opt-media', 'default'=>array('id'=>ampforwp_get_setting('opt-media','id'),'url'=>ampforwp_get_setting('opt-media','url'),'width'=>ampforwp_get_setting('opt-media','width'),'height'=>ampforwp_get_setting('opt-media','height')))
 					),
 					array('field_type'=>'color',
 						'field_data'=>array('title'=>'Global Color Scheme','class'=>'amp-ux-color-scheme','id'=>'amp-ux-color-scheme','default'=>ampforwp_get_setting('swift-color-scheme','color'))
