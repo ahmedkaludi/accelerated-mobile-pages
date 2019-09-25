@@ -1443,36 +1443,19 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     max-width: 150px;
     max-height: 150px;
 }
-.ux-field-container .switch-options{
-    position: relative;
-    top: -34px;
-    left: 80%;
-    display: inline-block;
-}
 .ux-field-container .amp-ux-switch-text{
-   margin: -22px 0px 50px 0px;
+   margin: -30px 0px 40px 0px;
 }
-.ux-field-container .amp-ux-switch-text{
-   margin: -22px 0px 50px 0px;
-}
-
 .ux-field-container .switch-options .ios7-switch:hover input:focus:checked + span{
     box-shadow: inset 0 0 0 2em #ef0e4e;
 }
 .ux-field-container .switch-options .ios7-switch input:checked + span{
     box-shadow: inset 0 0 0 2em #ef0e4e;
-    border: 3px solid #ef0e4e;
 }
 
 .ux-field-container .switch-options .ios7-switch input:checked + span:after{
     background: white;
     border: 2px solid #ef0e4e;
-    margin-top:-2px;
-}
-.ux-field-container #ampforwp-ux-seo-select{
-    position: relative;
-    top: -40px;
-    left: 25%;
 }
 
 
@@ -1519,22 +1502,23 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     width: 100%;
     display: inline-block;
     box-sizing: border-box;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.4;
 }
 .ux-field-container h2{
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 400;
     margin: 22px 0px;
     line-height: 1.2;
 }
-.ux-field-container select.amp-ux-field{
+.ux-field-container select.amp-ux-field, .ux-field-container #amp-ux-ga{
     border: none;
     background: #f9f9f9;
     width: 200px;
-    padding: 6px 10px;
+    padding: 8px 10px;
     height: 100%;
     font-size: 14px;
+    line-height:1.7;
     border-bottom: 1px solid #ddd;
     color: #222;
     box-shadow: none;
@@ -1548,28 +1532,38 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     display:none;
 }
 .amp-ux-checkbox-container{
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 .amp-ux-checkbox-container input[type=checkbox]{
-    margin-right: 8px;
+    margin-right: 10px;
+    border:2px solid #888;
+    border-radius: 2px;
+    width: 18px;
+    height: 18px;
 }
 .amp-ux-checkbox-container input[type=checkbox]:checked{
     background:#f04a46;
-    border: 1px solid #f04a46;
+    border: 2px solid #f04a46;
 }
 .amp-ux-checkbox-container input[type=checkbox]:checked:before{
     color:#fff;
     font-size: 20px;
 }
-/*.ux-field-container.amp-ux-select-container h2{
-    font-size: 12px;
+.ux-field-container h2.ux-label{
+    font-size: 13px;
     color: #333;
     margin: 10px 0px 12px 0px;
 }
-.ux-field-container.amp-ux-select-container{
-    margin: 0px auto 20px;
+.ux-field-container h2.ux-label.frp{
+    margin: 0px auto 15px;
     width: 230px;
-}*/
+}
+.ux-field-container h2.ux-label.trac-id{
+    margin:20px 0px 10px 0px;
+}
+.ux-field-container h2.ux-label.trac-id + input{
+    margin-bottom: 20px;
+}
 .ux-field-container select.amp-ux-frontpage-select {
     width: 100%;
 }
@@ -1580,4 +1574,46 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     margin-top: 20px;
     display: inline-block;
     width: 100%;
+}
+.ux-notice-bar .switch-options{
+    position: relative;
+    top: -48px;
+    left: 80%;
+    display: inline-block;
+}
+.ux-field-container .ios7-switch input + span:after{
+    border: 2px solid #7c90a4;
+    width: 18px;
+    height: 18px;
+}
+.ux-field-container .ios7-switch input + span {
+    height: 15px;
+}
+.amp-ux-select-container{
+    display: inline-block;
+    width: 100%;
+    clear: both;
+}
+.amp-ux-select-container h2.ux-align{
+    width: 40%;
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+}
+.ux-field-container #ampforwp-ux-seo-select{
+    width: 59%;
+    display: inline-block;
+}
+.ux-seo-blk{
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+#ampforwp-ux-thirdparty-section .amp-fields-content .amp-ux-switch-container.ux-seo-blk{
+    margin: 20px 0px 0px 0px;
+}
+.ux-seo-blk .third-pp{
+    font-size:20px;
+    margin:0px;
 }

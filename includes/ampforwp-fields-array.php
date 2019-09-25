@@ -141,7 +141,7 @@ $amp_ux_fields = array(
 						'field_data'=>array('title'=>'FrontPage','class'=>'amp-ux-frontpage','id'=>'amp-ux-frontpage','required'=>array('amp-ux-homepage','=','1'),'default'=>ampforwp_get_setting('amp-frontpage-select-option'))
 					),
 					array('field_type'=>'select',
-						'field_data'=>array('title'=>'Select Custom Front Page','class'=>'amp-ux-frontpage-select child_opt child_opt_arrow','id'=>'amp-ux-frontpage-select', 'options'=>$options, 'required'=>array('amp-ux-frontpage','=','1'),'default'=>ampforwp_get_setting('amp-frontpage-select-option-pages')
+						'field_data'=>array('title'=>'Select Custom Front Page','class'=>'amp-ux-frontpage-select child_opt child_opt_arrow','id'=>'amp-ux-frontpage-select', 'options'=>$options, 'required'=>array('amp-ux-frontpage','=','1'),'element-class'=>'ux-label frp','default'=>ampforwp_get_setting('amp-frontpage-select-option-pages')
 						)
 					),
 					array('field_type'=>'checkbox',
@@ -176,7 +176,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'select',
 					'field_data'=>array('title'=>'Setup Analytics Tracking','class'=>'ampforwp-ux-analytics-select child_opt child_opt_arrow','id'=>'ampforwp-ux-analytics-select', 'options'=>$analytics_options,'default'=>$analytics_default,'data-href'=>ampforwp_get_setting('amp-analytics-select-option'),'data-href-id'=>'amp-ux-analytics-hidden')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Your Tracking ID','id'=>'amp-ux-ga','class'=>'amp-ux-ga google-analytics analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-ga-switch'), 'data-href'=>'ampforwp-ga-switch','data-text'=>'ga-feild','default'=>ampforwp_get_setting('ga-feild'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Your Tracking ID','id'=>'amp-ux-ga','class'=>'amp-ux-ga google-analytics analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-ga-switch'), 'data-href'=>'ampforwp-ga-switch','data-text'=>'ga-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('ga-feild'))
 					),
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Facebook Pixel ID','id'=>'amp-ux-fp','class'=>'amp-ux-fp analytics-text','required'=>array('ampforwp-ux-analytics-select','=','amp-fb-pixel'),'data-href'=>'amp-fb-pixel','data-text'=>'amp-fb-pixel-id','default'=>ampforwp_get_setting('amp-fb-pixel-id'))
 					),
@@ -217,9 +217,9 @@ $amp_ux_fields = array(
 					array('field_type'=>'section_start',
 						'field_data'=>array('id'=>'ampforwp-ux-privacy-section','class'=>'section-1 ampforwp-ux-privacy-section')
 					),
-					array('field_type'=>'switch','field_data'=>array('title'=>'Cookie Notice Bar','id'=>'amp-ux-notice-switch','class'=>'amp-ux-notice-switch amp-ux-switch-on-off','data-id'=>'amp-ux-notice-switch','desc'=>'Cookie Bar allows you to discreetly inform visitors that your website uses cookies.','default'=>ampforwp_get_setting('amp-enable-notifications'))
+					array('field_type'=>'switch','field_data'=>array('title'=>'Cookie Notice Bar','id'=>'amp-ux-notice-switch','class'=>'amp-ux-notice-switch amp-ux-switch-on-off','data-id'=>'amp-ux-notice-switch','desc'=>'Cookie Bar allows you to discreetly inform visitors that your website uses cookies.','parent-class'=>'ux-notice-bar','default'=>ampforwp_get_setting('amp-enable-notifications'))
 					),
-					array('field_type'=>'switch','field_data'=>array('title'=>'GDPR','id'=>'amp-ux-gdpr-switch','class'=>'amp-ux-gdpr-switch amp-ux-switch-on-off','data-id'=>'amp-ux-gdpr-switch','desc'=>'Comply with European privacy regulations(GDPR). Recommended for EU Citizens.','default'=>ampforwp_get_setting('amp-gdpr-compliance-switch'))
+					array('field_type'=>'switch','field_data'=>array('title'=>'GDPR','id'=>'amp-ux-gdpr-switch','class'=>'amp-ux-gdpr-switch amp-ux-switch-on-off','data-id'=>'amp-ux-gdpr-switch','desc'=>'Comply with European privacy regulations(GDPR). Recommended for EU Citizens.','parent-class'=>'ux-notice-bar','default'=>ampforwp_get_setting('amp-gdpr-compliance-switch'))
 					),
 					$amp_ux_common,
 					array('field_type'=>'section_end', 'field_data'=>array()),
@@ -229,7 +229,7 @@ $amp_ux_fields = array(
 					 	'field_data'=>array('id'=>'ampforwp-ux-thirdparty-section','class'=>'section-1 ampforwp-ux-thirdparty-section')
 					 ),
 					 array('field_type'=>'select',
-						'field_data'=>array('title'=>'SEO','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-seo-select','options'=>$seo_options,'default'=>ampforwp_get_seo_default())
+						'field_data'=>array('title'=>'SEO','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-seo-select','options'=>$seo_options,'element-class'=>'ux-align','default'=>ampforwp_get_seo_default())
 					 ),
 				);
 
@@ -286,15 +286,15 @@ $pwa_class = "amp-ux-extension-switch amp-ux-switch-on-off ampforwp_install_ux_p
 
 $ux_secure = wp_create_nonce('verify_module');
 $check_extension = ampforwp_get_setup_info('ampforwp_ux_extension_check');
-$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Schema & Structured Data",'id'=>"amp-ux-ext-ssd",'class'=>$sasd_class,'data-id'=>'amp-ux-ext-ssd-switch','desc'=>'','data-secure'=>$ux_secure,'default'=>$sd_default,'data-url'=>esc_url($stdfwp_active_url)));
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Schema",'id'=>"amp-ux-ext-ssd",'class'=>$sasd_class,'data-id'=>'amp-ux-ext-ssd-switch','desc'=>'','data-secure'=>$ux_secure,'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>$sd_default,'data-url'=>esc_url($stdfwp_active_url)));
 
 $amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-ssd','=',0),'default'=>0));
 
-$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Ads for WP",'id'=>"amp-ux-ext-afwp",'class'=>$afwp_class,'data-id'=>'amp-ux-ext-afwp-switch','desc'=>'','data-secure'=>$ux_secure,'default'=>$afwp_default,'data-url'=>esc_url($afwp_active_url)));
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Ads for WP",'id'=>"amp-ux-ext-afwp",'class'=>$afwp_class,'data-id'=>'amp-ux-ext-afwp-switch','desc'=>'','data-secure'=>$ux_secure,'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>$afwp_default,'data-url'=>esc_url($afwp_active_url)));
 
 $amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-afwp','=',0),'default'=>0));
 
-$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"PWA for WP",'id'=>"amp-ux-ext-pwafwp",'class'=>$pwa_class,'data-id'=>'amp-ux-ext-pwafwp-switch','desc'=>'','data-secure'=>$ux_secure,'default'=>$pwa_default,'data-url'=>esc_url($pwa_active_url)));
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"PWA for WP",'id'=>"amp-ux-ext-pwafwp",'class'=>$pwa_class,'data-id'=>'amp-ux-ext-pwafwp-switch','desc'=>'','data-secure'=>$ux_secure,'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>$pwa_default,'data-url'=>esc_url($pwa_active_url)));
 
 $amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-pwafwp','=',0),'default'=>0));
 

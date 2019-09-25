@@ -8,6 +8,8 @@ class AMPforWP_Fields
 	private $class = '';
 	private $id = '';
 	private $title = '';
+	private $element_class = '';
+	private $parent_class = '';
 	private $desc = '';
 	private $default = '';
 	private $selected = '';
@@ -37,11 +39,23 @@ class AMPforWP_Fields
 			else{
 				$this->class = '';
 			}
+			if ( isset($fields['parent-class']) ) {
+				$this->parent_class = $fields['parent-class'];
+			}
+			else{
+				$this->parent_class = '';
+			}
 			if ( isset($fields['title']) ) {
 				$this->title = $fields['title'];
 			}
 			else{
 				$this->title = '';
+			}
+			if ( isset($fields['element-class']) ) {
+				$this->element_class = $fields['element-class'];
+			}
+			else{
+				$this->element_class = '';
 			}
 			if ( isset($fields['id']) ) {
 				$this->id = $fields['id'];
@@ -184,7 +198,7 @@ class AMPforWP_Fields
 		}
 		$output = '<div class="ux-field-container amp-ux-select-container '.$hide.'">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2>'.esc_html__($this->title).'</h2>';
+			$output .= '<h2 class="'.$this->element_class.'">'.esc_html__($this->title).'</h2>';
 		}
 		$output .= '<select id="'.$this->id.'" class="'.$this->class.'" '.$required.' '.$this->data_href.'>';
 		if ( !empty($this->options) ) {
@@ -230,9 +244,9 @@ class AMPforWP_Fields
 			$this->class .= ' hide';
 			$hide = ' hide';
 		}
-		$output = '<div class="ux-field-container amp-ux-switch-container '.esc_attr($hide).'">';
+		$output = '<div class="ux-field-container amp-ux-switch-container '.$this->parent_class.' '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2>'.esc_html__($this->title).'</h2>';
+			$output .= '<h2 class="'.$this->element_class.'">'.esc_html__($this->title).'</h2>';
 		}
 		if ( 1 == $this->default ) {
 			$this->selected = 'checked';
@@ -267,7 +281,7 @@ class AMPforWP_Fields
 		$output = '<div class="ux-field-container amp-ux-media-container">';
 		$id = $url = $width = $height = '';
 		if ( !empty($this->title) ) {
-			$output .= '<h2>'.$this->title.'</h2>';
+			$output .= '<h2 class="'.$this->element_class.'">'.$this->title.'</h2>';
 		}
 		if ( is_array($this->default) ) {
 			$id = $this->default['id'];
@@ -304,7 +318,7 @@ class AMPforWP_Fields
 		
 		$output = '<div class="ux-field-container amp-ux-color-container">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2>'.$this->title.'</h2>';
+			$output .= '<h2 class="'.$this->element_class.'">'.$this->title.'</h2>';
 		}
 		$this->selected = $this->default ? 'value="'.esc_attr($this->default).'"' : "";
 		$output .= '<input type="text" id="'.$this->id.'" class="'.esc_attr($this->class).'" '.$this->selected.'>';
@@ -320,7 +334,7 @@ class AMPforWP_Fields
 		}
 		$output = '<div class="ux-field-container amp-ux-text-container '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2>'.esc_html__($this->title).'</h2>';
+			$output .= '<h2 class="'.$this->element_class.'">'.esc_html__($this->title).'</h2>';
 		}
 		$output .= '<input type="text" id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).'" '.$this->data_text.' value="'.esc_attr($this->default).'"></div>';
 		echo $output;
