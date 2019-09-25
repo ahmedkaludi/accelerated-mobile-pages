@@ -12,10 +12,9 @@ if($facebook_app_id){
 }
 if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social']) && true == $redux_builder_amp['ampforwp-page-social']) ) { 
 	$permalink = '';
+	$twitter_amp_permalink = $amp_permalink;
 	if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
 		$twitter_amp_permalink = wp_get_shortlink();
-	}else{
-		$twitter_amp_permalink = $amp_permalink;
 	}
 	?>
 <?php do_action('ampforwp_before_social_icons_hook',$this);

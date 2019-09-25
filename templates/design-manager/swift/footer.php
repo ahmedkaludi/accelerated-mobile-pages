@@ -58,10 +58,9 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 	if($facebook_app_id){
 		$amp_permalink_fb_messenger = untrailingslashit($amp_permalink). '&app_id='. $facebook_app_id;
 	}
+	$twitter_amp_permalink = $amp_permalink;
 	if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
 		$twitter_amp_permalink = wp_get_shortlink();
-	}else{
-		$twitter_amp_permalink = $amp_permalink;
 	}
 if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']) ){ ?>
 <div class="s_stk ss-ic">

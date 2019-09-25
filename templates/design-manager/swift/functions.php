@@ -53,10 +53,9 @@ function ampforwp_swift_social_icons(){
 	if($facebook_app_id){
 		$amp_permalink_fb_messenger = untrailingslashit($amp_permalink). '&app_id='. $facebook_app_id;
 	}
+	$twitter_amp_permalink = $amp_permalink;
 	if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
-		$twitter_amp_permalink =  wp_get_shortlink();
-	}else{
-		$twitter_amp_permalink = $amp_permalink;
+		$twitter_amp_permalink = wp_get_shortlink();
 	}
 	?>
 	<div class="ss-ic">
