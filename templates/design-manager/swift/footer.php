@@ -81,7 +81,7 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 									$fblikewidth = "140";
 								}
 								?>
-								<amp-facebook-like <?php echo "width=". $fblikewidth ."" ?> height=35 style="margin: 0 auto;margin-top: 5px;"
+								<amp-facebook-like <?php echo "width=". esc_attr($fblikewidth) ."" ?> height=35 style="margin: 0 auto;margin-top: 5px;"
 				 					layout="fixed"
 				 					data-size="large"
 				 					data-action="recommend"

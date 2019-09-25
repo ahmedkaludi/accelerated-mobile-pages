@@ -44,7 +44,7 @@ if(true == ampforwp_get_setting('ampforwp-social-share') && false == ampforwp_ge
 					$fblikewidth = "140";
 				}
 			?>
-			<amp-facebook-like <?php echo "width=". $fblikewidth ."" ?> height=28 style="margin-bottom: 8px"
+			<amp-facebook-like <?php echo "width=". esc_attr($fblikewidth) ."" ?> height=28 style="margin-bottom: 8px"
 				layout="fixed"
 				data-size="large"
 				data-action="recommend"

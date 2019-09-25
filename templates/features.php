@@ -1190,7 +1190,7 @@ function ampforwp_sticky_social_icons(){
 					$fblikewidth = "140";
 				}
 			?>
-			<amp-facebook-like <?php echo "width=". $fblikewidth ."" ?> height=18 style="margin-bottom:-18px;"
+			<amp-facebook-like <?php echo "width=". esc_attr($fblikewidth) ."" ?> height=18 style="margin-bottom:-18px;"
 				layout="fixed"
 				data-size="large"
 				data-action="recommend"
