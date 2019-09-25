@@ -23,7 +23,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 	}
 	?>
 <?php do_action('ampforwp_before_social_icons_hook',$this);
-if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
+if(true == ampforwp_get_setting('ampforwp-social-share') && false == ampforwp_get_setting('ampforwp-facebook-like-data-action')){ ?>
 <div class="amp-wp-content ampforwp-social-icons-wrapper ampforwp-social-icons">
     <i class="icono-share"></i>
     	<?php if ( true == ampforwp_get_setting('ampforwp-facebook-like-button') ) {
@@ -37,7 +37,19 @@ if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 				    data-href="<?php echo esc_url($facebook_like_url); ?>">
 				</amp-facebook-like>
 			<?php }
-		} ?>
+		}else{
+			$fblikewidth = ampforwp_get_setting('ampforwp-facebook-like-width');
+				if(empty($fblikewidth)){
+					$fblikewidth = "140";
+				}
+			?>
+			<amp-facebook-like <?php echo "width=". $fblikewidth ."" ?> height=28 style="margin-bottom: 8px"
+				layout="fixed"
+				data-size="large"
+				data-action="recommend"
+				data-layout="button_count" <?php ampforwp_nofollow_social_links(); ?>
+				data-href="<?php echo esc_url(get_the_permalink());?>">
+			</amp-facebook-like><?php } ?>
 		<?php if ( true == $redux_builder_amp['enable-single-facebook-share'] ) { ?>
 			<div class="ampforwp-custom-social">
 				<a title="facebook share" <?php ampforwp_nofollow_social_links(); ?> href="https://www.facebook.com/dialog/share?app_id=<?php echo esc_attr($redux_builder_amp['amp-facebook-app-id']); ?>&display=page&href=<?php echo esc_url($amp_permalink); ?>" class="amp-social-icon-rounded amp-social-facebook" aria-label="facebook share">
