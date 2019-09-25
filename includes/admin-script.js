@@ -1966,14 +1966,20 @@ function DrawerIcon(icon) {
 
     $(".amp-opt-change").click(function(){
         var thisid = $(this).attr('id');
+
         $(".amp-opt-change").each(function(){
-            $(this).css('opacity',0);
+            $(this).parent().removeClass('active');
+            //$(this).css('opacity',0);
         });
-        $(this).css('opacity',0);
+        //$(this).css('opacity',0);
         if(thisid=='radio-c'){
-            $("#radio-c").css('opacity','unset');
+            $(this).parent().addClass('active');
+            //$("#radio-c").css('opacity','unset');
         }else if(thisid=='radio-d'){
-            $("#radio-d").css('opacity','unset');
+            $(this).parent().addClass('active');
+            //$("#radio-d").css('opacity','unset');
+        }else{
+            $(this).parent().removeClass('active');
         }
         amp_options_hide_show(thisid);
     });

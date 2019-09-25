@@ -109,73 +109,72 @@ body #toplevel_page_amp_options .wp-menu-image{
 .ampforwp-option-panel-view-pop .option-button h2:active {
   background: #57a7e6;
 }
-.switch--vertical {
-    width: 12rem;
+
+
+.switch-ef-btns {
+    /*width: 12rem;
     height: 100%;
     position: relative;
     margin: 5px;
-    background: linear-gradient(to right,#eb3349,#f45c43);
-    box-shadow: 0em 0.15em 0.65em 0em rgba(0,0,0,0.25)
+    background: linear-gradient(to right,#eb3349,#f45c43);*/
+    box-shadow: 0em 0.15em 0.65em 0em rgba(0,0,0,0.25);
+    background:#f5f6fa;
 }
-.switch--vertical input {
-   height: 35%;
-    width: 32px;
-    right: 4px;
-    margin: 0;
-    position: absolute;
-    top: 0;
-    z-index: 2;
-    cursor: pointer;
-    background: #1e8cbe;
-    opacity: 0;
-}
-.switch--vertical .visible{
+/*.switch-ef-btns .visible{
     opacity: unset;
-}
-.switch--vertical label {
-    font-size: 16px;
-    line-height: 3rem;
+}*/
+.switch-ef-btns label {
     display: block;
-    width: 8rem;
-    height: 50%;
-    margin-left: 10px;
-    color: #fff;
-    opacity: 0.33;
-    transition: opacity 0.25s ease;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: bold; 
+    width:100%;
 }
-.switch--vertical input:checked {
-    z-index: 1;
-}
-.switch--vertical input:checked + label {
+/*.switch-ef-btns input:checked + label {
     opacity: 1;
     cursor: default;
+}*/
+/*.switch-ef-btns input:checked {
+    z-index: 1;
 }
-.switch--vertical .toggle-outside {
-    background: #fff;
-    position: absolute;
-    width: 28px;
-    height: 88%;
-    right: 2px;
-    top: 1px;
-    border-radius: 2rem;
-    padding: 0.25rem;
-    overflow: hidden;
-    transition: 0.25s ease all;
-    
-}
-.switch--vertical #radio-c{
+.switch-ef-btns #radio-c{
     top: 4px;
 }
-.switch--vertical #radio-d{
+.switch-ef-btns #radio-d{
     top: 58px;
+}*/
+.switch-ef-btns .e-v, .switch-ef-btns .f-v{
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 0px;
+    width: 100%;
+}
+.switch-ef-btns .e-v:hover, .switch-ef-btns .f-v:hover{
+    background: linear-gradient(to right,#eb3349,#f45c43);
+    color:#fff;
+}
+.switch-ef-btns input[type=radio]{
+    margin:0px 10px 0px 10px;
+}
+.switch-ef-btns input[type=radio]:checked:before{
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    background-color: #ee4047;
+}
+.switch-ef-btns input[type=checkbox], .switch-ef-btns input[type=radio] {
+    border: 2px solid #c7c7c7;
+}
+.switch-ef-btns input[type=radio]:checked{
+    border:2px solid #fff;
+}
+.switch-ef-btns .active{
+    background:linear-gradient(to right,#eb3349,#f45c43);
+    color:#fff;
 }
 .ampforwp-tooltip {
     cursor: pointer;
   position: relative;
 }
-
 .ampforwp-tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
@@ -190,8 +189,6 @@ body #toplevel_page_amp_options .wp-menu-image{
   left: 110%;
   font-size:12px;
 }
-
-
 .ampforwp-tooltip .tooltiptext::after {
   content: "";
   position: absolute;

@@ -60,23 +60,32 @@ namespace ReduxCore\ReduxFramework;
         echo '</div>';
 
         $opt_easy = "";
+        $opt_easy_active = "";
         $opt_full = "";
+        $opt_full_active = "";
         $opt_easy_checked = "";
         $opt_full_checked = "";
         if($amp_opt==1){
             $opt_easy = 'visible';
             $opt_easy_checked = 'checked="checked"';
+            $opt_easy_active = "active";
         }else if($amp_opt==2 || $amp_opt==""){
             $opt_full = 'visible';
             $opt_full_checked = 'checked="checked"';
+            $opt_full_active = 'active';
         }
 ?>
     <li>
-        <div class="switch--vertical">
-        <input class="amp-opt-change <?php echo $opt_easy;?>" id="radio-c" type="radio" name="second-switch" <?php echo $opt_easy_checked?>>
-        <label for="radio-c">EASY VIEW</label>
-        <input class="amp-opt-change <?php echo $opt_full;?>" id="radio-d" type="radio" name="second-switch" <?php echo $opt_full_checked?>>
-        <label for="radio-d">FULL VIEW</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
+        <div class="switch-ef-btns">
+            <div class="e-v <?php echo $opt_easy_active;?>">
+                <input class="amp-opt-change <?php echo $opt_easy;?>" id="radio-c" type="radio" name="second-switch" <?php echo $opt_easy_checked?>>
+                <label for="radio-c">EASY VIEW</label>
+            </div>
+            <div class="f-v <?php echo $opt_full_active;?>">
+                <input class="amp-opt-change <?php echo $opt_full;?>" id="radio-d" type="radio" name="second-switch" <?php echo $opt_full_checked?>>
+                <label for="radio-d">FULL VIEW</label><span class="toggle-outside">
+                    <span class="toggle-inside"></span>
+            </div>
     </div>
     </li>
     </ul>
