@@ -14,13 +14,19 @@
     <?php
     global $redux_builder_amp;
     $number_of_articles = $exclude_ids = '';
+    $exclude_cats = array();
     if( isset( $redux_builder_amp['ampforwp-fb-instant-article-posts'] ) && $redux_builder_amp['ampforwp-fb-instant-article-posts'] ){
         $number_of_articles = $redux_builder_amp['ampforwp-fb-instant-article-posts'];
-        $number_of_articles = round( abs( floatval( $number_of_articles ) ) );
+        $number_of_articles = intval( $number_of_articles );
     }
     else{
         $number_of_articles = 500;
     }
+    if ( ampforwp_get_setting('hide-amp-ia-categories') ) {
+        $exclude_cats = array_values(array_filter(ampforwp_get_setting('hide-amp-ia-categories')));
+        $ia_args['category__not_in'] = $exclude_cats;
+    }
+
     $exclude_ids = get_option('ampforwp_ia_exclude_post');
     $ia_args = array(
         'post__not_in'          => (array) $exclude_ids,

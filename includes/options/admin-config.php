@@ -2288,6 +2288,17 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => esc_html__('Allow like and comment for media', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
+                 array(
+                        'id'        =>'hide-amp-ia-categories',
+                        'type'      => 'select',
+                        'title'     => esc_html__('Select Categories to Hide in IA'),
+                        'tooltip-subtitle' => esc_html__( 'Hide IA from all the posts of a selected category.', 'accelerated-mobile-pages' ),
+                        'multi'     => true, 
+                        'ajax'      => true, 
+                        'data-action'     => 'categories', 
+                        'data'      => 'categories',
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),  
                     array(
                         'id'       => 'fbia-header-text-area',
                         'type'     => 'textarea',
