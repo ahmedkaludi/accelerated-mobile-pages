@@ -6777,6 +6777,7 @@ else{
           array(
               'id'        =>  'enable-single-twitter-share-handle',
               'type'      =>  'text',
+              'class' => 'child_opt',
               'title'     =>  esc_html__('Twitter Handle', 'accelerated-mobile-pages'),
               'required'  => array('enable-single-twitter-share', '=' , '1'),
               'placeholder'  => esc_html__('Eg: @xyx','accelerated-mobile-pages'),
@@ -6785,6 +6786,7 @@ else{
            array(
               'id'        =>  'enable-single-twitter-share-link',
               'type'      =>  'switch',
+              'class' => 'child_opt',
               'title'     =>  esc_html__('Pretty Permalinks for Twitter Share?', 'accelerated-mobile-pages'),
               'tooltip-subtitle'  => esc_html__('Enable this to have pretty links for twitter sharing'),
               'default'   =>  0,
