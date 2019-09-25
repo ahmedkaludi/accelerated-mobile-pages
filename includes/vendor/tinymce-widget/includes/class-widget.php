@@ -61,7 +61,7 @@ if ( ! class_exists( 'WP_Widget_Black_Studio_TinyMCE' ) ) {
 				$output = $before_widget;
 				$output .= $before_text . $markup_title .  $markup_text . $after_text;
 				$output .= $after_widget;
-				echo $output; // xss ok, escaped above
+				echo wp_specialchars_decode($output); // xss ok, escaped above
 			}
 			do_action( 'black_studio_tinymce_after_widget', $args, $instance );
 		}
