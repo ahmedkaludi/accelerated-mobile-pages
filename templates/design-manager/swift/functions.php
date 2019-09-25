@@ -40,6 +40,7 @@ add_amp_icon( array( 'widgets', 'search', 'shopping-cart' ) );
 
 // Swift Social Icons
 function ampforwp_swift_social_icons(){
+	if(true == ampforwp_get_setting('ampforwp-social-share')){
 	global $redux_builder_amp;
 	$amp_permalink = $facebook_app_id = $amp_permalink_fb_messenger = '';
 	$facebook_app_id = ampforwp_get_setting('amp-facebook-app-id-messenger');
@@ -215,7 +216,7 @@ function ampforwp_swift_social_icons(){
 							<?php } ?>
 						</ul>
 		            </div>
-<?php }
+<?php } }
 // Remove default sticky social from Swift
 remove_action('amp_post_template_footer','ampforwp_sticky_social_icons');
 remove_action('amp_post_template_css','amp_social_styles',11);

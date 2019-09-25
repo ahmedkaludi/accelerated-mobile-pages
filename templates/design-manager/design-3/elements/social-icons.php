@@ -22,7 +22,8 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 		$amp_permalink = wp_get_shortlink();
 	}
 	?>
-<?php do_action('ampforwp_before_social_icons_hook',$this); ?>
+<?php do_action('ampforwp_before_social_icons_hook',$this);
+if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 <div class="amp-wp-content ampforwp-social-icons-wrapper ampforwp-social-icons">
     <i class="icono-share"></i>
     	<?php if ( true == ampforwp_get_setting('ampforwp-facebook-like-button') ) {
@@ -194,5 +195,5 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 			</a>
 		<?php } ?>		
 </div>
-<?php } ?>
+<?php } } ?>
 <?php do_action('ampforwp_after_social_icons_hook',$this);
