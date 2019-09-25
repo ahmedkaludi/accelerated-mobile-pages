@@ -192,7 +192,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.98.12 (25th SEPTEMBER 2019) =
-
 * Improvements: User wants Wordpress admin toolbar in the AMP area #3450
 * Improvements: we want the amp menu showing from left or right side both. #3095
 * Improvements: Add feature to increase width for facebook like button and also add feature of data-action="recommend" #3241
@@ -215,6 +214,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Need to remove Legacy Pagebuilder option Safely #3609
 * Fixed: Default heading tag should load if no option is selected in Header Module #3651
 * Fixed: Pretty Permalinks for Twitter Share? option is not working #3662
+
 = 0.9.98.11 (20th SEPTEMBER 2019) =
 * Improvements: Improved AMP Advertisement option panel
 * Fixed: Mobile redirection causing extra redirects from /amp to /amp/ #3660

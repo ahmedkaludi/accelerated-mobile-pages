@@ -192,7 +192,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.98.12 (25th SEPTEMBER 2019) =
-
 * Improvements: User wants Wordpress admin toolbar in the AMP area #3450
 * Improvements: we want the amp menu showing from left or right side both. #3095
 * Improvements: Add feature to increase width for facebook like button and also add feature of data-action="recommend" #3241
@@ -222,7 +221,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: The lightbox should not work for the image if any external link is added in its anchor tag. #3599
 
 = 0.9.98.10 (18th SEPTEMBER 2019) =
-
 * Improvements: Upgrade the analtyics integration with gtag.js #3538
 * Improvements: Need to optimize css classes #3650
 * Fixed: Small sized images are getting stretched in the lightbox. #3602
@@ -237,7 +235,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Incorrect placeholder "Select the SEO Plugin" in drop-down in AMP option Panel #3663
 
 = 0.9.98.9 (16th SEPTEMBER 2019) =
-
 * Improvements: Need to implement Tree Shaking feature to remove access css from the AMP pages #2949
 * Improvements: Need to save Post Meta Field Revisions in WordPress #3548
 * Improvements: Add Role based Access to all the options #3480
