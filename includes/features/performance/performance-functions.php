@@ -196,6 +196,22 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
             $tmpDoc = new DOMDocument();
             libxml_use_internal_errors(true);
             $tmpDoc->loadHTML($completeContent);
+            $font_css = '';
+           if('swift-icons'==ampforwp_get_setting('ampforwp_font_icon')){
+               preg_match_all("/@font-face\s\{(.*?)\}/i", $completeContent, $matches);
+               foreach ($matches[0] as $key => $value) {
+                    $font_css .= $value;
+               }
+           }
+            if( is_user_logged_in() ){
+                $pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
+                if($pref==="true"){
+                    preg_match_all("/@font-face{(.*?)\}/i", $completeContent, $matches1);
+                    foreach ($matches1[0] as $key => $value) {
+                        $font_css .= $value;
+                    }
+                }
+            }
             // AMP_treeshaking_Style_Sanitizer class is added in the vendor/amp/includes/sanitizers
             if( AMPforWP\AMPVendor\AMP_treeshaking_Style_Sanitizer::has_required_php_css_parser()){ 
                 $sheet = '';
@@ -214,6 +230,7 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                 foreach($data as $styles){
                     $sheet .= $styles;
                 }
+                $sheet.=$font_css;
                 $sheet = stripcslashes($sheet);
                 if(strpos($sheet, '-keyframes')!==false){
                     $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
