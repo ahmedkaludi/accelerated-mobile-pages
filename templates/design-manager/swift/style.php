@@ -963,7 +963,7 @@ if ( true == ampforwp_get_setting('ampforwp-disqus-comments-support') ) {?>
     .cntn-wrp p {font-size: 16px;}  
 }
 <?php } } ?>
-<?php if ( true == ampforwp_get_setting('ampforwp-dropcap')) { ?>
+<?php if ( is_single() && true == ampforwp_get_setting('ampforwp-dropcap')) { ?>
 .cntn-wrp > p:first-of-type::first-letter{
     float: left;
     <?php $fontsize = ampforwp_get_setting('ampforwp-dropcap-font');
