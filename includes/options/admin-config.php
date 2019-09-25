@@ -6742,7 +6742,7 @@ else{
               'id'        =>  'ampforwp-facebook-like-data-action',
               'type'      =>  'switch',
               'class' => 'child_opt child_opt_arrow',
-              'title'     =>  esc_html__('Add Recommended Label', 'accelerated-mobile-pages'),
+              'title'     =>  esc_html__('Add Recommend Label', 'accelerated-mobile-pages'),
               'tooltip-subtitle'  => esc_html__('Button text will be replaced from \'Like\' to \'Recommend\'', 'accelerated-mobile-pages'),
               'default'   =>  0,
               'required'  => array('ampforwp-facebook-like-button', '=' , '1'),
