@@ -975,3 +975,6 @@ font-weight: normal;
 #ampforwp-adsforwp-activation-call {
     max-width:170px;
 }
+#beacon-container .BeaconContainer{
+    max-height: 520px !important;
+}
