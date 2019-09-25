@@ -2602,15 +2602,6 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,                        
                     ), 
                     array(
-                        'id'       => 'ampforwp-content-builder',
-                        'type'     => 'switch',
-                        'title'    => esc_html__('Legacy Page Builder (widgets)', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => esc_html__('Build AMP Landing pages in minutes.', 'accelerated-mobile-pages'),
-                        'true'      => 'true',                
-                        'false'     => 'false',
-                        'default'   => 0
-                    ),
-                    array(
                         'id'      => 'ampforwp-role-based-access',
                         'type'    => 'select',
                         'class'   => $show_for_admin,

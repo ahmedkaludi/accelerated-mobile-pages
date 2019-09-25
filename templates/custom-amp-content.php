@@ -103,7 +103,7 @@ function ampforwp_custom_content_meta_register() {
         }
 
         // Assign Pagebuilder Meta Box // Legecy pagebuilder
-        if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+        if ( function_exists('ampforwp_custom_theme_files_register') ) {
           add_meta_box( 'custom_content_sidebar', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_sidebar_callback', 'page','side', 'default' );
         }  
     }
