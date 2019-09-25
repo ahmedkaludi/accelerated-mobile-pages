@@ -2237,3 +2237,6 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
 	    font-size: 13px;
 	}
 <?php }
+if(is_page()){?>
+.ss-ic li a{display: initial;}
+<?php }
