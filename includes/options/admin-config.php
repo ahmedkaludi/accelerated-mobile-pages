@@ -4255,8 +4255,52 @@ Redux::setSection( $opt_name, array(
                       array('ampforwp-amp-menu', '=' , '1')
                     )
             ),
-
-
+            // Design 1 Menu slider position option
+            array(
+                  'id'    => 'header-overlay-position-d1',
+                  'title'  => esc_html__('Menu Overlay Position', 'accelerated-mobile-pages'),
+                  'type'   => 'select',
+                  'options'=> array(
+                      '1' =>  'Right',
+                      '2' =>  'Left'
+                    ),
+                    'default'=> '1',
+                    'required' => array(
+                        array('amp-design-selector', '=' , '1'),
+                        array('ampforwp-amp-menu', '=' , '1')
+                  )    
+            ),
+            // Design 2 Menu slide poistion option
+            array(
+                  'id'    => 'header-overlay-position-d2',
+                  'title'  => esc_html__('Menu Overlay Position', 'accelerated-mobile-pages'),
+                  'type'   => 'select',
+                  'options'=> array(
+                      '1' =>  'Right',
+                      '2' =>  'Left'
+                    ),
+                    'default'=> '1',
+                    'required' => array(
+                        array('amp-design-selector', '=' , '2'),
+                        array('ampforwp-amp-menu', '=' , '1')
+                  )    
+            ),
+            // Design 3 Menu slider position option
+            array(
+                  'id'    => 'header-overlay-position-d3',
+                  'title'  => esc_html__('Menu Overlay Position', 'accelerated-mobile-pages'),
+                  'type'   => 'select',
+                  'options'=> array(
+                      '1' =>  'Left',
+                      '2' =>  'Right'
+                    ),
+                    'default'=> '1',
+                    'required' => array(
+                        array('amp-design-selector', '=' , '3'),
+                        array('ampforwp-amp-menu', '=' , '1')
+                  )    
+            ),
+            
            array(
                        'id' => 'header_section_3',
                        'type' => 'section',
