@@ -11,6 +11,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
     }
 ?>
 <?php if($header_type == '1'){?>
+<?php do_action('ampforwp_admin_menu_bar_front'); ?>
 <header class="header h_m h_m_1">
     <?php do_action('ampforwp_header_top_design4'); ?>
     <input type="checkbox" id="offcanvas-menu" class="tg" />
