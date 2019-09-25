@@ -979,6 +979,6 @@ font-weight: normal;
 #beacon-container .BeaconContainer{
     max-height: 520px !important;
 }
-#redux_builder_amp-amp-design-selector .select2-container {
+.redux-main .select2-container {
     max-width: 40%;
 }
