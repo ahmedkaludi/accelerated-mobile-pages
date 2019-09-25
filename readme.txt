@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.3
-Stable tag: 0.9.98.11
+Stable tag: 0.9.98.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,58 +191,34 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.12 (25th SEPTEMBER 2019) =
+
+* Improvements: User wants Wordpress admin toolbar in the AMP area #3450
+* Improvements: we want the amp menu showing from left or right side both. #3095
+* Improvements: Add feature to increase width for facebook like button and also add feature of data-action="recommend" #3241
+* Improvements: Improvements in Design 1 2 and 3 option panel in Header section #3642
+* Fixed: Update Stops Google Analytics tracking #3690
+* Fixed: Lightbox not working for single images #3683
+* Fixed: Language of Menu not changing when changing website language #3522
+* Fixed: We need to allow people to turn off the social section fully #3613
+* Fixed: Ui Design issues #3616
+* Fixed: Dropcap option should only be enabled on the posts, not from pages. #3614
+* Fixed: Social share position is not working in single design 2#3627
+* Fixed: AMP text module is not working in Widget area #3644
+* Fixed: Social media icons and comments should be below the post content on pages #3647
+* Fixed: Breadcrumbs are breaking after enabling ""Post title on Breadcrumb" option #3648
+* Fixed: line share link is getting added when sharing on telegram#3666
+* Fixed: In social sharing Twitter Handle and Pretty Permalinks for Twitter Share? need to display child option of Twitter#3656
+* Fixed: Extension license dashboard improvements #3654
+* Fixed: Make the chat bubble into a email box for faster input #405
+* Fixed: Option to specify certain taxonomy only in Instant Article Feeds #1489
+* Fixed: Need to remove Legacy Pagebuilder option Safely #3609
+* Fixed: Default heading tag should load if no option is selected in Header Module #3651
+* Fixed: Pretty Permalinks for Twitter Share? option is not working #3662
 = 0.9.98.11 (20th SEPTEMBER 2019) =
 * Improvements: Improved AMP Advertisement option panel
 * Fixed: Mobile redirection causing extra redirects from /amp to /amp/ #3660
 * Fixed: The lightbox should not work for the image if any external link is added in its anchor tag. #3599
-
-= 0.9.98.10 (18th SEPTEMBER 2019) =
-
-* Improvements: Upgrade the analtyics integration with gtag.js #3538
-* Improvements: Need to optimize css classes #3650
-* Fixed: Small sized images are getting stretched in the lightbox. #3602
-* Fixed: Gutenberg Audio Module not working #3597
-* Fixed: Table (thead-th) styling issue after update #3661
-* Fixed: Issue with the post titles in single page (two H2 tags if logo is not inserted) #3641
-* Fixed: search results pages are showing up as 'no index' #3646
-* Fixed: Need to add support of shortcode in category pages #3653
-* Fixed: Custom post description migrates to image description #3606
-* Fixed: AMP for WP conflict with the CDN Enabler plugin #3631
-* Fixed: Warning in Error Log #3655
-* Fixed: Incorrect placeholder "Select the SEO Plugin" in drop-down in AMP option Panel #3663
-
-= 0.9.98.9 (16th SEPTEMBER 2019) =
-
-* Improvements: Need to implement Tree Shaking feature to remove access css from the AMP pages #2949
-* Improvements: Need to save Post Meta Field Revisions in WordPress #3548
-* Improvements: Add Role based Access to all the options #3480
-* Improvements: Need to improve import/export option. #3364
-* Improvements: Need to make compatibility with amp-connatix-player component #3524
-* Improvements: "Recent Posts below related posts" feature need to implement for the design three #3531
-* Improvements: Need to improve color picker library in AMP FOR WP Plugin #3461
-* Improvements: Recent Posts below Related needs new options #3518
-* Improvements: Excerpt length feature request for related post #2908
-* Improvements: Need to add the option date below the content #3445
-* Improvements: Need to hide time in traditional view option. #3453
-* Improvements: Add feature to go to non AMP page on next and previous links #3253
-* Improvements: Create a filter to Exclude Posts from Related Posts #3582
-* Improvements: Need to add a filter to remove options in sidebar in AMP #3416
-* Improvements: allow option to change the heading tag of Featured module #3560
-* Improvements: AAWP plugin for AMP compatibility in Extension list #3591
-* Fixed: Individual AMP Page (Bulk Edit) "hide by default" option not working #3610
-* Fixed: In Recent Posts below Related need to add which present in below below related post #3596
-* Fixed: Need to shift the Header Background Option and Header Elements option on top in Swift theme #3462
-* Fixed: Need to add 'By Last X Days' option for "In-Content Related Posts" #3219
-* Fixed: Need to add unique class name custom post type #3539
-* Fixed: Need to add Convert AMP to WP theme (Beta) tutorial link in tooltip of this option #3552
-* Fixed: Need to connect with Collapse references by default option of the footnotes plugin. #3586
-* Fixed: Do not generate the AMPhtml for Woocommerce Account Page #3619
-* Fixed: Need to place page builder in custom homepage even amp support is off on pages. #2914
-* Fixed: Need to allow the user to navigate if user is using iframe #3601
-* Fixed: Template mode: Need to changes/fixes #3590
-* Fixed: The lightbox should not work for the image if any external link is added in its anchor tag. #3599
-* Fixed: Improper amphtml on HomePage when WPML is activate #3341
-* Fixed: The GDPR consent not working due to passed as string. #3658
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
