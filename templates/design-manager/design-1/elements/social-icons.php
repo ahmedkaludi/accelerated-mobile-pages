@@ -12,8 +12,9 @@ if($facebook_app_id){
 }
 if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social']) && true == $redux_builder_amp['ampforwp-page-social']) ) { 
 	$permalink = '';
-	if(ampforwp_get_setting('enable-single-twitter-share-link')){
-		$amp_permalink = wp_get_shortlink();
+	$twitter_amp_permalink = $amp_permalink;
+	if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
+		$twitter_amp_permalink = wp_get_shortlink();
 	}
 	?>
 <?php do_action('ampforwp_before_social_icons_hook',$this);
@@ -60,7 +61,7 @@ if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 				height="28"
 				<?php ampforwp_nofollow_social_links(); ?>
 				data-param-url=""
-				data-param-text="TITLE <?php echo esc_url($amp_permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_attr($data_param_data) ?>"
+				data-param-text="TITLE <?php echo esc_url($twitter_amp_permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_attr($data_param_data) ?>"
 			></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>

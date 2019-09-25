@@ -53,8 +53,9 @@ function ampforwp_swift_social_icons(){
 	if($facebook_app_id){
 		$amp_permalink_fb_messenger = untrailingslashit($amp_permalink). '&app_id='. $facebook_app_id;
 	}
-	if(ampforwp_get_setting('enable-single-twitter-share-link')){
-		$amp_permalink =  wp_get_shortlink();
+	$twitter_amp_permalink = $amp_permalink;
+	if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
+		$twitter_amp_permalink =  wp_get_shortlink();
 	}
 	?>
 	<div class="ss-ic">
@@ -112,7 +113,7 @@ function ampforwp_swift_social_icons(){
 								$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
 								$data_param = ( '' == $data_param_data ) ? '' : '&via='.$data_param_data.''; ?>
 							<li>
-								<a class="s_tw" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://twitter.com/intent/tweet?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?><?php echo esc_attr($data_param); ?>" aria-label="twitter share">
+								<a class="s_tw" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://twitter.com/intent/tweet?url=<?php echo esc_url($twitter_amp_permalink); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?><?php echo esc_attr($data_param); ?>" aria-label="twitter share">
 								</a>
 							</li>
 							<?php } ?>

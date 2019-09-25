@@ -1165,7 +1165,7 @@ function ampforwp_sticky_social_icons(){
 			$image = ampforwp_get_post_thumbnail( 'url', 'full' );
 		}
 		$permalink = '';
-		if(ampforwp_get_setting('enable-single-twitter-share-link')){
+		if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
 			$permalink = wp_get_shortlink();
 		}
 		else
