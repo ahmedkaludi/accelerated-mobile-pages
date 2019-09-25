@@ -1401,7 +1401,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     width: 75%;
     height: 100%;
     right: 0px;
-    top: 32px;
+    top: 0;
     bottom: 0;
     -webkit-transform: translateX(100%);
     -moz-transform: translateX(100%);
@@ -1444,7 +1444,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     max-height: 150px;
 }
 .ux-field-container .amp-ux-switch-text{
-   margin: -30px 0px 40px 0px;
+   margin: -35px 0px 40px 0px;
 }
 .ux-field-container .switch-options .ios7-switch:hover input:focus:checked + span{
     box-shadow: inset 0 0 0 2em #ef0e4e;
@@ -1498,12 +1498,14 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 
 /** Design Improvements of AMP Option Panel**/
 .amp-fields-content{
-    padding: 20px;
+    padding: 40px 20px;
     width: 100%;
     display: inline-block;
     box-sizing: border-box;
     font-size: 16px;
     line-height: 1.4;
+    position: relative;
+    height: 100%;
 }
 .ux-field-container h2{
     font-size: 22px;
@@ -1526,7 +1528,14 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .ux-field-container.ux-field-footer{
     border-top: 1px solid #eee;
     width: 100%;
-    margin-top: 200px;
+    position: absolute;
+    bottom: 30px;
+    top: auto;
+    left: 0;
+    right: 0;
+}
+.ux-field-container.ux-field-footer p{
+    font-size: 15px;
 }
 .ux-field-container input.emty-input{
     display:none;

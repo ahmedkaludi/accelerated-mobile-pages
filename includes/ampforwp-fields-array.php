@@ -286,7 +286,7 @@ $pwa_class = "amp-ux-extension-switch amp-ux-switch-on-off ampforwp_install_ux_p
 
 $ux_secure = wp_create_nonce('verify_module');
 $check_extension = ampforwp_get_setup_info('ampforwp_ux_extension_check');
-$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Schema",'id'=>"amp-ux-ext-ssd",'class'=>$sasd_class,'data-id'=>'amp-ux-ext-ssd-switch','desc'=>'','data-secure'=>$ux_secure,'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>$sd_default,'data-url'=>esc_url($stdfwp_active_url)));
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Structured Data",'id'=>"amp-ux-ext-ssd",'class'=>$sasd_class,'data-id'=>'amp-ux-ext-ssd-switch','desc'=>'','data-secure'=>$ux_secure,'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>$sd_default,'data-url'=>esc_url($stdfwp_active_url)));
 
 $amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-ssd','=',0),'default'=>0));
 
