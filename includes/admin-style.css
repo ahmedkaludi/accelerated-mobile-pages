@@ -1298,7 +1298,19 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
    float: right;
 }
 .amp-ux-notif-container{
+    background: #f5f6fa;
+    padding: 5px;
+    border-top: 1px solid #d7d7d761;
+    border-bottom: 1px solid #d7d7d761;
     margin-top:10px;
+}
+.ux-field-container.amp-ux-notif-container.warning {
+    background: transparent;
+    padding: 0px;
+    border: none;
+}
+.amp-ux-notif-container p{
+    margin:0;
 }
 .amp-ux-notif-container p a{
     font-size: 12px;
