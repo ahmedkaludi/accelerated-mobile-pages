@@ -294,6 +294,9 @@ a.btt:hover {
 .amp-category-block ul{ list-style-type:none }
 .amp-category-block-btn{ display: block; text-align: center; font-size: 13px; margin-top: 15px; border-bottom: 1px solid #f1f1f1; text-decoration: none; }
 .design_1_wrapper .amp-category-block, .category-widget-wrapper{ max-width: 840px; margin: 1.5em auto; }
+.design_1_wrapper .amp-wp-header .nav_container .toggle-text{
+  cursor:pointer;
+}
 .category-widget-gutter{ margin:1.5em 26px 3.5em }
 .category-widget-gutter h4{ margin-bottom: 0px;}
 .category-widget-gutter ul{ margin-top: 10px; list-style-type:none; padding:0 }
