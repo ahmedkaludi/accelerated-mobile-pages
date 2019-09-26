@@ -162,7 +162,7 @@ add_filter( 'amp_post_template_file', 'ampforwp_design_element_featured_image', 
 
 function ampforwp_design_element_featured_image( $file, $type, $post ) {
 	if ( 'ampforwp-featured-image' === $type ) {
-		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/featured-image.php';
+		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/featured-image.php';
 	}
 	return $file;
 }
