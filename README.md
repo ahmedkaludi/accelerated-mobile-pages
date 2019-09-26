@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.3
-Stable tag: 0.9.98.12
+Stable tag: 0.9.98.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 0.9.98.13 (26th SEPTEMBER 2019) =
+* Improvements: Need to create an option to clear the cache in tree shaking #3680
+* Fixed: When enabling Treeshaking it removes the Swift icons TTF #3665
+* Fixed: List numbers are not in position #3704
+* Fixed:menu peekaboo problem #3633
 
 = 0.9.98.12 (25th SEPTEMBER 2019) =
 * Improvements: User wants Wordpress admin toolbar in the AMP area #3450

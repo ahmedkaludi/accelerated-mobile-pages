@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.3
-Stable tag: 0.9.98.12
+Stable tag: 0.9.98.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.13 (26th SEPTEMBER 2019) =
+* Improvements: Need to create an option to clear the cache in tree shaking #3680
+* Fixed: When enabling Treeshaking it removes the Swift icons TTF #3665
+* Fixed: List numbers are not in position #3704
+* Fixed:menu peekaboo problem #3633
+
 = 0.9.98.12 (25th SEPTEMBER 2019) =
 * Improvements: User wants Wordpress admin toolbar in the AMP area #3450
 * Improvements: we want the amp menu showing from left or right side both. #3095
@@ -214,11 +220,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Need to remove Legacy Pagebuilder option Safely #3609
 * Fixed: Default heading tag should load if no option is selected in Header Module #3651
 * Fixed: Pretty Permalinks for Twitter Share? option is not working #3662
-
-= 0.9.98.11 (20th SEPTEMBER 2019) =
-* Improvements: Improved AMP Advertisement option panel
-* Fixed: Mobile redirection causing extra redirects from /amp to /amp/ #3660
-* Fixed: The lightbox should not work for the image if any external link is added in its anchor tag. #3599
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
