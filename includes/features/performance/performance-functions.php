@@ -246,7 +246,7 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
 
 add_action( 'redux/options/redux_builder_amp/saved', 'ampforwp_clear_tree_shaking',10,2);
 function ampforwp_clear_tree_shaking($options, $changed_values){ 
-    if( ( isset($changed_values['ampforwp_css_tree_shaking']) && $options['ampforwp_css_tree_shaking']=='0' ) ||  isset($changed_values['amp-design-selector']) || isset($changed_values['css_editor']) ){
+    if( ( isset($changed_values['ampforwp_css_tree_shaking']) && $options['ampforwp_css_tree_shaking']=='0' ) || isset($changed_values['amp-design-selector']) || isset($changed_values['css_editor']) || ampforwp_get_setting('ampforwp_css_tree_shaking_clear_cache')==1){
         $upload_dir = wp_upload_dir(); 
         $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
         if(file_exists($user_dirname)){
@@ -257,6 +257,9 @@ function ampforwp_clear_tree_shaking($options, $changed_values){
                 if(is_file($file) && strpos($file, '_transient')!==false ){
                     //Use the unlink function to delete the file.
                     unlink($file);
+                    $selectedOption = get_option('redux_builder_amp',true);     
+                    $selectedOption['ampforwp_css_tree_shaking_clear_cache'] = 0;
+                    update_option('redux_builder_amp',$selectedOption);
                 }
             }
         }
