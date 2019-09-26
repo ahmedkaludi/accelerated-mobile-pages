@@ -208,7 +208,7 @@ $amp_ux_fields = array(
 					),
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Clicky Site ID','id'=>'amp-ux-cl','class'=>'amp-ux-cl analytics-text','required'=>array('ampforwp-ux-analytics-select','=','amp-clicky-switch'),'data-href'=>'amp-clicky-switch','data-text'=>'clicky-site-id','default'=>ampforwp_get_setting('clicky-site-id'))
 					),
-					array('field_type'=>'notification', 'field_data'=>array('title'=>'More Analytics Settings','type'=>'warning','desc'=>sprintf( 'Please click <a href="javascript:void(0);" id="ampforwp-goto-analytics">%s</a> settings.',esc_html__('here for advance analytics','accelerated-mobile-pages' )))
+					array('field_type'=>'notification', 'field_data'=>array('title'=>'More Analytics Settings','type'=>'warning','desc'=>sprintf( '<a href="javascript:void(0);" id="ampforwp-goto-analytics">%s</a>',esc_html__('View Advanced Settings','accelerated-mobile-pages' )))
 					),
 					$amp_ux_common,
 					array('field_type'=>'section_end', 'field_data'=>array()),

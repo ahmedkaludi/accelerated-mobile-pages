@@ -112,36 +112,15 @@ body #toplevel_page_amp_options .wp-menu-image{
 
 
 .switch-ef-btns {
-    /*width: 12rem;
-    height: 100%;
-    position: relative;
-    margin: 5px;
-    background: linear-gradient(to right,#eb3349,#f45c43);*/
     box-shadow: 0em 0.15em 0.65em 0em rgba(0,0,0,0.25);
     background:#f5f6fa;
 }
-/*.switch-ef-btns .visible{
-    opacity: unset;
-}*/
 .switch-ef-btns label {
     display: block;
     cursor: pointer;
     font-weight: bold; 
     width:100%;
 }
-/*.switch-ef-btns input:checked + label {
-    opacity: 1;
-    cursor: default;
-}*/
-/*.switch-ef-btns input:checked {
-    z-index: 1;
-}
-.switch-ef-btns #radio-c{
-    top: 4px;
-}
-.switch-ef-btns #radio-d{
-    top: 58px;
-}*/
 .switch-ef-btns .e-v, .switch-ef-btns .f-v{
     display: inline-flex;
     align-items: center;
@@ -1319,21 +1298,14 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
    float: right;
 }
 .amp-ux-notif-container{
-    margin-top:20px;
-    background: #f5f6fa;
-    padding: 5px;
-    border-top: 1px solid #d7d7d761;
-    border-bottom: 1px solid #d7d7d761;
+    margin-top:10px;
 }
-.amp-ux-notif-container p{
-   margin:0px;
+.amp-ux-notif-container p a{
+    font-size: 12px;
+    text-decoration: none;
 }
 .wp-picker-container .iris-picker{
     z-index: 9;
-}
-.amp-ux-notif-container.warning{
-   border-right: 5px solid #ffa500fa;
-   border-left: 5px solid #ffa500fa;
 }
 .amp-ux-notif-container.warning-red{
    border-right: 5px solid red;
