@@ -79,11 +79,11 @@ namespace ReduxCore\ReduxFramework;
         <div class="switch-ef-btns">
             <div class="e-v <?php echo $opt_easy_active;?>">
                 <input class="amp-opt-change <?php echo $opt_easy;?>" id="radio-c" type="radio" name="second-switch" <?php echo $opt_easy_checked?>>
-                <label for="radio-c">EASY VIEW</label>
+                <label for="radio-c">Easy View</label>
             </div>
             <div class="f-v <?php echo $opt_full_active;?>">
                 <input class="amp-opt-change <?php echo $opt_full;?>" id="radio-d" type="radio" name="second-switch" <?php echo $opt_full_checked?>>
-                <label for="radio-d">FULL VIEW</label><span class="toggle-outside">
+                <label for="radio-d">Full View</label><span class="toggle-outside">
                     <span class="toggle-inside"></span>
             </div>
     </div>

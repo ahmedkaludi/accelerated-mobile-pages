@@ -115,43 +115,40 @@ body #toplevel_page_amp_options .wp-menu-image{
 
 
 .switch-ef-btns {
-    box-shadow: 0em 0.15em 0.65em 0em rgba(0,0,0,0.25);
-    background:#f5f6fa;
+    position: relative;
+    top: 8px;
+    left: 6px;
 }
 .switch-ef-btns label {
     display: block;
-    cursor: pointer;
-    font-weight: bold; 
+    cursor: pointer; 
     width:100%;
-    padding: 15px 0px;
+    padding: 4px 0px;
+    color: #444;
 }
 .switch-ef-btns .e-v, .switch-ef-btns .f-v{
     display: inline-flex;
     align-items: center;
     width: 100%;
-}
-.switch-ef-btns .e-v:hover, .switch-ef-btns .f-v:hover{
-    background: linear-gradient(to right,#eb3349,#f45c43);
-    color:#fff;
+    font-weight: normal;
+    font-size: 12px;
 }
 .switch-ef-btns input[type=radio]{
     margin:0px 10px 0px 10px;
+    height: 14px;
+    min-width: 14px;
 }
 .switch-ef-btns input[type=radio]:checked:before{
-    width: 10px;
-    height: 10px;
-    margin: 1px;
-    background-color: #ee4047;
+    width: 8px;
+    height: 8px;
+    margin: 2px;
+    background-color: #f14b46;
 }
 .switch-ef-btns input[type=checkbox], .switch-ef-btns input[type=radio] {
-    border: 2px solid #c7c7c7;
+    border: 1px solid #cacaca;
 }
-.switch-ef-btns input[type=radio]:checked{
-    border:2px solid #fff;
-}
-.switch-ef-btns .active{
-    background:linear-gradient(to right,#eb3349,#f45c43);
-    color:#fff;
+.switch-ef-btns .e-v:hover label, .switch-ef-btns .f-v:hover label{
+    color:#000;
 }
 .ampforwp-tooltip {
     cursor: pointer;
@@ -190,14 +187,23 @@ body #toplevel_page_amp_options .wp-menu-image{
     z-index: 9;
     background: black;
     color: #a0a5aa;
-    padding: 5px;
-    top: 118px;
-    left: 10%;
+    padding: 7px 10px 7px 10px;
+    top: 72px;
+    left: 21%;
     width: 250px;
-    border-radius: 5px;
+    border-radius: 6px;
     visibility: hidden;
 }
-
+.ampforwp-setup-not-tt::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
 /* Mobile preview button and preview Iframe Styling #1082 */
 .col-sm-12 {
     width: 100%;
