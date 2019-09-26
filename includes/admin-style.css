@@ -120,11 +120,11 @@ body #toplevel_page_amp_options .wp-menu-image{
     cursor: pointer;
     font-weight: bold; 
     width:100%;
+    padding: 15px 0px;
 }
 .switch-ef-btns .e-v, .switch-ef-btns .f-v{
     display: inline-flex;
     align-items: center;
-    padding: 15px 0px;
     width: 100%;
 }
 .switch-ef-btns .e-v:hover, .switch-ef-btns .f-v:hover{
