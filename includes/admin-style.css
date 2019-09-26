@@ -791,7 +791,10 @@ visibility: hidden;
 }
 .redux-main .child_opt .afw-tooltip{ 
     margin-top: -8px;
-    right: 280px !important;
+}
+
+.redux-main .amp-ads .child_opt .afw-tooltip{ 
+    right: 250px !important;
 }
 .redux-main .child_opt .redux_field_th{  background: #f9f9f9;padding:23px 10px 23px 20px;
       margin-right: -16px;}
