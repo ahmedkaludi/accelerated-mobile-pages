@@ -11,7 +11,7 @@
     </a>
     <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
     <div on='tap:sidebar.toggle' role="button" aria-label="Navigation" tabindex="0" class="nav_container">
-        <a href="javascript:void(0)" class="toggle-text">
+        <a class="toggle-text">
             <span></span>
             <span></span>
             <span></span>
