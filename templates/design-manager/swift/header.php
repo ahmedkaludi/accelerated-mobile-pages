@@ -158,7 +158,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <?php do_action('ampforwp_after_amp_menu');?>
                 <?php if( true == ampforwp_get_setting('signin-button') && '2' == ampforwp_get_setting('cta-responsive-view')){?>
                     <div class="h-sing cta-res">
-                        <a target="_blank" href="<?php echo ampforwp_get_setting('signin-button-link')?>"><?php echo __(ampforwp_get_setting('signin-button-text'), 'accelerated-mobile-pages'); ?></a>
+                        <a target="_blank" href="<?php echo esc_url(ampforwp_get_setting('signin-button-link'))?>"><?php echo esc_html__(ampforwp_get_setting('signin-button-text'), 'accelerated-mobile-pages'); ?></a>
                     </div>
                     <?php } ?>
                 <?php if ( $redux_builder_amp['menu-search'] ) { ?>
