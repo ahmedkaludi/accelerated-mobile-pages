@@ -21,20 +21,8 @@ function amp_menu_html($echo,$type){
 //Load styling for Menu
 add_action('amp_post_template_css','amp_menu_styles',11); 
 function amp_menu_styles(){ ?>
-	<?php  if ( is_plugin_active('amp-layouts/amp-layouts.php') ) { ?>
- 	.amp-menu input{
- 		display:none;
- 	}
- 	.amp-menu li.menu-item-has-children ul{
- 		display:none;
- 	}
- 	.amp-menu li{
- 		position:relative;
- 		display:block;
- 	}
- 	.amp-menu > li a{
- 		display:block;
- 	}
+	<?php  if ( class_exists('AmpforwpAmpLayouts') && ( in_array(ampforwp_get_setting('amp-design-selector'), array('1', '2', '3', '4'))  )) { ?>
+ 	.amp-menu input{display:none;}.amp-menu li.menu-item-has-children ul{display:none;}.amp-menu li{position:relative;display:block;}.amp-menu > li a{display:block;}
 <?php } // AMP Layouts condition ends
 	 if(! in_array(ampforwp_get_setting('amp-design-selector'), array('1', '2', '3', '4'))  ) { ?>
 	 	aside{width:150px}
