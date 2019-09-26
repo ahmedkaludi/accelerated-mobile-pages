@@ -150,6 +150,13 @@ body #toplevel_page_amp_options .wp-menu-image{
 .switch-ef-btns .e-v:hover label, .switch-ef-btns .f-v:hover label{
     color:#000;
 }
+.switch-ef-btns .active{
+    background: #fff;
+    width: 98px;
+    border-radius: 60px;
+    left: 10px;
+    position: relative;
+}
 .ampforwp-tooltip {
     cursor: pointer;
   position: relative;
@@ -1137,8 +1144,8 @@ width: 100%;
 font-weight: normal; 
 } 
 .redux-main .btn-red{
-    color: #d60000;
-    border-color: #d60000;
+    color: #ed1d24;
+    border-color: #ed1d24;
     background: none;
 }
 .redux-main .btn-white{
@@ -1188,8 +1195,8 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     top: -40px;
 }
 .amp-ux-section-fields{
-    width: 60%;
-    float: left;
+    width: 670px;
+    margin-left: 50px
 }
 .amp-ux-section-right{
     float: right;
@@ -1285,14 +1292,31 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     display: none;
 }
 .amp-ux-section-field{
-    padding: 1px 37px 13px 10px;
+    padding: 22px 0px;
     border-bottom: 1px solid #d7d7d757;
     cursor: pointer;
 }
+.amp-ux-elem-field {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+}
+.amp-ux-elem-field h4{
+    font-size: 20px;
+    font-weight: normal;
+    color: #111;
+    float: left;
+    line-height: 1;
+    padding: 0;
+    position: relative;
+    margin: 0;
+    top: 3px;
+}
+.amp-ux-section h2{display:none;}
 .amp-ux-elem-but-block{
     display: inline-block;
     float: right;
-    margin-top: -28px;
+    margin-top: 0;
     text-align: center;
 }
 .amp-ux-elem-but-block .filled-lbl-blk{
@@ -1455,7 +1479,17 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .amp-ux-checkbox-container h4{display: inline;}
 .redux-main .amp-ux-upload{float: none}
 .redux-sidebar .redux-group-tab-link-a .amp-ux-warning{color: yellow;}
-.amp-ux-section-field .button{margin-top: -6%;width:80px;}
+.amp-ux-section-field .button{
+    margin-top: 0;
+    width: 90px;
+    box-shadow: none;
+    padding: 0;
+    line-height: 27px;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    height: 30px;
+}
 /* Loader */
 .amp-ux-loader{
     position: relative;
