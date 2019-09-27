@@ -196,7 +196,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Improvements: Only get the required dashicons for Admin Toolbar #3707
 * Fixed: When enabling Treeshaking it removes the Swift icons TTF #3665
 * Fixed: List numbers are not in position #3704
-* Fixed: Menu Auto closing when when # in the url #3633
+* Fixed: Menu Auto closing when # in the url #3633
 * Fixed: Facebook Like script not loading #3633
 
 = 0.9.98.12 (25th SEPTEMBER 2019) =
