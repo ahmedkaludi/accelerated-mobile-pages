@@ -1,10 +1,10 @@
 <?php do_action('ampforwp_before_featured_image_hook',$this);
-global $redux_builder_amp, $post;
+global $post;
 $amp_html 		= "";
 $caption 		= "";
 $featured_image = "";
 $featured_image = $this->get( 'featured_image' );
-if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) || true == $redux_builder_amp['ampforwp-featured-image-from-content'] || (class_exists('Bunyad') && Bunyad::posts()->meta('featured_video')) || (function_exists('has_post_video') && has_post_video($post->ID))){
+if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) || true == ampforwp_get_setting('ampforwp-featured-image-from-content') || (class_exists('Bunyad') && Bunyad::posts()->meta('featured_video')) || (function_exists('has_post_video') && has_post_video($post->ID))){
 
 		$get_webp = $get_webp_type =  "";
 		$get_webp = get_post_thumbnail_id($post->ID);
@@ -47,16 +47,8 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 			<?php }?>
 			<?php if( ampforwp_get_setting('amp-design-selector')==3){?>
 				<div class="post-featured-img">
-			<?php }?>
-			<figure class="amp-wp-article-featured-image wp-caption">
-				<?php echo $amp_html; // amphtml content; no kses ?>
-				<?php if ( $caption ) : ?>
-					<p class="wp-caption-text">
-						<?php echo wp_kses_data( $caption ); ?>
-					</p>
-				<?php endif; ?>
-			</figure>
-			<?php if( ampforwp_get_setting('amp-design-selector')==3){?>
+			<?php } ampforwp_set_featured_image($amp_html,$caption);
+			if( ampforwp_get_setting('amp-design-selector')==3){?>
 				</div>
 			<?php }?>
 			<?php if(ampforwp_get_setting('amp-design-selector')==2 || ampforwp_get_setting('amp-design-selector')==3){?>

@@ -1245,3 +1245,23 @@ if(! defined( 'AMP_COMMENTS_VERSION' )) {
     add_action( 'wp_ajax_amp_comment_submit', 'ampforwp_comment_submit' ); 
     add_action( 'wp_ajax_nopriv_amp_comment_submit', 'ampforwp_comment_submit' ); 
 }
+
+if(!function_exists('ampforwp_set_featured_image')){
+    function ampforwp_set_featured_image($amp_html='',$caption ='',$f_vid=''){
+        $class = "amp-wp-article-featured-image wp-caption";
+        if(ampforwp_get_setting('amp-design-selector')==4){
+            $class = "amp-featured-image ".esc_html($f_vid);
+        }
+    ?>
+        <figure class="<?php echo $class;?>"> <?php  
+            echo $amp_html;
+             if ( $caption ) : ?>
+                <p class="wp-caption-text">
+                    <?php echo wp_kses_data( $caption ); ?>
+                </p>
+            <?php endif; ?>
+        </figure>
+    <?php
+    }
+}
+?>

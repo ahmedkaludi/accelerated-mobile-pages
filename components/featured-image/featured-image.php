@@ -71,15 +71,10 @@ function ampforwp_framework_get_featured_image(){
 			$amp_html = ampforwp_get_featured_image_from_content();
 			$amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
 		}
-		if( $amp_html ){ ?>
-			<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  
-				echo $amp_html;
-				 if ( $caption ) : ?>
-					<p class="wp-caption-text">
-						<?php echo wp_kses_data( $caption ); ?>
-					</p>
-				<?php endif; ?>
-			</figure>
+		if( $amp_html ){ 
+				ampforwp_set_featured_image($amp_html,$caption,$f_vid);
+			?>
+			
 		<?php do_action('ampforwp_after_featured_image_hook');
 		}
 	}
