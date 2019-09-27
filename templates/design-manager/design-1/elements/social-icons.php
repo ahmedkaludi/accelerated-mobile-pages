@@ -31,7 +31,7 @@ if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 				    data-href="<?php echo esc_url($facebook_like_url); ?>" <?php ampforwp_nofollow_social_links(); ?>>
 				</amp-facebook-like>
 			<?php }
-		}else{
+		}elseif( true == ampforwp_get_setting('ampforwp-facebook-like-button') && true == ampforwp_get_setting('ampforwp-facebook-like-data-action') ){
 			$fblikewidth = ampforwp_get_setting('ampforwp-facebook-like-width');
 				if(empty($fblikewidth)){
 					$fblikewidth = "140";

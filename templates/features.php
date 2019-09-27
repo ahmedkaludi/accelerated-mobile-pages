@@ -1184,7 +1184,7 @@ function ampforwp_sticky_social_icons(){
 				    data-href="<?php echo esc_url($facebook_like_url); ?>">
 				</amp-facebook-like>
 			<?php }
-			}else{
+			}elseif ( true == ampforwp_get_setting('ampforwp-facebook-like-button') && true == ampforwp_get_setting('ampforwp-facebook-like-data-action')){
 			$fblikewidth = ampforwp_get_setting('ampforwp-facebook-like-width');
 				if(empty($fblikewidth)){
 					$fblikewidth = "140";

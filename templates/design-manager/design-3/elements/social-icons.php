@@ -27,7 +27,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 if(true == ampforwp_get_setting('ampforwp-social-share') && false == ampforwp_get_setting('ampforwp-facebook-like-data-action')){ ?>
 <div class="amp-wp-content ampforwp-social-icons-wrapper ampforwp-social-icons">
     <i class="icono-share"></i>
-    	<?php if ( true == ampforwp_get_setting('ampforwp-facebook-like-button') ) {
+    	<?php if ( true == ampforwp_get_setting('ampforwp-facebook-like-button')  && false == ampforwp_get_setting('ampforwp-facebook-like-data-action')) {
 			$facebook_like_url = '';
 			$facebook_like_url = $amp_permalink;
 			if ( $facebook_like_url ) { ?>
@@ -38,7 +38,7 @@ if(true == ampforwp_get_setting('ampforwp-social-share') && false == ampforwp_ge
 				    data-href="<?php echo esc_url($facebook_like_url); ?>">
 				</amp-facebook-like>
 			<?php }
-		}else{
+		}elseif ( true == ampforwp_get_setting('ampforwp-facebook-like-button')  && true == ampforwp_get_setting('ampforwp-facebook-like-data-action')){
 			$fblikewidth = ampforwp_get_setting('ampforwp-facebook-like-width');
 				if(empty($fblikewidth)){
 					$fblikewidth = "140";
