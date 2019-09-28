@@ -39,14 +39,19 @@ function ampforwp_analytics() {
 			$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
 			$ampforwp_ga_fields = preg_replace('!/\*.*?\*/!s', '', $ampforwp_ga_fields);
 			$ampforwp_ga_fields = preg_replace('/\n\s*\n/', '', $ampforwp_ga_fields);
-			}
 	 		?>
+	 		<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="googleanalytics" id="analytics1">
+	 		<script type="application/json">
+				<?php echo $ampforwp_ga_fields; ?>
+			</script>
+			</amp-analytics>
+	 		<?php } else { ?>
 			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="gtag" id="analytics1" data-credentials="include" >
 				<script type="application/json">
 					<?php echo $ampforwp_ga_fields; ?>
 				</script>
 			</amp-analytics>
-			<?php
+			<?php }
 		}//code ends for supporting Google Analytics
 
 	// 10.2 Analytics Support added for clicky.com

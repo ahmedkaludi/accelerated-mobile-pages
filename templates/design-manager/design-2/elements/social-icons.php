@@ -12,13 +12,15 @@ if($facebook_app_id){
 }
 if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social']) && true == $redux_builder_amp['ampforwp-page-social']) ) { 
 	$permalink = '';
-	if(ampforwp_get_setting('enable-single-twitter-share-link')){
-		$amp_permalink = wp_get_shortlink();
+	$twitter_amp_permalink = $amp_permalink;
+	if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
+		$twitter_amp_permalink = wp_get_shortlink();
 	}
 	?>
-<?php do_action('ampforwp_before_social_icons_hook',$this); ?>
+<?php do_action('ampforwp_before_social_icons_hook',$this);
+if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 	<div class="amp-wp-content post-pagination-meta ampforwp-social-icons-wrapper ampforwp-social-icons">
-		<?php if( true == ampforwp_get_setting('ampforwp-facebook-like-button') ) {
+		<?php if( true == ampforwp_get_setting('ampforwp-facebook-like-button') && false == ampforwp_get_setting('ampforwp-facebook-like-data-action') ) {
 			$facebook_like_url = '';
 			$facebook_like_url = $amp_permalink;
 			if( $facebook_like_url ){ ?>
@@ -30,7 +32,19 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 				    data-href="<?php echo esc_url($facebook_like_url); ?>">
 				</amp-facebook-like>
 			<?php }
-		} ?>	   
+		}elseif ( true == ampforwp_get_setting('ampforwp-facebook-like-button')  && true == ampforwp_get_setting('ampforwp-facebook-like-data-action')){
+			$fblikewidth = ampforwp_get_setting('ampforwp-facebook-like-width');
+				if(empty($fblikewidth)){
+					$fblikewidth = "140";
+				}
+			?>
+			<amp-facebook-like <?php echo "width=". esc_attr($fblikewidth) ."" ?> height=28
+				layout="fixed"
+				data-size="large"
+				data-action="recommend"
+				data-layout="button_count" <?php ampforwp_nofollow_social_links(); ?>
+				data-href="<?php echo esc_url(get_the_permalink());?>">
+			</amp-facebook-like><?php } ?>	   
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			<amp-social-share type="facebook" data-param-app_id="<?php echo esc_attr($redux_builder_amp['amp-facebook-app-id']); ?>" width="50" height="28" <?php ampforwp_nofollow_social_links(); ?>></amp-social-share>
 		<?php } ?>
@@ -48,7 +62,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 												height="28"
 												<?php ampforwp_nofollow_social_links(); ?>
 												data-param-url=""
-                        						data-param-text="TITLE <?php echo esc_url($amp_permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_attr($data_param_data) ?>"
+                        						data-param-text="TITLE <?php echo esc_url($twitter_amp_permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_attr($data_param_data) ?>"
 			></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
@@ -170,5 +184,5 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 			</a>
 		<?php } ?>		
 	</div>
-<?php } ?>
+<?php } } ?>
 <?php do_action('ampforwp_after_social_icons_hook',$this);

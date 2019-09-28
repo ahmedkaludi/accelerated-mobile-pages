@@ -1,5 +1,6 @@
 <?php global $redux_builder_amp; ?>
-<header class="container">
+<?php do_action('ampforwp_admin_menu_bar_front'); ?>
+<header class="container design2-header">
   <div id="headerwrap">
       <div id="header">
         <?php do_action('ampforwp_header_top_design2'); ?>
@@ -18,7 +19,7 @@
 
 <amp-sidebar id='sidebar'
     layout="nodisplay"
-    side="right">
+    side="<?php echo (ampforwp_get_setting('header-overlay-position-d2') == 1 )? 'right':'left'; ?>">
   <div class="toggle-navigationv2">
       <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
         <nav id ="primary-amp-menu">

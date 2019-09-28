@@ -427,10 +427,43 @@ pre{ white-space: pre-wrap; }
     transform-origin: right center;*/
 }
 /* Sidebar */
-#sidebar[open]+#designthree { max-height: 100vh; overflow: hidden; animation: opening .3s normal forwards ease-in-out; -webkit-transform: translate3d(60%, 0, 0) scale(0.8); transform: translate3d(60%, 0, 0) scale(0.8); }
-@keyframes opening{ 0% { transform: translate3d(0, 0, 0) scale(1); } 100% { transform: translate3d(60%, 0, 0) scale(0.8); } }
-@keyframes closing{ 0% { transform: translate3d(60%, 0, 0) scale(0.8); } 100% { transform: translate3d(0, 0, 0) scale(1); } }
-@keyframes closingFix{ 0% { max-height: 100vh; overflow: hidden; } 100% { max-height: none; overflow: visible; } }
+#sidebar[open]+#designthree { max-height: 100vh; overflow: hidden; 
+  animation: opening .3s normal forwards ease-in-out 0s; 
+  <?php if (ampforwp_get_setting('header-overlay-position-d3') == 1 ) {?>
+    transform: translate3d(60%, 0, 0) scale(0.8); 
+  <?php } else
+  if (ampforwp_get_setting('header-overlay-position-d3') == 2 ) {?>
+    transform: translate3d(-60%, 0, 0) scale(0.8); 
+  <?php } ?>
+}
+@keyframes opening{ 
+  0% { transform: translate3d(0, 0, 0) scale(1); } 
+  100% { 
+    <?php if (ampforwp_get_setting('header-overlay-position-d3') == 1 ) {?>
+      transform: translate3d(60%, 0, 0) scale(0.8);
+      <?php } else
+      if (ampforwp_get_setting('header-overlay-position-d3') == 2 ) {?>
+        transform: translate3d(-60%, 0, 0) scale(0.8); 
+      <?php } ?> 
+    } 
+}
+@keyframes closing{ 
+  0% 
+  { 
+  <?php if (ampforwp_get_setting('header-overlay-position-d3') == 1 ) {?>
+    transform: translate3d(60%, 0, 0) scale(0.8); 
+    <?php } else
+      if (ampforwp_get_setting('header-overlay-position-d3') == 2 ) {?>
+        transform: translate3d(-60%, 0, 0) scale(0.8); 
+      <?php } ?> 
+  } 
+  100% 
+  { transform: translate3d(0, 0, 0) scale(1); } 
+}
+@keyframes closingFix{ 
+  0% { max-height: 100vh; overflow: hidden; } 
+  100% { max-height: none; overflow: visible; } 
+}
 .hamburgermenu{ float:left; position:relative; z-index: 9999; }
 
 /* Category 3 */

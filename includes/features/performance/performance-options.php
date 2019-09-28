@@ -75,8 +75,16 @@ use ReduxCore\ReduxFramework\Redux;
                'id'       => 'ampforwp_css_tree_shaking',
                'type'     => 'switch',
                'title'     => esc_html__('Optimize CSS (beta)', 'accelerated-mobile-pages'),
-               'tooltip-subtitle'     => esc_html__('Improve size of the CSS and Page Speed with Tree Shaking Feature,', 'accelerated-mobile-pages'),
+              'tooltip-subtitle'     => esc_html__('Improve size of the CSS and Page Speed with Tree Shaking Feature.', 'accelerated-mobile-pages'),
                'default'  => 0
+           ),
+           array(
+
+               'id'       => 'ampforwp_css_tree_shaking_clear_cache',
+               'type'     => 'checkbox',
+               'title'     => esc_html__('Want to clear the Cache?', 'accelerated-mobile-pages'),
+               'desc'     => esc_html__('Select the above checkbox and then hit "Save Changes" to clear the Cache.', 'accelerated-mobile-pages'),
+               'required'=>array('ampforwp_css_tree_shaking','=','1')
            )
        )
 

@@ -676,9 +676,6 @@ padding-right:20px;
 padding-left: 20px;
 <?php } ?>
 }
-.ampforwp-inline-related-post .artl-cnt ul li, .artl-cnt ol li{
-	position: unset;
-}
 .artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;top:12px;
 <?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) {?> 
 	right:0;
@@ -963,7 +960,7 @@ if ( true == ampforwp_get_setting('ampforwp-disqus-comments-support') ) {?>
     .cntn-wrp p {font-size: 16px;}  
 }
 <?php } } ?>
-<?php if ( true == ampforwp_get_setting('ampforwp-dropcap')) { ?>
+<?php if ( is_single() && true == ampforwp_get_setting('ampforwp-dropcap')) { ?>
 .cntn-wrp > p:first-of-type::first-letter{
     float: left;
     <?php $fontsize = ampforwp_get_setting('ampforwp-dropcap-font');
@@ -2236,4 +2233,7 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
 	a.readmore-rp {
 	    font-size: 13px;
 	}
+<?php }
+if(is_page()){?>
+.ss-ic li a{display: initial;}
 <?php }

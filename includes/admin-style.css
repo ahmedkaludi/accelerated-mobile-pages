@@ -352,6 +352,7 @@ right:0;  z-index: 99999;
 /*** Layout Screenshot-Image CSS ***/
 #redux_builder_amp-ampforwp_layouts_core .amppb_ad-layout-layout {
     margin-bottom: 30px;
+    width: 29%;
 }
 
 /*** Layout Screenshot-Image CSS End ***/
@@ -974,4 +975,10 @@ font-weight: normal;
 }
 #ampforwp-adsforwp-activation-call {
     max-width:170px;
+}
+#beacon-container .BeaconContainer{
+    max-height: 520px !important;
+}
+.redux-main .select2-container {
+    max-width: 40%;
 }

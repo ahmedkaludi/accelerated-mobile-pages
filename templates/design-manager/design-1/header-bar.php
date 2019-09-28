@@ -1,4 +1,5 @@
 <?php global $redux_builder_amp; ?>
+<?php do_action('ampforwp_admin_menu_bar_front'); ?>
 <header id="#top" class="amp-wp-header">
   <div class="ampforwp-logo-area" >
     <?php do_action('ampforwp_header_top_design1'); ?>
@@ -9,7 +10,7 @@
         <?php endif; ?>
     <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
     <div on='tap:sidebar.toggle' role="button" aria-label="Navigation" tabindex="0" class="nav_container">
-        <a href="#" class="toggle-text">
+        <a class="toggle-text">
             <span></span>
             <span></span>
             <span></span>
@@ -27,7 +28,7 @@
 <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
 <amp-sidebar id='sidebar'
     layout="nodisplay"
-    side="right">
+    side="<?php echo (ampforwp_get_setting('header-overlay-position-d1') == 1 )? 'right':'left'; ?>">
   <div class="toggle-navigationv2">
       <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
       <nav id ="primary-amp-menu">

@@ -196,6 +196,18 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
             $tmpDoc = new DOMDocument();
             libxml_use_internal_errors(true);
             $tmpDoc->loadHTML($completeContent);
+            $font_css = '';
+            if('swift-icons'==ampforwp_get_setting('ampforwp_font_icon')){
+                preg_match_all("/@font-face\s\{(.*?)\}/si", $completeContent, $matches);
+                foreach ($matches[0] as $key => $value) {
+                    $font_css .= $value;
+                }
+            }
+                preg_match_all("/@font-face{(.*?)\}/si", $completeContent, $matches1);
+                foreach ($matches1[0] as $key => $value) {
+                    $font_css .= $value;
+                }
+
             // AMP_treeshaking_Style_Sanitizer class is added in the vendor/amp/includes/sanitizers
             if( AMPforWP\AMPVendor\AMP_treeshaking_Style_Sanitizer::has_required_php_css_parser()){ 
                 $sheet = '';
@@ -214,6 +226,7 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                 foreach($data as $styles){
                     $sheet .= $styles;
                 }
+                $sheet.=$font_css;
                 $sheet = stripcslashes($sheet);
                 if(strpos($sheet, '-keyframes')!==false){
                     $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
@@ -233,7 +246,13 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
 
 add_action( 'redux/options/redux_builder_amp/saved', 'ampforwp_clear_tree_shaking',10,2);
 function ampforwp_clear_tree_shaking($options, $changed_values){ 
-    if( ( isset($changed_values['ampforwp_css_tree_shaking']) && $options['ampforwp_css_tree_shaking']=='0' ) ||  isset($changed_values['amp-design-selector']) || isset($changed_values['css_editor']) ){
+
+    // If the current user don't have proper permission then return
+    if (! current_user_can( 'manage_options' )){
+        return;
+    }
+
+    if( is_admin() && (( isset($changed_values['ampforwp_css_tree_shaking']) && $options['ampforwp_css_tree_shaking']=='0' ) || isset($changed_values['amp-design-selector']) || isset($changed_values['css_editor']) || ampforwp_get_setting('ampforwp_css_tree_shaking_clear_cache')==1)){
         $upload_dir = wp_upload_dir(); 
         $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
         if(file_exists($user_dirname)){
@@ -247,6 +266,9 @@ function ampforwp_clear_tree_shaking($options, $changed_values){
                 }
             }
         }
+        $selectedOption = get_option('redux_builder_amp',true);     
+        $selectedOption['ampforwp_css_tree_shaking_clear_cache'] = 0;
+        update_option('redux_builder_amp',$selectedOption);
     }
 }
 // Tree shaking feature #2949 --- ends here ---
