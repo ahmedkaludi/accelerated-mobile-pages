@@ -198,12 +198,12 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
             $tmpDoc->loadHTML($completeContent);
             $font_css = '';
             if('swift-icons'==ampforwp_get_setting('ampforwp_font_icon')){
-                preg_match_all("/@font-face\s\{(.*?)\}/i", $completeContent, $matches);
+                preg_match_all("/@font-face\s\{(.*?)\}/si", $completeContent, $matches);
                 foreach ($matches[0] as $key => $value) {
                     $font_css .= $value;
                 }
             }
-                preg_match_all("/@font-face{(.*?)\}/i", $completeContent, $matches1);
+                preg_match_all("/@font-face{(.*?)\}/si", $completeContent, $matches1);
                 foreach ($matches1[0] as $key => $value) {
                     $font_css .= $value;
                 }
