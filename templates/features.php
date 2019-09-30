@@ -442,6 +442,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		if(is_search()){
 			return false;
 		}
+		if(ampforwp_get_setting('ampforwp-seo-yoast-canonical')==1){
+			return false;
+		}
 		if($canonical==""){
 			global $ampforwpTemplate;
 			$canonical = $ampforwpTemplate->get('canonical_url'); 
@@ -2463,7 +2466,7 @@ function ampforwp_talking_to_robots() {
 	  	}
   	}
   	// Meta Robots Tag From Yoast #1563
-  	if ( class_exists('WPSEO_Frontend') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selections') && false == ampforwp_get_setting('amp-inspection-tool') ) {
+  	if ( class_exists('WPSEO_Frontend') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && false == ampforwp_get_setting('amp-inspection-tool') ) {
 		$class_instance = '';
 	    $class_instance = WPSEO_Frontend::get_instance();
 	    // robots() will return and print the meta robots tag

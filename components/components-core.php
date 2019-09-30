@@ -383,7 +383,12 @@ function amp_header_core(){
 		    	}else{
 		    		if(is_search() && false == ampforwp_get_setting('amp-inspection-tool') && false == ampforwp_get_setting('ampforwp-robots-search-pages')){?>
 		    			<meta name="robots" content="noindex,nofollow"/>
-		    		<?php }
+		    		<?php }else{
+		    			if ( class_exists('WPSEO_Frontend') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && false == ampforwp_get_setting('amp-inspection-tool') ) {
+			    			$front = WPSEO_Frontend::get_instance();
+			    			$front->robots();
+			    		}
+		    		}
 		    		do_action( 'amp_post_template_head', $thisTemplate );
 		    	} ?>		
 			<style amp-custom>
