@@ -135,14 +135,17 @@ body #toplevel_page_amp_options .wp-menu-image{
 }
 .switch-ef-btns input[type=radio]{
     margin:0px 10px 0px 10px;
-    height: 14px;
-    width: 14px;
+    height: 16px;
+    width: 16px;
 }
 .switch-ef-btns input[type=radio]:checked:before{
     width: 8px;
     height: 8px;
     margin: 2px;
     background-color: #f14b46;
+    position: relative;
+    left: 1px;
+    top: 1px;
 }
 .switch-ef-btns input[type=checkbox], .switch-ef-btns input[type=radio] {
     border: 1px solid #eee;
@@ -161,7 +164,6 @@ body #toplevel_page_amp_options .wp-menu-image{
 .switch-ef-btns .e-v{
   left:10px;
   position:relative;
-  z-index:9999;
   margin-bottom:4px;
 }
 .switch-ef-btns .f-v{
