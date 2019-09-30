@@ -1222,11 +1222,6 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
     padding: 15px 8px 15px 10px;
 }
 /** Responsive CSS **/
-@media(max-width:800px){
-    .amp-ux-section-fields{
-        width:100%;
-    }
-}
 
 @media(max-width:600px){
     .redux-container{
