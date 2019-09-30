@@ -1447,7 +1447,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     $option = '<div class="button btn-red">'.$label.'</div>';
                 }
             }else{
-                $option = '<div class="button btn-list">'.$label.'</div>';
+                $option = '<div class="btn-list">'.$label.'</div>';
             }
             return $option;
         }

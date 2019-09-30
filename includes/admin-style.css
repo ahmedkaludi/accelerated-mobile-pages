@@ -116,8 +116,8 @@ body #toplevel_page_amp_options .wp-menu-image{
 
 .switch-ef-btns {
     position: relative;
-    top: 8px;
-    left: 6px;
+    top: 9px;
+    left: 5px;
 }
 .switch-ef-btns label {
     display: block;
@@ -136,7 +136,7 @@ body #toplevel_page_amp_options .wp-menu-image{
 .switch-ef-btns input[type=radio]{
     margin:0px 10px 0px 10px;
     height: 14px;
-    min-width: 14px;
+    width: 14px;
 }
 .switch-ef-btns input[type=radio]:checked:before{
     width: 8px;
@@ -145,17 +145,28 @@ body #toplevel_page_amp_options .wp-menu-image{
     background-color: #f14b46;
 }
 .switch-ef-btns input[type=checkbox], .switch-ef-btns input[type=radio] {
-    border: 1px solid #cacaca;
+    border: 1px solid #eee;
 }
 .switch-ef-btns .e-v:hover label, .switch-ef-btns .f-v:hover label{
     color:#000;
 }
 .switch-ef-btns .active{
     background: #fff;
-    width: 98px;
+    width:140px;
     border-radius: 60px;
-    left: 10px;
-    position: relative;
+}
+.switch-ef-btns .active input[type=radio]{
+  border:1px solid #ccc;
+}
+.switch-ef-btns .e-v{
+  left:10px;
+  position:relative;
+  z-index:9999;
+  margin-bottom:4px;
+}
+.switch-ef-btns .f-v{
+  left:9px;
+  position:relative;
 }
 .ampforwp-tooltip {
     cursor: pointer;
@@ -200,6 +211,7 @@ body #toplevel_page_amp_options .wp-menu-image{
     width: 250px;
     border-radius: 6px;
     visibility: hidden;
+    z-index: 99
 }
 .ampforwp-setup-not-tt::before {
     content: "";
@@ -1084,6 +1096,7 @@ div#section-ampforwp-ads-section h3:before{
 */
 .redux-main .redux-field-container{
     padding: 18px 10px 18px 0;
+    width:90%;
 }
 .adsactive { 
     max-width: 100%!important;
@@ -1144,8 +1157,8 @@ width: 100%;
 font-weight: normal; 
 } 
 .redux-main .btn-red{
-    color: #ed1d24;
-    border-color: #ed1d24;
+    color: rgba(237, 29, 36, 0.8);
+    border-color:rgba(237, 29, 36, 0.8);
     background: none;
 }
 .redux-main .btn-white{
@@ -1195,8 +1208,8 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     top: -40px;
 }
 .amp-ux-section-fields{
-    width: 670px;
-    margin-left: 50px
+    width: 735px;
+    margin: 0 auto;
 }
 .amp-ux-section-right{
     float: right;
@@ -1292,8 +1305,8 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     display: none;
 }
 .amp-ux-section-field{
-    padding: 22px 0px;
-    border-bottom: 1px solid #d7d7d757;
+    padding: 16px 0px;
+    border-bottom: 1px solid #d7d7d738;
     cursor: pointer;
 }
 .amp-ux-elem-field {
@@ -1304,13 +1317,13 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .amp-ux-elem-field h4{
     font-size: 20px;
     font-weight: normal;
-    color: #111;
+    color: #000;
     float: left;
     line-height: 1;
     padding: 0;
     position: relative;
     margin: 0;
-    top: 3px;
+    top: 5px;
 }
 .amp-ux-section h2{display:none;}
 .amp-ux-elem-but-block{
@@ -1318,6 +1331,13 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     float: right;
     margin-top: 0;
     text-align: center;
+    height:32px;
+    line-height:32px;
+    position:relative;
+    top:2px;
+}
+.amp-ux-elem-but-block .lbl{
+  line-height: 1.2;
 }
 .amp-ux-elem-but-block .filled-lbl-blk{
     margin-top: -5px;
@@ -1327,7 +1347,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     font-size: 15px;
 }
 .amp-ux-elem-but-block .filled-lbl-blk .lbl{
-   color:#d60000;
+   color:rgba(237, 29, 36, 0.8);
    float: right;
 }
 .amp-ux-notif-container{
@@ -1390,10 +1410,10 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     background-image: url(../images/amp-ux-warning.png);
     background-repeat: no-repeat;
     background-position: center;
-    -webkit-background-size: 30px auto;
-    background-size: 30px auto;
+    -webkit-background-size: 20px auto;
+    background-size: 20px auto;
     height: 44px;
-    width: 31px;
+    width: 30px;
 }
  .drawer_bg {
     position: fixed;
@@ -1484,11 +1504,11 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     width: 90px;
     box-shadow: none;
     padding: 0;
-    line-height: 27px;
+    line-height: 29px;
     border-radius: 3px;
     font-weight: 600;
     letter-spacing: 1px;
-    height: 30px;
+    height: 32px;
 }
 /* Loader */
 .amp-ux-loader{
@@ -1652,4 +1672,10 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .ux-seo-blk .third-pp{
     font-size:20px;
     margin:0px;
+}
+
+@media(max-width:800px){
+    .amp-ux-section-fields{
+        width:100%;
+    }
 }
