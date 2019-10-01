@@ -1264,4 +1264,42 @@ if(!function_exists('ampforwp_set_featured_image')){
     <?php
     }
 }
+
+
+if(!function_exists('ampforwp_sassy_share_icons')){
+    function ampforwp_sassy_share_icons($ampforwp_the_content) {
+        if(function_exists('heateor_sss_run')){
+            global $heateor_sss;global $post;
+            $share_counts = false;
+            $sassy_options = $heateor_sss->options;
+            $post_url = get_the_permalink($post);
+            if(isset($sassy_options['horizontal_counts'])){
+                $post_id = ampforwp_get_the_ID();
+                if ( $post_id == 'custom' ) {
+                    $share_counts =  get_option( 'heateor_sss_custom_url_shares' ) ;
+                } elseif ( $post_url == home_url() ) {
+                    $share_counts = get_option( 'heateor_sss_homepage_shares' );
+                } elseif ( $post_id > 0 ) {
+                    $share_counts = get_post_meta( $post_id, '_heateor_sss_shares_meta', true );
+                }
+                $total_share = 0;
+                if(isset($sassy_options['horizontal_re_providers'])){
+                    $share_icons = $sassy_options['horizontal_re_providers'];
+                    foreach($share_icons as $i){
+                        $total_share += round($share_counts[$i]);
+                    }
+                }
+                $_append = '<a class="heateor_sss_amp heateor-total-share-count">
+                                <span class="sss_share_count">'.intval($total_share).'</span> <span class="sss_share_lbl">Shares</span></a>';
+                preg_match_all('/<div class="heateorSssClear"><\/div><div class="heateor_sss_sharing_container (.*)">(.*)<div class="heateorSssClear"><\/div><\/div><div class="heateorSssClear"><\/div>/', $ampforwp_the_content, $matches);
+                
+                $_actual = $matches[0];
+                $_replace = '<div class="heateorSssClear"></div><div class="heateor_sss_sharing_container '.$matches[1][0].'"></amp-img></a>'.$_append.'</div><div class="heateorSssClear"></div><div class="heateorSssClear"></div>';
+
+                $ampforwp_the_content = str_replace($_actual, $_replace, $ampforwp_the_content);
+            }
+        }
+        return $ampforwp_the_content;
+    }
+}
 ?>

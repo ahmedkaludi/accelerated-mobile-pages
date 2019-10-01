@@ -14,13 +14,6 @@ function ampforwp_filter_remove_function_responsifywp(){
   }
 }
 
-// Strange spaces when using Sassy Social Share #1185
-add_filter('heateor_sss_disable_sharing','ampforwp_removing_sassy_social_share');
-function ampforwp_removing_sassy_social_share(){
-	if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
-		return 1;
-	}
-}
 
 add_action('pre_amp_render_post','ampforwp_thirdparty_compatibility');
 function ampforwp_thirdparty_compatibility(){

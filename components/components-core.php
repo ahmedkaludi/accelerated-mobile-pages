@@ -575,11 +575,13 @@ function amp_content($post_id= ''){
 			$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
 		}		
 	}
+	if(function_exists('ampforwp_sassy_share_icons')){
+		$ampforwp_the_content = ampforwp_sassy_share_icons($ampforwp_the_content);
+	}
 	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
 	echo $ampforwp_the_content; // amphtml content, no kses
 	do_action('ampforwp_after_post_content',$thisTemplate); 
 }
-
 function amp_date( $args=array() ) {
     if ( 2 == ampforwp_get_setting('ampforwp-post-date-format') ) {
     	$args = array('format' => 'traditional');

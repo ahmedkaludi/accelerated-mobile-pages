@@ -408,6 +408,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		$page                   = '' ;
 		$canonical = "";
 		$req_url = $_SERVER['REQUEST_URI'];
+		
+		if(preg_match("/\?amp/", $req_url, $matches)){
+			return false;
+		}
 		$exhost = explode("/", $req_url);
 		if ( is_home() || is_front_page() || (is_archive() && ampforwp_get_setting('ampforwp-archive-support')) )	{
 			$current_archive_url = home_url( $wp->request );
@@ -1116,11 +1120,6 @@ function ampforwp_remove_schema_data() {
 	if ( function_exists('ampforwp_remove_filters_for_class')) {
 		//Remove Disallowed 'like' tag from facebook Like button by Ultimate Facebook
 		ampforwp_remove_filters_for_class( 'the_content', 'Wdfb_UniversalWorker', 'inject_facebook_button', 10 );
-		//Compatibility with Sassy Social Share Plugin
-		ampforwp_remove_filters_for_class( 'the_content', 'Sassy_Social_Share_Public', 'render_sharing', 10 );
-		ampforwp_remove_filters_for_class( 'amp_post_template_head', 'Sassy_Social_Share_Public', 'frontend_scripts', 10 );
-		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_inline_style', 10 );
-		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_amp_css', 10 );
 		//Removing the Monarch social share icons from AMP
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_inline', 10 );
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_media', 9999 );
@@ -7388,4 +7387,14 @@ function ampforwp_set_option_panel_view(){
 			add_option("ampforwp_option_panel_view_type", $opt_type);
 		}
 	}
+}
+
+if(!function_exists('ampforwp_sassy_icon_style')){
+	function ampforwp_sassy_icon_style(){
+		$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/includes/sassy-style.css");
+		echo css_sanitizer($css);
+	}
+}	
+if(function_exists('heateor_sss_run')){
+	add_action('amp_post_template_css', 'ampforwp_sassy_icon_style'); 
 }
