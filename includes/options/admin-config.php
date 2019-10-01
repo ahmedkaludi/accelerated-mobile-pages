@@ -1455,7 +1455,6 @@ Redux::setArgs( "redux_builder_amp", $args );
      $setup_ids = array(
                         'ampforwp-ux-website-type-section',
                         'ampforwp-ux-need-type-section',
-                        'ampforwp-ux-design-section',
                         'ampforwp-ux-analytics-section'
                     );
     $amp_ux_icon = "amp-ux-warning-okay";
@@ -1497,7 +1496,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                                 <div class="amp-ux-section-field" data-href="ampforwp-ux-design-section">
                                    <div class="amp-ux-elem-field">
                                         <h4 class="amp-ux-elem-title">Design and Presentation</h4>
-                                        <div class="amp-ux-elem-but-block amp-ux-valid-require">'.ampforwp_generate_ux_admin_button("ampforwp-ux-design-section","button","SET UP").'</div>
+                                        <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-design-section","button","SET UP").'</div>
                                     </div>
                                 </div>
                                 <div class="amp-ux-section-field" data-href="ampforwp-ux-analytics-section">
@@ -1529,53 +1528,11 @@ Redux::setArgs( "redux_builder_amp", $args );
 ));
 
     Redux::setSection( $opt_name, array(
-        'title' => esc_html__( 'Settings', 'accelerated-mobile-pages' ),
-        'id'    => 'basic',
-        'fields' => array(
-            array(
-                'id'       => 'opt-blank',
-                'type'     => 'raw',
-                'title'    => '',
-                'desc'     => '',
-            )
-        ),
-        'desc'  =>  '<div class="amp-faq">'.esc_html__('Thank you for using Accelerated Mobile Pages plugin.', 'accelerated-mobile-pages'). ' ' .
-          ''.esc_html__('We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' )                      
-			               . '<div style="width:100%;margin:20px 0px 10px 0px" class="getstarted_wrapper">
-            <div class="getstarted_options">
-            <p><b>'.esc_html__('Getting Started', 'accelerated-mobile-pages').'</b></p>
-				<ul class="getstarted_ul">
-					<li><a href="https://ampforwp.com/tutorials/article-categories/installation-updating/" target="_blank">'.esc_html__('Installation & Setup', 'accelerated-mobile-pages').'</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/settings-options/" target="_blank">'.esc_html__('Settings & Options', 'accelerated-mobile-pages').'</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/setup-amp/" target="_blank">'.esc_html__('Setup AMP', 'accelerated-mobile-pages').'</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/page-builder/" target="_blank">'.esc_html__('Page Builder', 'accelerated-mobile-pages').'</a></li>
-				</ul>  
-            </div>
-            <div class="getstarted_options">
-            <p><b>'.esc_html__('Useful Links', 'accelerated-mobile-pages').'</b></p>
-				<ul class="getstarted_ul">
-					<li><a href="https://ampforwp.com/tutorials/article-categories/extension/" target="_blank">'.esc_html__('Extensions & Themes Docs', 'accelerated-mobile-pages').'</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/developer-documentation/" target="_blank">'.esc_html__('Developers Docs', 'accelerated-mobile-pages').'</a></li>
-					<li><a href="https://ampforwp.com/amp-theme-framework/" target="_blank">'.esc_html__('Create a Custom Theme for AMP', 'accelerated-mobile-pages').'</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/how-to/" target="_blank">'.esc_html__('General How To\'s', 'accelerated-mobile-pages').'</a></li>
-				</ul>  
-            </div>
-            <div class="clear"></div>
-            </div>'
-           . '<p><strong>' . sprintf( '1. <a href="https://ampforwp.com/support/" target="_blank">%s</a>: ',esc_html__('Technical Customer Support','accelerated-mobile-pages')) . '</strong>' . esc_html__('We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means a lot to us and so we try our best to reply each and every question that gets asked.', 'accelerated-mobile-pages' ) . '</p>'
-                           . '<p><strong>' . sprintf( '2. <a href="https://github.com/ahmedkaludi/accelerated-mobile-pages/issues" target="_blank">%s</a>: ',esc_html__('Found a bug? Use GitHub','accelerated-mobile-pages' )) . '</strong>' . esc_html__( 'If you’ve discovered a bug in our software, the best place to report it is on GitHub. This is where the AMP developers are active. They’ll review your bug report and triage the bug. The more relevant details you add to your report, the faster bugs are usually solved. And please remember to search first, We think that most general tickets have been created already.', 'accelerated-mobile-pages' ) . '</p>'
-                           . '<p><strong>' . sprintf( '3. <a href="https://ampforwp.com/priority-support/" target="_blank">%s</a>: ',esc_html__('Priority Support','accelerated-mobile-pages' )) . '</strong>' . esc_html__( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.', 'accelerated-mobile-pages' ) . '</p>'
-                           . '<p><strong>' . sprintf( '4. <a href="https://ampforwp.com/hire/" target="_blank">%s</a>: ',esc_html__('Hire Us / Customization', 'accelerated-mobile-pages' )) . '</strong>' . esc_html__( 'We are your development backbone who specialises Backend and Frontend technologies. We have the capability to handle & solve the complex issues. If you have any customization, feel free to ask.', 'accelerated-mobile-pages' ) . '</p>'
-                           . '<p><strong>' . sprintf( '5. <a href="http://ampforwp.com/new/" target="_blank"> %s</a>: ',esc_html__('What\'s New in this Version?','accelerated-mobile-pages' )) . '</strong>' . esc_html__( 'If you want to know whats new in the latest version of the plugin, then please use this link.', 'accelerated-mobile-pages' ) . '</p>'
-
-						         . '</p></div>
-                                 <br /><p><h3>'.esc_html__('Take AMP to the Next Level with Premium Extensions').'</h3></p>
-                                 ' .$gettingstarted_extension_listing
-
-				 , 
-        'icon'  => 'el el-cogs'
-    ) );
-    
+          'title'      => esc_html__( 'Settings', 'accelerated-mobile-pages' ),
+          'id'    => 'basic',
+          'icon' => 'el el-cogs',
+          'desc'  => ''
+    ));
     function ampforwp_default_logo_settings($param=""){
         $custom_logo_id = '';
         $image          = '';

@@ -799,6 +799,7 @@ jQuery(document).ready(function($) {
         window.onbeforeunload = null;
         if ( redux.args.ajax_save === true ) {
             $.redux.ajax_save( $current, true );
+
         }
     }
     
@@ -1213,19 +1214,16 @@ jQuery(document).ready(function($) {
     });
 
 function ampforwp_ux_save_loader(event){
-    // loader
-  /*  if ( event.closest("div.ux-field-container").find('.amp-ux-loader').length == 0 ){
-        event.closest("div.ux-field-container").append('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
-    }
-    else{
-        event.closest("div.ux-field-container").find('.amp-ux-loading').removeClass('hide');
-        event.closest("div.ux-field-container").find('.amp-ux-check').addClass('hide');
-    }
-    setTimeout(function(){ 
-        event.closest("div.ux-field-container").find('.amp-ux-loader').remove();
-     }, 800);*/
+    $(".amp-ux-loader").show();
+    setTimeout(function(){
+         $(".amp-ux-loader").hide();
+     },500);
 }
 
+var check_img_upload = $('input[id="redux_builder_amp[opt-media][url]"]').val();
+if(check_img_upload!=""){
+    $('input[id="redux_builder_amp[opt-media][url]"]').hide();
+}
 function ampforwp_check_required(value,required){
     if(value==0){
         $("[required="+required+"]").addClass("hide");

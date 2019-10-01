@@ -113,9 +113,15 @@ $amp_ux_common = array(
 											),
 										)
 					);
+
+$amp_ux_loader = array(
+						'field_type'=>'loader', 
+						'field_data'=>array('title'=>'','class'=>'','id'=>'','default'=>0)
+					);
 $amp_website_type = ampforwp_get_setting('ampforwp-setup-ux-website-type');
 $amp_ux_fields = array(
 					array('field_type'=>'main_section_start', 'field_data'=>array('id'=>'amp-ux-main-section','class'=>'amp-ux-main-section')),
+					$amp_ux_loader,
 					// Website type 
 					array('field_type'=>'section_start',
 						'field_data'=>array('id'=>'ampforwp-ux-website-type-section','class'=>'section-1 amp-ux-website-type-section')
@@ -153,6 +159,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'checkbox',
 						'field_data'=>array('title'=>'Archives','class'=>'amp-ux-archives','id'=>'amp-ux-archives','default'=>ampforwp_get_setting('ampforwp-archive-support'))
 					),
+			
 					$amp_ux_common ,
 					array('field_type'=>'section_end','field_data'=>array()),
 
@@ -166,6 +173,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'color',
 						'field_data'=>array('title'=>'Global Color Scheme','class'=>'amp-ux-color-scheme','id'=>'amp-ux-color-scheme','default'=>ampforwp_get_setting('swift-color-scheme','color'))
 					),
+				
 					$amp_ux_common ,
 					array('field_type'=>'section_end', 'field_data'=>array()),
 
@@ -210,6 +218,7 @@ $amp_ux_fields = array(
 					),
 					array('field_type'=>'notification', 'field_data'=>array('title'=>'More Analytics Settings','type'=>'warning','desc'=>sprintf( '<a href="javascript:void(0);" id="ampforwp-goto-analytics">%s</a>',esc_html__('View Advanced Settings','accelerated-mobile-pages' )))
 					),
+				
 					$amp_ux_common,
 					array('field_type'=>'section_end', 'field_data'=>array()),
 
@@ -221,6 +230,7 @@ $amp_ux_fields = array(
 					),
 					array('field_type'=>'switch','field_data'=>array('title'=>'GDPR','id'=>'amp-ux-gdpr-switch','class'=>'amp-ux-gdpr-switch amp-ux-switch-on-off','data-id'=>'amp-ux-gdpr-switch','desc'=>'Comply with European privacy regulations(GDPR). Recommended for EU Citizens.','parent-class'=>'ux-notice-bar','default'=>ampforwp_get_setting('amp-gdpr-compliance-switch'))
 					),
+					
 					$amp_ux_common,
 					array('field_type'=>'section_end', 'field_data'=>array()),
 

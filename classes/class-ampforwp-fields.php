@@ -141,6 +141,10 @@ class AMPforWP_Fields
 		if ( 'notification' == $type ) {
 			$this->ampforwp_field_notification($fields);
 		}
+		// Loader
+		if ( 'loader' == $type ) {
+			$this->ampforwp_field_loader($fields);
+		}
 		// Label
 		if ( 'footer' == $type ) {
 			$this->ampforwp_field_footer($fields);
@@ -161,6 +165,11 @@ class AMPforWP_Fields
 			$this->section_end($fields);
 		}
 	}
+
+	public function ampforwp_field_loader($fields = array()){
+		echo '<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>';
+	}
+
 	// Main Section
 	public function main_section_start($fields = array() ) {
 		if ( isset($fields['class']) ) {
@@ -308,7 +317,8 @@ class AMPforWP_Fields
 					
 				</div>
 				<div class="upload_button_div amp-ux-upload">
-					<span class="button media_upload_button media-'.intval($this->id).'" id="opt-media-media">Upload</span>				
+					<span class="button media_upload_button media-amp-ux-opt-media media-'.intval($this->id).'" id="opt-media-media">Upload</span>
+					<span class="amp-ux-img-re-txt">(Recommended Size: 120 x 90)</span>				
 				</div>';
 			$output .= '</div></div>';
         echo $output;

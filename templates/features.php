@@ -7396,3 +7396,17 @@ if(!function_exists('ampforwp_sassy_icon_style')){
 if(function_exists('heateor_sss_run')){
 	add_action('amp_post_template_css', 'ampforwp_sassy_icon_style'); 
 }
+
+
+add_action('admin_head', 'ampforwp_remove_admin_help');
+if(!function_exists('ampforwp_remove_admin_help')){
+	function ampforwp_remove_admin_help(){
+		if(!is_admin() && !current_user_can('manage_options')){
+			return ;
+		}
+		$screen = get_current_screen();
+		if ( 'toplevel_page_amp_options' == $screen->base ) {
+			$screen->remove_help_tabs();
+		}
+	}
+}
