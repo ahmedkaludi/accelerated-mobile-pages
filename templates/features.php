@@ -344,9 +344,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	}
 
 	// AMPHTML when using custom page and then creating a blog page
-	if(false == ampforwp_get_setting('amp-core-end-point')){
-		add_action('amp_init','ampforwp_allow_homepage_as_blog');
-	}
+	add_action('amp_init','ampforwp_allow_homepage_as_blog');
 	function ampforwp_allow_homepage_as_blog() {
 		add_action( 'wp', 'ampforwp_static_blog' , 11 );
 	}
@@ -359,7 +357,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
  		if ( 'page' == get_option( 'show_on_front') && is_front_page() && $get_front_page_reading_settings && $get_amp_homepage_support ){
 			$modify_canonical = true;
 		}
-		if ( true == $modify_canonical && $page >= 2 && is_page() ) {
+		if ( true == $modify_canonical && $page >= 2 && is_page() && false == ampforwp_get_setting('amp-core-end-point') ) {
 			add_filter('ampforwp_modify_rel_canonical','ampforwp_modify_amphtml_static_blog');
 		}
 	}
