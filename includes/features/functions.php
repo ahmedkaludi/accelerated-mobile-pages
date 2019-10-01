@@ -1286,7 +1286,9 @@ if(!function_exists('ampforwp_sassy_share_icons')){
                 if(isset($sassy_options['horizontal_re_providers'])){
                     $share_icons = $sassy_options['horizontal_re_providers'];
                     foreach($share_icons as $i){
-                        $total_share += round($share_counts[$i]);
+                        if(isset($share_counts[$i])){
+                            $total_share += round($share_counts[$i]);
+                        }
                     }
                 }
                 $_append = '<a class="heateor_sss_amp heateor-total-share-count">
