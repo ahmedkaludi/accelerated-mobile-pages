@@ -1040,3 +1040,9 @@ function ampforwp_non_amp_gallery($matches){
 <a class="nonamp-next" onclick="plusSlides(1)">&#10095;</a></ul>';
 	return $imagesHTML;
 }
+
+add_filter('ampforwp_the_content_last_filter','ampforwp_remove_trbidi_attribute');
+function ampforwp_remove_trbidi_attribute($content_buffer){  
+   	$content_buffer = str_replace('trbidi="on"', '', $content_buffer);
+    return $content_buffer; 
+}
