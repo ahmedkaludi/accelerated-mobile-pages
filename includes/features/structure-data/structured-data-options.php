@@ -200,7 +200,7 @@ if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
                 $extra_fields = array_merge($extra_fields, $custom_fields);
             }
         }
-        array_splice($fields, 3, 0,  $extra_fields);
+        array_splice($fields, 5, 0,  $extra_fields);
         return $fields;
      }
 }

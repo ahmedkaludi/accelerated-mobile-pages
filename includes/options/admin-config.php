@@ -1188,7 +1188,7 @@ $eu_iso_codes = array(
 
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
-$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Upgrade to PRO</a> ';
+$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="#" id="ampforwp-prem-upg-to">Upgrade to PRO</a> ';
 if($ampforwp_nameOfUser!=""){
     $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".$ampforwp_nameOfUser."</span> <a class='' href='".admin_url('admin.php?page=amp_options&tabid=opt-go-premium')."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
@@ -1464,6 +1464,23 @@ Redux::setArgs( "redux_builder_amp", $args );
             $amp_ux_icon = "amp-ux-warning";
         }
     }
+
+    $is_aafwp = "not-exist";
+    $aafwp_active_url = '';
+    $aafwp_default = 0;
+    $ampforwp_admin_url = admin_url();
+    $adfwp_a_open = "";
+    $adfwp_a_close = "";
+ 
+    $adv_data_href = 'data-href="ampforwp-ux-advertisement-section"';
+    if(function_exists('adsforwp_check_plugin')){
+        $plugin_file = "ads-for-wp/ads-for-wp.php";
+        $is_sdfwp = "active";
+        $aafwp_active_url = $ampforwp_admin_url.'admin.php?page=adsforwp&amp;tab=general&amp;reference=ampforwp';
+        $adfwp_a_open = '<a href="'.$aafwp_active_url.'" target="_blank">';
+        $adfwp_a_close = '</a>';
+        $adv_data_href = 'data-href=""';
+    }
     Redux::setSection( $opt_name, array(
             'title'      => esc_html__( 'Setup', 'accelerated-mobile-pages' ),
             'id'         => 'ampforwp-new-ux',
@@ -1510,14 +1527,16 @@ Redux::setArgs( "redux_builder_amp", $args );
                                         <h4 class="amp-ux-elem-title">Privacy Settings</h4>
                                         <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-privacy-section","button","CHOOSE").'</div>
                                     </div>
-                                </div>
-                                <div class="amp-ux-section-field" data-href="ampforwp-ux-advertisement-section">
+                                </div>'.
+                                $adfwp_a_open.
+                                '<div class="amp-ux-section-field" '.$adv_data_href.'>
                                     <div class="amp-ux-elem-field">
                                         <h4 class="amp-ux-elem-title">Advertisement</h4>
                                         <div class="amp-ux-elem-but-block">View Setup</div>
                                     </div>
-                                </div> 
-                                <div class="amp-ux-section-field" data-href="ampforwp-ux-thirdparty-section">
+                                </div>'.
+                                 $adfwp_a_close.
+                                '<div class="amp-ux-section-field" data-href="ampforwp-ux-thirdparty-section">
                                     <div class="amp-ux-elem-field">
                                         <h4 class="amp-ux-elem-title">3rd Party Compatibility</h4>
                                         <div class="amp-ux-elem-but-block">'.ampforwp_generate_ux_admin_button("ampforwp-ux-thirdparty-section","label","View List").'</div>
@@ -2703,12 +2722,18 @@ Redux::setSection( $opt_name, array(
 
  // Hide AMP Bulk Tools
 Redux::setSection( $opt_name, array(
-   'title'      => esc_html__( 'Hide AMP Bulk Tools', 'accelerated-mobile-pages' ),
+   'title'      => esc_html__( 'Tools', 'accelerated-mobile-pages' ),
    'id'         => 'hide-amp-section',
    'subsection' => true,
-   'desc'       => 'Here are some Advanced options to help you exclude AMP from your prefered pages',
    'fields'     => array(
-
+                        array(
+                                   'id' => 'hide-amp-bulk-tools',
+                                   'type' => 'section',
+                                   'title' => esc_html__('Hide AMP Bulk Tools', 'accelerated-mobile-pages'),
+                                   'indent' => true,
+                                   'layout_type' => 'accordion',
+                                   'accordion-open'=> 1,
+                        ),
                         array(
                            'id'       => 'amp-pages-meta-default',
                            'type'     => 'select',
@@ -8068,7 +8093,7 @@ else{
 
 if(!ampforwp_check_extensions()){
     Redux::setSection( $opt_name, array(
-        'title'      => esc_html__( 'Free vs Pro', 'accelerated-mobile-pages' ),
+        'title'      => esc_html__( 'Upgrade to Pro', 'accelerated-mobile-pages' ),
         'id'         => 'opt-choose',
         'subsection' => false,
        'desc' => $freepro_listing,
@@ -8076,16 +8101,7 @@ if(!ampforwp_check_extensions()){
     ) );
 }
 
-if(!ampforwp_check_extensions()){
-// Priority Support
-    Redux::setSection( $opt_name, array(
-        'title'      => esc_html__( 'Fix AMP Errors', 'accelerated-mobile-pages' ),
-        'id'         => 'opt-go-premium-support',
-        'subsection' => false,
-        'desc' => '        <a href="http://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-support-banner" src="'.AMPFORWP_IMAGE_DIR . '/priority-support-banner.png" width="345" height="500" /></a>',
-        'icon' => 'el el-hand-right',
-    ) );
-}
+if(function_exists('ampforwp_plugin_supporter_activator')){
 if(!function_exists('ampforwp_create_controls_for_plugin_manager')){
 // Plugin Manager
     Redux::setSection( $opt_name, array(
@@ -8118,6 +8134,7 @@ if(!function_exists('ampforwp_create_controls_for_plugin_manager')){
            ),
         )        
 ) );
+}
 }
 Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extensions/demolink_image_select' );
 /*

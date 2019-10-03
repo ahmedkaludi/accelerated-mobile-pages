@@ -1012,13 +1012,48 @@ jQuery(document).ready(function($) {
             $(".ux-setup-icon").addClass("amp-ux-warning-okay");
         }
     }
+
+    $("#ampforwp-prem-upg-to").click(function(){
+        $(".redux-group-tab-link-a").each(function(){
+            var id = $(this).attr('data-key');
+            var thischildelem = $(this).children('.group_title').html();
+            if(thischildelem.toLowerCase()=='upgrade to pro'){
+                $("#"+id+"_section_group_li").click();
+                $("#"+id+"_section_group_li_a").click();
+                return false;
+            }
+        });
+    }); 
+
     $("#ampforwp-goto-analytics").click(function(){
-        $("#2_section_group_li").click();
-        $("#9_section_group_li_a").click();
-    });
+        $(".redux-group-tab-link-a").each(function(){
+            var id = $(this).attr('data-key');
+            var thischildelem = $(this).children('.group_title').html();
+            var par = 2;
+            if(thischildelem.toLowerCase()=="settings"){
+                par = id;
+            }
+            if(thischildelem.toLowerCase()=='analytics'){
+                $("#"+par+"_section_group_li").click();
+                $("#"+id+"_section_group_li_a").click();
+                return false;
+            }
+        });
+    }); 
     $("[data-href=ampforwp-ux-advertisement-section]").click(function(){
-        $("#2_section_group_li").click();
-        $("#4_section_group_li_a").click();
+         $(".redux-group-tab-link-a").each(function(){
+            var id = $(this).attr('data-key');
+            var thischildelem = $(this).children('.group_title').html();
+            var par = 2;
+            if(thischildelem=="Settings"){
+                par = id;
+            }
+            if(thischildelem=='Advertisement'){
+                $("#"+par+"_section_group_li").click();
+                $("#"+id+"_section_group_li_a").click();
+                return false;
+            }
+        });
     });
     // Website type
     $('#ampforwp-ux-select').on('change', function(e){
@@ -1279,21 +1314,22 @@ window.addEventListener("load", function (e) {
     var list = document.getElementsByClassName("amp-ux-section-field");
     for (var i = 0; i < list.length; i++) {
         // list[i] is a node with the desired class name
-        var attr = list[i].getAttribute('data-href');
-        if(attr!='ampforwp-ux-advertisement-section'){
-            iconElem = document.getElementsByClassName("amp-ux-section-field")[i];
-            
-            var table = $('table[data-id="'+attr+'"]');
-            if( ! table.hasClass(attr) ){
-                table.addClass(attr);
+        if(list[i].getAttribute('data-href')){
+            var attr = list[i].getAttribute('data-href');
+            if(attr!='ampforwp-ux-advertisement-section'){
+                iconElem = document.getElementsByClassName("amp-ux-section-field")[i];
+                var table = $('table[data-id="'+attr+'"]');
+                if( ! table.hasClass(attr) ){
+                    table.addClass(attr);
+                }
+                var div = $('div[id="'+attr+'"]');
+                if( ! div.hasClass(attr) ){
+                    div.addClass(attr);
+                }
+                drawerElem = document.getElementsByClassName(attr)[0];
+                drawer = new Drawer(drawerElem);
+                drawer.setDrawerIcon(new DrawerIcon(iconElem));
             }
-            var div = $('div[id="'+attr+'"]');
-            if( ! div.hasClass(attr) ){
-                div.addClass(attr);
-            }
-            drawerElem = document.getElementsByClassName(attr)[0];
-            drawer = new Drawer(drawerElem);
-            drawer.setDrawerIcon(new DrawerIcon(iconElem));
         }
     }
     //Use methods
@@ -1768,6 +1804,7 @@ function DrawerIcon(icon) {
 
 
     $('.ampforwp_install_ux_plugin').click(function(e){
+        $(".amp-ux-loader").show();
         var self = $(this);
         self.parent('.ios7-switch').html('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
         var nonce = self.attr('data-secure');
@@ -1835,6 +1872,7 @@ function DrawerIcon(icon) {
                         var res_url = ampforwp_generate_plugin_ulr(response.redirect_url);
                         $('.amp-ux-ext-pwafwp').html(res_url);
                         $("[required=amp-ux-ext-pwafwp]").addClass("hide");
+                        $(".amp-ux-loader").hide();
                     }else if(self.attr('id')=='amp-ux-ext-ssd'){
                         msgplug = 'Structure Data';
                         //Import Data
@@ -1847,6 +1885,19 @@ function DrawerIcon(icon) {
                                 var res_url = ampforwp_generate_plugin_ulr(response.redirect_url);
                                 $('.amp-ux-ext-ssd').html(res_url);
                                 $("[required=amp-ux-ext-ssd]").addClass("hide");
+                                $("#section-ampforwp-sd_1").hide();
+                                $("#section-table-ampforwp-sd_1").hide();
+                                $("#section-ampforwp-sd_2").hide();
+                                $("#section-table-ampforwp-sd_2").hide();
+                                var std_str = 'Thank you for upgrading the Structured data'+
+                                                '<div class="row">'+
+                                                    '<div class="col-1">'+
+                                                        '<a href="'+response.redirect_url+'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Structure Data settings</p></div></a>'+
+                                                         '&nbsp;<a href="https://ampforwp.com/tutorials/article/what-is-the-structured-data-update-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>'+
+                                                    '</div>'+
+                                                '</div>';
+                                $(".ampforwp-st-data-update").html(std_str);
+                                $(".amp-ux-loader").hide();
                             }
                         });
                         }else if(self.attr('id')=='amp-ux-ext-afwp'){
@@ -1862,6 +1913,38 @@ function DrawerIcon(icon) {
                                 var res_url = ampforwp_generate_plugin_ulr(response.redirect_url);
                               $('.amp-ux-ext-afwp').html(res_url);
                               $("[required=amp-ux-ext-afwp]").addClass("hide");
+
+                              var afwp_str = '<div id="section-ampforwp-ads-section" class="redux-section-field redux-field adsactive redux-section-indent-start  afw-accordion-header afw-accordion-tab-open">'+
+                                                '<h3 style="margin-top: 20px;">Introducing Ads for WP</h3>'+
+                                            '</div>'+
+                                            '<table id="section-table-ampforwp-ads-section" data-id="ampforwp-ads-section" class="form-table form-table-section no-border form-table-section-indented" style="display: inline-table;">'+
+                                                '<tbody>'+
+                                                    '<tr>'+
+                                                        '<th></th>'+
+                                                        '<td id="5d95bd8ed5093"></td>'+
+                                                    '</tr>'+
+                                                    '<tr class="adsactive">'+
+                                                        '<td colspan="2">'+
+                                                            '<fieldset id="redux_builder_amp-ampforwp-ads-module" class="redux-field-container redux-field redux-field-init redux-container-raw redux_remove_th" data-id="ampforwp-ads-module" data-type="raw">'+
+                                                                '<div class="ampforwp-ads-data-update">'+
+                                                                    '<input type="hidden" value="admin.php?page=adsforwp&amp;tab=general&amp;reference=ampforwp" class="ampforwp-activation-url" id="active">'+
+                                                                    'Thank you for upgrading the Ads for WP'+
+                                                                    '<div class="row"><div>'+
+                                                                    '<a href="http://localhost/wasweb/wp-admin/edit.php?post_type=adsforwp">'+
+                                                                        '<div class="ampforwp-recommendation-btn updated-message">'+
+                                                                            '<p>Go to Ads for WP settings</p>'+
+                                                                        '</div>'+
+                                                                    '</a>&nbsp;<br>'+
+                                                                    '<a href="https://ampforwp.com/tutorials/article/what-is-ads-for-wp-update-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>'+
+                                                                '</div>'+
+                                                            '</fieldset>'+
+                                                        '</td>'+
+                                                    '</tr>'+
+                                                '</tbody>'+
+                                            '</table>';
+                                        $(".redux-group-tab.ampforwp_new_features.amp-ads").html(afwp_str);
+                                      
+                                        $(".amp-ux-loader").hide();
                             }
                         });
                     }
@@ -1918,7 +2001,11 @@ function DrawerIcon(icon) {
                         $("body").css({'overflow':'hidden'});
                     },510);
         } 
-        
+        if(amp_option_panel_view==1){
+           setTimeout(function(){
+             $("#1_section_group_li_a").click();
+           },100);
+        }
     }
     amp_option_panel_view_func();
 
