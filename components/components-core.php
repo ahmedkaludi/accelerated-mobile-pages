@@ -400,6 +400,7 @@ function amp_header_core(){
 		</head>
 		<body <?php ampforwp_body_class($bodyClass); ?>>
 		<?php do_action('amp_start', $thisTemplate); ?>
+		<?php do_action('ampforwp_admin_menu_bar_front'); ?>
 		<?php do_action('ampforwp_body_beginning', $thisTemplate);  
 }
 
