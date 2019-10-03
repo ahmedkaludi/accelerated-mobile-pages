@@ -3,6 +3,8 @@
 add_filter('ampforwp_the_content_last_filter','ampforwp_minify_html_output');
 function ampforwp_minify_html_output($content_buffer){
     global $redux_builder_amp;
+    //Removed trbidi attribute #3687
+    $content_buffer = str_replace('trbidi="on"', '', $content_buffer);
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
     }
