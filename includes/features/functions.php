@@ -1250,7 +1250,7 @@ if(!function_exists('ampforwp_set_featured_image')){
     function ampforwp_set_featured_image($amp_html='',$caption ='',$f_vid=''){
         $class = "amp-wp-article-featured-image wp-caption";
         if(ampforwp_get_setting('amp-design-selector')==4){
-            $class = "amp-featured-image ".esc_html($f_vid);
+            $class = "amp-featured-image ".esc_attr($f_vid);
         }
     ?>
         <figure class="<?php echo $class;?>"> <?php  
