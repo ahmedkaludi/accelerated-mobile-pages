@@ -1476,7 +1476,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     if(function_exists('adsforwp_check_plugin')){
         $plugin_file = "ads-for-wp/ads-for-wp.php";
         $is_sdfwp = "active";
-        $aafwp_active_url = $ampforwp_admin_url.'admin.php?page=adsforwp&amp;tab=general&amp;reference=ampforwp';
+        $aafwp_active_url = $ampforwp_admin_url.'edit.php?post_type=adsforwp';
         $adfwp_a_open = '<a href="'.$aafwp_active_url.'" target="_blank">';
         $adfwp_a_close = '</a>';
         $adv_data_href = 'data-href=""';
