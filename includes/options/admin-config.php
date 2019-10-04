@@ -6036,6 +6036,19 @@ $single_page_options = array(
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
         array(
+            'id'        =>'amp-swift-recentpost-excerpt-len',
+            'class' => 'child_opt',
+            'type'      =>'text',
+            'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
+            'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
+            'required' => array(
+             array('amp-design-selector', '=' , '4'),
+             array('amforwp-recentpost-excerpt-switch', '=' , '1'),
+            ),
+            'validate'  =>'numeric',
+            'default'   =>'20',
+        ),
+        array(
                     'id'       => 'ampforwp-recentpost-posts-link',
                     'type'     => 'switch',
                     'class' => 'child_opt',
@@ -6211,6 +6224,28 @@ $single_page_options = array(
                         'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop'),
                         'required' => array('ampforwp-design3-recent-posts' , '=' , '1'),
                 ),
+            array(
+                    'id'        => 'amforwp-design3-recentpost-excerpt-switch',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Excerpt', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop'),
+                    'required' => array('ampforwp-design3-recent-posts' , '=' , '1'),
+            ),
+             array(
+                            'id'        =>'amp-design3-recentpost-excerpt-len',
+                            'class' => 'child_opt',
+                            'type'      =>'text',
+                            'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
+                            'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
+                            'required' => array(
+                             array('amp-design-selector', '=' , '3'),
+                             array('amforwp-design3-recentpost-excerpt-switch', '=' , '1'),
+                            ),
+                            'validate'  =>'numeric',
+                            'default'   =>'20',
+                    ),   
             array(
                         'id'       => 'ampforwp-design3-number-of-recent-posts',
                         'type'     => 'text',
