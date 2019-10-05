@@ -102,11 +102,6 @@ function ampforwp_swift_social_icons(){
 								</a>
 							</li>
 							<?php } ?>
-							<?php if($redux_builder_amp['enable-single-gplus-share']){?>
-							<li>
-								<a class="s_gp" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://plus.google.com/share?url=<?php echo esc_url($amp_permalink); ?>" aria-label="google plus share messenger"></a>
-							</li>
-							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-email-share']){?>
 							<li>
 								<a class="s_em" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="mailto:?subject=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&body=<?php echo esc_url($amp_permalink); ?>" aria-label="email share"></a>
@@ -165,11 +160,6 @@ function ampforwp_swift_social_icons(){
 							<?php if($redux_builder_amp['enable-single-telegram-share']){?>
 							<li>
 								<a class="s_tg" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://telegram.me/share/url?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>" aria-label="telegram share"></a>
-							</li>
-							<?php } ?>
-							<?php if($redux_builder_amp['enable-single-digg-share']){?>
-							<li>
-								<a class="s_dg" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="http://digg.com/submit?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>" aria-label="digg share"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-stumbleupon-share']){?>

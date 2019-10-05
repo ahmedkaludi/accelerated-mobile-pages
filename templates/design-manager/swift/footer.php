@@ -110,11 +110,6 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 			</a>
 		</li>
 		<?php } ?>
-		<?php if($redux_builder_amp['enable-single-gplus-share']){?>
-		<li>
-			<a title="google plus share" class="s_gp" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://plus.google.com/share?url=<?php echo esc_url($amp_permalink); ?>"></a>
-		</li>
-		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-email-share']){?>
 		<li>
 			<a title="email" class="s_em" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="mailto:?subject=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&body=<?php echo esc_url($amp_permalink); ?>"></a>
@@ -173,11 +168,6 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 		<?php if($redux_builder_amp['enable-single-telegram-share']){?>
 		<li>
 			<a title="telegram share" class="s_tg" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://telegram.me/share/url?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
-		</li>
-		<?php } ?>
-		<?php if($redux_builder_amp['enable-single-digg-share']){?>
-		<li>
-			<a title="digg share" class="s_dg" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="http://digg.com/submit?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-stumbleupon-share']){?>

@@ -326,9 +326,6 @@ if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 <?php if ( true == ampforwp_get_setting('enable-single-tumblr-share') ) { ?>
 .amp-social-tumblr{background:#35465c}
 <?php } ?>
-<?php if ( true == ampforwp_get_setting('enable-single-digg-share') ) { ?>
-.amp-social-digg{background:#005be2}
-<?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-stumbleupon-share') ) { ?>
 .amp-social-stumbleupon{background:#eb4924}
 <?php } ?>
@@ -349,9 +346,6 @@ if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-twitter-share') ) { ?>
 .amp-social-twitter{background:#1da1f2}
-<?php } ?>
-<?php if ( true == ampforwp_get_setting('enable-single-gplus-share') ) { ?>
-.amp-social-gplus{background:#dd4b39}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-email-share') ) { ?>
 .amp-social-email{background:#000000}
