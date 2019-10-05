@@ -310,7 +310,7 @@ function amp_loop_title($data=array()){
 		$tag = $data['tag'];
 	}
 	// if $data is in key & value pair
-	$data_val = $data_attr = $attr_val = '';
+	$data_val = $data_attr = $attr_val = $titleurl = '';
 	foreach ($data as $key => $value) {
 		$data_attr .= $key;
 		if( $key != 'attributes' && $key != 'tag' ){
@@ -340,9 +340,14 @@ function amp_loop_title($data=array()){
 			}
 		} 
 	}
+	if(is_archive() && true == ampforwp_get_setting('ampforwp-archive-support-link')){
+		$titleurl = get_permalink();
+	}else{
+		$titleurl = amp_loop_permalink();
+	}
 	echo '<'.esc_attr($tag).' '.$attr_val.' '.$data_val.'>';
 		if(!isset($data['link']) ){
-			echo '<a href="'. esc_url(amp_loop_permalink(true)) .'">';
+			echo '<a href="'. esc_url($titleurl) .'">';
 		}
 	echo the_title('','',false);
 	

@@ -2848,6 +2848,14 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => 'Enable this option when /amp/ is giving 404 after resaving the permalink settings.',
                         'desc'     => esc_html__( 'Making endpoints to ?amp will help you get the amp in tricky setups with taxonomies & post typs. Question mark in the url will not make any difference in the SEO.' ),
                     ),
+                     array(
+                        'id'       => 'ampforwp-archive-support-link',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Archive Links to Non-AMP', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable this option if you want to link your archive posts to non-amp', 'accelerated-mobile-pages'),
+                        'default'  => 0,
+                        'required' => array('ampforwp-archive-support', '=' , '1' ),
+                    ),
                     array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',

@@ -7255,6 +7255,9 @@ function ampforwp_recentpost_link_to_nonamp($image_link_data){
 	}else{
 		$image_link_data['image_link'] = ampforwp_url_controller( get_permalink() ) ;
 	}
+	if( is_archive() && true == ampforwp_get_setting('ampforwp-archive-support-link') ){
+		$image_link_data['image_link'] = get_permalink();
+	}
 	return $image_link_data;
 }
 #3596 link to nonamp option on title for recent posts
