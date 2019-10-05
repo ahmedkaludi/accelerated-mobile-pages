@@ -1540,7 +1540,9 @@ function ampforwp_yoast_opengraph_desc($desc){
 }
 
 function ampforwp_yoast_the_excerpt(){
-	add_filter('get_the_excerpt','ampforwp_yoast_excerpt',9);
+	if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
+		add_filter('get_the_excerpt','ampforwp_yoast_excerpt',9);
+	}
 }
 function ampforwp_yoast_excerpt($desc){
 	 if(ampforwp_is_front_page()){
