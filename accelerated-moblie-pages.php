@@ -928,21 +928,20 @@ if(!function_exists('ampforwp_get_setup_info')){
            	
             $analytics_txt = "";
             $analytic_arr = array();
-            if($ga_field!="UA-XXXXX-Y"){$analytic_arr[]="Google Analytics";}
-            if($amp_fb_pixel_id!=""){$analytic_arr[]="Facebook Pixel";}
-            if($sa_feild!="SEGMENT-WRITE-KEY"){$analytic_arr[]="Segment Analytics";}
-            if($pa_feild!="#"){ $analytic_arr[]="Matomo Analytics";}
-            if($quantcast_c!=""){ $analytic_arr[]="Quantcast Measurement";}
-            if($comscore_c1!="" && $comscore_c1!=""){$analytic_arr[]="comScore";}
-            if($eam_c!="#"){$analytic_arr[]="Effective Measure";}
-            if($sc_c!="#"){$analytic_arr[]="StatCounter";}
-            if($histats_c!=""){$analytic_arr[]="Histats Analytics";}
-            if($yemdex_c!=""){$analytic_arr[]="Yandex Metrika";}
-            if($chartbeat_c!=""){$analytic_arr[]="Chartbeat Analytics";}
-            if($alexa_c!=""){$analytic_arr[]="Alexa Metrics";}
-            if($alexa_c!="" && $alexa_d!=""){$analytic_arr[]="Alexa Metrics";}
-            if($afs_c!=""){$analytic_arr[]="AFS Analytics";}
-            if($clicky_side_id!=""){$analytic_arr[]="Clicky Analytics";}
+            if(ampforwp_get_setting('ampforwp-ga-switch') && $ga_field!="UA-XXXXX-Y"){$analytic_arr[]="Google Analytics";}
+            if(ampforwp_get_setting('amp-fb-pixel') && $amp_fb_pixel_id!=""){$analytic_arr[]="Facebook Pixel";}
+            if(ampforwp_get_setting('ampforwp-Segment-switch') && $sa_feild!="SEGMENT-WRITE-KEY"){$analytic_arr[]="Segment Analytics";}
+            if(ampforwp_get_setting('ampforwp-Piwik-switch') && $pa_feild!="#"){ $analytic_arr[]="Matomo Analytics";}
+            if(ampforwp_get_setting('ampforwp-Quantcast-switch') && $quantcast_c!=""){ $analytic_arr[]="Quantcast Measurement";}
+            if(ampforwp_get_setting('ampforwp-comScore-switch') && $comscore_c1!="" && $comscore_c1!=""){$analytic_arr[]="comScore";}
+            if(ampforwp_get_setting('ampforwp-Effective-switch') && $eam_c!="#"){$analytic_arr[]="Effective Measure";}
+            if(ampforwp_get_setting('ampforwp-StatCounter-switch') && $sc_c!="#"){$analytic_arr[]="StatCounter";}
+            if(ampforwp_get_setting('ampforwp-Histats-switch') && $histats_c!=""){$analytic_arr[]="Histats Analytics";}
+            if(ampforwp_get_setting('ampforwp-Yandex-switch') && $yemdex_c!=""){$analytic_arr[]="Yandex Metrika";}
+            if(ampforwp_get_setting('ampforwp-Chartbeat-switch') && $chartbeat_c!=""){$analytic_arr[]="Chartbeat Analytics";}
+            if(ampforwp_get_setting('ampforwp-Alexa-switch') && $alexa_c!="" && $alexa_d!=""){$analytic_arr[]="Alexa Metrics";}
+            if(ampforwp_get_setting('ampforwp-afs-analytics-switch') && $afs_c!=""){$analytic_arr[]="AFS Analytics";}
+            if(ampforwp_get_setting('amp-clicky-switch') && $clicky_side_id!=""){$analytic_arr[]="Clicky Analytics";}
             $ux_content = implode(", ", $analytic_arr);
 		}else if($ux_option=="ampforwp-ux-privacy-section"){
 			$ux_cookie_enable = ampforwp_get_setting('amp-enable-notifications');

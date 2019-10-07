@@ -5,7 +5,7 @@ $pages = get_pages();
 foreach ($pages as $page ) {
 	$options[$page->ID] = $page->post_title;
 }
-$analytics_options = array('ampforwp-ga-switch'=>'Google Analytics','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics');
+$analytics_options = array(''=>'Select Analytics Type','ampforwp-ga-switch'=>'Google Analytics','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics');
 $analytics_default_option = ampforwp_get_setting('amp-analytics-select-option');
 $analytics_default = 'ampforwp-ga-switch';
 switch ($analytics_default_option) {
@@ -120,6 +120,17 @@ $amp_ux_loader = array(
 						'field_data'=>array('title'=>'','class'=>'','id'=>'','default'=>0)
 					);
 $amp_website_type = ampforwp_get_setting('ampforwp-setup-ux-website-type');
+$analytics_txt = ampforwp_get_setup_info('ampforwp-ux-analytics-section');
+function ampforwp_check_analytics_setup($type = ''){
+	$check_analytics = explode(', ', $analytics_txt);
+   	if(in_array($type, $check_analytics)){
+   		return 1;
+   	}else{
+   		return 0;
+   	}
+}
+
+
 $amp_ux_fields = array(
 					array('field_type'=>'main_section_start', 'field_data'=>array('id'=>'amp-ux-main-section','class'=>'amp-ux-main-section')),
 					$amp_ux_loader,
@@ -182,44 +193,150 @@ $amp_ux_fields = array(
 					array('field_type'=>'section_start',
 						'field_data'=>array('id'=>'ampforwp-ux-analytics-section','class'=>'section-1 ampforwp-ux-analytics-section')
 					),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-analytics-sub-section','class'=>'ampforwp-ux-sup-sub-section','default'=>1,'closable'=>0)
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Setup Analytics Tracking','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-google-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>1,'closable'=>1,'data-href'=>'ampforwp-ga-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Google Analytics','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-ga','class'=>'amp-ux-ga google-analytics analytics-text','required'=>array(),'data-text'=>'ga-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('ga-feild'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-fb-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Facebook Pixel'),'closable'=>1,'data-href'=>'amp-fb-pixel')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Facebook Pixel','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Facebook Pixel ID','id'=>'amp-ux-fp','class'=>'amp-ux-fp analytics-text','required'=>array(),'data-text'=>'amp-fb-pixel-id','default'=>ampforwp_get_setting('amp-fb-pixel-id'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-segment-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Segment Analytics'),'closable'=>1,'data-href'=>'ampforwp-Segment-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Segment Analytics','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Segment Write Key','id'=>'amp-ux-sw','class'=>'amp-ux-sw analytics-text','required'=>array(),'data-text'=>'sa-feild','element-class'=>'ux-label','default'=>ampforwp_get_setting('sa-feild'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-piwik-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Matomo Analytics'),'closable'=>1,'data-href'=>'ampforwp-Piwik-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Matomo (Piwik) Analytics','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-mp','class'=>'amp-ux-mp analytics-text','required'=>array(),'data-text'=>'pa-feild','element-class'=>'ux-label','default'=>ampforwp_get_setting('pa-feild'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-quantcast-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Quantcast Measurement'),'closable'=>1,'data-href'=>'ampforwp-Quantcast-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Quantcast Measurement','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-qm','class'=>'amp-ux-qm analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'amp-quantcast-analytics-code','default'=>ampforwp_get_setting('amp-quantcast-analytics-code'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-comscore-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('comScore'),'closable'=>1,'data-href'=>'ampforwp-comScore-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'comScore','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'C1','id'=>'amp-ux-cs-1','class'=>'amp-ux-cs analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'amp-comscore-analytics-code-c1','default'=>ampforwp_get_setting('amp-comscore-analytics-code-c1'))
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'C2','id'=>'amp-ux-cs-2','class'=>'amp-ux-cs analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'amp-comscore-analytics-code-c2','default'=>ampforwp_get_setting('amp-comscore-analytics-code-c2'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-effective-measure-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>0,'closable'=>ampforwp_check_analytics_setup('Effective Measure'),'data-href'=>'ampforwp-Effective-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Effective Measure','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-em','class'=>'amp-ux-em analytics-text','required'=>array(),'data-text'=>'eam-feild','element-class'=>'ux-label','default'=>ampforwp_get_setting('eam-feild'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-sc-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('StatCounter'),'closable'=>1,'data-href'=>'ampforwp-StatCounter-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'StatCounter','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-sc','class'=>'amp-ux-sc analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'sc-feild','default'=>ampforwp_get_setting('sc-feild'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-histats-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Histats Analytics'),'closable'=>1,'data-href'=>'ampforwp-Histats-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Histats Analytics','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','element-class'=>'ux-label','id'=>'amp-ux-ha','class'=>'amp-ux-ha analytics-text','required'=>array(),'data-text'=>'histats-field','default'=>ampforwp_get_setting('histats-field'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-yandex-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Yandex Metrika'),'closable'=>1,'data-href'=>'ampforwp-Yandex-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Yandex Metrika Analytics','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Yandex Metrika Analytics ID','id'=>'amp-ux-ym','class'=>'amp-ux-ym analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'amp-Yandex-Metrika-analytics-code','default'=>ampforwp_get_setting('amp-Yandex-Metrika-analytics-code'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-chartbeat-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Chartbeat Analytics'),'closable'=>1,'data-href'=>'ampforwp-Chartbeat-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Chartbeat Analytics','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','element-class'=>'ux-label','id'=>'amp-ux-ca','class'=>'amp-ux-ca analytics-text','required'=>array(),'data-text'=>'amp-Chartbeat-analytics-code','default'=>ampforwp_get_setting('amp-Chartbeat-analytics-code'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-alexa-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Alexa Metrics'),'closable'=>1,'data-href'=>'ampforwp-Alexa-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Alexa Metrics','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Account','id'=>'amp-ux-am-1','class'=>'amp-ux-am analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'ampforwp-alexa-account','default'=>ampforwp_get_setting('amp-Chartbeat-analytics-code'))
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Domain','id'=>'amp-ux-am-2','class'=>'amp-ux-am analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'ampforwp-alexa-domain','default'=>ampforwp_get_setting('ampforwp-alexa-domain'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-afs-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('AFS Analytics'),'closable'=>1,'data-href'=>'ampforwp-afs-analytics-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'AFS Analytics','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Website ID','id'=>'amp-ux-afs','class'=>'amp-ux-afs analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'ampforwp-afs-siteid','default'=>ampforwp_get_setting('ampforwp-afs-siteid'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-cl-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Clicky Analytics'),'closable'=>1,'data-href'=>'amp-clicky-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Clicky Analytics','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Clicky Site ID','id'=>'amp-ux-cl','class'=>'amp-ux-cl analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'clicky-site-id','default'=>ampforwp_get_setting('clicky-site-id'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-ano-analytics-section','class'=>'ampforwp-ux-sub-section','default'=>1,'closable'=>0)
+					),
 					array('field_type'=>'select',
-					'field_data'=>array('title'=>'Setup Analytics Tracking','class'=>'ampforwp-ux-analytics-select child_opt child_opt_arrow','id'=>'ampforwp-ux-analytics-select', 'options'=>$analytics_options,'default'=>$analytics_default,'data-href'=>ampforwp_get_setting('amp-analytics-select-option'),'data-href-id'=>'amp-ux-analytics-hidden')
+					'field_data'=>array('title'=>'Add more Analytics Tracking','class'=>'ampforwp-ux-analytics-more child_opt child_opt_arrow','id'=>'ampforwp-ux-analytics-more', 'options'=>$analytics_options,'default'=>'','data-href'=>'','data-href-id'=>'amp-ux-analytics-more-hidden')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Your Tracking ID','id'=>'amp-ux-ga','class'=>'amp-ux-ga google-analytics analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-ga-switch'), 'data-href'=>'ampforwp-ga-switch','data-text'=>'ga-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('ga-feild'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Facebook Pixel ID','id'=>'amp-ux-fp','class'=>'amp-ux-fp analytics-text','required'=>array('ampforwp-ux-analytics-select','=','amp-fb-pixel'),'data-href'=>'amp-fb-pixel','data-text'=>'amp-fb-pixel-id','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('amp-fb-pixel-id'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'SEGMENT WRITE KEY','id'=>'amp-ux-sw','class'=>'amp-ux-sw analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-Segment-switch'),'data-href'=>'ampforwp-Segment-switch','data-text'=>'sa-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('sa-feild'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Your Matomo (Piwik) Analytics Tracking ID','id'=>'amp-ux-mp','class'=>'amp-ux-mp analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-Piwik-switch'),'data-href'=>'ampforwp-Piwik-switch','data-text'=>'pa-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('pa-feild'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Your Quantcast Measurement Tracking ID','id'=>'amp-ux-qm','class'=>'amp-ux-qm analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-Quantcast-switch'),'data-text'=>'amp-quantcast-analytics-code','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('amp-quantcast-analytics-code'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'C1','id'=>'amp-ux-cs-1','class'=>'amp-ux-cs analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-comScore-switch'),'data-href'=>'ampforwp-comScore-switch','data-text'=>'amp-comscore-analytics-code-c1','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('amp-comscore-analytics-code-c1'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'C2','id'=>'amp-ux-cs-2','class'=>'amp-ux-cs analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-comScore-switch'),'data-href'=>'ampforwp-comScore-switch','data-text'=>'amp-comscore-analytics-code-c2','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('amp-comscore-analytics-code-c2'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Your Effective Measure Tracking ID','id'=>'amp-ux-em','class'=>'amp-ux-em analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-Effective-switch'),'data-href'=>'ampforwp-Effective-switch','data-text'=>'eam-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('eam-feild'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Your StatCounter Tracking ID','id'=>'amp-ux-sc','class'=>'amp-ux-sc analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-StatCounter-switch'),'data-href'=>'ampforwp-StatCounter-switch','data-text'=>'sc-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('sc-feild'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Your Histats Analytics Tracking ID','id'=>'amp-ux-ha','class'=>'amp-ux-ha analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-Histats-switch'),'data-href'=>'ampforwp-Histats-switch','data-text'=>'histats-field','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('histats-field'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Yandex Metrika Analytics ID','id'=>'amp-ux-ym','class'=>'amp-ux-ym analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-Yandex-switch'),'data-href'=>'ampforwp-Yandex-switch','data-text'=>'amp-Yandex-Metrika-analytics-code','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('amp-Yandex-Metrika-analytics-code'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Your Tracking ID','id'=>'amp-ux-ca','class'=>'amp-ux-ca analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-Chartbeat-switch'),'data-href'=>'ampforwp-Chartbeat-switch','data-text'=>'amp-Chartbeat-analytics-code','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('amp-Chartbeat-analytics-code'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Account','id'=>'amp-ux-am-1','class'=>'amp-ux-am analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-Alexa-switch'),'data-href'=>'ampforwp-Alexa-switch','data-text'=>'ampforwp-alexa-account','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('amp-Chartbeat-analytics-code'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Domain','id'=>'amp-ux-am-2','class'=>'amp-ux-am analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-Alexa-switch'),'data-href'=>'ampforwp-Alexa-switch','data-text'=>'ampforwp-alexa-domain','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('ampforwp-alexa-domain'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Website ID','id'=>'amp-ux-afs','class'=>'amp-ux-afs analytics-text','required'=>array('ampforwp-ux-analytics-select','=','ampforwp-afs-analytics-switch'),'data-href'=>'ampforwp-afs-analytics-switch','data-text'=>'ampforwp-afs-siteid','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('ampforwp-afs-siteid'))
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Clicky Site ID','id'=>'amp-ux-cl','class'=>'amp-ux-cl analytics-text','required'=>array('ampforwp-ux-analytics-select','=','amp-clicky-switch'),'data-href'=>'amp-clicky-switch','data-text'=>'clicky-site-id','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('clicky-site-id'))
-					),
-					array('field_type'=>'notification', 'field_data'=>array('title'=>'More Analytics Settings','type'=>'warning','desc'=>sprintf( '<a href="javascript:void(0);" id="ampforwp-goto-analytics">%s</a>',esc_html__('View Advanced Settings','accelerated-mobile-pages' )))
-					),
-				
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
 					$amp_ux_common,
 					array('field_type'=>'section_end', 'field_data'=>array()),
 

@@ -1176,7 +1176,6 @@ jQuery(document).ready(function($) {
         saveChangesInRedux($(this));
     });
 
-    // Analytics
     $('.ampforwp-ux-analytics-select').on('change', function(){
         var id = $(this).val();
         var previousID = $('#amp-ux-analytics-hidden');
@@ -1195,7 +1194,43 @@ jQuery(document).ready(function($) {
     $('.analytics-text').on('change', function(){
         var id = $(this).attr('data-text');
         $('input[id="'+id+'"]').val($(this).val());
+        var data_href = $(this).closest('.ampforwp-ux-ana-sub').attr('data-href');
+        ampforwp_check_analytics(data_href);
     })
+     function ampforwp_check_analytics(data_href){
+        var ga_field       = $('#ga-feild').val();
+        var amp_fb_pixel_id = $('#amp-fb-pixel-id').val();
+        var sa_feild = $('#sa-feild').val();
+        var pa_feild = $('#pa-feild').val();
+        var quantcast_c = $('#amp-quantcast-analytics-code').val();
+        var comscore_c1 = $('#amp-comscore-analytics-code-c1').val();
+        var comscore_c1 = $('#amp-comscore-analytics-code-c2').val();
+        var eam_c = $('#eam-feild').val();
+        var sc_c = $('#sc-feild').val();
+        var histats_c = $('#histats-field').val();
+        var yemdex_c = $('#amp-Yandex-Metrika-analytics-code').val();
+        var chartbeat_c = $('#amp-Chartbeat-analytics-code').val();
+        var alexa_c = $('#ampforwp-alexa-account').val();
+        var alexa_d = $('#ampforwp-alexa-domain').val();
+        var afs_c = $('#ampforwp-afs-siteid').val();
+        var clicky_side_id = $('#clicky-site-id').val();
+        var analytics_txt = "";
+        if(ga_field!="UA-XXXXX-Y"){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(amp_fb_pixel_id!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(sa_feild!="SEGMENT-WRITE-KEY"){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(pa_feild!="#"){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(quantcast_c!=""){ analytic_arr.push("Quantcast Measurement");}
+        if(comscore_c1!="" && comscore_c1!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(eam_c!="#"){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(sc_c!="#"){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(histats_c!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(yemdex_c!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(chartbeat_c!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(alexa_c!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(alexa_c!="" && alexa_d!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(afs_c!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
+        if(clicky_side_id!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
+    }
     // Privacy Settings Section
     $('input[id="amp-ux-notice-switch"]').click(function(){
         if($(this).prop("checked") == true){
@@ -1267,6 +1302,15 @@ function ampforwp_check_required(value,required){
     }
 }
 
+$("#ampforwp-add-more-analytics").click(function(){
+    var analytics = $("#ampforwp-ux-analytics-more").val();
+    $("[data-href="+analytics+"]").removeClass('hide');
+});
+
+$('.ampforwp-ux-closable').click(function(){
+    $(this).parent('.ampforwp-ux-sub-section').addClass('hide');
+});
+
 // Required condition for each field
 $.each(new_data, function(key,value) {
         ampCheckRequired($('#'+value.field_data.id));
@@ -1293,7 +1337,7 @@ $.each(new_data, function(key,value) {
         },
         change: function() {
             // Handle change...
-            if($(this).hasClass("amp-ux-extension-switch")){
+            if($(this).hasClass("amp-ux-extension-switch") || $(this).hasClass("ampforwp-ux-analytics-more")){
                
             }else{
                 if ( 'checkbox' != $(this).attr('type') ){
@@ -1994,7 +2038,7 @@ function DrawerIcon(icon) {
                                         '<h2>Full</h2>'+
                                         '<div class="f-img"></div>'+
                                         '<p>For Experts</p>'+     
-                                    '</div>'+
+                                    '</div>'+   
                                 '</div>'+
                           '</div>'+ 
                         '</div>'+   

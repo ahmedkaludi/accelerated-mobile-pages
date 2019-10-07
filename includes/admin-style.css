@@ -1310,6 +1310,25 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     -webkit-background-size: 20px auto;
     background-size: 20px auto;
 }
+.ampforwp-ux-closable{
+    position: absolute;
+    right: 0px;
+    background: red;
+    padding: 0px 5px;
+    color: white;
+    cursor: pointer;
+}
+.ampforwp-ux-ana-sub{
+    border: 1px solid #e8e8e8;
+    padding: 0px 0px 12px 15px;
+    position: relative;
+    margin-bottom: 5px;
+}
+.ampforwp-ux-sup-sub-section{
+    max-height: 460px;
+    overflow: auto;
+    width: 107%;
+}
 .amp-ux-fly-icon.amp-ux-conf-upg-icon{
     background: none;
     background-image: url(../images/ux-upgrade.png);

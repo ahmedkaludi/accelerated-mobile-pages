@@ -31,7 +31,7 @@ class AMPforWP_Fields
 		}
 		if( !empty($fields) ){
 			if ( isset($fields['class']) ) {
-				if ( $type != 'section_start' && $type != 'section_end' && $type != 'main_section_start' && $type != 'main_section_end') {
+				if ( $type != 'section_start' && $type != 'section_end' && $type != 'main_section_start' && $type != 'main_section_end' && $type != 'sub_section_start' && $type != 'sub_section_end') {
 					$fields['class'] .= ' amp-ux-field';
 				}
 				$this->class = $fields['class'];
@@ -164,10 +164,25 @@ class AMPforWP_Fields
 		if ( 'section_end' == $type ) {
 			$this->section_end($fields);
 		}
+		// Sub Section Start
+		if ( 'sub_section_start' == $type ) {
+			$this->sub_section_start($fields);
+		}
+		// Sub Section end
+		if ( 'sub_section_end' == $type ) {
+			$this->sub_section_end($fields);
+		}
+		// Sub Section end
+		if ( 'heading' == $type ) {
+			$this->ampforwp_field_heading($fields);
+		}
 	}
 
+	public function ampforwp_field_heading($fields = array()){
+		echo '<div class="ux-field-container amp-ux-heading"><h2>'.$this->title.'</h2></div>';
+	}
 	public function ampforwp_field_loader($fields = array()){
-		echo '<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>';
+			echo '<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>';
 	}
 
 	// Main Section
@@ -191,8 +206,38 @@ class AMPforWP_Fields
 		if ( isset($fields['id']) ) {
 			$this->id = $fields['id'];
 		}
-		echo '<div id="'.esc_attr($this->id).'" class="drawer '.esc_attr($this->class).' amp-ux-section-container">
+		$dcls = 'drawer';
+		if($this->class=='ampforwp-ux-sub-section'){
+			$dcls = '';
+		}
+		echo '<div id="'.esc_attr($this->id).'" class="'.$dcls.' '.esc_attr($this->class).' amp-ux-section-container">
 				<div class="amp-fields-content">';
+	}
+	// Sub Section Start
+	public function sub_section_start($fields = array()){
+		if ( isset($fields['class']) ) {
+				$this->class = $fields['class'];
+		}
+		if ( isset($fields['id']) ) {
+			$this->id = $fields['id'];
+		}
+		$hide = '';
+		if ( isset($fields['default']) && $fields['default']==0) {
+				$hide = 'hide';
+		}
+		$data_href = "";
+		if ( isset($fields['data-href'])) {
+				$data_href = 'data-href="'.esc_attr($fields['data-href']).'"';
+		}
+		
+		echo '<div id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).' '.$hide.'" '.$data_href.'>';
+		if(isset($fields['closable']) && $fields['closable']==1){
+			echo '<div class="ampforwp-ux-closable '.esc_attr($this->id).'">X</div>';
+		}
+	}
+	// Section End
+	public function sub_section_end(){
+		echo '</div>';
 	}
 	// Section End
 	public function section_end(){
@@ -228,7 +273,13 @@ class AMPforWP_Fields
 			}
 			$output .= '<input type="hidden" value="'.esc_attr($this->default).'" id="'.esc_attr($hrf_id).'">';
 		}
-		$output .= '</select></div>';
+		$output .= '</select>';
+
+		if($this->id=="ampforwp-ux-analytics-more"){
+			$output .= '<span><button type="button" id="ampforwp-add-more-analytics" class="">Add</button></span>';
+		}
+
+		$output .= '</div>';
 		echo $output;
 	}
 	public function ampforwp_field_checkbox($fields){
