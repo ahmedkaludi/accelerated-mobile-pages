@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.3
-Stable tag: 0.9.98.13
+Stable tag: 0.9.98.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 0.9.98.14 (7th OCTOBER 2019) =
+* Fixed: Value Attribute Stripping out from the forms added in the content. #3689
+* Fixed: Remove AAWP from extension list #3735
+* Fixed: Data is not saving while Importing options from the json file #3667
+* Fixed: Debug warning #3723, #3729, #3730, #3731
 
 = 0.9.98.13 (27th SEPTEMBER 2019) =
 * Improvements: Need to create an option to clear the cache in tree shaking #3680

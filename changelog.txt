@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 0.9.98.14 (7th OCTOBER 2019) =
+* Fixed: Value Attribute Stripping out from the forms added in the content. #3689
+* Fixed: Remove AAWP from extension list #3735
+* Fixed: Data is not saving while Importing options from the json file #3667
+* Fixed: Debug warning #3723, #3729, #3730, #3731
+
 = 0.9.98.13 (27th SEPTEMBER 2019) =
 * Improvements: Need to create an option to clear the cache in tree shaking #3680
 * Improvements: Only get the required dashicons for Admin Toolbar #3707
