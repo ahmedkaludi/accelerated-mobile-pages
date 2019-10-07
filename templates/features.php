@@ -7144,30 +7144,33 @@ function ampforwp_head_css(){
 		  ) );
 		$user_info = $wp_admin_bar->get_node('user-info');
 		$title = $user_info->title;
-		$dom->loadHTML($title);
-		$anchors = $dom -> getElementsByTagName('img'); 
-		$src="";
-		foreach($anchors as $im){
-			$src = $im->getAttribute('src'); 
-		}
-		$authname = get_the_author_meta('nickname');
-		$title = '<span style="background: url('.esc_url($src).');background-repeat: no-repeat;height: 64px;position: absolute;width: 100px;top: 13px;left: -70px;" class="display-name"></span><span class="display-name">'.esc_html__($authname,'accelerated-mobile-pages').'<span>';
-		 $wp_admin_bar->add_menu( array(
-		        'id'        => 'user-info',
-		        'title'      => $title
-		  ) );
-		 $wp_admin_bar->add_menu( array(
-		        'id'        => 'wpseo-menu',
-		        'title'      => "SEO"
-		 ) );
+		if ( $title ) {
+			$dom->loadHTML($title);
+			$anchors = $dom -> getElementsByTagName('img'); 
+			$src="";
+			foreach($anchors as $im){
+				$src = $im->getAttribute('src'); 
+			}
 
-		$wp_admin_bar->remove_menu( 'ampforwp-view-amp' );
-		$url = ampforwp_get_non_amp_url();
-		$wp_admin_bar->add_node(array(
-					'id'    => 'ampforwp-view-non-amp',
-					'title' => 'View Non-AMP' ,
-					'href'  =>  esc_url($url)
-		));
+			$authname = get_the_author_meta('nickname');
+			$title = '<span style="background: url('.esc_url($src).');background-repeat: no-repeat;height: 64px;position: absolute;width: 100px;top: 13px;left: -70px;" class="display-name"></span><span class="display-name">'.esc_html__($authname,'accelerated-mobile-pages').'<span>';
+			 $wp_admin_bar->add_menu( array(
+			        'id'        => 'user-info',
+			        'title'      => $title
+			  ) );
+			 $wp_admin_bar->add_menu( array(
+			        'id'        => 'wpseo-menu',
+			        'title'      => "SEO"
+			 ) );
+
+			$wp_admin_bar->remove_menu( 'ampforwp-view-amp' );
+			$url = ampforwp_get_non_amp_url();
+			$wp_admin_bar->add_node(array(
+						'id'    => 'ampforwp-view-non-amp',
+						'title' => 'View Non-AMP' ,
+						'href'  =>  esc_url($url)
+			));
+		}
 	}
 	
 	function ampforwp_remove_admin_menu_front($wp){
