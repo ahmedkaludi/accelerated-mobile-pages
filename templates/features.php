@@ -689,6 +689,9 @@ function ampforwp_new_dir( $dir ) {
 				$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
 			}
 		}
+		if ( empty( $data['amp_component_scripts']['amp-image-lightbox'] ) ) {
+            $data['amp_component_scripts']['amp-image-lightbox'] = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
+        }
 		return $data;
 	}
 
