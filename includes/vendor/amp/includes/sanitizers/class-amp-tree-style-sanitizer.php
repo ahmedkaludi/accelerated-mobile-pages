@@ -1332,7 +1332,7 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 					$this->parse_import_stylesheet( $css_item, $css_list, $options )
 				);
 			} elseif ( $css_item instanceof AtRuleSet ) {
-				if ( ! in_array( $css_item->atRuleName(), $options['allowed_at_rules'], true ) ) {
+				if ( is_array($options['allowed_at_rules']) && ! in_array( $css_item->atRuleName(), $options['allowed_at_rules'], true ) ) {
 					$error     = array(
 						'code'    => self::ILLEGAL_AT_RULE_ERROR_CODE,
 						'at_rule' => $css_item->atRuleName(),
@@ -1349,7 +1349,7 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 					);
 				}
 			} elseif ( $css_item instanceof KeyFrame ) {
-				if ( ! in_array( 'keyframes', $options['allowed_at_rules'], true ) ) {
+				if (is_array($options['allowed_at_rules']) && ! in_array( 'keyframes', $options['allowed_at_rules'], true ) ) {
 					$error     = array(
 						'code'    => self::ILLEGAL_AT_RULE_ERROR_CODE,
 						'at_rule' => $css_item->atRuleName(),
@@ -1468,7 +1468,7 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 			$properties = $ruleset->getRules();
 			foreach ( $properties as $property ) {
 				$vendorless_property_name = preg_replace( '/^-\w+-/', '', $property->getRule() );
-				if ( ! in_array( $vendorless_property_name, $options['property_whitelist'], true ) ) {
+				if ( is_array($options['property_whitelist']) && ! in_array( $vendorless_property_name, $options['property_whitelist'], true ) ) {
 					$error     = array(
 						'code'           => 'illegal_css_property',
 						'property_name'  => $property->getRule(),
@@ -1667,7 +1667,7 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 				$properties = $rules->getRules();
 				foreach ( $properties as $property ) {
 					$vendorless_property_name = preg_replace( '/^-\w+-/', '', $property->getRule() );
-					if ( ! in_array( $vendorless_property_name, $options['property_whitelist'], true ) ) {
+					if ( is_array($options['property_whitelist']) && ! in_array( $vendorless_property_name, $options['property_whitelist'], true ) ) {
 						$error     = array(
 							'code'           => 'illegal_css_property',
 							'property_name'  => $property->getRule(),
