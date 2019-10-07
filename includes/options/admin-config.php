@@ -6047,14 +6047,14 @@ $single_page_options = array(
             'id'        =>'amp-swift-recentpost-excerpt-len',
             'class' => 'child_opt',
             'type'      =>'text',
-            'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
+            'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 15','accelerated-mobile-pages'),
             'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
             'required' => array(
              array('amp-design-selector', '=' , '4'),
              array('amforwp-recentpost-excerpt-switch', '=' , '1'),
             ),
             'validate'  =>'numeric',
-            'default'   =>'20',
+            'default'   =>'15',
         ),
         array(
                     'id'       => 'ampforwp-recentpost-posts-link',
@@ -6245,14 +6245,14 @@ $single_page_options = array(
                             'id'        =>'amp-design3-recentpost-excerpt-len',
                             'class' => 'child_opt',
                             'type'      =>'text',
-                            'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
+                            'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 15','accelerated-mobile-pages'),
                             'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
                             'required' => array(
                              array('amp-design-selector', '=' , '3'),
                              array('amforwp-design3-recentpost-excerpt-switch', '=' , '1'),
                             ),
                             'validate'  =>'numeric',
-                            'default'   =>'20',
+                            'default'   =>'15',
                     ),   
             array(
                         'id'       => 'ampforwp-design3-number-of-recent-posts',

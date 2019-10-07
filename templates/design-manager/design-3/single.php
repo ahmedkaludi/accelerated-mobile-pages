@@ -53,7 +53,7 @@
 			                    <a href="<?php echo esc_url( amp_loop_permalink() ); ?>" title="<?php echo esc_html( $title ); ?>" ><?php the_title(); ?></a>
 			                    <?php
                                    if( true == ampforwp_get_setting('amforwp-design3-recentpost-excerpt-switch') ){
-                                        $excep_len = 20;
+                                        $excep_len = 15;
                                         if(ampforwp_get_setting('amp-design3-recentpost-excerpt-len') && is_numeric(ampforwp_get_setting('amp-design3-recentpost-excerpt-len'))){
                                             $excep_len = ampforwp_get_setting('amp-design3-recentpost-excerpt-len');
                                         }
