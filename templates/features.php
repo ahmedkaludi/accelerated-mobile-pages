@@ -5194,7 +5194,9 @@ function ampforwp_default_logo($param=""){
 	$logo_alt 	= '';
 	$data 		= ampforwp_default_logo_data();
 	if( ! $data ) {
-		return $value;
+		if($param!="width" && $param!="height"){
+			return $value;
+		}
 	}
 
 	switch ($param) {
@@ -5210,6 +5212,9 @@ function ampforwp_default_logo($param=""){
 			}
 			else 
 				$value = $data['logo_size'][0];
+				if($value==""){
+					$value = 190;
+				}
 			break;
 		case 'height':
 			if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
@@ -5220,6 +5225,9 @@ function ampforwp_default_logo($param=""){
 			}
 			else
 				$value = $data['logo_size'][1];
+				if($value==""){
+					$value = 36;
+				}
 			break;
 		case 'alt':
 			if($logo_alt){

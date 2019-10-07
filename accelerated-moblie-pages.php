@@ -887,6 +887,14 @@ if(!function_exists('ampforwp_get_setup_info')){
 		$ux_content = "";
 		if($ux_option=="ampforwp-ux-website-type-section"){
 			$ux_content = ampforwp_get_setting('ampforwp-setup-ux-website-type');
+			if($ux_content=="NewsArticle" || $ux_content=="News"){
+				$ux_content="News";
+			}else if($ux_content=="BlogPosting" || $ux_content=="Blog"){
+				$ux_content="Blog";
+			}
+			if($ux_content==""){
+				$ux_content="Blog";
+			}
 		}else if($ux_option=="ampforwp-ux-need-type-section"){
 			$home   = ampforwp_get_setting('ampforwp-homepage-on-off-support');
             $posts  = ampforwp_get_setting('amp-on-off-for-all-posts');

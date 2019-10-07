@@ -86,8 +86,8 @@ switch ($analytics_default_option) {
     }
 $structure_data_options =  array(
 					                ''   => 'Select Option',
-					                'Blog'   => 'Blog',
-					                'News'   => 'News',
+					                'BlogPosting'   => 'Blog',
+					                'NewsArticle'   => 'News',
 					                'Recipe'        => 'Recipe',
 					                'Product'       => 'Product',
 					                'Video Object'   => 'Video Object',
@@ -114,6 +114,7 @@ $amp_ux_common = array(
 										)
 					);
 
+array_unshift($seo_options,"Select SEO");
 $amp_ux_loader = array(
 						'field_type'=>'loader', 
 						'field_data'=>array('title'=>'','class'=>'','id'=>'','default'=>0)
