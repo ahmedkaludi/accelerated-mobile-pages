@@ -41,7 +41,10 @@
 								</div>	
 							<?php }	// Swift Featured Image Type 2
 						} // Swift Featured Image ?>
-						<?php amp_content(); ?>
+					<?php 
+					// if you want to add anything before or after the content then you can use 'ampforwp_before_post_content' or 'ampforwp_after_post_content' hooks 	
+					amp_content(); 
+					?>
 					</div>
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
 						ampforwp_swift_social_icons(); 
