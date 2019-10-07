@@ -1980,17 +1980,21 @@ function DrawerIcon(icon) {
                       '<div class="m-dialog">'+
                         '<div class="m-content">'+     
                           '<div class="m-header">'+        
-                            '<h1 class="m-title">AMP OPTION VIEW TYPE</h1>'+
+                            '<h1 class="m-title">Choose Option Panel View</h1>'+
                           '</div>'+
                           '<div class="m-body">'+
-                                '<p class="mb-msg">Please select AMP Option view type as per your use experience.</p>'+
-                                '<div class="option-button b1">'+
-                                    '<h2 class="amp-opt-view" id="amp-opt-easy-view">EASY VIEW</h2>'+
-                                    '<p>For Beginers</p>'+
-                                '</div>'+
-                                '<div class="option-button b2">'+
-                                    '<h2 class="amp-opt-view" id="amp-opt-full-view">FULL VIEW</h2>'+
-                                    '<p>For Experts</p>'+     
+                                '<p class="mb-msg">What view would you prefer?</p>'+
+                                '<div class="e-f-btns">'+
+                                    '<div class="option-button b1 amp-opt-view" id="amp-opt-easy-view">'+
+                                        '<h2>Easy</h2>'+
+                                        '<div class="e-img"></div>'+
+                                        '<p>For Beginers</p>'+
+                                    '</div>'+
+                                    '<div class="option-button b2 amp-opt-view"  id="amp-opt-full-view">'+
+                                        '<h2>Full</h2>'+
+                                        '<div class="f-img"></div>'+
+                                        '<p>For Experts</p>'+     
+                                    '</div>'+
                                 '</div>'+
                           '</div>'+ 
                         '</div>'+   
