@@ -536,17 +536,6 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('table-of-content-plus-for-amp/table-of-content-plus-for-amp.php')? 1 : 2),
                         ),
-                        array(
-                            'name'=>'AAWP for AMP',
-                            'desc'=>'Automatically Adds Amazon Affiliates Compatibility to your AMP version',
-                            'img_src'=> AMPFORWP_IMAGE_DIR . '/click.png',
-                            'price'=>'$39',
-                            'url_link'=>'http://ampforwp.com/addons/aawp-for-amp/',
-                            'plugin_active_path'=> 'aawp-for-amp/aawp-for-amp.php',
-                            'item_name'=>'AAWP for AMP',
-                            'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(function_exists('aawp_for_amp_plugin_updater')? 1 : 2),
-                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
