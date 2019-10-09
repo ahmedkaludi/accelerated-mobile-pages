@@ -5063,10 +5063,7 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 			}
 		}
 		if( 1 == $redux_builder_amp['ampforwp-post-date-format'] ){
-			$time = get_the_time('U', get_the_ID() );
-			if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){
-					$time = get_the_modified_time('U', get_the_ID() );
-			}
+			$time = ampforwp_get_the_epoch();
 			$date = human_time_diff( $time, current_time('timestamp') );
 			if( $redux_builder_amp['ampforwp-post-date-format-text'] ){
 				$full_date = $redux_builder_amp['ampforwp-post-date-format-text'];
@@ -5077,10 +5074,7 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 		}
 	}
 	if(is_single() && 1 == $redux_builder_amp['ampforwp-post-date-format']){
-		$time = get_the_time('U', get_the_ID() );
-		if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){
-			$time = get_the_modified_time('U', get_the_ID() );
-		}
+		$time = ampforwp_get_the_epoch();
 		$date 		= human_time_diff( $time, current_time('timestamp') );
 		$full_date 	= human_time_diff( $time, current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago');
 		if( $redux_builder_amp['ampforwp-post-date-format-text'] ){
@@ -5093,6 +5087,27 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 	return $full_date;
 	}
 }
+
+if(!function_exists('ampforwp_get_the_epoch')){
+	function ampforwp_get_the_epoch(){
+		$time = get_the_time('U', get_the_ID());
+		if( 2 == ampforwp_get_setting('ampforwp-post-date-global') ){
+			$time = get_the_modified_time('U', get_the_ID() );
+		}
+		if(defined('ECWD_VERSION')){
+			global $ecwd_options;
+			$tz = $ecwd_options['time_zone'];
+			$ewwetz = new DateTime( get_the_time('c', get_the_ID()) );
+			if( 2 == ampforwp_get_setting('ampforwp-post-date-global') ){
+				$ewwetz = new DateTime( get_the_modified_time('c', get_the_ID()) );
+			}
+			$ewwetz->setTimezone(new DateTimeZone($tz));
+			$time = $ewwetz->format('U');
+		}
+		return $time;
+    }
+}
+
 
 // 99. Merriweather Font Management
 add_filter( 'amp_post_template_data', 'ampforwp_merriweather_font_management' );

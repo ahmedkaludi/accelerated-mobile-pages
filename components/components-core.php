@@ -603,22 +603,11 @@ function amp_date( $args=array() ) {
     	 $post_date =  get_the_date(). ' '. get_the_time();
     }else{
     	$epoch = get_the_time('U', get_the_ID() );
-    	if(defined('ECWD_VERSION')){
-    		global $ecwd_options;
-    		$tz = $ecwd_options['time_zone'];
-    		$ewwetz = new DateTime( get_the_time('c', get_the_ID()) );
-			$ewwetz->setTimezone(new DateTimeZone($tz));
-			$epoch = $ewwetz->format('U');
-    	}
        	$post_date = human_time_diff($epoch,current_time('timestamp') ) .' '. ampforwp_translation(ampforwp_get_setting('amp-translator-ago-date-text'),
                     'ago');
          
     }
-    $pdate = $post_date;
     $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
-    if(defined('ECWD_VERSION')){
-	   $post_date = $pdate;
-	}
    	if(isset($args['custom_format']) && $args['custom_format']!=""){
 	    $post_date = date($args['custom_format'],get_the_time('U', get_the_ID() ));
 	}
