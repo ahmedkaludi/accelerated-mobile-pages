@@ -1,4 +1,5 @@
 <?php
+namespace AMPforWP;
 /**
  * This is the class that sends all the data back to the home site
  * It also handles opting in and deactivation
@@ -10,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if( ! class_exists( 'Plugin_Usage_Tracker') ) {
+if( ! class_exists( 'Tracker') ) {
 	
-	class Plugin_Usage_Tracker {
+	class Tracker {
 		
 		private $wisdom_version = '1.2.0';
 		private $home_url = '';
