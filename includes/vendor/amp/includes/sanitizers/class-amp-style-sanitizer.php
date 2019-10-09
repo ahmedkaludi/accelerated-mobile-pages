@@ -540,7 +540,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 			return array( false, false );
 		}
 
-		if ( 'width' === $property ) {
+		if ( 'width' === $property && (function_exists('is_shop') && !is_shop() || function_exists('is_archive') && !is_archive())) {
 			$property = 'max-width';
 		}
 
