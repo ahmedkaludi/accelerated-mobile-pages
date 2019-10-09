@@ -165,6 +165,15 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		$old_attributes = apply_filters('amp_img_attributes', $old_attributes);
 		$new_attributes = $this->filter_attributes( $old_attributes );
 		$new_attributes = $this->enforce_sizes_attribute( $new_attributes );
+		// Use responsive images when a theme supports wide and full-bleed images.
+		if ( ! empty( $this->args['align_wide_support'] ) && $node->parentNode && 'figure' === $node->parentNode->nodeName && preg_match( '/(^|\s)(alignwide|alignfull)(\s|$)/', $node->parentNode->getAttribute( 'class' ) ) ) {
+			$new_attributes['layout'] = 'responsive';
+		} else {
+			$new_attributes['layout'] = 'intrinsic';
+		}
+		// Remove sizes attribute since it causes headaches in AMP and because AMP will generate it for us. See <https://github.com/ampproject/amphtml/issues/21371>.
+		unset( $new_attributes['sizes'] );
+
 		if ( $this->is_gif_url( $new_attributes['src'] ) ) {
 			$this->did_convert_elements = true;
 			$new_tag = 'amp-anim';

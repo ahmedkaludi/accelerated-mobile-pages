@@ -86,3 +86,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 56. class-amp-img-sanitizer.php updated code to single quotes from alt attribute's content #3422
 57. Telegram links has been whitelisted in anchor tags #3578
 58. Added the Filter to modify attributes in HTML Tag #3685
+59. Need to remove width from inline style on amp images #3741
