@@ -120,8 +120,8 @@ $amp_ux_loader = array(
 						'field_data'=>array('title'=>'','class'=>'','id'=>'','default'=>0)
 					);
 $amp_website_type = ampforwp_get_setting('ampforwp-setup-ux-website-type');
-$analytics_txt = ampforwp_get_setup_info('ampforwp-ux-analytics-section');
 function ampforwp_check_analytics_setup($type = ''){
+	$analytics_txt = ampforwp_get_setup_info('ampforwp-ux-analytics-section');
 	$check_analytics = explode(', ', $analytics_txt);
    	if(in_array($type, $check_analytics)){
    		return 1;
@@ -209,15 +209,6 @@ $amp_ux_fields = array(
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
-						'field_data'=>array('id'=>'ampforwp-ux-fb-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Facebook Pixel'),'closable'=>1,'data-href'=>'amp-fb-pixel')
-					),
-					array('field_type'=>'heading',
-					'field_data'=>array('title'=>'Facebook Pixel','class'=>'child_opt child_opt_arrow')
-					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Facebook Pixel ID','id'=>'amp-ux-fp','class'=>'amp-ux-fp analytics-text','required'=>array(),'data-text'=>'amp-fb-pixel-id','default'=>ampforwp_get_setting('amp-fb-pixel-id'))
-					),
-					array('field_type'=>'sub_section_end','field_data'=>array()),
-					array('field_type'=>'sub_section_start',
 						'field_data'=>array('id'=>'ampforwp-ux-segment-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Segment Analytics'),'closable'=>1,'data-href'=>'ampforwp-Segment-switch')
 					),
 					array('field_type'=>'heading',
@@ -256,7 +247,7 @@ $amp_ux_fields = array(
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
-						'field_data'=>array('id'=>'ampforwp-ux-effective-measure-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>0,'closable'=>ampforwp_check_analytics_setup('Effective Measure'),'data-href'=>'ampforwp-Effective-switch')
+						'field_data'=>array('id'=>'ampforwp-ux-effective-measure-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Effective Measure'),'closable'=>1,'data-href'=>'ampforwp-Effective-switch')
 					),
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'Effective Measure','class'=>'child_opt child_opt_arrow')
@@ -318,6 +309,15 @@ $amp_ux_fields = array(
 					'field_data'=>array('title'=>'AFS Analytics','class'=>'child_opt child_opt_arrow')
 					),
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Website ID','id'=>'amp-ux-afs','class'=>'amp-ux-afs analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'ampforwp-afs-siteid','default'=>ampforwp_get_setting('ampforwp-afs-siteid'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+						array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-fb-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Facebook Pixel'),'closable'=>1,'data-href'=>'amp-fb-pixel')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Facebook Pixel','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Facebook Pixel ID','id'=>'amp-ux-fp','class'=>'amp-ux-fp analytics-text','required'=>array(),'data-text'=>'amp-fb-pixel-id','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('amp-fb-pixel-id'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',

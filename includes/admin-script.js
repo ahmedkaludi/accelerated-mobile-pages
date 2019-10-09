@@ -955,21 +955,24 @@ jQuery(document).ready(function($) {
             var clicky_side_id = $('#clicky-site-id').val();
             var analytics_txt = "";
             var analytic_arr = [];
-            if(ga_field!="UA-XXXXX-Y"){analytic_arr.push("Google Analytics");}
-            if(amp_fb_pixel_id!=""){analytic_arr.push("Facebook Pixel");}
-            if(sa_feild!="SEGMENT-WRITE-KEY"){analytic_arr.push("Segment Analytics");}
-            if(pa_feild!="#"){ analytic_arr.push("Matomo Analytics");}
-            if(quantcast_c!=""){ analytic_arr.push("Quantcast Measurement");}
-            if(comscore_c1!="" && comscore_c1!=""){analytic_arr.push("comScore");}
-            if(eam_c!="#"){analytic_arr.push("Effective Measure");}
-            if(sc_c!="#"){analytic_arr.push("StatCounter");}
-            if(histats_c!=""){analytic_arr.push("Histats Analytics");}
-            if(yemdex_c!=""){analytic_arr.push("Yandex Metrika");}
-            if(chartbeat_c!=""){analytic_arr.push("Chartbeat Analytics");}
-            if(alexa_c!=""){analytic_arr.push("Alexa Metrics");}
-            if(alexa_c!="" && alexa_d!=""){analytic_arr.push("Alexa Metrics");}
-            if(afs_c!=""){analytic_arr.push("AFS Analytics");}
-            if(clicky_side_id!=""){analytic_arr.push("Clicky Analytics");}
+            $(".ampforwp-ux-ana-sub").each(function(){
+                var data_href = $(this).attr('data-href');
+                var hasCls  = $(this).hasClass('hide');
+                if(ga_field!="UA-XXXXX-Y" && ga_field!="" && !hasCls && data_href=='ampforwp-ga-switch'){analytic_arr.push("Google Analytics");}
+                if(amp_fb_pixel_id!="" && !hasCls && data_href=='amp-fb-pixel'){analytic_arr.push("Facebook Pixel");}
+                if(sa_feild!="SEGMENT-WRITE-KEY" && sa_feild!="" && !hasCls && data_href=='ampforwp-Segment-switch'){analytic_arr.push("Segment Analytics");}
+                if(pa_feild!="#" && pa_feild!="" && !hasCls && data_href=='ampforwp-Piwik-switch'){ analytic_arr.push("Matomo Analytics");}
+                if(quantcast_c!="" && !hasCls && data_href=='ampforwp-Quantcast-switch'){ analytic_arr.push("Quantcast Measurement");}
+                if(comscore_c1!="" && comscore_c1!="" && !hasCls && data_href=='ampforwp-comScore-switch'){analytic_arr.push("comScore");}
+                if(eam_c!="#" && eam_c!="" && !hasCls && data_href=='ampforwp-Effective-switch'){analytic_arr.push("Effective Measure");}
+                if(sc_c!="#" && sc_c!="" && !hasCls && data_href=='ampforwp-StatCounter-switch'){analytic_arr.push("StatCounter");}
+                if(histats_c!="" && !hasCls && data_href=='ampforwp-Histats-switch'){analytic_arr.push("Histats Analytics");}
+                if(yemdex_c!="" && !hasCls && data_href=='ampforwp-Yandex-switch'){analytic_arr.push("Yandex Metrika");}
+                if(chartbeat_c!="" && !hasCls && data_href=='ampforwp-Chartbeat-switch'){analytic_arr.push("Chartbeat Analytics");}
+                if(alexa_c!="" && alexa_d!="" && !hasCls && data_href=='ampforwp-Alexa-switch'){analytic_arr.push("Alexa Metrics");}
+                if(afs_c!="" && !hasCls && data_href=='ampforwp-afs-analytics-switch'){analytic_arr.push("AFS Analytics");}
+                if(clicky_side_id!="" && !hasCls && data_href=='amp-clicky-switch'){analytic_arr.push("Clicky Analytics");}
+            });
             thishtml = analytic_arr.toString().replace(/,/g, ", ");
             button = "CONFIG";
         }else if(active_drower=='ampforwp-ux-privacy-section'){
@@ -1215,21 +1218,149 @@ jQuery(document).ready(function($) {
         var afs_c = $('#ampforwp-afs-siteid').val();
         var clicky_side_id = $('#clicky-site-id').val();
         var analytics_txt = "";
-        if(ga_field!="UA-XXXXX-Y"){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(amp_fb_pixel_id!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(sa_feild!="SEGMENT-WRITE-KEY"){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(pa_feild!="#"){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(quantcast_c!=""){ analytic_arr.push("Quantcast Measurement");}
-        if(comscore_c1!="" && comscore_c1!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(eam_c!="#"){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(sc_c!="#"){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(histats_c!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(yemdex_c!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(chartbeat_c!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(alexa_c!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(alexa_c!="" && alexa_d!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(afs_c!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
-        if(clicky_side_id!=""){$('input[data-id="'+data_href+'"]').prop('checked');}
+        var checked = $('#redux_builder_amp-'+data_href).children('.switch-options').children('.ios7-switch').children('.switch-on-off').prop('checked');
+     
+        if(data_href=='ampforwp-ga-switch'){
+            if(ga_field!="UA-XXXXX-Y" && ga_field!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(ga_field=="UA-XXXXX-Y" || ga_field==""){
+                if(checked){
+                   $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='amp-fb-pixel'){
+            if(amp_fb_pixel_id!=""){
+                 if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(amp_fb_pixel_id==""){
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='ampforwp-Segment-switch'){
+            if(sa_feild!="SEGMENT-WRITE-KEY" && sa_feild!=""){
+               if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(sa_feild=="SEGMENT-WRITE-KEY" || sa_feild==""){
+               if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='ampforwp-Piwik-switch'){
+            if(pa_feild!="#" && pa_feild!=""){
+                if(!checked){
+                   $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(pa_feild=="#" || pa_feild==""){
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='ampforwp-Quantcast-switch'){
+            if(quantcast_c!=""){ 
+                if(!checked){
+                   $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(quantcast_c==""){ 
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='ampforwp-comScore-switch'){
+            if(comscore_c1!="" && comscore_c1!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(comscore_c1=="" || comscore_c1==""){
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='ampforwp-Effective-switch'){
+            if(eam_c!="#" && eam_c!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(eam_c=="#" || eam_c==""){
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='ampforwp-StatCounter-switch'){
+            if(sc_c!="#" && sc_c!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(sc_c=="#" || sc_c==""){
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='ampforwp-Histats-switch'){
+            if(histats_c!=""){
+               if(!checked){
+                   $('input[data-id="'+data_href+'"]').click();
+               }
+            }else if(histats_c==""){
+               if(checked){
+                   $('input[data-id="'+data_href+'"]').click();
+               }
+            }
+        }else if(data_href=='ampforwp-Yandex-switch'){
+            if(yemdex_c!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(yemdex_c==""){
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='ampforwp-Chartbeat-switch'){
+            if(chartbeat_c!=""){
+                if(!checked){
+                   $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(chartbeat_c==""){
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='ampforwp-Alexa-switch'){
+            if(alexa_c!="" && alexa_d!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(alexa_c=="" && alexa_d==""){
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='ampforwp-afs-analytics-switch'){
+            if(afs_c!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(afs_c==""){
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }else if(data_href=='amp-clicky-switch'){
+            if(clicky_side_id!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                }
+            }else if(clicky_side_id==""){
+                if(checked){
+                   $('input[data-id="'+data_href+'"]').click();
+                }
+            }
+        }
     }
     // Privacy Settings Section
     $('input[id="amp-ux-notice-switch"]').click(function(){
@@ -1304,11 +1435,32 @@ function ampforwp_check_required(value,required){
 
 $("#ampforwp-add-more-analytics").click(function(){
     var analytics = $("#ampforwp-ux-analytics-more").val();
-    $("[data-href="+analytics+"]").removeClass('hide');
+    if($("[data-href="+analytics+"]").hasClass('hide')){
+        $("[data-href="+analytics+"]").removeClass('hide');
+        var has_data = true;
+        $("[data-href="+analytics+"]").children('.amp-ux-text-container').children('input').each(function(){
+            var thisval = $(this).val();
+            console.log(thisval);
+            if(thisval=="" || thisval=="#" || thisval=="UA-XXXXX-Y" || thisval=="SEGMENT-WRITE-KEY"){
+               has_data = false;
+               return false;
+            }
+        });
+        if(has_data){
+            $('#redux_builder_amp-'+analytics).children('.switch-options').children('.ios7-switch').children('.switch-on-off').click();
+            saveChangesInRedux($(this));
+        }
+    }
 });
 
 $('.ampforwp-ux-closable').click(function(){
     $(this).parent('.ampforwp-ux-sub-section').addClass('hide');
+    var data_href = $(this).parent('.ampforwp-ux-sub-section').attr('data-href');
+    var checked = $('#redux_builder_amp-'+data_href).children('.switch-options').children('.ios7-switch').children('.switch-on-off').prop('checked');
+    if(checked){
+        $('#redux_builder_amp-'+data_href).children('.switch-options').children('.ios7-switch').children('.switch-on-off').click();
+    }
+    saveChangesInRedux($(this));
 });
 
 // Required condition for each field

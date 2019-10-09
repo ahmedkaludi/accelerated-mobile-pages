@@ -928,14 +928,14 @@ if(!function_exists('ampforwp_get_setup_info')){
            	
             $analytics_txt = "";
             $analytic_arr = array();
-            if(ampforwp_get_setting('ampforwp-ga-switch') && $ga_field!="UA-XXXXX-Y"){$analytic_arr[]="Google Analytics";}
+            if(ampforwp_get_setting('ampforwp-ga-switch') && $ga_field!="UA-XXXXX-Y" && $ga_field!=""){$analytic_arr[]="Google Analytics";}
             if(ampforwp_get_setting('amp-fb-pixel') && $amp_fb_pixel_id!=""){$analytic_arr[]="Facebook Pixel";}
-            if(ampforwp_get_setting('ampforwp-Segment-switch') && $sa_feild!="SEGMENT-WRITE-KEY"){$analytic_arr[]="Segment Analytics";}
-            if(ampforwp_get_setting('ampforwp-Piwik-switch') && $pa_feild!="#"){ $analytic_arr[]="Matomo Analytics";}
+            if(ampforwp_get_setting('ampforwp-Segment-switch') && $sa_feild!="SEGMENT-WRITE-KEY" && $sa_feild!=""){$analytic_arr[]="Segment Analytics";}
+            if(ampforwp_get_setting('ampforwp-Piwik-switch') && $pa_feild!="#" && $pa_feild!=""){ $analytic_arr[]="Matomo Analytics";}
             if(ampforwp_get_setting('ampforwp-Quantcast-switch') && $quantcast_c!=""){ $analytic_arr[]="Quantcast Measurement";}
             if(ampforwp_get_setting('ampforwp-comScore-switch') && $comscore_c1!="" && $comscore_c1!=""){$analytic_arr[]="comScore";}
-            if(ampforwp_get_setting('ampforwp-Effective-switch') && $eam_c!="#"){$analytic_arr[]="Effective Measure";}
-            if(ampforwp_get_setting('ampforwp-StatCounter-switch') && $sc_c!="#"){$analytic_arr[]="StatCounter";}
+            if(ampforwp_get_setting('ampforwp-Effective-switch') && $eam_c!="#" && $eam_c!=""){$analytic_arr[]="Effective Measure";}
+            if(ampforwp_get_setting('ampforwp-StatCounter-switch') && $sc_c!="#" && $sc_c!=""){$analytic_arr[]="StatCounter";}
             if(ampforwp_get_setting('ampforwp-Histats-switch') && $histats_c!=""){$analytic_arr[]="Histats Analytics";}
             if(ampforwp_get_setting('ampforwp-Yandex-switch') && $yemdex_c!=""){$analytic_arr[]="Yandex Metrika";}
             if(ampforwp_get_setting('ampforwp-Chartbeat-switch') && $chartbeat_c!=""){$analytic_arr[]="Chartbeat Analytics";}
