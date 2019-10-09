@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.2.3
-Stable tag: 0.9.98.13
+Stable tag: 0.9.98.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.14 (7th OCTOBER 2019) =
+* Fixed: Value Attribute Stripping out from the forms added in the content. #3689
+* Fixed: Remove AAWP from extension list #3735
+* Fixed: Data is not saving while Importing options from the json file #3667
+* Fixed: Debug warning #3723, #3729, #3730, #3731
+
 = 0.9.98.13 (27th SEPTEMBER 2019) =
 * Improvements: Need to create an option to clear the cache in tree shaking #3680
 * Improvements: Only get the required dashicons for Admin Toolbar #3707
@@ -198,30 +204,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: List numbers are not in position #3704
 * Fixed: Menu Auto closing when # in the url #3633
 * Fixed: Facebook Like script not loading #3633
-
-= 0.9.98.12 (25th SEPTEMBER 2019) =
-* Improvements: User wants Wordpress admin toolbar in the AMP area #3450
-* Improvements: we want the amp menu showing from left or right side both. #3095
-* Improvements: Add feature to increase width for facebook like button and also add feature of data-action="recommend" #3241
-* Improvements: Improvements in Design 1 2 and 3 option panel in Header section #3642
-* Fixed: Update Stops Google Analytics tracking #3690
-* Fixed: Lightbox not working for single images #3683
-* Fixed: Language of Menu not changing when changing website language #3522
-* Fixed: We need to allow people to turn off the social section fully #3613
-* Fixed: Ui Design issues #3616
-* Fixed: Dropcap option should only be enabled on the posts, not from pages. #3614
-* Fixed: Social share position is not working in single design 2#3627
-* Fixed: AMP text module is not working in Widget area #3644
-* Fixed: Social media icons and comments should be below the post content on pages #3647
-* Fixed: Breadcrumbs are breaking after enabling ""Post title on Breadcrumb" option #3648
-* Fixed: line share link is getting added when sharing on telegram#3666
-* Fixed: In social sharing Twitter Handle and Pretty Permalinks for Twitter Share? need to display child option of Twitter#3656
-* Fixed: Extension license dashboard improvements #3654
-* Fixed: Make the chat bubble into a email box for faster input #405
-* Fixed: Option to specify certain taxonomy only in Instant Article Feeds #1489
-* Fixed: Need to remove Legacy Pagebuilder option Safely #3609
-* Fixed: Default heading tag should load if no option is selected in Header Module #3651
-* Fixed: Pretty Permalinks for Twitter Share? option is not working #3662
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

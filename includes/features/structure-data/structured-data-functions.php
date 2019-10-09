@@ -280,9 +280,9 @@ function ampforwp_structured_data_type( $metadata ) {
         }
     }
 
-    if( $post->post_type == "post" && empty( $set_sd_post )){
+    if( isset( $post->post_type ) && $post->post_type == "post" && empty( $set_sd_post )){
     	return;
-    }elseif($post->post_type == "page" && empty( $set_sd_page )) {
+    }elseif(isset( $post->post_type ) && $post->post_type == "page" && empty( $set_sd_page )) {
     	return;
     }
 

@@ -576,7 +576,6 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_the_content_filter( $content ) {
 				 $content = preg_replace('/property=[^>]*/', '', $content);
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
-				 $content = preg_replace('/(<[^>]+) value=[^>]*/', '$1', $content);
 				 $content = preg_replace('/noshade=[^>]*/', '', $content);
 				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
 				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
@@ -4915,7 +4914,7 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 			$current_access = current_user_can('edit_posts',$current_user );
 		}
 			// Check for Screen base, user ability to read and visibility
-			if ($current_access && current_user_can('read_post', $post->ID )
+			if ($current_access && (isset($post->ID) && current_user_can('read_post', $post->ID ))
 				&& ( $wp_post_types[$post->post_type]->public )
 				&& ( $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
 				// Check if current post type is AMPed or not
@@ -5770,10 +5769,12 @@ function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
 	if( count($matches[3])){
 		for( $i=0;$i<count($matches[3]);$i++){
 			$href_url = $matches[3][$i];
-			$href_url = explode('/', $href_url);
-			$href_url = end($href_url);
-			$href_url = pathinfo($href_url, PATHINFO_FILENAME); 
-			if($matches[3][$i] == $matches[6][$i] || strpos($matches[6][$i], $href_url) !== false){
+			if (!empty($href_url)) {
+				$href_url = explode('/', $href_url);
+				$href_url = end($href_url);
+				$href_url = pathinfo($href_url, PATHINFO_FILENAME);
+			}
+			if($matches[3][$i] == $matches[6][$i] || (!empty($href_url) && strpos($matches[6][$i], $href_url) !== false)){
 				$href = $matches[3][$i];
 				$src = $matches[6][$i];
 				$href_src = str_replace( '/', '\/', esc_url($href));
