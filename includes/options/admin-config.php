@@ -6102,6 +6102,14 @@ $single_page_options = array(
               'default'  =>  '0',
               'title'    => esc_html__('Lightbox for Images', 'accelerated-mobile-pages'),
            ),
+           // video-docking 
+           array(
+              'id'       => 'ampforwp-amp-video-docking',
+              'type'     => 'switch',
+              'title'    => esc_html__('Video Docking', 'accelerated-mobile-pages'),
+              'tooltip-subtitle'    => esc_html__('On scroll, the video will minimize to an automatically calculated corner.', 'accelerated-mobile-pages'),
+              'default'  =>  '1',
+           ),
            // Dropcap 
            array(
               'id'       => 'ampforwp-dropcap',

@@ -19,8 +19,11 @@ class AMP_Video_Sanitizer extends AMP_Base_Sanitizer {
 		if ( ! $this->did_convert_elements ) {
 			return array();
 		}
-
+		if(ampforwp_get_setting('ampforwp-amp-video-docking')==true){
 		return array( self::$script_slug => self::$script_src , self::$script_slug_dock => self::$script_src_dock  );
+		}
+		return array( self::$script_slug => self::$script_src );
+
 	}
 
 	public function sanitize() {
@@ -38,7 +41,9 @@ class AMP_Video_Sanitizer extends AMP_Base_Sanitizer {
 
 			$new_attributes = $this->enforce_fixed_height( $new_attributes );
 			$new_attributes = $this->enforce_sizes_attribute( $new_attributes );
-			$new_attributes["dock"] = "#dock-slot";
+			if(ampforwp_get_setting('ampforwp-amp-video-docking')==true){
+				$new_attributes["dock"] = "#dock-slot";
+			}
 			$new_node = AMP_DOM_Utils::create_node( $this->dom, 'amp-video', $new_attributes );
 
 			// TODO: `source` does not have closing tag, and DOMDocument doesn't handle it well.
