@@ -333,7 +333,7 @@ $amp_ux_fields = array(
 						'field_data'=>array('id'=>'ampforwp-ux-ano-analytics-section','class'=>'ampforwp-ux-sub-section','default'=>1,'closable'=>0)
 					),
 					array('field_type'=>'select',
-					'field_data'=>array('title'=>'Add more Analytics Tracking','class'=>'ampforwp-ux-analytics-more child_opt child_opt_arrow','id'=>'ampforwp-ux-analytics-more', 'options'=>$analytics_options,'default'=>'','data-href'=>'','data-href-id'=>'amp-ux-analytics-more-hidden')
+					'field_data'=>array('title'=>'Add more Analytics Tracking','class'=>'ampforwp-ux-analytics-more child_opt child_opt_arrow','id'=>'ampforwp-ux-analytics-more', 'options'=>$analytics_options,'default'=>'','data-href'=>'','element-class'=>'ux-more-analyt','data-href-id'=>'amp-ux-analytics-more-hidden')
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_end','field_data'=>array()),

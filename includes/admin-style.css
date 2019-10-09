@@ -1312,22 +1312,31 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 }
 .ampforwp-ux-closable{
     position: absolute;
-    right: 0px;
-    background: red;
+    right: 5px;
     padding: 0px 5px;
-    color: white;
+    color: #000;
     cursor: pointer;
+    font-size: 10px;
+    top: 6px;
 }
 .ampforwp-ux-ana-sub{
     border: 1px solid #e8e8e8;
-    padding: 0px 0px 12px 15px;
+    padding: 0px 0px 15px 0px;
     position: relative;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
+    border-radius: 3px 3px 0px 0px;
 }
 .ampforwp-ux-sup-sub-section{
-    max-height: 460px;
-    overflow: auto;
-    width: 107%;
+    max-height: 100%;
+    width: 100%;
+}
+.ampforwp-ux-sub-section .amp-ux-heading + .amp-ux-text-container, .ampforwp-ux-sub-section .amp-ux-heading + .amp-ux-text-container + .amp-ux-text-container{
+    padding:0px 20px;
+}
+.ampforwp-ux-sub-section .ux-field-container h2.ux-more-analyt{
+    margin-bottom: 10px;
+    background: transparent;
+    border: none;
 }
 .amp-ux-fly-icon.amp-ux-conf-upg-icon{
     background: none;
@@ -1624,6 +1633,8 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     line-height: 1.4;
     position: relative;
     height: 100%;
+    overflow-y: scroll;
+    height:80%;
 }
 .ux-field-container h2{
     font-size: 22px;
@@ -1631,26 +1642,49 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     margin: 22px 0px;
     line-height: 1.2;
 }
+.ampforwp-ux-sub-section .ux-field-container h2{
+    border-radius: 3px 3px 0px 0px;
+    margin:0;
+    font-size: 13px;
+    text-transform: none;
+    padding: 0 16px;
+    background: #f9f9f9;
+    border-width: 1px 1px 0 1px;
+    padding: 5px 16px;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
 .ux-field-container select.amp-ux-field, .ux-field-container #amp-ux-ga{
     border: none;
     background: #f9f9f9;
     width: 200px;
     padding: 8px 10px;
     height: 100%;
-    font-size: 14px;
+    font-size: 13px;
     line-height:1.7;
     border-bottom: 1px solid #ddd;
     color: #222;
     box-shadow: none;
 }
+#ampforwp-add-more-analytics{
+    font-size: 14px;
+    padding: 7px 15px 10px 15px;
+    background: #e0e0e0;
+    border: none;
+    color: #333;
+    border-radius: 2px;
+    cursor: pointer;
+
+}
 .ux-field-container.ux-field-footer{
     border-top: 1px solid #eee;
     width: 100%;
-    position: absolute;
-    bottom: 30px;
     top: auto;
     left: 0;
     right: 0;
+    position: fixed;
+    bottom: 15px;
 }
 .amp-ux-upload .amp-ux-img-re-txt{
     font-size: 12px;
@@ -1681,9 +1715,12 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     font-size: 20px;
 }
 .ux-field-container h2.ux-label{
-    font-size: 13px;
+    font-size: 12px;
     color: #333;
     margin: 10px 0px 12px 0px;
+    font-weight: normal;
+    background: transparent;
+    padding: 5px 0px 10px 0px;
 }
 .ux-field-container h2.ux-label.frp{
     margin: 0px auto 15px;
