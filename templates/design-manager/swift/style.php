@@ -650,7 +650,8 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 		.cntn-wrp h6 {font-size: 15px;}
 	<?php } // H6 Ends
  // swift Content Heading Sizes Ends?>
-.cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:15px 0px 30px 0px;word-break: break-word;}
+.cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-break: break-word;}
+.cntn-wrp .wp-block-image,.wp-block-embed{margin:15px 0px;}
 .artl-cnt ul li, .artl-cnt ol li{list-style-type: none;position: relative;padding-left: 20px;}
 .artl-cnt ul li:before{content: "";display: inline-block;width: 5px;height: 5px;background: #333;position: absolute;left: 0;top: 12px;}
 .artl-cnt ol li {counter-increment: step-counter;}
