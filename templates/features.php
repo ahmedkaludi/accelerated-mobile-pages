@@ -7420,7 +7420,11 @@ function ampforwp_set_option_panel_view(){
 
 if(!function_exists('ampforwp_sassy_icon_style')){
 	function ampforwp_sassy_icon_style(){
-		$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/includes/sassy-style.css");
+		$css = get_transient('ampforwp_sassy_css');
+		if($css == false){
+			$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/includes/sassy-style.css");
+			set_transient('ampforwp_sassy_css', $css);
+		}
 		echo css_sanitizer($css);
 	}
 }	
