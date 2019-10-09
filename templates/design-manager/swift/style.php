@@ -1157,7 +1157,7 @@ if(is_single() ) { ?>
 }
 @media(min-width:768px){
 li.has_thumbnail:nth-child(even) {
-    margin-left: 50px;
+    margin-left: 30px;
 }
 }
 @media(max-width:768px){
@@ -1182,7 +1182,7 @@ if ( true == ampforwp_get_setting('gnrl-sidebar') &&  true == ampforwp_get_setti
 	flex-basis: calc(49.33% - 30px);
 }
 .sp-artl .fsp{
-	flex-basis: calc(49.33% - 30px);
+	flex-basis: calc(47.33% - 30px);
 }
 @media(max-width:768px){
 .sp-artl {
