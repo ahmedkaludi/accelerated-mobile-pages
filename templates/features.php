@@ -2247,8 +2247,7 @@ function ampforwp_facebook_comments_markup() {
 
 	global $redux_builder_amp;
 	$facebook_comments_markup = $lang = $locale = '';
-	$lang = $redux_builder_amp['ampforwp-fb-comments-lang'];
-	$locale = 'data-locale = "'.$lang.'"';
+	$lang = ampforwp_get_setting('ampforwp-fb-comments-lang');
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on ) { 
@@ -2256,7 +2255,7 @@ function ampforwp_facebook_comments_markup() {
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
 		$facebook_comments_markup .= '<h5>'. esc_html__(ampforwp_translation(ampforwp_get_setting('ampforwp-facebook-comments-title'), 'Leave a Comment')) .'</h5>';
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
-	    		layout="responsive" '.esc_attr($locale).' data-numposts=';
+	    		layout="responsive" '.'data-locale = ".esc_attr($lang)."'.' data-numposts=';
 		$facebook_comments_markup .= '"'. esc_attr($redux_builder_amp['ampforwp-number-of-fb-no-of-comments']). '"';
 	    if(ampforwp_get_data_consent()){		
 	    	$facebook_comments_markup .= ' data-block-on-consent ';
