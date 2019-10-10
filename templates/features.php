@@ -3390,8 +3390,10 @@ function ampforwp_frontpage_comments() {
 			$postID = '';
 			// Gather comments for a Front from post id
 			$postID = ampforwp_get_frontpage_id();
+			$comment_order = get_option( 'comment_order' );
 			$comments = get_comments(array(
 					'post_id' => $postID,
+					'order' => $comment_order,
 					'status' => 'approve' //Change this to the type of comments to be displayed
 			));
 			$comment_button_url = get_permalink( $post_id );
@@ -6553,8 +6555,10 @@ function ampforwp_comments_sanitizer(){
 		$postID = ampforwp_get_frontpage_id();
 	}
 	if ( ampforwp_get_comments_status() && true == ampforwp_get_setting('wordpress-comments-support') ) {
+		$comment_order = get_option( 'comment_order' );
 		$comments = get_comments(array(
 				'post_id' => $postID,
+				'order' => $comment_order,
 				'status' => 'approve' //Change this to the type of comments to be displayed
 		) );
 		foreach ($comments as $comment) {
