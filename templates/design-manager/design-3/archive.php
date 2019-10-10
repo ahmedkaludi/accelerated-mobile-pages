@@ -120,7 +120,9 @@ if ( get_query_var( 'paged' ) ) {
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
   		$ampforwp_amp_post_url  = ampforwp_url_controller( get_permalink() );
-
+  		if( is_archive() && true == ampforwp_get_setting('ampforwp-archive-support-link') ){
+			$ampforwp_amp_post_url  = get_permalink();
+		}
 			if( in_array( 'ampforwp-custom-type-amp-endpoint' , $redux_builder_amp ) ) {
 	  		if (isset($redux_builder_amp['ampforwp-custom-type-amp-endpoint']) && $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
 	  			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . '?amp';
