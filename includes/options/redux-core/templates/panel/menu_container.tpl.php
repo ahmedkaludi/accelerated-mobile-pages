@@ -20,7 +20,7 @@ namespace ReduxCore\ReduxFramework;
             if($i==2){
                 $amp_opt = get_option("ampforwp_option_panel_view_type");
                 $opt_visible = "";
-                if($amp_opt==1){
+                if($amp_opt==1 && !get_theme_support('amp-template-mode')){
                     $opt_visible = 'style="display:none"';
                 }
                 echo '<div class="amp-full-view-options" '.$opt_visible.'>';
@@ -74,6 +74,7 @@ namespace ReduxCore\ReduxFramework;
             $opt_full_checked = 'checked="checked"';
             $opt_full_active = 'active';
         }
+    if(!get_theme_support('amp-template-mode')){
 ?>
     <li>
         <div class="switch-ef-btns">
@@ -88,5 +89,6 @@ namespace ReduxCore\ReduxFramework;
             </div>
     </div>
     </li>
+    <?php }?>
     </ul>
 </div>
