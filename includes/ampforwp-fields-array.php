@@ -5,7 +5,7 @@ $pages = get_pages();
 foreach ($pages as $page ) {
 	$options[$page->ID] = $page->post_title;
 }
-$analytics_options = array(''=>'Select Analytics Type','ampforwp-ga-switch'=>'Google Analytics','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics');
+$analytics_options = array(''=>'Add Analytics Type','ampforwp-ga-switch'=>'Google Analytics','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics');
 $analytics_default_option = ampforwp_get_setting('amp-analytics-select-option');
 $analytics_default = 'ampforwp-ga-switch';
 switch ($analytics_default_option) {
@@ -214,7 +214,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'Segment Analytics','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Segment Write Key','id'=>'amp-ux-sw','class'=>'amp-ux-sw analytics-text','required'=>array(),'data-text'=>'sa-feild','element-class'=>'ux-label','default'=>ampforwp_get_setting('sa-feild'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Segment Write Key','id'=>'amp-ux-sw','class'=>'amp-ux-sw analytics-text','required'=>array(),'data-text'=>'sa-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('sa-feild'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
@@ -223,7 +223,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'Matomo (Piwik) Analytics','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-mp','class'=>'amp-ux-mp analytics-text','required'=>array(),'data-text'=>'pa-feild','element-class'=>'ux-label','default'=>ampforwp_get_setting('pa-feild'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-mp','class'=>'amp-ux-mp analytics-text','required'=>array(),'data-text'=>'pa-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('pa-feild'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
@@ -232,7 +232,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'Quantcast Measurement','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-qm','class'=>'amp-ux-qm analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'amp-quantcast-analytics-code','default'=>ampforwp_get_setting('amp-quantcast-analytics-code'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-qm','class'=>'amp-ux-qm analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'amp-quantcast-analytics-code','default'=>ampforwp_get_setting('amp-quantcast-analytics-code'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
@@ -241,9 +241,9 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'comScore','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'C1','id'=>'amp-ux-cs-1','class'=>'amp-ux-cs analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'amp-comscore-analytics-code-c1','default'=>ampforwp_get_setting('amp-comscore-analytics-code-c1'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'C1','id'=>'amp-ux-cs-1','class'=>'amp-ux-cs analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'amp-comscore-analytics-code-c1','default'=>ampforwp_get_setting('amp-comscore-analytics-code-c1'))
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'C2','id'=>'amp-ux-cs-2','class'=>'amp-ux-cs analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'amp-comscore-analytics-code-c2','default'=>ampforwp_get_setting('amp-comscore-analytics-code-c2'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'C2','id'=>'amp-ux-cs-2','class'=>'amp-ux-cs analytics-text','required'=>array(),'element-class'=>'ux-label trac-id','data-text'=>'amp-comscore-analytics-code-c2','default'=>ampforwp_get_setting('amp-comscore-analytics-code-c2'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
@@ -252,7 +252,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'Effective Measure','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-em','class'=>'amp-ux-em analytics-text','required'=>array(),'data-text'=>'eam-feild','element-class'=>'ux-label','default'=>ampforwp_get_setting('eam-feild'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-em','class'=>'amp-ux-em analytics-text','required'=>array(),'data-text'=>'eam-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('eam-feild'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
@@ -261,7 +261,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'StatCounter','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-sc','class'=>'amp-ux-sc analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'sc-feild','default'=>ampforwp_get_setting('sc-feild'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-sc','class'=>'amp-ux-sc analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'sc-feild','default'=>ampforwp_get_setting('sc-feild'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
@@ -270,7 +270,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'Histats Analytics','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','element-class'=>'ux-label','id'=>'amp-ux-ha','class'=>'amp-ux-ha analytics-text','required'=>array(),'data-text'=>'histats-field','default'=>ampforwp_get_setting('histats-field'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','element-class'=>'ux-label trac-id','id'=>'amp-ux-ha','class'=>'amp-ux-ha analytics-text','required'=>array(),'data-text'=>'histats-field','default'=>ampforwp_get_setting('histats-field'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
@@ -279,7 +279,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'Yandex Metrika Analytics','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Yandex Metrika Analytics ID','id'=>'amp-ux-ym','class'=>'amp-ux-ym analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'amp-Yandex-Metrika-analytics-code','default'=>ampforwp_get_setting('amp-Yandex-Metrika-analytics-code'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Yandex Metrika Analytics ID','id'=>'amp-ux-ym','class'=>'amp-ux-ym analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'amp-Yandex-Metrika-analytics-code','default'=>ampforwp_get_setting('amp-Yandex-Metrika-analytics-code'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
@@ -288,7 +288,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'Chartbeat Analytics','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','element-class'=>'ux-label','id'=>'amp-ux-ca','class'=>'amp-ux-ca analytics-text','required'=>array(),'data-text'=>'amp-Chartbeat-analytics-code','default'=>ampforwp_get_setting('amp-Chartbeat-analytics-code'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','element-class'=>'ux-label trac-id','id'=>'amp-ux-ca','class'=>'amp-ux-ca analytics-text','required'=>array(),'data-text'=>'amp-Chartbeat-analytics-code','default'=>ampforwp_get_setting('amp-Chartbeat-analytics-code'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
@@ -297,9 +297,9 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'Alexa Metrics','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Account','id'=>'amp-ux-am-1','class'=>'amp-ux-am analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'ampforwp-alexa-account','default'=>ampforwp_get_setting('amp-Chartbeat-analytics-code'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Account','id'=>'amp-ux-am-1','class'=>'amp-ux-am analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-alexa-account','default'=>ampforwp_get_setting('amp-Chartbeat-analytics-code'))
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Domain','id'=>'amp-ux-am-2','class'=>'amp-ux-am analytics-text','element-class'=>'ux-label','required'=>array(),'data-text'=>'ampforwp-alexa-domain','default'=>ampforwp_get_setting('ampforwp-alexa-domain'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Domain','id'=>'amp-ux-am-2','class'=>'amp-ux-am analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-alexa-domain','default'=>ampforwp_get_setting('ampforwp-alexa-domain'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
@@ -308,7 +308,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'AFS Analytics','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Website ID','id'=>'amp-ux-afs','class'=>'amp-ux-afs analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'ampforwp-afs-siteid','default'=>ampforwp_get_setting('ampforwp-afs-siteid'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Website ID','id'=>'amp-ux-afs','class'=>'amp-ux-afs analytics-text','required'=>array(),'element-class'=>'ux-label trac-id','data-text'=>'ampforwp-afs-siteid','default'=>ampforwp_get_setting('ampforwp-afs-siteid'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 						array('field_type'=>'sub_section_start',
