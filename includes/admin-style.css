@@ -197,7 +197,7 @@ body #toplevel_page_amp_options .wp-menu-image{
     top: 1px;
 }
 .switch-ef-btns input[type=checkbox], .switch-ef-btns input[type=radio] {
-    border: 1px solid #eee;
+    border: 1px solid #b9b8b8;
 }
 .switch-ef-btns .e-v:hover label, .switch-ef-btns .f-v:hover label{
     color:#000;
@@ -1604,9 +1604,10 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .amp-ux-loader{
     display: none;
     position: fixed;
-    left:88%;
+    left: auto;
     z-index: 99999;
-    top: 50%;
+    top: 40px;
+    right: 25px;
 }
 .amp-ux-loading {
   border: 8px solid #f3f3f3;
