@@ -1088,9 +1088,12 @@ span.switch-text {
     fill:none;
 }
 div#section-amp-ads_1,table#section-table-amp-ads_1{
-    max-width: 75%; 
+    max-width: 100%; 
 }
-div#section-ampforwp-ads-section , table#section-table-ampforwp-ads-section{
+div#section-ampforwp-ads-section{
+    display:none;
+}
+table#section-table-ampforwp-ads-section{
     max-width: 24%;
     float: right;
     position: relative;
@@ -1130,6 +1133,7 @@ div#section-ampforwp-ads-section h3:before{
     div#section-ampforwp-ads-section{
         margin-top: 20px;
     }
+
     div#section-amp-ads_1, table#section-table-amp-ads_1,
     div#section-ampforwp-ads-section, table#section-table-ampforwp-ads-section {
         max-width: 100%;
@@ -1576,6 +1580,14 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 
 .amp-ux-checkbox-container h4{display: inline;}
 .redux-main .amp-ux-upload{float: none}
+.upload_button_div.amp-ux-upload{
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+}
+#amp-ux-opt-media .screenshot{
+    margin-bottom:15px;
+}
 .redux-sidebar .redux-group-tab-link-a .amp-ux-warning{color: yellow;}
 .amp-ux-section-field .button{
     margin-top: 0;
@@ -1685,10 +1697,12 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     right: 0;
     position: fixed;
     bottom: 15px;
+    background:#fff;
 }
 .amp-ux-upload .amp-ux-img-re-txt{
     font-size: 12px;
     color: #666;
+    margin-left:10px;
 }
 .ux-field-container.ux-field-footer p{
     font-size: 15px;
@@ -1756,6 +1770,11 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 }
 .ux-field-container .ios7-switch input + span {
     height: 15px;
+}
+#ampforwp-ux-ano-analytics-section{
+    width:100%;
+    display:inline-block;
+    margin-bottom: 30px;
 }
 .amp-ux-select-container{
     display: inline-block;
