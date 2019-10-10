@@ -7125,11 +7125,11 @@ function ampforwp_head_css(){
 				$incurl = includes_url();
 				$css.='@font-face{font-family:dashicons;src:url('.$incurl.'/fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987) format("truetype");
 				font-weight:400;font-style:normal}.amp-wp-header,.design2-header,.design3-header,.header{margin-top:32px}#headerwrap{top:32px}#wp-admin-bar-my-account .avatar{float:right;margin-top:3px}#wp-admin-bar-wpseo-notifications .yoast-issue-counter{float:right}@media(max-width:782px){.amp-wp-header,.design2-header,.design3-header,.header{margin-top:46px}#headerwrap{top:46px}}';
-				echo css_sanitizer($css);
+				echo ampforwp_css_sanitizer($css);
 			}
 		}
 	}
-	function css_sanitizer($css){
+	function ampforwp_css_sanitizer($css){
 		$css = preg_replace( '/\s*!important/', '', $css, -1, $important_count );
 		$css = preg_replace( '/overflow(-[xy])?\s*:\s*(auto|scroll)\s*;?\s*/', '', $css, -1, $overlow_count );
             $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
@@ -7425,7 +7425,7 @@ if(!function_exists('ampforwp_sassy_icon_style')){
 			$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/includes/sassy-style.css");
 			set_transient('ampforwp_sassy_css', $css);
 		}
-		echo css_sanitizer($css);
+		echo ampforwp_css_sanitizer($css);
 	}
 }	
 if(function_exists('heateor_sss_run')){
