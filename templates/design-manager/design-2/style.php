@@ -174,8 +174,8 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 /* Pagination */
 .amp-wp-content.pagination-holder { background: none; padding: 0; box-shadow: none; height: auto; min-height: auto; }
 #pagination{ width: 100%; margin-top: 15px; }
-#pagination .next{ float: right;}
-#pagination .prev{ float: left }
+#pagination .next{ float: right;width:60%;text-align: right;}
+#pagination .prev{ float: left;width:60%; }
 #pagination .next a, #pagination .prev a{ margin-bottom: 12px; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05); padding: 11px 15px; font-size: 12px;}
 #pagination .next a, #pagination .prev a{
 	color:#666666;
@@ -444,7 +444,9 @@ amp-user-notification button:hover { cursor: pointer }
 @media screen and (max-width: 340px) { .related_posts .related_link a { font-size: 15px; } .single-post main{ padding: 10px 5px 10px 5px } .the_content .amp-ad-wrapper{ text-align: center; margin-left: -13px; } .amp-category-post {line-height: 1.45;font-size: 12px; } .amp-category-block li:nth-child(3) {margin:0%} }
 @media screen and (max-width: 320px) { .related_posts .related_link a { font-size: 13px; } h1.amp-wp-title{ font-size:17px; padding:0px 4px	} }
 @media screen and (max-width: 400px) { .amp-wp-title{ font-size: 19px; margin: 21px 10px -1px 10px; } }
-@media screen and (max-width: 767px) { .amp-wp-post-content .small-screen-excerpt { display: block; } main, .amp-category-block, .category-widget-wrapper{ padding: 15px 18px 0px 18px; } .toggle-navigation ul li{ width: 50% }    }
+@media screen and (max-width: 767px) { .amp-wp-post-content .small-screen-excerpt { display: block; } main, .amp-category-block, .category-widget-wrapper{ padding: 15px 18px 0px 18px; } .toggle-navigation ul li{ width: 50% } 
+#pagination .next{ float: none;width:100%;text-align: left;}
+#pagination .prev{ float: none;width:100%; }   }
 @media screen and (max-width: 495px) { h2.amp-wp-title a{ font-size: 17px; line-height: 26px;} }
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
 header, amp-sidebar, article, footer, main { direction: rtl; }
