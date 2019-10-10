@@ -2209,10 +2209,8 @@ if(true == ampforwp_get_setting('amp-rtl-select-option')){?>
 <?php }
 if(true == ampforwp_get_setting('ampforwp-facebook-comments-support')){?>
 section.amp-facebook-comments h3{  
-	margin-top: 25px;
     font-size: 14px;
     padding-bottom: 4px;
-    border-bottom: 1px solid #ccc;
     font-weight: 500;
     letter-spacing: 0.5px;
     text-transform: uppercase;

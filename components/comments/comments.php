@@ -146,7 +146,7 @@ global $redux_builder_amp;
 	}
 	else {  
 		$facebook_comments_markup = '<section class="amp-facebook-comments">';
-		$facebook_comments_markup .= '<h3>'. esc_html__(ampforwp_translation(ampforwp_get_setting('ampforwp-facebook-comments-title'), 'Leave a Comment')) .'</h3>';
+		$facebook_comments_markup .= '<h3>'. esc_html__(ampforwp_translation(ampforwp_get_setting('ampforwp-facebook-comments-title'), 'Leave a Comment'),'accelerated-mobile-pages') .'</h3>';
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
 	    		layout="responsive" '. $locale .' data-numposts=';
 		$facebook_comments_markup .= '"'. esc_attr($redux_builder_amp['ampforwp-number-of-fb-no-of-comments']). '"';
