@@ -227,7 +227,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .fsc{width: 100%;height: -webkit-fill-available;position: absolute;cursor: pointer;top:0;left:0;z-index:9;}
 <?php if($redux_builder_amp['header-position-type'] == '1'){?>
 .tg:checked + .hamb-mnu > .m-ctr {margin-left: 0;border-right: 1px solid <?php if(isset($redux_builder_amp['swift-element-menu-border-color']['rgba'])){echo ampforwp_sanitize_color($redux_builder_amp['swift-element-menu-border-color']['rgba']);}?>;}
-<?php $overlaybg = ampforwp_get_setting('swift-header-overlay','color'); ?>
+<?php $overlaybg = ampforwp_get_setting('swift-header-overlay','rgba'); ?>
 .tg:checked + .hamb-mnu > .m-ctr .c-btn {position: fixed;right: 5px;top:5px;
 	background: <?php echo ampforwp_sanitize_color( $overlaybg ); ?>;
 	border-radius: 50px;}
@@ -237,7 +237,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .tg:checked + .hamb-mnu > .m-ctr {margin-left: calc(100% - <?php echo esc_html(ampforwp_get_setting('header-overlay-width'))?>);}
 .m-ctr{margin-left: 100%;float: right;}
 <?php } ?>
-.tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);height:-webkit-fill-available;}
+.tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);height:100%;}
 .t-btn, .c-btn{cursor: pointer;}
 .t-btn:after{
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
@@ -260,7 +260,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 .m-ctr{transition: margin 0.3s ease-in-out;}
 .m-ctr{<?php if(ampforwp_get_setting('header-overlay-width')){?>width:<?php echo esc_html(ampforwp_get_setting('header-overlay-width'))?>;<?php } ?>height:100%;position: absolute;z-index:99;padding: 2% 0% 100vh 0%;}
 .m-menu{display: inline-block;width: 100%;padding: 2px 20px 10px 20px;}
-.m-scrl{overflow-y: auto;display: inline-block;width: 100%;overflow: scroll;max-height: 94vh;}
+.m-scrl{overflow-y: scroll;display: inline-block;width: 100%;max-height: 94vh;}
 .m-menu .amp-menu .toggle:after{
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
 	content: "\e313";font-family: 'icomoon';font-size:25px;
