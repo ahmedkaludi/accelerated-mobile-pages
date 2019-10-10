@@ -1049,6 +1049,7 @@ amp-user-notification{
     height: 40px;
     line-height: 40px;
     background-color: <?php echo ampforwp_sanitize_color($colorscheme); ?>;
+    color: #fff;
     border-radius: 50%;
     display: inline-block;
     

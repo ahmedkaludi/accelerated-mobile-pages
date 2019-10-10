@@ -3820,7 +3820,7 @@ function ampforwp_post_pagination( $args = '' ) {
 		$r['after'] = '</p></div>';
 	}
 	$output = '';
-	if ( $multipage ) {
+	if ( $multipage && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) {
 		if ( 'number' == $r['next_or_number'] ) {
 			$output .= $r['before'];
 			for ( $i = 1; $i <= $numpages; $i++ ) {

@@ -2171,6 +2171,7 @@ if( true == ampforwp_get_setting('gnrl-sidebar') && true == ampforwp_get_setting
     height: 40px;
     line-height: 40px;
     background-color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;
+    color: #fff;
     border-radius: 50%;
     display: inline-block;
 }

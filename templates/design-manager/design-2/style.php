@@ -826,6 +826,7 @@ amp-user-notification{
     height: 40px;
     line-height: 40px;
     background-color: #0a89c0;
+    color: #fff;
     border-radius: 50%;
     display: inline-block;
     
