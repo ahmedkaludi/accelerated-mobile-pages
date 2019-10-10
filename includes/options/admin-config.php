@@ -6255,7 +6255,7 @@ $single_page_options = array(
                     'type'  => 'switch',
                     'title' => esc_html__('Left Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'required'   =>  array('ampforwp-gallery-design-type' , '=' , '1'),
+                    'required'   =>  array('single-design-type' , '=' , '1'),
             ),
             array(
                     'id'    => 'single-new-features',
