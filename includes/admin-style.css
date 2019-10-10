@@ -1683,10 +1683,10 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     border:none;
     border-bottom:1px solid #ddd;
 }
-.ux-field-container select.amp-ux-field, .ux-field-container #amp-ux-ga{
+.ux-field-container select.amp-ux-field, .ux-field-container #amp-ux-ga, .ux-field-container .ux-label.trac-id + input{
     background: #f9f9f9;
     width: 200px;
-    padding: 8px 10px;
+    padding: 6px 10px;
     height: 100%;
     font-size: 13px;
     line-height:1.7;
@@ -1756,7 +1756,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 }
 .ux-field-container h2.ux-label.trac-id{
     border: 0;
-    margin: 0px 0px 8px 0px;
+    margin: 0px 0px 10px 0px;
     padding: 0;
     color: #666;
 }
