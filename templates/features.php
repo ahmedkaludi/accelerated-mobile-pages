@@ -8049,11 +8049,11 @@ if(!function_exists('ampforwp_gutenberg_block_styles')){
 	    $gutenberg_styles = get_transient('ampforwp_gutenberg_styles');
 	    if($gutenberg_styles == false){
 	    	$response = wp_remote_get( $style_path[0] );
-	    	if( is_array($response) ){
+	    	if( is_array( $response ) && ! is_wp_error( $response ) ){
 		   		set_transient('ampforwp_gutenberg_styles', $response['body'], 24 * HOUR_IN_SECONDS );
 			}
 	    }
-	    echo $gutenberg_styles;
+	    echo ampforwp_css_sanitizer($gutenberg_styles);
 	}
 }
 
@@ -8078,7 +8078,13 @@ function ampforwp_is_gutenberg_active() {
 	return $use_block_editor;
 }
 
-
+function ampforwp_css_sanitizer($css){
+		$css = preg_replace( '/\s*!important/', '', $css, -1, $important_count );
+		$css = preg_replace( '/overflow(-[xy])?\s*:\s*(auto|scroll)\s*;?\s*/', '', $css, -1, $overlow_count );
+            $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
+        $css = str_replace(array (chr(10), ' {', '{ ', ' }', '} ', '( ', ' )', ' :', ': ', ' ;', '; ', ' ,', ', ', ';}', '::-' ), array('', '{', '{', '}', '}', '(', ')', ':', ':', ';', ';', ',', ', ', '}', ' ::-'), $css);
+		return $css;
+	}
 add_filter('ampforwp_pagebuilder_status_modify','ampforwp_pagebuilder_has_content',10,2);
 function ampforwp_pagebuilder_has_content($response, $postId){
 	$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
