@@ -3211,7 +3211,13 @@
                 if ( strpos( $icon, 'el-icon-' ) !== false ) {
                     $icon = str_replace( 'el-icon-', 'el el-', $icon );
                 }
-
+                if (!preg_match("/\bux-setup-icon\b/i", $icon, $match))  {
+                    $icon = "";
+                }else{
+                    $string ='<span class="ampforwp-setup-not-tt"><span class="setup-tt">
+                           Your setup is not completed. Please setup for better AMP Experience.
+                        </span></span>';
+                }
                 $hide_section = '';
                 if ( isset ( $section['hidden'] ) ) {
                     $hide_section = ( $section['hidden'] == true ) ? ' hidden ' : '';
@@ -3239,6 +3245,7 @@
                     if(is_object($current_screen) && $current_screen->parent_base=='amp_options'){
                         $enabledOptions = array(
                             esc_html__('automatic-amp-features','accelerated-mobile-pages'),
+                            esc_html__('ampforwp-new-ux','accelerated-mobile-pages'),
                             esc_html__('basic','accelerated-mobile-pages'),
                             esc_html__('Design','accelerated-mobile-pages'),
                             esc_html__('opt-go-premium','accelerated-mobile-pages'),

@@ -508,6 +508,9 @@ function ampforwp_include_options_file(){
 		// Register all the main options	
 		require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
 		require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+		// Global UX Fields
+		$amp_ux_fields = array();
+		require_once AMPFORWP_PLUGIN_DIR."includes/ampforwp-fields-array.php";
 	}
 }
 
@@ -877,6 +880,137 @@ function ampforwp_get_setting( $opt_name='', $child_option='', $sanitize_method=
 	return $opt_value;
 }
 
+// Setup funtion
+if(!function_exists('ampforwp_get_setup_info')){
+	function ampforwp_get_setup_info($ux_option=''){
+		$ux_content = "";
+		if($ux_option=="ampforwp-ux-website-type-section"){
+			$ux_content = ampforwp_get_setting('ampforwp-setup-ux-website-type');
+			if($ux_content=="NewsArticle" || $ux_content=="News"){
+				$ux_content="News";
+			}else if($ux_content=="BlogPosting" || $ux_content=="Blog"){
+				$ux_content="Blog";
+			}
+			if($ux_content==""){
+				$ux_content="Blog";
+			}
+		}else if($ux_option=="ampforwp-ux-need-type-section"){
+			$home   = ampforwp_get_setting('ampforwp-homepage-on-off-support');
+            $posts  = ampforwp_get_setting('amp-on-off-for-all-posts');
+            $pages  = ampforwp_get_setting('amp-on-off-for-all-pages');
+            $archive = ampforwp_get_setting('ampforwp-archive-support');
+            $ntype_arr = array();
+            if($home==1){$ntype_arr[] = "Home";}
+            if($posts==1){$ntype_arr[] = "Posts";}
+            if($pages==1){$ntype_arr[] = "Pages";}
+            if($archive==1){$ntype_arr[] = "Archive";}
+            $ux_content = implode(", ", $ntype_arr);
+		}else if($ux_option=="ampforwp-ux-design-section"){
+            $ux_content = ampforwp_get_setting('opt-media','url');
+		}else if($ux_option=="ampforwp-ux-analytics-section"){
+            $ga_field       = ampforwp_get_setting('ga-feild');
+            $amp_fb_pixel_id = ampforwp_get_setting('amp-fb-pixel-id');
+            $sa_feild = ampforwp_get_setting('sa-feild');
+            $pa_feild = ampforwp_get_setting('pa-feild');
+            $quantcast_c = ampforwp_get_setting('amp-quantcast-analytics-code');
+            $comscore_c1 = ampforwp_get_setting('amp-comscore-analytics-code-c1');
+            $comscore_c1 = ampforwp_get_setting('amp-comscore-analytics-code-c2');
+            $eam_c = ampforwp_get_setting('eam-feild');
+            $sc_c = ampforwp_get_setting('sc-feild');
+            $histats_c = ampforwp_get_setting('histats-field');
+            $yemdex_c = ampforwp_get_setting('amp-Yandex-Metrika-analytics-code');
+            $chartbeat_c = ampforwp_get_setting('amp-Chartbeat-analytics-code');
+            $alexa_c = ampforwp_get_setting('ampforwp-alexa-account');
+            $alexa_d = ampforwp_get_setting('ampforwp-alexa-domain');
+            $afs_c = ampforwp_get_setting('ampforwp-afs-siteid');
+            $clicky_side_id = ampforwp_get_setting('clicky-site-id');
+           	
+            $analytics_txt = "";
+            $analytic_arr = array();
+            if(ampforwp_get_setting('ampforwp-ga-switch') && $ga_field!="UA-XXXXX-Y" && $ga_field!=""){$analytic_arr[]="Google Analytics";}
+            if(ampforwp_get_setting('amp-fb-pixel') && $amp_fb_pixel_id!=""){$analytic_arr[]="Facebook Pixel";}
+           if(ampforwp_get_setting('ampforwp-Segment-switch') && $sa_feild!="SEGMENT-WRITE-KEY" && $sa_feild!=""){$analytic_arr[]="Segment Analytics";}
+            if(ampforwp_get_setting('ampforwp-Piwik-switch') && $pa_feild!="#" && $pa_feild!=""){ $analytic_arr[]="Matomo Analytics";}
+            if(ampforwp_get_setting('ampforwp-Quantcast-switch') && $quantcast_c!=""){ $analytic_arr[]="Quantcast Measurement";}
+            if(ampforwp_get_setting('ampforwp-comScore-switch') && $comscore_c1!="" && $comscore_c1!=""){$analytic_arr[]="comScore";}
+            if(ampforwp_get_setting('ampforwp-Effective-switch') && $eam_c!="#" && $eam_c!=""){$analytic_arr[]="Effective Measure";}
+            if(ampforwp_get_setting('ampforwp-StatCounter-switch') && $sc_c!="#" && $sc_c!=""){$analytic_arr[]="StatCounter";}
+            if(ampforwp_get_setting('ampforwp-Histats-switch') && $histats_c!=""){$analytic_arr[]="Histats Analytics";}
+            if(ampforwp_get_setting('ampforwp-Yandex-switch') && $yemdex_c!=""){$analytic_arr[]="Yandex Metrika";}
+            if(ampforwp_get_setting('ampforwp-Chartbeat-switch') && $chartbeat_c!=""){$analytic_arr[]="Chartbeat Analytics";}
+            if(ampforwp_get_setting('ampforwp-Alexa-switch') && $alexa_c!="" && $alexa_d!=""){$analytic_arr[]="Alexa Metrics";}
+            if(ampforwp_get_setting('ampforwp-afs-analytics-switch') && $afs_c!=""){$analytic_arr[]="AFS Analytics";}
+            if(ampforwp_get_setting('amp-clicky-switch') && $clicky_side_id!=""){$analytic_arr[]="Clicky Analytics";}
+            $ux_content = implode(", ", $analytic_arr);
+        }else if($ux_option=="ampforwp-ux-privacy-section"){
+			$ux_cookie_enable = ampforwp_get_setting('amp-enable-notifications');
+			$ux_compiance_switch = ampforwp_get_setting('amp-gdpr-compliance-switch');
+			$policy_arr = array();
+			if($ux_cookie_enable){
+				$policy_arr[] = "Cookie Consent";
+			}
+			if($ux_compiance_switch){
+				$policy_arr[] = "GDPR";
+			}
+			$ux_content = implode(", ", $policy_arr);
+		}else if($ux_option=="ampforwp_ux_extension_check"){
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php');
+			$ux_content = array();
+			if(defined('WPCF7_VERSION')){
+				$ux_content[] = 'contact_form_7';
+			}
+			if(class_exists('Ninja_Forms')){
+				$ux_content[] = 'ninja_forms';
+			}
+			if(function_exists('caldera_forms_fallback_shortcode')){
+				$ux_content[] = 'caldera_forms';
+			}
+			if(function_exists('wpforms')){
+				$ux_content[] = 'wpforms';
+			}
+			if(function_exists('WC')){
+				$ux_content[] = 'woocommerce';
+			}
+			if(class_exists('Easy_Digital_Downloads')){
+				$ux_content[] = 'easy_digital_downloads';
+			}
+			if(defined('POLYLANG_BASENAME')){
+				$ux_content[] = 'polylang';
+			}
+			if(class_exists('bbPress')){
+				$ux_content[] = 'bbpress';
+			}
+			if(function_exists('activate_shortcodes_ultimate')){
+				$ux_content[] = 'shortcodes';
+			}
+			if(class_exists('toc')){
+				$ux_content[] = 'toc';
+			}
+			if(class_exists('WPCOM_Liveblog')){
+				$ux_content[] = 'liveblog';
+			}
+			if(defined('TRIBE_EVENTS_FILE')){
+				$ux_content[] = 'eventcalendar';
+			}
+			if(function_exists('run_wp_recipe_maker') || function_exists('yasr_fs') || function_exists('wp_review_constants') || function_exists('postratings_init') || class_exists('WPCustomerReviews3') || defined('KKSR_PLUGIN') || function_exists('taqyeem_init') || class_exists('Multi_Rating')){
+				$ux_content[] = 'ratings';
+			}
+			if(class_exists('GFForms')){
+				$ux_content[] = 'gravityform';
+			}
+			if(function_exists('cp_display_version_warning')){
+				$ux_content[] = 'classipress';
+			}
+			if(function_exists('elementor_load_plugin_textdomain') || function_exists('et_divi_theme_body_class')){
+				$ux_content[] = 'elementor';
+			}
+			if(function_exists('wpml_upgrade')){
+				$ux_content[] = 'wpml';
+			}
+		}
+		return $ux_content;
+	}
+}
 // Register widgets
 add_action('amp_init', 'ampforwp_widgets');
 function ampforwp_widgets(){
@@ -1264,4 +1398,14 @@ function ampforwp_replace_redux_comments(){
 			set_transient('replaced_redux_comments_updated',1);
 	    }
  	}
+}
+if(!function_exists('ampforwp_wp_plugin_action_link')){
+	function ampforwp_wp_plugin_action_link( $plugin, $action = 'activate' ) {
+		if ( strpos( $plugin, '/' ) ) {
+			$plugin = str_replace( '\/', '%2F', $plugin );
+		}
+		$url = sprintf( admin_url( 'plugins.php?action=' . $action . '&plugin=%s&plugin_status=all&paged=1&s' ), $plugin );
+		$url = wp_nonce_url( $url, $action . '-plugin_' . $plugin );
+		return $url;
+	}
 }

@@ -14,7 +14,17 @@ namespace ReduxCore\ReduxFramework;
 <div class="redux-sidebar">
     <ul class="redux-group-menu">
 <?php
+        $i=0;
         foreach ( $this->parent->sections as $k => $section ) {
+            $i++;
+            if($i==2){
+                $amp_opt = get_option("ampforwp_option_panel_view_type");
+                $opt_visible = "";
+                if($amp_opt==1){
+                    $opt_visible = 'style="display:none"';
+                }
+                echo '<div class="amp-full-view-options" '.$opt_visible.'>';
+            }
             $title = isset ( $section[ 'title' ] ) ? $section[ 'title' ] : '';
 
             $skip_sec = false;
@@ -47,6 +57,35 @@ namespace ReduxCore\ReduxFramework;
          * @param object $this ReduxFramework
          */
         do_action ( "redux/page/{$this->parent->args[ 'opt_name' ]}/menu/after", $this );
+        echo '</div>';
+        $opt_easy = "";
+        $opt_easy_active = "";
+        $opt_full = "";
+        $opt_full_active = "";
+        $opt_easy_checked = "";
+        $opt_full_checked = "";
+        if($amp_opt==1){
+            $opt_easy = 'visible';
+            $opt_easy_checked = 'checked="checked"';
+            $opt_easy_active = "active";
+        }else if($amp_opt==2 || $amp_opt==""){
+            $opt_full = 'visible';
+            $opt_full_checked = 'checked="checked"';
+            $opt_full_active = 'active';
+        }
 ?>
+     <li>
+          <div class="switch-ef-btns">
+            <div class="e-v <?php echo $opt_easy_active;?>">
+                <input class="amp-opt-change <?php echo $opt_easy;?>" id="radio-c" type="radio" name="second-switch" <?php echo $opt_easy_checked?>>
+                <label for="radio-c">Easy View</label>
+            </div>
+            <div class="f-v <?php echo $opt_full_active;?>">
+                <input class="amp-opt-change <?php echo $opt_full;?>" id="radio-d" type="radio" name="second-switch" <?php echo $opt_full_checked?>>
+                <label for="radio-d">Full View</label><span class="toggle-outside">
+                    <span class="toggle-inside"></span>
+            </div>
+    </div>
+    </li>
     </ul>
 </div>
