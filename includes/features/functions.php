@@ -170,6 +170,7 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         $content_buffer = preg_replace("/about:blank/", "#", $content_buffer);
         $content_buffer = preg_replace("/<script data-cfasync[^>]*>.*?<\/script>/", "", $content_buffer);
         $content_buffer = preg_replace('/<font(.*?)>(.*?)<\/font>/', '$2', $content_buffer);
+        $content_buffer = preg_replace('/<ta(.*?)>(.*?)<\/ta>/', '$2', $content_buffer);
         //$content_buffer = preg_replace('/<style type=(.*?)>|\[.*?\]\s\{(.*)\}|<\/style>(?!(<\/noscript>)|(\n<\/head>)|(<noscript>))/','',$content_buffer);
 
         // xlink attribute causes Validatation Issues #1149
