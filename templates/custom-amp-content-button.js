@@ -46,8 +46,22 @@ jQuery(document).ready(function($) {
               $('.amp-editor-content').hide();
            }
     }
-    tinymce.get('ampforwp_custom_content_editor').on("keyup",function(){
-        $('.amp-editor-content').hide();
+    tinymce.get('ampforwp_custom_content_editor').on("keyup change paste",function(){
+        var thisval = tinymce.get('ampforwp_custom_content_editor').getContent();
+        if(thisval!=""){
+            $('.amp-editor-content').hide();
+        }else{
+            $('.amp-editor-content').show();
+        }
+        if($("#meta-checkbox").prop('checked')==false){
+            $('.amp-editor-content').show();
+            $("#ampforwp-amp-content-error-msg").html('Please select the "<b>Use This Content as AMP Content</b>" checkbox above before update.');
+            if(thisval==""){
+                $('.amp-editor-content').hide();
+                $("#ampforwp-amp-content-error-msg").html("AMP contents is blank, Please enter content");
+            }
+        }else{
+            $("#ampforwp-amp-content-error-msg").html("AMP contents is blank, Please enter content");
+        }
     }); 
-    
 });
