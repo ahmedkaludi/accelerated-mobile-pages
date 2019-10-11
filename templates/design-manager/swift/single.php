@@ -27,7 +27,7 @@
 		<div class="cntr">
 			<div class="sp-rl">
 				<div class="sp-rt">
-					<?php if (isset($redux_builder_amp['swift-social-position']) && 'above-content' == $redux_builder_amp['swift-social-position']){
+					<?php if (isset($redux_builder_amp['swift-social-position']) && 'above-content' == $redux_builder_amp['swift-social-position'] && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
 							ampforwp_swift_social_icons(); 
 						}
 						if ( 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
@@ -46,7 +46,7 @@
 					amp_content(); 
 					?>
 					</div>
-					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
+					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position'] && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
 						ampforwp_swift_social_icons(); 
 						}
 						if ( 'below-content' ==  ampforwp_get_setting('swift-add-this-position') ){
