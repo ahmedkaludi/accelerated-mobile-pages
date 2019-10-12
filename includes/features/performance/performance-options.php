@@ -44,7 +44,7 @@ use ReduxCore\ReduxFramework\Redux;
 
   $nginx_notfication = array();
 
-  $server_name = $_SERVER['SERVER_SOFTWARE'];
+  $server_name = strtolower($_SERVER['SERVER_SOFTWARE']);
   if (preg_match("/nginx/", $server_name)){
     $nginx_notfication = array( 
                     'id'   => 'ampforwp_leverage_ngix_option',
@@ -52,8 +52,7 @@ use ReduxCore\ReduxFramework\Redux;
                     'required' => array(
                          array('ampforwp_leverage_browser_caching_mode', '=' , true),  
                         ),
-                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://www.digitalocean.com/community/questions/leverage-browser-caching-for-nginx" target="_blank">%s</a>.<br /></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'To enable leverage browser caching for Nginx please read', 'accelerated-mobile-pages' ),esc_html__( 'This 
-                      Article', 'accelerated-mobile-pages')),               
+                     'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"> %s <a href="https://www.digitalocean.com/community/questions/leverage-browser-caching-for-nginx" target="_blank" rel="noreferrer">%s</a> and setup it manually.</div>',esc_html__( 'We have detected that you are using NginX Server.Automatic Leverage Browser Caching works only for Apache server at this moment. If you are using NginX then please go through this', 'accelerated-mobile-pages' ),esc_html__( 'article', 'accelerated-mobile-pages')),               
                );
   }
 
