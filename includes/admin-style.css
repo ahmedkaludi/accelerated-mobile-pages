@@ -251,7 +251,6 @@ body #toplevel_page_amp_options .wp-menu-image{
     cursor: pointer;
   position: relative;
 }
-
 .ampforwp-tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
@@ -259,15 +258,13 @@ body #toplevel_page_amp_options .wp-menu-image{
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px;
   position: absolute;
   z-index: 1;
   top: -5px;
   left: 110%;
   font-size:12px;
 }
-
-
 .ampforwp-tooltip .tooltiptext::after {
   content: "";
   position: absolute;
@@ -1221,8 +1218,8 @@ font-weight: normal;
 }
 
 .redux-main .btn-red{
-    color: #d60000;
-    border-color: #d60000;
+    color: rgba(237, 29, 36, 0.8);
+    border-color:rgba(237, 29, 36, 0.8);
     background: none;
 }
 .redux-main .btn-white{
@@ -1373,18 +1370,35 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     line-height:32px;
     position:relative;
     top:2px;
-    color:#666;
+    color:#444;
+}
+.amp-ux-elem-but-block.stup{ 
+    padding:0px 10px;
+    border-radius: 3px;
+    position: relative;
+    right:-10px;
+}
+.amp-ux-elem-but-block.stup:hover{
+    background:#ddd;
 }
 .amp-ux-elem-but-block .filled-lbl-blk{
     margin-top: -5px;
+    text-align: right;
+}
+.amp-ux-elem-but-block .lbl{
+  line-height: 1.2;
 }
 .amp-ux-elem-but-block .filled-lbl-blk .msg{
     margin: 0px;
-    font-size: 15px;
+    font-size: 14px;
+    color:#444;
 }
 .amp-ux-elem-but-block .filled-lbl-blk .lbl{
-   color:#d60000;
+   color:rgba(237, 29, 36, 0.8);
    float: right;
+    top: 1px;
+    position: relative;
+    font-size: 12px;
 }
 .amp-ux-notif-container{
     background: #f5f6fa;
@@ -1435,8 +1449,8 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     background-image: url(../images/amp-ux-warning-okay.png);
     background-repeat: no-repeat;
     background-position: center;
-    -webkit-background-size: 30px auto;
-    background-size: 30px auto;
+    -webkit-background-size: 20px auto;
+    background-size: 20px auto;
     height: 44px;
     width: 30px;
 }
@@ -1712,7 +1726,29 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     margin-bottom:15px;
 }
 .redux-sidebar .redux-group-tab-link-a .amp-ux-warning{color: yellow;}
-.amp-ux-section-field .button{margin-top: -6%;width:80px;}
+.amp-ux-section-field .button{
+    margin-top: 0;
+    width: 90px;
+    box-shadow: none;
+    padding: 0;
+    line-height: 29px;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    height: 32px;
+}
+.amp-ux-section-field .button.btn-list{
+    width: auto;
+    color: #444;
+    font-weight: 400;
+    padding: 0px 10px;
+    letter-spacing: 0px;
+    position: relative;
+    right: -10px;
+}
+.button.btn-list:hover{
+    background: #ddd;
+}
 /* Loader */
 .amp-ux-loader{
     display: none;

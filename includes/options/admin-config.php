@@ -1443,7 +1443,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                                 '<div class="amp-ux-section-field" '.$adv_data_href.'>
                                     <div class="amp-ux-elem-field">
                                         <h4 class="amp-ux-elem-title">Advertisement</h4>
-                                        <div class="amp-ux-elem-but-block">View Setup</div>
+                                        <div class="amp-ux-elem-but-block stup">View Setup</div>
                                     </div>
                                 </div>'.
                                  $adfwp_a_close.
