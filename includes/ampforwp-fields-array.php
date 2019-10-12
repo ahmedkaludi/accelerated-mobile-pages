@@ -297,7 +297,7 @@ $amp_ux_fields = array(
 					array('field_type'=>'heading',
 					'field_data'=>array('title'=>'Alexa Metrics','class'=>'child_opt child_opt_arrow')
 					),
-					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Account','id'=>'amp-ux-am-1','class'=>'amp-ux-am analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-alexa-account','default'=>ampforwp_get_setting('amp-Chartbeat-analytics-code'))
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Account','id'=>'amp-ux-am-1','class'=>'amp-ux-am analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-alexa-account','default'=>ampforwp_get_setting('ampforwp-alexa-account'))
 					),
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Alexa Metrics Domain','id'=>'amp-ux-am-2','class'=>'amp-ux-am analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-alexa-domain','default'=>ampforwp_get_setting('ampforwp-alexa-domain'))
 					),
