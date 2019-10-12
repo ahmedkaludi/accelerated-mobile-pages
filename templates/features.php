@@ -434,8 +434,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 				$amp_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}/".implode("/", $build_url)."/";
 			}else{
-				$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
-				$amp_url 	= str_replace($remove, '', $amp_url);
+				$amp_url 	= preg_replace('/\b\/amp\b/', '', $amp_url);
 			}
 		  	$query_arg_array = $wp->query_vars;
 		  	if( array_key_exists( "page" , $query_arg_array  ) ) {
