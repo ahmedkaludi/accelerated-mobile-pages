@@ -1242,146 +1242,174 @@ jQuery(document).ready(function($) {
         var afs_c = $('#ampforwp-afs-siteid').val();
         var clicky_side_id = $('#clicky-site-id').val();
         var analytics_txt = "";
-       var checked = $('#redux_builder_amp-'+data_href).children('.switch-options').children('.ios7-switch').children('.switch-on-off').prop('checked');
+        var checked = $('#redux_builder_amp-'+data_href).children('.switch-options').children('.ios7-switch').children('.switch-on-off').prop('checked');
 
         if(data_href=='ampforwp-ga-switch'){
             if(ga_field!="UA-XXXXX-Y" && ga_field!=""){
                 if(!checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(ga_field=="UA-XXXXX-Y" || ga_field==""){
                 if(checked){
                    $('input[data-id="'+data_href+'"]').click();
+                   $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='amp-fb-pixel'){
             if(amp_fb_pixel_id!=""){
                  if(!checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(amp_fb_pixel_id==""){
                 if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='ampforwp-Segment-switch'){
             if(sa_feild!="SEGMENT-WRITE-KEY" && sa_feild!=""){
                if(!checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(sa_feild=="SEGMENT-WRITE-KEY" || sa_feild==""){
                if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='ampforwp-Piwik-switch'){
             if(pa_feild!="#" && pa_feild!=""){
                 if(!checked){
                    $('input[data-id="'+data_href+'"]').click();
+                   $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(pa_feild=="#" || pa_feild==""){
                 if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='ampforwp-Quantcast-switch'){
             if(quantcast_c!=""){ 
                 if(!checked){
                    $('input[data-id="'+data_href+'"]').click();
+                   $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(quantcast_c==""){ 
                 if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='ampforwp-comScore-switch'){
             if(comscore_c1!="" && comscore_c1!=""){
                 if(!checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(comscore_c1=="" || comscore_c1==""){
                 if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='ampforwp-Effective-switch'){
             if(eam_c!="#" && eam_c!=""){
                 if(!checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(eam_c=="#" || eam_c==""){
                 if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='ampforwp-StatCounter-switch'){
             if(sc_c!="#" && sc_c!=""){
                 if(!checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(sc_c=="#" || sc_c==""){
                 if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='ampforwp-Histats-switch'){
             if(histats_c!=""){
                if(!checked){
                    $('input[data-id="'+data_href+'"]').click();
+                   $('[name="redux_builder_amp['+data_href+']"]').val(1);
                }
             }else if(histats_c==""){
                if(checked){
                    $('input[data-id="'+data_href+'"]').click();
+                   $('[name="redux_builder_amp['+data_href+']"]').val(0);
                }
             }
         }else if(data_href=='ampforwp-Yandex-switch'){
             if(yemdex_c!=""){
                 if(!checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(yemdex_c==""){
                 if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='ampforwp-Chartbeat-switch'){
             if(chartbeat_c!=""){
                 if(!checked){
                    $('input[data-id="'+data_href+'"]').click();
+                   $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(chartbeat_c==""){
                 if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='ampforwp-Alexa-switch'){
             if(alexa_c!="" && alexa_d!=""){
                 if(!checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(alexa_c=="" && alexa_d==""){
                 if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='ampforwp-afs-analytics-switch'){
             if(afs_c!=""){
                 if(!checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(afs_c==""){
                 if(checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='amp-clicky-switch'){
             if(clicky_side_id!=""){
                 if(!checked){
                     $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(clicky_side_id==""){
                 if(checked){
                    $('input[data-id="'+data_href+'"]').click();
+                   $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }
@@ -1463,7 +1491,6 @@ $("#ampforwp-add-more-analytics").click(function(){
         var has_data = true;
         $("[data-href="+analytics+"]").children('.amp-ux-text-container').children('input').each(function(){
             var thisval = $(this).val();
-            console.log(thisval);
             if(thisval=="" || thisval=="#" || thisval=="UA-XXXXX-Y" || thisval=="SEGMENT-WRITE-KEY"){
                has_data = false;
                return false;
@@ -1471,6 +1498,7 @@ $("#ampforwp-add-more-analytics").click(function(){
         });
         if(has_data){
             $('#redux_builder_amp-'+analytics).children('.switch-options').children('.ios7-switch').children('.switch-on-off').click();
+            $('[name="redux_builder_amp['+analytics+']"]').val(1);
             saveChangesInRedux($(this));
         }
     }
@@ -1482,6 +1510,7 @@ $('.ampforwp-ux-closable').click(function(){
     var checked = $('#redux_builder_amp-'+data_href).children('.switch-options').children('.ios7-switch').children('.switch-on-off').prop('checked');
     if(checked){
         $('#redux_builder_amp-'+data_href).children('.switch-options').children('.ios7-switch').children('.switch-on-off').click();
+        $('[name="redux_builder_amp['+data_href+']"]').val(0);
     }
     saveChangesInRedux($(this));
 });
@@ -1721,12 +1750,13 @@ function Drawer(drawerElem) {
         move(startX - e.clientX, e);
     }
 
-    window.addEventListener("resize", function (e) {
+  /*  window.addEventListener("resize", function (e) {
         width = drawerElem.offsetWidth;
         if (!opened) {
             transfrom("translateX(-" + width + "px)");
         }
-    });
+       
+    });*/
 
     drawerElem.addEventListener(typeStart, function (e) {
         drawerElem.style.opacity = 1;
@@ -2082,6 +2112,22 @@ $('.ampforwp_install_ux_plugin').click(function(e){
             $("#radio-d").prop("checked", true);
          }
     });
+
+    function amp_left_sub_menu_opt_hs(visibility){
+        $("#toplevel_page_amp_options .wp-submenu.wp-submenu-wrap li").each(function(){
+            var t_e_c_v = $(this).children('a').html();
+            if(t_e_c_v=="Settings" || t_e_c_v=="Design" || t_e_c_v=="Extensions" || t_e_c_v=="Upgrade to Pro" || t_e_c_v=="Import / Export"){
+                if(visibility==1){
+                    $(this).slideUp();
+                }else{
+                    $(this).slideDown();
+                }
+            }
+        });
+    }
+   
+    amp_left_sub_menu_opt_hs(amp_option_panel_view);
+  
     function amp_options_hide_show(id){
          var opt_type = 0;
          if(id=='amp-opt-easy-view' || id=='radio-c'){
@@ -2091,6 +2137,7 @@ $('.ampforwp_install_ux_plugin').click(function(e){
             opt_type = 2;
             $(".amp-full-view-options").slideDown();
          }
+         amp_left_sub_menu_opt_hs(opt_type)
          $.ajax({
             url: ajaxurl,
             method: 'post',
@@ -2112,15 +2159,11 @@ $('.ampforwp_install_ux_plugin').click(function(e){
         var thisid = $(this).attr('id');
         $(".amp-opt-change").each(function(){
             $(this).parent().removeClass('active');
-            //$(this).css('opacity',0);
         });
-        //$(this).css('opacity',0);
         if(thisid=='radio-c'){
              $(this).parent().addClass('active');
-            //$("#radio-c").css('opacity','unset');
         }else if(thisid=='radio-d'){
-            $(this).parent().addClass('active');
-            //$("#radio-d").css('opacity','unset');
+            $(this).parent().addClass('active')
         }else{
             $(this).parent().removeClass('active');
         }

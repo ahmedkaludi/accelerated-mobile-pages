@@ -73,6 +73,7 @@ namespace ReduxCore\ReduxFramework;
             $opt_full_checked = 'checked="checked"';
             $opt_full_active = 'active';
         }
+    if(!get_theme_support('amp-template-mode')){
 ?>
      <li>
           <div class="switch-ef-btns">
@@ -87,5 +88,6 @@ namespace ReduxCore\ReduxFramework;
             </div>
     </div>
     </li>
+    <?php }?>
     </ul>
 </div>
