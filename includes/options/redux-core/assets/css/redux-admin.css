@@ -45,8 +45,8 @@
     position: absolute;
     box-shadow: none;
     text-shadow: none;
-    top: 11px;
-    right: 15px;
+    top: 4px;
+    right: 21px;;
     color: rgba(0, 0, 0, 0.30)}
 .redux-group-menu .opt-go-premium i,.redux-group-menu .design i, .redux-group-menu .basic i{
     top:20px;
@@ -102,7 +102,7 @@
 .redux-amp-search-icon{ 
     position: absolute;
     top: 21px;
-    right: 262px;
+    right: 280px;
 }
 .redux-container{
     position: relative;
@@ -557,15 +557,12 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     position: relative;
     float: left;}  
 .redux-container .redux-sidebar ul li a{
-    text-transform: none;  
+    text-transform: none;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
     margin-bottom: 0px;
     text-shadow: none;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.46154;
-    font-weight: 700;
-    letter-spacing: -0.08px;
-    text-transform: uppercase;
     font-weight: 500;
     color: #fff;
     -webkit-font-smoothing: antialiased;
@@ -1223,14 +1220,6 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
 }
 .opt-go-amp-cache span.description {
     margin-left: 13px;
-}
-.redux-group-menu .ampforwp-new-ux .el+.group_title:after{
-    content: "Quick & Easy";
-    display: inline-block;
-    font-size: 10px;
-    text-transform: none;
-    width: 100%;
-    font-weight: normal;
 }
 .ampforwp-ux-right-bottom{
     margin-top:55%;
