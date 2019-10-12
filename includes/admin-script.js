@@ -1579,21 +1579,6 @@ window.addEventListener("load", function (e) {
             }
         }
     }
-    //Use methods
-    /*drawer.onOpenListener(function () {
-        console.log("open");
-    });
-    drawer.onCloseListener(function () {
-        console.log("close");
-    });
-    drawer.onMoveListener(function (x, percent, animation, duration) {
-        console.log(x + " " + percent + " " + animation + " " + duration);
-    });
-    drawer.openDrawer();
-    drawer.closeDrawer();
-    drawer.toggleDrawer();
-    drawer.isOpen();
-    drawer.resetIconOnClick();*/
 });
 
 
@@ -1641,41 +1626,6 @@ function Drawer(drawerElem) {
 
     function transfrom(x) {
         setProperty(drawerElem, transformProp, x + " " + trZ);
-    }
-
-    function move(x, e) {
-        if (x < 0) {
-            x = 0;
-        }
-        if (x > width) {
-            x = width;
-        }
-        if (!stateMoved) {
-            if (!isMobile) {
-                antiSelect.style.visibility = "visible";
-                if (!document.body.classList.contains("rx_noselect"))
-                    document.body.classList.add("rx_noselect");
-            }
-            if (trx == x) {
-                stateMoved = false;
-                return;
-            } else {
-                e.preventDefault();
-                stateMoved = true;
-            }
-
-        }
-        trx = x;
-        transfrom("translateX(" + x + "px)");
-        percent = (1 - (x / width));
-        if (percent >= 1) {
-            percent = 1;
-        } else if (percent <= 0) {
-            percent = 0;
-        }
-        drawerIcon.set(percent * 100);
-        drawerBg.style.opacity = percent;
-        onMove(320 - x, percent, false, 0);
     }
 
     function setTransition(s) {
@@ -1734,128 +1684,13 @@ function Drawer(drawerElem) {
         }
     }
 
-    function onMovedNoOpen(e) {
-        move(correct - e.touches[0].clientX, e);
-    }
-
-    function onMovedOpen(e) {
-        move(startX - e.touches[0].clientX, e);
-    }
-
-    function onMovedNoOpenDesktop(e) {
-        move(correct - e.clientX, e);
-    }
-
-    function onMovedOpenDesktop(e) {
-        move(startX - e.clientX, e);
-    }
-
-  /*  window.addEventListener("resize", function (e) {
-        width = drawerElem.offsetWidth;
-        if (!opened) {
-            transfrom("translateX(-" + width + "px)");
-        }
-       
-    });*/
-
-    drawerElem.addEventListener(typeStart, function (e) {
-        drawerElem.style.opacity = 1;
-        drawerBg.style.visibility = "visible";
-        startX = isMobile ? e.touches[0].clientX : e.clientX;
-        startMoveTime = new Date();
-        correct = width + startX;
-        drawerStarted = true;
-    });
-    document.addEventListener(typeStart, function (e) {
-        if (!drawerStarted) {
-            return;
-        }
-        if (opened) {
-            //document.addEventListener(typeMove, isMobile ? onMovedOpen : onMovedOpenDesktop);
-        } else {
-            //document.addEventListener(typeMove, isMobile ? onMovedNoOpen : onMovedNoOpenDesktop);
-        }
-    });
-
-    document.addEventListener(typeEnd, function (e) {
-        drawerStarted = false;
-        stateMoved = false;
-        if (!isMobile) {
-            antiSelect.style.visibility = "hidden";
-            document.body.classList.remove("rx_noselect");
-        }
-        document.removeEventListener(typeMove, isMobile ? onMovedOpen : onMovedOpenDesktop);
-        document.removeEventListener(typeMove, isMobile ? onMovedNoOpen : onMovedNoOpenDesktop);
-
-        speedSwipe = (((width / 2) / ((Math.abs((isMobile ? e.changedTouches[0].clientX : e.clientX) - startX)) / (new Date() - startMoveTime))) / 1000).toFixed(3);
-        if (speedSwipe == Infinity) {
-            if (!opened) {
-                closeDrawer(0);
-            } else {
-                openDrawer(0);
-            }
-            return;
-        }
-        if (trx == 0) {
-            return;
-        }
-        if (speedSwipe <= 0.150) {
-            speedSwipe = 0.150;
-        } else if (speedSwipe >= 0.5) {
-            speedSwipe = 0.5;
-        }
-        var intent = (startX - (isMobile ? e.changedTouches[0].clientX : e.clientX)) > 0;
-        if ((width / 2.25) > trx) {
-            if (intent && speedSwipe < 0.4) {
-                closeDrawer(speedSwipe);
-            } else {
-                openDrawer(speedSwipe);
-            }
-        } else {
-            if (!intent && speedSwipe < 0.4) {
-                openDrawer(speedSwipe);
-            } else {
-                closeDrawer(speedSwipe);
-            }
-        }
-        trx = 0;
-    });
     this.setDrawerIcon = function (icon) {
         drawerIcon = icon;
         drawerIcon.setOnClick(function (e) {
             toggleDrawer();
         });
     };
-    this.getDrawerIcon = function () {
-        return drawerIcon;
-    };
-    this.resetIconOnClick = function(){
-        drawerIcon.setOnClick(function (e) {
-            toggleDrawer();
-        });
-    };
-    this.onOpenListener = function (listener) {
-        onOpened = listener;
-    };
-    this.onCloseListener = function (listener) {
-        onClosed = listener;
-    };
-    this.onMoveListener = function (listener) {
-        onMove = listener;
-    };
-    this.openDrawer = function () {
-        openDrawer();
-    };
-    this.closeDrawer = function () {
-        closeDrawer();
-    };
-    this.toggleDrawer = function () {
-        toggleDrawer();
-    };
-    this.isOpen = function () {
-        return opened;
-    };
-
+  
     (function () {
         drawerBg = document.createElement("DIV");
         drawerBg.className = "drawer_bg";
