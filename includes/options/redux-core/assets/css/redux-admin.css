@@ -93,6 +93,7 @@
     align-items: center;
     display: flex;
     margin-right: 5px;
+    display: none;
 }
 .display_header .search-wrapper .redux-amp-search-icon{
     color:#cacaca;
