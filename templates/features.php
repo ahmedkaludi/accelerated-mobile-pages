@@ -483,7 +483,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    $new_canonical_url = get_permalink($current_post_id);
 	    $new_canonical_url = trailingslashit($new_canonical_url);
 		$post_paginated_page = get_query_var('page');
-		if($post_paginated_page){
+		if(is_numeric($post_paginated_page)){
 			if('' == $permalink_structure){
 				$new_canonical_url = add_query_arg('page',$post_paginated_page,$new_canonical_url);
 			}
