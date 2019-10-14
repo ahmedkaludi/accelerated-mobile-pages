@@ -2209,12 +2209,13 @@ if(true == ampforwp_get_setting('amp-rtl-select-option')){?>
 }
 <?php }
 if(true == ampforwp_get_setting('ampforwp-facebook-comments-support')){?>
-section.amp-facebook-comments h3{  
+section.amp-facebook-comments h5{  
     font-size: 14px;
     padding-bottom: 4px;
     font-weight: 500;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    border-bottom: 1px dotted #ccc;
 }
 <?php }
 if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
