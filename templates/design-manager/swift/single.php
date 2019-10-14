@@ -293,7 +293,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 					<div class="sp-cnt">
 						<div class="sp-rl">
 							<div class="sp-rt">
-							<?php if (true == ampforwp_get_setting('swift-social-position') && 'above-content' == ampforwp_get_setting('swift-social-position')){
+							<?php if (true == ampforwp_get_setting('swift-social-position') && 'above-content' == ampforwp_get_setting('swift-social-position') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
 								ampforwp_swift_social_icons(); 
 							}?>
 								<div class="cntn-wrp artl-cnt">
