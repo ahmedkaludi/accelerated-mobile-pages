@@ -1138,7 +1138,7 @@ background: #fff;
 }
 /*** Menu Types CSS ***/
 #redux_builder_amp-menu-type ul.redux-image-select li{
-    width:45% ;
+    width:42% ;
     padding:0px 15px;
 }
 #redux_builder_amp-menu-type .redux-image-select li, #redux_builder_amp-single-design-type .redux-image-select li{
@@ -1162,7 +1162,7 @@ background: #fff;
 .redux-image-select-selected:before{
     content: " ";
     display: block;
-    border: solid 20px rgb(19, 163, 21);
+    border: solid 16px rgb(19, 163, 21);
     border-radius: 50px;
     height: 0;
     width: 0;
@@ -1178,8 +1178,8 @@ background: #fff;
     border: solid white;
     border-width: 0 0.2em 0.2em 0;
     position: absolute;
-    left: 15px;
-    top: 10px;
+    left: 11px;
+    top: 6px;
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
@@ -1275,7 +1275,6 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
         font-size: 12px;
     }
     #redux_builder_amp-menu-type ul.redux-image-select li {
-        width: 42%;
         padding-bottom: 20px;
     }
     table.form-table, .form-table>thead, .form-table>tbody, .form-table>tbody>tr>th, .form-table>tbody>tr>td, .form-table>tbody>tr {
@@ -1302,11 +1301,11 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
     .redux-image-select-selected:after {
         width: 0.2em;
         height: 0.5em;
-        left: 8px;
-        top: 3px;
+        left: 10px;
+        top: 5px;
     }
     .redux-image-select-selected:before {
-        border: solid 12px rgb(19, 163, 21);
+        border: solid 14px rgb(19, 163, 21);
     }
     #redux_builder_amp-header-type, #redux_builder_amp-menu-type, #redux_builder_amp-single-design-type{
         padding-top:0px;
