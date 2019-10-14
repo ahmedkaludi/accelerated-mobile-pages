@@ -7455,6 +7455,9 @@ if(!function_exists('ampforwp_jannah_css')){
 	function ampforwp_jannah_css(){
 		if(function_exists('jannah_extensions_init')){
 			$jscc_path = get_template_directory_uri()."/css/style.css";
+			if(!file_exists($jscc_path)){
+				$jscc_path = get_template_directory_uri()."/assets/css/style.css";
+			}
 			$css = ampforwp_get_remote_content($jscc_path);
 			$css = str_replace("*height", "height", $css);
 			$css = str_replace("*zoom", "zoom", $css);
