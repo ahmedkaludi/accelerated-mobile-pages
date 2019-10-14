@@ -1453,7 +1453,7 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
 .admin-color-fresh .redux-sidebar .redux-group-menu li.active > a.redux-group-tab-link-a .amp-ux-warning-okay:before{
    color: green;
 }
-#section-table-ampforwp-ads-section{display:none;}
+#section-table-ampforwp-ads-section{display:none;!important;}
 .redux-group-tab-link-li a:hover .amp-ux-warning:before, .redux-group-tab-link-li a:hover .amp-ux-warning-okay:before{
     color: #fff;
 }
