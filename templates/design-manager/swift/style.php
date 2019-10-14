@@ -1164,6 +1164,12 @@ li.has_thumbnail:nth-child(even) {
 .sp-artl .srp .has_thumbnail{
     flex-basis: calc(100% - 30px);
 }
+.r-pf h3 {
+    padding: 15px 0px 0px;
+}
+.r-pf .loop-wrapper {
+    margin-left: -13px;
+}
 }
 
 <?php } //is_single condition is added
@@ -1193,7 +1199,7 @@ if ( true == ampforwp_get_setting('gnrl-sidebar') &&  true == ampforwp_get_setti
 	padding:0;
 }
 .sp-artl .srp .has_thumbnail, .sp-artl .fsp {
-    flex-basis: calc(100% - 30px);
+    flex-basis: calc(100% - 15px);
 }
 
 }
