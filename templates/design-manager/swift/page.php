@@ -32,7 +32,7 @@ amp_header(); ?>
 				if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' !=  ampforwp_get_setting('swift-social-position') ) { 
 						echo ampforwp_swift_social_icons();
 		        	} ?>
-		    	<?php if( !ampforwp_levelup_compatibility('levelup_elementor') && !ampforwp_is_front_page()){ // Level up Condition starts ?>
+		    	<?php if( !ampforwp_levelup_compatibility('levelup_elementor') && !ampforwp_is_front_page() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ // Level up Condition starts ?>
 					<div class="cmts">
 						<?php amp_comments();?>
 					</div>
