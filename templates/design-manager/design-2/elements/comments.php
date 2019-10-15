@@ -107,14 +107,7 @@
 				</div> <?php
 			} // end if ( $comments ) 
 
-			// if amp-comments extension is enabled then hide this button
-			if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
-				<div class="comment-button-wrapper">
-					<?php if ( !comments_open() ) {
-						echo "<p class='nocomments'>".esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  )) ." </p>";
-					}?>
-				</div> <?php 
-			} ?>
+			?>
 		</div><?php 
 	} // end if ( $enable_comments ) 
 do_action('ampforwp_after_comment_hook', $this);

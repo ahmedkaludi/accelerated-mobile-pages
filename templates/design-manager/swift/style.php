@@ -481,11 +481,7 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 	.form-submit #submit{background-color: #005be2;font-size: 14px;text-align: center;border-radius: 3px;font-weight: 500;color: #fff;cursor: pointer;margin: 0;border: 0;padding: 11px 21px;}
 	#respond p {margin: 12px 0;}
 	<?php if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && ampforwp_get_comments_status() && true == ampforwp_get_setting('wordpress-comments-support') ){ ?>
-	.amp-comment-button{background-color: <?php echo ampforwp_sanitize_color($swift_cs_color) ?>;font-size: 15px;float: none;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
-	.amp-comment-button .nocomments{color: #fff;display: block;padding: 7px 0px 8px 0px;}
 	.cmts{width:100%;display:inline-block;clear:both;margin-top:40px;}
-	.amp-comment-button{background-color: <?php echo ampforwp_sanitize_color($swift_cs_color) ?>;font-size: 15px;float: none;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
-	.amp-comment-button a{color: #fff;display: block;padding: 7px 0px 8px 0px;}
 	.comment-form-comment #comment {border-color: #ccc;width: 100%;padding: 20px;}
 	.cmts h3{margin: 0;font-size: 12px;padding-bottom: 6px;border-bottom: 1px solid #eee;font-weight: 400;letter-spacing: 0.5px;text-transform: uppercase;color: #444;}
 	.cmts h3:after{content: "";display: block;width: 115px;border-bottom: 1px solid #005be2;position: relative;top: 7px;}
@@ -783,11 +779,8 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .ampforwp_post_pagination p a{color:#005be2;padding:0px 10px;}
 <?php if( true == ampforwp_get_setting('wordpress-comments-support')){ ?>
 .cmts{width:100%;display:inline-block;clear:both;margin-top:40px;}
-.amp-comment-button{background-color: <?php echo ampforwp_sanitize_color($swift_cs_color) ?>;font-size: 15px;float: none;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
 .form-submit #submit{background-color: #005be2;font-size: 14px;text-align: center;border-radius: 3px;font-weight: 500;color: #fff;cursor: pointer;margin: 0;border: 0;padding: 11px 21px;}
 #respond p {margin: 12px 0;}
-.amp-comment-button a{color: #fff;display: block;padding: 7px 0px 8px 0px;}
-.amp-comment-button a:hover{color:<?php echo ampforwp_sanitize_color($swift_btn_hvr_color) ?>;}
 .comment-form-comment #comment {border-color: #ccc;width: 100%;padding: 20px;}
 .cmts h3{margin: 0;font-size: 12px;padding-bottom: 6px;border-bottom: 1px solid #eee;font-weight: 400;letter-spacing: 0.5px;text-transform: uppercase;color: #444;}
 .cmts h3:after{content: "";display: block;width: 115px;border-bottom: 1px solid #005be2;position: relative;top: 7px;}

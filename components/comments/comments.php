@@ -117,13 +117,7 @@ function ampforwp_framework_get_comments(){
 						</div> <!-- .amp-comments-wrapper -->
 						<?php // if amp-comments extension is enabled then hide this button
 					} // if ( $comments )
-					if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
-						<div class="amp-comment-button">
-							<?php if ( !comments_open($postID) ) {
-								echo "<p class='nocomments'>". esc_html( ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) )." </p>";
-							}?>
-						</div> <?php 
-					}?>
+					?>
 				</div>
 			<?php
 			if(comments_open($postID)){
