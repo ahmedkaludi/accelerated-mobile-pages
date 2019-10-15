@@ -1560,7 +1560,6 @@ Redux::setArgs( "redux_builder_amp", $args );
         }
         return $default;
     }
-
         Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'General', 'accelerated-mobile-pages' ),
         'id'         => 'opt-text-subsection',
@@ -2713,15 +2712,7 @@ Redux::setSection( $opt_name, array(
                         'title'    => esc_html__('Dev Mode', 'accelerated-mobile-pages'),
                         'required' => array('ampforwp-development-mode', '=', 1)
                     ),
-                      array(
-                        'id'       => 'ampforwp-update-notification-bar',
-                        'type'     => 'switch',
-                        'title'    => esc_html__('Plugin Update Notification Bar'),
-                        'tooltip-subtitle' => esc_html__('Enable/Disable the Plugin Update Notification Bar', 'accelerated-mobile-pages'),
-                        'true'      => 'true',
-                        'false'     => 'false',
-                        'default'   => 1,                        
-                    ),
+                      
                     array(
                         'id'       => 'ampforwp-wptexturize',
                         'type'     => 'switch',

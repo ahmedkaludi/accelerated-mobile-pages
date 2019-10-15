@@ -77,7 +77,7 @@ namespace ReduxCore\ReduxFramework;
             }
 
             public function add_section() {
-                $this->parent->sections[] = array(
+                /*$this->parent->sections[] = array(
                     'id' => 'options-object',
                     'title' => __( 'Options Object', 'accelerated-mobile-pages' ),
                     'heading' => '',
@@ -90,7 +90,7 @@ namespace ReduxCore\ReduxFramework;
                             'title' => '',
                         )
                     ),
-                );
+                );*/
             }
 
             // Forces the use of the embeded field path vs what the core typically would use

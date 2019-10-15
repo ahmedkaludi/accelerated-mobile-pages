@@ -85,14 +85,12 @@ switch ($analytics_default_option) {
         }
     }
 $structure_data_options =  array(
-					                ''   => 'Select Option',
+					                ''   			=> 'Select Option',
 					                'BlogPosting'   => 'Blog',
 					                'NewsArticle'   => 'News',
-					                'Recipe'        => 'Recipe',
-					                'Product'       => 'Product',
-					                'Video Object'   => 'Video Object',
-					                'Article'       => 'Article',
-					                'WebPage'       => 'WebPage'
+					                'Local Business' => 'Local Business',
+					                'Product'       => 'Ecommerce',
+					                'Other'       	=> 'Other'
 					            );
 
 $amp_ux_common = array(
@@ -120,6 +118,16 @@ $amp_ux_loader = array(
 						'field_data'=>array('title'=>'','class'=>'','id'=>'','default'=>0)
 					);
 $amp_website_type = ampforwp_get_setting('ampforwp-setup-ux-website-type');
+$amp_ws_other_type = '';
+if(strpos("Other",$amp_website_type)){
+	$other = explode("-", $amp_website_type);
+	$amp_website_type=$other[0];
+	$amp_ws_other_type = $other[1];
+}
+if($amp_website_type==""){
+	$amp_website_type = "Other";
+	$amp_ws_other_type = "WebPage";
+}
 function ampforwp_check_analytics_setup($type = ''){
 	$analytics_txt = ampforwp_get_setup_info('ampforwp-ux-analytics-section');
 	$check_analytics = explode(', ', $analytics_txt);
@@ -139,7 +147,7 @@ $amp_ux_fields = array(
 						'field_data'=>array('id'=>'ampforwp-ux-website-type-section','class'=>'section-1 amp-ux-website-type-section')
 					),
 					array('field_type'=>'select',
-						'field_data'=>array('title'=>'What\'s your Website Type?','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-select','options'=>$structure_data_options,'default'=>$amp_website_type)
+						'field_data'=>array('title'=>'What\'s your Website Type?','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-select','data-value'=>$amp_ws_other_type,'data-value-id'=>'ampforwp-website-type-other','options'=>$structure_data_options,'default'=>$amp_website_type)
 					),
 					$amp_ux_common,
 					array('field_type'=>'section_end','field_data'=>array()),
@@ -356,6 +364,9 @@ $amp_ux_fields = array(
 					 array('field_type'=>'section_start',
 					 	'field_data'=>array('id'=>'ampforwp-ux-thirdparty-section','class'=>'section-1 ampforwp-ux-thirdparty-section')
 					 ),
+					 array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Compatibility Section','class'=>'child_opt child_opt_arrow')
+					),
 					 array('field_type'=>'select',
 						'field_data'=>array('title'=>'SEO','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-seo-select','options'=>$seo_options,'element-class'=>'ux-align','default'=>ampforwp_get_seo_default())
 					 ),

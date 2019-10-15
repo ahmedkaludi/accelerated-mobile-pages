@@ -20,7 +20,7 @@ namespace ReduxCore\ReduxFramework;
             if($i==2){
                 $amp_opt = get_option("ampforwp_option_panel_view_type");
                 $opt_visible = "";
-                if($amp_opt==1){
+                if($amp_opt==1 || $amp_opt==""){
                     $opt_visible = 'style="display:none"';
                 }
                 echo '<div class="amp-full-view-options" '.$opt_visible.'>';
@@ -64,11 +64,11 @@ namespace ReduxCore\ReduxFramework;
         $opt_full_active = "";
         $opt_easy_checked = "";
         $opt_full_checked = "";
-        if($amp_opt==1){
+        if($amp_opt==1 || $amp_opt==""){
             $opt_easy = 'visible';
             $opt_easy_checked = 'checked="checked"';
             $opt_easy_active = "active";
-        }else if($amp_opt==2 || $amp_opt==""){
+        }else if($amp_opt==2){
             $opt_full = 'visible';
             $opt_full_checked = 'checked="checked"';
             $opt_full_active = 'active';

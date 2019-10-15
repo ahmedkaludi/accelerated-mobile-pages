@@ -654,7 +654,15 @@
         } else {
             sTab.click();
         }
-
+        if(amp_option_panel_view==""){
+            $.cookie(
+                'redux_current_tab', 1, {
+                    expires: 7,
+                    path: '/'
+                }
+            );
+            $( '.redux-container' ).find( '.redux-group-tab-link-a:first' ).click();
+        }
     };
 
     $.redux.initFields = function() {

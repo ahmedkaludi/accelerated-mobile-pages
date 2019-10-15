@@ -267,6 +267,13 @@ class AMPforWP_Fields
 				$data_num ++;
 			}
 		}
+		if(isset($fields['data-value']) && isset($fields['data-value-id'])){
+			$hide = '';
+			if($this->default!="Other"){
+				$hide = 'hide';
+			}
+			$output .= '<input type="text" id="'.$fields['data-value-id'].'" class="'.$this->class.' '.$hide.'" value="'.$fields['data-value'].'" placeholder="Enter your website type">';
+		}
 		if( $this->data_href ){
 			if ( isset($fields['data-href-id']) ) {
 				$hrf_id = $fields['data-href-id'];

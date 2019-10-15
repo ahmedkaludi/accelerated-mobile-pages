@@ -927,8 +927,11 @@ jQuery(document).ready(function($) {
         var button = '';
         if(active_drower=='ampforwp-ux-website-type-section'){
               thishtml = $("#ampforwp-ux-select option:selected").text();
-               if(thishtml=="Select Option"){
+              if(thishtml=="Select Option"){
                     thishtml="";
+              }
+              if(thishtml=="Other"){
+                    thishtml = $("#ampforwp-website-type-other").val();
               }
               button = "SELECT";
         }else if(active_drower=='ampforwp-ux-need-type-section'){
@@ -1079,18 +1082,35 @@ jQuery(document).ready(function($) {
     });
     // Website type
     $('#ampforwp-ux-select').on('change', function(e){
+        var thisvalue = $(this).val();
         // Update Values in Structured data
-         $("#ampforwp-setup-ux-website-type").val($(this).val());
-        //Posts
-        if($("select[id=ampforwp-sd-type-posts-select]").val()!=undefined){
-            $("select[id=ampforwp-sd-type-posts-select]").val($(this).val());
-            $("span[id=select2-ampforwp-sd-type-posts-select-container]").text($(this).val());
+         $("#ampforwp-setup-ux-website-type").val(thisvalue);
+        if(thisvalue!="Local Business" && thisvalue!="Other"){
+            $("#ampforwp-website-type-other").hide();
+            $("#ampforwp-website-type-other").val("");
+            //Posts
+            if($("select[id=ampforwp-sd-type-posts-select]").val()!=undefined){
+                $("select[id=ampforwp-sd-type-posts-select]").val(thisvalue);
+                $("span[id=select2-ampforwp-sd-type-posts-select-container]").text($(this).val());
+            }else{
+                $("select[id=ampforwp-sd-type-category-select]").val(thisvalue);
+                $("span[id=select2-ampforwp-sd-type-category-select-container]").text($(this).val());
+            }
         }else{
-            $("select[id=ampforwp-sd-type-category-select]").val($(this).val());
-            $("span[id=select2-ampforwp-sd-type-category-select-container]").text($(this).val());
+            $("#ampforwp-website-type-other").show();
         }
-       
     });
+
+    $("#ampforwp-website-type-other").on('change',function(){
+            var thisval = $(this).val();
+            if(thisval==""){
+                thisval = "Other-WebPage";
+            }else{
+                thisval = "Other-"+thisval;
+            }
+            $("#ampforwp-setup-ux-website-type").val(thisval);
+    });
+
     // Homepage
     $('input[id="amp-ux-homepage"]').click(function(){
         if($(this).prop("checked") == true){
@@ -1662,7 +1682,7 @@ function Drawer(drawerElem) {
         opened = false;
         setTransition(s);
         drawerBg.style.opacity = 0.001;
-        transfrom("translateX(" + width + "px)");
+        transfrom("translateX(" + 320 + "px)");
         drawerIcon.setState(0, s);
         onMove(0, 0, true, s);
         setTimeout(function () {
@@ -1938,12 +1958,8 @@ $('.ampforwp_install_ux_plugin').click(function(e){
          amp_options_hide_show(thisid);
          $(".ampforwp-option-panel-view-pop").remove();
          if(thisid=='amp-opt-easy-view'){
-            $("#radio-c").css('opacity','unset');
-            $("#radio-d").css('opacity',0);
             $("#radio-c").prop("checked", true);
          }else if(thisid=='amp-opt-full-view'){
-            $("#radio-d").css('opacity','unset');
-            $("#radio-c").css('opacity',0);
             $("#radio-d").prop("checked", true);
          }
     });
@@ -2005,7 +2021,20 @@ $('.ampforwp_install_ux_plugin').click(function(e){
         amp_options_hide_show(thisid);
     });
      $('.amp-ux-warning').on('mouseover', function (event) {
-        $('.ampforwp-setup-not-tt').css({'visibility':'visible'});
+        if($(this).hasClass('amp-ux-warning-okay')){
+
+        }else{
+            $('.ampforwp-setup-not-tt').css({'visibility':'visible'});
+        }
+    })
+    .on('mouseout', function (event) {
+       $('.ampforwp-setup-not-tt').css({'visibility':'hidden'});
+    });
+
+    $('.amp-ux-warning-okay').on('mouseover', function (event) {
+        if($(this).hasClass('amp-ux-warning')){
+            $('.ampforwp-setup-not-tt').css({'visibility':'visible'});
+        }
     })
     .on('mouseout', function (event) {
        $('.ampforwp-setup-not-tt').css({'visibility':'hidden'});

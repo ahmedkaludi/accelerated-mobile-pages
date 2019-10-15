@@ -67,7 +67,6 @@ function ampforwp_add_sd_fields($fields){
                                             </div>' 
                                             
                 );
-
         if( !is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') ) {
                 $fields[] =         array(
                       'id' => 'ampforwp-sd_1',
@@ -149,7 +148,7 @@ function ampforwp_add_sd_fields($fields){
                               'type'     => 'text',
                               'placeholder' => '550',
                               'tooltip-subtitle' => esc_html__('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
-                              'default'  => '700'
+                              'default'  => '1280'
                     );
                 $fields[] =   array(
                               'id'       => 'amp-structured-data-placeholder-image-height',
@@ -157,7 +156,7 @@ function ampforwp_add_sd_fields($fields){
                               'type'     => 'text',
                               'placeholder' => '350',
                               'tooltip-subtitle' => esc_html__('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
-                              'default'  => '550'
+                              'default'  => '720'
                      );
                 $fields[] =   array(
                               'id'      => 'amporwp-structured-data-video-thumb-url',
