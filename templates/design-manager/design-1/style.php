@@ -13,8 +13,6 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
 	$muted_text_color        = $get_customizer->get_customizer_setting( 'muted_text_color' );
 	$border_color            = $get_customizer->get_customizer_setting( 'border_color' );
 	$link_color              = $get_customizer->get_customizer_setting( 'link_color' );
-	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
-	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 ?>
 <?php // Design 1 Menu elemensts colors
 
@@ -115,13 +113,13 @@ amp-wistia-player {margin:5px 0px;}
 .hide{display:none}
 .amp-wp-article amp-addthis{bottom: -38px;}
 .amp-wp-content,.amp-wp-title-bar div {<?php if ( $content_max_width > 0 ) : ?> margin: 0 auto;max-width: <?php echo esc_attr(sprintf( '%dpx', $content_max_width )); ?>; <?php endif; ?> }
-html{background: <?php echo sanitize_hex_color( $header_background_color ); ?>;} body{background: <?php echo sanitize_hex_color( $theme_color ); ?>;color: <?php echo sanitize_hex_color( $text_color ); ?>;font-family: 'Merriweather', 'Times New Roman', Times, Serif;font-weight: 300;line-height: 1.75em;}
+html{background: <?php echo sanitize_hex_color( $global_color_scheme ); ?>;} body{background: <?php echo sanitize_hex_color( $theme_color ); ?>;color: <?php echo sanitize_hex_color( $text_color ); ?>;font-family: 'Merriweather', 'Times New Roman', Times, Serif;font-weight: 300;line-height: 1.75em;}
 ol, ul {list-style-position: inside;}
 p,ol,ul,figure {margin: 0 0 1em;padding: 0;} a,a:visited {color:<?php echo ampforwp_sanitize_color( $anchor_links_color ); ?>;}a:hover,a:active,a:focus {color: <?php echo sanitize_hex_color( $text_color ); ?>;} .wp-caption amp-img{max-width: 100%}
 blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: rgba(127,127,127,.125);border-left: 2px solid <?php echo sanitize_hex_color( $link_color ); ?>;margin: 8px 0 24px 0;padding: 16px;} blockquote p:last-child {margin-bottom: 0;}
 .amp-wp-meta,.amp-wp-header .ampforwp-logo-area,.amp-wp-title,.wp-caption-text,.amp-wp-tax-category,.amp-wp-tax-tag,.amp-wp-comments-link,.amp-wp-footer p,.back-to-top {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;}
 .amp-wp-header {background-color: <?php echo ampforwp_sanitize_color( $global_color_scheme ); ?>;}
-.amp-wp-header .ampforwp-logo-area {color: <?php echo sanitize_hex_color( $header_color ); ?>;font-size: 1em;font-weight: 400;margin: 0 auto;max-width: calc(840px - 32px);padding: .875em 16px;position: relative;}  .amp-wp-header .amp-wp-site-icon {background-color: <?php echo sanitize_hex_color( $header_color ); ?>;border: 1px solid <?php echo sanitize_hex_color(  $header_color ); ?>;border-radius: 50%;position: absolute;right: 18px;top: 10px;}
+.amp-wp-header .ampforwp-logo-area {color: <?php echo sanitize_hex_color( $header_font_color ); ?>;font-size: 1em;font-weight: 400;margin: 0 auto;max-width: calc(840px - 32px);padding: .875em 16px;position: relative;}  .amp-wp-header .amp-wp-site-icon {background-color: <?php echo sanitize_hex_color( $header_font_color ); ?>;border: 1px solid <?php echo sanitize_hex_color(  $header_font_color ); ?>;border-radius: 50%;position: absolute;right: 18px;top: 10px;}
 
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
 .amp-wp-article {color: <?php echo sanitize_hex_color( $text_color ); ?>;font-weight: 400;margin: 1.5em auto;max-width: 840px;overflow-wrap: break-word;word-wrap: break-word;} .amp-wp-article-header {align-items: center;align-content: stretch;display: flex;flex-wrap: wrap;justify-content: space-between;margin: 1.5em 16px 1.5em;}
@@ -233,7 +231,7 @@ right:0px;
 if (ampforwp_get_setting('header-overlay-position-d1') == 2 ) {?>
 left:191px;
 <?php } ?>
-}.close-nav:hover{ background: <?php echo ampforwp_sanitize_color($cross_btn_hvr_clr); ?>;}.toggle-navigation ul{list-style-type:none;margin:0;padding:0;width:100%}.menu-all-pages-container:after{content:"";clear:both}.toggle-navigation ul li{font-size:13px;border-bottom:1px solid rgba(0,0,0,.11);padding:11px 0;width:25%;float:left;text-align:center;margin-top:6px}.toggle-navigation ul ul{display:none}.toggle-navigation ul li a{color:#eee;padding:15px}.toggle-navigation{display:none;background:#444}.nav_container:hover+.toggle-navigation,.toggle-navigation:active,.toggle-navigation:focus,.toggle-navigation:hover{display:inline-block;width:100%}#amp-user-notification1 p{display:inline-block}amp-user-notification{padding:5px;text-align:center;background:#fff;border-top:1px solid} amp-user-notification button {padding: 8px 10px;background:  <?php echo sanitize_hex_color( $header_background_color ); ?>;color: <?php echo sanitize_hex_color( $header_color ); ?>;margin-left: 5px;border: 0;}.amp-not-privacy{color:<?php echo sanitize_hex_color( $header_background_color ); ?>;text-decoration: none;font-size: 15px;}amp-user-notification button:hover {cursor: pointer} .amp-ad-wrapper {text-align: center} <?php if( ampforwp_get_setting('enable-single-social-icons') == true && is_single() )  { ?>
+}.close-nav:hover{ background: <?php echo ampforwp_sanitize_color($cross_btn_hvr_clr); ?>;}.toggle-navigation ul{list-style-type:none;margin:0;padding:0;width:100%}.menu-all-pages-container:after{content:"";clear:both}.toggle-navigation ul li{font-size:13px;border-bottom:1px solid rgba(0,0,0,.11);padding:11px 0;width:25%;float:left;text-align:center;margin-top:6px}.toggle-navigation ul ul{display:none}.toggle-navigation ul li a{color:#eee;padding:15px}.toggle-navigation{display:none;background:#444}.nav_container:hover+.toggle-navigation,.toggle-navigation:active,.toggle-navigation:focus,.toggle-navigation:hover{display:inline-block;width:100%}#amp-user-notification1 p{display:inline-block}amp-user-notification{padding:5px;text-align:center;background:#fff;border-top:1px solid} amp-user-notification button {padding: 8px 10px;background:  <?php echo sanitize_hex_color( $global_color_scheme ); ?>;color: <?php echo sanitize_hex_color( $header_font_color ); ?>;margin-left: 5px;border: 0;}.amp-not-privacy{color:<?php echo sanitize_hex_color( $global_color_scheme ); ?>;text-decoration: none;font-size: 15px;}amp-user-notification button:hover {cursor: pointer} .amp-ad-wrapper {text-align: center} <?php if( ampforwp_get_setting('enable-single-social-icons') == true && is_single() )  { ?>
   body {padding-bottom: 43px;}
 .body.single-post .sticky_social{z-index:99999;}
 .body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{padding-top:4px;padding-bottom:52px;}

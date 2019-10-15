@@ -20,8 +20,6 @@ global $redux_builder_amp;
 	$muted_text_color        = $get_customizer->get_customizer_setting( 'muted_text_color' );
 	$border_color            = $get_customizer->get_customizer_setting( 'border_color' );
 	$link_color              = $get_customizer->get_customizer_setting( 'link_color' );
-	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
-	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 	?>
 
 <?php // Menu elemensts colors
@@ -426,9 +424,9 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 /* Notifications */
 #amp-user-notification1 p { display: inline-block; }
 amp-user-notification { padding: 5px; text-align: center; background: #fff; border-top: 1px solid; }
-amp-user-notification button { padding: 8px 10px; background: #000; color: #fff; margin-left: 5px; border: 0; }
-.amp-not-privacy{color:<?php echo sanitize_hex_color( $header_background_color ); ?>;text-decoration: none;font-size: 15px;margin-left: 2px;}
-amp-user-notification button:hover { cursor: pointer }
+amp-user-notification button { padding: 8px 10px;color: <?php echo sanitize_hex_color( $header_font_color ); ?>; margin-left: 5px; border: 0; }
+.amp-not-privacy{color:<?php echo sanitize_hex_color( $global_color_scheme ); ?>;text-decoration: none;font-size: 15px;margin-left: 2px;}
+amp-user-notification button:hover { cursor: pointer; }
 <?php } ?>
 /* Responsive */
 @media screen and (min-width: 650px) { table {display: inline-table;}  }
@@ -475,7 +473,7 @@ body a {color: <?php echo ampforwp_sanitize_color( $global_color_scheme ); ?>; }
 .amp-wp-content blockquote{ border-color:<?php echo sanitize_hex_color( $global_color_scheme ); ?>; }
 .comment-button-wrapper a { background:  <?php echo sanitize_hex_color( $global_color_scheme ); ?>; }
 amp-user-notification { border-color:  <?php echo sanitize_hex_color( $global_color_scheme ); ?>; }
-amp-user-notification button { background-color:  <?php echo sanitize_hex_color( $global_color_scheme ); ?>;; }
+amp-user-notification button { background-color:  <?php echo sanitize_hex_color( $global_color_scheme ); ?>; }
 <?php if( ampforwp_get_setting('enable-single-social-icons') == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() && is_single() )  { ?>
 .single-post footer { padding-bottom: 40px; }
 .amp-ad-2{ margin-bottom: 50px; }
