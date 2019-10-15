@@ -319,7 +319,7 @@ if( ampforwp_get_setting ('primary-menu') ){?>
 	.p-menu .amp-menu li ul li ul{left: 100%;top: 0;}
 	.p-menu li:hover > ul{opacity: 1;transform: translateY(0px);visibility: visible;transition: all 0.1s ease-in-out 0s;} 
 	.p-menu li ul li{display: block;position: relative;}
-	.p-menu ul li.menu-item-has-children .sub-menu li a{padding:7px;}
+	.p-menu ul li.menu-item-has-children .sub-menu li a{padding:8px 10px 8px 10px;}
 	.p-menu .amp-menu .toggle:after {cursor: pointer;
 	<?php if ( ampforwp_get_setting('ampforwp_font_icon') == 'swift-icons' ){ ?>
 		content: "\e313";font-family: 'icomoon';font-size: 16px;top: 3px;transform: rotate(360deg);
@@ -334,16 +334,29 @@ if( ampforwp_get_setting ('primary-menu') ){?>
 	}
 	.p-menu .amp-menu li.menu-item-has-children>ul>li{padding:0;}
 	@media(max-width:768px){
+		.p-m-fl{position:relative;}
 		.p-menu{white-space: nowrap;overflow: scroll;}
 		.p-menu ul li{position: unset;}
-		.p-menu .amp-menu .dropdown-toggle + [id^=drop]:checked + label + ul {position: absolute;left: 10px;top: 106px;right: 10px;bottom: auto;}
-		.p-menu .amp-menu li ul li ul {left: 0px;top: 0;position: relative;box-shadow: none;border-top: 1px solid #ccc;padding: 0 0 0 10px;margin: 5px 0px 5px 0px;border-bottom: 1px solid #ccc;}
+		.p-menu .amp-menu .dropdown-toggle + [id^=drop]:checked + label + ul {position: absolute;left: 20px;top:45px;right: 20px;bottom: auto;}
+		.toggle{background: #ddd;border-radius: 4px;padding: 0px 1px 1px 0px;}
+		.p-menu .amp-menu [id^=drop]:checked + .toggle:after {left:0px;}
+		.p-menu .amp-menu .toggle:after{left:1px;}
+		.p-menu .amp-menu li ul{border-bottom: 1px solid #ccc;}
+		.p-menu .amp-menu li ul li ul {left: 0px;top: 0;position: relative;box-shadow: none;border-top: 1px solid #ccc;padding: 0 0 0 10px;margin: 5px 0px 5px 0px;}
+		.p-menu .amp-menu li ul li ul li ul{border-bottom: none;}
+	}
+	@media(max-width:450px){
+		.p-menu .amp-menu .dropdown-toggle + [id^=drop]:checked + label + ul {
+	    	left: 12px;
+	    	right: 12px;
+		}
 	}
 	<?php } else { ?>
 	.p-menu{white-space: nowrap;}
 		@media(max-width:768px){
 			.p-menu{overflow: scroll;}
 		}
+
 <?php } // Dropdown CSS Ends
   } // Primary CSS Ends 
 } // Levelup condition ends ?>
