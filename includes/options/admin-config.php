@@ -2796,6 +2796,17 @@ if(defined('WP_DEBUG')){
         $debug_default = 0;
     }
 }
+
+function ampforwp_featured_video_default(){
+    $default = '';
+    if(function_exists( 'csco_setup' )){
+        $default = 'csco_post_embed';
+    }elseif(function_exists('tie_video')){
+        $default = 'tie_video_url';
+    }
+    return $default;
+}
+
  // Advance Settings SECTION
 Redux::setSection( $opt_name, array(
    'title'      => esc_html__( 'Advance Settings', 'accelerated-mobile-pages' ),
@@ -2909,6 +2920,36 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,
                         
                     ),
+
+                    //Feature video Start
+                    array(
+                            'id'    => 'ampforwp-featured-video',
+                            'type'  => 'switch',
+                            'title' => esc_html__('Featured Video', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle' => esc_html__('Enable this option to show featured video in place of featured image', 'accelerated-mobile-pages'),
+                            'default'   => 0,
+                    ),
+                    array(
+                            'id'       => 'ampforwp-featured-video-metakey',
+                            'type'     => 'text',
+                            'class' => 'child_opt child_opt_arrow',
+                            'title'    => esc_html__('Custom Field Name', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle' => esc_html__('Please paste the custom field name for which the Youtube video url has been added which is used for the post.', 'accelerated-mobile-pages'),
+                            'default'  => ampforwp_featured_video_default(),
+                            'required' => array( array('ampforwp-featured-video', '=' , '1')),
+                    ),
+                    array(
+                        'id'        => 'amforwp-homepage-featured-video',
+                        'type'      => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'     => esc_html__('Video in Home page Loop', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable this option to show featured video in Home page loop', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'tooltip-subtitle'  => esc_html__('Enable this option to show featured video for each post of Home page loop'),
+                        'required' => array( array('ampforwp-featured-video','=',1) )
+                    ),
+                    //Feature video End
+
                     // Featured Image from Custom Fields
                     array(
                         'id'       => 'ampforwp-custom-fields-featured-image-switch',
