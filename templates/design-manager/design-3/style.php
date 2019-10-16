@@ -75,7 +75,7 @@ ol, ul {list-style-position: inside;}
 
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {
-    <?php if ( $content_max_width > 0 ) : ?>
+    <?php if ( $content_max_width > 0  && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) : ?>
     max-width: <?php echo esc_attr( sprintf( '%dpx', $content_max_width ) ); ?>;
     margin: 0 auto;
     <?php endif; ?>
