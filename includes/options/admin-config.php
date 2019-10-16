@@ -2329,15 +2329,16 @@ function ampforwp_cpt_hide_amp_bulk($fields){
     $extra_fields = array();
     $custom_fields = array();
     $post_types = get_option('ampforwp_custom_post_types');
+    $post_types_name = get_option('ampforwp_cpt_generated_post_types');
     if($post_types){
         foreach ($post_types as $post_type) {
-            if( $post_type == 'post' || $post_type == 'page' ) {
+            if( $post_type == 'post' || $post_type == 'page' || $post_type == 'category' ) {
                 continue;
             }
             $custom_fields[] = array(
                        'id'       => 'amp-'.$post_type.'s-meta-default',
                        'type'     => 'select',
-                       'title'    => __( 'Individual AMP '.$post_type.' (Bulk Edit)', 'accelerated-mobile-pages' ),
+                       'title'    => __( 'Show or Hide all '.$post_types_name[$post_type].' at once', 'accelerated-mobile-pages' ),
                        'tooltip-subtitle' => __( 'Allows you to Show or Hide AMP for '.$post_type.' from All '.$post_type.'s, so it can be changed individually later. This option will change the Default value of AMP metabox in '.$post_type.'', 'accelerated-mobile-pages' ),
                        'desc' => __( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
                        'options'  => array(
@@ -2375,7 +2376,7 @@ Redux::setSection( $opt_name, array(
                         array(
                            'id'       => 'amp-pages-meta-default',
                            'type'     => 'select',
-                           'title'    => __( 'Individual AMP Page (Bulk Edit)', 'accelerated-mobile-pages' ),
+                           'title'    => __( 'Show or Hide all AMP Pages at once', 'accelerated-mobile-pages' ),
                            'tooltip-subtitle' => __( 'Allows you to Show or Hide AMP from All pages, so it can be changed individually later. This option will change the  Default value of AMP metabox in Pages', 'accelerated-mobile-pages' ),
                            'desc' => __( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
                            'options'  => array(
@@ -2388,7 +2389,7 @@ Redux::setSection( $opt_name, array(
                         array(
                            'id'       => 'amp-posts-meta-default',
                            'type'     => 'select',
-                           'title'    => esc_html__( 'Individual AMP Post (Bulk Edit)', 'accelerated-mobile-pages' ),
+                           'title'    => esc_html__( 'Show or Hide all AMP Posts at once', 'accelerated-mobile-pages' ),
                            'tooltip-subtitle' => esc_html__( 'Allows you to Show or Hide AMP for Posts from All posts, so it can be changed individually later. This option will change the Default value of AMP metabox in posts', 'accelerated-mobile-pages' ),
                            'desc' => esc_html__( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
                            'options'  => array(
