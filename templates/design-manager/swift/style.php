@@ -902,6 +902,7 @@ if ( true == ampforwp_get_setting('ampforwp-disqus-comments-support') ) {?>
     .fsp-cnt{padding: 0px 15px 0px 14px;}
     .r-pf .fsp-cnt{padding: 0px;}
      blockquote p {font-size:20px;}
+     .r-pf h3{padding: 15px 0px 0px 15px;}
      <?php if($redux_builder_amp['rp_design_type'] == '2'){?>
     	.srp li .rlp-image{width:100%;float:none;margin-right:0px;}
     	.srp li .rlp-cnt{width:100%;float:none;}
