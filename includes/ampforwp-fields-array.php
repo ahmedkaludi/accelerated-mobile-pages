@@ -123,10 +123,12 @@ if(ampforwp_get_setting('ampforwp-sd-type-posts')){
 	$amp_website_type = ampforwp_get_setting('ampforwp-setup-ux-website-type');
 }
 $amp_ws_other_type = '';
+if($amp_website_type!=""){
 if(strpos("Other",$amp_website_type)){
 	$other = explode("-", $amp_website_type);
 	$amp_website_type=$other[0];
 	$amp_ws_other_type = $other[1];
+}
 }
 if($amp_website_type==""){
 	$amp_website_type = "BlogPosting";
@@ -168,10 +170,10 @@ $amp_ux_fields = array(
 						'field_data'=>array('title'=>'Homepage','class'=>'amp-ux-homepage','id'=>'amp-ux-homepage','default'=>ampforwp_get_setting('ampforwp-homepage-on-off-support'))
 					),
 					array('field_type'=>'checkbox',
-						'field_data'=>array('title'=>'FrontPage','class'=>'amp-ux-frontpage','id'=>'amp-ux-frontpage','required'=>array('amp-ux-homepage','=','1'),'default'=>ampforwp_get_setting('amp-frontpage-select-option'))
+						'field_data'=>array('title'=>'Select Custom Front Page','class'=>'amp-ux-frontpage','id'=>'amp-ux-frontpage','required'=>array('amp-ux-homepage','=','1'),'label-class'=>"s-f-pg",'default'=>ampforwp_get_setting('amp-frontpage-select-option'))
 					),
 					array('field_type'=>'select',
-						'field_data'=>array('title'=>'Select Custom Front Page','class'=>'amp-ux-frontpage-select child_opt child_opt_arrow','id'=>'amp-ux-frontpage-select', 'options'=>$options, 'required'=>array('amp-ux-frontpage','=','1'),'element-class'=>'ux-label frp','default'=>ampforwp_get_setting('amp-frontpage-select-option-pages')
+						'field_data'=>array('title'=>'','class'=>'amp-ux-frontpage-select child_opt child_opt_arrow','id'=>'amp-ux-frontpage-select', 'options'=>$options, 'required'=>array('amp-ux-frontpage','=','1'),'element-class'=>'ux-label frp','default'=>ampforwp_get_setting('amp-frontpage-select-option-pages')
 						)
 					),
 					array('field_type'=>'checkbox',
@@ -369,7 +371,7 @@ $amp_ux_fields = array(
 					 	'field_data'=>array('id'=>'ampforwp-ux-thirdparty-section','class'=>'section-1 ampforwp-ux-thirdparty-section')
 					 ),
 					 array('field_type'=>'heading',
-					'field_data'=>array('title'=>'Compatibility Section','class'=>'child_opt child_opt_arrow')
+					'field_data'=>array('title'=>'3rd Party Compatibility','class'=>'child_opt child_opt_arrow')
 					),
 					 array('field_type'=>'select',
 						'field_data'=>array('title'=>'SEO','class'=>'ampforwp-ux-select','id'=>'ampforwp-ux-seo-select','options'=>$seo_options,'element-class'=>'ux-align','default'=>ampforwp_get_seo_default())

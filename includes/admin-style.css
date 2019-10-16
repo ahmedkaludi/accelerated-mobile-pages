@@ -1391,10 +1391,12 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
 }
 .amp-ux-notif-container{
     background: #f5f6fa;
-    padding: 5px;
+    padding: 10px 15px;
     border-top: 1px solid #d7d7d761;
     border-bottom: 1px solid #d7d7d761;
-    margin-top:10px;
+    margin-top: 15px;
+    font-size: 12px;
+    color: #222;
 }
 .ux-field-container.amp-ux-notif-container.warning {
     background: transparent;
@@ -1420,8 +1422,9 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     text-decoration: none;      
 }       
 .ios7-switch a .el.el-cog{      
-    margin-left: 15px;      
-    font-size: 16px;        
+    margin-left: 15px;
+    font-size: 16px;
+    color: rgba(237, 29, 36, 0.8);        
 }
 .amp-ux-notif-container.success{
    border-right: 5px solid green;
@@ -1476,7 +1479,8 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     visibility: hidden;
 }
  .drawer {
-    max-width: 320px;
+    max-width: 375px;
+    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
     width: 75%;
     height: 100%;
     right: 0px;
@@ -1519,7 +1523,7 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
 }
 /** Design Improvements of AMP Option Panel**/
 .amp-fields-content{
-    padding: 40px 20px;
+    padding: 40px 30px;
     width: 100%;
     display: inline-block;
     box-sizing: border-box;
@@ -1530,9 +1534,13 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
      overflow-y: scroll;
     height:80%;
 }
+.amp-fields-content::-webkit-scrollbar { 
+    display: none; 
+}
 .ux-field-container h2{
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 400;
+    color: #111;
     margin: 22px 0px;
     line-height: 1.2;
 }
@@ -1549,22 +1557,33 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     color: #333;
     border-bottom: 1px solid #eee;
 }
-.ux-field-container #amp-ux-ga{
+.ux-field-container #amp-ux-ga, #ampforwp-website-type-other{
     border: 1px solid #eaeaea;
     margin:0;
+}
+.ux-field-container h2.ux-label.trac-id.site-tpy{
+    margin-top:15px;
 }
 .ux-field-container select.amp-ux-field{
     border:none;
     border-bottom:1px solid #ddd;
-}
-.ux-field-container select.amp-ux-field, .ux-field-container #amp-ux-ga{
     background: #f9f9f9;
-    width: 200px;
-    padding: 8px 10px
+    width: 100%;
+    max-width: 70%;
+    padding: 10px 15px;
     height: 100%;
-    font-size: 13px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+    box-shadow: none;
+}
+.ux-field-container #amp-ux-ga, #ampforwp-website-type-other{
+    background: #f9f9f9;
+    width: 90%;
+    padding: 8px 10px;
+    height: 100%;
+    font-size: 15px;
     line-height:1.7;
-    
     color: #222;
     box-shadow: none;
 }
@@ -1579,17 +1598,21 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
 
 }
 .ux-field-container.ux-field-footer{
-    border-top: 1px solid #eee;
+    border-top: 1px solid #e2e2e2;
     width: 100%;
     position: fixed;
-    bottom: 15px;
-    background:#fff;
+    padding: 6px 10px 2px 10px;
+    bottom: 0;
     top: auto;
     left: 0;
     right: 0;
+    background:#fff;
+    box-sizing: border-box;
 }
 .ux-field-container.ux-field-footer p{
-    font-size: 15px;
+    font-size: 14px;
+    margin: 18px 0px;
+    color: #333;
 }
 .ux-field-container input.emty-input{
     display:none;
@@ -1612,13 +1635,16 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     color:#fff;
     font-size: 20px;
 }
-.ux-field-container h2.ux-label{
+.ux-field-container h2.ux-label, .s-f-pg{
     font-size: 12px;
     color: #333;
     margin: 10px 0px 12px 0px;
      font-weight: normal;
     background: transparent;
     padding: 5px 0px 10px 0px;
+}
+.s-f-pg{
+    margin-left:30px;
 }
 .ux-field-container h2.ux-label.frp{
     margin: 0px auto 15px;
@@ -1631,12 +1657,13 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     display: inline-block;
 }
 .ux-field-container .ios7-switch input + span:after{
-    border: 2px solid #7c90a4;
-    width: 18px;
-    height: 18px;
+    border: 1px solid #7c90a4;
+    width: 17px;
+    height: 17px;
 }
 .ux-field-container .ios7-switch input + span {
-    height: 15px;
+    height: 14px;
+    width:35px;
 }
 .amp-ux-select-container{
     display: inline-block;
@@ -1648,6 +1675,10 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     display: inline-block;
     margin: 0;
     vertical-align: middle;
+    font-size:18px;
+}
+.amp-ux-select-container h2.ux-align + #ampforwp-ux-seo-select{
+    padding: 7px;
 }
 .ux-field-container #ampforwp-ux-seo-select{
     width: 59%;
@@ -1663,11 +1694,11 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     margin: 20px 0px 0px 0px;
 }
 .ux-seo-blk .third-pp{
-    font-size:20px;
+    font-size:17px;
     margin:0px;
 } 
 .ux-field-container h2.ux-label.trac-id{
-     border: 0;
+    border: 0;
     margin: 0px 0px 8px 0px;
     padding: 0;
     color: #666;
@@ -1677,6 +1708,7 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
 }
 #amp-ux-frontpage-select{
     margin-bottom: 20px;
+    margin-left: 30px;
 }
 .amp-ux-color-container{
     margin-top: 20px;
@@ -1690,6 +1722,8 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
 
 .ux-field-container .amp-ux-switch-text{
    margin: -35px 0px 40px 0px;
+    color: #666;
+    font-size: 13px;
 }
 
 .ux-field-container .switch-options .ios7-switch:hover input:focus:checked + span{
@@ -1699,10 +1733,16 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     box-shadow: inset 0 0 0 2em #ef0e4e;
 }
 
+.ux-field-container .switch-options .ios7-switch input + span:after {
+    content: '';
+    top: -3px;
+}
+.ux-field-container .switch-options .ios7-switch input:checked + span:after {
+    left: 17px;
+}
 .ux-field-container .switch-options .ios7-switch input:checked + span:after{
     background: white;
-    border: 2px solid #ef0e4e;
-   
+    border: 1px solid #ef0e4e;
 }
 
 .amp-ux-checkbox-container h4{display: inline;}
