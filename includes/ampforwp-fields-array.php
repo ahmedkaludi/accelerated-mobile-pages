@@ -125,8 +125,8 @@ if(strpos("Other",$amp_website_type)){
 	$amp_ws_other_type = $other[1];
 }
 if($amp_website_type==""){
-	$amp_website_type = "Other";
-	$amp_ws_other_type = "WebPage";
+	$amp_website_type = "BlogPosting";
+	$amp_ws_other_type = "Blog";
 }
 function ampforwp_check_analytics_setup($type = ''){
 	$analytics_txt = ampforwp_get_setup_info('ampforwp-ux-analytics-section');

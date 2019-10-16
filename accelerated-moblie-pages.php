@@ -864,7 +864,7 @@ if(!function_exists('ampforwp_get_setup_info')){
 
 			if($ux_content=="NewsArticle" || $ux_content=="News"){
 				$ux_content="News";
-			}else if($ux_content=="BlogPosting" || $ux_content=="Blog"){
+			}else if($ux_content=="BlogPosting" || $ux_content=="Blog" || $ux_content==""){
 				$ux_content="Blog";
 			}else if($ux_content=="Product"){
 				$ux_content="Ecommerce";
@@ -877,9 +877,7 @@ if(!function_exists('ampforwp_get_setup_info')){
 					$ux_content="WebPage";
 				}
 			}
-			if($ux_content==""){
-				$ux_content="WebPage";
-			}
+			
 		}else if($ux_option=="ampforwp-ux-need-type-section"){
 			$home   = ampforwp_get_setting('ampforwp-homepage-on-off-support');
             $posts  = ampforwp_get_setting('amp-on-off-for-all-posts');
