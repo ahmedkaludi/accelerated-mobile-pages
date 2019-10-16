@@ -2803,6 +2803,8 @@ function ampforwp_featured_video_default(){
         $default = 'csco_post_embed';
     }elseif(function_exists('tie_video')){
         $default = 'tie_video_url';
+    }elseif(class_exists('Penci_Framework') && function_exists('vp_pfui_admin_init')){
+        $default = '_format_video_embed';
     }
     return $default;
 }

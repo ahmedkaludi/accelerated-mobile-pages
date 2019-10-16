@@ -246,6 +246,7 @@ left:191px;
 <?php if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
   .btt{z-index:9999;}
 <?php } // advanced ads type 3 ends here ?>
+.loop-video{width:230px;}
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
 .whatsapp-share-icon{width:50px;height:28px;display:inline-block;background:#5cbe4a;padding:4px 0;position:relative;top:-4px}.amp-wp-tax-category span:first-child:after{content:' '}.amp-wp-tax-category span:after,.amp-wp-tax-tag span:after{content:', '}.amp-wp-tax-category span:last-child:after,.amp-wp-tax-tag span:last-child:after{content:' '}pre{white-space:pre-wrap}.amp-ad-wrapper.amp_ad_1{padding-top:20px}
 .amp-wp-content-loop{width:100%}
