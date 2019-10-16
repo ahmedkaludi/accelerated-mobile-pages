@@ -1366,7 +1366,6 @@ Redux::setArgs( "redux_builder_amp", $args );
   $setup_ids = array(
                         'ampforwp-ux-website-type-section',
                         'ampforwp-ux-need-type-section',
-                        'ampforwp-ux-design-section',
                         'ampforwp-ux-analytics-section'
                     );
     $amp_ux_icon = "amp-ux-warning-okay";
