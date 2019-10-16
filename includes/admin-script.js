@@ -1097,7 +1097,11 @@ jQuery(document).ready(function($) {
                 $("span[id=select2-ampforwp-sd-type-category-select-container]").text($(this).val());
             }
         }else{
-            $("#ampforwp-website-type-other").show();
+            if(thisvalue=="Other"){
+                $("#ampforwp-website-type-other").show();
+            }else{
+                $("#ampforwp-website-type-other").hide();
+            }
         }
     });
 
