@@ -2024,23 +2024,14 @@ $('.ampforwp_install_ux_plugin').click(function(e){
         }
         amp_options_hide_show(thisid);
     });
-     $('.amp-ux-warning').on('mouseover', function (event) {
+     $('.ux-setup-icon').on('mouseover', function (event) {
         if($(this).hasClass('amp-ux-warning-okay')){
-
+            $(".setup-tt").html("Your setup is now completed. Enjoy the better AMP Experience.");
         }else{
-            $('.ampforwp-setup-not-tt').css({'visibility':'visible'});
+            $(".setup-tt").html("Your setup is not completed. Please setup for better AMP Experience.");
         }
-    })
-    .on('mouseout', function (event) {
-       $('.ampforwp-setup-not-tt').css({'visibility':'hidden'});
-    });
-
-    $('.amp-ux-warning-okay').on('mouseover', function (event) {
-        if($(this).hasClass('amp-ux-warning')){
-            $('.ampforwp-setup-not-tt').css({'visibility':'visible'});
-        }
-    })
-    .on('mouseout', function (event) {
+        $('.ampforwp-setup-not-tt').css({'visibility':'visible'});
+    }).on('mouseout', function (event) {
        $('.ampforwp-setup-not-tt').css({'visibility':'hidden'});
     });
 /* Hamburger Library */

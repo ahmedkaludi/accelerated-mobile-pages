@@ -117,7 +117,11 @@ $amp_ux_loader = array(
 						'field_type'=>'loader', 
 						'field_data'=>array('title'=>'','class'=>'','id'=>'','default'=>0)
 					);
-$amp_website_type = ampforwp_get_setting('ampforwp-setup-ux-website-type');
+if(ampforwp_get_setting('ampforwp-sd-type-posts')){
+	$amp_website_type = ampforwp_get_setting('ampforwp-sd-type-posts');
+}else{
+	$amp_website_type = ampforwp_get_setting('ampforwp-setup-ux-website-type');
+}
 $amp_ws_other_type = '';
 if(strpos("Other",$amp_website_type)){
 	$other = explode("-", $amp_website_type);

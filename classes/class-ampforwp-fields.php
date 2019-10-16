@@ -299,7 +299,7 @@ class AMPforWP_Fields
 			$checked = 'checked';
 		}
 		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).'">
-				<label><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" '.esc_attr($required).'' . esc_attr($checked).'>'.esc_html__($this->title).'</label></div>';
+				<label><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" '.esc_attr($required).' ' . esc_attr($checked).'>'.esc_html__($this->title).'</label></div>';
 		echo $output;
 	}
 	public function ampforwp_field_switch($fields){
