@@ -36,7 +36,7 @@ function ampforwp_framework_get_comments(){
 					$comment_order = get_option( 'comment_order' );
 					$comments = get_comments(array(
 							'post_id' => $postID,
-							'order' => $comment_order,
+							'order' => esc_attr($comment_order),
 							'status' => 'approve' //Change this to the type of comments to be displayed
 					));
 					

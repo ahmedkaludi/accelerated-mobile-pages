@@ -3397,7 +3397,7 @@ function ampforwp_frontpage_comments() {
 			$comment_order = get_option( 'comment_order' );
 			$comments = get_comments(array(
 					'post_id' => $postID,
-					'order' => $comment_order,
+					'order' => esc_attr($comment_order),
 					'status' => 'approve' //Change this to the type of comments to be displayed
 			));
 			$comment_button_url = get_permalink( $post_id );
@@ -6562,7 +6562,7 @@ function ampforwp_comments_sanitizer(){
 		$comment_order = get_option( 'comment_order' );
 		$comments = get_comments(array(
 				'post_id' => $postID,
-				'order' => $comment_order,
+				'order' => esc_attr($comment_order),
 				'status' => 'approve' //Change this to the type of comments to be displayed
 		) );
 		foreach ($comments as $comment) {
