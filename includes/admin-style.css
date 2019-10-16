@@ -1294,21 +1294,48 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     -webkit-background-size: 50px auto;
     background-size: 50px auto;
 }
-.ux-field-footer .ux-foot-icon{
+/*.ux-field-footer .ux-foot-icon{
     height: 25px;
     width: 50px;
     float: left;
     cursor: pointer;
-}
+}*/
 .ux-field-foot-cont a{
     text-decoration: none;
     color: #333333;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    width: 100%;
 }
-.ux-field-footer .ux-send-feedback-icon{
-    background-image: url(../images/ux-feedback.png);
+.ux-field-foot-cont svg{
+    width:22px;
+    height:22px;
+}
+.ux-field-foot-cont .ux-help-icon + svg{
+    width:22px;
+    height:20px;
+}
+.ux-field-container.ux-field-footer p{
+    font-size: 14px;
+    margin: 8px 0px;
+    color: #333;
+    padding-left:15px;
+}
+.ux-field-foot-cont svg{
+    fill:#333;
+}
+.ux-field-foot-cont a:hover p{
+    color:#ed1d24cc;
+}
+.ux-field-foot-cont a:hover svg{
+    fill:#ed1d24cc;
+}
+/*.ux-field-footer .ux-send-feedback-icon{
+    background-image: url(../images/feedback.svg);
     background-repeat: no-repeat;
     background-position: center;
-
+        fill: red;
 }
 .ux-field-footer .ux-help-icon{
     background-image: url(../images/ux-help.png);
@@ -1320,7 +1347,7 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     background-image: url(../images/ux-star.png);
     background-repeat: no-repeat;
     background-position: center;
-}
+}*/
 
 .amp-ux-section-right .amp-ux-fly-block .amp-ux-fly-desc{
     margin-top: -10px;
@@ -1438,9 +1465,20 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     overflow: auto;
 }
 .amp-ux-warning-okay:before{
-    content: "\f12a";
+    /*content: "\f12a";
     font-family: dashicons;
-    color: green;
+    color: green;*/
+    content:"";
+    /*background-image: url(../images/feedback.svg);*/
+    background-repeat: no-repeat;
+    background-position: center;
+    fill: red;
+    /*background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDUxMCA1MTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMCA1MTA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8ZyBpZD0iY2hlY2stY2lyY2xlIj4KCQk8cGF0aCBkPSJNMjU1LDBDMTE0Ljc1LDAsMCwxMTQuNzUsMCwyNTVzMTE0Ljc1LDI1NSwyNTUsMjU1czI1NS0xMTQuNzUsMjU1LTI1NVMzOTUuMjUsMCwyNTUsMHogTTIwNCwzODIuNUw3Ni41LDI1NWwzNS43LTM1LjcgICAgbDkxLjgsOTEuOGwxOTMuOC0xOTMuOGwzNS43LDM1LjdMMjA0LDM4Mi41eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=,fill=red);*/
+    width:24px;
+    height:24px;
+    line-height:24px;
+    display: inline-block;
+    background:url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 20"><path fill="red" d="M0 0h24v24H0V0z"/><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17l-.59.59-.58.58V4h16v12zm-9-4h2v2h-2zm0-6h2v4h-2z"/></svg>) no-repeat;
 }
 .amp-ux-website-type-section{
     position: absolute;
@@ -1601,7 +1639,7 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     border-top: 1px solid #e2e2e2;
     width: 100%;
     position: fixed;
-    padding: 6px 10px 2px 10px;
+    padding: 16px 10px 2px 30px;
     bottom: 0;
     top: auto;
     left: 0;
@@ -1609,10 +1647,10 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     background:#fff;
     box-sizing: border-box;
 }
-.ux-field-container.ux-field-footer p{
-    font-size: 14px;
-    margin: 18px 0px;
-    color: #333;
+.ux-field-foot-cont amp-img{
+    width:50px;
+    height:50px;
+    color:red;
 }
 .ux-field-container input.emty-input{
     display:none;

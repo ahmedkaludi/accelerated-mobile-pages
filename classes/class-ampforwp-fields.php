@@ -455,9 +455,12 @@ class AMPforWP_Fields
 				$a_open = '<a href="'.esc_url($f['url']).'" target="_blank">';
 				$a_close = "</a>";
 			}
-
+			$svg = '';
+			if(isset($f['svg'])){
+				$svg = $f['svg'];
+			}
 			$output .= '<div class="ux-field-foot-cont">'.$a_open.'
-							<i class="ux-foot-icon '.esc_html__($f['icon']).'"></i>
+							<i class="ux-foot-icon '.esc_html__($f['icon']).'"></i>'.$svg.'
 							<p>'.esc_html__($f['desc']).'</p>'.$a_close.'
 						</div>';
 		}

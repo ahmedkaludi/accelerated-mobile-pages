@@ -99,14 +99,25 @@ $amp_ux_common = array(
 											array(
 												'desc'=>"Send Feedback",
 												'icon'=>'ux-send-feedback-icon',
+												'svg'=>'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 20"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17l-.59.59-.58.58V4h16v12zm-9-4h2v2h-2zm0-6h2v4h-2z"/></svg>',
 												'url'=>'https://ampforwp.com/support/',
 											),array(
 												'desc'=>"Help",
 												'icon'=>'ux-help-icon',
+												'svg'=>'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 426.667 426.667" style="enable-background:new 0 0 426.667 426.667;" xml:space="preserve">
+															<rect x="192" y="298.667" width="42.667" height="42.667"/>
+															<path d="M213.333,85.333c-47.147,0-85.333,38.187-85.333,85.333h42.667c0-23.467,19.2-42.667,42.667-42.667     S256,147.2,256,170.667c0,42.667-64,37.333-64,106.667h42.667c0-48,64-53.333,64-106.667     C298.667,123.52,260.48,85.333,213.333,85.333z"/>
+															<path d="M213.333,0C95.573,0,0,95.573,0,213.333s95.573,213.333,213.333,213.333s213.333-95.573,213.333-213.333     S331.093,0,213.333,0z M213.333,384c-94.08,0-170.667-76.587-170.667-170.667S119.253,42.667,213.333,42.667     S384,119.253,384,213.333S307.413,384,213.333,384z"/>
+												</svg>',
 												'url'=>'https://ampforwp.com/tutorials/',
 											),array(
 												'desc'=>"Review",
 												'icon'=>'ux-review-icon',
+												'svg'=>'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 306 306" style="enable-background:new 0 0 306 306;" xml:space="preserve">
+								<g id="star-rate">
+									<polygon points="153,230.775 247.35,299.625 211.65,187.425 306,121.125 191.25,121.125 153,6.375 114.75,121.125 0,121.125     94.35,187.425 58.65,299.625   "/>
+								</g>
+								</svg>',
 												'url'=>'https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?rate=5#new-post',
 											),
 										)
