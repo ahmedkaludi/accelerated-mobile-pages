@@ -111,5 +111,6 @@
 			} ?>
 		</div><?php 
 	} // end if ( $enable_comments ) 
-
+	echo ampforwp_facebook_comments_markup();
+	echo ampforwp_vuukle_comments_markup();
 do_action('ampforwp_after_comment_hook', $this);

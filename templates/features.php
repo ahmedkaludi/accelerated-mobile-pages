@@ -2250,14 +2250,6 @@ function ampforwp_add_disqus_scripts( $data ) {
 }
 
 // Facebook Comments Support #825
-
-add_action('ampforwp_post_after_design_elements','ampforwp_facebook_comments_support');
-function ampforwp_facebook_comments_support() {
-	global $redux_builder_amp;
-	if ( 4 != $redux_builder_amp['amp-design-selector'] ) {
-		echo ampforwp_facebook_comments_markup();
-	}
-}
 function ampforwp_facebook_comments_markup() {
 
 	global $redux_builder_amp;
@@ -6398,20 +6390,14 @@ function ampforwp_get_comments_status(){
 }
 
 // Vuukle Comments Support #2075
-
-add_action('ampforwp_post_after_design_elements','ampforwp_vuukle_comments_support');
-function ampforwp_vuukle_comments_support() {
-	global $redux_builder_amp;
+function ampforwp_vuukle_comments_markup() {
+	global $redux_builder_amp,$post;
+	$vuukle_html ='';
 	if ( 4 != $redux_builder_amp['amp-design-selector']
 		 && isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
 		 && $redux_builder_amp['ampforwp-vuukle-comments-support']==1
 		 && comments_open() 
 		) {
-		echo ampforwp_vuukle_comments_markup();
-	}
-}
-function ampforwp_vuukle_comments_markup() {
-	global $redux_builder_amp,$post;
 	$apiKey = $locale = '';
 	$tag_name ='';
 	$img = get_the_post_thumbnail_url();
@@ -6446,11 +6432,12 @@ function ampforwp_vuukle_comments_markup() {
 	$srcUrl = add_query_arg('img' , esc_url($img), $srcUrl);
 	$srcUrl = add_query_arg('tags' , urlencode($tag_name), $srcUrl); 
 
-	$vuukle_html ='';
+	
 	if ( $display_comments_on ) {
-		$vuukle_html .= '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.$srcUrl.'">
+		$vuukle_html .= '<section class="amp-wp-content post-comments amp-wp-article-content amp-vuukle-comments" id="vuukle-comments"><amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.$srcUrl.'">
 
-			<div overflow tabindex="0" role="button" aria-label="Show comments" class="afwp-vuukle-support">Show comments</div>';
+			<div overflow tabindex="0" role="button" aria-label="Show comments" class="afwp-vuukle-support">Show comments</div></section>';
+	}
 	}
 	return $vuukle_html;
 }
