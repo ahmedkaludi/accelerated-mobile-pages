@@ -3133,8 +3133,15 @@ function amp_latest_products_styling() {
 	<?php }
 }
 
+add_action('admin_head','ampforwp_change_amp_page_meta_on_load');
+function ampforwp_change_amp_page_meta_on_load(){
+	$check_trasient = get_transient('ampforwp_get_amp_page_meta_transient');
+	if($check_trasient==false || $check_trasient==0){
+		ampforwp_change_default_amp_page_meta();
+	}
+}
 // 54. Change the default values of post meta for AMP pages. #746
-add_action('admin_head','ampforwp_change_default_amp_page_meta');
+add_action('redux/options/redux_builder_amp/saved','ampforwp_change_default_amp_page_meta');
 function ampforwp_change_default_amp_page_meta() {
 	if ( ! current_user_can('manage_options') ) {
          return ;
@@ -3149,7 +3156,7 @@ function ampforwp_change_default_amp_page_meta() {
 		$checker				= 'hide';
 		$meta_value_to_upate 	= 'hide-amp';
 	}
-
+	set_transient('ampforwp_get_amp_page_meta_transient',1);
 	// Check and Run only if the value has been changed, else return
 	if ( $check_meta === $checker ) {
 		return;
