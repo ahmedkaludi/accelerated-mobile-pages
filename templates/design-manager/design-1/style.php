@@ -112,7 +112,7 @@ amp-iframe{ max-width: 100%; margin-bottom : 20px; }
 amp-wistia-player {margin:5px 0px;}
 .hide{display:none}
 .amp-wp-article amp-addthis{bottom: -38px;}
-.amp-wp-content,.amp-wp-title-bar div {<?php if ( $content_max_width > 0 ) : ?> margin: 0 auto;max-width: <?php echo esc_attr(sprintf( '%dpx', $content_max_width )); ?>; <?php endif; if(!ampforwp_is_home() && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
+.amp-wp-content,.amp-wp-title-bar div {<?php if ( $content_max_width > 0 ) : ?> margin: 0 auto;max-width: <?php echo esc_attr(sprintf( '%dpx', $content_max_width )); ?>; <?php endif; if((is_singular() || ampforwp_is_front_page()) && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
       max-width:100%;
     <?php } ?> }
 html{background: <?php echo sanitize_hex_color( $global_color_scheme ); ?>;} body{background: <?php echo sanitize_hex_color( $theme_color ); ?>;color: <?php echo sanitize_hex_color( $text_color ); ?>;font-family: 'Merriweather', 'Times New Roman', Times, Serif;font-weight: 300;line-height: 1.75em;}

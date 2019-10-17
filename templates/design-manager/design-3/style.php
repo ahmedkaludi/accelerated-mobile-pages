@@ -79,7 +79,7 @@ ol, ul {list-style-position: inside;}
     max-width: <?php echo esc_attr( sprintf( '%dpx', $content_max_width ) ); ?>;
     margin: 0 auto;
     <?php endif;
-    if(!ampforwp_is_home() && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
+    if((is_singular() || ampforwp_is_front_page() ) && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
       max-width:100%;
     <?php } ?>
 }
