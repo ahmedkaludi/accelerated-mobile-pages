@@ -2330,20 +2330,21 @@ function ampforwp_cpt_hide_amp_bulk($fields){
     $custom_fields = array();
     $post_types = get_option('ampforwp_custom_post_types');
     $post_types_name = get_option('ampforwp_cpt_generated_post_types');
+    $post_types = array_merge($post_types,$post_types_name);
     if($post_types){
         foreach ($post_types as $post_type) {
-            if( $post_type == 'post' || $post_type == 'page' || $post_type == 'category' ) {
+            if( $post_type == 'post' || $post_type == 'page') {
                 continue;
             }
             $custom_fields[] = array(
-                       'id'       => 'amp-'.$post_type.'s-meta-default',
+                       'id'       => 'amp-'.esc_html($post_type).'s-meta-default',
                        'type'     => 'select',
-                       'title'    => __( 'Show or Hide all '.$post_types_name[$post_type].' at once', 'accelerated-mobile-pages' ),
-                       'tooltip-subtitle' => __( 'Allows you to Show or Hide AMP for '.$post_type.' from All '.$post_type.'s, so it can be changed individually later. This option will change the Default value of AMP metabox in '.$post_type.'', 'accelerated-mobile-pages' ),
-                       'desc' => __( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
+                       'title'    => esc_html__( 'Show or Hide all '.esc_html($post_type).' at once', 'accelerated-mobile-pages' ),
+                       'tooltip-subtitle' => esc_html__( 'Allows you to Show or Hide AMP for '.esc_html($post_type).' from All '.esc_html($post_type).'s, so it can be changed individually later. This option will change the Default value of AMP metabox in '.esc_html($post_type).'', 'accelerated-mobile-pages' ),
+                       'desc' => esc_html__( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
                        'options'  => array(
-                           'show' => __('Show by Default', 'accelerated-mobile-pages' ),
-                           'hide' => __('Hide by default', 'accelerated-mobile-pages' ),
+                           'show' => esc_html__('Show by Default', 'accelerated-mobile-pages' ),
+                           'hide' => esc_html__('Hide by default', 'accelerated-mobile-pages' ),
                        ),
                        'default'  => 'show',
                     );
