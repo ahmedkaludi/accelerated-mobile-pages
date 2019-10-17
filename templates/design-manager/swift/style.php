@@ -2226,3 +2226,8 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
     max-width: 150px;
 }
 <?php } ?>
+.m-s-i li a.s_telegram{
+	background: #d0d0d0;
+    padding: 0px 2px;
+    border-radius: 2px;
+}

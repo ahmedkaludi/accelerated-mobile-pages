@@ -664,6 +664,18 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
   -moz-osx-font-smoothing: grayscale;
 }
 .icon-twitter a:before{ content: "\f099";background:#1da1f2 }
+.icon-telegram{
+    position: relative;
+    background: #61a8de;
+    height: 38px;
+    top: 0px;
+    width: 38px;
+    border-radius: 50%;
+}
+.icon-telegram amp-img{
+  margin-top:10px;
+}
+.icon-telegram a:before{background:#1da1f2 }
 .icon-facebook a:before{ content: "\f09a";background:#3b5998 }
 .icon-facebook-f a:before{ content: "\f09a";background:#3b5998 }
 .icon-pinterest a:before{ content: "\f0d2";background:#bd081c }
