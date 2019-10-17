@@ -2330,7 +2330,8 @@ function ampforwp_cpt_hide_amp_bulk($fields){
     $custom_fields = array();
     $post_types = get_option('ampforwp_custom_post_types');
     $post_types_name = get_option('ampforwp_cpt_generated_post_types');
-    $post_types = array_merge($post_types,$post_types_name);
+    $post_types = array_intersect_key($post_types_name,$post_types);
+    sort($post_types);
     if($post_types){
         foreach ($post_types as $post_type) {
             if( $post_type == 'post' || $post_type == 'page') {
