@@ -2188,7 +2188,6 @@ add_action('amp_init','social_sharing_removal_code', 9);
 
 
 //35. Disqus Comments Support 
-add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
 function ampforwp_add_disqus_support() {
 	global $redux_builder_amp;
 	$width = $height = 420;
@@ -6461,18 +6460,12 @@ function ampforwp_add_vuukle_scripts( $data ) {
 	return $data;
 }
 //spotim #2076
-add_action('ampforwp_post_after_design_elements','ampforwp_spotim_comments_support');
-function ampforwp_spotim_comments_support() {
-	global $redux_builder_amp;
+function ampforwp_spotim_comments_markup() {
+	$spotim_html = '';
 	if ( 4 != $redux_builder_amp['amp-design-selector']
 		 && isset($redux_builder_amp['ampforwp-spotim-comments-support'])
 		 && $redux_builder_amp['ampforwp-spotim-comments-support']==1
 		) {
-		echo ampforwp_spotim_comments_markup();
-	echo "called";die;
-	}
-}
-function ampforwp_spotim_comments_markup() {
 	global $post, $redux_builder_amp; 
 	$display_comments_on = false;
 	$display_comments_on = ampforwp_get_comments_status();
@@ -6491,6 +6484,7 @@ function ampforwp_spotim_comments_markup() {
 	  <amp-img placeholder height="815" layout="fill" src="//amp.spot.im/loader.png"></amp-img>
 	  <div overflow class="spot-im-amp-overflow" tabindex="0" role="button" aria-label="Read more">Load more...</div>
 	</amp-iframe>';
+	}
 	return $spotim_html;
 }
 //spotim script
