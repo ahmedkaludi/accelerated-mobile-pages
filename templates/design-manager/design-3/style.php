@@ -75,10 +75,13 @@ ol, ul {list-style-position: inside;}
 
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {
-    <?php if ( $content_max_width > 0  && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) : ?>
+    <?php if ( $content_max_width > 0 ) : ?>
     max-width: <?php echo esc_attr( sprintf( '%dpx', $content_max_width ) ); ?>;
     margin: 0 auto;
-    <?php endif; ?>
+    <?php endif;
+    if(!ampforwp_is_home() && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
+      max-width:100%;
+    <?php } ?>
 }
 figure.aligncenter amp-img {
  margin: 0 auto;
