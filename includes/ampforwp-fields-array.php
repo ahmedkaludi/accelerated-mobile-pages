@@ -178,10 +178,10 @@ $amp_ux_fields = array(
 						'field_data'=>array('title'=>'Where do you need AMP?','class'=>'ampforwp-ux-select emty-input','id'=>'ampforwp-ux-select')
 					),
 					array('field_type'=>'checkbox',
-						'field_data'=>array('title'=>'Homepage','class'=>'amp-ux-homepage','id'=>'amp-ux-homepage','default'=>ampforwp_get_setting('ampforwp-homepage-on-off-support'))
+						'field_data'=>array('title'=>'Homepage','class'=>'amp-ux-homepage','parent-class'=>'hmpg-chk','id'=>'amp-ux-homepage','default'=>ampforwp_get_setting('ampforwp-homepage-on-off-support'))
 					),
 					array('field_type'=>'checkbox',
-						'field_data'=>array('title'=>'Select Custom Front Page','class'=>'amp-ux-frontpage','id'=>'amp-ux-frontpage','required'=>array('amp-ux-homepage','=','1'),'label-class'=>"s-f-pg",'default'=>ampforwp_get_setting('amp-frontpage-select-option'))
+						'field_data'=>array('title'=>'Do you use custom Front Page?','class'=>'amp-ux-frontpage','id'=>'amp-ux-frontpage','required'=>array('amp-ux-homepage','=','1'),'label-class'=>"s-f-pg",'default'=>ampforwp_get_setting('amp-frontpage-select-option'))
 					),
 					array('field_type'=>'select',
 						'field_data'=>array('title'=>'','class'=>'amp-ux-frontpage-select child_opt child_opt_arrow','id'=>'amp-ux-frontpage-select', 'options'=>$options, 'required'=>array('amp-ux-frontpage','=','1'),'element-class'=>'ux-label frp','default'=>ampforwp_get_setting('amp-frontpage-select-option-pages')

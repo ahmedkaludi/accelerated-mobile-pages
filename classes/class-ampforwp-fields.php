@@ -303,7 +303,7 @@ class AMPforWP_Fields
 			$lbl_cls = 'class="'.$fields['label-class'].'"';
 		}
 
-		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).'">
+		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).' '.$this->parent_class.'">
 				<label '.$lbl_cls.'><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" '.esc_attr($required).' ' . esc_attr($checked).'>'.esc_html__($this->title).'</label></div>';
 		echo $output;
 	}
@@ -380,7 +380,7 @@ class AMPforWP_Fields
 					
 				</div>
 				<div class="upload_button_div amp-ux-upload">
-					<span class="button media_upload_button media-amp-ux-opt-media media-'.intval($this->id).'" id="opt-media-media">Upload</span>
+					<span class="button media_upload_button media-amp-ux-opt-media media-'.intval($this->id).'" id="opt-media-media">Add Logo</span>
 					<span class="amp-ux-img-re-txt">(Recommended Size: 120 x 90)</span>				
 				</div>';
 			$output .= '</div></div>';
