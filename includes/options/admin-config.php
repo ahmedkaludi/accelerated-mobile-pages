@@ -2337,10 +2337,10 @@ function ampforwp_cpt_hide_amp_bulk($fields){
                 continue;
             }
             $custom_fields[] = array(
-                       'id'       => 'amp-'.esc_html($post_type).'s-meta-default',
+                       'id'       => 'amp-'.esc_attr($post_type).'s-meta-default',
                        'type'     => 'select',
-                       'title'    => esc_html__( 'Show or Hide all '.esc_html($post_type).' at once', 'accelerated-mobile-pages' ),
-                       'tooltip-subtitle' => esc_html__( 'Allows you to Show or Hide AMP for '.esc_html($post_type).' from All '.esc_html($post_type).'s, so it can be changed individually later. This option will change the Default value of AMP metabox in '.esc_html($post_type).'', 'accelerated-mobile-pages' ),
+                       'title'    => esc_html__( 'Show or Hide all '.esc_attr($post_type).' at once', 'accelerated-mobile-pages' ),
+                       'tooltip-subtitle' => esc_html__( 'Allows you to Show or Hide AMP for '.esc_attr($post_type).' from All '.esc_attr($post_type).'s, so it can be changed individually later. This option will change the Default value of AMP metabox in '.esc_attr($post_type).'', 'accelerated-mobile-pages' ),
                        'desc' => esc_html__( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
                        'options'  => array(
                            'show' => esc_html__('Show by Default', 'accelerated-mobile-pages' ),

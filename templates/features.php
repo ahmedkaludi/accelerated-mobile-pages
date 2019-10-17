@@ -3254,7 +3254,7 @@ function ampforwp_change_default_amp_post_meta() {
 	$post_types = ampforwp_get_all_post_types();
 	if ( $post_types ) {
 		foreach ($post_types as $post_type ) {
-			$post_check_meta	= get_option('ampforwp_default_'.esc_html($post_type).'s_to');
+			$post_check_meta	= get_option('ampforwp_default_'.esc_attr($post_type).'s_to');
 			$post_checker			= 'show';
 			$post_control			= ampforwp_get_setting('amp-'.esc_attr($post_type).'s-meta-default');
 			$post_meta_to_update = 'default';
@@ -3283,7 +3283,7 @@ function ampforwp_change_default_amp_post_meta() {
 					}
 				}
 				// Update the option as the process has been done and update an option
-				update_option('ampforwp_default_'.esc_html($post_type).'s_to', $post_checker);
+				update_option('ampforwp_default_'.esc_attr($post_type).'s_to', $post_checker);
 			}
 		}
 	}
