@@ -3256,7 +3256,7 @@ function ampforwp_change_default_amp_post_meta() {
 		foreach ($post_types as $post_type ) {
 			$post_check_meta	= get_option('ampforwp_default_'.esc_html($post_type).'s_to');
 			$post_checker			= 'show';
-			$post_control			= ampforwp_get_setting('amp-'.esc_html($post_type).'s-meta-default');
+			$post_control			= ampforwp_get_setting('amp-'.esc_attr($post_type).'s-meta-default');
 			$post_meta_to_update = 'default';
 			if ( $post_control  === 'hide' ) {
 				$post_checker				= 'hide';
