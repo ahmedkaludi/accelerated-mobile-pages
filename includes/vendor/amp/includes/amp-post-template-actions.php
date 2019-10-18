@@ -40,7 +40,18 @@ function amp_post_template_add_cached_link($amp_template) {
 		if (strpos($url, "fonts.googleapis.com")) { 
 	?>
 		<link rel="preconnect dns-prefetch" href="https://fonts.gstatic.com/" crossorigin>
-	<?php } endforeach;
+	<?php } endforeach; 
+		$design = "swift";
+		if(ampforwp_get_setting("ampforwp_font_icon")=="swift-icons"){
+			if(ampforwp_get_setting('amp-design-selector')!=4){
+				$design = "design-".ampforwp_get_setting('amp-design-selector');
+			}
+			$font_url = esc_url(AMPFORWP_PLUGIN_DIR_URI."templates/design-manager/$design/fonts/icomoon.ttf");
+		?>
+			<link rel="preload" as="font" href="<?php echo $font_url; ?>" type="font/ttf" crossorigin>
+
+	<?php
+	}
 }
 
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_scripts' );
