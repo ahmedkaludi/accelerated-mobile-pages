@@ -35,7 +35,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     $classes[] = 'menu-item-' . $item->ID;
 
     $class_names = join( ' ', apply_filters( 'ampforwp_nav_menu_css_class', array_filter( $classes ), $item, $args ) );
-    $class_names = ' class="' . esc_attr( $class_names ) . '"';
+    $lmenu = "";
+    if($item->url=="" || $item->url=="#"){
+      $lmenu = "link-menu";
+    }
+    $class_names = ' class="' . esc_attr( $class_names ) . ' '.$lmenu.'"';
 
     $id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args, $depth );
     $id = strlen( $id ) ? ' id="' . esc_attr( $id ) . '"' : '';
