@@ -313,7 +313,7 @@ if( ampforwp_get_setting ('primary-menu') ){?>
 	if($redux_builder_amp['drp-dwn']){?>
 	.p-menu ul li ul{display:block;padding: 7px;
      box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.30);border-radius: 4px;}
-	.p-menu .amp-menu [id^=drop]:checked + label + ul{display:block;z-index:9;}
+	.p-menu ul li:hover>ul {display: block;z-index: 9;}
 	.p-menu li a{transition: all 0s ease-in-out 0s;}
 	.p-menu .amp-menu li ul{background:<?php echo ampforwp_sanitize_color($pmenu_bg_clr); ?>;left: 0;min-width: 200px;opacity: 1;position: absolute;top: 100%;text-align:left;}
 	.p-menu .amp-menu li ul li ul{left: 100%;top: 0;}
@@ -334,6 +334,8 @@ if( ampforwp_get_setting ('primary-menu') ){?>
 	}
 	.p-menu .amp-menu li.menu-item-has-children>ul>li{padding:0;}
 	@media(max-width:768px){
+		.p-menu ul li:hover>ul {display:none;}
+		.p-menu .amp-menu [id^=drop]:checked + label + ul{display:block;z-index:9;}
 		.p-m-fl{position:relative;}
 		.p-menu{white-space: nowrap;overflow: scroll;}
 		.p-menu ul li{position: unset;}
