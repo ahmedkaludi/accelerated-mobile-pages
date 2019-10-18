@@ -1262,7 +1262,8 @@ if(!function_exists('ampforwp_featured_markup')){
 }
 add_filter('amp_post_template_data','ampforwp_feature_video_amp_js', 20);
 function ampforwp_feature_video_amp_js($data){
-    if ( empty( $data['amp_component_scripts']['amp-youtube'] && $data['amp_component_scripts']['amp-video']) && (ampforwp_get_setting('ampforwp-featured-video')==true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey')))) {
+    $vmeta = ampforwp_get_setting('ampforwp-featured-video-metakey');
+    if ( empty( $data['amp_component_scripts']['amp-youtube'] && $data['amp_component_scripts']['amp-video']) && (ampforwp_get_setting('ampforwp-featured-video')==true && !empty($vmeta))) {
         $data['amp_component_scripts']['amp-youtube'] = 'https://cdn.ampproject.org/v0/amp-youtube-0.1.js';
         $data['amp_component_scripts']['amp-video'] = 'https://cdn.ampproject.org/v0/amp-video-0.1.js';
     }
@@ -1290,7 +1291,8 @@ if(!function_exists('ampforwp_featured_video_markup')){
                 $videoContent = get_the_post_video();
                 $amp_f_video = ampforwp_content_sanitizer($videoContent);
             }
-            if(ampforwp_get_setting('ampforwp-featured-video')==true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
+            $vmeta = ampforwp_get_setting('ampforwp-featured-video-metakey');
+            if(ampforwp_get_setting('ampforwp-featured-video')==true && !empty($vmeta)){
                 $metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
                 $video_url = get_post_meta($post_id, $metaKey,true);
                 $parts = parse_url($video_url);

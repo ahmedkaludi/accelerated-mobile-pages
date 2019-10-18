@@ -224,7 +224,8 @@ do_action("ampforwp_single_design_type_handle_d1");
 			<h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' )); ?></h3>
 		<?php
 		$number_of_posts = 6;
-		if( !empty(ampforwp_get_setting('ampforwp-number-of-recent-posts')) ){
+		$rcp = ampforwp_get_setting('ampforwp-number-of-recent-posts');
+		if( !empty($rcp) ){
 			$number_of_posts = (int) ampforwp_get_setting('ampforwp-number-of-recent-posts');
 		}
 		while( amp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
@@ -383,7 +384,8 @@ do_action("ampforwp_single_design_type_handle_d1");
 						<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
 						<?php 
 						$number_of_posts = 6;
-						if( !empty(ampforwp_get_setting('ampforwp-number-of-recent-posts')) ){
+						$rcp = ampforwp_get_setting('ampforwp-number-of-recent-posts');
+						if( !empty($rcp) ){
 							$number_of_posts = (int) ampforwp_get_setting('ampforwp-number-of-recent-posts');
 						}
 						while( amp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>

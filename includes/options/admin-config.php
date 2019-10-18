@@ -1598,13 +1598,15 @@ Redux::setArgs( "redux_builder_amp", $args );
         $roles = '';
         $metabox_access = ampforwp_get_setting('amp-meta-permissions');
         if($metabox_access == 'admin'){
-            if(empty(ampforwp_get_setting('ampforwp-role-based-access'))){
+            $rba = ampforwp_get_setting('ampforwp-role-based-access');
+            if(empty($rba)){
                 $roles = array('administrator');
             }else{
                 $roles = ampforwp_get_setting('ampforwp-role-based-access');
             }
         }else{
-            if(empty(ampforwp_get_setting('ampforwp-role-based-access'))){
+            $rba = ampforwp_get_setting('ampforwp-role-based-access');
+            if(empty($rba)){
                 $roles = array('administrator','editor');
             }else{
                 $roles = ampforwp_get_setting('ampforwp-role-based-access');
