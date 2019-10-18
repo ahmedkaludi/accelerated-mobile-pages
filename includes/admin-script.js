@@ -804,11 +804,19 @@ jQuery(document).ready(function($) {
         }
     },10);
     $(".redux-group-tab-link-li").click(function(){
-            if($(this).hasClass('ampforwp-new-ux')){
-                $('#redux-footer-sticky').hide();
-            }else{
-                $('#redux-footer-sticky').show();
+        var this_c_val = $(this).children('a').children('span.group_title').html();
+        if($(this).hasClass('ampforwp-new-ux')){
+            $('#redux-footer-sticky').hide();
+            $('#redux-footer-sticky #redux-footer').addClass("hide");
+        }else{
+            if(this_c_val=="Settings" || this_c_val=="Design"){
+                if($('#redux-footer-sticky #redux-footer').hasClass('hide')){
+                    $('#redux-footer-sticky').show();
+                    $('#redux-footer-sticky #redux-footer').removeClass("hide");
+                    $('#redux-footer-sticky #redux-footer').css({'position': 'fixed', 'bottom': '0px', 'width': '818px', 'left': '379px', 'background': 'rgb(238, 238, 238)'});
+                }
             }
+        }
     });
      var new_data = JSON.parse(amp_fields);
     var saveChangesInRedux = function($current){
@@ -1020,8 +1028,6 @@ jQuery(document).ready(function($) {
         }else{
              option = '<div class="button btn-red">'+button+'</div>';
         }
-
-        $("[data-href="+active_drower+"]").find("div.amp-ux-elem-but-block").html(option);
         if("ampforwp-ux-thirdparty-section" !=active_drower){
             $("[data-href="+active_drower+"]").find("div.amp-ux-elem-but-block").html(option);
         }
@@ -1084,9 +1090,10 @@ jQuery(document).ready(function($) {
     $('#ampforwp-ux-select').on('change', function(e){
         var thisvalue = $(this).val();
         // Update Values in Structured data
-         $("#ampforwp-setup-ux-website-type").val(thisvalue);
+        $("#ampforwp-setup-ux-website-type").val(thisvalue);
         if(thisvalue!="Local Business" && thisvalue!="Other"){
             $("#ampforwp-website-type-other").hide();
+            $(".ux-other-site-type").hide();
             $("#ampforwp-website-type-other").val("");
             //Posts
             if($("select[id=ampforwp-sd-type-posts-select]").val()!=undefined){
@@ -1098,11 +1105,19 @@ jQuery(document).ready(function($) {
             }
         }else{
             if(thisvalue=="Other"){
+                $(".ux-other-site-type").show();
                 $("#ampforwp-website-type-other").show();
             }else{
                 $("#ampforwp-website-type-other").hide();
+                $(".ux-other-site-type").hide();
             }
         }
+    });
+
+    $("#ampforwp-ux-seo-select").on('change', function(e){
+        var thisvalue = $(this).val();
+        $("select[id=ampforwp-seo-selection-select]").val(thisvalue);
+        $("span[id=select2-ampforwp-seo-selection-select-container]").text($(this).val());
     });
 
     $("#ampforwp-website-type-other").on('change',function(){

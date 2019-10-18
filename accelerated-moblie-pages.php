@@ -872,7 +872,7 @@ if(!function_exists('ampforwp_get_setup_info')){
 			}else if($ux_content=="Product"){
 				$ux_content="Ecommerce";
 			}
-			if(strpos("Other",$ux_content)){
+			if(strpos("Other",$ux_content)!==false){
 				$other = explode("-", $ux_content);
 				if(isset($other[1])){
 					$ux_content=$other[1];

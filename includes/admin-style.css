@@ -164,6 +164,9 @@ body #toplevel_page_amp_options .wp-menu-image{
      font-size: 10px;
     top: 7px;
 }
+.ux-other-site-type{
+    display: none;
+}
 .ampforwp-ux-closable:hover {
     background: #F44336;
     color: #fff;

@@ -57,11 +57,10 @@ switch ($analytics_default_option) {
  if ( ! function_exists('ampforwp_get_seo_default') ) {
         function ampforwp_get_seo_default() {
             $default = '';
-            include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
-            if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
+           /* if ( defined('WPSEO_FILE')) {
                 $default = 'yoast';
             }
-            elseif ( is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php') ) {
+            elseif ( defined('AIOSEOPPRO') ) {
                 $default = 'aioseo';
             }
             elseif ( defined( 'RANK_MATH_FILE' ) ) {
@@ -70,7 +69,7 @@ switch ($analytics_default_option) {
             elseif ( function_exists('genesis_theme_support') ) {
                 $default = 'genesis';
             }
-            elseif ( is_plugin_active('wp-seopress/seopress.php') ) {
+            elseif ( function_exists('seopress_init')) {
                 $default = 'seopress';
             }
             elseif ( function_exists( 'the_seo_framework' ) ) {
@@ -80,8 +79,8 @@ switch ($analytics_default_option) {
                 $default = 'squirrly';
             }elseif ( class_exists('Smartcrawl_Loader')){
                 $default = 'smartcrawl';
-            }
-            return $default;
+            }*/
+            return ampforwp_get_setting('ampforwp-seo-selection');
         }
     }
 $structure_data_options =  array(

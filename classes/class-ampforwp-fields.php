@@ -273,7 +273,7 @@ class AMPforWP_Fields
 			if($this->default!="Other"){
 				$hide = 'hide';
 			}
-			$output .= '<div id=""><h2 class="ux-label trac-id site-tpy">Mention the type of your site</h2><input type="text" id="'.$fields['data-value-id'].'" class="'.$this->class.' '.$hide.'" value="'.$fields['data-value'].'" placeholder="Enter your website type"></div>';
+			$output .= '<div class="ux-other-site-type"><h2 class="ux-label trac-id site-tpy">Mention the type of your site</h2><input type="text" id="'.$fields['data-value-id'].'" class="'.$this->class.' '.$hide.'" value="'.$fields['data-value'].'" placeholder="Enter your website type"></div>';
 		}
 		if( $this->data_href ){
 			if ( isset($fields['data-href-id']) ) {
@@ -300,11 +300,11 @@ class AMPforWP_Fields
 
 		$lbl_cls = '';
 		if(isset($fields['label-class'])){
-			$lbl_cls = 'class="'.$fields['label-class'].'"';
+			$lbl_cls = 'class="'.esc_attr($fields['label-class']).'"';
 		}
 
 		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).' '.$this->parent_class.'">
-				<label '.$lbl_cls.'><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" '.esc_attr($required).' ' . esc_attr($checked).'>'.esc_html__($this->title).'</label></div>';
+				<label '.$lbl_cls.'><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" '.esc_attr($required).' ' . esc_attr($checked).'>'.esc_html__($this->title, 'accelerated-mobile-pages').'</label></div>';
 		echo $output;
 	}
 	public function ampforwp_field_switch($fields){
@@ -318,7 +318,7 @@ class AMPforWP_Fields
 		}
 		$output = '<div class="ux-field-container amp-ux-switch-container '.$this->parent_class.' '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2 class="'.$this->element_class.'">'.esc_html__($this->title).'</h2>';
+			$output .= '<h2 class="'.$this->element_class.'">'.esc_html__($this->title, 'accelerated-mobile-pages').'</h2>';
 		}
 		if ( 1 == $this->default ) {
 			$this->selected = 'checked';
