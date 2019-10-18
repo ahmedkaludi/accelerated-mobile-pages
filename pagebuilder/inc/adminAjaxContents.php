@@ -178,7 +178,7 @@ function ampforwp_pb_taxonomy(){
     if(!empty($taxs)){
     	foreach ($taxs as $taxonomy) {
 	    	$taxonomies = get_taxonomy( $taxonomy );
-	    	$return[$taxonomies->name] = $taxonomies->labels->singular_name;
+	    	$return[esc_attr($taxonomies->name)] = esc_html($taxonomies->labels->singular_name);
 	    }
     }
     $return['recent_option']= 'Recent Posts';

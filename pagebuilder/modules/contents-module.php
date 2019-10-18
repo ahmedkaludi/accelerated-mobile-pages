@@ -87,7 +87,7 @@ $categoriesArray = array();
 if ( is_admin() ) {
   $post_types = get_post_types(array('public'=>true));
   $post_types = get_option('ampforwp_cpt_generated_post_types');
-  $post_types['post'] = 'post';
+  $post_types['post'] = 'Post';
  $categories = get_categories( array(   
                    'orderby' => 'name',   
                    'order'   => 'ASC',
