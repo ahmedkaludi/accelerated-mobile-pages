@@ -673,7 +673,7 @@ function ampforwp_new_dir( $dir ) {
 	      if ( is_page() && ( true == ampforwp_get_setting('ampforwp-page-sticky-social') || ( $social_check_page && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) ) ) {
 	        $fb_like = true;
 	      }
-	      if ( true == ampforwp_get_setting('enable-single-social-icons') && checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && !ampforwp_is_home()) {
+	      if ( true == ampforwp_get_setting('enable-single-social-icons') && checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && is_singular()) {
 	        $fb_like = true;    
 	      }
 	    }
