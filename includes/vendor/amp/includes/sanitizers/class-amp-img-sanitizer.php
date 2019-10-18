@@ -205,7 +205,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	}
 
 	public function get_scripts() {
-		if ( $this->is_lightbox ) {
+		if ( $this->is_lightbox && (is_singular() || ampforwp_is_front_page())) {
 			$this->scripts[self::$script_slug_lightbox] = self::$script_src_lightbox;
 		}
 
