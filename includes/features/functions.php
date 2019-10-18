@@ -298,10 +298,13 @@ function ampforwp_generate_meta_desc($json=""){
         }
 
         //Genesis #1013
-        if ( function_exists('genesis_meta') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+        if ( function_exists('genesis_get_seo_meta_description') && 'genesis' == ampforwp_get_setting('ampforwp-seo-selection') ) {
             $genesis_description = '';
             if ( is_home() && is_front_page() && ! $redux_builder_amp['amp-frontpage-select-option'] ) {
                 $genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
+            }
+            elseif(ampforwp_is_front_page()){
+                $genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
             }
             elseif ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
                 $post_id = get_option( 'page_for_posts' );
