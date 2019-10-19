@@ -2798,6 +2798,8 @@ if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('am
 		    border-bottom: 1px solid #eee;
 		    padding-bottom: 15px;
 		}
+		.next, .prev {float: none;width:100%;}
+		.next a {margin-bottom: 45px;display: inline-block;}
 	}
 	<?php } // single Desing 7 ends here
 } // AMP Woocommerce condition ends here 
