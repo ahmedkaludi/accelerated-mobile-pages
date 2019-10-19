@@ -5,7 +5,6 @@ $output = '
 {{ifend_condition_testimonial_layout_type_1}}
 
 {{if_condition_testimonial_layout_type==3}}
-	
 	<amp-carousel {{if_id}}id="{{id}}"{{ifend_id}} class="testi3-slider {{user_class}}" type="slides" width="1200" height="450" layout="responsive" data-next-button-aria-label="Go to next slide"
   		data-previous-button-aria-label="Go to previous slide"">
   		{{repeater_design_3}}
@@ -19,12 +18,6 @@ if ( in_array(ampforwp_get_setting('amp-design-selector'), array(1,2,3)) ) {
 				}
 				{{module-class}} amp-carousel .testi-mod-3{
 					box-sizing:border-box;
-				}
-				{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-prev{
-					left: 0px;
-				}
-				{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-next {
-					right: 0px;
 				}
 				{{module-class}} .testi-mod-blk blockquote{
 					padding:0;
@@ -40,11 +33,9 @@ if ( in_array(ampforwp_get_setting('amp-design-selector'), array(1,2,3)) ) {
 }
 if ( in_array(ampforwp_get_setting('amp-design-selector'), array(4)) ) { 
 	$designCss ='{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-prev{
-					left: 22%;
 					border-radius: 100px;
 				}
 				{{module-class}} amp-carousel.testi3-slider .amp-carousel-button-next {
-				    right: 22%;
 				    border-radius: 100px;
 				}
 				{{module-class}} .testi-mod-blk h4{
@@ -89,7 +80,7 @@ $css = '
     flex-direction: column;
     justify-content: center;
     background:{{d3-tst_bg_color}};
-    padding:5% 6% 3% 6%;
+    padding:60px 6% 40px 6%;
     border-radius: 10px;
     box-shadow: 0 10px 16px 0 rgba(8, 8, 8, 0.14), 0 1px 9px 0 rgba(0,0,0,0.10);
 }
@@ -105,14 +96,12 @@ $css = '
     margin: 0px 0px 30px 0px;
 }
 {{module-class}} .testi-mod-blk blockquote.blqut div p{
-	font-size:100%;
+	font-size: {{d3-tst-size}};
 	line-height:1.4;
 	padding:0px;
 	font-weight:normal;
 }
 {{module-class}} .testi-mod-blk blockquote.blqut div{
-	font-size: {{d3-tst-size}};
-	line-height:1.4;
     padding: 50px 0px 0px 0px;
     font-weight: 400;
     color: {{d3-tst_color}};
@@ -192,6 +181,9 @@ $css = '
 	}
 	{{module-class}} amp-carousel .testi-mod-3{
 		box-shadow: none;
+	}
+	{{module-class}} .testi-mod-blk blockquote.blqut div p{
+		font-size: 20px;
 	}
 }
 
