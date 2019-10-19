@@ -3605,9 +3605,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'content-font-family-enable',
                     'type'     => 'switch',
                     'class'    => 'ampforwp-google-font-class secondary-font-selector',
-                    'title'    => sprintf('%s %s', 
-                                    esc_html__($secondary_text, 'accelerated-mobile-pages'), 
-                                    esc_html__('Font Selector', 'accelerated-mobile-pages')),
+                    'title'    => sprintf('%s', esc_html__( $secondary_text . 'Font Selector', 'accelerated-mobile-pages' ) ),
                     'required' => array(
                                    // array('amp-design-selector', '=' , '4')
                                     ),
@@ -3621,9 +3619,7 @@ Redux::setSection( $opt_name, array(
                 'id'       => 'amp_font_selector_content_single',
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-families secondary-font-family-selector',
-                'title'    => sprintf('%s %s', 
-                                    esc_html__($secondary_text, 'accelerated-mobile-pages'), 
-                                    esc_html__('Font Family Selector', 'accelerated-mobile-pages')),
+                'title'    => sprintf('%s', esc_html__( $secondary_text.' Font Family Selector', 'accelerated-mobile-pages') ),
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'None',
@@ -3641,9 +3637,7 @@ Redux::setSection( $opt_name, array(
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-family-weights secondary-font-family-weights',
                 'multi'    => true,
-                'title'    => sprintf('%s %s', 
-                                    esc_html__($secondary_text, 'accelerated-mobile-pages'), 
-                                    esc_html__('Font Family Weight Selector', 'accelerated-mobile-pages')),
+                'title'    => sprintf('%s',  esc_html__( $secondary_text. ' Font Family Weight Selector', 'accelerated-mobile-pages' ) ),
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'none',
