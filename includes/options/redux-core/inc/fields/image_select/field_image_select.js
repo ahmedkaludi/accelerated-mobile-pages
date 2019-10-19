@@ -36,7 +36,7 @@
                     return;
                 }
                 // On label click, change the input and class
-                el.find( '.redux-image-select label img, .redux-image-select label .tiles' ).click(
+                el.find( '.redux-image-select label img, .redux-image-select label .tiles, .redux-image-select label .single-design-labels .sdl' ).click(
                     function( e ) {
                         var id = $( this ).closest( 'label' ).attr( 'for' );
 

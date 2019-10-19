@@ -191,7 +191,19 @@ if ( ! class_exists( 'ReduxFramework_image_select' ) ) {
                         echo '<br /><span>' . $v['title'] . '</span>';
                     }
                     if(isset($v['before_label_close'])){
-                        echo "<div class='single-design-labels'>".$v['before_label_close']."</div>";
+                        $allowed_html = array('span'=> array(
+                                                        'class'=>array(),
+                                                        'id'=>array() 
+                                                    ),
+                                              'a' => array(
+                                                        'class'=>array(),
+                                                        'id'=>array(),
+                                                        'href'=>array(),
+                                                        'target'=>array(),
+                                                        )
+                                            );
+
+                        echo "<div class='single-design-labels'>".wp_kses($v['before_label_close'], $allowed_html)."</div>";
                     }
                     echo '</label>';
                     echo '</li>';

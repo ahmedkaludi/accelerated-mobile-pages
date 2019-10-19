@@ -2616,7 +2616,7 @@ if( true == ampforwp_get_setting('ampforwp-tags-single') ) { ?>
 		display:inline-block;
 	}
 	.amp-tag a{
-		border:1px solid <?php echo $swift_cs_color; ?>;
+		border:1px solid <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;
 		padding: 5px 10px 5px 10px;
 	    font-size: 13px;
 	    margin: 0px 5px;
@@ -2728,10 +2728,10 @@ if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('am
 		}
 		.rcp-img{
 			flex:1 0 34%;
+			padding-right:15px;
 		}
 		.rcp-cnt{
 			flex:1 0 66%;
-			padding-left:15px;
 		}
 		.rcp-cnt .loop-title a{
 			color: #111;
