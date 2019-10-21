@@ -1235,7 +1235,8 @@ jQuery(document).ready(function($) {
                     $('.redux-option-image').attr('src', $('#amp-ux-logo-thumb').val());
                     saveChangesInRedux($(this));
                     set_ux_selected_val();
-                    $("#opt-media-media").html("Change the Logo");
+                    $("#opt-media-media").html("Change Logo");
+                    $(".amp-ux-upload").addClass('amp-ux-chng-lg');
                 }
             });
         }
