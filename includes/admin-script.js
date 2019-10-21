@@ -1211,7 +1211,16 @@ jQuery(document).ready(function($) {
             $("input[id=ampforwp-archive-support]").val(0);
         }
     });
-
+    $(".toplevel_page_amp_options").on('mouseover', function(){
+            if(amp_option_panel_view==31){
+                $("#toplevel_page_amp_options .wp-submenu.wp-submenu-wrap li").each(function(){
+                    var t_e_c_v = $(this).children('a').html();
+                    if(t_e_c_v=="Settings" || t_e_c_v=="Design" || t_e_c_v=="Extensions" || t_e_c_v=="Upgrade to Pro" || t_e_c_v=="Import / Export"){
+                        $(this).hide();
+                    }
+                });
+            }
+    });
     // Design and Presentation Section
     $('.media-amp-ux-opt-media' ).unbind().on(
         'click', function( event ) {
@@ -1933,7 +1942,7 @@ $('.ampforwp_install_ux_plugin').click(function(e){
         );
     }
     function amp_option_panel_view_func(){
-    if(amp_option_panel_view!="1" && amp_option_panel_view!="2"){
+    if(amp_option_panel_view!="1" && amp_option_panel_view!="2" && amp_option_panel_view!="31" && amp_option_panel_view!="32"){
             $('html, body').animate({scrollTop:0},500);
             var amp_opt_view_pop = '<div class="ampforwp-option-panel-view-pop" role="dialog">'+
                       '<div class="m-dialog">'+

@@ -43,7 +43,13 @@ function ampforwp_add_admin_styling($hook_suffix){
         $opt = get_option("ampforwp_option_panel_view_type");
         wp_localize_script( 'ampforwp_admin_js', 'amp_option_panel_view', $opt);
     }else{
-        wp_localize_script( 'ampforwp_admin_js', 'amp_option_panel_view', "2");
+        $opt = get_option("ampforwp_option_panel_view_type");
+        if($opt==1 || $opt==2){
+            $opt="3".$opt;
+        }else{
+            $opt = "31";
+        }
+        wp_localize_script( 'ampforwp_admin_js', 'amp_option_panel_view', "$opt");
     }
     wp_localize_script( 'ampforwp_admin_js', 'amp_fields', $amp_fields );
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
