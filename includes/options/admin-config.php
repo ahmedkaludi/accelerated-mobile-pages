@@ -463,7 +463,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'structured-data-for-wp/structured-data-for-wp.php',
                             'item_name'=>'Structured Data for WP',
                             'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')? 1: 2),
+                            'is_activated'=>(function_exists('saswp_non_amp')? 1: 2),
                           //'settingUrl'=>'',
                         ),
                         array(

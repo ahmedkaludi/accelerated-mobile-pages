@@ -1199,7 +1199,7 @@ jQuery(document).ready(function($) {
         }
     });
     // Archives
-    $('input[id="redux_builder_amp_amp-ux-archives"]').click(function(){
+    $('input[id="amp-ux-archives"]').click(function(){
         if($(this).prop("checked") == true){
             if($('input[id="ampforwp-archive-support"]').val() != 1 ) {
                 $("input[data-id=ampforwp-archive-support]").prop('checked', true).trigger( 'change' );

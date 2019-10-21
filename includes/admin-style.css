@@ -1101,9 +1101,7 @@ span.switch-text {
 div#section-amp-ads_1,table#section-table-amp-ads_1{
    max-width: 100%;
 }
-div#section-ampforwp-ads-section{
-    display:none;
-}
+
 table#section-table-ampforwp-ads-section{
     max-width: 24%;
     float: right;
@@ -1136,6 +1134,15 @@ div#section-ampforwp-ads-section h3:before{
         content: "";
         display: none;
     }
+}
+div#section-amp-ads_1, table#section-table-amp-ads_1{
+    max-width: 75%;
+}
+div#section-ampforwp-ads-section, table#section-table-ampforwp-ads-section{
+    max-width: 24%;
+    float: right;
+    position: relative;
+    margin-top: -37px;
 }
 @media only screen and (max-width: 1190px) {
     div#section-ampforwp-ads-section{
@@ -1474,7 +1481,6 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
 .admin-color-fresh .redux-sidebar .redux-group-menu li.active > a.redux-group-tab-link-a .amp-ux-warning-okay:before{
    color: green;
 }
-#section-table-ampforwp-ads-section{display:none !important;}
 .redux-group-tab-link-li a:hover .amp-ux-warning:before, .redux-group-tab-link-li a:hover .amp-ux-warning-okay:before{
     color: #fff;
 }

@@ -20,7 +20,7 @@ use ReduxCore\ReduxFramework\Redux;
 
 add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_sd_fields');
 function ampforwp_add_sd_fields($fields){ 
-    if( is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
+    if( function_exists('saswp_non_amp') ) {
            $fields[] = array(
                        'id' => 'amp-cf7-SSL-info',
                        'type' => 'info',
@@ -179,7 +179,7 @@ function ampforwp_add_sd_fields($fields){
     return $fields;
     }
 }
-if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
+if( ! function_exists('saswp_non_amp') ) {
     add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_extra_fields');
     function ampforwp_add_extra_fields($fields){
         $post_types = '';
