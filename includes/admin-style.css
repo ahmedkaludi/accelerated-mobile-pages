@@ -1556,7 +1556,7 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
     position: relative;
     height: 100%;
      overflow-y: scroll;
-    height:80%;
+    height:76%;
 }
 .amp-fields-content::-webkit-scrollbar { 
     display: none; 
