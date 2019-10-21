@@ -1600,6 +1600,7 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
     line-height: 1.7;
     color: #333;
     box-shadow: none;
+    height:auto !important;
 }
 .ux-field-container #amp-ux-ga, #ampforwp-website-type-other{
     background: #f9f9f9;
@@ -1928,4 +1929,26 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 }
 #redux_builder_amp-amp-design-selector .select2-container {
     max-width: 40%;
+}
+
+@media(max-width:1040px){
+    .redux-container{
+        overflow: auto;
+    }
+    .amp-ux-section-fields{
+        width:100%;
+        background:#fff;
+    }
+}
+@media(max-width:767px){
+    .upload_button_div.amp-ux-upload{
+        display: inline-block;
+    }
+    .ux-field-container select.amp-ux-field{
+        padding:6px 10px;
+    }
+    .amp-ux-section-fields{
+        width:600px;
+        padding-right: 20px;
+    }
 }
