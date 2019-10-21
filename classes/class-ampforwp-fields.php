@@ -366,7 +366,7 @@ class AMPforWP_Fields
 		$but_name = "Add Logo";
 		if($opt_med_url!=""){
 			$hide = '';
-			$but_name = "Change the Logo";
+			$but_name = "Change Logo";
 		}
 		$output .= '<div id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).'" data-id="opt-media" data-type="media">
 				<input placeholder="No media selected" type="text" class="upload large-text hide" id="amp-ux-opt-media-url" value="'.intval($id).'" readonly="readonly">
@@ -381,7 +381,7 @@ class AMPforWP_Fields
 					<img class="redux-option-image amp-ux-image" id="image_opt-media" src="'.esc_url($url).'" alt="" target="_blank" rel="external">
 					
 				</div>
-				<div class="upload_button_div amp-ux-upload">
+				<div class="upload_button_div amp-ux-upload amp-ux-chng-lg">
 					<span class="button media_upload_button media-amp-ux-opt-media media-'.intval($this->id).'" id="opt-media-media">'.$but_name.'</span>
 					<span class="amp-ux-img-re-txt">(Recommended Size: 120 x 90)</span>				
 				</div>';

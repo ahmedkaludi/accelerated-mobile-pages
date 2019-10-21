@@ -1835,10 +1835,30 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
      top: 40px;
     right: 25px;
 }
+.wp-core-ui .amp-ux-chng-lg span.button{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #da000d;
+    padding: 0px;
+    display: flex;
+    line-height: 0;
+    align-items: center;
+}
+.wp-core-ui .amp-ux-chng-lg span.button:before{
+    content:"";
+    display: inline-block;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjk0LjE1NiAyOTQuMTU2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyOTQuMTU2IDI5NC4xNTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PGc+PGc+Cgk8cGF0aCBkPSJNMjI3LjAwMiwxMDguMjU2Yy0yLjc1NS00MS43NTEtMzcuNi03NC44NzgtODAuMDM2LTc0Ljg3OGMtNDIuNDQ3LDAtNzcuMjk4LDMzLjE0MS04MC4wMzgsNzQuOTA3ICAgQzI4Ljk3OCwxMTMuMDU5LDAsMTQ1LjM5LDAsMTg0LjE4NGMwLDQyLjIzNCwzNC4zNiw3Ni41OTUsNzYuNTk1LDc2LjU5NWgxMTYuNDgzYzMuMzEzLDAsNi0yLjY4Nyw2LTZzLTIuNjg3LTYtNi02SDc2LjU5NSAgIEM0MC45NzcsMjQ4Ljc3OCwxMiwyMTkuODAxLDEyLDE4NC4xODRjMC0zNC4yNzUsMjYuODMzLTYyLjU2OCw2MS4wODctNjQuNDExYzMuMTg0LTAuMTcxLDUuNjc4LTIuODAzLDUuNjc4LTUuOTkxICAgYzAtMC4xMTktMC4wMDMtMC4yMzYtMC4wMS0wLjM1NWMwLjA5LTM3LjUzNiwzMC42NTQtNjguMDQ5LDY4LjIxMS02OC4wNDljMzcuNTYzLDAsNjguMTMyLDMwLjUxOCw2OC4yMTEsNjguMDYzICAgYy0wLjAwNSwwLjExNi0wLjAwOSwwLjIzOC0wLjAwOSwwLjMyOWMwLDMuMTk2LDIuNTA1LDUuODMxLDUuNjk2LDUuOTkyYzM0LjM3LDEuNzQxLDYxLjI5MiwzMC4wMzgsNjEuMjkyLDY0LjQyMSAgIGMwLDE5LjUyNi04LjY5OCwzNy44MDEtMjMuODY0LDUwLjEzOGMtMi41NzEsMi4wOTEtMi45NTksNS44Ny0wLjg2OCw4LjQ0YzIuMDkxLDIuNTcxLDUuODcsMi45NTksOC40NCwwLjg2OCAgIGMxNy45OC0xNC42MjYsMjguMjkyLTM2LjI5MywyOC4yOTItNTkuNDQ3QzI5NC4xNTYsMTQ1LjI2OSwyNjUuMDgsMTEyLjkyNiwyMjcuMDAyLDEwOC4yNTZ6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiNEQTAwMEQiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+Cgk8cGF0aCBkPSJNMTQwLjk2NiwxNDEuMDc4djc2LjUxMWMwLDMuMzEzLDIuNjg3LDYsNiw2czYtMi42ODcsNi02di03Ni41MTFjMC0zLjMxMy0yLjY4Ny02LTYtNlMxNDAuOTY2LDEzNy43NjUsMTQwLjk2NiwxNDEuMDc4eiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBzdHlsZT0iZmlsbDojREEwMDBEIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCI+PC9wYXRoPgoJPHBhdGggZD0iTTE4MS4yODMsMTUyLjIwNGMxLjUzNiwwLDMuMDcxLTAuNTg2LDQuMjQzLTEuNzU3YzIuMzQzLTIuMzQzLDIuMzQzLTYuMTQyLDAtOC40ODVsLTM0LjMxNy0zNC4zMTcgICBjLTIuMzQzLTIuMzQzLTYuMTQzLTIuMzQzLTguNDg1LDBsLTM0LjMxNywzNC4zMTdjLTIuMzQzLDIuMzQzLTIuMzQzLDYuMTQyLDAsOC40ODVjMi4zNDMsMi4zNDMsNi4xNDMsMi4zNDMsOC40ODUsMCAgIGwzMC4wNzQtMzAuMDc0bDMwLjA3NCwzMC4wNzRDMTc4LjIxMiwxNTEuNjE4LDE3OS43NDgsMTUyLjIwNCwxODEuMjgzLDE1Mi4yMDR6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiNEQTAwMEQiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+CjwvZz48L2c+IDwvc3ZnPg==);
+    background-size: 18px;
+    width:24px;
+    height:18px;
+    line-height: 18px;
+    background-repeat: no-repeat;
+}
 .amp-ux-upload .amp-ux-img-re-txt{
     font-size: 12px;
     color: #666;
-    margin-left:10px;
+    margin-left:6px;
 }
 #ampforwp-ux-ano-analytics-section{
     width:100%;
