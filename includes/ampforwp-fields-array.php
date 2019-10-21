@@ -477,12 +477,12 @@ for($ex=0;$ex<count($check_extension);$ex++){
 		$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'warning','desc'=>sprintf( 'This feature requires <a href="https://ampforwp.com/amp-ratings/" target="_blank">%s</a> extension. <a href="https://ampforwp.com/amp-ratings/" target="_blank">%s</a>',esc_html__('Ratings for AMP extension','accelerated-mobile-pages' ),esc_html__('Click here for more info','accelerated-mobile-pages' )),'required'=>array('amp-ux-ext-star-ratings','=',0),'default'=>$is_active));
 		}
 	}
-	if($active_ext=="elementor"){
+	if($active_ext=="Elementor" || $active_ext=="Divi"){
 		$is_active = 0;
 		if(function_exists('amp_pagebuilder_compatibility_init') ){
 			$is_active = 1;
 		}
-		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Elementor for AMP",'id'=>"amp-ux-ext-elementor",'class'=>'amp-ux-extension-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-elementor-ratings-switch','desc'=>'','data-secure'=>$ux_secure,'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>$is_active)
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"$active_ext for AMP",'id'=>"amp-ux-ext-elementor",'class'=>'amp-ux-extension-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-elementor-ratings-switch','desc'=>'','data-secure'=>$ux_secure,'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>$is_active)
 		);
 		if($is_active==0){
 		$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'warning','desc'=>sprintf( 'This feature requires <a href="https://ampforwp.com/amp-pagebuilder-compatibility/" target="_blank">%s</a> extension. <a href="https://ampforwp.com/amp-pagebuilder-compatibility/" target="_blank">%s</a>',esc_html__('Elementor & Divi support for AMP extension','accelerated-mobile-pages' ),esc_html__('Click here for more info','accelerated-mobile-pages' )),'required'=>array('amp-ux-ext-elementor','=',0),'default'=>$is_active));
@@ -625,7 +625,7 @@ for($ex=0;$ex<count($check_extension);$ex++){
 		if(function_exists('toc_amp_initiate')){
 			$is_active = 1;
 		}
-		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Table of content",'id'=>"amp-ux-ext-toc",'class'=>'amp-ux-extension-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-toc-switch','desc'=>'','data-secure'=>$ux_secure,'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>$is_active)
+		$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Table of contents",'id'=>"amp-ux-ext-toc",'class'=>'amp-ux-extension-switch amp-ux-switch-on-off','data-id'=>'amp-ux-ext-toc-switch','desc'=>'','data-secure'=>$ux_secure,'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>$is_active)
 		);
 		if($is_active==0){
 		$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'warning','desc'=>sprintf( 'This feature requires <a href="https://ampforwp.com/table-of-contents-plus/" target="_blank">%s</a> extension. <a href="https://ampforwp.com/table-of-contents-plus/" target="_blank">%s</a>',esc_html__('Table of Content Plus for AMP extension','accelerated-mobile-pages' ),esc_html__('Click here for more info','accelerated-mobile-pages' )),'required'=>array('amp-ux-ext-toc','=',0),'default'=>$is_active));

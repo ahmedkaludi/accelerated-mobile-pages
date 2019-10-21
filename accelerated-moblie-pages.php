@@ -989,7 +989,11 @@ if(!function_exists('ampforwp_get_setup_info')){
 				$ux_content[] = 'classipress';
 			}
 			if(function_exists('elementor_load_plugin_textdomain') || function_exists('et_divi_theme_body_class')){
-				$ux_content[] = 'elementor';
+				if(function_exists('elementor_load_plugin_textdomain')){
+					$ux_content[] = 'Elementor';
+				}else if(function_exists('et_divi_theme_body_class')){
+					$ux_content[] = 'Divi';
+				}
 			}
 			if(function_exists('wpml_upgrade')){
 				$ux_content[] = 'wpml';
