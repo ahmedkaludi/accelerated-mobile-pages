@@ -1233,8 +1233,9 @@ jQuery(document).ready(function($) {
                     $('input[id="redux_builder_amp[opt-media][thumbnail]').val($('#amp-ux-logo-thumb').val());
                     $('#redux_builder_amp-opt-media .screenshot').show();
                     $('.redux-option-image').attr('src', $('#amp-ux-logo-thumb').val());
-                   saveChangesInRedux($(this));
+                    saveChangesInRedux($(this));
                     set_ux_selected_val();
+                    $("#opt-media-media").html("Change the Logo");
                 }
             });
         }
