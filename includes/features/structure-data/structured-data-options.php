@@ -191,11 +191,13 @@ if( ! function_exists('saswp_non_amp') ) {
                 if( $post_type == 'post' || $post_type == 'page' ) {
                             continue;
                 }
+                $p_type = $post_type;
+                $post_type = ucfirst($post_type);
                 $custom_fields[] = array(
-                  'id'       => 'ampforwp-sd-type-'. $post_type,
+                  'id'       => 'ampforwp-sd-type-'. $p_type,
                   'type'     => 'select',
                   'title'    => __($post_type, 'accelerated-mobile-pages'),
-                  'tooltip-subtitle' => __('Select the Structured Data Type for '.$post_type, 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => __('Select the Structured Data Type for '.$p_type, 'accelerated-mobile-pages'),
                   'options'  =>  ampforwp_get_sd_types(),
                   'default'  => 'BlogPosting',
                 );
