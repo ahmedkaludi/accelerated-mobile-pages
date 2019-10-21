@@ -1939,6 +1939,10 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
         width:100%;
         background:#fff;
     }
+    .amp-ux-loader {
+        top: 50px;
+        right: 20px;
+    }
 }
 @media(max-width:767px){
     .upload_button_div.amp-ux-upload{
@@ -1950,5 +1954,9 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     .amp-ux-section-fields{
         width:600px;
         padding-right: 20px;
+    }
+    .amp-ux-loader {
+        top: 55px;
+        right: 10px;
     }
 }
