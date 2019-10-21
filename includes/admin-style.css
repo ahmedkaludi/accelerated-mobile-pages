@@ -1790,7 +1790,7 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
     border: 1px solid #ef0e4e;
 }
 .ux-field-container .switch-options .ios7-switch input:focus:checked + span:after{
-    background: white !important;
+    background: #fff !important;
 }
 .amp-ux-checkbox-container h4{display: inline;}
 .redux-main .amp-ux-upload{float: none}
