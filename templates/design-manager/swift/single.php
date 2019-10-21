@@ -832,7 +832,8 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 						$data_param = '';
 						if(ampforwp_get_setting('enable-single-twitter-share')){
 							$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
-							$data_param = ( '' == $data_param_data ) ? '' : '&via='.$data_param_data.''; ?>
+							$qv = esc_url( add_query_arg( 'via', $data_param_data ));
+							$data_param = ( '' == $data_param_data ) ? '' : $qv; ?>
 						<li>
 							<a title="twitter share" class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?><?php echo esc_attr($data_param); ?>">
 							</a>
