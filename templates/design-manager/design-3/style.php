@@ -158,13 +158,7 @@ background:<?php echo ampforwp_sanitize_color($submenucolor);?>;
 .amp-menu input{display:none}
 .amp-menu [id^=drop]:checked + label + ul{ display: block;}
 .amp-menu .toggle:after{content:'\25be';position:absolute;padding: 12px 20px 10px 30px;right:0;font-size:13px;color:<?php echo ampforwp_sanitize_color($navmenucolor); ?>;top:6px;z-index:10000;line-height:1}
-.menu-home-container .link-menu .toggle {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  right: 0;
-}
+
 .toggle-navigationv2 .social_icons{ margin-top: 25px; border-top: 1px solid <?php echo ampforwp_sanitize_color($menubdrcolor); ?>; padding: 25px 0px; color: #fff; width: 100%; }
 .menu-all-pages-container:after{ content: ""; clear: both }
 .toggle-text{ color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; display: inherit; text-align: center; }
@@ -1081,4 +1075,11 @@ amp-user-notification{
 amp-facebook-like{
   max-height: 28px;
   bottom: 8px;
+}
+.link-menu .toggle {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  right: 0;
 }
