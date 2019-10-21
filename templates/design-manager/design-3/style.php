@@ -72,7 +72,9 @@ ol, ul {list-style-position: inside;}
     font-weight: 700;
     src:  local('PT Serif Bold'), local('PTSerif-Bold'), url('<?php echo esc_url(plugin_dir_url(__FILE__).'fonts/ptserif/PT_Serif-Web-Bold.ttf'); ?>');
 }
-
+#amp-comment-body p{
+  margin:0px;
+}
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {
     <?php if ( $content_max_width > 0 ) : ?>

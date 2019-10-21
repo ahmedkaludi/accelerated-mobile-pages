@@ -7324,13 +7324,15 @@ function ampforwp_recentpost_title_link_to_nonamp($title_link){
 	}
 	return $title_link;
 }
-
 add_action('amp_post_template_css','ampforwp_core_comment_form_styling');
 if(! defined( 'AMP_COMMENTS_VERSION' )) {
 	if(!function_exists('ampforwp_core_comment_form_styling')){
 		function ampforwp_core_comment_form_styling() { 
 		$color =  ampforwp_get_setting('opt-color-rgba','color'); ?>
-		#respond {  font-size:14px; display: block; margin: 2em auto 0.9em auto; width: 100%; }
+		#respond {  
+			font-size:14px; display: block; margin: 2em auto 0.9em auto; 
+			<?php if(ampforwp_get_setting('amp-design-selector')!=2){?>width: 100%;<?php }?> 
+		}
 		.ampforwp-comments h3{ border-bottom: 1px solid #eee; padding-bottom: 8px; font-size: 14px; }
 		.comment-form-comment{ margin-bottom:0px; }
 		.comment-form-comment #comment{ border-color: #ccc; width: 100%; }
