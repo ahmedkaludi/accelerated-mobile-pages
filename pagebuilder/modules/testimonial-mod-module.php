@@ -51,12 +51,29 @@ if ( in_array(ampforwp_get_setting('amp-design-selector'), array(4)) ) {
 $css = '
 {{if_condition_testimonial_layout_type==1}}
 .testimonial-mod{margin:{{margin_css}};padding:{{padding_css}};}
-{{module-class}} .ln-fx{width:100%;display: flex;flex-wrap: wrap;}
-.testi-mod{-ms-flex: 1 0 100%;margin: 0 3% 2% 0px;width: 31.3%;position: relative;color: #26292c;}
-{{module-class}} .testi-cont{width: 100%;padding: 30px 30px 25px 30px;font-size: {{tst-size}};background: #f4f4f4;position: relative;color:{{tst_color}};}
+{{module-class}} .ln-fx{
+	width:100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+{{module-class}} .testi-mod{
+	margin: 0 3% 2% 0px;
+	position: relative;
+	color: #26292c;
+	flex:1 0 30%;
+}
+{{module-class}} .testi-cont{
+	width: 100%;
+	padding: 8% 7% 6% 8%;
+	font-size: {{tst-size}};
+	background: #f4f4f4;
+	position: relative;
+	color:{{tst_color}};
+	box-sizing: border-box;
+}
 {{module-class}} .testi-cont p{margin-bottom:5px;}
 .testi-cont:after{content:"";width: 0;height: 0;border-style: solid; border-width: 20px 20px 0 20px;border-color: #f4f4f4 transparent transparent transparent;bottom:-20px;position:absolute;}
-.testi-mod:nth-child(3),.testi-mod:nth-child(6),.testi-mod:nth-child(9){margin-right:0;}
+.testi-mod:nth-child(3n+3){margin-right:0;}
 .auth-info{width:100%;display:inline-block;margin-top: 35px;margin-left:15px;}
 .auth-img{float:left;margin-right:15px;}
 .auth-img amp-img{border-radius:50%;width:50px;height:50px;}
@@ -64,7 +81,8 @@ $css = '
 .auth-cntn h5{font-size: {{txt-size}};color: {{aut_color_picker}};font-weight:500;}
 .auth-cntn span{font-size: {{dsg-size}};color: {{dsg_color}};font-weight:normal;}
 @media(max-width:768px){
-	.testi-mod{width: 100%;margin-right:0}
+	{{module-class}} .testi-mod{flex:1 0 100%;margin-right:0;}
+
 }
 {{ifend_condition_testimonial_layout_type_1}}
 
