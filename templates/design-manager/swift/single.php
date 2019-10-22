@@ -828,16 +828,21 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 							<a title="facebook share" class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>"></a>
 						</li>
 						<?php } ?>
-						<?php 
-						$data_param = '';
-						if(ampforwp_get_setting('enable-single-twitter-share')){
-							$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
-							$qv = esc_url( add_query_arg( 'via', $data_param_data ));
-							$data_param = ( '' == $data_param_data ) ? '' : $qv; ?>
-						<li>
-							<a title="twitter share" class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?><?php echo esc_attr($data_param); ?>">
-							</a>
-						</li>
+						<?php $data_param = '';
+				        if(ampforwp_get_setting('enable-single-twitter-share')){
+				              $data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
+							$twitter_share_url = 'https://twitter.com/intent/tweet';
+							$twitter_share_url = add_query_arg('url',get_the_permalink(), $twitter_share_url) ;
+						
+							$twitter_share_url = add_query_arg('text', ampforwp_sanitize_twitter_title(get_the_title()), $twitter_share_url) ;
+
+							if ( $data_param_data ) {
+							  $twitter_share_url = add_query_arg('via', $data_param_data, $twitter_share_url);
+							} ?>
+			            <li>
+			              <a title="twitter share" class="s_tw" target="_blank" href="<?php echo esc_url($twitter_share_url); ?>">
+			              </a>
+			            </li>
 						<?php } ?>
 						<?php if( ampforwp_get_setting('enable-single-gplus-share') ){?>
 						<li>
