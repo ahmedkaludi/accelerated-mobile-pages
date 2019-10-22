@@ -7366,6 +7366,16 @@ if ( ! function_exists('ampforwp_gutenberg_css') ) {
 		.wp-block-cover{position:relative;background-color: #000;background-size: cover;background-position: center center;min-height: 430px;width: 100%;margin: 1.5em 0 1.5em 0;display: flex;justify-content: center;align-items: center;overflow: hidden;}
 		.wp-block-cover-text{color: #fff;font-size: 2em;line-height: 1.25;z-index: 1;}
 		.wp-block-cover-image.has-background-dim::before, .wp-block-cover.has-background-dim::before {content: "";position: absolute;top: 0;left: 0;bottom: 0;right: 0;background-color: inherit;opacity: .5;z-index: 1;}
+		.has-primary-background-color {background-color: #0073aa;}
+		.has-secondary-background-color {background-color: #005177;}
+		.has-dark-gray-background-color {background-color: #111;}
+		.has-light-gray-background-color {background-color: #767676;}
+		.has-white-background-color {background-color: #FFF;}
+		.has-primary-color {color: #0073aa;}
+		.has-secondary-color {color: #005177;}
+		.has-dark-gray-color {color: #111;}
+		.has-light-gray-color {color: #767676;}
+		.has-white-color {color: #FFF;}
 	<?php }
 }
 
