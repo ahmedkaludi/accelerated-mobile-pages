@@ -9,10 +9,10 @@ function post_ampforwp_beta(){
 			)
 		);
 	}
-	$getVersion = '0.9.97.58';
+	$getVersion = '0.9.98.14';
 	$plugin_slug = basename( 'accelerated-mobile-pages', '.php' );
 	if(isset($_GET['installation']) && $_GET['installation']=='beta'){
-		$getVersion = '0.90.97.34';
+		$getVersion = '0.9.98-beta';
 	}elseif(isset($_GET['changeversion'])){
 		$getVersion = sanitize_text_field($_GET['changeversion']);
 	}
@@ -20,9 +20,9 @@ function post_ampforwp_beta(){
 		[
 			'version' => 'beta',
 			'plugin_name' => 'accelerated-mobile-pages',
-			'plugin_slug' => $plugin_slug,
+			'plugin_slug' => esc_html__($plugin_slug,'accelerated-mobile-pages'),
 			'package_url' => sprintf( 'https://downloads.wordpress.org/plugin/%s.%s.zip', $plugin_slug, $getVersion ),
-			'plugin_version'=> $getVersion,
+			'plugin_version'=> esc_html__($getVersion,'accelerated-mobile-pages'),
 		]
 	);
 
@@ -80,7 +80,7 @@ class AMPforWP_Beta {
 
 		$upgrader_args = [
 			'url' => 'update.php?action=upgrade-plugin&plugin=' . rawurlencode( $this->plugin_name ),
-			'plugin' => $this->plugin_name,
+			'plugin' => esc_attr($this->plugin_name),
 			'nonce' => 'upgrade-plugin_' . $this->plugin_name,
 			'title' => '<img src="' . esc_url($logo_url) . '" alt="accelerated-mobile-pages">' . esc_html__( 'Activate the '. $this->plugin_version .' Version', 'accelerated-mobile-pages' ),
 		];
@@ -162,7 +162,7 @@ class AMPFORWP_ROLLBACK{
 			$allversions = array_combine($allversions, $allversions);
 			set_transient( 'ampforwp_plugin_all_tag_versions', $allversions );
 		}
-		return $allversions;
+		return esc_html($allversions);
 	} 
 
 	function set_svn_versions_data($html){
@@ -185,7 +185,7 @@ class AMPFORWP_ROLLBACK{
 			}
 		}
 		usort( $versions, 'version_compare' );
-		return $versions;
+		return esc_html($versions);
 
 
 	}
