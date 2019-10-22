@@ -158,7 +158,7 @@ if ( get_query_var( 'paged' ) ) {
 					?>
 					<div class="home-post_image">
 						<?php
-						if(ampforwp_get_setting('amforwp-homepage-featured-video') && ampforwp_featured_video_markup('check') && is_home()){
+						if(ampforwp_get_setting('amforwp-homepage-featured-video') && ampforwp_featured_video_markup('check') && ampforwp_is_home()){
 				            echo ampforwp_featured_video_markup();
 				        }else{
 						?>

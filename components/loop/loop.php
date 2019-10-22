@@ -499,7 +499,7 @@ function amp_loop_image( $data=array() ) {
 				$imageClass			= $changesInImageData["image_class"];
 				$imageLink			= $changesInImageData["image_link"];
 			}
-			if(ampforwp_get_setting('amforwp-homepage-featured-video') && ampforwp_featured_video_markup('check') && is_home()){
+			if(ampforwp_get_setting('amforwp-homepage-featured-video') && ampforwp_featured_video_markup('check') && ampforwp_is_home()){
 				echo '<'.esc_attr($tag).' class="loop-video '.esc_attr($tag_class).'">';
 	            echo ampforwp_featured_video_markup();
 	            echo '</'.esc_attr($tag).'>';
