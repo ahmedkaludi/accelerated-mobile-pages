@@ -51,6 +51,10 @@ function amp_post_template_add_cached_link($amp_template) {
 			<link rel="preload" as="font" href="<?php echo esc_url($font_url); ?>" type="font/ttf" crossorigin>
 
 	<?php
+	}else{
+	?>
+		<link rel="preconnect dns-prefetch" href="https://use.fontawesome.com/" crossorigin>
+	<?php
 	}
 }
 
