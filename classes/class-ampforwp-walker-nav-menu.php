@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     if($item->url=="" || $item->url=="#"){
       $lmenu = "link-menu";
     }
-    $class_names = ' class="' . esc_attr( $class_names ) . ' '.$lmenu.'"';
+    $class_names = ' class="' . esc_attr( $class_names ) . ' '.esc_attr($lmenu).'"';
 
     $id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args, $depth );
     $id = strlen( $id ) ? ' id="' . esc_attr( $id ) . '"' : '';
