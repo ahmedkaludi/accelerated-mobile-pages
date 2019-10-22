@@ -732,4 +732,5 @@ amp-facebook-like{
   position: absolute;
   top: 0px;
   right: 0;
+  cursor:pointer;
 }

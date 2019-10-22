@@ -288,6 +288,7 @@ display: inline-block;top: 1px;padding: 5px;transform: rotate(270deg);cursor: po
     position: absolute;
     top: 0px;
     right: 0;
+    cursor:pointer;
 }
 
 .m-menu .amp-menu .sub-menu li:last-child{border:none;}
