@@ -1378,10 +1378,15 @@ div#section-ampforwp-ux-section-right, table#section-table-ampforwp-ux-section-r
     padding:0px 10px;
     border-radius: 3px;
     position: relative;
-    right:-10px;
+    border: 1px solid #fff;
 }
-.amp-ux-elem-but-block.stup:hover{
-    background:#ddd;
+.amp-ux-elem-but-block.stup:hover {
+    background: #fff;
+    border: 1px solid #f14a50;
+    color: #f14a50;
+}
+.amp-ux-section-field[data-href="ampforwp-ux-advertisement-section"]:hover .amp-ux-elem-but-block.stup{
+    color: #f14a50;
 }
 .amp-ux-elem-but-block .filled-lbl-blk{
     margin-top: -5px;
@@ -1822,11 +1827,19 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
     padding: 0px 10px;
     letter-spacing: 0px;
     position: relative;
-    right: -10px;
+    border: 1px solid #fff;
 }
 .button.btn-list:hover{
-    background: #ddd;
+    background: #fff;
+    border: 1px solid #f14a50;
+    color: #f14a50;
 }
+.amp-ux-section-field[data-href="ampforwp-ux-thirdparty-section"]:hover .button.btn-list{
+    color: #f14a50;
+}
+
+
+
 /* Loader */
 .amp-ux-loader{
     display: none;
@@ -1958,5 +1971,20 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     .amp-ux-loader {
         top: 55px;
         right: 10px;
+    }
+}
+
+@media(max-width:425px){
+    .amp-fields-content{
+        padding:40px 15px 20px 15px
+    }
+    .ux-field-container h2 {
+        font-size: 20px;
+    }
+    .s-f-pg {
+        margin-left: 10px;
+    }
+    .drawer {
+        width:86%;
     }
 }
