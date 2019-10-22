@@ -301,13 +301,13 @@ function ampforwp_generate_meta_desc($json=""){
                 $genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
             }
             elseif(ampforwp_is_front_page()){
-                $genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
+                $genesis_description = strip_tags(genesis_get_custom_field( '_genesis_description', $post_id ));
             }
             elseif ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
                 $post_id = get_option( 'page_for_posts' );
                 if ( null !== $post_id || is_singular() ) {
                     if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
-                        $genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
+                        $genesis_description = strip_tags(genesis_get_custom_field( '_genesis_description', $post_id ));
                         if ( $genesis_description ) {
                             $desc = $genesis_description;
                         }
@@ -318,7 +318,7 @@ function ampforwp_generate_meta_desc($json=""){
                 $post_id = get_option('page_on_front');
                 if ( null !== $post_id || is_singular() ) {
                     if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
-                        $genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
+                        $genesis_description = strip_tags(genesis_get_custom_field( '_genesis_description', $post_id ));
                         }
                     }
                 }
@@ -327,7 +327,7 @@ function ampforwp_generate_meta_desc($json=""){
             }
 
             if ( $genesis_description ) {
-                    $desc = $genesis_description;
+                    $desc = esc_html($genesis_description);
                 }
         }
         // SEOPress #1589
