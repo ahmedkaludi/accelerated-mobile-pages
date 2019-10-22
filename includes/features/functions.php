@@ -27,6 +27,12 @@ function ampforwp_add_admin_styling($hook_suffix){
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
 
     wp_enqueue_script( 'ampforwp_admin_js' );
+    $screen = get_current_screen();
+    if ( 'toplevel_page_amp_options' == $screen->base ) {   
+        wp_localize_script( 'ampforwp_admin_js', 'ampforwp_is_amp_settings', '1');
+    }else{
+        wp_localize_script( 'ampforwp_admin_js', 'ampforwp_is_amp_settings', "0");
+    }
 }
 // 96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
 function ampforwp_is_front_page(){

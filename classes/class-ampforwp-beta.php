@@ -82,7 +82,7 @@ class AMPforWP_Beta {
 			'url' => 'update.php?action=upgrade-plugin&plugin=' . rawurlencode( $this->plugin_name ),
 			'plugin' => $this->plugin_name,
 			'nonce' => 'upgrade-plugin_' . $this->plugin_name,
-			'title' => '<img src="' . $logo_url . '" alt="accelerated-mobile-pages">' . esc_html__( 'Activate the '. $this->plugin_version .' Version', 'accelerated-mobile-pages' ),
+			'title' => '<img src="' . esc_url($logo_url) . '" alt="accelerated-mobile-pages">' . esc_html__( 'Activate the '. $this->plugin_version .' Version', 'accelerated-mobile-pages' ),
 		];
 
 		$this->ampforwp_beta_page_styling();

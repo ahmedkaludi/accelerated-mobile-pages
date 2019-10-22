@@ -2429,18 +2429,11 @@ Redux::setSection( $opt_name, array(
                            'indent' => true,
                            'layout_type' => 'accordion',
                             'accordion-open'=> 1,
-                         ),
-                        array(
-                            'id'       => 'amp-rollback-switch',
-                            'type'     => 'switch',
-                            'title'    => esc_html__('Rollback to Previous Version', 'accelerated-mobile-pages'),
-                            'default'  => false,
-                        ),
+                         ),  
                         array(
                             'id'       => 'amp-rollback-switch-waiting',
                             'type'     => 'info',
                             'desc'    => esc_html__('Loading... Please wait', 'accelerated-mobile-pages'),
-                            'required'=>array('amp-rollback-switch','=','1'),
                         ),
                         array(
                            'id' => 'amp-beta-testing',

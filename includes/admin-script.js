@@ -1044,12 +1044,8 @@ jQuery(document).ready(function($){
             $("input[id=swift-sidebar]").val(0);
         }
     });
-
-    $('#amp-rollback-switch').on('change', function(){
-         var self = $(this)
-        if(self.val()==1){
-            self.parents('table').find('#redux_builder_amp-amp-rollback-version').parents('tr').remove();
-            $.ajax({
+            if(ampforwp_is_amp_settings == '1'){
+                $.ajax({
                 url: ajaxurl,
                 method: 'post',
                 data: {action: 'ampforwp_get_rollbackdata',
@@ -1061,7 +1057,7 @@ jQuery(document).ready(function($){
                         $.each(response.versions, function(data, k){
                             options += '<option value="'+k+'">'+data+'</option>';
                         })
-                        self.parents('table').append('<tr class="fold">'+
+                        $('#section-table-amp-version-rollback').append('<tr class="fold">'+
                                     '<th scope="row">'+
                                         '<div class="redux_field_th">Rollback Version</div>'+
                                     '</th>'+
@@ -1083,15 +1079,7 @@ jQuery(document).ready(function($){
                 }
 
             });
-
-
-
-        }else{
-            self.parents('table').find('#redux_builder_amp-amp-rollback-version').parents('tr').remove();
-        }
-       
-
-    });
+            }
     $("#meta-checkbox").click(function(){ 
            check_custom_content_status($(this));
     });
