@@ -165,6 +165,12 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		if(isset($redux_builder_amp['ampforwp-number-of-comments'])){
 			$number_of_comments = $redux_builder_amp['ampforwp-number-of-comments'];
 		}
+		if(get_option( 'page_comments' ) ==1){
+			$comment_page_count = get_option('comments_per_page');
+			if($comment_page_count!=$number_of_comments){
+				$number_of_comments = $comment_page_count;
+			}
+		}
 		return $number_of_comments;
 	}
 	
@@ -3404,12 +3410,7 @@ function ampforwp_frontpage_comments() {
 			$postID = '';
 			// Gather comments for a Front from post id
 			$postID = ampforwp_get_frontpage_id();
-			$comment_order = get_option( 'comment_order' );
-			$comments = get_comments(array(
-					'post_id' => $postID,
-					'order' => esc_attr($comment_order),
-					'status' => 'approve' //Change this to the type of comments to be displayed
-			));
+			$comments =ampforwp_get_comment_with_options();
 			$comment_button_url = get_permalink( $post_id );
 			$comment_button_url = apply_filters('ampforwp_frontpage_comments_url',$comment_button_url );
 			if ( $comments ) { ?>
@@ -6569,12 +6570,7 @@ function ampforwp_comments_sanitizer(){
 		$postID = ampforwp_get_frontpage_id();
 	}
 	if ( ampforwp_get_comments_status() && true == ampforwp_get_setting('wordpress-comments-support') ) {
-		$comment_order = get_option( 'comment_order' );
-		$comments = get_comments(array(
-				'post_id' => $postID,
-				'order' => esc_attr($comment_order),
-				'status' => 'approve' //Change this to the type of comments to be displayed
-		) );
+		$comments =ampforwp_get_comment_with_options();
 		foreach ($comments as $comment) {
 			$comment_data = get_comment( $comment->comment_ID );
 			$comment_text =	$comment_data->comment_content;
@@ -7484,5 +7480,52 @@ if(!function_exists('ampforwp_jannah_css')){
 			}
 			echo ampforwp_css_sanitizer($css);
 		}
+	}
+}
+
+if(!function_exists('ampforwp_get_comment_with_options')){
+	function ampforwp_get_comment_with_options(){
+		$postID = $comments = $max_page =  "";
+		$postID = get_the_ID();
+		if ( ampforwp_is_front_page() ) {
+			$postID = ampforwp_get_frontpage_id();
+		}
+		$offset = 0;
+		$per_page = ampforwp_get_setting('ampforwp-number-of-comments');
+		if ( get_option( 'page_comments' ) ) {
+			$per_page = (int) get_query_var( 'comments_per_page' );
+			if ( 0 === $per_page ) {
+				$per_page = (int) get_option( 'comments_per_page' );
+			}
+			$page                   = (int) get_query_var( 'cpage' );
+			if ( $page ) {
+				$offset = ( $page - 1 ) * $per_page;
+			} elseif ( 'oldest' === get_option( 'default_comments_page' ) ) {
+				$offset = 0;
+			} else {
+				$top_level_query = new WP_Comment_Query();
+				$top_level_args  = array(
+					'count'   => true,
+					'orderby' => false,
+					'post_id' => intval($postID),
+					'status'  => 'approve',
+				);
+				$top_level_count = $top_level_query->query( $top_level_args );
+				$offset = ( ceil( $top_level_count / $per_page ) - 1 ) * $per_page;
+			}
+		}
+		$comment_order = get_option( 'comment_order' );
+		if($comment_order=='desc'){
+			$per_page = 0;
+			$offset = 0;
+		}
+		$comments = get_comments(array(
+				'post_id' => intval($postID),
+				'order' => esc_attr($comment_order),
+				'offset' =>intval($offset),
+				'number' =>intval($per_page),
+				'status' => 'approve',
+		));
+		return $comments;
 	}
 }

@@ -32,14 +32,7 @@ function ampforwp_framework_get_comments(){
 					if ( ampforwp_is_front_page() ) {
 						$postID = ampforwp_get_frontpage_id();
 					}
-
-					$comment_order = get_option( 'comment_order' );
-					$comments = get_comments(array(
-							'post_id' => $postID,
-							'order' => esc_attr($comment_order),
-							'status' => 'approve' //Change this to the type of comments to be displayed
-					));
-					
+					$comments =ampforwp_get_comment_with_options();
 					if ( $comments ) { ?>
 						<div id="comments" class="amp-comments-wrapper">
 				            <h3><span><?php echo esc_html(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' ));?></span></h3>
