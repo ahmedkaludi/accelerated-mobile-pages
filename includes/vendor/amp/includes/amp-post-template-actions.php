@@ -46,9 +46,9 @@ function amp_post_template_add_cached_link($amp_template) {
 			if(ampforwp_get_setting('amp-design-selector')!=4){
 				$design = "design-".ampforwp_get_setting('amp-design-selector');
 			}
-			$font_url = esc_url(AMPFORWP_PLUGIN_DIR_URI."templates/design-manager/$design/fonts/icomoon.ttf");
+			$font_url = AMPFORWP_PLUGIN_DIR_URI."templates/design-manager/$design/fonts/icomoon.ttf";
 		?>
-			<link rel="preload" as="font" href="<?php echo $font_url; ?>" type="font/ttf" crossorigin>
+			<link rel="preload" as="font" href="<?php echo esc_url($font_url); ?>" type="font/ttf" crossorigin>
 
 	<?php
 	}
