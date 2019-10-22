@@ -68,7 +68,7 @@ class AMPforWP_Beta {
 		$plugin_info->package = $this->package_url;
 		$plugin_info->url = 'https://ampforwp.com/';
 
-		$update_plugins->response[ $this->plugin_name ] = $plugin_info;
+		$update_plugins->response[ esc_attr($this->plugin_name) ] = $plugin_info;
 
 		set_site_transient( 'update_plugins', $update_plugins );
 	}
@@ -134,7 +134,7 @@ class AMPFORWP_ROLLBACK{
 	function ampforwp_get_rollbackdata(){
 		$allTags = $this->get_all_tags();
 		$activationUrl = wp_nonce_url( admin_url( 'admin-post.php?action=ampforwp_beta&changeversion='.(is_array($allTags)? key($allTags): '') ), 'ampforwp_beta' );
-		echo json_encode(array('status'=> 200, 'versions'=>$allTags, 'url' => $activationUrl, 'text'=>'Activate'));
+		echo json_encode(array('status'=> 200, 'versions'=>$allTags, 'url' => esc_url($activationUrl), 'text'=>'Activate'));
 		wp_die();
 	}
 
@@ -162,7 +162,7 @@ class AMPFORWP_ROLLBACK{
 			$allversions = array_combine($allversions, $allversions);
 			set_transient( 'ampforwp_plugin_all_tag_versions', $allversions );
 		}
-		return esc_html($allversions);
+		return $allversions;
 	} 
 
 	function set_svn_versions_data($html){
@@ -185,7 +185,7 @@ class AMPFORWP_ROLLBACK{
 			}
 		}
 		usort( $versions, 'version_compare' );
-		return esc_html($versions);
+		return $versions;
 
 
 	}
