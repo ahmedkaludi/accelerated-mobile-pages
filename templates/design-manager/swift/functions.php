@@ -92,14 +92,20 @@ function ampforwp_swift_social_icons(){
 								<a title="facebook share messenger" class="s_fb_ms" target="_blank" href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink_fb_messenger); ?>" aria-label="facebook share messenger"></a>
 							</li>
 							<?php } ?>
-							<?php 
-							$data_param = '';
+							<?php $data_param = '';
 							if(ampforwp_get_setting('enable-single-twitter-share')){
-								$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
-								$data_param = ( '' == $data_param_data ) ? '' : '&via='.$data_param_data.''; ?>
+							      $data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
+								$twitter_share_url = 'https://twitter.com/intent/tweet';
+								$twitter_share_url = add_query_arg('url',get_the_permalink(), $twitter_share_url) ;
+
+								$twitter_share_url = add_query_arg('text', ampforwp_sanitize_twitter_title(get_the_title()), $twitter_share_url) ;
+
+								if ( $data_param_data ) {
+								  $twitter_share_url = add_query_arg('via', $data_param_data, $twitter_share_url);
+								} ?>
 							<li>
-								<a class="s_tw" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://twitter.com/intent/tweet?url=<?php echo esc_url($twitter_amp_permalink); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?><?php echo esc_attr($data_param); ?>" aria-label="twitter share">
-								</a>
+							  <a title="twitter share" class="s_tw" target="_blank" href="<?php echo esc_url($twitter_share_url); ?>">
+							  </a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-email-share']){?>
