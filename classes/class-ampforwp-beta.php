@@ -11,7 +11,7 @@ function post_ampforwp_beta(){
 	}
 	$getVersion = '0.9.97.58';
 	$plugin_slug = basename( 'accelerated-mobile-pages', '.php' );
-	if($_GET['installation']=='beta'){
+	if(isset($_GET['installation']) && $_GET['installation']=='beta'){
 		$getVersion = '0.90.97.34';
 	}elseif(isset($_GET['changeversion'])){
 		$getVersion = sanitize_text_field($_GET['changeversion']);
@@ -104,10 +104,10 @@ class AMPforWP_Beta {
 			}
 
 			h1 {
-				background: #9b0a46;
+				background: #ff2fa3;
 				text-align: center;
-				color: #fff !important;
-				padding: 70px !important;
+				color: #000 !important;
+				padding: 40px !important;
 				text-transform: uppercase;
 				letter-spacing: 1px;
 			}
@@ -115,7 +115,7 @@ class AMPforWP_Beta {
 			h1 img {
 				max-width: 300px;
 				display: block;
-				margin: auto auto 50px;
+				margin: auto auto 20px;
 			}
 		</style>
 		<?php
