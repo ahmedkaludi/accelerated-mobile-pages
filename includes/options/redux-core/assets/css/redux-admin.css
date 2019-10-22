@@ -631,6 +631,9 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 .redux-main .form-table tr{
         border-top: 1px solid #f3f3f3;
 }
+.redux-main .redux-section-desc + .form-table tr{
+    border:none;
+}
 .redux-main .form-table tr + .child_opt{
     border: 0px;
 }
@@ -1293,10 +1296,10 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
     }
     .redux-main {
         margin-left: 200px;
-        width: 500px;
+        width: 606px;
     }
     .redux-container #redux-header{
-        width:600px;
+        width:815px;
     }
     .redux-container #redux-intro-text{
         right:-200px;
