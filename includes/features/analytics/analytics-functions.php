@@ -92,8 +92,19 @@ function ampforwp_analytics() {
 	}
 
 	// 10.3 Analytics Support added for Piwik
-		if( true == ampforwp_get_setting('ampforwp-Piwik-switch')) { ?>
-				<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo ampforwp_get_setting('pa-feild'); ?>"></amp-pixel>
+		if( true == ampforwp_get_setting('ampforwp-Piwik-switch')){
+			$idsite = urlencode(ampforwp_get_setting('pa-feild'));
+			$title = urlencode(get_the_title());
+			$url = get_the_permalink();
+			$url = urlencode(ampforwp_url_controller($url));
+			$rand = rand(1111,9999);
+			$piwik_analytics = '{"triggers":{"trackPageview": {"on":"visible","request":"pageview}},"requests":{"base": "https://piwik.example.org/piwik.php?idsite='.$idsite.'&rec=1&action_name='.$title.'&url='.$url.'&rand='.$rand.'&apiv=1"}}';
+			?>
+			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="piwikanalytics">
+				<script type="application/json">
+					<?php echo json_encode($piwik_analytics);?>
+				</script>
+			</amp-analytics>
 		<?php }
 
 		// 10.4 Analytics Support added for quantcast
