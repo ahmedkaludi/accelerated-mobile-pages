@@ -4720,7 +4720,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'    => 'cta-responsive-view',
                     'class' => 'child_opt child_opt_arrow',
-                   'title'  => esc_html__('Responsive View', 'accelerated-mobile-pages'),
+                   'title'  => esc_html__('CTA Position on Mobile', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Header',
