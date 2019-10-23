@@ -1392,11 +1392,9 @@ body .modal-footer .del-btn-modal{
     left: 170px;
     right: 300px;
 }
-div#taxonomy_selection {
+.spinner.spinner-cat-mod{
+    visibility: hidden;
     position: relative;
-}
-div#pb-cat-spin {
-    position: absolute;
-    left: 81%;
-    top: 18%;
+    top: -27px;
+    right: -18px;
 }

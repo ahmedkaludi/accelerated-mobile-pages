@@ -717,8 +717,10 @@ Vue.component('fields-data',{
 			var dataAjax = this.field.ajax;//currentSelectfield.getAttribute("data-ajax-dep");
 			var dataAjaxDep = this.field.ajax_dep;//currentSelectfield.getAttribute("data-ajax-dep");
 			var ajaxAction = this.field.ajax_action;//currentSelectfield.getAttribute("data-ajax-action");
-			if('category_selection'==dataAjaxDep){
-				document.getElementById("pb-cat-spin").style.visibility = "visible";
+			if('category_selection'==dataAjaxDep || 'taxonomy_selection'==dataAjaxDep){
+				if(document.getElementById(dataAjaxDep+"1")){
+					document.getElementById(dataAjaxDep+"1").style.visibility = "visible";
+				}
 			}
 			if(typeof dataAjax == 'undefined'){   return ; }//return if Selectbox not allowed ajax
 			this.$http.post(amppb_panel_options.ajaxUrl+'?action='+ajaxAction, 
@@ -741,7 +743,9 @@ Vue.component('fields-data',{
 				 	app.modalcontent.fields.forEach(function(modaldata, key){
 				 		if(modaldata.name==dataAjaxDep){
 				 			modaldata.options_details = response.data;
-				 			document.getElementById("pb-cat-spin").style.visibility = "hidden";
+				 			if(document.getElementById(dataAjaxDep+"1")){
+								document.getElementById(dataAjaxDep+"1").style.visibility = "hidden";
+				 			}
 				 		}
 				 	});
 				 }else{
