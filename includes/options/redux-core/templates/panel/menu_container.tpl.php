@@ -21,9 +21,9 @@ namespace ReduxCore\ReduxFramework;
                 $amp_opt = get_option("ampforwp_option_panel_view_type");
                 $opt_visible = "";
                 if($amp_opt==1 || $amp_opt==""){
-                    $opt_visible = 'style="display:none"';
+                    $opt_visible = 'style=display:none';
                 }
-                echo '<div class="amp-full-view-options" '.$opt_visible.'>';
+                echo '<div class="amp-full-view-options" '.esc_attr($opt_visible).'>';
             }
             $title = isset ( $section[ 'title' ] ) ? $section[ 'title' ] : '';
 
@@ -66,11 +66,11 @@ namespace ReduxCore\ReduxFramework;
         $opt_full_checked = "";
         if($amp_opt==1 || $amp_opt==""){
             $opt_easy = 'visible';
-            $opt_easy_checked = 'checked="checked"';
+            $opt_easy_checked = 'checked=checked';
             $opt_easy_active = "active";
         }else if($amp_opt==2){
             $opt_full = 'visible';
-            $opt_full_checked = 'checked="checked"';
+            $opt_full_checked = 'checked=checked';
             $opt_full_active = 'active';
         }
     if(!get_theme_support('amp-template-mode')){
@@ -78,11 +78,11 @@ namespace ReduxCore\ReduxFramework;
      <li>
           <div class="switch-ef-btns">
             <div class="e-v <?php echo $opt_easy_active;?>">
-                <input class="amp-opt-change <?php echo $opt_easy;?>" id="radio-c" type="radio" name="second-switch" <?php echo $opt_easy_checked?>>
+                <input class="amp-opt-change <?php echo $opt_easy;?>" id="radio-c" type="radio" name="second-switch" <?php echo esc_attr($opt_easy_checked);?>>
                 <label for="radio-c">Easy Setup View</label>
             </div>
             <div class="f-v <?php echo $opt_full_active;?>">
-                <input class="amp-opt-change <?php echo $opt_full;?>" id="radio-d" type="radio" name="second-switch" <?php echo $opt_full_checked?>>
+                <input class="amp-opt-change <?php echo $opt_full;?>" id="radio-d" type="radio" name="second-switch" <?php echo esc_attr($opt_full_checked);?>>
                 <label for="radio-d">Full Options View</label><span class="toggle-outside">
                     <span class="toggle-inside"></span>
             </div>
