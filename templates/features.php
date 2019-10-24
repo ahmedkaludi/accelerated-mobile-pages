@@ -7194,6 +7194,9 @@ function ampforwp_head_css(){
 }
 add_action( 'wp_ajax_ampforwp_set_option_panel_view', 'ampforwp_set_option_panel_view' );
 function ampforwp_set_option_panel_view(){
+	if(!is_admin() && !current_user_can('manage_options')){
+		return ;
+	}
 	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp-verify-request') ){
 		echo json_encode(array('status'=>403,'message'=>'user request is not allowed')) ;
 		die;

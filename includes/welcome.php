@@ -24,18 +24,7 @@ function ampforwp_welcome_screen_do_activation_redirect() {
   exit();
 }			
 
-//add_filter('ampforwp_add_admin_subpages', 'ampforwp_add_welcome_pages');
-function ampforwp_add_welcome_pages($sections){
-	$sections[] = array(
-		'page_title'=> esc_html__('Welcome To AMPforWP plugin','accelerated-mobile-pages'),
-		'menu_title'=>esc_html__('Welcome to AMP','accelerated-mobile-pages'),
-		'page_permissions'=>'manage_options',
-		'menu_slug' => 'ampforwp-welcome-page',
-		'callback' => 'ampforwp_welcome_screen_content',
-		'custom_amp_menu'   => true
-	);
-	return $sections;
-}
+
 
 function ampforwp_welcome_screen_content() {
   ?>

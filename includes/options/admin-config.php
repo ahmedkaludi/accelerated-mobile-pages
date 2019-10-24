@@ -1285,21 +1285,6 @@ Redux::setArgs( "redux_builder_amp", $args );
 
 
     // New AMP UX
-    $amp_ux_page = '';
-    if( ampforwp_get_setting('redux_builder_amp-amp-frontpage-select-option') ) {
-        $frontpage = get_post( ampforwp_get_setting('amp-frontpage-select-option-pages') );
-        $amp_ux_page = '<option value="'.$frontpage->ID.'">'.$frontpage->post_title.'</option>';
-    }
-    else{
-        $amp_ux_page = '<option>Choose here</option>';
-        $amp_ux_pages = get_pages(array('posts_per_page'=>'500'));
-        if ( !empty($amp_ux_pages) ) {
-            foreach ( $amp_ux_pages as $page ) {
-                $amp_ux_page .= '<option value="'.$page->ID.'">'. $page->post_title.'</option>';
-            }
-        }
-    }
-
      if(!function_exists('ampforwp_generate_ux_admin_button')){
         function ampforwp_generate_ux_admin_button($id='',$type='',$label=''){
             $option = "";
@@ -1308,31 +1293,31 @@ Redux::setArgs( "redux_builder_amp", $args );
                     $amp_website_type = ampforwp_get_setup_info('ampforwp-ux-website-type-section');
                     if($amp_website_type){
                     $option = '<div class="filled-lbl-blk">
-                                    <p class="msg">'.$amp_website_type.'</p>
+                                    <p class="msg">'.esc_attr($amp_website_type).'</p>
                                     <span class="lbl">Change</span>
                                 </div>';
                     }else{
-                        $option = '<div class="button btn-red">'.$label.'</div>';
+                        $option = '<div class="button btn-red">'.esc_attr($label).'</div>';
                     }
                 }else if($id=="ampforwp-ux-privacy-section"){
                     $setup_txt = ampforwp_get_setup_info('ampforwp-ux-privacy-section');
                     if($setup_txt!=""){
                     $option = '<div class="filled-lbl-blk">
-                                    <p class="msg">'.$setup_txt.'</p>
+                                    <p class="msg">'.esc_attr($setup_txt).'</p>
                                     <span class="lbl">Change</span>
                                 </div>';
                     }else{
-                        $option = '<div class="button btn-red">'.$label.'</div>';
+                        $option = '<div class="button btn-red">'.esc_attr($label).'</div>';
                     }    
                 }else if($id=="ampforwp-ux-need-type-section"){
                     $need_type=ampforwp_get_setup_info('ampforwp-ux-need-type-section');
                     if($need_type!=""){
                     $option = '<div class="filled-lbl-blk">
-                                    <p class="msg">'.$need_type.'</p>
+                                    <p class="msg">'.esc_attr($need_type).'</p>
                                     <span class="lbl">Change</span>
                                 </div>';
                     }else{
-                        $option = '<div class="button btn-red">'.$label.'</div>';
+                        $option = '<div class="button btn-red">'.esc_attr($label).'</div>';
                     }
                 }else if($id=="ampforwp-ux-design-section"){
                     $opt_med_url = ampforwp_get_setup_info('ampforwp-ux-design-section');
@@ -1342,23 +1327,23 @@ Redux::setArgs( "redux_builder_amp", $args );
                                     <span class="lbl">Change</span>
                                 </div>';
                     }else{
-                        $option = '<div class="button btn-red">'.$label.'</div>';
+                        $option = '<div class="button btn-red">'.esc_attr($label).'</div>';
                     }
                 }else if($id=="ampforwp-ux-analytics-section"){
                     $analytics_txt = ampforwp_get_setup_info('ampforwp-ux-analytics-section');
                     if($analytics_txt!=""){
                     $option = '<div class="filled-lbl-blk">
-                                    <p class="msg">'.$analytics_txt.'</p>
+                                    <p class="msg">'.esc_attr($analytics_txt).'</p>
                                     <span class="lbl">Change</span>
                                 </div>';
                     }else{
-                        $option = '<div class="button btn-red">'.$label.'</div>';
+                        $option = '<div class="button btn-red">'.esc_attr($label).'</div>';
                     }
                 }else{
-                    $option = '<div class="button btn-red">'.$label.'</div>';
+                    $option = '<div class="button btn-red">'.esc_attr($label).'</div>';
                 }
             }else{
-                $option = '<div class="button btn-list">'.$label.'</div>';
+                $option = '<div class="button btn-list">'.esc_attr($label).'</div>';
             }
             return $option;
         }
@@ -1382,14 +1367,14 @@ Redux::setArgs( "redux_builder_amp", $args );
     $adfwp_a_open = "";
     $adfwp_a_close = "";
  
-    $adv_data_href = 'data-href="ampforwp-ux-advertisement-section"';
+    $adv_data_href = 'data-href=ampforwp-ux-advertisement-section';
     if(function_exists('adsforwp_check_plugin')){
         $plugin_file = "ads-for-wp/ads-for-wp.php";
         $is_sdfwp = "active";
         $aafwp_active_url = $ampforwp_admin_url.'admin.php?page=adsforwp&amp;tab=general&amp;reference=ampforwp';
-        $adfwp_a_open = '<a href="'.$aafwp_active_url.'" target="_blank">';
+        $adfwp_a_open = '<a href="'.esc_url($aafwp_active_url).'" target="_blank">';
         $adfwp_a_close = '</a>';
-        $adv_data_href = 'data-href=""';
+        $adv_data_href = 'data-href=';
     }
         Redux::setSection( $opt_name, array(
             'title'      => esc_html__( 'Setup', 'accelerated-mobile-pages' ),
@@ -1439,7 +1424,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                                     </div>
                                 </div>'.
                                 $adfwp_a_open.
-                                '<div class="amp-ux-section-field" '.$adv_data_href.'>
+                                '<div class="amp-ux-section-field" '.esc_attr($adv_data_href).'>
                                     <div class="amp-ux-elem-field">
                                         <h4 class="amp-ux-elem-title">Advertisement</h4>
                                         <div class="amp-ux-elem-but-block stup">View Setup</div>

@@ -45,7 +45,7 @@ function ampforwp_add_admin_styling($hook_suffix){
     }else{
         $opt = get_option("ampforwp_option_panel_view_type");
         if($opt==1 || $opt==2){
-            $opt="3".$opt;
+            $opt="3".intval($opt);
         }else{
             $opt = "31";
         }

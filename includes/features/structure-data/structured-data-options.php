@@ -194,10 +194,10 @@ if( ! function_exists('saswp_non_amp') ) {
                 $p_type = $post_type;
                 $post_type = ucfirst($post_type);
                 $custom_fields[] = array(
-                  'id'       => 'ampforwp-sd-type-'. $p_type,
+                  'id'       => 'ampforwp-sd-type-'.esc_attr($p_type),
                   'type'     => 'select',
                   'title'    => __($post_type, 'accelerated-mobile-pages'),
-                  'tooltip-subtitle' => __('Select the Structured Data Type for '.$p_type, 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => 'Select the Structured Data Type for '.esc_attr($p_type),
                   'options'  =>  ampforwp_get_sd_types(),
                   'default'  => 'BlogPosting',
                 );
