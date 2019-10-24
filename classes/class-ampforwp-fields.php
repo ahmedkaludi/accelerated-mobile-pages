@@ -82,25 +82,25 @@ class AMPforWP_Fields
 				$this->options = '';
 			}
 			if ( isset($fields['data-href']) ) {
-				$this->data_href = ' data-href="'.esc_url($fields['data-href']).'"';
+				$this->data_href = ' data-href='.esc_url($fields['data-href']);
 			}
 			else{
 				$this->data_href = '';
 			}
 			if ( isset($fields['data-url']) ) {
-				$this->data_url = ' data-url="'.esc_url($fields['data-url']).'"';
+				$this->data_url = ' data-url='.esc_url($fields['data-url']);
 			}
 			else{
 				$this->data_url = '';
 			}
 			if ( isset($fields['data-secure']) ) {
-				$this->data_secure = ' data-secure="'.esc_attr($fields['data-secure']).'"';
+				$this->data_secure = ' data-secure='.esc_attr($fields['data-secure']);
 			}
 			else{
 				$this->data_secure = '';
 			}
 			if ( isset($fields['data-text']) ) {
-				$this->data_text = ' data-text="'.esc_attr($fields['data-text']).'"';
+				$this->data_text = ' data-text='.esc_attr($fields['data-text']);
 			}
 			else{
 				$this->data_text = '';
@@ -179,7 +179,7 @@ class AMPforWP_Fields
 	}
 
 	public function ampforwp_field_heading($fields = array()){
-		echo '<div class="ux-field-container amp-ux-heading"><h2>'.$this->title.'</h2></div>';
+		echo '<div class="ux-field-container amp-ux-heading"><h2>'.esc_html($this->title).'</h2></div>';
 	}
 	public function ampforwp_field_loader($fields = array()){
 			echo '<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>';
@@ -210,7 +210,7 @@ class AMPforWP_Fields
 		if($this->class=='ampforwp-ux-sub-section'){
 			$dcls = '';
 		}
-		echo '<div id="'.esc_attr($this->id).'" class="'.$dcls.' '.esc_attr($this->class).' amp-ux-section-container">
+		echo '<div id="'.esc_attr($this->id).'" class="'.esc_attr($dcls).' '.esc_attr($this->class).' amp-ux-section-container">
 				<div class="amp-fields-content">';
 	}
 	// Sub Section Start
@@ -227,10 +227,10 @@ class AMPforWP_Fields
 		}
 		$data_href = "";
 		if ( isset($fields['data-href'])) {
-				$data_href = 'data-href="'.esc_attr($fields['data-href']).'"';
+				$data_href = 'data-href='.esc_attr($fields['data-href']);
 		}
 		
-		echo '<div id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).' '.$hide.'" '.$data_href.'>';
+		echo '<div id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).' '.esc_attr($hide).'" '.esc_attr($data_href).'>';
 		if(isset($fields['closable']) && $fields['closable']==1){
 			echo '<div class="ampforwp-ux-closable '.esc_attr($this->id).'">X</div>';
 		}
@@ -247,14 +247,14 @@ class AMPforWP_Fields
 		$required = $hide = $hrf_id = '';
 		$data_num = 1;
 		if ( !empty($this->required) ) {
-			$required = 'required="'.esc_attr($this->required[0]).'"';
+			$required = 'required='.esc_attr($this->required[0]);
 			$hide = ' hide';
 		}
-		$output = '<div class="ux-field-container amp-ux-select-container '.$hide.'">';
+		$output = '<div class="ux-field-container amp-ux-select-container '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2 class="'.$this->element_class.'">'.esc_html__($this->title).'</h2>';
+			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html__($this->title).'</h2>';
 		}
-		$output .= '<select id="'.$this->id.'" class="'.$this->class.'" '.$required.' '.$this->data_href.'>';
+		$output .= '<select id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).'" '.esc_attr($required).' '.esc_attr($this->data_href).'>';
 		if ( !empty($this->options) ) {
 			foreach ( $this->options as $option_key => $option_value ) {
 				if( $option_key == $this->default ) {
@@ -263,7 +263,7 @@ class AMPforWP_Fields
 				else{
 					$this->selected = '';
 				}
-				$output .= '<option value="'.esc_attr($option_key).'" '.esc_attr($this->selected).' data-num="'.$data_num.'">'.esc_attr($option_value).'</option>';
+				$output .= '<option value="'.esc_attr($option_key).'" '.esc_attr($this->selected).' data-num="'.intval($data_num).'">'.esc_attr($option_value).'</option>';
 				$data_num ++;
 			}
 		}
@@ -273,7 +273,7 @@ class AMPforWP_Fields
 			if($this->default!="Other"){
 				$hide = 'hide';
 			}
-			$output .= '<div class="ux-other-site-type"><h2 class="ux-label trac-id site-tpy">Mention the type of your site</h2><input type="text" id="'.$fields['data-value-id'].'" class="'.$this->class.' '.$hide.'" value="'.$fields['data-value'].'" placeholder="Enter your website type"></div>';
+			$output .= '<div class="ux-other-site-type '.esc_attr($hide).'"><h2 class="ux-label trac-id site-tpy">Mention the type of your site</h2></div><input type="text" id="'.esc_attr($fields['data-value-id']).'" class="'.esc_attr($this->class).' '.esc_attr($hide).'" value="'.esc_attr($fields['data-value']).'" placeholder="Enter your website type">';
 		}
 		if( $this->data_href ){
 			if ( isset($fields['data-href-id']) ) {
@@ -291,7 +291,7 @@ class AMPforWP_Fields
 	public function ampforwp_field_checkbox($fields){
 		$required = $hide = $checked = '';
 		if ( !empty($fields['required']) ) {
-			$required = 'required="'.esc_attr($this->required[0]).'"';
+			$required = 'required='.esc_attr($this->required[0]);
 			$hide = 'hide';
 		}
 		if ( isset($fields['default']) && '1' == $fields['default'] ){
@@ -303,7 +303,7 @@ class AMPforWP_Fields
 			$lbl_cls = 'class="'.esc_attr($fields['label-class']).'"';
 		}
 
-		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).' '.$this->parent_class.'">
+		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).' '.esc_attr($this->parent_class).'">
 				<label '.$lbl_cls.'><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" '.esc_attr($required).' ' . esc_attr($checked).'>'.esc_html__($this->title, 'accelerated-mobile-pages').'</label></div>';
 		echo $output;
 	}
@@ -312,13 +312,13 @@ class AMPforWP_Fields
 		$required = '';
 		$hide = '';
 		if ( !empty($this->required) ) {
-			$required = 'required="'.$this->required[0].'"';
+			$required = 'required='.$this->required[0];
 			$this->class .= ' hide';
 			$hide = ' hide';
 		}
 		$output = '<div class="ux-field-container amp-ux-switch-container '.$this->parent_class.' '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2 class="'.$this->element_class.'">'.esc_html__($this->title, 'accelerated-mobile-pages').'</h2>';
+			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html__($this->title, 'accelerated-mobile-pages').'</h2>';
 		}
 		if ( 1 == $this->default ) {
 			$this->selected = 'checked';
@@ -336,14 +336,14 @@ class AMPforWP_Fields
             }else{
 			$output .= '<div class="switch-options">
 						<label class="ios7-switch '.esc_attr($this->id).'">
-	                    	<input id="'.esc_attr($this->id).'" '.esc_attr($this->selected).' class="switch-on-off '.esc_attr($this->class).'" type="checkbox" data-id="'.esc_attr($this->id).'" value="'.esc_attr($this->default).'" '.$this->data_secure.' '.$this->data_url.'>
+	                    	<input id="'.esc_attr($this->id).'" '.esc_attr($this->selected).' class="switch-on-off '.esc_attr($this->class).'" type="checkbox" data-id="'.esc_attr($this->id).'" value="'.esc_attr($this->default).'" '.esc_attr($this->data_secure).' '.esc_attr($this->data_url).'>
 	                        <span></span>
 	                    </label>
 	                    <input type="hidden" class="checkbox checkbox-input " id="'.esc_attr($this->id).'" value="'.esc_attr($this->default).'">
 	                    </div>';
         }
         if( $this->desc ){
-        	$output .= '<p class="amp-ux-switch-text">'.esc_html__($this->desc).'</p>';
+        	$output .= '<p class="amp-ux-switch-text">'.esc_html($this->desc).'</p>';
         }
         $output .= '</div>';
 		echo $output;
@@ -353,7 +353,7 @@ class AMPforWP_Fields
 		$output = '<div class="ux-field-container amp-ux-media-container">';
 		$id = $url = $width = $height = '';
 		if ( !empty($this->title) ) {
-			$output .= '<h2 class="'.$this->element_class.'">'.$this->title.'</h2>';
+			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html($this->title).'</h2>';
 		}
 		if ( is_array($this->default) ) {
 			$id = $this->default['id'];
@@ -383,8 +383,8 @@ class AMPforWP_Fields
 					<img class="redux-option-image amp-ux-image" id="image_opt-media" src="'.esc_url($url).'" alt="" target="_blank" rel="external">
 					
 				</div>
-				<div class="upload_button_div amp-ux-upload '.$logo_css.'">
-					<span class="button media_upload_button media-amp-ux-opt-media media-'.intval($this->id).'" id="opt-media-media">'.$but_name.'</span>
+				<div class="upload_button_div amp-ux-upload '.esc_attr($logo_css).'">
+					<span class="button media_upload_button media-amp-ux-opt-media media-'.intval($this->id).'" id="opt-media-media">'.esc_attr($but_name).'</span>
 					<span class="amp-ux-img-re-txt">(Recommended Size: 120 x 90)</span>				
 				</div>';
 			$output .= '</div></div>';
@@ -395,10 +395,10 @@ class AMPforWP_Fields
 		
 		$output = '<div class="ux-field-container amp-ux-color-container">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2 class="'.$this->element_class.'">'.$this->title.'</h2>';
+			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html($this->title).'</h2>';
 		}
-		$this->selected = $this->default ? 'value="'.esc_attr($this->default).'"' : "";
-		$output .= '<input type="text" id="'.$this->id.'" class="'.esc_attr($this->class).'" '.$this->selected.'>';
+		$this->selected = $this->default ? 'value='.esc_attr($this->default) : "";
+		$output .= '<input type="text" id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).'" '.esc_attr($this->selected).'>';
 		$output .= '</div>';
 		echo $output;
 	}
@@ -411,9 +411,9 @@ class AMPforWP_Fields
 		}
 		$output = '<div class="ux-field-container amp-ux-text-container '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2 class="'.$this->element_class.'">'.esc_html__($this->title).'</h2>';
+			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html($this->title).'</h2>';
 		}
-		$output .= '<input type="text" id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).'" '.$this->data_text.' value="'.esc_attr($this->default).'"></div>';
+		$output .= '<input type="text" id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).'" '.esc_attr($this->data_text).' value="'.esc_attr($this->default).'"></div>';
 		echo $output;
 	}
 
@@ -425,7 +425,7 @@ class AMPforWP_Fields
 		$required = $hide = $hrf_id = '';
 		$data_num = 1;
 		if ( !empty($this->required) ) {
-			$required = 'required="'.esc_attr($this->required[0]).'"';
+			$required = 'required='.esc_attr($this->required[0]);
 			$hide = ' hide';
 		}
 	
@@ -442,9 +442,9 @@ class AMPforWP_Fields
 		if($this->default==1){
 			$hide = "";
 		}
-		$output = '<div class="ux-field-container amp-ux-notif-container '.esc_attr($class).' '.esc_attr($hide).'" id="'.esc_attr($this->id).'" '.$required.'>';
+		$output = '<div class="ux-field-container amp-ux-notif-container '.esc_attr($class).' '.esc_attr($hide).'" id="'.esc_attr($this->id).'" '.esc_attr($required).'>';
 		if ( !empty($this->desc) ) {
-			$output .= '<p>'.($this->desc).'</p>';
+			$output .= '<p>'.esc_html($this->desc).'</p>';
 		}
 		$output .= '</div>';
 		echo $output;
@@ -453,19 +453,13 @@ class AMPforWP_Fields
 	public function ampforwp_field_footer($fields){
 		$output = '<div class="ux-field-container ux-field-footer" id="'.esc_attr($this->id).'">';
 		foreach($fields as $f){
-			$a_open = "";
-			$a_close = "";
-			if(isset($f['url'])){
-				$a_open = '<a href="'.esc_url($f['url']).'" target="_blank">';
-				$a_close = "</a>";
-			}
 			$svg = '';
 			if(isset($f['svg'])){
 				$svg = $f['svg'];
 			}
-			$output .= '<div class="ux-field-foot-cont">'.$a_open.'
-							<i class="ux-foot-icon '.esc_html__($f['icon']).'"></i>'.$svg.'
-							<p>'.esc_html__($f['desc']).'</p>'.$a_close.'
+			$output .= '<div class="ux-field-foot-cont"><a href="'.esc_url($f['url']).'" target="_blank">
+							<i class="ux-foot-icon '.esc_attr($f['icon']).'"></i>'.$svg.'
+							<p>'.esc_html__($f['desc']).'</p></a>
 						</div>';
 		}
 		$output .= '</div>';

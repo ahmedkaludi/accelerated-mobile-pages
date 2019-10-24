@@ -860,7 +860,8 @@ if(!function_exists('ampforwp_get_setup_info')){
 	function ampforwp_get_setup_info($ux_option=''){
 		$ux_content = "";
 		if($ux_option=="ampforwp-ux-website-type-section"){
-			if(ampforwp_get_setting('ampforwp-sd-type-posts')){
+			$ux_content = ampforwp_get_setting('ampforwp-setup-ux-website-type');
+			if(ampforwp_get_setting('ampforwp-sd-type-posts') && preg_match("/Other/", $ux_content)==0 && $ux_content!=="Local Business"){
 				$ux_content = ampforwp_get_setting('ampforwp-sd-type-posts');
 			}else{
 				$ux_content = ampforwp_get_setting('ampforwp-setup-ux-website-type');
@@ -872,7 +873,7 @@ if(!function_exists('ampforwp_get_setup_info')){
 			}else if($ux_content=="Product"){
 				$ux_content="Ecommerce";
 			}
-			if(strpos("Other",$ux_content)!==false){
+			if(preg_match("/Other/", $ux_content)!=0){
 				$other = explode("-", $ux_content);
 				if(isset($other[1])){
 					$ux_content=$other[1];
