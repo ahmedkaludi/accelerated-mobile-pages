@@ -1204,6 +1204,9 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 
 					// Check if the host contains invalid chars (hostCharIsValid: https://github.com/ampproject/amphtml/blob/af1e3a550feeafd732226202b8d1f26dcefefa18/validator/engine/parse-url.js#L62-L103).
 					$host = wp_parse_url( $url, PHP_URL_HOST );
+					if(is_array($host)){
+						$host = $host['host'];
+					}
 					if ( $host && preg_match( '/[!"#$%&\'()*+,\/:;<=>?@[\]^`{|}~\s]/i', $host ) ) {
 						return AMP_Rule_Spec::FAIL;
 					}
