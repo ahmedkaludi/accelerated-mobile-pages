@@ -2839,9 +2839,9 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'amp-redirection-search',
                         'class'    => 'child_opt child_opt_arrow',
                         'type'     => 'switch',
-                        'title'    => __('Search Pages', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Enable/Disable Mobile redirection on Search Pages.','accelerated-mobile-pages'),
-                        'default' => 1,
+                        'title'    => esc_html__('Search Pages', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable/Disable Mobile redirection on Search Pages.','accelerated-mobile-pages'),
+                        'default' => 0,
                         'required' => array( 'amp-mobile-redirection', '=' , 1 )
                     ),
                     $amp_custom_script,
