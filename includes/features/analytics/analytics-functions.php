@@ -96,8 +96,9 @@ function ampforwp_analytics() {
 			$idsite = urlencode(ampforwp_get_setting('pa-feild'));
 			$title = urlencode(get_the_title());
 			$url = get_the_permalink();
-			$url = urlencode(ampforwp_url_controller($url));
+			$url = urlencode(ampforwp_remove_protocol(ampforwp_url_controller($url)));
 			$rand = rand(1111,9999);
+			$pview = urlencode(ampforwp_remove_protocol(site_url()));
 			?>
 			<amp-analytics id="piwikanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="piwikanalytics">
 				<script type="application/json">
@@ -109,8 +110,8 @@ function ampforwp_analytics() {
 							}
 						},
 						"requests": {
-							"base": "https://piwik.example.org/piwik.php?idsite=<?php echo $idsite;?>&rec=1&action_name=<?php echo $title;?>&url=<?php echo $url;?>&rand=<?php echo $rand;?>&apiv=1",
-							"pageview": "<?php echo ampforwp_remove_protocol(site_url());?>"
+							"base": "https://piwik.example.org/piwik.php?idsite=<?php echo urlencode(esc_attr($idsite));?>&rec=1&action_name=<?php echo esc_attr($title);?>&url=<?php echo esc_url($url);?>&rand=<?php echo intval($rand);?>&apiv=1",
+							"pageview": "<?php echo esc_url($pview);?>"
 						}
 					}
 				</script>
