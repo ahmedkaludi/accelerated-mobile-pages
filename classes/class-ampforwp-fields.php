@@ -316,7 +316,7 @@ class AMPforWP_Fields
 			$this->class .= ' hide';
 			$hide = ' hide';
 		}
-		$output = '<div class="ux-field-container amp-ux-switch-container '.$this->parent_class.' '.esc_attr($hide).'">';
+		$output = '<div class="ux-field-container amp-ux-switch-container '.esc_attr($this->parent_class).' '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
 			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html__($this->title, 'accelerated-mobile-pages').'</h2>';
 		}
