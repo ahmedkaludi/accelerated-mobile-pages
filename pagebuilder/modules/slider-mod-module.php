@@ -118,7 +118,7 @@ $css = '
 	    grid-template-columns: 360px 360px;
 	}
 }
-@media(max-width:768px){
+@media(max-width:769px){
 	.amp-sld3 {
 		grid-template-columns: 100%;
 		grid-template-areas: 
@@ -193,30 +193,32 @@ $css = '
     cursor: pointer;
 }
 .amp-sld4 .amp-carousel-button-next:after{
-	content: ">";
+	content: "";
     display: inline-block;
-    color: #fff;
-    position: absolute;
-    top: 5px;
-    font-weight: 500;
-    font-size: 22px;
-    right: 0px;
-    left: 0;
-    margin: 0 auto;
+    position: relative;
+    right: -4px;
     text-align: center;
+    top: 1px;
+    color: #fff;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    padding: 4px;
+    transform: rotate(-45deg);
+    margin: 0px 5px;
 }
 .amp-sld4 .amp-carousel-button-prev:before{
-	content: "<";
+    content: "";
     display: inline-block;
-    color: #fff;
-    position: absolute;
-    top: 5px;
-    font-weight: 500;
-    font-size: 22px;
-    right: 0px;
-    left: 0;
-    margin: 0 auto;
+    position: relative;
+    left: 8px;
     text-align: center;
+    top: 1px;
+    color: #fff;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    padding: 4px;
+    transform: rotate(135deg);
+    margin: 0px 5px;
 }
 .amp-sld4 .amp-carousel-button-prev{
 	left: 40%;
@@ -250,6 +252,7 @@ if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['
 			    right: 0px;
 			    font-weight: 500;
 			    font-size: 22px;
+			    line-height:22px;
 			}
 			.dots span:first-child:before{
 				content: "\25be";
@@ -261,6 +264,7 @@ if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['
 			    right: 0px;
 			    font-weight: 500;
 			    font-size: 22px;
+			    line-height:22px;
 			} ';
 } else { 
 		$css .='
@@ -275,6 +279,7 @@ if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['
 			    left:0px;
 			    font-weight: 500;
 			    font-size: 22px;
+			    line-height:22px;
 			}
 			.dots span:first-child:before{
 				content: "\e313";
@@ -287,6 +292,7 @@ if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['
 			    right: 0px;
 			    font-weight: 500;
 			    font-size: 22px;
+			    line-height:22px;
 			}';
 	}
 return array(
