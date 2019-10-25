@@ -444,10 +444,10 @@ class AMPforWP_Fields
 		}
 		$output = '<div class="ux-field-container amp-ux-notif-container '.esc_attr($class).' '.esc_attr($hide).'" id="'.esc_attr($this->id).'" '.esc_attr($required).'>';
 		if ( !empty($this->desc) ) {
-			$output .= '<p>'.$this->desc.'</p>';
+			$output .= '<p>'.$this->desc.'</p>'; // xss ok for $this->desc
 		}
 		$output .= '</div>';
-		echo $output;
+		echo $output; // xss ok for $output
 	}
 
 	public function ampforwp_field_footer($fields){
@@ -463,7 +463,7 @@ class AMPforWP_Fields
 						</div>';
 		}
 		$output .= '</div>';
-		echo $output;
+		echo $output; // xss ok for $output
 	}
 
 }?>
