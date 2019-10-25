@@ -33,17 +33,16 @@ function ampforwp_framework_get_comments(){
 						$postID = ampforwp_get_frontpage_id();
 					}
 					$comments =ampforwp_get_comment_with_options();
+
 					if ( $comments ) { ?>
 						<div id="comments" class="amp-comments-wrapper">
 				            <h3><span><?php echo esc_html(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' ));?></span></h3>
 				            <ul><?php
-								// Display the list of comments
-								function ampforwp_custom_translated_comment($comment, $args, $depth){
+								function ampforwp_custom_translated_comment($comment, $args=array(), $depth=''){
 									$GLOBALS['comment'] = $comment;
 									global $redux_builder_amp;
 									$comment_author_img_url = "";
 									$comment_author_img_url = ampforwp_get_comments_gravatar( $comment ); 
-									
 									?>
 									<li id="li-comment-<?php comment_ID() ?>"
 									<?php comment_class(); ?> >
@@ -83,18 +82,26 @@ function ampforwp_framework_get_comments(){
 									</li>
 									<?php 
 								}
-								wp_list_comments( array(
-			                        //Allow comment pagination
-			                        'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE , 
-			                        'style' 			=> 'li',
-			                        'type'				=> 'comment',
-			                        'max_depth'   		=> 5,
-			                        'avatar_size'		=> 0,
-			                        'callback'			=> 'ampforwp_custom_translated_comment',
-			                        'reverse_top_level' => false //Show the latest comments at the top of the list
-								), $comments);  ?>
-						    </ul> <?php 
-							    $max_page = get_comment_pages_count($comments, AMPFORWP_COMMENTS_PER_PAGE);
+								if ( get_option( 'page_comments' ) ) {
+									foreach($comments as $cm){
+										ampforwp_custom_translated_comment($cm);
+									}
+								}else{
+									wp_list_comments( array(
+				                        'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE , 
+				                        'style' 			=> 'li',
+				                        'type'				=> 'comment',
+				                        'max_depth'   		=> 5,
+				                        'avatar_size'		=> 0,
+				                        'callback'			=> 'ampforwp_custom_translated_comment',
+				                        'reverse_top_level' => false
+									), $comments); 
+								}
+							?>
+						    </ul> 
+						    <?php 
+								$total_count = ampforwp_total_number_of_comment();
+							    $max_page = ceil($total_count/AMPFORWP_COMMENTS_PER_PAGE);
 							    $args = array(
 									'base' 			=> add_query_arg( array('cpage' => '%#%', 'amp' => '1'), get_permalink() ),
 									'format' 		=> '',

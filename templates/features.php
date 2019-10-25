@@ -3448,7 +3448,7 @@ function ampforwp_frontpage_comments() {
 						);
 
 						// Display the list of comments
-						function ampforwp_custom_translated_comment($comment, $args, $depth){
+						function ampforwp_custom_translated_comment($comment, $args=array(), $depth=''){
 							$GLOBALS['comment'] = $comment;
 							global $redux_builder_amp; ?>
 							<li id="li-comment-<?php esc_attr(comment_ID()) ?>"
@@ -3488,16 +3488,22 @@ function ampforwp_frontpage_comments() {
 						<!-- #comment-## -->
 							<?php
 						}// end of ampforwp_custom_translated_comment()
-						wp_list_comments( array(
-						  'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE, //Allow comment pagination
-						  'page'              	=> $page,
-						  'style' 				=> 'li',
-						  'type'				=> 'comment',
-						  'max_depth'   		=> 5,
-						  'avatar_size'			=> 0,
-							'callback'				=> 'ampforwp_custom_translated_comment',
-						  'reverse_top_level' 	=> false //Show the latest comments at the top of the list
-						), $comments);
+						if ( get_option( 'page_comments' ) ) {
+                           foreach($comments as $cm){
+                               ampforwp_custom_translated_comment($cm);
+                           }
+                       	}else{
+							wp_list_comments( array(
+							  'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE, //Allow comment pagination
+							  'page'              	=> $page,
+							  'style' 				=> 'li',
+							  'type'				=> 'comment',
+							  'max_depth'   		=> 5,
+							  'avatar_size'			=> 0,
+								'callback'				=> 'ampforwp_custom_translated_comment',
+							  'reverse_top_level' 	=> false //Show the latest comments at the top of the list
+							), $comments);
+						}
 						echo paginate_links( $pagination_args );?>
 				    </ul>
 				</div>
@@ -7499,40 +7505,94 @@ if(!function_exists('ampforwp_get_comment_with_options')){
 		}
 		$offset = 0;
 		$per_page = ampforwp_get_setting('ampforwp-number-of-comments');
+		$comment_order = get_option( 'comment_order' );
 		if ( get_option( 'page_comments' ) ) {
 			$per_page = (int) get_query_var( 'comments_per_page' );
 			if ( 0 === $per_page ) {
 				$per_page = (int) get_option( 'comments_per_page' );
 			}
-			$page                   = (int) get_query_var( 'cpage' );
-			if ( $page ) {
-				$offset = ( $page - 1 ) * $per_page;
-			} elseif ( 'oldest' === get_option( 'default_comments_page' ) ) {
-				$offset = 0;
-			} else {
-				$top_level_query = new WP_Comment_Query();
-				$top_level_args  = array(
-					'count'   => true,
-					'orderby' => false,
-					'post_id' => intval($postID),
-					'status'  => 'approve',
-				);
-				$top_level_count = $top_level_query->query( $top_level_args );
-				$offset = ( ceil( $top_level_count / $per_page ) - 1 ) * $per_page;
+			$page = (int) get_query_var( 'cpage' );
+			if ( $page ==0) {
+				$page=1;
 			}
-		}
-		$comment_order = get_option( 'comment_order' );
-		if($comment_order=='desc'){
-			$per_page = 0;
-			$offset = 0;
-		}
-		$comments = get_comments(array(
+			$total_comment = ampforwp_total_number_of_comment();
+			$total_pages = ceil($total_comment/$per_page);
+			$pc_arr = array();
+			$of_arr = array();
+			$tc = $total_comment%$per_page;
+			$of = $total_comment;
+			for($i=1;$i<=$total_pages;$i++){
+				if($i==$total_pages && $tc!=0){
+					$pc_arr[] = $tc;
+					$of_arr[] = ceil($of-$tc);
+					$of = ceil($of-$tc);
+				}else{
+					$pc_arr[] = $per_page;
+					$of_arr[] = ceil($of-$per_page);
+					$of = ceil($of-$per_page);
+				}
+			}
+			if ( 'newest' === get_option( 'default_comments_page' )) {
+				sort($pc_arr);
+				sort($of_arr);
+			}
+			$p_page = $pc_arr[$page-1];
+			$offset = $of_arr[$page-1];
+			if($comment_order=="asc" && 'oldest' === get_option( 'default_comments_page' )){
+				$offset = ( $page - 1 ) * $per_page;
+			}else if($comment_order=="asc" && 'newest' === get_option( 'default_comments_page' )){
+				unset($of_arr);
+				$of = $total_comment;
+				$tc = $total_comment%$per_page;
+				$k=0;
+				//var_dump($total_pages);
+				for($i=0;$i<$total_pages;$i++){
+					if($i==0 || $per_page==$i){
+						$of_arr[] = $i;
+						$k = $i;
+					}
+				}
+				for($i=$k;$i<=$total_pages;$i++){
+					if($k>=$i && $k<$total_comment){
+						$k = $k+$per_page;
+						if($k<$total_comment){
+							$of_arr[] = $k;
+						}
+					}
+				}
+				rsort($of_arr);
+				$offset = $of_arr[$page-1];
+			}
+			
+			$comments = get_comments(array(
+				'post_id' 	=> intval($postID),
+				'order' 	=> esc_attr($comment_order),
+				'offset' 	=>intval($offset),
+				'number' 	=>intval($p_page),
+				'status' 	=> 'approve',
+			));
+		}else{
+			$comments = get_comments(array(
 				'post_id' => intval($postID),
 				'order' => esc_attr($comment_order),
-				'offset' =>intval($offset),
-				'number' =>intval($per_page),
 				'status' => 'approve',
-		));
+			));
+		}
 		return $comments;
 	}
+}
+function ampforwp_total_number_of_comment(){
+	$postID = get_the_ID();
+	if ( ampforwp_is_front_page() ) {
+		$postID = ampforwp_get_frontpage_id();
+	}
+	$top_level_query = new WP_Comment_Query();
+	$top_level_args  = array(
+		'count'   => true,
+		'orderby' => false,
+		'post_id' => intval($postID),
+		'status'  => 'approve',
+	);
+	$top_level_count = $top_level_query->query( $top_level_args );
+	return $top_level_count ;
 }

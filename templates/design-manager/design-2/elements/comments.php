@@ -31,7 +31,7 @@
 				<div class="amp-wp-content comments_list">
 			        <h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' )). $comment_nums?></h3>
 			        <ul> <?php // Display the list of comments
-						function ampforwp_custom_translated_comment($comment, $args, $depth){
+						function ampforwp_custom_translated_comment($comment, $args=array(), $depth=''){
 							global $redux_builder_amp;
 							$GLOBALS['comment'] = $comment;
 							$cmt 				= "";
@@ -82,19 +82,25 @@
 							</li> <!-- #li-comment-## -->
 							<?php
 						}// end of ampforwp_custom_translated_comment()
-
-						wp_list_comments( array(
-							'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE , //Allow comment pagination
-							'style' 			=> 'li',
-							'type'				=> 'comment',
-							'max_depth'   		=> 5,
-							'avatar_size'		=> 0,
-							'callback'			=> 'ampforwp_custom_translated_comment',
-							'reverse_top_level' => false //Show the latest comments at the top of the list
-						), $comments);  ?>
+						if ( get_option( 'page_comments' ) ) {
+							foreach($comments as $cm){
+								ampforwp_custom_translated_comment($cm);
+							}
+						}else{
+							wp_list_comments( array(
+		                        'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE , 
+		                        'style' 			=> 'li',
+		                        'type'				=> 'comment',
+		                        'max_depth'   		=> 5,
+		                        'avatar_size'		=> 0,
+		                        'callback'			=> 'ampforwp_custom_translated_comment',
+		                        'reverse_top_level' => false
+							), $comments); 
+						} ?>
 				    </ul>
 				    <?php 
-				    $max_page = get_comment_pages_count($comments, AMPFORWP_COMMENTS_PER_PAGE);
+				    $total_count = ampforwp_total_number_of_comment();
+					$max_page = ceil($total_count/AMPFORWP_COMMENTS_PER_PAGE);
 				    $args = array(
 						'base' 			=> add_query_arg( array('cpage' => '%#%', 'amp' => '1'), get_permalink() ),
 						'format' 		=> '',
