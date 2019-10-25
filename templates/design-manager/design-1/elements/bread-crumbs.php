@@ -119,7 +119,9 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                        }
                    }
                     $cat_parents = explode('/',$get_cat_parents);
-                      
+                    if(count($cat_parents)==2){
+                        $cat_parents = explode(',',$get_cat_parents);
+                    }     
                     // Loop through parent categories and store in variable $cat_display
                     $cat_display = '';
                     foreach($cat_parents as $parents) {

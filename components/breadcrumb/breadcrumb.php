@@ -121,7 +121,9 @@
                    }
                     // Get parent any categories and create array 
                     $cat_parents = explode('/',$get_cat_parents);
-                      
+                    if(count($cat_parents)==2){
+                        $cat_parents = explode(',',$get_cat_parents);
+                    }                  
                     // Loop through parent categories and store in variable $cat_display
                     $cat_display = '';
                     foreach($cat_parents as $parents) {
