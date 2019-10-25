@@ -26,7 +26,7 @@ $output = '
 	<div class="amp-g-cnt">
 		{{repeater_ampcontent}}
 	</div>
-	<p class="dots">
+	<p class="amp-g-d">
 		<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == 0 ? {{repeater_max_count}} : howSectionSelected.howSlide - 1}})" role="button" tabindex="0">
 		</span>
 		{{repeater_bullet}}
@@ -50,6 +50,18 @@ if ( ampforwp_get_setting('amp-design-selector') == 2 ) {
 	$designCss = '
 		.amp-sld4 .amp-carousel-button-next:after, .amp-sld4 .amp-carousel-button-prev:before{
 			top:5px;
+		}
+		.amp-g-d span:first-child:before, .amp-g-d span:last-child:before{
+			top:12px;
+		}
+	';
+}
+if ( ampforwp_get_setting('amp-design-selector') == 3 ) {
+	$designCss = '
+		.single-post main .amp-wp-article-content h1{
+			font-size:{{text-size}};
+			line-height:1.4;
+			margin:0;
 		}
 	';
 }
@@ -98,15 +110,15 @@ $css = '
     vertical-align: middle;
     grid-area: content;
 }
-.dots{margin-top:30px;grid-area: dots;}
-.amp-g-cnt .how-current{display: inline-block;}
-.amp-g-cnt .how-current h1{color:{{hdng__active_color}};}
+.amp-g-d{margin-top:15px;grid-area: dots;}
+{{module-class}} .amp-g-cnt .how-current h1{color:{{hdng_active_color}};}
 .amp-g-cnt h1, .amp-g-cnt p{cursor: pointer;display: inline-block;}
-.amp-g-cnt h1{
+{{module-class}} .amp-g-cnt h1{
 	font-size:{{text-size}};
 	font-weight:{{fnt_wght}};
 	line-height:1.4;
 	color:{{hdng_color_picker}};
+	margin:0;
 }
 .amp-cnt{
 	margin-bottom:30px;
@@ -114,20 +126,48 @@ $css = '
 .amp-desc{
 	display:block;
 	color:{{cnt_color_picker}};
-	font-size:{{cnt-size}};
+	font-size:{{slider3-cnt-size}};
 	font-weight:{{cnt_fnt_wght}};
 }
-.dots span{display:inline-block;background:#999;border-radius:6px;width:10px;height:10px;margin-bottom:4px;margin-left:10px;margin-right:10px;z-index:10;vertical-align:middle;cursor: pointer;}
-.dots span.how-current{background:{{hdng__active_color}};width:12px;height:12px;margin-bottom:4px;margin-left:10px;margin-right:10px}
-.dots span:last-child{width:34px;height:34px;border-radius:34px;background-color:{{hdng__active_color}};}
-.dots span:first-child{width:34px;height:34px;border-radius:34px;background-color:{{hdng__active_color}};
-	background-position:50% 50%;background-repeat:no-repeat;}
+.amp-desc p{margin:0;}
+.amp-g-d span{display:inline-block;background:#999;border-radius:6px;width:10px;height:10px;margin-bottom:4px;margin-left:10px;margin-right:10px;z-index:10;vertical-align:middle;cursor: pointer;}
+.amp-g-d span.how-current{background:{{hdng_active_color}};width:12px;height:12px;margin-bottom:4px;margin-left:10px;margin-right:10px}
+.amp-g-d span:last-child{width:34px;height:34px;border-radius:34px;background-color:{{hdng_active_color}};position:relative;}
+.amp-g-d span:first-child{width:34px;height:34px;border-radius:34px;background-color:{{hdng_active_color}};
+	background-position:50% 50%;background-repeat:no-repeat;position:relative;}
+.amp-g-d span:last-child:before{
+	content: "";
+    display: inline-block;
+    position: absolute;
+    right: 14px;
+    text-align: center;
+    top: 12px;
+    color: #fff;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    padding: 3px;
+    transform: rotate(-45deg);
+}
+.amp-g-d span:first-child:before{
+	content: "";
+    display: inline-block;
+    position: absolute;
+    left: 14px;
+    text-align: center;
+    top: 12px;
+    color: #fff;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    padding: 3px;
+    transform: rotate(135deg);
+}
+.amp-carousel-slide{margin:0 auto;}
 @media(max-width:1000px){
 	.amp-sld3 {
 	    grid-template-columns: 360px 360px;
 	}
 }
-@media(max-width:769px){
+@media(max-width:768px){
 	.amp-sld3 {
 		grid-template-columns: 100%;
 		grid-template-areas: 
@@ -137,7 +177,7 @@ $css = '
      }
     .amp-g-cnt {
 	    text-align: center;
-	    margin: 40px 0px 0px 0px;
+	    margin: 5px 0px 0px 0px;
 	}
 	.amp-g-cnt {
 	    overflow-x: auto;
@@ -145,8 +185,9 @@ $css = '
 	    white-space: nowrap;
 	}
 	.amp-cnt{
-	    display: inline-block;
-	    margin:20px;
+	    display: inline-grid;
+	    width:50%;
+	    margin:10px;
 	}
 	.amp-desc{
 		white-space: pre-wrap;
@@ -219,7 +260,6 @@ amp-carousel {
     border-width: 0 3px 3px 0;
     padding: 3px;
     transform: rotate(-45deg);
-    margin: 0px;
 }
 .amp-sld4 .amp-carousel-button-prev:before{
     content: "";
@@ -233,7 +273,6 @@ amp-carousel {
     border-width: 0 3px 3px 0;
     padding: 3px;
     transform: rotate(135deg);
-    margin: 0px;
 }
 .amp-sld4 .amp-carousel-button-prev{
 	left: 40%;
@@ -256,61 +295,7 @@ amp-carousel {
 {{ifend_condition_carousel_layout_type_4}}
 ';
 $css = $css.''.$designCss;
-if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) {
-		$css .='
-			.dots span:last-child:before{
-				content: "\25be";
-				transform: rotate(270deg);
-			    display: inline-block;
-			    color: #fff;
-			    position: relative;
-			    top: 3px;
-			    right: 0px;
-			    font-weight: 500;
-			    font-size: 22px;
-			    line-height:22px;
-			}
-			.dots span:first-child:before{
-				content: "\25be";
-				transform: rotate(90deg);
-			    display: inline-block;
-			    color: #fff;
-			    position: relative;
-			    top: 3px;
-			    right: 0px;
-			    font-weight: 500;
-			    font-size: 22px;
-			    line-height:22px;
-			} ';
-} else { 
-		$css .='
-			.dots span:last-child:before{
-				content: "\e313";
-			    font-family: "icomoon";
-			    transform: rotate(270deg);
-			    display: inline-block;
-			    color: #fff;
-			    position: relative;
-			    top: 5px;
-			    left:0px;
-			    font-weight: 500;
-			    font-size: 22px;
-			    line-height:22px;
-			}
-			.dots span:first-child:before{
-				content: "\e313";
-			    font-family: "icomoon";
-			    transform: rotate(90deg);
-			    display: inline-block;
-			    color: #fff;
-			    position: relative;
-			    top: 5px;
-			    right: 0px;
-			    font-weight: 500;
-			    font-size: 22px;
-			    line-height:22px;
-			}';
-	}
+ 
 return array(
 		'label' =>'Gallery / Slider',
 		'name' =>'slider-mod',
@@ -445,7 +430,7 @@ return array(
 							),
 						array(
 								'type'		=>'color-picker',
-								'name'		=>"hdng__active_color",
+								'name'		=>"hdng_active_color",
 								'label'		=>'Heading Active Color / Dots Color',
 								'tab'		=>'design',
 								'default'	=>'#ee476f',
@@ -454,7 +439,7 @@ return array(
 							),
 						array(
 								'type'		=>'text',
-								'name'		=>"cnt-size",
+								'name'		=>"slider3-cnt-size",
 								'label'		=>'Content Font Size',
 								'tab'		=>'design',
 								'default'	=>'16px',
