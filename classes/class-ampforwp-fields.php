@@ -444,7 +444,7 @@ class AMPforWP_Fields
 		}
 		$output = '<div class="ux-field-container amp-ux-notif-container '.esc_attr($class).' '.esc_attr($hide).'" id="'.esc_attr($this->id).'" '.esc_attr($required).'>';
 		if ( !empty($this->desc) ) {
-			$output .= '<p>'.esc_html($this->desc).'</p>';
+			$output .= '<p>'.$this->desc.'</p>';
 		}
 		$output .= '</div>';
 		echo $output;
