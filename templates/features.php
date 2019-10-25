@@ -1746,6 +1746,9 @@ function ampforwp_replace_title_tags() {
 			}
 		 	if ( $yoast_title ) {
 		 		$site_title = apply_filters( 'wpseo_title', $yoast_title );
+		 		if($sep == 'sc-dash'){
+		 			add_filter( 'run_wptexturize', '__return_false' );	
+		 		}
 		 	}
 		}
 
