@@ -112,7 +112,7 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 			  $twitter_share_url = add_query_arg('via', $data_param_data, $twitter_share_url);
 			} ?>
 		<li>
-		  <a title="twitter share" class="s_tw" target="_blank" href="<?php echo esc_url($twitter_share_url); ?>">
+		  <a title="twitter share" class="s_tw" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($twitter_share_url); ?>">
 		  </a>
 		</li>
 		<?php } ?>
