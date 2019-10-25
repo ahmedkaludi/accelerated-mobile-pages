@@ -45,6 +45,15 @@ $output = '
 {{ifend_condition_carousel_layout_type_4}}
 </div>
 ';
+
+if ( ampforwp_get_setting('amp-design-selector') == 2 ) {
+	$designCss = '
+		.amp-sld4 .amp-carousel-button-next:after, .amp-sld4 .amp-carousel-button-prev:before{
+			top:5px;
+		}
+	';
+}
+
 $css = '
 {{if_condition_carousel_layout_type==1}}
 .amp-img{
@@ -145,11 +154,17 @@ $css = '
 }
 {{ifend_condition_carousel_layout_type_3}}
 {{if_condition_carousel_layout_type==4}}
+amp-carousel {
+    background: transparent;
+}
+.amp-wp-article-content amp-img{
+	margin:0;
+}
 .card {
     width: 425px;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 20px 50px 1px rgba(0,0,0,.1);
+    box-shadow: 0 5px 20px 1px rgba(0,0,0,.1);
     margin: 40px;
     word-wrap: break-word;
     text-align:center;
@@ -196,29 +211,29 @@ $css = '
 	content: "";
     display: inline-block;
     position: relative;
-    right: -4px;
+    right: -11px;
     text-align: center;
     top: 1px;
     color: #fff;
     border: solid #fff;
     border-width: 0 3px 3px 0;
-    padding: 4px;
+    padding: 3px;
     transform: rotate(-45deg);
-    margin: 0px 5px;
+    margin: 0px;
 }
 .amp-sld4 .amp-carousel-button-prev:before{
     content: "";
     display: inline-block;
     position: relative;
-    left: 8px;
+    left: 13px;
     text-align: center;
     top: 1px;
     color: #fff;
     border: solid #fff;
     border-width: 0 3px 3px 0;
-    padding: 4px;
+    padding: 3px;
     transform: rotate(135deg);
-    margin: 0px 5px;
+    margin: 0px;
 }
 .amp-sld4 .amp-carousel-button-prev{
 	left: 40%;
@@ -240,6 +255,7 @@ $css = '
 }
 {{ifend_condition_carousel_layout_type_4}}
 ';
+$css = $css.''.$designCss;
 if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) {
 		$css .='
 			.dots span:last-child:before{
@@ -733,8 +749,10 @@ return array(
 							<div class="cardContent">
 				      			<div class="tstmnl">{{test_cntn}}</div>
 				      			<a href="{{aut_link}}" class="ath-info">
+				      			{{if_athr_img}}
 					      			<amp-img src="{{athr_img}}" width="50" height="50" alt="{{image_alt}}">
 					      			</amp-img>
+					      		{{ifend_athr_img}}
 					      			<span class="athr-nm">{{aut_name}}</span>
 					      		</a>
 					      	</div>
