@@ -7499,10 +7499,7 @@ if(!function_exists('ampforwp_jannah_css')){
 if(!function_exists('ampforwp_get_comment_with_options')){
 	function ampforwp_get_comment_with_options(){
 		$postID = $comments = $max_page =  "";
-		$postID = get_the_ID();
-		if ( ampforwp_is_front_page() ) {
-			$postID = ampforwp_get_frontpage_id();
-		}
+		$postID = ampforwp_get_the_ID();
 		$offset = 0;
 		$per_page = ampforwp_get_setting('ampforwp-number-of-comments');
 		$comment_order = get_option( 'comment_order' );
@@ -7545,7 +7542,6 @@ if(!function_exists('ampforwp_get_comment_with_options')){
 				$of = $total_comment;
 				$tc = $total_comment%$per_page;
 				$k=0;
-				//var_dump($total_pages);
 				for($i=0;$i<$total_pages;$i++){
 					if($i==0 || $per_page==$i){
 						$of_arr[] = $i;
@@ -7582,10 +7578,7 @@ if(!function_exists('ampforwp_get_comment_with_options')){
 	}
 }
 function ampforwp_total_number_of_comment(){
-	$postID = get_the_ID();
-	if ( ampforwp_is_front_page() ) {
-		$postID = ampforwp_get_frontpage_id();
-	}
+	$postID = ampforwp_get_the_ID();
 	$top_level_query = new WP_Comment_Query();
 	$top_level_args  = array(
 		'count'   => true,
