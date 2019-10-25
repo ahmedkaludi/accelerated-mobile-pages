@@ -2,7 +2,7 @@
 namespace AMPforWP\AMPVendor;
 function amp_get_permalink( $post_id ) {
 	$pre_url = apply_filters( 'amp_pre_get_permalink', false, $post_id );
-
+	$amp_url = '';
 	if ( false !== $pre_url ) {
 		return $pre_url;
 	}
