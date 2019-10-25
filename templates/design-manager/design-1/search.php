@@ -6,6 +6,7 @@
 	<meta charset="utf-8">
 	<?php if(is_search() && false == ampforwp_get_setting('amp-inspection-tool') && false == ampforwp_get_setting('ampforwp-robots-search-pages')){?>
 	<meta name="robots" content="noindex,nofollow"/><?php } ?>
+    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<?php $paged = get_query_var( 'paged' );
 		$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();
 		$amp_url = untrailingslashit($current_search_url);
