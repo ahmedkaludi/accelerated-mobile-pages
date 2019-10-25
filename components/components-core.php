@@ -373,7 +373,7 @@ function amp_header_core(){
 		<head>
 		<meta charset="utf-8"> 
 			<?php do_action('amp_experiment_meta', $thisTemplate); ?>
-		    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+		    <link rel="dns-prefetch" href="//cdn.ampproject.org">
 		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
 		    <?php 
 		    	if(ampforwp_amp_nonamp_convert("", "check")){
