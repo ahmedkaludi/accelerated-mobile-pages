@@ -1329,18 +1329,21 @@ function ampforwp_sticky_social_icons(){
 					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/messenger.png') ?>" width="20" height="20" />
 				</div>
 			</a>
-		<?php } ?>
-			  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
-	          $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
-	          <amp-social-share type="twitter"
-	                            width="50"
-	                            height="28"
-	                            aria-label="twitter"
-	                            <?php ampforwp_nofollow_social_links(); ?>
-	                            data-param-url=""
-                        		data-param-text="TITLE <?php echo esc_url($permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_attr($data_param_data) ?>"
-	          ></amp-social-share>
-			  	<?php } ?>
+		<?php } 
+				if(ampforwp_get_setting('enable-single-twitter-share') == true)  {
+				$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
+				if ( $data_param_data ) {
+					$via_text  = ampforwp_translation( ampforwp_get_setting('amp-translator-via-text'), 'via' );
+					$permalink =  add_query_arg($via_text, $data_param_data, $permalink);
+				}?>
+				 <amp-social-share type="twitter"
+						width="50"
+						height="28"
+						<?php ampforwp_nofollow_social_links(); ?>
+						data-param-url=""
+						data-param-text="TITLE <?php echo esc_url($permalink); ?>">
+				</amp-social-share>
+				<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-email-share'] == true)  { ?>
 			    	<amp-social-share type="email"      width="50" height="28" aria-label="email" <?php ampforwp_nofollow_social_links(); ?>></amp-social-share>
 			  	<?php } ?>
