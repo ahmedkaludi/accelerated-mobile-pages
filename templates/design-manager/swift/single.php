@@ -747,6 +747,7 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 <?php if( ampforwp_get_setting('single-design-type') == '7' ){?>
 <div class="sp sgl-7">
 	<div class="cntr">
+		<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 		<div class="sgl7-tlt">
 			<?php if ( true == ampforwp_get_setting('ampforwp-bread-crumb') ) {
 				amp_breadcrumb();
@@ -769,9 +770,10 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 				<?php edit_post_link(); ?>	
 			</div>
 		</div>
+		<?php } // AMP Pagebuilder Condition Ends Here?>
 		<div class="sgl7-artl">
 			<div class="sgl7-left">
-				<?php 
+				<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { 
 				if(ampforwp_get_setting('ampforwp-featured-video') == true && !empty(ampforwp_get_setting('ampforwp-featured-video-metakey'))){
 					?>
 					<div class="sf-img">
@@ -792,7 +794,7 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 					</div>
 				<?php }
 				}
-				?>
+				} // AMP Pagebuilder Condition Ends Here?>
 				<div class="cntn-wrp artl-cnt">
 					<?php
 					if ('above-content' ==  ampforwp_get_setting('swift-layout-addthis-pos')){
@@ -806,7 +808,8 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 					}
 					?>
 				</div>
-				<?php $author_box = array();
+				<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { 
+				$author_box = array();
 				if( true == ampforwp_get_setting('amp-author-description') ) { ?>	
 					<?php
 					$author_box = array( 'avatar'=>true,
@@ -958,12 +961,13 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 
 					</ul>
 	            </div>
-	        <?php } ?>
+	        	<?php } ?>
 	            <?php if( true == ampforwp_get_setting('ampforwp-tags-single') && amp_tags_list()){ ?>
 		            <div class="tags">
 		            	<?php amp_tags_list();?>
 		            </div>
-	            <?php } ?>
+	            <?php } 
+	        	} // AMP Pagebuilder Condition Ends Here ?>
 	            <?php if( ampforwp_get_setting('single-design-type') == '7') {
 				       if ( true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {
 						$my_query = ampforwp_related_post_loop_query();
@@ -1006,12 +1010,14 @@ if(ampforwp_get_setting('single-design-type') == '1'){ ?>
 						</div>
 				    <?php wp_reset_postdata(); }  
 					}  // Related Posts Ends here ?>
-				<?php if ( true == ampforwp_get_setting('wordpress-comments-support')){ ?>
+				<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) {
+					if ( true == ampforwp_get_setting('wordpress-comments-support')){ ?>
 					<div class="cmts">	
 						<?php amp_comments();?>	
 						<?php do_action('ampforwp_post_after_design_elements'); ?>	
 					</div>	
-				<?php } ?>	
+				<?php } 
+				} //AMP Pagebuilder Condition Ends Here?>	
 			</div><!-- /.sgl7-left -->
 			<div class="sgl7-right">
 				<?php if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
