@@ -26,6 +26,12 @@ add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_ad
 function amp_post_template_add_cached_link($amp_template) {
 	?>
 			<link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+			<?php
+			$image = ampforwp_get_featured_image_markup(0,'url');
+			if($image!=""){
+			?>
+			<link rel="preload" href="<?php echo esc_url($image);?>" as="image">
+		<?php }?>
 	<?php
 	$scripts = $amp_template->get( 'amp_component_scripts', array() );
 	foreach ( $scripts as $element => $script ) : 

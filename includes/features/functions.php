@@ -1264,20 +1264,28 @@ add_filter('amp_post_template_data','ampforwp_feature_video_amp_js', 20);
 function ampforwp_feature_video_amp_js($data){
     $vmeta = ampforwp_get_setting('ampforwp-featured-video-metakey');
     if ( empty( $data['amp_component_scripts']['amp-youtube'] && $data['amp_component_scripts']['amp-video']) && (ampforwp_get_setting('ampforwp-featured-video')==true && !empty($vmeta))) {
-        $data['amp_component_scripts']['amp-youtube'] = 'https://cdn.ampproject.org/v0/amp-youtube-0.1.js';
-        $data['amp_component_scripts']['amp-video'] = 'https://cdn.ampproject.org/v0/amp-video-0.1.js';
+            $post_id        = ampforwp_get_the_ID();
+            $data['amp_component_scripts']['amp-video'] = 'https://cdn.ampproject.org/v0/amp-video-0.1.js';
+            $vmeta = ampforwp_get_setting('ampforwp-featured-video-metakey');
+            if(ampforwp_get_setting('ampforwp-featured-video')==true && !empty($vmeta)){
+                $metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+                $video_url = get_post_meta($post_id, $metaKey,true);
+                if(preg_match('/youtube/', $video_url)){
+                    $data['amp_component_scripts']['amp-youtube'] = 'https://cdn.ampproject.org/v0/amp-youtube-0.1.js';
+                }else if(preg_match('/vimeo/', $video_url)){
+                    $data['amp_component_scripts']['amp-vimeo'] = 'https://cdn.ampproject.org/v0/amp-vimeo-0.1.js';
+                }else if(preg_match('/dailymotion/', $video_url)){
+                    $data['amp_component_scripts']['amp-dailymotion'] = 'https://cdn.ampproject.org/v0/amp-dailymotion-0.1.js';
+                }
+            }
     }
     return $data;
 }
+
 if(!function_exists('ampforwp_featured_video_markup')){
     function ampforwp_featured_video_markup($check=''){
         if(ampforwp_get_setting('ampforwp-featured-video')){
-            global $post;
-            $post_id        = $post->ID;
-            if( ampforwp_is_front_page() ){
-                $post_id = ampforwp_get_frontpage_id();
-            }
-            
+            $post_id        = ampforwp_get_the_ID();
             $amp_f_video = '';
             // Featured Video SmartMag theme Compatibility #2559
             if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
@@ -1300,22 +1308,40 @@ if(!function_exists('ampforwp_featured_video_markup')){
                 $ext = pathinfo($parts['path'], PATHINFO_EXTENSION);
                 $type = '';
                 $video_id = '';
-                if(strpos($video_url,"youtube")){
-                    $type = 'youtube';
-                    $video_id = $query['v'];
-                }
                 if(!strpos($video_url,"iframe") && $ext!=""){
                     $amp_f_video = '<div class="featured-video-plus post-thumbnail fvp-responsive">
                         <amp-video controls width="640" height="360" layout="responsive">
-                             <source src="'.$video_url.'"/>
+                             <source src="'.esc_url($video_url).'"/>
                         </amp-video>
                     </div>';
-                }else if($video_id!=''){
+                }else if(preg_match('/youtube/', $video_url)){
+                        preg_match_all('/(youtu.be\/|\/watch\?v=|\/embed\/)([a-z0-9\-_]+)/i',$video_url,$matches);
+                        if(isset($matches[2][0])){
+                            $video_id = $matches[2][0];
+                            $amp_f_video = '<div class="featured-video-plus post-thumbnail fvp-responsive">
+                                    <amp-youtube width="480" height="270" layout="responsive" data-videoid="'.esc_attr($video_id).'">
+                                    </amp-youtube>
+                                </div>';
+                        }
+                }else if(preg_match('/vimeo/', $video_url)){
+                    preg_match_all('/vimeo.com\/(.*)/i',$video_url,$matches);
+                    if(isset($matches[1][0])){
+                    $video_id = $matches[1][0];
                     $amp_f_video = '<div class="featured-video-plus post-thumbnail fvp-responsive">
-                        <amp-'.$type.' width="480" height="270" layout="responsive" data-videoid="'.$video_id.'">
-                        </amp-'.$type.'>
-                    </div>';
+                                <amp-vimeo data-videoid="'.intval($video_id).'" layout="responsive" width="16" height="9"></amp-vimeo>
+                            </div>';
+                    }
+                }else if(preg_match('/dailymotion/', $video_url)){
+                     preg_match_all('/^.+dailymotion.com\/(?:video|swf\/video|embed\/video|hub|swf)\/([^&?]+)/',$video_url,$matches);
+                    if(isset($matches[1][0])){
+                     $video_id = $matches[1][0];
+                     $amp_f_video = '<div class="featured-video-plus post-thumbnail fvp-responsive">
+                                <amp-dailymotion data-videoid="'.esc_attr($video_id).'" layout="responsive" data-ui-highlight="FF4081" width="480" height="270">
+                                </amp-dailymotion>
+                            </div>';
+                    }
                 }
+                
             }
             $class = "amp-wp-article-featured-image wp-caption";
             if(ampforwp_get_setting('amp-design-selector')==4){
@@ -1332,7 +1358,7 @@ if(!function_exists('ampforwp_featured_video_markup')){
                 default :
                     $fvideo = '';
                     if($amp_f_video!=''){
-                        $fvideo = '<figure class="'.$class.'">'.$amp_f_video.'</figure>';
+                        $fvideo = '<figure class="'.esc_attr($class).'">'.$amp_f_video.'</figure>';// xss escaping done before.
                     }
                     return $fvideo;
                     break;
@@ -1342,17 +1368,16 @@ if(!function_exists('ampforwp_featured_video_markup')){
 }
 
 if(!function_exists('ampforwp_get_featured_image_markup')){
-    function ampforwp_get_featured_image_markup($data=''){
+    function ampforwp_get_featured_image_markup($post_id=0, $data=''){
         global $post;
-        $post_id        = $post->ID;
-        if( ampforwp_is_front_page() ){
-            $post_id = ampforwp_get_frontpage_id();
+        if($post_id==0){
+            $post_id        = ampforwp_get_the_ID();
         }
         $amp_html='';$height ='';$width='';$src='';$srcet='';$alt='';$caption='';
         if( true == ampforwp_has_post_thumbnail() ) {
             if (has_post_thumbnail( $post_id ) ){
                 $thumb_id = get_post_thumbnail_id($post_id);
-                $post_content = $post->post_content;
+                $post_content = get_post_field('post_content', $post_id);
                 if (true !== apply_filters('ampforwp_allow_featured_image', false) && ( false !== strpos( $post_content, 'wp-image-' . $thumb_id ) || false !== strpos( $post_content, 'attachment_' . $thumb_id ) ) ) {
                     return;
                 }
@@ -1415,29 +1440,7 @@ if(!function_exists('ampforwp_get_featured_image_markup')){
                     return $srcet;
                     break; 
                 default : 
-                    $src_str = '';
-                    if($src!=""){
-                        $src_str = 'src="'.esc_url($src).'"';
-                    }
-                    $height_str = '';
-                    if($height!=""){
-                        $height_str = 'height="'.esc_attr($height).'"';
-                    }
-                    $width_str = '';
-                    if($width!=""){
-                        $width_str = 'width="'.esc_attr($width).'"';
-                    }
-
-                    $alt_str = '';
-                    if($alt!=""){
-                        $alt_str = 'alt="'.esc_attr($alt).'"';
-                    }
-
-                    $srcset_str = '';
-                    if($srcet!=""){
-                        $srcset_str = 'srcset="'.esc_html($srcet).'"';
-                    }
-                    $amp_html = '<amp-img '.$src_str.' '.$srcset_str.' '.$width_str.' '.$height_str.' layout=responsive '.$alt_str.'></amp-img>';
+                    $amp_html = '<amp-img src="'.esc_url($src).'" srcset="'.esc_html($srcet).'" width="'.esc_attr($width).'" height="'.esc_attr($height).'" layout=responsive alt="'.esc_attr($alt).'"></amp-img>';
                     if( true == ampforwp_get_setting('ampforwp-featured-image-from-content') && ampforwp_get_featured_image_from_content() ){
                         $amp_html = ampforwp_get_featured_image_from_content();
                         $amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
@@ -1448,7 +1451,7 @@ if(!function_exists('ampforwp_get_featured_image_markup')){
                     }
                     $fimgdata = '';
                     if($src!=""){
-                        $fimgdata = '<figure class="'.$class.'">'.$amp_html;
+                        $fimgdata = '<figure class="'.esc_attr($class).'">'.$amp_html; // xss escaping done before.
                         if ( $caption ) {
                         $fimgdata .='<p class="wp-caption-text">'.wp_kses_data($caption).'
                                 </p>';
