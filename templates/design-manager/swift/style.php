@@ -2589,6 +2589,11 @@ if( ampforwp_get_setting('single-design-type') == '7' ){ ?>
 	    padding: 7px 10px;
 	    font-size: 18px;
 	}
+	.sgl-7 .ss-ic ul li amp-facebook-like{
+		max-height:28px;
+		position: relative;
+    	top: 8px;
+	}
 	.post-edit-link{
 		text-transform: uppercase;
 	    font-size: 12px;
