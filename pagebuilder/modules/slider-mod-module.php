@@ -45,7 +45,24 @@ $output = '
 {{ifend_condition_carousel_layout_type_4}}
 </div>
 ';
+if ( ampforwp_get_setting('amp-design-selector') == 1 ) {
+	$designCss = '
+		.amp-sld3 {
+			grid-template-columns: 50% 50%;
+		}
+		@media(max-width:1000px){
+			.amp-g-cnt {
+    			margin-left: 50px;
+    		}
+		}
+		@media(max-width:770px){
+			.amp-g-cnt {
+			    margin-left: 0px;
+			}
+		}
+	 ';
 
+}
 if ( ampforwp_get_setting('amp-design-selector') == 2 ) {
 	$designCss = '
 		.amp-sld4 .amp-carousel-button-next:after, .amp-sld4 .amp-carousel-button-prev:before{
@@ -54,6 +71,20 @@ if ( ampforwp_get_setting('amp-design-selector') == 2 ) {
 		.amp-g-d span:first-child:before, .amp-g-d span:last-child:before{
 			top:12px;
 		}
+		.amp-sld3 {
+    		grid-template-columns: 50% 50%;
+    	}
+    	@media(max-width:1000px){
+			.amp-g-cnt {
+    			margin-left: 50px;
+    		}
+		}
+		@media(max-width:770px){
+			.amp-g-cnt {
+			    margin-left: 0px;
+			}
+		}
+    	
 	';
 }
 if ( ampforwp_get_setting('amp-design-selector') == 3 ) {
@@ -62,6 +93,31 @@ if ( ampforwp_get_setting('amp-design-selector') == 3 ) {
 			font-size:{{text-size}};
 			line-height:1.4;
 			margin:0;
+		}
+		.amp-sld3 {
+    		grid-template-columns: 50% 50%;
+    	}
+    	@media(max-width:1000px){
+			.amp-g-cnt {
+    			margin-left: 50px;
+    		}
+		}
+    	@media(max-width:770px){
+			.amp-g-cnt {
+			    margin-left: 0px;
+			}
+		}
+	';
+}
+if ( ampforwp_get_setting('amp-design-selector') == 4 ) {
+	$designCss = '
+		.amp-sld3{
+    		grid-template-columns: 500px 500px;
+    	}
+    	@media(max-width:1000px){
+			.amp-sld3 {
+			    grid-template-columns: 360px 360px;
+			}
 		}
 	';
 }
@@ -90,8 +146,7 @@ $css = '
 {{if_condition_carousel_layout_type==3}}
 .amp-sld3{
 	width: 100%;
-    display: grid;
-    grid-template-columns: 500px 500px;
+    display: grid;    
     margin: 0 auto;
     text-align: center;
     justify-content: center;
@@ -162,12 +217,8 @@ $css = '
     transform: rotate(135deg);
 }
 .amp-carousel-slide{margin:0 auto;}
-@media(max-width:1000px){
-	.amp-sld3 {
-	    grid-template-columns: 360px 360px;
-	}
-}
-@media(max-width:768px){
+
+@media(max-width:770px){
 	.amp-sld3 {
 		grid-template-columns: 100%;
 		grid-template-areas: 
@@ -183,14 +234,20 @@ $css = '
 	    overflow-x: auto;
 	    overflow-y: hidden;
 	    white-space: nowrap;
+	    margin:-left:0px;
 	}
 	.amp-cnt{
 	    display: inline-grid;
-	    width:50%;
+	    width:30%;
 	    margin:10px;
 	}
 	.amp-desc{
 		white-space: pre-wrap;
+	}
+}
+@media(max-width:500px){
+	.amp-cnt{
+	    width:50%;
 	}
 }
 {{ifend_condition_carousel_layout_type_3}}
@@ -294,7 +351,7 @@ amp-carousel {
 }
 {{ifend_condition_carousel_layout_type_4}}
 ';
-$css = $css.''.$designCss;
+$css = $designCss.''.$css;
  
 return array(
 		'label' =>'Gallery / Slider',
