@@ -126,10 +126,10 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                         $cat_id = get_cat_ID( $parents);
                         $cat_link = get_category_link($cat_id);
                         $cat_display .= '<li class="item-cat item-cat-' . esc_attr($cat_id) . '"><a class="bread-cat bread-cat-' . esc_attr($cat_id) . ' bread-cat-' . esc_attr($parents). '" href="'. ampforwp_url_controller( $cat_link, $archive_non_amp ).'" title="' . esc_attr($parents) . '">' . esc_html($parents) . '</a></li>';
+                    }
                         if(ampforwp_get_setting('ampforwp-bread-crumb-post')){
                              $cat_display .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';
                         } 
-                    }
                 }
             }
             /*Breadcrumb with tags End*/
