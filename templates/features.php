@@ -4228,13 +4228,32 @@ function ampforwp_visit_amp_in_admin_bar($admin_bar) {
 	}       
 }
 
+
+add_filter('amp_post_template_data','ampforwp_set_body_content_script', 20);
+function ampforwp_set_body_content_script($data){
+	if( ampforwp_get_setting('amp-body-text-area') ) {
+    	$body_content =  ampforwp_get_setting('amp-body-text-area');
+    	preg_match_all('/<\/amp-(.*?)>/', $body_content, $matches);
+    	if(isset($matches[1][0])){
+    		$amp_comp = $matches[1];
+    		for($i=0;$i<count($amp_comp);$i++){
+    			$comp = $amp_comp[$i];
+    			if($comp!='img'){
+    				$data['amp_component_scripts']["amp-".esc_attr($comp)] = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-latest.js";    
+    			}
+    		}
+    	}
+    	
+    }
+    return $data;
+}
+
 // Things to be added in the Body Tag #1064
 add_action('ampforwp_body_beginning','ampforwp_body_beginning_html_output',11);
 function ampforwp_body_beginning_html_output(){
-	global $redux_builder_amp;
-  	if( $redux_builder_amp['amp-body-text-area'] ) {
-    	echo $redux_builder_amp['amp-body-text-area'] ;
-  }
+  	if( ampforwp_get_setting('amp-body-text-area') ) {
+    	echo ampforwp_get_setting('amp-body-text-area') ;
+  	}
 }
 
 add_filter('get_amp_supported_post_types','is_amp_post_support_enabled');
