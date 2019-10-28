@@ -4876,8 +4876,9 @@ function ampforwp_inline_related_posts(){
 				$inline_related_posts_img = '';
 				$inline_related_posts = '<div class="amp-wp-content relatedpost">
 						    <div class="related_posts">
+						    <span class="related-title">'.ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ).'</span>
 										<ol class="clearfix">
-						<span class="related-title">'.ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ).'</span>';
+						';
 						
 				    while( $my_query->have_posts() ) {
 					    $my_query->the_post();
