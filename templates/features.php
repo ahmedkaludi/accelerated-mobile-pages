@@ -7536,6 +7536,7 @@ if(!function_exists('ampforwp_get_comment_with_options')){
 				$per_page = (int) get_option( 'comments_per_page' );
 			}
 			$page = (int) get_query_var( 'cpage' );
+			$a_page = $page;
 			if ( $page ==0) {
 				$page=1;
 			}
@@ -7557,8 +7558,10 @@ if(!function_exists('ampforwp_get_comment_with_options')){
 				}
 			}
 			if ( 'newest' === get_option( 'default_comments_page' )) {
-				sort($pc_arr);
-				sort($of_arr);
+				if($a_page==0){
+					sort($pc_arr);
+					sort($of_arr);
+				}
 			}
 			$p_page = $pc_arr[$page-1];
 			$offset = $of_arr[$page-1];
@@ -7583,8 +7586,15 @@ if(!function_exists('ampforwp_get_comment_with_options')){
 						}
 					}
 				}
-				rsort($of_arr);
+
 				$offset = $of_arr[$page-1];
+				if($a_page!=0){
+					rsort($pc_arr);
+					$p_page = $pc_arr[$page-1];
+				}else{
+					rsort($of_arr);
+					$offset = $of_arr[$page-1];
+				}
 			}
 			
 			$comments = get_comments(array(
@@ -7604,6 +7614,36 @@ if(!function_exists('ampforwp_get_comment_with_options')){
 		return $comments;
 	}
 }
+
+if(!function_exists('ampforwp_get_comment_current_page')){
+	function ampforwp_get_comment_current_page(){
+		$offset = 0;
+		$per_page = ampforwp_get_setting('ampforwp-number-of-comments');
+		$page = (int) get_query_var( 'cpage' );
+		$a_page = $page;
+		if ( $page ==0) {
+			$page=1;
+		}
+		$current_page = $page;
+		$comment_order = get_option( 'comment_order' );
+		$per_page = (int) get_query_var( 'comments_per_page' );
+		if ( 0 === $per_page ) {
+			$per_page = (int) get_option( 'comments_per_page' );
+		}
+		$total_comment = ampforwp_total_number_of_comment();
+		$total_pages = ceil($total_comment/$per_page);
+	
+		$p_page = $pc_arr[$page-1];
+		$offset = $of_arr[$page-1];
+		if('newest' === get_option( 'default_comments_page' )){
+			if($a_page==0){
+				$current_page = $total_pages;
+			}
+		}
+		return $current_page;
+	}
+}
+
 function ampforwp_total_number_of_comment(){
 	$postID = ampforwp_get_the_ID();
 	$top_level_query = new WP_Comment_Query();

@@ -102,10 +102,12 @@ function ampforwp_framework_get_comments(){
 						    <?php 
 								$total_count = ampforwp_total_number_of_comment();
 							    $max_page = ceil($total_count/AMPFORWP_COMMENTS_PER_PAGE);
+							    $current_page = ampforwp_get_comment_current_page();
 							    $args = array(
 									'base' 			=> add_query_arg( array('cpage' => '%#%', 'amp' => '1'), get_permalink() ),
 									'format' 		=> '',
 									'total' 		=> $max_page,
+									'current' 		=> $current_page,
 									'echo' 			=> false,
 									'add_fragment' 	=> '#comments',		
 								);
