@@ -4232,6 +4232,8 @@ function ampforwp_visit_amp_in_admin_bar($admin_bar) {
 add_filter('amp_post_template_data','ampforwp_set_body_content_script', 20);
 function ampforwp_set_body_content_script($data){
 	if( ampforwp_get_setting('amp-body-text-area') ) {
+    	$head_content =  ampforwp_get_setting('amp-header-text-area-for-html');
+    	preg_match_all('/"amp-(.*?)"/', $head_content, $matches1);
     	$body_content =  ampforwp_get_setting('amp-body-text-area');
     	preg_match_all('/<\/amp-(.*?)>/', $body_content, $matches);
     	if(isset($matches[1][0])){
@@ -4239,11 +4241,17 @@ function ampforwp_set_body_content_script($data){
     		for($i=0;$i<count($amp_comp);$i++){
     			$comp = $amp_comp[$i];
     			if($comp!='img'){
-    				$data['amp_component_scripts']["amp-".esc_attr($comp)] = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-latest.js";    
+    				if(isset($matches[1][0])){
+    					$thtml = $matches1[1];
+    					if(!in_array($comp, $thtml)){
+    						$data['amp_component_scripts']["amp-".esc_attr($comp)] = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-latest.js"; 
+    					}
+    				} else{
+    					$data['amp_component_scripts']["amp-".esc_attr($comp)] = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-latest.js"; 
+    				}
     			}
     		}
     	}
-    	
     }
     return $data;
 }
