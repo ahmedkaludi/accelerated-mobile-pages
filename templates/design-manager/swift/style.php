@@ -2647,6 +2647,7 @@ if(ampforwp_get_setting('single-design-type') == '7' && ampforwp_get_setting('am
 		display: inline-grid;
     	grid-template-columns: 1fr 1fr 1fr;
     	grid-gap: 25px;
+    	width:100%;
 	}
 	.rlp-wrap ul li{
 		list-style-type:none;
