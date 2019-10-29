@@ -1079,10 +1079,10 @@ function checkAMPforPageBuilderStatus($postId){
     if ( empty(  $postId ) ) {
         $response = false;
     }else{
-
+      $amp_bilder = get_post_field('amp-page-builder',$post->ID);
+      $amp_pd_data = json_decode($amp_bilder);
       $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
-      
-        if( $ampforwp_pagebuilder_enable=='yes' && true == ampforwp_get_setting('ampforwp-pagebuilder') && ( function_exists('amppb_post_content') && !empty(amppb_post_content(''))) ){
+        if( $ampforwp_pagebuilder_enable=='yes' && true == ampforwp_get_setting('ampforwp-pagebuilder') && ( function_exists('amppb_post_content') && !empty($amp_pd_data->rows))){
             $response = true;
         }else{
             $response = false;
