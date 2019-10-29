@@ -132,8 +132,8 @@ $output = '
 				</li>
 				{{ifend_condition_pkt-enable_1}}
 				{{if_condition_yml-enable==1}}
-	 			<li>
-					<a class="sm_ym" target="_blank" rel=nofollow href="http://www.yummly.com/urb/verify?url=<{{current_permalink}}&title={{current_title}}&yumtype=button" aria-label="yummly share"></a>
+	 			<li class="ymly">
+					<a class="sm_ym" target="_blank" rel=nofollow href="http://www.yummly.com/urb/verify?url=<{{current_permalink}}&title={{current_title}}&yumtype=button" aria-label="yummly share"><amp-img src="'.esc_url(AMPFORWP_IMAGE_DIR . '/yum.png').'" width="20" height="20" /></amp-img></a></a>
 				</li>
 				{{ifend_condition_yml-enable_1}}
 				{{if_condition_mw-enable==1}}
@@ -209,10 +209,9 @@ if ( $ampforwp_font_icon == 'swift-icons' ){
 	{{if_condition_pkt-enable==1}}
 		.sm_pk:after{content: "\e949";}
 	{{ifend_condition_pkt-enable_1}}
-	{{if_condition_yml-enable==1}}
-		.sm_ym:after{content: "\e948";}
-	{{ifend_condition_yml-enable_1}}
-
+	{{module-class}} .social-icons li.ymly a{
+		padding:8.5px;
+	}
 	';
 }
 if ( $ampforwp_font_icon == 'fontawesome-icons' ){ 
@@ -278,10 +277,9 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){
 	{{if_condition_pkt-enable==1}}
 		.sm_pk:after{content: "\f265";}
 	{{ifend_condition_pkt-enable_1}}
-	{{if_condition_yml-enable==1}}
-		.sm_ym:after{content: "\f39f";}
-	{{ifend_condition_yml-enable_1}}
-
+	{{module-class}} .social-icons li.ymly a{
+		padding:8px;
+	}
 	';
 }	
 $css = '
@@ -364,7 +362,7 @@ $css = '
 	a.sm_pk{background:#ef3f56;}
 {{ifend_condition_pkt-enable_1}}
 {{if_condition_yml-enable==1}}
-	a.sm_ym{background:#e26426;}
+	a.sm_ym{background:#e361098c;}
 {{ifend_condition_yml-enable_1}}
 {{if_condition_mw-enable==1}}
 	a.sm_mewe{background:#b8d6e6;}
@@ -373,6 +371,12 @@ $css = '
 	a.sm_flipboard{background:#f52828;}
 {{ifend_condition_flb-enable_1}}
 
+@media(max-width:425px){
+	{{module-class}} .social-icons ul {
+	    grid-template-columns: 1fr;
+	    grid-gap: 15px;
+	}
+}
 ';
 $css = $css . $swift_icon . $font_awesome.'
 
