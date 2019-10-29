@@ -58,7 +58,9 @@ $output = '
 				{{ifend_condition_wap-enable_1}}
 				{{if_condition_line-enable==1}}
 	 			<li>
-					<a title="line share" class="sm_li" rel=nofollow href="{{current_permalink}}" aria-label="line share"></a>
+					<a title="line share" class="sm_li" rel=nofollow href="{{current_permalink}}" aria-label="line share">
+					<amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI5Ni41MjggMjk2LjUyOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjk2LjUyOCAyOTYuNTI4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CjxnPgoJPHBhdGggZD0iTTI5NS44MzgsMTE1LjM0N2wwLjAwMy0wLjAwMWwtMC4wOTItMC43NmMtMC4wMDEtMC4wMTMtMC4wMDItMC4wMjMtMC4wMDQtMC4wMzZjLTAuMDAxLTAuMDExLTAuMDAyLTAuMDIxLTAuMDA0LTAuMDMyICAgbC0wLjM0NC0yLjg1OGMtMC4wNjktMC41NzQtMC4xNDgtMS4yMjgtMC4yMzgtMS45NzRsLTAuMDcyLTAuNTk0bC0wLjE0NywwLjAxOGMtMy42MTctMjAuNTcxLTEzLjU1My00MC4wOTMtMjguOTQyLTU2Ljc2MiAgIGMtMTUuMzE3LTE2LjU4OS0zNS4yMTctMjkuNjg3LTU3LjU0OC0zNy44NzhjLTE5LjEzMy03LjAxOC0zOS40MzQtMTAuNTc3LTYwLjMzNy0xMC41NzdjLTI4LjIyLDAtNTUuNjI3LDYuNjM3LTc5LjI1NywxOS4xOTMgICBDMjMuMjg5LDQ3LjI5Ny0zLjU4NSw5MS43OTksMC4zODcsMTM2LjQ2MWMyLjA1NiwyMy4xMTEsMTEuMTEsNDUuMTEsMjYuMTg0LDYzLjYyMWMxNC4xODgsMTcuNDIzLDMzLjM4MSwzMS40ODMsNTUuNTAzLDQwLjY2ICAgYzEzLjYwMiw1LjY0MiwyNy4wNTEsOC4zMDEsNDEuMjkxLDExLjExNmwxLjY2NywwLjMzYzMuOTIxLDAuNzc2LDQuOTc1LDEuODQyLDUuMjQ3LDIuMjY0YzAuNTAzLDAuNzg0LDAuMjQsMi4zMjksMC4wMzgsMy4xOCAgIGMtMC4xODYsMC43ODUtMC4zNzgsMS41NjgtMC41NywyLjM1MmMtMS41MjksNi4yMzUtMy4xMSwxMi42ODMtMS44NjgsMTkuNzkyYzEuNDI4LDguMTcyLDYuNTMxLDEyLjg1OSwxNC4wMDEsMTIuODYgICBjMC4wMDEsMCwwLjAwMSwwLDAuMDAyLDBjOC4wMzUsMCwxNy4xOC01LjM5LDIzLjIzMS04Ljk1NmwwLjgwOC0wLjQ3NWMxNC40MzYtOC40NzgsMjguMDM2LTE4LjA0MSwzOC4yNzEtMjUuNDI1ICAgYzIyLjM5Ny0xNi4xNTksNDcuNzgzLTM0LjQ3NSw2Ni44MTUtNTguMTdDMjkwLjE3MiwxNzUuNzQ1LDI5OS4yLDE0NS4wNzgsMjk1LjgzOCwxMTUuMzQ3eiBNOTIuMzQzLDE2MC41NjFINjYuNzYxICAgYy0zLjg2NiwwLTctMy4xMzQtNy03Vjk5Ljg2NWMwLTMuODY2LDMuMTM0LTcsNy03YzMuODY2LDAsNywzLjEzNCw3LDd2NDYuNjk2aDE4LjU4MWMzLjg2NiwwLDcsMy4xMzQsNyw3ICAgQzk5LjM0MywxNTcuNDI3LDk2LjIwOSwxNjAuNTYxLDkyLjM0MywxNjAuNTYxeiBNMTE5LjAzLDE1My4zNzFjMCwzLjg2Ni0zLjEzNCw3LTcsN2MtMy44NjYsMC03LTMuMTM0LTctN1Y5OS42NzUgICBjMC0zLjg2NiwzLjEzNC03LDctN2MzLjg2NiwwLDcsMy4xMzQsNyw3VjE1My4zNzF6IE0xODIuMzA0LDE1My4zNzFjMCwzLjAzMy0xLjk1Myw1LjcyMS00LjgzOCw2LjY1OCAgIGMtMC43MTIsMC4yMzEtMS40NDEsMC4zNDMtMi4xNjEsMC4zNDNjLTIuMTk5LDAtNC4zMjMtMS4wMzktNS42NjYtMi44ODhsLTI1LjIwNy0zNC43MTd2MzAuNjA1YzAsMy44NjYtMy4xMzQsNy03LDcgICBjLTMuODY2LDAtNy0zLjEzNC03LTd2LTUyLjE2YzAtMy4wMzMsMS45NTMtNS43MjEsNC44MzgtNi42NThjMi44ODYtMC45MzYsNi4wNDUsMC4wOSw3LjgyNywyLjU0NWwyNS4yMDcsMzQuNzE3Vjk5LjY3NSAgIGMwLTMuODY2LDMuMTM0LTcsNy03YzMuODY2LDAsNywzLjEzNCw3LDdWMTUzLjM3MXogTTIzMy4zMTEsMTU5LjI2OWgtMzQuNjQ1Yy0zLjg2NiwwLTctMy4xMzQtNy03di0yNi44NDdWOTguNTczICAgYzAtMy44NjYsMy4xMzQtNyw3LTdoMzMuNTdjMy44NjYsMCw3LDMuMTM0LDcsN3MtMy4xMzQsNy03LDdoLTI2LjU3djEyLjg0OWgyMS41NjJjMy44NjYsMCw3LDMuMTM0LDcsN2MwLDMuODY2LTMuMTM0LDctNyw3ICAgaC0yMS41NjJ2MTIuODQ3aDI3LjY0NWMzLjg2NiwwLDcsMy4xMzQsNyw3UzIzNy4xNzcsMTU5LjI2OSwyMzMuMzExLDE1OS4yNjl6IiBmaWxsPSIjRkZGRkZGIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" width="15" height="15" />
+					</a>
 				</li>
 				{{ifend_condition_line-enable_1}}
 				{{if_condition_vk-enable==1}}
@@ -130,7 +132,7 @@ $output = '
 	 	</div>
 	 </div>
 ';
-$swift_icon = '';
+$swift_icon = "";
 $font_awesome = "";
 $ampforwp_font_icon = ampforwp_get_setting('ampforwp_font_icon');
 if ( empty($ampforwp_font_icon) ) {
@@ -158,7 +160,7 @@ if ( $ampforwp_font_icon == 'swift-icons' ){
 		.sm_wp:after{content: "\e946";}
 	{{ifend_condition_wap-enable_1}}
 	{{if_condition_line-enable==1}}
-		.sm_li:after{content: "\LN";}
+		.sm_li{background:red;}
 	{{ifend_condition_line-enable_1}}
 	{{if_condition_vk-enable==1}}
 		.sm_vk:after{content: "\e944";}
@@ -206,12 +208,73 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){
 	$font_awesome = '
 	.social-icons li{font-family: "Font Awesome 5 Brands";list-style-type: none;display: inline-block;}
 	{{if_condition_fb-enable==1}}
-		.sm_fb:after {content: "\f082";}
+		.sm_fb:after {content: "\f09a";}
 	{{ifend_condition_fb-enable_1}}
+	{{if_condition_tw-enable==1}}
+		.sm_tw:after{content: "\f099";}
+	{{ifend_condition_tw-enable_1}}
+	{{if_condition_em-enable==1}}
+		.sm_em:after{content: "\f0e0";font-family: "Font Awesome 5 Free";}
+	{{ifend_condition_em-enable_1}}
+	{{if_condition_pin-enable==1}}
+		.sm_pt:after{content: "\f0d2";}
+	{{ifend_condition_pin-enable_1}}
+	{{if_condition_lnk-enable==1}}
+		.sm_lk:after{content: "\f08c";}
+	{{ifend_condition_lnk-enable_1}}
+	{{if_condition_wap-enable==1}}
+		.sm_wp:after{content: "\f232";}
+	{{ifend_condition_wap-enable_1}}
+	{{if_condition_line-enable==1}}
+		.sm_li:after{content: "\LN";}
+	{{ifend_condition_line-enable_1}}
+	{{if_condition_vk-enable==1}}
+		.sm_vk:after{content: "\VK";}
+	{{ifend_condition_vk-enable_1}}
+	{{if_condition_od-enable==1}}
+		.sm_od:after{content: "\f263";}
+	{{ifend_condition_od-enable_1}}
+	{{if_condition_rd-enable==1}}
+		.sm_rd:after{content: "\f281";}
+	{{ifend_condition_rd-enable_1}}
+	{{if_condition_tmb-enable==1}}
+		.sm_tb:after{content: "\f173";}
+	{{ifend_condition_tmb-enable_1}}
+	{{if_condition_tg-enable==1}}
+		.sm_tg:after{content: "\f3fe";}
+	{{ifend_condition_tg-enable_1}}
+	{{if_condition_stu-enable==1}}
+		.sm_su:after{content: "\f1a3";}
+	{{ifend_condition_stu-enable_1}}
+	{{if_condition_wc-enable==1}}
+		.sm_wc:after{content: "\f1d7";}
+	{{ifend_condition_wc-enable_1}}
+	{{if_condition_vb-enable==1}}
+		.sm_vb:after{content: "\f409";}
+	{{ifend_condition_vb-enable_1}}
+	{{if_condition_htb-enable==1}}
+		.sm_hb:after{content: "HT";}
+	{{ifend_condition_htb-enable_1}}
+	{{if_condition_pkt-enable==1}}
+		.sm_pk:after{content: "\f265";}
+	{{ifend_condition_pkt-enable_1}}
+	{{if_condition_yml-enable==1}}
+		.sm_ym:after{content: "\f39f";}
+	{{ifend_condition_yml-enable_1}}
+	{{if_condition_mw-enable==1}}
+		.sm_mewe:after{content: "\f265";}
+	{{ifend_condition_mw-enable_1}}
+	{{if_condition_flb-enable==1}}
+		.sm_mewe:after{content: "FLB";}
+	{{ifend_condition_flb-enable_1}}
 
 	';
 }	
-
+$css = '
+	.sm_ln:after{
+		content:"";
+	}
+';
 $css = $swift_icon . $font_awesome.'
 
 
