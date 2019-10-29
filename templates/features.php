@@ -7088,6 +7088,34 @@ function ampforwp_head_css(){
 		if( is_user_logged_in() ){
 			$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
 			if($pref==="true"){
+				if(ampforwp_get_setting('ampforwp_css_tree_shaking')==1){
+					if(ampforwp_is_home()){
+						$tscss = "home";
+					}elseif(ampforwp_is_blog()){
+						$tscss = "blog";
+					}elseif(ampforwp_is_front_page()){
+						$tscss = "post-".ampforwp_get_frontpage_id();
+					}else{
+						$tscss = "post-".ampforwp_get_the_ID();
+					}
+					$upload_dir = wp_upload_dir(); 
+			        $ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($tscss).".css";
+			        if(file_exists($ts_file)){
+			        	 $ts_file = $upload_dir['baseurl'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($tscss).".css";
+			        	 $css = ampforwp_get_remote_content($ts_file);
+			        	 if(preg_match("/#wpadminbar/", $css)==0){
+			        	 	$user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
+			        	   if(file_exists($user_dirname)){
+					            $files = glob($user_dirname . '/*');
+					            foreach($files as $file){
+					                if(is_file($file) && strpos($file, '_transient')!==false ){
+					                    unlink($file);
+					                }
+					            }
+					        }
+					    }
+			        }
+		   		}
 				$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
 				$incurl = includes_url();
 				$incurl = trailingslashit($incurl) .'fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987';
