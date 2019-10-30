@@ -206,7 +206,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 		foreach ( $scriptArray as $ext_key=>$ext_value ) {
 			$version = 'latest';
 			if ( 'amp-carousel' == $ext_key ) {
-				$version = '0.1';
+				$version = 'latest';
 			}
 			$scriptArray[$ext_key] = sprintf(
 				'https://cdn.ampproject.org/v0/%s-%s.js',

@@ -63,6 +63,7 @@ function amp_post_template_add_cached_link($amp_template) {
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_scripts' );
 function amp_post_template_add_scripts( $amp_template ) {
 	$scripts = $amp_template->get( 'amp_component_scripts', array() );
+	$scripts = apply_filters('ampforwp_set_amp_custom_type_script',$scripts);
 	foreach ( $scripts as $element => $script ) : 
 		$custom_type = ($element == 'amp-mustache') ? 'template' : 'element'; ?>
 		<script custom-<?php echo esc_attr( $custom_type ); ?>="<?php echo esc_attr( $element ); ?>" src="<?php echo esc_url( $script ); ?>" async></script>

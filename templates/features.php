@@ -6698,7 +6698,7 @@ function ampforwp_add_global_scripts($data){
 	//Appearance option for Related Posts #1545
 	if (  true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && ampforwp_get_setting('rp_design_type') == '3') {
 		if ( empty( $data['amp_component_scripts']['amp-carousel'] ) ) {
-			$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
+			$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-latest.js';
 		}
 	}
     return $data;

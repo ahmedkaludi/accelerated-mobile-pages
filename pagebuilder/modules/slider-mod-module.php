@@ -190,7 +190,7 @@ return array(
 	 						'type'		=>'require_script',		
 	 						'name'		=>"carousel_script",		
 	 						'label'		=>'amp-carousel',
-	 						'default'	=>'https://cdn.ampproject.org/v0/amp-carousel-0.1.js',	
+	 						'default'	=>'https://cdn.ampproject.org/v0/amp-carousel-latest.js',	
 	           				'content_type'=>'js',
  						),
 							array(		
