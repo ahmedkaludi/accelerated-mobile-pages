@@ -326,7 +326,6 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 									'width' => 600,
 									'height' => 480,
 									'type' => 'slides',
-									'autoplay' => '',
 									'layout' => 'responsive',
 									'class'  => 'collapsible-captions',
 									'id' => 'carousel-with-carousel-preview-'.$r
@@ -346,6 +345,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 									'width' => 'auto',
 									'height' => 48,
 									'type' => 'carousel',
+									'loop' => '',
 									'autoplay' => '',
 									'layout' => 'fixed-height',
 									'class'  => 'carousel-preview'
