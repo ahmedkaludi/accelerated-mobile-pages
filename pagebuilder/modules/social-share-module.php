@@ -285,12 +285,17 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){
 $css = '
 {{module-class}} .social-icons ul {
     width: 100%;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
 }
 {{module-class}} .social-icons ul li{
 	list-style: none;
+    flex-direction: row;
+    flex: 1 1 auto;
+    margin: 0px 15px 10px 0px;
+}
+{{module-class}} .social-icons ul li:last-child{
+	margin-right:0;
 }
 {{module-class}} .social-icons li a{
 	padding:10px;
@@ -371,12 +376,6 @@ $css = '
 	a.sm_flipboard{background:#f52828;}
 {{ifend_condition_flb-enable_1}}
 
-@media(max-width:425px){
-	{{module-class}} .social-icons ul {
-	    grid-template-columns: 1fr;
-	    grid-gap: 15px;
-	}
-}
 ';
 $css = $css . $swift_icon . $font_awesome.'
 
