@@ -23,7 +23,8 @@ function socialmod($moduleFrontHtml, $htmlTemplate, $contentArray){
 	$twitter_share_url = add_query_arg('url',get_the_permalink(), $twitter_share_url) ;
 	$twitter_share_url = add_query_arg('text', ampforwp_sanitize_twitter_title(get_the_title()), $twitter_share_url) ;
 	$moduleFrontHtml = str_replace('{{twitter_permalink}}', $twitter_share_url, $moduleFrontHtml);
-
+	$facebook_mesger ='fb-messenger://share/?link='.untrailingslashit($amp_permalink);
+	$moduleFrontHtml = str_replace('{{facebook_messenger}}', $facebook_mesger, $moduleFrontHtml);
 	return $moduleFrontHtml;
 }
 $line_share = 'http://line.me/R/msg/text/';
@@ -49,6 +50,12 @@ $output = '
 					<a class="sm_fb" target="_blank" rel=nofollow href="https://www.facebook.com/sharer.php?u={{current_permalink}}" aria-label="facebook share"></a>
 				</li>
 				{{ifend_condition_fb-enable_1}}
+				{{if_condition_fb-messanger-enable==1}}
+	 			<li>
+					<a title="facebook share messenger" class="sm_fb_ms" target="_blank" href="{{facebook_messenger}}{{if_sm-fb-app-id}}&app_id={{sm-fb-app-id}}{{ifend_sm-fb-app-id}}" aria-label="facebook share messenger"><amp-img src="'.esc_url(AMPFORWP_IMAGE_DIR . '/messenger.png').'" width="20" height="20" /></amp-img>
+					</a>
+				</li>
+				{{ifend_condition_fb-messanger-enable_1}}
 				{{if_condition_tw-enable==1}}
 	 			<li>
 					<a class="sm_tw" target="_blank" rel=nofollow href="{{twitter_permalink}}"  aria-label="twitter share"></a>
@@ -318,9 +325,9 @@ $css = '
 {{if_condition_tw-enable==1}}
 	a.sm_tw{background:#1da1f2;}
 {{ifend_condition_tw-enable_1}}
-{{if_condition_tw-enable==1}}
-	a.sm_tw{background:#1da1f2;}
-{{ifend_condition_tw-enable_1}}
+{{if_condition_fb-messanger-enable==1}}
+	a.sm_fb_ms{background:#f1f1f1;}
+{{ifend_condition_fb-messanger-enable_1}}
 {{if_condition_em-enable==1}}
 	a.sm_em{background:#b7b7b7;}
 {{ifend_condition_em-enable_1}}
@@ -418,6 +425,29 @@ return array(
 			                        )
 			                      ),
 			                'content_type'=>'html',
+			              ),
+						array(
+			                'type'    =>'checkbox_bool',
+			                'name'    =>"fb-messanger-enable",
+			                'label'   => 'Facebook Messenger',
+			                'tab'   =>'customizer',
+			                'default' =>0,
+			                'options' =>array(
+			                        array(
+			                          'label'=>'Yes',
+			                          'value'=>1,
+			                        )
+			                      ),
+			                'content_type'=>'html',
+			              ),
+						array(    
+				                'type'    =>'text',    
+				                'name'    =>"sm-fb-app-id",    
+				                'label'   =>'Facebook App ID',
+				                'tab'     =>'customizer',
+				                'default' =>'', 
+				                'content_type'=>'html',
+				                'required'  => array('fb-messanger-enable'=>'1')
 			              ),
 						array(
 			                'type'    =>'checkbox_bool',
