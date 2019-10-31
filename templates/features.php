@@ -7675,3 +7675,11 @@ function ampforwp_total_number_of_comment(){
 	$top_level_count = $top_level_query->query( $top_level_args );
 	return $top_level_count ;
 }
+
+function ampforwp_nofollow_cta_header_link(){
+	if(true == ampforwp_get_setting('ampforwp-header-cta-link-nofollow')){	
+		echo 'rel=nofollow';
+		return;
+	}
+	return false;
+}
