@@ -1371,20 +1371,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     }
 
     // New AMP UX
-    $amp_ux_page = '';
-    if( ampforwp_get_setting('redux_builder_amp-amp-frontpage-select-option') ) {
-        $frontpage = get_post( ampforwp_get_setting('amp-frontpage-select-option-pages') );
-        $amp_ux_page = '<option value="'.$frontpage->ID.'">'.$frontpage->post_title.'</option>';
-    }
-    else{
-        $amp_ux_page = '<option>Choose here</option>';
-        $amp_ux_pages = get_pages(array('posts_per_page'=>'500'));
-        if ( !empty($amp_ux_pages) ) {
-            foreach ( $amp_ux_pages as $page ) {
-                $amp_ux_page .= '<option value="'.$page->ID.'">'. $page->post_title.'</option>';
-            }
-        }
-    }
+   
    if(!function_exists('ampforwp_generate_ux_admin_button')){
         function ampforwp_generate_ux_admin_button($id='',$type='',$label=''){
             $option = "";
@@ -1552,10 +1539,13 @@ Redux::setArgs( "redux_builder_amp", $args );
         $custom_logo_id = '';
         $image          = '';
         $value          = '';
-        $custom_logo_id = get_theme_mod( 'custom_logo' );
-        $image = wp_get_attachment_image_src( $custom_logo_id , 'full');
-        if( $image ){
-            return $image[0];
+        $current_page = ampforwp_get_admin_current_page();
+        if($current_page=="amp_options"){
+            $custom_logo_id = get_theme_mod( 'custom_logo' );
+            $image = wp_get_attachment_image_src( $custom_logo_id , 'full');
+            if( $image ){
+                return $image[0];
+            }
         }
         return $value;
     }

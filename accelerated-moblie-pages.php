@@ -1443,3 +1443,15 @@ if(!function_exists('ampforwp_wp_plugin_action_link')){
 		return $url;
 	}
 }
+
+if(!function_exists('ampforwp_get_admin_current_page')){
+	function ampforwp_get_admin_current_page(){
+		$current_page = '';
+		if(is_admin()){
+			if(isset($_GET['page'])){
+				$current_page = $_GET['page'];
+			}
+		}
+		return $current_page;
+	}
+}

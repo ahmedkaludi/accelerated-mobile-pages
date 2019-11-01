@@ -909,17 +909,7 @@
 
                         $data = array();
                         $args = wp_parse_args( $args, array() );
-
-                        if ( $type == "categories" || $type == "category" ) {
-                            $args['number'] = apply_filters('ampforwp_number_of_categories', 500);
-                            $cats = get_categories( $args );
-                            if ( ! empty ( $cats ) ) {
-                                foreach ( $cats as $cat ) {
-                                    $data[ $cat->term_id ] = $cat->name;
-                                }
-                                //foreach
-                            } // If
-                        } else if ( $type == "menus" || $type == "menu" ) {
+                        if ( $type == "menus" || $type == "menu" ) {
                             $menus = wp_get_nav_menus( $args );
                             if ( ! empty ( $menus ) ) {
                                 foreach ( $menus as $item ) {
@@ -988,16 +978,6 @@
                                     $data[ $name ] = ucfirst( $name );
                                 }
                             }
-                        } else if ( $type == "tags" || $type == "tag" ) { 
-                            $args['number'] = apply_filters('ampforwp_number_of_tags', 500);
-                            $tags = get_tags( $args );
-                            if ( ! empty ( $tags ) ) {
-                                foreach ( $tags as $tag ) {
-                                    $data[ $tag->term_id ] = $tag->name;
-                                }
-                                //foreach
-                            }
-                            //if
                         } else if ( $type == "menu_location" || $type == "menu_locations" ) {
                             global $_wp_registered_nav_menus;
 

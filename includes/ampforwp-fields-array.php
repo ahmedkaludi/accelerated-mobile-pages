@@ -1,9 +1,13 @@
 <?php 
 global $amp_ux_fields;
+$options = array();
 $analytics_options = array();
-$pages = get_pages();
-foreach ($pages as $page ) {
-	$options[$page->ID] = $page->post_title;
+$current_page = ampforwp_get_admin_current_page();
+if($current_page=="amp_options"){
+	$pages = get_pages();
+	foreach ($pages as $page ) {
+		$options[$page->ID] = $page->post_title;
+	}
 }
 $analytics_options = array(''=>'Add Analytics Type','ampforwp-ga-switch'=>'Google Analytics','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics');
 $analytics_default_option = ampforwp_get_setting('amp-analytics-select-option');
