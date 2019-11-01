@@ -268,6 +268,8 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 								'width' => $this->args['width'],
 								'height' => $this->args['height'],
 								'type' => 'slides',
+								'loop'	=>'',
+								'autoplay'	=>'',
 								'layout' => 'responsive',
 								'class'  => 'collapsible-captions',
 								'id' => 'carousel-with-carousel-preview-'.$r
