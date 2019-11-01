@@ -18,23 +18,20 @@ if ( is_customize_preview() ) {
 	// add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_simple_comment_button' );
 }
 
-	$current_page = ampforwp_get_admin_current_page();
-	if($current_page=="amp_options" || ampforwp_is_amp_endpoint()){
-		$data = get_option( 'ampforwp_design' );
-		// Adding default Value
-		if ($data['elements'] == '') {
-		 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,addthis:1,comments:1,related_posts:1";
-		} 
-		
-		if(strpos($data['elements'], 'addthis:1') === false){
-			$addthis = substr_replace( $data['elements'], 'addthis:1,', 78, 0 );
-			$data['elements'] = $addthis;
-		}
-
-		if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
-			$options = explode( ',', $data['elements'] );
-		};
+	$data = get_option( 'ampforwp_design' );
+	// Adding default Value
+	if ($data['elements'] == '') {
+	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,addthis:1,comments:1,related_posts:1";
+	} 
+	
+	if(strpos($data['elements'], 'addthis:1') === false){
+		$addthis = substr_replace( $data['elements'], 'addthis:1,', 78, 0 );
+		$data['elements'] = $addthis;
 	}
+
+	if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
+		$options = explode( ',', $data['elements'] );
+	};
 	if ($options): foreach ($options as $key=>$value) {
 		if ( ! is_customize_preview() ) {
 			switch ($value) {
