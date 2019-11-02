@@ -237,7 +237,13 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .tg:checked + .hamb-mnu > .m-ctr {margin-left: calc(100% - <?php echo esc_html(ampforwp_get_setting('header-overlay-width'))?>);}
 .m-ctr{margin-left: 100%;float: right;}
 <?php } ?>
-.tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);height:100%;}
+.tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);
+<?php if(ampforwp_get_setting('amp-sticky-header') == '1'){?>
+	height:100vh;
+<?php } else { ?>
+	height:100%;
+<?php } // sticky condition ends ?>
+}
 .t-btn, .c-btn{cursor: pointer;}
 .t-btn:after{
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
