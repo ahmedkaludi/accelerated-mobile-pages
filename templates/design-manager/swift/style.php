@@ -1886,7 +1886,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
   padding-bottom:40px;
 }
 .s_stk{
-	z-index:99999;
+	z-index:99;
 }
 .body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{
 	padding-bottom:45px;
