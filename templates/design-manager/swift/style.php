@@ -663,9 +663,11 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 .artl-cnt ol li {counter-increment: step-counter;}
 .artl-cnt ol li::before {content: counter(step-counter);font-size: 16px;color: #000;position: absolute;left: 0px;line-height: 1.2;top: 6px;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
-.m-ctr {
-position: fixed;
-overflow: scroll;
+@supports (-webkit-overflow-scrolling: touch) {
+     .m-ctr{overflow:initial;}
+}
+@supports not (-webkit-overflow-scrolling: touch) {
+    .m-ctr{overflow:scroll;}
 }
 .m-scrl {
 display: inline-block;
