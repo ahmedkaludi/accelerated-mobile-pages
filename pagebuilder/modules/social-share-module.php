@@ -299,7 +299,7 @@ $css = '
 	list-style: none;
     flex-direction: row;
     flex: 1 1 auto;
-    margin: 0px 15px 10px 0px;
+    margin: 0px 10px 10px 0px;
 }
 {{module-class}} .social-icons ul li:last-child{
 	margin-right:0;
