@@ -5806,7 +5806,14 @@ Redux::setSection( $opt_name, array(
                     'type'      => 'switch',
                     'title'     => esc_html__('Date in Loop', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show date below each post of Home page loop'),
+                ),
+                array(
+                    'id'        => 'ampforwp-homepage-commentscount-switch',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Comment Count', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('To show comment count below each post of Home page'),
                 ),
         )
     ));
