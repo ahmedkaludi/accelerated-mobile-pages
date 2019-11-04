@@ -6,7 +6,7 @@ use AMPforWP\AMPVendor\AMP_DOM_Utils;
  */
 class AMPFORWP_Instagram_Embed_Sanitizer extends AMP_Base_Sanitizer {
 private $instagram_medias = array();
-const URL_PATTERN = '#http(s?)://(www\.)?instagr(\.am|am\.com)/p/([^/?]+)#i';
+const URL_PATTERN = '#http(s?)://(www\.)?instagr(\.am|am\.com)/(p|tv)/([^/?]+)#i';
 private static $script_slug = 'amp-instagram';
 private static $script_src = 'https://cdn.ampproject.org/v0/amp-instagram-0.1.js';
 public function sanitize() {
