@@ -1824,3 +1824,27 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
         width:100%;
     }
 }
+.manage-column.column-amp_status{
+    text-align: center;
+    cursor: pointer;
+}
+td.column-amp_status{
+    text-align: center;
+}
+td .ampforwp-hs-stat{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    border-radius: 50%;
+    background: #888;
+    line-height: 16px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+td .ampforwp-hs-stat.red{
+    background-color: red;
+}
+td .ampforwp-hs-stat.green{
+    background-color: green;
+}
