@@ -300,8 +300,9 @@ class AMP_Post_Template {
 					'content_max_width' => $this->get( 'content_max_width' ),
 				)
 			);
-
-			$this->add_data_by_key( 'post_amp_content', $amp_content->get_amp_content() );
+			$amp_con = $amp_content->get_amp_content();
+			$amp_con = $this->ampforwp_add_fallback_element($amp_con,'amp-img');
+			$this->add_data_by_key( 'post_amp_content', $amp_con);
 			$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
 			$this->merge_data_for_key( 'post_amp_styles', $amp_content->get_amp_styles() );
 		}else{
@@ -310,7 +311,26 @@ class AMP_Post_Template {
 			$this->add_data_by_key( 'post_amp_styles', array() );
 		}
 	}
-
+	private function ampforwp_add_fallback_element($content='',$tag=''){
+		preg_match_all('/<'.$tag.' (.*?)<\/'.$tag.'>/', $content, $matches);
+		if(!empty($matches)){
+			if(isset($matches[0])){
+				$con = "";
+				for($i=0;$i<count($matches[0]);$i++){
+					$match = $matches[0][$i];
+					$m1_content = $matches[1][$i];
+					preg_match_all('src=\"(.*?)\.(webp)\"', $m1_content,$cc); // need to check extenstion for fallback.
+					if(isset($cc[2][0])){
+						$ext = $cc[2][0];
+						$m1_content = str_replace($ext, "jpg", $m1_content); // need to change fallback extenstion.
+					}
+					$fallback_img = "<amp-img ".$m1_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";
+					$content = str_replace("$match", $fallback_img, $content);
+				}
+			}
+		}
+		return $content;
+	}
 	private function build_post_featured_image() {
 		$post_id = $this->ID;
 		$image_size = apply_filters( 'ampforwp_featured_image_size', 'large' );
