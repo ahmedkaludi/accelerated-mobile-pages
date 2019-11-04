@@ -476,7 +476,7 @@ if(!function_exists('ampforwp_findInternalUrl')){
         $skip_media_extensions = apply_filters( 'ampforwp_internal_links_skip_media', $skip_media_extensions );
 
         if ( isset( $get_skip_media_path['extension'] ) ){
-            if( in_array( $get_skip_media_path['extension'], $skip_media_extensions ) && !strpos(get_option( 'permalink_structure' ), $get_skip_media_path['extension'])) {
+            if( in_array( $get_skip_media_path['extension'], $skip_media_extensions ) ) {
                 return $url;
             }
         }
