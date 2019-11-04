@@ -4250,11 +4250,15 @@ function ampforwp_visit_amp_in_admin_bar($admin_bar) {
 
 add_filter('amp_post_template_data','ampforwp_set_body_content_script', 20);
 function ampforwp_set_body_content_script($data){
-	if( ampforwp_get_setting('amp-body-text-area') ) {
+	if( ampforwp_get_setting('amp-body-text-area') || ampforwp_get_setting('amp-footer-text-area-for-html') ) {
     	$head_content =  ampforwp_get_setting('amp-header-text-area-for-html');
     	preg_match_all('/"amp-(.*?)"/', $head_content, $matches1);
     	$body_content =  ampforwp_get_setting('amp-body-text-area');
     	preg_match_all('/<\/amp-(.*?)>/', $body_content, $matches);
+    	if(ampforwp_get_setting('amp-footer-text-area-for-html') ) {
+	    	$footer_content =  ampforwp_get_setting('amp-footer-text-area-for-html');
+	    	preg_match_all('/<\/amp-(.*?)>/', $footer_content, $matches);
+	    }
     	if(isset($matches[1][0])){
     		$amp_comp = $matches[1];
     		for($i=0;$i<count($amp_comp);$i++){
