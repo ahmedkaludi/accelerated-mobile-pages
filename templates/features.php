@@ -7705,12 +7705,7 @@ function ampforwp_get_post_hide_show($statuses){
     }else{
     	$hide_show = ampforwp_get_setting('amp-pages-meta-default');
     }
-    if($hide_show=='hide-amp' || $hide_show=='hide'){
-    	$hide_show = 'Hidden';
-    }elseif($hide_show=='show-amp' || $hide_show=='show'){
-    	$hide_show = 'Visible';
-    }
-    if($hide_show=='Visible'){
+    if($hide_show=='show-amp' || $hide_show=='show'){
     	$url = get_permalink( $post->ID );
    		$url = ampforwp_url_controller($url);
 	    $statuses["ampforwp"] = '<a href="'.esc_url($url).'" class="ampforwp-s-list-icon" target="_blank"></a>';
