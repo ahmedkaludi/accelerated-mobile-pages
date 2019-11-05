@@ -96,8 +96,10 @@ function call_loops_standard($data=array()){
 	if ( is_archive() ) {
 		$exclude_ids = ampforwp_exclude_posts();
 		$qobj = get_queried_object();
+		$tag_id = get_query_var('tag');
 		if( !is_date() ){
 				$args = array(
+							'tag' => $tag_id,
 							'no_found_rows' 	  => true,
 							'post_type'           => $post_type,
 							'orderby'             => 'date',

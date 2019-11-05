@@ -346,6 +346,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 	        if( $supported_amp_post_types || ampforwp_is_front_page()) {	
+	        	if ( get_query_var('tag') ) {
+	        		return $amp_url . '?tag='.get_query_var('tag');
+	        	}
 				return $amp_url;
 			}
 		}
@@ -529,7 +532,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				for($i=0;$i<count($check_query1);$i++){
 					$str = $check_query1[$i];
 					if($str!="?=1"){
-						if(!in_array($str, $check_query)){
+						if(!in_array($str, $check_query) && empty(get_query_var('tag')) ){
 							return true;
 						}
 					}
@@ -5087,7 +5090,7 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 			$current_access = current_user_can('edit_posts',$current_user );
 		}
 			// Check for Screen base, user ability to read and visibility
-			if ($current_access && current_user_can('read_post', $post->ID )
+			if ($current_access && (isset($post->ID) && current_user_can('read_post', $post->ID ))
 				&& ( $wp_post_types[$post->post_type]->public )
 				&& ( $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
 				// Check if current post type is AMPed or not
@@ -5096,15 +5099,63 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 					if($post->post_type == 'post' && !$redux_builder_amp['amp-on-off-for-all-posts'] || $post->post_type == 'page' && !$redux_builder_amp['amp-on-off-for-all-pages']) {
 						return;
 					}
-					$post_type_title = ucfirst($post->post_type);
-					$amp_cur_url = get_permalink( $post->ID );
-					if(is_home()){
-						$amp_cur_url = home_url();
+					if( is_archive() && is_category() ){
+						if(!ampforwp_get_setting('ampforwp-archive-support') || !ampforwp_get_setting('ampforwp-archive-support-cat') ){
+							return ;
+						}
+					}elseif( is_archive() && is_tag() ){
+						if(!ampforwp_get_setting('ampforwp-archive-support') || !ampforwp_get_setting('ampforwp-archive-support-tag') ){
+							return ;
+						}
+					}elseif( is_archive() && is_tax()){
+						$taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
+						if(empty($taxonomies)){
+							return ;
+						}else{
+							$term_id = get_queried_object()->term_id;
+							$termObj = get_term( $term_id);
+							if( in_array($termObj->taxonomy, $taxonomies)){
+							}else{
+								return ;
+							}
+						}
 					}
+					if( is_archive() && is_category()){
+						$term_id = get_queried_object()->term_id;
+						$termObj = get_term( $term_id);
+						$taxonomy_objects = get_object_taxonomies( 'post', 'objects' );
+						$post_type_title = $taxonomy_objects[$termObj->taxonomy]->labels->singular_name;
+						if(ampforwp_get_setting('ampforwp-archive-support') == true && ampforwp_get_setting('ampforwp-archive-support-cat') == true){
+							$current_url = get_term_link($term_id);
+						}
+					}elseif( is_archive() && is_tag()){
+						$term_id = get_queried_object()->term_id;
+						$termObj = get_term( $term_id);
+						$taxonomy_objects = get_object_taxonomies( 'post', 'objects' );
+						$post_type_title = $taxonomy_objects[$termObj->taxonomy]->labels->singular_name;
+						if(ampforwp_get_setting('ampforwp-archive-support') == true && ampforwp_get_setting('ampforwp-archive-support-tag') == true){
+							$current_url = get_term_link($term_id);
+						}
+					}elseif(is_archive() && is_tax()){
+						$term_id = get_queried_object()->term_id;
+						$termObj = get_term( $term_id);
+						$taxonomy_objects = get_taxonomy( $termObj->taxonomy );
+						$post_type_title = $taxonomy_objects->labels->singular_name;
+						$current_url = get_term_link($term_id);
+					}else{
+						$post_type_title = ucfirst($post->post_type);
+						$current_url = get_permalink( $post->ID );
+					}
+						if (is_category() && get_query_var('tag')) {
+				        		$current_url = ampforwp_url_controller($current_url) . '?tag='.get_query_var('tag');
+				        	}else{
+				        		$current_url = ampforwp_url_controller($current_url);
+				        	}
+
 					$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . esc_html($post_type_title) . ' (AMP)' ,
-						'href'  => ampforwp_url_controller( $amp_cur_url )
+						'href'  =>  $current_url 
 					));
 				}
 		}
@@ -7259,6 +7310,9 @@ function ampforwp_head_css(){
 
 			$wp_admin_bar->remove_menu( 'ampforwp-view-amp' );
 			$url = ampforwp_get_non_amp_url();
+			if (get_query_var('tag')) {
+        		$url = $url. '?tag='.get_query_var('tag');
+        	}
 			$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-non-amp',
 						'title' => 'View Non-AMP' ,
@@ -7711,8 +7765,8 @@ function ampforwp_get_post_hide_show($statuses){
 	    $statuses["ampforwp"] = '<a href="'.esc_url($url).'" class="ampforwp-s-list-icon" target="_blank"></a>';
 	}
     return $statuses;
-}
 
+}
 // Page Scroll Indicator #3820
 function ampforwp_pagescroll_progress_bar(){ 
 	$page_progress_scroll = ampforwp_get_setting('ampforwp-page-progress-scroll');
