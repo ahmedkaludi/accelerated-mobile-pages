@@ -7712,3 +7712,32 @@ function ampforwp_get_post_hide_show($statuses){
 	}
     return $statuses;
 }
+
+// Page Scroll Indicator #3820
+function ampforwp_pagescroll_progress_bar(){ 
+	$page_progress_scroll = ampforwp_get_setting('ampforwp-page-progress-scroll');
+	if($page_progress_scroll == 1){
+	?>
+	<div id="progressIndicator"></div>
+  	<amp-animation id="pogressAnimation" layout="nodisplay">
+    	<script type="application/json">
+	      {
+	        "duration": "1s",
+	        "fill": "both",
+	        "iterations": "1",
+	        "direction": "alternate",
+	        "animations": [{
+	            "selector": "#progressIndicator",
+	            "keyframes": [{
+	              "transform": "translateX(0)"
+	            }]
+	          }
+	        ]
+	      }
+	    </script>
+  	</amp-animation>
+	<amp-position-observer intersection-ratios="0" viewport-margins=100vh on="scroll:pogressAnimation.seekTo(percent=event.percent)" layout="nodisplay">
+    </amp-position-observer>
+      <?php
+  }
+}

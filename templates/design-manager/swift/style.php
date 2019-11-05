@@ -2246,3 +2246,14 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
     padding: 0px 2px;
     border-radius: 2px;
 }
+<?php if( ampforwp_get_setting('ampforwp-page-progress-scroll') == 1){ ?>
+#progressIndicator {
+  position: fixed;
+  width: 100%;
+  height: 6px;
+  top: 0;
+  transform: translateX(-100%);
+  background: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;
+  z-index:9;
+}
+<?php } // Progress Bar CSS ends ?>

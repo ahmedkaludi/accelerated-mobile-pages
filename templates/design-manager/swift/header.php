@@ -11,7 +11,8 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
     }
 ?>
 <?php if($header_type == '1'){?>
-<?php do_action('ampforwp_admin_menu_bar_front'); ?>
+<?php do_action('ampforwp_admin_menu_bar_front');
+ampforwp_pagescroll_progress_bar(); ?>
 <header class="header h_m h_m_1">
     <?php do_action('ampforwp_header_top_design4'); ?>
     <input type="checkbox" id="offcanvas-menu" class="tg" />
@@ -144,7 +145,8 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
     <?php do_action('ampforwp_header_bottom_design4'); ?>
 </header>
 <?php } ?>
-<?php if($header_type == '2'){?>
+<?php if($header_type == '2'){
+ampforwp_pagescroll_progress_bar(); ?>
 <header class="header-2 h_m h_m_1">
     <?php do_action('ampforwp_header_top_design4'); ?>
     <input type="checkbox" id="offcanvas-menu" class="tg" />
@@ -274,7 +276,8 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
     <?php do_action('ampforwp_header_bottom_design4'); ?>
 </header>
 <?php } ?>
-<?php if($header_type == '3'){?>
+<?php if($header_type == '3'){
+ampforwp_pagescroll_progress_bar(); ?>
 <header class="header-3 h_m h_m_1">
     <?php do_action('ampforwp_header_top_design4'); ?>
     <input type="checkbox" id="offcanvas-menu" class="tg" />
