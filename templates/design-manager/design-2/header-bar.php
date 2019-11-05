@@ -1,5 +1,6 @@
 <?php global $redux_builder_amp; ?>
-<?php do_action('ampforwp_admin_menu_bar_front'); ?>
+<?php do_action('ampforwp_admin_menu_bar_front'); 
+ampforwp_pagescroll_progress_bar(); ?>
 <header class="container design2-header">
   <div id="headerwrap">
       <div id="header">

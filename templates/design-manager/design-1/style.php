@@ -734,3 +734,14 @@ amp-facebook-like{
   right: 0;
   cursor:pointer;
 }
+<?php if( ampforwp_get_setting('ampforwp-page-progress-scroll') == 1){ ?>
+#progressIndicator {
+  position: fixed;
+  width: 100%;
+  height: 6px;
+  top: 0;
+  transform: translateX(-100%);
+  background: <?php echo ampforwp_sanitize_color($global_color_scheme); ?>;
+  z-index:9999;
+}
+<?php } // Progress Bar CSS ends ?>
