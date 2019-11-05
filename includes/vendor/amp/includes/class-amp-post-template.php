@@ -319,7 +319,7 @@ class AMP_Post_Template {
 				for($i=0;$i<count($matches[0]);$i++){
 					$match = $matches[0][$i];
 					$m1_content = $matches[1][$i];
-					preg_match_all('src=\"(.*?)\.(webp)\"', $m1_content,$cc); // need to check extenstion for fallback.
+					preg_match_all('/src=\"(.*?)\.(webp)\"/', $m1_content,$cc); // need to check extenstion for fallback.
 					if(isset($cc[2][0])){
 						$ext = $cc[2][0];
 						$m1_content = str_replace($ext, "jpg", $m1_content); // need to change fallback extenstion.
