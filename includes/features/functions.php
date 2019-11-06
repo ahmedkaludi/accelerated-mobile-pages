@@ -36,6 +36,8 @@ function ampforwp_add_admin_styling($hook_suffix){
     }else{
         wp_localize_script( 'ampforwp_admin_js', 'amp_option_panel_view', "2");
     }
+    global $typenow;
+    wp_localize_script( 'ampforwp_admin_js', 'admin_current_screen', $typenow);
     wp_localize_script( 'ampforwp_admin_js', 'amp_fields', $amp_fields );
     $redux_data = apply_filters("ampforwp_custom_localize_data", $redux_data);
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );

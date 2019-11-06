@@ -2274,5 +2274,27 @@ function DrawerIcon(icon) {
     .on('mouseout', function (event) {
        $('.ampforwp-setup-not-tt').css({'visibility':'hidden'});
     });
+
+    if( admin_current_screen == 'post' ||  admin_current_screen == 'page' ){
+        $("#the-list tr .page-title strong").each(function(){
+            var thishtml  = $(this).html();
+
+            var cl = $(this).children('.post-state').length;
+            if(cl==1){
+                thishtml  = thishtml.replace("</a> — <span", "</a> <span");
+                $(this).html(thishtml);
+            }else if(cl>1){
+                var i=0;
+                $('#the-list tr .page-title strong .post-state').each(function(){
+                    i++;
+                    if(i==(cl-1)){
+                        var th = $(this).text();
+                        th  = th.replace(",",'');
+                        $(this).text(th);
+                    }
+                });
+            }
+        });
+    }
 });
 
