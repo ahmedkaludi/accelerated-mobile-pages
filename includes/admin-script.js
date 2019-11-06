@@ -2285,7 +2285,7 @@ function DrawerIcon(icon) {
                 $(this).html(thishtml);
             }else if(cl>1){
                 var i=0;
-                $('#the-list tr .page-title strong .post-state').each(function(){
+                $(this).children('.post-state').each(function(){
                     i++;
                     if(i==(cl-1)){
                         var th = $(this).text();
