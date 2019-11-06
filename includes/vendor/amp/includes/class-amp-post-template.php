@@ -319,6 +319,7 @@ class AMP_Post_Template {
 				for($i=0;$i<count($matches[0]);$i++){
 					$match = $matches[0][$i];
 					$m_content = $matches[1][$i];
+					$m1_content = $m_content;
 					preg_match_all('/src=\"(.*?)\.(webp)\"/', $m_content,$cc); // need to check extenstion for fallback.
 					if(isset($cc[2][0])){
 						$ext = $cc[2][0];
