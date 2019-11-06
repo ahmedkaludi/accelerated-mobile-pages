@@ -318,13 +318,13 @@ class AMP_Post_Template {
 				$con = "";
 				for($i=0;$i<count($matches[0]);$i++){
 					$match = $matches[0][$i];
-					$m1_content = $matches[1][$i];
-					preg_match_all('/src=\"(.*?)\.(webp)\"/', $m1_content,$cc); // need to check extenstion for fallback.
+					$m_content = $matches[1][$i];
+					preg_match_all('/src=\"(.*?)\.(webp)\"/', $m_content,$cc); // need to check extenstion for fallback.
 					if(isset($cc[2][0])){
 						$ext = $cc[2][0];
-						$m1_content = str_replace($ext, "jpg", $m1_content); // need to change fallback extenstion.
+						$m1_content = str_replace($ext, "jpg", $m_content); // need to change fallback extenstion.
 					}
-					$fallback_img = "<amp-img ".$m1_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";
+					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";
 					$content = str_replace("$match", $fallback_img, $content);
 				}
 			}
