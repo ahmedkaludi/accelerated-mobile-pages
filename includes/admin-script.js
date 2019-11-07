@@ -1998,7 +1998,9 @@ function DrawerIcon(icon) {
         });
     });
 
-
+    $(document).on('click',".amp-debug-mode-recommend .notice-dismiss",function(){
+       $("#skip_config").click();
+    });
     $('.ampforwp_install_ux_plugin').click(function(e){
         $(".amp-ux-loader").show();
         var self = $(this);

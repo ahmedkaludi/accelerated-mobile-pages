@@ -413,6 +413,9 @@ body #toplevel_page_amp_options .wp-menu-image{
     top: 0px;
     cursor:pointer;
 }
+.amp-debug-mode-recommend p{
+    margin-top:0px;
+}
 .amp-update-notice-dismiss{
     display:inline-block;float:right;height: 70px;background: #333;width: 50px;text-align: center;
 }

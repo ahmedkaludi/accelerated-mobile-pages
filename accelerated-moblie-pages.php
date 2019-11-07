@@ -1344,17 +1344,16 @@ function ampforwp_wp_config_mode(){
 		if(defined('WP_DEBUG')){
 			if(WP_DEBUG==true && $wp_config==0){
 		?>
-				<div class="notice-warning settings-error notice is-dismissible amp-update-notice-text-box amp-debug-mode-recommend">
+				<div class="notice-warning settings-error notice amp-update-notice-text-box amp-debug-mode-recommend is-dismissible">
 					<input type="hidden" value="<?php echo esc_attr($wp_debug_nonce);?>" id="ampforwp_debug_nonce">
 					<p>
 						<b>
-							<?php echo esc_html__('Recommendation: ','accelerated-mobile-pages');?>
+							<?php echo esc_html__('Wp-debug is ON - ','accelerated-mobile-pages');?>
 						</b>
-						<?php echo esc_html__('AMPforWP Plugin finds the debug mode enabled, it is recommended to disable the debug mode. Please take a backup of your wp_config.php file before clicking on disable button.','accelerated-mobile-pages');?>
-						
+						<?php echo esc_html__('Wp dev mode is on which could cause errors.','accelerated-mobile-pages');?>
+					<button id="disable_config" class="button button-primary"><?php echo esc_html__('Turn off wp debug','accelerated-mobile-pages');?></button>
+					<button id="skip_config" class="button-secondary"><?php echo esc_html__('No thanks','accelerated-mobile-pages');?></button>
 					</p>
-					<a id="disable_config"><?php echo esc_html__('Disable Now','accelerated-mobile-pages');?></a>
-					<a id="skip_config"><?php echo esc_html__('Yeah ! I now this. Ignore it!','accelerated-mobile-pages');?></a>
 				</div><?php 
 			}
 		}
@@ -1395,7 +1394,6 @@ add_action('wp_ajax_ampforwp_skip_wp_debug','ampforwp_skip_wp_debug');
 function ampforwp_skip_wp_debug(){
 	if(current_user_can('manage_options')){
 		if(wp_verify_nonce( $_POST['verify_nonce'], 'ampforwp_debug_nonce' )){
-			check_ajax_referer( 'verify_nonce', 'ampforwp_debug_nonce' );
 			set_transient( 'ampforwp_disable_wp_debug_notice', 1 );
 		}
 	}
