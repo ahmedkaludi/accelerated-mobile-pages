@@ -63,9 +63,9 @@ class AMPforWP_Beta {
 		}
 
 		$plugin_info = new stdClass();
-		$plugin_info->new_version = $this->version;
-		$plugin_info->slug = $this->plugin_slug;
-		$plugin_info->package = $this->package_url;
+		$plugin_info->new_version = esc_attr($this->version);
+		$plugin_info->slug = esc_attr($this->plugin_slug);
+		$plugin_info->package = esc_url($this->package_url);
 		$plugin_info->url = 'https://ampforwp.com/';
 
 		$update_plugins->response[ esc_attr($this->plugin_name) ] = $plugin_info;
