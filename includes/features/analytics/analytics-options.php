@@ -159,18 +159,6 @@ function ampforwp_analytics_options($opt_name){
                                 array('amp-use-gtm-option', '=' , '1')
                               ),
                         ),
-                       array(
-                           'class' => 'child_opt',
-                           'id'            =>'amp-gtm-analytics-type',
-                           'type'          => 'text',
-                           'title'         => esc_html__('Analytics Type','accelerated-mobile-pages'),
-                           'default'       => '',
-                           'desc'  => esc_html__('Eg: googleanalytics','accelerated-mobile-pages'),
-                            // 'validate' => 'not_empty',
-                             'required' => array(
-                               array('amp-use-gtm-option', '=' , '1')
-                             ),
-                       ),
                         array(
                             'class'=>'child_opt',
                             'id'            =>'amp-gtm-analytics-code',
