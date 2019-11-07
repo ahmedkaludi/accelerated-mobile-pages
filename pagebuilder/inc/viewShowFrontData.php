@@ -22,14 +22,7 @@ function amp_pagebuilder_content(){
 			$postId = pll_get_post($front_page_id);
 		}
 	}
-  	if( empty( $postId ) ) return;
-	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
-	
-	if (ampforwp_empty_content(get_post($postId)->post_content) && $ampforwp_pagebuilder_enable=='yes') { 
-		$arr['ID'] = get_post($postId)->ID;
-		$arr['post_content'] = '&nbsp;';
-		wp_update_post($arr);
-	}
+
 	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' );
 }
 
@@ -1081,9 +1074,6 @@ function sortByIndex($contentArray){
 	}else{
 		return $contentArray;
 	}
-}
-function ampforwp_empty_content($str) {
-    return trim(str_replace('&nbsp;','',$str)) == '';
 }
 
 function ampforwp_get_attachment_id( $url , $imagetype='full') {
