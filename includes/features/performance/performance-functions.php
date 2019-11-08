@@ -243,32 +243,59 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
     }
 }
 
+add_action( 'wp_ajax_ampforwp_clear_css_tree_shaking', 'ampforwp_clear_tree_shaking');
 
 add_action( 'redux/options/redux_builder_amp/saved', 'ampforwp_clear_tree_shaking',10,2);
-function ampforwp_clear_tree_shaking($options, $changed_values){ 
+if( !function_exists("ampforwp_clear_tree_shaking") ) {
+	function ampforwp_clear_tree_shaking( $options = '', $changed_values = array() ) {
+		// If the current user don't have proper permission then return
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		$nonceCheck = wp_verify_nonce( $_GET['nonce'], 'ampforwp_clear_tree_shaking' );
+		if ( is_admin() && ( ( $nonceCheck && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) && $options == '' ) || ( count( $changed_values ) != 0 && (ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) || isset($changed_values['ampforwp_css_tree_shaking'])) ) ) ) {
+			$upload_dir   = wp_upload_dir();
+			$user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
+			if ( file_exists( $user_dirname ) ) {
+				$files = glob( $user_dirname . '/*' );
+				//Loop through the file list.
+				foreach ( $files as $file ) {
+					//Make sure that this is a file and not a directory.
+					if ( is_file( $file ) && strpos( $file, '_transient' ) !== false ) {
+						//Use the unlink function to delete the file.
+						unlink( $file );
+					}
+				}
+			}
+			if ( $options == '' && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) ) {
+				echo json_encode( array( "status" => 200, "message" => "CSS Cache Cleared Successfully" ) );
+				wp_die();
+			}
+		}
+	}
+}
+add_action( 'save_post', 'ampforwp_clear_tree_shaking_post');
+if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
+	function ampforwp_clear_tree_shaking_post() {
+		if( is_user_logged_in() ){
+			if(ampforwp_get_setting('ampforwp_css_tree_shaking')){
+				if(ampforwp_is_home()){
+					$transient_filename = "home";
+				}elseif(ampforwp_is_blog()){
+					$transient_filename = "blog";
+				}elseif(ampforwp_is_front_page()){
+					$transient_filename = "post-".ampforwp_get_frontpage_id();
+				}else{
+					$transient_filename = "post-".ampforwp_get_the_ID();
+				}
+				$upload_dir = wp_upload_dir();
+				$ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($transient_filename).".css";
+				if(file_exists($ts_file) && is_file($ts_file)){
+					unlink($ts_file);
+				}
+			}
+		}
+	}
 
-    // If the current user don't have proper permission then return
-    if (! current_user_can( 'manage_options' )){
-        return;
-    }
-
-    if( is_admin() && (( isset($changed_values['ampforwp_css_tree_shaking']) && $options['ampforwp_css_tree_shaking']=='0' ) || isset($changed_values['amp-design-selector']) || isset($changed_values['css_editor']) || ampforwp_get_setting('ampforwp_css_tree_shaking_clear_cache')==1)){
-        $upload_dir = wp_upload_dir(); 
-        $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
-        if(file_exists($user_dirname)){
-            $files = glob($user_dirname . '/*');
-            //Loop through the file list.
-            foreach($files as $file){
-            //Make sure that this is a file and not a directory.
-                if(is_file($file) && strpos($file, '_transient')!==false ){
-                    //Use the unlink function to delete the file.
-                    unlink($file);
-                }
-            }
-        }
-        $selectedOption = get_option('redux_builder_amp',true);     
-        $selectedOption['ampforwp_css_tree_shaking_clear_cache'] = 0;
-        update_option('redux_builder_amp',$selectedOption);
-    }
 }
 // Tree shaking feature #2949 --- ends here ---

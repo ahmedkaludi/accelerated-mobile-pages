@@ -690,7 +690,23 @@ jQuery(document).ready(function($){
         jQuery.post(ajaxurl, notice, function(response) {     
         });
     });
-
+        $('#ampforwp-clear-clearcss-data').click(function(e){
+        $('#ampforwp-clear-clcss-msg').text(' Please wait').css({'line-height':'25px'});
+        var datastr = {
+            'action': 'ampforwp_clear_css_tree_shaking',
+            'nonce': $(this).attr('data-nonce')
+        };
+        jQuery.ajax({
+            url: ajaxurl,
+            data: datastr,
+            dataType: 'json',
+            success: function(response) {
+                if(response.status==200){
+                    $('#ampforwp-clear-clcss-msg').text(' '+response.message).css({'line-height':'25px'});
+                }
+            }
+        });
+    });
     // AMP FrontPage notice in Reading Settings #2348
     if ( 'false' == redux_data.frontpage){
         $('#page_on_front').parent('label').append('<p class="afp" style="display:none"><b>We have detected that you have not setup the FrontPage for AMP, </b><a href="'+redux_data.admin_url+'">Click here to setup</a></span>');
