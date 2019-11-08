@@ -742,6 +742,6 @@ amp-facebook-like{
   top: 0;
   transform: translateX(-100%);
   background: <?php echo ampforwp_sanitize_color($global_color_scheme); ?>;
-  z-index:9999;
+  z-index:99999;
 }
 <?php } // Progress Bar CSS ends ?>

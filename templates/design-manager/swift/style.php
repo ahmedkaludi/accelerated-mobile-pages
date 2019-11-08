@@ -2254,6 +2254,6 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
   top: 0;
   transform: translateX(-100%);
   background: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;
-  z-index:9999;
+  z-index:99999;
 }
 <?php } // Progress Bar CSS ends ?>
