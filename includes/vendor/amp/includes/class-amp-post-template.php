@@ -262,8 +262,11 @@ class AMP_Post_Template {
 	}
 
 	private function build_post_content() {
-		if( !empty($this->post->post_content) && false === ampforwp_is_home() && false === is_archive() ){
-			$new_post_content = $this->post->post_content;
+		if(false === ampforwp_is_home() && false === is_archive() ){
+			if(!empty($this->post->post_content))
+				$new_post_content = $this->post->post_content;
+			else
+				$new_post_content = '';
 			// #2001 Filter to remove the unused JS from the paginated post
 			$new_post_content = apply_filters( 'ampforwp_post_content_filter', $new_post_content );
 
