@@ -1,4 +1,4 @@
-<?php		
+<?php
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 require_once  ABSPATH . WPINC . '/category.php';
@@ -10,9 +10,9 @@ function ampforwp_content_module_pagination($args, $fieldValues){
       }else{
           $paged = 1;
       }
-      
+
       $args['paged'] = $paged;
-      
+
     return $args;
   }else{
 
@@ -20,13 +20,13 @@ function ampforwp_content_module_pagination($args, $fieldValues){
   }
 }
  $output = '{{if_condition_content_layout_type==1}}
-            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cm {{user_class}}"><h4>{{content_title}}</h4>   
+            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cm {{user_class}}">{{if_ampforwp_pb_cat_heading_tag}}<{{ampforwp_pb_cat_heading_tag}}> {{content_title}}   </{{ampforwp_pb_cat_heading_tag}}>{{ifend_ampforwp_pb_cat_heading_tag}} {{if_condition_ampforwp_pb_cat_heading_tag==}}<h4>{{content_title}}</h4> {{ifend_condition_ampforwp_pb_cat_heading_tag_}} 
                 <div class="wrap"><ul>{{category_selection}}</ul></div>
                 {{pagination_links}}    
             </div>
           {{ifend_condition_content_layout_type_1}}
           ';
- 
+
 
  $frontCss = '
 {{if_condition_content_layout_type==1}}
@@ -114,20 +114,20 @@ if ( is_admin() ) {
   $post_types = get_post_types(array('public'=>true));
   $post_types = get_option('ampforwp_cpt_generated_post_types');
   $post_types['post'] = 'post';
- $categories = get_categories( array(   
-                   'orderby' => 'name',   
+ $categories = get_categories( array(
+                   'orderby' => 'name',
                    'order'   => 'ASC',
-                   'number'  => 500   
-               ) );   
- $categoriesArray = array('recent_option'=>'Recent Posts');   
- foreach($categories as $category){   
+                   'number'  => 500
+               ) );
+ $categoriesArray = array('recent_option'=>'Recent Posts');
+ foreach($categories as $category){
   $categoryName = htmlspecialchars($category->name, ENT_QUOTES);
-  $categoriesArray[$category->term_id] = $categoryName;   
-  $options.= '<option value="'.$category->term_id.'">'.$categoryName.'</option>';   
- }    
+  $categoriesArray[$category->term_id] = $categoryName;
+  $options.= '<option value="'.$category->term_id.'">'.$categoryName.'</option>';
+ }
 }
- return array(    
-    'label' =>'Category',   
+ return array(
+    'label' =>'Category',
     'name' => 'contents',
     'default_tab'=> 'customizer',
     'tabs' => array(
@@ -137,28 +137,28 @@ if ( is_admin() ) {
               'advanced' => 'Advanced'
             ),
     'fields' => array(
-            array(    
+            array(
             'type'    =>'layout-image-picker',
             'name'    =>"content_layout_type",
             'label'   =>"Select Layout",
             'tab'     =>'layout',
-            'default' =>'1',    
+            'default' =>'1',
             'options_details'=>array(
                             array(
                               'value'=>'1',
                               'label'=>'',
                               'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
                             ),
-                            
+
                           ),
             'content_type'=>'html',
             ),
-            array(    
-            'type'    =>'text',   
-            'name'    =>"content_title",    
+            array(
+            'type'    =>'text',
+            'name'    =>"content_title",
             'label'   =>'Category Block',
             'tab'     =>'customizer',
-            'default' =>'Category', 
+            'default' =>'Category',
             'content_type'=>'html',
             ),
             array(
@@ -191,6 +191,38 @@ if ( is_admin() ) {
                             ),
                 'content_type'=>'css',
               ),
+			    array(
+						    'type'    =>'select',
+						    'name'    =>"ampforwp_pb_cat_heading_tag",
+						    'label'   =>'Category Heading Tag',
+						    'tab'   =>'container_css',
+						    'default' =>'h4',
+						    'options_details'=>array(
+							    'h1'=>'H1',
+							    'h2'=>'H2',
+							    'h3'=>'H3',
+							    'h4'=>'H4',
+							    'h5'=>'H5',
+							    'h6'=>'H6'
+						    ),
+						    'content_type'=>'html'
+					    ),
+			    array(
+				    'type'    =>'select',
+				    'name'    =>"ampforwp_pb_cat_title_tag",
+				    'label'   =>'Category Title Tag',
+				    'tab'   =>'container_css',
+				    'default' =>'',
+				    'options_details'=>array(
+					    'h1'=>'H1',
+					    'h2'=>'H2',
+					    'h3'=>'H3',
+					    'h4'=>'H4',
+					    'h5'=>'H5',
+					    'h6'=>'H6',
+				    ),
+				    'content_type'=>'html'
+			    ),
               array(
                 'type'    =>'spacing',
                 'name'    =>"padding_css",
@@ -204,79 +236,79 @@ if ( is_admin() ) {
                         ),
                 'content_type'=>'css',
               ),
-              array(    
-              'type'  =>'select',   
-              'name'  =>"post_type_selection",   
+              array(
+              'type'  =>'select',
+              'name'  =>"post_type_selection",
               'label' =>"Select Post Type",
               'tab'     =>'customizer',
-              'default' =>'post',    
-              'options' => $post_types,    
+              'default' =>'post',
+              'options' => $post_types,
               'options_details'=>$post_types ,
               'content_type'=>'html',
               'ajax'  => true,
               'ajax_dep' => 'category_selection',
               'ajax_action' => 'ampforwp_pb_cats'
-            ),        
-            array(    
-              'type'  =>'select',   
-              'name'  =>"category_selection",   
+            ),
+            array(
+              'type'  =>'select',
+              'name'  =>"category_selection",
               'label' =>"Select Category",
               'tab'     =>'customizer',
-              'default' =>'recent_option',    
-              'options' => $options,    
+              'default' =>'recent_option',
+              'options' => $options,
               'options_details'=>$categoriesArray ,
               'content_type'=>'html',
-            ),    
-            array(    
-            'type'    =>'text',   
+            ),
+            array(
+            'type'    =>'text',
             'name'    =>"show_total_posts",
-            'label'   =>'No. of Posts per Page',    
+            'label'   =>'No. of Posts per Page',
             'tab'     =>'customizer',
             'default' =>'3',
             'content_type'=>'html',
             ),
-            array(    
-            'type'    =>'text',   
+            array(
+            'type'    =>'text',
             'name'    =>'posts_offset',
-            'label'   => esc_html__('Offset','accelerated-mobile-pages'),  
+            'label'   => esc_html__('Offset','accelerated-mobile-pages'),
             'tab'     =>'customizer',
             'default' =>'0',
             'content_type'=>'html',
             ),
-            array(    
+            array(
             'type'    =>'select',
             'name'    =>"ampforwp_show_excerpt",
             'label'   =>"Excerpt",
             'tab'     =>'customizer',
-            'default' =>'yes',    
-            'options' => '<option value="yes">Yes</option><option value="no">No</option>',    
+            'default' =>'yes',
+            'options' => '<option value="yes">Yes</option><option value="no">No</option>',
             'options_details'=>array('yes'=>'Yes', 'no'=>'No'),
             'content_type'=>'html',
             ),
-            array(    
+            array(
             'type'    =>'text',
             'name'    =>"ampforwp_excerpt_length",
             'label'   =>"Excerpt Length",
             'tab'     =>'customizer',
-            'default' =>'15',    
+            'default' =>'15',
             'content_type'=>'html',
             'required'  => array('ampforwp_show_excerpt' => 'yes'),
             ),
-            array(    
-            'type'    =>'text',   
-            'name'    =>"img-width-1",    
+            array(
+            'type'    =>'text',
+            'name'    =>"img-width-1",
             'label'   =>'Image Width',
             'tab'     =>'customizer',
-            'default' =>'346', 
+            'default' =>'346',
             'content_type'=>'html',
             'required'  => array('content_layout_type' => 1),
             ),
-            array(    
-            'type'    =>'text',   
-            'name'    =>"img-height-1",    
+            array(
+            'type'    =>'text',
+            'name'    =>"img-height-1",
             'label'   =>'Image Height',
             'tab'     =>'customizer',
-            'default' =>'188', 
+            'default' =>'188',
             'content_type'=>'html',
             'required'  => array('content_layout_type' => 1),
             ),
@@ -293,21 +325,21 @@ if ( is_admin() ) {
                       ),
                 'content_type'=>'html',
               ),
-            array(    
-              'type'    =>'text',   
-              'name'    =>"show_no_page_links",    
+            array(
+              'type'    =>'text',
+              'name'    =>"show_no_page_links",
               'label'   =>'No. of PageLinks to Show',
               'tab'     =>'customizer',
-              'default' => 5, 
+              'default' => 5,
               'content_type'=>'html',
               'required'  => array('pagination' => 1),
             ),
 
-            
-          ),    
+
+          ),
     'front_template'=> $output,
     'front_css'=>$frontCss,
-    'front_common_css'=>'', 
+    'front_common_css'=>'',
     'front_loop_content'=>'  {{if_condition_content_layout_type==1}}
                           <li> 
 
@@ -315,8 +347,8 @@ if ( is_admin() ) {
                                <a href="{{ampforwp_post_url}}">
                                {{if_image}}<amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="responsive" alt="{{image_alt}}"> </amp-img>{{ifend_image}}</a>
                               </div>
-                              <div class="cmr">
-                                <a href="{{ampforwp_post_url}}">{{title}}</a>
+                              <div class="cmr"> {{if_ampforwp_pb_cat_title_tag}}<{{ampforwp_pb_cat_title_tag}}>{{ifend_ampforwp_pb_cat_title_tag}}
+                                <a href="{{ampforwp_post_url}}">{{title}}</a> {{if_ampforwp_pb_cat_title_tag}}</{{ampforwp_pb_cat_title_tag}}>{{ifend_ampforwp_pb_cat_title_tag}}
                                 {{excerptContent}}
                                 {{loopdate}}
                                 </div>
@@ -326,27 +358,27 @@ if ( is_admin() ) {
 
                       
                           ',
- );   
- function ampforwp_contentHtml($the_query,$fieldValues,$loopHtml){  
-  $contenthtml = '';    
+ );
+ function ampforwp_contentHtml($the_query,$fieldValues,$loopHtml){
+  $contenthtml = '';
   $ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');
   $ampforwp_excerpt_length = (isset($fieldValues['ampforwp_excerpt_length'])? $fieldValues['ampforwp_excerpt_length']: 15);
   $ampforwp_excerpt_length = (int) $ampforwp_excerpt_length;
-  
-  if ( $the_query->have_posts() ) { 
-         while ( $the_query->have_posts() ) {   
-             $the_query->the_post();    
+
+  if ( $the_query->have_posts() ) {
+         while ( $the_query->have_posts() ) {
+             $the_query->the_post();
              $ampforwp_post_url = get_permalink();
-             if(ampforwp_get_setting('ampforwp-amp-takeover') == true){ 
+             if(ampforwp_get_setting('ampforwp-amp-takeover') == true){
              $ampforwp_post_url = trailingslashit($ampforwp_post_url);
              }else{
               $ampforwp_post_url = trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR;
              }
-             $image = $height = $width = $image_alt = ""; 
-             if ( has_post_thumbnail() ) {  
-                   $thumb_id = get_post_thumbnail_id();   
+             $image = $height = $width = $image_alt = "";
+             if ( has_post_thumbnail() ) {
+                   $thumb_id = get_post_thumbnail_id();
                    $image_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
-                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true);  
+                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true);
                    $image = $thumb_url_array[0];
                    $width = $thumb_url_array[1];
                    $height = $thumb_url_array[2];
@@ -382,13 +414,13 @@ if ( is_admin() ) {
                       break;
                   }
 
-                  $pb_content_width_height = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);  
+                  $pb_content_width_height = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);
                   if(is_array($pb_content_width_height)){
                     list($new_width, $new_height) = $pb_content_width_height;
                     if ( !empty($new_width) && !empty($new_height) ) {
-                      $width = $new_width; 
-                      $height = $new_height; 
-                    }   
+                      $width = $new_width;
+                      $height = $new_height;
+                    }
                   }
                   if ( ampforwp_get_setting('ampforwp-retina-images') ) {
                       $resolution = '';
@@ -399,11 +431,11 @@ if ( is_admin() ) {
                       $width = $width * $resolution;
                       $height = $height * $resolution;
                     }
-                    
+
                   try{
                     if(function_exists('ampforwp_aq_resize')){
                       $thumb_url = ampforwp_aq_resize( $image, $width, $height, true, false ); //resize & crop the image
-                     
+
                       if($thumb_url!=false){
                         $image   =  $thumb_url[0];
                         $width   =  $thumb_url[1];
@@ -417,28 +449,28 @@ if ( is_admin() ) {
               }
 
               $excerptContent = "";
-              if( $ampforwp_show_excerpt == 'yes' ) {     
-                   if( has_excerpt() ) {    
-                     $content = get_the_excerpt();    
-                   } else {   
-                     $content = get_the_content();    
-                   }  
+              if( $ampforwp_show_excerpt == 'yes' ) {
+                   if( has_excerpt() ) {
+                     $content = get_the_excerpt();
+                   } else {
+                     $content = get_the_content();
+                   }
                  $excerptContent = ' 
-                 <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'</p>';   
+                 <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'</p>';
               }
                $loopdate = "";
                $loopdate =  human_time_diff(
-                get_the_time('U', get_the_ID() ), 
+                get_the_time('U', get_the_ID() ),
                 current_time('timestamp') ) .' '. ampforwp_translation( ampforwp_get_setting('amp-translator-ago-date-text'),
                 'ago');
                $loopdate = apply_filters('ampforwp_modify_post_date',$loopdate);
-               $loopdate = '<p>'.esc_html($loopdate).'</p>';      
+               $loopdate = '<p>'.esc_html($loopdate).'</p>';
                $title = get_the_title();
                $postid = get_the_ID();
                $author = get_the_author();
-               $tags = get_the_tags(); 
-               if(is_array($tags) && count($tags) > 0){  
-                  $tags = $tags[0]->name;  
+               $tags = get_the_tags();
+               if(is_array($tags) && count($tags) > 0){
+                  $tags = $tags[0]->name;
                }
               // get_the_author_meta( string $field = '', int $user_id = false );
                $postdate = get_the_date(  ' F j, Y', $postid );
@@ -454,7 +486,7 @@ if ( is_admin() ) {
                                 "{{postdate}}",
                                 "{{image_alt}}",
                                 "{{tags}}"
-                                ), 
+                                ),
                               array(
                                 $ampforwp_post_url,
                                 $image,
@@ -467,7 +499,7 @@ if ( is_admin() ) {
                                 $postdate,
                                 $image_alt,
                                 $tags,
-                              ), 
+                              ),
                               $loopHtml);
             $rawhtml = ampforwp_replaceIfContentConditional("ampforwp_post_url", $ampforwp_post_url, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("image", $image, $rawhtml);
@@ -482,18 +514,18 @@ if ( is_admin() ) {
             $rawhtml = ampforwp_replaceIfContentConditional("tags", $tags, $rawhtml);
             $rawhtml = apply_filters( 'ampforwp_pb_cntmod_rawhtml', $rawhtml );
             $contenthtml .= $rawhtml;
-            
-         }    
-      
+
+         }
+
      }
-     
-     /* Restore original Post Data */   
+
+     /* Restore original Post Data */
      wp_reset_postdata();
      $pagination_links = ampforwp_cat_pagination_links($the_query,$fieldValues);
      //echo $contenthtml;
      //die;
 
-     return array('contents'=>$contenthtml,'pagination_links' => $pagination_links);    
+     return array('contents'=>$contenthtml,'pagination_links' => $pagination_links);
  }
 
  function  ampforwp_cat_pagination_links($the_query,$fieldValues){
@@ -501,7 +533,7 @@ if ( is_admin() ) {
         $pagination_text = 'pageno';
         $queryUrl = esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) );
         if( isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1){
-      
+
         /*Pagination Sart*/
         $total_num_pages = $the_query->max_num_pages;
         if(isset($_GET[$pagination_text]) && $_GET[$pagination_text]!='' ){
@@ -511,7 +543,7 @@ if ( is_admin() ) {
         }
         $pagination_links .= '<div class="cmp">';
         if( $paged > 1){
-          
+
           $first_page = add_query_arg( array( $pagination_text => 1 ), $queryUrl );
           $prev_page = add_query_arg( array( $pagination_text => $paged - 1 ), $queryUrl );
 
@@ -535,7 +567,7 @@ if ( is_admin() ) {
 
         }
 
-        if( $total_num_pages != 1 && $paged < $total_num_pages ){      
+        if( $total_num_pages != 1 && $paged < $total_num_pages ){
           $next_page = add_query_arg( array( $pagination_text => $paged + 1 ), $queryUrl );
           //$pagination_links .= "<a  href =".$next_page." '> Next </a>";
         }
@@ -544,7 +576,7 @@ if ( is_admin() ) {
           $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html__('Last', 'accelerated-mobile-pages')."</a>";
         }
         $pagination_links .= '</div>';
-        
+
         /*Pagination End*/
         }
         return  $pagination_links;
