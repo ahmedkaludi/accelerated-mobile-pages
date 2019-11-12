@@ -92,7 +92,7 @@ function amppb_save_layout_data(){
         die;
 	}
 	$layoutname = sanitize_text_field($_POST['layoutname']);
-	$layoutdata = wp_filter_post_kses($_POST['layoutdata']);
+	$layoutdata = wp_slash($_POST['layoutdata']);
 	$postarr = array(
 				'post_title'   =>$layoutname,
 				'post_content' =>$layoutdata,
