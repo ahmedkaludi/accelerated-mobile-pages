@@ -61,7 +61,7 @@
 
 					<div class="amp-wp-content-loop">
 						<div class="amp-wp-meta">
-						<?php  if( true == ampforwp_get_setting('ampforwp-homepage-commentscount-switch') && get_comments_number(ampforwp_get_the_ID()) ){ ?> <span class="amp-wp-commentcount"> <?php echo comments_number() . ' &nbsp;  | &nbsp; '; ?> </span> <?php } ?>
+						<?php  if( true == ampforwp_get_setting('ampforwp-homepage-commentscount-switch') && get_comments_number(ampforwp_get_the_ID()) ){ ?> <span class="amp-wp-commentcount"> <?php echo esc_html(comments_number()) . ' &nbsp;  | &nbsp; '; ?> </span> <?php } ?>
 			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) );
 			              global $redux_builder_amp;
 			              		if($redux_builder_amp['amp-design-selector'] == '1' && $redux_builder_amp['amp-design-1-featured-time'] == '1'){
