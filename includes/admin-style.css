@@ -1616,13 +1616,17 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
 }
 #ampforwp-add-more-analytics{
     font-size: 12px;
-    padding: 7px 15px 10px 15px;
+    padding: 5px 11px 5px 11px;
     background: none;
-    border: none;
+    line-height: 15px;
+    border: 1px solid #eee;
     color: #333;
     border-radius: 2px;
     cursor: pointer;
-
+    margin-left: 8px;
+}
+#ampforwp-add-more-analytics:hover{
+    border: 1px solid #ccc;
 }
 .ux-field-container.ux-field-footer{
     border-top: 1px solid #e2e2e2;
