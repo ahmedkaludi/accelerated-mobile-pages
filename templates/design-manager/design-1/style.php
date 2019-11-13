@@ -335,26 +335,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .related_posts span{display: block;}.related_posts ol{list-style-type:none;margin:0;padding:0}.related_posts ol li{width:100%;margin-bottom:12px;padding:0}.related_posts .related_link a{color:#000;font-size:18px}.related_posts ol li amp-img{width:100px;float:left;margin-right:15px}.related_posts ol li p{font-size:12px;color:#999;line-height:1.2;margin:7px 0 0}.no_related_thumbnail{padding:15px 18px} main .amp-wp-content.relatedpost{background:0 0;box-shadow:none;max-width:1030px}.relatedpost{margin:2em 16px}.related_posts span{font-size:14px;font-weight:700;letter-spacing:.4px;margin:25px 0 10px;color:#333;    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
 .related_posts ol li{display:inline-block}
 <?php } ?>
-<?php if( is_singular() || is_home() && true == ampforwp_get_setting('amp-frontpage-select-option') && ampforwp_get_blog_details() == false && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
-/* Tables */
-table { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; overflow-x: auto; }
-table a:link { font-weight: bold; text-decoration: none; }
-table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
-table a:active, table a:hover { color: #bd5a35; text-decoration: underline; }
-table { font-family: Arial, Helvetica, sans-serif; color: #666; font-size: 12px; text-shadow: 1px 1px 0px #fff; background: #eee; margin: 0px; width: 95%; }
-table th { padding: 21px 25px 22px 25px; border-top: 1px solid #fafafa; border-bottom: 1px solid #e0e0e0; background: #ededed; background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb)); background: -moz-linear-gradient(top, #ededed, #ebebeb); }
-table th:first-child { text-align: left; padding-left: 20px; }
-table tr:first-child th:first-child { -moz-border-radius-topleft: 3px; -webkit-border-top-left-radius: 3px; border-top-left-radius: 3px; }
-table tr:first-child th:last-child { -moz-border-radius-topright: 3px; -webkit-border-top-right-radius: 3px; border-top-right-radius: 3px; }
-table tr { text-align: center; padding-left: 20px; }
-table td:first-child { text-align: left; padding-left: 20px; border-left: 0; }
-table td { padding: 18px; border-top: 1px solid #ffffff; border-bottom: 1px solid #e0e0e0; border-left: 1px solid #e0e0e0; background: #fafafa; background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa)); background: -moz-linear-gradient(top, #fbfbfb, #fafafa); }
-table tr.even td { background: #f6f6f6; background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6)); background: -moz-linear-gradient(top, #f8f8f8, #f6f6f6); }
-table tr:last-child td {border-bottom: 0;}
-table tr:last-child td:first-child { -moz-border-radius-bottomleft: 3px; -webkit-border-bottom-left-radius: 3px; border-bottom-left-radius: 3px; }
-table tr:last-child td:last-child { -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px; border-bottom-right-radius: 3px; }
-table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0)); background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0); }
-<?php } ?>
+
  .amp-facebook-comments{margin: 0 0}
 
 /* CSS3 icon */
@@ -375,7 +356,6 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 .amp-logo h1{font-size: 1em; font-weight: 400; line-height: 1.75em; margin: 0;}
 .amp-logo{display:inline-block}
 .amp-wp-header a, .headerlogo a, [class*=icono-] {color: <?php echo ampforwp_sanitize_color( $header_font_color ); ?>;text-decoration: none;}
-@media screen and (min-width: 650px) { table {display: inline-table;}  }
 <?php if($redux_builder_amp['enable-single-social-icons'] && is_socialshare_or_socialsticky_enabled_in_ampforwp() ){ ?> .amp-wp-footer{padding-bottom: 20px;}<?php } ?>
 
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
