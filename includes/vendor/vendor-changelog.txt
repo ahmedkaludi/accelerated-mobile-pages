@@ -88,3 +88,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 58. Added the Filter to modify attributes in HTML Tag #3685
 59. Need to remove width from inline style on amp images #3741
 60. Needs to redirect to 301, not in 302 #3767
+61. Fixed Instagram video (tv) rendering issue #3812
