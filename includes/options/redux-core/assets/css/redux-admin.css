@@ -332,6 +332,11 @@ background: rgb(245, 246, 250);
 #redux_save:hover{
     background: #13a315; 
 }
+.version-5-3 #redux_save,
+.version-5-3 #redux-defaults-section,
+.version-5-3 #redux-defaults {
+    padding: 12px 18px 12px 18px;
+}
 #redux-defaults-section,
 #redux-defaults {
     background: #f2f2f2;
