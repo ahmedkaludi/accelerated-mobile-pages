@@ -1558,7 +1558,8 @@ function ampforwp_check_required(value,required){
 }
 $("#ampforwp-add-more-analytics").click(function(){
     var analytics = $("#ampforwp-ux-analytics-more").val();
-   if($("[data-href="+analytics+"]").hasClass('hide')){
+    
+    if( analytics && $("[data-href="+analytics+"]").hasClass('hide')){
         $("[data-href="+analytics+"]").removeClass('hide');
         var has_data = true;
         $("[data-href="+analytics+"]").children('.amp-ux-text-container').children('input').each(function(){
