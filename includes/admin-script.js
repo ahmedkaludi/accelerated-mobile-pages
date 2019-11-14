@@ -835,7 +835,7 @@ jQuery(document).ready(function($) {
         }
     });
      var new_data = JSON.parse(amp_fields);
-    var saveChangesInRedux = function($current){
+    var ampforwp_saveChangesInRedux = function($current){
        
         // Save
         window.onbeforeunload = null;
@@ -857,7 +857,7 @@ jQuery(document).ready(function($) {
                 current_value = 0;
             }
         }
-    
+
      $.each(new_data, function(key,value) {
             if (value.field_data.required ){
                 var required = value.field_data.required;
@@ -945,7 +945,7 @@ jQuery(document).ready(function($) {
             }
         });
     });
-    function set_ux_selected_val(){
+    function ampforwp_set_ux_selected_val(){
         var active_drower = localStorage.getItem('ampforwp_current_drawer_click');
         var thishtml = "";
         var button = '';
@@ -1249,8 +1249,8 @@ jQuery(document).ready(function($) {
                     $('input[id="redux_builder_amp[opt-media][thumbnail]').val($('#amp-ux-logo-thumb').val());
                     $('#redux_builder_amp-opt-media .screenshot').show();
                     $('.redux-option-image').attr('src', $('#amp-ux-logo-thumb').val());
-                    saveChangesInRedux($(this));
-                    set_ux_selected_val();
+                    ampforwp_saveChangesInRedux($(this));
+                    ampforwp_set_ux_selected_val();
                     $("#opt-media-media").html("Change Logo");
                     $(".amp-ux-upload").addClass('amp-ux-chng-lg');
                 }
@@ -1267,7 +1267,7 @@ jQuery(document).ready(function($) {
         $('input[id="swift-color-scheme-color"]').attr('data-color',rgba);
         $('input[id="swift-color-scheme-color"]').attr('data-current-color',color);
         $('input[id="swift-color-scheme-color"]').attr('value',color);
-        saveChangesInRedux($(this));
+        ampforwp_saveChangesInRedux($(this));
     });
     // Analytics
     $('.ampforwp-ux-analytics-select').on('change', function(){
@@ -1533,10 +1533,15 @@ jQuery(document).ready(function($) {
         localStorage.setItem('ampforwp_current_drawer_click',track);
     });
 
-function ampforwp_ux_save_loader(event){
+function ampforwp_ux_save_loader(){
      $(".amp-ux-loader").show();
     setTimeout(function(){
-         $(".amp-ux-loader").hide();
+        $('.amp-ux-loader.amp-ux-loader').append("<div id='ampforwp_save_flash'>Saved</div>");
+        setTimeout(function(){
+            $(".amp-ux-loader").hide();
+            $("#ampforwp_save_flash").remove();
+        }, 500);
+
      },500);
 }
 var check_img_upload = $('input[id="redux_builder_amp[opt-media][url]"]').val();
@@ -1565,7 +1570,7 @@ $("#ampforwp-add-more-analytics").click(function(){
         if(has_data){
             $('#redux_builder_amp-'+analytics).children('.switch-options').children('.ios7-switch').children('.switch-on-off').click();
             $('[name="redux_builder_amp['+analytics+']"]').val(1);
-            saveChangesInRedux($(this));
+            ampforwp_saveChangesInRedux($(this));
         }
     }
 });
@@ -1578,15 +1583,14 @@ $('.ampforwp-ux-closable').click(function(){
         $('#redux_builder_amp-'+data_href).children('.switch-options').children('.ios7-switch').children('.switch-on-off').click();
         $('[name="redux_builder_amp['+data_href+']"]').val(0);
     }
-    saveChangesInRedux($(this));
+    ampforwp_saveChangesInRedux($(this));
 });
 // Required condition for each field
 $.each(new_data, function(key,value) {
         ampCheckRequired($('#'+value.field_data.id));
     });
 // Required && saved Condition JS
-    $(".amp-ux-field").on({
-        click: function() {
+    $(document).on('click change',".amp-ux-field",function() {
             // Handle click...
            if($(this).hasClass("amp-ux-extension-switch")){
                 if($(this).prop('checked')==true){
@@ -1598,26 +1602,12 @@ $.each(new_data, function(key,value) {
             }else{
                 if ( 'checkbox' == $(this).attr('type') ){
                     ampCheckRequired($(this));
-                    saveChangesInRedux($(this));
-                    ampforwp_ux_save_loader($(this));
-                    set_ux_selected_val();
+                    ampforwp_saveChangesInRedux($(this));
+                    ampforwp_ux_save_loader();
+                    ampforwp_set_ux_selected_val();
                 }
             }
-        },
-        change: function() {
-            // Handle change...
-             if($(this).hasClass("amp-ux-extension-switch") || $(this).hasClass("ampforwp-ux-analytics-more")){
-
-            }else{
-                if ( 'checkbox' != $(this).attr('type') ){
-                    ampCheckRequired($(this));
-                    saveChangesInRedux($(this));
-                    ampforwp_ux_save_loader($(this));
-                    set_ux_selected_val();
-                }
-            }
-        },
-    });
+        });
  // Drawer JS
     var drawer,
     drawerElem,
@@ -1792,12 +1782,12 @@ function Drawer(drawerElem) {
         }
     })();
 }
-$('.ampforwp_install_ux_plugin').click(function(e){
-    $(".amp-ux-loader").show();
+    $(document ).on('click','.ampforwp_install_ux_plugin',function(e){
+        $(".amp-ux-loader").show();
         var self = $(this);
+        var oldself = $(this).parent('.ios7-switch').html();
         self.parent('.ios7-switch').html('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
         var nonce = self.attr('data-secure');
-
         var currentId = self.attr('id');
         var activate = '';
         if(currentId=='amp-ux-ext-pwafwp'){
@@ -1816,17 +1806,24 @@ $('.ampforwp_install_ux_plugin').click(function(e){
             dataType: 'json',
             success: function (response){
                 if(response.status==200){
-                     if(self.hasClass('not-exist')){
-                        //To installation
-                        wp.updates.installPlugin(
-                        {
-                                slug: response.slug,
-                                success: function(pluginresponse){
-                                    console.log(pluginresponse.activateUrl);
-                                    wpActivateModulesUpgrage(pluginresponse.activateUrl, self, response, nonce)
+                    if(self.hasClass('not-exist')) {
+                        var result = confirm("This required a free plugin to install in your WordPress");
+                        if (result) {
+                            //To installation
+                            wp.updates.installPlugin(
+                                {
+                                    slug: response.slug,
+                                    success: function (pluginresponse) {
+                                        console.log(pluginresponse.activateUrl);
+                                        wpActivateModulesUpgrage(pluginresponse.activateUrl, self, response, nonce)
+                                    }
                                 }
-                            }
-                        );
+                            );
+                        }else{
+                             $("[required='"+currentId+"']").addClass("hide");
+                             $("."+currentId).html(oldself);
+                            ampforwp_ux_save_loader();
+                        }
                     }else{
                         var activateUrl = self.attr('data-url');
                         wpActivateModulesUpgrage(activateUrl, self, response, nonce)
@@ -1861,7 +1858,7 @@ $('.ampforwp_install_ux_plugin').click(function(e){
                         var res_url = ampforwp_generate_plugin_ulr(response.redirect_url);
                         $('.amp-ux-ext-pwafwp').html(res_url);
                         $("[required=amp-ux-ext-pwafwp]").addClass("hide");
-                         $(".amp-ux-loader").hide();
+                         ampforwp_ux_save_loader();
                     }else if(self.attr('id')=='amp-ux-ext-ssd'){
                         msgplug = 'Structure Data';
                         //Import Data
@@ -1886,7 +1883,7 @@ $('.ampforwp_install_ux_plugin').click(function(e){
                                                     '</div>'+
                                                 '</div>';
                                 $(".ampforwp-st-data-update").html(std_str);
-                                $(".amp-ux-loader").hide();
+                                ampforwp_ux_save_loader();
                             }
                         });
                         }else if(self.attr('id')=='amp-ux-ext-afwp'){
@@ -1932,7 +1929,7 @@ $('.ampforwp_install_ux_plugin').click(function(e){
                                             '</table>';
                                         $(".redux-group-tab.ampforwp_new_features.amp-ads").html(afwp_str);
 
-                                        $(".amp-ux-loader").hide();
+                                ampforwp_ux_save_loader();
                             }
                         });
                     }

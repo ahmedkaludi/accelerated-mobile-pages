@@ -419,17 +419,6 @@ $pwa_class = "amp-ux-extension-switch amp-ux-switch-on-off ampforwp_install_ux_p
 
 $ux_secure = wp_create_nonce('verify_module');
 $check_extension = ampforwp_get_setup_info('ampforwp_ux_extension_check');
-$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Structured Data",'id'=>"amp-ux-ext-ssd",'class'=>esc_attr($sasd_class),'data-id'=>'amp-ux-ext-ssd-switch','desc'=>'','data-secure'=>esc_attr($ux_secure),'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>esc_attr($sd_default),'data-url'=>esc_url($stdfwp_active_url)));
-
-$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-ssd','=',0),'default'=>0));
-
-$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Ads for WP",'id'=>"amp-ux-ext-afwp",'class'=>esc_attr($afwp_class),'data-id'=>'amp-ux-ext-afwp-switch','desc'=>'','data-secure'=>esc_attr($ux_secure),'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>esc_attr($afwp_default),'data-url'=>esc_url($afwp_active_url)));
-
-$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-afwp','=',0),'default'=>0));
-
-$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"PWA for WP",'id'=>"amp-ux-ext-pwafwp",'class'=>esc_attr($pwa_class),'data-id'=>'amp-ux-ext-pwafwp-switch','desc'=>'','data-secure'=>esc_attr($ux_secure),'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>esc_attr($pwa_default),'data-url'=>esc_url($pwa_active_url)));
-
-$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-pwafwp','=',0),'default'=>0));
 
 for($ex=0;$ex<count($check_extension);$ex++){
 	$active_ext = $check_extension[$ex];
@@ -621,6 +610,17 @@ for($ex=0;$ex<count($check_extension);$ex++){
 		}
 	}
 }
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Structured Data",'id'=>"amp-ux-ext-ssd",'class'=>esc_attr($sasd_class),'data-id'=>'amp-ux-ext-ssd-switch','desc'=>'','data-secure'=>esc_attr($ux_secure),'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>esc_attr($sd_default),'data-url'=>esc_url($stdfwp_active_url)));
+
+$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-ssd','=',0),'default'=>0));
+
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Ads for WP",'id'=>"amp-ux-ext-afwp",'class'=>esc_attr($afwp_class),'data-id'=>'amp-ux-ext-afwp-switch','desc'=>'','data-secure'=>esc_attr($ux_secure),'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>esc_attr($afwp_default),'data-url'=>esc_url($afwp_active_url)));
+
+$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-afwp','=',0),'default'=>0));
+
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"PWA for WP",'id'=>"amp-ux-ext-pwafwp",'class'=>esc_attr($pwa_class),'data-id'=>'amp-ux-ext-pwafwp-switch','desc'=>'','data-secure'=>esc_attr($ux_secure),'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>esc_attr($pwa_default),'data-url'=>esc_url($pwa_active_url)));
+
+$amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-pwafwp','=',0),'default'=>0));
 array_push($amp_ux_fields, $amp_ux_common);
 $close_extenstion = array('field_type'=>'section_end', 'field_data'=>array());
 $close_field = array('field_type'=>'main_section_end','field_data'=>array());

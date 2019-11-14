@@ -310,13 +310,18 @@ class AMPforWP_Fields
 	public function ampforwp_field_switch($fields){
 
 		$required = '';
+		$output =   '';
 		$hide = '';
 		if ( !empty($this->required) ) {
 			$required = 'required='.$this->required[0];
 			$this->class .= ' hide';
 			$hide = ' hide';
 		}
-		$output = '<div class="ux-field-container amp-ux-switch-container '.esc_attr($this->parent_class).' '.esc_attr($hide).'">';
+		if($this->id == 'amp-ux-ext-ssd'){
+
+			$output .= '<div class="ux-field-container amp-ux-heading"><h2 style="margin-bottom: 0px;">Recommended Plugin</h2></div>';
+		}
+		$output .= '<div class="ux-field-container amp-ux-switch-container '.esc_attr($this->parent_class).' '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
 			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html__($this->title, 'accelerated-mobile-pages').'</h2>';
 		}
