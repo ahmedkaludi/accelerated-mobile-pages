@@ -319,7 +319,7 @@ class AMPforWP_Fields
 		}
 		if($this->id == 'amp-ux-ext-ssd'){
 
-			$output .= '<div class="ux-field-container amp-ux-heading"><h2 style="margin-bottom: 0px;">Recommended Plugin</h2></div>';
+			$output .= '<div class="ux-field-container amp-ux-heading"><h2 style="margin-top:40px; margin-bottom: 0px;">Recommended Plugins</h2></div>';
 		}
 		$output .= '<div class="ux-field-container amp-ux-switch-container '.esc_attr($this->parent_class).' '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
