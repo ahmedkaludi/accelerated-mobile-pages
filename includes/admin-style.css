@@ -1526,21 +1526,21 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
     -ms-box-shadow: @shadow;
     -o-box-shadow: @shadow;
     box-shadow: @shadow;
-    .label {
-        position: absolute;
-        top: 56px;
-        bottom: 0;
-        width: 32px;
-        right: -32px;
-    }
-    .antiSelect {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 100%;
-        visibility: hidden;
-    }
+}
+.label {
+    position: absolute;
+    top: 56px;
+    bottom: 0;
+    width: 32px;
+    right: -32px;
+}
+.antiSelect {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
 }
 .hide{
     display: none;
