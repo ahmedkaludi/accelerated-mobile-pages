@@ -277,7 +277,7 @@ if( !function_exists("ampforwp_clear_tree_shaking") ) {
 add_action( 'save_post', 'ampforwp_clear_tree_shaking_post');
 if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
 	function ampforwp_clear_tree_shaking_post() {
-		if( is_user_logged_in() ){
+		if ( current_user_can( 'edit_posts' ) && is_user_logged_in() ){
 			if(ampforwp_get_setting('ampforwp_css_tree_shaking')){
 				if(ampforwp_is_home()){
 					$transient_filename = "home";
