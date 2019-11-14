@@ -1889,6 +1889,12 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }
+#amp-ux-loading-saved {
+    background: #12b312;
+    color: #fff;
+    font-weight: bold;
+    padding: 4px  8px;
+}
 
 /* Safari */
 @-webkit-keyframes spin {
