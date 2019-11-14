@@ -55,7 +55,7 @@ if ( ampforwp_get_setting('amp-design-selector') == 1 ) {
     			margin-left: 50px;
     		}
 		}
-		@media(max-width:770px){
+		@media(max-width:768px){
 			.amp-g-cnt {
 			    margin-left: 0px;
 			}
@@ -79,7 +79,7 @@ if ( ampforwp_get_setting('amp-design-selector') == 2 ) {
     			margin-left: 50px;
     		}
 		}
-		@media(max-width:770px){
+		@media(max-width:768px){
 			.amp-g-cnt {
 			    margin-left: 0px;
 			}
@@ -102,7 +102,7 @@ if ( ampforwp_get_setting('amp-design-selector') == 3 ) {
     			margin-left: 50px;
     		}
 		}
-    	@media(max-width:770px){
+    	@media(max-width:768px){
 			.amp-g-cnt {
 			    margin-left: 0px;
 			}
@@ -218,7 +218,7 @@ $css = '
 }
 .amp-carousel-slide{margin:0 auto;}
 
-@media(max-width:770px){
+@media(max-width:768px){
 	.amp-sld3 {
 		grid-template-columns: 100%;
 		grid-template-areas: 
@@ -238,18 +238,14 @@ $css = '
 	}
 	.amp-cnt{
 	    display: inline-grid;
-	    width:30%;
+	    width:100%;
 	    margin:10px;
 	}
 	.amp-desc{
 		white-space: pre-wrap;
 	}
 }
-@media(max-width:500px){
-	.amp-cnt{
-	    width:50%;
-	}
-}
+
 {{ifend_condition_carousel_layout_type_3}}
 {{if_condition_carousel_layout_type==4}}
 amp-carousel {
