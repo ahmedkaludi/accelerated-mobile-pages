@@ -182,7 +182,7 @@ class AMPforWP_Fields
 		echo '<div class="ux-field-container amp-ux-heading"><h2>'.esc_html($this->title).'</h2></div>';
 	}
 	public function ampforwp_field_loader($fields = array()){
-			echo '<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>';
+			echo '<div class="amp-ux-loader"><div class="amp-ux-loading"></div><div id="amp-ux-loading-saved" class="hide">Saved</div><span class="hide amp-ux-check"></span></div>';
 	}
 
 	// Main Section

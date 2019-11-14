@@ -29,7 +29,7 @@ jQuery(document).ready(function($){
 	                            slug: response.slug,
 	                            success: function(pluginresponse){
 	                            	//wp.updates.installPluginSuccess(pluginresponse);
-	                                wpActivateModulesUpgrage(pluginresponse.activateUrl, self, response, nonce)
+                                    ampforwpActivateModulesUpgrade(pluginresponse.activateUrl, self, response, nonce)
 								}
 							}
 						);
@@ -38,12 +38,12 @@ jQuery(document).ready(function($){
                     }
                     
                 }
-            })//ajaxComplete(wpActivateModulesUpgrage(response.path, self, response));
+            })//ajaxComplete(ampforwpActivateModulesUpgrade(response.path, self, response));
             
         }
     });
    
-    var wpActivateModulesUpgrage = function(url, self, response, nonce){
+    var ampforwpActivateModulesUpgrade = function(url, self, response, nonce){
     	if (typeof url === 'undefined' || !url) {
             return;
         }

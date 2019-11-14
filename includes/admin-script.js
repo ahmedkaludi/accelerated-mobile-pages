@@ -1189,7 +1189,7 @@ jQuery(document).ready(function($) {
         }
     });
     // Posts
-    $('input[id="amp-ux-posts').click(function(){
+    $('#amp-ux-posts').click(function(){
         if($(this).prop("checked") == true){
             if($('input[id="amp-on-off-for-all-posts"]').val() != 1 ) {
                 $("input[data-id=amp-on-off-for-all-posts]").prop('checked', true).trigger( 'change' );
@@ -1533,17 +1533,18 @@ jQuery(document).ready(function($) {
         localStorage.setItem('ampforwp_current_drawer_click',track);
     });
 
-function ampforwp_ux_save_loader(){
-     $(".amp-ux-loader").show();
-    setTimeout(function(){
-        $('.amp-ux-loader.amp-ux-loader').append("<div id='ampforwp_save_flash'>Saved</div>");
+    function ampforwp_ux_save_loader(){
+        $(".amp-ux-loader").show();
         setTimeout(function(){
-            $(".amp-ux-loader").hide();
-            $("#ampforwp_save_flash").remove();
-        }, 500);
-
-     },500);
-}
+            $('.amp-ux-loader .amp-ux-loading').addClass("hide");
+            $('#amp-ux-loading-saved').removeClass("hide");
+            setTimeout(function(){
+                $('.amp-ux-loader .amp-ux-loading').removeClass("hide");
+                $('#amp-ux-loading-saved').addClass("hide");
+                $(".amp-ux-loader").hide();
+            }, 1500);
+        },500);
+    }
 var check_img_upload = $('input[id="redux_builder_amp[opt-media][url]"]').val();
 if(check_img_upload!=""){
     $('input[id="redux_builder_amp[opt-media][url]"]').hide();
@@ -1783,63 +1784,65 @@ function Drawer(drawerElem) {
     })();
 }
     $(document ).on('click','.ampforwp_install_ux_plugin',function(e){
-        $(".amp-ux-loader").show();
-        var self = $(this);
-        var oldself = $(this).parent('.ios7-switch').html();
-        self.parent('.ios7-switch').html('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
-        var nonce = self.attr('data-secure');
-        var currentId = self.attr('id');
-        var activate = '';
-        if(currentId=='amp-ux-ext-pwafwp'){
-            activate = '&activate=pwa';
-        }else if(currentId=='amp-ux-ext-ssd'){
-            activate = '&activate=structure_data';
-        }else if(currentId=='amp-ux-ext-afwp'){
-            activate = '&activate=adsforwp';
-        }
-        console.log( wp.updates.l10n.installing );
+        e.preventDefault();
+        var result = confirm("This required a free plugin to install in your WordPress");
+        if (result) {
+            $(".amp-ux-loader").show();
+            var self = $(this);
+            var oldself = $(this).parent('.ios7-switch').html();
+            self.parent('.ios7-switch').html('<div class="amp-ux-loader"><div class="amp-ux-loading"></div><span class="hide amp-ux-check"></span></div>');
+            var nonce = self.attr('data-secure');
+            var currentId = self.attr('id');
+            var activate = '';
+            if (currentId == 'amp-ux-ext-pwafwp') {
+                activate = '&activate=pwa';
+            } else if (currentId == 'amp-ux-ext-ssd') {
+                activate = '&activate=structure_data';
+            } else if (currentId == 'amp-ux-ext-afwp') {
+                activate = '&activate=adsforwp';
+            }
+            console.log(wp.updates.l10n.installing);
 
-        $.ajax({
-            url: ajaxurl,
-            type: 'post',
-            data: 'action=ampforwp_enable_modules_upgread'+activate+'&verify_nonce='+nonce,
-            dataType: 'json',
-            success: function (response){
-                if(response.status==200){
-                    if(self.hasClass('not-exist')) {
-                        var result = confirm("This required a free plugin to install in your WordPress");
-                        if (result) {
+            $.ajax({
+                url: ajaxurl,
+                type: 'post',
+                data: 'action=ampforwp_enable_modules_upgread' + activate + '&verify_nonce=' + nonce,
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status == 200) {
+                        if (self.hasClass('not-exist')) {
+
                             //To installation
                             wp.updates.installPlugin(
                                 {
                                     slug: response.slug,
                                     success: function (pluginresponse) {
                                         console.log(pluginresponse.activateUrl);
-                                        wpActivateModulesUpgrage(pluginresponse.activateUrl, self, response, nonce)
+                                        ampforwpActivateModulesUpgrade(pluginresponse.activateUrl, self, response, nonce)
                                     }
                                 }
                             );
-                        }else{
-                             $("[required='"+currentId+"']").addClass("hide");
-                             $("."+currentId).html(oldself);
-                            ampforwp_ux_save_loader();
-                        }
-                    }else{
-                        var activateUrl = self.attr('data-url');
-                        wpActivateModulesUpgrage(activateUrl, self, response, nonce)
-                    }
-                }else{
-                    alert(response.message)
-                }
 
-            }
-        });
+                        } else {
+                            var activateUrl = self.attr('data-url');
+                            ampforwpActivateModulesUpgrade(activateUrl, self, response, nonce)
+                        }
+                    } else {
+                        alert(response.message)
+                    }
+
+                }
+            });
+        }else{
+            var currentId = $(this).attr('id');
+            $("[required='"+currentId+"']").addClass("hide");
+        }
     });
     function ampforwp_generate_plugin_ulr(url){
          url = '<a target="_blank" href="'+url+'" class="afw-plugin-url"><i class="el el-cog"></i></a>';
          return url;
     }
-    var wpActivateModulesUpgrage = function(url, self, response, nonce){
+    var ampforwpActivateModulesUpgrade = function(url, self, response, nonce){
         if (typeof url === 'undefined' || !url) {
             return;
         }
