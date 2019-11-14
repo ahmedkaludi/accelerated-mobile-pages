@@ -1602,12 +1602,10 @@ $.each(new_data, function(key,value) {
                 }
                 ampforwp_check_required($(this).val(),$(this).attr('id'));
             }else{
-                if ( 'checkbox' == $(this).attr('type') ){
                     ampCheckRequired($(this));
                     ampforwp_saveChangesInRedux($(this));
                     ampforwp_ux_save_loader();
                     ampforwp_set_ux_selected_val();
-                }
             }
         });
  // Drawer JS
