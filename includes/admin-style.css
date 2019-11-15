@@ -1071,6 +1071,13 @@ span.switch-text {
 #section-ampforwp-sd_modules_section h3{
 	background:#FFF9C4 !important
 }
+#redux_builder_amp-ampforwp_sd_module .redux_field_th{
+    float: left;
+    margin-right: 20px;
+}
+.ampforwp-recommendation-btn.updated-message {
+    margin-right: 10px;
+}
 .amp_recommend_learnmore {
     position: relative;
     font-size: 14px;
@@ -1078,7 +1085,8 @@ span.switch-text {
     left: 12px;
 }
 #finalized-import-structure-data-from-amp{
-    margin-left:8px;vertical-align: baseline
+    margin-left:8px;
+    vertical-align: baseline
 }
 .ampforwp-rate-stars{
     display:inline-block;

@@ -21,12 +21,23 @@ use ReduxCore\ReduxFramework\Redux;
 add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_sd_fields');
 function ampforwp_add_sd_fields($fields){ 
     if( function_exists('saswp_non_amp') ) {
-           $fields[] = array(
-                       'id' => 'amp-cf7-SSL-info',
-                       'type' => 'info',
-                       'desc' =>"<div style='background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-30px -14px -18px -17px;'><span style='color:#303F9F;'> Note: </span> Structure data Extension is activated, you can setup the <a href=".admin_url( 'admin.php?page=structured_data_options&tab=5' )." target='_blank' >Schema Type Here</a></div>"
-                   );
+          $fields[] = array(
+              'id' => 'ampforwp-sd_modules_section',
+              'type' => 'section',
+              'title' => esc_html__('Structured Data has been Improved!', 'accelerated-mobile-pages'),
+              'indent' => true,
+              'layout_type' => 'accordion',
+              'accordion-open'=> 1 
+            );
 
+           $fields[] =  array(
+               'id'       => 'ampforwp_sd_module',
+               'type'     => 'raw',
+               'title'     => esc_html__('Structured Data', 'accelerated-mobile-pages'),
+               'content'  =>'<div class="col-wrapper">
+                                   <a href="'.admin_url('admin.php?page=structured_data_options&tab=5').'"> <div class="ampforwp-recommendation-btn updated-message"><p>Setup Schema Type Here</p></div> </a>
+                            <a class="amp_recommend_learnmore" href="https://ampforwp.com/tutorials/article/what-is-the-structured-data-update-all-about/" target="_blank">Learn more</a></div>'
+            );
            return $fields;
     }
     else {
