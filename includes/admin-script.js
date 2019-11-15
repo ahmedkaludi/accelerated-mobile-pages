@@ -691,6 +691,8 @@ jQuery(document).ready(function($){
         });
     });
         $('#ampforwp-clear-clearcss-data').click(function(e){
+            if(redux_data.ampforwp_css_tree_shaking == '0')
+                return true;
         $('#ampforwp-clear-clcss-msg').text(' Please wait').css({'line-height':'25px'});
         var datastr = {
             'action': 'ampforwp_clear_css_tree_shaking',
