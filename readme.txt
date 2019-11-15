@@ -191,6 +191,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.15 (15th November 2019) =
+* Improvement: New UX for AMP Options Panel #3520
+* Improvement: Improvement done in "Want to clear the Cache?" option in Performance section #3828
+
 = 0.9.98.14 (7th OCTOBER 2019) =
 * Fixed: Value Attribute Stripping out from the forms added in the content. #3689
 * Fixed: Remove AAWP from extension list #3735
