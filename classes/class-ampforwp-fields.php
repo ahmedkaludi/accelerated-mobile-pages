@@ -398,7 +398,7 @@ class AMPforWP_Fields
 
 	public function ampforwp_field_color(){
 		
-		$output = '<div class="ux-field-container amp-ux-color-container">';
+		$output = '<div class="ux-field-container amp-ux-color-container" id="ampforwp-easy-setup-global-color">';
 		if ( !empty($this->title) ) {
 			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html($this->title).'</h2>';
 		}

@@ -2052,7 +2052,13 @@ function Drawer(drawerElem) {
          $("body").css({'overflow':'auto'});
          $("#1_section_group_li_a").click();
     }
-
+    $("[data-href='ampforwp-ux-design-section']").click(function(){
+        if($("[name='redux_builder_amp[amp-design-selector]']").val() == '4'){
+            $('#ampforwp-easy-setup-global-color').show();
+        }else{
+            $('#ampforwp-easy-setup-global-color').hide();
+        }
+    });
     $(".amp-opt-change").click(function(){
         var thisid = $(this).attr('id');
         $(".amp-opt-change").each(function(){
