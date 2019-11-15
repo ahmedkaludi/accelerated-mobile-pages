@@ -2802,7 +2802,8 @@ function ampforwp_modified_search_sidebar( $content ) {
 			$source = $element->childNodes->item(0);
 			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
 			$source = $element->childNodes->item(1);
-			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
+			if($source)
+				$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
 		}
 	}
 	$audio = $dom->getElementsByTagName( 'amp-audio' );
