@@ -4387,12 +4387,6 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__('Read more about it here:', 'accelerated-mobile-pages'), esc_url('https://www.ampproject.org/docs/reference/components/amp-next-page'), esc_html__('amp-next-page','accelerated-mobile-pages')),
                         'default' => false,
                     ),
-                array(
-                        'id'       => 'ampforwp-page-progress-scroll',
-                        'type'     => 'switch',
-                        'title'    => esc_html__('Page Scroll Progress Indicator', 'accelerated-mobile-pages'),
-                        'default' => false,
-                    ),
                     $newspaper_theme_check,
                     array(
                         'id'       => 'ampforwp-infinite-scroll-single',
@@ -4401,6 +4395,12 @@ Redux::setSection( $opt_name, array(
                         'title'    => esc_html__('Single', 'accelerated-mobile-pages'),
                         'default' => true,
                         'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
+                    ),
+                array(
+                        'id'       => 'ampforwp-page-progress-scroll',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Page Scroll Progress Indicator', 'accelerated-mobile-pages'),
+                        'default' => false,
                     ),
                 array(
                        'id' => 'google-icons',
