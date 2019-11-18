@@ -5779,7 +5779,7 @@ function ampforwp_remove_ahref_lightbox(){
 	}
 }
 function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
-	preg_match_all('/(<a(.*?)href=\"(.*?)\">(.*?)<img(.*?)src=\"(.*?)\"(.*?)\/>)/', $content, $matches);
+	preg_match_all('/(<a(.*?)href=\"(.*?)\"(.*?)>(.*?)<img(.*?)src=\"(.*?)\"(.*?)(.*?)[^>]*>)/', $content, $matches);
 	if( count($matches[3])){
 		for( $i=0;$i<count($matches[3]);$i++){
 			$href_url = $matches[3][$i];
@@ -5788,12 +5788,12 @@ function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
 				$href_url = end($href_url);
 				$href_url = pathinfo($href_url, PATHINFO_FILENAME);
 			}
-			if($matches[3][$i] == $matches[6][$i] || (!empty($href_url) && strpos($matches[6][$i], $href_url) !== false)){
+			if($matches[3][$i] == $matches[7][$i] || strpos($matches[7][$i], $href_url) !== false){
 				$href = $matches[3][$i];
-				$src = $matches[6][$i];
+				$src = $matches[7][$i];
 				$href_src = str_replace( '/', '\/', esc_url($href));
 				$image_src = str_replace( '/', '\/', esc_url($src));
-				$content = preg_replace('/<a(.*?)href=\"'.$href_src.'\"(.*?)>(<img(.*?)src=\"'.$image_src.'\"(.*?)\/>)<\/a>/i', '$3', $content);	
+				$content = preg_replace('/<a(.*?)href=\"'.$href_src.'\"(.*?)>(<img(.*?)src=\"'.$image_src.'\"(.*?)[^>]*>)<\/a>/i', '$3', $content);	
 
 			}
 		}
