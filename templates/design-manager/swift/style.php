@@ -1414,7 +1414,7 @@ thead th {
 	display: block;
 }
 .b-w .fsp, .arch-psts .fsp{
-    flex-basis: calc(100% - 30px);
+    flex-basis: calc(100%);
 }
 }
 <?php } // AMP woocommerce condition ends
