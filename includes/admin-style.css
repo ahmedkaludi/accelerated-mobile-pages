@@ -1527,26 +1527,27 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     visibility: hidden;
 }
  .drawer {
-    max-width: 320px;
-    width: 75%;
-    height: 100%;
-    right: 0px;
-    top: 0;
-    bottom: 0;
-    -webkit-transform: translateX(100%);
-    -moz-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    -o-transform: translateX(100%);
-    transform: translateX(100%);
-    background: white;
-    position: fixed;
-    z-index: 999;
-    opacity: 0.001;
-    -webkit-box-shadow: @shadow;
-    -moz-box-shadow: @shadow;
-    -ms-box-shadow: @shadow;
-    -o-box-shadow: @shadow;
-    box-shadow: @shadow;
+     max-width: 320px;
+     width: 75%;
+     height: 100%;
+     right: 0px;
+     top: 0;
+     bottom: 0;
+     -webkit-transform: translateX(100%);
+     -moz-transform: translateX(100%);
+     -ms-transform: translateX(100%);
+     -o-transform: translateX(100%);
+     transform: translateX(100%);
+     background: white;
+     position: fixed;
+     z-index: 999;
+     opacity: 0.001;
+     -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+     -ms-box-shadow: @shadow;
+     -o-box-shadow: @shadow;
+     box-shadow: @shadow;
+ }
 .ampforwp-new-ux .label{
         position: absolute;
         top: 56px;
@@ -1562,7 +1563,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
         width: 100%;
         visibility: hidden;
     }
-}
+
 .hide{
     display: none;
     bottom: 0px;
