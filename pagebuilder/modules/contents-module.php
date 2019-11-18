@@ -236,6 +236,24 @@ if ( is_admin() ) {
                         ),
                 'content_type'=>'css',
               ),
+			    array(
+				    'type'		=>'text',
+				    'name'		=>"ampforwp_pb_cat_pagination_next",
+				    'label'		=>'Pagination For Next Label',
+				    'tab'     =>'advanced',
+				    'default'	=>'First',
+				    'content_type'=>'html',
+				    'required'  => array('pagination'=>'1'),
+			    ),
+			    array(
+				    'type'		=>'text',
+				    'name'		=>"ampforwp_pb_cat_pagination_last",
+				    'label'		=>'Pagination For Last Label',
+				    'tab'     =>'advanced',
+				    'default'	=>'Last',
+				    'content_type'=>'html',
+				    'required'  => array('pagination'=>'1'),
+			    ),
               array(
               'type'  =>'select',
               'name'  =>"post_type_selection",
@@ -546,8 +564,8 @@ if ( is_admin() ) {
 
           $first_page = add_query_arg( array( $pagination_text => 1 ), $queryUrl );
           $prev_page = add_query_arg( array( $pagination_text => $paged - 1 ), $queryUrl );
-
-          $pagination_links .= "<a class='pagi-first' href = ".esc_url($first_page)."> ".esc_html__('First','accelerated-mobile-pages')."</a>";
+          $nextLabel = (isset($fieldValues['ampforwp_pb_cat_pagination_next']) && !empty($fieldValues['ampforwp_pb_cat_pagination_next'])) ? $fieldValues['ampforwp_pb_cat_pagination_next'] : "Next";
+          $pagination_links .= "<a class='pagi-first' href = ".esc_url($first_page)."> ".esc_html__($nextLabel,'accelerated-mobile-pages')."</a>";
           //$pagination_links .= "<a href = ".$prev_page."> Prev </a>";
         }
 
@@ -573,7 +591,8 @@ if ( is_admin() ) {
         }
         if( $total_num_pages != $paged ){
           $next_page = add_query_arg( array( $pagination_text => $total_num_pages ), $queryUrl );
-          $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html__('Last', 'accelerated-mobile-pages')."</a>";
+	        $lastLabel = (isset($fieldValues['ampforwp_pb_cat_pagination_last']) && !empty($fieldValues['ampforwp_pb_cat_pagination_last'])) ? $fieldValues['ampforwp_pb_cat_pagination_last'] : "Last";
+          $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html__("Last", 'accelerated-mobile-pages')."</a>";
         }
         $pagination_links .= '</div>';
 
