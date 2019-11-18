@@ -2368,7 +2368,7 @@ function ampforwp_talking_to_robots() {
 	  	}
   	}
   	// Meta Robots Tag From Yoast #1563
-  	if ( class_exists('WPSEO_Frontend') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selections') && false == ampforwp_get_setting('amp-inspection-tool') ) {
+  	if ( class_exists('WPSEO_Frontend') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && is_singular()) {
 		$class_instance = '';
 	    $class_instance = WPSEO_Frontend::get_instance();
 	    // robots() will return and print the meta robots tag
