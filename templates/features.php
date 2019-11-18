@@ -1175,7 +1175,7 @@ function ampforwp_sticky_social_icons(){
 			$facebook_like_url = '';
 			$facebook_like_url = $amp_permalink;
 			if ( $facebook_like_url ) { ?>
-				<amp-facebook-like width=90 height=18 style="margin-bottom:-18px;"
+				<amp-facebook-like width=90 height=18
 				 	layout="fixed"
 				 	data-size="large"
 				    data-layout="button_count"
