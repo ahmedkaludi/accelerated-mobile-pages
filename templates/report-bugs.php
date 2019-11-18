@@ -31,5 +31,4 @@ $sections[] = array(
 	    return $sections;
 	}
 }
-  add_filter("redux/options/redux_builder_amp/sections", 'ampforwp_reporting_bugs', PHP_INT_MAX);
 ?>

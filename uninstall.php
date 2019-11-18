@@ -56,9 +56,8 @@ if(isset($redux_builder_amp['ampforwp-delete-on-uninstall']) && $redux_builder_a
 				delete_post_meta_by_key( $post_meta ); 
 			}
 		}
-
+		delete_site_option('ampforwp_option_panel_view_type');
 	}else{
-		
 		delete_option($option_name);
 		if(is_array($optionsArray)){
 			foreach ($optionsArray as $key => $optionName) {
@@ -72,5 +71,6 @@ if(isset($redux_builder_amp['ampforwp-delete-on-uninstall']) && $redux_builder_a
 				delete_post_meta_by_key( $post_meta ); 
 			}
 		}
+		delete_option('ampforwp_option_panel_view_type');
 	}
 }

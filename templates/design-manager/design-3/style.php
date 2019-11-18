@@ -182,6 +182,7 @@ a.amp-social-facebook-messenger,.amp-social-facebookmessenger{background:#d5e1e6
 .custom-amp-socialsharing-mewe{background:#b8d6e6}
 .sticky_social .whatsapp-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 .sticky_social .line-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
+.sticky_social amp-facebook-like{margin-bottom:-8px;}
 <?php }?>
 /*Sticky Head For Design 3*/
 #header{ background: #fff; text-align: center; height:50px; box-shadow:0 0 32px rgba(0,0,0,.15); }

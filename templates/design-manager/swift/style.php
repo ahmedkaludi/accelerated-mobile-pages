@@ -559,7 +559,7 @@ table {
     overflow-x: auto;
     word-break: normal;
 }
-.artl-cnt table{ margin: 0 auto; text-align: center; width: 100%; display: inline-table; }
+.artl-cnt table{ margin: 0 auto; text-align: center; width: 100%; }
 p.nocomments {padding: 10px;color: #fff;}
 <?php if($redux_builder_amp['single-new-features'] && $redux_builder_amp['ampforwp-underline-content-links']){ ?> 
 .artl-cnt a{
@@ -826,7 +826,7 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .amp-comment-button a:hover{color:<?php echo ampforwp_sanitize_color($swift_btn_hvr_color) ?>;}
 .comment-form-comment #comment {border-color: #ccc;width: 100%;padding: 20px;}
 .cmts h3{margin: 0;font-size: 12px;padding-bottom: 6px;border-bottom: 1px solid #eee;font-weight: 400;letter-spacing: 0.5px;text-transform: uppercase;color: #444;}
-.cmts h3:after{content: "";display: block;width: 115px;border-bottom: 1px solid #005be2;position: relative;top: 7px;}
+.cmts h3:after{content: "";display: block;width: 115px;border-bottom: 1px solid <?php echo ampforwp_sanitize_color($swift_cs_color) ?>;position: relative;top: 7px;}
 .cmts ul{margin-top:16px;}
 .cmts ul li{list-style: none;margin-bottom: 20px;padding-bottom: 20px;border-bottom: 1px solid #eee;}
 .cmts .amp-comments-wrapper ul .children{margin-left:30px; }
@@ -1414,7 +1414,7 @@ thead th {
 	display: block;
 }
 .b-w .fsp, .arch-psts .fsp{
-    flex-basis: calc(100% - 30px);
+    flex-basis: calc(100%);
 }
 }
 <?php } // AMP woocommerce condition ends

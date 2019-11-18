@@ -20,22 +20,11 @@ function ampforwp_welcome_screen_do_activation_redirect() {
   }
 
   // Redirect to welcome page
-  wp_safe_redirect( esc_url( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) ) );
+  wp_safe_redirect( esc_url( add_query_arg( array( 'page' => 'amp_options&tab=1' ), admin_url( 'admin.php' ) ) ) );
   exit();
 }			
 
-add_filter('ampforwp_add_admin_subpages', 'ampforwp_add_welcome_pages');
-function ampforwp_add_welcome_pages($sections){
-	$sections[] = array(
-		'page_title'=> esc_html__('Welcome To AMPforWP plugin','accelerated-mobile-pages'),
-		'menu_title'=>esc_html__('Welcome to AMP','accelerated-mobile-pages'),
-		'page_permissions'=>'manage_options',
-		'menu_slug' => 'ampforwp-welcome-page',
-		'callback' => 'ampforwp_welcome_screen_content',
-		'custom_amp_menu'   => true
-	);
-	return $sections;
-}
+
 
 function ampforwp_welcome_screen_content() {
   ?>

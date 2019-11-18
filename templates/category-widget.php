@@ -142,7 +142,7 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
 
               echo '<option selected value="none">Recent Posts </option>';
               foreach( $categories as $category ) {
-                 echo '<option '. selected( $instance['category'], $category->term_id) . ' value="'. esc_attr($category->term_id) . '">' . esc_attr($category->name) . '</option>';
+                 echo '<option '. selected( $selected_category, $category->term_id) . ' value="'. esc_attr($category->term_id) . '">' . esc_attr($category->name) . '</option>';
                } ?>
           </select>
           </label>

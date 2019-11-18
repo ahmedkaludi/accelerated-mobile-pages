@@ -160,7 +160,7 @@ $avia_pb_for_ampchecker = array(
 Redux::setSection( $opt_name, array(
        'title'      => esc_html__( $pb_title, 'accelerated-mobile-pages' ),
        'id'         => 'amp-content-builder',
-       'class'      => 'ampforwp_new_features ',
+       'class'      => '',
        'subsection' => true,
        'fields' => $pb_for_amp,
        )

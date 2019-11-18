@@ -38,10 +38,12 @@
         }
     );
 
-    $.redux.ajax_save = function( button ) {
+    $.redux.ajax_save = function( button, $no_fade = '' ) {
 
         var overlay = $( document.getElementById( 'redux_ajax_overlay' ) );
-        overlay.fadeIn();
+        if ( true != $no_fade ){
+            overlay.fadeIn();
+        }
 
         // Add the loading mechanism
         jQuery( '.redux-action_bar .spinner' ).addClass( 'is-active' );
@@ -138,6 +140,11 @@
                         jQuery( '.wrap h2:first' ).parent().append( '<div class="error redux_ajax_save_error" style="display:none;"><p>' + response.status + '</p></div>' );
                         jQuery( '.redux_ajax_save_error' ).slideDown();
                         jQuery( "html, body" ).animate( {scrollTop: 0}, "slow" );
+                    }
+                    if( true == $no_fade ) {
+                        $('div.amp-ux-section-container').find('.amp-ux-loading').addClass('hide');
+                        $('div.amp-ux-section-container').find('.amp-ux-check').removeClass('hide');
+                        $('div.amp-ux-section-container').find('.amp-ux-check').html('&#10004;');
                     }
                 }
             }
@@ -647,7 +654,15 @@
         } else {
             sTab.click();
         }
-
+        if(amp_option_panel_view==""){
+            $.cookie(
+                'redux_current_tab', 1, {
+                    expires: 7,
+                    path: '/'
+                }
+            );
+            $( '.redux-container' ).find( '.redux-group-tab-link-a:first' ).click();
+        }
     };
 
     $.redux.initFields = function() {

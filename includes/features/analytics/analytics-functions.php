@@ -408,10 +408,12 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	$id = ampforwp_get_the_ID();
 	$title = get_the_title($id);
 	$category_detail = get_the_category($id);//$post->ID
+	$category_name = '';
 	if ( ! empty( $category_detail ) ) {
 		foreach($category_detail as $cd){
-			$category_name = $cd->cat_name;
+			$category_name_array[] = $cd->cat_name;
 		}
+		$category_name = implode( ', ', $category_name_array );
 	}
 	$tags = get_the_tags( $id );
 	$focusKeyword = '';

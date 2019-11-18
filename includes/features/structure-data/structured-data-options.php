@@ -20,13 +20,24 @@ use ReduxCore\ReduxFramework\Redux;
 
 add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_sd_fields');
 function ampforwp_add_sd_fields($fields){ 
-    if( is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
-           $fields[] = array(
-                       'id' => 'amp-cf7-SSL-info',
-                       'type' => 'info',
-                       'desc' =>"<div style='background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-30px -14px -18px -17px;'><span style='color:#303F9F;'> Note: </span> Structure data Extension is activated, you can setup the <a href=".admin_url( 'admin.php?page=structured_data_options&tab=5' )." target='_blank' >Schema Type Here</a></div>"
-                   );
+    if( function_exists('saswp_non_amp') ) {
+          $fields[] = array(
+              'id' => 'ampforwp-sd_modules_section',
+              'type' => 'section',
+              'title' => esc_html__('Structured Data has been Improved!', 'accelerated-mobile-pages'),
+              'indent' => true,
+              'layout_type' => 'accordion',
+              'accordion-open'=> 1 
+            );
 
+           $fields[] =  array(
+               'id'       => 'ampforwp_sd_module',
+               'type'     => 'raw',
+               'title'     => esc_html__('Structured Data', 'accelerated-mobile-pages'),
+               'content'  =>'<div class="col-wrapper">
+                                   <a href="'.admin_url('admin.php?page=structured_data_options&tab=5').'"> <div class="ampforwp-recommendation-btn updated-message"><p>Setup Schema Type Here</p></div> </a>
+                            <a class="amp_recommend_learnmore" href="https://ampforwp.com/tutorials/article/what-is-the-structured-data-update-all-about/" target="_blank">Learn more</a></div>'
+            );
            return $fields;
     }
     else {
@@ -67,7 +78,6 @@ function ampforwp_add_sd_fields($fields){
                                             </div>' 
                                             
                 );
-
         if( !is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') ) {
                 $fields[] =         array(
                       'id' => 'ampforwp-sd_1',
@@ -149,7 +159,7 @@ function ampforwp_add_sd_fields($fields){
                               'type'     => 'text',
                               'placeholder' => '550',
                               'tooltip-subtitle' => esc_html__('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
-                              'default'  => '700'
+                              'default'  => '1280'
                     );
                 $fields[] =   array(
                               'id'       => 'amp-structured-data-placeholder-image-height',
@@ -157,7 +167,7 @@ function ampforwp_add_sd_fields($fields){
                               'type'     => 'text',
                               'placeholder' => '350',
                               'tooltip-subtitle' => esc_html__('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
-                              'default'  => '550'
+                              'default'  => '720'
                      );
                 $fields[] =   array(
                               'id'      => 'amporwp-structured-data-video-thumb-url',
@@ -180,7 +190,7 @@ function ampforwp_add_sd_fields($fields){
     return $fields;
     }
 }
-if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
+if( ! function_exists('saswp_non_amp') ) {
     add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_extra_fields');
     function ampforwp_add_extra_fields($fields){
         $post_types = '';
@@ -192,18 +202,20 @@ if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
                 if( $post_type == 'post' || $post_type == 'page' ) {
                             continue;
                 }
+                $p_type = $post_type;
+                $post_type = ucfirst($post_type);
                 $custom_fields[] = array(
-                  'id'       => 'ampforwp-sd-type-'. $post_type,
+                  'id'       => 'ampforwp-sd-type-'.esc_attr($p_type),
                   'type'     => 'select',
                   'title'    => __($post_type, 'accelerated-mobile-pages'),
-                  'tooltip-subtitle' => __('Select the Structured Data Type for '.$post_type, 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => 'Select the Structured Data Type for '.esc_attr($p_type),
                   'options'  =>  ampforwp_get_sd_types(),
                   'default'  => 'BlogPosting',
                 );
                 $extra_fields = array_merge($extra_fields, $custom_fields);
             }
         }
-        array_splice($fields, 3, 0,  $extra_fields);
+        array_splice($fields, 5, 0,  $extra_fields);
         return $fields;
      }
 }
