@@ -194,20 +194,20 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 0.9.98.16 (18th November 2019) =
 * Improvement: Need to make compatibility of Advance setting options of yoast seo into AMP #3684
 * Improvement: Add filter to modify HTML attributes #3685
-* Fixed:Jetpack causing errors after update #3849
+* Fixed: Jetpack causing errors after update #3849
 * Fixed: Facebook like button is not showing correctly after last update in design3 #3742
-* Fixed:[URGENT] Vuukle API KEY missing #3792
-* Fixed:Admin tool bar css is not loading #3788
-* Fixed:Hide button always showing on page #3762
-* Fixed:Meta description are not showing properly in genesis #3761
-* Fixed:Non-Responsive tables after version 0.9.98.9 #3746
-* Fixed:Wrong amphtml when static page is selected in reading settings along with ?amp endpoint #3717
-* Fixed:Homepage posts image alignment issue #3691
-* Fixed:Lightbox not working for single images #3683
-* Fixed:Notice: Undefined index: category #3829
-* Fixed:Notice: Undefined variable: category_name #3827
-* Fixed:AMP Dev mode when disabled throwing a fatal error in mobile mode for blog. #3824
-* Fixed:Warning when trying to save the option #3800
+* Fixed: [URGENT] Vuukle API KEY missing #3792
+* Fixed: Admin tool bar css is not loading #3788
+* Fixed: Hide button always showing on page #3762
+* Fixed: Meta description are not showing properly in genesis #3761
+* Fixed: Non-Responsive tables after version 0.9.98.9 #3746
+* Fixed: Wrong amphtml when static page is selected in reading settings along with ?amp endpoint #3717
+* Fixed: Homepage posts image alignment issue #3691
+* Fixed: Lightbox not working for single images #3683
+* Fixed: Notice: Undefined index: category #3829
+* Fixed: Notice: Undefined variable: category_name #3827
+* Fixed: AMP Dev mode when disabled throwing a fatal error in mobile mode for blog. #3824
+* Fixed: Warning when trying to save the option #3800
 
 = 0.9.98.15 (15th November 2019) =
 * Improvement: New UX for AMP Options Panel #3520
