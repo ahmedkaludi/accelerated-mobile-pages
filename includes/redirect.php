@@ -257,7 +257,7 @@ function ampforwp_redirection() {
         return;
     }
 
-    if ( ! session_id() ) {
+    if ( function_exists('session_id') && ! session_id() ) {
         session_start();
     }
 
