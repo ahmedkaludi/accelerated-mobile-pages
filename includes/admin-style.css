@@ -1547,7 +1547,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     -ms-box-shadow: @shadow;
     -o-box-shadow: @shadow;
     box-shadow: @shadow;
-    .label {
+.ampforwp-new-ux .label{
         position: absolute;
         top: 56px;
         bottom: 0;
