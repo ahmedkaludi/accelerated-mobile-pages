@@ -6026,7 +6026,9 @@ function ampforwp_vuukle_comments_markup() {
 	$srcUrl = add_query_arg('url' ,get_permalink(), $srcUrl);
 	$srcUrl = add_query_arg('host' ,$siteUrl, $srcUrl);
 	$srcUrl = add_query_arg('id' , $post->ID, $srcUrl);
-	$srcUrl = add_query_arg('apiKey' , $apiKey, $srcUrl); 
+	if(!empty($apiKey)){
+		$srcUrl = add_query_arg('apiKey' , $apiKey, $srcUrl);
+	}  
 	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl);
 	$srcUrl = add_query_arg('img' , esc_url($img), $srcUrl);
 	$srcUrl = add_query_arg('tags' , urlencode($tag_name), $srcUrl);  
