@@ -315,7 +315,14 @@ if(!function_exists('ampforwp_aq_resize')) {
         }
         elseif( function_exists('fifu_activate') || is_plugin_active('fifu-premium/fifu-premium.php') ){
             return fifu_amp_url($url, $width, $height); 
-        } 
+        }else if (function_exists('wpp_get_option')){
+		    $image = array(
+			    0 => $url,
+			    1 => $width,
+			    2 => $height,
+		    );
+		    return $image;
+	    }
         else {
             $aq_resize = Aq_Resize::getInstance();
             return $aq_resize->process( $url, $width, $height, $crop, $single, $upscale );
