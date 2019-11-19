@@ -202,6 +202,8 @@ function call_loops_standard($data=array()){
 	if( isset( $data['posts_per_page'] ) && $data['posts_per_page']>0 ){
 		$args['posts_per_page'] = $data['posts_per_page'];
 	}
+	if(isset($data['ampforwp_query_array']))
+		$args = array_merge($args,$data['ampforwp_query_array']);
 	
 	$filtered_args = apply_filters('ampforwp_query_args', $args);
 	$amp_q = new WP_Query( $filtered_args );
