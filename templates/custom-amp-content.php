@@ -176,13 +176,15 @@ function amp_content_editor_meta_save( $post_id ) {
       update_post_meta($post_id, 'ampforwp_custom_content_editor',  $ampforwp_custom_content_editor );
     }
     // Save data of Custom AMP Editor CheckBox
-    if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) { 
-      $ampforwp_custom_editor_checkbox = null;      
-      if ( isset($_POST['ampforwp_custom_content_editor_checkbox']) ) {
-        $ampforwp_custom_editor_checkbox = sanitize_text_field($_POST[ 'ampforwp_custom_content_editor_checkbox' ]);
+    if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {
+      $unsan_ampforwp_custom_content_editor = htmlentities($_POST[ 'ampforwp_custom_content_editor' ]);
+      if ( function_exists('sanitize_textarea_field') ) {
+        $ampforwp_custom_content_editor = wp_kses_post( $unsan_ampforwp_custom_content_editor );
       }
-
-      update_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', $ampforwp_custom_editor_checkbox ); 
+      else{
+        $ampforwp_custom_content_editor = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $unsan_ampforwp_custom_content_editor ) ));
+      }
+      update_post_meta($post_id, 'ampforwp_custom_content_editor',  $ampforwp_custom_content_editor );
     }
 
     // Save data of Sidebar Select
