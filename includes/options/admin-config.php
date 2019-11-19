@@ -2524,6 +2524,15 @@ Redux::setSection( $opt_name, array(
                         'required' => array( 'amp-mobile-redirection', '=' , 1 )
                     ),
                     array(
+                        'id'       => 'amp-redirection-search',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Search Pages', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable/Disable Mobile redirection on Search Pages.','accelerated-mobile-pages'),
+                        'default' => 1,
+                        'required' => array( 'amp-mobile-redirection', '=' , 1 )
+                    ),
+                    array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
                         'title'    => esc_html__('Change Internal Links to AMP', 'accelerated-mobile-pages'),
