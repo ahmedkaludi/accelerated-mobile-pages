@@ -30,7 +30,8 @@
 						<ol class="clearfix">
 						<?php 
 						$number_of_posts = 6;
-						if( !empty(ampforwp_get_setting('ampforwp-design3-number-of-recent-posts')) ){
+						$rcp = ampforwp_get_setting('ampforwp-design3-number-of-recent-posts');
+						if(!empty($rcp) ){
 							$number_of_posts = (int) ampforwp_get_setting('ampforwp-design3-number-of-recent-posts');
 						}
 						while( amp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
