@@ -88,3 +88,5 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 58. Improvement in iframe #3563
 59. Condition added in Wistia sanitizer to disable scripts when AMP Page Builder is enabled. #3587
 60. Added the Filter to modify attributes in HTML Tag #3685
+61. Undefined variable amp_url issue fixed #3776
+62. Warnings fixed of util function to get array component #3778

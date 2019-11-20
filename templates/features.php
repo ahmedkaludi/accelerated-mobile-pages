@@ -245,10 +245,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		        return;
 		      }
 		    }
-		// no-amphtml for search
-		    // if(is_search()){
-		    // 	return;
-		    // }
+		// Search results on/off option #3786
+		    if(is_search() && false == ampforwp_get_setting('amp-redirection-search')){
+		     	return;
+		    }
 		// #872 no-amphtml if selected as hide from settings
 		if ( is_category_amp_disabled() ) {
 			return;

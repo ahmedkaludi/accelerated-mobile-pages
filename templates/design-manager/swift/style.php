@@ -669,6 +669,7 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 	<?php } // H6 Ends
  // swift Content Heading Sizes Ends?>
 .cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-break: break-word;}
+.cntn-wrp .wp-block-image,.wp-block-embed{margin:15px 0px;}
 .artl-cnt ul li, .artl-cnt ol li{list-style-type: none;position: relative;
 <?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) {?> 
 padding-right:20px;

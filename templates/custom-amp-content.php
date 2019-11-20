@@ -176,12 +176,7 @@ function amp_content_editor_meta_save( $post_id ) {
     // Save data of Custom AMP Editor
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {
       $unsan_ampforwp_custom_content_editor = htmlentities($_POST[ 'ampforwp_custom_content_editor' ]);
-      if ( function_exists('sanitize_textarea_field') ) {
-        $ampforwp_custom_content_editor = sanitize_textarea_field( $unsan_ampforwp_custom_content_editor );
-      }
-      else{
-        $ampforwp_custom_content_editor = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $unsan_ampforwp_custom_content_editor ) ));
-      }
+      $ampforwp_custom_content_editor = sanitize_post( $unsan_ampforwp_custom_content_editor );
       update_post_meta($post_id, 'ampforwp_custom_content_editor',  $ampforwp_custom_content_editor );
     }
     // Save data of Custom AMP Editor CheckBox

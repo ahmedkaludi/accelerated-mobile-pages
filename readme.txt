@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3
-Stable tag: 0.9.98.16
+Stable tag: 0.9.98.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,19 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.17 (19th November 2019) =
+* Fixed: Validation error of 'srcset' in 'amp-img' after Latest update of Divi Theme (From version 4.0.2) #3803
+* Fixed: Logo is not resizing when using fixed width #3696
+* Fixed: Fatal Error when "AMP FOR WP" is activated on AMP FOR WP Garage URL #3765
+* Fixed: Images and Videos with Gutenberg does not have proper spacing #3634
+* Fixed: Undefined variable: amp_url #3776
+* Fixed: amp-image-lightbox markup is loading in paginated post even the image is not present #3700
+* Fixed: Search results on/off option in amp #3786
+* Fixed: Internal links are breaking in Persian language #3777
+* Fixed: Use util function to get array component. Fixes #3778 #3842
+* Fixed: Add Hyperlink option to Gallery module images. #3850
+* Fixed: Need to remove WPBakery Page Builder Support Option #3855
+
 = 0.9.98.16 (18th November 2019) =
 * Improvement: Need to make compatibility of Advance setting options of yoast seo into AMP #3684
 * Improvement: Add filter to modify HTML attributes #3685
@@ -212,12 +225,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 0.9.98.15 (15th November 2019) =
 * Improvement: New UX for AMP Options Panel #3520
 * Improvement: Improvement done in "Want to clear the Cache?" option in Performance section #3828
-
-= 0.9.98.14 (7th OCTOBER 2019) =
-* Fixed: Value Attribute Stripping out from the forms added in the content. #3689
-* Fixed: Remove AAWP from extension list #3735
-* Fixed: Data is not saving while Importing options from the json file #3667
-* Fixed: Debug warning #3723, #3729, #3730, #3731
-
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

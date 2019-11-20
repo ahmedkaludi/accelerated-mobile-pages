@@ -38,10 +38,14 @@ if( !function_exists( 'amp_framework_logo_styles' ) ){
   global $redux_builder_amp;
   $max_width = '190px';
    $width =  (integer) ampforwp_default_logo('width');
-  if ( true == ampforwp_get_setting('ampforwp-custom-logo-dimensions') && true == ampforwp_get_setting('ampforwp-custom-logo-dimensions-options') && 'flexible' == ampforwp_get_setting('ampforwp-custom-logo-dimensions-options') ) {
-       $max_width =  (integer) $redux_builder_amp['ampforwp-custom-logo-dimensions-slider'];
+  if ( true == ampforwp_get_setting('ampforwp-custom-logo-dimensions') && 'flexible' == ampforwp_get_setting('ampforwp-custom-logo-dimensions-options') ) {
+       $max_width =  (integer) ampforwp_get_setting('ampforwp-custom-logo-dimensions-slider');
        $width =  (integer) ampforwp_default_logo('width');
        $max_width = ceil(($width*$max_width)/100)."px";
+  }elseif( true == ampforwp_get_setting('ampforwp-custom-logo-dimensions') && 'prescribed' == ampforwp_get_setting('ampforwp-custom-logo-dimensions-options') ) {
+       $max_width =  (integer) ampforwp_get_setting('opt-media-width');
+       $width =  (integer) ampforwp_default_logo('width');
+       $max_width .="px";     
   }
    $width .= 'px';
    ?>

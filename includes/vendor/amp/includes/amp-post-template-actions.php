@@ -54,7 +54,8 @@ function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	if ( empty( $metadata ) ) {
 		return;
 	}
-	if( (ampforwp_get_setting('ampforwp-seo-yoast-schema') == false && ampforwp_get_setting('ampforwp-seo-selection') == 'yoast') || empty(ampforwp_get_setting('ampforwp-seo-selection')) ){
+	$seo_sel = ampforwp_get_setting('ampforwp-seo-selection');
+	if( (ampforwp_get_setting('ampforwp-seo-yoast-schema') == false && ampforwp_get_setting('ampforwp-seo-selection') == 'yoast') || empty($seo_sel) ){
 	?>
 	<script type="application/ld+json"><?php echo wp_json_encode( $metadata ); ?></script>
 	<?php

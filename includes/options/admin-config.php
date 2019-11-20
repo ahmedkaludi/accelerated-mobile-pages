@@ -1498,13 +1498,15 @@ Redux::setArgs( "redux_builder_amp", $args );
         $roles = '';
         $metabox_access = ampforwp_get_setting('amp-meta-permissions');
         if($metabox_access == 'admin'){
-            if(empty(ampforwp_get_setting('ampforwp-role-based-access'))){
+            $rba = ampforwp_get_setting('ampforwp-role-based-access');
+            if(empty($rba)){
                 $roles = array('administrator');
             }else{
                 $roles = ampforwp_get_setting('ampforwp-role-based-access');
             }
         }else{
-            if(empty(ampforwp_get_setting('ampforwp-role-based-access'))){
+            $rba = ampforwp_get_setting('ampforwp-role-based-access');
+            if(empty($rba)){
                 $roles = array('administrator','editor');
             }else{
                 $roles = ampforwp_get_setting('ampforwp-role-based-access');
@@ -2518,6 +2520,15 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'switch',
                         'title'    => __('Tablets', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('Enable/Disable Mobile redirection for Tablets.','accelerated-mobile-pages'),
+                        'default' => 1,
+                        'required' => array( 'amp-mobile-redirection', '=' , 1 )
+                    ),
+                    array(
+                        'id'       => 'amp-redirection-search',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Search Pages', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable/Disable Mobile redirection on Search Pages.','accelerated-mobile-pages'),
                         'default' => 1,
                         'required' => array( 'amp-mobile-redirection', '=' , 1 )
                     ),
