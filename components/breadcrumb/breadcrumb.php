@@ -119,11 +119,12 @@
                         $get_cat_parents = rtrim(get_category_parents($primary_cateogory, false, '/'),'/');
                        }
                    }
-                    // Get parent any categories and create array 
-                    $cat_parents = explode('/',$get_cat_parents);
-                    if(count($cat_parents)==2){
+                    if (strpos($get_cat_parents, '/') !== false) {
                         $cat_parents = explode(',',$get_cat_parents);
-                    }                  
+                    }else{
+                        // Get parent any categories and create array 
+                        $cat_parents = explode('/',$get_cat_parents);
+                    }
                     // Loop through parent categories and store in variable $cat_display
                     $cat_display = '';
                     foreach($cat_parents as $parents) {
