@@ -71,7 +71,10 @@ ol, ul {list-style-position: inside;}
     <?php if ( $content_max_width > 0 ) : ?>
     max-width: <?php echo esc_attr( sprintf( '%dpx', $content_max_width ) ); ?>;
     margin: 0 auto;
-    <?php endif; ?>
+    <?php endif;
+      if((is_singular() || ampforwp_is_front_page() ) && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
+      max-width:100%;
+    <?php } ?>
 }
 figure.aligncenter amp-img {
  margin: 0 auto;
