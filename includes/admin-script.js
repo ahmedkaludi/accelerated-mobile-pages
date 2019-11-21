@@ -690,9 +690,13 @@ jQuery(document).ready(function($){
         jQuery.post(ajaxurl, notice, function(response) {     
         });
     });
+
+    if(redux_data.ampforwp_css_tree_shaking == '0'){
+        jQuery('#ampforwp-clear-clearcss-data').addClass('hide');
+        jQuery('#ampforwp-clear-clcss-msg').html('Please Save Before clearing Cache');
+    }
         $('#ampforwp-clear-clearcss-data').click(function(e){
-            if(redux_data.ampforwp_css_tree_shaking == '0')
-                return true;
+            $('#ampforwp-clear-clcss-msg').removeClass('hide');
         $('#ampforwp-clear-clcss-msg').text(' Please wait').css({'line-height':'25px'});
         var datastr = {
             'action': 'ampforwp_clear_css_tree_shaking',
