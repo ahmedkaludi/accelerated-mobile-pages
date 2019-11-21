@@ -1001,11 +1001,6 @@ function ampforwp_remove_schema_data() {
 	if ( function_exists('ampforwp_remove_filters_for_class')) {
 		//Remove Disallowed 'like' tag from facebook Like button by Ultimate Facebook
 		ampforwp_remove_filters_for_class( 'the_content', 'Wdfb_UniversalWorker', 'inject_facebook_button', 10 );
-		//Compatibility with Sassy Social Share Plugin
-		ampforwp_remove_filters_for_class( 'the_content', 'Sassy_Social_Share_Public', 'render_sharing', 10 );
-		ampforwp_remove_filters_for_class( 'amp_post_template_head', 'Sassy_Social_Share_Public', 'frontend_scripts', 10 );
-		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_inline_style', 10 );
-		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_amp_css', 10 );
 		//Removing the Monarch social share icons from AMP
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_inline', 10 );
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_media', 9999 );
@@ -7129,11 +7124,11 @@ function ampforwp_head_css(){
 				$incurl = trailingslashit($incurl) .'fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987';
 				$css.='@font-face{font-family:dashicons;src:url('.esc_url( $incurl ).') format("truetype");
 				font-weight:400;font-style:normal}.amp-wp-header,.design2-header,.design3-header,.header{margin-top:32px}#headerwrap{top:32px}#wp-admin-bar-my-account .avatar{float:right;margin-top:3px}#wp-admin-bar-wpseo-notifications .yoast-issue-counter{float:right}@media(max-width:782px){.amp-wp-header,.design2-header,.design3-header,.header{margin-top:46px}#headerwrap{top:46px}}';
-				echo css_sanitizer($css);
+				echo ampforwp_css_sanitizer($css);
 			}
 		}
 	}
-	function css_sanitizer($css){
+	function ampforwp_css_sanitizer($css){
 		$css = preg_replace( '/\s*!important/', '', $css, -1, $important_count );
 		$css = preg_replace( '/overflow(-[xy])?\s*:\s*(auto|scroll)\s*;?\s*/', '', $css, -1, $overlow_count );
             $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
@@ -7259,3 +7254,17 @@ if(!function_exists('ampforwp_remove_admin_help')){
 		}
 	}
 }
+
+if(!function_exists('ampforwp_sassy_icon_style')){
+	function ampforwp_sassy_icon_style(){
+		$css = get_transient('ampforwp_sassy_css');
+		if($css == false){
+			$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/includes/sassy-style.css");
+			set_transient('ampforwp_sassy_css', $css);
+		}
+		echo ampforwp_css_sanitizer($css);
+	}
+}	
+if(function_exists('heateor_sss_run')){
+	add_action('amp_post_template_css', 'ampforwp_sassy_icon_style'); 
+}	
