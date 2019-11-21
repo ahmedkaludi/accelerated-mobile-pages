@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3
-Stable tag: 0.9.98.17
+Stable tag: 0.9.98.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,21 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+
+= 0.9.98.18 (21th November 2019) =
+* Improvement: Show the number of shares with Sassy Social Share #3588
+* Fixed: Need to improvment in table code #3664
+* Fixed: Change internal links to AMP is not working when custom permalink having the extenison.html #3811
+* Fixed: Width of the recent posts and related posts thumbnail image should be same #3639
+* Fixed: Page should be full width if the page builder is used #3756
+* Fixed: Remove broken link on source code like - link rel="dns-prefetch" #3697
+* Fixed: leave a comment added when making pages with pagebuilder #3755
+* Fixed: Need to adding gaping for col 2 in AMP Pagebuilder #3796
+* Fixed: CSS issue. #3785
+* Fixed: Facebook comment is not changing language when we select another language #3710
+* Fixed: Verify button of Google Font API key is not working after update #3858
+* Fixed: Cache is not clearing after clicking clear cache button #3863
 
 = 0.9.98.17 (19th November 2019) =
 * Fixed: Validation error of 'srcset' in 'amp-img' after Latest update of Divi Theme (From version 4.0.2) #3803
