@@ -2196,11 +2196,11 @@ if(is_singular() || ampforwp_is_front_page()){?>
 }
 <?php
 if(is_singular() && true == ampforwp_get_setting('amp-sticky-header')){?>
-.cntn-wrp *[id]:before { 
+.cntn-wrp a[id]:before, .cntn-wrp div[id]:before{
   display: block; 
   content: " "; 
-  margin-top: -75px; 
-  height: 75px; 
+  margin-top: -107px;
+  height: 107px;
   visibility: hidden;}
 <?php } 
 if(class_exists('MCI_Footnotes')){ ?>
