@@ -241,6 +241,8 @@ Vue.component('amp-pagebuilder-module-modal', {
 										if(repeatField[repeatField.name+"_image_data"]){
 											repeaterData[repeatField.name+"_image_data"] = repeatField[repeatField.name+"_image_data"];
 										}
+										var lastvalue = repeatField.name.split("_");
+										repeaterData['field_index'] = lastvalue[lastvalue.length-1];
 									});
 									repeaterData['index'] = (repKey+1);
 									moduleData.repeater.push(repeaterData);
@@ -251,7 +253,7 @@ Vue.component('amp-pagebuilder-module-modal', {
 				}else if(app.modalType=='rowSetting'){
 					var a = {};
 					fields.forEach(function(fieldData,fieldKey){
-						a[fieldData.name] = fieldData.default
+						a[fieldData.name] = fieldData.default;
 						if(fieldData[fieldData.name+"_image_data"]){
 							a[fieldData.name+"_image_data"] = fieldData[fieldData.name+"_image_data"];
 						}
@@ -307,6 +309,12 @@ Vue.component('amp-pagebuilder-module-modal', {
 		}
 		return returnOpt;
 	},
+	  repeater_rows_moved: function(evt){
+		  if(evt && evt.type=='end'){
+			  this.$forceUpdate();
+		  }
+		  return true;
+	  },
 
 
 
@@ -430,7 +438,10 @@ function openModulePopup(event,type){
 								moduleData.repeater.forEach(function(savedREPValue,savedkey){
 									var allRepeaterFileds = JSON.parse(JSON.stringify(app.modalcontent.repeater.fields));
 									allRepeaterFileds.forEach(function(newFields,newKey){
-										newFields.name = newFields.name+'_'+savedkey;
+										if (typeof savedREPValue.field_index === 'undefined'){
+											savedREPValue.field_index  = savedkey;
+										}
+										newFields.name = newFields.name+'_'+savedREPValue.field_index;
 										//if(savedREPValue[newFields.name]){
 											//console.log(savedREPValue[newFields.name],newFields.name)
 											newFields.default = savedREPValue[newFields.name];
