@@ -250,11 +250,11 @@ class AMPforWP_Fields
 			$required = 'required="'.esc_attr($this->required[0]).'"';
 			$hide = ' hide';
 		}
-		$output = '<div class="ux-field-container amp-ux-select-container '.$hide.'">';
+		$output = '<div class="ux-field-container amp-ux-select-container '.$hide.'" '.esc_attr($required).'>';
 		if ( !empty($this->title) ) {
 			$output .= '<h2 class="'.$this->element_class.'">'.esc_html__($this->title).'</h2>';
 		}
-		$output .= '<select id="'.$this->id.'" class="'.$this->class.'" '.$required.' '.$this->data_href.'>';
+		$output .= '<select id="'.$this->id.'" class="'.$this->class.'"  '.$this->data_href.'>';
 		if ( !empty($this->options) ) {
 			foreach ( $this->options as $option_key => $option_value ) {
 				if( $option_key == $this->default ) {
@@ -291,8 +291,8 @@ class AMPforWP_Fields
 		if ( isset($fields['default']) && '1' == $fields['default'] ){
 			$checked = 'checked';
 		}
-		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).'">
-				<label><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" '.esc_attr($required).'' . esc_attr($checked).'>'.esc_html__($this->title).'</label></div>';
+		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).' '.esc_attr($required).'">
+				<label><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" ' . esc_attr($checked).'>'.esc_html__($this->title).'</label></div>';
 		echo $output;
 	}
 	public function ampforwp_field_switch($fields){
