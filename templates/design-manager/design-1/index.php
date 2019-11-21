@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<?php do_action('amp_experiment_meta', $this); ?>
-    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+    <link rel="dns-prefetch" href="//cdn.ampproject.org">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<style amp-custom>
 		<?php $this->load_parts( array( 'style' ) ); ?>
