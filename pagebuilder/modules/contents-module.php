@@ -592,7 +592,7 @@ if ( is_admin() ) {
         if( $total_num_pages != $paged ){
           $next_page = add_query_arg( array( $pagination_text => $total_num_pages ), $queryUrl );
 	        $lastLabel = (isset($fieldValues['ampforwp_pb_cat_pagination_last']) && !empty($fieldValues['ampforwp_pb_cat_pagination_last'])) ? $fieldValues['ampforwp_pb_cat_pagination_last'] : "Last";
-          $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html__("Last", 'accelerated-mobile-pages')."</a>";
+          $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html__($lastLabel, 'accelerated-mobile-pages')."</a>";
         }
         $pagination_links .= '</div>';
 
