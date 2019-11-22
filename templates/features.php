@@ -3140,6 +3140,7 @@ function ampforwp_content_sanitizer( $content ) {
 
 		if ( $amp_custom_content ) {
 			global $data;
+			$data = (array) $data;
 			$data['amp_component_scripts'] 	= $amp_custom_content->get_amp_scripts();
 			$data['post_amp_styles'] 		= $amp_custom_content->get_amp_styles();
 			return $amp_custom_content->get_amp_content();
