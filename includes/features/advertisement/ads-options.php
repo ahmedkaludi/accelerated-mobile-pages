@@ -119,7 +119,6 @@
                             'required' => array(
                                             array('enable-amp-ads-1', '=' , '1'),
                                             array('enable-amp-ads-type-1', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Width', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -132,7 +131,6 @@
                             'required' => array(
                                             array('enable-amp-ads-1', '=' , '1'),
                                             array('enable-amp-ads-type-1', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Height', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -177,18 +175,7 @@
                                         ),
                             'placeholder'=> 'MXXScriptRootCXXXXXX'
                         ); 
-                 $fields[] =       array(
-                            'class' => 'child_opt',
-                            'id'        => 'enable-amp-ads-mgid-flexible',
-                            'type'      => 'switch',
-                            'title'     => esc_html__('Flexible AMP widget', 'accelerated-mobile-pages'),
-                            'tooltip-subtitle'      => esc_html__('It will look like usual "fixed size AMP widget", without any specific width-and-height values.', 'accelerated-mobile-pages'),
-                            'default'   => 0,
-                            'required' => array(
-                                            array('enable-amp-ads-1', '=' , '1'),
-                                            array('enable-amp-ads-type-1', '=' , 'mgid'),
-                                        ),
-                            );
+                 
                 // Ad 1 ends
 
                 // Ad 2 Starts
@@ -280,7 +267,6 @@
                             'required' => array(
                                             array('enable-amp-ads-2', '=' , '1'),
                                             array('enable-amp-ads-type-2', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-2', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Width', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -293,7 +279,6 @@
                             'required' => array(
                                             array('enable-amp-ads-2', '=' , '1'),
                                             array('enable-amp-ads-type-2', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-2', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Height', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -338,18 +323,7 @@
                                         ),
                             'placeholder'=> 'MXXScriptRootCXXXXXX'
                         ); 
-                 $fields[] =       array(
-                            'class' => 'child_opt',
-                            'id'        => 'enable-amp-ads-mgid-flexible-2',
-                            'type'      => 'switch',
-                            'title'     => esc_html__('Flexible AMP widget', 'accelerated-mobile-pages'),
-                            'tooltip-subtitle'      => esc_html__('It will look like usual "fixed size AMP widget", without any specific width-and-height values.', 'accelerated-mobile-pages'),
-                            'default'   => 0,
-                            'required' => array(
-                                            array('enable-amp-ads-2', '=' , '1'),
-                                            array('enable-amp-ads-type-2', '=' , 'mgid'),
-                                        ),
-                        );
+                 
                 // Ad 2 ends
 
                 // Ad 3 starts
@@ -457,7 +431,6 @@
                             'required' => array(
                                             array('enable-amp-ads-3', '=' , '1'),
                                             array('enable-amp-ads-type-3', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-3', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Width', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -470,7 +443,6 @@
                             'required' => array(
                                             array('enable-amp-ads-3', '=' , '1'),
                                             array('enable-amp-ads-type-3', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-3', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Height', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -515,18 +487,7 @@
                                         ),
                             'placeholder'=> 'MXXScriptRootCXXXXXX'
                         ); 
-                 $fields[] =       array(
-                            'class' => 'child_opt',
-                            'id'        => 'enable-amp-ads-mgid-flexible-3',
-                            'type'      => 'switch',
-                            'title'     => esc_html__('Flexible AMP widget', 'accelerated-mobile-pages'),
-                            'tooltip-subtitle'      => esc_html__('It will look like usual "fixed size AMP widget", without any specific width-and-height values.', 'accelerated-mobile-pages'),
-                            'default'   => 0,
-                            'required' => array(
-                                            array('enable-amp-ads-3', '=' , '1'),
-                                            array('enable-amp-ads-type-3', '=' , 'mgid'),
-                                        ),
-                        );
+                
                 // Ad 3 ends
 
                 // Ad 4 Starts
@@ -618,7 +579,6 @@
                             'required' => array(
                                             array('enable-amp-ads-4', '=' , '1'),
                                             array('enable-amp-ads-type-4', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-4', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Width', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -631,7 +591,6 @@
                             'required' => array(
                                             array('enable-amp-ads-4', '=' , '1'),
                                             array('enable-amp-ads-type-4', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-4', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Height', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -676,18 +635,7 @@
                                         ),
                             'placeholder'=> 'MXXScriptRootCXXXXXX'
                         ); 
-                 $fields[] =       array(
-                            'class' => 'child_opt',
-                            'id'        => 'enable-amp-ads-mgid-flexible-4',
-                            'type'      => 'switch',
-                            'title'     => esc_html__('Flexible AMP widget', 'accelerated-mobile-pages'),
-                            'tooltip-subtitle'      => esc_html__('It will look like usual "fixed size AMP widget", without any specific width-and-height values.', 'accelerated-mobile-pages'),
-                            'default'   => 0,
-                            'required' => array(
-                                            array('enable-amp-ads-4', '=' , '1'),
-                                            array('enable-amp-ads-type-4', '=' , 'mgid'),
-                                        ),
-                        );
+                 
                 // Ad 4 ends
 
                 //Ad 5 Starts
@@ -779,7 +727,6 @@
                             'required' => array(
                                             array('enable-amp-ads-5', '=' , '1'),
                                             array('enable-amp-ads-type-5', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-5', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Width', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -792,7 +739,6 @@
                             'required' => array(
                                             array('enable-amp-ads-5', '=' , '1'),
                                             array('enable-amp-ads-type-5', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-5', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Height', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -837,18 +783,7 @@
                                         ),
                             'placeholder'=> 'MXXScriptRootCXXXXXX'
                         ); 
-                 $fields[] =       array(
-                            'class' => 'child_opt',
-                            'id'        => 'enable-amp-ads-mgid-flexible-5',
-                            'type'      => 'switch',
-                            'title'     => esc_html__('Flexible AMP widget', 'accelerated-mobile-pages'),
-                            'tooltip-subtitle'      => esc_html__('It will look like usual "fixed size AMP widget", without any specific width-and-height values.', 'accelerated-mobile-pages'),
-                            'default'   => 0,
-                            'required' => array(
-                                            array('enable-amp-ads-5', '=' , '1'),
-                                            array('enable-amp-ads-type-5', '=' , 'mgid'),
-                                        ),
-                        );
+                 
 
                 //Ad 6 Starts
                 if ( ! function_exists('amp_activate') ) {
@@ -940,7 +875,6 @@
                             'required' => array(
                                             array('enable-amp-ads-6', '=' , '1'),
                                             array('enable-amp-ads-type-6', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-6', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Width', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -953,7 +887,6 @@
                             'required' => array(
                                             array('enable-amp-ads-6', '=' , '1'),
                                             array('enable-amp-ads-type-6', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-6', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Height', 'accelerated-mobile-pages'),
                             'default'   => '',
@@ -998,18 +931,7 @@
                                         ),
                             'placeholder'=> 'MXXScriptRootCXXXXXX'
                         ); 
-                 $fields[] =       array(
-                            'class' => 'child_opt',
-                            'id'        => 'enable-amp-ads-mgid-flexible-6',
-                            'type'      => 'switch',
-                            'title'     => esc_html__('Flexible AMP widget', 'accelerated-mobile-pages'),
-                            'tooltip-subtitle'      => esc_html__('It will look like usual "fixed size AMP widget", without any specific width-and-height values.', 'accelerated-mobile-pages'),
-                            'default'   => 0,
-                            'required' => array(
-                                            array('enable-amp-ads-6', '=' , '1'),
-                                            array('enable-amp-ads-type-6', '=' , 'mgid'),
-                                        ),
-                        );
+                 
                 }
             }                   
                 $fields[] =    array(
