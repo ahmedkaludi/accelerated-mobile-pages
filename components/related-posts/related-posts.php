@@ -60,7 +60,12 @@ function ampforwp_related_post_loop_query(){
 	    'ignore_sticky_posts'=>1,
 		'has_password' => false ,
 		'post_status'=> 'publish',
-		'no_found_rows'	=> true
+		'no_found_rows'	=> true,
+		'meta_query' => array(
+			array(
+				'key'        => 'ampforwp-amp-on-off',
+				'value'      => 'default',
+			))
 		);
 	if($redux_builder_amp['ampforwp-single-select-type-of-related']==2 && 'post' == $post->post_type ){
 	    $categories = get_the_category($post->ID);
