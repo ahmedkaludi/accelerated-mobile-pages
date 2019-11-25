@@ -105,8 +105,6 @@
 					<?php if ( comments_open() ) { ?>
 				    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow" title="<?php echo ampforwp_get_setting('amp-translator-leave-a-comment-text') ?>"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
 
-					} else { 
-						echo "<p class='nocomments'>".esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  )) ." </p>";
 					}?>
 				</div> <?php 
 			} ?>

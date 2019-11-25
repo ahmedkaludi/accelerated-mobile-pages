@@ -506,7 +506,6 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 	#respond p {margin: 12px 0;}
 	<?php if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && ampforwp_get_comments_status() && true == ampforwp_get_setting('wordpress-comments-support') ){ ?>
 	.amp-comment-button{background-color: <?php echo ampforwp_sanitize_color($swift_cs_color) ?>;font-size: 15px;float: none;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
-	.amp-comment-button .nocomments{color: #fff;display: block;padding: 7px 0px 8px 0px;}
 	.cmts{width:100%;display:inline-block;clear:both;margin-top:40px;}
 	.amp-comment-button{background-color: <?php echo ampforwp_sanitize_color($swift_cs_color) ?>;font-size: 15px;float: none;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
 	.amp-comment-button a{color: #fff;display: block;padding: 7px 0px 8px 0px;}
