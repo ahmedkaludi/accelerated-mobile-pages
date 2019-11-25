@@ -9,7 +9,7 @@ function add_theme_mode_support($modesArray){
 if ( ! function_exists( 'ampforwp_settings_to_cache' ) ) {
     function ampforwp_settings_to_cache($sections){
     	$seoSection = array();
-    	$unsetArray = array('basic','design', 'opt-structured-data', 'amp-notifications', 'ampforwp-push-notifications', 'disqus-comments', 'fb-instant-article', 'hide-amp-section', 'amp-advance', 'amp-translator', 'amp-theme-settings', 'amp-theme-global-subsection', 'amp-theme-header-settings', 'amp-theme-homepage-settings', 'amp-single', 'amp-theme-footer-settings', 'amp-theme-page-settings', 'amp-social', 'ampforwp-date-section', 'amp-design', 'opt-text-subsection', 'amp-content-builder', 'amp-contact', 'amp-e-commerce', 'opt-go-premium', 'opt-choose', 'opt-plugins-manager','ampforwp-new-ux');
+    	$unsetArray = array('basic','design', 'opt-structured-data', 'amp-notifications', 'ampforwp-push-notifications', 'disqus-comments', 'fb-instant-article', 'hide-amp-section', 'amp-advance', 'amp-translator', 'amp-theme-settings', 'amp-theme-global-subsection', 'amp-theme-header-settings', 'amp-theme-homepage-settings', 'amp-single', 'amp-theme-footer-settings', 'amp-theme-page-settings', 'amp-social', 'ampforwp-date-section', 'amp-design', 'opt-text-subsection', 'amp-content-builder', 'amp-contact', 'amp-e-commerce', 'opt-choose', 'opt-plugins-manager','ampforwp-new-ux');
         $unsetArray = apply_filters('amp_template_mode_hide_opt_array',$unsetArray);
     	$backupArray = array( 'amp-ads', 'analytics', 'pwa-for-wp', 'amp-performance', 'amp-seo');
         $backupArray = apply_filters('amp_template_mode_show_opt_array',$backupArray);

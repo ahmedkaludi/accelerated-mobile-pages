@@ -20,7 +20,7 @@ namespace ReduxCore\ReduxFramework;
             if($i==2){
                 $amp_opt = get_option("ampforwp_option_panel_view_type");
                 $opt_visible = "";
-                if($amp_opt==1 || $amp_opt==""){
+                if(($amp_opt==1 || $amp_opt=="") && !get_theme_support('amp-template-mode')){
                     $opt_visible = 'style=display:none';
                 }
                 echo '<div class="amp-full-view-options" '.esc_attr($opt_visible).'>';
