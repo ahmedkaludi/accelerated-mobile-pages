@@ -241,7 +241,13 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .tg:checked + .hamb-mnu > .m-ctr {margin-left: calc(100% - <?php echo esc_html(ampforwp_get_setting('header-overlay-width'))?>);}
 .m-ctr{margin-left: 100%;float: right;}
 <?php } ?>
-.tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);height:-webkit-fill-available;}
+.tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);
+<?php if(ampforwp_get_setting('amp-sticky-header') == '1'){?>
+	height:100vh;
+<?php } else { ?>
+	height:100%;
+<?php } // sticky condition ends ?>
+}
 .t-btn, .c-btn{cursor: pointer;}
 .t-btn:after{
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
@@ -693,6 +699,12 @@ padding-left: 20px;
 <?php } ?>
 line-height: 1.2;top: 6px;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
+@supports (-webkit-overflow-scrolling: touch) {
+.m-ctr{overflow:initial;}
+}
+@supports not (-webkit-overflow-scrolling: touch) {
+.m-ctr{overflow:scroll;}
+}
 .m-ctr {
 position: fixed;
 overflow: scroll;
@@ -1934,7 +1946,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
   padding-bottom:40px;
 }
 .s_stk{
-	z-index:99999;
+	z-index:99;
 }
 .body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{
 	padding-bottom:45px;
