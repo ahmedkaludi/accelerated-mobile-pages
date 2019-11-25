@@ -5,7 +5,7 @@ $output = '
 <div {{if_id}}id="{{id}}"{{ifend_id}} class="{{user_class}}">
 {{if_condition_carousel_layout_type==1}}
 	<amp-carousel {{if_condition_lightbox_gallery==1}} lightbox {{ifend_condition_lightbox_gallery_1}}
-	width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
+	width="400" height="300" layout="responsive" type="slides" {{if_condition_slider_autoplay==1}} autoplay {{ifend_condition_slider_autoplay_1}} controls delay="{{delay}}">
 		{{repeater_image}}
 	</amp-carousel>
 {{ifend_condition_carousel_layout_type_1}}
@@ -102,6 +102,20 @@ return array(
 												),
 											),
 								'content_type'=>'html',
+							),
+				        array(
+								'type'		=>'checkbox_bool',
+								'name'		=>"slider_autoplay",
+								'tab'		=>'customizer',
+								'label'		=>'Autoplay',
+								'default'	=>1,
+								'content_type'=>'html',
+								'options'	=>array(
+												array(
+													'label'=>esc_html__('Autoplay','accelerated-mobile-pages'),
+													'value'=>1,
+												),
+											),
 							),
 				        array(
 								'type'		=>'checkbox_bool',
