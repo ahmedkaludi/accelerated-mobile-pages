@@ -191,6 +191,20 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.19 (25th November 2019) =
+* Fixed: image transients should clear automatically #3781
+* Fixed: CTA button in header could be made no follow #3798
+* Fixed: In IOS screen, Menu cross button is not appearing in Swift design #3809
+* Fixed: Comment closed opion need to be removed. #3750
+* Fixed: In template mode Need to show extension setting panel. #3728
+* Fixed: Facebook comment is not changing language when we select another language #3710
+* Fixed: Single Sidebar data is visible in Homepage #3636
+* Fixed: Need to remove width from inline style on amp images #3741
+* Fixed: If permalinks is set as "/index.php/%year%/%monthnum%/%day%/%postname%/" then not working properly with Pagination #3537
+* Fixed: Canonical url is changing in cateogry pages when cateogry name start with amp #3694
+* Fixed: general fixes and improvements part 2 #3621
+* Fixed: Warning: strpos(): Empty needle in /home/statecer/public_html/wp-content/plugins/accelerated-mobile-pages/templates/features.php on line 5788 #3870
+
 = 0.9.98.18 (21th November 2019) =
 * Improvement: Show the number of shares with Sassy Social Share #3588
 * Fixed: Need to improvment in table code #3664
@@ -217,23 +231,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Use util function to get array component. Fixes #3778 #3842
 * Fixed: Add Hyperlink option to Gallery module images. #3850
 * Fixed: Need to remove WPBakery Page Builder Support Option #3855
-
-= 0.9.98.16 (18th November 2019) =
-* Improvement: Need to make compatibility of Advance setting options of yoast seo into AMP #3684
-* Improvement: Add filter to modify HTML attributes #3685
-* Fixed: Jetpack causing errors after update #3849
-* Fixed: Facebook like button is not showing correctly after last update in design3 #3742
-* Fixed: [URGENT] Vuukle API KEY missing #3792
-* Fixed: Admin tool bar css is not loading #3788
-* Fixed: Hide button always showing on page #3762
-* Fixed: Meta description are not showing properly in genesis #3761
-* Fixed: Non-Responsive tables after version 0.9.98.9 #3746
-* Fixed: Wrong amphtml when static page is selected in reading settings along with ?amp endpoint #3717
-* Fixed: Homepage posts image alignment issue #3691
-* Fixed: Lightbox not working for single images #3683
-* Fixed: Notice: Undefined index: category #3829
-* Fixed: Notice: Undefined variable: category_name #3827
-* Fixed: AMP Dev mode when disabled throwing a fatal error in mobile mode for blog. #3824
-* Fixed: Warning when trying to save the option #3800
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
