@@ -1043,3 +1043,48 @@ amp-facebook-like{
   z-index:99999;
 }
 <?php } // Progress Bar CSS ends ?>
+
+<?php // CTA CSS Starts Here //
+if(true == ampforwp_get_setting('d123-signin-button') ) {  
+  $cta_text_color   = ampforwp_get_setting('d123-signin-button-text-color','color');
+  $cta_border_color = ampforwp_get_setting('d123-signin-button-border-color','color'); 
+
+if(empty($cta_text_color)){
+  $cta_text_color ='#000';
+}
+if(empty($cta_border_color)){
+  $cta_border_color ='#000';
+}
+?>
+  .d1-cta-wrap{
+    position: absolute;
+    top: 7px;
+    <?php if( true == ampforwp_get_setting('ampforwp-callnow-button') ){ ?>
+      right: 70px;
+    <?php } else { ?>
+      right: 50px;
+    <?php } ?>
+  }
+  .d1-cta-wrap a {
+    color: <?php echo ampforwp_sanitize_color($cta_text_color) ?>;   
+    display: inline-block;
+    padding: 6px 14px 6px 14px;
+    <?php if(ampforwp_get_setting('d123-signin-button-border-line')){?>
+     border: <?php echo esc_html(ampforwp_get_setting('d123-signin-button-border-line'))?>px solid <?php echo ampforwp_sanitize_color($cta_border_color) ?>;
+    <?php } ?>
+    font-size: 16px;    
+    line-height: 1.2;
+    font-weight: 600;
+    align-self: center;
+  }
+
+<?php if(ampforwp_get_setting('d123-border-type') == '2'){?>
+  .d1-cta-wrap a{border-radius:100px;}
+  .d1-cta-wrap a:before{border-radius:100px;}
+<?php } ?>
+<?php if(ampforwp_get_setting('d123-border-type') == '3'){?>
+  <?php if(ampforwp_get_setting('d123-border-radius') ){ ?>
+    .d1-cta-wrap a{border-radius:<?php echo esc_html(ampforwp_get_setting('d123-border-radius'))?>px;}
+  <?php } ?><?php } ?>
+
+<?php } // CTA CSS Ends Here // ?>

@@ -104,6 +104,11 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
         <?php amp_logo(); ?>
         </div>
         <?php do_action('ampforwp_call_button'); ?>
+        <?php if(true == ampforwp_get_setting('d123-signin-button') ) { ?>
+        <div class="d1-cta-wrap">   
+            <a target="_blank" <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('d123-signin-button-link'))?>"><?php echo esc_html__(ampforwp_get_setting('d123-signin-button-text'), 'accelerated-mobile-pages'); ?></a>
+        </div>
+        <?php } ?>
         <?php do_action('ampforwp_header_search');
         do_action('ampforwp_header_bottom_design3'); ?>
 
