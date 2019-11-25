@@ -82,7 +82,8 @@ class AMP_Image_Dimension_Extractor {
 	 * @return array Dimensions mapped to image urls, or false if they could not be retrieved
 	 */
 	public static function extract_by_downloading_images( $dimensions, $mode = 'concurrent' ) {
-		$transient_expiration = 30 * DAY_IN_SECONDS;
+		$transient_expiration = 8 * DAY_IN_SECONDS;
+		$transient_expiration = apply_filters('ampforwp_image_expiration_time', $transient_expiration);
 
 		$urls_to_fetch = array();
 		$images = array();
