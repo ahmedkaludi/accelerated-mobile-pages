@@ -4949,7 +4949,7 @@ Redux::setSection( $opt_name, array(
                 'class' => 'child_opt child_opt_arrow',
                 'title'     => esc_html__('CTA Text Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Text','accelerated-mobile-pages'),
-                'type'      => 'color_rgba',
+                'type'      => 'color',
                 'default'   => array(
                     'color'  => '#000',
                     ),
@@ -4962,7 +4962,7 @@ Redux::setSection( $opt_name, array(
                 'class' => 'child_opt child_opt_arrow',
                 'title'     => esc_html__('CTA Border Line Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
-                'type'      => 'color_rgba',
+                'type'      => 'color',
                 'default'   => array(
                      'color'  => '#000',
                     ),

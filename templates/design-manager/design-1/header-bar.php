@@ -24,7 +24,7 @@ ampforwp_pagescroll_progress_bar(); ?>
     </div>
     <?php } ?>
     <?php do_action('ampforwp_header_search'); ?>
-    <?php do_action('ampforwp_call_button');
+    <?php //do_action('ampforwp_call_button');
     do_action('ampforwp_header_bottom_design1'); ?>
 
   </div>

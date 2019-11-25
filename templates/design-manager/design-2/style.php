@@ -842,12 +842,11 @@ if(empty($cta_border_color)){
     <?php } ?>
   }
   .d1-cta-wrap a {
-    color: <?php echo ampforwp_sanitize_color($cta_text_color) ?>;   
-    border-color: <?php echo ampforwp_sanitize_color($cta_border_color) ?>;
+    color: <?php echo ampforwp_sanitize_color($cta_text_color) ?>;
     display: inline-block;
     padding: 5px 14px 7px 14px;
     <?php if(ampforwp_get_setting('d123-signin-button-border-line')){?>
-     border: <?php echo esc_html(ampforwp_get_setting('d123-signin-button-border-line'))?>px solid;
+     border: <?php echo esc_html(ampforwp_get_setting('d123-signin-button-border-line'))?>px solid <?php echo ampforwp_sanitize_color($cta_border_color) ?>;
     <?php } ?>
     font-size: 16px;    
     line-height: 1.2;
