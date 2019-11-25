@@ -704,11 +704,10 @@ if(true == ampforwp_get_setting('d123-signin-button') ) {
   $cta_border_color = ampforwp_get_setting('d123-signin-button-border-color','rgba'); 
 
 if(empty($cta_text_color)){
-  $cta_text_color ='#fff';
+  $cta_text_color ='#000';
 }
-
 if(empty($cta_border_color)){
-  $cta_border_color ='#fff';
+  $cta_border_color ='#000';
 }
 ?>
   .d1-cta-wrap{
@@ -724,7 +723,7 @@ if(empty($cta_border_color)){
     color: <?php echo ampforwp_sanitize_color($cta_text_color) ?>;   
     border-color: <?php echo ampforwp_sanitize_color($cta_border_color) ?>;
     display: inline-block;
-    padding: 5px 14px 9px 14px;
+    padding: 4px 14px 9px 14px;
     <?php if(ampforwp_get_setting('d123-signin-button-border-line')){?>
      border: <?php echo esc_html(ampforwp_get_setting('d123-signin-button-border-line'))?>px solid;
     <?php } ?>

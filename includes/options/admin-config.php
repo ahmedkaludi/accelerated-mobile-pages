@@ -4951,7 +4951,7 @@ Redux::setSection( $opt_name, array(
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Text','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'color'  => '#fff',
+                    'color'  => '#000',
                     ),
                 'required' => array(
                   array('d123-signin-button-style','=',1)
@@ -4964,7 +4964,7 @@ Redux::setSection( $opt_name, array(
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                     'color'  => '#fff',
+                     'color'  => '#000',
                     ),
                 'required' => array(
                   array('d123-signin-button-style','=',1)
