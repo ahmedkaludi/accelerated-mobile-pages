@@ -90,3 +90,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 60. Added the Filter to modify attributes in HTML Tag #3685
 61. Undefined variable amp_url issue fixed #3776
 62. Warnings fixed of util function to get array component #3778
+63. Need to remove width from inline style on amp images #3741
