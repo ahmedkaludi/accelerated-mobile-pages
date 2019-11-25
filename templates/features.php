@@ -318,7 +318,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					// If its custom permalink with /index.php/ #3537
 					if ( (is_home() || is_archive()) && false !== strpos($wp->matched_rule, 'index.php') && false === strpos( home_url( $wp->request ), 'index.php') ) {
 						$new_url = home_url( 'index.php' );
-						$new_url = trailingslashit($new_url);
+						$o_url = home_url();
+						$new_url = str_replace($o_url, $new_url, $amp_url);
+						$new_url = user_trailingslashit($new_url);
+						$amp_url = $new_url;
 					}
 					$category_path 	= $wp->request;
 					if ( null != $category_path && true != $endpoint_check) {
