@@ -7270,3 +7270,10 @@ if(!function_exists('ampforwp_sassy_icon_style')){
 if(function_exists('heateor_sss_run')){
 	add_action('amp_post_template_css', 'ampforwp_sassy_icon_style'); 
 }	
+function ampforwp_nofollow_cta_header_link(){
+	if(true == ampforwp_get_setting('ampforwp-header-cta-link-nofollow')){	
+		echo 'rel=nofollow';
+		return;
+	}
+	return false;
+}	

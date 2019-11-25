@@ -3965,6 +3965,15 @@ Redux::setSection( $opt_name, array(
                       array('signin-button','=',1)
                     )  
               ),
+            // CTA No Follow links
+            array(
+                'id'        =>  'ampforwp-header-cta-link-nofollow',
+                'type'      =>  'switch',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     =>  esc_html__('No Follow Link', 'accelerated-mobile-pages'),
+                'default'   =>  0,
+                'required' => array('signin-button', '=', '1')
+            ),
             array(
                 'id'        => 'signin-button-style',
                 'class' => 'child_opt child_opt_arrow',

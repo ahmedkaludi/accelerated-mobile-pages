@@ -239,7 +239,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <div class="h-2">
                    <?php if( ampforwp_get_setting('signin-button-text') && ampforwp_get_setting('signin-button-link') ){?>
                     <div class="h-sing">
-                        <a target="_blank" href="<?php echo ampforwp_get_setting('signin-button-link')?>"><?php echo __(ampforwp_get_setting('signin-button-text'), 'accelerated-mobile-pages'); ?></a>
+                        <a target="_blank" <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('signin-button-link'))?>"><?php echo esc_html__(ampforwp_get_setting('signin-button-text'), 'accelerated-mobile-pages'); ?></a>
                     </div>
                     <?php } ?>
                     <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
