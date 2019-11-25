@@ -21,8 +21,8 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	private static $script_slug = 'amp-anim';
 	private static $script_src = 'https://cdn.ampproject.org/v0/amp-anim-0.1.js';
 	
-	private static $script_slug_lightbox = 'amp-image-lightbox';
-	private static $script_src_lightbox = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
+	private static $script_slug_lightbox = 'amp-lightbox-gallery';
+	private static $script_src_lightbox = 'https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js';
 
 	public function sanitize() {
 
@@ -171,6 +171,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		} else {
 			$new_attributes['layout'] = 'intrinsic';
 		}
+		$new_attributes['lightbox'] = true;
 		// Remove sizes attribute since it causes headaches in AMP and because AMP will generate it for us. See <https://github.com/ampproject/amphtml/issues/21371>.
 		unset( $new_attributes['sizes'] );
 
@@ -184,9 +185,6 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		$node->parentNode->replaceChild( $new_node, $node );
 		
 		if ( isset($new_attributes['on']) && '' != $new_attributes['on'] ) {
-			if(is_singular() || ampforwp_is_front_page()){
-				add_action('amp_post_template_footer', 'ampforwp_amp_img_lightbox');
-			}
 			$this->is_lightbox = true;
 		}
 	}
@@ -232,6 +230,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				case 'role':
 				case 'tabindex':
 				case 'layout':
+				case 'lightbox':
 					$out[ $name ] = $value;
 					break;
 

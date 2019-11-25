@@ -3,7 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
 	{{if_condition_img_hyperlink==1}}<a href="{{hyperlink_link_img}}" {{if_condition_img_link_open==new_page}}target="_blank"{{ifend_condition_img_link_open_new_page}}>{{ifend_condition_img_hyperlink_1}}
-		{{if_img_upload}}<figure><amp-img src="{{img_upload}}" {{if_id}}id="{{id}}"{{ifend_id}} width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}  alt="{{image_alt}}" class="{{user_class}}"></amp-img>{{if_condition_image_caption==1}}<figcaption><center>{{image_caption}}</center></figcaption>{{ifend_condition_image_caption_1}}</figure>{{ifend_img_upload}}
+		{{if_img_upload}}<figure><amp-img lightbox="true" src="{{img_upload}}" {{if_id}}id="{{id}}"{{ifend_id}} width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}  alt="{{image_alt}}" class="{{user_class}}"></amp-img>{{if_condition_image_caption==1}}<figcaption><center>{{image_caption}}</center></figcaption>{{ifend_condition_image_caption_1}}</figure>{{ifend_img_upload}}
 	{{if_condition_img_hyperlink==1}}</a>{{ifend_condition_img_hyperlink_1}}';
 
 $css = '

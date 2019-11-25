@@ -5988,13 +5988,6 @@ function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
 	}
 	return $content;
 }
-
-// amp-image-lightbox #1892
-if ( ! function_exists('ampforwp_amp_img_lightbox') ) {
-	function ampforwp_amp_img_lightbox(){ 
-		echo '<amp-image-lightbox id="amp-img-lightbox" layout="nodisplay"></amp-image-lightbox>';
-	}
-}
 // New Image attributes for amp-image-lightbox #1892
 add_filter('amp_img_attributes', 'ampforwp_img_new_attrs');
 function ampforwp_img_new_attrs($attributes) {
