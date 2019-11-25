@@ -1,4 +1,8 @@
-<?php header('Content-Type: ' . esc_attr(feed_content_type('rss2')) . '; charset=' . esc_attr( get_option('blog_charset') ), true);
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+header('Content-Type: ' . esc_attr(feed_content_type('rss2')) . '; charset=' . esc_attr( get_option('blog_charset') ), true);
     $more = 1;
     echo '<?xml version="1.0" encoding="'. esc_attr( get_option('blog_charset') ).'"?'.'>';
 ?>

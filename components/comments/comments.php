@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_framework_get_comments(){
 	global $redux_builder_amp;
 	$display_comments_on = "";

@@ -7,7 +7,9 @@ use Sabberworm\CSS\Parsing\ParserState;
 use Sabberworm\CSS\Parsing\UnexpectedTokenException;
 use Sabberworm\CSS\Renderable;
 use Sabberworm\CSS\Rule\Rule;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * RuleSet is a generic superclass denoting rules. The typical example for rule sets are declaration block.
  * However, unknown At-Rules (like @font-face) are also rule sets.

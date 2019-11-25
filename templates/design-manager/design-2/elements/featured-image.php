@@ -1,4 +1,8 @@
-<?php do_action('ampforwp_before_featured_image_hook',$this);
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+do_action('ampforwp_before_featured_image_hook',$this);
 global $redux_builder_amp, $post;
 $amp_html = "";
 $caption = "";

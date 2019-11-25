@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp; ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp; ?>
 <?php amp_header(); ?>
 <div class="cntr b-w">
 	<?php do_action('ampforwp_home_above_loop') ?>

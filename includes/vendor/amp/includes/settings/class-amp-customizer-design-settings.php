@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class AMP_Customizer_Design_Settings {
 	const DEFAULT_HEADER_COLOR = '#fff';
 	const DEFAULT_HEADER_BACKGROUND_COLOR = '#0a89c0';

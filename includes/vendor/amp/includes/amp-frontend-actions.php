@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Callbacks for adding AMP-related things to the main theme
 
 add_action( 'wp_head', 'AMPforWP\\AMPVendor\\amp_frontend_add_canonical' );

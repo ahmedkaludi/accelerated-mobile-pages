@@ -1,5 +1,8 @@
 <?php
 namespace ReduxCore\ReduxFramework;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
     /**
      * The template for the header sticky bar.
      * Override this template by specifying the path where it is stored (templates_path) in your Redux config.

@@ -1,5 +1,8 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
  function ampforwp_admin_performance_options($opt_name){
   // Display only If AMP Cache is Not Installed
   $cache_desc ="";

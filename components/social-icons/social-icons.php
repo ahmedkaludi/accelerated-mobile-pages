@@ -1,5 +1,7 @@
 <?php 
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_framework_get_social_icons($selected_social_icons){
 
 	/* TODO: 

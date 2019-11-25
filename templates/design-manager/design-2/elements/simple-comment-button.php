@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 global $redux_builder_amp;
 if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support'] || $redux_builder_amp['ampforwp-facebook-comments-support']) {
   return;

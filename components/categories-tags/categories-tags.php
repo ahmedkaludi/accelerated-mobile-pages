@@ -1,4 +1,7 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /* 
 TODO: 1: Connect with options panel(archive support and translational panel)
 2: Do we have to change the classes names as well?

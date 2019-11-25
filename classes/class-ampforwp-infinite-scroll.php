@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
 * Class: To enable Infinite Scroll in AMP
 * Note: For performance reasons the component will render a maximum of three documents (total) on screen at one time. This limit may be changed or removed in the future.

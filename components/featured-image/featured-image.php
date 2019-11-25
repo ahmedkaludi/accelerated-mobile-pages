@@ -1,4 +1,7 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_framework_get_featured_image(){
 	do_action('ampforwp_before_featured_image_hook');
 	global $post, $redux_builder_amp;

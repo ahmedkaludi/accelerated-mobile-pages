@@ -1,5 +1,8 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_notice_bar_options($opt_name){
   // If CTA is not Activated
   $cta_desc = "";

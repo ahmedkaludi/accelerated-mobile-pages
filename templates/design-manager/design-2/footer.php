@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp;
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp;
   wp_reset_postdata();?>
   <footer class="container">
       <div id="footer">

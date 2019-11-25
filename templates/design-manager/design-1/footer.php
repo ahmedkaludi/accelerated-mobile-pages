@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 global $redux_builder_amp;
 wp_reset_postdata(); ?>
 <footer class="amp-wp-footer">

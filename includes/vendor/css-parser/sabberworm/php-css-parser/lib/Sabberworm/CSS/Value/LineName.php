@@ -4,7 +4,9 @@ namespace Sabberworm\CSS\Value;
 
 use Sabberworm\CSS\Parsing\ParserState;
 use Sabberworm\CSS\Parsing\UnexpectedTokenException;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class LineName extends ValueList {
 	public function __construct($aComponents = array(), $iLineNo = 0) {
 		parent::__construct($aComponents, ' ', $iLineNo);

@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS\Property;
 
 use Sabberworm\CSS\Value\URL;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
 * Class representing an @import rule.
 */

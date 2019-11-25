@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 return array( 'widgets' => '.icon-widgets:before { content: "\e1bd";}',
                 'search'  => '.icon-search:after{ content: "\e8b6"; }',
                 'shopping-cart'    => '.icon-shopping-cart:after {content: "\e8cc";}', 

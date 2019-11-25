@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS\Property;
 
 use Sabberworm\CSS\Parsing\UnexpectedTokenException;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Class representing a single CSS selector. Selectors have to be split by the comma prior to being passed into this class.
  */

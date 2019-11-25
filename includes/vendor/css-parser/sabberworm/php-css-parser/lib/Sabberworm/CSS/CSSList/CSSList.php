@@ -18,7 +18,9 @@ use Sabberworm\CSS\RuleSet\RuleSet;
 use Sabberworm\CSS\Value\CSSString;
 use Sabberworm\CSS\Value\URL;
 use Sabberworm\CSS\Value\Value;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * A CSSList is the most generic container available. Its contents include RuleSet as well as other CSSList objects.
  * Also, it may contain Import and Charset objects stemming from @-rules.

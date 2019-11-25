@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp;
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp;
 amp_header(); ?>
 <div <?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>class="sp"<?php } ?>>
 	<div <?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>class="cntr"<?php } ?>>

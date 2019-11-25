@@ -2,7 +2,9 @@
 
 use FasterImage\Exception\InvalidImageException;
 use WillWashburn\Stream\StreamableInterface;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Class ExifParser
  *

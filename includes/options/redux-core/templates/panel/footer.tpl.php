@@ -1,5 +1,8 @@
 <?php
 namespace ReduxCore\ReduxFramework;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
     /**
      * The template for the panel footer area.
      * Override this template by specifying the path where it is stored (templates_path) in your Redux config.

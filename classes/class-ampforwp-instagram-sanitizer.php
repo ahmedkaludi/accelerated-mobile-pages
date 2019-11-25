@@ -1,6 +1,9 @@
 <?php
 use AMPforWP\AMPVendor\AMP_Base_Sanitizer;
 use AMPforWP\AMPVendor\AMP_DOM_Utils;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Converts Instagram embeds to <amp-instagram>
  */

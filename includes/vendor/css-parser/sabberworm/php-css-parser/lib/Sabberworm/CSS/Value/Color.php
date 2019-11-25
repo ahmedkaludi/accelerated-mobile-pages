@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS\Value;
 
 use Sabberworm\CSS\Parsing\ParserState;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class Color extends CSSFunction {
 
 	public function __construct($aColor, $iLineNo = 0) {

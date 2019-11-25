@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // If you want to use the template that shipped with v0.3 and earlier, you can use this to force that.
 // Note that this may not stick around forever, so use caution and `function_exists`.
 function amp_backcompat_use_v03_templates() {

@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS\CSSList;
 
 use Sabberworm\CSS\Property\AtRule;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class KeyFrame extends CSSList implements AtRule {
 
 	private $vendorKeyFrame;

@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp;
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp;
 do_action('ampforwp_above_the_title',$this); ?>
 <header class="amp-wp-article-header ampforwp-title">
 	<?php

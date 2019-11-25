@@ -1,5 +1,8 @@
 <?php
 namespace ReduxCore\ReduxFramework;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
     if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Customizer_Control' ) ) {
         class Redux_Customizer_Control extends \WP_Customize_Control {
 

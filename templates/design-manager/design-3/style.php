@@ -1,5 +1,8 @@
 <?php
 use AMPforWP\AMPVendor\AMP_Post_Template;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 //add_action('amp_post_template_css', 'ampforwp_additional_style_input_3');
 //function ampforwp_additional_style_input_3( $amp_template ) {
   global $redux_builder_amp;

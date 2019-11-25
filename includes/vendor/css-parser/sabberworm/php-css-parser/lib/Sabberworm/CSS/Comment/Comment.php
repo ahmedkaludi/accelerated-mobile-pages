@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS\Comment;
 
 use Sabberworm\CSS\Renderable;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class Comment implements Renderable {
 	protected $iLineNo;
 	protected $sComment;

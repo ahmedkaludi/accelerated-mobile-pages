@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 add_filter('ampforwp_enabled_setting_options', 'add_theme_mode_support');
 add_filter("redux/options/redux_builder_amp/sections", 'ampforwp_settings_to_cache');
 add_action( 'admin_footer', 'ampforwp_enqueue_template_mode_scripts' );

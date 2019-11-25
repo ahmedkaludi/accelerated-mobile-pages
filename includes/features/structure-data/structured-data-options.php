@@ -1,5 +1,8 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
     //Get options for Structured Data Type
     if( !function_exists('ampforwp_get_sd_types') ){
         function ampforwp_get_sd_types(){

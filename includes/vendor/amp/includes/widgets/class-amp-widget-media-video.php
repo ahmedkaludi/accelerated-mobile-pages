@@ -1,5 +1,7 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if ( class_exists( 'WP_Widget_Media_Video' ) && ! class_exists('AMP_Widget_Media_Video') ) {
 	/**
 	 * Class AMP_Widget_Media_Video

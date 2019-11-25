@@ -1,7 +1,9 @@
 <?php
 
 namespace Sabberworm\CSS\Property;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
 * CSSNamespace represents an @namespace rule.
 */

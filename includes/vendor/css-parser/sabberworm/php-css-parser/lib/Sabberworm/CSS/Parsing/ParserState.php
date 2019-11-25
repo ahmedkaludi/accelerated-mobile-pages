@@ -4,7 +4,9 @@ namespace Sabberworm\CSS\Parsing;
 use Sabberworm\CSS\Comment\Comment;
 use Sabberworm\CSS\Parsing\UnexpectedTokenException;
 use Sabberworm\CSS\Settings;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class ParserState {
 	private $oParserSettings;
 

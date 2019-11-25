@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function amp_archive_title(){
 	global $redux_builder_amp;
 	if( is_author() ){

@@ -1,4 +1,7 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 global $amp_ux_fields;
 $analytics_options = array();
 $pages = get_pages();

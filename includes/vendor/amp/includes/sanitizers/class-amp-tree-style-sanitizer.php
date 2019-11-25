@@ -1,6 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 require_once( AMP__VENDOR__DIR__ . 'includes/sanitizers/class-amp-tree-base-sanitizer.php' );
 /**
  * Class AMP_Style_Sanitizer

@@ -1,5 +1,9 @@
 </div>
-<?php global $redux_builder_amp ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp ?>
 
 <?php 
 do_action( 'levelup_foot');

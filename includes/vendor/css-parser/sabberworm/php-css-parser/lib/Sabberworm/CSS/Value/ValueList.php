@@ -1,7 +1,9 @@
 <?php
 
 namespace Sabberworm\CSS\Value;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 abstract class ValueList extends Value {
 
 	protected $aComponents;

@@ -3,7 +3,9 @@
 use FasterImage\Exception\InvalidImageException;
 use WillWashburn\Stream\Exception\StreamBufferTooSmallException;
 use WillWashburn\Stream\Stream;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * FasterImage - Because sometimes you just want the size, and you want them in
  * parallel!

@@ -1,5 +1,8 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 //Admin Panel Options        
 if ( ! class_exists( 'ReduxCore\ReduxFramework\Redux' ) ) {
     return;

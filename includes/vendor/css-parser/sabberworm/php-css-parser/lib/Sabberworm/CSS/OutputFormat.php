@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS;
 
 use Sabberworm\CSS\Parsing\OutputException;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Class OutputFormat
  *
