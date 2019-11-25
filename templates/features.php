@@ -4007,8 +4007,13 @@ function ampforwp_rel_canonical_home_archive(){
 	if ( is_home() || is_front_page() || (is_archive() && ampforwp_get_setting('ampforwp-archive-support')) )	{
 		$current_archive_url = home_url( $wp->request );
 		$amp_url 	= trailingslashit($current_archive_url);
-		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
-		$amp_url 	= str_replace($remove, '', $amp_url);
+		$amp_url = explode('/', $amp_url);
+		$amp_url = array_flip($amp_url);
+		if(isset($amp_url['amp'])){
+			unset($amp_url['amp']);
+		}
+		$amp_url = array_flip($amp_url);
+		$amp_url  = implode('/', $amp_url);	
 	  	$query_arg_array = $wp->query_vars;
 	  	if( array_key_exists( "page" , $query_arg_array  ) ) {
 		   $page = $wp->query_vars['page'];
