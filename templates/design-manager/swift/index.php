@@ -5,8 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $redux_builder_amp; ?>
 <?php amp_header(); ?>
 <div class="cntr b-w">
-	<?php do_action('ampforwp_home_above_loop') ?>
 	<div class="hmp">
+	<?php do_action('ampforwp_home_above_loop') ?>
 	<?php
 	if (is_home() ){
 	 if (get_query_var( 'paged' ) ) {
@@ -76,6 +76,7 @@ global $redux_builder_amp; ?>
 		<?php endwhile; amp_loop('end');  ?>
 		<?php do_action('ampforwp_loop_before_pagination') ?>
 	<?php amp_pagination(); ?>
+	<?php do_action('ampforwp_home_below_loop') ?>
    </div>
    <?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
 		<div class="sdbr-right">
@@ -89,7 +90,6 @@ global $redux_builder_amp; ?>
 			?>
 		</div>
 	<?php } ?>
-	<?php do_action('ampforwp_home_below_loop') ?>
 </div>
 <?php //amp_loop_template(); ?>
 
