@@ -237,14 +237,17 @@ Vue.component('amp-pagebuilder-module-modal', {
 								app.modalcontent.repeater.showFields.forEach(function(repeatWrapper,repKey){
 									var repeaterData = {};
 									repeatWrapper.forEach(function(repeatField,repFieldKey){
-										repeaterData[repeatField.name] = repeatField.default;
-										if(repeatField[repeatField.name+"_image_data"]){
-											repeaterData[repeatField.name+"_image_data"] = repeatField[repeatField.name+"_image_data"];
+										var stringToArray = repeatField.name.split("_");
+										stringToArray.pop();
+										var arrayToString = stringToArray.join('_');
+										var finalString = arrayToString+"_"+repKey;
+										repeaterData[finalString] = repeatField.default;
+										if(repeatField[finalString+"_image_data"]){
+											repeaterData[finalString+"_image_data"] = repeatField[finalString+"_image_data"];
 										}
-										var lastvalue = repeatField.name.split("_");
-										repeaterData['field_index'] = lastvalue[lastvalue.length-1];
 									});
 									repeaterData['index'] = (repKey+1);
+
 									moduleData.repeater.push(repeaterData);
 								});
 							}
@@ -438,10 +441,7 @@ function openModulePopup(event,type){
 								moduleData.repeater.forEach(function(savedREPValue,savedkey){
 									var allRepeaterFileds = JSON.parse(JSON.stringify(app.modalcontent.repeater.fields));
 									allRepeaterFileds.forEach(function(newFields,newKey){
-										if (typeof savedREPValue.field_index === 'undefined'){
-											savedREPValue.field_index  = savedkey;
-										}
-										newFields.name = newFields.name+'_'+savedREPValue.field_index;
+										newFields.name = newFields.name+'_'+savedkey;
 										//if(savedREPValue[newFields.name]){
 											//console.log(savedREPValue[newFields.name],newFields.name)
 											newFields.default = savedREPValue[newFields.name];
