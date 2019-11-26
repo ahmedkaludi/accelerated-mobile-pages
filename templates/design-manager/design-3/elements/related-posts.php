@@ -1,7 +1,7 @@
 <?php
 global $post,  $redux_builder_amp;
 do_action('ampforwp_above_related_post',$this); //Above Related Posts
-$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		
+$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 $int_number_of_related_posts = (int)$string_number_of_related_posts;
 
 // declaring this variable here to prevent debug errors
@@ -22,10 +22,15 @@ if( $current_post_type = get_post_type( $post )) {
         'order' => 'DESC',
         'orderby' => $orderby,
         'post_type' => $current_post_type,
-        'post__not_in' => array( $post->ID )
+        'post__not_in' => array( $post->ID ),
+        'meta_query' => array(
+	        array(
+		        'key'        => 'ampforwp-amp-on-off',
+		        'value'      => 'default',
+	        ))
 
-    );  
-} 			
+    );
+}
 }//end of block for custom Post types
 
 if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
@@ -41,6 +46,11 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
 			'has_password' 		 => false ,
 			'post_status'		 => 'publish',
 			'orderby' 			 => $orderby,
+		    'meta_query'         => array(
+                                        array(
+                                            'key'        => 'ampforwp-amp-on-off',
+                                            'value'      => 'default',
+                                        ))
 		);
 	}
 } //end of block for categories
@@ -59,6 +69,11 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
 						'post_status'	 => 'publish',
 						'no_found_rows' 	  => true,
 						'orderby' 		 => $orderby,
+                         'meta_query'    => array(
+                                               array(
+                                                   'key'        => 'ampforwp-amp-on-off',
+                                                   'value'      => 'default',
+                                           ))
 				);
 	}
 }//end of block for tags
@@ -74,7 +89,7 @@ if ( isset($redux_builder_amp['ampforwp-related-posts-days-switch']) && true == 
 				                    'day'   => date('d', $date_range ),
 				                	),
 				            	)
-				       		); 
+				       		);
 }
 if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && $redux_builder_amp['ampforwp-single-select-type-of-related'] ){
 	$my_query = new wp_query( $args );
@@ -94,13 +109,13 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 							<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
 								<div class="related-post_image">
 	                            <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-							<?php if ( ampforwp_has_post_thumbnail() ) { 
+							<?php if ( ampforwp_has_post_thumbnail() ) {
 							$thumb_url = ampforwp_get_post_thumbnail();
 							$thumb_width  	= ampforwp_get_post_thumbnail('width');
 							$thumb_height 	= ampforwp_get_post_thumbnail('height');
 							if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
 				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
-							<?php } 
+							<?php }
 							}?>
 	                  		</a>
 	                  	</div>
@@ -118,10 +133,10 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 											$content = get_the_content();
 										} ?>
 				                    <p class="<?php echo esc_attr($class); ?>"><?php echo wp_trim_words( strip_shortcodes( $content ) , 15 ); ?></p>
-				                <?php } ?>    
+				                <?php } ?>
 			                </div>
 		            		</li>
-		            <?php 
+		            <?php
 		            do_action('ampforwp_between_related_post',$r_count,$this);
 	     							 $r_count++;
 		        } ?>
