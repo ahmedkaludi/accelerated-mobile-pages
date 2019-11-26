@@ -870,7 +870,7 @@ visibility: hidden;
 }
 .redux-main .child_opt .redux_field_th{  background: #f9f9f9;padding:23px 10px 23px 20px;
       margin-right: -16px;}
-
+.redux-main .child_opt td {background: #f9f9f9;}
 .child_opt_last fieldset {
     margin-bottom: 15px;
 }
@@ -890,6 +890,7 @@ visibility: hidden;
     position: relative;
     padding: 8px 10px 8px 20px;
  }
+span#ampforwp-clear-clcss-msg {line-height: 25px;}
 .redux-main .child_opt .redux-container-textarea{
     padding-top: 40px;
 }

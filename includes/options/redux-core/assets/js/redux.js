@@ -131,6 +131,7 @@
                         } else{
                             jQuery('#ampforwp-clear-clearcss-data').addClass('hide');
                             jQuery('#ampforwp-clear-clcss-msg').removeClass('hide');
+                            jQuery("#ampforwp-clear-clcss-msg").html("Please Save Before Clearing Cache");
                         }
                         $notification_bar.html( response.notification_bar ).slideDown( 'fast' );
                         if ( response.errors !== null || response.warnings !== null ) {

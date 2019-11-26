@@ -693,7 +693,7 @@ jQuery(document).ready(function($){
 
     if(redux_data.ampforwp_css_tree_shaking == '0'){
         jQuery('#ampforwp-clear-clearcss-data').addClass('hide');
-        jQuery('#ampforwp-clear-clcss-msg').html('Please Save Before clearing Cache');
+        jQuery('#ampforwp-clear-clcss-msg').html('Please Save Before Clearing Cache');
     }
         $('#ampforwp-clear-clearcss-data').click(function(e){
             $('#ampforwp-clear-clcss-msg').removeClass('hide');
