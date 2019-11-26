@@ -174,6 +174,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 					'height' => $image['height'],
 					'layout' => 'fill',
 					'class'  => 'amp-carousel-img',
+					'lightbox'  => 'true',
 				);
 			if( 3 == ampforwp_get_setting('ampforwp-gallery-design-type') || true == ampforwp_get_setting('ampforwp-gallery-lightbox') ){
 				$design3_additional_attr = array('on'=> 'tap:gallery-lightbox', 'role'=>'button', 

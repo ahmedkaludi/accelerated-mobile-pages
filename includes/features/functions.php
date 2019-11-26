@@ -1120,11 +1120,6 @@ function ampforwp_carousel_bind_script($data){
             $data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
         }   
     }
-    if( 3 == ampforwp_get_setting('ampforwp-gallery-design-type') || true == ampforwp_get_setting('ampforwp-gallery-lightbox') ){
-        if ( empty( $data['amp_component_scripts']['amp-image-lightbox'] ) ) {
-            $data['amp_component_scripts']['amp-image-lightbox'] = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
-        }
-    }
     return $data;
 }
 function ampforwp_new_thumbnail_images($amp_images, $uniqueid, $markup_arr){
