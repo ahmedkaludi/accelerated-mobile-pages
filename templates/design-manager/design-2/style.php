@@ -821,20 +821,23 @@ amp-facebook-like{
 
 <?php // CTA CSS Starts Here //
 if(true == ampforwp_get_setting('d123-signin-button') ) {  
-  $cta_text_color   = ampforwp_get_setting('d123-signin-button-text-color','rgba');
-  $cta_border_color = ampforwp_get_setting('d123-signin-button-border-color','rgba'); 
+  $cta_text_color   = ampforwp_get_setting('d2-signin-button-text-color','color');
+  $cta_border_color = ampforwp_get_setting('d2-signin-button-border-color','color'); 
+  $cta_background_color = ampforwp_get_setting('d2-signin-button-bg-color','color'); 
 
 if(empty($cta_text_color)){
-  $cta_text_color ='#000';
+  $cta_text_color ='#fff';
 }
-
 if(empty($cta_border_color)){
-  $cta_border_color ='#000';
+  $cta_border_color ='#0a89c0';
+}
+if(empty($cta_background_color)){
+  $cta_background_color ='#0a89c0';
 }
 ?>
   .d1-cta-wrap{
     position: absolute;
-    top: 14px;
+    top: 17px;
     <?php if( true == ampforwp_get_setting('amp-design-1-search-feature') ){ ?>
       right: 45px;
     <?php } else { ?>
@@ -842,23 +845,25 @@ if(empty($cta_border_color)){
     <?php } ?>
   }
   .d1-cta-wrap a {
-    color: <?php echo ampforwp_sanitize_color($cta_text_color) ?>;
+    color: <?php echo ampforwp_sanitize_color($cta_text_color) ?>;   
     display: inline-block;
-    padding: 5px 14px 7px 14px;
+    padding: 5px 9px 6px 9px;
     <?php if(ampforwp_get_setting('d123-signin-button-border-line')){?>
      border: <?php echo esc_html(ampforwp_get_setting('d123-signin-button-border-line'))?>px solid <?php echo ampforwp_sanitize_color($cta_border_color) ?>;
     <?php } ?>
-    font-size: 16px;    
-    line-height: 1.2;
-    font-weight: 600;
-    align-self: center;
+    font-size: 14px;    
+    line-height: 1;
+    font-weight: 400;
+    background: <?php echo ampforwp_sanitize_color($cta_background_color) ?>;   
   }
-
-<?php if(ampforwp_get_setting('d123-border-type') == '2'){?>
+<?php if(ampforwp_get_setting('d123-border-type') == '1'){?>
+  .d1-cta-wrap a{border-radius:3px;}
+<?php }
+if(ampforwp_get_setting('d123-border-type') == '2'){?>
   .d1-cta-wrap a{border-radius:100px;}
   .d1-cta-wrap a:before{border-radius:100px;}
-<?php } ?>
-<?php if(ampforwp_get_setting('d123-border-type') == '3'){?>
+<?php }
+if(ampforwp_get_setting('d123-border-type') == '3'){?>
   <?php if(ampforwp_get_setting('d123-border-radius') ){ ?>
     .d1-cta-wrap a{border-radius:<?php echo esc_html(ampforwp_get_setting('d123-border-radius'))?>px;}
   <?php } ?><?php } ?>

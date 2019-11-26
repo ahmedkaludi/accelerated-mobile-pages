@@ -700,9 +700,9 @@ amp-facebook-like{
 
 <?php // CTA CSS Starts Here //
 if(true == ampforwp_get_setting('d123-signin-button') ) {  
-  $cta_text_color   = ampforwp_get_setting('d123-signin-button-text-color','color');
-  $cta_border_color = ampforwp_get_setting('d123-signin-button-border-color','color'); 
-  $cta_background_color = ampforwp_get_setting('d123-signin-button-bg-color','color'); 
+  $cta_text_color   = ampforwp_get_setting('d1-signin-button-text-color','color');
+  $cta_border_color = ampforwp_get_setting('d1-signin-button-border-color','color'); 
+  $cta_background_color = ampforwp_get_setting('d1-signin-button-bg-color','color'); 
 
 if(empty($cta_text_color)){
   $cta_text_color ='#333';
@@ -734,7 +734,6 @@ if(empty($cta_background_color)){
     line-height: 1;
     font-weight: 600;
     background: <?php echo ampforwp_sanitize_color($cta_background_color) ?>;   
-
   }
 <?php if(ampforwp_get_setting('d123-border-type') == '1'){?>
   .d1-cta-wrap a{border-radius:3px;}
