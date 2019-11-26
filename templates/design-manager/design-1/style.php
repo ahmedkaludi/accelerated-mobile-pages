@@ -714,6 +714,7 @@ if(empty($cta_background_color)){
   $cta_background_color ='#fff';
 }
 ?>
+<?php if ( '1' == ampforwp_get_setting('d123_cta-responsive-view') ) {?>
   .d1-cta-wrap{
     position: absolute;
     top: 10px;
@@ -723,6 +724,14 @@ if(empty($cta_background_color)){
       right: 110px;
     <?php } ?>
   }
+<?php } else { ?>
+.d1-cta-wrap{
+    width: 100%;
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+}
+<?php } ?>
   .d1-cta-wrap a {
     color: <?php echo ampforwp_sanitize_color($cta_text_color) ?>;   
     display: inline-block;
@@ -733,6 +742,7 @@ if(empty($cta_background_color)){
     font-size: 14px;    
     line-height: 1;
     font-weight: 600;
+    text-decoration:none;
     background: <?php echo ampforwp_sanitize_color($cta_background_color) ?>;   
   }
 <?php if(ampforwp_get_setting('d123-border-type') == '1'){?>

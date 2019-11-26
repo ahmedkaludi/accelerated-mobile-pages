@@ -5099,6 +5099,20 @@ Redux::setSection( $opt_name, array(
                       array('d123-border-type','=',3)
                     )  
               ),
+            array(
+                    'id'    => 'd123_cta-responsive-view',
+                    'class' => 'child_opt child_opt_arrow',
+                   'title'  => esc_html__('CTA Position on Mobile', 'accelerated-mobile-pages'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Header',
+                        '2' =>  'Menu',
+                    ),
+                   'default'=> '1',
+                   'required' => array( 
+                    array('amp-design-selector', '!=' , '4'),
+                    array('d123-signin-button', '=' ,1) ),
+            ),
             // CTA Fields Ends Here
 
             array(

@@ -1060,6 +1060,7 @@ if(empty($cta_background_color)){
   $cta_background_color ='#f42f42';
 }
 ?>
+<?php if ( '1' == ampforwp_get_setting('d123_cta-responsive-view') ) {?>
   .d1-cta-wrap{
     position: absolute;
     top: 9px;
@@ -1069,10 +1070,18 @@ if(empty($cta_background_color)){
       right: 50px;
     <?php } ?>
   }
+<?php } else { ?>
+.d1-cta-wrap{
+    width: 100%;
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+}
+<?php } ?>
   .d1-cta-wrap a {
     color: <?php echo ampforwp_sanitize_color($cta_text_color) ?>;   
     display: inline-block;
-    padding: 5px 9px 6px 9px;
+    padding: 6px 10px 7px 10px;
     <?php if(ampforwp_get_setting('d123-signin-button-border-line')){?>
      border: <?php echo esc_html(ampforwp_get_setting('d123-signin-button-border-line'))?>px solid <?php echo ampforwp_sanitize_color($cta_border_color) ?>;
     <?php } ?>
