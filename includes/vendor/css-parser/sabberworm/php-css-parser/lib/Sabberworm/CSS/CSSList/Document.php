@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS\CSSList;
 
 use Sabberworm\CSS\Parsing\ParserState;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * The root CSSList of a parsed file. Contains all top-level css contents, mostly declaration blocks, but also any @-rules encountered.
  */

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 Class AMPforWP_theme_mode{
 	public function __construct(){
 	}	

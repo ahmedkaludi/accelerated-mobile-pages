@@ -1,7 +1,9 @@
 <?php
 
 namespace Sabberworm\CSS\Parsing;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
 * Thrown if the CSS parsers attempts to print something invalid
 */

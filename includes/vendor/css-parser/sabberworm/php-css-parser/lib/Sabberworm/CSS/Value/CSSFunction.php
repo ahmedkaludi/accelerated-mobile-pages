@@ -1,7 +1,9 @@
 <?php
 
 namespace Sabberworm\CSS\Value;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class CSSFunction extends ValueList {
 
 	protected $sName;

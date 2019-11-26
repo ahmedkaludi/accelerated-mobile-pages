@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 $featured_image = $this->get( 'featured_image' );
 
 if ( empty( $featured_image ) ) {

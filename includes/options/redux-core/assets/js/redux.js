@@ -125,7 +125,13 @@
                         //redux.defaults = response.defaults;
                         redux.errors = response.errors;
                         redux.warnings = response.warnings;
-
+                        if(redux.options.ampforwp_css_tree_shaking == '1')  {
+                            jQuery('#ampforwp-clear-clearcss-data').removeClass('hide');
+                            jQuery('#ampforwp-clear-clcss-msg').addClass('hide');
+                        } else{
+                            jQuery('#ampforwp-clear-clearcss-data').addClass('hide');
+                            jQuery('#ampforwp-clear-clcss-msg').removeClass('hide');
+                        }
                         $notification_bar.html( response.notification_bar ).slideDown( 'fast' );
                         if ( response.errors !== null || response.warnings !== null ) {
                             $.redux.notices();

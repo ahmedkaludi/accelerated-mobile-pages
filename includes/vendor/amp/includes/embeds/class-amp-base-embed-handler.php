@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Used by some children
 require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-html-utils.php' );
 

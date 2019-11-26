@@ -1,6 +1,9 @@
 <?php
 use AMPforWP\AMPVendor\AMP_Post_Template;
 use AMPforWP\AMPVendor\AMP_HTML_Utils;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 global $redux_builder_amp;
 $ampforwpTemplate = '';
 $loadComponent = array();
@@ -373,7 +376,7 @@ function amp_header_core(){
 		<head>
 		<meta charset="utf-8"> 
 			<?php do_action('amp_experiment_meta', $thisTemplate); ?>
-		    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+		    <link rel="dns-prefetch" href="//cdn.ampproject.org">
 		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
 		    <?php 
 		    	if(ampforwp_amp_nonamp_convert("", "check")){
@@ -568,6 +571,9 @@ function amp_content($post_id= ''){
 		else{
 			$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
 		}		
+	}
+	if(function_exists('ampforwp_sassy_share_icons')){
+		$ampforwp_the_content = ampforwp_sassy_share_icons($ampforwp_the_content);
 	}
 	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
 	echo $ampforwp_the_content; // amphtml content, no kses

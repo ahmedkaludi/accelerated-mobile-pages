@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_framework_get_logo(){
   global $redux_builder_amp;
   $title = get_bloginfo();

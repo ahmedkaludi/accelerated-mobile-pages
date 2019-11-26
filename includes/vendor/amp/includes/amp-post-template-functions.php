@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Was only available in Customizer > 4.6
 if ( ! function_exists( 'sanitize_hex_color' ) ) {
 	function sanitize_hex_color( $color ) {

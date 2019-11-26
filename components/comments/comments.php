@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_framework_get_comments(){
 	global $redux_builder_amp;
 	$display_comments_on = "";
@@ -114,8 +117,6 @@ function ampforwp_framework_get_comments(){
 						<div class="amp-comment-button">
 							<?php if ( comments_open($postID) ) { ?>
 						    	<a href="<?php echo ampforwp_comment_button_url(); ?>" title="<?php echo ampforwp_get_setting('amp-translator-leave-a-comment-text')?>" rel="nofollow"><?php echo esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment' ) ); ?></a> <?php
-							} else {
-								echo "<p class='nocomments'>". esc_html( ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) )." </p>";
 							}?>
 						</div> <?php 
 					}?>
@@ -129,8 +130,7 @@ function ampforwp_framework_get_comments(){
 function ampforwp_framework_get_facebook_comments(){
 global $redux_builder_amp;
 	$facebook_comments_markup = $lang = $locale = '';
-	$lang = $redux_builder_amp['ampforwp-fb-comments-lang'];
-	$locale = 'data-locale = "'.$lang.'"';
+	$lang = ampforwp_get_setting('ampforwp-fb-comments-lang');
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) {
 	if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) {
 		$facebook_comments_markup = '<div class="fb-comments" data-href="' . get_permalink() . '" data-width="800px" data-numposts="'.$redux_builder_amp['ampforwp-number-of-fb-no-of-comments'].'"></div>';
@@ -138,7 +138,7 @@ global $redux_builder_amp;
 	else {  
 		$facebook_comments_markup = '<section class="amp-facebook-comments">';
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
-	    		layout="responsive" '. esc_attr($locale) .' data-numposts=';
+	    		layout="responsive" '.'data-locale = "'.esc_attr($lang).'"'.' data-numposts=';
 		$facebook_comments_markup .= '"'. esc_attr($redux_builder_amp['ampforwp-number-of-fb-no-of-comments']). '"';
 	    if(ampforwp_get_data_consent()){
 	    	$facebook_comments_markup .= ' data-block-on-consent ';

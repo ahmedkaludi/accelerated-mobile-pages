@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /* 
 Most of the code is taken from class-amp-gallery-embed.php and Photo Gallery Plugin https://wordpress.org/plugins/photo-gallery/
 */

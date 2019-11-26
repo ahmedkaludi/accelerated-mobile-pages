@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS\CSSList;
 
 use Sabberworm\CSS\Property\AtRule;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * A BlockList constructed by an unknown @-rule. @media rules are rendered into AtRuleBlockList objects.
  */

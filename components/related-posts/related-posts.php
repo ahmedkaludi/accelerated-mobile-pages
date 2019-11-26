@@ -1,4 +1,7 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /*
 	@data parameter have options for
 	show_excerpt

@@ -1,4 +1,8 @@
-<?php function amp_breadcrumb_output(){
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+function amp_breadcrumb_output(){
     global $redux_builder_amp; 
     $home_non_amp = $archive_non_amp = '';
     if ( false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {

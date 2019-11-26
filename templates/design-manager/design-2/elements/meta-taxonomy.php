@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp;
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp;
 	if( isset($redux_builder_amp['ampforwp-tags-single']) && $redux_builder_amp['ampforwp-tags-single']) { ?>
 <div class="amp-wp-article-header amp-wp-article-category ampforwp-meta-taxonomy ">
 <?php	$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );

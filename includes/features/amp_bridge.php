@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 global $ampforwpMainArray;
 function amp_basicAlloptions(){
 	global $ampforwpMainArray;

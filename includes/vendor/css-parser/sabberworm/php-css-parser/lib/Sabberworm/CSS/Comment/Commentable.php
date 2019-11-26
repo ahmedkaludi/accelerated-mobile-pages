@@ -1,7 +1,9 @@
 <?php
 
 namespace Sabberworm\CSS\Comment;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 interface Commentable {
 
 	/**

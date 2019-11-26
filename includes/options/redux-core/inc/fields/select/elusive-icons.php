@@ -1,5 +1,8 @@
 <?php
 namespace ReduxCore\ReduxFramework;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Array of Elusive Icons
 // Contributed by @WhatJustHappened
 // Last updated: 14 Sept. 2013

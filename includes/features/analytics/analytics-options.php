@@ -1,5 +1,8 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_get_default_analytics($param=""){
     $default = ''; 
     $default = ampforwp_get_setting('amp-analytics-select-option');

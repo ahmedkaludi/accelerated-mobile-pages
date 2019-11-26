@@ -1,5 +1,8 @@
 <?php
 namespace ReduxCore\ReduxFramework;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
     /**
      * Redux ThemeCheck
      *

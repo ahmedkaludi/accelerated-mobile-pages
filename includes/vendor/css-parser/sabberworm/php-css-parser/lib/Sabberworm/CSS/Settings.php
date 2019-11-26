@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS;
 
 use Sabberworm\CSS\Rule\Rule;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Parser settings class.
  *

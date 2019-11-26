@@ -3,7 +3,9 @@
 use WillWashburn\Stream\Exception\StreamBufferTooSmallException;
 use WillWashburn\Stream\Stream;
 use WillWashburn\Stream\StreamableInterface;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Parses the stream of the image and determines the size and type of the image
  *

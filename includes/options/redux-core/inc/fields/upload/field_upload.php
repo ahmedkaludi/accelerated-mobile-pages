@@ -1,5 +1,8 @@
 <?php
 namespace ReduxCore\ReduxFramework;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class Redux_Options_upload {
 
     /**

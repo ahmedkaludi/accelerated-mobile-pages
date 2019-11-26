@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if ( 4 == $ampforwp_design_selector ) {
 	define('AMPFORWP_CUSTOM_THEME', AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift' );
 }

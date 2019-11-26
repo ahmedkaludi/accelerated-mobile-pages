@@ -1,4 +1,8 @@
-<?php function amp_gdpr_output(){
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+function amp_gdpr_output(){
 	global $redux_builder_amp;
     $headline   = $accept = $reject = $settings = $user_data = $form_url = '';
     $headline   = $redux_builder_amp['amp-gdpr-compliance-headline-text'];

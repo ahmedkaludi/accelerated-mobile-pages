@@ -1,5 +1,8 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_page_builders_support_options($opt_name){
 $divi_pb_for_ampchecker = $elemntr_pb_for_ampchecker = array();
 $divi_pb_for_ampchecker = array( 

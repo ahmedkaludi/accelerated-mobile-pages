@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if ( ! class_exists('AMP_Widget_Categories') ) {
 	class AMP_Widget_Categories extends WP_Widget_Categories {
 

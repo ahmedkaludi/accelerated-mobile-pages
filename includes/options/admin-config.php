@@ -1,5 +1,8 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 //Admin Panel Options        
 if ( ! class_exists( 'ReduxCore\ReduxFramework\Redux' ) ) {
     return;
@@ -1174,7 +1177,13 @@ $eu_iso_codes = array(
 
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
-$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="#" id="ampforwp-prem-upg-to">Upgrade to PRO</a> ';
+$upg_to_pro_url = '#';
+$upg_to_pro_target = '';
+if(get_theme_support('amp-template-mode')){
+    $upg_to_pro_url = 'https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin';
+    $upg_to_pro_target = 'target="_blank"';
+}
+$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="'.$upg_to_pro_url.'" id="ampforwp-prem-upg-to" '.$upg_to_pro_target.'>Upgrade to PRO</a> ';
 if($ampforwp_nameOfUser!=""){
     $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url(admin_url('admin.php?page=amp_options&tabid=opt-go-premium'))."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
@@ -3965,6 +3974,15 @@ Redux::setSection( $opt_name, array(
                       array('signin-button','=',1)
                     )  
               ),
+            // CTA No Follow links
+            array(
+                'id'        =>  'ampforwp-header-cta-link-nofollow',
+                'type'      =>  'switch',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     =>  esc_html__('No Follow Link', 'accelerated-mobile-pages'),
+                'default'   =>  0,
+                'required' => array('signin-button', '=', '1')
+            ),
             array(
                 'id'        => 'signin-button-style',
                 'class' => 'child_opt child_opt_arrow',

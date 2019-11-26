@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 	/**
 	 * The template for the header sticky bar.
 	 *

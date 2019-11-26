@@ -1,5 +1,8 @@
 <?php
 namespace ReduxCore\ReduxFramework;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
     class Redux_P {
 
         public function __construct() {

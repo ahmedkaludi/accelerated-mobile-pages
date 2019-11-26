@@ -4,7 +4,9 @@ namespace Sabberworm\CSS\Value;
 
 use Sabberworm\CSS\Parsing\ParserState;
 use Sabberworm\CSS\Parsing\UnexpectedTokenException;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class CalcFunction extends CSSFunction {
 	const T_OPERAND  = 1;
 	const T_OPERATOR = 2;

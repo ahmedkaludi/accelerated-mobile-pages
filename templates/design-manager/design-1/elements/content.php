@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp; ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp; ?>
 <?php do_action('ampforwp_before_content_hook',$this); ?>
 
 <div class="amp-wp-article-content">
@@ -15,7 +19,7 @@
 	} ?>
 	<!--Post Next-Previous Links-->
 	<?php
-		if($redux_builder_amp['enable-single-next-prev'] && !is_page() ) { ?>
+		if(true == ampforwp_get_setting('enable-single-next-prev') && !is_page() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) { ?>
 			<!--IF Starts here-->
 			<div class="amp-wp-content post-pagination-meta">
 				<div id="pagination">

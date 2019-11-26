@@ -318,7 +318,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					// If its custom permalink with /index.php/ #3537
 					if ( (is_home() || is_archive()) && false !== strpos($wp->matched_rule, 'index.php') && false === strpos( home_url( $wp->request ), 'index.php') ) {
 						$new_url = home_url( 'index.php' );
-						$new_url = trailingslashit($new_url);
+						$o_url = home_url();
+						$new_url = str_replace($o_url, $new_url, $amp_url);
+						$new_url = user_trailingslashit($new_url);
+						$amp_url = $new_url;
 					}
 					$category_path 	= $wp->request;
 					if ( null != $category_path && true != $endpoint_check) {
@@ -538,6 +541,9 @@ function ampforwp_new_dir( $dir ) {
 	        $fb_like = true;    
 	      }
 	      if ( is_page() && ( true == ampforwp_get_setting('ampforwp-page-sticky-social') || ( $social_check_page && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) ) ) {
+	        $fb_like = true;
+	      }
+	      if ( true == ampforwp_get_setting('enable-single-social-icons') && checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && is_singular()) {
 	        $fb_like = true;
 	      }
 	    }
@@ -1001,11 +1007,6 @@ function ampforwp_remove_schema_data() {
 	if ( function_exists('ampforwp_remove_filters_for_class')) {
 		//Remove Disallowed 'like' tag from facebook Like button by Ultimate Facebook
 		ampforwp_remove_filters_for_class( 'the_content', 'Wdfb_UniversalWorker', 'inject_facebook_button', 10 );
-		//Compatibility with Sassy Social Share Plugin
-		ampforwp_remove_filters_for_class( 'the_content', 'Sassy_Social_Share_Public', 'render_sharing', 10 );
-		ampforwp_remove_filters_for_class( 'amp_post_template_head', 'Sassy_Social_Share_Public', 'frontend_scripts', 10 );
-		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_inline_style', 10 );
-		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_amp_css', 10 );
 		//Removing the Monarch social share icons from AMP
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_inline', 10 );
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_media', 9999 );
@@ -2147,15 +2148,14 @@ function ampforwp_facebook_comments_markup() {
 
 	global $redux_builder_amp;
 	$facebook_comments_markup = $lang = $locale = '';
-	$lang = $redux_builder_amp['ampforwp-fb-comments-lang'];
-	$locale = 'data-locale = "'.$lang.'"';
+	$lang = ampforwp_get_setting('ampforwp-fb-comments-lang');
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on ) { 
 
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
-	    		layout="responsive" '.esc_attr($locale).' data-numposts=';
+	    	layout="responsive" '.'data-locale = "'.esc_attr($lang).'"'.' data-numposts=';
 		$facebook_comments_markup .= '"'. esc_attr($redux_builder_amp['ampforwp-number-of-fb-no-of-comments']). '"';
 	    if(ampforwp_get_data_consent()){		
 	    	$facebook_comments_markup .= ' data-block-on-consent ';
@@ -4007,8 +4007,13 @@ function ampforwp_rel_canonical_home_archive(){
 	if ( is_home() || is_front_page() || (is_archive() && ampforwp_get_setting('ampforwp-archive-support')) )	{
 		$current_archive_url = home_url( $wp->request );
 		$amp_url 	= trailingslashit($current_archive_url);
-		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
-		$amp_url 	= str_replace($remove, '', $amp_url);
+		$amp_url = explode('/', $amp_url);
+		$amp_url = array_flip($amp_url);
+		if(isset($amp_url['amp'])){
+			unset($amp_url['amp']);
+		}
+		$amp_url = array_flip($amp_url);
+		$amp_url  = implode('/', $amp_url);	
 	  	$query_arg_array = $wp->query_vars;
 	  	if( array_key_exists( "page" , $query_arg_array  ) ) {
 		   $page = $wp->query_vars['page'];
@@ -5788,7 +5793,7 @@ function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
 				$href_url = end($href_url);
 				$href_url = pathinfo($href_url, PATHINFO_FILENAME);
 			}
-			if($matches[3][$i] == $matches[7][$i] || strpos($matches[7][$i], $href_url) !== false){
+			if($matches[3][$i] == $matches[7][$i] || (!empty($href_url) && strpos($matches[7][$i], $href_url) !== false)){
 				$href = $matches[3][$i];
 				$src = $matches[7][$i];
 				$href_src = str_replace( '/', '\/', esc_url($href));
@@ -7129,11 +7134,11 @@ function ampforwp_head_css(){
 				$incurl = trailingslashit($incurl) .'fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987';
 				$css.='@font-face{font-family:dashicons;src:url('.esc_url( $incurl ).') format("truetype");
 				font-weight:400;font-style:normal}.amp-wp-header,.design2-header,.design3-header,.header{margin-top:32px}#headerwrap{top:32px}#wp-admin-bar-my-account .avatar{float:right;margin-top:3px}#wp-admin-bar-wpseo-notifications .yoast-issue-counter{float:right}@media(max-width:782px){.amp-wp-header,.design2-header,.design3-header,.header{margin-top:46px}#headerwrap{top:46px}}';
-				echo css_sanitizer($css);
+				echo ampforwp_css_sanitizer($css);
 			}
 		}
 	}
-	function css_sanitizer($css){
+	function ampforwp_css_sanitizer($css){
 		$css = preg_replace( '/\s*!important/', '', $css, -1, $important_count );
 		$css = preg_replace( '/overflow(-[xy])?\s*:\s*(auto|scroll)\s*;?\s*/', '', $css, -1, $overlow_count );
             $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
@@ -7259,3 +7264,24 @@ if(!function_exists('ampforwp_remove_admin_help')){
 		}
 	}
 }
+
+if(!function_exists('ampforwp_sassy_icon_style')){
+	function ampforwp_sassy_icon_style(){
+		$css = get_transient('ampforwp_sassy_css');
+		if($css == false){
+			$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/includes/sassy-style.css");
+			set_transient('ampforwp_sassy_css', $css);
+		}
+		echo ampforwp_css_sanitizer($css);
+	}
+}	
+if(function_exists('heateor_sss_run')){
+	add_action('amp_post_template_css', 'ampforwp_sassy_icon_style'); 
+}	
+function ampforwp_nofollow_cta_header_link(){
+	if(true == ampforwp_get_setting('ampforwp-header-cta-link-nofollow')){	
+		echo 'rel=nofollow';
+		return;
+	}
+	return false;
+}	

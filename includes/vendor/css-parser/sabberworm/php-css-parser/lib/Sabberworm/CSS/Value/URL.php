@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS\Value;
 
 use Sabberworm\CSS\Parsing\ParserState;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class URL extends PrimitiveValue {
 
 	private $oURL;

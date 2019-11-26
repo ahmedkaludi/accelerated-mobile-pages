@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Analytics Area
 add_action('amp_post_template_footer','ampforwp_analytics',11);
 function ampforwp_analytics() {

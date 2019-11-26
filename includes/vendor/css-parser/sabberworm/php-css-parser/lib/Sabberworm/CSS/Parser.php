@@ -4,7 +4,9 @@ namespace Sabberworm\CSS;
 
 use Sabberworm\CSS\CSSList\Document;
 use Sabberworm\CSS\Parsing\ParserState;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Parser class parses CSS from text into a data structure.
  */

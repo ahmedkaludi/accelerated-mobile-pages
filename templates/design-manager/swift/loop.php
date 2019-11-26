@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp, $search_found; 
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp, $search_found; 
 $width  = 346;
 $height = 188;
 if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){

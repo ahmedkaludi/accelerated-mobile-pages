@@ -3,7 +3,9 @@
 namespace Sabberworm\CSS\RuleSet;
 
 use Sabberworm\CSS\Property\AtRule;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * A RuleSet constructed by an unknown @-rule. @font-face rules are rendered into AtRuleSet objects.
  */

@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Callbacks for adding AMP-related things to the admin.
 
 define( 'AMP_VENDOR_CUSTOMIZER_QUERY_VAR', 'customize_amp' );

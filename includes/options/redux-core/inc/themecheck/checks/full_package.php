@@ -1,5 +1,7 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
     class Redux_Full_Package implements themecheck {
         protected $error = array();
 

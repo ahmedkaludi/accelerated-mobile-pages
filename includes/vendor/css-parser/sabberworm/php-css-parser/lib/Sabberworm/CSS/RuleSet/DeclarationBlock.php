@@ -12,7 +12,9 @@ use Sabberworm\CSS\Value\Value;
 use Sabberworm\CSS\Value\Size;
 use Sabberworm\CSS\Value\Color;
 use Sabberworm\CSS\Value\URL;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Declaration blocks are the parts of a css file which denote the rules belonging to a selector.
  * Declaration blocks usually appear directly inside a Document or another CSSList (mostly a MediaQuery).

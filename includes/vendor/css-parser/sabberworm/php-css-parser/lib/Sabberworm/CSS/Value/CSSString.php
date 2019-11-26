@@ -4,7 +4,9 @@ namespace Sabberworm\CSS\Value;
 
 use Sabberworm\CSS\Parsing\ParserState;
 use Sabberworm\CSS\Parsing\SourceException;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class CSSString extends PrimitiveValue {
 
 	private $sString;

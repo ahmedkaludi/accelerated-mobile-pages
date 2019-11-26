@@ -20,6 +20,9 @@
  *
  * @version 2.8.33
  */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class AMPforWP_Mobile_Detect
 {
     /**

@@ -1,5 +1,8 @@
 <?php 
 use AMPforWP\AMPVendor\AMP_Post_Template;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 global $redux_builder_amp; 
 // add_action( 'amp_post_template_head', function() {
 //     remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
@@ -91,7 +94,10 @@ ol, ul {list-style-position: inside;}
     <?php if ( $content_max_width > 0 ) : ?>
     max-width: <?php echo sprintf( '%dpx', $content_max_width ); ?>;
     margin: 0 auto;
-    <?php endif; ?>
+    <?php endif;
+    if((is_singular() || ampforwp_is_front_page() ) && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
+      max-width:100%;
+    <?php } ?>
 }
 figure.aligncenter amp-img {
  margin: 0 auto;
@@ -231,6 +237,9 @@ header.container{line-height: 0;}
 .amp-logo amp-img{ margin: 15px 0px 10px 0px; }
 .amp-logo amp-img{margin: 0 auto;}
 main { padding: 30px 15% 10px 15%; }
+<?php if (checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && (is_singular() || ampforwp_is_front_page() )){ ?>
+	main { padding: 0px; }
+<?php } ?>
 .amp-wp-content.widget-wrapper{padding:12px 10px 10px 10px;}
 main .amp-wp-content{ margin-bottom: 12px;  padding: 15px; }
 .amp-loop-list, .featured-image-content, .the_content, .taxonomy-description{background: #fff; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05);}
@@ -318,7 +327,9 @@ figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px
 .amp-wp-meta{ font-size: 12px; color: #555; }
 .amp-wp-author-name:before{content:'By';}
 .amp-ad-wrapper{ text-align: center }
+<?php if ( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>
 .single-post main{ padding:12px 15% 10px 15% }
+<?php } ?>
 .the_content p{ margin-top: 5px; color: #333; font-size: 15px; line-height: 26px; margin-bottom: 15px;word-break: break-word; }
 .amp-wp-tax-tag{ font-size: 13px; border: 0; display: inline-block; margin: 0.5em 0px 0.7em 0px; width: 100%; }
 main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }

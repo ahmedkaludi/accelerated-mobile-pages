@@ -1,4 +1,8 @@
-<?php class AMPFORWP_Blurb_Widget extends WP_Widget {
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+class AMPFORWP_Blurb_Widget extends WP_Widget {
 	/*--------------------------------------------------*/
 	/* Constructor
 	/*--------------------------------------------------*/

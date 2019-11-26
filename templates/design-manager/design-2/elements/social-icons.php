@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp; 
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+global $redux_builder_amp; 
 // Social share in AMP 
 $amp_permalink = $facebook_app_id = $amp_permalink_fb_messenger = '';
 $facebook_app_id = ampforwp_get_setting('amp-facebook-app-id-messenger');

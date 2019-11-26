@@ -1,5 +1,8 @@
 <?php
 namespace AMPforWP\AMPVendor;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class AMP_WP_Utils {
 	/**
 	 * wp_parse_url in < WordPress 4.7 does not respect the component arg, so we're adding this helper so we can use it.

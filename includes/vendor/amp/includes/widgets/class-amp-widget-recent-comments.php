@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if ( ! class_exists('AMP_Widget_Recent_Comments') ) {
 	class AMP_Widget_Recent_Comments extends WP_Widget_Recent_Comments {
 

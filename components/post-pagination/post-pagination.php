@@ -1,4 +1,7 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_framework_get_post_pagination( $args = '' ) {
 
 	wp_reset_postdata();

@@ -1,4 +1,8 @@
-<?php amp_header(); ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+amp_header(); ?>
 <div class="sp">
 <div class="cntr menu-btn">
 <h2 class="amp-post-title">

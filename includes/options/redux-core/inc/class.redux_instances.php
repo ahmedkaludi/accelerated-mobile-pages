@@ -1,5 +1,8 @@
 <?php
     namespace ReduxCore\ReduxFramework;
+    if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
     /**
      * Redux Framework Instance Container Class
      * Automatically captures and stores all instances

@@ -1,4 +1,7 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // MGID
 if( !class_exists('adsforwp_output_functions') ){
 	add_filter('ampforwp_modify_ad_1','ampforwp_mgid_markup_ad_1',10,1);

@@ -1,4 +1,8 @@
-<?php use AMPforWP\AMPVendor\AMP_HTML_Utils;?>
+<?php use AMPforWP\AMPVendor\AMP_HTML_Utils;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
 <?php global $redux_builder_amp;  ?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
@@ -6,7 +10,7 @@
 	<meta charset="utf-8">
 	<?php if(is_search() && false == ampforwp_get_setting('amp-inspection-tool') && false == ampforwp_get_setting('ampforwp-robots-search-pages')){?>
 	<meta name="robots" content="noindex,nofollow"/><?php } ?>
-    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+    <link rel="dns-prefetch" href="//cdn.ampproject.org">
 	<?php $paged = get_query_var( 'paged' );
 		$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();
 		$amp_url = untrailingslashit($current_search_url);

@@ -8,7 +8,9 @@ use Sabberworm\CSS\Property\Selector;
 use Sabberworm\CSS\Rule\Rule;
 use Sabberworm\CSS\Value\ValueList;
 use Sabberworm\CSS\Value\CSSFunction;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * A CSSBlockList is a CSSList whose DeclarationBlocks are guaranteed to contain valid declaration blocks or at-rules.
  * Most CSSLists conform to this category but some at-rules (such as @keyframes) do not.

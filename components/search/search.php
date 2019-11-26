@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 //main output function
 function ampforwp_framework_get_search_form() {
 		global $redux_builder_amp;

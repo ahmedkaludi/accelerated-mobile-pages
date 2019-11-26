@@ -1,6 +1,8 @@
 <?php
 namespace ReduxCore\ReduxFramework;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
     /**
      * Customizer section representing widget area (sidebar).
      *

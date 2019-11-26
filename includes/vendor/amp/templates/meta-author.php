@@ -1,4 +1,8 @@
-<?php $post_author = $this->get( 'post_author' ); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+$post_author = $this->get( 'post_author' ); ?>
 <?php if ( $post_author ) : ?>
 	<?php $author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) ); ?>
 	<div class="amp-wp-meta amp-wp-byline">

@@ -5,7 +5,9 @@ namespace Sabberworm\CSS\Value;
 use Sabberworm\CSS\Parsing\ParserState;
 use Sabberworm\CSS\Parsing\UnexpectedTokenException;
 use Sabberworm\CSS\Renderable;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 abstract class Value implements Renderable {
 	protected $iLineNo;
 

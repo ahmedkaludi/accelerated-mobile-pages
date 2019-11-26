@@ -1,5 +1,8 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 function ampforwp_push_notification_options($opt_name){
     // Push Notifications section
    Redux::setSection( $opt_name, array(

@@ -1,7 +1,9 @@
 <?php
 
 namespace Sabberworm\CSS\Property;
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Class representing an @charset rule.
  * The following restrictions apply:
