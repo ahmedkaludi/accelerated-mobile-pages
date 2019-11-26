@@ -1752,9 +1752,6 @@ function ampforwp_replace_title_tags() {
 			}
 		 	if ( $yoast_title ) {
 		 		$site_title = apply_filters( 'wpseo_title', $yoast_title );
-		 		if($sep == 'sc-dash'){
-		 			add_filter( 'run_wptexturize', '__return_false' );	
-		 		}
 		 	}
 		}
 
@@ -1873,6 +1870,9 @@ function ampforwp_replace_title_tags() {
 			if ( $tsf_title ) {
 				$site_title = $tsf_title;
 			}
+		}
+		if (class_exists('WPSEO_Frontend') && $sep == 'sc-dash') {
+			return esc_html( convert_chars( trim( $site_title ) ) );
 		}
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
