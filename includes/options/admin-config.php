@@ -1461,10 +1461,13 @@ Redux::setArgs( "redux_builder_amp", $args );
         $custom_logo_id = '';
         $image          = '';
         $value          = '';
-        $custom_logo_id = get_theme_mod( 'custom_logo' );
-        $image = wp_get_attachment_image_src( $custom_logo_id , 'full');
-        if( $image ){
-            return $image[0];
+        $current_page = ampforwp_get_admin_current_page();
+        if($current_page=="amp_options"){
+            $custom_logo_id = get_theme_mod( 'custom_logo' );
+            $image = wp_get_attachment_image_src( $custom_logo_id , 'full');
+            if( $image ){
+                return $image[0];
+            }
         }
         return $value;
     }
