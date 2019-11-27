@@ -370,8 +370,15 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 
 		elseif ( 3 == ampforwp_get_setting('ampforwp-gallery-design-type') ) {
 			$gal_div = AMP_DOM_Utils::create_node($this->dom, 'div', array('class'=>'gal_w') );
-			foreach ($amp_images as $amp_image) {				
-				$gal_div->appendChild( $amp_image );
+			$i = 0;
+			foreach ($amp_images as $amp_image) {
+				$figure_node = AMP_DOM_Utils::create_node($this->dom, 'figure', array('class'=>'ampforwp-gallery-item amp-carousel-containerd3'));
+				$figure_node->appendChild($amp_image);
+				$fig_caption = AMP_DOM_Utils::create_node($this->dom, 'figcaption', array());
+				$fig_caption->nodeValue = $args['images'][$i]['caption'];
+				$figure_node->appendChild($fig_caption);
+				$gal_div->appendChild( $figure_node );
+				$i++;	
 			}
 			$amp_carousel = $gal_div;
 			add_action('amp_post_template_css', 'AMPforWP\\AMPVendor\\ampforwp_gal_des_3');
