@@ -91,7 +91,8 @@ if ( isset($args['show_time']) ) {
             }
             else {
                 if( $author_pub_name  ){
-                    echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';
+	                $author_link = (true == ampforwp_get_setting('ampforwp-archive-support'))? esc_url(ampforwp_url_controller($author_link)) :  esc_url($author_link);
+                    echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url($author_link).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';
                     echo ampforwp_yoast_twitter_handle();
                 }
             }
