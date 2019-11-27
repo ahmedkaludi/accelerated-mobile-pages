@@ -486,7 +486,7 @@ if(!function_exists('ampforwp_findInternalUrl')){
         $get_skip_media_path    = pathinfo($url);
         $skip_media_extensions  = array('jpg','jpeg','gif','png');
 
-        if ( isset( $get_skip_media_path['extension'] ) ){
+        if ( isset( $get_skip_media_path['extension'] ) && !empty($get_skip_media_path['extension'])){
             if (! in_array( $get_skip_media_path['extension'], $skip_media_extensions ) && !strpos(get_option( 'permalink_structure' ), $get_skip_media_path['extension'])){
                 $skip_media_extensions[] = $get_skip_media_path['extension'];
             }
