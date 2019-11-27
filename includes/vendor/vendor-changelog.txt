@@ -91,3 +91,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 61. Undefined variable amp_url issue fixed #3776
 62. Warnings fixed of util function to get array component #3778
 63. Need to remove width from inline style on amp images #3741
+64. Fixed Instagram video (tv) rendering issue #3812
