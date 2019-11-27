@@ -465,6 +465,7 @@ function amp_back_to_top_link(){
 	 global $redux_builder_amp;
     if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
         <a id="scrollToTopButton" title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ></a> 
+        <?php if(ampforwp_get_setting('ampforwp-amp-convert-to-wp')==false){?>
         <amp-animation id="showAnim"
 		  layout="nodisplay">
 		  <script type="application/json">
@@ -501,7 +502,19 @@ function amp_back_to_top_link(){
 		    }
 		  </script>
 		</amp-animation>
-      <?php }
+	<?php }else if(ampforwp_get_setting('ampforwp-amp-convert-to-wp')==true){?>
+      	<script>
+      		var elem = document.getElementById('scrollToTopButton');
+      		elem.addEventListener("click", function(){
+      			window.scrollTo({
+				  top: 0,
+				  behavior: 'smooth'
+				});
+      		});
+      	</script>
+      	<?php
+      }
+    }
 }
 
 function amp_loop_template(){
