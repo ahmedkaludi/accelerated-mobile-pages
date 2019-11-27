@@ -1754,6 +1754,9 @@ function ampforwp_replace_title_tags() {
 				$site_title = $tsf_title;
 			}
 		}
+		if (class_exists('WPSEO_Frontend') && $sep == 'sc-dash') {
+			return esc_html( convert_chars( trim( $site_title ) ) );
+		}
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
 }
