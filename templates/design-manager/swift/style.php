@@ -2280,3 +2280,8 @@ if(true == ampforwp_get_setting('signin-button') && '2' == ampforwp_get_setting(
 	}
 	}
 <?php }
+if(true == ampforwp_get_setting('amp-rtl-select-option')){?>
+.breadcrumbs li a:after, .breadcrumbs span a:after{
+	content: "\e314";
+}
+<?php }
