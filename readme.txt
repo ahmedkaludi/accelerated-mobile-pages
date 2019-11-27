@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3
-Stable tag: 0.9.98.19
+Stable tag: 0.9.98.20
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,29 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.20 (27th November 2019) =
+* Fixed: Menu closer icon is getting overlapped by the header part of firefox web browser #3744
+* Fixed: Instagram TV videos are not rendering into AMP #3812
+* Fixed: Need To move CTA button in header two in sidebar if the website layout is in mobile view #3669
+* Fixed: When the image is added from ThirstyAffiliate image block from Guntenber editor facing validation error #3706
+* Fixed: PHP Warning:DOMDocument::loadHTML(): Empty string supplied as input #3745
+* Fixed: When Convert AMP to WP theme (Beta) option is enabled Back to Top link functionality is not working #3695
+* Fixed: Post date always shows 3 hours ago #3624
+* Fixed: Gutenberg Design Bugs #3645
+* Fixed: Toolbar AMP link bug #3692
+* Fixed: Breadcrumb icommon symbol direction should be changed when RTL is enabled in Swift. #3678
+* Fixed: Extra CSS are loading in swift and AMP Layouts #3414
+* Fixed: Remove Digg and Google plus option form Social Sharing #3709
+* Fixed: When Yoast SEO plugin is activated the same excerpt shows #3708
+* Fixed: Allow people to use captions below thumbnails in gallery #3702
+* Fixed: Design improvements of D2 #3637
+* Fixed: Fatal error: Uncaught Error: Cannot use object of type stdClass as array (after 98.15) #3867
+* Fixed: In amp gallery need to make improvement in arrow #3860
+* Fixed: Performance issues in AMP FOR WP #3732
+* Fixed: Yoast Separator is converting from Hyphen to Dash #3783
+* Fixed: Multiple UX related modifactions #3869
+* Fixed: strpos() debug error after 19 update #3878
+
 = 0.9.98.19 (25th November 2019) =
 * Fixed: image transients should clear automatically #3781
 * Fixed: CTA button in header could be made no follow #3798
@@ -218,18 +241,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Facebook comment is not changing language when we select another language #3710
 * Fixed: Verify button of Google Font API key is not working after update #3858
 * Fixed: Cache is not clearing after clicking clear cache button #3863
-
-= 0.9.98.17 (19th November 2019) =
-* Fixed: Validation error of 'srcset' in 'amp-img' after Latest update of Divi Theme (From version 4.0.2) #3803
-* Fixed: Logo is not resizing when using fixed width #3696
-* Fixed: Fatal Error when "AMP FOR WP" is activated on AMP FOR WP Garage URL #3765
-* Fixed: Images and Videos with Gutenberg does not have proper spacing #3634
-* Fixed: Undefined variable: amp_url #3776
-* Fixed: amp-image-lightbox markup is loading in paginated post even the image is not present #3700
-* Fixed: Search results on/off option in amp #3786
-* Fixed: Internal links are breaking in Persian language #3777
-* Fixed: Use util function to get array component. Fixes #3778 #3842
-* Fixed: Add Hyperlink option to Gallery module images. #3850
-* Fixed: Need to remove WPBakery Page Builder Support Option #3855
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
