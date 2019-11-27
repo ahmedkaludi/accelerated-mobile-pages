@@ -253,6 +253,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 								'width' => $this->args['width'],
 								'height' => $this->args['height'],
 								'type' => 'slides',
+								'controls'	=>'',
 								'layout' => 'responsive',
 								'class'  => 'collapsible-captions',
 								'id' => 'carousel-with-carousel-preview-'.$r
