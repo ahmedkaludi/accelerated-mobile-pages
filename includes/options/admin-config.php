@@ -6967,13 +6967,6 @@ else{
               'default'   =>  0,
               'required'  => array('enable-single-twitter-share', '=' , '1'),
           ),
-          // GooglePlus ON/OFF
-          array(
-              'id'        =>  'enable-single-gplus-share',
-              'type'      =>  'switch',
-              'title'     =>  esc_html__('GooglePlus', 'accelerated-mobile-pages'),
-              'default'   =>  1,
-          ),
           // Email ON/OFF
           array(
               'id'        =>  'enable-single-email-share',
@@ -7042,13 +7035,6 @@ else{
               'id'        =>  'enable-single-telegram-share',
               'type'      =>  'switch',
               'title'     =>  esc_html__('Telegram', 'accelerated-mobile-pages'),
-              'default'   =>  0,
-          ),
-          // Digg
-          array(
-              'id'        =>  'enable-single-digg-share',
-              'type'      =>  'switch',
-              'title'     =>  esc_html__('Digg', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
           // StumbleUpon

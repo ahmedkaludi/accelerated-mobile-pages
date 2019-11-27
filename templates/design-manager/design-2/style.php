@@ -215,9 +215,6 @@ amp-social-share[type="facebookmessenger"] {
 <?php if ( true == ampforwp_get_setting('enable-single-tumblr-share') ) { ?>
 .amp-social-tumblr{background:#35465c}
 <?php } ?>
-<?php if ( true == ampforwp_get_setting('enable-single-digg-share') ) { ?>
-.amp-social-digg{background:#005be2}
-<?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-stumbleupon-share') ) { ?>
 .amp-social-stumbleupon{background:#eb4924}
 <?php } ?>

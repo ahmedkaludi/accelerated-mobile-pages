@@ -52,10 +52,6 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	 	$selected_social_icons['pinterest'] = 'https://pinterest.com/pin/create/bookmarklet/?media='.$image.'&url='.$url.'&description='.$title.'';
 	 	//https://pinterest.com/pin/create/bookmarklet/?media={img}&url={url}&is_video={is_video}&description={title}
 	}
-	if( isset($selected_social_icons['google-plus']) && $selected_social_icons['google-plus'] == null){
-	 	$selected_social_icons['google-plus'] = 'https://plus.google.com/share?url='. $url. '';
-	 	//https://plus.google.com/share?url={url}
-	}
 	if( isset($selected_social_icons['linkedin']) && $selected_social_icons['linkedin'] == null){
 	 	$selected_social_icons['linkedin'] = 'https://www.linkedin.com/shareArticle?url='. $url. '&title='. $title .'';
 	 	//https://www.linkedin.com/shareArticle?url={url}&title={title}
@@ -80,10 +76,6 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	if ( isset($selected_social_icons['telegram']) && null == $selected_social_icons['telegram'] ) {
 	 	$selected_social_icons['telegram'] = 'https://telegram.me/share/url?url='. $url. '&text='. $title .'';
 	 	//https://telegram.me/share/url?url={url}&text={title}
-	}
-	if ( isset($selected_social_icons['digg']) && null == $selected_social_icons['digg'] ) {
-	 	$selected_social_icons['digg'] = 'http://digg.com/submit?url='. $url. '&title='. $title .'';
-	 	//http://digg.com/submit?url={url}&title={title}
 	}
 	if ( isset($selected_social_icons['StumbleUpon']) && null == $selected_social_icons['StumbleUpon'] ) {
 	 	$selected_social_icons['StumbleUpon'] = 'http://www.stumbleupon.com/submit?url='. $url. '&title='. $title .'';
@@ -113,10 +105,6 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	        <?php if( ( in_array( 'pinterest' , $selected_social_icons,true ) || in_array( 'pinterest', $social_icons_names,true )) && !empty($selected_social_icons['pinterest']) ) { ?>
 	        <a href="<?php echo esc_url($selected_social_icons['pinterest'])  ?>" target ="_blank"><li class="icon-pinterest"></li></a>
 	        <?php } ?>
-
-	        <?php if( (in_array( 'google-plus' , $selected_social_icons,true ) || in_array( 'google-plus' , $social_icons_names,true )) && !empty($selected_social_icons['google-plus']) ) { ?>
-	        <a href="<?php echo esc_url($selected_social_icons['google-plus'])  ?>" target ="_blank"><li class="icon-google-plus"></li></a>
-	        <?php } ?> 
 
 	        <?php if( (in_array( 'linkedin' , $selected_social_icons,true ) || in_array( 'linkedin' , $social_icons_names,true )) && !empty($selected_social_icons['linkedin']) ) { ?>
 	        <a href="<?php echo esc_url($selected_social_icons['linkedin'])  ?>" target ="_blank"><li class="icon-linkedin"></li></a>
@@ -152,10 +140,6 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 
 	        <?php if ( (in_array( 'telegram' , $selected_social_icons,true ) || in_array( 'telegram' , $social_icons_names,true )) && ! empty($selected_social_icons['telegram']) ) { ?>
 	        <a href="<?php echo esc_url($selected_social_icons['telegram']); ?>" target ="_blank"><li class="icon-telegram"></li></a>
-	        <?php } ?> 
-
-	        <?php if ( (in_array( 'digg' , $selected_social_icons,true ) || in_array( 'digg' , $social_icons_names,true )) && ! empty($selected_social_icons['digg']) ) { ?>
-	        <a href="<?php echo esc_url($selected_social_icons['digg']); ?>" target ="_blank"><li class="icon-digg"></li></a>
 	        <?php } ?> 
 
 	        <?php if ( (in_array( 'StumbleUpon' , $selected_social_icons,true ) || in_array( 'StumbleUpon' , $social_icons_names,true )) && ! empty($selected_social_icons['StumbleUpon']) ) { ?>
