@@ -921,8 +921,8 @@ $freepro_listing = '
             </div><!-- /.pri-lst -->
             <div class="tru-us">
                 <img src="'.AMPFORWP_IMAGE_DIR . '/rating.png" />
-                <h2>Trusted by more that 130000+ Users!</h2>
-                <p>More than 130k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
+                <h2>Trusted by more that 180000+ Users!</h2>
+                <p>More than 180k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
                 <a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?filter=5" target="_blank">Read The Reviews</a>
             </div>
         </div><!--/ .amp-upg -->
