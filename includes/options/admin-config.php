@@ -458,6 +458,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('shortcodes-ultimate-for-amp/shortcodes-ultimate-for-amp.php')? 1 : 2),
                         ),
                         array(
+                            'name'=>'Structured Data for WP',
+                            'desc'=>'Structured Data for your site and for AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/sd-icon.png',
+                            'price'=>'FREE',
+                            'url_link'=>'https://ampforwp.com/structuredata-for-wp/#utm_source=options-panel&utm_medium=extension-tab_structuredata-for-wp&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'structured-data-for-wp/structured-data-for-wp.php',
+                            'item_name'=>'Structured Data for WP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>2,
+                          //'settingUrl'=>'',
+                        ),
+                        array(
                             'name'=>'Purge AMP CDN Cache',
                             'class'=>'new-ext',
                             'label' => 'Purge AMP CDN Cache',
