@@ -157,9 +157,17 @@ do_action("ampforwp_single_design_type_handle_d1");
 			        ?>
 			        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 			        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail()){?>
-				            <div class="rlp-image">     
-				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
-							</div>
+                              <div class="rlp-image">
+						          <?php
+						          $width    = 220;
+						          $height   = 134;
+						          if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
+							          $width    = $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
+							          $height   = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
+						          }
+						          $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+						          <?php amp_loop_image($args); ?>
+                              </div>
 						<?php } } ?>	
 						<div class="rlp-cnt">
 							<?php
