@@ -114,9 +114,17 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 					}
 				}
 				$parent_node = $element->parentNode;
-				$allowed_tags = AMP_Allowed_Tags_Generated::get_allowed_tags();
 
-				if( $parent_node->tagName != 'amp-state'){
+				$spec_name = 'amp-script extension local script';
+				$checkAllowedFlag = 0 ;
+				foreach ( AMP_Allowed_Tags_Generated::get_allowed_tag( 'script' ) as $spec_rule ) {
+					if ( isset( $spec_rule[ AMP_Rule_Spec::TAG_SPEC ]['spec_name'] ) && $spec_name === $spec_rule[ AMP_Rule_Spec::TAG_SPEC ]['spec_name'] ) {
+						if($element->getAttribute( 'id' ) && $element->getAttribute( 'target' ) == 'amp-script')
+							$checkAllowedFlag = 1 ;
+					}
+				}
+
+				if( $parent_node->tagName != 'amp-state' && $checkAllowedFlag == 0){
  					$parent_node->removeChild( $element );
 				 }
  				if ( 'body' !== $parent_node->nodeName && AMP_DOM_Utils::is_node_empty( $parent_node ) ) {
