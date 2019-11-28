@@ -885,7 +885,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 42px;
+    grid-gap: 25px;
     margin-top: 40px;
 }
 .fe-2{
@@ -900,7 +900,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     margin: 0;
     display: inline-block;
     vertical-align: middle;
-    font-size: 20px;
+    font-size: 19px;
     color: #000;
     font-weight: normal;
     line-height: 1.4;
