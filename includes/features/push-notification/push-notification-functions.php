@@ -6,7 +6,7 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 	function ampforwp_onesignal_notifications(){ 
 	global $redux_builder_amp;
 	$checker = false;
-	if ( (!checkAMPforPageBuilderStatus(get_the_ID()) && (ampforwp_is_front_page() || is_singular()) ) || true == ampforwp_get_setting('ampforwp-web-push-onesignal-header') || true == ampforwp_get_setting('ampforwp-web-push-onesignal-sticky') ){
+	if ( (!checkAMPforPageBuilderStatus(get_the_ID()) && (ampforwp_is_front_page() || is_single()) ) || true == ampforwp_get_setting('ampforwp-web-push-onesignal-header') || true == ampforwp_get_setting('ampforwp-web-push-onesignal-sticky') ){
 		$checker = true;
 	}
 	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] && $checker ){
