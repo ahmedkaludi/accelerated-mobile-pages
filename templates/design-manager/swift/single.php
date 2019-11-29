@@ -161,9 +161,9 @@ do_action("ampforwp_single_design_type_handle_d1");
 						          <?php
 						          $width    = 220;
 						          $height   = 134;
-						          if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
-							          $width    = $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
-							          $height   = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
+						          if( true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') ){
+							          $width    = ampforwp_get_setting('ampforwp-swift-homepage-posts-width');
+							          $height   = ampforwp_get_setting('ampforwp-swift-homepage-posts-height');
 						          }
 						          $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
 						          <?php amp_loop_image($args); ?>
