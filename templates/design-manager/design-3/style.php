@@ -1040,4 +1040,12 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
       font-weight:normal;
       margin-left: 5px;
   }
-<?php }
+<?php } ?>
+.link-menu .toggle {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  cursor:pointer;
+}

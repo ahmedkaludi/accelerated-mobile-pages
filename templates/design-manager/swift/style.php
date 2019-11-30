@@ -305,6 +305,14 @@ cursor: pointer;border-radius: 35px;color: <?php echo ampforwp_sanitize_color($r
 	border-bottom: 1px solid <?php if(isset($redux_builder_amp['swift-element-menu-border-color']['rgba'])){echo ampforwp_sanitize_color($redux_builder_amp['swift-element-menu-border-color']['rgba']);}?>;
 	margin:0px 10px;
 }
+.m-menu .link-menu .toggle {
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    cursor:pointer;
+}
 .m-menu .amp-menu .sub-menu li:last-child{border:none;}
 .m-menu .amp-menu a {padding: 7px 15px;}
 .m-menu > li{font-size:17px;}

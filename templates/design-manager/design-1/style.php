@@ -700,4 +700,13 @@ amp-facebook-like{
       font-size: 13px;
       color:#999;
   }
-<?php }
+<?php } ?>
+
+.link-menu .toggle {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  cursor:pointer;
+}
