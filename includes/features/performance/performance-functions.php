@@ -6,6 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_filter('ampforwp_the_content_last_filter','ampforwp_minify_html_output');
 function ampforwp_minify_html_output($content_buffer){
     $content_buffer = str_replace('srcset=""', '', $content_buffer);
+    //Removed trbidi attribute #3687
+    $content_buffer = str_replace('trbidi="on"', '', $content_buffer);
+    $content_buffer = str_replace("trbidi='on'", '', $content_buffer);
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
