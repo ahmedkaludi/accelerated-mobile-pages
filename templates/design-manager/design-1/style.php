@@ -529,34 +529,6 @@ if ( is_active_sidebar( 'ampforwp-above-footer'  ) || is_active_sidebar( 'ampfor
     .w-bl{flex:1 0 100%;}
   <?php endif; ?>
 }
-<?php // Back to Top CSS //
-if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
-  .btt{
-      position: fixed;
-      <?php if( (is_single() && true == ampforwp_get_setting('enable-single-social-icons') ) || (is_page() && true == ampforwp_get_setting('ampforwp-page-sticky-social') ) ){ ?>
-      bottom: 55px;
-      <?php } else { ?>
-        bottom: 20px;
-      <?php } ?>
-      right: 20px;
-      background: rgba(71, 71, 71, 0.5);
-      color: #fff;
-      border-radius: 100%;
-      width: 50px;
-      height: 50px;
-  }
-  .btt:hover{color:#fff;background:#474747;}
-  .btt:before{
-    content: '\25be';
-    display: block;
-    font-size: 35px;
-    font-weight: 600;
-    color:#fff;
-    transform: rotate(180deg);
-    text-align: center;
-    line-height: 1.5;
-  }
-<?php } ?> 
 <?php if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){?>
     html {
    scroll-behavior: smooth;
