@@ -7,6 +7,7 @@ class AMP_Image_Dimension_Extractor {
 	static $callbacks_registered = false;
 	const STATUS_FAILED_LAST_ATTEMPT = 'failed';
 	const STATUS_IMAGE_EXTRACTION_FAILED = 'failed';
+	const STATUS_IMAGE_EXTRACTION_INVALID = 'invalid';
 
 	static public function extract( $urls ) {
 		if ( ! self::$callbacks_registered ) {
@@ -230,14 +231,14 @@ class AMP_Image_Dimension_Extractor {
 			$attachment_id = '';
 			$image_data = $images[ $url_data['url'] ];
 			// Fallback #2931
-			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size'] ) {	
+			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size']  || STATUS_IMAGE_EXTRACTION_INVALID  === $image_data['size']) {
 				$attachment_id = attachment_url_to_postid($url_data['url']);
 				$image = wp_get_attachment_image_src($attachment_id, 'full');
 				if ( $image ) {
 					$image_data['size'] = array($image[1],$image[2]);
 				}
 			}
-			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size'] ) {
+			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size']  || STATUS_IMAGE_EXTRACTION_INVALID  === $image_data['size']) {
 				$dimensions[ $url_data['url'] ] = false;
 				set_transient( $url_data['transient_name'], self::STATUS_FAILED_LAST_ATTEMPT, $transient_expiration );
 			} else {
