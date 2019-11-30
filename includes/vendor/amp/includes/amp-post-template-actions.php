@@ -94,8 +94,8 @@ function amp_post_template_add_analytics_data( $amp_template ) {
 	}
 
 	foreach ( $analytics_entries as $id => $analytics_entry ) {
-		if ( ! isset( $analytics_entry['type'], $analytics_entry['attributes'], $analytics_entry['config_data'] ) ) {
-			_doing_it_wrong( __FUNCTION__, sprintf( esc_html__( 'Analytics entry for %s is missing one of the following keys: `type`, `attributes`, or `config_data` (array keys: %s)', 'accelerated-mobile-pages' ), esc_html( $id ), esc_html( implode( ', ', array_keys( $analytics_entry ) ) ) ), '0.3.2' );
+		if ( ! isset(  $analytics_entry['attributes'], $analytics_entry['config_data'] ) ) {
+			_doing_it_wrong( __FUNCTION__, sprintf( esc_html__( 'Analytics entry for %s is missing one of the following keys:  `attributes`, or `config_data` (array keys: %s)', 'accelerated-mobile-pages' ), esc_html( $id ), esc_html( implode( ', ', array_keys( $analytics_entry ) ) ) ), '0.3.2' );
 			continue;
 		}
 
@@ -103,10 +103,7 @@ function amp_post_template_add_analytics_data( $amp_template ) {
 			'type' => 'application/json',
 		), wp_json_encode( $analytics_entry['config_data'] ) );
 
-		$amp_analytics_attr = array_merge( array(
-			'id' => $id,
-			'type' => $analytics_entry['type'],
-		), $analytics_entry['attributes'] );
+		$amp_analytics_attr = $analytics_entry['attributes'];
 
 		echo AMP_HTML_Utils::build_tag( 'amp-analytics', $amp_analytics_attr, $script_element );
 	}

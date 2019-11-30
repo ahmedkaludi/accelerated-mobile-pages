@@ -322,7 +322,7 @@ add_action( 'amp_post_template_head' , 'ampforwp_analytics_clientid_api' );
 if( ! function_exists( ' ampforwp_analytics_clientid_api ' ) ) {
 	function ampforwp_analytics_clientid_api() {
 		global $redux_builder_amp;
-		if ( true == ampforwp_get_setting('amp-analytics-select-option') || 'googleanalytics' == ampforwp_get_setting('amp-gtm-analytics-type')){ ?>
+		if ( true == ampforwp_get_setting('ampforwp-ga-switch') || true == ampforwp_get_setting('amp-use-gtm-option')){ ?>
 			<meta name="amp-google-client-id-api" content="googleanalytics">
 		<?php }
 	}
@@ -417,7 +417,7 @@ function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
 			$ampforwp_adv_gtm_fields = preg_replace('/\n\s*\n/', '', $ampforwp_adv_gtm_fields);
 			$ampforwp_adv_gtm_fields = preg_replace('/\/\/(.*?)\s(.*)/m', '$2', $ampforwp_adv_gtm_fields);
 	 		?>
-			<amp-analytics id="<?php echo ampforwp_get_setting('amp-gtm-analytics-type'); ?>" type="googleanalytics" data-credentials="include" config="https://www.googletagmanager.com/amp.json?id=<?php echo ampforwp_get_setting('amp-gtm-id'); ?>&amp;gtm.url=SOURCE_URL"><script type="application/json"><?php echo $ampforwp_adv_gtm_fields ?></script></amp-analytics>
+			<amp-analytics data-credentials="include" config="https://www.googletagmanager.com/amp.json?id=<?php echo esc_attr(ampforwp_get_setting('amp-gtm-id')); ?>&amp;gtm.url=SOURCE_URL"><script type="application/json"><?php echo $ampforwp_adv_gtm_fields ?></script></amp-analytics>
 			<?php
 		 }
 		 return $ampforwp_adv_gtm_fields;
