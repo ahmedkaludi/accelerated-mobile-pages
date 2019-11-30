@@ -526,9 +526,17 @@ function ampforwp_pb_autoCompileLess($css)
 
     // add groups of media query at the end of CSS
     $css = $css." \n";
-    foreach ($completeCssMinifies as $id => $val)
-    {
-        $css .= "\n" . '@media' . $id . '{' . $val . '}' . "\n";
+    $medias = array();
+    foreach ($completeCssMinifies as $key => $value) {
+    	preg_match_all('!\d+!', $key, $matches);
+    	if($matches){
+			$medias[$matches[0][0]] = $value;
+		}
+    }   
+    krsort($medias);
+    foreach ($medias as $id => $val)
+    {	
+        $css .= "\n" . '@media(max-width:' . $id . 'px){' . $val . '}' . "\n";
     }
     //Remove multiple Spaces
     //padding:\s*?(\d*px)\s*(\d*px)\s*(\d*px)\s*(\d*px)\s*?;
