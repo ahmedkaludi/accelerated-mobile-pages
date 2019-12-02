@@ -425,7 +425,7 @@ jQuery(function($) {
                     if(callType=='design_change'){
                     switch(currentdesign){
                             case '1':
-                                redux_data.amp_font_selector_content_single = 'Segoe UI'
+                                redux_data.amp_font_selector = 'Merriweather'
                             break;
                             case '2':
                                 redux_data.amp_font_selector = 'sans-serif'
@@ -510,7 +510,7 @@ jQuery(function($) {
                     if(callType=='design_change'){
                     switch(currentdesign){
                             case '1':
-                                redux_data.amp_font_selector_content_single = 'Merriweather'
+                                redux_data.amp_font_selector_content_single = 'Segoe UI'
                             break;
                             case '2':
                                 redux_data.amp_font_selector_content_single = 'sans-serif'
