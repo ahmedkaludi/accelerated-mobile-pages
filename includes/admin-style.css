@@ -866,7 +866,7 @@ visibility: hidden;
     font-size: 15px;
 }
 .redux-main .child_opt .afw-tooltip{ 
-    margin-top: -8px;
+    margin-top: -3px;
 }
 .redux-main .child_opt .redux_field_th{  background: #f9f9f9;padding:23px 10px 23px 20px;
       margin-right: -16px;}
@@ -1167,7 +1167,7 @@ div#section-ampforwp-ads-section, table#section-table-ampforwp-ads-section{
     }
 }
 .redux-main .redux-field-container{
-    padding: 18px 10px 18px 0;
+    padding: 18px 25px 18px 0;
 }
 .adsactive { 
     max-width: 100%!important;

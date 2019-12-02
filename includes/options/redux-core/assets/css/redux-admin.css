@@ -60,15 +60,12 @@
     display: block;
     font-size: 16px;
     color: #333;}
-.child_opt .redux_field_th span:first-child{
-    right: 60px;
-}
 .redux_field_th span:first-child{     z-index: 100; font-weight: normal;
     position: absolute;
     display: block;
     color: #777;
     font-size: 12px;
-    right: 4%;
+    right: 2%;
     margin-top: 5px;}
 .farb-popup-wrapper{position:relative;display:block}.farb-popup{position:absolute;left:40px;top:40px;background-color:white;border:1px solid #222;padding:5px;z-index:100}#ui-datepicker-div{display:none}.mp6 .icon-themes{display:none}.mp6 .redux-container #info_bar{padding:6px 10px 6px 6px}.mp6 .redux-container #info_bar a{margin-top:2px}.redux-timer{text-align:center;font-size:10px;color:#888}.wrap{margin-top:0}@media screen and (max-width: 600px){.redux-sidebar .extraIconSubsections{display:none !important}.redux-sidebar .redux-group-menu li a,.redux-sidebar .redux-group-menu li a:hover,.redux-sidebar .redux-group-menu li.active a,.redux-sidebar .redux-group-menu li.active a:hover,.redux-sidebar .redux-group-menu li.activeChild a,.redux-sidebar .redux-group-menu li.activeChild a:hover{width:auto}.redux-sidebar .redux-group-tab-link-a{position:relative}
 
