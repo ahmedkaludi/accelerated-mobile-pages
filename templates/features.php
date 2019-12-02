@@ -7333,3 +7333,10 @@ if( ! function_exists('ampforwp_font_selector') ) {
 		return $fontFamily;
 	}
 }
+
+// Font URL controller
+if ( ! function_exists('ampforwp_font_url') ) {
+	function ampforwp_font_url($font_url){
+		return apply_filters('ampforwp_font_url', $font_url);
+	}
+}
