@@ -14,12 +14,18 @@ do_action('ampforwp_above_the_title',$this); ?>
 	?>
 	<?php if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 				if($redux_builder_amp['enable-excerpt-single']) {
-					if( has_excerpt() ){ ?>
-					<div class="ampforwp_single_excerpt">
+					if( has_excerpt() && false == ampforwp_get_setting('excerpt-option-design-3') ){ ?>
+					<div class="ampforwp_single_excerpt large-screen-excerpt-design-3">
 						<?php $content = get_the_excerpt();
 						echo wp_kses_post($content); ?>
 					</div> <?php
 					}
+					if(has_excerpt() && true == ampforwp_get_setting('excerpt-option-design-3')){ ?>
+						<div class="ampforwp_single_excerpt small-screen-excerpt-design-3">
+						<?php $content = get_the_excerpt();
+						echo wp_kses_post($content); ?>
+					</div>
+					<?php }
 				}
 			} ?>
 </header>
