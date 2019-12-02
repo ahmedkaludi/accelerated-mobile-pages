@@ -5333,6 +5333,9 @@ add_action('amp_post_template_css', 'ampforwp_google_fonts_generator');
 if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
   function ampforwp_google_fonts_generator() {
     global $redux_builder_amp;
+    if( 1!=ampforwp_get_setting('ampforwp-google-font-switch') || true == ampforwp_get_setting('amp_google_font_restrict')){
+    	return;
+    }	
 	if(isset($redux_builder_amp['google_current_font_data'])){
 		$font_data = json_decode(stripslashes($redux_builder_amp['google_current_font_data']));
 	}
@@ -5344,7 +5347,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
     	$font_type = $redux_builder_amp['amp_font_type'];
     }
 
-    if ( $font_type ) {
+    if ( $font_type && ampforwp_get_setting('amp_font_selector') != 'Segoe UI') {
 	    foreach ($font_type as $key => $value) {
 			// Font Weight generator
 			$font_weight = (int) $value;
@@ -5419,7 +5422,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 	    if( ampforwp_get_setting('amp_font_type_content_single') ){
 	    	$font_type = ampforwp_get_setting('amp_font_type_content_single');
 	    }
-	    if ( $font_type ) {
+	    if ( $font_type && ampforwp_get_setting('amp_font_selector_content_single') != 'Segoe UI') {
 		    foreach ($font_type as $key => $value) {
 				// Font Weight generator
 				$font_weight = (int) $value;
@@ -7309,3 +7312,24 @@ function ampforwp_nofollow_cta_header_link(){
 	}
 	return false;
 }	
+
+// Font Selector
+if( ! function_exists('ampforwp_font_selector') ) {
+	function ampforwp_font_selector( $container ) {
+		global $redux_builder_amp;
+		$fontFamily = '';
+		if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
+			return $fontFamily;
+		}
+		if(empty($container)) {
+			$container = 'body';
+		}
+		if ( 'content' == $container && ampforwp_get_setting('amp_font_selector_content_single') && 1 != ampforwp_get_setting('amp_font_selector_content_single') ) {
+			$fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector_content_single')."';"; 
+		}
+		if ( 'body' == $container && ampforwp_get_setting('amp_font_selector') && 1 != ampforwp_get_setting('amp_font_selector') ) {
+			$fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector')."'";
+		}
+		return $fontFamily;
+	}
+}

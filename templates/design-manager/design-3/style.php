@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   ?>
 
 /* Global Styling */
-body{ font: 16px/1.4 Sans-serif; }
+body{ font: 16px/1.4 Sans-serif; <?php echo ampforwp_font_selector('body'); ?>}
 a{ color: #312C7E; text-decoration: none }
 .clearfix, .cb{ clear: both }
 .alignleft{ margin-right: 12px; margin-bottom:5px; float: left; }
@@ -75,6 +75,7 @@ ol, ul {list-style-position: inside;}
     max-width: <?php echo esc_attr( sprintf( '%dpx', $content_max_width ) ); ?>;
     margin: 0 auto;
     <?php endif;
+      echo ampforwp_font_selector('content');
       if((is_singular() || ampforwp_is_front_page() ) && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
       max-width:100%;
     <?php } ?>
