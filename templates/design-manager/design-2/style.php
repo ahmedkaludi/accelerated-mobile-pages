@@ -76,7 +76,31 @@ if(empty($cross_btn_hvr_clr)){
 
 ?>
 /* Global Styling */
-body{ background: #f1f1f1; font: 16px/1.4 Sans-serif;<?php echo ampforwp_font_selector('body'); ?>}
+body{ 
+	background: #f1f1f1;
+	font-size:16px;
+	line-height:1.4;
+	<?php $fontFamily = "font-family: sans-serif;"; ?>
+  	<?php if( 1 == ampforwp_get_setting('ampforwp-google-font-switch') ) {
+      $fontFamily = "font-family: sans-serif;";
+      if(ampforwp_get_setting('amp_font_selector') != 1 && !empty(ampforwp_get_setting('amp_font_selector') )){ 
+        $fontFamily = "font-family: ".ampforwp_get_setting('amp_font_selector').";";
+      }
+    }
+    echo $fontFamily; ?>
+}
+<?php // secondary font family
+$font_content = '';
+$font_content = ampforwp_get_setting('amp_font_selector_content_single'); ?>
+.amp-wp-post-content p, .amp-wp-content.the_content{
+	<?php $fontFamily = "font-family: sans-serif;"; 
+    if(1==ampforwp_get_setting('ampforwp-google-font-switch') && 1 == ampforwp_get_setting('content-font-family-enable')){ 
+      if(!empty($font_content) && $font_content != 1 ){  
+        $fontFamily = "font-family: ".esc_attr($font_content).";";
+      }  
+    }
+echo $fontFamily; // secondary font family ends here ?>
+}
 a {	color: #312C7E;	text-decoration: none }
 .clearfix, .cb { clear: both }
 amp-iframe{ max-width: 100%; margin-bottom : 20px; }
@@ -343,7 +367,7 @@ main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bot
 .single-post .ampforwp-social-icons.ampforwp-social-icons-wrapper{ margin: 0.9em auto 0.9em auto ; max-width: 1030px; }
 .amp-wp-article-header.amp-wp-article-category.ampforwp-meta-taxonomy{ margin: 10px auto; max-width: 1030px; } .ampforwp_single_excerpt { margin-bottom:15px; font-size: 15px; text-align:center}
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
-.single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 2px; font-size: 13px; color:#333; font-family: sans-serif;<?php echo ampforwp_font_selector('body');?> }
+.single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 2px; font-size: 13px; color:#333;}
 <?php if(is_single()){
 if( $redux_builder_amp['ampforwp-single-select-type-of-related'] ){ ?>
 /* Related Posts */
@@ -397,7 +421,7 @@ table a:link { font-weight: bold; text-decoration: none; }
 table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
 table a:active,
 table a:hover { color: #bd5a35; text-decoration: underline; }
-table { font-family: Arial, Helvetica, sans-serif; color: #666; font-size: 12px; text-shadow: 1px 1px 0px #fff; background: #eee; margin: 0px; width: 95%; }
+table { color: #666; font-size: 12px; text-shadow: 1px 1px 0px #fff; background: #eee; margin: 0px; width: 95%; }
 table th { padding: 21px 25px 22px 25px; border-top: 1px solid #fafafa; border-bottom: 1px solid #e0e0e0; background: #ededed; background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb)); background: -moz-linear-gradient(top, #ededed, #ebebeb); }
 table th:first-child { text-align: left; padding-left: 20px; }
 table tr:first-child th:first-child { -moz-border-radius-topleft: 3px; -webkit-border-top-left-radius: 3px; border-top-left-radius: 3px; }
