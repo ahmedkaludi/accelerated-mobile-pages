@@ -7,6 +7,9 @@ function ampforwp_minify_html_output($content_buffer){
     $content_buffer = str_replace('trbidi="on"', '', $content_buffer);
     $content_buffer = str_replace("trbidi='on'", '', $content_buffer);
     $content_buffer = str_replace('srcset=""', '', $content_buffer);
+	if (strpos($content_buffer, 'frameborder') !== false) {
+		add_filter("w3tc_minify_html_enable",function(){ return 0; });
+	}
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
     }
