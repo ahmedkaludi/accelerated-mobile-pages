@@ -37,7 +37,6 @@ function amppb_save_post( $post_id, $post ){
  
     /* Get new submitted data and sanitize it. */
     $submitted_data = isset( $request['amp-page-builder'] ) ?  $request['amp-page-builder']  : null;
-    // $submitted_data = (str_replace(array("'","<script>","</script>"), array("&apos;","",""), $submitted_data));
     $submitted_data = wp_slash($submitted_data);
     
     /* New data submitted, No previous data, create it  */
