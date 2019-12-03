@@ -30,9 +30,9 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * NEW - Gutenberg Support
 * NEW - Divi and Elementor Support [More Info](https://ampforwp.com/amp-pagebuilder-compatibility/)
 * NEW - Improved CSS Optimization (Tree Shaking)
+* NEW - Google Fonts Support For All Designs
 * NEW - Addthis Sharing Support
-* NEW - AMP Infinity Scroll Support
-* NEW - Revolution Slider plugin Support 
+* NEW - AMP Infinite Scroll Support
 * NEW - Photo Gallery by 10Web Support 
 * NEW - MEWE social network Support 
 * NEW - GDPR Compliance
