@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3
-Stable tag: 0.9.98.20
+Stable tag: 0.9.98.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,25 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.21 (3th December 2019) =
+* Improvement: Fonts support in all three designs one, two and three along with the swift Theme #1914
+* Improvement: Need to create Testimonial slider in AMP Page Builder #2960
+* Improvement: Need to create an optional option for the side menu when people click on the text the links should be dropped. links sub links #3428
+* Improvement: Need to make compatibility with this plugin Stop Generating Image Sizes #3851
+* Improvement: Improve Matemo analytics integration #3757
+* Fixed: Breadcrumb breaks when '/' is present in category name #3769
+* Fixed: Back to top button CSS loading twice in Design 1,2,3. #3835
+* Fixed: Removing trbidi attribute #3687
+* Fixed: Upgrade to AdsforWP button not working properly. #3681
+* Fixed: Tooltip alignment is missing in Advertisement #3625
+* Fixed: Media queries are removing automatically in media queries merging process #3797
+* Fixed: Excerpt on homepage is not working properly. #3866
+* Fixed: Author links are redirecting to AMP even when the Archives is turned off. #3875
+* Fixed: Issue related to image height and width #3857
+* Fixed: Gutenberg Gallery Images are not displayed correctly when any option is selected in WordPress Content Gallery. #3868
+* Fixed: Google Tag manager not firing properly #3826
+* Fixed: After Update AMP option panel design is changing #3877
+
 = 0.9.98.20 (27th November 2019) =
 * Fixed: Menu closer icon is getting overlapped by the header part of firefox web browser #3744
 * Fixed: Instagram TV videos are not rendering into AMP #3812
@@ -227,19 +246,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Canonical url is changing in cateogry pages when cateogry name start with amp #3694
 * Fixed: general fixes and improvements part 2 #3621
 * Fixed: Warning: strpos(): Empty needle in /home/statecer/public_html/wp-content/plugins/accelerated-mobile-pages/templates/features.php on line 5788 #3870
-
-= 0.9.98.18 (21th November 2019) =
-* Improvement: Show the number of shares with Sassy Social Share #3588
-* Fixed: Need to improvment in table code #3664
-* Fixed: Change internal links to AMP is not working when custom permalink having the extenison.html #3811
-* Fixed: Width of the recent posts and related posts thumbnail image should be same #3639
-* Fixed: Page should be full width if the page builder is used #3756
-* Fixed: Remove broken link on source code like "<link rel="dns-prefetch" href="https://cdn.ampproject.org">." #3697
-* Fixed: leave a comment added when making pages with pagebuilder #3755
-* Fixed: Need to adding gaping for col 2 in AMP Pagebuilder #3796
-* Fixed: CSS issue. #3785
-* Fixed: Facebook comment is not changing language when we select another language #3710
-* Fixed: Verify button of Google Font API key is not working after update #3858
-* Fixed: Cache is not clearing after clicking clear cache button #3863
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
