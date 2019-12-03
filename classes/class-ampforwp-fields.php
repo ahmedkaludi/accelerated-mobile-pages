@@ -306,7 +306,7 @@ class AMPforWP_Fields
 			$lbl_cls = 'class="'.esc_attr($fields['label-class']).'"';
 		}
 
-		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).' '.esc_attr($required).'"><label><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" ' . esc_attr($checked).'>'.esc_html__($this->title).'</label></div>';
+		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).' '.esc_attr($this->parent_class).' " '.esc_attr($required).'><label '.$lbl_cls.'><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" ' . esc_attr($checked).'>'.esc_html__($this->title).'</label></div>';
 		echo $output;
 	}
 	public function ampforwp_field_switch($fields){
