@@ -368,6 +368,7 @@ padding: <?php echo esc_html($redux_builder_amp['primary-menu-padding-control'][
 	.p-menu{overflow-x: auto;overflow-y:hidden;white-space: nowrap;}
 <?php } ?>
 .p-menu ul li.menu-item-has-children:after{display:none;}
+.amp-menu .toggle:after{position:absolute;}
 @media(max-width:768px){
 	.p-menu ul li.menu-item-has-children:hover > ul{display:none;}
 	.p-menu{overflow-x: auto;overflow-y:hidden;white-space: nowrap;}
