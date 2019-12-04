@@ -566,7 +566,7 @@ if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
 		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_single']."';";
 	}  
 }
-echo esc_html($fontFamily);
+echo sanitize_text_field($fontFamily);
 ?>
 }
 <?php } ?>
