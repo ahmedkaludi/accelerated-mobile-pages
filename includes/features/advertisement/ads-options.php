@@ -1023,11 +1023,25 @@ if ( ! defined( 'ABSPATH' ) ) {
                             'layout_type' => 'accordion',
                             'accordion-open'=> 1, 
                         );
+                $is_afwp = "not-exist";
+                $afwp_active_url = '';
+                $afwp_default = 0;
+                if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."ads-for-wp/ads-for-wp.php")){
+                    if(!is_plugin_active('ads-for-wp/ads-for-wp.php')){
+                        $is_afwp = "inactive";
+                        $plugin_file = "ads-for-wp/ads-for-wp.php";
+                        $afwp_active_url = ampforwp_wp_plugin_action_link( $plugin_file, 'activate' );
+                    }else{
+                        $is_afwp = "active";
+                        $afwp_active_url = $ampforwp_admin_url.'admin.php?page=adsforwp&amp;tab=general&amp;reference=ampforwp';
+                        $afwp_default = 2;
+                    }
+                }
         $fields[] =   array(
                   'id'       => 'ampforwp-ads-module',
                   'class'=> is_plugin_active('ads-for-wp/ads-for-wp.php')? "adsactive": '',
                   'type'     => 'raw',
-                  'content'  => '<div class="ampforwp-ads-data-update">
+                  'content'  => '<div class="ampforwp-ads-data-update"><input type="hidden" value="'.esc_url($afwp_active_url).'" class="ampforwp-activation-url" id="'.esc_attr($is_afwp).'">
                                         '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? esc_html__('A Revolutionary new Ad plugin from our team which is dedicated to make the #1 Ad solution in the world.','accelerated-mobile-pages'): esc_html__('Thank you for upgrading the Ads for WP','accelerated-mobile-pages')).'
                                         <div class="row">
                                             

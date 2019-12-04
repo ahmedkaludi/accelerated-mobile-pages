@@ -93,8 +93,31 @@ function ampforwp_analytics() {
 	}
 
 	// 10.3 Analytics Support added for Piwik
-		if( true == ampforwp_get_setting('ampforwp-Piwik-switch')) { ?>
-				<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo ampforwp_get_setting('pa-feild'); ?>"></amp-pixel>
+		if( true == ampforwp_get_setting('ampforwp-Piwik-switch')){
+			$idsite = urlencode(ampforwp_get_setting('pa-feild'));
+			$title = urlencode(get_the_title());
+			$url = get_the_permalink();
+			$url = urlencode(ampforwp_remove_protocol(ampforwp_url_controller($url)));
+			$rand = rand(1111,9999);
+			$pview = urlencode(ampforwp_remove_protocol(site_url()));
+			$piwik_analytics = '{"triggers":{"trackPageview": {"on":"visible","request":"pageview}},"requests":{"base": "https://piwik.example.org/piwik.php?idsite='.$idsite.'&rec=1&action_name='.$title.'&url='.$url.'&rand='.$rand.'&apiv=1"}}';
+			?>
+			<amp-analytics id="piwikanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="piwikanalytics">
+				<script type="application/json">
+					{
+						"triggers": {
+							"trackPageview": {
+								"on": "visible",
+								"request": "pageview"
+							}
+						},
+						"requests": {
+							"base": "https://piwik.example.org/piwik.php?idsite=<?php echo urlencode(esc_attr($idsite));?>&rec=1&action_name=<?php echo esc_attr($title);?>&url=<?php echo esc_url($url);?>&rand=<?php echo intval($rand);?>&apiv=1",
+							"pageview": "<?php echo esc_url($pview);?>"
+						}
+					}
+				</script>
+			</amp-analytics>
 		<?php }
 
 		// 10.4 Analytics Support added for quantcast
@@ -299,7 +322,7 @@ add_action( 'amp_post_template_head' , 'ampforwp_analytics_clientid_api' );
 if( ! function_exists( ' ampforwp_analytics_clientid_api ' ) ) {
 	function ampforwp_analytics_clientid_api() {
 		global $redux_builder_amp;
-		if ( true == ampforwp_get_setting('amp-analytics-select-option') || 'googleanalytics' == ampforwp_get_setting('amp-gtm-analytics-type')){ ?>
+		if ( true == ampforwp_get_setting('ampforwp-ga-switch') || true == ampforwp_get_setting('amp-use-gtm-option')){ ?>
 			<meta name="amp-google-client-id-api" content="googleanalytics">
 		<?php }
 	}
@@ -309,7 +332,7 @@ if( ! function_exists( ' ampforwp_analytics_clientid_api ' ) ) {
 add_filter('amp_post_template_data','ampforwp_register_analytics_script', 20);
 function ampforwp_register_analytics_script( $data ){ 
 	global $redux_builder_amp;
-	if( true == ampforwp_get_setting('ampforwp-ga-switch') || true == ampforwp_get_setting('ampforwp-Segment-switch') || true == ampforwp_get_setting('ampforwp-Quantcast-switch') || true == ampforwp_get_setting('ampforwp-comScore-switch') || true == ampforwp_get_setting('ampforwp-Yandex-switch') || true == ampforwp_get_setting('ampforwp-Chartbeat-switch') || true == ampforwp_get_setting('ampforwp-Alexa-switch') || true == ampforwp_get_setting('ampforwp-afs-analytics-switch') || true == ampforwp_get_setting('amp-use-gtm-option') || true == ampforwp_get_setting('amp-clicky-switch')) {
+	if( true == ampforwp_get_setting('ampforwp-ga-switch') || true == ampforwp_get_setting('ampforwp-Segment-switch') || true == ampforwp_get_setting('ampforwp-Quantcast-switch') || true == ampforwp_get_setting('ampforwp-comScore-switch') || true == ampforwp_get_setting('ampforwp-Yandex-switch') || true == ampforwp_get_setting('ampforwp-Chartbeat-switch') || true == ampforwp_get_setting('ampforwp-Alexa-switch') || true == ampforwp_get_setting('ampforwp-afs-analytics-switch') || true == ampforwp_get_setting('amp-use-gtm-option') || true == ampforwp_get_setting('amp-clicky-switch') || true == ampforwp_get_setting('ampforwp-Piwik-switch')) {
 		
 		if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
 			$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
@@ -394,7 +417,7 @@ function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
 			$ampforwp_adv_gtm_fields = preg_replace('/\n\s*\n/', '', $ampforwp_adv_gtm_fields);
 			$ampforwp_adv_gtm_fields = preg_replace('/\/\/(.*?)\s(.*)/m', '$2', $ampforwp_adv_gtm_fields);
 	 		?>
-			<amp-analytics id="<?php echo ampforwp_get_setting('amp-gtm-analytics-type'); ?>" type="googleanalytics" data-credentials="include" config="https://www.googletagmanager.com/amp.json?id=<?php echo ampforwp_get_setting('amp-gtm-id'); ?>&amp;gtm.url=SOURCE_URL"><script type="application/json"><?php echo $ampforwp_adv_gtm_fields ?></script></amp-analytics>
+			<amp-analytics data-credentials="include" config="https://www.googletagmanager.com/amp.json?id=<?php echo esc_attr(ampforwp_get_setting('amp-gtm-id')); ?>&amp;gtm.url=SOURCE_URL"><script type="application/json"><?php echo $ampforwp_adv_gtm_fields ?></script></amp-analytics>
 			<?php
 		 }
 		 return $ampforwp_adv_gtm_fields;

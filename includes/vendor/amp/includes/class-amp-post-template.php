@@ -21,7 +21,12 @@ require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-playbuzz-sani
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-rule-spec.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-allowed-tags-generated.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-tag-and-attribute-sanitizer.php' );
-require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-gallery-block-sanitizer.php' );
+global $wp_version;
+if ( version_compare( $wp_version, '5.3', '>=' ) ) {
+	require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-gallery-block-sanitizer-5-3.php' );
+}else{
+	require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-gallery-block-sanitizer.php' );
+}
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-block-sanitizer.php' );
 
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );

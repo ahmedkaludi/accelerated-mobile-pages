@@ -68,9 +68,6 @@ if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 				data-param-text="TITLE <?php echo esc_url($twitter_amp_permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_attr($data_param_data) ?>"
 			></amp-social-share>
 		<?php } ?>
-		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
-			<amp-social-share type="gplus"      width="50" height="28" <?php ampforwp_nofollow_social_links(); ?>></amp-social-share>
-		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-email-share'] == true)  { ?>
 			<amp-social-share type="email"      width="50" height="28" <?php ampforwp_nofollow_social_links(); ?>></amp-social-share>
 		<?php } ?>
@@ -126,13 +123,6 @@ if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 			<a title="telegram share" <?php ampforwp_nofollow_social_links(); ?> href="https://telegram.me/share/url?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>" target="_blank" aria-label="telegram share">
 				<div class="amp-social-icon amp-social-telegram"> 
 					<amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ1NS43MzEgNDU1LjczMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDU1LjczMSA0NTUuNzMxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGc+Cgk8cmVjdCB4PSIwIiB5PSIwIiBzdHlsZT0iZmlsbDojNjFBOERFOyIgd2lkdGg9IjQ1NS43MzEiIGhlaWdodD0iNDU1LjczMSIvPgoJPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik0zNTguODQ0LDEwMC42TDU0LjA5MSwyMTkuMzU5Yy05Ljg3MSwzLjg0Ny05LjI3MywxOC4wMTIsMC44ODgsMjEuMDEybDc3LjQ0MSwyMi44NjhsMjguOTAxLDkxLjcwNiAgIGMzLjAxOSw5LjU3OSwxNS4xNTgsMTIuNDgzLDIyLjE4NSw1LjMwOGw0MC4wMzktNDAuODgybDc4LjU2LDU3LjY2NWM5LjYxNCw3LjA1NywyMy4zMDYsMS44MTQsMjUuNzQ3LTkuODU5bDUyLjAzMS0yNDguNzYgICBDMzgyLjQzMSwxMDYuMjMyLDM3MC40NDMsOTYuMDgsMzU4Ljg0NCwxMDAuNnogTTMyMC42MzYsMTU1LjgwNkwxNzkuMDgsMjgwLjk4NGMtMS40MTEsMS4yNDgtMi4zMDksMi45NzUtMi41MTksNC44NDcgICBsLTUuNDUsNDguNDQ4Yy0wLjE3OCwxLjU4LTIuMzg5LDEuNzg5LTIuODYxLDAuMjcxbC0yMi40MjMtNzIuMjUzYy0xLjAyNy0zLjMwOCwwLjMxMi02Ljg5MiwzLjI1NS04LjcxN2wxNjcuMTYzLTEwMy42NzYgICBDMzIwLjA4OSwxNDcuNTE4LDMyNC4wMjUsMTUyLjgxLDMyMC42MzYsMTU1LjgwNnoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" width="50" height="20" />
-				</div>
-			</a>
-		<?php } ?>
-		<?php if ( true == $redux_builder_amp['enable-single-digg-share'] ) { ?>
-			<a title="digg share" <?php ampforwp_nofollow_social_links(); ?> href="http://digg.com/submit?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>" target="_blank" aria-label="digg share">
-				<div class="amp-social-icon amp-social-digg"> 
-					<amp-img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjA0OCAxODk2LjA4MzMiIGZpbGw9IiNmZmZmZmYiID48cGF0aCBkPSJNMzI4IDI4MmgyMDR2OTgzSDBWNTY4aDMyOFYyODJ6bTAgODE5VjczMkgyMDV2MzY5aDEyM3ptMjg2LTUzM3Y2OTdoMjA1VjU2OEg2MTR6bTAtMjg2djIwNGgyMDVWMjgySDYxNHptMjg3IDI4Nmg1MzN2OTQySDkwMXYtMTYzaDMyOHYtODJIOTAxVjU2OHptMzI4IDUzM1Y3MzJoLTEyM3YzNjloMTIzem0yODctNTMzaDUzMnY5NDJoLTUzMnYtMTYzaDMyN3YtODJoLTMyN1Y1Njh6bTMyNyA1MzNWNzMyaC0xMjN2MzY5aDEyM3oiPjwvcGF0aD48L3N2Zz4=" width="50" height="20" />
 				</div>
 			</a>
 		<?php } ?>

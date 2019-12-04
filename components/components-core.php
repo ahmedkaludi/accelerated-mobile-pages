@@ -9,7 +9,7 @@ $ampforwpTemplate = '';
 $loadComponent = array();
 $scriptComponent = array();
 $search_found = false;
-$supportComponent = array('AMP-search','AMP-menu','AMP-alter-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb','AMP-gdpr');
+$supportComponent = array('AMP-search','AMP-menu','AMP-alter-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb','AMP-gdpr', 'AMP-google-font', 'AMP-google-font');
 
 add_filter( 'amp_post_template_data', 'ampforwp_framework_add_and_form_scripts',20);
 function ampforwp_framework_add_and_form_scripts($data) {
@@ -465,6 +465,7 @@ function amp_back_to_top_link(){
 	 global $redux_builder_amp;
     if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
         <a id="scrollToTopButton" title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ></a> 
+        <?php if(ampforwp_get_setting('ampforwp-amp-convert-to-wp')==false){?>
         <amp-animation id="showAnim"
 		  layout="nodisplay">
 		  <script type="application/json">
@@ -501,7 +502,19 @@ function amp_back_to_top_link(){
 		    }
 		  </script>
 		</amp-animation>
-      <?php }
+	<?php }else if(ampforwp_get_setting('ampforwp-amp-convert-to-wp')==true){?>
+      	<script>
+      		var elem = document.getElementById('scrollToTopButton');
+      		elem.addEventListener("click", function(){
+      			window.scrollTo({
+				  top: 0,
+				  behavior: 'smooth'
+				});
+      		});
+      	</script>
+      	<?php
+      }
+    }
 }
 
 function amp_loop_template(){
@@ -596,12 +609,14 @@ function amp_date( $args=array() ) {
     elseif ( false == ampforwp_get_setting('ampforwp-post-time') ){
     	 $post_date =  get_the_date();
     }else{
+    	$epoch = get_the_time('U', get_the_ID() );
         $post_date = human_time_diff(
                     get_the_time('U', get_the_ID() ), 
                     current_time('timestamp') ) .' '. ampforwp_translation(ampforwp_get_setting('amp-translator-ago-date-text'),
                     'ago');
     }
     $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
+
    	if(isset($args['custom_format']) && $args['custom_format']!=""){
 	    $post_date = date($args['custom_format'],get_the_time('U', get_the_ID() ));
 	}

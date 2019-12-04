@@ -1225,9 +1225,6 @@ function ampforwp_sticky_social_icons(){
                         		data-param-text="TITLE <?php echo esc_url($permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_attr($data_param_data) ?>"
 	          ></amp-social-share>
 			  	<?php } ?>
-			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
-			    	<amp-social-share type="gplus"      width="50" height="28" aria-label="gplus" <?php ampforwp_nofollow_social_links(); ?>></amp-social-share>
-			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-email-share'] == true)  { ?>
 			    	<amp-social-share type="email"      width="50" height="28" aria-label="email" <?php ampforwp_nofollow_social_links(); ?>></amp-social-share>
 			  	<?php } ?>
@@ -1287,13 +1284,6 @@ function ampforwp_sticky_social_icons(){
 				<div class="amp-social-icon amp-social-telegram"> 
 			    	<amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ1NS43MzEgNDU1LjczMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDU1LjczMSA0NTUuNzMxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGc+Cgk8cmVjdCB4PSIwIiB5PSIwIiBzdHlsZT0iZmlsbDojNjFBOERFOyIgd2lkdGg9IjQ1NS43MzEiIGhlaWdodD0iNDU1LjczMSIvPgoJPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik0zNTguODQ0LDEwMC42TDU0LjA5MSwyMTkuMzU5Yy05Ljg3MSwzLjg0Ny05LjI3MywxOC4wMTIsMC44ODgsMjEuMDEybDc3LjQ0MSwyMi44NjhsMjguOTAxLDkxLjcwNiAgIGMzLjAxOSw5LjU3OSwxNS4xNTgsMTIuNDgzLDIyLjE4NSw1LjMwOGw0MC4wMzktNDAuODgybDc4LjU2LDU3LjY2NWM5LjYxNCw3LjA1NywyMy4zMDYsMS44MTQsMjUuNzQ3LTkuODU5bDUyLjAzMS0yNDguNzYgICBDMzgyLjQzMSwxMDYuMjMyLDM3MC40NDMsOTYuMDgsMzU4Ljg0NCwxMDAuNnogTTMyMC42MzYsMTU1LjgwNkwxNzkuMDgsMjgwLjk4NGMtMS40MTEsMS4yNDgtMi4zMDksMi45NzUtMi41MTksNC44NDcgICBsLTUuNDUsNDguNDQ4Yy0wLjE3OCwxLjU4LTIuMzg5LDEuNzg5LTIuODYxLDAuMjcxbC0yMi40MjMtNzIuMjUzYy0xLjAyNy0zLjMwOCwwLjMxMi02Ljg5MiwzLjI1NS04LjcxN2wxNjcuMTYzLTEwMy42NzYgICBDMzIwLjA4OSwxNDcuNTE4LDMyNC4wMjUsMTUyLjgxLDMyMC42MzYsMTU1LjgwNnoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" width="50" height="20" />
 
-				</div>
-			</a>
-		<?php } ?>
-		<?php if ( true == $redux_builder_amp['enable-single-digg-share'] ) { ?>
-			<a title="digg share" <?php ampforwp_nofollow_social_links(); ?> href="http://digg.com/submit?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(get_the_title()); ?>" target="_blank">
-				<div class="amp-social-icon amp-social-digg"> 
-					<amp-img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjA0OCAxODk2LjA4MzMiIGZpbGw9IiNmZmZmZmYiID48cGF0aCBkPSJNMzI4IDI4MmgyMDR2OTgzSDBWNTY4aDMyOFYyODJ6bTAgODE5VjczMkgyMDV2MzY5aDEyM3ptMjg2LTUzM3Y2OTdoMjA1VjU2OEg2MTR6bTAtMjg2djIwNGgyMDVWMjgySDYxNHptMjg3IDI4Nmg1MzN2OTQySDkwMXYtMTYzaDMyOHYtODJIOTAxVjU2OHptMzI4IDUzM1Y3MzJoLTEyM3YzNjloMTIzem0yODctNTMzaDUzMnY5NDJoLTUzMnYtMTYzaDMyN3YtODJoLTMyN1Y1Njh6bTMyNyA1MzNWNzMyaC0xMjN2MzY5aDEyM3oiPjwvcGF0aD48L3N2Zz4=" width="50" height="20" />
 				</div>
 			</a>
 		<?php } ?>
@@ -1373,7 +1363,9 @@ function ampforwp_add_proper_post_meta(){
 	}
 }
 function ampforwp_yoast_the_excerpt(){
-	add_filter('get_the_excerpt','ampforwp_yoast_excerpt',9);
+	if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
+		add_filter('get_the_excerpt','ampforwp_yoast_excerpt',9);
+	}
 }
 function ampforwp_yoast_excerpt($desc){
 	 if(ampforwp_is_front_page()){
@@ -1751,6 +1743,9 @@ function ampforwp_replace_title_tags() {
 			if ( $tsf_title ) {
 				$site_title = $tsf_title;
 			}
+		}
+		if (class_exists('WPSEO_Frontend') && $sep == 'sc-dash') {
+			return esc_html( convert_chars( trim( $site_title ) ) );
 		}
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
@@ -2928,7 +2923,6 @@ if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
 		global $redux_builder_amp;
 		if(  $redux_builder_amp['enable-single-facebook-share'] ||
 				 $redux_builder_amp['enable-single-twitter-share']  ||
-				 $redux_builder_amp['enable-single-gplus-share']  ||
 				 $redux_builder_amp['enable-single-email-share'] ||
 				 $redux_builder_amp['enable-single-pinterest-share']  ||
 				 $redux_builder_amp['enable-single-linkedin-share'] )  {
@@ -3004,6 +2998,7 @@ function ampforwp_content_sanitizer( $content ) {
 
 		if ( $amp_custom_content ) {
 			global $data;
+			$data = (array) $data;
 			$data['amp_component_scripts'] 	= $amp_custom_content->get_amp_scripts();
 			$data['post_amp_styles'] 		= $amp_custom_content->get_amp_styles();
 			return $amp_custom_content->get_amp_content();
@@ -4905,6 +4900,18 @@ if ( ! function_exists('ampforwp_gravatar_checker') ) {
 		return $has_valid_avatar;
 	}
 }
+function ampfowp_add_extra_css(){
+    echo '<style>
+    #wp-admin-bar-ampforwp-view-amp a{
+    background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjMxNHB4IiBoZWlnaHQ9IjMxNXB4IiB2aWV3Qm94PSIwIDAgMzE0IDMxNSIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNDEgKDM1MzI2KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5TaGFwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSIjODI4NzhjIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSIyNjA3MSIgZmlsbD0iIzgyODc4YyI+CiAgICAgICAgICAgIDxnIGlkPSJDYXBhXzEiPgogICAgICAgICAgICAgICAgPGcgaWQ9Il94MzJfNDAuX1Bvd2VyIj4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTU3LjAwNywwIEM3MC4yOTIsMCAwLDcwLjI5MiAwLDE1Ny4wMDcgQzAsMjQzLjcxNSA3MC4yOTIsMzE0LjAxNCAxNTcuMDA3LDMxNC4wMTQgQzI0My43MTYsMzE0LjAxNCAzMTQuMDE0LDI0My43MTUgMzE0LjAxNCwxNTcuMDA3IEMzMTQuMDE0LDcwLjI5MiAyNDMuNzE2LDAgMTU3LjAwNywwIFogTTE1Ny4wMDcsMjgyLjYxMiBDODcuNjM0LDI4Mi42MTIgMzEuNDAyLDIyNi4zNzIgMzEuNDAyLDE1Ny4wMDcgQzMxLjQwMiw4Ny42MzQgODcuNjM0LDMxLjQwMiAxNTcuMDA3LDMxLjQwMiBDMjI2LjM3MSwzMS40MDIgMjgyLjYxMSw4Ny42MzQgMjgyLjYxMSwxNTcuMDA3IEMyODIuNjEyLDIyNi4zNzIgMjI2LjM3MiwyODIuNjEyIDE1Ny4wMDcsMjgyLjYxMiBaIE0yMDQuMTExLDE0MS4zNjggTDE2My40NzksMTQxLjUzMyBDMTU5LjEzOSwxNDEuNTUzIDE1Ny41NDQsMTM4LjYyMyAxNTkuOTA1LDEzNC45NzkgTDIwMy4zOTcsNjguMTA5IEMyMDguMTI2LDYwLjg0MSAyMDYuOTg0LDU5LjkyMiAyMDAuODYxLDY2LjA1MyBMMTA1LjMwNSwxNjEuNiBDOTkuMTcyLDE2Ny43MzIgMTAxLjIzMiwxNzIuNjc2IDEwOS45MDYsMTcyLjY0MSBMMTQyLjY3OSwxNzIuNTA4IEMxNTEuMzQ3LDE3Mi40NzIgMTU0LjU1MiwxNzguMzM1IDE0OS44MjQsMTg1LjYwNSBMMTA2LjMzNCwyNTIuNDc3IEMxMDMuOTcyLDI1Ni4xMTIgMTA0LjU0MiwyNTYuNTgxIDEwNy42MiwyNTMuNTI3IEwxNzUuOTE1LDE4NS43MTcgQzE3OC45ODgsMTgyLjY1OSAxODMuOTUsMTc3LjY4NiAxODYuOTgzLDE3NC41OTYgTDIwOC43ODgsMTUyLjQ4NSBDMjE0Ljg3NSwxNDYuMzE3IDIxMi43NzUsMTQxLjMzIDIwNC4xMTEsMTQxLjM2OCBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+) !important;
+    background-size: 18px !important;
+    background-repeat: no-repeat !important;
+ 		background-position: 4px 7px !important;
+ 		text-indent: -99999px;
+ 		width: 12px;
+}</style>';
+}
+add_action('wp_head', 'ampfowp_add_extra_css');
 // 92. View AMP in Admin Bar
 add_action( 'wp_before_admin_bar_render', 'ampforwp_view_amp_admin_bar' ); 
 if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
@@ -4980,12 +4987,15 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 						$current_url = get_term_link($term_id);
 					}else{
 						$post_type_title = ucfirst($post->post_type);
-						$current_url = get_permalink( $post->ID );
+						$amp_cur_url = get_permalink( $post->ID );
+						if(is_home()){
+							$amp_cur_url = home_url();
+						}
 					}
 					$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . esc_html($post_type_title) . ' (AMP)' ,
-						'href'  => ampforwp_url_controller(  $current_url )
+						'href'  => ampforwp_url_controller($amp_cur_url)
 					));
 				}
 		}
@@ -5023,10 +5033,7 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 			}
 		}
 		if( 1 == $redux_builder_amp['ampforwp-post-date-format'] ){
-			$time = get_the_time('U', get_the_ID() );
-			if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){
-					$time = get_the_modified_time('U', get_the_ID() );
-			}
+			$time = ampforwp_get_the_time();
 			$date = human_time_diff( $time, current_time('timestamp') );
 			if( $redux_builder_amp['ampforwp-post-date-format-text'] ){
 				$full_date = $redux_builder_amp['ampforwp-post-date-format-text'];
@@ -5037,10 +5044,7 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 		}
 	}
 	if(is_single() && 1 == $redux_builder_amp['ampforwp-post-date-format']){
-		$time = get_the_time('U', get_the_ID() );
-		if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){
-			$time = get_the_modified_time('U', get_the_ID() );
-		}
+		$time = ampforwp_get_the_time();
 		$date 		= human_time_diff( $time, current_time('timestamp') );
 		$full_date 	= human_time_diff( $time, current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago');
 		if( $redux_builder_amp['ampforwp-post-date-format-text'] ){
@@ -5053,7 +5057,25 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 	return $full_date;
 	}
 }
-
+if(!function_exists('ampforwp_get_the_time')){
+	function ampforwp_get_the_time(){
+		$time = get_the_time('U', get_the_ID());
+		if( 2 == ampforwp_get_setting('ampforwp-post-date-global') ){
+			$time = get_the_modified_time('U', get_the_ID() );
+		}
+		if(defined('ECWD_VERSION')){
+			global $ecwd_options;
+			$tz = $ecwd_options['time_zone'];
+			$ewwetz = new DateTime( get_the_time('c', get_the_ID()) );
+			if( 2 == ampforwp_get_setting('ampforwp-post-date-global') ){
+				$ewwetz = new DateTime( get_the_modified_time('c', get_the_ID()) );
+			}
+			$ewwetz->setTimezone(new DateTimeZone($tz));
+			$time = $ewwetz->format('U');
+		}
+		return $time;
+    }
+}
 // 99. Merriweather Font Management
 add_filter( 'amp_post_template_data', 'ampforwp_merriweather_font_management' );
 function ampforwp_merriweather_font_management( $data ) {
@@ -5311,6 +5333,9 @@ add_action('amp_post_template_css', 'ampforwp_google_fonts_generator');
 if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
   function ampforwp_google_fonts_generator() {
     global $redux_builder_amp;
+    if( 1!=ampforwp_get_setting('ampforwp-google-font-switch') || true == ampforwp_get_setting('amp_google_font_restrict')){
+    	return;
+    }	
 	if(isset($redux_builder_amp['google_current_font_data'])){
 		$font_data = json_decode(stripslashes($redux_builder_amp['google_current_font_data']));
 	}
@@ -5322,7 +5347,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
     	$font_type = $redux_builder_amp['amp_font_type'];
     }
 
-    if ( $font_type ) {
+    if ( $font_type && ampforwp_get_setting('amp_font_selector') != 'Segoe UI') {
 	    foreach ($font_type as $key => $value) {
 			// Font Weight generator
 			$font_weight = (int) $value;
@@ -5389,7 +5414,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
     }
 
     //for Single content Font Family
-    if(ampforwp_get_setting('content-font-family-enable') && is_singular()){
+    if(ampforwp_get_setting('content-font-family-enable') && (is_singular() || (ampforwp_get_setting('amp-design-selector')!=4) ) ){
     	if(ampforwp_get_setting('google_current_font_data_content_single')){
 			$font_data = json_decode(stripslashes(ampforwp_get_setting('google_current_font_data_content_single')));
 		}
@@ -5397,7 +5422,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 	    if( ampforwp_get_setting('amp_font_type_content_single') ){
 	    	$font_type = ampforwp_get_setting('amp_font_type_content_single');
 	    }
-	    if ( $font_type ) {
+	    if ( $font_type && ampforwp_get_setting('amp_font_selector_content_single') != 'Segoe UI') {
 		    foreach ($font_type as $key => $value) {
 				// Font Weight generator
 				$font_weight = (int) $value;
@@ -7170,29 +7195,31 @@ function ampforwp_head_css(){
 		  ) );
 		$user_info = $wp_admin_bar->get_node('user-info');
 		$title = $user_info->title;
-		$dom->loadHTML($title);
-		$anchors = $dom -> getElementsByTagName('img'); 
-		$src="";
-		foreach($anchors as $im){
-			$src = $im->getAttribute('src'); 
+		if($title){
+			$dom->loadHTML($title);
+			$anchors = $dom -> getElementsByTagName('img'); 
+			$src="";
+			foreach($anchors as $im){
+				$src = $im->getAttribute('src'); 
+			}
+			$authname = get_the_author_meta('nickname');
+			$title = '<span style="background: url('.esc_url($src).');background-repeat: no-repeat;height: 64px;position: absolute;width: 100px;top: 13px;left: -70px;" class="display-name"></span><span class="display-name">'.esc_html__($authname,'accelerated-mobile-pages').'<span>';
+			$wp_admin_bar->add_menu( array(
+			        'id'        => 'user-info',
+			        'title'      => $title
+			  ) );
+			$wp_admin_bar->add_menu( array(
+			        'id'        => 'wpseo-menu',
+			        'title'      => "SEO"
+			) );
+			$wp_admin_bar->remove_menu( 'ampforwp-view-amp' );
+			$url = ampforwp_get_non_amp_url();
+			$wp_admin_bar->add_node(array(
+						'id'    => 'ampforwp-view-non-amp',
+						'title' => 'View Non-AMP' ,
+						'href'  =>  esc_url($url)
+			));
 		}
-		$authname = get_the_author_meta('nickname');
-		$title = '<span style="background: url('.esc_url($src).');background-repeat: no-repeat;height: 64px;position: absolute;width: 100px;top: 13px;left: -70px;" class="display-name"></span><span class="display-name">'.esc_html__($authname,'accelerated-mobile-pages').'<span>';
-		 $wp_admin_bar->add_menu( array(
-		        'id'        => 'user-info',
-		        'title'      => $title
-		  ) );
-		 $wp_admin_bar->add_menu( array(
-		        'id'        => 'wpseo-menu',
-		        'title'      => "SEO"
-		 ) );
-		$wp_admin_bar->remove_menu( 'ampforwp-view-amp' );
-		$url = ampforwp_get_non_amp_url();
-		$wp_admin_bar->add_node(array(
-					'id'    => 'ampforwp-view-non-amp',
-					'title' => 'View Non-AMP' ,
-					'href'  =>  esc_url($url)
-		));
 	}
 	
 	function ampforwp_remove_admin_menu_front($wp){
@@ -7285,3 +7312,31 @@ function ampforwp_nofollow_cta_header_link(){
 	}
 	return false;
 }	
+
+// Font Selector
+if( ! function_exists('ampforwp_font_selector') ) {
+	function ampforwp_font_selector( $container ) {
+		global $redux_builder_amp;
+		$fontFamily = '';
+		if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
+			return sanitize_text_field($fontFamily);
+		}
+		if(empty($container)) {
+			$container = 'body';
+		}
+		if ( 'content' == $container && ampforwp_get_setting('amp_font_selector_content_single') && 1 != ampforwp_get_setting('amp_font_selector_content_single') ) {
+			$fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector_content_single')."';"; 
+		}
+		if ( 'body' == $container && ampforwp_get_setting('amp_font_selector') && 1 != ampforwp_get_setting('amp_font_selector') ) {
+			$fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector')."'";
+		}
+		return sanitize_text_field($fontFamily);
+	}
+}
+
+// Font URL controller
+if ( ! function_exists('ampforwp_font_url') ) {
+	function ampforwp_font_url($font_url){
+		return apply_filters('ampforwp_font_url', $font_url);
+	}
+}

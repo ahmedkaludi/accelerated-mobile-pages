@@ -18,8 +18,12 @@ do_action('ampforwp_above_the_title',$this); ?>
 	?>
 	<?php if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 				if($redux_builder_amp['enable-excerpt-single']) {
+					$class = 'large-screen-excerpt-design-3';
+					if(true == ampforwp_get_setting('excerpt-option-design-3')){
+					$class = 'small-screen-excerpt-design-3';	
+					}
 					if( has_excerpt() ){ ?>
-					<div class="ampforwp_single_excerpt">
+					<div class="ampforwp_single_excerpt <?php echo esc_attr($class) ?>">
 						<?php $content = get_the_excerpt();
 						echo wp_kses_post($content); ?>
 					</div> <?php

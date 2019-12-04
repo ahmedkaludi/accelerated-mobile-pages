@@ -160,6 +160,11 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                     </nav><!--end slide-menu -->
                 <?php endif; ?>
                 <?php do_action('ampforwp_after_amp_menu');?>
+                <?php if( true == ampforwp_get_setting('signin-button') && '2' == ampforwp_get_setting('cta-responsive-view')){?>
+                    <div class="h-sing cta-res">
+                        <a target="_blank" <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('signin-button-link'))?>"><?php echo esc_html__(ampforwp_get_setting('signin-button-text'), 'accelerated-mobile-pages'); ?></a>
+                    </div>
+                    <?php } ?>
                 <?php if ( $redux_builder_amp['menu-search'] ) { ?>
                 <div class="m-srch">
                     <?php amp_search();?>

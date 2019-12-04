@@ -461,12 +461,12 @@ $extension_listing_array = array(
                             'name'=>'Structured Data for WP',
                             'desc'=>'Structured Data for your site and for AMP',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/sd-icon.png',
-                            'price'=>'$29',
+                            'price'=>'FREE',
                             'url_link'=>'https://ampforwp.com/structuredata-for-wp/#utm_source=options-panel&utm_medium=extension-tab_structuredata-for-wp&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'structured-data-for-wp/structured-data-for-wp.php',
                             'item_name'=>'Structured Data for WP',
                             'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(function_exists('saswp_non_amp')? 1: 2),
+                            'is_activated'=>2,
                           //'settingUrl'=>'',
                         ),
                         array(
@@ -559,7 +559,7 @@ $ampforwp_extension_list_html = '';
 $ampforwp_nameOfUser = "";
 $ampforwp_is_productActivated = false;
 function ampforwp_sort_extension_array($a, $b){
-    if ($a['is_activated'] == $b['is_activated']) {
+    if ($a['is_activated'] == $b['is_activated'] && isset($a['label']) && isset($b['label'])) {
         return strcmp(strtolower($a['name']), strtolower($b['name']));
     }
     return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
@@ -693,7 +693,7 @@ $freepro_listing = '
         <span class="ov"></span>
     </div>
     <div class="fp-cnt">
-            <h1>Upgrade to Pro</h1>
+            <h1>40% OFF for a limited period</h1>
             <p>Take your AMP to the next level with more beautiful themes, great extensions and more powerful features.</p>
             <a class="buy" href="#upgrade">BUY NOW</a>
     </div>
@@ -860,9 +860,11 @@ $freepro_listing = '
             </div>
             <div class="pri-lst">
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=1&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=AMP2019&download_id=24570&edd_options[price_id]=1">
                         <h5>PERSONAL</h5>
-                        <span class="amt"><sup>$</sup>149</span>
+                        <span class="d-amt"><sup>$</sup>149</span>
+                        <span class="amt"><sup>$</sup>89</span>
+                        <span class="s-amt">(Save $59)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">1 Site License</span>
                         <span class="e">E-mail support</span>
@@ -872,9 +874,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb rec">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=2&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=AMP2019&download_id=24570&edd_options[price_id]=2">
                         <h5>MULTIPLE</h5>
-                        <span class="amt"><sup>$</sup>199</span>
+                        <span class="d-amt"><sup>$</sup>199</span>
+                        <span class="amt"><sup>$</sup>119</span>
+                        <span class="s-amt">(Save $79)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">3 Site License</span>
                         <span class="e">E-mail support</span>
@@ -885,9 +889,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=3&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=AMP2019&download_id=24570&edd_options[price_id]=3">
                         <h5>WEBMASTER</h5>
-                        <span class="amt"><sup>$</sup>249</span>
+                        <span class="d-amt"><sup>$</sup>249</span>
+                        <span class="amt"><sup>$</sup>149</span>
+                        <span class="s-amt">(Save $99)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">10 Site License</span>
                         <span class="e">E-mail support</span>
@@ -897,9 +903,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=4&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=AMP2019&download_id=24570&edd_options[price_id]=4">
                         <h5>FREELANCER</h5>
-                        <span class="amt"><sup>$</sup>299</span>
+                        <span class="d-amt"><sup>$</sup>299</span>
+                        <span class="amt"><sup>$</sup>179</span>
+                        <span class="s-amt">(Save $119)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">25 Site License</span>
                         <span class="e">E-mail support</span>
@@ -909,9 +917,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=5&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=AMP2019&download_id=24570&edd_options[price_id]=5">
                         <h5>AGENCY</h5>
-                        <span class="amt"><sup>$</sup>499</span>
+                        <span class="d-amt"><sup>$</sup>499</span>
+                        <span class="amt"><sup>$</sup>299</span>
+                        <span class="s-amt">(Save $199)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">Unlimited</span>
                         <span class="e">E-mail support</span>
@@ -923,8 +933,8 @@ $freepro_listing = '
             </div><!-- /.pri-lst -->
             <div class="tru-us">
                 <img src="'.AMPFORWP_IMAGE_DIR . '/rating.png" />
-                <h2>Trusted by more that 130000+ Users!</h2>
-                <p>More than 130k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
+                <h2>Trusted by more that 180000+ Users!</h2>
+                <p>More than 180k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
                 <a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?filter=5" target="_blank">Read The Reviews</a>
             </div>
         </div><!--/ .amp-upg -->
@@ -1183,7 +1193,12 @@ if(get_theme_support('amp-template-mode')){
     $upg_to_pro_url = 'https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin';
     $upg_to_pro_target = 'target="_blank"';
 }
-$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="'.$upg_to_pro_url.'" id="ampforwp-prem-upg-to" '.$upg_to_pro_target.'>Upgrade to PRO</a> ';
+$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> 
+<a class="premium_features_btn dof" href="'.$upg_to_pro_url.'" id="ampforwp-prem-upg-to" '.$upg_to_pro_target.'>
+<img src="'.AMPFORWP_IMAGE_DIR . '/dof.png" />
+<span>40% OFF on Upgrades & Renewals</span>
+</a> 
+';
 if($ampforwp_nameOfUser!=""){
     $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url(admin_url('admin.php?page=amp_options&tabid=opt-go-premium'))."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
@@ -1461,10 +1476,13 @@ Redux::setArgs( "redux_builder_amp", $args );
         $custom_logo_id = '';
         $image          = '';
         $value          = '';
-        $custom_logo_id = get_theme_mod( 'custom_logo' );
-        $image = wp_get_attachment_image_src( $custom_logo_id , 'full');
-        if( $image ){
-            return $image[0];
+        $current_page = ampforwp_get_admin_current_page();
+        if($current_page=="amp_options"){
+            $custom_logo_id = get_theme_mod( 'custom_logo' );
+            $image = wp_get_attachment_image_src( $custom_logo_id , 'full');
+            if( $image ){
+                return $image[0];
+            }
         }
         return $value;
     }
@@ -1539,6 +1557,11 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'multi'   => true,
                     'options' => ampforwp_get_generated_custom_taxonomies(),
                 );
+    }
+    $design_types = ampforwp_get_setting('amp-design-selector');
+    $secondary_text = 'Content';
+    if($design_types == 1 || $design_types == 2 || $design_types == 3){
+        $secondary_text = 'Secondary';
     }
     $show_for_admin = '';
     if(!current_user_can('administrator') ){
@@ -3453,9 +3476,7 @@ Redux::setSection( $opt_name, array(
                            'type' => 'section',
                            'title' => esc_html__('Typography', 'accelerated-mobile-pages'),
                            'indent' => true,
-                            'required' => array(
-                                array('amp-design-selector', '=' , '4')
-                            ),
+                            
                             'layout_type' => 'accordion',
                             'accordion-open'=> 1,
                 ));
@@ -3496,7 +3517,6 @@ Redux::setSection( $opt_name, array(
                'title' => esc_html__('Google Fonts', 'accelerated-mobile-pages'),
                'tooltip-subtitle'  => esc_html__('Enable/Disable Google Font','accelerated-mobile-pages'),
                 'default'   => $enabledGoogleFonts,
-                'required' => array(array('amp-design-selector', '=' , '4'))
             ),
             array(
                 'id'        =>'google_font_api_key',
@@ -3505,8 +3525,7 @@ Redux::setSection( $opt_name, array(
                 'tooltip-subtitle'  => esc_html__('You can get the Link ','accelerated-mobile-pages').'<a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1#APIKey">'.esc_html__('form here','accelerated-mobile-pages').'</a>',
                 'default'   =>'',
                 'required' => array(
-                    array('ampforwp-google-font-switch', '=', '1'),
-                    array('amp-design-selector', '=' , '4')
+                    array('ampforwp-google-font-switch', '=', '1')
                  )
             ),
             array(
@@ -3520,8 +3539,7 @@ Redux::setSection( $opt_name, array(
                 ),
                 'default'  => '',
                 'required' => array(
-                    array('ampforwp-google-font-switch', '=', '1'),
-                    array('amp-design-selector', '=' , '4')
+                    array('ampforwp-google-font-switch', '=', '1')
                 )
 
             ),
@@ -3537,8 +3555,7 @@ Redux::setSection( $opt_name, array(
                 ),
                 'default'  => '',
                 'required' => array(
-                    array('ampforwp-google-font-switch', '=', '1'),
-                    array('amp-design-selector', '=' , '4')
+                    array('ampforwp-google-font-switch', '=', '1')
                 )
 
             ),
@@ -3549,29 +3566,24 @@ Redux::setSection( $opt_name, array(
                 'title'     =>esc_html__('Google Font Current Font','accelerated-mobile-pages'),
                 'default'   =>'',
                 'required' => array(
-                    array('amp-design-selector', '=' , '4'),
-                    array('ampforwp-google-font-switch', '=', '1'),
+                    array('ampforwp-google-font-switch', '=', '1')
                 )
             ),
             array(
                     'id'       => 'content-font-family-enable',
                     'type'     => 'switch',
-                    'class'    => 'ampforwp-google-font-class',
-                    'title'    => esc_html__('Content Font Selector', 'accelerated-mobile-pages'),
-                    'required' => array(
-                                   // array('amp-design-selector', '=' , '4')
-                                    ),
+                    'class'    => 'ampforwp-google-font-class secondary-font-selector',
+                    'title'    => sprintf('%s', esc_html__( $secondary_text . 'Font Selector', 'accelerated-mobile-pages' ) ),
                     'default'  => '0' ,
                     'required' => array(
-                        array('ampforwp-google-font-switch', '=', '1'),
-                        array('amp-design-selector', '=' , '4')
+                        array('ampforwp-google-font-switch', '=', '1')
                     )   
             ),
             array(
                 'id'       => 'amp_font_selector_content_single',
                 'type'     => 'select',
-                'class'    => 'ampforwp-google-font-class ampwp-font-families',
-                'title'    => esc_html__( 'Content Font Family Selector', 'accelerated-mobile-pages' ),
+                'class'    => 'ampforwp-google-font-class ampwp-font-families secondary-font-family-selector',
+                'title'    => sprintf('%s', esc_html__( $secondary_text.' Font Family Selector', 'accelerated-mobile-pages') ),
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'None',
@@ -3579,17 +3591,16 @@ Redux::setSection( $opt_name, array(
                 'default'  => '',
                 'required' => array(
                     array('ampforwp-google-font-switch', '=', '1'),
-                    array('amp-design-selector', '=' , '4'),
-                    array('content-font-family-enable', '=' , '1'),
+                    array('content-font-family-enable', '=' , '1')
                 )
 
             ),
             array(
                 'id'       => 'amp_font_type_content_single',
                 'type'     => 'select',
-                'class'    => 'ampforwp-google-font-class ampwp-font-family-weights',
+                'class'    => 'ampforwp-google-font-class ampwp-font-family-weights secondary-font-family-weights',
                 'multi'    => true,
-                'title'    => esc_html__( 'Content Font Family Weight Selector', 'accelerated-mobile-pages' ),
+                'title'    => sprintf('%s',  esc_html__( $secondary_text. ' Font Family Weight Selector', 'accelerated-mobile-pages' ) ),
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'none',
@@ -3597,7 +3608,6 @@ Redux::setSection( $opt_name, array(
                 'default'  => '',
                 'required' => array(
                     array('ampforwp-google-font-switch', '=', '1'),
-                    array('amp-design-selector', '=' , '4'),
                     array('content-font-family-enable', '=' , '1')
                 )
 
@@ -3609,7 +3619,6 @@ Redux::setSection( $opt_name, array(
                 'title'     =>esc_html__('Google Font Current Font','accelerated-mobile-pages'),
                 'default'   =>'',
                 'required' => array(
-                    array('amp-design-selector', '=' , '4'),
                     array('ampforwp-google-font-switch', '=', '1'),
                 )
             )
@@ -4055,6 +4064,18 @@ Redux::setSection( $opt_name, array(
                       array('border-type','=',3)
                     )  
               ),
+            array(
+                    'id'    => 'cta-responsive-view',
+                    'class' => 'child_opt child_opt_arrow',
+                   'title'  => esc_html__('CTA Position on Mobile', 'accelerated-mobile-pages'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Header',
+                        '2' =>  'Menu',
+                    ),
+                   'default'=> '1',
+                   'required' => array( array('signin-button', '=' ,1) ),
+            ),
              array(
                     'id'       => 'ampforwp-amp-menu',
                     'type'     => 'switch',
@@ -6952,13 +6973,6 @@ else{
               'default'   =>  0,
               'required'  => array('enable-single-twitter-share', '=' , '1'),
           ),
-          // GooglePlus ON/OFF
-          array(
-              'id'        =>  'enable-single-gplus-share',
-              'type'      =>  'switch',
-              'title'     =>  esc_html__('GooglePlus', 'accelerated-mobile-pages'),
-              'default'   =>  1,
-          ),
           // Email ON/OFF
           array(
               'id'        =>  'enable-single-email-share',
@@ -7027,13 +7041,6 @@ else{
               'id'        =>  'enable-single-telegram-share',
               'type'      =>  'switch',
               'title'     =>  esc_html__('Telegram', 'accelerated-mobile-pages'),
-              'default'   =>  0,
-          ),
-          // Digg
-          array(
-              'id'        =>  'enable-single-digg-share',
-              'type'      =>  'switch',
-              'title'     =>  esc_html__('Digg', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
           // StumbleUpon

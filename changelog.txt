@@ -1,5 +1,47 @@
 == Changelog ==
 
+= 0.9.98.21 (3th December 2019) =
+* Improvement: Fonts support in all three designs one, two and three along with the swift Theme #1914
+* Improvement: Need to create Testimonial slider in AMP Page Builder #2960
+* Improvement: Need to create an optional option for the side menu when people click on the text the links should be dropped. links sub links #3428
+* Improvement: Need to make compatibility with this plugin Stop Generating Image Sizes #3851
+* Improvement: Improve Matemo analytics integration #3757
+* Fixed: Breadcrumb breaks when '/' is present in category name #3769
+* Fixed: Back to top button CSS loading twice in Design 1,2,3. #3835
+* Fixed: Removing trbidi attribute #3687
+* Fixed: Upgrade to AdsforWP button not working properly. #3681
+* Fixed: Tooltip alignment is missing in Advertisement #3625
+* Fixed: Media queries are removing automatically in media queries merging process #3797
+* Fixed: Excerpt on homepage is not working properly. #3866
+* Fixed: Author links are redirecting to AMP even when the Archives is turned off. #3875
+* Fixed: Issue related to image height and width #3857
+* Fixed: Gutenberg Gallery Images are not displayed correctly when any option is selected in WordPress Content Gallery. #3868
+* Fixed: Google Tag manager not firing properly #3826
+* Fixed: After Update AMP option panel design is changing #3877
+
+= 0.9.98.20 (27th November 2019) =
+* Fixed: Menu closer icon is getting overlapped by the header part of firefox web browser #3744
+* Fixed: Instagram TV videos are not rendering into AMP #3812
+* Fixed: Need To move CTA button in header two in sidebar if the website layout is in mobile view #3669
+* Fixed: When the image is added from ThirstyAffiliate image block from Guntenber editor facing validation error #3706
+* Fixed: PHP Warning:DOMDocument::loadHTML(): Empty string supplied as input #3745
+* Fixed: When Convert AMP to WP theme (Beta) option is enabled Back to Top link functionality is not working #3695
+* Fixed: Post date always shows 3 hours ago #3624
+* Fixed: Gutenberg Design Bugs #3645
+* Fixed: Toolbar AMP link bug #3692
+* Fixed: Breadcrumb icommon symbol direction should be changed when RTL is enabled in Swift. #3678
+* Fixed: Extra CSS are loading in swift and AMP Layouts #3414
+* Fixed: Remove Digg and Google plus option form Social Sharing #3709
+* Fixed: When Yoast SEO plugin is activated the same excerpt shows #3708
+* Fixed: Allow people to use captions below thumbnails in gallery #3702
+* Fixed: Design improvements of D2 #3637
+* Fixed: Fatal error: Uncaught Error: Cannot use object of type stdClass as array (after 98.15) #3867
+* Fixed: In amp gallery need to make improvement in arrow #3860
+* Fixed: Performance issues in AMP FOR WP #3732
+* Fixed: Yoast Separator is converting from Hyphen to Dash #3783
+* Fixed: Multiple UX related modifactions #3869
+* Fixed: strpos() debug error after 19 update #3878
+
 = 0.9.98.19 (25th November 2019) =
 * Fixed: image transients should clear automatically #3781
 * Fixed: CTA button in header could be made no follow #3798

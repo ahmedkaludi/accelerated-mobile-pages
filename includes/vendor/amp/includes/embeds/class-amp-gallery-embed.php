@@ -150,7 +150,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 			'3' => array(
 						'main-html'=>'<div class="gal_w">{{with_images}}</div>
 						{{amp_image_lightbox}}',
-						'image-with-caption-html'=>'',
+						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-containerd3">{{main_images}}<figcaption>{{main_images_caption}}</figcaption></div></figure>',
 						'image-without-caption-html' =>'{{main_images}}',
 						'gallery_css' => '
 							.gal_w{display:inline-block;width:100%}
@@ -253,6 +253,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 								'width' => $this->args['width'],
 								'height' => $this->args['height'],
 								'type' => 'slides',
+								'controls'	=>'',
 								'layout' => 'responsive',
 								'class'  => 'collapsible-captions',
 								'id' => 'carousel-with-carousel-preview-'.$r

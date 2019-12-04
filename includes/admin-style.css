@@ -866,11 +866,11 @@ visibility: hidden;
     font-size: 15px;
 }
 .redux-main .child_opt .afw-tooltip{ 
-    margin-top: -8px;
+    margin-top: -3px;
 }
 .redux-main .child_opt .redux_field_th{  background: #f9f9f9;padding:23px 10px 23px 20px;
       margin-right: -16px;}
-
+.redux-main .child_opt td {background: #f9f9f9;}
 .child_opt_last fieldset {
     margin-bottom: 15px;
 }
@@ -890,6 +890,7 @@ visibility: hidden;
     position: relative;
     padding: 8px 10px 8px 20px;
  }
+span#ampforwp-clear-clcss-msg {line-height: 25px;}
 .redux-main .child_opt .redux-container-textarea{
     padding-top: 40px;
 }
@@ -1166,7 +1167,7 @@ div#section-ampforwp-ads-section, table#section-table-ampforwp-ads-section{
     }
 }
 .redux-main .redux-field-container{
-    padding: 18px 10px 18px 0;
+    padding: 18px 25px 18px 0;
 }
 .adsactive { 
     max-width: 100%!important;
