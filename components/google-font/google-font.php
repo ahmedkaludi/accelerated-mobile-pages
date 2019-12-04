@@ -22,7 +22,7 @@ if( 1==ampforwp_get_setting('ampforwp-google-font-switch')){
 		$fontFamily = "font-family: '". $amp_font_selector ."';";
 	}
 }
-echo $fontFamily;
+echo esc_html($fontFamily);
 
 ?>
 font-size: 16px; line-height:1.25; }
@@ -37,7 +37,7 @@ font-size: 16px; line-height:1.25; }
 				$fontFamily = "font-family: '".$amp_font_selector_content_single."';";
 			}  
 		}
-		echo $fontFamily;
+		echo esc_html($fontFamily);
 		?>
 		}
 <?php
