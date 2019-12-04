@@ -114,9 +114,17 @@
 					        ?>
 					        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 					        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail()){?>
-						            <div class="rlp-image">     
-						                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
-									</div>
+						            <div class="rlp-image">
+							            <?php
+							            $width    = 220;
+							            $height   = 134;
+							            if( true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') ){
+								            $width    = ampforwp_get_setting('ampforwp-swift-homepage-posts-width');
+								            $height   = ampforwp_get_setting('ampforwp-swift-homepage-posts-height');
+							            }
+							            $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+							            <?php amp_loop_image($args); ?>
+						            </div>
 								<?php } } ?>	
 								<div class="rlp-cnt">
 									<?php 
@@ -201,11 +209,18 @@ do_action("ampforwp_single_design_type_handle_d1");
 			        ?>
 			        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 			        	<div class="rp-slide">
-			        	<?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) { if(ampforwp_has_post_thumbnail()){?>
-				            <div class="rlp-image">     
-				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>346,'image_crop_height'=>188) );?>
-							</div>
-						<?php } } ?>	
+					        <?php if ( true == ampforwp_get_setting('ampforwp-single-related-posts-image') ) {  if( ampforwp_has_post_thumbnail() ){
+						        $width 	= 346;
+						        $height = 188;
+						        if( true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') ){
+							        $width 	= ampforwp_get_setting('ampforwp-swift-homepage-posts-width');
+							        $height = ampforwp_get_setting('ampforwp-swift-homepage-posts-height');
+						        }
+						        $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+						        <div class="rlp-img">
+							        <?php amp_loop_image($args); ?>
+						        </div>
+					        <?php }  }  ?>
 							<div class="rlp-cnt">
 								<?php 
 								$show_excerpt_opt = ampforwp_get_setting('ampforwp-single-related-posts-excerpt');
@@ -361,7 +376,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 								        ?>
 								        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 								        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
-									            <div class="rlp-image">     
+									            <div class="rlp-image">
 									                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>346,'image_crop_height'=>188) );?>
 												</div>
 											<?php } ?>	
