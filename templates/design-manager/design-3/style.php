@@ -35,7 +35,7 @@ body, amp-sidebar, .single-post main .amp-wp-article-content h1, .single-post ma
         $fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector')."';";
       }
     }
-    echo $fontFamily; ?>
+    echo sanitize_text_field($fontFamily); ?>
 }
 .amp-carousel-slide h2, .amp-wp-article-content, .amp-wp-post-content p, .comment-body .comment-content{ 
    <?php $fontFamily = "font-family: georgia;"; ?>
@@ -45,7 +45,7 @@ body, amp-sidebar, .single-post main .amp-wp-article-content h1, .single-post ma
         $fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector_content_single')."';";
       }
     }
-    echo $fontFamily; ?>
+    echo sanitize_text_field($fontFamily); ?>
 }
 a{ color: #312C7E; text-decoration: none }
 .clearfix, .cb{ clear: both }

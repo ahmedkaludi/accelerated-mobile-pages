@@ -51,7 +51,7 @@ if( !ampforwp_levelup_compatibility('levelup_theme') && 1==ampforwp_get_setting(
 		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';";
 	}
 }
-echo $fontFamily; ?>font-size: 16px; line-height:1.25; }
+echo sanitize_text_field($fontFamily); ?>font-size: 16px; line-height:1.25; }
 ol, ul{ list-style-position: inside }
 p, ol, ul, figure{ margin: 0 0 1em; padding: 0; }
 a, a:active, a:visited{ text-decoration: none; color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;}
@@ -435,7 +435,7 @@ if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
 		$fontFamily = "font-family: '".esc_attr($font_content)."';";
 	}  
 }
-echo $fontFamily;
+echo sanitize_text_field($fontFamily);
 ?>
 }
 @media(max-width:1110px){
@@ -566,7 +566,7 @@ if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
 		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_single']."';";
 	}  
 }
-echo $fontFamily;
+echo esc_html($fontFamily);
 ?>
 }
 <?php } ?>

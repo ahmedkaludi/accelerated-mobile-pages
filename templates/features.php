@@ -7319,7 +7319,7 @@ if( ! function_exists('ampforwp_font_selector') ) {
 		global $redux_builder_amp;
 		$fontFamily = '';
 		if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
-			return $fontFamily;
+			return sanitize_text_field($fontFamily);
 		}
 		if(empty($container)) {
 			$container = 'body';
@@ -7330,7 +7330,7 @@ if( ! function_exists('ampforwp_font_selector') ) {
 		if ( 'body' == $container && ampforwp_get_setting('amp_font_selector') && 1 != ampforwp_get_setting('amp_font_selector') ) {
 			$fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector')."'";
 		}
-		return $fontFamily;
+		return sanitize_text_field($fontFamily);
 	}
 }
 

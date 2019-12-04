@@ -87,7 +87,7 @@ body{
         $fontFamily = "font-family: ".ampforwp_get_setting('amp_font_selector').";";
       }
     }
-    echo $fontFamily; ?>
+    echo sanitize_text_field($fontFamily); ?>
 }
 <?php // secondary font family
 $font_content = '';
@@ -99,7 +99,7 @@ $font_content = ampforwp_get_setting('amp_font_selector_content_single'); ?>
         $fontFamily = "font-family: ".esc_attr($font_content).";";
       }  
     }
-echo $fontFamily; // secondary font family ends here ?>
+echo sanitize_text_field($fontFamily); // secondary font family ends here ?>
 }
 a {	color: #312C7E;	text-decoration: none }
 .clearfix, .cb { clear: both }
