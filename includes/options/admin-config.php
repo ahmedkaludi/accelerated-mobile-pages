@@ -1575,14 +1575,30 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'options' => ampforwp_get_cpt_generated_post_types(),
                 );
     }
-    function ampforwp_get_user_roles(){
-        global $wp_roles;
-        $allroles = array();
-        foreach ( $wp_roles->roles as $key=>$value ){
-            $allroles[esc_attr($key)] = esc_html($value['name']);
-        }
-        return $allroles;
-    }
+function ampforwp_get_user_roles(){
+	global $wp_roles;
+	$allroles = array();
+	foreach ( $wp_roles->roles as $key=>$value ){
+		$allroles[esc_attr($key)] = esc_html($value['name']);
+	}
+	return $allroles;
+}
+function ampforwp_get_categories(){
+	$categories = get_categories(array('parent'  => 0));
+	$categoriesArray = array();
+	foreach($categories as  $value ) {
+		$categoriesArray[esc_attr($value->term_id)] = esc_html($value->name);
+	}
+	return $categoriesArray;
+}
+function ampforwp_get_all_tags(){
+	$tags = get_tags(array('parent'  => 0));
+	$tagsArray = array();
+	foreach($tags as  $value ) {
+		$tagsArray[esc_attr($value->term_id)] = esc_html($value->name);
+	}
+	return $tagsArray;
+}
     function ampforwp_default_user_roles(){
         $roles = '';
         $metabox_access = ampforwp_get_setting('amp-meta-permissions');
@@ -2748,8 +2764,9 @@ Redux::setSection( $opt_name, array(
                         'type'      => 'select',
                         'title'     => __('Select Categories to Hide AMP'),
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
-                        'multi'     => true, 
-                        'ajax'      => true, 
+                        'multi'     => true,
+                        'ajax'      => true,
+                        'options' => ampforwp_get_categories(),
                         'data-action'     => 'ampforwp_categories', 
                         'data'      => 'categories',
                         ),  
@@ -2760,6 +2777,7 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                         'multi'     => true,
                         'ajax'      => true,
+                        'options' => ampforwp_get_all_tags(),
                         'data-action' => 'ampforwp_tags', 
                         'data'      => 'tags',
 
