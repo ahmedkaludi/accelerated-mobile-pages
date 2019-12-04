@@ -234,7 +234,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 	private function process_alternate_names( $attr_spec_list ) {
 		foreach ( $attr_spec_list as $attr_name => &$attr_spec ) {
 			if ( '[' === $attr_name[0] ) {
-				$placeholder_attr_name = $this->args['amp_bind_placeholder_prefix'] . trim( $attr_name, '[]' );
+				$placeholder_attr_name = trim( $attr_name, '[]' );
 				if ( ! isset( $attr_spec[ AMP_Rule_Spec::ALTERNATIVE_NAMES ] ) ) {
 					$attr_spec[ AMP_Rule_Spec::ALTERNATIVE_NAMES ] = array();
 				}
