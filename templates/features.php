@@ -6527,12 +6527,12 @@ function ampforwp_ia_meta_callback( $post ) {
 	} ?>
     <p>
         <div class="prfx-row-content">
-            <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-one">
-                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-on-off-meta-radio-one" value="default"  checked="checked" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'default' ); ?>>
+            <label class="meta-radio-two" for="ampforwp-ia-on-off-meta-radio-one">
+                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-ia-on-off-meta-radio-one" value="default"  checked="checked" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'default' ); ?>>
                 <?php esc_html_e( 'Enable', 'accelerated-mobile-pages' )?>
             </label>
-            <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-two">
-                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-on-off-meta-radio-two" value="hide-ia" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'hide-ia' ); ?>>
+            <label class="meta-radio-two" for="ampforwp-ia-on-off-meta-radio-two">
+                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-ia-on-off-meta-radio-two" value="hide-ia" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'hide-ia' ); ?>>
                 <?php esc_html_e( 'Disable', 'accelerated-mobile-pages' )?>
             </label> 
         </div>

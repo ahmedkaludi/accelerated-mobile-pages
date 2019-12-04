@@ -21,12 +21,15 @@
     else{
         $number_of_articles = 500;
     }
-    $exclude_ids = get_option('ampforwp_ia_exclude_post');
-    $ia_args = array(
-        'post__not_in'          => (array) $exclude_ids,
+    $ia_args = array(   
         'post_status'           => 'publish',
         'ignore_sticky_posts'   => true,
         'posts_per_page'        => esc_attr($number_of_articles),
+        'meta_query' => array(
+            array(
+                'key'        => 'ampforwp-ia-on-off',
+                'value'      => 'default',
+            ))
     );
     if ( is_category() ) {
         $ia_args['category__in']    = get_queried_object_id(); 
