@@ -1060,7 +1060,7 @@ function ampforwp_get_all_post_types(){
     }
 
     $custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
-	if( !empty($custom_taxonomies) ){
+	if(ampforwp_get_setting('ampforwp-archive-support') && !empty($custom_taxonomies) ){
 		foreach($custom_taxonomies as $taxonomy){
 			$terms = get_taxonomy( $taxonomy );
 			$taxonomy_name = $terms->name;
@@ -1070,7 +1070,7 @@ function ampforwp_get_all_post_types(){
 		}
 	}
 	 
-   	if ( ampforwp_get_setting('ampforwp-custom-type')) {
+   	if (ampforwp_get_setting('ampforwp-archive-support') && ampforwp_get_setting('ampforwp-custom-type')) {
         foreach (ampforwp_get_setting('ampforwp-custom-type') as $key) {
             $selected_post_types[$key] = $key;
         }

@@ -1573,6 +1573,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'multi'   => true,
                     //'data' => 'post_type',
                     'options' => ampforwp_get_cpt_generated_post_types(),
+                    'required' => array('ampforwp-archive-support', '=' , '1')
                 );
     }
 function ampforwp_get_user_roles(){
@@ -1634,6 +1635,7 @@ function ampforwp_get_all_tags(){
                     'tooltip-subtitle'   => esc_html__('Enable AMP Support on Archives for Custom Taxonomies.', 'accelerated-mobile-pages'),
                     'multi'   => true,
                     'options' => ampforwp_get_generated_custom_taxonomies(),
+                    'required' => array('ampforwp-archive-support', '=' , '1')
                 );
     }
     $show_for_admin = '';
