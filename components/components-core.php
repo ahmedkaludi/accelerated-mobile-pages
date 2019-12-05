@@ -743,8 +743,11 @@ if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
             @media screen and (min-width: 650px) { table {display: inline-table;}  }
 
 		<?php }
-	}
-}
+	} ?>
+    .has-text-align-left { text-align: left;}
+    .has-text-align-right { text-align: right;}
+    .has-text-align-center { text-align: center;}
+<?php }
 
 // Fallback for amp_call_now #2782
 if ( !function_exists('amp_call_now') ) {
