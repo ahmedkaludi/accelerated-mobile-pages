@@ -1607,13 +1607,12 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
 }
 .ux-field-container select.amp-ux-field{
     border:none;
-    border-bottom:1px solid #ddd;
-    background: #f9f9f9;
+    border:1px solid #ddd;
     width: 100%;
     max-width: 70%;
-    padding: 10px 15px;
+    padding: 5px 15px;
     height: 100%;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.7;
     color: #333;
     box-shadow: none;
@@ -1683,6 +1682,9 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
 .amp-ux-checkbox-container input[type=checkbox]:checked:before{
     color:#fff;
     font-size: 20px;
+    content: "\f147";
+    margin: -2px 0 0 -5px;
+    font-family:"dashicons";
 }
 .ux-field-container h2.ux-label, .s-f-pg{
     font-size: 12px;
@@ -1904,11 +1906,20 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }
-#amp-ux-loading-saved {
+/*#amp-ux-loading-saved {
     background: #12b312;
     color: #fff;
     font-weight: bold;
     padding: 4px  8px;
+}*/
+#amp-ux-loading-saved:before{
+  content:"";
+  display:inline-block;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 134.565 134.565" style="enable-background:new 0 0 134.565 134.565;fill: green;" xml:space="preserve"><g><path d="M67.283,0c-36.96,0-67.2,30.277-67.2,67.283s30.24,67.283,67.2,67.283s67.2-30.277,67.2-67.283S104.243,0,67.283,0z    M67.283,126.155c-32.34,0-58.8-26.493-58.8-58.872S34.943,8.41,67.283,8.41s58.8,26.493,58.8,58.872   S99.623,126.155,67.283,126.155z"/><path d="M93.743,47.518l-34.86,34.903L41.243,64.76c-1.68-1.682-4.2-1.682-5.88,0c-1.68,1.682-1.68,4.205,0,5.887l20.58,20.605   c0.84,0.841,1.68,1.262,2.94,1.262c1.26,0,2.1-0.421,2.94-1.262l37.8-37.846c1.68-1.682,1.68-4.205,0-5.887   C97.943,45.836,95.423,45.836,93.743,47.518z"/></g></svg>');
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  top: 16px;
 }
 
 /* Safari */
@@ -1979,12 +1990,22 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
         right: 20px;
     }
 }
+
+@media(max-width:768px){
+    .amp-ux-checkbox-container input[type=checkbox]:checked:before {
+        margin: -2px 0 0 -8px;
+    }
+
+}
+
+
 @media(max-width:767px){
     .upload_button_div.amp-ux-upload{
         display: inline-block;
     }
     .ux-field-container select.amp-ux-field{
-        padding:6px 10px;
+        padding:4px 10px;
+        min-height: auto;
     }
     .amp-ux-section-fields{
         width:600px;
@@ -2009,4 +2030,6 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     .drawer {
         width:86%;
     }
+
+
 }
