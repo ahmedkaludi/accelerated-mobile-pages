@@ -41,6 +41,44 @@ function ampforwp_page_builders_support_options($opt_name){
                );
     }
 //}   
+    $avada_pb_for_ampchecker = array( 
+                'id'   => 'avada_pb_for_amp_info_normal',
+                'type' => 'info',
+                'required' => array(
+                    array('ampforwp-avada-pb-for-amp', '=' , true),  
+                    ),
+                 'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder compatibility For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+           );
+    if(function_exists('amp_pagebuilder_compatibility_init')){
+      $avada_pb_for_ampchecker = array( 
+                    'id'   => 'avada_pb_for_amp_info_normal',
+                    'type' => 'info',
+                    'required' => array(
+                    array('ampforwp-avada-pb-for-amp', '=' , true),  
+                    ),
+                    'desc'     => esc_html__(' AMP Pagebuilder Compatibility is activated', 'accelerated-mobile-pages'), 
+                    'style' => 'success',              
+               );
+    }
+      $avia_pb_for_ampchecker = array( 
+                'id'   => 'avia_pb_for_amp_info_normal',
+                'type' => 'info',
+                'required' => array(
+                    array('ampforwp-avia-pb-for-amp', '=' , true),  
+                    ),
+                 'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder compatibility For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+           );
+    if(function_exists('amp_pagebuilder_compatibility_init')){
+      $avia_pb_for_ampchecker = array( 
+                  'id'   => 'avia_pb_for_amp_info_normal',
+                  'type' => 'info',
+                  'required' => array(
+                    array('ampforwp-avia-pb-for-amp', '=' , true),  
+                    ),
+                  'desc'     => esc_html__(' AMP Pagebuilder Compatibility is activated', 'accelerated-mobile-pages'), 
+                  'style' => 'success',              
+                );
+    }
      $pb_for_amp[] =  array(
                 'id' => 'ampforwp-pagebuilder-accor',
                 'type' => 'section',
@@ -88,8 +126,39 @@ function ampforwp_page_builders_support_options($opt_name){
                'default'  => false
             ); 
     $pb_for_amp[] = $elemntr_pb_for_ampchecker;
-
-  $pb_title = 'Page Builder';
+    $pb_title = 'Page Builder';
+    $pb_for_amp[] =  array(
+                'id' => 'ampforwp-avada-pb-for-amp-accor',
+                'type' => 'section',
+                'title' => esc_html__('Avada(Fusion builder) Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+    $pb_for_amp[] = array(
+               'id'       => 'ampforwp-avada-pb-for-amp',
+               'type'     => 'switch',
+               'title'    => esc_html__('Avada(Fusion builder) Support','accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the Avada support for AMP', 'accelerated-mobile-pages'),
+               'default'  => false
+            );  
+    $pb_for_amp[] = $avada_pb_for_ampchecker;
+    $pb_for_amp[] =  array(
+                'id' => 'ampforwp-avia-pb-for-amp-accor',
+                'type' => 'section',
+                'title' => esc_html__('Avia(Enfold) Compatibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+            );
+    $pb_for_amp[] = array(
+               'id'       => 'ampforwp-avia-pb-for-amp',
+               'type'     => 'switch',
+               'title'    => esc_html__('Avia(Enfold) Support','accelerated-mobile-pages'),
+               'tooltip-subtitle' => esc_html__('Enable or Disable the Avia support for AMP', 'accelerated-mobile-pages'),
+               'default'  => false
+            ); 
+    $pb_for_amp[] = $avia_pb_for_ampchecker;
     $theme = wp_get_theme(); // gets the current theme
     if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ) || did_action( 'elementor/loaded' ) ){
        if(class_exists('Vc_Manager') ){
