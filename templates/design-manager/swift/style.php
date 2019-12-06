@@ -1271,7 +1271,7 @@ if ( ( true == ampforwp_get_setting('gbl-sidebar') && ( ampforwp_is_front_page()
 <?php // AMP woocommerce condition starts
 if( !ampforwp_woocommerce_conditional_check() || (function_exists('is_woocommerce') && is_woocommerce() ) ){ ?>
 /*** Sidebar CSS ***/
-<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
+<?php if ( is_active_sidebar( 'swift-sidebar' ) || is_active_sidebar( 'amp-shop-sidebar' ) || is_active_sidebar( 'amp-product-sidebar' ) ) : ?>
 .sdbr-right{
 	<?php if( isset($redux_builder_amp['sidebar-bgcolor']['rgba']) && $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
 		background:<?php echo ampforwp_sanitize_color($redux_builder_amp['sidebar-bgcolor']['rgba'])?>;
