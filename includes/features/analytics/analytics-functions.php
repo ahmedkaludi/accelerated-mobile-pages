@@ -408,7 +408,7 @@ function amp_gtm_add_gtm_support( $analytics ) {
 	}
 	return $analytics;
 }
-add_filter( 'ampforwp_body_beginning', 'ampforwp_add_advance_gtm_fields' );
+add_action( 'ampforwp_body_beginning', 'ampforwp_add_advance_gtm_fields' );
 function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
 	if(true == ampforwp_get_setting('amp-use-gtm-option') && true == ampforwp_get_setting('ampforwp-gtm-field-advance-switch') ){
 			$ampforwp_adv_gtm_fields = "";
