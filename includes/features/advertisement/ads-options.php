@@ -964,7 +964,7 @@
                   'id'       => 'ampforwp-ads-module',
                   'class'=> is_plugin_active('ads-for-wp/ads-for-wp.php')? "adsactive": '',
                   'type'     => 'raw',
-                  'content'  => '<div class="ampforwp-ads-data-update"><input type="hidden" value="'.esc_url($afwp_active_url).'" class="ampforwp-activation-url" id="'.esc_attr($is_afwp).'">
+                  'content'  => '<div class="ampforwp-ads-data-update"><input type="hidden" value="'.esc_url_raw($afwp_active_url).'" class="ampforwp-activation-url" id="'.esc_attr($is_afwp).'">
                                         '.(!is_plugin_active('ads-for-wp/ads-for-wp.php')? esc_html__('A Revolutionary new Ad plugin from our team which is dedicated to make the #1 Ad solution in the world.','accelerated-mobile-pages'): esc_html__('Thank you for upgrading the Ads for WP','accelerated-mobile-pages')).'
                                         <div class="row">
                                             
