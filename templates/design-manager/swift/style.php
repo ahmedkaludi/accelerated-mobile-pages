@@ -1267,9 +1267,9 @@ if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar')
 	}
 }
 <?php }
-if ( ( true == ampforwp_get_setting('gbl-sidebar') && (ampforwp_is_front_page() || ampforwp_is_home()) || is_archive() || is_search() || ampforwp_is_blog()) || ( true == ampforwp_get_setting('swift-sidebar') || true == ampforwp_get_setting('page_sidebar') && is_singular() ) ) { 
-// AMP woocommerce condition starts
-if( !ampforwp_woocommerce_conditional_check() ) { ?>
+if ( ( true == ampforwp_get_setting('gbl-sidebar') && ( ampforwp_is_front_page() || ampforwp_is_home() || is_archive() || is_search() || ampforwp_is_blog() ) ) || ( true == ampforwp_get_setting('swift-sidebar') || true == ampforwp_get_setting('page_sidebar') && is_singular() ) || (  (function_exists('is_woocommerce') && is_woocommerce()) && function_exists('ampwcpro_layout_selector') &&  ampwcpro_layout_selector() == 'v3layout' ) ) { ?>
+<?php // AMP woocommerce condition starts
+if( !ampforwp_woocommerce_conditional_check() || (function_exists('is_woocommerce') && is_woocommerce() ) ){ ?>
 /*** Sidebar CSS ***/
 <?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 .sdbr-right{
