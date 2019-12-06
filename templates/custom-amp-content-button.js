@@ -30,10 +30,10 @@
 
 jQuery(document).ready(function($) {
     $("#meta-checkbox").click(function(){ 
-           check_custom_content_status($(this));
+           ampforwp_check_custom_content_status($(this));
     });
-    check_custom_content_status($("#meta-checkbox")); 
-    function check_custom_content_status(checker){ 
+    ampforwp_check_custom_content_status($("#meta-checkbox")); 
+    function ampforwp_check_custom_content_status(checker){ 
           if (checker.prop('checked')==true){
                 // var onload_content = tinymce.get('ampforwp_custom_content_editor').getContent();
                 $('.amp-editor-content').show();
