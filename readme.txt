@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3
-Stable tag: 0.9.98.21
+Stable tag: 0.9.98.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,18 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.98.22 (6th December 2019) =
+* Improvement: Need to add full short pixel plugin compatibility #3782
+* Fixed: Need to improve UI when "Saved" notification displays. #3856
+* Fixed: Need to show the Attention message when custom AMP editor box checked but there is no content in it #2866
+* Fixed: Issue with AMP page builder tool when images are inserted in slider module. #3780
+* Fixed: Hidden posts in AMP should not show in related posts #3839
+* Fixed: Make header Unsticky not working when Infinite scrolling is turned on. #3831
+* Fixed: The post title appears 2 times: after the parent category and after the child on breadcrumb. #3724
+* Fixed: data-block-on-consent missing in GTM code #3911
+* Fixed: PHP Warnings from redux filesystem #3901
+* Fixed: Debug notice #3913
+
 = 0.9.98.21 (3th December 2019) =
 * Improvement: Fonts support in all three designs one, two and three along with the swift Theme #1914
 * Improvement: Need to create Testimonial slider in AMP Page Builder #2960
@@ -232,19 +244,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Yoast Separator is converting from Hyphen to Dash #3783
 * Fixed: Multiple UX related modifactions #3869
 * Fixed: strpos() debug error after 19 update #3878
-
-= 0.9.98.19 (25th November 2019) =
-* Fixed: image transients should clear automatically #3781
-* Fixed: CTA button in header could be made no follow #3798
-* Fixed: In IOS screen, Menu cross button is not appearing in Swift design #3809
-* Fixed: Comment closed opion need to be removed. #3750
-* Fixed: In template mode Need to show extension setting panel. #3728
-* Fixed: Facebook comment is not changing language when we select another language #3710
-* Fixed: Single Sidebar data is visible in Homepage #3636
-* Fixed: Need to remove width from inline style on amp images #3741
-* Fixed: If permalinks is set as "/index.php/%year%/%monthnum%/%day%/%postname%/" then not working properly with Pagination #3537
-* Fixed: Canonical url is changing in cateogry pages when cateogry name start with amp #3694
-* Fixed: general fixes and improvements part 2 #3621
-* Fixed: Warning: strpos(): Empty needle in /home/statecer/public_html/wp-content/plugins/accelerated-mobile-pages/templates/features.php on line 5788 #3870
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
