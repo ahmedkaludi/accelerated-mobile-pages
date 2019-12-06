@@ -148,7 +148,7 @@ function amp_content_editor_title_callback( $post ) {
     		<?php esc_attr_e( 'Use This Content as AMP Content','accelerated-mobile-pages' )?>   </p>
         <p><?php esc_attr_e('If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.','accelerated-mobile-pages') ?></p>
     </label>
-
+  <div class="amp-editor-content" id="amp-editor-checker" style="background: #FFF59D;padding: 8px 14px;width:96%;margin-bottom:12px;"><b>Note: </b> <span id="ampforwp-amp-content-error-msg">AMP contents is blank, Please enter content</span></div>
   <!--HTML content Ends here-->
   <?php
   $content = get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
