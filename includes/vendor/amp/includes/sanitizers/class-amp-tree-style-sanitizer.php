@@ -1804,10 +1804,14 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 		$rule  = sprintf( '%s .%s { %s }', $root, $class, $style_attribute->nodeValue );
 
 		$this->set_current_node( $element ); // And sources when needing to be located.
+		$style_declaration = '';
+		if(isset($this->style_custom_cdata_spec['css_spec']['declaration'])){
+			$style_declaration = $this->style_custom_cdata_spec['css_spec']['declaration'];
 
+		}
 		$processed = $this->process_stylesheet( $rule, array(
 			'allowed_at_rules'   => array(),
-			'property_whitelist' => $this->style_custom_cdata_spec['css_spec']['declaration'],
+			'property_whitelist' => $style_declaration,
 		) );
 
 		$element->removeAttribute( 'style' );
