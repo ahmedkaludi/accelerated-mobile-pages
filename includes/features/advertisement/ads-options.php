@@ -954,6 +954,7 @@
             $afwp_active_url = ampforwp_wp_plugin_action_link( $plugin_file, 'activate' );
         }else{
             $is_afwp = "active";
+            $ampforwp_admin_url = admin_url();
             $afwp_active_url = $ampforwp_admin_url.'admin.php?page=adsforwp&amp;tab=general&amp;reference=ampforwp';
             $afwp_default = 2;
         }

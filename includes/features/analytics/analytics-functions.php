@@ -393,6 +393,9 @@ function amp_gtm_add_gtm_support( $analytics ) {
 				),
 			),
 		);
+		if(ampforwp_get_data_consent()){
+			$analytics['amp-gtm-googleanalytics']['attributes']['data-block-on-consent'] = ''; 
+		}
 		if ( true == ampforwp_get_setting('ampforwp-gtm-field-anonymizeIP') ) {
 			$analytics['amp-gtm-googleanalytics']['config_data']['vars']['anonymizeIP'] = 'true';
 		}
@@ -414,7 +417,7 @@ function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
 			$ampforwp_adv_gtm_fields = preg_replace('/\n\s*\n/', '', $ampforwp_adv_gtm_fields);
 			$ampforwp_adv_gtm_fields = preg_replace('/\/\/(.*?)\s(.*)/m', '$2', $ampforwp_adv_gtm_fields);
 	 		?>
-			<amp-analytics data-credentials="include" config="https://www.googletagmanager.com/amp.json?id=<?php echo esc_attr(ampforwp_get_setting('amp-gtm-id')); ?>&amp;gtm.url=SOURCE_URL"><script type="application/json"><?php echo $ampforwp_adv_gtm_fields ?></script></amp-analytics>
+			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> data-credentials="include" config="https://www.googletagmanager.com/amp.json?id=<?php echo esc_attr(ampforwp_get_setting('amp-gtm-id')); ?>&amp;gtm.url=SOURCE_URL"><script type="application/json"><?php echo $ampforwp_adv_gtm_fields ?></script></amp-analytics>
 			<?php
 		 }
 		 return $ampforwp_adv_gtm_fields;

@@ -7602,6 +7602,8 @@ if(!function_exists('ampforwp_get_comment_with_options')){
 	function ampforwp_get_comment_with_options(){
 		$postID = $comments = $max_page =  "";
 		$postID = ampforwp_get_the_ID();
+		$com_count = get_comments_number( $postID );
+		if($com_count>0){
 		$offset = 0;
 		$per_page = ampforwp_get_setting('ampforwp-number-of-comments');
 		$comment_order = get_option( 'comment_order' );
@@ -7685,6 +7687,7 @@ if(!function_exists('ampforwp_get_comment_with_options')){
 				'order' => esc_attr($comment_order),
 				'status' => 'approve',
 			));
+		}
 		}
 		return $comments;
 	}
