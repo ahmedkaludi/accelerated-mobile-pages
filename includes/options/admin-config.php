@@ -1584,11 +1584,11 @@ function ampforwp_get_user_roles(){
 	}
 	return $allroles;
 }
-function ampforwp_get_categories(){
+function ampforwp_get_categories($categoriesOption = ''){
 	$categoriesArray = array();
 	$selectedOption = (array) get_option('redux_builder_amp',true);
-	if(isset($selectedOption['hide-amp-categories2'])) {
-		$hideAmpCategories2 = array_filter( $selectedOption['hide-amp-categories2'] );
+	if(isset($selectedOption[$categoriesOption])) {
+		$hideAmpCategories2 = array_filter( $selectedOption[$categoriesOption] );
 		if ( count( $hideAmpCategories2 ) != 0 ) {
 			$categories = get_terms( 'category', array( 'include' => $hideAmpCategories2 ) );
 			foreach ( $categories as $category ) {
@@ -2781,7 +2781,7 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true,
                         'ajax'      => true,
-                        'options' => ampforwp_get_categories(),
+                        'options' => ampforwp_get_categories('hide-amp-categories2'),
                         'data-action'     => 'ampforwp_categories', 
                         'data'      => 'categories',
                         ),  
@@ -5986,7 +5986,10 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'select',
                         'title'    => esc_html__( 'Exclude Categories', 'accelerated-mobile-pages' ),
                         'data'  => 'categories',
-                        'multi'    => true
+                        'multi'    => true,
+                        'ajax'      => true,
+                        'options' => ampforwp_get_categories('ampforwp-homepage-loop-cats'),
+                        'data-action' => 'ampforwp_categories',
                 ),
                 array(
                     'id'    => 'ampforwp-homepage-loop-readmore-link',
