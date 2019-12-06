@@ -2257,3 +2257,10 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
   z-index:99999;
 }
 <?php } // Progress Bar CSS ends ?>
+.amp-post-title.amp-404-title{
+    font-size: 48px;
+    line-height: 58px;
+    color: #333;
+    margin: 0;
+    padding-top: 15px;
+}

@@ -878,3 +878,6 @@ if(ampforwp_get_setting('d123-border-type') == '3'){?>
   <?php } ?><?php } ?>
 
 <?php } // CTA CSS Ends Here // ?>
+.amp-wp-title.amp-d1-404-title{
+	text-align:center;
+}

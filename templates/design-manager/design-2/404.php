@@ -19,7 +19,7 @@
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 	<main>
 		<article class="amp-wp-content the_content">
-            <h2 class="amp-wp-title">
+            <h2 class="amp-wp-title amp-d1-404-title">
 			<?php global $redux_builder_amp; 
 			$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
 			echo strip_tags(ampforwp_translation($redux_builder_amp['amp-translator-fourohfour'],'Oops! That page can’t be found.'),$allowed_tags); ?>

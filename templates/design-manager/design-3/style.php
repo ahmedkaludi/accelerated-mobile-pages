@@ -1106,3 +1106,10 @@ if(ampforwp_get_setting('d123-border-type') == '3'){?>
   <?php } ?><?php } ?>
 
 <?php } // CTA CSS Ends Here // ?>
+.amp-wp-title.amp-d3-404-title{
+  margin: 0;
+  color: #333333;
+  font-size: 48px;
+  line-height: 58px;
+  font-family: 'Roboto Slab', serif;
+}
