@@ -4362,40 +4362,6 @@ Redux::setSection( $opt_name, array(
                         'required' => array( array('gnrl-sidebar', '=' , '1') ),
                 ),
                 array(
-                        'id'        => 'sidebar-bgcolor',
-                        'class' => 'child_opt child_opt_arrow',
-                        'type'      => 'color_rgba',
-                        'title'     => esc_html__('Sidebar Background','accelerated-mobile-pages'),
-                        'default'   => array(
-                            'color'     => '#f7f7f7',
-                        ),
-                        'required' => array( array('gbl-sidebar', '=',1) )
-                ),
-                array(
-                        'id'       => 'sbr-heading-color',
-                        'type'     => 'color_rgba',
-                        'class' => 'child_opt',
-                        'title'    => esc_html__('Heading', 'accelerated-mobile-pages'),
-                        'default'  => array(
-                            'color'     => '#333',
-                        ),
-                        'required' => array(
-                          array('gbl-sidebar','=',1)
-                        )           
-                ),
-                array(
-                        'id'       => 'sbr-text-color',
-                        'type'     => 'color_rgba',
-                        'class' => 'child_opt',
-                        'title'    => esc_html__('Text', 'accelerated-mobile-pages'),
-                        'default'  => array(
-                            'color'     => '#333',
-                        ),
-                        'required' => array(
-                          array('gbl-sidebar','=',1)
-                        )           
-                ),
-                array(
                         'id'    => 'swift-sidebar',
                         'class' => 'child_opt child_opt_arrow',
                         'type'  => 'switch',
@@ -4412,6 +4378,40 @@ Redux::setSection( $opt_name, array(
                       'default'  =>  '0',
                       'required' => array('gnrl-sidebar', '=' , '1'), 
                   ),
+                array(
+                        'id'        => 'sidebar-bgcolor',
+                        'class' => 'child_opt child_opt_arrow',
+                        'type'      => 'color_rgba',
+                        'title'     => esc_html__('Sidebar Background','accelerated-mobile-pages'),
+                        'default'   => array(
+                            'color'     => '#f7f7f7',
+                        ),
+                        'required' => array( array('gnrl-sidebar', '=',1) )
+                ),
+                array(
+                        'id'       => 'sbr-heading-color',
+                        'type'     => 'color_rgba',
+                        'class' => 'child_opt',
+                        'title'    => esc_html__('Heading', 'accelerated-mobile-pages'),
+                        'default'  => array(
+                            'color'     => '#333',
+                        ),
+                        'required' => array(
+                          array('gnrl-sidebar','=',1)
+                        )           
+                ),
+                array(
+                        'id'       => 'sbr-text-color',
+                        'type'     => 'color_rgba',
+                        'class' => 'child_opt',
+                        'title'    => esc_html__('Text', 'accelerated-mobile-pages'),
+                        'default'  => array(
+                            'color'     => '#333',
+                        ),
+                        'required' => array(
+                          array('gnrl-sidebar','=',1)
+                        )           
+                ),
                 array(
                         'id'       => 'ampforwp-infinite-scroll',
                         'type'     => 'switch',
