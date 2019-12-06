@@ -333,6 +333,37 @@ class AMP_Post_Template {
 						$ext = $cc[2][0];
 						$m1_content = str_replace($ext, "jpg", $m_content); // need to change fallback extenstion.
 					}
+					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
+					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
+					preg_match_all('/height="(.*?)"/', $m1_content,$fimgheight);
+					preg_match_all('/alt="(.*?)"/', $m1_content,$fimgalt);
+					
+					$data['src'] 	= $fimgsrc[1][0];
+					$data['width'] 	= $fimgwidth[1][0];
+					$data['height'] = $fimgheight[1][0];
+					$data['alt'] 	= ($fimgalt[1][0]?:'');
+
+					$fallback_data = apply_filters('ampforwp_fallback_image_params',$data);
+					$fsrc 	= $fallback_data['src'];
+					$fwidth = $fallback_data['width'];
+					$fheight= $fallback_data['height'];
+					$falt 	= $fallback_data['alt'];
+
+					$ssrc = $fimgsrc[0][0];
+					$swidth = $fimgwidth[0][0];
+					$sheight = $fimgheight[0][0];
+					$salt = ($fimgalt[0][0]?:'');
+
+					$src_rep = 'src="'.$fsrc.'"';
+					$width_rep = 'width="'.$fwidth.'"';
+					$height_rep = 'height="'.$fheight.'"';
+					$alt_rep = 'alt="'.$falt.'"';
+
+					$m1_content = str_replace($ssrc, $src_rep, $m1_content);
+					$m1_content = str_replace($swidth, $width_rep, $m1_content);
+					$m1_content = str_replace($sheight, $height_rep, $m1_content);
+					$m1_content = str_replace($salt, $alt_rep, $m1_content);
+
 					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";
 					$content = str_replace("$match", $fallback_img, $content);
 				}
