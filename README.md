@@ -191,7 +191,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.98.22 (6th December 2019) =
+= 0.9.98.22 (9th December 2019) =
 * Improvement: Need to add full short pixel plugin compatibility #3782
 * Fixed: Need to improve UI when "Saved" notification displays. #3856
 * Fixed: Need to show the Attention message when custom AMP editor box checked but there is no content in it #2866
@@ -203,6 +203,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Debug error #3910
 * Fixed: PHP Warnings from redux filesystem #3901
 * Fixed: Debug notice #3913
+* Fixed: Sidebar Widgets Default CSS should load on Woo commerce Sidebar #3912
+* Fixed: Images get streched in new version of the AMP FOR WP Plugin #3914
 
 = 0.9.98.21 (3th December 2019) =
 * Improvement: Fonts support in all three designs one, two and three along with the swift Theme #1914
