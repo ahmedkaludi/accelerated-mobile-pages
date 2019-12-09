@@ -1858,11 +1858,15 @@ td .ampforwp-hs-stat.green{
     background-size:15px;
     width:15px;
     height:15px;
+    opacity: 0.6;
     background-repeat:no-repeat;
     display: inline-block;
     position: relative;
-    top: 4px; 
+    top: 3px; 
 }
 .ampforwp-s-list-icon:hover{
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH4wsFBTgG5D3ZigAAAvdJREFUOMtt1M2LlWUYx/HP9UzjC1o5c6gMzqG3o/9AapQoZYVFEhakUBqF0sJNGFELjRBaRZDbNhGtygpbTJTWolcK05JAJR0C85gEnpOlWWPNc7U495mZmp7V83I/v/t3Xdf3d4cZV6+5VKrhcqzGOizDNUicwQGM4Qv8Xg0NGzl5bEojBjfdVltQZVqFp7EG89DDubJ2BItwEfvxUkR8lZnZ6IxPC3abbRjGE3i+ONyPPfgWv5R9G7gZG3EnutgREa9n5mSjMy66zbaoIrLObXgRP2Mn9uIPQ5XGyeP9lrSW0K/iSvIB7MIVePLPiYnX5s+b2xfE7cXNBTyWmZ9WVWX01AkzW4IhaSXxA9nBWrxa+vsgDlSlvKfKTjsxS6zXagtRSRtwg3AaMnNfcbkY2yPMq8o012Af3sVssYjIzE24D2PKECIC3sDHuCfTLVVZNB9v4WJU1Syxus5H8AxeQbfqC4mo4De8U6a/tiqc9co0jf54/L9iD2M3PsR3WFRnLui1lpA52PsgzmN5VaD9tYj+n7PdBZf78RE+wXZU/VmAs0Vw8XR9MyDPpK5zNV7AAkzgxlLNRezNzFrErH+rEqeR4mLmdRybcAeewyS+xBYciX8P76pCyelKP5sjJQF6rbZGZ1yjM34Gn4v4prj7GltxlDDaGR+ADiuwcMDhewXoDVg46PPU4sz1uGlajEbnRPmUipmHSgw/qPCZfm7vwsbM1G22B4uvx6oC/pG+WP8Q6DbbRu/eCpuxEmMRcXAQvVsLSzW2ZOa+qKphmevwPY6GMFqcdZttVVVFXdfrC5sXSvQOR7fZNmfuHJcmLj1eEDmPXSLG8BfODgbQay2VOYlYhEexA5dhW2a+WUVMH18RMZSZmwsqV5dW7MGh0h/l/YrSs9twCs9GxNuZ6kbnxDQ/vVYbEZm5vIB7b0HhQolXlOcF+ufjGF4eHho6/PdkPdWOKUE4d91Sk5M1/WwvL6LLcK1+LH4qmL0fHEomRk8RMT6l8Q9PACzjOiCIswAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0xMS0wNVQwNTo1NjowNiswMDowMB54ISsAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTktMTEtMDVUMDU6NTY6MDYrMDA6MDBvJZmXAAAAAElFTkSuQmCC');
+}
+#the-list tr:hover a.ampforwp-s-list-icon {
+    opacity: 1;
 }
