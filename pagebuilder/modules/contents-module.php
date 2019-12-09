@@ -35,7 +35,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
   display:grid;
   width:100%;
   grid-template-columns:1fr 1fr 1fr;
-  grid-gap:0px 30px;
+  grid-gap:30px;
 }
 {{module-class}} .cm ul li {
   list-style-type: none;
