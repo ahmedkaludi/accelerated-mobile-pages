@@ -108,6 +108,7 @@ if(empty($cross_btn_hvr_clr)){
 .aligncenter{ display: block; margin-left: auto; margin-right: auto; max-width: 100% }
 .amp-wp-enforced-sizes{ max-width: 100%; margin: 0 auto; }
 .amp-wp-unknown-size img{ object-fit: contain; }
+amp-img.amp-wp-enforced-sizes[layout=intrinsic] > img, .amp-wp-unknown-size > img { object-fit: contain; }
 amp-iframe{ max-width: 100%; margin-bottom : 20px; }
 amp-wistia-player {margin:5px 0px;}
 .hide{display:none}
