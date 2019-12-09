@@ -348,6 +348,7 @@ figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px
 .single-post main{ padding:12px 15% 10px 15% }
 <?php } ?>
 .the_content p{ margin-top: 5px; color: #333; font-size: 15px; line-height: 26px; margin-bottom: 15px;word-break: break-word; }
+.the_content small{font-size:11px;line-height:1.2;color:#111;margin-bottom: 5px;display: inline-block;}
 .amp-wp-tax-tag{ font-size: 13px; border: 0; display: inline-block; margin: 0.5em 0px 0.7em 0px; width: 100%; }
 main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
 .amp-wp-article-featured-image amp-img {margin: 0 auto;}

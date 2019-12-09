@@ -156,6 +156,7 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
   display:inline-block;
   color:<?php echo ampforwp_sanitize_color( $global_color_scheme ); ?>;
 }
+.the_content small{font-size:11px;line-height:1.2;color:#111;margin-bottom: 5px;display: inline-block;}
 <?php } // AMP Woocommerce CSS Ends ?>
 .ampforwp-social-icons{margin:1.5em 16px}.amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; margin-bottom:5px; }
 .amp-social-icon amp-img{ top: 4px; }

@@ -372,6 +372,7 @@ figcaption{ font-size: 11px; line-height: 1.6; margin-bottom: 11px; background: 
 .amp-wp-meta, .amp-wp-meta a{ font-size: 13px; color: #575757; margin: 20px 0px 20px 0px; padding: 0; }
 .amp-ad-wrapper{ text-align: center }
 .the_content p{ margin-top: 0px; margin-bottom: 30px; word-break: break-word; }
+.the_content small{font-size:11px;line-height:1.2;color:#111;margin-bottom: 5px;display: inline-block;}
 .amp-wp-tax-tag{ }
 main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
 .amp-wp-content .amp-wp-article-featured-image amp-img {margin: 0 auto;}
