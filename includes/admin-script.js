@@ -758,6 +758,42 @@ var redux_title_modify = function(){
     });
     $('li.active .redux-group-tab-link-a').click();
     }
+
+    $("#meta-checkbox").click(function(){ 
+           ampforwp_check_custom_content_status($(this));
+    });
+    ampforwp_check_custom_content_status($("#meta-checkbox")); 
+    function ampforwp_check_custom_content_status(checker){ 
+      if (checker.prop('checked')==true){
+            $('.amp-editor-content').show();
+            var content = $('#ampforwp_custom_content_editor').val();
+            if(content !== ''){
+                $('.amp-editor-content').hide();
+            }               
+       }
+       else{  
+          $('.amp-editor-content').hide();
+       }
+    }
+
+    $("#ampforwp_custom_content_editor").on("keyup change paste",function(){
+        if($(this).val()!=""){
+            $('.amp-editor-content').hide();
+        }else{
+            $('.amp-editor-content').show();
+        }
+        if($("#meta-checkbox").prop('checked')==false){
+            $('.amp-editor-content').show();
+            $("#ampforwp-amp-content-error-msg").html('Please select the "<b>Use This Content as AMP Content</b>" checkbox above before update.');
+            if($(this).val()==""){
+                $('.amp-editor-content').hide();
+                $("#ampforwp-amp-content-error-msg").html("AMP contents is blank, Please enter content");
+            }
+        }else{
+            $("#ampforwp-amp-content-error-msg").html("AMP contents is blank, Please enter content");
+        }
+    });
+
     if($(".amp-preview-button").length>0){
         $(".amp-preview-button").click(function(){
             var srcLink = $("#amp-preview-iframe").attr('data-src');

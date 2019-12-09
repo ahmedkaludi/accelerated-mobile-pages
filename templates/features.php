@@ -7340,3 +7340,23 @@ if ( ! function_exists('ampforwp_font_url') ) {
 		return apply_filters('ampforwp_font_url', $font_url);
 	}
 }
+//Need to add full short pixel plugin compatibility #3782
+if(function_exists('shortPixelDebugErrorHandler')){
+	add_filter( 'ampforwp_the_content_last_filter','ampforwp_short_pixel_cdn');
+}
+function ampforwp_short_pixel_cdn($content){
+	$api_url = get_option('spai_settings_api_url');
+	$compress_level = get_option('spai_settings_compress_level');
+	if('0'== $compress_level){
+		$compress_level = '+q_lossless';
+	}
+	if('1'== $compress_level){
+		$compress_level = '+q_lossy';
+	}
+	if('2'== $compress_level){
+		$compress_level = '+q_glossy';
+	}
+	$compress_level .= '+ret_img+to_webp/';
+	$content = preg_replace('/<amp-img(.*?)src="(.*?)" width="(.*?)" height="(.*?)"(.*?)srcset="(.*?)"(.*?)<\/amp-img>/', '<amp-img$1 src="'.$api_url.'/w_$3'.$compress_level.'$2"width="$3"height="$4"$7</amp-img>', $content);
+	return $content;
+}

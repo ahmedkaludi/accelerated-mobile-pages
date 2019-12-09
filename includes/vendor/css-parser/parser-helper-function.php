@@ -120,7 +120,7 @@ class AMPFORWP_Tree_Shaking_Transient{
 			}
 		}
 
-		
+		$value = isset($value) ? $value : '';
 		return apply_filters( "transient_{$transient}", json_decode($value, true), $transient );
 	}
 }

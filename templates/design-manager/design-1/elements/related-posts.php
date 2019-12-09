@@ -25,7 +25,12 @@ if( $current_post_type = get_post_type( $post )) {
         'order' => 'DESC',
         'orderby' => $orderby,
         'post_type' => $current_post_type,
-        'post__not_in' => array( $post->ID )
+        'post__not_in' => array( $post->ID ),
+        'meta_query' => array(
+	        array(
+		        'key'        => 'ampforwp-amp-on-off',
+		        'value'      => 'default',
+	        ))
     );  
   } 			
 }//end of block for custom Post types
@@ -42,7 +47,12 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2) {
 					'ignore_sticky_posts'=> 1,
 					'has_password'		 => false ,
 					'post_status'  		 => 'publish',
-					'orderby'      		 => $orderby
+					'orderby'      		 => $orderby,
+					'meta_query' => array(
+						array(
+							'key'        => 'ampforwp-amp-on-off',
+							'value'      => 'default',
+						))
 			);
 	}
 } //end of block for categories
@@ -61,7 +71,12 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
 				'has_password' 		 => false ,
 				'post_status'		 => 'publish',
 				'orderby'    		 => $orderby,
-				'no_found_rows'		 => true
+				'no_found_rows'		 => true,
+			    'meta_query' => array(
+				    array(
+					    'key'        => 'ampforwp-amp-on-off',
+					    'value'      => 'default',
+				    ))
 			);
 	}
 }//end of block for tags

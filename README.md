@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3
-Stable tag: 0.9.98.21
+Stable tag: 0.9.98.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,21 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 0.9.98.22 (9th December 2019) =
+* Improvement: Need to add full short pixel plugin compatibility #3782
+* Fixed: Need to improve UI when "Saved" notification displays. #3856
+* Fixed: Need to show the Attention message when custom AMP editor box checked but there is no content in it #2866
+* Fixed: Issue with AMP page builder tool when images are inserted in slider module. #3780
+* Fixed: Hidden posts in AMP should not show in related posts #3839
+* Fixed: Make header Unsticky not working when Infinite scrolling is turned on. #3831
+* Fixed: The post title appears 2 times: after the parent category and after the child on breadcrumb. #3724
+* Fixed: data-block-on-consent missing in GTM code #3911
+* Fixed: Debug error #3910
+* Fixed: PHP Warnings from redux filesystem #3901
+* Fixed: Debug notice #3913
+* Fixed: Sidebar Widgets Default CSS should load on Woo commerce Sidebar #3912
+* Fixed: Images get streched in new version of the AMP FOR WP Plugin #3914
 
 = 0.9.98.21 (3th December 2019) =
 * Improvement: Fonts support in all three designs one, two and three along with the swift Theme #1914

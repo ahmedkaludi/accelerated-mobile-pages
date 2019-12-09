@@ -259,7 +259,10 @@ if( !function_exists("ampforwp_clear_tree_shaking") ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
-		$nonceCheck = wp_verify_nonce( $_GET['nonce'], 'ampforwp_clear_tree_shaking' );
+        $nonceCheck = false;
+        if(isset($_GET['nonce'])){
+            $nonceCheck = wp_verify_nonce( $_GET['nonce'], 'ampforwp_clear_tree_shaking' );
+        }	
 		if ( is_admin() && ( ( $nonceCheck && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) && $options == '' ) || ( count( $changed_values ) != 0 && (ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) || isset($changed_values['ampforwp_css_tree_shaking'])) ) ) ) {
 			$upload_dir   = wp_upload_dir();
 			$user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
