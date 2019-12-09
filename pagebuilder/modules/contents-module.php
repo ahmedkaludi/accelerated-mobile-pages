@@ -47,7 +47,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
 {{module-class}} .cm h4{border-bottom: 2px solid #eee;padding-bottom: 8px;margin-bottom: 5px;font-size:18px;color: #191919;font-weight: 600;}
 {{module-class}} .cm .cmr{display:flex;flex-direction: column;margin-top: 6px;}
 {{module-class}} .cm .cmr a{font-size: 16px;line-height: 1.3;font-weight: 500;color: #000;margin: 0px 0px 5px 0px;}
-{{module-class}} .cm .cmr p{color: {{text_color_picker}};font-size: 13px;line-height: 20px;letter-spacing: 0.10px;margin-bottom:0;}
+{{module-class}} .cm .cmr p{color: #555;font-size: 13px;line-height: 20px;letter-spacing: 0.10px;margin-bottom:0;}
 {{module-class}} .cm .cml{width:100%;}
 {{module-class}} .cmp a {
     color: black;
@@ -68,6 +68,10 @@ function ampforwp_content_module_pagination($args, $fieldValues){
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
+}
+{{module-class}} .cm .cmr p a{
+  font-size:13px;
+  color:#005be2;
 }
 @media(max-width:768px){
   {{module-class}} .cm ul{
@@ -303,6 +307,15 @@ if ( is_admin() ) {
             'options_details'=>array('yes'=>'Yes', 'no'=>'No'),
             'content_type'=>'html',
             ),
+            array(    
+            'type'    =>'text',
+            'name'    =>"ampforwp_read_more",
+            'label'   =>esc_html__("Read More Text","accelerated-mobile-pages"),
+            'tab'     =>'customizer',
+            'default' =>'',    
+            'content_type'=>'html',
+            'required'  => array('ampforwp_show_excerpt' => 'yes'),
+            ),
             array(
             'type'    =>'text',
             'name'    =>"ampforwp_excerpt_length",
@@ -467,14 +480,20 @@ if ( is_admin() ) {
               }
 
               $excerptContent = "";
+              $read_more_link = "";
+              $readMore = "";
               if( $ampforwp_show_excerpt == 'yes' ) {
                    if( has_excerpt() ) {
                      $content = get_the_excerpt();
                    } else {
                      $content = get_the_content();
                    }
-                 $excerptContent = ' 
-                 <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'</p>';
+                  
+                   if(isset($fieldValues['ampforwp_read_more']) && !empty($fieldValues['ampforwp_read_more']) ){
+                      $readMore = $fieldValues['ampforwp_read_more'];
+                      $read_more_link = '<a href="'.esc_url($ampforwp_post_url).'" > '.esc_html($readMore).'</a>';
+                   }
+                 $excerptContent = '<p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).$read_more_link.'</p>';
               }
                $loopdate = "";
                $loopdate =  human_time_diff(
