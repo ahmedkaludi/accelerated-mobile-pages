@@ -188,11 +188,19 @@
                     // Defaults button clicked
                     if ( !confirm( redux.args.reset_confirm ) ) {
                         return false;
+                    }else{
+                        try{
+                            jQuery("#ampforwp-clear-clearcss-data").click();
+                        }catch(err){}
                     }
                 } else if ( $( this ).attr( 'name' ) == redux.args.opt_name + '[defaults-section]' ) {
                     // Default section clicked
                     if ( !confirm( redux.args.reset_section_confirm ) ) {
                         return false;
+                    }else{
+                        try{
+                            jQuery("#ampforwp-clear-clearcss-data").click();
+                        }catch(err){}
                     }
                 }
 
