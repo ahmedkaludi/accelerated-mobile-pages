@@ -59,7 +59,11 @@ function amp_archive_title(){
 		if( !empty( $cat_childs ) ){
 			echo "<div class='amp-sub-archives'><ul>";
 			foreach ($cat_childs as $cat_child ) {
-				 echo '<li><a href="' . esc_url(get_term_link( $cat_child )) . '">' . esc_attr($cat_child->name) . '</a></li>'; 
+				 $cat_child_url = get_term_link( $cat_child );
+				 if(true == ampforwp_get_setting('convert-internal-nonamplinks-to-amp')){
+				 	$cat_child_url = ampforwp_url_controller($cat_child_url);
+				 }
+				 echo '<li><a href="' . esc_url($cat_child_url) . '">' . esc_attr($cat_child->name) . '</a></li>'; 
 			}
 			echo "</ul></div>";
 		}
