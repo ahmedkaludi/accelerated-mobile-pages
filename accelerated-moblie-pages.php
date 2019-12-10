@@ -1057,8 +1057,8 @@ function ampforwp_get_all_post_types(){
     }
     if( ampforwp_get_setting('ampforwp-archive-support') && ampforwp_get_setting('ampforwp-archive-support-cat') ){
     	$post_types['category'] = 'category';
+    	$post_types['product_category'] = 'product_cat';
     }
-
     $custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
 	if(ampforwp_get_setting('ampforwp-archive-support') && !empty($custom_taxonomies) ){
 		foreach($custom_taxonomies as $taxonomy){
