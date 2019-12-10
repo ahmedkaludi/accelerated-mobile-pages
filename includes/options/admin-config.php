@@ -535,6 +535,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('table-of-content-plus-for-amp/table-of-content-plus-for-amp.php')? 1 : 2),
                         ),
+                        array(
+                            'name'=>'Easy Table of Contents for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Easy Table of Contents Plugin Compatibility in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/easytoc-icon.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/easy-table-of-contents-for-amp/',
+                            'plugin_active_path'=> 'easy-table-of-contents-for-amp/easy-table-of-contents-for-amp.php',
+                            'item_name'=>'Easy Table of Contents for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('easy-table-of-contents-for-amp/easy-table-of-contents-for-amp.php')? 1 : 2),
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
