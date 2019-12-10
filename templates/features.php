@@ -7219,7 +7219,7 @@ if(! defined( 'AMP_COMMENTS_VERSION' )) {
  // FOR ADMIN MENU BAR
 add_action( 'pre_amp_render_post', 'ampforwp_front_admin_menu_bar' );
 function ampforwp_front_admin_menu_bar(){
-	if( is_user_logged_in() ){
+	if(  current_user_can( 'manage_options' ) ){
 		$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
 		if($pref==="true"){
 			add_action("ampforwp_admin_menu_bar_front", function(){
