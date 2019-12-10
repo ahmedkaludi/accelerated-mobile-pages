@@ -692,8 +692,9 @@ function amp_author_meta( $args ) {
 
 // amp-animation CSS #2819
 add_action('amp_post_template_css','ampforwp_backtotop_global_css');
-function ampforwp_backtotop_global_css(){
-if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
+function ampforwp_backtotop_global_css(){?>
+amp-img.amp-wp-enforced-sizes[layout=intrinsic] > img, .amp-wp-unknown-size > img { object-fit: contain; }
+<?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
       <?php if( (is_single() && ampforwp_get_setting('enable-single-social-icons')) || (is_page() && true == ampforwp_get_setting('ampforwp-page-sticky-social')) ){ ?>
