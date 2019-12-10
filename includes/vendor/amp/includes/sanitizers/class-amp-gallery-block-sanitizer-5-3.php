@@ -116,12 +116,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 				continue;
 			}
 			$images = [];
-			// If it's not AMP lightbox, look for links first.
-			if ( ! $is_amp_lightbox ) {
-				foreach ( $node->getElementsByTagName( 'a' ) as $element ) {
-					$images[] = $element;
-				}
-			}
+
 			// If not linking to anything then look for <amp-img>.
 			if ( empty( $images ) ) {
 				foreach ( $node->getElementsByTagName( 'amp-img' ) as $element ) {
@@ -190,7 +185,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 	public function possibly_get_caption_text( $element ) {
 		$caption_tag = 'figcaption';
 		if ( isset( $element->nextSibling->nodeName ) && $caption_tag === $element->nextSibling->nodeName ) {
-			return $element->nextSibling->textContent;
+			return $element->nextSibling->childNodes;
 		}
 		// If 'Link To' is selected, the image will be wrapped in an <a>, so search for the sibling of the <a>.
 		if ( isset( $element->parentNode->nextSibling->nodeName ) && $caption_tag === $element->parentNode->nextSibling->nodeName ) {
@@ -307,7 +302,10 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 				if ( isset($image['caption']) ) {
 					$figure_node = AMP_DOM_Utils::create_node($this->dom, 'figure', array());
 					$fig_caption = AMP_DOM_Utils::create_node($this->dom, 'figcaption', array('on'=>"tap:AMP.setState({expanded: !expanded})",'tabindex'=>0,'role'=>'button'));
-					$fig_caption->nodeValue = $image['caption'];
+					$captionlength = $image['caption']->length;
+					for ($i=0 ;$i < $captionlength;$i++){
+						$fig_caption->appendChild($image['caption']->item(0));
+					}
 					$figure_node->appendChild($image_div);
 					$figure_node->appendChild($fig_caption);
 					$amp_images[$key] = $figure_node;
