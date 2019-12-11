@@ -6451,7 +6451,7 @@ else{
                             array('amp-design-selector', '=' , '4')
                     ),
                    'layout_type' => 'accordion',
-                    'accordion-open'=> 0,
+                    'accordion-open'=> 1,
              ),
             array(
                     'id'    => 'footer-customize-options',
