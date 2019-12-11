@@ -4421,6 +4421,10 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 			$classes[] = 'amp-frontpage';
 		}
 
+		if(true == ampforwp_get_setting('amp-rtl-select-option')){
+			$classes[] = 'rtl';
+		}
+
 	    $classes[] = $post_id;
 
 	    if ( $post_id ) {
