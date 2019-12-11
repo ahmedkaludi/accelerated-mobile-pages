@@ -285,7 +285,6 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 				'src' => $image['url'],
 				'width' => $image['width'],
 				'height' => $image['height'],
-				'caption' => $image['caption'],
 				'layout' => 'fill',
 				'class'  => 'amp-carousel-img',
 			);

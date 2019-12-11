@@ -227,7 +227,7 @@ class AMP_Image_Dimension_Extractor {
 			$attachment_id = '';
 			$image_data = $images[ $url_data['url'] ];
 			// Fallback #2931
-			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size'] || STATUS_IMAGE_EXTRACTION_INVALID  === $image_data['size'] ) {
+			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size'] || self::STATUS_IMAGE_EXTRACTION_INVALID  === $image_data['size'] ) {
 				$attachment_id = attachment_url_to_postid($url_data['url']);
 				$image = wp_get_attachment_image_src($attachment_id, 'full');
 				if ( $image ) {
@@ -244,7 +244,7 @@ class AMP_Image_Dimension_Extractor {
 				}
 
 			}
-			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size'] || STATUS_IMAGE_EXTRACTION_INVALID  === $image_data['size']) {
+			if ( self::STATUS_IMAGE_EXTRACTION_FAILED === $image_data['size'] || self::STATUS_IMAGE_EXTRACTION_INVALID  === $image_data['size']) {
 				$dimensions[ $url_data['url'] ] = false;
 				set_transient( $url_data['transient_name'], self::STATUS_FAILED_LAST_ATTEMPT, $transient_expiration );
 			} else {
