@@ -138,6 +138,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 					'layout' => 'responsive',
 				]
 			);
+			$urls = array();
 			foreach ( $images as $element ) {
 				$possible_caption_text = $this->possibly_get_caption_text( $element );
 				$url = $element->getAttribute('src');
