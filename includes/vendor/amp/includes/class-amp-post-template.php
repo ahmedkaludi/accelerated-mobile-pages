@@ -319,6 +319,33 @@ class AMP_Post_Template {
 			$this->add_data_by_key( 'post_amp_styles', array() );
 		}
 	}
+
+	private function ampforwp_imagify_webp_compatibility($content){
+		if(function_exists('_imagify_init')){
+			preg_match_all('/src="(.*?)"/', $content,$src);
+			$imageify_opt = get_option( 'imagify_settings' );
+			$convert_to_webp = $imageify_opt['convert_to_webp'];
+			$display_webp = $imageify_opt['display_webp'];
+			if($convert_to_webp && $display_webp){
+				$img_url = $src[1][0];
+				$rep_url = $src[1][0].".webp";
+				$content = str_replace($img_url, $rep_url, $content);
+			}
+		}
+		return $content;
+	}
+	private function ampforwp_imagify_fallback_img_src_url($content){
+		if(!function_exists('_imagify_init')){
+			preg_match_all('/src=\"(.*?)\.(webp)\"/', $content,$cc); // need to check extenstion for fallback.
+			if(isset($cc[2][0])){
+				$ext = $cc[2][0];
+				$content = str_replace($ext, "jpg", $content); // need to change fallback extenstion.
+			}
+			
+		}
+		return $content;
+	}
+
 	private function ampforwp_add_fallback_element($content='',$tag=''){
 		preg_match_all('/<'.$tag.' (.*?)<\/'.$tag.'>/', $content, $matches);
 		if(!empty($matches)){
@@ -327,12 +354,8 @@ class AMP_Post_Template {
 				for($i=0;$i<count($matches[0]);$i++){
 					$match = $matches[0][$i];
 					$m_content = $matches[1][$i];
-					$m1_content = $m_content;
-					preg_match_all('/src=\"(.*?)\.(webp)\"/', $m_content,$cc); // need to check extenstion for fallback.
-					if(isset($cc[2][0])){
-						$ext = $cc[2][0];
-						$m1_content = str_replace($ext, "jpg", $m_content); // need to change fallback extenstion.
-					}
+					$m_content = $this->ampforwp_imagify_webp_compatibility($m_content);
+					$m1_content = $this->ampforwp_imagify_fallback_img_src_url($matches[1][$i]);
 					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
 					preg_match_all('/height="(.*?)"/', $m1_content,$fimgheight);
