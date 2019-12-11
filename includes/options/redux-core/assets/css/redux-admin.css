@@ -425,10 +425,13 @@ img.ampforwp-post-builder-img{
     margin-top: 8px;
     margin-left: 15px;
     width: 265px;}
-.extension_desc h2{      margin: 0 0 12px 0px;
+.extension_desc h2{      
+    margin: 0 0 12px 0px;
     font-size: 20px;
     color: #303f9f;
-    font-weight: 500;}
+    font-weight: 500;
+    line-height: 1.2;
+}
 .extension_desc p{margin: 0; color: #666}
 .extension_btn{      display: inline-block;
     background: #303f9f;
