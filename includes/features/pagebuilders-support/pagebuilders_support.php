@@ -90,7 +90,6 @@ function ampforwp_page_builders_support_options($opt_name){
               ); 
     }
     $pb_for_amp[] = $elemntr_pb_for_ampchecker;
-    $pb_title = 'Page Builder';
     if(function_exists('Avada')){
       $pb_for_amp[] =  array(
                   'id' => 'ampforwp-avada-pb-for-amp-accor',
@@ -127,28 +126,28 @@ function ampforwp_page_builders_support_options($opt_name){
               ); 
     }
     $pb_for_amp[] = $avia_pb_for_ampchecker;
+    $pb_title = 'Page Builder';
     $theme = wp_get_theme(); // gets the current theme
-    if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ) || did_action( 'elementor/loaded' ) ){
-       if(class_exists('Vc_Manager') ){
-           $pb_title =  'WPBakery Page Builder Support';
-        }
-       if( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ){
-            $pb_title =  'Divi Builder Support';
-        }
-        if(did_action( 'elementor/loaded' ) ){
-            $pb_title =  '!!!Elementor Support NNEEWW';
-        }
+    if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ) || did_action( 'elementor/loaded' ) || class_exists( 'FusionBuilder' )  ){
+      if( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ){
+        $pb_title =  'Divi Builder Support';
+      }
+      if(function_exists('elementor_load_plugin_textdomain')){
+        $pb_title =  'Elementor Support';
+      }
+      if ( class_exists( 'FusionBuilder' ) ) {
+        $pb_title =  'Avada Fusion Builder Support';
+      }
+       if(function_exists('avia_lang_setup')){
+        $pb_title =  'Avia Builder Support';
+      }
     }
-
-//echo "string";die;
-    // PageBuilders Section
- Redux::setSection( $opt_name, array(
-       'title'      => esc_html__(  'Elementor Support', 'accelerated-mobile-pages' ),
+Redux::setSection( $opt_name, array(
+       'title'      => esc_html__( $pb_title, 'accelerated-mobile-pages' ),
        'id'         => 'amp-content-builder',
        'class'      => 'ampforwp_new_features ',
        'subsection' => true,
        'fields' => $pb_for_amp,
        )
-
-   ) ;
+   );
 }
