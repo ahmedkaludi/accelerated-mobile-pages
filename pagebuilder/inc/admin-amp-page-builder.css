@@ -1421,7 +1421,7 @@ body .modal-footer .del-btn-modal{
     cursor: grab;
     opacity: 0;
 }
-.amp-repeat-active .amppb-repeaterfields-handle {
+.amp-repeat-field.amp-repeat-active .amppb-repeaterfields-handle {
     color: #fcfcfc;
 }
 .amp-accordion-head.amppb_accordion__panel:hover .amppb-repeaterfields-handle {
