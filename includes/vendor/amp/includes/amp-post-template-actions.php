@@ -25,6 +25,20 @@ function amp_post_template_add_meta_generator() {
 <?php
 }
 
+add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_cached_link' );
+function amp_post_template_add_cached_link($amp_template) {
+	$design = "swift";
+	if(ampforwp_get_setting("ampforwp_font_icon")=="swift-icons"){
+		if(ampforwp_get_setting('amp-design-selector')!=4){
+			$design = "design-".ampforwp_get_setting('amp-design-selector');
+		}
+		$font_url = AMPFORWP_PLUGIN_DIR_URI."templates/design-manager/$design/fonts/icomoon.ttf";
+	?>
+		<link rel="preload" as="font" href="<?php echo esc_url($font_url); ?>" type="font/ttf" crossorigin>
+	<?php
+	}
+}
+
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_scripts' );
 function amp_post_template_add_scripts( $amp_template ) {
 	$scripts = $amp_template->get( 'amp_component_scripts', array() );

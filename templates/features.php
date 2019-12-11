@@ -6805,6 +6805,7 @@ function ampforwp_ivory_search_css(){
 add_action('amp_post_template_head', 'ampforwp_fontawesome_canonical_link');
 function ampforwp_fontawesome_canonical_link(){ 
   if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
+  		<link rel="preconnect dns-prefetch" href="//use.fontawesome.com" crossorigin>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <?php }
     }
