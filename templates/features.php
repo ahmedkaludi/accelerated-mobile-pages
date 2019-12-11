@@ -4910,7 +4910,9 @@ function ampfowp_add_extra_css(){
  		width: 12px;
 }</style>';
 }
-add_action('wp_head', 'ampfowp_add_extra_css');
+if ( is_user_logged_in() ) {
+	add_action('wp_head', 'ampfowp_add_extra_css');
+}	
 // 92. View AMP in Admin Bar
 add_action( 'wp_before_admin_bar_render', 'ampforwp_view_amp_admin_bar' ); 
 if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
