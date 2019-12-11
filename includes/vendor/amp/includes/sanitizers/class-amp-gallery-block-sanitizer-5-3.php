@@ -190,7 +190,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 		}
 		// If 'Link To' is selected, the image will be wrapped in an <a>, so search for the sibling of the <a>.
 		if ( isset( $element->parentNode->nextSibling->nodeName ) && $caption_tag === $element->parentNode->nextSibling->nodeName ) {
-			return $element->parentNode->nextSibling->textContent;
+			return $element->parentNode->nextSibling->childNodes;
 		}
 		return null;
 	}
