@@ -7823,3 +7823,31 @@ function ampforwp_short_pixel_cdn($content){
 		$content = preg_replace('/<amp-img(.*?)src="(.*?)" width="(.*?)" height="(.*?)"(.*?)srcset="(.*?)"(.*?)<\/amp-img>/', '<amp-img$1 src="'.$api_url.'/w_$3'.$compress_level.'$2"width="$3"height="$4"$7</amp-img>', $content);
 		return $content;	
 }
+
+add_action('amp_post_template_css','ampforwp_transposh_plugin_rtl_css');
+function ampforwp_transposh_plugin_rtl_css() { 
+	if(class_exists('transposh_plugin')){
+    	 $rtl_lang_arr = array('ar', 'he', 'fa', 'ur', 'yi');
+    	 if(isset($_GET['lang'])){
+	 		if(in_array($_GET['lang'], $rtl_lang_arr)){
+	 			if(ampforwp_get_setting('header-position-type') == '1'){?>
+					.tg:checked + .hamb-mnu > .m-ctr {
+					    margin-right: 0%;
+					}
+					.m-ctr{
+					    margin-right: -100%;
+					    float: left;
+					}
+					<?php } if(ampforwp_get_setting('header-position-type') == '2'){?>
+					.tg:checked + .hamb-mnu > .m-ctr {
+					    margin-right: calc(100% - <?php echo esc_html(ampforwp_get_setting('header-overlay-width'))?>);
+					}
+					.m-ctr{
+					    margin-right: 100%;
+					    float: right;
+					}
+					<?php }
+	 		}
+    	 }
+    }
+}
