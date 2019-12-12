@@ -1347,6 +1347,10 @@ function ampforwp_replace_redux_comments(){
 		if(!$replaced_redux_comments){
 		    $redux_val   = get_option('redux_builder_amp',true);  
 
+		    if ( empty($redux_val) || ! is_array($redux_val)) {
+				return;
+		    }
+
 		    $search = '/******* Paste your Custom CSS in this Editor *******/';
 		    $rep = str_replace("$search", "", $redux_val);
 
