@@ -724,6 +724,7 @@ amp-img.amp-wp-enforced-sizes[layout=intrinsic] > img, .amp-wp-unknown-size > im
 	if ( ! ampforwp_woocommerce_conditional_check() ) {
 		if ( is_singular() || is_home() && true == ampforwp_get_setting( 'amp-frontpage-select-option' ) && ampforwp_get_blog_details() == false && ! checkAMPforPageBuilderStatus( ampforwp_get_the_ID() ) ) { ?>
             /* Tables */
+            .wp-block-table{ min-width :240px;}
             table.wp-block-table.alignright,table.wp-block-table.alignleft,table.wp-block-table.aligncenter{width: auto;}
             table.wp-block-table.aligncenter{width: 50%;}
             table.wp-block-table.alignfull,table.wp-block-table.alignwide{display: table;}
