@@ -694,6 +694,7 @@ function amp_author_meta( $args ) {
 add_action('amp_post_template_css','ampforwp_backtotop_global_css');
 function ampforwp_backtotop_global_css(){?>
 amp-img.amp-wp-enforced-sizes[layout=intrinsic] > img, .amp-wp-unknown-size > img { object-fit: contain; }
+.sharedaddy li{display:none}
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
