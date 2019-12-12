@@ -1,5 +1,20 @@
 == Changelog ==
 
+= 1.0.0 (11th December 2019) =
+* Improvement: Need to clear amp treeshaking css for reset section button. #3916
+* Improvement: Need to add easy table of contents in extension list #3922
+* Fixed: If hide amp hide on post or pages from anywhere then that needs to redirect to 301 #3767
+* Fixed: Need to add filter in "wp_localize_script" #3764
+* Fixed: Need to add preload key requests for font icons #3752
+* Fixed: Advance footer options should not be hidden by default #3652
+* Fixed: Button Rel Attribute #3872
+* Fixed: Need to update the PWA for WP extension from the options panel #3888
+* Fixed: “View AMP” Button Showing CSS on frontend #3890
+* Fixed: Images get streched in new version of the AMP FOR WP Plugin #3914
+* Fixed: Need to remove one signal push notification button in pages. #3874
+* Fixed: when images are placed along with the anchor tag in gallery module of guntenberg editor the image src is getting unknown in AMP #3923
+* Fixed: When RTL is enabled,the menu in header is going to right but the elements in right are not moved to left. #3881
+
 = 0.9.98.22 (9th December 2019) =
 * Improvement: Need to add full short pixel plugin compatibility #3782
 * Fixed: Need to improve UI when "Saved" notification displays. #3856

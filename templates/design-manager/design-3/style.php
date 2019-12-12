@@ -706,6 +706,7 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
 <?php if ( ampforwp_get_setting('ampforwp-callnow-button') ) { ?>
 .callnow{ position: absolute; top: 15px; right: 20px }
 .callnow a:before { content: ""; position: absolute; right: 23px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call','color','ampforwp_sanitize_color'); ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
+.rtl .callnow{ left: 75px;right: unset; }
 <?php } ?>
 <?php
 if ( class_exists('TablePress') ) { ?>

@@ -607,7 +607,6 @@ function ampforwp_new_dir( $dir ) {
 				 //for removing attributes within html tags
 				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) rel="(.*?) noopener(.*?)"/', '$1 rel="$2$3"', $content);
-				 $content = preg_replace('/<div(.*?) rel=".*?"(.*?)/', '<div $1', $content);
 				 // Remove alt attribute from the div tag #2093 
 				 $content = preg_replace('/<div(.*?) alt=".*?"(.*?)/', '<div $1', $content);
 				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
@@ -4258,6 +4257,9 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 			$classes[] = 'amp-frontpage';
 		}
 
+		if(true == ampforwp_get_setting('amp-rtl-select-option')){
+			$classes[] = 'rtl';
+		}
 	    $classes[] = $post_id;
 
 	    if ( $post_id ) {
@@ -4911,7 +4913,9 @@ function ampfowp_add_extra_css(){
  		width: 12px;
 }</style>';
 }
-add_action('wp_head', 'ampfowp_add_extra_css');
+if ( is_user_logged_in() ) {
+	add_action('wp_head', 'ampfowp_add_extra_css');
+}	
 // 92. View AMP in Admin Bar
 add_action( 'wp_before_admin_bar_render', 'ampforwp_view_amp_admin_bar' ); 
 if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
@@ -6805,6 +6809,7 @@ function ampforwp_ivory_search_css(){
 add_action('amp_post_template_head', 'ampforwp_fontawesome_canonical_link');
 function ampforwp_fontawesome_canonical_link(){ 
   if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
+  		<link rel="preconnect dns-prefetch" href="//use.fontawesome.com" crossorigin>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <?php }
     }

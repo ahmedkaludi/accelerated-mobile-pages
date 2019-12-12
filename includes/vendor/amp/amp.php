@@ -41,7 +41,7 @@ if ( ! function_exists('AMPforWP\\AMPVendor\\amp_maybe_add_actions') ) {
 
 		if ( ! $supports ) {
 			if ( $is_amp_endpoint ) {
-				wp_safe_redirect( get_permalink( $post->ID ) );
+				wp_safe_redirect( get_permalink( $post->ID ) , 301);
 				exit;
 			}
 			return;
