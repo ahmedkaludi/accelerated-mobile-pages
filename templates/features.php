@@ -3414,6 +3414,9 @@ function ampforwp_add_meta_viewport() {
 function ampforwp_frontpage_comments() {
 	global $redux_builder_amp;
 	$data = get_option( 'ampforwp_design' );
+	if(is_bool($data)){
+		$data = array();
+	}
 	$enable_comments = false;
 	$post_id = "";
 
