@@ -9300,14 +9300,37 @@ class AMP_Allowed_Tags_Generated {
 		'source' => array(
 			array(
 				'attr_spec_list' => array(
-					'[src]' => array(),
-					'[type]' => array(),
+					'media' => array(),
+					'sizes' => array(),
+					'srcset' => array(
+						'blacklisted_value_regex' => '__amp_source_origin',
+						'value_url' => array(
+							'allow_relative' => true,
+							'protocol' => array(
+								'data',
+								'http',
+								'https',
+							),
+						),
+					),
+					'type' => array(),
+				),
+				'tag_spec' => array(
+					'mandatory_parent' => 'picture',
+					'spec_name' => 'picture > source',
+					'spec_url' => 'https://amp.dev/documentation/components/amp-img',
+				),
+			),
+			array(
+				'attr_spec_list' => array(
+					'data-amp-bind-src' => array(),
+					'data-amp-bind-type' => array(),
 					'media' => array(),
 					'src' => array(
 						'blacklisted_value_regex' => '__amp_source_origin',
 						'value_url' => array(
 							'allow_relative' => true,
-							'allowed_protocol' => array(
+							'protocol' => array(
 								'https',
 							),
 						),
@@ -9317,19 +9340,19 @@ class AMP_Allowed_Tags_Generated {
 				'tag_spec' => array(
 					'mandatory_parent' => 'amp-video',
 					'spec_name' => 'amp-video > source',
-					'spec_url' => 'https://www.ampproject.org/docs/reference/components/amp-video',
+					'spec_url' => 'https://amp.dev/documentation/components/amp-video',
 				),
 			),
 			array(
 				'attr_spec_list' => array(
-					'[src]' => array(),
-					'[type]' => array(),
+					'data-amp-bind-src' => array(),
+					'data-amp-bind-type' => array(),
 					'media' => array(),
 					'src' => array(
 						'blacklisted_value_regex' => '__amp_source_origin',
 						'value_url' => array(
 							'allow_relative' => true,
-							'allowed_protocol' => array(
+							'protocol' => array(
 								'https',
 							),
 						),
@@ -9339,7 +9362,7 @@ class AMP_Allowed_Tags_Generated {
 				'tag_spec' => array(
 					'mandatory_parent' => 'amp-audio',
 					'spec_name' => 'amp-audio > source',
-					'spec_url' => 'https://www.ampproject.org/docs/reference/components/amp-audio',
+					'spec_url' => 'https://amp.dev/documentation/components/amp-audio',
 				),
 			),
 			array(
@@ -9350,7 +9373,7 @@ class AMP_Allowed_Tags_Generated {
 						'mandatory' => true,
 						'value_url' => array(
 							'allow_relative' => true,
-							'allowed_protocol' => array(
+							'protocol' => array(
 								'https',
 							),
 						),
@@ -9362,7 +9385,7 @@ class AMP_Allowed_Tags_Generated {
 				'tag_spec' => array(
 					'mandatory_parent' => 'audio',
 					'spec_name' => 'audio > source',
-					'spec_url' => 'https://www.ampproject.org/docs/reference/components/amp-audio',
+					'spec_url' => 'https://amp.dev/documentation/components/amp-audio',
 				),
 			),
 			array(
@@ -9373,7 +9396,7 @@ class AMP_Allowed_Tags_Generated {
 						'mandatory' => true,
 						'value_url' => array(
 							'allow_relative' => true,
-							'allowed_protocol' => array(
+							'protocol' => array(
 								'https',
 							),
 						),
@@ -9385,19 +9408,19 @@ class AMP_Allowed_Tags_Generated {
 				'tag_spec' => array(
 					'mandatory_parent' => 'video',
 					'spec_name' => 'video > source',
-					'spec_url' => 'https://www.ampproject.org/docs/reference/components/amp-video',
+					'spec_url' => 'https://amp.dev/documentation/components/amp-video',
 				),
 			),
 			array(
 				'attr_spec_list' => array(
-					'[src]' => array(),
-					'[type]' => array(),
+					'data-amp-bind-src' => array(),
+					'data-amp-bind-type' => array(),
 					'media' => array(),
 					'src' => array(
 						'blacklisted_value_regex' => '__amp_source_origin',
 						'value_url' => array(
 							'allow_relative' => true,
-							'allowed_protocol' => array(
+							'protocol' => array(
 								'https',
 							),
 						),
