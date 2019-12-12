@@ -793,7 +793,7 @@ function ampforwp_new_dir( $dir ) {
 				  // value attribute from anchor tag #2262
 				  $content = preg_replace('/<a(.*?)(value=".*?")(.*?)>/', '<a$1$3>', $content);
 				  $content = preg_replace('/<script id="(.*?)">(.*?)playerId:\s\'(.*?)\'(.*?)mediaId:\s\'(.*?)\'(.*?)<\/script>/s', '<amp-connatix-player data-player-id="$3" data-media-id = "$5" layout="responsive" width="16" height="9"></amp-connatix-player>', $content);
-
+			 	$content = preg_replace('/<div\sitemscope=\"(.*?)\"(.*?)><meta(.*?)itemprop=\"contentUrl\"(.*?)content=\"https:\/\/content\.jwplatform\.com\/videos\/(.*?)\-(.*?)\.(.*?)\"><\/div>/s', '<amp-jwplayer data-media-id="$5" data-player-id="$6" layout="responsive" width="16" height="9"></amp-jwplayer>', $content);
 				return $content;
 		}
 
