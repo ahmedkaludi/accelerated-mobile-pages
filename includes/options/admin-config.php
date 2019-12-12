@@ -1585,7 +1585,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'multi'   => true,
                     //'data' => 'post_type',
                     'options' => ampforwp_get_cpt_generated_post_types(),
-                    'required' => array('ampforwp-archive-support', '=' , '1')
                 );
     }
 function ampforwp_get_user_roles(){
