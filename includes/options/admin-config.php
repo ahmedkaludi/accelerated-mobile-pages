@@ -1598,8 +1598,14 @@ function ampforwp_get_user_roles(){
 function ampforwp_get_categories($categoriesOption = ''){
 	$categoriesArray = array();
 	$selectedOption = (array) get_option('redux_builder_amp',true);
-	if(isset($selectedOption[$categoriesOption])) {
-		$hideAmpCategories2 = array_filter( $selectedOption[$categoriesOption] );
+	$Selectedcategorie = $selectedOption[$categoriesOption];
+	if(is_numeric($Selectedcategorie)){
+		$tempArray = array();
+		$tempArray[0] = $Selectedcategorie;
+		$Selectedcategorie = $tempArray;
+	}
+	if(isset($Selectedcategorie)) {
+		$hideAmpCategories2 = array_filter( $Selectedcategorie );
 		if ( count( $hideAmpCategories2 ) != 0 ) {
 			$categories = get_terms( 'category', array( 'include' => $hideAmpCategories2 ) );
 			foreach ( $categories as $category ) {
@@ -5791,7 +5797,8 @@ Redux::setSection( $opt_name, array(
                           array('amp-design-3-featured-content', '=', '1'),
                         ),
                         'ajax'      => true,
-                        'data-action' => 'ampforwp_categories', 
+                        'data-action' => 'ampforwp_categories',
+                        'options' => ampforwp_get_categories('amp-design-3-category-selector'),
                         'data'      => 'categories',
                   ),
                  array(
