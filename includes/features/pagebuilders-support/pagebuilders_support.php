@@ -128,7 +128,7 @@ function ampforwp_page_builders_support_options($opt_name){
     $pb_for_amp[] = $avia_pb_for_ampchecker;
     $pb_title = 'Page Builder';
     $theme = wp_get_theme(); // gets the current theme
-    if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ) || did_action( 'elementor/loaded' ) || class_exists( 'FusionBuilder' )  ){
+    if( class_exists('Vc_Manager') || ( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ) || did_action( 'elementor/loaded' ) || class_exists( 'FusionBuilder' ) || function_exists('avia_lang_setup') ){
       if( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ){
         $pb_title =  'Divi Builder Support';
       }
