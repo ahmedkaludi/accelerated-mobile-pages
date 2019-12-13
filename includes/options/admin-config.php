@@ -7313,6 +7313,24 @@ else{
                       array('enbl-tbl','=',1)
                     )           
             ),
+            array(
+                    'id'       => 'enbl-telegram',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Telegram', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )          
+            ),
+            array(
+                    'id'       => 'enbl-telegram-prfl-url',
+                    'type'     => 'text',
+                    'title'    => esc_html__('Telegram URL', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-telegram','=',1)
+                    )           
+            ),
           array(
        'id' => 'social-media-profiles-subsection',
        'type' => 'section',
@@ -7545,6 +7563,26 @@ else{
               'required' => array(
                 array('amp-design-selector', '=' , '3'),
                 array('enable-single-Tumblr-profile', '=' , '1')
+              ),
+          ),
+          //#13
+          array(
+              'id'        =>  'enable-single-telegram-profile',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('Telegram', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-telegram-profile-url',
+              'type'      =>  'text',
+              'title'     =>  esc_html__('Telegram URL', 'accelerated-mobile-pages'),
+              'default'   =>  '#',
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-telegram-profile', '=' , '1')
               ),
           ),
         )
