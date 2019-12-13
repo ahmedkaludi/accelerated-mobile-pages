@@ -1348,7 +1348,7 @@ function ampforwp_replace_redux_comments(){
 	$replaced_redux_comments = get_transient('replaced_redux_comments_updated');
 
 		if(!$replaced_redux_comments){
-		    $redux_val   = get_option('redux_builder_amp',true);  
+		    $redux_val   = get_option('redux_builder_amp',array());  
 
 		    if ( empty($redux_val) || ! is_array($redux_val)) {
 				return;
