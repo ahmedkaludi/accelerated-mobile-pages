@@ -1046,7 +1046,7 @@ function ampforwp_get_all_post_types(){
     }
 
     $custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
-	if( !empty($custom_taxonomies) ){
+	if(ampforwp_get_setting('ampforwp-archive-support') && !empty($custom_taxonomies) ){
 		foreach($custom_taxonomies as $taxonomy){
 			$terms = get_taxonomy( $taxonomy );
 			$taxonomy_name = ( isset($terms->name) ? $terms->name : '' );

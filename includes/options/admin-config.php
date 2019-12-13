@@ -1567,6 +1567,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'tooltip-subtitle'   => esc_html__('Enable AMP Support on Archives for Custom Taxonomies.', 'accelerated-mobile-pages'),
                     'multi'   => true,
                     'options' => ampforwp_get_generated_custom_taxonomies(),
+                    'required' => array('ampforwp-archive-support', '=' , '1')
                 );
     }
     $design_types = ampforwp_get_setting('amp-design-selector');
