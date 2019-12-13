@@ -174,9 +174,10 @@ function ampforwp_get_image() {
 		echo json_encode(array("status"=>300,"message"=>'User not have authority'));
         die;
 	}
-    if(isset($_GET['id']) ){
-		if(strpos($_GET['id'],",") !== false){
-			$get_ids = explode(",", $_GET['id']);
+	$get_id = intval($_GET['id']);
+    if(isset($get_id)){
+		if(strpos($get_id,",") !== false){
+			$get_ids = explode(",", $get_id);
 			
 			if(count($get_ids)>0){
 				foreach($get_ids as $id){
