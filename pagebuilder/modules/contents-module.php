@@ -463,20 +463,10 @@ if ( is_admin() ) {
                       $height = $height * $resolution;
                     }
 
-                  try{
-                    if(function_exists('ampforwp_aq_resize')){
-                      $thumb_url = ampforwp_aq_resize( $image, $width, $height, true, false ); //resize & crop the image
-
-                      if($thumb_url!=false){
-                        $image   =  $thumb_url[0];
-                        $width   =  $thumb_url[1];
-                        $height  =  $thumb_url[2];
-                      }
+                    if(!is_numeric($width) && !is_numeric($height)){
+                      $width = '346';
+                      $height = '188';
                     }
-
-                   }catch(Exception $e){
-                      error_log($e);
-                   }
               }
 
               $excerptContent = "";
