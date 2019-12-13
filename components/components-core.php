@@ -739,7 +739,7 @@ amp-img.amp-wp-enforced-sizes[layout=intrinsic] > img, .amp-wp-unknown-size > im
             table tr:first-child th:first-child { -moz-border-radius-topleft: 3px; -webkit-border-top-left-radius: 3px; border-top-left-radius: 3px; }
             table tr:first-child th:last-child { -moz-border-radius-topright: 3px; -webkit-border-top-right-radius: 3px; border-top-right-radius: 3px; }
             table tr { text-align: center; padding-left: 20px; }
-            table td:first-child { text-align: left; padding-left: 20px; border-left: 0; }
+            table td:first-child {padding-left: 20px; border-left: 0; }
             table td { padding: 18px; border-top: 1px solid #ffffff; border-bottom: 1px solid #e0e0e0; border-left: 1px solid #e0e0e0; background: #fafafa; background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa)); background: -moz-linear-gradient(top, #fbfbfb, #fafafa); }
             table tr.even td { background: #f6f6f6; background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6)); background: -moz-linear-gradient(top, #f8f8f8, #f6f6f6); }
             table tr:last-child td {border-bottom: 0;}
