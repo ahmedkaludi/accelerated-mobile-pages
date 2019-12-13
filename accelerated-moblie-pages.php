@@ -838,7 +838,7 @@ function ampforwp_update_data_when_reset($rest_object = ''){
 		if($rest_object->parent->transients['changed_values']['amp-mobile-redirection'] == 1){
 			insert_with_markers( ABSPATH . '/.htaccess', "ampforwpformobileredirection", '' );
 		}
-		$updatedDataForTransient = array('hide-amp-categories2','amp-design-3-category-selector','ampforwp-homepage-loop-cats','hide-amp-tags-bulk-option2');
+		$updatedDataForTransient = array('hide-amp-categories2','amp-design-3-category-selector','ampforwp-homepage-loop-cats','hide-amp-tags-bulk-option2', 'amp-design-3-tag-selector');
 		foreach($rest_object->parent->transients['changed_values'] as $key => $value ){
 			if(in_array($key,$updatedDataForTransient)){
 				delete_transient( $key );
@@ -1471,7 +1471,7 @@ if(!function_exists('ampforwp_get_admin_current_page')){
 	}
 }
 function ampforwp_update_data_when_saved($options, $changed_values) {
-	$updatedDataForTransient = array('hide-amp-categories2','amp-design-3-category-selector','ampforwp-homepage-loop-cats','hide-amp-tags-bulk-option2');
+	$updatedDataForTransient = array('hide-amp-categories2','amp-design-3-category-selector','ampforwp-homepage-loop-cats','hide-amp-tags-bulk-option2', 'amp-design-3-tag-selector');
 	foreach($changed_values as $key => $value ){
 		if(in_array($key,$updatedDataForTransient)){
 			delete_transient( $key );

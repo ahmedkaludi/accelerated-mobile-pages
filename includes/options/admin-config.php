@@ -1630,31 +1630,42 @@ function ampforwp_get_categories($id = ''){
 
 	return $result;
 }
-function ampforwp_get_all_tags($id){
-	$data =	get_transient($id);
-	
-    if($data){
-		return $data;
-	}
 
-	$result = array();
-	$redux_builder_amp = (array) get_option('redux_builder_amp',true);
+function ampforwp_get_all_tags($select_option){
+    $data =  get_transient($select_option);
 
-	if(isset($redux_builder_amp[$id]) && $redux_builder_amp[$id] ){
+    if ( $data) {
+        return $data;
+    }
 
-		$redux_builder_amp = $redux_builder_amp[$id];
-		$tags_to_hide =  array_filter($redux_builder_amp);
-		if(count($tags_to_hide) != 0){
-			$tags = get_terms( 'post_tag', array('include' => $tags_to_hide) );
-			foreach($tags as  $tag ) {
-				$result[esc_attr($tag->term_id)] = esc_html($tag->name);
-			}
-			set_transient( $id, $result);
-		}
-	}
-    
-	return $result;
+    $result = array();
+    $redux_builder_amp = get_option('redux_builder_amp',array());
+
+    if ( $redux_builder_amp && isset($redux_builder_amp[$select_option]) ) {
+        $selected_tags = $redux_builder_amp[$select_option];
+    }
+ 
+    if ( $selected_tags ){
+        if(is_numeric($selected_tags)){
+            $temp_array = array();
+            $temp_array[0] = $selected_tags;
+            $selected_tags = $temp_array;
+        }
+
+        $get_required_data = array_filter( $selected_tags );
+        
+        if ( count( $get_required_data ) != 0 ) {
+            $tags = get_terms( 'post_tag', array( 'include' => $get_required_data ) );
+            foreach($tags as  $tag ) {
+                $result[esc_attr($tag->term_id)] = esc_html($tag->name);
+            }
+            set_transient( $select_option, $result);
+        }
+    }
+
+    return $result;
 }
+
     function ampforwp_default_user_roles(){
         $roles = '';
         $metabox_access = ampforwp_get_setting('amp-meta-permissions');
@@ -5837,6 +5848,7 @@ Redux::setSection( $opt_name, array(
                     array('amp-design-3-featured-content', '=' , '2'),
                         ),  
                         'ajax'      => true,
+                        'options'   => ampforwp_get_all_tags('amp-design-3-tag-selector'),
                         'data-action' => 'ampforwp_tags', 
                         'data'      => 'tags',         
                 ),
