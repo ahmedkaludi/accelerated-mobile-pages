@@ -829,16 +829,23 @@ if ( !function_exists('amp_activate') ) {
 }
 if(is_admin()){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/modules-upgrade.php' );
-	add_action( "redux/options/redux_builder_amp/saved", 'ampforwpformobileredirection', 10, 2 );
-	add_action( "redux/options/redux_builder_amp/reset", 'ampforwpformobileredirectionreset');
-	add_action( "redux/options/redux_builder_amp/section/reset", 'ampforwpformobileredirectionreset');
+	add_action( "redux/options/redux_builder_amp/saved", 'ampforwpAdminPanelSaved', 10, 2 );
+	add_action( "redux/options/redux_builder_amp/reset", 'ampforwpadminpanelreset' );
+	add_action( "redux/options/redux_builder_amp/section/reset", 'ampforwpadminpanelreset' );
 }
-function ampforwpformobileredirectionreset($rest_object = ''){
+function ampforwpadminpanelreset($rest_object = ''){
 	if(isset($rest_object->parent->transients)){
 		if($rest_object->parent->transients['changed_values']['amp-mobile-redirection'] == 1){
 			insert_with_markers( ABSPATH . '/.htaccess', "ampforwpformobileredirection", '' );
 		}
+		$updatedDataForTransient = array('hide-amp-categories2','amp-design-3-category-selector','ampforwp-homepage-loop-cats','hide-amp-tags-bulk-option2');
+		foreach($rest_object->parent->transients['changed_values'] as $key => $value ){
+			if(in_array($key,$updatedDataForTransient)){
+				delete_transient( $key );
+			}
+		}
 	}
+
 }
 
 /**
@@ -1463,7 +1470,13 @@ if(!function_exists('ampforwp_get_admin_current_page')){
 		return $current_page;
 	}
 }
-function ampforwpformobileredirection($options, $changed_values) {
+function ampforwpAdminPanelSaved($options, $changed_values) {
+	$updatedDataForTransient = array('hide-amp-categories2','amp-design-3-category-selector','ampforwp-homepage-loop-cats','hide-amp-tags-bulk-option2');
+	foreach($changed_values as $key => $value ){
+		if(in_array($key,$updatedDataForTransient)){
+			delete_transient( $key );
+		}
+	}
 	if ( isset( $changed_values['amp-mobile-redirection'] ) ) {
 		if ( $changed_values['amp-mobile-redirection'] == '0' ) {
 			$admin_URL = admin_url();

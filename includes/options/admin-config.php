@@ -1596,6 +1596,10 @@ function ampforwp_get_user_roles(){
 	return $allroles;
 }
 function ampforwp_get_categories($categoriesOption = ''){
+	$data =	get_transient($categoriesOption);
+	if($data){
+		return $data;
+	}
 	$categoriesArray = array();
 	$selectedOption = (array) get_option('redux_builder_amp',true);
 	$Selectedcategorie = $selectedOption[$categoriesOption];
@@ -1611,21 +1615,27 @@ function ampforwp_get_categories($categoriesOption = ''){
 			foreach ( $categories as $category ) {
 				$categoriesArray[ esc_attr( $category->term_id ) ] = esc_html( $category->name );
 			}
+			set_transient( $categoriesOption, $categoriesArray);
 		}
 	}
 	return $categoriesArray;
 }
-function ampforwp_get_all_tags(){
+function ampforwp_get_all_tags($tagOption){
+	$data =	get_transient($tagOption);
+	if($data){
+		return $data;
+	}
 	$tagsArray = array();
 	$selectedOption = (array) get_option('redux_builder_amp',true);
-	if(isset($selectedOption['hide-amp-tags-bulk-option2'])){
-		$selectedOption = $selectedOption['hide-amp-tags-bulk-option2'];
+	if(isset($selectedOption[$tagOption])){
+		$selectedOption = $selectedOption[$tagOption];
 		$hideAmpCategories2 =  array_filter($selectedOption);
 		if(count($hideAmpCategories2) != 0){
 			$tags = get_terms( 'post_tag', array('include' => $hideAmpCategories2) );
 			foreach($tags as  $tag ) {
 				$tagsArray[esc_attr($tag->term_id)] = esc_html($tag->name);
 			}
+			set_transient( $tagOption, $tagsArray);
 		}
 	}
 	return $tagsArray;
@@ -2809,7 +2819,7 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                         'multi'     => true,
                         'ajax'      => true,
-                        'options' => ampforwp_get_all_tags(),
+                        'options' => ampforwp_get_all_tags('hide-amp-tags-bulk-option2'),
                         'data-action' => 'ampforwp_tags', 
                         'data'      => 'tags',
 
