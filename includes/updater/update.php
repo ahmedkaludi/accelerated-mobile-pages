@@ -233,7 +233,7 @@ function ampforwp_admin_notices() {
                 $message = urldecode( $_GET['message'] );
                 ?>
                 <div class="error">
-                    <p><?php echo wp_kses_post( $message); ?></p>
+                    <p><?php echo esc_html($message); ?></p>
                 </div>
                 <?php
                 break;
