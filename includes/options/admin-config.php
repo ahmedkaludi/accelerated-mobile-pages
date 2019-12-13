@@ -1595,50 +1595,65 @@ function ampforwp_get_user_roles(){
 	}
 	return $allroles;
 }
-function ampforwp_get_categories($categoriesOption = ''){
-	$data =	get_transient($categoriesOption);
+function ampforwp_get_categories($id = ''){
+	$data =	get_transient($id);
+    
 	if($data){
-		return $data;
+	   return $data;
 	}
-	$categoriesArray = array();
-	$selectedOption = (array) get_option('redux_builder_amp',true);
-	$Selectedcategorie = $selectedOption[$categoriesOption];
-	if(is_numeric($Selectedcategorie)){
-		$tempArray = array();
-		$tempArray[0] = $Selectedcategorie;
-		$Selectedcategorie = $tempArray;
+
+	$result = array();
+	$redux_builder_amp = (array) get_option('redux_builder_amp',true);
+
+    if ( $redux_builder_amp ) {
+        $selected_categories = $redux_builder_amp[$id];
+    }
+
+	if(is_numeric($selected_categories)){
+		$temp_array = array();
+		$temp_array[0] = $selected_categories;
+		$selected_categories = $temp_array;
 	}
-	if(isset($Selectedcategorie)) {
-		$hideAmpCategories2 = array_filter( $Selectedcategorie );
-		if ( count( $hideAmpCategories2 ) != 0 ) {
-			$categories = get_terms( 'category', array( 'include' => $hideAmpCategories2 ) );
+
+	if(isset($selected_categories) && $selected_categories) {
+
+		$get_required_data = array_filter( $selected_categories );
+		if ( count( $get_required_data ) != 0 ) {
+			$categories = get_terms( 'category', array( 'include' => $get_required_data ) );
 			foreach ( $categories as $category ) {
-				$categoriesArray[ esc_attr( $category->term_id ) ] = esc_html( $category->name );
+				$result[ esc_attr( $category->term_id ) ] = esc_html( $category->name );
 			}
-			set_transient( $categoriesOption, $categoriesArray);
+
+            set_transient( $id, $result);
 		}
 	}
-	return $categoriesArray;
+
+	return $result;
 }
-function ampforwp_get_all_tags($tagOption){
-	$data =	get_transient($tagOption);
-	if($data){
+function ampforwp_get_all_tags($id){
+	$data =	get_transient($id);
+	
+    if($data){
 		return $data;
 	}
-	$tagsArray = array();
-	$selectedOption = (array) get_option('redux_builder_amp',true);
-	if(isset($selectedOption[$tagOption])){
-		$selectedOption = $selectedOption[$tagOption];
-		$hideAmpCategories2 =  array_filter($selectedOption);
-		if(count($hideAmpCategories2) != 0){
-			$tags = get_terms( 'post_tag', array('include' => $hideAmpCategories2) );
+
+	$result = array();
+	$redux_builder_amp = (array) get_option('redux_builder_amp',true);
+
+	if(isset($redux_builder_amp[$id]) && $redux_builder_amp[$id] ){
+
+		$redux_builder_amp = $redux_builder_amp[$id];
+		$tags_to_hide =  array_filter($redux_builder_amp);
+		if(count($tags_to_hide) != 0){
+			$tags = get_terms( 'post_tag', array('include' => $tags_to_hide) );
 			foreach($tags as  $tag ) {
-				$tagsArray[esc_attr($tag->term_id)] = esc_html($tag->name);
+				$result[esc_attr($tag->term_id)] = esc_html($tag->name);
 			}
-			set_transient( $tagOption, $tagsArray);
+			set_transient( $id, $result);
 		}
 	}
-	return $tagsArray;
+    
+	return $result;
 }
     function ampforwp_default_user_roles(){
         $roles = '';
