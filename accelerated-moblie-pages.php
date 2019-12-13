@@ -1070,7 +1070,7 @@ function ampforwp_get_all_post_types(){
 		}
 	}
 	 
-   	if (ampforwp_get_setting('ampforwp-archive-support') && ampforwp_get_setting('ampforwp-custom-type')) {
+   	if (ampforwp_get_setting('ampforwp-custom-type')) {
         foreach (ampforwp_get_setting('ampforwp-custom-type') as $key) {
             $selected_post_types[$key] = $key;
         }
