@@ -115,10 +115,10 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				$width  = isset( $this->args['content_max_width'] ) ? $this->args['content_max_width'] : self::FALLBACK_WIDTH;
 				$height = self::FALLBACK_HEIGHT;
 				if ( isset( $dimensions['width'] ) ) {
-					$width = $dimensions['width'];
+					$width = (int)$dimensions['width'];
 				}
 				if ( isset( $dimensions['height'] ) ) {
-					$height = $dimensions['height'];
+					$height = (int)$dimensions['height'];
 				}
 
 				if ( ! is_numeric( $node->getAttribute( 'width' ) ) ) {
