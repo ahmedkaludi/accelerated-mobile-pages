@@ -1524,6 +1524,63 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'options' => ampforwp_get_cpt_generated_post_types(),
                 );
     }
+function ampforwp_get_categories($id = ''){
+	$data =	get_transient($id);
+
+	if($data){
+		return $data;
+	}
+	$result = array();
+	$redux_builder_amp = (array) get_option('redux_builder_amp',true);
+	if ( $redux_builder_amp ) {
+		$selected_categories = $redux_builder_amp[$id];
+	}
+	if(is_numeric($selected_categories)){
+		$temp_array = array();
+		$temp_array[0] = $selected_categories;
+		$selected_categories = $temp_array;
+	}
+	if(isset($selected_categories) && $selected_categories) {
+		$get_required_data = array_filter( $selected_categories );
+		if ( count( $get_required_data ) != 0 ) {
+			$categories = get_terms( 'category', array( 'include' => $get_required_data ) );
+			foreach ( $categories as $category ) {
+				$result[ esc_attr( $category->term_id ) ] = esc_html( $category->name );
+			}
+			set_transient( $id, $result);
+		}
+	}
+	return $result;
+}
+function ampforwp_get_all_tags($select_option){
+	$data =  get_transient($select_option);
+	if ( $data) {
+		return $data;
+	}
+	$result = array();
+	$redux_builder_amp = get_option('redux_builder_amp',array());
+	if ( $redux_builder_amp && isset($redux_builder_amp[$select_option]) ) {
+		$selected_tags = $redux_builder_amp[$select_option];
+	}
+
+	if ( $selected_tags ){
+		if(is_numeric($selected_tags)){
+			$temp_array = array();
+			$temp_array[0] = $selected_tags;
+			$selected_tags = $temp_array;
+		}
+		$get_required_data = array_filter( $selected_tags );
+
+		if ( count( $get_required_data ) != 0 ) {
+			$tags = get_terms( 'post_tag', array( 'include' => $get_required_data ) );
+			foreach($tags as  $tag ) {
+				$result[esc_attr($tag->term_id)] = esc_html($tag->name);
+			}
+			set_transient( $select_option, $result);
+		}
+	}
+	return $result;
+}
     function ampforwp_get_user_roles(){
         global $wp_roles;
         $allroles = array();
@@ -2450,7 +2507,8 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => esc_html__( 'Hide IA from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true, 
                         'ajax'      => true, 
-                        'data-action'     => 'ampforwp_categories', 
+                        'data-action'     => 'ampforwp_categories',
+                        'options' => ampforwp_get_categories('hide-amp-ia-categories'),
                         'data'      => 'categories',
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),  
@@ -2515,7 +2573,8 @@ Redux::setSection( $opt_name, array(
                         'title'     => __('Select Categories to Hide AMP'),
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true, 
-                        'ajax'      => true, 
+                        'ajax'      => true,
+                        'options' => ampforwp_get_categories('hide-amp-categories2'),
                         'data-action'     => 'ampforwp_categories', 
                         'data'      => 'categories',
                         ),  
@@ -2526,6 +2585,7 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                         'multi'     => true,
                         'ajax'      => true,
+                        'options' => ampforwp_get_all_tags('hide-amp-tags-bulk-option2'),
                         'data-action' => 'ampforwp_tags', 
                         'data'      => 'tags',
 
@@ -4926,6 +4986,7 @@ Redux::setSection( $opt_name, array(
                           array('amp-design-3-featured-content', '=', '1'),
                         ),
                         'ajax'      => true,
+                        'options' => ampforwp_get_categories('amp-design-3-category-selector'),
                         'data-action' => 'ampforwp_categories', 
                         'data'      => 'categories',
                   ),
@@ -4940,6 +5001,7 @@ Redux::setSection( $opt_name, array(
                     array('amp-design-3-featured-content', '=' , '2'),
                         ),  
                         'ajax'      => true,
+                        'options'   => ampforwp_get_all_tags('amp-design-3-tag-selector'),
                         'data-action' => 'ampforwp_tags', 
                         'data'      => 'tags',         
                 ),

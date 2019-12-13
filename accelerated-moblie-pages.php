@@ -808,6 +808,9 @@ if ( !function_exists('amp_activate') ) {
 }
 if(is_admin()){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/modules-upgrade.php' );
+	add_action( "redux/options/redux_builder_amp/saved", 'ampforwp_update_data_when_saved', 10, 2 );
+	add_action( "redux/options/redux_builder_amp/reset", 'ampforwp_update_data_when_reset' );
+	add_action( "redux/options/redux_builder_amp/section/reset", 'ampforwp_update_data_when_reset' );
 }
 
 /**
@@ -1419,5 +1422,36 @@ if(!function_exists('ampforwp_get_admin_current_page')){
 			}
 		}
 		return $current_page;
+	}
+}
+function ampforwp_update_data_when_saved($options, $changed_values) {
+	$updatedDataForTransient = array(
+		'hide-amp-categories2',
+		'amp-design-3-category-selector',
+		'ampforwp-homepage-loop-cats',
+		'hide-amp-tags-bulk-option2',
+		'amp-design-3-tag-selector'
+	);
+	foreach ( $changed_values as $key => $value ) {
+		if ( in_array( $key, $updatedDataForTransient ) ) {
+			delete_transient( $key );
+		}
+	}
+}
+
+function ampforwp_update_data_when_reset($rest_object = '') {
+	if ( isset( $rest_object->parent->transients ) ) {
+		$updatedDataForTransient = array(
+			'hide-amp-categories2',
+			'amp-design-3-category-selector',
+			'ampforwp-homepage-loop-cats',
+			'hide-amp-tags-bulk-option2',
+			'amp-design-3-tag-selector'
+		);
+		foreach ( $rest_object->parent->transients['changed_values'] as $key => $value ) {
+			if ( in_array( $key, $updatedDataForTransient ) ) {
+				delete_transient( $key );
+			}
+		}
 	}
 }
