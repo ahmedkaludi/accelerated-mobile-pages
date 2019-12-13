@@ -171,6 +171,7 @@ echo sanitize_text_field($fontFamily); // secondary font family ends here ?>
 <?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>
 #pagination .next,#pagination .prev{display:inline-block}.ampforwp-custom-index .amp-wp-content{margin-bottom:30px}.pagination-holder{margin:1.5em 16px}#pagination .next{float:right}.amp-wp-home .amp-wp-content p{display:inline}.home-post-image{float:right;margin:0 0 10px 20px}.amp-wp-article-content amp-img{max-width:100%}.amp-wp-meta.amp-wp-tax-category,.amp-wp-meta.amp-wp-tax-tag{margin:0}.amp-wp-meta.amp-wp-tax-tag{display:initial}
 <?php } // AMP Woocommerce CSS Ends ?>
+.the_content small{font-size:11px;line-height:1.2;color:#111;margin-bottom: 5px;display: inline-block;}
 .ampforwp-social-icons{margin:1.5em 16px}.amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; margin-bottom:5px; }
 .amp-social-icon amp-img{ top: 4px; }
 amp-social-share[type="facebookmessenger"] {
