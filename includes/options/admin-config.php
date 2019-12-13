@@ -3972,7 +3972,10 @@ $all_extension_support[] = array(
                       'title'    => esc_html__('Search Widget Label', 'accelerated-mobile-pages'),
                       'default'  => esc_html__('Search for:','accelerated-mobile-pages'),
                       'desc' => esc_html__('This is the text that gets shown as Search Box Label','accelerated-mobile-pages'),
-                      'required' => array( 'amp-use-pot', '=' , 0 )
+                      'required' => array(
+                                        array( 'amp-use-pot', '=' , 0 ),
+                                        array('amp-design-selector', '!=' , '4')
+                                    )
                   ),
                   array(
                      'id'       => 'ampforwp-search-label',
@@ -3981,7 +3984,10 @@ $all_extension_support[] = array(
                      'desc' => esc_html__('This is the text that gets shown above Search Box','accelerated-mobile-pages'),
                      'default'  => esc_html__('Type your search query and hit enter: ','accelerated-mobile-pages'),
                      'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
-                     'required' => array( 'amp-use-pot', '=' , 0 )
+                     'required' => array(
+                                        array( 'amp-use-pot', '=' , 0 ),
+                                        array('amp-design-selector', '!=' , '4')
+                                    )
 
                  )
     ) ));
