@@ -7822,7 +7822,7 @@ function ampforwp_short_pixel_cdn($content){
 }
 
 add_action('amp_post_template_css','ampforwp_transposh_plugin_rtl_css');
-function ampforwp_transposh_plugin_rtl_css() { 
+function ampforwp_transposh_plugin_rtl_css() {
 	if(class_exists('transposh_plugin')){
     	 $rtl_lang_arr = array('ar', 'he', 'fa', 'ur', 'yi');
     	 if(isset($_GET['lang'])){
@@ -7848,3 +7848,54 @@ function ampforwp_transposh_plugin_rtl_css() {
     	 }
     }
 }
+add_action('pre_amp_render_post','ampforwp_fv_flowplayer_check');
+function ampforwp_fv_flowplayer_check() {
+	if (defined( 'FV_FP_RELATIVE_PATH' ) &&  ampforwp_is_amp_endpoint() ) {
+		remove_shortcode( 'fvplayer' );
+		add_shortcode( 'fvplayer', 'AMPforWP_flowplayer_content_handle' );
+	}
+}
+function AMPforWP_flowplayer_content_handle($atts, $content = null, $tag = false){
+	$fvplayer_data = apply_filters( 'fv_flowplayer_args_pre', $atts );
+
+	$fvplayer_main_video='
+	<amp-video controls
+	           width="640"
+	           height="360"
+	           layout="responsive"
+	           poster="'. $fvplayer_data["splash"] .'"
+	           src="'.$fvplayer_data["src"] .'"
+	            [src]="myTexting.currentvideo"
+	           type="video/mp4" >
+
+	</amp-video>';
+
+ if( count($fvplayer_data['video_objects']) <=1)
+	 return $fvplayer_main_video;
+	$fvplayer_carousel_video = '<amp-carousel  height="100" layout="fixed-height" type="carousel">';
+
+	$jsondata ='{';
+	$i =1;
+	foreach ($fvplayer_data['video_objects'] as $fvplayer_object_data){
+
+		$obj_arr = (array)$fvplayer_object_data;
+		$jdata = json_encode( $obj_arr );
+		$jdata = str_replace('\u0000','',$jdata);
+		$jdata = json_decode( $jdata );
+
+		$fvplayer_carousel_video .= '<span  on="tap:AMP.setState({ myTexting: {currentvideo:myText.videourl'.$i.'} })" ><amp-img src="'.$jdata->FV_Player_Db_Videosplash.'" width="100" height="100" ></amp-img></span>';
+
+		if($i ==1)
+			$jsondata .= '"videourl' . $i . '" : "' . $jdata->FV_Player_Db_Videosrc . '"';
+		else
+			$jsondata .= ', "videourl' . $i . '" : "' . $jdata->FV_Player_Db_Videosrc . '"';
+		$i++;
+	}
+	$fvplayer_carousel_video .= '</amp-carousel> <amp-state id="myText"><script type="application/json">';
+
+	$jsondata .= '}';
+	$fvplayer_carousel_video .=  $jsondata.'</script></amp-state>';
+	return $fvplayer_main_video.''.$fvplayer_carousel_video;
+
+}
+
