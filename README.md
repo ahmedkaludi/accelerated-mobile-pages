@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,20 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.1 (14th December 2019) =
+* Fixed: Telegram as social profile #3754
+* Fixed: Give default styling for `<small>` tag. #3879
+* Fixed: When pagination is enabled in Category Module,translation option should be given in Advanced. #3847
+* Fixed: An issue with Code module in AMP page puilder. #3833
+* Fixed: Getting an error while validating page when using Disqus comments #3871
+* Fixed: Content is updated programatically on /amp/ page view, bad revision is created #3822
+* Fixed: Custom Post types and taxonomies option should be only visible when Archives is enabled #3903
+* Fixed: After reloading 'Select Categories to Hide AMP', it shows empty #3898
+* Fixed: In exclude Categories option the "No items of this type were found." message is displaying #3900
+* Fixed: Cannot use a scalar value as an array #3823
+* Fixed: Debug warnings. #3932
+* Fixed: Google Tag manager not firing properly #3826
 
 = 1.0.0 (11th December 2019) =
 * Improvement: Need to clear amp treeshaking css for reset section button. #3916

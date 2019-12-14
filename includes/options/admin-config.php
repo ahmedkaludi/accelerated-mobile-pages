@@ -1524,6 +1524,61 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'options' => ampforwp_get_cpt_generated_post_types(),
                 );
     }
+function ampforwp_get_categories($id){
+	$data =	get_transient($id);
+
+	if($data){
+		return $data;
+	}
+	
+    $result = array();
+    $selected_categories = ampforwp_get_setting($id);
+    
+	if(is_numeric($selected_categories)){
+		$temp_array = array();
+		$temp_array[0] = $selected_categories;
+		$selected_categories = $temp_array;
+	}
+	if(isset($selected_categories) && $selected_categories) {
+		$get_required_data = array_filter( $selected_categories );
+		if ( count( $get_required_data ) != 0 ) {
+			$categories = get_terms( 'category', array( 'include' => $get_required_data ) );
+			foreach ( $categories as $category ) {
+				$result[ esc_attr( $category->term_id ) ] = esc_html( $category->name );
+			}
+			set_transient( $id, $result);
+		}
+	}
+	return $result;
+}
+function ampforwp_get_all_tags($id){
+
+	$data =  get_transient($id);
+	if ( $data) {
+		return $data;
+	}
+
+    $result = array();
+    $selected_tags = ampforwp_get_setting($id);
+
+	if ( $selected_tags ){
+		if(is_numeric($selected_tags)){
+			$temp_array = array();
+			$temp_array[0] = $selected_tags;
+			$selected_tags = $temp_array;
+		}
+		$get_required_data = array_filter( $selected_tags );
+
+		if ( count( $get_required_data ) != 0 ) {
+			$tags = get_terms( 'post_tag', array( 'include' => $get_required_data ) );
+			foreach($tags as  $tag ) {
+				$result[esc_attr($tag->term_id)] = esc_html($tag->name);
+			}
+			set_transient( $id, $result);
+		}
+	}
+	return $result;
+}
     function ampforwp_get_user_roles(){
         global $wp_roles;
         $allroles = array();
@@ -1567,6 +1622,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'tooltip-subtitle'   => esc_html__('Enable AMP Support on Archives for Custom Taxonomies.', 'accelerated-mobile-pages'),
                     'multi'   => true,
                     'options' => ampforwp_get_generated_custom_taxonomies(),
+                    'required' => array('ampforwp-archive-support', '=' , '1')
                 );
     }
     $design_types = ampforwp_get_setting('amp-design-selector');
@@ -2449,7 +2505,8 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => esc_html__( 'Hide IA from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true, 
                         'ajax'      => true, 
-                        'data-action'     => 'ampforwp_categories', 
+                        'data-action'     => 'ampforwp_categories',
+                        'options' => ampforwp_get_categories('hide-amp-ia-categories'),
                         'data'      => 'categories',
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),  
@@ -2514,7 +2571,8 @@ Redux::setSection( $opt_name, array(
                         'title'     => __('Select Categories to Hide AMP'),
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true, 
-                        'ajax'      => true, 
+                        'ajax'      => true,
+                        'options' => ampforwp_get_categories('hide-amp-categories2'),
                         'data-action'     => 'ampforwp_categories', 
                         'data'      => 'categories',
                         ),  
@@ -2525,6 +2583,7 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                         'multi'     => true,
                         'ajax'      => true,
+                        'options' => ampforwp_get_all_tags('hide-amp-tags-bulk-option2'),
                         'data-action' => 'ampforwp_tags', 
                         'data'      => 'tags',
 
@@ -4925,6 +4984,7 @@ Redux::setSection( $opt_name, array(
                           array('amp-design-3-featured-content', '=', '1'),
                         ),
                         'ajax'      => true,
+                        'options' => ampforwp_get_categories('amp-design-3-category-selector'),
                         'data-action' => 'ampforwp_categories', 
                         'data'      => 'categories',
                   ),
@@ -4939,6 +4999,7 @@ Redux::setSection( $opt_name, array(
                     array('amp-design-3-featured-content', '=' , '2'),
                         ),  
                         'ajax'      => true,
+                        'options'   => ampforwp_get_all_tags('amp-design-3-tag-selector'),
                         'data-action' => 'ampforwp_tags', 
                         'data'      => 'tags',         
                 ),
@@ -5127,11 +5188,14 @@ Redux::setSection( $opt_name, array(
                         'default'   => 'post',
                 ),
                 array(
-                        'id'       => 'ampforwp-homepage-loop-cats',
-                        'type'     => 'select',
-                        'title'    => esc_html__( 'Exclude Categories', 'accelerated-mobile-pages' ),
-                        'data'  => 'categories',
-                        'multi'    => true
+                    'id'           => 'ampforwp-homepage-loop-cats',
+                    'type'         => 'select',
+                    'title'        => esc_html__( 'Exclude Categories', 'accelerated-mobile-pages' ),
+                    'multi'        => true, 
+                    'ajax'         => true,
+                    'options'      => ampforwp_get_categories('ampforwp-homepage-loop-cats'),
+                    'data-action'  => 'ampforwp_categories', 
+                    'data'         => 'categories',
                 ),
                 array(
                     'id'    => 'ampforwp-homepage-loop-readmore-link',
@@ -7313,6 +7377,24 @@ else{
                       array('enbl-tbl','=',1)
                     )           
             ),
+            array(
+                    'id'       => 'enbl-telegram',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Telegram', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )          
+            ),
+            array(
+                    'id'       => 'enbl-telegram-prfl-url',
+                    'type'     => 'text',
+                    'title'    => esc_html__('Telegram URL', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-telegram','=',1)
+                    )           
+            ),
           array(
        'id' => 'social-media-profiles-subsection',
        'type' => 'section',
@@ -7545,6 +7627,26 @@ else{
               'required' => array(
                 array('amp-design-selector', '=' , '3'),
                 array('enable-single-Tumblr-profile', '=' , '1')
+              ),
+          ),
+          //#13
+          array(
+              'id'        =>  'enable-single-telegram-profile',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('Telegram', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-telegram-profile-url',
+              'type'      =>  'text',
+              'title'     =>  esc_html__('Telegram URL', 'accelerated-mobile-pages'),
+              'default'   =>  '#',
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-telegram-profile', '=' , '1')
               ),
           ),
         )
