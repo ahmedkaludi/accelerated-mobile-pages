@@ -25,7 +25,7 @@ function ampforwp_framework_get_search_form() {
 					</div>
 				</div>
 				</form>';
-	    echo $form;	    
+	    echo apply_filters( 'get_amp_search_form', $form );    
 }
 ampforwp_add_scripts();
 function ampforwp_add_scripts(){
