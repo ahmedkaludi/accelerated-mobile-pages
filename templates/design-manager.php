@@ -20,9 +20,9 @@ if ( is_customize_preview() ) {
 
 	$data = get_option( 'ampforwp_design',array());
 	// Adding default Value
-	if ($data['elements'] == '') {
+	if (empty($data['elements'])) {
 	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,addthis:1,comments:1,related_posts:1";
-	} 
+	}
 	
 	if(strpos($data['elements'], 'addthis:1') === false){
 		$addthis = substr_replace( $data['elements'], 'addthis:1,', 78, 0 );
