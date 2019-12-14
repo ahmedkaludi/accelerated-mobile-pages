@@ -5190,11 +5190,14 @@ Redux::setSection( $opt_name, array(
                         'default'   => 'post',
                 ),
                 array(
-                        'id'       => 'ampforwp-homepage-loop-cats',
-                        'type'     => 'select',
-                        'title'    => esc_html__( 'Exclude Categories', 'accelerated-mobile-pages' ),
-                        'data'  => 'categories',
-                        'multi'    => true
+                    'id'           => 'ampforwp-homepage-loop-cats',
+                    'type'         => 'select',
+                    'title'        => esc_html__( 'Exclude Categories', 'accelerated-mobile-pages' ),
+                    'multi'        => true, 
+                    'ajax'         => true,
+                    'options'      => ampforwp_get_categories('ampforwp-homepage-loop-cats'),
+                    'data-action'  => 'ampforwp_categories', 
+                    'data'         => 'categories',
                 ),
                 array(
                     'id'    => 'ampforwp-homepage-loop-readmore-link',
