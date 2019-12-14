@@ -1524,7 +1524,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'options' => ampforwp_get_cpt_generated_post_types(),
                 );
     }
-function ampforwp_get_categories($id = ''){
+function ampforwp_get_categories($id){
 	$data =	get_transient($id);
 
 	if($data){
