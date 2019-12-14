@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,20 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.1 (14th December 2019) =
+* Fixed: Telegram as social profile #3754
+* Fixed: Give default styling for <small> tag. #3879
+* Fixed: When pagination is enabled in Category Module,translation option should be given in Advanced. #3847
+* Fixed: An issue with Code module in AMP page puilder. #3833
+* Fixed: Getting an error while validating page when using Disqus comments #3871
+* Fixed: Content is updated programatically on /amp/ page view, bad revision is created #3822
+* Fixed: Custom Post types and taxonomies option should be only visible when Archives is enabled #3903
+* Fixed: After reloading 'Select Categories to Hide AMP', it shows empty #3898
+* Fixed: In exclude Categories option the "No items of this type were found." message is displaying #3900
+* Fixed: Cannot use a scalar value as an array #3823
+* Fixed: Debug warnings. #3932
+* Fixed: Google Tag manager not firing properly #3826
+
 = 1.0.0 (11th December 2019) =
 * Improvement: Need to clear amp treeshaking css for reset section button. #3916
 * Improvement: Need to add easy table of contents in extension list #3922
@@ -219,24 +233,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Debug notice #3913
 * Fixed: Sidebar Widgets Default CSS should load on Woo commerce Sidebar #3912
 * Fixed: Images get streched in new version of the AMP FOR WP Plugin #3914
-
-= 0.9.98.21 (3th December 2019) =
-* Improvement: Fonts support in all three designs one, two and three along with the swift Theme #1914
-* Improvement: Need to create Testimonial slider in AMP Page Builder #2960
-* Improvement: Need to create an optional option for the side menu when people click on the text the links should be dropped. links sub links #3428
-* Improvement: Need to make compatibility with this plugin Stop Generating Image Sizes #3851
-* Improvement: Improve Matemo analytics integration #3757
-* Fixed: Breadcrumb breaks when '/' is present in category name #3769
-* Fixed: Back to top button CSS loading twice in Design 1,2,3. #3835
-* Fixed: Removing trbidi attribute #3687
-* Fixed: Upgrade to AdsforWP button not working properly. #3681
-* Fixed: Tooltip alignment is missing in Advertisement #3625
-* Fixed: Media queries are removing automatically in media queries merging process #3797
-* Fixed: Excerpt on homepage is not working properly. #3866
-* Fixed: Author links are redirecting to AMP even when the Archives is turned off. #3875
-* Fixed: Issue related to image height and width #3857
-* Fixed: Gutenberg Gallery Images are not displayed correctly when any option is selected in WordPress Content Gallery. #3868
-* Fixed: Google Tag manager not firing properly #3826
-* Fixed: After Update AMP option panel design is changing #3877
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
