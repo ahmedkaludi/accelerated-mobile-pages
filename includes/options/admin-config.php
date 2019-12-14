@@ -1552,16 +1552,15 @@ function ampforwp_get_categories($id = ''){
 	}
 	return $result;
 }
-function ampforwp_get_all_tags($select_option){
-	$data =  get_transient($select_option);
+function ampforwp_get_all_tags($id){
+
+	$data =  get_transient($id);
 	if ( $data) {
 		return $data;
 	}
-	$result = array();
-	$redux_builder_amp = ampforwp_get_setting('redux_builder_amp');
-	if ( $redux_builder_amp && isset($redux_builder_amp[$select_option]) ) {
-		$selected_tags = $redux_builder_amp[$select_option];
-	}
+
+    $result = array();
+    $selected_tags = ampforwp_get_setting($id);
 
 	if ( $selected_tags ){
 		if(is_numeric($selected_tags)){
@@ -1576,7 +1575,7 @@ function ampforwp_get_all_tags($select_option){
 			foreach($tags as  $tag ) {
 				$result[esc_attr($tag->term_id)] = esc_html($tag->name);
 			}
-			set_transient( $select_option, $result);
+			set_transient( $id, $result);
 		}
 	}
 	return $result;
