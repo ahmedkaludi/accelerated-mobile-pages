@@ -1530,11 +1530,10 @@ function ampforwp_get_categories($id = ''){
 	if($data){
 		return $data;
 	}
-	$result = array();
-	$redux_builder_amp = ampforwp_get_setting('redux_builder_amp');
-	if ( $redux_builder_amp ) {
-		$selected_categories = $redux_builder_amp[$id];
-	}
+	
+    $result = array();
+    $selected_categories = ampforwp_get_setting($id);
+    
 	if(is_numeric($selected_categories)){
 		$temp_array = array();
 		$temp_array[0] = $selected_categories;
