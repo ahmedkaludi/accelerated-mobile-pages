@@ -191,7 +191,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.1 (13th December 2019) =
+= 1.0.1 (14th December 2019) =
 * Fixed: Telegram as social profile #3754
 * Fixed: Give default styling for <small> tag. #3879
 * Fixed: When pagination is enabled in Category Module,translation option should be given in Advanced. #3847
@@ -203,6 +203,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: In exclude Categories option the "No items of this type were found." message is displaying #3900
 * Fixed: Cannot use a scalar value as an array #3823
 * Fixed: Debug warnings. #3932
+* Fixed: Google Tag manager not firing properly #3826
 
 = 1.0.0 (11th December 2019) =
 * Improvement: Need to clear amp treeshaking css for reset section button. #3916
