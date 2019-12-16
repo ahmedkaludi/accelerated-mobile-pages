@@ -1760,7 +1760,7 @@
                     }
 
                     // Make URL
-                    $url = '<a class="redux_hint_status" href="?dismiss=' . $dismiss . '&amp;id=hints&amp;page=' . $curPage . '&amp;tab=' . $curTab . '">' . $s . ' hints</a>';
+                    $url = '<a class="redux_hint_status" href="?dismiss=' . esc_attr($dismiss) . '&amp;id=hints&amp;page=' . esc_attr($curPage) . '&amp;tab=' . esc_attr($curTab) . '">' . esc_html($s) . ' hints</a>';
 
                     $event = __( 'moving the mouse over', 'accelerated-mobile-pages' );
                     if ( 'click' == $this->args['hints']['tip_effect']['show']['event'] ) {
@@ -1768,7 +1768,7 @@
                     }
 
                     // Construct message
-                    $msg = sprintf( __( 'Hints are tooltips that popup when %d the hint icon, offering addition information about the field in which they appear.  They can be %d d by using the link below.', 'accelerated-mobile-pages' ), $event, strtolower( $s ) ) . '<br/><br/>' . $url;
+                    $msg = sprintf( __( 'Hints are tooltips that popup when %d the hint icon, offering addition information about the field in which they appear.  They can be %d d by using the link below.', 'accelerated-mobile-pages' ), $event, strtolower( $s ) ) . '<br/><br/>' . $url;// url escaped above
 
                     // Construct hint tab
                     $tab = array(
