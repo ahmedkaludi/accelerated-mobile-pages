@@ -57,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
              * @param ReduxFramework $parent
              */
             public function load( $parent ) {
-            if ( wp_verify_nonce( $_REQUEST['nonce'], 'redux_activate_tracking' ) ) {    
+            if ( wp_verify_nonce( $_REQUEST['nonce'], 'redux_activate_tracking' ) && current_user_can( 'manage_options' )) {    
                 $this->parent = $parent;
 
 
@@ -481,7 +481,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         function redux_allow_tracking_callback() {
             // Verify that the incoming request is coming with the security nonce
-            if ( wp_verify_nonce( $_REQUEST['nonce'], 'redux_activate_tracking' ) ) {
+            if ( wp_verify_nonce( $_REQUEST['nonce'], 'redux_activate_tracking' ) && current_user_can( 'manage_options' )) {
                 $options = get_option( 'redux-framework-tracking' );
 
                 if ( $_REQUEST['allow_tracking'] == "tour" ) {
