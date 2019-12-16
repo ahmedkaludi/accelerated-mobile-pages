@@ -153,9 +153,12 @@
                         // Get the notice id
                         $id  = esc_attr( $_GET['id'] );
                         $val = esc_attr( $_GET['dismiss'] );
-
+                        if ( ! wp_verify_nonce( $_POST['nonce'], $id . $userid . 'nonce' ) ) {
+                            die( 0 );
+                        } else {
                         // Add the dismiss request to the user meta.
                         update_user_meta( $userid, 'ignore_' . $id, $val );
+                        }
                     }
                 }
             }
