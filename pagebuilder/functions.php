@@ -108,11 +108,11 @@ function amppbbase_admin_scripts( $hook_suffix ){
 									);
 			wp_localize_script( 'amppb-admin', 'amppb_panel_options',$components_options);
 			wp_enqueue_script('amppb-admin');
-			add_action( 'admin_footer', 'js_templates',9999);	    
+			add_action( 'admin_footer', 'amppb_js_templates',9999);	    
     }
 }
 
-function js_templates() {
+function amppb_js_templates() {
 	global $containerCommonSettings;
 	global $moduleTemplate;
     global $layoutTemplate;
