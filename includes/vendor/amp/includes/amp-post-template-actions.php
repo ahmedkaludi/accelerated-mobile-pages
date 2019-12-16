@@ -93,6 +93,11 @@ function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	if ( empty( $metadata ) ) {
 		return;
 	}
+	$metadata['description'] = strip_tags(get_the_excerpt());
+	$metadata['description'] = str_replace("&nbsp;", "", $metadata['description']);
+	$metadata['articleBody'] = strip_tags(get_the_content());
+	$metadata['articleBody'] = str_replace("&nbsp;", "", $metadata['articleBody']);
+	$metadata['articleBody'] = trim(preg_replace('/\s+/', ' ', $metadata['articleBody']));
 	$seo_sel = ampforwp_get_setting('ampforwp-seo-selection');
 	if( (ampforwp_get_setting('ampforwp-seo-yoast-schema') == false && ampforwp_get_setting('ampforwp-seo-selection') == 'yoast') || empty($seo_sel) ){
 	?>
