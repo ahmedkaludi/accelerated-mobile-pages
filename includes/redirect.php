@@ -49,7 +49,8 @@ function ampforwp_redirection() {
   $current_url = $check = '';
   $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
                 "https" : "http") . "://" . $_SERVER['HTTP_HOST'] .  
-                $_SERVER['REQUEST_URI'];              
+                $_SERVER['REQUEST_URI'];  
+  $dev_red_url =  $current_url;           
   $current_url = explode('/', $current_url);
   $check    =  '?nonamp=1';
   if (( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) ){
@@ -210,6 +211,32 @@ function ampforwp_redirection() {
     }
     // Return if Dev mode is enabled
     if ( isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode'] ) {
+      if(ampforwp_get_setting('ampforwp-development-mode-show-pages')==1){
+          if (is_user_logged_in() ){
+              return;
+          }else{
+              $go_to_url  = "";
+              $url = $dev_red_url; 
+              $go_to_url = remove_query_arg('nonamp', $url);
+              $go_to_url = explode('/', $go_to_url);
+              $go_to_url = array_flip($go_to_url);
+              $red_url = $go_to_url;
+              if(isset($red_url['amp']) || isset($red_url['?amp'])){
+                if(true == ampforwp_get_setting('amp-core-end-point') || isset($go_to_url['?amp']) ){
+                  unset($go_to_url['?amp']);
+                }
+                if(isset($go_to_url['amp'])){
+                  unset($go_to_url['amp']);
+                }
+                $go_to_url = array_flip($go_to_url);     
+                $go_to_url  = implode('/', $go_to_url);
+                wp_safe_redirect( $go_to_url, 301 );
+                exit;
+              }else{
+                return;
+              }
+          }
+      }
       return;
     }
     // Return if the set value is not met and do not start redirection

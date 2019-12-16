@@ -3105,6 +3105,16 @@ Redux::setSection( $opt_name, array(
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 0,                        
+                    ),array(
+                        'id'       => 'ampforwp-development-mode-show-pages',
+                        'type'     => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'    => esc_html__('Show AMP pages only to logged in users'),
+                        'tooltip-subtitle' => esc_html__('This will show or hide AMP pages to logged in users.', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 0,   
+                        'required' => array('ampforwp-development-mode', '=', 1)                     
                     ),
                       array(
                         'id'       => 'ampforwp-development-mode-notice',
