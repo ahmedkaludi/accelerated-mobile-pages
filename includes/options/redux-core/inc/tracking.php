@@ -57,6 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
              * @param ReduxFramework $parent
              */
             public function load( $parent ) {
+            if ( wp_verify_nonce( $_REQUEST['nonce'], 'redux_activate_tracking' ) ) {    
                 $this->parent = $parent;
 
 
@@ -102,6 +103,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     }
                     add_action( 'redux_tracking', array( $this, 'tracking' ) );
                 }
+            }
             }
 
             function _enqueue_tracking() {
