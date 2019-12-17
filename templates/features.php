@@ -342,11 +342,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			} 
 			// URL Purifier
 			$amp_url = ampforwp_url_purifier($amp_url);
-			$check_amp = get_post_meta( $post->ID , 'ampforwp-amp-on-off' , true );
-			if($check_amp == 'default') {
-				$check_amp = true;
-			}
-	        $amp_url = apply_filters('ampforwp_modify_rel_canonical', $amp_url, $check_amp);
+
+	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 	        if( $supported_amp_post_types || ampforwp_is_front_page()) {	
 	        	if ( get_query_var('tag') ) {
