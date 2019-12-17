@@ -1055,7 +1055,6 @@ function ampforwp_get_all_post_types(){
     global $redux_builder_amp;
     $post_types          = array();
     $selected_post_types = array();
-
     if( ampforwp_get_setting('amp-on-off-for-all-posts') ){
     		$post_types['post'] = 'post';
     }
@@ -1064,7 +1063,6 @@ function ampforwp_get_all_post_types(){
     }
     if( ampforwp_get_setting('ampforwp-archive-support') && ampforwp_get_setting('ampforwp-archive-support-cat') ){
     	$post_types['category'] = 'category';
-    	$post_types['product_category'] = 'product_cat';
     }
     $custom_taxonomies = ampforwp_get_setting('ampforwp-custom-taxonomies');
 	if(ampforwp_get_setting('ampforwp-archive-support') && !empty($custom_taxonomies) ){
@@ -1076,14 +1074,12 @@ function ampforwp_get_all_post_types(){
 			}
 		}
 	}
-	 
    	if (ampforwp_get_setting('ampforwp-custom-type')) {
         foreach (ampforwp_get_setting('ampforwp-custom-type') as $key) {
             $selected_post_types[$key] = $key;
         }
         $post_types = array_merge($post_types, $selected_post_types);
     }
-
     return $post_types;
 }
 
@@ -1477,6 +1473,7 @@ function ampforwp_update_data_when_saved($options, $changed_values) {
 			delete_transient( $key );
 		}
 	}
+	ampforwp_delete_transient_on_update($changed_values);
 	if ( isset( $changed_values['amp-mobile-redirection'] ) ) {
 		if ( $changed_values['amp-mobile-redirection'] == '0' ) {
 			$admin_URL = admin_url();
@@ -1506,6 +1503,18 @@ function ampforwp_update_data_when_saved($options, $changed_values) {
 		} else {
 			$rules = '';
 			insert_with_markers( ABSPATH . '/.htaccess', "ampforwpformobileredirection", $rules );
+		}
+	}
+}
+
+if(!function_exists('ampforwp_delete_transient_on_update')){
+	function ampforwp_delete_transient_on_update($changed_values){
+		$key_for_trans = array('ampforwp-custom-taxonomies');
+		$del_trans_arr = array('ampforwp-custom-taxonomies'=>'ampforwp_header_menu');
+		foreach($changed_values as $key => $value ){
+			if(in_array($key,$key_for_trans)){
+				delete_transient( $del_trans_arr[$key] );
+			}
 		}
 	}
 }
