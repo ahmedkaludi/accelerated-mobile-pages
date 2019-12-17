@@ -327,8 +327,8 @@ class AMP_Post_Template {
 			$convert_to_webp = $imageify_opt['convert_to_webp'];
 			$display_webp = $imageify_opt['display_webp'];
 			if($convert_to_webp && $display_webp){
-				$img_url = $src[1][0];
-				$rep_url = $src[1][0].".webp";
+				$img_url = esc_url($src[1][0]);
+				$rep_url = esc_url($src[1][0]).".webp";
 				$content = str_replace($img_url, $rep_url, $content);
 			}
 		}
@@ -338,7 +338,7 @@ class AMP_Post_Template {
 		if(!function_exists('_imagify_init')){
 			preg_match_all('/src=\"(.*?)\.(webp)\"/', $content,$cc); // need to check extenstion for fallback.
 			if(isset($cc[2][0])){
-				$ext = $cc[2][0];
+				$ext = esc_attr($cc[2][0]);
 				$content = str_replace($ext, "jpg", $content); // need to change fallback extenstion.
 			}
 			
@@ -377,17 +377,16 @@ class AMP_Post_Template {
 					$sheight = $fimgheight[0][0];
 					$salt = ($fimgalt[0][0]?:'');
 
-					$src_rep = 'src="'.$fsrc.'"';
-					$width_rep = 'width="'.$fwidth.'"';
-					$height_rep = 'height="'.$fheight.'"';
-					$alt_rep = 'alt="'.$falt.'"';
+					$src_rep = 'src="'.esc_url($fsrc).'"';
+					$width_rep = 'width="'.intval($fwidth).'"';
+					$height_rep = 'height="'.intval($fheight).'"';
+					$alt_rep = 'alt="'.esc_attr($falt).'"';
 
 					$m1_content = str_replace($ssrc, $src_rep, $m1_content);
 					$m1_content = str_replace($swidth, $width_rep, $m1_content);
 					$m1_content = str_replace($sheight, $height_rep, $m1_content);
 					$m1_content = str_replace($salt, $alt_rep, $m1_content);
-
-					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";
+					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>"; //$m_content, $m1_content escaped above.
 					$content = str_replace("$match", $fallback_img, $content);
 				}
 			}
