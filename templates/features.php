@@ -2351,22 +2351,25 @@ function ampforwp_footer_html_output() {
 }
 add_filter( 'amp_post_template_data', 'ampforwp_global_head_scripts');
 function ampforwp_global_head_scripts($data){
-	$script_slug = '';
-  	$script_url = '';
-	if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
-		$allscripts = ampforwp_get_setting('amp-header-text-area-for-html');
-  		preg_match_all('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)><\/script>/', $allscripts, $matches);
-  		$script_slug = $matches[2];
-  		$script_url = $matches[4];
-  		if($matches){
-	  		foreach ($script_slug as $key => $slug) {
-	  			if ( empty( $data['amp_component_scripts'][$slug] ) ) {
-	  				$data['amp_component_scripts'][$slug]  = $script_url[$key];
-				}
-	  		}
-	  	}
-	}
-	return $data;
+   $content = $data['post_amp_content'];
+   $script_slug = '';
+   $script_url = '';
+   if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
+      $allscripts = ampforwp_get_setting('amp-header-text-area-for-html');
+      preg_match_all('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)><\/script>/', $allscripts, $matches);
+      $script_slug = $matches[2];
+      $script_url = $matches[4];
+      if($matches){
+         foreach ($script_slug as $key => $slug) {
+            if(preg_match('/<\/'.$slug.'>/', $content)){
+               if ( empty( $data['amp_component_scripts'][$slug] ) ) {
+                  $data['amp_component_scripts'][$slug]  = $script_url[$key];
+               }
+            }
+         }
+      }
+   }
+   return $data;
 }
 add_action('amp_post_template_head','ampforwp_header_html_output',11);
 function ampforwp_header_html_output() {
@@ -7902,3 +7905,57 @@ function AMPforWP_flowplayer_content_handle($atts, $content = null, $tag = false
 
 }
 
+add_filter( 'amp_post_template_data', 'ampforwp_pblayout_head_scripts');
+$pb_remove_script = array();
+function ampforwp_pblayout_head_scripts($data){
+   $postId = ampforwp_get_the_ID();
+   $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+   if(isset($ampforwp_pagebuilder_enable) && $ampforwp_pagebuilder_enable=="yes"){
+      $previousData = get_post_meta($postId,'amp-page-builder');
+      $previousData = isset($previousData[0])? $previousData[0]: null;
+      $previousData = (str_replace("'", "&apos;", $previousData));
+      $totalRows = 1;
+      $totalmodules = 1;
+      if(!empty($previousData)){
+         $jsonData = json_decode($previousData,true);
+         if(count($jsonData['rows'])>0){
+            $totalRows = $jsonData['totalrows'];
+            $totalmodules = $jsonData['totalmodules'];
+            $previousData = json_encode($jsonData);
+         }else{
+            $jsonData['rows'] = array();
+            $jsonData['totalrows']=1;
+            $jsonData['totalmodules'] = 1;
+            $previousData = json_encode($jsonData);
+         }
+      }
+      $jarr = json_decode($previousData);
+      if(isset($jarr->settingdata->scripts_data)){
+         $script_data = $jarr->settingdata->scripts_data;
+         $content = $data['post_amp_content'];
+         $script_slug = '';
+         $script_url = '';
+         $allscripts = $script_data;
+         preg_match_all('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)><\/script>/', $allscripts, $matches);
+         $script_slug = $matches[2];
+         $script_url = $matches[4];
+         if($matches){
+            foreach ($script_slug as $key => $slug) {
+               if(!preg_match('/'.$slug.'/', $content)){
+                  global $pb_remove_script;
+                  $pb_remove_script[]= esc_attr($slug);
+               }
+            }
+            add_filter( 'ampforwp_the_content_last_filter','ampforwp_remove_unused_pb_amp_script',12);
+         }
+      }
+   }
+   return $data;
+}
+function ampforwp_remove_unused_pb_amp_script($data){
+   global $pb_remove_script;
+   for($i=0;$i<count($pb_remove_script);$i++){
+      $data = preg_replace('/<script(.*?)custom-element=\"'.$pb_remove_script[$i].'\"(.*?)src=\"(.*?)\"(.*?)><\/script>/', '', $data);
+   }
+   return $data;                 
+}
