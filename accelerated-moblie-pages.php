@@ -1510,10 +1510,13 @@ function ampforwp_update_data_when_saved($options, $changed_values) {
 if(!function_exists('ampforwp_delete_transient_on_update')){
 	function ampforwp_delete_transient_on_update($changed_values){
 		$key_for_trans = array('ampforwp-custom-taxonomies');
-		$del_trans_arr = array('ampforwp-custom-taxonomies'=>'ampforwp_header_menu');
+		$del_trans_arr = array('ampforwp-custom-taxonomies'=>array('ampforwp_header_menu','ampforwp_footer_menu'));
 		foreach($changed_values as $key => $value ){
 			if(in_array($key,$key_for_trans)){
-				delete_transient( $del_trans_arr[$key] );
+				$trans_arr = $del_trans_arr[$key];
+				for($i=0;$i<count($trans_arr);$i++){
+					delete_transient( $trans_arr[$i] );
+				}
 			}
 		}
 	}
