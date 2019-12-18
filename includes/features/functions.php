@@ -1,5 +1,7 @@
-<?php 
- add_amp_theme_support('AMP-gdpr');
+<?php
+if(ampforwp_get_setting('amp-gdpr-compliance-switch')) {
+    add_amp_theme_support('AMP-gdpr');
+}
 // Custom AMP Content
 require AMPFORWP_PLUGIN_DIR  .'templates/custom-amp-content.php';
 // Custom AMPFORWP Sanitizers
