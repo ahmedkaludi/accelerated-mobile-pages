@@ -1764,7 +1764,7 @@
                     $hrefUrl = add_query_arg( 'id', 'hints', $hrefUrl );
                     $hrefUrl = add_query_arg( 'page', esc_attr($curPage), $hrefUrl );
                     $hrefUrl = add_query_arg( 'tab', esc_attr($curTab), $hrefUrl );
-                    $url = '<a class="redux_hint_status" href="'.esc_url($hrefUrl).'">' . esc_html($s) . ' hints</a>';
+                    $url = '<a class="redux_hint_status" href="'.esc_url_raw($hrefUrl).'">' . esc_html($s) . ' hints</a>';
                     $event = __( 'moving the mouse over', 'accelerated-mobile-pages' );
                     if ( 'click' == $this->args['hints']['tip_effect']['show']['event'] ) {
                         $event = __( 'clicking', 'accelerated-mobile-pages' );
