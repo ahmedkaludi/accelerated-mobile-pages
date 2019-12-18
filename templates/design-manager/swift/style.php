@@ -2273,7 +2273,7 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
 	<?php } // H6 Ends
  // swift Content Heading Sizes Ends
  if(ampforwp_get_setting('single-new-features') && ampforwp_get_setting('ampforwp-underline-content-links')){ ?> 
-.artl-cnt a{
+.artl-cnt a,.cntn-wrp a{
 	text-decoration: underline;
 }
 <?php } // Underline CSS Ends?>
