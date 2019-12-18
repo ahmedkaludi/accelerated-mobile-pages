@@ -6473,15 +6473,24 @@ if ( ! function_exists('ampforwp_sd_feature_image_guidlines') ) {
 	}
 }
 // Gutenberg Modules CSS #2707
+if(ampforwp_get_setting('ampforwp_css_tree_shaking') == true && ampforwp_is_gutenberg_active()){
 add_action('amp_post_template_css', 'ampforwp_gutenberg_css');
+}
 if ( ! function_exists('ampforwp_gutenberg_css') ) {
-	function ampforwp_gutenberg_css(){ ?>
+	function ampforwp_gutenberg_css(){
+		$color_data =   get_theme_support('editor-color-palette');?>
 		.wp-block-button { color: #fff}
 		.wp-block-button a {background-color: #32373c;border-radius: 28px;color: inherit;display: inline-block;padding: 12px 24px;}
 		.wp-block-cover{position:relative;background-color: #000;background-size: cover;background-position: center center;min-height: 430px;width: 100%;margin: 1.5em 0 1.5em 0;display: flex;justify-content: center;align-items: center;overflow: hidden;}
 		.wp-block-cover-text{color: #fff;font-size: 2em;line-height: 1.25;z-index: 1;}
-		.wp-block-cover-image.has-background-dim::before, .wp-block-cover.has-background-dim::before {content: "";position: absolute;top: 0;left: 0;bottom: 0;right: 0;background-color: inherit;opacity: .5;z-index: 1;}
-	<?php }
+		.wp-block-cover-image.has-background-dim::before, .wp-block-cover.has-background-dim::before {content: "";position: absolute;top: 0;left: 0;bottom: 0;right: 0;background-color: inherit;opacity: .5;z-index: 1;} <?php
+		if ( $color_data ) {
+			foreach ($color_data[0] as $key ) { ?>
+				.has-<?php echo esc_attr($key['slug']);?>-color { color: <?php echo ampforwp_sanitize_color($key['color']);?>;} .has-<?php echo esc_attr($key['slug']);?>-background-color { background-color: <?php echo ampforwp_sanitize_color($key['color']);?> }
+				 <?php 
+				}
+			}
+		}
 } 
 // Subtitles Plugin Support #2853
 add_action('ampforwp_below_the_title','ampforwp_subtitles_support');
@@ -7364,4 +7373,46 @@ function ampforwp_short_pixel_cdn($content){
 	$compress_level .= '+ret_img+to_webp/';
 	$content = preg_replace('/<amp-img(.*?)src="(.*?)" width="(.*?)" height="(.*?)"(.*?)srcset="(.*?)"(.*?)<\/amp-img>/', '<amp-img$1 src="'.$api_url.'/w_$3'.$compress_level.'$2"width="$3"height="$4"$7</amp-img>', $content);
 	return $content;
+}
+if(ampforwp_get_setting('ampforwp_css_tree_shaking') == true && ampforwp_is_gutenberg_active()){
+	add_action('amp_post_template_css','ampforwp_gutenberg_block_styles');
+}
+if(!function_exists('ampforwp_gutenberg_block_styles')){
+	function ampforwp_gutenberg_block_styles(){
+		$gutenberg_styles = '';
+		ob_start();
+		wp_print_styles('wp-block-library');
+		$block_css .= ob_get_contents();
+	    ob_end_clean();
+	    preg_match("/href='(.*?)'/", $block_css, $matches);
+	    $style_path = explode('?', $matches[1]);
+	    $gutenberg_styles = get_transient('ampforwp_gutenberg_styles');
+	    if($gutenberg_styles == false){
+	    $response = wp_remote_get( $style_path[0] );
+	    if( is_array( $response ) && ! is_wp_error( $response ) ){
+		   		set_transient('ampforwp_gutenberg_styles', $response['body'], 24 * HOUR_IN_SECONDS );
+			}
+	    }
+	    echo ampforwp_css_sanitizer($gutenberg_styles);
+	}
+}
+
+function ampforwp_is_gutenberg_active() {
+	$gutenberg    = false;
+	$block_editor = false;
+	$use_block_editor = '';
+	if ( has_filter( 'replace_editor', 'gutenberg_init' ) ) {
+		$gutenberg = true;
+	}
+	if ( version_compare( $GLOBALS['wp_version'], '5.0-beta', '>' ) ) {
+		$block_editor = true;
+	}
+	if ( ! $gutenberg && ! $block_editor ) {
+		return false;
+	}
+	if ( !class_exists('Classic_Editor') ) {
+		return true;
+	}
+	$use_block_editor = ( get_option( 'classic-editor-replace' ) === 'no-replace' );
+	return $use_block_editor;
 }
