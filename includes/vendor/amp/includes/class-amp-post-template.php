@@ -320,7 +320,9 @@ class AMP_Post_Template {
 				)
 			);
 
-			$this->add_data_by_key( 'post_amp_content', $amp_content->get_amp_content() );
+			$amp_con = $amp_content->get_amp_content();
+			$amp_con = $this->ampforwp_add_fallback_element($amp_con,'amp-img');
+			$this->add_data_by_key( 'post_amp_content', $amp_con);
 			$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
 			$this->merge_data_for_key( 'post_amp_styles', $amp_content->get_amp_styles() );
 		}else{
@@ -329,7 +331,53 @@ class AMP_Post_Template {
 			$this->add_data_by_key( 'post_amp_styles', array() );
 		}
 	}
-
+	private function ampforwp_add_fallback_element($content='',$tag=''){
+		preg_match_all('/<'.$tag.' (.*?)<\/'.$tag.'>/', $content, $matches);
+		if(!empty($matches)){
+			if(isset($matches[0])){
+				$con = "";
+				for($i=0;$i<count($matches[0]);$i++){
+					$match = $matches[0][$i];
+					$m_content = $matches[1][$i];
+					$m1_content = $m_content;
+					preg_match_all('/src=\"(.*?)\.(webp)\"/', $m_content,$cc); // need to check extenstion for fallback.
+					if(isset($cc[2][0])){
+						$ext = $cc[2][0];
+						$m1_content = str_replace($ext, "jpg", $m_content); // need to change fallback extenstion.
+					}
+					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
+					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
+					preg_match_all('/height="(.*?)"/', $m1_content,$fimgheight);
+					preg_match_all('/alt="(.*?)"/', $m1_content,$fimgalt);
+					
+					$data['src'] 	= $fimgsrc[1][0];
+					$data['width'] 	= $fimgwidth[1][0];
+					$data['height'] = $fimgheight[1][0];
+					$data['alt'] 	= ($fimgalt[1][0]?:'');
+					$fallback_data = apply_filters('ampforwp_fallback_image_params',$data);
+					$fsrc 	= $fallback_data['src'];
+					$fwidth = $fallback_data['width'];
+					$fheight= $fallback_data['height'];
+					$falt 	= $fallback_data['alt'];
+					$ssrc = $fimgsrc[0][0];
+					$swidth = $fimgwidth[0][0];
+					$sheight = $fimgheight[0][0];
+					$salt = ($fimgalt[0][0]?:'');
+					$src_rep = 'src="'.esc_url($fsrc).'"';
+					$width_rep = 'width="'.intval($fwidth).'"';
+					$height_rep = 'height="'.intval($fheight).'"';
+					$alt_rep = 'alt="'.esc_attr($falt).'"';
+					$m1_content = str_replace($ssrc, $src_rep, $m1_content);
+					$m1_content = str_replace($swidth, $width_rep, $m1_content);
+					$m1_content = str_replace($sheight, $height_rep, $m1_content);
+					$m1_content = str_replace($salt, $alt_rep, $m1_content);
+					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
+					$content = str_replace("$match", $fallback_img, $content);
+				}
+			}
+		}
+		return $content;
+	}
 	private function build_post_featured_image() {
 		$post_id = $this->ID;
 		$image_size = apply_filters( 'ampforwp_featured_image_size', 'large' );
