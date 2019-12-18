@@ -1413,3 +1413,9 @@ body .modal-footer .del-btn-modal{
     left: 170px;
     right: 300px;
 }
+.spinner.spinner-cat-mod{
+    visibility: hidden;
+    position: relative;
+    top: -27px;
+    right: -18px;
+}

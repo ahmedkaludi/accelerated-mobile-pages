@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.3
-Stable tag: 1.0.1
+Tested up to: 5.3.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,18 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.2 (18th December 2019) =
+* Improvement: Need to add wordpress default Gutenburg editor 'Block' settings Compatibility in AMP #3320
+* Improvement: Need to make compatibility with the Imagify plugin #3908
+* Improvement: Taxonomy support in AMP Page Builder category module #3310
+* Improvement: Add support of fallback images in AMP #3790
+* Improvement: General code improvements part 3 #3941
+* Improvement: Drop down support in Alternative Menu in Mobile view. #2768
+* Fixed: The Alternate Menu does not redirecting to the AMP for the product category in menu items #3915
+* Fixed: Sub-Category Archives on AMP page should be connected to Change internal links to AMP option. #3924
+* Fixed: Debug warning : Undefined index element #3958
+* Fixed: MGID Ads are not loading when the Flexible AMP widget option is enabled in the AMP  #3864
+
 = 1.0.1 (14th December 2019) =
 * Fixed: Telegram as social profile #3754
 * Fixed: Give default styling for <small> tag. #3879
@@ -219,19 +231,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Need to remove one signal push notification button in pages. #3874
 * Fixed: when images are placed along with the anchor tag in gallery module of guntenberg editor the image src is getting unknown in AMP #3923
 * Fixed: When RTL is enabled,the menu in header is going to right but the elements in right are not moved to left. #3881
-
-= 0.9.98.22 (9th December 2019) =
-* Improvement: Need to add full short pixel plugin compatibility #3782
-* Fixed: Need to improve UI when "Saved" notification displays. #3856
-* Fixed: Need to show the Attention message when custom AMP editor box checked but there is no content in it #2866
-* Fixed: Issue with AMP page builder tool when images are inserted in slider module. #3780
-* Fixed: Hidden posts in AMP should not show in related posts #3839
-* Fixed: Make header Unsticky not working when Infinite scrolling is turned on. #3831
-* Fixed: The post title appears 2 times: after the parent category and after the child on breadcrumb. #3724
-* Fixed: data-block-on-consent missing in GTM code #3911
-* Fixed: PHP Warnings from redux filesystem #3901
-* Fixed: Debug notice #3913
-* Fixed: Sidebar Widgets Default CSS should load on Woo commerce Sidebar #3912
-* Fixed: Images get streched in new version of the AMP FOR WP Plugin #3914
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

@@ -24,7 +24,8 @@ function ampforwp_mgid_markup_ad_1($output){
 		$data_cont 	= ampforwp_get_setting('enable-amp-ads-mgid-field-data-con');
 		$output = 	'<div class="amp-ad-wrapper amp_ad_1">
 						<amp-ad class="amp-ad-1"
-							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
+							width="'.esc_attr( $width ).'" 
+							height="'.esc_attr( $height ).'"
 							type="mgid"
 							data-publisher="'.esc_attr( $data_pub ).'"
 							data-widget="'.esc_attr( $data_wid ).'"
@@ -45,7 +46,8 @@ function ampforwp_mgid_markup_ad_2($output){
 		$data_cont 	= ampforwp_get_setting('enable-amp-ads-mgid-field-data-con-2');
 		$output = 	'<div class="amp-ad-wrapper amp_ad_2">
 						<amp-ad class="amp-ad-2"
-							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-2')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
+							width="'.esc_attr( $width ).'" 
+							height="'.esc_attr( $height ).'"
 							type="mgid"
 							data-publisher="'.esc_attr( $data_pub ).'"
 							data-widget="'.esc_attr( $data_wid ).'"
@@ -66,7 +68,8 @@ function ampforwp_mgid_markup_ad_3($output){
 		$data_cont 	= ampforwp_get_setting('enable-amp-ads-mgid-field-data-con-3');
 		$output = 	'<div class="amp-ad-wrapper amp_ad_3">
 						<amp-ad class="amp-ad-3"
-							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-3')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
+							width="'.esc_attr( $width ).'" 
+							height="'.esc_attr( $height ).'"
 							type="mgid"
 							data-publisher="'.esc_attr( $data_pub ).'"
 							data-widget="'.esc_attr( $data_wid ).'"
@@ -87,7 +90,8 @@ function ampforwp_mgid_markup_ad_4($output){
 		$data_cont 	= ampforwp_get_setting('enable-amp-ads-mgid-field-data-con-4');
 		$output = 	'<div class="amp-ad-wrapper amp_ad_4">
 						<amp-ad class="amp-ad-4"
-							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-4')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
+							width="'.esc_attr( $width ).'" 
+							height="'.esc_attr( $height ).'"
 							type="mgid"
 							data-publisher="'.esc_attr( $data_pub ).'"
 							data-widget="'.esc_attr( $data_wid ).'"
@@ -108,7 +112,8 @@ function ampforwp_mgid_markup_ad_5($output){
 		$data_cont 	= ampforwp_get_setting('enable-amp-ads-mgid-field-data-con-5');
 		$output = 	'<div class="amp-ad-wrapper amp_ad_5">
 						<amp-ad class="amp-ad-5"
-							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-5')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
+							width="'.esc_attr( $width ).'" 
+							height="'.esc_attr( $height ).'"
 							type="mgid"
 							data-publisher="'.esc_attr( $data_pub ).'"
 							data-widget="'.esc_attr( $data_wid ).'"
@@ -129,7 +134,8 @@ function ampforwp_mgid_markup_ad_6($output){
 		$data_cont 	= ampforwp_get_setting('enable-amp-ads-mgid-field-data-con-6');
 		$output = 	'<div class="amp-ad-wrapper amp_ad_6">
 						<amp-ad class="amp-ad-6"
-							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-6')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
+							width="'.esc_attr( $width ).'" 
+							height="'.esc_attr( $height ).'"
 							type="mgid"
 							data-publisher="'.esc_attr( $data_pub ).'"
 							data-widget="'.esc_attr( $data_wid ).'"
@@ -150,7 +156,8 @@ function ampforwp_mgid_markup_ad_7($output){
 		$data_cont 	= ampforwp_get_setting('enable-amp-ads-mgid-field-data-con-7');
 		$output = 	'<div class="amp-ad-wrapper amp_ad_7">
 						<amp-ad class="amp-ad-7"
-							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-7')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
+							width="'.esc_attr( $width ).'" 
+							height="'.esc_attr( $height ).'"
 							type="mgid"
 							data-publisher="'.esc_attr( $data_pub ).'"
 							data-widget="'.esc_attr( $data_wid ).'"
@@ -171,7 +178,8 @@ function ampforwp_mgid_markup_ad_8($output){
 		$data_cont 	= ampforwp_get_setting('enable-amp-ads-mgid-field-data-con-8');
 		$output = 	'<div class="amp-ad-wrapper amp_ad_8">
 						<amp-ad class="amp-ad-8"
-							'.(!ampforwp_get_setting('enable-amp-ads-mgid-flexible-8')? 'width="'.esc_attr( $width ).'" height="'.esc_attr( $height ).'"' : '' ).'
+							width="'.esc_attr( $width ).'" 
+							height="'.esc_attr( $height ).'"
 							type="mgid"
 							data-publisher="'.esc_attr( $data_pub ).'"
 							data-widget="'.esc_attr( $data_wid ).'"

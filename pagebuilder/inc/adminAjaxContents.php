@@ -233,27 +233,45 @@ function ampforwp_icons_list_format(){
 	echo json_encode(array('success'=>true,'data'=>$amp_icons_list));
 	exit;
 }
-
+add_action( 'wp_ajax_ampforwp_pb_taxonomy', 'ampforwp_pb_taxonomy');
+function ampforwp_pb_taxonomy(){
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+    $taxs = array();
+    $post = '';
+	$post = sanitize_text_field($_POST['selected_val']);
+    $taxs = get_object_taxonomies( $post );
+    $return = array();
+    if(!empty($taxs)){
+    	foreach ($taxs as $taxonomy) {
+	    	$taxonomies = get_taxonomy( $taxonomy );
+	    	$return[esc_attr($taxonomies->name)] = esc_html($taxonomies->labels->singular_name);
+	    }
+    }
+    $return['recent_option']= 'Recent Posts';
+	echo json_encode(array('success'=>true,'data'=>$return));
+	exit;
+    
+}
 add_action( 'wp_ajax_ampforwp_pb_cats', 'ampforwp_pb_cats');
 function ampforwp_pb_cats(){
 	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo json_encode(array("status"=>300,"message"=>'Request not valid'));
         die;
     }
-	$cats = $taxs = array();
-	$post = '';
-	$post = sanitize_text_field($_POST['selected_val']);
-	$taxs = get_object_taxonomies( $post );
-	if(!empty($taxs)){
- 		$cats = get_terms($taxs['0'],array(   
-                   'orderby' => 'name',   
+	$cats = array();
+	$taxonomy = '';
+	$taxonomy = sanitize_text_field($_POST['selected_val']);
+	$terms = get_terms( $taxonomy, array(
+				   'orderby' => 'name',     
                    'order'   => 'ASC',
                    'number'  => 500   
                ) );
-	}
 	$return = array();
-	if($cats){
-		foreach ($cats as $key => $value) {
+	if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+		foreach ($terms as $key => $value) {
 			$return[$value->term_id] = $value->name;
 		}
 	}
