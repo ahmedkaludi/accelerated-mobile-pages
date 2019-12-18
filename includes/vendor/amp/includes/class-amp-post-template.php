@@ -380,7 +380,7 @@ class AMP_Post_Template {
 					$src_rep = 'src="'.esc_url($fsrc).'"';
 					$width_rep = 'width="'.intval($fwidth).'"';
 					$height_rep = 'height="'.intval($fheight).'"';
-					$alt_rep = 'alt="'.esc_html($falt).'"';
+					$alt_rep = 'alt="'.esc_attr($falt).'"';
 
 					$m1_content = str_replace($ssrc, $src_rep, $m1_content);
 					$m1_content = str_replace($swidth, $width_rep, $m1_content);
