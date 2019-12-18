@@ -333,11 +333,6 @@
                     // Grab database values
                     $this->get_options();
 
-                    // Tracking
-                    if ( isset( $this->args['allow_tracking'] ) && $this->args['allow_tracking'] && Redux_Helpers::isTheme( __FILE__ ) ) {
-                        $this->_tracking();
-                    }
-
                     // Options page
                     add_action( 'admin_menu', array( $this, '_options_page' ) );
 
@@ -651,15 +646,6 @@
             }
 
             // get_instance()
-
-            private function _tracking() {
-                if ( file_exists( dirname( __FILE__ ) . '/inc/tracking.php' ) ) {
-                    require_once dirname( __FILE__ ) . '/inc/tracking.php';
-                    $tracking = Redux_Tracking::get_instance();
-                    $tracking->load( $this );
-                }
-            }
-            // _tracking()
 
             /**
              * ->_get_default(); This is used to return the default value if default_show is set
