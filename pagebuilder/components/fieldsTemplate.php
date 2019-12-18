@@ -56,6 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
                 </option>
             </select>
             <div class="help-msg" v-html="field.helpmessage"></div>
+            <div class="spinner spinner-cat-mod" :id="field.name+1"></div>
         </div>
         <div class="clearfix"></div>
     </div>

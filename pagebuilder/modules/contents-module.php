@@ -115,7 +115,7 @@ $categoriesArray = array();
 if ( is_admin() ) {
   $post_types = get_post_types(array('public'=>true));
   $post_types = get_option('ampforwp_cpt_generated_post_types');
-  $post_types['post'] = 'post';
+  $post_types['post'] = 'Post';
  $categories = get_categories( array(   
                    'orderby' => 'name',   
                    'order'   => 'ASC',
@@ -232,6 +232,19 @@ if ( is_admin() ) {
               'default' =>'post',    
               'options' => $post_types,    
               'options_details'=>$post_types ,
+              'content_type'=>'html',
+              'ajax'  => true,
+              'ajax_dep' => 'taxonomy_selection',
+              'ajax_action' => 'ampforwp_pb_taxonomy'
+            ),
+            array(    
+              'type'  =>'select',   
+              'name'  =>"taxonomy_selection",   
+              'label' => esc_html__("Select Taxonomy","accelerated-mobile-pages"),
+              'tab'     =>'customizer',
+              'default' =>'',    
+              'options' => $options,    
+              'options_details'=>$categoriesArray ,
               'content_type'=>'html',
               'ajax'  => true,
               'ajax_dep' => 'category_selection',
@@ -542,7 +555,15 @@ if ( is_admin() ) {
         if( isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1){
       
         /*Pagination Sart*/
-        $total_num_pages = $the_query->max_num_pages;
+        $offset = $fieldValues['posts_offset'];
+        $per_page = $the_query->query['posts_per_page'];
+        $offset_num = ceil($offset/$per_page);
+        
+        if( $the_query->max_num_pages == $offset_num ){
+          $total_num_pages = $the_query->max_num_pages;
+        }else{
+          $total_num_pages = $the_query->max_num_pages - $offset_num;
+        }
         if(isset($_GET[$pagination_text]) && $_GET[$pagination_text]!='' ){
             $paged = intval($_GET[$pagination_text]);
         }else{
@@ -566,11 +587,13 @@ if ( is_admin() ) {
         $startPage = max( 1, $paged - $count);
         $endPage = min( $total_num_pages, $paged + $count);
         for($i = $startPage ; $i <= $endPage ; $i++){
-          if( $paged == $i){
+          if( $paged == $i && $startPage!=$endPage){
               $pagination_links .= "<a class='active' href='#/' >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
           }else{
             $allPages = add_query_arg( array( $pagination_text => $i ), $queryUrl );
-            $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
+            if($startPage!=$endPage){
+              $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
+            }
           }
 
         }

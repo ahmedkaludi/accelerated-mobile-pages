@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.1
+Version: 1.0.2
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.1');
+define('AMPFORWP_VERSION','1.0.2');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
@@ -1432,6 +1432,7 @@ function ampforwp_update_data_when_saved($options, $changed_values) {
 		'hide-amp-tags-bulk-option2',
 		'amp-design-3-tag-selector'
 	);
+	ampforwp_delete_transient_on_update($changed_values);
 	foreach ( $changed_values as $key => $value ) {
 		if ( in_array( $key, $updatedDataForTransient ) ) {
 			delete_transient( $key );
@@ -1451,6 +1452,21 @@ function ampforwp_update_data_when_reset($rest_object = '') {
 		foreach ( $rest_object->parent->transients['changed_values'] as $key => $value ) {
 			if ( in_array( $key, $updatedDataForTransient ) ) {
 				delete_transient( $key );
+			}
+		}
+	}
+}
+
+if(!function_exists('ampforwp_delete_transient_on_update')){
+	function ampforwp_delete_transient_on_update($changed_values){
+		$key_for_trans = array('ampforwp-custom-taxonomies');
+		$del_trans_arr = array('ampforwp-custom-taxonomies'=>array('ampforwp_header_menu','ampforwp_footer_menu'));
+		foreach($changed_values as $key => $value ){
+			if(in_array($key,$key_for_trans)){
+				$trans_arr = $del_trans_arr[$key];
+				for($i=0;$i<count($trans_arr);$i++){
+					delete_transient( $trans_arr[$i] );
+				}
 			}
 		}
 	}
