@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,18 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.2 (18th December 2019) =
+* Improvement: Need to add wordpress default Gutenburg editor 'Block' settings Compatibility in AMP #3320
+* Improvement: Need to make compatibility with the Imagify plugin #3908
+* Improvement: Taxonomy support in AMP Page Builder category module #3310
+* Improvement: Add support of fallback images in AMP #3790
+* Improvement: General code improvements part 3 #3941
+* Improvement: Drop down support in Alternative Menu in Mobile view. #2768
+* Fixed: The Alternate Menu does not redirecting to the AMP for the product category in menu items #3915
+* Fixed: Sub-Category Archives on AMP page should be connected to Change internal links to AMP option. #3924
+* Fixed: Debug warning : Undefined index element #3958
+* Fixed: MGID Ads are not loading when the Flexible AMP widget option is enabled in the AMP  #3864
 
 = 1.0.1 (14th December 2019) =
 * Fixed: Telegram as social profile #3754
