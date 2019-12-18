@@ -69,7 +69,8 @@
       </amp-consent>
 <?php 
 }
-if (ampforwp_get_setting('amp-gdpr-compliance-switch') ) {
+global $loadComponent;
+if (ampforwp_get_setting('amp-gdpr-compliance-switch') || (isset($loadComponent['AMP-gdpr']) && true == $loadComponent['AMP-gdpr'] )) {
 	// Scripts
 	add_filter('amp_post_template_data' , 'ampforwp_gdpr_data', 15);
 	// CSS
