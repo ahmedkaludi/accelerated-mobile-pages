@@ -746,10 +746,6 @@ line-height: 1.2;top: 6px;}
 @supports not (-webkit-overflow-scrolling: touch) {
 .m-ctr{overflow:scroll;}
 }
-.m-ctr {
-position: fixed;
-overflow: scroll;
-}
 .m-scrl {
 display: inline-block;
 width: 100%;
