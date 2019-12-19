@@ -191,7 +191,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.2 (18th December 2019) =
+= 1.0.2 (19th December 2019) =
 * Improvement: Need to add wordpress default Gutenburg editor 'Block' settings Compatibility in AMP #3320
 * Improvement: Need to make compatibility with the Imagify plugin #3908
 * Improvement: Taxonomy support in AMP Page Builder category module #3310
@@ -202,6 +202,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Sub-Category Archives on AMP page should be connected to Change internal links to AMP option. #3924
 * Fixed: Debug warning : Undefined index element #3958
 * Fixed: MGID Ads are not loading when the Flexible AMP widget option is enabled in the AMP  #3864
+* Fixed: The Close bar is not appearing menu check in mobile iPhone #3964
 
 = 1.0.1 (14th December 2019) =
 * Fixed: Telegram as social profile #3754
