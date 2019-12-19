@@ -379,7 +379,7 @@ if( ampforwp_get_setting ('primary-menu') ){?>
 		.p-menu{white-space: nowrap;overflow: scroll;}
 		.p-menu ul li{position: unset;}
 		.p-menu .amp-menu .dropdown-toggle + [id^=drop]:checked + label + ul {position: absolute;left: 20px;top:45px;right: 20px;bottom: auto;}
-		.toggle{background: #ddd;border-radius: 4px;padding: 0px 1px 1px 0px;}
+		.p-menu .toggle{background: #ddd;border-radius: 4px;padding: 0px 1px 1px 0px;}
 		.p-menu .amp-menu [id^=drop]:checked + .toggle:after {left:0px;}
 		.p-menu .amp-menu .toggle:after{left:1px;}
 		.p-menu .amp-menu li ul{border-bottom: 1px solid #ccc;}
@@ -745,10 +745,6 @@ line-height: 1.2;top: 6px;}
 }
 @supports not (-webkit-overflow-scrolling: touch) {
 .m-ctr{overflow:scroll;}
-}
-.m-ctr {
-position: fixed;
-overflow: scroll;
 }
 .m-scrl {
 display: inline-block;
