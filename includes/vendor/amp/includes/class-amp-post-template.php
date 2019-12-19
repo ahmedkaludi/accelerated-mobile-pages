@@ -118,10 +118,10 @@ class AMP_Post_Template {
 		if ( isset( $this->data[ $property ] ) ) {
 			return $this->data[ $property ];
 		} else {
-			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Called for non-existant key ("%s").', 'accelerated-mobile-pages' ), esc_html( $property ) ), '0.1' );
+			return $default;
+			// We commented the below line because php notice as per #3967
+			//_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Called for non-existant key ("%s").', 'accelerated-mobile-pages' ), esc_html( $property ) ), '0.1' );
 		}
-
-		return $default;
 	}
 	public function set( $property, $value = '' ) {
 		if ( isset( $this->data[ $property ]  ) ) {
