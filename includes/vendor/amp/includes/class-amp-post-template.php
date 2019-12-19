@@ -274,7 +274,6 @@ class AMP_Post_Template {
 				$new_post_content = '';
 			// #2001 Filter to remove the unused JS from the paginated post
 			$new_post_content = apply_filters( 'ampforwp_post_content_filter', $new_post_content );
-
 			$amp_content = new AMP_Content( $new_post_content,
 				apply_filters( 'amp_content_embed_handlers', array(
 					'AMP_Core_Block_Handler' => array(),
@@ -309,6 +308,9 @@ class AMP_Post_Template {
 				)
 			);
 			$amp_con = $amp_content->get_amp_content();
+			if(function_exists('ampforwp_mistape_plugin_compatibility')){
+				$amp_con = ampforwp_mistape_plugin_compatibility($amp_con);
+			}
 			$amp_con = $this->ampforwp_add_fallback_element($amp_con,'amp-img');
 			$this->add_data_by_key( 'post_amp_content', $amp_con);
 			$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );

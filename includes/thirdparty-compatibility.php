@@ -1144,3 +1144,23 @@ if(!function_exists('ampfrowp_ultimate_addons_gutenberg_compatibility')) {
 		}
 	}
 }
+
+// MISTAPE PLUGIN COMPATIBILITY #3974
+add_action('amp_post_template_css', 'ampforwp_mistape_plugin_style'); 
+if(!function_exists('ampforwp_mistape_plugin_style')){
+	function ampforwp_mistape_plugin_style(){
+		if(function_exists('deco_mistape_init')){
+			$css = '.mistape_caption{font-size:80%;opacity:.8}.mistape-logo svg{display:block;height:22px;width:22px;fill:#e42029}.mistape_caption .mistape-link{text-decoration:none;border:none;box-shadow:none}.mistape-link:hover{text-decoration:none;border:none}';
+			echo ampforwp_css_sanitizer($css);
+		}
+	}
+}
+if(!function_exists('ampforwp_mistape_plugin_compatibility')){
+	function ampforwp_mistape_plugin_compatibility($content){
+		if(function_exists('deco_mistape_init')){
+			$rep = '<a href="https://mistape.com" target="_blank" rel="nofollow" class="mistape-link mistape-logo"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="-12 -10 39.9 40" enable-background="new -12 -10 39.9 40" xml:space="preserve">';
+			$content = preg_replace('/<span\sclass=\"mistape-link-wrap">(.*?)<\/span>/', $rep.'$1</svg></a>', $content);
+		}
+		return $content;
+	}
+}
