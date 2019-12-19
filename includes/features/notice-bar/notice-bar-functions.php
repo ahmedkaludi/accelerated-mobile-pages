@@ -54,10 +54,12 @@ add_action('amp_init', 'ampforwp_gdpr_init');
 if ( ! function_exists('ampforwp_gdpr_init') ) {
 	function ampforwp_gdpr_init() {
 		if ( ampforwp_get_setting('amp-gdpr-compliance-switch')  ) {
-			// gdpr component 
-			add_action('amp_footer_link' , 'amp_gdpr' );
-			if ( is_plugin_active('amp/amp.php') ) {
-				add_action('amp_post_template_footer' , 'amp_gdpr' );
+			if(!isset($_COOKIE['ampforwp_gdpr_action'])){
+				// gdpr component 
+				add_action('amp_footer_link' , 'amp_gdpr' );
+				if ( is_plugin_active('amp/amp.php') ) {
+					add_action('amp_post_template_footer' , 'amp_gdpr' );
+				}
 			}
 		}
 	}
