@@ -178,6 +178,35 @@ function ampforwp_redirection() {
     exit;  
   }
 
+    // Option under dev mode to show amp pages only for logged in users or not? #3939
+    if ( ampforwp_get_setting('ampforwp-development-mode')==1) {
+      if(ampforwp_get_setting('ampforwp-development-mode-show-pages')==1){
+          if (is_user_logged_in() ){
+              return;
+          }else{
+              $go_to_url  = "";
+              $url = $dev_red_url; 
+              $go_to_url = remove_query_arg('nonamp', $url);
+              $go_to_url = explode('/', $go_to_url);
+              $go_to_url = array_flip($go_to_url);
+              $red_url = $go_to_url;
+              if(isset($red_url['amp']) || isset($red_url['?amp'])){
+                if(true == ampforwp_get_setting('amp-core-end-point') || isset($go_to_url['?amp']) ){
+                  unset($go_to_url['?amp']);
+                }
+                if(isset($go_to_url['amp'])){
+                  unset($go_to_url['amp']);
+                }
+                $go_to_url = array_flip($go_to_url);     
+                $go_to_url  = implode('/', $go_to_url);
+                wp_safe_redirect( $go_to_url, 301 );
+                exit;
+              }else{
+                return;
+              }
+          }
+      }
+    }
   // Mobile redirection
   if ( ampforwp_get_setting('amp-mobile-redirection') ) {
     require_once AMPFORWP_PLUGIN_DIR.'/includes/vendor/Mobile_Detect.php';
@@ -211,32 +240,6 @@ function ampforwp_redirection() {
     }
     // Return if Dev mode is enabled
     if ( isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode'] ) {
-      if(ampforwp_get_setting('ampforwp-development-mode-show-pages')==1){
-          if (is_user_logged_in() ){
-              return;
-          }else{
-              $go_to_url  = "";
-              $url = $dev_red_url; 
-              $go_to_url = remove_query_arg('nonamp', $url);
-              $go_to_url = explode('/', $go_to_url);
-              $go_to_url = array_flip($go_to_url);
-              $red_url = $go_to_url;
-              if(isset($red_url['amp']) || isset($red_url['?amp'])){
-                if(true == ampforwp_get_setting('amp-core-end-point') || isset($go_to_url['?amp']) ){
-                  unset($go_to_url['?amp']);
-                }
-                if(isset($go_to_url['amp'])){
-                  unset($go_to_url['amp']);
-                }
-                $go_to_url = array_flip($go_to_url);     
-                $go_to_url  = implode('/', $go_to_url);
-                wp_safe_redirect( $go_to_url, 301 );
-                exit;
-              }else{
-                return;
-              }
-          }
-      }
       return;
     }
     // Return if the set value is not met and do not start redirection
