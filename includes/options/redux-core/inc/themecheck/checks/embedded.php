@@ -18,16 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     $ret           = false;
                 } else {
                     // TODO Granular WP.org tests!!!
-
-                    // Check for Tracking
                     checkcount();
-                    $tracking = $redux['dir'] . 'inc/tracking.php';
-                    if ( file_exists( $tracking ) ) {
-                        $this->error[] = '<div class="redux-error">' . sprintf( __('<span class="tc-lead tc-required">REQUIRED</span>: You MUST delete <strong> %s </strong>, or your theme will be rejected by WP.org theme submission because of Redux.', 'redux-framework'), $tracking ) . '</div>';
-                        $ret           = false;
-                    }
-
-
                     // Embedded CDN package
                     //use_cdn
 
