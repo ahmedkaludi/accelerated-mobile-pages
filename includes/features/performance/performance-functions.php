@@ -237,6 +237,14 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                     $sheet .= $styles;
                 }
                 $sheet.=$font_css;
+
+                $css_filter = array();
+                $css_filter['type'] = 'internal';
+                $css_filter['css'] = $sheet;
+                $css_external_data = apply_filters('ampforwp_tree_shaking_external_css',$css_filter);
+                if(isset($css_external_data['type']) && $css_external_data['type']=='external'){
+                    $sheet .=  $css_external_data['css'];
+                }
                 $sheet = stripcslashes($sheet);
                 if(strpos($sheet, '-keyframes')!==false){
                     $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
