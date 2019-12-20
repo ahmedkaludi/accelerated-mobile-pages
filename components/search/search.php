@@ -24,8 +24,10 @@ function ampforwp_framework_get_search_form() {
 					<div class="overlay-search">
 					</div>
 				</div>
-				</form>';
-	    echo apply_filters( 'get_amp_search_form', $form );    
+				</form>';	
+			$form = apply_filters( 'ampforwp_search_form_data', $form );
+		echo $form; // XSS OK		
+	        
 }
 ampforwp_add_scripts();
 function ampforwp_add_scripts(){
