@@ -3253,12 +3253,7 @@ function ampforwp_add_modified_date($post_object){
 							date_i18n( get_option( 'date_format' ) , $post_object->get( 'post_modified_timestamp' ) )
 						)
 					);
-			if(ampforwp_get_setting('ampforwp-post-date-global')==2){
-				echo get_the_modified_time();	
-			}else{
-				echo get_the_time();
-			}
-		} ?>
+			echo get_the_modified_time();	} ?>
 			</p>
 		</div> <?php
 	}
