@@ -209,8 +209,8 @@ a.amp-social-facebook-messenger,.amp-social-facebookmessenger{background:#d5e1e6
 .sticky_social amp-facebook-like{margin-bottom:-8px;}
 <?php }?>
 /*Sticky Head For Design 3*/
-#header{ background: #fff; text-align: center; height:50px; box-shadow:0 0 32px rgba(0,0,0,.15); }
-header{ padding-bottom:50px; }
+#header{ background: #fff; text-align: center; height:50px; box-shadow:0 0 32px rgba(0,0,0,.15);display:flex;width:100%;align-items:center; }
+header{ padding-bottom:50px;}
 #headerwrap{ position: fixed; z-index:1000; width: 100%; top:0; }
 <?php if ( $sticky_head ) { ?>
   header{ padding-bottom:0px; }
@@ -505,12 +505,15 @@ pre{ white-space: pre-wrap; }
 .amp-category-post{ width: 32%; display: inline-block; word-wrap: break-word;float: left;}
 .amp-category-post amp-img{ margin-bottom:5px; }
 .amp-category-block li:nth-child(3){ margin: 0 1%; }
-.searchmenu{ margin-right: 15px; margin-top: 11px; position: absolute; top: 0; right: 0; }
 .searchmenu button{ background:transparent; border:none }
 .amp-logo amp-img{margin: 0 auto; position:relative;top:9px;max-width:190px;}
 .headerlogo{ margin: 0 auto; width: 80%; text-align: center; }
 .headerlogo a{ color:#F42; display:inline-block}
-
+.d3-rp{
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+}
 /*Navigation Menu*/
 .toast { display: block; position: relative; height: 50px; padding-left: 20px; padding-right: 15px; width: 49px; background:none; border:0 }
 .toast:after, .toast:before, .toast span{ position: absolute; display: block; width: 19px; height: 2px; border-radius: 2px; background-color: #F42; -webkit-transform: translate3d(0, 0, 0) rotate(0deg); transform: translate3d(0, 0, 0) rotate(0deg); }
@@ -700,8 +703,8 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
 .toggle-navigationv2 a { color:#fff; }
 <?php } ?>
 <?php if ( ampforwp_get_setting('ampforwp-callnow-button') ) { ?> 
-.callnow{ position: absolute; top: 15px; right: 20px }
-.callnow a:before { content: ""; position: absolute; right: 23px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call','color','ampforwp_sanitize_color'); ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
+.callnow{ position:relative;}
+.callnow a:before { content: ""; position: absolute; right: 0px; top:-8px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call','color','ampforwp_sanitize_color'); ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
 .rtl .callnow{ left: 75px;right: unset; }
 <?php } ?>
 <?php
@@ -1074,16 +1077,9 @@ if(empty($cta_background_color)){
 }
 ?>
 <?php if ( '1' == ampforwp_get_setting('d123_cta-responsive-view') ) {?>
-  .d1-cta-wrap{
-    position: absolute;
-    top: 9px;
-    <?php if( true == ampforwp_get_setting('ampforwp-callnow-button') ){ ?>
-      right: 70px;
-    <?php } else { ?>
-      right: 50px;
-    <?php } ?>
-  }
-<?php } else { ?>
+  .d1-cta-wrap{margin-left:18px;}
+<?php }
+if ( '2' == ampforwp_get_setting('d123_cta-responsive-view') ) {?>
 .d1-cta-wrap{
     width: 100%;
     display: inline-block;
