@@ -154,7 +154,7 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
 .amp-wp-footer .footer_menu{padding:1.25em 16px;}
 .amp-wp-footer h2{font-size:1em;line-height:1.375em;margin:0 0 .5em}
 .amp-wp-footer p {font-size: .8em;line-height: 1.5em;margin: 0 15px 0 0;}
-.amp-wp-footer a{text-decoration:none}.copyright_txt{float:left}.back-to-top{float:right}.amp-wp-header .nav_container{float: right;top: 16px;line-height: 1;   right: 65px; position: absolute}.toggle-text{position:absolute;right:0;height:22px;width:28px}.toggle-text span{display:block;position:absolute;height:2px;width:25px;background:<?php echo ampforwp_sanitize_color($header_font_color); ?>;border-radius:19px;opacity:1;left:0}.toggle-text span:nth-child(2){top:9px}.toggle-text span:nth-child(3){top:18px}
+.amp-wp-footer a{text-decoration:none}.copyright_txt{float:left}.back-to-top{float:right}.toggle-text span{display:block;margin-bottom:7px;height:2px;width:25px;background:<?php echo ampforwp_sanitize_color($header_font_color); ?>;border-radius:19px;opacity:1;left:0}.toggle-text span:nth-child(3){margin-bottom:0px;}
 
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
 .amp-wp-home .amp-wp-meta{margin:5px 0}
@@ -337,18 +337,18 @@ a.btt:hover {
 .amp-category-block li:nth-child(3){ margin: 0 1%; }
 @media screen and (max-width: 530px){ .amp-category-post {line-height: 1.45;font-size: 14px; } .amp-category-block li:nth-child(3) {margin:0 0.6%} }
 @media screen and (max-width: 375px){ .related_posts .related_link{line-height:1} .amp-category-post {line-height: 1.45;font-size: 12px; } .amp-category-block li:nth-child(3) {margin:0%} }
-.searchmenu{ margin-right: 15px; margin-top: 10px; position: absolute; top: 0; right: 91px; }
 .searchmenu button{ background:transparent; border:none }
 .closebutton{ background: transparent; border: 0; color: rgba(255, 255, 255, 0.7); border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 30px; width: 32px; height: 32px; font-size: 12px; text-align: center; position: absolute; top: 12px; right: 20px; outline:none }
 amp-lightbox{ background: rgba(0, 0, 0,0.85); }
-<?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
-<?php if( true == ampforwp_get_setting('ampforwp-single-select-type-of-related') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ){ ?>
-.related_posts span{display: block;}.related_posts ol{list-style-type:none;margin:0;padding:0}.related_posts ol li{width:100%;margin-bottom:12px;padding:0}.related_posts .related_link a{color:#000;font-size:18px}.related_posts ol li amp-img{width:100px;float:left;margin-right:15px}.related_posts ol li p{font-size:12px;color:#999;line-height:1.2;margin:7px 0 0}.no_related_thumbnail{padding:15px 18px} main .amp-wp-content.relatedpost{background:0 0;box-shadow:none;max-width:1030px}.relatedpost{margin:2em 16px}.related_posts span{font-size:14px;font-weight:700;letter-spacing:.4px;margin:25px 0 10px;color:#333;    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
-.related_posts ol li{display:inline-block}
-<?php } ?>
-
- .amp-facebook-comments{margin: 0 0}
-
+.headerlogo a, [class*=icono-]{ top:0; }
+.amp-logo h1{font-size: 1em; font-weight: 400; line-height: 1.75em; margin: 0;}
+.amp-logo{display:inline-block}
+.d1-rp{
+  float: right;
+  display: flex;
+  align-items: center;
+}
+.nav_container{margin-left:10px;}
 /* CSS3 icon */
 [class*=icono-]:after, [class*=icono-]:before{ content: ''; pointer-events: none; }
 .icono-search:before{ position: absolute; left: 50%; -webkit-transform: rotate(270deg); -ms-transform: rotate(270deg); transform: rotate(270deg); width: 2px; height: 9px; box-shadow: inset 0 0 0 32px; top: 0px; border-radius: 0 0 1px 1px; left: 14px; }
@@ -363,10 +363,14 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 <?php } // search condition ends ?>
 .amp-wp-header .ampforwp-search-nav-wrapper{ padding: 0; }
 .ampforwp-search-nav-wrapper .searchmenu{ margin-top: 20px; }
-.headerlogo a, [class*=icono-]{ top:0; }
-.amp-logo h1{font-size: 1em; font-weight: 400; line-height: 1.75em; margin: 0;}
-.amp-logo{display:inline-block}
 .amp-wp-header a, .headerlogo a, [class*=icono-] {color: <?php echo ampforwp_sanitize_color( $header_font_color ); ?>;text-decoration: none;}
+<?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
+<?php if( true == ampforwp_get_setting('ampforwp-single-select-type-of-related') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ){ ?>
+.related_posts span{display: block;}.related_posts ol{list-style-type:none;margin:0;padding:0}.related_posts ol li{width:100%;margin-bottom:12px;padding:0}.related_posts .related_link a{color:#000;font-size:18px}.related_posts ol li amp-img{width:100px;float:left;margin-right:15px}.related_posts ol li p{font-size:12px;color:#999;line-height:1.2;margin:7px 0 0}.no_related_thumbnail{padding:15px 18px} main .amp-wp-content.relatedpost{background:0 0;box-shadow:none;max-width:1030px}.relatedpost{margin:2em 16px}.related_posts span{font-size:14px;font-weight:700;letter-spacing:.4px;margin:25px 0 10px;color:#333;    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+.related_posts ol li{display:inline-block}
+<?php } ?>
+
+ .amp-facebook-comments{margin: 0 0}
 <?php if($redux_builder_amp['enable-single-social-icons'] && is_socialshare_or_socialsticky_enabled_in_ampforwp() ){ ?> .amp-wp-footer{padding-bottom: 20px;}<?php } ?>
 
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
@@ -725,17 +729,7 @@ if(empty($cta_background_color)){
   $cta_background_color ='#fff';
 }
 ?>
-<?php if ( '1' == ampforwp_get_setting('d123_cta-responsive-view') ) {?>
-  .d1-cta-wrap{
-    position: absolute;
-    top: 10px;
-    <?php if( true == ampforwp_get_setting('amp-design-1-search-feature') ){ ?>
-      right: 145px;
-    <?php } else { ?>
-      right: 110px;
-    <?php } ?>
-  }
-<?php } else { ?>
+<?php if ( '2' == ampforwp_get_setting('d123_cta-responsive-view') ) {?>
 .d1-cta-wrap{
     width: 100%;
     display: inline-block;
