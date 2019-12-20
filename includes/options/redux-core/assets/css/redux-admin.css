@@ -329,9 +329,9 @@ background: rgb(245, 246, 250);
 #redux_save:hover{
     background: #13a315; 
 }
-.version-5-3 #redux_save,
-.version-5-3 #redux-defaults-section,
-.version-5-3 #redux-defaults {
+body.new-wp-version #redux_save,
+body.new-wp-version #redux-defaults-section,
+body.new-wp-version #redux-defaults {
     padding: 12px 18px 12px 18px;
 }
 #redux-defaults-section,

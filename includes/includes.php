@@ -66,4 +66,14 @@ function ampforwp_add_admin_upgread_script($hook){
 		wp_enqueue_script( 'ampforwp_admin_module_upgreade', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/module-upgrade.js', array( 'jquery', 'updates' ), AMPFORWP_VERSION, true );
 	}
 }
- ?>
+/* 
+ * If WP version is greater then 5.3 then add a custom class in the body 
+*/
+add_filter('admin_body_class', 'ampforwp_custom_admin_body_class', 11);
+function ampforwp_custom_admin_body_class($classes){
+	global $wp_version;
+	if (version_compare( $wp_version, '5.3', '>=') ){
+		$classes .= ' new-wp-version ';
+	}
+	return $classes;
+}?>
