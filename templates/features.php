@@ -3114,7 +3114,7 @@ function ampforwp_add_modified_date($post_object){
 						)
 					);
 					if(true == ampforwp_get_setting('ampforwp-post-date-notice-time')){
-						echo get_the_modified_time();
+						echo get_the_time();
 					}
 				}
 			?>
