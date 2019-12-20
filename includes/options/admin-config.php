@@ -1812,6 +1812,13 @@ function ampforwp_get_all_tags($select_option){
                'tooltip-subtitle'  => esc_html__('Enable AMP Support on Pages.', 'accelerated-mobile-pages'),
                'default'   => 1,
             ),
+            array(
+                'id'       => 'amp-redirection-search',
+                'type'     => 'switch',
+                'title'    => esc_html__('Search Pages', 'accelerated-mobile-pages'),
+                'tooltip-subtitle' => esc_html__('Enable AMP Support on Search Pages.','accelerated-mobile-pages'),
+                'default' => 1,
+            ),
            array(
                'id'       => 'ampforwp-homepage-on-off-support',
                'type'     => 'switch',
@@ -2908,15 +2915,6 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Tablets', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('Enable/Disable Mobile redirection for Tablets.','accelerated-mobile-pages'),
                         'default' => 1,
-                        'required' => array( 'amp-mobile-redirection', '=' , 1 )
-                    ),
-                    array(
-                        'id'       => 'amp-redirection-search',
-                        'class'    => 'child_opt child_opt_arrow',
-                        'type'     => 'switch',
-                        'title'    => esc_html__('Search Pages', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => esc_html__('Enable/Disable Mobile redirection on Search Pages.','accelerated-mobile-pages'),
-                        'default' => 0,
                         'required' => array( 'amp-mobile-redirection', '=' , 1 )
                     ),
                     $amp_custom_script,
