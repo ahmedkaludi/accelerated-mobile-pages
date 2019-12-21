@@ -250,11 +250,12 @@ header.container{line-height: 0;}
   float: right;
   display: flex;
   align-items: center;
+  padding-right:20px;
   <?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
-  	padding-left:20px;
-  <?php } else { ?>
-  	padding-right:20px;
-  <?php } ?>
+  order:-1;
+<?php } else { ?>
+	order:0;
+<?php } ?>
 }
 main { padding: 30px 15% 10px 15%; }
 <?php if (checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && (is_singular() || ampforwp_is_front_page() )){ ?>
@@ -325,15 +326,7 @@ a.btt:hover {
 	color:  <?php echo ampforwp_sanitize_color( $header_font_color ); ?>;
 }
 <?php if ($redux_builder_amp['ampforwp-callnow-button']) { ?>
-	.callnow{ 
-	<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
-		right:16px;
-	<?php } else { ?>
-		left: 58px;
-	<?php } ?>
-		top: 36%; 
-		position: absolute;
-	} 
+	.callnow{left: 58px;top: 36%; position: absolute;} 
 	.callnow a:before { content: ""; position: absolute; right: 23px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo ampforwp_sanitize_color($redux_builder_amp['amp-opt-color-rgba-colorscheme-call']['color']); ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
 <?php } ?>
 .amp-wp-tax-tag a, a, .amp-wp-author, .headerlogo a, [class*=icono-] { color: <?php echo ampforwp_sanitize_color( $global_color_scheme ); ?>; }
