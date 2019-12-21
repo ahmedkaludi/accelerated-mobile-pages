@@ -344,11 +344,21 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .amp-logo h1{font-size: 1em; font-weight: 400; line-height: 1.75em; margin: 0;}
 .amp-logo{display:inline-block}
 .d1-rp{
+<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
+  float:left;
+<?php } else { ?>
   float: right;
+<?php } ?>
   display: flex;
   align-items: center;
 }
-.nav_container{margin-left:10px;}
+.nav_container{
+<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
+  margin-right:10px;
+<?php } else { ?>
+ margin-left:10px;
+<?php } ?>
+}
 /* CSS3 icon */
 [class*=icono-]:after, [class*=icono-]:before{ content: ''; pointer-events: none; }
 .icono-search:before{ position: absolute; left: 50%; -webkit-transform: rotate(270deg); -ms-transform: rotate(270deg); transform: rotate(270deg); width: 2px; height: 9px; box-shadow: inset 0 0 0 32px; top: 0px; border-radius: 0 0 1px 1px; left: 14px; }
@@ -373,12 +383,12 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
  .amp-facebook-comments{margin: 0 0}
 <?php if($redux_builder_amp['enable-single-social-icons'] && is_socialshare_or_socialsticky_enabled_in_ampforwp() ){ ?> .amp-wp-footer{padding-bottom: 20px;}<?php } ?>
 
-<?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
+<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
 header, amp-sidebar, article, footer{ direction: rtl;}
 .home-post-image{float:left; margin: 0 10px 10px 20px;}
 .amp-wp-header{text-align: right;}
 .toggle-text{left: 40px; right: initial;}
-.amp-wp-header .amp-wp-site-icon, .amp-wp-header .nav_container{right:0px;left: 18px;}
+.amp-wp-header .amp-wp-site-icon{right:0px;left: 18px;}
 #pagination .next{float:left}
 .back-to-top{float:left}
 .amp-wp-footer p{margin:0 0 0 15px}
@@ -387,7 +397,7 @@ header, amp-sidebar, article, footer{ direction: rtl;}
 .amp-wp-meta.amp-wp-tax-tag{display:inherit}
 /*.amp-wp-article-header .amp-wp-meta:last-of-type{text-align:left}*/
 .related_posts ol li amp-img{float:right; margin-left:15px; margin-right:0px}
-.amp-wp-header .amp-wp-site-icon,.amp-wp-header .nav_container{float:left;right:0;left:18px}.amp-wp-header .amp-wp-site-icon{position:relative;top:-3px}
+.amp-wp-header .amp-wp-site-icon,{float:left;right:0;left:18px}.amp-wp-header .amp-wp-site-icon{position:relative;top:-3px}
 .toggle-navigationv2 ul li a{width:100%}
 .searchform{direction:rtl}
 .closebutton{right:0; left:20px;}
@@ -397,10 +407,11 @@ header, amp-sidebar, article, footer{ direction: rtl;}
 amp-carousel{direction: ltr;} .tt-lb{float:right;margin-left:5px;}
 .amp-wp-content.widget-wrapper{margin:20px auto;}
 .amp_widget_above_the_footer{direction:rtl;}
+.searchmenu button{padding:0px;margin-right:12px;}
 @media(max-width:768px){
 .amp-wp-content.widget-wrapper{margin: 15px;}
 }
-<?php } 
+<?php } //RTL Ends Here 
 } // AMP Woocommerce CSS Ends ?>
 <?php if ($redux_builder_amp['ampforwp-callnow-button']) { ?>
 .callnow{ position: relative; top: -27px; right: 100px; }
