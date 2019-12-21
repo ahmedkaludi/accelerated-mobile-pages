@@ -512,6 +512,7 @@ pre{ white-space: pre-wrap; }
 .d3-rp{
   display: flex;
   align-items: center;
+  <?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
   padding-right: 20px;
 }
 /*Navigation Menu*/
