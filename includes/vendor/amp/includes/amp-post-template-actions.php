@@ -93,10 +93,10 @@ function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	if ( empty( $metadata ) ) {
 		return;
 	}
-	isset($metadata['description']){
+	if ( isset($metadata['description']) ) {
 		$metadata['description'] = str_replace("&nbsp;", "", $metadata['description']);
 	}
-	isset($metadata['articleBody']){
+	if ( isset($metadata['articleBody']) ) {
 		$metadata['articleBody'] = str_replace("&nbsp;", "", $metadata['articleBody']);
 		$metadata['articleBody'] = trim(preg_replace('/\s+/', ' ', $metadata['articleBody']));
 		$metadata['articleBody'] = preg_replace('/(&lt;.+?&gt;)/', '', $metadata['articleBody']);
