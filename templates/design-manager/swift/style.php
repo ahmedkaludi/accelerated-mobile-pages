@@ -565,6 +565,7 @@ table {
     overflow-x: auto;
     word-break: normal;
 }
+.author-tw:after {font-family:icomoon;content: "\e942";color: #fff;background: #1da1f2;padding: 4px;border-radius: 3px;margin: 0px 5px;}
 .artl-cnt table{ margin: 0 auto; text-align: center; width: 100%;}
 p.nocomments {padding: 10px;color: #fff;}
 .tl-exc{font-size: 16px;color: #444;margin-top: 10px;line-height:20px;}
