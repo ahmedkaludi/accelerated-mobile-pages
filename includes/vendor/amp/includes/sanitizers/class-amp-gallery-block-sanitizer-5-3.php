@@ -399,7 +399,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 				$figure_node = AMP_DOM_Utils::create_node($this->dom, 'figure', array('class'=>'ampforwp-gallery-item amp-carousel-containerd3'));
 				$figure_node->appendChild($amp_image);
 				$fig_caption = AMP_DOM_Utils::create_node($this->dom, 'figcaption', array());
-				if ( isset($image['caption']) ) {
+				if ( isset($image['caption']) && is_object($image['caption']) ) {
 					$captionlength = $image['caption']->length;
 					for ($i=0 ;$i < $captionlength;$i++){
 						$fig_caption->appendChild($image['caption']->item(0));
