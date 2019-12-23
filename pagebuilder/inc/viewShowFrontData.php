@@ -874,7 +874,14 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 									array(
 										'taxonomy'=>$fieldValues['taxonomy_selection'],
 										'field'=>'id',
-										'terms'=>$fieldValues['category_selection']));
+										'terms'=>$fieldValues['category_selection']
+									)
+								);
+							if ( isset($args['tax_query'][0]['taxonomy']  ) ){
+								if ( empty($args['tax_query'][0]['taxonomy'])) {
+									unset($args['tax_query']);
+								}
+							}
 						}
 						$args = apply_filters('ampforwp_content_module_args', $args, $fieldValues);
 						//The Query

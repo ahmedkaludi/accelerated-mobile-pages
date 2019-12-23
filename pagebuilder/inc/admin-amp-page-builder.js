@@ -740,6 +740,20 @@ Vue.component('fields-data',{
 				 	app.modalcontent.fields.forEach(function(modaldata, key){
 				 		if(modaldata.name==dataAjaxDep){
 				 			modaldata.options_details = response.data;
+				 				
+				 				// Add default selection for Taxonomy and Category dropdown in Category Module.
+								setTimeout(function(){
+									let tval = $("#taxonomy_selection").children().children('select').val();
+									let cval = $("#category_selection").children().children('select').val();
+									if(tval==""){
+										$("#taxonomy_selection").children().children('select').val('recent_option');
+									}
+									if (cval == ''){
+										$("#category_selection").children().children('select').val('recent_option');
+									}
+
+								},100);
+
 				 			if(document.getElementById(dataAjaxDep+"1")){
 								document.getElementById(dataAjaxDep+"1").style.visibility = "hidden";
 				 			}
