@@ -28,7 +28,7 @@ function amp_post_template_add_meta_generator() {
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_cached_link' );
 function amp_post_template_add_cached_link($amp_template) {
 	$design = "swift";
-	if(ampforwp_get_setting("ampforwp_font_icon")=="swift-icons"){
+	if(ampforwp_get_setting("ampforwp_font_icon")=="swift-icons" && (ampforwp_get_setting('amp-design-selector')==3 || ampforwp_get_setting('amp-design-selector')==4)){
 		if(ampforwp_get_setting('amp-design-selector')!=4){
 			$design = "design-".ampforwp_get_setting('amp-design-selector');
 		}
