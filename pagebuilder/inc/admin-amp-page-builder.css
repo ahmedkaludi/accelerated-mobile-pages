@@ -290,14 +290,13 @@ amppb-row-fields .amppb-column-2:not(:last-child){
 }
 .amppb-setting-right span{
     display: inline-block;
-    right: 0px;
-    /*position: absolute;*/
-    top: 0px;
-    padding: 12px 7px 9px 5px;
     cursor: pointer;
     font-size: 15px;
     color: #72777c;
     line-height: 1;
+    width:35px;
+    height: 35px;
+    line-height: 35px;
 } 
 
 #amp-page-builder .ui-state-highlight {

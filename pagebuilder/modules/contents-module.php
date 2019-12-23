@@ -37,7 +37,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
   display:grid;
   width:100%;
   grid-template-columns:1fr 1fr 1fr;
-  grid-gap:0px 30px;
+  grid-gap:30px;
 }
 {{module-class}} .cm ul li {
   list-style-type: none;
@@ -49,7 +49,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
 {{module-class}} .cm h4{border-bottom: 2px solid #eee;padding-bottom: 8px;margin-bottom: 5px;font-size:18px;color: #191919;font-weight: 600;}
 {{module-class}} .cm .cmr{display:flex;flex-direction: column;margin-top: 6px;}
 {{module-class}} .cm .cmr a{font-size: 16px;line-height: 1.3;font-weight: 500;color: #000;margin: 0px 0px 5px 0px;}
-{{module-class}} .cm .cmr p{color: {{text_color_picker}};font-size: 13px;line-height: 20px;letter-spacing: 0.10px;margin-bottom:0;}
+{{module-class}} .cm .cmr p{color: #555;font-size: 13px;line-height: 20px;letter-spacing: 0.10px;margin-bottom:0;}
 {{module-class}} .cm .cml{width:100%;}
 {{module-class}} .cmp a {
     color: black;
@@ -70,6 +70,10 @@ function ampforwp_content_module_pagination($args, $fieldValues){
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
+}
+{{module-class}} .cm .cmr p a{
+  font-size:13px;
+  color:#005be2;
 }
 @media(max-width:768px){
   {{module-class}} .cm ul{
@@ -300,7 +304,7 @@ if ( is_admin() ) {
             'name'    =>"ampforwp_read_more",
             'label'   =>esc_html__("Read More Text","accelerated-mobile-pages"),
             'tab'     =>'customizer',
-            'default' =>'',    
+            'default' =>'Read More',    
             'content_type'=>'html',
             'required'  => array('ampforwp_show_excerpt' => 'yes'),
             ),
@@ -459,6 +463,7 @@ if ( is_admin() ) {
               }
 
               $excerptContent = "";
+              $read_more_link = "";
               $readMore = "";
               if( $ampforwp_show_excerpt == 'yes' ) {     
                    if( has_excerpt() ) {    
@@ -468,8 +473,9 @@ if ( is_admin() ) {
                    }  
                  if(isset($fieldValues['ampforwp_read_more']) && !empty($fieldValues['ampforwp_read_more']) ){
                     $readMore = $fieldValues['ampforwp_read_more'];
+                    $read_more_link = '<a href="'.esc_url($ampforwp_post_url).'" > '.esc_html($readMore).'</a>';
                   }   
-                 $excerptContent = '<p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).'<a href="'.esc_url($ampforwp_post_url).'" > '.esc_html($readMore).'</a></p>';
+                 $excerptContent = '<p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).$read_more_link.'</p>';
               }
                $loopdate = "";
                $loopdate =  human_time_diff(
