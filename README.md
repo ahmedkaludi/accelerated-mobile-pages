@@ -3,7 +3,7 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.3.1
+Tested up to: 5.3.2
 Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -190,6 +190,23 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.3 (23th December 2019) =
+* Improvement: Filter in search form #3948
+* Improvement: Improvement of jetpack social icons #3907
+* Improvement: Need to add a Filter in amp tree shaking for adding custom CSS. #3971
+* Fixed: Icomoon.ttf is preloaded in Design 1 and Design 2. #3945
+* Fixed: Search translate text option is visible in swift but unused #3934
+* Fixed: Category module has minor bugs after the update. #3880
+* Fixed: Improvements required in RTL support in AMP #3938
+* Fixed: Save buttons are not looking good after WP 5.3 update #3985
+* Fixed: Video widget support in AMP #3841
+* Fixed: Time is not working in published date notice #3956
+* Fixed: Recoverable fatal error: Object of class DOM Node List could not be converted to string #3968
+* Fixed: In Amp struture data option if we added any schema then description generated in html format #3937
+* Fixed: Select Taxonomy and Select Category is getting blank in the category module of AMP page builder #3986
+* Fixed: Notice: Undefined offset: 0 in class-amp-post-template.php on line 378 #3992
+* Fixed: Undefined variable: designCss #3961
 
 = 1.0.2 (19th December 2019) =
 * Improvement: Need to add wordpress default Gutenburg editor 'Block' settings Compatibility in AMP #3320
