@@ -71,6 +71,14 @@ function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	if ( empty( $metadata ) ) {
 		return;
 	}
+	if ( isset($metadata['description']) ) {
+		$metadata['description'] = str_replace("&nbsp;", "", $metadata['description']);
+	}
+	if ( isset($metadata['articleBody']) ) {
+		$metadata['articleBody'] = str_replace("&nbsp;", "", $metadata['articleBody']);
+		$metadata['articleBody'] = trim(preg_replace('/\s+/', ' ', $metadata['articleBody']));
+		$metadata['articleBody'] = preg_replace('/(&lt;.+?&gt;)/', '', $metadata['articleBody']);
+	}
 	$seo_sel = ampforwp_get_setting('ampforwp-seo-selection');
 	if( (ampforwp_get_setting('ampforwp-seo-yoast-schema') == false && ampforwp_get_setting('ampforwp-seo-selection') == 'yoast') || empty($seo_sel) ){
 	?>
