@@ -37,7 +37,7 @@ class AMPforWP_YouTube_Embed_Handler extends AMP_Base_Embed_Handler {
 	function register_embed() {
 		wp_embed_register_handler( 'amp-youtube', self::URL_PATTERN, array( $this, 'oembed' ), -1 );
 		add_shortcode( 'youtube', array( $this, 'shortcode' ) );
-		add_filter( 'wp_video_shortcode_override', [ $this, 'video_override' ], 10, 2 );
+		add_filter( 'wp_video_shortcode_override', array( $this, 'video_override') , 10, 2 );
 	}
 
 	public function unregister_embed() {
