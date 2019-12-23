@@ -362,7 +362,7 @@ class AMP_Post_Template {
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
 					preg_match_all('/height="(.*?)"/', $m1_content,$fimgheight);
 					preg_match_all('/alt="(.*?)"/', $m1_content,$fimgalt);
-					
+					if(isset($fimgsrc[1][0]) && isset($fimgwidth[1][0]) && isset($fimgheight[1][0]) && isset($fimgalt[1][0])){
 					$data['src'] 	= $fimgsrc[1][0];
 					$data['width'] 	= $fimgwidth[1][0];
 					$data['height'] = $fimgheight[1][0];
@@ -390,6 +390,7 @@ class AMP_Post_Template {
 					$m1_content = str_replace($salt, $alt_rep, $m1_content);
 					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>"; //$m_content, $m1_content escaped above.
 					$content = str_replace("$match", $fallback_img, $content);
+				}
 				}
 			}
 		}
