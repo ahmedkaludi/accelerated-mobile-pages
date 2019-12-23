@@ -743,16 +743,16 @@ Vue.component('fields-data',{
 				 				
 				 				// Add default selection for Taxonomy and Category dropdown in Category Module.
 								setTimeout(function(){
-									let tval = $("#taxonomy_selection").children().children('select').val();
-									let cval = $("#category_selection").children().children('select').val();
+									let tval = jQuery("#taxonomy_selection").children().children('select').val();
+									let cval = jQuery("#category_selection").children().children('select').val();
 									if(tval==""){
-										$("#taxonomy_selection").children().children('select').val('recent_option');
+										jQuery("#taxonomy_selection").children().children('select').val('recent_option');
 									}
 									if (cval == ''){
-										$("#category_selection").children().children('select').val('recent_option');
+										jQuery("#category_selection").children().children('select').val('recent_option');
 									}
 
-								},100);
+								},250);
 
 				 			if(document.getElementById(dataAjaxDep+"1")){
 								document.getElementById(dataAjaxDep+"1").style.visibility = "hidden";
