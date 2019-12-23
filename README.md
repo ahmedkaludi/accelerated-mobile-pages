@@ -207,6 +207,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Select Taxonomy and Select Category is getting blank in the category module of AMP page builder #3986
 * Fixed: Notice: Undefined offset: 0 in class-amp-post-template.php on line 378 #3992
 * Fixed: Undefined variable: designCss #3961
+* Fixed: Open Graph title is not displaying correctly with SEOPress in AMP. #3966
 
 = 1.0.2 (19th December 2019) =
 * Improvement: Need to add wordpress default Gutenburg editor 'Block' settings Compatibility in AMP #3320
