@@ -378,7 +378,9 @@ class AMP_Post_Template {
 					$data['width'] 	= $fimgwidth[1][0];
 					$data['height'] = $fimgheight[1][0];
 					if(isset($fimgalt[1][0])){
-						$data['alt'] 	= ($fimgalt[1][0]?:'');
+						$data['alt'] 	= $fimgalt[1][0];
+					}else{
+						$data['alt'] 	= '';
 					}
 					$fallback_data = apply_filters('ampforwp_fallback_image_params',$data);
 					$fsrc 	= $fallback_data['src'];
@@ -389,7 +391,9 @@ class AMP_Post_Template {
 					$swidth = $fimgwidth[0][0];
 					$sheight = $fimgheight[0][0];
 					if(isset($fimgalt[0][0])){
-						$salt = ($fimgalt[0][0]?:'');
+						$salt = $fimgalt[0][0];
+					}else{
+						$salt = '';
 					}
 					$src_rep = 'src="'.esc_url($fsrc).'"';
 					$width_rep = 'width="'.intval($fwidth).'"';
