@@ -193,7 +193,7 @@ function ampforwp_code_to_add_in_htaccess(){
 
 function ampforwp_white_list_selectors($completeContent){
     $white_list = array();
-    $white_list = apply_filters('ampforwp_tree_shaking_white_list_selector',$white_list);
+    $white_list = (array)apply_filters('ampforwp_tree_shaking_white_list_selector',$white_list);
     $w_l_str = '';
     for($i=0;$i<count($white_list);$i++){
         $f = $white_list[$i];
