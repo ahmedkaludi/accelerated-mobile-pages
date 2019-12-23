@@ -14,6 +14,7 @@ $output = '
 	</amp-carousel>
 {{ifend_condition_testimonial_layout_type_3}}
 ';
+$designCss = '';
 if ( in_array(ampforwp_get_setting('amp-design-selector'), array(1,2,3)) ) {
 	$designCss = '{{module-class}} amp-carousel.testi3-slider, {{module-class}} .testi-mod-blk blockquote{
 					background:transparent;
