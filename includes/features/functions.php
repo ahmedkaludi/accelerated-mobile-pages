@@ -1444,6 +1444,9 @@ if(!function_exists('ampforwp_get_featured_image_markup')){
                         $amp_html = ampforwp_get_featured_image_from_content();
                         $amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
                     }
+                    if(function_exists('ampforwp_add_fallback_element')){
+                        $amp_html = ampforwp_add_fallback_element($amp_html,'amp-img');
+                    }
                     $class = "amp-wp-article-featured-image wp-caption";
                     if(ampforwp_get_setting('amp-design-selector')==4){
                         $class = "amp-featured-image";
