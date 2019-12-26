@@ -255,8 +255,11 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                 if(strpos($sheet, '-keyframes')!==false){
                     $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
                 }
-                $completeContent = preg_replace("/<style\samp-custom>(.*)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
-                $completeContent = apply_filters("ampforwp_tree_shaking_add_css", $completeContent);
+                preg_match('/<style\samp-custom>(.*)<\/style>/s', $completeContent,$matches);
+                if($matches){
+                    $completeContent = preg_replace("/<style\samp-custom>(.*)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
+                }
+                
             }
         }
         //for fonts
