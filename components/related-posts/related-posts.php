@@ -130,14 +130,21 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 			$thumb_height = ampforwp_get_post_thumbnail('height', $imagetype);
 
 	        if((isset($data['image_crop']) && $data['image_crop'] != "" ) || true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') ){
-		        if(ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size'))
-			        $width      = ampforwp_get_setting('ampforwp-swift-homepage-posts-width');
-		        else
-			        $width      = $data['image_crop_width'];
-		        if(ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size'))
-			        $height    = ampforwp_get_setting('ampforwp-swift-homepage-posts-height');
-		        else
-			        $height     = $data['image_crop_height'];
+
+				$width 	= $data['image_crop_width'];
+				$height	= $data['image_crop_height'];
+
+				if(ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') ){
+
+					if ( true == ampforwp_get_setting('ampforwp-swift-homepage-posts-width') ) {
+						$width      = ampforwp_get_setting('ampforwp-swift-homepage-posts-width');
+					}
+					
+					if ( true == ampforwp_get_setting('ampforwp-swift-homepage-posts-height') ) {
+						$height    = ampforwp_get_setting('ampforwp-swift-homepage-posts-height');
+					}
+				}
+			        
 
 				if ( isset($redux_builder_amp['ampforwp-retina-images']) && true == $redux_builder_amp['ampforwp-retina-images'] ) {
 					$resolution = 2;
