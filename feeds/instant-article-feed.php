@@ -26,10 +26,16 @@
         'ignore_sticky_posts'   => true,
         'posts_per_page'        => esc_attr($number_of_articles),
         'meta_query' => array(
+            'relation' => 'OR',
             array(
                 'key'        => 'ampforwp-ia-on-off',
-                'value'      => 'default',
-            ))
+                'value'      => 'hide-ia',
+                'compare'    => "!="
+            ), array(
+                'key'        => 'ampforwp-ia-on-off',
+                'compare'    => "NOT EXISTS"
+            ),
+           )
     );
     if ( is_category() ) {
         $ia_args['category__in']    = get_queried_object_id(); 
