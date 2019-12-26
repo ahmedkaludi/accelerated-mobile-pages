@@ -268,6 +268,8 @@ left:191px;
 .ampforwp-ad-above-related-post{padding-top:15px;}
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
 .single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 22px; font-size: 13px; color:#333; font-family: sans-serif; }
+.amp-social-twitter{background:#1da1f2}
+.amp-social-icon-rounded-author {padding: 10px 0px 10px 10px;display: inline-table;border-radius: 50%;cursor: pointer;}
 figure.aligncenter amp-img {
  margin: 0 auto;
  }

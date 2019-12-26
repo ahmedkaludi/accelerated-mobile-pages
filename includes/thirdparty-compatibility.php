@@ -971,7 +971,12 @@ if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
 				}else{
 					$twitter_url = 'https://twitter.com/'.esc_attr($twitter);
 				}
-				return ' <span><a class="author-tw" href="'.esc_url($twitter_url).'" target="_blank"></a></span>';
+				if(ampforwp_design_selector()==4){
+					return ' <span><a class="author-tw" href="'.esc_url($twitter_url).'" target="_blank"></a></span>';
+				}else{
+					return '<a title="twitter share" href="'.$twitter_url.'" class="amp-social-icon-rounded-author amp-social-twitter">
+				    <amp-img src="'.AMPFORWP_IMAGE_DIR . '/twitter-icon.webp'.'" width="16" height="16" ></amp-img></a>';
+				}
 			}
 		    
 		}
