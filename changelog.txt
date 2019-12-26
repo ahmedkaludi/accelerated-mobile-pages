@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.4 (26th December 2019) =
+* Fixed: When Optimize CSS (beta) option is enabled AMP page is getting blank #3994
+
 = 1.0.3 (23th December 2019) =
 * Improvement: Filter in search form #3948
 * Improvement: Improvement of jetpack social icons #3907
