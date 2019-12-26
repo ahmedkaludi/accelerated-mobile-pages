@@ -452,7 +452,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 		}
 		$class = $element->getAttribute( 'class' );
 		$tagName = $element->tagName;
-		if($element->tagName == 'img')
+		if(function_exists('addtoany_activation') && $element->tagName == 'img')
 			$tagName = 'amp-img';
 		$properties = $this->process_style( $value );
 
