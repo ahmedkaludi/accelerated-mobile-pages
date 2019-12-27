@@ -191,10 +191,23 @@ function ampforwp_code_to_add_in_htaccess(){
     return $htaccess_cntn;
 }
 
+function ampforwp_white_list_selectors($completeContent){
+    $white_list = array();
+    $white_list = (array)apply_filters('ampforwp_tree_shaking_white_list_selector',$white_list);
+    $w_l_str = '';
+    for($i=0;$i<count($white_list);$i++){
+        $f = $white_list[$i];
+        preg_match_all('/'.$f.'{(.*?)}/s', $completeContent, $matches);
+        if(isset($matches[0][0])){
+            $w_l_str .= $matches[0][0];
+        }
+    }
+    return $w_l_str;
+}
 // Tree shaking feature #2949 --- starts here --- 
 if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
     function ampforwp_tree_shaking_purify_amphtml($completeContent){
-          
+        $white_lists = ampforwp_white_list_selectors($completeContent);
         if( function_exists('amp_pagebuilder_compatibility_init') ){
             // compatibility with AMP Pagebuilder Compatibility
             return $completeContent;
@@ -237,18 +250,20 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                     $sheet .= $styles;
                 }
                 $sheet.=$font_css;
+                $sheet.=$white_lists;
                 $sheet = stripcslashes($sheet);
                 if(strpos($sheet, '-keyframes')!==false){
                     $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
                 }
-                $completeContent = preg_replace("/<style\samp-custom>(.*?)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
-                $completeContent = apply_filters("ampforwp_tree_shaking_add_css", $completeContent);
+                preg_match('/<style\samp-custom>(.*)<\/style>/s', $completeContent,$matches);
+                if($matches){
+                    $completeContent = preg_replace("/<style\samp-custom>(.*)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
+                }
+                
             }
-
         }
         //for fonts
         $completeContent = str_replace(array('":backSlash:', "':backSlash:"), array('"\\', "'\\"), $completeContent);
-            
         return $completeContent;
     }
 }

@@ -28,7 +28,8 @@ function ampforwp_framework_get_search_form() {
 					</div>
 				</div>
 				</form>';
-	    echo $form;	// escaped above 
+		$form = apply_filters( 'ampforwp_search_form_data', $form );		
+	    echo $form;	// XSS OK
 }
 ampforwp_add_scripts();
 function ampforwp_add_scripts(){

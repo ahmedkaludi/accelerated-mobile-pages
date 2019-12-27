@@ -317,6 +317,7 @@ cursor: pointer;border-radius: 35px;color: <?php echo ampforwp_sanitize_color($r
 .m-menu .amp-menu .sub-menu li:last-child{border:none;}
 .m-menu .amp-menu a {padding: 7px 15px;}
 .m-menu > li{font-size:17px;}
+.amp-menu .toggle:after{position:absolute;}
 /*New Syles*/
 <?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
 	.m-menu .toggle {float :left;}

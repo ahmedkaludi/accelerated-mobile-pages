@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.3.1
-Stable tag: 1.0.2
+Tested up to: 5.3.2
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,27 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.4 (26th December 2019) =
+* Fixed: When Optimize CSS (beta) option is enabled AMP page is getting blank #3994
+
+= 1.0.3 (23th December 2019) =
+* Improvement: Filter in search form #3948
+* Improvement: Improvement of jetpack social icons #3907
+* Improvement: Need to add a Filter in amp tree shaking for adding custom CSS. #3971
+* Fixed: Icomoon.ttf is preloaded in Design 1 and Design 2. #3945
+* Fixed: Search translate text option is visible in swift but unused #3934
+* Fixed: Category module has minor bugs after the update. #3880
+* Fixed: Improvements required in RTL support in AMP #3938
+* Fixed: Save buttons are not looking good after WP 5.3 update #3985
+* Fixed: Video widget support in AMP #3841
+* Fixed: Time is not working in published date notice #3956
+* Fixed: Recoverable fatal error: Object of class DOM Node List could not be converted to string #3968
+* Fixed: In Amp struture data option if we added any schema then description generated in html format #3937
+* Fixed: Select Taxonomy and Select Category is getting blank in the category module of AMP page builder #3986
+* Fixed: Notice: Undefined offset: 0 in class-amp-post-template.php on line 378 #3992
+* Fixed: Undefined variable: designCss #3961
+* Fixed: Open Graph title is not displaying correctly with SEOPress in AMP. #3966
+
 = 1.0.2 (19th December 2019) =
 * Improvement: Need to add wordpress default Gutenburg editor 'Block' settings Compatibility in AMP #3320
 * Improvement: Need to make compatibility with the Imagify plugin #3908
@@ -203,34 +224,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Debug warning : Undefined index element #3958
 * Fixed: MGID Ads are not loading when the Flexible AMP widget option is enabled in the AMP  #3864
 * Fixed: The Close bar is not appearing menu check in mobile iPhone #3964
-
-= 1.0.1 (14th December 2019) =
-* Fixed: Telegram as social profile #3754
-* Fixed: Give default styling for <small> tag. #3879
-* Fixed: When pagination is enabled in Category Module,translation option should be given in Advanced. #3847
-* Fixed: An issue with Code module in AMP page puilder. #3833
-* Fixed: Getting an error while validating page when using Disqus comments #3871
-* Fixed: Content is updated programatically on /amp/ page view, bad revision is created #3822
-* Fixed: Custom Post types and taxonomies option should be only visible when Archives is enabled #3903
-* Fixed: After reloading 'Select Categories to Hide AMP', it shows empty #3898
-* Fixed: In exclude Categories option the "No items of this type were found." message is displaying #3900
-* Fixed: Cannot use a scalar value as an array #3823
-* Fixed: Debug warnings. #3932
-* Fixed: Google Tag manager not firing properly #3826
-
-= 1.0.0 (11th December 2019) =
-* Improvement: Need to clear amp treeshaking css for reset section button. #3916
-* Improvement: Need to add easy table of contents in extension list #3922
-* Fixed: If hide amp hide on post or pages from anywhere then that needs to redirect to 301 #3767
-* Fixed: Need to add filter in "wp_localize_script" #3764
-* Fixed: Need to add preload key requests for font icons #3752
-* Fixed: Advance footer options should not be hidden by default #3652
-* Fixed: Button Rel Attribute #3872
-* Fixed: Need to update the PWA for WP extension from the options panel #3888
-* Fixed: “View AMP” Button Showing CSS on frontend #3890
-* Fixed: Images get streched in new version of the AMP FOR WP Plugin #3914
-* Fixed: Need to remove one signal push notification button in pages. #3874
-* Fixed: when images are placed along with the anchor tag in gallery module of guntenberg editor the image src is getting unknown in AMP #3923
-* Fixed: When RTL is enabled,the menu in header is going to right but the elements in right are not moved to left. #3881
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

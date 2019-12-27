@@ -1761,6 +1761,7 @@ function ampforwp_get_seopress_title(){
 	}
 	elseif ( isset($seopress_options['seopress_titles_single_titles'][$seopress_get_current_cpt]['title'])) {
 		$seopress_title = $seopress_options['seopress_titles_single_titles'][$seopress_get_current_cpt]['title'];
+		$seopress_title = ampforwp_seopress_title_sanitize($seopress_title);
 	}
 	if ( ampforwp_is_home() || ampforwp_is_blog() ) {
 		$seopress_titles_template_variables_array = array('%%sitetitle%%','%%tagline%%');
@@ -2660,7 +2661,8 @@ function ampforwp_modified_search_sidebar( $content ) {
 			$source = $element->childNodes->item(0);
 			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
 			$source = $element->childNodes->item(1);
-			$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
+			if($source)
+				$source->setAttribute('src',preg_replace('#^http?:#', '', $source->getAttribute('src') ));
 		}
 	}
 	$audio = $dom->getElementsByTagName( 'amp-audio' );
@@ -3114,7 +3116,7 @@ function ampforwp_add_modified_date($post_object){
 						)
 					);
 					if(true == ampforwp_get_setting('ampforwp-post-date-notice-time')){
-						echo get_the_modified_time();
+						echo get_the_time();
 					}
 				}
 			?>

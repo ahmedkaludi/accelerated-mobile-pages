@@ -373,11 +373,15 @@ class AMP_Post_Template {
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
 					preg_match_all('/height="(.*?)"/', $m1_content,$fimgheight);
 					preg_match_all('/alt="(.*?)"/', $m1_content,$fimgalt);
-					
+					if(isset($fimgsrc[1][0]) && isset($fimgwidth[1][0]) && isset($fimgheight[1][0])){
 					$data['src'] 	= $fimgsrc[1][0];
 					$data['width'] 	= $fimgwidth[1][0];
 					$data['height'] = $fimgheight[1][0];
-					$data['alt'] 	= ($fimgalt[1][0]?:'');
+					if(isset($fimgalt[1][0])){
+						$data['alt'] 	= $fimgalt[1][0];
+					}else{
+						$data['alt'] 	= '';
+					}
 					$fallback_data = apply_filters('ampforwp_fallback_image_params',$data);
 					$fsrc 	= $fallback_data['src'];
 					$fwidth = $fallback_data['width'];
@@ -386,7 +390,11 @@ class AMP_Post_Template {
 					$ssrc = $fimgsrc[0][0];
 					$swidth = $fimgwidth[0][0];
 					$sheight = $fimgheight[0][0];
-					$salt = ($fimgalt[0][0]?:'');
+					if(isset($fimgalt[0][0])){
+						$salt = $fimgalt[0][0];
+					}else{
+						$salt = '';
+					}
 					$src_rep = 'src="'.esc_url($fsrc).'"';
 					$width_rep = 'width="'.intval($fwidth).'"';
 					$height_rep = 'height="'.intval($fheight).'"';
@@ -397,6 +405,7 @@ class AMP_Post_Template {
 					$m1_content = str_replace($salt, $alt_rep, $m1_content);
 					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
 					$content = str_replace("$match", $fallback_img, $content);
+				}
 				}
 			}
 		}
