@@ -7261,7 +7261,7 @@ function ampforwp_head_css(){
 				$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
 				$incurl = includes_url();
 				$css.='@font-face{font-family:dashicons;src:url('.$incurl.'/fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987) format("truetype");
-				font-weight:400;font-style:normal}.amp-wp-header,.design2-header,.design3-header,.header{margin-top:32px}#headerwrap{top:32px}#wp-admin-bar-my-account .avatar{float:right;margin-top:7px;margin-left:5px;height:18px;width:18px;border: 1px solid #82878c;}#wp-admin-bar-wpseo-notifications .yoast-issue-counter{float:right}@media(max-width:782px){.amp-wp-header,.design2-header,.design3-header,.header{margin-top:46px}#headerwrap{top:46px}}.header-2{margin-top:32px}.header-3{margin-top:32px}';
+				font-weight:400;font-style:normal}#wpadminbar~header{margin-top:32px}#wpadminbar~header #headerwrap{top:32px}#wp-admin-bar-my-account .avatar{float:right;margin-top:7px;margin-left:5px;height:18px;width:18px;border:1px solid #82878c}#wp-admin-bar-wpseo-notifications .yoast-issue-counter{float:right}@media(max-width:782px){#wpadminbar~header{margin-top:46px}#wpadminbar~header #headerwrap{top:46px}}';
 				echo ampforwp_css_sanitizer($css);
 			}
 		}
