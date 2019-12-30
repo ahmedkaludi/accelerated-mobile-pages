@@ -8041,7 +8041,11 @@ function ampforwp_imagify_webp_compatibility($content){
 		if($convert_to_webp && $display_webp){
 			$img_url = esc_url($src[1][0]);
 			$rep_url = esc_url($src[1][0]).".webp";
-			$content = str_replace($img_url, $rep_url, $content);
+			$headers = get_headers($rep_url);
+			$is_webp = stripos($headers[0], "200 OK") ? TRUE : FALSE;
+			if($is_webp){
+				$content = str_replace($img_url, $rep_url, $content);
+			}
 		}
 	}
 	return $content;
