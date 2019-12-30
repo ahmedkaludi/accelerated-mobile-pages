@@ -377,23 +377,19 @@ function amp_gtm_add_gtm_support( $analytics ) {
 		}
 		$gtm_id 	= ampforwp_get_setting('amp-gtm-id');
 		$gtm_id 	= str_replace(" ", "", $gtm_id);
-		 
+		$gtm_code = ampforwp_get_setting('amp-gtm-analytics-code');
 		$analytics['amp-gtm-googleanalytics'] = array(
-			'type' => ampforwp_get_setting('amp-gtm-analytics-type'),
 			'attributes' => array(
-				'data-credentials' 	=> 'include',
-				'config'			=> 'https://www.googletagmanager.com/amp.json?id='. esc_attr( $gtm_id ) .'&gtm.url=SOURCE_URL'
+				'id'=>'googletagmanager-'.$gtm_id,
+				'type'=>'gtag',
 			),
 			'config_data' => array(
-				'vars' => array(
-					'account' =>  ampforwp_get_setting('amp-gtm-analytics-code'),
-				),
-				'triggers' => array(
-					'trackPageview' => array(
-						'on' => 'visible',
-						'request' => 'pageview',
+				"vars" => array(
+					"gtag_id"=> "$gtm_id",
+					"config" => array(
+					  "$gtm_code"=> array("groups"=> "default" ),
 					),
-				),
+				  ),
 			),
 		);
 		if(ampforwp_get_data_consent()){
