@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.5 (30th December 2019) =
+* Fixed: Menu arrow icon not showing properly in mobile version #3995
+* Fixed: Google Tag manager not firing properly #3826
+
 = 1.0.4 (26th December 2019) =
 * Fixed: When Optimize CSS (beta) option is enabled AMP page is getting blank #3994
 
