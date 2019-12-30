@@ -377,15 +377,15 @@ function amp_gtm_add_gtm_support( $analytics ) {
 		}
 		$gtm_id 	= ampforwp_get_setting('amp-gtm-id');
 		$gtm_id 	= str_replace(" ", "", $gtm_id);
-		$gtm_code = ampforwp_get_setting('amp-gtm-analytics-code');
+		$gtm_code = esc_attr(ampforwp_get_setting('amp-gtm-analytics-code'));
 		$analytics['amp-gtm-googleanalytics'] = array(
 			'attributes' => array(
-				'id'=>'googletagmanager-'.$gtm_id,
+				'id'=>'googletagmanager-'.esc_attr($gtm_id),
 				'type'=>'gtag',
 			),
 			'config_data' => array(
 				"vars" => array(
-					"gtag_id"=> "$gtm_id",
+					"gtag_id"=> "'".esc_attr($gtm_id)."'",
 					"config" => array(
 					  "$gtm_code"=> array("groups"=> "default" ),
 					),
