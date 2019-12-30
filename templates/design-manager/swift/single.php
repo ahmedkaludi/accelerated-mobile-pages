@@ -221,7 +221,6 @@ do_action("ampforwp_single_design_type_handle_d1");
 <?php if($redux_builder_amp['single-design-type'] == '1' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 	<div class="r-pf">
 		<div class="cntr">
-			<h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' )); ?></h3>
 		<?php
 		$number_of_posts = 6;
 		$rcp = ampforwp_get_setting('ampforwp-number-of-recent-posts');
@@ -230,6 +229,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 		}
 		while( amp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
 			<div class="fsp">
+				<h3><?php echo esc_attr(ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' )); ?></h3>
 				<?php if( ampforwp_has_post_thumbnail() ){
 					$width 	= 346;
 					$height = 188;
