@@ -377,23 +377,19 @@ function amp_gtm_add_gtm_support( $analytics ) {
 		}
 		$gtm_id 	= ampforwp_get_setting('amp-gtm-id');
 		$gtm_id 	= str_replace(" ", "", $gtm_id);
-		 
+		$gtm_code = esc_attr(ampforwp_get_setting('amp-gtm-analytics-code'));
 		$analytics['amp-gtm-googleanalytics'] = array(
-			'type' => ampforwp_get_setting('amp-gtm-analytics-type'),
 			'attributes' => array(
-				'data-credentials' 	=> 'include',
-				'config'			=> 'https://www.googletagmanager.com/amp.json?id='. esc_attr( $gtm_id ) .'&gtm.url=SOURCE_URL'
+				'id'=>'googletagmanager-'.esc_attr($gtm_id),
+				'type'=>'gtag',
 			),
 			'config_data' => array(
-				'vars' => array(
-					'account' =>  ampforwp_get_setting('amp-gtm-analytics-code'),
-				),
-				'triggers' => array(
-					'trackPageview' => array(
-						'on' => 'visible',
-						'request' => 'pageview',
+				"vars" => array(
+					"gtag_id"=> "'".esc_attr($gtm_id)."'",
+					"config" => array(
+					  "$gtm_code"=> array("groups"=> "default" ),
 					),
-				),
+				  ),
 			),
 		);
 		if(ampforwp_get_data_consent()){
@@ -419,7 +415,7 @@ function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
 			$ampforwp_adv_gtm_fields = preg_replace('!/\*.*?\*/!s', '', $ampforwp_adv_gtm_fields);
 			$ampforwp_adv_gtm_fields = preg_replace('/\n\s*\n/', '', $ampforwp_adv_gtm_fields);
 			$ampforwp_adv_gtm_fields = preg_replace('/\/\/(.*?)\s(.*)/m', '$2', $ampforwp_adv_gtm_fields); ?>
-			<amp-analytics id="googletagmanager-<?php echo ampforwp_get_setting('amp-gtm-id'); ?>" type="gtag" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> data-credentials="include" config="https://www.googletagmanager.com/amp.json?id=<?php echo esc_attr(ampforwp_get_setting('amp-gtm-id')); ?>&amp;gtm.url=SOURCE_URL"><script type="application/json"><?php echo sanitize_text_field($ampforwp_adv_gtm_fields) ?></script></amp-analytics>
+			<amp-analytics type="googleanalytics" id="gtag" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>><script type="application/json"><?php echo sanitize_text_field($ampforwp_adv_gtm_fields) ?></script></amp-analytics>
 			<?php
 		 }
 }

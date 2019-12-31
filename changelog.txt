@@ -1,5 +1,26 @@
 == Changelog ==
 
+= 1.0.6 (31th December 2019) =
+* Improvement: Allow users to add custom script in amp by using amp theme frame work plugin or without plugin #3865
+* Improvement: Allow users to register scripts in proper way in AMP Theme Framework #3257
+* Improvement: Need to add filter to modify mobile redirection #3987
+* Improvement: Need to update Sabberworm/CSS folder. #4012
+* Improvement: Need to make compatibility with "Transposh WordPress Translation" plugin #3895
+* Fixed: Warning issue with "$amp_emplate->get('metadata')" undefined metadata #3967
+* Fixed: GDPR popup appears once agin after accepting it #3957
+* Fixed: AMP Page apears blank after adding script tag in Head Section of AMP Page Builder #3834
+* Fixed: when user is not an admin and the admin bar is getting displayed as gap on the site #3918
+* Fixed: Option Panel not saving in AMP FOR WP, it is giving 404 error #3768
+* Fixed: Page Builder Latest Posts Category Module #3927
+* Fixed: Error amp-iframe extension .js appears more than once #3810
+* Fixed: Query monitor is not working in our latest version. #4008
+* Fixed: Google Tag manager not firing properly #3826
+* Fixed: Undefined variable block_css #4021
+
+= 1.0.5 (30th December 2019) =
+* Fixed: Menu arrow icon not showing properly in mobile version #3995
+* Fixed: Google Tag manager not firing properly #3826
+
 = 1.0.4 (26th December 2019) =
 * Fixed: When Optimize CSS (beta) option is enabled AMP page is getting blank #3994
 

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.4
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,38 +191,29 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.6 (31th December 2019) =
+* Improvement: Allow users to add custom script in amp by using amp theme frame work plugin or without plugin #3865
+* Improvement: Allow users to register scripts in proper way in AMP Theme Framework #3257
+* Improvement: Need to add filter to modify mobile redirection #3987
+* Improvement: Need to update Sabberworm/CSS folder. #4012
+* Improvement: Need to make compatibility with "Transposh WordPress Translation" plugin #3895
+* Fixed: Warning issue with "$amp_emplate->get('metadata')" undefined metadata #3967
+* Fixed: GDPR popup appears once agin after accepting it #3957
+* Fixed: AMP Page apears blank after adding script tag in Head Section of AMP Page Builder #3834
+* Fixed: when user is not an admin and the admin bar is getting displayed as gap on the site #3918
+* Fixed: Option Panel not saving in AMP FOR WP, it is giving 404 error #3768
+* Fixed: Page Builder Latest Posts Category Module #3927
+* Fixed: Error amp-iframe extension .js appears more than once #3810
+* Fixed: Query monitor is not working in our latest version. #4008
+* Fixed: Google Tag manager not firing properly #3826
+* Fixed: Undefined variable block_css #4021
+
+= 1.0.5 (30th December 2019) =
+* Fixed: Menu arrow icon not showing properly in mobile version #3995
+* Fixed: Google Tag manager not firing properly #3826
+
 = 1.0.4 (26th December 2019) =
 * Fixed: When Optimize CSS (beta) option is enabled AMP page is getting blank #3994
 
-= 1.0.3 (23th December 2019) =
-* Improvement: Filter in search form #3948
-* Improvement: Improvement of jetpack social icons #3907
-* Improvement: Need to add a Filter in amp tree shaking for adding custom CSS. #3971
-* Fixed: Icomoon.ttf is preloaded in Design 1 and Design 2. #3945
-* Fixed: Search translate text option is visible in swift but unused #3934
-* Fixed: Category module has minor bugs after the update. #3880
-* Fixed: Improvements required in RTL support in AMP #3938
-* Fixed: Save buttons are not looking good after WP 5.3 update #3985
-* Fixed: Video widget support in AMP #3841
-* Fixed: Time is not working in published date notice #3956
-* Fixed: Recoverable fatal error: Object of class DOM Node List could not be converted to string #3968
-* Fixed: In Amp struture data option if we added any schema then description generated in html format #3937
-* Fixed: Select Taxonomy and Select Category is getting blank in the category module of AMP page builder #3986
-* Fixed: Notice: Undefined offset: 0 in class-amp-post-template.php on line 378 #3992
-* Fixed: Undefined variable: designCss #3961
-* Fixed: Open Graph title is not displaying correctly with SEOPress in AMP. #3966
-
-= 1.0.2 (19th December 2019) =
-* Improvement: Need to add wordpress default Gutenburg editor 'Block' settings Compatibility in AMP #3320
-* Improvement: Need to make compatibility with the Imagify plugin #3908
-* Improvement: Taxonomy support in AMP Page Builder category module #3310
-* Improvement: Add support of fallback images in AMP #3790
-* Improvement: General code improvements part 3 #3941
-* Improvement: Drop down support in Alternative Menu in Mobile view. #2768
-* Fixed: The Alternate Menu does not redirecting to the AMP for the product category in menu items #3915
-* Fixed: Sub-Category Archives on AMP page should be connected to Change internal links to AMP option. #3924
-* Fixed: Debug warning : Undefined index element #3958
-* Fixed: MGID Ads are not loading when the Flexible AMP widget option is enabled in the AMP  #3864
-* Fixed: The Close bar is not appearing menu check in mobile iPhone #3964
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
