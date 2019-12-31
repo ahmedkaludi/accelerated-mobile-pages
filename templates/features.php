@@ -7443,7 +7443,7 @@ if(ampforwp_get_setting('ampforwp_css_tree_shaking') == true && ampforwp_is_gute
 }
 if(!function_exists('ampforwp_gutenberg_block_styles')){
 	function ampforwp_gutenberg_block_styles(){
-		$gutenberg_styles = '';
+		$gutenberg_styles = $block_css = '';
 		ob_start();
 		wp_print_styles('wp-block-library');
 		$block_css .= ob_get_contents();
