@@ -7225,8 +7225,14 @@ function ampforwp_head_css(){
 				$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
 				$incurl = includes_url();
 				$incurl = trailingslashit($incurl) .'fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987';
-				$css.='@font-face{font-family:dashicons;src:url('.esc_url( $incurl ).') format("truetype");
-				font-weight:400;font-style:normal}.amp-wp-header,.design2-header,.design3-header,.header{margin-top:32px}#headerwrap{top:32px}#wp-admin-bar-my-account .avatar{float:right;margin-top:3px}#wp-admin-bar-wpseo-notifications .yoast-issue-counter{float:right}@media(max-width:782px){.amp-wp-header,.design2-header,.design3-header,.header{margin-top:46px}#headerwrap{top:46px}}';
+				$css.='@font-face{font-family:dashicons;src:url('.$incurl.'/fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987) format("truetype");
+				font-weight:400;font-style:normal}
+				#wp-admin-bar-my-account .avatar{float:right;margin-top:7px;margin-left:5px;height:18px;width:18px;border:1px solid #82878c}#wp-admin-bar-wpseo-notifications .yoast-issue-counter{float:right}@media(max-width:782px){#wpadminbar~header #headerwrap{top:46px}}';
+				if(ampforwp_get_setting('amp-design-selector')!=3){
+					$css.='#wpadminbar~header{margin-top:32px}@media(max-width:782px){#wpadminbar~header{margin-top:46px}}';
+				}else{
+					$css.='#wpadminbar~header #headerwrap{top:32px}@media(max-width:782px){#wpadminbar~header #headerwrap{margin-top:46px}}';
+				}
 				echo ampforwp_css_sanitizer($css);
 			}
 		}
