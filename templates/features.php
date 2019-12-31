@@ -7852,32 +7852,34 @@ function ampforwp_short_pixel_cdn($content){
 		return $content;	
 }
 
+if(class_exists('transposh_plugin')){
 add_action('amp_post_template_css','ampforwp_transposh_plugin_rtl_css');
-function ampforwp_transposh_plugin_rtl_css() {
-	if(class_exists('transposh_plugin')){
-    	 $rtl_lang_arr = array('ar', 'he', 'fa', 'ur', 'yi');
-    	 if(isset($_GET['lang'])){
-	 		if(in_array($_GET['lang'], $rtl_lang_arr)){
-	 			if(ampforwp_get_setting('header-position-type') == '1'){?>
-					.tg:checked + .hamb-mnu > .m-ctr {
-					    margin-right: 0%;
-					}
-					.m-ctr{
-					    margin-right: -100%;
-					    float: left;
-					}
-					<?php } if(ampforwp_get_setting('header-position-type') == '2'){?>
-					.tg:checked + .hamb-mnu > .m-ctr {
-					    margin-right: calc(100% - <?php echo esc_html(ampforwp_get_setting('header-overlay-width'))?>);
-					}
-					.m-ctr{
-					    margin-right: 100%;
-					    float: right;
-					}
-					<?php }
-	 		}
-    	 }
-    }
+if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
+	function ampforwp_transposh_plugin_rtl_css() {
+	    	 $rtl_lang_arr = array('ar', 'he', 'fa', 'ur', 'yi');
+	    	 if(isset($_GET['lang'])){
+		 		if(in_array(esc_attr($_GET['lang']), $rtl_lang_arr)){
+		 			if(ampforwp_get_setting('header-position-type') == '1'){?>
+						.tg:checked + .hamb-mnu > .m-ctr {
+						    margin-right: 0%;
+						}
+						.m-ctr{
+						    margin-right: -100%;
+						    float: left;
+						}
+						<?php } if(ampforwp_get_setting('header-position-type') == '2'){?>
+						.tg:checked + .hamb-mnu > .m-ctr {
+						    margin-right: calc(100% - <?php echo esc_html(ampforwp_get_setting('header-overlay-width'))?>);
+						}
+						.m-ctr{
+						    margin-right: 100%;
+						    float: right;
+						}
+						<?php }
+		 		}
+	    	}
+	    }
+	}
 }
 add_action('pre_amp_render_post','ampforwp_fv_flowplayer_check');
 function ampforwp_fv_flowplayer_check() {
