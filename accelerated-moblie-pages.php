@@ -1425,6 +1425,9 @@ if(!function_exists('ampforwp_get_admin_current_page')){
 	}
 }
 function ampforwp_update_data_when_saved($options, $changed_values) {
+	if(!current_user_can( 'manage_options' )){
+		return ;
+	}
 	$updatedDataForTransient = array(
 		'hide-amp-categories2',
 		'amp-design-3-category-selector',
@@ -1441,6 +1444,9 @@ function ampforwp_update_data_when_saved($options, $changed_values) {
 }
 
 function ampforwp_update_data_when_reset($rest_object = '') {
+	if(!current_user_can( 'manage_options' )){
+		return ;
+	}
 	if ( isset( $rest_object->parent->transients ) ) {
 		$updatedDataForTransient = array(
 			'hide-amp-categories2',
@@ -1459,6 +1465,9 @@ function ampforwp_update_data_when_reset($rest_object = '') {
 
 if(!function_exists('ampforwp_delete_transient_on_update')){
 	function ampforwp_delete_transient_on_update($changed_values){
+		if(!current_user_can( 'manage_options' )){
+			return ;
+		}
 		$key_for_trans = array('ampforwp-custom-taxonomies');
 		$del_trans_arr = array('ampforwp-custom-taxonomies'=>array('ampforwp_header_menu','ampforwp_footer_menu'));
 		foreach($changed_values as $key => $value ){
