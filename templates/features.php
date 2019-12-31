@@ -7535,3 +7535,33 @@ function ampforwp_remove_unused_pb_amp_script($data){
    }
    return $data;                 
 }
+
+if(class_exists('transposh_plugin')){
+	add_action('amp_post_template_css','ampforwp_transposh_plugin_rtl_css');
+	if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
+		function ampforwp_transposh_plugin_rtl_css() {
+	    	 $rtl_lang_arr = array('ar', 'he', 'fa', 'ur', 'yi');
+	    	 if(isset($_GET['lang'])){
+		 		if(in_array(esc_attr($_GET['lang']), $rtl_lang_arr)){
+		 			if(ampforwp_get_setting('header-position-type') == '1'){?>
+						.tg:checked + .hamb-mnu > .m-ctr {
+						    margin-right: 0%;
+						}
+						.m-ctr{
+						    margin-right: -100%;
+						    float: left;
+						}
+						<?php } if(ampforwp_get_setting('header-position-type') == '2'){?>
+						.tg:checked + .hamb-mnu > .m-ctr {
+						    margin-right: calc(100% - <?php echo esc_html(ampforwp_get_setting('header-overlay-width'))?>);
+						}
+						.m-ctr{
+						    margin-right: 100%;
+						    float: right;
+						}
+						<?php }
+		 		}
+	    	}
+	    }
+	}
+}
