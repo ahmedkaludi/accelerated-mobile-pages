@@ -206,6 +206,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Error amp-iframe extension .js appears more than once #3810
 * Fixed: Query monitor is not working in our latest version. #4008
 * Fixed: Google Tag manager not firing properly #3826
+* Fixed: Undefined variable block_css #4021
 
 = 1.0.5 (30th December 2019) =
 * Fixed: Menu arrow icon not showing properly in mobile version #3995
