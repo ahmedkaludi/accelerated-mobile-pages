@@ -7521,7 +7521,7 @@ function ampforwp_pblayout_head_scripts($data){
 function ampforwp_remove_unused_pb_amp_script($data){
    global $pb_remove_script;
    for($i=0;$i<count($pb_remove_script);$i++){
-      $data = preg_replace('/<script(.*?)custom-element=\"'.$pb_remove_script[$i].'\"(.*?)src=\"(.*?)\"(.*?)><\/script>/', '', $data);
+      $data = preg_replace('/<script(.*?)custom-element=\"'.esc_attr($pb_remove_script[$i]).'\"(.*?)src=\"(.*?)\"(.*?)><\/script>/', '', $data);
    }
    return $data;                 
 }
