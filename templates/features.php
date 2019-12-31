@@ -874,7 +874,7 @@ function ampforwp_meta_redirection_status(){
 	if ( empty( $ampforwp_redirection_post_on_off_meta ) ) {
 		$ampforwp_redirection_post_on_off_meta = 'enable';
 	}
-
+	$ampforwp_redirection_post_on_off_meta = apply_filters('ampforwp_disable_mobile_redirection', $ampforwp_redirection_post_on_off_meta);
 	return $ampforwp_redirection_post_on_off_meta;
 
 }
