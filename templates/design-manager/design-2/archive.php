@@ -76,7 +76,16 @@
 		    } else {
 		        $paged = 1;
 		    }
-				if($paged <= '1') {?>
+				if($paged <= '1') {
+					if(function_exists('ampforwp_category_image_compatibility')){
+					?>
+					<div class="amp-wp-content taxonomy-description">
+						<?php 
+							$category_image = ampforwp_category_image_compatibility();
+							echo $category_image;
+						?>
+				    </div> 
+					<?php }?>
 					<div class="amp-wp-content taxonomy-description">
 						<?php echo do_shortcode($arch_desc);// amphtml content, No kses ?>
 				  </div> <?php

@@ -1175,3 +1175,21 @@ if(!function_exists('ampforwp_mistape_plugin_compatibility')){
 		return $content;
 	}
 }
+
+if(!function_exists('ampforwp_category_image_compatibility')){
+	function ampforwp_category_image_compatibility($term_id=''){
+		$cat_image = '';
+		if(function_exists('z_taxonomy_image_url')){
+			$cat_url 	= z_taxonomy_image_url();
+			$r_width 	= 220;
+			$r_height 	= 134;
+			if(function_exists('ampforwp_get_retina_image_settings')){
+				$ret_config = ampforwp_get_retina_image_settings(intval($r_width),intval($r_height));
+				$r_width  = intval($ret_config['width']);
+				$r_height = intval($ret_config['height']);
+			}
+			$cat_image = '<amp-img src="'.esc_url($cat_url).'" width="'.intval($r_width).'" height="'.intval($r_height).'" layout="fixed"></amp-img>';
+		}
+		return $cat_image;
+	}
+}

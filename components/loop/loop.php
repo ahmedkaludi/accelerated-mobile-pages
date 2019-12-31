@@ -41,7 +41,14 @@ function amp_archive_title(){
 		    } else {
 		        $paged = 1;
 		    }
-				if($paged <= '1') {?>
+				if($paged <= '1') {
+					if(function_exists('ampforwp_category_image_compatibility')){
+						$category_image = ampforwp_category_image_compatibility();
+					?>
+						<div class="amp-archive-desc">
+							<?php echo $category_image;?>
+					    </div> 
+					<?php }?>
 					<div class="amp-archive-desc">
 						<?php echo do_shortcode($arch_desc);// amphtml content, no kses ?>
 				    </div> <?php
