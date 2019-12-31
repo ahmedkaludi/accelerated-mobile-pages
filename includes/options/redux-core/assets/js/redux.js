@@ -89,6 +89,104 @@
         if ( button.attr( 'name' ) != "redux_save" ) {
             $data += "&" + button.attr( 'name' ) + "=" + button.val();
         }
+         var data_to_send = $data;
+        try{
+            var json_arr = [];
+            var arr = redux_data; 
+            $.each(arr,function(key,value){
+                if(typeof value =='object'){
+                  json_arr[key] = [];
+                  $.each(value,function(k,v){
+                        json_arr[key][k] = v;
+                  });
+                }else{
+                    json_arr[key] = value;
+                }
+            });
+            var urldata = $data.split('&');
+            var ja = [];
+            var send_data = '';
+            var temp_arr = [];
+            var ss_data = '';
+            for(var i=0 ; i<urldata.length;i++){
+                var kv   = urldata[i];
+                var tarr = kv.split('=');
+                var key  = decodeURIComponent(tarr[0]);
+                var val  = decodeURIComponent(tarr[1]).replace(/\+/g, " ");
+                var keysend = encodeURIComponent(key);
+                var valsend = encodeURIComponent(val);
+                var jsval = '';
+                ss_data = '';
+                if(key.match(/redux_builder_amp\[(.*?)]/)) {
+                    var t  = key.match(/redux_builder_amp\[(.*?)]/);
+                    var tk = t[1];
+                    jsval = arr[tk];
+                    var s_data = '';
+                    if(!key.match(/redux_builder_amp\[(.*?)]\[(.*?)]\[(.*?)]/)){
+                        if(key.match(/redux_builder_amp\[(.*?)]\[(.*?)]/)){
+                            var t2 = key.match(/redux_builder_amp\[(.*?)]\[(.*?)]/);
+                            var tk2 = t2[2];
+                            if(tk2!=''){
+                                if(jQuery.inArray( tk, temp_arr )<0){
+                                    temp_arr.push(tk);
+                                    s_data = '';
+                                    $.each(jsval,function(jk,jva){
+
+                                        var tval =jQuery('[name="redux_builder_amp['+tk+']['+jk+']"]').val();
+                                        if(tk2==''){
+                                             tval =jQuery('[name="redux_builder_amp['+tk+'][]"]').val();
+                                        }
+                                        if(typeof jsval =='undefined'){
+                                            var dd = 'redux_builder_amp['+tk+']['+jk+']';
+                                            if(tk2==''){
+                                                 dd = 'redux_builder_amp['+tk+'][]';
+                                            }
+                                            s_data += encodeURIComponent(dd)+"="+encodeURIComponent(tval)+"&";
+                                        }else if(tval!=jva){
+                                            s_data = '';
+                                            $.each(jsval,function(njk,njva){
+                                                var ddd = 'redux_builder_amp['+tk+']['+njk+']';
+                                                if(tk2==''){
+                                                     ddd = 'redux_builder_amp['+tk+'][]';
+                                                }
+                                                s_data += encodeURIComponent(ddd)+"="+encodeURIComponent(tval)+"&";
+                                            });
+                                        }
+                                    });
+                                }
+                                ss_data += s_data;
+                            }else{
+                                send_data += keysend+"="+valsend+"&";
+                            }
+                        }else{
+                            jsval = json_arr[tk];
+                        }
+                        if(typeof jsval =='undefined'){
+                            send_data += keysend+"="+valsend+"&";
+                        }else if(typeof jsval =='object'){
+                            send_data += ss_data;
+                        }else if(jsval!=val){
+                            send_data += keysend+"="+valsend+"&";
+                        }
+                    }else{
+                       send_data += keysend+"="+valsend+"&"; 
+                    }
+                }else{
+                    jsval = json_arr[key];
+                    if(typeof jsval =='undefined'){
+                        send_data += keysend+"="+valsend+"&";
+                    }else if(jsval!=val){
+                        send_data += keysend+"="+valsend+"&";
+                    }
+                } 
+            }
+            var check_error = localStorage.getItem("ampforwp_check_opt_error");
+            if(check_error=='error'){
+                send_data = send_data.replace(/&\s*$/, "");
+                data_to_send = send_data;
+            }
+            temp_arr = [];
+        }catch(err){}
 
         var $nonce = $parent.attr( "data-nonce" );
 
@@ -101,7 +199,7 @@
                     action: redux.args.opt_name + "_ajax_save",
                     nonce: $nonce,
                     'opt_name': redux.args.opt_name,
-                    data: $data
+                    data: data_to_send
                 },
                 error: function( response ) {
                     if ( !window.console ) console = {};
@@ -112,7 +210,13 @@
                     jQuery( '.redux-action_bar input' ).removeAttr( 'disabled' );
                     overlay.fadeOut( 'fast' );
                     jQuery( '.redux-action_bar .spinner' ).removeClass( 'is-active' );
-                    alert( redux.ajax.alert );
+                    var resp_error = response.responseText;
+                    if(resp_error.match(/Mod_Security/i) && check_error!='error'){
+                        localStorage.setItem("ampforwp_check_opt_error","error");
+                        $( "#redux_save" ).trigger( "click" );
+                    }else{
+                        alert(redux.ajax.alert);
+                    }
                 },
                 success: function( response ) {
                     if ( response.action && response.action == "reload" ) {
