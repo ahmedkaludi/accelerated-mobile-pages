@@ -131,18 +131,26 @@ function call_loops_standard($data=array()){
 			$monthnum 	= get_query_var('monthnum');
 			$week 		= get_query_var('week');
 			$day 		= get_query_var('day');
-			$args 		= array( 'date_query' => array(
-						    array( 	'year' 	=> esc_attr($year),
-						    		'month' => esc_attr($monthnum),
-					    		 	'week' 	=> esc_attr($week),
-					    		 	'day' 	=> esc_attr($day) )
-						  	),
-							'paged'               => esc_attr($paged),
-						'post__not_in' 		  => $exclude_ids,
-						'has_password' => false ,
-						'post_status'=> 'publish',
+
+			$args 		= array( 
+							'date_query' => array(
+								array('year' => esc_attr($year))
+						),
+						'paged'         => esc_attr($paged),
+						'post__not_in' 	=> $exclude_ids,
+						'has_password' 	=> false ,
+						'post_status'	=> 'publish',
 						'no_found_rows'	=> true
 						);
+			if ( $monthnum ) {
+				$args['date_query'][0]['month'] = esc_attr($monthnum);
+			}
+			if ( $week ) {
+				$args['date_query'][0]['week'] = esc_attr($week);
+			}
+			if ( $day ) {
+				$args['date_query'][0]['day'] = esc_attr($day);
+			}
 		}
 	}
 	if ( is_home() ) {
