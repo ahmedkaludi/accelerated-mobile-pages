@@ -2226,12 +2226,34 @@ function ampforwp_footer_html_output() {
   }
 }
 
+add_filter( 'amp_post_template_data', 'ampforwp_global_head_scripts');
+function ampforwp_global_head_scripts($data){
+	$script_slug = '';
+  	$script_url = '';
+	if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
+		$allscripts = ampforwp_get_setting('amp-header-text-area-for-html');
+  		preg_match_all('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)><\/script>/', $allscripts, $matches);
+  		$script_slug = $matches[2];
+  		$script_url = $matches[4];
+  		if($matches){
+	  		foreach ($script_slug as $key => $slug) {
+	  			if ( empty( $data['amp_component_scripts'][$slug] ) ) {
+	  				$data['amp_component_scripts'][$slug]  = $script_url[$key];
+				}
+	  		}
+	  	}
+	}
+	return $data;
+}
+
 add_action('amp_post_template_head','ampforwp_header_html_output',11);
 function ampforwp_header_html_output() {
 
   if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
-    echo ampforwp_get_setting('amp-header-text-area-for-html') ;
-  }
+  		$allhtml = ampforwp_get_setting('amp-header-text-area-for-html');
+  		$allhtml = preg_replace('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)><\/script>/','', $allhtml);
+	  	echo $allhtml;
+  	}
   // amphtml tag when AMP Takeover is enabled #2550
   if(ampforwp_get_setting('ampforwp-amp-takeover') == true){
     $amp_url = "";
@@ -2246,6 +2268,33 @@ function ampforwp_header_html_output() {
 }
 }
 
+add_filter('amp_post_template_data','ampforwp_set_body_content_script', 20);
+function ampforwp_set_body_content_script($data){
+	if( ampforwp_get_setting('amp-body-text-area') ) {
+		$head_content =  ampforwp_get_setting('amp-header-text-area-for-html');
+    	preg_match_all('/"amp-(.*?)"/', $head_content, $matches1);
+    	$body_content =  ampforwp_get_setting('amp-body-text-area');
+    	preg_match_all('/<\/amp-(.*?)>/', $body_content, $matches);
+    	if(isset($matches[1][0])){
+    		$amp_comp = $matches[1];
+    		for($i=0;$i<count($amp_comp);$i++){
+    			$comp = $amp_comp[$i];
+    			if($comp!='img'){
+    				if(isset($matches[1][0])){
+    					$thtml = $matches1[1];
+    					if(!in_array($comp, $thtml)){
+    						$data['amp_component_scripts']["amp-".esc_attr($comp)] = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-latest.js"; 
+    					}
+    				} else{
+    					$data['amp_component_scripts']["amp-".esc_attr($comp)] = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-latest.js"; 
+    				}   
+    			}
+    		}
+    	}
+    	
+    }
+    return $data;
+}
 
 //40. Meta Robots
 add_action('amp_post_template_head' , 'ampforwp_talking_to_robots');
