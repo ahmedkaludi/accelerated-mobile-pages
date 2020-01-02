@@ -7536,6 +7536,26 @@ function ampforwp_remove_unused_pb_amp_script($data){
    return $data;                 
 }
 
+if(class_exists('RankMath')){
+	add_filter('ampforwp_modify_the_content','ampforwp_rank_math_nofollow_to_external_link');
+}
+function ampforwp_rank_math_nofollow_to_external_link($content){
+	$rank_math_external_link = RankMath\Helper::get_settings( 'general.nofollow_external_links' );
+	if($rank_math_external_link){
+		preg_match_all('/<a href="(.*?)">(.*?)<\/a>/', $content, $matches);
+		for($i=0;$i<count($matches[1]);$i++){
+			$url = $matches[1][$i];
+			$is_external = ampforwp_isexternal($url);
+			if($is_external){
+				$rep_url = $matches[0][$i];
+				$url = str_replace("/", "\/", $url);
+				$content = preg_replace('/(<a href="'.esc_url($url).'.*")/', '$1 rel="nofollow"', $content);
+			}
+		}
+	}
+	return $content;
+}
+
 if(class_exists('transposh_plugin')){
 	add_action('amp_post_template_css','ampforwp_transposh_plugin_rtl_css');
 }
