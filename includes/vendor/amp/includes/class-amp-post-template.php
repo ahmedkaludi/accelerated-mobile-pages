@@ -333,6 +333,22 @@ class AMP_Post_Template {
 		}
 	}
 
+	private function ampforwp_ewww_webp_compatibility($content){
+		if(defined( 'EWWW_IO_CLOUD_PLUGIN' )){
+			preg_match_all('/src="(.*?)"/', $content,$src);
+			if(isset($src[1][0])){
+				$img_url = esc_url($src[1][0]);
+				$rep_url = esc_url($src[1][0]).".webp";
+				$headers = get_headers($rep_url);
+				$is_webp = stripos($headers[0], "200 OK") ? TRUE : FALSE;
+				if($is_webp){
+					$content = str_replace($img_url, $rep_url, $content);
+				}
+			}
+		}
+		return $content;
+	}
+
 	private function ampforwp_imagify_webp_compatibility($content){
 		if(function_exists('_imagify_init')){
 			preg_match_all('/src="(.*?)"/', $content,$src);
@@ -348,7 +364,7 @@ class AMP_Post_Template {
 		return $content;
 	}
 	private function ampforwp_imagify_fallback_img_src_url($content){
-		if(!function_exists('_imagify_init')){
+		if(!function_exists('_imagify_init') && !function_exists('ewww_image_optimizer_webp_initialize')){
 			preg_match_all('/src=\"(.*?)\.(webp)\"/', $content,$cc); // need to check extenstion for fallback.
 			if(isset($cc[2][0])){
 				$ext = esc_attr($cc[2][0]);
@@ -369,6 +385,7 @@ class AMP_Post_Template {
 					$match = $matches[0][$i];
 					$m_content = $matches[1][$i];
 					$m_content = $this->ampforwp_imagify_webp_compatibility($m_content);
+					$m_content = $this->ampforwp_ewww_webp_compatibility($m_content);
 					$m1_content = $this->ampforwp_imagify_fallback_img_src_url($matches[1][$i]);
 					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
