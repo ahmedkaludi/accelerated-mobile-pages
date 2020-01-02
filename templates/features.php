@@ -7551,9 +7551,9 @@ function ampforwp_rank_math_nofollow_to_external_link($content){
 			$url = $matches[1][$i];
 			$is_external = ampforwp_isexternal($url);
 			if($is_external){
-				$rep_url = $matches[0][$i];
+				$url = esc_url($url);
 				$url = str_replace("/", "\/", $url);
-				$content = preg_replace('/(<a href="'.esc_url($url).'.*")/', '$1 rel="nofollow"', $content);
+				$content = preg_replace('/(<a href="'.$url.'.*")/', '$1 rel="nofollow"', $content);
 			}
 		}
 	}

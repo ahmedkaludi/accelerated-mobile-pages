@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.8 (2nd January 2020) =
+* Fixed: Need to add Rankmath's "Nofollow External Links" feature. #3970 (updated the code)
+
 = 1.0.7 (2nd January 2020) =
 * Improvement: Need to add Rankmath's "Nofollow External Links" feature. #3970
 * Improvement: Need to add floating button in extension list #3972
