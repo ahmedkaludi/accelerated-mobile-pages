@@ -2,7 +2,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
- add_amp_theme_support('AMP-gdpr');
+if(ampforwp_get_setting('amp-gdpr-compliance-switch')) {
+    add_amp_theme_support('AMP-gdpr');
+}
 // Custom AMP Content
 require AMPFORWP_PLUGIN_DIR  .'templates/custom-amp-content.php';
 // Custom AMPFORWP Sanitizers

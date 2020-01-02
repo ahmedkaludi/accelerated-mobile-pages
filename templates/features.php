@@ -128,7 +128,9 @@ add_amp_theme_support('AMP-logo');
 // AMP Loop
 add_amp_theme_support('AMP-loop');
 // GDPR
-add_amp_theme_support('AMP-gdpr');
+if(ampforwp_get_setting('amp-gdpr-compliance-switch')) {
+    add_amp_theme_support('AMP-gdpr');
+}
 // Menu
 add_amp_theme_support('AMP-menu');
 // Adding AMP-related things to the main theme
