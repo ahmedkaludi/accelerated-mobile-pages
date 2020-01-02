@@ -2291,6 +2291,8 @@ function ampforwp_set_body_content_script($data){
     					$thtml = $matches1[1];
     					if(!in_array($comp, $thtml)){
     						$data['amp_component_scripts']["amp-".esc_attr($comp)] = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-latest.js"; 
+    					}else{
+    						$data['amp_component_scripts']["amp-".esc_attr($comp)] = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-latest.js";
     					}
     				} else{
     					$data['amp_component_scripts']["amp-".esc_attr($comp)] = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-latest.js"; 
