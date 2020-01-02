@@ -148,6 +148,12 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 					$width 	= $width * $resolution;
 					$height = $height * $resolution;
 				}
+				$image_dimensions = array();
+				$image_dimensions['width'] = $width;
+				$image_dimensions['height'] = $height;
+				$image_dimensions = apply_filters('ampforwp_change_related_post_size', $image_dimensions);
+				$width = $image_dimensions['width'];
+				$height = $image_dimensions['height'];
 				$thumb_url_array = ampforwp_aq_resize( $thumb_url, $width, $height, true, false, true ); //resize & crop the image
 				$thumb_url = $thumb_url_array[0];
 				$thumb_width = $thumb_url_array[1];
