@@ -550,6 +550,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('easy-table-of-contents-for-amp/easy-table-of-contents-for-amp.php')? 1 : 2),
                         ), 
+                        array(
+                            'name'=>'Floating Button for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'You can add floating button in AMP with the help of this extension',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/floating-icon.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/floating-button-for-amp/',
+                            'plugin_active_path'=> 'floating-button-for-amp/floating-button-for-amp.php',
+                            'item_name'=>'Floating Button for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('floating-button-for-amp/floating-button-for-amp.php')? 1 : 2),
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
