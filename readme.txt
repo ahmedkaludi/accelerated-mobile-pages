@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.8 (2nd January 2020) =
+* Fixed: Need to add Rankmath's "Nofollow External Links" feature. #3970 (updated the code)
+
 = 1.0.7 (2nd January 2020) =
 * Improvement: Need to add Rankmath's "Nofollow External Links" feature. #3970
 * Improvement: Need to add floating button in extension list #3972
@@ -215,13 +218,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Query monitor is not working in our latest version. #4008
 * Fixed: Google Tag manager not firing properly #3826
 * Fixed: Undefined variable block_css #4021
-
-= 1.0.5 (30th December 2019) =
-* Fixed: Menu arrow icon not showing properly in mobile version #3995
-* Fixed: Google Tag manager not firing properly #3826
-
-= 1.0.4 (26th December 2019) =
-* Fixed: When Optimize CSS (beta) option is enabled AMP page is getting blank #3994
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
