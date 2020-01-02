@@ -208,7 +208,7 @@ function ampforwp_white_list_selectors($completeContent){
 if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
     function ampforwp_tree_shaking_purify_amphtml($completeContent){
         $white_lists = ampforwp_white_list_selectors($completeContent);
-        if( function_exists('amp_pagebuilder_compatibility_init') ){
+        if( function_exists('ampforwp_purify_amphtmls') ){
             // compatibility with AMP Pagebuilder Compatibility
             return $completeContent;
         }

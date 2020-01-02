@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.7 (2nd January 2020) =
+* Improvement: Need to add Rankmath's "Nofollow External Links" feature. #3970
+* Improvement: Need to add floating button in extension list #3972
+* Fixed: AMP theme framework GDPR module should be connected to GDPR Compliancy in option panel. #3963
+* Fixed: Breadcrumbs are not properly displaying and working in updated version #3917
+* Fixed: amp-auto-ads script is loading in AMP-pages when Google site kit plugin is enable. #4009
+* Fixed: wp-block CSS is heavily loading even when tree shaking is enabled in core. (Page builder is enabled) #4014
 
 = 1.0.6 (31th December 2019) =
 * Improvement: Allow users to add custom script in amp by using amp theme frame work plugin or without plugin #3865
