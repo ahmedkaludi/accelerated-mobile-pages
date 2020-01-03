@@ -67,6 +67,14 @@
 			}else{
  				the_archive_title( '<h2 class="page-title">', '</h2>' );
  			}
+ 			if(function_exists('ampforwp_category_image_compatibility')){?>
+			<div class="amp-wp-content taxonomy-image">
+				<?php 
+					$category_image = ampforwp_category_image_compatibility();
+					echo $category_image;
+				?>
+		    </div> 
+			<?php }
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) { 
 				if ( get_query_var( 'paged' ) ) {
@@ -76,16 +84,7 @@
 		    } else {
 		        $paged = 1;
 		    }
-				if($paged <= '1') {
-					if(function_exists('ampforwp_category_image_compatibility')){
-					?>
-					<div class="amp-wp-content taxonomy-description">
-						<?php 
-							$category_image = ampforwp_category_image_compatibility();
-							echo $category_image;
-						?>
-				    </div> 
-					<?php }?>
+				if($paged <= '1') {?>
 					<div class="amp-wp-content taxonomy-description">
 						<?php echo do_shortcode($arch_desc);// amphtml content, No kses ?>
 				  </div> <?php
