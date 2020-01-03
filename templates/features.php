@@ -2959,6 +2959,11 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 	if($item->type=='taxonomy' && !in_array($item->object, ampforwp_get_all_post_types()) ){
 		return $atts;
 	}
+	$url = $atts['href'];
+	$is_external = ampforwp_isexternal($url);
+	if($is_external){
+		return $atts;
+	}
   	if(ampforwp_get_setting('amp-core-end-point') == 1 ){
 	    $atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) );
 		$atts['href'] = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $atts['href']);
