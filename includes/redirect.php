@@ -50,6 +50,15 @@ function ampforwp_redirection() {
   $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
                 "https" : "http") . "://" . $_SERVER['HTTP_HOST'] .  
                 $_SERVER['REQUEST_URI'];  
+  if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
+        if(strpos( $current_url, "amp=1&")!==false){
+          $redirect_search = str_replace("amp=1&", '', $current_url);
+          wp_safe_redirect( $redirect_search, 301 );
+          exit;
+        }else{
+          return;
+        }
+  }
   $dev_red_url =  $current_url;           
   $current_url = explode('/', $current_url);
   $check    =  '?nonamp=1';
