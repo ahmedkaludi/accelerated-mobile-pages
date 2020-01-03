@@ -209,7 +209,11 @@ a.amp-social-facebook-messenger,.amp-social-facebookmessenger{background:#d5e1e6
 .sticky_social amp-facebook-like{margin-bottom:-8px;}
 <?php }?>
 /*Sticky Head For Design 3*/
-#header{ background: #fff; text-align: center; height:50px; box-shadow:0 0 32px rgba(0,0,0,.15);display:flex;width:100%;align-items:center; }
+#header{ background: #fff; text-align: center; height:50px; box-shadow:0 0 32px rgba(0,0,0,.15);display:flex;width:100%;align-items:center;
+<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
+  direction:rtl;
+<?php } ?>
+}
 header{ padding-bottom:50px;}
 #headerwrap{ position: fixed; z-index:1000; width: 100%; top:0; }
 <?php if ( $sticky_head ) { ?>
