@@ -4459,6 +4459,9 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 	// Match all the images from the content
 	if(is_object($post)){
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+		if($output==0){
+		 	preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.*>/i', $post->post_content, $matches);
+		}
 		// Match all the figure tags from the content
 		$output_fig = preg_match_all('/\[caption.+id=[\'"]([^\'"]+).*]/i', $post->post_content, $matches_fig);
 		if ( $output_fig && $matches_fig[0][0] ) {
@@ -4473,8 +4476,12 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 	if (is_array($matches) && $matches[0] ) {
 		$image_url 		= $matches[1][0];
 		$image_html 	= $matches[0][0];
-		$image_width 	= $matches[2][0];
-		$image_height 	= $matches[3][0];
+		if(isset($matches[2][0])){
+			$image_width 	= $matches[2][0];
+		}
+		if(isset($matches[3][0])){
+			$image_height 	= $matches[3][0];
+		}
 		// Sanitize it
 		$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array() ) ) );
 	    $amp_html =  $amp_html_sanitizer->get_amp_content();
@@ -4485,7 +4492,7 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 	    // Filter to remove that image from the content
 	    add_filter('ampforwp_modify_the_content','featured_image_content_filter');
 	
-		if ( isset( $size ) && '' !== $size ) {
+		if ( (isset( $size ) && '' !== $size) || $image_width=='') {
 			$image_id = attachment_url_to_postid( $image_url );
 			if ($image_id) {
 				$image_array = wp_get_attachment_image_src($image_id, $size, true);
