@@ -20,8 +20,12 @@ function amp_post_template_add_canonical( $amp_template ) {
 }
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_meta_generator' );
 function amp_post_template_add_meta_generator() {
+	$amp_ver = AMPFORWP_VERSION;
+	if(function_exists('ampforwp_hide_amp_version_from_source')){
+		$amp_ver = ampforwp_hide_amp_version_from_source();
+	}
 	?>
-	<meta name="generator" content="AMP for WP <?php echo esc_attr(AMPFORWP_VERSION) ?>" />
+	<meta name="generator" content="AMP for WP <?php echo esc_attr($amp_ver) ?>" />
 <?php
 }
 

@@ -392,10 +392,13 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		$amp_url = "";
 
 		$amp_url = ampforwp_amphtml_generator();
-
+		$amp_ver = AMPFORWP_VERSION;
+		if(function_exists('ampforwp_hide_amp_version_from_source')){
+			$amp_ver = ampforwp_hide_amp_version_from_source();
+		}
 		if ( $amp_url ) {
 			printf('<link rel="amphtml" href="%s" />', esc_url($amp_url));
-			printf('<meta name="generator" content="%s %s"/>', esc_html__('AMP for WP'), esc_attr(AMPFORWP_VERSION) );
+			printf('<meta name="generator" content="%s %s"/>', esc_html__('AMP for WP'), esc_attr($amp_ver) );
 		}
 
 	} //end of ampforwp_home_archive_rel_canonical()
@@ -6819,8 +6822,12 @@ add_action('amp_meta','ampforwp_generator');
 if ( ! function_exists('ampforwp_generator') ) {
 function ampforwp_generator(){
 	if(true == ampforwp_get_setting('ampforwp-amp-convert-to-wp')){
+		$amp_ver = AMPFORWP_VERSION;
+		if(function_exists('ampforwp_hide_amp_version_from_source')){
+			$amp_ver = ampforwp_hide_amp_version_from_source();
+		}
 	?>
-	<meta name="generator" content="AMP for WP <?php echo esc_attr(AMPFORWP_VERSION)?>" />
+	<meta name="generator" content="AMP for WP <?php echo esc_attr($amp_ver)?>" />
 <?php } 
 } 
 }
@@ -7571,4 +7578,12 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
 	 		}
     	}
     }
+}
+
+function ampforwp_hide_amp_version_from_source(){
+	if(ampforwp_get_setting('hide-amp-version-from-source')){
+		return '';
+	}else{
+		return AMPFORWP_VERSION;
+	}
 }

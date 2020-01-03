@@ -2642,6 +2642,13 @@ Redux::setSection( $opt_name, array(
                         'default' => 0,
                     ),
                     array(
+                        'id'       => 'hide-amp-version-from-source',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Hide AMP Version', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable if you want hide AMP version in view source page(generator).','accelerated-mobile-pages'),
+                        'default' => 0,
+                    ),
+                    array(
                         'id'       => 'ampforwp-smooth-scrolling-for-links',
                         'type'     => 'switch',
                         'title'    => esc_html__('Smooth Scrolling For Links', 'accelerated-mobile-pages'),
