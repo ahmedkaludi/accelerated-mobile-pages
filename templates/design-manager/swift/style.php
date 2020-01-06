@@ -73,7 +73,7 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;-o-box-sizing: border-box;}
 .alignright {float: right;margin-left:10px;}
 .alignleft {float: left;margin-right:10px;}
-.aligncenter {display: block;margin-left: auto;margin-right: auto;}
+.aligncenter {display: block;margin-left: auto;margin-right: auto;text-align: center;}
 amp-iframe { max-width: 100%; margin-bottom : 20px; }
 amp-wistia-player {margin:5px 0px;}
 .wp-caption {padding: 0;}
