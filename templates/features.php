@@ -4459,7 +4459,9 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 	if(is_object($post)){
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 		if($output==0){
-		 	preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.*>/i', $post->post_content, $matches);
+			if(preg_match_all('/data-full-url/', $image_html, $fm) === false){
+		 		preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.*>/i', $post->post_content, $matches);
+		 	}
 		}
 		// Match all the figure tags from the content
 		$output_fig = preg_match_all('/\[caption.+id=[\'"]([^\'"]+).*]/i', $post->post_content, $matches_fig);
@@ -4482,17 +4484,19 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 			$image_height 	= $matches[3][0];
 		}
 		if($image_width==''){
-			$dom = new DOMDocument();
-			$image_html = str_replace("</figure>", '', $image_html);
-		    $dom->loadHTML($image_html);
-		    $x = new DOMXPath($dom);
-		    foreach($x->query("//img") as $node){   
-		        $node->setAttribute("width","1366");
-		        $node->setAttribute("height","600");
-		    }
-		    $image_html = $dom->saveHtml();
-		    preg_match_all('/<img.*\">/', $image_html, $matches);
-		    $image_html =$matches[0][0].'</figure>';
+			if(preg_match_all('/data-full-url/', $image_html, $fm) === false){
+				$dom = new DOMDocument();
+				$image_html = str_replace("</figure>", '', $image_html);
+			    $dom->loadHTML($image_html);
+			    $x = new DOMXPath($dom);
+			    foreach($x->query("//img") as $node){   
+			        $node->setAttribute("width","1366");
+			        $node->setAttribute("height","600");
+			    }
+			    $image_html = $dom->saveHtml();
+			    preg_match_all('/<img.*\">/', $image_html, $matches);
+			    $image_html =$matches[0][0].'</figure>';
+			}
 		}
 		// Sanitize it
 		$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array() ) ) );
