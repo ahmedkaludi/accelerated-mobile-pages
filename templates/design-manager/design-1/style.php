@@ -777,3 +777,12 @@ if(ampforwp_get_setting('d123-border-type') == '3'){?>
   <?php } ?><?php } ?>
 
 <?php } // CTA CSS Ends Here // ?>
+<?php if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
+.ampforwp-gallery-item.amp-carousel-containerd3 {
+    float: left;
+}
+.amp-carousel-containerd3 figcaption {
+    max-width: 150px;
+    border:none;
+}
+<?php } ?>
