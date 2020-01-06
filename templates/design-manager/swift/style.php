@@ -2038,7 +2038,7 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
 <?php } // levelup condition ends here?>
 <?php if (checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 	.sp-cnt .cntr {max-width: 100%;margin:0;width:100%;padding:0}
-	p {margin: 0 0 1.5em;}	
+	.amp_mod.text-mod p {margin: 0 0 1.5em;}	
 <?php } ?> 
 <?php //Breadcrumbs
 if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && ( (is_single() && true == ampforwp_get_setting('ampforwp-bread-crumb')) || (is_page() && ampforwp_get_setting('ampforwp_pages_breadcrumbs')) )) {?>
