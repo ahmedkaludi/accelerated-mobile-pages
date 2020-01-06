@@ -193,11 +193,4 @@ if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 </div>
 <?php } } ?>
 <?php 
-//Twitter title #2744
-function ampforwp_sanitize_twitter_title($post_title){
-	$post_title = html_entity_decode( $post_title, ENT_QUOTES, 'UTF-8' );
-    $post_title = rawurlencode( $post_title );
-    $post_title = esc_html( $post_title );
-    return $post_title;
-}
 do_action('ampforwp_after_social_icons_hook',$this);
