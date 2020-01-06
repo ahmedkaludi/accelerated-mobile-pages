@@ -338,6 +338,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 			foreach ($amp_images as $amp_image) {
 				$amp_carousel->appendChild( $amp_image );
 			}
+			$this->ampforwp_set_block_gallery_caption($node,$node->parentNode);
 		}
 		if ( 2 == ampforwp_get_setting('ampforwp-gallery-design-type') ) {
 			$button_nodes = array();
@@ -385,6 +386,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 				$gal_div->appendChild( $figure_node );
 				$i++;
 			}
+			$this->ampforwp_set_block_gallery_caption($node,$gal_div);
 			$amp_carousel = $gal_div;
 			add_action('amp_post_template_css', 'AMPforWP\\AMPVendor\\ampforwp_gal_des_3');
 		}
@@ -397,6 +399,15 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
 		add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
 		return $amp_carousel;
+	}
+
+	protected function ampforwp_set_block_gallery_caption($node,$append){
+		$domData = $this->dom->saveHTML();
+		if(preg_match_all('/<figcaption class="blocks-gallery-caption">(.*?)<\/figcaption>/', $domData, $fc)!==false){
+			$block_gcnode = AMP_DOM_Utils::create_node($this->dom, 'figcaption', array('class'=>'ampforwp-blocks-gallery-caption') );
+			$block_gcnode->nodeValue = $fc[1][0];
+			$append->appendChild( $block_gcnode );
+		}
 	}
 	/**
 	 * Get carousel height by containing images.

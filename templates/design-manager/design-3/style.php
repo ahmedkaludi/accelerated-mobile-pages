@@ -1059,3 +1059,6 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
   right: 0;
   cursor:pointer;
 }
+.ampforwp-blocks-gallery-caption{
+    font-size: 16px;
+}
