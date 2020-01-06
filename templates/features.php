@@ -8096,3 +8096,10 @@ if(!function_exists('ampforwp_get_retina_image_settings')){
 		return $data;
 	}
 }
+//Twitter title #2744
+function ampforwp_sanitize_twitter_title($post_title){
+    $post_title = html_entity_decode( $post_title, ENT_QUOTES, 'UTF-8' );
+    $post_title = rawurlencode( $post_title );
+    $post_title = esc_html( $post_title );
+    return $post_title;
+}

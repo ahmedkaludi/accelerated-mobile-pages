@@ -1,8 +1,8 @@
 <?php 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
-add_filter("ampforwp_extension_pagebuilder_module_template", 'ampforwp_socialmod', 10, 3);
-function ampforwp_socialmod($moduleFrontHtml, $htmlTemplate, $contentArray){
+add_filter("ampforwp_extension_pagebuilder_module_template", 'ampforwp_pb_social_module', 10, 3);
+function ampforwp_pb_social_module($moduleFrontHtml, $htmlTemplate, $contentArray){
 	$amp_permalink ='';
 	$current_title = '';
 
@@ -312,6 +312,7 @@ $css = '
 	color:#fff;
 	line-height:1;
 	display:block;
+	text-decoration: none;
 }
 {{module-class}} .social-icons li a:after{
 	font-size:18px;
@@ -408,7 +409,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -422,7 +422,6 @@ return array(
 			                'default' =>1,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -436,7 +435,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -459,7 +457,6 @@ return array(
 			                'default' =>1,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -473,7 +470,6 @@ return array(
 			                'default' =>1,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -487,7 +483,6 @@ return array(
 			                'default' =>1,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -501,7 +496,6 @@ return array(
 			                'default' =>1,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -515,7 +509,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -529,7 +522,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -543,7 +535,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -557,7 +548,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -571,7 +561,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -585,7 +574,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -599,7 +587,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -613,7 +600,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -627,7 +613,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -641,7 +626,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -655,7 +639,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -669,7 +652,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -683,7 +665,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -697,7 +678,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -711,7 +691,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
@@ -725,7 +704,6 @@ return array(
 			                'default' =>0,
 			                'options' =>array(
 			                        array(
-			                          'label'=>'Yes',
 			                          'value'=>1,
 			                        )
 			                      ),
