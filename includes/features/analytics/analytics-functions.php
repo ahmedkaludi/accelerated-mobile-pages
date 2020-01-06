@@ -112,8 +112,8 @@ function ampforwp_analytics() {
 							}
 						},
 						"requests": {
-							"base": "https://piwik.example.org/piwik.php?idsite=<?php echo urlencode(esc_attr($idsite));?>&rec=1&action_name=<?php echo esc_attr($title);?>&url=<?php echo esc_url($url);?>&rand=<?php echo intval($rand);?>&apiv=1",
-							"pageview": "<?php echo esc_url($pview);?>"
+							"base": "https://piwik.example.org/piwik.php?idsite=<?php echo urlencode(esc_attr($idsite));?>&rec=1&action_name=<?php echo esc_attr($title);?>&url=<?php echo $url;?>&rand=<?php echo intval($rand);?>&apiv=1",
+							"pageview": "<?php echo $pview;?>"
 						}
 					}
 				</script>
