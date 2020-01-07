@@ -304,6 +304,30 @@ if( !function_exists("ampforwp_clear_tree_shaking") ) {
 		}
 	}
 }
+if ( is_admin() && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) ){
+    register_activation_hook( 'amp-newspaper-theme/ampforwp-custom-theme.php', 'ampforwp_clear_tree_shaking_on_activity' );
+    register_deactivation_hook( 'amp-newspaper-theme/ampforwp-custom-theme.php', 'ampforwp_clear_tree_shaking_on_activity' );
+    register_activation_hook( 'amp-layouts/amp-layouts.php', 'ampforwp_clear_tree_shaking_on_activity' );
+    register_deactivation_hook( 'amp-layouts/amp-layouts.php', 'ampforwp_clear_tree_shaking_on_activity' );
+}
+function ampforwp_clear_tree_shaking_on_activity(){
+    if ( is_admin() && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) ){
+        $upload_dir   = wp_upload_dir();
+        $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
+        if ( file_exists( $user_dirname ) ) {
+            $files = glob( $user_dirname . '/*' );
+            //Loop through the file list.
+            foreach ( $files as $file ) {
+                //Make sure that this is a file and not a directory.
+                if ( is_file( $file ) && strpos( $file, '_transient' ) !== false ) {
+                    //Use the unlink function to delete the file.
+                    unlink( $file );
+                }
+            }
+        }
+    }
+}
+
 add_action( 'save_post', 'ampforwp_clear_tree_shaking_post');
 if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
 	function ampforwp_clear_tree_shaking_post() {
