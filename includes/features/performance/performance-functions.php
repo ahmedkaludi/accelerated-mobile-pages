@@ -255,11 +255,13 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                 if(strpos($sheet, '-keyframes')!==false){
                     $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
                 }
-                preg_match('/<style\samp-custom>(.*)<\/style>/s', $completeContent,$matches);
-                if($matches){
+                if(preg_match('/<style\samp-custom>(.*?)<\/style>/s', $completeContent,$matches)){
+                    $completeContent = preg_replace("/<style\samp-custom>(.*?)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
+                }else if(preg_match('/<style\samp-custom>(.*)<\/style>/s', $completeContent,$matches)){
                     $completeContent = preg_replace("/<style\samp-custom>(.*)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
+                }else if(preg_match('/<style\samp-custom>.*<\/style>/s', $completeContent,$matches)){
+                     $completeContent = preg_replace("/<style\samp-custom>.*<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
                 }
-                
             }
         }
         //for fonts
