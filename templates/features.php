@@ -7601,3 +7601,25 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
     	}
     }
 }
+
+add_filter('amp_post_template_data','ampforwp_add_required_scripts');
+function ampforwp_add_required_scripts($data){
+   $content = $data['post']->post_excerpt;
+   $sanitizer = new AMPFORWP_Content( $content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 
+		'AMP_Img_Sanitizer' => array(),
+		'AMP_Video_Sanitizer' => array(),
+		'AMP_Style_Sanitizer' => array(),
+		'AMP_Iframe_Sanitizer' => array(
+		 'add_placeholder' => true,
+		), ) ) );
+		$sanitize_data =  $sanitizer->get_amp_content(); 
+		preg_match_all('/<\/amp-(.*?)>/', $sanitize_data, $matches);
+		if(isset($matches[1][0])){
+    		$amp_comp = $matches[1];
+    		for($i=0;$i<count($amp_comp);$i++){
+    			$comp = $amp_comp[$i];
+    			$data['amp_component_scripts']["amp-".esc_attr($comp)] = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-latest.js";
+    		}
+    	}
+	    return $data;
+}
