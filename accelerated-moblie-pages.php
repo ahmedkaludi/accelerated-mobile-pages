@@ -836,7 +836,7 @@ if(is_admin()){
 function ampforwp_update_data_when_reset($rest_object = ''){
 	if(isset($rest_object->parent->transients)){
 		if($rest_object->parent->transients['changed_values']['amp-mobile-redirection'] == 1){
-			insert_with_markers( ABSPATH . '/.htaccess', "ampforwpformobileredirection", '' );
+			insert_with_markers( ABSPATH . '/.htaccess', "ampforwp_mobile_redirection_code", '' );
 		}
 		$updatedDataForTransient = array('hide-amp-categories2','amp-design-3-category-selector','ampforwp-homepage-loop-cats','hide-amp-tags-bulk-option2', 'amp-design-3-tag-selector');
 		foreach($rest_object->parent->transients['changed_values'] as $key => $value ){
@@ -1499,10 +1499,10 @@ function ampforwp_update_data_when_saved($options, $changed_values) {
                     RewriteCond ' . str_replace( "\\", "/", AMPFORWP_PLUGIN_DIR ) . 'accelerated-moblie-pages.php -f
                     RewriteRule ^(.*)$  %{REQUEST_URI}amp/ [L,R=301] ';
 			$rules .= "\n</IfModule>\n";
-			insert_with_markers( ABSPATH . '/.htaccess', "ampforwpformobileredirection", $rules );
+			insert_with_markers( ABSPATH . '/.htaccess', "ampforwp_mobile_redirection_code", $rules );
 		} else {
 			$rules = '';
-			insert_with_markers( ABSPATH . '/.htaccess', "ampforwpformobileredirection", $rules );
+			insert_with_markers( ABSPATH . '/.htaccess', "ampforwp_mobile_redirection_code", $rules );
 		}
 	}
 }
