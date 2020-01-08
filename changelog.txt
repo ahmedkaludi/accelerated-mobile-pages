@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.9 (8th January 2020) =
+* Fixed: Odd behaviour of Optimize CSS (Treeshaking),when turned off resolves the validation errors and when turned on adding unnecessary wp-block CSS. #4036
+* Fixed: After enable the Tree shaking feature the CSS not loading properly #4034
+* Fixed: fallback feature is not working on SVG images #4033
+* Fixed: Need to update the Form Sanitizer to allow only the required from #4010
+* Fixed: 404 error in console with Images having webp extension. #3983
+
 = 1.0.8 (2nd January 2020) =
 * Fixed: Need to add Rankmath's "Nofollow External Links" feature. #3970 (updated the code)
 

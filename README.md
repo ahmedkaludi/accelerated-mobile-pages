@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.9 (8th January 2020) =
+* Fixed: Odd behaviour of Optimize CSS (Treeshaking),when turned off resolves the validation errors and when turned on adding unnecessary wp-block CSS. #4036
+* Fixed: After enable the Tree shaking feature the CSS not loading properly #4034
+* Fixed: fallback feature is not working on SVG images #4033
+* Fixed: Need to update the Form Sanitizer to allow only the required from #4010
+* Fixed: 404 error in console with Images having webp extension. #3983
 
 = 1.0.8 (2nd January 2020) =
 * Fixed: Need to add Rankmath's "Nofollow External Links" feature. #3970 (updated the code)

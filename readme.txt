@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.9 (8th January 2020) =
+* Fixed: Odd behaviour of Optimize CSS (Treeshaking),when turned off resolves the validation errors and when turned on adding unnecessary wp-block CSS. #4036
+* Fixed: After enable the Tree shaking feature the CSS not loading properly #4034
+* Fixed: fallback feature is not working on SVG images #4033
+* Fixed: Need to update the Form Sanitizer to allow only the required from #4010
+* Fixed: 404 error in console with Images having webp extension. #3983
+
 = 1.0.8 (2nd January 2020) =
 * Fixed: Need to add Rankmath's "Nofollow External Links" feature. #3970 (updated the code)
 
@@ -201,23 +208,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Breadcrumbs are not properly displaying and working in updated version #3917
 * Fixed: amp-auto-ads script is loading in AMP-pages when Google site kit plugin is enable. #4009
 * Fixed: wp-block CSS is heavily loading even when tree shaking is enabled in core. (Page builder is enabled) #4014
-
-= 1.0.6 (31th December 2019) =
-* Improvement: Allow users to add custom script in amp by using amp theme frame work plugin or without plugin #3865
-* Improvement: Allow users to register scripts in proper way in AMP Theme Framework #3257
-* Improvement: Need to add filter to modify mobile redirection #3987
-* Improvement: Need to update Sabberworm/CSS folder. #4012
-* Improvement: Need to make compatibility with "Transposh WordPress Translation" plugin #3895
-* Fixed: Warning issue with "$amp_emplate->get('metadata')" undefined metadata #3967
-* Fixed: GDPR popup appears once agin after accepting it #3957
-* Fixed: AMP Page apears blank after adding script tag in Head Section of AMP Page Builder #3834
-* Fixed: when user is not an admin and the admin bar is getting displayed as gap on the site #3918
-* Fixed: Option Panel not saving in AMP FOR WP, it is giving 404 error #3768
-* Fixed: Page Builder Latest Posts Category Module #3927
-* Fixed: Error amp-iframe extension .js appears more than once #3810
-* Fixed: Query monitor is not working in our latest version. #4008
-* Fixed: Google Tag manager not firing properly #3826
-* Fixed: Undefined variable block_css #4021
-
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
