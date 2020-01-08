@@ -100,7 +100,16 @@ function ampforwp_analytics() {
 			$url = urlencode(ampforwp_remove_protocol(ampforwp_url_controller($url)));
 			$rand = rand(1111,9999);
 			$pview = urlencode(ampforwp_remove_protocol(site_url()));
-			$piwik_analytics = '{"triggers":{"trackPageview": {"on":"visible","request":"pageview}},"requests":{"base": "https://piwik.example.org/piwik.php?idsite='.$idsite.'&rec=1&action_name='.$title.'&url='.$url.'&rand='.$rand.'&apiv=1"}}';
+
+			$referer  = $url;
+			if(isset($_SERVER['HTTP_REFERER'])) {
+		      $referer  = $_SERVER['HTTP_REFERER'];
+		    }
+			$piwik_api = str_replace("YOUR_SITE_ID", '1', $idsite);
+			$piwik_api = str_replace("TITLE", $title, $piwik_api);
+			$piwik_api = str_replace("DOCUMENT_REFERRER", $referer, $piwik_api);
+			$piwik_api = str_replace("CANONICAL_URL", $pview, $piwik_api);
+			$piwik_api = str_replace("RANDOM", $rand, $piwik_api);
 			?>
 			<amp-analytics id="piwikanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="piwikanalytics">
 				<script type="application/json">
@@ -112,7 +121,7 @@ function ampforwp_analytics() {
 							}
 						},
 						"requests": {
-							"base": "https://piwik.example.org/piwik.php?idsite=<?php echo urlencode(esc_attr($idsite));?>&rec=1&action_name=<?php echo esc_attr($title);?>&url=<?php echo $url;?>&rand=<?php echo intval($rand);?>&apiv=1",
+							"base": "<?php echo $piwik_api;?>",
 							"pageview": "<?php echo $pview;?>"
 						}
 					}
