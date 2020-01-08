@@ -174,7 +174,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		} else {
 			$new_attributes['layout'] = 'intrinsic';
 		}
-		$new_attributes['lightbox'] = true;
+		
 		// Remove sizes attribute since it causes headaches in AMP and because AMP will generate it for us. See <https://github.com/ampproject/amphtml/issues/21371>.
 		unset( $new_attributes['sizes'] );
 
@@ -189,6 +189,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		
 		if ( isset($new_attributes['on']) && '' != $new_attributes['on'] ) {
 			$this->is_lightbox = true;
+			$new_attributes['lightbox'] = true;
 		}
 	}
 
