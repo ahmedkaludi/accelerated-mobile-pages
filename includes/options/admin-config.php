@@ -5004,7 +5004,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd123-signin-button-text',
                  'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Text', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Text', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can write your required text ','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => 'Sign up free',
@@ -5016,7 +5016,7 @@ Redux::setSection( $opt_name, array(
              array(
                 'id'        => 'd123-signin-button-link',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Link', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Link', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can add the Link here ','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '#',
@@ -5036,7 +5036,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd123-signin-button-style',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Design', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Design', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can change the button here','accelerated-mobile-pages'),
                 'type'      => 'switch',
                 'default'   => '0',
@@ -5047,7 +5047,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd123-signin-button-border-line',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Border Line', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Border Line', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can change the button border line','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '2',
@@ -5059,7 +5059,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd1-signin-button-text-color',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Text Color', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Text Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Text','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -5073,7 +5073,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd1-signin-button-border-color',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Border Line Color', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Border Line Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -5087,7 +5087,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd1-signin-button-bg-color',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Background Color', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Background Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -5102,7 +5102,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd2-signin-button-text-color',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Text Color', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Text Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Text','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -5116,7 +5116,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd2-signin-button-border-color',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Border Line Color', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Border Line Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -5130,7 +5130,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd2-signin-button-bg-color',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Background Color', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Background Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -5146,7 +5146,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd3-signin-button-text-color',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Text Color', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Text Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Text','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -5160,7 +5160,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd3-signin-button-border-color',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Border Line Color', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Border Line Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -5174,7 +5174,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'        => 'd3-signin-button-bg-color',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('CTA Background Color', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Background Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -5189,7 +5189,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'    => 'd123-border-type',
                     'class' => 'child_opt child_opt_arrow',
-                   'title'  => esc_html__('CTA Type', 'accelerated-mobile-pages'),
+                   'title'  => esc_html__('Type', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Square',
@@ -5213,7 +5213,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'    => 'd123_cta-responsive-view',
                     'class' => 'child_opt child_opt_arrow',
-                   'title'  => esc_html__('CTA Position on Mobile', 'accelerated-mobile-pages'),
+                   'title'  => esc_html__('Position on Mobile', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Header',

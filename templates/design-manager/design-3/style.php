@@ -1079,11 +1079,16 @@ amp-facebook-like{
 <?php } // Progress Bar CSS ends ?>
 
 <?php // CTA CSS Starts Here //
-if(true == ampforwp_get_setting('d123-signin-button') ) {  
+if(true == ampforwp_get_setting('d123-signin-button') ) {
+if(true == ampforwp_get_setting('d123-signin-button-style')){  
   $cta_text_color   = ampforwp_get_setting('d3-signin-button-text-color','color');
   $cta_border_color = ampforwp_get_setting('d3-signin-button-border-color','color'); 
   $cta_background_color = ampforwp_get_setting('d3-signin-button-bg-color','color'); 
-
+} else {
+  $cta_text_color ='#fff';
+  $cta_border_color ='#f42f42';
+  $cta_background_color ='#f42f42';
+}
 if(empty($cta_text_color)){
   $cta_text_color ='#fff';
 }

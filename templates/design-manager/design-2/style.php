@@ -838,10 +838,15 @@ amp-facebook-like{
 
 <?php // CTA CSS Starts Here //
 if(true == ampforwp_get_setting('d123-signin-button') ) {  
+if(true == ampforwp_get_setting('d123-signin-button-style')){
   $cta_text_color   = ampforwp_get_setting('d2-signin-button-text-color','color');
   $cta_border_color = ampforwp_get_setting('d2-signin-button-border-color','color'); 
   $cta_background_color = ampforwp_get_setting('d2-signin-button-bg-color','color'); 
-
+} else {
+	$cta_text_color ='#fff';
+	$cta_border_color ='#0a89c0';
+	$cta_background_color ='#0a89c0';
+}
 if(empty($cta_text_color)){
   $cta_text_color ='#fff';
 }
