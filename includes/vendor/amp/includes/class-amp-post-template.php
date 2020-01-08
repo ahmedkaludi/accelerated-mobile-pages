@@ -340,9 +340,11 @@ class AMP_Post_Template {
 				$img_url = esc_url($src[1][0]);
 				$rep_url = esc_url($src[1][0]).".webp";
 				$headers = get_headers($rep_url);
-				$is_webp = stripos($headers[0], "200 OK") ? TRUE : FALSE;
-				if($is_webp){
-					$content = str_replace($img_url, $rep_url, $content);
+				if(isset($headers[0])){
+					$is_webp = stripos($headers[0], "200 OK") ? TRUE : FALSE;
+					if($is_webp){
+						$content = str_replace($img_url, $rep_url, $content);
+					}
 				}
 			}
 		}
