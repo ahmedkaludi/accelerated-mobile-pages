@@ -379,7 +379,7 @@ class AMP_Post_Template {
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
 					preg_match_all('/height="(.*?)"/', $m1_content,$fimgheight);
 					preg_match_all('/alt="(.*?)"/', $m1_content,$fimgalt);
-					if(isset($fimgsrc[1][0]) && isset($fimgwidth[1][0]) && isset($fimgheight[1][0])){
+					if((isset($fimgsrc[1][0]) && preg_match_all('/http/', $fimgsrc[1][0],$fbi)) && isset($fimgwidth[1][0]) && isset($fimgheight[1][0])){
 					$data['src'] 	= $fimgsrc[1][0];
 					$data['width'] 	= $fimgwidth[1][0];
 					$data['height'] = $fimgheight[1][0];
