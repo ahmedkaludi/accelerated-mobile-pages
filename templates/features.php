@@ -4456,7 +4456,7 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 	if(is_object($post)){
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 		if($output==0){
-			if(preg_match_all('/data-full-url/', $image_html, $fm) === false){
+			if(preg_match('/wp-block-image/', $post->post_content, $fm)){
 		 		preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.*>/i', $post->post_content, $matches);
 		 	}
 		}
@@ -4481,7 +4481,7 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 			$image_height 	= $matches[3][0];
 		}
 		if($image_width==''){
-			if(preg_match_all('/data-full-url/', $image_html, $fm) === false){
+			if(preg_match('/wp-block-image/', $post->post_content, $fm)){
 				$dom = new DOMDocument();
 				$image_html = str_replace("</figure>", '', $image_html);
 			    $dom->loadHTML($image_html);
