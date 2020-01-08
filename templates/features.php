@@ -2747,9 +2747,6 @@ function ampforwp_sidebar_blacklist_tags($tags) {
 	$textarea = array_search('textarea', $tags);
 	$select = array_search('select', $tags);
 	$option = array_search('option', $tags);
-	if ( $form ) {
-		unset($tags[$form]);
-	}
 	if ( $input ) {
 		unset($tags[$input]);
 	}

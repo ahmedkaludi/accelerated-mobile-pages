@@ -123,6 +123,31 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 							$checkAllowedFlag = 1 ;
 					}
 				}
+
+				//white listing form element #4010
+				$form_classes = '';
+				$form_method = '';
+				if($element->tagName=='form'){
+					$form_classes 	= $element->getAttribute('class');
+					$form_method 	= $element->getAttribute('method');
+				}else if($parent_node->tagName=='form'){
+					$form_classes	= $parent_node->getAttribute('class');
+					$form_method 	= $parent_node->getAttribute('method');
+				}
+				$allow_form = 0;
+				$allow_form = apply_filters('ampforwp_whitelist_form_element',$allow_form,$element);
+				if((strpos($form_classes, 'ampforwp-form-allow') !== false || $allow_form==1) && strtolower($form_method)=='post'){
+					$checkAllowedFlag = 1;
+				}
+				
+				if($form_method!=''){
+					if(strtolower($form_method)=='get'){
+						$checkAllowedFlag = 1;
+					}
+				}
+				//white listing form element close #4010
+
+
 				if( $parent_node->tagName != 'amp-state' && $checkAllowedFlag == 0){
  					$parent_node->removeChild( $element );
 				}
