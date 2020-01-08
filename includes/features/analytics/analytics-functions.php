@@ -94,13 +94,12 @@ function ampforwp_analytics() {
 
 	// 10.3 Analytics Support added for Piwik
 		if( true == ampforwp_get_setting('ampforwp-Piwik-switch')){
-			$idsite = urlencode(ampforwp_get_setting('pa-feild'));
+			$idsite = ampforwp_get_setting('pa-feild');
 			$title = urlencode(get_the_title());
 			$url = get_the_permalink();
-			$url = urlencode(ampforwp_remove_protocol(ampforwp_url_controller($url)));
+			$url = ampforwp_remove_protocol(ampforwp_url_controller($url));
 			$rand = rand(1111,9999);
-			$pview = urlencode(ampforwp_remove_protocol(site_url()));
-
+			$pview = ampforwp_remove_protocol(site_url());
 			$referer  = $url;
 			if(isset($_SERVER['HTTP_REFERER'])) {
 		      $referer  = $_SERVER['HTTP_REFERER'];
@@ -111,22 +110,7 @@ function ampforwp_analytics() {
 			$piwik_api = str_replace("CANONICAL_URL", $pview, $piwik_api);
 			$piwik_api = str_replace("RANDOM", $rand, $piwik_api);
 			?>
-			<amp-analytics id="piwikanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="piwikanalytics">
-				<script type="application/json">
-					{
-						"triggers": {
-							"trackPageview": {
-								"on": "visible",
-								"request": "pageview"
-							}
-						},
-						"requests": {
-							"base": "<?php echo $piwik_api;?>",
-							"pageview": "<?php echo $pview;?>"
-						}
-					}
-				</script>
-			</amp-analytics>
+			<amp-pixel src="<?php echo $piwik_api;?>"></amp-pixel>
 		<?php }
 
 		// 10.4 Analytics Support added for quantcast
