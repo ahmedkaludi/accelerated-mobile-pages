@@ -2959,7 +2959,9 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 		return $atts;
 	}
 	$url = $atts['href'];
-	$is_external = ampforwp_isexternal($url);
+	if($url){
+		$is_external = ampforwp_isexternal($url);
+	}
 	if($is_external){
 		return $atts;
 	}
