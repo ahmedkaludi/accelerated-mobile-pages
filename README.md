@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.10 (9th January 2020) =
+* Fixed: Scripts are not adding properly if user is adding the content through embed #4040
+* Fixed: Need to add proper way of styling for Header right side icons in Design 1,2 and 3 #3935
+* Fixed: Need to add button in header option in all design #3861
+* Fixed: When Featured Image from The Content is turned on,the image is not displayed when Creating post from Gutenberg. #4022
+* Fixed: Need a hook to use it in Woocomerce #4048
 
 = 1.0.9 (8th January 2020) =
 * Fixed: Odd behaviour of Optimize CSS (Treeshaking),when turned off resolves the validation errors and when turned on adding unnecessary wp-block CSS. #4036
