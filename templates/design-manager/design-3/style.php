@@ -1059,3 +1059,85 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
   right: 0;
   cursor:pointer;
 }
+
+<?php // CTA CSS Starts Here //
+if(true == ampforwp_get_setting('d123-signin-button') ) {
+if(true == ampforwp_get_setting('d123-signin-button-style')){  
+  $cta_text_color   = ampforwp_get_setting('d3-signin-button-text-color','color');
+  $cta_border_color = ampforwp_get_setting('d3-signin-button-border-color','color'); 
+  $cta_background_color = ampforwp_get_setting('d3-signin-button-bg-color','color'); 
+} else {
+  $cta_text_color ='#fff';
+  $cta_border_color ='#f42f42';
+  $cta_background_color ='#f42f42';
+}
+if(empty($cta_text_color)){
+  $cta_text_color ='#fff';
+}
+if(empty($cta_border_color)){
+  $cta_border_color ='#f42f42';
+}
+if(empty($cta_background_color)){
+  $cta_background_color ='#f42f42';
+}
+?>
+<?php if ( '1' == ampforwp_get_setting('d123_cta-responsive-view') ) {?>
+  .d1-cta-wrap{
+  <?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) { ?>
+    margin-right:18px;
+  <?php } else { ?>
+  margin-left:18px;
+  <?php } ?>
+}
+<?php }
+if ( '2' == ampforwp_get_setting('d123_cta-responsive-view') ) {?>
+.d1-cta-wrap{
+    width: 100%;
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+}
+<?php } ?>
+<?php if ( '1' == ampforwp_get_setting('d123_cta-responsive-view') ) {?>
+.d1-cta-wrap{
+    position: absolute;
+    top: 9px;
+    <?php if( true == ampforwp_get_setting('ampforwp-callnow-button') ){ ?>
+      right: 50px;
+    <?php } else { ?>
+      right: 50px;
+    <?php } ?>
+  }
+<?php } else { ?>
+.d1-cta-wrap{
+    width: 100%;
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+}
+<?php } ?>
+  .d1-cta-wrap a {
+    color: <?php echo ampforwp_sanitize_color($cta_text_color) ?>;   
+    display: inline-block;
+    padding: 6px 10px 7px 10px;
+    <?php if(ampforwp_get_setting('d123-signin-button-border-line')){?>
+     border: <?php echo esc_html(ampforwp_get_setting('d123-signin-button-border-line'))?>px solid <?php echo ampforwp_sanitize_color($cta_border_color) ?>;
+    <?php } ?>
+    font-size: 14px;    
+    line-height: 1;
+    font-weight: 500;
+    background: <?php echo ampforwp_sanitize_color($cta_background_color) ?>;   
+  }
+<?php if(ampforwp_get_setting('d123-border-type') == '1'){?>
+  .d1-cta-wrap a{border-radius:3px;}
+<?php }
+if(ampforwp_get_setting('d123-border-type') == '2'){?>
+  .d1-cta-wrap a{border-radius:100px;}
+  .d1-cta-wrap a:before{border-radius:100px;}
+<?php }
+if(ampforwp_get_setting('d123-border-type') == '3'){?>
+  <?php if(ampforwp_get_setting('d123-border-radius') ){ ?>
+    .d1-cta-wrap a{border-radius:<?php echo esc_html(ampforwp_get_setting('d123-border-radius'))?>px;}
+  <?php } ?><?php } ?>
+
+<?php } // CTA CSS Ends Here // ?>

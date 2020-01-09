@@ -4299,6 +4299,243 @@ Redux::setSection( $opt_name, array(
                     ),
                     'default'  => '0'
             ),
+
+            // CTA in Design 1 2 and 3 
+            array(
+                'id'        => 'd123-signin-button',
+                'title'     => esc_html__('Call To Action', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can do the customization here ','accelerated-mobile-pages'),
+                'type'      => 'switch',
+                'default'   => '0',
+                    'required' => array(
+                      array('amp-design-selector', '!=' , '4')
+                    )  
+              ),
+            array(
+                'id'        => 'd123-signin-button-text',
+                 'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Text', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can write your required text ','accelerated-mobile-pages'),
+                'type'      => 'text',
+                'default'   => 'Sign up free',
+                    'required' => array(
+                        array('amp-design-selector', '!=' , '4'),
+                        array('d123-signin-button','=',1)
+                    )  
+            ),
+             array(
+                'id'        => 'd123-signin-button-link',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Link', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can add the Link here ','accelerated-mobile-pages'),
+                'type'      => 'text',
+                'default'   => '#',
+                    'required' => array(
+                      array('d123-signin-button','=',1)
+                    )  
+              ),
+            // CTA No Follow links
+            array(
+                'id'        =>  'ampforwp-header-cta-link-nofollow',
+                'type'      =>  'switch',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     =>  esc_html__('No Follow Link', 'accelerated-mobile-pages'),
+                'default'   =>  0,
+                'required' => array('d123-signin-button', '=', '1')
+            ),
+            array(
+                'id'        => 'd123-signin-button-style',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Design', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can change the button here','accelerated-mobile-pages'),
+                'type'      => 'switch',
+                'default'   => '0',
+                    'required' => array(
+                      array('d123-signin-button','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'd123-signin-button-border-line',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Border Line', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can change the button border line','accelerated-mobile-pages'),
+                'type'      => 'text',
+                'default'   => '2',
+                    'required' => array(
+                      array('d123-signin-button-style','=',1)
+                    )  
+              ),
+            // Design 1 Color Fields
+            array(
+                'id'        => 'd1-signin-button-text-color',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Text Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Text','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'color'  => '#333',
+                    ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '1'),
+                    array('d123-signin-button-style','=',1)
+                )  
+            ),
+            array(
+                'id'        => 'd1-signin-button-border-color',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Border Line Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                     'color'  => '#fff',
+                    ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '1'),
+                    array('d123-signin-button-style','=',1)
+                )  
+            ),
+            array(
+                'id'        => 'd1-signin-button-bg-color',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Background Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                     'color'  => '#ffffff',
+                    ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '1'),
+                    array('d123-signin-button-style','=',1)
+                )   
+            ),
+            // Design 2 Color Fields
+            array(
+                'id'        => 'd2-signin-button-text-color',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Text Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Text','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'color'  => '#fff',
+                    ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '2'),
+                    array('d123-signin-button-style','=',1)
+                )  
+            ),
+            array(
+                'id'        => 'd2-signin-button-border-color',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Border Line Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                     'color'  => '#0a89c0',
+                    ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '2'),
+                    array('d123-signin-button-style','=',1)
+                )  
+            ),
+            array(
+                'id'        => 'd2-signin-button-bg-color',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Background Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                     'color'  => '#0a89c0',
+                    ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '2'),
+                    array('d123-signin-button-style','=',1)
+                )   
+            ),
+
+            // Design 3 Color Fields
+            array(
+                'id'        => 'd3-signin-button-text-color',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Text Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Text','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'color'  => '#fff',
+                    ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '3'),
+                    array('d123-signin-button-style','=',1)
+                )  
+            ),
+            array(
+                'id'        => 'd3-signin-button-border-color',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Border Line Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                     'color'  => '#f42f42',
+                    ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '3'),
+                    array('d123-signin-button-style','=',1)
+                )  
+            ),
+            array(
+                'id'        => 'd3-signin-button-bg-color',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Background Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the color for Button Border Line','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                     'color'  => '#f42f42',
+                    ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '3'),
+                    array('d123-signin-button-style','=',1)
+                )   
+            ),
+
+            array(
+                    'id'    => 'd123-border-type',
+                    'class' => 'child_opt child_opt_arrow',
+                   'title'  => esc_html__('Type', 'accelerated-mobile-pages'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Square',
+                        '2' =>  'Round',
+                        '3' => 'Custom'
+                    ),
+                   'default'=> '1',
+                   'required' => array( array('d123-signin-button', '=' ,1) ),
+            ),
+            array(
+                'id'        => 'd123-border-radius',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Customize Border Radius', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can change the border radius','accelerated-mobile-pages'),
+                'type'      => 'text',
+                'default'   => '10',
+                    'required' => array(
+                      array('d123-border-type','=',3)
+                    )  
+              ),
+            array(
+                    'id'    => 'd123_cta-responsive-view',
+                    'class' => 'child_opt child_opt_arrow',
+                   'title'  => esc_html__('Position on Mobile', 'accelerated-mobile-pages'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Header',
+                        '2' =>  'Menu',
+                    ),
+                   'default'=> '1',
+                   'required' => array( 
+                    array('amp-design-selector', '!=' , '4'),
+                    array('d123-signin-button', '=' ,1) ),
+            ),
+            // CTA Fields Ends Here
+
             array(
                     'id'       => 'amp-swift-search-feature',
                     'type'     => 'switch',
