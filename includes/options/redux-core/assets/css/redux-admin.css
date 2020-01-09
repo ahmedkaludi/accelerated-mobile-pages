@@ -720,7 +720,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     font-weight: 600;
 }
 .fp-cnt p{
-    margin-top: 25px;
+    margin-top: 5px;
     color: #fff;
     font-size:23px;
     padding: 0 100px;
@@ -738,7 +738,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);
     background: linear-gradient(to right, #a8e063, #56ab2f);
     font-weight: 700;
-    margin-top: 4px;
+    margin-top: 10px;
     text-shadow: 1px 1px 1px #27a52c;
 }
 .pvf{
@@ -971,7 +971,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     color: #666;
     font-weight: 500;
     margin-bottom: 15px;
-    display: block;
+    display: none;
     text-decoration: line-through;
 }
 .d-amt sup{
@@ -984,7 +984,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     color: #4caf50;
     font-weight: 500;
     margin-bottom:10px;
-    display: block;
+    display: none;
 }
 .pri-tb .amt sup{
     font-size:22px;

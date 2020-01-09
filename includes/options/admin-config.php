@@ -704,7 +704,6 @@ $freepro_listing = '
         <span class="ov"></span>
     </div>
     <div class="fp-cnt">
-            <h1>40% OFF for a limited period</h1>
             <p>Take your AMP to the next level with more beautiful themes, great extensions and more powerful features.</p>
             <a class="buy" href="#upgrade">BUY NOW</a>
     </div>
@@ -871,10 +870,10 @@ $freepro_listing = '
             </div>
             <div class="pri-lst">
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=AMP2019&download_id=24570&edd_options[price_id]=1">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=1">
                         <h5>PERSONAL</h5>
                         <span class="d-amt"><sup>$</sup>149</span>
-                        <span class="amt"><sup>$</sup>89</span>
+                        <span class="amt"><sup>$</sup>149</span>
                         <span class="s-amt">(Save $59)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">1 Site License</span>
@@ -885,7 +884,7 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb rec">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=AMP2019&download_id=24570&edd_options[price_id]=2">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=2">
                         <h5>MULTIPLE</h5>
                         <span class="d-amt"><sup>$</sup>199</span>
                         <span class="amt"><sup>$</sup>119</span>
@@ -900,10 +899,10 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=AMP2019&download_id=24570&edd_options[price_id]=3">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=3">
                         <h5>WEBMASTER</h5>
                         <span class="d-amt"><sup>$</sup>249</span>
-                        <span class="amt"><sup>$</sup>149</span>
+                        <span class="amt"><sup>$</sup>249</span>
                         <span class="s-amt">(Save $99)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">10 Site License</span>
@@ -914,10 +913,10 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=AMP2019&download_id=24570&edd_options[price_id]=4">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=4">
                         <h5>FREELANCER</h5>
                         <span class="d-amt"><sup>$</sup>299</span>
-                        <span class="amt"><sup>$</sup>179</span>
+                        <span class="amt"><sup>$</sup>299</span>
                         <span class="s-amt">(Save $119)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">25 Site License</span>
@@ -928,10 +927,10 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=AMP2019&download_id=24570&edd_options[price_id]=5">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=5">
                         <h5>AGENCY</h5>
                         <span class="d-amt"><sup>$</sup>499</span>
-                        <span class="amt"><sup>$</sup>299</span>
+                        <span class="amt"><sup>$</sup>499</span>
                         <span class="s-amt">(Save $199)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">Unlimited</span>
