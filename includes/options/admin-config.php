@@ -2668,6 +2668,17 @@ Redux::setSection( $opt_name, array(
                    'required' => array('amp-design-selector', '=' , '4'),
              ), 
                     array(
+                        'id'       => 'amp-dns-prefetch-urls',
+                        'type'     => 'textarea',
+                        'title'    => esc_html__('DNS Prefetch URL(s)', 'accelerated-mobile-pages'),
+                        'placeholder'=>esc_html__('https://example1.com/
+https://example2.com/
+https://example3.com/', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Please enter DNS Prefetch URL(s) and each URL should be in new line.', 'accelerated-mobile-pages'),
+                        'desc' => esc_html__('Please enter DNS Prefetch URL(s) here and each URL should be in new line.', 'accelerated-mobile-pages'),
+                        'default'   => ''
+                    ),
+                    array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
                         'title'    => esc_html__('Enter HTML in Head', 'accelerated-mobile-pages'),

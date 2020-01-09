@@ -6915,7 +6915,21 @@ function ampforwp_fontawesome_canonical_link(){
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <?php }
     }
-
+add_action('amp_post_template_head', 'ampforwp_set_dns_prefetch_urls');
+if(!function_exists('ampforwp_set_dns_prefetch_urls')){
+	function ampforwp_set_dns_prefetch_urls(){
+		$urls = ampforwp_get_setting('amp-dns-prefetch-urls');
+		$dns_urls = explode(PHP_EOL, $urls);
+		for($i=0;$i<count($dns_urls);$i++){
+			$dfu = $dns_urls[$i];
+			if($dfu!=""){
+?>
+		<link rel="preconnect dns-prefetch" href="<?php echo esc_url($dfu);?>" crossorigin>
+<?php
+			}
+		}
+	}
+}
 // Yoast BreadCrumbs #1473
 add_action('pre_amp_render_post', 'ampforwp_yoast_breadcrumbs');
 if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
