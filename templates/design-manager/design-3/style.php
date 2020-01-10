@@ -512,6 +512,17 @@ pre{ white-space: pre-wrap; }
 .amp-logo amp-img{margin: 0 auto; position:relative;top:9px;max-width:190px;}
 .headerlogo{ margin: 0 auto; width: 80%; text-align: center; }
 .headerlogo a{ color:#F42; display:inline-block}
+.headerlogo .amp-logo{
+  position: absolute;
+  left:0;
+  right:0;
+  <?php if(false == ($redux_builder_amp['opt-media']['url'])){ ?>
+  top:0px;
+<?php } else {?>
+  top:3px;
+<?php } ?>
+}
+<?php if( true == ( ampforwp_get_setting('d123-signin-button') || ampforwp_get_setting('amp-design-3-search-feature') ) ) { ?>
 .d3-rp{
   display: flex;
   align-items: center;
@@ -521,6 +532,7 @@ pre{ white-space: pre-wrap; }
   padding-right: 20px;
 <?php } ?>
 }
+<?php } ?>
 /*Navigation Menu*/
 .toast { display: block; position: relative; height: 50px; padding-left: 20px; padding-right: 15px; width: 49px; background:none; border:0 }
 .toast:after, .toast:before, .toast span{ position: absolute; display: block; width: 19px; height: 2px; border-radius: 2px; background-color: #F42; -webkit-transform: translate3d(0, 0, 0) rotate(0deg); transform: translate3d(0, 0, 0) rotate(0deg); }
