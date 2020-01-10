@@ -191,12 +191,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.10 (9th January 2020) =
+= 1.0.10 (10th January 2020) =
+* Improvement: Need a hook to use it in Woocomerce #4048
 * Fixed: Scripts are not adding properly if user is adding the content through embed #4040
-* Fixed: Need to add proper way of styling for Header right side icons in Design 1,2 and 3 #3935
-* Fixed: Need to add button in header option in all design #3861
 * Fixed: When Featured Image from The Content is turned on,the image is not displayed when Creating post from Gutenberg. #4022
-* Fixed: Need a hook to use it in Woocomerce #4048
 
 = 1.0.9 (8th January 2020) =
 * Fixed: Odd behaviour of Optimize CSS (Treeshaking),when turned off resolves the validation errors and when turned on adding unnecessary wp-block CSS. #4036
