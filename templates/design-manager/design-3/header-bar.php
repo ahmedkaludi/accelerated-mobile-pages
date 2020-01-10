@@ -112,16 +112,14 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
         <?php do_action('ampforwp_header_top_design3'); ?>
         <?php amp_logo(); ?>
         </div>
-       <div class="d3-rp">
-          <?php do_action('ampforwp_call_button'); ?>
-          <?php if(true == ampforwp_get_setting('d123-signin-button') && '1' == ampforwp_get_setting('d123_cta-responsive-view') ) { ?>
+        <?php do_action('ampforwp_call_button'); ?>
+        <?php if(true == ampforwp_get_setting('d123-signin-button') && '1' == ampforwp_get_setting('d123_cta-responsive-view') ) { ?>
           <div class="d1-cta-wrap">   
             <a target="_blank" <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('d123-signin-button-link'))?>"><?php echo esc_html__(ampforwp_get_setting('d123-signin-button-text'), 'accelerated-mobile-pages'); ?></a>
           </div>
          <?php } ?>
-          <?php do_action('ampforwp_header_search');
-          do_action('ampforwp_header_bottom_design3'); ?>
-        </div><!-- /.d3-rp -->
+        <?php do_action('ampforwp_header_search');
+        do_action('ampforwp_header_bottom_design3'); ?>
 
       </div>
   </div>

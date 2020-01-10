@@ -12,26 +12,27 @@ global $redux_builder_amp; ?>
             if ( $site_icon_url ) : ?>
             <amp-img src="<?php echo esc_url( $site_icon_url ); ?>" width="32" height="32" class="amp-wp-site-icon"></amp-img>
         <?php endif; ?>
-    <div class="d1-rp">
-        <?php if(true == ampforwp_get_setting('d123-signin-button') && '1' == ampforwp_get_setting('d123_cta-responsive-view') ) { ?>
+    <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
+    <div on='tap:sidebar.toggle' role="button" aria-label="Navigation" tabindex="0" class="nav_container">
+        <a class="toggle-text">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+    </div>
+    <?php } ?>
+    <?php if(true == ampforwp_get_setting('d123-signin-button') && '1' == ampforwp_get_setting('d123_cta-responsive-view') ) { ?>
         <div class="d1-cta-wrap">   
             <a target="_blank" <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('d123-signin-button-link'))?>"><?php echo esc_html__(ampforwp_get_setting('d123-signin-button-text'), 'accelerated-mobile-pages'); ?></a>
         </div>
-        <?php } ?>
-        <?php do_action('ampforwp_header_search'); ?>
-        <?php //do_action('ampforwp_call_button');
-        do_action('ampforwp_header_bottom_design1'); ?>
-        <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
-            <div on='tap:sidebar.toggle' role="button" aria-label="Navigation" tabindex="0" class="nav_container">
-                <a class="toggle-text">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </a>
-            </div>
-        <?php } ?>
-    </div><!-- /.d1-rp -->
-  </div><!-- /.ampforwp-logo-area -->
+    <?php } ?>
+    <?php do_action('ampforwp_header_search'); ?>
+    <?php //do_action('ampforwp_call_button');
+    do_action('ampforwp_header_bottom_design1'); ?>
+
+
+
+  </div>
 </header>
 <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
 <amp-sidebar id='sidebar'
