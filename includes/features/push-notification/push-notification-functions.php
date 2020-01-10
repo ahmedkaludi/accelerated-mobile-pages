@@ -131,7 +131,7 @@ if(!function_exists('ampforwp_onesignal_notifications_script')){
 	function ampforwp_onesignal_notifications_script( $data ){
 	global $redux_builder_amp;
 	$checker = false;
-	if ( (!checkAMPforPageBuilderStatus(get_the_ID()) && (ampforwp_is_front_page() || is_single()) ) || true == ampforwp_get_setting('ampforwp-web-push-onesignal-header') || true == ampforwp_get_setting('ampforwp-web-push-onesignal-sticky') ){
+	if ( (!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() ) || true == ampforwp_get_setting('ampforwp-web-push-onesignal-header') || true == ampforwp_get_setting('ampforwp-web-push-onesignal-sticky') ){
 		$checker = true;
 	}
 	if(ampforwp_get_setting('ampforwp-web-push-onesignal') && $checker ){
