@@ -750,7 +750,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background: #f9f9f9;
-    padding:45px 0px 45px 0px;
+    padding:45px 0px 45px 25px;
 }
 .ex-1{
     width:250px;

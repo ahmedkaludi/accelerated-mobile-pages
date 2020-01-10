@@ -888,7 +888,7 @@ $freepro_listing = '
                     <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=2">
                         <h5>MULTIPLE</h5>
                         <span class="d-amt"><sup>$</sup>199</span>
-                        <span class="amt"><sup>$</sup>119</span>
+                        <span class="amt"><sup>$</sup>199</span>
                         <span class="s-amt">(Save $79)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">3 Site License</span>
