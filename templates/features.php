@@ -7621,7 +7621,7 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
 
 add_filter('ampforwp_the_content_last_filter','ampforwp_add_required_scripts',12);
 function ampforwp_add_required_scripts($content){
-	$exclude_el_arr = array('img','state','bind-macro');
+	$exclude_el_arr = array('img','state','bind-macro','pixel');
 	preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
 	if(isset($matches[1][0])){
 		$amp_comp = $matches[1];
