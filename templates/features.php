@@ -6930,9 +6930,11 @@ if($dns_uls!=""){
 			for($i=0;$i<count($dns_urls);$i++){
 				$dfu = $dns_urls[$i];
 				if($dfu!=""){
+					if (filter_var($dfu, FILTER_VALIDATE_URL) !== FALSE) {
 	?>
 			<link rel="preconnect dns-prefetch" href="<?php echo esc_url($dfu);?>" crossorigin>
 	<?php
+					}
 				}
 			}
 		}
