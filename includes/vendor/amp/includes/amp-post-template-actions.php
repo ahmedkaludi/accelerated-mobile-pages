@@ -18,14 +18,15 @@ function amp_post_template_add_canonical( $amp_template ) {
 	<link rel="canonical" href="<?php echo esc_url( apply_filters('ampforwp_modify_rel_url',$amp_template->get( 'canonical_url' ) ) ); ?>" />
    <?php
 }
-add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_meta_generator' );
-function amp_post_template_add_meta_generator() {
-	$amp_ver = AMPFORWP_VERSION;
-	if(false==ampforwp_get_setting('hide-amp-version-from-source')){
-	?>
-	<meta name="generator" content="AMP for WP <?php echo esc_attr($amp_ver) ?>" />
-<?php
-}
+
+if(false==ampforwp_get_setting('hide-amp-version-from-source')){
+	add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_meta_generator' );
+	function amp_post_template_add_meta_generator() {
+		$amp_ver = AMPFORWP_VERSION;
+		?>
+		<meta name="generator" content="AMP for WP <?php echo esc_attr($amp_ver) ?>" />
+	<?php
+	}
 }
 
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_cached_link' );

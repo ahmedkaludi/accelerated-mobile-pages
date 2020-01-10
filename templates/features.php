@@ -6843,18 +6843,17 @@ function ampforwp_post_template_data( $data ) {
 	$data = apply_filters('ampforwp_post_template_data', $data );
 	return $data;
 } 
-
-add_action('amp_meta','ampforwp_generator');
-if ( ! function_exists('ampforwp_generator') ) {
-function ampforwp_generator(){
-	if(true == ampforwp_get_setting('ampforwp-amp-convert-to-wp')){
-		$amp_ver = AMPFORWP_VERSION;
-		if(false==ampforwp_get_setting('hide-amp-version-from-source')){
-	?>
-	<meta name="generator" content="AMP for WP <?php echo esc_attr($amp_ver)?>" />
-<?php } 
-	}
-} 
+if(false==ampforwp_get_setting('hide-amp-version-from-source')){
+	add_action('amp_meta','ampforwp_generator');
+	if ( ! function_exists('ampforwp_generator') ) {
+		function ampforwp_generator(){
+			if(true == ampforwp_get_setting('ampforwp-amp-convert-to-wp')){
+				$amp_ver = AMPFORWP_VERSION;
+			?>
+			<meta name="generator" content="AMP for WP <?php echo esc_attr($amp_ver)?>" />
+		<?php } 
+		}
+	} 
 }
 
 // #2497 Ivory Search Compatibility Added
