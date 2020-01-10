@@ -4455,13 +4455,9 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 	ob_start();
 	ob_end_clean();
 	// Match all the images from the content
+	$output = 1;
 	if(is_object($post)){
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-		if($output==0){
-			if(preg_match('/wp-block-image/', $post->post_content, $fm)){
-		 		preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.*>/i', $post->post_content, $matches);
-		 	}
-		}
 		// Match all the figure tags from the content
 		$output_fig = preg_match_all('/\[caption.+id=[\'"]([^\'"]+).*]/i', $post->post_content, $matches_fig);
 		if ( $output_fig && $matches_fig[0][0] ) {
@@ -4473,28 +4469,36 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 		}
 	}
 	//Grab the First Image
-	if (is_array($matches) && $matches[0] ) {
-		$image_url 		= $matches[1][0];
-		$image_html 	= $matches[0][0];
-		if(isset($matches[2][0])){
+	if ((is_array($matches) && $matches[0]) || $output==0 ) {
+		if( $output==1){
+			$image_url 		= $matches[1][0];
+			$image_html 	= $matches[0][0];
 			$image_width 	= $matches[2][0];
-		}
-		if(isset($matches[3][0])){
 			$image_height 	= $matches[3][0];
 		}
-		if($image_width==''){
-			if(preg_match('/wp-block-image/', $post->post_content, $fm)){
-				$dom = new DOMDocument();
-				$image_html = str_replace("</figure>", '', $image_html);
-			    $dom->loadHTML($image_html);
-			    $x = new DOMXPath($dom);
-			    foreach($x->query("//img") as $node){   
-			        $node->setAttribute("width","1366");
-			        $node->setAttribute("height","600");
-			    }
-			    $image_html = $dom->saveHtml();
-			    preg_match_all('/<img.*\">/', $image_html, $matches);
-			    $image_html =$matches[0][0].'</figure>';
+		if($output==0){
+			if(preg_match('/<figure\sclass="(.*?)">(<img\ssrc="(.*?)"(.*?)>)<\/figure>/', $post->post_content, $fm)){
+				preg_match('/<figure\sclass="(.*?)">(<img\ssrc="(.*?)"(.*?)>)<\/figure>/', $post->post_content, $fb);
+				if(isset( $fb[2])){
+					$dom = new DOMDocument();
+					$image_html = $fb[2];
+				    $dom->loadHTML($image_html);
+				    $x = new DOMXPath($dom);
+				    foreach($x->query("//img") as $node){   
+				        $node->setAttribute("width","1366");
+				        $node->setAttribute("height","600");
+				    }
+				    $image_html = $dom->saveHtml();
+				    preg_match_all('/<img\ssrc="(.*?)">/', $image_html, $fimg);
+				    if(isset($fimg[0][0])){
+				       $image_html ='<figure class="'.esc_attr($fb[1]).'">'.$fimg[0][0].'</figure>';
+					   if(isset($fb[3])){
+						    $image_url 		= $fb[3];
+							$image_width 	= 1366;
+							$image_height 	= 600;
+						}
+				    }
+				}
 			}
 		}
 		// Sanitize it
