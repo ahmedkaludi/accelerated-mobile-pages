@@ -366,7 +366,10 @@ a.btt:hover {
 } 
 	.callnow a:before { content: ""; position: absolute; right: 23px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo ampforwp_sanitize_color($redux_builder_amp['amp-opt-color-rgba-colorscheme-call']['color']); ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
 <?php } ?>
-.amp-wp-tax-tag a, a, .amp-wp-author, .headerlogo a, [class*=icono-]{ color: #0a89c0; }
+.amp-wp-tax-tag a, a, .amp-wp-author, .headerlogo a { color: <?php echo ampforwp_sanitize_color( $global_color_scheme ); ?>; }
+[class*=icono-]{
+     color: #0a89c0;
+}
 <?php if( !ampforwp_woocommerce_conditional_check() ) { ?>
 <?php if(is_singular() || is_home() && true == ampforwp_get_setting('amp-frontpage-select-option') && ampforwp_get_blog_details() == false && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ){ ?>
 /* Single */
