@@ -8,17 +8,15 @@ global $redux_builder_amp; ?>
   <div id="headerwrap">
       <div id="header">
         <?php do_action('ampforwp_header_top_design2'); ?>
-          <?php amp_logo(); ?>
-        <?php if( true == ( ampforwp_get_setting('d123-signin-button') || ampforwp_get_setting('amp-design-2-search-feature') ) ) { ?> 
-          <div class="d2-rp">
-            <?php if(true == ampforwp_get_setting('d123-signin-button') && '1' == ampforwp_get_setting('d123_cta-responsive-view') ) { ?>
-              <div class="d1-cta-wrap">   
-                  <a target="_blank" <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('d123-signin-button-link'))?>"><?php echo esc_html__(ampforwp_get_setting('d123-signin-button-text'), 'accelerated-mobile-pages'); ?></a>
-              </div>
-            <?php } ?>
-            <?php do_action('ampforwp_header_search'); ?>
-          </div>
-        <?php } // condition ends here ?>
+        <?php amp_logo(); ?>
+        <div class="d2-rp">
+          <?php if(true == ampforwp_get_setting('d123-signin-button') && '1' == ampforwp_get_setting('d123_cta-responsive-view') ) { ?>
+            <div class="d1-cta-wrap">   
+                <a target="_blank" <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('d123-signin-button-link'))?>"><?php echo esc_html__(ampforwp_get_setting('d123-signin-button-text'), 'accelerated-mobile-pages'); ?></a>
+            </div>
+          <?php } ?>
+          <?php do_action('ampforwp_header_search'); ?>
+        </div>
         <?php do_action('ampforwp_call_button');
         do_action('ampforwp_header_bottom_design2'); ?>
       </div>

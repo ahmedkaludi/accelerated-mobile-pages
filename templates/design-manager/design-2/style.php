@@ -254,30 +254,11 @@ amp-social-share[type="facebookmessenger"] {
 <?php }?>
 /* Header */
 header.container{line-height: 0;}
-#header{ background: #fff; text-align: center;padding:17px 0px 17px 0px;display: flex;width: 100%;position:relative;justify-content: space-between;align-items: center;height:38px;}
-#header h1{ text-align: center; font-size: 20px; font-weight: bold; 
-<?php if(false == ($redux_builder_amp['opt-media']['url'])){ ?>
-line-height: inherit;
-<?php } else {?>
-line-height: 1;
-<?php } ?>
-padding: 4px 3px; margin: 0; }
-.amp-logo{display:inline-block;flex-grow: 1;}
-.amp-logo a{
-<?php if( true == ( ampforwp_get_setting('d123-signin-button') || ampforwp_get_setting('amp-design-2-search-feature') || ampforwp_get_setting('ampforwp-callnow-button')   ) ) { ?> 
-	position: absolute;
-<?php } else { ?>
-	position:inherit;
-<?php } ?>
-    left: 0;
-    right: 0;
-<?php if(false == ($redux_builder_amp['opt-media']['url'])){ ?>
-	top:auto;
-<?php }else{ ?>
-    top: 17px;
- <?php } // AMP Logo function ends?>
-}
-<?php if( true == ( ampforwp_get_setting('d123-signin-button') || ampforwp_get_setting('amp-design-2-search-feature') ) ) { ?>
+#header{ background: #fff; text-align: center;padding:17px 0px 17px 0px;display: flex;width: 100%;position:relative;justify-content: space-between;align-items: center;}
+#header h1{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 4px 3px; margin: 0; }
+.amp-logo{left: 0;right: 0;display:inline-block;flex-grow: 1;}
+.amp-logo amp-img{ margin: 15px 0px 10px 0px; }
+.amp-logo amp-img{margin: 0 auto;}
 .d2-rp{
   float: right;
   display: flex;
@@ -288,7 +269,6 @@ padding: 4px 3px; margin: 0; }
 	padding-right:20px;
 <?php } ?>
 }
-<?php } // condition ends here ?>
 main { padding: 30px 15% 10px 15%; }
 <?php if (checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && (is_singular() || ampforwp_is_front_page() )){ ?>
 	main { padding: 0px; }
