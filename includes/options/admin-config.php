@@ -4343,10 +4343,51 @@ Redux::setSection( $opt_name, array(
                 'default'   =>  0,
                 'required' => array('d123-signin-button', '=', '1')
             ),
+            // CTA Design Type
+            array(
+                    'id'    => 'd123-border-type',
+                    'class' => 'child_opt child_opt_arrow',
+                   'title'  => esc_html__('Type', 'accelerated-mobile-pages'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Square',
+                        '2' =>  'Round',
+                        '3' => 'Custom'
+                    ),
+                   'default'=> '1',
+                   'required' => array( array('d123-signin-button', '=' ,1) ),
+            ),
+            array(
+                'id'        => 'd123-border-radius',
+                'class' => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Customize Border Radius', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('You can change the border radius','accelerated-mobile-pages'),
+                'type'      => 'text',
+                'default'   => '10',
+                    'required' => array(
+                      array('d123-border-type','=',3)
+                    )  
+              ),
+            // CTA Position
+            array(
+                    'id'    => 'd123_cta-responsive-view',
+                    'class' => 'child_opt child_opt_arrow',
+                   'title'  => esc_html__('Position on Mobile', 'accelerated-mobile-pages'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Header',
+                        '2' =>  'Menu',
+                    ),
+                   'default'=> '1',
+                   'required' => array( 
+                    array('amp-design-selector', '!=' , '4'),
+                    array('d123-signin-button', '=' ,1) ),
+            ),
+
             array(
                 'id'        => 'd123-signin-button-style',
                 'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('Design', 'accelerated-mobile-pages'),
+                'title'     => esc_html__('Customize The Design', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can change the button here','accelerated-mobile-pages'),
                 'type'      => 'switch',
                 'default'   => '0',
@@ -4494,45 +4535,6 @@ Redux::setSection( $opt_name, array(
                     array('amp-design-selector', '=' , '3'),
                     array('d123-signin-button-style','=',1)
                 )   
-            ),
-
-            array(
-                    'id'    => 'd123-border-type',
-                    'class' => 'child_opt child_opt_arrow',
-                   'title'  => esc_html__('Type', 'accelerated-mobile-pages'),
-                   'type'   => 'select',
-                   'options'=> array(
-                        '1' =>  'Square',
-                        '2' =>  'Round',
-                        '3' => 'Custom'
-                    ),
-                   'default'=> '1',
-                   'required' => array( array('d123-signin-button', '=' ,1) ),
-            ),
-            array(
-                'id'        => 'd123-border-radius',
-                'class' => 'child_opt child_opt_arrow',
-                'title'     => esc_html__('Customize Border Radius', 'accelerated-mobile-pages'),
-                'tooltip-subtitle'  => esc_html__('You can change the border radius','accelerated-mobile-pages'),
-                'type'      => 'text',
-                'default'   => '10',
-                    'required' => array(
-                      array('d123-border-type','=',3)
-                    )  
-              ),
-            array(
-                    'id'    => 'd123_cta-responsive-view',
-                    'class' => 'child_opt child_opt_arrow',
-                   'title'  => esc_html__('Position on Mobile', 'accelerated-mobile-pages'),
-                   'type'   => 'select',
-                   'options'=> array(
-                        '1' =>  'Header',
-                        '2' =>  'Menu',
-                    ),
-                   'default'=> '1',
-                   'required' => array( 
-                    array('amp-design-selector', '!=' , '4'),
-                    array('d123-signin-button', '=' ,1) ),
             ),
             // CTA Fields Ends Here
 
