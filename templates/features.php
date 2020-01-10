@@ -4450,6 +4450,7 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 	// Match all the images from the content
 	if(is_object($post)){
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+
 		// Match all the figure tags from the content
 		$output_fig = preg_match_all('/\[caption.+id=[\'"]([^\'"]+).*]/i', $post->post_content, $matches_fig);
 		if ( $output_fig && $matches_fig[0][0] ) {
@@ -4461,11 +4462,38 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 		}
 	}
 	//Grab the First Image
-	if (is_array($matches) && $matches[0] ) {
-		$image_url 		= $matches[1][0];
-		$image_html 	= $matches[0][0];
-		$image_width 	= $matches[2][0];
-		$image_height 	= $matches[3][0];
+	if ((is_array($matches) && $matches[0]) || $output==0 ) {
+		if($output==1){
+			$image_url 		= $matches[1][0];
+			$image_html 	= $matches[0][0];
+			$image_width 	= $matches[2][0];
+			$image_height 	= $matches[3][0];
+		}
+		if($output==0){
+			if(preg_match('/<figure\sclass="(.*?)">(<img\ssrc="(.*?)"(.*?)>)<\/figure>/', $post->post_content, $fm)){
+				preg_match('/<figure\sclass="(.*?)">(<img\ssrc="(.*?)"(.*?)>)<\/figure>/', $post->post_content, $fb);
+				if(isset( $fb[2])){
+					$dom = new DOMDocument();
+					$image_html = $fb[2];
+				    $dom->loadHTML($image_html);
+				    $x = new DOMXPath($dom);
+				    foreach($x->query("//img") as $node){   
+				        $node->setAttribute("width","1366");
+				        $node->setAttribute("height","600");
+				    }
+				    $image_html = $dom->saveHtml();
+				    preg_match_all('/<img\ssrc="(.*?)">/', $image_html, $fimg);
+				    if(isset($fimg[0][0])){
+				       $image_html ='<figure class="'.esc_attr($fb[1]).'">'.$fimg[0][0].'</figure>';
+					   if(isset($fb[3])){
+						    $image_url 		= $fb[3];
+							$image_width 	= 1366;
+							$image_height 	= 600;
+						}
+				    }
+				}
+			}
+		}
 		// Sanitize it
 		$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array() ) ) );
 	    $amp_html =  $amp_html_sanitizer->get_amp_content();
@@ -4476,7 +4504,7 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 	    // Filter to remove that image from the content
 	    add_filter('ampforwp_modify_the_content','featured_image_content_filter');
 	
-		if ( isset( $size ) && '' !== $size ) {
+		if ( isset( $size ) && '' !== $size) {
 			$image_id = attachment_url_to_postid( $image_url );
 			if ($image_id) {
 				$image_array = wp_get_attachment_image_src($image_id, $size, true);
@@ -7586,3 +7614,21 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
     	}
     }
 }
+add_filter('ampforwp_the_content_last_filter','ampforwp_add_required_scripts',12);
+function ampforwp_add_required_scripts($content){
+	$exclude_el_arr = array('img','state','bind-macro','pixel');
+	preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
+	if(isset($matches[1][0])){
+		$amp_comp = $matches[1];
+		for($i=0;$i<count($amp_comp);$i++){
+			$comp = $amp_comp[$i];
+			if(!in_array($comp, $exclude_el_arr)){
+				if(!preg_match('/<script\scustom-element=\"amp-'.esc_attr($comp).'\"(.*?)><\/script>/', $content, $matches)){
+					$script_tag = '<head><script custom-element="amp-'.esc_attr($comp).'" src="https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-latest.js" async></script>';
+					$content =  str_replace('<head>', $script_tag, $content);
+				}
+			}
+		}
+	}
+	return $content;
+} 

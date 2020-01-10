@@ -140,6 +140,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                             <a title="call telephone" href="tel:<?php echo esc_attr($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
                         </div>
                     <?php } ?> 
+                    <?php do_action('ampforwp_header_elements') ?>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -271,6 +272,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                             <a title="call telephone" href="tel:<?php echo esc_attr($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
                         </div>
                     <?php } ?>    
+                    <?php do_action('ampforwp_header_elements') ?>
                 </div>
             </div>
         </div>
@@ -396,6 +398,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                             <a href="tel:<?php echo esc_attr($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
                         </div>
                     <?php } ?>
+                    <?php do_action('ampforwp_header_elements') ?>
                     <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true) {?>
                     <div class="h-nav">
                        <label for="offcanvas-menu" class="t-btn"></label>

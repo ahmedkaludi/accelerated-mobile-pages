@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.10 (10th January 2020) =
+* Improvement: Need a hook to use it in Woocomerce #4048
+* Fixed: Scripts are not adding properly if user is adding the content through embed #4040
+* Fixed: When Featured Image from The Content is turned on,the image is not displayed when Creating post from Gutenberg. #4022
+
 = 1.0.9 (8th January 2020) =
 * Fixed: Odd behaviour of Optimize CSS (Treeshaking),when turned off resolves the validation errors and when turned on adding unnecessary wp-block CSS. #4036
 * Fixed: After enable the Tree shaking feature the CSS not loading properly #4034
@@ -200,13 +205,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.8 (2nd January 2020) =
 * Fixed: Need to add Rankmath's "Nofollow External Links" feature. #3970 (updated the code)
-
-= 1.0.7 (2nd January 2020) =
-* Improvement: Need to add Rankmath's "Nofollow External Links" feature. #3970
-* Improvement: Need to add floating button in extension list #3972
-* Fixed: AMP theme framework GDPR module should be connected to GDPR Compliancy in option panel. #3963
-* Fixed: Breadcrumbs are not properly displaying and working in updated version #3917
-* Fixed: amp-auto-ads script is loading in AMP-pages when Google site kit plugin is enable. #4009
-* Fixed: wp-block CSS is heavily loading even when tree shaking is enabled in core. (Page builder is enabled) #4014
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

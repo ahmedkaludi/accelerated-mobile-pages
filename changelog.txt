@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.10 (10th January 2020) =
+* Improvement: Need a hook to use it in Woocomerce #4048
+* Fixed: Scripts are not adding properly if user is adding the content through embed #4040
+* Fixed: When Featured Image from The Content is turned on,the image is not displayed when Creating post from Gutenberg. #4022
+
 = 1.0.9 (8th January 2020) =
 * Fixed: Odd behaviour of Optimize CSS (Treeshaking),when turned off resolves the validation errors and when turned on adding unnecessary wp-block CSS. #4036
 * Fixed: After enable the Tree shaking feature the CSS not loading properly #4034
