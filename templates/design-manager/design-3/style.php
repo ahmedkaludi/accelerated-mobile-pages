@@ -20,6 +20,17 @@ if ( ! defined( 'ABSPATH' ) ) {
   // Get template colors
   $header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
   $header_color            = $get_customizer->get_customizer_setting( 'header_color' );
+
+  $icon_url = plugin_dir_url(__FILE__);
+  $ds = ampforwp_get_setting('amp-design-selector');
+  $design = "swift";
+  if($ds!=4){
+    $design = "design-$ds";
+  }
+  preg_match('/accelerated-mobile-pages/i', $icon_url, $matches);
+  if(count($matches)==0){
+    $icon_url = plugin_dir_url('accelerated-mobile-pages/accelerated-moblie-pages.php').'templates/design-manager/'.esc_attr($design).'/';
+  }
   ?>
 
 /* Global Styling */
@@ -68,14 +79,14 @@ ol, ul {list-style-position: inside;}
     font-display: swap;
     font-style: normal;
     font-weight: 400;
-    src:  local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__).'fonts/robotoslab/RobotoSlab-Regular.ttf')); ?>');
+    src:  local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url('<?php echo esc_url(ampforwp_font_url($icon_url.'fonts/robotoslab/RobotoSlab-Regular.ttf')); ?>');
 }
 @font-face {
     font-family: 'Roboto Slab';
     font-display: swap;
     font-style: normal;
     font-weight: 700;
-    src:  local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__).'fonts/robotoslab/RobotoSlab-Bold.ttf')); ?>');
+    src:  local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url('<?php echo esc_url(ampforwp_font_url($icon_url.'fonts/robotoslab/RobotoSlab-Bold.ttf')); ?>');
 }
 <?php } // Primary Fonts ends here
 if(1==ampforwp_get_setting('content-font-family-enable') && ( ampforwp_get_setting('amp_font_selector_content_single') == 1 || empty(ampforwp_get_setting('amp_font_selector_content_single') ) ) ) {?>
@@ -84,14 +95,14 @@ if(1==ampforwp_get_setting('content-font-family-enable') && ( ampforwp_get_setti
     font-display: swap;
     font-style: normal;
     font-weight: 400;
-    src:  local('PT Serif'), local('PTSerif-Regular'), url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__).'fonts/ptserif/PT_Serif-Web-Regular.ttf')); ?>');
+    src:  local('PT Serif'), local('PTSerif-Regular'), url('<?php echo esc_url(ampforwp_font_url($icon_url.'fonts/ptserif/PT_Serif-Web-Regular.ttf')); ?>');
 }
 @font-face {
     font-family: 'PT Serif';
     font-display: swap;
     font-style: normal;
     font-weight: 700;
-    src:  local('PT Serif Bold'), local('PTSerif-Bold'), url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__).'fonts/ptserif/PT_Serif-Web-Bold.ttf')); ?>');
+    src:  local('PT Serif Bold'), local('PTSerif-Bold'), url('<?php echo esc_url(ampforwp_font_url($icon_url.'fonts/ptserif/PT_Serif-Web-Bold.ttf')); ?>');
 }
 <?php } // Secondary Fonts Ends here?>
 /* Template Styles */
@@ -665,11 +676,11 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
 @font-face {
   font-family: 'icomoon';
   font-display: swap;
-  src:  url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.eot'); ?>');
-  src:  url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.eot'); ?>') format('embedded-opentype'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.ttf'); ?>') format('truetype'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.woff'); ?>') format('woff'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.svg'); ?>') format('svg');
+  src:  url('<?php echo esc_url($icon_url .'fonts/icomoon.eot'); ?>');
+  src:  url('<?php echo esc_url($icon_url .'fonts/icomoon.eot'); ?>') format('embedded-opentype'),
+    url('<?php echo esc_url($icon_url .'fonts/icomoon.ttf'); ?>') format('truetype'),
+    url('<?php echo esc_url($icon_url .'fonts/icomoon.woff'); ?>') format('woff'),
+    url('<?php echo esc_url($icon_url .'fonts/icomoon.svg'); ?>') format('svg');
   font-weight: normal;
   font-style: normal;
 }
