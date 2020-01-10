@@ -704,6 +704,7 @@ $freepro_listing = '
         <span class="ov"></span>
     </div>
     <div class="fp-cnt">
+            <h1>Upgrade to Pro</h1>
             <p>Take your AMP to the next level with more beautiful themes, great extensions and more powerful features.</p>
             <a class="buy" href="#upgrade">BUY NOW</a>
     </div>

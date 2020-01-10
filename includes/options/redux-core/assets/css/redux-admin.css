@@ -738,7 +738,6 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);
     background: linear-gradient(to right, #a8e063, #56ab2f);
     font-weight: 700;
-    margin-top: 10px;
     text-shadow: 1px 1px 1px #27a52c;
 }
 .pvf{
@@ -751,7 +750,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background: #f9f9f9;
-    padding:45px 0px 45px 50px;
+    padding:45px 0px 45px 0px;
 }
 .ex-1{
     width:250px;
