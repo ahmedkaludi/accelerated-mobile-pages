@@ -153,7 +153,7 @@ function ampforwp_analytics_options($opt_name){
                             'type'          => 'text',
                             'title'         => esc_html__('Tag Manager ID (Container ID)','accelerated-mobile-pages'),
                             'default'       => '',
-                            'tooltip-subtitle'  => sprintf('Eg: GTM-5XXXXXP (<a href="%s" style="color:#f1f1f1;">%s</a>)', esc_url('https://ampforwp.com/tutorials/article/gtm-in-amp/'), esc_html( 'Getting Started?', 'accelerated-mobile-pages') ),
+                            'tooltip-subtitle'  => sprintf('Eg: GTM-5XXXXXP (<a href="%s" style="color:#f1f1f1;">%s</a>)', esc_url('https://ampforwp.com/tutorials/article/how-to-track-a-click-event-in-gtm-amp/'), esc_html( 'Getting Started?', 'accelerated-mobile-pages') ),
                             //  'validate' => 'not_empty',
                               'required' => array(
                                 array('amp-use-gtm-option', '=' , '1')
