@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.12 (12th January 2020) =
+* Fixed: Detect Component and add or remove script accordingly #4067
+
 = 1.0.11 (11th January 2020) =
 * Fixed: In amp-pixel script adding automatically. #4057
 
