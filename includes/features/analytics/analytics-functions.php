@@ -105,10 +105,10 @@ function ampforwp_analytics() {
 		      $referer  = $_SERVER['HTTP_REFERER'];
 		    }
 			$piwik_api = str_replace("YOUR_SITE_ID", '1', $idsite);
-			$piwik_api = str_replace("TITLE", $title, $piwik_api);
-			$piwik_api = str_replace("DOCUMENT_REFERRER", $referer, $piwik_api);
-			$piwik_api = str_replace("CANONICAL_URL", $pview, $piwik_api);
-			$piwik_api = str_replace("RANDOM", $rand, $piwik_api);
+			$piwik_api = str_replace("TITLE", esc_attr($title), $piwik_api);
+			$piwik_api = str_replace("DOCUMENT_REFERRER", esc_url($referer), $piwik_api);
+			$piwik_api = str_replace("CANONICAL_URL", esc_url($pview), $piwik_api);
+			$piwik_api = str_replace("RANDOM", intval($rand), $piwik_api);
 			?>
 			<amp-pixel src="<?php echo $piwik_api;?>"></amp-pixel>
 		<?php }
