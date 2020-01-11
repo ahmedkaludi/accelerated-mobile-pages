@@ -7625,23 +7625,52 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
     }
 }
 
-if ( function_exists('ampforwp_include_required_scripts')) {
-	add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
-	function ampforwp_include_required_scripts($content){
-		$exclude_el_arr = array('img','state','bind-macro','pixel');
-		preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
-		if(isset($matches[1][0])){
-			$amp_comp = $matches[1];
-			for($i=0;$i<count($amp_comp);$i++){
-				$comp = $amp_comp[$i];
-				if(!in_array($comp, $exclude_el_arr)){
-					if(!preg_match('/<script\scustom-element=\"amp-'.esc_attr($comp).'\"(.*?)><\/script>/', $content, $matches)){
-						$script_tag = '<head><script custom-element="amp-'.esc_attr($comp).'" src="https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-latest.js" async></script>';
-						$content =  str_replace('<head>', $script_tag, $content);
+add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
+function ampforwp_include_required_scripts($content){
+	preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
+	if(isset($matches[1][0])){
+		$amp_comp = $matches[1];
+		$comp_to_remove_json = get_transient('ampforwp_amp_exclude_custom_element');
+		$comp_to_include_json = get_transient('ampforwp_amp_included_custom_element');
+		$comp_to_remove_arr = array();
+		if($comp_to_remove_json){
+			$comp_to_remove_arr = json_decode($comp_to_remove_json, true);
+		}
+		$comp_to_include_arr = array();
+		if($comp_to_include_json){
+			$comp_to_include_arr = json_decode($comp_to_include_json, true);
+		}
+		for($i=0;$i<count($amp_comp);$i++){
+			$comp = $amp_comp[$i];
+			$script_ver = 'latest';
+			if($comp == 'auto-ads'){
+				$script_ver = '0.1';
+			}
+			$comp_url = 'https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-'.$script_ver.'.js';
+			if(!in_array($comp, $comp_to_remove_arr) && !in_array($comp, $comp_to_include_arr) ){
+				$headers = get_headers($comp_url);
+				if(isset($headers[0])){
+					$is_script = stripos($headers[0], "200 OK") ? TRUE : FALSE;
+					if($is_script){
+						$comp_to_include_arr[] = $comp;
+						$inc_json = json_encode($comp_to_include_arr);
+						set_transient('ampforwp_amp_included_custom_element',$inc_json);
+					}else{
+						$comp_to_remove_arr[] = $comp;
+						$ex_json = json_encode($comp_to_remove_arr);
+						set_transient('ampforwp_amp_exclude_custom_element',$ex_json);
 					}
 				}
 			}
+			$comp_to_include_arr = apply_filters('ampforwp_amp_custom_element_to_include',$comp_to_include_arr);
+			if(in_array($comp, $comp_to_include_arr)){
+				if(!preg_match('/<script\scustom-element=\"amp-'.esc_attr($comp).'\"(.*?)><\/script>/', $content, $matches)){
+					set_transient('ampforwp_custom_script_amp-'.$comp,true);
+					$script_tag = '<head><script custom-element="amp-'.esc_attr($comp).'" src="https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-'.$script_ver.'.js" async></script>';
+					$content =  str_replace('<head>', $script_tag, $content);
+				}
+			}
 		}
-		return $content;
 	}
+	return $content;
 }
