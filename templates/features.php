@@ -7646,7 +7646,7 @@ function ampforwp_include_required_scripts($content){
 			if($comp == 'auto-ads'){
 				$script_ver = '0.1';
 			}
-			$comp_url = 'https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-'.$script_ver.'.js';
+			$comp_url = 'https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-'.esc_attr($script_ver).'.js';
 			if(!in_array($comp, $comp_to_remove_arr) && !in_array($comp, $comp_to_include_arr) ){
 				$headers = get_headers($comp_url);
 				if(isset($headers[0])){
@@ -7666,7 +7666,7 @@ function ampforwp_include_required_scripts($content){
 			if(in_array($comp, $comp_to_include_arr)){
 				if(!preg_match('/<script\scustom-element=\"amp-'.esc_attr($comp).'\"(.*?)><\/script>/', $content, $matches)){
 					set_transient('ampforwp_custom_script_amp-'.$comp,true);
-					$script_tag = '<head><script custom-element="amp-'.esc_attr($comp).'" src="https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-'.$script_ver.'.js" async></script>';
+					$script_tag = '<head><script custom-element="amp-'.esc_attr($comp).'" src="'.esc_url($comp_url).'" async></script>';
 					$content =  str_replace('<head>', $script_tag, $content);
 				}
 			}
