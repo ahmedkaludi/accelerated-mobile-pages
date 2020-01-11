@@ -2927,7 +2927,7 @@ Redux::setSection( $opt_name, array(
                             'id'       => 'amp-redirection-search',
                             'type'     => 'switch',
                             'title'    => esc_html__('AMP on Search Pages', 'accelerated-mobile-pages'),
-                            'tooltip-subtitle' => esc_html__('Enable AMP Support on Search Pages.','accelerated-mobile-pages'),
+                            'tooltip-subtitle' => esc_html__('Disable this option if you want your search pages in non-AMP.','accelerated-mobile-pages'),
                             'default' => 1,
                         ),
                     array(
