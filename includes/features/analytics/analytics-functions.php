@@ -110,7 +110,7 @@ function ampforwp_analytics() {
 			$piwik_api = str_replace("CANONICAL_URL", esc_url($pview), $piwik_api);
 			$piwik_api = str_replace("RANDOM", intval($rand), $piwik_api);
 			?>
-			<amp-pixel src="<?php echo $piwik_api;?>"></amp-pixel>
+			<amp-pixel src="<?php echo $piwik_api;// XXS ok, escaped above?>"></amp-pixel>
 		<?php }
 
 		// 10.4 Analytics Support added for quantcast
