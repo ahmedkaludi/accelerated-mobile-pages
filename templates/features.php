@@ -7659,18 +7659,17 @@ function ampforwp_include_required_scripts($content){
 					if($is_script){
 						$comp_to_include_arr[] = $comp;
 						$inc_json = json_encode($comp_to_include_arr);
-						set_transient('ampforwp_amp_included_custom_element',$inc_json);
+						set_transient('ampforwp_amp_included_custom_element',$inc_json, 30 * DAY_IN_SECONDS);
 					}else{
 						$comp_to_remove_arr[] = $comp;
 						$ex_json = json_encode($comp_to_remove_arr);
-						set_transient('ampforwp_amp_exclude_custom_element',$ex_json);
+						set_transient('ampforwp_amp_exclude_custom_element',$ex_json, 30 * DAY_IN_SECONDS);
 					}
 				}
 			}
 			$comp_to_include_arr = apply_filters('ampforwp_amp_custom_element_to_include',$comp_to_include_arr);
 			if(in_array($comp, $comp_to_include_arr)){
 				if(!preg_match('/<script\scustom-element=\"amp-'.esc_attr($comp).'\"(.*?)><\/script>/', $content, $matches)){
-					set_transient('ampforwp_custom_script_amp-'.$comp,true);
 					$script_tag = '<head><script custom-element="amp-'.esc_attr($comp).'" src="'.esc_url($comp_url).'" async></script>';
 					$content =  str_replace('<head>', $script_tag, $content);
 				}
