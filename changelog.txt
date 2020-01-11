@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.11 (11th January 2020) =
+* Fixed: In amp-pixel script adding automatically. #4057
+
 = 1.0.10 (10th January 2020) =
 * Improvement: Need a hook to use it in Woocomerce #4048
 * Fixed: Scripts are not adding properly if user is adding the content through embed #4040
