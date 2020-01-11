@@ -7666,12 +7666,12 @@ function ampforwp_include_required_scripts($content){
 			}
 		}
 	}
-	preg_match_all('/<script\scustom-element="(.*?)"(.*?)><\/script>/', $content, $matches);
+	preg_match_all('/<script(.*?)custom-element="(.*?)"(.*?)>(.*?)<\/script>/s', $content, $matches);
 	if(isset($matches[0])){
-		if(isset($matches[1])){
-			for($i=0;$i<count($matches[1]);$i++){
-				if(isset($matches[1][$i])){
-					$component = $matches[1][$i];
+		if(isset($matches[2])){
+			for($i=0;$i<count($matches[2]);$i++){
+				if(isset($matches[2][$i])){
+					$component = $matches[2][$i];
 					if($component!='amp-form'){
 						if(!preg_match("/<\/$component>/",  $content)){
 							$remove_comp = $matches[0][$i];
