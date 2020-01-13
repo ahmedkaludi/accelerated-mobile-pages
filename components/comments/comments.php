@@ -228,7 +228,7 @@ function ampforwp_framework_get_vuukle_comments(){
 
  	$vuukle_html = '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
 
-		<div overflow tabindex="0" role="button" aria-label="Show comments">'.esc_html__('Show comments','accelerated-mobile-pages').'</div>';
+		<div overflow tabindex="0" role="button" aria-label="Show comments">'.esc_html__('Show comments','accelerated-mobile-pages').'</div></amp-iframe>';
 	echo $vuukle_html; // escaped above
 }
 
