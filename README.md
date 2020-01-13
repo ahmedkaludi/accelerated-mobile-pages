@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.12
+Stable tag: 1.0.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,20 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.13 (13th January 2020) =
+* Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
+* Fixed: New Relic script is getting added in AMP and causing validtion error #4018
+* Fixed: Icons are not loading when creating theme compatibility #3766
+* Fixed: Video doesn't work on AMP when inserted from Siteorigin pagebuilder (Video player widget) #3936
+* Fixed: Minor issues with amp need to fix #3931
+* Fixed: When from amp page builder adding text module then space is not coming in paragraph #3982
+* Fixed: Getting error at home page when push notification option is enabled. #4026
+* Fixed: Please Fix Errors in Google Lighthouse audit in Accessibility (using Swift, Amp Layouts) #3949
+* Fixed: Remove offers from the panel #4027
+* Fixed: Detect Component and add or remove script accordingly #4067
+* Fixed: GTM tags are not working in the updated version 1.0.9 but Google Analytics is working,Also in version 1.0.0 both are working fine #4059
+* Fixed: Matomo (Piwik) Analytics generating errors in Console. #4042
 
 = 1.0.12 (12th January 2020) =
 * Fixed: Detect Component and add or remove script accordingly #4067

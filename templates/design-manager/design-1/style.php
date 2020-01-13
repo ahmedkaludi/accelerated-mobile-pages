@@ -64,7 +64,19 @@ if(empty($cross_btn_bg_clr)){
 }
 if(empty($cross_btn_hvr_clr)){
   $cross_btn_hvr_clr ='rgba(0, 0, 0, 0.45)';
-} ?>
+} 
+
+$icon_url =  plugin_dir_url(__FILE__) ;
+$ds = ampforwp_get_setting('amp-design-selector');
+$design = "swift";
+if($ds!=4){
+  $design = "design-$ds";
+}
+preg_match('/accelerated-mobile-pages/i', $icon_url, $matches);
+if(count($matches)==0){
+  $icon_url = plugin_dir_url('accelerated-mobile-pages/accelerated-moblie-pages.php').'templates/design-manager/'.esc_attr($design).'/';
+}
+?>
 #statcounter{width: 1px;height:1px;}
 .amp-wp-article amp-addthis{bottom: -38px;margin-left: 6px;}
 <?php if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( ampforwp_get_setting('amp_font_selector') == 1 || empty(ampforwp_get_setting('amp_font_selector') ) ) ) {?> 
@@ -73,28 +85,28 @@ if(empty($cross_btn_hvr_clr)){
   font-display: swap;
   font-style: normal;
   font-weight: 400;
-    src:  local('Merriweather'), local('Merriweather-Regular'), url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/Merriweather-Regular.ttf');
+    src:  local('Merriweather'), local('Merriweather-Regular'), url('<?php echo esc_url($icon_url) ?>fonts/Merriweather-Regular.ttf');
 }
 @font-face {
   font-family: 'Merriweather';
   font-display: swap;
   font-style: normal;
   font-weight: 700;
-    src:  local('Merriweather Bold'), local('Merriweather-Bold'), url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/Merriweather-Bold.ttf');
+    src:  local('Merriweather Bold'), local('Merriweather-Bold'), url('<?php echo esc_url($icon_url) ?>fonts/Merriweather-Bold.ttf');
 }
 @font-face {
     font-family: 'Merriweather';
     font-display: swap;
     font-style: italic;
     font-weight: 400;
-    src:  local('Merriweather Italic'), local('Merriweather-Italic'), url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/Merriweather-Italic.ttf');
+    src:  local('Merriweather Italic'), local('Merriweather-Italic'), url('<?php echo esc_url($icon_url) ?>fonts/Merriweather-Italic.ttf');
 }
 @font-face {
   font-family: 'Merriweather';
   font-display: swap;
   font-style: italic;
   font-weight: 700;
-    src:  local('Merriweather Bold Italic'), local('Merriweather-BoldItalic'), url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/Merriweather-BoldItalic.ttf');
+    src:  local('Merriweather Bold Italic'), local('Merriweather-BoldItalic'), url('<?php echo esc_url($icon_url) ?>fonts/Merriweather-BoldItalic.ttf');
 }
 <?php } // fonts condition ends here ?>
 .clearfix, .cb{clear:both}

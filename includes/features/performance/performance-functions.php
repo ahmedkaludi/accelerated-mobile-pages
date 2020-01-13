@@ -9,6 +9,13 @@ function ampforwp_minify_html_output($content_buffer){
     //Removed trbidi attribute #3687
     $content_buffer = str_replace('trbidi="on"', '', $content_buffer);
     $content_buffer = str_replace("trbidi='on'", '', $content_buffer);
+    if(class_exists('SiteOrigin_Widgets_Bundle')){
+        $content_buffer = preg_replace('/<amp-video id="sow-player(.*?)" class="(.*?)"(.*?)<\/amp-video>/', '<amp-video id="sow-player$1" class="$2" autoplay $3</amp-video>', $content_buffer);
+    }
+    if(preg_match('/<script type="text\/javascript">.*?NREUM.*?;<\/script>/s', $content_buffer)!=0){
+        $content_buffer = preg_replace('/<script type="text\/javascript">.*?NREUM.*?;<\/script>/s', '', $content_buffer);
+    }
+
 	if (defined('W3TC') && strpos($content_buffer, 'frameborder') !== false) {
 		add_filter("w3tc_minify_html_enable",'__return_false');
 	}

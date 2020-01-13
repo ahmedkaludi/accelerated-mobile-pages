@@ -3,6 +3,16 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 global $redux_builder_amp; 
+$icon_url =  plugin_dir_url(__FILE__) ;
+$ds = ampforwp_get_setting('amp-design-selector');
+$design = "swift";
+if($ds!=4){
+	$design = "design-$ds";
+}
+preg_match('/accelerated-mobile-pages/i', $icon_url, $matches);
+if(count($matches)==0){
+	$icon_url = plugin_dir_url('accelerated-mobile-pages/accelerated-moblie-pages.php').'templates/design-manager/'.esc_attr($design).'/';
+}
 $font_content = '';
 $font_content = ampforwp_get_setting('amp_font_selector_content_single');
 $header_type = ampforwp_get_setting('header-type');
@@ -23,11 +33,11 @@ if ( empty($ampforwp_font_icon) ) {
 ?>
 <?php if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( !isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector']) ) ) {
 if(!ampforwp_levelup_compatibility('levelup_theme_and_elementor')){ // Level up Condition starts ?>
-@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 300;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Light.ttf');}
-@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 400;src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Regular.ttf');}
-@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 500;src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Medium.ttf');} 
-@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 600;src: local('Poppins SemiBold'), local('Poppins-SemiBold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-SemiBold.ttf'); }
-@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 700;src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Bold.ttf'); }
+@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 300;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo $icon_url ?>fonts/Poppins-Light.ttf');}
+@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 400;src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo $icon_url ?>fonts/Poppins-Regular.ttf');}
+@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 500;src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo $icon_url ?>fonts/Poppins-Medium.ttf');} 
+@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 600;src: local('Poppins SemiBold'), local('Poppins-SemiBold'), url('<?php echo $icon_url ?>fonts/Poppins-SemiBold.ttf'); }
+@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 700;src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo $icon_url ?>fonts/Poppins-Bold.ttf'); }
 <?php } // Level up Condition ends 
 } ?>
 <?php
@@ -88,7 +98,7 @@ if( class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_bu
 else{ ?>.cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px} <?php } ?>
 <?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts 
 if ( $ampforwp_font_icon  == 'swift-icons' || ( $ampforwp_font_icon == 'fontawesome-icons'  && checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) ){ ?>
-@font-face {font-family: 'icomoon';font-display: swap;font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf');}
+@font-face {font-family: 'icomoon';font-display: swap;font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo $icon_url ?>fonts/icomoon.ttf');}
 <?php } // Swift icomoon icons condition ends ?> 
 header .cntr{
 <?php if( ampforwp_get_setting('swift-width-control') ){?>
@@ -437,8 +447,8 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
 .fsp-img {margin-bottom:10px;}
 .fsp h2, .fsp h3{margin:0px 0px 5px 0px;font-size:20px;line-height:1.4;font-weight:500;}
-.at-dt{font-size:11px;color:#808080;margin:12px 0px 9px 0px; display: inline-flex;}
-.pt-dt{font-size:11px;color:#808080;margin: 8px 0px 0px 0px;display: inline-flex;}
+.at-dt{font-size:11px;color:#757575;margin:12px 0px 9px 0px; display: inline-flex;}
+.pt-dt{font-size:11px;color:#757575;margin: 8px 0px 0px 0px;display: inline-flex;}
 .arch-tlt{margin:30px 0px 30px;display:inline-block;width:100%;}
 .amp-archive-title, .amp-loop-label{font-weight:600;}
 .amp-archive-desc{font-size: 14px;margin:8px 0px 0px 0px;color: #333;line-height:20px;}
@@ -608,11 +618,6 @@ table {
 }
 .artl-cnt table{ margin: 0 auto; text-align: center; width: 100%; }
 p.nocomments {padding: 10px;color: #fff;}
-<?php if($redux_builder_amp['single-new-features'] && $redux_builder_amp['ampforwp-underline-content-links']){ ?> 
-.artl-cnt a{
-	text-decoration: underline;
-}
-<?php } // Underline CSS Ends?>
 .tl-exc{font-size: 16px;color: #444;margin-top: 10px;line-height:20px;}
 .amp-category span:nth-child(1) {display: none;}
 .amp-category span a, .amp-category span{color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;font-size: 12px;font-weight: 500;text-transform: uppercase;}
@@ -682,39 +687,6 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 
 
 .cntn-wrp{font-size:18px;color:#000;line-height:1.7;word-break: break-word;}
-.cntn-wrp h1, .cntn-wrp h2, .cntn-wrp h3, .cntn-wrp h4, .cntn-wrp h5, h6{margin-bottom:5px;}
-<?php // H1 - H6 Font Sizes 
-	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h1') ){ ?>
-		.cntn-wrp h1{font-size:<?php echo esc_html( ampforwp_get_setting('swift_h1_sz') )?>;}
-	<?php } else { ?>
-		.cntn-wrp h1 {font-size: 32px;}
-	<?php } //H1 ends
-	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h2') ){ ?>
-		.cntn-wrp h2{font-size:<?php echo esc_html($redux_builder_amp['swift_h2_sz'])?>;}
-	<?php } else { ?>
-		.cntn-wrp h2 {font-size: 27px;}
-	<?php } // H2 Ends
-	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h3') ){ ?>
-		.cntn-wrp h3{font-size:<?php echo esc_html(ampforwp_get_setting('swift_h3_sz') )?>;}
-	<?php } else { ?>
-		.cntn-wrp h3 {font-size: 24px;}
-	<?php } // H3 Ends
-	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h4') ){ ?>	
-		.cntn-wrp h4{font-size:<?php echo esc_html(ampforwp_get_setting('swift_h4_sz') )?>;}
-	<?php } else { ?>
-		.cntn-wrp h4 {font-size: 20px;}
-	<?php } // H4 Ends
-	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h5') ){ ?>
-		.cntn-wrp h5{font-size:<?php echo esc_html(ampforwp_get_setting('swift_h5_sz') )?>;}
-	<?php } else { ?>
-		.cntn-wrp h5 {font-size: 17px;}
-	<?php } // H5 Ends
-	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h6') ){ ?>
-		.cntn-wrp h6{font-size:<?php echo esc_html(ampforwp_get_setting('swift_h6_sz') )?>;}
-	<?php } else { ?>
-		.cntn-wrp h6 {font-size: 15px;}
-	<?php } // H6 Ends
- // swift Content Heading Sizes Ends?>
 .cntn-wrp small{font-size:11px;line-height:1.2;color:#111;}
 .cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-break: break-word;}
 .cntn-wrp .wp-block-image,.wp-block-embed{margin:15px 0px;}
@@ -2136,7 +2108,8 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
 <?php } ?>
 <?php } // levelup condition ends here?>
 <?php if (checkAMPforPageBuilderStatus(get_the_ID())){ ?>
-	.sp-cnt .cntr {max-width: 100%;margin:0;width:100%;padding:0}	
+	.sp-cnt .cntr {max-width: 100%;margin:0;width:100%;padding:0}
+	.amp_mod.text-mod p {margin: 0 0 1.5em;}	
 <?php } ?> 
 <?php //Breadcrumbs
 if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && ( (is_single() && true == ampforwp_get_setting('ampforwp-bread-crumb')) || (is_page() && ampforwp_get_setting('ampforwp_pages_breadcrumbs')) )) {?>
@@ -2311,3 +2284,41 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
     padding: 0px 2px;
     border-radius: 2px;
 }
+.cntn-wrp h1, .cntn-wrp h2, .cntn-wrp h3, .cntn-wrp h4, .cntn-wrp h5, h6{margin-bottom:5px;}
+<?php // H1 - H6 Font Sizes 
+	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h1') ){ ?>
+		.cntn-wrp h1{font-size:<?php echo esc_html( ampforwp_get_setting('swift_h1_sz') )?>;}
+	<?php } else { ?>
+		.cntn-wrp h1 {font-size: 32px;}
+	<?php } //H1 ends
+	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h2') ){ ?>
+		.cntn-wrp h2{font-size:<?php echo esc_html($redux_builder_amp['swift_h2_sz'])?>;}
+	<?php } else { ?>
+		.cntn-wrp h2 {font-size: 27px;}
+	<?php } // H2 Ends
+	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h3') ){ ?>
+		.cntn-wrp h3{font-size:<?php echo esc_html(ampforwp_get_setting('swift_h3_sz') )?>;}
+	<?php } else { ?>
+		.cntn-wrp h3 {font-size: 24px;}
+	<?php } // H3 Ends
+	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h4') ){ ?>	
+		.cntn-wrp h4{font-size:<?php echo esc_html(ampforwp_get_setting('swift_h4_sz') )?>;}
+	<?php } else { ?>
+		.cntn-wrp h4 {font-size: 20px;}
+	<?php } // H4 Ends
+	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h5') ){ ?>
+		.cntn-wrp h5{font-size:<?php echo esc_html(ampforwp_get_setting('swift_h5_sz') )?>;}
+	<?php } else { ?>
+		.cntn-wrp h5 {font-size: 17px;}
+	<?php } // H5 Ends
+	if(ampforwp_get_setting('swift_cnt') && ampforwp_get_setting('swift_cnt_h6') ){ ?>
+		.cntn-wrp h6{font-size:<?php echo esc_html(ampforwp_get_setting('swift_h6_sz') )?>;}
+	<?php } else { ?>
+		.cntn-wrp h6 {font-size: 15px;}
+	<?php } // H6 Ends
+ // swift Content Heading Sizes Ends
+ if(ampforwp_get_setting('single-new-features') && ampforwp_get_setting('ampforwp-underline-content-links')){ ?> 
+.artl-cnt a,.cntn-wrp a{
+	text-decoration: underline;
+}
+<?php } // Underline CSS Ends?> 
