@@ -6169,7 +6169,7 @@ function ampforwp_vuukle_comments_markup() {
 	if ( $display_comments_on ) {
 		$vuukle_html .= '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
 
-			<div overflow tabindex="0" role="button" aria-label="Show comments" class="afwp-vuukle-support">Show comments</div>';
+			<div overflow tabindex="0" role="button" aria-label="Show comments" class="afwp-vuukle-support">Show comments</div></amp-iframe>';
 	}
 	return $vuukle_html;
 }
@@ -7682,7 +7682,7 @@ function ampforwp_include_required_scripts($content){
 	if(isset($matches[0])){
 		if(isset($matches[1])){
 			$excl_arr = array('amp-form','amp-bind','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-dynamic-css-classes','amp-fx-collection','amp-inputmask','amp-lightbox-gallery','amp-inputmask','amp-mustache','amp-subscriptions-google','amp-subscriptions','amp-video-docking','amp-story');
-			$inc_elem_arr = array('amp-state','amp-story-page','amp-story-bookend');
+			$inc_elem_arr = array('amp-state','amp-pixel','amp-bind-macro','amp-story-page','amp-story-bookend');
 			for($i=0;$i<count($matches[1]);$i++){
 				if(isset($matches[1][$i])){
 					$component = $matches[1][$i];
