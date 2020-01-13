@@ -94,30 +94,23 @@ function ampforwp_analytics() {
 
 	// 10.3 Analytics Support added for Piwik
 		if( true == ampforwp_get_setting('ampforwp-Piwik-switch')){
-			$idsite = urlencode(ampforwp_get_setting('pa-feild'));
+			$idsite = ampforwp_get_setting('pa-feild');
 			$title = urlencode(get_the_title());
 			$url = get_the_permalink();
-			$url = urlencode(ampforwp_remove_protocol(ampforwp_url_controller($url)));
+			$url = ampforwp_remove_protocol(ampforwp_url_controller($url));
 			$rand = rand(1111,9999);
-			$pview = urlencode(ampforwp_remove_protocol(site_url()));
-			$piwik_analytics = '{"triggers":{"trackPageview": {"on":"visible","request":"pageview}},"requests":{"base": "https://piwik.example.org/piwik.php?idsite='.$idsite.'&rec=1&action_name='.$title.'&url='.$url.'&rand='.$rand.'&apiv=1"}}';
+			$pview = ampforwp_remove_protocol(site_url());
+			$referer  = $url;
+			if(isset($_SERVER['HTTP_REFERER'])) {
+		      $referer  = $_SERVER['HTTP_REFERER'];
+		    }
+			$piwik_api = str_replace("YOUR_SITE_ID", '1', $idsite);
+			$piwik_api = str_replace("TITLE", esc_attr($title), $piwik_api);
+			$piwik_api = str_replace("DOCUMENT_REFERRER", esc_url($referer), $piwik_api);
+			$piwik_api = str_replace("CANONICAL_URL", esc_url($pview), $piwik_api);
+			$piwik_api = str_replace("RANDOM", intval($rand), $piwik_api);
 			?>
-			<amp-analytics id="piwikanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="piwikanalytics">
-				<script type="application/json">
-					{
-						"triggers": {
-							"trackPageview": {
-								"on": "visible",
-								"request": "pageview"
-							}
-						},
-						"requests": {
-							"base": "https://piwik.example.org/piwik.php?idsite=<?php echo urlencode(esc_attr($idsite));?>&rec=1&action_name=<?php echo esc_attr($title);?>&url=<?php echo esc_url($url);?>&rand=<?php echo intval($rand);?>&apiv=1",
-							"pageview": "<?php echo esc_url($pview);?>"
-						}
-					}
-				</script>
-			</amp-analytics>
+			<amp-pixel src="<?php echo $piwik_api; // XXS ok, escaped above?>"></amp-pixel>
 		<?php }
 
 		// 10.4 Analytics Support added for quantcast

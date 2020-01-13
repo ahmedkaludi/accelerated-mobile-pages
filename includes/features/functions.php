@@ -1064,7 +1064,7 @@ add_action("redux/options/redux_builder_amp/saved",'ampforwp_menu_transient_on_s
 // Protocol Remover
 if ( ! function_exists('ampforwp_remove_protocol') ) {
     function ampforwp_remove_protocol($url){
-        $url = preg_replace('#^https?://#', '', $url);
+        $url = preg_replace('#^https?://#', '//', $url);
         return $url;
     }
 }
