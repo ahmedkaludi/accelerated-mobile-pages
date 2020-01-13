@@ -7644,47 +7644,72 @@ function ampforwp_include_required_scripts($content){
 		if($comp_to_include_json){
 			$comp_to_include_arr = json_decode($comp_to_include_json, true);
 		}
+		$comp = '';
 		for($i=0;$i<count($amp_comp);$i++){
 			$comp = $amp_comp[$i];
-			$script_ver = 'latest';
-			if($comp == 'auto-ads' || $comp == 'ad'){
-				$script_ver = '0.1';
-			}
-			$comp_url = 'https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-'.esc_attr($script_ver).'.js';
-			if(!in_array($comp, $comp_to_remove_arr) && !in_array($comp, $comp_to_include_arr) ){
-				$headers = get_headers($comp_url);
-				if(isset($headers[0])){
-					$is_script = stripos($headers[0], "200 OK") ? TRUE : FALSE;
-					if($is_script){
-						$comp_to_include_arr[] = $comp;
-						$inc_json = json_encode($comp_to_include_arr);
-						set_transient('ampforwp_amp_included_custom_element',$inc_json, 30 * DAY_IN_SECONDS);
-					}else{
-						$comp_to_remove_arr[] = $comp;
-						$ex_json = json_encode($comp_to_remove_arr);
-						set_transient('ampforwp_amp_exclude_custom_element',$ex_json, 30 * DAY_IN_SECONDS);
+			if(!preg_match('/story/', $comp)){
+				$script_ver = 'latest';
+				if($comp == 'auto-ads' || $comp == 'ad'){
+					$script_ver = '0.1';
+				}
+				if($comp=='state'){
+					$comp = 'bind';
+				}
+				$comp_url = 'https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-'.esc_attr($script_ver).'.js';
+				$is_script = false;
+
+				if(!in_array($comp, $comp_to_remove_arr) && !in_array($comp, $comp_to_include_arr) ){
+					$headers = get_headers($comp_url);
+					if(isset($headers[0])){
+						$is_script = stripos($headers[0], "200 OK") ? TRUE : FALSE;
+						if($comp=='state'){
+							$is_script = true;
+						}
+						if($is_script){
+							$comp_to_include_arr[] = $comp;
+							$inc_json = json_encode($comp_to_include_arr);
+							set_transient('ampforwp_amp_included_custom_element',$inc_json, 30 * DAY_IN_SECONDS);
+						}else{
+							$comp_to_remove_arr[] = $comp;
+							$ex_json = json_encode($comp_to_remove_arr);
+							set_transient('ampforwp_amp_exclude_custom_element',$ex_json, 30 * DAY_IN_SECONDS);
+						}
 					}
 				}
-			}
-			$comp_to_include_arr = apply_filters('ampforwp_amp_custom_element_to_include',$comp_to_include_arr);
-			if(in_array($comp, $comp_to_include_arr)){
-				if(!preg_match('/<script\scustom-element=\"amp-'.esc_attr($comp).'\"(.*?)><\/script>/', $content, $matches)){
-					$script_tag = '<head><script custom-element="amp-'.esc_attr($comp).'" src="'.esc_url($comp_url).'" async></script>';
-					$content =  str_replace('<head>', $script_tag, $content);
+				$comp_to_include_arr = apply_filters('ampforwp_amp_custom_element_to_include',$comp_to_include_arr);
+				if(in_array($comp, $comp_to_include_arr)){
+					if(!preg_match('/<script\scustom-element=\"amp-'.esc_attr($comp).'\"(.*?)><\/script>/', $content, $matches)){
+						$script_tag = '<head><script custom-element="amp-'.esc_attr($comp).'" src="'.esc_url($comp_url).'" async></script>';
+						$content =  str_replace('<head>', $script_tag, $content);
+					}
 				}
 			}
 		}
 	}
+
 	preg_match_all('/<script\scustom-element="(.*?)"(.*?)><\/script>/', $content, $matches);
 	if(isset($matches[0])){
 		if(isset($matches[1])){
+			$excl_arr = array('amp-form','amp-bind','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-dynamic-css-classes','amp-fx-collection','amp-inputmask','amp-lightbox-gallery','amp-inputmask','amp-mustache','amp-subscriptions-google','amp-subscriptions','amp-video-docking','amp-story');
+			$inc_elem_arr = array('amp-state','amp-story-page','amp-story-bookend');
 			for($i=0;$i<count($matches[1]);$i++){
 				if(isset($matches[1][$i])){
 					$component = $matches[1][$i];
-					if($component!='amp-form'){
-						if(!preg_match("/<\/$component>/",  $content)){
+					$headers = get_headers($comp_url);
+					if(!in_array($component,$excl_arr)){
+						if(!preg_match("/<\/$component>/",  $content) && !$is_script){
 							$remove_comp = $matches[0][$i];
 							$content = str_replace($remove_comp, '', $content);
+						}else if(in_array($component, $inc_elem_arr )){
+							for($rc=0;$rc<count($inc_elem_arr);$rc++){
+								$rcomp = $inc_elem_arr[$rc];
+								if(preg_match('/<script\scustom-element="'.$rcomp.'"(.*?)<\/script>/', $content,$rmc)){
+									if(isset($rmc[0])){
+										$remove_comp = $rmc[0];
+										$content = str_replace($remove_comp, '', $content);
+									}
+								}
+							}
 						}
 					}
 				}
