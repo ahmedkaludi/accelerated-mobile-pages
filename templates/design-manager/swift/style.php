@@ -666,7 +666,7 @@ if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
 .amp-tags .amp-tag:last-child:after{display:none;}
 .ss-ic li:before{border-radius: 2px;text-align:center;padding: 4px 6px;}
 .sgl table {width: 100%;margin-bottom:25px;}
-.sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
+.sgl th , .sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
 .sgl tr:nth-child(odd) td {background: #f7f7f7;}
 <?php // Social Sharing Conditional CSS
 if($redux_builder_amp['swift-social-position'] == 'above-content'){?>
