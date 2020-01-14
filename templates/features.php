@@ -7637,12 +7637,14 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
 
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
+
+	$comp_to_remove_arr = array();
+	
 	preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
 	if(isset($matches[1][0])){
 		$amp_comp = $matches[1];
 		$comp_to_remove_json = get_transient('ampforwp_amp_exclude_custom_element');
 		$comp_to_include_json = get_transient('ampforwp_amp_included_custom_element');
-		$comp_to_remove_arr = array();
 		if($comp_to_remove_json){
 			$comp_to_remove_arr = json_decode($comp_to_remove_json, true);
 		}
