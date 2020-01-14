@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.13
+Stable tag: 1.0.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.14 (14th January 2020) =
+* Fixed: Warning in accelerated-mobile-pages/includes/options/admin-config.php on line 1250 #4027
+* Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
+
 = 1.0.13 (13th January 2020) =
 * Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
 * Fixed: New Relic script is getting added in AMP and causing validtion error #4018
@@ -207,13 +211,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.12 (12th January 2020) =
 * Fixed: Detect Component and add or remove script accordingly #4067
-
-= 1.0.11 (11th January 2020) =
-* Fixed: In amp-pixel script adding automatically. #4057
-
-= 1.0.10 (10th January 2020) =
-* Improvement: Need a hook to use it in Woocomerce #4048
-* Fixed: Scripts are not adding properly if user is adding the content through embed #4040
-* Fixed: When Featured Image from The Content is turned on,the image is not displayed when Creating post from Gutenberg. #4022
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.14 (14th January 2020) =
+* Fixed: Warning in accelerated-mobile-pages/includes/options/admin-config.php on line 1250
+* Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
+
 = 1.0.13 (13th January 2020) =
 * Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
 * Fixed: New Relic script is getting added in AMP and causing validtion error #4018
