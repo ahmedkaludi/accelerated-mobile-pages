@@ -7689,7 +7689,6 @@ function ampforwp_include_required_scripts($content){
 			for($i=0;$i<count($matches[1]);$i++){
 				if(isset($matches[1][$i])){
 					$component = $matches[1][$i];
-					$headers = get_headers($comp_url);
 					if(!in_array($component,$excl_arr)){
 						if(!preg_match("/<\/$component>/",  $content) && !$is_script){
 							$remove_comp = $matches[0][$i];
