@@ -45,32 +45,23 @@ function ampforwp_redirection() {
       exit;
     }
   }
-  // Redirect ?nonamp=1 to normal url #3269
-  $current_url = $check = '';
-  $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
-                "https" : "http") . "://" . $_SERVER['HTTP_HOST'] .  
-                $_SERVER['REQUEST_URI'];  
-  if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
-        if(strpos( $current_url, "amp=1&")!==false){
-          $redirect_search = str_replace("amp=1&", '', $current_url);
-          wp_safe_redirect( $redirect_search, 301 );
-          exit;
-        }else{
-          return;
-        }
-  }
+$current_url = home_url(add_query_arg(array($_GET), $wp->request));
+  //AMP on Search Pages #3977
+if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
+      if(strpos( $current_url, "amp=1&")!==false){
+        $redirect_search = str_replace("amp=1&", '', $current_url);
+        wp_safe_redirect( $redirect_search, 301 );
+        exit;
+      }else{
+        return;
+      }
+}
   $dev_red_url =  $current_url;           
-  $current_url = explode('/', $current_url);
-  $check    =  '?nonamp=1';
+  // Redirect ?nonamp=1 to normal url #3269
   if (( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) ){
-        session_start();
-        $_SESSION['ampforwp_mobile'] = 'exit';     
-  }
-  if (in_array( $check  , $current_url ) ) {
-      $current_url = array_flip($current_url);
-      unset($current_url['?nonamp=1']);
-      $current_url = array_flip($current_url);
-      $current_url = implode('/', $current_url);
+      session_start();
+      $_SESSION['ampforwp_mobile'] = 'exit';    
+      $current_url = str_replace("?nonamp=1", '',$current_url);
       $current_url = user_trailingslashit($current_url);
       wp_safe_redirect( $current_url );
       exit;
@@ -199,16 +190,19 @@ function ampforwp_redirection() {
               $go_to_url = explode('/', $go_to_url);
               $go_to_url = array_flip($go_to_url);
               $red_url = $go_to_url;
-              if(isset($red_url['amp']) || isset($red_url['?amp'])){
-                if(true == ampforwp_get_setting('amp-core-end-point') || isset($go_to_url['?amp']) ){
-                  unset($go_to_url['?amp']);
+              if(isset($red_url['amp']) || preg_match('/\?amp/', $url)){
+                if(true == ampforwp_get_setting('amp-core-end-point') || preg_match('/\?amp/', $url)){
+                    $url = str_replace('?amp=1', '', $url);
+                    $url = str_replace('?amp', '', $url);
+                    $url = user_trailingslashit($url);
                 }
                 if(isset($go_to_url['amp'])){
                   unset($go_to_url['amp']);
+                  $go_to_url = array_flip($go_to_url);     
+                  $go_to_url  = implode('/', $go_to_url);
+                  $url = $go_to_url;
                 }
-                $go_to_url = array_flip($go_to_url);     
-                $go_to_url  = implode('/', $go_to_url);
-                wp_safe_redirect( $go_to_url, 301 );
+                wp_safe_redirect( $url, 301 );
                 exit;
               }else{
                 return;
