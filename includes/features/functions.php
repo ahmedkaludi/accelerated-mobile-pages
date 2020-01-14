@@ -60,8 +60,8 @@ function ampforwp_add_admin_styling($hook_suffix){
     $redux_data = apply_filters("ampforwp_custom_localize_data", $redux_data);
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
     wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', wp_create_nonce('ampforwp-verify-request') );
-    wp_enqueue_script( 'ampforwp_admin_js' );
     wp_enqueue_script( 'wp-color-picker' );
+    wp_enqueue_script( 'ampforwp_admin_js' );
 }
 // 96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
 function ampforwp_is_front_page(){
