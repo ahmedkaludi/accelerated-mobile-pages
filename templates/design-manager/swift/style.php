@@ -567,6 +567,7 @@ table {
     word-break: normal;
 }
 .author-tw:after {font-family:icomoon;content: "\e942";color: #fff;background: #1da1f2;padding: 4px;border-radius: 3px;margin: 0px 5px;text-decoration: none;}
+.author-tw:hover{text-decoration: none;}
 .artl-cnt table{ margin: 0 auto; text-align: center; width: 100%;}
 p.nocomments {padding: 10px;color: #fff;}
 .tl-exc{font-size: 16px;color: #444;margin-top: 10px;line-height:20px;}
@@ -756,7 +757,7 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .sp-rt .amp-author {padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
 .sp-rt .amp-author-image{float:left;}
 .sp-rt .author-details a{color: #222;font-size: 14px;font-weight: 500;}
-.sp-rt .author-details a:hover{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;text-decoration:none;}
+.sp-rt .author-details a:hover{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;text-decoration:underline;}
 .amp-author-image amp-img{border-radius: 50%;margin: 0px 12px 5px 0px;display: block; width:50px;}
 .author-details p{margin: 0;font-size: 13px;line-height: 20px;color: #666;padding-top: 4px;}
 <?php } ?>
