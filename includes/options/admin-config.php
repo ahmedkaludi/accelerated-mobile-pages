@@ -2667,17 +2667,7 @@ Redux::setSection( $opt_name, array(
                    'default'  => ampforwp_amp2wp_default(),
                    'required' => array('amp-design-selector', '=' , '4'),
              ), 
-                    array(
-                        'id'       => 'amp-dns-prefetch-urls',
-                        'type'     => 'textarea',
-                        'title'    => esc_html__('DNS Prefetch URL(s)', 'accelerated-mobile-pages'),
-                        'placeholder'=>esc_html__('https://example1.com/
-https://example2.com/
-https://example3.com/', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => esc_html__('Please enter DNS Prefetch URL(s) and each URL should be in new line.', 'accelerated-mobile-pages'),
-                        'desc' => esc_html__('Please enter DNS Prefetch URL(s) here and each URL should be in new line.', 'accelerated-mobile-pages'),
-                        'default'   => ''
-                    ),
+                
                     array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
@@ -2701,6 +2691,17 @@ https://example3.com/', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => esc_html__('please enter markup that is AMP validated', 'accelerated-mobile-pages'),
                         'desc' => esc_html__('check your markup here (enter markup between BODY tag) : https://validator.ampproject.org/',
                         'accelerated-mobile-pages'),
+                        'default'   => ''
+                    ),
+                        array(
+                        'id'       => 'amp-dns-prefetch-urls',
+                        'type'     => 'textarea',
+                        'title'    => esc_html__('DNS Prefetch URL(s)', 'accelerated-mobile-pages'),
+                        'placeholder'=>esc_html__('https://example1.com/
+https://example2.com/
+https://example3.com/', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'  => sprintf( '%s<a href="%s" target="_blank">%s</a>%s', esc_html__("DNS Prefetch ask your browser to do a DNS lookup and connection before you need any resources from that domain. ",'accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-use-dns-prefetch-urls-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'),esc_html__(' for more info','accelerated-mobile-pages')),
+                        'desc' => esc_html__('Please enter DNS Prefetch URL(s) here and each URL should be in new line.', 'accelerated-mobile-pages'),
                         'default'   => ''
                     ),
                     array(
