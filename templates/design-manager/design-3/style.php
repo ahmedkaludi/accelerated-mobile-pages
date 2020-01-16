@@ -718,7 +718,8 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
 .toggle-navigationv2 a { color:#fff; }
 <?php } ?>
 <?php if ( ampforwp_get_setting('ampforwp-callnow-button') ) { ?>
-.callnow{ position: absolute; top: 15px; right: 20px }
+.callnow{ position: absolute; top: 15px; right: 30px; }
+<?php if(function_exists('ampforwp_wc_hook_endpoint_url')){?>.callnow{right: 60px;}<?php } ?>
 .callnow a:before { content: ""; position: absolute; right: 23px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call','color','ampforwp_sanitize_color'); ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
 .rtl .callnow{ left: 75px;right: unset; }
 <?php } ?>
