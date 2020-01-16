@@ -258,6 +258,11 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                 if(strpos($sheet, '-keyframes')!==false){
                     $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
                 }
+
+                //TRANSPOSH PLUGIN RTL ISSUE FIXED #3895
+                if(class_exists('transposh_plugin')){
+                     ampforwp_clear_css_on_transposh_rtl($sheet);
+                }
                 if(preg_match('/<style\samp-custom>(.*?)<\/style>/s', $completeContent,$matches)){
                     $completeContent = preg_replace("/<style\samp-custom>(.*?)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
                 }else if(preg_match('/<style\samp-custom>(.*)<\/style>/s', $completeContent,$matches)){
@@ -352,6 +357,38 @@ if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
 			}
 		}
 	}
+}
 
+if(!function_exists('ampforwp_clear_css_on_transposh_rtl')){
+    function ampforwp_clear_css_on_transposh_rtl($css){
+        if(class_exists('transposh_plugin')){
+            $rtl_lang_arr = array('ar', 'he', 'fa', 'ur', 'yi');
+            if(isset($_GET['lang'])){
+                if(in_array(esc_attr($_GET['lang']), $rtl_lang_arr)){
+                    if(!preg_match('/m-ctr{margin-right:0%}/', $css)){
+                        if(ampforwp_get_setting('ampforwp_css_tree_shaking')){
+                            $transient_filename = '';
+                            if(ampforwp_is_home()){
+                                $transient_filename = "home";
+                            }elseif(ampforwp_is_blog()){
+                                $transient_filename = "blog";
+                            }elseif(ampforwp_is_front_page()){
+                                $transient_filename = "post-".ampforwp_get_frontpage_id();
+                            }else{
+                                $transient_filename = "post-".ampforwp_get_the_ID();
+                            }
+                            if($transient_filename!=''){
+                                $upload_dir = wp_upload_dir();
+                                $ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($transient_filename).".css";
+                                if(file_exists($ts_file) && is_file($ts_file)){
+                                    unlink($ts_file);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 // Tree shaking feature #2949 --- ends here ---
