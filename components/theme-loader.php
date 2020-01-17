@@ -2,11 +2,12 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-if ( 4 == $ampforwp_design_selector ) {
-	define('AMPFORWP_CUSTOM_THEME', AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift' );
-}
-elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
-	define('AMPFORWP_CUSTOM_THEME', AMPFORWP_MAIN_PLUGIN_DIR."/".$ampforwp_design_selector);
+if (! defined('AMPFORWP_CUSTOM_THEME')) {
+    if (4 == $ampforwp_design_selector) {
+        define('AMPFORWP_CUSTOM_THEME', AMPFORWP_PLUGIN_DIR.'templates/design-manager/swift');
+    } else {
+        define('AMPFORWP_CUSTOM_THEME', AMPFORWP_MAIN_PLUGIN_DIR."/".$ampforwp_design_selector);
+    }
 }
 
 	require_once(  AMPFORWP_CUSTOM_THEME . '/functions.php' );
