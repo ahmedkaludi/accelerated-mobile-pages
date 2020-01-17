@@ -7730,7 +7730,7 @@ function ampforwp_include_required_scripts($content){
 							}
 						}
 					}
-					// REMOVING DUPLICATE ELEMENT.
+					// REMOVING DUPLICATE SCRIPT.
 					$count_elem = array_count_values($matches[2])[$component];
 					if($count_elem>1){
 						$content = preg_replace('/<script(\s|\sasync\s)custom-element="'.esc_attr($component).'"(.*?)>(.*?)<\/script>/s','',$content,1,$matches[2][$i]);
