@@ -4488,23 +4488,26 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 			if(preg_match('/<figure\sclass="(.*?)">(<img\ssrc="(.*?)"(.*?)>)<\/figure>/', $post->post_content, $fm)){
 				if(isset( $fm[2])){
 					$dom = new DOMDocument();
-					$image_html = $fm[2];
-				    $dom->loadHTML($image_html);
-				    $x = new DOMXPath($dom);
-				    foreach($x->query("//img") as $node){   
-				        $node->setAttribute("width","1366");
-				        $node->setAttribute("height","600");
-				    }
-				    $image_html = $dom->saveHtml();
-				    preg_match_all('/<img\ssrc="(.*?)">/', $image_html, $fimg);
-				    if(isset($fimg[0][0])){
-				       $image_html ='<figure class="'.esc_attr($fm[1]).'">'.$fimg[0][0].'</figure>';
-					   if(isset($fm[3])){
-						    $image_url 		= $fm[3];
-							$image_width 	= 1366;
-							$image_height 	= 600;
-						}
-				    }
+					preg_match('/<img\ssrc="(.*?)"(.*?)>/', $fm[2],$fmatch);
+					if(isset($fmatch[0])){
+						$image_html = $fmatch[0];
+					    $dom->loadHTML($image_html);
+					    $x = new DOMXPath($dom);
+					    foreach($x->query("//img") as $node){   
+					        $node->setAttribute("width","1366");
+					        $node->setAttribute("height","600");
+					    }
+					    $image_html = $dom->saveHtml();
+					    preg_match_all('/<img\ssrc="(.*?)">/', $image_html, $fimg);
+					    if(isset($fimg[0][0])){
+					       $image_html ='<figure class="'.esc_attr($fm[1]).'">'.$fimg[0][0].'</figure>';
+						   if(isset($fmatch[1])){
+							    $image_url 		= $fmatch[1];
+								$image_width 	= 1366;
+								$image_height 	= 600;
+							}
+					    }
+					}
 				}
 			}
 		}
