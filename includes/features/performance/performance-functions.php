@@ -372,23 +372,19 @@ if(!function_exists('ampforwp_clear_css_on_transposh_rtl')){
                 if(in_array(esc_attr($_GET['lang']), $rtl_lang_arr)){
                     if(!preg_match('/m-ctr{margin-right:0%}/', $css)){
                         if(ampforwp_get_setting('ampforwp_css_tree_shaking')){
-                            $transient_filename = '';
-                            if(ampforwp_is_home()){
-                                $transient_filename = "home";
-                            }elseif(ampforwp_is_blog()){
-                                $transient_filename = "blog";
-                            }elseif(ampforwp_is_front_page()){
-                                $transient_filename = "post-".ampforwp_get_frontpage_id();
-                            }else{
-                                $transient_filename = "post-".ampforwp_get_the_ID();
+                          $upload_dir   = wp_upload_dir();
+                          $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
+                          if ( file_exists( $user_dirname ) ) {
+                            $files = glob( $user_dirname . '/*' );
+                            //Loop through the file list.
+                            foreach ( $files as $file ) {
+                              //Make sure that this is a file and not a directory.
+                              if ( is_file( $file ) && strpos( $file, '_transient' ) !== false ) {
+                                //Use the unlink function to delete the file.
+                                unlink( $file );
+                              }
                             }
-                            if($transient_filename!=''){
-                                $upload_dir = wp_upload_dir();
-                                $ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($transient_filename).".css";
-                                if(file_exists($ts_file) && is_file($ts_file)){
-                                    unlink($ts_file);
-                                }
-                            }
+                          }
                         }
                     }
                 }
