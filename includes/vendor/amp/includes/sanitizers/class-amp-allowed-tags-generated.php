@@ -791,6 +791,37 @@ class AMP_Allowed_Tags_Generated {
 				),
 			),
 		),
+		'amp-mowplayer' => array(
+			array(
+				'attr_spec_list' => array(
+					'autoplay' => array(),
+					'data-mediaid' => array(
+						'mandatory' => true,
+					),
+					'media' => array(),
+					'noloading' => array(
+						'value' => array(
+							'',
+						),
+					),
+				),
+				'tag_spec' => array(
+					'amp_layout' => array(
+						'supported_layouts' => array(
+							6,
+							2,
+							3,
+							7,
+							1,
+							4,
+						),
+					),
+					'requires_extension' => array(
+						'amp-mowplayer',
+					),
+				),
+			),
+		),
 		'amp-date-countdown' => array(
 			array(
 				'attr_spec_list' => array(
