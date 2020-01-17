@@ -223,8 +223,12 @@ do_action("ampforwp_single_design_type_handle_d1");
 	<div class="r-pf">
 		<div class="cntr">
 		<?php 	
-		$check_rp = wp_get_recent_posts();
-		if (count($check_rp) > 1) {?>
+		$args = array(
+		    'posts_per_page' => 2,
+		);
+		$results = get_posts($args);
+ 		$check_rp= count($results);
+		if ($check_rp > 1) {?>
 			<h3><?php echo esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' )); ?></h3>
 		<?php }
 		$number_of_posts = 6;
