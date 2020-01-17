@@ -260,7 +260,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			return;
 		}
 
-		$page_for_posts = get_option( 'page_for_posts' );
+		$page_for_posts = intval(get_option( 'page_for_posts' ));
 		$post_id = ampforwp_get_the_ID();
 		if ( ampforwp_is_blog() && ! ampforwp_get_setting('amp-on-off-for-all-pages') && ($page_for_posts != $post_id ) ) {
 			return;
@@ -703,7 +703,7 @@ function ampforwp_title_custom_meta() {
 	      }
 	      // Pages
           $frontpage_id = ampforwp_get_the_ID();
-          $page_for_posts = get_option( 'page_for_posts' );
+          $page_for_posts = intval(get_option( 'page_for_posts' ));
           if( ampforwp_get_setting('amp-on-off-for-all-pages') && $post_type == 'page' || ( true == ampforwp_get_setting('amp-frontpage-select-option') && $post_id == $frontpage_id ) || ($post_id == $page_for_posts)) {
               add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
           }
