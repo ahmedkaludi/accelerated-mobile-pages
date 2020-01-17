@@ -112,7 +112,7 @@ if(count($matches)==0){
 .clearfix, .cb{clear:both}
 .alignright{ float: right; }
 .alignleft{ float: left; }
-.aligncenter{ display: block; margin-left: auto; margin-right: auto; max-width: 100% }
+.aligncenter{ display: block; margin-left: auto; margin-right: auto; max-width: 100%;text-align:center; }
 .amp-wp-enforced-sizes{ max-width: 100%; margin: 0 auto; }
 .amp-wp-unknown-size img{ object-fit: contain; }
 amp-iframe{ max-width: 100%; margin-bottom : 20px; }
