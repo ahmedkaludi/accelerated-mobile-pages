@@ -1921,7 +1921,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) {?>
 .s_fd{background:#f52828}
 <?php } ?>
-<?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
+<?php if( ampforwp_get_setting('enable-single-social-icons') || (is_page() && ampforwp_get_setting('ampforwp-page-sticky-social')) ){ ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;bottom: 0;text-align: center;border: 0;}
 .s_stk ul{width:100%;display:inline-flex;}
 .s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:40px}
