@@ -4670,11 +4670,25 @@ function ampforwp_inline_related_posts(){
 			            
 							if ( ampforwp_has_post_thumbnail() ) {
 								if( 4 == $redux_builder_amp['amp-design-selector'] ){
-									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 220 , 134 , true, false, true );
+									$r_width = 220;
+									$r_height = 134;
+									if(function_exists('ampforwp_get_retina_image_settings')){
+										$ret_config = ampforwp_get_retina_image_settings($r_width,$r_height);
+										$r_width  = intval($ret_config['width']);
+										$r_height = intval($ret_config['height']);
+									}
+									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, $r_width , $r_height , true, false, true );
 									$inline_related_posts_img  = '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . esc_attr($thumb_url_2[1]) . '" height="' . esc_attr($thumb_url_2[2]) . '" layout="responsive"></amp-img>';
 								}
 								else{
-									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 150 , 150 , true, false,true );
+									$r_width = 150;
+									$r_height = 150;
+									if(function_exists('ampforwp_get_retina_image_settings')){
+										$ret_config = ampforwp_get_retina_image_settings($r_width,$r_height);
+										$r_width = intval($ret_config['width']);
+										$r_height = intval($ret_config['height']);
+									}
+									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, $r_width , $r_height , true, false,true );
 									$thumb_url 		= $thumb_url_2[0];
 									$thumb_width 	= $thumb_url_2[1];
 									$thumb_height 	= $thumb_url_2[2];
@@ -7724,3 +7738,20 @@ function ampforwp_include_required_scripts($content){
 	}
 	return $content;
 }	
+if(!function_exists('ampforwp_get_retina_image_settings')){
+	function ampforwp_get_retina_image_settings($width,$height){
+		$data['width'] 	= intval($width);
+		$data['height'] = intval($height);
+		if ( 1 == ampforwp_get_setting('ampforwp-retina-images') ) {
+			$resolution = 2;
+			if (ampforwp_get_setting('ampforwp-retina-images-res')) {
+				$resolution = ampforwp_get_setting('ampforwp-retina-images-res');
+			}
+			$width = $width * $resolution;
+			$height = $height * $resolution;
+			$data['width'] 	= intval($width);
+			$data['height'] = intval($height);
+		}
+		return $data;
+	}
+}
