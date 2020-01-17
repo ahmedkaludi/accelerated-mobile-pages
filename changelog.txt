@@ -1,5 +1,18 @@
 == Changelog ==
 
+= 1.0.15 (17th January 2020) =
+* Fixed: Sticky Social icons's css not loading correctly on some pages #3980
+* Fixed: Need to add option to hide "AMP version" in view source page(generator). #4000
+* Fixed: Caption of image gallery not displaying #3993
+* Fixed: Need to connect retina image functionality to In-content Related post thumbnails. #4007
+* Fixed: easytoc-icon.png #4041
+* Fixed: AMP links Error. #4016
+* Fixed: Image alignment and Name is not showing AMP #4038
+* Fixed: Need to sanitize amp-mowplayer tag when added in the content. #4044
+* Fixed: Set the priority to high of the icomoon CSS to override every other CSS,in AMP page builder. #4035
+* Fixed: when row Wrapper is set to 100%,static css of max width 90% is getting applied from tablet view mode to below #3999
+* Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
+
 = 1.0.14 (14th January 2020) =
 * Fixed: Warning in accelerated-mobile-pages/includes/options/admin-config.php on line 1250
 * Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
