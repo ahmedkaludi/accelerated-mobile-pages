@@ -2278,6 +2278,20 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
 .amp-carousel-containerd3 figcaption {
     max-width: 150px;
 }
+.ampforwp-blocks-gallery-caption{
+	float: left;
+    width: 100%;
+    font-size: 16px;
+}
+<?php }else if(ampforwp_get_setting('ampforwp-gallery-design-type')==2){?>
+.ampforwp-blocks-gallery-caption{
+    font-size: 16px;
+    margin-top: -23px;
+}
+<?php }else if(ampforwp_get_setting('ampforwp-gallery-design-type')==1){?>
+.ampforwp-blocks-gallery-caption{
+    font-size: 16px;
+}
 <?php } ?>
 .m-s-i li a.s_telegram{
 	background: #d0d0d0;
