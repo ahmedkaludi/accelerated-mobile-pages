@@ -129,8 +129,7 @@ function ampforwp_call_page_builder(){
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	
 	if(class_exists('WPSEO_Frontend') && true == ampforwp_get_setting('ampforwp-yoast-seo-analysis') && true == ampforwp_get_setting('ampforwp-amp-takeover') ) { 
-		$pb_content = amppb_post_content('');
-		$pb_content = preg_replace("/<script.*?\/script>/s", "", $pb_content);
+		$pb_content = get_post_field('amp-page-builder',$post->ID);
 		?>
 		<script type="text/template" class="hide" id="amp-page-builder-ready"><?php echo stripcslashes( $pb_content ); ?></script>
 	<?php } ?>
