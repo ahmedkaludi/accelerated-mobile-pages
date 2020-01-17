@@ -282,7 +282,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 			if ( 3 != ampforwp_get_setting('ampforwp-gallery-design-type') ) {
 				$image_div = AMP_DOM_Utils::create_node( $this->dom, 'div', array('class'=>'ampforwp-gallery-item amp-carousel-container') );
 				$image_div->appendChild($amp_image_node);
-				if ( isset($image['caption']) ) {
+				if ( isset($image['caption'])  && is_object($image['caption'])) {
 					$figure_node = AMP_DOM_Utils::create_node($this->dom, 'figure', array());
 					$fig_caption = AMP_DOM_Utils::create_node($this->dom, 'figcaption', array('on'=>"tap:AMP.setState({expanded: !expanded})",'tabindex'=>0,'role'=>'button'));
 					$captionlength = $image['caption']->length;
@@ -404,8 +404,10 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 		$domData = $this->dom->saveHTML();
 		if(preg_match_all('/<figcaption class="blocks-gallery-caption">(.*?)<\/figcaption>/', $domData, $fc)!==false){
 			$block_gcnode = AMP_DOM_Utils::create_node($this->dom, 'figcaption', array('class'=>'ampforwp-blocks-gallery-caption') );
-			$block_gcnode->nodeValue = $fc[1][0];
-			$append->appendChild( $block_gcnode );
+			if(isset($fc[1][0])){
+				$block_gcnode->nodeValue = $fc[1][0];
+				$append->appendChild( $block_gcnode );
+			}
 		}
 	}
 	/**
