@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.14
+Stable tag: 1.0.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,19 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.15 (17th January 2020) =
+* Fixed: Sticky Social icons's css not loading correctly on some pages #3980
+* Fixed: Need to add option to hide "AMP version" in view source page(generator). #4000
+* Fixed: Caption of image gallery not displaying #3993
+* Fixed: Need to connect retina image functionality to In-content Related post thumbnails. #4007
+* Fixed: easytoc-icon.png #4041
+* Fixed: AMP links Error. #4016
+* Fixed: Image alignment and Name is not showing AMP #4038
+* Fixed: Need to sanitize amp-mowplayer tag when added in the content. #4044
+* Fixed: Set the priority to high of the icomoon CSS to override every other CSS,in AMP page builder. #4035
+* Fixed: when row Wrapper is set to 100%,static css of max width 90% is getting applied from tablet view mode to below #3999
+* Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
+
 = 1.0.14 (14th January 2020) =
 * Fixed: Warning in accelerated-mobile-pages/includes/options/admin-config.php on line 1250 #4027
 * Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
@@ -211,34 +224,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Detect Component and add or remove script accordingly #4067
 * Fixed: GTM tags are not working in the updated version 1.0.9 but Google Analytics is working,Also in version 1.0.0 both are working fine #4059
 * Fixed: Matomo (Piwik) Analytics generating errors in Console. #4042
-
-= 1.0.12 (12th January 2020) =
-* Fixed: Detect Component and add or remove script accordingly #4067
-
-= 1.0.11 (11th January 2020) =
-* Fixed: In amp-pixel script adding automatically. #4057
-
-= 1.0.10 (10th January 2020) =
-* Improvement: Need a hook to use it in Woocomerce #4048
-* Fixed: Scripts are not adding properly if user is adding the content through embed #4040
-* Fixed: When Featured Image from The Content is turned on,the image is not displayed when Creating post from Gutenberg. #4022
-
-= 1.0.9 (8th January 2020) =
-* Fixed: Odd behaviour of Optimize CSS (Treeshaking),when turned off resolves the validation errors and when turned on adding unnecessary wp-block CSS. #4036
-* Fixed: After enable the Tree shaking feature the CSS not loading properly #4034
-* Fixed: fallback feature is not working on SVG images #4033
-* Fixed: Need to update the Form Sanitizer to allow only the required from #4010
-* Fixed: 404 error in console with Images having webp extension. #3983
-
-= 1.0.8 (2nd January 2020) =
-* Fixed: Need to add Rankmath's "Nofollow External Links" feature. #3970 (updated the code)
-
-= 1.0.7 (2nd January 2020) =
-* Improvement: Need to add Rankmath's "Nofollow External Links" feature. #3970
-* Improvement: Need to add floating button in extension list #3972
-* Fixed: AMP theme framework GDPR module should be connected to GDPR Compliancy in option panel. #3963
-* Fixed: Breadcrumbs are not properly displaying and working in updated version #3917
-* Fixed: amp-auto-ads script is loading in AMP-pages when Google site kit plugin is enable. #4009
-* Fixed: wp-block CSS is heavily loading even when tree shaking is enabled in core. (Page builder is enabled) #4014
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.14
+Stable tag: 1.0.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,19 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.15 (17th January 2020) =
+* Fixed: Sticky Social icons's css not loading correctly on some pages #3980
+* Fixed: Need to add option to hide "AMP version" in view source page(generator). #4000
+* Fixed: Caption of image gallery not displaying #3993
+* Fixed: Need to connect retina image functionality to In-content Related post thumbnails. #4007
+* Fixed: easytoc-icon.png #4041
+* Fixed: AMP links Error. #4016
+* Fixed: Image alignment and Name is not showing AMP #4038
+* Fixed: Need to sanitize amp-mowplayer tag when added in the content. #4044
+* Fixed: Set the priority to high of the icomoon CSS to override every other CSS,in AMP page builder. #4035
+* Fixed: when row Wrapper is set to 100%,static css of max width 90% is getting applied from tablet view mode to below #3999
+* Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
+
 = 1.0.14 (14th January 2020) =
 * Fixed: Warning in accelerated-mobile-pages/includes/options/admin-config.php on line 1250 #4027
 * Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
@@ -208,8 +221,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Detect Component and add or remove script accordingly #4067
 * Fixed: GTM tags are not working in the updated version 1.0.9 but Google Analytics is working,Also in version 1.0.0 both are working fine #4059
 * Fixed: Matomo (Piwik) Analytics generating errors in Console. #4042
-
-= 1.0.12 (12th January 2020) =
-* Fixed: Detect Component and add or remove script accordingly #4067
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

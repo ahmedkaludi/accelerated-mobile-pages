@@ -397,7 +397,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 		if ( $amp_url ) {
 			printf('<link rel="amphtml" href="%s" />', esc_url($amp_url));
-			printf('<meta name="generator" content="%s %s"/>', esc_html__('AMP for WP'), esc_attr(AMPFORWP_VERSION) );
+			if(false==ampforwp_get_setting('hide-amp-version-from-source')){
+				printf('<meta name="generator" content="%s %s"/>', esc_html__('AMP for WP'), esc_attr(AMPFORWP_VERSION) );
+			}
 		}
 
 	} //end of ampforwp_home_archive_rel_canonical()
@@ -2963,6 +2965,13 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 	if($item->type=='taxonomy' && !in_array($item->object, ampforwp_get_all_post_types()) ){
 		return $atts;
 	}
+	$url = $atts['href'];
+	if($url){
+		$is_external = ampforwp_isexternal($url);
+	}
+	if($is_external){
+		return $atts;
+	}
   	if(ampforwp_get_setting('amp-core-end-point') == 1 ){
 	    $atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) );
 		$atts['href'] = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $atts['href']);
@@ -4476,26 +4485,28 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 		}
 		if($output==0){
 			if(preg_match('/<figure\sclass="(.*?)">(<img\ssrc="(.*?)"(.*?)>)<\/figure>/', $post->post_content, $fm)){
-				preg_match('/<figure\sclass="(.*?)">(<img\ssrc="(.*?)"(.*?)>)<\/figure>/', $post->post_content, $fb);
-				if(isset( $fb[2])){
+				if(isset( $fm[2])){
 					$dom = new DOMDocument();
-					$image_html = $fb[2];
-				    $dom->loadHTML($image_html);
-				    $x = new DOMXPath($dom);
-				    foreach($x->query("//img") as $node){   
-				        $node->setAttribute("width","1366");
-				        $node->setAttribute("height","600");
-				    }
-				    $image_html = $dom->saveHtml();
-				    preg_match_all('/<img\ssrc="(.*?)">/', $image_html, $fimg);
-				    if(isset($fimg[0][0])){
-				       $image_html ='<figure class="'.esc_attr($fb[1]).'">'.$fimg[0][0].'</figure>';
-					   if(isset($fb[3])){
-						    $image_url 		= $fb[3];
-							$image_width 	= 1366;
-							$image_height 	= 600;
-						}
-				    }
+					preg_match('/<img\ssrc="(.*?)"(.*?)>/', $fm[2],$fmatch);
+					if(isset($fmatch[0])){
+						$image_html = $fmatch[0];
+					    $dom->loadHTML($image_html);
+					    $x = new DOMXPath($dom);
+					    foreach($x->query("//img") as $node){   
+					        $node->setAttribute("width","1366");
+					        $node->setAttribute("height","600");
+					    }
+					    $image_html = $dom->saveHtml();
+					    preg_match_all('/<img\ssrc="(.*?)">/', $image_html, $fimg);
+					    if(isset($fimg[0][0])){
+					       $image_html ='<figure class="'.esc_attr($fm[1]).'">'.$fimg[0][0].'</figure>';
+						   if(isset($fmatch[1])){
+							    $image_url 		= $fmatch[1];
+								$image_width 	= 1366;
+								$image_height 	= 600;
+							}
+					    }
+					}
 				}
 			}
 		}
@@ -4661,11 +4672,25 @@ function ampforwp_inline_related_posts(){
 			            
 							if ( ampforwp_has_post_thumbnail() ) {
 								if( 4 == $redux_builder_amp['amp-design-selector'] ){
-									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 220 , 134 , true, false, true );
+									$r_width = 220;
+									$r_height = 134;
+									if(function_exists('ampforwp_get_retina_image_settings')){
+										$ret_config = ampforwp_get_retina_image_settings($r_width,$r_height);
+										$r_width  = intval($ret_config['width']);
+										$r_height = intval($ret_config['height']);
+									}
+									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, $r_width , $r_height , true, false, true );
 									$inline_related_posts_img  = '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . esc_attr($thumb_url_2[1]) . '" height="' . esc_attr($thumb_url_2[2]) . '" layout="responsive"></amp-img>';
 								}
 								else{
-									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 150 , 150 , true, false,true );
+									$r_width = 150;
+									$r_height = 150;
+									if(function_exists('ampforwp_get_retina_image_settings')){
+										$ret_config = ampforwp_get_retina_image_settings($r_width,$r_height);
+										$r_width = intval($ret_config['width']);
+										$r_height = intval($ret_config['height']);
+									}
+									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, $r_width , $r_height , true, false,true );
 									$thumb_url 		= $thumb_url_2[0];
 									$thumb_width 	= $thumb_url_2[1];
 									$thumb_height 	= $thumb_url_2[2];
@@ -6842,14 +6867,16 @@ function ampforwp_post_template_data( $data ) {
 	return $data;
 } 
 
-add_action('amp_meta','ampforwp_generator');
-if ( ! function_exists('ampforwp_generator') ) {
-function ampforwp_generator(){
-	if(true == ampforwp_get_setting('ampforwp-amp-convert-to-wp')){
-	?>
-	<meta name="generator" content="AMP for WP <?php echo esc_attr(AMPFORWP_VERSION)?>" />
-<?php } 
-} 
+if(false==ampforwp_get_setting('hide-amp-version-from-source')){
+	add_action('amp_meta','ampforwp_generator');
+	if ( ! function_exists('ampforwp_generator') ) {
+	function ampforwp_generator(){
+		if(true == ampforwp_get_setting('ampforwp-amp-convert-to-wp')){
+		?>
+		<meta name="generator" content="AMP for WP <?php echo esc_attr(AMPFORWP_VERSION)?>" />
+	<?php } 
+		}
+	} 
 }
 
 // #2497 Ivory Search Compatibility Added
@@ -7622,9 +7649,7 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
 
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
-	
 	$comp_to_remove_arr = array();
-
 	preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
 	if(isset($matches[1][0])){
 		$amp_comp = $matches[1];
@@ -7671,7 +7696,7 @@ function ampforwp_include_required_scripts($content){
 				}
 				$comp_to_include_arr = apply_filters('ampforwp_amp_custom_element_to_include',$comp_to_include_arr);
 				if(in_array($comp, $comp_to_include_arr)){
-					if(!preg_match('/<script\scustom-element=\"amp-'.esc_attr($comp).'\"(.*?)><\/script>/', $content, $matches)){
+					if(!preg_match('/<script(\s|\sasync\s)custom-element="amp-'.esc_attr($comp).'"(.*?)>(.*?)<\/script>/s', $content, $matches)){
 						$script_tag = '<head><script custom-element="amp-'.esc_attr($comp).'" src="'.esc_url($comp_url).'" async></script>';
 						$content =  str_replace('<head>', $script_tag, $content);
 					}
@@ -7680,17 +7705,17 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 
-	preg_match_all('/<script\scustom-element="(.*?)"(.*?)><\/script>/', $content, $matches);
+	preg_match_all('/<script(\s|\sasync\s)custom-element="(.*?)"(.*?)>(.*?)<\/script>/s', $content, $matches);
 	if(isset($matches[0])){
-		if(isset($matches[1])){
+		if(isset($matches[2])){
 			$excl_arr = array('amp-form','amp-bind','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-dynamic-css-classes','amp-fx-collection','amp-inputmask','amp-lightbox-gallery','amp-inputmask','amp-mustache','amp-subscriptions-google','amp-subscriptions','amp-video-docking','amp-story');
 			$inc_elem_arr = array();
 			for($r=0;$r<count($comp_to_remove_arr);$r++){
 				$inc_elem_arr[] = 'amp-'.$comp_to_remove_arr[$r];
 			}
-			for($i=0;$i<count($matches[1]);$i++){
-				if(isset($matches[1][$i])){
-					$component = $matches[1][$i];
+			for($i=0;$i<count($matches[2]);$i++){
+				if(isset($matches[2][$i])){
+					$component = $matches[2][$i];
 					if(!in_array($component,$excl_arr)){
 						if(!preg_match("/<\/$component>/",  $content) && !$is_script){
 							$remove_comp = $matches[0][$i];
@@ -7698,7 +7723,7 @@ function ampforwp_include_required_scripts($content){
 						}else if(in_array($component, $inc_elem_arr )){
 							for($rc=0;$rc<count($inc_elem_arr);$rc++){
 								$rcomp = $inc_elem_arr[$rc];
-								if(preg_match('/<script\scustom-element="'.$rcomp.'"(.*?)<\/script>/', $content,$rmc)){
+								if(preg_match('/<script(\s|\sasync\s)custom-element="'.esc_attr($rcomp).'"(.*?)>(.*?)<\/script>/s', $content,$rmc)){
 									if(isset($rmc[0])){
 										$remove_comp = $rmc[0];
 										$content = str_replace($remove_comp, '', $content);
@@ -7707,9 +7732,31 @@ function ampforwp_include_required_scripts($content){
 							}
 						}
 					}
+					// REMOVING DUPLICATE SCRIPT.
+					$count_elem = array_count_values($matches[2])[$component];
+					if($count_elem>1){
+						$content = preg_replace('/<script(\s|\sasync\s)custom-element="'.esc_attr($component).'"(.*?)>(.*?)<\/script>/s','',$content,1,$matches[2][$i]);
+					}
 				}
 			}
 		}
 	}
 	return $content;
 }	
+if(!function_exists('ampforwp_get_retina_image_settings')){
+	function ampforwp_get_retina_image_settings($width,$height){
+		$data['width'] 	= intval($width);
+		$data['height'] = intval($height);
+		if ( 1 == ampforwp_get_setting('ampforwp-retina-images') ) {
+			$resolution = 2;
+			if (ampforwp_get_setting('ampforwp-retina-images-res')) {
+				$resolution = ampforwp_get_setting('ampforwp-retina-images-res');
+			}
+			$width = $width * $resolution;
+			$height = $height * $resolution;
+			$data['width'] 	= intval($width);
+			$data['height'] = intval($height);
+		}
+		return $data;
+	}
+}

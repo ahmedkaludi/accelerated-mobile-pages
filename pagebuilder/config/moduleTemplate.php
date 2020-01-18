@@ -326,7 +326,7 @@ $front_css = '
 
 @media(max-width:768px){
 	{{row-class}}.amppb-fluid{width:100%;}
-	{{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{max-width:90%;}
+	{{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{max-width:{{fluid-wrapper}};}
 }
 
 @media(max-width:425px){

@@ -83,7 +83,7 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;-o-box-sizing: border-box;}
 .alignright {float: right;margin-left:10px;}
 .alignleft {float: left;margin-right:10px;}
-.aligncenter {display: block;margin-left: auto;margin-right: auto;}
+.aligncenter {display: block;margin-left: auto;margin-right: auto;text-align: center;}
 amp-iframe { max-width: 100%; margin-bottom : 20px; }
 amp-wistia-player {margin:5px 0px;}
 .wp-caption {padding: 0;}
@@ -1921,7 +1921,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) {?>
 .s_fd{background:#f52828}
 <?php } ?>
-<?php if( ampforwp_get_setting('enable-single-social-icons') ){ ?>
+<?php if( ampforwp_get_setting('enable-single-social-icons') || (is_page() && ampforwp_get_setting('ampforwp-page-sticky-social')) ){ ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;bottom: 0;text-align: center;border: 0;}
 .s_stk ul{width:100%;display:inline-flex;}
 .s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:40px}
@@ -2277,6 +2277,20 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
 }
 .amp-carousel-containerd3 figcaption {
     max-width: 150px;
+}
+.ampforwp-blocks-gallery-caption{
+	float: left;
+    width: 100%;
+    font-size: 16px;
+}
+<?php }else if(ampforwp_get_setting('ampforwp-gallery-design-type')==2){?>
+.ampforwp-blocks-gallery-caption{
+    font-size: 16px;
+    margin-top: -23px;
+}
+<?php }else if(ampforwp_get_setting('ampforwp-gallery-design-type')==1){?>
+.ampforwp-blocks-gallery-caption{
+    font-size: 16px;
 }
 <?php } ?>
 .m-s-i li a.s_telegram{
