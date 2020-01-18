@@ -51,7 +51,6 @@ function ampforwp_pagebuilder_header_html_output(){
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
-		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
 		if(isset($previousData['settingdata']['scripts_data']) && $previousData['settingdata']['scripts_data']!=""){
 			echo $previousData['settingdata']['scripts_data']; // nothing to escaped
@@ -71,7 +70,6 @@ function amp_pagebuilder_script_loader($scriptData){
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
-		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
 		if(count($previousData['rows'])>0){
 			foreach ($previousData['rows'] as $key => $rowsData) {
@@ -166,7 +164,6 @@ function amp_pagebuilder_content_styles(){
 ';
 
 		add_filter('ampforwp_body_class', 'bodyClassForAMPPagebuilder',10,2);
-		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
 		if(count($previousData['rows'])>0){
 
@@ -586,7 +583,6 @@ function amppb_post_content($content){
 
 
 		$html ="";
-		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
 		//Call Sorting for rows 
 		if(count($previousData['rows'])>0){
