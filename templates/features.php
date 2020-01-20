@@ -6364,6 +6364,7 @@ function ampforwp_sneak_peek_css(){
     .fd-b-c{text-align: center;margin: 0px 0px 30px 0px;}
     .fd-b-c .fd-b {border:none;border-radius: 5px;color: <?php echo ampforwp_sanitize_color($txt_color); ?>;font-size: 16px;font-weight: 700;padding: 12px 32px 12px 32px;background-color: <?php echo ampforwp_sanitize_color($btn_color); ?>;
     }
+    .fd-b-c .fd-b:hover{cursor:pointer;}
     .fd-h:after {
 	    content: "";
 	    display: inline-block;
