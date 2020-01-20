@@ -4561,13 +4561,18 @@ if( ! function_exists( 'featured_image_content_filter' ) ){
 			// Change the src to use it in the pattern
 			$featured_image = str_replace('/', '\/', $featured_image);
 			// Remove the figure (due to caption)
-			$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);
 			// Remove the amp-img 
 		  if(false == has_post_thumbnail()){
-			$content = preg_replace('/<figure class="wp-block-image (.*?")>(.*?)<\/figure>\1/', '', $content);
+		  	if(preg_match('/<figure class="wp-block-image (.*?")>(.*?)<\/figure>/', $content)){
+				$content = preg_replace('/<figure class="wp-block-image (.*?")>(.*?)<\/figure>/', '', $content, 1);
+		  	}else{
+		  		$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);
+		  	}
+		  }else{
+		  	$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);
 		  }
 		}
-	return $content;
+		return $content;
 	}
 }
 
