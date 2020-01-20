@@ -7720,17 +7720,17 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 
-	preg_match_all('/<script(\s|\sasync\s)custom-element="(.*?)"(.*?)>(.*?)<\/script>/s', $content, $matches);
+	preg_match_all('/<script(\s|\sasync\s)(.*?)custom-element="(.*?)"(.*?)>(.*?)<\/script>/s', $content, $matches);
 	if(isset($matches[0])){
-		if(isset($matches[2])){
+		if(isset($matches[3])){
 			$excl_arr = array('amp-form','amp-bind','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-dynamic-css-classes','amp-fx-collection','amp-inputmask','amp-lightbox-gallery','amp-inputmask','amp-mustache','amp-subscriptions-google','amp-subscriptions','amp-video-docking','amp-story');
 			$inc_elem_arr = array();
 			for($r=0;$r<count($comp_to_remove_arr);$r++){
 				$inc_elem_arr[] = 'amp-'.$comp_to_remove_arr[$r];
 			}
-			for($i=0;$i<count($matches[2]);$i++){
-				if(isset($matches[2][$i])){
-					$component = $matches[2][$i];
+			for($i=0;$i<count($matches[3]);$i++){
+				if(isset($matches[3][$i])){
+					$component = $matches[3][$i];
 					if(!in_array($component,$excl_arr)){
 						if(!preg_match("/<\/$component>/",  $content) && !$is_script){
 							$remove_comp = $matches[0][$i];
@@ -7748,9 +7748,9 @@ function ampforwp_include_required_scripts($content){
 						}
 					}
 					// REMOVING DUPLICATE ELEMENT.
-					$count_elem = array_count_values($matches[2])[$component];
+					$count_elem = array_count_values($matches[3])[$component];
 					if($count_elem>1){
-						$content = preg_replace('/<script(\s|\sasync\s)custom-element="'.esc_attr($component).'"(.*?)>(.*?)<\/script>/s','',$content,1,$matches[2][$i]);
+						$content = preg_replace('/<script(\s|\sasync\s)custom-element="'.esc_attr($component).'"(.*?)>(.*?)<\/script>/s','',$content,1,$matches[3][$i]);
 					}
 				}
 			}
