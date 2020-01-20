@@ -14,6 +14,7 @@ function ampforwp_minify_html_output($content_buffer){
     if(preg_match('/<script type="text\/javascript">.*?NREUM.*?;<\/script>/s', $content_buffer)!=0){
         $content_buffer = preg_replace('/<script type="text\/javascript">.*?NREUM.*?;<\/script>/s', '', $content_buffer);
     }
+    $content_buffer = preg_replace('/<div(.*?)class="playbuzz"(.*?)data-id="(.*?)"(.*?)><\/div>/', '<amp-playbuzz data-item="$3" height="1000"></amp-playbuzz>', $content_buffer);
 	if (defined('W3TC') && strpos($content_buffer, 'frameborder') !== false) {
 		add_filter("w3tc_minify_html_enable",'__return_false');
 	}
