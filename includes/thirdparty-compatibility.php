@@ -966,7 +966,7 @@ if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
 				return ' <span><a class="zox_tw" href="https://twitter.com/'.esc_attr($twitter).'" target="_blank"></a></span>';
 			}else{
 				$parse = parse_url($twitter);	
-				if($parse['host'] == 'twitter.com'){
+				if(isset($parse['host']) && $parse['host'] == 'twitter.com'){
 					$twitter_url = $twitter;
 				}else{
 					$twitter_url = 'https://twitter.com/'.esc_attr($twitter);
