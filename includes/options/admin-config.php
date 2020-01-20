@@ -6215,6 +6215,19 @@ $single_page_options = array(
                     array('content-sneak-peek', '=' , '1')
                  )
             ),
+            array(
+                'id'        => 'content-sneak-peek-btn-hover-color',
+                'title'     => esc_html__('Button Hover Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Choose the hover color for button','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'class'    => 'child_opt',
+                'default'   => array(
+                'color'      => '#000',
+                 ),
+                'required' => array(
+                    array('content-sneak-peek', '=' , '1')
+                 )
+            ),
     $fields = array(
         'id'   => 'info_normal',
         'type' => 'info',
