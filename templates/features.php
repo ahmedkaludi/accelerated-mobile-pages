@@ -6950,15 +6950,13 @@ if($dns_uls!=""){
 	if(!function_exists('ampforwp_set_dns_prefetch_urls')){
 		function ampforwp_set_dns_prefetch_urls(){
 			global $dns_uls;
-			$dns_urls = explode(PHP_EOL, $dns_uls);
-			for($i=0;$i<count($dns_urls);$i++){
-				$dfu = $dns_urls[$i];
-				if($dfu!=""){
-					if (filter_var($dfu, FILTER_VALIDATE_URL) !== FALSE) {
+			$match = preg_split ( '/(\r|\n|\s)/' ,  $dns_uls, 0,  PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE );
+			for($m=0;$m<count($match);$m++){
+			    $dfu = trim($match[$m]);
+			    if($dfu!=""){
 	?>
-			<link rel="preconnect dns-prefetch" href="<?php echo esc_url($dfu);?>" crossorigin>
+	<link rel="preconnect dns-prefetch" href="<?php echo esc_url($dfu);?>" crossorigin>
 	<?php
-					}
 				}
 			}
 		}
