@@ -355,6 +355,9 @@ if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
 				}else{
 					$transient_filename = "post-".ampforwp_get_the_ID();
 				}
+                if( is_user_logged_in() ){
+                    $transient_filename = $transient_filename.'-admin';
+                }
 				$upload_dir = wp_upload_dir();
 				$ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($transient_filename).".css";
 				if(file_exists($ts_file) && is_file($ts_file)){

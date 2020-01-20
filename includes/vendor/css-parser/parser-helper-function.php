@@ -15,6 +15,9 @@ class AMPFORWP_Tree_Shaking_Transient{
 		}elseif(!empty($post) && is_object($post)){
 			$transient = "post-".$post->ID;
 		}
+		if( is_user_logged_in() ){
+			$transient = $transient.'-admin';
+		}
 		return $transient;
 	}
 	public static function ampforwp_set_file_transient( $transient, $value, $expiration = 0 ) {
