@@ -7707,6 +7707,22 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 
+	//OTHER COMPONENT CHECK 
+	$other_comp_arr = array('amp-mustache');
+	for($oc = 0; $oc<count($other_comp_arr); $oc++){
+		$ocomp = $other_comp_arr[$oc];
+		$celem = 'element';
+		if($ocomp=='amp-mustache'){
+			$celem = 'template';
+		}
+		if(preg_match_all('/(type|template)="('.$ocomp.')"/', $content,$oMaches)){
+			if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
+				$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+				$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
+				$content =  str_replace('<head>', $script_tag, $content);
+			}
+		}
+	}
 	preg_match_all('/<script(\s|\sasync\s)custom-element="(.*?)"(.*?)>(.*?)<\/script>/s', $content, $matches);
 	if(isset($matches[0])){
 		if(isset($matches[2])){
