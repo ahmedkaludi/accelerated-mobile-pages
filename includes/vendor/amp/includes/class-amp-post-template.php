@@ -322,6 +322,9 @@ class AMP_Post_Template {
 			);
 
 			$amp_con = $amp_content->get_amp_content();
+			if(function_exists('ampforwp_mistape_plugin_compatibility')){
+				$amp_con = ampforwp_mistape_plugin_compatibility($amp_con);
+			}
 			$amp_con = $this->ampforwp_add_fallback_element($amp_con,'amp-img');
 			$this->add_data_by_key( 'post_amp_content', $amp_con);
 			$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
