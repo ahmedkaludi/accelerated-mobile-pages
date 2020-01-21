@@ -37,6 +37,8 @@ function ampforwp_add_admin_styling($hook_suffix){
     $redux_data = array();
     if( current_user_can("manage_options") && $hook_suffix=='toplevel_page_amp_options' ){
         $redux_data = $redux_builder_amp;
+    }else{
+        $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
     if( current_user_can("manage_options") && $hook_suffix == 'options-reading.php' && 0 == $redux_builder_amp['amp-frontpage-select-option']) {
         $redux_data['frontpage'] = 'false';
