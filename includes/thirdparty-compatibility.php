@@ -1051,13 +1051,13 @@ function ampforwp_non_amp_gallery($matches){
 	return $imagesHTML;
 }
 // MISTAPE PLUGIN COMPATIBILITY #3974
-add_action('amp_post_template_css', 'ampforwp_mistape_plugin_style'); 
+if(function_exists('deco_mistape_init')){
+	add_action('amp_post_template_css', 'ampforwp_mistape_plugin_style'); 
+}
 if(!function_exists('ampforwp_mistape_plugin_style')){
 	function ampforwp_mistape_plugin_style(){
-		if(function_exists('deco_mistape_init')){
-			$css = '.mistape_caption{font-size:80%;opacity:.8}.mistape-logo svg{display:block;height:22px;width:22px;fill:#e42029}.mistape_caption .mistape-link{text-decoration:none;border:none;box-shadow:none}.mistape-link:hover{text-decoration:none;border:none}';
-			echo ampforwp_css_sanitizer($css);
-		}
+		$css = '.mistape_caption{font-size:80%;opacity:.8}.mistape-logo svg{display:block;height:22px;width:22px;fill:#e42029}.mistape_caption .mistape-link{text-decoration:none;border:none;box-shadow:none}.mistape-link:hover{text-decoration:none;border:none}';
+		echo ampforwp_css_sanitizer($css);
 	}
 }
 if(!function_exists('ampforwp_mistape_plugin_compatibility')){
