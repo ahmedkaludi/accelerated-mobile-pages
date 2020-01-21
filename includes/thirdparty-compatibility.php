@@ -1052,35 +1052,6 @@ function ampforwp_non_amp_gallery($matches){
 	return $imagesHTML;
 }
 
-// SOCIAL PUG ICON COMPATIBILITY
-add_action('amp_post_template_css', 'ampforwp_social_pug_icon_style'); 
-if(!function_exists('ampforwp_social_pug_icon_style')){
-	function ampforwp_social_pug_icon_style(){
-		if(class_exists('Social_Pug')){
-			$dpsp_location_content = get_option( 'dpsp_location_content', 'not_set' );
-			$dpsp_location_sidebar = get_option( 'dpsp_location_sidebar', 'not_set' );
-			if(isset( $dpsp_location_content["active"] ) || isset( $dpsp_location_sidebar["active"] )){
-				if(isset( $dpsp_location_sidebar["active"] )){
-					add_action("ampforwp_body_beginning",'ampforwp_social_pug_sidebar_social');
-				}
-				$plugins_url = plugin_dir_url('social-pug/index.php');
-				$css = ampforwp_get_remote_content($plugins_url."assets/css/style-frontend.css");
-				$font_url = esc_url($plugins_url)."assets/fonts/socialpug";
-				$css = preg_replace('/\..\/fonts\/socialpug/', $font_url, $css);
-				$css = preg_replace('/!important/','', $css);
-				$css .= '.artl-cnt .dpsp-networks-btns-wrapper li:before{display:none;}';
-				$css .= '.dpsp-network-label-wrapper .dpsp-network-label{color:#fff}';
-				$css .= '.dpsp-networks-btns-wrapper .dpsp-network-btn.dpsp-facebook .dpsp-network-icon,.dpsp-networks-btns-wrapper .dpsp-network-btn.dpsp-pinterest .dpsp-network-icon,.dpsp-networks-btns-wrapper .dpsp-network-btn.dpsp-twitter .dpsp-network-icon,.dpsp-networks-btns-wrapper .dpsp-network-btn.dpsp-linkedin .dpsp-network-icon,.dpsp-networks-btns-wrapper .dpsp-network-btn.dpsp-email .dpsp-network-icon,.dpsp-networks-btns-wrapper .dpsp-network-btn.dpsp-print .dpsp-network-icon{color:#fff}
-					.dpsp-network-count{color:#fff}';
-				echo ampforwp_css_sanitizer($css);
-			}
-		}
-	}
-}
-function ampforwp_social_pug_sidebar_social(){
-	dpsp_output_front_end_floating_sidebar();
-}
-
 // ULTIMATE ADDONS FOR GUTENBERG COMPATIBILITY
 add_action('amp_post_template_css', 'ampfrowp_ultimate_addons_gutenberg_compatibility');
 if(!function_exists('ampfrowp_ultimate_addons_gutenberg_compatibility')) {
