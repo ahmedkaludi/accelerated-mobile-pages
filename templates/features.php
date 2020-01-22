@@ -5184,7 +5184,7 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 					$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . esc_html($post_type_title) . ' (AMP)' ,
-						'href'  =>  $current_url 
+						'href'  =>  esc_url($current_url) 
 					));
 				}
 		}
@@ -7343,7 +7343,7 @@ function ampforwp_head_css(){
 			$wp_admin_bar->remove_menu( 'ampforwp-view-amp' );
 			$url = ampforwp_get_non_amp_url();
 			if (get_query_var('tag')) {
-        		$url = $url. '?tag='.get_query_var('tag');
+        		$url = esc_url($url). '?tag='.get_query_var('tag');
         	}
 			$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-non-amp',

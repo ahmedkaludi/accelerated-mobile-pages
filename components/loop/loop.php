@@ -112,7 +112,7 @@ function call_loops_standard($data=array()){
 		$tag_id = get_query_var('tag');
 		if( !is_date() ){
 				$args = array(
-							'tag' => $tag_id,
+							'tag' => esc_html($tag_id),
 							'no_found_rows' 	  => true,
 							'post_type'           => $post_type,
 							'orderby'             => 'date',
