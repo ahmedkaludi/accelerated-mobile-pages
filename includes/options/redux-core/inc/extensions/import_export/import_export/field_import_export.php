@@ -94,12 +94,10 @@ namespace ReduxCore\ReduxFramework;
                 // $this->field['type'] && $this->field['id'] is sanitized in the ReduxFramework class, no need to re-sanitize it.
                 ?>
                    <h4><?php esc_html_e( 'Export Options', 'redux-framework' ) ?></h4>
-
-                    <div class="redux-section-desc">
-                        <p class="description">
-                            <?php echo esc_html( apply_filters( 'redux-backup-description', __( 'Here you can download your current option settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'accelerated-mobile-pages' ) ) ) ?>
-                        </p>
-                    </div>
+                    <p class="description">
+                        <?php echo esc_html( apply_filters( 'redux-backup-description', __( 'Here you can download your current option settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'accelerated-mobile-pages' ) ) ) ?>
+                    </p>
+                   
                 <?php
                 // $this->parent->args['opt_name'] is sanitized in the ReduxFramework class, no need to re-sanitize it.
                 $link = esc_url( admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name'] . '&secret=' . $secret ) );
@@ -112,10 +110,10 @@ namespace ReduxCore\ReduxFramework;
                         $content = json_encode( $backup_options );
                     ?>
                     <textarea class="large-text noUpdate hide" id="redux-export-code" rows="10" readonly="true"><?php echo $content;?></textarea>
-                    <a href="<?php echo $link; ?>" id="redux-export-code-dl" class="button-primary"><?php esc_html_e( 'Download Data File', 'redux-framework' ) ?></a>
-                    <p class="description">
-                    <?php echo esc_html( apply_filters( 'redux-backup-description', __( 'Download a backup file of your settings', 'accelerated-mobile-pages' ) ) ) ?>
-                    </p>
+                    <a href="<?php echo $link; ?>" id="redux-export-code-dl" class="button-primary"><?php esc_html_e( 'Export Data File', 'redux-framework' ) ?></a>&nbsp;&nbsp;
+                    <span class="description">
+                    <?php echo esc_html( apply_filters( 'redux-backup-description', __( 'Download a backup file of your settings.', 'accelerated-mobile-pages' ) ) ) ?>
+                    </span>
                     <h4><?php esc_html_e( 'Import Options', 'redux-framework' ); ?></h4>
                     <p class="description">
                        Here you can import your option settings file. Please download your existing settings as backup before import.
