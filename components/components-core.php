@@ -585,6 +585,11 @@ function amp_content($post_id= ''){
 			$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
 		}		
 	}
+	if(class_exists('UAGB_Loader')){
+		if(function_exists('ampforwp_uag_filter_content')){
+			$ampforwp_the_content = ampforwp_uag_filter_content($ampforwp_the_content);
+		}
+	}
 	if(function_exists('ampforwp_sassy_share_icons')){
 		$ampforwp_the_content = ampforwp_sassy_share_icons($ampforwp_the_content);
 	}
