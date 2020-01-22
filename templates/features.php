@@ -7705,27 +7705,11 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 
-	//OTHER COMPONENT CHECK 
-	$other_comp_arr = array('amp-mustache');
-	for($oc = 0; $oc<count($other_comp_arr); $oc++){
-		$ocomp = $other_comp_arr[$oc];
-		$celem = 'element';
-		if($ocomp=='amp-mustache'){
-			$celem = 'template';
-		}
-		if(preg_match_all('/(type|template)="('.$ocomp.')"/', $content,$oMaches)){
-			if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
-				$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
-				$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
-				$content =  str_replace('<head>', $script_tag, $content);
-			}
-		}
-	}
 
 	preg_match_all('/<script(\s|\sasync\s)(.*?)custom-element="(.*?)"(.*?)>(.*?)<\/script>/s', $content, $matches);
 	if(isset($matches[0])){
 		if(isset($matches[3])){
-			$excl_arr = array('amp-form','amp-bind','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-dynamic-css-classes','amp-fx-collection','amp-inputmask','amp-lightbox-gallery','amp-inputmask','amp-mustache','amp-subscriptions-google','amp-subscriptions','amp-video-docking','amp-story');
+			$excl_arr = array('amp-bind','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-dynamic-css-classes','amp-fx-collection','amp-inputmask','amp-lightbox-gallery','amp-inputmask','amp-mustache','amp-subscriptions-google','amp-subscriptions','amp-video-docking','amp-story');
 			$inc_elem_arr = array();
 			for($r=0;$r<count($comp_to_remove_arr);$r++){
 				$inc_elem_arr[] = 'amp-'.$comp_to_remove_arr[$r];
@@ -7758,5 +7742,46 @@ function ampforwp_include_required_scripts($content){
 			}
 		}
 	}
+	//OTHER COMPONENT CHECK 
+	$other_comp_arr = array('amp-mustache'=>'amp-mustache','form'=>'amp-form');
+	foreach ($other_comp_arr as $key => $value) {
+		$ocomp = $value;
+		$celem = 'element';
+		if($ocomp=='amp-mustache'){
+			$celem = 'template';
+		}
+		if(preg_match('/(type|template)="('.$ocomp.')"/', $content) || preg_match("/<\/$key>/",  $content)){
+			if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
+				$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+				$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
+				$content =  str_replace('<head>', $script_tag, $content);
+			}
+		}
+	}
+	// Scripts added from Options panel should have higher priority #4064
+	if( ampforwp_get_setting('amp-header-text-area-for-html') && ampforwp_get_setting('amp-header-text-area-for-html')!="") {
+      $allscripts = ampforwp_get_setting('amp-header-text-area-for-html');
+      preg_match_all('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)>(.*?)<\/script>/s', $allscripts, $rep);
+      if($rep){
+		  	if(isset($rep[2]) && isset($rep[4])){
+		      	$script_slug = $rep[2];
+		      	$script_url = $rep[4];
+		      	for($s=0;$s<count($script_slug);$s++){
+		      		$slug = $script_slug[$s];
+		      		$surl = $script_url[$s];
+		      		if(preg_match('/amp/', $slug) && preg_match('/https/', $surl)){
+			         	if(preg_match('/<script(.*?)custom-element=\"'.esc_attr($slug).'\"(.*?)src=\"(.*?)\"(.*?)>(.*?)<\/script>/', $content, $conmatch)){
+			         		if(isset($conmatch[3]) && $conmatch[3]!=""){
+			         			$rep_url = $conmatch[3];
+			         			if(preg_match('/https/', $rep_url)){
+									$content = str_replace($rep_url, $surl, $content);
+			         			}
+			         		}
+			         	}
+			         }
+		        }
+		    }
+      	}
+   	}
 	return $content;
 }
