@@ -127,7 +127,7 @@ if ( is_admin() ) {
  foreach($categories as $category){
   $categoryName = htmlspecialchars($category->name, ENT_QUOTES);
   $categoriesArray[$category->term_id] = $categoryName;
-  $options.= '<option value="'.$category->term_id.'">'.$categoryName.'</option>';
+  $options.= '<option value="'.esc_attr($category->term_id).'">'.esc_html($categoryName).'</option>';
  }
 }
  return array(
