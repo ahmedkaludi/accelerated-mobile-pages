@@ -7896,9 +7896,9 @@ function AMPforWP_flowplayer_content_handle($atts, $content = null, $tag = false
 	           width="640"
 	           height="360"
 	           layout="responsive"
-	           poster="'. $fvplayer_data["splash"] .'"
-	           src="'.$fvplayer_data["src"] .'"
-	            [src]="myTexting.currentvideo"
+	           poster="'. esc_url($fvplayer_data["splash"]) .'"
+	           src="'.esc_url($fvplayer_data["src"]) .'"
+	            [src]="fv_bind.currentvideo"
 	           type="video/mp4" >
 
 	</amp-video>';
@@ -7916,7 +7916,7 @@ function AMPforWP_flowplayer_content_handle($atts, $content = null, $tag = false
 		$jdata = str_replace('\u0000','',$jdata);
 		$jdata = json_decode( $jdata );
 
-		$fvplayer_carousel_video .= '<span  on="tap:AMP.setState({ myTexting: {currentvideo:myText.videourl'.$i.'} })" ><amp-img src="'.$jdata->FV_Player_Db_Videosplash.'" width="100" height="100" ></amp-img></span>';
+		$fvplayer_carousel_video .= '<span  on="tap:AMP.setState({ fv_bind: {currentvideo:myText.videourl'.$i.'} })" ><amp-img src="'.esc_url($jdata->FV_Player_Db_Videosplash).'" width="100" height="100" ></amp-img></span>';
 
 		if($i ==1)
 			$jsondata .= '"videourl' . $i . '" : "' . $jdata->FV_Player_Db_Videosrc . '"';
