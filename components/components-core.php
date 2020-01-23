@@ -720,6 +720,7 @@ function ampforwp_backtotop_global_css(){?>
 		a.yarpp-thumbnail {
 	    width: 100%;
 	    float: left;
+	    padding: 10px;
 		}
 		span.yarpp-thumbnail-title {
     	position: relative;
