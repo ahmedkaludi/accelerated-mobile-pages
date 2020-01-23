@@ -14,8 +14,6 @@ if ( is_customize_preview() ) {
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_bread_crumbs' );
-
-	// add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_simple_comment_button' );
 }
 
 	$data = get_option( 'ampforwp_design',array());
@@ -226,20 +224,6 @@ add_filter( 'amp_post_template_file', 'ampforwp_design_element_comments', 10, 3 
 function ampforwp_design_element_comments( $file, $type, $post ) {
 	if ( 'ampforwp-comments' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/comments.php';
-	}
-	return $file;
-}
-
-// simple comment button
-function ampforwp_add_element_simple_comment_button( $meta_parts ) {
-	$meta_parts[] = 'ampforwp-simple-comment-button';
-	return $meta_parts;
-}
-// add_filter( 'amp_post_template_file', 'ampforwp_design_element_simple_comment_button', 10, 3 );
-
-function ampforwp_design_element_simple_comment_button( $file, $type, $post ) {
-	if ( 'ampforwp-simple-comment-button' === $type ) {
-		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/simple-comment-button.php';
 	}
 	return $file;
 }
