@@ -110,45 +110,46 @@ function ampforwp_stylesheet_file_insertion() {
 	    }
 }
 
+if(4 != ampforwp_design_selector()){
+	add_filter( 'amp_post_template_file', 'ampforwp_design_element_the_title', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_design_element_meta_info', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_design_element_featured_image', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_design_element_bread_crumbs', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_design_element_the_content', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_design_element_social_icons', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_design_element_meta_taxonomy', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_design_element_comments', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_design_element_related_posts', 10, 3 );
+	add_filter('ampforwp_design_elements', 'ampforwp_empty_design_elements', 12);
+}
+
 // Post Title
 function ampforwp_add_element_the_title( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-the-title';
 	return $meta_parts;
 }
-
-add_filter( 'amp_post_template_file', 'ampforwp_design_element_the_title', 10, 3 );
-
 function ampforwp_design_element_the_title( $file, $type, $post ) {
 	if ( 'ampforwp-the-title' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/title.php' ;
 	}
 	return $file;
 }
-
-
 // Meta Info
 function ampforwp_add_element_meta_info( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-meta-info';
 	return $meta_parts;
 }
-
-add_filter( 'amp_post_template_file', 'ampforwp_design_element_meta_info', 10, 3 );
-
 function ampforwp_design_element_meta_info( $file, $type, $post ) {
 	if ( 'ampforwp-meta-info' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/meta-info.php' ;
 	}
 	return $file;
 }
-
 // Featured Image
 function ampforwp_add_element_featured_image( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-featured-image';
 	return $meta_parts;
 }
-
-add_filter( 'amp_post_template_file', 'ampforwp_design_element_featured_image', 10, 3 );
-
 function ampforwp_design_element_featured_image( $file, $type, $post ) {
 	if ( 'ampforwp-featured-image' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/featured-image.php';
@@ -161,9 +162,6 @@ function ampforwp_add_element_bread_crumbs( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-bread-crumbs';
 	return $meta_parts;
 }
-
-add_filter( 'amp_post_template_file', 'ampforwp_design_element_bread_crumbs', 10, 3 );
-
 function ampforwp_design_element_bread_crumbs( $file, $type, $post ) {
 	if ( 'ampforwp-bread-crumbs' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/bread-crumbs.php' ;
@@ -175,23 +173,17 @@ function ampforwp_add_element_the_content( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-the-content';
 	return $meta_parts;
 }
-
-add_filter( 'amp_post_template_file', 'ampforwp_design_element_the_content', 10, 3 );
-
 function ampforwp_design_element_the_content( $file, $type, $post ) {
 	if ( 'ampforwp-the-content' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/content.php';
 	}
 	return $file;
 }
-
 // Meta Texonomy
 function ampforwp_add_element_meta_taxonomy( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-meta-taxonomy';
 	return $meta_parts;
 }
-add_filter( 'amp_post_template_file', 'ampforwp_design_element_meta_taxonomy', 10, 3 );
-
 function ampforwp_design_element_meta_taxonomy( $file, $type, $post ) {
 	if ( 'ampforwp-meta-taxonomy' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/meta-taxonomy.php';
@@ -204,8 +196,6 @@ function ampforwp_add_element_social_icons( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-social-icons';
 	return $meta_parts;
 }
-add_filter( 'amp_post_template_file', 'ampforwp_design_element_social_icons', 10, 3 );
-
 function ampforwp_design_element_social_icons( $file, $type, $post ) {
 	if ( 'ampforwp-social-icons' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/social-icons.php';
@@ -213,13 +203,11 @@ function ampforwp_design_element_social_icons( $file, $type, $post ) {
 	return $file;
 }
 
-
 // Comments
 function ampforwp_add_element_comments( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-comments';
 	return $meta_parts;
 }
-add_filter( 'amp_post_template_file', 'ampforwp_design_element_comments', 10, 3 );
 
 function ampforwp_design_element_comments( $file, $type, $post ) {
 	if ( 'ampforwp-comments' === $type ) {
@@ -233,7 +221,6 @@ function ampforwp_add_element_related_posts( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-related-posts';
 	return $meta_parts;
 }
-add_filter( 'amp_post_template_file', 'ampforwp_design_element_related_posts', 10, 3 );
 
 function ampforwp_design_element_related_posts( $file, $type, $post ) {
 	if ( 'ampforwp-related-posts' === $type ) {
@@ -243,7 +230,6 @@ function ampforwp_design_element_related_posts( $file, $type, $post ) {
 }
 
 // Empty meta parts when Pagebuilder is enabled
-add_filter('ampforwp_design_elements', 'ampforwp_empty_design_elements', 12);
 function ampforwp_empty_design_elements($meta_parts) {
 	if( checkAMPforPageBuilderStatus(get_the_ID()) ){
 		$meta_parts = array();
