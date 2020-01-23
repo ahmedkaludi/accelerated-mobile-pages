@@ -687,6 +687,46 @@ function ampforwp_backtotop_global_css(){?>
 	.rtl amp-carousel {direction: ltr;}
 	.rtl .amp-menu .toggle:after{left:0;right:unset;}
 	.sharedaddy li{display:none}
+<?php if (function_exists('yarpp_init')) {?>
+	.yarpp-related ol li a {
+    color: #000;
+    text-decoration: underline;
+    font-weight:600;
+	}
+	.yarpp-related {
+    padding-bottom: 10px;
+	}
+	.yarpp-related abbr {
+    text-decoration: none;
+	}
+	.yarpp-related small{
+	font-size: 14px;
+	}
+	a.yarpp-thumbnail {
+    position: relative;
+	}
+	span.yarpp-thumbnail-title {
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    color: #000;
+    font-weight:600;
+    border-bottom: 1px solid #000;
+	}
+	span.yarpp-thumbnail-title:hover{
+	border-bottom: 3px solid #000;
+	}
+	@media only screen and (max-width: 480px) {
+		a.yarpp-thumbnail {
+	    width: 100%;
+	    float: left;
+		}
+		span.yarpp-thumbnail-title {
+    	position: relative;
+    	left: -100px;
+  		}
+	}
+<?php } ?>	
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
