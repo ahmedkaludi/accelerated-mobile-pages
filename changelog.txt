@@ -1,6 +1,6 @@
 == Changelog ==
 
-= 1.0.16 (21th January 2020) =
+= 1.0.16 (24th January 2020) =
 * Improvement: Need to built compatibility with "Mistape" plugin. #3974
 * Improvement: Need to make compatibility with "Transposh WordPress Translation" plugin #3895
 * Fixed: A Table is created trough Gutenberg then CSS of that Table is failing to load in AMP. #3902
