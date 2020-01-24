@@ -5712,9 +5712,13 @@ function ampforwp_is_non_amp( $type="" ) {
 	    $supported_types_for_takeover = ampforwp_get_all_post_types();
 	    if( $supported_types_for_takeover ){
 	            $current_type = get_post_type(get_the_ID());
-	            if(!in_array($current_type, $supported_types_for_takeover) && !is_404() && !is_search()){ 
-	              return ;
-	            }
+	            if( $current_type==false){
+	            	$non_amp = true;
+	            }else{
+		            if(!in_array($current_type, $supported_types_for_takeover) && !is_404() && !is_search()){ 
+		              return ;
+		            }
+		        }
 	    }
 		if ( is_front_page() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
 			return false;
