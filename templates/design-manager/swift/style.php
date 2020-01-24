@@ -222,8 +222,8 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 .lb-t:target a.lb-x {top: 25px;}
 .lb img{cursor:pointer;}
 .lb-btn form{position: absolute;top: 200px;left: 0;right: 0;margin: 0 auto;text-align: center;}
-.lb-btn #s{padding:10px;}
-.lb-btn #amp-search-submit{padding:10px;cursor:pointer;}
+.lb-btn .s{padding:10px;}
+.lb-btn .icon-search{padding:10px;cursor:pointer;}
 .amp-search-wrapper{width: 80%;margin: 0 auto;position: relative;}
 .overlay-search:before {
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
@@ -234,8 +234,8 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 	position: absolute;right:0;cursor: pointer;top:4px;
 <?php if($redux_builder_amp['swift-element-overlay-color-control']['rgba']){?>color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-overlay-color-control']['rgba'])?>;<?php }  ?>}
-.lb-btn #amp-search-submit {cursor: pointer;background:transparent;border: none;display: inline-block;width: 30px;height: 30px;opacity: 0;position: absolute;z-index:100;right: 0;top: 0;}
-.lb-btn #s {padding: 10px;background: transparent;border: none;border-bottom: 1px solid #504c4c;width:100%;
+.lb-btn .icon-search {cursor: pointer;background:transparent;border: none;display: inline-block;width: 30px;height: 30px;opacity: 0;position: absolute;z-index:100;right: 0;top: 0;}
+.lb-btn .s {padding: 10px;background: transparent;border: none;border-bottom: 1px solid #504c4c;width:100%;
 color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-overlay-color-control']['rgba'])?>;}
 <?php } ?>
 <?php //menu type-1 
