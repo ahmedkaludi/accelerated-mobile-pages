@@ -160,9 +160,13 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 				$thumb_height = $thumb_url_array[2];
 			}
 	    
-	     if ( $thumb_url && $show_image ) { ?>
-	    	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo esc_attr($thumb_width); ?>" height="<?php echo esc_attr($thumb_height); ?>" layout="responsive"></amp-img>
-		<?php }
+	     if ( $thumb_url && $show_image ) { 
+	    	$img_content = '<amp-img src="'.esc_url( $thumb_url ).'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" layout="responsive"></amp-img>';
+	    	if(function_exists('ampforwp_add_fallback_element')){
+                $img_content = ampforwp_add_fallback_element($img_content,'amp-img');
+            }
+	    	echo $img_content;
+		 }
 		} ?>
     </a>
 <?php

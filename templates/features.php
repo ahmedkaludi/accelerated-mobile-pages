@@ -7778,3 +7778,78 @@ if(!function_exists('ampforwp_get_retina_image_settings')){
 		return $data;
 	}
 }
+
+if(!function_exists('ampforwp_add_fallback_element')){
+	function ampforwp_add_fallback_element($content='',$tag=''){
+		preg_match_all('/<'.$tag.' (.*?)<\/'.$tag.'>/', $content, $matches);
+		if(!empty($matches)){
+			if(isset($matches[0])){
+				$con = "";
+				for($i=0;$i<count($matches[0]);$i++){
+					$match = $matches[0][$i];
+					$m_content = $matches[1][$i];
+					$m_content = ampforwp_imagify_webp_compatibility($m_content);
+					$m1_content = ampforwp_imagify_fallback_img_src_url($matches[1][$i]);
+					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
+					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
+					preg_match_all('/height="(.*?)"/', $m1_content,$fimgheight);
+					preg_match_all('/alt="(.*?)"/', $m1_content,$fimgalt);
+
+					$data['src'] 	= $fimgsrc[1][0];
+					$data['width'] 	= $fimgwidth[1][0];
+					$data['height'] = $fimgheight[1][0];
+					$data['alt'] 	= ($fimgalt[1][0]?:'');
+					$fallback_data = apply_filters('ampforwp_fallback_image_params',$data);
+					$fsrc 	= $fallback_data['src'];
+					$fwidth = $fallback_data['width'];
+					$fheight= $fallback_data['height'];
+					$falt 	= $fallback_data['alt'];
+					$ssrc = $fimgsrc[0][0];
+					$swidth = $fimgwidth[0][0];
+					$sheight = $fimgheight[0][0];
+					$salt = ($fimgalt[0][0]?:'');
+					$src_rep = 'src="'.esc_url($fsrc).'"';
+					$width_rep = 'width="'.intval($fwidth).'"';
+					$height_rep = 'height="'.intval($fheight).'"';
+					$alt_rep = 'alt="'.esc_attr($falt).'"';
+					$m1_content = str_replace($ssrc, $src_rep, $m1_content);
+					$m1_content = str_replace($swidth, $width_rep, $m1_content);
+					$m1_content = str_replace($sheight, $height_rep, $m1_content);
+					$m1_content = str_replace($salt, $alt_rep, $m1_content);
+					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
+					$content = str_replace("$match", $fallback_img, $content);
+				}
+			}
+		}
+		return $content;
+	}
+}
+if(!function_exists('ampforwp_imagify_webp_compatibility')){
+	function ampforwp_imagify_webp_compatibility($content){
+		if(function_exists('_imagify_init')){
+			preg_match_all('/src="(.*?)"/', $content,$src);
+			$imageify_opt = get_option( 'imagify_settings' );
+			$convert_to_webp = $imageify_opt['convert_to_webp'];
+			$display_webp = $imageify_opt['display_webp'];
+			if($convert_to_webp && $display_webp){
+				$img_url = esc_url($src[1][0]);
+				$rep_url = esc_url($src[1][0]).".webp";
+				$content = str_replace($img_url, $rep_url, $content);
+			}
+		}
+		return $content;
+	}
+}
+if(!function_exists('ampforwp_imagify_fallback_img_src_url')){
+	function ampforwp_imagify_fallback_img_src_url($content){
+		if(!function_exists('_imagify_init')){
+			preg_match_all('/src=\"(.*?)\.(webp)\"/', $content,$cc); // need to check extenstion for fallback.
+			if(isset($cc[2][0])){
+				$ext = esc_attr($cc[2][0]);
+				$content = str_replace($ext, "jpg", $content); // need to change fallback extenstion.
+			}
+
+		}
+		return $content;
+	}
+}
