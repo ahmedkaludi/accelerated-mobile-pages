@@ -323,6 +323,7 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px;}
 .single-post .post-pagination-meta span{ font-weight:bold }
 .single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 22px; font-size: 16px; color:#333;  }
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
+.amp-social-icon-rounded-author {padding: 10px 0px 10px 10px;display: inline-table;border-radius: 60px;cursor: pointer;}
 .amp-wp-article-tags .ampforwp-tax-tag, .amp-wp-article-tags .ampforwp-tax-tag a{ font-size: 12px; color: #555; margin: 20px 0 0 0; }
 .amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; display: inline-block; margin: 5px; }
 .ampforwp-social-icons{ margin-bottom: 70px; margin-top: 25px; min-height: 40px; }

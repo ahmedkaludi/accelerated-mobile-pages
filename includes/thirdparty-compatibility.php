@@ -975,7 +975,18 @@ if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
 			if ( function_exists('mvp_setup') ) {
 				return ' <span><a class="zox_tw" href="https://twitter.com/'.esc_attr($twitter).'" target="_blank"></a></span>';
 			}else{
-				return ' <span><a href="https://twitter.com/'.esc_attr($twitter).'" target="_blank">@'.esc_html($twitter).'</a></span>';
+				$parse = parse_url($twitter);	
+				if(isset($parse['host']) && $parse['host'] == 'twitter.com'){
+					$twitter_url = $twitter;
+				}else{
+					$twitter_url = 'https://twitter.com/'.esc_attr($twitter);
+				}
+				if(ampforwp_design_selector()==4){
+					return ' <span><a class="author-tw" href="'.esc_url($twitter_url).'" target="_blank"></a></span>';
+				}else{
+					return '<a title="twitter share" href="'.esc_url($twitter_url).'" class="amp-social-icon-rounded-author amp-social-twitter">
+				    <amp-img src="'.AMPFORWP_IMAGE_DIR . '/twitter-icon.webp'.'" width="16" height="16" ></amp-img></a>';
+				}
 			}
 		    
 		}
