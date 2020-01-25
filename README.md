@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.16
+Stable tag: 1.0.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,17 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.17 (25th January 2020) =
+* Improvement: Compatibility with the Imagify plugin #3908
+* Improvement: EWWW Image Optimizer plugin Compatibility #3984
+* Improvement: Accessibility score of Amp Layouts improved in Lighthouse test #4078
+* Fixed: Admin toolbar is not showing on custom amp page #3718
+* Fixed: Bug in Instant article's Single option #3891
+* Fixed: If the user adds the social share link in the users section then we need to show social share icon #3976
+* Fixed: Treeshaking is enabled then " Content sneak to peek " button is showing below the content. #4069
+* Fixed: AMP take over is not working on home page when user have no posts. #4056
+* Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
 
 = 1.0.16 (24th January 2020) =
 * Improvement: Need to built compatibility with "Mistape" plugin. #3974
