@@ -200,7 +200,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: If the user adds the social share link in the users section then we need to show social share icon #3976
 * Fixed: Treeshaking is enabled then " Content sneak to peek " button is showing below the content. #4069
 * Fixed: AMP take over is not working on home page when user have no posts. #4056
-* Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
 
 = 1.0.16 (24th January 2020) =
 * Improvement: Need to built compatibility with "Mistape" plugin. #3974
