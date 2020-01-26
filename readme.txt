@@ -191,7 +191,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.17 (25th January 2020) =
+= 1.0.17 (27th January 2020) =
 * Improvement: Compatibility with the Imagify plugin #3908
 * Improvement: EWWW Image Optimizer plugin Compatibility #3984
 * Improvement: Accessibility score of Amp Layouts improved in Lighthouse test #4078
