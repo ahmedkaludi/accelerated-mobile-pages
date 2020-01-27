@@ -7866,6 +7866,14 @@ if(!function_exists('ampforwp_imagify_webp_compatibility')){
 				$img_file = preg_replace('/http(.*)\/wp-content\/uploads/', $upload_dir, $rep_url);
 				if(file_exists($img_file)){
 					$content = str_replace($img_url, $rep_url, $content);
+				}else{
+					$headers = get_headers($rep_url);
+					if(isset($headers[0])){
+						$is_webp = stripos($headers[0], "200 OK") ? TRUE : FALSE;
+						if($is_webp){
+							$content = str_replace($img_url, $rep_url, $content);
+						}
+					}
 				}
 			}
 		}
@@ -7899,6 +7907,14 @@ function ampforwp_ewww_webp_compatibility($content){
 				$img_file = preg_replace('/http(.*)\/wp-content\/uploads/', $upload_dir, $rep_url);
 				if(file_exists($img_file)){
 					$content = str_replace($img_url, $rep_url, $content);
+				}else{
+					$headers = get_headers($rep_url);
+					if(isset($headers[0])){
+						$is_webp = stripos($headers[0], "200 OK") ? TRUE : FALSE;
+						if($is_webp){
+							$content = str_replace($img_url, $rep_url, $content);
+						}
+					}
 				}
 			}
 		}
