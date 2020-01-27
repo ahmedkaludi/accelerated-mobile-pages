@@ -2212,9 +2212,9 @@ function Drawer(drawerElem) {
         });
         amp_setup_pending_string = amp_setup_pending_string.replace(/,\s*$/, "");
         if($(this).hasClass('amp-ux-warning-okay')){
-            $(".setup-tt").html("Your setup is now completed. Enjoy the better AMP Experience.");
+            $(".setup-tt").html("Your setup is now completed.");
         }else{
-            $(".setup-tt").html('Your setup is not completed. Please setup <i>"'+amp_setup_pending_string+'"</i> section for better AMP Experience.');
+            $(".setup-tt").html('Your setup is not completed.<br/>Please setup <i>"'+amp_setup_pending_string+'"</i> section for better AMP Experience.');
         }
         $('.ampforwp-setup-not-tt').css({'visibility':'visible'});
     }).on('mouseout', function (event) {
@@ -2227,7 +2227,7 @@ function Drawer(drawerElem) {
                
              }
         });
-        setTimeout(function(){ $(".amp-ux-valid-require").parent('.amp-ux-elem-field').parent('.amp-ux-section-field').removeAttr('style'); }, 300);
+        setTimeout(function(){ $(".amp-ux-valid-require").parent('.amp-ux-elem-field').parent('.amp-ux-section-field').removeAttr('style'); }, 500);
     });
 /* Hamburger Library */
 function DrawerIcon(icon) {
