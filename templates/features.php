@@ -7717,7 +7717,7 @@ function ampforwp_include_required_scripts($content){
 	}
 
 
-	preg_match_all('/<script(\s|\sasync\s)(.*?)custom-element="(.*?)"(.*?)>(.*?)<\/script>/s', $content, $matches);
+	preg_match_all('/<script(\s|\sasync\s|\ssrc="(.*)"\s)custom-element="(.*?)"(.*?)>(.*?)<\/script>/s', $content, $matches);
 	if(isset($matches[0])){
 		if(isset($matches[3])){
 			$excl_arr = array('amp-bind','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-dynamic-css-classes','amp-fx-collection','amp-inputmask','amp-lightbox-gallery','amp-inputmask','amp-mustache','amp-subscriptions-google','amp-subscriptions','amp-video-docking','amp-story');
