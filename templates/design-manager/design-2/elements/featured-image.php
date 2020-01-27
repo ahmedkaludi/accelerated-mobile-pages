@@ -48,7 +48,10 @@ if( $featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_c
 				?>
 				<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
 					<figure class="amp-wp-article-featured-image wp-caption">
-						<?php echo $amp_html; // amphtml content; no kses ?>
+						<?php if(function_exists('ampforwp_add_fallback_element')){
+		 					$amp_html = ampforwp_add_fallback_element($amp_html,'amp-img');
+		   				}
+		   				echo $amp_html; // amphtml content; no kses ?>
 						<?php if ( $caption ) : ?>
 							<p class="wp-caption-text">
 								<?php echo wp_kses_data( $caption ); ?>
