@@ -6203,7 +6203,7 @@ function ampforwp_vuukle_comments_markup() {
 	}
 	$vuukle_html ='';
 	if ( $display_comments_on ) {
-		$vuukle_html .= '<amp-iframe width="600" height="350" '.esc_html($consent).'layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
+		$vuukle_html .= '<amp-iframe width="600" height="350" '.esc_attr($consent).'layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
 
 			<div overflow tabindex="0" role="button" aria-label="Show comments" class="afwp-vuukle-support">Show comments</div></amp-iframe>';
 	}
