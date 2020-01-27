@@ -225,6 +225,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 		<?php 	
 		$args = array(
 		    'posts_per_page' => 2,
+		    'fields' => 'ids',
 		);
 		$results = get_posts($args);
  		$check_rp= count($results);
