@@ -9,9 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		$amp_theme_dir = apply_filters('ampforwp_theme_dir', $amp_main_dir);
 
-		if ( is_dir($amp_theme_dir)) {
-			define('AMPFORWP_CUSTOM_THEME', $amp_theme_dir );
+		if ( ! is_dir($amp_theme_dir)) {
+			$amp_theme_dir  = $amp_main_dir;
 		}
+
+		define('AMPFORWP_CUSTOM_THEME', $amp_theme_dir );
 		
 	}
 
