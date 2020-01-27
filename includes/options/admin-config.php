@@ -480,7 +480,7 @@ $extension_listing_array = array(
                             'item_name'=>'Purge AMP CDN Cache',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('purge-amp-cdn-cache/purge-amp-cdn-cache.php')? 1 : 2),
-                            'settingUrl'=>admin_url( 'admin.php?page=update-amp-cache' ),
+                            
                         ),
                         array(
                             'name'=>'Polylang For AMP',
