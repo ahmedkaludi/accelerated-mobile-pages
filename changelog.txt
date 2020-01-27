@@ -1,5 +1,33 @@
 == Changelog ==
 
+= 1.0.18 (27th January 2020) =
+* Fixed: Debug warnings with Imagify plugin #3908
+
+= 1.0.17 (27th January 2020) =
+* Improvement: Compatibility with the Imagify plugin #3908
+* Improvement: EWWW Image Optimizer plugin Compatibility #3984
+* Improvement: Accessibility score of Amp Layouts improved in Lighthouse test #4078
+* Fixed: Admin toolbar is not showing on custom amp page #3718
+* Fixed: Bug in Instant article's Single option #3891
+* Fixed: If the user adds the social share link in the users section then we need to show social share icon #3976
+* Fixed: Treeshaking is enabled then " Content sneak to peek " button is showing below the content. #4069
+* Fixed: AMP take over is not working on home page when user have no posts. #4056
+
+= 1.0.16 (24th January 2020) =
+* Improvement: Need to built compatibility with "Mistape" plugin. #3974
+* Improvement: Need to make compatibility with "Transposh WordPress Translation" plugin #3895
+* Fixed: A Table is created trough Gutenberg then CSS of that Table is failing to load in AMP. #3902
+* Fixed: When user search from the AMP site then results page should be in non-AMP. #3977
+* Fixed: Add 'wp-color-picker' as dependency while registering the script #4061
+* Fixed: The "for" attribute is removing in AMP #4054
+* Fixed: Table heading style is not working properly #4050
+* Fixed: Need to change the description of AMP page builder compatibility options when plugin is activated. #3899
+* Fixed: Thumbnail image of homepage should show properly after changing the image size #3882
+* Fixed: Need to remove the default AMP functionality from the User's theme as it is breaking the layout. #4068
+* Fixed: YOAST SEO Analysis is not working properly with AMP Page Builder. #4030
+* Fixed: When AMP is disabled on pages,give an option of hide/unhide AMP on Blog page when in edit mode. #4066
+* Fixed: The tag 'template' requires including the 'amp-mustache' extension JavaScript. #4079
+
 = 1.0.15 (17th January 2020) =
 * Fixed: Sticky Social icons's css not loading correctly on some pages #3980
 * Fixed: Need to add option to hide "AMP version" in view source page(generator). #4000

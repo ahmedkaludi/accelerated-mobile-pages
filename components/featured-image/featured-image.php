@@ -76,7 +76,10 @@ function ampforwp_framework_get_featured_image(){
 		}
 		if( $amp_html ){ ?>
 			<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  
-				echo $amp_html; // escaped above
+				if(function_exists('ampforwp_add_fallback_element')){
+ 					$amp_html = ampforwp_add_fallback_element($amp_html,'amp-img');
+   				}
+   				echo $amp_html; // escaped above
 				 if ( $caption ) : ?>
 					<p class="wp-caption-text">
 						<?php echo wp_kses_data( $caption ); ?>

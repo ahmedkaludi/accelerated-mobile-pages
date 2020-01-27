@@ -31,12 +31,14 @@ function ampforwp_add_admin_styling($hook_suffix){
     wp_enqueue_style( 'ampforwp_admin_css' );
 
     // Admin area scripts file
-    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', false, AMPFORWP_VERSION );
+    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', array('wp-color-picker'), AMPFORWP_VERSION );
 
     // Localize the script with new data
     $redux_data = array();
     if( current_user_can("manage_options") && $hook_suffix=='toplevel_page_amp_options' ){
         $redux_data = $redux_builder_amp;
+    }else{
+        $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
     if( current_user_can("manage_options") && $hook_suffix == 'options-reading.php' && 0 == $redux_builder_amp['amp-frontpage-select-option']) {
         $redux_data['frontpage'] = 'false';
@@ -60,8 +62,8 @@ function ampforwp_add_admin_styling($hook_suffix){
     $redux_data = apply_filters("ampforwp_custom_localize_data", $redux_data);
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
     wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', wp_create_nonce('ampforwp-verify-request') );
-    wp_enqueue_script( 'ampforwp_admin_js' );
     wp_enqueue_script( 'wp-color-picker' );
+    wp_enqueue_script( 'ampforwp_admin_js' );
 }
 // 96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
 function ampforwp_is_front_page(){
@@ -1082,23 +1084,23 @@ if ( ! function_exists('ampforwp_sanitize_i_amphtml') ) {
 function checkAMPforPageBuilderStatus($postId){
     global $post;
     $postId = (is_object($post)? $post->ID: '');
-  
+    $response =false;
     if( ampforwp_is_front_page() ){
         $postId = ampforwp_get_frontpage_id();
     }
     if ( empty(  $postId ) ) {
         $response = false;
     }else{
-      $amp_bilder = get_post_field('amp-page-builder',$post->ID);
-      $amp_pd_data = json_decode($amp_bilder);
-      $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+        $amp_builder = get_post_field('amp-page-builder',$postId);
+        $amp_pd_data = json_decode($amp_builder);
+        $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
         if( $ampforwp_pagebuilder_enable=='yes' && true == ampforwp_get_setting('ampforwp-pagebuilder') && ( function_exists('amppb_post_content') && !empty($amp_pd_data->rows))){
             $response = true;
         }else{
             $response = false;
         }
-      $response = apply_filters( 'ampforwp_pagebuilder_status_modify', $response, $postId );
     }
+    $response = apply_filters( 'ampforwp_pagebuilder_status_modify', $response, $postId );
     return $response;
 }
 

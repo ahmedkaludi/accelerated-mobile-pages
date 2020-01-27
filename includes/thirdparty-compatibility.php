@@ -38,6 +38,10 @@ function ampforwp_thirdparty_compatibility(){
 	remove_filter( 'post_thumbnail_html', 'shortPixelConvertImgToPictureAddWebp');
 	//Validation error with Authentic theme #3535
 	remove_filter( 'amp_post_template_data', 'csco_amp_post_template_data', 10, 2 );
+	//Breaking the layout with diginex theme #4068
+	if(function_exists('airkit_widgetFileAutoloader')){
+		remove_filter( 'amp_post_template_file', 'airkit_amp_set_custom_style_path', 10, 3 );
+	}
 	//Validation errors in amp category page due to HotWP PRO #3455
 	if(function_exists('hotwp_get_option') && is_category()){
 		remove_all_filters('get_the_archive_title');
@@ -971,7 +975,18 @@ if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
 			if ( function_exists('mvp_setup') ) {
 				return ' <span><a class="zox_tw" href="https://twitter.com/'.esc_attr($twitter).'" target="_blank"></a></span>';
 			}else{
-				return ' <span><a href="https://twitter.com/'.esc_attr($twitter).'" target="_blank">@'.esc_html($twitter).'</a></span>';
+				$parse = parse_url($twitter);	
+				if(isset($parse['host']) && $parse['host'] == 'twitter.com'){
+					$twitter_url = $twitter;
+				}else{
+					$twitter_url = 'https://twitter.com/'.esc_attr($twitter);
+				}
+				if(ampforwp_design_selector()==4){
+					return ' <span><a class="author-tw" href="'.esc_url($twitter_url).'" target="_blank"></a></span>';
+				}else{
+					return '<a title="twitter share" href="'.esc_url($twitter_url).'" class="amp-social-icon-rounded-author amp-social-twitter">
+				    <amp-img src="'.AMPFORWP_IMAGE_DIR . '/twitter-icon.webp'.'" width="16" height="16" ></amp-img></a>';
+				}
 			}
 		    
 		}
@@ -1045,4 +1060,23 @@ function ampforwp_non_amp_gallery($matches){
 	$imagesHTML = '<ul class="slideshow-container">'.$images. /* $images is already sanitized, XSS OK */'<a class="nonamp-prev" onclick="plusSlides(-1)">&#10094;</a>
 <a class="nonamp-next" onclick="plusSlides(1)">&#10095;</a></ul>';
 	return $imagesHTML;
+}
+// MISTAPE PLUGIN COMPATIBILITY #3974
+if(function_exists('deco_mistape_init')){
+	add_action('amp_post_template_css', 'ampforwp_mistape_plugin_style'); 
+}
+if(!function_exists('ampforwp_mistape_plugin_style')){
+	function ampforwp_mistape_plugin_style(){
+		$css = '.mistape_caption{font-size:80%;opacity:.8}.mistape-logo svg{display:block;height:22px;width:22px;fill:#e42029}.mistape_caption .mistape-link{text-decoration:none;border:none;box-shadow:none}.mistape-link:hover{text-decoration:none;border:none}';
+		echo ampforwp_css_sanitizer($css);
+	}
+}
+if(!function_exists('ampforwp_mistape_plugin_compatibility')){
+	function ampforwp_mistape_plugin_compatibility($content){
+		if(function_exists('deco_mistape_init')){
+			$rep = '<a href="https://mistape.com" target="_blank" rel="nofollow" class="mistape-link mistape-logo"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="-12 -10 39.9 40" enable-background="new -12 -10 39.9 40" xml:space="preserve">';
+			$content = preg_replace('/<span\sclass=\"mistape-link-wrap">(.*?)<\/span>/', $rep.'$1</svg></a>', $content);
+		}
+		return $content;
+	}
 }

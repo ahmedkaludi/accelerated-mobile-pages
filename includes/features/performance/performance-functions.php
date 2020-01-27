@@ -200,6 +200,9 @@ function ampforwp_code_to_add_in_htaccess(){
 
 function ampforwp_white_list_selectors($completeContent){
     $white_list = array();
+    if(ampforwp_get_setting('ampforwp_css_tree_shaking')==1 && ampforwp_get_setting('content-sneak-peek')==1 ){
+        $white_list[] = '.hide';
+    }
     $white_list = (array)apply_filters('ampforwp_tree_shaking_white_list_selector',$white_list);
     $w_l_str = '';
     for($i=0;$i<count($white_list);$i++){
@@ -261,6 +264,10 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                 $sheet = stripcslashes($sheet);
                 if(strpos($sheet, '-keyframes')!==false){
                     $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
+                }
+                //TRANSPOSH PLUGIN RTL ISSUE FIXED #3895
+                if(class_exists('transposh_plugin')){
+                     ampforwp_clear_css_on_transposh_rtl($sheet);
                 }
                 if(preg_match('/<style\samp-custom>(.*?)<\/style>/s', $completeContent,$matches)){
                     $completeContent = preg_replace("/<style\samp-custom>(.*?)<\/style>/s", "".$comment."<style amp-custom>".$sheet."</style>", $completeContent);
@@ -358,5 +365,34 @@ if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
 		}
 	}
 
+}
+
+if(!function_exists('ampforwp_clear_css_on_transposh_rtl')){
+    function ampforwp_clear_css_on_transposh_rtl($css){
+        if(class_exists('transposh_plugin')){
+            $rtl_lang_arr = array('ar', 'he', 'fa', 'ur', 'yi');
+            if(isset($_GET['lang'])){
+                if(in_array(esc_attr($_GET['lang']), $rtl_lang_arr)){
+                    if(!preg_match('/m-ctr{margin-right:0%}/', $css)){
+                        if(ampforwp_get_setting('ampforwp_css_tree_shaking')){
+                          $upload_dir   = wp_upload_dir();
+                          $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
+                          if ( file_exists( $user_dirname ) ) {
+                            $files = glob( $user_dirname . '/*' );
+                            //Loop through the file list.
+                            foreach ( $files as $file ) {
+                              //Make sure that this is a file and not a directory.
+                              if ( is_file( $file ) && strpos( $file, '_transient' ) !== false ) {
+                                //Use the unlink function to delete the file.
+                                unlink( $file );
+                              }
+                            }
+                          }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 // Tree shaking feature #2949 --- ends here ---

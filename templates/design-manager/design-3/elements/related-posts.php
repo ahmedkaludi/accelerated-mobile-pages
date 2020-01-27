@@ -116,9 +116,13 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 							$thumb_url = ampforwp_get_post_thumbnail();
 							$thumb_width  	= ampforwp_get_post_thumbnail('width');
 							$thumb_height 	= ampforwp_get_post_thumbnail('height');
-							if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
-				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
-							<?php } 
+							if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { 
+				            	$img_content = '<amp-img src="'.esc_url( $thumb_url ).'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" layout="responsive"></amp-img>';
+				            	if(function_exists('ampforwp_add_fallback_element')){
+									$img_content = ampforwp_add_fallback_element($img_content,'amp-img');
+				            	}
+						    	echo $img_content;
+							}
 							}?>
 	                  		</a>
 	                  	</div>

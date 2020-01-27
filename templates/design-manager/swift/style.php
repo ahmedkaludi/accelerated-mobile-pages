@@ -616,6 +616,8 @@ table {
     overflow-x: auto;
     word-break: normal;
 }
+.author-tw:after {font-family:icomoon;content: "\e942";color: #fff;background: #1da1f2;padding: 4px;border-radius: 3px;margin: 0px 5px;text-decoration: none;}
+.author-tw:hover{text-decoration: none;}
 .artl-cnt table{ margin: 0 auto; text-align: center; width: 100%; }
 p.nocomments {padding: 10px;color: #fff;}
 .tl-exc{font-size: 16px;color: #444;margin-top: 10px;line-height:20px;}
@@ -670,8 +672,8 @@ if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
 .amp-tags .amp-tag:after{content: "/";display: inline-block;padding: 0px 10px;position: relative;top: -1px;color: #ccc;font-size: 12px;}
 .amp-tags .amp-tag:last-child:after{display:none;}
 .ss-ic li:before{border-radius: 2px;text-align:center;padding: 4px 6px;}
-.sgl table {width: 100%;margin-bottom:25px;}
-.sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
+.sgl table {width: 100%;margin-bottom:25px;border: 1px solid #ddd;}
+.sgl th , .sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
 .sgl tr:nth-child(odd) td {background: #f7f7f7;}
 <?php // Social Sharing Conditional CSS
 if($redux_builder_amp['swift-social-position'] == 'above-content'){?>
@@ -1456,7 +1458,7 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 <?php if($redux_builder_amp['footer2-position-type'] == '1'){?>
 .f-menu ul li .sub-menu{display:none;}
 .f-menu ul li{display:inline-block;margin-right:20px;}
-.f-menu ul li a {padding:0;color:#7a7a7a;}
+.f-menu ul li a {padding:0;color:#575656;}
 .f-menu ul > li:hover a{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .f-menu{font-size:14px;line-height:1.4;margin-bottom:30px;}
 .rr{font-size: 12px;color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-footer-txt-clr']['rgba']) ?>;}

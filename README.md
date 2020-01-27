@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.15
+Stable tag: 1.0.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,34 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.18 (27th January 2020) =
+* Fixed: Debug warnings with Imagify plugin #3908
+
+= 1.0.17 (27th January 2020) =
+* Improvement: Compatibility with the Imagify plugin #3908
+* Improvement: EWWW Image Optimizer plugin Compatibility #3984
+* Improvement: Accessibility score of Amp Layouts improved in Lighthouse test #4078
+* Fixed: Admin toolbar is not showing on custom amp page #3718
+* Fixed: Bug in Instant article's Single option #3891
+* Fixed: If the user adds the social share link in the users section then we need to show social share icon #3976
+* Fixed: Treeshaking is enabled then " Content sneak to peek " button is showing below the content. #4069
+* Fixed: AMP take over is not working on home page when user have no posts. #4056
+
+= 1.0.16 (24th January 2020) =
+* Improvement: Need to built compatibility with "Mistape" plugin. #3974
+* Improvement: Need to make compatibility with "Transposh WordPress Translation" plugin #3895
+* Fixed: A Table is created trough Gutenberg then CSS of that Table is failing to load in AMP. #3902
+* Fixed: When user search from the AMP site then results page should be in non-AMP. #3977
+* Fixed: Add 'wp-color-picker' as dependency while registering the script #4061
+* Fixed: The "for" attribute is removing in AMP #4054
+* Fixed: Table heading style is not working properly #4050
+* Fixed: Need to change the description of AMP page builder compatibility options when plugin is activated. #3899
+* Fixed: Thumbnail image of homepage should show properly after changing the image size #3882
+* Fixed: Need to remove the default AMP functionality from the User's theme as it is breaking the layout. #4068
+* Fixed: YOAST SEO Analysis is not working properly with AMP Page Builder. #4030
+* Fixed: When AMP is disabled on pages,give an option of hide/unhide AMP on Blog page when in edit mode. #4066
+* Fixed: The tag 'template' requires including the 'amp-mustache' extension JavaScript. #4079
+
 = 1.0.15 (17th January 2020) =
 * Fixed: Sticky Social icons's css not loading correctly on some pages #3980
 * Fixed: Need to add option to hide "AMP version" in view source page(generator). #4000
@@ -210,19 +238,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 = 1.0.14 (14th January 2020) =
 * Fixed: Warning in accelerated-mobile-pages/includes/options/admin-config.php on line 1250 #4027
 * Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
-
-= 1.0.13 (13th January 2020) =
-* Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
-* Fixed: New Relic script is getting added in AMP and causing validtion error #4018
-* Fixed: Icons are not loading when creating theme compatibility #3766
-* Fixed: Video doesn't work on AMP when inserted from Siteorigin pagebuilder (Video player widget) #3936
-* Fixed: Minor issues with amp need to fix #3931
-* Fixed: When from amp page builder adding text module then space is not coming in paragraph #3982
-* Fixed: Getting error at home page when push notification option is enabled. #4026
-* Fixed: Please Fix Errors in Google Lighthouse audit in Accessibility (using Swift, Amp Layouts) #3949
-* Fixed: Remove offers from the panel #4027
-* Fixed: Detect Component and add or remove script accordingly #4067
-* Fixed: GTM tags are not working in the updated version 1.0.9 but Google Analytics is working,Also in version 1.0.0 both are working fine #4059
-* Fixed: Matomo (Piwik) Analytics generating errors in Console. #4042
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
