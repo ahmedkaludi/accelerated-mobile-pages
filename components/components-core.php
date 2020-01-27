@@ -694,7 +694,7 @@ function ampforwp_backtotop_global_css(){?>
     font-weight:600;
 	}
 	.yarpp-related {
-    padding-bottom: 10px;
+    padding-bottom: 150px;
 	}
 	.yarpp-related abbr {
     text-decoration: none;
