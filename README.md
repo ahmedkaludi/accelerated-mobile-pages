@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.18
+Stable tag: 1.0.19
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,20 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.19 (28th January 2020) =
+* Improvement: Need to implement the Mobile redirection functionality using Javascript method #3844
+* Improvement: EWWW Image Optimizer plugin Compatibility #3984
+* Fixed: WP Admin toolbar CSS is not loading when user is logged in #4076
+* Fixed: Your setup is not completed. Please setup for better AMP Experience. #4088
+* Fixed: video is not displaying in AMP when a video is inserted from gutenberg video module #4086
+* Fixed: Performance section all features not working when Ezoic integration plugin is active. #4092
+* Fixed: Playbuzz is not working #4085
+* Fixed: RECENT POSTS label visible if no posts are available #4011
+* Fixed: data-block-on-consent is missing for Vuukle comments when gdpr is enabled #4095
+* Fixed: Remove Purge AMP CDN cache Settings buuton: #4099
+* Fixed: When categories that we exclude from AMP through the plugin configuration present redirection problem along with mobile redirection option #4075
+* Fixed: Alignment issue in GDPR Privacy link. #4101
+
 = 1.0.18 (27th January 2020) =
 * Fixed: Debug warnings with Imagify plugin #3908
 
@@ -221,22 +235,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: YOAST SEO Analysis is not working properly with AMP Page Builder. #4030
 * Fixed: When AMP is disabled on pages,give an option of hide/unhide AMP on Blog page when in edit mode. #4066
 * Fixed: The tag 'template' requires including the 'amp-mustache' extension JavaScript. #4079
-
-= 1.0.15 (17th January 2020) =
-* Fixed: Sticky Social icons's css not loading correctly on some pages #3980
-* Fixed: Need to add option to hide "AMP version" in view source page(generator). #4000
-* Fixed: Caption of image gallery not displaying #3993
-* Fixed: Need to connect retina image functionality to In-content Related post thumbnails. #4007
-* Fixed: easytoc-icon.png #4041
-* Fixed: AMP links Error. #4016
-* Fixed: Image alignment and Name is not showing AMP #4038
-* Fixed: Need to sanitize amp-mowplayer tag when added in the content. #4044
-* Fixed: Set the priority to high of the icomoon CSS to override every other CSS,in AMP page builder. #4035
-* Fixed: when row Wrapper is set to 100%,static css of max width 90% is getting applied from tablet view mode to below #3999
-* Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
-
-= 1.0.14 (14th January 2020) =
-* Fixed: Warning in accelerated-mobile-pages/includes/options/admin-config.php on line 1250 #4027
-* Fixed: Code improvement in Detect Component and add or remove script accordingly #4067
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
