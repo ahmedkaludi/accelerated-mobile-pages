@@ -708,7 +708,7 @@ function ampforwp_backtotop_global_css(){?>
 	span.yarpp-thumbnail-title {
     position: absolute;
     left: 0px;
-    top: 10px;
+    top: 20px;
     color: #000;
     font-weight:600;
     border-bottom: 1px solid #000;
