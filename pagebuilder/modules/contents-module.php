@@ -495,10 +495,6 @@ if ( is_admin() ) {
                $title = get_the_title();
                $postid = get_the_ID();
                $author = get_the_author();
-               $tags = get_the_tags();
-               if(is_array($tags) && count($tags) > 0){
-                  $tags = $tags[0]->name;
-               }
               // get_the_author_meta( string $field = '', int $user_id = false );
                $postdate = get_the_date(  ' F j, Y', $postid );
               $rawhtml = str_replace(array(
@@ -512,7 +508,6 @@ if ( is_admin() ) {
                                 "{{authorname}}",
                                 "{{postdate}}",
                                 "{{image_alt}}",
-                                "{{tags}}"
                                 ),
                               array(
                                 $ampforwp_post_url,
@@ -525,7 +520,6 @@ if ( is_admin() ) {
                                 $author,
                                 $postdate,
                                 $image_alt,
-                                $tags,
                               ),
                               $loopHtml);
             $rawhtml = ampforwp_replaceIfContentConditional("ampforwp_post_url", $ampforwp_post_url, $rawhtml);
@@ -538,7 +532,6 @@ if ( is_admin() ) {
             $rawhtml = ampforwp_replaceIfContentConditional("authorname", $author, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("postdate", $postdate, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("image_alt", $image_alt, $rawhtml);
-            $rawhtml = ampforwp_replaceIfContentConditional("tags", $tags, $rawhtml);
             $rawhtml = apply_filters( 'ampforwp_pb_cntmod_rawhtml', $rawhtml );
             $contenthtml .= $rawhtml;
 
