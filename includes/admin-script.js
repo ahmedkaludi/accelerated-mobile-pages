@@ -972,7 +972,9 @@ jQuery(document).ready(function($) {
         // Save
         window.onbeforeunload = null;
         if ( redux.args.ajax_save === true ) {
-            $.redux.ajax_save( $current, true );
+            setTimeout(function(){
+                $.redux.ajax_save( $current, true );
+            },1);
         }
         
     }
@@ -2103,12 +2105,12 @@ function Drawer(drawerElem) {
                                 '<p class="mb-msg">What view would you prefer?</p>'+
                                 '<div class="e-f-btns">'+
                                     '<div class="option-button b1 amp-opt-view" id="amp-opt-easy-view">'+
-                                        '<h2>Easy</h2>'+
+                                        '<h2>Basic</h2>'+
                                         '<div class="e-img"></div>'+
                                         '<p>For Beginers</p>'+
                                     '</div>'+
                                     '<div class="option-button b2 amp-opt-view"  id="amp-opt-full-view">'+
-                                        '<h2>Full</h2>'+
+                                        '<h2>Advance</h2>'+
                                         '<div class="f-img"></div>'+
                                         '<p>For Experts</p>'+     
                                     '</div>'+  
@@ -2204,14 +2206,30 @@ function Drawer(drawerElem) {
         amp_options_hide_show(thisid);
     });
      $('.ux-setup-icon').on('mouseover', function (event) {
+        var amp_setup_pending_string = '';
+        $(".amp-ux-valid-require").each(function(){
+             if($(this).children().hasClass('btn-red')){
+               amp_setup_pending_string += $(this).parent('.amp-ux-elem-field').children('.amp-ux-elem-title').html()+", ";
+             }
+        });
+        amp_setup_pending_string = amp_setup_pending_string.replace(/,\s*$/, "");
         if($(this).hasClass('amp-ux-warning-okay')){
-            $(".setup-tt").html("Your setup is now completed. Enjoy the better AMP Experience.");
+            $(".setup-tt").html("Your setup is now completed.");
         }else{
-            $(".setup-tt").html("Your setup is not completed. Please setup for better AMP Experience.");
+            $(".setup-tt").html('Your setup is not completed.<br/>Please setup <i>"'+amp_setup_pending_string+'"</i> section for better AMP Experience.');
         }
         $('.ampforwp-setup-not-tt').css({'visibility':'visible'});
     }).on('mouseout', function (event) {
        $('.ampforwp-setup-not-tt').css({'visibility':'hidden'});
+    });
+     $('.ux-setup-icon').on('click', function(){
+        $(".amp-ux-valid-require").each(function(){
+             if($(this).children().hasClass('btn-red')){
+               $(this).parent('.amp-ux-elem-field').parent('.amp-ux-section-field').css({'box-shadow': '0px 0px 5px black','padding-left': '15px','padding-right': '15px'});
+
+             }
+        });
+        setTimeout(function(){ $(".amp-ux-valid-require").parent('.amp-ux-elem-field').parent('.amp-ux-section-field').removeAttr('style'); }, 500);
     });
 /* Hamburger Library */
 function DrawerIcon(icon) {
