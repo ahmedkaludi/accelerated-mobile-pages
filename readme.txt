@@ -191,11 +191,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.19 (28th January 2020) =
-* Improvement: Need to implement the Mobile redirection functionality using Javascript method #3844
+= 1.0.19 (29th January 2020) =
 * Improvement: EWWW Image Optimizer plugin Compatibility #3984
 * Fixed: WP Admin toolbar CSS is not loading when user is logged in #4076
-* Fixed: Your setup is not completed. Please setup for better AMP Experience. #4088
+* Fixed: AMP Options panel UI improvements done. #4088
 * Fixed: video is not displaying in AMP when a video is inserted from gutenberg video module #4086
 * Fixed: Performance section all features not working when Ezoic integration plugin is active. #4092
 * Fixed: Playbuzz is not working #4085
