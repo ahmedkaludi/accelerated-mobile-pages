@@ -35,6 +35,7 @@ function ampforwp_add_admin_styling($hook_suffix){
     $redux_data = array();
     if( current_user_can("manage_options") && $hook_suffix=='toplevel_page_amp_options' ){
         $redux_data = $redux_builder_amp;
+        wp_dequeue_script( 'insert-post-adschart-admin' );
     }else{
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
