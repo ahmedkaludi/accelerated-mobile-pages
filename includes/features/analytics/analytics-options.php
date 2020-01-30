@@ -160,16 +160,12 @@ function ampforwp_analytics_options($opt_name){
                               ),
                         ),
                         array(
-                            'class'=>'child_opt',
+                            'class'=>'hide',
                             'id'            =>'amp-gtm-analytics-code',
                             'type'          => 'text',
                             'title'         => esc_html__('Analytics ID','accelerated-mobile-pages'),
                             'default'       => '',
                             'tooltip-subtitle'  => 'Eg: UA-XXXXXX-Y',
-                            'required' => array(
-                              array('amp-use-gtm-option', '=' , '1'),
-                              array('ampforwp-gtm-field-advance-switch', '=' , '0'),
-                        ),
                         ),
                       array(
                           'class' => 'child_opt',
