@@ -46,7 +46,8 @@ jQuery(document).ready(function($) {
               $('.amp-editor-content').hide();
            }
     }
-    tinymce.get('ampforwp_custom_content_editor').on("keyup change paste",function(){
+    if(document.getElementById('ampforwp_custom_content_editor')){
+        tinymce.get('ampforwp_custom_content_editor').on("keyup change paste",function(){
         var thisval = tinymce.get('ampforwp_custom_content_editor').getContent();
         if(thisval!=""){
             $('.amp-editor-content').hide();
@@ -63,5 +64,6 @@ jQuery(document).ready(function($) {
         }else{
             $("#ampforwp-amp-content-error-msg").html("AMP contents is blank, Please enter content");
         }
-    }); 
+        });
+    }
 });
