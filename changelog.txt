@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.20 (31th January 2020) =
+* Fixed: Need to add nofollow feature in notification option #3612
+* Fixed: Cache Should auto clear when any plugin is activated/deactivated #4046
+* Fixed: Pages won't save apostophies in AMP page builder text module. #4074
+* Fixed: Modifying the location of the theme files. #4091
+* Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
+
 = 1.0.19 (29th January 2020) =
 * Improvement: EWWW Image Optimizer plugin Compatibility #3984
 * Fixed: WP Admin toolbar CSS is not loading when user is logged in #4076
