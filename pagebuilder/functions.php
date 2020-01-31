@@ -56,9 +56,6 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			$previousData = get_post_meta($postId,'amp-page-builder');
 			$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 			$previousData = isset($previousData[0])? $previousData[0]: null;
-			
-			$previousData = (str_replace("'", "", $previousData));
-			
 			$totalRows = 1;
 			$totalmodules = 1;
 			if(!empty($previousData)){
