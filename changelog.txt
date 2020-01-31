@@ -1,10 +1,10 @@
 == Changelog ==
 
-= 1.0.20 (31th January 2020) =
-* Fixed: Need to add nofollow feature in notification option #3612
-* Fixed: Cache Should auto clear when any plugin is activated/deactivated #4046
+= 1.0.20 (31st January 2020) =
+* Improvement: Filter added to Modify the location of the theme files from plugin older. #4091
+* Improvement: Cache Should auto clear when any plugin is activated/deactivated #4046
+* Improvement: Need to add nofollow feature in cookie notification option #3612
 * Fixed: Pages won't save apostophies in AMP page builder text module. #4074
-* Fixed: Modifying the location of the theme files. #4091
 * Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
 
 = 1.0.19 (29th January 2020) =
@@ -108,7 +108,7 @@
 * Fixed: amp-auto-ads script is loading in AMP-pages when Google site kit plugin is enable. #4009
 * Fixed: wp-block CSS is heavily loading even when tree shaking is enabled in core. (Page builder is enabled) #4014
 
-= 1.0.6 (31th December 2019) =
+= 1.0.6 (31st December 2019) =
 * Improvement: Allow users to add custom script in amp by using amp theme frame work plugin or without plugin #3865
 * Improvement: Allow users to register scripts in proper way in AMP Theme Framework #3257
 * Improvement: Need to add filter to modify mobile redirection #3987
@@ -431,7 +431,7 @@
 * Fixed: Issue in Breacrumb if category has a comma #3598
 * Fixed: After last update the cookie bar text shows the html code (a href) instead of creating a link. #3617
 
-= 0.9.98.6 (31th AUGUST 2019) =
+= 0.9.98.6 (31st AUGUST 2019) =
 * Improvements: Structured Data improvements #3567
 * Improvements: Addthis share button's postion field in 1,2 and 3 designs #3553
 * Fixed: Rare issue AMP settings are not getting saved showing popup error "There was a problem with your action. Please try again or reload the page." #3494
@@ -2800,7 +2800,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * 404 and Archive page Mobile redirection code refined
 * User Experience Improvement: Installation process was improved
 
-= 0.9.3 [31th December 2016] =
+= 0.9.3 [31st December 2016] =
 * Proper Details at https://ampforwp.com/custom-amp-content-editor/
 * Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
 * FrontPage had some validation issues. [Bug fix]

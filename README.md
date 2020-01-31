@@ -194,11 +194,11 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.20 (31th January 2020) =
-* Fixed: Need to add nofollow feature in notification option #3612
-* Fixed: Cache Should auto clear when any plugin is activated/deactivated #4046
+= 1.0.20 (31st January 2020) =
+* Improvement: Filter added to Modify the location of the theme files from plugin older. #4091
+* Improvement: Cache Should auto clear when any plugin is activated/deactivated #4046
+* Improvement: Need to add nofollow feature in cookie notification option #3612
 * Fixed: Pages won't save apostophies in AMP page builder text module. #4074
-* Fixed: Modifying the location of the theme files. #4091
 * Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
 
 = 1.0.19 (29th January 2020) =
