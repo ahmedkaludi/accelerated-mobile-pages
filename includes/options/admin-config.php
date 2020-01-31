@@ -689,7 +689,7 @@ function ampforwp_check_extensions(){
 	if($all_extensions_data){
 		foreach ($all_extensions_data as $extension ) {
 			$is_extension_active = $extension['is_activated'];
-			if( 1 === $is_extension_active){
+			if( 1 === $is_extension_active && 'PWA For WordPress' != $extension['item_name']){
 				return true;
 			}
 		}
