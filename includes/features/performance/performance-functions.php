@@ -318,14 +318,12 @@ if( !function_exists("ampforwp_clear_tree_shaking") ) {
 		}
 	}
 }
-if ( is_admin() && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) ){
-    register_activation_hook( 'amp-newspaper-theme/ampforwp-custom-theme.php', 'ampforwp_clear_tree_shaking_on_activity' );
-    register_deactivation_hook( 'amp-newspaper-theme/ampforwp-custom-theme.php', 'ampforwp_clear_tree_shaking_on_activity' );
-    register_activation_hook( 'amp-layouts/amp-layouts.php', 'ampforwp_clear_tree_shaking_on_activity' );
-    register_deactivation_hook( 'amp-layouts/amp-layouts.php', 'ampforwp_clear_tree_shaking_on_activity' );
+if((current_user_can('activate_plugins') || current_user_can('deactivate_plugins')) && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) ){
+    add_action('activate_plugin','ampforwp_clear_tree_shaking_on_activity');
+    add_action('deactivate_plugin','ampforwp_clear_tree_shaking_on_activity');
 }
-function ampforwp_clear_tree_shaking_on_activity(){
-    if ( is_admin() && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) ){
+function ampforwp_clear_tree_shaking_on_activity($plugin='', $network=''){
+    if ( (current_user_can('activate_plugins') || current_user_can('deactivate_plugins')) && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) ){
         $upload_dir   = wp_upload_dir();
         $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
         if ( file_exists( $user_dirname ) ) {
