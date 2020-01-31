@@ -1405,9 +1405,7 @@ function ampforwp_custom_yoast_meta_homepage(){
 					}
 				}
 				do_action( 'wpseo_opengraph' );
-		if( ampforwp_get_setting('ampforwp-seo-custom-additional-meta') ){
-			echo strip_tags( ampforwp_get_setting('ampforwp-seo-custom-additional-meta'), '<link><meta>' );
-		}
+		
 	}
 }
 
@@ -2263,7 +2261,9 @@ function ampforwp_global_head_scripts($data){
 
 add_action('amp_post_template_head','ampforwp_header_html_output',11);
 function ampforwp_header_html_output() {
-
+	if( ampforwp_get_setting('ampforwp-seo-custom-additional-meta') ){
+		echo strip_tags( ampforwp_get_setting('ampforwp-seo-custom-additional-meta'), '<link><meta>' );
+	}
   if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
   		$allhtml = ampforwp_get_setting('amp-header-text-area-for-html');
   		$allhtml = preg_replace('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)><\/script>/','', $allhtml);
