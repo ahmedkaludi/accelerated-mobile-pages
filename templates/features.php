@@ -7952,6 +7952,6 @@ function ampforwp_seo_selection_notice() {
 		$seo = 'SEO Press';
 	}
 	if(!empty($seo)){
-    	echo '<div class="notice notice-error"><p>We are deducted that you are using '.esc_html($seo).' plugin. Please go to our AMP settings and select '.esc_html($seo).' in SEO section</p></div>';
+    	echo '<div class="notice notice-error"><p>We have deducted that you are using '.esc_html($seo).' plugin. Please go to our AMP settings and select '.esc_html($seo).' in SEO section</p></div>';
 	}
 }
