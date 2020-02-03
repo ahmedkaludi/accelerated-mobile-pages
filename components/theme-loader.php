@@ -2,32 +2,26 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-
+	if('amp-theme-framework' == $ampforwp_design_selector ) {
+    	$amp_main_dir = ABSPATH.'wp-content/plugins/amp-theme-framework';
+  	}
 	if ( 4 == $ampforwp_design_selector ) {
-
 		$amp_main_dir = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift';
-
-		$amp_theme_dir = apply_filters('ampforwp_theme_dir', $amp_main_dir);
-
-		if ( ! is_dir($amp_theme_dir)) {
-			$amp_theme_dir  = $amp_main_dir;
-		}
-
-		define('AMPFORWP_CUSTOM_THEME', $amp_theme_dir );
-		
-	}else if('amp-theme-framework' == $ampforwp_design_selector ) {
-		$amp_theme_dir = ABSPATH.'wp-content/plugins/amp-theme-framework';
-		define('AMPFORWP_CUSTOM_THEME', $amp_theme_dir );
 	}
+	$amp_theme_dir = apply_filters('ampforwp_theme_dir', $amp_main_dir);
+
+	if ( ! is_dir($amp_theme_dir)) {
+		$amp_theme_dir  = $amp_main_dir;
+	}
+
+	define('AMPFORWP_CUSTOM_THEME', $amp_theme_dir );
 
 	// Include functions.php 
 	$function_file =  AMPFORWP_CUSTOM_THEME . '/functions.php';
 	if ( ! file_exists($function_file)) {
 		$function_file = $amp_main_dir .'/functions.php';
 	}
-	if(defined('AMPFORWP_CUSTOM_THEME')){
-		require_once( $function_file );
-	}
+	require_once( $function_file );
 
 	//Filter the Template files to override previous ones
 	add_filter( 'amp_post_template_file', 'ampforwp_designing_custom_template', 10, 3 );
