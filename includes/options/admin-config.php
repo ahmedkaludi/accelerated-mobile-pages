@@ -251,17 +251,6 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-cache/ampforwp-cache.php')? 1 : 2),
                             'settingUrl'=>'{opt-go-amp-cache}',
-                        ),
-                        array(
-                            'name'=>'PWA For WordPress',
-                            'desc'=>'Add Progressive Web App support for WordPress website',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/pwa-icon.png',
-                            'price'=>'FREE',
-                            'url_link'=>'https://pwa-for-wp.com//#utm_source=options-panel&utm_medium=extension-tab_pwa-for-wordpress&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> 'pwa-for-wordpress/amp-pwa.php',
-                            'item_name'=>'PWA For WordPress',
-                            'is_activated'=>(is_plugin_active('pwa-for-wp/pwa-for-wp.php')? 1 : 2),
-                            'settingUrl'=>admin_url( 'admin.php?page=ampforwp-pwa' ),
                         ), 
                         array(
                             'name'=>'AMP Popup',
