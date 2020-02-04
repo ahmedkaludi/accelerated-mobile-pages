@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.21 (4th February 2020) =
+* Fixed: Fatal error when AMP theme framework is active #4128
+
 = 1.0.20 (31st January 2020) =
 * Improvement: Filter added to Modify the location of the theme files from plugin older. #4091
 * Improvement: Cache Should auto clear when any plugin is activated/deactivated #4046
