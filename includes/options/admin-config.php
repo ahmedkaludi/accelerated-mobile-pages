@@ -948,7 +948,7 @@ $freepro_listing = '
                             <p>No. There are no setup fees on any of our plans</p>
                         </li>
                         <li>
-                            <span>what\'s the time span for your contracts?</span>
+                            <span>What\'s the time span for your contracts?</span>
                             <p>All the plans are year-to-year which are subscribed annually.</p>
                         </li>
                         <li>
@@ -961,7 +961,7 @@ $freepro_listing = '
                         </li>
                         <li>
                             <span>Can I use the plugins after my subscription is expired?</span>
-                            <p>Yes, you can use the plugins but you will not get future updates of those plugins.</p>
+                            <p>Yes, you can use the plugins but you will not get future updates for those plugins.</p>
                         </li>
                     </ul>
                 </div>
@@ -981,7 +981,7 @@ $freepro_listing = '
                         </li>
                         <li>
                             <span>Do I get updates for the premium plugin?</span>
-                            <p>Yes, you will get updates for all the premium plugins which you have purchased.</p>
+                            <p>Yes, you will get updates for all the premium plugins until your subscription is active.</p>
                         </li>
                         
                     </ul>
