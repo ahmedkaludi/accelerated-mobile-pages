@@ -1041,7 +1041,9 @@ function ampforwp_remove_schema_data() {
 		//Removed style tag appending before Html tag for themify pagebuilder #3376 
 		ampforwp_remove_filters_for_class( 'the_content', 'Themify_Builder', 'builder_show_on_front', 11 );
 		ampforwp_remove_filters_for_class( 'the_content', 'Themify_Builder', 'builder_clear_static_content', 1 );
-		
+		if(defined('EZOIC__PLUGIN_NAME')){
+			ampforwp_remove_filters_for_class( 'shutdown', 'Ezoic_Namespace\Ezoic_Integration_Public', 'ez_buffer_end', 0 );
+		}	
 		// Yoast Schema Compatibility #3332
 		if( ampforwp_get_setting('ampforwp-seo-selection') != "yoast"){
 			ampforwp_remove_filters_for_class( 'amp_post_template_head', 'WPSEO_Schema', 'json_ld', 9 );
@@ -6195,10 +6197,13 @@ function ampforwp_vuukle_comments_markup() {
 	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl);
 	$srcUrl = add_query_arg('img' , esc_url($img), $srcUrl);
 	$srcUrl = add_query_arg('tags' , urlencode($tag_name), $srcUrl);  
-
+	$consent = '';
+	if(ampforwp_get_data_consent()){
+		$consent = 'data-block-on-consent ';
+	}
 	$vuukle_html ='';
 	if ( $display_comments_on ) {
-		$vuukle_html .= '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
+		$vuukle_html .= '<amp-iframe width="600" height="350" '.esc_attr($consent).'layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
 
 			<div overflow tabindex="0" role="button" aria-label="Show comments" class="afwp-vuukle-support">Show comments</div></amp-iframe>';
 	}
@@ -7040,6 +7045,13 @@ function ampforwp_nofollow_social_links(){
 	}
 	return false;
 }
+function ampforwp_nofollow_notification(){
+	if(true == ampforwp_get_setting('ampforwp-notifications-nofollow')){
+		echo 'rel=nofollow';
+		return;
+	}
+	return false;
+}
 // Featured Video SmartMag theme Compatibility CSS #2559
 add_action('amp_post_template_css', 'ampforwp_featured_video_plus_css');
 function ampforwp_featured_video_plus_css(){ 
@@ -7847,16 +7859,12 @@ if(!function_exists('ampforwp_imagify_webp_compatibility')){
 			$display_webp = $imageify_opt['display_webp'];
 			if($convert_to_webp && $display_webp){
 				$img_url = esc_url($src[1][0]);
-				$rep_url = esc_url($src[1][0]).".webp";
-				$upload_dir = wp_upload_dir()['basedir'];
-				$img_file = preg_replace('/http(.*)\/wp-content\/uploads/', $upload_dir, $rep_url);
-				if(file_exists($img_file)){
-					$content = str_replace($img_url, $rep_url, $content);
-				}else{
-					$headers = get_headers($rep_url);
-					if(isset($headers[0])){
-						$is_webp = stripos($headers[0], "200 OK") ? TRUE : FALSE;
-						if($is_webp){
+				if(!preg_match('/\.webp/', $img_url)){
+					$rep_url = esc_url($src[1][0]).".webp";
+					if(preg_match('/http(.*)\/wp-content\/uploads/', $rep_url)){
+						$upload_dir = wp_upload_dir()['basedir'];
+						$img_file = preg_replace('/http(.*)\/wp-content\/uploads/', $upload_dir, $rep_url);
+						if(file_exists($img_file)){
 							$content = str_replace($img_url, $rep_url, $content);
 						}
 					}
@@ -7885,16 +7893,12 @@ function ampforwp_ewww_webp_compatibility($content){
 			preg_match_all('/src="(.*?)"/', $content,$src);
 			if(isset($src[1][0])){
 				$img_url = esc_url($src[1][0]);
-				$rep_url = esc_url($src[1][0]).".webp";
-				$upload_dir = wp_upload_dir()['basedir'];
-				$img_file = preg_replace('/http(.*)\/wp-content\/uploads/', $upload_dir, $rep_url);
-				if(file_exists($img_file)){
-					$content = str_replace($img_url, $rep_url, $content);
-				}else{
-					$headers = get_headers($rep_url);
-					if(isset($headers[0])){
-						$is_webp = stripos($headers[0], "200 OK") ? TRUE : FALSE;
-						if($is_webp){
+				if(!preg_match('/\.webp/', $img_url)){
+					$rep_url = esc_url($src[1][0]).".webp";
+					if(preg_match('/http(.*)\/wp-content\/uploads/', $rep_url)){
+						$upload_dir = wp_upload_dir()['basedir'];
+						$img_file = preg_replace('/http(.*)\/wp-content\/uploads/', $upload_dir, $rep_url);
+						if(file_exists($img_file)){
 							$content = str_replace($img_url, $rep_url, $content);
 						}
 					}

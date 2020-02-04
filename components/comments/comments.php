@@ -225,8 +225,11 @@ function ampforwp_framework_get_vuukle_comments(){
 	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl);
 	$srcUrl = add_query_arg('img' , esc_url($img), $srcUrl);
 	$srcUrl = add_query_arg('tags' , urlencode($tag_name), $srcUrl);
-
- 	$vuukle_html = '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
+	$consent = '';
+	if(ampforwp_get_data_consent()){
+		$consent = 'data-block-on-consent ';
+ 	} 
+ 	$vuukle_html = '<amp-iframe width="600" height="350" '.esc_attr($consent).'layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
 
 		<div overflow tabindex="0" role="button" aria-label="Show comments">'.esc_html__('Show comments','accelerated-mobile-pages').'</div></amp-iframe>';
 	echo $vuukle_html; // escaped above

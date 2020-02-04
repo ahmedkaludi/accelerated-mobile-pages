@@ -85,7 +85,15 @@ function ampforwp_notice_bar_options($opt_name){
                'default'   => 'Read More',
                'required' => array('amp-enable-links', '=' , '1'),
            ),
-
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'ampforwp-notifications-nofollow',
+               'type'      => 'switch',
+               'title'     => esc_html__('No Follow link', 'accelerated-mobile-pages'),
+               'default'   => 0,
+               'tooltip-subtitle'  => esc_html__('Add nofollow to the notification link.', 'accelerated-mobile-pages'),
+               'required' => array('amp-enable-links', '=' , '1'),
+           ),
            array(
             'id' => 'ampforwp-notice_1',
             'type' => 'section',

@@ -74,6 +74,7 @@ class AMP_Video_Sanitizer extends AMP_Base_Sanitizer {
 		foreach ( $attributes as $name => $value ) {
 			switch ( $name ) {
 				case 'src':
+					$value = str_replace('http://', '//', $value);
 					$out[ $name ] = $this->maybe_enforce_https_src( $value );
 					break;
 

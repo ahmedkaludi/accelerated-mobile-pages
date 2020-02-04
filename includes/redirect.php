@@ -13,6 +13,9 @@ function ampforwp_redirection() {
   if ( ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) && 'hide-amp' == get_post_meta( ampforwp_get_the_ID(),'ampforwp-amp-on-off',true) ) {
     return;
   }
+  if ( ampforwp_posts_to_remove() && is_object($post) && $post->post_type == 'post' ) {
+      return;
+  }
   // Redirection for Homepage and Archive Pages when Turned Off from options panel
   if ( ampforwp_is_amp_endpoint() ) {
      if(is_tax()){

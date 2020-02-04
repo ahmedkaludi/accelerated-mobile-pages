@@ -247,8 +247,16 @@ do_action("ampforwp_single_design_type_handle_d1");
 <?php if(ampforwp_get_setting('single-design-type') == true && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 	<div class="r-pf">
 		<div class="cntr">
-			<h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' )); ?></h3>
-		<?php
+		<?php 	
+			$args = array(
+				'posts_per_page' => 2,
+				'fields' => 'ids',
+			);
+		$results = get_posts($args);
+ 		$check_rp= count($results);
+		if ($check_rp > 1) {?>
+			<h3><?php echo esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' )); ?></h3>
+		<?php }
 		$number_of_posts = 6;
 		$rcp = ampforwp_get_setting('ampforwp-number-of-recent-posts');
 		if( !empty($rcp) ){
