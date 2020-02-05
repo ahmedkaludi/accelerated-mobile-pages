@@ -251,6 +251,12 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		    if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
 		     	return;
 		    }
+		if(function_exists('yith_wishlist_constructor')){
+			$class = get_body_class();
+			if(in_array("woocommerce-wishlist", $class)){
+				return;
+			} 
+		}    
 		// #872 no-amphtml if selected as hide from settings
 		if ( is_category_amp_disabled() ) {
 			return;
