@@ -959,16 +959,20 @@ $freepro_listing = '
                             <p>No. There are no setup fees on any of our plans</p>
                         </li>
                         <li>
-                            <span>what\'s the time span for your contracts?</span>
+                            <span>What\'s the time span for your contracts?</span>
                             <p>All the plans are year-to-year which are subscribed annually.</p>
                         </li>
                         <li>
                             <span>What payment methods are accepted?</span>
-                            <p>All the plans are year-to-year which are subscribed annually.</p>
+                            <p>We accepts PayPal and Credit Card payments.</p>
                         </li>
                         <li>
                             <span>Do you offer support if I need help?</span>
                             <p>Yes! Top-notch customer support for our paid customers is key for a quality product, so we’ll do our very best to resolve any issues you encounter via our support page.</p>
+                        </li>
+                        <li>
+                            <span>Can I use the plugins after my subscription is expired?</span>
+                            <p>Yes, you can use the plugins but you will not get future updates for those plugins.</p>
                         </li>
                     </ul>
                 </div>
@@ -988,7 +992,7 @@ $freepro_listing = '
                         </li>
                         <li>
                             <span>Do I get updates for the premium plugin?</span>
-                            <p>All the plans are year-to-year which are subscribed annually.</p>
+                            <p>Yes, you will get updates for all the premium plugins until your subscription is active.</p>
                         </li>
                     </ul>
                 </div>
