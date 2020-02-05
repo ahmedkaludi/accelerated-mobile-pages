@@ -687,6 +687,8 @@ function ampforwp_backtotop_global_css(){?>
 	.rtl amp-carousel {direction: ltr;}
 	.rtl .amp-menu .toggle:after{left:0;right:unset;}
 	.sharedaddy li{display:none}
+	sub {vertical-align: sub;font-size: small;}
+	sup {vertical-align: super;font-size: small;}
 <?php if (function_exists('yarpp_init')) {?>
 	.yarpp-related ol li a {
     color: #000;
