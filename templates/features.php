@@ -7919,10 +7919,12 @@ function ampforwp_ewww_webp_compatibility($content){
 		return $content;
 	}
 }
-if('' == ampforwp_get_setting('ampforwp-seo-selection')){
-	add_action( 'admin_notices', 'ampforwp_seo_selection_notice' );
-}
+
+add_action( 'admin_notices', 'ampforwp_seo_selection_notice' );
 function ampforwp_seo_selection_notice() {
+	if('' != ampforwp_get_setting('ampforwp-seo-selection')){
+		return;
+	}
 	$seo = '';
 	if(class_exists('WPSEO_Options')){
 		$seo = 'Yoast SEO';
@@ -7952,6 +7954,6 @@ function ampforwp_seo_selection_notice() {
 		$seo = 'SEO Press';
 	}
 	if(!empty($seo)){
-    	echo '<div class="notice notice-error"><p>We have deducted that you are using '.esc_html($seo).' plugin. Please go to our AMP settings and select '.esc_html($seo).' in SEO section</p></div>';
+    	echo sprintf(('<div class="notice notice-error"><p>%s</p></div>'), esc_html__('We have dedected that you are using '.esc_html($seo).' plugin. Please go to our AMP settings and select '.esc_html($seo).' in SEO section','accelerated-mobile-pages'));
 	}
 }
