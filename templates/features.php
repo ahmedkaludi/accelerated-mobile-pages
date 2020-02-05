@@ -7399,7 +7399,7 @@ function ampforwp_head_css(){
 	}
 	
 	function ampforwp_remove_admin_menu_front($wp){
-		$node_arr = ['search'];
+		$node_arr = ['search','admin-bar-likes-widget'];
 		for($i=0;$i<count($node_arr);$i++){
 			$wp->remove_node($node_arr[$i]);
 		}
