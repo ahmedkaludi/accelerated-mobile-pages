@@ -195,12 +195,14 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 == Changelog ==
 
 = 1.0.22 (6th February 2020) =
-* Fixed: Upgrade to Pro button was missing in the AMP setting panel #4118
-* Fixed: Upgrade to Pro option was removing in the setting panel when we activate PWA for WP plugin #4117
-* Fixed: FAQ section improved #4119
 * Fixed: Console error - Uncaught TypeError: Cannot read property 'on' of null #4102
 * Fixed: When Insert post ads plugin is enable then AMP settings panel is not showing. #4107
 * Fixed: Search console error fixed on WooCommerce wishlist page #4097
+* Fixed: GTM Added in Basic Setup and code improvements #4108
+* Fixed: The meta tags was not working in Head section #4116
+* Fixed: Upgrade to Pro button was missing in the AMP setting panel #4118
+* Fixed: Upgrade to Pro option was removing in the setting panel when we activate PWA for WP plugin #4117
+* Fixed: FAQ section improved #4119
 
 = 1.0.21 (4th February 2020) =
 * Fixed: Fatal error when AMP theme framework is active #4128
