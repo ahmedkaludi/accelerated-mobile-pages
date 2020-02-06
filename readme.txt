@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.21
+Stable tag: 1.0.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.22 (6th February 2020) =
+* Fixed: Console error - Uncaught TypeError: Cannot read property 'on' of null #4102
+* Fixed: When Insert post ads plugin is enable then AMP settings panel is not showing. #4107
+* Fixed: Search console error fixed on WooCommerce wishlist page #4097
+* Fixed: GTM Added in Basic Setup and code improvements #4108
+* Fixed: The meta tags was not working in Head section #4116
+* Fixed: Upgrade to Pro button was missing in the AMP setting panel #4118
+* Fixed: Upgrade to Pro option was removing in the setting panel when we activate PWA for WP plugin #4117
+* Fixed: FAQ section improved #4119
+
 = 1.0.21 (4th February 2020) =
 * Fixed: Fatal error when AMP theme framework is active #4128
 
@@ -200,21 +210,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Improvement: Need to add nofollow feature in cookie notification option #3612
 * Fixed: Pages won't save apostophies in AMP page builder text module. #4074
 * Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
-
-= 1.0.19 (29th January 2020) =
-* Improvement: EWWW Image Optimizer plugin Compatibility #3984
-* Fixed: WP Admin toolbar CSS is not loading when user is logged in #4076
-* Fixed: AMP Options panel UI improvements done. #4088
-* Fixed: video is not displaying in AMP when a video is inserted from gutenberg video module #4086
-* Fixed: Performance section all features not working when Ezoic integration plugin is active. #4092
-* Fixed: Playbuzz is not working #4085
-* Fixed: RECENT POSTS label visible if no posts are available #4011
-* Fixed: data-block-on-consent is missing for Vuukle comments when gdpr is enabled #4095
-* Fixed: Remove Purge AMP CDN cache Settings buuton: #4099
-* Fixed: When categories that we exclude from AMP through the plugin configuration present redirection problem along with mobile redirection option #4075
-* Fixed: Alignment issue in GDPR Privacy link. #4101
-
-= 1.0.18 (27th January 2020) =
-* Fixed: Debug warnings with Imagify plugin #3908
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

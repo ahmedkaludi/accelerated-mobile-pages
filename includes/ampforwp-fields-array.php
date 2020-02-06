@@ -12,7 +12,7 @@ if($current_page=="amp_options"){
 		$options[$page->ID] = $page->post_title;
 	}
 }
-$analytics_options = array(''=>'Add Analytics Type','ampforwp-ga-switch'=>'Google Analytics','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics');
+$analytics_options = array(''=>'Add Analytics Type','ampforwp-ga-switch'=>'Google Analytics','amp-use-gtm-option'=>'Google Tag Manager','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics');
 $analytics_default_option = ampforwp_get_setting('amp-analytics-select-option');
 $analytics_default = 'ampforwp-ga-switch';
 switch ($analytics_default_option) {
@@ -215,6 +215,15 @@ $amp_ux_fields = array(
 					'field_data'=>array('title'=>'Google Analytics','class'=>'child_opt child_opt_arrow')
 					),
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','id'=>'amp-ux-ga','class'=>'amp-ux-ga google-analytics analytics-text','required'=>array(),'data-text'=>'ga-feild','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('ga-feild'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-gtm-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Google Tag Manager'),'closable'=>1,'data-href'=>'amp-use-gtm-option')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Google Tag Manager','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tag Manager ID (Container ID)','id'=>'amp-ux-gtm','class'=>'amp-ux-gtm analytics-text','required'=>array(),'data-text'=>'amp-gtm-id','element-class'=>'ux-label trac-id','default'=>ampforwp_get_setting('amp-gtm-id'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',

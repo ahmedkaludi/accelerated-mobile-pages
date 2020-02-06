@@ -253,17 +253,6 @@ $extension_listing_array = array(
                             'settingUrl'=>'{opt-go-amp-cache}',
                         ),
                         array(
-                            'name'=>'PWA For WordPress',
-                            'desc'=>'Add Progressive Web App support for WordPress website',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/pwa-icon.png',
-                            'price'=>'FREE',
-                            'url_link'=>'https://pwa-for-wp.com//#utm_source=options-panel&utm_medium=extension-tab_pwa-for-wordpress&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> 'pwa-for-wordpress/amp-pwa.php',
-                            'item_name'=>'PWA For WordPress',
-                            'is_activated'=>(is_plugin_active('pwa-for-wp/pwa-for-wp.php')? 1 : 2),
-                            'settingUrl'=>admin_url( 'admin.php?page=ampforwp-pwa' ),
-                        ), 
-                        array(
                             'name'=>'AMP Popup',
                             'desc'=>'Pop-Up Functionality for AMP in WordPress. Most easiest and the best way to include Pop-Up in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/pwa-icon.png',
@@ -700,7 +689,7 @@ function ampforwp_check_extensions(){
 	if($all_extensions_data){
 		foreach ($all_extensions_data as $extension ) {
 			$is_extension_active = $extension['is_activated'];
-			if( 1 === $is_extension_active){
+			if( 1 === $is_extension_active && 'PWA For WordPress' != $extension['item_name']){
 				return true;
 			}
 		}
@@ -970,16 +959,20 @@ $freepro_listing = '
                             <p>No. There are no setup fees on any of our plans</p>
                         </li>
                         <li>
-                            <span>what\'s the time span for your contracts?</span>
+                            <span>What\'s the time span for your contracts?</span>
                             <p>All the plans are year-to-year which are subscribed annually.</p>
                         </li>
                         <li>
                             <span>What payment methods are accepted?</span>
-                            <p>All the plans are year-to-year which are subscribed annually.</p>
+                            <p>We accepts PayPal and Credit Card payments.</p>
                         </li>
                         <li>
                             <span>Do you offer support if I need help?</span>
                             <p>Yes! Top-notch customer support for our paid customers is key for a quality product, so we’ll do our very best to resolve any issues you encounter via our support page.</p>
+                        </li>
+                        <li>
+                            <span>Can I use the plugins after my subscription is expired?</span>
+                            <p>Yes, you can use the plugins but you will not get future updates for those plugins.</p>
                         </li>
                     </ul>
                 </div>
@@ -999,7 +992,7 @@ $freepro_listing = '
                         </li>
                         <li>
                             <span>Do I get updates for the premium plugin?</span>
-                            <p>All the plans are year-to-year which are subscribed annually.</p>
+                            <p>Yes, you will get updates for all the premium plugins until your subscription is active.</p>
                         </li>
                     </ul>
                 </div>
@@ -1215,7 +1208,7 @@ if(get_theme_support('amp-template-mode')){
     $upg_to_pro_url = 'https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin';
     $upg_to_pro_target = 'target="_blank"';
 }
-$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a>';
+$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Upgrade to PRO</a> ';
 if($ampforwp_nameOfUser!=""){
     $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url(admin_url('admin.php?page=amp_options&tabid=opt-go-premium'))."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){

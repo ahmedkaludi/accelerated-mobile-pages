@@ -511,6 +511,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     top: 1px;
     left: 4px;
 }
+.premium_features_btn:hover{background: #fff;color:#eb3349 !important; }
 .getting_started_listing .align_left{display: none}
 .getting_started_listing li a{width: 288px}
 .extension_listing li:hover{border-color:rgba(48, 63, 159, 0.35)}
