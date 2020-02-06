@@ -905,6 +905,7 @@ if(!function_exists('ampforwp_get_setup_info')){
             $ux_content = ampforwp_get_setting('opt-media','url');
 		}else if($ux_option=="ampforwp-ux-analytics-section"){
             $ga_field       = ampforwp_get_setting('ga-feild');
+            $ga_field_gtm     = ampforwp_get_setting('amp-gtm-id');
             $amp_fb_pixel_id = ampforwp_get_setting('amp-fb-pixel-id');
             $sa_feild = ampforwp_get_setting('sa-feild');
             $pa_feild = ampforwp_get_setting('pa-feild');
@@ -924,6 +925,7 @@ if(!function_exists('ampforwp_get_setup_info')){
             $analytics_txt = "";
             $analytic_arr = array();
             if(ampforwp_get_setting('ampforwp-ga-switch') && $ga_field!="UA-XXXXX-Y" && $ga_field!=""){$analytic_arr[]="Google Analytics";}
+            if(ampforwp_get_setting('amp-use-gtm-option') && $ga_field_gtm!="" && $ga_field_gtm!=""){$analytic_arr[]="Google Tag Manager";}
             if(ampforwp_get_setting('amp-fb-pixel') && $amp_fb_pixel_id!=""){$analytic_arr[]="Facebook Pixel";}
            if(ampforwp_get_setting('ampforwp-Segment-switch') && $sa_feild!="SEGMENT-WRITE-KEY" && $sa_feild!=""){$analytic_arr[]="Segment Analytics";}
             if(ampforwp_get_setting('ampforwp-Piwik-switch') && $pa_feild!="#" && $pa_feild!=""){ $analytic_arr[]="Matomo Analytics";}

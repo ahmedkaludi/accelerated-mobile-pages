@@ -160,7 +160,7 @@ function ampforwp_analytics_options($opt_name){
                               ),
                         ),
                         array(
-                            'class'=>'child_opt',
+                            'class'=>'hide',
                             'id'            =>'amp-gtm-analytics-code',
                             'type'          => 'text',
                             'title'         => esc_html__('Analytics ID','accelerated-mobile-pages'),

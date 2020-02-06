@@ -1117,6 +1117,7 @@ jQuery(document).ready(function($) {
             button = "SET UP";
         }else if(active_drower=='ampforwp-ux-analytics-section'){
             var ga_field       = $('#ga-feild').val();
+            var ga_field_gtm    = $('#amp-gtm-id').val();
             var amp_fb_pixel_id = $('#amp-fb-pixel-id').val();
             var sa_feild = $('#sa-feild').val();
             var pa_feild = $('#pa-feild').val();
@@ -1138,6 +1139,7 @@ jQuery(document).ready(function($) {
                 var data_href = $(this).attr('data-href');
                 var hasCls  = $(this).hasClass('hide');
                 if(ga_field!="UA-XXXXX-Y" && ga_field!="" && !hasCls && data_href=='ampforwp-ga-switch'){analytic_arr.push("Google Analytics");}
+                if(ga_field_gtm!="" && !hasCls && data_href=='amp-use-gtm-option'){analytic_arr.push("Google Tag Manager");}
                 if(amp_fb_pixel_id!="" && !hasCls && data_href=='amp-fb-pixel'){analytic_arr.push("Facebook Pixel");}
                 if(sa_feild!="SEGMENT-WRITE-KEY" && sa_feild!="" && !hasCls && data_href=='ampforwp-Segment-switch'){analytic_arr.push("Segment Analytics");}
                 if(pa_feild!="#" && pa_feild!="" && !hasCls && data_href=='ampforwp-Piwik-switch'){ analytic_arr.push("Matomo Analytics");}
@@ -1426,6 +1428,7 @@ jQuery(document).ready(function($) {
     });
      function ampforwp_check_analytics(data_href){
         var ga_field       = $('#ga-feild').val();
+        var ga_field_gtm       = $('#amp-gtm-id').val();
         var amp_fb_pixel_id = $('#amp-fb-pixel-id').val();
         var sa_feild = $('#sa-feild').val();
         var pa_feild = $('#pa-feild').val();
@@ -1454,6 +1457,18 @@ jQuery(document).ready(function($) {
                 if(checked){
                    $('input[data-id="'+data_href+'"]').click();
                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
+                }
+            }
+            }else if(data_href=='amp-use-gtm-option'){
+            if(ga_field_gtm!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
+                }
+            }else if(ga_field_gtm==""){
+                if(checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
             }
         }else if(data_href=='amp-fb-pixel'){
