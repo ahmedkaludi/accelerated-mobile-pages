@@ -401,7 +401,7 @@ figcaption{ font-size: 11px; line-height: 1.6; margin-bottom: 11px; background: 
 .the_content p{ margin-top: 0px; margin-bottom: 30px; word-break: break-word; }
 .the_content small{font-size:11px;line-height:1.2;color:#111;margin-bottom: 5px;display: inline-block;}
 .amp-wp-tax-tag{ }
-main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
+main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none; text-align: center; }
 .amp-wp-content .amp-wp-article-featured-image amp-img {margin: 0 auto;}
 .single-post .amp-wp-article-content amp-img{ max-width:100% }
 <?php if ( is_single() ) {
