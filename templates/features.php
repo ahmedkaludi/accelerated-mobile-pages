@@ -6961,7 +6961,7 @@ function ampforwp_fontawesome_canonical_link(){
     }
 
 global $dns_uls;
-$dns_uls = ampforwp_get_setting('amp-dns-prefetch-urls');
+$dns_uls = sanitize_text_field(ampforwp_get_setting('amp-dns-prefetch-urls'));
 if($dns_uls!=""){
 	add_action('amp_post_template_head', 'ampforwp_set_dns_prefetch_urls');
 	if(!function_exists('ampforwp_set_dns_prefetch_urls')){
