@@ -7963,6 +7963,6 @@ function ampforwp_seo_selection_notice() {
 		$seo = 'SEO Press';
 	}
 	if(!empty($seo)){
-    	echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('We have detected that you are using '.esc_html($seo).' plugin. Please go to AMP settings and select '.esc_html($seo).' in SEO section','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
+    	echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
 	}
 }
