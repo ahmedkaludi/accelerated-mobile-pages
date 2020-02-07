@@ -7692,23 +7692,21 @@ function ampforwp_include_required_scripts($content){
 				}
 				$comp_url = 'https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-'.esc_attr($script_ver).'.js';
 				$is_script = false;
-
+				$check_comp = 'amp-'.esc_attr($comp);
 				if(!in_array($comp, $comp_to_remove_arr) && !in_array($comp, $comp_to_include_arr) ){
-					$headers = get_headers($comp_url);
-					if(isset($headers[0])){
-						$is_script = stripos($headers[0], "200 OK") ? TRUE : FALSE;
-						if($comp=='state'){
-							$is_script = true;
-						}
-						if($is_script){
-							$comp_to_include_arr[] = $comp;
-							$inc_json = json_encode($comp_to_include_arr);
-							set_transient('ampforwp_amp_included_custom_element',$inc_json, 30 * DAY_IN_SECONDS);
-						}else{
-							$comp_to_remove_arr[] = $comp;
-							$ex_json = json_encode($comp_to_remove_arr);
-							set_transient('ampforwp_amp_exclude_custom_element',$ex_json, 30 * DAY_IN_SECONDS);
-						}
+					$ce_valid_scripts = ampforwp_valid_amp_componet_script();
+					$is_script = in_array($check_comp, $ce_valid_scripts);
+					if($comp=='state'){
+						$is_script = true;
+					}
+					if($is_script){
+						$comp_to_include_arr[] = $comp;
+						$inc_json = json_encode($comp_to_include_arr);
+						set_transient('ampforwp_amp_included_custom_element',$inc_json, 30 * DAY_IN_SECONDS);
+					}else{
+						$comp_to_remove_arr[] = $comp;
+						$ex_json = json_encode($comp_to_remove_arr);
+						set_transient('ampforwp_amp_exclude_custom_element',$ex_json, 30 * DAY_IN_SECONDS);
 					}
 				}
 				$comp_to_include_arr = apply_filters('ampforwp_amp_custom_element_to_include',$comp_to_include_arr);
