@@ -7952,6 +7952,6 @@ function ampforwp_seo_selection_notice() {
 		$seo = 'SEO Press';
 	}
 	if(!empty($seo)){
-    	echo sprintf(('<div class="notice notice-error"><p>%s</p></div>'), esc_html__('We have dedected that you are using '.esc_html($seo).' plugin. Please go to our AMP settings and select '.esc_html($seo).' in SEO section','accelerated-mobile-pages'));
+    	echo sprintf(('<div class="notice notice-error"><p>%s</p></div>'), esc_html__('We have detected that you are using '.esc_html($seo).' plugin. Please go to our AMP settings and select '.esc_html($seo).' in SEO section','accelerated-mobile-pages'));
 	}
 }
