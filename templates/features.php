@@ -4572,7 +4572,7 @@ if( ! function_exists( 'featured_image_content_filter' ) ){
 	function featured_image_content_filter($content){
 		global $redux_builder_amp;
 		$featured_image = "";
-		$featured_image = ampforwp_get_featured_image_from_content('url');
+		$featured_image = esc_url(ampforwp_get_featured_image_from_content('url'));
 		if( $featured_image && false == $redux_builder_amp['ampforwp-duplicate-featured-image']){
 			// Change the src to use it in the pattern
 			$featured_image = str_replace('/', '\/', $featured_image);
@@ -4582,10 +4582,10 @@ if( ! function_exists( 'featured_image_content_filter' ) ){
 		  	if(preg_match('/<figure class="wp-block-image (.*?")>(.*?)<\/figure>/', $content)){
 				$content = preg_replace('/<figure class="wp-block-image (.*?")>(.*?)<\/figure>/', '', $content, 1);
 		  	}else{
-		  		$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);
+		  		$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);// $featured_image escaped above
 		  	}
 		  }else{
-		  	$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);
+		  	$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);// $featured_image escaped above
 		  }
 		}
 		return $content;
