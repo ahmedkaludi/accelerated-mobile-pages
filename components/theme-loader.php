@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 	$amp_main_dir = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift';
 	if ( 4 != $ampforwp_design_selector ) {
-		$amp_main_dir = ABSPATH.'wp-content/plugins/'. esc_attr($ampforwp_design_selector);
+		$amp_main_dir = WP_PLUGIN_DIR.'/'. esc_attr($ampforwp_design_selector);
 	}
 	$amp_theme_dir = apply_filters('ampforwp_theme_dir', $amp_main_dir);
 	if ( ! is_dir($amp_theme_dir)) {
