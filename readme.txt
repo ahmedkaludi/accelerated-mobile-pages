@@ -202,7 +202,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Improvement: Link Comments section with comments order #3740
 * Improvement: Default fallback images Added #3719
 * Improvement: subscript<sub> and superscript<sup> support #4137
-* Improvement: Message added if no seo option is setected but seo plugin is active #4124
+* Improvement: Message added if no seo option is selected but seo plugin is active #4124
 
 = 1.0.22 (6th February 2020) =
 * Fixed: Console error - Uncaught TypeError: Cannot read property 'on' of null #4102
