@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.22
+Stable tag: 1.0.23
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,19 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.23 (7th February 2020) =
+* Fixed: Fatal error in amp theme framework if WordPress directory is modified #4145
+* Fixed: Iframe error due to Jetpack #4125
+* Fixed: Menu transient increased to avoid deadlock error #4133
+* Fixed: Moved "Breadcrumbs From Yoast" to SEO option Panel section. #3600
+* Fixed: Featured Image from the content is not fetching the image when height and width is not present in the image code in Classic editor. #4096
+* Improvement: Sorting option for Pagebuilder slider/gallery #2014
+* Improvement: Option for showing no. of words in the excerpt of Recent Posts and Related Posts #3640
+* Improvement: Link Comments section with comments order #3740
+* Improvement: Default fallback images Added #3719
+* Improvement: subscript<sub> and superscript<sup> support #4137
+* Improvement: Message added if no seo option is setected but seo plugin is active #4124
 
 = 1.0.22 (6th February 2020) =
 * Fixed: Console error - Uncaught TypeError: Cannot read property 'on' of null #4102
