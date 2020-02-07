@@ -2776,6 +2776,15 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'default'   => 0,                        
                     ),
+                    // DEFAULT FALLBACK IMAGE
+                    array(
+                        'id'       => 'ampforwp_default_fallback_image',
+                        'type'     => 'media',
+                        'url'      => true,
+                        'title'    => esc_html__('Default Fallback Image', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'=>esc_html__('Update the image you want show as default fallback image)', 'accelerated-mobile-pages'),
+                        'default' => array('url' => AMPFORWP_IMAGE_DIR . '/SD-default-image.png' ),
+                    ),
                     // Retina Images
                     array(
                         'id'       => 'ampforwp-retina-images',
