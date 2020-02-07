@@ -15,8 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 			// Gather comments for a specific page/post
 			$postID = $comments =  "";
 			$postID 	= get_the_ID();
+			$comment_order = get_option( 'comment_order' );
 			$comments 	= get_comments( 
-				array( 'post_id' 	=> $postID, 'status' 	=> 'approve' )
+				array( 'post_id' 	=> $postID, 'order' => esc_attr($comment_order), 'status' 	=> 'approve' )
 			);
 			if ( $comments ) {
 				$comment_nums = '';
