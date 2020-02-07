@@ -7720,21 +7720,31 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 
-
-	preg_match_all('/<script(\s|\sasync\s|\ssrc="(.*)"\s)custom-element="(.*?)"(.*?)>(.*?)<\/script>/s', $content, $matches);
-	if(isset($matches[0])){
-		if(isset($matches[3])){
+	$comp_dom = new DOMDocument();
+	$comp_dom->loadHTML($content);
+	$xpath       = new DOMXPath( $comp_dom );
+	$elements = $xpath->query("*/script[@custom-element]");
+	$component_arr = array();
+	$elements_arr = array();
+    if (!is_null($elements)) {
+	  foreach ($elements as $element) {
+	    $component_arr[]= $element->getAttribute('custom-element');
+	    $elements_arr[] = $comp_dom->saveHTML($element);
+	  }
+	}
+	if (!is_null($elements)) {
+		if(!empty($component_arr)){
 			$excl_arr = array('amp-bind','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-dynamic-css-classes','amp-fx-collection','amp-inputmask','amp-lightbox-gallery','amp-inputmask','amp-mustache','amp-subscriptions-google','amp-subscriptions','amp-video-docking','amp-story');
 			$inc_elem_arr = array();
 			for($r=0;$r<count($comp_to_remove_arr);$r++){
 				$inc_elem_arr[] = 'amp-'.$comp_to_remove_arr[$r];
 			}
-			for($i=0;$i<count($matches[3]);$i++){
-				if(isset($matches[3][$i])){
-					$component = $matches[3][$i];
+			for($i=0;$i<count($component_arr);$i++){
+				if(isset($component_arr[$i])){
+					$component = $component_arr[$i];
 					if(!in_array($component,$excl_arr)){
 						if(!preg_match("/<\/$component>/",  $content) && !$is_script){
-							$remove_comp = $matches[0][$i];
+							$remove_comp = $elements_arr[$i];
 							$content = str_replace($remove_comp, '', $content);
 						}else if(in_array($component, $inc_elem_arr )){
 							for($rc=0;$rc<count($inc_elem_arr);$rc++){
@@ -7749,9 +7759,9 @@ function ampforwp_include_required_scripts($content){
 						}
 					}
 					// REMOVING DUPLICATE ELEMENT.
-					$count_elem = array_count_values($matches[3])[$component];
+					$count_elem = array_count_values($component_arr)[$component];
 					if($count_elem>1){
-						$content = preg_replace('/<script(\s|\sasync\s)custom-element="'.esc_attr($component).'"(.*?)>(.*?)<\/script>/s','',$content,1,$matches[3][$i]);
+						$content = preg_replace('/<script(\s|\sasync\s)custom-element="'.esc_attr($component).'"(.*?)>(.*?)<\/script>/s','',$content,1,$component_arr[$i]);
 					}
 				}
 			}
