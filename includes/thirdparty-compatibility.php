@@ -1086,6 +1086,9 @@ if(!function_exists('ampforwp_category_image_compatibility')){
 			}
 			$cat_image = '<div class="'.esc_attr($class).'"><amp-img src="'.esc_url($cat_url).'" width="'.intval($r_width).'" height="'.intval($r_height).'" layout="fixed"></amp-img></div>';
 		}
+		if($type==''){
+			$type=='echo';
+		}
 		if($type=='return'){
 			return $cat_image;
 		}else if($type=='echo'){
