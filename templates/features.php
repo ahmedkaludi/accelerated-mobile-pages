@@ -7324,7 +7324,7 @@ function ampforwp_head_css(){
 					    }
 			        }
 		   		}
-				$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
+				$css = file_get_contents(AMPFORWP_PLUGIN_DIR."/templates/template-mode/admin-bar.css");
 				$incurl = includes_url();
 				$incurl = trailingslashit($incurl) .'fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987';
 				$css.='@font-face{font-family:dashicons;src:url('.$incurl.'/fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987) format("truetype");
@@ -7472,7 +7472,7 @@ if(!function_exists('ampforwp_sassy_icon_style')){
 	function ampforwp_sassy_icon_style(){
 		$css = get_transient('ampforwp_sassy_css');
 		if($css == false){
-			$css = ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/includes/sassy-style.css");
+			$css = file_get_contents(AMPFORWP_PLUGIN_DIR."/includes/sassy-style.css");
 			set_transient('ampforwp_sassy_css', $css);
 		}
 		echo ampforwp_css_sanitizer($css);
