@@ -109,7 +109,7 @@ namespace ReduxCore\ReduxFramework;
                         $backup_options['redux-backup'] = '1';
                         $content = json_encode( $backup_options );
                     ?>
-                    <textarea class="large-text noUpdate hide" id="redux-export-code" rows="10" readonly="true"><?php echo $content;?></textarea>
+                    <textarea class="large-text noUpdate hide" id="redux-export-code" rows="10" readonly="true"><?php echo $content;//it's json encode content.?></textarea>
                     <a href="<?php echo esc_url($link); ?>" id="redux-export-code-dl" class="button-primary"><?php esc_html_e( 'Export Data File', 'redux-framework' ) ?></a>&nbsp;&nbsp;
                     <span class="description">
                     <?php echo esc_html( apply_filters( 'redux-backup-description', __( 'Download a backup file of your settings.', 'accelerated-mobile-pages' ) ) ) ?>
