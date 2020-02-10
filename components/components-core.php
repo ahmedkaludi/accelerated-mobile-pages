@@ -106,9 +106,12 @@ function amp_logo(){
 // Title
 function amp_title(){
 	global $post;
-	$ID = ampforwp_get_the_ID();
+	$ID = null;
 	if ( ampforwp_polylang_front_page() ) {
 		$ID = pll_get_post(get_option('page_on_front'));
+	}
+	elseif( ampforwp_get_setting('ampforwp-title-on-front-page') ) {
+		$ID = ampforwp_get_the_ID();
 	}
 	if( $ID!=null ){
 		do_action('ampforwp_above_the_title'); 
