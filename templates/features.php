@@ -7976,3 +7976,25 @@ function ampforwp_seo_selection_notice() {
     	echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
 	}
 }
+if(!function_exists('ampforwp_check_image_existance')){
+	function ampforwp_check_image_existance($image){
+		if(preg_match('/http/', $image)){
+			$img_arr = explode('wp-content', $image);
+			if(!empty($img_arr) && isset($img_arr[1])){
+				$img = ABSPATH.'wp-content'.$img_arr[1];
+				if(!file_exists($img)){
+					if(preg_match('/-\d+x\d+/', $image)){
+						$image = preg_replace('/-\d+x\d+/','', $image);
+					}
+				}
+			}
+		}else{
+			if(!file_exists($image)){
+				if(preg_match('/-\d+x\d+/', $image)){
+					$image = preg_replace('/-\d+x\d+/','', $image);
+				}
+			}
+		}
+		return $image;
+	}
+}
