@@ -7979,20 +7979,21 @@ function ampforwp_seo_selection_notice() {
 }
 if(!function_exists('ampforwp_check_image_existance')){
 	function ampforwp_check_image_existance($image){
-		if(preg_match('/http/', $image)){
+		if(preg_match('/wp-content\/uploads/', $image)){
 			$img_arr = explode('wp-content', $image);
 			if(!empty($img_arr) && isset($img_arr[1])){
-				$img = ABSPATH.'wp-content'.$img_arr[1];
+				$img = WP_CONTENT_DIR.$img_arr[1];
 				if(!file_exists($img)){
-					if(preg_match('/-\d+x\d+/', $image)){
+					if(preg_match('/\d+x\d+/', $image,$ma)){
+						$t_sizes = explode('x', $ma[0]);
+						$width = $t_sizes[0];
+						$height = $t_sizes[1];
 						$image = preg_replace('/-\d+x\d+/','', $image);
+						$resize = ampforwp_aq_resize( $image, $width , $height , true, false, true );
+						if(isset($resize[0])){
+							$image = $resize[0];
+						}
 					}
-				}
-			}
-		}else{
-			if(!file_exists($image)){
-				if(preg_match('/-\d+x\d+/', $image)){
-					$image = preg_replace('/-\d+x\d+/','', $image);
 				}
 			}
 		}
