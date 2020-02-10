@@ -7290,12 +7290,16 @@ function ampforwp_init_admin_bar(){
 	remove_action( 'wp_head', '_admin_bar_bump_cb' );
  	remove_action( 'wp_head', 'wp_admin_bar_header' );
 }
+global $wp_filesystem;
 function ampforwp_head_css(){
-		global  $ampforwpTemplate, $redux_builder_amp;
+		global  $ampforwpTemplate, $redux_builder_amp,$wp_filesystem;
 		$css = "";
 		if( is_user_logged_in() ){
 			$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
 			if($pref==="true"){
+				require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-base.php';
+		    	require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php';
+			 	$wp_filesystem = new WP_Filesystem_Direct( array() );
 				if(ampforwp_get_setting('ampforwp_css_tree_shaking')==1){
 					if(ampforwp_is_home()){
 						$tscss = "home";
@@ -7306,6 +7310,7 @@ function ampforwp_head_css(){
 					}else{
 						$tscss = "post-".ampforwp_get_the_ID();
 					}
+	                $tscss = $tscss.'-admin';
 					$upload_dir = wp_upload_dir(); 
 			        $ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($tscss).".css";
 			        if(file_exists($ts_file)){
@@ -7324,7 +7329,7 @@ function ampforwp_head_css(){
 					    }
 			        }
 		   		}
-				$css = file_get_contents(AMPFORWP_PLUGIN_DIR."/templates/template-mode/admin-bar.css");
+				$css = $wp_filesystem->get_contents(AMPFORWP_PLUGIN_DIR."/templates/template-mode/admin-bar.css");
 				$incurl = includes_url();
 				$incurl = trailingslashit($incurl) .'fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987';
 				$css.='@font-face{font-family:dashicons;src:url('.$incurl.'/fonts/dashicons.ttf?50db0456fde2a241f005968eede3f987) format("truetype");
@@ -7470,9 +7475,15 @@ if(!function_exists('ampforwp_remove_admin_help')){
 
 if(!function_exists('ampforwp_sassy_icon_style')){
 	function ampforwp_sassy_icon_style(){
+		global $wp_filesystem;
 		$css = get_transient('ampforwp_sassy_css');
 		if($css == false){
-			$css = file_get_contents(AMPFORWP_PLUGIN_DIR."/includes/sassy-style.css");
+			if(!is_object($wp_filesystem)){
+				require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-base.php';
+    			require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php';
+    			$wp_filesystem = new WP_Filesystem_Direct( array() );
+    		}
+			$css = $wp_filesystem->get_contents(AMPFORWP_PLUGIN_DIR."/includes/sassy-style.css");
 			set_transient('ampforwp_sassy_css', $css);
 		}
 		echo ampforwp_css_sanitizer($css);
