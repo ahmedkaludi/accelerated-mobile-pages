@@ -1,5 +1,17 @@
 == Changelog ==
 
+= 1.0.24 (11th February 2020) =
+* Improvement: Added option for adding URLs for DNS prefetching #3997
+* Improvement: Added filter to modify the breadcrumb homepage url #4077
+* Fixed: Image alignment on the left issue #4156
+* Fixed: H1 tag not appearing on posts #4121
+* Fixed: "Title on static page front page" option not working #4138
+* Fixed: AMP Menu option was not showing in WP settings #4129
+* Fixed: Blank Events Calendar Months Page when 'Minify' option is enabled #4080
+* Fixed: Removed '@' in Twitter Handle #4135
+* Fixed: Message improved when "Leverage Browser Caching" option is enable without readable or writable permission of htaccess file  #4127
+* Fixed: Featured image removed on AMP Pagebuilder pages #4131
+
 = 1.0.23 (7th February 2020) =
 * Fixed: Fatal error in amp theme framework if WordPress directory is modified #4145
 * Fixed: Iframe error due to Jetpack #4125
