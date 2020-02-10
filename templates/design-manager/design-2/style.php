@@ -109,7 +109,7 @@ amp-anim { max-width: 100%; }
 amp-wistia-player {margin:5px 0px;}
 .alignleft{ margin-right: 12px; margin-bottom:5px; float: left; }
 .alignright{ float:right; margin-left: 12px; margin-bottom:5px; }
-.aligncenter{ text-align:center; margin: 0 auto }
+.aligncenter{display: block; text-align:center; margin: 0 auto }
 #statcounter{width: 1px;height:1px;}
 ol, ul {list-style-position: inside;}
 .hide{display:none}
