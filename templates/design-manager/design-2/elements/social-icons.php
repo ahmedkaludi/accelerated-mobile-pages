@@ -59,8 +59,9 @@ if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 				</div>
 			</a>
 		<?php } ?>
-		<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
-			$data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
+		<?php if(ampforwp_get_setting('enable-single-twitter-share') == true)  {
+			$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
+	    	$data_param_data = str_replace('@', '', $data_param_data);?>
 			<amp-social-share type="twitter"
 												width="50"
 												height="28"
