@@ -110,7 +110,7 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 			<a title="facebook share" class="s_fb" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://www.facebook.com/sharer.php?u=<?php echo esc_url($amp_permalink); ?>"></a>
 		</li>
 		<?php } ?>
-		<?php if(true == ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
+		<?php if(true == ampforwp_get_setting('enable-single-facebook-share-messenger')&& $amp_permalink_fb_messenger!=''){?>
 			<li>
 			<a title="facebook share messenger"  <?php ampforwp_nofollow_social_links(); ?> target="_blank" href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink_fb_messenger); ?>">
 				<div class="amp-social-icon amp-social-facebookmessenger">
