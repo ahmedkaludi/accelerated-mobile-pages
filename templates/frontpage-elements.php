@@ -297,17 +297,21 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 function ampforwp_design_2_frontpage_title() {
 	global  $redux_builder_amp; 
 	//WPML Static Front Page Support #1111
-	if( function_exists('wpml_core_loads_first')){
- 	$post_id = get_option('page_on_front');
- 	
- 	}
+	if( function_exists('wpml_core_loads_first' )){
+		$ID = get_option('page_on_front');
+	}else{
+		$ID = ampforwp_get_frontpage_id();
+	}
+
 	if( ampforwp_get_setting('ampforwp-title-on-front-page') && !ampforwp_default_logo() ) { ?>
 		<header class="amp-wp-article-header ampforwp-title">
-			<h2 class="amp-wp-title"><?php if( function_exists('wpml_core_loads_first' )){$ID = get_option('page_on_front');}else{$ID = ampforwp_get_frontpage_id();}echo get_the_title( $ID );?></h2>
+			<h2 class="amp-wp-title">
+			<?php echo get_the_title( $ID );?></h2>
 		</header>	
 	<?php }elseif(ampforwp_get_setting('ampforwp-title-on-front-page') && ampforwp_default_logo()){?>
 		<header class="amp-wp-article-header ampforwp-title">
-			<h1 class="amp-wp-title"><?php if( function_exists('wpml_core_loads_first' )){$ID = get_option('page_on_front');}else{$ID = ampforwp_get_frontpage_id();}echo get_the_title( $ID );?></h1>
+			<h1 class="amp-wp-title">
+			<?php echo get_the_title( $ID );?></h1>
 		</header>
 	<?php }
 }
