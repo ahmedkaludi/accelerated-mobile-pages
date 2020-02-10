@@ -14,7 +14,7 @@ amp_header(); ?>
 		 	<?php amp_title(); ?>
 		<?php } ?>
 		<?php } // Level up Condition ends here?>
-		<?php if ( true == ampforwp_get_setting('featured_image_swift_page') && ampforwp_has_post_thumbnail() ) { ?>
+		<?php if ( true == ampforwp_get_setting('featured_image_swift_page') && ampforwp_has_post_thumbnail() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
 				<div class="sf-img">
 					<?php amp_featured_image();?>
 				</div>
