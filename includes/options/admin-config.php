@@ -7100,7 +7100,7 @@ else{
               'class' => 'child_opt',
               'title'     =>  esc_html__('Twitter Handle', 'accelerated-mobile-pages'),
               'required'  => array('enable-single-twitter-share', '=' , '1'),
-              'placeholder'  => esc_html__('Eg: @xyx','accelerated-mobile-pages'),
+              'placeholder'  => esc_html__('username','accelerated-mobile-pages'),
               'default'   =>  '',
           ),
            array(

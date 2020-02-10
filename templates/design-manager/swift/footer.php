@@ -123,6 +123,7 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 		$data_param = '';
 		if(ampforwp_get_setting('enable-single-twitter-share')){
 			$data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
+			$data_param_data = str_replace('@', '', $data_param_data);
 			$data_param = ( '' == $data_param_data ) ? '' : '&via='.$data_param_data.''; ?>
 		<li>
 			<a title="twitter share" class="s_tw" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://twitter.com/intent/tweet?url=<?php echo esc_url($twitter_amp_permalink); ?>&text=<?php echo esc_attr(ampforwp_sanitize_twitter_title(get_the_title())); ?><?php echo esc_attr($data_param); ?>">
