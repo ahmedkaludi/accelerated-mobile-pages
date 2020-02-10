@@ -69,7 +69,17 @@ function ampforwp_minify_html_output($content_buffer){
             $asis = '';
         } 
 
-        $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', ' '), $process);
+        if(function_exists('tec_amp_compatibility_orgs_venues_support')){
+            global $wp;
+            $current_url = home_url(add_query_arg(array($_GET), $wp->request));
+            if(preg_match('/months/', $current_url)){
+                $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', '  '), $process);
+            }else{
+                $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', ' '), $process);
+            }
+        }else{
+            $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', ' '), $process);
+        }
 
         if ( $minify_html_comments != 'no' )
             $process = preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->' . $mod, '', $process);
