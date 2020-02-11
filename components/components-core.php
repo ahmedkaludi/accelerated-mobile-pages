@@ -389,6 +389,7 @@ function amp_header_core(){
 					  echo $sanitized_css; // sanitized above ?>
 			</style>
 			<?php do_action('ampforwp_before_head', $thisTemplate);  ?>
+			<?php do_action('ampforwp_last_head', $thisTemplate);  ?>
 		</head>
 		<body <?php ampforwp_body_class($bodyClass); ?>>
 		<?php do_action('amp_start', $thisTemplate); ?>
