@@ -2557,7 +2557,7 @@ Redux::setSection( $opt_name, array(
                         array(
                         'id'        =>'hide-amp-categories2',
                         'type'      => 'select',
-                        'title'     => __('Select Categories to Hide AMP'),
+                        'title'     => __('Select Categories to Hide AMP posts'),
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true, 
                         'ajax'      => true,
@@ -2568,7 +2568,7 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'        =>'hide-amp-tags-bulk-option2',
                         'type'      => 'select',
-                        'title'     => __('Select Tags to Hide AMP'),
+                        'title'     => __('Select Tags to Hide AMP posts'),
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                         'multi'     => true,
                         'ajax'      => true,
