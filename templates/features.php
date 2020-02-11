@@ -7967,22 +7967,3 @@ function ampforwp_seo_selection_notice() {
     	echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
 	}
 }
-global $dns_uls;
-$dns_uls = sanitize_text_field(ampforwp_get_setting('amp-dns-prefetch-urls'));
-if($dns_uls!=""){
-	add_action('amp_post_template_head', 'ampforwp_set_dns_prefetch_urls');
-	if(!function_exists('ampforwp_set_dns_prefetch_urls')){
-		function ampforwp_set_dns_prefetch_urls(){
-			global $dns_uls;
-			$match = preg_split ( '/(\r|\n|\s)/' ,  $dns_uls, 0,  PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE );
-			for($m=0;$m<count($match);$m++){
-			    $dfu = trim($match[$m]);
-			    if($dfu!=""){
-	?>
-	<link rel="preconnect dns-prefetch" href="<?php echo esc_url($dfu);?>" crossorigin>
-	<?php
-				}
-			}
-		}
-	}
-}
