@@ -745,13 +745,15 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 														$repeaterFrontTemplate
 													);
 											if(strpos($repeaterFrontTemplate, '{{'.$moduleField['name'].'-thumbnail}}')!==false){
-												$imageDetails = ampforwp_get_attachment_id( $replace[0], 'thumbnail');
-												$imageUrl = isset($imageDetails[0])? $imageDetails[0] : '';
-												$repeaterFrontTemplate = str_replace(
-														'{{'.$moduleField['name'].'-thumbnail}}', 
-														 $imageUrl, 
-														$repeaterFrontTemplate
-													);
+												if(isset($replace[0])){
+													$imageDetails = ampforwp_get_attachment_id( $replace[0], 'thumbnail');
+													$imageUrl = isset($imageDetails[0])? $imageDetails[0] : '';
+													$repeaterFrontTemplate = str_replace(
+															'{{'.$moduleField['name'].'-thumbnail}}', 
+															 $imageUrl, 
+															$repeaterFrontTemplate
+														);
+												}
 											}
 											$repeaterFrontTemplate = str_replace(
 														array('{{image_width}}',
