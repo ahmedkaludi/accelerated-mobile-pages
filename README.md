@@ -195,7 +195,6 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 == Changelog ==
 
 = 1.0.24 (11th February 2020) =
-* Improvement: Added option for adding URLs for DNS prefetching #3997
 * Improvement: Added filter to modify the breadcrumb homepage url #4077
 * Fixed: Image alignment on the left issue #4156
 * Fixed: H1 tag not appearing on posts #4121
