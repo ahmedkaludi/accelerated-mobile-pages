@@ -239,10 +239,17 @@ Vue.component('amp-pagebuilder-module-modal', {
 								app.modalcontent.repeater.showFields.forEach(function(repeatWrapper,repKey){
 									var repeaterData = {};
 									repeatWrapper.forEach(function(repeatField,repFieldKey){
-										repeaterData[repeatField.name] = repeatField.default;
-										if(repeatField[repeatField.name+"_image_data"]){
-											repeaterData[repeatField.name+"_image_data"] = repeatField[repeatField.name+"_image_data"];
+										var stringToArray = repeatField.name.split("_");
+										stringToArray.pop();
+										var arrayToString = stringToArray.join('_');
+										var finalString = arrayToString+"_"+repKey;
+										repeaterData[finalString] = repeatField.default;
+										if(repeatField[finalString+"_image_data"]){
+											repeaterData[finalString+"_image_data"] = repeatField[finalString+"_image_data"];
+										 
 										}
+										 
+									 
 									});
 									repeaterData['index'] = (repKey+1);
 									moduleData.repeater.push(repeaterData);
@@ -253,7 +260,7 @@ Vue.component('amp-pagebuilder-module-modal', {
 				}else if(app.modalType=='rowSetting'){
 					var a = {};
 					fields.forEach(function(fieldData,fieldKey){
-						a[fieldData.name] = fieldData.default
+						a[fieldData.name] = fieldData.default;
 						if(fieldData[fieldData.name+"_image_data"]){
 							a[fieldData.name+"_image_data"] = fieldData[fieldData.name+"_image_data"];
 						}
@@ -309,7 +316,12 @@ Vue.component('amp-pagebuilder-module-modal', {
 		}
 		return returnOpt;
 	},
-
+	repeater_rows_moved: function(evt){
+		if(evt && evt.type=='end'){
+			this.$forceUpdate();
+		}
+		return true;
+	  },
 
 
 	editModuleTitle: function(modalcontent){

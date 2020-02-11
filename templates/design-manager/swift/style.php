@@ -628,7 +628,7 @@ p.nocomments {padding: 10px;color: #fff;}
 .amp-category span:last-child:after{display:none;}
 .sp{width:100%;margin-top:20px;display:inline-block;}
 .amp-post-title{font-size:48px;line-height:58px;color: #333;margin:0;padding-top:15px;}
-.sf-img {width: 100%;display: inline-block;height: auto;
+.sf-img {text-align: center;width: 100%;display: inline-block;height: auto;
 <?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
 	margin-top: 33px;
 <?php } 

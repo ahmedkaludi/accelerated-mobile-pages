@@ -62,7 +62,7 @@ a{ color: #312C7E; text-decoration: none }
 .clearfix, .cb{ clear: both }
 .alignleft{ margin-right: 12px; margin-bottom:5px; float: left; }
 .alignright{ float:right; margin-left: 12px; margin-bottom:5px; }
-.aligncenter{ text-align:center; margin: 0 auto }
+.aligncenter{display: block; text-align:center; margin: 0 auto }
 #statcounter{width: 1px;height:1px;}
 amp-anim { max-width: 100%; }
 amp-wistia-player {margin:5px 0px;}
@@ -317,7 +317,7 @@ a.btt:hover {
 .ampforwp-title{ padding: 0px 0px 0px 0px; margin-top: 12px; margin-bottom: 12px; }
 .comment-button-wrapper{ margin-bottom: 50px; margin-top: 30px; text-align:center }
 .comment-button-wrapper a{ color: #fff; background: #312c7e; font-size: 14px; padding: 12px 22px 12px 22px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; }
-h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px;}
+h1.amp-wp-title,h2.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px;}
 .post-pagination-meta{ min-height:75px }
 .single-post .post-pagination-meta{ font-size:15px; min-height:auto; margin-top:-5px; line-height:26px; }
 .single-post .post-pagination-meta span{ font-weight:bold }
@@ -401,7 +401,7 @@ figcaption{ font-size: 11px; line-height: 1.6; margin-bottom: 11px; background: 
 .the_content p{ margin-top: 0px; margin-bottom: 30px; word-break: break-word; }
 .the_content small{font-size:11px;line-height:1.2;color:#111;margin-bottom: 5px;display: inline-block;}
 .amp-wp-tax-tag{ }
-main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
+main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none; text-align: center; }
 .amp-wp-content .amp-wp-article-featured-image amp-img {margin: 0 auto;}
 .single-post .amp-wp-article-content amp-img{ max-width:100% }
 <?php if ( is_single() ) {

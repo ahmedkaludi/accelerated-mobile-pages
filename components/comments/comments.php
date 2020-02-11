@@ -31,8 +31,10 @@ function ampforwp_framework_get_comments(){
 					if ( ampforwp_is_front_page() ) {
 						$postID = ampforwp_get_frontpage_id();
 					}
+					$comment_order = get_option( 'comment_order' );
 					$comments = get_comments(array(
 							'post_id' => $postID,
+							'order' => esc_attr($comment_order),
 							'status' => 'approve' //Change this to the type of comments to be displayed
 					));
 					

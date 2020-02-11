@@ -1227,8 +1227,9 @@ function ampforwp_sticky_social_icons(){
 				</div>
 			</a>
 		<?php } ?>
-			  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
-	          $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
+		<?php if(ampforwp_get_setting('enable-single-twitter-share') == true)  {
+	    $data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
+	    $data_param_data = str_replace('@', '', $data_param_data);?>
 	          <amp-social-share type="twitter"
 	                            width="50"
 	                            height="28"
@@ -3391,8 +3392,10 @@ function ampforwp_frontpage_comments() {
 			$postID = '';
 			// Gather comments for a Front from post id
 			$postID = ampforwp_get_frontpage_id();
+			$comment_order = get_option( 'comment_order' );
 			$comments = get_comments(array(
 					'post_id' => $postID,
+					'order' => esc_attr($comment_order),
 					'status' => 'approve' //Change this to the type of comments to be displayed
 			));
 			$comment_button_url = get_permalink( $post_id );
@@ -4516,6 +4519,14 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 							}
 					    }
 					}
+				}
+				}else{
+				preg_match_all('/<img(.*?)src=[\'"]([^\'"]+)[\'"].*.>/i', $post->post_content, $matches);
+				if(isset($matches[2][0])){
+					$image_html 	= $matches[0][0];
+					$image_url 		= $matches[2][0];
+					$image_width 	= 1366;
+					$image_height 	= 600;
 				}
 			}
 		}
@@ -6659,8 +6670,10 @@ function ampforwp_comments_sanitizer(){
 		$postID = ampforwp_get_frontpage_id();
 	}
 	if ( ampforwp_get_comments_status() && true == ampforwp_get_setting('wordpress-comments-support') ) {
+		$comment_order = get_option( 'comment_order' );
 		$comments = get_comments(array(
 				'post_id' => $postID,
+				'order' => esc_attr($comment_order),
 				'status' => 'approve' //Change this to the type of comments to be displayed
 		) );
 		foreach ($comments as $comment) {
@@ -7386,7 +7399,7 @@ function ampforwp_head_css(){
 	}
 	
 	function ampforwp_remove_admin_menu_front($wp){
-		$node_arr = ['search'];
+		$node_arr = ['search','admin-bar-likes-widget'];
 		for($i=0;$i<count($node_arr);$i++){
 			$wp->remove_node($node_arr[$i]);
 		}
@@ -7812,7 +7825,7 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					$m_content = $matches[1][$i];
 					$m_content = ampforwp_imagify_webp_compatibility($m_content);
 					$m_content = ampforwp_ewww_webp_compatibility($m_content);
-					$m1_content = ampforwp_imagify_fallback_img_src_url($matches[1][$i]);
+					$m1_content = ampforwp_set_default_fallback_image($matches[1][$i]);
 					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
 					preg_match_all('/height="(.*?)"/', $m1_content,$fimgheight);
@@ -7879,13 +7892,17 @@ if(!function_exists('ampforwp_imagify_webp_compatibility')){
 		return $content;
 	}
 }
-if(!function_exists('ampforwp_imagify_fallback_img_src_url')){
-	function ampforwp_imagify_fallback_img_src_url($content){
+if(!function_exists('ampforwp_set_default_fallback_image')){
+	function ampforwp_set_default_fallback_image($content){
 		if(!function_exists('_imagify_init') && !function_exists('ewww_image_optimizer_webp_initialize')){
-			preg_match_all('/src=\"(.*?)\.(webp)\"/', $content,$cc); // need to check extenstion for fallback.
-			if(isset($cc[2][0])){
-				$ext = esc_attr($cc[2][0]);
-				$content = str_replace($ext, "jpg", $content); // need to change fallback extenstion.
+			preg_match_all('/src="(.*?)"/', $content,$cc); // need to check extenstion for fallback.
+			if(isset($cc[1][0])){
+				$img = $cc[1][0];
+				$defaul_fallback_img = ampforwp_get_setting('ampforwp_default_fallback_image');
+				if(isset($defaul_fallback_img['url']) && $defaul_fallback_img['url']!=''){
+					$defaul_fallback_img = esc_url($defaul_fallback_img['url']);
+					$content = str_replace($img, $defaul_fallback_img, $content); // need to change fallback extenstion.
+				}
 			}
 
 		}
@@ -7911,5 +7928,42 @@ function ampforwp_ewww_webp_compatibility($content){
 			}
 		}
 		return $content;
+	}
+}
+add_action( 'admin_notices', 'ampforwp_seo_selection_notice' ); 
+function ampforwp_seo_selection_notice() {
+	if('' != ampforwp_get_setting('ampforwp-seo-selection')){
+		return;
+	}
+	$seo = '';
+	if(class_exists('WPSEO_Options')){
+		$seo = 'Yoast SEO';
+	}
+	if(class_exists('All_in_One_SEO_Pack')){
+		$seo = 'All in One SEO';
+	}
+	if(function_exists( 'the_seo_framework' )){
+		$seo = 'The SEO Framework';
+	}
+	if(function_exists('genesis_theme_support')){
+		$seo = 'Genesis';
+	}
+	if(function_exists('qode_header_meta')){
+		$seo = 'Bridge Qode SEO';
+	}
+	if(defined( 'RANK_MATH_FILE' )){
+		$seo = 'Rank Math SEO';
+	}
+	if(defined( 'SQ_ALL_PATTERNS' )){
+		$seo = 'Squirrly SEO';
+	}
+	if(class_exists('Smartcrawl_Loader')){
+		$seo = 'Smartcrawl SEO';
+	}
+	if(function_exists('seopress_activation')){
+		$seo = 'SEO Press';
+	}
+	if(!empty($seo)){
+    	echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
 	}
 }

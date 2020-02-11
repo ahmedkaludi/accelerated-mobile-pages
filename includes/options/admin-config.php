@@ -1987,6 +1987,17 @@ function ampforwp_get_all_tags($id){
                'required'  => array('ampforwp-seo-selection', '=' , 'yoast'),
            ),
            array(
+                'id'       => 'ampforwp-yoast-bread-crumb',
+                'class'    => 'child_opt child_opt_arrow',
+                'type'     => 'switch',
+                'default'  =>  false,
+                'title'    => esc_html__('Breadcrumbs From Yoast', 'accelerated-mobile-pages'),
+                'required'  => array(
+                    array('ampforwp-bread-crumb', '=' , '1'),
+                    array('ampforwp-seo-selection', '=' , 'yoast')
+                ),
+            ),
+           array(
                'class' => 'child_opt',
                'id'       => 'ampforwp-seo-yoast-schema',
                'type'     => 'switch',
@@ -2764,6 +2775,15 @@ Redux::setSection( $opt_name, array(
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 0,                        
+                    ),
+                    // DEFAULT FALLBACK IMAGE
+                    array(
+                        'id'       => 'ampforwp_default_fallback_image',
+                        'type'     => 'media',
+                        'url'      => true,
+                        'title'    => esc_html__('Default Fallback Image', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'=>esc_html__('Update the image you want show as default fallback image)', 'accelerated-mobile-pages'),
+                        'default' => array('url' => AMPFORWP_IMAGE_DIR . '/SD-default-image.png' ),
                     ),
                     // Retina Images
                     array(
@@ -5303,17 +5323,6 @@ Redux::setSection( $opt_name, array(
                 ),
         )
     ));
-$yoast_breadcrumbs = '';
-if ( defined('WPSEO_FILE') ) {
-    $yoast_breadcrumbs = array(
-                          'id'       => 'ampforwp-yoast-bread-crumb',
-                          'type'     => 'switch',
-                          'default'  =>  false,
-                          'title'    => esc_html__('Breadcrumbs From Yoast', 'accelerated-mobile-pages'),
-                          'required' => array('ampforwp-bread-crumb' , '=' , 1),
-                          'class' => 'child_opt child_opt_arrow',
-                        );
-}
 if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
 $single_page_options = array(
                 array(
@@ -5451,7 +5460,6 @@ $single_page_options = array(
                         'default'  => '0',
                         'required' => array('ampforwp-bread-crumb' , '=' , 1),
             ),
-          $yoast_breadcrumbs,
           //Categories  ON/OFF
          array(
               'id'       => 'ampforwp-cats-single',
@@ -5613,6 +5621,19 @@ $single_page_options = array(
                     'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop'),
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
+        array(
+            'id'        =>'amp-swift-recentpost-excerpt-len',
+            'class' => 'child_opt',
+            'type'      =>'text',
+            'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 15','accelerated-mobile-pages'),
+            'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
+            'required' => array(
+             array('amp-design-selector', '=' , '4'),
+             array('amforwp-recentpost-excerpt-switch', '=' , '1'),
+            ),
+            'validate'  =>'numeric',
+            'default'   =>'15',
+        ),
         array(
                     'id'       => 'ampforwp-recentpost-posts-link',
                     'type'     => 'switch',
@@ -5822,6 +5843,28 @@ $single_page_options = array(
                         'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop'),
                         'required' => array('ampforwp-design3-recent-posts' , '=' , '1'),
                 ),
+            array(
+                    'id'        => 'amforwp-design3-recentpost-excerpt-switch',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Excerpt', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop'),
+                    'required' => array('ampforwp-design3-recent-posts' , '=' , '1'),
+            ),
+             array(
+                    'id'        =>'amp-design3-recentpost-excerpt-len',
+                    'class' => 'child_opt',
+                    'type'      =>'text',
+                    'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 15','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
+                    'required' => array(
+                     array('amp-design-selector', '=' , '3'),
+                     array('amforwp-design3-recentpost-excerpt-switch', '=' , '1'),
+                    ),
+                    'validate'  =>'numeric',
+                    'default'   =>'15',
+            ),  
             array(
                         'id'       => 'ampforwp-design3-number-of-recent-posts',
                         'type'     => 'text',
@@ -7046,7 +7089,7 @@ else{
               'class' => 'child_opt',
               'title'     =>  esc_html__('Twitter Handle', 'accelerated-mobile-pages'),
               'required'  => array('enable-single-twitter-share', '=' , '1'),
-              'placeholder'  => esc_html__('Eg: @xyx','accelerated-mobile-pages'),
+              'placeholder'  => esc_html__('username','accelerated-mobile-pages'),
               'default'   =>  '',
           ),
            array(

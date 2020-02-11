@@ -69,7 +69,17 @@ function ampforwp_minify_html_output($content_buffer){
             $asis = '';
         } 
 
-        $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', ' '), $process);
+        if(function_exists('tec_amp_compatibility_orgs_venues_support')){
+            global $wp;
+            $current_url = home_url(add_query_arg(array($_GET), $wp->request));
+            if(preg_match('/months/', $current_url)){
+                $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', '  '), $process);
+            }else{
+                $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', ' '), $process);
+            }
+        }else{
+            $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', ' '), $process);
+        }
 
         if ( $minify_html_comments != 'no' )
             $process = preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->' . $mod, '', $process);
@@ -153,7 +163,7 @@ function ampforwp_leverage_browser_caching(){
 
 function ampforwp_no_htaccess_access_notice(){
     $message = '<div class="error"><p>';
-    $message .= esc_html__( 'Accelerated Mobile Pages: htaccess file is not readable or writable for Leverage Browser Caching. Please change permission of htaccess file.', 'accelerated-mobile-pages' );
+    $message .= sprintf( 'Accelerated Mobile Pages: htaccess file is not readable or writable for Leverage Browser Caching. Please change permission of htaccess file and for more info <a href="https://ampforwp.com/tutorials/article/how-to-fix-leverage-browser-caching-error/" target="_blank">%s</a>',esc_html__('Click Here','accelerated-mobile-pages' ));
     $message .= '</p></div>';
     echo wp_kses_post( $message );
 }

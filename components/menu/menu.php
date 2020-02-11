@@ -38,10 +38,10 @@ function amp_menu_html($echo, $menu_args, $type){
 	    $menu_cache = apply_filters('ampforwp_menu_cache',$menu_cache);
 	    if ($menu_cache) {
 		    if ( 'header' == $type ) {
-		    	set_transient('ampforwp_header_menu', $sanitized_menu, 24*HOUR_IN_SECONDS );
+		    	set_transient('ampforwp_header_menu', $sanitized_menu, 14*DAY_IN_SECONDS );
 		    }
 		    elseif ('footer' == $type) {
-		    	set_transient('ampforwp_footer_menu', $sanitized_menu, 24*HOUR_IN_SECONDS );
+		    	set_transient('ampforwp_footer_menu', $sanitized_menu, 15*DAY_IN_SECONDS );
 		    }
 		}
     	return $sanitized_menu;

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.22
+Stable tag: 1.0.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,30 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.24 (11th February 2020) =
+* Improvement: Added filter to modify the breadcrumb homepage url #4077
+* Fixed: Image alignment on the left issue #4156
+* Fixed: H1 tag not appearing on posts #4121
+* Fixed: "Title on static page front page" option not working #4138
+* Fixed: AMP Menu option was not showing in WP settings #4129
+* Fixed: Blank Events Calendar Months Page when 'Minify' option is enabled #4080
+* Fixed: Removed '@' in Twitter Handle #4135
+* Fixed: Message improved when "Leverage Browser Caching" option is enable without readable or writable permission of htaccess file  #4127
+* Fixed: Featured image removed on AMP Pagebuilder pages #4131
+
+= 1.0.23 (7th February 2020) =
+* Fixed: Fatal error in amp theme framework if WordPress directory is modified #4145
+* Fixed: Iframe error due to Jetpack #4125
+* Fixed: Menu transient increased to avoid deadlock error #4133
+* Fixed: Moved "Breadcrumbs From Yoast" to SEO option Panel section. #3600
+* Fixed: Featured Image from the content is not fetching the image when height and width is not present in the image code in Classic editor. #4096
+* Improvement: Sorting option for Pagebuilder slider/gallery #2014
+* Improvement: Option for showing no. of words in the excerpt of Recent Posts and Related Posts #3640
+* Improvement: Link Comments section with comments order #3740
+* Improvement: Default fallback images Added #3719
+* Improvement: subscript<sub> and superscript<sup> support #4137
+* Improvement: Message added if no seo option is selected but seo plugin is active #4124
+
 = 1.0.22 (6th February 2020) =
 * Fixed: Console error - Uncaught TypeError: Cannot read property 'on' of null #4102
 * Fixed: When Insert post ads plugin is enable then AMP settings panel is not showing. #4107
@@ -200,15 +224,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Upgrade to Pro button was missing in the AMP setting panel #4118
 * Fixed: Upgrade to Pro option was removing in the setting panel when we activate PWA for WP plugin #4117
 * Fixed: FAQ section improved #4119
-
-= 1.0.21 (4th February 2020) =
-* Fixed: Fatal error when AMP theme framework is active #4128
-
-= 1.0.20 (31st January 2020) =
-* Improvement: Filter added to Modify the location of the theme files from plugin older. #4091
-* Improvement: Cache Should auto clear when any plugin is activated/deactivated #4046
-* Improvement: Need to add nofollow feature in cookie notification option #3612
-* Fixed: Pages won't save apostophies in AMP page builder text module. #4074
-* Fixed: Warring in console : [DOM] Found 2 elements with non-unique id #amp-search #3946
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

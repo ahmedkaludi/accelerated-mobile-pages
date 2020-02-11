@@ -105,23 +105,19 @@ function amp_logo(){
 
 // Title
 function amp_title(){
-	global $redux_builder_amp, $post;
-	$ID = '';
-	if( ampforwp_is_front_page() && ampforwp_get_frontpage_id() ){
-		if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
-			$ID = ampforwp_get_frontpage_id();
-		}
-	}
-	elseif ( ampforwp_polylang_front_page() ) {
+	global $post;
+	$ID = null;
+	if ( ampforwp_polylang_front_page() ) {
 		$ID = pll_get_post(get_option('page_on_front'));
 	}
-	else
-		$ID = $post->ID;
+	elseif( ampforwp_get_setting('ampforwp-title-on-front-page') ) {
+		$ID = ampforwp_get_the_ID();
+	}
 	if( $ID!=null ){
 		do_action('ampforwp_above_the_title'); 
 		$ampforwp_title = get_the_title($ID);
 		$ampforwp_title =  apply_filters('ampforwp_filter_single_title', $ampforwp_title);
-		if(!empty($ampforwp_title) && ampforwp_default_logo()){
+		if(!empty($ampforwp_title) && (ampforwp_default_logo() || !empty(ampforwp_get_setting('opt-media','url')))){
 		?>
 			<h1 class="amp-post-title"><?php echo wp_kses_data( $ampforwp_title ); ?></h1>
 		<?php
@@ -707,6 +703,8 @@ function ampforwp_backtotop_global_css(){?>
 	.rtl amp-carousel {direction: ltr;}
 	.rtl .amp-menu .toggle:after{left:0;right:unset;}
 	.sharedaddy li{display:none}
+	sub {vertical-align: sub;font-size: small;}
+	sup {vertical-align: super;font-size: small;}
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
