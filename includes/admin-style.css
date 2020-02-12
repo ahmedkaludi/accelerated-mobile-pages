@@ -2036,3 +2036,6 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 .redux-container-import_export h4{
     margin-bottom:10px;
 }
+.redux-container-import_export #redux-export-code-dl{
+    display: inline-block;
+} 
