@@ -719,13 +719,10 @@ $(".ampforwp-ext-refresh").click(function(){
             })
         currentThis.html('<i class="dashicons-before dashicons-update"></i>Refresh');
 
-    }else{
-        
-            currentThis.html("<em style='color:#ff5555'>just now fetched. check after 1 day.<em>")
-        setTimeout(function(){
-             currentThis.html('<i class="dashicons-before dashicons-update"></i>Refresh');
-        }, 3000)
-       
+    }else{  
+        $(".dashicons").addClass( 'spin' );
+        setTimeout( function() {
+        $(".dashicons").removeClass( 'spin' );}, 3000 );   
     }
 });
 $(".redux-ampforwp-ext-deactivate").click(function(){

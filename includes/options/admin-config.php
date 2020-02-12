@@ -607,7 +607,7 @@ foreach ($extension_listing_array as $key => $extension) {
         if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
             $license_status = $selectedOption['amp-license'][$pathExploded]['status'];
              $currentStatus = 'active valid';
-             $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-deactivate">'.esc_html__('Deactivate', 'accelerated-mobile-pages').'</button> <span class="ampforwp-ext-refresh" style="cursor:pointer" id="'.esc_attr($pathExploded).'"><i class="dashicons-before dashicons-update"></i>'.esc_html__('Refresh', 'accelerated-mobile-pages').'</span>';
+             $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-deactivate">'.esc_html__('Deactivate', 'accelerated-mobile-pages').'</button> <span class="ampforwp-ext-refresh" style="cursor:pointer" id="'.esc_attr($pathExploded).'"><i class="dashicons dashicons-before dashicons-update"></i>'.esc_html__('Refresh', 'accelerated-mobile-pages').'</span>';
             if($ampforwp_nameOfUser=="" && isset($selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'])){
                 $ampforwp_nameOfUser = $selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'];
             }

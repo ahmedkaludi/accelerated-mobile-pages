@@ -2039,3 +2039,22 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 #redux-export-code-dl{
     display: inline-block;
 }
+.dashicons.spin {
+   animation: dashicons-spin 1s infinite;
+   animation-timing-function: linear;
+}
+
+@keyframes dashicons-spin {
+   0% {
+      transform: rotate( 0deg );
+   }
+   100% {
+      transform: rotate( 360deg );
+   }
+}
+.redux-ampforwp-ext-deactivate {
+    margin-top: 5px;
+}
+i.dashicons.dashicons-before.dashicons-update {
+    margin: 7px 2px 0 0;
+}
