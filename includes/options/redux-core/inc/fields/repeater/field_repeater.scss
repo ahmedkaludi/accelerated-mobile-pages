@@ -1,0 +1,53 @@
+.redux-container-repeater {
+    ul.redux-repeater {
+        margin: 0;
+        padding: 0;
+    }
+
+    .redux-repeater-add {
+        clear: both;
+        margin: 5px 0;
+    }
+
+    a.redux-repeater-remove {
+        &.deletion {
+            color: #F00;
+            padding: 2px 4px;
+            margin-left: 5px;
+
+            &:hover {
+                background: red;
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    } 
+}
+
+@media screen and (max-width: 782px) {
+    .redux-container-repeater {
+        input {
+            clear: both;
+        }
+
+        .redux-repeater-remove {
+            margin: 0;
+            float: right;
+        }
+    }
+}
+
+.wp-customizer {
+    .redux-container-repeater {
+        .button {
+            float: right;
+        }
+        .redux-repeater-remove {
+            float: right;
+            margin-bottom: 5px;
+        }
+        ul.redux-repeater input {
+            width: 100% !important;
+        }
+    }
+}
