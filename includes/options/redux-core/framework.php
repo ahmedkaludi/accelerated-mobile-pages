@@ -3231,7 +3231,17 @@
                         }
                     }
 
-                    $string .= '<li id="' . esc_attr( $k . $suffix ) . '_section_group_li" class="redux-group-tab-link-li '.$addClass.'' . esc_attr( $hide_section ) . esc_attr( $section['class'] ) . esc_attr( $subsectionsClass ) . ' ' . strtolower( wp_kses_post( $section['id'] )) . '" '.$style.'>';
+                    $amp_opt = get_option("ampforwp_option_panel_view_type");
+                    $opt_visible = "";
+                    $opt_visible_class = "amp-full-view-options";
+                    if(($amp_opt==1 || $amp_opt=="") && !get_theme_support('amp-template-mode')){
+                        $opt_visible = 'style=display:none';
+                    }
+                    if($section['title']=="Extensions" || $section['title']=="Setup"){
+                         $opt_visible = '';
+                         $opt_visible_class = "";
+                    }
+                    $string .= '<li '.esc_html($opt_visible).' id="' . esc_attr( $k . $suffix ) . '_section_group_li" class="'.esc_attr($opt_visible_class).' redux-group-tab-link-li '.esc_attr($addClass).'' . esc_attr( $hide_section ) . esc_attr( $section['class'] ) . esc_attr( $subsectionsClass ) . ' ' . strtolower( wp_kses_post( $section['id'] )) . '" '.ampforwp_css_sanitizer($style).'>';
                     $string .= '<a href="javascript:void(0);" id="' . esc_attr( $k . $suffix ) . '_section_group_li_a" class="redux-group-tab-link-a" data-key="' . esc_attr( $k ) . '" data-rel="' . esc_attr( $k . $suffix ) . '">' . $extra_icon . $icon . '<span class="group_title">' . wp_kses_post( $section['title'] ) . '</span></a>';
 
                     $nextK = $k;

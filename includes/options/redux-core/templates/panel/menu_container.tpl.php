@@ -26,7 +26,6 @@ if ( ! defined( 'ABSPATH' ) ) {
                 if(($amp_opt==1 || $amp_opt=="") && !get_theme_support('amp-template-mode')){
                     $opt_visible = 'style=display:none';
                 }
-                echo '<div class="amp-full-view-options" '.esc_attr($opt_visible).'>';
             }
             $title = isset ( $section[ 'title' ] ) ? $section[ 'title' ] : '';
 
@@ -60,7 +59,6 @@ if ( ! defined( 'ABSPATH' ) ) {
          * @param object $this ReduxFramework
          */
         do_action ( "redux/page/{$this->parent->args[ 'opt_name' ]}/menu/after", $this );
-        echo '</div>';
         $opt_easy = "";
         $opt_easy_active = "";
         $opt_full = "";
