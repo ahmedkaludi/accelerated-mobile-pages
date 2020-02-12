@@ -194,6 +194,9 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.25 (12th February 2020) =
+* Fixed: Title issue #4138
+
 = 1.0.24 (11th February 2020) =
 * Improvement: Added filter to modify the breadcrumb homepage url #4077
 * Fixed: Image alignment on the left issue #4156
