@@ -6746,6 +6746,15 @@ else{
                   'required' => array('amp-design-selector','=','4'),
             ),
             array(
+                  'id'       => 'featured_image_swift_page_builder',
+                  'type'     => 'switch',
+                  'class'    => 'child_opt child_opt_arrow',
+                  'default'  =>  '1',
+                  'title'    => esc_html__('Featured Image on Pagebuilder', 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => esc_html__('Enable Featured Image on Pagebuilder Pages.'),
+                  'required' => array('featured_image_swift_page','=','1'),
+            ),
+            array(
                   'id'       => 'ampforwp_pages_breadcrumbs',
                   'type'     => 'switch',
                   'default'  =>  '0',
