@@ -7724,6 +7724,12 @@ function ampforwp_include_required_scripts($content){
 				if(!in_array($comp, $comp_to_remove_arr) && !in_array($comp, $comp_to_include_arr) ){
 					$ce_valid_scripts = ampforwp_valid_amp_componet_script();
 					$is_script = in_array($check_comp, $ce_valid_scripts);
+					if($is_script==false){
+						$headers = get_headers($comp_url);
+						if(isset($headers[0])){
+							$is_script = stripos($headers[0], "200 OK") ? TRUE : FALSE;
+						}
+					}
 					if($comp=='state'){
 						$is_script = true;
 					}
