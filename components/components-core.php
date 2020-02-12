@@ -106,13 +106,13 @@ function amp_logo(){
 // Title
 function amp_title(){
 	global $post;
-	$ID = null;
+	$ID = ampforwp_get_the_ID();
 	if ( ampforwp_polylang_front_page() ) {
 		$ID = pll_get_post(get_option('page_on_front'));
 	}
-	elseif( ampforwp_get_setting('ampforwp-title-on-front-page') ) {
-		$ID = ampforwp_get_the_ID();
-	}
+	elseif( ampforwp_is_front_page() && ampforwp_get_setting('ampforwp-title-on-front-page') == false) {
+			$ID = null;
+		}
 	if( $ID!=null ){
 		do_action('ampforwp_above_the_title'); 
 		$ampforwp_title = get_the_title($ID);
