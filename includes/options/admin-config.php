@@ -1469,7 +1469,8 @@ Redux::setArgs( "redux_builder_amp", $args );
         'title'      => esc_html__( 'Settings', 'accelerated-mobile-pages' ),
           'id'    => 'basic',
           'icon' => 'el el-cogs',
-          'desc'  => ''
+          'desc'  => '',
+          'class'  =>'amp-opt-settings',
     ));
     
     function ampforwp_default_logo_settings($param=""){
@@ -3333,8 +3334,8 @@ $e_commerce_support[] = array(
 Redux::setSection( $opt_name, array(
               'title'      => esc_html__( 'Design', 'accelerated-mobile-pages' ),
               'icon' => 'el el-adjust-alt',
-              'desc'  => ''
-
+              'desc'  => '',
+              'class'  =>'amp-opt-design',
         ));
 
     //get All design
