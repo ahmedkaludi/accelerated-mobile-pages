@@ -2325,3 +2325,6 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
     padding: 0px 2px;
     border-radius: 2px;
 }
+figure.amp-featured-image {
+    margin: 10px 0;
+}
