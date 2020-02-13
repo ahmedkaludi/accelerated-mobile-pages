@@ -2558,8 +2558,8 @@ Redux::setSection( $opt_name, array(
                         array(
                         'id'        =>'hide-amp-categories2',
                         'type'      => 'select',
-                        'title'     => __('Select Categories to Hide AMP posts'),
-                        'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
+                        'title'     => esc_html__('Select Categories to Hide AMP posts'),
+                        'tooltip-subtitle' => esc_html__( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true, 
                         'ajax'      => true,
                         'options' => ampforwp_get_categories('hide-amp-categories2'),
