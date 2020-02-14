@@ -191,10 +191,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.26 (12th February 2020) =
-* Improvement: import/export option improved
-* Fixed: Added option to show/hide featured image on AMP pagebuilder
-* Fixed: AMP Options panel UI bug
+= 1.0.26 (13th February 2020) =
+* Improvement: import/export option improved #4089
+* Fixed: Added option to show/hide featured image on AMP pagebuilder #4131
+* Fixed: AMP Options panel UI bug #4122
 
 = 1.0.25 (12th February 2020) =
 * Fixed: Title issue #4138
