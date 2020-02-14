@@ -1220,7 +1220,7 @@ function ampforwp_sticky_social_icons(){
 			    	<amp-social-share type="facebook" data-param-app_id="<?php echo esc_attr($redux_builder_amp['amp-facebook-app-id']); ?>" width="50" height="28"></amp-social-share>
 			    <a title="facebook share" class="s_fb" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://www.facebook.com/sharer.php?u=<?php echo esc_url($amp_permalink); ?>"></a>	
 			  	<?php } ?>
-			  	<?php if(true == ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
+			  	<?php if(true == ampforwp_get_setting('enable-single-facebook-share-messenger')  && $amp_permalink_fb_messenger!=''){?>
 			<a title="facebook share messenger"  <?php ampforwp_nofollow_social_links(); ?> target="_blank" href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink_fb_messenger); ?>">
 				<div class="amp-social-icon amp-social-facebookmessenger">
 					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/messenger.png') ?>" width="20" height="20" />
