@@ -2338,3 +2338,6 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
 	text-decoration: underline;
 }
 <?php } // Underline CSS Ends?> 
+figure.amp-featured-image {
+    margin: 10px 0;
+}

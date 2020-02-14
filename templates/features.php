@@ -7107,14 +7107,13 @@ function ampforwp_webp_featured_image() {
 			}
 			$alt = convert_chars( stripslashes( $alt ) );
 		$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' alt='".esc_attr($alt)."' ></amp-img>";?>
-		<figure class="amp-wp-article-featured-image">
 			<?php 
-			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){
-				echo $image_output; // escaped above
-			}
-			 ?>
-		</figure>
-		<?php 
+			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){?>
+			<figure class="amp-wp-article-featured-image">	
+				<?php echo $image_output; // escaped above
+			?>
+			</figure>
+		<?php }
 	}
 }
 
