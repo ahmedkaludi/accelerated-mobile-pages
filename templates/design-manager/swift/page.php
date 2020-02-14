@@ -18,7 +18,11 @@ amp_header(); ?>
 				<div class="sf-img">
 					<?php amp_featured_image();?>
 				</div>
-				<?php } ?>
+				<?php }elseif (true == ampforwp_get_setting('featured_image_swift_page') && true == ampforwp_get_setting('featured_image_swift_page_builder')) {?>
+				<div class="sf-img">
+					<?php amp_featured_image();?>
+				</div>
+			<?php } ?>
        <div class="pg">
        		<?php if (  is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' ==  ampforwp_get_setting('swift-social-position') ){
 							ampforwp_swift_social_icons(); 

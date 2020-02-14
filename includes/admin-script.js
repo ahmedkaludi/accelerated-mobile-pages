@@ -2177,10 +2177,10 @@ function Drawer(drawerElem) {
          var opt_type = 0;
          if(id=='amp-opt-easy-view' || id=='radio-c'){
             opt_type = 1;
-            $(".amp-full-view-options").slideUp();
+            $(".amp-full-view-options").slideUp(0);
          }else if(id=='amp-opt-full-view' || id=='radio-d'){
             opt_type = 2;
-            $(".amp-full-view-options").slideDown();
+            $(".amp-full-view-options").slideDown(0);
          }
          amp_left_sub_menu_opt_hs(opt_type)
          $.ajax({
