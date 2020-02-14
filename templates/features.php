@@ -7130,10 +7130,9 @@ function ampforwp_webp_featured_image() {
 			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){?>
 				<figure class="amp-wp-article-featured-image">
 				<?php echo $image_output; // escaped above
-			}
-			 ?>
-		</figure>
-		<?php 
+				?>
+				</figure>
+	<?php	}		 
 	}
 }
 
