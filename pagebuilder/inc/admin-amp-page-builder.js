@@ -192,6 +192,9 @@ Vue.component('amp-pagebuilder-module-modal', {
   			repeatHead.html('(Hide)');
   		}
   	},
+  	showhideAccordian:function(event){
+  		jQuery(event.target).parent(".amp-accordion-head").click();
+  	},
   	hideModulePopUp: function(event){
 			app.showmoduleModal = false;
 		},
