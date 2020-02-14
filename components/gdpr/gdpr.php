@@ -133,7 +133,7 @@ function ampforwp_gdpr_css(){
 		  bottom: 0;
 		  left: 0;
 		  right: 0;
-		  position: fixed;
+		  position: relative;
 		} 
 		@media(max-width:768px){
 			.gdpr_w{width: 85%;margin:0 auto;padding:1.5rem;}
@@ -249,8 +249,8 @@ function ampforwp_gdpr_css(){
 		}
 		<?php 
 	} ?>
-	amp-consent.amp-active{
-	    z-index:0;
+	footer amp-consent.amp-active {
+	    z-index:9999;
 	    position: inherit;
 	}	
 <?php }
