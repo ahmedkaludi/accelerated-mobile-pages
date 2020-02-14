@@ -5414,7 +5414,9 @@ $single_page_options = array(
                  'type'     => 'switch',
                  'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
                  'default'  => '1',
-                 'required' => array(
+                 'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                    esc_html__('Enable this option to show author name in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-show-author-name-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+                  'required' => array(
                     array('amp-design-selector' , '=' , '4'),
                 )
              ),
@@ -5537,7 +5539,7 @@ $single_page_options = array(
              'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
              'default'  => '1',
              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
-              esc_html__('Enable this option to show author name in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-show-author-name-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
+              esc_html__('Enable this option to show author name in author bio and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-author-name-in-author-bio-section/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
              'required' => array(
                 array('amp-design-selector' , '=' , '4'),
                 array('amp-author-description' , '=' , '1'),
