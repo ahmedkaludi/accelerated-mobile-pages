@@ -118,8 +118,12 @@ $amp_ws_other_type = '';
 if($amp_website_type!=""){
 	if(preg_match("/Other/", $amp_website_type)!=0){
 		$other = explode("-", $amp_website_type);
-		$amp_website_type=$other[0];
-		$amp_ws_other_type = $other[1];
+		if(empty($other[1])){
+			$amp_ws_other_type = $other[0];
+		}
+		else{
+			$amp_ws_other_type = $other[1];
+		}
 	}
 }
 if($amp_website_type==""){
