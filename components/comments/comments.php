@@ -50,23 +50,23 @@ function ampforwp_framework_get_comments(){
 									?>
 									<li id="li-comment-<?php comment_ID() ?>"
 									<?php comment_class(); ?> >
-										<article id="comment-<?php comment_ID(); ?>" class="comment-body">
-											<footer class="comment-meta">
+										<article id="comment-<?php comment_ID(); ?>" class="cmt-body">
+											<footer class="cmt-meta">
 											<?php if($comment_author_img_url){ ?>
-			         							<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
+			         							<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="cmt-author-img"></amp-img>
 			         						<?php } ?>
-												<div class="comment-author vcard">
+												<div class="cmt-author vcard">
 													 <?php
 													 printf('<b class="fn">%s</b> <span class="says">'.esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-says-text'),'says')).':</span>', get_comment_author_link()) ?>
 												</div>
-												<div class="comment-metadata">
+												<div class="cmt-metadata">
 													<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
 														<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
 													</a>
 													<?php edit_comment_link(  ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  ) ?>
 												</div>
 											</footer>
-											<div class="comment-content">
+											<div class="cmt-content">
 						                        <?php
 						                          	$comment_content = get_comment_text();
 						                        	$comment_content = wpautop( $comment_content );

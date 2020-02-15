@@ -3402,7 +3402,7 @@ function ampforwp_frontpage_comments() {
 			$comment_button_url = get_permalink( $post_id );
 			$comment_button_url = apply_filters('ampforwp_frontpage_comments_url',$comment_button_url );
 			if ( $comments ) { ?>
-				<div class="amp-wp-content comments_list">
+				<div class="amp-wp-content cmts_list">
 				    <h3><?php global $redux_builder_amp; echo esc_html(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' ))?></h3>
 				    <ul>
 				    <?php
@@ -3435,23 +3435,23 @@ function ampforwp_frontpage_comments() {
 							global $redux_builder_amp; ?>
 							<li id="li-comment-<?php esc_attr(comment_ID()) ?>"
 							<?php comment_class(); ?> >
-								<article id="comment-<?php esc_attr(comment_ID()); ?>" class="comment-body">
-									<footer class="comment-meta">
-										<div class="comment-author vcard">
+								<article id="comment-<?php esc_attr(comment_ID()); ?>" class="cmt-body">
+									<footer class="cmt-meta">
+										<div class="cmt-author vcard">
 											<?php
 											printf('<b class="fn">%s</b> <span class="says">'.esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-says-text'),'says')).':</span>', get_comment_author_link()) ?>
 										</div>
-										<!-- .comment-author -->
-										<div class="comment-metadata">
+										<!-- .cmt-author -->
+										<div class="cmt-metadata">
 											<a href="<?php echo esc_url(untrailingslashit( htmlspecialchars( get_comment_link( $comment->comment_ID ) ) )) ?>">
 												<?php printf( esc_html(ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s')) , get_comment_date(),  get_comment_time())?>
 											</a>
 											<?php edit_comment_link( esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  )) ?>
 										</div>
-										<!-- .comment-metadata -->
+										<!-- .cmt-metadata -->
 									</footer>
-										<!-- .comment-meta -->
-									<div class="comment-content">
+										<!-- .cmt-meta -->
+									<div class="cmt-content">
 				                        <?php
 				                          // $pattern = "~[^a-zA-Z0-9_ !@#$%^&*();\\\/|<>\"'+.,:?=-]~";
 				                          $emoji_content = get_comment_text();
@@ -3463,9 +3463,9 @@ function ampforwp_frontpage_comments() {
 					                      echo make_clickable( $sanitized_comment_content );//amphtml content, no kses
 				                           ?>
 									</div>
-										<!-- .comment-content -->
+										<!-- .cmt-content -->
 								</article>
-							 <!-- .comment-body -->
+							 <!-- .cmt-body -->
 							</li>
 						<!-- #comment-## -->
 							<?php
@@ -3488,7 +3488,7 @@ function ampforwp_frontpage_comments() {
 			} 
 			if ( comments_open($postID) ) {
 				$comment_button_url = add_query_arg( array( 'nonamp' => '1' ),  $comment_button_url );?>
-				<div class="comment-button-wrapper">
+				<div class="cmt-button-wrapper">
 				    <a href="<?php echo esc_url( $comment_button_url ) . '#commentform' ?>" rel="nofollow"><?php  echo esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  )); ?></a>
 				</div><?php
 				}?>
