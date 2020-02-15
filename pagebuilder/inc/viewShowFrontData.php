@@ -290,6 +290,7 @@ function amp_pagebuilder_content_styles(){
 								$completeCss .= $moduleTemplate[$contentArray['type']]['front_rtl_css'];
 							}
 							$completeCss = str_replace("{{module-class}}", '.ap_m_'.$contentArray['cell_id'], $completeCss );
+							$completeCss = str_replace('{{cta-mod}}', $contentArray['cell_id'], $completeCss);
 						}
 						if(isset($moduleTemplate[$contentArray['type']]['front_common_css'])){
 							$moduleCommonCss[$moduleTemplate[$contentArray['type']]['name']] = $moduleTemplate[$contentArray['type']]['front_common_css'];
@@ -1040,7 +1041,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 						
 					}//Foreach closed
                 }//If closed
-
+ 				$moduleFrontHtml = str_replace('{{cta-mod}}', $contentArray['cell_id'], $moduleFrontHtml);
                 $moduleFrontHtml = str_replace('{{unique_cell_id}}', $contentArray['cell_id'], $moduleFrontHtml);
                 if(isset($repeaterUniqueId)){ 
                 $moduleFrontHtml = str_replace('{{repeater_max_count}}', $repeaterUniqueId, $moduleFrontHtml);          
