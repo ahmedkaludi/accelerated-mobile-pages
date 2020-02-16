@@ -194,7 +194,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.27 (14th February 2020) =
+= 1.0.27 (16th February 2020) =
 * Fixed: Bugs in Imagify plugin #3908
 * Fixed: GDPR popup not blocking header #4155
 * Fixed: Save button dissappers when clicked on setup settings #4169
