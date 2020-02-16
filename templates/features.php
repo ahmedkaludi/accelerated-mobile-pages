@@ -1220,7 +1220,7 @@ function ampforwp_sticky_social_icons(){
 			    	<amp-social-share type="facebook" data-param-app_id="<?php echo esc_attr($redux_builder_amp['amp-facebook-app-id']); ?>" width="50" height="28"></amp-social-share>
 			    <a title="facebook share" class="s_fb" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://www.facebook.com/sharer.php?u=<?php echo esc_url($amp_permalink); ?>"></a>	
 			  	<?php } ?>
-			  	<?php if(true == ampforwp_get_setting('enable-single-facebook-share-messenger')){?>
+			  	<?php if(true == ampforwp_get_setting('enable-single-facebook-share-messenger')  && $amp_permalink_fb_messenger!=''){?>
 			<a title="facebook share messenger"  <?php ampforwp_nofollow_social_links(); ?> target="_blank" href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink_fb_messenger); ?>">
 				<div class="amp-social-icon amp-social-facebookmessenger">
 					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/messenger.png') ?>" width="20" height="20" />
@@ -7107,14 +7107,13 @@ function ampforwp_webp_featured_image() {
 			}
 			$alt = convert_chars( stripslashes( $alt ) );
 		$image_output = "<amp-img src='".esc_url($image[0])."' width='".esc_attr($image[1])."' height='".esc_attr($image[2])."' layout='responsive' alt='".esc_attr($alt)."' ></amp-img>";?>
-		<figure class="amp-wp-article-featured-image">
 			<?php 
-			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){
-				echo $image_output; // escaped above
-			}
-			 ?>
-		</figure>
-		<?php 
+			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){?>
+			<figure class="amp-wp-article-featured-image">	
+				<?php echo $image_output; // escaped above
+			?>
+			</figure>
+		<?php }
 	}
 }
 
@@ -7965,5 +7964,29 @@ function ampforwp_seo_selection_notice() {
 	}
 	if(!empty($seo)){
     	echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
+	}
+}
+
+if(!function_exists('ampforwp_check_image_existance')){
+	function ampforwp_check_image_existance($image){
+		if(preg_match('/wp-content\/uploads/', $image)){
+			$img_arr = explode('wp-content', $image);
+			if(!empty($img_arr) && isset($img_arr[1])){
+				$img = WP_CONTENT_DIR.$img_arr[1];
+				if(!file_exists($img)){
+					if(preg_match('/\d+x\d+/', $image,$ma)){
+						$t_sizes = explode('x', $ma[0]);
+						$width = $t_sizes[0];
+						$height = $t_sizes[1];
+						$image = preg_replace('/-\d+x\d+/','', $image);
+						$resize = ampforwp_aq_resize( $image, $width , $height , true, false, true );
+						if(isset($resize[0])){
+							$image = $resize[0];
+						}
+					}
+				}
+			}
+		}
+		return $image;
 	}
 }

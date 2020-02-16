@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
                                             <div class="amp-accordion-head amppb_accordion__panel"   v-on:click="repeaterAcoordian($event);">
                                                 <span class="amppb-repeaterfields-handle dashicons dashicons-move"></span>
                                                 <span class="repeater_num">{{key+1}}</span> {{modalcontent.label}} Field
-                                                <span class="amp-accordion-label"> {{(key==0)? '(Hide)': '(Show)'}}</span>
+                                                <span class="amp-accordion-label"  v-on:click="showhideAccordian($event);"> {{(key==0)? '(Hide)': '(Show)'}}</span>
                                                 <div class="right"
                                                      v-on:click="removeRepeaterSection(key, modalcontent.repeater.showFields)">Remove</div>
                                             </div>

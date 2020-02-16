@@ -52,7 +52,7 @@ if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			<amp-social-share type="facebook" data-param-app_id="<?php echo esc_attr($redux_builder_amp['amp-facebook-app-id']); ?>" width="50" height="28" <?php ampforwp_nofollow_social_links(); ?>></amp-social-share>
 		<?php } ?>
-		<?php if ( true == ampforwp_get_setting('enable-single-facebook-share-messenger') ) { ?>
+		<?php if ( true == ampforwp_get_setting('enable-single-facebook-share-messenger')  && $amp_permalink_fb_messenger!='') { ?>
 			<a title="facebookmessenger share" <?php ampforwp_nofollow_social_links(); ?> href="fb-messenger://share/?link=<?php echo esc_url($amp_permalink_fb_messenger); ?>" target="_blank"  aria-label="facebookmessenger share">
 				<div class="amp-social-icon amp-social-facebookmessenger">
 					<amp-img src="<?php echo esc_url(AMPFORWP_IMAGE_DIR . '/messenger.png') ?>" width="20" height="20" />

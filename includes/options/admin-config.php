@@ -1479,7 +1479,8 @@ Redux::setArgs( "redux_builder_amp", $args );
         'title'      => esc_html__( 'Settings', 'accelerated-mobile-pages' ),
           'id'    => 'basic',
           'icon' => 'el el-cogs',
-          'desc'  => ''
+          'desc'  => '',
+          'class'  =>'amp-opt-settings',
     ));
     
     function ampforwp_default_logo_settings($param=""){
@@ -3330,8 +3331,8 @@ $e_commerce_support[] = array(
 Redux::setSection( $opt_name, array(
               'title'      => esc_html__( 'Design', 'accelerated-mobile-pages' ),
               'icon' => 'el el-adjust-alt',
-              'desc'  => ''
-
+              'desc'  => '',
+              'class'  =>'amp-opt-design',
         ));
 
     //get All design
@@ -5413,7 +5414,9 @@ $single_page_options = array(
                  'type'     => 'switch',
                  'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
                  'default'  => '1',
-                 'required' => array(
+                 'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                    esc_html__('Enable this option to show author name in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-show-author-name-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+                  'required' => array(
                     array('amp-design-selector' , '=' , '4'),
                 )
              ),
@@ -5536,7 +5539,7 @@ $single_page_options = array(
              'title'    => esc_html__( 'Author Name', 'accelerated-mobile-pages' ),
              'default'  => '1',
              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
-              esc_html__('Enable this option to show author name in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-show-author-name-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
+              esc_html__('Enable this option to show author name in author bio and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-author-name-in-author-bio-section/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
              'required' => array(
                 array('amp-design-selector' , '=' , '4'),
                 array('amp-author-description' , '=' , '1'),

@@ -9,6 +9,8 @@ function ampforwp_minify_html_output($content_buffer){
     //Removed trbidi attribute #3687
     $content_buffer = str_replace('trbidi="on"', '', $content_buffer);
     $content_buffer = str_replace("trbidi='on'", '', $content_buffer);
+    //Picture-tag is not working in AMP #4051
+    $content_buffer = preg_replace('/<picture(.*?)<amp-img(.*?)><\/amp-img>(.*?)<\/picture>/s', '<noscript><picture$1</picture></noscript><amp-img$2></amp-img>$3', $content_buffer);
     if(class_exists('SiteOrigin_Widgets_Bundle')){
         $content_buffer = preg_replace('/<amp-video id="sow-player(.*?)" class="(.*?)"(.*?)<\/amp-video>/', '<amp-video id="sow-player$1" class="$2" autoplay $3</amp-video>', $content_buffer);
     }

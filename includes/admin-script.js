@@ -952,12 +952,11 @@ jQuery(document).ready(function($) {
         }
     },10);
     $(".redux-group-tab-link-li").click(function(){
-        var this_c_val = $(this).children('a').children('span.group_title').html();
         if($(this).hasClass('ampforwp-new-ux')){
             $('#redux-footer-sticky').hide();
             $('#redux-footer-sticky #redux-footer').addClass("hide");
         }else{
-            if(this_c_val=="Settings" || this_c_val=="Design"){
+            if($(this).hasClass('amp-opt-settings') || $(this).hasClass('amp-opt-design')){
                 if($('#redux-footer-sticky #redux-footer').hasClass('hide')){
                     $('#redux-footer-sticky').show();
                     $('#redux-footer-sticky #redux-footer').removeClass("hide");

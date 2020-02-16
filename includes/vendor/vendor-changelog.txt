@@ -94,3 +94,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 64. Fixed Instagram video (tv) rendering issue #3812
 65. Needs to redirect to 301, not in 302 #3767
 66. Whitelisted label and input tags #4054
+67. Whitelisted Picture tag #4051

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.26
+Stable tag: 1.0.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,17 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.27 (16th February 2020) =
+* Fixed: Bugs in Imagify plugin #3908
+* Fixed: GDPR popup not blocking header #4155
+* Fixed: Save button dissappers when clicked on setup settings #4169
+* Fixed: Alignment issue when there is no caption on featured image #4171
+* Fixed: Whitelisted Picture tag #4051
+* Fixed: Show/Hide Slider or Icon module in AMP Pagebuilder is not clickable #4153
+* Fixed: Debug warning when empty item added in Slider module in AMP pagebuilder #4152
+* Fixed: Empty link in facebook share in sticky bar #4154
+* Fixed: AMP Options panel UI bugs #4122 #4162
 
 = 1.0.26 (13th February 2020) =
 * Improvement: import/export option improved #4089

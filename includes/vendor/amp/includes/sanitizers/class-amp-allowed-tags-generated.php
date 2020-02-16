@@ -82,6 +82,7 @@ class AMP_Allowed_Tags_Generated {
 				'tag_spec' => array(),
 			),
 		),
+		'picture' => array(),
 		'acronym' => array(
 			array(
 				'attr_spec_list' => array(),
