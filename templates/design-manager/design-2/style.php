@@ -202,58 +202,58 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 if(is_single() || is_page() ){?>
 /* Sticky Social bar in Single */
 .ampforwp-social-icons-wrapper{ margin: 0.65em 0px 0.65em 0px; height: 28px; }
-.sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
-.amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; margin-bottom:5px; }
-.amp-social-icon amp-img{ top: 4px; }
-amp-social-share[type="facebookmessenger"] {
+.s_so{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
+.a-so-i{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; margin-bottom:5px; }
+.a-so-i amp-img{ top: 4px; }
+a-sp-share[type="facebookmessenger"] {
   background-image: url(https://img.icons8.com/color/100/000000/facebook-messenger.png);
   max-height: 33px;   
 }
 <?php if ( true == ampforwp_get_setting('enable-single-facebook-share-messenger') ) { ?>
-.amp-social-icon.amp-social-facebookmessenger {background: #d5e1e6;text-align: center;}
+.a-so-i.a-so-facebookmessenger {background: #d5e1e6;text-align: center;}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-line-share') ) { ?>
-.custom-amp-socialsharing-line{background:#00b900}
+.custom-a-spsharing-line{background:#00b900}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-mewe-share') ) { ?>
-.custom-amp-socialsharing-mewe{background:#b8d6e6}
-.amp-social-mewe{background:#b8d6e6}
+.custom-a-spsharing-mewe{background:#b8d6e6}
+.a-so-mewe{background:#b8d6e6}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-flipboard-share') ) { ?>
-.custom-amp-socialsharing-flipboard{background:#f52828;position: relative;
+.custom-a-spsharing-flipboard{background:#f52828;position: relative;
     top: -12px;}
-.amp-social-flipboard{background:#f52828;text-align: center;position: relative;
+.a-so-flipboard{background:#f52828;text-align: center;position: relative;
     top: -12px;}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
-.ampforwp-social-icons .custom-amp-socialsharing-vk, .amp-social-vk{background:#45668e}
+.ampforwp-so-i .custom-a-spsharing-vk, .a-so-vk{background:#45668e}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-odnoklassniki-share') ) { ?>
-.amp-social-odnoklassniki{background:#ed812b}
+.a-so-odnoklassniki{background:#ed812b}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-reddit-share') ) { ?>
-.amp-social-reddit{background:#ff4500}
+.a-so-reddit{background:#ff4500}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-telegram-share') ) { ?>
-.amp-social-telegram{background:#61A8DE}
+.a-so-telegram{background:#61A8DE}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-tumblr-share') ) { ?>
-.amp-social-tumblr{background:#35465c}
+.a-so-tumblr{background:#35465c}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-stumbleupon-share') ) { ?>
-.amp-social-stumbleupon{background:#eb4924}
+.a-so-stumbleupon{background:#eb4924}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-wechat-share') ) { ?>
-.amp-social-wechat{background:#7bb32e}
+.a-so-wechat{background:#7bb32e}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-viber-share') ) { ?>
-.amp-social-viber{background:#8f5db7}
+.a-so-viber{background:#8f5db7}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-hatena-bookmarks') ) { ?>
-.amp-social-hatena{background:#00a4de}
+.a-so-hatena{background:#00a4de}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-pocket-share') ) { ?>
-.amp-social-pocket{background:#e8e8e8}
+.a-so-pocket{background:#e8e8e8}
 <?php } ?>
 <?php }?>
 /* Header */
@@ -337,7 +337,7 @@ h1.amp-wp-title , h2.amp-wp-title{ text-align: center; margin: 0.7em 0px 0.6em 0
 .amp-wp-content.post-title-meta, .amp-wp-content.post-pagination-meta{ background: none; padding:  0; box-shadow:none }
 .post-pagination-meta{ min-height:75px }
 .single-post .post-pagination-meta{ min-height:auto }
-.single-post .ampforwp-social-icons{ display:inline-block }
+.single-post .ampforwp-so-i{ display:inline-block }
 .post-pagination-meta .amp-wp-tax-category, .post-title-meta .amp-wp-tax-tag{ display : none; }
 .amp-meta-wrapper{ border-bottom: 1px solid #DADADA; padding-bottom:10px; display:inline-block; width:100%; margin-bottom:0 }
 .amp-wp-meta{ padding-left: 0; }
@@ -365,7 +365,7 @@ main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bot
 .amp-wp-article-featured-image.wp-caption .wp-caption-text, .ampforwp-gallery-item .wp-caption-text{color: #696969; font-size: 11px; line-height: 15px; background: #eee; margin: 0; padding: .66em .75em; text-align: center;}
 .ampforwp-gallery-item.amp-carousel-slide { padding-bottom: 20px;}
 .amp-wp-content.post-pagination-meta{ max-width: 1030px; }
-.single-post .ampforwp-social-icons.ampforwp-social-icons-wrapper{ margin: 0.9em auto 0.9em auto ; max-width: 1030px; }
+.single-post .ampforwp-so-i.ampforwp-social-icons-wrapper{ margin: 0.9em auto 0.9em auto ; max-width: 1030px; }
 .amp-wp-article-header.amp-wp-article-category.ampforwp-meta-taxonomy{ margin: 10px auto; max-width: 1030px; } .ampforwp_single_excerpt { margin-bottom:15px; font-size: 15px; text-align:center}
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
 .single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 2px; font-size: 13px; color:#333;}
@@ -493,7 +493,7 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 <?php if( ampforwp_get_setting('enable-single-social-icons') == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() && is_single() )  { ?>
 .single-post footer { padding-bottom: 40px; }
 .amp-ad-2{ margin-bottom: 50px; }
-.body.single-post .sticky_social{z-index:99999;}
+.body.single-post .s_so{z-index:99999;}
 .body.single-post .adsforwp-stick-ad, .body.single-post amp-sticky-ad{padding-top:4px;padding-bottom:48px;}
 .body.single-post .ampforwp-sticky-custom-ad{
 	bottom: 43px;

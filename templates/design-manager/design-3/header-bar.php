@@ -37,7 +37,7 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
       </nav>
       <?php } 
       do_action('ampforwp_after_amp_menu'); ?>
-          <div class="social_icons">
+          <div class="so_i">
             <ul>
               <?php if( ampforwp_get_setting('enable-single-twittter-profile') && ampforwp_get_setting('enable-single-twittter-profile-url') !== '') { ?>
                 <li class="icon-twitter"><a title="twitter profile" <?php ampforwp_nofollow_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['enable-single-twittter-profile-url']); ?>" target ="_blank"></a></li>
