@@ -256,7 +256,6 @@ function ampforwp_admin_notices() {
         }
     }
 }
-add_action( 'admin_notices', 'ampforwp_admin_notices' );
 
 function ampforwp_set_plugin_limit( $force=false, $license_data='', $data) {
 

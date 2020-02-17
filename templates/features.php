@@ -4299,7 +4299,6 @@ if ( ! function_exists('ampforwp_dev_mode_add_noindex') ) {
 	}
 }
 // Notice for Dev Mode
-add_action('admin_notices', 'ampforwp_dev_mode_notice');
 function ampforwp_dev_mode_notice(){ 
 	global $redux_builder_amp;
 	$message = '';
@@ -7967,7 +7966,6 @@ function ampforwp_ewww_webp_compatibility($content){
 	}
 }
 
-add_action( 'admin_notices', 'ampforwp_seo_selection_notice' );
 function ampforwp_seo_selection_notice() {
 	if('' != ampforwp_get_setting('ampforwp-seo-selection')){
 		return;

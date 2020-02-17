@@ -732,7 +732,6 @@ function amp_update_db_check() {
 
 
 // Admin notice for AMP WordPress Theme
-add_action('admin_notices', 'ampforwp_ampwptheme_notice');
 function ampforwp_ampwptheme_notice() {
  	$theme = '';
 	$theme = wp_get_theme(); // gets the current theme
@@ -1154,7 +1153,7 @@ if ( false == get_transient('ampforwp-pm-disabler') ) {
 	}
 
 }
-add_action('admin_notices', 'ampforwp_plugins_manager_notice');
+
 function ampforwp_plugins_manager_notice(){
 	if ( true == get_transient('ampforwp-pm-disabler') ) { ?>
 		<div id="ampforwp_pluginmanager" class="notice-warning settings-error notice is-dismissible"><p><b><?php echo esc_html__('Attention: ','accelerated-mobile-pages');?></b><?php echo esc_html__('AMPforWP Plugin Manager has been deactivated and requires an upgrade. Please','accelerated-mobile-pages');?> <b><a target="_blank" href=<?php echo esc_url('https://ampforwp.com/plugins-manager/?update=plugins-manager#utm_source=plugin-page&utm_medium=plugin-manager-update&utm_campaign=update-notice');?>><?php echo esc_html__('Download &amp; install the latest version','accelerated-mobile-pages');?></a></b><?php echo esc_html__(' for free.','accelerated-mobile-pages');?>
@@ -1323,7 +1322,6 @@ function ampforwp_redux_options_remover($sections){
 }
 
 // AMP with AMPforWP notice #2287
-add_action( 'admin_notices', 'ampforwp_automattic_activation' );
 function ampforwp_automattic_activation(){
 
 	if ( function_exists('amp_activate') && get_transient( 'ampforwp_automattic_activation_notice' ) == false) { 
