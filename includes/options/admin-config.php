@@ -1627,9 +1627,11 @@ function ampforwp_get_all_tags($id){
     // AMP to WP Default value
     function ampforwp_amp2wp_default(){
         $default = 0;
+        if (true == ampforwp_get_setting('ampforwp-amp-takeover')){
+            return $default;
+        }
         $theme = '';
         $theme = wp_get_theme(); // gets the current theme
-
         if ( 'AMP WordPress Theme' == $theme->name || 'AMP WordPress Theme' == $theme->parent_theme ) {
             $default = 1;
         }
@@ -2660,8 +2662,11 @@ Redux::setSection( $opt_name, array(
                    'title'    => esc_html__('Convert AMP to WP theme (Beta)', 'accelerated-mobile-pages'),
                    'tooltip-subtitle'  => sprintf( '%s<a href="%s" target="_blank">%s</a>%s', esc_html__("It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design and ",'accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-convert-your-non-amp-website-to-amp/'),esc_html__('Click Here','accelerated-mobile-pages'),esc_html__(' for more info','accelerated-mobile-pages')),
                    'default'  => ampforwp_amp2wp_default(),
-                   'required' => array('amp-design-selector', '=' , '4'),
-             ), 
+                   'required' => array(
+                    array('amp-design-selector', '=', '4'),
+                    array('ampforwp-amp-takeover', '=' , '0'),
+                    )
+                ), 
                 
                     array(
                         'id'       => 'amp-header-text-area-for-html',
