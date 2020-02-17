@@ -7711,23 +7711,27 @@ function ampforwp_include_required_scripts($content){
 				}
 				$comp_url = 'https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-'.esc_attr($script_ver).'.js';
 				$is_script = false;
-
+				$check_comp = 'amp-'.esc_attr($comp);
 				if(!in_array($comp, $comp_to_remove_arr) && !in_array($comp, $comp_to_include_arr) ){
-					$headers = get_headers($comp_url);
-					if(isset($headers[0])){
-						$is_script = stripos($headers[0], "200 OK") ? TRUE : FALSE;
-						if($comp=='state'){
-							$is_script = true;
+					$ce_valid_scripts = ampforwp_valid_amp_componet_script();
+					$is_script = in_array($check_comp, $ce_valid_scripts);
+					if($comp=='state'){
+						$is_script = true;
+					}
+					if($is_script==false){
+						$headers = get_headers($comp_url);
+						if(isset($headers[0])){
+							$is_script = stripos($headers[0], "200 OK") ? TRUE : FALSE;
 						}
-						if($is_script){
-							$comp_to_include_arr[] = $comp;
-							$inc_json = json_encode($comp_to_include_arr);
-							set_transient('ampforwp_amp_included_custom_element',$inc_json, 30 * DAY_IN_SECONDS);
-						}else{
-							$comp_to_remove_arr[] = $comp;
-							$ex_json = json_encode($comp_to_remove_arr);
-							set_transient('ampforwp_amp_exclude_custom_element',$ex_json, 30 * DAY_IN_SECONDS);
-						}
+					}
+					if($is_script){
+						$comp_to_include_arr[] = $comp;
+						$inc_json = json_encode($comp_to_include_arr);
+						set_transient('ampforwp_amp_included_custom_element',$inc_json, 30 * DAY_IN_SECONDS);
+					}else{
+						$comp_to_remove_arr[] = $comp;
+						$ex_json = json_encode($comp_to_remove_arr);
+						set_transient('ampforwp_amp_exclude_custom_element',$ex_json, 30 * DAY_IN_SECONDS);
 					}
 				}
 				$comp_to_include_arr = apply_filters('ampforwp_amp_custom_element_to_include',$comp_to_include_arr);
@@ -7741,36 +7745,31 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 
-	//OTHER COMPONENT CHECK 
-	$other_comp_arr = array('amp-mustache');
-	for($oc = 0; $oc<count($other_comp_arr); $oc++){
-		$ocomp = $other_comp_arr[$oc];
-		$celem = 'element';
-		if($ocomp=='amp-mustache'){
-			$celem = 'template';
-		}
-		if(preg_match_all('/(type|template)="('.$ocomp.')"/', $content,$oMaches)){
-			if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
-				$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
-				$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
-				$content =  str_replace('<head>', $script_tag, $content);
-			}
-		}
+	$comp_dom = new DOMDocument();
+	$comp_dom->loadHTML($content);
+	$xpath       = new DOMXPath( $comp_dom );
+	$elements = $xpath->query("*/script[@custom-element]");
+	$component_arr = array();
+	$elements_arr = array();
+    if (!is_null($elements)) {
+	  foreach ($elements as $element) {
+	    $component_arr[]= $element->getAttribute('custom-element');
+	    $elements_arr[] = $comp_dom->saveHTML($element);
+	  }
 	}
-	preg_match_all('/<script(\s|\sasync\s)custom-element="(.*?)"(.*?)>(.*?)<\/script>/s', $content, $matches);
-	if(isset($matches[0])){
-		if(isset($matches[2])){
-			$excl_arr = array('amp-form','amp-bind','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-dynamic-css-classes','amp-fx-collection','amp-inputmask','amp-lightbox-gallery','amp-inputmask','amp-mustache','amp-subscriptions-google','amp-subscriptions','amp-video-docking','amp-story');
+	if (!is_null($elements)) {
+		if(!empty($component_arr)){
+			$excl_arr = array('amp-bind','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-dynamic-css-classes','amp-fx-collection','amp-inputmask','amp-lightbox-gallery','amp-inputmask','amp-mustache','amp-subscriptions-google','amp-subscriptions','amp-video-docking','amp-story');
 			$inc_elem_arr = array();
 			for($r=0;$r<count($comp_to_remove_arr);$r++){
 				$inc_elem_arr[] = 'amp-'.$comp_to_remove_arr[$r];
 			}
-			for($i=0;$i<count($matches[2]);$i++){
-				if(isset($matches[2][$i])){
-					$component = $matches[2][$i];
+			for($i=0;$i<count($component_arr);$i++){
+				if(isset($component_arr[$i])){
+					$component = $component_arr[$i];
 					if(!in_array($component,$excl_arr)){
 						if(!preg_match("/<\/$component>/",  $content) && !$is_script){
-							$remove_comp = $matches[0][$i];
+							$remove_comp = $elements_arr[$i];
 							$content = str_replace($remove_comp, '', $content);
 						}else if(in_array($component, $inc_elem_arr )){
 							for($rc=0;$rc<count($inc_elem_arr);$rc++){
@@ -7785,14 +7784,55 @@ function ampforwp_include_required_scripts($content){
 						}
 					}
 					// REMOVING DUPLICATE SCRIPT.
-					$count_elem = array_count_values($matches[2])[$component];
+					$count_elem = array_count_values($component_arr)[$component];
 					if($count_elem>1){
-						$content = preg_replace('/<script(\s|\sasync\s)custom-element="'.esc_attr($component).'"(.*?)>(.*?)<\/script>/s','',$content,1,$matches[2][$i]);
+						$content = preg_replace('/<script(\s|\sasync\s)custom-element="'.esc_attr($component).'"(.*?)>(.*?)<\/script>/s','',$content,1,$component_arr[$i]);
 					}
 				}
 			}
 		}
 	}
+	//OTHER COMPONENT CHECK 
+	$other_comp_arr = array('amp-mustache'=>'amp-mustache','form'=>'amp-form');
+	foreach ($other_comp_arr as $key => $value) {
+		$ocomp = $value;
+		$celem = 'element';
+		if($ocomp=='amp-mustache'){
+			$celem = 'template';
+		}
+		if(preg_match('/(type|template)="('.$ocomp.')"/', $content) || preg_match("/<\/$key>/",  $content)){
+			if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
+				$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+				$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
+				$content =  str_replace('<head>', $script_tag, $content);
+			}
+		}
+	}
+	// Scripts added from Options panel should have higher priority #4064
+	if( ampforwp_get_setting('amp-header-text-area-for-html') && ampforwp_get_setting('amp-header-text-area-for-html')!="") {
+      $allscripts = ampforwp_get_setting('amp-header-text-area-for-html');
+      preg_match_all('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)>(.*?)<\/script>/s', $allscripts, $rep);
+      if($rep){
+		  	if(isset($rep[2]) && isset($rep[4])){
+		      	$script_slug = $rep[2];
+		      	$script_url = $rep[4];
+		      	for($s=0;$s<count($script_slug);$s++){
+		      		$slug = $script_slug[$s];
+		      		$surl = $script_url[$s];
+		      		if(preg_match('/amp/', $slug) && preg_match('/https/', $surl)){
+			         	if(preg_match('/<script(.*?)custom-element=\"'.esc_attr($slug).'\"(.*?)src=\"(.*?)\"(.*?)>(.*?)<\/script>/', $content, $conmatch)){
+			         		if(isset($conmatch[3]) && $conmatch[3]!=""){
+			         			$rep_url = $conmatch[3];
+			         			if(preg_match('/https/', $rep_url)){
+									$content = str_replace($rep_url, $surl, $content);
+			         			}
+			         		}
+			         	}
+			         }
+		        }
+		    }
+      	}
+   	}
 	return $content;
 }	
 if(!function_exists('ampforwp_get_retina_image_settings')){
