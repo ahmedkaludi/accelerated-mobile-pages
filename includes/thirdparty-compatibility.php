@@ -567,7 +567,7 @@ function ampforwp_app_box_styles(){
 		div.wpappbox div.stars5 {background-position: 0px -12px;}
 		div.wpappbox div.stars0 {background-position: 0px -0px;}
 		@media(max-width:500px){.appicon amp-img{max-width:70px;height:70px}.wpappbox .appicon{height:90px;width:90px;display:inline-block;vertical-align:middle;}.wpappbox .apptitle a{font-size:14px}.wpappbox{font-size:13px;text-align:center;padding:10px 0}.wpappbox .apptitle,.wpappbox .developer{margin-bottom:6px}.wpappbox .appdetails{text-align:left;padding-left:10px}.wpappbox .screenshots .slider{height:290px}.wpappbox .screenshots .slider>ul>li amp-img{max-width:160px;height:280px}
-		.wpappbox div.applinks{display:none;}}
+		.wpappbox div.applinks{display:none;}.wpappbox .screenshots .slider>ul {display: inline;white-space: nowrap;}}
 	<?php 
 	} // ampforwp_app_box_styles Function Ends 
 }
