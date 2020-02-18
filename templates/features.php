@@ -7343,7 +7343,7 @@ function ampforwp_head_css(){
 			        $ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($tscss).".css";
 			        if(file_exists($ts_file)){
 			        	 $ts_file = $upload_dir['baseurl'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($tscss).".css";
-			        	 $css = ampforwp_get_remote_content($ts_file);
+			        	 $css = $wp_filesystem->get_contents($ts_file);
 			        	 if(preg_match("/#wpadminbar/", $css)==0){
 			        	 	$user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking';
 			        	   if(file_exists($user_dirname)){
