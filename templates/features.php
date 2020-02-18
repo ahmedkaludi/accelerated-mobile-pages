@@ -7335,9 +7335,12 @@ function ampforwp_head_css(){
 						$tscss = "blog";
 					}elseif(ampforwp_is_front_page()){
 						$tscss = "post-".ampforwp_get_frontpage_id();
-					}else{
+					}elseif(is_singular()){
 						$tscss = "post-".ampforwp_get_the_ID();
-					}
+					}elseif(is_archive()){
+	                    $page_id = get_queried_object_id();
+	                    $tscss = "archive-".$page_id;
+	                }
 	                $tscss = $tscss.'-admin';
 					$upload_dir = wp_upload_dir(); 
 			        $ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($tscss).".css";
