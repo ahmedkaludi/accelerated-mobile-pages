@@ -3057,6 +3057,7 @@ if( !function_exists('ampforwp_checking_any_social_profiles') ) {
 
 //52. Adding a generalized sanitizer function for purifiying normal html to amp-html
 function ampforwp_content_sanitizer( $content ) {
+	global $post;
 	$amp_custom_post_content_input = $content;
 	if ( !empty( $amp_custom_post_content_input ) ) {
 		$amp_custom_content = new AMPFORWP_Content( $amp_custom_post_content_input,
@@ -3077,7 +3078,7 @@ function ampforwp_content_sanitizer( $content ) {
 						 'AMP_Iframe_Sanitizer' => array(
 							 'add_placeholder' => true,
 						 ),
-				)  )
+				),$post)
 		);
 
 		if ( $amp_custom_content ) {
