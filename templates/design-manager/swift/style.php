@@ -825,13 +825,13 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .r-pf{margin-top: 40px;display: inline-block;width: 100%;}
 <?php if( 1 == $redux_builder_amp['ampforwp-inline-related-posts'] && is_single() ){ ?>
 /** In content releated post desing styles **/
-.related_posts .related-title{
+.rp .related-title{
 	text-transform: uppercase;
     font-size: 12px;
     color: #666;
     font-weight: 400;
 }
-.related_posts .related_link a{
+.rp .related_link a{
 	color:#191919;
 	margin: 0px 0px 5px 0px;
     font-size: 18px;
@@ -839,14 +839,14 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
     display: inline-block;
     line-height: 1.5;
 }
-.related_posts .related_link {
+.rp .related_link {
     padding: 0px;
     margin: 0;
 }
-.related_posts .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
-.related_posts .related_link p{word-break: break-word;color: #444;font-size: 13px;line-height: 20px;
+.rp .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
+.rp .related_link p{word-break: break-word;color: #444;font-size: 13px;line-height: 20px;
 letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
-.related_posts ol li::before{ content: " ";}
+.rp ol li::before{ content: " ";}
 <?php } ?>
 <?php if( true == ampforwp_get_setting('amp-author-description') ) { ?>
 .sp-rt .amp-author {padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
@@ -968,7 +968,7 @@ if ( true == ampforwp_get_setting('ampforwp-disqus-comments-support') ) {?>
 @media(max-width:480px){
 	.loop-wrapper{margin-top: 15px;}
     .cntn-wrp p{line-height:1.65;}
-    .related_posts .has_related_thumbnail {width: 100%;}
+    .rp .has_related_thumbnail {width: 100%;}
     .rlp-image {width: 100%;float: none;margin-right: 0px;}
     .rlp-cnt {width: 100%;float: none;}
     .amp-post-title {font-size: 32px;line-height: 44px;}
