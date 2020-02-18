@@ -690,7 +690,10 @@ $(".ampforwp-ext-refresh").click(function(){
         var diffTime = Math.abs(today.getTime() - lastcheck.getTime());
         var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
     }
-    if(diffDays==-1 || diffDays>1){
+    var expireDate = new Date(jQuery('[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][expires]"]').val());
+    var diffTime = Math.abs( expireDate.getTime()-today.getTime() );
+    var expireDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    if(diffDays==-1 || diffDays>1 || expireDays<1){
         currentThis.text("Please wait...")
         document.cookie = "plugin_refresh_check="+today;
         var secure_nonce = currentThis.parents("li").attr('data-ext-secure');
