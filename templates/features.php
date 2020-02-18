@@ -4017,8 +4017,15 @@ add_action('ampforwp_after_post_content','ampforwp_post_pagination');
 
 // 70. Hide AMP by specific Categories & Tags #872
 function ampforwp_posts_to_remove () {
-	if((is_category() || is_tag()) && ampforwp_get_setting('ampforwp-archive-support')==0){
-		return false;
+	if(is_category()){
+		if(ampforwp_get_setting('ampforwp-archive-support-cat')==false){
+			return false;
+		}
+	}
+	if(is_tag()){
+		if(ampforwp_get_setting('ampforwp-archive-support-tag')==false){
+			return false;
+		}
 	}
 	if(ampforwp_get_setting('hide-amp-categories2')){
 		if ( has_category(array_filter(ampforwp_get_setting('hide-amp-categories2'))) ) {
