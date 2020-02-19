@@ -208,16 +208,7 @@ function ampforwp_redirection() {
       $redirectToAMP = true;
     }else if($isMobile && !$isTablet){ // Only for mobile
       $redirectToAMP = true;
-    }else{
-        $screen_width = '';
-        if(ampforwp_is_amp_endpoint()==false){
-          $screen_width = "<script>document.write(screen.width);</script>"; 
-        }
-        if($screen_width!='' && $screen_width<769){
-          $redirectToAMP = true;
-        }
     }
-
     // No mobile redirection on oembeds #2003
     if ( function_exists('is_embed') && is_embed() ){
       return;
@@ -305,6 +296,20 @@ function ampforwp_redirection() {
           // if nothing matches then return back
           return;
         }
+    }
+    if(ampforwp_is_amp_endpoint()==false && $redirectToAMP==false){
+      if(!isset($_GET['nonamphead']) && isset($_SESSION['nonamphead']) && in_array($url_to_redirect, $_SESSION['nonamphead'])){
+           return;
+        }
+        if (( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp'])) && !isset($_GET['nonamphead']) ) {
+          $_SESSION['ampforwp_amp_mode'] = 'mobile-on';
+          if ( $url_to_redirect ) {
+            ?>
+              <script>if(screen.width<769){window.location = "<?php echo $url_to_redirect?>";}</script>
+            <?php
+          }  
+          return;
+      }
     }
     // #1947 when nonamp=1 it should redirect to original link
     $go_to_url  = "";
