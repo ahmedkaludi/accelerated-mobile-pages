@@ -208,6 +208,14 @@ function ampforwp_redirection() {
       $redirectToAMP = true;
     }else if($isMobile && !$isTablet){ // Only for mobile
       $redirectToAMP = true;
+    }else{
+        $screen_width = '';
+        if(ampforwp_is_amp_endpoint()==false){
+          $screen_width = "<script>document.write(screen.width);</script>"; 
+        }
+        if($screen_width!='' && $screen_width<769){
+          $redirectToAMP = true;
+        }
     }
 
     // No mobile redirection on oembeds #2003
