@@ -92,18 +92,18 @@
     align-items: center;
     display: flex;
     margin-right: 5px;
-    display: none;
 }
 .display_header .search-wrapper .redux-amp-search-icon{
     color:#cacaca;
 }
 #redux-header:hover .display_header .search-wrapper .redux-amp-search-icon{
     color:#a7a7a7;
+    cursor: pointer;
 }
 .redux-amp-search-icon{ 
     position: absolute;
     top: 21px;
-    right: 280px;
+    right: 293px;
 }
 .redux-container{
     position: relative;
