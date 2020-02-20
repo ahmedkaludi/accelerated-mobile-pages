@@ -3765,6 +3765,8 @@ Redux::setSection( $opt_name, array(
                         'type'  => 'switch',
                         'title' => esc_html__('Sidebar', 'accelerated-mobile-pages'),
                         'default'   => 0,
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option if you want a sidebar in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-setup-sidebar-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
                         'required' => array( array('amp-design-selector', '=' , '4') ),
                 ),
               array(
