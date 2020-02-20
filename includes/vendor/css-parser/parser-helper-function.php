@@ -12,8 +12,11 @@ class AMPFORWP_Tree_Shaking_Transient{
 			$transient = "blog";
 		}elseif(ampforwp_is_front_page()){
 			$transient = "post-".ampforwp_get_frontpage_id();
-		}elseif(!empty($post) && is_object($post)){
-			$transient = "post-".$post->ID;
+		}elseif(!empty($post) && is_object($post) && is_singular()){
+			$transient = "post-".intval($post->ID);
+		}elseif(is_archive()){
+			$page_id = get_queried_object_id();
+			$transient = "archive-".intval($page_id);
 		}
 		if( is_user_logged_in() ){
 			$transient = $transient.'-admin';
