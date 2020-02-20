@@ -7849,14 +7849,14 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 	//OTHER COMPONENT CHECK 
-	$other_comp_arr = array('amp-mustache'=>'amp-mustache','form'=>'amp-form');
+	$other_comp_arr = array('amp-mustache'=>'amp-mustache','form'=>'amp-form','amp-access'=>'amp-access');
 	foreach ($other_comp_arr as $key => $value) {
 		$ocomp = $value;
 		$celem = 'element';
 		if($ocomp=='amp-mustache'){
 			$celem = 'template';
 		}
-		if(preg_match('/(type|template)="('.$ocomp.')"/', $content) || preg_match("/<\/$key>/",  $content)){
+		if(preg_match('/(type|template|id)="('.$ocomp.')"/', $content) || preg_match("/<\/$key>/",  $content)){
 			if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
 				$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
 				$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
