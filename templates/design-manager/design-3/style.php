@@ -38,7 +38,7 @@ body{
   font-size: 16px;
   line-height:1.6;
 }
-body, amp-sidebar, .single-post main .amp-wp-article-content h1, .single-post main .amp-wp-article-content h2, .single-post main .amp-wp-article-content h3, .single-post main .amp-wp-article-content h4, .single-post main .amp-wp-article-content h5, .single-post main .amp-wp-article-content h6, h2.amp-wp-title , h3.amp-wp-title, .cmt-button-wrapper a, h1.amp-wp-title, .single-post main,.related-title,.single-post .cmts_list h3, .related_posts .related_link a{
+body, amp-sidebar, .single-post main .amp-wp-article-content h1, .single-post main .amp-wp-article-content h2, .single-post main .amp-wp-article-content h3, .single-post main .amp-wp-article-content h4, .single-post main .amp-wp-article-content h5, .single-post main .amp-wp-article-content h6, h2.amp-wp-title , h3.amp-wp-title, .cmt-button-wrapper a, h1.amp-wp-title, .single-post main,.related-title,.single-post .cmts_list h3, .rp .related_link a{
   <?php $fontFamily = "font-family: sans-serif;"; ?>
     <?php if( 1 == ampforwp_get_setting('ampforwp-google-font-switch') ) {
       $fontFamily = "font-family: 'Roboto Slab';";
@@ -410,18 +410,18 @@ main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bot
 main .amp-wp-content.relatedpost{ background: none; box-shadow: none; padding:0px 0 0 0; margin:1.8em auto 1.5em auto }
 .recentpost .loop-date{font-size:14px;}
 .single-post main,.related-title,.single-post .cmts_list h3{ font-size: 20px; color: #777;border-bottom: 1px solid #eee; font-weight: 400; padding-bottom: 1px; margin-bottom: 10px; }
-.related_posts ol{ list-style-type:none; margin:0; padding:0 }
-.related_posts ol li{ display:inline-block; width:100%; margin-bottom: 12px; padding: 0px; }
-.related_posts .related_link a{ color: #444; font-size: 16px;font-weight: 600; }
-.related_posts ol li amp-img{float:left; margin-right:15px }
-.related_posts ol li amp-img{ float:left; margin-right:15px }
-.related_posts ol li p{ font-size: 12px; color: #999; line-height: 1.2; margin: 12px 0 0 0; }
+.rp ol{ list-style-type:none; margin:0; padding:0 }
+.rp ol li{ display:inline-block; width:100%; margin-bottom: 12px; padding: 0px; }
+.rp .related_link a{ color: #444; font-size: 16px;font-weight: 600; }
+.rp ol li amp-img{float:left; margin-right:15px }
+.rp ol li amp-img{ float:left; margin-right:15px }
+.rp ol li p{ font-size: 12px; color: #999; line-height: 1.2; margin: 12px 0 0 0; }
 .no_related_thumbnail{ padding: 15px 18px; }
 .no_related_thumbnail .related_link{ margin: 16px 5px 20px 5px; }
 .related-post_image{ float: left; padding-right: 2%; width: 31.6%; overflow: hidden; margin-right: 15px; max-height: 122px; max-width: 110px; } 
 .related-post_image amp-img{ width: 144%; left: -20%; }
-.ampforwp-inline-related-post .related_posts ol li amp-img {width: 100px;float:left;margin-right: 15px;}
-.ampforwp-inline-related-post .related_posts ol li{box-shadow: 0 2px 3px rgba(0,0,0,.05);}
+.ampforwp-inline-related-post .rp ol li amp-img {width: 100px;float:left;margin-right: 15px;}
+.ampforwp-inline-related-post .rp ol li{box-shadow: 0 2px 3px rgba(0,0,0,.05);}
 <?php }
 } ?>
 <?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>
@@ -603,10 +603,10 @@ amp-user-notification button:hover{ cursor: pointer }
 @media screen and (min-width: 650px) { table {display: inline-table;}  }
 @media screen and (max-width: 768px){ .amp-wp-meta{ margin:10px 0px 15px 0px } .home-post_image{ width: 40%; } .amp-loop-list .amp-wp-post-content{ width: 58%; } .amp-loop-list .featured_time{line-height:1} .single-post main .amp-wp-content h1{  line-height:1.4;  font-size: 30px;}  }
 @media screen and (max-width: 600px){ .amp-loop-list .amp-wp-tags{display:none} }
-@media screen and (max-width: 530px){ .home-post_image{ width: 35%; } .amp-loop-list .amp-wp-post-content{ width: 63%; } .amp-wp-post-content p { font-size: 12px; } .related_posts ol li p { line-height: 1.6; margin: 7px 0 0 0;} .cmts_list ul li .cmt-body {width:auto} .amp-category-block li:nth-child(3) {margin:0} }
-@media screen and (max-width: 425px){ .home-post_image{ /*    width: 125px;*/ width: 31.6%; overflow: hidden; /* margin-right: 13px; */ margin-right: 3%; max-height: 122px } .home-post_image amp-img{ width: 144%; left: -20%; } h2.amp-wp-title{    margin-bottom: 7px;  line-height: 1.31578947; font-size: 19px; position:relative;top:-3px } h2.amp-wp-title a{ color:#262626} .amp-loop-list{padding:25px 15px 22px 15px} .amp-loop-list .amp-wp-post-content{ width: 63%; } .related_posts .amp-loop-list .amp-wp-post-content .small-screen-excerpt-design-3 { display: block; } .related_posts .related_link a{ font-size: 18px; line-height: 1.7; } .ampforwp-tax-category{ padding-bottom:0 } .amp-wp-byline{ padding:0 } .related_posts .related_link a{ font-size: 17px; line-height: 1.5; } .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 26px;} .icono-share{display:none} .ampforwp-so-i a-so-share{ margin-right: 3px;} main .amp-wp-content{ font-size: 16px; line-height: 26px;} .single-post .amp_author_area .amp_author_area_wrapper{font-size:13px;} .amp-category-post{ font-size:12px; color:#666 } .large-screen-excerpt-design-3{ display:none;}.ampforwp-inline-related-post .related_posts ol li{padding:0px 0px 10px 0px;} }
+@media screen and (max-width: 530px){ .home-post_image{ width: 35%; } .amp-loop-list .amp-wp-post-content{ width: 63%; } .amp-wp-post-content p { font-size: 12px; } .rp ol li p { line-height: 1.6; margin: 7px 0 0 0;} .cmts_list ul li .cmt-body {width:auto} .amp-category-block li:nth-child(3) {margin:0} }
+@media screen and (max-width: 425px){ .home-post_image{ /*    width: 125px;*/ width: 31.6%; overflow: hidden; /* margin-right: 13px; */ margin-right: 3%; max-height: 122px } .home-post_image amp-img{ width: 144%; left: -20%; } h2.amp-wp-title{    margin-bottom: 7px;  line-height: 1.31578947; font-size: 19px; position:relative;top:-3px } h2.amp-wp-title a{ color:#262626} .amp-loop-list{padding:25px 15px 22px 15px} .amp-loop-list .amp-wp-post-content{ width: 63%; } .rp .amp-loop-list .amp-wp-post-content .small-screen-excerpt-design-3 { display: block; } .rp .related_link a{ font-size: 18px; line-height: 1.7; } .ampforwp-tax-category{ padding-bottom:0 } .amp-wp-byline{ padding:0 } .rp .related_link a{ font-size: 17px; line-height: 1.5; } .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 26px;} .icono-share{display:none} .ampforwp-so-i a-so-share{ margin-right: 3px;} main .amp-wp-content{ font-size: 16px; line-height: 26px;} .single-post .amp_author_area .amp_author_area_wrapper{font-size:13px;} .amp-category-post{ font-size:12px; color:#666 } .large-screen-excerpt-design-3{ display:none;}.ampforwp-inline-related-post .rp ol li{padding:0px 0px 10px 0px;} }
 @media screen and (max-width: 400px){ .amp-wp-title{ font-size: 19px; } }
-@media screen and (max-width: 375px){ .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 24px;} .amp-carousel-slide h2{ font-size: 22px; line-height: 32px; } #pagination .next a, #pagination .prev a{ color: #666; font-size: 14px; padding: 15px 0px; margin-top: -5px; }.related-title,.cmts_list h3{ margin-top:15px; } #pagination .next{ margin-bottom:15px; } .related_posts .related_link {line-height: 1; } }
+@media screen and (max-width: 375px){ .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 24px;} .amp-carousel-slide h2{ font-size: 22px; line-height: 32px; } #pagination .next a, #pagination .prev a{ color: #666; font-size: 14px; padding: 15px 0px; margin-top: -5px; }.related-title,.cmts_list h3{ margin-top:15px; } #pagination .next{ margin-bottom:15px; } .rp .related_link {line-height: 1; } }
 @media screen and (max-width: 340px){ .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 22px;} h2.amp-wp-title{ line-height: 1.31578947; font-size: 17px; } .the_content .amp-ad-wrapper{ text-align: center; margin-left: -13px; } }
 @media screen and (max-width: 320px){ .ampforwp-so-i a-so-share{ margin-right: 1px; } }
 .entry-content amp-anim{display:table-cell;}
@@ -622,7 +622,7 @@ main .amp-wp-content{ direction: rtl; }
 .hamburgermenu{ float: right; }
 .toast{ display: block; position: relative; height: 50px; padding-left: 20px; padding-right: 15px; width: 60px; background: none; border: 0; }
 .amp-ad-wrapper, .amp-wp-article amp-ad{ direction: ltr; }
-.related_posts ol li amp-img{ float: right; margin-left: 15px; }
+.rp ol li amp-img{ float: right; margin-left: 15px; }
 .single-post .amp_author_area amp-img{ float: right; margin-left: 12px; }
 .amp-wp-article, .footer_wrapper container{ direction: rtl; }
 .single-post .post-pagination-meta span{ float: right; }
@@ -1056,7 +1056,7 @@ amp-facebook-like{
 }
 <?php
 if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
-  a.related_posts .related_link a.readmore-rp {
+  a.rp .related_link a.readmore-rp {
       font-size: 13px;
       color:#999;
       font-weight:normal;
