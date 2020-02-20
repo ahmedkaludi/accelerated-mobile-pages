@@ -39,6 +39,24 @@ function amp_post_template_add_cached_link($amp_template) {
 		<link rel="preload" as="font" href="<?php echo esc_url($font_url); ?>" type="font/ttf" crossorigin>
 	<?php
 	}
+	?>
+	<link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+		<?php
+		$scripts = $amp_template->get( 'amp_component_scripts', array() );
+		foreach ( $scripts as $element => $script ) : 
+			if (strpos($script, "amp-experiment") || strpos($script, "amp-dynamic-css-classes") || strpos($script, "amp-story")) { 
+		?>
+			<link rel="preload" as="script" href="<?php echo esc_url( $script ); ?>">
+		<?php } 
+		endforeach; 
+
+		// IF GOOGLE FONT EXIST.
+		$font_urls = $amp_template->get( 'font_urls', array() );
+		foreach ( $font_urls as $slug => $url ) : 
+			if (strpos($url, "fonts.googleapis.com")) { 
+		?>
+			<link rel="preconnect dns-prefetch" href="https://fonts.gstatic.com/" crossorigin>
+	<?php } endforeach;
 }
 
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_scripts' );
