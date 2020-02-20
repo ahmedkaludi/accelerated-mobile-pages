@@ -666,7 +666,69 @@ $(".redux-ampforwp-ext-activate").click(function(){
 })
 
 //Deactivate License key
+function AMPforwpreadCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(";");
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==" ") c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
 function deactivatelicence(){
+    $(".ampforwp-ext-refresh").click(function(){
+    var currentThis = $(this);
+    var plugin_id = currentThis.attr("id");
+
+    var today = new Date();
+    var lastcheck = AMPforwpreadCookie('plugin_refresh_check');
+    lastcheck = new Date(lastcheck);
+    console.log(lastcheck+ " true");
+    var diffDays = -1;
+    if( typeof lastcheck != undefined){
+        var diffTime = Math.abs(today.getTime() - lastcheck.getTime());
+        var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    }
+     var expireDate = new Date(jQuery('[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][expires]"]').val());
+    var diffTime = Math.abs( expireDate.getTime()-today.getTime() );
+    var expireDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    if(diffDays==-1 || diffDays>1 || expireDays<1){
+        currentThis.text("Please wait...")
+        document.cookie = "plugin_refresh_check="+today;
+        var secure_nonce = currentThis.parents("li").attr('data-ext-secure');
+        $.ajax({
+                url: ajaxurl,
+                method: 'post',
+                data: {action: 'ampforwp_get_licence_activate_update',
+                        update_check: 'yes',
+                       ampforwp_license_activate:plugin_id,
+                       verify_nonce: secure_nonce
+                        },
+                dataType: 'json',
+                success: function(response){
+                    currentThis.parents("li").find(".license-tenure").text('')
+                    currentThis.parents("li").find('.afw-license-response-message').remove();
+                    if(response.status=='200'){
+                        var expireData = new Date(response.other.all_data.expires);
+                        var today = new Date();
+                        var diffTime = Math.abs( expireData.getTime()-today.getTime() );
+                        var expireDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+                        currentThis.parents("li").find(".license-tenure").text(expireDays+" Days Remaining")
+                    }else{
+                        currentThis.parents("li").find('.license-tenure').text(response.message);
+                    }
+                }
+            })
+        currentThis.html('<i class="dashicons-before dashicons-update"></i>Refresh');
+
+     }else{  
+        $(".dashicons").addClass( 'spin' );
+        setTimeout( function() {
+            $(".dashicons").removeClass( 'spin' );}, 3000 );   
+
+    }
+});
 $(".redux-ampforwp-ext-deactivate").click(function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
