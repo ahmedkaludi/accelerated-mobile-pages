@@ -7372,13 +7372,18 @@ function ampforwp_head_css(){
 		global $wp_admin_bar;
 		$dom = new DOMDocument();
 		$my_account = $wp_admin_bar->get_node('my-account');
-		 $title = ampforwp_content_sanitizer($my_account->title);
-		 $wp_admin_bar->add_menu( array(
-		        'id'        => 'my-account',
-		        'title'      => $title
-		  ) );
+		$title = '';
+		if(is_object($my_account)){
+		 	$title = ampforwp_content_sanitizer($my_account->title);
+		}
+		$wp_admin_bar->add_menu( array(
+	        'id'        => 'my-account',
+	        'title'      => $title
+		) );
 		$user_info = $wp_admin_bar->get_node('user-info');
-		$title = $user_info->title;
+		if(is_object($user_info)){
+			$title = $user_info->title;
+		}
 		if($title){
 			$dom->loadHTML($title);
 			$anchors = $dom -> getElementsByTagName('img'); 
