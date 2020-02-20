@@ -1,5 +1,24 @@
 == Changelog ==
 
+= 1.0.29 (21th February 2020) =
+* Improvement: Created an option for entering URLs to prefetch. #3997
+* Fixed: Admin bar css is not loaded on amp pages #4130
+* Fixed: Optimize amp pages and CSS #3579 #4174
+* Fixed: When the tree shaking is enabled then the CSS of the layouts break #4113
+* Fixed: Extra 301 redirect after enabling ?amp #4167
+* Fixed: Break in layout when AMP takeout and conver to wp is enabled together #4176
+* Fixed: There should be no notices or messages from other third party plugins on the AMP option panel. #4166
+* Fixed: Incorrect time showing on AMP if we select Timezone as UTC-3 #4160
+* Fixed: WPappbox images are not loading on the amp pages #4161
+* Fixed: CSS of CTA button is over-riding while using more than one CTA  in AMP pagebuilder. #4173
+* Fixed: Notice Errors - Trying to get property 'title' #4196
+* Fixed: Warning issue on AMP option panel. #4172
+* Fixed: Display the Search button in AMP option panel. #4165
+* Fixed: Warning Errors #4200
+* Fixed: amp-access script is not being appended via Enter HTML in Head #4199
+* Fixed: Issues related to category support on the AMP Pages #4151
+* Fixed: AMP Options panel UI bugs #4180 #4179 #4105
+
 = 1.0.28 (18th February 2020) =
 * Improvement: Scripts added from Options panel should have higher priority in the frontend #4064
 
