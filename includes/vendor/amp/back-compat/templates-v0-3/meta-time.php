@@ -1,5 +1,6 @@
 <li class="amp-wp-posted-on">
-	<time datetime="<?php echo esc_attr( date( 'c', $this->get( 'post_publish_timestamp' ) ) ); ?>">
+	<?php global $post; ?>
+    <time datetime="<?php echo esc_attr( mysql2date( DATE_W3C, $post->post_date_gmt, false ) ); ?>">
 		<?php
 		echo esc_html(
 			sprintf(

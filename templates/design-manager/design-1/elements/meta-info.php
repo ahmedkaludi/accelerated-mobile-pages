@@ -29,7 +29,8 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 	<?php endif; ?>
 
 	<div class="amp-wp-meta amp-wp-posted-on">
-		<time datetime="<?php echo esc_attr( date( 'c', $this->get( 'post_publish_timestamp' ) ) ); ?>">
+		<?php global $post; ?>
+    	<time datetime="<?php echo esc_attr( mysql2date( DATE_W3C, $post->post_date_gmt, false ) ); ?>">
 		<?php if( is_single() || ( is_page() && $redux_builder_amp['meta_page'] ) ) {
 			global $redux_builder_amp;
 			$date = get_the_date( get_option( 'date_format' ));
