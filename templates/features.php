@@ -6973,7 +6973,43 @@ function ampforwp_fontawesome_canonical_link(){
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <?php }
     }
-
+add_action('amp_post_template_head', 'ampforwp_set_dns_preload_urls');
+function ampforwp_set_dns_preload_urls(){
+	$prefetch = ampforwp_get_setting('amp-prefetch-options');
+	$data_arr = array();
+	if(is_array($prefetch)){
+	    foreach ( $prefetch as $k => $value ) {
+	    	if(is_array($value)){
+		        foreach ($value as $tk => $tval) {
+		            $temp_arr = array();
+		            $temp_arr['name'][] = $k;
+		            $temp_arr['type'][] = $tk;
+		            foreach ($tval as $ck => $cval) {
+		                $temp_arr['value'][] = $cval;
+		            }
+		            $data_arr[] = $temp_arr; 
+		        }
+		    }
+	    }
+	    if(isset($data_arr[0]) && !empty($data_arr)){
+	        $val_count = count($data_arr[0]['value']);
+	        for($i=0;$i<$val_count;$i++){
+	            for($j=0;$j<count($data_arr);$j++){
+	                $key 	= $data_arr[$j]['value'][$i];
+	                if(isset($data_arr[$j+1])){
+	               	 	$key 	= $data_arr[$j]['value'][$i];
+	               	 	$value 	= $data_arr[$j+1]['value'][$i];
+	               	 	if($value!=""){
+	               	 		?>
+	               	 		<link rel="<?php echo esc_attr($key)?>" href="<?php echo esc_url($value);?>" crossorigin>
+	               	 		<?php
+	               	 	}
+	               	}
+	            }
+	        }
+	    }
+	}
+}
 // Yoast BreadCrumbs #1473
 add_action('pre_amp_render_post', 'ampforwp_yoast_breadcrumbs');
 if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {

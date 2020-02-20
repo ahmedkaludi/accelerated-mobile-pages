@@ -2713,6 +2713,28 @@ Redux::setSection( $opt_name, array(
                         'default'   => ''
                     ),
                     array(
+                        'id'       => 'amp-prefetch-options',
+                        'type'     => 'repeater',
+                        'title'    => esc_html__('DNS Priority URL(s)', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'  => sprintf( '%s<a href="%s" target="_blank">%s</a>%s', esc_html__("DNS Priority ask your browser to do a DNS lookup and connection before you need any resources from that domain. ",'accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-use-dns-prefetch-urls-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'),esc_html__(' for more info','accelerated-mobile-pages')),
+                        'repeat-fields'=> array(
+                                        array(
+                                                'id'       => 'amp-dns-urls-type',
+                                                'type'     => 'select',  
+                                                'options'  => array(
+                                                                        'prefetch'=>'Prefetch',
+                                                                        'dns-prefetch'=>'DNS-Prefetch',
+                                                                        'preload'=>'Preload',
+                                                                        'preconnect'=>'Preconnect'
+                                                                ),
+                                        ),
+                                        array(
+                                                'id'       => 'amp-dns-urls-field',
+                                                'type'     => 'text',
+                                        ),
+                                    ),
+                        ),
+                    array(
                         'id'       => 'ampforwp-auto-amp-menu-link',
                         'type'     => 'switch',
                         'title'    => esc_html__('Auto Add AMP in Menu URL', 'accelerated-mobile-pages'),
