@@ -36,7 +36,7 @@ global $redux_builder_amp;
         <?php } ?>
 
         <?php if ( ampforwp_checking_any_social_profiles() ) { ?>
-          <div class="social_icons">
+          <div class="so_i">
             <ul>
 
             <?php if ( ampforwp_get_setting('enable-single-twittter-profile') && '' !== ampforwp_get_setting('enable-single-twittter-profile-url') ) { ?>
