@@ -354,11 +354,14 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$amp_url = untrailingslashit($current_search_url);
 			}
 			// URL Purifier
-			$amp_url = ampforwp_url_purifier($amp_url);			
+			$amp_url = ampforwp_url_purifier($amp_url);
+			if(true == ampforwp_get_setting('amp-core-end-point')){
+				$amp_url = add_query_arg( 'amp', '', get_the_permalink() );
+			}	
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 	        if( $supported_amp_post_types || ampforwp_is_front_page() ) {				
-				return $amp_url;
+				return esc_url($amp_url);
 			}
 		}
 		return;
