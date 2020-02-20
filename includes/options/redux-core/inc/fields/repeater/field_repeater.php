@@ -62,6 +62,19 @@ if ( ! class_exists( 'ReduxFramework_repeater' ) ) {
 
             echo '<ul id="' . esc_attr($this->field['id']) . '-ul" class="redux-repeater">';
             if ( isset( $this->value ) && is_array( $this->value ) ) {
+                $select_count = 0;
+                if(isset($this->value['amp-dns-urls-type']) && isset($this->value['amp-dns-urls-type']['select'])){
+                    $select_count = count($this->value['amp-dns-urls-type']['select']);
+                }
+                $text_count = 0;
+                if(isset($this->value['amp-dns-urls-field']) && isset($this->value['amp-dns-urls-field']['text'])){
+                    $text_count = count($this->value['amp-dns-urls-field']['text']);
+                }
+                if($select_count!=$text_count){
+                    for($i=$text_count;$i<$select_count;$i++){
+                        $this->value['amp-dns-urls-field']['text'][] = '';
+                    }
+                }
                 $data_arr = array();
                 if(is_array( $this->value)){
                     foreach ( $this->value as $k => $value ) {
