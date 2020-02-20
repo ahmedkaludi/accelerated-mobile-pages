@@ -116,7 +116,7 @@ jQuery(function($) {
     $('.redux-container').each(function() {
         if (!$(this).hasClass('redux-no-sections')) {
             $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls"  style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');
-            $('.redux-amp-search-icon').on('mouseover',function(){
+            $('.redux-amp-search-icon').on('click',function(){
                 $('.redux_field_search').toggle('slide');
             });
             reduxOptionSearch();
