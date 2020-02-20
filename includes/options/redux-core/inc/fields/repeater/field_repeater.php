@@ -108,7 +108,10 @@ if ( ! class_exists( 'ReduxFramework_repeater' ) ) {
                 }
 
                 if(!empty($new_arr)){
+                    $row_count = 0;
+                    $total_count = 0;
                     foreach ($new_arr as $nk => $nvalue) {
+                    $row_count++;
                     $count = 0;
                     echo '<li>';
                     echo '<div class="element-fields">';
@@ -117,6 +120,7 @@ if ( ! class_exists( 'ReduxFramework_repeater' ) ) {
                                 if(!empty($rv)){
                                     foreach ($rv as $rk1 => $rv1) {
                                         if(isset($nvalue[$count])){
+                                            $total_count++;
                                             if($rv1=='select'){
                                                 $elem_arr = $nvalue[$count];
                                                 $val = $elem_arr['value'];
@@ -141,7 +145,11 @@ if ( ! class_exists( 'ReduxFramework_repeater' ) ) {
                                 }
                             }
                         }
-                    echo '<span class="el el-remove deletion redux-repeater-remove"></span><div>';
+                    $disp = '';
+                    if($row_count==1 && $select_count==1){
+                        $disp = 'display:none';
+                    }
+                    echo '<span class="el el-remove deletion redux-repeater-remove" style="'.esc_attr($disp).'"></span><div>';
                     echo '</li>';
                     }
                 }
