@@ -118,11 +118,13 @@ $amp_ws_other_type = '';
 if($amp_website_type!=""){
 	if(preg_match("/Other/", $amp_website_type)!=0){
 		$other = explode("-", $amp_website_type);
-		if(!isset($other[1]) || (isset($other[1]) && empty($other[1]))){
-			$amp_website_type = "";
-		}
-		else{
-			$amp_ws_other_type = $other[1];
+		if ( is_array($other)) {
+			if(isset($other[0]) && $other[0]){
+				$amp_website_type = "";
+			}
+			if(isset($other[1]) && $other[1]){
+				$amp_ws_other_type = $other[1];
+			}
 		}
 	}
 }
