@@ -2,10 +2,10 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
-<div {{if_id}}id="{{id}}"{{ifend_id}} class="cta-tlt cta-{{cta-mod}} {{user_class}}">
+<div {{if_id}}id="{{id}}"{{ifend_id}} class="cta-tlt {{user_class}}">
 	<h2>{{content_title}}</h2>
 </div>
-<div class="cta-btn cta-b{{cta-mod}}">
+<div class="cta-btn">
 	<a  class="btn-txt" href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} {{if_cta_id}}id="{{cta_id}}"{{ifend_cta_id}}>{{button-text}}</a>
 	<span class="txt">{{text_title}}</span>
 </div>
@@ -13,9 +13,9 @@ $output = '
 $css = '
 .cta-mod{margin:{{margin_css}};padding:{{padding_css}};display: inline-flex;width: 100%;align-items: center;}
 .cta-mod .cta-btn{width: 40%;text-align: right;}
-.cta-mod .cta-{{cta-mod}} h2{font-size:{{text-size}};line-height:1.5;font-weight:normal;color:{{font_color_picker}};}
-.cta-mod .cta-b{{cta-mod}} .btn-txt{display: inline-block;color: {{txt_color_picker}};padding: 10px 20px;font-size: 26px;border: 3px solid {{brd_color_picker}};font-weight: 500;background: {{bg_color_picker}};}
-.cta-mod .cta-b{{cta-mod}} .txt{display: block;color: {{subh_color_picker}};font-size: 16px;margin-top: 20px;}
+.cta-mod h2{font-size:{{text-size}};line-height:1.5;font-weight:normal;color:{{font_color_picker}};}
+.cta-mod .btn-txt{display: inline-block;color: {{txt_color_picker}};padding: 10px 20px;font-size: 26px;border: 3px solid {{brd_color_picker}};font-weight: 500;background: {{bg_color_picker}};}
+.cta-mod .txt{display: block;color: {{subh_color_picker}};font-size: 16px;margin-top: 20px;}
 @media(max-width:768px){
 	.cta-mod{display:inline-block;width:100%;text-align:center}
 	.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
