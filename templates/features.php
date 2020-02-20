@@ -7812,7 +7812,7 @@ function ampforwp_include_required_scripts($content){
 	}
 
 	$comp_dom = new DOMDocument();
-	$comp_dom->loadHTML($content);
+	@$comp_dom->loadHTML($content);
 	$xpath       = new DOMXPath( $comp_dom );
 	$elements = $xpath->query("*/script[@custom-element]");
 	$component_arr = array();
