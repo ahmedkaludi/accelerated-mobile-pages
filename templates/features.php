@@ -6977,17 +6977,19 @@ add_action('amp_post_template_head', 'ampforwp_set_dns_preload_urls');
 function ampforwp_set_dns_preload_urls(){
 	$prefetch = ampforwp_get_setting('amp-prefetch-options');
 	$data_arr = array();
-	if($prefetch!=""){
+	if(is_array($prefetch)){
 	    foreach ( $prefetch as $k => $value ) {
-	        foreach ($value as $tk => $tval) {
-	            $temp_arr = array();
-	            $temp_arr['name'][] = $k;
-	            $temp_arr['type'][] = $tk;
-	            foreach ($tval as $ck => $cval) {
-	                $temp_arr['value'][] = $cval;
-	            }
-	            $data_arr[] = $temp_arr; 
-	        }
+	    	if(is_array($value)){
+		        foreach ($value as $tk => $tval) {
+		            $temp_arr = array();
+		            $temp_arr['name'][] = $k;
+		            $temp_arr['type'][] = $tk;
+		            foreach ($tval as $ck => $cval) {
+		                $temp_arr['value'][] = $cval;
+		            }
+		            $data_arr[] = $temp_arr; 
+		        }
+		    }
 	    }
 	    if(isset($data_arr[0]) && !empty($data_arr)){
 	        $val_count = count($data_arr[0]['value']);

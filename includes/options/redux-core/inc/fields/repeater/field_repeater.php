@@ -63,17 +63,20 @@ if ( ! class_exists( 'ReduxFramework_repeater' ) ) {
             echo '<ul id="' . esc_attr($this->field['id']) . '-ul" class="redux-repeater">';
             if ( isset( $this->value ) && is_array( $this->value ) ) {
                 $data_arr = array();
-                foreach ( $this->value as $k => $value ) {
-                    foreach ($value as $tk => $tval) {
-                        $temp_arr = array();
-                        $temp_arr['name'][] = $k;
-                        $temp_arr['type'][] = $tk;
-                        foreach ($tval as $ck => $cval) {
-                            $temp_arr['value'][] = $cval;
+                if(is_array( $this->value)){
+                    foreach ( $this->value as $k => $value ) {
+                        if(is_array( $value)){
+                            foreach ($value as $tk => $tval) {
+                                $temp_arr = array();
+                                $temp_arr['name'][] = $k;
+                                $temp_arr['type'][] = $tk;
+                                foreach ($tval as $ck => $cval) {
+                                    $temp_arr['value'][] = $cval;
+                                }
+                                $data_arr[] = $temp_arr; 
+                            }
                         }
-                        $data_arr[] = $temp_arr; 
                     }
-                    
                 }
                 $new_arr = array();
                 if(isset($data_arr[0]) && is_array($data_arr[0])){
