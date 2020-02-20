@@ -70,10 +70,18 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					$img_data = wp_get_attachment_metadata( $slide->getImageID() );
 					$url = $slide->getImageUrl();
 					$attachment_id = $slide->getImageID();
+					$width = '480';
+					$height = '270';
+					if(isset($img_data['width'])){
+						$width = intval($img_data['width']);
+					}
+					if(isset($img_data['height'])){
+						$height = intval($img_data['height'];
+					}
 					$urls[] = apply_filters('amp_gallery_image_params', array(
 						'url' => $url,
-						'width' => intval($img_data['width']),
-						'height' => intval($img_data['height']),
+						'width' => $width,
+						'height' => $height,
 						'bgtype' => esc_attr($bgtype)
 					),$attachment_id);
 				}elseif( $bgtype == 'youtube' ){
