@@ -98,6 +98,7 @@
 }
 #redux-header:hover .display_header .search-wrapper .redux-amp-search-icon{
     color:#a7a7a7;
+    cursor: pointer;
 }
 .redux-amp-search-icon{ 
     position: absolute;
