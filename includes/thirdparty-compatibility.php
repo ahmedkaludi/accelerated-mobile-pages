@@ -1055,3 +1055,39 @@ function ampforwp_valid_amp_componet_script(){
 	$ce_valid_scripts = apply_filters('ampforwp_valid_amp_component_script',$ce_valid_scripts);
 	return $ce_valid_scripts;
 }
+function ampforwp_show_yoast_seo_local_map($content){
+	if(preg_match('/wpseo-map-canvas/', $content)){
+		$options = get_option( 'wpseo_local' );
+		$local_address = $options['location_address'];
+		$location_city = $options['location_city'];
+		$location_state = $options['location_state'];
+		$location_zipcode = $options['location_zipcode'];
+		$location_country = $options['location_country'];
+		$address = $local_address.", ".$location_city.", ".$location_state.", ".$location_zipcode.", ".$location_country;
+		$location_coords_lat = $options['location_coords_lat'];
+		$location_coords_long = $options['location_coords_long'];
+		$googlemaps_api_key = $options['googlemaps_api_key'];
+		$map_str = '<iframe width="350" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key='.esc_attr($googlemaps_api_key).'&q='.urlencode($address).'&center='.esc_attr($location_coords_lat).','.esc_attr($location_coords_long).'" allowfullscreen>
+				</iframe>';
+		$sanitizer = new AMPFORWP_Content( $map_str, array(), 
+		apply_filters( 'ampforwp_content_sanitizers',
+			array( 
+					'AMP_Style_Sanitizer' 		=> array(),
+					'AMP_Blacklist_Sanitizer' 	=> array(),
+					'AMP_Img_Sanitizer' 		=> array(),
+					'AMP_Video_Sanitizer' 		=> array(),
+					'AMP_Audio_Sanitizer' 		=> array(),
+					'AMP_Iframe_Sanitizer' 		=> array(
+						'add_placeholder' 		=> true,
+					)
+				) ) );
+		$map_str 		= $sanitizer->get_amp_content();
+		$content = preg_replace('/(<div\sid="(.*?)"(.*?)class="wpseo-map-canvas(.*?)">)(.*?)(<\/div>)/s', '$1'.$map_str.'$6', $content);
+		preg_match('/(<div\sid="(.*?)"(.*?)class="wpseo-map-canvas(.*?)">)(.*?)(<\/div>)/s', $content,$match);
+		if(isset($match[4])){
+			$content = str_replace($match[4], '', $content);
+		}
+		$content = preg_replace('/<div id="wpseo-directions-wrapper">(.*?)<\/div>/s','', $content);
+	}
+	return $content;
+}
