@@ -618,7 +618,7 @@ foreach ($extension_listing_array as $key => $extension) {
         if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
             $license_status = $selectedOption['amp-license'][$pathExploded]['status'];
              $currentStatus = 'active valid';
-             $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-deactivate">Deactivate</button>';
+             $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-deactivate">'.esc_html__('Deactivate', 'accelerated-mobile-pages').'</button> <span class="ampforwp-ext-refresh" style="cursor:pointer" id="'.esc_attr($pathExploded).'"><i class="dashicons dashicons-before dashicons-update"></i>'.esc_html__('Refresh', 'accelerated-mobile-pages').'</span>';
             if($ampforwp_nameOfUser=="" && isset($selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'])){
                 $ampforwp_nameOfUser = $selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'];
             }
@@ -627,8 +627,8 @@ foreach ($extension_listing_array as $key => $extension) {
                 $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
                 $remainingExpiresDays = floor( ( strtotime($allResponseData['expires'] )- time() )/( 60*60*24 ) );
                 if($remainingExpiresDays>0){
-                    $amp_license_response = $remainingExpiresDays." Days Remaining. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".$amplicense."&download_id=".$allResponseData['item_name']."'>Renew License</a>";
-                }else{ $amp_license_response = "Expired! <a href='https://accounts.ampforwp.com/order/?edd_license_key=".$amplicense."&download_id=".$allResponseData['item_name']."'>Renew your license</a>"; }
+                $amp_license_response = "<span class='license-tenure'>".esc_html($remainingExpiresDays)."  ".esc_html__('Days Remaining', 'accelerated-mobile-pages')."</span>. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."'>".esc_html__('Renew License', 'accelerated-mobile-pages')."</a>";
+                }else{ $amp_license_response = "<span class='license-tenure'>".esc_html__('Expired', 'accelerated-mobile-pages')."!</span> <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."'>".esc_html__('Renew your license', 'accelerated-mobile-pages')."</a>"; }
             }
         }
         if ( '' == $allResponseData['success'] && '' == $allResponseData['success'] ) {        
@@ -1637,6 +1637,9 @@ function ampforwp_get_all_tags($id){
     // AMP to WP Default value
     function ampforwp_amp2wp_default(){
         $default = 0;
+        if (true == ampforwp_get_setting('ampforwp-amp-takeover')){
+            return $default;
+        }
         $theme = '';
         $theme = wp_get_theme(); // gets the current theme
 
@@ -2579,8 +2582,8 @@ Redux::setSection( $opt_name, array(
                         array(
                         'id'        =>'hide-amp-categories2',
                         'type'      => 'select',
-                        'title'     => __('Select Categories to Hide AMP'),
-                        'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
+                        'title'     => esc_html__('Select Categories to Hide AMP posts'),
+                        'tooltip-subtitle' => esc_html__( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true, 
                         'ajax'      => true,
                         'options' => ampforwp_get_categories('hide-amp-categories2'),
@@ -2590,8 +2593,8 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'        =>'hide-amp-tags-bulk-option2',
                         'type'      => 'select',
-                        'title'     => __('Select Tags to Hide AMP'),
-                        'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
+                        'title'     => esc_html__('Select Tags to Hide AMP posts'),
+                        'tooltip-subtitle' => esc_html__( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                         'multi'     => true,
                         'ajax'      => true,
                         'options' => ampforwp_get_all_tags('hide-amp-tags-bulk-option2'),
@@ -2679,8 +2682,11 @@ Redux::setSection( $opt_name, array(
                    'title'    => esc_html__('Convert AMP to WP theme (Beta)', 'accelerated-mobile-pages'),
                    'tooltip-subtitle'  => sprintf( '%s<a href="%s" target="_blank">%s</a>%s', esc_html__("It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design and ",'accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-convert-your-non-amp-website-to-amp/'),esc_html__('Click Here','accelerated-mobile-pages'),esc_html__(' for more info','accelerated-mobile-pages')),
                    'default'  => ampforwp_amp2wp_default(),
-                   'required' => array('amp-design-selector', '=' , '4'),
-             ), 
+                   'required' => array(
+                    array('amp-design-selector', '=', '4'),
+                    array('ampforwp-amp-takeover', '=' , '0'),
+                    )
+                ), 
                     array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
@@ -2706,6 +2712,28 @@ Redux::setSection( $opt_name, array(
                         'accelerated-mobile-pages'),
                         'default'   => ''
                     ),
+                    array(
+                        'id'       => 'amp-prefetch-options',
+                        'type'     => 'repeater',
+                        'title'    => esc_html__('DNS Priority URL(s)', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'  => sprintf( '%s<a href="%s" target="_blank">%s</a>%s', esc_html__("DNS Priority ask your browser to do a DNS lookup and connection before you need any resources from that domain. ",'accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-use-dns-prefetch-urls-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'),esc_html__(' for more info','accelerated-mobile-pages')),
+                        'repeat-fields'=> array(
+                                        array(
+                                                'id'       => 'amp-dns-urls-type',
+                                                'type'     => 'select',  
+                                                'options'  => array(
+                                                                        'prefetch'=>'Prefetch',
+                                                                        'dns-prefetch'=>'DNS-Prefetch',
+                                                                        'preload'=>'Preload',
+                                                                        'preconnect'=>'Preconnect'
+                                                                ),
+                                        ),
+                                        array(
+                                                'id'       => 'amp-dns-urls-field',
+                                                'type'     => 'text',
+                                        ),
+                                    ),
+                        ),
                     array(
                         'id'       => 'ampforwp-auto-amp-menu-link',
                         'type'     => 'switch',
@@ -3759,6 +3787,8 @@ Redux::setSection( $opt_name, array(
                         'type'  => 'switch',
                         'title' => esc_html__('Sidebar', 'accelerated-mobile-pages'),
                         'default'   => 0,
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option if you want a sidebar in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-setup-sidebar-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
                         'required' => array( array('amp-design-selector', '=' , '4') ),
                 ),
               array(

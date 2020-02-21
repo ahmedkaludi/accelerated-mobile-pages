@@ -363,9 +363,12 @@ if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
 					$transient_filename = "blog";
 				}elseif(ampforwp_is_front_page()){
 					$transient_filename = "post-".ampforwp_get_frontpage_id();
-				}else{
-					$transient_filename = "post-".ampforwp_get_the_ID();
-				}
+				}elseif(is_singular()){
+                    $transient_filename = "post-".ampforwp_get_the_ID();
+                }elseif(is_archive()){
+                    $page_id = get_queried_object_id();
+                    $transient_filename = "archive-".intval($page_id);
+                }
                 if( is_user_logged_in() ){
                     $transient_filename = $transient_filename.'-admin';
                 }

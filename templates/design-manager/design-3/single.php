@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action('ampforwp_post_after_design_elements') ?>
 		<?php if(true==ampforwp_get_setting('ampforwp-design3-recent-posts') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {?>
 					<div class="amp-wp-content relatedpost recentpost">
-						 <div class="related_posts">
+						 <div class="rp">
 						<span class="related-title"><?php echo esc_attr(ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' )); ?></span>
 						<ol class="clearfix">
 						<?php 

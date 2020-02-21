@@ -17,12 +17,19 @@ function ampforwp_get_licence_activate_update(){
     }
     $selectedOption = get_option('redux_builder_amp',true);
     if($_SERVER['REQUEST_METHOD']=='POST'){
-        $ampforwp_license_activate = sanitize_text_field($_POST['ampforwp_license_activate']);
-        $license = sanitize_text_field($_POST['license']);
-        $item_name = sanitize_text_field($_POST['item_name']);
-        $store_url = sanitize_text_field($_POST['store_url']);
-        $plugin_active_path = sanitize_text_field($_POST['plugin_active_path']);
-        $status = 300;
+        if(!isset($_POST['update_check'])){
+            $ampforwp_license_activate = sanitize_text_field($_POST['ampforwp_license_activate']);
+            $license = sanitize_text_field($_POST['license']);
+            $item_name = sanitize_text_field($_POST['item_name']);
+            $store_url = sanitize_text_field($_POST['store_url']);
+            $plugin_active_path = sanitize_text_field($_POST['plugin_active_path']);
+        }else{
+            $ampforwp_license_activate = sanitize_text_field($_POST['ampforwp_license_activate']);
+            $license = $selectedOption['amp-license'][$ampforwp_license_activate]['license'];
+            $item_name = $selectedOption['amp-license'][$ampforwp_license_activate]['item_name'];
+            $store_url = $selectedOption['amp-license'][$ampforwp_license_activate]['store_url'];
+        }
+        $status = 400;
         if($license==""){
             $message = "Please Enter valid license key";
         }else{
@@ -136,6 +143,9 @@ function ampforwp_get_licence_activate_update(){
             }else{
                 $status     = "500";
             }
+            }else{
+            $status     = "400";
+            $message    = "License not found";
         }
 
         echo json_encode(array("status"=>$status,"message"=>$message,"other"=> $selectedOption['amp-license'][$ampforwp_license_activate]));
@@ -246,7 +256,6 @@ function ampforwp_admin_notices() {
         }
     }
 }
-add_action( 'admin_notices', 'ampforwp_admin_notices' );
 
 function ampforwp_set_plugin_limit( $force=false, $license_data='', $data) {
 
