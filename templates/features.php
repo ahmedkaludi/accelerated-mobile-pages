@@ -2057,9 +2057,6 @@ function ampforwp_lazy_loading_plugins_compatibility() {
 	remove_filter( 'widget_text', array( $lazyloadxt, 'filter_html' ) );
 	remove_filter( 'post_thumbnail_html', array( $lazyloadxt, 'filter_html' ) );
 	remove_filter( 'get_avatar', array( $lazyloadxt, 'filter_html' ) );
-
-    // Lazy Load
-	add_filter( 'lazyload_is_enabled', '__return_false', PHP_INT_MAX );
 }
 
 //Removing bj loading for amp
