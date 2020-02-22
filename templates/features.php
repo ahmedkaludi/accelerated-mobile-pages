@@ -8045,3 +8045,54 @@ if(!function_exists('ampforwp_check_image_existance')){
 		return $image;
 	}
 }
+if(class_exists('Getty_Images')){
+	global $getty_img_content;
+	add_filter( 'embed_oembed_html', 'ampforwp_get_gitty_image_embed',10,4);
+	function ampforwp_get_gitty_image_embed( $html, $url, $attr, $post_ID ) {
+		global $getty_img_content;
+		$getty_img_content[] = $html;
+		return $html; 
+	}
+	add_filter( 'ampforwp_the_content_last_filter','ampforwp_getty_image_compatibility',10);
+	function ampforwp_getty_image_compatibility($content){
+		global $getty_img_content;
+		if(is_array($getty_img_content)){
+			if(preg_match_all('/<a id="(.*?)"\sclass="gie-single(.*?)">Embed from Getty Images<\/a>/', $content, $matches)){
+				if(isset($matches[0])){
+					for($i=0;$i<count($matches[0]);$i++){
+						$full_content = $matches[0][$i];
+						$img_id = $matches[1][$i];
+						if(isset($getty_img_content[$i])){
+							if(preg_match('/gie\.widgets\.load\({id:\'(.*?)\',sig:\'(.*?)\',w:\'(.*?)\',h:\'(.*?)\',items:\'(.*?)\'/',$getty_img_content[$i],$match)){
+								if(isset($match[1]) && isset($match[2]) && isset($match[3]) && isset($match[4]) && isset($match[5])){
+									$image_id = $match[1];
+									$image_key = $match[2];
+									$width = $match[3];
+									$height = $match[4];
+									$img_emb_id = $match[5];
+									$iframe = '<iframe src="//embed.gettyimages.com/embed/'.esc_attr($img_emb_id).'?et='.esc_attr($image_id).'&amp;tld=com&sig='.esc_attr($image_key).'&caption=false&ver=2" scrolling="no" frameborder="0" width="'.esc_attr($width).'" height="'.esc_attr($height).'"></iframe>';
+									$description 	= get_the_archive_description();
+									$sanitizer = new AMPFORWP_Content( $iframe, array(), 
+										apply_filters( 'ampforwp_content_sanitizers',
+											array( 
+												'AMP_Style_Sanitizer' 		=> array(),
+												'AMP_Blacklist_Sanitizer' 	=> array(),
+												'AMP_Img_Sanitizer' 		=> array(),
+												'AMP_Video_Sanitizer' 		=> array(),
+												'AMP_Audio_Sanitizer' 		=> array(),
+												'AMP_Iframe_Sanitizer' 		=> array(
+													'add_placeholder' 		=> true,
+												)
+											) ) );
+									$iframe_content = $sanitizer->get_amp_content();
+									$content = str_replace($full_content, $iframe_content, $content );
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return $content;
+	}
+}
