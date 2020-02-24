@@ -19,8 +19,11 @@
                     for(var i=0;i<wp_blocks.length;i++){
                         var client_id = wp_blocks[i].clientId;
                         var name = wp_blocks[i].name;
-                        if((wp_blocks[i].originalContent=='' || wp_blocks[i].originalContent==undefined) && name=='core/block'){
-                            var con = jQuery("div[data-block="+client_id+"]").find("div[data-block]:last").html();
+                        if((wp_blocks[i].originalContent=='' || wp_blocks[i].originalContent==undefined)){
+                            var con = jQuery("#block-"+client_id).find("div[data-block]:last").html();
+                            if(con==undefined){
+                                con = jQuery("div[data-block="+client_id+"]").html();
+                            }
                             editedContent += con;
                         }else{
                             editedContent += wp_blocks[i].originalContent;
