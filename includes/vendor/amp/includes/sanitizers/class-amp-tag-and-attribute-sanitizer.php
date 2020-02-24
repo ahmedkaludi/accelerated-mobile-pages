@@ -211,6 +211,9 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 			if ('amp-auto-ads' == $ext_key  || 'amp-ad' == $ext_key  ) {
 				$version = '0.1';
 			}
+			if ( 'amp-carousel' == $ext_key){
+				$version = '0.2';
+			}
 			$scriptArray[$ext_key] = sprintf(
 				'https://cdn.ampproject.org/v0/%s-%s.js',
 				$ext_key,

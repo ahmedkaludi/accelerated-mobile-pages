@@ -6,7 +6,7 @@ require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-base-embed-handle
 
 class AMPFORWP_Slide_Anything_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Handler {
 	private static $script_slug = 'amp-carousel';
-	private static $script_src = 'https://cdn.ampproject.org/v0/amp-carousel-latest.js';
+	private static $script_src = 'https://cdn.ampproject.org/v0/amp-carousel-0.2.js';
 
 	public function register_embed() {
 		add_shortcode( 'slide-anything', array( $this, 'shortcode' ) );
