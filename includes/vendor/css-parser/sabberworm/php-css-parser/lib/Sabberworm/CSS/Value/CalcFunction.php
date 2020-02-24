@@ -23,12 +23,10 @@ class CalcFunction extends CSSFunction {
 			if ($oParserState->comes('(')) {
 				$iNestingLevel++;
 				$oCalcList->addListComponent($oParserState->consume(1));
-				$oParserState->consumeWhiteSpace();
 				continue;
 			} else if ($oParserState->comes(')')) {
 				$iNestingLevel--;
 				$oCalcList->addListComponent($oParserState->consume(1));
-				$oParserState->consumeWhiteSpace();
 				continue;
 			}
 			if ($iLastComponentType != CalcFunction::T_OPERAND) {
@@ -57,7 +55,6 @@ class CalcFunction extends CSSFunction {
 					);
 				}
 			}
-			$oParserState->consumeWhiteSpace();
 		}
 		$oList->addListComponent($oCalcList);
 		$oParserState->consume(')');

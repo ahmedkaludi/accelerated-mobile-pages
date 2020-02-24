@@ -1,6 +1,6 @@
 <?php
 
-namespace Sabberworm\CSS\Value;
+namespace Sabberworm\CSS\Value; 
 
 use Sabberworm\CSS\Parsing\ParserState;
 if ( ! defined( 'ABSPATH' ) ) {
@@ -63,7 +63,8 @@ class Size extends PrimitiveValue {
 				self::$SIZE_UNITS[$iSize][strtolower($val)] = $val;
 			}
 
-			krsort(self::$SIZE_UNITS, SORT_NUMERIC);
+			// FIXME: Should we not order the longest units first?
+			ksort(self::$SIZE_UNITS, SORT_NUMERIC);
 		}
 
 		return self::$SIZE_UNITS;
@@ -117,8 +118,7 @@ class Size extends PrimitiveValue {
 	public function render(\Sabberworm\CSS\OutputFormat $oOutputFormat) {
 		$l = localeconv();
 		$sPoint = preg_quote($l['decimal_point'], '/');
-		$sSize = preg_match("/[\d\.]+e[+-]?\d+/i", (string)$this->fSize) ? preg_replace("/$sPoint?0+$/", "", sprintf("%f", $this->fSize)) : $this->fSize;
-		return preg_replace(array("/$sPoint/", "/^(-?)0\./"), array('.', '$1.'), $sSize) . ($this->sUnit === null ? '' : $this->sUnit);
+		return preg_replace(array("/$sPoint/", "/^(-?)0\./"), array('.', '$1.'), $this->fSize) . ($this->sUnit === null ? '' : $this->sUnit);
 	}
 
 }
