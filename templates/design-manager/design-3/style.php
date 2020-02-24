@@ -1070,3 +1070,12 @@ if(true == ampforwp_get_setting('ampforwp-single-related-posts-excerpt')){?>
 .ampforwp-blocks-gallery-caption{
     font-size: 16px;
 }
+<?php if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
+.ampforwp-gallery-item.amp-carousel-containerd3 {
+    float: left;
+}
+.amp-carousel-containerd3 figcaption {
+    max-width: 150px;
+    border:none;
+}
+<?php } ?>

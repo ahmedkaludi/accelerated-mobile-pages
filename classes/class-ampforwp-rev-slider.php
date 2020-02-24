@@ -9,7 +9,7 @@ require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-base-embed-handle
 
 class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Handler {
 	private static $script_slug = 'amp-carousel';
-	private static $script_src = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
+	private static $script_src = 'https://cdn.ampproject.org/v0/amp-carousel-latest.js';
 
 	public function register_embed() {
 		add_shortcode( 'rev_slider', array( $this, 'shortcode' ) );
@@ -346,6 +346,8 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 								'width' => $this->args['width'],
 								'height' => $this->args['height'],
 								'type' => 'slides',
+								'loop'	=>'',
+								'autoplay'	=>'',
 								'layout' => 'responsive',
 								'class'  => 'collapsible-captions',
 								'id' => 'carousel-with-carousel-preview-'.$r
