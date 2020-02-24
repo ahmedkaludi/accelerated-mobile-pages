@@ -3401,7 +3401,7 @@ function ampforwp_frontpage_comments() {
 			$comment_button_url = get_permalink( $post_id );
 			$comment_button_url = apply_filters('ampforwp_frontpage_comments_url',$comment_button_url );
 			if ( $comments ) { ?>
-				<div class="amp-wp-content cmts_list">
+				<div class="amp-wp-content comments_list cmts_list">
 				    <h3><?php global $redux_builder_amp; echo esc_html(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' ))?></h3>
 				    <ul>
 				    <?php
