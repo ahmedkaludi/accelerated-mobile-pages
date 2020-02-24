@@ -471,6 +471,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 				<div class="sdbr-right">
 					<?php 
 						$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+						$sidebar_output = '';
 						if ( $sanitized_sidebar) {
 							$sidebar_output = $sanitized_sidebar->get_amp_content();
 							$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);

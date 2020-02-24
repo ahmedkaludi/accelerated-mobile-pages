@@ -29,6 +29,7 @@ amp_header() ?>
 		<?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
 		<div class="sdbr-right">
 			<?php 
+			$sidebar_output = '';
 				$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
 			if ( $sanitized_sidebar) {
 				$sidebar_output = $sanitized_sidebar->get_amp_content();

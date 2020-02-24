@@ -15,6 +15,7 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 		<div class="cntr">
 			<div class="f-w">
 				<?php 
+				$sidebar_output = '';
 				$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-footer-widget-area');
 				if ( $sanitized_sidebar) {
 					$sidebar_output = $sanitized_sidebar->get_amp_content();
