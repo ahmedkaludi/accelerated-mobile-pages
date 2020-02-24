@@ -6217,6 +6217,9 @@ function ampforwp_vuukle_comments_markup() {
 	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl);
 	$srcUrl = add_query_arg('img' , esc_url($img), $srcUrl);
 	$srcUrl = add_query_arg('tags' , urlencode($tag_name), $srcUrl);  
+	if(ampforwp_get_setting('ampforwp-vuukle-comments-emoji')==false){
+		$srcUrl = add_query_arg('emotes' , 'false', $srcUrl);
+	}
 	$consent = '';
 	if(ampforwp_get_data_consent()){
 		$consent = 'data-block-on-consent ';
