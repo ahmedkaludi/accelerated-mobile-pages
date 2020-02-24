@@ -7935,8 +7935,14 @@ if(!function_exists('ampforwp_imagify_webp_compatibility')){
 		if(function_exists('_imagify_init')){
 			preg_match_all('/src="(.*?)"/', $content,$src);
 			$imageify_opt = get_option( 'imagify_settings' );
-			$convert_to_webp = $imageify_opt['convert_to_webp'];
-			$display_webp = $imageify_opt['display_webp'];
+			$convert_to_webp = false;
+			if(isset($imageify_opt['convert_to_webp'])){
+				$convert_to_webp = $imageify_opt['convert_to_webp'];
+			}
+			$display_webp = false;
+			if(isset($imageify_opt['display_webp'])){
+				$display_webp = $imageify_opt['display_webp'];
+			}
 			if($convert_to_webp && $display_webp){
 				$img_url = esc_url($src[1][0]);
 				if(!preg_match('/\.webp/', $img_url)){
