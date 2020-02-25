@@ -732,7 +732,7 @@ function ampforwp_backtotop_global_css(){?>
     line-height: 1.5;
   }
 <?php } 
-	if ( ! ampforwp_woocommerce_conditional_check() && !function_exists('amp_pagebuilder_compatibility_init') ) {
+	if ( ! ampforwp_woocommerce_conditional_check() ) {
 		if ( is_singular() || is_home() && true == ampforwp_get_setting( 'amp-frontpage-select-option' ) && ampforwp_get_blog_details() == false && ! checkAMPforPageBuilderStatus( ampforwp_get_the_ID() ) ) { ?>
             /* Tables */
             .wp-block-table{ min-width :240px;}
