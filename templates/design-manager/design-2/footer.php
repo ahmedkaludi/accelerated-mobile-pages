@@ -14,6 +14,7 @@ global $redux_builder_amp;
                 if ( $sanitized_sidebar) {
                   $sidebar_output = $sanitized_sidebar->get_amp_content();
                   $sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+                  $sidebar_output = ampforwp_show_yoast_seo_local_map($sidebar_output);
                 } 
                 echo do_shortcode($sidebar_output); 
                 ?>
