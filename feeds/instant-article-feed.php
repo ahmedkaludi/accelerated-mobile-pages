@@ -30,20 +30,22 @@ header('Content-Type: ' . esc_attr(feed_content_type('rss2')) . '; charset=' . e
         $exclude_cats = array_values(array_filter(ampforwp_get_setting('hide-amp-ia-categories')));
         $ia_args['category__not_in'] = $exclude_cats;
     }
-
-    $exclude_ids = get_option('ampforwp_ia_exclude_post');
     $ia_args = array(
-        'post__not_in'          => (array) $exclude_ids,
         'post_status'           => 'publish',
         'ignore_sticky_posts'   => true,
         'posts_per_page'        => esc_attr($number_of_articles),
         'meta_query' => array(
+            'relation' => 'OR',
+             array(
+                'key'        => 'ampforwp-ia-on-off',
+                'compare'    => "NOT EXISTS"
+            ),
             array(
                 'key'        => 'ampforwp-ia-on-off',
                 'value'      => 'hide-ia',
                 'compare'    => "!="
-            ), 
-        )  
+                ),
+        )        
     );
     if ( is_category() ) {
         $ia_args['category__in']    = get_queried_object_id(); 
