@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.30 (24th February 2020) =
+* Improvement: Added Autoplay in Image Gallery #3705
+* Fixed: Jetpack lazy loading not working due to our AMPforWP plugin #4183
+* Fixed: Amp comments Bug with update 1.0.28 #4209
+* Fixed: Removed Table styles when AMP Pagebuilder compatibility plugin is active #4185
+* Fixed: Debug warning fixed #4204 #4212
+
 = 1.0.29 (21th February 2020) =
 * Improvement: Created an option for entering URLs to prefetch. #3997
 * Fixed: Admin bar css is not loaded on amp pages #4130

@@ -168,7 +168,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
       $redirection_location = get_the_permalink();
     }
     $ampforwp_amp_post_on_off_meta = "";
-    $ampforwp_amp_post_on_off_meta = get_post_meta( $post_id,'ampforwp-amp-on-off',true);
+    $ampforwp_amp_post_on_off_meta = get_post_meta(  ampforwp_get_the_ID(),'ampforwp-amp-on-off',true);
     if(false == $ampforwp_amp_post_on_off_meta){ 
       return;
     }

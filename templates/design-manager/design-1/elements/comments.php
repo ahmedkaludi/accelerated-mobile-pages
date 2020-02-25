@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$comment_nums =  get_comments_number();
 				$comment_nums = " ($comment_nums) " ?>
 
-				<div class="amp-wp-content cmts_list">
+				<div class="amp-wp-content comments_list cmts_list">
 			        <h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' )). esc_attr($comment_nums)?></h3>
 			        <ul> <?php // Display the list of comments
 						function ampforwp_custom_translated_comment($comment, $args, $depth){

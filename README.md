@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.29
+Stable tag: 1.0.30
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,13 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.30 (24th February 2020) =
+* Improvement: Added Autoplay in Image Gallery #3705
+* Fixed: Jetpack lazy loading not working due to our AMPforWP plugin #4183
+* Fixed: Amp comments Bug with update 1.0.28 #4209
+* Fixed: Removed Table styles when AMP Pagebuilder compatibility plugin is active #4185
+* Fixed: Debug warning fixed #4204 #4212
 
 = 1.0.29 (21th February 2020) =
 * Improvement: Created an option for entering URLs to prefetch. #3997

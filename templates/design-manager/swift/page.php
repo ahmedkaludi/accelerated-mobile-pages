@@ -61,6 +61,7 @@ amp_header(); ?>
 						<?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
 							<div class="sdbr-right"> <?php 
 								$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+								$sidebar_output = '';
 								if ( $sanitized_sidebar) {
 									$sidebar_output = $sanitized_sidebar->get_amp_content();
 									$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
@@ -75,6 +76,7 @@ amp_header(); ?>
 				<div class="sdbr-right" style="float: right;" >
 					<?php 
 					$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+					$sidebar_output = '';
 					if ( $sanitized_sidebar) {
 						$sidebar_output = $sanitized_sidebar->get_amp_content();
 						$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);

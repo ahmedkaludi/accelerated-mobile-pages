@@ -2055,9 +2055,6 @@ function ampforwp_lazy_loading_plugins_compatibility() {
 	remove_filter( 'widget_text', array( $lazyloadxt, 'filter_html' ) );
 	remove_filter( 'post_thumbnail_html', array( $lazyloadxt, 'filter_html' ) );
 	remove_filter( 'get_avatar', array( $lazyloadxt, 'filter_html' ) );
-
-    // Lazy Load
-	add_filter( 'lazyload_is_enabled', '__return_false', PHP_INT_MAX );
 }
 
 //Removing bj loading for amp
@@ -3404,7 +3401,7 @@ function ampforwp_frontpage_comments() {
 			$comment_button_url = get_permalink( $post_id );
 			$comment_button_url = apply_filters('ampforwp_frontpage_comments_url',$comment_button_url );
 			if ( $comments ) { ?>
-				<div class="amp-wp-content cmts_list">
+				<div class="amp-wp-content comments_list cmts_list">
 				    <h3><?php global $redux_builder_amp; echo esc_html(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' ))?></h3>
 				    <ul>
 				    <?php
@@ -6757,7 +6754,7 @@ function ampforwp_add_global_scripts($data){
 	//Appearance option for Related Posts #1545
 	if (  true == ampforwp_get_setting('ampforwp-single-related-posts-switch') && ampforwp_get_setting('rp_design_type') == '3') {
 		if ( empty( $data['amp_component_scripts']['amp-carousel'] ) ) {
-			$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
+			$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.2.js';
 		}
 	}
     return $data;
@@ -7978,8 +7975,14 @@ if(!function_exists('ampforwp_imagify_webp_compatibility')){
 		if(function_exists('_imagify_init')){
 			preg_match_all('/src="(.*?)"/', $content,$src);
 			$imageify_opt = get_option( 'imagify_settings' );
-			$convert_to_webp = $imageify_opt['convert_to_webp'];
-			$display_webp = $imageify_opt['display_webp'];
+			$convert_to_webp = false;
+			if(isset($imageify_opt['convert_to_webp'])){
+				$convert_to_webp = $imageify_opt['convert_to_webp'];
+			}
+			$display_webp = false;
+			if(isset($imageify_opt['display_webp'])){
+				$display_webp = $imageify_opt['display_webp'];
+			}
 			if($convert_to_webp && $display_webp){
 				$img_url = esc_url($src[1][0]);
 				if(!preg_match('/\.webp/', $img_url)){

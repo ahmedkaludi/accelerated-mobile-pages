@@ -723,3 +723,12 @@ amp-facebook-like{
   right: 0;
   cursor:pointer;
 }
+<?php if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
+.ampforwp-gallery-item.amp-carousel-containerd3 {
+    float: left;
+}
+.amp-carousel-containerd3 figcaption {
+    max-width: 150px;
+    border:none;
+}
+<?php } ?>

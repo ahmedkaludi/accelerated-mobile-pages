@@ -10,6 +10,7 @@ global $redux_builder_amp;
           <div class="f-w-blk">
               <div class="d3f-w">
                 <?php 
+                $sidebar_output = '';
                 $sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-footer-widget-area');
                 if ( $sanitized_sidebar) {
                   $sidebar_output = $sanitized_sidebar->get_amp_content();
