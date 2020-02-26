@@ -15,7 +15,7 @@ function ampforwp_framework_get_comments(){
 			 ampforwp_framework_get_disqus_comments();
 		}
 		if ( $redux_builder_amp['ampforwp-vuukle-comments-support'] )  {
-			 ampforwp_vuukle_comments_markup();
+			 ampforwp_framework_get_vuukle_comments();
 		}
 		if ( $redux_builder_amp['ampforwp-spotim-comments-support']  )  {
 			 ampforwp_framework_get_spotim_comments();
@@ -191,7 +191,9 @@ function ampforwp_framework_get_disqus_comments(){
 	<?php
 	}
 }
-
+function ampforwp_framework_get_vuukle_comments(){
+	echo ampforwp_vuukle_comments_markup();
+}
 function ampforwp_framework_get_spotim_comments(){
 	global $post;
 	$spotId ='';
