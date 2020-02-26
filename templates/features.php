@@ -353,7 +353,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}
 			// URL Purifier
 			$amp_url = ampforwp_url_purifier($amp_url);
-			if(true == ampforwp_get_setting('amp-core-end-point')){
+			if(true == ampforwp_get_setting('amp-core-end-point') && (!is_home() && !is_front_page())){
 				$amp_url = add_query_arg( 'amp', '', get_the_permalink() );
 			}		
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',esc_url($amp_url));

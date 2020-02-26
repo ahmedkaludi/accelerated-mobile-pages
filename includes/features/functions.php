@@ -794,7 +794,7 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
     if ( $get_permalink_structure ) {
         if(true == ampforwp_get_setting('amp-core-end-point')){
                 $new_url = user_trailingslashit($url);
-                $new_url = add_query_arg( 'amp', '', get_the_permalink() );
+                $new_url = add_query_arg( 'amp', '', $new_url);
             }
         else {
                 $new_url = user_trailingslashit( trailingslashit( $url ) . AMPFORWP_AMP_QUERY_VAR);
