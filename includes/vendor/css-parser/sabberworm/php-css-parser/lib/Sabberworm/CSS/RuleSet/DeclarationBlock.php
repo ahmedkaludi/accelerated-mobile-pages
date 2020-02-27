@@ -1,19 +1,16 @@
 <?php
 
-namespace Sabberworm\CSS\RuleSet;
+namespace Sabberworm\CSS\RuleSet; 
 
 use Sabberworm\CSS\Parsing\ParserState;
 use Sabberworm\CSS\Parsing\OutputException;
-use Sabberworm\CSS\Parsing\UnexpectedTokenException;
 use Sabberworm\CSS\Property\Selector;
-use Sabberworm\CSS\Property\KeyframeSelector;
 use Sabberworm\CSS\Rule\Rule;
 use Sabberworm\CSS\Value\RuleValueList;
 use Sabberworm\CSS\Value\Value;
 use Sabberworm\CSS\Value\Size;
 use Sabberworm\CSS\Value\Color;
 use Sabberworm\CSS\Value\URL;
-use Sabberworm\CSS\CSSList\KeyFrame;
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
@@ -30,63 +27,85 @@ class DeclarationBlock extends RuleSet {
 		$this->aSelectors = array();
 	}
 
-	public static function parse(ParserState $oParserState, $oList = NULL) {
+	public static function parse(ParserState $oParserState) {
 		$aComments = array();
 		$oResult = new DeclarationBlock($oParserState->currentLine());
-		try {
-			$aSelectorParts = array();
-			$sStringWrapperChar = false;
-			do {
-				$aSelectorParts[] = $oParserState->consume(1) . $oParserState->consumeUntil(array('{', '}', '\'', '"'), false, false, $aComments);
-				if ( in_array($oParserState->peek(), array('\'', '"')) && substr(end($aSelectorParts), -1) != "\\" ) {
-					if ( $sStringWrapperChar === false ) {
-						$sStringWrapperChar = $oParserState->peek();
-					} else if ($sStringWrapperChar == $oParserState->peek()) {
-						$sStringWrapperChar = false;
-					}
-				}
-			} while (!in_array($oParserState->peek(), array('{', '}')) || $sStringWrapperChar !== false);
-			$oResult->setSelector(implode('', $aSelectorParts), $oList);
-			if ($oParserState->comes('{')) {
-				$oParserState->consume(1);
-			}
-		} catch (UnexpectedTokenException $e) {
-			if($oParserState->getSettings()->bLenientParsing) {
-				if(!$oParserState->comes('}')) {
-					$oParserState->consumeUntil('}', false, true);
-				}
-				return false;
-			} else {
-				throw $e;
-			}
-		}
+		$oResult->setSelector($oParserState->consumeUntil('{', false, true, $aComments));
 		$oResult->setComments($aComments);
 		RuleSet::parseRuleSet($oParserState, $oResult);
 		return $oResult;
 	}
 
 
-	public function setSelectors($mSelector, $oList = NULL) {
+	public function setSelectors($mSelector) {
 		if (is_array($mSelector)) {
 			$this->aSelectors = $mSelector;
 		} else {
-			$this->aSelectors = explode(',', $mSelector);
+			list( $sSelectors, $aPlaceholders ) = $this->addSelectorExpressionPlaceholders( $mSelector );
+			if ( empty( $aPlaceholders ) ) {
+				$this->aSelectors = explode(',', $sSelectors);
+			} else {
+				$aSearches = array_keys( $aPlaceholders );
+				$aReplaces = array_values( $aPlaceholders );
+				$this->aSelectors = array_map(
+					function( $sSelector ) use ( $aSearches, $aReplaces ) {
+						return str_replace( $aSearches, $aReplaces, $sSelector );
+					},
+					explode(',', $sSelectors)
+				);
+			}
 		}
 		foreach ($this->aSelectors as $iKey => $mSelector) {
 			if (!($mSelector instanceof Selector)) {
-				if ($oList === NULL || !($oList instanceof KeyFrame)) {
-					if (!Selector::isValid($mSelector)) {
-						throw new UnexpectedTokenException("Selector did not match '" . Selector::SELECTOR_VALIDATION_RX . "'.", $mSelector, "custom");
-					}
-					$this->aSelectors[$iKey] = new Selector($mSelector);
-				} else {
-					if (!KeyframeSelector::isValid($mSelector)) {
-						throw new UnexpectedTokenException("Selector did not match '" . KeyframeSelector::SELECTOR_VALIDATION_RX . "'.", $mSelector, "custom");
-					}
-					$this->aSelectors[$iKey] = new KeyframeSelector($mSelector);
-				}
+				$this->aSelectors[$iKey] = new Selector($mSelector);
 			}
 		}
+	}
+
+	/**
+	 * Add placeholders for parenthetical/bracketed expressions in selectors which may contain commas that break exploding.
+	 *
+	 * This prevents a single selector like `.widget:not(.foo, .bar)` from erroneously getting parsed in setSelectors as
+	 * two selectors `.widget:not(.foo` and `.bar)`.
+	 *
+	 * @param string $sSelectors Selectors.
+	 * @return array First array value is the selectors with placeholders, and second value is the array of placeholders mapped to the original expressions.
+	 */
+	private function addSelectorExpressionPlaceholders( $sSelectors ) {
+		$iOffset = 0;
+		$aPlaceholders = array();
+
+		while ( preg_match( '/\(|\[/', $sSelectors, $aMatches, PREG_OFFSET_CAPTURE, $iOffset ) ) {
+			$sMatchString = $aMatches[0][0];
+			$iMatchOffset = $aMatches[0][1];
+			$iStyleLength = strlen( $sSelectors );
+			$iOpenParens  = 1;
+			$iStartOffset = $iMatchOffset + strlen( $sMatchString );
+			$iFinalOffset = $iStartOffset;
+			for ( ; $iFinalOffset < $iStyleLength; $iFinalOffset++ ) {
+				if ( '(' === $sSelectors[ $iFinalOffset ] || '[' === $sSelectors[ $iFinalOffset ] ) {
+					$iOpenParens++;
+				} elseif ( ')' === $sSelectors[ $iFinalOffset ] || ']' === $sSelectors[ $iFinalOffset ] ) {
+					$iOpenParens--;
+				}
+
+				// Found the end of the expression, so replace it with a placeholder.
+				if ( 0 === $iOpenParens ) {
+					$sMatchedExpr = substr( $sSelectors, $iMatchOffset, $iFinalOffset - $iMatchOffset + 1 );
+					$sPlaceholder = sprintf( '{placeholder:%d}', count( $aPlaceholders ) + 1 );
+					$aPlaceholders[ $sPlaceholder ] = $sMatchedExpr;
+
+					// Update the CSS to replace the matched calc() with the placeholder function.
+					$sSelectors = substr( $sSelectors, 0, $iMatchOffset ) . $sPlaceholder . substr( $sSelectors, $iFinalOffset + 1 );
+					// Update offset based on difference of length of placeholder vs original matched calc().
+					$iFinalOffset += strlen( $sPlaceholder ) - strlen( $sMatchedExpr );
+					break;
+				}
+			}
+			// Start matching at the next byte after the match.
+			$iOffset = $iFinalOffset + 1;
+		}
+		return array( $sSelectors, $aPlaceholders );
 	}
 
 	// remove one of the selector of the block
@@ -113,8 +132,8 @@ class DeclarationBlock extends RuleSet {
 	/**
 	 * @deprecated use setSelectors()
 	 */
-	public function setSelector($mSelector, $oList = NULL) {
-		$this->setSelectors($mSelector, $oList);
+	public function setSelector($mSelector) {
+		$this->setSelectors($mSelector);
 	}
 
 	/**
