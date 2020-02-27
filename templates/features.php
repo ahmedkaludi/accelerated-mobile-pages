@@ -7746,6 +7746,20 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
     }
 }
 
+
+add_filter('ampforwp_the_content_last_filter','ampforwp_remove_unwanted_code',10);
+function ampforwp_remove_unwanted_code($content){
+// Mediavine validation issue with form and amp-consent #4206
+	if(preg_match('/<amp-consent id="mv-consent" layout="nodisplay">(.*?)<\/amp-consent>/s', $content)){
+		$content = preg_replace('/<amp-consent id="mv-consent" layout="nodisplay">(.*?)<\/amp-consent>/s', '', $content);
+	}
+	if(preg_match('/<form class="mv-create-print-form">(.*?)<\/form>/s', $content)){
+		$content = preg_replace('/<form class="mv-create-print-form">(.*?)<\/form>/s', '', $content);
+	}
+	// close #4206
+	return $content;
+}
+
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
 	$comp_to_remove_arr = array();
