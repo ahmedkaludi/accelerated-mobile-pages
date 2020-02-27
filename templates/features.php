@@ -7703,6 +7703,7 @@ function ampforwp_include_required_scripts($content){
 	// close #4206
 	
 	$comp_to_remove_arr = array();
+	$script_ver = 'latest';
 	preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
 	if(isset($matches[1][0])){
 		$amp_comp = $matches[1];
@@ -7719,7 +7720,7 @@ function ampforwp_include_required_scripts($content){
 		for($i=0;$i<count($amp_comp);$i++){
 			$comp = $amp_comp[$i];
 			if(!preg_match('/story/', $comp)){
-				$script_ver = 'latest';
+				
 				if($comp == 'auto-ads' || $comp == 'ad'){
 					$script_ver = '0.1';
 				}
