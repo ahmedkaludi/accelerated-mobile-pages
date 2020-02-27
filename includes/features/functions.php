@@ -794,11 +794,10 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
     }
     $get_permalink_structure = get_option('permalink_structure');
     if ( $get_permalink_structure ) {
-        if ( isset($redux_builder_amp['amp-core-end-point']) && 1 == $redux_builder_amp['amp-core-end-point'] ) {
-                $new_url = trailingslashit($url);
-                $new_url = $new_url.'?'.AMPFORWP_AMP_QUERY_VAR;
-                //$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $new_url);
-            }
+        if(true == ampforwp_get_setting('amp-core-end-point')){
+            $new_url = user_trailingslashit($url);
+            $new_url = add_query_arg( 'amp', '', $new_url );
+        }
         else {
                 $new_url = user_trailingslashit( trailingslashit( $url ) . AMPFORWP_AMP_QUERY_VAR);
             // WPML COMPATIBILITY FOR LOOP 
