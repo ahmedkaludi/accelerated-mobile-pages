@@ -370,6 +370,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	// AMPHTML when using custom page and then creating a blog page
 	add_action('amp_init','ampforwp_allow_homepage_as_blog');
 	function ampforwp_allow_homepage_as_blog() {
+		if(function_exists('mfn_opts_setup')){
+			remove_action( 'pre_get_posts', 'mfn_search' );
+		}
 		add_action( 'wp', 'ampforwp_static_blog' , 11 );
 	}
 	function ampforwp_static_blog(){
