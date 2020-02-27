@@ -1,5 +1,19 @@
 == Changelog ==
 
+= 1.0.31 (28th February 2020) =
+* Improvement: Added option to hide vukkle comments emoji #4194
+* Improvement: Added alt for images in Slider module of AMP page builder #4193
+* Improvement: Updated sabberworm folder #4142
+* Fixed: Fatal Error fixed with zombify plugin #4184
+* Fixed: Validation error due to Mediavine Plugin #4206
+* Fixed: Instant article bug #4150
+* Fixed: AMP Search Not Working with Betheme #4195
+* Fixed: StackPath CDN not working #4123
+* Fixed: Extra 301 redirect after enabling ?amp #4167
+* Fixed: Table CSS improved #4185
+* Fixed: Debug Warnings #4226
+* Fixed: AMP Option panel improvements #4202 #4219
+
 = 1.0.30 (24th February 2020) =
 * Improvement: Added Autoplay in Image Gallery #3705
 * Fixed: Jetpack lazy loading not working due to our AMPforWP plugin #4183
