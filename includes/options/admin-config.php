@@ -550,6 +550,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('floating-button-for-amp/floating-button-for-amp.php')? 1 : 2),
                         ),
+                        array(
+                            'name'=>'JW Player Compatibility for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'JW Player for WordPress (By ilGhera) Compatibility in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/jwplayerforwp.png',
+                            'price'=>'$9',
+                            'url_link'=>'https://ampforwp.com/addons/jw-player-compatibility-for-amp/',
+                            'plugin_active_path'=> 'jw-player-compatibility-for-amp/jwplayercompatibilityforamp.php',
+                            'item_name'=>'JW Player Compatibility for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('jw-player-compatibility-for-amp/jwplayercompatibilityforamp.php')? 1 : 2),
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
