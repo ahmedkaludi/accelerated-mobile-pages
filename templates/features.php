@@ -4308,21 +4308,6 @@ if ( ! function_exists('ampforwp_dev_mode_add_noindex') ) {
 		}
 	}
 }
-// Notice for Dev Mode
-function ampforwp_dev_mode_notice(){ 
-	global $redux_builder_amp;
-	$message = '';
-	if(isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode']) {
-			$message =  ' Please turn off Development mode, when you are done.';?>
-					
-			<div class="notice notice-success is-dismissible amp-dev-notice" style="position:relative;
-		    height: 40px; overflow: hidden; ">
-				<div class="ampforwp-dev-mode-message" style="margin-top: 10px;">
-				    <?php echo '<strong>'. esc_html__('AMP Dev mode is Enabled!', 'accelerated-mobile-pages').'</strong>'. esc_html__($message, 'accelerated-mobile-pages'); ?>				
-				</div>	
-			</div>
-<?php }
-}
  
 // 76. Body Class for AMP pages
 if (! function_exists( 'ampforwp_body_class' ) ) {
@@ -8049,42 +8034,6 @@ function ampforwp_ewww_webp_compatibility($content){
 		return $content;
 	}
 } 
-function ampforwp_seo_selection_notice() {
-	if('' != ampforwp_get_setting('ampforwp-seo-selection')){
-		return;
-	}
-	$seo = '';
-	if(class_exists('WPSEO_Options')){
-		$seo = 'Yoast SEO';
-	}
-	if(class_exists('All_in_One_SEO_Pack')){
-		$seo = 'All in One SEO';
-	}
-	if(function_exists( 'the_seo_framework' )){
-		$seo = 'The SEO Framework';
-	}
-	if(function_exists('genesis_theme_support')){
-		$seo = 'Genesis';
-	}
-	if(function_exists('qode_header_meta')){
-		$seo = 'Bridge Qode SEO';
-	}
-	if(defined( 'RANK_MATH_FILE' )){
-		$seo = 'Rank Math SEO';
-	}
-	if(defined( 'SQ_ALL_PATTERNS' )){
-		$seo = 'Squirrly SEO';
-	}
-	if(class_exists('Smartcrawl_Loader')){
-		$seo = 'Smartcrawl SEO';
-	}
-	if(function_exists('seopress_activation')){
-		$seo = 'SEO Press';
-	}
-	if(!empty($seo)){
-    	echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
-	}
-}
 
 if(!function_exists('ampforwp_check_image_existance')){
 	function ampforwp_check_image_existance($image){
