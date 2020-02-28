@@ -2300,17 +2300,6 @@ function ampforwp_get_all_tags($id){
                          'tooltip-subtitle' => esc_html__('Enable/Disable Vuukle comments using this switch.', 'accelerated-mobile-pages'),
                          'default'  => 0,
                      ),
-                     array(
-                         'class' => 'child_opt child_opt_arrow', 
-                         'id'       => 'ampforwp-vuukle-comments-emoji',
-                         'type'     => 'switch',
-                         'title'    => esc_html__('Vuukle Emoji', 'accelerated-mobile-pages'),
-                         'tooltip-subtitle' => esc_html__('Enable/Disable Vuukle comments emoji using this switch.', 'accelerated-mobile-pages'),
-                         'default'  => 1,
-                         'required' => array(
-                            array('ampforwp-vuukle-comments-support', '=' , 1),
-                         ),
-                    ),
                     array(
                         'class' => 'child_opt child_opt_arrow', 
                          'id'       => 'ampforwp-vuukle-comments-apiKey',
@@ -2319,6 +2308,17 @@ function ampforwp_get_all_tags($id){
                          'title'    => esc_html__('API Key', 'accelerated-mobile-pages'),
                          'default'  => '',
                          'desc'     => "For Example xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                         'required' => array(
+                            array('ampforwp-vuukle-comments-support', '=' , 1),
+                         ),
+                    ),
+                     array(
+                         'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-vuukle-comments-emoji',
+                         'type'     => 'switch',
+                         'title'    => esc_html__('Vuukle Emoji', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => esc_html__('Enable/Disable Vuukle comments emoji using this switch.', 'accelerated-mobile-pages'),
+                         'default'  => 1,
                          'required' => array(
                             array('ampforwp-vuukle-comments-support', '=' , 1),
                          ),
