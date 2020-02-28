@@ -1341,67 +1341,53 @@ function ampforwp_automattic_notice_delete(){
 	exit();
 }
 
-add_action('admin_init','ampforwp_replace_redux_comments');
+add_action('current_screen','ampforwp_replace_redux_comments');
 function ampforwp_replace_redux_comments(){
-
 	if(current_user_can( 'manage_options' )){
-	$replaced_redux_comments = get_transient('replaced_redux_comments_updated');
-
+		$replaced_redux_comments = get_transient('replaced_redux_comments_updated');
 		if(!$replaced_redux_comments){
-		    $redux_val   = get_option('redux_builder_amp',array());  
-
-		    if ( empty($redux_val) || ! is_array($redux_val)) {
-				return;
-		    }
-
-		    $search = '/******* Paste your Custom CSS in this Editor *******/';
-		    $rep = str_replace("$search", "", $redux_val);
-
-			//FOR GA
-			$pattern 	= '/\s*/m';
-			$replace 	= '';
-
-			$ga_val   	= $redux_val['ampforwp-ga-field-advance'];
-			$rep 		= preg_replace( $pattern, $replace,$ga_val);
-			$search 	= '/***EnteryourAdvancedAnalyticscodehere*/';
-			$rep 		= str_replace("$search", "", $rep);
-			$search 	= '//ReplacethiswithyourTrackingID';
-			$rep 		= str_replace("$search", "", $rep);
-			$jsonstr 	= "";
-
-			for($i=0;$i<strlen($rep);$i++){
-				$resp = $rep[$i];
-				$jsonstr.=$resp;
-				if($resp=='{' || $resp=='}'){
-					$jsonstr.=PHP_EOL;
-				}
-			}
-		    $redux_val['ampforwp-ga-field-advance'] = $jsonstr;
-		    // GA CLOSE
-		      
-			//FOR GTM
-			$gml_val   	= $redux_val['ampforwp-gtm-field-advance'];
-			$rep 		= preg_replace( $pattern, $replace,$gml_val);
-			$search 	= '/***EnteryourAdvancedAnalyticscodehere*/';
-			$rep 		= str_replace("$search", "", $rep);
-	      	$search 	= '/*ReplacethiswithyourTrackingID*/';
-	      	$rep 		= str_replace("$search", "", $rep);
-
-			$jsonstr 	= "";
-			for($i=0;$i<strlen($rep);$i++){
-				$resp = $rep[$i];
-				$jsonstr.=$resp;
-				if($resp=='{' || $resp=='}'){
-					$jsonstr.=PHP_EOL;
-				}
-			}
-			//GTM CLOSE
-
-			$redux_val['ampforwp-gtm-field-advance'] = $jsonstr;
-			update_option('redux_builder_amp',$redux_val);
-			set_transient('replaced_redux_comments_updated',1);
-	    }
- 	}
+			$screen = get_current_screen();
+			if ( 'toplevel_page_amp_options' == $screen->base ) {
+			    $redux_val   = get_option('redux_builder_amp',array());  
+			    if ( empty($redux_val) || ! is_array($redux_val)) {
+					return;
+			    }
+			    $ga_val   	= $redux_val['ampforwp-ga-field-advance'];
+			    if(preg_match('/\/\*(.*?)\*\//s', $ga_val)){
+			    	$ga_val = preg_replace('/\/\*(.*?)\*\//s', '', $ga_val);
+			    	$redux_val['ampforwp-ga-field-advance'] = $ga_val;
+			    	update_option('redux_builder_amp',$redux_val);
+			    }
+			    if(preg_match('/\/\/Replace this with your Tracking ID/', $ga_val)){
+			    	$ga_val = preg_replace('/\/\/Replace this with your Tracking ID/', '', $ga_val);
+			    	$redux_val['ampforwp-ga-field-advance'] = $ga_val;
+			    	update_option('redux_builder_amp',$redux_val);
+			    }
+			    // GA CLOSE
+			      
+				//FOR GTM
+			    $gml_val   	= $redux_val['ampforwp-gtm-field-advance'];
+			    if(preg_match('/\/\*(.*?)\*\//s', $gml_val)){
+			    	$gml_val = preg_replace('/\/\*(.*?)\*\//s', '', $gml_val);
+			    	$redux_val['ampforwp-gtm-field-advance'] = $gml_val;
+			    	update_option('redux_builder_amp',$redux_val);
+			    }
+			    if(preg_match('/\/\/Replace this with your Tracking ID/', $gml_val)){
+			    	$gml_val = preg_replace('/\/\/Replace this with your Tracking ID/', '', $gml_val);
+			    	$redux_val['ampforwp-gtm-field-advance'] = $gml_val;
+			    	update_option('redux_builder_amp',$redux_val);
+			    }
+			    // GLOBAL CSS EDITOR
+			    $css_editor   	= $redux_val['css_editor'];
+			    if(preg_match('/\/\*(.*?)\*\//s', $css_editor)){
+			    	$css_editor = preg_replace('/\/\*(.*?)\*\//s', '', $css_editor);
+			    	$redux_val['css_editor'] = $css_editor;
+			    	update_option('redux_builder_amp',$redux_val);
+			    }
+			    set_transient('replaced_redux_comments_updated',1);
+		 	}
+		}
+	}
 }
 if(!function_exists('ampforwp_wp_plugin_action_link')){
 	function ampforwp_wp_plugin_action_link( $plugin, $action = 'activate' ) {
