@@ -353,6 +353,7 @@ function ampforwp_clear_tree_shaking_on_activity($plugin='', $network=''){
 add_action( 'save_post', 'ampforwp_clear_tree_shaking_post');
 if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
 	function ampforwp_clear_tree_shaking_post() {
+        global $post;
 		if ( current_user_can( 'edit_posts' ) && is_user_logged_in() ){
 			if(ampforwp_get_setting('ampforwp_css_tree_shaking')){
 				if(ampforwp_is_home()){
@@ -366,6 +367,8 @@ if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
 				}elseif(is_archive()){
                     $page_id = get_queried_object_id();
                     $transient_filename = "archive-".$page_id;
+                }elseif(is_object($post)){
+                    $transient_filename = "post-".$post->ID;
                 }
                 if( is_user_logged_in() ){
                     $transient_filename = $transient_filename.'-admin';
