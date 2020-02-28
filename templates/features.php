@@ -355,7 +355,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}
 			// URL Purifier
 			$amp_url = ampforwp_url_purifier($amp_url);
-			if(true == ampforwp_get_setting('amp-core-end-point')){
+			if(true == ampforwp_get_setting('amp-core-end-point') && (!is_home() && !is_front_page())){
 				$amp_url = add_query_arg( 'amp', '', get_the_permalink() );
 			}	
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
@@ -370,6 +370,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	// AMPHTML when using custom page and then creating a blog page
 	add_action('amp_init','ampforwp_allow_homepage_as_blog');
 	function ampforwp_allow_homepage_as_blog() {
+		if(function_exists('mfn_opts_setup')){
+			remove_action( 'pre_get_posts', 'mfn_search' );
+		}
 		add_action( 'wp', 'ampforwp_static_blog' , 11 );
 	}
 	function ampforwp_static_blog(){
@@ -3055,6 +3058,7 @@ if( !function_exists('ampforwp_checking_any_social_profiles') ) {
 
 //52. Adding a generalized sanitizer function for purifiying normal html to amp-html
 function ampforwp_content_sanitizer( $content ) {
+	global $post;
 	$amp_custom_post_content_input = $content;
 	if ( !empty( $amp_custom_post_content_input ) ) {
 		$amp_custom_content = new AMPFORWP_Content( $amp_custom_post_content_input,
@@ -3075,7 +3079,7 @@ function ampforwp_content_sanitizer( $content ) {
 						 'AMP_Iframe_Sanitizer' => array(
 							 'add_placeholder' => true,
 						 ),
-				)  )
+				),$post  )
 		);
 
 		if ( $amp_custom_content ) {
@@ -4303,21 +4307,6 @@ if ( ! function_exists('ampforwp_dev_mode_add_noindex') ) {
 			echo '<meta name="robots" content="noindex,nofollow"/>';
 		}
 	}
-}
-// Notice for Dev Mode
-function ampforwp_dev_mode_notice(){ 
-	global $redux_builder_amp;
-	$message = '';
-	if(isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode']) {
-			$message =  ' Please turn off Development mode, when you are done.';?>
-					
-			<div class="notice notice-success is-dismissible amp-dev-notice" style="position:relative;
-		    height: 40px; overflow: hidden; ">
-				<div class="ampforwp-dev-mode-message" style="margin-top: 10px;">
-				    <?php echo '<strong>'. esc_html__('AMP Dev mode is Enabled!', 'accelerated-mobile-pages').'</strong>'. esc_html__($message, 'accelerated-mobile-pages'); ?>				
-				</div>	
-			</div>
-<?php }
 }
  
 // 76. Body Class for AMP pages
@@ -6222,6 +6211,9 @@ function ampforwp_vuukle_comments_markup() {
 	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl);
 	$srcUrl = add_query_arg('img' , esc_url($img), $srcUrl);
 	$srcUrl = add_query_arg('tags' , urlencode($tag_name), $srcUrl);  
+	if(ampforwp_get_setting('ampforwp-vuukle-comments-emoji')==false){
+		$srcUrl = add_query_arg('emotes' , 'false', $srcUrl);
+	}
 	$consent = '';
 	if(ampforwp_get_data_consent()){
 		$consent = 'data-block-on-consent ';
@@ -6434,19 +6426,9 @@ function ampforwp_thrive_architect_content(){
     if ( function_exists( 'ampforwp_is_amp_inURL' ) && ampforwp_is_amp_inURL($url_path)  ) {
 		//#3254 Remove action for Woodmart theme lazyload feature 
 		remove_action( 'init', 'woodmart_lazy_loading_init', 120 );
-		if( class_exists('CDN_Enabler')){
-			add_filter('option_cdn_enabler', 'ampforwp_add_exclusions_cdn_enabler');
-		}
 	}
 }
 
-function ampforwp_add_exclusions_cdn_enabler($options){
-	if (!is_array($options)) { return $options; }
-	$excluded_urls[] = 'wp-content';
-	$urls = implode(',', $excluded_urls);
-	$options['excludes'] = empty($options['excludes'])?$urls:$options['excludes'].','.$urls;
-	return $options;
-}
 
 function ampforwp_thrive_content($content){
 	$post_id = "";
@@ -7746,6 +7728,20 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
     }
 }
 
+
+add_filter('ampforwp_the_content_last_filter','ampforwp_remove_unwanted_code',10);
+function ampforwp_remove_unwanted_code($content){
+// Mediavine validation issue with form and amp-consent #4206
+	if(preg_match('/<amp-consent id="mv-consent" layout="nodisplay">(.*?)<\/amp-consent>/s', $content)){
+		$content = preg_replace('/<amp-consent id="mv-consent" layout="nodisplay">(.*?)<\/amp-consent>/s', '', $content);
+	}
+	if(preg_match('/<form class="mv-create-print-form">(.*?)<\/form>/s', $content)){
+		$content = preg_replace('/<form class="mv-create-print-form">(.*?)<\/form>/s', '', $content);
+	}
+	// close #4206
+	return $content;
+}
+
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
 	$comp_to_remove_arr = array();
@@ -8038,42 +8034,6 @@ function ampforwp_ewww_webp_compatibility($content){
 		return $content;
 	}
 } 
-function ampforwp_seo_selection_notice() {
-	if('' != ampforwp_get_setting('ampforwp-seo-selection')){
-		return;
-	}
-	$seo = '';
-	if(class_exists('WPSEO_Options')){
-		$seo = 'Yoast SEO';
-	}
-	if(class_exists('All_in_One_SEO_Pack')){
-		$seo = 'All in One SEO';
-	}
-	if(function_exists( 'the_seo_framework' )){
-		$seo = 'The SEO Framework';
-	}
-	if(function_exists('genesis_theme_support')){
-		$seo = 'Genesis';
-	}
-	if(function_exists('qode_header_meta')){
-		$seo = 'Bridge Qode SEO';
-	}
-	if(defined( 'RANK_MATH_FILE' )){
-		$seo = 'Rank Math SEO';
-	}
-	if(defined( 'SQ_ALL_PATTERNS' )){
-		$seo = 'Squirrly SEO';
-	}
-	if(class_exists('Smartcrawl_Loader')){
-		$seo = 'Smartcrawl SEO';
-	}
-	if(function_exists('seopress_activation')){
-		$seo = 'SEO Press';
-	}
-	if(!empty($seo)){
-    	echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
-	}
-}
 
 if(!function_exists('ampforwp_check_image_existance')){
 	function ampforwp_check_image_existance($image){

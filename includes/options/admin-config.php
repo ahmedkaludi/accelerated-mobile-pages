@@ -550,6 +550,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('floating-button-for-amp/floating-button-for-amp.php')? 1 : 2),
                         ),
+                        array(
+                            'name'=>'JW Player Compatibility for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'JW Player for WordPress (By ilGhera) Compatibility in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/jwplayerforwp.png',
+                            'price'=>'$9',
+                            'url_link'=>'https://ampforwp.com/addons/jw-player-compatibility-for-amp/',
+                            'plugin_active_path'=> 'jw-player-compatibility-for-amp/jwplayercompatibilityforamp.php',
+                            'item_name'=>'JW Player Compatibility for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('jw-player-compatibility-for-amp/jwplayercompatibilityforamp.php')? 1 : 2),
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
@@ -627,8 +639,8 @@ foreach ($extension_listing_array as $key => $extension) {
                 $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
                 $remainingExpiresDays = floor( ( strtotime($allResponseData['expires'] )- time() )/( 60*60*24 ) );
                 if($remainingExpiresDays>0){
-                $amp_license_response = "<span class='license-tenure'>".esc_html($remainingExpiresDays)."  ".esc_html__('Days Remaining', 'accelerated-mobile-pages')."</span>. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."'>".esc_html__('Renew License', 'accelerated-mobile-pages')."</a>";
-                }else{ $amp_license_response = "<span class='license-tenure'>".esc_html__('Expired', 'accelerated-mobile-pages')."!</span> <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."'>".esc_html__('Renew your license', 'accelerated-mobile-pages')."</a>"; }
+                $amp_license_response = "<span class='license-tenure'>".esc_html($remainingExpiresDays)."  ".esc_html__('Days Remaining', 'accelerated-mobile-pages')."</span>. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."'  class='license-renew-a'>".esc_html__('Renew License', 'accelerated-mobile-pages')."</a>";
+                }else{ $amp_license_response = "<span class='license-tenure expire'>".esc_html__('Expired', 'accelerated-mobile-pages')."!</span> <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."'  class='license-renew-a'>".esc_html__('Renew your license', 'accelerated-mobile-pages')."</a>"; }
             }
         }
         if ( '' == $allResponseData['success'] && '' == $allResponseData['success'] ) {        
@@ -2296,6 +2308,17 @@ function ampforwp_get_all_tags($id){
                          'title'    => esc_html__('API Key', 'accelerated-mobile-pages'),
                          'default'  => '',
                          'desc'     => "For Example xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                         'required' => array(
+                            array('ampforwp-vuukle-comments-support', '=' , 1),
+                         ),
+                    ),
+                     array(
+                         'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-vuukle-comments-emoji',
+                         'type'     => 'switch',
+                         'title'    => esc_html__('Vuukle Emoji', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => esc_html__('Enable/Disable Vuukle comments emoji using this switch.', 'accelerated-mobile-pages'),
+                         'default'  => 1,
                          'required' => array(
                             array('ampforwp-vuukle-comments-support', '=' , 1),
                          ),

@@ -2058,3 +2058,13 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
 i.dashicons.dashicons-before.dashicons-update {
     margin: 7px 2px 0 0;
     }
+.license-tenure.expire{
+    color:red;
+}
+.license-renew-a,.license-renew-a:hover{
+    background: #303e9f;
+    color: #fff;
+    text-decoration: none;
+    padding: 1px 7px 3px;
+    border-radius: 13px;
+}

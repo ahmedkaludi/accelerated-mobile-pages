@@ -739,12 +739,12 @@ function ampforwp_backtotop_global_css(){?>
             table.wp-block-table.alignright,table.wp-block-table.alignleft,table.wp-block-table.aligncenter{width: auto;}
             table.wp-block-table.aligncenter{width: 50%;}
             table.wp-block-table.alignfull,table.wp-block-table.alignwide{display: table;}
-            table { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; overflow-x: auto; }
+            table { display: inline-table; overflow-x: auto; }
             table a:link { font-weight: bold; text-decoration: none; }
             table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
             table a:active, table a:hover { color: #bd5a35; text-decoration: underline; }
-            table { font-family: Arial, Helvetica, sans-serif; color: #666; font-size: 12px; text-shadow: 1px 1px 0px #fff; background: #eee; margin: 0px; width: 95%; }
-            table th { padding: 21px 25px 22px 25px; border-top: 1px solid #fafafa; border-bottom: 1px solid #e0e0e0; background: #ededed; background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb)); }
+            table { font-family: Arial, Helvetica, sans-serif; color: #666; font-size: 15px; text-shadow: 1px 1px 0px #fff; background: #eee; margin: 0px; width: 95%; }
+            table th { padding: 21px 25px 22px 25px; border-top: 1px solid #fafafa; border-bottom: 1px solid #e0e0e0; background: #ededed; }
             table th:first-child { text-align: left; padding-left: 20px; }
             table tr:first-child th:first-child { -webkit-border-top-left-radius: 3px; border-top-left-radius: 3px; }
             table tr:first-child th:last-child { -webkit-border-top-right-radius: 3px; border-top-right-radius: 3px; }
