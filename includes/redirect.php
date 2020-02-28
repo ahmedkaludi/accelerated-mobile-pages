@@ -185,6 +185,11 @@ function ampforwp_redirection() {
 
   // Mobile redirection
   if ( ampforwp_get_setting('amp-mobile-redirection') ) {
+    if(class_exists('stcr\\stcr_manage') ){
+      if(in_array('comment-subscriptions', $current_url) && strrpos('srp', $current_url)==true && strrpos('srk', $current_url)==true){
+          return true;
+      }
+    }
     require_once AMPFORWP_PLUGIN_DIR.'/includes/vendor/Mobile_Detect.php';
     $post_type                  = '';
     $supported_types            = '';
