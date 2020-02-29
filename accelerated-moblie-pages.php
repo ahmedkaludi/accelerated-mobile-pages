@@ -1342,12 +1342,11 @@ function ampforwp_automattic_notice_delete(){
 }
 
 add_action('current_screen','ampforwp_replace_redux_comments');
-function ampforwp_replace_redux_comments(){
+function ampforwp_replace_redux_comments($screen){
 	if(current_user_can( 'manage_options' )){
-		$replaced_redux_comments = get_transient('replaced_redux_comments_updated');
-		if(!$replaced_redux_comments){
-			$screen = get_current_screen();
-			if ( 'toplevel_page_amp_options' == $screen->base ) {
+		if ( 'toplevel_page_amp_options' == $screen->base ) {
+			$replaced_redux_comments = get_transient('replaced_redux_comments_updated');
+			if(!$replaced_redux_comments){
 			    $redux_val   = get_option('redux_builder_amp',array());  
 			    if ( empty($redux_val) || ! is_array($redux_val)) {
 					return;
