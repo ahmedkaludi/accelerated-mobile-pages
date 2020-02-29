@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.32 (29th February 2020) =
+* Fixed: Syntax breaking in advanced google analytics section #4228
+* Fixed: Optimize CSS (Tree shaking) not clearing on post update #4234
+
 = 1.0.31 (28th February 2020) =
 * Improvement: Added option to hide vukkle comments emoji #4194
 * Improvement: Added alt for images in Slider module of AMP page builder #4193
