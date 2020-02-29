@@ -371,7 +371,7 @@ if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
                     $transient_filename = "archive-".intval($page_id);
                 }elseif(is_object($post)){
                     $transient_filename = "post-".$post->ID;
-                }                   }
+                }               
                 if( is_user_logged_in() ){
                     $transient_filename = $transient_filename.'-admin';
                 }
@@ -383,7 +383,6 @@ if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
 			}
 		}
 	}
-
 }
 
 if(!function_exists('ampforwp_clear_css_on_transposh_rtl')){
