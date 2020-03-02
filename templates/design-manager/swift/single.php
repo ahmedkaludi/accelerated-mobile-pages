@@ -47,6 +47,7 @@ global $redux_builder_amp; ?>
 						} // Swift Featured Image ?>
 						<?php amp_content(); ?>
 					</div>
+					<?php do_action( 'ampforwp_after_the_post_content_wrp' ); ?>
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
 						ampforwp_swift_social_icons(); 
 						}
