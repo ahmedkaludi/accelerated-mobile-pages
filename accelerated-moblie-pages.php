@@ -1340,7 +1340,7 @@ function ampforwp_automattic_notice_delete(){
 	exit();
 }
 
-add_action('admin_init','ampforwp_replace_redux_comments');
+add_action('current_screen','ampforwp_replace_redux_comments');
 function ampforwp_replace_redux_comments($screen){
 	if(current_user_can( 'manage_options' )){
 		if ( 'toplevel_page_amp_options' == $screen->base ) {
