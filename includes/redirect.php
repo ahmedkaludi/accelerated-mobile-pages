@@ -58,7 +58,7 @@ function ampforwp_redirection() {
                 $_SERVER['REQUEST_URI'];              
   $current_url = explode('/', $current_url);
   $check    =  '?nonamp=1';
-  if (( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) ){
+  if (( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) && function_exists('session_start')){
         session_start();
         $_SESSION['ampforwp_mobile'] = 'exit';     
   }
