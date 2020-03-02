@@ -189,11 +189,7 @@ if(function_exists('ampforwp_mobile_redirect_preseve_link')){
 
   // Mobile redirection
   if ( ampforwp_get_setting('amp-mobile-redirection') ) {
-    if(class_exists('stcr\\stcr_manage') ){
-      if(in_array('comment-subscriptions', $current_url) && strrpos('srp', $current_url)==true && strrpos('srk', $current_url)==true){
-          return true;
-      }
-    }
+
     require_once AMPFORWP_PLUGIN_DIR.'/includes/vendor/Mobile_Detect.php';
     $post_type                  = '';
     $supported_types            = '';
@@ -291,6 +287,12 @@ if(function_exists('ampforwp_mobile_redirect_preseve_link')){
     }
     // Check if we are on Mobile phones then start redirection process
     if ( $redirectToAMP ) {
+       if(class_exists('stcr\\stcr_manage') ){
+        $check_url = implode(', ', $current_url);
+        if(in_array('comment-subscriptions', $current_url) && strpos($check_url,'srp')!=false && strpos($check_url,'srk')!=false){
+          return true;
+        }
+      }
       if(!isset($_GET['nonamphead']) && isset($_SESSION['nonamphead']) && in_array($url_to_redirect, $_SESSION['nonamphead'])){
            return;
         }
@@ -307,6 +309,12 @@ if(function_exists('ampforwp_mobile_redirect_preseve_link')){
         }
     }
     if(ampforwp_is_amp_endpoint()==false && $redirectToAMP==false){
+      if(class_exists('stcr\\stcr_manage') ){
+        $check_url = implode(', ', $current_url);
+        if(in_array('comment-subscriptions', $current_url) && strpos($check_url,'srp')!=false && strpos($check_url,'srk')!=false){
+          return true;
+        }
+      }
       if(!isset($_GET['nonamphead']) && isset($_SESSION['nonamphead']) && in_array($url_to_redirect, $_SESSION['nonamphead'])){
            return;
         }
