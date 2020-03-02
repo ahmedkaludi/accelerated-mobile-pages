@@ -12,7 +12,12 @@ function ampforwp_framework_get_search_form() {
 		$action_url = ( get_bloginfo('url') );
 		$action_url = preg_replace('#^http?:#', '', $action_url);
 		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
-		if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover'] ) {
+		$mob_pres_link = false;
+	    if(function_exists('ampforwp_mobile_redirect_preseve_link')){
+	      $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
+	    }
+
+		if (ampforwp_get_setting('ampforwp-amp-takeover')==false && $mob_pres_link ==false) {
 			$amp_query_variable = 'amp';
 			$amp_query_variable_val = '1';
 		}

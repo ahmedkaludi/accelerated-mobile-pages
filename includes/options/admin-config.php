@@ -2631,6 +2631,15 @@ Redux::setSection( $opt_name, array(
                         'default' => 0,
 
                     ),
+                     array(
+                        'id'       => 'amp-mob-redirection-pres-link',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'type'     => 'switch',
+                        'title'    => __('Preserve Original Permalinks', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Enable/Disable Mobile redirection for preserve original permalinks.','accelerated-mobile-pages'),
+                        'default' => 0,
+                        'required' => array( 'amp-mobile-redirection', '=' , 1 )
+                    ),
                     array(
                         'id'       => 'amp-tablet-redirection',
                         'class'    => 'child_opt child_opt_arrow',

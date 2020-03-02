@@ -128,7 +128,11 @@ function ampforwp_call_page_builder(){
 	unset($backendRowSetting['front_common_css']);
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	
-	if(class_exists('WPSEO_Frontend') && true == ampforwp_get_setting('ampforwp-yoast-seo-analysis') && true == ampforwp_get_setting('ampforwp-amp-takeover') ) { 
+	$mob_pres_link = false;
+	if(function_exists('ampforwp_mobile_redirect_preseve_link')){
+	  $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
+	}
+	if(class_exists('WPSEO_Frontend') && true == ampforwp_get_setting('ampforwp-yoast-seo-analysis') && (true == ampforwp_get_setting('ampforwp-amp-takeover') || $mob_pres_link==true) ) { 
 		$pb_content = get_post_field('amp-page-builder',$post->ID);
 		?>
 		<script type="text/template" class="hide" id="amp-page-builder-ready"><?php echo stripcslashes( $pb_content ); ?></script>

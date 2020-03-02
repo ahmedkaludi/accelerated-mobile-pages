@@ -88,8 +88,12 @@ function ampforwp_redirection() {
     }
   }
 
+$mob_pres_link = false;
+if(function_exists('ampforwp_mobile_redirect_preseve_link')){
+  $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
+}
   // AMP Takeover
-  if ( ampforwp_get_setting('ampforwp-amp-takeover') && !ampforwp_is_non_amp() ) {
+  if ( (ampforwp_get_setting('ampforwp-amp-takeover') || $mob_pres_link==true) && !ampforwp_is_non_amp() ) {
     $redirection_location = '';
     $current_location     = '';
     $home_url             = '';
