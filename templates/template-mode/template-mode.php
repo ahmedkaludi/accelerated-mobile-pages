@@ -174,8 +174,9 @@ Class AMPforWP_theme_mode{
 					</div>';
 				if(preg_match('/method\s*=\s*"\s*get\s*"/', $content)){
 						$content = preg_replace("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)id=[\"|']commentform[\"|'](.*?)>/s", '<form$1action="'.esc_url_raw($submit_url).'"$3id="commentform" $4 on="submit-success:commentform.reset()">'.$mustache, $content);
-				}else{
-					$content = preg_replace("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)id=[\"|']commentform[\"|'](.*?)>/s", '<form$1action-xhr="'.esc_url_raw($submit_url).'"$3id="commentform" $4 on="submit-success:commentform.reset()">'.$mustache, $content);
+				}
+				if(preg_match('/method\s*=\s*"\s*post\s*"/', $content)){
+					$content = preg_replace("/<form action=[\"|'](.*?)[\"|'](.*?)id=[\"|']commentform[\"|'](.*?)>/s", '<form action-xhr="$1"$2id="commentform" $3 on="submit-success:commentform.reset()">'.$mustache, $content);
 				}
 		}
 		return $content;
