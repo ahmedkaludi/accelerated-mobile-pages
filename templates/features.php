@@ -4709,6 +4709,7 @@ function ampforwp_inline_related_posts(){
 						$related_post_permalink = get_permalink();
 						$related_post_permalink = trailingslashit($related_post_permalink);
 						$related_post_permalink = ampforwp_url_controller( $related_post_permalink );
+						$related_post_permalink = ampforwp_modify_url_utm_params($related_post_permalink);
 						if ( ampforwp_has_post_thumbnail() ) {
 							$title_class = 'has_related_thumbnail';
 						} else {
@@ -8108,4 +8109,15 @@ if(class_exists('Getty_Images')){
 		}
 		return $content;
 	}
+}
+function ampforwp_modify_url_utm_params($url){
+	$modify_url = apply_filters('ampforwp_modify_related_post_url','');
+	if($modify_url!=''){
+	 	if(preg_match('/\?amp/', $url)){
+	 		$url = $url.'&'.$modify_url;
+	 	}else if(preg_match('/amp/', $url)){
+	 		$url = $url.'?'.$modify_url;
+	 	}
+	}
+	return $url;
 }
