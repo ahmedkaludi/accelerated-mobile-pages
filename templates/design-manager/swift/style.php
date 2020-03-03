@@ -732,14 +732,7 @@ padding-left: 20px;
 	left: 0px;
 <?php } ?>
 }
-.artl-cnt ol li {counter-increment: step-counter;}
-.artl-cnt ol li::before {content: counter(step-counter);font-size: 16px;color: #000;position: absolute;
-<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) {?> 
-	right:0;
-<?php } else{ ?>
-	left: 0px;
-<?php } ?>
-line-height: 1.2;top: 6px;}
+.artl-cnt ol li {list-style-type: decimal;position: unset;padding: 0;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
 @supports (-webkit-overflow-scrolling: touch) {
 .m-ctr{overflow:initial;}
