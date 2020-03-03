@@ -21,6 +21,7 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 					$sidebar_output = $sanitized_sidebar->get_amp_content();
 					$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
 					$sidebar_output = ampforwp_show_yoast_seo_local_map($sidebar_output);
+					$sidebar_output = preg_replace('/<form(.*?)>(.*?)<select name="cat"(.*?)<\/form>/s', '<form$1target="_top">$2<select name="cat"$3</form>' , $sidebar_output);
 				}
 	            echo do_shortcode($sidebar_output); // amphtml content, no kses
 				?>
