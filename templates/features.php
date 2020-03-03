@@ -5074,7 +5074,7 @@ add_action( 'wp_before_admin_bar_render', 'ampforwp_view_amp_admin_bar' );
 if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 	function ampforwp_view_amp_admin_bar( ) {
 		global $wp_admin_bar, $post, $wp_post_types, $redux_builder_amp;
-		$post_type_title = '';
+		$post_type_title = $current_url = '';
 		$supported_amp_post_types = array();
 		
 		// Get all post types supported by AMP
@@ -5144,15 +5144,15 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 						$current_url = get_term_link($term_id);
 					}else{
 						$post_type_title = ucfirst($post->post_type);
-						$amp_cur_url = get_permalink( $post->ID );
+						$current_url = get_permalink( $post->ID );
 						if(is_home()){
-							$amp_cur_url = home_url();
+							$current_url = home_url();
 						}
 					}
 					$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . esc_html($post_type_title) . ' (AMP)' ,
-						'href'  => ampforwp_url_controller($amp_cur_url)
+						'href'  => ampforwp_url_controller($current_url)
 					));
 				}
 		}
