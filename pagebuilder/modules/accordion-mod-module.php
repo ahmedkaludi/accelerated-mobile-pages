@@ -7,9 +7,9 @@ $css = '
 .accordion-mod{margin:{{margin_css}};padding:{{padding_css}};}
 amp-accordion section[expanded] .show-more {display: none;}
 amp-accordion section:not([expanded]) .show-less {display: none;}
-.accordion-mod h5:before{content: "+";font-size: 24px;color: #999;margin-right: 10px;position: relative;top: 1px;}
-.accordion-mod h5:hover{color:#000;}
-.accordion-mod section[expanded] h5:before{content:"-"}
+.accordion-mod h1:before,.accordion-mod h2:before,.accordion-mod h3:before,.accordion-mod h4:before,.accordion-mod h5:before,.accordion-mod h6:before{content: "+";font-size: 24px;color: #999;margin-right: 10px;position: relative;top: 1px;}
+.accordion-mod h1:hover,.accordion-mod h2:hover,.accordion-mod h3:hover,.accordion-mod h4:hover,.accordion-mod h5:hover,.accordion-mod h6:hover{color:#000;}
+.accordion-mod section[expanded] h1:before,.accordion-mod section[expanded] h2:before,.accordion-mod section[expanded] h3:before,.accordion-mod section[expanded] h4:before,.accordion-mod section[expanded] h5:before,.accordion-mod section[expanded] h6:before,{content:"-"}
 .accordion-mod .acc-lbl{background: none;border: 0;padding: 0;margin:10px 0px 15px 0;color: {{acc_color_picker}};font-size: 22px;line-height: 1.5em;font-weight: normal;    }
 .accordion-mod .acc-desc{margin-bottom:0;margin:-5px 0px 20px 23px;padding: 0;color:#666;font-size: 14px;line-height: 1.5em;}
 ';
@@ -97,6 +97,22 @@ return array(
 		 						'default'	=>'Heading',	
 		           				'content_type'=>'html',
 	 						),
+		                array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'acc_head_type',		
+	 							'label' =>"Header Type",
+								'tab'     =>'customizer',
+	 							'default' =>'h5',
+	 							'options_details'=>array(
+	 												'h1'  	=>'H1',
+	 												'h2'  	=>'H2',
+	 												'h3'  	=>'H3',
+	 												'h4'  	=>'H4',
+	 												'h5'  	=>'H5',
+	 												'h6'  	=>'H6',
+	 											),
+	 							'content_type'=>'html',
+	 						),
 						array(		
 		 						'type'		=>'textarea',		
 		 						'name'		=>"ass_desc",		
@@ -108,7 +124,7 @@ return array(
               ),
           'front_template'=>
         	'<section>
-			    <h5 class="acc-lbl">{{acc_title}}</h5>
+			    <{{acc_head_type}} class="acc-lbl">{{acc_title}}</{{acc_head_type}}>
 			    <div class="acc-desc">{{ass_desc}}</div>
 			</section>'
           ),
