@@ -178,15 +178,18 @@ function ampforwp_is_associative(array $arr)
 add_action('amp_post_template_css','amp_social_styles',11); 
 
 
-function amp_social_styles(){ ?>
+function amp_social_styles(){ 
+$icon_url = plugin_dir_url(__FILE__);
+$icon_url = ampforwp_font_url($icon_url);
+?>
 @font-face {
   font-family: 'icomoon';
   font-display: swap;
-  src:  url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.eot');
-  src:  url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.eot') format('embedded-opentype'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.ttf') format('truetype'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.woff') format('woff'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.svg') format('svg');
+  src:  url('<?php echo esc_url($icon_url) ?>fonts/icomoon.eot');
+  src:  url('<?php echo esc_url($icon_url) ?>fonts/icomoon.eot') format('embedded-opentype'),
+    url('<?php echo esc_url($icon_url) ?>fonts/icomoon.ttf') format('truetype'),
+    url('<?php echo esc_url($icon_url) ?>fonts/icomoon.woff') format('woff'),
+    url('<?php echo esc_url($icon_url) ?>fonts/icomoon.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
