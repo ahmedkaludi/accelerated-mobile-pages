@@ -550,6 +550,18 @@ $extension_listing_array = array(
                             'item_name'=>'JW Player Compatibility for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('jw-player-compatibility-for-amp/jwplayercompatibilityforamp.php')? 1 : 2),
+                        ),
+                        array(
+                            'name'=>'CCPA for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'This extension allows you to comply with the privacy rules of CCPA',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/ccpa_for_amp.png',
+                            'price'=>'$29',
+                            'url_link'=>'https://ampforwp.com/addons/ccpa-for-amp/',
+                            'plugin_active_path'=> 'ccpa-for-amp/ccpaforamp.php',
+                            'item_name'=>'CCPA for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('ccpa-for-amp/ccpaforamp.php')? 1 : 2),
                         ), 
                     );
         $viewAllExtensions = array(
