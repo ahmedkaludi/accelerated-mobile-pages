@@ -312,6 +312,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 											echo ampforwp_addThis_support();
 									}	?>
 								</div>
+								<?php do_action( 'ampforwp_after_the_post_content_wrp' ); ?>
 								<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 								<div class="ss-ic">
 								<?php if (true == ampforwp_get_setting('swift-social-position') && 'below-content' == ampforwp_get_setting('swift-social-position')){
