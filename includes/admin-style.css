@@ -899,7 +899,7 @@ span#ampforwp-clear-clcss-msg {line-height: 25px;}
 .backtoextensionlist{
     cursor: pointer;
 }
-.redux-main #redux-sticky{display: none}
+.ampforwp-redux-container .redux-main #redux-sticky{display: none}
 
 #info-ampforwp-beta-mode-notice{color: #263238; margin: 20px; background: #FFF9C4;border-color: #908204;}
 
