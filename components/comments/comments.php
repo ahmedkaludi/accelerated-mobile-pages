@@ -105,6 +105,9 @@ function ampforwp_framework_get_comments(){
 									'echo' 			=> false,
 									'add_fragment' 	=> '#comments',		
 								);
+								if(true == ampforwp_get_setting('ampforwp-amp-takeover')){
+									$args['base'] = get_the_permalink().'comment-page-%#%';
+								}
 						    if ( paginate_comments_links($args) ) { ?>
 								<div class="cmts-wrap">
 					     			<?php echo paginate_comments_links( $args ); ?>
