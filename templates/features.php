@@ -7515,14 +7515,12 @@ function ampforwp_head_css(){
 			wp_enqueue_style(
 				'query-monitor',
 				esc_attr($qm)."/query-monitor/assets/{$css}.css",
-				array( 'dashicons' ),
-				esc_attr($qm).'/query-monitor/assets/{$css}.css'
+				array( 'dashicons' )
 			);
 			wp_enqueue_script(
 				'query-monitor',
 				esc_attr($qm).'/query-monitor/assets/query-monitor.js',
 				$deps,
-				esc_attr($qm).'/query-monitor/assets/query-monitor.js',
 				false
 			);
 			wp_localize_script(
