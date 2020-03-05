@@ -7312,6 +7312,14 @@ function ampforwp_front_admin_menu_bar(){
 	if( is_user_logged_in() ){
 		$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
 		if($pref==="true"){
+			if(class_exists('QM_Plugin') && ampforwp_get_setting('ampforwp-query-monitor')){
+				$dis = QM_Dispatchers::get( 'html' );
+				if($dis->did_footer==false){
+					$dis->did_footer = true;
+					add_action( 'amp_post_template_head', 'ampforwp_query_monitor_script'  );
+					add_action( 'amp_post_template_head',  'ampforwp_manual_qm_script', 11 );
+				}
+			}
 			add_action("ampforwp_admin_menu_bar_front", function(){
 				add_action('wp_before_admin_bar_render','ampforwp_add_admin_menu_front');
 		    	wp_admin_bar_render();
@@ -7456,6 +7464,64 @@ function ampforwp_head_css(){
 		for($i=0;$i<count($node_arr);$i++){
 			$wp->remove_node($node_arr[$i]);
 		}
+	}
+	function ampforwp_manual_qm_script() {
+		wp_print_scripts( array(
+			'query-monitor',
+		) );
+		wp_print_styles( array(
+			'query-monitor',
+		) );
+	}
+	function ampforwp_query_monitor_script() {
+		global $wp_locale;
+		$qm = plugins_url();
+		$deps = array(
+				'jquery',
+			);
+
+			if ( defined( 'QM_NO_JQUERY' ) && QM_NO_JQUERY ) {
+				$deps = array();
+			}
+
+			$css = 'query-monitor';
+			if ( method_exists( 'Dark_Mode', 'is_using_dark_mode' ) && is_user_logged_in() ) {
+				if ( Dark_Mode::is_using_dark_mode() ) {
+					$css .= '-dark';
+				}
+			} elseif ( defined( 'QM_DARK_MODE' ) && QM_DARK_MODE ) {
+				$css .= '-dark';
+			}
+
+			wp_enqueue_style(
+				'query-monitor',
+				esc_attr($qm)."/query-monitor/assets/{$css}.css",
+				array( 'dashicons' )
+			);
+			wp_enqueue_script(
+				'query-monitor',
+				esc_attr($qm).'/query-monitor/assets/query-monitor.js',
+				$deps,
+				false
+			);
+			wp_localize_script(
+				'query-monitor',
+				'qm_number_format',
+				$wp_locale->number_format
+			);
+			wp_localize_script(
+				'query-monitor',
+				'qm_l10n',
+				array(
+					'ajax_error' => __( 'PHP Errors in Ajax Response', 'query-monitor' ),
+					'ajaxurl'    => admin_url( 'admin-ajax.php' ),
+					'auth_nonce' => array(
+						'on'         => wp_create_nonce( 'qm-auth-on' ),
+						'off'        => wp_create_nonce( 'qm-auth-off' ),
+						'editor-set' => wp_create_nonce( 'qm-editor-set' ),
+					),
+				)
+			);
 	}
 	function ampforwp_get_non_amp_url(){
 		global $post, $wp;
