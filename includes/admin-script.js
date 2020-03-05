@@ -118,6 +118,60 @@ jQuery(function($) {
             $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls" style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');
             $('.redux-amp-search-icon').click(function(){
                 $('.redux_field_search').toggle('slide');
+                var val = $('.redux_field_search').val();
+                var display = $('.redux_field_search').css('display');
+                if(val!='' && display=='block'){
+                    $('.redux_field_search').val('');
+                     var parent = jQuery('.redux_field_search').parents('.redux-container:first');
+                     var expanded_options = parent.find('.expand_options');
+                     if (expanded_options.hasClass('expanded')) {
+                        expanded_options.click();
+                        parent.find('.redux-main').removeClass('redux-search');
+                     }
+                    //parent.find('.redux-section-field, .redux-info-field, .redux-notice-field, .redux-container-group, .redux-section-desc, .redux-group-tab h3').show();
+
+                    if($('.redux-group-tab-link-li.active').length>0){
+                        var rel = $('.redux-group-tab-link-li.active a').attr('data-rel');
+                        var selector = 'div#'+rel+'_section_group';
+                        jQuery(selector).show();
+                        jQuery(selector).css('display','block');
+
+                    }else{
+                        $('.redux-group-tab-link-li.activeChild').click();
+                        $('div#'+rel+'_section_group').show();
+                        $('#'+rel+'_section_group').css('display','block');
+                    }
+                    parent.find('.redux-field-container').each(function() {
+                        $(this).parents('tr:first').show();
+                    });
+                     parent.find('.redux-group-tab').each(function() {
+                         $(this).find("div.redux-section-field").each(function(){
+                            var item = $(this);
+                            if(item.hasClass('hide')){
+                                return false;
+                            }
+                            var divSectionId = $(this).attr('id');
+                            var splitResult = divSectionId.split("-");
+                            splitResult.splice(1, 0, "table");
+                            var divTableId = splitResult.join("-");
+                            var totalTr = $("#"+divTableId).find('tr:visible').length;
+                            if(totalTr>0){
+                                $(this).show();
+                            }
+                        });
+                        $(this).find('.form-table-section tbody').each(function(){
+                            $(this).find('tr').each(function (i, el) {
+                                var item = $(this);
+                                if(item.hasClass('hide')){
+                                    item.hide();
+                                }
+                                if(item.hasClass('redux-section-indent-start')){
+                                    item.hide();
+                                }
+                            });
+                        });
+                    });
+                }
             });
             reduxOptionSearch();
         }
