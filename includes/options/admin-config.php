@@ -2618,7 +2618,7 @@ Redux::setSection( $opt_name, array(
                         array(
                                'id' => 'amp-other-tools',
                                'type' => 'section',
-                               'title' => esc_html__('AMP Other Tools', 'accelerated-mobile-pages'),
+                               'title' => esc_html__('Others', 'accelerated-mobile-pages'),
                                'indent' => true,
                                'layout_type' => 'accordion',
                                'accordion-open'=> 1,
@@ -2626,7 +2626,7 @@ Redux::setSection( $opt_name, array(
                         array(
                             'id'       => 'ampforwp-query-monitor',
                             'type'      => 'switch',
-                            'title'     => esc_html__('Query Monitor', 'accelerated-mobile-pages'),
+                            'title'     => esc_html__('Show Query Monitor data in AMP', 'accelerated-mobile-pages'),
                             'default'   => 1,
                             'tooltip-subtitle' => esc_html__('Enable/Disable Query Monitor for amp when logged in as admin and Query Monitor Plugin installed', 'accelerated-mobile-pages'),
                         ),
