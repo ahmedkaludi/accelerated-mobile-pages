@@ -7998,6 +7998,7 @@ if(!function_exists('ampforwp_imagify_webp_compatibility')){
 				}
 			}
 		}
+		$content = str_replace('.webp.webp','.webp',$content);
 		return $content;
 	}
 }
@@ -8036,6 +8037,7 @@ function ampforwp_ewww_webp_compatibility($content){
 				}
 			}
 		}
+		$content = str_replace('.webp.webp','.webp',$content);
 		return $content;
 	}
 } 
