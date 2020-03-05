@@ -4370,7 +4370,8 @@ Redux::setSection( $opt_name, array(
                     'type'     => 'switch',
                     'title'    => esc_html__( 'Search', 'accelerated-mobile-pages' ),
                     'required' => array(
-                        array('amp-design-selector', '=' , '4')
+                        array('amp-design-selector', '=' , '4'),
+                        array('header-type', '!=' , '2'),
                     ),
                     'default'  => '1'
             ),
