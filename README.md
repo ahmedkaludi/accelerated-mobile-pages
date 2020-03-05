@@ -194,7 +194,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.32 (5th March 2020) =
+= 1.0.32 (6th March 2020) =
 * Fixed: Syntax breaking in advanced google analytics section #4228
 * Fixed: Optimize CSS (Tree shaking) not clearing on post update #4234
 * Fixed: Compatibility with the CIARO theme #4220
