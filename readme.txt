@@ -191,9 +191,23 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.32 (29th February 2020) =
+= 1.0.32 (5th March 2020) =
 * Fixed: Syntax breaking in advanced google analytics section #4228
 * Fixed: Optimize CSS (Tree shaking) not clearing on post update #4234
+* Fixed: Compatibility with the CIARO theme #4220
+* Fixed: Custom JavaScript are not allowed issue #4233
+* Fixed: Need to remove search option when header type 2 is selected #4214
+* Fixed: CSS of the CTA button in AMP page builder is disturbed in the mobile view #4215
+* Fixed: image  broken in light speed cache plugin #4231
+* Fixed: Youtube video is not working in " The issue" Theme #4223
+* Fixed: Removed '/amp' in menu with custom link #4221
+* Fixed: Wrong Yoast Canonical when amp link added #4229
+* Fixed: Call to undefined function session_start() in redirect.php:67 #4236
+* Fixed: Content Sneak Peek issue with below the content ads in Mozilla browser. #4178
+* Fixed: The mandatory attribute 'target' is missing in tag form #4239
+* Fixed: Query Monitor queries should be visible in amp pages too when logged in. #4250
+* Fixed: The input should be cleared When search button is clicked in AMP options Panel#4247
+* Fixed: Multiple debug warnings. #4242
 
 = 1.0.31 (28th February 2020) =
 * Improvement: Added option to hide vukkle comments emoji #4194
