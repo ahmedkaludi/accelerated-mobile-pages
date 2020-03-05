@@ -1017,6 +1017,11 @@ function ampforwp_remove_schema_data() {
     remove_filter( 'the_content', 'rocket_lazyload_iframes', PHP_INT_MAX );
 	add_filter( 'do_rocket_lazyload', '__return_false' );
 
+	// Compatibility with the CIARO theme #4220
+	if(defined('CAIRO_THEME_VERSION')){
+		remove_filter( 'amp_post_template_file', 'amp_set_custom_template');
+	}
+
 	// Remove Popups and other elements added by Slider-in Plugin
 	define('WDSI_BOX_RENDERED', true, false); // when third argument is true, getting Deprecated debug warning in php 7.3.2
 	
