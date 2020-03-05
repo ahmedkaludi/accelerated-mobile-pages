@@ -7,6 +7,7 @@
 	<div class="amp-wp-content the_content">
 		<?php amp_content(); ?>
 	</div>
+	<?php do_action( 'ampforwp_after_the_post_content_wrp' ); ?>
 	<!--Post Content Ends here-->
 	<?php 
 	if ( 'below-content' ==  ampforwp_get_setting('design-1-2-3-addthis-pos') ){

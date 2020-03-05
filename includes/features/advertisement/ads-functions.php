@@ -259,7 +259,13 @@ function ampforwp_before_post_content_advert() {
 		}
 	}
 }
-
+add_action('pre_amp_render_post', 'ampforwp_after_post_firefox_ad');
+function ampforwp_after_post_firefox_ad(){
+	if(true == ampforwp_get_setting('enable-amp-ads-4') && true == ampforwp_get_setting('content-sneak-peek')){
+		remove_action('ampforwp_after_post_content','ampforwp_after_post_content_advert');
+		add_action('ampforwp_after_the_post_content_wrp','ampforwp_after_post_content_advert');
+	}
+}
 // Below Content Single
 // Hook updated
 //	add_action('ampforwp_inside_post_content_after','ampforwp_after_post_content_advert');

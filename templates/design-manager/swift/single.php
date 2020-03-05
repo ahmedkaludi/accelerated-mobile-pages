@@ -47,6 +47,7 @@ global $redux_builder_amp; ?>
 						} // Swift Featured Image ?>
 						<?php amp_content(); ?>
 					</div>
+					<?php do_action( 'ampforwp_after_the_post_content_wrp' ); ?>
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
 						ampforwp_swift_social_icons(); 
 						}
@@ -340,6 +341,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 											echo ampforwp_addThis_support();
 									}	?>
 								</div>
+								<?php do_action( 'ampforwp_after_the_post_content_wrp' ); ?>
 								<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 								<div class="ss-ic">
 								<?php if (true == ampforwp_get_setting('swift-social-position') && 'below-content' == ampforwp_get_setting('swift-social-position')){
