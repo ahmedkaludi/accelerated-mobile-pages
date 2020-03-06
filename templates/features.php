@@ -3818,6 +3818,23 @@ function ampforwp_post_pagination( $args = '' ) {
 		    }
 			$numpages = count($ampforwp_new_content);
 		}	
+	}else{
+		$amp_current_post_id =ampforwp_get_the_ID();
+		$amp_custom_content_enable = get_post_meta( $amp_current_post_id , 'ampforwp_custom_content_editor_checkbox', true);
+		if($amp_custom_content_enable=='yes'){
+			$content 	= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
+			$content 	= html_entity_decode($content);
+			$checker = preg_match('/<!--nextpage-->/', $content);
+			if ( 1 === $checker ) {
+				$multipage = $more = 1;
+				$ampforwp_new_content = explode('<!--nextpage-->', $content);
+				$queried_var = get_query_var('paged');
+				if ( $queried_var > 1 ) {
+			      $page = $queried_var;
+			    }
+				$numpages = count($ampforwp_new_content);
+			}
+		}
 	}
 	$defaults = array(
 		'before'           => '<div class="ampforwp_post_pagination" ><p>' . '<span>' .  ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page') . ':</span>',
