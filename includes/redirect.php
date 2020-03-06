@@ -63,7 +63,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
       }
 }          
   // Redirect ?nonamp=1 to normal url #3269
-  if (( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) ){
+  if (( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) && function_exists('session_start')){
       session_start();
       $_SESSION['ampforwp_mobile'] = 'exit'; 
       $current_url = str_replace("?nonamp=1", '',$current_url);

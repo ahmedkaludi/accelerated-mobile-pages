@@ -1017,6 +1017,11 @@ function ampforwp_remove_schema_data() {
     remove_filter( 'the_content', 'rocket_lazyload_iframes', PHP_INT_MAX );
 	add_filter( 'do_rocket_lazyload', '__return_false' );
 
+	// Compatibility with the CIARO theme #4220
+	if(defined('CAIRO_THEME_VERSION')){
+		remove_filter( 'amp_post_template_file', 'amp_set_custom_template');
+	}
+
 	// Remove Popups and other elements added by Slider-in Plugin
 	define('WDSI_BOX_RENDERED', true, false); // when third argument is true, getting Deprecated debug warning in php 7.3.2
 	
@@ -2990,7 +2995,9 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 		$atts['href'] = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $atts['href']);
 	}
   	else{
-     	$atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
+  		if(false === strpos($atts['href'], "#")){
+     		$atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
+     	}   
     }
 
 	return $atts;
@@ -5056,7 +5063,7 @@ add_action( 'wp_before_admin_bar_render', 'ampforwp_view_amp_admin_bar' );
 if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 	function ampforwp_view_amp_admin_bar( ) {
 		global $wp_admin_bar, $post, $wp_post_types, $redux_builder_amp;
-		$post_type_title = '';
+		$post_type_title = $current_url = '';
 		$supported_amp_post_types = array();
 		
 		// Get all post types supported by AMP
@@ -5126,15 +5133,15 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 						$current_url = get_term_link($term_id);
 					}else{
 						$post_type_title = ucfirst($post->post_type);
-						$amp_cur_url = get_permalink( $post->ID );
+						$current_url = get_permalink( $post->ID );
 						if(is_home()){
-							$amp_cur_url = home_url();
+							$current_url = home_url();
 						}
 					}
 					$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . esc_html($post_type_title) . ' (AMP)' ,
-						'href'  => ampforwp_url_controller($amp_cur_url)
+						'href'  => ampforwp_url_controller($current_url)
 					));
 				}
 		}
@@ -6121,7 +6128,15 @@ function ampforwp_modified_canonical( $data ) {
 	}
 	return $data;
 }
-
+if(class_exists('WPSEO_Frontend') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && true == ampforwp_get_setting('ampforwp-seo-yoast-canonical') ){
+	add_filter('ampforwp_modify_rel_url','ampforwp_yoast_canonical');
+}
+function ampforwp_yoast_canonical($canonical){
+	if(ampforwp_is_front_page()){
+		$canonical = ampforwp_generate_canonical();
+	}
+	return $canonical;
+}
 // #2220 Remove Space Shortcode by Pro Theme from THEMCO
 add_action('pre_amp_render_post','ampforwp_remove_space_shortcodes');
 function ampforwp_remove_space_shortcodes(){
@@ -7297,6 +7312,14 @@ function ampforwp_front_admin_menu_bar(){
 	if( is_user_logged_in() ){
 		$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
 		if($pref==="true"){
+			if(class_exists('QM_Plugin') && ampforwp_get_setting('ampforwp-query-monitor')){
+				$dis = QM_Dispatchers::get( 'html' );
+				if($dis->did_footer==false){
+					$dis->did_footer = true;
+					add_action( 'amp_post_template_head', 'ampforwp_query_monitor_script'  );
+					add_action( 'amp_post_template_head',  'ampforwp_manual_qm_script', 11 );
+				}
+			}
 			add_action("ampforwp_admin_menu_bar_front", function(){
 				add_action('wp_before_admin_bar_render','ampforwp_add_admin_menu_front');
 		    	wp_admin_bar_render();
@@ -7441,6 +7464,64 @@ function ampforwp_head_css(){
 		for($i=0;$i<count($node_arr);$i++){
 			$wp->remove_node($node_arr[$i]);
 		}
+	}
+	function ampforwp_manual_qm_script() {
+		wp_print_scripts( array(
+			'query-monitor',
+		) );
+		wp_print_styles( array(
+			'query-monitor',
+		) );
+	}
+	function ampforwp_query_monitor_script() {
+		global $wp_locale;
+		$qm = plugins_url();
+		$deps = array(
+				'jquery',
+			);
+
+			if ( defined( 'QM_NO_JQUERY' ) && QM_NO_JQUERY ) {
+				$deps = array();
+			}
+
+			$css = 'query-monitor';
+			if ( method_exists( 'Dark_Mode', 'is_using_dark_mode' ) && is_user_logged_in() ) {
+				if ( Dark_Mode::is_using_dark_mode() ) {
+					$css .= '-dark';
+				}
+			} elseif ( defined( 'QM_DARK_MODE' ) && QM_DARK_MODE ) {
+				$css .= '-dark';
+			}
+
+			wp_enqueue_style(
+				'query-monitor',
+				esc_attr($qm)."/query-monitor/assets/{$css}.css",
+				array( 'dashicons' )
+			);
+			wp_enqueue_script(
+				'query-monitor',
+				esc_attr($qm).'/query-monitor/assets/query-monitor.js',
+				$deps,
+				false
+			);
+			wp_localize_script(
+				'query-monitor',
+				'qm_number_format',
+				$wp_locale->number_format
+			);
+			wp_localize_script(
+				'query-monitor',
+				'qm_l10n',
+				array(
+					'ajax_error' => __( 'PHP Errors in Ajax Response', 'query-monitor' ),
+					'ajaxurl'    => admin_url( 'admin-ajax.php' ),
+					'auth_nonce' => array(
+						'on'         => wp_create_nonce( 'qm-auth-on' ),
+						'off'        => wp_create_nonce( 'qm-auth-off' ),
+						'editor-set' => wp_create_nonce( 'qm-editor-set' ),
+					),
+				)
+			);
 	}
 	function ampforwp_get_non_amp_url(){
 		global $post, $wp;
@@ -7993,6 +8074,7 @@ if(!function_exists('ampforwp_imagify_webp_compatibility')){
 				}
 			}
 		}
+		$content = str_replace('.webp.webp','.webp',$content);
 		return $content;
 	}
 }
@@ -8031,6 +8113,7 @@ function ampforwp_ewww_webp_compatibility($content){
 				}
 			}
 		}
+		$content = str_replace('.webp.webp','.webp',$content);
 		return $content;
 	}
 } 

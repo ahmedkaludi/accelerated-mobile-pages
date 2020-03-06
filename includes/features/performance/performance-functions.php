@@ -355,6 +355,8 @@ function ampforwp_clear_tree_shaking_on_activity($plugin='', $network=''){
 add_action( 'save_post', 'ampforwp_clear_tree_shaking_post');
 if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
 	function ampforwp_clear_tree_shaking_post() {
+        global $post;
+        $transient_filename = '';
 		if ( current_user_can( 'edit_posts' ) && is_user_logged_in() ){
 			if(ampforwp_get_setting('ampforwp_css_tree_shaking')){
 				if(ampforwp_is_home()){
@@ -368,19 +370,22 @@ if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
                 }elseif(is_archive()){
                     $page_id = get_queried_object_id();
                     $transient_filename = "archive-".intval($page_id);
-                }
+                }elseif(is_object($post)){
+                    $transient_filename = "post-".$post->ID;
+                }               
                 if( is_user_logged_in() ){
                     $transient_filename = $transient_filename.'-admin';
                 }
-				$upload_dir = wp_upload_dir();
-				$ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($transient_filename).".css";
-				if(file_exists($ts_file) && is_file($ts_file)){
-					unlink($ts_file);
-				}
+                if($transient_filename != ''){
+    				$upload_dir = wp_upload_dir();
+    				$ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($transient_filename).".css";
+    				if(file_exists($ts_file) && is_file($ts_file)){
+    					unlink($ts_file);
+    				}
+                }
 			}
 		}
 	}
-
 }
 
 if(!function_exists('ampforwp_clear_css_on_transposh_rtl')){

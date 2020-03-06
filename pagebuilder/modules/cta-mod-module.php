@@ -16,8 +16,8 @@ $css = '
 {{module-class}}.cta-mod .btn-txt{display: inline-block;color: {{txt_color_picker}};padding: 10px 20px;font-size: 26px;border: 3px solid {{brd_color_picker}};font-weight: 500;background: {{bg_color_picker}};}
 {{module-class}}.cta-mod .txt{display: block;color: {{subh_color_picker}};font-size: 16px;margin-top: 20px;}
 @media(max-width:768px){
-	.cta-mod{display:inline-block;width:100%;text-align:center}
-	.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
+	{{module-class}}.cta-mod{display:inline-block;width:100%;text-align:center}
+	{{module-class}}.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
 }';
 $common_css = '.cta-mod .cta-btn{width: 40%;text-align: right;}';
 global $redux_builder_amp;
@@ -26,8 +26,8 @@ $common_css .=	'
 /** RTL CSS **/
 .cta-mod .cta-btn { text-align: left;}
 @media(max-width:768px){
-	.cta-mod{display:inline-block;width:100%;text-align:center}
-	.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
+	{{module-class}}.cta-mod{display:inline-block;width:100%;text-align:center}
+	{{module-class}}.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
 }
 ';
 }
