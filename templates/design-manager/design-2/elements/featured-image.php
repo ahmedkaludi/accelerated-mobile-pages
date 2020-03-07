@@ -52,6 +52,10 @@ if( $featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_c
 						if(function_exists('ampforwp_add_fallback_element')){
 		 					$amp_html = ampforwp_add_fallback_element($amp_html,'amp-img');
 		   				}
+		   				$post_id   = ampforwp_get_the_ID();
+						$thumb_id = get_post_thumbnail_id( $post_id );
+						$image = wp_get_attachment_image_src( $thumb_id, 'full' );
+		   				$amp_html = preg_replace('/<amp-img(.*?) src="(.*?)"(.*?)<\/amp-img>/', '<amp-img$1 src="$2"srcset="'.$image[0].'"$3</amp-img>', $amp_html);
 		   				echo $amp_html; // amphtml content; no kses ?>
 						<?php if ( $caption ) : ?>
 							<p class="wp-caption-text">
