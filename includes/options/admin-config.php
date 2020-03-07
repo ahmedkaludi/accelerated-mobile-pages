@@ -2193,6 +2193,15 @@ function ampforwp_get_all_tags($id){
                           'required' => array('wordpress-comments-support' , '=' , 1
                                         ),
                      ),
+                    array(
+                        'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-nofollow-comment-btn',
+                         'type'     => 'switch',
+                         'title'    => esc_html__('No follow button', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => esc_html__('Add or remove No follow in comment button', 'accelerated-mobile-pages'),
+                         'default'  => 1,
+                          'required' => array('wordpress-comments-support' , '=' , 1 ),
+                    ),
                      array(
                          'id'       => 'ampforwp-disqus-comments-support',
                          'type'     => 'switch',
