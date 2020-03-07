@@ -99,6 +99,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 						'echo' 			=> true,
 						'add_fragment' 	=> '#comments',				
 					);
+					if(true == ampforwp_get_setting('ampforwp-amp-takeover')){
+						$args['base'] = get_the_permalink().'comment-page-%#%';
+					}
 			 		paginate_comments_links( $args ); ?>
 				</div> <?php
 			} // end if ( $comments ) 
