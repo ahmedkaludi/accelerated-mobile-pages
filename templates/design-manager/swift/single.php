@@ -4,29 +4,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 global $redux_builder_amp; ?>
 <?php amp_header(); ?>
-<?php if(ampforwp_get_setting('single-design-type') == '1'){?>
+<?php if($redux_builder_amp['single-design-type'] == '1'){?>
 <div class="sp sgl">
 	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 		<div class="cntr">
-			<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
-				amp_breadcrumb();
-			}?>
-			<?php amp_categories_list();?>
-			<?php amp_title(); ?>
-			<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
-				<div class="tl-exc">
-				   <?php amp_excerpt(250); ?>
-			    </div>
+			<?php if ( true == ampforwp_get_setting('ampforwp-bread-crumb') ) {
+				amp_breadcrumb();	
+			}?>	
+			<?php amp_categories_list();?>	
+			<?php amp_title(); ?>	
+			<?php if( true == ampforwp_get_setting('enable-excerpt-single') ){ ?>	
+				<div class="tl-exc">	
+				   <?php amp_excerpt(250); ?>	
+			    </div>	
 			<?php } ?>
 		</div>
 		<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
-			<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
-			<div class="sf-img">
-				<?php amp_featured_image();?>
-			</div>
-			<?php }	// Swift Featured Image Type 1
-		}
-	} ?>
+					<div class="sf-img">
+					<?php amp_featured_image();?>	
+				</div>	
+			<?php }	
+		} ?>
 	<div class="sp-cnt">
 		<div class="cntr">
 			<div class="sp-rl">
@@ -54,37 +52,27 @@ global $redux_builder_amp; ?>
 						if ( 'below-content' ==  ampforwp_get_setting('swift-add-this-position') ){
 							echo ampforwp_addThis_support();
 						} ?>
-					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
-					<?php 
- 						$author_box = array();
-						if( true == ampforwp_get_setting('amp-author-description') ) { ?>	
-						<?php
-						$author_box = array( 'avatar'=>true,
+				<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>	
+ 					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>	
+						<?php amp_author_box( 	
+											array(	'avatar'=>true,	
 													'avatar_size'=>60,	
 													'author_description'=>true,	
-													'ads_below_the_author'=>true);
-						if( true == ampforwp_get_setting('amp-author-bio-name')){
-							$author_box['author_pub_name'] = true ;
-						}
-						amp_author_box( $author_box ); ?>	
-					<?php } ?>
-					<?php amp_post_navigation();?>
-					<?php if ( true == ampforwp_get_setting('wordpress-comments-support') || true == ampforwp_get_setting('ampforwp-disqus-comments-support') || true == ampforwp_get_setting('ampforwp-facebook-comments-support') ||true == ampforwp_get_setting('ampforwp-vuukle-comments-support') ||true == ampforwp_get_setting('ampforwp-spotim-comments-support') ){ ?>
-					<div class="cmts">
-						<?php amp_comments();?>
-					</div>
-					<?php } ?>
-						<?php do_action('ampforwp_post_after_design_elements'); ?>
+													'ads_below_the_author'=>true)	
+											); ?>	
+					<?php } ?>	
+					<?php amp_post_navigation();?>	
+					<div class="cmts">	
+						<?php amp_comments();?>	
+						<?php do_action('ampforwp_post_after_design_elements'); ?>	
+					</div>	
 					<?php } ?>
 				</div>
 				<?php if(!checkAMPforPageBuilderStatus(get_the_ID()) && (true == ampforwp_get_setting('enable-single-post-social-icons') || true == ampforwp_get_setting('amp-author-name') || true == ampforwp_get_setting('swift-date') || true == ampforwp_get_setting('ampforwp-single-related-posts-switch'))){ ?>
 				<div class="sp-lt">
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'default' == $redux_builder_amp['swift-social-position']){
-						ampforwp_swift_social_icons(); 
-						}
-						if ( 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
-								echo ampforwp_addThis_support(); 
-						} ?>
+						ampforwp_swift_social_icons(); 	
+					} ?>
 		              <?php if( true == ampforwp_get_setting('amp-author-name') ) { ?>
 			            <div class="sp-athr">
 			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>

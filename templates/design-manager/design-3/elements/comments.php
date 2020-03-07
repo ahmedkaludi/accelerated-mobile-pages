@@ -114,5 +114,8 @@ do_action('ampforwp_before_comment_hook',$this);
 			} ?>
 		</div><?php 
 	} // end if ( $enable_comments ) 
-
+	ampforwp_add_disqus_support();
+echo ampforwp_facebook_comments_markup();
+	echo ampforwp_vuukle_comments_markup();
+	echo ampforwp_spotim_comments_markup();
 do_action('ampforwp_after_comment_hook', $this);

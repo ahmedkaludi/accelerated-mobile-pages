@@ -2091,7 +2091,7 @@ add_action('amp_init','social_sharing_removal_code', 9);
 
 
 //35. Disqus Comments Support 
-add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
+
 function ampforwp_add_disqus_support() {
 	global $redux_builder_amp;
 	$width = $height = 420;
@@ -2152,13 +2152,6 @@ function ampforwp_add_disqus_scripts( $data ) {
 
 // Facebook Comments Support #825
 
-add_action('ampforwp_post_after_design_elements','ampforwp_facebook_comments_support');
-function ampforwp_facebook_comments_support() {
-	global $redux_builder_amp;
-	if ( 4 != $redux_builder_amp['amp-design-selector'] ) {
-		echo ampforwp_facebook_comments_markup();
-	}
-}
 function ampforwp_facebook_comments_markup() {
 
 	global $redux_builder_amp;
@@ -6179,65 +6172,60 @@ function ampforwp_get_comments_status(){
 }
 
 // Vuukle Comments Support #2075
-
-add_action('ampforwp_post_after_design_elements','ampforwp_vuukle_comments_support');
-function ampforwp_vuukle_comments_support() {
-	global $redux_builder_amp;
+function ampforwp_vuukle_comments_markup() {
+	global $redux_builder_amp,$post;
+	$vuukle_html ='';
 	if ( 4 != $redux_builder_amp['amp-design-selector']
 		 && isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
 		 && $redux_builder_amp['ampforwp-vuukle-comments-support']==1
 		 && comments_open() 
 		) {
-		echo ampforwp_vuukle_comments_markup();
-	}
-}
-function ampforwp_vuukle_comments_markup() {
-	global $redux_builder_amp,$post;
-	$apiKey = $locale = '';
-	$tag_name ='';
-	$img = get_the_post_thumbnail_url();
-	$tags = get_the_tags($post->ID);
-	if( isset($redux_builder_amp['ampforwp-vuukle-comments-apiKey']) && $redux_builder_amp['ampforwp-vuukle-comments-apiKey'] !== ""){
-		$apiKey = $redux_builder_amp['ampforwp-vuukle-comments-apiKey'];
-	}
-	$display_comments_on = false;
-	$display_comments_on = ampforwp_get_comments_status();
-	$siteUrl = trim(site_url(), '/');  
-	if (!preg_match('#^http(s)?://#', $siteUrl)) {
-	    $siteUrl = 'http://' . $siteUrl;
-	}
-	if($img ==  false){
-		$img = plugins_url('accelerated-mobile-pages/images/150x150.png');
-	}  
-   	if($tags){
-  		foreach($tags as $individual_tag) {
- 				$tag_name = $individual_tag->name;
-			}
-   	}
-	$urlParts = parse_url($siteUrl);
-	$siteUrl = preg_replace('/^www\./', '', $urlParts['host']);// remove www
-	$srcUrl = 'https://cdn.vuukle.com/amp.html?';
-	$srcUrl = add_query_arg('url' ,get_permalink(), $srcUrl);
-	$srcUrl = add_query_arg('host' ,$siteUrl, $srcUrl);
-	$srcUrl = add_query_arg('id' , $post->ID, $srcUrl);
-	if(!empty($apiKey)){
-		$srcUrl = add_query_arg('apiKey' , $apiKey, $srcUrl);
-	}  
-	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl);
-	$srcUrl = add_query_arg('img' , esc_url($img), $srcUrl);
-	$srcUrl = add_query_arg('tags' , urlencode($tag_name), $srcUrl);  
-	if(ampforwp_get_setting('ampforwp-vuukle-comments-emoji')==false){
-		$srcUrl = add_query_arg('emotes' , 'false', $srcUrl);
-	}
-	$consent = '';
-	if(ampforwp_get_data_consent()){
-		$consent = 'data-block-on-consent ';
-	}
-	$vuukle_html ='';
-	if ( $display_comments_on ) {
-		$vuukle_html .= '<amp-iframe width="600" height="350" '.esc_attr($consent).'layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
-
-			<div overflow tabindex="0" role="button" aria-label="Show comments" class="afwp-vuukle-support">Show comments</div></amp-iframe>';
+		
+		$apiKey = $locale = '';
+		$tag_name ='';
+		$img = get_the_post_thumbnail_url();
+		$tags = get_the_tags($post->ID);
+		if( isset($redux_builder_amp['ampforwp-vuukle-comments-apiKey']) && $redux_builder_amp['ampforwp-vuukle-comments-apiKey'] !== ""){
+			$apiKey = $redux_builder_amp['ampforwp-vuukle-comments-apiKey'];
+		}
+		$display_comments_on = false;
+		$display_comments_on = ampforwp_get_comments_status();
+		$siteUrl = trim(site_url(), '/');  
+		if (!preg_match('#^http(s)?://#', $siteUrl)) {
+		    $siteUrl = 'http://' . $siteUrl;
+		}
+		if($img ==  false){
+			$img = plugins_url('accelerated-mobile-pages/images/150x150.png');
+		}  
+	   	if($tags){
+	  		foreach($tags as $individual_tag) {
+	 				$tag_name = $individual_tag->name;
+				}
+	   	}
+		$urlParts = parse_url($siteUrl);
+		$siteUrl = preg_replace('/^www\./', '', $urlParts['host']);// remove www
+		$srcUrl = 'https://cdn.vuukle.com/amp.html?';
+		$srcUrl = add_query_arg('url' ,get_permalink(), $srcUrl);
+		$srcUrl = add_query_arg('host' ,$siteUrl, $srcUrl);
+		$srcUrl = add_query_arg('id' , $post->ID, $srcUrl);
+		if(!empty($apiKey)){
+			$srcUrl = add_query_arg('apiKey' , $apiKey, $srcUrl);
+		}  
+		$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl);
+		$srcUrl = add_query_arg('img' , esc_url($img), $srcUrl);
+		$srcUrl = add_query_arg('tags' , urlencode($tag_name), $srcUrl);  
+		if(ampforwp_get_setting('ampforwp-vuukle-comments-emoji')==false){
+			$srcUrl = add_query_arg('emotes' , 'false', $srcUrl);
+		}
+		$consent = '';
+		if(ampforwp_get_data_consent()){
+			$consent = 'data-block-on-consent ';
+		}
+		$vuukle_html ='';
+		if ( $display_comments_on ) {
+			$vuukle_html .= '<section class="amp-wp-content post-comments amp-wp-article-content amp-vuukle-comments" id="vuukle-comments"><amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.$srcUrl.'">
+				<div overflow tabindex="0" role="button" aria-label="Show comments" class="afwp-vuukle-support">Show comments</div></section>';
+		}
 	}
 	return $vuukle_html;
 }
@@ -6257,35 +6245,32 @@ function ampforwp_add_vuukle_scripts( $data ) {
 	return $data;
 }
 //spotim #2076
-add_action('ampforwp_post_after_design_elements','ampforwp_spotim_comments_support');
-function ampforwp_spotim_comments_support() {
+function ampforwp_spotim_comments_markup() {
 	global $redux_builder_amp;
+	$spotim_html = '';
 	if ( 4 != $redux_builder_amp['amp-design-selector']
 		 && isset($redux_builder_amp['ampforwp-spotim-comments-support'])
 		 && $redux_builder_amp['ampforwp-spotim-comments-support']==1
 		) {
-		echo ampforwp_spotim_comments_markup();
+		global $post;
+		$display_comments_on = false;
+		$display_comments_on = ampforwp_get_comments_status();
+		if (! $display_comments_on ) {
+			return '';
+		}
+		$spotId ='';
+		if( true == ampforwp_get_setting('ampforwp-spotim-comments-apiKey') && ampforwp_get_setting('ampforwp-spotim-comments-apiKey') !== ""){
+			$spotId = ampforwp_get_setting('ampforwp-spotim-comments-apiKey');
+		}
+		$srcUrl = 'https://amp.spot.im/production.html?spot_im_highlight_immediate=true';
+		$srcUrl = add_query_arg('spotId' ,$spotId, $srcUrl);
+		$srcUrl = add_query_arg('postId' , $post->ID, $srcUrl);
+		$spotim_html = '<amp-iframe width="375" height="815" resizable sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation" layout="responsive"
+		  frameborder="0" src="'.esc_url($srcUrl).'">
+		  <amp-img placeholder height="815" layout="fill" src="//amp.spot.im/loader.png"></amp-img>
+		  <div overflow class="spot-im-amp-overflow" tabindex="0" role="button" aria-label="Read more">Load more...</div>
+		</amp-iframe>';
 	}
-}
-function ampforwp_spotim_comments_markup() {
-	global $post;
-	$display_comments_on = false;
-	$display_comments_on = ampforwp_get_comments_status();
-	if (! $display_comments_on ) {
-		return '';
-	}
-	$spotId ='';
-	if( true == ampforwp_get_setting('ampforwp-spotim-comments-apiKey') && ampforwp_get_setting('ampforwp-spotim-comments-apiKey') !== ""){
-		$spotId = ampforwp_get_setting('ampforwp-spotim-comments-apiKey');
-	}
-	$srcUrl = 'https://amp.spot.im/production.html?spot_im_highlight_immediate=true';
-	$srcUrl = add_query_arg('spotId' ,$spotId, $srcUrl);
-	$srcUrl = add_query_arg('postId' , $post->ID, $srcUrl);
-	$spotim_html = '<amp-iframe width="375" height="815" resizable sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation" layout="responsive"
-	  frameborder="0" src="'.esc_url($srcUrl).'">
-	  <amp-img placeholder height="815" layout="fill" src="//amp.spot.im/loader.png"></amp-img>
-	  <div overflow class="spot-im-amp-overflow" tabindex="0" role="button" aria-label="Read more">Load more...</div>
-	</amp-iframe>';
 	return $spotim_html;
 }
 //spotim script
