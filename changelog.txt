@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 1.0.33 (10th March 2020) =
+* Improvement: Added reordering the elements on the page #2051
+* Improvement: Added CCPA for AMP support #4245
+* Improvement: Added filter to modify font face URL's #4258
+* Fixed: Elementor CSS not loading on front page in ALL in One SEO #4253
+
 = 1.0.32 (6th March 2020) =
 * Fixed: Syntax breaking in advanced google analytics section #4228
 * Fixed: Optimize CSS (Tree shaking) not clearing on post update #4234
