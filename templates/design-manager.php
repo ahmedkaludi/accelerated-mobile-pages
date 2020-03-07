@@ -22,7 +22,7 @@ if ( is_customize_preview() ) {
 
 	// Adding default Value
 	if (empty($data)){
-	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
+	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1,ad7:1,ad8:1";
 	}
 	global $redux_builder_amp;
 	if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
@@ -63,9 +63,44 @@ if ( is_customize_preview() ) {
 				case 'related_posts':
 						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
 						break;
+				case 'ad7':		
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_ad7' );
+							break;
+				case 'ad8':		
+						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_ad8' );
+						break;
 			}
 		}
 	}
+//Ad7
+function ampforwp_add_element_ad7( $meta_parts ) {
+	$meta_parts[] = 'ampforwp-ad7';
+	return $meta_parts;
+}
+
+add_filter( 'amp_post_template_file', 'ampforwp_design_element_ad7', 10, 3 );
+
+function ampforwp_design_element_ad7( $file, $type, $post ) {
+	if ( 'ampforwp-ad7' === $type ) {
+		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/ad7.php' ;
+	}
+	return $file;
+}
+//Ad8
+function ampforwp_add_element_ad8( $meta_parts ) {
+	$meta_parts[] = 'ampforwp-ad8';
+	return $meta_parts;
+}
+
+add_filter( 'amp_post_template_file', 'ampforwp_design_element_ad8', 10, 3 );
+
+function ampforwp_design_element_ad8( $file, $type, $post ) {
+	if ( 'ampforwp-ad8' === $type ) {
+		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/ad8.php' ;
+	}
+	return $file;
+}
+
 // Design Selector
 add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {

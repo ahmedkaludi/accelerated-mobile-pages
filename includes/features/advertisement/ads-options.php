@@ -933,6 +933,120 @@ if ( ! defined( 'ABSPATH' ) ) {
                                             array('enable-amp-ads-type-6', '=' , 'adsense'),
                                         ),
                         );
+                 //Ad 7 Starts
+            $fields[] =    array(
+                'id'        => 'enable-amp-ads-7',
+                'type'      => 'switch',
+                'title'     => esc_html__('AD #7', 'accelerated-mobile-pages'),
+                'default'   => 0,
+                'desc'  => esc_html__('Place wherever you want by going to Design -> Single option', 'accelerated-mobile-pages'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+                'required' =>array('amp-design-selector', '!=' , '4')
+            );
+            $fields[] =        array(
+                        'class' => 'child_opt child_opt_arrow',
+                    'id'       => 'enable-amp-ads-select-7',
+                    'type'     => 'select',
+                    'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
+                    'required' => array('enable-amp-ads-7', '=' , '1'),
+                    // Must provide key => value pairs for select options
+                    'options'  => array(
+                        '1' => esc_html__('300x250','accelerated-mobile-pages'),
+                        '2' => esc_html__('336x280','accelerated-mobile-pages'),
+                        '3' => esc_html__('728x90','accelerated-mobile-pages'),
+                        '4' => esc_html__('300x600','accelerated-mobile-pages'),
+                        '5' => esc_html__('320x100','accelerated-mobile-pages'),
+                        '6' => esc_html__('200x50','accelerated-mobile-pages'),
+                        '7' => esc_html__('320x50','accelerated-mobile-pages')
+                    ),
+                    'default'  => '2',
+                );
+            $fields[] =        array(
+                        'class' => 'child_opt',
+                    'id'        =>'enable-amp-ads-text-feild-client-7',
+                    'type'      => 'text',
+                    'required'  => array('enable-amp-ads-7', '=' , '1'),
+                    'title'     => esc_html__('Data AD Client', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
+                    'default'   => '',
+                    'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
+                );
+            $fields[] =        array(
+                        'class' => 'child_opt',
+                    'id'        => 'enable-amp-ads-text-feild-slot-7',
+                    'type'      => 'text',
+                    'title'     => esc_html__('Data AD Slot', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
+                    'default'   => '',
+                    'required'  => array('enable-amp-ads-7', '=' , '1'),
+                    'placeholder'=> '70XXXXXX12'
+                );
+            $fields[] =        array(
+                        'class' => 'child_opt',
+                        'id'        =>'enable-amp-ads-resp-7',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('Responsive Ad unit', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'required' => array('enable-amp-ads-7', '=' , '1'),
+                );
+         //Ad 8 Starts
+         $fields[] =       array(
+                'id'        => 'enable-amp-ads-8',
+                'type'      => 'switch',
+                'title'     => esc_html__('AD #8', 'accelerated-mobile-pages'),
+                'default'   => 0,
+                'desc'  => __('Place wherever you want by going to Design -> Single option', 'accelerated-mobile-pages'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+                'required' =>array('amp-design-selector', '!=' , '4')
+            );
+            $fields[] =        array(
+                        'class' => 'child_opt child_opt_arrow',
+                    'id'       => 'enable-amp-ads-select-8',
+                    'type'     => 'select',
+                    'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
+                    'required' => array('enable-amp-ads-8', '=' , '1'),
+                    // Must provide key => value pairs for select options
+                    'options'  => array(
+                        '1' => esc_html__('300x250','accelerated-mobile-pages'),
+                        '2' => esc_html__('336x280','accelerated-mobile-pages'),
+                        '3' => esc_html__('728x90','accelerated-mobile-pages'),
+                        '4' => esc_html__('300x600','accelerated-mobile-pages'),
+                        '5' => esc_html__('320x100','accelerated-mobile-pages'),
+                        '6' => esc_html__('200x50','accelerated-mobile-pages'),
+                        '7' => esc_html__('320x50','accelerated-mobile-pages')
+                    ),
+                    'default'  => '2',
+                );
+            $fields[] =        array(
+                        'class' => 'child_opt',
+                    'id'        =>'enable-amp-ads-text-feild-client-8',
+                    'type'      => 'text',
+                    'required'  => array('enable-amp-ads-8', '=' , '1'),
+                    'title'     => esc_html__('Data AD Client', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
+                    'default'   => '',
+                    'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
+                );
+            $fields[] =        array(
+                        'class' => 'child_opt',
+                    'id'        => 'enable-amp-ads-text-feild-slot-8',
+                    'type'      => 'text',
+                    'title'     => esc_html__('Data AD Slot', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
+                    'default'   => '',
+                    'required'  => array('enable-amp-ads-8', '=' , '1'),
+                    'placeholder'=> '70XXXXXX12'
+                );
+            $fields[] =        array(
+                        'class' => 'child_opt',
+                        'id'        =>'enable-amp-ads-resp-8',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('Responsive Ad unit', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'required' => array('enable-amp-ads-8', '=' , '1'),
+                );  
                      // MGID fields
                 $fields[] =        array(
                             'class' => 'child_opt',

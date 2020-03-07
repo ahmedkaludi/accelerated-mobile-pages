@@ -5509,6 +5509,12 @@ if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
         if(empty($new_options['disabled'])){
             $new_options['disabled'] = array();
         }
+         $add_new_options = array(
+            'ad7' => 'Ad7',
+            'ad8' => 'Ad8'
+        );
+
+        $new_options['disabled'] = array_merge($new_options['disabled'],$add_new_options);
     return $new_options;
 }
 $customizer_options = element_layout_customizer();
