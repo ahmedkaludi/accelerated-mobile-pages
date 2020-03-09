@@ -5537,6 +5537,8 @@ $single_page_options = array(
                             'enabled'  => $customizer_options['enabled'],
                             'disabled' => $customizer_options['disabled'],
                         ),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                    esc_html__('Drag and Drop the element from Disabled to Enabled block and vice-versa to hide and show the element on the single post.', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-reorder-the-elements-on-the-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
                         'required'  => array( array('amp-design-selector', '!=' , '4')),
                     ),
             // Swift

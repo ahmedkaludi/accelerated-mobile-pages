@@ -2068,3 +2068,7 @@ i.dashicons.dashicons-before.dashicons-update {
     padding: 1px 7px 3px;
     border-radius: 13px;
 }
+.sortlist_d_1_3_single_components_layout h3{
+    text-align: center;
+    text-transform:capitalize;
+}

@@ -112,7 +112,7 @@ jQuery(function($) {
                 highlight:false,
                 captureLength:0
             });
-        }
+        } 
     $('.redux-container').each(function() {
         if (!$(this).hasClass('redux-no-sections')) {
             $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls" style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');
@@ -2361,6 +2361,49 @@ function Drawer(drawerElem) {
         });
         setTimeout(function(){ $(".amp-ux-valid-require").parent('.amp-ux-elem-field').parent('.amp-ux-section-field').removeAttr('style'); }, 500);
     });
+
+     $(".redux-action_bar #redux_save").click(function(){
+      
+        $("#d_1_3_single_components_layout_disabled li").each(function(){
+            var this_dataid = $(this).attr('data-id');
+            if('bread_crumbs'==this_dataid){
+                $("input[data-id=ampforwp-bread-crumb]").prop('checked', false).trigger( 'change' );
+                $("input[id=ampforwp-bread-crumb]").val(0);
+            }else if('related_posts'==this_dataid){
+                $("input[data-id=ampforwp-single-related-posts-switch]").prop('checked', false).trigger( 'change' );
+                $("input[id=ampforwp-single-related-posts-switch]").val(0);
+            }else if('meta_taxonomy'==this_dataid){
+                $("input[data-id=ampforwp-cats-single]").prop('checked', false).trigger( 'change' );
+                $("input[id=ampforwp-cats-single]").val(0);
+
+                $("input[data-id=ampforwp-tags-single]").prop('checked', false).trigger( 'change' );
+                $("input[id=ampforwp-tags-single]").val(0);
+
+                $("input[data-id=ampforwp-cats-tags-links-single]").prop('checked', false).trigger( 'change' );
+                $("input[id=ampforwp-cats-tags-links-single]").val(0);
+            }
+        });
+        $("#d_1_3_single_components_layout_enabled li").each(function(){
+            var this_dataid = $(this).attr('data-id');
+            if('bread_crumbs'==this_dataid){
+                $("input[data-id=ampforwp-bread-crumb]").prop('checked', true).trigger( 'change' );
+                $("input[id=ampforwp-bread-crumb]").val(1);
+            }else if('related_posts'==this_dataid){
+                $("input[data-id=ampforwp-single-related-posts-switch]").prop('checked', true).trigger( 'change' );
+                $("input[id=ampforwp-single-related-posts-switch]").val(1);
+            }else if('meta_taxonomy'==this_dataid){
+                $("input[data-id=ampforwp-cats-single]").prop('checked', true).trigger( 'change' );
+                $("input[id=ampforwp-cats-single]").val(1); 
+
+                $("input[data-id=ampforwp-tags-single]").prop('checked', true).trigger( 'change' );
+                $("input[id=ampforwp-tags-single]").val(1);
+
+                $("input[data-id=ampforwp-cats-tags-links-single]").prop('checked', true).trigger( 'change' );
+                $("input[id=ampforwp-cats-tags-links-single]").val(1);
+            }
+        });
+     });
+  
 /* Hamburger Library */
 function DrawerIcon(icon) {
     "use strict";

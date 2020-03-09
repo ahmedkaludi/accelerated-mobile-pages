@@ -945,6 +945,19 @@ if ( ! defined( 'ABSPATH' ) ) {
                 'required' =>array('amp-design-selector', '!=' , '4')
             );
             $fields[] =        array(
+                            'class'    => 'child_opt child_opt_arrow',
+                            'id'       => 'enable-amp-ads-type-7',
+                            'type'     => 'select',
+                            'title'    => esc_html__('AD Type', 'accelerated-mobile-pages'),
+                            'required' => array('enable-amp-ads-7', '=' , '1'),
+                            // Must provide key => value pairs for select options
+                            'options'  => array(
+                                'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
+                                'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
+                            ),
+                            'default'  => 'adsense',
+                        );
+            $fields[] =        array(
                         'class' => 'child_opt child_opt_arrow',
                     'id'       => 'enable-amp-ads-select-7',
                     'type'     => 'select',
@@ -1001,6 +1014,19 @@ if ( ! defined( 'ABSPATH' ) ) {
                 'false'     => 'Disabled',
                 'required' =>array('amp-design-selector', '!=' , '4')
             );
+        $fields[] =  array(
+                    'class'    => 'child_opt child_opt_arrow',
+                    'id'       => 'enable-amp-ads-type-8',
+                    'type'     => 'select',
+                    'title'    => esc_html__('AD Type', 'accelerated-mobile-pages'),
+                    'required' => array('enable-amp-ads-8', '=' , '1'),
+                    // Must provide key => value pairs for select options
+                    'options'  => array(
+                        'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
+                        'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
+                    ),
+                    'default'  => 'adsense',
+                );
             $fields[] =        array(
                         'class' => 'child_opt child_opt_arrow',
                     'id'       => 'enable-amp-ads-select-8',
