@@ -574,6 +574,19 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('ccpa-for-amp/ccpaforamp.php')? 1 : 2),
                         ),
+                        array(
+                            'name'=>'Subdomain Endpoints for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'This extension allows you to add your own custom amp Endpoints as subdomian.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/subdomain-image.jpg',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/subdomain-endpoints-for-amp/#utm_source=options-panel&utm_medium=extension-tab_subdomain_endpoints_for_amp&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'subdomain-endpoints-for-amp/subdomain-endpoints-for-amp.php',
+                            'item_name'=>'Subdomain Endpoints for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('subdomain-endpoints-for-amp/subdomain-endpoints-for-amp.php')? 1 : 2),
+                            'settingUrl'=>'{amp-subdomain-subsection}',
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
