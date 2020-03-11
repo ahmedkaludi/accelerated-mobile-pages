@@ -5373,27 +5373,33 @@ function ampforwp_default_logo($param=""){
 				$value = $data['logo_url'];
 			break;
 		case 'width':
-			if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
+			if (true == ampforwp_get_setting('ampforwp-custom-logo-dimensions') && 'prescribed' ==ampforwp_get_setting('ampforwp-custom-logo-dimensions-options')) {
 				$value = trim(ampforwp_get_setting('opt-media-width'));
 				if($value==""){
 					$value = 190;
 				}
 			}
 			else 
-				$value = $data['logo_size'][0];
+				$value = '';
+				if(isset($data['logo_size'][0])){
+					$value = $data['logo_size'][0];
+				}
 			if($value==""){
 					$value = 190;
 				}
 			break;
 		case 'height':
-			if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
+			if (true == ampforwp_get_setting('ampforwp-custom-logo-dimensions') && 'prescribed' == ampforwp_get_setting('ampforwp-custom-logo-dimensions-options')) {
 				$value = trim(ampforwp_get_setting('opt-media-height'));
 				if($value==""){
 					$value = 36;
 				}
 			}
 			else
-				$value = $data['logo_size'][1];
+				$value = '';
+				if(isset($data['logo_size'][1])){
+					$value = $data['logo_size'][1];
+				}
 				if($value==""){
 					$value = 36;
 				}
