@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.32
+Stable tag: 1.0.33
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,19 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.33 (11th March 2020) =
+* Fixed: Categories not Hiding in Instant Articles #4254
+* Fixed: Error when activating imagify plugin #4260
+* Fixed: Start attribute not working in ol tags #4243
+* Fixed: Search form not working in template mode #4227 #4224
+* Fixed: Save button was disappearing when theme build on Redux framework #4259
+* Fixed: SVG tag was removing in anchor tag #4252
+* Fixed: Filter added to modify font face URL's #4258
+* Fixed: Elementor CSS not loading on frontpage in ALL in One SEO #4253
+* Fixed: Undefined variable: get_amp_custom_frontpage_id #4265
+* Fixed: Images are not showing in AMP with Neva Child Theme #4261
+* Fixed: AMP Option panel improvements #4245 #4269
 
 = 1.0.32 (6th March 2020) =
 * Fixed: Syntax breaking in advanced google analytics section #4228
