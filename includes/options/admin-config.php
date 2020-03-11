@@ -119,7 +119,15 @@ if(!is_plugin_active( 'amp-pagebuilder-compatibility/amp-pagebuilder-compatibili
             ); 
     $pb_for_amp[] = $elemntr_pb_for_ampchecker;*/
 
-$all_extensions_data = array();
+$all_extensions_data = $jetpack_rp = array();
+if(class_exists( 'Jetpack_RelatedPosts' )){
+    $jetpack_rp =  array(
+                    'id'       => 'ampforwp-jetpack-related-posts',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Jetpack Related Post', 'accelerated-mobile-pages'),
+                    'default'  => '1',
+                );
+}
 global $all_extensions_data;
 $extension_listing_array = array(
                          array(
@@ -6022,6 +6030,7 @@ $single_page_options = array(
                     'default'  => '7',
                     'required' => array('ampforwp-in-content-related-posts-days-switch', '=' , '1'),  
                 ),
+            $jetpack_rp,
             array(
                    'id' => 'single-tab-2',
                    'type' => 'section',
