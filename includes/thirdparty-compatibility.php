@@ -49,6 +49,9 @@ function ampforwp_thirdparty_compatibility(){
 	if(function_exists('thb_remove_youtube_controls')){
 		remove_filter( 'embed_handler_html', 'thb_remove_youtube_controls', 10, 2 );
 	}
+	if (function_exists('gpress_switch_theme')) {
+		remove_filter('the_content', 'add_data_atts');
+	}
 }
 
 //Updater to check license
