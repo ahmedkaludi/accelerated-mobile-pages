@@ -74,6 +74,7 @@ Class AMPforWP_theme_mode{
 		remove_filter( 'query_vars', 'ampforwp_custom_query_var' );
 		remove_action( 'template_redirect', 'ampforwp_redirect_to_orginal_url' );
 		remove_action('template_redirect', 'ampforwp_redirect_proper_qendpoint' );
+		remove_action('get_search_form', 'ampforwp_search_form' );
 		//Main files
 		remove_action( 'init', 'ampforwp_add_custom_post_support',11);
 		remove_action( 'init', 'ampforwp_add_custom_rewrite_rules', 25 );
