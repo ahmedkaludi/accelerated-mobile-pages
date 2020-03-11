@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   if(count($matches)==0){
     $icon_url = plugin_dir_url('accelerated-mobile-pages/accelerated-moblie-pages.php').'templates/design-manager/'.esc_attr($design).'/';
   }
+  $icon_url = ampforwp_font_url($icon_url);
   ?>
 
 /* Global Styling */

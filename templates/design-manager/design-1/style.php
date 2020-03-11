@@ -76,6 +76,7 @@ preg_match('/accelerated-mobile-pages/i', $icon_url, $matches);
 if(count($matches)==0){
   $icon_url = plugin_dir_url('accelerated-mobile-pages/accelerated-moblie-pages.php').'templates/design-manager/'.esc_attr($design).'/';
 }
+$icon_url = ampforwp_font_url($icon_url);
 ?>
 #statcounter{width: 1px;height:1px;}
 .amp-wp-article amp-addthis{bottom: -38px;margin-left: 6px;}

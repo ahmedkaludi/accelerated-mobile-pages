@@ -13,6 +13,7 @@ preg_match('/accelerated-mobile-pages/i', $icon_url, $matches);
 if(count($matches)==0){
 	$icon_url = plugin_dir_url('accelerated-mobile-pages/accelerated-moblie-pages.php').'templates/design-manager/'.esc_attr($design).'/';
 }
+$icon_url = ampforwp_font_url($icon_url);
 $font_content = '';
 $font_content = ampforwp_get_setting('amp_font_selector_content_single');
 $header_type = ampforwp_get_setting('header-type');
