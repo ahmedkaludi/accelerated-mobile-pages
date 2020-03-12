@@ -188,7 +188,7 @@ if(function_exists('ampforwp_mobile_redirect_preseve_link')){
   }
 
   // Mobile redirection
-  if ( ampforwp_get_setting('amp-mobile-redirection') ) {
+  if ( ampforwp_get_setting('amp-mobile-redirection') && false == ampforwp_get_setting('ampforwp-development-mode')) {
 
     require_once AMPFORWP_PLUGIN_DIR.'/includes/vendor/Mobile_Detect.php';
     $post_type                  = '';
