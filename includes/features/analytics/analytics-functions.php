@@ -99,7 +99,6 @@ function ampforwp_analytics() {
 			$url = get_the_permalink();
 			$url = ampforwp_remove_protocol(ampforwp_url_controller($url));
 			$rand = rand(1111,9999);
-			$pview = ampforwp_remove_protocol(site_url());
 			$referer  = $url;
 			if(isset($_SERVER['HTTP_REFERER'])) {
 		      $referer  = $_SERVER['HTTP_REFERER'];
@@ -107,7 +106,7 @@ function ampforwp_analytics() {
 			$piwik_api = str_replace("YOUR_SITE_ID", '1', $idsite);
 			$piwik_api = str_replace("TITLE", esc_attr($title), $piwik_api);
 			$piwik_api = str_replace("DOCUMENT_REFERRER", esc_url($referer), $piwik_api);
-			$piwik_api = str_replace("CANONICAL_URL", esc_url($pview), $piwik_api);
+			$piwik_api = str_replace("CANONICAL_URL", esc_url($url), $piwik_api);
 			$piwik_api = str_replace("RANDOM", intval($rand), $piwik_api);
 			?>
 			<amp-pixel src="<?php echo $piwik_api;// XXS ok, escaped above?>"></amp-pixel>
