@@ -410,7 +410,7 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	}
 	$author_id = get_post_field( 'post_author', $id );
 	$author_name = get_the_author_meta( 'display_name' , $author_id );
-	$published_at = get_the_date( 'l F j, Y' , $id );
+	$published_at = get_the_date( 'F j, Y' , $id );
 	$ampforwp_adv_ga_fields = array();
 	$ampforwp_adv_ga_fields = ampforwp_get_setting('ampforwp-ga-field-advance');
 	if($ampforwp_adv_ga_fields)	{
