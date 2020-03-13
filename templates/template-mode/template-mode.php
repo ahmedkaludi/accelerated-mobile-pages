@@ -74,6 +74,7 @@ Class AMPforWP_theme_mode{
 		remove_filter( 'query_vars', 'ampforwp_custom_query_var' );
 		remove_action( 'template_redirect', 'ampforwp_redirect_to_orginal_url' );
 		remove_action('template_redirect', 'ampforwp_redirect_proper_qendpoint' );
+		remove_action('get_search_form', 'ampforwp_search_form' );
 		//Main files
 		remove_action( 'init', 'ampforwp_add_custom_post_support',11);
 		remove_action( 'init', 'ampforwp_add_custom_rewrite_rules', 25 );
@@ -171,7 +172,12 @@ Class AMPforWP_theme_mode{
 					  	{{response}}
 						</template>
 					</div>';
-		$content = preg_replace("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)id=[\"|']commentform[\"|'](.*?)>/s", '<form$1action-xhr="'.esc_url_raw($submit_url).'"$3id="commentform" $4 on="submit-success:commentform.reset()">'.$mustache, $content);
+				if(preg_match('/method\s*=\s*"\s*get\s*"/', $content)){
+						$content = preg_replace("/<form(.*?)action=[\"|'](.*?)[\"|'](.*?)id=[\"|']commentform[\"|'](.*?)>/s", '<form$1action="'.esc_url_raw($submit_url).'"$3id="commentform" $4 on="submit-success:commentform.reset()">'.$mustache, $content);
+				}
+				if(preg_match('/method\s*=\s*"\s*post\s*"/', $content)){
+					$content = preg_replace("/<form action=[\"|'](.*?)[\"|'](.*?)id=[\"|']commentform[\"|'](.*?)>/s", '<form action-xhr="$1"$2id="commentform" $3 on="submit-success:commentform.reset()">'.$mustache, $content);
+				}
 		}
 		return $content;
 	}

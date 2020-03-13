@@ -13,6 +13,7 @@ preg_match('/accelerated-mobile-pages/i', $icon_url, $matches);
 if(count($matches)==0){
 	$icon_url = plugin_dir_url('accelerated-mobile-pages/accelerated-moblie-pages.php').'templates/design-manager/'.esc_attr($design).'/';
 }
+$icon_url = ampforwp_font_url($icon_url);
 $font_content = '';
 $font_content = ampforwp_get_setting('amp_font_selector_content_single');
 $header_type = ampforwp_get_setting('header-type');
@@ -706,14 +707,7 @@ padding-left: 20px;
 	left: 0px;
 <?php } ?>
 }
-.artl-cnt ol li {counter-increment: step-counter;}
-.artl-cnt ol li::before {content: counter(step-counter);font-size: 16px;color: #000;position: absolute;
-<?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) {?> 
-	right:0;
-<?php } else{ ?>
-	left: 0px;
-<?php } ?>
-line-height: 1.2;top: 6px;}
+.artl-cnt ol li {list-style-type: decimal;position: unset;padding: 0;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
 @supports (-webkit-overflow-scrolling: touch) {
 .m-ctr{overflow:initial;}

@@ -640,8 +640,6 @@ function ampforwp_new_dir( $dir ) {
 				   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
 				}
 				// regex on steroids from here on
-				 // issue #420
-				 $content = preg_replace("/<div\s(class=.*?)(href=((".'"|'."'".')(.*?)("|'."'".')))\s(width=("|'."'".')(.*?)("|'."'"."))>(.*)<\/div>/i", '<div $1>$11</div>', $content);
 				 $content = preg_replace('/<like\s(.*?)>(.*)<\/like>/i', '', $content);
 				 $content = preg_replace('/<g:plusone\s(.*?)>(.*)<\/g:plusone>/i', '', $content);
 				 $content = preg_replace('/imageanchor="1"/i', '', $content);
@@ -1712,7 +1710,7 @@ function ampforwp_replace_title_tags() {
 		}
 		// All in One SEO #2816
 	   	if ( class_exists('All_in_One_SEO_Pack') && ampforwp_is_front_page()){
-	        $aiseop_title = $post = '';
+	        $aiseop_title = '';
 	        $aiseop_title = get_post_meta( $post_id, '_aioseop_title', true );
 	        if ( !empty($aiseop_title) ) {
 	          $site_title = $aiseop_title;
