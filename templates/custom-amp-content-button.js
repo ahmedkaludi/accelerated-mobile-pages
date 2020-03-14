@@ -14,7 +14,21 @@
                 }
               }else if(wp.data){
                 if ( wp.data.select( "core/editor" ) != undefined && typeof wp.data.select( "core/editor" ).getEditedPostContent() != undefined ) {
-                    var editedContent = wp.data.select( "core/editor" ).getEditedPostContent();
+                    var wp_blocks = wp.data.select( "core/block-editor" ).getBlocks();
+                    var editedContent = '';
+                    for(var i=0;i<wp_blocks.length;i++){
+                        var client_id = wp_blocks[i].clientId;
+                        var name = wp_blocks[i].name;
+                        if((wp_blocks[i].originalContent=='' || wp_blocks[i].originalContent==undefined)){
+                             var con = jQuery("#block-"+client_id).find("div[data-block]:last").html();
+                            if(con==undefined){
+                                con = jQuery("div[data-block="+client_id+"]").html();
+                            }
+                            editedContent += con;
+                        }else{
+                            editedContent += wp_blocks[i].originalContent;
+                        }
+                    }
                     editor.insertContent(editedContent);
                 }
                 else if( tinymce.editors.content && typeof tinymce.editors.content.getContent()!= undefined){
