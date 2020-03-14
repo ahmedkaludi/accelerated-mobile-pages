@@ -635,7 +635,6 @@ add_action('init','ampforwp_plugin_init', 9);
 * customized output widget
 * to be used be used in before or after Loop
 */
-ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/category-widget.php' );
 ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php' );
 
 
