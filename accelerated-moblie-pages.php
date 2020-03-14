@@ -1113,6 +1113,18 @@ function ampforwp_add_plugin_meta_links($meta_fields, $file) {
 // AMPforWP Global Data variable
 $ampforwp_data = array();
 
+if(!function_exists('sanitize_hex_color')){
+	function sanitize_hex_color( $color ) {
+	    if ( '' === $color ) {
+	        return '';
+	    }
+
+	    // 3 or 6 hex digits, or the empty string.
+	    if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+	        return $color;
+	    }
+	}
+}
 // color sanitizer
 function ampforwp_sanitize_color( $color ) {
     if ( empty( $color ) || is_array( $color ) )
