@@ -1073,6 +1073,10 @@ function ampforwp_remove_schema_data() {
 				ampforwp_remove_filters_for_class( 'the_content', 'SiteOrigin_Panels', 'generate_post_content', 10 );
 				ampforwp_remove_filters_for_class( 'the_content', 'Elementor\Frontend', 'apply_builder_in_content', 9 );
 			}
+			if(class_exists('Wppr_Public')){
+				remove_action('amp_post_template_css', array('Wppr_Public', 'amp_styles')); 
+				remove_action('wppr_review_option_rating_css', array('Wppr_Public', 'amp_width_support')); 
+			}
 	}
 	//Removing the WPTouch Pro social share links from AMP
 		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
