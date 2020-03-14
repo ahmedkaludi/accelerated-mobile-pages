@@ -110,8 +110,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 			// if amp-comments extension is enabled then hide this button
 			if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
 				<div class="cmt-button-wrapper">
-					<?php if ( comments_open() ) { ?>
-				    	<a href="<?php echo esc_url(ampforwp_comment_button_url()); ?>" rel="nofollow" title="<?php echo ampforwp_get_setting('amp-translator-leave-a-comment-text') ?>" ><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
+					 <?php if ( comments_open() ) { 
+					 	$nofollow = '';
+						if(true ==ampforwp_get_setting('ampforwp-nofollow-comment-btn')){
+							$nofollow = 'rel=nofollow';
+						}
+						?>
+				    	<a href="<?php echo esc_url(ampforwp_comment_button_url()); ?>" <?php echo esc_html($nofollow) ?> title="<?php echo ampforwp_get_setting('amp-translator-leave-a-comment-text') ?>" ><?php echo  ampforwp_translation( ampforwp_get_setting('amp-translator-leave-a-comment-text'), 'Leave a Comment'  ); ?></a> <?php
 					}?>
 				</div> <?php 
 			} ?>
