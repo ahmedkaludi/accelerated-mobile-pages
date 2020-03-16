@@ -283,6 +283,12 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     }
     // Check if we are on Mobile phones then start redirection process
     if ( $redirectToAMP ) {
+      if(class_exists('stcr\\stcr_manage') ){
+        $check_url = implode(', ', $current_url);
+        if(in_array('comment-subscriptions', $current_url) && strpos($check_url,'srp')!=false && strpos($check_url,'srk')!=false){
+          return true;
+        }
+      }
       if(!isset($_GET['nonamphead']) && isset($_SESSION['nonamphead']) && in_array($url_to_redirect, $_SESSION['nonamphead'])){
            return;
         }
@@ -298,6 +304,12 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
           return;
         }
     }
+    if(class_exists('stcr\\stcr_manage') ){
+        $check_url = implode(', ', $current_url);
+        if(in_array('comment-subscriptions', $current_url) && strpos($check_url,'srp')!=false && strpos($check_url,'srk')!=false){
+          return true;
+        }
+      }
     // #1947 when nonamp=1 it should redirect to original link
     $go_to_url  = "";
     $url        = "";
