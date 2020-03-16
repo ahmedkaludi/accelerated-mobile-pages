@@ -23,16 +23,20 @@ function ampforwp_push_notification_options($opt_name){
           ),
                     array(
                             'id'        => 'ampforwp-web-push-onesignal',
-                            'type'      => 'switch',
-                            'title'     => esc_html__('OneSignal','accelerated-mobile-pages'),
+                            'type'     => 'select',
+                            'title'     => esc_html__('Push Notification','accelerated-mobile-pages'),
                             'tooltip-subtitle'  => '<a href="https://ampforwp.com/tutorials/one-signal-in-amp/" target="_blank">View Integration Tutorial</a> (HTTPS is required)',
                             'true'      => 'true',
                             'false'     => 'false', 
-                            'default'   =>  0,
+                            'options'  => array(
+                               'onesignal' => esc_html__('OneSignal', 'accelerated-mobile-pages' ),
+                               'izooto' => esc_html__('iZooto', 'accelerated-mobile-pages' ),
+                           ),
+                            'default'   =>  'onesignal',
                             ),
                     array(
                        'required' => array( 
-                                        array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                                        array( 'ampforwp-web-push-onesignal', '=' , 'onesignal' ),
                                     ),   
                             'id'        => 'ampforwp-one-signal-app-id',
                             'type'      => 'text',
@@ -44,7 +48,7 @@ function ampforwp_push_notification_options($opt_name){
                        'type' => 'section',
                        'title' => esc_html__('Positioning', 'accelerated-mobile-pages'),
                        'required' => array( 
-                                        array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                                        array( 'ampforwp-web-push-onesignal', '=' , 'onesignal' ),
                                         array( 'amp-use-pot', '=' , 0 )
                                     ),   
                        'indent' => true,
@@ -59,7 +63,7 @@ function ampforwp_push_notification_options($opt_name){
                             'false'     => 'false', 
                             'default'   =>  1,
                             'tooltip-subtitle'  => 'Show Subscribe Button Below the Content',
-                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            'required'  => array('ampforwp-web-push-onesignal', '=' , 'onesignal'),
                             ),                   
                     array(
                             'id'        => 'ampforwp-web-push-onesignal-above-content',
@@ -69,7 +73,7 @@ function ampforwp_push_notification_options($opt_name){
                             'false'     => 'false', 
                             'default'   =>  0,
                             'tooltip-subtitle'  => 'Show Subscribe Button Above the Content',
-                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            'required'  => array('ampforwp-web-push-onesignal', '=' , 'onesignal'),
                             ),
                     array(
                        'id' => 'translation',
@@ -98,7 +102,7 @@ function ampforwp_push_notification_options($opt_name){
                        'type' => 'section',
                        'title' => esc_html__('Experimental', 'accelerated-mobile-pages'),
                        'required' => array( 
-                                        array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                                        array( 'ampforwp-web-push-onesignal', '=' , 'onesignal' ),
                                         array( 'amp-use-pot', '=' , 0 )
                                     ),   
                        'indent' => true,
@@ -110,7 +114,7 @@ function ampforwp_push_notification_options($opt_name){
                             'type'      => 'switch',
                             'title'     => 'HTTP Site',
                             'tooltip-subtitle'  => 'For HTTP Sites Only',
-                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            'required'  => array('ampforwp-web-push-onesignal', '=' , 'onesignal'),
                             'true'      => 'true',
                             'false'     => 'false',
                             'default'   => 0
@@ -121,7 +125,7 @@ function ampforwp_push_notification_options($opt_name){
                             'title'     => 'Subdomain',
                             'desc'      => esc_html__('Example: ampforwp', 'accelerated-mobile-pages'),
                             'required'  => array(
-                                            array('ampforwp-web-push-onesignal', '=' , '1'),
+                                            array('ampforwp-web-push-onesignal', '=' , 'onesignal'),
                                             array('ampforwp-onesignal-http-site', '=','1')),
                         ),
                 )
