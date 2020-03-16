@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.33
+Stable tag: 1.0.34
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,24 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.34 (16th March 2020) =
+* Improvement: Matomo (Piwik) analytics improvements #4271 #4280
+* Improvement: Custom page template improvements #4244
+* Improvement: Option to add/remove "nofollow" in the comment button #4266
+* Fixed: Spaces issue fixed in image carousel #4141
+* Fixed: Reusable blocks not working in the Custom AMP Editor #4187
+* Fixed: Comments pagination was not working in amp takeover beta #4251
+* Fixed: lightbox issue fixed #4222
+* Fixed: When AMP Dev mode and Mobile redirection both kept on then the website displays AMP on the mobile device #4276
+* Fixed: debug warnings on Fresh WP installation #4270
+* Fixed: Treeshaking was not working with "Product Review Lite Plugin" #4256
+* Fixed: Tables was not responsive in Mobile view design one #4278
+* Fixed: Have to make compatible with wordpress4.4.2 version #4262
+* Fixed: Click here link not working in mobile view of Subscribe to Comments Reloaded plugin #4225
+* Fixed: Post pagination not working in custom AMP Editor #4255
+* Fixed: Depreciated categories widget #4274
+* Fixed: Weekday removed from parameter 'published at' in the analytice code #4281
 
 = 1.0.33 (11th March 2020) =
 * Fixed: Categories not Hiding in Instant Articles #4254
