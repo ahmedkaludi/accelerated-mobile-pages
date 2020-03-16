@@ -118,6 +118,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 							$thumb_url = ampforwp_get_post_thumbnail();
 							$thumb_width  	= ampforwp_get_post_thumbnail('width');
 							$thumb_height 	= ampforwp_get_post_thumbnail('height');
+							$thumb_alt = '';
 							$thumb_alt = get_post_meta ( get_post_thumbnail_id(), '_wp_attachment_image_alt', true );
 							if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
 				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr($thumb_alt); ?>" width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>

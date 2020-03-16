@@ -159,6 +159,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 				$thumb_url = $thumb_url_array[0];
 				$thumb_width = $thumb_url_array[1];
 				$thumb_height = $thumb_url_array[2];
+				$thumb_alt = '';
 				$thumb_alt = get_post_meta ( get_post_thumbnail_id(), '_wp_attachment_image_alt', true );
 			}
 	    

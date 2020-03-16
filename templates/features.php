@@ -4934,6 +4934,7 @@ if( !function_exists('ampforwp_get_post_thumbnail')){
 			$thumb_url 			= $thumb_url_array[0];
 			$thumb_width 		= $thumb_url_array[1];
 			$thumb_height 		= $thumb_url_array[2];
+			$thumb_alt = '';
 			$thumb_alt = get_post_meta ( $thumb_id, '_wp_attachment_image_alt', true );
 		}
 		if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
