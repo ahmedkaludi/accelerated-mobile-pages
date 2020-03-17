@@ -2372,5 +2372,25 @@ if ($ampforwp_font_icon == 'css-icons'){?>
     width: 1px;
     background-color: currentColor;
 } 
+.overlay-search {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: solid 1px #fff;
+    border-radius: 100%;
+    transform: rotate(-45deg);
+    right: 10px;
+    top: 0px;
+}
+.overlay-search:before {
+	content: '';
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    height: 6px;
+    width: 1px;
+    background-color: currentColor;
+
+}    
 }
 <?php }
