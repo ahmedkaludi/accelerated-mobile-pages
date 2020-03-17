@@ -2334,4 +2334,43 @@ if($theme->name=='Twenty Twenty'){?>
 	.post-meta-edit-link-wrapper ul.post-meta li .meta-text{
 		margin-left:5px;
 	}
-<?php }?>
+<?php } 
+
+if ($ampforwp_font_icon == 'css-icons'){?>
+.t-btn {
+    color: #000;
+    position: absolute;
+    width: 17px;
+    height: 5px;
+    border-top: solid 1px currentColor;
+    border-bottom: solid 1px currentColor;
+}
+.t-btn:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 17px;
+    height: 5px;
+    border-bottom: solid 1px currentColor;
+}
+.icon-src,a.lb-x {
+    color: #000;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: solid 1px #000;
+    border-radius: 100%;
+    transform: rotate(-45deg);
+}
+.icon-src:before,a.lb-x:before  {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    height: 6px;
+    width: 1px;
+    background-color: currentColor;
+} 
+}
+<?php }

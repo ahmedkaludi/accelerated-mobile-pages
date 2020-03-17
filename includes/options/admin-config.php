@@ -3970,7 +3970,8 @@ Redux::setSection( $opt_name, array(
                     'title'    => esc_html__('Font Icon Library', 'accelerated-mobile-pages'),
                     'options'  => array(
                         'swift-icons'       => 'Swift Icons',
-                        'fontawesome-icons'     => 'Font Awesome Icons'
+                        'fontawesome-icons'     => 'Font Awesome Icons',
+                        'css-icons' => 'CSS Icons'
                     ),
                     'default'  => 'swift-icons',
                 ),
