@@ -1109,3 +1109,14 @@ function ampforwp_show_yoast_seo_local_map($content){
 	}
 	return $content;
 }
+//iframes are not working with WP optimize premium #4290
+add_filter('wp_optimize_lazy_load_hook_these','ampforwp_wp_optimize_iframe');
+function ampforwp_wp_optimize_iframe($content){
+	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	$explode_path = explode('/', $url_path);
+	if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)) {
+		$content = array_flip($content);
+		unset($content['the_content']);
+	}
+	return $content;
+}
