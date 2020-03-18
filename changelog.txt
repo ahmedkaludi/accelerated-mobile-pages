@@ -1,6 +1,6 @@
 == Changelog ==
 
-= 1.0.34 (16th March 2020) =
+= 1.0.34 (19th March 2020) =
 * Improvement: Matomo (Piwik) analytics improvements #4271 #4280
 * Improvement: Custom page template improvements #4244
 * Improvement: Option to add/remove "nofollow" in the comment button #4266
