@@ -4664,6 +4664,7 @@ function ampforwp_inline_related_posts(){
                     'order' => 'DESC',
                     'orderby' => $orderby,
                     'post_type' => $current_post_type,
+                    'no_found_rows'  => true,
                     'post__not_in' => array( $post->ID )
 
                 );  
@@ -4682,6 +4683,7 @@ function ampforwp_inline_related_posts(){
 							    'ignore_sticky_posts'=>1,
 								'has_password' => false ,
 								'post_status'=> 'publish',
+								'no_found_rows'  => true,
 								'orderby'    => $orderby
 							);
 						}
@@ -4716,6 +4718,7 @@ function ampforwp_inline_related_posts(){
                                         )
                                     );  
             } 
+            $args = apply_filters('ampforwp_inlne_related_posts_query_args', $args);
 			$my_query = new wp_query( $args );
 					if( $my_query->have_posts() ) {
 				$inline_related_posts_img = '';
