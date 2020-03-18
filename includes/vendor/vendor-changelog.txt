@@ -95,3 +95,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 65. Needs to redirect to 301, not in 302 #3767
 66. Whitelisted label and input tags #4054
 67. Whitelisted Picture tag #4051
+68. Improvement in input type #4289
