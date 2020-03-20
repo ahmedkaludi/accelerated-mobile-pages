@@ -99,7 +99,6 @@ function ampforwp_analytics() {
 			$url = get_the_permalink();
 			$url = ampforwp_remove_protocol(ampforwp_url_controller($url));
 			$rand = rand(1111,9999);
-			$pview = ampforwp_remove_protocol(site_url());
 			$referer  = $url;
 			if(isset($_SERVER['HTTP_REFERER'])) {
 		      $referer  = $_SERVER['HTTP_REFERER'];
@@ -107,7 +106,7 @@ function ampforwp_analytics() {
 			$piwik_api = str_replace("YOUR_SITE_ID", '1', $idsite);
 			$piwik_api = str_replace("TITLE", esc_attr($title), $piwik_api);
 			$piwik_api = str_replace("DOCUMENT_REFERRER", esc_url($referer), $piwik_api);
-			$piwik_api = str_replace("CANONICAL_URL", esc_url($pview), $piwik_api);
+			$piwik_api = str_replace("CANONICAL_URL", esc_url($url), $piwik_api);
 			$piwik_api = str_replace("RANDOM", intval($rand), $piwik_api);
 			?>
 			<amp-pixel src="<?php echo $piwik_api; // XXS ok, escaped above?>"></amp-pixel>
@@ -412,7 +411,7 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	}
 	$author_id = get_post_field( 'post_author', $id );
 	$author_name = get_the_author_meta( 'display_name' , $author_id );
-	$published_at = get_the_date( 'l F j, Y' , $id );
+	$published_at = get_the_date( 'F j, Y' , $id );
 	$ampforwp_adv_ga_fields = array();
 	$ampforwp_adv_ga_fields = ampforwp_get_setting('ampforwp-ga-field-advance');
 	if($ampforwp_adv_ga_fields)	{

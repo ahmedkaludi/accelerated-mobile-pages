@@ -1073,6 +1073,10 @@ function ampforwp_remove_schema_data() {
 				ampforwp_remove_filters_for_class( 'the_content', 'SiteOrigin_Panels', 'generate_post_content', 10 );
 				ampforwp_remove_filters_for_class( 'the_content', 'Elementor\Frontend', 'apply_builder_in_content', 9 );
 			}
+			if(class_exists('Wppr_Public')){
+				remove_action('amp_post_template_css', array('Wppr_Public', 'amp_styles')); 
+				remove_action('wppr_review_option_rating_css', array('Wppr_Public', 'amp_width_support')); 
+			}
 	}
 	//Removing the WPTouch Pro social share links from AMP
 		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
@@ -3804,6 +3808,23 @@ function ampforwp_post_pagination( $args = '' ) {
 		    }
 			$numpages = count($ampforwp_new_content);
 		}	
+		}else{
+		$amp_current_post_id =ampforwp_get_the_ID();
+		$amp_custom_content_enable = get_post_meta( $amp_current_post_id , 'ampforwp_custom_content_editor_checkbox', true);
+		if($amp_custom_content_enable=='yes'){
+			$content 	= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
+			$content 	= html_entity_decode($content);
+			$checker = preg_match('/<!--nextpage-->/', $content);
+			if ( 1 === $checker ) {
+				$multipage = $more = 1;
+				$ampforwp_new_content = explode('<!--nextpage-->', $content);
+				$queried_var = get_query_var('paged');
+				if ( $queried_var > 1 ) {
+			      $page = $queried_var;
+			    }
+				$numpages = count($ampforwp_new_content);
+			}
+		}
 	}
 	$defaults = array(
 		'before'           => '<div class="ampforwp_post_pagination" ><p>' . '<span>' .  ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page') . ':</span>',
@@ -5340,27 +5361,33 @@ function ampforwp_default_logo($param=""){
 				$value = $data['logo_url'];
 			break;
 		case 'width':
-			if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
+			if (true == ampforwp_get_setting('ampforwp-custom-logo-dimensions') && 'prescribed' ==ampforwp_get_setting('ampforwp-custom-logo-dimensions-options')) {
 				$value = trim(ampforwp_get_setting('opt-media-width'));
 				if($value==""){
 					$value = 190;
 				}
 			}
 			else 
-				$value = $data['logo_size'][0];
+				$value = '';
+				if(isset($data['logo_size'][0])){
+					$value = $data['logo_size'][0];
+				}
 			if($value==""){
 					$value = 190;
 				}
 			break;
 		case 'height':
-			if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
+			if (true == ampforwp_get_setting('ampforwp-custom-logo-dimensions') && 'prescribed' == ampforwp_get_setting('ampforwp-custom-logo-dimensions-options')) {
 				$value = trim(ampforwp_get_setting('opt-media-height'));
 				if($value==""){
 					$value = 36;
 				}
 			}
 			else
-				$value = $data['logo_size'][1];
+				$value = '';
+				if(isset($data['logo_size'][1])){
+					$value = $data['logo_size'][1];
+				}
 				if($value==""){
 					$value = 36;
 				}

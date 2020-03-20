@@ -2229,6 +2229,15 @@ function ampforwp_get_all_tags($id){
                                         ),
                      ),
                      array(
+                        'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-nofollow-comment-btn',
+                         'type'     => 'switch',
+                         'title'    => esc_html__('No follow button', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => esc_html__('Add or remove No follow in comment button', 'accelerated-mobile-pages'),
+                         'default'  => 1,
+                          'required' => array('wordpress-comments-support' , '=' , 1 ),
+                    ),
+                     array(
                          'id'       => 'ampforwp-disqus-comments-support',
                          'type'     => 'switch',
                          'title'    => esc_html__('Disqus', 'accelerated-mobile-pages'),
@@ -6060,6 +6069,7 @@ $single_page_options = array(
               'id'       => 'ampforwp-amp-img-lightbox',
               'type'     => 'switch',
               'default'  =>  '0',
+              'class'    => 'hide',
               'title'    => esc_html__('Lightbox for Images', 'accelerated-mobile-pages'),
               'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
                esc_html__('Enable this option to show lightbox for images in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-lightbox-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 

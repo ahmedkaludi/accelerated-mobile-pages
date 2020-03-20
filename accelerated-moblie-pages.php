@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.33
+Version: 1.0.34
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.33');
+define('AMPFORWP_VERSION','1.0.34');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
@@ -635,7 +635,6 @@ add_action('init','ampforwp_plugin_init', 9);
 * customized output widget
 * to be used be used in before or after Loop
 */
-ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/category-widget.php' );
 ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php' );
 
 
@@ -1113,6 +1112,18 @@ function ampforwp_add_plugin_meta_links($meta_fields, $file) {
 // AMPforWP Global Data variable
 $ampforwp_data = array();
 
+if(!function_exists('sanitize_hex_color')){
+	function sanitize_hex_color( $color ) {
+	    if ( '' === $color ) {
+	        return '';
+	    }
+
+	    // 3 or 6 hex digits, or the empty string.
+	    if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+	        return $color;
+	    }
+	}
+}
 // color sanitizer
 function ampforwp_sanitize_color( $color ) {
     if ( empty( $color ) || is_array( $color ) )
