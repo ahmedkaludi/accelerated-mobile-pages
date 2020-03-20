@@ -5678,6 +5678,38 @@ $single_page_options = array(
                 array('amp-author-description' , '=' , '1'),
             )
          ),
+         // Author Image
+         array(
+             'id'       => 'amp-author-bio-image',
+             'class' => 'child_opt child_opt_arrow',
+             'type'     => 'switch',
+             'title'    => esc_html__( 'Author Image', 'accelerated-mobile-pages' ),
+             'default'  => '1',
+             'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+              esc_html__('Enable this option to show author image in author bio and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-author-image-in-author-bio-section/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
+             'required' => array(
+                array('amp-design-selector' , '=' , '4'),
+                array('amp-author-description' , '=' , '1'),
+            )
+         ),
+         array(
+                    'id'       => 'amp-author-bio-image-width',
+                    'type'     => 'text',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'    => esc_html__('Width', 'accelerated-mobile-pages'),
+                    'validate' => 'numeric',
+                    'default'  => '60',
+                    'required' => array('amp-author-bio-image' , '=' , '1'),
+            ),
+         array(
+                    'id'       => 'amp-author-bio-image-height',
+                    'type'     => 'text',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'    => esc_html__('Height', 'accelerated-mobile-pages'),
+                    'validate' => 'numeric',
+                    'default'  => '60',
+                    'required' => array('amp-author-bio-image' , '=' , '1'),
+            ),
          // Author description
          array(
              'id'       => 'amp-author-box-description',

@@ -23,6 +23,7 @@ $show_time = false;
 $author_name = $post_author->display_name;
 $author_name = apply_filters('ampforwp_modify_author_name',$author_name);
 $and_text = '';
+$avatar_size_weight = $avatar_size_height = '';
 $and_text = ampforwp_translation($redux_builder_amp['amp-translator-and-text'], 'and' );
 if ( function_exists('coauthors') ) { 
     $author_name = coauthors($and_text,$and_text,null,null,false);
@@ -42,6 +43,14 @@ if ( isset($args['avatar']) ) {
 }
 if ( isset($args['avatar_size']) ) {
     $avatar_size = $args['avatar_size'];
+    $avatar_size_width = ampforwp_get_setting('amp-author-bio-image-width');
+    $avatar_size_height = ampforwp_get_setting('amp-author-bio-image-height');
+    if (empty($avatar_size_width)) {
+       $avatar_size_width = 60;
+    }
+    if (empty($avatar_size_height)) {
+       $avatar_size_height = 60;
+    }
 }
 if ( isset($args['class']) ) {
 	$class = $args['class'];
@@ -81,7 +90,7 @@ if ( isset($args['show_time']) ) {
        $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
     } ?>
         <div class="amp-author-image <?php echo esc_attr($author_image_wrapper); ?>">
-            <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo esc_attr($avatar_size); ?>" height="<?php echo esc_attr($avatar_size); ?>" layout="fixed"></amp-img> 
+            <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo esc_attr($avatar_size_width); ?>" height="<?php echo esc_attr($avatar_size_height); ?>" layout="fixed"></amp-img> 
         </div>
         <?php } ?>
         <?php echo '<div class="author-details '. esc_attr($author_wrapper_class) .'">';
