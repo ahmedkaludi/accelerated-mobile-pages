@@ -84,7 +84,7 @@ if ( isset($args['show_time']) ) {
 
  ?>
     <div class="amp-author <?php echo esc_attr($class); ?>">
-        <?php if ( $avatar ) {
+        <?php if ( $avatar && true == ampforwp_get_setting('amp-author-bio-image') ) {
     $author_avatar_url = ampforwp_get_wp_user_avatar();
     if( null == $author_avatar_url ){
        $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
