@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.34
+Stable tag: 1.0.35
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,16 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.35 (23th March 2020) =
+* Fixed: Related post images not having alt attribute #4282
+* Fixed: iframes are not working with WP optimize premium #4290
+* Fixed: input type file error #4289
+* Fixed: next and prev alignment issue in design 2 #4211
+* Fixed: 404 PHP File is not getting overried from the child theme #4284
+* Fixed: Error in "Optimize loading of Google font" in SG Optimizer #4287
+* Fixed: amp-vimeo Validation error of invalid value 'ondemand' #4294
+* Fixed: AMP Option panel improvements #4277 #4288
 
 = 1.0.34 (19th March 2020) =
 * Improvement: Matomo (Piwik) analytics improvements #4271 #4280
