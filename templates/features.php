@@ -5482,7 +5482,10 @@ if ( ! function_exists('ampforwp_wptexturize_disabler') ) {
 // amp-vimeo proper video id for 3 parameter url
 add_filter('amp_vimeo_parse_url','amp_vimeo_parse_url_video_id');
 function amp_vimeo_parse_url_video_id($tok){
-
+	  if (in_array("ondemand", $tok) && sizeof($tok)==3){		 
+		$tok = '';
+		return $tok;
+	  }
 	  if(sizeof($tok)==3){
        return $tok[1];
       }else{
