@@ -26,6 +26,7 @@ if( $current_post_type = get_post_type( $post )) {
         'orderby' => $orderby,
         'post_type' => $current_post_type,
         'post__not_in' => array( $post->ID ),
+        'no_found_rows' 	  => true,
         'meta_query' => array(
 	        array(
 		        'key'        => 'ampforwp-amp-on-off',
@@ -48,6 +49,7 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
             'has_password' 		 => false ,
             'post_status'		 => 'publish',
             'orderby' 			 => $orderby,
+            'no_found_rows' 	  => true,
 		    'meta_query' => array(
 			    array(
 				    'key'        => 'ampforwp-amp-on-off',
@@ -94,6 +96,7 @@ if ( isset($redux_builder_amp['ampforwp-related-posts-days-switch']) && true == 
 				       		); 
 }
 if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && $redux_builder_amp['ampforwp-single-select-type-of-related'] ) {
+	$args = apply_filters('ampforwp_related_posts_query_args', $args);
 	$my_query = new wp_query( $args );
 		if( $my_query->have_posts() ) { ?>
 			<div class="amp-wp-content relatedpost">
