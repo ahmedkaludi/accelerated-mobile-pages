@@ -1197,15 +1197,20 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
 <?php }
  }
 
- function ampforwp_role_based_access_options(){
+function ampforwp_role_based_access_options(){
+
+    $user_role = '';
+    $user_role = true;
+
     $currentUser = wp_get_current_user();
     $amp_roles = ampforwp_get_setting('ampforwp-role-based-access');
     $currentuserrole = (array) $currentUser->roles;
     $hasrole = array_intersect( $currentuserrole, $amp_roles );
     if( empty($hasrole)){
-        return false;
+        $user_role = false;
     }
-    return true;
+    $user_role = apply_filters('ampforwp_modify_user_access_role', $user_role, $currentUser, $amp_roles, $hasrole );
+    return $user_role;
 }
 if(!function_exists('ampforwp_sassy_share_icons')){
     function ampforwp_sassy_share_icons($ampforwp_the_content) {
