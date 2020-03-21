@@ -189,8 +189,8 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 /* Pagination */
 .amp-wp-content.pagination-holder { background: none; padding: 0; box-shadow: none; height: auto; min-height: auto; }
 #pagination{ width: 100%; margin-top: 15px; }
-#pagination .next{ float: right;width:60%;text-align: right;}
-#pagination .prev{ float: left;width:60%; }
+#pagination .next{ float: right;max-width:50%;text-align: right;}
+#pagination .prev{ float: left;max-width:50%; }
 #pagination .next a, #pagination .prev a{ margin-bottom: 12px; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05); padding: 11px 15px; font-size: 12px;}
 #pagination .next a, #pagination .prev a{
 	color:#666666;
