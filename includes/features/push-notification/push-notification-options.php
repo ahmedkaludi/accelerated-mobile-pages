@@ -58,7 +58,7 @@ function ampforwp_push_notification_options($opt_name){
                             ),
                     array(
                        'required' => array( 
-                                        array( 'ampforwp-web-push-onesignal', '=' , '1' ),
+                                        array( 'ampforwp-web-push', '=' , '1' ),
                                     ),   
                             'id'        => 'ampforwp-one-signal-app-id',
                             'type'      => 'text',
@@ -67,7 +67,7 @@ function ampforwp_push_notification_options($opt_name){
                             ),
                     array(
                        'required' => array( 
-                                        array( 'ampforwp-web-push-onesignal', '=' , '2' ),
+                                        array( 'ampforwp-web-push', '=' , '2' ),
                                     ),   
                             'id'        => 'ampforwp-izooto-for-amp-app-id',
                             'type'      => 'text',
@@ -79,7 +79,7 @@ function ampforwp_push_notification_options($opt_name){
                        'type' => 'section',
                        'title' => esc_html__('Positioning', 'accelerated-mobile-pages'),
                        'required' => array( 
-                                        array( 'ampforwp-web-push-onesignal', '=' , '1' ),
+                                        array( 'ampforwp-web-push', '=' , '1' ),
                                         array( 'amp-use-pot', '=' , 0 )
                                     ),   
                        'indent' => true,
@@ -94,7 +94,7 @@ function ampforwp_push_notification_options($opt_name){
                             'false'     => 'false', 
                             'default'   =>  1,
                             'tooltip-subtitle'  => 'Show Subscribe Button Below the Content',
-                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            'required'  => array('ampforwp-web-push', '=' , '1'),
                             ),                   
                     array(
                             'id'        => 'ampforwp-web-push-onesignal-above-content',
@@ -104,7 +104,7 @@ function ampforwp_push_notification_options($opt_name){
                             'false'     => 'false', 
                             'default'   =>  0,
                             'tooltip-subtitle'  => 'Show Subscribe Button Above the Content',
-                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            'required'  => array('ampforwp-web-push', '=' , '1'),
                             ),
 
                     array(
@@ -112,7 +112,7 @@ function ampforwp_push_notification_options($opt_name){
                        'type' => 'section',
                        'title' => esc_html__('Positioning', 'accelerated-mobile-pages'),
                        'required' => array( 
-                                        array( 'ampforwp-web-push-onesignal', '=' , 'izooto' ),
+                                        array( 'ampforwp-web-push', '=' , '2' ),
                                         array( 'amp-use-pot', '=' , 0 )
                                     ),   
                        'indent' => true,
@@ -127,7 +127,7 @@ function ampforwp_push_notification_options($opt_name){
                             'false'     => 'false', 
                             'default'   =>  1,
                             'tooltip-subtitle'  => 'Show Subscribe Button Below the Content',
-                            'required'  => array('ampforwp-web-push-onesignal', '=' , '2'),
+                            'required'  => array('ampforwp-web-push', '=' , '2'),
                             ),                   
                     array(
                             'id'        => 'ampforwp-izooto-for-amp-above-content',
@@ -137,7 +137,7 @@ function ampforwp_push_notification_options($opt_name){
                             'false'     => 'false', 
                             'default'   =>  0,
                             'tooltip-subtitle'  => 'Show Subscribe Button Above the Content',
-                            'required'  => array('ampforwp-web-push-onesignal', '=' , '2'),
+                            'required'  => array('ampforwp-web-push', '=' , '2'),
                             ),
                     array(
                        'id' => 'translation',
@@ -160,14 +160,14 @@ function ampforwp_push_notification_options($opt_name){
                        'title'    => esc_html__('Unsubscribe', 'accelerated-mobile-pages'),
                        'default'  => esc_html__('Unsubscribe from updates','accelerated-mobile-pages'),
                        'placeholder'=>esc_html__('Add some text','accelerated-mobile-pages'),
-                       'required'=> array( array(  'ampforwp-web-push-onesignal', '=' , '1' )),
+                       'required'=> array( array(  'ampforwp-web-push', '=' , '1' )),
                    ),
                    array(
                        'id' => 'ampforwp-onesignal-exper',
                        'type' => 'section',
                        'title' => esc_html__('Experimental', 'accelerated-mobile-pages'),
                        'required' => array( 
-                                        array( 'ampforwp-web-push-onesignal', '=' , '1' ),
+                                        array( 'ampforwp-web-push', '=' , '1' ),
                                         array( 'amp-use-pot', '=' , 0 )
                                     ),   
                        'indent' => true,
@@ -179,7 +179,7 @@ function ampforwp_push_notification_options($opt_name){
                             'type'      => 'switch',
                             'title'     => 'HTTP Site',
                             'tooltip-subtitle'  => 'For HTTP Sites Only',
-                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            'required'  => array('ampforwp-web-push', '=' , '1'),
                             'true'      => 'true',
                             'false'     => 'false',
                             'default'   => 0
@@ -190,7 +190,7 @@ function ampforwp_push_notification_options($opt_name){
                             'title'     => 'Subdomain',
                             'desc'      => esc_html__('Example: ampforwp', 'accelerated-mobile-pages'),
                             'required'  => array(
-                                            array('ampforwp-web-push-onesignal', '=' , '1'),
+                                            array('ampforwp-web-push', '=' , '1'),
                                             array('ampforwp-onesignal-http-site', '=','1')),
                         ),
                 )
