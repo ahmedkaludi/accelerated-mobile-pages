@@ -587,6 +587,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('subdomain-endpoints-for-amp/subdomain-endpoints-for-amp.php')? 1 : 2),
                             'settingUrl'=>'{amp-subdomain-subsection}',
                         ),
+                        array(
+                            'name'=>'LuckyWP Table of Contents for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'This extension automatically adds LuckyWP Table of Contents functionality in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/LuckyWpTOCforAMP.png',
+                            'price'=>'$19',
+                            'url_link'=>'https://ampforwp.com/addons/luckywp-table-of-contents-for-amp/',
+                            'plugin_active_path'=> 'luckywp-table-of-contents-for-amp/luckywp-table-of-contents-for-amp.php',
+                            'item_name'=>'LuckyWP Table of Contents for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('luckywp-table-of-contents-for-amp/luckywp-table-of-contents-for-amp.php')? 1 : 2),
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
