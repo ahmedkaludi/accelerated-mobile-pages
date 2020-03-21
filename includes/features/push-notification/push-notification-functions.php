@@ -11,7 +11,7 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 	if ( (!checkAMPforPageBuilderStatus(get_the_ID()) &&  is_single() ) || true == ampforwp_get_setting('ampforwp-web-push-onesignal-header') || true == ampforwp_get_setting('ampforwp-web-push-onesignal-sticky') ){
 		$checker = true;
 	}
-	if('onesignal' == ampforwp_get_setting('ampforwp-web-push-onesignal') && $checker ){
+	if('1' == ampforwp_get_setting('ampforwp-web-push-onesignal') && $checker ){
 		$onesignal_domain 		= '';
 		$onesignal_domain_sw 	= '';
 		$onesignal_subdomain 	= '';
@@ -101,7 +101,7 @@ if( ! function_exists('ampforwp_onesignal_notifications_widget') ){
 	function ampforwp_onesignal_notifications_widget(){
 	global $redux_builder_amp;
 
-	if(is_single() && 'onesignal' == ampforwp_get_setting('ampforwp-web-push-onesignal') && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
+	if(is_single() && '1' == ampforwp_get_setting('ampforwp-web-push-onesignal') && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
 		<!-- A subscription widget -->
 	<div class="amp-web-push-container">
 		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="245" height="45">
@@ -135,7 +135,7 @@ if(!function_exists('ampforwp_onesignal_notifications_script')){
 	if ( (!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() ) || true == ampforwp_get_setting('ampforwp-web-push-onesignal-header') || true == ampforwp_get_setting('ampforwp-web-push-onesignal-sticky') ){
 		$checker = true;
 	}
-	if('onesignal' == ampforwp_get_setting('ampforwp-web-push-onesignal') && $checker ){
+	if('1' == ampforwp_get_setting('ampforwp-web-push-onesignal') && $checker ){
 		if ( empty( $data['amp_component_scripts']['amp-web-push'] ) ) {
 				$data['amp_component_scripts']['amp-web-push'] = 'https://cdn.ampproject.org/v0/amp-web-push-0.1.js';
 			}
@@ -148,7 +148,7 @@ add_action('amp_post_template_css' , 'ampforwp_onesignal_notifications_styling' 
 if(!function_exists('ampforwp_onesignal_notifications_styling')){
 	function ampforwp_onesignal_notifications_styling(){
 	global $redux_builder_amp;
-	if('onesignal' == ampforwp_get_setting('ampforwp-web-push-onesignal') && !checkAMPforPageBuilderStatus(get_the_ID()) && is_single() ){ ?>
+	if('1' == ampforwp_get_setting('ampforwp-web-push-onesignal') && !checkAMPforPageBuilderStatus(get_the_ID()) && is_single() ){ ?>
     amp-web-push-widget button.subscribe { display: inline-flex; align-items: center; border-radius: 2px; border: 0; box-sizing: border-box; margin: 0; padding: 10px 15px; cursor: pointer; outline: none; font-size: 15px; font-weight: 400; background: #4A90E2; color: white; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5); -webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
     amp-web-push-widget button.subscribe .subscribe-icon {margin-right: 10px;}
     amp-web-push-widget button.subscribe:active {transform: scale(0.99);}
