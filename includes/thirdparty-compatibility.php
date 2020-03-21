@@ -111,6 +111,9 @@ require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
 	            $file = $filePath . '/archive.php';
 	        }
 	    }
+	    if ( is_404() && 'single' === $type) {   
+	        $file = $filePath . '/404.php';        
+	    }
 	    $ampforwp_custom_post_page = ampforwp_custom_post_page();
 	    // Homepage
 		if ( is_home() ) {
