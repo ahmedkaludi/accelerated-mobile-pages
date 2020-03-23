@@ -65,9 +65,14 @@ function ampforwp_related_post_loop_query(){
 	'post_status'=> 'publish',
 	'no_found_rows'	=> true,
 	'meta_query' => array(
+		'relation' => 'OR',
 		array(
 			'key'        => 'ampforwp-amp-on-off',
 			'value'      => 'default',
+		),
+		array( 
+		    'key' => 'ampforwp-amp-on-off', 
+		    'compare' => 'NOT EXISTS',
 		))
 	);
 	if($redux_builder_amp['ampforwp-single-select-type-of-related']==2 && 'post' == $post->post_type ){

@@ -51,9 +51,14 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
             'orderby' 			 => $orderby,
             'no_found_rows' 	  => true,
 		    'meta_query' => array(
+		    	'relation' => 'OR',
 			    array(
 				    'key'        => 'ampforwp-amp-on-off',
 				    'value'      => 'default',
+				    ),
+				array( 
+				    'key' => 'ampforwp-amp-on-off', 
+				    'compare' => 'NOT EXISTS',
 			    ))
 		);
 	}
