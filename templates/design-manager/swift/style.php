@@ -2322,8 +2322,8 @@ figure.amp-featured-image {
     margin: 10px 0;
 }
 <?php 
-$theme = wp_get_theme();
-if($theme->name=='Twenty Twenty'){?>
+$theme = get_current_theme();
+if($theme=='Twenty Twenty'){?>
 	.post-meta-edit-link-wrapper ul.post-meta{
 		float: right;
 	    margin-top: -16px;
