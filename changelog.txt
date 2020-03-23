@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 1.0.35 (23th March 2020) =
+* Fixed: Related post images not having alt attribute #4282
+* Fixed: iframes are not working with WP optimize premium #4290
+* Fixed: input type file error #4289
+* Fixed: next and prev alignment issue in design 2 #4211
+* Fixed: 404 PHP File is not getting overried from the child theme #4284
+* Fixed: Error in "Optimize loading of Google font" in SG Optimizer #4287
+* Fixed: amp-vimeo Validation error of invalid value 'ondemand' #4294
+* Fixed: AMP Option panel improvements #4277 #4288
+
 = 1.0.34 (19th March 2020) =
 * Improvement: Matomo (Piwik) analytics improvements #4271 #4280
 * Improvement: Custom page template improvements #4244

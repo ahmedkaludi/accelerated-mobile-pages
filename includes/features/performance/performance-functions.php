@@ -23,6 +23,9 @@ function ampforwp_minify_html_output($content_buffer){
 	if (defined('W3TC') && strpos($content_buffer, 'frameborder') !== false) {
 		add_filter("w3tc_minify_html_enable",'__return_false');
 	}
+    if(class_exists('Cli_Optimizer') && preg_match('/<style type="text\/css">@font-face(.*?)<\/style>/s', $content_buffer)!=0){
+        $content_buffer = preg_replace('/<style type="text\/css">@font-face(.*?)<\/style>/s', '', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       

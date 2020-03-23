@@ -4639,6 +4639,7 @@ function ampforwp_inline_related_posts(){
                     'order' => 'DESC',
                     'orderby' => $orderby,
                     'post_type' => $current_post_type,
+                    'no_found_rows'  => true,
                     'post__not_in' => array( $post->ID )
 
                 );  
@@ -4657,6 +4658,7 @@ function ampforwp_inline_related_posts(){
 							    'ignore_sticky_posts'=>1,
 								'has_password' => false ,
 								'post_status'=> 'publish',
+								'no_found_rows'  => true,
 								'orderby'    => $orderby
 							);
 						}
@@ -4691,6 +4693,7 @@ function ampforwp_inline_related_posts(){
                                         )
                                     );  
             } 
+            $args = apply_filters('ampforwp_inlne_related_posts_query_args', $args);
 			$my_query = new wp_query( $args );
 					if( $my_query->have_posts() ) {
 				$inline_related_posts_img = '';
@@ -4922,6 +4925,8 @@ if( !function_exists('ampforwp_get_post_thumbnail')){
 			$thumb_url 			= $thumb_url_array[0];
 			$thumb_width 		= $thumb_url_array[1];
 			$thumb_height 		= $thumb_url_array[2];
+			$thumb_alt = '';
+			$thumb_alt = get_post_meta ( $thumb_id, '_wp_attachment_image_alt', true );
 		}
 		if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
 			$thumb_url 		= ampforwp_cf_featured_image_src();
@@ -4942,6 +4947,9 @@ if( !function_exists('ampforwp_get_post_thumbnail')){
 				break;
 			case 'height':
 				$output = $thumb_height;
+				break;	
+			case 'alt':
+				$output = $thumb_alt;
 				break;	
 			default:
 				$output = $thumb_url;
@@ -5477,7 +5485,10 @@ if ( ! function_exists('ampforwp_wptexturize_disabler') ) {
 // amp-vimeo proper video id for 3 parameter url
 add_filter('amp_vimeo_parse_url','amp_vimeo_parse_url_video_id');
 function amp_vimeo_parse_url_video_id($tok){
-
+	  if (in_array("ondemand", $tok) && sizeof($tok)==3){		 
+		$tok = '';
+		return $tok;
+	  }
 	  if(sizeof($tok)==3){
        return $tok[1];
       }else{
