@@ -1202,6 +1202,11 @@ function ampforwp_sticky_social_icons(){
 		}
 		else
 			$permalink = $amp_permalink;
+		if(true == ampforwp_get_setting('ampforwp-social-utm-tracking-switch') && !empty(ampforwp_get_setting('ampforwp-social-utm-tracking'))){
+			$amp_permalink = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$amp_permalink);
+			$amp_permalink_fb_messenger = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$amp_permalink_fb_messenger);
+			$twitter_amp_permalink = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$twitter_amp_permalink);
+		}
 		?>
 			<div class="s_so">
 			<?php if ( true == ampforwp_get_setting('ampforwp-facebook-like-button') && false == ampforwp_get_setting('ampforwp-facebook-like-data-action')) {

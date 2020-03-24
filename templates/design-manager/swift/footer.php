@@ -75,6 +75,11 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 	if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
 		$twitter_amp_permalink = wp_get_shortlink();
 	}
+	if(true == ampforwp_get_setting('ampforwp-social-utm-tracking-switch') && !empty(ampforwp_get_setting('ampforwp-social-utm-tracking'))){
+		$amp_permalink = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$amp_permalink);
+		$amp_permalink_fb_messenger = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$amp_permalink_fb_messenger);
+		$twitter_amp_permalink = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$twitter_amp_permalink);
+	}
 if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']) ){ ?>
 <div class="s_stk ss-ic">
 	<ul>

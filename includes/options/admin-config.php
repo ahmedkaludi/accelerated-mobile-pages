@@ -7013,6 +7013,25 @@ else{
               'default'   =>  0,
               'required' => array(array('ampforwp-social-share', '=', '1'))
           ),
+           array(
+              'id'        =>  'ampforwp-social-utm-tracking-switch',
+              'type'      =>  'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     =>  esc_html__('UTM Tracking', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to add utm tracking to all your social links and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-utm-tracking-to-all-your-social-share-links/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+              'default'   =>  0,
+              'required' => array('ampforwp-social-share', '=', '1')
+            ),
+           array(
+               'id'       => 'ampforwp-social-utm-tracking',
+               'title'    => esc_html__('Campaign Source', 'accelerated-mobile-pages'),
+               'desc'  =>esc_html__('Use \'&\' for adding parameters in the tracking. Example: utm_source=share_buttons&utm_medium=social_media','accelerated-mobile-pages'),
+               'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
+               'required'  => array('ampforwp-social-utm-tracking-switch', '=' , '1'),
+               'default'  => '',
+            ),
           $sassy_ss,
             // AddThis Support  
         array(

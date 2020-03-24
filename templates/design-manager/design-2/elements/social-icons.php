@@ -20,6 +20,11 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 	if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
 		$twitter_amp_permalink = wp_get_shortlink();
 	}
+	if(true == ampforwp_get_setting('ampforwp-social-utm-tracking-switch') && !empty(ampforwp_get_setting('ampforwp-social-utm-tracking'))){
+		$amp_permalink = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$amp_permalink);
+		$amp_permalink_fb_messenger = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$amp_permalink_fb_messenger);
+		$twitter_amp_permalink = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$twitter_amp_permalink);
+	}
 	?>
 <?php do_action('ampforwp_before_social_icons_hook',$this);
 if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>

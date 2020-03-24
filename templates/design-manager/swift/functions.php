@@ -60,7 +60,11 @@ function ampforwp_swift_social_icons(){
 	if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
 		$twitter_amp_permalink =  wp_get_shortlink();
 	}
-	?>
+	if(true == ampforwp_get_setting('ampforwp-social-utm-tracking-switch') && !empty(ampforwp_get_setting('ampforwp-social-utm-tracking'))){
+		$amp_permalink = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$amp_permalink);
+		$amp_permalink_fb_messenger = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$amp_permalink_fb_messenger);
+		$twitter_amp_permalink = add_query_arg(ampforwp_get_setting('ampforwp-social-utm-tracking'), '' ,$twitter_amp_permalink);
+	}?>
 	<div class="ss-ic">
 						<span class="shr-txt"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' )); ?></span>
 						<ul>
