@@ -46,6 +46,7 @@ class AMPFORWP_Woo_Widget extends WP_Widget {
       'orderby'             => 'date',
       'post__not_in' 		    => $exclude_ids,
       'has_password'        => false,
+      'no_found_rows'          => true,
       'post_status'         => 'publish',
       'posts_per_page'      => esc_attr( $ampforwp_number_of_products )
      ) );
