@@ -118,7 +118,6 @@ ol, ul {list-style-position: inside;}
 	<?php echo ampforwp_font_selector('content'); ?>
     <?php if ( $content_max_width > 0 ) : ?>
     max-width: <?php echo sprintf( '%dpx', $content_max_width ); ?>;
-    margin: 0 auto;
     <?php endif;
     if((is_singular() || ampforwp_is_front_page() ) && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
       max-width:100%;
