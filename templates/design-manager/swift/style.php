@@ -2322,8 +2322,7 @@ figure.amp-featured-image {
     margin: 10px 0;
 }
 <?php 
-$theme = get_current_theme();
-if($theme=='Twenty Twenty'){?>
+if(function_exists('twentytwenty_theme_support')){?>
 	.post-meta-edit-link-wrapper ul.post-meta{
 		float: right;
 	    margin-top: -16px;
