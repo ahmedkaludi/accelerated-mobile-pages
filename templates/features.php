@@ -8229,3 +8229,43 @@ function ampforwp_modify_url_utm_params($url){
 	}
 	return $url;
 }
+add_action('amp_post_template_css','ampforwp_set_local_font',33);
+if(!function_exists('ampforwp_set_local_font')){
+	function ampforwp_set_local_font(){
+		if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')!=""){
+			$upload_dir   = wp_upload_dir();
+	        $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-local-fonts';
+	        if ( file_exists( $user_dirname ) ) {
+	            $files = glob( $user_dirname . '/*' );
+	            $font_css =  '@font-face {';
+	            $i = 0;
+	            foreach ( $files as $file ) {
+	               	$fonts = explode("/", $file);
+	               	$font_name = end($fonts);
+					$ext = end(explode(".", $font_name));
+					if($ext!='zip'){
+						$font_arr = explode('-', $font_name);
+		                $font_family = $font_arr[0];
+		               	if($i==0){
+		               		$font_css .= "font-family: '".esc_attr(ucfirst($font_family))."'; font-style: normal; font-weight: 400;";
+		               	}
+		               	$font_path =  $upload_dir['baseurl'].'/'.'ampforwp-local-fonts/'.$font_name;
+		               	if($ext=='eot'){
+		               		$font_css .= "src: url('".esc_url($font_path)."'); src: url('".esc_url($font_path)."?#iefix') format('embedded-opentype'),";
+		               	}else if($ext=='svg'){
+		               		$font_css .= "src: url('".esc_url($font_path)."?#".esc_attr(ucfirst($font_family))."') format('svg'),";
+		               	}else if($ext=='ttf'){
+		               		$font_css .= "src: url('".esc_url($font_path)."') format('truetype'),";
+		               	}else{
+		               		$font_css .= "src: url('".esc_url($font_path)."') format('".esc_attr($ext)."'),";
+		               	}
+		               	$i++;
+					}
+	            }
+	            $font_css .= '}';
+	            echo $font_css;
+	        }
+		}
+	}
+}
+
