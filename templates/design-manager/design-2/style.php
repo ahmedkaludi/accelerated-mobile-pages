@@ -118,6 +118,7 @@ ol, ul {list-style-position: inside;}
 	<?php echo ampforwp_font_selector('content'); ?>
     <?php if ( $content_max_width > 0 ) : ?>
     max-width: <?php echo sprintf( '%dpx', $content_max_width ); ?>;
+    margin: 0 auto;
     <?php endif;
     if((is_singular() || ampforwp_is_front_page() ) && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
       max-width:100%;
@@ -336,7 +337,7 @@ h1.amp-wp-title , h2.amp-wp-title{ text-align: center; margin: 0.7em 0px 0.6em 0
 .amp-wp-content.post-title-meta, .amp-wp-content.post-pagination-meta{ background: none; padding:  0; box-shadow:none }
 .post-pagination-meta{ min-height:75px }
 .single-post .post-pagination-meta{ min-height:auto }
-.single-post .ampforwp-social-icons{ display:inline-block }
+.single-post .ampforwp-social-icons{ display:block }
 .post-pagination-meta .amp-wp-tax-category, .post-title-meta .amp-wp-tax-tag{ display : none; }
 .amp-meta-wrapper{ border-bottom: 1px solid #DADADA; padding-bottom:10px; display:inline-block; width:100%; margin-bottom:0 }
 .amp-wp-meta{ padding-left: 0; }
@@ -363,7 +364,7 @@ main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bot
 .amp-wp-article-featured-image amp-img {margin: 0 auto;}
 .amp-wp-article-featured-image.wp-caption .wp-caption-text, .ampforwp-gallery-item .wp-caption-text{color: #696969; font-size: 11px; line-height: 15px; background: #eee; margin: 0; padding: .66em .75em; text-align: center;}
 .ampforwp-gallery-item.amp-carousel-slide { padding-bottom: 20px;}
-.amp-wp-content.post-pagination-meta{ max-width: 1030px; }
+.amp-wp-content.post-pagination-meta{ max-width: 1030px;margin:0 auto; }
 .single-post .ampforwp-social-icons.ampforwp-social-icons-wrapper{ margin: 0.9em auto 0.9em auto ; max-width: 1030px; }
 .amp-wp-article-header.amp-wp-article-category.ampforwp-meta-taxonomy{ margin: 10px auto; max-width: 1030px; } .ampforwp_single_excerpt { margin-bottom:15px; font-size: 15px; text-align:center}
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
