@@ -84,7 +84,7 @@ require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
 
 	// Custom Template Files
 	function ampforwp_child_designing_custom_template( $file, $type, $post ) {
-	if(!is_page_template()){
+	if(is_page() && !is_page_template()){
 		return $file;
 	}  
 	 global $redux_builder_amp;
