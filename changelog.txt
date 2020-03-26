@@ -1,5 +1,16 @@
 == Changelog ==
 
+= 1.0.36 (26th March 2020) =
+* Improvement: Added filter to modify role based access #4303
+* Improvement: Added "srcset" on featured images #4257
+* Improvement: Added option to resize the author images in author bio #4297
+* Fixed: AMP child theme not working after update #4310
+* Fixed: amp-fx-collection script was not loading #4275
+* Fixed: Minify HTML & Query Monitor not working on some pages in AMP #4301
+* Fixed: Related posts doesn't show more than 3-4 #4300
+* Fixed: Incorrect alignment of Edit in twenty twenty WP theme #4246
+* Fixed: Social Icons are out of alignment in Design 2 #4305
+
 = 1.0.35 (23th March 2020) =
 * Fixed: Related post images not having alt attribute #4282
 * Fixed: iframes are not working with WP optimize premium #4290

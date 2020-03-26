@@ -85,7 +85,14 @@ function ampforwp_minify_html_output($content_buffer){
                 $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', ' '), $process);
             }
         }else{
-            $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', ' '), $process);
+            if( is_user_logged_in() && class_exists('QM_Plugin') && ampforwp_get_setting('ampforwp-query-monitor')){
+                $pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
+                if($pref==="true"){
+                    $process = preg_replace('/\>[^\S ]+' . $mod, '> ', $process);
+                }
+            }else{
+                $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', ' '), $process);
+            }
         }
 
         if ( $minify_html_comments != 'no' )

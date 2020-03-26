@@ -2334,3 +2334,15 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
 figure.amp-featured-image {
     margin: 10px 0;
 }
+<?php if(function_exists('twentytwenty_theme_support')){?>
+	.post-meta-edit-link-wrapper ul.post-meta{
+		float: right;
+	    margin-top: -16px;
+	}
+	.post-meta-edit-link-wrapper ul.post-meta li{
+		list-style-type: none;
+	}
+	.post-meta-edit-link-wrapper ul.post-meta li .meta-text{
+		margin-left:5px;
+	}
+<?php } ?> 
