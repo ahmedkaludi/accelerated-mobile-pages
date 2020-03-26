@@ -195,6 +195,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Improvement: Added filter to modify role based access #4303
 * Improvement: Added "srcset" on featured images #4257
 * Improvement: Added option to resize the author images in author bio #4297
+* Fixed: AMP child theme not working after update #4310
 * Fixed: amp-fx-collection script was not loading #4275
 * Fixed: Minify HTML & Query Monitor not working on some pages in AMP #4301
 * Fixed: Related posts doesn't show more than 3-4 #4300
