@@ -7,20 +7,81 @@ function ampforwp_push_notification_default() {
     $default = '';
     if(true == ampforwp_get_setting('ampforwp-web-push-onesignal')){
       $default = '1';
-    } 
+    }else{
+      $default = '3';
+    }
     return $default;
 }
 function ampforwp_push_notification_options($opt_name){
     // Push Notifications section
-   Redux::setSection( $opt_name, array(
+
+  if( function_exists('izoto_html')) {
+    $izt_opt1 =  array(
+                            'id'        => 'ampforwp-izooto-for-amp-below-content',
+                            'type'      => 'switch',
+                            'title'     => 'Below the Content',
+                            'true'      => 'true',
+                            'false'     => 'false', 
+                            'default'   =>  1,
+                            'tooltip-subtitle'  => 'Show Subscribe Button Below the Content',
+                            'required'  => array('ampforwp-web-push', '=' , '2'),
+                          );
+    $izt_opt2 = array(
+                            'id'        => 'ampforwp-izooto-for-amp-above-content',
+                            'type'      => 'switch',
+                            'title'     => 'Above the Content',
+                            'true'      => 'true',
+                            'false'     => 'false', 
+                            'default'   =>  0,
+                            'tooltip-subtitle'  => 'Show Subscribe Button Above the Content',
+                            'required'  => array('ampforwp-web-push', '=' , '2'),
+                          );
+    $izt_opt3 = array(
+                           'id' => 'ampforwp-izooto-for-amp-positioning',
+                           'type' => 'section',
+                           'title' => esc_html__('Positioning', 'accelerated-mobile-pages'),
+                           'required' => array( 
+                                            array( 'ampforwp-web-push', '=' , '2' ),
+                                            array( 'amp-use-pot', '=' , 0 )
+                                        ),   
+                           'indent' => true,
+                           'layout_type' => 'accordion',
+                           'accordion-open'=> 1,
+                     );
+    $izt_opt4 = array(
+                            'required' => array( 
+                                        array( 'ampforwp-web-push', '=' , '2' ),
+                                    ),   
+                            'id'        => 'ampforwp-izooto-for-amp-app-id',
+                            'type'      => 'text',
+                            'title'     => 'Script ID',
+                            'class' => 'child_opt child_opt_arrow',
+                            'tooltip-subtitle'  => '<a href="https://ampforwp.com/tutorials/article/how-to-setup-izooto-in-amp/" target="_blank">View Integration Tutorial</a> (HTTPS is required)',
+                          );
+
+  }
+  if(!function_exists('izoto_html')){
+        $izooto_notice = array(
+                'id'       => 'izooto-for-amp',
+                'type'     => 'info',
+                'style'    => 'success',
+                'desc'     => 'This feature requires <a href="https://ampforwp.com/addons/iZooto-for-amp/" target="_blank"> iZooto for AMP Extension</a>',
+                'required'  => array('ampforwp-web-push', '=' , '2'),
+            );
+  }
+
+
+ Redux::setSection( $opt_name, array(
+  
           'title'       => esc_html__( 'Push Notifications', 'accelerated-mobile-pages' ),
 //          'icon'        => 'el el-podcast',
           'id'          => 'ampforwp-push-notifications',
           'desc'        => " ",
           'subsection'  => true,
           'fields'      => array(
-
+//$izt_opt1,
           array(
+
             'id' => 'ampforwp-pushnot-1',
             'type' => 'section',
             'title' => esc_html__('Push Notification Support', 'accelerated-mobile-pages'),
@@ -32,13 +93,14 @@ function ampforwp_push_notification_options($opt_name){
                          array(
                             'id'        => 'ampforwp-web-push',
                             'type'     => 'select',
-                            'title'     => esc_html__('Push Notification','accelerated-mobile-pages'),
-                            'tooltip-subtitle'  => '<a href="https://ampforwp.com/tutorials/one-signal-in-amp/" target="_blank">View Integration Tutorial</a> (HTTPS is required)',
+                            'title'     => esc_html__('Push Notification','accelerated-mobile-pages'),                            
                             'true'      => 'true',
                             'false'     => 'false', 
                             'options'  => array(
+                              '3' => esc_html__('Select Integration Service', 'accelerated-mobile-pages' ),
                                '1' => esc_html__('OneSignal', 'accelerated-mobile-pages' ),
                                '2' => esc_html__('iZooto', 'accelerated-mobile-pages' ),
+                               
                               ),
                             'default'   =>  ampforwp_push_notification_default(),
                             ),
@@ -51,11 +113,13 @@ function ampforwp_push_notification_options($opt_name){
                             'true'      => 'true',
                             'false'     => 'false', 
                             'options'  => array(
+                               '3' => esc_html__('Select Integration Service', 'accelerated-mobile-pages' ),
                                '1' => esc_html__('OneSignal', 'accelerated-mobile-pages' ),
                                '2' => esc_html__('iZooto', 'accelerated-mobile-pages' ),
                            ),
                             'default'   =>  '1',
                             ),
+                    $izooto_notice,
                     array(
                        'required' => array( 
                                         array( 'ampforwp-web-push', '=' , '1' ),
@@ -64,16 +128,9 @@ function ampforwp_push_notification_options($opt_name){
                             'type'      => 'text',
                             'title'     => 'APP ID',
                             'class' => 'child_opt child_opt_arrow',
+                            'tooltip-subtitle'  => '<a href="https://ampforwp.com/tutorials/one-signal-in-amp/" target="_blank">View Integration Tutorial</a> (HTTPS is required)',
                             ),
-                    array(
-                       'required' => array( 
-                                        array( 'ampforwp-web-push', '=' , '2' ),
-                                    ),   
-                            'id'        => 'ampforwp-izooto-for-amp-app-id',
-                            'type'      => 'text',
-                            'title'     => 'Script ID',
-                            'class' => 'child_opt child_opt_arrow',
-                            ),
+                    $izt_opt4,
                     array(
                        'id' => 'ampforwp-onesignal-positioning',
                        'type' => 'section',
@@ -106,39 +163,8 @@ function ampforwp_push_notification_options($opt_name){
                             'tooltip-subtitle'  => 'Show Subscribe Button Above the Content',
                             'required'  => array('ampforwp-web-push', '=' , '1'),
                             ),
-
-                    array(
-                       'id' => 'ampforwp-izooto-for-amp-positioning',
-                       'type' => 'section',
-                       'title' => esc_html__('Positioning', 'accelerated-mobile-pages'),
-                       'required' => array( 
-                                        array( 'ampforwp-web-push', '=' , '2' ),
-                                        array( 'amp-use-pot', '=' , 0 )
-                                    ),   
-                       'indent' => true,
-                       'layout_type' => 'accordion',
-                       'accordion-open'=> 1,
-                    ),
-                    array(
-                            'id'        => 'ampforwp-izooto-for-amp-below-content',
-                            'type'      => 'switch',
-                            'title'     => 'Below the Content',
-                            'true'      => 'true',
-                            'false'     => 'false', 
-                            'default'   =>  1,
-                            'tooltip-subtitle'  => 'Show Subscribe Button Below the Content',
-                            'required'  => array('ampforwp-web-push', '=' , '2'),
-                            ),                   
-                    array(
-                            'id'        => 'ampforwp-izooto-for-amp-above-content',
-                            'type'      => 'switch',
-                            'title'     => 'Above the Content',
-                            'true'      => 'true',
-                            'false'     => 'false', 
-                            'default'   =>  0,
-                            'tooltip-subtitle'  => 'Show Subscribe Button Above the Content',
-                            'required'  => array('ampforwp-web-push', '=' , '2'),
-                            ),
+                    $izt_opt3,
+                    $izt_opt1,$izt_opt2,
                     array(
                        'id' => 'translation',
                        'type' => 'section',
