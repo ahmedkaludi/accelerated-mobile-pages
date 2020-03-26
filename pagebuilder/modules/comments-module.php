@@ -15,7 +15,7 @@ function ampforwp_get_pb_comment_list($moduleFrontHtml, $moduleTemplate, $conten
 					'status' => 'approve',
 					'order' =>$order
 			));
-//{{if_id}}id="{{id}}"{{ifend_id}} {{if_user_class}}class="{{user_class}}{{ifend_user_class}}"
+
 			if ( $comments ) {
 				$output .= '<div {{if_id}}id="{{id}}"{{ifend_id}} class="pb-comments-wrapper {{if_user_class}}{{user_class}}{{ifend_user_class}}">
 		            <h3><span>View Comments</span></h3>
