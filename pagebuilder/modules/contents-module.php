@@ -387,9 +387,12 @@ if ( is_admin() ) {
              $the_query->the_post();    
              $ampforwp_post_url = get_permalink();
              if(ampforwp_get_setting('ampforwp-amp-takeover') == true || $mob_pres_link==true){ 
-             $ampforwp_post_url = trailingslashit($ampforwp_post_url);
-             }else{
-              $ampforwp_post_url = trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR;
+             $ampforwp_post_url = user_trailingslashit($ampforwp_post_url);
+             }else if(true == ampforwp_get_setting('amp-core-end-point')){
+                $ampforwp_post_url = user_trailingslashit($ampforwp_post_url);
+                $ampforwp_post_url = add_query_arg( 'amp', '', $ampforwp_post_url);
+              }else{
+                $ampforwp_post_url = user_trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR;
              }
              $image = $height = $width = $image_alt = ""; 
              if ( has_post_thumbnail() ) {  
