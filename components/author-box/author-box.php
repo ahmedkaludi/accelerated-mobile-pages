@@ -41,7 +41,7 @@ if ( isset($args['avatar']) ) {
     $avatar = $args['avatar'];
 }
 if ( isset($args['avatar_size']) ) {
-    $avatar_size = $args['avatar_size'];
+    $avatar_size = ampforwp_get_setting('amp-author-bio-image-width');
     $avatar_size_width = ampforwp_get_setting('amp-author-bio-image-width');
     $avatar_size_height = ampforwp_get_setting('amp-author-bio-image-height');
     if (empty($avatar_size_width)) {
@@ -49,6 +49,9 @@ if ( isset($args['avatar_size']) ) {
     }
     if (empty($avatar_size_height)) {
        $avatar_size_height = 60;
+    }
+    if (empty($avatar_size)) {
+       $avatar_size_width = 60;
     }
 }
 if ( isset($args['class']) ) {
