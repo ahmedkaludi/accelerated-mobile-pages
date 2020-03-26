@@ -603,7 +603,18 @@ $extension_listing_array = array(
                             'item_name'=>'LuckyWP Table of Contents for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('luckywp-table-of-contents-for-amp/luckywp-table-of-contents-for-amp.php')? 1 : 2),
-                        ), 
+                        ),
+                        array(
+                            'name'=>'iZooto for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'iZooto integration for amp',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/izooto-for-amp.png',
+                            'price'=>'$29',
+                            'url_link'=>'https://ampforwp.com/addons/izooto-for-amp/',
+                            'plugin_active_path'=> 'izooto-for-amp/izooto-for-amp.php',
+                            'item_name'=>'iZooto for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('izooto-for-amp/izooto-for-amp.php')? 1 : 2) ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
