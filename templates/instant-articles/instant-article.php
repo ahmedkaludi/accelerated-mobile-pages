@@ -125,6 +125,7 @@
                     'post_status'            => 'publish',
                   );
                 }
+                $query_args = apply_filters('ampforwp_ia_related_articles_query_args', $query_args);
                 $related_articles_loop = new WP_Query( $query_args );
                 $related_articles = $related_articles_loop->get_posts();
                 if ( $related_articles_loop->have_posts() ) :?>

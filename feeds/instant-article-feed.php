@@ -31,6 +31,7 @@ header('Content-Type: ' . esc_attr(feed_content_type('rss2')) . '; charset=' . e
         'post_status'           => 'publish',
         'ignore_sticky_posts'   => true,
         'posts_per_page'        => esc_attr($number_of_articles),
+        'no_found_rows' => true,
         'meta_query' => array(
             'relation' => 'OR',
              array(
@@ -61,6 +62,7 @@ header('Content-Type: ' . esc_attr(feed_content_type('rss2')) . '; charset=' . e
         $ia_args['tax_query']['field']      = 'id';
         $ia_args['tax_query']['terms']      = esc_attr($tax_object->term_id);
     }
+    $ia_args = apply_filters('ampforwp_ia_query_args' , $ia_args );
     $ia_query = new WP_Query( $ia_args );
     while( $ia_query->have_posts() ) :
         $ia_query->the_post(); ?>

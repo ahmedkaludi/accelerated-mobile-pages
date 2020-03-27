@@ -863,6 +863,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 								'offset' => $posts_offset,
 								'has_password' => false,
 								'post_status'=> 'publish',
+								'no_found_rows' => true,
 								'post_type' => $fieldValues['post_type_selection']
 								);
 						if ( (isset($fieldValues['taxonomy_selection']) && 'recent_option' !== $fieldValues['taxonomy_selection']) &&  (isset($fieldValues['category_selection']) && 'recent_option' !== $fieldValues['category_selection'])) {
@@ -1100,6 +1101,7 @@ function ampforwp_get_attachment_id( $url , $imagetype='full') {
 				'post_type'   => 'attachment',
 				'post_status' => 'inherit',
 				'fields'      => 'ids',
+				'no_found_rows' => true,
 				'meta_query'  => array(
 					array(
 						'value'   => $file,
@@ -1108,6 +1110,7 @@ function ampforwp_get_attachment_id( $url , $imagetype='full') {
 					),
 				)
 			);
+			$query_args = apply_filters('ampforwp_attachment_id_query_args' , $query_args );
 			$query = new WP_Query( $query_args );
 			if ( $query->have_posts() ) {
 				foreach ( $query->posts as $post_id ) {

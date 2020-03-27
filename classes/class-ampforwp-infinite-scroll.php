@@ -125,6 +125,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				'posts_per_page' => 2,
 				'no_found_rows'	=> true
 			  );
+			$query_args = apply_filters('ampforwp_infinite_scroll_query_args', $query_args);
 			$query = new WP_Query( $query_args );
 			while ($query->have_posts()) {
 				$query->the_post();
