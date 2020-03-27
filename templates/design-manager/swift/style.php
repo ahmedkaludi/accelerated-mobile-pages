@@ -6,7 +6,7 @@ global $redux_builder_amp;
 $font_content = '';
 $font_content = ampforwp_get_setting('amp_font_selector_content_single');
 $header_type = ampforwp_get_setting('header-type');
-$header_bg_color = ampforwp_get_setting('swift-background-scheme','color');
+$header_bg_color = ampforwp_get_setting('swift-background-scheme','rgba');
 if(!defined('AMPFORWP_LAYOUTS_FILE')){
 	if( !in_array($header_type, array(1,2,3,10)) ){
 		$header_type = 1;
