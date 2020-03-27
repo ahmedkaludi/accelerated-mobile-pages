@@ -5420,11 +5420,11 @@ if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
     };
 
     $is_elements_disabled = array();
-    foreach ($options as $key => $value) {
+        foreach ($options as $key => $value) {
             $is_elements_disable = explode(':', $value);
             $is_elements_disabled[] = $is_elements_disable;
         }
-// print_r($is_elements_disabled);die;
+        
         foreach ($is_elements_disabled as $key => $value) {
             // var_dump($value[1]);
             if('1' == $value[1]){
