@@ -8,7 +8,7 @@ function ampforwp_push_notification_default() {
     if(true == ampforwp_get_setting('ampforwp-web-push-onesignal')){
       $default = '1';
     }else{
-      $default = '3';
+      $default = '0';
     }
     return $default;
 }
@@ -97,7 +97,7 @@ function ampforwp_push_notification_options($opt_name){
                             'true'      => 'true',
                             'false'     => 'false', 
                             'options'  => array(
-                              '3' => esc_html__('Select Integration Service', 'accelerated-mobile-pages' ),
+                              '0' => esc_html__('Select Integration Service', 'accelerated-mobile-pages' ),
                                '1' => esc_html__('OneSignal', 'accelerated-mobile-pages' ),
                                '2' => esc_html__('iZooto', 'accelerated-mobile-pages' ),
                                
@@ -113,7 +113,7 @@ function ampforwp_push_notification_options($opt_name){
                             'true'      => 'true',
                             'false'     => 'false', 
                             'options'  => array(
-                               '3' => esc_html__('Select Integration Service', 'accelerated-mobile-pages' ),
+                               '0' => esc_html__('Select Integration Service', 'accelerated-mobile-pages' ),
                                '1' => esc_html__('OneSignal', 'accelerated-mobile-pages' ),
                                '2' => esc_html__('iZooto', 'accelerated-mobile-pages' ),
                            ),
