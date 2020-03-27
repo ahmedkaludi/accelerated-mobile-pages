@@ -1540,8 +1540,8 @@ function ampforwp_custom_og_image_homepage() {
 		$image_id = WPSEO_Meta::get_value( 'opengraph-image-id', $post_id );
 		$image = wp_get_attachment_image_src($image_id,'full');
 		$image_tags = array(
-			'width'     => esc_attr($image[1]),
-			'height'    => esc_attr($image[2]),
+			'width'     => esc_attr(isset($image[1]) ? $image[1] : '750'),
+			'height'    => esc_attr(isset($image[2]) ? $image[1] : '500'),
 		);
 		$wpseo_og->og_tag( 'og:image', esc_url( $image_url ) );
 		foreach ( $image_tags as $key => $value ) {
