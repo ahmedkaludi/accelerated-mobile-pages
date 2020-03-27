@@ -104,6 +104,7 @@ if ( $ampforwp_font_icon  == 'swift-icons' || ( $ampforwp_font_icon == 'fontawes
 header .cntr{
 <?php if( ampforwp_get_setting('swift-width-control') ){?>
 	max-width:<?php echo esc_html(ampforwp_get_setting('swift-width-control'));?>;
+	margin: 0 auto;
 <?php }?>
 }
 <?php if($redux_builder_amp['amp-sticky-header'] == '1'){?>
