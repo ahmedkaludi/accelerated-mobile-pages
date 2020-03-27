@@ -139,7 +139,13 @@ function amp_pagebuilder_content_styles(){
 
 	$completeCssOfPB .= '.amp_pb{display: inline-block;width: 100%;}
 .row{display: inline-flex;width: 100%;}
-.col-2{width:50%;float:left;}
+.col-2{ width: calc(50% - 5px);float:left;}
+.col-2-wrap .col-2:nth-child(1){	
+	padding-right:5px;	
+}	
+.col-2-wrap .col-2:nth-child(2){	
+	padding-left:5px;	
+}
 .cb{clear:both;}
 .amp_blurb{text-align:center}
 .amp_blurb amp-img{margin: 0 auto;}
