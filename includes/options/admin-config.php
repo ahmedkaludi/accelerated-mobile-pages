@@ -5408,10 +5408,10 @@ Redux::setSection( $opt_name, array(
 if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
     function element_layout_customizer(){
     $options = array();
-    $data = get_option( 'ampforwp_design' );
+    $data = get_option( 'ampforwp_design', array() );
 
     // Adding default Value
-    if ($data['elements'] == '') {
+    if (! isset($data['elements']) ) {
         $data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
     }
 
