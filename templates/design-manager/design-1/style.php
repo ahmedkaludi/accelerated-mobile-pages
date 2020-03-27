@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 ?>
 <?php // Design 1 Menu elemensts colors
-$header_bg_clr          = ampforwp_get_setting('amp-d1-background-color','color');
+$header_bg_clr          = ampforwp_get_setting('amp-d1-background-color','rgba');
 $header_elements_clr    = ampforwp_get_setting('amp-d1-elements-color','color');
 $menu_sidebar_clr       = ampforwp_get_setting('amp-d1-sidebar-color','color');
 $menu_bg_clr            = ampforwp_get_setting('amp-d1-menu-bg-color','color');
