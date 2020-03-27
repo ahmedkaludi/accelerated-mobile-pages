@@ -52,6 +52,10 @@ function ampforwp_thirdparty_compatibility(){
 	if (function_exists('gpress_switch_theme')) {
 		remove_filter('the_content', 'add_data_atts');
 	}
+	if(class_exists( 'Jetpack_RelatedPosts' ) && false == ampforwp_get_setting('ampforwp-jetpack-related-posts')){
+		$jprp = Jetpack_RelatedPosts::init();
+        remove_filter( 'the_content', array( $jprp, 'filter_add_target_to_dom' ), 40 );
+	}
 }
 
 //Updater to check license
