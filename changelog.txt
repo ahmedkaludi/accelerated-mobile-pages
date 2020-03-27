@@ -1,5 +1,19 @@
 == Changelog ==
 
+= 1.0.37 (28th March 2020) =
+* Improvement: Added filter to change Author name #4238
+* Improvement: Added option to show/hide jetpack related post in AMP #4272
+* Improvement: Added option to show/hide sassy social share in AMP #4273
+* Improvement: Added iZooto Push Notification Option #4286
+* Improvement: Code Improvements in #4288 #4300
+* Fixed: Fatal Error - Class ‘QM_Dispatchers’ not found. #4322 
+* Fixed: Header shifting to left in swift 404 page #4316
+* Fixed: Fatal error on activation on old php versions #4320
+* Fixed: Design breaks in 2 column layout pagebuilder in Design 2 #4313
+* Fixed: Hide AMP Bulk Tools option isn't working with WPML #4249
+* Fixed: Table not looking good on mobiles in design 2 #4309
+* Fixed: Transparent header background color not working #4315
+
 = 1.0.36 (26th March 2020) =
 * Improvement: Added filter to modify role based access #4303
 * Improvement: Added "srcset" on featured images #4257
