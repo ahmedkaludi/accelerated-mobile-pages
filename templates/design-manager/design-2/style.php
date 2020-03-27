@@ -28,7 +28,7 @@ global $redux_builder_amp;
 	?>
 
 <?php // Menu elemensts colors
-$header_bg_clr          = ampforwp_get_setting('amp-d2-background-color','color');
+$header_bg_clr          = ampforwp_get_setting('amp-d2-background-color','rgba');
 $header_elements_clr    = ampforwp_get_setting('amp-d2-elements-color','color');
 $menu_sidebar_clr       = ampforwp_get_setting('amp-d2-sidebar-color','color');
 $menu_bg_clr            = ampforwp_get_setting('amp-d2-menu-bg-color','color');

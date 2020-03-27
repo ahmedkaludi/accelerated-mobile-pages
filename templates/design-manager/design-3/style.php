@@ -122,7 +122,7 @@ figure.aligncenter amp-img {
  }
 /* Slide Navigation code */
 <?php
-  $headercolor          = ampforwp_get_setting('amp-opt-color-rgba-headercolor','color');
+  $headercolor          = ampforwp_get_setting('amp-opt-color-rgba-headercolor','rgba');
   $headerelements       = ampforwp_get_setting('amp-opt-color-rgba-headerelements','color');
   $menubgcolor          = ampforwp_get_setting('amp-opt-color-rgba-menu-bg-color','color');
   $navmenucolor         = ampforwp_get_setting('amp-opt-color-rgba-menu-elements-color','color');
