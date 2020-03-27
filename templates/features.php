@@ -6595,7 +6595,7 @@ function ampforwp_ajax_cats(){
 		die;
 	}
 	$return = array();
- 	$categories = get_categories(array('search'=> esc_html($_GET['q']),'number'=>500));
+ 	$categories = get_categories(array('search'=> esc_html($_GET['q']),'number'=>500,'hide_empty' => 0));
  	$categories_array = array();
    	if ( $categories ) :
         foreach ($categories as $cat ) {
