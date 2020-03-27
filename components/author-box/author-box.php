@@ -21,6 +21,7 @@ $class = $author_prefix = $author_wrapper_class = '';
 $show_date = false;
 $show_time = false;
 $author_name = $post_author->display_name;
+$author_name = apply_filters('ampforwp_modify_author_name',$author_name);
 $and_text = '';
 $avatar_size_weight = $avatar_size_height = '';
 $and_text = ampforwp_translation($redux_builder_amp['amp-translator-and-text'], 'and' );
