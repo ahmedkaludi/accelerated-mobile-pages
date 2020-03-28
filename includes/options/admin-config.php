@@ -5406,7 +5406,7 @@ Redux::setSection( $opt_name, array(
         )
     ));
 if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
-    function element_layout_customizer(){
+    function ampforwp_element_layout_customizer(){
     $options = array();
     $data = get_option( 'ampforwp_design', array() );
 
@@ -5426,7 +5426,6 @@ if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
         }
         
         foreach ($is_elements_disabled as $key => $value) {
-            // var_dump($value[1]);
             if('1' == $value[1]){
                 switch ($value[0]) {
                     case 'title':
@@ -5517,7 +5516,7 @@ if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
         $new_options['disabled'] = array_merge($new_options['disabled'],$add_new_options);
     return $new_options;
 }
-$customizer_options = element_layout_customizer();
+$customizer_options = ampforwp_element_layout_customizer();
 $single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',

@@ -943,8 +943,8 @@ if ( ! defined( 'ABSPATH' ) ) {
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
                 'required' =>array('amp-design-selector', '!=' , '4')
-            );
-            $fields[] =        array(
+                );
+                 $fields[] =        array(
                             'class'    => 'child_opt child_opt_arrow',
                             'id'       => 'enable-amp-ads-type-7',
                             'type'     => 'select',
@@ -957,156 +957,98 @@ if ( ! defined( 'ABSPATH' ) ) {
                             ),
                             'default'  => 'adsense',
                         );
-            $fields[] =        array(
-                        'class' => 'child_opt child_opt_arrow',
-                    'id'       => 'enable-amp-ads-select-7',
-                    'type'     => 'select',
-                    'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
-                    'required' => array('enable-amp-ads-7', '=' , '1'),
-                    // Must provide key => value pairs for select options
-                    'options'  => array(
-                        '1' => esc_html__('300x250','accelerated-mobile-pages'),
-                        '2' => esc_html__('336x280','accelerated-mobile-pages'),
-                        '3' => esc_html__('728x90','accelerated-mobile-pages'),
-                        '4' => esc_html__('300x600','accelerated-mobile-pages'),
-                        '5' => esc_html__('320x100','accelerated-mobile-pages'),
-                        '6' => esc_html__('200x50','accelerated-mobile-pages'),
-                        '7' => esc_html__('320x50','accelerated-mobile-pages')
-                    ),
-                    'default'  => '2',
-                );
-            $fields[] =        array(
-                        'class' => 'child_opt',
-                    'id'        =>'enable-amp-ads-text-feild-client-7',
-                    'type'      => 'text',
-                    'required'  => array('enable-amp-ads-7', '=' , '1'),
-                    'title'     => esc_html__('Data AD Client', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
-                    'default'   => '',
-                    'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
-                );
-            $fields[] =        array(
-                        'class' => 'child_opt',
-                    'id'        => 'enable-amp-ads-text-feild-slot-7',
-                    'type'      => 'text',
-                    'title'     => esc_html__('Data AD Slot', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
-                    'default'   => '',
-                    'required'  => array('enable-amp-ads-7', '=' , '1'),
-                    'placeholder'=> '70XXXXXX12'
-                );
-            $fields[] =        array(
-                        'class' => 'child_opt',
-                        'id'        =>'enable-amp-ads-resp-7',
-                        'type'      => 'switch',
-                        'title'     => esc_html__('Responsive Ad unit', 'accelerated-mobile-pages'),
-                        'default'   => 0,
-                        'required' => array('enable-amp-ads-7', '=' , '1'),
-                );
-         //Ad 8 Starts
-         $fields[] =       array(
-                'id'        => 'enable-amp-ads-8',
-                'type'      => 'switch',
-                'title'     => esc_html__('AD #8', 'accelerated-mobile-pages'),
-                'default'   => 0,
-                'desc'  => __('Place wherever you want by going to Design -> Single option', 'accelerated-mobile-pages'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-                'required' =>array('amp-design-selector', '!=' , '4')
-            );
-        $fields[] =  array(
-                    'class'    => 'child_opt child_opt_arrow',
-                    'id'       => 'enable-amp-ads-type-8',
-                    'type'     => 'select',
-                    'title'    => esc_html__('AD Type', 'accelerated-mobile-pages'),
-                    'required' => array('enable-amp-ads-8', '=' , '1'),
-                    // Must provide key => value pairs for select options
-                    'options'  => array(
-                        'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
-                        'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
-                    ),
-                    'default'  => 'adsense',
-                );
-            $fields[] =        array(
-                        'class' => 'child_opt child_opt_arrow',
-                    'id'       => 'enable-amp-ads-select-8',
-                    'type'     => 'select',
-                    'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
-                    'required' => array('enable-amp-ads-8', '=' , '1'),
-                    // Must provide key => value pairs for select options
-                    'options'  => array(
-                        '1' => esc_html__('300x250','accelerated-mobile-pages'),
-                        '2' => esc_html__('336x280','accelerated-mobile-pages'),
-                        '3' => esc_html__('728x90','accelerated-mobile-pages'),
-                        '4' => esc_html__('300x600','accelerated-mobile-pages'),
-                        '5' => esc_html__('320x100','accelerated-mobile-pages'),
-                        '6' => esc_html__('200x50','accelerated-mobile-pages'),
-                        '7' => esc_html__('320x50','accelerated-mobile-pages')
-                    ),
-                    'default'  => '2',
-                );
-            $fields[] =        array(
-                        'class' => 'child_opt',
-                    'id'        =>'enable-amp-ads-text-feild-client-8',
-                    'type'      => 'text',
-                    'required'  => array('enable-amp-ads-8', '=' , '1'),
-                    'title'     => esc_html__('Data AD Client', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
-                    'default'   => '',
-                    'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
-                );
-            $fields[] =        array(
-                        'class' => 'child_opt',
-                    'id'        => 'enable-amp-ads-text-feild-slot-8',
-                    'type'      => 'text',
-                    'title'     => esc_html__('Data AD Slot', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
-                    'default'   => '',
-                    'required'  => array('enable-amp-ads-8', '=' , '1'),
-                    'placeholder'=> '70XXXXXX12'
-                );
-            $fields[] =        array(
-                        'class' => 'child_opt',
-                        'id'        =>'enable-amp-ads-resp-8',
-                        'type'      => 'switch',
-                        'title'     => esc_html__('Responsive Ad unit', 'accelerated-mobile-pages'),
-                        'default'   => 0,
-                        'required' => array('enable-amp-ads-8', '=' , '1'),
-                );  
-                     // MGID fields
+                $fields[] =        array(
+                            'class' => 'child_opt child_opt_arrow',
+                            'id'       => 'enable-amp-ads-select-7',
+                            'type'     => 'select',
+                            'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
+                             'required' => array(
+                                            array('enable-amp-ads-7', '=' , '1'),
+                                            array('enable-amp-ads-type-7', '=' , 'adsense'),
+                                        ),
+                            // Must provide key => value pairs for select options
+                            'options'  => array(
+                                '1' => esc_html__('300x250','accelerated-mobile-pages'),
+                                '2' => esc_html__('336x280','accelerated-mobile-pages'),
+                                '3' => esc_html__('728x90','accelerated-mobile-pages'),
+                                '7' => esc_html__('300x600','accelerated-mobile-pages'),
+                                '5' => esc_html__('320x100','accelerated-mobile-pages'),
+                                '6' => esc_html__('200x50','accelerated-mobile-pages'),
+                                '7' => esc_html__('320x50','accelerated-mobile-pages')
+                            ),
+                            'default'  => '2',
+                        );
                 $fields[] =        array(
                             'class' => 'child_opt',
-                            'id'        =>'enable-amp-ads-mgid-width-6',
+                            'id'        =>'enable-amp-ads-text-feild-client-7',
+                            'type'      => 'text',
+                             'required' => array(
+                                            array('enable-amp-ads-7', '=' , '1'),
+                                            array('enable-amp-ads-type-7', '=' , 'adsense'),
+                                        ),
+                            'title'     => esc_html__('Data AD Client', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle'      => esc_html__('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> 'ca-pub-2005XXXXXXXXX372'
+                        );
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        => 'enable-amp-ads-text-feild-slot-7',
+                            'type'      => 'text',
+                            'title'     => esc_html__('Data AD Slot', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle'      => esc_html__('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'required' => array(
+                                            array('enable-amp-ads-7', '=' , '1'),
+                                            array('enable-amp-ads-type-7', '=' , 'adsense'),
+                                        ),
+                            'placeholder'=> '70XXXXXX12'
+                        );
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-resp-7',
+                            'type'      => 'switch',
+                            'title'     => esc_html__('Responsive Ad unit', 'accelerated-mobile-pages'),
+                            'default'   => 0,
+                            'required' => array(
+                                            array('enable-amp-ads-7', '=' , '1'),
+                                            array('enable-amp-ads-type-7', '=' , 'adsense'),
+                                        ),
+                        );
+                // MGID fields
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-mgid-width-7',
                             'type'      => 'text',
                             'required' => array(
-                                            array('enable-amp-ads-6', '=' , '1'),
-                                            array('enable-amp-ads-type-6', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-6', '=' , '0'),
+                                            array('enable-amp-ads-7', '=' , '1'),
+                                            array('enable-amp-ads-type-7', '=' , 'mgid'),
+                                            array('enable-amp-ads-mgid-flexible-7', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Width', 'accelerated-mobile-pages'),
-                            'default'   => '',
+                            'default'   => '600',
                             'placeholder'=> '600'
                         );
                 $fields[] =        array(
                             'class' => 'child_opt',
-                            'id'        =>'enable-amp-ads-mgid-height-6',
+                            'id'        =>'enable-amp-ads-mgid-height-7',
                             'type'      => 'text',
                             'required' => array(
-                                            array('enable-amp-ads-6', '=' , '1'),
-                                            array('enable-amp-ads-type-6', '=' , 'mgid'),
-                                            array('enable-amp-ads-mgid-flexible-6', '=' , '0'),
+                                            array('enable-amp-ads-7', '=' , '1'),
+                                            array('enable-amp-ads-type-7', '=' , 'mgid'),
+                                            array('enable-amp-ads-mgid-flexible-7', '=' , '0'),
                                         ),
                             'title'     => esc_html__('Height', 'accelerated-mobile-pages'),
-                            'default'   => '',
+                            'default'   => '600',
                             'placeholder'=> '600'
                         );
                 $fields[] =        array(
                             'class' => 'child_opt',
-                            'id'        =>'enable-amp-ads-mgid-field-data-pub-6',
+                            'id'        =>'enable-amp-ads-mgid-field-data-pub-7',
                             'type'      => 'text',
                             'required' => array(
-                                            array('enable-amp-ads-6', '=' , '1'),
-                                            array('enable-amp-ads-type-6', '=' , 'mgid'),
+                                            array('enable-amp-ads-7', '=' , '1'),
+                                            array('enable-amp-ads-type-7', '=' , 'mgid'),
                                         ),
                             'title'     => esc_html__('Data Publisher', 'accelerated-mobile-pages'),
                             'tooltip-subtitle'      => esc_html__('Enter the Data Publisher (data-publisher) from the MGID AD AMP code.', 'accelerated-mobile-pages'),
@@ -1115,40 +1057,200 @@ if ( ! defined( 'ABSPATH' ) ) {
                         );
                  $fields[] =       array(
                             'class' => 'child_opt',
-                            'id'        => 'enable-amp-ads-mgid-field-data-widget-6',
+                            'id'        => 'enable-amp-ads-mgid-field-data-widget-7',
                             'type'      => 'text',
                             'title'     => esc_html__('Data Widget', 'accelerated-mobile-pages'),
                             'tooltip-subtitle'      => esc_html__('Enter the Data Widget (data-widget) from the MGID AD AMP code.', 'accelerated-mobile-pages'),
                             'default'   => '',
                             'required' => array(
-                                            array('enable-amp-ads-6', '=' , '1'),
-                                            array('enable-amp-ads-type-6', '=' , 'mgid'),
+                                            array('enable-amp-ads-7', '=' , '1'),
+                                            array('enable-amp-ads-type-7', '=' , 'mgid'),
                                         ),
                             'placeholder'=> '3XXXXX'
                         );
                  $fields[] =       array(
                             'class' => 'child_opt',
-                            'id'        => 'enable-amp-ads-mgid-field-data-con-6',
+                            'id'        => 'enable-amp-ads-mgid-field-data-con-7',
                             'type'      => 'text',
                             'title'     => esc_html__('Data Container', 'accelerated-mobile-pages'),
                             'tooltip-subtitle'      => esc_html__('Enter the Data Container (data-container) from the MGID AD AMP code.', 'accelerated-mobile-pages'),
                             'default'   => '',
                             'required' => array(
-                                            array('enable-amp-ads-6', '=' , '1'),
-                                            array('enable-amp-ads-type-6', '=' , 'mgid'),
+                                            array('enable-amp-ads-7', '=' , '1'),
+                                            array('enable-amp-ads-type-7', '=' , 'mgid'),
                                         ),
                             'placeholder'=> 'MXXScriptRootCXXXXXX'
                         ); 
                  $fields[] =       array(   
                             'class' => 'child_opt', 
-                            'id'        => 'enable-amp-ads-mgid-flexible-6',    
+                            'id'        => 'enable-amp-ads-mgid-flexible-7',    
                             'type'      => 'switch',    
                             'title'     => esc_html__('Flexible AMP widget', 'accelerated-mobile-pages'),   
                             'tooltip-subtitle'      => esc_html__('It will look like usual "fixed size AMP widget", without any specific width-and-height values.', 'accelerated-mobile-pages'),    
                             'default'   => 0,   
                             'required' => array(    
-                                            array('enable-amp-ads-6', '=' , '1'),   
-                                            array('enable-amp-ads-type-6', '=' , 'mgid'),   
+                                            array('enable-amp-ads-7', '=' , '1'),   
+                                            array('enable-amp-ads-type-7', '=' , 'mgid'),   
+                                        ),  
+                        );
+         //Ad 8 Starts
+                         $fields[] =    array(
+                        'id'        => 'enable-amp-ads-8',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('AD #8', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'desc'  => esc_html__('Place wherever you want by going to Design -> Single option', 'accelerated-mobile-pages'),
+                        'true'      => 'Enabled',
+                        'false'     => 'Disabled',
+                        'required' =>array('amp-design-selector', '!=' , '4')
+                    );
+                 $fields[] =        array(
+                            'class'    => 'child_opt child_opt_arrow',
+                            'id'       => 'enable-amp-ads-type-8',
+                            'type'     => 'select',
+                            'title'    => esc_html__('AD Type', 'accelerated-mobile-pages'),
+                            'required' => array('enable-amp-ads-8', '=' , '1'),
+                            // Must provide key => value pairs for select options
+                            'options'  => array(
+                                'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
+                                'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
+                            ),
+                            'default'  => 'adsense',
+                        );
+                $fields[] =        array(
+                            'class' => 'child_opt child_opt_arrow',
+                            'id'       => 'enable-amp-ads-select-8',
+                            'type'     => 'select',
+                            'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
+                             'required' => array(
+                                            array('enable-amp-ads-8', '=' , '1'),
+                                            array('enable-amp-ads-type-8', '=' , 'adsense'),
+                                        ),
+                            // Must provide key => value pairs for select options
+                            'options'  => array(
+                                '1' => esc_html__('300x250','accelerated-mobile-pages'),
+                                '2' => esc_html__('336x280','accelerated-mobile-pages'),
+                                '3' => esc_html__('828x90','accelerated-mobile-pages'),
+                                '8' => esc_html__('300x600','accelerated-mobile-pages'),
+                                '5' => esc_html__('320x100','accelerated-mobile-pages'),
+                                '6' => esc_html__('200x50','accelerated-mobile-pages'),
+                                '8' => esc_html__('320x50','accelerated-mobile-pages')
+                            ),
+                            'default'  => '2',
+                        );
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-text-feild-client-8',
+                            'type'      => 'text',
+                             'required' => array(
+                                            array('enable-amp-ads-8', '=' , '1'),
+                                            array('enable-amp-ads-type-8', '=' , 'adsense'),
+                                        ),
+                            'title'     => esc_html__('Data AD Client', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle'      => esc_html__('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> 'ca-pub-2005XXXXXXXXX382'
+                        );
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        => 'enable-amp-ads-text-feild-slot-8',
+                            'type'      => 'text',
+                            'title'     => esc_html__('Data AD Slot', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle'      => esc_html__('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'required' => array(
+                                            array('enable-amp-ads-8', '=' , '1'),
+                                            array('enable-amp-ads-type-8', '=' , 'adsense'),
+                                        ),
+                            'placeholder'=> '80XXXXXX12'
+                        );
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-resp-8',
+                            'type'      => 'switch',
+                            'title'     => esc_html__('Responsive Ad unit', 'accelerated-mobile-pages'),
+                            'default'   => 0,
+                            'required' => array(
+                                            array('enable-amp-ads-8', '=' , '1'),
+                                            array('enable-amp-ads-type-8', '=' , 'adsense'),
+                                        ),
+                        );
+                // MGID fields
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-mgid-width-8',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-8', '=' , '1'),
+                                            array('enable-amp-ads-type-8', '=' , 'mgid'),
+                                            array('enable-amp-ads-mgid-flexible-8', '=' , '0'),
+                                        ),
+                            'title'     => esc_html__('Width', 'accelerated-mobile-pages'),
+                            'default'   => '600',
+                            'placeholder'=> '600'
+                        );
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-mgid-height-8',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-8', '=' , '1'),
+                                            array('enable-amp-ads-type-8', '=' , 'mgid'),
+                                            array('enable-amp-ads-mgid-flexible-8', '=' , '0'),
+                                        ),
+                            'title'     => esc_html__('Height', 'accelerated-mobile-pages'),
+                            'default'   => '600',
+                            'placeholder'=> '600'
+                        );
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-mgid-field-data-pub-8',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-8', '=' , '1'),
+                                            array('enable-amp-ads-type-8', '=' , 'mgid'),
+                                        ),
+                            'title'     => esc_html__('Data Publisher', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle'      => esc_html__('Enter the Data Publisher (data-publisher) from the MGID AD AMP code.', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> 'site.com'
+                        );
+                 $fields[] =       array(
+                            'class' => 'child_opt',
+                            'id'        => 'enable-amp-ads-mgid-field-data-widget-8',
+                            'type'      => 'text',
+                            'title'     => esc_html__('Data Widget', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle'      => esc_html__('Enter the Data Widget (data-widget) from the MGID AD AMP code.', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'required' => array(
+                                            array('enable-amp-ads-8', '=' , '1'),
+                                            array('enable-amp-ads-type-8', '=' , 'mgid'),
+                                        ),
+                            'placeholder'=> '3XXXXX'
+                        );
+                 $fields[] =       array(
+                            'class' => 'child_opt',
+                            'id'        => 'enable-amp-ads-mgid-field-data-con-8',
+                            'type'      => 'text',
+                            'title'     => esc_html__('Data Container', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle'      => esc_html__('Enter the Data Container (data-container) from the MGID AD AMP code.', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'required' => array(
+                                            array('enable-amp-ads-8', '=' , '1'),
+                                            array('enable-amp-ads-type-8', '=' , 'mgid'),
+                                        ),
+                            'placeholder'=> 'MXXScriptRootCXXXXXX'
+                        ); 
+                 $fields[] =       array(   
+                            'class' => 'child_opt', 
+                            'id'        => 'enable-amp-ads-mgid-flexible-8',    
+                            'type'      => 'switch',    
+                            'title'     => esc_html__('Flexible AMP widget', 'accelerated-mobile-pages'),   
+                            'tooltip-subtitle'      => esc_html__('It will look like usual "fixed size AMP widget", without any specific width-and-height values.', 'accelerated-mobile-pages'),    
+                            'default'   => 0,   
+                            'required' => array(    
+                                            array('enable-amp-ads-8', '=' , '1'),   
+                                            array('enable-amp-ads-type-8', '=' , 'mgid'),   
                                         ),  
                         );
                 }
