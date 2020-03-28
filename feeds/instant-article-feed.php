@@ -32,16 +32,10 @@ header('Content-Type: ' . esc_attr(feed_content_type('rss2')) . '; charset=' . e
         'posts_per_page'        => esc_attr($number_of_articles),
         'no_found_rows' => true,
         'meta_query' => array(
-            'relation' => 'OR',
-             array(
-                'key'        => 'ampforwp-ia-on-off',
-                'compare'    => "NOT EXISTS"
-            ),
             array(
-                'key'        => 'ampforwp-ia-on-off',
                 'value'      => 'hide-ia',
                 'compare'    => "!="
-                ),
+            ),
         )        
     );
     if ( ampforwp_get_setting('hide-amp-ia-categories') ) {
