@@ -52,7 +52,6 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
 			'orderby' 			 => $orderby,
 		   	'meta_query' => array(
 						array(
-							'key'     => 'ampforwp-amp-on-off',
 							'value'   => 'hide-amp',
 							'compare' => '!='
 						)

@@ -68,7 +68,6 @@ function ampforwp_related_post_loop_query(){
 		'no_found_rows'	=> true,
 		'meta_query' => array(
 			array(
-				'key'     => 'ampforwp-amp-on-off',
 				'value'   => 'hide-amp',
 				'compare' => '!='
 			)
