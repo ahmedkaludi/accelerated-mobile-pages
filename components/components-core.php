@@ -790,7 +790,7 @@ function ampforwp_addThis_support(){
 				$addthisWidth = 320; 
 			}
 			if( ampforwp_get_setting('addthis-inline-share') == true){
-				$amp_addthis .= '<amp-addthis width="'.$addthisWidth.'" height="92" data-pub-id="'.esc_attr($data_pub_id).'" data-widget-id="'. esc_attr($data_widget_id).'"></amp-addthis>';
+				$amp_addthis .= '<div class="amp-wp-content"><amp-addthis width="'.$addthisWidth.'" height="92" data-pub-id="'.esc_attr($data_pub_id).'" data-widget-id="'. esc_attr($data_widget_id).'"></amp-addthis></div>';
 			}
 
 			do_action('ampforwp_before_social_icons_hook');
