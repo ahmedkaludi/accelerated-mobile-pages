@@ -11,7 +11,6 @@
 * Fixed: Fatal error on activation on old php versions #4320
 * Fixed: Design breaks in 2 column layout pagebuilder in Design 2 #4313
 * Fixed: Hide AMP Bulk Tools option isn't working with WPML #4249
-* Fixed: Table not looking good on mobiles in design 2 #4309
 * Fixed: Transparent header background color not working #4315
 
 = 1.0.36 (26th March 2020) =
