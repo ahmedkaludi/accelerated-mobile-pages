@@ -60,7 +60,7 @@ function ampforwp_related_post_loop_query(){
 		}
 	$args=array(
 		'post_type'	   => get_post_type($post),
-	    'posts_per_page'=> $int_number_of_related_posts+1,
+	    'posts_per_page'=> $int_number_of_related_posts,
 	    'orderby' => $orderby,
 	    'ignore_sticky_posts'=>1,
 		'has_password' => false ,
