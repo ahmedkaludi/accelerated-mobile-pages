@@ -863,9 +863,11 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 								'offset' => $posts_offset,
 								'has_password' => false,
 								'post_status'=> 'publish',
-								'no_found_rows' => true,
 								'post_type' => $fieldValues['post_type_selection']
 								);
+						if($fieldValues['pagination'] == 0){
+							array_push($args, "no_found_rows", true);
+						}
 						if ( (isset($fieldValues['taxonomy_selection']) && 'recent_option' !== $fieldValues['taxonomy_selection']) &&  (isset($fieldValues['category_selection']) && 'recent_option' !== $fieldValues['category_selection'])) {
 							$args['tax_query'] = array(
 									array(
