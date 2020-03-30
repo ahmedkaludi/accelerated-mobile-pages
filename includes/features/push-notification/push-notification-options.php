@@ -121,7 +121,6 @@ function ampforwp_push_notification_options($opt_name){
                            ),
                             'default'   =>  '1',
                             ),
-                    $izooto_notice,
                     array(
                        'required' => array( 
                                         array( 'ampforwp-web-push', '=' , '1' ),
@@ -132,6 +131,7 @@ function ampforwp_push_notification_options($opt_name){
                             'class' => 'child_opt child_opt_arrow',
                             'tooltip-subtitle'  => '<a href="https://ampforwp.com/tutorials/one-signal-in-amp/" target="_blank">View Integration Tutorial</a> (HTTPS is required)',
                             ),
+                    $izooto_notice, 
                     $izt_opt4,
                     array(
                        'id' => 'ampforwp-onesignal-positioning',
