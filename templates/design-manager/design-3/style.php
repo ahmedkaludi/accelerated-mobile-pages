@@ -69,9 +69,6 @@ amp-anim { max-width: 100%; }
 amp-wistia-player {margin:5px 0px;}
 .amp-wp-content amp-iframe{max-width:100%}
 .amp-wp-article amp-addthis{bottom: -20px;}
-@media screen and (min-width: 1025px){
-.amp-wp-article amp-addthis{margin-left: 150px;}
-}
 .hide{display:none}
 ol, ul {list-style-position: inside;}
 <?php if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( ampforwp_get_setting('amp_font_selector') == 1 || empty(ampforwp_get_setting('amp_font_selector') ) ) ) {?>
