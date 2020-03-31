@@ -6595,7 +6595,7 @@ function ampforwp_ajax_cats(){
 		die;
 	}
 	$return = array();
- 	$categories = get_categories(array('search'=> esc_html($_GET['q']),'number'=>500));
+ 	$categories = get_categories(array('search'=> esc_html($_GET['q']),'number'=>500,'hide_empty' => 0));
  	$categories_array = array();
    	if ( $categories ) :
         foreach ($categories as $cat ) {
@@ -7348,7 +7348,7 @@ function ampforwp_front_admin_menu_bar(){
 	if( is_user_logged_in() ){
 		$pref = get_user_option( "show_admin_bar_front", get_current_user_id() );
 		if($pref==="true"){
-			if(class_exists('QM_Plugin') && ampforwp_get_setting('ampforwp-query-monitor')){
+			if(class_exists('QM_Plugin') && class_exists('QM_Dispatchers') && ampforwp_get_setting('ampforwp-query-monitor')){
 				$dis = QM_Dispatchers::get( 'html' );
 				if($dis->did_footer==false){
 					$dis->did_footer = true;

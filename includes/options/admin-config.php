@@ -119,7 +119,23 @@ if(!is_plugin_active( 'amp-pagebuilder-compatibility/amp-pagebuilder-compatibili
             ); 
     $pb_for_amp[] = $elemntr_pb_for_ampchecker;*/
 
-$all_extensions_data = array();
+$all_extensions_data = $jetpack_rp = $sassy_ss = array();
+if(class_exists( 'Jetpack_RelatedPosts' )){
+    $jetpack_rp =  array(
+                    'id'       => 'ampforwp-jetpack-related-posts',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Jetpack Related Post', 'accelerated-mobile-pages'),
+                    'default'  => '1',
+                );
+}
+if(function_exists('heateor_sss_save_default_options')){
+    $sassy_ss =  array(
+                    'id'       => 'ampforwp-sassy_social-switch',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Sassy Social Share', 'accelerated-mobile-pages'),
+                    'default'  => '1',
+                );
+}
 global $all_extensions_data;
 $extension_listing_array = array(
                          array(
@@ -6100,6 +6116,7 @@ $single_page_options = array(
                     'default'  => '7',
                     'required' => array('ampforwp-in-content-related-posts-days-switch', '=' , '1'),  
                 ),
+            $jetpack_rp,
             array(
                    'id' => 'single-tab-2',
                    'type' => 'section',
@@ -7029,6 +7046,7 @@ else{
               'default'   =>  0,
               'required' => array(array('ampforwp-social-share', '=', '1'))
           ),
+           $sassy_ss,
             // AddThis Support  
         array(
            'id' => 'add-this-support',

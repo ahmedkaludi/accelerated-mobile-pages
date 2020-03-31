@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	        $ampforwp_sd_height = ampforwp_get_setting('ampforwp-sd-logo-height');
 	        $ampforwp_sd_width = ampforwp_get_setting('ampforwp-sd-logo-width');
 	        $ampforwp_sd_logo =  ampforwp_get_setting('amp-structured-data-logo','url');
-	        if (! empty( $redux_builder_amp['opt-media']['url'] ) ) {
-	          $structured_data_main_logo = $redux_builder_amp['opt-media']['url'];
+	        if (ampforwp_get_setting('opt-media','url')!='') {
+	          $structured_data_main_logo = ampforwp_get_setting('opt-media','url');
 	        }
 	        if (! empty( $ampforwp_sd_logo ) ) {
 	          $structured_data_logo = esc_url( __(ampforwp_get_setting('amp-structured-data-logo','url'), 'accelerated-mobile-pages') );
@@ -268,10 +268,10 @@ function ampforwp_structured_data_type( $metadata ) {
         	}
         	
 	       	if ( isset( $post->post_type ) && $post->post_type == $post_type ) {
-	       		if( empty( ampforwp_get_setting('ampforwp-sd-type-'.esc_attr($post_type)) ) ){
+	       		if(ampforwp_get_setting('ampforwp-sd-type-'.esc_attr($post_type))==''){
 	       			return;
 	       		}
-        		if ( empty( ampforwp_get_setting('ampforwp-sd-type-'.esc_attr($post_type)) ) && ampforwp_get_setting('ampforwp-seo-yoast-description') == 0 ) {
+        		if ( ampforwp_get_setting('ampforwp-sd-type-'.esc_attr($post_type))=='' && ampforwp_get_setting('ampforwp-seo-yoast-description') == 0 ) {
 					return;
 				}
 				if(isset($metadata['@type']) && $metadata['@type']){

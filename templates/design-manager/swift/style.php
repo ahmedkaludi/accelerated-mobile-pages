@@ -17,7 +17,7 @@ $icon_url = ampforwp_font_url($icon_url);
 $font_content = '';
 $font_content = ampforwp_get_setting('amp_font_selector_content_single');
 $header_type = ampforwp_get_setting('header-type');
-$header_bg_color = ampforwp_get_setting('swift-background-scheme','color');
+$header_bg_color = ampforwp_get_setting('swift-background-scheme','rgba');
 if(!defined('AMPFORWP_LAYOUTS_FILE')){
 	if( !in_array($header_type, array(1,2,3,10)) ){
 		$header_type = 1;
@@ -104,6 +104,7 @@ if ( $ampforwp_font_icon  == 'swift-icons' || ( $ampforwp_font_icon == 'fontawes
 header .cntr{
 <?php if( ampforwp_get_setting('swift-width-control') ){?>
 	max-width:<?php echo esc_html(ampforwp_get_setting('swift-width-control'));?>;
+	margin: 0 auto;
 <?php }?>
 }
 <?php if($redux_builder_amp['amp-sticky-header'] == '1'){?>
