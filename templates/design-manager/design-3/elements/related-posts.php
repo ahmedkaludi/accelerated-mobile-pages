@@ -44,7 +44,8 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
 		foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
 		$args=array(
 		    'category__in'		 => $category_ids,
-		    'posts_per_page'	 => $int_number_of_related_posts+1,
+		    'posts_per_page'	 => $int_number_of_related_posts,
+		    'post__not_in' => array($post->ID),
 		    'ignore_sticky_posts'=> 1,
 			'has_password' 		 => false ,
 			'post_status'		 => 'publish',
@@ -105,12 +106,10 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 			    	<span class="related-title"><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' )); ?></span>
 					<ol class="clearfix">
 						<?php
-						$current_id = ampforwp_get_the_ID();
+						
 				    	while( $my_query->have_posts() ) {
 						    $my_query->the_post();
-						    if(ampforwp_get_the_ID()==$current_id){
-				            	continue;
-				            }
+						   
 							$related_post_permalink = "";
 							$related_post_permalink = ampforwp_url_controller( get_permalink() );
 							if (  ampforwp_get_setting('ampforwp-single-related-posts-link') ) {
