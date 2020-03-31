@@ -2983,7 +2983,7 @@ function ampforwp_add_sidebar_data( $data ) {
 // 44. auto adding /amp for the menu
 add_action('amp_init','ampforwp_auto_add_amp_menu_link_insert');
 function ampforwp_auto_add_amp_menu_link_insert() {
-	add_action( 'wp', 'ampforwp_auto_add_amp_in_link_check' );
+	add_action( 'wp', 'ampforwp_auto_add_amp_in_link_check', 99 );
 }
 
 function ampforwp_auto_add_amp_in_link_check() {
