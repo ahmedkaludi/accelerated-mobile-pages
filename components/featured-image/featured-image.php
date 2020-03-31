@@ -53,8 +53,12 @@ function ampforwp_framework_get_featured_image(){
 				$fifu_image_url = get_post_meta($post_id, 'fifu_image_url', true);
 				if($fifu_image_url){
 					$size = getimagesize(get_the_post_thumbnail_url());
-					$image[1] = $size[0];
-					$image[2] = $size[1];
+					if(isset($size[0])){
+						$image[1] = $size[0];
+					}
+					if(isset($size[1])){
+						$image[2] = $size[1];
+					}
 				}
 			}
 			if( $image ){
