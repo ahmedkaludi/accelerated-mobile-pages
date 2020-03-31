@@ -587,7 +587,7 @@ if( !ampforwp_woocommerce_conditional_check() ) { ?>
 pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;margin-bottom: 20px;}
 .cntn-wrp{
 <?php
-$fontFamily = "font-family: 'Arial, Helvetica, sans-serif'";
+$fontFamily = "font-family: Arial, Helvetica, sans-serif";
 if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
 	$fontFamily = "font-family: 'Poppins', sans-serif;";
 	if(isset($redux_builder_amp['amp_font_selector_content_single']) && $redux_builder_amp['amp_font_selector_content_single'] != 1 && !empty($redux_builder_amp['amp_font_selector_content_single'])){ 
