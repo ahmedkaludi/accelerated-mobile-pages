@@ -14,7 +14,7 @@ function ampforwp_push_notification_default() {
 }
 function ampforwp_push_notification_options($opt_name){
     // Push Notifications section
-
+  $izt_opt1 = $izt_opt2 =  $izt_opt3 = $izt_opt4 = '';
   if( function_exists('izoto_html')) {
     $izt_opt1 =  array(
                             'id'        => 'ampforwp-izooto-for-amp-below-content',

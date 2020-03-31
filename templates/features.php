@@ -7075,10 +7075,14 @@ function ampforwp_set_dns_preload_urls(){
 	        $val_count = count($data_arr[0]['value']);
 	        for($i=0;$i<$val_count;$i++){
 	            for($j=0;$j<count($data_arr);$j++){
-	                $key 	= $data_arr[$j]['value'][$i];
+	            	if(isset($data_arr[$j]['value'][$i])){
+	            		$key 	= $data_arr[$j]['value'][$i];
+	            	}
 	                if(isset($data_arr[$j+1])){
 	               	 	$key 	= $data_arr[$j]['value'][$i];
+	               	if(isset( $data_arr[$j]['value'][$i])){
 	               	 	$value 	= $data_arr[$j+1]['value'][$i];
+	               	}
 	               	 	if($value!=""){
 	               	 		?>
 	               	 		<link rel="<?php echo esc_attr($key)?>" href="<?php echo esc_url($value);?>" crossorigin>
