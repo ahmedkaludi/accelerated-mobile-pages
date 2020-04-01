@@ -1533,10 +1533,18 @@ function ampforwp_custom_og_image_homepage() {
 		$image_url = WPSEO_Meta::get_value( 'opengraph-image', $post_id );
 		$image_id = WPSEO_Meta::get_value( 'opengraph-image-id', $post_id );
 		$image = wp_get_attachment_image_src($image_id,'full');
-		$image_tags = array(
-			'width'     => esc_attr($image[1]),
-			'height'    => esc_attr($image[2]),
-		);
+		$image_tags = array();
+		if(is_array($image)){
+			$image_tags = array(
+				'width'     => esc_attr(isset($image[1]) ? $image[1] : '750'),
+				'height'    => esc_attr(isset($image[2]) ? $image[2] : '500'),
+			);
+		}else{
+			$image_tags = array(
+				'width'     => '750',
+				'height'    => '500',
+			);
+		}
 		$wpseo_og->og_tag( 'og:image', esc_url( $image_url ) );
 		foreach ( $image_tags as $key => $value ) {
 			if ( ! empty( $value ) ) {

@@ -18,12 +18,10 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 				<ul class="clearfix">
 					<?php ampforwp_related_post(); ?>
 					<?php
-					$current_id = ampforwp_get_the_ID();
+					
 				    while( $my_query->have_posts() ) {
 					    $my_query->the_post();
-					    if(ampforwp_get_the_ID()==$current_id){
-			            	continue;
-			            }
+					   
 					?>
 						<li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 				            <?php
@@ -61,6 +59,7 @@ function ampforwp_related_post_loop_query(){
 	$args=array(
 		'post_type'	   => get_post_type($post),
 	    'posts_per_page'=> $int_number_of_related_posts,
+	    'post__not_in' => array($post->ID),
 	    'orderby' => $orderby,
 	    'ignore_sticky_posts'=>1,
 		'has_password' => false ,
