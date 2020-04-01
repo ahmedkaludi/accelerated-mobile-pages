@@ -71,6 +71,34 @@ function ampforwp_redirection() {
       wp_safe_redirect( $current_url );
       exit;
   }
+
+   if(ampforwp_is_amp_endpoint() ) {
+      if(is_category()){
+          $term_id = get_queried_object()->term_id;
+          $category_status = ampforwp_get_category_meta($term_id,'status');
+          if($category_status==false){
+            $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
+            $go_to_url = str_replace("/amp", '', $go_to_url);
+            $go_to_url = str_replace("?amp=1", '', $go_to_url);
+            $go_to_url = str_replace("?amp", '', $go_to_url);
+            wp_safe_redirect( $go_to_url );
+            exit;
+          }
+      }else if(is_single()){
+          $term = get_the_category();
+          $term_id = $term[0]->cat_ID;
+          $category_status = ampforwp_get_category_meta($term_id,'post_status');
+          if($category_status==false){
+            $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
+            $go_to_url = str_replace("/amp", '', $go_to_url);
+            $go_to_url = str_replace("?amp=1", '', $go_to_url);
+            $go_to_url = str_replace("?amp", '', $go_to_url);
+            wp_safe_redirect( $go_to_url );
+            exit;
+          }
+      }
+  }
+
   //Auto redirect /amp to ?amp when 'Change End Point to ?amp' option is enabled #2480
   if ( ampforwp_is_amp_endpoint() && true == ampforwp_get_setting('amp-core-end-point') ){
     $current_url = $endpoint = $new_url = '';

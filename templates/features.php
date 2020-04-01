@@ -209,6 +209,23 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if( is_front_page() && ! ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
         return;
 	    }
+
+	    if(is_category()){
+          $term_id = get_queried_object()->term_id;
+          $category_status = ampforwp_get_category_meta($term_id,'status');
+          if($category_status==false){
+           	return;
+          }
+      }else if(is_single()){
+          $term = get_the_category();
+          $term_id = $term[0]->cat_ID;
+          $category_status = ampforwp_get_category_meta($term_id,'post_status');
+          if($category_status==false){
+            return;
+          }
+      }
+
+
 	     // Skip this condition for woocommerce product archive and shop pages.
 	     if( function_exists('amp_woocommerce_pro_add_woocommerce_support') && (function_exists('is_product_category') && !is_product_category()) && (function_exists('is_product_tag') && !is_product_tag()) && (function_exists('is_shop') && !is_shop() ) ){
 		    	if( is_archive() && ( !ampforwp_get_setting('ampforwp-archive-support') || ( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat') ) || ( is_tag() && !ampforwp_get_setting('ampforwp-archive-support-tag') ))){
@@ -732,6 +749,74 @@ function ampforwp_title_custom_meta() {
 
 add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
 
+add_action('edited_category', 'ampforwp_update_category_meta',10,2);
+add_action('create_category', 'ampforwp_save_category_meta', 10);
+function ampforwp_save_category_meta($term_id){
+
+	if(isset($_POST['show_amp_category'])){
+		$cat_status = sanitize_text_field($_POST['show_amp_category']);
+		$hide_cat = sanitize_text_field($_POST['hide_cat']);
+		add_term_meta($term_id, 'amp_category', $cat_status );
+		add_term_meta( $term_id,'amp_hide_cat', $hide_cat);
+	}
+}
+function ampforwp_update_category_meta($term_id, $term_id1){
+	if(isset($_POST['show_amp_category'])){
+		$cat_status = sanitize_text_field($_POST['show_amp_category']);
+		$hide_cat = sanitize_text_field($_POST['hide_cat']);
+		update_term_meta( $term_id,'amp_category', $cat_status);
+		update_term_meta( $term_id,'amp_hide_cat', $hide_cat);
+	}
+}
+add_action ( 'edit_category_form_fields', 'ampforwp_extra_category_fields');
+add_action ( 'category_add_form_fields', 'ampforwp_extra_category_fields');
+function ampforwp_extra_category_fields( $tag ) {
+?>
+<tr class="form-field">
+	<?php if(!isset($tag->term_id)){?>
+	<th scope="row" valign="top"></th>
+	<td>
+		<div class="form-field term-parent-wrap">
+			<label for="show_amp_category">Show/Hide in AMP</label>
+			<select name="amp_category" id="show_amp_category" class="postform">
+				<option class="level-0" value="show">Show</option>
+				<option class="level-0" value="hide">Hide</option>
+			</select>
+			<p>Show/Hide in AMP.</p>
+		</div>
+		<div id="amp-show-hide-cat"  style="display: none;">
+			<input type="radio" value="hide-cat" name="hide_cat" checked=""> Hide this category, not the post(s) related to this category.
+			<br />
+			<input type="radio" value="hide-cat-post" name="hide_cat"> Hide this category and the post(s) related to this category as well.
+		</div>
+		<br>
+	</td>
+	<?php }else{
+		$term_data = ampforwp_get_category_meta($tag->term_id);
+		$visible = '';
+		$visible_status = '';
+		if(isset($term_data['visible'])){
+			$visible = $term_data['visible'][0];
+			$visible_status = $term_data['visible_status'][0];
+		}
+	?>
+		<th scope="row"><label for="show_amp_category">Show/Hide AMP</label></th>
+		<td>
+			<select name="show_amp_category" id="show_amp_category" class="postform">
+				<option class="level-0" value="show" <?php if($visible=='show'){ echo "selected"; }?>>Show</option>
+				<option class="level-0" value="hide" <?php if($visible=='hide'){ echo "selected";} ?>>Hide</option>
+			</select><br />
+			<span class="description">Show/Hide in AMP.</span>
+			<div id="amp-show-hide-cat" <?php if($visible=='show'){?>style="display: none;"<?php }?>>
+				<input type="radio" value="hide-cat" name="hide_cat" <?php if($visible_status=='hide-cat'){?> checked <?php }?>> Hide this category, not the post(s) related to this category.
+				<br />
+				<input type="radio" value="hide-cat-post" name="hide_cat"  <?php if($visible_status=='hide-cat-post'){?> checked <?php }?>> Hide this category and the post(s) related to this category as well.
+			</div>
+		</td>
+	<?php }?>
+</tr>
+<?php
+}
 /**
  * Outputs the content of the meta box for AMP on-off on specific pages
  */

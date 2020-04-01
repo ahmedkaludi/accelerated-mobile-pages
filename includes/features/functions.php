@@ -160,6 +160,27 @@ function ampforwp_get_the_ID($post_id=''){
     return $post_id;
 }
 
+function ampforwp_get_category_meta($term_id,$type=''){
+    $amp_category = get_term_meta( $term_id,'amp_category');
+    $amp_hide_cat = get_term_meta( $term_id,'amp_hide_cat');
+    $data = array('visible'=>$amp_category,'visible_status'=>$amp_hide_cat);
+    if($type=='' || $type=='data'){
+        return $data;
+    }else if($type=='status'){
+        if(isset($amp_category[0]) && $amp_category[0]=='hide'){
+            return false;
+        }else{
+            return true;
+        }
+    }else if($type=='post_status'){
+        if(isset($amp_category[0]) && $amp_category[0]=='hide' && $amp_hide_cat[0]=='hide-cat-post'){
+            return false;
+        }else{
+            return true;
+        }
+    }
+}
+
 // Backward Compatibility
 function ampforwp_correct_frontpage() {
     return ampforwp_get_frontpage_id();

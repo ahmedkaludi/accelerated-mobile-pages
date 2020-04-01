@@ -113,6 +113,14 @@ jQuery(function($) {
                 captureLength:0
             });
         }
+    $("#show_amp_category").on('change', function(){
+        var thisval = $(this).val();
+        if(thisval=='hide'){
+            $("#amp-show-hide-cat").css({'display':'block'});
+        }else if(thisval=='show'){
+            $("#amp-show-hide-cat").css({'display':'none'});
+        }
+    });
     $('.redux-container').each(function() {
         if (!$(this).hasClass('redux-no-sections')) {
             $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls"  style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');
