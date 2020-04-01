@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.3.2
-Stable tag: 1.0.37
+Stable tag: 1.0.38
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,14 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.38 (1st April 2020) =
+* Improvement: Added Title for facebook comments section #3716
+* Improvement: Added iZooto support for AMP #4312
+* Fixed: Alignment issue in Advertisement Section #4325
+* Fixed: Slow Queries on Homepage in D3 #4319
+* Fixed: Category module links in AMP pagebuilder doesn't change to ?amp #4314
+* Fixed: Debug Warnings #4324 #4321 #4299
 
 = 1.0.37 (28th March 2020) =
 * Improvement: Added filter to change Author name #4238
