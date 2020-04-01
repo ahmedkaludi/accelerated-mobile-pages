@@ -615,6 +615,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('luckywp-table-of-contents-for-amp/luckywp-table-of-contents-for-amp.php')? 1 : 2),
                         ),
+                        array(
+                            'name'=>'iZooto for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'iZooto integration for amp',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/izooto-for-amp.png',
+                            'price'=>'$29',
+                            'url_link'=>'https://ampforwp.com/addons/izooto-for-amp/',
+                            'plugin_active_path'=> 'izooto-for-amp/izooto-for-amp.php',
+                            'item_name'=>'iZooto for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('izooto-for-amp/izooto-for-amp.php')? 1 : 2)
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
@@ -2330,6 +2342,15 @@ function ampforwp_get_all_tags($id){
                          'tooltip-subtitle' => esc_html__('Enable/Disable Facebook comments using this switch.', 'accelerated-mobile-pages'),
                          'default'  => 0,
                      ),
+                     array(
+                        'class' => 'child_opt child_opt_arrow',
+                        'id'       => 'ampforwp-facebook-comments-title',
+                        'type'     => 'text',
+                        'title'    => esc_html__('Title', 'accelerated-mobile-pages'),
+                        'default'  => 'Leave a Comment',
+                        'required' =>
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                      ),
                      array(
                         'class' => 'child_opt child_opt_arrow', 
                          'id'       => 'ampforwp-number-of-fb-no-of-comments',

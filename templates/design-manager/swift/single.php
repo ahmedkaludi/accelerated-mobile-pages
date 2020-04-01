@@ -111,12 +111,10 @@ global $redux_builder_amp; ?>
 			            <ul class="clearfix">
 					        <?php ampforwp_related_post(); ?>
 					        <?php
-					        $current_id = ampforwp_get_the_ID();
+					       
 					          while( $my_query->have_posts() ) {
 					            $my_query->the_post();
-					            if(ampforwp_get_the_ID()==$current_id){
-					            	continue;
-					            }
+					          
 					        ?>
 					        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 					        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail()){?>
@@ -167,12 +165,10 @@ do_action("ampforwp_single_design_type_handle_d1");
 	  		<?php ampforwp_related_post(); ?>
 	            <ul class="clearfix">
 			        <?php
-			        $current_id = ampforwp_get_the_ID();
+			       
 			          while( $my_query->have_posts() ) {
 			            $my_query->the_post();
-			             if(ampforwp_get_the_ID()==$current_id){
-			            	continue;
-			            }
+			          
 			        ?>
 			        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 			        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail()){?>
@@ -215,12 +211,10 @@ do_action("ampforwp_single_design_type_handle_d1");
 	  		<?php ampforwp_related_post(); ?>
 	            <amp-carousel height="310" layout="fixed-height" type="carousel">
 			        <?php
-			        $current_id = ampforwp_get_the_ID();
+			        
 			          while( $my_query->have_posts() ) {
 			            $my_query->the_post();
-			             if(ampforwp_get_the_ID()==$current_id){
-			            	continue;
-			            }
+			           
 			        ?>
 			        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 			        	<div class="rp-slide">
@@ -395,12 +389,10 @@ do_action("ampforwp_single_design_type_handle_d1");
 							  		<?php ampforwp_related_post(); ?>
 						            <ul class="clearfix">
 								        <?php
-								        $current_id = ampforwp_get_the_ID();
+								       
 								          while( $my_query->have_posts() ) {
 								            $my_query->the_post();
-								            if(ampforwp_get_the_ID()==$current_id){
-								            	continue;
-								            }
+								           
 								        ?>
 								        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 								        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>

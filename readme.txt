@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.3.2
-Stable tag: 1.0.37
+Tested up to: 5.4
+Stable tag: 1.0.38
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.38 (1st April 2020) =
+* Improvement: Added Title for facebook comments section #3716
+* Improvement: Added iZooto support for AMP #4312
+* Fixed: Alignment issue in Advertisement Section #4325
+* Fixed: Slow Queries on Homepage in D3 #4319
+* Fixed: Category module links in AMP pagebuilder doesn't change to ?amp #4314
+* Fixed: Debug Warnings #4324 #4321 #4299
+
 = 1.0.37 (28th March 2020) =
 * Improvement: Added filter to change Author name #4238
 * Improvement: Added option to show/hide jetpack related post in AMP #4272
@@ -214,160 +222,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Related posts doesn't show more than 3-4 #4300
 * Fixed: Incorrect alignment of Edit in twenty twenty WP theme #4246
 * Fixed: Social Icons are out of alignment in Design 2 #4305
-
-= 1.0.35 (23th March 2020) =
-* Fixed: Related post images not having alt attribute #4282
-* Fixed: iframes are not working with WP optimize premium #4290
-* Fixed: input type file error #4289
-* Fixed: next and prev alignment issue in design 2 #4211
-* Fixed: 404 PHP File is not getting overried from the child theme #4284
-* Fixed: Error in "Optimize loading of Google font" in SG Optimizer #4287
-* Fixed: amp-vimeo Validation error of invalid value 'ondemand' #4294
-* Fixed: AMP Option panel improvements #4277 #4288
-
-= 1.0.34 (19th March 2020) =
-* Improvement: Matomo (Piwik) analytics improvements #4271 #4280
-* Improvement: Custom page template improvements #4244
-* Improvement: Option to add/remove "nofollow" in the comment button #4266
-* Fixed: Spaces issue fixed in image carousel #4141
-* Fixed: Reusable blocks not working in the Custom AMP Editor #4187
-* Fixed: Comments pagination was not working in amp takeover beta #4251
-* Fixed: lightbox issue fixed #4222
-* Fixed: When AMP Dev mode and Mobile redirection both kept on then the website displays AMP on the mobile device #4276
-* Fixed: debug warnings on Fresh WP installation #4270
-* Fixed: Treeshaking was not working with "Product Review Lite Plugin" #4256
-* Fixed: Tables was not responsive in Mobile view design one #4278
-* Fixed: Have to make compatible with wordpress4.4.2 version #4262
-* Fixed: Click here link not working in mobile view of Subscribe to Comments Reloaded plugin #4225
-* Fixed: Post pagination not working in custom AMP Editor #4255
-* Fixed: Depreciated categories widget #4274
-* Fixed: Weekday removed from parameter 'published at' in the analytice code #4281
-
-= 1.0.33 (11th March 2020) =
-* Fixed: Categories not Hiding in Instant Articles #4254
-* Fixed: Error when activating imagify plugin #4260
-* Fixed: Start attribute not working in ol tags #4243
-* Fixed: Search form not working in template mode #4227 #4224
-* Fixed: Save button was disappearing when theme build on Redux framework #4259
-* Fixed: SVG tag was removing in anchor tag #4252
-* Fixed: Filter added to modify font face URL's #4258
-* Fixed: Elementor CSS not loading on frontpage in ALL in One SEO #4253
-* Fixed: Undefined variable: get_amp_custom_frontpage_id #4265
-* Fixed: Images are not showing in AMP with Neva Child Theme #4261
-* Fixed: AMP Option panel improvements #4245 #4269
-
-= 1.0.32 (6th March 2020) =
-* Fixed: Syntax breaking in advanced google analytics section #4228
-* Fixed: Optimize CSS (Tree shaking) not clearing on post update #4234
-* Fixed: Compatibility with the CIARO theme #4220
-* Fixed: Custom JavaScript are not allowed issue #4233
-* Fixed: Need to remove search option when header type 2 is selected #4214
-* Fixed: CSS of the CTA button in AMP page builder is disturbed in the mobile view #4215
-* Fixed: image  broken in light speed cache plugin #4231
-* Fixed: Youtube video is not working in " The issue" Theme #4223
-* Fixed: Removed '/amp' in menu with custom link #4221
-* Fixed: Wrong Yoast Canonical when amp link added #4229
-* Fixed: Call to undefined function session_start() in redirect.php:67 #4236
-* Fixed: Content Sneak Peek issue with below the content ads in Mozilla browser. #4178
-* Fixed: The mandatory attribute 'target' is missing in tag form #4239
-* Fixed: Query Monitor queries should be visible in amp pages too when logged in. #4250
-* Fixed: The input should be cleared When search button is clicked in AMP options Panel#4247
-* Fixed: Multiple debug warnings. #4242
-
-= 1.0.31 (28th February 2020) =
-* Improvement: Added option to hide vukkle comments emoji #4194
-* Improvement: Added alt for images in Slider module of AMP page builder #4193
-* Improvement: Updated sabberworm folder #4142
-* Fixed: Fatal Error fixed with zombify plugin #4184
-* Fixed: Validation error due to Mediavine Plugin #4206
-* Fixed: Instant article bug #4150
-* Fixed: AMP Search Not Working with Betheme #4195
-* Fixed: StackPath CDN not working #4123
-* Fixed: Extra 301 redirect after enabling ?amp #4167
-* Fixed: Table CSS improved #4185
-* Fixed: Debug Warnings #4226
-* Fixed: AMP Option panel improvements #4202 #4219
-
-= 1.0.30 (24th February 2020) =
-* Improvement: Added Autoplay in Image Gallery #3705
-* Fixed: Jetpack lazy loading not working due to our AMPforWP plugin #4183
-* Fixed: Amp comments Bug with update 1.0.28 #4209
-* Fixed: Removed Table styles when AMP Pagebuilder compatibility plugin is active #4185
-* Fixed: Debug warning fixed #4204 #4212
-
-= 1.0.29 (21th February 2020) =
-* Improvement: Created an option for entering URLs to prefetch. #3997
-* Fixed: Admin bar css is not loaded on amp pages #4130
-* Fixed: Optimize amp pages and CSS #3579 #4174
-* Fixed: When the tree shaking is enabled then the CSS of the layouts break #4113
-* Fixed: Extra 301 redirect after enabling ?amp #4167
-* Fixed: Break in layout when AMP takeout and conver to wp is enabled together #4176
-* Fixed: There should be no notices or messages from other third party plugins on the AMP option panel. #4166
-* Fixed: Incorrect time showing on AMP if we select Timezone as UTC-3 #4160
-* Fixed: WPappbox images are not loading on the amp pages #4161
-* Fixed: CSS of CTA button is over-riding while using more than one CTA  in AMP pagebuilder. #4173
-* Fixed: Notice Errors - Trying to get property 'title' #4196
-* Fixed: Warning issue on AMP option panel. #4172
-* Fixed: Display the Search button in AMP option panel. #4165
-* Fixed: Warning Errors #4200
-* Fixed: amp-access script is not being appended via Enter HTML in Head #4199
-* Fixed: Issues related to category support on the AMP Pages #4151
-* Fixed: AMP Options panel UI bugs #4180 #4179 #4105
-
-= 1.0.28 (18th February 2020) =
-* Improvement: Scripts added from Options panel should have higher priority in the frontend #4064
-
-= 1.0.27 (16th February 2020) =
-* Fixed: Bugs in Imagify plugin #3908
-* Fixed: GDPR popup not blocking header #4155
-* Fixed: Save button dissappers when clicked on setup settings #4169
-* Fixed: Alignment issue when there is no caption on featured image #4171
-* Fixed: Whitelisted Picture tag #4051
-* Fixed: Show/Hide Slider or Icon module in AMP Pagebuilder is not clickable #4153
-* Fixed: Debug warning when empty item added in Slider module in AMP pagebuilder #4152
-* Fixed: Empty link in facebook share in sticky bar #4154
-* Fixed: AMP Options panel UI bugs #4122 #4162
-
-= 1.0.26 (13th February 2020) =
-* Improvement: import/export option improved #4089
-* Fixed: Added option to show/hide featured image on AMP pagebuilder #4131
-* Fixed: AMP Options panel UI bug #4122
-
-= 1.0.25 (12th February 2020) =
-* Fixed: Title issue #4138
-
-= 1.0.24 (11th February 2020) =
-* Improvement: Added filter to modify the breadcrumb homepage url #4077
-* Fixed: Image alignment on the left issue #4156
-* Fixed: H1 tag not appearing on posts #4121
-* Fixed: "Title on static page front page" option not working #4138
-* Fixed: AMP Menu option was not showing in WP settings #4129
-* Fixed: Blank Events Calendar Months Page when 'Minify' option is enabled #4080
-* Fixed: Removed '@' in Twitter Handle #4135
-* Fixed: Message improved when "Leverage Browser Caching" option is enable without readable or writable permission of htaccess file  #4127
-* Fixed: Featured image removed on AMP Pagebuilder pages #4131
-
-= 1.0.23 (7th February 2020) =
-* Fixed: Fatal error in amp theme framework if WordPress directory is modified #4145
-* Fixed: Iframe error due to Jetpack #4125
-* Fixed: Menu transient increased to avoid deadlock error #4133
-* Fixed: Moved "Breadcrumbs From Yoast" to SEO option Panel section. #3600
-* Fixed: Featured Image from the content is not fetching the image when height and width is not present in the image code in Classic editor. #4096
-* Improvement: Sorting option for Pagebuilder slider/gallery #2014
-* Improvement: Option for showing no. of words in the excerpt of Recent Posts and Related Posts #3640
-* Improvement: Link Comments section with comments order #3740
-* Improvement: Default fallback images Added #3719
-* Improvement: subscript<sub> and superscript<sup> support #4137
-* Improvement: Message added if no seo option is selected but seo plugin is active #4124
-
-= 1.0.22 (6th February 2020) =
-* Fixed: Console error - Uncaught TypeError: Cannot read property 'on' of null #4102
-* Fixed: When Insert post ads plugin is enable then AMP settings panel is not showing. #4107
-* Fixed: Search console error fixed on WooCommerce wishlist page #4097
-* Fixed: GTM Added in Basic Setup and code improvements #4108
-* Fixed: The meta tags was not working in Head section #4116
-* Fixed: Upgrade to Pro button was missing in the AMP setting panel #4118
-* Fixed: Upgrade to Pro option was removing in the setting panel when we activate PWA for WP plugin #4117
-* Fixed: FAQ section improved #4119
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

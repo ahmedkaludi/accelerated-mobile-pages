@@ -1533,10 +1533,18 @@ function ampforwp_custom_og_image_homepage() {
 		$image_url = WPSEO_Meta::get_value( 'opengraph-image', $post_id );
 		$image_id = WPSEO_Meta::get_value( 'opengraph-image-id', $post_id );
 		$image = wp_get_attachment_image_src($image_id,'full');
-		$image_tags = array(
-			'width'     => esc_attr($image[1]),
-			'height'    => esc_attr($image[2]),
-		);
+		$image_tags = array();
+		if(is_array($image)){
+			$image_tags = array(
+				'width'     => esc_attr(isset($image[1]) ? $image[1] : '750'),
+				'height'    => esc_attr(isset($image[2]) ? $image[2] : '500'),
+			);
+		}else{
+			$image_tags = array(
+				'width'     => '750',
+				'height'    => '500',
+			);
+		}
 		$wpseo_og->og_tag( 'og:image', esc_url( $image_url ) );
 		foreach ( $image_tags as $key => $value ) {
 			if ( ! empty( $value ) ) {
@@ -2171,6 +2179,9 @@ function ampforwp_facebook_comments_markup() {
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on ) { 
 
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
+		if(true == ampforwp_get_setting('ampforwp-facebook-comments-title')){
+			$facebook_comments_markup .= '<h5>'. esc_html__(ampforwp_translation(ampforwp_get_setting('ampforwp-facebook-comments-title'), 'Leave a Comment'),'accelerated-mobile-pages') .'</h5>';
+		}
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
 	    	layout="responsive" '.'data-locale = "'.esc_attr($lang).'"'.' data-numposts=';
 		$facebook_comments_markup .= '"'. esc_attr($redux_builder_amp['ampforwp-number-of-fb-no-of-comments']). '"';
@@ -2957,7 +2968,7 @@ function ampforwp_add_sidebar_data( $data ) {
 // 44. auto adding /amp for the menu
 add_action('amp_init','ampforwp_auto_add_amp_menu_link_insert');
 function ampforwp_auto_add_amp_menu_link_insert() {
-	add_action( 'wp', 'ampforwp_auto_add_amp_in_link_check' );
+	add_action( 'wp', 'ampforwp_auto_add_amp_in_link_check', 99 );
 }
 
 function ampforwp_auto_add_amp_in_link_check() {
@@ -7035,10 +7046,14 @@ function ampforwp_set_dns_preload_urls(){
 	        $val_count = count($data_arr[0]['value']);
 	        for($i=0;$i<$val_count;$i++){
 	            for($j=0;$j<count($data_arr);$j++){
-	                $key 	= $data_arr[$j]['value'][$i];
+	                if(isset($data_arr[$j]['value'][$i])){
+	            		$key 	= $data_arr[$j]['value'][$i];
+	            	}
 	                if(isset($data_arr[$j+1])){
 	               	 	$key 	= $data_arr[$j]['value'][$i];
+	               	if(isset($data_arr[$j]['value'][$i])){
 	               	 	$value 	= $data_arr[$j+1]['value'][$i];
+	               	}
 	               	 	if($value!=""){
 	               	 		?>
 	               	 		<link rel="<?php echo esc_attr($key)?>" href="<?php echo esc_url($value);?>" crossorigin>

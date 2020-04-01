@@ -2346,4 +2346,14 @@ figure.amp-featured-image {
 	.post-meta-edit-link-wrapper ul.post-meta li .meta-text{
 		margin-left:5px;
 	}
-<?php } ?> 
+<?php } 
+if(true == ampforwp_get_setting('ampforwp-facebook-comments-support')){?>
+section.amp-facebook-comments h5{  
+    font-size: 14px;
+    padding-bottom: 4px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 1px dotted #ccc;
+}
+<?php } 
