@@ -2343,6 +2343,15 @@ function ampforwp_get_all_tags($id){
                          'default'  => 0,
                      ),
                      array(
+                        'class' => 'child_opt child_opt_arrow',
+                        'id'       => 'ampforwp-facebook-comments-title',
+                        'type'     => 'text',
+                        'title'    => esc_html__('Title', 'accelerated-mobile-pages'),
+                        'default'  => 'Leave a Comment',
+                        'required' =>
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                      ),
+                     array(
                         'class' => 'child_opt child_opt_arrow', 
                          'id'       => 'ampforwp-number-of-fb-no-of-comments',
                          'type'     => 'text',
