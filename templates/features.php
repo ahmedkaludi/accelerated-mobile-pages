@@ -8366,3 +8366,26 @@ if(!function_exists('ampforwp_set_local_font')){
 	}
 }
 
+if (function_exists('themify_builder_activate')) {
+	add_filter('ampforwp_modify_the_content','ampforwp_themify_compatibility');
+}
+function ampforwp_themify_compatibility($content){
+	$get_data =  get_post_meta(ampforwp_get_the_ID(),'_themify_builder_settings_json',true);
+	$decode = json_decode($get_data,true);
+	for($i=0;$i<count($decode);$i++){
+		$cols = $decode[$i]['cols'];
+		for($j=0;$j<count($cols);$j++){
+			if (isset($cols[$j]['modules'])) {
+			$modules = $cols[$j]['modules'];
+			for($k=0;$k<count($modules);$k++){
+				foreach ($modules as $key => $value) {
+					foreach ($value['mod_settings'] as $key => $val) {
+						$content.=$val;
+					}
+				}
+			}
+			}
+		}
+	}
+	return $content;
+}
