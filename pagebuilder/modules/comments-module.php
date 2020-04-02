@@ -70,7 +70,7 @@ return array(
 						),
 			),
 		'front_template'=> $output_html,
-		'front_css'=> $css,
-		'front_common_css'=>'',
+		'front_css'=> '',
+		'front_common_css'=>$css,
 	);
 ?>
