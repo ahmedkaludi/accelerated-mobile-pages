@@ -210,17 +210,16 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
         return;
 	    }
 
-	    if(is_category()){
+	   // HIDE/SHOW TAG AND CATEGORY #4326
+	  if(is_tag() || is_category() || is_tax()){
           $term_id = get_queried_object()->term_id;
-          $category_status = ampforwp_get_category_meta($term_id,'status');
-          if($category_status==false){
+          $tax_status = ampforwp_get_taxonomy_meta($term_id,'status');
+          if($tax_status==false){
            	return;
           }
       }else if(is_single()){
-          $term = get_the_category();
-          $term_id = $term[0]->cat_ID;
-          $category_status = ampforwp_get_category_meta($term_id,'post_status');
-          if($category_status==false){
+          $tax_status = ampforwp_get_taxonomy_meta('','post_status');
+          if($tax_status==false){
             return;
           }
       }
@@ -749,50 +748,71 @@ function ampforwp_title_custom_meta() {
 
 add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
 
-add_action('edited_category', 'ampforwp_update_category_meta',10,2);
-add_action('create_category', 'ampforwp_save_category_meta', 10);
-function ampforwp_save_category_meta($term_id){
+function ampforwp_save_taxonomy_meta($term_id){
+	if(isset($_POST['amp_taxonomy'])){
+		$cat_status = sanitize_text_field($_POST['amp_taxonomy']);
+		$hide_tax = sanitize_text_field($_POST['hide_tax']);
+		add_term_meta($term_id, 'amp_taxonomy', $cat_status );
+		add_term_meta( $term_id,'amp_hide_tax', $hide_tax);
+	}
+}
+function ampforwp_update_taxonomy_meta($term_id, $term_id1){
+	if(isset($_POST['amp_taxonomy'])){
+		$cat_status = sanitize_text_field($_POST['amp_taxonomy']);
+		$hide_tax = sanitize_text_field($_POST['hide_tax']);
+		update_term_meta( $term_id,'amp_taxonomy', $cat_status);
+		update_term_meta( $term_id,'amp_hide_tax', $hide_tax);
+	}
+}
 
-	if(isset($_POST['show_amp_category'])){
-		$cat_status = sanitize_text_field($_POST['show_amp_category']);
-		$hide_cat = sanitize_text_field($_POST['hide_cat']);
-		add_term_meta($term_id, 'amp_category', $cat_status );
-		add_term_meta( $term_id,'amp_hide_cat', $hide_cat);
+if ( isset( $_REQUEST['taxonomy'] )) {
+	$taxonomy = $_REQUEST['taxonomy'];
+	add_action('edited_'.$taxonomy, 'ampforwp_update_taxonomy_meta',10,2);
+	add_action('create_'.$taxonomy, 'ampforwp_save_taxonomy_meta', 10);
+	add_action('edited_'.$taxonomy, 'ampforwp_update_taxonomy_meta',10,2);
+	add_action('create_'.$taxonomy, 'ampforwp_save_taxonomy_meta', 10);
+	if($taxonomy!='category' && isset($_REQUEST['tag_ID'])){
+		add_action ( 'edit_tag_form_fields', 'ampforwp_extra_category_fields');
+	}else{
+		add_action ( 'edit_'.$taxonomy.'_form_fields', 'ampforwp_extra_category_fields');
 	}
+	add_action ( $taxonomy.'_add_form_fields', 'ampforwp_extra_category_fields');
 }
-function ampforwp_update_category_meta($term_id, $term_id1){
-	if(isset($_POST['show_amp_category'])){
-		$cat_status = sanitize_text_field($_POST['show_amp_category']);
-		$hide_cat = sanitize_text_field($_POST['hide_cat']);
-		update_term_meta( $term_id,'amp_category', $cat_status);
-		update_term_meta( $term_id,'amp_hide_cat', $hide_cat);
-	}
-}
-add_action ( 'edit_category_form_fields', 'ampforwp_extra_category_fields');
-add_action ( 'category_add_form_fields', 'ampforwp_extra_category_fields');
 function ampforwp_extra_category_fields( $tag ) {
+	$label = 'category';
+	if(is_object($tag)){
+		if($tag->taxonomy=="post_tag"){
+			$label = 'tag';
+		}else if($tag->taxonomy!='category'){
+			$label = $tag->taxonomy;
+		}
+	}else{
+		if($tag=='post_tag'){
+			$label = 'tag';
+		}
+	}
 ?>
 <tr class="form-field">
 	<?php if(!isset($tag->term_id)){?>
 	<th scope="row" valign="top"></th>
 	<td>
 		<div class="form-field term-parent-wrap">
-			<label for="show_amp_category">Show/Hide in AMP</label>
-			<select name="amp_category" id="show_amp_category" class="postform">
+			<label for="show_amp_taxonomy">Show/Hide in AMP</label>
+			<select name="amp_taxonomy" id="show_amp_taxonomy" class="postform">
 				<option class="level-0" value="show">Show</option>
 				<option class="level-0" value="hide">Hide</option>
 			</select>
 			<p>Show/Hide in AMP.</p>
 		</div>
-		<div id="amp-show-hide-cat"  style="display: none;">
-			<input type="radio" value="hide-cat" name="hide_cat" checked=""> Hide this category, not the post(s) related to this category.
+		<div id="amp-show-hide-tax"  style="display: none;">
+			<input type="radio" value="hide-cat" name="hide_tax" checked=""> Hide this <?php echo esc_attr($label);?>, not the post(s) related to this <?php echo esc_attr($label) ?>.
 			<br />
-			<input type="radio" value="hide-cat-post" name="hide_cat"> Hide this category and the post(s) related to this category as well.
+			<input type="radio" value="hide-tax-post" name="hide_tax"> Hide this <?php echo esc_attr($label) ?> and the post(s) related to this <?php echo esc_attr($label) ?> as well.
 		</div>
 		<br>
 	</td>
 	<?php }else{
-		$term_data = ampforwp_get_category_meta($tag->term_id);
+		$term_data = ampforwp_get_taxonomy_meta($tag->term_id);
 		$visible = '';
 		$visible_status = '';
 		if(isset($term_data['visible'])){
@@ -800,17 +820,17 @@ function ampforwp_extra_category_fields( $tag ) {
 			$visible_status = $term_data['visible_status'][0];
 		}
 	?>
-		<th scope="row"><label for="show_amp_category">Show/Hide AMP</label></th>
+		<th scope="row"><label for="show_amp_taxonomy">Show/Hide AMP</label></th>
 		<td>
-			<select name="show_amp_category" id="show_amp_category" class="postform">
+			<select name="amp_taxonomy" id="show_amp_taxonomy" class="postform">
 				<option class="level-0" value="show" <?php if($visible=='show'){ echo "selected"; }?>>Show</option>
 				<option class="level-0" value="hide" <?php if($visible=='hide'){ echo "selected";} ?>>Hide</option>
 			</select><br />
 			<span class="description">Show/Hide in AMP.</span>
-			<div id="amp-show-hide-cat" <?php if($visible=='show'){?>style="display: none;"<?php }?>>
-				<input type="radio" value="hide-cat" name="hide_cat" <?php if($visible_status=='hide-cat'){?> checked <?php }?>> Hide this category, not the post(s) related to this category.
+			<div id="amp-show-hide-tax" <?php if($visible=='show' || $visible==''){?>style="display: none;"<?php }?>>
+				<input type="radio" value="hide-cat" name="hide_tax" <?php if($visible_status=='hide-cat' || $visible_status==''){?> checked <?php }?>> Hide this <?php echo esc_attr($label);?>, not the post(s) related to this <?php echo esc_attr($label);?>.
 				<br />
-				<input type="radio" value="hide-cat-post" name="hide_cat"  <?php if($visible_status=='hide-cat-post'){?> checked <?php }?>> Hide this category and the post(s) related to this category as well.
+				<input type="radio" value="hide-tax-post" name="hide_tax"  <?php if($visible_status=='hide-tax-post'){?> checked <?php }?>> Hide this <?php echo esc_attr($label);?> and the post(s) related to this <?php echo esc_attr($label);?> as well.
 			</div>
 		</td>
 	<?php }?>

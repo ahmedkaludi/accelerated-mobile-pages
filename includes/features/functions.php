@@ -160,24 +160,29 @@ function ampforwp_get_the_ID($post_id=''){
     return $post_id;
 }
 
-function ampforwp_get_category_meta($term_id,$type=''){
-    $amp_category = get_term_meta( $term_id,'amp_category');
-    $amp_hide_cat = get_term_meta( $term_id,'amp_hide_cat');
-    $data = array('visible'=>$amp_category,'visible_status'=>$amp_hide_cat);
+function ampforwp_get_taxonomy_meta($term_id,$type=''){
     if($type=='' || $type=='data'){
+        $amp_taxonomy = get_term_meta( $term_id,'amp_taxonomy');
+        $amp_hide_tax = get_term_meta( $term_id,'amp_hide_tax');
+        $data = array('visible'=>$amp_taxonomy,'visible_status'=>$amp_hide_tax);
         return $data;
     }else if($type=='status'){
-        if(isset($amp_category[0]) && $amp_category[0]=='hide'){
+        $amp_taxonomy = get_term_meta( $term_id,'amp_taxonomy');
+        if(isset($amp_taxonomy[0]) && $amp_taxonomy[0]=='hide'){
             return false;
         }else{
             return true;
         }
     }else if($type=='post_status'){
-        if(isset($amp_category[0]) && $amp_category[0]=='hide' && $amp_hide_cat[0]=='hide-cat-post'){
-            return false;
-        }else{
-            return true;
+        $term = wp_get_post_terms(ampforwp_get_the_ID(),array('category','post_tag'));
+        foreach ($term as $key => $value) {
+            $amp_taxonomy = get_term_meta( $value->term_id,'amp_taxonomy');
+            $amp_hide_tax = get_term_meta( $value->term_id,'amp_hide_tax');
+            if(isset($amp_taxonomy[0]) && $amp_taxonomy[0]=='hide' && $amp_hide_tax[0]=='hide-tax-post'){
+                return false;
+            }
         }
+        return true;
     }
 }
 

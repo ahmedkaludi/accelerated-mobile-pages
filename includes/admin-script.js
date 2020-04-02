@@ -113,12 +113,12 @@ jQuery(function($) {
                 captureLength:0
             });
         }
-    $("#show_amp_category").on('change', function(){
+    $("#show_amp_taxonomy").on('change', function(){
         var thisval = $(this).val();
         if(thisval=='hide'){
-            $("#amp-show-hide-cat").css({'display':'block'});
+            $("#amp-show-hide-tax").css({'display':'block'});
         }else if(thisval=='show'){
-            $("#amp-show-hide-cat").css({'display':'none'});
+            $("#amp-show-hide-tax").css({'display':'none'});
         }
     });
     $('.redux-container').each(function() {

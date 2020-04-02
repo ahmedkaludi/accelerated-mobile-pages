@@ -72,11 +72,12 @@ function ampforwp_redirection() {
       exit;
   }
 
+  // HIDE/SHOW TAG AND CATEGORY #4326
    if(ampforwp_is_amp_endpoint() ) {
-      if(is_category()){
+      if(is_tag() || is_category() || is_tax()){
           $term_id = get_queried_object()->term_id;
-          $category_status = ampforwp_get_category_meta($term_id,'status');
-          if($category_status==false){
+          $tax_status = ampforwp_get_taxonomy_meta($term_id,'status');
+          if($tax_status==false){
             $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
             $go_to_url = str_replace("/amp", '', $go_to_url);
             $go_to_url = str_replace("?amp=1", '', $go_to_url);
@@ -85,10 +86,8 @@ function ampforwp_redirection() {
             exit;
           }
       }else if(is_single()){
-          $term = get_the_category();
-          $term_id = $term[0]->cat_ID;
-          $category_status = ampforwp_get_category_meta($term_id,'post_status');
-          if($category_status==false){
+          $tax_status = ampforwp_get_taxonomy_meta('','post_status');
+          if($tax_status==false){
             $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
             $go_to_url = str_replace("/amp", '', $go_to_url);
             $go_to_url = str_replace("?amp=1", '', $go_to_url);
