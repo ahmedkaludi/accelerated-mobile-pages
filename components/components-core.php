@@ -743,7 +743,7 @@ function ampforwp_backtotop_global_css(){?>
             table.wp-block-table.alignright,table.wp-block-table.alignleft,table.wp-block-table.aligncenter{width: auto;}
             table.wp-block-table.aligncenter{width: 50%;}
             table.wp-block-table.alignfull,table.wp-block-table.alignwide{display: table;}
-            table { overflow-x: auto; }
+            table { display: inline-table; overflow-x: auto; }
             table a:link { font-weight: bold; text-decoration: none; }
             table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
             table a:active, table a:hover { color: #bd5a35; text-decoration: underline; }
