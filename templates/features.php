@@ -7612,7 +7612,7 @@ function ampforwp_head_css(){
 			$title = $user_info->title;
 		}
 		if($title){
-			$dom->loadHTML($title);
+			@$dom->loadHTML($title);
 			$anchors = $dom -> getElementsByTagName('img'); 
 			$src="";
 			foreach($anchors as $im){
