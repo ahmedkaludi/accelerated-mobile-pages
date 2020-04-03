@@ -249,7 +249,7 @@ function ampforwp_gdpr_css(){
 		<?php 
 	} ?>
 	footer amp-consent.amp-active {
-		z-index:9999;}
+		z-index:9999;display: initial;}
 	    position: inherit;
 	}	
 <?php }
