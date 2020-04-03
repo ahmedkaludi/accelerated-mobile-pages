@@ -193,7 +193,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.39 (3rd April 2020) =
 * Improvement: Code improvements in related post #4300
-* Fixed: Tables are not responsive #4309
 * Fixed: Images are streching in the gallary #4334
 
 = 1.0.38 (1st April 2020) =
