@@ -8409,3 +8409,13 @@ function ampforwp_themify_compatibility($content){
 	}
 	return $content;
 }
+add_action('shutdown','ampforwp_update_amp_post_on_of_meta');
+function ampforwp_update_amp_post_on_of_meta(){
+	$type = get_post_type(ampforwp_get_the_ID());
+	if($type=='post' || $type=='page'){
+		$post_meta = get_post_meta( ampforwp_get_the_ID(),'ampforwp-amp-on-off',true);
+		if($post_meta==""){
+			update_post_meta(ampforwp_get_the_ID(),'ampforwp-amp-on-off', 'default');
+		}
+	}
+}

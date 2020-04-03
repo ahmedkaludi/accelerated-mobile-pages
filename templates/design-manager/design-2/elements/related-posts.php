@@ -52,8 +52,8 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
             'no_found_rows' 	  => true,
 		    'meta_query' => array(
 				array(
-					'value'   => 'hide-amp',
-					'compare' => '!='
+					'key'        => 'ampforwp-amp-on-off',
+					'value'      => 'default',
 				)
 			)
 		);
