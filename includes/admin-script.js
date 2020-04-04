@@ -1089,6 +1089,21 @@ jQuery(document).ready(function($) {
                 }
             }
         }
+
+        // There is no save button in AMP "Basic setup" #4343
+        var selected = $(".amp-opt-change:checked").parent().find('label').attr('id');
+        if(selected=='basic'){
+            if(this_c_val!='Setup' && this_c_val!='Extensions'){
+                if($('#redux-footer-sticky #redux-footer').hasClass('hide')){
+                    $('#redux-footer-sticky').show();
+                    $('#redux-footer-sticky #redux-footer').removeClass("hide");
+                    $('#redux-footer-sticky #redux-footer').css({'position': 'fixed', 'bottom': '0px', 'width': '818px', 'left': '379px', 'background': 'rgb(238, 238, 238)'});
+                }
+            }else{
+                $('#redux-footer-sticky').hide();
+                $('#redux-footer-sticky #redux-footer').addClass("hide");
+            }
+        }
     });
      var new_data = JSON.parse(amp_fields);
     var ampforwp_saveChangesInRedux = function($current){
