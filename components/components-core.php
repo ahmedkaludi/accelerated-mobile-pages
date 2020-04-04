@@ -690,6 +690,7 @@ function amp_author_meta( $args ) {
 // amp-animation CSS #2819
 add_action('amp_post_template_css','ampforwp_backtotop_global_css');
 function ampforwp_backtotop_global_css(){?>
+	.amp-wp-content table , .cntn-wrp.artl-cnt table{height: auto;}
 	amp-img.amp-wp-enforced-sizes[layout=intrinsic] > img, .amp-wp-unknown-size > img { object-fit: contain; }
 	.rtl amp-carousel {direction: ltr;}
 	.rtl .amp-menu .toggle:after{left:0;right:unset;}
