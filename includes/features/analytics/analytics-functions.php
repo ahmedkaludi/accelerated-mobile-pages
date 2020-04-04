@@ -294,7 +294,15 @@ function ampforwp_analytics() {
 					</amp-analytics>
 				<!-- End AFS Analytics Javascript -->
 					<?php
-				}			
+			    }
+			if( true == ampforwp_get_setting('ampforwp-callrail-switch')) {
+				$config_url = $number = $analytics_url = '';
+				$config_url = ampforwp_get_setting('ampforwp-callrail-config-url');
+				$number = ampforwp_get_setting('ampforwp-callrail-number');
+				$analytics_url = ampforwp_get_setting('ampforwp-callrail-analytics-url');
+				if(!empty($config_url) && !empty($number) && !empty($analytics_url)){?>
+			    <amp-call-tracking config="<?php echo esc_url($config_url); ?>"><a href="tel:<?php echo esc_attr($number);?>"><?php echo esc_html($number);?></a></amp-call-tracking><amp-analytics config="<?php echo esc_url($analytics_url); ?>"></amp-analytics>   
+			<?php } }
 }
 // 89. Facebook Pixel
 add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);

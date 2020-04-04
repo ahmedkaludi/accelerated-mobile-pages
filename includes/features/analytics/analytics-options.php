@@ -498,7 +498,39 @@ function ampforwp_analytics_options($opt_name){
                         ),
                         'placeholder'  => esc_html__('YOUR_SITE_ID_HERE','accelerated-mobile-pages'),
                     ),
+                    //Call Rail Analytics    
+                    array(
+                        
+                        'id'            =>'ampforwp-callrail-switch',
+                        'type'          => 'switch',
+                        'title'         => esc_html__('Call Rail Analytics','accelerated-mobile-pages'),
+                        'default'       => 0,
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option to track callrail analytics in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-callrail-analytics-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
 
+                    ),
+                    array(
+                        'id'       => 'ampforwp-callrail-config-url',
+                        'type'     => 'text',
+                        'title'    => esc_html__( 'Config URL', 'accelerated-mobile-pages' ),
+                        'tooltip-subtitle' => esc_html__( 'Enter your Call Rail Analytics Site Config URL','accelerated-mobile-pages'),
+                        'desc'=>sprintf( '<a href="https://ampforwp.com/tutorials/article/how-to-add-callrail-analytics-in-amp/" target="_blank">%s</a>',esc_html__('View integration tutorial','accelerated-mobile-pages' )),
+                        'required' => array('ampforwp-callrail-switch', '=' , '1')
+                    ),
+                    array(
+                        'id'       => 'ampforwp-callrail-number',
+                        'type'     => 'text',
+                        'title'    => esc_html__( 'Tell Number', 'accelerated-mobile-pages' ),
+                        'tooltip-subtitle' => esc_html__( 'Enter your Tell Number for Call Rail Analytics','accelerated-mobile-pages'),
+                        'required' => array('ampforwp-callrail-switch', '=' , '1')
+                    ),
+                    array(
+                        'id'       => 'ampforwp-callrail-analytics-url',
+                        'type'     => 'text',
+                        'title'    => esc_html__( 'Analytics Config URL', 'accelerated-mobile-pages' ),
+                        'tooltip-subtitle' => esc_html__( 'Enter your Analytics Config URL','accelerated-mobile-pages'),
+                        'required' => array('ampforwp-callrail-switch', '=' , '1')
+                    ),
                         )
             )
    );
