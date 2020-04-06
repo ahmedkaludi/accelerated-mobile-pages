@@ -8147,6 +8147,7 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					$m_content = $matches[1][$i];
 					$m_content = ampforwp_imagify_webp_compatibility($m_content);
 					$m_content = ampforwp_ewww_webp_compatibility($m_content);
+					$m_content = ampforwp_wp_rocket_compatibility($m_content);
 					$m1_content = ampforwp_set_default_fallback_image($matches[1][$i]);
 					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
@@ -8418,4 +8419,14 @@ function ampforwp_update_amp_post_on_of_meta(){
 			update_post_meta(ampforwp_get_the_ID(),'ampforwp-amp-on-off', 'default');
 		}
 	}
+}
+function ampforwp_wp_rocket_compatibility($content){
+	if(function_exists('rocket_activation')){
+		$cdn_url = get_option('wp_rocket_settings');
+		if($cdn_url['cdn'] == 1){
+			$cdn_url = $cdn_url["cdn_cnames"][0];
+			$content = preg_replace('/src="(.*?)wp-content(.*?)"(.*?)>/', 'src="'.$cdn_url.'/wp-content$2"$3>', $content);
+		}	
+	}
+	return $content;
 }
