@@ -11,6 +11,9 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 	if ( (!checkAMPforPageBuilderStatus(get_the_ID()) &&  is_single() ) || true == ampforwp_get_setting('ampforwp-web-push-onesignal-header') || true == ampforwp_get_setting('ampforwp-web-push-onesignal-sticky') ){
 		$checker = true;
 	}
+	elseif ( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) &&  (is_page() || ampforwp_is_front_page()) && true == ampforwp_get_setting('ampforwp-one-signal-page')){
+		$checker = true;
+	}
 	if('1' == ampforwp_get_setting('ampforwp-web-push') && $checker ){
 		$onesignal_domain 		= '';
 		$onesignal_domain_sw 	= '';
