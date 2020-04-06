@@ -2068,3 +2068,17 @@ i.dashicons.dashicons-before.dashicons-update {
     padding: 1px 7px 3px;
     border-radius: 13px;
 }
+
+.redux-field-container .ref-rel-bar-cont{
+    background-color:#d0d3d4;
+    color: black;
+    position: relative;
+    top: 5px;
+    border-radius: 5px;
+}
+.redux-field-container .ref-rel-post-bar{
+    background-color: #4CAF50;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+}

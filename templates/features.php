@@ -8410,16 +8410,6 @@ function ampforwp_themify_compatibility($content){
 	}
 	return $content;
 }
-add_action('shutdown','ampforwp_update_amp_post_on_of_meta');
-function ampforwp_update_amp_post_on_of_meta(){
-	$type = get_post_type(ampforwp_get_the_ID());
-	if($type=='post' || $type=='page'){
-		$post_meta = get_post_meta( ampforwp_get_the_ID(),'ampforwp-amp-on-off',true);
-		if($post_meta==""){
-			update_post_meta(ampforwp_get_the_ID(),'ampforwp-amp-on-off', 'default');
-		}
-	}
-}
 function ampforwp_wp_rocket_compatibility($content){
 	if(function_exists('rocket_activation')){
 		$cdn_url = get_option('wp_rocket_settings');
@@ -8429,4 +8419,44 @@ function ampforwp_wp_rocket_compatibility($content){
 		}	
 	}
 	return $content;
+}
+
+add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
+function ampforwp_referesh_related_post(){
+	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp_refresh_related_poost') ){
+		echo json_encode(array('status'=>403,'message'=>'user request is not allowed')) ;
+		die;
+	}
+	$orderby = 'ID';
+    if( true == ampforwp_get_setting('ampforwp-single-order-of-related-posts')){
+		$orderby = 'rand';
+	}
+	$args=array(
+		'post_type'	   => 'post',
+	    'posts_per_page'=> '50',
+	    'orderby' => $orderby,
+	    'ignore_sticky_posts'=>1,
+		'has_password' => false ,
+		'post_status'=> 'publish',
+		'no_found_rows'	=> true,
+		'meta_query' => array(
+			array(
+					'key' => 'ampforwp-amp-on-off', 
+		    		'compare' => 'NOT EXISTS',
+				)
+		)
+	);
+	$my_query = new wp_query( $args );
+	while( $my_query->have_posts() ) {
+		$my_query->the_post();
+		update_post_meta(get_the_ID(),'ampforwp-amp-on-off','default');
+	}
+	delete_transient('ampforwp_get_not_meta_post_count');
+	$data['response'] = ampforwp_get_post_percent();
+	echo json_encode($data);
+}
+add_action( 'save_post', 'ampforwp_delete_refresh_related_post_trans');
+function ampforwp_delete_refresh_related_post_trans(){
+	delete_transient('ampforwp_get_not_meta_post_count');
+	delete_transient('ampforwp_get_total_post_count');
 }

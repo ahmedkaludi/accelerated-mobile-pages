@@ -185,7 +185,48 @@ jQuery(function($) {
             reduxOptionSearch();
         }
     });
-
+     $("#ampforwp-refersh-related-post").on('click', function(){
+            var ref_nonce = $(this).attr('data-nonce');
+            var current_post =  parseInt($(this).attr('data-id'));
+            if(current_post<100){
+            var elem = document.getElementById("ref_rel_post_bar"); 
+            var first_int = setInterval(first_frame, 1000);
+            var width = current_post;
+            width++; 
+            elem.style.width = width + '%'; 
+            elem.innerHTML = width * 1  + '%';
+            function first_frame() {
+                width++; 
+                elem.style.width = width + '%'; 
+                elem.innerHTML = width * 1  + '%';
+            }  
+           $.ajax({
+                url: ajaxurl,
+                method: 'post',
+                data: {
+                        action:     'ampforwp_referesh_related_post',
+                        verify_nonce: ref_nonce
+                     },
+                success: function(response){
+                    clearInterval(first_int);
+                    response = response.replace("}0", "}");
+                    var resp = JSON.parse(response);
+                    resp = parseInt(resp.response);
+                    var id = setInterval(frame, 10);
+                    var width = current_post;
+                    function frame() {
+                        if (width >= resp) {
+                            clearInterval(id);
+                        } else {
+                            width++; 
+                            elem.style.width = width + '%'; 
+                            elem.innerHTML = width * 1  + '%';
+                        }
+                    }
+                }
+            });
+        }
+    }); 
     $(".redux_field_search").keypress(function (evt) {
         //Deterime where our character code is coming from within the event
         var charCode = evt.charCode || evt.keyCode;
