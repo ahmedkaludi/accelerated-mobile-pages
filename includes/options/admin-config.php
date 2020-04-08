@@ -2428,6 +2428,9 @@ function ampforwp_fb_instant_article() {
     $input = ''; 
 
     $feedname   = 'instant_articles';
+    if(get_option('permalink_structure') == ''){
+        $feedname = '?feed=instant_articles';
+    }
     $fb_instant_article_feed = trailingslashit( site_url() ).$feedname ;
     $input      =  '<a href=" '. esc_url($fb_instant_article_feed)  . '" target="_blank">' .  esc_url( $fb_instant_article_feed ). '</a>' ;
 
