@@ -8461,7 +8461,9 @@ function ampforwp_delete_refresh_related_post_trans(){
 	delete_transient('ampforwp_get_total_post_count');
 }
 
-add_filter('ampforwp_modify_the_content','ampforwp_rank_math_external_link_newtab');
+if(class_exists('RankMath')){
+	add_filter('ampforwp_modify_the_content','ampforwp_rank_math_external_link_newtab');
+}
 function ampforwp_rank_math_external_link_newtab($content){
 	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
 	if($rank_math_external_link){
