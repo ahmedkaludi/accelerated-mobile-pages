@@ -36,8 +36,10 @@ function ampforwp_add_admin_styling($hook_suffix){
     if( current_user_can("manage_options") && $hook_suffix=='toplevel_page_amp_options' ){
         $redux_data = $redux_builder_amp;
         wp_dequeue_script( 'insert-post-adschart-admin' );
-        wp_dequeue_script( 'broker-js' );
-        wp_dequeue_script( 'broker-min-js' );
+        if(function_exists('brokers_page_template_redirect')){
+            wp_dequeue_script( 'broker-js' );
+            wp_dequeue_script( 'broker-min-js' );
+        }
         if(function_exists('html5blank_header_scripts')){
             wp_dequeue_script( 'jquery-js' );
         }
