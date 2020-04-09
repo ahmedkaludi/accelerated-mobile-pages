@@ -61,6 +61,13 @@ if ( ! defined( 'ABSPATH' ) ) {
               ),
 
            array(
+               'id'       => 'ampforwp_server_side_rendering',
+               'type'     => 'switch',
+               'title'     => esc_html__('Server Side Rendering', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'     => esc_html__('Improve the Page Speed and Loading time with Server Side Rendering option', 'accelerated-mobile-pages'),
+               'default'  => 0
+           ),
+           array(
                'id'       => 'ampforwp_cache_minimize_mode',
                'type'     => 'switch',
                'title'     => esc_html__('Minify', 'accelerated-mobile-pages'),

@@ -3,6 +3,7 @@ namespace AMPforWP\AMPVendor;
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+require_once AMPFORWP_PLUGIN_DIR .'includes/vendor/ssr/class-amp-server-side-rendering.php';
 require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-dom-utils.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-html-utils.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-string-utils.php' );

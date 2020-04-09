@@ -1,6 +1,7 @@
 <?php
 use AMPforWP\AMPVendor\AMP_Post_Template;
 use AMPforWP\AMPVendor\AMP_HTML_Utils;
+use AMPforWP\AMPVendor\AMP_Server_Side_Rendering;
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
@@ -362,7 +363,7 @@ function amp_header_core(){
     	$bodyClass .= ' rtl ';
     }
 	?><!doctype html>
-	<html <?php echo esc_attr(ampforwp_amp_nonamp_convert('amp ')); ?><?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
+	<html <?php echo esc_attr(ampforwp_amp_nonamp_convert('amp ')); ?><?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?> <?php echo AMP_Server_Side_Rendering::ampforwp_get_transform_attribute(); ?>>
 		<head>
 		<meta charset="utf-8"> 
 			<?php do_action('amp_experiment_meta', $thisTemplate); ?>
