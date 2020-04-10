@@ -94,7 +94,8 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
 </amp-sidebar>
 <?php } ?>
 <div id="designthree" class="designthree main_container">
-<?php do_action('ampforwp_admin_menu_bar_front'); ?>
+<?php do_action('ampforwp_admin_menu_bar_front');
+      do_action('reading_pg_bar_in_amp'); ?>
 <header class="container design3-header">
   <div id="headerwrap">
       <div id="header">
