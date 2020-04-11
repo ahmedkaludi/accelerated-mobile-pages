@@ -465,7 +465,6 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 		$lower_case = 'translate( %s, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz" )'; // In XPath 2.0 this is lower-case().
 		$predicates = array(
 			sprintf( '( self::style and not( @amp-boilerplate ) and ( not( @type ) or %s = "text/css" ) )', sprintf( $lower_case, '@type' ) ),
-			sprintf( '( self::style and not( @amp-runtime ) and ( not( @type ) or %s = "text/css" ) )', sprintf( $lower_case, '@type' ) ),
 			sprintf( '( self::link and @href and %s = "stylesheet" )', sprintf( $lower_case, '@rel' ) ),
 			'( self::style and  @amp-custom )' ,
 		);

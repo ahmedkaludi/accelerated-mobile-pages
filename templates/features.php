@@ -1,5 +1,6 @@
 <?php
 use AMPforWP\AMPVendor\AMP_Content;
+use AMPforWP\AMPVendor\AMP_Server_Side_Rendering;
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
@@ -8498,4 +8499,14 @@ function ampforwp_webp_express_compatibility($content){
 	 	}
 	}	
 	return $content;
+}
+if(ampforwp_get_setting('ampforwp_server_side_rendering')){
+	add_filter("ampforwp_the_content_last_filter",'ampforwp_render_server_side',30);
+}
+function ampforwp_render_server_side($content){
+		$dom = AMP_DOM_Utils::get_dom_from_content($content);
+		@$dom->loadHTML($content);
+		$xpath = new DOMXPath($dom);
+		$ssr = AMP_Server_Side_Rendering::ampforwp_server_side_redering($dom,$xpath);
+		return $ssr;
 }
