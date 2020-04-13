@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 global $redux_builder_amp; ?>
 <?php do_action('ampforwp_admin_menu_bar_front');
-      do_action('reading_pg_bar_in_amp'); ?>
+      do_action('ampforwp_reading_progress_bar'); ?>
 <header class="container design2-header">
   <div id="headerwrap">
       <div id="header">
