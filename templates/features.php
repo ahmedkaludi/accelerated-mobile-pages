@@ -7484,7 +7484,10 @@ function ampforwp_head_css(){
 			$title = $user_info->title;
 		}
 		if($title){
+			// To Suppress Warnings
+       		libxml_use_internal_errors(true);
 			$dom->loadHTML($title);
+			libxml_use_internal_errors(false);
 			$anchors = $dom -> getElementsByTagName('img'); 
 			$src="";
 			foreach($anchors as $im){
