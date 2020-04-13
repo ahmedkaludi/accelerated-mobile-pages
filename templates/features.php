@@ -8512,3 +8512,11 @@ function ampforwp_render_server_side($content){
 		$ssr = AMP_Server_Side_Rendering::ampforwp_server_side_redering($dom,$xpath);
 		return $ssr;
 }
+
+add_filter('ampforwp_modify_the_content','ampforwp_pinterest_embed');
+function ampforwp_pinterest_embed($content){
+	if(preg_match('/<a(.*?)data-pin-do="embedPin"(.*?)href="(.*?)"><\/a>/', $content)){
+ 		$content = preg_replace('/<a(.*?)data-pin-do="embedPin"(.*?)href="(.*?)"><\/a>/', '<amp-pinterest width="250" height="500" data-do="embedPin" data-url="$3"></amp-pinterest>', $content);
+	}
+	return $content;
+}
