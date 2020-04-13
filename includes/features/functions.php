@@ -42,6 +42,9 @@ function ampforwp_add_admin_styling($hook_suffix){
             wp_dequeue_script( 'broker-js' );
             wp_dequeue_script( 'broker-min-js' );
         }
+        if(function_exists('html5blank_header_scripts')){
+            wp_dequeue_script( 'jquery-js' );
+        }
         remove_all_actions('admin_notices');
         add_action('admin_notices', 'ampforwp_dev_mode_notice');
         add_action('admin_notices', 'ampforwp_plugins_manager_notice');
