@@ -8397,8 +8397,9 @@ if (function_exists('themify_builder_activate')) {
 }
 function ampforwp_themify_compatibility($content){
 	$get_data =  get_post_meta(ampforwp_get_the_ID(),'_themify_builder_settings_json',true);
-	$decode = json_decode($get_data,true);
-	for($i=0;$i<count($decode);$i++){
+	if($get_data){
+		$decode = json_decode($get_data,true);
+		for($i=0;$i<count($decode);$i++){
 		$cols = $decode[$i]['cols'];
 		for($j=0;$j<count($cols);$j++){
 			if (isset($cols[$j]['modules'])) {
@@ -8411,6 +8412,7 @@ function ampforwp_themify_compatibility($content){
 				}
 			}
 			}
+	    }
 		}
 	}
 	return $content;
