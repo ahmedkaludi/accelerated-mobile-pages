@@ -49,6 +49,18 @@ function ampforwp_framework_get_featured_image(){
 				$alt = get_the_title( $post_id );
 			}
 			$alt = convert_chars( stripslashes( $alt ) );
+			if(function_exists('fifu_show_elements')){
+				$fifu_image_url = get_post_meta($post_id, 'fifu_image_url', true);
+				if($fifu_image_url){
+					$size = getimagesize(get_the_post_thumbnail_url());
+					if(isset($size[0])){
+						$image[1] = $size[0];
+					}
+					if(isset($size[1])){
+						$image[2] = $size[1];
+					}
+				}
+			}
 			if( $image ){
 				if(empty($image[1])){
 					$image[1] = 1000;
