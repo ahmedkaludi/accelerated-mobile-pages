@@ -1164,7 +1164,7 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
       box-sizing: border-box;
     }
     .collapsible-captions .amp-carousel-container  {position: relative; width: 100%;}
-    .collapsible-captions amp-img img {object-fit: fill; }
+    .collapsible-captions amp-img img {object-fit: contain; }
     .collapsible-captions figure { margin: 0; padding: 0; }
     .collapsible-captions figcaption { position: absolute; bottom: 0;width: 100%;
       max-height: var(--caption-height);margin-bottom:0;

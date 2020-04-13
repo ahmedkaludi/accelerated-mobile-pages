@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4
-Stable tag: 1.0.38
+Stable tag: 1.0.39
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.39 (3rd April 2020) =
+* Improvement: Code improvements in related post #4300
+* Fixed: Images are streching in the gallary #4334
+
 = 1.0.38 (1st April 2020) =
 * Improvement: Added Title for facebook comments section #3716
 * Improvement: Added iZooto support for AMP #4312
@@ -214,16 +218,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Design breaks in 2 column layout pagebuilder in Design 2 #4313
 * Fixed: Hide AMP Bulk Tools option isn't working with WPML #4249
 * Fixed: Transparent header background color not working #4315
-
-= 1.0.36 (26th March 2020) =
-* Improvement: Added filter to modify role based access #4303
-* Improvement: Added "srcset" on featured images #4257
-* Improvement: Added option to resize the author images in author bio #4297
-* Fixed: AMP child theme not working after update #4310
-* Fixed: amp-fx-collection script was not loading #4275
-* Fixed: Minify HTML & Query Monitor not working on some pages in AMP #4301
-* Fixed: Related posts doesn't show more than 3-4 #4300
-* Fixed: Incorrect alignment of Edit in twenty twenty WP theme #4246
-* Fixed: Social Icons are out of alignment in Design 2 #4305
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
