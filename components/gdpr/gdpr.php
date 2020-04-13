@@ -251,6 +251,7 @@ function ampforwp_gdpr_css(){
 	} ?>
 	footer amp-consent.amp-active {
 	    z-index:9999;
+	    display: initial;
 	    position: inherit;
 	}	
 <?php }
