@@ -639,6 +639,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('aawp-for-amp/aawp-for-amp.php')? 1 : 2),
                         ),
+                        array(
+                            'name'=>'Formidable forms for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Formidable forms Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/Formidable-Forms-for-amp.png',
+                            'price'=>'$79',
+                            'url_link'=>'https://ampforwp.com/addons/formidable-forms-for-amp/',
+                            'plugin_active_path'=> 'formidable-forms-for-amp/formidable-forms-for-amp.php',
+                            'item_name'=>'Formidable forms for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('formidable-forms-for-amp/formidable-forms-for-amp.php')? 1 : 2),
+                        ),    
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
