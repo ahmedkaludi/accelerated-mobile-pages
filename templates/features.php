@@ -8502,7 +8502,7 @@ function ampforwp_webp_express_compatibility($content){
 	}	
 	return $content;
 }
-if(ampforwp_get_setting('ampforwp_server_side_rendering')){
+if(ampforwp_get_setting('ampforwp_server_side_rendering') && !class_exists('AMPforWPCache')){
 	add_filter("ampforwp_the_content_last_filter",'ampforwp_render_server_side',30);
 }
 function ampforwp_render_server_side($content){
