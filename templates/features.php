@@ -4097,6 +4097,9 @@ function ampforwp_post_paginated_link_generator( $i ) {
 // Modify the content to make Pagination work on Pages and FrontPage #2253
 add_filter('ampforwp_modify_the_content','ampforwp_post_paginated_content');
 function ampforwp_post_paginated_content($content){
+	if(preg_match('/<a(.*?)data-pin-do="embedPin"(.*?)href="(.*?)"><\/a>/', $content)){
+ 		$content = preg_replace('/<a(.*?)data-pin-do="embedPin"(.*?)href="(.*?)"><\/a>/', '<amp-pinterest width="250" height="500" data-do="embedPin" data-url="$3"></amp-pinterest>', $content);
+	}
 	if ( is_singular() || ampforwp_is_front_page() ){
 		global $redux_builder_amp, $page, $multipage;
 		$ampforwp_new_content = $ampforwp_the_content = $checker = '';
@@ -8511,12 +8514,4 @@ function ampforwp_render_server_side($content){
 		$xpath = new DOMXPath($dom);
 		$ssr = AMP_Server_Side_Rendering::ampforwp_server_side_redering($dom,$xpath);
 		return $ssr;
-}
-
-add_filter('ampforwp_modify_the_content','ampforwp_pinterest_embed');
-function ampforwp_pinterest_embed($content){
-	if(preg_match('/<a(.*?)data-pin-do="embedPin"(.*?)href="(.*?)"><\/a>/', $content)){
- 		$content = preg_replace('/<a(.*?)data-pin-do="embedPin"(.*?)href="(.*?)"><\/a>/', '<amp-pinterest width="250" height="500" data-do="embedPin" data-url="$3"></amp-pinterest>', $content);
-	}
-	return $content;
 }
