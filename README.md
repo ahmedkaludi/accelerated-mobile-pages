@@ -212,6 +212,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: There is no save button in AMP "Basic setup" #4343
 * Fixed: Debug warning #4341
 
+= 1.0.39 (3rd April 2020) =
+* Improvement: Code improvements in related post #4300
+* Fixed: Images are streching in the gallary #4334
+
 = 1.0.38 (1st April 2020) =
 * Improvement: Added Title for facebook comments section #3716
 * Improvement: Added iZooto support for AMP #4312
