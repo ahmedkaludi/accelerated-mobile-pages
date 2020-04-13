@@ -12,7 +12,7 @@ class AMP_Server_Side_Rendering {
 		return $dom->saveHTML();
 	}
 	public static function ampforwp_get_transform_attribute($dom,$xpath) {
-		$is_boilerplate = AMP_Server_Side_Rendering::ampforwp_check_element_existance($dom,$xpath);
+		$is_boilerplate = AMP_Server_Side_Rendering::ampforwp_check_amp_boilerplate($dom,$xpath);
 		$nodes = $xpath->query("//html");
 		foreach($nodes as $node) {
 		    $node->setAttribute('i-amphtml-layout', '');
@@ -23,7 +23,7 @@ class AMP_Server_Side_Rendering {
 		}
 		return;
 	}
-	public static function ampforwp_check_element_existance($dom,$xpath){
+	public static function ampforwp_check_amp_boilerplate($dom,$xpath){
 		$is_boilerplate = true;
 		$elem_arr = array('amp-experiment','amp-dynamic-css-classes');
 		$nodes = $xpath->query("//script[@custom-element]");
@@ -36,7 +36,7 @@ class AMP_Server_Side_Rendering {
 	    return $is_boilerplate;
 	}
 	public static function ampforwp_remove_ssr_boilerplate($dom,$xpath){
-		$is_boilerplate = AMP_Server_Side_Rendering::ampforwp_check_element_existance($dom,$xpath);
+		$is_boilerplate = AMP_Server_Side_Rendering::ampforwp_check_amp_boilerplate($dom,$xpath);
 		if(!$is_boilerplate){
 			return false;
 		}
