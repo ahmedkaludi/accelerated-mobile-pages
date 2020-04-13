@@ -627,6 +627,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('izooto-for-amp/izooto-for-amp.php')? 1 : 2)
                         ),
+                        array(
+                            'name'=>'AAWP for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Display Amazon Affiliate links , nice product boxes, bestseller list ,comparison tables and much more! in AMP Pages.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/aawp-for-amp-logo.png',
+                            'price'=>'$79',
+                            'url_link'=>'https://ampforwp.com/addons/aawp-for-amp/',
+                            'plugin_active_path'=> 'aawp-for-amp/aawp-for-amp.php',
+                            'item_name'=>'AAWP for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('aawp-for-amp/aawp-for-amp.php')? 1 : 2),
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
