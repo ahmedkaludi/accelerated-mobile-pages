@@ -119,12 +119,12 @@ function amp_title(){
 		$ampforwp_title = get_the_title($ID);
 		$ampforwp_title =  apply_filters('ampforwp_filter_single_title', $ampforwp_title);
 		if(!empty($ampforwp_title) && (ampforwp_default_logo() || ampforwp_get_setting('opt-media','url')!='')){
-		?>
-			<h1 class="amp-post-title"><?php echo wp_kses_data( $ampforwp_title ); ?></h1>
-		<?php
-		}else{?>
-			<h2 class="amp-post-title"><?php echo wp_kses_data( $ampforwp_title ); ?></h2>
-		<?php }
+			$title_tag = '<h1 class="amp-post-title">' . wp_kses_data( $ampforwp_title ) . '</h1>'; 
+		}else{ 
+			$title_tag = '<h2 class="amp-post-title">' . wp_kses_data( $ampforwp_title ) . '</h2>'; 
+		}
+		$title_tag = apply_filters('ampforwp_modify_title_tag',$title_tag);
+		echo $title_tag; // Escaped above 
 		do_action('ampforwp_below_the_title');
     }
 }
