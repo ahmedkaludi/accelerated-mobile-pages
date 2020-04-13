@@ -8218,3 +8218,20 @@ function ampforwp_themify_compatibility($content){
 	}
 	return $content;
 }
+if(class_exists('RankMath')){
+	add_filter('ampforwp_modify_the_content','ampforwp_rank_math_external_link_newtab');
+}
+function ampforwp_rank_math_external_link_newtab($content){
+	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
+	if($rank_math_external_link){
+		preg_match_all('/<a href="(.*?)">(.*?)<\/a>/', $content, $matches);
+		for($i=0;$i<count($matches[1]);$i++){
+			$url = $matches[1][$i];
+			$is_external = ampforwp_isexternal($url);
+			if($is_external){
+				$content = preg_replace('/<a href="(.*?)">(.*?)<\/a>/', '<a href="$1" target="_blank">$2</a>', $content);
+			}
+		}
+	}
+	return $content;
+}	
