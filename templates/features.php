@@ -7343,7 +7343,7 @@ function ampforwp_head_css(){
 			$wp_admin_bar->remove_menu( 'ampforwp-view-amp' );
 			$url = ampforwp_get_non_amp_url();
 			if (get_query_var('tag')) {
-        		$url = esc_url($url). '?tag='.get_query_var('tag');
+        		$url = esc_url($url). '?tag='.esc_sql(get_query_var('tag'));
         	}
 			$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-non-amp',
