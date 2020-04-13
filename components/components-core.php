@@ -703,6 +703,7 @@ function amp_author_meta( $args ) {
 // amp-animation CSS #2819
 add_action('amp_post_template_css','ampforwp_backtotop_global_css');
 function ampforwp_backtotop_global_css(){?>
+	.amp-wp-content table , .cntn-wrp.artl-cnt table{height: auto;}
 	amp-img.amp-wp-enforced-sizes[layout=intrinsic] > img, .amp-wp-unknown-size > img { object-fit: contain; }
 	.rtl amp-carousel {direction: ltr;}
 	.rtl .amp-menu .toggle:after{left:0;right:unset;}
@@ -743,7 +744,7 @@ function ampforwp_backtotop_global_css(){?>
             table.wp-block-table.alignright,table.wp-block-table.alignleft,table.wp-block-table.aligncenter{width: auto;}
             table.wp-block-table.aligncenter{width: 50%;}
             table.wp-block-table.alignfull,table.wp-block-table.alignwide{display: table;}
-            table { display: inline-table; overflow-x: auto; }
+            table { overflow-x: auto; }
             table a:link { font-weight: bold; text-decoration: none; }
             table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
             table a:active, table a:hover { color: #bd5a35; text-decoration: underline; }
