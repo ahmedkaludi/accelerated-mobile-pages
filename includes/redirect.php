@@ -66,7 +66,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
   $current_url = $check = '';
   $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
                 "https" : "http") . "://" . AMPFROWP_HOST_NAME .  
-                $_SERVER['REQUEST_URI'];              
+                htmlspecialchars( $_SERVER['REQUEST_URI'] );              
   $current_url = explode('/', $current_url);
   $check =  '?nonamp=1';
   if (( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) && function_exists('session_start') && !isset($_SESSION)){
