@@ -135,6 +135,7 @@ function ampforwp_push_notification_options($opt_name){
                             'type'      => 'switch',
                             'title'     => esc_html__('Pages','accelerated-mobile-pages'),
                             'class' => 'child_opt child_opt_arrow',
+                            'tooltip-subtitle'   => esc_html__('Enable this option to show one signal notification on your pages', 'accelerated-mobile-pages'),
                             'required' => array( 'ampforwp-web-push', '=' , '1' ),        
                     ),
                     $izooto_notice, 
