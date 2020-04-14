@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.41 (14th April 2020) =
+* Improvement: Video docking issue #4352
+
 = 1.0.40 (14th April 2020) =
 * Improvement: Added Filter to change post title tag #4339
 * Improvement: Added Rankmath's open external links option feature #4356
