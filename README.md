@@ -194,19 +194,22 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.40 (13th April 2020) =
+= 1.0.40 (14th April 2020) =
 * Improvement: Added Filter to change post title tag #4339
 * Improvement: Added Rankmath's open external links option feature #4356
 * Improvement: Added Themify compatibility #4332
 * Improvement: Added AAWP for AMP extension #4337
 * Improvement: Added Formidable forms for AMP #4345
+* Improvement: Added Reading progress bar for AMP #4364
+* Improvement: Added hooks in header for all designs #4359
+* Improvement: Added option for one signal notificaion on the pages #4349
 * Fixed: Mobile redirection not working in the latest update #4336
 * Fixed: AMP option panel not working in Best brokers plugin #4330
-* Fixed: AMP option panel not working in custom theme of user #4330
+* Fixed: AMP option panel not working in custom theme of user #4353
 * Fixed: Table not looking good on mobiles #4309
 * Fixed: Double quotes in the font-family breaks default Typography #4328
 * Fixed: Featured images are getting streched in the amp version #4307
-* Fixed: The menu and article links not working after enabling GDPR #4349
+* Fixed: The menu and article links not working after enabling GDPR #4340
 * Fixed: Facebook instance article is not working in plain permalink #4354
 * Fixed: Video docking is not working in AMP #4352
 * Fixed: There is no save button in AMP "Basic setup" #4343
