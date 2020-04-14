@@ -15,7 +15,7 @@ if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( $amp_font_selecto
 <?php } ?>
 
 body{<?php 
-	$fontFamily = "font-family: 'Arial, Helvetica, sans-serif';";
+	$fontFamily = "font-family: Arial, Helvetica, sans-serif;";
 if( 1==ampforwp_get_setting('ampforwp-google-font-switch')){
 	$fontFamily = "font-family: 'Poppins', sans-serif;";
 	if( $amp_font_selector != 1 && !empty( $amp_font_selector )){ 
@@ -30,7 +30,7 @@ font-size: 16px; line-height:1.25; }
 		.cntn-wrp{
 		<?php
 		$amp_font_selector_content_single = ampforwp_get_setting('amp_font_selector_content_single');
-		 $fontFamily = "font-family: 'Arial, Helvetica, sans-serif'";
+		 $fontFamily = "font-family: Arial, Helvetica, sans-serif";
 		if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
 			 $fontFamily = "font-family: 'Poppins', sans-serif;";
 			if( $amp_font_selector_content_single != 1 && !empty($amp_font_selector_content_single)){

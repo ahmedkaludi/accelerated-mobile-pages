@@ -130,6 +130,14 @@ function ampforwp_push_notification_options($opt_name){
                             'class' => 'child_opt child_opt_arrow',
                             'tooltip-subtitle'  => '<a href="https://ampforwp.com/tutorials/one-signal-in-amp/" target="_blank">View Integration Tutorial</a> (HTTPS is required)',
                             ),
+                    array(
+                            'id'        => 'ampforwp-one-signal-page',
+                            'type'      => 'switch',
+                            'title'     => esc_html__('Pages','accelerated-mobile-pages'),
+                            'class' => 'child_opt child_opt_arrow',
+                            'tooltip-subtitle'   => esc_html__('Enable this option to show one signal notification on your pages', 'accelerated-mobile-pages'),
+                            'required' => array( 'ampforwp-web-push', '=' , '1' ),        
+                    ),
                     $izooto_notice, 
                     $izt_opt4,
                     array(

@@ -598,7 +598,7 @@ if( !ampforwp_woocommerce_conditional_check() ) { ?>
 pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;margin-bottom: 20px;}
 .cntn-wrp{
 <?php
-$fontFamily = "font-family: 'Arial, Helvetica, sans-serif'";
+$fontFamily = "font-family: Arial, Helvetica, sans-serif";
 if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
 	$fontFamily = "font-family: 'Poppins', sans-serif;";
 	if(isset($redux_builder_amp['amp_font_selector_content_single']) && $redux_builder_amp['amp_font_selector_content_single'] != 1 && !empty($redux_builder_amp['amp_font_selector_content_single'])){ 
@@ -674,7 +674,7 @@ if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
 .amp-tags .amp-tag:after{content: "/";display: inline-block;padding: 0px 10px;position: relative;top: -1px;color: #ccc;font-size: 12px;}
 .amp-tags .amp-tag:last-child:after{display:none;}
 .ss-ic li:before{border-radius: 2px;text-align:center;padding: 4px 6px;}
-.sgl table {width: 100%;margin-bottom:25px;border: 1px solid #ddd;display: inline-table;}
+.sgl table {width: 100%;margin-bottom:25px;border: 1px solid #ddd;}
 .sgl th , .sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
 .sgl tr:nth-child(odd) td {background: #f7f7f7;}
 <?php // Social Sharing Conditional CSS

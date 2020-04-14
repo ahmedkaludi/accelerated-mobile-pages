@@ -7484,7 +7484,10 @@ function ampforwp_head_css(){
 			$title = $user_info->title;
 		}
 		if($title){
+			// To Suppress Warnings
+       		libxml_use_internal_errors(true);
 			$dom->loadHTML($title);
+			libxml_use_internal_errors(false);
 			$anchors = $dom -> getElementsByTagName('img'); 
 			$src="";
 			foreach($anchors as $im){
@@ -7984,14 +7987,14 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 	//OTHER COMPONENT CHECK 
-	$other_comp_arr = array('amp-mustache'=>'amp-mustache','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection');
+	$other_comp_arr = array('amp-mustache'=>'amp-mustache','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection','dock'=>'amp-video-docking');
 	foreach ($other_comp_arr as $key => $value) {
 		$ocomp = $value;
 		$celem = 'element';
 		if($ocomp=='amp-mustache'){
 			$celem = 'template';
 		}
-		if(preg_match('/(type|template|id)="('.$ocomp.')"/', $content) || preg_match("/<\/$key>/",  $content) || preg_match("/amp-fx/",  $content)){
+		if(preg_match('/(type|template|id)="('.$ocomp.')"/', $content) || preg_match("/<\/$key>/",  $content) || preg_match("/amp-fx/",  $content) || preg_match('/<(amp-(video|brightcove|dailymotion|delight-player|ima-video|video-iframe|youtube)).*?dock(.*?)><\/amp-.*?>/s', $content)){
 			if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
 				$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
 				$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
@@ -8192,3 +8195,46 @@ if(!function_exists('ampforwp_check_image_existance')){
 		return $image;
 	}
 }
+
+if (function_exists('themify_builder_activate')) {
+	add_filter('ampforwp_modify_the_content','ampforwp_themify_compatibility');
+}
+function ampforwp_themify_compatibility($content){
+	$get_data =  get_post_meta(ampforwp_get_the_ID(),'_themify_builder_settings_json',true);
+	if($get_data){
+		$decode = json_decode($get_data,true);
+		for($i=0;$i<count($decode);$i++){
+		$cols = $decode[$i]['cols'];
+		for($j=0;$j<count($cols);$j++){
+			if (isset($cols[$j]['modules'])) {
+			$modules = $cols[$j]['modules'];
+			for($k=0;$k<count($modules);$k++){
+				foreach ($modules as $key => $value) {
+					foreach ($value['mod_settings'] as $key => $val) {
+						$content.=$val;
+					}
+				}
+			}
+			}
+	    }
+		}
+	}
+	return $content;
+}
+if(class_exists('RankMath')){
+	add_filter('ampforwp_modify_the_content','ampforwp_rank_math_external_link_newtab');
+}
+function ampforwp_rank_math_external_link_newtab($content){
+	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
+	if($rank_math_external_link){
+		preg_match_all('/<a href="(.*?)">(.*?)<\/a>/', $content, $matches);
+		for($i=0;$i<count($matches[1]);$i++){
+			$url = $matches[1][$i];
+			$is_external = ampforwp_isexternal($url);
+			if($is_external){
+				$content = preg_replace('/<a href="(.*?)">(.*?)<\/a>/', '<a href="$1" target="_blank">$2</a>', $content);
+			}
+		}
+	}
+	return $content;
+}	

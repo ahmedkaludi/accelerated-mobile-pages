@@ -1068,16 +1068,26 @@ jQuery(document).ready(function($) {
         }
     },10);
     $(".redux-group-tab-link-li").click(function(){
-        if($(this).hasClass('ampforwp-new-ux')){
+        var this_c_val = $(this).children('a').children('span.group_title').html();
+        if($(this).hasClass('ampforwp-new-ux') || $(this).hasClass('opt-go-premium')){
             $('#redux-footer-sticky').hide();
             $('#redux-footer-sticky #redux-footer').addClass("hide");
         }else{
-            if($(this).hasClass('amp-opt-settings') || $(this).hasClass('amp-opt-design')){
-                if($('#redux-footer-sticky #redux-footer').hasClass('hide')){
-                    $('#redux-footer-sticky').show();
-                    $('#redux-footer-sticky #redux-footer').removeClass("hide");
-                    $('#redux-footer-sticky #redux-footer').css({'position': 'fixed', 'bottom': '0px', 'width': '818px', 'left': '379px', 'background': 'rgb(238, 238, 238)'});
-                }
+            $('#redux-footer-sticky').show();
+            $('#redux-footer-sticky #redux-footer').removeClass("hide");
+            
+        }
+         // There is no save button in AMP "Basic setup" #4343
+        var selected = $(".amp-opt-change:checked").parent().find('label').attr('id');
+        if(selected=='basic'){
+            if(!$(this).hasClass('ampforwp-new-ux') && !$(this).hasClass('opt-go-premium')){
+                $('#redux-footer-sticky').show();
+                $('#redux-footer-sticky #redux-footer').removeClass("hide");
+                
+               
+            }else{
+                $('#redux-footer-sticky').hide();
+                $('#redux-footer-sticky #redux-footer').addClass("hide");
             }
         }
     });

@@ -627,6 +627,42 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('izooto-for-amp/izooto-for-amp.php')? 1 : 2)
                         ),
+                        array(
+                            'name'=>'AAWP for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Display Amazon Affiliate links , nice product boxes, bestseller list ,comparison tables and much more! in AMP Pages.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/aawp-for-amp-logo.png',
+                            'price'=>'$79',
+                            'url_link'=>'https://ampforwp.com/addons/aawp-for-amp/',
+                            'plugin_active_path'=> 'aawp-for-amp/aawp-for-amp.php',
+                            'item_name'=>'AAWP for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('aawp-for-amp/aawp-for-amp.php')? 1 : 2),
+                        ),
+                        array(
+                            'name'=>'Formidable forms for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Formidable forms Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/Formidable-Forms-for-amp.png',
+                            'price'=>'$79',
+                            'url_link'=>'https://ampforwp.com/addons/formidable-forms-for-amp/',
+                            'plugin_active_path'=> 'formidable-forms-for-amp/formidable-forms-for-amp.php',
+                            'item_name'=>'Formidable forms for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('formidable-forms-for-amp/formidable-forms-for-amp.php')? 1 : 2),
+                        ), 
+                        array(
+                            'name'=>'Reading Progress Bar for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Allows you to Add Reading Progress Bar support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/reading-progress-bar-for-amp.png',
+                            'price'=>'$29',
+                            'url_link'=>'https://ampforwp.com/addons/reading-progress-bar-for-amp/',
+                            'plugin_active_path'=> 'reading-progress-bar-for-amp/reading-progress-bar-for-amp.php',
+                            'item_name'=>'Reading Progress Bar for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('reading-progress-bar-for-amp/reading-progress-bar-for-amp.php')? 1 : 2),
+                        ),   
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
@@ -2436,6 +2472,9 @@ function ampforwp_fb_instant_article() {
     $input = ''; 
 
     $feedname   = 'instant_articles';
+    if(get_option('permalink_structure') == ''){
+        $feedname = '?feed=instant_articles';
+    }
     $fb_instant_article_feed = trailingslashit( site_url() ).$feedname ;
     $input      =  '<a href=" '. esc_url($fb_instant_article_feed)  . '" target="_blank">' .  esc_url( $fb_instant_article_feed ). '</a>' ;
 
