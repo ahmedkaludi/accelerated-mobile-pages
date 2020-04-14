@@ -1075,7 +1075,7 @@ jQuery(document).ready(function($) {
         }else{
             $('#redux-footer-sticky').show();
             $('#redux-footer-sticky #redux-footer').removeClass("hide");
-            $('#redux-footer-sticky #redux-footer').css({'position': 'fixed', 'bottom': '0px', 'width': '818px', 'left': '379px', 'background': 'rgb(238, 238, 238)'});
+            
         }
          // There is no save button in AMP "Basic setup" #4343
         var selected = $(".amp-opt-change:checked").parent().find('label').attr('id');
@@ -1083,7 +1083,7 @@ jQuery(document).ready(function($) {
             if(!$(this).hasClass('ampforwp-new-ux') && !$(this).hasClass('opt-go-premium')){
                 $('#redux-footer-sticky').show();
                 $('#redux-footer-sticky #redux-footer').removeClass("hide");
-                $('#redux-footer-sticky #redux-footer').css({'position': 'fixed', 'bottom': '0px', 'width': '818px', 'left': '379px', 'background': 'rgb(238, 238, 238)'});
+                
                
             }else{
                 $('#redux-footer-sticky').hide();
