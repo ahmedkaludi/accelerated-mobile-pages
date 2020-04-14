@@ -123,7 +123,7 @@ function amp_title(){
 		}else{ 
 			$title_tag = '<h2 class="amp-post-title">' . wp_kses_data( $ampforwp_title ) . '</h2>'; 
 		}
-		$title_tag = apply_filters('ampforwp_modify_title_tag',$title_tag);
+		$title_tag = apply_filters('ampforwp_modify_title_tag',$title_tag,$ampforwp_title);
 		echo $title_tag; // Escaped above 
 		do_action('ampforwp_below_the_title');
     }
