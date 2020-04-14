@@ -591,6 +591,18 @@ $extension_listing_array = array(
                             'item_name'=>'Formidable forms for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('formidable-forms-for-amp/formidable-forms-for-amp.php')? 1 : 2),
+                        ),
+                        array(
+                            'name'=>'Reading Progress Bar for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Allows you to Add Reading Progress Bar support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/reading-progress-bar-for-amp.png',
+                            'price'=>'$29',
+                            'url_link'=>'https://ampforwp.com/addons/reading-progress-bar-for-amp/',
+                            'plugin_active_path'=> 'reading-progress-bar-for-amp/reading-progress-bar-for-amp.php',
+                            'item_name'=>'Reading Progress Bar for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('reading-progress-bar-for-amp/reading-progress-bar-for-amp.php')? 1 : 2),
                         ), 
                         array(
                             'name'=>'JW Player Compatibility for AMP',
