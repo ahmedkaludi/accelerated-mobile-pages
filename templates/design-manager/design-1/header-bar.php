@@ -3,7 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 global $redux_builder_amp; ?>
-<?php do_action('ampforwp_admin_menu_bar_front'); ?>
+<?php do_action('ampforwp_admin_menu_bar_front'); 
+      do_action('ampforwp_reading_progress_bar'); ?>
 <header id="#top" class="amp-wp-header">
   <div class="ampforwp-logo-area" >
     <?php do_action('ampforwp_header_top_design1'); ?>
