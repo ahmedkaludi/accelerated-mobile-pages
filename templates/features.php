@@ -8461,6 +8461,23 @@ function ampforwp_referesh_related_post(){
 		$my_query->the_post();
 		update_post_meta(get_the_ID(),'ampforwp-amp-on-off','default');
 	}
+	$args=array(
+	    'post_status'           => 'publish',
+        'ignore_sticky_posts'   => true,
+        'posts_per_page'        => 50,
+        'no_found_rows' => true,
+		'meta_query' => array(
+			array(
+					'key' => 'ampforwp-ia-on-off', 
+		    		'compare' => 'NOT EXISTS',
+				)
+		)
+	);
+	$my_query = new wp_query( $args );
+	while( $my_query->have_posts() ) {
+		$my_query->the_post();
+		update_post_meta(get_the_ID(),'ampforwp-ia-on-off','default');
+	}
 	delete_transient('ampforwp_get_not_meta_post_count');
 	$data['response'] = ampforwp_get_post_percent();
 	echo json_encode($data);
