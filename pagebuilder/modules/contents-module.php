@@ -551,8 +551,10 @@ if ( is_admin() ) {
           $queryUrl = esc_url(ampforwp_url_controller(get_permalink(ampforwp_get_the_ID())));
         }
         if( isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1){
-        $_POST['ampforwp_clearcache'] = array('all');
-        ampforwp_pagination_cache();
+        if(class_exists('AMPforWPCache')){
+          $_POST['ampforwp_clearcache'] = array('all');
+          ampforwp_pagination_cache();
+        }  
         /*Pagination Sart*/
         $offset = $fieldValues['posts_offset'];
         $per_page = $the_query->query['posts_per_page'];
