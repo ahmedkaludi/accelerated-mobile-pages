@@ -8106,7 +8106,7 @@ function ampforwp_include_required_scripts($content){
 		if($ocomp=='amp-mustache'){
 			$celem = 'template';
 		}
-		if(preg_match('/(type|template|id)="('.$ocomp.')"/', $content) || preg_match("/<\/$key>/",  $content)|| preg_match("/amp-fx/",  $content) || preg_match('/<amp-(.*?)dock(.*?)>/', $content)){
+		if(preg_match('/(type|template|id)="('.$ocomp.')"/', $content) || preg_match("/<\/$key>/",  $content)|| preg_match("/amp-fx/",  $content) || preg_match('/dock="#dock-slot"/', $content)){
 			if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
 				$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
 				$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';

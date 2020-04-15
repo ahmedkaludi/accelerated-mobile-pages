@@ -95,7 +95,11 @@ class AMPforWP_YouTube_Embed_Handler extends AMP_Base_Embed_Handler {
 				'layout' => 'responsive',
 				'width' => $this->args['width'],
 				'height' => $this->args['height'],
+
 				);
+		if(ampforwp_get_setting('ampforwp-amp-video-docking')==true){
+				$attrs['dock'] = '#dock-slot';
+		}
 		$attrs = ampforwp_amp_consent_check( $attrs );
 		return AMP_HTML_Utils::build_tag('amp-youtube',apply_filters('amp_youtube_params', $attrs) );
 	}
