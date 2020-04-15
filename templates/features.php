@@ -4686,7 +4686,7 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 					}
 				}
 			}else{
-				preg_match_all('/<img(.*?)src=[\'"]([^\'"]+)[\'"].*.>/i', $post->post_content, $matches);
+				preg_match_all('/<img(.*?)src=[\'"]([^\'"]+)[\'"](.*?)\/>/i', $post->post_content, $matches);
 				if(isset($matches[2][0])){
 					$image_html 	= $matches[0][0];
 					$image_url 		= $matches[2][0];
