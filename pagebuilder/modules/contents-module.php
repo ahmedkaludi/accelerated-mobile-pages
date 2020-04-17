@@ -554,6 +554,7 @@ if ( is_admin() ) {
         if(class_exists('AMPforWPCache')){
           $_POST['ampforwp_clearcache'] = array('all');
           ampforwp_pagination_cache();
+          remove_filter('ampforwp_the_content_last_filter','ampforwp_tree_shaking_purify_amphtml',11);
         }  
         /*Pagination Sart*/
         $offset = $fieldValues['posts_offset'];
