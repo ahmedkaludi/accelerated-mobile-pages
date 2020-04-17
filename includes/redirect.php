@@ -268,6 +268,9 @@ if(function_exists('ampforwp_mobile_redirect_preseve_link')){
     if(get_query_var( 'json' )){
       return; 
     }
+    if(get_query_var( 'robots' )){
+      return; 
+    }
     // #1192 Password Protected posts exclusion
     if ( post_password_required( $post ) ) { 
       return; 
