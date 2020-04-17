@@ -102,9 +102,11 @@ if(function_exists('amp_activate')){
 
 if( ! function_exists('ampforwp_onesignal_notifications_widget') ){
 	function ampforwp_onesignal_notifications_widget(){
-	global $redux_builder_amp;
-
-	if(is_single() && '1' == ampforwp_get_setting('ampforwp-web-push') && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
+	$checker = false;
+	if ( is_single() || ( (is_page() || ampforwp_is_front_page()) && true == ampforwp_get_setting('ampforwp-one-signal-page'))){
+		$checker = true;
+	}
+	if('1' == ampforwp_get_setting('ampforwp-web-push') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && $checker ){?>
 		<!-- A subscription widget -->
 	<div class="amp-web-push-container">
 		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="245" height="45">
@@ -150,8 +152,11 @@ if(!function_exists('ampforwp_onesignal_notifications_script')){
 add_action('amp_post_template_css' , 'ampforwp_onesignal_notifications_styling' , 99);
 if(!function_exists('ampforwp_onesignal_notifications_styling')){
 	function ampforwp_onesignal_notifications_styling(){
-	global $redux_builder_amp;
-	if('1' == ampforwp_get_setting('ampforwp-web-push') && !checkAMPforPageBuilderStatus(get_the_ID()) && is_single() ){ ?>
+	$checker = false;
+	if ( is_single() || ( (is_page() || ampforwp_is_front_page()) && true == ampforwp_get_setting('ampforwp-one-signal-page'))){
+		$checker = true;
+	}
+	if('1' == ampforwp_get_setting('ampforwp-web-push') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && $checker ){?>
     amp-web-push-widget button.subscribe { display: inline-flex; align-items: center; border-radius: 2px; border: 0; box-sizing: border-box; margin: 0; padding: 10px 15px; cursor: pointer; outline: none; font-size: 15px; font-weight: 400; background: #4A90E2; color: white; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5); -webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
     amp-web-push-widget button.subscribe .subscribe-icon {margin-right: 10px;}
     amp-web-push-widget button.subscribe:active {transform: scale(0.99);}
