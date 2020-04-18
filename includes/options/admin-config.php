@@ -6197,6 +6197,14 @@ $single_page_options = array(
                esc_html__('Enable this option to show lightbox for images in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-lightbox-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
 
            ),
+           // video-docking 
+           array(
+              'id'       => 'ampforwp-amp-video-docking',
+              'type'     => 'switch',
+              'title'    => esc_html__('Video Docking', 'accelerated-mobile-pages'),
+              'tooltip-subtitle'    => esc_html__('On scroll, the video will minimize to an automatically calculated corner.', 'accelerated-mobile-pages'),
+              'default'  =>  '1',
+           ),
            // Dropcap 
            array(
               'id'       => 'ampforwp-dropcap',
