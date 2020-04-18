@@ -2392,5 +2392,32 @@ if ($ampforwp_font_icon == 'css-icons'){?>
     background-color: currentColor;
 
 }    
+.m-srch .overlay-search {
+    border: 1px solid #000;
+    top: 10px;
+}
+.m-srch .overlay-search:before {
+    padding-right: 0px;
+    top: 10px;
+}
+a.bread-link.bread-home::after {
+    content: "►";
+    top:-1px;
+}
+.lb-t:target a.lb-x {
+    width: 32px;
+    height: 32px;
+    top: 50px;
+    right: 20px;
+}
+.lb-t:target a.lb-x:before {
+    content: "X";
+    color: #000;
+    transform: rotate(40deg);
+    background-color: transparent;
+    top: 0px;
+    height: -17px;
+    margin: 7px;
+}
 }
 <?php }
