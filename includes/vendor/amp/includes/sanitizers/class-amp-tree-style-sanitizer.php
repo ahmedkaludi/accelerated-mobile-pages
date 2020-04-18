@@ -580,7 +580,8 @@ class AMP_treeshaking_Style_Sanitizer extends AMP_tree_Base_Sanitizer {
 
 		if ( ! in_array( $url_host, $allowed_hosts, true ) ) {
 			/* translators: %s: the file URL */
-			return new WP_Error( 'external_file_url', sprintf( __( 'URL is located on an external domain: %s.', 'amp' ), $url_host ) );
+			//return new WP_Error( 'external_file_url', sprintf( __( 'URL is located on an external domain: %s.', 'amp' ), $url_host ) );
+			return;
 		}
 
 		$base_path  = null;

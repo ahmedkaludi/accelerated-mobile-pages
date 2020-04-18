@@ -776,6 +776,9 @@ function ampforwp_ampwptheme_notice() {
 if ( ! defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH') ) {
 	define('AMP_FRAMEWORK_COMOPNENT_DIR_PATH', AMPFORWP_PLUGIN_DIR ."/components"); 
 }
+if(ampforwp_get_setting('ampforwp-amp-convert-to-native-theme')){
+	require_once( AMPFORWP_PLUGIN_DIR. 'components/native-mode.php' );
+}
 require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
 require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
 if ( !function_exists('amp_activate') ) {

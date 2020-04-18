@@ -2815,6 +2815,15 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => 'Enable this option when /amp/ is giving 404 after resaving the permalink settings.',
                         'desc'     => esc_html__( 'Making endpoints to ?amp will help you get the amp in tricky setups with taxonomies & post typs. Question mark in the url will not make any difference in the SEO.' ),
                     ),
+
+                array(
+                   'id'       => 'ampforwp-amp-convert-to-native-theme',
+                   'type'     => 'switch',
+                   'title'    => esc_html__('Native Mode (Beta)', 'accelerated-mobile-pages'),
+                   'tooltip-subtitle'  => sprintf( '%s<a href="%s" target="_blank">%s</a>%s', esc_html__("It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design and ",'accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-convert-your-non-amp-website-to-amp/'),esc_html__('Click Here','accelerated-mobile-pages'),esc_html__(' for more info','accelerated-mobile-pages')),
+                   'default'  => 0,
+                ), 
+
                     array(
                    'id'       => 'ampforwp-amp-convert-to-wp',
                    'type'     => 'switch',
