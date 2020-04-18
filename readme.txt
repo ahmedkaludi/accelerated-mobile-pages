@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4
-Stable tag: 1.0.40
+Stable tag: 1.0.41
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.41 (14th April 2020) =
+* Improvement: Video docking issue #4352
 
 = 1.0.40 (14th April 2020) =
 * Improvement: Added Filter to change post title tag #4339
