@@ -3971,6 +3971,10 @@ function ampforwp_post_paginated_link_generator( $i ) {
 // Modify the content to make Pagination work on Pages and FrontPage #2253
 add_filter('ampforwp_modify_the_content','ampforwp_post_paginated_content');
 function ampforwp_post_paginated_content($content){
+	//Embed pinterest images to the amp #4361
+	if(preg_match('/<a(.*?)data-pin-do="embedPin"(.*?)href="(.*?)"><\/a>/', $content)){
+ 		$content = preg_replace('/<a(.*?)data-pin-do="embedPin"(.*?)href="(.*?)"><\/a>/', '<amp-pinterest width="250" height="500" data-do="embedPin" data-url="$3"></amp-pinterest>', $content);
+	}
 	if ( is_singular() || ampforwp_is_front_page() ){
 		global $redux_builder_amp, $page, $multipage;
 		$ampforwp_new_content = $ampforwp_the_content = $checker = '';
