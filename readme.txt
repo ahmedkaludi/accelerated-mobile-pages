@@ -199,6 +199,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Improvement: Added Video docking feature in AMP #4352
 * Improvement: Added option for one signal notificaion on the pages #4349
 * Fixed: Mobile redirection issue on robots.txt page #4369 
+* Fixed: 404 error when we click on the comment section #4360
 
 = 1.0.41 (14th April 2020) =
 * Improvement: Video docking issue #4352
