@@ -1,5 +1,14 @@
 == Changelog ==
 
+= 1.0.42 (20th April 2020) =
+* Improvement: Added Comments module in our AMP page builder #4106
+* Improvement: Added CSS icons option #4268
+* Improvement: Added Call Rail analytics #4331
+* Improvement: Added Pinterest embeded images in AMP #4361
+* Improvement: Added Video docking feature in AMP #4352
+* Improvement: Added option for one signal notificaion on the pages #4349
+* Fixed: Mobile redirection issue on robots.txt page #4369 
+
 = 1.0.41 (14th April 2020) =
 * Improvement: Video docking issue #4352
 

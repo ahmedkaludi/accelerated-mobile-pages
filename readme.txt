@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4
-Stable tag: 1.0.41
+Stable tag: 1.0.42
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,15 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.42 (20th April 2020) =
+* Improvement: Added Comments module in our AMP page builder #4106
+* Improvement: Added CSS icons option #4268
+* Improvement: Added Call Rail analytics #4331
+* Improvement: Added Pinterest embeded images in AMP #4361
+* Improvement: Added Video docking feature in AMP #4352
+* Improvement: Added option for one signal notificaion on the pages #4349
+* Fixed: Mobile redirection issue on robots.txt page #4369 
+
 = 1.0.41 (14th April 2020) =
 * Improvement: Video docking issue #4352
 
@@ -214,30 +223,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Video docking is not working in AMP #4352
 * Fixed: There is no save button in AMP "Basic setup" #4343
 * Fixed: Debug warning #4341
-
-= 1.0.39 (3rd April 2020) =
-* Improvement: Code improvements in related post #4300
-* Fixed: Images are streching in the gallary #4334
-
-= 1.0.38 (1st April 2020) =
-* Improvement: Added Title for facebook comments section #3716
-* Improvement: Added iZooto support for AMP #4312
-* Fixed: Alignment issue in Advertisement Section #4325
-* Fixed: Slow Queries on Homepage in D3 #4319
-* Fixed: Category module links in AMP pagebuilder doesn't change to ?amp #4314
-* Fixed: Debug Warnings #4324 #4321 #4299
-
-= 1.0.37 (28th March 2020) =
-* Improvement: Added filter to change Author name #4238
-* Improvement: Added option to show/hide jetpack related post in AMP #4272
-* Improvement: Added option to show/hide sassy social share in AMP #4273
-* Improvement: Added iZooto Push Notification Option #4286
-* Improvement: Code Improvements in #4288 #4300
-* Fixed: Fatal Error - Class ‘QM_Dispatchers’ not found. #4322 
-* Fixed: Header shifting to left in swift 404 page #4316
-* Fixed: Fatal error on activation on old php versions #4320
-* Fixed: Design breaks in 2 column layout pagebuilder in Design 2 #4313
-* Fixed: Hide AMP Bulk Tools option isn't working with WPML #4249
-* Fixed: Transparent header background color not working #4315
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
