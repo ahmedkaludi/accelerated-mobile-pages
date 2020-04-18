@@ -14,38 +14,42 @@
 		return $dom->saveHTML();
 	}
 	function ampforwp_process_body_content($content){
-		preg_match('/<body(.*?)>(.*?)<\/body>/s',$content,$matches);
-		$amp_custom_content = new AMP_Content( $matches[2],
-	      apply_filters( 'amp_content_embed_handlers', array(
-	  				    'AMP_Twitter_Embed_Handler'     => array(),
-	  				    'AMP_YouTube_Embed_Handler'     => array(),
-						'AMP_DailyMotion_Embed_Handler' => array(),
-						'AMP_Vimeo_Embed_Handler'       => array(),
-						'AMP_SoundCloud_Embed_Handler'  => array(),
-						'AMP_Instagram_Embed_Handler'   => array(),
-						'AMP_Vine_Embed_Handler'        => array(),
-						'AMP_Facebook_Embed_Handler'    => array(),
-						'AMP_Pinterest_Embed_Handler'   => array(),
-						'AMP_Gallery_Embed_Handler'     => array(),
-						'AMP_Playlist_Embed_Handler'    => array(),
-	      ) ),
-	      apply_filters(  'amp_content_sanitizers', array(
-	  				    'AMP_Style_Sanitizer'     => array(),
-	  				    'AMP_Blacklist_Sanitizer' => array(),
-	  				    'AMP_Img_Sanitizer'       => array(),
-	  				    'AMP_Video_Sanitizer'     => array(),
-	  				    'AMP_Audio_Sanitizer'     => array(),
-	          			'AMP_Playbuzz_Sanitizer'  => array(),
-	  				    'AMP_Iframe_Sanitizer'    => array(
-	  					       'add_placeholder' => true,
-	  				    ),
-	      )  )
-	  );
-	  $con = $amp_custom_content->get_amp_content();
-	  $content = str_replace($matches[2], $con, $content);
+		if(preg_match('/<body(.*?)>(.*?)<\/body>/s', $content,$matches)){
+			
+			$amp_custom_content = new AMP_Content( $matches[2],
+		      apply_filters( 'amp_content_embed_handlers', array(
+		  				    'AMP_Twitter_Embed_Handler'     => array(),
+		  				    'AMP_YouTube_Embed_Handler'     => array(),
+							'AMP_DailyMotion_Embed_Handler' => array(),
+							'AMP_Vimeo_Embed_Handler'       => array(),
+							'AMP_SoundCloud_Embed_Handler'  => array(),
+							'AMP_Instagram_Embed_Handler'   => array(),
+							'AMP_Vine_Embed_Handler'        => array(),
+							'AMP_Facebook_Embed_Handler'    => array(),
+							'AMP_Pinterest_Embed_Handler'   => array(),
+							'AMP_Gallery_Embed_Handler'     => array(),
+							'AMP_Playlist_Embed_Handler'    => array(),
+		      ) ),
+		      apply_filters(  'amp_content_sanitizers', array(
+		  				    'AMP_Style_Sanitizer'     => array(),
+		  				    'AMP_Blacklist_Sanitizer' => array(),
+		  				    'AMP_Img_Sanitizer'       => array(),
+		  				    'AMP_Video_Sanitizer'     => array(),
+		  				    'AMP_Audio_Sanitizer'     => array(),
+		          			'AMP_Playbuzz_Sanitizer'  => array(),
+		  				    'AMP_Iframe_Sanitizer'    => array(
+		  					       'add_placeholder' => true,
+		  				    ),
+		      )  )
+		  );
+		$con = $amp_custom_content->get_amp_content();
+	 	$content = str_replace($matches[2], $con, $content);
+	  }
 	  return $content;	
 	}
 	function ampforwp_process_native_content($dom,$xpath) {
+		global $wp;
+		$go_to_url =  home_url(add_query_arg($_GET,$wp->request));
 		$nodes = $xpath->query("//html");
 		foreach($nodes as $node) {
 		    $node->setAttribute('amp','');
@@ -74,8 +78,9 @@
 		$domAttribute = $dom->createAttribute('amp-custom');
 		$style->appendChild($domAttribute);
 		$nodes->insertBefore($style,$nodes->firstChild);
-
+		ampforwp_generate_canonical_url($dom,$xpath,$nodes);
 		ampforwp_native_process_v0($dom,$xpath,$nodes);
+		ampforwp_remove_unncessary_attribute($xpath);
 	}
 	function ampforwp_native_boilerplate($dom,$xpath,$nodes){
 	    $boiler_css = 'body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}';
@@ -115,13 +120,23 @@
 		$domAttribute = $dom->createAttribute('as');
 		$v0jslink->appendChild($domAttribute);
 		$v0jslink->setAttribute("as", "script");
-		$domAttribute = $dom->createAttribute('as');
-		$v0jslink->appendChild($domAttribute);
-		$v0jslink->setAttribute("as", "script");
 		$domAttribute = $dom->createAttribute('href');
 		$v0jslink->appendChild($domAttribute);
 		$v0jslink->setAttribute("href", "https://cdn.ampproject.org/v0.js");
 		$nodes->insertBefore($v0jslink,$nodes->firstChild);
+	}
+	function ampforwp_generate_canonical_url($dom,$xpath,$nodes){
+		global $wp;
+		// Canonical
+		$can_url =  home_url(add_query_arg($_GET,$wp->request));
+		$canonical = $dom->createElement('link');
+		$domAttribute = $dom->createAttribute('rel');
+		$canonical->appendChild($domAttribute);
+		$canonical->setAttribute("rel", "canonical");
+		$domAttribute = $dom->createAttribute('href');
+		$canonical->appendChild($domAttribute);
+		$canonical->setAttribute("href", $can_url);
+		$nodes->insertBefore($canonical,$nodes->firstChild);
 	}
 	function ampforwp_native_css_sanitize($css){
 		$css = preg_replace( '/\s*!important/', '', $css, -1, $important_count );
@@ -130,5 +145,27 @@
             $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
         $css = str_replace(array (chr(10), ' {', '{ ', ' }', '} ', '( ', ' )', ' :', ': ', ' ;', '; ', ' ,', ', ', ';}', '::-' ), array('', '{', '{', '}', '}', '(', ')', ':', ':', ';', ';', ',', ', ', '}', ' ::-'), $css);
 		return $css;
+	}
+	function ampforwp_remove_unncessary_attribute($xpath){
+		$button = $xpath->evaluate("/html/body//button");
+		for ($i = 0; $i < $button->length; $i++) {
+	        $elem = $button->item($i);
+	        $elem->removeAttribute(':');	
+	        $elem->removeAttribute('ast-mobile-menu-buttons-minimal');	
+	        $elem->removeAttribute('astraampmenuexpanded');	
+	        $elem->removeAttribute('main-header-menu-toggle');	
+	        $elem->removeAttribute('toggled');	
+	        $elem->removeAttribute('toggle-on');	
+		}
+		$div = $xpath->evaluate("/html/body//div");
+		for ($i = 0; $i < $div->length; $i++) {
+	        $elem = $div->item($i);
+	        $elem->removeAttribute(':');	
+	        $elem->removeAttribute('ast-mobile-menu-buttons-minimal');	
+	        $elem->removeAttribute('astraampmenuexpanded');	
+	        $elem->removeAttribute('main-header-menu-toggle');	
+	        $elem->removeAttribute('toggled');	
+	        $elem->removeAttribute('toggle-on');	
+		}
 	}
 ?>
