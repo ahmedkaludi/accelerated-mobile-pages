@@ -6203,7 +6203,7 @@ $single_page_options = array(
               'type'     => 'switch',
               'title'    => esc_html__('Video Docking', 'accelerated-mobile-pages'),
               'tooltip-subtitle'    => esc_html__('On scroll, the video will minimize to an automatically calculated corner.', 'accelerated-mobile-pages'),
-              'default'  =>  '1',
+              'default'  =>  0,
            ),
            // Dropcap 
            array(
