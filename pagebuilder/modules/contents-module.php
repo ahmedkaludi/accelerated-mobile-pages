@@ -21,7 +21,8 @@ function ampforwp_content_module_pagination($args, $fieldValues){
   }
 }
  $output = '{{if_condition_content_layout_type==1}}
-            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cm {{user_class}}"><h4>{{content_title}}</h4>   
+            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cm {{user_class}}">
+            {{if_content_title}}<h4>{{content_title}}</h4> {{ifend_content_title}}
                 <div class="wrap"><ul>{{category_selection}}</ul></div>
                 {{pagination_links}}    
             </div>
