@@ -635,7 +635,7 @@ function amppb_post_content($content){
 							foreach($rowsData['cell_data'] as $colDevider){
 								$colData[$colDevider['cell_container']][] = $colDevider;
 							}
-							$html .= '<div class="col-2-wrap">';
+							$html .= '<div class="col-2-wrap col">';
 							foreach($colData as $data)
 								$html .= ampforwp_rowData($data,$rowsData['cells'],$moduleTemplate);
 							$html .= '</div>';
