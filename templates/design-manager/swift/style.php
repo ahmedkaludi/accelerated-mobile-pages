@@ -2433,12 +2433,15 @@ a.bread-link.bread-home::after {
 }
 .lb-t:target a.lb-x:before {
     content: "X";
-    color: #000;
-    transform: rotate(40deg);
+    color: #fff;
+    transform: rotate(45deg);
     background-color: transparent;
-    top: 0px;
+    top: -4px;
     height: -17px;
-    margin: 7px;
+    margin: 10px;
+}
+#search a.lb-x {
+    border: 1px solid #fff;
 }
 }
 <?php }
