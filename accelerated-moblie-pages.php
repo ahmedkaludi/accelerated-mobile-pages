@@ -919,7 +919,9 @@ if(!function_exists('ampforwp_get_setup_info')){
             $alexa_d = ampforwp_get_setting('ampforwp-alexa-domain');
             $afs_c = ampforwp_get_setting('ampforwp-afs-siteid');
             $clicky_side_id = ampforwp_get_setting('clicky-site-id');
-           	
+           	$cr_config_url = ampforwp_get_setting('ampforwp-callrail-config-url');
+           	$cr_number = ampforwp_get_setting('ampforwp-callrail-number');
+           	$cr_analytics_url = ampforwp_get_setting('ampforwp-callrail-analytics-url');
             $analytics_txt = "";
             $analytic_arr = array();
             if(ampforwp_get_setting('ampforwp-ga-switch') && $ga_field!="UA-XXXXX-Y" && $ga_field!=""){$analytic_arr[]="Google Analytics";}
@@ -937,6 +939,7 @@ if(!function_exists('ampforwp_get_setup_info')){
             if(ampforwp_get_setting('ampforwp-Alexa-switch') && $alexa_c!="" && $alexa_d!=""){$analytic_arr[]="Alexa Metrics";}
             if(ampforwp_get_setting('ampforwp-afs-analytics-switch') && $afs_c!=""){$analytic_arr[]="AFS Analytics";}
             if(ampforwp_get_setting('amp-clicky-switch') && $clicky_side_id!=""){$analytic_arr[]="Clicky Analytics";}
+            if(ampforwp_get_setting('ampforwp-callrail-switch') && $cr_config_url!="" && $cr_number!="" && $cr_analytics_url!=""){$analytic_arr[]="Call Rail Analytics";}
             $ux_content = implode(", ", $analytic_arr);
         }else if($ux_option=="ampforwp-ux-privacy-section"){
 			$ux_cookie_enable = ampforwp_get_setting('amp-enable-notifications');

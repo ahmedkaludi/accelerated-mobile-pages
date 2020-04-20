@@ -12,7 +12,7 @@ if($current_page=="amp_options"){
 		$options[$page->ID] = $page->post_title;
 	}
 }
-$analytics_options = array(''=>'Add Analytics Type','ampforwp-ga-switch'=>'Google Analytics','amp-use-gtm-option'=>'Google Tag Manager','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics');
+$analytics_options = array(''=>'Add Analytics Type','ampforwp-ga-switch'=>'Google Analytics','amp-use-gtm-option'=>'Google Tag Manager','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics','ampforwp-callrail-switch'=>'Call Rail Analytics');
 $analytics_default_option = ampforwp_get_setting('amp-analytics-select-option');
 $analytics_default = 'ampforwp-ga-switch';
 switch ($analytics_default_option) {
@@ -57,6 +57,9 @@ switch ($analytics_default_option) {
 		break;
 	case '14': 
 		$analytics_default = 'amp-clicky-switch';
+		break;
+	case '15': 
+		$analytics_default = 'ampforwp-callrail-switch';
 		break;
 	default:
 		break;
@@ -351,6 +354,19 @@ $amp_ux_fields = array(
 					'field_data'=>array('title'=>'Clicky Analytics','class'=>'child_opt child_opt_arrow')
 					),
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Clicky Site ID','id'=>'amp-ux-cl','class'=>'amp-ux-cl analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'clicky-site-id','default'=>ampforwp_get_setting('clicky-site-id'))
+					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					array('field_type'=>'sub_section_start',
+						'field_data'=>array('id'=>'ampforwp-ux-cr-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Call Rail Analytics'),'closable'=>1,'data-href'=>'ampforwp-callrail-switch')
+					),
+					array('field_type'=>'heading',
+					'field_data'=>array('title'=>'Call Rail Analytics','class'=>'child_opt child_opt_arrow')
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Config URL','id'=>'amp-ux-cr','class'=>'amp-ux-cr analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'ampforwp-callrail-config-url','default'=>ampforwp_get_setting('ampforwp-callrail-config-url'))
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Tell Number','id'=>'amp-ux-cr','class'=>'amp-ux-cr analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'ampforwp-callrail-number','default'=>ampforwp_get_setting('ampforwp-callrail-number'))
+					),
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Analytics Config URL','id'=>'amp-ux-cr','class'=>'amp-ux-cr analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'ampforwp-callrail-analytics-url','default'=>ampforwp_get_setting('ampforwp-callrail-analytics-url'))
 					),
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',

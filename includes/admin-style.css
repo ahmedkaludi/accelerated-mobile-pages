@@ -2071,3 +2071,6 @@ i.dashicons.dashicons-before.dashicons-update {
 fieldset#redux_builder_amp-ampforwp-onesignal-positioning {
     padding: 0;
 }
+.ux-field-container.amp-ux-text-container {
+    padding: 10px 0 0 15px;
+}
