@@ -191,15 +191,15 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.42 (20th April 2020) =
+= 1.0.42 (21st April 2020) =
 * Improvement: Added Comments module in our AMP page builder #4106
 * Improvement: Added CSS icons option #4268
-* Improvement: Added Call Rail analytics #4331
+* Improvement: Added Support for Call Rail analytics #4331
 * Improvement: Added Pinterest embeded images in AMP #4361
 * Improvement: Added Video docking feature in AMP #4352
 * Improvement: Added option for one signal notificaion on the pages #4349
 * Fixed: Mobile redirection issue on robots.txt page #4369 
-* Fixed: 404 error when we click on the comment section #4360
+* Fixed: 404 error when we click on the comment section with Google Sitekit #4360
 * Fixed: Fixed width not working in 2 coloum in AMP pagebuilder #4379
 * Fixed: Label markup was visible even after set to empty in content module in AMP pagebuilder #4379
 
