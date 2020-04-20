@@ -1,51 +1,74 @@
 <?php 
 	use AMPforWP\AMPVendor\AMP_DOM_Utils;
+	use AMPforWP\AMPVendor\AMP_Base_Sanitizer;
+	use AMPforWP\AMPVendor\AMP_Twitter_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_YouTube_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_DailyMotion_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_Vimeo_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_SoundCloud_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_Instagram_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_Vine_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_Facebook_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_Pinterest_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_Gallery_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_Playlist_Embed_Handler;
+	use AMPforWP\AMPVendor\AMP_Style_Sanitizer;
+	use AMPforWP\AMPVendor\AMP_Blacklist_Sanitizer;
+	use AMPforWP\AMPVendor\AMP_Img_Sanitizer;
+	use AMPforWP\AMPVendor\AMP_Video_Sanitizer;
+	use AMPforWP\AMPVendor\AMP_Audio_Sanitizer;
+	use AMPforWP\AMPVendor\AMP_Playbuzz_Sanitizer;
+	use AMPforWP\AMPVendor\AMP_Iframe_Sanitizer;
+	
 	add_filter('ampforwp_theme_dir','ampforwp_convert_to_native_mode');
 	function ampforwp_convert_to_native_mode($theme){
 		return get_template_directory();
 	}
 	add_filter( 'ampforwp_the_content_last_filter','ampforwp_santize_native_mode_content',8);
 	function ampforwp_santize_native_mode_content($content){
-		$content = ampforwp_process_body_content($content);
 		$dom = AMP_DOM_Utils::get_dom_from_content($content);
 		@$dom->loadHTML($content);
 		$xpath = new DOMXPath($dom);
 		ampforwp_process_native_content($dom,$xpath);
-		return $dom->saveHTML();
+		ampforwp_native_mode_sanitization($dom);
+		$content =  $dom->saveHTML();
+		return $content;
 	}
-	function ampforwp_process_body_content($content){
-		if(preg_match('/<body(.*?)>(.*?)<\/body>/s', $content,$matches)){
-			
-			$amp_custom_content = new AMP_Content( $matches[2],
-		      apply_filters( 'amp_content_embed_handlers', array(
-		  				    'AMP_Twitter_Embed_Handler'     => array(),
-		  				    'AMP_YouTube_Embed_Handler'     => array(),
-							'AMP_DailyMotion_Embed_Handler' => array(),
-							'AMP_Vimeo_Embed_Handler'       => array(),
-							'AMP_SoundCloud_Embed_Handler'  => array(),
-							'AMP_Instagram_Embed_Handler'   => array(),
-							'AMP_Vine_Embed_Handler'        => array(),
-							'AMP_Facebook_Embed_Handler'    => array(),
-							'AMP_Pinterest_Embed_Handler'   => array(),
-							'AMP_Gallery_Embed_Handler'     => array(),
-							'AMP_Playlist_Embed_Handler'    => array(),
-		      ) ),
-		      apply_filters(  'amp_content_sanitizers', array(
-		  				    'AMP_Style_Sanitizer'     => array(),
-		  				    'AMP_Blacklist_Sanitizer' => array(),
-		  				    'AMP_Img_Sanitizer'       => array(),
-		  				    'AMP_Video_Sanitizer'     => array(),
-		  				    'AMP_Audio_Sanitizer'     => array(),
-		          			'AMP_Playbuzz_Sanitizer'  => array(),
-		  				    'AMP_Iframe_Sanitizer'    => array(
-		  					       'add_placeholder' => true,
-		  				    ),
-		      )  )
-		  );
-		$con = $amp_custom_content->get_amp_content();
-	 	$content = str_replace($matches[2], $con, $content);
-	  }
-	  return $content;	
+	function ampforwp_native_mode_sanitization($dom){
+		$sanitize = new AMP_Twitter_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_YouTube_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_DailyMotion_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_Vimeo_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_SoundCloud_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_Instagram_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_Vine_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_Facebook_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_Pinterest_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_Gallery_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_Playlist_Embed_Handler();
+		$sanitize->register_embed();
+		$sanitize = new AMP_Blacklist_Sanitizer($dom);
+		$sanitize->sanitize();
+		$sanitize = new AMP_Img_Sanitizer($dom);
+		$sanitize->sanitize();
+		$sanitize = new AMP_Video_Sanitizer($dom);
+		$sanitize->sanitize();
+		$sanitize = new AMP_Audio_Sanitizer($dom);
+		$sanitize->sanitize();
+		$sanitize = new AMP_Playbuzz_Sanitizer($dom);
+		$sanitize->sanitize();
+		$sanitize = new AMP_Iframe_Sanitizer($dom);
+		$sanitize->sanitize();
 	}
 	function ampforwp_process_native_content($dom,$xpath) {
 		global $wp;
@@ -128,15 +151,22 @@
 	function ampforwp_generate_canonical_url($dom,$xpath,$nodes){
 		global $wp;
 		// Canonical
-		$can_url =  home_url(add_query_arg($_GET,$wp->request));
-		$canonical = $dom->createElement('link');
-		$domAttribute = $dom->createAttribute('rel');
-		$canonical->appendChild($domAttribute);
-		$canonical->setAttribute("rel", "canonical");
-		$domAttribute = $dom->createAttribute('href');
-		$canonical->appendChild($domAttribute);
-		$canonical->setAttribute("href", $can_url);
-		$nodes->insertBefore($canonical,$nodes->firstChild);
+		$can = $xpath->query('//link[@rel="canonical"]');
+		$has_can = false;
+		foreach ($can as $key => $value) {
+			$has_can = true;
+		}
+		if(!$has_can){
+			$can_url =  home_url(add_query_arg($_GET,$wp->request));
+			$canonical = $dom->createElement('link');
+			$domAttribute = $dom->createAttribute('rel');
+			$canonical->appendChild($domAttribute);
+			$canonical->setAttribute("rel", "canonical");
+			$domAttribute = $dom->createAttribute('href');
+			$canonical->appendChild($domAttribute);
+			$canonical->setAttribute("href", $can_url);
+			$nodes->insertBefore($canonical,$nodes->firstChild);
+		}
 	}
 	function ampforwp_native_css_sanitize($css){
 		$css = preg_replace( '/\s*!important/', '', $css, -1, $important_count );
