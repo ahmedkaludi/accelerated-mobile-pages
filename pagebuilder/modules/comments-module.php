@@ -11,14 +11,14 @@ function ampforwp_get_pb_comment_list($moduleFrontHtml, $moduleTemplate, $conten
 			$output = '<div class="pb-comments">';
 			$order = get_option( 'comment_order');
 			$comments = get_comments(array(
-					'post_id' => $postID,
+					'post_id' => intval($postID),
 					'status' => 'approve',
-					'order' =>$order
+					'order' =>esc_attr($order)
 			));
 
 			if ( $comments ) {
 				$output .= '<div {{if_id}}id="{{id}}"{{ifend_id}} class="pb-comments-wrapper {{if_user_class}}{{user_class}}{{ifend_user_class}}">
-		            <h3><span>View Comments</span></h3>
+		            <h3><span>'.ampforwp_get_setting('amp-translator-view-comments-text').'</span></h3>
 		            <ul>';
 					foreach ($comments as $key => $value) {
 						if($value->user_id!=0){
@@ -29,7 +29,7 @@ function ampforwp_get_pb_comment_list($moduleFrontHtml, $moduleTemplate, $conten
 							}
 							$output .='<div class="pbc-auth-info"><div class="pbc-auth-name"><b class="fn">'.esc_attr($value->comment_author).'</b></div>';
 							$output .='<span>'.esc_attr(date('F d, Y H:i:s', strtotime($value->comment_date))).'</span></div>';
-							$output .='<p class="pbc-comment">'.$value->comment_content.'</p>';
+							$output .='<p class="pbc-comment">'.wp_kses_post($value->comment_content).'</p>';
 							$output .='</li>';
 						}	
 					} 	
