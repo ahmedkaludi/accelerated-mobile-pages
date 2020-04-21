@@ -70,7 +70,7 @@ function ampforwp_redirection() {
       unset($current_url['?nonamp=1']);
       $current_url = array_flip($current_url);
       $current_url = implode('/', $current_url);
-      $current_url = user_trailingslashit($current_url);
+      $current_url = user_trailingslashit($current_url)."?namp=1";
       wp_safe_redirect( $current_url );
       exit;
   }
@@ -320,6 +320,9 @@ if(function_exists('ampforwp_mobile_redirect_preseve_link')){
     }
     // Check if we are on Mobile phones then start redirection process
     if ( $redirectToAMP ) {
+      if(isset($_GET['namp']) && $_GET['namp']==1){
+        return;
+      }
        if(class_exists('stcr\\stcr_manage') ){
         $check_url = implode(', ', $current_url);
         if(in_array('comment-subscriptions', $current_url) && strpos($check_url,'srp')!=false && strpos($check_url,'srk')!=false){
