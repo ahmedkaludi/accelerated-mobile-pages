@@ -1468,6 +1468,7 @@ function ampforwp_get_post_percent(){
 	$total_post = get_transient('ampforwp_get_total_post_count');
 	if(!$total_post){
 		$args=array(
+			'fields'        => 'ids',
 			'post_type'    => 'post',
 			'posts_per_page'=> -1,
 			'ignore_sticky_posts'=>1,
@@ -1483,6 +1484,7 @@ function ampforwp_get_post_percent(){
 	$post_count = get_transient('ampforwp_get_not_meta_post_count');
 	if(!$post_count){
 		$args=array(
+			'fields'        => 'ids',
 			'post_type'    => 'post',
 			'posts_per_page'=> -1,
 			'ignore_sticky_posts'=>1,

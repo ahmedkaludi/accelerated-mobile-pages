@@ -8463,6 +8463,7 @@ function ampforwp_referesh_related_post(){
 		$orderby = 'rand';
 	}
 	$args=array(
+		'fields' 	=> 'ids',
 		'post_type'	   => 'post',
 	    'posts_per_page'=> '50',
 	    'orderby' => $orderby,
@@ -8483,6 +8484,7 @@ function ampforwp_referesh_related_post(){
 		update_post_meta(get_the_ID(),'ampforwp-amp-on-off','default');
 	}
 	$args=array(
+		'fields' 	=> 'ids',
 	    'post_status'           => 'publish',
         'ignore_sticky_posts'   => true,
         'posts_per_page'        => 50,
