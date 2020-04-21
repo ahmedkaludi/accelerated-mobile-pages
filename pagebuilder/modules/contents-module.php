@@ -114,6 +114,13 @@ function ampforwp_content_module_pagination($args, $fieldValues){
 }
 {{ifend_condition_content_layout_type_1}}
 ';
+if(ampforwp_get_setting('amp-design-selector') == 3 || ampforwp_get_setting('amp-design-selector') == 2){
+  $frontCss .= '@media (max-width: 480px){
+    {{module-class}} .cm ul{
+  width:80%;
+  }
+  }';
+}
 $options = '<option value="recent_option">Recent Posts</option>';
 $post_types = '';
 $categoriesArray = array();
