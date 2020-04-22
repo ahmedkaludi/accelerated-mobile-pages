@@ -50,6 +50,7 @@ function ampforwp_add_admin_styling($hook_suffix){
         add_action('admin_notices', 'ampforwp_automattic_activation' );
         add_action('admin_notices', 'ampforwp_admin_notices' );
         add_action('admin_notices', 'ampforwp_seo_selection_notice' );
+        add_action('admin_notices', 'ampforwp_mobile_redirection_notice' );
     }else{
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
@@ -1331,4 +1332,32 @@ function ampforwp_seo_selection_notice() {
     if(!empty($seo)){
         echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
     }
+}
+function ampforwp_mobile_redirection_notice(){
+    if(false == ampforwp_get_setting('amp-mobile-redirection')){
+        return;
+    }
+    $plugin = $option = '';
+    if(function_exists('rocket_load_textdomain') && 0 == get_rocket_option( 'do_caching_mobile_files' )){
+        $plugin = 'WP Rocket';
+        $option = 'Separate cache files for mobile devices';
+    }
+    if(function_exists('wp_super_cache_init_action')) {
+        global $wp_cache_mobile_enabled;
+        if(0 == $wp_cache_mobile_enabled){
+            $plugin = 'WP Super Cache';
+            $option = 'Mobile device support';
+        }else{
+            return;
+        }
+    }
+    if(function_exists('litespeed_purge_single_post') && 'mobileview_enabled' != LiteSpeed_Cache_Config::OPID_CACHE_MOBILE) {  $plugin = 'LiteSpeed Cache';
+          $option = 'Cache Mobile';
+    }
+    if(function_exists('wpfastestcache_activate') && 'on' != $GLOBALS["wp_fastest_cache_options"]->wpFastestCacheMobile) {
+          $plugin = 'WP Fastest Cache';
+          $option = 'Mobile';
+    }
+    if(!empty($plugin) && !empty($option)){
+    echo sprintf(('<div class="notice notice-error"><p>%s <a target="_blank" href="%s">%s</a></p></div>'), esc_html__('You need to enable the option of "'.esc_html($option).'" in '.esc_html($plugin).' plugin for mobile redirection to work properly in AMP','accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-redirect-all-mobile-visitors-to-amp/'),esc_html__('Click here for more info','accelerated-mobile-pages'));  }
 }
