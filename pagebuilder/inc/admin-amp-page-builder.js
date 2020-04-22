@@ -263,6 +263,16 @@ Vue.component('amp-pagebuilder-module-modal', {
 					});
 					
 					Vue.set( rowData, 'data', a );
+				}else if(app.modalType=='reusableBlock'){
+					var a = {};
+					fields.forEach(function(fieldData,fieldKey){
+						a[fieldData.name] = fieldData.default
+						if(fieldData[fieldData.name+"_image_data"]){
+							a[fieldData.name+"_image_data"] = fieldData[fieldData.name+"_image_data"];
+						}
+					});
+					
+					Vue.set( rowData, 'data', a );
 				}
 			}
 		});
@@ -464,6 +474,23 @@ function openModulePopup(event,type){
 
 
 	}else if(type=='rowSetting'){
+		currentcontainerId = event.currentTarget.getAttribute('data-container_id'); 
+		app.modalTypeData = {
+							'containerId': currentcontainerId
+						}
+
+		//Save Values to main content
+		app.mainContent.rows.forEach(function(rowData, rowKey){
+			if(rowData.id==currentcontainerId){
+				app.modalcontent.fields.forEach(function(fieldData,fieldKey){
+					if(rowData.data[fieldData.name] && rowData.data[fieldData.name]!=''){
+						Vue.set( fieldData, 'default', rowData.data[fieldData.name] );
+					}
+					
+				})
+			}
+		});
+	}else if(type=='reusableBlock'){
 		currentcontainerId = event.currentTarget.getAttribute('data-container_id'); 
 		app.modalTypeData = {
 							'containerId': currentcontainerId
@@ -1094,6 +1121,9 @@ var app = new Vue({
 		},
 		showRowSettingPopUp: function(event){
 			openModulePopup(event,'rowSetting');
+		},
+		reusableBlockPopup: function(event){
+			openModulePopup(event,'reusableBlock');
 		},
 		setcontentData: function(){
   			this.mainContent_Save = JSON.stringify(this.mainContent);

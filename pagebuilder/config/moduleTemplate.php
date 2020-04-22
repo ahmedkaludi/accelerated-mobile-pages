@@ -1095,3 +1095,26 @@ $containerCommonSettings = array(
 			'front_css'=>$front_css,
 			'front_common_css' => $front_common_css,
 			);
+$reusableCommonSettings = array(
+			'label'	=> 'Reusable Block',
+			'settingType'  =>'row',
+			'default_tab'=> 'customizer',
+			'tabs' => array(
+			  'customizer'=>'Basic',
+			),
+			'fields' => array(
+							array(
+								'type'		=>'text',
+								'name'		=>"reusable_block",
+								'label'		=>'Name',
+								'tab'    	=>'customizer',
+								'default'	=>'',
+								'content_type'=>'html',
+								),
+						),
+			'front_template_start'=>$output,
+			'front_template_end'=>$outputEnd,
+			'front_css'=>$front_css,
+			'front_common_css' => $front_common_css,
+			);
+

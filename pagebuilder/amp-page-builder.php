@@ -65,7 +65,7 @@ function amp_content_pagebuilder_title_callback( $post ){
 
 /* Add page builder form after editor */
 function ampforwp_call_page_builder(){
-	global $post, $moduleTemplate, $layoutTemplate, $containerCommonSettings;
+	global $post, $moduleTemplate, $layoutTemplate, $containerCommonSettings, $reusableCommonSettings;
 	if($post!=null){
 		$postId = $post->ID;
 	}
@@ -126,6 +126,12 @@ function ampforwp_call_page_builder(){
 	unset($backendRowSetting['front_template_end']);
 	unset($backendRowSetting['front_css']);
 	unset($backendRowSetting['front_common_css']);
+
+	$reusableRowSetting = $reusableCommonSettings;
+	unset($reusableRowSetting['front_template_start']);
+	unset($reusableRowSetting['front_template_end']);
+	unset($reusableRowSetting['front_css']);
+	unset($reusableRowSetting['front_common_css']);
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	
 	$mob_pres_link = false;
@@ -176,7 +182,11 @@ function ampforwp_call_page_builder(){
 						            	<i class="tools-icon dashicons dashicons-menu"></i>
 						            </span>
 						            <span @click="duplicateRow($event)" class="amppb-duplicate dashicons dashicons-admin-page" :data-rowid="row.id"></span>
-
+						            <span @click="reusableBlockPopup($event)" class="rowBoxContainer" title="Reusable Block" :data-popupContent='JSON.stringify(<?php echo json_encode($reusableRowSetting); ?>)'
+						            :data-container_id="row.id"
+						            >
+						            	<i class="tools-icon dashicons dashicons-controls-repeat"></i>
+						            </span>
 						        </div><!-- .amppb-row-title -->
 						 
 						        <div class="amppb-row-fields col" data-cell="1">
@@ -216,6 +226,11 @@ function ampforwp_call_page_builder(){
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
 						            </span>
 						            <span @click="duplicateRow($event)" class="amppb-duplicate dashicons dashicons-admin-page" :data-rowid="row.id"></span>
+						            <span @click="reusableBlockPopup($event)" class="rowBoxContainer" title="Reusable Block" :data-popupContent='JSON.stringify(<?php echo json_encode($reusableRowSetting); ?>)'
+						            :data-container_id="row.id"
+						            >
+						            	<i class="tools-icon dashicons dashicons-controls-repeat"></i>
+						            </span>
 						        </div><!-- .amppb-row-title -->
 						 
 						        <div class="amppb-row-fields ">
