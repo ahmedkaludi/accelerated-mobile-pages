@@ -99,7 +99,7 @@ if ( get_query_var( 'paged' ) ) {
  			}
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
-				if($paged <= '1') {?>
+				if($paged <= '1' && ampforwp_get_setting('ampforwp-cat-description')) {?>
 					<div class="taxonomy-description">
 						<?php echo do_shortcode($arch_desc);// amphtml content, no kses ?>
 				  </div>
