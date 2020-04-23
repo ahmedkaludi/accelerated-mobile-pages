@@ -54,6 +54,31 @@ function enable_amp_pagebuilder(){
 	}
 	exit;
 }
+add_action("wp_ajax_import_reusable_block", "import_reusable_block");
+function import_reusable_block(){
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+	// Exit if the user does not have proper permissions
+	// check user permissions
+    if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+    	echo json_encode(array("status"=>300,"message"=>'User do not have access'));
+        die;
+	}
+	if(isset($_POST['reusable_block'])){
+		$reusable_block = sanitize_text_field($_POST['reusable_block']);
+		$data = explode('~', $reusable_block);
+		$post_id = $data[0];
+		$index = $data[1];
+		$saved_data = get_post_meta( $post_id, 'amp-page-builder', true );
+		$saved_data = json_decode($saved_data, true);
+		echo json_encode(array('id'=>$index, 'body'=>$saved_data));
+	}else{
+		echo json_encode(array('status'=>"500", 'Message'=>"Reusable block is not selected"));
+	}
+	exit;
+}
 
 add_action( 'wp_ajax_amppb_export_layout_data', 'amppb_export_layout_data');
 function amppb_export_layout_data(){

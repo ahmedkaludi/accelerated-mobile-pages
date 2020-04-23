@@ -276,6 +276,59 @@ Vue.component('amp-pagebuilder-module-modal', {
 				}
 			}
 		});
+
+		 if(app.modalType=='showReusableBlocks'){
+			var reusable_block = jQuery("select[name=reusable_block_main]").val();
+			if(reusable_block!=''){
+			this.$http.post(amppb_panel_options.ajaxUrl+'?action=import_reusable_block&verify_nonce='+amppb_panel_options.secure_nonce, 
+				{
+					reusable_block
+				}
+				,{
+					headers:{
+						responseType:'json'
+					},
+					responseType:'json',
+					emulateHTTP:true,
+					emulateJSON:true,
+				}
+			).then(function(response){
+				response =response.body;
+				reusable_row= response.body;
+				
+					var currentRowId = response.id;
+				
+					var duplicateRowData = {}; var rowKeyValue = '';
+					reusable_row.rows.forEach(function(rowData, rowKey){
+						if(rowData.id == currentRowId){
+							var rowsId = parseInt(app.mainContent.totalrows);
+							duplicateRowData = JSON.parse(JSON.stringify(rowData));
+							duplicateRowData.id = rowsId;
+							rowKeyValue = rowKey;
+							app.mainContent.totalrows = rowsId+1;
+						}
+					});
+					var sampleSelldata = duplicateRowData.cell_data;//_.clone(duplicateRowData.cell_data);
+					sampleSelldata.forEach(function(moduleData, moduleKey){
+						var modulesid = parseInt(app.mainContent.totalmodules);
+						duplicateRowData.cell_data[moduleKey].cell_id = modulesid;
+						duplicateRowData.cell_data[moduleKey].container_id = duplicateRowData.id;
+						app.mainContent.totalmodules = modulesid+1;
+					});
+					duplicateRowData.cell_data = sampleSelldata;
+					if(rowKeyValue>0){
+						app.mainContent.rows.splice(rowKeyValue, 0,duplicateRowData);
+					}else{
+						app.mainContent.rows.push(duplicateRowData);	
+					}
+					app.re_process_rawdata();
+			},
+			//errorCallback
+			function(){
+				alert('connection not establish');
+			});
+		}
+		}
 		app.call_default_functions();
 		this.hideModulePopUp();
 		return true;
@@ -490,7 +543,7 @@ function openModulePopup(event,type){
 				})
 			}
 		});
-	}else if(type=='reusableBlock'){
+	}else if(type=='reusableBlock' || type=='showReusableBlocks'){
 		currentcontainerId = event.currentTarget.getAttribute('data-container_id'); 
 		app.modalTypeData = {
 							'containerId': currentcontainerId
@@ -1124,6 +1177,9 @@ var app = new Vue({
 		},
 		reusableBlockPopup: function(event){
 			openModulePopup(event,'reusableBlock');
+		},
+		showReusableBlocks: function(event){
+			openModulePopup(event,'showReusableBlocks');
 		},
 		setcontentData: function(){
   			this.mainContent_Save = JSON.stringify(this.mainContent);

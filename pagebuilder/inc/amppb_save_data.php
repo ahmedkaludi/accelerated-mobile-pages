@@ -56,4 +56,29 @@ function amppb_save_post( $post_id, $post ){
     elseif ( empty( $submitted_data ) && $saved_data ){
         delete_post_meta( $post_id, 'amp-page-builder' );
     }
+    ampforwp_process_reusable_block($post_id);
+}
+
+function ampforwp_process_reusable_block($post_id){
+    $pb_data = get_post_meta( $post_id, 'amp-page-builder', true );
+    $data = json_decode($pb_data, true);
+    $reusable = get_option('ampforwp_reusable_block');
+    $ru_data = (array)$reusable;
+    if(isset($ru_data[$post_id])){
+        unset($ru_data[$post_id]);
+    }
+    foreach ($data as $pkey => $parent) {
+       $temp_arr = array();
+       foreach ($parent as $key => $value) {
+           $id = $value['id'];
+           if(isset($value['data']) && isset($value['data']['reusable_block']) && $value['data']['reusable_block']!=""){
+               $reusable_block = $value['data']['reusable_block'];
+               $temp_arr['id'] = $id;
+               $temp_arr['post_id'] = $post_id;
+               $temp_arr['block'] = $reusable_block;
+               $ru_data[$post_id][] = $temp_arr;
+           }
+       }
+    }
+    update_option('ampforwp_reusable_block',$ru_data);
 }

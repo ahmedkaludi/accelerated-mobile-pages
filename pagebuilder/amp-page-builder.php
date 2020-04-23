@@ -65,7 +65,7 @@ function amp_content_pagebuilder_title_callback( $post ){
 
 /* Add page builder form after editor */
 function ampforwp_call_page_builder(){
-	global $post, $moduleTemplate, $layoutTemplate, $containerCommonSettings, $reusableCommonSettings;
+	global $post, $moduleTemplate, $layoutTemplate, $containerCommonSettings, $reusableCommonSettings, $reusablePopupSettings;
 	if($post!=null){
 		$postId = $post->ID;
 	}
@@ -132,6 +132,12 @@ function ampforwp_call_page_builder(){
 	unset($reusableRowSetting['front_template_end']);
 	unset($reusableRowSetting['front_css']);
 	unset($reusableRowSetting['front_common_css']);
+
+	$reusableManiSetting = $reusablePopupSettings;
+	unset($reusableManiSetting['front_template_start']);
+	unset($reusableManiSetting['front_template_end']);
+	unset($reusableManiSetting['front_css']);
+	unset($reusableManiSetting['front_common_css']);
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	
 	$mob_pres_link = false;
@@ -148,6 +154,15 @@ function ampforwp_call_page_builder(){
 		<div class="enable_ampforwp_page_builder" v-if="startPagebuilder==1">
 			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes"   v-model="checkedPageBuilder"><?php echo esc_html__('Use Builder','accelerated-mobile-pages'); ?></label>
 			<label  @click="showModal = true;"><?php echo esc_html__('Pre-built AMP Layouts','accelerated-mobile-pages'); ?></label>
+			<?php 
+				$reusable_block = get_option('ampforwp_reusable_block');
+				if($reusable_block){
+			?>
+			<label  @click="showReusableBlocks($event)" title="Reusable Block" :data-popupContent='JSON.stringify(<?php echo json_encode($reusableManiSetting); ?>)' :data-container_id="0">
+				<i class="dashicons dashicons-controls-repeat"></i>
+				<?php echo esc_html__('Reusable Block','accelerated-mobile-pages'); ?>
+			</label>
+		<?php }?>
 		</div>
 		<div id="amp-page-builder" v-if="startPagebuilder==1">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>

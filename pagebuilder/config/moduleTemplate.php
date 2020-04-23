@@ -1116,5 +1116,41 @@ $reusableCommonSettings = array(
 			'front_template_end'=>$outputEnd,
 			'front_css'=>$front_css,
 			'front_common_css' => $front_common_css,
-			);
+		);
+
+
+
+$reusable = get_option('ampforwp_reusable_block', true);
+$reusable_arr  = array();
+foreach ($reusable as $key => $value) {
+	if(is_array($value)){
+		foreach ($value as $k => $v) {
+			$new_key = $v['post_id'].'~'.$v['id'];
+			$reusable_arr[$new_key] = $v['block'];
+		}
+	}
+}
+$reusablePopupSettings = array(
+			'label'	=> 'Reusable Block',
+			'settingType'  =>'row',
+			'default_tab'=> 'customizer',
+			'tabs' => array(
+			  'customizer'=>'Basic',
+			),
+			'fields' => array(
+								array(
+	 							'type'	=>'select',		
+	 							'name'  =>'reusable_block_main',		
+	 							'label' => esc_html__("Reusable Blocks",'accelerated-mobile-pages'),
+								'tab'     =>'customizer',
+								'default' =>'', 
+	 							'options_details'=>$reusable_arr,
+	 							'content_type'=>'html',
+	 						)
+						),
+			'front_template_start'=>$output,
+			'front_template_end'=>$outputEnd,
+			'front_css'=>$front_css,
+			'front_common_css' => $front_common_css,
+		);
 
