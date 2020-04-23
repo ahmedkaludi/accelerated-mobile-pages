@@ -2807,6 +2807,13 @@ Redux::setSection( $opt_name, array(
                         'default' => 0,
                     ),
                     array(
+                        'id'       => 'ampforwp-cat-description',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Category Description', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Disable this option if you dont want to show category description in AMP','accelerated-mobile-pages'),
+                        'default' => 1,
+                    ),
+                    array(
                         'id'       => 'ampforwp-smooth-scrolling-for-links',
                         'type'     => 'switch',
                         'title'    => esc_html__('Smooth Scrolling For Links', 'accelerated-mobile-pages'),
