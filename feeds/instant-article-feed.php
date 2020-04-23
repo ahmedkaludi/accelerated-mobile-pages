@@ -34,6 +34,7 @@ header('Content-Type: ' . esc_attr(feed_content_type('rss2')) . '; charset=' . e
         'no_found_rows' => true,
         'meta_query' => array(
             array(
+                'key'        => 'ampforwp-ia-on-off',
                 'value'      => 'hide-ia',
                 'compare'    => "!="
             ),
