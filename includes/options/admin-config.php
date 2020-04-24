@@ -5438,6 +5438,7 @@ Redux::setSection( $opt_name, array(
                 array(
                         'id'       => 'ampforwp-homepage-loop-type',
                         'type'     => 'select',
+                        'multi'    => true,
                         'title'    => esc_html__( 'Post Type in Loop', 'accelerated-mobile-pages' ),
                         'options'  => $ampforwp_home_loop,
                         'default'   => 'post',
