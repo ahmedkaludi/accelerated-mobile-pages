@@ -8038,8 +8038,8 @@ function ampforwp_include_required_scripts($content){
 					$content =  str_replace('<head>', $script_tag, $content);
 				}
 			}else{
-				if(preg_match('/<amp-video(.*?) dock|dock=">/', $content)){
-					$content = preg_replace('/<amp-video(.*?) dock|dock=">/','<amp-video $1>', $content);
+				if(preg_match('/<amp-youtube(.*?) dock|dock=">/', $content)){
+					$content = preg_replace('/<amp-youtube(.*?) dock|dock=">/','<amp-youtube $1>', $content);
 				}
 			}
 		}
