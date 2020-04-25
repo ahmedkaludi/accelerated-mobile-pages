@@ -495,7 +495,6 @@ function amppb_validateCss($css){
 	$css = str_replace(array('.amppb-fluid','.amppb-fixed','.accordion-mod'), array('.ap-fl','.ap-fi','.apac'), $css);
 	$css = preg_replace('/(([a-z -]*:(\s)*;))/', "", $css);
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
-	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
 	$css = preg_replace('/\s\n+/', "", $css);
 	return ampforwp_pb_autoCompileLess($css);
 }
