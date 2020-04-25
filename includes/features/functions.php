@@ -284,7 +284,7 @@ function ampforwp_generate_meta_desc($json=""){
         if ( is_archive() ) {
             $desc = addslashes( strip_tags( get_the_archive_description() ) );
         }
-        if ( is_single() || is_page() ) {
+        if ( is_single() || is_page() || ampforwp_is_front_page()) {
             if ( has_excerpt() ) {
                 $desc = get_the_excerpt();
             } else {
@@ -297,10 +297,6 @@ function ampforwp_generate_meta_desc($json=""){
         if ( is_search() ) {
             $desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
         }
-        if ( ampforwp_is_front_page() ) {
-            $desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , 15 ) );
-        }
-
         // Yoast 
         if ( class_exists('WPSEO_Frontend') && ('yoast' == ampforwp_get_setting('ampforwp-seo-selection') || 1 == ampforwp_get_setting('ampforwp-seo-selection'))) {
             $front = $yoast_desc = '';
