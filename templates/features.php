@@ -205,6 +205,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if( is_attachment() ) {
         return;
 	    }
+	    if(get_query_var('paged') && true == ampforwp_get_setting('amp-paginated-pages-indexing')) {
+		    return;
+		}
 	    if( is_home() && is_front_page() && !ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
         return;
 	    }

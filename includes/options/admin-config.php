@@ -2157,6 +2157,13 @@ function ampforwp_get_all_tags($id){
                 'accordion-open'=> 1,
             ),
             array(
+               'id'       => 'amp-paginated-pages-indexing',
+               'type'     => 'switch',
+               'title'    => esc_html__('Remove Paginated Pages Indexing', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => sprintf( '%s<a href="%s" target="_blank">%s</a>', esc_html__("You can read more about it ",'accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-remove-paginated-pages-indexing-in-amp/'),esc_html__('here','accelerated-mobile-pages')),
+               'default' => 0,
+            ),
+            array(
                'id'       => 'amp-inspection-tool',
                'type'     => 'switch',
                'title'    => esc_html__('URL Inspection Tool Compatibility', 'accelerated-mobile-pages'),
