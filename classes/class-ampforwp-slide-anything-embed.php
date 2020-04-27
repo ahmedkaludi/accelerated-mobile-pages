@@ -252,18 +252,21 @@ class AMPFORWP_Slide_Anything_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_
 
 		//replacements
 			$r = rand(1,100);
-			$amp_carousel = AMP_HTML_Utils::build_tag( 
-							'amp-carousel',
-							array(
+			$carousel_args = array(
 								'width' => $this->args['width'],
 								'height' => $this->args['height'],
 								'type' => 'slides',
-								'loop'	=>'',
-								'autoplay'	=>'',
 								'layout' => 'responsive',
 								'class'  => 'collapsible-captions',
 								'id' => 'carousel-with-carousel-preview-'.$r
-							),
+							);
+			$c_args = array('loop'=>'', 'autoplay'=>'');
+			$carousel_filter = apply_filters('ampforwp_carousel_args',$c_args);
+			$carousel_args = array_merge($carousel_args,$carousel_filter);
+
+			$amp_carousel = AMP_HTML_Utils::build_tag( 
+							'amp-carousel',
+							$carousel_args,
 							implode( PHP_EOL, $images ));
 
 			$amp_carousel_with_thumbnail_nav = apply_filters('amp_thumbnail_images', $amp_images_small, $r, $markup);
