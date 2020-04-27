@@ -349,7 +349,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 					'type' => 'carousel',
 					'layout' => 'fixed-height',
 					'class'  => 'carousel-preview'
-				)
+				);
 
 			$c_args = array('loop'=>'', 'autoplay'=>'');
 			$carousel_filter = apply_filters('ampforwp_carousel_args',$c_args);
