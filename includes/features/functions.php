@@ -1347,7 +1347,8 @@ function ampforwp_mobile_redirection_notice(){
             return;
         }
     }
-    if(function_exists('litespeed_purge_single_post') && 'mobileview_enabled' != LiteSpeed_Cache_Config::OPID_CACHE_MOBILE) {  $plugin = 'LiteSpeed Cache';
+    if(function_exists('litespeed_purge_single_post') && !LiteSpeed_Cache_Admin_Rules::get_instance()->get_rewrite_rule_mobile_agents()) { 
+          $plugin = 'LiteSpeed Cache';
           $option = 'Cache Mobile';
     }
     if(function_exists('wpfastestcache_activate') && 'on' != $GLOBALS["wp_fastest_cache_options"]->wpFastestCacheMobile) {
