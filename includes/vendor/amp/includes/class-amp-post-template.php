@@ -30,6 +30,7 @@ if ( version_compare( $wp_version, '5.3', '>=' ) ) {
 }
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-block-sanitizer.php' );
 
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-reddit-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-dailymotion-embed.php' );
@@ -291,6 +292,7 @@ class AMP_Post_Template {
 			$amp_content = new AMP_Content( $new_post_content,
 				apply_filters( 'amp_content_embed_handlers', array(
 					'AMP_Core_Block_Handler' => array(),
+					'AMP_Reddit_Embed_Handler' => array(),
 					'AMP_Twitter_Embed_Handler' => array(),
 					'AMP_YouTube_Embed_Handler' => array(),
 					'AMP_DailyMotion_Embed_Handler' => array(),

@@ -43,7 +43,8 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
         if ( 'yes' === $amp_custom_post_content_check ) {
           $amp_custom_content = new AMP_Content( $amp_custom_post_content_input,
               apply_filters( 'amp_content_embed_handlers', array(
-          				    'AMP_Twitter_Embed_Handler'     => array(),
+          				    'AMP_Reddit_Embed_Handler'     => array(),
+                      'AMP_Twitter_Embed_Handler'     => array(),
           				    'AMP_YouTube_Embed_Handler'     => array(),
                   'AMP_DailyMotion_Embed_Handler' => array(),
                   'AMP_Vimeo_Embed_Handler'       => array(),
