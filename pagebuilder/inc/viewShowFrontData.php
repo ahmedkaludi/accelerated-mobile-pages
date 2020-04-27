@@ -585,7 +585,7 @@ function amppb_post_content($content){
 		$html ="";
 		$previousData = json_decode($previousData,true);
 		//Call Sorting for rows 
-		if(count($previousData['rows'])>0){
+		if(is_array($previousData) && count($previousData['rows'])>0){
 			$mainContentClass = '';
 			if(isset($previousData['settingdata']) && isset($previousData['settingdata']['front_class'])){
 				$mainContentClass = $previousData['settingdata']['front_class'];
