@@ -191,7 +191,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.43 (28st April 2020) =
+= 1.0.43 (28th April 2020) =
 * Improvement: Added option to hide category description #4388
 * Improvement: Added option to remove Google index on paginated pages #4372
 * Improvement: Added Filter for amp-carousel #4374
