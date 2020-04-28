@@ -392,6 +392,7 @@ function amp_loop_excerpt($excerpt_length = 15,$tag = 'p', $class = ''){
 	//excerpt
 	global $post,$redux_builder_amp;
 	$excerpt_length = (int) $excerpt_length;
+	$class = 'loop-excerpt';
 	if( has_excerpt() ) {
 		$content = get_the_excerpt();
 	} else {
