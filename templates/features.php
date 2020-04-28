@@ -1548,10 +1548,13 @@ function ampforwp_custom_og_image_homepage() {
 				'height'    => '500',
 			);
 		}
-		$wpseo_og->og_tag( 'og:image', esc_url( $image_url ) );
-		foreach ( $image_tags as $key => $value ) {
-			if ( ! empty( $value ) ) {
-				$wpseo_og->og_tag( 'og:image:' . $key, $value );
+		
+		if ( method_exists($wpseo_og, 'og_tag') ) {
+			$wpseo_og->og_tag( 'og:image', esc_url( $image_url ) );
+			foreach ( $image_tags as $key => $value ) {
+				if ( ! empty( $value ) ) {
+					$wpseo_og->og_tag( 'og:image:' . $key, $value );
+				}
 			}
 		}
 	}
