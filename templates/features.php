@@ -8290,7 +8290,7 @@ function ampforwp_rank_math_external_link_newtab($content){
 	}
 	return $content;
 }	
-add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
+/* add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
 function ampforwp_referesh_related_post(){
 	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp_refresh_related_poost') ){
 		echo json_encode(array('status'=>403,'message'=>'user request is not allowed')) ;
@@ -8348,3 +8348,4 @@ function ampforwp_delete_refresh_related_post_trans(){
 	delete_transient('ampforwp_get_not_meta_post_count');
 	delete_transient('ampforwp_get_total_post_count');
 }
+*/
