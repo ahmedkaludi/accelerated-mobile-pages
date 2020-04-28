@@ -2082,3 +2082,9 @@ i.dashicons.dashicons-before.dashicons-update {
     color: white;
     border-radius: 5px;
 }
+.mrtop-10{
+    margin-top: 10px;
+}
+#amp-show-hide-tax .hide-show-amp-tax{
+    cursor: pointer;
+}

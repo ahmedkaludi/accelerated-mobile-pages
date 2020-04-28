@@ -121,6 +121,10 @@ jQuery(function($) {
             $("#amp-show-hide-tax").css({'display':'none'});
         }
     });
+    $(".hide-show-amp-tax").on('click', function(){
+        var checkBoxes = $(this).children('input:radio')
+        checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+    });
     $('.redux-container').each(function() {
         if (!$(this).hasClass('redux-no-sections')) {
             $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls"  style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');

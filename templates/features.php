@@ -783,16 +783,16 @@ if ( isset( $_REQUEST['taxonomy'] )) {
 	add_action ( $taxonomy.'_add_form_fields', 'ampforwp_extra_category_fields');
 }
 function ampforwp_extra_category_fields( $tag ) {
-	$label = 'category';
+	$label = 'Category';
 	if(is_object($tag)){
 		if($tag->taxonomy=="post_tag"){
-			$label = 'tag';
+			$label = 'Tag';
 		}else if($tag->taxonomy!='category'){
 			$label = $tag->taxonomy;
 		}
 	}else{
 		if($tag=='post_tag'){
-			$label = 'tag';
+			$label = 'Tag';
 		}
 	}
 ?>
@@ -801,17 +801,24 @@ function ampforwp_extra_category_fields( $tag ) {
 	<th scope="row" valign="top"></th>
 	<td>
 		<div class="form-field term-parent-wrap">
-			<label for="show_amp_taxonomy">Show/Hide in AMP</label>
+			<label for="show_amp_taxonomy">AMP</label>
 			<select name="amp_taxonomy" id="show_amp_taxonomy" class="postform">
 				<option class="level-0" value="show">Show</option>
 				<option class="level-0" value="hide">Hide</option>
 			</select>
-			<p>Show/Hide in AMP.</p>
+			<p>You can enable or disable AMP on this category. <a href="#">Learn More</a>.</p>
 		</div>
-		<div id="amp-show-hide-tax"  style="display: none;">
-			<input type="radio" value="hide-cat" name="hide_tax" checked=""> Hide this <?php echo esc_attr($label);?>, not the post(s) related to this <?php echo esc_attr($label) ?>.
-			<br />
-			<input type="radio" value="hide-tax-post" name="hide_tax"> Hide this <?php echo esc_attr($label) ?> and the post(s) related to this <?php echo esc_attr($label) ?> as well.
+		<div id="amp-show-hide-tax" class="mrtop-10" style="display: none">
+			<div class="hide-show-amp-tax">
+				<input type="radio" value="hide-cat" name="hide_tax" checked=""> 
+				<strong><?php echo esc_attr($label);?>:</strong>
+				Hide from <?php echo esc_attr($label);?> Archive Page.
+			</div>
+			<div class="mrtop-10 hide-show-amp-tax">
+				<input type="radio" value="hide-tax-post" name="hide_tax"> 
+				<strong><?php echo esc_attr($label);?> & Posts: </strong>
+				 Hide from <?php echo esc_attr($label);?> Archive Page and all it's posts
+			</div>
 		</div>
 		<br>
 	</td>
@@ -824,17 +831,24 @@ function ampforwp_extra_category_fields( $tag ) {
 			$visible_status = $term_data['visible_status'][0];
 		}
 	?>
-		<th scope="row"><label for="show_amp_taxonomy">Show/Hide AMP</label></th>
+		<th scope="row"><label for="show_amp_taxonomy">AMP</label></th>
 		<td>
 			<select name="amp_taxonomy" id="show_amp_taxonomy" class="postform">
 				<option class="level-0" value="show" <?php if($visible=='show'){ echo "selected"; }?>>Show</option>
 				<option class="level-0" value="hide" <?php if($visible=='hide'){ echo "selected";} ?>>Hide</option>
 			</select><br />
-			<span class="description">Show/Hide in AMP.</span>
-			<div id="amp-show-hide-tax" <?php if($visible=='show' || $visible==''){?>style="display: none;"<?php }?>>
-				<input type="radio" value="hide-cat" name="hide_tax" <?php if($visible_status=='hide-cat' || $visible_status==''){?> checked <?php }?>> Hide this <?php echo esc_attr($label);?>, not the post(s) related to this <?php echo esc_attr($label);?>.
-				<br />
-				<input type="radio" value="hide-tax-post" name="hide_tax"  <?php if($visible_status=='hide-tax-post'){?> checked <?php }?>> Hide this <?php echo esc_attr($label);?> and the post(s) related to this <?php echo esc_attr($label);?> as well.
+			<span class="description">You can enable or disable AMP on this category. <a href="#">Learn More</a>.</span>
+			<div id="amp-show-hide-tax" <?php if($visible=='show' || $visible==''){?>style="display: none;"<?php }?> class="edit_hide_tax mrtop-10">
+				<div class="hide-show-amp-tax">
+				<input type="radio" value="hide-cat" name="hide_tax" <?php if($visible_status=='hide-cat' || $visible_status==''){?> checked <?php }?>> 
+				<strong><?php echo esc_attr($label);?>:</strong>
+				Hide from <?php echo esc_attr($label);?> Archive Page.
+				</div>
+				<div class="mrtop-10 hide-show-amp-tax">
+					<input type="radio" value="hide-tax-post" name="hide_tax"  <?php if($visible_status=='hide-tax-post'){?> checked <?php }?>> 
+					<strong><?php echo esc_attr($label);?> & Posts: </strong>
+				 	Hide from <?php echo esc_attr($label);?> Archive Page and all it's posts
+				 </div>
 			</div>
 		</td>
 	<?php }?>
