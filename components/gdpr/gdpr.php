@@ -137,8 +137,10 @@ function ampforwp_gdpr_css(){
 		}<?php 
 	} // GDPR Type 1 End
 	// GDPR Notice bar
-	if($redux_builder_amp['gdpr-type'] == '2'){?>
-		.gdpr{position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index:99999;}
+	if($redux_builder_amp['gdpr-type'] == '2'){
+		$position = ampforwp_get_setting('amp-gdpr-type2-position');
+		?>
+		.gdpr{position: fixed; <?php if($position==1){?>top: 0;<?php }else{?> bottom: 0;<?php }?> left: 0; right: 0; z-index:99999;}
 		.gdpr_w{padding:20px 40px;background: #383B75;width: 95%;position: relative;margin: 0% auto;display: inline-flex;}
 		.gdpr_t h3, .gdpr_fmi{    
 		  font-size: 16px;
