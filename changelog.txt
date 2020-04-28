@@ -1,5 +1,16 @@
 == Changelog ==
 
+= 1.0.43 (28st April 2020) =
+* Improvement: Added option to hide category description #4388
+* Improvement: Added option to remove Google index on paginated pages #4372
+* Improvement: Added Filter for amp-carousel #4374
+* Improvement: Code improvements in Related posts and Facebook instance article #4300 #4386
+* Fixed: AMP Lightbox is not working #4378
+* Fixed: White spacing in the responsive mode on left side #4375
+* Fixed: Video docking is not working in AMP. #4352
+* Fixed: Shortcodes displaying in meta descrption #4385
+* Fixed: Debug Warnings: count(): Parameter must be an array or an object that implements Countable. #4387
+
 = 1.0.42 (21st April 2020) =
 * Improvement: Added Comments module in our AMP page builder #4106
 * Improvement: Added CSS icons option #4268
