@@ -199,6 +199,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvement: Added option to remove Google index on paginated pages #4372
 * Improvement: Added Filter for amp-carousel #4374
 * Improvement: Code improvements in Related posts and Facebook instance article #4300 #4386
+* Fixed: Fatal error with the latest update of yoast 14.0 #4412
 * Fixed: AMP Lightbox is not working #4378
 * Fixed: White spacing in the responsive mode on left side #4375
 * Fixed: Video docking is not working in AMP. #4352
