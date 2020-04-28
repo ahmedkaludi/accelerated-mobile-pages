@@ -21,7 +21,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
 }
  $output = '{{if_condition_content_layout_type==1}}
             <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cm {{user_class}}">{{if_ampforwp_pb_cat_heading_tag}}<{{ampforwp_pb_cat_heading_tag}}> {{content_title}}   </{{ampforwp_pb_cat_heading_tag}}>{{ifend_ampforwp_pb_cat_heading_tag}} {{if_condition_ampforwp_pb_cat_heading_tag==}}<h4>{{content_title}}</h4> {{ifend_condition_ampforwp_pb_cat_heading_tag_}} 
-                <div class="wrap"><ul>{{category_selection}}</ul></div>
+                <div id="cat-jump" class="wrap"><ul>{{category_selection}}</ul></div>
                 {{pagination_links}}    
             </div>
           {{ifend_condition_content_layout_type_1}}
@@ -581,7 +581,7 @@ if ( is_admin() ) {
           if( $paged == $i){
               $pagination_links .= "<a class='active' href='#/' >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
           }else{
-            $allPages = add_query_arg( array( $pagination_text => $i ), $queryUrl );
+            $allPages = add_query_arg( array( $pagination_text => $i ), $queryUrl ) . '#cat-jump';
             $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
           }
 
