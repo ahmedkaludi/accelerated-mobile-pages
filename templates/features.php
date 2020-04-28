@@ -7171,6 +7171,18 @@ function ampforwp_fontawesome_canonical_link(){
     }
 add_action('amp_post_template_head', 'ampforwp_set_dns_preload_urls');
 function ampforwp_set_dns_preload_urls(){
+	if (function_exists('the_seo_framework_boot') && 'seo_framework' == ampforwp_get_setting('ampforwp-seo-selection')) {
+		$og_tsf = \the_seo_framework();
+		if($og_tsf){
+			echo $og_tsf->og_image();
+			echo $og_tsf->og_locale();
+			echo $og_tsf->og_type();
+			echo $og_tsf->og_title();
+			echo $og_tsf->og_image();
+			echo $og_tsf->og_description();
+			echo $og_tsf->og_sitename();
+		}
+	}
 	$prefetch = ampforwp_get_setting('amp-prefetch-options');
 	$data_arr = array();
 	if(is_array($prefetch)){
