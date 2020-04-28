@@ -1653,7 +1653,10 @@ function ampforwp_replace_title_tags() {
 		if( class_exists('WPSEO_Frontend') && ('yoast' || 1) == ampforwp_get_setting('ampforwp-seo-selection') ) {
 			$yoast_title = $WPSEO_Frontend = $yoast_instance = '';
 
-			$yoast_instance = new \Yoast\WP\SEO\Presentations\Indexable_Presentation();
+			if ( class_exists('Yoast\WP\SEO\Presentations\Indexable_Presentation') ) {
+				$yoast_instance = new \Yoast\WP\SEO\Presentations\Indexable_Presentation();
+			}
+			
 
 			$WPSEO_Frontend = WPSEO_Frontend::get_instance();
 			$yoast_title = $WPSEO_Frontend->title($site_title);
