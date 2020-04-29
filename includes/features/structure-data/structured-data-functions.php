@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	        //code for adding 'description' meta from Yoast SEO
 
-	       	if('yoast' == ampforwp_get_setting('ampforwp-seo-selection') && ampforwp_get_setting('ampforwp-seo-yoast-description')){
+	       	if('yoast' == ampforwp_get_setting('ampforwp-seo-selection') && ampforwp_get_setting('ampforwp-seo-yoast-description') && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')){
 	         if ( class_exists('WPSEO_Frontend') ) {
 	           $front = WPSEO_Frontend::get_instance();
 	           $desc = $front->metadesc( false );
