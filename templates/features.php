@@ -4141,7 +4141,9 @@ function ampforwp_exclude_archive_args( $args ) {
 	return $args;
 }
 
-add_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
+if( !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration') ){
+	add_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
+}
 function ampforwp_rel_canonical_home_archive(){
 	global $redux_builder_amp;
 	global $wp;

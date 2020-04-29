@@ -12,7 +12,11 @@ function amp_post_template_add_title( $amp_template ) {
 	<?php
 }
 
-if( (! class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') ){
+if( (class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) ){
+	if ('yoast' == ampforwp_get_setting('ampforwp-seo-selection') && ! is_singular() ){
+		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+	}
+} else {
 	add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 }
 
