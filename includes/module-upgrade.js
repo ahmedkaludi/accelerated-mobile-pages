@@ -14,6 +14,8 @@ jQuery(document).ready(function($){
                 activate = '&activate=pwa';
             }else if(currentId=='ampforwp-structure-data-activation-call'){
                 activate = '&activate=structure_data';
+            }else if(currentId=='ampforwp-push-notification-activation-call'){
+                activate = '&activate=push_notification';
             }else if(currentId=='ampforwp-adsforwp-activation-call'){
                 activate = '&activate=adsforwp';
                 adsforwp_is_active = $(".ampforwp-activation-url").attr('id');
@@ -91,6 +93,19 @@ jQuery(document).ready(function($){
                             url: ajaxurl,
                             type: 'post',
                             data: 'action=ampforwp_import_modules_scema&verify_nonce='+nonce,
+                            success: function () {
+                                 self.html('<a href="'+response.redirect_url+'" style="text-decoration: none;color: #555;">Installed! - Let\'s Go to '+msgplug+' Settings</a>')
+                                self.removeClass('ampforwp-activation-call-module-upgrade');
+                            }
+                        });
+                        }else if(self.attr('id')=='ampforwp-push-notification-activation-call'){
+                        msgplug = 'Push Notification';
+                        self.text( 'Thank you for activating...' );
+                        //Import Data
+                        jQuery.ajax({
+                            url: ajaxurl,
+                            type: 'post',
+                            data: 'action=ampforwp_import_modules_push&verify_nonce='+nonce,
                             success: function () {
                                  self.html('<a href="'+response.redirect_url+'" style="text-decoration: none;color: #555;">Installed! - Let\'s Go to '+msgplug+' Settings</a>')
                                 self.removeClass('ampforwp-activation-call-module-upgrade');

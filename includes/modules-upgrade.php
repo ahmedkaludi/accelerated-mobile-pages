@@ -89,6 +89,33 @@ function ampforwp_enable_modules_upgread(){
                         );
             $redirectSettingsUrl = admin_url('edit.php?post_type=adsforwp');
         break;
+        case 'push_notification':
+            $nonceUrl = add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'push-notification',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => wp_create_nonce( 'push-notification' ),
+                                    ),
+                        network_admin_url( 'plugins.php' )
+                        );
+            $plugins[] = array(
+                            'name' => 'push-notification',
+                            'path_' => 'https://downloads.wordpress.org/plugin/push-notification.zip',
+                            'path' =>  add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'push-notification',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => $nonceUrl,
+                                    )
+                                    ),
+                            'install' => 'push-notification/push-notification.php',
+                        );
+            $redirectSettingsUrl = admin_url('edit.php?post_type=push-notification');
+        break;
         default:
             $plugins = array();
         break;

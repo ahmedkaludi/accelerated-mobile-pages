@@ -100,7 +100,7 @@ function ampforwp_push_notification_options($opt_name){
                               '0' => esc_html__('Select Integration Service', 'accelerated-mobile-pages' ),
                                '1' => esc_html__('OneSignal', 'accelerated-mobile-pages' ),
                                '2' => esc_html__('iZooto', 'accelerated-mobile-pages' ),
-                               
+                               '3' => esc_html__('Push Notifications for WP & AMP', 'accelerated-mobile-pages' ),
                               ),
                             'default'   =>  ampforwp_push_notification_default(),
                             ),
@@ -116,6 +116,7 @@ function ampforwp_push_notification_options($opt_name){
                                '0' => esc_html__('Select Integration Service', 'accelerated-mobile-pages' ),
                                '1' => esc_html__('OneSignal', 'accelerated-mobile-pages' ),
                                '2' => esc_html__('iZooto', 'accelerated-mobile-pages' ),
+                               '3' => esc_html__('Push Notifications for WP & AMP', 'accelerated-mobile-pages' ),
                            ),
                             'default'   =>  '1',
                             ),
@@ -137,6 +138,12 @@ function ampforwp_push_notification_options($opt_name){
                             'class' => 'child_opt child_opt_arrow',
                             'required' => array( 'ampforwp-web-push', '=' , '1' ),        
                             ),
+                         array(
+                          'id'       => 'ampforwp-push-notifications-module',
+                          'type'     => 'raw',
+                          'required'  => array('ampforwp-web-push', '=' , '3'),
+                          'content'  => '<div class="ampforwp-st-data-update">'.(!function_exists('push_notification_initialize')? 'Easiest way to send web push notifications:': 'Thank you for upgrading the Push notifications').'<div class="row">'.(!function_exists('push_notification_initialize')? '<div class="col-3"><ul><li>Free & Easy setup</li><li>PWA Friendly (with offline push notifications)</li><li>Native WordPress Integration</li></ul> </div>' : '').'<div class="col-1">'.(!function_exists('push_notification_initialize')?'<div class="install-now ampforwp-activation-call-module-upgrade button  " id="ampforwp-push-notification-activation-call" data-secure="'.wp_create_nonce('verify_module').'"><p>Install Now for Free</p>
+                                </div>' : '<a href="'.admin_url('admin.php?page=push-notification&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go To Push Notification Settings</p></div></a>') .'&nbsp;<a href="#" class="amp_recommend_learnmore" target="_blank">Learn more</a></div></div>' ),
                     $izt_opt4,
                     array(
                        'id' => 'ampforwp-onesignal-positioning',
@@ -225,7 +232,7 @@ function ampforwp_push_notification_options($opt_name){
                             'required'  => array(
                                             array('ampforwp-web-push', '=' , '1'),
                                             array('ampforwp-onesignal-http-site', '=','1')),
-                        ),
+                        ),  
                 )
             ) 
     );
