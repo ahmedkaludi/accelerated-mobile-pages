@@ -2071,3 +2071,19 @@ i.dashicons.dashicons-before.dashicons-update {
 fieldset#redux_builder_amp-ampforwp-onesignal-positioning {
     padding: 0;
 }
+.ux-field-container.amp-ux-text-container {
+    padding: 10px 0 0 15px;
+}
+.redux-field-container .ref-rel-bar-cont{
+    background-color:#d0d3d4;
+    color: black;
+    position: relative;
+    top: 5px;
+    border-radius: 5px;
+}
+.redux-field-container .ref-rel-post-bar{
+    background-color: #4CAF50;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+}

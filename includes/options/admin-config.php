@@ -2157,6 +2157,13 @@ function ampforwp_get_all_tags($id){
                 'accordion-open'=> 1,
             ),
             array(
+               'id'       => 'amp-paginated-pages-indexing',
+               'type'     => 'switch',
+               'title'    => esc_html__('Remove Paginated Pages Indexing', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => sprintf( '%s<a href="%s" target="_blank">%s</a>', esc_html__("You can read more about it ",'accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-remove-paginated-pages-indexing-in-amp/'),esc_html__('here','accelerated-mobile-pages')),
+               'default' => 0,
+            ),
+            array(
                'id'       => 'amp-inspection-tool',
                'type'     => 'switch',
                'title'    => esc_html__('URL Inspection Tool Compatibility', 'accelerated-mobile-pages'),
@@ -2819,6 +2826,13 @@ Redux::setSection( $opt_name, array(
                         'title'    => esc_html__('Hide AMP Version', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => esc_html__('Enable if you want hide AMP version in view source page(generator).','accelerated-mobile-pages'),
                         'default' => 0,
+                    ),
+                    array(
+                        'id'       => 'ampforwp-cat-description',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Category Description', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Disable this option if you dont want to show category description in AMP','accelerated-mobile-pages'),
+                        'default' => 1,
                     ),
                     array(
                         'id'       => 'ampforwp-smooth-scrolling-for-links',
@@ -4041,7 +4055,8 @@ Redux::setSection( $opt_name, array(
                     'title'    => esc_html__('Font Icon Library', 'accelerated-mobile-pages'),
                     'options'  => array(
                         'swift-icons'       => 'Swift Icons',
-                        'fontawesome-icons'     => 'Font Awesome Icons'
+                        'fontawesome-icons'     => 'Font Awesome Icons',
+                        'css-icons' => 'CSS Icons'
                     ),
                     'default'  => 'swift-icons',
                 ),
@@ -5516,6 +5531,14 @@ Redux::setSection( $opt_name, array(
         )
     ));
 if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
+function ampforwp_get_post_percent(){
+    return 0;
+}
+$post_percent = 0;
+$current_page = ampforwp_get_admin_current_page();
+if($current_page=="amp_options"){
+    $post_percent = ampforwp_get_post_percent();
+}
 $single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',
@@ -6176,6 +6199,19 @@ $single_page_options = array(
                     'default'  => '7',
                     'required' => array('ampforwp-in-content-related-posts-days-switch', '=' , '1'),  
                 ),
+            array(
+                    'id'        => 'ampforwp-refersh-related-post',
+                    'type'       => 'raw',
+                    'class'      => 'hide',
+                    'title'      => esc_html__('Refresh Related Post', 'accelerated-mobile-pages'),
+                    'content'    => "<span class='button button-primary button-small' id='ampforwp-refersh-related-post' target='_blank' data-id='".intval($post_percent)."' data-nonce='".wp_create_nonce( 'ampforwp_refresh_related_poost')."'><i class='el el-refresh'></i> Refresh</span> 
+                    <div class='ref-rel-bar-cont'>
+                      <div id='ref_rel_post_bar' class='ref-rel-post-bar' style='width:".intval($post_percent)."%;'>".intval($post_percent)."%</div>
+                    </div>",
+                   'tooltip-subtitle' => esc_html__('If related post is not showing up properly, please refresh it and check it once again.', 'accelerated-mobile-pages'),
+                   'full_width' => false,
+                   'description' => "It will refresh only 50 records at once, please try refreshing until it will complete to 100%",
+            ),
             $jetpack_rp,
             array(
                    'id' => 'single-tab-2',
@@ -6190,11 +6226,18 @@ $single_page_options = array(
               'id'       => 'ampforwp-amp-img-lightbox',
               'type'     => 'switch',
               'default'  =>  '0',
-              'class'    => 'hide',
               'title'    => esc_html__('Lightbox for Images', 'accelerated-mobile-pages'),
               'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
                esc_html__('Enable this option to show lightbox for images in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-lightbox-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
 
+           ),
+           // video-docking 
+           array(
+              'id'       => 'ampforwp-amp-video-docking',
+              'type'     => 'switch',
+              'title'    => esc_html__('Video Docking', 'accelerated-mobile-pages'),
+              'tooltip-subtitle'    => esc_html__('On scroll, the video will minimize to an automatically calculated corner.', 'accelerated-mobile-pages'),
+              'default'  =>  0,
            ),
            // Dropcap 
            array(

@@ -342,18 +342,23 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 		}
 		if ( 2 == ampforwp_get_setting('ampforwp-gallery-design-type') ) {
 			$button_nodes = array();
-			$amp_carousel_thumbnail = AMP_DOM_Utils::create_node(
-				$this->dom,
-				'amp-carousel',
-				array(
+
+			$carousel_args = array(
 					'width' => 'auto',
 					'height' => 48,
 					'type' => 'carousel',
-					'loop' => '',
-					'autoplay' => '',
 					'layout' => 'fixed-height',
 					'class'  => 'carousel-preview'
-				)
+				);
+
+			$c_args = array('loop'=>'', 'autoplay'=>'');
+			$carousel_filter = apply_filters('ampforwp_carousel_args',$c_args);
+			$carousel_args = array_merge($carousel_args,$carousel_filter);
+
+			$amp_carousel_thumbnail = AMP_DOM_Utils::create_node(
+				$this->dom,
+				'amp-carousel',
+				$carousel_args
 			);
 			foreach ($amp_images_small as $key => $value) {
 				$button_node = AMP_DOM_Utils::create_node(

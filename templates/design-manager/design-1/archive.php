@@ -78,7 +78,7 @@ global $redux_builder_amp, $wp; ?>
 		    } else {
 		        $paged = 1;
 		    }
-				if($paged <= '1') {?>
+				if($paged <= '1' && ampforwp_get_setting('ampforwp-cat-description')) {?>
 					<div class="amp-wp-content taxonomy-description">
 						<?php echo do_shortcode($arch_desc);// amphtml content, no kses ?>
 				    </div> <?php

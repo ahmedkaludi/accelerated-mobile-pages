@@ -21,7 +21,8 @@ function ampforwp_content_module_pagination($args, $fieldValues){
   }
 }
  $output = '{{if_condition_content_layout_type==1}}
-            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cm {{user_class}}"><h4>{{content_title}}</h4>   
+            <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cm {{user_class}}">
+            {{if_content_title}}<h4>{{content_title}}</h4> {{ifend_content_title}}
                 <div class="wrap"><ul>{{category_selection}}</ul></div>
                 {{pagination_links}}    
             </div>
@@ -113,6 +114,13 @@ function ampforwp_content_module_pagination($args, $fieldValues){
 }
 {{ifend_condition_content_layout_type_1}}
 ';
+if(ampforwp_get_setting('amp-design-selector') == 3 || ampforwp_get_setting('amp-design-selector') == 2){
+  $frontCss .= '@media (max-width: 480px){
+  {{module-class}} .cm ul{
+  width:80%;
+  }
+  }';
+}
 $options = '<option value="recent_option">Recent Posts</option>';
 $post_types = '';
 $categoriesArray = array();

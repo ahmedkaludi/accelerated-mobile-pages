@@ -2357,3 +2357,91 @@ section.amp-facebook-comments h5{
     border-bottom: 1px dotted #ccc;
 }
 <?php } 
+if ($ampforwp_font_icon == 'css-icons'){?>
+.t-btn {
+    color: #000;
+    position: absolute;
+    width: 17px;
+    height: 5px;
+    border-top: solid 1px currentColor;
+    border-bottom: solid 1px currentColor;
+}
+.t-btn:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 17px;
+    height: 5px;
+    border-bottom: solid 1px currentColor;
+}
+.icon-src,a.lb-x {
+    color: #000;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: solid 1px #000;
+    border-radius: 100%;
+    transform: rotate(-45deg);
+}
+.icon-src:before,a.lb-x:before  {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    height: 6px;
+    width: 1px;
+    background-color: currentColor;
+} 
+.overlay-search {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: solid 1px #fff;
+    border-radius: 100%;
+    transform: rotate(-45deg);
+    right: 10px;
+    top: 0px;
+}
+.overlay-search:before {
+	content: '';
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    height: 6px;
+    width: 1px;
+    background-color: currentColor;
+
+}
+.m-srch .overlay-search {
+    border: 1px solid #000;
+    top: 10px;
+}
+.m-srch .overlay-search:before {
+    padding-right: 0px;
+    top: 10px;
+}
+a.bread-link.bread-home::after {
+    content: "►";
+    top:-1px;
+}
+.lb-t:target a.lb-x {
+    width: 32px;
+    height: 32px;
+    top: 50px;
+    right: 20px;
+}
+.lb-t:target a.lb-x:before {
+    content: "X";
+    color: #fff;
+    transform: rotate(45deg);
+    background-color: transparent;
+    top: -4px;
+    height: -17px;
+    margin: 10px;
+}
+#search a.lb-x {
+    border: 1px solid #fff;
+}
+}
+<?php }

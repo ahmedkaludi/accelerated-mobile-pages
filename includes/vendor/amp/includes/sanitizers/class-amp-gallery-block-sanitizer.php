@@ -324,18 +324,21 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 		//replacements
 		$r = rand(1,100);
 		if ( 3 != ampforwp_get_setting('ampforwp-gallery-design-type') ){
-			$amp_carousel = AMP_DOM_Utils::create_node($this->dom, 
-								'amp-carousel',	
-								array(
+			$carousel_args = array(
 									'width' => 600,
 									'height' => 480,
 									'type' => 'slides',
-									'loop' => '',
-									'autoplay' => '',
 									'layout' => 'responsive',
 									'class'  => 'collapsible-captions',
 									'id' => 'carousel-with-carousel-preview-'.$r
-								)
+								);
+			$c_args = array('loop'=>'', 'autoplay'=>'');
+			$carousel_filter = apply_filters('ampforwp_carousel_args',$c_args);
+			$carousel_args = array_merge($carousel_args,$carousel_filter);
+
+			$amp_carousel = AMP_DOM_Utils::create_node($this->dom, 
+								'amp-carousel',	
+								$carousel_args
 							);
 			foreach ($amp_images as $amp_image) {				
 				$amp_carousel->appendChild( $amp_image );
@@ -343,19 +346,21 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 		}
 
 		if ( 2 == ampforwp_get_setting('ampforwp-gallery-design-type') ) {
+			$carousel_args = array(
+									'width' => 'auto',
+									'height' => 48,
+									'type' => 'carousel',
+									'layout' => 'fixed-height',
+									'class'  => 'carousel-preview'
+								);
+			$c_args = array('loop'=>'', 'autoplay'=>'');
+			$carousel_filter = apply_filters('ampforwp_carousel_args',$c_args);
+			$carousel_args = array_merge($carousel_args,$carousel_filter);
 			$button_nodes = array();
 			$amp_carousel_thumbnail = AMP_DOM_Utils::create_node(
 								$this->dom, 
 								'amp-carousel',
-								array(
-									'width' => 'auto',
-									'height' => 48,
-									'type' => 'carousel',
-									'loop' => '',
-									'autoplay' => '',
-									'layout' => 'fixed-height',
-									'class'  => 'carousel-preview'
-								)
+								$carousel_args
 							);
 			foreach ($amp_images_small as $key => $value) {
 				$button_node = AMP_DOM_Utils::create_node(

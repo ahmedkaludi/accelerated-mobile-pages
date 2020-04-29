@@ -177,6 +177,47 @@ jQuery(function($) {
         }
     });
 
+     $("#ampforwp-refersh-related-post").on('click', function(){
+        var ref_nonce = $(this).attr('data-nonce');
+        var current_post =  parseInt($(this).attr('data-id'));
+        var elem = document.getElementById("ref_rel_post_bar"); 
+        var first_int = setInterval(first_frame, 1000);
+        var width = current_post;
+        width++; 
+        elem.style.width = width + '%'; 
+        elem.innerHTML = width * 1  + '%';
+        function first_frame() {
+            width++; 
+            elem.style.width = width + '%'; 
+            elem.innerHTML = width * 1  + '%';
+        }  
+       $.ajax({
+            url: ajaxurl,
+            method: 'post',
+            data: {
+                    action:     'ampforwp_referesh_related_post',
+                    verify_nonce: ref_nonce
+                 },
+            success: function(response){
+                clearInterval(first_int);
+                response = response.replace("}0", "}");
+                var resp = JSON.parse(response);
+                resp = parseInt(resp.response);
+                var id = setInterval(frame, 10);
+                var width = current_post;
+                function frame() {
+                    if (width >= resp) {
+                        clearInterval(id);
+                    } else {
+                        width++; 
+                        elem.style.width = width + '%'; 
+                        elem.innerHTML = width * 1  + '%';
+                    }
+                }
+            }
+        });
+    
+    }); 
     $(".redux_field_search").keypress(function (evt) {
         //Deterime where our character code is coming from within the event
         var charCode = evt.charCode || evt.keyCode;
@@ -1258,6 +1299,9 @@ jQuery(document).ready(function($) {
             var alexa_d = $('#ampforwp-alexa-domain').val();
             var afs_c = $('#ampforwp-afs-siteid').val();
             var clicky_side_id = $('#clicky-site-id').val();
+            var cr_config_url = $('#ampforwp-callrail-config-url').val();
+            var cr_number = $('#ampforwp-callrail-number').val();
+            var cr_analytics_url = $('#ampforwp-callrail-analytics-url').val();
             var analytics_txt = "";
             var analytic_arr = [];
              $(".ampforwp-ux-ana-sub").each(function(){
@@ -1278,6 +1322,7 @@ jQuery(document).ready(function($) {
                 if(alexa_c!="" && alexa_d!="" && !hasCls && data_href=='ampforwp-Alexa-switch'){analytic_arr.push("Alexa Metrics");}
                 if(afs_c!="" && !hasCls && data_href=='ampforwp-afs-analytics-switch'){analytic_arr.push("AFS Analytics");}
                 if(clicky_side_id!="" && !hasCls && data_href=='amp-clicky-switch'){analytic_arr.push("Clicky Analytics");}
+                if(cr_config_url!="" && cr_number!="" && cr_analytics_url!="" && !hasCls && data_href=='ampforwp-callrail-switch'){analytic_arr.push("Call Rail Analytics");}
             });
             thishtml = analytic_arr.toString().replace(/,/g, ", ");
             button = "CONFIG";
@@ -1569,6 +1614,9 @@ jQuery(document).ready(function($) {
         var alexa_d = $('#ampforwp-alexa-domain').val();
         var afs_c = $('#ampforwp-afs-siteid').val();
         var clicky_side_id = $('#clicky-site-id').val();
+        var cr_config_url = $('#ampforwp-callrail-config-url').val();
+        var cr_number = $('#ampforwp-callrail-number').val();
+        var cr_analytics_url = $('#ampforwp-callrail-analytics-url').val();
         var analytics_txt = "";
         var checked = $('#redux_builder_amp-'+data_href).children('.switch-options').children('.ios7-switch').children('.switch-on-off').prop('checked');
 
@@ -1747,6 +1795,18 @@ jQuery(document).ready(function($) {
                     $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
             }else if(clicky_side_id==""){
+                if(checked){
+                   $('input[data-id="'+data_href+'"]').click();
+                   $('[name="redux_builder_amp['+data_href+']"]').val(0);
+                }
+            }
+        }else if(data_href=='ampforwp-callrail-switch'){
+            if(cr_config_url!="" && cr_number!="" && cr_analytics_url!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
+                }
+            }else if(cr_config_url=="" && cr_number=="" && cr_analytics_url==""){
                 if(checked){
                    $('input[data-id="'+data_href+'"]').click();
                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
