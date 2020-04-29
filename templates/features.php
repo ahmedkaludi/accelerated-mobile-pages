@@ -4141,9 +4141,21 @@ function ampforwp_exclude_archive_args( $args ) {
 	return $args;
 }
 
-if( !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration') ){
+add_action('pre_amp_render_post', 'ampforwp_home_archive_canonical_setter');
+function ampforwp_home_archive_canonical_setter(){
 	add_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
+
+	// Remove the canonical from the homepage if the Yoast 14 and above version is available
+		// Except for the homepage
+	if( class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration') ) {
+
+		if ( ampforwp_is_home() && 'page' == get_option( 'show_on_front') ) {
+			return ;
+		}
+		remove_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
+	}
 }
+
 function ampforwp_rel_canonical_home_archive(){
 	global $redux_builder_amp;
 	global $wp;
