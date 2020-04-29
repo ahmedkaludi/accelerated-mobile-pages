@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.44 (29th April 2020) =
+* Fixed: Multiple issues created after the latest update of Yoast (14.0 and above) #4412
+
 = 1.0.43 (28th April 2020) =
 * Improvement: Added option to hide category description #4388
 * Improvement: Added option to remove Google index on paginated pages #4372
