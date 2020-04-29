@@ -806,7 +806,7 @@ function ampforwp_extra_category_fields( $tag ) {
 				<option class="level-0" value="show">Show</option>
 				<option class="level-0" value="hide">Hide</option>
 			</select>
-			<p>You can enable or disable AMP on this category. <a href="#">Learn More</a>.</p>
+			<p>You can enable or disable AMP on this category. <a href="https://ampforwp.com/tutorials/article/how-to-show-hide-the-amp-from-the-categories-or-product-pages-or-any-custom-taxonomy-in-amp/" target="_blank">Learn More</a>.</p>
 		</div>
 		<div id="amp-show-hide-tax" class="mrtop-10" style="display: none">
 			<div class="hide-show-amp-tax">
@@ -837,7 +837,7 @@ function ampforwp_extra_category_fields( $tag ) {
 				<option class="level-0" value="show" <?php if($visible=='show'){ echo "selected"; }?>>Show</option>
 				<option class="level-0" value="hide" <?php if($visible=='hide'){ echo "selected";} ?>>Hide</option>
 			</select><br />
-			<span class="description">You can enable or disable AMP on this category. <a href="#">Learn More</a>.</span>
+			<span class="description">You can enable or disable AMP on this category. <a href="https://ampforwp.com/tutorials/article/how-to-show-hide-the-amp-from-the-categories-or-product-pages-or-any-custom-taxonomy-in-amp/" target="_blank">Learn More</a>.</span>
 			<div id="amp-show-hide-tax" <?php if($visible=='show' || $visible==''){?>style="display: none;"<?php }?> class="edit_hide_tax mrtop-10">
 				<div class="hide-show-amp-tax">
 				<input type="radio" value="hide-cat" name="hide_tax" <?php if($visible_status=='hide-cat' || $visible_status==''){?> checked <?php }?>> 
