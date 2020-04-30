@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4
-Stable tag: 1.0.44
+Stable tag: 1.0.45
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.45 (30th April 2020) =
+* Fixed: Updated the code as per yoast latest version to fixed the canonical, title separator, meta tag errors #4415
+* Fixed: Content links unclickable with GDPR #4392
+
 = 1.0.44 (29th April 2020) =
 * Fixed: Multiple issues created after the latest update of Yoast (14.0 and above) #4412
 
@@ -208,20 +212,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Video docking is not working in AMP. #4352
 * Fixed: Shortcodes displaying in meta descrption #4385
 * Fixed: Debug Warnings: count(): Parameter must be an array or an object that implements Countable. #4387
-
-= 1.0.42 (21st April 2020) =
-* Improvement: Added Comments module in our AMP page builder #4106
-* Improvement: Added CSS icons option #4268
-* Improvement: Added Support for Call Rail analytics #4331
-* Improvement: Added Pinterest embeded images in AMP #4361
-* Improvement: Added Video docking feature in AMP #4352
-* Improvement: Added option for one signal notificaion on the pages #4349
-* Fixed: Mobile redirection issue on robots.txt page #4369 
-* Fixed: 404 error when we click on the comment section with Google Sitekit #4360
-* Fixed: Fixed width not working in 2 coloum in AMP pagebuilder #4379
-* Fixed: Label markup was visible even after set to empty in content module in AMP pagebuilder #4379
-
-= 1.0.41 (14th April 2020) =
-* Improvement: Video docking issue #4352
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
