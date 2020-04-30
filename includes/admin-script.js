@@ -2567,4 +2567,13 @@ function DrawerIcon(icon) {
         }
     })();
 }
+   $("#subscribe-newsletter-form").on('submit',function(e){
+        e.preventDefault();
+        var $form = $("#subscribe-newsletter-form");
+        var name = $form.find('input[name="name"]').val();
+        var email = $form.find('input[name="email"]').val();
+        $.post(ajaxurl, {action:'ampforwp_subscribe_newsletter',name:name, email:email},
+          function(data) {}
+        );
+    });
 });
