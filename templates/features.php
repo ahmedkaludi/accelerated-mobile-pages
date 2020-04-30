@@ -2212,13 +2212,15 @@ function ampforwp_remove_bj_load() {
 }
 add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
 
-//Disable Crazy Lazy for AMP #751
-function ampforwp_remove_crazy_lazy_support(){
+add_action('wp','ampforwp_remove_wp_actions',9);
+function ampforwp_remove_wp_actions(){
+	//Disable Crazy Lazy for AMP #751
 	if( ampforwp_is_amp_endpoint() ){
 		remove_action( 'wp', array( 'CrazyLazy', 'instance' ) );
 	}
+	// Removing Marfeel plugin which was blocking internal pages of AMP #2423
+	remove_action('wp', 'render_marfeel_amp_content' );
 }
-add_action('wp','ampforwp_remove_crazy_lazy_support',9);
 //33. Google tag manager support added
 // Moved to analytics-functions.php
 
@@ -3458,13 +3460,9 @@ function ampforwp_comment_button_url(){
 add_action('pre_amp_render_post', 'ampforwp_remove_tagdiv_category_layout');
 function ampforwp_remove_tagdiv_category_layout(){
 	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
-		add_action('pre_get_posts','ampforwp_remove_support_tagdiv_cateroy_layout',9);
+		remove_action('pre_get_posts', 'td_modify_main_query_for_category_page',9); 	
 	}
 }
-function ampforwp_remove_support_tagdiv_cateroy_layout(){	
-		remove_action('pre_get_posts', 'td_modify_main_query_for_category_page'); 	
-}
-
 // 61. Add Gist Support
 add_shortcode('amp-gist', 'ampforwp_gist_shortcode_generator');
 function ampforwp_gist_shortcode_generator($atts) {
@@ -3821,28 +3819,21 @@ function ampforwp_remove_rel_on_bp(){
 				remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 ); 
 			}
 		}
-
-}
-
-// Removing AMP from WPForo Forums Pages #592
-
-add_action('amp_init','remove_rel_amp_from_forum');
-function remove_rel_amp_from_forum(){
-	add_action('wp','ampforwp_remove_rel_on_forum');
-}
-
-function ampforwp_remove_rel_on_forum(){
-	if(class_exists('wpForo')){
-		Global $post, $wpdb,$wpforo;
-		$foid = $post->ID;
-		$fid = $wpforo->pageid;
-		if($foid==$fid){
-			remove_action( 'wp_head', 'amp_frontend_add_canonical');
-			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
+		// Removing AMP from WPForo Forums Pages #592
+		if(class_exists('wpForo')){
+			Global $post, $wpdb,$wpforo;
+			$foid = $post->ID;
+			$fid = $wpforo->pageid;
+			if($foid==$fid){
+				remove_action( 'wp_head', 'amp_frontend_add_canonical');
+				remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
+			}
+			
 		}
-		
-	}
+
 }
+
+
 
 
 // 66. Make AMP compatible with Squirrly SEO
@@ -6241,6 +6232,13 @@ function ampforwp_remove_instant_articles_amp_markup(){
 	if(class_exists('Instant_Articles_AMP_Markup')){
 		remove_action( 'wp_head', array('Instant_Articles_AMP_Markup', 'inject_link_rel') );
 	}
+	// #1696
+	  if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
+	    if(class_exists('SQ_Classes_ObjController')){
+		    $SQ_Classes_ObjController = new SQ_Classes_ObjController();
+		    $sq_analytics_class_obj = $SQ_Classes_ObjController::getClass('SQ_Models_Services_Analytics');
+		}
+	  }
 }
 // #2042 
 function ampforwp_404_canonical(){
@@ -6270,18 +6268,6 @@ function ampforwp_paginated_post_content($content){
 
 // GDPR Compliancy #2040
 // Moved to notice-bar-functions.php
-
-// #1696
-add_action('wp','ampforwp_remove_squirly_js');
-function ampforwp_remove_squirly_js(){
-  if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
-    if(class_exists('SQ_Classes_ObjController')){
-	    $SQ_Classes_ObjController = new SQ_Classes_ObjController();
-	    $sq_analytics_class_obj = $SQ_Classes_ObjController::getClass('SQ_Models_Services_Analytics');
-	}
-
-  }
-}
 
 // Thrive Leads Compatibility #2067
 add_filter('thrive_leads_skip_request', 'ampforwp_skip_thrive_leads');
@@ -6728,11 +6714,6 @@ function ampforwp_ia_meta_callback( $post ) {
     </p>
 <?php }
 
-// Removing Marfeel plugin which was blocking internal pages of AMP #2423
-add_action('wp','ampforwp_remove_marfeel',9);
-function ampforwp_remove_marfeel(){
-remove_action('wp', 'render_marfeel_amp_content' );
-}
 // Total Plus compatibility #2511
 add_action('current_screen', 'ampforwp_totalplus_comp_admin');
 function ampforwp_totalplus_comp_admin() {
