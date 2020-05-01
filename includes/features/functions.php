@@ -1362,10 +1362,11 @@ function ampforwp_mobile_redirection_notice(){
 add_action('wp_ajax_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
 add_action('wp_ajax_nopriv_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
 function ampforwp_subscribe_for_newsletter(){
-    $api_url = 'http://localhost/wpsite/wp-json/api/sandy/subscribe'; // NEED TO CHANGE THE API URL
+    $api_url = 'http://magazine3.company/wp-json/api/central/email/subscribe';
     $api_params = array(
         'name' => sanitize_text_field($_POST['name']),
         'email'=> sanitize_text_field($_POST['email']),
+        'website'=> sanitize_text_field($_POST['website']),
         'type'=> 'amp'
     );
     $response = wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );

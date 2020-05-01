@@ -2572,7 +2572,8 @@ function DrawerIcon(icon) {
         var $form = $("#subscribe-newsletter-form");
         var name = $form.find('input[name="name"]').val();
         var email = $form.find('input[name="email"]').val();
-        $.post(ajaxurl, {action:'ampforwp_subscribe_newsletter',name:name, email:email},
+        var website = $form.find('input[name="company"]').val();
+        $.post(ajaxurl, {action:'ampforwp_subscribe_newsletter',name:name, email:email,website:website},
           function(data) {}
         );
     });
