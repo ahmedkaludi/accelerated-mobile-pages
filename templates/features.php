@@ -3152,7 +3152,8 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
   		if(false === strpos($atts['href'], "#")){
   			$atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
   		}	
-    }   
+    }
+    $atts = apply_filters('auto_add_amp_menu_url',$atts);   
 	return $atts;
 }
 
