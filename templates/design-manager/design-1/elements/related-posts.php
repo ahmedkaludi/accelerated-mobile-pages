@@ -21,6 +21,7 @@ if( $current_post_type = get_post_type( $post )) {
 // The query arguments
 	if($current_post_type != 'page'){
     $args = array(
+    	'fields'=>'ids',
         'posts_per_page'=> $int_number_of_related_posts,
         'order' => 'DESC',
         'orderby' => $orderby,
@@ -42,6 +43,7 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2) {
 			$category_ids = array();
 			foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
 			$args=array(
+					'fields'=>'ids',
 					'category__in' 		 => $category_ids,
 					'posts_per_page'	 => $int_number_of_related_posts,
 					'post__not_in' => array($post->ID),
@@ -67,6 +69,7 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
 			$tag_ids = array();
 			foreach($ampforwp_tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
 			$args=array(
+				'fields'=>'ids',
 			 	'tag__in' 		 	 => $tag_ids,
 				'post__not_in' 	 	 => array($post->ID),
 				'posts_per_page' 	 => $int_number_of_related_posts,
