@@ -82,9 +82,9 @@ function ampforwp_redirection() {
           $tax_status = ampforwp_get_taxonomy_meta($term_id,'status');
           if($tax_status==false){
             $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
-            $go_to_url = str_replace("/amp", '', $go_to_url);
-            $go_to_url = str_replace("?amp=1", '', $go_to_url);
-            $go_to_url = str_replace("?amp", '', $go_to_url);
+            $go_to_url = preg_replace('/amp$/', '', $go_to_url);
+            $go_to_url = preg_replace('/\?amp=1$/', '', $go_to_url);
+            $go_to_url = preg_replace('/\?amp$/', '', $go_to_url);
             wp_safe_redirect( $go_to_url );
             exit;
           }
@@ -92,9 +92,9 @@ function ampforwp_redirection() {
           $tax_status = ampforwp_get_taxonomy_meta('','post_status');
           if($tax_status==false){
             $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
-            $go_to_url = str_replace("/amp", '', $go_to_url);
-            $go_to_url = str_replace("?amp=1", '', $go_to_url);
-            $go_to_url = str_replace("?amp", '', $go_to_url);
+            $go_to_url = preg_replace('/amp$/', '', $go_to_url);
+            $go_to_url = preg_replace('/\?amp=1$/', '', $go_to_url);
+            $go_to_url = preg_replace('/\?amp$/', '', $go_to_url);
             wp_safe_redirect( $go_to_url );
             exit;
           }
