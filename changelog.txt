@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.45 (30th April 2020) =
+* Fixed: Updated the code as per yoast latest version to fixed the canonical, title separator, meta tag errors #4415
+* Fixed: Content links unclickable with GDPR #4392
+
 = 1.0.44 (29th April 2020) =
 * Fixed: Multiple issues created after the latest update of Yoast (14.0 and above) #4412
 

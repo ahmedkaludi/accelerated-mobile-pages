@@ -273,7 +273,7 @@ function ampforwp_generate_meta_desc($json=""){
             $desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
         }
         // Yoast 
-        if ( class_exists('WPSEO_Frontend') && ('yoast' == ampforwp_get_setting('ampforwp-seo-selection') || 1 == ampforwp_get_setting('ampforwp-seo-selection'))) {
+        if ( class_exists('WPSEO_Frontend') && ('yoast' == ampforwp_get_setting('ampforwp-seo-selection') || 1 == ampforwp_get_setting('ampforwp-seo-selection')) && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
             $front = $yoast_desc = '';
             $front = WPSEO_Frontend::get_instance();
             $yoast_desc = addslashes( strip_tags( $front->metadesc( false ) ) );

@@ -128,13 +128,7 @@ function ampforwp_gdpr_css(){
 		#footer .gdpr_fmi a{
 			color: <?php echo ampforwp_sanitize_color( ampforwp_get_setting('swift-color-scheme','color') ); ?>;
 		}
-		amp-consent.amp-active {
-		  top: 0;
-		  bottom: 0;
-		  left: 0;
-		  right: 0;
-		  position: relative;
-		} 
+	
 		@media(max-width:768px){
 			.gdpr_w{width: 85%;margin:0 auto;padding:1.5rem;}
 		}
