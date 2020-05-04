@@ -194,7 +194,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.46 (5th May 2020) =
+= 1.0.47 (5th May 2020) =
 * Fixed: Few issues fixed with latest version of yoast plugin #4430
 
 = 1.0.46 (4th May 2020) =
