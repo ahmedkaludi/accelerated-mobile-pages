@@ -1455,7 +1455,8 @@ function ampforwp_yoast_social_title($type) {
 			$title = WPSEO_Meta::get_value('twitter-title',$page_id );
 		}
 		if (empty($title) ){
-			$title = get_post_meta($page_id, '_yoast_wpseo_title', true);
+			$title .= get_post_meta($page_id, '_yoast_wpseo_title', true);
+			$title = wpseo_replace_vars( $title,$post );
 		}
 		if (empty($title) ){
 			$title = get_the_title($page_id);
@@ -1666,6 +1667,7 @@ function ampforwp_replace_title_tags() {
 			// Custom Front Page Title From Yoast SEO #1163
 			if ( ampforwp_is_front_page() || ampforwp_is_blog() ) {
 				$yoast_title = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_title', true);
+				$yoast_title = wpseo_replace_vars( $yoast_title,$post );
 			}
 		 	if ( $yoast_title ) {
 		 		$site_title = apply_filters( 'wpseo_title', $yoast_title, $yoast_instance  );
