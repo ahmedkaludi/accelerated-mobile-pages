@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4
-Stable tag: 1.0.45
+Stable tag: 1.0.47
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,23 +194,27 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.47 (5th May 2020) =
+* Fixed: Few issues fixed with latest version of yoast plugin #4430
+
+= 1.0.46 (4th May 2020) =
+* Fixed: Few issues fixed with latest version of yoast plugin #4430
+* Fixed: Text not displaying in One signal notification #4413
+* Fixed: Wrong amphtml in ?amp endpoint in category pages #4393
+* Fixed: Open graph tags not loading from the SEO framework #4399
+* Fixed: Blank class in archives loop and loop on homepage #4390
+* Fixed: Pagination of category module going to top of the page #4401
+* Fixed: Fatal error in customizer in trucking theme #4391
+* Fixed: Auto Add AMP in Menu option not working in subdomain #4423
+* Fixed: Showing entities instead of UTF-8 in footer json #4395
+* Fixed: Ninja Tables plugin css was hiding due to class drawer #4428
+* Fixed: AMP Option panel improvements #4408
+
 = 1.0.45 (30th April 2020) =
 * Fixed: Updated the code as per yoast latest version to fixed the canonical, title separator, meta tag errors #4415
 * Fixed: Content links unclickable with GDPR #4392
 
 = 1.0.44 (29th April 2020) =
 * Fixed: Multiple issues created after the latest update of Yoast (14.0 and above) #4412
-
-= 1.0.43 (28th April 2020) =
-* Improvement: Added option to hide category description #4388
-* Improvement: Added option to remove Google index on paginated pages #4372
-* Improvement: Added Filter for amp-carousel #4374
-* Improvement: Code improvements in Related posts and Facebook instance article #4300 #4386
-* Fixed: Fatal error with the latest update of yoast 14.0 #4412
-* Fixed: AMP Lightbox is not working #4378
-* Fixed: White spacing in the responsive mode on left side #4375
-* Fixed: Video docking is not working in AMP. #4352
-* Fixed: Shortcodes displaying in meta descrption #4385
-* Fixed: Debug Warnings: count(): Parameter must be an array or an object that implements Countable. #4387
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

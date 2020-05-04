@@ -5,7 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // Callbacks for adding content to an AMP template
 
-add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_title' );
 function amp_post_template_add_title( $amp_template ) {
 	?>
 	<title><?php echo esc_html( $amp_template->get( 'document_title' ) ); ?></title>
@@ -18,6 +17,7 @@ if( (class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) ){
 	}
 } else {
 	add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+	add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_title' );
 }
 
 function amp_post_template_add_canonical( $amp_template ) {
@@ -110,7 +110,7 @@ function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	$seo_sel = ampforwp_get_setting('ampforwp-seo-selection');
 	if( (ampforwp_get_setting('ampforwp-seo-yoast-schema') == false && ampforwp_get_setting('ampforwp-seo-selection') == 'yoast') || empty($seo_sel) ){
 	?>
-	<script type="application/ld+json"><?php echo wp_json_encode( $metadata ); ?></script>
+	<script type="application/ld+json"><?php echo wp_json_encode( $metadata, JSON_UNESCAPED_UNICODE ); ?></script>
 	<?php
 	}
 }

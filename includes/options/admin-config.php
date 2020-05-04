@@ -3639,6 +3639,7 @@ Redux::setSection( $opt_name, array(
                 'type'     => 'raw',
                 'subtitle'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/amp-layouts/" target="_blank">What is Layouts?</a>',
                 'title'    => esc_html__('AMP Layouts', 'accelerated-mobile-pages'),
+                'required' => array('amp-design-selector', '=' , '4'),
                 'full_width'=>true, 
                 'class'     =>(!is_plugin_active('amp-layouts/amp-layouts.php')? '': 'hide'),//,
                 'markdown'=> true,
@@ -3652,6 +3653,7 @@ Redux::setSection( $opt_name, array(
                 'id'   => 'info_theme_framework',
                 'type' => 'info',
                 'style' => 'success',
+                'required' => array('amp-design-selector', '!=' , 'amp-theme-framework-master'),
                 'desc' => $amptfad
             ),            
             )

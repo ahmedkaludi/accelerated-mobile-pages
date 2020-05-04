@@ -449,7 +449,7 @@ function ampforwp_sd_sitenavigation(){
 	        if($navObj){  
 	            $input['@context'] = 'https://schema.org'; 
 	            $input['@graph']   = $navObj; ?>       
-	    		<script type="application/ld+json"><?php echo wp_json_encode( $input ); ?></script>
+	    		<script type="application/ld+json"><?php echo wp_json_encode( $input, JSON_UNESCAPED_UNICODE ); ?></script>
 	        <?php }
 	    }
 	}

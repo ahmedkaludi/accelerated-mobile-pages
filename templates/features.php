@@ -358,7 +358,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}
 			// URL Purifier
 			$amp_url = ampforwp_url_purifier($amp_url);
-			if(true == ampforwp_get_setting('amp-core-end-point') && (!is_home() && !is_front_page())){
+			if(true == ampforwp_get_setting('amp-core-end-point') && (!is_home() && !is_front_page() && !is_archive())){
 				$amp_url = add_query_arg( 'amp', '', get_the_permalink() );
 			}	
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
@@ -1455,7 +1455,8 @@ function ampforwp_yoast_social_title($type) {
 			$title = WPSEO_Meta::get_value('twitter-title',$page_id );
 		}
 		if (empty($title) ){
-			$title = get_post_meta($page_id, '_yoast_wpseo_title', true);
+			$title .= get_post_meta($page_id, '_yoast_wpseo_title', true);
+			$title = wpseo_replace_vars( $title,$post );
 		}
 		if (empty($title) ){
 			$title = get_the_title($page_id);
@@ -1650,7 +1651,7 @@ function ampforwp_replace_title_tags() {
 		}
 
 		// Yoast SEO Title compatibility #2871
-		if( class_exists('WPSEO_Frontend') && ('yoast' || 1) == ampforwp_get_setting('ampforwp-seo-selection') && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
+		if( class_exists('WPSEO_Frontend') && ('yoast' || 1) == ampforwp_get_setting('ampforwp-seo-selection') ) {
 			$yoast_title = $WPSEO_Frontend = $yoast_instance = '';
 
 			if ( class_exists('Yoast\WP\SEO\Presentations\Indexable_Presentation') ) {
@@ -1665,7 +1666,8 @@ function ampforwp_replace_title_tags() {
 			}
 			// Custom Front Page Title From Yoast SEO #1163
 			if ( ampforwp_is_front_page() || ampforwp_is_blog() ) {
-				$yoast_title = $WPSEO_Frontend->get_content_title( $post );
+				$yoast_title = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_title', true);
+				$yoast_title = wpseo_replace_vars( $yoast_title,$post );
 			}
 		 	if ( $yoast_title ) {
 		 		$site_title = apply_filters( 'wpseo_title', $yoast_title, $yoast_instance  );
@@ -3024,6 +3026,8 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
      		$atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
      	}   
     }
+    
+    $atts = apply_filters('ampforwp_auto_add_amp_menu_url',$atts);
 
 	return $atts;
 }
@@ -3182,7 +3186,7 @@ function ampforwp_meta_description() {
 		return;
 	}
 	$desc = ampforwp_generate_meta_desc();
-	if ( $desc ) {
+	if ( $desc && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
 	}
 }
@@ -4149,16 +4153,19 @@ function ampforwp_home_archive_canonical_setter(){
 		// Except for the homepage
 	if( class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration') ) {
 
-		if ( ampforwp_is_home() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) ) {
+		if ( ampforwp_is_home() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) && !isset($_GET['lang'])) {
 			return ;
 		}
-		if(ampforwp_is_front_page() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts'))){
+		if(ampforwp_is_front_page() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) && !isset($_GET['lang'])){
 			return ;
 		}
 		if(is_search()){
 			return;
 		}
 		remove_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
+		if(function_exists('wpseo_premium_init') && ! is_singular() ){
+			add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+		}
 	}
 }
 
@@ -7062,6 +7069,20 @@ function ampforwp_fontawesome_canonical_link(){
     }
 add_action('amp_post_template_head', 'ampforwp_set_dns_preload_urls');
 function ampforwp_set_dns_preload_urls(){
+	// Open graph tag is not loading from the SEO framework #4399
+	if (function_exists('the_seo_framework_boot') && 'seo_framework' == ampforwp_get_setting('ampforwp-seo-selection')) {
+		$og_tsf = \the_seo_framework();
+		if($og_tsf){
+			echo $og_tsf->og_image();
+			echo $og_tsf->og_locale();
+			echo $og_tsf->og_type();
+			echo $og_tsf->og_title();
+			echo $og_tsf->og_image();
+			echo $og_tsf->og_description();
+			echo $og_tsf->og_sitename();
+		}
+	}
+
 	$prefetch = ampforwp_get_setting('amp-prefetch-options');
 	$data_arr = array();
 	if(is_array($prefetch)){

@@ -1,5 +1,21 @@
 == Changelog ==
 
+= 1.0.47 (5th May 2020) =
+* Fixed: Few issues fixed with latest version of yoast plugin #4430
+
+= 1.0.46 (4th May 2020) =
+* Fixed: Few issues fixed with latest version of yoast plugin #4430
+* Fixed: Text not displaying in One signal notification #4413
+* Fixed: Wrong amphtml in ?amp endpoint in category pages #4393
+* Fixed: Open graph tags not loading from the SEO framework #4399
+* Fixed: Blank class in archives loop and loop on homepage #4390
+* Fixed: Pagination of category module going to top of the page #4401
+* Fixed: Fatal error in customizer in trucking theme #4391
+* Fixed: Auto Add AMP in Menu option not working in subdomain #4423
+* Fixed: Showing entities instead of UTF-8 in footer json #4395
+* Fixed: Ninja Tables plugin css was hiding due to class drawer #4428
+* Fixed: AMP Option panel improvements #4408
+
 = 1.0.45 (30th April 2020) =
 * Fixed: Updated the code as per yoast latest version to fixed the canonical, title separator, meta tag errors #4415
 * Fixed: Content links unclickable with GDPR #4392
