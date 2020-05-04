@@ -1519,7 +1519,7 @@ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"
     transform: translateZ(0);
     visibility: hidden;
 }
- .drawer {
+ .amp-ux-main-section .drawer {
     max-width: 375px;
     box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
     width: 75%;
@@ -2027,7 +2027,7 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     .s-f-pg {
         margin-left: 10px;
     }
-    .drawer {
+    .amp-ux-main-section .drawer {
         width:86%;
     }
 
