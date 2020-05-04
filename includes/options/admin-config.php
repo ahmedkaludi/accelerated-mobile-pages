@@ -3653,6 +3653,7 @@ Redux::setSection( $opt_name, array(
                 'id'   => 'info_theme_framework',
                 'type' => 'info',
                 'style' => 'success',
+                'required' => array('amp-design-selector', '!=' , 'amp-theme-framework-master'),
                 'desc' => $amptfad
             ),            
             )
