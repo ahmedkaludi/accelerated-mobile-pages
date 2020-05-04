@@ -4163,7 +4163,7 @@ function ampforwp_home_archive_canonical_setter(){
 			return;
 		}
 		remove_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
-		if(function_exists('wpseo_premium_init')){
+		if(function_exists('wpseo_premium_init') && ! is_singular() ){
 			add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 		}
 	}
