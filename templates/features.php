@@ -1650,7 +1650,7 @@ function ampforwp_replace_title_tags() {
 		}
 
 		// Yoast SEO Title compatibility #2871
-		if( class_exists('WPSEO_Frontend') && ('yoast' || 1) == ampforwp_get_setting('ampforwp-seo-selection') && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
+		if( class_exists('WPSEO_Frontend') && ('yoast' || 1) == ampforwp_get_setting('ampforwp-seo-selection') ) {
 			$yoast_title = $WPSEO_Frontend = $yoast_instance = '';
 
 			if ( class_exists('Yoast\WP\SEO\Presentations\Indexable_Presentation') ) {
@@ -1665,7 +1665,7 @@ function ampforwp_replace_title_tags() {
 			}
 			// Custom Front Page Title From Yoast SEO #1163
 			if ( ampforwp_is_front_page() || ampforwp_is_blog() ) {
-				$yoast_title = $WPSEO_Frontend->get_content_title( $post );
+				$yoast_title = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_title', true);
 			}
 		 	if ( $yoast_title ) {
 		 		$site_title = apply_filters( 'wpseo_title', $yoast_title, $yoast_instance  );
@@ -3182,7 +3182,7 @@ function ampforwp_meta_description() {
 		return;
 	}
 	$desc = ampforwp_generate_meta_desc();
-	if ( $desc ) {
+	if ( $desc && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
 	}
 }
