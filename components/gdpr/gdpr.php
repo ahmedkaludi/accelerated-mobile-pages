@@ -177,7 +177,7 @@ function ampforwp_gdpr_css(){
 		.gdpr_yn form{display: inline;}
 		.gdpr_yn button{background: #FFFC26;border: none;color: #333;padding: 8px 40px;font-size: 15px;margin: 0 3px;font-weight: 600;cursor: pointer;}
 		.gdpr_yn .gdpr_n{background: transparent;}
-		amp-consent{position: relative;margin-left: 10px;top: 2px;width: auto;background: transparent;margin:0;left:40%}
+		amp-consent{position: relative;margin-left: 10px;width: auto;background: transparent;margin:0;left:40%}
 		.gdpr_fmi span, .gdpr_fmi a:before{
 		  display:none;
 		}
