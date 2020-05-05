@@ -4156,7 +4156,7 @@ function ampforwp_home_archive_canonical_setter(){
 		if ( ampforwp_is_home() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) && !isset($_GET['lang'])) {
 			return ;
 		}
-		if(ampforwp_is_front_page() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) && !isset($_GET['lang'])){
+		if(ampforwp_is_front_page() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) && !isset($_GET['lang']) && !ampforwp_get_setting('ampforwp-amp-takeover')){
 			return ;
 		}
 		if(is_search()){
