@@ -51,6 +51,7 @@ function ampforwp_add_admin_styling($hook_suffix){
         add_action('admin_notices', 'ampforwp_admin_notices' );
         add_action('admin_notices', 'ampforwp_seo_selection_notice' );
         add_action('admin_notices', 'ampforwp_mobile_redirection_notice' );
+        add_action('admin_notices', 'ampforwp_category_base_remove_notice' );
     }else{
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
@@ -1360,7 +1361,14 @@ function ampforwp_mobile_redirection_notice(){
     if(!empty($plugin) && !empty($option)){
     echo sprintf(('<div class="notice notice-error"><p>%s <a target="_blank" href="%s">%s</a></p></div>'), esc_html__('You need to enable the option of "'.esc_html($option).'" in '.esc_html($plugin).' plugin for mobile redirection to work properly in AMP','accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-redirect-all-mobile-visitors-to-amp/'),esc_html__('Click here for more info','accelerated-mobile-pages'));  }
 }
-
+function ampforwp_category_base_remove_notice(){
+    if(true == ampforwp_get_setting('ampforwp-category-base-removel-link')){
+        return;
+    }
+    if(class_exists('WPSEO_Options') && WPSEO_Options::get( 'stripcategorybase' ) == true){
+        echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('You have removed the category base in non-amp version so you need to remove category base in AMP also and for that just enable the option of Category base remove in AMP','accelerated-mobile-pages'),esc_url('admin.php?page=amp_options&tab=17'),esc_html__('Click Here','accelerated-mobile-pages'));
+    }
+}
 add_action('wp_ajax_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
 add_action('wp_ajax_nopriv_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
 function ampforwp_subscribe_for_newsletter(){
