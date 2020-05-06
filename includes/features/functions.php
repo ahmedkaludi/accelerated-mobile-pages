@@ -1272,8 +1272,10 @@ if(!function_exists('ampforwp_sassy_share_icons')){
                 preg_match_all('/<div class="heateorSssClear"><\/div><div class="heateor_sss_sharing_container (.*)">(.*)<div class="heateorSssClear"><\/div><\/div><div class="heateorSssClear"><\/div>/', $ampforwp_the_content, $matches);
                 
                 $_actual = $matches[0];
+                if(isset($matches[1][0])){
                 $_replace = '<div class="heateorSssClear"></div><div class="heateor_sss_sharing_container '.$matches[1][0].'"></amp-img></a>'.$_append.'</div><div class="heateorSssClear"></div><div class="heateorSssClear"></div>';
                 $ampforwp_the_content = str_replace($_actual, $_replace, $ampforwp_the_content);
+                }
             }
         }
         return $ampforwp_the_content;
