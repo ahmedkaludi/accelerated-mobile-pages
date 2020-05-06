@@ -123,7 +123,7 @@ jQuery(function($) {
     });
     $(".hide-show-amp-tax").on('click', function(){
         var checkBoxes = $(this).children('input:radio')
-        checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+        checkBoxes.prop("checked", "true");
     });
     $('.redux-container').each(function() {
         if (!$(this).hasClass('redux-no-sections')) {
