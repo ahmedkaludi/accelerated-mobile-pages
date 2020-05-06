@@ -766,6 +766,19 @@ function ampforwp_url_purifier($url){
                 $wpml_lang_checker = true;
             }
             }
+            $url = esc_url($url);
+            $active_langs = $sitepress_settings['active_languages'];
+            foreach ($active_langs as $active_lang) {
+                if (preg_match('/\?lang='.$active_lang.'/', $url)){
+                    $url = str_replace('&#038;amp=1', '', $url);
+                    if(false == ampforwp_get_setting('amp-core-end-point')){
+                        $url = str_replace('?lang='.$active_lang, 'amp/', $url);
+                    }else{
+                        $url = str_replace('?lang='.$active_lang, '?amp=1', $url);
+                    }
+                    $url = add_query_arg( 'lang',$active_lang, $url);
+                }
+            }
         }
         if ( true == $wpml_lang_checker && ( is_home() || is_archive() || is_front_page() ) ) {
             if ( ( is_archive() || is_home() ) && get_query_var('paged') > 1 ) {
