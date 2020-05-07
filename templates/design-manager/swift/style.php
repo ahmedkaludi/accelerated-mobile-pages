@@ -897,7 +897,7 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
 .fsp-img {margin-bottom:10px;}
 .fsp h2, .fsp h3{margin:0px 0px 5px 0px;font-size:20px;line-height:25px;font-weight:500;}
-.fsp-cnt .loop-category{margin-bottom:8px;}
+.fsp-cnt .loop-category{margin-bottom:20px;}
 .fsp-cnt .loop-category li {font-weight: 500;}
 .pt-dt{font-size:11px;color:#808080;margin: 8px 0px 0px 0px;display: inline-flex;}
 blockquote{margin-bottom:20px;}
