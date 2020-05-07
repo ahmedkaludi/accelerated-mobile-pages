@@ -25,7 +25,8 @@ function ampforwp_framework_get_search_form() {
 				<div class="amp-search-wrapper">
 					<label aria-label="Type your query" class="screen-reader-text" for="s">' . esc_html__($label,'accelerated-mobile-pages') . '</label>
 					<input type="text" placeholder="AMP" value="'.esc_attr($amp_query_variable_val).'" name="'.esc_attr($amp_query_variable).'" class="hidden"/>
-					<input type="text" placeholder="'.esc_attr($placeholder).'" value="' . esc_attr(get_search_query()) . '" name="s" class="s" />
+					<label for="placeholder"></label>
+					<input id="placeholder" type="text" placeholder="'.esc_attr($placeholder).'" value="' . esc_attr(get_search_query()) . '" name="s" class="s" />
 					<label aria-label="Submit amp search" for="amp-search-submit" >
 						<input type="submit" class="icon-search" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
 					</label>
