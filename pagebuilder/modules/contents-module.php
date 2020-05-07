@@ -565,6 +565,7 @@ if ( is_admin() ) {
         if( $paged > 1){
 
           $first_page = add_query_arg( array( $pagination_text => 1 ), $queryUrl );
+          $first_page .= '#cat-jump'. esc_html($fieldValues['id']);
           $prev_page = add_query_arg( array( $pagination_text => $paged - 1 ), $queryUrl );
           $nextLabel = (isset($fieldValues['ampforwp_pb_cat_pagination_next']) && !empty($fieldValues['ampforwp_pb_cat_pagination_next'])) ? $fieldValues['ampforwp_pb_cat_pagination_next'] : "Next";
           $pagination_links .= "<a class='pagi-first' href = ".esc_url($first_page)."> ".esc_html__($nextLabel,'accelerated-mobile-pages')."</a>";
@@ -593,6 +594,7 @@ if ( is_admin() ) {
         }
         if( $total_num_pages != $paged ){
           $next_page = add_query_arg( array( $pagination_text => $total_num_pages ), $queryUrl );
+          $next_page .= '#cat-jump'. esc_html($fieldValues['id']);
 	        $lastLabel = (isset($fieldValues['ampforwp_pb_cat_pagination_last']) && !empty($fieldValues['ampforwp_pb_cat_pagination_last'])) ? $fieldValues['ampforwp_pb_cat_pagination_last'] : "Last";
           $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html__($lastLabel, 'accelerated-mobile-pages')."</a>";
         }
