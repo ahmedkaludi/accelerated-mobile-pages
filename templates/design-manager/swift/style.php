@@ -1712,6 +1712,8 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 list-style-type:none;display:inline-block;}
 .ss-ic li a{color: #fff;padding: 5px;border-radius: 3px;margin: 0px 10px 10px 0px;display: inline-block;}
+.ss-ic li a.s_tw {color: #1da1f2;}
+.ss-ic li a.s_li {color: #00cc00;}
 <?php if($redux_builder_amp['enable-single-facebook-share'] || $redux_builder_amp['enbl-fb'] ){?>
 .ss-ic ul li .s_fb{	color:#fff;background:#3b5998;}
 .s_fb:after{
@@ -1751,6 +1753,7 @@ font-family:"Font Awesome 5 Brands";
 .s_tw:after{
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
 	content: "\e942";
+	color:#fff;
 <?php }
 if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 	content:"\f099";
