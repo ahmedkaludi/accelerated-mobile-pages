@@ -43,20 +43,20 @@ class ampforwp_pointers {
 			$content = '<h3>' . sprintf (esc_html__('You are awesome for using AMP!', 'accelerated-mobile-pages'), self::DISPLAY_VERSION) . '</h3>';
 			$content .= '<p>' . esc_html__('Do you want the latest update on', 'accelerated-mobile-pages') . '<b>' . esc_html__(' AMP ', 'accelerated-mobile-pages') . '</b>' . esc_html__('before others and some best resources on AMP in a single email? - Free just for users of AMP!', 'accelerated-mobile-pages').'</p>';
             $content .= '
-            <!-- Begin MailChimp Signup Form -->
+           
             <style type="text/css">
             .wp-pointer-buttons{ padding:0; overflow: hidden; }
             .wp-pointer-content .button-secondary{  left: -25px;background: transparent;top: 5px; border: 0;position: relative; padding: 0; box-shadow: none;margin: 0;color: #0085ba;} .wp-pointer-content .button-primary{ display:none}	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
             </style>
             <div id="mc_embed_signup">
-            	<form action="//app.mailerlite.com/webforms/submit/d3w0e1" data-id="258182" data-code="d3w0e1" method="POST" target="_blank">
+            	<form method="POST" id="subscribe-newsletter-form">
 	            	<div id="mc_embed_signup_scroll">
 	            	<div class="mc-field-group" style="    margin-left: 15px;    width: 195px;    float: left;">
-					<input type="text" name="fields[name]" class="form-control" placeholder="Name" hidden value="' . esc_attr( $current_user->display_name ) . '" style="display:none">
+					<input type="text" name="name" class="form-control" placeholder="Name" hidden value="' . esc_attr( $current_user->display_name ) . '" style="display:none">
 
-					<input type="text" value="' . esc_attr( $current_user->user_email ) . '" name="fields[email]" class="form-control" placeholder="Email*"  style="      width: 180px;    padding: 6px 5px;">
+					<input type="text" value="' . esc_attr( $current_user->user_email ) . '" name="email" class="form-control" placeholder="Email*"  style="      width: 180px;    padding: 6px 5px;">
 
-					<input type="text" name="fields[company]" class="form-control" placeholder="Website" hidden style=" display:none; width: 168px; padding: 6px 5px;" value="' . esc_url( get_home_url() ) . '">
+					<input type="text" name="company" class="form-control" placeholder="Website" hidden style=" display:none; width: 168px; padding: 6px 5px;" value="' . esc_url( get_home_url() ) . '">
 
 					<input type="hidden" name="ml-submit" value="1" />
 	            	</div>

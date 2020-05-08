@@ -1303,3 +1303,18 @@ function ampforwp_seo_selection_notice() {
         echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
     }
 }
+add_action('wp_ajax_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
+add_action('wp_ajax_nopriv_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
+function ampforwp_subscribe_for_newsletter(){
+    $api_url = 'http://magazine3.company/wp-json/api/central/email/subscribe';
+    $api_params = array(
+        'name' => sanitize_text_field($_POST['name']),
+        'email'=> sanitize_text_field($_POST['email']),
+        'website'=> sanitize_text_field($_POST['website']),
+        'type'=> 'amp'
+    );
+    $response = wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+    $response = wp_remote_retrieve_body( $response );
+    echo $response;
+    die;
+}
