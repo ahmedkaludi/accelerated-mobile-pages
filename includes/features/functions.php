@@ -52,7 +52,8 @@ function ampforwp_add_admin_styling($hook_suffix){
         add_action('admin_notices', 'ampforwp_automattic_activation' );
         add_action('admin_notices', 'ampforwp_admin_notices' );
         add_action('admin_notices', 'ampforwp_seo_selection_notice' );
-         add_action('admin_notices', 'ampforwp_mobile_redirection_notice' );
+        add_action('admin_notices', 'ampforwp_mobile_redirection_notice' );
+        add_action('admin_notices', 'ampforwp_category_base_remove_notice' );
     }else{
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
@@ -1272,7 +1273,7 @@ function ampforwp_dev_mode_notice(){
     if(isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode']) {
             $message =  ' Please turn off Development mode, when you are done.';?>
                     
-            <div class="notice notice-success is-dismissible amp-dev-notice" style="position:relative;
+            <div class="notice notice-success amp-dev-notice" style="position:relative;
             height: 40px; overflow: hidden; ">
                 <div class="ampforwp-dev-mode-message" style="margin-top: 10px;">
                     <?php echo '<strong>'. esc_html__('AMP Dev mode is Enabled!', 'accelerated-mobile-pages').'</strong>'. esc_html__($message, 'accelerated-mobile-pages'); ?>             
@@ -1361,3 +1362,15 @@ function ampforwp_mobile_redirection_notice(){
     if(!empty($plugin) && !empty($option)){
     echo sprintf(('<div class="notice notice-error"><p>%s <a target="_blank" href="%s">%s</a></p></div>'), esc_html__('You need to enable the option of "'.esc_html($option).'" in '.esc_html($plugin).' plugin for mobile redirection to work properly in AMP','accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-redirect-all-mobile-visitors-to-amp/'),esc_html__('Click here for more info','accelerated-mobile-pages'));  }
  }
+function ampforwp_category_base_remove_notice(){
+    if(true == ampforwp_get_setting('ampforwp-category-base-removel-link')){
+        return;
+    }
+    if(class_exists('WPSEO_Options') && WPSEO_Options::get( 'stripcategorybase' ) == true){
+        echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a>%s<a href="%s">%s</a></p></div>'), esc_html__('We have detected that you removed Category Base from Yoast SEO plugin but not from AMPforWP settings. Please','accelerated-mobile-pages'),
+        esc_url('admin.php?page=amp_options&tab=17'),
+        esc_html__('Click here','accelerated-mobile-pages'),
+        esc_html__(' to set up to make sure AMP pages work properly on category pages or ','accelerated-mobile-pages'),
+        esc_url('https://ampforwp.com/tutorials/article/how-to-remove-the-category-base-in-the-amp/'),esc_html__('Click here for the tutorial','accelerated-mobile-pages'),esc_html__('Click here for the tutorial','accelerated-mobile-pages'));
+    }
+}
