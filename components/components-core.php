@@ -395,7 +395,7 @@ function amp_header_core(){
 			<?php do_action('ampforwp_before_head', $thisTemplate);  ?>
 			<?php do_action('ampforwp_last_head', $thisTemplate);  ?>
 		</head>
-		<body <?php echo $lightbox; ?> <?php ampforwp_body_class($bodyClass); ?>>
+		<body <?php echo esc_attr($lightbox); ?> <?php ampforwp_body_class($bodyClass); ?>>
 		<?php do_action('amp_start', $thisTemplate); ?>
 		<?php do_action('ampforwp_body_beginning', $thisTemplate);  
 }
