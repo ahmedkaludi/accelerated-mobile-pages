@@ -363,8 +363,28 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}	
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
-	        if( $supported_amp_post_types || ampforwp_is_front_page() ) {				
-				return esc_url($amp_url);
+	        if( $supported_amp_post_types || ampforwp_is_front_page() ) {
+	        	if(true == ampforwp_get_setting('amp-core-end-point')){
+		        	if( class_exists('SitePress') ){
+				        if( get_option('permalink_structure') ){
+				            global $sitepress_settings, $wp;
+				            $wpml_lang_checker = false;
+				            if($sitepress_settings[ 'language_negotiation_type' ] == 3){
+				            	$amp_url = esc_url($amp_url);
+					            $active_langs = $sitepress_settings['active_languages'];
+					            foreach ($active_langs as $active_lang) {
+					                if (preg_match('/\?lang='.$active_lang.'/', $amp_url)){
+					                    $amp_url = preg_replace('/&#038;amp=1/', '', $amp_url);
+					                    $amp_url = preg_replace('/#038;amp/', '', $amp_url);
+					                    $amp_url = str_replace('?lang='.$active_lang, '?amp=1', $amp_url);
+					                    $amp_url = add_query_arg( 'lang',$active_lang, $amp_url);
+					                }
+					            }
+				            }
+				        }
+				    }
+				}				
+				return esc_url_raw($amp_url);
 			}
 		}
 		return;
