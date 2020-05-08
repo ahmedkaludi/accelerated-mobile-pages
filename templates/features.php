@@ -392,7 +392,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					                    $amp_url = preg_replace('/&#038;amp=1/', '', $amp_url);
 					                    $amp_url = preg_replace('/#038;amp/', '', $amp_url);
 					                    $amp_url = str_replace('?lang='.$active_lang, '?amp=1', $amp_url);
-					                    $amp_url = add_query_arg( 'lang',$active_lang, $amp_url);
+					                    $amp_url = esc_url_raw(add_query_arg( 'lang',$active_lang, $amp_url));
 					                }
 					            }
 				            }
