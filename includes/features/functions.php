@@ -1379,7 +1379,11 @@ function ampforwp_category_base_remove_notice(){
         return;
     }
     if(class_exists('WPSEO_Options') && WPSEO_Options::get( 'stripcategorybase' ) == true){
-        echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('You have removed the category base in non-amp version so you need to remove category base in AMP also and for that just enable the option of Category base remove in AMP','accelerated-mobile-pages'),esc_url('admin.php?page=amp_options&tab=17'),esc_html__('Click Here','accelerated-mobile-pages'));
+        echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a>%s<a href="%s">%s</a></p></div>'), esc_html__('We have detected that you removed Category Base from Yoast SEO plugin but not from AMPforWP settings. Please','accelerated-mobile-pages'),
+        esc_url('admin.php?page=amp_options&tab=17'),
+        esc_html__('Click here','accelerated-mobile-pages'),
+        esc_html__(' to set up to make sure AMP pages work properly on category pages or ','accelerated-mobile-pages'),
+        esc_url('https://ampforwp.com/tutorials/article/how-to-remove-the-category-base-in-the-amp/'),esc_html__('Click here for the tutorial','accelerated-mobile-pages'),esc_html__('Click here for the tutorial','accelerated-mobile-pages'));
     }
 }
 add_action('wp_ajax_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
