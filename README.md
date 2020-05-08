@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4
-Stable tag: 1.0.47
+Stable tag: 1.0.48
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,19 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.48 (9th May 2020) =
+* Fixed: Title not showing with Yoast in some scenarios #4434
+* Fixed: Canonical not showing with Yoast when AMP takeover is enabled #4434
+* Fixed: Lightbox for images appearing even after disabling #4442
+* Fixed: Menu and internal links are not working through Google CDN #4429
+* Fixed: GDPR privacy text appearing on the top of the homepage #4435
+* Fixed: Modules are not displaying in background video in pagebuilder #4398
+* Fixed: Showing too many redirect in WPML with mobile redirection #4444
+* Fixed: Detecting the Mobile redirection config to avoid manual tasks #4382
+* Fixed: Pagination of category module not jumping on 1st & last links #4401
+* Fixed: Notice added when category based is removed from Yoast #4437
+* Fixed: Debug notices on the AMP pages #4440
+
 = 1.0.47 (5th May 2020) =
 * Fixed: Few issues fixed with latest version of yoast plugin #4430
 
@@ -209,12 +222,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Showing entities instead of UTF-8 in footer json #4395
 * Fixed: Ninja Tables plugin css was hiding due to class drawer #4428
 * Fixed: AMP Option panel improvements #4408
-
-= 1.0.45 (30th April 2020) =
-* Fixed: Updated the code as per yoast latest version to fixed the canonical, title separator, meta tag errors #4415
-* Fixed: Content links unclickable with GDPR #4392
-
-= 1.0.44 (29th April 2020) =
-* Fixed: Multiple issues created after the latest update of Yoast (14.0 and above) #4412
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
