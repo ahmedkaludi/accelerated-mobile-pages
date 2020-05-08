@@ -1301,7 +1301,7 @@ function ampforwp_dev_mode_notice(){
     if(true == ampforwp_get_setting('ampforwp-development-mode')) {
             $message =  ' Please turn off Development mode, when you are done.';?>
                     
-            <div class="notice notice-success is-dismissible amp-dev-notice" style="position:relative;
+            <div class="notice notice-success amp-dev-notice" style="position:relative;
             height: 40px; overflow: hidden; ">
                 <div class="ampforwp-dev-mode-message" style="margin-top: 10px;">
                     <?php echo '<strong>'. esc_html__('AMP Dev mode is Enabled!', 'accelerated-mobile-pages').'</strong>'. esc_html__($message, 'accelerated-mobile-pages'); ?>             
