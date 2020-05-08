@@ -368,6 +368,10 @@ function amp_header_core(){
     if( true == $redux_builder_amp['amp-rtl-select-option'] ){
     	$bodyClass .= ' rtl ';
     }
+    $lightbox = '';
+    if( false == ampforwp_get_setting('ampforwp-amp-img-lightbox') ){
+    	$lightbox = 'data-amp-auto-lightbox-disable';
+    }	
 	?><!doctype html>
 	<html <?php echo esc_attr(ampforwp_amp_nonamp_convert('amp ')); ?><?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
 		<head>
@@ -397,7 +401,7 @@ function amp_header_core(){
 			</style>
 			<?php do_action('ampforwp_before_head', $thisTemplate);  ?>
 		</head>
-		<body <?php ampforwp_body_class($bodyClass); ?>>
+		<body <?php echo esc_attr($lightbox); ?> <?php ampforwp_body_class($bodyClass); ?>>
 		<?php do_action('amp_start', $thisTemplate); ?>
 		<?php do_action('ampforwp_admin_menu_bar_front'); ?>
 		<?php do_action('ampforwp_body_beginning', $thisTemplate);  
