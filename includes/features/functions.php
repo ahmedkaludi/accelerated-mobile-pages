@@ -52,6 +52,8 @@ function ampforwp_add_admin_styling($hook_suffix){
         add_action('admin_notices', 'ampforwp_automattic_activation' );
         add_action('admin_notices', 'ampforwp_admin_notices' );
         add_action('admin_notices', 'ampforwp_seo_selection_notice' );
+        add_action('admin_notices', 'ampforwp_mobile_redirection_notice' );
+        add_action('admin_notices', 'ampforwp_category_base_remove_notice' );
     }else{
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
@@ -740,6 +742,19 @@ function ampforwp_url_purifier($url){
                 $wpml_lang_checker = true;
             }
             }
+            $url = esc_url($url);
+            $active_langs = $sitepress_settings['active_languages'];
+            foreach ($active_langs as $active_lang) {
+                if (preg_match('/\?lang='.$active_lang.'/', $url)){
+                    $url = str_replace('&#038;amp=1', '', $url);
+                    if(false == ampforwp_get_setting('amp-core-end-point')){
+                        $url = str_replace('?lang='.$active_lang, 'amp/', $url);
+                    }else{
+                        $url = str_replace('?lang='.$active_lang, '?amp=1', $url);
+                    }
+                    $url = add_query_arg( 'lang',$active_lang, $url);
+                }
+            }
         }
         if ( true == $wpml_lang_checker && ( is_home() || is_archive() || is_front_page() ) ) {
             if ( ( is_archive() || is_home() ) && get_query_var('paged') > 1 ) {
@@ -1241,8 +1256,10 @@ if(!function_exists('ampforwp_sassy_share_icons')){
                 preg_match_all('/<div class="heateorSssClear"><\/div><div class="heateor_sss_sharing_container (.*)">(.*)<div class="heateorSssClear"><\/div><\/div><div class="heateorSssClear"><\/div>/', $ampforwp_the_content, $matches);
                 
                 $_actual = $matches[0];
+                if(isset($matches[1][0])){
                 $_replace = '<div class="heateorSssClear"></div><div class="heateor_sss_sharing_container '.$matches[1][0].'"></amp-img></a>'.$_append.'</div><div class="heateorSssClear"></div><div class="heateorSssClear"></div>';
                 $ampforwp_the_content = str_replace($_actual, $_replace, $ampforwp_the_content);
+                }
             }
         }
         return $ampforwp_the_content;
@@ -1256,7 +1273,7 @@ function ampforwp_dev_mode_notice(){
     if(isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode']) {
             $message =  ' Please turn off Development mode, when you are done.';?>
                     
-            <div class="notice notice-success is-dismissible amp-dev-notice" style="position:relative;
+            <div class="notice notice-success amp-dev-notice" style="position:relative;
             height: 40px; overflow: hidden; ">
                 <div class="ampforwp-dev-mode-message" style="margin-top: 10px;">
                     <?php echo '<strong>'. esc_html__('AMP Dev mode is Enabled!', 'accelerated-mobile-pages').'</strong>'. esc_html__($message, 'accelerated-mobile-pages'); ?>             
@@ -1299,5 +1316,61 @@ function ampforwp_seo_selection_notice() {
     }
     if(!empty($seo)){
         echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
+    }
+}
+add_action('wp_ajax_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
+add_action('wp_ajax_nopriv_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
+function ampforwp_subscribe_for_newsletter(){
+    $api_url = 'http://magazine3.company/wp-json/api/central/email/subscribe';
+    $api_params = array(
+        'name' => sanitize_text_field($_POST['name']),
+        'email'=> sanitize_text_field($_POST['email']),
+        'website'=> sanitize_text_field($_POST['website']),
+        'type'=> 'amp'
+    );
+    $response = wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+    $response = wp_remote_retrieve_body( $response );
+    echo $response;
+    die;
+}
+function ampforwp_mobile_redirection_notice(){
+    if(false == ampforwp_get_setting('amp-mobile-redirection')){
+        return;
+    }
+    $plugin = $option = '';
+    if(function_exists('rocket_load_textdomain') && 0 == get_rocket_option( 'do_caching_mobile_files' )){
+        $plugin = 'WP Rocket';
+        $option = 'Separate cache files for mobile devices';
+    }
+    if(function_exists('wp_super_cache_init_action')) {
+        global $wp_cache_mobile_enabled;
+        if(0 == $wp_cache_mobile_enabled){
+            $plugin = 'WP Super Cache';
+            $option = 'Mobile device support';
+        }else{
+            return;
+        }
+    }
+    if(function_exists('litespeed_purge_single_post') && !LiteSpeed_Cache_Admin_Rules::get_instance()->get_rewrite_rule_mobile_agents()) { 
+          $plugin = 'LiteSpeed Cache';
+          $option = 'Cache Mobile';
+    }
+    if(function_exists('wpfastestcache_activate') && 'on' != $GLOBALS["wp_fastest_cache_options"]->wpFastestCacheMobile) {
+          $plugin = 'WP Fastest Cache';
+          $option = 'Mobile';
+    }
+    if(!empty($plugin) && !empty($option)){
+    echo sprintf(('<div class="notice notice-error"><p>%s <a target="_blank" href="%s">%s</a></p></div>'), esc_html__('You need to enable the option of "'.esc_html($option).'" in '.esc_html($plugin).' plugin for mobile redirection to work properly in AMP','accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-redirect-all-mobile-visitors-to-amp/'),esc_html__('Click here for more info','accelerated-mobile-pages'));  }
+ }
+function ampforwp_category_base_remove_notice(){
+    if(true == ampforwp_get_setting('ampforwp-category-base-removel-link')){
+        return;
+    }
+    if(class_exists('WPSEO_Options') && WPSEO_Options::get( 'stripcategorybase' ) == true){
+        echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a>%s<a href="%s">%s</a></p></div>'), esc_html__('We have detected that you removed Category Base from Yoast SEO plugin but not from AMPforWP settings. Please','accelerated-mobile-pages'),
+        esc_url('admin.php?page=amp_options&tab=17'),
+        esc_html__('Click here','accelerated-mobile-pages'),
+        esc_html__(' to set up to make sure AMP pages work properly on category pages or ','accelerated-mobile-pages'),
+        esc_url('https://ampforwp.com/tutorials/article/how-to-remove-the-category-base-in-the-amp/'),esc_html__('Click here for the tutorial','accelerated-mobile-pages'),esc_html__('Click here for the tutorial','accelerated-mobile-pages'));
     }
 }

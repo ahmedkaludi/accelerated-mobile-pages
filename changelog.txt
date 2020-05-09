@@ -1,5 +1,18 @@
 == Changelog ==
 
+= 1.0.48 (9th May 2020) =
+* Fixed: Title not showing with Yoast in some scenarios #4434
+* Fixed: Canonical not showing with Yoast when AMP takeover is enabled #4434
+* Fixed: Lightbox for images appearing even after disabling #4442
+* Fixed: Menu and internal links are not working through Google CDN #4429
+* Fixed: GDPR privacy text appearing on the top of the homepage #4435
+* Fixed: Modules are not displaying in background video in pagebuilder #4398
+* Fixed: Showing too many redirect in WPML with mobile redirection #4444
+* Fixed: Detecting the Mobile redirection config to avoid manual tasks #4382
+* Fixed: Pagination of category module not jumping on 1st & last links #4401
+* Fixed: Notice added when category based is removed from Yoast #4437
+* Fixed: Debug notices on the AMP pages #4440
+
 = 1.0.47 (5th May 2020) =
 * Fixed: Few issues fixed with latest version of yoast plugin #4430
 

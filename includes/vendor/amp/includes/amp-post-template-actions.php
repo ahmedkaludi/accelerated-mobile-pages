@@ -15,6 +15,9 @@ if( (class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) ){
 	if ('yoast' == ampforwp_get_setting('ampforwp-seo-selection') && ! is_singular() ){
 		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 	}
+	if(false == get_theme_support( 'title-tag' )){
+		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_title' );
+	}
 } else {
 	add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 	add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_title' );
