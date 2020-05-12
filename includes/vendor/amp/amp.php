@@ -91,7 +91,7 @@ if ( ! function_exists('AMPforWP\\AMPVendor\\amp_render') ) {
 		$template->load();
 		// Set Header: last modified information
 		if( is_singular() && $post_id ) {
-            header("Last-Modified: " . get_the_modified_time("D, d M Y H:i:s", $post_id) );
+            header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 	    }
 		exit;
 	}
