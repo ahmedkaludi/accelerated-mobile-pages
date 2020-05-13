@@ -21,7 +21,7 @@ function ampforwp_include_aqresizer(){
     }
 }
  //  Some Extra Styling for Admin area
-add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
+add_action( 'redux/page/redux_builder_amp/enqueue', 'ampforwp_add_admin_styling' );
 function ampforwp_add_admin_styling($hook_suffix){
     global $redux_builder_amp, $amp_ux_fields;
     // Style file to add or modify css inside admin area
