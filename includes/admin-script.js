@@ -1009,7 +1009,7 @@ jQuery(document).ready(function($){
     });
     // AMP FrontPage notice in Reading Settings #2348
     if ( 'false' == redux_data.frontpage){
-        $('#page_on_front').parent('label').append('<p class="afp" style="display:none"><span>We have detected that you have not setup the FrontPage for AMP, </span><a href="'+redux_data.admin_url+'">Click here to setup</a><button type="button" class="notice-dismiss notice-dismiss-frontpage"><span class="screen-reader-text">Dismiss this notice.</span></button></span>');
+        $('#page_on_front').parent('label').append('<p class="afp" style="margin-left:10px;display:none"><span>We have detected that you have not setup the FrontPage for AMP, </span><a href="'+redux_data.admin_url+'">Click here to setup</a><button type="button" class="notice-dismiss notice-dismiss-frontpage"><span class="screen-reader-text">Dismiss this notice.</span></button></span>');
     }
     $('#front-static-pages input[type=radio][name=show_on_front]').on('change', function(e) {
        if ( this.value == 'page') {
