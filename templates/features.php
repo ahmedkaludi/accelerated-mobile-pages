@@ -8498,7 +8498,7 @@ function ampforwp_referesh_related_post(){
 	$args=array(
 		'fields' 	=> 'ids',
 		'post_type'	   => 'post',
-	    'posts_per_page'=> '50',
+	    'posts_per_page'=> 50,
 	    'orderby' => $orderby,
 	    'ignore_sticky_posts'=>1,
 		'has_password' => false ,
@@ -8534,14 +8534,22 @@ function ampforwp_referesh_related_post(){
 		$my_query->the_post();
 		update_post_meta(get_the_ID(),'ampforwp-ia-on-off','default');
 	}
-	delete_transient('ampforwp_get_not_meta_post_count');
+	delete_option('ampforwp_get_not_meta_post_count');
 	$data['response'] = ampforwp_get_post_percent();
+	setcookie('ref_nonce', $_POST['verify_nonce'], time() + (86400 * 30), "/");
+	setcookie('current_post', ampforwp_get_post_percent(), time() + (86400 * 30), "/");
+	setcookie('ref_lap', true, time() + (30 * 1), "/");
+	if(ampforwp_get_post_percent()>=100){
+		setcookie("ref_nonce", "", time() - 3600);
+		setcookie("current_post", "", time() - 3600);
+		setcookie("ref_lap", "", time() - 3600);
+	}
 	echo json_encode($data);
 }
 add_action( 'save_post', 'ampforwp_delete_refresh_related_post_trans');
 function ampforwp_delete_refresh_related_post_trans(){
-	delete_transient('ampforwp_get_not_meta_post_count');
-	delete_transient('ampforwp_get_total_post_count');
+	delete_option('ampforwp_get_not_meta_post_count');
+	delete_option('ampforwp_get_total_post_count');
 }
 
 if(class_exists('RankMath')){

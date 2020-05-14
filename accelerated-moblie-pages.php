@@ -1465,7 +1465,7 @@ function ampforwp_update_data_when_reset($rest_object = '') {
 }
 
 function ampforwp_get_post_percent(){
-	$total_post = get_transient('ampforwp_get_total_post_count');
+	$total_post = get_option('ampforwp_get_total_post_count');
 	if(!$total_post){
 		$args=array(
 			'fields'        => 'ids',
@@ -1478,10 +1478,10 @@ function ampforwp_get_post_percent(){
 		);
 		$my_query = new wp_query( $args );
 		$total_post =  $my_query->post_count;
-		set_transient('ampforwp_get_total_post_count',$total_post);
+		update_option('ampforwp_get_total_post_count',$total_post);
 	}
 
-	$post_count = get_transient('ampforwp_get_not_meta_post_count');
+	$post_count = get_option('ampforwp_get_not_meta_post_count');
 	if(!$post_count){
 		$args=array(
 			'fields'        => 'ids',
@@ -1500,7 +1500,7 @@ function ampforwp_get_post_percent(){
 		);
 		$my_query   = new wp_query( $args );
 		$post_count = $my_query->post_count;
-		set_transient('ampforwp_get_not_meta_post_count',$post_count);
+		update_option('ampforwp_get_not_meta_post_count',$post_count);
 	}
 	$post_count = $total_post-$post_count;
 	

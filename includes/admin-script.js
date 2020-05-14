@@ -189,9 +189,32 @@ jQuery(function($) {
             reduxOptionSearch();
         }
     });
-     $("#ampforwp-refersh-related-post").on('click', function(){
-        var ref_nonce = $(this).attr('data-nonce');
-        var current_post =  parseInt($(this).attr('data-id'));
+
+    function ampforwp_get_cookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    var ref_lap = ampforwp_get_cookie('ref_lap');
+    if(ref_lap==''){
+        var ref_nonce = ampforwp_get_cookie('ref_nonce');
+        var current_post = ampforwp_get_cookie('current_post');
+        if(current_post!='' && ref_nonce!=''){
+            ampforwp_refresh_related_post(ref_nonce, current_post);
+        }
+    }
+
+    function ampforwp_refresh_related_post(ref_nonce='', current_post=''){
         var elem = document.getElementById("ref_rel_post_bar"); 
         var first_int = setInterval(first_frame, 1000);
         var width = current_post;
@@ -208,7 +231,8 @@ jQuery(function($) {
             method: 'post',
             data: {
                     action:     'ampforwp_referesh_related_post',
-                    verify_nonce: ref_nonce
+                    verify_nonce: ref_nonce,
+                    current_post: current_post,
                  },
             success: function(response){
                 clearInterval(first_int);
@@ -228,7 +252,19 @@ jQuery(function($) {
                 }
             }
         });
-    
+        setTimeout(function(){
+            var ref_nonce = ampforwp_get_cookie('ref_nonce');
+            var current_post = ampforwp_get_cookie('current_post');
+            if(current_post!='' && ref_nonce!='' && current_post<100){
+                ampforwp_refresh_related_post(ref_nonce, current_post);
+            }
+        },10000);
+    }
+
+     $("#ampforwp-refersh-related-post").on('click', function(){
+        var ref_nonce = $(this).attr('data-nonce');
+        var current_post =  parseInt($(this).attr('data-id'));
+        ampforwp_refresh_related_post(ref_nonce, current_post);
     }); 
     $(".redux_field_search").keypress(function (evt) {
         //Deterime where our character code is coming from within the event
