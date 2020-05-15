@@ -191,7 +191,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.50 (14th May 2020) =
+= 1.0.50 (16th May 2020) =
 * Improvement: Added option to display the GDPR bar at top or bottom #4409
 * Improvement: Added option to enable/disable the AMP from the categories or product or any custom taxonomy #4326
 * Improvement: Added Hooks in Instant Article #4417
