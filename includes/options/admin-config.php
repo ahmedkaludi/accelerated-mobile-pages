@@ -663,6 +663,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('reading-progress-bar-for-amp/reading-progress-bar-for-amp.php')? 1 : 2),
                         ),   
+                        array(
+                            'name'=>'Polls for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Polls Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/polls-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/polls-for-amp/',
+                            'plugin_active_path'=> 'polls-for-amp/polls-for-amp.php',
+                            'item_name'=>'Polls for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('polls-for-amp/polls-for-amp.php')? 1 : 2),
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
