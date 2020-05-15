@@ -24,12 +24,7 @@ global $redux_builder_amp;
 if(ampforwp_get_setting('amp-rtl-select-option')){
 $common_css .=	'
 /** RTL CSS **/
-.cta-mod .cta-btn { text-align: left;}
-@media(max-width:768px){
-	{{module-class}}.cta-mod{display:inline-block;width:100%;text-align:center}
-	{{module-class}}.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
-}
-';
+.cta-mod .cta-btn { text-align: left;}';
 }
 return array(
 		'label' =>'Call To Action',
