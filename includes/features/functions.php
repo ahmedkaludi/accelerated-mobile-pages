@@ -500,6 +500,9 @@ if ( ! function_exists( 'ampforwp_isexternal ') ) {
 
 if(!function_exists('ampforwp_findInternalUrl')){
     function ampforwp_findInternalUrl($url){
+        if(function_exists('googlesitekit_activate_plugin')){
+            $url = remove_query_arg( '_gl', $url);
+        }
         global $redux_builder_amp;
         if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
             return $url;
