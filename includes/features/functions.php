@@ -1377,3 +1377,30 @@ function ampforwp_category_base_remove_notice(){
         esc_url('https://ampforwp.com/tutorials/article/how-to-remove-the-category-base-in-the-amp/'),esc_html__('Click here for the tutorial','accelerated-mobile-pages'),esc_html__('Click here for the tutorial','accelerated-mobile-pages'));
     }
 }
+
+// HIDE/SHOW TAG AND CATEGORY #4326 
+function ampforwp_get_taxonomy_meta($term_id,$type=''){
+    if($type=='' || $type=='data'){
+        $amp_taxonomy = get_term_meta( $term_id,'amp_taxonomy');
+        $amp_hide_tax = get_term_meta( $term_id,'amp_hide_tax');
+        $data = array('visible'=>$amp_taxonomy,'visible_status'=>$amp_hide_tax);
+        return $data;
+    }else if($type=='status'){
+        $amp_taxonomy = get_term_meta( $term_id,'amp_taxonomy');
+        if(isset($amp_taxonomy[0]) && $amp_taxonomy[0]=='hide'){
+            return false;
+        }else{
+            return true;
+        }
+    }else if($type=='post_status'){
+        $term = wp_get_post_terms(ampforwp_get_the_ID(),array('category','post_tag'));
+        foreach ($term as $key => $value) {
+            $amp_taxonomy = get_term_meta( $value->term_id,'amp_taxonomy');
+            $amp_hide_tax = get_term_meta( $value->term_id,'amp_hide_tax');
+            if(isset($amp_taxonomy[0]) && $amp_taxonomy[0]=='hide' && $amp_hide_tax[0]=='hide-tax-post'){
+                return false;
+            }
+        }
+        return true;
+    }
+}
