@@ -7789,7 +7789,7 @@ function ampforwp_short_pixel_cdn($content){
 		$compress_level = '+q_glossy';
 	}
 	$compress_level .= '+ret_img+to_webp/';
-	$content = preg_replace('/<amp-img(.*?)src="(.*?)" width="(.*?)" height="(.*?)"(.*?)srcset="(.*?)"(.*?)<\/amp-img>/', '<amp-img$1 src="'.$api_url.'/w_$3'.$compress_level.'$2"width="$3"height="$4"$7</amp-img>', $content);
+	$content = preg_replace('/<amp-img(.*?)src="([^"]*)"(.*?)width="([^"]*)" height="([^"]*)"([^>]*)>/','<amp-img$1 src="'.$api_url.'/w_$4'.$compress_level.'$2"$3 width="$4" height="$5"$6>',$content);
 	return $content;
 }
 if(ampforwp_get_setting('ampforwp_css_tree_shaking') == true && ampforwp_is_gutenberg_active()){
