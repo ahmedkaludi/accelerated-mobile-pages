@@ -1957,12 +1957,6 @@ div#section-ampforwp-ux-section::after,div#section-ampforwp-ux-section-right::af
     display: inline-block;
     border-left: 5px solid #00a0d2;
 }
-button.notice-dismiss.notice-dismiss-frontpage {
-    position: relative;
-    left: 10px;
-    top: 3px;
-    padding: 0px;
-}
 
 #redux-import-file-type{
     display: none;
