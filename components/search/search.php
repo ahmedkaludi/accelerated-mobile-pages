@@ -13,6 +13,7 @@ function ampforwp_framework_get_search_form() {
 		$action_url = preg_replace('#^http?:#', '', $action_url);
 		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
 		$mob_pres_link = false;
+		$rand = rand(10,100);
 	    if(function_exists('ampforwp_mobile_redirect_preseve_link')){
 	      $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
 	    }
@@ -25,8 +26,8 @@ function ampforwp_framework_get_search_form() {
 				<div class="amp-search-wrapper">
 					<label aria-label="Type your query" class="screen-reader-text" for="s">' . esc_html__($label,'accelerated-mobile-pages') . '</label>
 					<input type="text" placeholder="AMP" value="'.esc_attr($amp_query_variable_val).'" name="'.esc_attr($amp_query_variable).'" class="hidden"/>
-					<label for="placeholder"></label>
-					<input id="placeholder" type="text" placeholder="'.esc_attr($placeholder).'" value="' . esc_attr(get_search_query()) . '" name="s" class="s" />
+					<label for="search-text-'.esc_attr($rand).'"></label>
+					<input id="search-text-'.esc_attr($rand).'" type="text" placeholder="'.esc_attr($placeholder).'" value="' . esc_attr(get_search_query()) . '" name="s" class="s" />
 					<label aria-label="Submit amp search" for="amp-search-submit" >
 						<input type="submit" class="icon-search" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
 					</label>
