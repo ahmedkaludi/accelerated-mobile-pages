@@ -133,6 +133,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 	    	$thumb_url = ampforwp_get_post_thumbnail('url', $imagetype);
 			$thumb_width = ampforwp_get_post_thumbnail('width', $imagetype);
 			$thumb_height = ampforwp_get_post_thumbnail('height', $imagetype);
+			$thumb_alt = '';
 	        if(isset($data['image_crop']) && $data['image_crop'] != ""){
 				$width 	= $data['image_crop_width'];
 				if(empty($width)){
@@ -160,7 +161,6 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 				$thumb_url = $thumb_url_array[0];
 				$thumb_width = $thumb_url_array[1];
 				$thumb_height = $thumb_url_array[2];
-				$thumb_alt = '';
 				$thumb_alt = get_post_meta ( get_post_thumbnail_id(), '_wp_attachment_image_alt', true );
 			}
 	    
