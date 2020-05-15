@@ -11,7 +11,7 @@
       <?php } ?>
       <?php if ( isset($redux_builder_amp['fbia-header-text-area']) && $redux_builder_amp['fbia-header-text-area'] ) {
           echo $redux_builder_amp['fbia-header-text-area'];
-      }?>
+      }do_action('ampforwp_fbia_head');?>
     </head>
     <body>
         <article>
@@ -90,7 +90,7 @@
             <!-- body -->
             <?php if ( isset($redux_builder_amp['fbia-body-text-area']) && $redux_builder_amp['fbia-body-text-area'] ) {
               echo $redux_builder_amp['fbia-body-text-area'];
-            }?>
+            }do_action('ampforwp_fbia_body');?>
             <?php
             global $more;
             // Make it 1 to allow the full article
@@ -108,7 +108,7 @@
             <footer>
               <?php if ( isset($redux_builder_amp['fbia-footer-text-area']) && $redux_builder_amp['fbia-footer-text-area'] ) {
                   echo $redux_builder_amp['fbia-footer-text-area'];
-              }?>
+              }do_action('ampforwp_fbia_footer');?>
               <?php if( isset($redux_builder_amp['ampforwp-ia-related-articles']) && true == $redux_builder_amp['ampforwp-ia-related-articles'] ) {
                 if ( ! empty( $categories ) ) { 
                   $categories_ids = wp_list_pluck( $categories, 'term_id' );
