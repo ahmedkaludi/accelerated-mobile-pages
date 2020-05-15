@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4
-Stable tag: 1.0.49
+Stable tag: 1.0.50
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,23 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.50 (14th May 2020) =
+* Improvement: Added option to display the GDPR bar at top or bottom #4409
+* Improvement: Added option to enable/disable the AMP from the categories or product or any custom taxonomy #4326
+* Improvement: Added Hooks in Instant Article #4417
+* Improvement: Added Polls for AMP Extension #4451
+* Fixed: View Non-AMP link in the footer does not redirect to Non-AMP #3884
+* Fixed: Banner notice not looking good in reading settings #4414
+* Fixed: Lightbox for images appearing even after disabling #4442
+* Fixed: Last modified date showing wrong in header #4456
+* Fixed: WPRocket CDN is not working properly in the AMP pages #4342
+* Fixed: Lighthouse issues #4443
+* Fixed: Thumbnail images in category module not showing in RTL #4459
+* Fixed: Blank screen when alt added in images with short pixel plugin #4452
+* Fixed: invalid value defer onload with The Business News theme  #4465
+* Fixed: Text links are not working in mobile #4462
+* Fixed: PHP Notice Undefined variable thumb_alt #4460
+
 = 1.0.49 (11th May 2020) =
 * Fixed: Background color of the row is not working in the AMP Page Builder #4398
 
@@ -209,21 +226,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Pagination of category module not jumping on 1st & last links #4401
 * Fixed: Notice added when category based is removed from Yoast #4437
 * Fixed: Debug notices on the AMP pages #4440
-
-= 1.0.47 (5th May 2020) =
-* Fixed: Few issues fixed with latest version of yoast plugin #4430
-
-= 1.0.46 (4th May 2020) =
-* Fixed: Few issues fixed with latest version of yoast plugin #4430
-* Fixed: Text not displaying in One signal notification #4413
-* Fixed: Wrong amphtml in ?amp endpoint in category pages #4393
-* Fixed: Open graph tags not loading from the SEO framework #4399
-* Fixed: Blank class in archives loop and loop on homepage #4390
-* Fixed: Pagination of category module going to top of the page #4401
-* Fixed: Fatal error in customizer in trucking theme #4391
-* Fixed: Auto Add AMP in Menu option not working in subdomain #4423
-* Fixed: Showing entities instead of UTF-8 in footer json #4395
-* Fixed: Ninja Tables plugin css was hiding due to class drawer #4428
-* Fixed: AMP Option panel improvements #4408
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
