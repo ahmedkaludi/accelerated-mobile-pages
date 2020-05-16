@@ -258,7 +258,7 @@ jQuery(function($) {
             if(current_post!='' && ref_nonce!='' && current_post<100){
                 ampforwp_refresh_related_post(ref_nonce, current_post);
             }
-        },10000);
+        },30000);
     }
 
      $("#ampforwp-refersh-related-post").on('click', function(){
