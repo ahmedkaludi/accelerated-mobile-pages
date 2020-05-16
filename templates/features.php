@@ -6820,7 +6820,7 @@ if ( ! function_exists('ampforwp_sd_feature_image_guidlines') ) {
 			$image_width = 1280;
 			$image_height = 720;
 			$image = ampforwp_aq_resize( $metadata['image']['url'], $image_width, $image_height, true, false, true );
-			$image_url = $image[0]; 
+			$image_url = isset( $image[0] ) ? $image[0] : '';
 			$metadata['image']['url'] = $image_url;
 			$metadata['image']['width'] = $image_width;
 			$metadata['image']['height'] = $image_height;
