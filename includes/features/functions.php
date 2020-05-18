@@ -20,8 +20,17 @@ function ampforwp_include_aqresizer(){
         add_filter('ampforwp_the_content_last_filter','ampforwp_tree_shaking_purify_amphtml',11);
     }
 }
+add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling_amp' );
+function ampforwp_add_admin_styling_amp(){
+    wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style-amp.css', false, AMPFORWP_VERSION );
+    wp_enqueue_style( 'ampforwp_admin_css' );
+    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script-amp.js', array('wp-color-picker'), AMPFORWP_VERSION );  
+    wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', wp_create_nonce('ampforwp-verify-request') );
+    wp_enqueue_script( 'wp-color-picker' );
+    wp_enqueue_script( 'ampforwp_admin_js' );
+}
  //  Some Extra Styling for Admin area
-add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
+add_action( 'redux/page/redux_builder_amp/enqueue', 'ampforwp_add_admin_styling' );
 function ampforwp_add_admin_styling($hook_suffix){
     global $redux_builder_amp, $amp_ux_fields;
     // Style file to add or modify css inside admin area
@@ -76,9 +85,6 @@ function ampforwp_add_admin_styling($hook_suffix){
     wp_localize_script( 'ampforwp_admin_js', 'amp_fields', $amp_fields );
     $redux_data = apply_filters("ampforwp_custom_localize_data", $redux_data);
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
-    wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', wp_create_nonce('ampforwp-verify-request') );
-    wp_enqueue_script( 'wp-color-picker' );
-    wp_enqueue_script( 'ampforwp_admin_js' );
 }
 // 96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
 function ampforwp_is_front_page(){
