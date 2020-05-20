@@ -675,8 +675,15 @@ function amp_author_meta( $args ) {
 	}
 	$post_author = get_userdata($post->post_author);
 	$author_link = get_author_posts_url($post_author->ID);
+	$is_author_link_amp = true;
+	if ( isset( $args['is_author_link_amp']) ) {
+	      $is_author_link_amp = $args['is_author_link_amp'];
+	}
+	if($is_author_link_amp==true){
+        $author_link = ampforwp_url_controller($author_link);
+    }
 	if ( $author_name ) {
-		echo ' <a href="'. ampforwp_url_controller($author_link).'"> ' .esc_html( $post_author->display_name ).'</a>';
+		echo ' <a href="'. esc_url($author_link).'"> ' .esc_html( $post_author->display_name ).'</a>';
  	}
  	if ( $avatar && true == ampforwp_gravatar_checker($post_author->user_email) ) {
 		$author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
