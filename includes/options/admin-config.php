@@ -6611,7 +6611,7 @@ else{
                   'class'    => 'child_opt child_opt_arrow',
                   'default'  =>  0,
                   'title'    => esc_html__('Not redirecting to Non-AMP? Enable it', 'accelerated-mobile-pages'),
-                  'tooltip-subtitle' => esc_html__('Enable this option if View Non-AMP Version link does not work properly.'),
+                  'tooltip-subtitle' => esc_html__('Enable this option if View Non-AMP Version link does not work properly, due to server configuration or server cache'),
                   'required' => array('amp-footer-link-non-amp-page','=','1'),
                 ),
                 array(
