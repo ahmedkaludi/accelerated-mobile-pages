@@ -8466,12 +8466,8 @@ if ( isset( $_REQUEST['taxonomy'] )) {
 	add_action('create_'.esc_attr($taxonomy), 'ampforwp_save_taxonomy_meta', 10);
 	add_action('edited_'.esc_attr($taxonomy), 'ampforwp_update_taxonomy_meta',10,2);
 	add_action('create_'.esc_attr($taxonomy), 'ampforwp_save_taxonomy_meta', 10);
-	if($taxonomy!='category' && isset($_REQUEST['tag_ID'])){
-		add_action ( 'edit_tag_form_fields', 'ampforwp_extra_category_fields');
-	}else{
-		add_action ( 'edit_'.$taxonomy.'_form_fields', 'ampforwp_extra_category_fields');
-	}
-	add_action ( $taxonomy.'_add_form_fields', 'ampforwp_extra_category_fields');
+	add_action (esc_attr($taxonomy).'_edit_form_fields', 'ampforwp_extra_category_fields');
+	add_action (esc_attr($taxonomy).'_add_form_fields', 'ampforwp_extra_category_fields');
 }
 function ampforwp_extra_category_fields( $tag ) {
 	$label = 'Category';
