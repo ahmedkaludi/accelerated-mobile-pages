@@ -6605,7 +6605,15 @@ else{
                         'false'     => 'false',
                         'default'   => 1
                 ),
-
+                array(
+                  'id'       => 'amp-footer-link-non-amp-page-alternate',
+                  'type'     => 'switch',
+                  'class'    => 'child_opt child_opt_arrow',
+                  'default'  =>  0,
+                  'title'    => esc_html__('Not redirecting to Non-AMP? Enable it', 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => esc_html__('Enable this option if View Non-AMP Version link does not work properly.'),
+                  'required' => array('amp-footer-link-non-amp-page','=','1'),
+                ),
                 array(
                         'id'       => 'ampforwp-footer-top',
                         'type'     => 'switch',
