@@ -246,6 +246,17 @@ function ampforwp_add_custom_rewrite_rules() {
 			      'index.php?amp&post_type='.$post_type,
 			      'top'
 			    );
+			    if ( class_exists( 'Lsvr_Permalink_Settings_Knowledge_Base' ) ) {
+				    $lsvr_value = get_post_type_archive_link( 'lsvr_kba' );
+				    $lsvr_value = explode("/",$lsvr_value);
+				    $lsvr_value = array_filter($lsvr_value);
+				    $lsvr_value = end($lsvr_value);
+				    add_rewrite_rule(
+				      $lsvr_value.'\/amp/?$',
+				      'index.php?amp&post_type='.$post_type,
+				      'top'
+				    );
+				}
 			    add_rewrite_rule(
 			      $post_type.'\/(.+?)\/amp\/?$',
 			      'index.php?amp&'.$post_type.'=$matches[1]',
