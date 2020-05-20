@@ -1,5 +1,22 @@
 == Changelog ==
 
+= 1.0.50 (20th May 2020) =
+* Improvement: Added option to display the GDPR bar at top or bottom #4409
+* Improvement: Added option to enable/disable the AMP from the categories or product or any custom taxonomy #4326
+* Improvement: Added Hooks in Instant Article #4417
+* Improvement: Added Polls for AMP Extension #4451
+* Fixed: View Non-AMP link in the footer does not redirect to Non-AMP #3884
+* Fixed: Banner notice not looking good in reading settings #4414
+* Fixed: Lightbox for images appearing even after disabling #4442
+* Fixed: Last modified date showing wrong in header #4456
+* Fixed: WPRocket CDN is not working properly in the AMP pages #4342
+* Fixed: Lighthouse issues #4443
+* Fixed: Thumbnail images in category module not showing in RTL #4459
+* Fixed: Blank screen when alt added in images with short pixel plugin #4452
+* Fixed: invalid value defer onload with The Business News theme  #4465
+* Fixed: Text links are not working in mobile #4462
+* Fixed: PHP Notice Undefined variable thumb_alt #4460
+
 = 1.0.49 (11th May 2020) =
 * Fixed: Background color of the row is not working in the AMP Page Builder #4398
 

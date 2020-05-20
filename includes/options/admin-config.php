@@ -663,6 +663,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('reading-progress-bar-for-amp/reading-progress-bar-for-amp.php')? 1 : 2),
                         ),   
+                        array(
+                            'name'=>'Polls for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Polls Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/polls-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/polls-for-amp/',
+                            'plugin_active_path'=> 'polls-for-amp/polls-for-amp.php',
+                            'item_name'=>'Polls for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('polls-for-amp/polls-for-amp.php')? 1 : 2),
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
@@ -6593,7 +6605,15 @@ else{
                         'false'     => 'false',
                         'default'   => 1
                 ),
-
+                array(
+                  'id'       => 'amp-footer-link-non-amp-page-alternate',
+                  'type'     => 'switch',
+                  'class'    => 'child_opt child_opt_arrow',
+                  'default'  =>  0,
+                  'title'    => esc_html__('Not redirecting to Non-AMP? Enable it', 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => esc_html__('Enable this option if View Non-AMP Version link does not work properly, due to server configuration or server cache'),
+                  'required' => array('amp-footer-link-non-amp-page','=','1'),
+                ),
                 array(
                         'id'       => 'ampforwp-footer-top',
                         'type'     => 'switch',

@@ -81,10 +81,40 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
       unset($current_url['?nonamp=1']);
       $current_url = array_flip($current_url);
       $current_url = implode('/', $current_url);
-      $current_url = user_trailingslashit(esc_url($current_url));
+      if(ampforwp_get_setting('amp-footer-link-non-amp-page-alternate')){
+        $current_url = user_trailingslashit(esc_url($current_url))."?namp=1";
+      }else{
+        $current_url = user_trailingslashit(esc_url($current_url));
+      }
       wp_safe_redirect( $current_url );
       exit;
   }
+
+
+ // HIDE/SHOW TAG AND CATEGORY #4326
+   if(ampforwp_is_amp_endpoint() ) {
+      if(is_tag() || is_category() || is_tax()){
+          $term_id = get_queried_object()->term_id;
+          $tax_status = ampforwp_get_taxonomy_meta($term_id,'status');
+          if($tax_status==false){
+            $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
+            $go_to_url = str_replace("/amp", '', $go_to_url);
+            $go_to_url =  remove_query_arg('amp',$go_to_url);
+            wp_safe_redirect( esc_url($go_to_url) );
+            exit;
+          }
+      }else if(is_single()){
+          $tax_status = ampforwp_get_taxonomy_meta('','post_status');
+          if($tax_status==false){
+            $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
+            $go_to_url = str_replace("/amp", '', $go_to_url);
+            $go_to_url =  remove_query_arg('amp',$go_to_url);
+            wp_safe_redirect( esc_url($go_to_url) );
+            exit;
+          }
+      }
+  }
+
   //Auto redirect /amp to ?amp when 'Change End Point to ?amp' option is enabled #2480
   if ( ampforwp_is_amp_endpoint() && true == ampforwp_get_setting('amp-core-end-point') ){
     $current_url = $endpoint = $new_url = '';
@@ -300,6 +330,9 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     }
     // Check if we are on Mobile phones then start redirection process
     if ( $redirectToAMP ) {
+      if(isset($_GET['namp']) && $_GET['namp']==1){
+        return;
+      }
       if(class_exists('stcr\\stcr_manage') ){
         $check_url = implode(', ', $current_url);
         if(in_array('comment-subscriptions', $current_url) && strpos($check_url,'srp')!=false && strpos($check_url,'srk')!=false){

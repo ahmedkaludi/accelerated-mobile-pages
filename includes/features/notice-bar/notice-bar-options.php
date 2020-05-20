@@ -127,6 +127,20 @@ function ampforwp_notice_bar_options($opt_name){
                    'required' => array( array('amp-gdpr-compliance-switch', '=' , '1') ),
             ),
            array(
+                    'class'  => 'child_opt child_opt_arrow',
+                    'id'    => 'amp-gdpr-type2-position',
+                   'title'  => esc_html__('GDPR Popup Position', 'accelerated-mobile-pages'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Top',
+                        '2' =>  'Bottom'
+                    ),
+                   'default'=> '1',
+                  'required' => array(
+                      array('gdpr-type','=',2)
+                    )    
+            ),
+           array(
                'class'  => 'child_opt child_opt_arrow',
                'id'        =>'amp-gdpr-compliance-headline-text',
                'type'      => 'text',

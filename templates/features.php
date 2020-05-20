@@ -214,6 +214,21 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if( is_front_page() && ! ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
         return;
 	    }
+
+	     // HIDE/SHOW TAG AND CATEGORY #4326
+	  if(is_tag() || is_category() || is_tax()){
+          $term_id = get_queried_object()->term_id;
+          $tax_status = ampforwp_get_taxonomy_meta($term_id,'status');
+          if($tax_status==false){
+           	return;
+          }
+      }else if(is_single()){
+          $tax_status = ampforwp_get_taxonomy_meta('','post_status');
+          if($tax_status==false){
+            return;
+          }
+      }
+
 	     // Skip this condition for woocommerce product archive and shop pages.
 	     if( function_exists('amp_woocommerce_pro_add_woocommerce_support') && (function_exists('is_product_category') && !is_product_category()) && (function_exists('is_product_tag') && !is_product_tag()) && (function_exists('is_shop') && !is_shop() ) ){
 		    	if( is_archive() && ( !ampforwp_get_setting('ampforwp-archive-support') || ( is_category() && !ampforwp_get_setting('ampforwp-archive-support-cat') ) || ( is_tag() && !ampforwp_get_setting('ampforwp-archive-support-tag') ))){
@@ -7789,7 +7804,7 @@ function ampforwp_short_pixel_cdn($content){
 		$compress_level = '+q_glossy';
 	}
 	$compress_level .= '+ret_img+to_webp/';
-	$content = preg_replace('/<amp-img(.*?)src="(.*?)" width="(.*?)" height="(.*?)"(.*?)srcset="(.*?)"(.*?)<\/amp-img>/', '<amp-img$1 src="'.$api_url.'/w_$3'.$compress_level.'$2"width="$3"height="$4"$7</amp-img>', $content);
+	$content = preg_replace('/<amp-img(.*?)src="([^"]*)"(.*?)width="([^"]*)" height="([^"]*)"([^>]*)>/','<amp-img$1 src="'.$api_url.'/w_$4'.$compress_level.'$2"$3 width="$4" height="$5"$6>',$content);
 	return $content;
 }
 if(ampforwp_get_setting('ampforwp_css_tree_shaking') == true && ampforwp_is_gutenberg_active()){
@@ -8174,6 +8189,7 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					$m_content = $matches[1][$i];
 					$m_content = ampforwp_imagify_webp_compatibility($m_content);
 					$m_content = ampforwp_ewww_webp_compatibility($m_content);
+					$m_content = ampforwp_wp_rocket_compatibility($m_content);
 					$m1_content = ampforwp_set_default_fallback_image($matches[1][$i]);
 					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
@@ -8354,6 +8370,17 @@ function ampforwp_rank_math_external_link_newtab($content){
 	}
 	return $content;
 }	
+function ampforwp_wp_rocket_compatibility($content){
+	if(function_exists('rocket_activation')){
+		$cdn_url = get_option('wp_rocket_settings');
+		if($cdn_url['cdn'] == 1){
+			$cdn_url = $cdn_url["cdn_cnames"][0];
+			$content = preg_replace('/src="(.*?)\/\/(.*?)wp-content(.*?)"(.*?)>/', 'src="$1//'.$cdn_url.'/wp-content$3"$4>', $content);
+			$content = preg_replace('/srcset="(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?)"/', 'srcset="$1//'.$cdn_url.'/wp-content$3,$4//'.$cdn_url.'/wp-content$6,$7//'.$cdn_url.'/wp-content$9"', $content);
+		}	
+	}
+	return $content;
+}
 /* add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
 function ampforwp_referesh_related_post(){
 	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp_refresh_related_poost') ){
@@ -8413,3 +8440,105 @@ function ampforwp_delete_refresh_related_post_trans(){
 	delete_transient('ampforwp_get_total_post_count');
 }
 */
+
+
+// HIDE/SHOW TAG AND CATEGORY #4326
+function ampforwp_save_taxonomy_meta($term_id){
+	if(isset($_POST['amp_taxonomy'])){
+		$cat_status = sanitize_text_field($_POST['amp_taxonomy']);
+		$hide_tax = sanitize_text_field($_POST['hide_tax']);
+		add_term_meta($term_id, 'amp_taxonomy', $cat_status );
+		add_term_meta( $term_id,'amp_hide_tax', $hide_tax);
+	}
+}
+function ampforwp_update_taxonomy_meta($term_id, $term_id1){
+	if(isset($_POST['amp_taxonomy'])){
+		$cat_status = sanitize_text_field($_POST['amp_taxonomy']);
+		$hide_tax = sanitize_text_field($_POST['hide_tax']);
+		update_term_meta( $term_id,'amp_taxonomy', $cat_status);
+		update_term_meta( $term_id,'amp_hide_tax', $hide_tax);
+	}
+}
+
+if ( isset( $_REQUEST['taxonomy'] )) {
+	$taxonomy = $_REQUEST['taxonomy'];
+	add_action('edited_'.esc_attr($taxonomy), 'ampforwp_update_taxonomy_meta',10,2);
+	add_action('create_'.esc_attr($taxonomy), 'ampforwp_save_taxonomy_meta', 10);
+	add_action('edited_'.esc_attr($taxonomy), 'ampforwp_update_taxonomy_meta',10,2);
+	add_action('create_'.esc_attr($taxonomy), 'ampforwp_save_taxonomy_meta', 10);
+	add_action (esc_attr($taxonomy).'_edit_form_fields', 'ampforwp_extra_category_fields');
+	add_action (esc_attr($taxonomy).'_add_form_fields', 'ampforwp_extra_category_fields');
+}
+function ampforwp_extra_category_fields( $tag ) {
+	$label = 'Category';
+	if(is_object($tag)){
+		if($tag->taxonomy=="post_tag"){
+			$label = 'Tag';
+		}else if($tag->taxonomy!='category'){
+			$label = $tag->taxonomy;
+		}
+	}else{
+		if($tag=='post_tag'){
+			$label = 'Tag';
+		}
+	}
+?>
+<tr class="form-field">
+	<?php if(!isset($tag->term_id)){?>
+	<th scope="row" valign="top"></th>
+	<td>
+		<div class="form-field term-parent-wrap">
+			<label for="show_amp_taxonomy">AMP</label>
+			<select name="amp_taxonomy" id="show_amp_taxonomy" class="postform">
+				<option class="level-0" value="show">Show</option>
+				<option class="level-0" value="hide">Hide</option>
+			</select>
+			<p>You can enable or disable AMP on this category. <a href="https://ampforwp.com/tutorials/article/how-to-show-hide-the-amp-from-the-categories-or-product-pages-or-any-custom-taxonomy-in-amp/" target="_blank">Learn More</a>.</p>
+		</div>
+		<div id="amp-show-hide-tax" class="mrtop-10" style="display: none">
+			<div class="hide-show-amp-tax">
+				<input type="radio" value="hide-cat" name="hide_tax" checked=""> 
+				<strong><?php echo esc_attr($label);?>:</strong>
+				Hide from <?php echo esc_attr($label);?> Archive Page.
+			</div>
+			<div class="mrtop-10 hide-show-amp-tax">
+				<input type="radio" value="hide-tax-post" name="hide_tax"> 
+				<strong><?php echo esc_attr($label);?> & Posts: </strong>
+				 Hide from <?php echo esc_attr($label);?> Archive Page and all it's posts
+			</div>
+		</div>
+		<br>
+	</td>
+	<?php }else{
+		$term_data = ampforwp_get_taxonomy_meta($tag->term_id);
+		$visible = '';
+		$visible_status = '';
+		if(isset($term_data['visible'])){
+			$visible = $term_data['visible'][0];
+			$visible_status = $term_data['visible_status'][0];
+		}
+	?>
+		<th scope="row"><label for="show_amp_taxonomy">AMP</label></th>
+		<td>
+			<select name="amp_taxonomy" id="show_amp_taxonomy" class="postform">
+				<option class="level-0" value="show" <?php if($visible=='show'){ echo "selected"; }?>>Show</option>
+				<option class="level-0" value="hide" <?php if($visible=='hide'){ echo "selected";} ?>>Hide</option>
+			</select><br />
+			<span class="description">You can enable or disable AMP on this category. <a href="https://ampforwp.com/tutorials/article/how-to-show-hide-the-amp-from-the-categories-or-product-pages-or-any-custom-taxonomy-in-amp/" target="_blank">Learn More</a>.</span>
+			<div id="amp-show-hide-tax" <?php if($visible=='show' || $visible==''){?>style="display: none;"<?php }?> class="edit_hide_tax mrtop-10">
+				<div class="hide-show-amp-tax">
+				<input type="radio" value="hide-cat" name="hide_tax" <?php if($visible_status=='hide-cat' || $visible_status==''){?> checked <?php }?>> 
+				<strong><?php echo esc_attr($label);?>:</strong>
+				Hide from <?php echo esc_attr($label);?> Archive Page.
+				</div>
+				<div class="mrtop-10 hide-show-amp-tax">
+					<input type="radio" value="hide-tax-post" name="hide_tax"  <?php if($visible_status=='hide-tax-post'){?> checked <?php }?>> 
+					<strong><?php echo esc_attr($label);?> & Posts: </strong>
+				 	Hide from <?php echo esc_attr($label);?> Archive Page and all it's posts
+				 </div>
+			</div>
+		</td>
+	<?php }?>
+</tr>
+<?php
+}
