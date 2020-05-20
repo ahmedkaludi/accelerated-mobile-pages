@@ -82,7 +82,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
       $current_url = array_flip($current_url);
       $current_url = implode('/', $current_url);
       $current_url = user_trailingslashit(esc_url($current_url))."?namp=1";
-      wp_safe_redirect( $current_url );
+      wp_safe_redirect( esc_url($current_url) );
       exit;
   }
 
