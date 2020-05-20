@@ -8462,10 +8462,10 @@ function ampforwp_update_taxonomy_meta($term_id, $term_id1){
 
 if ( isset( $_REQUEST['taxonomy'] )) {
 	$taxonomy = $_REQUEST['taxonomy'];
-	add_action('edited_'.$taxonomy, 'ampforwp_update_taxonomy_meta',10,2);
-	add_action('create_'.$taxonomy, 'ampforwp_save_taxonomy_meta', 10);
-	add_action('edited_'.$taxonomy, 'ampforwp_update_taxonomy_meta',10,2);
-	add_action('create_'.$taxonomy, 'ampforwp_save_taxonomy_meta', 10);
+	add_action('edited_'.esc_attr($taxonomy), 'ampforwp_update_taxonomy_meta',10,2);
+	add_action('create_'.esc_attr($taxonomy), 'ampforwp_save_taxonomy_meta', 10);
+	add_action('edited_'.esc_attr($taxonomy), 'ampforwp_update_taxonomy_meta',10,2);
+	add_action('create_'.esc_attr($taxonomy), 'ampforwp_save_taxonomy_meta', 10);
 	if($taxonomy!='category' && isset($_REQUEST['tag_ID'])){
 		add_action ( 'edit_tag_form_fields', 'ampforwp_extra_category_fields');
 	}else{

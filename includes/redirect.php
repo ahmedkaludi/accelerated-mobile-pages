@@ -96,7 +96,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
             $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
             $go_to_url = str_replace("/amp", '', $go_to_url);
             $go_to_url =  remove_query_arg('amp',$go_to_url);
-            wp_safe_redirect( $go_to_url );
+            wp_safe_redirect( esc_url($go_to_url) );
             exit;
           }
       }else if(is_single()){
@@ -105,7 +105,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
             $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
             $go_to_url = str_replace("/amp", '', $go_to_url);
             $go_to_url =  remove_query_arg('amp',$go_to_url);
-            wp_safe_redirect( $go_to_url );
+            wp_safe_redirect( esc_url($go_to_url) );
             exit;
           }
       }
