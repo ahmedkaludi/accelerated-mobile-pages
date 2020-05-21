@@ -3919,7 +3919,7 @@ add_action('init', 'ampforwp_fb_instant_article_feed_generator');
 function ampforwp_fb_instant_article_feed_generator() {
 	if( ampforwp_get_setting('fb-instant-article-switch') ) {	
 		add_feed('instant_articles', 'ampforwp_fb_instant_article_feed_function');
-		add_action( 'wp_head', 'ampforwp_fbia_meta_tags' );
+		add_action( 'ampforwp_fbia_head', 'ampforwp_fbia_meta_tags' );
 		require AMPFORWP_PLUGIN_DIR . '/templates/instant-articles/instant-article-sanitizer.php';
 	}
 }
