@@ -413,9 +413,21 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 
 <?php if(true == ampforwp_get_setting('ampforwp-full-post-in-loop')){?>
 .fbp-img{width:100%;}
-<?php }else{ ?>
+<?php }else{ 
+if( true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') && true== ampforwp_get_setting('ampforwp-homepage-posts-first-image-modify-size') ){
+ ?>
+<?php }else{?>
 .fbp-c{flex: 1 0 100%;}
-.fbp-img{flex-basis: calc(65%);margin-right:30px;}
+<?php }?>
+.fbp-img{
+<?php 
+if( true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') && true== ampforwp_get_setting('ampforwp-homepage-posts-first-image-modify-size') ){
+}else{
+ ?>
+	flex-basis: calc(65%);
+<?php }?>
+	margin-right:30px;
+}
 .fbp-cnt{flex-basis: calc(31%);}
 <?php } ?>
 
@@ -468,7 +480,17 @@ echo sanitize_text_field($fontFamily);
 @media(max-width:1110px){
     .amppb-fluid .col{max-width:95%}
     .sf-img .wp-caption-text{width:100%;padding:10px 40px;}
+
+    <?php 
+    	if( true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') && true== ampforwp_get_setting('ampforwp-homepage-posts-first-image-modify-size') ){
+			$fimg_width 	= ampforwp_get_setting('ampforwp-swift-homepage-posts-width');
+			$fimg_height = ampforwp_get_setting('ampforwp-swift-homepage-posts-height');
+	?>
+	.fbp-img{height:<?php echo $fimg_height.'px';?>;width:<?php echo $fimg_width.'px';?>;}
+		}else{
+    ?>
     .fbp-img{flex-basis: calc(64%);}
+	<?php }?>
     .fbp-img amp-img img{width:100%;}
     .fbp-cnt h2 {font-size: 28px;line-height: 34px;}
 }

@@ -5585,6 +5585,18 @@ Redux::setSection( $opt_name, array(
                         )
                 ),
                 array(
+                        'class' => 'child_opt',
+                        'id'       => 'ampforwp-homepage-posts-first-image-modify-size',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Apply for first image', 'accelerated-mobile-pages'),
+                        'default'  => 0,
+                        'tooltip-subtitle' => esc_html__('Inherit the above Height and Width size for homepage first image', 'accelerated-mobile-pages'),
+                        'required' => array(
+                          array('amp-design-selector','=',4),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                 ),
+                array(
                     'id'        => 'amforwp-homepage-date-switch',
                     'type'      => 'switch',
                     'title'     => esc_html__('Date in Loop', 'accelerated-mobile-pages'),
