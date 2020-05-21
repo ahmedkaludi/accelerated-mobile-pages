@@ -1083,13 +1083,12 @@ span.switch-text {
     margin-right: 20px;
 }
 .ampforwp-recommendation-btn.updated-message {
+    margin: 15px 0px;
     margin-right: 10px;
 }
 .amp_recommend_learnmore {
     position: relative;
     font-size: 14px;
-    top: 7px;
-    left: 12px;
 }
 #finalized-import-structure-data-from-amp{
     margin-left:8px;
