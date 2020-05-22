@@ -2803,6 +2803,11 @@ function ampforwp_featured_video_default(){
             }
             return $default;
 }
+function ampforwp_mobile_redirection_default() {
+            $default = 0; 
+            $default = apply_filters('ampforwp_modify_mobile_redirection', $default );
+            return $default;
+        }
 Redux::setSection( $opt_name, array(
    'title'      => esc_html__( 'Advance Settings', 'accelerated-mobile-pages' ),
    'desc'       => esc_html__( 'This section has some advanced settings, please use it with care','accelerated-mobile-pages'),
@@ -2816,7 +2821,7 @@ Redux::setSection( $opt_name, array(
                         'title'    => esc_html__('Mobile Redirection', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => esc_html__('
                         Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','accelerated-mobile-pages'),
-                        'default' => 0,
+                        'default' => ampforwp_mobile_redirection_default(),
 
                     ),
                      array(

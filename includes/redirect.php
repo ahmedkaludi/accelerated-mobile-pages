@@ -261,6 +261,11 @@ if(function_exists('ampforwp_mobile_redirect_preseve_link')){
     if ( is_archive() && 0 == $redux_builder_amp['ampforwp-archive-support'] ) {
       return;
     }
+    $default = false;
+    $default = apply_filters('ampforwp_modify_mobile_redirection',$default);
+    if($default){
+      return;
+    }
     if ( is_feed() ) { 
       return; 
     }
