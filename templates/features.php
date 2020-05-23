@@ -3208,7 +3208,7 @@ function ampforwp_meta_description() {
 	$desc = ampforwp_generate_meta_desc();
 	if ( $desc && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
-	}else{
+	}else if(class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')){
 		$yoast_desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', ampforwp_get_the_ID() ) ) );
 		if(empty($yoast_desc)){
 			echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
