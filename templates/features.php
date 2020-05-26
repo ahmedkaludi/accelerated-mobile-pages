@@ -8479,9 +8479,11 @@ function ampforwp_wp_rocket_compatibility($content){
 	if(function_exists('rocket_activation')){
 		$cdn_url = get_option('wp_rocket_settings');
 		if($cdn_url['cdn'] == 1){
-			$cdn_url = $cdn_url["cdn_cnames"][0];
-			$content = preg_replace('/src="(.*?)\/\/(.*?)wp-content(.*?)"(.*?)>/', 'src="$1//'.$cdn_url.'/wp-content$3"$4>', $content);
-			$content = preg_replace('/srcset="(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?)"/', 'srcset="$1//'.$cdn_url.'/wp-content$3,$4//'.$cdn_url.'/wp-content$6,$7//'.$cdn_url.'/wp-content$9"', $content);
+			if(isset($cdn_url["cdn_cnames"][0]) && $cdn_url["cdn_cnames"][0]!=''){
+				$cdn_url = $cdn_url["cdn_cnames"][0];
+				$content = preg_replace('/src="(.*?)\/\/(.*?)wp-content(.*?)"(.*?)>/', 'src="$1//'.$cdn_url.'/wp-content$3"$4>', $content);
+				$content = preg_replace('/srcset="(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?)"/', 'srcset="$1//'.$cdn_url.'/wp-content$3,$4//'.$cdn_url.'/wp-content$6,$7//'.$cdn_url.'/wp-content$9"', $content);
+			}
 		}	
 	}
 	return $content;
