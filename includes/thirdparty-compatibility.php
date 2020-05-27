@@ -62,6 +62,11 @@ function ampforwp_thirdparty_compatibility(){
 	if(function_exists('tbn_theme_setup')){
 		remove_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 	}
+	if(class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID() == '0')){
+		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+	}elseif (class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && get_option( 'wpseo_titles' )['noindex-post']) {
+		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+	}
 }
 function ampforwp_removing_sassy_social_share(){	
 	return 1;
