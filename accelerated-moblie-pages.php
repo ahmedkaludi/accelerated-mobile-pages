@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.50
+Version: 1.0.51
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.50');
+define('AMPFORWP_VERSION','1.0.51');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
@@ -246,6 +246,17 @@ function ampforwp_add_custom_rewrite_rules() {
 			      'index.php?amp&post_type='.$post_type,
 			      'top'
 			    );
+			    if ( class_exists( 'Lsvr_Permalink_Settings_Knowledge_Base' ) ) {
+				    $lsvr_value = get_post_type_archive_link( 'lsvr_kba' );
+				    $lsvr_value = explode("/",$lsvr_value);
+				    $lsvr_value = array_filter($lsvr_value);
+				    $lsvr_value = end($lsvr_value);
+				    add_rewrite_rule(
+				      $lsvr_value.'\/amp/?$',
+				      'index.php?amp&post_type='.$post_type,
+				      'top'
+				    );
+				}
 			    add_rewrite_rule(
 			      $post_type.'\/(.+?)\/amp\/?$',
 			      'index.php?amp&'.$post_type.'=$matches[1]',

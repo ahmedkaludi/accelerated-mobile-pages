@@ -675,6 +675,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('polls-for-amp/polls-for-amp.php')? 1 : 2),
                         ),
+                        array(
+                            'name'=>'Transposh for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'This extension automatically adds Transposh WordPress Translation functionality in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/transposh-for-amp.png',
+                            'price'=>'$19',
+                            'url_link'=>'https://ampforwp.com/addons/transposh-for-amp/',
+                            'plugin_active_path'=> 'transposh-for-amp/transposh-for-amp.php',
+                            'item_name'=>'Transposh for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('transposh-for-amp/transposh-for-amp.php')? 1 : 2),
+                        ),
                     );
         $viewAllExtensions = array(
                     'name'=>'View All Extensions',
@@ -2548,6 +2560,18 @@ Redux::setSection( $opt_name, array(
                        'accordion-open'=> 1,
                        'required'  => array('fb-instant-article-switch', '=', 1),
             ),
+                    array(
+                       'id'       => 'fb-instant-article-order-by',
+                        'type'      => 'select',
+                        'title'     => esc_html__('Show instant article on', 'accelerated-mobile-pages'),
+                        'default'   => '1',
+                        'tooltip-subtitle' => esc_html__('Select the type to show instant article on Publish Date/Updated Date.', 'accelerated-mobile-pages'),
+                        'options'   => array(
+                            '1'     => 'Published Date',
+                            '2'     => 'Updated Date'
+                        ),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
                     array(
                         'id'       => 'ampforwp-fb-instant-article-posts',
                         'type'      => 'text',
