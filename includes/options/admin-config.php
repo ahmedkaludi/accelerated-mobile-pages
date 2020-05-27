@@ -2561,6 +2561,18 @@ Redux::setSection( $opt_name, array(
                        'required'  => array('fb-instant-article-switch', '=', 1),
             ),
                     array(
+                       'id'       => 'fb-instant-article-order-by',
+                        'type'      => 'select',
+                        'title'     => esc_html__('Show instant article on', 'accelerated-mobile-pages'),
+                        'default'   => '1',
+                        'tooltip-subtitle' => esc_html__('Select the type to show instant article on Publish Date/Updated Date.', 'accelerated-mobile-pages'),
+                        'options'   => array(
+                            '1'     => 'Published Date',
+                            '2'     => 'Updated Date'
+                        ),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
                         'id'       => 'ampforwp-fb-instant-article-posts',
                         'type'      => 'text',
                         'title'     => esc_html__('Number of Posts', 'accelerated-mobile-pages'),
