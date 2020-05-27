@@ -3225,9 +3225,7 @@ function ampforwp_meta_description() {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
 		}else if(class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')){
 		$yoast_desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', ampforwp_get_the_ID() ) ) );
-		if(empty($yoast_desc)){
-			echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
-		}elseif ($yoast_desc && ampforwp_is_front_page()) {
+		if ($yoast_desc && ampforwp_is_front_page()) {
 			echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $yoast_desc ) ) )  .'"/>';
 		}
 		elseif ($desc && ampforwp_is_home() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) ){
