@@ -2805,7 +2805,7 @@ function ampforwp_featured_video_default(){
 }
 function ampforwp_mobile_redirection_default() {
             $default = 0; 
-            $default = apply_filters('ampforwp_modify_mobile_redirection', $default );
+            $default = apply_filters('ampforwp_modify_mobile_redirection_switch', $default );
             return $default;
         }
 Redux::setSection( $opt_name, array(
