@@ -1369,7 +1369,7 @@ function ampforwp_category_base_remove_notice(){
     if(true == ampforwp_get_setting('ampforwp-category-base-removel-link')){
         return;
     }
-    if(class_exists('WPSEO_Options') && WPSEO_Options::get( 'stripcategorybase' ) == true){
+    if(class_exists('WPSEO_Options') && method_exists('WPSEO_Options', 'get') && WPSEO_Options::get( 'stripcategorybase' ) == true ){
         echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a>%s<a href="%s">%s</a></p></div>'), esc_html__('We have detected that you removed Category Base from Yoast SEO plugin but not from AMPforWP settings. Please','accelerated-mobile-pages'),
         esc_url('admin.php?page=amp_options&tab=17'),
         esc_html__('Click here','accelerated-mobile-pages'),
