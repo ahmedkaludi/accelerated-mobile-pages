@@ -5874,7 +5874,9 @@ function ampforwp_is_non_amp( $type="" ) {
 		if ( is_feed() ) {
 			return false;
 		}
-		
+		if(get_query_var( 'robots' )){
+      		return; 
+    	}
 	}elseif(	(
 				ampforwp_get_setting('amp-design-selector') == 4)
 				&&
