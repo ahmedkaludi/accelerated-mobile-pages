@@ -1,5 +1,18 @@
 == Changelog ==
 
+= 1.0.51 (27th May 2020) =
+* Improvement: Added option to show instant article post according to updated date #4389
+* Improvement: Added Transposh for AMP Extension #4481
+* Fixed: Malformed url issue with WPRocket CDN #4342
+* Fixed: Call to undefined method WPSEO_Options::get() #4494
+* Fixed: Meta description is not working on homepage with yoast #4486
+* Fixed: Home Page Meta Description Not Showing in Rankmath SEO #4491
+* Fixed: DNS prefetch is disappearing after saving in safari #4470
+* Fixed: Robots txt is not working when AMP takeover is enabled #4475
+* Fixed: Canonical tag is missing when yoast is activated #4490
+* Fixed: Custom taxonomy archive not working LSVR Knowledge Base #4478
+* Fixed: Debug Notice trying to access array offset on value of type bool #4469
+
 = 1.0.50 (20th May 2020) =
 * Improvement: Added option to display the GDPR bar at top or bottom #4409
 * Improvement: Added option to enable/disable the AMP from the categories or product or any custom taxonomy #4326
