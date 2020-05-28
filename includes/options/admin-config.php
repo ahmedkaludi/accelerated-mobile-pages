@@ -5608,6 +5608,21 @@ Redux::setSection( $opt_name, array(
                     'default'   => 1,
                     'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
                 ),
+                array(
+                    'id'        => 'amforwp-homepage-post-switch',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Posts on Homepage', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to modify the posts of homepage loop'),
+                ),
+                 array(
+                    'class' => 'child_opt child_opt_arrow',
+                    'id'       => 'ampforwp-homepage-posts',
+                    'type'     => 'text',
+                    'title'    => esc_html__('Number of Posts', 'accelerated-mobile-pages'),
+                    'default'  => get_option( 'posts_per_page' ),
+                    'required' =>array('amforwp-homepage-post-switch','=',1)
+                ),
         )
     ));
 $yoast_breadcrumbs = '';

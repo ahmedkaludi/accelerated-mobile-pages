@@ -8611,3 +8611,14 @@ function ampforwp_render_server_side($content){
 		$ssr = AMP_Server_Side_Rendering::ampforwp_server_side_redering($dom,$xpath);
 		return $ssr;
 }
+if(ampforwp_get_setting('amforwp-homepage-post-switch')){
+	add_action('pre_get_posts', 'ampforwp_homepage_front_loop');
+}
+function ampforwp_homepage_front_loop($query){
+	$frontpagePostsCount = ampforwp_get_setting('ampforwp-homepage-posts');
+	if (ampforwp_is_home() && !is_paged()) {
+	$query->query_vars['posts_per_page'] = $frontpagePostsCount;}
+	if (ampforwp_is_home() && is_paged()) {
+	$posts_per_page = isset($query->query_vars['posts_per_page']) ? $query->query_vars['posts_per_page'] : get_option('posts_per_page');
+	$query->query_vars['offset'] = (($query->query_vars['paged'] - 2) * $posts_per_page) + $frontpagePostsCount;}
+}
