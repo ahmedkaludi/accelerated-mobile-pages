@@ -8475,18 +8475,29 @@ function ampforwp_themify_compatibility($content){
 	}
 	return $content;
 }
-function ampforwp_wp_rocket_compatibility($content){
-	if(function_exists('rocket_activation')){
-		$cdn_url = get_option('wp_rocket_settings');
-		if($cdn_url['cdn'] == 1){
-			if(isset($cdn_url["cdn_cnames"][0]) && $cdn_url["cdn_cnames"][0]!=''){
-				$cdn_url = $cdn_url["cdn_cnames"][0];
-				$content = preg_replace('/src="(.*?)\/\/(.*?)wp-content(.*?)"(.*?)>/', 'src="$1//'.$cdn_url.'/wp-content$3"$4>', $content);
-				$content = preg_replace('/srcset="(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?)"/', 'srcset="$1//'.$cdn_url.'/wp-content$3,$4//'.$cdn_url.'/wp-content$6,$7//'.$cdn_url.'/wp-content$9"', $content);
-			}
-		}	
-	}
-	return $content;
+function ampforwp_wp_rocket_compatibility($content){  
+  if(function_exists('rocket_activation')){  
+    $cdn_url = get_option('wp_rocket_settings');
+    if($cdn_url['cdn'] == 1){  
+        $img_cdn_url = '';
+        foreach ($cdn_url['cdn_zone'] as $key => $element) { 
+            if($element == 'images'){
+              $img_cdn_url = $cdn_url['cdn_cnames'][$key];
+              break;
+            }elseif ($element == 'all') {
+              $img_cdn_url = $cdn_url['cdn_cnames'][$key];
+              $content = preg_replace('/src="(.*?)\/\/(.*?)wp-content(.*?)"(.*?)>/', 'src=$1//'.$img_cdn_url.'/wp-content$3$4>', $content);
+              $content = preg_replace('/srcset="(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?)"/', 'srcset="$1//'.$img_cdn_url.'/wp-content$3,$4//'.$img_cdn_url.'/wp-content$6"', $content);
+            }
+        } 
+       if($img_cdn_url!=''){
+          $cdn_url = $img_cdn_url;
+          $content = preg_replace('/src="(.*?)\/\/(.*?)wp-content(.*?)"(.*?)>/', 'src="$1//'.$cdn_url.'/wp-content$3"$4>', $content);  
+          $content = preg_replace('/srcset="(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?)"/', 'srcset="$1//'.$cdn_url.'/wp-content$3,$4//'.$cdn_url.'/wp-content$6,$7//'.$cdn_url.'/wp-content$9"', $content);  
+        }
+    }  
+  }  
+  return $content;  
 }
 
 add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
