@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4
-Stable tag: 1.0.51
+Stable tag: 1.0.52
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,9 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.52 (27th May 2020) =
+* Fixed: Reverted the CDN code of WP Rocket plugin which was causing the malformed url issue #4342
+
 = 1.0.51 (27th May 2020) =
 * Improvement: Added option to show instant article post according to updated date #4389
 * Improvement: Added Transposh for AMP Extension #4481
@@ -223,8 +226,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: invalid value defer onload with The Business News theme  #4465
 * Fixed: Text links are not working in mobile #4462
 * Fixed: PHP Notice Undefined variable thumb_alt #4460
-
-= 1.0.49 (11th May 2020) =
-* Fixed: Background color of the row is not working in the AMP Page Builder #4398
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

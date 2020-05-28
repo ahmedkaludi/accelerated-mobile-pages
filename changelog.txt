@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.52 (27th May 2020) =
+* Fixed: Reverted the CDN code of WP Rocket plugin which was causing the malformed url issue #4342
+
 = 1.0.51 (27th May 2020) =
 * Improvement: Added option to show instant article post according to updated date #4389
 * Improvement: Added Transposh for AMP Extension #4481
