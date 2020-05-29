@@ -224,6 +224,9 @@ function ampforwp_white_list_selectors($completeContent){
     if(ampforwp_get_setting('ampforwp_css_tree_shaking')==1 && ampforwp_get_setting('content-sneak-peek')==1 ){
         $white_list[] = '.hide';
     }
+    if(ampforwp_get_setting('ampforwp_css_tree_shaking')==1){
+       $white_list[] = '.amp-carousel-img img';
+    }
     $white_list = (array)apply_filters('ampforwp_tree_shaking_white_list_selector',$white_list);
     $w_l_str = '';
     for($i=0;$i<count($white_list);$i++){
