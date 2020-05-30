@@ -2158,7 +2158,7 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
 	.sp-cnt .cntr {max-width: 100%;margin:0;width:100%;padding:0}	
 <?php } ?> 
 <?php //Breadcrumbs
-if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && ( (is_single() && true == ampforwp_get_setting('ampforwp-bread-crumb')) || (is_page() && ampforwp_get_setting('ampforwp_pages_breadcrumbs')) )) {?>
+if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && ( (is_single() && true == ampforwp_get_setting('ampforwp-bread-crumb')) || (is_page() && ampforwp_get_setting('ampforwp_pages_breadcrumbs'))) || (is_archive() && true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') ) ) {?>
 .breadcrumbs{padding-bottom: 8px;margin-bottom: 20px;
 <?php if( true == ampforwp_get_setting('breadcrumb-border') ) {?>
 border-bottom: 1px solid #eee;
@@ -2175,6 +2175,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 	display: inline-block;color: #bdbdbd;padding-left: 5px;position: relative;top: 1px;}
 .breadcrumbs li:last-child a:after {display: none;}
+.archive .breadcrumbs {margin-top: 20px;}
 <?php } //Breadcrumbs Ends?>
 <?php if(true == ampforwp_get_setting('ampforwp-smooth-scrolling-for-links')){?>
     html {
