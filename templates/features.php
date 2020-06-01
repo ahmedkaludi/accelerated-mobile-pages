@@ -7325,8 +7325,32 @@ function ampforwp_photo_gallery_embed($data) {
 	return $data;
 }
 function ampforwp_nofollow_social_links(){
+	if(true == ampforwp_get_setting('ampforwp-social-no-follow') && true == ampforwp_get_setting('ampforwp-social-no-referrer') && true == ampforwp_get_setting('ampforwp-social-no-opener')){
+		echo 'rel="nofollow noreferrer noopener"';
+		return;
+	}
+	if(true == ampforwp_get_setting('ampforwp-social-no-follow') && true == ampforwp_get_setting('ampforwp-social-no-referrer') ){
+		echo 'rel="nofollow noreferrer"';
+		return;
+	}
+	if(true == ampforwp_get_setting('ampforwp-social-no-follow') && true == ampforwp_get_setting('ampforwp-social-no-opener') ){
+		echo 'rel="nofollow noopener"';
+		return;
+	}
+	if(true == ampforwp_get_setting('ampforwp-social-no-referrer') && true == ampforwp_get_setting('ampforwp-social-no-opener') ){
+		echo 'rel="noreferrer noopener"';
+		return;
+	}
 	if(true == ampforwp_get_setting('ampforwp-social-no-follow')){
 		echo 'rel=nofollow';
+		return;
+	}
+	if(true == ampforwp_get_setting('ampforwp-social-no-referrer')){
+		echo 'rel=noreferrer';
+		return;
+	}
+	if(true == ampforwp_get_setting('ampforwp-social-no-opener')){
+		echo 'rel=noopener';
 		return;
 	}
 	return false;
