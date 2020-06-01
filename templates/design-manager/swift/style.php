@@ -2447,3 +2447,11 @@ a.bread-link.bread-home::after {
 }
 }
 <?php }
+if(true == ampforwp_get_setting('ampforwp-cats-single-primary')){?>
+.amp-category span , .amp-category span:after{
+    display: none;
+}
+.amp-category span.amp-cat.primary {
+    display: block;
+}
+<?php }	
