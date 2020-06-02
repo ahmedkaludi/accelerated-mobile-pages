@@ -67,7 +67,14 @@ function ampforwp_thirdparty_compatibility(){
 	if(isset($yoast_noindex['noindex-post'])){
 		$yoast_noindex_post = $yoast_noindex['noindex-post'];
 	}
-	if (class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && $yoast_noindex_post && WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID()) != 2) {
+	if(isset($yoast_noindex['noindex-page'])){
+		$yoast_noindex_page = $yoast_noindex['noindex-page'];
+	}
+	if (class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && $yoast_noindex_post && $yoast_noindex_page && WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID()) != 2) {
+		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+	}elseif(class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && is_page() && $yoast_noindex_page ){
+		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+	}elseif(class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && is_single() && $yoast_noindex_post ){
 		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 	}elseif (class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID()) == 1) {
 		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
