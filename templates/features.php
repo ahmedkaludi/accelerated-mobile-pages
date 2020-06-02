@@ -7205,6 +7205,9 @@ function ampforwp_yoast_breadcrumbs_output(){
 		$breadcrumb = '';
 		if ( true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') && true === WPSEO_Options::get( 'breadcrumbs-enable' ) && function_exists('yoast_breadcrumb')) {
 			$breadcrumb = yoast_breadcrumb('','', false);
+			if(true == ampforwp_get_setting('ampforwp-archive-support')){
+			$breadcrumb = preg_replace('/<div class="breadcrumbs">(.*?)<a href="(.*?)">(.*?)<\/a>(.*?)<a href="(.*?)"(.*?)<\/span><\/div>/', '<div class="breadcrumbs">$1<a href="$2amp">$3</a>$4<a href="$5amp"$6</span></div>', $breadcrumb);
+		}
 			return $breadcrumb;
 		}
 	}
