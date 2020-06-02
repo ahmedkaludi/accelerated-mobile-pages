@@ -1693,11 +1693,12 @@ function ampforwp_replace_title_tags() {
 				$yoast_instance = new \Yoast\WP\SEO\Presentations\Indexable_Presentation();
 			}
 			
-
-			$WPSEO_Frontend = WPSEO_Frontend::get_instance();
-			$yoast_title = $WPSEO_Frontend->title($site_title);
-			if ( ampforwp_is_home() ) {
-				$yoast_title = $WPSEO_Frontend->get_title_from_options( 'title-home-wpseo' );
+			if ( !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
+				$WPSEO_Frontend = WPSEO_Frontend::get_instance();
+				$yoast_title = $WPSEO_Frontend->title($site_title);
+				if ( ampforwp_is_home() ) {
+					$yoast_title = $WPSEO_Frontend->get_title_from_options( 'title-home-wpseo' );
+				}
 			}
 			// Custom Front Page Title From Yoast SEO #1163
 			if ( ampforwp_is_front_page() || ampforwp_is_blog() ) {
