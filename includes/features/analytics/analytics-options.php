@@ -531,6 +531,22 @@ function ampforwp_analytics_options($opt_name){
                         'tooltip-subtitle' => esc_html__( 'Enter your Analytics Config URL','accelerated-mobile-pages'),
                         'required' => array('ampforwp-callrail-switch', '=' , '1')
                     ),
+                    //Parse.ly Analytics    
+                    array(
+                        'id'            =>'ampforwp-parsely-switch',
+                        'type'          => 'switch',
+                        'title'         => esc_html__('Parse.ly Analytics','accelerated-mobile-pages'),
+                        'default'       => 0,
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option to track Parse.ly analytics in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-Parsely-analytics-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+                    ),
+                    array(
+                        'id'       => 'ampforwp-parsely-apikey',
+                        'type'     => 'text',
+                        'title'    => esc_html__( 'API Key', 'accelerated-mobile-pages' ),
+                        'tooltip-subtitle' => esc_html__( 'Enter Your Parse.ly Analytics API Key Here','accelerated-mobile-pages'),
+                        'required' => array('ampforwp-parsely-switch', '=' , '1')
+                    ),
                         )
             )
    );

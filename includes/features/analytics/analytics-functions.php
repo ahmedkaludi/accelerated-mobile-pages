@@ -303,6 +303,21 @@ function ampforwp_analytics() {
 				if(!empty($config_url) && !empty($number) && !empty($analytics_url)){?>
 			    <amp-call-tracking config="<?php echo esc_url($config_url); ?>"><a href="tel:<?php echo esc_attr($number);?>"><?php echo esc_html($number);?></a></amp-call-tracking><amp-analytics config="<?php echo esc_url($analytics_url); ?>"></amp-analytics>   
 			<?php } }
+			if( true == ampforwp_get_setting('ampforwp-parsely-switch')) {
+                $api_key = '';
+                $api_key = ampforwp_get_setting('ampforwp-parsely-apikey');
+                $parsely = array(
+						'vars'=>array(
+							'apikey'=> $api_key,
+						));
+                if(!empty($api_key)){
+				?>
+                <amp-analytics type="parsely">
+                <script type="application/json">
+                  <?php echo json_encode($parsely); ?>
+                </script>
+                </amp-analytics>   
+            <?php } }
 }
 // 89. Facebook Pixel
 add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
