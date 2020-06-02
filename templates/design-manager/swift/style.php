@@ -2455,3 +2455,15 @@ if(true == ampforwp_get_setting('ampforwp-cats-single-primary')){?>
     display: block;
 }
 <?php }	
+if(ampforwp_get_setting('header-position-type') == '2'){?>
+@supports (-webkit-touch-callout: none) {
+.tg + .hamb-mnu {
+    position:relative;
+    overflow:hidden;
+}
+.tg:checked + .hamb-mnu {
+    overflow: scroll;
+    position: inherit;
+}
+}
+<?php }
