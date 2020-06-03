@@ -306,11 +306,11 @@ function ampforwp_analytics() {
 			if( true == ampforwp_get_setting('ampforwp-parsely-switch')) {
                 $api_key = '';
                 $api_key = ampforwp_get_setting('ampforwp-parsely-apikey');
+                if(!empty($api_key)){
                 $parsely = array(
 						'vars'=>array(
 							'apikey'=> $api_key,
 						));
-                if(!empty($api_key)){
 				?>
                 <amp-analytics type="parsely">
                 <script type="application/json">
