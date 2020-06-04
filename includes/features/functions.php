@@ -1259,6 +1259,15 @@ if(!function_exists('ampforwp_featured_markup')){
         }
     }
 }
+
+function ampforwp_jnews_featured_video($video_url){
+    if(function_exists('jnews_plugin_active')){
+        $metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+        $metaKey = get_post_meta(ampforwp_get_the_ID(),$metaKey,true);
+        $video_url  = $metaKey['video'];
+    }
+    return $video_url ;
+}
 add_filter('amp_post_template_data','ampforwp_feature_video_amp_js', 20);
 function ampforwp_feature_video_amp_js($data){
     $vmeta = ampforwp_get_setting('ampforwp-featured-video-metakey');
@@ -1269,6 +1278,7 @@ function ampforwp_feature_video_amp_js($data){
             if(ampforwp_get_setting('ampforwp-featured-video')==true && !empty($vmeta)){
                 $metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
                 $video_url = get_post_meta($post_id, $metaKey,true);
+                $video_url = ampforwp_jnews_featured_video($video_url);
                 if(preg_match('/youtube/', $video_url)){
                     $data['amp_component_scripts']['amp-youtube'] = 'https://cdn.ampproject.org/v0/amp-youtube-0.1.js';
                 }else if(preg_match('/vimeo/', $video_url)){
@@ -1280,7 +1290,9 @@ function ampforwp_feature_video_amp_js($data){
     }
     return $data;
 }
-
+if(function_exists('jnews_plugin_active')){
+    add_filter('ampforwp_modify_the_content', 'ampforwp_featured_video_markup');
+}
 if(!function_exists('ampforwp_featured_video_markup')){
     function ampforwp_featured_video_markup($check=''){
         if(ampforwp_get_setting('ampforwp-featured-video')){
@@ -1302,6 +1314,7 @@ if(!function_exists('ampforwp_featured_video_markup')){
             if(ampforwp_get_setting('ampforwp-featured-video')==true && !empty($vmeta)){
                 $metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
                 $video_url = get_post_meta($post_id, $metaKey,true);
+                $video_url = ampforwp_jnews_featured_video($video_url);
                 $parts = parse_url($video_url);
                 parse_str($parts['query'], $query);
                 $ext = pathinfo($parts['path'], PATHINFO_EXTENSION);
@@ -1358,6 +1371,9 @@ if(!function_exists('ampforwp_featured_video_markup')){
                     $fvideo = '';
                     if($amp_f_video!=''){
                         $fvideo = '<figure class="'.esc_attr($class).'">'.$amp_f_video.'</figure>';// xss escaping done before.
+                    }
+                    if(function_exists('jnews_plugin_active')){
+                        return $fvideo . $check;
                     }
                     return $fvideo;
                     break;
