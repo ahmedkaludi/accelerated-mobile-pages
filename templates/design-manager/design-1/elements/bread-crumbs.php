@@ -130,7 +130,8 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                     // Loop through parent categories and store in variable $cat_display
                     $cat_display = '';
                     foreach($cat_parents as $parents) {
-                        $cat_id = get_cat_ID( $parents);
+                        $categories = get_the_category();
+                        $cat_id = $categories[0]->cat_ID;
                         $cat_link = get_category_link($cat_id);
                         if(ampforwp_get_setting('ampforwp-archive-support-cat') == true && ampforwp_get_setting('ampforwp-archive-support') == true){
                             $cat_link = ampforwp_url_controller( $cat_link );
