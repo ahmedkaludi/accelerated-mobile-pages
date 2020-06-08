@@ -59,7 +59,7 @@ function ampforwp_thirdparty_compatibility(){
 	if(function_exists('heateor_sss_save_default_options') && false == ampforwp_get_setting('ampforwp-sassy_social-switch') ){
 		add_filter('heateor_sss_disable_sharing','ampforwp_removing_sassy_social_share');
 	}
-	if(function_exists('tbn_theme_setup')){
+	if(function_exists('defer_parsing_of_js')){
 		remove_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 	}
 	$yoast_canonical = $yoast_canonical_post = $yoast_canonical_page = '';
