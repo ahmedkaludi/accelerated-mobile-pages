@@ -5,6 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $redux_builder_amp;
 amp_header() ?>
 <div class="cntr archive">
+	<?php if(true == ampforwp_get_setting('ampforwp-yoast-bread-crumb')){
+		echo ampforwp_yoast_breadcrumbs_output();
+	  }?>
 	<div class="arch-tlt">
 		<?php amp_archive_title(); ?>
 	</div>
