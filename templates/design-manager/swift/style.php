@@ -2448,4 +2448,16 @@ a.bread-link.bread-home::after {
     border: 1px solid #fff;
 }
 }
+<?php } 
+if(ampforwp_get_setting('header-position-type') == '2'){?>
+@supports (-webkit-touch-callout: none) {
+.tg + .hamb-mnu {
+    position:relative;
+    overflow:hidden;
+}
+.tg:checked + .hamb-mnu {
+    overflow: scroll;
+    position: inherit;
+}
+}
 <?php }
