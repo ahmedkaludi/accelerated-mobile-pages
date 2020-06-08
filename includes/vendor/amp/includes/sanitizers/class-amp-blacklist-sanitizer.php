@@ -227,7 +227,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		 *  For more info check: https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2556 and https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2967
 		*/
 		if( false === $this->contains_any_multibyte($href) ){
-			if ( false === filter_var( $href, FILTER_VALIDATE_URL )
+			if ( false === parse_url( $href,PHP_URL_HOST )
 				&& ! in_array( $protocol, $special_protocols, true ) ) {
 				return false;
 			}
