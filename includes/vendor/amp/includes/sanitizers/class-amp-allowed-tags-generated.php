@@ -558,6 +558,10 @@ class AMP_Allowed_Tags_Generated {
 			array(
 				'attr_spec_list' => array(
 					'autoplay' => array(),
+					'[dock]' => array(),
+					'dock' => array(
+						'value' => '#dock-slot',
+					),
 					'data-outstream' => array(
 						'value_regex' => '[0-9]+',
 					),

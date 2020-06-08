@@ -26,6 +26,9 @@ function ampforwp_minify_html_output($content_buffer){
     if(class_exists('Cli_Optimizer') && preg_match('/<style type="text\/css">@font-face(.*?)<\/style>/s', $content_buffer)!=0){
         $content_buffer = preg_replace('/<style type="text\/css">@font-face(.*?)<\/style>/s', '', $content_buffer);
     }
+    if(ampforwp_get_setting('ampforwp-amp-video-docking')==true){
+       $content_buffer = preg_replace('/<amp-brid-player(.*?)>(.*?)<\/amp-brid-player>/s', '<amp-brid-player$1dock="#dock-slot">$2</amp-brid-player>', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
