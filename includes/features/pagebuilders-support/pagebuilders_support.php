@@ -4,7 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 function ampforwp_page_builders_support_options($opt_name){
-$divi_pb_for_ampchecker = $elemntr_pb_for_ampchecker = array();
+$divi_pb_for_ampchecker = $elemntr_pb_for_ampchecker = $avada_pb_for_ampchecker = $avia_pb_for_ampchecker = array();
+if(!function_exists('amp_pagebuilder_compatibility_init')){
 $divi_pb_for_ampchecker = array( 
                 'id'   => 'divi_pb_for_amp_info_normal',
                 'type' => 'info',
@@ -37,6 +38,7 @@ $avia_pb_for_ampchecker = array(
                     ),
                  'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder compatibility For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
            );
+}
   if( !function_exists('amp_activate') ){
      $pb_for_amp[] =  array(
                 'id' => 'ampforwp-pagebuilder-accor',
