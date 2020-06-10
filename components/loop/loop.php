@@ -521,15 +521,17 @@ function amp_loop_image( $data=array() ) {
 			if(function_exists('ampforwp_check_image_existance')){
 				$thumb_url = ampforwp_check_image_existance($thumb_url);
 			}
-			echo '<'.esc_attr($tag).' class="loop-img '.esc_attr($tag_class).'">';
-			echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
-			$img_content =  '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. esc_html(get_the_title()) .'"></amp-img>';
-				if(function_exists('ampforwp_add_fallback_element')){
-					$img_content = ampforwp_add_fallback_element($img_content,'amp-img');
-				}
-		    	echo $img_content;
-			echo '</a>';
-			echo '</'.esc_attr($tag).'>';
+			if(ampforwp_get_setting('amforwp-homepage-featured-video') && ampforwp_featured_video_markup('check') && ampforwp_is_home()){
+				echo '<'.esc_attr($tag).' class="loop-video '.esc_attr($tag_class).'">';
+	            echo ampforwp_featured_video_markup();
+	            echo '</'.esc_attr($tag).'>';
+	        }else{
+	        	echo '<'.esc_attr($tag).' class="loop-img '.esc_attr($tag_class).'">';
+				echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
+				echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. esc_html(get_the_title()) .'"></amp-img>';
+				echo '</a>';
+				echo '</'.esc_attr($tag).'>';
+			}
 		}
      } 
 } 
