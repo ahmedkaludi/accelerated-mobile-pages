@@ -448,13 +448,13 @@ img.ampforwp-quads-logo{
     margin:0px;
 }
 .inner-list{
-    padding: 12px 0px 10px 0px;
+    padding: 14px 0px 10px 0px;
     font-size: 15px;
     font-weight: 500;
     color: #666;
 }
 .inner-list li{
-    margin-bottom: 10px !important;
+    margin-bottom: 14px !important;
 }
 .inner-list li:before{
     content: "";
