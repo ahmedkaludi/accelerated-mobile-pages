@@ -7,7 +7,65 @@ if ( ! defined( 'ABSPATH' ) ) {
     $advertisementdesc = '';
     if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) && !is_plugin_active( 'ads-for-wp/ads-for-wp.php' ) ){
         $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
-    $advertisementdesc = '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>';
+    $advertisementdesc = '
+    <div class="ads-baner">
+        <span class="adt-top">The Best AMP integration for Advertisement</span>
+        <div class="ads-baner-inner">
+            <span>INTRODUCING</span>
+            <img class="ampforwp-quads-logo" src="'.AMPFORWP_IMAGE_DIR . '/wpquads-logo.png" width="180" height="42" />
+            <div class="list-of-feat">
+                <ul>
+                    <li>
+                        <h5>GENERAL FEATURES</h5>
+                        <ul class="inner-list">
+                            <li>Unlimited Ads</li>
+                            <li>Ad after X paragraph</li>
+                            <li>after every Nth para</li>
+                            <li>for AMP & non-AMP</li>
+                            <li>Ad after Image</li>
+                            <li>Ad by Word count</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h5>VENDORS</h5>
+                        <ul class="inner-list">
+                            <li>Adsense</li>
+                            <li>Ad manager (DFP)</li>
+                            <li>Yandex Direct</li>
+                            <li>Custom Code</li>
+                            <li>MGID</li>
+                            <li>30+ coming soon</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h5>VISIBILITY by</h5>
+                        <ul class="inner-list">
+                            <li>Post Type</li>
+                            <li>Specific Post</li>
+                            <li>Taxonomy</li>
+                            <li>Page Template</li>
+                            <li>MCategory / Tag</li>
+                            <li>and 8+ more</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h5>TARGETTING by</h5>
+                        <ul class="inner-list">
+                            <li>Device type</li>
+                            <li>User Agent</li>
+                            <li>Cookie</li>
+                            <li>Referre</li>
+                            <li>Language</li>
+                            <li>and 4+ more</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="ad-lnk">
+                    <a href="'.$AD_URL.'"  target="_blank">Install Plugin</a>
+                </div>
+            </div>
+        </div>
+    </div>';
     }
 // ADS SECTION
  Redux::setSection( $opt_name, array(
