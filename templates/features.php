@@ -8070,6 +8070,42 @@ function ampforwp_include_required_scripts($content){
 			}
 		}
 	}
+	$amp_youtube = $xpath->query("//amp-brid-player");
+	foreach($amp_youtube as $node) {
+		if($node->hasAttribute('dock')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+				$celem = 'element';
+				$ocomp = 'amp-video-docking';
+				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
+					$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+					$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
+					$content =  str_replace('<head>', $script_tag, $content);
+				}
+			}else{
+				if(preg_match('/<amp-brid-player(.*?) dock|dock=">/', $content)){
+					$content = preg_replace('/<amp-brid-player(.*?) dock|dock=">/','<amp-brid-player $1>', $content);
+				}
+			}
+		}
+	}
+	$amp_youtube = $xpath->query("//amp-brightcove");
+	foreach($amp_youtube as $node) {
+		if($node->hasAttribute('dock')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+				$celem = 'element';
+				$ocomp = 'amp-video-docking';
+				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
+					$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+					$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
+					$content =  str_replace('<head>', $script_tag, $content);
+				}
+			}else{
+				if(preg_match('/<amp-brightcove(.*?) dock|dock=">/', $content)){
+					$content = preg_replace('/<amp-brightcove(.*?) dock|dock=">/','<amp-brightcove $1>', $content);
+				}
+			}
+		}
+	}
 
 	// Scripts added from Options panel should have higher priority #4064
 	if( ampforwp_get_setting('amp-header-text-area-for-html') && ampforwp_get_setting('amp-header-text-area-for-html')!="") {
@@ -8097,7 +8133,8 @@ function ampforwp_include_required_scripts($content){
       	}
    	}
 	return $content;
-}	
+}
+
 if(!function_exists('ampforwp_get_retina_image_settings')){
 	function ampforwp_get_retina_image_settings($width,$height){
 		$data['width'] 	= intval($width);

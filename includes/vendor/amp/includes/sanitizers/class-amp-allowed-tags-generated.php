@@ -608,6 +608,10 @@ class AMP_Allowed_Tags_Generated {
 					'noloading' => array(
 						'value' => '',
 					),
+					'[dock]' => array(),
+					'dock' => array(
+						'value' => '#dock-slot',
+					),
 				),
 				'tag_spec' => array(
 					'requires_extension' => array(
