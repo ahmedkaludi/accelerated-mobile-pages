@@ -195,7 +195,7 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 								}
 								?>
 		<li>
-			<a title="whatsapp share" class="s_wp" target="_blank" <?php ampforwp_rel_attributes_social_links(); ?> href="https://api.whatsapp.com/send?text=<?php echo esc_url($amp_permalink); ?>" data-action="share/whatsapp/share"><?php echo $whatsapp_icon; ?></a>
+			<a title="whatsapp share" class="s_wp" target="_blank" <?php ampforwp_rel_attributes_social_links(); ?> href="https://api.whatsapp.com/send?text=<?php echo esc_attr(htmlspecialchars(get_the_title()))."\n".esc_url($amp_permalink); ?>" data-action="share/whatsapp/share"><?php echo $whatsapp_icon; ?></a>
 		</li>
 		<?php } ?>
 		<?php if(ampforwp_get_setting('enable-single-line-share') == true){ 
