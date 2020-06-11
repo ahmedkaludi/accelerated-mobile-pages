@@ -422,6 +422,11 @@ if( true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') &&
 .fbp-img{
 <?php 
 if( true == ampforwp_get_setting('ampforwp-homepage-posts-image-modify-size') && true== ampforwp_get_setting('ampforwp-homepage-posts-first-image-modify-size') ){
+	$fimg_width 	= ampforwp_get_setting('ampforwp-swift-homepage-posts-width');
+	$fimg_height = ampforwp_get_setting('ampforwp-swift-homepage-posts-height');
+?>
+height:<?php echo $fimg_height.'px';?>;width:<?php echo $fimg_width.'px';?>;
+<?php
 }else{
  ?>
 	flex-basis: calc(65%);
