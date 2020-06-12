@@ -478,7 +478,7 @@ img.ampforwp-quads-logo{
     margin: 10px auto 15px auto;
     text-align: center;
 }
-.ad-lnk a{
+.ad-lnk a,.ad-lnk .quads_install_button,.ad-lnk .quads_install_button:hover{
     background: #087fde;
     padding: 10px 35px 14px 35px;
     font-size: 16px;
