@@ -3822,6 +3822,26 @@ Redux::setSection( $opt_name, array(
                         array('ampforwp-callnow-button', '=' , '1')
                     )
              ),
+            array(
+                    'id'    => 'mobile-theme-color',
+                    'type'  => 'switch',
+                    'title' => esc_html__('Mobile Theme Color', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Enable this option to Choose mobile theme color','accelerated-mobile-pages'),
+                    'default'   => 0,
+            ),
+            array(
+                    'id'        => 'mobile-theme-color-picker',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Theme Color', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => esc_html__('Choose the Mobile theme color color','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#ffffff',
+                         ),
+                    'required' => array(
+                        array('mobile-theme-color','=',1)
+                      )
+              ),
             
                array(
                            'id' => 'typography-section',

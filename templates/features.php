@@ -8596,6 +8596,19 @@ function ampforwp_delete_refresh_related_post_trans(){
 	delete_option('ampforwp_get_not_meta_post_count');
 	delete_option('ampforwp_get_total_post_count');
 }
+// Adding Mobile theme color meta data in header
+add_action( 'amp_post_template_head', 'ampforwp_mobile_theme_color');
+function ampforwp_mobile_theme_color(){
+	if(true == ampforwp_get_setting('mobile-theme-color')){
+		$content_code = ampforwp_get_setting('mobile-theme-color-picker','color','ampforwp_sanitize_hex_color');
+		if(empty($content_code)){
+			$content_code = '#ffffff';  
+		}
+		?>
+		<meta name="theme-color" content="<?php echo $content_code; ?>"/>
+		<?php
+    }
+}
 
 if(class_exists('RankMath')){
 	add_filter('ampforwp_modify_the_content','ampforwp_rank_math_external_link_newtab');
