@@ -1135,11 +1135,13 @@ $reusableCommonSettings = array(
 
 $reusable = get_option('ampforwp_reusable_block', true);
 $reusable_arr  = array();
-foreach ($reusable as $key => $value) {
-	if(is_array($value)){
-		foreach ($value as $k => $v) {
-			$new_key = $v['post_id'].'~'.$v['id'];
-			$reusable_arr[$new_key] = $v['block'];
+if(is_array($reusable)){
+	foreach ($reusable as $key => $value) {
+		if(is_array($value)){
+			foreach ($value as $k => $v) {
+				$new_key = $v['post_id'].'~'.$v['id'];
+				$reusable_arr[$new_key] = $v['block'];
+			}
 		}
 	}
 }
