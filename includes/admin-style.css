@@ -1089,6 +1089,7 @@ span.switch-text {
 .amp_recommend_learnmore {
     position: relative;
     font-size: 14px;
+    margin-left: 10px;
 }
 #finalized-import-structure-data-from-amp{
     margin-left:8px;
