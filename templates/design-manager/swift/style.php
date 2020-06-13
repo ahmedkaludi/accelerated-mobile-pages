@@ -750,7 +750,7 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 .wp-block-embed blockquote a{    
 	position: absolute;
 	height: 285px;
-	z-index: 999;
+	z-index: 9;
 	margin-top: -40px;
 }
 @media(max-width:768px){
