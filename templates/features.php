@@ -8605,7 +8605,7 @@ function ampforwp_mobile_theme_color(){
 			$content_code = '#ffffff';  
 		}
 		?>
-		<meta name="theme-color" content="<?php echo $content_code; ?>"/>
+		<meta name="theme-color" content="<?php echo ampforwp_sanitize_color($content_code); ?>"/>
 		<?php
     }
 }
