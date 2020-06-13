@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.4
-Stable tag: 1.0.52
+Tested up to: 5.4.2
+Stable tag: 1.0.53
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,21 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.53 (15th June 2020) =
+* Improvement: Add Featured Video support in featured area in all designs #3668
+* Improvement: Making featured video compatible with Rehub-framework in AMP #4308
+* Improvement: Making featured video compatible with Jnews theme's feature video module #4499
+* Improvement: Need to implement YOAST breadcrumb for the category and the tags pages #4493
+* Fixed: Meta description tag is missing in AMP, when custom home page is selected. #4521
+* Fixed: The attribute 'src' in tag 'amp-form extension .js script' is set to the invalid value'. #4515
+* Fixed: The tag 'link rel=canonical' appears more than once in the document due to Yoast SEO premium plugin. #4511
+* Fixed: Getting warnings due to Yoast SEO plugin. #4510
+* Fixed: Issue with Image block of Gutenberg #4507
+* Fixed: Gallery images(Gutenberg editor) are stretched when the Optimize CSS option is enabled. #4502
+* Fixed: If category label has backslash in the name breadcrumbs break #4500
+* Fixed: Vertical scroll Issue in iOS devices when the 'menu overlay' is positioned in right. #4461
+* Fixed: WPRocket CDN is not working properly with the amp pages. #4342
+
 = 1.0.52 (27th May 2020) =
 * Fixed: Reverted the CDN code of WP Rocket plugin which was causing the malformed url issue #4342
 
@@ -207,21 +222,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Custom taxonomy archive not working LSVR Knowledge Base #4478
 * Fixed: Debug Notice trying to access array offset on value of type bool #4469
 
-= 1.0.50 (20th May 2020) =
-* Improvement: Added option to display the GDPR bar at top or bottom #4409
-* Improvement: Added option to enable/disable the AMP from the categories or product or any custom taxonomy #4326
-* Improvement: Added Hooks in Instant Article #4417
-* Improvement: Added Polls for AMP Extension #4451
-* Fixed: View Non-AMP link in the footer does not redirect to Non-AMP #3884
-* Fixed: Banner notice not looking good in reading settings #4414
-* Fixed: Lightbox for images appearing even after disabling #4442
-* Fixed: Last modified date showing wrong in header #4456
-* Fixed: WPRocket CDN is not working properly in the AMP pages #4342
-* Fixed: Lighthouse issues #4443
-* Fixed: Thumbnail images in category module not showing in RTL #4459
-* Fixed: Blank screen when alt added in images with short pixel plugin #4452
-* Fixed: invalid value defer onload with The Business News theme  #4465
-* Fixed: Text links are not working in mobile #4462
-* Fixed: PHP Notice Undefined variable thumb_alt #4460
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
