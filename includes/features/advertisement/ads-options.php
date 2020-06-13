@@ -61,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </li>
                 </ul>
                 <div class="ad-lnk">
-                 '.(!is_plugin_active('quick-adsense-reloaded/quick-adsense-reloaded.php')? 
+                 '.(!function_exists('quads_loaded')? 
                                 '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">Install Plugin</div>'
                             : '<a href="'.admin_url('admin.php?page=quads-settings').'"> Go to WP QUADS Settings </a>').'
                 </div>
