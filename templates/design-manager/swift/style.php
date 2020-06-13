@@ -694,23 +694,6 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 .cntn-wrp small{font-size:11px;line-height:1.2;color:#111;}
 .cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-break: break-word;}
 .cntn-wrp .wp-block-image,.wp-block-embed{margin:15px 0px;}
-.wp-block-embed{margin-top:45px;}
-.wp-block-embed blockquote a{    
-	position: absolute;
-	height: 285px;
-	z-index: 999;
-	margin-top: -40px;
-}
-@media(max-width:768px){
-	.wp-block-embed blockquote a{    
-		width: 80%;
-	    height: 209px;
-	    margin-top: -95px;
-	}
-	.wp-block-embed{
-		margin-top: 95px;
-	}
-}
 .artl-cnt ul li, .artl-cnt ol li{list-style-type: none;position: relative;
 <?php if( true == ampforwp_get_setting('amp-rtl-select-option') ) {?> 
 padding-right:20px;
