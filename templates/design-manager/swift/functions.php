@@ -224,7 +224,7 @@ function ampforwp_swift_social_icons(){
 								$feature_img = ampforwp_get_post_thumbnail( 'url', 'full' );
 								}
 							 ?>
-								<a class="s_od" target="_blank" <?php ampforwp_rel_attributes_social_links(); ?> href="https://connect.ok.ru/offer?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&imageUrl=<?php echo esc_url($feature_img); ?>" aria-label="odnoklassniki share"><?php echo $odnoklassniki_icon; ?></a>
+								<a class="s_od" target="_blank" <?php esc_html(ampforwp_rel_attributes_social_links()); ?> href="https://connect.ok.ru/offer?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&imageUrl=<?php echo esc_url($feature_img); ?>" aria-label="odnoklassniki share"><?php echo $odnoklassniki_icon; ?></a>
 							</li>
 							<?php } ?>
 							<?php if(ampforwp_get_setting('enable-single-reddit-share')){
