@@ -30,7 +30,11 @@ class AMPforWP_Photo_Gallery_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_E
   public function shortcode( $args ) {
 
     $params = array();
-    $params['id'] = WDWLibrary::get('shortcode_id', 0);
+     $param_id = 0;
+    if(isset($args['id'])){
+      $param_id = $args['id'];
+    }
+    $params['id'] = WDWLibrary::get('shortcode_id', $param_id);
     // Get values for elementor widget.
     $params['gallery_type'] = WDWLibrary::get('gallery_type', 'thumbnails');
     $params['gallery_id'] = WDWLibrary::get('gallery_id', 0);
