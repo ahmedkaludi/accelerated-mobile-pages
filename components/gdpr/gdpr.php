@@ -249,6 +249,8 @@ function ampforwp_gdpr_css(){
 	    z-index:9999;
 	    display: initial;
 	    position: inherit;
+	    height:20px;
+	    width:100%;
 	}	
 <?php }
 
