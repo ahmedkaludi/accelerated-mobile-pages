@@ -14,6 +14,7 @@
 * Fixed: If category label has backslash in the name breadcrumbs break #4500
 * Fixed: Vertical scroll Issue in iOS devices when the 'menu overlay' is positioned in right. #4461
 * Fixed: WPRocket CDN is not working properly with the amp pages. #4342
+* Fixed: When gdpr option is enabled the site is becoming unclickable in browser Safari on IOS and MacOS #4542
 
 = 1.0.52 (27th May 2020) =
 * Fixed: Reverted the CDN code of WP Rocket plugin which was causing the malformed url issue #4342
