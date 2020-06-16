@@ -14,8 +14,8 @@ $output = '
 	  controls >
 	  <source src="{{video_upload_link}}"
     type="video/mp4" />
-    <source type="{{video_upload_link}}"
-    src="/video/tokyo.webm">
+    <source type="video/webm"
+    src="{{video_upload_link}}">
 	</amp-video>
 	{{ifend_condition_video_option_custom}}
 
@@ -87,6 +87,7 @@ return array(
 		 						'type'		=>'text',		
 		 						'name'		=>"video_upload_link",		
 		 						'label'		=>'Video link',
+		 						'helpmessage'	=> esc_html__('Please make sure to enter https url link.', 'accelerated-mobile-pages'),
 		           				'tab'       =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
