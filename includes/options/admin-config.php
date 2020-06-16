@@ -2868,34 +2868,6 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => esc_html__('Disable this option if you want your search pages in Non-AMP.','accelerated-mobile-pages'),
                         'default' => 1,
                     ),
-                       //Feature video Start
-                    array(
-                            'id'    => 'ampforwp-featured-video',
-                            'type'  => 'switch',
-                            'title' => esc_html__('Featured Video', 'accelerated-mobile-pages'),
-                            'tooltip-subtitle' => esc_html__('Enable this option to show featured video in place of featured image', 'accelerated-mobile-pages'),
-                            'default'   => 0,
-                    ),
-                    array(
-                            'id'       => 'ampforwp-featured-video-metakey',
-                            'type'     => 'text',
-                            'class' => 'child_opt child_opt_arrow',
-                            'title'    => esc_html__('Custom Field Name', 'accelerated-mobile-pages'),
-                            'tooltip-subtitle' => esc_html__('Please paste the custom field name for which the Youtube video url has been added which is used for the post.', 'accelerated-mobile-pages'),
-                            'default'  => ampforwp_featured_video_default(),
-                            'required' => array( array('ampforwp-featured-video', '=' , '1')),
-                    ),
-                    array(
-                        'id'        => 'amforwp-homepage-featured-video',
-                        'type'      => 'switch',
-                        'class'    => 'child_opt child_opt_arrow',
-                        'title'     => esc_html__('Video in Home page Loop', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => esc_html__('Enable this option to show featured video in Home page loop', 'accelerated-mobile-pages'),
-                        'default'   => 0,
-                        'tooltip-subtitle'  => esc_html__('Enable this option to show featured video for each post of Home page loop'),
-                        'required' => array( array('ampforwp-featured-video','=',1) )
-                    ),
-                    //Feature video End
                     array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
@@ -3023,7 +2995,6 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,
                         
                     ),
-                    
                     // Featured Image from Custom Fields
                     array(
                         'id'       => 'ampforwp-custom-fields-featured-image-switch',
@@ -5707,6 +5678,34 @@ $single_page_options = array(
                                         array('swift-featued-image', '=' , '1'),
                                     ),
             ),
+            //Feature video Start
+            array(
+                    'id'    => 'ampforwp-featured-video',
+                    'type'  => 'switch',
+                    'title' => esc_html__('Featured Video', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Enable this option to show featured video in place of featured image', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+            ),
+            array(
+                    'id'       => 'ampforwp-featured-video-metakey',
+                    'type'     => 'text',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'    => esc_html__('Custom Field Name', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Please paste the custom field name for which the Youtube video url has been added which is used for the post.', 'accelerated-mobile-pages'),
+                    'default'  => ampforwp_featured_video_default(),
+                    'required' => array( array('ampforwp-featured-video', '=' , '1')),
+            ),
+            array(
+                'id'        => 'amforwp-homepage-featured-video',
+                'type'      => 'switch',
+                'class'    => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('Video in Home page Loop', 'accelerated-mobile-pages'),
+                'tooltip-subtitle' => esc_html__('Enable this option to show featured video in Home page loop', 'accelerated-mobile-pages'),
+                'default'   => 0,
+                'tooltip-subtitle'  => esc_html__('Enable this option to show featured video for each post of Home page loop'),
+                'required' => array( array('ampforwp-featured-video','=',1) )
+            ),
+            //Feature video End
             // Author name 
             array(
                  'id'       => 'amp-author-name',
