@@ -7932,21 +7932,16 @@ if(class_exists('RankMath')){
 function ampforwp_rank_math_nofollow_to_external_link($content){
 	$rank_math_external_link = RankMath\Helper::get_settings( 'general.nofollow_external_links' );
 	if($rank_math_external_link){
-		$comp_dom = new DOMDocument();
-		@$comp_dom->loadHTML($content);
-		$xpath = new DOMXPath( $comp_dom );
-	    $count = 0;
-	    $nodes = $xpath->query('//a[@href]');
-	    foreach ($nodes as $node) {
-	    	$url = $node->getAttribute('href');
-	    	$is_external = ampforwp_isexternal($url);
+		preg_match_all('/<a href="(.*?)">(.*?)<\/a>/', $content, $matches);
+		for($i=0;$i<count($matches[1]);$i++){
+			$url = $matches[1][$i];
+			$is_external = ampforwp_isexternal($url);
 			if($is_external){
-				if(!$node->hasAttribute('target')){
-					$node->setAttribute('target','_blank');
-				}
+				$url = esc_url($url);
+				$url = str_replace("/", "\/", $url);
+				$content = preg_replace('/(<a href="'.$url.'.*")/', '$1 rel="nofollow"', $content);
 			}
-	    }
-		$content =  $comp_dom->saveHTML();
+		}
 	}
 	return $content;
 }
