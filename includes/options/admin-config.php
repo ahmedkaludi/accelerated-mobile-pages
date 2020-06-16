@@ -3027,7 +3027,7 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'ampforwp-duplicate-featured-image',
                         'type'     => 'switch',
-                        'title'    => esc_html__('Duplicate Featured Image', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Show Featured Image if already preset in content.', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => esc_html__('Turn On the support if you want to show the Featured Image if it already exists in post content.', 'accelerated-mobile-pages'),
                         'true'      => 'true',
                         'false'     => 'false',
