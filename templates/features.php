@@ -8242,7 +8242,6 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					$m_content = $matches[1][$i];
 					$m_content = ampforwp_imagify_webp_compatibility($m_content);
 					$m_content = ampforwp_ewww_webp_compatibility($m_content);
-					$m_content = ampforwp_wp_rocket_compatibility($m_content);
 					$m_content = ampforwp_webp_express_compatibility($m_content);
 					$m1_content = ampforwp_set_default_fallback_image($matches[1][$i]);
 					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
@@ -8508,31 +8507,55 @@ function ampforwp_themify_compatibility($content){
 	}
 	return $content;
 }
+ if(function_exists('rocket_activation')){
+	add_filter("ampforwp_the_content_last_filter",'ampforwp_wp_rocket_compatibility',25);
+}
 function ampforwp_wp_rocket_compatibility($content){  
-  if(function_exists('rocket_activation')){  
     $cdn_url = get_option('wp_rocket_settings');
-    if($cdn_url['cdn'] == 1){  
-        $img_cdn_url = '';
+    if($cdn_url['cdn'] == 1){ 
+    	$img_cdn_url = '';
+    	$cnds_arr = array();
         if(!empty($cdn_url['cdn_zone']) && !empty($cdn_url['cdn_cnames'])){
-        foreach ($cdn_url['cdn_zone'] as $key => $element) { 
-            if($element == 'images'){
-              $img_cdn_url = $cdn_url['cdn_cnames'][$key];
-              break;
-            }elseif ($element == 'all') {
-              $img_cdn_url = $cdn_url['cdn_cnames'][$key];
-              $content = preg_replace('/src="(.*?)\/\/(.*?)wp-content(.*?)"(.*?)>/', 'src=$1//'.$img_cdn_url.'/wp-content$3$4>', $content);
-              $content = preg_replace('/srcset="(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?)"/', 'srcset="$1//'.$img_cdn_url.'/wp-content$3,$4//'.$img_cdn_url.'/wp-content$6"', $content);
-            }
-        } 
-    }
-       if($img_cdn_url!=''){
-          $cdn_url = $img_cdn_url;
-          $content = preg_replace('/src="(.*?)\/\/(.*?)wp-content(.*?)"(.*?)>/', 'src="$1//'.$cdn_url.'/wp-content$3"$4>', $content);  
-          $content = preg_replace('/srcset="(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?)"/', 'srcset="$1//'.$cdn_url.'/wp-content$3,$4//'.$cdn_url.'/wp-content$6,$7//'.$cdn_url.'/wp-content$9"', $content);  
-        }
-    }  
-  }  
-  return $content;  
+	        foreach ($cdn_url['cdn_zone'] as $key => $element) { 
+	        	if(isset($cdn_url['cdn_cnames'][$key]) && $cdn_url['cdn_cnames'][$key]!=''){
+	        		$cnds_arr[$element] = $cdn_url['cdn_cnames'][$key];
+	        	}
+	        } 
+	    }
+	    if(isset($cnds_arr['images'])){
+	    	$img_cdn_url = $cnds_arr['images'];
+	    }else if(isset($cnds_arr['all'])){
+	    	$img_cdn_url = $cnds_arr['all'];
+	    }
+	    if($img_cdn_url!=''){
+	    	$parse_url = parse_url($img_cdn_url);
+			if(!isset($parse_url['scheme'])){
+			     if(!preg_match('/\/\//', $img_cdn_url)){
+			     	$img_cdn_url = '//'.$img_cdn_url;
+			     }
+			}
+	    	$comp_dom = new DOMDocument();
+			@$comp_dom->loadHTML($content);
+			$xpath = new DOMXPath( $comp_dom );
+		    $nodes = $xpath->query('//amp-img[@src]');
+		    $home_url = home_url();
+		    foreach ($nodes as $node) {
+		    	$url = $node->getAttribute('src');
+		    	$srcset = $node->getAttribute('srcset');
+		    	$is_external = ampforwp_isexternal($url);
+				if(!$is_external && !$node->hasAttribute('fallback')){
+					$img_src = str_replace($home_url, $img_cdn_url, $url);
+					$img_srcset = str_replace($home_url, $img_cdn_url, $srcset);
+					$node->setAttribute('src',$img_src);
+					if($img_srcset!=''){
+						$node->setAttribute('srcset',$img_srcset);
+					}
+				}
+		    }
+			$content =  $comp_dom->saveHTML();
+		}
+	}
+  	return $content;  
 }
 
 add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
