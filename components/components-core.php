@@ -224,6 +224,14 @@ function amp_featured_image( ){
 	}
 }
 
+// Get Featured Image code
+function amp_get_featured_image(){
+	global $loadComponent;
+	if(isset($loadComponent['AMP-featured-image']) && $loadComponent['AMP-featured-image']==true){
+		return ampforwp_featured_markup( false );	
+	}
+}
+
 // Author Box
 function amp_author_box($args=array() ){
 	global $loadComponent;
