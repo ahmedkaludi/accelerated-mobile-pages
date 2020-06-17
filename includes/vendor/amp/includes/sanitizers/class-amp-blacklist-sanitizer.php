@@ -52,7 +52,13 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			   }
 			   $node->setAttribute('href',$href);
 			}
+			if( function_exists('googlesitekit_activate_plugin') ){	
+                if(strpos($href,'#') !== 0){
+			    $node->setAttribute('href', \ampforwp_findInternalUrl($href));
+			    }
+		    }else{
 			$node->setAttribute('href', \ampforwp_findInternalUrl($href));
+		    }   
 
 		}
 		
