@@ -33,7 +33,8 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
                 if( true == ampforwp_get_setting('ampforwp-archive-support') &&  true == ampforwp_get_setting('ampforwp-archive-support-cat')){
                   $cat_link = ampforwp_url_controller(get_category_link( $cat->term_id ));
                 }
-                echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'.esc_url($cat_link). '" >'. esc_html($cat->name) .'</a></span>'); 
+                echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'.esc_url($cat_link). '" >'. esc_html($cat->name) .'</a></span>');
+                do_action('ampforwp_post_views_ct'); 
             }else{
               echo '<span class="amp-cat">'. esc_html($cat->name) .'</span>';
             }

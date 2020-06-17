@@ -102,7 +102,7 @@ global $redux_builder_amp; ?>
 			            <div class="post-date">
 			            	<?php amp_date(); ?><?php edit_post_link(); ?>
 			            </div>
-
+                          <?php do_action('ampforwp_post_views_ctr'); ?>
 		            <?php }
 		            if ( ampforwp_get_setting('rp_design_type') == '1' && true == ampforwp_get_setting('ampforwp-single-related-posts-switch')) {
 					$my_query = ampforwp_related_post_loop_query();
