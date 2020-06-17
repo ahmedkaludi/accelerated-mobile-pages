@@ -6100,6 +6100,42 @@ $single_page_options = array(
                                 ),
             ),
             array(
+                    'id'       => 'ampforwp-single-related-posts-change-image-size',
+                    'type'     => 'switch',
+                    'class' => 'child_opt',
+                    'title'    => esc_html__('Change Image Size', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array( 
+                                 array('amp-design-selector','=',4),
+                                 array('ampforwp-single-related-posts-switch', '=' , '1'),
+                                 array('ampforwp-single-related-posts-image', '=' , '1')
+                                ),
+            ),
+            array(
+                        'id'       => 'ampforwp-single-related-posts-image-width',
+                        'class' => 'child_opt child_opt_arrow',
+                        'type'     => 'text',
+                        'title'    => esc_html__('Image Width', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Defaults to 346', 'accelerated-mobile-pages'),
+                        'default'  => 346,
+                        'required' => array(
+                          array('amp-design-selector','=',4),
+                          array('ampforwp-single-related-posts-change-image-size','=',1)
+                        )
+            ),
+            array(
+                        'id'       => 'ampforwp-single-related-posts-image-height',
+                        'class' => 'child_opt',
+                        'type'     => 'text',
+                        'title'    => esc_html__('Image Height', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Defaults to 188', 'accelerated-mobile-pages'),
+                        'default'  => 188,
+                        'required' => array(
+                          array('amp-design-selector','=',4),
+                          array('ampforwp-single-related-posts-change-image-size','=',1)
+                        )
+            ),
+            array(
                     'id'       => 'ampforwp-single-related-posts-excerpt',
                     'type'     => 'switch',
                 'class' => 'child_opt',
