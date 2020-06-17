@@ -8005,7 +8005,7 @@ function ampforwp_process_last_filter_content($content){
 	      	$node->parentNode->removeChild($node);
 	    }
     }
-	$content =  $comp_dom->saveHTML();
+	$content =  html_entity_decode($comp_dom->saveHTML());
 	return $content;
 }
 
@@ -8413,7 +8413,7 @@ function ampforwp_rank_math_external_link_newtab($content){
 				}
 			}
 	    }
-		$content =  $comp_dom->saveHTML();
+		$content =  html_entity_decode($comp_dom->saveHTML());
 	}
 	return $content;
 }	
@@ -8623,7 +8623,7 @@ function ampforwp_wp_rocket_compatibility($content){
 					}
 				}
 		    }
-			$content =  $comp_dom->saveHTML();
+			$content =  html_entity_decode($comp_dom->saveHTML());
 		}
 	}
   	return $content;  
