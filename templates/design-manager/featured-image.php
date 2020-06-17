@@ -7,7 +7,7 @@ if(ampforwp_get_setting('amp-design-selector')==2 || ampforwp_get_setting('amp-d
 <?php if( ampforwp_get_setting('amp-design-selector')==3){?>
 	<div class="post-featured-img">
 <?php } 
-	ampforwp_featured_markup(true);
+	ampforwp_featured_markup();
 if( ampforwp_get_setting('amp-design-selector')==3){?>
 	</div>
 <?php }?>
