@@ -7991,26 +7991,6 @@ function ampforwp_remove_unwanted_code($content){
 	// close #4206
 	return $content;
 }
-
-if(class_exists('WPSEO_Options')){
-//	add_filter('ampforwp_the_content_last_filter','ampforwp_process_last_filter_content',30);
-}
-function ampforwp_process_last_filter_content($content){
-	$comp_dom = new DOMDocument();
-	@$comp_dom->loadHTML($content);
-	$xpath = new DOMXPath( $comp_dom );
-    $count = 0;
-    $nodes = $xpath->query('//link[@rel="canonical"]');
-    foreach ($nodes as $node) {
-    	$count++;
-    	if($count>=2){
-	      	$node->parentNode->removeChild($node);
-	    }
-    }
-	$content =  html_entity_decode($comp_dom->saveHTML());
-	return $content;
-}
-
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
 	$comp_to_remove_arr = array();
