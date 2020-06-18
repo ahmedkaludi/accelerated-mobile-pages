@@ -7803,7 +7803,27 @@ if( ! function_exists('ampforwp_font_selector') ) {
 		return sanitize_text_field($fontFamily);
 	}
 }
-
+if(class_exists('WPSEO_Options')){
+	add_filter('ampforwp_the_content_last_filter','ampforwp_process_last_filter_content',25);
+}
+function ampforwp_process_last_filter_content($content){
+	$comp_dom = new DOMDocument();
+	@$comp_dom->loadHTML($content);
+	$xpath = new DOMXPath( $comp_dom );
+    $count = 0;
+    $nodes = $xpath->query('//link[@rel="canonical"]');
+    $con = '';
+    foreach ($nodes as $node) {
+    	$count++;
+    }
+    if($count>1){
+    	 if(preg_match("/<link\b[^>]*?\brel=[\'\"]canonical[\'\"][^>]*>/", $content, $matches, PREG_OFFSET_CAPTURE)){
+		    $content = preg_replace("/<link\b[^>]*?\brel=[\'\"]canonical[\'\"][^>]*>/", "", $content);
+		    $content = substr_replace($content, $matches[0][0], $matches[0][1], 0);
+		}
+    }
+	return $content;
+}
 // Font URL controller
 if ( ! function_exists('ampforwp_font_url') ) {
 	function ampforwp_font_url($font_url){
@@ -8599,13 +8619,11 @@ function ampforwp_wp_rocket_compatibility($content){
 				if(!$is_external && !$node->hasAttribute('fallback')){
 					$img_src = str_replace($home_url, $img_cdn_url, $url);
 					$img_srcset = str_replace($home_url, $img_cdn_url, $srcset);
-					$node->setAttribute('src',$img_src);
-					if($img_srcset!=''){
-						$node->setAttribute('srcset',$img_srcset);
-					}
+					$content = str_replace($url, $img_src, $content);
+					$content = str_replace($srcset, $img_srcset, $content);
 				}
 		    }
-			$content =  html_entity_decode($comp_dom->saveHTML());
+			
 		}
 	}
   	return $content;  
