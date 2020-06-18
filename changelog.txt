@@ -1,10 +1,12 @@
 == Changelog ==
 
-= 1.0.53 (15th June 2020) =
+= 1.0.53 (19th June 2020) =
 * Improvement: Add Featured Video support in featured area in all designs #3668
 * Improvement: Making featured video compatible with Rehub-framework in AMP #4308
 * Improvement: Making featured video compatible with Jnews theme's feature video module #4499
 * Improvement: Need to implement YOAST breadcrumb for the category and the tags pages #4493
+* Improvement: Added new set of hooks in all designs #4550
+* Improvement: Added PostViews for AMP Extension #4549
 * Fixed: Meta description tag is missing in AMP, when custom home page is selected. #4521
 * Fixed: The attribute 'src' in tag 'amp-form extension .js script' is set to the invalid value'. #4515
 * Fixed: The tag 'link rel=canonical' appears more than once in the document due to Yoast SEO premium plugin. #4511
@@ -15,6 +17,11 @@
 * Fixed: Vertical scroll Issue in iOS devices when the 'menu overlay' is positioned in right. #4461
 * Fixed: WPRocket CDN is not working properly with the amp pages. #4342
 * Fixed: When gdpr option is enabled the site is becoming unclickable in browser Safari on IOS and MacOS #4542
+* Fixed: Unused HTML was showing in Video Module #4524
+* Fixed: Getting validation error as "The attribute '"_blank"' may not appear in tag 'a' with RankMath #4527
+* Fixed: Anchor tag is stripping in AMP with Sitekit By Google plugin is active #4552
+* Fixed: Date styling not looking good in Design 3 archive pages #4557
+* Fixed: Debug warning #4555
 
 = 1.0.52 (27th May 2020) =
 * Fixed: Reverted the CDN code of WP Rocket plugin which was causing the malformed url issue #4342
