@@ -7993,7 +7993,7 @@ function ampforwp_remove_unwanted_code($content){
 }
 
 if(class_exists('WPSEO_Options')){
-	add_filter('ampforwp_the_content_last_filter','ampforwp_process_last_filter_content',30);
+//	add_filter('ampforwp_the_content_last_filter','ampforwp_process_last_filter_content',30);
 }
 function ampforwp_process_last_filter_content($content){
 	$comp_dom = new DOMDocument();
