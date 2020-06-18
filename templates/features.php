@@ -1422,7 +1422,7 @@ function ampforwp_add_proper_post_meta(){
 			// og url
 			add_filter('wpseo_opengraph_url', 'ampforwp_custom_og_url_homepage');		
 			// This is causing the 2nd debug issue reported in #740
-			add_action('wpseo_frontend_presenters', 'ampforwp_custom_twitter_image_homepage');
+			add_action('wpseo_twitter', 'ampforwp_custom_twitter_image_homepage');
 			add_action('wpseo_add_opengraph_images', 'ampforwp_custom_og_image_homepage');
 		}
 	}
