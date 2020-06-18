@@ -32,8 +32,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     $icon_url = plugin_dir_url('accelerated-mobile-pages/accelerated-moblie-pages.php').'templates/design-manager/'.esc_attr($design).'/';
   }
   $icon_url = ampforwp_font_url($icon_url);
-  ?>
-
+  if ( is_user_logged_in() ) {?>
+    #wpadminbar ~ main {  margin-top:52px } <?php
+  }?>
 /* Global Styling */
 body{ 
   font-size: 16px;
@@ -554,6 +555,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .archives_body main{ margin-top:20px }
 .taxonomy-description p{margin-top: 5px;font-size: 14px;line-height: 1.5;}
 .amp-sub-archives li{width: 50%;} .amp-sub-archives ul{padding: 0;list-style: none;display: flex;font-size: 12px;line-height: 1.2;margin: 5px 0 10px 0px;} .author-img amp-img{border-radius: 50%;margin: 0px 12px 10px 0px;display: block; width:50px;}.author-img{float: left;padding-bottom: 25px;}
+.featured_time{ font-size: 12px; color: #fff; opacity: 0.8; padding-left: 20px;}
 <?php  if (  ampforwp_is_home() || ampforwp_is_blog() ) {?>
 /* AMP carousel */
 .amp-carousel-button-prev, .amp-carousel-button-next{ top:30px;border-radius:60px; }
@@ -566,7 +568,6 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .featured_meta{ color:#575757; font-size:12px; margin:0 15px; }
 .featured_meta_left{ float:left }
 .featured_meta_right{ float:right }
-.featured_time{ font-size: 12px; color: #fff; opacity: 0.8; padding-left: 20px;}
 <?php }
 if( !ampforwp_woocommerce_conditional_check() ) {
 if ( is_singular() || is_home() && $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false ) { ?>
