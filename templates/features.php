@@ -1436,7 +1436,7 @@ function ampforwp_sticky_social_icons(){
 		<?php if(ampforwp_get_setting('enable-single-odnoklassniki-share')){ 
 				$feature_img = '';
 				if (ampforwp_has_post_thumbnail() ){
-				$feature_img = ampforwp_get_post_thumbnail( 'url', 'full' );
+				$feature_img = ampforwp_get_post_thumbnail( 'url', 'medium' );
 				} 
 			?>
 			<a title="odnoklassniki share" <?php esc_html(ampforwp_rel_attributes_social_links()); ?> href="https://connect.ok.ru/offer?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&imageUrl=<?php echo esc_url($feature_img); ?>" target="_blank">

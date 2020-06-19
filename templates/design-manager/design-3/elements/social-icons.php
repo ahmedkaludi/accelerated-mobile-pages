@@ -128,7 +128,7 @@ if(true == ampforwp_get_setting('ampforwp-social-share') && false == ampforwp_ge
 		<?php if(ampforwp_get_setting('enable-single-odnoklassniki-share')){
 		        $feature_img = '';
 				if (ampforwp_has_post_thumbnail() ){
-				$feature_img = ampforwp_get_post_thumbnail( 'url', 'full' );
+				$feature_img = ampforwp_get_post_thumbnail( 'url', 'medium' );
 				} 
 			?>
 			<div class="ampforwp-custom-social"> 
