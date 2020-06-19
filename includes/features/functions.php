@@ -1632,7 +1632,11 @@ if(!function_exists('ampforwp_get_featured_image_markup')){
                     return $srcet;
                     break; 
                 default : 
-                    $amp_html = '<amp-img lightbox="true" src="'.esc_url($src).'" srcset="'.esc_html($srcet).'" width="'.esc_attr($width).'" height="'.esc_attr($height).'" layout=responsive alt="'.esc_attr($alt).'"></amp-img>';
+                    $layout = 'intrinsic';
+                    if(ampforwp_get_setting('amp-design-selector')==4){
+                        $layout = 'responsive';
+                    }
+                    $amp_html = '<amp-img lightbox="true" src="'.esc_url($src).'" srcset="'.esc_html($srcet).'" width="'.esc_attr($width).'" height="'.esc_attr($height).'" layout="'.esc_attr($layout).'" alt="'.esc_attr($alt).'"></amp-img>';
                     if( true == ampforwp_get_setting('ampforwp-featured-image-from-content') && ampforwp_get_featured_image_from_content() ){
                         $amp_html = ampforwp_get_featured_image_from_content();
                         $amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
