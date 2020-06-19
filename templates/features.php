@@ -7804,9 +7804,9 @@ if( ! function_exists('ampforwp_font_selector') ) {
 	}
 }
 if(class_exists('WPSEO_Options')){
-	add_filter('ampforwp_the_content_last_filter','ampforwp_process_last_filter_content',25);
+	add_filter('ampforwp_the_content_last_filter','ampforwp_remove_duplicate_canonical',25);
 }
-function ampforwp_process_last_filter_content($content){
+function ampforwp_remove_duplicate_canonical($content){
 	$comp_dom = new DOMDocument();
 	@$comp_dom->loadHTML($content);
 	$xpath = new DOMXPath( $comp_dom );
