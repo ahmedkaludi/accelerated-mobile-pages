@@ -201,6 +201,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvement: Need to implement YOAST breadcrumb for the category and the tags pages #4493
 * Improvement: Added new set of hooks in all designs #4550
 * Improvement: Added PostViews for AMP Extension #4549
+* Improvement: Created an extra argument to pass for amp_author_box function so author links can be controlled #4466
 * Fixed: Meta description tag is missing in AMP, when custom home page is selected. #4521
 * Fixed: The attribute 'src' in tag 'amp-form extension .js script' is set to the invalid value'. #4515
 * Fixed: The tag 'link rel=canonical' appears more than once in the document due to Yoast SEO premium plugin. #4511
