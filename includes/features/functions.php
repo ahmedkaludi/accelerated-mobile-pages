@@ -1409,7 +1409,7 @@ function ampforwp_get_taxonomy_meta($term_id,$type=''){
 }
 
 if(!function_exists('ampforwp_featured_markup')){
-    function ampforwp_featured_markup($echo=false){
+    function ampforwp_featured_markup($echo=false,$_this){
         if(ampforwp_featured_video_markup('check')){
             if($echo == true){
              echo ampforwp_featured_video_markup();
@@ -1418,9 +1418,9 @@ if(!function_exists('ampforwp_featured_markup')){
             }
         }else{
             if($echo == true){
-                echo ampforwp_get_featured_image_markup();
+                echo ampforwp_get_featured_image_markup(0,'',$_this);
             }else{
-                return ampforwp_get_featured_image_markup();
+                return ampforwp_get_featured_image_markup(0,'',$_this);
             }
         }
     }
@@ -1557,10 +1557,16 @@ if(!function_exists('ampforwp_featured_video_markup')){
 }
 
 if(!function_exists('ampforwp_get_featured_image_markup')){
-    function ampforwp_get_featured_image_markup($post_id=0, $data=''){
+    function ampforwp_get_featured_image_markup($post_id=0, $data='',$_this=''){
         global $post;
         if($post_id==0){
             $post_id        = ampforwp_get_the_ID();
+        }
+        $featured_image = '';
+        if(ampforwp_get_setting('amp-design-selector')!=4){
+            if($_this!=''){
+               $featured_image = $_this->get( 'featured_image' );
+           }
         }
         $amp_html='';$height ='';$width='';$src='';$srcet='';$alt='';$caption='';
         if( true == ampforwp_has_post_thumbnail() ) {
@@ -1632,11 +1638,12 @@ if(!function_exists('ampforwp_get_featured_image_markup')){
                     return $srcet;
                     break; 
                 default : 
-                    $layout = 'intrinsic';
-                    if(ampforwp_get_setting('amp-design-selector')==4){
-                        $layout = 'responsive';
+                    if ( $featured_image!='' ) {
+                        $amp_html = $featured_image['amp_html'];
+                        $caption = $featured_image['caption']; 
+                    }else{
+                        $amp_html = '<amp-img lightbox="true" src="'.esc_url($src).'" srcset="'.esc_html($srcet).'" width="'.esc_attr($width).'" height="'.esc_attr($height).'" layout="'.esc_attr($layout).'" alt="'.esc_attr($alt).'"></amp-img>';
                     }
-                    $amp_html = '<amp-img lightbox="true" src="'.esc_url($src).'" srcset="'.esc_html($srcet).'" width="'.esc_attr($width).'" height="'.esc_attr($height).'" layout="'.esc_attr($layout).'" alt="'.esc_attr($alt).'"></amp-img>';
                     if( true == ampforwp_get_setting('ampforwp-featured-image-from-content') && ampforwp_get_featured_image_from_content() ){
                         $amp_html = ampforwp_get_featured_image_from_content();
                         $amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
