@@ -520,6 +520,11 @@ function amp_loop_image( $data=array() ) {
 			if(isset($data['referer']) && $data['referer']=='related_post'){
 				$imageLink = ampforwp_modify_url_utm_params($imageLink);
 			}
+			if(ampforwp_get_setting('ampforwp-retina-images') && (ampforwp_get_setting('amp-design-selector') ==1 || ampforwp_get_setting('amp-design-selector') ==2 ) && (is_home() || is_archive() || is_search()) ){
+				$thumb_width = 100;
+				$thumb_height = 75;
+			}
+
 			echo '<'.esc_attr($tag).' class="loop-img '.esc_attr($tag_class).'">';
 			echo '<a href="'.esc_url($imageLink).'" title="'.esc_html(get_the_title()).'">';
 			echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'" alt="'. esc_html(get_the_title()) .'"></amp-img>';
