@@ -42,7 +42,6 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * 3 Pre-built AMP Layouts for Business websites and landing pages 
 * OneSignal Push Notifications integration 
 * Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
-* Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
 * AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
 * Structured Data Options
 * Page Break / NextPage (Pagination) Support
