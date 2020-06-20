@@ -8268,6 +8268,7 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					$m1_content = str_replace($swidth, $width_rep, $m1_content);
 					$m1_content = str_replace($sheight, $height_rep, $m1_content);
 					$m1_content = str_replace($salt, $alt_rep, $m1_content);
+					$m1_content = preg_replace('/srcset="(.*?)"/', '', $m1_content);
 					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
 					$content = str_replace("$match", $fallback_img, $content);
 				}
@@ -8620,12 +8621,17 @@ function ampforwp_wp_rocket_compatibility($content){
 		    	$is_external = ampforwp_isexternal($url);
 				if(!$is_external && !$node->hasAttribute('fallback')){
 					$img_src = str_replace($home_url, $img_cdn_url, $url);
-					$img_srcset = str_replace($home_url, $img_cdn_url, $srcset);
 					$content = str_replace($url, $img_src, $content);
-					$content = str_replace($srcset, $img_srcset, $content);
+					$srcset_arr = explode(",", $srcset);
+					for($i=0;$i<count($srcset_arr);$i++){
+						$original = $srcset_arr[$i];
+						$new      = str_replace($home_url, $img_cdn_url, $original);
+						if(preg_match('/'.preg_quote($original,'/').'/', $content)){
+							$content  = preg_replace('/'.preg_quote($original,'/').'/', $new, $content);
+						}
+					}
 				}
 		    }
-			
 		}
 	}
   	return $content;  
