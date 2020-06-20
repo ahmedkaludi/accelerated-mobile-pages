@@ -5010,8 +5010,6 @@ if( !function_exists('ampforwp_has_post_thumbnail')){
 			if( ampforwp_get_featured_image_from_content() || ampforwp_get_featured_image_from_content('url') ){				
 				return true;
 			}
-		}elseif(ampforwp_featured_video_markup('check')){
-			return true;
 		}
 		else
 			return false;
