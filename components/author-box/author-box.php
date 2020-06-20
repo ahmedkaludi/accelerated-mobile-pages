@@ -71,6 +71,10 @@ if ( isset( $args['author_prefix']) ) {
 if ( isset( $args['author_link']) ) {
 	  $author_link = $args['author_link'];
 }
+$is_author_link_amp = true;
+if ( isset( $args['is_author_link_amp']) ) {
+      $is_author_link_amp = $args['is_author_link_amp'];
+}
 if ( isset( $args['author_wrapper_class']) ) {
 	  $author_wrapper_class = $args['author_wrapper_class'];
 }
@@ -100,14 +104,21 @@ if ( isset($args['show_time']) ) {
         if ( true == ampforwp_get_setting('ampforwp-author-page-url') ){
             if ( function_exists('coauthors_posts_links') ) {
                 if( $author_pub_name  ){
-	                $author_link = (true == ampforwp_get_setting('ampforwp-archive-support'))? esc_url(ampforwp_url_controller($author_link)) :  esc_url($author_link);
+                    $auth_link = $author_link;
+                    if($is_author_link_amp==true){
+                        $auth_link = ampforwp_url_controller($author_link);
+                    }
+                    $author_link = (true == ampforwp_get_setting('ampforwp-archive-support'))? esc_url($auth_link) :  esc_url($author_link);
 	                echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url($author_link).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';
                     echo ampforwp_yoast_twitter_handle();
                 }
             }
             else {
                 if( $author_pub_name  ){
-                    echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';
+                    if($is_author_link_amp==true){
+                        $author_link = ampforwp_url_controller($author_link);
+                    }
+                    echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url($author_link).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';
                     echo ampforwp_yoast_twitter_handle();
                 }
             }

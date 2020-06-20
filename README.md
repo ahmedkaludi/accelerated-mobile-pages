@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.4
-Stable tag: 1.0.51
+Tested up to: 5.4.2
+Stable tag: 1.0.53
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,7 +42,6 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * 3 Pre-built AMP Layouts for Business websites and landing pages 
 * OneSignal Push Notifications integration 
 * Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
-* Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
 * AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
 * Structured Data Options
 * Page Break / NextPage (Pagination) Support
@@ -194,6 +193,33 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.53 (19th June 2020) =
+* Improvement: Add Featured Video support in featured area in all designs #3668
+* Improvement: Making featured video compatible with Rehub-framework in AMP #4308
+* Improvement: Making featured video compatible with Jnews theme's feature video module #4499
+* Improvement: Need to implement YOAST breadcrumb for the category and the tags pages #4493
+* Improvement: Added new set of hooks in all designs #4550
+* Improvement: Added PostViews for AMP Extension #4549
+* Improvement: Created an extra argument to pass for amp_author_box function so author links can be controlled #4466
+* Fixed: Meta description tag is missing in AMP, when custom home page is selected. #4521
+* Fixed: The attribute 'src' in tag 'amp-form extension .js script' is set to the invalid value'. #4515
+* Fixed: The tag 'link rel=canonical' appears more than once in the document due to Yoast SEO premium plugin. #4511
+* Fixed: Getting warnings due to Yoast SEO plugin. #4510
+* Fixed: Issue with Image block of Gutenberg #4507
+* Fixed: Gallery images(Gutenberg editor) are stretched when the Optimize CSS option is enabled. #4502
+* Fixed: If category label has backslash in the name breadcrumbs break #4500
+* Fixed: Vertical scroll Issue in iOS devices when the 'menu overlay' is positioned in right. #4461
+* Fixed: WPRocket CDN is not working properly with the amp pages. #4342
+* Fixed: When gdpr option is enabled the site is becoming unclickable in browser Safari on IOS and MacOS #4542
+* Fixed: Unused HTML was showing in Video Module #4524
+* Fixed: Getting validation error as "The attribute '"_blank"' may not appear in tag 'a' with RankMath #4527
+* Fixed: Anchor tag is stripping in AMP with Sitekit By Google plugin is active #4552
+* Fixed: Date styling not looking good in Design 3 archive pages #4557
+* Fixed: Debug warning #4555
+
+= 1.0.52 (27th May 2020) =
+* Fixed: Reverted the CDN code of WP Rocket plugin which was causing the malformed url issue #4342
+
 = 1.0.51 (27th May 2020) =
 * Improvement: Added option to show instant article post according to updated date #4389
 * Improvement: Added Transposh for AMP Extension #4481
@@ -223,8 +249,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: invalid value defer onload with The Business News theme  #4465
 * Fixed: Text links are not working in mobile #4462
 * Fixed: PHP Notice Undefined variable thumb_alt #4460
-
-= 1.0.49 (11th May 2020) =
-* Fixed: Background color of the row is not working in the AMP Page Builder #4398
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

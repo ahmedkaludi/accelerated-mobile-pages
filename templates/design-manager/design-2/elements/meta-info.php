@@ -29,6 +29,7 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 		}
 		echo esc_attr(apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text'], 'On') . ' ' . $date )) ?></li>
 		<?php }  ?>
+		<?php do_action('ampforwp_post_views'); ?>
 	</div>
 <?php endif; ?>
 

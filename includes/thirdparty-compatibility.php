@@ -59,15 +59,22 @@ function ampforwp_thirdparty_compatibility(){
 	if(function_exists('heateor_sss_save_default_options') && false == ampforwp_get_setting('ampforwp-sassy_social-switch') ){
 		add_filter('heateor_sss_disable_sharing','ampforwp_removing_sassy_social_share');
 	}
-	if(function_exists('tbn_theme_setup')){
+	if(function_exists('defer_parsing_of_js')){
 		remove_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 	}
-	$yoast_noindex = $yoast_noindex_post = '';
-	$yoast_noindex = get_option( 'wpseo_titles' );
-	if(isset($yoast_noindex['noindex-post'])){
-		$yoast_noindex_post = $yoast_noindex['noindex-post'];
+	$yoast_canonical = $yoast_canonical_post = $yoast_canonical_page = '';
+	$yoast_canonical = get_option( 'wpseo_titles' );
+	if(isset($yoast_canonical['noindex-post'])){
+		$yoast_canonical_post = $yoast_canonical['noindex-post'];
 	}
-	if (class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && $yoast_noindex_post && WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID()) != 2) {
+	if(isset($yoast_canonical['noindex-page'])){
+		$yoast_canonical_page = $yoast_canonical['noindex-page'];
+	}
+	if (class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && $yoast_canonical_post && $yoast_canonical_page && WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID()) != 2) {
+		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+	}elseif(class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && is_page() && $yoast_canonical_page ){
+		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
+	}elseif(class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && is_single() && $yoast_canonical_post ){
 		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 	}elseif (class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID()) == 1) {
 		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );

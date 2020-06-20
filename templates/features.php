@@ -1422,7 +1422,9 @@ function ampforwp_add_proper_post_meta(){
 			// og url
 			add_filter('wpseo_opengraph_url', 'ampforwp_custom_og_url_homepage');		
 			// This is causing the 2nd debug issue reported in #740
-			add_action('wpseo_twitter', 'ampforwp_custom_twitter_image_homepage');
+			if ( !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
+				add_action('wpseo_twitter', 'ampforwp_custom_twitter_image_homepage');
+			}
 			add_action('wpseo_add_opengraph_images', 'ampforwp_custom_og_image_homepage');
 		}
 	}
@@ -1693,11 +1695,12 @@ function ampforwp_replace_title_tags() {
 				$yoast_instance = new \Yoast\WP\SEO\Presentations\Indexable_Presentation();
 			}
 			
-
-			$WPSEO_Frontend = WPSEO_Frontend::get_instance();
-			$yoast_title = $WPSEO_Frontend->title($site_title);
-			if ( ampforwp_is_home() ) {
-				$yoast_title = $WPSEO_Frontend->get_title_from_options( 'title-home-wpseo' );
+			if ( !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
+				$WPSEO_Frontend = WPSEO_Frontend::get_instance();
+				$yoast_title = $WPSEO_Frontend->title($site_title);
+				if ( ampforwp_is_home() ) {
+					$yoast_title = $WPSEO_Frontend->get_title_from_options( 'title-home-wpseo' );
+				}
 			}
 			// Custom Front Page Title From Yoast SEO #1163
 			if ( ampforwp_is_front_page() || ampforwp_is_blog() ) {
@@ -3225,6 +3228,13 @@ function ampforwp_meta_description() {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
 		}else if(class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')){
 		$yoast_desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', ampforwp_get_the_ID() ) ) );
+		$yoast_desc_meta = get_option( 'wpseo_titles' );
+		if(isset($yoast_desc_meta['metadesc-page'])){
+			$yoast_desc_meta = $yoast_desc_meta['metadesc-page'];
+		}
+		if(empty($yoast_desc)){
+			$yoast_desc = $yoast_desc_meta;
+		}
 		if ($yoast_desc && ampforwp_is_front_page()) {
 			echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $yoast_desc ) ) )  .'"/>';
 		}
@@ -5000,6 +5010,8 @@ if( !function_exists('ampforwp_has_post_thumbnail')){
 			if( ampforwp_get_featured_image_from_content() || ampforwp_get_featured_image_from_content('url') ){				
 				return true;
 			}
+		}elseif(ampforwp_featured_video_markup('check')){
+			return true;
 		}
 		else
 			return false;
@@ -7204,6 +7216,9 @@ function ampforwp_yoast_breadcrumbs_output(){
 		$breadcrumb = '';
 		if ( true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') && true === WPSEO_Options::get( 'breadcrumbs-enable' ) && function_exists('yoast_breadcrumb')) {
 			$breadcrumb = yoast_breadcrumb('','', false);
+			if(true == ampforwp_get_setting('ampforwp-archive-support')){
+			$breadcrumb = preg_replace('/<div class="breadcrumbs">(.*?)<a href="(.*?)">(.*?)<\/a>(.*?)<a href="(.*?)"(.*?)<\/span><\/div>/', '<div class="breadcrumbs">$1<a href="$2amp">$3</a>$4<a href="$5amp"$6</span></div>', $breadcrumb);
+		}
 			return $breadcrumb;
 		}
 	}
@@ -7790,7 +7805,27 @@ if( ! function_exists('ampforwp_font_selector') ) {
 		return sanitize_text_field($fontFamily);
 	}
 }
-
+if(class_exists('WPSEO_Options')){
+	add_filter('ampforwp_the_content_last_filter','ampforwp_remove_duplicate_canonical',25);
+}
+function ampforwp_remove_duplicate_canonical($content){
+	$comp_dom = new DOMDocument();
+	@$comp_dom->loadHTML($content);
+	$xpath = new DOMXPath( $comp_dom );
+    $count = 0;
+    $nodes = $xpath->query('//link[@rel="canonical"]');
+    $con = '';
+    foreach ($nodes as $node) {
+    	$count++;
+    }
+    if($count>1){
+    	 if(preg_match("/<link\b[^>]*?\brel=[\'\"]canonical[\'\"][^>]*>/", $content, $matches, PREG_OFFSET_CAPTURE)){
+		    $content = preg_replace("/<link\b[^>]*?\brel=[\'\"]canonical[\'\"][^>]*>/", "", $content);
+		    $content = substr_replace($content, $matches[0][0], $matches[0][1], 0);
+		}
+    }
+	return $content;
+}
 // Font URL controller
 if ( ! function_exists('ampforwp_font_url') ) {
 	function ampforwp_font_url($font_url){
@@ -7978,7 +8013,6 @@ function ampforwp_remove_unwanted_code($content){
 	// close #4206
 	return $content;
 }
-
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
 	$comp_to_remove_arr = array();
@@ -8199,7 +8233,7 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					$m_content = $matches[1][$i];
 					$m_content = ampforwp_imagify_webp_compatibility($m_content);
 					$m_content = ampforwp_ewww_webp_compatibility($m_content);
-					$m_content = ampforwp_wp_rocket_compatibility($m_content);
+					
 					$m1_content = ampforwp_set_default_fallback_image($matches[1][$i]);
 					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
@@ -8234,6 +8268,7 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					$m1_content = str_replace($swidth, $width_rep, $m1_content);
 					$m1_content = str_replace($sheight, $height_rep, $m1_content);
 					$m1_content = str_replace($salt, $alt_rep, $m1_content);
+					$m1_content = preg_replace('/srcset="(.*?)"/', '', $m1_content);
 					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
 					$content = str_replace("$match", $fallback_img, $content);
 				}
@@ -8369,30 +8404,24 @@ if(class_exists('RankMath')){
 function ampforwp_rank_math_external_link_newtab($content){
 	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
 	if($rank_math_external_link){
-		preg_match_all('/<a href="(.*?)">(.*?)<\/a>/', $content, $matches);
-		for($i=0;$i<count($matches[1]);$i++){
-			$url = $matches[1][$i];
-			$is_external = ampforwp_isexternal($url);
+		$comp_dom = new DOMDocument();
+		@$comp_dom->loadHTML($content);
+		$xpath = new DOMXPath( $comp_dom );
+	    $count = 0;
+	    $nodes = $xpath->query('//a[@href]');
+	    foreach ($nodes as $node) {
+	    	$url = $node->getAttribute('href');
+	    	$is_external = ampforwp_isexternal($url);
 			if($is_external){
-				$content = preg_replace('/<a href="(.*?)">(.*?)<\/a>/', '<a href="$1" target="_blank">$2</a>', $content);
+				if(!$node->hasAttribute('target')){
+					$node->setAttribute('target','_blank');
+				}
 			}
-		}
+	    }
+		$content =  html_entity_decode($comp_dom->saveHTML());
 	}
 	return $content;
 }	
-function ampforwp_wp_rocket_compatibility($content){
-	if(function_exists('rocket_activation')){
-		$cdn_url = get_option('wp_rocket_settings');
-		if($cdn_url['cdn'] == 1){
-			if(isset($cdn_url["cdn_cnames"][0]) && $cdn_url["cdn_cnames"][0]!=''){
-				$cdn_url = $cdn_url["cdn_cnames"][0];
-				$content = preg_replace('/src="(.*?)\/\/(.*?)wp-content(.*?)"(.*?)>/', 'src="$1//'.$cdn_url.'/wp-content$3"$4>', $content);
-				$content = preg_replace('/srcset="(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?),(.*?)\/\/(.*?)wp-content(.*?)"/', 'srcset="$1//'.$cdn_url.'/wp-content$3,$4//'.$cdn_url.'/wp-content$6,$7//'.$cdn_url.'/wp-content$9"', $content);
-			}
-		}	
-	}
-	return $content;
-}
 /* add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
 function ampforwp_referesh_related_post(){
 	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp_refresh_related_poost') ){
@@ -8553,4 +8582,57 @@ function ampforwp_extra_category_fields( $tag ) {
 	<?php }?>
 </tr>
 <?php
+}
+if(function_exists('rocket_activation')){
+	add_filter("ampforwp_the_content_last_filter",'ampforwp_wp_rocket_compatibility',25);
+}
+function ampforwp_wp_rocket_compatibility($content){  
+    $cdn_url = get_option('wp_rocket_settings');
+    if($cdn_url['cdn'] == 1){ 
+    	$img_cdn_url = '';
+    	$cnds_arr = array();
+        if(!empty($cdn_url['cdn_zone']) && !empty($cdn_url['cdn_cnames'])){
+	        foreach ($cdn_url['cdn_zone'] as $key => $element) { 
+	        	if(isset($cdn_url['cdn_cnames'][$key]) && $cdn_url['cdn_cnames'][$key]!=''){
+	        		$cnds_arr[$element] = $cdn_url['cdn_cnames'][$key];
+	        	}
+	        } 
+	    }
+	    if(isset($cnds_arr['images'])){
+	    	$img_cdn_url = $cnds_arr['images'];
+	    }else if(isset($cnds_arr['all'])){
+	    	$img_cdn_url = $cnds_arr['all'];
+	    }
+	    if($img_cdn_url!=''){
+	    	$parse_url = parse_url($img_cdn_url);
+			if(!isset($parse_url['scheme'])){
+			     if(!preg_match('/\/\//', $img_cdn_url)){
+			     	$img_cdn_url = '//'.$img_cdn_url;
+			     }
+			}
+	    	$comp_dom = new DOMDocument();
+			@$comp_dom->loadHTML($content);
+			$xpath = new DOMXPath( $comp_dom );
+		    $nodes = $xpath->query('//amp-img[@src]');
+		    $home_url = home_url();
+		    foreach ($nodes as $node) {
+		    	$url = $node->getAttribute('src');
+		    	$srcset = $node->getAttribute('srcset');
+		    	$is_external = ampforwp_isexternal($url);
+				if(!$is_external && !$node->hasAttribute('fallback')){
+					$img_src = str_replace($home_url, $img_cdn_url, $url);
+					$content = str_replace($url, $img_src, $content);
+					$srcset_arr = explode(",", $srcset);
+					for($i=0;$i<count($srcset_arr);$i++){
+						$original = $srcset_arr[$i];
+						$new      = str_replace($home_url, $img_cdn_url, $original);
+						if(preg_match('/'.preg_quote($original,'/').'/', $content)){
+							$content  = preg_replace('/'.preg_quote($original,'/').'/', $new, $content);
+						}
+					}
+				}
+		    }
+		}
+	}
+  	return $content;  
 }
