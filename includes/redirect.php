@@ -134,7 +134,10 @@ if(function_exists('ampforwp_mobile_redirect_preseve_link')){
     /*
      * If certain conditions does not match then return early and exit from redirection
      */
-
+    $this_url = home_url(add_query_arg(array($_GET), $wp->request));
+    if(preg_match('/robots\.txt/', $this_url)){
+      return;
+    }
     // return if the current page is Feed page, as we don't need anything on feedpaged
     if ( is_feed() ) {
       return;
