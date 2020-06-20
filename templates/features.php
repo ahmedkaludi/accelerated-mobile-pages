@@ -8070,8 +8070,8 @@ function ampforwp_include_required_scripts($content){
 			}
 		}
 	}
-	$amp_youtube = $xpath->query("//amp-brid-player");
-	foreach($amp_youtube as $node) {
+	$amp_brid_player = $xpath->query("//amp-brid-player");
+	foreach($amp_brid_player as $node) {
 		if($node->hasAttribute('dock')){
 			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
 				$celem = 'element';
@@ -8088,8 +8088,8 @@ function ampforwp_include_required_scripts($content){
 			}
 		}
 	}
-	$amp_youtube = $xpath->query("//amp-brightcove");
-	foreach($amp_youtube as $node) {
+	$amp_brightcove = $xpath->query("//amp-brightcove");
+	foreach($amp_brightcove as $node) {
 		if($node->hasAttribute('dock')){
 			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
 				$celem = 'element';
