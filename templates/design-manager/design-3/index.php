@@ -167,11 +167,6 @@ if ( get_query_var( 'paged' ) ) {
 				if($thumb_url){
 					?>
 					<div class="home-post_image">
-						<?php
-						if(ampforwp_get_setting('amforwp-homepage-featured-video') && ampforwp_featured_video_markup('check') && ampforwp_is_home()){
-				            echo ampforwp_featured_video_markup();
-				        }else{
-						?>
 						<a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
 							<amp-img
 								layout="responsive"
@@ -181,7 +176,6 @@ if ( get_query_var( 'paged' ) ) {
 								height=<?php echo esc_attr($thumb_height); ?>
 							></amp-img>
 						</a>
-						<?php }?>
 					</div>
 				<?php }
 				} ?>

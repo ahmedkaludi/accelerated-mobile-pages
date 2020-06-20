@@ -130,7 +130,6 @@ figure.aligncenter amp-img {
 /* Slide Navigation code */
 .nav_container{ padding: 18px 15px; background: #312C7E; color: #fff; text-align: center }
 amp-sidebar{ width: 250px; }
-.loop-video{width:230px;}
 amp-sidebar{background:<?php echo ampforwp_sanitize_color($menu_sidebar_clr); ?>;}
 .amp-sidebar-image{ line-height: 100px; vertical-align:middle; }
 .amp-close-image{ top: 15px; left: 225px; cursor: pointer; }
