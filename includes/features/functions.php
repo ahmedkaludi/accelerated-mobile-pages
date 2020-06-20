@@ -1409,7 +1409,7 @@ function ampforwp_get_taxonomy_meta($term_id,$type=''){
 }
 
 if(!function_exists('ampforwp_featured_markup')){
-    function ampforwp_featured_markup($echo=false, $_this = ''){
+    function ampforwp_featured_markup($echo=false,$_this){
         if(ampforwp_featured_video_markup('check')){
             if($echo == true){
              echo ampforwp_featured_video_markup();
