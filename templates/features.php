@@ -8059,10 +8059,11 @@ function ampforwp_include_required_scripts($content){
 	}
 	// close #4206
 	// Ticket #4539
-    if(preg_match('/<script>function orbital_expand_navbar(.*?)<\/script>/', $content)){
-        $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
-    }
-
+	if(function_exists('orbital_setup')){
+	    if(preg_match('/<script>function orbital_expand_navbar(.*?)<\/script>/', $content)){
+	        $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
+	    }
+	}
 	$comp_to_remove_arr = array();
 	$script_ver = 'latest';
 	preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
