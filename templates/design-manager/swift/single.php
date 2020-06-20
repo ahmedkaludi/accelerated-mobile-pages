@@ -3,9 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 global $redux_builder_amp; ?>
-<?php amp_header(); 
-$featured_image = amp_get_featured_image();
-?>
+<?php amp_header(); ?>
 <?php if(ampforwp_get_setting('single-design-type') == '1'){?>
 <div class="sp sgl">
 	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
@@ -22,11 +20,11 @@ $featured_image = amp_get_featured_image();
 			<?php } ?>
 		</div>
 		<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
-			<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) {
-				if ( $featured_image ) { ?>
-					<div class="sf-img"><?php echo $featured_image; //XXS Okay ?></div><?php 
-				}
-			}	// Swift Featured Image Type 1
+			<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
+			<div class="sf-img">
+				<?php amp_featured_image();?>
+			</div>
+			<?php }	// Swift Featured Image Type 1
 		}
 	} ?>
 	<div class="sp-cnt">
@@ -40,12 +38,12 @@ $featured_image = amp_get_featured_image();
 							echo ampforwp_addThis_support(); 
 						}	?>
 					<div class="cntn-wrp artl-cnt">
-						<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { 
-							if ( ampforwp_get_setting('swift-featued-image-type') == 2) {
-								if ( $featured_image ) { ?>
-									<div class="sf-img"><?php echo $featured_image; //XXS Okay ?></div><?php 
-								}	
-							}	// Swift Featured Image Type 2
+						<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
+							<?php if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
+								<div class="sf-img">
+									<?php amp_featured_image();?>	
+								</div>	
+							<?php }	// Swift Featured Image Type 2
 						} // Swift Featured Image ?>
 						<?php amp_content(); ?>
 					</div>
@@ -327,11 +325,11 @@ do_action("ampforwp_single_design_type_handle_d1");
 							   <?php amp_excerpt(20); ?>
 						    </div>
 						<?php } ?>
-						<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail()){
-								if ( $featured_image ) { ?>
-									<div class="sf-img"><?php echo $featured_image; //XXS Okay ?></div><?php 
-								}
-							}
+						<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
+							<div class="sf-img">
+								<?php amp_featured_image();?>
+							</div>
+						<?php }
 					}?>
 					<div class="sp-cnt">
 						<div class="sp-rl">
