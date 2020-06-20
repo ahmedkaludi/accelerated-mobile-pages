@@ -1409,19 +1409,11 @@ function ampforwp_get_taxonomy_meta($term_id,$type=''){
 }
 
 if(!function_exists('ampforwp_featured_markup')){
-    function ampforwp_featured_markup($echo=false){
+    function ampforwp_featured_markup(){
         if(ampforwp_featured_video_markup('check')){
-            if($echo == true){
-             echo ampforwp_featured_video_markup();
-            }else{
-                return ampforwp_featured_video_markup();
-            }
+            echo ampforwp_featured_video_markup();
         }else{
-            if($echo == true){
-                echo ampforwp_get_featured_image_markup();
-            }else{
-                return ampforwp_get_featured_image_markup();
-            }
+            echo ampforwp_get_featured_image_markup();
         }
     }
 }
@@ -1525,9 +1517,7 @@ if(!function_exists('ampforwp_featured_video_markup')){
             if(function_exists('rh_admin_notice_warning') && !empty($video_post)){
                 $video_url = $video_post[0]['video_post_embed_url'];
                 $video_url = explode("=",$video_url);
-                if(isset($video_url[1])){
-                 $amp_f_video = '<amp-youtube data-videoid="'.esc_html($video_url[1]).'" layout="responsive" width="480"height="270"></amp-youtube>';
-                }
+                $amp_f_video = '<amp-youtube data-videoid="'.esc_html($video_url[1]).'" layout="responsive" width="480"height="270"></amp-youtube>';
             }
             $class = "amp-wp-article-featured-image wp-caption";
             if(ampforwp_get_setting('amp-design-selector')==4){
@@ -1564,15 +1554,12 @@ if(!function_exists('ampforwp_get_featured_image_markup')){
         }
         $amp_html='';$height ='';$width='';$src='';$srcet='';$alt='';$caption='';
         if( true == ampforwp_has_post_thumbnail() ) {
-          
             if (has_post_thumbnail( $post_id ) ){
-                
                 $thumb_id = get_post_thumbnail_id($post_id);
                 $post_content = get_post_field('post_content', $post_id);
                 if (true !== apply_filters('ampforwp_allow_featured_image', false) && ( false !== strpos( $post_content, 'wp-image-' . $thumb_id ) || false !== strpos( $post_content, 'attachment_' . $thumb_id ) ) ) {
                     return;
                 }
-
                 if(ampforwp_get_setting('amp-design-selector')==4){
                  $image_size = ampforwp_get_setting('swift-featued-image-size');
                  $image_size = apply_filters( 'ampforwp_featured_image_size', $image_size );
@@ -1650,7 +1637,7 @@ if(!function_exists('ampforwp_get_featured_image_markup')){
                         $class = "amp-featured-image";
                     }
                     $fimgdata = '';
-                    if($amp_html!=""){
+                    if($src!=""){
                         $fimgdata = '<figure class="'.esc_attr($class).'">'.$amp_html; // xss escaping done before.
                         if ( $caption ) {
                         $fimgdata .='<p class="wp-caption-text">'.wp_kses_data($caption).'
