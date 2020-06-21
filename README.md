@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4.2
-Stable tag: 1.0.53
+Stable tag: 1.0.53.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,10 +193,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.53.2 (21st June 2020) =
+* Fixed: Minor Bug
+
 = 1.0.53 (19th June 2020) =
-* Improvement: Add Featured Video support in featured area in all designs #3668
-* Improvement: Making featured video compatible with Rehub-framework in AMP #4308
-* Improvement: Making featured video compatible with Jnews theme's feature video module #4499
 * Improvement: Need to implement YOAST breadcrumb for the category and the tags pages #4493
 * Improvement: Added new set of hooks in all designs #4550
 * Improvement: Added PostViews for AMP Extension #4549
