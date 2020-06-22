@@ -5010,8 +5010,6 @@ if( !function_exists('ampforwp_has_post_thumbnail')){
 			if( ampforwp_get_featured_image_from_content() || ampforwp_get_featured_image_from_content('url') ){				
 				return true;
 			}
-		}elseif(ampforwp_featured_video_markup('check')){
-			return true;
 		}
 		else
 			return false;
@@ -8415,10 +8413,13 @@ function ampforwp_rank_math_external_link_newtab($content){
 			if($is_external){
 				if(!$node->hasAttribute('target')){
 					$node->setAttribute('target','_blank');
+					$new_node = $comp_dom->saveHTML($node);
+					if(preg_match('/<a\b[^>]*?\bhref=[\'\"]'.preg_quote($url,'/').'[\'\"][^>]*>/', $content, $matches)){
+					    $content = preg_replace('/<a\b[^>]*?\bhref=[\'\"]'.preg_quote($url,'/').'[\'\"][^>]*>/', $new_node, $content);
+					}
 				}
 			}
 	    }
-		$content =  html_entity_decode($comp_dom->saveHTML());
 	}
 	return $content;
 }	
