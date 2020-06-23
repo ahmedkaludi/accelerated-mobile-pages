@@ -7314,8 +7314,8 @@ function ampforwp_yoast_breadcrumbs_output(){
 		$breadcrumb = '';
 		if ( true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') && true === WPSEO_Options::get( 'breadcrumbs-enable' ) && function_exists('yoast_breadcrumb')) {
 			$breadcrumb = yoast_breadcrumb('','', false);
-			if(preg_match('/<a\s+href="(.*?)">(.*?)<\/a>/', $breadcrumb)){
-			   $breadcrumb = preg_replace('/<a\s+href="(.*?)">(.*?)<\/a>/', '<a href="$1amp/">$2</a>', $breadcrumb);
+			if( true == ampforwp_get_setting('convert-internal-nonamplinks-to-amp') && preg_match('/<a\s+href="(.*?)">(.*?)<\/a>/', $breadcrumb)){
+			   $breadcrumb = preg_replace('/<a\s+href="(.*?)\/">(.*?)<\/a>/', '<a href="'.ampforwp_url_controller("$1").'">$2</a>', $breadcrumb);
 		     }
 			return $breadcrumb;
 		}
