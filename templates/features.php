@@ -4132,6 +4132,28 @@ function ampforwp_rel_canonical_paginated_post(){
 }
 add_action('ampforwp_after_post_content','ampforwp_post_pagination');
 
+// Generating Canonical Url for Yoast no index pages.
+add_filter( 'wpseo_robots_array', 'ampforwp_yoast_no_index_condition_check',10,2);
+global $yoast_data;
+function ampforwp_yoast_no_index_condition_check($robots,$object){
+	global $yoast_data;
+	if($robots['index'] == 'noindex'){
+	  $yoast_data['canonical'] = $object->model->permalink;
+	  add_action( 'amp_post_template_head', 'ampforwp_generate_yoast_no_index_canonical_url' );
+	}
+	return $robots;
+}
+
+function ampforwp_generate_yoast_no_index_canonical_url(){
+   global $yoast_data;
+	if(isset($yoast_data['canonical'])){ 
+		$canonical_url = $yoast_data['canonical'];
+			if(ampforwp_is_home() || ampforwp_is_front_page()){
+				   $canonical_url = user_trailingslashit(get_site_url());
+			} ?>
+	   <link rel="canonical" href="<?php echo esc_url($canonical_url) ?>"/>
+	<?php }
+ }
 
 // 70. Hide AMP by specific Categories & Tags #872
 function ampforwp_posts_to_remove () {
