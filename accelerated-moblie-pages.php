@@ -301,6 +301,14 @@ function ampforwp_add_custom_rewrite_rules() {
 			}
 		}
 	}
+
+	if(ampforwp_get_setting('ampforwp-pagination-link-type')==true){
+		add_rewrite_rule(
+	      '(.+?)\/?([0-9]{1,})\/amp$',
+	      'index.php?amp=1&name=$matches[1]&paged=$matches[2]',
+	      'top'
+	    );
+	} 
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules', 25 );
 // Delete category_base transient when it is updated #2924
