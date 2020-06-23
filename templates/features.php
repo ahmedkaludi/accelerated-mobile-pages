@@ -1654,7 +1654,7 @@ function ampforwp_yoast_social_desc($type) {
 function ampforwp_custom_og_url_homepage() {
 	return esc_url( get_bloginfo( 'url' ) );
 }
-function ampforwp_custom_twitter_image_homepage($image){
+function ampforwp_custom_twitter_image_homepage(){
 	$twitter = $WPSEO_get = '';
 	$WPSEO_Options = WPSEO_Options::get_instance();
  	if( method_exists($WPSEO_Options, 'get') ){
