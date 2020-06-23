@@ -304,7 +304,7 @@ function ampforwp_add_custom_rewrite_rules() {
 
 	
 		add_rewrite_rule(
-	      '(.+?)\/?([0-9]{1,})\/amp$',
+	      '(.+?)\/([0-9]{1,})\/amp$',
 	      'index.php?amp=1&name=$matches[1]&paged=$matches[2]',
 	      'top'
 	    );
