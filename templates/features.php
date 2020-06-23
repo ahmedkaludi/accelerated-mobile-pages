@@ -7876,6 +7876,18 @@ function ampforwp_nofollow_cta_header_link(){
 	return false;
 }	
 
+// Generating canonical url when FlexMLS plugin is active.
+if(class_exists('flexmlsConnectPageSearchResults')){
+   add_action('pre_amp_render_post','ampforwp_flexmls_canonical');
+}
+function ampforwp_flexmls_canonical(){
+   add_filter('wpseo_canonical','ampforwp_flexmls_generate_canonical_url',99,2);
+}
+
+function ampforwp_flexmls_generate_canonical_url($canonical,$object){
+   $canonical = $object->model->permalink;
+   return esc_url($canonical);
+}
 // Font Selector
 if( ! function_exists('ampforwp_font_selector') ) {
 	function ampforwp_font_selector( $container ) {
