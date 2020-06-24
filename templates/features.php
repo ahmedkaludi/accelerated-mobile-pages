@@ -1665,7 +1665,13 @@ function ampforwp_replace_title_tags() {
 		//* We can filter this later if needed:
 		$sep = ' | ';
 		if( class_exists('WPSEO_Options') && method_exists('WPSEO_Options', 'get') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) { 
-			$sep = WPSEO_Options::get( 'separator' );
+			$separator = WPSEO_Options::get( 'separator' );
+			$seperator_options = WPSEO_Option_Titles::get_instance()->get_separator_options();
+			// This should always be set, but just to be sure.
+			if ( isset( $seperator_options[ $separator ] ) ) {
+				// Set the new replacement.
+				$sep = $seperator_options[ $separator ];
+			}
 		}
 		if( defined( 'RANK_MATH_FILE' ) && class_exists('RankMath\\Helper') && 'rank_math' == ampforwp_get_setting('ampforwp-seo-selection') ) {
 			$sep = RankMath\Helper::get_settings( 'titles.title_separator' );
@@ -1693,13 +1699,13 @@ function ampforwp_replace_title_tags() {
 				else {
 					$ID = ampforwp_get_frontpage_id();
 				}
-				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );				
+				$site_title = get_the_title( $ID ) .' '. $sep .' '. get_option( 'blogname' );				
 			}
-			// Blog page 
-			if ( ampforwp_is_blog() ) {
-				$ID = ampforwp_get_blog_details('id');
-				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
-			}
+			// // Blog page 
+			// if ( ampforwp_is_blog() ) {
+			// 	$ID = ampforwp_get_blog_details('id');
+			// 	$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
+			// }
 		}
 
 		if ( is_search() ) {
@@ -1720,11 +1726,23 @@ function ampforwp_replace_title_tags() {
 				if ( ampforwp_is_home() ) {
 					$yoast_title = $WPSEO_Frontend->get_title_from_options( 'title-home-wpseo' );
 				}
+				// For Blog pages and with Blog sub pages for example: site.com/blog/amp/page/3/
+				if (ampforwp_is_blog()) {
+					$yoast_title = $WPSEO_Frontend->get_content_title();	
+				}
 			}
 			// Custom Front Page Title From Yoast SEO #1163
-			if ( ampforwp_is_front_page() || ampforwp_is_blog() ) {
+			if ( ampforwp_is_front_page() || ampforwp_is_blog() && class_exists('Yoast\WP\SEO\Presentations\Indexable_Presentation') ) {
 				$yoast_title = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_title', true);
 				$yoast_title = wpseo_replace_vars( $yoast_title,$post );
+				// Get info for custom front page, blog page and blog post paginated pages for v14+ #4574
+				if ( class_exists('Ampforwp_Yoast_Data') ){
+					$yoast_data = new Ampforwp_Yoast_Data;
+					$context = $yoast_data->get_context_for_post_id(ampforwp_get_the_ID());	
+				}
+				if ( $context) {
+					$yoast_title = $context->title;
+				}
 			}
 		 	if ( $yoast_title ) {
 		 		$site_title = apply_filters( 'wpseo_title', $yoast_title, $yoast_instance  );

@@ -1138,3 +1138,18 @@ function ampforwp_wp_optimize_iframe($content){
 	}
 	return $content;
 }
+
+// Yoast SEO 14+ support helper class
+$include_yoast_files = WP_PLUGIN_DIR . '/wordpress-seo/admin/class-meta-columns.php';
+if ( file_exists($include_yoast_files) ){
+	require_once($include_yoast_files);
+	class Ampforwp_Yoast_Data extends WPSEO_Meta_Columns {
+
+		 public function get_context_for_post_id($id) { 
+		 	if ( method_exists('WPSEO_Meta_Columns', 'get_context_for_post_id')) {
+		 		return parent::get_context_for_post_id($id); 
+		 	}
+		 	return false;
+		 }
+	}
+}
