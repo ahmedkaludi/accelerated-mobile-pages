@@ -1492,7 +1492,7 @@ function ampforwp_yoast_twitter_title($title){
 function ampforwp_yoast_social_title($type) {
 	//Added the opengraph for frontpage in AMP #2454
 	if(ampforwp_is_front_page() || ampforwp_is_blog() ){
-		$title = $page_id = '';
+		$title = $page_id = $post = '';
 		$page_id = ampforwp_get_the_ID();
 		if( 'og' == $type ) {
 			$title = WPSEO_Meta::get_value( 'opengraph-title', $page_id );
