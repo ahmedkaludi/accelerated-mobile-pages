@@ -4134,7 +4134,6 @@ add_action('ampforwp_after_post_content','ampforwp_post_pagination');
 
 // Generating Canonical Url for Yoast no index pages.
 add_filter( 'wpseo_robots_array', 'ampforwp_yoast_no_index_condition_check',20,2);
-global $yoast_data;
 function ampforwp_yoast_no_index_condition_check($robots,$object){
 	global $yoast_data;
 	if($robots['index'] == 'noindex'){
