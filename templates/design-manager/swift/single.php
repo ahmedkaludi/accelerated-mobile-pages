@@ -127,7 +127,7 @@ global $redux_builder_amp; ?>
 											$rel_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
 										}?>
 						            <div class="rlp-image">     
-						                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>$rel_width,'image_crop_height'=>$rel_height) );?>
+						                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>esc_attr($rel_width),'image_crop_height'=>esc_attr($rel_height)) );?>
 									</div>
 								<?php } } ?>	
 								<div class="rlp-cnt">
@@ -178,7 +178,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 									$rel_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
 								}?>
 				            <div class="rlp-image">     
-				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>$rel_width,'image_crop_height'=>$rel_height) );?>
+				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>esc_attr($rel_width),'image_crop_height'=>esc_attr($rel_height)) );?>
 							</div>
 						<?php } } ?>	
 						<div class="rlp-cnt">
@@ -223,7 +223,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 									$rel_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
 								}?>
 				            <div class="rlp-image">     
-				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>$rel_width,'image_crop_height'=>$rel_height) );?>
+				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>esc_attr($rel_width),'image_crop_height'=>esc_attr($rel_height)) );?>
 							</div>
 						<?php } } ?>	
 							<div class="rlp-cnt">
@@ -395,7 +395,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 											  }
 								        		?>
 									            <div class="rlp-image">     
-									                <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>$rel_width,'image_crop_height'=>$rel_height) );?>
+									                <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>esc_attr($rel_width),'image_crop_height'=>esc_attr($rel_height)) );?>
 												</div>
 											<?php } ?>	
 											<div class="rlp-cnt">
