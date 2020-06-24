@@ -1639,6 +1639,11 @@ function ampforwp_replace_title_tags() {
 		remove_filter( 'pre_get_document_title', 'ampforwp_add_custom_title_tag', 20 );
 	    remove_filter( 'wp_title', 'ampforwp_add_custom_title_tag', 10, 3 );
 	}
+	// For Custom homepage
+	if(class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration') && ampforwp_is_home() && !ampforwp_is_front_page() ){
+		remove_filter( 'pre_get_document_title', 'ampforwp_add_custom_title_tag', 20 );
+	    remove_filter( 'wp_title', 'ampforwp_add_custom_title_tag', 10, 3 );
+	}
 
 	function ampforwp_add_custom_title_tag( $title = '', $sep = '', $seplocation = '' ) {
 		global $redux_builder_amp, $post;
