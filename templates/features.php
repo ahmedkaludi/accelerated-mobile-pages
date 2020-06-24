@@ -8060,6 +8060,12 @@ function ampforwp_remove_unwanted_code($content){
 		$content = preg_replace('/<form class="mv-create-print-form">(.*?)<\/form>/s', '', $content);
 	}
 	// close #4206
+	// Ticket #4539
+	if(function_exists('orbital_setup')){
+	    if(preg_match('/<script>function orbital_expand_navbar(.*?)<\/script>/', $content)){
+	        $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
+	    }
+	}
 	return $content;
 }
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
