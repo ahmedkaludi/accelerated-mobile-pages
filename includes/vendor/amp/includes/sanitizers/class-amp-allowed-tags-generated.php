@@ -10089,6 +10089,18 @@ class AMP_Allowed_Tags_Generated {
 				'tag_spec' => array(),
 			),
 		),
+		'details' => array(
+			array(
+				'attr_spec_list' => array(),
+				'tag_spec' => array(),
+			),
+		),
+		'summary' => array(
+			array(
+				'attr_spec_list' => array(),
+				'tag_spec' => array(),
+			),
+		),
 		'stop' => array(
 			array(
 				'attr_spec_list' => array(
