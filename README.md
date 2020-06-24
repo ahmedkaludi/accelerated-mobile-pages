@@ -211,7 +211,6 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Debug Warning #4568
 * Fixed: Comments are not displaying on Homepage (only in swift theme) #4571
 * Fixed: The button CSS not appearing in the AMP added with the Gutenberg button module #4572
-* Fixed: When gdpr option is enabled the site is becoming unclickable in browser Safari on IOS and MacOS #4542
 
 = 1.0.53.2 (21st June 2020) =
 * Fixed: Minor Bug
