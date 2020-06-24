@@ -3502,7 +3502,7 @@ function ampforwp_frontpage_comments() {
 
 	$post_id = ampforwp_get_frontpage_id();	
 
-	if ($data['elements'] == '') {
+	if (empty($data)) {
 	 	$data['elements'] = "meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
 	}
 	if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
