@@ -181,7 +181,7 @@ function ampforwp_swift_social_icons(){
 
 								?>
 							<li>
-								<a class="s_wp" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://api.whatsapp.com/send?text=<?php echo esc_url($amp_permalink); ?>" data-action="share/whatsapp/share" aria-label="whatsapp share"><?php echo $whatsapp_icon; ?></a>
+								<a class="s_wp" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://api.whatsapp.com/send?text=<?php echo esc_attr(htmlspecialchars(get_the_title()))."\n".esc_url($amp_permalink); ?>" data-action="share/whatsapp/share" aria-label="whatsapp share"><?php echo $whatsapp_icon; ?></a>
 							</li>
 							<?php } ?>
 							<?php if(ampforwp_get_setting('enable-single-line-share') == true)  { 
@@ -214,7 +214,12 @@ function ampforwp_swift_social_icons(){
 								
 								?>
 							<li>
-								<a class="s_od" target="_blank" <?php ampforwp_nofollow_social_links(); ?> href="https://ok.ru/dk?st.cmd=addShare&st._surl=<?php echo esc_url($amp_permalink); ?>" aria-label="odnoklassniki share"><?php echo $odnoklassniki_icon; ?></a>
+								<?php $feature_img = '';
+								if (ampforwp_has_post_thumbnail() ){
+								   $feature_img = ampforwp_get_post_thumbnail( 'url', 'medium' );
+								}
+							   ?>
+								<a class="s_od" target="_blank" <?php esc_html(ampforwp_nofollow_social_links()); ?> href="https://connect.ok.ru/offer?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&imageUrl=<?php echo esc_url($feature_img); ?>" aria-label="odnoklassniki share"><?php echo $odnoklassniki_icon; ?></a>
 							</li>
 							<?php } ?>
 							<?php if(ampforwp_get_setting('enable-single-reddit-share')){

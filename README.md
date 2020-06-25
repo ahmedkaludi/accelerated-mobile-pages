@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4.2
-Stable tag: 1.0.53.2
+Stable tag: 1.0.54
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,25 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.54 (25th June 2020) =
+* Fixed: Odnoklassniki sharing not working properly #4525
+* Fixed: Post title is not appearing when a post is shared through Whatsapp #4513
+* Fixed: Even after activating amp page builder compatibility we are getting this message this feature requires Page Builder For AMP extension. #4530
+* Fixed: RedGIFs embeds break site #4422
+* Fixed: Show notice when user is enabling option "sort related item randomly". #4535
+* Fixed: The mandatory tag 'link rel=canonical' is missing or incorrect due to Yoast SEO premium plugin #4569
+* Fixed: AMP homepage has a wrong canonical link. #4564
+* Fixed: Yoast not working in rare scenario #4562
+* Fixed: Meta title not pulled from YOAST in version 1.0.53.2 #4574
+* Fixed: yoast breadcrumb links not redirecting to amp pages. #4566
+* Fixed: Need to make comatibility with the wordpress embed block in guntenburg editor #4506
+* Fixed: Custom Javascript added with orbital theme and it is showing a validation error on the AMP Pages #4539
+* Fixed: robots.txt file is not generating when AMP takeover beta option is enabled. #4541
+* Fixed: Need to add compatibility of the "Brightcove Video Connect" plugin. #4517
+* Fixed: Debug Warning #4568
+* Fixed: Comments are not displaying on Homepage (only in swift theme) #4571
+* Fixed: The button CSS not appearing in the AMP added with the Gutenberg button module #4572
 
 = 1.0.53.2 (21st June 2020) =
 * Fixed: Minor Bug

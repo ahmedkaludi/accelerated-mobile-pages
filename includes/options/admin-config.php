@@ -6082,6 +6082,13 @@ $single_page_options = array(
                                 ),
             ),
             array(
+                    'id'       => 'ampforwp-sort-related-posts-randomly-notice',
+                    'type'     => 'info',
+                    'style'    => 'info',
+                    'desc'     => esc_html__('Enabling this might have some performance effects for sites who have large number of posts. Please use this with caution.', 'accelerated-mobile-pages'),
+                    'required' => array('ampforwp-single-order-of-related-posts', '=', 1)
+            ),
+            array(
                     'id'       => 'ampforwp-number-of-related-posts',
                     'type'     => 'text',
                 'class' => 'child_opt',
