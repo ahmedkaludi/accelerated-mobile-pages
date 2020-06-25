@@ -506,6 +506,22 @@ if(class_exists('MCI_Footnotes')){?>
 }
 }
 
+// Load ampforwp markup prior to marfeel amp #4560
+add_action('plugin_loaded','ampforwp_execute_amp_prior_marfeel', 10);
+function ampforwp_execute_amp_prior_marfeel(){
+global $wp_filter;
+  if(function_exists('mrfp_activate_marfeel_press') && isset($wp_filter['plugins_loaded']->callbacks[9])){
+     $current_url = filter_input(INPUT_SERVER, 'REQUEST_URI');
+     $amp_endpoint  = explode('/', $current_url);
+		foreach ($wp_filter['plugins_loaded']->callbacks[9] as $key => $value) {
+			   if((in_array('amp', $amp_endpoint ) || in_array('?amp', $amp_endpoint) || in_array('?amp=1', $amp_endpoint) ) && isset($value['function']['1']) && $value['function']['1'] == 'marfeel_press_init'){    
+				     unset($wp_filter['plugins_loaded']->callbacks[9][$key]);
+				}
+		}
+    }
+}
+
+
 // Simple Author Box Compatibility #2268
 add_action('amp_post_template_css', 'ampforwp_simple_author_box');
 function ampforwp_simple_author_box(){
