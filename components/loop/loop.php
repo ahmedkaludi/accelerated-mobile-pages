@@ -521,8 +521,8 @@ function amp_loop_image( $data=array() ) {
 				$imageLink = ampforwp_modify_url_utm_params($imageLink);
 			}
 			if(ampforwp_get_setting('ampforwp-retina-images') && (ampforwp_get_setting('amp-design-selector') ==1 || ampforwp_get_setting('amp-design-selector') ==2 ) && (is_home() || is_archive() || is_search()) ){
-				$thumb_width = 100;
-				$thumb_height = 75;
+				$thumb_width = $width / $resolution;
+				$thumb_height = $height / $resolution;
 			}
 
 			echo '<'.esc_attr($tag).' class="loop-img '.esc_attr($tag_class).'">';
