@@ -8534,7 +8534,11 @@ function ampforwp_rank_math_external_link_newtab($content){
 	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
 	if($rank_math_external_link){
 		$comp_dom = new DOMDocument();
-		@$comp_dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+		if(function_exists('mb_convert_encoding')){
+		  @$comp_dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+	    }else{
+	      @$comp_dom->loadHTML($content);	
+	    }
 		$xpath = new DOMXPath( $comp_dom );
 	    $count = 0;
 	    $nodes = $xpath->query('//a[@href]');
