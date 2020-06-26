@@ -8545,8 +8545,8 @@ function ampforwp_rank_math_external_link_newtab($content){
 				if(!$node->hasAttribute('target')){
 					$node->setAttribute('target','_blank');
 					$new_node = $comp_dom->saveHTML($node);
-					if(preg_match('/<a\b[^>]*?\bhref=[\'\"]'.preg_quote($url,'/').'[\'\"][^>]*>/', $content, $matches)){
-					    $content = preg_replace('/<a\b[^>]*?\bhref=[\'\"]'.preg_quote($url,'/').'[\'\"][^>]*>/', $new_node, $content);
+					if(preg_match('/<a\b[^>]*?\bhref=[\'\"]'.preg_quote($url,'/').'[\'\"][^>]*>(.*?)<\/a>/', $content, $matches)){
+					    $content = preg_replace('/<a\b[^>]*?\bhref=[\'\"]'.preg_quote($url,'/').'[\'\"][^>]*>(.*?)<\/a>/', $new_node, $content);
 					}
 				}
 			}
