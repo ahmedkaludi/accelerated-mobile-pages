@@ -8751,3 +8751,20 @@ function ampforwp_homepage_front_loop($query){
 	$posts_per_page = isset($query->query_vars['posts_per_page']) ? $query->query_vars['posts_per_page'] : get_option('posts_per_page');
 	$query->query_vars['offset'] = (($query->query_vars['paged'] - 2) * $posts_per_page) + $frontpagePostsCount;}
 }
+
+if(function_exists('herald_theme_setup')){
+	add_filter('the_content', 'ampforwp_herald_popup_media_in_content', 100, 1 );
+	add_filter('bbp_get_topic_content','herald_popup_media_in_content'); 
+	add_filter('bbp_get_reply_content','herald_popup_media_in_content');
+}
+function ampforwp_herald_popup_media_in_content( $content ) {
+	if(ampforwp_is_amp_endpoint()){
+		if (function_exists('herald_get_option') && herald_get_option( 'on_single_img_popup' ) ) {
+			if(preg_match("/<a class=\"herald-popup-img\" href=('|\")(.*?).(bmp|gif|jpeg|jpg|png)('|\")><img(.*?)<\/a>/i", $content,$matches)){
+				$content = preg_replace( "/<a class=\"herald-popup-img\" href=('|\")(.*?).(bmp|gif|jpeg|jpg|png)('|\")><img(.*?)<\/a>/i", '<img on="tap:amp-img-lightbox" role="button" tabindex="0" $5', $content );
+
+			}
+		}
+	}
+	return  $content;
+}
