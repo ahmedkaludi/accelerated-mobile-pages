@@ -6404,6 +6404,32 @@ function ampforwp_return_no_gap(){
 	return;
 }
 
+// Added TravelTour theme page builder content support.#4540 
+if(class_exists('gdlr_core_page_builder')){
+add_action('ampforwp_after_post_content','ampforwp_gdlr_core_page_builder_content');
+}
+function ampforwp_gdlr_core_page_builder_content(){    
+	    ob_start();
+	  	do_action('gdlr_core_print_page_builder');
+		$content = ob_get_contents();
+		ob_end_clean();
+		$sanitizer_obj = new AMPFORWP_Content( $content,
+							array(), 
+							apply_filters( 'ampforwp_content_sanitizers', 
+								array( 'AMP_Img_Sanitizer' => array(), 
+									'AMP_Blacklist_Sanitizer' => array(),
+									'AMP_Style_Sanitizer' => array(), 
+									'AMP_Video_Sanitizer' => array(),
+			 						'AMP_Audio_Sanitizer' => array(),
+			 						'AMP_Iframe_Sanitizer' => array(
+										 'add_placeholder' => true,
+									 ),
+								) 
+							) 
+						);
+		$ampforwp_gdlr_builder_content =  $sanitizer_obj->get_amp_content();
+        echo $ampforwp_gdlr_builder_content;    
+}
 /*
 	#2229 Function to check the option for comments to display on post, page or both.
  */
