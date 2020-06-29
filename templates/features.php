@@ -4911,6 +4911,7 @@ function ampforwp_inline_related_posts(){
                                     );  
             } 
             $args = apply_filters('ampforwp_inlne_related_posts_query_args', $args);
+            $inline_related_posts = '';
 			$my_query = new wp_query( $args );
 					if( $my_query->have_posts() ) {
 				$inline_related_posts_img = '';
