@@ -7235,6 +7235,79 @@ if( ! function_exists(' ampforwp_modify_ivory_search ') ){
 		return $menu;
 	}
 } 
+//amp menu (header) submenu is not getting visible when clicking on the parent menu #4587
+add_filter('ampforwp_amp_menu_content','ampforwp_make_parent_menu_clickable',10,2);
+if( ! function_exists(' ampforwp_make_parent_menu_clickable ') ){
+	function ampforwp_make_parent_menu_clickable($menu,$type){
+		if($type=='header'){
+			$dom 		= '';
+			$nodes 		= '';
+			$num_nodes 	= '';
+			if( !empty( $menu ) ){
+				// Create a new document
+				$dom = new DOMDocument();
+				if( function_exists( 'mb_convert_encoding' ) ){
+					$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
+				}
+				else{
+					$menu =  preg_replace( '/&.*?;/', 'x', $menu ); // multi-byte characters converted to X
+				}
+				// To Suppress Warnings
+				libxml_use_internal_errors(true);
+				$dom->loadHTML($menu);
+				libxml_use_internal_errors(false);
+				
+				$parent_menu = $dom->getElementsByTagName('li'); // Find Sections
+				$k=0;
+				$count = 0;
+				foreach ($parent_menu as $param){
+				    $sub_menu = $parent_menu->item($k)->getElementsByTagName('ul');
+				    $i=0; 
+				    foreach ($sub_menu as $p) {            
+				        $i++;
+				    }
+				    if($i>0){
+				    	$anchor = $parent_menu->item($k)->getElementsByTagName('a');
+				    	$href = $anchor[0]->getAttribute('href');
+				    	if(!$anchor[0]->hasAttribute('data-toggle')){
+				    		$anchor[0]->setAttribute('data-toggle','dropdown');
+				    		$anchor[0]->setAttribute('class','dropdown-toggle');
+				    		$checkbox = $dom->createElement('input');
+						    $checkbox->setAttribute('type','checkbox');
+						    $checkbox->setAttribute('id','drop-'.$k);
+						    $parent_menu->item($k)->appendChild($checkbox);
+						    $parent_menu->item($k)->insertBefore($checkbox,$sub_menu[0]);
+						    $label = $dom->createElement('label');
+						    $label->setAttribute('for','drop-'.$k);
+						    $label->setAttribute('class','toggle');
+						    $parent_menu->item($k)->appendChild($label);
+						    $parent_menu->item($k)->insertBefore($label,$sub_menu[0]);
+						  
+						    $parent_menu->item($k)->setAttribute('class', $parent_menu->item($k)->getAttribute('class').' link-menu');
+						    if($count==0){
+						    	add_action('amp_post_template_css','ampforwp_set_amp_menu_toggle_css');
+						    }
+						    $count++;
+				    	}
+				    }
+				    $k++;   
+				}
+				$menu = $dom->saveHTML();
+			}
+		}
+		return $menu;
+	}
+}
+function ampforwp_set_amp_menu_toggle_css(){
+	echo "m-menu .link-menu .toggle {
+		    width: 100%;
+		    height: 100%;
+		    position: absolute;
+		    top: 0px;
+		    right: 0;
+		    cursor: pointer;
+		}";
+}
 add_action('amp_post_template_css','ampforwp_ivory_search_css');
 function ampforwp_ivory_search_css(){
 	if(class_exists('Ivory_Search')){?>
