@@ -8534,7 +8534,11 @@ function ampforwp_rank_math_external_link_newtab($content){
 	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
 	if($rank_math_external_link){
 		$comp_dom = new DOMDocument();
-		@$comp_dom->loadHTML($content);
+		if(function_exists('mb_convert_encoding')){
+		  @$comp_dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+	    }else{
+	      @$comp_dom->loadHTML($content);	
+	    }
 		$xpath = new DOMXPath( $comp_dom );
 	    $count = 0;
 	    $nodes = $xpath->query('//a[@href]');
@@ -8544,13 +8548,10 @@ function ampforwp_rank_math_external_link_newtab($content){
 			if($is_external){
 				if(!$node->hasAttribute('target')){
 					$node->setAttribute('target','_blank');
-					$new_node = $comp_dom->saveHTML($node);
-					if(preg_match('/<a\b[^>]*?\bhref=[\'\"]'.preg_quote($url,'/').'[\'\"][^>]*>/', $content, $matches)){
-					    $content = preg_replace('/<a\b[^>]*?\bhref=[\'\"]'.preg_quote($url,'/').'[\'\"][^>]*>/', $new_node, $content);
-					}
 				}
 			}
 	    }
+		$content =  $comp_dom->saveHTML();
 	}
 	return $content;
 }	

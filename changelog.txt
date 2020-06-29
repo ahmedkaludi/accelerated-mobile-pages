@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.54.1 (26th June 2020) =
+* Fixed: The duplicate text showing after the anchor link #4584
+
 = 1.0.54 (25th June 2020) =
 * Fixed: Odnoklassniki sharing not working properly #4525
 * Fixed: Post title is not appearing when a post is shared through Whatsapp #4513
