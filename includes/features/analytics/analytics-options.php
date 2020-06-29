@@ -127,9 +127,12 @@ function ampforwp_analytics_options($opt_name){
                         'theme'    => 'monokai',
                         'desc'     => '',
                         'default'  => ('{
-    "vars": {
-        "account": "UA-xxxxxxx-x"
-    },
+    "vars" : {
+    "gtag_id": "UA-xxxxxxx-x",
+    "config" : {
+      "UA-xxxxxxx-x": { "groups": "default" }
+    }
+  },
     "triggers": {
         "trackPageview": {
             "on": "visible",
