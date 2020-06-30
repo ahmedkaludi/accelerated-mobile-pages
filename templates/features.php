@@ -8140,6 +8140,9 @@ function ampforwp_include_required_scripts($content){
 					if($comp=='state'){
 						$is_script = true;
 					}
+					if($comp=='embed'){
+						$is_script = false;
+					}
 					if($is_script==false){
 						$headers = get_headers($comp_url);
 						if(isset($headers[0])){
@@ -8215,7 +8218,7 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 	//OTHER COMPONENT CHECK 
-	$other_comp_arr = array('amp-mustache'=>'amp-mustache','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection');
+	$other_comp_arr = array('amp-mustache'=>'amp-mustache','amp-embed'=>'amp-ad','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection');
 	foreach ($other_comp_arr as $key => $value) {
 		$ocomp = $value;
 		$celem = 'element';
