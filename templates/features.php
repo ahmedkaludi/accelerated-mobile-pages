@@ -8769,3 +8769,16 @@ function ampforwp_wp_rocket_compatibility($content){
 	}
   	return $content;  
 }
+// Adding Mobile theme color meta data in header
+if(true == ampforwp_get_setting('mobile-theme-color')){
+add_action( 'amp_post_template_head', 'ampforwp_mobile_theme_color');
+}
+function ampforwp_mobile_theme_color(){
+		$content_code = ampforwp_get_setting('mobile-theme-color-picker','color');
+		if(empty($content_code)){
+			$content_code = '#ffffff';  
+		}
+		?>
+		<meta name="theme-color" content="<?php echo ampforwp_sanitize_color($content_code); ?>"/>
+		<?php
+}
