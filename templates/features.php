@@ -6413,12 +6413,12 @@ function ampforwp_return_no_gap(){
 
 // Added TravelTour theme page builder content support.#4540 
 if(class_exists('gdlr_core_page_builder')){
-add_action('ampforwp_after_post_content','ampforwp_gdlr_core_page_builder_content');
+add_filter('ampforwp_modify_the_content','ampforwp_gdlr_core_page_builder_content');
 }
-function ampforwp_gdlr_core_page_builder_content(){    
+function ampforwp_gdlr_core_page_builder_content($content){    
 	    ob_start();
 	  	do_action('gdlr_core_print_page_builder');
-		$content = ob_get_contents();
+		$content .= ob_get_contents();
 		ob_end_clean();
 		$sanitizer_obj = new AMPFORWP_Content( $content,
 							array(), 
