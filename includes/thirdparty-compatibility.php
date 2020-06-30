@@ -62,6 +62,9 @@ function ampforwp_thirdparty_compatibility(){
 	if(function_exists('defer_parsing_of_js')){
 		remove_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 	}
+	if(class_exists('gdlr_core_page_builder')){
+		add_filter('the_content','ampforwp_gdlr_core_page_builder_content',12);
+	}
 	$yoast_canonical = $yoast_canonical_post = $yoast_canonical_page = '';
 	$yoast_canonical = get_option( 'wpseo_titles' );
 	if(isset($yoast_canonical['noindex-post'])){

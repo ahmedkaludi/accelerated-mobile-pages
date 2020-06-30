@@ -8802,3 +8802,14 @@ function ampforwp_herald_popup_media_in_content( $content ) {
 	}
 	return  $content;
 }
+// Added TravelTour theme page builder content support.#4540 
+function ampforwp_gdlr_core_page_builder_content($content){  
+	ob_start();
+	do_action('gdlr_core_print_page_builder');
+	$content_gdlr = ob_get_contents();
+	ob_end_clean();
+	if ( $content_gdlr ) {
+		$content = $content . $content_gdlr ;
+	}
+	return $content;  
+}
