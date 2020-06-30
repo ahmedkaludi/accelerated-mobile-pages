@@ -6418,9 +6418,9 @@ add_filter('ampforwp_modify_the_content','ampforwp_gdlr_core_page_builder_conten
 function ampforwp_gdlr_core_page_builder_content($content){    
 	    ob_start();
 	  	do_action('gdlr_core_print_page_builder');
-		$content .= ob_get_contents();
+		$content_gdlr = ob_get_contents();
 		ob_end_clean();
-		$sanitizer_obj = new AMPFORWP_Content( $content,
+		$sanitizer_obj = new AMPFORWP_Content( $content_gdlr,
 							array(), 
 							apply_filters( 'ampforwp_content_sanitizers', 
 								array( 'AMP_Img_Sanitizer' => array(), 
@@ -6435,7 +6435,7 @@ function ampforwp_gdlr_core_page_builder_content($content){
 							) 
 						);
 		$ampforwp_gdlr_builder_content =  $sanitizer_obj->get_amp_content();
-        echo $ampforwp_gdlr_builder_content;    
+		return $content . $ampforwp_gdlr_builder_content;  
 }
 /*
 	#2229 Function to check the option for comments to display on post, page or both.
