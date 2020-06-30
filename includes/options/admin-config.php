@@ -5709,7 +5709,21 @@ $single_page_options = array(
                    'default'=> '1',
                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
-            
+            array(
+                'id'       => 'ampforwp_layouts_core_single',
+                'type'     => 'raw',
+                'subtitle'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/amp-layouts/" target="_blank">What is Layouts?</a>',
+                'title'    => esc_html__('Get More Single Designs with AMP Layouts Extension', 'accelerated-mobile-pages'),
+                'required' => array('amp-design-selector', '=' , '4'),
+                'full_width'=>true, 
+                'class'     =>(!is_plugin_active('amp-layouts/amp-layouts.php')? '': 'hide'),//,
+                'markdown'=> true,
+                'desc'      => '<div class="amp-layout-class">
+                                <div class="amp_layouts_container">
+                                    '.$upcomingLayoutsDesign.'
+                                </div>
+                            </div>',               
+            ),
             array(
                        'id' => 'ampforwp-single_section_2',
                        'type' => 'section',

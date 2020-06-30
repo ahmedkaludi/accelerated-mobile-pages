@@ -594,7 +594,7 @@ right:0;  z-index: 99999;
 #redux_builder_amp-ampforwp_layouts_core {
     position: relative
 }
-#redux_builder_amp-ampforwp_layouts_core .redux_field_th{
+#redux_builder_amp-ampforwp_layouts_core .redux_field_th , fieldset#redux_builder_amp-ampforwp_layouts_core_single{
     text-transform: uppercase;
     line-height: 0; 
     border-bottom: 1px solid #E7E7E7; 
@@ -602,7 +602,7 @@ right:0;  z-index: 99999;
     padding-bottom: 15px !important;
 } 
 /*** Layout Screenshot-Image CSS ***/
-#redux_builder_amp-ampforwp_layouts_core .amppb_ad-layout-layout {
+#redux_builder_amp-ampforwp_layouts_core .amppb_ad-layout-layout, #redux_builder_amp-ampforwp_layouts_core_single .amppb_ad-layout-layout {
     margin-bottom: 30px;
     width: 29%;
 }
