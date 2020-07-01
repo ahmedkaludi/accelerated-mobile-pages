@@ -42,11 +42,13 @@ class FasterImage
         $results          = [];
         $request          = array();
         foreach ( array_values($urls) as $count => $uri ) {
-            $results[$uri] = array();
-            $request[$uri] = array(
-                'url' =>  $uri,
-                'type' => 'GET',
-            );
+            if ( 0 === strpos( $uri, 'http' ) || 0 === strpos( $uri, 'https' )) {
+                $results[$uri] = array();
+                $request[$uri] = array(
+                    'url' =>  $uri,
+                    'type' => 'GET',
+                );
+            }
         }
         $options= array(
                     'timeout'=>$this->timeout,

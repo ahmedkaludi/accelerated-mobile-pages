@@ -4872,6 +4872,7 @@ function ampforwp_inline_related_posts(){
                                     );  
             } 
             $args = apply_filters('ampforwp_inlne_related_posts_query_args', $args);
+            $inline_related_posts = '';
 			$my_query = new wp_query( $args );
 					if( $my_query->have_posts() ) {
 				$inline_related_posts_img = '';
@@ -8140,6 +8141,9 @@ function ampforwp_include_required_scripts($content){
 					if($comp=='state'){
 						$is_script = true;
 					}
+					if($comp=='embed'){
+						$is_script = false;
+					}
 					if($is_script==false){
 						$headers = get_headers($comp_url);
 						if(isset($headers[0])){
@@ -8215,7 +8219,7 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 	//OTHER COMPONENT CHECK 
-	$other_comp_arr = array('amp-mustache'=>'amp-mustache','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection');
+	$other_comp_arr = array('amp-mustache'=>'amp-mustache','amp-embed'=>'amp-ad','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection');
 	foreach ($other_comp_arr as $key => $value) {
 		$ocomp = $value;
 		$celem = 'element';
@@ -8768,4 +8772,44 @@ function ampforwp_wp_rocket_compatibility($content){
 		}
 	}
   	return $content;  
+}
+// Adding Mobile theme color meta data in header
+if(true == ampforwp_get_setting('mobile-theme-color')){
+add_action( 'amp_post_template_head', 'ampforwp_mobile_theme_color');
+}
+function ampforwp_mobile_theme_color(){
+		$content_code = ampforwp_get_setting('mobile-theme-color-picker','color');
+		if(empty($content_code)){
+			$content_code = '#ffffff';  
+		}
+		?>
+		<meta name="theme-color" content="<?php echo ampforwp_sanitize_color($content_code); ?>"/>
+		<?php
+}
+
+if(function_exists('herald_theme_setup')){
+	add_filter('the_content', 'ampforwp_herald_popup_media_in_content', 100, 1 );
+	add_filter('bbp_get_topic_content','herald_popup_media_in_content'); 
+	add_filter('bbp_get_reply_content','herald_popup_media_in_content');
+}
+function ampforwp_herald_popup_media_in_content( $content ) {
+	if(ampforwp_is_amp_endpoint()){
+		if (function_exists('herald_get_option') && herald_get_option( 'on_single_img_popup' ) ) {
+			if(preg_match("/<a class=\"herald-popup-img\" href=('|\")(.*?).(bmp|gif|jpeg|jpg|png)('|\")><img(.*?)<\/a>/i", $content,$matches)){
+				$content = preg_replace( "/<a class=\"herald-popup-img\" href=('|\")(.*?).(bmp|gif|jpeg|jpg|png)('|\")><img(.*?)<\/a>/i", '<img on="tap:amp-img-lightbox" role="button" tabindex="0" $5', $content );
+			}
+		}
+	}
+	return  $content;
+}
+// Added TravelTour theme page builder content support.#4540 
+function ampforwp_gdlr_core_page_builder_content($content){  
+	ob_start();
+	do_action('gdlr_core_print_page_builder');
+	$content_gdlr = ob_get_contents();
+	ob_end_clean();
+	if ( $content_gdlr ) {
+		$content = $content . $content_gdlr ;
+	}
+	return $content;  
 }

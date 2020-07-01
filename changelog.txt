@@ -1,5 +1,17 @@
 == Changelog ==
 
+= 1.0.55 (30th June 2020) =
+* Improvement: Added option to change the Google theme color #4514
+* Improvement: Added TravelTour Theme compatibility #4540
+* Fixed: Whitelisted <details> and <summary> tags in AMP #4577
+* Fixed: amp-embed doesn't include the amp-ad script #4580
+* Fixed: Lightbox for images not working in specific scenario #4570
+* Fixed: Fatal error on one of the urls. #4438
+* Fixed: First priority added to load amp markup when marfeelpress and amp is active #4560
+* Fixed: Retina image breaking the layout for Design 2 in homepage #4558
+* Fixed: The duplicate text showing after the anchor link #4584
+* Fixed: Debug warning #4508
+
 = 1.0.54.1 (26th June 2020) =
 * Fixed: The duplicate text showing after the anchor link #4584
 

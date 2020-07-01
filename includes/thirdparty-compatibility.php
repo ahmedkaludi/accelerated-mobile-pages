@@ -62,6 +62,9 @@ function ampforwp_thirdparty_compatibility(){
 	if(function_exists('defer_parsing_of_js')){
 		remove_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 	}
+	if(class_exists('gdlr_core_page_builder')){
+		add_filter('the_content','ampforwp_gdlr_core_page_builder_content',12);
+	}
 	$yoast_canonical = $yoast_canonical_post = $yoast_canonical_page = '';
 	$yoast_canonical = get_option( 'wpseo_titles' );
 	if(isset($yoast_canonical['noindex-post'])){
@@ -1123,7 +1126,7 @@ if(!function_exists('ampforwp_mistape_plugin_compatibility')){
 	}
 }
 function ampforwp_valid_amp_componet_script(){
-	$ce_valid_scripts = array('amp-3d-gltf','amp-3q-player','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-accordion','amp-action-macro','amp-ad-exit','amp-ad','amp-addthis','amp-anim','amp-animation','amp-apester-media','amp-app-banner','amp-audio','amp-auto-ads','amp-autocomplete','amp-base-carousel','amp-beopinion','amp-bind','amp-bodymovin-animation','amp-brid-player','amp-brightcove','amp-byside-content','amp-call-tracking','amp-carousel','amp-connatix-player','amp-consent','amp-dailymotion','amp-date-countdown','amp-date-picker','amp-delight-player','amp-dynamic-css-classes','amp-embedly-card','amp-experiment','amp-facebook-comments','amp-facebook-like','amp-facebook-page','amp-facebook','amp-fit-text','amp-font','amp-form','amp-fx-collection','amp-fx-flying-carpet','amp-geo','amp-gfycat','amp-gist','amp-google-document-embed','amp-google-vrview-image','amp-hulu','amp-iframe','amp-ima-video','amp-image-lightbox','amp-image-slider','amp-imgur','amp-inputmask','amp-instagram','amp-install-serviceworker','amp-izlesene','amp-jwplayer','amp-kaltura-player','amp-lightbox-gallery','amp-lightbox','amp-link-rewriter','amp-list','amp-live-list','amp-mathml','amp-mega-menu','amp-megaphone','amp-minute-media-player','amp-form','amp-mustache','amp-next-page','amp-nexxtv-player','amp-o2-player','amp-ooyala-player','amp-orientation-observer','amp-pan-zoom','amp-pinterest','amp-playbuzz','amp-position-observer','amp-powr-player','amp-reach-player','amp-recaptcha-input','amp-redbull-player','amp-reddit','amp-riddle-quiz','amp-script','amp-selector','amp-sidebar','amp-skimlinks','amp-smartlinks','amp-social-share','amp-soundcloud','amp-springboard-player','amp-sticky-ad','amp-story-auto-ads','amp-story','amp-subscriptions-google','amp-subscriptions','amp-timeago','amp-truncate-text','amp-twitter','amp-user-notification','amp-video-docking','amp-video-iframe','amp-video','amp-vimeo','amp-vine','amp-viqeo-player','amp-viz-vega','amp-vk','amp-web-push','amp-wistia-player','amp-yotpo','amp-youtube');
+	$ce_valid_scripts = array('amp-3d-gltf','amp-3q-player','amp-access','amp-analytics','amp-access-laterpay','amp-access-poool','amp-accordion','amp-action-macro','amp-ad-exit','amp-ad','amp-embed','amp-addthis','amp-anim','amp-animation','amp-apester-media','amp-app-banner','amp-audio','amp-auto-ads','amp-autocomplete','amp-base-carousel','amp-beopinion','amp-bind','amp-bodymovin-animation','amp-brid-player','amp-brightcove','amp-byside-content','amp-call-tracking','amp-carousel','amp-connatix-player','amp-consent','amp-dailymotion','amp-date-countdown','amp-date-picker','amp-delight-player','amp-dynamic-css-classes','amp-embedly-card','amp-experiment','amp-facebook-comments','amp-facebook-like','amp-facebook-page','amp-facebook','amp-fit-text','amp-font','amp-form','amp-fx-collection','amp-fx-flying-carpet','amp-geo','amp-gfycat','amp-gist','amp-google-document-embed','amp-google-vrview-image','amp-hulu','amp-iframe','amp-ima-video','amp-image-lightbox','amp-image-slider','amp-imgur','amp-inputmask','amp-instagram','amp-install-serviceworker','amp-izlesene','amp-jwplayer','amp-kaltura-player','amp-lightbox-gallery','amp-lightbox','amp-link-rewriter','amp-list','amp-live-list','amp-mathml','amp-mega-menu','amp-megaphone','amp-minute-media-player','amp-form','amp-mustache','amp-next-page','amp-nexxtv-player','amp-o2-player','amp-ooyala-player','amp-orientation-observer','amp-pan-zoom','amp-pinterest','amp-playbuzz','amp-position-observer','amp-powr-player','amp-reach-player','amp-recaptcha-input','amp-redbull-player','amp-reddit','amp-riddle-quiz','amp-script','amp-selector','amp-sidebar','amp-skimlinks','amp-smartlinks','amp-social-share','amp-soundcloud','amp-springboard-player','amp-sticky-ad','amp-story-auto-ads','amp-story','amp-subscriptions-google','amp-subscriptions','amp-timeago','amp-truncate-text','amp-twitter','amp-user-notification','amp-video-docking','amp-video-iframe','amp-video','amp-vimeo','amp-vine','amp-viqeo-player','amp-viz-vega','amp-vk','amp-web-push','amp-wistia-player','amp-yotpo','amp-youtube');
 	$ce_valid_scripts = apply_filters('ampforwp_valid_amp_component_script',$ce_valid_scripts);
 	return $ce_valid_scripts;
 }
@@ -1162,4 +1165,18 @@ function ampforwp_include_required_yoast_files(){
 			 }
 		}
 	}
+}
+// Load ampforwp markup prior to marfeel amp #4560
+add_action('plugin_loaded','ampforwp_execute_amp_prior_marfeel', 10);
+function ampforwp_execute_amp_prior_marfeel(){
+  global $wp_filter;
+  if(function_exists('mrfp_activate_marfeel_press') && isset($wp_filter['plugins_loaded']->callbacks[9])){
+     $current_url = filter_input(INPUT_SERVER, 'REQUEST_URI');
+     $amp_endpoint  = explode('/', $current_url);
+		foreach ($wp_filter['plugins_loaded']->callbacks[9] as $key => $value) {
+			   if((in_array('amp', $amp_endpoint ) || in_array('?amp', $amp_endpoint) || in_array('?amp=1', $amp_endpoint) ) && isset($value['function']['1']) && $value['function']['1'] == 'marfeel_press_init'){    
+				     unset($wp_filter['plugins_loaded']->callbacks[9][$key]);
+				}
+		}
+    }
 }
