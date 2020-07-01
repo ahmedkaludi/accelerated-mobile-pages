@@ -191,7 +191,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 1.0.55 (30th June 2020) =
-* Improvement: Added option to change the image size of related posts thumbnail #4534
 * Improvement: Added option to change the Google theme color #4514
 * Improvement: Added TravelTour Theme compatibility #4540
 * Fixed: Whitelisted <details> and <summary> tags in AMP #4577
