@@ -132,7 +132,9 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 							if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
 				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr($thumb_alt); ?>" width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
 							<?php } 
-							}?>
+							}
+							if(true == ampforwp_get_setting('ampforwp-related-post-utm-tracking-switch') && !empty(ampforwp_get_setting('ampforwp-related-posts-utm-tracking'))){
+									$related_post_permalink = add_query_arg(ampforwp_get_setting('ampforwp-related-posts-utm-tracking'), '' ,$related_post_permalink);}?>
 	                  		</a>
 	                  	</div>
 			                <div class="related_link">

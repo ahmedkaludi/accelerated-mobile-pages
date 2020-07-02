@@ -126,7 +126,10 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 									$image_args = array("tag"=>'div','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height,'responsive'=> 'true','referer'=>"related_post" );
 									amp_loop_image($image_args);
 								} 
-								}?>
+								}
+								if(true == ampforwp_get_setting('ampforwp-related-post-utm-tracking-switch') && !empty(ampforwp_get_setting('ampforwp-related-posts-utm-tracking'))){
+									$related_post_permalink = add_query_arg(ampforwp_get_setting('ampforwp-related-posts-utm-tracking'), '' ,$related_post_permalink);}
+								?>
 				                <div class="related_link">
 				                    <?php $title = get_the_title(); ?>
 				                    <a href="<?php echo esc_url( $related_post_permalink ); ?>" title="<?php echo esc_html( $title ); ?>" ><?php the_title(); ?></a>

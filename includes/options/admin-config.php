@@ -6054,6 +6054,25 @@ $single_page_options = array(
                     'default'  => '6',
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
+        array(
+              'id'        =>  'ampforwp-recent-post-utm-tracking-switch',
+              'type'      =>  'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     =>  esc_html__('UTM Tracking', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to add utm tracking to all your recent post links and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-utm-tracking-to-all-your-recent-post-links/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+              'default'   =>  0,
+              'required' => array('ampforwp-swift-recent-posts', '=', '1')
+            ),
+           array(
+               'id'       => 'ampforwp-recent-posts-utm-tracking',
+               'title'    => esc_html__('Campaign Source', 'accelerated-mobile-pages'),
+               'desc'  =>esc_html__('Use \'&\' for adding parameters in the tracking. Example: utm_source=xxx&utm_medium=xxx','accelerated-mobile-pages'),
+               'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
+               'required'  => array('ampforwp-recent-post-utm-tracking-switch', '=' , '1'),
+               'default'  => '',
+            ),
             array(
                        'id' => 'ampforwp-single_section_3',
                        'type' => 'section',
@@ -6260,6 +6279,25 @@ $single_page_options = array(
                     'required' => array( 
                                     array('ampforwp-related-posts-days-switch', '=' , '1'),
                                 ),
+            ),
+            array(
+              'id'        =>  'ampforwp-related-post-utm-tracking-switch',
+              'type'      =>  'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     =>  esc_html__('UTM Tracking', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to add utm tracking to all your related post links and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-utm-tracking-to-all-your-related-post-links/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+              'default'   =>  0,
+              'required' => array('ampforwp-single-related-posts-switch', '=', '1')
+            ),
+           array(
+               'id'       => 'ampforwp-related-posts-utm-tracking',
+               'title'    => esc_html__('Campaign Source', 'accelerated-mobile-pages'),
+               'desc'  =>esc_html__('Use \'&\' for adding parameters in the tracking. Example: utm_source=xxx&utm_medium=xxx','accelerated-mobile-pages'),
+               'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
+               'required'  => array('ampforwp-related-post-utm-tracking-switch', '=' , '1'),
+               'default'  => '',
             ),
              // DESIGN 3 RECENT POST BELOW RELATED
             array(

@@ -184,6 +184,8 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 			$related_post_permalink = add_query_arg('nonamp','1',$related_post_permalink);
 		}
 	}
+	if(true == ampforwp_get_setting('ampforwp-related-post-utm-tracking-switch') && !empty(ampforwp_get_setting('ampforwp-related-posts-utm-tracking'))){
+		$related_post_permalink = add_query_arg(ampforwp_get_setting('ampforwp-related-posts-utm-tracking'), '' ,$related_post_permalink);}
 	?>
 	<div class="related_link">
         <a href="<?php echo esc_url( $related_post_permalink ); ?>" title="<?php echo esc_html( $title ); ?>"><?php the_title(); ?></a>

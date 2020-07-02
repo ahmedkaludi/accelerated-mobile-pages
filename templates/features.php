@@ -8859,3 +8859,14 @@ function ampforwp_herald_popup_media_in_content( $content ) {
 	}
 	return  $content;
 }
+
+if(true == ampforwp_get_setting('ampforwp-recent-post-utm-tracking-switch') && !empty(ampforwp_get_setting('ampforwp-recent-posts-utm-tracking'))){
+	add_filter('ampforwp_loop_permalink_update','ampforwp_recent_posts_utm_tracking');
+}
+function ampforwp_recent_posts_utm_tracking($recent_post_permalink){
+	if(is_single()){
+		$recent_post_permalink = add_query_arg(ampforwp_get_setting('ampforwp-recent-posts-utm-tracking'), '' ,$recent_post_permalink);
+		return $recent_post_permalink;
+	}
+	return $recent_post_permalink;
+}
