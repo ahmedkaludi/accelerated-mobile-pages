@@ -8541,6 +8541,7 @@ function ampforwp_rank_math_external_link_newtab($content){
 		if(function_exists('mb_convert_encoding')){
 		  @$comp_dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'),LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 	    }else{
+	      $content = htmlspecialchars_decode(utf8_decode(htmlentities($content, ENT_COMPAT, 'utf-8', false)));
 	      @$comp_dom->loadHTML($content,LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);	
 	    }
 		$xpath = new DOMXPath( $comp_dom );
