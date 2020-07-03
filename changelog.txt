@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.57 (3rd July 2020) =
+* Fixed: Issue with external link with Rank Math #4584
+* Fixed: Incorrect yoast title with TagDiv's themes #4595
+
+= 1.0.56 (1st July 2020) =
+* Fixed: When gdpr option is enabled the site is becoming unclickable in browser Safari on IOS and MacOS #4542
+
 = 1.0.55 (30th June 2020) =
 * Improvement: Added option to change the Google theme color #4514
 * Improvement: Added TravelTour Theme compatibility #4540

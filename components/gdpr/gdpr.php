@@ -252,6 +252,16 @@ function ampforwp_gdpr_css(){
 	    height:20px;
 	    width:100%;
 	}	
+	body[class*="amp-iso-country-"] .amp-active{
+    	display: contents;
+	}
+	#post-consent-ui {
+		position: fixed;
+		z-index: 9999;
+		left: 45%;
+		margin-top: 10px;
+		top: 0;
+	}
 <?php }
 
 function amp_consent_submission(){

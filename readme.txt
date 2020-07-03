@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4.2
-Stable tag: 1.0.55
+Stable tag: 1.0.57
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.57 (3rd July 2020) =
+* Fixed: Issue with external link with Rank Math #4584
+* Fixed: Incorrect yoast title with TagDiv's themes #4595
+
+= 1.0.56 (1st July 2020) =
+* Fixed: When gdpr option is enabled the site is becoming unclickable in browser Safari on IOS and MacOS #4542
 
 = 1.0.55 (30th June 2020) =
 * Improvement: Added option to change the Google theme color #4514
