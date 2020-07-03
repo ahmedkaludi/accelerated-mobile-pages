@@ -677,6 +677,9 @@ Class AMPforWP_theme_mode{
 }//Class Closed
 add_action('after_setup_theme', 'ampforwp_template_mode_is_activate', 999);
 function ampforwp_template_mode_is_activate(){
+	if(function_exists('td_wp_title')){
+		add_theme_support( 'title-tag' );
+	}
 	if(get_theme_support('amp-template-mode') && !is_customize_preview()){
 		$ampforwp_theme_mode = new AMPforWP_theme_mode();
 		$ampforwp_theme_mode->init();
