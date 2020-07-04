@@ -1808,6 +1808,7 @@ font-family:"Font Awesome 5 Brands";
 <?php }
 if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 	content:"\f099";
+	color:#fff;
 <?php } ?>
 }
 <?php } 
