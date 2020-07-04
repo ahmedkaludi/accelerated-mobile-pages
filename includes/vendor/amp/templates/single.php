@@ -10,8 +10,15 @@
 	</style>
 	<?php do_action('ampforwp_last_head', $this);  ?>
 </head>
-
-<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?>">
+<?php
+	$classes = AMPFORWP_VERSION;
+	if ( is_singular() ) {
+		if(function_exists('ampforwp_get_the_ID')){
+			$classes .= 'post-id-'.ampforwp_get_the_ID();
+		} 
+	}
+?>
+<body class="<?php echo esc_attr( $this->get( 'body_class' ) ).' '.esc_attr($classes); ?>">
 
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
