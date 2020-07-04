@@ -2399,6 +2399,31 @@ function ampforwp_get_all_tags($id){
                      ),
                      array(
                         'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-fb-moderation-app-id',
+                         'type'     => 'text',
+                         'tooltip-subtitle'     => 
+                         sprintf('%s <a href="https://developers.facebook.com/docs/plugins/comments/#moderation-setup-instructions" target="_blank">%s</a>.',esc_html__( 'If your site has many comments boxes, we recommend you specify a Facebook app ID as the managing entity, which means that all app administrators can moderate comments. Doing this enables a moderator interface on Facebook where comments from all plugins administered by your app ID can be easily moderated together. For details, see the','accelerated-mobile-pages' ),esc_html__('Facebook Moderation Setup documentation','accelerated-mobile-pages') ),
+                         'title'    => esc_html__('Facebook APP ID', 'accelerated-mobile-pages'),
+                         'default'  => '',
+                         'required' => array(
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                         ),
+                    ),
+                     array(
+                        'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-fb-moderation-admin-id',
+                         'type'     => 'text',
+                         'tooltip-subtitle'     => 
+                         sprintf('%s <a href="https://developers.facebook.com/docs/plugins/comments/#moderation-setup-instructions" target="_blank">%s</a>.',esc_html__( 'To assign a Facebook account to be the admin of a comments plugin implementation, see the','accelerated-mobile-pages' ),esc_html__('Facebook Moderation Setup documentation','accelerated-mobile-pages') ),
+                         'title'    => esc_html__('Facebook Admin User ID', 'accelerated-mobile-pages'),
+                         'default'  => '',
+                         'desc'  => 'You can add multiple ID(S) separated by comma(,) sign',
+                         'required' => array(
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                         ),
+                    ),
+                     array(
+                        'class' => 'child_opt child_opt_arrow', 
                          'id'       => 'ampforwp-number-of-fb-no-of-comments',
                          'type'     => 'text',
                          'tooltip-subtitle'     => 
