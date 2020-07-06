@@ -2288,6 +2288,8 @@ if(true == ampforwp_get_setting('signin-button') && '2' == ampforwp_get_setting(
 if(true == ampforwp_get_setting('amp-rtl-select-option')){?>
 .breadcrumbs li a:after, .breadcrumbs span a:after{
 	content: "\e314";
+	padding-left: 0px;
+	padding-right: 5px;
 }
 <?php }
 if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
