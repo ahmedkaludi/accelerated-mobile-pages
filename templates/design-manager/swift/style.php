@@ -629,7 +629,12 @@ p.nocomments {padding: 10px;color: #fff;}
 .amp-category span:after{content:"/";display:inline-block;margin:0px 5px 0px 5px;position:relative;top:1px;color:rgba(0, 0, 0, 0.25);}
 .amp-category span:last-child:after{display:none;}
 .sp{width:100%;margin-top:20px;display:inline-block;}
-.amp-post-title{font-size:48px;line-height:58px;color: #333;margin:0;padding-top:15px;}
+.amp-post-title{font-size:48px;line-height:58px;color: #333;margin:0;padding-top:15px;
+<?php if ( ampforwp_get_setting('swift_cnt_h2') && ampforwp_get_setting('swift_h2_sz') && ampforwp_get_setting('opt-media','url')=='') { ?>
+	font-size:<?php echo esc_html( ampforwp_get_setting('swift_h2_sz') )?>;<?php }?>
+<?php if ( ampforwp_get_setting('swift_cnt_h1') && ampforwp_get_setting('swift_h1_sz') && ampforwp_get_setting('opt-media','url')!='') { ?>
+	font-size:<?php echo esc_html( ampforwp_get_setting('swift_h1_sz') )?>;
+<?php }?>}
 .sf-img {text-align: center;width: 100%;display: inline-block;height: auto;
 <?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
 	margin-top: 33px;
