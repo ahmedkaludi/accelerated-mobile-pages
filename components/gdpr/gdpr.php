@@ -52,15 +52,15 @@ function amp_gdpr_output(){
 	                </div><?php if(isset($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']) && $redux_builder_amp['amp-gdpr-compliance-select-privacy-page']){?>
 	                <div class="gdpr_fmi">
 	                  <span><?php echo esc_attr($more_info); ?></span>
-	                  <a class="gdpr_fmi pri_page_link" href=<?php echo esc_attr($privacy_page); ?> target="_blank"><?php echo esc_attr($privacy_button_text); ?></a> 
+	                  <a class="gdpr_fmi pri_page_link" href="<?php echo esc_attr($privacy_page); ?>" target="_blank"><?php echo esc_attr($privacy_button_text); ?></a> 
 	                </div><?php } ?>
 	            </div>
               <div id="gdpr_yn" class="gdpr_yn">
               	<div class="gdpr-btns">
-	                <form class="acp" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+	                <form class="acp" action-xhr="<?php echo esc_url($form_url.'&type=accept'); ?>" method="post" target="_top">
 	                  <button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_attr($accept); ?></button>
 	                </form>
-	                <form class="rej" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+	                <form class="rej" action-xhr="<?php echo esc_url($form_url.'&type=reject'); ?>" method="post" target="_top">
 	                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_attr($reject); ?></button>
 	                 </form>
 	             </div>
@@ -79,6 +79,19 @@ if (ampforwp_get_setting('amp-gdpr-compliance-switch') ) {
 		add_filter('amp_post_template_data' , 'ampforwp_gdpr_data', 15);
 		// CSS
 		add_action('amp_post_template_css' , 'ampforwp_gdpr_css');
+	}else{
+		$type = $_COOKIE['ampforwp_gdpr_action'];
+		if($type=="reject"){
+			if(!is_user_logged_in()){
+				$cookies = $_COOKIE;
+				foreach ($cookies as $key => $value) {
+					if($key!='ampforwp_gdpr_action'){
+						setcookie($key, "", time() - 3600, "/");
+					}
+				}
+			}
+		}
+
 	}
 	// Consent Submission
 	add_action('wp_ajax_amp_consent_submission','amp_consent_submission');
@@ -252,7 +265,8 @@ function ampforwp_gdpr_css(){
 
 function amp_consent_submission(){
 	if(wp_verify_nonce( $_REQUEST['verify_nonce'], 'amp_consent' ) ) {
-		setcookie('ampforwp_gdpr_action','true', time() + (86400 * 30), "/");
+		$type = $_REQUEST['type'];
+		setcookie('ampforwp_gdpr_action',$type, time() + (86400 * 30), "/");
        	$current_url = $site_url = $site_host = $amp_site = '';
 		$current_url 	= wp_get_referer();
 		$site_url 		= parse_url( get_site_url() );
@@ -264,5 +278,4 @@ function amp_consent_submission(){
     	echo json_encode(array("status"=>300,"message"=>'Request not valid'));
         die;
     }
-	
 }
