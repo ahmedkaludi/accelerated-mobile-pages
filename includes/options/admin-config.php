@@ -6463,7 +6463,7 @@ $single_page_options = array(
               'default'  =>  '0',
               'title'    => esc_html__('Lightbox for Youtube Video', 'accelerated-mobile-pages'),
               'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
-               esc_html__('Enable this option to show lightbox for Youtube in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-lightbox-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
+               esc_html__('Enable this option to show lightbox for Youtube in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-lightbox-for-youtube-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
 
            ),
            // video-docking 
