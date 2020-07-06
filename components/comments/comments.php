@@ -6,6 +6,7 @@ function ampforwp_framework_get_comments(){
 	global $redux_builder_amp;
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
+	do_action('ampforwp_before_comment_custom_hook'); 
 	if ( $display_comments_on ) {
 		if ( $redux_builder_amp['ampforwp-facebook-comments-support']  ) { 
 		 	echo ampforwp_framework_get_facebook_comments(); 
@@ -20,7 +21,6 @@ function ampforwp_framework_get_comments(){
 		if ( $redux_builder_amp['ampforwp-spotim-comments-support']  )  {
 			 ampforwp_framework_get_spotim_comments();
 		}
-	  
 		if ( isset($redux_builder_amp['wordpress-comments-support']) && true == $redux_builder_amp['wordpress-comments-support'] ) {
 			do_action('ampforwp_before_comment_hook'); ?>
 				<div class="amp-comments">
@@ -132,6 +132,7 @@ function ampforwp_framework_get_comments(){
 			<?php do_action('ampforwp_after_comment_hook');
 		}
 	} // end $display_comments_on
+	do_action('ampforwp_after_comment_custom_hook'); 
 }
 
 //Facebook Comments
