@@ -6825,7 +6825,7 @@ function ampforwp_backtotop( $data ) {
 add_action('ampforwp_below_the_title','ampforwp_jannah_subtitle');
 function ampforwp_jannah_subtitle(){
 	if (function_exists('jannah_theme_name') && function_exists('tie_get_postdata')){?>
-		<h4 class="amp-wp-content"><?php echo esc_html(tie_get_postdata( 'tie_post_sub_title' ))?></h4>
+		<h2 class="amp-wp-content"><?php echo esc_html(tie_get_postdata( 'tie_post_sub_title' ))?></h2>
 	<?php
 	} 
 }
@@ -6887,7 +6887,7 @@ if (class_exists('Subtitles')){
 	$subtitle = "";
 	$subtitle = get_post_meta( $post_id, Subtitles::SUBTITLE_META_KEY, true );
 	?>
-	<h4 class="amp-wp-content"><?php echo esc_html($subtitle) ?></h4>
+	<h2 class="amp-wp-content"><?php echo esc_html($subtitle) ?></h2>
 <?php
 } 
 }
