@@ -398,7 +398,13 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				            }
 				        }
 				    }
-				}				
+				}	
+				if (is_category() && class_exists('WPSEO_Options') && WPSEO_Options::get( 'stripcategorybase' ) == true && false == ampforwp_get_setting('ampforwp-category-base-removel-link')) {
+					return;
+				}
+				if (is_category() && class_exists('RankMath') && RankMath\Helper::get_settings( 'general.strip_category_base' ) == true && false == ampforwp_get_setting('ampforwp-category-base-removel-link')) {
+					return;
+				}			
 				return esc_url_raw($amp_url);
 			}
 		}
