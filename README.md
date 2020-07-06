@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4.2
-Stable tag: 1.0.57
+Stable tag: 1.0.58
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,19 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.58 (7th July 2020) =
+* Improvement: Added before and after comment hooks #4537
+* Fixed: WPRocket CDN is not working properly with the amp pages #4342
+* Fixed: Two galleries not working with Photo gallery plugin #4421
+* Fixed: Arrows not getting aligned in Breadcrumbs in Arabic with Swift theme #4593
+* Fixed: Customize font size not applying in the post title #4592
+* Fixed: Validation errors when adding 2 columns in AMP pagebuilder #4383
+* Fixed: Category pages are not working properly #4579
+* Fixed: Autoptimize is causing validation for logged in users #4586
+* Fixed: Changed gtag type in googleanalytics #4585
+* Fixed: Changed the sub-title tag to h2 with subtitles and jannah theme #4599
+* Fixed: The entire post content appearing in the excerpt #4603
 
 = 1.0.57 (3rd July 2020) =
 * Fixed: Issue with external link with Rank Math #4584
