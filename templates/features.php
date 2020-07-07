@@ -8545,13 +8545,13 @@ if(class_exists('RankMath')){
 function ampforwp_rank_math_external_link_newtab($content){
 	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
 	if($rank_math_external_link){
-		preg_match_all('/<a href="(.*?)"/s', $content, $matches);
-		for($i=0;$i<count($matches[1]);$i++){
-			$url = $matches[1][$i];
+		preg_match_all('/<a(.*?)href="(.*?)"/s', $content, $matches);
+		for($i=0;$i<count($matches[2]);$i++){
+			$url = $matches[2][$i];
 			if(ampforwp_isexternal($url)){
 				$url = esc_url($url);
 				$url = str_replace("/", "\/", $url);
-				$content = preg_replace('/(<a href="'.$url.'.*")/', '$1 target="_blank"', $content);
+				$content = preg_replace('/(<a(.*?)href="'.$url.'.*")/', '$1 target="_blank"', $content);
 			}
 		}
 	}
