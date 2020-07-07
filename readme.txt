@@ -202,6 +202,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Changed gtag type in googleanalytics #4585
 * Fixed: Changed the sub-title tag to h2 with subtitles and jannah theme #4599
 * Fixed: The entire post content appearing in the excerpt #4603
+* Fixed: Updated the condition for amp ninja activation extension #4606
 
 = 1.0.57 (3rd July 2020) =
 * Fixed: Issue with external link with Rank Math #4584
