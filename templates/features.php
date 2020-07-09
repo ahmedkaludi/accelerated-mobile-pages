@@ -398,7 +398,13 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				            }
 				        }
 				    }
-				}				
+				}	
+				if (is_category() && class_exists('WPSEO_Options') && WPSEO_Options::get( 'stripcategorybase' ) == true && false == ampforwp_get_setting('ampforwp-category-base-removel-link')) {
+					return;
+				}
+				if (is_category() && class_exists('RankMath') && RankMath\Helper::get_settings( 'general.strip_category_base' ) == true && false == ampforwp_get_setting('ampforwp-category-base-removel-link')) {
+					return;
+				}			
 				return esc_url_raw($amp_url);
 			}
 		}
@@ -753,7 +759,7 @@ function ampforwp_title_custom_meta() {
           }
           // Posts
 	      if( ampforwp_get_setting('amp-on-off-for-all-posts') && $post_type == 'post' ) {
-	        add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
+	        add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Post?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
 	      }
 	      // Pages
           $frontpage_id = ampforwp_get_the_ID();
@@ -6819,7 +6825,7 @@ function ampforwp_backtotop( $data ) {
 add_action('ampforwp_below_the_title','ampforwp_jannah_subtitle');
 function ampforwp_jannah_subtitle(){
 	if (function_exists('jannah_theme_name') && function_exists('tie_get_postdata')){?>
-		<h4 class="amp-wp-content"><?php echo esc_html(tie_get_postdata( 'tie_post_sub_title' ))?></h4>
+		<h2 class="amp-wp-content"><?php echo esc_html(tie_get_postdata( 'tie_post_sub_title' ))?></h2>
 	<?php
 	} 
 }
@@ -6881,7 +6887,7 @@ if (class_exists('Subtitles')){
 	$subtitle = "";
 	$subtitle = get_post_meta( $post_id, Subtitles::SUBTITLE_META_KEY, true );
 	?>
-	<h4 class="amp-wp-content"><?php echo esc_html($subtitle) ?></h4>
+	<h2 class="amp-wp-content"><?php echo esc_html($subtitle) ?></h2>
 <?php
 } 
 }
@@ -8401,7 +8407,9 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					$m1_content = str_replace($swidth, $width_rep, $m1_content);
 					$m1_content = str_replace($sheight, $height_rep, $m1_content);
 					$m1_content = str_replace($salt, $alt_rep, $m1_content);
-					$m1_content = preg_replace('/srcset="(.*?)"/', '', $m1_content);
+					if(function_exists('rocket_activation')){
+						$m1_content = preg_replace('/srcset="(.*?)"/', '', $m1_content);
+					}
 					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
 					$content = str_replace("$match", $fallback_img, $content);
 				}
@@ -8537,26 +8545,15 @@ if(class_exists('RankMath')){
 function ampforwp_rank_math_external_link_newtab($content){
 	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
 	if($rank_math_external_link){
-		$comp_dom = new DOMDocument();
-		if(function_exists('mb_convert_encoding')){
-		  @$comp_dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'),LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-	    }else{
-	      $content = htmlspecialchars_decode(utf8_decode(htmlentities($content, ENT_COMPAT, 'utf-8', false)));
-	      @$comp_dom->loadHTML($content,LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);	
-	    }
-		$xpath = new DOMXPath( $comp_dom );
-	    $count = 0;
-	    $nodes = $xpath->query('//a[@href]');
-	    foreach ($nodes as $node) {
-	    	$url = $node->getAttribute('href');
-	    	$is_external = ampforwp_isexternal($url);
-			if($is_external){
-				if(!$node->hasAttribute('target')){
-					$node->setAttribute('target','_blank');
-				}
+		preg_match_all('/<a(.*?)href="(.*?)"/s', $content, $matches);
+		for($i=0;$i<count($matches[2]);$i++){
+			$url = $matches[2][$i];
+			if(ampforwp_isexternal($url)){
+				$url = esc_url($url);
+				$url = str_replace("/", "\/", $url);
+				$content = preg_replace('/<a(.*?)href="'.$url.'"(.*?)<\/a>/', '<a$1 target="_blank" href="'.stripcslashes($url).'"$2</a>', $content);
 			}
-	    }
-		$content =  $comp_dom->saveHTML();
+		}
 	}
 	return $content;
 }	

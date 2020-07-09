@@ -75,7 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	            'false'     => 'Disabled',
 	        );
 	    include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
-	    if(!is_plugin_active( 'amp-gravity-forms/amp-ninja-forms.php' ) ){
+	    if(!function_exists('ampforwp_ninja_initiate_plugin') ){
 	        $forms_support[]= array(
 	                        'id'   => 'info_normal_2',
 	                        'type' => 'info',

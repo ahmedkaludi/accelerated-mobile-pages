@@ -629,7 +629,12 @@ p.nocomments {padding: 10px;color: #fff;}
 .amp-category span:after{content:"/";display:inline-block;margin:0px 5px 0px 5px;position:relative;top:1px;color:rgba(0, 0, 0, 0.25);}
 .amp-category span:last-child:after{display:none;}
 .sp{width:100%;margin-top:20px;display:inline-block;}
-.amp-post-title{font-size:48px;line-height:58px;color: #333;margin:0;padding-top:15px;}
+.amp-post-title{font-size:48px;line-height:58px;color: #333;margin:0;padding-top:15px;
+<?php if ( ampforwp_get_setting('swift_cnt_h2') && ampforwp_get_setting('swift_h2_sz') && ampforwp_get_setting('opt-media','url')=='') { ?>
+	font-size:<?php echo esc_html( ampforwp_get_setting('swift_h2_sz') )?>;<?php }?>
+<?php if ( ampforwp_get_setting('swift_cnt_h1') && ampforwp_get_setting('swift_h1_sz') && ampforwp_get_setting('opt-media','url')!='') { ?>
+	font-size:<?php echo esc_html( ampforwp_get_setting('swift_h1_sz') )?>;
+<?php }?>}
 .sf-img {text-align: center;width: 100%;display: inline-block;height: auto;
 <?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
 	margin-top: 33px;
@@ -1750,6 +1755,7 @@ font-family:"Font Awesome 5 Brands";
 <?php }
 if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 	content:"\f099";
+	color:#fff;
 <?php } ?>
 }
 <?php } 
@@ -2288,6 +2294,8 @@ if(true == ampforwp_get_setting('signin-button') && '2' == ampforwp_get_setting(
 if(true == ampforwp_get_setting('amp-rtl-select-option')){?>
 .breadcrumbs li a:after, .breadcrumbs span a:after{
 	content: "\e314";
+	padding-left: 0px;
+	padding-right: 5px;
 }
 <?php }
 if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
@@ -2480,3 +2488,10 @@ if(ampforwp_get_setting('header-position-type') == '2'){?>
 }
 }
 <?php }
+if(ampforwp_get_setting('amp-sticky-header') == '1'){?>
+@supports (-webkit-touch-callout: none) {
+	.header .tg + .hamb-mnu, .header .tg:checked + .hamb-mnu {
+	    position: initial;
+	}
+}
+<?php } ?>
