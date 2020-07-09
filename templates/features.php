@@ -8551,7 +8551,7 @@ function ampforwp_rank_math_external_link_newtab($content){
 			if(ampforwp_isexternal($url)){
 				$url = esc_url($url);
 				$url = str_replace("/", "\/", $url);
-				$content = preg_replace('/(<a(.*?)href="'.$url.'.*")/', '$1 target="_blank"', $content);
+				$content = preg_replace('/<a(.*?)href="'.$url.'"(.*?)<\/a>/', '<a$1 target="_blank" href="'.stripcslashes($url).'"$2</a>', $content);
 			}
 		}
 	}
