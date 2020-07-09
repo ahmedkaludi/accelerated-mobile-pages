@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.58.1 (9th July 2020) =
+* Fixed: Validation error of target attribute appearing in span tag #4620
+* Fixed: Menu is hidden behind the content in iOS devices #4601
+
 = 1.0.58 (7th July 2020) =
 * Improvement: Added before and after comment hooks #4537
 * Fixed: WPRocket CDN is not working properly with the amp pages #4342

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4.2
-Stable tag: 1.0.58
+Stable tag: 1.0.58.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.58.1 (9th July 2020) =
+* Fixed: Validation error of target attribute appearing in span tag #4620
+* Fixed: Menu is hidden behind the content in iOS devices #4601
+
 = 1.0.58 (7th July 2020) =
 * Improvement: Added before and after comment hooks #4537
 * Fixed: WPRocket CDN is not working properly with the amp pages #4342
@@ -207,42 +211,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 1.0.57 (3rd July 2020) =
 * Fixed: Issue with external link with Rank Math #4584
 * Fixed: Incorrect yoast title with TagDiv's themes #4595
-
-= 1.0.56 (1st July 2020) =
-* Fixed: When gdpr option is enabled the site is becoming unclickable in browser Safari on IOS and MacOS #4542
-
-= 1.0.55 (30th June 2020) =
-* Improvement: Added option to change the Google theme color #4514
-* Improvement: Added TravelTour Theme compatibility #4540
-* Fixed: Whitelisted <details> and <summary> tags in AMP #4577
-* Fixed: amp-embed doesn't include the amp-ad script #4580
-* Fixed: Lightbox for images not working in specific scenario #4570
-* Fixed: Fatal error on one of the urls. #4438
-* Fixed: First priority added to load amp markup when marfeelpress and amp is active #4560
-* Fixed: Retina image breaking the layout for Design 2 in homepage #4558
-* Fixed: The duplicate text showing after the anchor link #4584
-* Fixed: Debug warning #4508
-
-= 1.0.54.1 (26th June 2020) =
-* Fixed: The duplicate text showing after the anchor link #4584
-
-= 1.0.54 (25th June 2020) =
-* Fixed: Odnoklassniki sharing not working properly #4525
-* Fixed: Post title is not appearing when a post is shared through Whatsapp #4513
-* Fixed: Even after activating amp page builder compatibility we are getting this message this feature requires Page Builder For AMP extension. #4530
-* Fixed: RedGIFs embeds break site #4422
-* Fixed: Show notice when user is enabling option "sort related item randomly". #4535
-* Fixed: The mandatory tag 'link rel=canonical' is missing or incorrect due to Yoast SEO premium plugin #4569
-* Fixed: AMP homepage has a wrong canonical link. #4564
-* Fixed: Yoast not working in rare scenario #4562
-* Fixed: Meta title not pulled from YOAST in version 1.0.53.2 #4574
-* Fixed: yoast breadcrumb links not redirecting to amp pages. #4566
-* Fixed: Need to make comatibility with the wordpress embed block in guntenburg editor #4506
-* Fixed: Custom Javascript added with orbital theme and it is showing a validation error on the AMP Pages #4539
-* Fixed: robots.txt file is not generating when AMP takeover beta option is enabled. #4541
-* Fixed: Need to add compatibility of the "Brightcove Video Connect" plugin. #4517
-* Fixed: Debug Warning #4568
-* Fixed: Comments are not displaying on Homepage (only in swift theme) #4571
-* Fixed: The button CSS not appearing in the AMP added with the Gutenberg button module #4572
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
