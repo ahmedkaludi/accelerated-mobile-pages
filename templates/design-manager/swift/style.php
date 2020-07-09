@@ -2488,3 +2488,10 @@ if(ampforwp_get_setting('header-position-type') == '2'){?>
 }
 }
 <?php }
+if(ampforwp_get_setting('amp-sticky-header') == '1'){?>
+@supports (-webkit-touch-callout: none) {
+	.header .tg + .hamb-mnu, .header .tg:checked + .hamb-mnu {
+	    position: initial;
+	}
+}
+<?php } ?>
