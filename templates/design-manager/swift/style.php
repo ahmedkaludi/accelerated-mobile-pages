@@ -2494,4 +2494,10 @@ if(ampforwp_get_setting('amp-sticky-header') == '1'){?>
 	    position: initial;
 	}
 }
+<?php } 
+if(ampforwp_get_setting('amp-sticky-header') == '1' && ampforwp_get_setting('header-position-type') == '2'){?>
+	.tg + .hamb-mnu, .tg:checked + .hamb-mnu {
+ 		overflow: initial;
+    	position: initial;
+    }
 <?php } ?>
