@@ -8537,26 +8537,15 @@ if(class_exists('RankMath')){
 function ampforwp_rank_math_external_link_newtab($content){
 	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
 	if($rank_math_external_link){
-		$comp_dom = new DOMDocument();
-		if(function_exists('mb_convert_encoding')){
-		  @$comp_dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'),LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-	    }else{
-	      $content = htmlspecialchars_decode(utf8_decode(htmlentities($content, ENT_COMPAT, 'utf-8', false)));
-	      @$comp_dom->loadHTML($content,LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);	
-	    }
-		$xpath = new DOMXPath( $comp_dom );
-	    $count = 0;
-	    $nodes = $xpath->query('//a[@href]');
-	    foreach ($nodes as $node) {
-	    	$url = $node->getAttribute('href');
-	    	$is_external = ampforwp_isexternal($url);
-			if($is_external){
-				if(!$node->hasAttribute('target')){
-					$node->setAttribute('target','_blank');
-				}
+		preg_match_all('/<a(.*?)href="(.*?)"/s', $content, $matches);
+		for($i=0;$i<count($matches[2]);$i++){
+			$url = $matches[2][$i];
+			if(ampforwp_isexternal($url)){
+				$url = esc_url($url);
+				$url = str_replace("/", "\/", $url);
+				$content = preg_replace('/<a(.*?)href="'.$url.'"(.*?)<\/a>/', '<a$1target="_blank"href="'.stripcslashes($url).'"$2</a>', $content);
 			}
-	    }
-		$content =  $comp_dom->saveHTML();
+		}
 	}
 	return $content;
 }	
