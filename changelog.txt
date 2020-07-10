@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.58.3 (9th July 2020) =
+* Fixed: Class 'AMPforWP\AMPVendor\WP_Error' not found error in the latest update of Jetpack #4624
+
 = 1.0.58.2 (9th July 2020) =
 * Fixed: Category pages are not working properly #4579
 
