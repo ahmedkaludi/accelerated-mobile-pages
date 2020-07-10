@@ -438,12 +438,12 @@ function ampforwp_sd_sitenavigation(){
 		           		}   
 		            }
 		            if ( 'amp-menu' == $type ) {
-		            	set_transient('ampforwp_header_sd_menu', true , 24*HOUR_IN_SECONDS );
+		            	set_transient('ampforwp_header_sd_menu', true , 15*DAY_IN_SECONDS );
 		            }
 		            if ( 'amp-footer-menu' == $type ) {
-		            	set_transient('ampforwp_footer_sd_menu', true , 24*HOUR_IN_SECONDS );
+		            	set_transient('ampforwp_footer_sd_menu', true , 15*DAY_IN_SECONDS );
 		            }
-	            	set_transient('ampforwp_sd_menu', $navObj , 24*HOUR_IN_SECONDS );
+	            	set_transient('ampforwp_sd_menu', $navObj , 15*DAY_IN_SECONDS );
 		        }
 		    }
 	        if($navObj){  
