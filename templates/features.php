@@ -7461,36 +7461,18 @@ function ampforwp_photo_gallery_embed($data) {
 	}
 	return $data;
 }
-function ampforwp_rel_attributes_social_links(){
-	if(true == ampforwp_get_setting('ampforwp-social-no-follow') && true == ampforwp_get_setting('ampforwp-social-no-referrer') && true == ampforwp_get_setting('ampforwp-social-no-opener')){
-		echo 'rel="nofollow noreferrer noopener"';
-		return;
-	}
-	if(true == ampforwp_get_setting('ampforwp-social-no-follow') && true == ampforwp_get_setting('ampforwp-social-no-referrer') ){
-		echo 'rel="nofollow noreferrer"';
-		return;
-	}
-	if(true == ampforwp_get_setting('ampforwp-social-no-follow') && true == ampforwp_get_setting('ampforwp-social-no-opener') ){
-		echo 'rel="nofollow noopener"';
-		return;
-	}
-	if(true == ampforwp_get_setting('ampforwp-social-no-referrer') && true == ampforwp_get_setting('ampforwp-social-no-opener') ){
-		echo 'rel="noreferrer noopener"';
-		return;
-	}
-	if(true == ampforwp_get_setting('ampforwp-social-no-follow')){
-		echo 'rel=nofollow';
-		return;
-	}
-	if(true == ampforwp_get_setting('ampforwp-social-no-referrer')){
-		echo 'rel=noreferrer';
-		return;
-	}
-	if(true == ampforwp_get_setting('ampforwp-social-no-opener')){
-		echo 'rel=noopener';
-		return;
-	}
-	return false;
+function ampforwp_rel_attributes_social_links(){ 
+	$rel_attributes = array(); 
+    if (true == ampforwp_get_setting('ampforwp-social-no-follow')) {
+      $rel_attributes[] = 'nofollow';
+    }
+    if (true == ampforwp_get_setting('ampforwp-social-no-referrer')) {
+      $rel_attributes[] = 'noreferrer';
+    }
+    if (true == ampforwp_get_setting('ampforwp-social-no-opener')) {
+      $rel_attributes[] = 'noopener';
+    }
+    echo 'rel="' . implode(" ",$rel_attributes).'"';
 }
 // Featured Video SmartMag theme Compatibility CSS #2559
 add_action('amp_post_template_css', 'ampforwp_featured_video_plus_css');
