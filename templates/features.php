@@ -8806,7 +8806,7 @@ function ampforwp_gdlr_core_page_builder_content($content){
 
 add_filter('wpseo_robots', 'ampforwp_yoast_home_robots');
 function ampforwp_yoast_home_robots($string) {
-    if (ampforwp_is_home() || ampforwp_is_front_page() && '1' == WPSEO_Meta::get_value( 'meta-robots-noindex', get_option( 'page_for_posts' )) && '0' == WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID())) {
+    if (ampforwp_is_home() || ampforwp_is_front_page() && method_exists('WPSEO_Meta', 'get_value') && '1' == WPSEO_Meta::get_value( 'meta-robots-noindex', get_option( 'page_for_posts' )) && '0' == WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID())) {
         $string= "index";
     }
     return $string;
