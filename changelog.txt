@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.58.4 (13th July 2020) =
+* Fixed: Website getting blank after 1.0.58 update
+
 = 1.0.58.3 (9th July 2020) =
 * Fixed: Class 'AMPforWP\AMPVendor\WP_Error' not found error in the latest update of Jetpack #4624
 

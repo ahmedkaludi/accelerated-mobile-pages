@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4.2
-Stable tag: 1.0.58.3
+Stable tag: 1.0.58.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.58.4 (13th July 2020) =
+* Fixed: Website getting blank after 1.0.58 update
 
 = 1.0.58.3 (9th July 2020) =
 * Fixed: Class 'AMPforWP\AMPVendor\WP_Error' not found error in the latest update of Jetpack #4624
