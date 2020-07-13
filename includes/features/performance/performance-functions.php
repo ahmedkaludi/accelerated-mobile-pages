@@ -26,8 +26,7 @@ function ampforwp_minify_html_output($content_buffer){
     if(class_exists('Cli_Optimizer') && preg_match('/<style type="text\/css">@font-face(.*?)<\/style>/s', $content_buffer)!=0){
         $content_buffer = preg_replace('/<style type="text\/css">@font-face(.*?)<\/style>/s', '', $content_buffer);
     }
-    $content_buffer = preg_replace('/percentage="(.*?)"/', '', $content_buffer);
-    $content_buffer = preg_replace('/<div(.*?)target="(.*?)"(.*?)>(.*?)<\/div>/', '<div$1$3>$4</div>', $content_buffer);
+    
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
