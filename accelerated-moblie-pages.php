@@ -1489,3 +1489,10 @@ if(!function_exists('ampforwp_delete_transient_on_update')){
 		}
 	}
 }
+function ampforwp_is_amp_inURL($url){
+    $urlArray = explode("/", $url);
+    if( !in_array( AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
+        return false;
+    }
+    return true;
+}
