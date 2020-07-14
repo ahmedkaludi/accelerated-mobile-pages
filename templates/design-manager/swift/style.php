@@ -624,7 +624,6 @@ if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
 .ss-ic li:before{border-radius: 2px;text-align:center;padding: 4px 6px;}
 .sgl table {width: 100%;margin-bottom:25px;border: 1px solid #ddd;}
 .sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
-.sgl tr:nth-child(odd) td {background: #f7f7f7;}
 <?php // Social Sharing Conditional CSS
 if($redux_builder_amp['swift-social-position'] == 'above-content'){?>
 .shr-txt{display:none;}
