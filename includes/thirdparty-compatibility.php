@@ -1180,3 +1180,10 @@ function ampforwp_execute_amp_prior_marfeel(){
 		}
     }
 }
+function ampforwp_is_amp_inURL($url){
+    $urlArray = explode("/", $url);
+    if( !in_array( AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
+        return false;
+    }
+    return true;
+}

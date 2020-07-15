@@ -569,14 +569,6 @@ if(!function_exists('ampforwp_findInternalUrl')){
     }
 } // end ampforwp_findInternalUrl
 
-function ampforwp_is_amp_inURL($url){
-    $urlArray = explode("/", $url);
-    if( !in_array( AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
-        return false;
-    }
-    return true;
-}
-
 /* AMPforWP allowed html tags #1950
  * ampforwp_wp_kses_allowed_html()
  * This fucntion can be heavy for sanitizing items.
