@@ -2477,7 +2477,6 @@ a.bread-link.bread-home::after {
     height: -17px;
     margin: 7px;
 }
-}
 <?php }
 if(true == ampforwp_get_setting('ampforwp-cats-single-primary')){?>
 .amp-category span , .amp-category span:after{
