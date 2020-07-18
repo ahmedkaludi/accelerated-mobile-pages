@@ -1,5 +1,17 @@
 == Changelog ==
 
+= 1.0.59 (20th July 2020) =
+* Improvement: Added noreferrer noopener attributes on social links #4509
+* Improvement: Added a filter to turn off the Aqua_resizer for some reason #4641
+* Fixed: noindex issue on homepage using Yoast #4609
+* Fixed: Pagination not working in AMP with Magplus theme #4611
+* Fixed: If category name has special characters then it breaks the Pagebuilder #4610
+* Fixed: Letter-spacing issue in Swift Theme if RTL is enabled #4598
+* Fixed: URL with square brackets [ ] causing issue in AMP #4635
+* Fixed: Vaiidation error when css icons and sticky header is selected #4640
+* Fixed: Extension manager is active and if no extensions are active then it shows upgrade to pro
+* Fixed: Debug warnings #4626 #4639
+
 = 1.0.58.5 (15th July 2020) =
 * Fixed: Duplicate title tag on non-amp #4631
 * Fixed: Database deadlocks error #4618
