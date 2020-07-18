@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.58.5 (15th July 2020) =
+* Fixed: Duplicate title tag on non-amp #4631
+* Fixed: Database deadlocks error #4618
+
 = 1.0.58.4 (13th July 2020) =
 * Fixed: Website getting blank after 1.0.58 update
 
