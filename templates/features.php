@@ -8151,9 +8151,11 @@ function ampforwp_include_required_scripts($content){
 						$is_script = false;
 					}
 					if($is_script==false){
-						$headers = get_headers($comp_url);
-						if(isset($headers[0])){
-							$is_script = stripos($headers[0], "200 OK") ? TRUE : FALSE;
+						if ( ini_get( 'allow_url_fopen' ) ) {
+							$headers = get_headers($comp_url);
+							if(isset($headers[0])){
+								$is_script = stripos($headers[0], "200 OK") ? TRUE : FALSE;
+							}
 						}
 					}
 					if($is_script){
