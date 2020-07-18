@@ -843,6 +843,9 @@ function ampforwp_check_extensions(){
 			}
 		}
 	}	
+    if(class_exists('AMPExtensionManager')){
+        return true;
+    }   
 	return false;
 }
 
@@ -1351,6 +1354,20 @@ $eu_iso_codes = array(
 
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
+$amppro_settings_url = admin_url('admin.php?page=amp_options&tabid=opt-go-premium');
+$amppro_enter_keyurl = admin_url('admin.php?tabid=opt-go-premium&page=amp_options');
+// AMP Pro Extension Manager plugin activation & license key check #4613
+if(class_exists('AMPExtensionManager')){
+    $ampforwp_is_productActivated = true;
+    $ampforwppro_license_info   = get_option('ampforwppro_license_info');
+    if(empty($ampforwppro_license_info) || !isset($ampforwppro_license_info->license)){
+        $amppro_enter_keyurl  = admin_url('admin.php?page=amp-extension-manager');
+    }
+    if(isset($ampforwppro_license_info->license) && $ampforwppro_license_info->license == "valid"){
+          $ampforwp_nameOfUser = isset($ampforwppro_license_info->customer_name)?$ampforwppro_license_info->customer_name:'';
+        $amppro_settings_url = admin_url('admin.php?page=amp-extension-manager');
+    }
+}
 $upg_to_pro_url = '#';
 $upg_to_pro_target = '';
 if(get_theme_support('amp-template-mode')){
@@ -1359,9 +1376,9 @@ if(get_theme_support('amp-template-mode')){
 }
 $proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Upgrade to PRO</a> ';
 if($ampforwp_nameOfUser!=""){
-    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url(admin_url('admin.php?page=amp_options&tabid=opt-go-premium'))."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
+    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url($amppro_settings_url)."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
-    $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".esc_url(admin_url('admin.php?tabid=opt-go-premium&page=amp_options'))."'>Enter license here</a></span>";
+    $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".esc_url($amppro_enter_keyurl)."'>Enter license here</a></span>";
 }
 if(function_exists('amp_activate') ){
     $proDetailsProvide = "<a class='premium_features_btn_txt' href=\"#\"> AMP by Automattic compatibility has been activated</a>";
