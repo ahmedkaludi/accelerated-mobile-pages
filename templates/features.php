@@ -2155,7 +2155,12 @@ function ampforwp_lazy_loading_plugins_compatibility() {
     // Disable HTTP protocol removing on script, link, img, srcset and form tags.
     remove_filter( 'rocket_buffer', '__rocket_protocol_rewrite', PHP_INT_MAX );
     remove_filter( 'wp_calculate_image_srcset', '__rocket_protocol_rewrite_srcset', PHP_INT_MAX );
-
+	if(function_exists('magplus_after_setup')){
+    	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+		if( function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
+    		remove_action( 'template_redirect', 'magplus_pagination_redirect' );
+    	}
+    }
     //Lazy Load XT
 	global $lazyloadxt;
 	remove_filter( 'the_content', array( $lazyloadxt, 'filter_html' ) );
