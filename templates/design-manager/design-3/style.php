@@ -648,6 +648,7 @@ amp-carousel{direction: ltr;}
 @media(max-width:768px){
 .amp-wp-content.widget-wrapper{margin: 15px;}
 }
+amp-sidebar .navigation_heading{letter-spacing: 0px;}
 <?php } ?>
 
 a {  color: <?php echo ampforwp_get_setting('amp-opt-color-rgba-colorscheme','color','ampforwp_sanitize_color'); ?> }
