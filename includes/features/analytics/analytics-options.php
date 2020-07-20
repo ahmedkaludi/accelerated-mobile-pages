@@ -49,7 +49,7 @@ function ampforwp_analytics_options($opt_name){
                 array(
                       'id' => 'ampforwp-analytics_1',
                       'type' => 'section',
-                      'title' => esc_html__('Primary Analytic Providers', 'accelerated-mobile-pages'),
+                      'title' => esc_html__('Primary Analytics Provider', 'accelerated-mobile-pages'),
                       'indent' => true,
                       'layout_type' => 'accordion',
                         'accordion-open'=> 1, 
@@ -105,7 +105,7 @@ function ampforwp_analytics_options($opt_name){
                           'class' => 'child_opt',
                           'id'       => 'ampforwp-ga-field-advance-switch',
                           'type'     => 'switch',
-                          'title'    => esc_html__( 'Advanced Google Analytics', 'accelerated-mobile-pages' ),
+                          'title'    => esc_html__( 'Customize Configuration', 'accelerated-mobile-pages' ),
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-ga-switch', '=' , '1')
