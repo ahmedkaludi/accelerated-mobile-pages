@@ -5538,8 +5538,8 @@ function ampforwp_default_logo_data() {
 		return false;
 	}
 
-	if( ! wp_attachment_is( 'image', $logo_id ) ) {
-		$logo_url = $redux_builder_amp['opt-media']['url'];
+	if( ! wp_attachment_is( 'image', $logo_id ) || ampforwp_get_setting('opt-media','url') ) {
+		$logo_url = ampforwp_get_setting('opt-media','url');
 		$image = @getimagesize( $logo_url );
 	} else {
 		$imageDetail = wp_get_attachment_image_src( $logo_id , 'full');
