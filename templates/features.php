@@ -7073,7 +7073,36 @@ if ( ! function_exists('ampforwp_rank_math') ) {
 		if ( ! ampforwp_get_setting( 'ampforwp-seo-rank_math-schema' ) ) {
 			remove_all_actions( 'rank_math/json_ld' );
 		}
-
+		if(true == ampforwp_get_setting('ampforwp-amp-takeover')){
+			$google = RankMath\Helper::get_settings( 'general.google_verify' );
+			$bing = RankMath\Helper::get_settings( 'general.bing_verify' );
+			$baidu = RankMath\Helper::get_settings( 'general.baidu_verify' );
+			$alexa = RankMath\Helper::get_settings( 'general.alexa_verify' );
+			$yandex = RankMath\Helper::get_settings( 'general.yandex_verify' );
+			$pinterest = RankMath\Helper::get_settings( 'general.pinterest_verify' );
+			$norton = RankMath\Helper::get_settings( 'general.norton_verify' );
+			if(!empty($google)){?>
+				<meta name="google-site-verification" content='<?php echo esc_html($google) ?>'/>
+			<?php }
+			if(!empty($bing)){?>
+				<meta name="msvalidate.01" content='<?php echo esc_html($bing) ?>'/>
+			<?php }
+			if(!empty($baidu)){?>
+				<meta name="baidu-site-verification" content='<?php echo esc_html($baidu) ?>'/>
+			<?php }
+			if(!empty($alexa)){?>
+				<meta name="alexaVerifyID" content='<?php echo esc_html($alexa) ?>'/>
+			<?php }
+			if(!empty($yandex)){?>
+				<meta name="yandex-verification" content='<?php echo esc_html($yandex) ?>'/>
+			<?php }
+			if(!empty($pinterest)){?>
+				<meta name="p:domain_verify" content='<?php echo esc_html($pinterest) ?>'/>
+			<?php }
+			if(!empty($norton)){?>
+				<meta name="norton-safeweb-site-verification" content='<?php echo esc_html($norton) ?>'/>
+			<?php }
+		}	
 		do_action( 'rank_math/head' );
 	}
 }
