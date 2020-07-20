@@ -7820,6 +7820,9 @@ function ampforwp_head_css(){
 			        'title'      => "SEO"
 			) );
 			$wp_admin_bar->remove_menu( 'ampforwp-view-amp' );
+			if(function_exists('autoptimize_autoload')){
+				$wp_admin_bar->remove_menu( 'autoptimize' );
+			}
 			$url = ampforwp_get_non_amp_url();
 			$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-non-amp',
