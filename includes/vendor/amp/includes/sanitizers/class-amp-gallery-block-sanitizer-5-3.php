@@ -111,6 +111,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 			if ( ! $is_amp_carousel ) {
 				continue;
 			}
+			
 			$images = [];
 			// If not linking to anything then look for <amp-img>.
 			if ( empty( $images ) ) {
@@ -139,26 +140,16 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 				$url = $element->getAttribute('src');
 				$width = $element->getAttribute('width');
 				$height = $element->getAttribute('height');
-				$attachment_id = attachment_url_to_postid($url);
-				if($attachment_id==0){
-					$img_name = explode('/',$url);
-					$img_name = end($img_name);
-					$img_croped = explode('-',$img_name);
-					$img_croped = end($img_croped);
-					$filetype = wp_check_filetype($img_croped);
-					$img_ext = $filetype['ext'];
-					$new_img_url = str_replace("-$img_croped",".$img_ext",$url);
-					$attachment_id = attachment_url_to_postid($new_img_url);
-				}
+
 				if ( empty( $images ) ) {
 					$images[] = $element;
 				}
-				$urls[] = apply_filters('amp_gallery_image_params', array(
+				$urls[] = array(
 					'url' => $url,
 					'width' => $width,
 					'height' => $height,
 					'caption' => $possible_caption_text
-				),$attachment_id);
+				);
 			}
 			if ( empty( $images ) ) {
 				continue;
