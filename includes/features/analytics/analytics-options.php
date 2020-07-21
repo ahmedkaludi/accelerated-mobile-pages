@@ -224,7 +224,10 @@ function ampforwp_analytics_options($opt_name){
                         'title' => esc_html__('Google Analytics Conversion Goals', 'accelerated-mobile-pages'),
                         'indent' => true,
                         'layout_type' => 'accordion',
-                          'accordion-open'=> 1, 
+                          'accordion-open'=> 1,
+                           'required' => array(
+                          array('amp-use-gtm-option', '=' , '0'),
+                        ) 
                         ),
 
                     array(
@@ -242,7 +245,7 @@ function ampforwp_analytics_options($opt_name){
                           'required' => array(
                               array('ampforwp-analytics-conversion-goals-switch', '=' , true),  
                               ),
-                           'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="#" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="#" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Conversion Goals Tracking for AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+                           'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/addons/conversion-goals-tracking-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/addons/conversion-goals-tracking-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Conversion Goals Tracking for AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
                            ),
 
                 array(
