@@ -7073,7 +7073,7 @@ if ( ! function_exists('ampforwp_rank_math') ) {
 		if ( ! ampforwp_get_setting( 'ampforwp-seo-rank_math-schema' ) ) {
 			remove_all_actions( 'rank_math/json_ld' );
 		}
-		if(true == ampforwp_get_setting('ampforwp-amp-takeover')){
+		if(class_exists('RankMath') && true == ampforwp_get_setting('ampforwp-amp-takeover') && ( ampforwp_is_home() || ampforwp_is_front_page())){
 			$google = RankMath\Helper::get_settings( 'general.google_verify' );
 			$bing = RankMath\Helper::get_settings( 'general.bing_verify' );
 			$baidu = RankMath\Helper::get_settings( 'general.baidu_verify' );
