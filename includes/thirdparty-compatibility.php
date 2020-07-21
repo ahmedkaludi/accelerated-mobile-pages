@@ -65,6 +65,9 @@ function ampforwp_thirdparty_compatibility(){
 	if(class_exists('gdlr_core_page_builder')){
 		add_filter('the_content','ampforwp_gdlr_core_page_builder_content',12);
 	}
+	if(function_exists('vicomi_feelbacks_template')){
+		remove_action('the_content', 'vicomi_feelbacks_template');
+	}
 }
 function ampforwp_removing_sassy_social_share(){	
 	return 1;
