@@ -156,6 +156,7 @@ global $redux_builder_amp; ?>
 					      } ?>
 	      				</ul>
 	      			</div>
+	      			<?php do_action('ampforwp_below_related_post'); ?>
 		            <?php wp_reset_postdata(); } ?>
 				</div>
 				<?php } ?>
@@ -207,6 +208,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 			      } ?>
 				</ul>
 			</div>
+			<?php do_action('ampforwp_below_related_post'); ?>
 		</div>
     <?php wp_reset_postdata(); }  } ?>
 <?php if( ampforwp_get_setting('single-design-type') == '1' && ampforwp_get_setting('rp_design_type') == '3'){
@@ -255,6 +257,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 				</amp-carousel>
 			</div>
 		</div>
+		<?php do_action('ampforwp_below_related_post'); ?>
 	<?php wp_reset_postdata(); }  } ?>	
 <?php if(ampforwp_get_setting('single-design-type') == true && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 	<div class="r-pf">
