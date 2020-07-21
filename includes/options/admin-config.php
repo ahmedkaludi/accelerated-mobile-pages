@@ -234,6 +234,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('pinterest-for-amp/pinterest-for-amp.php')? 1: 2),
                         ),
                         array(
+                            'name'=>'Conversion Goals Tracking for AMP',
+                             'class'=>'new-ext',
+                            'desc'=>'Conversion & Goals Tracking in Google Analytics is made easy in AMP.',
+                           'img_src'=>AMPFORWP_IMAGE_DIR . '/conversion_goal_tracking.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/conversion-goals-tracking-for-amp//#utm_source=options-panel&utm_medium=extension-tab_conversion_goals_tracking_for_amp&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'conversion-goals-tracking-for-amp/conversion-goals-tracking-for-amp.php',
+                            'item_name'=>'Conversion Goals Tracking for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('conversion-goals-tracking-for-amp/conversion-goals-tracking-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'WP Forms for AMP',
                             'desc'=>'Add WP Forms Support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/wpf.png',
