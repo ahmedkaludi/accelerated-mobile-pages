@@ -23,7 +23,7 @@ function ampforwp_analytics() {
 								'groups'=>'default',
 						)
 					);
-		$ga_fields['vars']['triggers'] = array(
+		$ga_fields['triggers'] = array(
 						'trackPageview'=> array(
 								'on'=>'visible',
 								'request'=>'pageview'			
