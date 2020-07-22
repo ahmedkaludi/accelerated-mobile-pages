@@ -5542,7 +5542,7 @@ function ampforwp_default_logo_data() {
 		$logo_url = ampforwp_get_setting('opt-media','url');
 		$image[0] = ampforwp_get_setting('opt-media','width');
 		$image[1] = ampforwp_get_setting('opt-media','height');
-		if(empty($image[0]) || empty($image[0]) ){
+		if(empty($image)){
 			$image = @getimagesize( $logo_url );
 		}
 	} else {
