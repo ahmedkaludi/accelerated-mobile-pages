@@ -7383,17 +7383,28 @@ function ampforwp_photo_gallery_embed($data) {
 }
 function ampforwp_rel_attributes_social_links(){ 
 	$rel_attributes = array(); 
-    if (true == ampforwp_get_setting('ampforwp-social-no-follow')) {
-      $rel_attributes[] = 'nofollow';
-    }
-    if (true == ampforwp_get_setting('ampforwp-social-no-referrer')) {
-      $rel_attributes[] = 'noreferrer';
-    }
-    if (true == ampforwp_get_setting('ampforwp-social-no-opener')) {
-      $rel_attributes[] = 'noopener';
-    }
-    echo 'rel="' . implode(" ",$rel_attributes).'"';
+	if (true == ampforwp_get_setting('ampforwp-social-no-follow')) {
+    	$rel_attributes[] = 'nofollow';
+	}
+	if (true == ampforwp_get_setting('ampforwp-social-no-referrer')) {
+    	$rel_attributes[] = 'noreferrer';
+	}
+	if (true == ampforwp_get_setting('ampforwp-social-no-opener')) {
+    	$rel_attributes[] = 'noopener';
+	}
+	$rel_attributes = apply_filters('ampforwp_rel_attributes_social_links', $rel_attributes);
+	$rel_attributes = array_map('esc_attr', $rel_attributes);
+	if ( $rel_attributes ) {
+		echo 'rel="' . implode(" ",$rel_attributes).'"';
+	}
+	return;
 }
+// Fallback added
+function ampforwp_nofollow_social_links(){
+	ampforwp_rel_attributes_social_links();
+	return ;
+}
+
 function ampforwp_nofollow_notification(){
 	if(true == ampforwp_get_setting('ampforwp-notifications-nofollow')){
 		echo 'rel=nofollow';
