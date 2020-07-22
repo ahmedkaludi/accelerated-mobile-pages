@@ -190,20 +190,20 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.59 (22th July 2020) =
+= 1.0.59 (23rd July 2020) =
 * Improvement: Added noreferrer noopener attributes on social links #4509
 * Improvement: Added webmaster tools meta tags when AMP takeover is enabled #4602
-* Improvement: Added Conversion Goals Tracking for AMP Extension #4647 #4549
-* Improvement: Added a filter to turn off the Aqua_resizer for some reason #4641
-* Improvement: Added a filter to add fields in Google Analytics #4646
+* Improvement: Added Conversion Goals Tracking for AMP Extension #4647 #4655
+* Improvement: Added a filter to turn on/off the Aqua_resizer #4641
+* Improvement: Added a filter to add/remove fields in Google Analytics #4646
 * Fixed: noindex issue on homepage using Yoast #4609
 * Fixed: Pagination not working in AMP with Magplus theme #4611
-* Fixed: If category name has special characters then it breaks the Pagebuilder #4610
+* Fixed: If category name has special characters AMP Pagebuilder was not working #4610
 * Fixed: Letter-spacing issue in Swift Theme if RTL is enabled #4598
-* Fixed: URL with square brackets [ ] causing issue in AMP #4635
+* Fixed: URL with square brackets [ ] causing issue in galleries AMP #4635
 * Fixed: Google Analytics trigger functionality not working #4645
-* Fixed: Vaiidation error when css icons and sticky header is selected #4640
-* Fixed: Extension manager is active and if no extensions are active then it shows upgrade to pro
+* Fixed: Validation error when css icons and sticky header is selected #4640
+* Fixed: If Extension manager was active it was showing incorrect message #4613
 * Fixed: Debug warnings #4626 #4639
 
 = 1.0.58.5 (15th July 2020) =
