@@ -290,7 +290,7 @@ if(!function_exists('ampforwp_aq_resize')) {
         // Useful for some who wants to disable when using CDN images 
         $disable_aq_resize = false; 
         $disable_aq_resize = apply_filters('ampforwp_disable_aq_resize', $disable_aq_resize); 
-        if ( $disable_aq_resize ){ 
+        if (true === $disable_aq_resize ){ 
             return $image = array( 
                 0 => $url, 
                 1 => $width, 
