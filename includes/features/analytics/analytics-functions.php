@@ -23,7 +23,7 @@ function ampforwp_analytics() {
 								'groups'=>'default',
 						)
 					);
-		$ga_fields['vars']['triggers'] = array(
+		$ga_fields['triggers'] = array(
 						'trackPageview'=> array(
 								'on'=>'visible',
 								'request'=>'pageview'			
@@ -37,6 +37,7 @@ function ampforwp_analytics() {
 				'enabled'=> true
 			);
 		}
+		$ga_fields = apply_filters('ampforwp_google_analytics_fields', $ga_fields );
 		$ampforwp_ga_fields = json_encode( $ga_fields);
 		if( ampforwp_get_setting('ampforwp-ga-field-advance-switch') ){
 			$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
