@@ -7082,7 +7082,7 @@ else{
                         'type'     => 'color_rgba',
                         'title'    => esc_html__('Footer Powered by Color', 'accelerated-mobile-pages'),
                         'default'   => array(
-                                'color' => '#666666'
+                                'color' => '#cac8c8'
                         ),
                         'required'  => array(
                             array('amp-design-selector', '=' , '3')
