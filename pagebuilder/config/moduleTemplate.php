@@ -12,10 +12,17 @@ if(!function_exists("ampforwp_module_templates")){
 		global $moduleTemplate, $layoutTemplate;
 
 		$dir = AMP_PAGE_BUILDER.'/modules/';
+		$checkpb = false;
+		$current_url = $_SERVER['REQUEST_URI'];
+		$post_old = preg_match('/post\.php/', $current_url);
+		$post_new = preg_match('/post-new\.php/', $current_url);
+		if($post_old || $post_new){ 
+			$checkpb = true; 
+		}
 		if (is_dir($dir)) {
 		    if ($dh = opendir($dir)) {
 		        while (($file = readdir($dh)) !== false) {
-		        	if(is_file($dir.$file) && strpos($file, '-module.php') == true){
+		        	if(is_file($dir.$file) && strpos($file, '-module.php') == true && $checkpb){
 		        		$moduleTemplate[str_replace("-module.php", "", $file)] = include $dir.$file;
 		        	}
 		        }
