@@ -135,7 +135,7 @@ if ( is_admin() ) {
                ) );   
  $categoriesArray = array('recent_option'=>'Recent Posts');   
  foreach($categories as $category){   
-  $categoryName = wp_specialchars(htmlspecialchars($category->name, ENT_QUOTES), ENT_NOQUOTES, false, true);
+  $categoryName = htmlspecialchars(esc_html($category->name), ENT_QUOTES);
   $categoriesArray[$category->term_id] = $categoryName;   
   $options.= '<option value="'.$category->term_id.'">'.$categoryName.'</option>';   
  }    
