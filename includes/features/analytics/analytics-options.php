@@ -49,7 +49,7 @@ function ampforwp_analytics_options($opt_name){
                 array(
                       'id' => 'ampforwp-analytics_1',
                       'type' => 'section',
-                      'title' => esc_html__('Primary Analytic Providers', 'accelerated-mobile-pages'),
+                      'title' => esc_html__('Primary Analytics Provider', 'accelerated-mobile-pages'),
                       'indent' => true,
                       'layout_type' => 'accordion',
                         'accordion-open'=> 1, 
@@ -105,7 +105,7 @@ function ampforwp_analytics_options($opt_name){
                           'class' => 'child_opt',
                           'id'       => 'ampforwp-ga-field-advance-switch',
                           'type'     => 'switch',
-                          'title'    => esc_html__( 'Advanced Google Analytics', 'accelerated-mobile-pages' ),
+                          'title'    => esc_html__( 'Customize Configuration', 'accelerated-mobile-pages' ),
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-ga-switch', '=' , '1')
@@ -222,6 +222,37 @@ function ampforwp_analytics_options($opt_name){
                             array('amp-use-gtm-option', '=' , '1'),
                           ),
                         ),
+
+                      array(
+                        'id' => 'ampforwp-analytics-conversion-goals',
+                        'type' => 'section',
+                        'title' => esc_html__('Google Analytics Conversion Goals', 'accelerated-mobile-pages'),
+                        'indent' => true,
+                        'layout_type' => 'accordion',
+                          'accordion-open'=> 1, 
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                          ),
+                        ),
+
+
+                    array(
+                        'id' => 'ampforwp-analytics-conversion-goals-switch',
+                        'type'  => 'switch',
+                        'title' => 'Conversion Tracking for GA',
+                        'default' => 0,
+                        'required' => array(
+                          array('amp-use-gtm-option', '=' , '0'),
+                        ),
+                    ),
+                    array( 
+                          'id'   => 'ampforwp-analytics-conversion-goals-info',
+                          'type' => 'info',
+                          'required' => array(
+                              array('ampforwp-analytics-conversion-goals-switch', '=' , true),  
+                              ),
+                           'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/addons/conversion-goals-tracking-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/addons/conversion-goals-tracking-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Conversion Goals Tracking for AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+                           ),
 
 
                 array(

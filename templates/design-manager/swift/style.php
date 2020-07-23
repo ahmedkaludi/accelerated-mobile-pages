@@ -2474,7 +2474,6 @@ a.bread-link.bread-home::after {
 #search a.lb-x {
     border: 1px solid #fff;
 }
-}
 <?php } 
 if(ampforwp_get_setting('header-position-type') == '2'){?>
 @supports (-webkit-touch-callout: none) {

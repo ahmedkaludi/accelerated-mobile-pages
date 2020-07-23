@@ -76,7 +76,10 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			$length = $node->attributes->length;
 			for ( $i = $length - 1; $i >= 0; $i-- ) {
 				$attribute = $node->attributes->item( $i );
-				$attribute_name = strtolower( $attribute->name );
+				$attribute_name = '';
+				if (isset($attribute->name)) {
+					$attribute_name = strtolower( $attribute->name );
+				}
 				if ( in_array( $attribute_name, $bad_attributes, true ) ) {
 					$node->removeAttribute( $attribute_name );
 					continue;
@@ -165,8 +168,10 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 	}
 
 	private function sanitize_a_attribute( $node, $attribute ) {
-		$attribute_name = strtolower( $attribute->name );
-
+		$attribute_name = '';
+		if (isset($attribute->name)) {
+			$attribute_name = strtolower( $attribute->name );
+		}
 		if ( 'rel' === $attribute_name ) {
 			$old_value = $attribute->value;
 			$new_value = trim( preg_replace( self::PATTERN_REL_WP_ATTACHMENT, '', $old_value ) );

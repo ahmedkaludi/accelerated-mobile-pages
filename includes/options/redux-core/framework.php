@@ -1994,7 +1994,8 @@
                     'repeater',
                     'color_scheme',
                     'social_profiles',
-                    'css_layout'
+                    'css_layout',
+                    'multitext_repeater'
                 );
 
                 if ( $this->args['default_show'] == true && isset ( $field['default'] ) && isset ( $this->options[ $field['id'] ] ) && $this->options[ $field['id'] ] != $field['default'] && ! in_array( $field['type'], $filter_arr ) ) {
