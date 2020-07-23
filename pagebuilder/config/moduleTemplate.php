@@ -13,10 +13,8 @@ if(!function_exists("ampforwp_module_templates")){
 
 		$dir = AMP_PAGE_BUILDER.'/modules/';
 		$checkpb = false;
-		$current_url = esc_url($_SERVER['REQUEST_URI']);
-		$post_old = preg_match('/post\.php/', $current_url);
-		$post_new = preg_match('/post-new\.php/', $current_url);
-		if($post_old || $post_new){ 
+		global $pagenow;
+		if('post-new.php' == $pagenow || 'post.php' == $pagenow ){ 
 			$checkpb = true; 
 		}
 		if (is_dir($dir)) {
