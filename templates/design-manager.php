@@ -18,8 +18,14 @@ if ( is_customize_preview() ) {
 	// add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_simple_comment_button' );
 }
 
-	$data = get_option( 'ampforwp_design',array());
-
+	$design = ampforwp_get_setting('amp-design-selector');
+	if ( empty( $design )){
+    	$design = 4;
+    }
+    if ( 4 != $design) {
+    	$data = get_option( 'ampforwp_design',array());
+    }
+	
 	// Adding default Value
 	if (empty($data)){
 	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
