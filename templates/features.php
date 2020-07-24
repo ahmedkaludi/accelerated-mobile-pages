@@ -5517,9 +5517,13 @@ function ampforwp_default_logo_data() {
 		return false;
 	}
 
-	if( ! wp_attachment_is( 'image', $logo_id ) ) {
-		$logo_url = $redux_builder_amp['opt-media']['url'];
-		$image = @getimagesize( $logo_url );
+	if( ! wp_attachment_is( 'image', $logo_id ) || ampforwp_get_setting('opt-media','url') ) {
+		$logo_url = ampforwp_get_setting('opt-media','url');
+		$image[0] = ampforwp_get_setting('opt-media','width');
+		$image[1] = ampforwp_get_setting('opt-media','height');
+		if(empty($image)){
+			$image = @getimagesize( $logo_url );
+		}
 	} else {
 		$imageDetail = wp_get_attachment_image_src( $logo_id , 'full');
 		$logo_url = $imageDetail[0];
