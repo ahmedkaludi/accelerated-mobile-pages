@@ -193,7 +193,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 1.0.60 (27th July 2020) =
 * Improvement: Added below the related post hook #4653
 * Fixed: Validation errors caused by Autoptimize for logged in users #4586
-* Fixed: Styling issues with vicomi feelback plugin #4637
+* Fixed: Styling issues with Reactions plugin Vicomi #4637
 * Fixed: If category name has special characters AMP Pagebuilder was not working #4610
 * Fixed: autoplay attribute not working in the amp-vimeo tag #4648
 * Fixed: incorrect width and height of logo in AMP #4650
