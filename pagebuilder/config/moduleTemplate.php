@@ -14,7 +14,7 @@ if(!function_exists("ampforwp_module_templates")){
 		$dir = AMP_PAGE_BUILDER.'/modules/';
 		$checkpb = false;
 		global $pagenow;
-		if('post-new.php' == $pagenow || 'post.php' == $pagenow ){ 
+		if('post-new.php' == $pagenow || 'post.php' == $pagenow || 'index.php' == $pagenow){ 
 			$checkpb = true; 
 		}
 		if (is_dir($dir)) {
