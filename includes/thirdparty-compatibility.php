@@ -65,6 +65,9 @@ function ampforwp_thirdparty_compatibility(){
 	if(class_exists('gdlr_core_page_builder')){
 		add_filter('the_content','ampforwp_gdlr_core_page_builder_content',12);
 	}
+	if(function_exists('vicomi_feelbacks_template')){
+		remove_action('the_content', 'vicomi_feelbacks_template');
+	}
 	$yoast_canonical = $yoast_canonical_post = $yoast_canonical_page = '';
 	$yoast_canonical = get_option( 'wpseo_titles' );
 	if(isset($yoast_canonical['noindex-post'])){
