@@ -43,7 +43,7 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 				</ul>
 			</div>
 	<?php wp_reset_postdata(); ?>
-	<?php do_action('ampforwp_below_related_post_hook');
+	<?php
 	} 
 }
 
