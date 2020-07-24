@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4.2
-Stable tag: 1.0.59
+Stable tag: 1.0.60
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.60 (27th July 2020) =
+* Improvement: Code improvements in AMP pagebuilder modules and options panel #4660 #4647
+* Improvement: Added below the related post hook #4653
+* Fixed: Validation errors caused by Autoptimize for logged in users #4586
+* Fixed: Styling issues with vicomi feelback plugin #4637
+* Fixed: If category name has special characters AMP Pagebuilder was not working #4610
+* Fixed: autoplay attribute not working in the amp-vimeo tag #4648
+* Fixed: incorrect width and height of logo in AMP #4650
+* Fixed: Styling issues with AdsforWP section #4658
 
 = 1.0.59 (23rd July 2020) =
 * Improvement: Added noreferrer noopener attributes on social links #4509
