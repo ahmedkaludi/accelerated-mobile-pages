@@ -4685,7 +4685,7 @@ Redux::setSection( $opt_name, array(
                     'type'      => 'color_rgba',
                     'title'     => esc_html__('Header Background','accelerated-mobile-pages'),
                     'default'   => array(
-                        'color'     => '#0a89c0',
+                        'color'     => '#04415D',
                     ),
                     'required' => array(
                       array('amp-design-selector', '=' , '1')
@@ -6915,7 +6915,7 @@ else{
                         'type'     => 'color_rgba',
                         'title'    => esc_html__('Footer Link Color', 'accelerated-mobile-pages'),
                         'default'   => array(
-                                'color' => '#0a89c0'
+                                'color' => '#04415D'
                         ),
                         'required'  => array(
                             array('amp-design-selector', '=' , '1')
