@@ -194,7 +194,6 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 == Changelog ==
 
 = 1.0.60 (27th July 2020) =
-* Improvement: Code improvements in AMP pagebuilder modules and options panel #4660 #4647
 * Improvement: Added below the related post hook #4653
 * Fixed: Validation errors caused by Autoptimize for logged in users #4586
 * Fixed: Styling issues with vicomi feelback plugin #4637
@@ -202,6 +201,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: autoplay attribute not working in the amp-vimeo tag #4648
 * Fixed: incorrect width and height of logo in AMP #4650
 * Fixed: Styling issues with AdsforWP section #4658
+* Fixed: Code improvements for options panel #4647
 
 = 1.0.59 (23rd July 2020) =
 * Improvement: Added noreferrer noopener attributes on social links #4509
