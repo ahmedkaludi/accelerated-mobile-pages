@@ -41,7 +41,7 @@ $cross_btn_bg_clr       = ampforwp_get_setting('amp-d2-cross-bg-color','rgba');
 $cross_btn_hvr_clr      = ampforwp_get_setting('amp-d2-cross-hover-color','rgba');
 
 if(empty($header_bg_clr)){
-	$header_bg_clr ='#0a89c0';
+	$header_bg_clr ='#0074A7';
 }
 if(empty($header_elements_clr)){
 	$header_elements_clr ='#ffffff';
@@ -302,7 +302,7 @@ if (empty($footer_txt_color)) {
  $footer_txt_color = '#222222'; 
 } 
 if (empty($footer_link_color)) {
- $footer_link_color = '#0a89c0'; 
+ $footer_link_color = '#0074A7'; 
 } 
 if (empty($footer_brdr_color)) {
  $footer_brdr_color = '#eeeeee'; 
