@@ -25,7 +25,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				// amp-next-page script
 				add_filter('ampforwp_post_template_data', array( $this , 'amp_infinite_scroll_script') );
 				// amp-next-page tag
-				if ( 4 != ampforwp_get_setting('amp-design-selector') ) 
+				if ( 4 != ampforwp_get_setting('amp-design-selector') || (class_exists('AmpforwpAmpLayouts')) && 3 == ampforwp_get_setting('single-design-type') )
 					add_action('ampforwp_above_related_post', array( $this , 'amp_next_page') );
 				else 
 					add_action('ampforwp_single_design_type_handle', array( $this , 'amp_next_page') );
