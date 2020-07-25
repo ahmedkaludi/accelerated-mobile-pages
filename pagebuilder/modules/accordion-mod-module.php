@@ -120,10 +120,25 @@ return array(
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Description',	
 		           				'content_type'=>'html',
-	 						),                
+	 						), 
+                        array(		
+		 						'type'		=>'checkbox_bool',		
+		 						'name'		=>'open_accordion',		
+		 						'label'		=>'Open By Default',
+		           				'tab'     =>'customizer',
+		 						'default'	=>0,	
+		 						'options'	=>array(
+												array(
+													'label'=>'Yes',
+													'value'=>1,
+												)
+											),
+		           				'content_type'=>'html',
+	 						),              
               ),
           'front_template'=>
-        	'<section>
+        	'<section {{if_condition_open_accordion==1}}
+				expanded{{ifend_condition_open_accordion_1}}>
 			    <{{acc_head_type}} class="acc-lbl">{{acc_title}}</{{acc_head_type}}>
 			    <div class="acc-desc">{{ass_desc}}</div>
 			</section>'
