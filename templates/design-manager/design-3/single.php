@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action('ampforwp_post_before_design_elements') ?>
 		<?php $this->load_parts( apply_filters( 'ampforwp_design_elements', array( 'empty-filter' ) ) ); ?>
 		<?php do_action('ampforwp_post_after_design_elements') ?>
-		<?php if(true==ampforwp_get_setting('ampforwp-design3-recent-posts') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {?>
+		<?php if(true==ampforwp_get_setting('ampforwp-design3-recent-posts') && !checkAMPforPageBuilderStatus(get_the_ID()) && is_single()) {?>
 					<div class="amp-wp-content relatedpost recentpost">
 						 <div class="rp">
 						<span class="related-title"><?php echo esc_attr(ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' )); ?></span>
