@@ -2752,6 +2752,7 @@ class AMP_Allowed_Tags_Generated {
 						'value_regex' => '[0-9]+',
 					),
 					'media' => array(),
+					'autoplay' => array(),
 					'noloading' => array(
 						'value' => '',
 					),

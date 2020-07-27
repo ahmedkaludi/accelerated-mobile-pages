@@ -73,7 +73,7 @@ if ( ! class_exists( 'ReduxFramework_multitext_repeater' ) ) {
                    echo '<option value="'.esc_attr($ok).'" '.esc_attr($select).'>'.esc_attr($ov).'</option>';
                 }
            echo '</select>';
-           echo '<a href="javascript:void(0);" class="button button-default redux-multitext_repeater-add" data-add_number="' . $this->field['add_number'] . '" data-id="' . $this->field['id'] . '-ul" data-name="' . $this->field['name'] . $this->field['name_suffix'] . '[]">' . $this->add_text . '</a><br/>';
+           echo '<a href="javascript:void(0);" class="button button-default redux-multitext_repeater-add" data-add_number="' . $this->field['add_number'] . '" data-id="' . esc_attr($this->field['id']) . '-ul" data-name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . '[]">' . esc_attr($this->add_text) . '</a><br/>';
            echo '</div>';
             echo '<ul id="' . esc_attr($this->field['id']) . '-ul" class="redux-multitext_repeater">';
             if ( isset( $this->value ) && is_array( $this->value ) ) {
@@ -141,9 +141,9 @@ if ( ! class_exists( 'ReduxFramework_multitext_repeater' ) ) {
                     }
                     echo '<li>';
                     echo '<span class="tool_tip afw-tooltip"><i class="el el-question-sign "></i> 
-                        <span class="afw-help-subtitle"><a href="'.$docs_link.'" target="_blank">Click Here</a> for more info on '.$goal_title.'</span>
-                                </span><div class="element-fields multitext_repeater-fields '.$hide.' '.$resetclass.'">';
-                     echo '<span class="goals-count">Goals #'.$row_count.' '.$goal_title.'</span>';    
+                        <span class="afw-help-subtitle"><a href="'.esc_url($docs_link).'" target="_blank">Click Here</a> for more info on '.esc_html($goal_title).'</span>
+                                </span><div class="element-fields multitext_repeater-fields '.esc_attr($hide).' '.esc_attr($resetclass).'">';
+                     echo '<span class="goals-count">Goals #'.esc_attr($row_count).' '.esc_html($goal_title).'</span>';    
                     
                         foreach ($this->field['repeat-fields'] as $rk => $rv) {
                             if(is_array($rv)){
@@ -164,11 +164,11 @@ if ( ! class_exists( 'ReduxFramework_multitext_repeater' ) ) {
                                              }else{
 
                                               $form_class = "form_select_opt";
-                                              $span = '<div class="main_form_select"><span>'.$rv['title'].'</span>';
+                                              $span = '<div class="main_form_select"><span>'.esc_html($rv['title']).'</span>';
                                               $div_cls = '</div>';
                                              }
                                                echo $span;
-                                                echo '<select '.$hide.' id="' . esc_attr($this->field['id']).'-'.esc_attr($rv['id']).'" name="' . esc_attr($this->field['name']) . '['.esc_attr($rv['id']).']['.esc_attr($rv1).']' . '[]' . '" class = "indi_option '.$form_class.'" value="">';
+                                                echo '<select '.$hide.' id="' . esc_attr($this->field['id']).'-'.esc_attr($rv['id']).'" name="' . esc_attr($this->field['name']) . '['.esc_attr($rv['id']).']['.esc_attr($rv1).']' . '[]' . '" class = "indi_option '.esc_attr($form_class).'" value="">';
                                                     foreach ($rv['options'] as $ok => $ov) {
                                                         $select = '';
                                                         if($val == $ok){
@@ -212,8 +212,8 @@ if ( ! class_exists( 'ReduxFramework_multitext_repeater' ) ) {
                                                       $main_id_class = 'main_id_class';
                                                     }
                                                   }
-                                              echo '<div class="form_sel_div '.$hide_class.' '.$hide_class_id.'  '.$main_id_class.'">';  
-                                              echo '<span class="multi-title '.$class.'">'.$rv['title'].'</span>';
+                                              echo '<div class="form_sel_div '.esc_attr($hide_class).' '.esc_attr($hide_class_id).'  '.esc_attr($main_id_class).'">';  
+                                              echo '<span class="multi-title '.esc_attr($class).'">'.esc_html($rv['title']).'</span>';
                                                 echo '<input type="text" id="' . esc_attr($this->field['id']).'-'.esc_attr($rv['id']).'" name="' . esc_attr($this->field['name']) . '['.esc_attr($rv['id']).']['.$rv1.']' . '[]' . '" value="'.esc_attr($val).'" class="regular-text multi-text' . esc_attr($this->field['class']) . '" placeholder ="'.esc_attr($rv['placeholder']).'" />';
                                                  echo '</div>';  
                                             }
