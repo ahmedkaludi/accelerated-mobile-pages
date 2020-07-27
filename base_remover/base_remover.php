@@ -98,13 +98,14 @@ function ampforwp_category_url_rewrite_rules( $rewrite ) {
 
  
 function ampforwp_tag_url_rewrite_rules( $rewrite ) {
-	$terms = get_terms( 'post_tag', array( 'hide_empty' => false ) );
-	foreach ( $terms as $term ) {
-		$term_nicename = trim($term->slug);
-		
-		$rewrite[ '('.$term_nicename.')'.'/amp/?$' ] = 'index.php?amp&tag=$matches[1]';
-		$rewrite[ '('.$term_nicename.')'.'/amp/page/?([0-9]{1,})/?$' ] = 
-		  'index.php?amp&tag=$matches[1]&paged=$matches[2]'; 
+	$tags = get_tags();
+	if(is_array( $tags ) && ! empty( $tags ) ) {
+		foreach ( $tags as $tag ) {
+			$tag_nicename = trim($tag->slug);
+			$rewrite[ '('.$tag_nicename.')'.'/amp/?$' ] = 'index.php?amp&tag=$matches[1]';
+			$rewrite[ '('.$tag_nicename.')'.'/amp/page/?([0-9]{1,})/?$' ] = 
+			  'index.php?amp&tag=$matches[1]&paged=$matches[2]'; 
+		}
 	}
 	
 	return $rewrite;
