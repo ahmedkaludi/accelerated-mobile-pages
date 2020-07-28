@@ -6032,7 +6032,7 @@ $single_page_options = array(
             'id'       => 'ampforwp-pagination-link-type',
             'class'    => 'child_opt child_opt_arrow',
             'type'     => 'switch',
-            'title'    => esc_html__('Post Pagination Link', 'accelerated-mobile-pages'),
+            'title'    => esc_html__('Change Pagination Links to /amp', 'accelerated-mobile-pages'),
             'default'  => '0',
             'required' => array('amp-pagination' , '=' , '1'),
             'tooltip-subtitle' => sprintf('%s', 

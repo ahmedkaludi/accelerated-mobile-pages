@@ -3,7 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 global $redux_builder_amp; ?>
-<?php amp_header(); ?>
+<?php amp_header(); 
+$paged = get_query_var( 'paged' );
+$page = get_query_var( 'page' ); ?>
 <?php if(ampforwp_get_setting('single-design-type') == '1'){?>
 <div class="sp sgl">
 	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
@@ -20,8 +22,6 @@ global $redux_builder_amp; ?>
 			<?php } ?>
 		</div>
 		<?php 
-		$paged = get_query_var( 'paged' );
-	 	$page = get_query_var( 'page' );
 	   	if($paged==0 && $page==0){
 	   		if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
 			<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
@@ -44,8 +44,6 @@ global $redux_builder_amp; ?>
 						}	?>
 					<div class="cntn-wrp artl-cnt">
 						<?php 
-					$paged = get_query_var( 'paged' );
-				 	$page = get_query_var( 'page' );
 				    if($paged==0 && $page==0){
 						if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
 							<?php if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
@@ -330,8 +328,6 @@ do_action("ampforwp_single_design_type_handle_d1");
 						    </div>
 						<?php } ?>
 						<?php 
-						$paged = get_query_var( 'paged' );
-					 	$page = get_query_var( 'page' );
 					   	if($paged==0 && $page==0){
 					   		if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
 							<div class="sf-img">
