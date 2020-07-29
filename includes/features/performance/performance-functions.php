@@ -251,6 +251,12 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
         /***Replacements***/
         if(!empty($completeContent)){
             $tmpDoc = new DOMDocument();
+            if( function_exists( 'mb_convert_encoding' ) ){
+                $completeContent = mb_convert_encoding($completeContent, 'ENT_QUOTES', 'UTF-8');            
+            }
+            else{
+                $completeContent =  preg_replace( '/&.*?;/', 'x', $completeContent ); // multi-byte characters converted to X
+            }
             libxml_use_internal_errors(true);
             $tmpDoc->loadHTML($completeContent);
             $font_css = '';
