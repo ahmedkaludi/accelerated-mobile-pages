@@ -122,10 +122,9 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 				$bgtype = $slide->get_param(array('bg', 'type'),'');
 				$image_id = $slide->image_id;
 				$url = $slide->image_url;
-				if ( '' == $image_id ) {
-					$image_id = attachment_url_to_postid($url);
+				if ( $image_id ) {
+					$img_data = wp_get_attachment_metadata( $image_id );
 				}
-				$img_data = wp_get_attachment_metadata( $image_id );
 				if($bgtype == 'external'){
 					$url = esc_url($slide->get_param(array('bg','externalSrc'), ''));
 					$imgalt = esc_attr($slide->get_param('alt_attr', ''));
