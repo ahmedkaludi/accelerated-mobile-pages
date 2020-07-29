@@ -171,11 +171,6 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     if ( is_archive() && ! $redux_builder_amp['ampforwp-archive-support'] ) {
       return;
     }
-   
-    // AMP and non-amp Homepage
-    if ( is_home() && ampforwp_is_front_page() && ! ampforwp_is_home() ) {
-      return;
-    }
 
     //blogpage
     if ( is_home() && $redux_builder_amp['amp-on-off-for-all-pages']==false ) {
