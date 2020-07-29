@@ -103,8 +103,8 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			<amp-next-page>
 			  	<script type="application/json">
 			    {
-			      	"pages": <?=json_encode($pages)?>,
-				    "hideSelectors": <?=$classes?>
+			      	"pages": <?php echo json_encode($pages)?>,
+				    "hideSelectors": <?php echo $classes?>
 		    	}
 			  	</script>
 			</amp-next-page>
