@@ -405,6 +405,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				if (is_category() && class_exists('RankMath') && RankMath\Helper::get_settings( 'general.strip_category_base' ) == true && false == ampforwp_get_setting('ampforwp-category-base-removel-link')) {
 					return;
 				}
+				if (is_preview()) {
+					$amp_url = preg_replace('/(.*?)&(.*?)/', '$1&amp&$2', $amp_url);
+				}
 				return $amp_url;
 			}
 		}
@@ -5376,11 +5379,20 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 							$current_url = home_url();
 						}
 					}
-					$wp_admin_bar->add_node(array(
+					if (is_preview()) {
+						$current_url = $current_url .'&amp=1&preview=true';
+						$wp_admin_bar->add_node(array(
+						'id'    => 'ampforwp-view-amp',
+						'title' => 'View ' . esc_html($post_type_title) . ' (AMP)' ,
+						'href'  => $current_url
+						));
+					}else{
+						$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . esc_html($post_type_title) . ' (AMP)' ,
 						'href'  => ampforwp_url_controller($current_url)
 					));
+					}
 				}
 		}
 	}
