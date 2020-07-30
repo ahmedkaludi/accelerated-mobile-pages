@@ -7287,7 +7287,7 @@ if( ! function_exists(' ampforwp_make_parent_menu_clickable ') ){
 			$num_nodes 	= '';
 			if( !empty( $menu ) ){
 				// Create a new document
-				$dom = new DOMDocument();
+				$dom = AMP_DOM_Utils::get_dom_from_content($menu);
 				if( function_exists( 'mb_convert_encoding' ) ){
 					$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
 				}
