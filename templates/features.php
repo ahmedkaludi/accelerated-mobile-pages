@@ -325,7 +325,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
           //dont Echo anything
         } else {
 			$supported_types = ampforwp_get_all_post_types();
-
+			if(class_exists('WPUltimateRecipe') && ampforwp_is_home()){
+		    	$supported_types['recipe'] = 'recipe';
+		    }
 			$supported_types = apply_filters('get_amp_supported_post_types',$supported_types);
 
 			$type = get_post_type();
@@ -5996,6 +5998,9 @@ function ampforwp_is_non_amp( $type="" ) {
 		// Enabling AMP Takeover only when selected in Custom Post Type
 		$supported_types_for_takeover = array();
 	    $supported_types_for_takeover = ampforwp_get_all_post_types();
+	     if(class_exists('WPUltimateRecipe') && ampforwp_is_home()){
+	    	$supported_types_for_takeover['recipe'] = 'recipe';
+		}
 	    if( $supported_types_for_takeover ){
             $current_type = get_post_type(get_the_ID());
             if( $current_type==false){
