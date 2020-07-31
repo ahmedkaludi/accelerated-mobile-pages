@@ -5524,6 +5524,10 @@ function ampforwp_default_logo_data() {
 		if(empty($image)){
 			$image = @getimagesize( $logo_url );
 		}
+		if ( empty($image[0]) || empty($image[1]) ) {
+			$image[0] = '190';
+			$image[1] = '36';
+		}
 	} else {
 		$imageDetail = wp_get_attachment_image_src( $logo_id , 'full');
 		$logo_url = $imageDetail[0];
