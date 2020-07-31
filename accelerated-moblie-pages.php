@@ -1209,7 +1209,7 @@ function ampforwp_delete_plugins_manager_transient($plugin){
 add_action('pre_amp_render_post', 'ampforwp_initialise_classes');
 if ( ! function_exists('ampforwp_initialise_classes') ) {
 	function ampforwp_initialise_classes(){
-		if ( true == ampforwp_get_setting('ampforwp-infinite-scroll') ) {
+		if ( true == ampforwp_get_setting('ampforwp-infinite-scroll') || true == ampforwp_get_setting('ampforwp-wcp-infinite-scroll') ) {
 			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-infinite-scroll.php';
 		}
 	}
