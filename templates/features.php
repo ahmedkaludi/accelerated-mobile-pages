@@ -8985,3 +8985,32 @@ function ampforwp_facebook_moderation_tool(){
 		}
 	}
 }
+if(function_exists('vp_pfui_admin_init') && function_exists('penci_setup')){
+	add_action('ampforwp_before_post_content','ampforwp_pennews_audio_embed');
+}
+function ampforwp_pennews_audio_embed(){
+	$audio = get_post_meta(ampforwp_get_the_ID(), '_format_audio_embed', true); 
+	if(empty($audio)){
+		return;
+	}
+	$audio_str = substr( $audio, -4 );
+	$html ='<div class="audio-iframe">';
+	if ( wp_oembed_get( $audio ) ) {
+		$html .= wp_oembed_get( $audio );
+	}elseif( $audio_str == '.mp3' ) {
+		$html .= do_shortcode('[audio src="'. esc_url( $audio ) .'"]');
+	}else{
+		$html .= do_shortcode( $audio );
+	}
+	$html .= '</div>';
+	$sanitizer = new AMPFORWP_Content( $html, array(), 
+		apply_filters( 'ampforwp_content_sanitizers',
+			array( 
+				'AMP_Audio_Sanitizer' 		=> array(),
+				'AMP_Iframe_Sanitizer' 		=> array(
+					'add_placeholder' 		=> true,
+				)
+			) ) );
+	$sanitized_html = $sanitizer->get_amp_content();
+	echo $sanitized_html;
+}
