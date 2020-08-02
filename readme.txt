@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.61 (31st July 2020) =
+= 1.0.61 (3rd August 2020) =
 * Improvement: Added Open By Default option in accordion module of AMP Page Builder #4597
 * Fixed: Wrong preview link is generating for the AMP pages and posts #4670
 * Fixed: Code improved in category base and tag base remover #4664
