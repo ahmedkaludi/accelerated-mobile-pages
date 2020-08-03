@@ -1260,9 +1260,6 @@ function ampforwp_dev_mode_notice(){
 }
 
 function ampforwp_seo_selection_notice() {
-    if('' != ampforwp_get_setting('ampforwp-seo-selection')){
-        return;
-    }
     $seo = '';
     if(class_exists('WPSEO_Options')){
         $seo = 'Yoast SEO';
@@ -1290,6 +1287,40 @@ function ampforwp_seo_selection_notice() {
     }
     if(function_exists('seopress_activation')){
         $seo = 'SEO Press';
+    }
+    $seosel = false;
+    if(class_exists('WPSEO_Options') && 'yoast' != ampforwp_get_setting('ampforwp-seo-selection')){ 
+        $seosel = true;
+    }
+    else if (defined( 'RANK_MATH_FILE' ) && 'rank_math' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (class_exists('All_in_One_SEO_Pack') && 'aioseo' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (function_exists( 'the_seo_framework' ) && 'seo_framework' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (defined( 'SQ_ALL_PATTERNS' ) && 'squirrly' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (class_exists('Smartcrawl_Loader') && 'smartcrawl' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (function_exists('genesis_theme_support') && 'genesis' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (function_exists('seopress_activation') && 'seopress' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (function_exists('qode_header_meta') && 'bridge' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    if($seosel){
+        echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('You have selected the wrong SEO plugin, Please select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
+    }
+    if('' != ampforwp_get_setting('ampforwp-seo-selection')){
+        return;
     }
     if(!empty($seo)){
         echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
