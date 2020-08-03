@@ -7776,12 +7776,22 @@ function ampforwp_head_css(){
 			if(function_exists('autoptimize_autoload')){
 				$wp_admin_bar->remove_menu( 'autoptimize' );
 			}
-			$url = ampforwp_get_non_amp_url();
-			$wp_admin_bar->add_node(array(
-						'id'    => 'ampforwp-view-non-amp',
-						'title' => 'View Non-AMP' ,
-						'href'  =>  esc_url($url)
-			));
+			if (is_preview()) {
+				$url = get_preview_post_link();
+				$wp_admin_bar->add_node(array(
+					'id'    => 'ampforwp-view-non-amp',
+					'title' => 'View Non-AMP',
+					'href'  => esc_url($url)
+					));
+			} 
+			else{
+				$url = ampforwp_get_non_amp_url();
+				$wp_admin_bar->add_node(array(
+					'id'    => 'ampforwp-view-non-amp',
+					'title' => 'View Non-AMP' ,
+					'href'  =>  esc_url($url)
+				));
+			} 
 		}
 	}
 	
