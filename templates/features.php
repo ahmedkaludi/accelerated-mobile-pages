@@ -7334,7 +7334,7 @@ if( ! function_exists(' ampforwp_make_parent_menu_clickable ') ){
 				    }
 				    $k++;   
 				}
-				$menu = $dom->saveHTML();
+				$menu = AMP_DOM_Utils::get_content_from_dom( $dom );
 			}
 		}
 		return $menu;
