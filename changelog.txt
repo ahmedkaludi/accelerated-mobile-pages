@@ -1,5 +1,18 @@
 == Changelog ==
 
+= 1.0.61 (3rd August 2020) =
+* Improvement: Added Open By Default option in accordion module of AMP Page Builder #4597
+* Fixed: Wrong preview link is generating for the AMP pages and posts #4670
+* Fixed: Code improved in category base and tag base remover #4664
+* Fixed: Wrong breadcrumb links are generating in the AMP #4666
+* Fixed: Optimize gallery code to enhance performance and improve the page load time #4656
+* Fixed: Homepage URL has /amp at the end even after enabling AMP Takeover #4662
+* Fixed: Background color not appearing in table when created with Tiny MCE advanced plugin #4627
+* Fixed: Header right side icons styling improved in Design 3 #3935
+* Fixed: The right and left arrows are converting into the special characters in AMP #4668 
+* Fixed: Removed Shorthand versions of PHP from the code #4659
+* Fixed: Wrong width and height in logo for SVG images #4650
+
 = 1.0.60 (27th July 2020) =
 * Improvement: Added below the related post hook #4653
 * Fixed: Validation errors caused by Autoptimize for logged in users #4586

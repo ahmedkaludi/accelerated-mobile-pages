@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4.2
-Stable tag: 1.0.60
+Stable tag: 1.0.61
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,19 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.61 (3rd August 2020) =
+* Improvement: Added Open By Default option in accordion module of AMP Page Builder #4597
+* Fixed: Wrong preview link is generating for the AMP pages and posts #4670
+* Fixed: Code improved in category base and tag base remover #4664
+* Fixed: Wrong breadcrumb links are generating in the AMP #4666
+* Fixed: Optimize gallery code to enhance performance and improve the page load time #4656
+* Fixed: Homepage URL has /amp at the end even after enabling AMP Takeover #4662
+* Fixed: Background color not appearing in table when created with Tiny MCE advanced plugin #4627
+* Fixed: Header right side icons styling improved in Design 3 #3935
+* Fixed: The right and left arrows are converting into the special characters in AMP #4668 
+* Fixed: Removed Shorthand versions of PHP from the code #4659
+* Fixed: Wrong width and height in logo for SVG images #4650
+
 = 1.0.60 (27th July 2020) =
 * Improvement: Added below the related post hook #4653
 * Fixed: Validation errors caused by Autoptimize for logged in users #4586
@@ -216,40 +229,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Validation error when css icons and sticky header is selected #4640
 * Fixed: If Extension manager was active it was showing incorrect message #4613
 * Fixed: Debug warnings #4626 #4639
-
-= 1.0.58.5 (15th July 2020) =
-* Fixed: Duplicate title tag on non-amp #4631
-* Fixed: Database deadlocks error #4618
-
-= 1.0.58.4 (13th July 2020) =
-* Fixed: Website getting blank after 1.0.58 update
-
-= 1.0.58.3 (9th July 2020) =
-* Fixed: Class 'AMPforWP\AMPVendor\WP_Error' not found error in the latest update of Jetpack #4624
-
-= 1.0.58.2 (9th July 2020) =
-* Fixed: Category pages are not working properly #4579
-
-= 1.0.58.1 (9th July 2020) =
-* Fixed: Validation error of target attribute appearing in span tag #4620
-* Fixed: Menu is hidden behind the content in iOS devices #4601
-
-= 1.0.58 (7th July 2020) =
-* Improvement: Added before and after comment hooks #4537
-* Fixed: WPRocket CDN is not working properly with the amp pages #4342
-* Fixed: Two galleries not working with Photo gallery plugin #4421
-* Fixed: Arrows not getting aligned in Breadcrumbs in Arabic with Swift theme #4593
-* Fixed: Customize font size not applying in the post title #4592
-* Fixed: Validation errors when adding 2 columns in AMP pagebuilder #4383
-* Fixed: Category pages are not working properly #4579
-* Fixed: Autoptimize is causing validation for logged in users #4586
-* Fixed: Changed gtag type in googleanalytics #4585
-* Fixed: Changed the sub-title tag to h2 with subtitles and jannah theme #4599
-* Fixed: The entire post content appearing in the excerpt #4603
-* Fixed: Updated the condition for amp ninja activation extension #4606
-
-= 1.0.57 (3rd July 2020) =
-* Fixed: Issue with external link with Rank Math #4584
-* Fixed: Incorrect yoast title with TagDiv's themes #4595
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

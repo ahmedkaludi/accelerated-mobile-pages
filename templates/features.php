@@ -404,7 +404,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				}
 				if (is_category() && class_exists('RankMath') && RankMath\Helper::get_settings( 'general.strip_category_base' ) == true && false == ampforwp_get_setting('ampforwp-category-base-removel-link')) {
 					return;
-				}			
+				}	
+				if (is_preview()) {
+					$amp_url = preg_replace('/(.*?)&(.*?)/', '$1&amp&$2', $amp_url);
+				}		
 				return esc_url_raw($amp_url);
 			}
 		}
@@ -5355,11 +5358,20 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 							$current_url = home_url();
 						}
 					}
-					$wp_admin_bar->add_node(array(
+					 if (is_preview()) {
+						$current_url = $current_url .'&amp=1&preview=true';
+						$wp_admin_bar->add_node(array(
+						'id'    => 'ampforwp-view-amp',
+						'title' => 'View ' . esc_html($post_type_title) . ' (AMP)' ,
+						'href'  => esc_url($current_url)
+						));
+					}else{
+						$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . esc_html($post_type_title) . ' (AMP)' ,
 						'href'  => ampforwp_url_controller($current_url)
 					));
+					}
 				}
 		}
 	}
@@ -5523,6 +5535,10 @@ function ampforwp_default_logo_data() {
 		$image[1] = ampforwp_get_setting('opt-media','height');
 		if(empty($image)){
 			$image = @getimagesize( $logo_url );
+		}
+		if ( empty($image[0]) || empty($image[1]) ) {
+			$image[0] = '190';
+			$image[1] = '36';
 		}
 	} else {
 		$imageDetail = wp_get_attachment_image_src( $logo_id , 'full');
@@ -7336,7 +7352,7 @@ function ampforwp_yoast_breadcrumbs_output(){
 		if ( true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') && true === WPSEO_Options::get( 'breadcrumbs-enable' ) && function_exists('yoast_breadcrumb')) {
 			$breadcrumb = yoast_breadcrumb('','', false);
 			if( true == ampforwp_get_setting('convert-internal-nonamplinks-to-amp') && preg_match('/<a\s+href="(.*?)">(.*?)<\/a>/', $breadcrumb)){
-			   $breadcrumb = preg_replace('/<a\s+href="(.*?)\/">(.*?)<\/a>/', '<a href="'.ampforwp_url_controller("$1").'">$2</a>', $breadcrumb);
+			   $breadcrumb = preg_replace('/<a\s+href="(.*?)\/">(.*?)<\/a>/', '<a href="$1/'.AMPFORWP_AMP_QUERY_VAR.'">$2</a>', $breadcrumb);
 		     }
 			return $breadcrumb;
 		}
@@ -7760,12 +7776,22 @@ function ampforwp_head_css(){
 			if(function_exists('autoptimize_autoload')){
 				$wp_admin_bar->remove_menu( 'autoptimize' );
 			}
-			$url = ampforwp_get_non_amp_url();
-			$wp_admin_bar->add_node(array(
-						'id'    => 'ampforwp-view-non-amp',
-						'title' => 'View Non-AMP' ,
-						'href'  =>  esc_url($url)
-			));
+			if (is_preview()) {
+				$url = get_preview_post_link();
+				$wp_admin_bar->add_node(array(
+					'id'    => 'ampforwp-view-non-amp',
+					'title' => 'View Non-AMP',
+					'href'  => esc_url($url)
+					));
+			} 
+			else{
+				$url = ampforwp_get_non_amp_url();
+				$wp_admin_bar->add_node(array(
+					'id'    => 'ampforwp-view-non-amp',
+					'title' => 'View Non-AMP' ,
+					'href'  =>  esc_url($url)
+				));
+			} 
 		}
 	}
 	
