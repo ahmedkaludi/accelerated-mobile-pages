@@ -463,7 +463,7 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 .right a, .left a{background: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;padding: 8px 22px 12px 25px;color: #fff;line-height: 1;border-radius: 46px;font-size: 14px;display: inline-block;}
 .right a:hover, .left a:hover{color: <?php echo ampforwp_sanitize_color($swift_btn_hvr_color) ?>;}
 .right a:after{content:"\00BB";display: inline-block;padding-left: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: 1px;}
-.left a:before{content:"\00AB";display: inline-block;padding-right: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: -1px;}
+.left a:before{content:"\00AB";display: inline-block;padding-right: 6px;font-size: 20px;line-height: 20px;height: 20px;}
 .cntn-wrp.srch p { margin: 30px 0px 30px 0px; }
 .cntn-wrp.srch{
 font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;
