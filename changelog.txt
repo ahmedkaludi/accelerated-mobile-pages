@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.62 (4th August 2020) =
+* Fixed: The right and left arrows are converting into the special characters in AMP #4668
+
 = 1.0.61 (3rd August 2020) =
 * Improvement: Added Open By Default option in accordion module of AMP Page Builder #4597
 * Fixed: Wrong preview link is generating for the AMP pages and posts #4670
