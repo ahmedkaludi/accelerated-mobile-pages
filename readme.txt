@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.4.2
-Stable tag: 1.0.61.2
+Stable tag: 1.0.62
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,18 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.61.2 (8th August 2020) =
+* Improvement: Added Yoast Local SEO plugin compatibility #4170
+* Improvement: Added option for changing the tags for the accordion module in AMP Page Builder #4208
+* Improvement: Added option for showing primary category of Yoast #4495
+* Improvement: Added option for Changing Pagination Links to /amp #4373
+* Improvement: Added condition for adding infinite scroll in AMP Woocommerce #4673
+* Improvement: Added excerpt option in in-content related posts #3981
+* Fixed: AMP not working on the Homepage with WP Ultimate recipe plugin #4538
+* Fixed: CSS overiding issue for the list and accourdion modules in AMP Page Builder #4674
+* Fixed: Alignment issue on homepage in design one #4676
+* Fixed: Debug Errors #4671
 
 = 1.0.61.2 (5th August 2020) =
 * Fixed: Removed Helpscout Beacon from Options Panel #4682
