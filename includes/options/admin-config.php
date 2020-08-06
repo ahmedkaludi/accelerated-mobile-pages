@@ -6279,6 +6279,16 @@ $single_page_options = array(
                 'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
             ),
             array(
+                'id'       => 'ampforwp-incontent-related-posts-excerpt',
+                'type'     => 'switch',
+                'class' => 'child_opt',
+                'title'    => esc_html__('Excerpt', 'accelerated-mobile-pages'),
+                'default'  => 1,
+                'required' => array( 
+                                array('ampforwp-inline-related-posts', '=' , '1') 
+                            ),
+            ),       
+            array(
                     'id'       => 'ampforwp-number-of-inline-related-posts',
                     'type'     => 'text',
                 'class' => 'child_opt',
