@@ -24,9 +24,18 @@ function ampforwp_framework_get_categories_list( $separator = '' ){
 							if( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-archive-support-cat')){
 								$url = ampforwp_url_controller($url);
 							}
+							$cat = "";
+							if(true == ampforwp_get_setting('ampforwp-cats-single-primary')){
+								$cat = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_primary_category',true);
+								if($term_id == $cat){
+ 									$cat = 'primary';
+								}else{
+									$cat = "";
+								}
+							}
 							$anchorTag = '<a href="'.esc_url($url).'" title="'.esc_html($term_name).'">';
 							$anchorClose = "</a>";
-							echo ('<span class="amp-cat amp-cat-'.esc_attr($term_id).'">'.$anchorTag.esc_html($term_name).$anchorClose.'</span>');
+							echo ('<span class="amp-cat amp-cat-'.esc_attr($term_id).' '.esc_attr($cat).' ">'.$anchorTag.esc_html($term_name).$anchorClose.'</span>');
 					}else{
 						echo ('<span class="amp-cat"> '.esc_html($term_name).'</span>');
 					}
