@@ -426,7 +426,6 @@ function amp_pagebuilder_content_styles(){
 			 					if(!isset($moduleTemplate[$contentArray['type']]['repeater']['front_css'])){
 			 						continue;
 			 					}
-			                  	$repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater']['front_css'];
 
 			                    if($moduleField['content_type']=='css'){
 			                    	$repeaterFrontCss = str_replace('{{repeater-module-class}}', $moduleField['name'].'_'.$repeaterVarIndex, $repeaterFrontCss);
@@ -456,8 +455,13 @@ function amp_pagebuilder_content_styles(){
 			                              $repeaterFrontCss
 			                            );
 			                      }
-			 
-			                      
+			 				}else{
+					                $repeaterCss = $moduleTemplate[$contentArray['type']]['repeater']['front_css'];
+			                    	if(strpos($repeaterCss, '{{'.$moduleField['name'].'}}')!==false){
+			                    		$repeaterFrontCss = $repeaterCss;
+			                    		$replace_with = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
+				                    	$repeaterFrontCss = str_replace('{{'.$moduleField['name'].'}}',$replace_with, $repeaterFrontCss);
+				                    }
 			                    }
 			                  }
 			                  $repeaterFieldsCss .= $repeaterFrontCss;
