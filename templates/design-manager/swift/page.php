@@ -15,7 +15,11 @@ amp_header(); ?>
 		<?php } ?>
 		<?php } // Level up Condition ends here?>
 		</div>
-		<?php if ( true == ampforwp_get_setting('featured_image_swift_page') && ampforwp_has_post_thumbnail() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?>
+		<?php 
+		$paged = get_query_var( 'paged' );
+	 	$page = get_query_var( 'page' );
+	    if($paged==0 && $page==0){
+	   		if ( true == ampforwp_get_setting('featured_image_swift_page') && ampforwp_has_post_thumbnail() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) { ?> 
 				<div class="sf-img">
 					<?php amp_featured_image();?>
 				</div>
@@ -23,7 +27,8 @@ amp_header(); ?>
 				<div class="sf-img">
 					<?php amp_featured_image();?>
 				</div>
-			<?php } ?>
+			<?php } 
+		}?>
 		<div <?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>class="cntr"<?php } ?>>	
        <div class="pg">
        		<?php if (  is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' ==  ampforwp_get_setting('swift-social-position') ){
