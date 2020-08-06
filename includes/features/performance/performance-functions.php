@@ -2,6 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+use AMPforWP\AMPVendor\AMP_DOM_Utils;
 // 86. minify the content of pages
 add_filter('ampforwp_the_content_last_filter','ampforwp_minify_html_output');
 function ampforwp_minify_html_output($content_buffer){
@@ -254,13 +255,7 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
         $completeContent = str_replace(array('"\\', "'\\"), array('":backSlash:',"':backSlash:"), $completeContent);   
         /***Replacements***/
         if(!empty($completeContent)){
-            $tmpDoc = new DOMDocument();
-            if( function_exists( 'mb_convert_encoding' ) ){
-                $completeContent = mb_convert_encoding($completeContent, 'ENT_QUOTES', 'UTF-8');            
-            }
-            else{
-                $completeContent =  preg_replace( '/&.*?;/', 'x', $completeContent ); // multi-byte characters converted to X
-            }
+            $tmpDoc = AMP_DOM_Utils::get_dom_from_content($completeContent); 
             libxml_use_internal_errors(true);
             $tmpDoc->loadHTML($completeContent);
             $font_css = '';
