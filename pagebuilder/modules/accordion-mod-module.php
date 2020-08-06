@@ -4,15 +4,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $output = 
 '<amp-accordion {{if_id}}id="{{id}}"{{ifend_id}} {{if_user_class}}class="{{user_class}}{{ifend_user_class}}">{{repeater}}</amp-accordion>';
 $css = '
-.accordion-mod{margin:{{margin_css}};padding:{{padding_css}};}
+{{module-class}}.accordion-mod{margin:{{margin_css}};padding:{{padding_css}};}
 amp-accordion section[expanded] .show-more {display: none;}
 amp-accordion section:not([expanded]) .show-less {display: none;}
 .accordion-mod h5:before{content: "+";font-size: 24px;color: #999;margin-right: 10px;position: relative;top: 1px;}
 .accordion-mod h5:hover{color:#000;}
 .accordion-mod section[expanded] h5:before{content:"-"}
-.accordion-mod .acc-lbl{background: none;border: 0;padding: 0;margin:10px 0px 15px 0;color: {{acc_color_picker}};font-size: 22px;line-height: 1.5em;font-weight: normal;    }
-.accordion-mod .acc-desc{margin-bottom:0;margin:-5px 0px 20px 23px;padding: 0;color:#666;font-size: 14px;line-height: 1.5em;}
-';
+{{module-class}}.accordion-mod .acc-lbl{background: none;border: 0;padding: 0;margin:10px 0px 15px 0;color: {{acc_color_picker}};font-size: 22px;line-height: 1.5em;font-weight: normal;    }
+{{module-class}}.accordion-mod .acc-desc{margin-bottom:0;margin:-5px 0px 20px 23px;padding: 0;color:#666;font-size: 14px;line-height: 1.5em;}';
 return array(
 		'label' =>'Accordion',
 		'name' =>'accordion-mod',
