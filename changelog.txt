@@ -1,6 +1,6 @@
 == Changelog ==
 
-= 1.0.61.2 (8th August 2020) =
+= 1.0.62 (10th August 2020) =
 * Improvement: Added Yoast Local SEO plugin compatibility #4170
 * Improvement: Added option for changing the tags for the accordion module in AMP Page Builder #4208
 * Improvement: Added option for showing primary category of Yoast #4495
