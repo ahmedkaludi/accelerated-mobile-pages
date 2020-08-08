@@ -25,6 +25,9 @@ function ampforwp_minify_html_output($content_buffer){
     if(class_exists('Cli_Optimizer') && preg_match('/<style type="text\/css">@font-face(.*?)<\/style>/s', $content_buffer)!=0){
         $content_buffer = preg_replace('/<style type="text\/css">@font-face(.*?)<\/style>/s', '', $content_buffer);
     }
+    if(preg_match('/<script(.*?)type="text\/javascript"(.*?)>(.*?)<\/script>/', $content_buffer)){
+      $content_buffer = preg_replace('/<script(.*?)type="text\/javascript"(.*?)>(.*?)<\/script>/m', '', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
