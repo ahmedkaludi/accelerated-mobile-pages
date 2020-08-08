@@ -9036,3 +9036,52 @@ if( !function_exists( 'fifu_amp_url' ) ) {
 	    return array(0 => $url, 1 => $width, 2 => $height);
 	}
 }
+function ampforwp_jannah_video_audio_support($content){
+	  $video_url = tie_get_postdata( 'tie_video_url' );
+	  $video_self = tie_get_postdata( 'tie_video_self' );
+	  $embed_code = tie_get_postdata( 'tie_embed_code' );
+	  if(!empty($video_url)){
+	      // facebook
+	      if( strpos( $video_url, 'facebook.com' ) !== false ){
+	        $video_output = tie_facebook_video( $video_url );
+	      }
+	      // Twitter
+	      elseif( strpos( $video_url, 'twitter.com' ) !== false ){
+	        echo tie_twitter_video( $video_url );
+	        return;
+	      }
+	      // OEmbed external url
+	      else{
+	        $wp_embed = new WP_Embed();
+	        $video_output = $wp_embed->autoembed( $video_url );
+	        // Backup plan, in some cases the oEmbed returns especially with Youtube false due to API or Cache issues
+	        if( ! $video_output || ( $video_output == $video_url ) ){
+	          $video_output = '<amp-iframe width="1280" height="720" sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" src="'. esc_url(tie_get_video_embed( $video_url )) .'"></amp-iframe>';
+	        }
+	      }
+	    $content = $video_output . $content;
+	  }else if(!empty($video_self)){
+	    $content = $video_self . $content;
+	  }else if(!empty($embed_code)){
+	    $content = $embed_code . $content;
+	  }
+	    // SoundCloud
+	      $soundcloud = tie_get_postdata( 'tie_audio_soundcloud' );
+	    if(!empty($soundcloud)){
+	      echo tie_soundcloud( $soundcloud, 'false', 'true' );
+	    }
+	    // Self Hosted audio
+	    elseif( tie_get_postdata( 'tie_audio_mp3' ) || tie_get_postdata( 'tie_audio_m4a' ) || tie_get_postdata( 'tie_audio_oga' ) ){
+	        $mp3 = tie_get_postdata( 'tie_audio_mp3' );
+	        $m4a = tie_get_postdata( 'tie_audio_m4a' );
+	        $oga = tie_get_postdata( 'tie_audio_oga' );
+	      $audio_output = do_shortcode('[audio mp3="'.esc_url($mp3).'" ogg="'.esc_url($oga).'" m4a="'.esc_url($m4a).'"]');
+	      $content = $audio_output . $content;
+	    }
+	    // Embed Audio Code
+	    elseif( $embed_code = tie_get_postdata( 'tie_audio_embed' ) ){
+	      $audio_output = do_shortcode( $embed_code );
+	      $content = $audio_output . $content;
+	    }
+	  return $content;
+}

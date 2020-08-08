@@ -30,6 +30,7 @@ function ampforwp_thirdparty_compatibility(){
 	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
 	// #3124 enfold theme shortcodes removed
 	add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
+	add_filter( 'the_content','ampforwp_jannah_video_audio_support');
 	// AMP is not working due to JCH Optimize Pro plugin #3185
 	remove_action('shutdown', 'jch_buffer_end', -1);
 	//ShortPixel Plugin Compatibility to remove picture tag in amp #3439
