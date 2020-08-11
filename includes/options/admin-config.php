@@ -5945,16 +5945,6 @@ $single_page_options = array(
             'required' => array('amp-pagination' , '=' , '1'),
         ),
         array(
-            'id'       => 'ampforwp-pagination-link-type',
-            'class'    => 'child_opt child_opt_arrow',
-            'type'     => 'switch',
-             'title'    => esc_html__('Change Pagination Links to /amp', 'accelerated-mobile-pages'),
-            'default'  => '0',
-            'required' => array('amp-pagination' , '=' , '1'),
-            'tooltip-subtitle' => sprintf('%s', 
-             esc_html__('Enable this option if post pagination link with ?amp=1 does not work. It will change pagination link ?amp=1 to /amp', 'accelerated-mobile-pages')), 
-        ),
-        array(
             'id'       => 'ampforwp-swift-recent-posts',
             'type'     => 'switch',
             'title'    => esc_html__('Recent Posts below Related', 'accelerated-mobile-pages'),
