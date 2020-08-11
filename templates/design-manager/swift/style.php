@@ -891,7 +891,8 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
     padding: 0px;
     margin: 0;
 }
-.rp .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
+.rp .has_related_thumbnail , .rp .no_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
+.rp .no_related_thumbnail{margin:0px;}
 .rp .related_link p{word-break: break-word;color: #444;font-size: 13px;line-height: 20px;
 letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .rp ol li::before{ content: " ";}
