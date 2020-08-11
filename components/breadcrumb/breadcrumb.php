@@ -132,6 +132,9 @@ function amp_breadcrumb_output(){
                     foreach($cat_parents as $parents) {
                         $categories = get_the_category();
                         $cat_id = $categories[0]->cat_ID;
+                        if(class_exists( 'WPSEO_Options' )){
+                            $cat_id = $primary_cateogory;
+                        }
                         $cat_link = get_category_link($cat_id);
                         if(ampforwp_get_setting('ampforwp-archive-support-cat') == true && ampforwp_get_setting('ampforwp-archive-support') == true){
                             $cat_link = ampforwp_url_controller( $cat_link );
