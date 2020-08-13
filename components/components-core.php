@@ -710,6 +710,9 @@ function ampforwp_backtotop_global_css(){?>
 	.sharedaddy li{display:none}
 	sub {vertical-align: sub;font-size: small;}
 	sup {vertical-align: super;font-size: small;}
+	<?php if (class_exists('FVP_HTML')) {?>
+	.featured-video-plus amp-iframe {margin: 0 auto;}
+	<?php } ?>
 <?php if (function_exists('yarpp_init')) {?>
 	.yarpp-related ol li a {
     color: #000;

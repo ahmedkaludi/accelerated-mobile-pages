@@ -26,6 +26,9 @@ function ampforwp_framework_get_featured_image(){
   		// Featured Video Plus Compatibility #2394 #2583
 		elseif(function_exists('has_post_video') && has_post_video($post_id)){
 			$videoContent = get_the_post_video();
+			if(ampforwp_get_setting('ampforwp-featued-video-plus') == '1'){
+		        $videoContent = preg_replace('/<div class="featured-video-plus(.*?)width="(.*?)"(.*?)height="(.*?)"(.*?)<\/div>/', '<div class="featured-video-plus$1width="1900"$3height="1200"$5<\/div>', $videoContent);
+		    }
 			$amp_html = ampforwp_content_sanitizer($videoContent);
 		}elseif (has_post_thumbnail( $post_id ) ){
 		 	$thumb_id = get_post_thumbnail_id($post_id);

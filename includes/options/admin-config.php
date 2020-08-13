@@ -119,7 +119,7 @@ if(!is_plugin_active( 'amp-pagebuilder-compatibility/amp-pagebuilder-compatibili
             ); 
     $pb_for_amp[] = $elemntr_pb_for_ampchecker;*/
 
-$all_extensions_data = $jetpack_rp = $sassy_ss = array();
+$all_extensions_data = $jetpack_rp = $sassy_ss = $fvp = array();
 if(class_exists( 'Jetpack_RelatedPosts' )){
     $jetpack_rp =  array(
                     'id'       => 'ampforwp-jetpack-related-posts',
@@ -135,6 +135,25 @@ if(function_exists('heateor_sss_save_default_options')){
                     'title'    => esc_html__('Sassy Social Share', 'accelerated-mobile-pages'),
                     'default'  => '1',
                 );
+}
+if(class_exists('FVP_HTML')){
+$fvp = array(
+            'id'    => 'ampforwp-featued-video-plus',
+            'class' => 'child_opt child_opt_arrow',
+            'type'  => 'select',
+            'title'    => esc_html__('Featured Video Size', 'accelerated-mobile-pages'),
+            'tooltip-subtitle'     => esc_html__('Select Featured Video Size','accelerated-mobile-pages'),
+            'options'  => array(
+                        '1' => 'Full Screen Video',
+                        '2' => 'Video Fit above the Content',
+            ),
+            'default'  => '2',
+            'required' => array( 
+                    array('amp-design-selector', '=' , '4'),
+                    array('swift-featued-image', '=' , '1'),
+                    array('rp_design_type', '=' , '1')
+                    ),
+            );
 }
 global $all_extensions_data;
 $extension_listing_array = array(
@@ -5795,6 +5814,7 @@ $single_page_options = array(
                                         array('rp_design_type', '=' , '1')
                                     ),
             ),
+            $fvp,
             array(
                     'id'    => 'swift-featued-image-size',
                     'class' => 'child_opt child_opt_arrow',
