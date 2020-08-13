@@ -3,7 +3,7 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.4.2
+Tested up to: 5.5
 Stable tag: 1.0.62
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.62 (12th August 2020) =
+= 1.0.62 (13th August 2020) =
 * Improvement: Added Yoast Local SEO plugin compatibility #4170
 * Improvement: Added option for changing the tags for the accordion module in AMP Page Builder #4208
 * Improvement: Added option for showing primary category of Yoast #4495
