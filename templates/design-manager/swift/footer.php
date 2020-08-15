@@ -19,6 +19,7 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 				$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-footer-widget-area');
 				if ( $sanitized_sidebar) {
 					$sidebar_output = $sanitized_sidebar->get_amp_content();
+					$sidebar_output = ampforwp_show_yoast_seo_local_map($sidebar_output);
 					$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
 					$sidebar_output = preg_replace_callback('/<form(.*?)>(.*?)<\/form>/s', function($match){
 					if(strpos($match[1], 'target=') === false){

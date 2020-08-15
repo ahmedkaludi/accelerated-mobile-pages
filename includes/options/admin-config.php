@@ -5628,6 +5628,17 @@ Redux::setSection( $opt_name, array(
                 ),
         )
     ));
+$yoast_primary_cat = '';
+if(class_exists('WPSEO_Options')){
+    $yoast_primary_cat =  array(
+              'id'       => 'ampforwp-cats-single-primary',
+              'type'     => 'switch',
+              'class' => 'child_opt child_opt_arrow', 
+              'title'    => esc_html__('Show Only Primary Category', 'accelerated-mobile-pages'),
+              'default'  =>  '0', 
+              'required' => array('ampforwp-cats-single' , '=' , 1),        
+           );
+}
 if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
 function ampforwp_get_post_percent(){
     return 0;
@@ -5785,6 +5796,7 @@ $single_page_options = array(
                 esc_html__('Enable this option to show categories in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-show-categories-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),           
               
            ),
+         $yoast_primary_cat,
          //Tags  ON/OFF
          array(
               'id'       => 'ampforwp-tags-single',
@@ -6256,6 +6268,16 @@ $single_page_options = array(
                 'default'  => 0,
                 'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
             ),
+            array(
+                'id'       => 'ampforwp-incontent-related-posts-excerpt',
+                'type'     => 'switch',
+                'class' => 'child_opt',
+                'title'    => esc_html__('Excerpt', 'accelerated-mobile-pages'),
+                'default'  => 1,
+                'required' => array( 
+                                array('ampforwp-inline-related-posts', '=' , '1') 
+                            ),
+            ),       
             array(
                     'id'       => 'ampforwp-number-of-inline-related-posts',
                     'type'     => 'text',

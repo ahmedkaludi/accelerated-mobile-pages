@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.61.2
+Version: 1.0.62
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.61.2');
+define('AMPFORWP_VERSION','1.0.62');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
@@ -1079,7 +1079,9 @@ function ampforwp_get_all_post_types(){
         }
         $post_types = array_merge($post_types, $selected_post_types);
     }
-
+    if(class_exists('WPUltimateRecipe') && ampforwp_is_home()){
+	    	$post_types['recipe'] = 'recipe';
+	}
     return $post_types;
 }
 
@@ -1196,7 +1198,7 @@ function ampforwp_delete_plugins_manager_transient($plugin){
 add_action('pre_amp_render_post', 'ampforwp_initialise_classes');
 if ( ! function_exists('ampforwp_initialise_classes') ) {
 	function ampforwp_initialise_classes(){
-		if ( true == ampforwp_get_setting('ampforwp-infinite-scroll') ) {
+		if ( true == ampforwp_get_setting('ampforwp-infinite-scroll') || true == ampforwp_get_setting('ampforwp-wcp-infinite-scroll') ) {
 			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-infinite-scroll.php';
 		}
 	}

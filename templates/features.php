@@ -325,7 +325,6 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
           //dont Echo anything
         } else {
 			$supported_types = ampforwp_get_all_post_types();
-
 			$supported_types = apply_filters('get_amp_supported_post_types',$supported_types);
 
 			$type = get_post_type();
@@ -4943,14 +4942,16 @@ function ampforwp_inline_related_posts(){
 						}
 						$inline_related_posts .='<div class="related_link">';
 						$inline_related_posts .='<a href="'.esc_url( $related_post_permalink ).'">'.get_the_title().'</a>';
-	                    if( has_excerpt() ){
-							$content ='<p>'.get_the_excerpt().'</p>';
-						}else{
-							$content ='<p>'.get_the_content().'</p>';
-						}
-                    	$inline_related_posts .= '<p>'. wp_trim_words( strip_shortcodes( $content ) , 15 ).'</p>
-                			</div>
-           			 	</li>';							
+	                    if(ampforwp_get_setting('ampforwp-incontent-related-posts-excerpt')==1){
+	                       if( has_excerpt() ){
+	                       $content ='<p>'.get_the_excerpt().'</p>';
+	                       }else{
+	                       $content ='<p>'.get_the_content().'</p>';
+	                       }
+	                       $inline_related_posts .= '<p>'. wp_trim_words( strip_shortcodes( $content ) , 15 ).'</p>';
+	                        }
+            			   $inline_related_posts .= '</div>
+       			 	</li>';									
 					}					     
 				$inline_related_posts .= '</ol>
 						    </div>
