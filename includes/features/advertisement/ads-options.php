@@ -7,6 +7,17 @@ if ( ! defined( 'ABSPATH' ) ) {
     $advertisementdesc = '';
     if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) && !is_plugin_active( 'ads-for-wp/ads-for-wp.php' ) ){
         $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
+    $quads_download = '';  
+    if(function_exists('quads_loaded')){
+        $quads_download = '<a href="'.admin_url('admin.php?page=quads-settings').'"> Go to WP QUADS Settings </a>';
+    }else{
+        $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">Install Plugin</div>';
+    }
+    foreach (get_plugins() as $key => $value) {
+        if($key == 'quick-adsense-reloaded/quick-adsense-reloaded.php' && !function_exists('quads_loaded')){
+           $quads_download = '<div class="install-now button quads_install_button"><a target="_blank" href="'.admin_url('plugins.php').'">Activate Plugin</a></div>';
+        }
+    }
     $advertisementdesc = '
     <div class="ads-baner">
         <span class="adt-top">The Best AMP integration for Advertisement</span>
@@ -61,9 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </li>
                 </ul>
                 <div class="ad-lnk">
-                 '.(!function_exists('quads_loaded')? 
-                                '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">Install Plugin</div>'
-                            : '<a href="'.admin_url('admin.php?page=quads-settings').'"> Go to WP QUADS Settings </a>').'
+                 '. $quads_download .'
                 </div>
             </div>
         </div>

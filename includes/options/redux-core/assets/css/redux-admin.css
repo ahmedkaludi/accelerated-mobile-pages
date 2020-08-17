@@ -487,6 +487,10 @@ img.ampforwp-quads-logo{
     font-weight: 600;
     border-radius: 30px;
 }
+.button.installed:before, .button.installing:before, .button.updated-message:before, .button.updating-message:before { 
+    margin: 0px 7px 2px -2px;
+    color: #fff;
+}
 div#section-amp-ads_1, table#section-table-amp-ads_1 {
     max-width: 100% !important;
 }
