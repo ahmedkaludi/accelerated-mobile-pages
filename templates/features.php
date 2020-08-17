@@ -8905,3 +8905,15 @@ function ampforwp_yoast_home_robots($string) {
     }
     return $string;
 }
+//Fallback added
+if( !function_exists( 'fifu_amp_url' ) ) {
+	function fifu_amp_url($url, $width, $height) {
+		$size = get_post_meta(ampforwp_get_the_ID(), 'fifu_image_dimension');
+	    if (!empty($size)) {
+	        $size = explode(';', $size[0]);
+	        $width = $size[0];
+	        $height = $size[1];
+	    }
+	    return array(0 => $url, 1 => $width, 2 => $height);
+	}
+}
