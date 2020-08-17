@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.62
+Stable tag: 1.0.62.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.62.1 (17th August 2020) =
+* Improvement: Removed unwanted javascript from AMP pages #4689
+* Fixed: Call to undefined function fifu_amp_url() #4688
+* Fixed: jQuery.fn.live() is deprecated warnings #4706
+
 = 1.0.62 (15th August 2020) =
 * Improvement: Added Yoast Local SEO plugin compatibility #4170
 * Improvement: Added option for changing the tags for the accordion module in AMP Page Builder #4208
@@ -203,48 +208,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.61.2 (5th August 2020) =
 * Fixed: Removed Helpscout Beacon from Options Panel #4682
-
-= 1.0.61.1 (4th August 2020) =
-* Fixed: The right and left arrows are converting into the special characters in AMP #4668
-
-= 1.0.61 (3rd August 2020) =
-* Improvement: Added Open By Default option in accordion module of AMP Page Builder #4597
-* Fixed: Wrong preview link is generating for the AMP pages and posts #4670
-* Fixed: Code improved in category base and tag base remover #4664
-* Fixed: Wrong breadcrumb links are generating in the AMP #4666
-* Fixed: Optimize gallery code to enhance performance and improve the page load time #4656
-* Fixed: Homepage URL has /amp at the end even after enabling AMP Takeover #4662
-* Fixed: Background color not appearing in table when created with Tiny MCE advanced plugin #4627
-* Fixed: Header right side icons styling improved in Design 3 #3935
-* Fixed: The right and left arrows are converting into the special characters in AMP #4668 
-* Fixed: Removed Shorthand versions of PHP from the code #4659
-* Fixed: Wrong width and height in logo for SVG images #4650
-
-= 1.0.60 (27th July 2020) =
-* Improvement: Added below the related post hook #4653
-* Fixed: Validation errors caused by Autoptimize for logged in users #4586
-* Fixed: Styling issues with Reactions plugin by Vicomi #4637
-* Fixed: If category name has special characters AMP Pagebuilder was not working #4610
-* Fixed: autoplay attribute not working in the amp-vimeo tag #4648
-* Fixed: incorrect width and height of logo in AMP #4650
-* Fixed: Styling issues with AdsforWP section #4658
-* Fixed: Code improvements for options panel #4647
-* Fixed: Recent post appearing on pages as well in design 3 #4651
-
-= 1.0.59 (23rd July 2020) =
-* Improvement: Added noreferrer noopener attributes on social links #4509
-* Improvement: Added webmaster tools meta tags when AMP takeover is enabled #4602
-* Improvement: Added Conversion Goals Tracking for AMP Extension #4647 #4655
-* Improvement: Added a filter to turn on/off the Aqua_resizer #4641
-* Improvement: Added a filter to add/remove fields in Google Analytics #4646
-* Fixed: noindex issue on homepage using Yoast #4609
-* Fixed: Pagination not working in AMP with Magplus theme #4611
-* Fixed: If category name has special characters AMP Pagebuilder was not working #4610
-* Fixed: Letter-spacing issue in Swift Theme if RTL is enabled #4598
-* Fixed: URL with square brackets [ ] causing issue in galleries AMP #4635
-* Fixed: Google Analytics trigger functionality not working #4645
-* Fixed: Validation error when css icons and sticky header is selected #4640
-* Fixed: If Extension manager was active it was showing incorrect message #4613
-* Fixed: Debug warnings #4626 #4639
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
