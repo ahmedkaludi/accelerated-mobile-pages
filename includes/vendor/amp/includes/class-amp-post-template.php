@@ -288,7 +288,7 @@ class AMP_Post_Template {
 				$new_post_content = '';
 			// #2001 Filter to remove the unused JS from the paginated post
 			$new_post_content = apply_filters( 'ampforwp_post_content_filter', $new_post_content );
-			//$new_post_content = $this->ampforwp_tiktok_video_support($new_post_content);
+			$new_post_content .= $this->ampforwp_tiktok_video_support($new_post_content);
 
 			$amp_content = new AMP_Content( $new_post_content,
 				apply_filters( 'amp_content_embed_handlers', array(
