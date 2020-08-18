@@ -45,6 +45,7 @@ function ampforwp_add_admin_styling($hook_suffix){
         add_action('admin_notices', 'ampforwp_automattic_activation' );
         add_action('admin_notices', 'ampforwp_admin_notices' );
         add_action('admin_notices', 'ampforwp_seo_selection_notice' );
+        add_action('admin_notices', 'ampforwp_internal_feedback_notice' );
     }else{
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
@@ -1325,4 +1326,22 @@ function ampforwp_seo_selection_notice() {
     if(!empty($seo)){
         echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
     }
+}
+function ampforwp_internal_feedback_notice(){
+    $dismiss = get_transient('ampforwp_internal_feedback_dismiss');
+    $install_date = get_option('ampforwp_plugin_info');
+    $install_date = $install_date["activation_data"];
+    $install_date = date("m-d-Y", $install_date);
+    if (strtotime($install_date) < strtotime('1 month ago')) {
+         echo '<div class="updated notice ampforwp_remove_notice" style="box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);background-color:white;">
+        <p>Awesome, you\'ve been using <strong>AMPforWP</strong> for more than 1 month. <br> May i ask you to give it a <strong>5-star rating</strong> on Wordpress? </br>
+        This will help to spread its popularity and to make this plugin a better one.
+        <br><br>Your help is much appreciated. Thank you very much,<br>
+        <ul><li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?rate=5#new-post" class="button-primary" target="_new" style="font-weight:bold;" title="Ok, you deserved it">Ok, You deserved it</a><br/><br/><a class="button-primary" id="close-notice" style="font-weight:bold;">Close Notice</a></li></ul></div>';
+    }
+}
+add_action('wp_ajax_ampforwp_internal_feedback_dismiss','ampforwp_internal_feedback_dismiss');
+function ampforwp_internal_feedback_dismiss(){
+    set_transient( 'ampforwp_dismiss_time_notice', 1 );
+    exit();
 }
