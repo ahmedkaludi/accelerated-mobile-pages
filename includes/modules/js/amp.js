@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
     var count = 0;
 
  //For Blurb Module
-    jQuery(".ampforwp-blurb-add").live('click', function(e) {
+    jQuery(".ampforwp-blurb-add").on('click', function(e) {
         console.log('click');
 
         event.preventDefault();
@@ -19,12 +19,12 @@ jQuery(document).ready(function($) {
             '<label for="widget-ampforwp-blurb['+instance+'][features]['+count+'][description]">Description</label>'+
             '<textarea  class="widefat" id="widget-ampforwp-blurb-'+instance+'-features-'+count+'-description" name="widget-ampforwp-blurb['+instance+'][features]['+count+'][description]" rows=\'6\' cols=\'50\'>This is a sample text which is being used for the dummy purpose to avoid confusion.</textarea> <span class="clear"></span></p>' + '<p> <label for=""> Image: </label><input type="button" class="select-img-'+count+' button left" style="width:auto;" value="Select Image" onclick="ampSelectImage('+count+');"/><input type="button" style="display:none" name="removeimg" id="remove-img-'+count+'" class="button button-secondary remove-img-button" data-count-type="'+count+'"  value="Remove Image" onclick="removeImage('+count+')"><img src="'+amp_check_img+'" class="preview-image block-image-'+count+'" >' + '<input type="hidden" id="amp-img-field-'+count+'" class="img'+count+'" style="width:auto;" name="widget-ampforwp-blurb['+instance+'][features]['+count+'][image]" id="'+instance+'-features-'+count+'" value="'+amp_check_img+'" /></p>' + ' <p> <a class="ampforwp-blurb-remove delete button left">Remove Feature</a></p></div></div>');
         });
-    jQuery(".ampforwp-blurb-remove").live('click', function() {
+    jQuery(".ampforwp-blurb-remove").on('click', function() {
         jQuery(this).parent().parent().parent().remove();
     }); 
 
 //For Text Module
-    jQuery(".ampforwp-text-add").live('click', function(e) {
+    jQuery(".ampforwp-text-add").on('click', function(e) {
         console.log('click');
 
         event.preventDefault();
@@ -41,12 +41,12 @@ jQuery(document).ready(function($) {
             '<label for="widget-ampforwp-text['+instance+'][features]['+count+'][description]">Description</label>'+
             '<textarea  class="widefat" id="widget-ampforwp-text-'+instance+'-features-'+count+'-description" name="widget-ampforwp-text['+instance+'][features]['+count+'][description]" rows=\'6\' cols=\'50\'>This is the description added by default </textarea> <span class="clear"></span></p>' + ' <p> <a class="ampforwp-text-remove delete button left">Remove Feature</a></p></div></div>' );
         });
-     jQuery(".ampforwp-text-remove").live('click', function() {
+     jQuery(".ampforwp-text-remove").on('click', function() {
         jQuery(this).parent().parent().parent().remove();
     });
 
 //For Button Module
-    jQuery(".ampforwp-button-add").live('click', function(e) {
+    jQuery(".ampforwp-button-add").on('click', function(e) {
         console.log('click');
 
         event.preventDefault();
@@ -80,7 +80,7 @@ jQuery(document).ready(function($) {
         });
 
 
-     jQuery(".ampforwp-button-remove").live('click', function() {
+     jQuery(".ampforwp-button-remove").on('click', function() {
         jQuery(this).parent().parent().parent().remove();
     });
 
