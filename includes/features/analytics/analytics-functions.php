@@ -382,6 +382,7 @@ add_action( 'ampforwp_body_beginning', 'ampforwp_add_advance_gtm_fields' );
 function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
 	if(true == ampforwp_get_setting('amp-use-gtm-option')){
 		$gtm_id 	= ampforwp_get_setting('amp-gtm-id');
+		$gtm_analytics 	= ampforwp_get_setting('amp-gtm-analytics-code');
 		if(true == ampforwp_get_setting('ampforwp-gtm-field-advance-switch') ){
 			$ampforwp_adv_gtm_fields = "";
 			$ampforwp_adv_gtm_fields = ampforwp_get_setting('ampforwp-gtm-field-advance');
@@ -392,9 +393,12 @@ function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
 				<amp-analytics config="https://www.googletagmanager.com/amp.json?id=<?php echo esc_attr($gtm_id);?>" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>data-credentials="include"><script type="application/json"><?php echo sanitize_text_field($ampforwp_adv_gtm_fields) ?></script></amp-analytics> <?php
 			}
 		} else {
-			if($gtm_id!=""){ ?>
+			if($gtm_id!="" && empty($gtm_analytics)){ ?>
 				<amp-analytics config="https://www.googletagmanager.com/amp.json?id=<?php echo esc_attr($gtm_id);?>" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>data-credentials="include"></amp-analytics> <?php
 			}
+			if($gtm_id!="" && !empty($gtm_analytics)){ ?>
+				<amp-analytics config="https://www.googletagmanager.com/amp.json?id=<?php echo esc_attr($gtm_id);?>" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>data-credentials="include"><script type="application/json">{ "vars": { "account": "<?php echo esc_html($gtm_analytics);?>"} }</script></amp-analytics>
+			<?php }
 		}
 	}
 }
