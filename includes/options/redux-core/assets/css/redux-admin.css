@@ -1416,3 +1416,105 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
     }
 
 }
+/** New Ads Banner CSS **/
+.amp-ads a{
+    text-decoration: none;
+}
+.ads-baner{
+    border: 1px solid #2196F3;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+.ads-baner span.adt-top{
+    background: #087fde;
+    padding: 10px 0px 10px 15px;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+}
+.ads-baner-inner{
+    padding:10px;
+}
+.ads-baner-inner span{
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    letter-spacing: 5px;
+    color: #03A9F4;
+    font-size: 13px;
+}
+img.ampforwp-quads-logo{
+    max-width: 180px;
+    height: 42px;
+    margin: 10px auto 0 auto;
+    display: inherit;
+}
+.list-of-feat{
+    padding:15px 10px;
+}
+.list-of-feat h5{
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    margin:0px;
+}
+.inner-list{
+    padding: 14px 0px 10px 0px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #666;
+}
+.inner-list li{
+    margin-bottom: 14px !important;
+}
+.inner-list li:before{
+    content: "";
+    display: inline-block;
+    transform: rotate(40deg);
+    height: 8px;
+    width: 4px;
+    border-bottom: 2px solid #4CAF50;
+    border-right: 2px solid #4CAF50;
+    margin-right: 10px;
+}
+.list-of-feat > ul{
+    display:inline-grid;
+    grid-template-columns: 1fr 1fr 180px 140px;
+    width:100%;
+    grid-gap:0px 20px;
+}
+.ad-lnk{
+    width: 100%;
+    display: inline-block;
+    margin: 10px auto 15px auto;
+    text-align: center;
+}
+.ad-lnk a,.ad-lnk .quads_install_button,.ad-lnk .quads_install_button:hover{
+    background: #087fde;
+    padding: 10px 35px 14px 35px;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 30px;
+}
+.button.installed:before, .button.installing:before, .button.updated-message:before, .button.updating-message:before { 
+    margin: 0px 7px 2px -2px;
+    color: #fff;
+}
+div#section-amp-ads_1, table#section-table-amp-ads_1 {
+    max-width: 100% !important;
+}
+div#section-ampforwp-ads-section, table#section-table-ampforwp-ads-section{
+    display:none !important;
+}
+@media(max-width:768px){
+    .list-of-feat > ul {
+        grid-template-columns: 1fr 1fr;
+    }
+}
