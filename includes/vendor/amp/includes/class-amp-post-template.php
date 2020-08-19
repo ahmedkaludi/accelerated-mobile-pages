@@ -286,6 +286,7 @@ class AMP_Post_Template {
 				$new_post_content = '';
 			// #2001 Filter to remove the unused JS from the paginated post
 			$new_post_content = apply_filters( 'ampforwp_post_content_filter', $new_post_content );
+			$new_post_content .= $this->ampforwp_tiktok_video_support($new_post_content);
 
 			$amp_content = new AMP_Content( $new_post_content,
 				apply_filters( 'amp_content_embed_handlers', array(
@@ -337,7 +338,16 @@ class AMP_Post_Template {
 			$this->add_data_by_key( 'post_amp_styles', array() );
 		}
 	}
-
+	public function ampforwp_tiktok_video_support($content){
+		if(preg_match('/<blockquote(.*?)(https?:\/\/(?:www\.)?(?:tiktok\.com\/@(.*?)\/video\/\d+))(.*?)data-video-id="(.*?)"(.*?)<\/blockquote>/i', $content,$matches)){
+			if(isset($matches[5])){
+				$src = 'https://www.tiktok.com/embed/v2/'.$matches[5].'?lang=en-US';
+				$iframe = '<iframe src="'.$src.'" width="375" height="820" allow="fullscreen"></iframe>';
+				$content = preg_replace('/<blockquote(.*?)(https?:\/\/(?:www\.)?(?:tiktok\.com\/@(.*?)\/video\/\d+))(.*?)data-video-id="(.*?)"(.*?)<\/blockquote>/i', $iframe, $content);
+			}
+			return $content;
+		}
+	}
 	
 	private function build_post_featured_image() {
 		$post_id = $this->ID;
