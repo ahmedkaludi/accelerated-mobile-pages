@@ -2785,6 +2785,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
   if ( $non_sanitized_sidebar ) {
 	  $sanitized_sidebar = new AMPforWP_Content( $non_sanitized_sidebar,
 	    apply_filters( 'amp_content_embed_handlers', array(
+	    	  'AMP_Reddit_Embed_Handler' => array(),
 	          'AMP_Twitter_Embed_Handler' => array(),
 	          'AMP_YouTube_Embed_Handler' => array(),
 	          'AMP_DailyMotion_Embed_Handler' => array(),
@@ -3187,6 +3188,7 @@ function ampforwp_content_sanitizer( $content ) {
 	if ( !empty( $amp_custom_post_content_input ) ) {
 		$amp_custom_content = new AMPFORWP_Content( $amp_custom_post_content_input,
 				apply_filters( 'amp_content_embed_handlers', array(
+					    'AMP_Reddit_Embed_Handler' => array(),
 						'AMP_Twitter_Embed_Handler' => array(),
 						'AMP_YouTube_Embed_Handler' => array(),
 						'AMP_Instagram_Embed_Handler' => array(),
@@ -3698,6 +3700,7 @@ function ampforwp_generate_pagebuilder_data() {
 
   $sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
     apply_filters( 'amp_content_embed_handlers', array(
+    	  'AMP_Reddit_Embed_Handler' => array(),
           'AMP_Twitter_Embed_Handler' => array(),
           'AMP_YouTube_Embed_Handler' => array(),
           'AMP_Instagram_Embed_Handler' => array(),
@@ -6937,6 +6940,7 @@ function ampforwp_comments_sanitizer(){
 			$comment_text =	$comment_data->comment_content;
 			$comment_text = wpautop( $comment_text );
 	    	$sanitizer = new AMPforWP_Content( $comment_text, apply_filters( 'amp_content_embed_handlers', array(
+	    		  'AMP_Reddit_Embed_Handler' => array(),
 		          'AMP_Twitter_Embed_Handler' => array(),
 		          'AMP_YouTube_Embed_Handler' => array(),
 		          'AMP_DailyMotion_Embed_Handler' => array(),
