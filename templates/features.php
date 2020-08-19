@@ -4595,6 +4595,7 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 		}else{
 			$classes[] = get_post_type();
 		}
+		$classes[] = AMPFORWP_VERSION;
 		$classes = array_map( 'esc_attr', $classes );
 	    $classes = apply_filters( 'ampforwp_body_class', $classes, $class );
 	 
