@@ -57,6 +57,7 @@ function ampforwp_related_post_loop_query(){
 			$orderby = 'rand';
 		}
 	$args=array(
+		'fields' => 'ids',
 		'post_type'	   => get_post_type($post),
 	    'posts_per_page'=> $int_number_of_related_posts,
 	    'post__not_in' => array($post->ID),
