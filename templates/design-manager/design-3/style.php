@@ -253,8 +253,8 @@ h2.amp-wp-title a ,h3.amp-wp-title a{ color: #000; }
 .amp-loop-list{ position:relative; border-bottom: 1px solid #ededed; padding: 25px 15px 25px 15px }
 body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 .amp-loop-list .amp-wp-post-content{ float: left; width: 65%; }
-.amp-loop-list .featured_time{ color:#b3b3b3; padding-left:0 }
-.amp-wp-post-content p{ color: grey; line-height: 1.5; font-size: 14px;word-wrap: break-word; margin: 8px 0 10px;}
+.amp-loop-list .featured_time{ color:#561111; padding-left:0 }
+.amp-wp-post-content p{ color: #3e3939; line-height: 1.5; font-size: 14px;word-wrap: break-word; margin: 8px 0 10px;}
 <?php if ( is_single() && 1 == ampforwp_get_setting('enable-excerpt-single') ) { ?>
 /* For Excerpt */
 .amp-wp-post-content .small-screen-excerpt-design-3 {display: none;} .amp-wp-post-content .large-screen-excerpt-design-3 { display: block; }
@@ -289,7 +289,7 @@ if (empty($footer_cpr_color)) {
  $footer_cpr_color = '#ffffff'; 
 } 
 if (empty($footer_pwrd_color)) {
- $footer_pwrd_color = '#666666'; 
+ $footer_pwrd_color = '#cac8c8'; 
 } 
 ?>
 #footer{ background: <?php echo ampforwp_sanitize_color($footer_back_color);?>; color: <?php echo ampforwp_sanitize_color($footer_text_color);?>; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }

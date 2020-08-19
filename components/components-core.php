@@ -466,7 +466,7 @@ function amp_non_amp_link(){
 function amp_back_to_top_link(){
 	 global $redux_builder_amp;
     if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
-        <a id="scrollToTopButton" title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ></a> 
+        <a id="scrollToTopButton" title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" href="#" ></a>
         <?php 
         global $wp;
         $current_url = home_url(add_query_arg(array($_GET), $wp->request));
