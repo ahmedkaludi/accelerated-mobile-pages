@@ -8754,6 +8754,16 @@ function ampforwp_themify_compatibility($content){
 	}
 	return $content;
 }
+
+//4710 Added support to load featured image for lazy load option of Dues theme.
+if(function_exists('wpg_lazyload_image_attributes')){
+   add_action('wp','ampforwp_dues_theme_load_featured_image');
+}
+function ampforwp_dues_theme_load_featured_image(){
+	if(ampforwp_is_amp_endpoint()){
+     remove_filter( 'wp_get_attachment_image_attributes', 'wpg_lazyload_image_attributes', 8, 3 );
+	}
+}
  if(function_exists('rocket_activation')){
 	add_filter("ampforwp_the_content_last_filter",'ampforwp_wp_rocket_compatibility',25);
 }
