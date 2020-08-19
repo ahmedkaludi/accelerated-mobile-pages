@@ -285,7 +285,8 @@ function amp_breadcrumb(){
 // GDPR component 
 function amp_gdpr(){
 	global $loadComponent;
-	if ( isset($loadComponent['AMP-gdpr']) && true == $loadComponent['AMP-gdpr'] ) {
+	$gdpr = apply_filters('ampforwp_on_off_gdpr', true);
+	if ( isset($loadComponent['AMP-gdpr']) && true == $loadComponent['AMP-gdpr'] && $gdpr) {
 		echo amp_gdpr_output();
 	}
 }
