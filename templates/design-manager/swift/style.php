@@ -628,7 +628,12 @@ echo sanitize_text_field($fontFamily);
 ?>
 }
 <?php } ?>
-<?php if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('single-design-type') == '4' ){ ?>
+<?php if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('single-design-type') == '4' ){
+		// Assigning Full size  if feature img type is not set.
+		if( ampforwp_get_setting('swift-featued-image') && empty(ampforwp_get_setting('swift-featued-image-type'))){
+		    $redux_builder_amp['swift-featued-image-type'] = 1;
+		 }
+	?>
 <?php // Single
 
 if(is_single() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) { ?>
