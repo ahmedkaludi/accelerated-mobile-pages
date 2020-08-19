@@ -6077,13 +6077,13 @@ function ampforwp_homepage_loop( $args ) {
 	if ( is_home() ) {
 		$post_type = 'post';
 		// Check if Custom Post Type is selected
-		if ( isset($redux_builder_amp['ampforwp-homepage-loop-type']) && '' != $redux_builder_amp['ampforwp-homepage-loop-type'] ) {
-			$post_type = $redux_builder_amp['ampforwp-homepage-loop-type'];
+		if ('' != ampforwp_get_setting('ampforwp-homepage-loop-type') ) {
+			$post_type = ampforwp_get_setting('ampforwp-homepage-loop-type');
 		}
 		$args['post_type'] = $post_type;
 		// Exclude Categories if any selected
-		if ( isset($redux_builder_amp['ampforwp-homepage-loop-cats']) && ! empty($redux_builder_amp['ampforwp-homepage-loop-cats']) ) {
-			$args['category__not_in'] = $redux_builder_amp['ampforwp-homepage-loop-cats'];
+		if ('' != ampforwp_get_setting('ampforwp-homepage-loop-cats') ) {
+			$args['category__not_in'] = ampforwp_get_setting('ampforwp-homepage-loop-cats');
 		}
 	}
 	return $args; 
