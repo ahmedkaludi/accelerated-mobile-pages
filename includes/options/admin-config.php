@@ -5710,7 +5710,7 @@ $single_page_options = array(
                     'required' => array( 
                                         array('amp-design-selector', '=' , '4'),
                                         array('swift-featued-image', '=' , '1'),
-                                        array('rp_design_type', '=' , '1')
+                                        array('single-design-type', '=' , '1')
                                     ),
             ),
             array(
