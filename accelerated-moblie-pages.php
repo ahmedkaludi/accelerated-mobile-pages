@@ -1491,3 +1491,11 @@ if(!function_exists('ampforwp_delete_transient_on_update')){
 		}
 	}
 }
+// Checking upgrader_process_complete hool
+add_action( 'upgrader_process_complete', 'ampforwp_upgrade_process_checking',10, 2);
+
+function ampforwp_upgrade_process_checking( $upgrader_object, $options ) {
+
+add_option( 'ampforwp_update_text', "upgrader_process_complete hook working." );
+add_option( 'ampforwp_update_hook', "working");
+}
