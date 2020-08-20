@@ -2374,7 +2374,6 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
 <?php }else if(ampforwp_get_setting('ampforwp-gallery-design-type')==2){?>
 .ampforwp-blocks-gallery-caption{
     font-size: 16px;
-    margin-top: -23px;
 }
 <?php }else if(ampforwp_get_setting('ampforwp-gallery-design-type')==1){?>
 .ampforwp-blocks-gallery-caption{
