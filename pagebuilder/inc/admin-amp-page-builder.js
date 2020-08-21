@@ -420,7 +420,11 @@ function openModulePopup(event,type){
 							//if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
 
 								if(fieldData.name in moduleData){
-									var userValues = moduleData[fieldData.name];
+									if(typeof moduleData[fieldData.name] !='undefined'){
+										var userValues = moduleData[fieldData.name];
+									}else{
+										var userValues = fieldData.default;
+									}
 								}else{
 									var userValues = fieldData.default;
 								}
@@ -450,7 +454,9 @@ function openModulePopup(event,type){
 										newFields.name = newFields.name+'_'+savedkey;
 										//if(savedREPValue[newFields.name]){
 											//console.log(savedREPValue[newFields.name],newFields.name)
+											if(typeof savedREPValue[newFields.name] !='undefined'){
 											newFields.default = savedREPValue[newFields.name];
+											}
 										//}
 									})
 									app.modalcontent.repeater.showFields.push(Vue.util.extend([], allRepeaterFileds));
