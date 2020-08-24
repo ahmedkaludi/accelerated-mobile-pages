@@ -8659,15 +8659,11 @@ if(!function_exists('ampforwp_check_image_existance')){
 		return $image;
 	}
 }
-if(class_exists('Getty_Images')){
-	global $getty_img_content;
-	add_filter( 'embed_oembed_html', 'ampforwp_get_gitty_image_embed',10,4);
 	function ampforwp_get_gitty_image_embed( $html, $url, $attr, $post_ID ) {
 		global $getty_img_content;
 		$getty_img_content[] = $html;
 		return $html; 
 	}
-	add_filter( 'ampforwp_the_content_last_filter','ampforwp_getty_image_compatibility',10);
 	function ampforwp_getty_image_compatibility($content){
 		global $getty_img_content;
 		if(is_array($getty_img_content)){
@@ -8709,7 +8705,6 @@ if(class_exists('Getty_Images')){
 		}
 		return $content;
 	}
-}
 function ampforwp_modify_url_utm_params($url){
 	$modify_url = apply_filters('ampforwp_modify_related_post_url','');
 	if($modify_url!=''){

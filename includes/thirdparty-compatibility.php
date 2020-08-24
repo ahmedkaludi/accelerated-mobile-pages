@@ -74,6 +74,10 @@ function ampforwp_thirdparty_compatibility(){
 	if(class_exists('FinalTiles_Gallery')){
 		add_filter('wp_is_mobile','ampforwp_final_tiles_grid_gallery');
 	}
+	if(class_exists('Getty_Images')){
+		add_filter( 'embed_oembed_html', 'ampforwp_get_gitty_image_embed',10,4);
+		add_filter( 'ampforwp_the_content_last_filter','ampforwp_getty_image_compatibility',10);
+	}	
 }
 function ampforwp_removing_sassy_social_share(){	
 	return 1;
