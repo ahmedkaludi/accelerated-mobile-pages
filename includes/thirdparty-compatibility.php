@@ -71,6 +71,9 @@ function ampforwp_thirdparty_compatibility(){
 	if(function_exists('vicomi_feelbacks_template')){
 		remove_action('the_content', 'vicomi_feelbacks_template');
 	}
+	if(class_exists('FinalTiles_Gallery')){
+		add_filter('wp_is_mobile','ampforwp_final_tiles_grid_gallery');
+	}
 }
 function ampforwp_removing_sassy_social_share(){	
 	return 1;
@@ -1147,4 +1150,9 @@ function ampforwp_wp_optimize_iframe($content){
 		unset($content['the_content']);
 	}
 	return $content;
+}
+
+function ampforwp_final_tiles_grid_gallery($mobile){
+	$mobile = false;
+    return $mobile;
 }
