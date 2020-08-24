@@ -49,8 +49,7 @@ wp_reset_postdata(); ?>
       echo strip_tags( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'All Rights Reserved') ,$allowed_tags );
  		?></p>
     <?php
-    if ( true == ampforwp_get_setting('ampforwp-footer-top') || true == ampforwp_get_setting('amp-footer-link-non-amp-page') ) { ?><p class="rightslink back-to-top"><?php 
-      amp_back_to_top_link();
+    if ( true == ampforwp_get_setting('amp-footer-link-non-amp-page') ) { ?><p class="rightslink back-to-top"><?php 
     if(true == ampforwp_get_setting('amp-footer-link-non-amp-page')){
       ampforwp_view_nonamp();
     }

@@ -444,7 +444,6 @@ function amp_footer_core(){
 		do_action('ampforwp_global_after_footer');
 		do_action('amp_end',$thisTemplate);
 	}
-	amp_back_to_top_link();
 	// Close the body and Html tags ?>
 	</body>
 		</html><?php
@@ -768,6 +767,7 @@ function ampforwp_backtotop_global_css(){?>
       border-radius: 100%;
       width: 50px;
       height: 50px;
+      text-decoration: none;
   }
   .btt:hover{color:#fff;background:#474747;}
   .btt:before{
