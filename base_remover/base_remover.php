@@ -50,12 +50,12 @@ function ampforwp_url_base_rewrite_rules(){
 		add_action( 'created_post_tag', 'amp_flush_rewrite_rules' , 999 );
 		add_action( 'edited_post_tag', 'amp_flush_rewrite_rules', 999 );
 		add_action( 'delete_post_tag', 'amp_flush_rewrite_rules', 999 );
-		add_filter( 'tag_rewrite_rules', 'ampforwp_tag_url_rewrite_rules' );
+		add_filter( 'post_tag_rewrite_rules', 'ampforwp_tag_url_rewrite_rules' );
 	}elseif( $tagBaseRewrite === '0' ) {
 		remove_action( 'created_post_tag', 'amp_flush_rewrite_rules' , 999 );
 		remove_action( 'edited_post_tag', 'amp_flush_rewrite_rules', 999 );
 		remove_action( 'delete_post_tag', 'amp_flush_rewrite_rules', 999 );
-		remove_filter( 'tag_rewrite_rules', 'ampforwp_tag_url_rewrite_rules' ); 
+		remove_filter( 'post_tag_rewrite_rules', 'ampforwp_tag_url_rewrite_rules' ); 
 	} 
 }
 
