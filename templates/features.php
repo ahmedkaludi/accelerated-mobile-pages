@@ -4019,19 +4019,31 @@ function ampforwp_post_pagination( $args = '' ) {
 			$id = ampforwp_get_the_ID();
 			$content = get_post_field( 'post_content', $id);
 			$sanitizer_obj = new AMPFORWP_Content( $content,
-									array(), 
-									apply_filters( 'ampforwp_content_sanitizers', 
-										array( 'AMP_Img_Sanitizer' => array(), 
-											'AMP_Blacklist_Sanitizer' => array(),
-											'AMP_Style_Sanitizer' => array(), 
-											'AMP_Video_Sanitizer' => array(),
-					 						'AMP_Audio_Sanitizer' => array(),
-					 						'AMP_Iframe_Sanitizer' => array(
-												 'add_placeholder' => true,
-											 ),
-										) 
-									) 
-								);
+              apply_filters( 'amp_content_embed_handlers', array(
+          				    'AMP_Reddit_Embed_Handler'     => array(),
+                      		'AMP_Twitter_Embed_Handler'     => array(),
+          				    'AMP_YouTube_Embed_Handler'     => array(),
+                  			'AMP_DailyMotion_Embed_Handler' => array(),
+                  			'AMP_Vimeo_Embed_Handler'       => array(),
+                  			'AMP_SoundCloud_Embed_Handler'  => array(),
+          				    'AMP_Instagram_Embed_Handler'   => array(),
+          				    'AMP_Vine_Embed_Handler'        => array(),
+          				    'AMP_Facebook_Embed_Handler'    => array(),
+                  			'AMP_Pinterest_Embed_Handler'   => array(),
+          				    'AMP_Gallery_Embed_Handler'     => array(),
+                      		'AMP_Playlist_Embed_Handler'    => array(),
+             		 ) ),
+              apply_filters(  'amp_content_sanitizers', array(
+          				    'AMP_Style_Sanitizer'     => array(),
+          				    'AMP_Blacklist_Sanitizer' => array(),
+          				    'AMP_Img_Sanitizer'       => array(),
+          				    'AMP_Video_Sanitizer'     => array(),
+          				    'AMP_Audio_Sanitizer'     => array(),
+                  			'AMP_Playbuzz_Sanitizer'  => array(),
+          				    'AMP_Iframe_Sanitizer'    => array(
+          					       'add_placeholder' => true,
+          				    ),
+              		)  ) );
 			$content =  $sanitizer_obj->get_amp_content();
 			$checker = preg_match('/<!--nextpage-->/', $content);
 			if ( 1 === $checker ) {
@@ -4198,20 +4210,32 @@ function ampforwp_post_paginated_content($content){
 		  $id = ampforwp_get_the_ID();
 		  $content = get_post_field( 'post_content', $id);
 		  $sanitizer_obj = new AMPFORWP_Content( $content,
-									array(), 
-									apply_filters( 'ampforwp_content_sanitizers', 
-										array( 'AMP_Img_Sanitizer' => array(), 
-											'AMP_Blacklist_Sanitizer' => array(),
-											'AMP_Style_Sanitizer' => array(), 
-											'AMP_Video_Sanitizer' => array(),
-					 						'AMP_Audio_Sanitizer' => array(),
-					 						'AMP_Iframe_Sanitizer' => array(
-												 'add_placeholder' => true,
-											 ),
-										) 
-									) 
-								);
-			$content =  $sanitizer_obj->get_amp_content();
+              apply_filters( 'amp_content_embed_handlers', array(
+          				    'AMP_Reddit_Embed_Handler'     => array(),
+                      		'AMP_Twitter_Embed_Handler'     => array(),
+          				    'AMP_YouTube_Embed_Handler'     => array(),
+                  			'AMP_DailyMotion_Embed_Handler' => array(),
+                 			'AMP_Vimeo_Embed_Handler'       => array(),
+                 			'AMP_SoundCloud_Embed_Handler'  => array(),
+          				    'AMP_Instagram_Embed_Handler'   => array(),
+          				    'AMP_Vine_Embed_Handler'        => array(),
+          				    'AMP_Facebook_Embed_Handler'    => array(),
+                  			'AMP_Pinterest_Embed_Handler'   => array(),
+          				    'AMP_Gallery_Embed_Handler'     => array(),
+                      		'AMP_Playlist_Embed_Handler'    => array(),
+              ) ),
+              apply_filters(  'amp_content_sanitizers', array(
+          				    'AMP_Style_Sanitizer'     => array(),
+          				    'AMP_Blacklist_Sanitizer' => array(),
+          				    'AMP_Img_Sanitizer'       => array(),
+          				    'AMP_Video_Sanitizer'     => array(),
+          				    'AMP_Audio_Sanitizer'     => array(),
+                 			'AMP_Playbuzz_Sanitizer'  => array(),
+          				    'AMP_Iframe_Sanitizer'    => array(
+          					       'add_placeholder' => true,
+          				    ),
+              		)  ) );
+		  $content =  $sanitizer_obj->get_amp_content();
 		  $queried_var = get_query_var('paged');
 		  $con = explode("<!--nextpage-->", $content);
 		  if($queried_var>=2){
