@@ -11,7 +11,10 @@ amp-accordion section:not([expanded]) .show-less {display: none;}
 {{module-class}}.accordion-mod .acc-desc{margin-bottom:0;margin:-5px 0px 20px 23px;padding: 0;color:#666;font-size: 14px;line-height: 1.5em;}';
 $front_css = '.accordion-mod {{acc_head_type}}:before{content: "+";font-size: 24px;color: #999;margin-right: 10px;position: relative;top: 1px;}
 .accordion-mod {{acc_head_type}}:hover{color:#000;}
-.accordion-mod section[expanded] {{acc_head_type}}:before{content:"-"}';
+.accordion-mod section[expanded] {{acc_head_type}}:before{content:"-"}
+.accordion-mod h5:before{content: "+";font-size: 24px;color: #999;margin-right: 10px;position: relative;top: 1px;}
+.accordion-mod section[expanded] h5:before{content:"-"}
+.apac:before,.apac section[expanded]:before{display:none;}';
 return array(
 		'label' =>'Accordion',
 		'name' =>'accordion-mod',

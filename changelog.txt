@@ -19,6 +19,10 @@
 * Fixed: Featured Image doesn’t appear on single post #4711
 * Fixed: Code improvements for options panel #4622 #4532 #4407 #4090
 
+= 1.0.62.2 (21st August 2020) =
+* Fixed: Gutenberg gallery block caption appearing at the end of the content #4716
+* Fixed: Validation error - accordion section must have 2 child tags #4208
+
 = 1.0.62.1 (17th August 2020) =
 * Improvement: Removed unwanted javascript from AMP pages #4689
 * Fixed: Call to undefined function fifu_amp_url() #4688
