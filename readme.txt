@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.62.1
+Stable tag: 1.0.62.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.62.2 (21st August 2020) =
+* Fixed: Gutenberg gallery block caption appearing at the end of the content #4716
+* Fixed: Validation error - accordion section must have 2 child tags #4208
 
 = 1.0.62.1 (17th August 2020) =
 * Improvement: Removed unwanted javascript from AMP pages #4689

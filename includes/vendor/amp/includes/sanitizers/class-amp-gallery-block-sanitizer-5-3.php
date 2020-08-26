@@ -327,7 +327,13 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 			foreach ($amp_images as $amp_image) {
 				$amp_carousel->appendChild( $amp_image );
 			}
-			$this->ampforwp_set_block_gallery_caption($node,$node->parentNode);
+			$captiondom = $this->ampforwp_set_block_gallery_caption($node,$node->parentNode);
+			if ($captiondom) {
+				$main_dic = AMP_DOM_Utils::create_node($this->dom, 'div', array('class'=>'amp-carousel-wrapper') );
+				$main_dic->appendChild( $amp_carousel );
+				$main_dic->appendChild( $captiondom );
+				$amp_carousel =	$main_dic;	
+			}
 		}
 		if ( 2 == ampforwp_get_setting('ampforwp-gallery-design-type') ) {
 			$button_nodes = array();
@@ -400,9 +406,10 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 			$block_gcnode = AMP_DOM_Utils::create_node($this->dom, 'figcaption', array('class'=>'ampforwp-blocks-gallery-caption') );
 			if(isset($fc[1][0])){
 				$block_gcnode->nodeValue = $fc[1][0];
-				$append->appendChild( $block_gcnode );
+				return $block_gcnode;
 			}
 		}
+		return "";
 	}
 	/**
 	 * Get carousel height by containing images.

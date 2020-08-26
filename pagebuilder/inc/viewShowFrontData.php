@@ -710,6 +710,8 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 										$replace = "";
 										if(isset($repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex])){
 											$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
+										}else{
+											$replace = $moduleField['default'];
 										}
 										if(is_array($replace)){
 											if(count($replace)>0){
