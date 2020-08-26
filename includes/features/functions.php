@@ -121,6 +121,7 @@ function ampforwp_is_front_page(){
         if ( $current_page ) {
           $current_page =  $current_page->ID;
         }
+        $current_page = apply_filters('ampforwp_current_page_id',$current_page);
         if ( get_option( 'page_for_posts') == $current_page ) {
             $front_page = false ;
         }
