@@ -9063,6 +9063,19 @@ function ampforwp_facebook_moderation_tool(){
 		}
 	}
 }
+if( ampforwp_get_setting('amp-design-selector') == 4){
+  add_filter('amp_post_template_footer', 'ampforwp_swift_sidebar_menu_json');
+}
+
+function ampforwp_swift_sidebar_menu_json(){ ?>	
+  <amp-state id="sidemenu">
+   <script type="application/json">
+	     <?php echo json_encode(array('offcanvas_menu'=> false));?>
+   </script>
+</amp-state>
+<?php }
+
+
 if(function_exists('vp_pfui_admin_init') && function_exists('penci_setup')){
 	add_action('ampforwp_before_post_content','ampforwp_pennews_audio_embed');
 }

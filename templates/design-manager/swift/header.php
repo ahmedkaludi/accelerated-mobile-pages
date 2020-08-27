@@ -19,7 +19,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
       do_action('ampforwp_reading_progress_bar'); ?>
 <header class="header h_m h_m_1">
     <?php do_action('ampforwp_header_top_design4'); ?>
-    <input type="checkbox" id="offcanvas-menu" class="tg" />
+    <input type="checkbox" id="offcanvas-menu" on="change:AMP.setState({ offcanvas_menu: (event.checked ? true : false) })"  [checked] = "offcanvas_menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
             <div class="m-scrl">
@@ -154,7 +154,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
     do_action('ampforwp_reading_progress_bar'); ?>
 <header class="header-2 h_m h_m_1">
     <?php do_action('ampforwp_header_top_design4'); ?>
-    <input type="checkbox" id="offcanvas-menu" class="tg" />
+    <input type="checkbox" id="offcanvas-menu" on="change:AMP.setState({ offcanvas_menu: (event.checked ? true : false) })"  [checked] = "offcanvas_menu"  class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
             <div class="m-scrl">
@@ -286,7 +286,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
     do_action('ampforwp_reading_progress_bar'); ?>
 <header class="header-3 h_m h_m_1">
     <?php do_action('ampforwp_header_top_design4'); ?>
-    <input type="checkbox" id="offcanvas-menu" class="tg" />
+    <input type="checkbox" id="offcanvas-menu"  on="change:AMP.setState({ offcanvas_menu: (event.checked ? true : false) })"  [checked] = "offcanvas_menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
             <div class="m-scrl">
