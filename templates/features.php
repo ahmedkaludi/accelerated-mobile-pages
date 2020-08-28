@@ -6055,7 +6055,10 @@ function ampforwp_is_non_amp( $type="" ) {
 		if ( is_search() && ( (4 == ampforwp_get_setting('amp-design-selector') && false == ampforwp_get_setting('amp-swift-search-feature') )  ) ){
 			return false;
 		}
-
+		//Removed AMP Takeover when custom 404 Page is selected in enfold theme #4723
+		if ( function_exists('avia_preload_screen') && !empty(avia_get_option('error404_page')) && is_404() ) {
+			return false;
+		}
 		// Enabling AMP Takeover only when selected in Custom Post Type
 		$supported_types_for_takeover = array();
 	    $supported_types_for_takeover = ampforwp_get_all_post_types();
