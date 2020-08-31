@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	                'id'   => 'info_normal_cf7',
 	                'type' => 'info',
 	                'required' => array('amp-enable-contactform', '=' , '1'),
-	                 'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Contact Form 7 extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+	                 'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>'.esc_html__('ONE LAST STEP REQUIRED:','accelerated-mobile-pages').'</b> '.esc_html__('This feature requires','accelerated-mobile-pages').' <a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Contact Form 7 extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',               
 	                   );
 	        }
 	    // Gravity Forms 
@@ -54,7 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	                        'id'   => 'info_normal_gf',
 	                        'type' => 'info',
 	                        'required' => array('amp-enable-gravityforms_support', '=' , '1'),
-	                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Gravity Forms extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+	                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>'.esc_html__('ONE LAST STEP REQUIRED:','accelerated-mobile-pages').'</b> '.esc_html__('This feature requires','accelerated-mobile-pages').' <a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Gravity Forms extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',               
 	        );
 	    }
 	    // Ninja Forms 
@@ -80,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	                        'id'   => 'info_normal_2',
 	                        'type' => 'info',
 	                        'required' => array('amp-enable-ninja-forms-support', '=' , '1'),
-	                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/ninja-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Ninja Forms extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/ninja-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+	                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>'.esc_html__('ONE LAST STEP REQUIRED:','accelerated-mobile-pages').'</b> '.esc_html__('This feature requires','accelerated-mobile-pages').' <a href="https://ampforwp.com/ninja-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Ninja Forms extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/ninja-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">'.esc_html__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',               
 	        );
 	    }
 	 

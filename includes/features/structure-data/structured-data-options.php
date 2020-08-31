@@ -38,8 +38,8 @@ function ampforwp_add_sd_fields($fields){
                'type'     => 'raw',
                'title'     => esc_html__('Structured Data', 'accelerated-mobile-pages'),
                'content'  =>'<div class="col-wrapper">
-                                   <a href="'.admin_url('admin.php?page=structured_data_options&tab=5').'"> <div class="ampforwp-recommendation-btn updated-message"><p>Setup Schema Type Here</p></div> </a>
-                            <a class="amp_recommend_learnmore" href="https://ampforwp.com/tutorials/article/what-is-the-structured-data-update-all-about/" target="_blank">Learn more</a></div>'
+                                   <a href="'.admin_url('admin.php?page=structured_data_options&tab=5').'"> <div class="ampforwp-recommendation-btn updated-message"><p>'.esc_html__('Setup Schema Type Here','accelerated-mobile-pages').'</p></div> </a>
+                            <a class="amp_recommend_learnmore" href="https://ampforwp.com/tutorials/article/what-is-the-structured-data-update-all-about/" target="_blank"> '.esc_html__('Learn more','accelerated-mobile-pages').'</a></div>'
             );
            return $fields;
     }
@@ -57,26 +57,26 @@ function ampforwp_add_sd_fields($fields){
                           'id'       => 'ampforwp-sd-module',
                           'type'     => 'raw',
                           'content'  => '<div class="ampforwp-st-data-update">
-                                                '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 'New Update available for Structured data:': 'Thank you for upgrading the Structured data').'
+                                                '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? ''.esc_html__('New Update available for Structured data:','accelerated-mobile-pages').'': ''.esc_html__('Thank you for upgrading the Structured data','accelerated-mobile-pages').'').'
                                                 <div class="row">
                                                     
                                                         '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? '
                                                         <div class="col-3"><ul>
-                                                            <li>Add Unlimited Schemas</li>
-                                                            <li>New Schema Types</li>
-                                                            <li>Advanced Structured data options</li>
+                                                            <li>'.esc_html__('Add Unlimited Schemas','accelerated-mobile-pages').'</li>
+                                                            <li>'.esc_html__('New Schema Types','accelerated-mobile-pages').'</li>
+                                                            <li>'.esc_html__('Advanced Structured data options','accelerated-mobile-pages').'</li>
                                                         </ul> </div>' : '')
                                                     .'
                                                     <div class="col-1">
                                                         '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 
                                                             '
                                 <div class="install-now ampforwp-activation-call-module-upgrade button  " id="ampforwp-structure-data-activation-call" data-secure="'.wp_create_nonce('verify_module').'">
-                                    <p>Upgrade for Free</p>
+                                    <p>'.esc_html__('Upgrade for Free','accelerated-mobile-pages').'</p>
                                 </div>' :
-                                                            '<a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Structure Data settings</p></div></a>'
+                                                            '<a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>'.esc_html__('Go to Structure Data settings','accelerated-mobile-pages').'</p></div></a>'
                                                         )
                                                         .'
-                                                         &nbsp;<a href="https://ampforwp.com/tutorials/article/what-is-the-structured-data-update-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>
+                                                         &nbsp;<a href="https://ampforwp.com/tutorials/article/what-is-the-structured-data-update-all-about/" class="amp_recommend_learnmore" target="_blank">'.esc_html__('Learn more','accelerated-mobile-pages').'</a>
                                                     </div>
                                             </div>' 
                                             
@@ -210,7 +210,7 @@ if( ! function_exists('saswp_non_amp') ) {
                 $custom_fields[] = array(
                   'id'       => 'ampforwp-sd-type-'.esc_attr($p_type),
                   'type'     => 'select',
-                  'title'    => __($post_type, 'accelerated-mobile-pages'),
+                  'title'    => esc_html__($post_type, 'accelerated-mobile-pages'),
                   'tooltip-subtitle' => 'Select the Structured Data Type for '.esc_attr($p_type),
                   'options'  =>  ampforwp_get_sd_types(),
                   'default'  => 'BlogPosting',

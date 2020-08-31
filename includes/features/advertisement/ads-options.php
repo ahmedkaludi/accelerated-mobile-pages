@@ -9,25 +9,25 @@ if ( ! defined( 'ABSPATH' ) ) {
         $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
     $quads_download = '';  
     if(function_exists('quads_loaded')){
-        $quads_download = '<a href="'.admin_url('admin.php?page=quads-settings').'"> Go to WP QUADS Settings </a>';
+        $quads_download = '<a href="'.admin_url('admin.php?page=quads-settings').'"> '.esc_html__('Go to WP QUADS Settings','accelerated-mobile-pages').' </a>';
     }else{
-        $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">Install Plugin</div>';
+        $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">'.esc_html__('Install Plugin','accelerated-mobile-pages').'</div>';
     }
     foreach (get_plugins() as $key => $value) {
         if($key == 'quick-adsense-reloaded/quick-adsense-reloaded.php' && !function_exists('quads_loaded')){
-           $quads_download = '<div class="install-now button quads_install_button"><a target="_blank" href="'.admin_url('plugins.php').'">Activate Plugin</a></div>';
+           $quads_download = '<div class="install-now button quads_install_button"><a target="_blank" href="'.admin_url('plugins.php').'">'.esc_html__('Activate Plugin','accelerated-mobile-pages').'</a></div>';
         }
     }
     $advertisementdesc = '
     <div class="ads-baner">
         <span class="adt-top">The Best AMP integration for Advertisement</span>
         <div class="ads-baner-inner">
-            <span>INTRODUCING</span>
+            <span>'.esc_html__('INTRODUCING','accelerated-mobile-pages').'</span>
             <img class="ampforwp-quads-logo" src="'.AMPFORWP_IMAGE_DIR . '/wpquads-logo.png" width="180" height="42" />
             <div class="list-of-feat">
                 <ul>
                     <li>
-                        <h5>GENERAL FEATURES</h5>
+                        <h5>'.esc_html__('GENERAL FEATURES','accelerated-mobile-pages').'</h5>
                         <ul class="inner-list">
                             <li>Unlimited Ads</li>
                             <li>Ad after X paragraph</li>
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                         </ul>
                     </li>
                     <li>
-                        <h5>VENDORS</h5>
+                        <h5>'.esc_html__('VENDORS','accelerated-mobile-pages').'</h5>
                         <ul class="inner-list">
                             <li>Adsense</li>
                             <li>Ad manager (DFP)</li>
@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                         </ul>
                     </li>
                     <li>
-                        <h5>VISIBILITY by</h5>
+                        <h5>'.esc_html__('VISIBILITY by','accelerated-mobile-pages').'</h5>
                         <ul class="inner-list">
                             <li>Post Type</li>
                             <li>Specific Post</li>
@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                         </ul>
                     </li>
                     <li>
-                        <h5>TARGETTING by</h5>
+                        <h5>'.esc_html__('TARGETTING by','accelerated-mobile-pages').'</h5>
                         <ul class="inner-list">
                             <li>Device type</li>
                             <li>User Agent</li>
@@ -1127,10 +1127,10 @@ if ( ! defined( 'ABSPATH' ) ) {
                         <div class="install-now ampforwp-activation-call-module-upgrade button  button-primary" id="ampforwp-adsforwp-activation-call" data-secure="'.wp_create_nonce('verify_module').'">
                             <p>' . esc_html__('Upgrade for Free','accelerated-mobile-pages') .'</p>
                         </div>' :
-                                                    '<a href="'.admin_url('edit.php?post_type=adsforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Ads for WP settings</p></div></a>'
+                                                    '<a href="'.admin_url('edit.php?post_type=adsforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>' . esc_html__('Go to Ads for WP settings','accelerated-mobile-pages').'</p></div></a>'
                                                 )
                                                 .'
-                                                 &nbsp;<br/><a href="https://ampforwp.com/tutorials/article/what-is-ads-for-wp-update-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>
+                                                 &nbsp;<br/><a href="https://ampforwp.com/tutorials/article/what-is-ads-for-wp-update-all-about/" class="amp_recommend_learnmore" target="_blank">' . esc_html__('Learn more','accelerated-mobile-pages').'</a>
                                             </div>
                                     </div>' 
                                     

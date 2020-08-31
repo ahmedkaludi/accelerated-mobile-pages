@@ -99,7 +99,7 @@ function ampforwp_notice_bar_options($opt_name){
                'type'      => 'switch',
                'title'     => esc_html__('GDPR Compliancy', 'accelerated-mobile-pages'),
                'default'   => 0,
-               'tooltip-subtitle' => 'Currently It is available to only EEA countries. Check <a href="https://github.com/ampproject/amphtml/blob/master/extensions/amp-geo/0.1/amp-geo-presets.js" target="_blank">here</a> for the list of EEA Countries'
+               'tooltip-subtitle' => ''.esc_html__('Currently It is available to only EEA countries. Check','accelerated-mobile-pages').'<a href="https://github.com/ampproject/amphtml/blob/master/extensions/amp-geo/0.1/amp-geo-presets.js" target="_blank">'.esc_html__('here','accelerated-mobile-pages').'</a> '.esc_html__('for the list of EEA Countries','accelerated-mobile-pages').''
            ),
            array(
                     'id'    => 'gdpr-type',
