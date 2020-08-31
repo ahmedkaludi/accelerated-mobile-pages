@@ -58,6 +58,7 @@ function ampforwp_redirection() {
                 $_SERVER['REQUEST_URI'];              
   if(function_exists('googlesitekit_activate_plugin')){
     $current_url = remove_query_arg( '_gl', $current_url);
+    $current_url = remove_query_arg(array('', '_gl'));
   }
   $current_url = explode('/', $current_url);
   $check    =  '?nonamp=1';
