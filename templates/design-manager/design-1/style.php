@@ -117,7 +117,11 @@ body, .cmts_list ul li{
   color: <?php echo sanitize_hex_color( $text_color ); ?>;
   font-weight: 300;
   line-height: 1.75em;
-  <?php $fontFamily = "font-family: 'Arial', 'Helvetica', 'sans-serif'"; ?>
+  <?php $fontFamily = "font-family: 'Arial', 'Helvetica', 'sans-serif'"; 
+     if( 1 == ampforwp_get_setting('ampforwp-d1-font') ) {
+      $fontFamily = "font-family: 'Merriweather','Times New Roman', 'Times'"; 
+     }
+   ?>
   <?php if( 1 == ampforwp_get_setting('ampforwp-google-font-switch') ) {
       $fontFamily = "font-family: 'Merriweather', 'Times New Roman', 'Times, Serif';";
       if(ampforwp_get_setting('amp_font_selector') != 1 && !empty(ampforwp_get_setting('amp_font_selector') )){ 
