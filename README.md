@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.63 (22nd August 2020) =
+= 1.0.63 (1st September 2020) =
 * Improvement: Added Reddit embeds support #4406
 * Improvement: Added multi select for post type in loop field #4365
 * Improvement: Added custom classes in Body tag in AMP in all Designs #4594
@@ -203,6 +203,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvement: Added related post on/off in YouTube #4503
 * Improvement: Added Nofollow Link button on pricing tabs in AMP Page Builder #4505
 * Improvement: Improved Lighthouse Audits #4654
+* Improvement: Added filter for AMP front page function #4634 
 * Fixed: Facebook Instant Articles (FBIA) Crawler Ingestion not working #4463
 * Fixed: Incontent related post not aligned if the post does not have featured image #4691
 * Fixed: Incontent path passed to load_plugin_textdomain function #4694
