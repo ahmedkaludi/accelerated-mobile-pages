@@ -106,6 +106,13 @@ function ampforwp_add_sd_fields($fields){
                               'options'  =>  ampforwp_get_sd_types(),
                               'default'  => 'BlogPosting',
                     );
+                $fields[] =   array(
+                              'id'       => 'ampforwp-sd-navigation-schema',
+                              'type'     => 'switch',
+                              'title'    => esc_html__('Site Navigation Schema', 'accelerated-mobile-pages'),
+                              'tooltip-subtitle' => esc_html__('Enable or disable site navigation schema', 'accelerated-mobile-pages'),
+                              'default'  => 1,
+                    );
                   $fields[] = array(
                               'id' => 'ampforwp-sd_2',
                               'type' => 'section',
