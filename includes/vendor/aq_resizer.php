@@ -289,6 +289,9 @@ if(!function_exists('ampforwp_aq_resize')) {
         // Disable ampforwp_aq_resize and return images without compressing. 
         // Useful for some who wants to disable when using CDN images 
         $disable_aq_resize = false; 
+        if (function_exists('imagify_set_activation')) {
+            $disable_aq_resize = true; 
+        }
         $disable_aq_resize = apply_filters('ampforwp_disable_aq_resize', $disable_aq_resize); 
         if ( $disable_aq_resize ){ 
             return $image = array( 
