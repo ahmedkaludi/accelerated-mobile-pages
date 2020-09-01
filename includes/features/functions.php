@@ -86,7 +86,7 @@ function ampforwp_add_admin_styling($hook_suffix){
 // 96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
 function ampforwp_is_front_page(){
     global $redux_builder_amp;
-
+    $front_page = false;
     // Reading settings me frontpage set
     $get_front_page_reading_settings  = get_option('page_on_front');
 
@@ -108,7 +108,7 @@ function ampforwp_is_front_page(){
     }
     // TRUE: When we have "Your latest posts" in reading settings and custom frontpage in amp
     if ( 'posts' == get_option( 'show_on_front') && is_home() && $get_amp_homepage_settings && $get_custom_frontpage_settings)
-        return true;
+        $front_page = true;
 
      // TRUE: When we have " A static page" in reading settings and custom frontpage in amp
     if ( 'page' == get_option( 'show_on_front') && (is_home() || is_front_page()) && $get_front_page_reading_settings && $get_amp_homepage_settings && $get_custom_frontpage_settings && !empty($get_amp_custom_frontpage_id)) {
@@ -118,12 +118,13 @@ function ampforwp_is_front_page(){
           $current_page =  $current_page->ID;
         }
         if ( get_option( 'page_for_posts') == $current_page ) {
-            return false ;
+            $front_page = false ;
         }
-        return true;
+        $front_page = true;
     }
 
-  return false ;
+    $front_page = apply_filters('ampforwp_is_front_page', $front_page);
+    return $front_page;
 
 }
 
