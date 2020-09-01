@@ -28,6 +28,9 @@ function ampforwp_minify_html_output($content_buffer){
     if(preg_match('/<script(.*?)type="text\/javascript"(.*?)>[\s\S]*?<\/script>/', $content_buffer)){
       $content_buffer = preg_replace('/<script(.*?)type="text\/javascript"(.*?)>[\s\S]*?<\/script>/', '', $content_buffer);
     }
+    if(function_exists('tagdiv_theme_css') && preg_match('/<blockquote class="tiktok-embed(.*?)"(.*?)data-video-id="(.*?)">(.*?)<\/blockquote>/', $content_buffer)){
+        $content_buffer = preg_replace('/<blockquote class="tiktok-embed(.*?)"(.*?)data-video-id="(.*?)">(.*?)<\/blockquote>/', '<blockquote class="tiktok-embed$1"$2data-video-id="$3"><amp-iframe width="500" height="700" sandbox="allow-scripts allow-same-origin" layout="responsive" src="https://www.tiktok.com/embed/v2/$3"></amp-iframe></blockquote>', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
