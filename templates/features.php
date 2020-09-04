@@ -418,6 +418,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				if (is_preview()) {
 					$amp_url = preg_replace('/(.*?)&(.*?)/', '$1&amp&$2', $amp_url);
 				}
+				if(ampforwp_get_setting('amp-core-end-point') && ampforwp_get_setting('ampforwp-amp-takeover')){
+					 $amp_url = get_the_permalink();
+				}
 				return $amp_url;
 			}
 		}
