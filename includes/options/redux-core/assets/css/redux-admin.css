@@ -1519,3 +1519,14 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
     }
 
 }
+.doc-cnt h1 , .doc-cnt p{
+    color: #000;
+}
+.doc-cnt p {
+    font-size: 15px;
+    line-height: 25px;
+    padding: 0;
+}
+.doc-cnt .buy{
+    background: #000;
+}
