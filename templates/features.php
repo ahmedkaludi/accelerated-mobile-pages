@@ -6173,8 +6173,15 @@ function ampforwp_custom_wpautop(){
 			remove_filter('the_content', 'wpautop');
 		}
 	}
+  if(function_exists('ubermenu_get_nav_menu_args')){
+    add_filter( 'ubermenu_nav_menu_args' ,'ampforwp_modify_ubermenu_nav_menu_args' , 10,2);
+    }
 }
 
+function ampforwp_modify_ubermenu_nav_menu_args($args , $config_id){
+	$args['menu_class'] = 'amp-menu  '.$args['menu_class'];
+    return $args;
+}
 // Backward Compatibility for AMP Preview #1529
 if ( ! function_exists('get_preview_post_link') ) { 
 function get_preview_post_link( $post = null, $query_args = array(), $preview_link = '' ) {
@@ -7389,6 +7396,7 @@ if( ! function_exists(' ampforwp_make_parent_menu_clickable ') ){
 				    }
 				    if($i>0){
 				    	$anchor = $parent_menu->item($k)->getElementsByTagName('a');
+				      if(isset($anchor[0])){
 				    	$href = $anchor[0]->getAttribute('href');
 				    	if(!$anchor[0]->hasAttribute('data-toggle')){
 				    		$anchor[0]->setAttribute('data-toggle','dropdown');
@@ -7410,6 +7418,7 @@ if( ! function_exists(' ampforwp_make_parent_menu_clickable ') ){
 						    }
 						    $count++;
 				    	}
+				      }
 				    }
 				    $k++;   
 				}
