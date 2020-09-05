@@ -622,6 +622,17 @@ $extension_listing_array = array(
                             'item_name'=>'Formidable forms for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('formidable-forms-for-amp/formidable-forms-for-amp.php')? 1 : 2),
+                        ),array(
+                            'name'=>'Paid Memberships PRO for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Paid Memberships PRO Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/paid-memberships-pro-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/paid-memberships-pro-for-amp/',
+                            'plugin_active_path'=> 'paid-memberships-pro-for-amp/paid-memberships-pro-for-amp.php',
+                            'item_name'=>'Paid Memberships PRO for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('paid-memberships-pro-for-amp/paid-memberships-pro-for-amp.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'Polls for AMP',
