@@ -452,6 +452,7 @@ pre{ white-space: pre-wrap; }
     transform-origin: right center;*/
 }
 /* Sidebar */
+@media screen and (max-width: 786px) {
 #sidebar[open]+#designthree { max-height: 100vh; overflow: hidden; 
   animation: opening .3s normal forwards ease-in-out 0s; 
   <?php if (ampforwp_get_setting('header-overlay-position-d3') == 1 ) {?>
@@ -460,6 +461,7 @@ pre{ white-space: pre-wrap; }
   if (ampforwp_get_setting('header-overlay-position-d3') == 2 ) {?>
     transform: translate3d(-60%, 0, 0) scale(0.8); 
   <?php } ?>
+}
 }
 @keyframes opening{ 
   0% { transform: translate3d(0, 0, 0) scale(1); } 
