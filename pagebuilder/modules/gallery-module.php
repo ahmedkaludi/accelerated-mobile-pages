@@ -10,7 +10,8 @@ $commoncss = '';
 $css = '
 .gal-mod{text-align:{{align_type}};padding:{{padding_css}};margin:{{margin_css}};}
 .gallery{text-align:{{align_type}};padding:{{padding_css}};margin:{{margin_css}};}
-{{module-class}} .amp_gallery_wrapper amp-img{max-width:{{width}};margin:0 2% 15px 2%;display: inline-block;vertical-align: middle;width:100%;}
+{{module-class}} .amp_gallery_wrapper amp-img{margin:0 2% 15px 2%;display: inline-block;vertical-align: middle;width:{{if_condition_columns_desktop==1}} 50%;{{ifend_condition_columns_desktop_1}} {{if_condition_columns_desktop==2}} 40%;{{ifend_condition_columns_desktop_2}} {{if_condition_columns_desktop==3}} 29%;{{ifend_condition_columns_desktop_3}} }
+@media(max-width:768px){ {{module-class}} .amp_gallery_wrapper amp-img{width:{{if_condition_columns_mobile==1}} 100%;{{ifend_condition_columns_mobile_1}} {{if_condition_columns_mobile==2}} 45%;{{ifend_condition_columns_mobile_2}} {{if_condition_columns_mobile==3}} 29%;{{ifend_condition_columns_mobile_3}}}}
 ';
 return array(
 		'label' =>'Gallery',
@@ -22,14 +23,33 @@ return array(
               'advanced' => 'Advanced'
             ),
 		'fields' => array(
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"width",		
-		 						'label'		=>'Width',
-		           				 'tab'      =>'customizer',
-		 						'default'	=>'500px',	
-		           				'content_type'=>'css',
+							array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'columns_desktop',		
+	 							'label' =>"No. of Columns in Desktop",
+								'tab'     =>'customizer',
+	 							'default' =>'2',
+	 							'options_details'=>array(
+	 												'1'  	=>'1',
+	 												'2'    =>'2',
+	 												'3'    =>'3',
+	 											),
+	 							'content_type'=>'html',
 	 						),
+	 						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'columns_mobile',		
+	 							'label' =>"No. of Columns in Mobile View",
+								'tab'     =>'customizer',
+	 							'default' =>'1',
+	 							'options_details'=>array(
+	 												'1'  	=>'1',
+	 												'2'    =>'2',
+	 												'3'    =>'3',
+	 											),
+	 							'content_type'=>'html',
+	 						),
+
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
