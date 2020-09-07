@@ -28,8 +28,17 @@ function ampforwp_minify_html_output($content_buffer){
     if(preg_match('/<script(.*?)type="text\/javascript"(.*?)>[\s\S]*?<\/script>/', $content_buffer)){
       $content_buffer = preg_replace('/<script(.*?)type="text\/javascript"(.*?)>[\s\S]*?<\/script>/', '', $content_buffer);
     }
-    if(function_exists('tagdiv_theme_css') && preg_match('/<blockquote class="tiktok-embed(.*?)"(.*?)data-video-id="(.*?)">(.*?)<\/blockquote>/', $content_buffer)){
-        $content_buffer = preg_replace('/<blockquote class="tiktok-embed(.*?)"(.*?)data-video-id="(.*?)">(.*?)<\/blockquote>/', '<blockquote class="tiktok-embed$1"$2data-video-id="$3"><amp-iframe width="500" height="700" sandbox="allow-scripts allow-same-origin" layout="responsive" src="https://www.tiktok.com/embed/v2/$3"></amp-iframe></blockquote>', $content_buffer);
+    if(function_exists('tagdiv_theme_css') && preg_match('/<blockquote class="tiktok-embed(.*?)(https?:\/\/(?:www\.)?(?:tiktok\.com\/@(.*?)\/video\/\d+))(.*?)data-video-id="(.*?)"(.*?)<\/blockquote>/i', $content_buffer,$matches)){
+        if(isset($matches[5])){
+            $src = 'https://www.tiktok.com/embed/v2/'.$matches[5].'?lang=en-US';
+            $iframe = '<iframe src="'.$src.'" width="375" height="820" allow="fullscreen"></iframe>';
+            $sanitizer = new AMPFORWP_Content( $iframe, array(), apply_filters( 'ampforwp_content_sanitizers', array( 
+                'AMP_Iframe_Sanitizer' => array(
+                    'add_placeholder' => true,
+            ) ) ) );
+            $sanitized_iframe =  $sanitizer->get_amp_content();
+            $content_buffer = preg_replace('/<blockquote class="tiktok-embed(.*?)(https?:\/\/(?:www\.)?(?:tiktok\.com\/@(.*?)\/video\/\d+))(.*?)data-video-id="(.*?)"(.*?)<\/blockquote>/i', $sanitized_iframe, $content_buffer);    
+        }         
     }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
