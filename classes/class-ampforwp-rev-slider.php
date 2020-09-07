@@ -157,11 +157,32 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					$youtube_id = $slide->get_param(array('bg','youtube'), '');
 					$cover_img = $slide->get_param(array('bg','image'), '');
 					$urls[] = apply_filters('amp_gallery_image_params', array(
-						'url' => esc_url($youtube_id),
+						'url' => esc_attr($youtube_id),
 						'width' => '480',
 						'height' => '270',
 						'bgtype' => esc_attr($bgtype),
 						'cover_img' => esc_attr($cover_img)
+					),$image_id);
+				}elseif($bgtype == 'vimeo'){
+					$vimeo_id = $slide->get_param(array('bg','vimeo'), '');
+					$cover_img = $slide->get_param(array('bg','image'), '');
+					$urls[] = apply_filters('amp_gallery_image_params', array(
+						'url' => esc_attr($vimeo_id),
+						'width' => '480',
+						'height' => '270',
+						'bgtype' => esc_attr($bgtype),
+						'cover_img' => esc_attr($cover_img)
+					),$image_id);
+				}elseif($bgtype == 'html5'){
+					$html5_url = $slide->get_param(array('bg','mpeg'), '');
+					$html5_url = str_replace('http:','https:',$html5_url);
+					$cover_img = $slide->get_param(array('bg','image'), '');
+					$urls[] = apply_filters('amp_gallery_image_params', array(
+						'url' => esc_url($html5_url),
+						'width' => '480',
+						'height' => '270',
+						'bgtype' => esc_attr($bgtype),
+						'cover_img' => esc_url($cover_img)
 					),$image_id);
 				}
 			}
@@ -257,9 +278,32 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 					'layout'=>'responsive',
 					'class'  => 'amp-carousel-img',
 					'data-param-playlist'=> $image['url'],
-					'data-param-modestbranding'=> '1'
+					'data-param-modestbranding'=> '1',
+					'autoplay' => '',
 				);
 				$tag_type = 'amp-youtube';
+			}elseif( $image['bgtype'] =="vimeo"){
+				$amp_img_arr = array(
+					'data-videoid'=> $image['url'],
+					'width' => $image['width'],
+					'height' => $image['height'],
+					'layout'=>'responsive',
+					'class'  => 'amp-carousel-img',
+					'autoplay' => '',
+				);
+				$tag_type = 'amp-vimeo';
+			}elseif( $image['bgtype'] =="html5"){
+				$amp_img_arr = array(
+					'src'=> $image['url'],
+					'width' => $image['width'],
+					'height' => $image['height'],
+					'layout'=>'responsive',
+					'class'  => 'amp-carousel-img',
+					'poster' => $image['cover_img'],
+					'controls' => '',
+					'autoplay' => '',
+				);
+				$tag_type = 'amp-video';
 			}
 			if(  3 == ampforwp_get_setting('ampforwp-gallery-design-type') || true == ampforwp_get_setting('ampforwp-gallery-lightbox') ){
 				$design3_additional_attr = array('on'=> 'tap:gallery-lightbox', 'role'=>'button', 
