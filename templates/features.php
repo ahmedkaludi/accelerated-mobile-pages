@@ -5081,6 +5081,7 @@ function ampforwp_generate_inline_related_posts($content){
 		 	$value = trim($value);
 			if( !empty($value) && strpos($value, "<p>")!==false ){
 			         $value .= '</p>';
+			         $value .= '</blockquote>';
 			}
 		}
 	);
