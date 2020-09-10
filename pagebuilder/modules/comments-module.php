@@ -21,7 +21,6 @@ function ampforwp_get_pb_comment_list($moduleFrontHtml, $moduleTemplate, $conten
 		            <h3><span>View Comments</span></h3>
 		            <ul>';
 					foreach ($comments as $key => $value) {
-						if($value->user_id!=0){
 							$avatar             = get_avatar_url( $value->comment_author_email);
 							$output .='<li>';
 							if(ampforwp_get_setting('ampforwp-display-avatar')){
@@ -31,7 +30,6 @@ function ampforwp_get_pb_comment_list($moduleFrontHtml, $moduleTemplate, $conten
 							$output .='<span>'.esc_attr(date('F d, Y H:i:s', strtotime($value->comment_date))).'</span></div>';
 							$output .='<p class="pbc-comment">'.$value->comment_content.'</p>';
 							$output .='</li>';
-						}	
 					} 	
 				$output .='</ul>'; 
 				$output .='</div>';
