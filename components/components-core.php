@@ -150,6 +150,7 @@ function amp_excerpt( $no_of_words=15 ) {
 
 
 //Menus
+add_action('pre_amp_render_post', 'amp_menu');
 function amp_menu($echo=true, $menu_args=array(), $type='header'){
 	if ( ($type == 'header' && ! has_nav_menu( 'amp-menu' )) || ( 'footer' == $type && ! has_nav_menu( 'amp-footer-menu' ) ) ) {
 		return false;
