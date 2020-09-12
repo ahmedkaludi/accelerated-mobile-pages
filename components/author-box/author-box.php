@@ -115,7 +115,7 @@ if ( isset($args['show_time']) ) {
             }
             else {
                 if( $author_pub_name  ){
-                    if($is_author_link_amp==true){
+                    if($is_author_link_amp==true && ampforwp_get_setting('ampforwp-archive-support')){
                         $author_link = ampforwp_url_controller($author_link);
                     }
                     echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url($author_link).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';
