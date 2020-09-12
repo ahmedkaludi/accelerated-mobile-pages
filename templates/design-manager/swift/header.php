@@ -26,7 +26,11 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <div class="menu-heading clearfix">
                     <label for="offcanvas-menu" class="c-btn"></label>
                 </div><!--end menu-heading-->
-
+                <?php if (ampforwp_get_setting('menu-search' ) && ampforwp_get_setting('menu-search-before-menu') ){ ?>
+                    <div class="m-srch">
+                        <?php amp_search();?>
+                    </div>
+                <?php } ?>
                 <?php if ( amp_menu(false) ) : ?>
                     <nav class="m-menu">
                        <?php amp_menu();?>
@@ -34,7 +38,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <?php endif; ?>
                 <?php do_action('ampforwp_after_amp_menu');?>
 
-                <?php if ($redux_builder_amp['menu-search'] ) { ?>
+                <?php if (ampforwp_get_setting('menu-search' ) && ampforwp_get_setting('menu-search-after-menu') ){ ?>
                     <div class="m-srch">
                         <?php amp_search();?>
                     </div>
@@ -162,6 +166,11 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <div class="menu-heading clearfix">
                     <label for="offcanvas-menu" class="c-btn"></label>
                 </div><!--end menu-heading-->
+                <?php if (ampforwp_get_setting('menu-search' ) && ampforwp_get_setting('menu-search-before-menu') ){ ?>
+                    <div class="m-srch">
+                        <?php amp_search();?>
+                    </div>
+                <?php } ?>
                 <?php if ( amp_menu(false) ) : ?>
                     <nav class="m-menu">
                        <?php amp_menu();?>
@@ -173,7 +182,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                         <a target="_blank" <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('signin-button-link'))?>"><?php echo esc_html__(ampforwp_get_setting('signin-button-text'), 'accelerated-mobile-pages'); ?></a>
                     </div>
                     <?php } ?>
-                <?php if ( $redux_builder_amp['menu-search'] ) { ?>
+                <?php if (ampforwp_get_setting('menu-search' ) && ampforwp_get_setting('menu-search-after-menu') ){ ?>
                 <div class="m-srch">
                     <?php amp_search();?>
                 </div>
@@ -293,13 +302,18 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <div class="menu-heading clearfix">
                     <label for="offcanvas-menu" class="c-btn"></label>
                 </div><!--end menu-heading-->
+                <?php if (ampforwp_get_setting('menu-search' ) && ampforwp_get_setting('menu-search-before-menu') ){ ?>
+                    <div class="m-srch">
+                        <?php amp_search();?>
+                    </div>
+                <?php } ?>
                 <?php if ( amp_menu(false) ) : ?>
                     <nav class="m-menu">
                        <?php amp_menu();?>
                     </nav><!--end slide-menu -->
                 <?php endif; ?>
                 <?php do_action('ampforwp_after_amp_menu');?>
-                <?php if ( $redux_builder_amp['menu-search'] ) { ?>
+                 <?php if (ampforwp_get_setting('menu-search' ) && ampforwp_get_setting('menu-search-after-menu') ){ ?>
                 <div class="m-srch">
                     <?php amp_search();?>
                 </div>
