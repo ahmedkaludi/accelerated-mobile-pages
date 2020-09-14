@@ -8520,7 +8520,7 @@ Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extension
     Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'Documentation', 'accelerated-mobile-pages' ),
         'subsection' => false,
-        'desc' => '<div class="fp-cnt doc-cnt"><h1>Documentation</h1><p>Without documentation, software is just a black box that aren’t anywhere near as useful as they could be because their inner workings are hidden from those who need them. Documentation turns your software into a glass box by explaining to users as well as developers how it operates.</p><a class="buy" href="https://ampforwp.com/tutorials/" target="_blank">View Documentation</a></div>',
+        'desc' => '<div class="fp-cnt doc-cnt"><h1>'.esc_html__('Documentation','accelerated-mobile-pages').'</h1><p>'.esc_html__('Without documentation, software is just a black box that aren’t anywhere near as useful as they could be because their inner workings are hidden from those who need them. Documentation turns your software into a glass box by explaining to users as well as developers how it operates.','accelerated-mobile-pages').'</p><a class="buy" href="https://ampforwp.com/tutorials/" target="_blank">'.esc_html__('View Documentation','accelerated-mobile-pages').'</a></div>',
     ) );
 /*
 * <--- END SECTIONS
