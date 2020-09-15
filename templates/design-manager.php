@@ -19,6 +19,8 @@ if ( is_customize_preview() ) {
 // Design Selector
 add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {
+	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+    if( function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {	
 	$data = get_option( 'ampforwp_design',array());
 
 	// Adding default Value
@@ -65,6 +67,7 @@ function ampforwp_design_selector() {
 		}
 	}
 	endif;
+	}
     $design = '';
 	$design = ampforwp_get_setting('amp-design-selector');
 	if ( empty( $design )){
