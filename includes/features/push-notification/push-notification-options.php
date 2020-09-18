@@ -72,6 +72,14 @@ function ampforwp_push_notification_options($opt_name){
                             'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
                             ),
                     array(
+                            'id'        => 'ampforwp-web-push-onesignal-popup',
+                            'type'      => 'switch',
+                            'title'     => 'Popup on Desktop',
+                            'default'   =>  0,
+                            'tooltip-subtitle'  => 'Show Subscribe Button in Popup on Desktop',
+                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            ),
+                    array(
                        'id' => 'translation',
                        'type' => 'section',
                        'title' => esc_html__('Translation', 'accelerated-mobile-pages'),
