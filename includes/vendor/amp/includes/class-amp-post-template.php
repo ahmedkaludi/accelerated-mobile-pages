@@ -343,7 +343,7 @@ class AMP_Post_Template {
 		if(preg_match('/<blockquote(.*?)(https?:\/\/(?:www\.)?(?:tiktok\.com\/@(.*?)\/video\/\d+))(.*?)data-video-id="(.*?)"(.*?)<\/blockquote>/i', $content,$matches)){
 			if(isset($matches[5])){
 				$src = 'https://www.tiktok.com/embed/v2/'.$matches[5].'?lang=en-US';
-				$iframe = '<iframe src="'.$src.'" width="375" height="820" allow="fullscreen"></iframe>';
+				$iframe = '<iframe src="'.esc_url_raw($src).'" width="375" height="820" allow="fullscreen"></iframe>';
 				$content = preg_replace('/<blockquote(.*?)(https?:\/\/(?:www\.)?(?:tiktok\.com\/@(.*?)\/video\/\d+))(.*?)data-video-id="(.*?)"(.*?)<\/blockquote>/i', $iframe, $content);
 			}
 			return $content;
