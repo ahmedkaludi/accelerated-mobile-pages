@@ -664,19 +664,6 @@ function ampforwp_new_dir( $dir ) {
 			add_filter( 'the_content', 'ampforwp_the_content_filter', 2 );
 		}
 		function ampforwp_the_content_filter( $content ) {
-				 $content = preg_replace('/property=[^>]*/', '', $content);
-				 $content = preg_replace('/vocab=[^>]*/', '', $content);
-				 $content = preg_replace('/noshade=[^>]*/', '', $content);
-				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
-				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
-				 $content = preg_replace('/security=[^>]*/', '', $content);
-				 $content = preg_replace('/deposit=[^>]*/', '', $content);
-				 $content = preg_replace('/nowrap="nowrap"/', '', $content);
-				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
-				 $content = preg_replace('#<badge.*?>(.*?)</badge>#i', '', $content);
-				 $content = preg_replace('#<plusone.*?>(.*?)</plusone>#i', '', $content);
-				 $content = preg_replace('#<col.*?>#i', '', $content);
-				 //Removed because class is being removed from table #2699
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
 				 // Convert the Wistia embed into URL to build amp-wistia-player and remove unnecesarry wistia code
 				 $content = preg_replace('/<script src="(https?).*(\/\/fast|support)(\.wistia\.com\/)(embed\/medias\/)([0-9|\w]+)(.*?)<\/script>/', "$1:$2$3$4$5\n", $content);
@@ -687,16 +674,6 @@ function ampforwp_new_dir( $dir ) {
 				 $content = preg_replace('/<img(.*?)src="https:\/\/fast.wistia.com\/embed\/(.*?)"(.*?)\/>/', "", $content);
 				 
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
-				 //for removing attributes within html tags
-				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
-				 $content = preg_replace('/(<[^>]+) rel="(.*?) noopener(.*?)"/', '$1 rel="$2$3"', $content);
-				 // Remove alt attribute from the div tag #2093 
-				 $content = preg_replace('/<div(.*?) alt=".*?"(.*?)/', '<div $1', $content);
-				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
-				 $content = preg_replace('/(<[^>]+) imap=".*?"/', '$1', $content);
-				 $content = preg_replace('/(<[^>]+) spellcheck/', '$1', $content);
-				 $content = preg_replace('/<font(.*?)>(.*?)<\/font>/', '$2', $content);
-				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				/// simpy add more elements to simply strip tag but not the content as so
 				/// Array ("p","font");
 				$tags_to_strip = Array("thrive_headline","type","place","state","city" );
@@ -705,32 +682,12 @@ function ampforwp_new_dir( $dir ) {
 				{
 				   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
 				}
-				// regex on steroids from here on
-				 $content = preg_replace('/<like\s(.*?)>(.*)<\/like>/i', '', $content);
-				 $content = preg_replace('/<g:plusone\s(.*?)>(.*)<\/g:plusone>/i', '', $content);
-				 $content = preg_replace('/imageanchor="1"/i', '', $content);
-				 $content = preg_replace('/<plusone\s(.*?)>(.*?)<\/plusone>/', '', $content);
-				 $content = preg_replace('/xml:lang=[^>]*/', '', $content);
-				// Removing the type attribute from the <ul> (Improved after 0.9.63)
-				 $content = preg_replace('/<ul(.*?)\btype=".*?"(.*?)/','<ul $1',$content);
 				 //Convert the Twitter embed into url for better sanitization #1010
 				  $content = preg_replace("/<blockquote(\s)class=\"twitter-(.*?)\"[^>](.*?)<a href=\"(https:\/\/twitter.com\/([a-zA-Z0-9_]{1,20})\/status\/)(.*?)\">(.*?)<\/blockquote>/si", "\n$4$6", $content);
 				  // Convert the Soundcloud embed into URL to build amp-soundcloud
 				  $content = preg_replace('/<iframe .*(https?).*(\/\/api\.soundcloud\.com\/tracks\/)([0-9]+)(.*)<\/iframe>/', "$1:$2$3", $content);
-				  // for readability attibute in div tag
-				  $content = preg_replace('/readability=[^>]*/', '', $content);
-				  // removing sl-processed attribute
-				  $content = preg_replace('/(<[^>]+) sl-processed=".*?"/', '$1', $content);
-				  // ga-on
-				  $content = preg_replace('/(<[^>]+) ga-on=".*?"/', '$1', $content);
-				  // ga-event-category
-				  $content = preg_replace('/(<[^>]+) ga-event-category=".*?"/', '$1', $content);
-				   // aria-current
-				  $content = preg_replace('/(<[^>]+) aria-current=".*?"/', '$1', $content);
 				  // Gallery Break fix 
 				  $content = preg_replace('/[^\[]\[gallery(.*?)ids=(.*?)\]/', '</p>[gallery$1ids=$2]</p>', $content);
-				  // value attribute from anchor tag #2262
-				  $content = preg_replace('/<a(.*?)(value=".*?")(.*?)>/', '<a$1$3>', $content);
 				  //Compatibility with Cloudflare stream. #3230
 				  $content = preg_replace('/<stream[^>]* src="(.*?)"><\/stream>/', '<amp-iframe width="175" height="100" sandbox="allow-scripts allow-same-origin" layout="responsive" allowfullscreen src="https://iframe.cloudflarestream.com/$1"></amp-iframe>', $content);
 				  //Compatibility with amp-connatix-player #3524
