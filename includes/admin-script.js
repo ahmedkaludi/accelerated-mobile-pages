@@ -2592,9 +2592,9 @@ $("#subscribe-newsletter-form").on('submit',function(e){
         var checkBoxes = $(this).children('input:radio')
          checkBoxes.prop("checked", "true");
     });
-    $("#close-notice").click(function(){
+    $("#ampforwp-close-notice").click(function(){
         var data = {
-            action: 'ampforwp_internal_feedback_dismiss',
+            action: 'ampforwp_feedback_remove_notice',
         };
         $.post(ajaxurl, data, function(response) {
             $(".ampforwp_remove_notice").remove();

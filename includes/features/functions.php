@@ -1434,20 +1434,27 @@ function ampforwp_get_taxonomy_meta($term_id,$type=''){
 }
 
 function ampforwp_internal_feedback_notice(){
-    $dismiss = get_transient('ampforwp_internal_feedback_dismiss');
     $install_date = get_option('ampforwp_plugin_info');
-    $install_date = $install_date["activation_data"];
-    $install_date = date("m-d-Y", $install_date);
-    if (strtotime($install_date) < strtotime('1 month ago')) {
+    if (isset($install_date["activation_data"])) {
+       $install_date = $install_date["activation_data"];
+       $install_date = date("m-d-Y", $install_date);
+    }
+    $activation_never =  get_option("ampforwp_feedback_remove_notice");
+    if (strtotime($install_date) < strtotime('1 month ago') && $activation_never !='remove') {
          echo '<div class="updated notice ampforwp_remove_notice" style="box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);background-color:white;">
         <p>Awesome, you\'ve been using <strong>AMPforWP</strong> for more than 1 month. <br> May i ask you to give it a <strong>5-star rating</strong> on Wordpress? </br>
         This will help to spread its popularity and to make this plugin a better one.
         <br><br>Your help is much appreciated. Thank you very much,<br>
-        <ul><li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?rate=5#new-post" class="button-primary" target="_new" style="font-weight:bold;" title="Ok, you deserved it">Ok, You deserved it</a><br/><br/><a class="button-primary" id="close-notice" style="font-weight:bold;">Close Notice</a></li></ul></div>';
+        <ul><li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?rate=5#new-post" class="button-primary" target="_new" style="font-weight:bold;" title="Ok, you deserved it">Ok, You deserved it</a><br/><br/><a class="button-primary" id="ampforwp-close-notice" style="font-weight:bold;">Close Notice</a></li></ul></div>';
     }
 }
-add_action('wp_ajax_ampforwp_internal_feedback_dismiss','ampforwp_internal_feedback_dismiss');
-function ampforwp_internal_feedback_dismiss(){
-    set_transient( 'ampforwp_dismiss_time_notice', 1 );
-    exit();
+function ampforwp_feedback_remove_notice(){     
+    $result = update_option( "ampforwp_feedback_remove_notice", 'remove');
+    if($result){
+        echo json_encode(array('status'=>'t'));            
+    }else{    
+        echo json_encode(array('status'=>'f'));                
+    }   
+    wp_die();                
 }
+add_action('wp_ajax_ampforwp_feedback_remove_notice', 'ampforwp_feedback_remove_notice');
