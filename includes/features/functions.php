@@ -1339,14 +1339,16 @@ function ampforwp_seo_selection_notice() {
     else if (function_exists('qode_header_meta') && 'bridge' != ampforwp_get_setting('ampforwp-seo-selection')){
          $seosel = true;
     }
-    if($seosel){
-        echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('You have selected the wrong SEO plugin, Please select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
+    if($seosel && ( '' != ampforwp_get_setting('ampforwp-seo-selection') ) ){
+        echo sprintf(('<div class="notice notice-error"><p>%s</p></div>'), esc_html__('Incorrect SEO plugin has been selected in AMPforWP SEO Settings, Please select '.esc_html($seo).' from SEO Settings.','accelerated-mobile-pages'));
     }
+
     if('' != ampforwp_get_setting('ampforwp-seo-selection')){
         return;
     }
+    
     if(!empty($seo)){
-        echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
+        echo sprintf(('<div class="notice notice-error"><p>%s </p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings -> SEO -> SEO Plugin Integration and select '.esc_html($seo).' plugin from the drop down.','accelerated-mobile-pages'));
     }
 }
 add_action('wp_ajax_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
