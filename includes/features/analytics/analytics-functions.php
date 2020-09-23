@@ -319,6 +319,94 @@ function ampforwp_analytics() {
                 </script>
                 </amp-analytics>   
             <?php } }
+            if( true == ampforwp_get_setting('ampforwp-iotech-switch')) {
+                $project_id = $id = $title = $author = $categories = $cat_names = '';
+                $project_id = ampforwp_get_setting('ampforwp-iotech-projectid');
+                if(!empty($project_id)){
+                $id = ampforwp_get_the_ID();
+				$title = get_the_title($id);
+				$lang = get_locale();
+				$author = get_the_author_meta('display_name');
+	 			$categories = get_the_terms( $id, 'category' );
+				foreach ($categories as $key=>$cat ) {
+				    $cat_names .= '|' . $cat->name ;
+				}
+				$cat_names = substr($cat_names, 1);
+				$content = get_post_field( 'post_content', $id );
+    			$word_count = str_word_count( strip_tags( $content ) );
+    			$date = get_post_time('F d, Y g:i a');
+				?>
+                <amp-analytics>
+    <script type="application/json">
+        {
+            "requests": {
+                "pageview": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:pageviews[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
+                "read_top": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:read_top[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
+                "read_middle": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:read_middle[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
+                "read_bottom": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:read_bottom[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
+                "read_finished": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:read_finished[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
+                "time": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:time[platform:amp,url:${canonicalPath}]"
+            },
+            "vars": {
+                "page_title": "$<?php echo esc_html($title) ?>",
+                "page_type": "article",
+                "page_language": "<?php echo esc_html($lang) ?>",
+                "article_authors": "<?php echo esc_html($author) ?>",
+                "article_categories": "<?php echo esc_html($cat_names) ?>",
+                "article_type": "longread",
+                "article_word_count": "<?php echo esc_html($word_count) ?>",
+                "article_publication_date": "<?php echo esc_html($date) ?>"
+            },
+            "triggers": {
+                "trackPageview": {
+                    "on": "visible",
+                    "request": "pageview"
+                },
+                "trackReadTop" : {
+                    "on" : "scroll",
+                    "scrollSpec": {
+                        "verticalBoundaries": [25]
+                    },
+                    "request": "read_top"
+                },
+                "trackReadMiddle" : {
+                    "on" : "scroll",
+                    "scrollSpec": {
+                        "verticalBoundaries": [50]
+                    },
+                    "request": "read_middle"
+                },
+                "trackReadBottom" : {
+                    "on" : "scroll",
+                    "scrollSpec": {
+                        "verticalBoundaries": [75]
+                    },
+                    "request": "read_bottom"
+                },
+                "trackReadFinished" : {
+                    "on" : "scroll",
+                    "scrollSpec": {
+                        "verticalBoundaries": [90]
+                    },
+                    "request": "read_finished"
+                },
+                "pageTimer": {
+                    "on": "timer",
+                    "timerSpec": {
+                        "interval": 10
+                    },
+                    "request": "time"
+                }
+            },
+            "transport": {
+                "beacon": false,
+                "xhrpost": false,
+                "image": true
+            }
+        }
+    </script>
+</amp-analytics> 
+            <?php } }
 }
 // 89. Facebook Pixel
 add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);

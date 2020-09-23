@@ -582,6 +582,22 @@ function ampforwp_analytics_options($opt_name){
                         'tooltip-subtitle' => esc_html__( 'Enter Your Parse.ly Analytics API Key Here','accelerated-mobile-pages'),
                         'required' => array('ampforwp-parsely-switch', '=' , '1')
                     ),
+                    //iotechnologies Analytics    
+                    array(
+                        'id'            =>'ampforwp-iotech-switch',
+                        'type'          => 'switch',
+                        'title'         => esc_html__('IO Technologies Analytics','accelerated-mobile-pages'),
+                        'default'       => 0,
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option to track io technologies analytics in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-iotechnologies-analytics-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+                    ),
+                    array(
+                        'id'       => 'ampforwp-iotech-projectid',
+                        'type'     => 'text',
+                        'title'    => esc_html__( 'Project ID', 'accelerated-mobile-pages' ),
+                        'tooltip-subtitle' => esc_html__( 'Enter Your Project ID Here','accelerated-mobile-pages'),
+                        'required' => array('ampforwp-iotech-switch', '=' , '1')
+                    ),
                         )
             )
    );
