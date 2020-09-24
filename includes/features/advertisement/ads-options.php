@@ -13,61 +13,59 @@ if ( ! defined( 'ABSPATH' ) ) {
     }else{
         $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">'.esc_html__('Install Plugin', 'accelerated-mobile-pages').'</div>';
     }
-    foreach (get_plugins() as $key => $value) {
-        if($key == 'quick-adsense-reloaded/quick-adsense-reloaded.php' && !function_exists('quads_loaded')){
+        if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."quick-adsense-reloaded/quick-adsense-reloaded.php") && !function_exists('quads_loaded')){
            $quads_download = '<div class="install-now button quads_install_button"><a target="_blank" href="'.esc_url(admin_url('plugins.php')).'">'.esc_html__('Activate Plugin', 'accelerated-mobile-pages').'</a></div>';
-        }
-    }    
+        }   
     $advertisementdesc = '
     <div class="ads-baner">
-        <span class="adt-top">The Best AMP integration for Advertisement</span>
+        <span class="adt-top">'.esc_html__('The Best AMP integration for Advertisement', 'accelerated-mobile-pages').'</span>
         <div class="ads-baner-inner">
-            <span>INTRODUCING</span>
+            <span>'.esc_html__('INTRODUCING', 'accelerated-mobile-pages').'</span>
             <img class="ampforwp-quads-logo" src="'.AMPFORWP_IMAGE_DIR . '/wpquads-logo.png" width="180" height="42" />
             <div class="list-of-feat">
                 <ul>
                     <li>
-                        <h5>GENERAL FEATURES</h5>
+                        <h5>'.esc_html__('GENERAL FEATURES', 'accelerated-mobile-pages').'</h5>
                         <ul class="inner-list">
-                            <li>Unlimited Ads</li>
-                            <li>Ad after X paragraph</li>
-                            <li>after every Nth para</li>
-                            <li>for AMP & non-AMP</li>
-                            <li>Ad after Image</li>
-                            <li>Ad by Word count</li>
+                            <li>'.esc_html__('Unlimited Ads', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Ad after X paragraph', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('After every Nth para', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('For AMP & non-AMP', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Ad after Imaget', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Ad by Word count', 'accelerated-mobile-pages').'</li>
                         </ul>
                     </li>
                     <li>
-                        <h5>VENDORS</h5>
+                        <h5>'.esc_html__('VENDORS', 'accelerated-mobile-pages').'</h5>
                         <ul class="inner-list">
-                            <li>Adsense</li>
-                            <li>Ad manager (DFP)</li>
-                            <li>Yandex Direct</li>
-                            <li>Custom Code</li>
-                            <li>MGID</li>
-                            <li>30+ coming soon</li>
+                            <li>'.esc_html__('Adsense', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Ad manager (DFP)', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Yandex Direct', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Custom Code', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('MGID', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('30+ coming soon', 'accelerated-mobile-pages').'</li>
                         </ul>
                     </li>
                     <li>
-                        <h5>VISIBILITY by</h5>
+                        <h5>'.esc_html__('VISIBILITY by', 'accelerated-mobile-pages').'</h5>
                         <ul class="inner-list">
-                            <li>Post Type</li>
-                            <li>Specific Post</li>
-                            <li>Taxonomy</li>
-                            <li>Page Template</li>
-                            <li>MCategory / Tag</li>
-                            <li>and 8+ more</li>
+                            <li>'.esc_html__('Post Type', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Specific Post', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Taxonomy', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Page Template', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Category / Tag', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('And 8+ more', 'accelerated-mobile-pages').'</li>
                         </ul>
                     </li>
                     <li>
-                        <h5>TARGETTING by</h5>
+                        <h5>'.esc_html__('TARGETTING by', 'accelerated-mobile-pages').'</h5>
                         <ul class="inner-list">
-                            <li>Device type</li>
-                            <li>User Agent</li>
-                            <li>Cookie</li>
-                            <li>Referre</li>
-                            <li>Language</li>
-                            <li>and 4+ more</li>
+                            <li>'.esc_html__('Device type', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('User Agent', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Cookie', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Referre', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Language', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('And 4+ more', 'accelerated-mobile-pages').'</li>
                         </ul>
                     </li>
                 </ul>
