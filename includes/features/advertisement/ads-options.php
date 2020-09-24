@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     if(function_exists('quads_loaded')){
         $quads_download = '<a href="'.esc_url(admin_url('admin.php?page=quads-settings')).'">'.esc_html__('Go to WP QUADS Settings', 'accelerated-mobile-pages').' </a>';
     }else{
-        $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">'.esc_html__('Install Plugin', 'accelerated-mobile-pages').'</div>';
+        $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">'.esc_html__('Install Free Plugin', 'accelerated-mobile-pages').'</div>';
     }
         if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."quick-adsense-reloaded/quick-adsense-reloaded.php") && !function_exists('quads_loaded')){
            $quads_download = '<div class="install-now button quads_install_button"><a target="_blank" href="'.esc_url(admin_url('plugins.php')).'">'.esc_html__('Activate Plugin', 'accelerated-mobile-pages').'</a></div>';
