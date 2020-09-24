@@ -9,13 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
         $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
     $quads_download = '';  
     if(function_exists('quads_loaded')){
-        $quads_download = '<a href="'.admin_url('admin.php?page=quads-settings').'"> Go to WP QUADS Settings </a>';
+        $quads_download = '<a href="'.esc_url(admin_url('admin.php?page=quads-settings')).'">'.esc_html__('Go to WP QUADS Settings', 'accelerated-mobile-pages').' </a>';
     }else{
-        $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">Install Plugin</div>';
+        $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">'.esc_html__('Install Plugin', 'accelerated-mobile-pages').'</div>';
     }
     foreach (get_plugins() as $key => $value) {
         if($key == 'quick-adsense-reloaded/quick-adsense-reloaded.php' && !function_exists('quads_loaded')){
-           $quads_download = '<div class="install-now button quads_install_button"><a target="_blank" href="'.admin_url('plugins.php').'">Activate Plugin</a></div>';
+           $quads_download = '<div class="install-now button quads_install_button"><a target="_blank" href="'.esc_url(admin_url('plugins.php')).'">'.esc_html__('Activate Plugin', 'accelerated-mobile-pages').'</a></div>';
         }
     }    
     $advertisementdesc = '
