@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.63 (1st September 2020) =
+= 1.0.63 (25th September 2020) =
 * Improvement: Added Reddit embeds support #4406
 * Improvement: Added multi select for post type in loop field #4365
 * Improvement: Added custom classes in Body tag in AMP in all Designs #4594
@@ -212,6 +212,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Google Analytics is not firing when GTM is enabled #4707
 * Fixed: Featured Image doesn’t appear on single post #4711
 * Fixed: Code improvements for options panel #4622 #4532 #4407 #4090
+* Fixed: Advanced section showing blank randomly #4741
 
 = 1.0.62.2 (21st August 2020) =
 * Fixed: Gutenberg gallery block caption appearing at the end of the content #4716
