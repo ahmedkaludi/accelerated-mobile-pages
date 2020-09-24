@@ -1453,7 +1453,7 @@ function ampforwp_internal_feedback_notice(){
 <?php    }
 }
 function ampforwp_feedback_remove_notice(){     
-    $result = update_option( "ampforwp_feedback_remove_notice", 'remove');
+    $result = get_option( "ampforwp_feedback_remove_notice");
     if($result){
         echo json_encode(array('status'=>'t'));            
     }else{    
