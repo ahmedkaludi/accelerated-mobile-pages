@@ -113,6 +113,8 @@ function ampforwp_is_front_page(){
      // TRUE: When we have " A static page" in reading settings and custom frontpage in amp
     if ( 'page' == get_option( 'show_on_front') && (is_home() || is_front_page()) && $get_front_page_reading_settings && $get_amp_homepage_settings && $get_custom_frontpage_settings && !empty($get_amp_custom_frontpage_id)) {
 
+        $front_page = true;
+
         $current_page = get_queried_object();
         if ( $current_page ) {
           $current_page =  $current_page->ID;
@@ -120,7 +122,7 @@ function ampforwp_is_front_page(){
         if ( get_option( 'page_for_posts') == $current_page ) {
             $front_page = false ;
         }
-        $front_page = true;
+        
     }
 
     $front_page = apply_filters('ampforwp_is_front_page', $front_page);
