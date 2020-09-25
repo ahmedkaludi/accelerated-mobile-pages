@@ -1445,9 +1445,11 @@ function ampforwp_internal_feedback_notice(){
     if (strtotime($install_date) < strtotime('1 month ago') && $activation_never !='remove') {?>
         <div class="updated notice ampforwp_remove_notice" style="box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);background-color:white;">
             <p> 
-            <?php echo esc_html__('Awesome, you\'ve been using AMPforWP for more than 1 month. May i ask you to give it a 5-star rating on Wordpress? This will help to spread its popularity and to make this plugin a better one. Your help is much appreciated. Thank you very much', 'accelerated-mobile-pages') ?></br></br>
-            <a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?rate=5#new-post" class="button-primary" target="_new" style="font-weight:bold;" title="Ok, you deserved it"> <?php echo esc_html__('Ok, You deserved it', 'accelerated-mobile-pages') ?></a>
-            <a class="button-primary" id="ampforwp-close-notice" style="font-weight:bold;"><?php echo esc_html__('Close Notice', 'accelerated-mobile-pages') ?></a>
+            <?php esc_html_e('Awesome, you\'ve been using AMPforWP for more than 1 month. May I ask you to give it a 5-star rating on WordPress.org?', 'accelerated-mobile-pages'); ?></br>
+            <?php esc_html_e('This will help spread the word out about this plugin and will encourage us to continue the development.', 'accelerated-mobile-pages'); ?></br>
+            <?php esc_html_e('Much appreciated, thank you very much.', 'accelerated-mobile-pages'); ?></br></br>
+            <a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?rate=5#new-post" class="button-primary" target="_new" style="font-weight:bold;" title="Ok, you deserved it"> <?php echo esc_html__('Ok, You deserve it', 'accelerated-mobile-pages') ?></a>
+            <a class="button-primary" id="ampforwp-close-notice" style="font-weight:bold;"><?php echo esc_html__('Not Now', 'accelerated-mobile-pages') ?></a>
             </p>
         </div>
 <?php    }
