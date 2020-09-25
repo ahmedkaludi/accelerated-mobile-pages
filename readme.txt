@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.63 (25th September 2020) =
+= 1.0.63 (26th September 2020) =
 * Improvement: Added Reddit embeds support #4406
 * Improvement: Added multi select for post type in loop field #4365
 * Improvement: Added custom classes in Body tag in AMP in all Designs #4594
