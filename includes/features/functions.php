@@ -1445,15 +1445,15 @@ function ampforwp_internal_feedback_notice(){
     if (strtotime($install_date) < strtotime('1 month ago') && $activation_never !='remove') {?>
         <div class="updated notice ampforwp_remove_notice" style="box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);background-color:white;">
             <p> 
-            <?php echo esc_html__('Awesome, you\'ve been using AMPforWP for more than 1 month. May i ask you to give it a 5-star rating on Wordpress? This will help to spread its popularity and to make this plugin a better one. Your help is much appreciated. Thank you very much', 'accelerated-mobile-pages') ?>
-            <ul><li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?rate=5#new-post" class="button-primary" target="_new" style="font-weight:bold;" title="Ok, you deserved it"> <?php echo esc_html__('Ok, You deserved it', 'accelerated-mobile-pages') ?></a>
-            <a class="button-primary" id="ampforwp-close-notice" style="font-weight:bold;"><?php echo esc_html__('Close Notice', 'accelerated-mobile-pages') ?></a></li></ul>
+            <?php echo esc_html__('Awesome, you\'ve been using AMPforWP for more than 1 month. May i ask you to give it a 5-star rating on Wordpress? This will help to spread its popularity and to make this plugin a better one. Your help is much appreciated. Thank you very much', 'accelerated-mobile-pages') ?></br></br>
+            <a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?rate=5#new-post" class="button-primary" target="_new" style="font-weight:bold;" title="Ok, you deserved it"> <?php echo esc_html__('Ok, You deserved it', 'accelerated-mobile-pages') ?></a>
+            <a class="button-primary" id="ampforwp-close-notice" style="font-weight:bold;"><?php echo esc_html__('Close Notice', 'accelerated-mobile-pages') ?></a>
             </p>
         </div>
 <?php    }
 }
 function ampforwp_feedback_remove_notice(){     
-    $result = get_option( "ampforwp_feedback_remove_notice");
+    $result = update_option( "ampforwp_feedback_remove_notice", 'remove');
     if($result){
         echo json_encode(array('status'=>'t'));            
     }else{    
