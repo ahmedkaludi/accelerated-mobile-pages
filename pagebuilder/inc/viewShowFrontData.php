@@ -611,12 +611,11 @@ function amppb_post_content($content){
 							}elseif($field['name']=='grid_type' && $rowsData['data'][$field['name']]=='amppb-fixed'){
 								$replace .= 'ap-fi';
 							}else{
-								$replace .= esc_html($rowsData['data'][$field['name']]);
+								$replace .= $rowsData['data'][$field['name']];
 							}
 						}else{
 							$replace .= '';
 						}
-						$replace = esc_attr($replace);
 						if(! is_array($field['name']) && $field['content_type']=='html'){
 							$rowStartTemplate = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
 						}
