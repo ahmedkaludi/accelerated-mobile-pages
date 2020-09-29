@@ -8017,7 +8017,7 @@ if ( ! function_exists('ampforwp_font_url') ) {
 	}
 }
 //Need to add full short pixel plugin compatibility #3782
-if(function_exists('shortPixelDebugErrorHandler')){
+if(class_exists('ShortPixelAPI')){
 	add_filter( 'ampforwp_the_content_last_filter','ampforwp_short_pixel_cdn');
 }
 function ampforwp_short_pixel_cdn($content){
