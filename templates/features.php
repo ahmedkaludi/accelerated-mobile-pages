@@ -7769,10 +7769,12 @@ function ampforwp_head_css(){
 			        'id'        => 'user-info',
 			        'title'      => $title
 			  ) );
-			$wp_admin_bar->add_menu( array(
-			        'id'        => 'wpseo-menu',
-			        'title'      => "SEO"
-			) );
+			if(class_exists('WPSEO_Options')){
+				$wp_admin_bar->add_menu( array(
+				        'id'        => 'wpseo-menu',
+				        'title'      => "SEO"
+				) );
+			}
 			$wp_admin_bar->remove_menu( 'ampforwp-view-amp' );
 			if(function_exists('autoptimize_autoload')){
 				$wp_admin_bar->remove_menu( 'autoptimize' );
