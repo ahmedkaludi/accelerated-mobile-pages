@@ -3502,6 +3502,10 @@ function ampforwp_add_meta_viewport() {
 	    	$output = '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes">';
 	    }
 	}
+	global $is_safari; 
+	if ($is_safari) {
+		$output .= '<meta name="referrer" content="no-referrer-when-downgrade">';
+	}
 	echo apply_filters('ampforwp_modify_meta_viewport_filter',$output);
 	
 }
