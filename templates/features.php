@@ -5742,7 +5742,9 @@ function ampforwp_is_non_amp( $type="" ) {
 		if ( is_feed() ) {
 			return false;
 		}
-		
+		if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
+		    return false;
+		}
 	}elseif(	(
 				ampforwp_get_setting('amp-design-selector') == 4)
 				&&
