@@ -714,6 +714,9 @@ function ampforwp_backtotop_global_css(){?>
 	sub {vertical-align: sub;font-size: small;}
 	sup {vertical-align: super;font-size: small;}
 	amp-call-tracking a {display: none;}
+	<?php if (class_exists('UAGB_Admin')) {?>
+	.wp-block-uagb-faq svg {display: none;}
+	<?php } ?>
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
