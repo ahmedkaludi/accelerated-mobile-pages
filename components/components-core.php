@@ -816,4 +816,13 @@ function ampforwp_addthis_floating_social_share(){
 			}
 		}
 	}
+
+	// Added json for amp sidebar menu checkbox 
+		if( ampforwp_get_setting('amp-design-selector') == 4){ ?>	
+			<amp-state id="sidemenu">
+				<script type="application/json">
+				  <?php echo json_encode(array('offcanvas_menu'=> false));?>
+				</script>
+			</amp-state>
+		<?php }
 }
