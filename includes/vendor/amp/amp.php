@@ -80,12 +80,16 @@ if ( ! function_exists('AMPforWP\\AMPVendor\\amp_prepare_render') ) {
 }
 if ( ! function_exists('AMPforWP\\AMPVendor\\amp_render') ) {
 	function amp_render() {
-		global $ampforwpTemplate;
 		amp_load_classes();
-
 		$post_id = get_queried_object_id();
 		do_action( 'pre_amp_render_post', $post_id );
-
+		$post = get_queried_object();
+		if ( $post instanceof WP_Post && function_exists('amp_activate')) {
+			amp_render_post( $post );
+			exit;
+		}
+		if ( !function_exists('amp_activate')) {
+		global $ampforwpTemplate;
 		amp_add_post_template_actions();
 		$template = $ampforwpTemplate = new AMP_Post_Template( $post_id );
 		$template->load();
@@ -94,6 +98,7 @@ if ( ! function_exists('AMPforWP\\AMPVendor\\amp_render') ) {
             header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 	    }
 		exit;
+		}
 	}
 }
 /**
