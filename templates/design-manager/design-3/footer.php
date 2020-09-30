@@ -96,9 +96,7 @@ global $redux_builder_amp;
               <?php }?>
             </ul>
           </div>
-          <?php } 
-           if(true == ampforwp_get_setting('ampforwp-footer-top')){?><p class="rightslink back-to-top"><?php amp_back_to_top_link();?></p><?php 
-            } ?>
+          <?php } ?>
             <p class="rightslink"><?php
              $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>'; 
               echo strip_tags( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'All Rights Reserved') ,$allowed_tags );

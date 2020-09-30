@@ -2355,7 +2355,9 @@ function ampforwp_editable_archvies_title($title) {
 //39. #560 Header and Footer Editable html enabled script area
 add_action('amp_post_template_footer','ampforwp_footer_html_output',11);
 function ampforwp_footer_html_output() {
-
+  if(true == ampforwp_get_setting('ampforwp-footer-top')){
+  	amp_back_to_top_link();
+  }
   if( ampforwp_get_setting('amp-footer-text-area-for-html') ) {
     echo ampforwp_get_setting('amp-footer-text-area-for-html') ;
   }
