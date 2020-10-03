@@ -33,7 +33,7 @@ $cross_btn_bg_clr       = ampforwp_get_setting('amp-d1-cross-bg-color','rgba');
 $cross_btn_hvr_clr      = ampforwp_get_setting('amp-d1-cross-hover-color','rgba');
 
 if(empty($header_bg_clr)){
-  $header_bg_clr ='#0a89c0';
+  $header_bg_clr ='#04415D';
 }
 if(empty($header_elements_clr)){
   $header_elements_clr ='#ffffff';
@@ -119,6 +119,7 @@ $icon_url = ampforwp_font_url($icon_url);
 amp-iframe{ max-width: 100%; margin-bottom : 20px; }
 amp-wistia-player {margin:5px 0px;}
 .hide{display:none}
+div#pagination a {color: #04415D;}
 .amp-wp-article amp-addthis{bottom: -38px;}
 .amp-wp-content,.amp-wp-title-bar div {<?php if ( $content_max_width > 0 ) : ?> margin: 0 auto;max-width: <?php echo esc_attr(sprintf( '%dpx', $content_max_width )); ?>; <?php endif; if((is_singular() || ampforwp_is_front_page()) && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){?>
       max-width:100%;
@@ -311,7 +312,7 @@ if (empty($footer_txt_color)) {
   $footer_txt_color = '#353535';
 }
 if (empty($footer_link_color)) {
-  $footer_link_color = '#0a89c0';
+  $footer_link_color = '#04415D';
 }
 if (empty($footer_lnk_hvr_color)) {
   $footer_lnk_hvr_color = '#353535';

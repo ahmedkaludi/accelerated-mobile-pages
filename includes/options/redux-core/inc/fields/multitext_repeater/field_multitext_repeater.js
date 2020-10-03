@@ -33,7 +33,7 @@
                 } else {
                     return;
                 }
-                el.find( '.redux-multitext_repeater-remove' ).live(
+                el.find( '.redux-multitext_repeater-remove' ).on(
                     'click', function() {
                         redux_change( $( this ) );
                         $( this ).prev( 'input[type="text"]' ).val( '' );

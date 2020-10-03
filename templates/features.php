@@ -2198,13 +2198,15 @@ function ampforwp_remove_bj_load() {
 }
 add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
 
-//Disable Crazy Lazy for AMP #751
-function ampforwp_remove_crazy_lazy_support(){
+add_action('wp','ampforwp_remove_wp_actions',9);
+function ampforwp_remove_wp_actions(){
+	//Disable Crazy Lazy for AMP #751
 	if( ampforwp_is_amp_endpoint() ){
 		remove_action( 'wp', array( 'CrazyLazy', 'instance' ) );
 	}
+	// Removing Marfeel plugin which was blocking internal pages of AMP #2423
+	remove_action('wp', 'render_marfeel_amp_content' );
 }
-add_action('wp','ampforwp_remove_crazy_lazy_support',9);
 //33. Google tag manager support added
 // Moved to analytics-functions.php
 
@@ -2800,6 +2802,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
   if ( $non_sanitized_sidebar ) {
 	  $sanitized_sidebar = new AMPforWP_Content( $non_sanitized_sidebar,
 	    apply_filters( 'amp_content_embed_handlers', array(
+	    	  'AMP_Reddit_Embed_Handler' => array(),
 	          'AMP_Twitter_Embed_Handler' => array(),
 	          'AMP_YouTube_Embed_Handler' => array(),
 	          'AMP_DailyMotion_Embed_Handler' => array(),
@@ -3202,6 +3205,7 @@ function ampforwp_content_sanitizer( $content ) {
 	if ( !empty( $amp_custom_post_content_input ) ) {
 		$amp_custom_content = new AMPFORWP_Content( $amp_custom_post_content_input,
 				apply_filters( 'amp_content_embed_handlers', array(
+					    'AMP_Reddit_Embed_Handler' => array(),
 						'AMP_Twitter_Embed_Handler' => array(),
 						'AMP_YouTube_Embed_Handler' => array(),
 						'AMP_Instagram_Embed_Handler' => array(),
@@ -3453,11 +3457,8 @@ function ampforwp_comment_button_url(){
 add_action('pre_amp_render_post', 'ampforwp_remove_tagdiv_category_layout');
 function ampforwp_remove_tagdiv_category_layout(){
 	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
-		add_action('pre_get_posts','ampforwp_remove_support_tagdiv_cateroy_layout',9);
+		remove_action('pre_get_posts', 'td_modify_main_query_for_category_page',9);
 	}
-}
-function ampforwp_remove_support_tagdiv_cateroy_layout(){	
-		remove_action('pre_get_posts', 'td_modify_main_query_for_category_page'); 	
 }
 
 // 61. Add Gist Support
@@ -3717,6 +3718,7 @@ function ampforwp_generate_pagebuilder_data() {
 
   $sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
     apply_filters( 'amp_content_embed_handlers', array(
+    	  'AMP_Reddit_Embed_Handler' => array(),
           'AMP_Twitter_Embed_Handler' => array(),
           'AMP_YouTube_Embed_Handler' => array(),
           'AMP_Instagram_Embed_Handler' => array(),
@@ -3821,29 +3823,18 @@ function ampforwp_remove_rel_on_bp(){
 				remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 ); 
 			}
 		}
+		// Removing AMP from WPForo Forums Pages #592
+		if(class_exists('wpForo')){
+			Global $post, $wpdb,$wpforo;
+			$foid = $post->ID;
+			$fid = $wpforo->pageid;
+			if($foid==$fid){
+				remove_action( 'wp_head', 'amp_frontend_add_canonical');
+				remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
+			}
 
+		}	
 }
-
-// Removing AMP from WPForo Forums Pages #592
-
-add_action('amp_init','remove_rel_amp_from_forum');
-function remove_rel_amp_from_forum(){
-	add_action('wp','ampforwp_remove_rel_on_forum');
-}
-
-function ampforwp_remove_rel_on_forum(){
-	if(class_exists('wpForo')){
-		Global $post, $wpdb,$wpforo;
-		$foid = $post->ID;
-		$fid = $wpforo->pageid;
-		if($foid==$fid){
-			remove_action( 'wp_head', 'amp_frontend_add_canonical');
-			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
-		}
-		
-	}
-}
-
 
 // 66. Make AMP compatible with Squirrly SEO
 add_action('pre_amp_render_post','ampforwp_remove_sq_seo');
@@ -3903,7 +3894,7 @@ add_action('init', 'ampforwp_fb_instant_article_feed_generator');
 function ampforwp_fb_instant_article_feed_generator() {
 	if( ampforwp_get_setting('fb-instant-article-switch') ) {	
 		add_feed('instant_articles', 'ampforwp_fb_instant_article_feed_function');
-		add_action( 'wp_head', 'ampforwp_fbia_meta_tags' );
+		add_action( 'ampforwp_fbia_head', 'ampforwp_fbia_meta_tags' );
 		require AMPFORWP_PLUGIN_DIR . '/templates/instant-articles/instant-article-sanitizer.php';
 	}
 }
@@ -4623,6 +4614,7 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 		}else{
 			$classes[] = get_post_type();
 		}
+		$classes[] = AMPFORWP_VERSION;
 		$classes = array_map( 'esc_attr', $classes );
 	    $classes = apply_filters( 'ampforwp_body_class', $classes, $class );
 	 
@@ -6105,13 +6097,13 @@ function ampforwp_homepage_loop( $args ) {
 	if ( is_home() ) {
 		$post_type = 'post';
 		// Check if Custom Post Type is selected
-		if ( isset($redux_builder_amp['ampforwp-homepage-loop-type']) && '' != $redux_builder_amp['ampforwp-homepage-loop-type'] ) {
-			$post_type = $redux_builder_amp['ampforwp-homepage-loop-type'];
+		if ('' != ampforwp_get_setting('ampforwp-homepage-loop-type') ) {
+			$post_type = ampforwp_get_setting('ampforwp-homepage-loop-type');
 		}
 		$args['post_type'] = $post_type;
 		// Exclude Categories if any selected
-		if ( isset($redux_builder_amp['ampforwp-homepage-loop-cats']) && ! empty($redux_builder_amp['ampforwp-homepage-loop-cats']) ) {
-			$args['category__not_in'] = $redux_builder_amp['ampforwp-homepage-loop-cats'];
+		if ('' != ampforwp_get_setting('ampforwp-homepage-loop-cats') ) {
+			$args['category__not_in'] = ampforwp_get_setting('ampforwp-homepage-loop-cats');
 		}
 	}
 	return $args; 
@@ -6302,6 +6294,13 @@ function ampforwp_remove_instant_articles_amp_markup(){
 	if(class_exists('Instant_Articles_AMP_Markup')){
 		remove_action( 'wp_head', array('Instant_Articles_AMP_Markup', 'inject_link_rel') );
 	}
+	// #1696
+	  if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
+	    if(class_exists('SQ_Classes_ObjController')){
+		    $SQ_Classes_ObjController = new SQ_Classes_ObjController();
+		    $sq_analytics_class_obj = $SQ_Classes_ObjController::getClass('SQ_Models_Services_Analytics');
+		}
+	  }
 }
 // #2042 
 function ampforwp_404_canonical(){
@@ -6331,18 +6330,6 @@ function ampforwp_paginated_post_content($content){
 
 // GDPR Compliancy #2040
 // Moved to notice-bar-functions.php
-
-// #1696
-add_action('wp','ampforwp_remove_squirly_js');
-function ampforwp_remove_squirly_js(){
-  if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
-    if(class_exists('SQ_Classes_ObjController')){
-	    $SQ_Classes_ObjController = new SQ_Classes_ObjController();
-	    $sq_analytics_class_obj = $SQ_Classes_ObjController::getClass('SQ_Models_Services_Analytics');
-	}
-
-  }
-}
 
 // Thrive Leads Compatibility #2067
 add_filter('thrive_leads_skip_request', 'ampforwp_skip_thrive_leads');
@@ -6451,11 +6438,7 @@ function ampforwp_get_comments_status(){
 add_action('ampforwp_post_after_design_elements','ampforwp_vuukle_comments_support');
 function ampforwp_vuukle_comments_support() {
 	global $redux_builder_amp;
-	if ( 4 != $redux_builder_amp['amp-design-selector']
-		 && isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
-		 && $redux_builder_amp['ampforwp-vuukle-comments-support']==1
-		 && comments_open() 
-		) {
+	if ( true == ampforwp_get_setting('ampforwp-vuukle-comments-support') && comments_open()) {
 		echo ampforwp_vuukle_comments_markup();
 	}
 }
@@ -6793,11 +6776,6 @@ function ampforwp_ia_meta_callback( $post ) {
     </p>
 <?php }
 
-// Removing Marfeel plugin which was blocking internal pages of AMP #2423
-add_action('wp','ampforwp_remove_marfeel',9);
-function ampforwp_remove_marfeel(){
-remove_action('wp', 'render_marfeel_amp_content' );
-}
 // Total Plus compatibility #2511
 add_action('current_screen', 'ampforwp_totalplus_comp_admin');
 function ampforwp_totalplus_comp_admin() {
@@ -6960,6 +6938,7 @@ function ampforwp_comments_sanitizer(){
 			$comment_text =	$comment_data->comment_content;
 			$comment_text = wpautop( $comment_text );
 	    	$sanitizer = new AMPforWP_Content( $comment_text, apply_filters( 'amp_content_embed_handlers', array(
+	    		  'AMP_Reddit_Embed_Handler' => array(),
 		          'AMP_Twitter_Embed_Handler' => array(),
 		          'AMP_YouTube_Embed_Handler' => array(),
 		          'AMP_DailyMotion_Embed_Handler' => array(),
@@ -7372,7 +7351,7 @@ function ampforwp_yoast_breadcrumbs_output(){
 		if ( true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') && true === WPSEO_Options::get( 'breadcrumbs-enable' ) && function_exists('yoast_breadcrumb')) {
 			$breadcrumb = yoast_breadcrumb('','', false);
 			if( true == ampforwp_get_setting('convert-internal-nonamplinks-to-amp') && preg_match('/<a\s+href="(.*?)">(.*?)<\/a>/', $breadcrumb)){
-			   $breadcrumb = preg_replace('/<a\s+href="(.*?)\/">(.*?)<\/a>/', '<a href="$1/'.AMPFORWP_AMP_QUERY_VAR.'">$2</a>', $breadcrumb);
+			   $breadcrumb = preg_replace('/<a\s+href="(.*?)\/">(.*?)<\/a>/', '<a href="$1/'.user_trailingslashit(AMPFORWP_AMP_QUERY_VAR).'">$2</a>', $breadcrumb);
 		     }
 			return $breadcrumb;
 		}

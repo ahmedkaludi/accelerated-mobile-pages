@@ -7,7 +7,74 @@ if ( ! defined( 'ABSPATH' ) ) {
     $advertisementdesc = '';
     if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) && !is_plugin_active( 'ads-for-wp/ads-for-wp.php' ) ){
         $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
-    $advertisementdesc = '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>';
+    $quads_download = '';  
+    if(function_exists('quads_loaded')){
+        $quads_download = '<a href="'.esc_url(admin_url('admin.php?page=quads-settings')).'">'.esc_html__('Go to WP QUADS Settings', 'accelerated-mobile-pages').' </a>';
+    }else{
+        $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">'.esc_html__('Install Free Plugin', 'accelerated-mobile-pages').'</div>';
+    }
+        if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."quick-adsense-reloaded/quick-adsense-reloaded.php") && !function_exists('quads_loaded')){
+           $quads_download = '<div class="install-now button quads_install_button"><a target="_blank" href="'.esc_url(admin_url('plugins.php')).'">'.esc_html__('Activate Plugin', 'accelerated-mobile-pages').'</a></div>';
+        }   
+    $advertisementdesc = '
+    <div class="ads-baner">
+        <span class="adt-top">'.esc_html__('The Best AMP integration for Advertisement', 'accelerated-mobile-pages').'</span>
+        <div class="ads-baner-inner">
+            <span>'.esc_html__('INTRODUCING', 'accelerated-mobile-pages').'</span>
+            <img class="ampforwp-quads-logo" src="'.AMPFORWP_IMAGE_DIR . '/wpquads-logo.png" width="180" height="42" />
+            <div class="list-of-feat">
+                <ul>
+                    <li>
+                        <h5>'.esc_html__('GENERAL FEATURES', 'accelerated-mobile-pages').'</h5>
+                        <ul class="inner-list">
+                            <li>'.esc_html__('Unlimited Ads', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Ad after X paragraph', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('After every Nth para', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('For AMP & non-AMP', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Ad after Imaget', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Ad by Word count', 'accelerated-mobile-pages').'</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h5>'.esc_html__('VENDORS', 'accelerated-mobile-pages').'</h5>
+                        <ul class="inner-list">
+                            <li>'.esc_html__('Adsense', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Ad manager (DFP)', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Yandex Direct', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Custom Code', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('MGID', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('30+ coming soon', 'accelerated-mobile-pages').'</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h5>'.esc_html__('VISIBILITY by', 'accelerated-mobile-pages').'</h5>
+                        <ul class="inner-list">
+                            <li>'.esc_html__('Post Type', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Specific Post', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Taxonomy', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Page Template', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Category / Tag', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('And 8+ more', 'accelerated-mobile-pages').'</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h5>'.esc_html__('TARGETTING by', 'accelerated-mobile-pages').'</h5>
+                        <ul class="inner-list">
+                            <li>'.esc_html__('Device type', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('User Agent', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Cookie', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Referre', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('Language', 'accelerated-mobile-pages').'</li>
+                            <li>'.esc_html__('And 4+ more', 'accelerated-mobile-pages').'</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="ad-lnk">
+                     '. $quads_download .'
+                </div>
+            </div>
+        </div>
+    </div>';
     }
 // ADS SECTION
  Redux::setSection( $opt_name, array(

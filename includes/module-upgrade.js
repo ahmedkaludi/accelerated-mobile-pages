@@ -18,6 +18,8 @@ jQuery(document).ready(function($){
                 activate = '&activate=adsforwp';
                 adsforwp_is_active = $(".ampforwp-activation-url").attr('id');
                 adsforwp_act_url = $(".ampforwp-activation-url").val();
+            }else if(currentId=='ampforwp-wp-quads-activation-call'){
+                activate = '&activate=wp_quads';    
             }
             self.text( wp.updates.l10n.installing );
             $.ajax({
@@ -109,6 +111,10 @@ jQuery(document).ready(function($){
                                  self.removeClass('ampforwp-activation-call-module-upgrade');
                             }
                         });
+                        }else if(self.attr('id')=='ampforwp-wp-quads-activation-call'){
+                        msgplug = 'WP QUADS';
+                        self.html('<a href="'+response.redirect_url+'">Installed! - Let\'s Go to '+msgplug+' Settings</a>')
+                        self.removeClass('ampforwp-activation-call-module-upgrade');
                     }
                 },
                 error: function (jqXHR, exception) {

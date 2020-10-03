@@ -614,6 +614,7 @@ Class AMPforWP_theme_mode{
 		$sanitizer_obj = new AMPFORWP_Content( $content,
 				 apply_filters( 'amp_content_embed_handlers_template_mode', array(
 					'AMP_Core_Block_Handler' => array(),
+					'AMP_Reddit_Embed_Handler' => array(),
 					'AMP_Twitter_Embed_Handler' => array(),
 					'AMP_YouTube_Embed_Handler' => array(),
 					'AMP_DailyMotion_Embed_Handler' => array(),

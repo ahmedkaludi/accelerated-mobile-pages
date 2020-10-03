@@ -4648,7 +4648,7 @@ Redux::setSection( $opt_name, array(
                     'type'      => 'color_rgba',
                     'title'     => esc_html__('Header Background','accelerated-mobile-pages'),
                     'default'   => array(
-                        'color'     => '#0a89c0',
+                        'color'     => '#04415D',
                     ),
                     'required' => array(
                       array('amp-design-selector', '=' , '1')
@@ -4671,7 +4671,7 @@ Redux::setSection( $opt_name, array(
                     'type'      => 'color_rgba',
                     'title'     => esc_html__('Header Background','accelerated-mobile-pages'),
                     'default'   => array(
-                        'color'     => '#0a89c0',
+                        'color'     => '#0074A7',
                     ),
                     'required' => array(
                       array('amp-design-selector', '=' , '2')
@@ -5270,6 +5270,7 @@ Redux::setSection( $opt_name, array(
     $ampforwp_home_loop = get_option('ampforwp_custom_post_types');
     $ampforwp_home_loop['post'] = 'Posts';
     unset($ampforwp_home_loop['page']);
+    unset($ampforwp_home_loop['category']);
 
  // HomePage Section
   Redux::setSection( $opt_name, array(
@@ -5518,6 +5519,7 @@ Redux::setSection( $opt_name, array(
                 array(
                         'id'       => 'ampforwp-homepage-loop-type',
                         'type'     => 'select',
+                        'multi'    => true,
                         'title'    => esc_html__( 'Post Type in Loop', 'accelerated-mobile-pages' ),
                         'options'  => $ampforwp_home_loop,
                         'default'   => 'post',
@@ -5709,7 +5711,7 @@ $single_page_options = array(
                     'required' => array( 
                                         array('amp-design-selector', '=' , '4'),
                                         array('swift-featued-image', '=' , '1'),
-                                        array('rp_design_type', '=' , '1')
+                                        array('single-design-type', '=' , '1')
                                     ),
             ),
             array(
@@ -6803,7 +6805,7 @@ else{
                         'type'     => 'color_rgba',
                         'title'    => esc_html__('Footer Link Color', 'accelerated-mobile-pages'),
                         'default'   => array(
-                                'color' => '#0a89c0'
+                                'color' => '#04415D'
                         ),
                         'required'  => array(
                             array('amp-design-selector', '=' , '1')
@@ -6881,7 +6883,7 @@ else{
                         'type'     => 'color_rgba',
                         'title'    => esc_html__('Footer Link Color', 'accelerated-mobile-pages'),
                         'default'   => array(
-                                'color' => '#0a89c0'
+                                'color' => '#0074A7'
                         ),
                         'required'  => array(
                             array('amp-design-selector', '=' , '2')
@@ -6970,7 +6972,7 @@ else{
                         'type'     => 'color_rgba',
                         'title'    => esc_html__('Footer Powered by Color', 'accelerated-mobile-pages'),
                         'default'   => array(
-                                'color' => '#666666'
+                                'color' => '#cac8c8'
                         ),
                         'required'  => array(
                             array('amp-design-selector', '=' , '3')

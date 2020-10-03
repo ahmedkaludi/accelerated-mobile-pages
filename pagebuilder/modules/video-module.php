@@ -22,6 +22,7 @@ $output = '
 	{{if_condition_video_option==youtube}}
 	<amp-youtube {{if_id}}id="{{id}}"{{ifend_id}}
     data-videoid="{{youtube_video_id}}"
+    {{if_condition_hide_rel_video==1}} data-param-rel="0" {{ifend_condition_hide_rel_video_1}}
     layout="responsive"
     width="{{width}}" height="{{height}}"></amp-youtube>
     {{ifend_condition_video_option_youtube}}
@@ -114,6 +115,21 @@ return array(
 	           				'required'  => array('video_option'=>'custom',
 											'video_option'=>'youtube',
 	           								),
+ 						),
+ 						array(		
+	 						'type'		=>'checkbox_bool',		
+	 						'name'		=>"hide_rel_video",		
+	 						'label'		=>'Hide other channels related video',
+	           				'tab'       =>'customizer',
+	 						'default'	=>1,
+	 						'options'	=>array(
+												array(
+													'label'=>'Setting this option will show given youtube video id channels related videos only.',
+													'value'=>1,
+												),
+											),
+	 						'content_type'=>'html',
+	           				'required'  => array('video_option'=>'youtube'),
  						),
  						array(		
 	 						'type'		=>'checkbox_bool',		

@@ -42,7 +42,7 @@
                     return;
                 }
 
-                el.find( '.redux-slides-remove' ).live(
+                el.find( '.redux-slides-remove' ).on(
                     'click', function() {
                         redux_change( $( this ) );
 
