@@ -1,5 +1,29 @@
 == Changelog ==
 
+= 1.0.64 (5th October 2020) =
+* Fixed: Comments module of AMP pagebuilder is rendering only admin comments not the others #4745
+* Fixed: Shortpixel is not generating WebP in AMP #4738
+* Fixed: SEO option appearing in wordpress tool bar even No SEO plugin is active #4698
+* Fixed: Auto add amp in menu url functionality is not working in tags #4734
+* Fixed: The internal link for the the author page is generating in the AMP if the archive page support is disabled #4746
+* Fixed: Scroll to top button not visible in Design 2 #4693
+* Fixed: Notice: Undefined index: Cpage #4728
+* Fixed: GDPR banner is off-centered, the 'X 'is out of the screen #4724
+* Fixed: Wrong AMP html when the AMP takeover and ?amp is enabled #4731
+* Fixed: Addon mode forcefully redirecting to reader mode not others #4742
+* Fixed: Images not appearing with Image Photo Gallery Final Tiles Grid plugin #4675
+* Fixed: In Design three, when click on the menu, the page gets pushed to the right side #4736
+* Fixed: FAQ icon button is a too big in amp page. #4747
+* Fixed: Added meta name="referrer" content="no-referrer-when-downgrade" #4715
+* Fixed: In admin tool bar, (+) icon loading small and also author image invisible #4700
+* Fixed: Issue with menu background when user add internal page navigation menu-items. #4630
+* Fixed: Anchor tag getting stripped when Site Kit by Google is active. #4699
+* Fixed: Merriweather font option in Design 1 does not work. #4726
+* Fixed: If the user is adding the HTML code in the background video module then code is showing as output #4755
+* Fixed: AMP 404 template is applying on non amp page #4723
+* Fixed: In-Content Related Post appearing inside the blockquote when "After 50% of content" option is selected #4743
+* Fixed: If the sticky ads is active then the sticky social share link tab is hiding behind the ads #4749
+
 = 1.0.63 (26th September 2020) =
 * Improvement: Added Reddit embeds support #4406
 * Improvement: Added multi select for post type in loop field #4365
