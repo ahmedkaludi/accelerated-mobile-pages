@@ -54,6 +54,7 @@ function ampforwp_add_admin_styling($hook_suffix){
         add_action('admin_notices', 'ampforwp_seo_selection_notice' );
         add_action('admin_notices', 'ampforwp_mobile_redirection_notice' );
         add_action('admin_notices', 'ampforwp_category_base_remove_notice' );
+        add_action('admin_notices', 'ampforwp_internal_feedback_notice' );
     }else{
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
@@ -85,7 +86,7 @@ function ampforwp_add_admin_styling($hook_suffix){
 // 96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
 function ampforwp_is_front_page(){
     global $redux_builder_amp;
-
+    $front_page = false;
     // Reading settings me frontpage set
     $get_front_page_reading_settings  = get_option('page_on_front');
 
@@ -107,22 +108,25 @@ function ampforwp_is_front_page(){
     }
     // TRUE: When we have "Your latest posts" in reading settings and custom frontpage in amp
     if ( 'posts' == get_option( 'show_on_front') && is_home() && $get_amp_homepage_settings && $get_custom_frontpage_settings)
-        return true;
+        $front_page = true;
 
      // TRUE: When we have " A static page" in reading settings and custom frontpage in amp
     if ( 'page' == get_option( 'show_on_front') && (is_home() || is_front_page()) && $get_front_page_reading_settings && $get_amp_homepage_settings && $get_custom_frontpage_settings && !empty($get_amp_custom_frontpage_id)) {
+
+        $front_page = true;
 
         $current_page = get_queried_object();
         if ( $current_page ) {
           $current_page =  $current_page->ID;
         }
         if ( get_option( 'page_for_posts') == $current_page ) {
-            return false ;
+            $front_page = false ;
         }
-        return true;
+        
     }
 
-  return false ;
+    $front_page = apply_filters('ampforwp_is_front_page', $front_page);
+    return $front_page;
 
 }
 
@@ -1281,9 +1285,6 @@ function ampforwp_dev_mode_notice(){
 }
 
 function ampforwp_seo_selection_notice() {
-    if('' != ampforwp_get_setting('ampforwp-seo-selection')){
-        return;
-    }
     $seo = '';
     if(class_exists('WPSEO_Options')){
         $seo = 'Yoast SEO';
@@ -1312,8 +1313,44 @@ function ampforwp_seo_selection_notice() {
     if(function_exists('seopress_activation')){
         $seo = 'SEO Press';
     }
+    $seosel = false;
+    if(class_exists('WPSEO_Options') && 'yoast' != ampforwp_get_setting('ampforwp-seo-selection')){ 
+        $seosel = true;
+    }
+    else if (defined( 'RANK_MATH_FILE' ) && 'rank_math' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (class_exists('All_in_One_SEO_Pack') && 'aioseo' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (function_exists( 'the_seo_framework' ) && 'seo_framework' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (defined( 'SQ_ALL_PATTERNS' ) && 'squirrly' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (class_exists('Smartcrawl_Loader') && 'smartcrawl' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (function_exists('genesis_theme_support') && 'genesis' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (function_exists('seopress_activation') && 'seopress' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    else if (function_exists('qode_header_meta') && 'bridge' != ampforwp_get_setting('ampforwp-seo-selection')){
+         $seosel = true;
+    }
+    if($seosel && ( '' != ampforwp_get_setting('ampforwp-seo-selection') ) ){
+        echo sprintf(('<div class="notice notice-error"><p>%s</p></div>'), esc_html__('Incorrect SEO plugin has been selected in AMPforWP SEO Settings, Please select '.esc_html($seo).' from SEO Settings.','accelerated-mobile-pages'));
+    }
+
+    if('' != ampforwp_get_setting('ampforwp-seo-selection')){
+        return;
+    }
+    
     if(!empty($seo)){
-        echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a></p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings and select '.esc_html($seo).' from SEO Plugin Integration or ','accelerated-mobile-pages'),esc_url(admin_url('admin.php?page=amp_options&tab=5')),esc_html__('Click Here','accelerated-mobile-pages'));
+        echo sprintf(('<div class="notice notice-error"><p>%s </p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings -> SEO -> SEO Plugin Integration and select '.esc_html($seo).' plugin from the drop down.','accelerated-mobile-pages'));
     }
 }
 add_action('wp_ajax_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
@@ -1399,3 +1436,33 @@ function ampforwp_get_taxonomy_meta($term_id,$type=''){
         return true;
     }
 }
+
+function ampforwp_internal_feedback_notice(){
+    $install_date = get_option('ampforwp_plugin_info');
+    if (isset($install_date["activation_data"])) {
+       $install_date = $install_date["activation_data"];
+       $install_date = date("m-d-Y", $install_date);
+    }
+    $activation_never =  get_option("ampforwp_feedback_remove_notice");
+    if (strtotime($install_date) < strtotime('1 month ago') && $activation_never !='remove') {?>
+        <div class="updated notice ampforwp_remove_notice" style="box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);background-color:white;">
+            <p> 
+            <?php esc_html_e('Awesome, you\'ve been using AMPforWP for more than 1 month. May I ask you to give it a 5-star rating on WordPress.org?', 'accelerated-mobile-pages'); ?></br>
+            <?php esc_html_e('This will help spread the word out about this plugin and will encourage us to continue the development.', 'accelerated-mobile-pages'); ?></br>
+            <?php esc_html_e('Much appreciated, thank you very much.', 'accelerated-mobile-pages'); ?></br></br>
+            <a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?rate=5#new-post" class="button-primary" target="_new" style="font-weight:bold;" title="Ok, you deserved it"> <?php echo esc_html__('Ok, You deserve it', 'accelerated-mobile-pages') ?></a>
+            <a class="button-primary" id="ampforwp-close-notice" style="font-weight:bold;"><?php echo esc_html__('Not Now', 'accelerated-mobile-pages') ?></a>
+            </p>
+        </div>
+<?php    }
+}
+function ampforwp_feedback_remove_notice(){     
+    $result = update_option( "ampforwp_feedback_remove_notice", 'remove');
+    if($result){
+        echo json_encode(array('status'=>'t'));            
+    }else{    
+        echo json_encode(array('status'=>'f'));                
+    }   
+    wp_die();                
+}
+add_action('wp_ajax_ampforwp_feedback_remove_notice', 'ampforwp_feedback_remove_notice');

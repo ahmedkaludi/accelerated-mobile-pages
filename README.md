@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.62.2
+Stable tag: 1.0.63
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,27 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.63 (26th September 2020) =
+* Improvement: Added Reddit embeds support #4406
+* Improvement: Added multi select for post type in loop field #4365
+* Improvement: Added custom classes in Body tag in AMP in all Designs #4594
+* Improvement: Added filter for GDPR on-off #4471
+* Improvement: Added admin notice when wrong seo plugin is selected #4678
+* Improvement: Added TikTok embed support #4504
+* Improvement: Added related post on/off in YouTube #4503
+* Improvement: Added Nofollow Link button on pricing tabs in AMP Page Builder #4505
+* Improvement: Improved Lighthouse Audits #4654
+* Improvement: Added filter for AMP front page function #4634 
+* Fixed: Facebook Instant Articles (FBIA) Crawler Ingestion not working #4463
+* Fixed: Incontent related post not aligned if the post does not have featured image #4691
+* Fixed: Incontent path passed to load_plugin_textdomain function #4694
+* Fixed: Incorrect Styling for header area #4703
+* Fixed: Breadcrumb links are not generating the "amp/" #4708
+* Fixed: Google Analytics is not firing when GTM is enabled #4707
+* Fixed: Featured Image doesn’t appear on single post #4711
+* Fixed: Code improvements for options panel #4622 #4532 #4407 #4090
+* Fixed: Advanced section showing blank randomly #4741
 
 = 1.0.62.2 (21st August 2020) =
 * Fixed: Gutenberg gallery block caption appearing at the end of the content #4716

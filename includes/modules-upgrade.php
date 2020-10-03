@@ -89,6 +89,25 @@ function ampforwp_enable_modules_upgread(){
                         );
             $redirectSettingsUrl = admin_url('edit.php?post_type=adsforwp');
         break;
+        case 'wp_quads': 
+            $nonceUrl = add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'quick-adsense-reloaded',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => wp_create_nonce( 'activate-plugin_quick-adsense-reloaded' ),
+                                    ),
+                        esc_url(network_admin_url( 'plugins.php' ))
+                        );
+            $plugins[] = array(
+                            'name' => 'quick-adsense-reloaded',
+                            'path_' => 'https://downloads.wordpress.org/plugin/quick-adsense-reloaded.zip',
+                            'path' => $nonceUrl,
+                            'install' => 'quick-adsense-reloaded/quick-adsense-reloaded.php',
+                        );
+            $redirectSettingsUrl = admin_url('admin.php?page=quads-settings');        
+        break;
         default:
             $plugins = array();
         break;

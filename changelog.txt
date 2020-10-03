@@ -1,5 +1,26 @@
 == Changelog ==
 
+= 1.0.63 (26th September 2020) =
+* Improvement: Added Reddit embeds support #4406
+* Improvement: Added multi select for post type in loop field #4365
+* Improvement: Added custom classes in Body tag in AMP in all Designs #4594
+* Improvement: Added filter for GDPR on-off #4471
+* Improvement: Added admin notice when wrong seo plugin is selected #4678
+* Improvement: Added TikTok embed support #4504
+* Improvement: Added related post on/off in YouTube #4503
+* Improvement: Added Nofollow Link button on pricing tabs in AMP Page Builder #4505
+* Improvement: Improved Lighthouse Audits #4654
+* Improvement: Added filter for AMP front page function #4634 
+* Fixed: Facebook Instant Articles (FBIA) Crawler Ingestion not working #4463
+* Fixed: Incontent related post not aligned if the post does not have featured image #4691
+* Fixed: Incontent path passed to load_plugin_textdomain function #4694
+* Fixed: Incorrect Styling for header area #4703
+* Fixed: Breadcrumb links are not generating the "amp/" #4708
+* Fixed: Google Analytics is not firing when GTM is enabled #4707
+* Fixed: Featured Image doesn’t appear on single post #4711
+* Fixed: Code improvements for options panel #4622 #4532 #4407 #4090
+* Fixed: Advanced section showing blank randomly #4741
+
 = 1.0.62.2 (21st August 2020) =
 * Fixed: Gutenberg gallery block caption appearing at the end of the content #4716
 * Fixed: Validation error - accordion section must have 2 child tags #4208

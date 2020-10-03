@@ -205,53 +205,9 @@ function ampforwp_framework_get_disqus_comments(){
 	<?php
 	}
 }
-
 function ampforwp_framework_get_vuukle_comments(){
-	global $post, $redux_builder_amp; 
-	$apiKey ='';
-	$tag_name ='';
-	$img = get_the_post_thumbnail_url();
-	$tags = get_the_tags($post->ID);
-	if( isset($redux_builder_amp['ampforwp-vuukle-comments-apiKey']) && $redux_builder_amp['ampforwp-vuukle-comments-apiKey'] !== ""){
-		$apiKey = $redux_builder_amp['ampforwp-vuukle-comments-apiKey'];
-	}
-	$siteUrl = trim(site_url(), '/');  
-	if (!preg_match('#^http(s)?://#', $siteUrl)) {
-	      $siteUrl = 'http://' . $siteUrl;
-	}
-	if($img ==  false){
-		$img = plugins_url('accelerated-mobile-pages/images/150x150.png');
-	}  
-   	if($tags){
-  		foreach($tags as $individual_tag) {
- 				$tag_name = $individual_tag->name;
-		}
-   	}
-    $urlParts = parse_url($siteUrl);
-    $siteUrl = preg_replace('/^www\./', '', $urlParts['host']);// remove www
-	$srcUrl = 'https://cdn.vuukle.com/amp.html?';
-	$srcUrl = add_query_arg('url' ,get_permalink(), $srcUrl);
-	$srcUrl = add_query_arg('host' ,$siteUrl, $srcUrl);
-	$srcUrl = add_query_arg('id' , $post->ID, $srcUrl);
-	if(!empty($apiKey)){
-		$srcUrl = add_query_arg('apiKey' , $apiKey, $srcUrl);
-	} 
-	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl);
-	$srcUrl = add_query_arg('img' , esc_url($img), $srcUrl);
-	$srcUrl = add_query_arg('tags' , urlencode($tag_name), $srcUrl);
-	if(ampforwp_get_setting('ampforwp-vuukle-comments-emoji')==false){
-		$srcUrl = add_query_arg('emotes' , 'false', $srcUrl);
-	}
-	$consent = '';
-	if(ampforwp_get_data_consent()){
-		$consent = 'data-block-on-consent ';
-    } 
- 	$vuukle_html = '<amp-iframe width="600" height="350" '.esc_attr($consent).'layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
-
-		<div overflow tabindex="0" role="button" aria-label="Show comments">'.esc_html__('Show comments','accelerated-mobile-pages').'</div></amp-iframe>';
-	echo $vuukle_html; // escaped above
+	echo ampforwp_vuukle_comments_markup();
 }
-
 function ampforwp_framework_get_spotim_comments(){
 	global $post;
 	$spotId ='';

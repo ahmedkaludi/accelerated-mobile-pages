@@ -185,7 +185,7 @@
 	$( document ).ready(function() {
 
 		// Event handler for widget open button
-		$( 'div.widget[id*=black-studio-tinymce] .widget-title, div.widget[id*=black-studio-tinymce] a.widget-action' ).live( 'click', function() {
+		$( 'div.widget[id*=black-studio-tinymce] .widget-title, div.widget[id*=black-studio-tinymce] a.widget-action' ).on( 'click', function() {
 			bstw( $( this ) ).check_duplicates().fix_css().set_media_target().activate_after_open();
 			// Event handler for widget save button (for new instances)
 			// Note: this event handler is intentionally attached to the save button instead of document
@@ -202,7 +202,7 @@
 		});
 
 		// Event handler for widget save button (for existing instances)
-		$( 'div.widget[id*=black-studio-tinymce] input[name=savewidget]' ).live( 'click', function() {
+		$( 'div.widget[id*=black-studio-tinymce] input[name=savewidget]' ).on( 'click', function() {
 			if ( bstw( $( this ) ).is_tinymce_active() ) {
 				bstw( $( this ) ).deactivate();
 			}
@@ -213,17 +213,17 @@
 		});
 
 		// Event handler for visual switch button
-		$( 'a[id^=widget-black-studio-tinymce][id$=tmce]' ).live( 'click', function() {
+		$( 'a[id^=widget-black-studio-tinymce][id$=tmce]' ).on( 'click', function() {
 			bstw( $( this ) ).set_mode( 'visual' );
 		});
 
 		// Event handler for html switch button
-		$( 'a[id^=widget-black-studio-tinymce][id$=html]' ).live( 'click', function() {
+		$( 'a[id^=widget-black-studio-tinymce][id$=html]' ).on( 'click', function() {
 			bstw( $( this ) ).set_mode( 'html' );
 		});
 
 		// Set wpActiveEditor variables used when adding media from media library dialog
-		$( '.wp-media-buttons a' ).live( 'click', function() {
+		$( '.wp-media-buttons a' ).on( 'click', function() {
 			edCanvas = bstw( $( this ) ).get_textarea().get();
 			wpActiveEditor = bstw( $( this ) ).get_id();
 		});
@@ -234,7 +234,7 @@
 		}
 
 		// Plugin links toggle behavior
-		$( '.bstw-links-icon' ).live( 'click', function( event ) {
+		$( '.bstw-links-icon' ).on( 'click', function( event ) {
 			event.preventDefault();
 			$( this ).closest( '.bstw-links' ).children( '.bstw-links-list' ).toggle();
 		});

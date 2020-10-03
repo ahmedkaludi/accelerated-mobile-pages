@@ -176,6 +176,20 @@ return array(
 	 											),
 	 							'content_type'=>'html',
 	 						),
+	 					array(
+			                    'type'    =>'checkbox_bool',
+			                    'name'    =>"check_for_nofollow_price",
+			                    'label'   => 'Nofollow Link',
+			                    'tab'   =>'customizer',
+			                    'default' =>0,
+			                    'options' =>array(
+			                            array(
+			                              'label'=>'Yes',
+			                              'value'=>1,
+			                            )
+			                          ),
+			                    'content_type'=>'html',
+                            ),
 						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"text_desc",		
@@ -201,7 +215,7 @@ return array(
 					{{if_recommended_text}}<span class="pri-recom">{{recommended_text}}</span>{{ifend_recommended_text}}
 					<span class="pri-lbl">{{price_label}}</span>
 					<span class="pri-desc">{{price_desc}}</span>
-					<a href="{{btn_link}}" {{if_condition_page_link_open_price==new_page}}target="_blank"{{ifend_condition_page_link_open_price_new_page}} class="btn-txt">{{btn_title}}</a>
+					<a href="{{btn_link}}" {{if_condition_page_link_open_price==new_page}}target="_blank"{{ifend_condition_page_link_open_price_new_page}} {{if_condition_check_for_nofollow_price==1}}rel="nofollow"{{ifend_condition_check_for_nofollow_price_1}}  class="btn-txt">{{btn_title}}</a>
 					<div class="pri-cnt">
 						{{text_desc}}
 					</div>

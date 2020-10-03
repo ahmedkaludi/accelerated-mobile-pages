@@ -94,6 +94,9 @@ amp-carousel > amp-img > img {object-fit: contain;}
 .amp-carousel-img img {object-fit: contain;}
 amp-instagram{box-sizing: initial;}
 figure.aligncenter amp-img {margin: 0 auto;}
+.rr span,.loop-date,.fbp-cnt .amp-author,.display-name{color:#191919;}
+.fsp-cnt .loop-category li {padding: 8px 0px;}
+.fbp-cnt h2.loop-title {padding: 8px 0px;}
 <?php global $post;
 if( class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) &&  (is_page() || ampforwp_is_front_page() ) && ( function_exists( 'amp_pagebuilder_compatibility_init' ) || class_exists('Elementor_For_Amp') ) ) { }
 else{ ?>.cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px} <?php } ?>
@@ -170,7 +173,7 @@ $callnowcolor = ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call');
 <?php } ?>
 .h-ic{margin:0px 10px; align-self: center;}
 .amp-logo a{line-height:0;display:inline-block;<?php if(isset($redux_builder_amp['swift-element-color-control'] ['rgba']) && $redux_builder_amp['swift-element-color-control'] ['rgba']){?>color:<?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-color-control']['rgba'])?>;<?php } ?>}
-.logo <?php if(is_single()){ ?> h2 <?php } else{?>h1<?php }?>{margin: 0;font-size: 17px;font-weight: 700;text-transform: uppercase;display:inline-block;}
+.logo h1{margin: 0;font-size: 17px;font-weight: 700;text-transform: uppercase;display:inline-block;}
 .h-srch a{line-height:1;display:block;}
 .amp-logo amp-img{margin: 0 auto;}
 @media(max-width:480px){ .h-sing {font-size: 13px;} }
@@ -609,7 +612,12 @@ echo sanitize_text_field($fontFamily);
 ?>
 }
 <?php } ?>
-<?php if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('single-design-type') == '4' ){ ?>
+<?php if( ampforwp_get_setting('single-design-type') == '1' || ampforwp_get_setting('single-design-type') == '4' ){ 
+      // Assigning Full size  if feature img type is not set.
+		if( ampforwp_get_setting('swift-featued-image') && empty(ampforwp_get_setting('swift-featued-image-type'))){
+		    $redux_builder_amp['swift-featued-image-type'] = 1;
+		 }
+	 ?>
 <?php // Single
 
 if(is_single() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) { ?>
@@ -835,7 +843,8 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
     padding: 0px;
     margin: 0;
 }
-.rp .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
+.rp .has_related_thumbnail , .rp .no_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
+.rp .no_related_thumbnail{margin:0px;}
 .rp .related_link p{word-break: break-word;color: #444;font-size: 13px;line-height: 20px;
 letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .rp ol li::before{ content: " ";}

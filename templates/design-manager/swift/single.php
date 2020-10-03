@@ -20,7 +20,7 @@ global $redux_builder_amp; ?>
 			<?php } ?>
 		</div>
 		<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
-			<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1) { ?>
+			<?php if ( ampforwp_get_setting('swift-featued-image-type') == 1 || empty(ampforwp_get_setting('swift-featued-image-type')) ) { ?>
 			<div class="sf-img">
 				<?php amp_featured_image();?>
 			</div>
