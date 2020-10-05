@@ -638,9 +638,12 @@ echo sanitize_text_field($fontFamily);
 
 if(is_single() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) { ?>
 table {
-    display: -webkit-box;
+    display: table;
     overflow-x: auto;
     word-break: normal;
+}
+figure.wp-block-table {
+    overflow-x: auto;
 }
 .artl-cnt table{ margin: 0 auto; text-align: center; width: 100%; }
 p.nocomments {padding: 10px;color: #fff;}
