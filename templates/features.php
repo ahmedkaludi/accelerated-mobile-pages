@@ -8779,7 +8779,9 @@ function ampforwp_themify_compatibility($content){
 	if($get_data){
 		$decode = json_decode($get_data,true);
 		for($i=0;$i<count($decode);$i++){
-		$cols = $decode[$i]['cols'];
+		if(isset($decode[$i]['cols'])){
+			$cols = $decode[$i]['cols'];
+		}
 		for($j=0;$j<count($cols);$j++){
 			if (isset($cols[$j]['modules'])) {
 			$modules = $cols[$j]['modules'];
@@ -8943,21 +8945,17 @@ if(class_exists('RankMath')){
 function ampforwp_rank_math_external_link_newtab($content){
 	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
 	if($rank_math_external_link){
-		$comp_dom = new DOMDocument();
-		@$comp_dom->loadHTML($content);
-		$xpath = new DOMXPath( $comp_dom );
-	    $count = 0;
-	    $nodes = $xpath->query('//a[@href]');
-	    foreach ($nodes as $node) {
-	    	$url = $node->getAttribute('href');
-	    	$is_external = ampforwp_isexternal($url);
-			if($is_external){
-				if(!$node->hasAttribute('target')){
-					$node->setAttribute('target','_blank');
-				}
+		preg_match_all('/<a(.*?)href="(.*?)"/s', $content, $matches);
+		for($i=0;$i<count($matches[2]);$i++){
+			$url = $matches[2][$i];
+			if(ampforwp_isexternal($url)){
+				$url = esc_url($url);
+				$url = str_replace("/", "\/", $url);
+				if(preg_match('/<a(.*?)href="'.$url.'"(.*?)<\/a>/' , $content)){
+					$content = preg_replace('/<a(.*?)href="'.$url.'"(.*?)<\/a>/', '<a$1 target="_blank" href="'.stripcslashes($url).'"$2</a>', $content);
+				}	
 			}
-	    }
-		$content =  $comp_dom->saveHTML();
+		}
 	}
 	return $content;
 }
