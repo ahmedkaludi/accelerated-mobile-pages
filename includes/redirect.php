@@ -69,6 +69,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
                 htmlspecialchars( $_SERVER['REQUEST_URI'] );              
   if(function_exists('googlesitekit_activate_plugin')){
     $current_url = remove_query_arg( '_gl', $current_url);
+    $current_url = remove_query_arg(array('', '_gl'));
   }
   $current_url = explode('/', $current_url);
   $check =  '?nonamp=1';
