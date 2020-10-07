@@ -61,6 +61,18 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
         <div class="clearfix"></div>
     </div>
    
+   <div class="amp-form-control" :id="field.name" data-type="select2" v-else-if="field.type=='select2' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+        <div class="form-label">{{field.label}}</div>
+        <div class="form-field">
+            <select2 :options="field.options_details" v-model="field.default" :id="field.id" :name="field.name" v-if="field.options_details.length!=0"  :data-ajax="field.ajax" :data-ajax-dep="field.ajax_dep" :data-ajax-action="field.ajax_action" @change="changeOnSelect()"  class="full text">
+                <option value="">Select option</option>
+            </select2>
+            <div class="help-msg" v-html="field.helpmessage"></div>
+            <div class="spinner spinner-cat-mod" :id="field.name+1"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
     <div class="amp-form-control" :id="field.name" data-type="checkbox" v-else-if="field.type=='checkbox' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         <div class="form-label">{{field.label}}</div>     
         <div class="form-field">
@@ -427,4 +439,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
             <textarea class="full textarea-editor" :id="defaultText.name+'_editor'+fieldindex" v-model="defaultText.default"></textarea>
         </div>
     </div>
+    </script>
+<script type="text/x-template" id="select2-template">
+  <select>
+    <slot></slot>
+  </select>
 </script>

@@ -878,6 +878,59 @@ Vue.component('textarea-wysiwyg', {
 });
 
 
+Vue.component("select2", {
+    props: ["options", "value"],
+    template: "#select2-template",
+    mounted: function() {
+      var vm = this;
+      var optObj = this.dataFormate(this.options);
+      $(this.$el)
+        // init select2
+        .select2({ data: optObj })
+        .val(this.value)
+        .trigger("change")
+        // emit event on change.
+        .on("change", function() {
+          vm.$emit("input", this.value);
+        });
+    },
+    watch: {
+      value: function(value) {
+        // update value
+        $(this.$el)
+          .val(value)
+          .trigger("change");
+      },
+      options: function(options) {
+        // update options
+        var optObj = this.dataFormate(options);
+        $(this.$el)
+              .empty()
+          .select2({ data: optObj })
+          .val(this.value)
+          .trigger("change");
+          if($(this.$el).val()== null){
+          	$(this.$el).val('recent_option')
+          	.trigger("change");
+          }
+      }
+    },
+    methods:{
+      dataFormate:function(options){
+        var optObj = [];
+          for (const property in options) {
+            optObj.push({'id': property, "text": options[property]});
+          }
+          return optObj;
+      }
+    },
+    destroyed: function() {
+      $(this.$el)
+        .off()
+        .select2("destroy");
+    }
+  });
+
 
 var app = new Vue({
   el: '#ampForWpPageBuilder_container',
