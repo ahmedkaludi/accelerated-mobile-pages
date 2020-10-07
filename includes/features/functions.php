@@ -46,6 +46,7 @@ function ampforwp_add_admin_styling($hook_suffix){
             wp_dequeue_script( 'jquery-js' );
         }
         remove_all_actions('admin_notices');
+        remove_all_actions('all_admin_notices');
         add_action('admin_notices', 'ampforwp_dev_mode_notice');
         add_action('admin_notices', 'ampforwp_plugins_manager_notice');
         add_action('admin_notices', 'ampforwp_ampwptheme_notice');
