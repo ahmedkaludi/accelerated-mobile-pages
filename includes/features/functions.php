@@ -1292,6 +1292,9 @@ function ampforwp_dev_mode_notice(){
 
 function ampforwp_seo_selection_notice() {
     $seo = '';
+    if(function_exists('genesis_theme_support')){
+        $seo = 'Genesis';
+    }
     if(class_exists('WPSEO_Options')){
         $seo = 'Yoast SEO';
     }
@@ -1300,9 +1303,6 @@ function ampforwp_seo_selection_notice() {
     }
     if(function_exists( 'the_seo_framework' )){
         $seo = 'The SEO Framework';
-    }
-    if(function_exists('genesis_theme_support')){
-        $seo = 'Genesis';
     }
     if(function_exists('qode_header_meta')){
         $seo = 'Bridge Qode SEO';
@@ -1338,7 +1338,7 @@ function ampforwp_seo_selection_notice() {
     else if (class_exists('Smartcrawl_Loader') && 'smartcrawl' != ampforwp_get_setting('ampforwp-seo-selection')){
          $seosel = true;
     }
-    else if (function_exists('genesis_theme_support') && 'genesis' != ampforwp_get_setting('ampforwp-seo-selection')){
+    else if (function_exists('genesis_theme_support') && 'genesis' != ampforwp_get_setting('ampforwp-seo-selection') && !class_exists('WPSEO_Options') && !defined( 'RANK_MATH_FILE' ) && !class_exists('All_in_One_SEO_Pack') && !defined( 'SQ_ALL_PATTERNS' ) && !class_exists('Smartcrawl_Loader') && !function_exists('seopress_activation')){
          $seosel = true;
     }
     else if (function_exists('seopress_activation') && 'seopress' != ampforwp_get_setting('ampforwp-seo-selection')){
