@@ -16,7 +16,13 @@ if ( is_customize_preview() ) {
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_bread_crumbs' );
 }
 
-	$data = get_option( 'ampforwp_design',array());
+	$design = ampforwp_get_setting('amp-design-selector');
+	if ( empty( $design )){
+    	$design = 4;
+    }
+    if ( 4 != $design) {
+    	$data = get_option( 'ampforwp_design',array());
+    }
 
 	// Adding default Value
 	if (empty($data)){
