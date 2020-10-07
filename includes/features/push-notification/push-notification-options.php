@@ -143,7 +143,7 @@ function ampforwp_push_notification_options($opt_name){
                                     ),  
                           ), 
                     array(
-                            'id'        => 'ampforwp-truepush-public_key',
+                            'id'        => 'ampforwp-truepush-public-key',
                             'type'      => 'text',
                             'title'     => esc_html__('Public Key','accelerated-mobile-pages'),
                             'class' => 'child_opt child_opt_arrow',

@@ -226,7 +226,7 @@ function ampforwp_truepush_notifications(){
 	}
 	if('4' == ampforwp_get_setting('ampforwp-web-push') && $checker ){
 		$app_id	= ampforwp_get_setting('ampforwp-truepush-app-id');
-		$public_key = ampforwp_get_setting('ampforwp-truepush-public_key');
+		$public_key = ampforwp_get_setting('ampforwp-truepush-public-key');
 		$domain_path = AMPFORWP_PLUGIN_DIR_URI.'includes/truepush-integration/';
 		$helper_iframe_url = $domain_path .'amp-web-push-helper-frame.html?appId=' . $app_id;
 		$permission_dialog_url = $domain_path .'amp-web-push-permission-dialog.html?publicKey=' . $public_key;
@@ -234,8 +234,8 @@ function ampforwp_truepush_notifications(){
 	 <amp-web-push
 	    id="amp-web-push"
 	    layout="nodisplay"
-	    helper-iframe-url="<?php echo esc_url($helper_iframe_url); ?>"
-	    permission-dialog-url="<?php echo esc_url($permission_dialog_url); ?>"
+	    helper-iframe-url="<?php echo esc_url_raw($helper_iframe_url); ?>"
+	    permission-dialog-url="<?php echo esc_url_raw($permission_dialog_url); ?>"
 	    service-worker-url="<?php echo esc_url($service_worker_url); ?>">
 	 </amp-web-push>
 	<?php }
