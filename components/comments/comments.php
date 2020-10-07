@@ -196,6 +196,7 @@ function ampforwp_framework_get_disqus_comments(){
 				width=<?php echo esc_attr($width); ?>
 				layout="<?php echo esc_attr($layout); ?>"
 				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+				resizable
 				frameborder="0"
 				<?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>
 				src="<?php echo esc_url($disqus_url); ?>" title="<?php echo esc_html__('Disqus Comments.','accelerated-mobile-pages'); ?>">
