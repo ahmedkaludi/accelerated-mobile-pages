@@ -39,6 +39,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     if($item->url=="" || $item->url=="#"){
       $lmenu = "link-menu";
     }
+    $jump_link = false;
+    $parse_url = wp_parse_url($item->url);
+    if( function_exists('ampforwp_get_setting') && ampforwp_get_setting('amp-design-selector') == 4 && (strpos($item->url, '#') === 0 || isset($parse_url['fragment']) ) ){
+      $jump_link = true;
+    }
+
     $class_names = ' class="' . esc_attr( $class_names ) . ' '.esc_attr($lmenu).'"';
 
     $id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args, $depth );
@@ -59,6 +65,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $atts['target']     ) .'"' : '';
     $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $atts['rel']        ) .'"' : '';
     $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $atts['href']        ) .'"' : '';
+    
+    if($jump_link == true){
+      $attributes .= 'on="tap:AMP.setState({ offcanvas_menu: false })" role="button " tabindex="0"';
+    }
 
     // Check if menu item is in main menu
     if ( $depth == 0 && $has_children > 0  ) {

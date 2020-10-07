@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.63
+Stable tag: 1.0.64.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,33 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.64.1 (5th October 2020) =
+* Fixed: Images are not appearing in AMP with Shortpixel plugin #4738
+
+= 1.0.64 (5th October 2020) =
+* Fixed: Comments module of AMP pagebuilder is rendering only admin comments not the others #4745
+* Fixed: Shortpixel is not generating WebP in AMP #4738
+* Fixed: SEO option appearing in wordpress tool bar even No SEO plugin is active #4698
+* Fixed: Auto add amp in menu url functionality is not working in tags #4734
+* Fixed: The internal link for the the author page is generating in the AMP if the archive page support is disabled #4746
+* Fixed: Scroll to top button not visible in Design 2 #4693
+* Fixed: Notice: Undefined index: Cpage #4728
+* Fixed: GDPR banner is off-centered, the 'X 'is out of the screen #4724
+* Fixed: Wrong AMP html when the AMP takeover and ?amp is enabled #4731
+* Fixed: Addon mode forcefully redirecting to reader mode not others #4742
+* Fixed: Images not appearing with Image Photo Gallery Final Tiles Grid plugin #4675
+* Fixed: In Design three, when click on the menu, the page gets pushed to the right side #4736
+* Fixed: FAQ icon button is a too big in amp page. #4747
+* Fixed: Added meta name="referrer" content="no-referrer-when-downgrade" #4715
+* Fixed: In admin tool bar, (+) icon loading small and also author image invisible #4700
+* Fixed: Issue with menu background when user add internal page navigation menu-items. #4630
+* Fixed: Anchor tag getting stripped when Site Kit by Google is active. #4699
+* Fixed: Merriweather font option in Design 1 does not work. #4726
+* Fixed: If the user is adding the HTML code in the background video module then code is showing as output #4755
+* Fixed: AMP 404 template is applying on non amp page #4723
+* Fixed: In-Content Related Post appearing inside the blockquote when "After 50% of content" option is selected #4743
+* Fixed: If the sticky ads is active then the sticky social share link tab is hiding behind the ads #4749
+
 = 1.0.63 (26th September 2020) =
 * Improvement: Added Reddit embeds support #4406
 * Improvement: Added multi select for post type in loop field #4365
@@ -214,24 +241,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 1.0.62.2 (21st August 2020) =
 * Fixed: Gutenberg gallery block caption appearing at the end of the content #4716
 * Fixed: Validation error - accordion section must have 2 child tags #4208
-
-= 1.0.62.1 (17th August 2020) =
-* Improvement: Removed unwanted javascript from AMP pages #4689
-* Fixed: Call to undefined function fifu_amp_url() #4688
-* Fixed: jQuery.fn.live() is deprecated warnings #4706
-
-= 1.0.62 (15th August 2020) =
-* Improvement: Added Yoast Local SEO plugin compatibility #4170
-* Improvement: Added option for changing the tags for the accordion module in AMP Page Builder #4208
-* Improvement: Added option for showing primary category of Yoast #4495
-* Improvement: Added condition for adding infinite scroll in AMP Woocommerce #4673
-* Improvement: Added excerpt option in in-content related posts #3981
-* Fixed: AMP not working on the Homepage with WP Ultimate recipe plugin #4538
-* Fixed: CSS overiding issue for the list and accourdion modules in AMP Page Builder #4674
-* Fixed: Alignment issue on homepage in design one #4676
-* Fixed: Debug Errors #4671
-
-= 1.0.61.2 (5th August 2020) =
-* Fixed: Removed Helpscout Beacon from Options Panel #4682
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

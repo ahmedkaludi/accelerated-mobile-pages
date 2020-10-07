@@ -68,6 +68,9 @@ function ampforwp_thirdparty_compatibility(){
 	if(function_exists('vicomi_feelbacks_template')){
 		remove_action('the_content', 'vicomi_feelbacks_template');
 	}
+	if(class_exists('FinalTiles_Gallery')){
+		add_filter('wp_is_mobile','ampforwp_final_tiles_grid_gallery');
+	}
 	$yoast_canonical = $yoast_canonical_post = $yoast_canonical_page = '';
 	$yoast_canonical = get_option( 'wpseo_titles' );
 	if(isset($yoast_canonical['noindex-post'])){
@@ -1225,4 +1228,8 @@ function ampforwp_show_yoast_seo_local_map($content){
 		$content = preg_replace('/<div id="wpseo-directions-wrapper">(.*?)<\/div>/s','', $content);
 	}
 	return $content;
+}
+function ampforwp_final_tiles_grid_gallery($mobile){
+	$mobile = false;
+    return $mobile;
 }

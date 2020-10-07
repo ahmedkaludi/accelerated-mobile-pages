@@ -133,7 +133,7 @@ function ampforwp_gdpr_css(){
 			.gdpr_w{width: 85%;margin:0 auto;padding:1.5rem;}
 		}
 		@media(max-width:700px){
-		    .gdpr_w{margin:0 auto; width: 95%;}
+		    .gdpr_w{margin:0 auto; width: 85%;}
 		    
 		}<?php 
 	} // GDPR Type 1 End

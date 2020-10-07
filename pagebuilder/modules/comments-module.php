@@ -21,7 +21,6 @@ function ampforwp_get_pb_comment_list($moduleFrontHtml, $moduleTemplate, $conten
 		            <h3><span>'.ampforwp_get_setting('amp-translator-view-comments-text').'</span></h3>
 		            <ul>';
 					foreach ($comments as $key => $value) {
-						if($value->user_id!=0){
 							$avatar             = get_avatar_url( $value->comment_author_email);
 							$output .='<li>';
 							if(ampforwp_get_setting('ampforwp-display-avatar')){
@@ -30,8 +29,7 @@ function ampforwp_get_pb_comment_list($moduleFrontHtml, $moduleTemplate, $conten
 							$output .='<div class="pbc-auth-info"><div class="pbc-auth-name"><b class="fn">'.esc_attr($value->comment_author).'</b></div>';
 							$output .='<span>'.esc_attr(date('F d, Y H:i:s', strtotime($value->comment_date))).'</span></div>';
 							$output .='<p class="pbc-comment">'.wp_kses_post($value->comment_content).'</p>';
-							$output .='</li>';
-						}	
+							$output .='</li>';	
 					} 	
 				$output .='</ul>'; 
 				$output .='</div>';

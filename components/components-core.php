@@ -444,7 +444,6 @@ function amp_footer_core(){
 		do_action('ampforwp_global_after_footer');
 		do_action('amp_end',$thisTemplate);
 	}
-	amp_back_to_top_link();
 	// Close the body and Html tags ?>
 	</body>
 		</html><?php
@@ -704,6 +703,9 @@ function ampforwp_backtotop_global_css(){?>
 	sub {vertical-align: sub;font-size: small;}
 	sup {vertical-align: super;font-size: small;}
 	amp-call-tracking a {display: none;}
+	<?php if (class_exists('UAGB_Admin')) {?>
+	.wp-block-uagb-faq svg {display: none;}
+	<?php } ?>
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
@@ -718,6 +720,7 @@ function ampforwp_backtotop_global_css(){?>
       border-radius: 100%;
       width: 50px;
       height: 50px;
+      text-decoration: none;
   }
   .btt:hover{color:#fff;background:#474747;}
   .btt:before{
@@ -805,4 +808,13 @@ function ampforwp_addthis_floating_social_share(){
 			}
 		}
 	}
+
+	// Added json for amp sidebar menu checkbox 
+		if( ampforwp_get_setting('amp-design-selector') == 4){ ?>	
+			<amp-state id="sidemenu">
+				<script type="application/json">
+				  <?php echo json_encode(array('offcanvas_menu'=> false));?>
+				</script>
+			</amp-state>
+		<?php }
 }

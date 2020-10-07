@@ -508,7 +508,13 @@ if ( ! function_exists( 'ampforwp_isexternal ') ) {
 if(!function_exists('ampforwp_findInternalUrl')){
     function ampforwp_findInternalUrl($url){
         if(function_exists('googlesitekit_activate_plugin')){
-            $url = remove_query_arg( '_gl', $url);
+            if(strpos($url, '_gl') !== false){
+               $url = remove_query_arg( '_gl', $url);
+                 //remove ? from jump links.
+                 if(strpos($url, '?#') === 0){     
+                   $url = str_replace('?#', '#', $url);
+                 }
+            } 
         }
         global $redux_builder_amp;
         if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
