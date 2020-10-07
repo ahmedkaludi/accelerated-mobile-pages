@@ -5583,7 +5583,6 @@ function ampforwp_default_logo_data() {
 function ampforwp_default_logo($param=""){
 	global $redux_builder_amp;
 	$value 		= '';
-	$logo_alt 	= '';
 	$data 		= ampforwp_default_logo_data();
 	if( ! $data ) {
 		if($param!="width" && $param!="height"){
@@ -5628,7 +5627,7 @@ function ampforwp_default_logo($param=""){
 				}
 			break;
 		case 'alt':
-			if($logo_alt){
+			if(isset($data['logo_alt'][0])){
 				$value = $data['logo_alt'];
 			}
 			else
