@@ -122,11 +122,11 @@ global $redux_builder_amp; ?>
 						                 <?php 
 							                $r_width = 220;
 											$r_height = 134;
-											if(function_exists('ampforwp_get_retina_image_settings')){
-												$ret_config = ampforwp_get_retina_image_settings($r_width,$r_height);
-												$r_width = intval($ret_config['width']);
-												$r_height = intval($ret_config['height']);
-											}
+
+									 if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') ) {
+											$r_width = ampforwp_get_setting('ampforwp-single-related-posts-image-width');
+											$r_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
+										}
 							                 ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>esc_attr($r_width),'image_crop_height'=>esc_attr($r_height)) );
 							            ?>
 									</div>
@@ -177,11 +177,10 @@ do_action("ampforwp_single_design_type_handle_d1");
 				                <?php 
 				                $r_width = 220;
 								$r_height = 134;
-								if(function_exists('ampforwp_get_retina_image_settings')){
-									$ret_config = ampforwp_get_retina_image_settings($r_width,$r_height);
-									$r_width = intval($ret_config['width']);
-									$r_height = intval($ret_config['height']);
-								}
+								if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') ) {
+										$r_width = ampforwp_get_setting('ampforwp-single-related-posts-image-width');
+										$r_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
+									}
 				                 ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>esc_attr($r_width),'image_crop_height'=>esc_attr($r_height)) );?>
 							</div>
 						<?php } } ?>	
@@ -225,11 +224,10 @@ do_action("ampforwp_single_design_type_handle_d1");
 				                 <?php 
 				                $r_width = 346;
 								$r_height = 188;
-								if(function_exists('ampforwp_get_retina_image_settings')){
-									$ret_config = ampforwp_get_retina_image_settings($r_width,$r_height);
-									$r_width = intval($ret_config['width']);
-									$r_height = intval($ret_config['height']);
-								}
+								if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') ) {
+										$r_width = ampforwp_get_setting('ampforwp-single-related-posts-image-width');
+										$r_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
+									}
 				                 ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>esc_attr($r_width),'image_crop_height'=>esc_attr($r_height)) );?>
 							</div>
 						<?php } } ?>	
@@ -403,10 +401,9 @@ do_action("ampforwp_single_design_type_handle_d1");
 									                <?php 
 											            $r_width = 346;
 														$r_height = 188;
-														if(function_exists('ampforwp_get_retina_image_settings')){
-															$ret_config = ampforwp_get_retina_image_settings($r_width,$r_height);
-															$r_width = intval($ret_config['width']);
-															$r_height = intval($ret_config['height']);
+													if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') ) {
+															$r_width = ampforwp_get_setting('ampforwp-single-related-posts-image-width');
+															$r_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
 														}
 											             ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>esc_attr($r_width),'image_crop_height'=>esc_attr($r_height)) );?>
 												</div>
