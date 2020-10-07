@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.64.1
+Stable tag: 1.0.65
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,23 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.65 (10th October 2020) =
+* Added: Integrated Truepush in push notification section #4644
+* Added: Easy select option for category module #4672
+* Added: Option to change the image size for the related posts thumbnail #4534
+* Added: Option to change the image size of the first image in Swift theme #4476
+* Fixed: Validation error in the in-content related post #4729
+* Fixed: Image elements do not have alt attributes #4757
+* Fixed: When genesis theme is activated getting SEO error notice #4758
+* Fixed: Removed third party plugins notices on the AMP option panel #4730
+* Fixed: Instant articles not working when Site directory or Installation directory is different #4690
+* Fixed: Clicking on the menu gets # at the end of the URL in design 2 #4722
+* Fixed: Need to add tag for disqus comments #4692
+* Fixed: Optimize menu caching code #4657
+* Fixed: View non amp version is not working in mobile due to conflict with Redis Cache and WP Rocket #4614
+* Fixed: Backend button translation #4717
+* Fixed: Social share Buttons do not have an accessible name using Design One #4764
 
 = 1.0.64.1 (5th October 2020) =
 * Fixed: Images are not appearing in AMP with Shortpixel plugin #4738
