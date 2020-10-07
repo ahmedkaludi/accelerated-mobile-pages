@@ -2547,8 +2547,8 @@ function ampforwp_fb_instant_article() {
     if(get_option('permalink_structure') == ''){
         $feedname = '?feed=instant_articles';
     }
-    $fb_instant_article_feed = trailingslashit( site_url() ).$feedname ;
-    $input      =  '<a href=" '. esc_url($fb_instant_article_feed)  . '" target="_blank">' .  esc_url( $fb_instant_article_feed ). '</a>' ;
+    $fb_instant_article_feed = trailingslashit( get_home_url() ).$feedname ;
+    $input      =  '<a href=" '. esc_url_raw($fb_instant_article_feed)  . '" target="_blank">' .  esc_url_raw( $fb_instant_article_feed ). '</a>' ;
 
     return strip_tags($input, '<a>');
 }
