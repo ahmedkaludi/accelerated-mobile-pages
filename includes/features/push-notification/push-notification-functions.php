@@ -265,10 +265,10 @@ function ampforwp_truepush_markup(){?>
 <button on="tap:amp-web-push.subscribe" class="amp-subscribe"><?php echo ampforwp_translation( ampforwp_get_setting('ampforwp-truepush-translator-subscribe'), 'Subscribe to updates' ); ?></button>
 </amp-web-push-widget>
 <?php }
-if(ampforwp_get_setting('ampforwp-web-push-truepush-below-content')){
+if(!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() &&ampforwp_get_setting('ampforwp-web-push-truepush-below-content')){
 	add_action('ampforwp_after_post_content', 'ampforwp_truepush_markup');
 }
 
-if(ampforwp_get_setting('ampforwp-web-push-truepush-above-content')){
+if(!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() &&ampforwp_get_setting('ampforwp-web-push-truepush-above-content')){
 	add_action('ampforwp_before_post_content', 'ampforwp_truepush_markup');
 }
