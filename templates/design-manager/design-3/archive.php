@@ -101,7 +101,13 @@ if ( get_query_var( 'paged' ) ) {
 			if( $arch_desc ) {  
 				if($paged <= '1' && ampforwp_get_setting('ampforwp-cat-description')) {?>
 					<div class="taxonomy-description">
-						<?php echo do_shortcode($arch_desc);// amphtml content, no kses ?>
+						<?php $term_id = get_queried_object_id();
+						$intro_text = get_term_meta( $term_id, 'intro_text', true );
+						if (function_exists('genesis_term_meta_defaults') && !empty($intro_text)){
+								echo do_shortcode($intro_text);	
+						}else{
+							echo do_shortcode($arch_desc);// amphtml content, no kses
+						} ?>
 				  </div>
 			  </div> <?php
 				}
