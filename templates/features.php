@@ -8528,7 +8528,7 @@ function ampforwp_video_lightbox_css(){
 if(!function_exists('ampforwp_add_fallback_element')){
 	function ampforwp_add_fallback_element($content='',$tag=''){
 		preg_match_all('/<'.$tag.' (.*?)<\/'.$tag.'>/', $content, $matches);
-		if(!empty($matches)){
+		if(!empty($matches) && false == ampforwp_get_setting('ampforwp-amp-convert-to-wp')){
 			if(isset($matches[0])){
 				$con = "";
 				for($i=0;$i<count($matches[0]);$i++){
