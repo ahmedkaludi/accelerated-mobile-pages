@@ -16,6 +16,7 @@
 * Fixed: View non amp version is not working in mobile due to conflict with Redis Cache and WP Rocket #4614
 * Fixed: Backend button translation #4717
 * Fixed: Social share Buttons do not have an accessible name using Design One #4764
+* Fixed: In the Contact form module, wp form options are not getting selected #4761
 
 = 1.0.64.1 (5th October 2020) =
 * Fixed: Images are not appearing in AMP with Shortpixel plugin #4738
