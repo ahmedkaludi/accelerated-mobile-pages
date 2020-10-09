@@ -11,7 +11,7 @@ $output = '
 {{ifend_condition_form_type_gravityform}}
 
 {{if_condition_form_type==wpforms}}
-[wpforms id="{{wp_form_id}}"]
+[wpforms id="{{wp_forms_id}}"]
 {{ifend_condition_form_type_wpforms}}
 
 {{if_condition_form_type==ninja_form}}
@@ -68,7 +68,7 @@ if(is_plugin_active('amp-gravity-forms/amp-gravity-forms.php') && class_exists('
 					'required'  => array('form_type' => 'gravityform'),
 				));
 }
-if(is_plugin_active('amp-wp-forms/amp-wpforms.php')){
+if(function_exists('ampforwp_wpforms_initiate_plugin')){
 	$formSupported = array_merge($formSupported, array('wpforms'=>'WP Forms'));
 
 	//$args  = apply_filters( 'wpforms_modal_select', array() );
@@ -86,7 +86,7 @@ if(is_plugin_active('amp-wp-forms/amp-wpforms.php')){
 	$wpformsArray = array();
 	if(count($forms)){
 		foreach( $forms as $form ):
-			$wpformsArray[$form->id] = $form->post_title;
+			$wpformsArray[$form->ID] = $form->post_title;
 		endforeach;
 	}
 	$wpformsList = array(array(    
