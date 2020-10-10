@@ -81,10 +81,15 @@ global $redux_builder_amp, $wp; ?>
 		    }
 				if($paged <= '1' && ampforwp_get_setting('ampforwp-cat-description')) {?>
 					<div class="amp-wp-content taxonomy-description">
-						<?php $term_id = get_queried_object_id();
-						$intro_text = get_term_meta( $term_id, 'intro_text', true );
-						if (function_exists('genesis_term_meta_defaults') && !empty($intro_text)){
-								echo do_shortcode($intro_text);	
+						<?php
+						if (function_exists('genesis_term_meta_defaults')){
+							$term_id = get_queried_object_id();
+							$intro_text = get_term_meta( $term_id, 'intro_text', true );
+							if (!empty($intro_text)) {
+								echo do_shortcode($intro_text);
+							}else{
+								echo do_shortcode($arch_desc);// amphtml content, no kses
+							}
 						}else{
 							echo do_shortcode($arch_desc);// amphtml content, no kses
 						} ?>
