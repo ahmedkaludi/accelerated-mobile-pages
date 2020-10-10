@@ -425,7 +425,7 @@ html .single-post .ampforwp-incontent-ad-1 { margin-bottom: 10px; }
 .amp-wp-content blockquote { border-left: 3px solid; margin: 0; padding: 15px 20px 8px 24px; background: #f3f3f3; }
 pre { white-space: pre-wrap; }
 /* Tables */
-table { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; overflow-x: auto; }
+table { display: -webkit-box; display: -ms-flexbox; display: table; -ms-flex-wrap: wrap; flex-wrap: wrap; overflow-x: auto; }
 table a:link { font-weight: bold; text-decoration: none; }
 table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
 table a:active,

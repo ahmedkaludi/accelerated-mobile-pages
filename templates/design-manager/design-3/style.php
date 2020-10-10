@@ -564,7 +564,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 if( !ampforwp_woocommerce_conditional_check() ) {
 if ( is_singular() || is_home() && $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false ) { ?>
 /* Tables */
-table { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; overflow-x: auto; }
+table { display: -webkit-box; display: -ms-flexbox; display: table; -ms-flex-wrap: wrap; flex-wrap: wrap; overflow-x: auto; }
 table a:link { font-weight: bold; text-decoration: none; }
 table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
 table a:active, table a:hover { color: #bd5a35; text-decoration: underline; }
