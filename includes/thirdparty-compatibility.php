@@ -535,6 +535,13 @@ global $wp_filter;
 				}
 		}
     }
+    //Removed OMGF Host Google Fonts Locally in AMP #4775
+    if(function_exists( 'omgf_pro_init' ) ){
+        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+        if( function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
+            remove_action( 'plugins_loaded', 'omgf_pro_init', 49 );
+        }
+    }
 }
 
 
