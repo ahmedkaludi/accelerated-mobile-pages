@@ -1700,6 +1700,10 @@ if(!function_exists('ampforwp_get_featured_image_markup')){
                     return $srcet;
                     break; 
                 default : 
+                    $layout = 'intrinsic';
+                    if(ampforwp_get_setting('amp-design-selector')==4){
+                        $layout = 'responsive';
+                    }
                     if ( $featured_image!='' ) {
                         $amp_html = $featured_image['amp_html'];
                         $caption = $featured_image['caption']; 
