@@ -1472,3 +1472,253 @@ function ampforwp_feedback_remove_notice(){
     wp_die();                
 }
 add_action('wp_ajax_ampforwp_feedback_remove_notice', 'ampforwp_feedback_remove_notice');
+
+if(!function_exists('ampforwp_featured_markup')){
+    function ampforwp_featured_markup($echo=false, $_this = ''){
+        if(ampforwp_featured_video_markup('check')){
+            if($echo == true){
+             echo ampforwp_featured_video_markup();
+            }else{
+                return ampforwp_featured_video_markup();
+            }
+        }else{
+            if($echo == true){
+                echo ampforwp_get_featured_image_markup(0,'',$_this);
+            }else{
+                return ampforwp_get_featured_image_markup(0,'',$_this);
+            }
+        }
+    }
+}
+add_filter('amp_post_template_data','ampforwp_feature_video_amp_js', 20);
+function ampforwp_feature_video_amp_js($data){
+    $vmeta = ampforwp_get_setting('ampforwp-featured-video-metakey');
+    if ( empty( $data['amp_component_scripts']['amp-youtube'] && $data['amp_component_scripts']['amp-video']) && (ampforwp_get_setting('ampforwp-featured-video')==true && !empty($vmeta))) {
+            $post_id        = ampforwp_get_the_ID();
+            $data['amp_component_scripts']['amp-video'] = 'https://cdn.ampproject.org/v0/amp-video-0.1.js';
+            if(ampforwp_get_setting('ampforwp-featured-video')==true && !empty($vmeta)){
+                $metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+                $video_url = get_post_meta($post_id, $metaKey,true);
+                if(preg_match('/youtube/', $video_url)){
+                    $data['amp_component_scripts']['amp-youtube'] = 'https://cdn.ampproject.org/v0/amp-youtube-0.1.js';
+                }else if(preg_match('/vimeo/', $video_url)){
+                    $data['amp_component_scripts']['amp-vimeo'] = 'https://cdn.ampproject.org/v0/amp-vimeo-0.1.js';
+                }else if(preg_match('/dailymotion/', $video_url)){
+                    $data['amp_component_scripts']['amp-dailymotion'] = 'https://cdn.ampproject.org/v0/amp-dailymotion-0.1.js';
+                }
+            }
+    }
+    return $data;
+}
+if(!function_exists('ampforwp_featured_video_markup')){
+    function ampforwp_featured_video_markup($check=''){
+        if(ampforwp_get_setting('ampforwp-featured-video')){
+            $post_id        = ampforwp_get_the_ID();
+            $amp_f_video = '';
+            // Featured Video SmartMag theme Compatibility #2559
+            if(class_exists('Bunyad') && Bunyad::posts()->meta('featured_video') ){
+                global $wp_embed;
+                $videoContent = Bunyad::posts()->meta('featured_video');
+                $featured_video = $wp_embed->autoembed($videoContent);
+                $amp_f_video = ampforwp_content_sanitizer($featured_video);
+            }
+            // Featured Video Plus Compatibility #2394 #2583
+            elseif(function_exists('has_post_video') && has_post_video($post_id)){
+                $videoContent = get_the_post_video();
+                $amp_f_video = ampforwp_content_sanitizer($videoContent);
+            }
+            $vmeta = ampforwp_get_setting('ampforwp-featured-video-metakey');
+            if(ampforwp_get_setting('ampforwp-featured-video')==true && !empty($vmeta)){
+                $metaKey = ampforwp_get_setting('ampforwp-featured-video-metakey');
+                $video_url = get_post_meta($post_id, $metaKey,true);
+                $video_url = ampforwp_jnews_featured_video($video_url);
+                $parts = parse_url($video_url);
+                parse_str($parts['query'], $query);
+                $ext = pathinfo($parts['path'], PATHINFO_EXTENSION);
+                $type = '';
+                $video_id = '';
+                if(!strpos($video_url,"iframe") && $ext!=""){
+                    $amp_f_video = '<div class="featured-video-plus post-thumbnail fvp-responsive">
+                        <amp-video controls width="640" height="360" layout="responsive">
+                             <source src="'.esc_url($video_url).'"/>
+                        </amp-video>
+                    </div>';
+                }else if(preg_match('/youtube/', $video_url)){
+                        preg_match_all('/(youtu.be\/|\/watch\?v=|\/embed\/)([a-z0-9\-_]+)/i',$video_url,$matches);
+                        if(isset($matches[2][0])){
+                            $video_id = $matches[2][0];
+                            $amp_f_video = '<div class="featured-video-plus post-thumbnail fvp-responsive">
+                                    <amp-youtube width="480" height="270" layout="responsive" data-videoid="'.esc_attr($video_id).'">
+                                    </amp-youtube>
+                                </div>';
+                        }
+                }else if(preg_match('/vimeo/', $video_url)){
+                    preg_match_all('/vimeo.com\/(.*)/i',$video_url,$matches);
+                    if(isset($matches[1][0])){
+                    $video_id = $matches[1][0];
+                    $amp_f_video = '<div class="featured-video-plus post-thumbnail fvp-responsive">
+                                <amp-vimeo data-videoid="'.intval($video_id).'" layout="responsive" width="16" height="9"></amp-vimeo>
+                            </div>';
+                    }
+                }else if(preg_match('/dailymotion/', $video_url)){
+                     preg_match_all('/^.+dailymotion.com\/(?:video|swf\/video|embed\/video|hub|swf)\/([^&?]+)/',$video_url,$matches);
+                    if(isset($matches[1][0])){
+                     $video_id = $matches[1][0];
+                     $amp_f_video = '<div class="featured-video-plus post-thumbnail fvp-responsive">
+                                <amp-dailymotion data-videoid="'.esc_attr($video_id).'" layout="responsive" data-ui-highlight="FF4081" width="480" height="270">
+                                </amp-dailymotion>
+                            </div>';
+                    }
+                }
+                
+            }
+            $video_post = get_post_meta(ampforwp_get_the_ID(), 'video_post', true );
+            if(function_exists('rh_admin_notice_warning') && !empty($video_post)){
+                $video_url = $video_post[0]['video_post_embed_url'];
+                $video_url = explode("=",$video_url);
+                if(isset($video_url[1])){
+                 $amp_f_video = '<amp-youtube data-videoid="'.esc_html($video_url[1]).'" layout="responsive" width="480"height="270"></amp-youtube>';
+                }
+            }
+            $class = "amp-wp-article-featured-image wp-caption";
+            if(ampforwp_get_setting('amp-design-selector')==4){
+                $class = "amp-featured-image f_vid";
+            }
+            switch ($check) {
+                case 'check':
+                    if($amp_f_video!=''){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    break;
+                default :
+                    $fvideo = '';
+                    if($amp_f_video!=''){
+                        $fvideo = '<figure class="'.esc_attr($class).'">'.$amp_f_video.'</figure>';// xss escaping done before.
+                    }
+                    if(function_exists('jnews_plugin_active')){
+                        return $fvideo . $check;
+                    }
+                    return $fvideo;
+                    break;
+            }
+        }
+    }
+}
+if(!function_exists('ampforwp_get_featured_image_markup')){
+    function ampforwp_get_featured_image_markup($post_id=0, $data='',$_this=''){
+        global $post;
+        if($post_id==0){
+            $post_id        = ampforwp_get_the_ID();
+        }
+        $featured_image = '';
+        if(ampforwp_get_setting('amp-design-selector')!=4){
+            if($_this!=''){
+               $featured_image = $_this->get( 'featured_image' );
+           }
+        }
+        $amp_html='';$height ='';$width='';$src='';$srcet='';$alt='';$caption='';
+        if( true == ampforwp_has_post_thumbnail() ) {
+          
+            if (has_post_thumbnail( $post_id ) ){
+                
+                $thumb_id = get_post_thumbnail_id($post_id);
+                $post_content = get_post_field('post_content', $post_id);
+                if (true !== apply_filters('ampforwp_allow_featured_image', false) && ( false !== strpos( $post_content, 'wp-image-' . $thumb_id ) || false !== strpos( $post_content, 'attachment_' . $thumb_id ) ) ) {
+                    return;
+                }
+
+                if(ampforwp_get_setting('amp-design-selector')==4){
+                 $image_size = ampforwp_get_setting('swift-featued-image-size');
+                 $image_size = apply_filters( 'ampforwp_featured_image_size', $image_size );
+                }else{
+                 $image_size = apply_filters( 'ampforwp_featured_image', 'full' ); 
+                }
+                $image = wp_get_attachment_image_src( $thumb_id, $image_size );
+                $caption = get_the_post_thumbnail_caption( $post_id ); 
+                $thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
+                $thumbnail_srcset  = wp_get_attachment_image_srcset( $thumb_id, $image_size);
+                if(ampforwp_get_setting('amp-design-selector')==4){
+                    if ( $thumbnail_srcset && 'full' == ampforwp_get_setting('swift-featued-image-size') ) {
+                        $srcet = $thumbnail_srcset;
+                    }
+                }
+                if($thumb_alt){
+                    $alt = $thumb_alt;
+                }
+                else{
+                    $alt = get_the_title( $post_id );
+                }
+                $alt = convert_chars( stripslashes( $alt ) );
+                if( $image ){
+                    if(empty($image[1])){
+                        $image[1] = 1000;
+                    }
+                    if(empty($image[2])){
+                        $image[2] = 600;
+                    }
+                    if ( empty($srcet) ) {
+                        $srcet = $image[0];
+                    }
+                    $height = $image[2];
+                    $width = $image[1];
+                    $src = $image[0];
+                }
+            }elseif ( ampforwp_is_custom_field_featured_image() ) {
+                $src    = ampforwp_cf_featured_image_src();
+                $width  = ampforwp_cf_featured_image_src('width');
+                $height = ampforwp_cf_featured_image_src('height');
+            }
+
+            switch ($data) {
+                case 'url':
+                    return $src;
+                    break;
+                case 'width':
+                    return $width;
+                    break;
+                case 'height':
+                    return $height;
+                    break;  
+                case 'caption':
+                    return $caption;
+                    break;  
+                case 'srcset':
+                    return $srcet;
+                    break; 
+                default : 
+                    if ( $featured_image!='' ) {
+                        $amp_html = $featured_image['amp_html'];
+                        $caption = $featured_image['caption']; 
+                    }else{
+                        $amp_html = '<amp-img lightbox="true" src="'.esc_url($src).'" srcset="'.esc_html($srcet).'" width="'.esc_attr($width).'" height="'.esc_attr($height).'" layout="'.esc_attr($layout).'" alt="'.esc_attr($alt).'"></amp-img>';
+                    }
+                    if( true == ampforwp_get_setting('ampforwp-featured-image-from-content') && ampforwp_get_featured_image_from_content() ){
+                        $amp_html = ampforwp_get_featured_image_from_content();
+                        $amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
+                    }
+
+                    if(function_exists('ampforwp_add_fallback_element')){
+                        $amp_html = ampforwp_add_fallback_element($amp_html,'amp-img');
+                    }
+                    $class = "amp-wp-article-featured-image wp-caption";
+                    if(ampforwp_get_setting('amp-design-selector')==4){
+                        $class = "amp-featured-image";
+                    }
+                    $fimgdata = '';
+                    if($amp_html!=""){
+                        $fimgdata = '<figure class="'.esc_attr($class).'">'.$amp_html; // xss escaping done before.
+                        if ( $caption ) {
+                        $fimgdata .='<p class="wp-caption-text">'.wp_kses_data($caption).'
+                                </p>';
+                         }
+                         $fimgdata .='</figure>';
+                    }
+                    return $fimgdata;
+                    break;
+            }
+           
+        }
+    }
+}
