@@ -44,7 +44,7 @@ $featured_image = amp_get_featured_image();
 							if ( ampforwp_get_setting('swift-featued-image-type') == 2) {
 								if ( $featured_image ) { ?>
 									<div class="sf-img"><?php echo $featured_image; //XXS Okay ?></div><?php }
-						} // Swift Featured Image ?>
+						} }// Swift Featured Image ?>
 						<?php amp_content(); ?>
 					</div>
 					<?php do_action( 'ampforwp_after_the_post_content_wrp' ); ?>
