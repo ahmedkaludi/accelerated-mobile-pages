@@ -2859,6 +2859,8 @@ function ampforwp_featured_video_default(){
         $default = 'tie_video_url';
     }elseif(class_exists('Penci_Framework') && function_exists('vp_pfui_admin_init')){
         $default = '_format_video_embed';
+    }elseif(function_exists('jnews_plugin_active')){
+        $default = 'jnews_single_post';
     }
     return $default;
 }
