@@ -8778,6 +8778,7 @@ function ampforwp_themify_compatibility($content){
 	$get_data =  get_post_meta(ampforwp_get_the_ID(),'_themify_builder_settings_json',true);
 	if($get_data){
 		$decode = json_decode($get_data,true);
+		$cols = '';
 		for($i=0;$i<count($decode);$i++){
 		if(isset($decode[$i]['cols'])){
 			$cols = $decode[$i]['cols'];
@@ -8945,7 +8946,7 @@ if(class_exists('RankMath')){
 function ampforwp_rank_math_external_link_newtab($content){
 	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
 	if($rank_math_external_link){
-		preg_match_all('/<a(.*?)href="(.*?)"/s', $content, $matches);
+		preg_match_all('/<a(.*?)href=(.*?)/s', $content, $matches);
 		for($i=0;$i<count($matches[2]);$i++){
 			$url = $matches[2][$i];
 			if(ampforwp_isexternal($url)){
