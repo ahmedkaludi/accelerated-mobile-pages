@@ -1710,7 +1710,14 @@ if(!function_exists('ampforwp_get_featured_image_markup')){
                         $amp_html = ampforwp_get_featured_image_from_content();
                         $amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
                     }
-
+                    $video_post = get_post_meta(ampforwp_get_the_ID(), 'video_post', true );
+                    if(function_exists('rh_admin_notice_warning') && !empty($video_post)){
+                        $video_url = $video_post[0]['video_post_embed_url'];
+                        $video_url = explode("=",$video_url);
+                        $video_markup = '<amp-youtube data-videoid="'.esc_html($video_url[1]).'" layout="responsive" width="480"height="270"></amp-youtube>';
+                        echo $video_markup;
+                        return;
+                    }
                     if(function_exists('ampforwp_add_fallback_element')){
                         $amp_html = ampforwp_add_fallback_element($amp_html,'amp-img');
                     }
