@@ -190,11 +190,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.65 (10th October 2020) =
+= 1.0.65 (14th October 2020) =
 * Added: Integrated Truepush in push notification section #4644
 * Added: Easy select option for category module #4672
 * Added: Option to change the image size for the related posts thumbnail #4534
 * Added: Option to change the image size of the first image in Swift theme #4476
+* Added: AMP compatibility with Web stories by Google #4667
 * Fixed: Validation error in the in-content related post #4729
 * Fixed: Image elements do not have alt attributes #4757
 * Fixed: When genesis theme is activated getting SEO error notice #4758
@@ -207,6 +208,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Backend button translation #4717
 * Fixed: Social share Buttons do not have an accessible name using Design One #4764
 * Fixed: In the Contact form module, wp form options are not getting selected #4761
+* Fixed: Fatal error: Uncaught Error: Call to undefined function ampforwp_is_home() in ../accelerated-moblie-pages.php:1084 #4782
 
 = 1.0.64.1 (5th October 2020) =
 * Fixed: Images are not appearing in AMP with Shortpixel plugin #4738
