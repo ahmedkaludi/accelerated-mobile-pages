@@ -1081,7 +1081,7 @@ function ampforwp_get_all_post_types(){
         }
         $post_types = array_merge($post_types, $selected_post_types);
     }
-    if(class_exists('WPUltimateRecipe') && ampforwp_is_home()){
+    if(class_exists('WPUltimateRecipe') && function_exists('ampforwp_is_home') && ampforwp_is_home()){
 	    	$post_types['recipe'] = 'recipe';
 	}
     return $post_types;
