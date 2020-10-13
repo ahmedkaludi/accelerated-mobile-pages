@@ -11552,6 +11552,14 @@ class AMP_Allowed_Tags_Generated {
 				'tag_spec' => array(),
 			),
 		),
+		'amp-story-player' => array(
+			array(
+				'attr_spec_list' => array(
+					'width' => array(),
+					'height' => array(),
+				),
+			),
+		),
 	);
 
 	private static $layout_allowed_attrs = array(
