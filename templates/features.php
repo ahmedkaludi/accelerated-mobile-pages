@@ -334,7 +334,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
           //dont Echo anything
         } else {
 			$supported_types = ampforwp_get_all_post_types();
-			if(class_exists('WPUltimateRecipe') && ampforwp_is_home()){
+			if(class_exists('WPUltimateRecipe') && function_exists('ampforwp_is_home') && ampforwp_is_home()){
 		    	$supported_types['recipe'] = 'recipe';
 		    }
 			$supported_types = apply_filters('get_amp_supported_post_types',$supported_types);
