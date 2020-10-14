@@ -31,7 +31,7 @@ function ampforwp_add_admin_styling($hook_suffix){
     wp_enqueue_style( 'ampforwp_admin_css' );
 
     // Admin area scripts file
-    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', array(), AMPFORWP_VERSION );
+    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', array('wp-color-picker'), AMPFORWP_VERSION );
 
     // Localize the script with new data
     $redux_data = array();
