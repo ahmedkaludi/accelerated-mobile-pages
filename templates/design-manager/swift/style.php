@@ -505,7 +505,7 @@ echo sanitize_text_field($fontFamily);
 			$fimg_height = ampforwp_get_setting('ampforwp-swift-homepage-posts-height');
 	?>
 	.fbp-img{height:<?php echo esc_html($fimg_height).'px';?>;width:<?php echo esc_html($fimg_width).'px';?>;}
-		}else{
+	<?php }else{
     ?>
     .fbp-img{flex-basis: calc(64%);}
     <?php }?>
