@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.65 (14th October 2020) =
+= 1.0.65 (15th October 2020) =
 * Added: Integrated Truepush in push notification section #4644
 * Added: Easy select option for category module #4672
 * Added: Option to change the image size for the related posts thumbnail #4534
@@ -208,7 +208,6 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Need to add tag for disqus comments #4692
 * Fixed: Optimize menu caching code #4657
 * Fixed: View non amp version is not working in mobile due to conflict with Redis Cache and WP Rocket #4614
-* Fixed: Backend button translation #4717
 * Fixed: Social share Buttons do not have an accessible name using Design One #4764
 * Fixed: In the Contact form module, wp form options are not getting selected #4761
 * Fixed: Fatal error: Uncaught Error: Call to undefined function ampforwp_is_home() in ../accelerated-moblie-pages.php:1084 #4782
