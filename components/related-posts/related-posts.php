@@ -116,7 +116,12 @@ function ampforwp_related_post(){
 	global $redux_builder_amp;
 	do_action('ampforwp_above_related_post'); //Above Related Posts
 	?>
-   <h3 class="amp-related-posts-title"><?php echo esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' )); ?></h3>
+   <h3 class="amp-related-posts-title"><?php 
+   if (function_exists('pll__')) {
+		echo pll__(esc_html__( ampforwp_get_setting('amp-translator-related-text'), 'accelerated-mobile-pages'));
+	}else {
+		echo esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-related-text'), 'Related Post' ));
+	}?></h3>
 <?php } 
 
 function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() ){

@@ -12,6 +12,9 @@ function ampforwp_framework_get_search_form() {
 		$action_url = ( get_bloginfo('url') );
 		$action_url = preg_replace('#^http?:#', '', $action_url);
 		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
+		if (function_exists('pll__')) {
+			$placeholder = pll__(esc_html__( ampforwp_get_setting('ampforwp-search-placeholder'), 'accelerated-mobile-pages'));
+		}
 		$mob_pres_link = false;
 		$rand = rand(10,100);
 	    if(function_exists('ampforwp_mobile_redirect_preseve_link')){

@@ -268,7 +268,12 @@ do_action("ampforwp_single_design_type_handle_d1");
 		$results = get_posts($args);
  		$check_rp= count($results);
 		if ($check_rp > 1) {?>
-			<h3><?php echo esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' )); ?></h3>
+			<h3><?php 
+			if (function_exists('pll__')) {
+				echo pll__(esc_html__( ampforwp_get_setting('amp-translator-recent-text'), 'accelerated-mobile-pages'));
+			}else {
+				echo esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' ));
+			}?></h3>
 		<?php }
 		$number_of_posts = 6;
 		$rcp = ampforwp_get_setting('ampforwp-number-of-recent-posts');
