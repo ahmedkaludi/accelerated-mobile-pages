@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.65
+Stable tag: 1.0.65.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.65.1 (16th October 2020) =
+* Fixed: Jquery issue fixed due to Easy select option for category module #4672
 
 = 1.0.65 (15th October 2020) =
 * Added: Integrated Truepush in push notification section #4644

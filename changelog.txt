@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.65.1 (16th October 2020) =
+* Fixed: Jquery issue fixed due to Easy select option for category module #4672
+
 = 1.0.65 (15th October 2020) =
 * Added: Integrated Truepush in push notification section #4644
 * Added: Easy select option for category module #4672
