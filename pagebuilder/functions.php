@@ -26,7 +26,6 @@ function amppbbase_admin_scripts( $hook_suffix ){
     //if($post_type=='post' || $post_type=='page'){
  	    /* Enqueue CSS & JS For Page Builder */
         wp_enqueue_style( 'amppb-admin', esc_url(AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css'), array(), AMPFORWP_VERSION );
-        wp_enqueue_style( 'amppb-select2-admin', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue-select2/select2.min.css'), array(), AMPFORWP_VERSION );
         wp_enqueue_style('ampforwp-dynamic-css', wp_nonce_url(esc_url(admin_url('admin-ajax.php?action=ampforwp_dynaminc_css')), 'verify_pb', 'verify_nonce' ), array(), AMPFORWP_VERSION, 'all' );
         wp_enqueue_media();
         //To add page
@@ -36,24 +35,21 @@ function amppbbase_admin_scripts( $hook_suffix ){
 		add_action( 'admin_print_footer_scripts', array( '_WP_Editors', 'print_default_editor_scripts' ) );
         $amp_current_post_id = $postId = get_the_ID();
             
-			wp_enqueue_script( 'select2_jquery', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue-select2/select2_jquery.min.js'), array(),AMPFORWP_VERSION, true);
+			
 			 wp_enqueue_script( 'vuejs', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue/vue.min.js'), array(),AMPFORWP_VERSION, true);
 			wp_enqueue_script( 'vuejs-resource', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vuejs-resource/vue-resource.min.js'), array(), AMPFORWP_VERSION, true);//For Http Clients
 			wp_enqueue_script( 'vueSortable', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue.draggable/Sortable.min.js'), array(), AMPFORWP_VERSION, true);
 			wp_enqueue_script( 'vuedraggable', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue.draggable/vuedraggable.min.js') ,array(),AMPFORWP_VERSION, true);
 			wp_enqueue_script( 'vuedropdrag', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue-drag-drop/vue-drag-drop.browser.js'), array(), AMPFORWP_VERSION, true);
-			wp_enqueue_script( 'vueselect2', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue-select2/select2.min.js'), array(), AMPFORWP_VERSION, true);
 			
 			 wp_register_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
-						'select2_jquery',
+						'jquery',
 						'wp-color-picker',
 						'vuejs',
 						'vuejs-resource',
 						'vueSortable',
 						'vuedraggable',
-						'vuedropdrag' ,
-						'vueselect2'
-						
+						'vuedropdrag' 
 					),AMPFORWP_VERSION, true );  
 					
 					

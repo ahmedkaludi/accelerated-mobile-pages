@@ -263,7 +263,7 @@ if ( is_admin() ) {
               'ajax_action' => 'ampforwp_pb_cats'
             ),        
             array(    
-              'type'  =>'select2',   
+              'type'  =>'select',   
               'name'  =>"category_selection",   
               'label' =>"Select Category",
               'tab'     =>'customizer',
