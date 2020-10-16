@@ -9145,3 +9145,10 @@ function ampforwp_jannah_video_audio_support($content){
 	    }
 	  return $content;
 }
+add_filter('ampforwp_post_template_data','ampforwp_amp_bind_script');	
+function ampforwp_amp_bind_script($data) {	
+	if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {	
+		$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-latest.js';	
+	}	
+	return $data;	
+}
