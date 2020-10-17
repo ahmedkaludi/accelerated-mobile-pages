@@ -158,17 +158,13 @@ function amp_menu($echo=true, $menu_args=array(), $type='header'){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-menu']) && $loadComponent['AMP-menu']==true){
 		$amp_menu = "";
-		if ( 'header' == $type ){
-			$header_menu = get_transient('ampforwp_header_menu');
-			if(false != $header_menu ){
-				$amp_menu = $header_menu;
-			}
+		$header_menu = get_transient('ampforwp_header_menu');
+		$footer_menu = get_transient('ampforwp_footer_menu');
+		if ( 'header' == $type && false != $header_menu ){
+ 			$amp_menu = $header_menu;
 		}
-		elseif ('footer' == $type) {
-			$footer_menu = get_transient('ampforwp_footer_menu');
-			if(false != $footer_menu){
-				$amp_menu = $footer_menu;
-			} 
+		elseif ('footer' == $type && false != $footer_menu) {
+			$amp_menu = $footer_menu;
 		}
 		else{
 			$amp_menu = amp_menu_html($echo, $menu_args, $type);
