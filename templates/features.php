@@ -419,7 +419,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				}	
 				if(ampforwp_get_setting('amp-core-end-point') && ampforwp_get_setting('ampforwp-amp-takeover') && is_singular()){
 					 $amp_url = get_the_permalink();
-				}	
+				}else if(ampforwp_get_setting('amp-core-end-point') && (ampforwp_is_home() || ampforwp_is_front_page())){
+					 $amp_url = ampforwp_url_controller($amp_url);
+				}
 				return esc_url_raw($amp_url);
 			}
 		}
