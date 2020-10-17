@@ -195,6 +195,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 = 1.0.65.2 (17th October 2020) =
 * Fixed: Menu not appearing in AMP #4657
+* Fixed: Wrong amphtml on homepage when ?amp is selected #4780
 
 = 1.0.65.1 (16th October 2020) =
 * Fixed: Jquery issue fixed due to Easy select option for category module #4672
