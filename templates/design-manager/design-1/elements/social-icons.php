@@ -64,19 +64,20 @@ if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 			<amp-social-share type="twitter"
 				width="50"
 				height="28"
+				aria-label="twitter"
 				<?php ampforwp_rel_attributes_social_links(); ?>
 				data-param-url=""
 				data-param-text="TITLE <?php echo esc_url($twitter_amp_permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_attr($data_param_data) ?>"
 			></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-email-share'] == true)  { ?>
-			<amp-social-share type="email"      width="50" height="28" <?php ampforwp_rel_attributes_social_links(); ?>></amp-social-share>
+			<amp-social-share type="email" aria-label="email" width="50" height="28" <?php ampforwp_rel_attributes_social_links(); ?>></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-pinterest-share'] == true)  { ?>
-			<amp-social-share type="pinterest"  width="50" height="28" <?php ampforwp_rel_attributes_social_links(); ?>></amp-social-share>
+			<amp-social-share type="pinterest" aria-label="pinterest" width="50" height="28" <?php ampforwp_rel_attributes_social_links(); ?>></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-linkedin-share'] == true)  { ?>
-			<amp-social-share type="linkedin" width="50" height="28" <?php ampforwp_rel_attributes_social_links(); ?>></amp-social-share>
+			<amp-social-share type="linkedin" aria-label="linkedin" width="50" height="28" <?php ampforwp_rel_attributes_social_links(); ?>></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-whatsapp-share'] == true)  { ?>
 			<a title="whatsapp share" <?php ampforwp_rel_attributes_social_links(); ?> href="https://api.whatsapp.com/send?text=<?php echo esc_attr(htmlspecialchars(get_the_title()))."\n".esc_url($amp_permalink); ?>" aria-label="whatsapp share">

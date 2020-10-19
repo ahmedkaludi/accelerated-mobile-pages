@@ -419,7 +419,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				}	
 				if(ampforwp_get_setting('amp-core-end-point') && ampforwp_get_setting('ampforwp-amp-takeover') && is_singular()){
 					 $amp_url = get_the_permalink();
-				}	
+				}else if(ampforwp_get_setting('amp-core-end-point') && (ampforwp_is_home() || ampforwp_is_front_page() ||is_category() || is_tag())){
+					 $amp_url = ampforwp_url_controller($amp_url);
+				}
 				return esc_url_raw($amp_url);
 			}
 		}
@@ -2252,6 +2254,7 @@ function ampforwp_add_disqus_support() {
 					width=<?php echo esc_attr($width) ?>
 					layout="<?php echo esc_attr($layout) ?>"
 					sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+					resizable
 					frameborder="0"
 					src="<?php echo esc_url($disqus_url) ?>" title="<?php echo esc_html__('Disqus Comments','accelerated-mobile-pages'); ?>">
 					<div overflow tabindex="0" role="button" aria-label="Read more"><?php echo esc_html__('Disqus Comments Loading...','accelerated-mobile-pages') ?></div>
@@ -4931,6 +4934,10 @@ function ampforwp_inline_related_posts(){
 									}
 									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, $r_width , $r_height , true, false, true );
 									$inline_related_posts_img  = '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . esc_attr($thumb_url_2[1]) . '" height="' . esc_attr($thumb_url_2[2]) . '" layout="responsive"></amp-img>';
+									if(!isset($thumb_url_2[0]) && is_null($thumb_url_2[0])){
+										$thumb_url = ampforwp_get_post_thumbnail('url');
+										$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="' . esc_attr(220) . '" height="' . esc_attr(134) . '" layout="responsive"></amp-img>';
+									}
 								}
 								else{
 									$r_width = 150;
@@ -5579,7 +5586,6 @@ function ampforwp_default_logo_data() {
 function ampforwp_default_logo($param=""){
 	global $redux_builder_amp;
 	$value 		= '';
-	$logo_alt 	= '';
 	$data 		= ampforwp_default_logo_data();
 	if( ! $data ) {
 		if($param!="width" && $param!="height"){
@@ -5624,7 +5630,7 @@ function ampforwp_default_logo($param=""){
 				}
 			break;
 		case 'alt':
-			if($logo_alt){
+			if(isset($data['logo_alt'][0])){
 				$value = $data['logo_alt'];
 			}
 			else
@@ -8322,7 +8328,7 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 	//OTHER COMPONENT CHECK 
-	$other_comp_arr = array('amp-mustache'=>'amp-mustache','amp-embed'=>'amp-ad','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection');
+	$other_comp_arr = array('amp-mustache'=>'amp-mustache','amp-embed'=>'amp-ad','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection','amp-story-player'=>'amp-story-player');
 	foreach ($other_comp_arr as $key => $value) {
 		$ocomp = $value;
 		$celem = 'element';

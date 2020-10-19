@@ -217,3 +217,58 @@ function ampforwp_onesignal_sticky(){ ?>
 		</amp-web-push-widget>
 	</div>
 <?php }
+add_action( 'ampforwp_body_beginning' , 'ampforwp_truepush_notifications');
+function ampforwp_truepush_notifications(){
+	$checker = false;
+	if (!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() ){
+			$checker = true;
+	}
+	if('4' == ampforwp_get_setting('ampforwp-web-push') && $checker ){
+		$app_id	= ampforwp_get_setting('ampforwp-truepush-app-id');
+		$public_key = ampforwp_get_setting('ampforwp-truepush-public-key');
+		$domain_path = AMPFORWP_PLUGIN_DIR_URI.'includes/truepush-integration/';
+		$helper_iframe_url = $domain_path .'amp-web-push-helper-frame.html?appId=' . $app_id;
+		$permission_dialog_url = $domain_path .'amp-web-push-permission-dialog.html?publicKey=' . $public_key;
+		$service_worker_url = $domain_path .'sw.js';?>
+	 <amp-web-push
+	    id="amp-web-push"
+	    layout="nodisplay"
+	    helper-iframe-url="<?php echo esc_url_raw($helper_iframe_url); ?>"
+	    permission-dialog-url="<?php echo esc_url_raw($permission_dialog_url); ?>"
+	    service-worker-url="<?php echo esc_url($service_worker_url); ?>">
+	 </amp-web-push>
+	<?php }
+}
+add_action('amp_post_template_css' , 'ampforwp_truepush_styling');
+function ampforwp_truepush_styling(){?>
+	amp-web-push-widget button.amp-subscribe {
+	  display: inline-flex;
+	  align-items: center;
+	  border-radius: 5px;
+	  border: 0;
+	  box-sizing: border-box;
+	  margin: 0;
+	  padding: 10px 15px;
+	  cursor: pointer;
+	  outline: none;
+	  font-size: 15px;
+	  font-weight: 500;
+	  background: #4A90E2;
+	  margin-top: 7px;
+	  color: white;
+	  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+	  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	  }
+<?php }
+function ampforwp_truepush_markup(){?>
+<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="250" height="45">
+<button on="tap:amp-web-push.subscribe" class="amp-subscribe"><?php echo ampforwp_translation( ampforwp_get_setting('ampforwp-truepush-translator-subscribe'), 'Subscribe to updates' ); ?></button>
+</amp-web-push-widget>
+<?php }
+if(!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() &&ampforwp_get_setting('ampforwp-web-push-truepush-below-content')){
+	add_action('ampforwp_after_post_content', 'ampforwp_truepush_markup');
+}
+
+if(!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() &&ampforwp_get_setting('ampforwp-web-push-truepush-above-content')){
+	add_action('ampforwp_before_post_content', 'ampforwp_truepush_markup');
+}

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.64.1
+Stable tag: 1.0.65.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,32 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.65.2 (17th October 2020) =
+* Fixed: Menu not appearing in AMP #4657
+* Fixed: Wrong amphtml on homepage when ?amp is selected #4780
+
+= 1.0.65.1 (16th October 2020) =
+* Fixed: Jquery issue fixed due to Easy select option for category module #4672
+
+= 1.0.65 (15th October 2020) =
+* Added: Integrated Truepush in push notification section #4644
+* Added: Easy select option for category module #4672
+* Added: Option to change the image size for the related posts thumbnail #4534
+* Added: Option to change the image size of the first image in Swift theme #4476
+* Added: AMP compatibility with Web stories by Google #4667
+* Fixed: Validation error in the in-content related post #4729
+* Fixed: Image elements do not have alt attributes #4757
+* Fixed: When genesis theme is activated getting SEO error notice #4758
+* Fixed: Removed third party plugins notices on the AMP option panel #4730
+* Fixed: Instant articles not working when Site directory or Installation directory is different #4690
+* Fixed: Clicking on the menu gets # at the end of the URL in design 2 #4722
+* Fixed: Need to add tag for disqus comments #4692
+* Fixed: Optimize menu caching code #4657
+* Fixed: View non amp version is not working in mobile due to conflict with Redis Cache and WP Rocket #4614
+* Fixed: Social share Buttons do not have an accessible name using Design One #4764
+* Fixed: In the Contact form module, wp form options are not getting selected #4761
+* Fixed: Uncaught Error: Call to undefined function ampforwp_is_home() main file #4782
 
 = 1.0.64.1 (5th October 2020) =
 * Fixed: Images are not appearing in AMP with Shortpixel plugin #4738

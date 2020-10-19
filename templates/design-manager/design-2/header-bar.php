@@ -19,7 +19,7 @@ global $redux_builder_amp; ?>
 
 <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
 <div on='tap:sidebar.toggle' aria-label="Navigation" role="button" tabindex="0" class="nav_container">
-	<a href="#" class="toggle-text"><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-navigate-text'], 'Navigate' )); ?></a>
+	<a class="toggle-text"><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-navigate-text'], 'Navigate' )); ?></a>
 </div>
 
 <amp-sidebar id='sidebar'

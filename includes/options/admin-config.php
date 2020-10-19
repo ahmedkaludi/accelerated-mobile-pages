@@ -2547,8 +2547,8 @@ function ampforwp_fb_instant_article() {
     if(get_option('permalink_structure') == ''){
         $feedname = '?feed=instant_articles';
     }
-    $fb_instant_article_feed = trailingslashit( site_url() ).$feedname ;
-    $input      =  '<a href=" '. esc_url($fb_instant_article_feed)  . '" target="_blank">' .  esc_url( $fb_instant_article_feed ). '</a>' ;
+    $fb_instant_article_feed = trailingslashit( get_home_url() ).$feedname ;
+    $input      =  '<a href=" '. esc_url_raw($fb_instant_article_feed)  . '" target="_blank">' .  esc_url_raw( $fb_instant_article_feed ). '</a>' ;
 
     return strip_tags($input, '<a>');
 }
@@ -5622,6 +5622,18 @@ Redux::setSection( $opt_name, array(
                         )
                 ),
                 array(
+                        'class' => 'child_opt',
+                        'id'    => 'ampforwp-homepage-posts-first-image-modify-size',
+                        'type'  => 'switch',
+                        'title' => esc_html__('Apply for first image', 'accelerated-mobile-pages'),
+                        'default'  => 0,
+                        'tooltip-subtitle' => esc_html__('Inherit the above Height and Width size for homepage first image', 'accelerated-mobile-pages'),
+                        'required' => array(
+                          array('amp-design-selector','=',4),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                 ),
+                array(
                     'id'        => 'amforwp-homepage-date-switch',
                     'type'      => 'switch',
                     'title'     => esc_html__('Date in Loop', 'accelerated-mobile-pages'),
@@ -6080,6 +6092,42 @@ $single_page_options = array(
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
                                 ),
+            ),
+            array(
+                    'id'       => 'ampforwp-single-related-posts-change-image-size',
+                    'type'     => 'switch',
+                    'class' => 'child_opt',
+                    'title'    => esc_html__('Change Image Size', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array( 
+                                 array('amp-design-selector','=',4),
+                                 array('ampforwp-single-related-posts-switch', '=' , '1'),
+                                 array('ampforwp-single-related-posts-image', '=' , '1')
+                                ),
+            ),
+            array(
+                    'id'       => 'ampforwp-single-related-posts-image-width',
+                    'class' => 'child_opt child_opt_arrow',
+                    'type'     => 'text',
+                    'title'    => esc_html__('Image Width', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Defaults to 346', 'accelerated-mobile-pages'),
+                    'default'  => 346,
+                    'required' => array(
+                      array('amp-design-selector','=',4),
+                      array('ampforwp-single-related-posts-change-image-size','=',1)
+                    )
+            ),
+            array(
+                    'id'       => 'ampforwp-single-related-posts-image-height',
+                    'class' => 'child_opt',
+                    'type'     => 'text',
+                    'title'    => esc_html__('Image Height', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => esc_html__('Defaults to 188', 'accelerated-mobile-pages'),
+                    'default'  => 188,
+                    'required' => array(
+                      array('amp-design-selector','=',4),
+                      array('ampforwp-single-related-posts-change-image-size','=',1)
+                    )
             ),
             array(
                     'id'       => 'ampforwp-single-related-posts-excerpt',
