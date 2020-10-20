@@ -734,6 +734,7 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
 .cntn-wrp .wp-block-image,.wp-block-embed{margin:15px 0px;}
 
 .wp-block-embed{margin-top:45px;}
+figure.wp-block-embed-twitter { margin: 0; }
 .wp-block-embed blockquote a{    
 	position: absolute;
 	height: 285px;
