@@ -14,7 +14,13 @@ function ampforwp_framework_get_post_navigation(){
 						if(true == ampforwp_get_setting('single-next-prev-to-nonamp')){
 						$next_link = get_permalink( $next_post->ID );
 						} ?>
-						<a href="<?php echo esc_url($next_link); ?>"><span><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-next-text'), 'Next' ); ?></span><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
+						<a href="<?php echo esc_url($next_link); ?>"><span><?php
+						if (function_exists('pll__')) {
+							echo pll__(esc_html__( ampforwp_get_setting('amp-translator-next-text'), 'accelerated-mobile-pages'));
+						}else {
+							echo ampforwp_translation(ampforwp_get_setting('amp-translator-next-text'), 'Next' );
+						} ?>
+						 </span><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
 						} ?>
 					</div>
 
@@ -26,7 +32,12 @@ function ampforwp_framework_get_post_navigation(){
 						 if(true == ampforwp_get_setting('single-next-prev-to-nonamp')){
 						    $prev_link = get_permalink( $prev_post->ID );
 						 } ?>	 
-					    <a href="<?php echo esc_url($prev_link); ?>"><span><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-previous-text'), 'Previous' ); ?></span> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
+					    <a href="<?php echo esc_url($prev_link); ?>"><span><?php
+					    if (function_exists('pll__')) {
+							echo pll__(esc_html__( ampforwp_get_setting('amp-translator-previous-text'), 'accelerated-mobile-pages'));
+						}else {
+							echo ampforwp_translation(ampforwp_get_setting('amp-translator-previous-text'), 'Next' );
+						} ?></span> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
 					  } ?>	
 					</div>
 
