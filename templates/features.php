@@ -8935,3 +8935,10 @@ if( !function_exists( 'fifu_amp_url' ) ) {
 	    return array(0 => $url, 1 => $width, 2 => $height);
 	}
 }
+add_filter('ampforwp_post_template_data','ampforwp_amp_bind_script');	
+function ampforwp_amp_bind_script($data) {
+	if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {	
+		$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-latest.js';
+	}	
+	return $data;
+}
