@@ -118,7 +118,7 @@ function amp_title(){
 		do_action('ampforwp_above_the_title'); 
 		$ampforwp_title = get_the_title($ID);
 		$ampforwp_title =  apply_filters('ampforwp_filter_single_title', $ampforwp_title);
-		if(!empty($ampforwp_title) && (ampforwp_default_logo() || ampforwp_get_setting('opt-media','url')!='')){
+		if(!empty($ampforwp_title) && ampforwp_default_logo() && ampforwp_get_setting('opt-media','url')!=''){
 			$title_tag = '<h1 class="amp-post-title">' . wp_kses_data( $ampforwp_title ) . '</h1>'; 
 		}else{ 
 			$title_tag = '<h2 class="amp-post-title">' . wp_kses_data( $ampforwp_title ) . '</h2>'; 
