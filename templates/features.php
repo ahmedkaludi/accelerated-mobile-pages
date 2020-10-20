@@ -8626,8 +8626,11 @@ function ampforwp_themify_compatibility($content){
 	$get_data =  get_post_meta(ampforwp_get_the_ID(),'_themify_builder_settings_json',true);
 	if($get_data){
 		$decode = json_decode($get_data,true);
+		$cols = '';
 		for($i=0;$i<count($decode);$i++){
-		$cols = $decode[$i]['cols'];
+		if(isset($decode[$i]['cols'])){
+			$cols = $decode[$i]['cols'];
+		}
 		for($j=0;$j<count($cols);$j++){
 			if (isset($cols[$j]['modules'])) {
 			$modules = $cols[$j]['modules'];
@@ -8656,7 +8659,9 @@ function ampforwp_rank_math_external_link_newtab($content){
 			if(ampforwp_isexternal($url)){
 				$url = esc_url($url);
 				$url = str_replace("/", "\/", $url);
-				$content = preg_replace('/<a(.*?)href="'.$url.'"(.*?)<\/a>/', '<a$1 target="_blank" href="'.stripcslashes($url).'"$2</a>', $content);
+				if(preg_match('/<a(.*?)href="'.$url.'"(.*?)<\/a>/' , $content)){
+					$content = preg_replace('/<a(.*?)href="'.$url.'"(.*?)<\/a>/', '<a$1 target="_blank" href="'.stripcslashes($url).'"$2</a>', $content);
+				}	
 			}
 		}
 	}
