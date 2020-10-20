@@ -340,22 +340,22 @@ function ampforwp_analytics() {
     <script type="application/json">
         {
             "requests": {
-                "pageview": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:pageviews[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
-                "read_top": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:read_top[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
-                "read_middle": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:read_middle[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
-                "read_bottom": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:read_bottom[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
-                "read_finished": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:read_finished[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
-                "time": "https://tt.onthe.io/?k[]=<?php echo esc_html($project_id); ?>:time[platform:amp,url:${canonicalPath}]"
+                "pageview": "https://tt.onthe.io/?k[]=<?php echo esc_attr($project_id); ?>:pageviews[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
+                "read_top": "https://tt.onthe.io/?k[]=<?php echo esc_attr($project_id); ?>:read_top[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
+                "read_middle": "https://tt.onthe.io/?k[]=<?php echo esc_attr($project_id); ?>:read_middle[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
+                "read_bottom": "https://tt.onthe.io/?k[]=<?php echo esc_attr($project_id); ?>:read_bottom[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
+                "read_finished": "https://tt.onthe.io/?k[]=<?php echo esc_attr($project_id); ?>:read_finished[user_id:${clientId(_io_un)},author:${article_authors},referrer_uri:${documentReferrer},url:${canonicalPath},domain:${canonicalHostname},user_agent:${userAgent},page:${page_title},platform:amp,language:${page_language},category:${article_categories},type_article:${article_type},word_count:${article_word_count},pub_date:${article_publication_date},page_type:${page_type}]",
+                "time": "https://tt.onthe.io/?k[]=<?php echo esc_attr($project_id); ?>:time[platform:amp,url:${canonicalPath}]"
             },
             "vars": {
-                "page_title": "$<?php echo esc_html($title) ?>",
+                "page_title": "$<?php echo esc_attr($title) ?>",
                 "page_type": "article",
-                "page_language": "<?php echo esc_html($lang) ?>",
-                "article_authors": "<?php echo esc_html($author) ?>",
-                "article_categories": "<?php echo esc_html($cat_names) ?>",
+                "page_language": "<?php echo esc_attr($lang) ?>",
+                "article_authors": "<?php echo esc_attr($author) ?>",
+                "article_categories": "<?php echo esc_attr($cat_names) ?>",
                 "article_type": "longread",
-                "article_word_count": "<?php echo esc_html($word_count) ?>",
-                "article_publication_date": "<?php echo esc_html($date) ?>"
+                "article_word_count": "<?php echo esc_attr($word_count) ?>",
+                "article_publication_date": "<?php echo esc_attr($date) ?>"
             },
             "triggers": {
                 "trackPageview": {
