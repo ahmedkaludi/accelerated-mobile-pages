@@ -1,5 +1,20 @@
 == Changelog ==
 
+= 1.0.66 (24th October 2020) =
+* Improvement: Added filter to modify GDPR popup output #4778
+* Improvement: Added Polylang string transaltion support #4784
+* Improvement: Added IO Technologies company analytics tracking code. #4753
+* Improvement: Added Ultimate Membership Pro Compatibility for AMP Extension #4790
+* Improvement: Code improvements #4744
+* Fixed: Validation error when the "OMGF | Host Google Fonts Locally" plugin is active #4775
+* Fixed: Margin top added in the twitter embed through the Gutenberg editor #4750
+* Fixed: Truepush push notification not working in AMP #4644
+* Fixed: Wrong amphtml on category and tags when ?amp is selected #4780
+* Fixed: Missing the amp-bind script tag #4776
+* Fixed: Two H1 tags appears in AMP #4786
+* Fixed: Debug warnings #4767
+* Fixed: Fallback images removed when Convert AMP to WP theme is enabled #4773 
+
 = 1.0.65.2 (17th October 2020) =
 * Fixed: Menu not appearing in AMP #4657
 * Fixed: Wrong amphtml on homepage when ?amp is selected #4780
