@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.66.1 (26th October 2020) =
+* Fixed: Validation error due to amp-web-push AMP component script #4796
+* Fixed: Validation error due to amp-fx-flying-carpet AMP component script #4794
+
 = 1.0.66 (24th October 2020) =
 * Improvement: Added filter to modify GDPR popup output #4778
 * Improvement: Added Polylang string transaltion support #4784

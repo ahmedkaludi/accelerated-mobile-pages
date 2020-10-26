@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.66
+Stable tag: 1.0.66.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.66.1 (26th October 2020) =
+* Fixed: Validation error due to amp-web-push AMP component script #4796
+* Fixed: Validation error due to amp-fx-flying-carpet AMP component script #4794
 
 = 1.0.66 (24th October 2020) =
 * Improvement: Added filter to modify GDPR popup output #4778
