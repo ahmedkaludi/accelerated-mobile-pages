@@ -261,7 +261,7 @@ function ampforwp_truepush_styling(){?>
 	  }
 <?php }
 function ampforwp_truepush_markup(){
-	if (!checkAMPforPageBuilderStatus(get_the_ID()) && is_single()) {?>
+	if (!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() && '4' == ampforwp_get_setting('ampforwp-web-push')) {?>
 		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="250" height="45">
 		<button on="tap:amp-web-push.subscribe" class="amp-subscribe"><?php echo ampforwp_translation( ampforwp_get_setting('ampforwp-truepush-translator-subscribe'), 'Subscribe to updates' ); ?></button>
 		</amp-web-push-widget>
