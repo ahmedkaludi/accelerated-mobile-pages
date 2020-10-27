@@ -1194,6 +1194,14 @@ function ampforwp_execute_amp_prior_marfeel(){
     }
 }
 function ampforwp_is_amp_inURL($url){
+	if (ampforwp_get_setting('amp-core-end-point')) {
+		global $wp;
+		$url = home_url(add_query_arg(array($_GET), $wp->request));
+		$urlArray = explode("/", $url);
+		if( in_array( '?' . AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
+        	return true;
+    	}
+	}
     $urlArray = explode("/", $url);
     if( !in_array( AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
         return false;
