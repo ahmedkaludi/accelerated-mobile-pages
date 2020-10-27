@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.66.2 (28th October 2020) =
+* Fixed: Content not visible after 1.0.66 update #4744
+
 = 1.0.66.1 (26th October 2020) =
 * Fixed: Validation error due to amp-web-push AMP component script #4796
 * Fixed: Validation error due to amp-fx-flying-carpet AMP component script #4794
