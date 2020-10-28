@@ -1202,6 +1202,9 @@ function ampforwp_is_amp_inURL($url){
         	return true;
     	}
 	}
+	if (ampforwp_get_setting('ampforwp-amp-takeover')) {
+		return true;
+	}
     $urlArray = explode("/", $url);
     if( !in_array( AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
         return false;
