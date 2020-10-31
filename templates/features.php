@@ -4976,7 +4976,7 @@ function ampforwp_inline_related_posts(){
 						}
 						$inline_related_posts .= '<li class="'.esc_attr($title_class).'">';
 						if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) {
-                            $inline_related_posts .= '<a href="'.esc_url( $related_post_permalink ).'" rel="bookmark" title="'.get_the_title().'">';
+                            $inline_related_posts .= '<a href="'.esc_url( $related_post_permalink ).'" rel="bookmark" title="'.esc_attr(get_the_title()).'">';
 			          
 			           		$thumb_url_2 = ampforwp_get_post_thumbnail('url');
 			            
