@@ -52,7 +52,7 @@ global $redux_builder_amp;
                 echo strip_tags( pll__(ampforwp_get_setting('amp-translator-footer-text')) ,$allowed_tags );
               }else {
                 echo strip_tags( ampforwp_translation(ampforwp_get_setting('amp-translator-footer-text'), 'All Rights Reserved') ,$allowed_tags );
-              }?>
+              }
         ?>
         <?php do_action('amp_footer_link'); ?>
       </div>
