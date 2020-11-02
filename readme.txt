@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.65.2
+Stable tag: 1.0.66.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,82 +190,36 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.66.3 (29th October 2020) =
+* Fixed: Content not visible in AMP Takeover #4744
+
+= 1.0.66.2 (28th October 2020) =
+* Fixed: Content not visible after 1.0.66 update #4744
+
+= 1.0.66.1 (26th October 2020) =
+* Fixed: Validation error due to amp-web-push AMP component script #4796
+* Fixed: Validation error due to amp-fx-flying-carpet AMP component script #4794
+
+= 1.0.66 (24th October 2020) =
+* Improvement: Added filter to modify GDPR popup output #4778
+* Improvement: Added Polylang string transaltion support #4784
+* Improvement: Added IO Technologies company analytics tracking code. #4753
+* Improvement: Added Ultimate Membership Pro Compatibility for AMP Extension #4790
+* Improvement: Code improvements #4744
+* Fixed: Validation error when the "OMGF | Host Google Fonts Locally" plugin is active #4775
+* Fixed: Margin top added in the twitter embed through the Gutenberg editor #4750
+* Fixed: Truepush push notification not working in AMP #4644
+* Fixed: Wrong amphtml on category and tags when ?amp is selected #4780
+* Fixed: Missing the amp-bind script tag #4776
+* Fixed: Two H1 tags appears in AMP #4786
+* Fixed: Debug warnings #4767
+* Fixed: Fallback images removed when Convert AMP to WP theme is enabled #4773 
+
 = 1.0.65.2 (17th October 2020) =
 * Fixed: Menu not appearing in AMP #4657
 * Fixed: Wrong amphtml on homepage when ?amp is selected #4780
 
 = 1.0.65.1 (16th October 2020) =
 * Fixed: Jquery issue fixed due to Easy select option for category module #4672
-
-= 1.0.65 (15th October 2020) =
-* Added: Integrated Truepush in push notification section #4644
-* Added: Easy select option for category module #4672
-* Added: Option to change the image size for the related posts thumbnail #4534
-* Added: Option to change the image size of the first image in Swift theme #4476
-* Added: AMP compatibility with Web stories by Google #4667
-* Fixed: Validation error in the in-content related post #4729
-* Fixed: Image elements do not have alt attributes #4757
-* Fixed: When genesis theme is activated getting SEO error notice #4758
-* Fixed: Removed third party plugins notices on the AMP option panel #4730
-* Fixed: Instant articles not working when Site directory or Installation directory is different #4690
-* Fixed: Clicking on the menu gets # at the end of the URL in design 2 #4722
-* Fixed: Need to add tag for disqus comments #4692
-* Fixed: Optimize menu caching code #4657
-* Fixed: View non amp version is not working in mobile due to conflict with Redis Cache and WP Rocket #4614
-* Fixed: Social share Buttons do not have an accessible name using Design One #4764
-* Fixed: In the Contact form module, wp form options are not getting selected #4761
-* Fixed: Uncaught Error: Call to undefined function ampforwp_is_home() main file #4782
-
-= 1.0.64.1 (5th October 2020) =
-* Fixed: Images are not appearing in AMP with Shortpixel plugin #4738
-
-= 1.0.64 (5th October 2020) =
-* Fixed: Comments module of AMP pagebuilder is rendering only admin comments not the others #4745
-* Fixed: Shortpixel is not generating WebP in AMP #4738
-* Fixed: SEO option appearing in wordpress tool bar even No SEO plugin is active #4698
-* Fixed: Auto add amp in menu url functionality is not working in tags #4734
-* Fixed: The internal link for the the author page is generating in the AMP if the archive page support is disabled #4746
-* Fixed: Scroll to top button not visible in Design 2 #4693
-* Fixed: Notice: Undefined index: Cpage #4728
-* Fixed: GDPR banner is off-centered, the 'X 'is out of the screen #4724
-* Fixed: Wrong AMP html when the AMP takeover and ?amp is enabled #4731
-* Fixed: Addon mode forcefully redirecting to reader mode not others #4742
-* Fixed: Images not appearing with Image Photo Gallery Final Tiles Grid plugin #4675
-* Fixed: In Design three, when click on the menu, the page gets pushed to the right side #4736
-* Fixed: FAQ icon button is a too big in amp page. #4747
-* Fixed: Added meta name="referrer" content="no-referrer-when-downgrade" #4715
-* Fixed: In admin tool bar, (+) icon loading small and also author image invisible #4700
-* Fixed: Issue with menu background when user add internal page navigation menu-items. #4630
-* Fixed: Anchor tag getting stripped when Site Kit by Google is active. #4699
-* Fixed: Merriweather font option in Design 1 does not work. #4726
-* Fixed: If the user is adding the HTML code in the background video module then code is showing as output #4755
-* Fixed: AMP 404 template is applying on non amp page #4723
-* Fixed: In-Content Related Post appearing inside the blockquote when "After 50% of content" option is selected #4743
-* Fixed: If the sticky ads is active then the sticky social share link tab is hiding behind the ads #4749
-
-= 1.0.63 (26th September 2020) =
-* Improvement: Added Reddit embeds support #4406
-* Improvement: Added multi select for post type in loop field #4365
-* Improvement: Added custom classes in Body tag in AMP in all Designs #4594
-* Improvement: Added filter for GDPR on-off #4471
-* Improvement: Added admin notice when wrong seo plugin is selected #4678
-* Improvement: Added TikTok embed support #4504
-* Improvement: Added related post on/off in YouTube #4503
-* Improvement: Added Nofollow Link button on pricing tabs in AMP Page Builder #4505
-* Improvement: Improved Lighthouse Audits #4654
-* Improvement: Added filter for AMP front page function #4634 
-* Fixed: Facebook Instant Articles (FBIA) Crawler Ingestion not working #4463
-* Fixed: Incontent related post not aligned if the post does not have featured image #4691
-* Fixed: Incontent path passed to load_plugin_textdomain function #4694
-* Fixed: Incorrect Styling for header area #4703
-* Fixed: Breadcrumb links are not generating the "amp/" #4708
-* Fixed: Google Analytics is not firing when GTM is enabled #4707
-* Fixed: Featured Image doesn’t appear on single post #4711
-* Fixed: Code improvements for options panel #4622 #4532 #4407 #4090
-* Fixed: Advanced section showing blank randomly #4741
-
-= 1.0.62.2 (21st August 2020) =
-* Fixed: Gutenberg gallery block caption appearing at the end of the content #4716
-* Fixed: Validation error - accordion section must have 2 child tags #4208
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
