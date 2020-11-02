@@ -125,6 +125,7 @@ function amp_post_template_add_styles( $amp_template ) {
 		echo '/* Inline styles */' . PHP_EOL;
 		foreach ( $styles as $selector => $declarations ) {
 			$declarations = implode( ';', $declarations ) . ';';
+			$declarations = preg_replace('/\/[*]/', '$1$2', $declarations);
 			printf( '%1$s{%2$s}', $selector, $declarations );
 		}
 	}
