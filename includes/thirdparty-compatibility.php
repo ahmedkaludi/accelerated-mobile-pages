@@ -1185,8 +1185,26 @@ function ampforwp_execute_amp_prior_marfeel(){
 				}
 		}
     }
+    //Removed OMGF Host Google Fonts Locally in AMP #4775
+    if(function_exists( 'omgf_pro_init' ) ){
+        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+        if( function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
+            remove_action( 'plugins_loaded', 'omgf_pro_init', 49 );
+        }
+    }
 }
 function ampforwp_is_amp_inURL($url){
+	if (ampforwp_get_setting('amp-core-end-point')) {
+		global $wp;
+		$url = home_url(add_query_arg(array($_GET), $wp->request));
+		$urlArray = explode("/", $url);
+		if( in_array( '?' . AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
+        	return true;
+    	}
+	}
+	if (ampforwp_get_setting('ampforwp-amp-takeover')) {
+		return true;
+	}
     $urlArray = explode("/", $url);
     if( !in_array( AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
         return false;

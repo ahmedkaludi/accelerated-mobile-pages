@@ -8,7 +8,7 @@ do_action('ampforwp_above_the_title',$this); ?>
 	<?php
 	$ampforwp_title = $this->get( 'post_title' );
 	$ampforwp_title =  apply_filters('ampforwp_filter_single_title', $ampforwp_title);
-	if(!empty($ampforwp_title) && ampforwp_default_logo()){
+	if(!empty($ampforwp_title) && ampforwp_default_logo() && ampforwp_get_setting('opt-media','url')!=''){
 	?>
 	<h1 class="amp-wp-title"><?php echo wp_kses_data( $ampforwp_title );?></h1>
 	<?php

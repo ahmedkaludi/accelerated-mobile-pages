@@ -260,15 +260,17 @@ function ampforwp_truepush_styling(){?>
 	  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	  }
 <?php }
-function ampforwp_truepush_markup(){?>
-<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="250" height="45">
-<button on="tap:amp-web-push.subscribe" class="amp-subscribe"><?php echo ampforwp_translation( ampforwp_get_setting('ampforwp-truepush-translator-subscribe'), 'Subscribe to updates' ); ?></button>
-</amp-web-push-widget>
-<?php }
-if(!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() &&ampforwp_get_setting('ampforwp-web-push-truepush-below-content')){
+function ampforwp_truepush_markup(){
+	if (!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() && '4' == ampforwp_get_setting('ampforwp-web-push')) {?>
+		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="250" height="45">
+		<button on="tap:amp-web-push.subscribe" class="amp-subscribe"><?php echo ampforwp_translation( ampforwp_get_setting('ampforwp-truepush-translator-subscribe'), 'Subscribe to updates' ); ?></button>
+		</amp-web-push-widget>
+	<?php }
+}
+if(ampforwp_get_setting('ampforwp-web-push-truepush-below-content')){
 	add_action('ampforwp_after_post_content', 'ampforwp_truepush_markup');
 }
 
-if(!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() &&ampforwp_get_setting('ampforwp-web-push-truepush-above-content')){
+if(ampforwp_get_setting('ampforwp-web-push-truepush-above-content')){
 	add_action('ampforwp_before_post_content', 'ampforwp_truepush_markup');
 }

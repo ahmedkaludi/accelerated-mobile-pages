@@ -285,7 +285,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		if ( is_home() && ! ampforwp_is_blog() && !ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
 			return;
 		}
-		if (!ampforwp_is_home() && !ampforwp_is_front_page() && !is_category() && !is_tag() && !is_singular( array('page', 'attachment', 'post'))){
+		if (!ampforwp_is_home() && !ampforwp_is_front_page() && !ampforwp_is_blog() && !is_category() && !is_tag() && !is_singular( array('page', 'attachment', 'post'))){
 			global $post_type;
 			if (empty(ampforwp_get_setting('ampforwp-custom-type'))) {
 				return;
@@ -419,7 +419,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				}	
 				if(ampforwp_get_setting('amp-core-end-point') && ampforwp_get_setting('ampforwp-amp-takeover') && is_singular()){
 					 $amp_url = get_the_permalink();
-				}else if(ampforwp_get_setting('amp-core-end-point') && (ampforwp_is_home() || ampforwp_is_front_page() ||is_category() || is_tag())){
+				}else if(ampforwp_get_setting('amp-core-end-point') && (ampforwp_is_home() || ampforwp_is_front_page() || ampforwp_is_blog() || is_category() || is_tag() || is_front_page())){
 					 $amp_url = ampforwp_url_controller($amp_url);
 				}
 				return esc_url_raw($amp_url);
@@ -3091,7 +3091,7 @@ function ampforwp_add_sidebar_data( $data ) {
 // 44. auto adding /amp for the menu
 add_action('amp_init','ampforwp_auto_add_amp_menu_link_insert');
 function ampforwp_auto_add_amp_menu_link_insert() {
-	add_action( 'wp', 'ampforwp_auto_add_amp_in_link_check', 99 );
+	add_action( 'pre_amp_render_post', 'ampforwp_auto_add_amp_in_link_check', 99 );
 }
 
 function ampforwp_auto_add_amp_in_link_check() {
@@ -3887,8 +3887,7 @@ function ampforwp_view_nonamp(){
    		$non_amp_url = '';
    	}
 
-	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url(apply_filters('ampforwp_view_nonamp_url', $non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?> title="<?php echo ampforwp_get_setting('amp-translator-non-amp-page-text') ?>"><?php echo esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages') ;?></a> <?php
-	}
+	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url(apply_filters('ampforwp_view_nonamp_url', $non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?> title="<?php echo ampforwp_get_setting('amp-translator-non-amp-page-text') ?>"><?php if(function_exists('pll__')){echo pll__(esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages'));}else{echo esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages');?></a> <?php }}
 }
 
  //68. Facebook Instant Articles
@@ -7498,6 +7497,9 @@ if ( ! function_exists('ampforwp_search_form') ) {
 	function ampforwp_search_form($form){
 		if ( ampforwp_is_amp_endpoint() ) {
 		$placeholder = ampforwp_translation(ampforwp_get_setting('ampforwp-search-placeholder'), 'Type Here' );
+		if (function_exists('pll__')) {
+			$placeholder = pll__(esc_html__( ampforwp_get_setting('ampforwp-search-placeholder'), 'accelerated-mobile-pages'));
+		}
 		$widgetlabel = ampforwp_translation(ampforwp_get_setting('ampforwp-search-widget-label'), 'Search for:' );	
 			$form = '<form role="search" method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" target="_top">
 					<label>
@@ -8328,7 +8330,7 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 	//OTHER COMPONENT CHECK 
-	$other_comp_arr = array('amp-mustache'=>'amp-mustache','amp-embed'=>'amp-ad','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection','amp-story-player'=>'amp-story-player');
+	$other_comp_arr = array('amp-mustache'=>'amp-mustache','amp-embed'=>'amp-ad','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection');
 	foreach ($other_comp_arr as $key => $value) {
 		$ocomp = $value;
 		$celem = 'element';
@@ -8467,7 +8469,7 @@ if(!function_exists('ampforwp_get_retina_image_settings')){
 if(!function_exists('ampforwp_add_fallback_element')){
 	function ampforwp_add_fallback_element($content='',$tag=''){
 		preg_match_all('/<'.$tag.' (.*?)<\/'.$tag.'>/', $content, $matches);
-		if(!empty($matches)){
+		if(!empty($matches) && false == ampforwp_get_setting('ampforwp-amp-convert-to-wp')){
 			if(isset($matches[0])){
 				$con = "";
 				for($i=0;$i<count($matches[0]);$i++){
@@ -8624,8 +8626,11 @@ function ampforwp_themify_compatibility($content){
 	$get_data =  get_post_meta(ampforwp_get_the_ID(),'_themify_builder_settings_json',true);
 	if($get_data){
 		$decode = json_decode($get_data,true);
+		$cols = '';
 		for($i=0;$i<count($decode);$i++){
-		$cols = $decode[$i]['cols'];
+		if(isset($decode[$i]['cols'])){
+			$cols = $decode[$i]['cols'];
+		}
 		for($j=0;$j<count($cols);$j++){
 			if (isset($cols[$j]['modules'])) {
 			$modules = $cols[$j]['modules'];
@@ -8654,7 +8659,9 @@ function ampforwp_rank_math_external_link_newtab($content){
 			if(ampforwp_isexternal($url)){
 				$url = esc_url($url);
 				$url = str_replace("/", "\/", $url);
-				$content = preg_replace('/<a(.*?)href="'.$url.'"(.*?)<\/a>/', '<a$1 target="_blank" href="'.stripcslashes($url).'"$2</a>', $content);
+				if(preg_match('/<a(.*?)href="'.$url.'"(.*?)<\/a>/' , $content)){
+					$content = preg_replace('/<a(.*?)href="'.$url.'"(.*?)<\/a>/', '<a$1 target="_blank" href="'.stripcslashes($url).'"$2</a>', $content);
+				}	
 			}
 		}
 	}
@@ -8933,3 +8940,17 @@ if( !function_exists( 'fifu_amp_url' ) ) {
 	    return array(0 => $url, 1 => $width, 2 => $height);
 	}
 }
+add_filter('ampforwp_post_template_data','ampforwp_amp_bind_script');	
+function ampforwp_amp_bind_script($data) {
+	if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {	
+		$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-latest.js';
+	}	
+	return $data;
+}
+add_filter('ampforwp_post_template_data','ampforwp_amp_story_player_script');
+function ampforwp_amp_story_player_script($data) {	
+	if ( empty( $data['amp_component_scripts']['amp-story-player'] ) ) {	
+		$data['amp_component_scripts']['amp-story-player'] = 'https://cdn.ampproject.org/v0/amp-story-player-latest.js';	
+	}	
+	return $data;	
+} 
