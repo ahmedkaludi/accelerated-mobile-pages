@@ -8418,10 +8418,10 @@ function ampforwp_include_required_scripts($content){
 			}
 		}
 	}
-
+	$allscripts = apply_filters( 'ampforwp_modify_scripts', $allscripts);
 	// Scripts added from Options panel should have higher priority #4064
-	if( ampforwp_get_setting('amp-header-text-area-for-html') && ampforwp_get_setting('amp-header-text-area-for-html')!="") {
-      $allscripts = ampforwp_get_setting('amp-header-text-area-for-html');
+	if( $allscripts || (ampforwp_get_setting('amp-header-text-area-for-html') && ampforwp_get_setting('amp-header-text-area-for-html')!="")) {
+	   $allscripts .= ampforwp_get_setting('amp-header-text-area-for-html');
       preg_match_all('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)>(.*?)<\/script>/s', $allscripts, $rep);
       if($rep){
 		  	if(isset($rep[2]) && isset($rep[4])){
