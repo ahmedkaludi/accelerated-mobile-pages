@@ -701,6 +701,7 @@ function amp_author_meta( $args ) {
 	 
 }
 function ampforwp_copy_fonts($src, $dst) {  
+	$files_arr = array('Poppins-Bold.ttf','Poppins-Light.ttf','Poppins-Medium.ttf','Poppins-Regular.ttf','Poppins-SemiBold.ttf','icomoon.ttf','RobotoSlab-Bold.ttf','RobotoSlab-Regular.ttf','PT_Serif-Web-Bold.ttf','PT_Serif-Web-Regular.ttf','Merriweather-Bold.ttf','Merriweather-BoldItalic.ttf','Merriweather-Italic.ttf','Merriweather-Regular.ttf');
     $dir = opendir($src);  
     mkdir($dst);  
     while( $file = readdir($dir) ) {  
@@ -711,7 +712,9 @@ function ampforwp_copy_fonts($src, $dst) {
                 ampforwp_copy_fonts($src . '/' . $file, $dst . '/' . $file);  
             }  
             else {  
-                copy($src . '/' . $file, $dst . '/' . $file);  
+            	if (in_array($file, $files_arr)){
+                	copy($src . '/' . $file, $dst . '/' . $file);  
+            	}
             }  
         }  
 
