@@ -164,8 +164,16 @@ left:191px;
 .amp-category-post{ width: 32%;display: inline-block; word-wrap: break-word;float: left;}
 .amp-category-post amp-img{ margin-bottom:5px; }
 .amp-category-block li:nth-child(3){ margin: 0 1%;}
+<?php if(function_exists('amp_woocommerce_pro_add_woocommerce_support') && ampforwp_get_setting('amp-swift-cart-btn')){?>
 .searchmenu{  
-    right: 10px;
+    right: 42px;
+}
+<?php }else{?>
+.searchmenu{  
+    right: 15px;
+}
+<?php }?>
+.searchmenu{  
     top: 31%;
     position: absolute; }
 .searchmenu button{ background:transparent; border:none }
