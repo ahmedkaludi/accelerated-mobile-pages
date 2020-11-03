@@ -21,7 +21,21 @@ if ( ! defined( 'ABSPATH' ) ) {
   $header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
   $header_color            = $get_customizer->get_customizer_setting( 'header_color' );
   ?>
-
+<?php
+      $fonts_upload = wp_upload_dir();
+      $fonts_upload_dir = $fonts_upload['basedir'];
+      $fonts_upload_dir = $fonts_upload_dir . '/ampforwp-fonts/' .ampforwp_design_selector();
+      if (! is_dir($fonts_upload_dir)) {
+          wp_mkdir_p( $fonts_upload_dir );
+          $src = plugin_dir_path( __FILE__ ) . 'fonts';
+      ampforwp_copy_fonts($src, $fonts_upload_dir);
+      }
+      if (file_exists($fonts_upload_dir)) {
+        $font_path = $fonts_upload_dir;
+      }else{
+        $font_path = esc_url(plugin_dir_url(__FILE__)) . 'fonts';
+      }
+?>
 /* Global Styling */
 body{ 
   font-size: 16px;
@@ -68,14 +82,14 @@ ol, ul {list-style-position: inside;}
     font-display: swap;
     font-style: normal;
     font-weight: 400;
-    src:  local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__).'fonts/robotoslab/RobotoSlab-Regular.ttf')); ?>');
+    src:  local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url('<?php echo $font_path.'/robotoslab/RobotoSlab-Regular.ttf'; ?>');
 }
 @font-face {
     font-family: 'Roboto Slab';
     font-display: swap;
     font-style: normal;
     font-weight: 700;
-    src:  local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__).'fonts/robotoslab/RobotoSlab-Bold.ttf')); ?>');
+    src:  local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url('<?php echo $font_path .'/robotoslab/RobotoSlab-Bold.ttf'; ?>');
 }
 <?php } // Primary Fonts ends here
 if(1==ampforwp_get_setting('content-font-family-enable') && ( ampforwp_get_setting('amp_font_selector_content_single') == 1 || empty(ampforwp_get_setting('amp_font_selector_content_single') ) ) ) {?>
@@ -670,11 +684,11 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
 @font-face {
   font-family: 'icomoon';
   font-display: swap;
-  src:  url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.eot'); ?>');
-  src:  url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.eot'); ?>') format('embedded-opentype'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.ttf'); ?>') format('truetype'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.woff'); ?>') format('woff'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.svg'); ?>') format('svg');
+  src:  url('<?php echo $font_path .'/icomoon.eot'; ?>');
+  src:  url('<?php echo $font_path .'/icomoon.eot'; ?>') format('embedded-opentype'),
+    url('<?php echo $font_path .'/icomoon.ttf'; ?>') format('truetype'),
+    url('<?php echo $font_path .'/icomoon.woff'; ?>') format('woff'),
+    url('<?php echo $font_path .'/icomoon.svg'; ?>') format('svg');
   font-weight: normal;
   font-style: normal;
 }

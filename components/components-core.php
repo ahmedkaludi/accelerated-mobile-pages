@@ -700,6 +700,24 @@ function amp_author_meta( $args ) {
      } 
 	 
 }
+function ampforwp_copy_fonts($src, $dst) {  
+    $dir = opendir($src);  
+    mkdir($dst);  
+    while( $file = readdir($dir) ) {  
+
+        if (( $file != '.' ) && ( $file != '..' )) {  
+            if ( is_dir($src . '/' . $file) )  
+            {  
+                ampforwp_copy_fonts($src . '/' . $file, $dst . '/' . $file);  
+            }  
+            else {  
+                copy($src . '/' . $file, $dst . '/' . $file);  
+            }  
+        }  
+
+    }  
+    closedir($dir); 
+}  
 
 // amp-animation CSS #2819
 add_action('amp_post_template_css','ampforwp_backtotop_global_css');
