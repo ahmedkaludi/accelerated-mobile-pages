@@ -71,5 +71,53 @@ function amp_menu_styles(){
 		.amp-menu [id^=drop]:checked + label + ul{ display: block;}
 		.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ed1c24;top:0px;z-index:10000;line-height:1;cursor:pointer;}
 	<?php } // designs condition ends here
-    
+       //UberMenu 3 Custom CSS  
+       if(function_exists('ubermenu_get_nav_menu_args')){
+              $menu_element_color = '#ffffff';
+              $ubermenu_cont_wth = '80%';
+              $cont_padding = '24px';
+              $design_selector = ampforwp_get_setting('amp-design-selector');
+              if($design_selector == '4'){
+                $menu_element_color = ampforwp_get_setting('swift-element-overlay-color-control','rgba');
+                $cont_padding = '7px';
+
+              }elseif($design_selector == '3'){
+
+ 				$menu_element_color = ampforwp_get_setting('amp-opt-color-rgba-menu-elements-color','rgba');
+ 				$ubermenu_cont_wth = '70%';
+
+              }elseif($design_selector == '2'){
+
+              	$menu_element_color = ampforwp_get_setting('amp-d2-menu-color','rgba');
+              	$ubermenu_cont_wth = '50%';
+
+              }else{
+                $menu_element_color = ampforwp_get_setting('amp-d1-menu-color','rgba');
+                $ubermenu_cont_wth = '50%';
+              }
+         ?>
+	         .amp-menu li.ubermenu-has-submenu-drop ul {
+	            display: none;
+	         }
+	         .m-menu .amp-menu [id^=drop]:checked + label + ul ul,.amp-menu [id^=drop]:checked + label + ul ul {
+	          display: block;
+	         } 
+
+	         ul.ubermenu-submenu {
+			    margin-left: 10px;
+			    color: <?php echo ampforwp_sanitize_color($menu_element_color); ?>;
+			    line-height: 3;
+	          }
+	          .ubermenu-custom-content amp-img{
+	             width:240px;
+	             height:240px;
+	           }
+	         .ubermenu-content-block,.ubermenu-custom-content {
+			    color: <?php echo ampforwp_sanitize_color($menu_element_color); ?>;
+			    line-height: 2;
+			    padding: 0px <?php echo esc_html($cont_padding); ?>;
+			    width: <?php echo esc_html($ubermenu_cont_wth); ?>;
+	          } 
+       <?php 
+      } // ubermenu css ends here.
  } // function ends
