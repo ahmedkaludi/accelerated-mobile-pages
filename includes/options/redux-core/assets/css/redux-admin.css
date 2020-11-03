@@ -1518,3 +1518,15 @@ div#section-ampforwp-ads-section, table#section-table-ampforwp-ads-section{
         grid-template-columns: 1fr 1fr;
     }
 }
+
+doc-cnt h1 , .doc-cnt p{
+    color: #000;
+}
+.doc-cnt p {
+    font-size: 15px;
+    line-height: 25px;
+    padding: 0;
+}
+.doc-cnt .buy{
+    background: #000;
+}
