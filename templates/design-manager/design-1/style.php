@@ -80,34 +80,36 @@ $icon_url = ampforwp_font_url($icon_url);
 ?>
 #statcounter{width: 1px;height:1px;}
 .amp-wp-article amp-addthis{bottom: -38px;margin-left: 6px;}
-<?php if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( ampforwp_get_setting('amp_font_selector') == 1 || empty(ampforwp_get_setting('amp_font_selector') ) ) ) {?> 
+<?php if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( ampforwp_get_setting('amp_font_selector') == 1 || empty(ampforwp_get_setting('amp_font_selector') ) ) ) {
+      $font_path = ampforwp_fonts_path();
+      ?>
 @font-face {
   font-family: 'Merriweather';
   font-display: swap;
   font-style: normal;
   font-weight: 400;
-    src:  local('Merriweather'), local('Merriweather-Regular'), url('<?php echo esc_url($icon_url) ?>fonts/Merriweather-Regular.ttf');
+    src:  local('Merriweather'), local('Merriweather-Regular'), url('<?php echo $font_path ?>/Merriweather-Regular.ttf');
 }
 @font-face {
   font-family: 'Merriweather';
   font-display: swap;
   font-style: normal;
   font-weight: 700;
-    src:  local('Merriweather Bold'), local('Merriweather-Bold'), url('<?php echo esc_url($icon_url) ?>fonts/Merriweather-Bold.ttf');
+    src:  local('Merriweather Bold'), local('Merriweather-Bold'), url('<?php echo $font_path ?>/Merriweather-Bold.ttf');
 }
 @font-face {
     font-family: 'Merriweather';
     font-display: swap;
     font-style: italic;
     font-weight: 400;
-    src:  local('Merriweather Italic'), local('Merriweather-Italic'), url('<?php echo esc_url($icon_url) ?>fonts/Merriweather-Italic.ttf');
+    src:  local('Merriweather Italic'), local('Merriweather-Italic'), url('<?php echo $font_path ?>/Merriweather-Italic.ttf');
 }
 @font-face {
   font-family: 'Merriweather';
   font-display: swap;
   font-style: italic;
   font-weight: 700;
-    src:  local('Merriweather Bold Italic'), local('Merriweather-BoldItalic'), url('<?php echo esc_url($icon_url) ?>fonts/Merriweather-BoldItalic.ttf');
+    src:  local('Merriweather Bold Italic'), local('Merriweather-BoldItalic'), url('<?php echo $font_path ?>/Merriweather-BoldItalic.ttf');
 }
 <?php } // fonts condition ends here ?>
 .clearfix, .cb{clear:both}

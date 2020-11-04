@@ -698,7 +698,45 @@ function amp_author_meta( $args ) {
      } 
 	 
 }
-
+function ampforwp_copy_fonts($src, $dst) {  
+	$files_arr = array('Poppins-Bold.ttf','Poppins-Light.ttf','Poppins-Medium.ttf','Poppins-Regular.ttf','Poppins-SemiBold.ttf','icomoon.ttf','RobotoSlab-Bold.ttf','RobotoSlab-Regular.ttf','PT_Serif-Web-Bold.ttf','PT_Serif-Web-Regular.ttf','Merriweather-Bold.ttf','Merriweather-BoldItalic.ttf','Merriweather-Italic.ttf','Merriweather-Regular.ttf');
+    $dir = opendir($src);  
+    mkdir($dst);  
+    while( $file = readdir($dir) ) {  
+        if (( $file != '.' ) && ( $file != '..' )) {  
+            if ( is_dir($src . '/' . $file) )  
+            {  
+                ampforwp_copy_fonts($src . '/' . $file, $dst . '/' . $file);  
+            }  
+            else {  
+                if (in_array($file, $files_arr)){
+                	copy($src . '/' . $file, $dst . '/' . $file);  
+            	}  
+            }  
+        }  
+    }  
+    closedir($dir); 
+}
+function ampforwp_fonts_path() {  
+	$design = "swift";
+	if(ampforwp_get_setting('amp-design-selector')!=4){
+		$design = "design-".ampforwp_get_setting('amp-design-selector');
+	}
+	$fonts_upload = wp_upload_dir();
+	$fonts_upload_dir = $fonts_upload['basedir'];
+	$fonts_upload_dir = $fonts_upload_dir . '/ampforwp-fonts/' .ampforwp_design_selector();
+	if (! is_dir($fonts_upload_dir)) {
+	    wp_mkdir_p( $fonts_upload_dir );
+		$src = AMPFORWP_PLUGIN_DIR."templates/design-manager/$design/fonts";
+		ampforwp_copy_fonts($src, $fonts_upload_dir);
+	}
+	if (file_exists($fonts_upload_dir)) {
+	    $font_path = $fonts_upload_dir;
+	}else{
+	    $font_path = AMPFORWP_PLUGIN_DIR."templates/design-manager/$design/" . 'fonts';
+	}
+	return $font_path;
+}
 // amp-animation CSS #2819
 add_action('amp_post_template_css','ampforwp_backtotop_global_css');
 function ampforwp_backtotop_global_css(){?>
