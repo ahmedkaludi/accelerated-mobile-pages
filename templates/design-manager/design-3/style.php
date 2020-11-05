@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   // Get template colors
   $header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
   $header_color            = $get_customizer->get_customizer_setting( 'header_color' );
-  $font_path = ampforwp_fonts_path();
+
   $icon_url = plugin_dir_url(__FILE__);
   $ds = ampforwp_get_setting('amp-design-selector');
   $design = "swift";
@@ -81,14 +81,14 @@ ol, ul {list-style-position: inside;}
     font-display: swap;
     font-style: normal;
     font-weight: 400;
-    src:  local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url('<?php echo $font_path.'/robotoslab/RobotoSlab-Regular.ttf'; ?>');
+    src:  local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url('<?php echo esc_url(ampforwp_font_url($icon_url.'fonts/robotoslab/RobotoSlab-Regular.ttf')); ?>');
 }
 @font-face {
     font-family: 'Roboto Slab';
     font-display: swap;
     font-style: normal;
     font-weight: 700;
-    src:  local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url('<?php echo $font_path .'/robotoslab/RobotoSlab-Bold.ttf'; ?>');
+    src:  local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url('<?php echo esc_url(ampforwp_font_url($icon_url.'fonts/robotoslab/RobotoSlab-Bold.ttf')); ?>');
 }
 <?php } // Primary Fonts ends here
 if(1==ampforwp_get_setting('content-font-family-enable') && ( ampforwp_get_setting('amp_font_selector_content_single') == 1 || empty(ampforwp_get_setting('amp_font_selector_content_single') ) ) ) {?>
@@ -684,11 +684,11 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
 @font-face {
   font-family: 'icomoon';
   font-display: swap;
-  src:  url('<?php echo $font_path .'/icomoon.eot'; ?>');
-  src:  url('<?php echo $font_path .'/icomoon.eot'; ?>') format('embedded-opentype'),
-    url('<?php echo $font_path .'/icomoon.ttf'; ?>') format('truetype'),
-    url('<?php echo $font_path .'/icomoon.woff'; ?>') format('woff'),
-    url('<?php echo $font_path .'/icomoon.svg'; ?>') format('svg');
+  src:  url('<?php echo esc_url($icon_url .'fonts/icomoon.eot'); ?>');
+  src:  url('<?php echo esc_url($icon_url .'fonts/icomoon.eot'); ?>') format('embedded-opentype'),
+    url('<?php echo esc_url($icon_url .'fonts/icomoon.ttf'); ?>') format('truetype'),
+    url('<?php echo esc_url($icon_url .'fonts/icomoon.woff'); ?>') format('woff'),
+    url('<?php echo esc_url($icon_url .'fonts/icomoon.svg'); ?>') format('svg');
   font-weight: normal;
   font-style: normal;
 }
