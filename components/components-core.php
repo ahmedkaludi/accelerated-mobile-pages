@@ -747,12 +747,12 @@ function ampforwp_backtotop_global_css(){?>
             table a:link { font-weight: bold; text-decoration: none; }
             table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
             table a:active, table a:hover { color: #bd5a35; text-decoration: underline; }
-            table { font-family: Arial, Helvetica, sans-serif; color: #666; font-size: 15px; text-shadow: 1px 1px 0px #fff; background: #eee; margin: 0px; width: 95%; }
+            table { font-family: Arial, Helvetica, sans-serif; color: #666; font-size: 15px; text-shadow: 1px 1px 0px #fff; background: inherit; margin: 0px; width: 95%; }
             table th { padding: 21px 25px 22px 25px; border-top: 1px solid #fafafa; border-bottom: 1px solid #e0e0e0; background: #ededed; }
             table th:first-child { text-align: left; padding-left: 20px; }
             table tr:first-child th:first-child { -webkit-border-top-left-radius: 3px; border-top-left-radius: 3px; }
             table tr:first-child th:last-child { -webkit-border-top-right-radius: 3px; border-top-right-radius: 3px; }
-            table tr { text-align: center; padding-left: 20px; }
+            table tr { text-align: center; padding-left: 20px; border: 2px solid #eee;}
             table td:first-child {padding-left: 20px; border-left: 0; }
             table td { padding: 18px; border-top: 1px solid #ffffff; border-bottom: 1px solid #e0e0e0; border-left: 1px solid #e0e0e0; background: #fafafa; background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));  }
             table tr.even td { background: #f6f6f6; background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));  }

@@ -572,12 +572,12 @@ table { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap
 table a:link { font-weight: bold; text-decoration: none; }
 table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
 table a:active, table a:hover { color: #bd5a35; text-decoration: underline; }
-table { color: #666; font-size: 12px; text-shadow: 1px 1px 0px #fff; background: #eee; margin: 0px; width: 100%; }
+table { color: #666; font-size: 12px; text-shadow: 1px 1px 0px #fff; background: inherit; margin: 0px; width: 100%; }
 table th { padding: 21px 25px 22px 25px; border-top: 1px solid #fafafa; border-bottom: 1px solid #e0e0e0; background: #ededed;  }
 table th:first-child { text-align: left; padding-left: 20px; }
 table tr:first-child th:first-child {border-top-left-radius: 3px; }
 table tr:first-child th:last-child {border-top-right-radius: 3px; }
-table tr { text-align: center; padding-left: 20px; }
+table tr { text-align: center; padding-left: 20px;border: 2px solid #eee; }
 table td:first-child { text-align: left; padding-left: 20px; border-left: 0; }
 table td { padding: 18px; border-top: 1px solid #ffffff; border-bottom: 1px solid #e0e0e0; border-left: 1px solid #e0e0e0; background: #fafafa;  }
 table tr.even td { background: #f6f6f6; }
