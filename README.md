@@ -200,7 +200,6 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvement: Added code improvement in Tag base remover and category base remover #4664
 * Improvement: Added UberMenu 3 Compatiblity #4732
 * Improvement: Added filter to overwrite the scripts #4642
-* Improvement: Moved the fonts folder to upload folder #4807
 * Fixed: Style amp-custom unterminated comment Error on AMP #4792
 * Fixed: Proper styling of Header right side icons in Design 2 #3935
 * Fixed: Revolution Slider not working in AMP #4669
