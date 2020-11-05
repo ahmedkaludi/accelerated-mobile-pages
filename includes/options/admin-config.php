@@ -688,6 +688,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('ultimate-membership-pro-compatibility-for-amp/ultimate-membership-pro-compatibility-for-amp.php')? 1 : 2),
                         ), 
                         array(
+                            'name'=>'Paid Memberships PRO for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Paid Memberships PRO Support in AMP',
+                            'img_src'=> AMPFORWP_IMAGE_DIR . '/paid-memberships-pro-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/paid-memberships-pro-for-amp/',
+                            'plugin_active_path'=> 'paid-memberships-pro-for-amp/paid-memberships-pro-for-amp.php',
+                            'item_name'=>'Paid Memberships PRO for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('paid-memberships-pro-for-amp/paid-memberships-pro-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Polls for AMP',
                             'class'=>'new-ext',
                             'desc'=>'Add Polls Support in AMP',
@@ -6420,6 +6432,14 @@ $single_page_options = array(
                esc_html__('Enable this option to show lightbox for images in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-lightbox-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
 
            ),
+            array(
+              'id'       => 'ampforwp-amp-video-lightbox',
+              'type'     => 'switch',
+              'default'  =>  '0',
+              'title'    => esc_html__('Lightbox for Youtube Video', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+               esc_html__('Enable this option to show lightbox for Youtube in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-lightbox-for-youtube-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
+            ),
            // video-docking 
            array(
               'id'       => 'ampforwp-amp-video-docking',
@@ -8399,6 +8419,12 @@ if(!function_exists('ampforwp_create_controls_for_plugin_manager')){
 }
 }
 Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extensions/demolink_image_select' );
+// Documentation Section
+    Redux::setSection( $opt_name, array(
+        'title'      => esc_html__( 'Documentation', 'accelerated-mobile-pages' ),
+        'subsection' => false,
+        'desc' => '<div class="fp-cnt doc-cnt"><h1>'.esc_html__('Documentation','accelerated-mobile-pages').'</h1><p>'.esc_html__('Without documentation, software is just a black box that aren’t anywhere near as useful as they could be because their inner workings are hidden from those who need them. Documentation turns your software into a glass box by explaining to users as well as developers how it operates.','accelerated-mobile-pages').'</p><a class="buy" href="https://ampforwp.com/tutorials/" target="_blank">'.esc_html__('View Documentation','accelerated-mobile-pages').'</a></div>',
+    ) );
 /*
 * <--- END SECTIONS
 */

@@ -330,6 +330,11 @@ class AMP_Post_Template {
 			if(function_exists('ampforwp_add_fallback_element')){
 				$amp_con = ampforwp_add_fallback_element($amp_con,'amp-img');
 			}
+			if(ampforwp_get_setting('ampforwp-amp-video-lightbox')==true){
+				if(function_exists('ampforwp_video_lightbox')){
+					$amp_con = ampforwp_video_lightbox($amp_con);
+				}
+			}
 			$this->add_data_by_key( 'post_amp_content', $amp_con);
 			$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
 			$this->merge_data_for_key( 'post_amp_styles', $amp_content->get_amp_styles() );
