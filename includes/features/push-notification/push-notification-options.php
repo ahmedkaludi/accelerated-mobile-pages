@@ -171,7 +171,8 @@ function ampforwp_push_notification_options($opt_name){
                        'type' => 'section',
                        'title' => esc_html__('Positioning', 'accelerated-mobile-pages'),
                        'required' => array(
-                                        array( 'amp-use-pot', '=' , 0 )
+                                        array( 'amp-use-pot', '=' , 0 ),
+                                        array( 'ampforwp-web-push', '!=' , 0 )
                                     ),   
                        'indent' => true,
                        'layout_type' => 'accordion',
@@ -222,6 +223,7 @@ function ampforwp_push_notification_options($opt_name){
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
+                        'required'=> array( 'ampforwp-web-push', '!=' , 0 ),
                     ),
                     array(
                        'id'       => 'ampforwp-onesignal-translator-subscribe',
