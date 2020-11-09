@@ -40,6 +40,9 @@ function ampforwp_add_admin_styling($hook_suffix){
         wp_dequeue_script( 'insert-post-adschart-admin' );
         remove_all_actions('admin_notices');
         remove_all_actions('all_admin_notices');
+        if(class_exists('WC_Ecpay_Apple_Pay')){
+            remove_all_actions('admin_footer');
+        }
         add_action('admin_notices', 'ampforwp_dev_mode_notice');
         add_action('admin_notices', 'ampforwp_plugins_manager_notice');
         add_action('admin_notices', 'ampforwp_ampwptheme_notice');
