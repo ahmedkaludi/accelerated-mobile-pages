@@ -17,10 +17,10 @@ if(!function_exists("ampforwp_module_templates")){
 		if('post-new.php' == $pagenow || 'post.php' == $pagenow || 'index.php' == $pagenow){ 
 			$checkpb = true; 
 		}
-		if (is_dir($dir)) {
+		if (is_dir($dir) && $checkpb) {
 		    if ($dh = opendir($dir)) {
 		        while (($file = readdir($dh)) !== false) {
-		        	if(is_file($dir.$file) && strpos($file, '-module.php') == true && $checkpb){
+		        	if(is_file($dir.$file) && strpos($file, '-module.php') == true ){
 		        		$moduleTemplate[str_replace("-module.php", "", $file)] = include $dir.$file;
 		        	}
 		        }
