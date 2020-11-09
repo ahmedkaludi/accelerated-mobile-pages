@@ -130,7 +130,7 @@ function amp_title(){
 }
 
 // Excerpt
-function amp_excerpt( $no_of_words=15 ) {
+function amp_excerpt( $no_of_words=260 ) {
 	global $post;
 	$post_id = '';
 	$no_of_words = (int) $no_of_words;
@@ -139,8 +139,6 @@ function amp_excerpt( $no_of_words=15 ) {
 		<p><?php 
 			 if ( has_excerpt() ) {
 				$content = get_the_excerpt();
-			} else {
-				$content = get_the_content();
 			}
 			/* `wp_trim_words` will strip all the tags 
 			   as it has `wp_strip_all_tags` inside to clean */
