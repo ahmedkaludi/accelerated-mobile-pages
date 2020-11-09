@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.67
+Stable tag: 1.0.68
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,17 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.68 (9th November 2020) =
+* Fixed: Validation error occurs when input type image is added #4785
+* Fixed: Featured images are not showing when "Enable lazy load images" option is enabled in the "DEUS" Theme #4710
+* Fixed: AMP Push Notification - Dropdown issue #4812
+* Fixed: Italic style caption of gallery #4806
+* Fixed: The canonical links are not generating for the coupon store when YOAST Plugin is active with AMPFORWP #4811
+* Fixed: Content not displayed in AMP post/pages with plain permalink #4814
+* Fixed: Tables created with 2 columns displaying 1 extra column on mobile view #4765
+* Fixed: Content appearing in excerpt on single post #4798
+* Fixed: Code improvment for amp pagebuilder's category-module #4660
 
 = 1.0.67 (4th November 2020) =
 * Improvement: Optimize Pagespeed score by implimenting AMP video lightbox #4531
