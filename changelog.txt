@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.68.1 (10th November 2020) =
+* Fixed: Missing amphtml on product pages #4822
+* Fixed: Debug warnings #4821
+
 = 1.0.68 (9th November 2020) =
 * Fixed: Validation error occurs when input type image is added #4785
 * Fixed: Featured images are not showing when "Enable lazy load images" option is enabled in the "DEUS" Theme #4710
