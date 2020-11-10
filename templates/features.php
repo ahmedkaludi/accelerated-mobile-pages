@@ -288,7 +288,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 		if (!ampforwp_is_home() && !ampforwp_is_front_page() && !is_category() && !is_tag() && !is_singular( array('page', 'attachment', 'post'))){
 			global $post_type;
-			if (empty(ampforwp_get_setting('ampforwp-custom-type'))) {
+			if (empty(ampforwp_get_setting('ampforwp-custom-type')) && !function_exists('amp_woocommerce_pro_add_woocommerce_support')) {
 				return;
 			}
 			if(is_array(ampforwp_get_setting('ampforwp-custom-type')) && $post_type != ampforwp_get_setting('ampforwp-custom-type')[0] && !function_exists('amp_woocommerce_pro_add_woocommerce_support')){
