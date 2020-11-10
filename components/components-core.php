@@ -132,7 +132,7 @@ function amp_title(){
 // Excerpt
 function amp_excerpt( $no_of_words=260 ) {
 	global $post;
-	$post_id = '';
+	$post_id = $content = '';
 	$no_of_words = (int) $no_of_words;
 	$post_id = ampforwp_get_the_ID();
 	if ( $post_id != null && true == ampforwp_get_setting('enable-excerpt-single') ) { ?>
