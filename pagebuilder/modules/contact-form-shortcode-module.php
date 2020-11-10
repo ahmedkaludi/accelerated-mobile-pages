@@ -19,7 +19,7 @@ $output = '
 {{ifend_condition_form_type_ninja_form}}
 ';
 
-$css = '';
+$css = $args = '';
 $formSupported = array();
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if(is_plugin_active('amp-cf7/amp-cf7.php')){
