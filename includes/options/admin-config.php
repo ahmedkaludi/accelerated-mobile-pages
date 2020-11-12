@@ -4202,7 +4202,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'ampforwp-infinite-scroll',
                         'type'     => 'switch',
                         'title'    => esc_html__('Infinite Scroll (Experimental)', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__('Read more about it here:', 'accelerated-mobile-pages'), esc_url('https://www.ampproject.org/docs/reference/components/amp-next-page'), esc_html__('amp-next-page','accelerated-mobile-pages')),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__('Read more about it', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/infinite-scroll-feature-in-amp/'), esc_html__('here:','accelerated-mobile-pages')),
                         'default' => false,
                     ),
                     $newspaper_theme_check,
