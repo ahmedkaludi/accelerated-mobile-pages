@@ -7190,7 +7190,8 @@ function ampforwp_bulktool_takeover($data){
     $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
   }
 	$bulk_option = ampforwp_get_setting('amp-pages-meta-default');
-	if(is_page() && $bulk_option == "hide" && ( true == ampforwp_get_setting('ampforwp-amp-takeover') || true == ampforwp_get_setting('ampforwp-amp-convert-to-wp') || $mob_pres_link==true)){
+	$ampforwp_stored_meta = get_post_meta( ampforwp_get_the_ID());
+	if(is_page() && $bulk_option == "hide" && !isset($ampforwp_stored_meta['ampforwp-amp-on-off']) && ( true == ampforwp_get_setting('ampforwp-amp-takeover') || true == ampforwp_get_setting('ampforwp-amp-convert-to-wp') || $mob_pres_link==true)){
 		remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 		return false; 
 	}
