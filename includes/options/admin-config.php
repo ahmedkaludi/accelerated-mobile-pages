@@ -1421,7 +1421,9 @@ if( in_array( 'administrator', $user->roles ) ) {
 }elseif( in_array( 'author', $user->roles ) && in_array('author', $amp_access)){
     $permissions = 'edit_posts';
 }
-
+if (class_exists('WPSEO_Options') && in_array( 'wpseo_manager', $user->roles ) && in_array('wpseo_manager', $amp_access)) {
+    $permissions = 'edit_pages'; 
+}
 $args = array(
     // TYPICAL -> Change these values as you need/desire
     'opt_name'              => 'redux_builder_amp', // This is where your data is stored in the database and also becomes your global variable name.
