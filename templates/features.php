@@ -9156,3 +9156,16 @@ function ampforwp_amp_bind_script($data) {
 	}	
 	return $data;	
 }
+
+add_filter('wpseo_debug_json_data','ampforwp_remove_homepage_breadcrumb');
+function ampforwp_remove_homepage_breadcrumb($data){
+	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home()) {
+		if (isset($data["@graph"][1]["breadcrumb"])) {
+			unset($data["@graph"][1]["breadcrumb"]);
+		}
+		if ($data["@graph"][2]["@type"] == 'BreadcrumbList') {
+			unset($data["@graph"][2]);
+		}
+	}
+	return $data;
+}
