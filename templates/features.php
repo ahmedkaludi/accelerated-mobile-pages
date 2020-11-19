@@ -9157,14 +9157,22 @@ function ampforwp_amp_bind_script($data) {
 	return $data;	
 }
 
+add_filter('yoast_seo_development_mode','ampforwp_yoast_seo_development');
+function ampforwp_yoast_seo_development($dev){
+	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home()) {
+		$dev = true;
+	}
+	return $dev;
+}	
+
 add_filter('wpseo_debug_json_data','ampforwp_remove_homepage_breadcrumb');
 function ampforwp_remove_homepage_breadcrumb($data){
 	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home()) {
-		if (isset($data["@graph"][1]["breadcrumb"])) {
-			unset($data["@graph"][1]["breadcrumb"]);
+		if (isset($data["@graph"][2]["breadcrumb"])) {
+			unset($data["@graph"][2]["breadcrumb"]);
 		}
-		if ($data["@graph"][2]["@type"] == 'BreadcrumbList') {
-			unset($data["@graph"][2]);
+		if ($data["@graph"][3]["@type"] == 'BreadcrumbList') {
+			unset($data["@graph"][3]);
 		}
 	}
 	return $data;
