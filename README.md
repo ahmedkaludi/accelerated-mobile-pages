@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.5
-Stable tag: 1.0.67
+Stable tag: 1.0.68.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,21 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.68.1 (10th November 2020) =
+* Fixed: Missing amphtml on product pages #4822
+* Fixed: Debug warnings #4821
+
+= 1.0.68 (9th November 2020) =
+* Fixed: Validation error occurs when input type image is added #4785
+* Fixed: Featured images are not showing when "Enable lazy load images" option is enabled in the "DEUS" Theme #4710
+* Fixed: AMP Push Notification - Dropdown issue #4812
+* Fixed: Italic style caption of gallery #4806
+* Fixed: The canonical links are not generating for the coupon store when YOAST Plugin is active with AMPFORWP #4811
+* Fixed: Content not displayed in AMP post/pages with plain permalink #4814
+* Fixed: Tables created with 2 columns displaying 1 extra column on mobile view #4765
+* Fixed: Content appearing in excerpt on single post #4798
+* Fixed: Code improvment for amp pagebuilder's category-module #4660
+
 = 1.0.67 (4th November 2020) =
 * Improvement: Optimize Pagespeed score by implimenting AMP video lightbox #4531
 * Improvement: Added Paid Memberships PRO for AMP Extension #4737
@@ -205,15 +220,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Revolution Slider not working in AMP #4669
 * Fixed: Additional characters at the end of footer text in Design Two #4805
 * Fixed: Related thumbnail image title is getting break and leading to the validation error #4804
-
-= 1.0.66.3 (29th October 2020) =
-* Fixed: Content not visible in AMP Takeover #4744
-
-= 1.0.66.2 (28th October 2020) =
-* Fixed: Content not visible after 1.0.66 update #4744
-
-= 1.0.66.1 (26th October 2020) =
-* Fixed: Validation error due to amp-web-push AMP component script #4796
-* Fixed: Validation error due to amp-fx-flying-carpet AMP component script #4794
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
