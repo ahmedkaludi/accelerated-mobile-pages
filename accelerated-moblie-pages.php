@@ -1285,6 +1285,9 @@ function ampforwp_vendor_is_amp_endpoint(){
 	global $pagenow;
 	if ( ! function_exists('amp_activate') && ! function_exists('is_amp_endpoint' ) && 'plugins.php' !== $pagenow ) {
 		function is_amp_endpoint(){
+			if(true == ampforwp_get_setting('ampforwp-amp-takeover')){
+				return true;
+			}
 			return false !== get_query_var( AMP_QUERY_VAR, false );
 		}
 	}
