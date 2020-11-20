@@ -285,7 +285,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		if ( is_home() && ! ampforwp_is_blog() && !ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
 			return;
 		}
-		if (!ampforwp_is_home() && !ampforwp_is_front_page() && !ampforwp_is_blog() && !is_category() && !is_tag() && !is_singular( array('page', 'attachment', 'post'))){
+		if (!ampforwp_is_home() && !ampforwp_is_front_page() && !ampforwp_is_blog() && !is_category() && !is_tag() && !is_singular( array('page', 'attachment', 'post')) && !function_exists('amp_woocommerce_pro_add_woocommerce_support')){
 			global $post_type;
 			if (empty(ampforwp_get_setting('ampforwp-custom-type'))) {
 				return;
@@ -4312,6 +4312,9 @@ function ampforwp_home_archive_canonical_setter(){
 			return ;
 		}
 		if(is_search()){
+			return;
+		}
+		if(is_tax()){
 			return;
 		}
 		remove_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
@@ -8839,6 +8842,15 @@ function ampforwp_extra_category_fields( $tag ) {
 	<?php }?>
 </tr>
 <?php
+}
+//4710 Added support to load featured image for lazy load option of Dues theme.
+if(function_exists('wpg_lazyload_image_attributes')){
+   add_action('wp','ampforwp_dues_theme_load_featured_image');
+}
+function ampforwp_dues_theme_load_featured_image(){
+	if(ampforwp_is_amp_endpoint()){
+     remove_filter( 'wp_get_attachment_image_attributes', 'wpg_lazyload_image_attributes', 8, 3 );
+	}
 }
 if(function_exists('rocket_activation')){
 	add_filter("ampforwp_the_content_last_filter",'ampforwp_wp_rocket_compatibility',25);

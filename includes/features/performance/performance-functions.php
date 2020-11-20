@@ -33,6 +33,13 @@ function ampforwp_minify_html_output($content_buffer){
     if(preg_match('/<amp-story-player(.*?)<\/amp-story-player>/s', $content_buffer)){
         $content_buffer = preg_replace('/<amp-story-player(.*?)<\/amp-story-player>/s', '<amp-story-player width="360" height="600" $1</amp-story-player>', $content_buffer);
     }
+    if(preg_match('/<input(.*?)type="image"(.*?)>/', $content_buffer)){
+        $content_buffer = preg_replace('/<input(.*?)type="image"(.*?)src="(.*?)"(.*?)>/', '<amp-img src="$3" layout="responsive" width="150" height="50" style="width:150px;height:50px;"></amp-img>', $content_buffer);
+    }
+    if(preg_match('/<figcaption class="ampforwp-blocks-gallery-caption">(.*?)<\/figcaption>/', $content_buffer)){
+        $content_buffer = preg_replace('/&lt;/', '<', $content_buffer);
+        $content_buffer = preg_replace('/&gt;/', '>', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       

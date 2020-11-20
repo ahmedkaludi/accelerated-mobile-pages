@@ -15,7 +15,7 @@ global $redux_builder_amp; ?>
 			<?php amp_title(); ?>
 			<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
 				<div class="tl-exc">
-				   <?php amp_excerpt(25); ?>
+				   <?php amp_excerpt(); ?>
 			    </div>
 			<?php } ?>
 		</div>
@@ -328,7 +328,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 						<?php amp_title(); ?>
 						<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
 							<div class="tl-exc">
-							   <?php amp_excerpt(20); ?>
+							   <?php amp_excerpt(); ?>
 						    </div>
 						<?php } ?>
 						<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>

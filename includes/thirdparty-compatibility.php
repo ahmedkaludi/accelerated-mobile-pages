@@ -1205,6 +1205,9 @@ function ampforwp_is_amp_inURL($url){
 	if (ampforwp_get_setting('ampforwp-amp-takeover')) {
 		return true;
 	}
+	if(get_option('permalink_structure') == '' && isset($_GET['amp'])){
+        return true;
+    }
     $urlArray = explode("/", $url);
     if( !in_array( AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
         return false;

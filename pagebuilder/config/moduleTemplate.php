@@ -12,7 +12,12 @@ if(!function_exists("ampforwp_module_templates")){
 		global $moduleTemplate, $layoutTemplate;
 
 		$dir = AMP_PAGE_BUILDER.'/modules/';
-		if (is_dir($dir)) {
+		$checkpb = false;
+		global $pagenow;
+		if('post-new.php' == $pagenow || 'post.php' == $pagenow || 'index.php' == $pagenow){
+			$checkpb = true; 
+		}
+		if (is_dir($dir) && $checkpb) {
 		    if ($dh = opendir($dir)) {
 		        while (($file = readdir($dh)) !== false) {
 		        	if(is_file($dir.$file) && strpos($file, '-module.php') == true){
