@@ -6020,6 +6020,9 @@ function ampforwp_is_non_amp( $type="" ) {
 		if(get_query_var( 'robots' )){
       		return; 
     	}
+    	if ( function_exists('is_embed') && is_embed() ){
+            return;
+        }
     	if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
 		    return false;
 		}
