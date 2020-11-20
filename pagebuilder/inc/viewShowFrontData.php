@@ -427,7 +427,12 @@ function amp_pagebuilder_content_styles(){
 			 						continue;
 			 					}
 
+			 					$repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater']['front_css'];
+
 			                    if($moduleField['content_type']=='css'){
+
+			                    	$repeaterFrontCss = str_replace("{{module-class}}", '.ap_m_'.$contentArray['cell_id'], $repeaterFrontCss ); 
+
 			                    	$repeaterFrontCss = str_replace('{{repeater-module-class}}', $moduleField['name'].'_'.$repeaterVarIndex, $repeaterFrontCss);
 			                    	$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
 				                    if(is_array($replace)){
