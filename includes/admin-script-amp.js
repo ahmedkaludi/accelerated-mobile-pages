@@ -12,4 +12,7 @@ jQuery(document).ready(function($) {
         var checkBoxes = $(this).children('input:radio')
          checkBoxes.prop("checked", "true");
     });
+    $("#amp-close").click(function(){
+        $(".wrapper-discount").remove();
+    });
 });
