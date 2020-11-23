@@ -2098,3 +2098,31 @@ fieldset#redux_builder_amp-ampforwp-onesignal-positioning {
 #amp-show-hide-tax .hide-show-amp-tax{
     cursor: pointer;
 }
+.wrapper-discount {
+    position: sticky;
+    bottom: 1rem;
+    left: 85%;
+    background: linear-gradient(to right,#eb3349,#f14f35);
+    padding: 15px;
+    border-radius: 50px;
+    display: inline-flex;
+}
+.admin_discount_btn{
+    font-weight: 500;   
+    font-size: 15px;
+    color: #ddd;
+    text-decoration: none; 
+    margin-right: 15px;
+}
+.admin_discount_btn:hover{
+    color: #fff;
+}
+span#amp-close {    
+    color: #fff;
+    background: #000;
+    border-radius: 50%;
+    padding: 1px 10px;
+    margin-top: -2px;
+    height: 20px;
+    cursor: pointer;
+}
