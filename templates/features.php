@@ -9188,7 +9188,6 @@ add_action('admin_footer', 'ampforwp_admin_discount_btn');
 
 function ampforwp_remove_discount(){     
     $result = update_option( "ampforwp_remove_discount", 'remove');
-    var_dump($result);die;
     if($result){
         echo json_encode(array('status'=>'t'));            
     }else{    
