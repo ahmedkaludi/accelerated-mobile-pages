@@ -15,4 +15,13 @@ jQuery(document).ready(function($) {
     $("#amp-close").click(function(){
         $(".wrapper-discount").remove();
     });
+    $("#amp-close").click(function(){
+        url: ajaxurl;
+        var data = {
+            action: 'ampforwp_dismiss_discount_btn',
+        };
+        $.post(ajaxurl, data, function(response) {
+             $(".wrapper-discount").remove();
+        });
+    });
 });

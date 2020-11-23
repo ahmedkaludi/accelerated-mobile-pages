@@ -48,9 +48,12 @@ body #toplevel_page_amp_options .wp-menu-image{
 .admin_discount_btn{
     font-weight: 500;   
     font-size: 15px;
-    color: #fff;
+    color: #ddd;
     text-decoration: none; 
     margin-right: 15px;
+}
+.admin_discount_btn:hover{
+    color: #fff;
 }
 span#amp-close {    
     color: #fff;

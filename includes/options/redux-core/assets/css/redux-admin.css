@@ -823,10 +823,15 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     color: #fff;
     font-weight: 600;
 }
+.fp-cnt h2{
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+}
 .fp-cnt p{
     margin-top: 5px;
     color: #fff;
-    font-size:23px;
+    font-size:20px;
     padding: 0 100px;
      line-height: 1.4;
 }
@@ -1546,7 +1551,7 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
     width: 100px;
     position: absolute;
     left: 0px;
-    top: 3px;
+    top: 0px;
 }   
 #toplevel_page_amp_options > a{ 
     position: relative; 

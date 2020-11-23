@@ -9178,16 +9178,16 @@ function ampforwp_remove_homepage_breadcrumb($data){
 	return $data;
 }
 function ampforwp_admin_discount_btn() {
-$result = get_option( "ampforwp_remove_discount");
-if ($result != 'remove') {?>
+$result = get_option( "ampforwp_dismiss_discount_btn");
+if ($result == 'removed') {?>
 	<div class="wrapper-discount">
-	<a class="admin_discount_btn" href="http://localhost/wordpress/wp-admin/admin.php?page=amp_options&tab=1#upgrade"><span>40% OFF on AMPforWP</span></a>
+	<a class="admin_discount_btn" href="<?php echo admin_url('admin.php?page=amp_options&tab=31'); ?>"><span>50% OFF on AMPforWP</span></a>
 	<span id='amp-close'>x</span></div>
 <?php } }
 add_action('admin_footer', 'ampforwp_admin_discount_btn');
 
-function ampforwp_remove_discount(){     
-    $result = update_option( "ampforwp_remove_discount", 'remove');
+function ampforwp_dismiss_discount_btn(){     
+    $result = update_option( "ampforwp_dismiss_discount_btn", 'removed');
     if($result){
         echo json_encode(array('status'=>'t'));            
     }else{    
@@ -9195,4 +9195,4 @@ function ampforwp_remove_discount(){
     }   
     wp_die();                
 }
-add_action('wp_ajax_ampforwp_remove_discount', 'ampforwp_remove_discount');
+add_action('wp_ajax_ampforwp_dismiss_discount_btn', 'ampforwp_dismiss_discount_btn');
