@@ -2106,7 +2106,7 @@ fieldset#redux_builder_amp-ampforwp-onesignal-positioning {
     background: linear-gradient(to right,#eb3349,#f14f35);
     padding: 15px;
     border-radius: 5px;
-    text-align: center;
+    text-align: right;
     display: inline-block;
 }
 .wrapper-discount:before {
@@ -2127,6 +2127,12 @@ fieldset#redux_builder_amp-ampforwp-onesignal-positioning {
     left: -5px;
     width: 50%;
 }
+.offer-img-24 {
+    position: absolute;
+    top: -15px;
+    left: -75px;
+    width: 100px;
+}
 span.offer-text-top {
     font-size: 12px;
     text-transform: uppercase;
@@ -2137,6 +2143,11 @@ span.offer-text-top {
 span.offer-text-bm {
     font-size: 20px;
     font-weight: 600;
+}
+span.offer-text-bm-24 {
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 30px;
 }
 span#amp-close {
    color: #ececec;

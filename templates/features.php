@@ -9110,18 +9110,25 @@ function ampforwp_video_lightbox_css(){
 .amp-video-play-on-image{cursor:pointer;margin:auto;width:56px;height:56px;-webkit-border-radius:50%;border-radius:50%;background-color:rgba(0,0,0,.2);background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAAY1BMVEVHcEz///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////80LMUcAAAAIHRSTlMA1d4MSXeg9glf6yEq4hfnnr7Z8qm5U/3Jm1pwFJcmBYTgJ9QAAAIjSURBVGje7VnJdoMwDFSMHVMSQljCklX//5U99NQHGEm22gtz9tPAWNYKsGPHDiou1h3rpvDD4Iumvjp7SWg86yeDM5ipz5KYt53HFfjORn+8KzEI88iizLe4icLlUvtfFZJQ3kXmTzWScTsJPr9FBtovpvn8iExMrJu4jMjGyHh67xIFMOSLOFcoQnUmfr/QPmL1JulfohiGcA/5iBEYt33piFG4br4vjMTGizu1sQRt2FlrjMZNVSBExEBszaoUBOW6JzlMArf6A0XIOzyZoMgkPwDnA5nhsWz/E4wRnBxhVuoTDBMAkGVarma6TQKyTN3iFfttAqJMg1/y1B4JBFSZ+gWCiUZAk+m1QGCIBCSZmoVEhlQCkkxPppP+JiDIZNlxiFmYOXaqnEX2sEwTO9XMq6egTPXsfMMlCMt0mB0v2ARBmYrZYS8gCMjkZ2cHCcG6TMPfE6hLpH7J6m6a+KHN67urdqhQD3bq4Vo94ainTP2kn7RssbqFF7a5buk4dP9T/Ib9KEH5Dg/lBkS/hVJvAiEvU9gPtLFwT0HQh1r9m/IoQX8YEj+t2JwCX+PsT7ojtWH8EIaCJmIo+FQeaxJHs9LBbPkGIt4ilQxjxi8ajj+BgZztra8P8MBcUAi2LCdGXJKsWADgTozeppeuoXJXEPKXfM0FANnDaC7qtlaNbfyq8Uep/rXQYDUvm0M6XKyb6sPPuvdwm5x9wo4dO6j4BoilN6H4pmTiAAAAAElFTkSuQmCC);background-position:center;-webkit-background-size:48px 48px;background-size:48px 48px;position:absolute;top:0;bottom:0;left:0;right:0}';
 }
 function ampforwp_admin_discount_btn() {
+	$screen = get_current_screen();
 	$result = get_option( "ampforwp_dismiss_discount_btn");
-	if ($result != 'removed') {
+	if ($result != 'removed' && ('toplevel_page_amp_options' == $screen->base || 'dashboard' == $screen->base || 'plugins' == $screen->base)) {
 	$date = date('d-m-y');
 	if ($date == '01-12-20') {
 			$msg = 'Only 24 Hours Remaining';
+			$img = AMPFORWP_IMAGE_DIR . '/last-chance.png';
+			$class_img = 'offer-img-24';
+			$class_text = 'offer-text-bm-24';
 	}else{
 		$msg = 'Black Friday &amp; Cyber Monday';
+		$img = AMPFORWP_IMAGE_DIR . '/bf-offer.png';
+		$class_img = 'offer-img';
+		$class_text = 'offer-text-bm';
 	}?>
 	<div class="wrapper-discount">
 	<a class="admin_discount_btn" href="<?php echo admin_url('admin.php?page=amp_options&tab=31'); ?>">
-    <img src="https://ampforwp.com/wp-content/uploads/2020/11/limited-offer-png-limited-offer-243.png" class="offer-img" >
-    <span class="offer-text-top" ><?php echo esc_html($msg) ?></span><br><span class="offer-text-bm">50% OFF on AMPforWP</span></a>
+    <img src="<?php echo esc_html($img) ?>" class="<?php echo esc_html($class_img) ?>" >
+    <span class="offer-text-top" ><?php echo esc_html($msg) ?></span><br><span class="<?php echo esc_html($class_text) ?>">50% OFF on AMPforWP</span></a>
 		<span id='amp-close'>x</span></div>
 <?php } }
 add_action('admin_footer', 'ampforwp_admin_discount_btn');
