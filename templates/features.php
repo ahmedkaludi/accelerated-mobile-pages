@@ -9113,7 +9113,9 @@ function ampforwp_admin_discount_btn() {
 	$result = get_option( "ampforwp_dismiss_discount_btn");
 	if ($result != 'removed') {?>
 		<div class="wrapper-discount">
-		<a class="admin_discount_btn" href="<?php echo admin_url('admin.php?page=amp_options&tab=31'); ?>"><span>Black Friday & Cyber Monday Discount</span><br><span class="offer-text">50% OFF on AMPforWP</span></a>
+		<a class="admin_discount_btn" href="<?php echo admin_url('admin.php?page=amp_options&tab=31'); ?>">
+    <img src="https://ampforwp.com/wp-content/uploads/2020/11/limited-offer-png-limited-offer-243.png" class="offer-img" >
+    <span class="offer-text-top" >Black Friday &amp; Cyber Monday</span><br><span class="offer-text-bm">50% OFF on AMPforWP</span></a>
 		<span id='amp-close'>x</span></div>
 <?php } }
 add_action('admin_footer', 'ampforwp_admin_discount_btn');
