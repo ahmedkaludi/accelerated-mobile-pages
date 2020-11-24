@@ -1006,13 +1006,6 @@ $freepro_listing = '
                             <div class="fe-2">
                                 <div class="fe-t">
                                     <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
-                                    <h4>Design Catalogue</h4>
-                                </div>
-                                <p>AMP Layouts has 6 pre-built designs, We are constantly adding every week.</p>
-                            </div>
-                            <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Dedicated Support</h4>
                                 </div>
                                 <p>With a Dedicated person helping you with the extension setup and questions.</p>
