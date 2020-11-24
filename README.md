@@ -193,7 +193,8 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.69 (21st November 2020) =
+= 1.0.69 (24th November 2020) =
+* Added: Black Friday & Cyber Monday Discount #4833
 * Fixed: Wrong tooltip link in the infinite scroll #4823
 * Fixed: Images are not showing in the AMP due to SG Optimizer lazy load #4815
 * Fixed: Embeds not working in AMP Takeover mode #4819
