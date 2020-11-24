@@ -892,7 +892,7 @@ $freepro_listing = '
         <span class="ov"></span>
     </div>
     <div class="fp-cnt">
-            <h1>Black Friday & COVID-19 Deal</h1>
+            <h1>Black Friday & Cyber Monday Deal</h1>
             <h2>Flat 50% discount on all the products for a very limited time</h2>
             <p>Take your AMP to the next level with more beautiful themes, great extensions and more powerful features.</p>
             <a class="buy" href="#upgrade">BUY NOW</a>
@@ -999,20 +999,6 @@ $freepro_listing = '
                             <div class="fe-2">
                                 <div class="fe-t">
                                     <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
-                                    <h4>Structured Data</h4>
-                                </div>
-                                <p>Advanced Schema integration in AMP and WordPress.</p>
-                            </div>
-                            <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
-                                    <h4>Advanced Custom Field</h4>
-                                </div>
-                                <p>Built-in tools to help you impliment ACF easily in AMP.</p>
-                            </div>
-                            <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Ratings</h4>
                                 </div>
                                 <p>Easily add Rating to the posts. Supports 3 popular rating plugins.</p>
@@ -1044,6 +1030,13 @@ $freepro_listing = '
                                     <h4>Innovation</h4>
                                 </div>
                                 <p>Be the first one to get the innovative features that we build in the future.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>45+ AMP Extensions</h4>
+                                </div>
+                                <p>Super Charge your AMP pages with Powerful AMP Extensions</p>
                             </div>
                         </div><!-- /. fet -->
                         <div class="pr-btn">
