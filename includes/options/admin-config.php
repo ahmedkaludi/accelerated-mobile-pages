@@ -892,7 +892,8 @@ $freepro_listing = '
         <span class="ov"></span>
     </div>
     <div class="fp-cnt">
-            <h1>Upgrade to Pro</h1>
+            <h1>Black Friday & Cyber Monday Deal</h1>
+            <h2>Flat 50% discount on all the products for a very limited time</h2>
             <p>Take your AMP to the next level with more beautiful themes, great extensions and more powerful features.</p>
             <a class="buy" href="#upgrade">BUY NOW</a>
     </div>
@@ -998,30 +999,9 @@ $freepro_listing = '
                             <div class="fe-2">
                                 <div class="fe-t">
                                     <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
-                                    <h4>Structured Data</h4>
-                                </div>
-                                <p>Advanced Schema integration in AMP and WordPress.</p>
-                            </div>
-                            <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
-                                    <h4>Advanced Custom Field</h4>
-                                </div>
-                                <p>Built-in tools to help you impliment ACF easily in AMP.</p>
-                            </div>
-                            <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Ratings</h4>
                                 </div>
                                 <p>Easily add Rating to the posts. Supports 3 popular rating plugins.</p>
-                            </div>
-                            <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
-                                    <h4>Design Catalogue</h4>
-                                </div>
-                                <p>AMP Layouts has 6 pre-built designs, We are constantly adding every week.</p>
                             </div>
                             <div class="fe-2">
                                 <div class="fe-t">
@@ -1044,6 +1024,13 @@ $freepro_listing = '
                                 </div>
                                 <p>Be the first one to get the innovative features that we build in the future.</p>
                             </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>45+ AMP Extensions</h4>
+                                </div>
+                                <p>Super Charge your AMP pages with Powerful AMP Extensions</p>
+                            </div>
                         </div><!-- /. fet -->
                         <div class="pr-btn">
                             <a href="#upgrade">Upgrade to Pro</a>
@@ -1059,11 +1046,11 @@ $freepro_listing = '
             </div>
             <div class="pri-lst">
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=1">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2020&download_id=24570&edd_options[price_id]=1">
                         <h5>PERSONAL</h5>
                         <span class="d-amt"><sup>$</sup>149</span>
-                        <span class="amt"><sup>$</sup>149</span>
-                        <span class="s-amt">(Save $59)</span>
+                        <span class="amt"><sup>$</sup>74</span>
+                        <span class="s-amt">(Save $75)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">1 Site License</span>
                         <span class="e">E-mail support</span>
@@ -1073,11 +1060,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb rec">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=2">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2020&download_id=24570&edd_options[price_id]=2">
                         <h5>MULTIPLE</h5>
                         <span class="d-amt"><sup>$</sup>199</span>
-                        <span class="amt"><sup>$</sup>199</span>
-                        <span class="s-amt">(Save $79)</span>
+                        <span class="amt"><sup>$</sup>99</span>
+                        <span class="s-amt">(Save $100)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">3 Site License</span>
                         <span class="e">E-mail support</span>
@@ -1088,11 +1075,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=3">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2020&download_id=24570&edd_options[price_id]=3">
                         <h5>WEBMASTER</h5>
                         <span class="d-amt"><sup>$</sup>249</span>
-                        <span class="amt"><sup>$</sup>249</span>
-                        <span class="s-amt">(Save $99)</span>
+                        <span class="amt"><sup>$</sup>124</span>
+                        <span class="s-amt">(Save $125)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">10 Site License</span>
                         <span class="e">E-mail support</span>
@@ -1102,11 +1089,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=4">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2020&download_id=24570&edd_options[price_id]=4">
                         <h5>FREELANCER</h5>
                         <span class="d-amt"><sup>$</sup>299</span>
-                        <span class="amt"><sup>$</sup>299</span>
-                        <span class="s-amt">(Save $119)</span>
+                        <span class="amt"><sup>$</sup>149</span>
+                        <span class="s-amt">(Save $150)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">25 Site License</span>
                         <span class="e">E-mail support</span>
@@ -1116,11 +1103,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=5">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2020&download_id=24570&edd_options[price_id]=5">
                         <h5>AGENCY</h5>
                         <span class="d-amt"><sup>$</sup>499</span>
-                        <span class="amt"><sup>$</sup>499</span>
-                        <span class="s-amt">(Save $199)</span>
+                        <span class="amt"><sup>$</sup>249</span>
+                        <span class="s-amt">(Save $250)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">Unlimited</span>
                         <span class="e">E-mail support</span>
@@ -1410,11 +1397,16 @@ if(get_theme_support('amp-template-mode')){
     $upg_to_pro_url = 'https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin';
     $upg_to_pro_target = 'target="_blank"';
 }
-$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Upgrade to PRO</a> ';
+$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn dof" href="'.$upg_to_pro_url.'" id="ampforwp-prem-upg-to" '.$upg_to_pro_target.'> 
+<img class="black-friday-img" src="'.AMPFORWP_IMAGE_DIR . '/blackfriday.png" /> 
+<span>50% OFF on Everything</span>  
+</a> ';
 if($ampforwp_nameOfUser!=""){
     $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url($amppro_settings_url)."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
-    $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".esc_url($amppro_enter_keyurl)."'>Enter license here</a></span>";
+    $proDetailsProvide = "<span class='extension-menu-call'><a class='premium_features_btn' href='".esc_url($amppro_enter_keyurl)."'>Enter license here</a></span><a class='premium_features_btn dof' target='_blank' href='https://ampforwp.com/festive-season/' id='ampforwp-prem-upg-to'> 
+<img class='black-friday-img' src='".AMPFORWP_IMAGE_DIR . "/blackfriday.png' /> 
+<span>50% OFF on Upgrades & Renewals</span></a>";
 }
 if(function_exists('amp_activate') ){
     $proDetailsProvide = "<a class='premium_features_btn_txt' href=\"#\"> AMP by Automattic compatibility has been activated</a>";
@@ -4150,7 +4142,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'ampforwp-infinite-scroll',
                         'type'     => 'switch',
                         'title'    => esc_html__('Infinite Scroll (Experimental)', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__('Read more about it here:', 'accelerated-mobile-pages'), esc_url('https://www.ampproject.org/docs/reference/components/amp-next-page'), esc_html__('amp-next-page','accelerated-mobile-pages')),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a>', esc_html__('Read more about it', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/infinite-scroll-feature-in-amp/'), esc_html__('here:','accelerated-mobile-pages')),
                         'default' => false,
                     ),
                     $newspaper_theme_check,
@@ -5981,6 +5973,16 @@ $single_page_options = array(
             ),
             'default'  => '1',
             'required' => array('amp-pagination' , '=' , '1'),
+        ),
+        array(
+            'id'       => 'ampforwp-pagination-link-type',
+            'class'    => 'child_opt child_opt_arrow',
+            'type'     => 'switch',
+             'title'    => esc_html__('Change Pagination Links to /amp', 'accelerated-mobile-pages'),
+            'default'  => '0',
+            'required' => array('amp-pagination' , '=' , '1'),
+            'tooltip-subtitle' => sprintf('%s', 
+             esc_html__('Enable this option if post pagination link with ?amp=1 does not work. It will change pagination link ?amp=1 to /amp', 'accelerated-mobile-pages')), 
         ),
         array(
             'id'       => 'ampforwp-swift-recent-posts',
