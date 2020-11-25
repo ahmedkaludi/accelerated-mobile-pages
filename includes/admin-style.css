@@ -2099,10 +2099,10 @@ fieldset#redux_builder_amp-ampforwp-onesignal-positioning {
     cursor: pointer;
 }
 .wrapper-discount {
-    position: sticky;
-    bottom: 1rem;
+    position: fixed;
+    bottom: 10px;
     border: 0;
-    left: 83%;
+    right: 20px;
     background: linear-gradient(to right,#eb3349,#f14f35);
     padding: 15px;
     border-radius: 5px;
@@ -2115,17 +2115,17 @@ fieldset#redux_builder_amp-ampforwp-onesignal-positioning {
 .admin_discount_btn{
     font-weight: normal;
     font-size: 15px;
-    color: #fff;
+    color: #efeeee;
     text-decoration: none;
 }
-.admin_discount_btn:hover{
-    color: #ddd;
+.admin_discount_btn:hover, .admin_discount_btn:active{
+    color: #fff;
 }
 .offer-img{
     position: absolute;
-    top: -67px;
+    top: -62px;
     left: -5px;
-    width: 50%;
+    width: 45%;
 }
 .offer-img-24 {
     position: absolute;
