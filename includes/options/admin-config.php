@@ -1399,12 +1399,14 @@ if(get_theme_support('amp-template-mode')){
 }
 $proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn dof" href="'.$upg_to_pro_url.'" id="ampforwp-prem-upg-to" '.$upg_to_pro_target.'> 
 <img class="black-friday-img" src="'.AMPFORWP_IMAGE_DIR . '/blackfriday.png" /> 
-<span>50% OFF on Upgrades & Renewals</span>  
+<span>50% OFF on Everything</span>  
 </a> ';
 if($ampforwp_nameOfUser!=""){
     $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url($amppro_settings_url)."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
-    $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".esc_url($amppro_enter_keyurl)."'>Enter license here</a></span>";
+    $proDetailsProvide = "<span class='extension-menu-call'><a class='premium_features_btn' href='".esc_url($amppro_enter_keyurl)."'>Enter license here</a></span><a class='premium_features_btn dof' target='_blank' href='https://ampforwp.com/festive-season/' id='ampforwp-prem-upg-to'> 
+<img class='black-friday-img' src='".AMPFORWP_IMAGE_DIR . "/blackfriday.png' /> 
+<span>50% OFF on Upgrades & Renewals</span></a>";
 }
 if(function_exists('amp_activate') ){
     $proDetailsProvide = "<a class='premium_features_btn_txt' href=\"#\"> AMP by Automattic compatibility has been activated</a>";
