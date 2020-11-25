@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.69.1 (25th November 2020) =
+* Fixed: amp-story-player was found on this page, but is unused. #4839
+
 = 1.0.69 (25th November 2020) =
 * Fixed: Wrong tooltip link in the infinite scroll #4823
 * Fixed: Images are not showing in the AMP due to SG Optimizer lazy load #4815
