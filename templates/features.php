@@ -9060,9 +9060,11 @@ function ampforwp_amp_bind_script($data) {
 }
 add_filter('ampforwp_post_template_data','ampforwp_amp_story_player_script',12);
 function ampforwp_amp_story_player_script($data) {	
-	$post_content = $data["post"]->post_content;
-	if ( preg_match('/<amp-story-player(.*?)<\/amp-story-player>/s', $post_content ) && empty( $data['amp_component_scripts']['amp-story-player'] ) ) {	
-		$data['amp_component_scripts']['amp-story-player'] = 'https://cdn.ampproject.org/v0/amp-story-player-latest.js';	
+	if ( isset($data['post'])) {
+		$post_content = $data['post']->post_content;
+		if ( preg_match('/<amp-story-player(.*?)<\/amp-story-player>/s', $post_content ) && empty( $data['amp_component_scripts']['amp-story-player'] ) ) {	
+			$data['amp_component_scripts']['amp-story-player'] = 'https://cdn.ampproject.org/v0/amp-story-player-latest.js';	
+		}
 	}	
 	return $data;	
 } 
