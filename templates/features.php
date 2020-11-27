@@ -4369,6 +4369,9 @@ function ampforwp_exclude_archive_args( $args ) {
 
 add_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
 function ampforwp_rel_canonical_home_archive(){
+	if (function_exists('aioseo_pro_just_activated')) {
+	   return;
+	}
 	global $redux_builder_amp;
 	global $wp;
 	$current_archive_url 	= '';
