@@ -290,6 +290,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			if (empty(ampforwp_get_setting('ampforwp-custom-type'))) {
 				return;
 			}
+			if(is_array(ampforwp_get_setting('ampforwp-custom-type')) && $post_type != ampforwp_get_setting('ampforwp-custom-type')[0]){
+				return;
+			}
 		}
 		$page_for_posts = intval(get_option( 'page_for_posts' ));
 		$post_id = ampforwp_get_the_ID();
