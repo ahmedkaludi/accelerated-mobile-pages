@@ -3331,6 +3331,9 @@ function ampforwp_meta_description() {
 	if ( false == ampforwp_get_setting('ampforwp-seo-meta-desc') || ('rank_math' == ampforwp_get_setting('ampforwp-seo-selection') && is_singular() )) {
 		return;
 	}
+	if (function_exists('aioseo_pro_just_activated') && 'aioseo' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+		return;
+	}
 	$desc = ampforwp_generate_meta_desc();
 	if ( $desc ) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
