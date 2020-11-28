@@ -3969,6 +3969,49 @@ function ampforwp_post_pagination( $args = '' ) {
 			    }
 				$numpages = count($ampforwp_new_content);
 			}
+			}else if(ampforwp_get_setting('ampforwp-pagination-link-type')==true && is_singular()){
+			$id = ampforwp_get_the_ID();
+			$content = get_post_field( 'post_content', $id);
+			if ($content) {
+				$sanitizer_obj = new AMPFORWP_Content( $content,
+              apply_filters( 'amp_content_embed_handlers', array(
+          				    'AMP_Reddit_Embed_Handler'     => array(),
+                      		'AMP_Twitter_Embed_Handler'     => array(),
+          				    'AMP_YouTube_Embed_Handler'     => array(),
+                  			'AMP_DailyMotion_Embed_Handler' => array(),
+                  			'AMP_Vimeo_Embed_Handler'       => array(),
+                  			'AMP_SoundCloud_Embed_Handler'  => array(),
+          				    'AMP_Instagram_Embed_Handler'   => array(),
+          				    'AMP_Vine_Embed_Handler'        => array(),
+          				    'AMP_Facebook_Embed_Handler'    => array(),
+                  			'AMP_Pinterest_Embed_Handler'   => array(),
+          				    'AMP_Gallery_Embed_Handler'     => array(),
+                      		'AMP_Playlist_Embed_Handler'    => array(),
+             		 ) ),
+              apply_filters(  'amp_content_sanitizers', array(
+          				    'AMP_Style_Sanitizer'     => array(),
+          				    'AMP_Blacklist_Sanitizer' => array(),
+          				    'AMP_Img_Sanitizer'       => array(),
+          				    'AMP_Video_Sanitizer'     => array(),
+          				    'AMP_Audio_Sanitizer'     => array(),
+                  			'AMP_Playbuzz_Sanitizer'  => array(),
+          				    'AMP_Iframe_Sanitizer'    => array(
+          					       'add_placeholder' => true,
+          				    ),
+              		)  ) );
+			$content =  $sanitizer_obj->get_amp_content();
+			$checker = preg_match('/<!--nextpage-->/', $content);
+			if ( 1 === $checker ) {
+				$multipage = $more = 1;
+				$ampforwp_new_content = explode('<!--nextpage-->', $content);
+				$queried_var = get_query_var('paged');
+				if ( $queried_var > 1 ) {
+			      $page = $queried_var;
+			    }
+				$numpages = count($ampforwp_new_content);
+			}
+			}
+			
 		}
 	}
 	$defaults = array(
@@ -4098,7 +4141,11 @@ function ampforwp_post_paginated_link_generator( $i ) {
 
 	}
 	if ( false == ampforwp_get_setting('ampforwp-amp-takeover') ) {
-		$url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$url);
+		if(ampforwp_get_setting('ampforwp-pagination-link-type')==true && is_singular()){
+		 $url = ampforwp_url_controller($url);
+		}else{
+		 $url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$url);
+		}
 	}
 	return '<a href="' . esc_url( $url ) . '">';
 }
@@ -4112,6 +4159,45 @@ function ampforwp_post_paginated_content($content){
 	if ( is_singular() || ampforwp_is_front_page() ){
 		global $redux_builder_amp, $page, $multipage;
 		$ampforwp_new_content = $ampforwp_the_content = $checker = '';
+		if(ampforwp_get_setting('ampforwp-pagination-link-type')==true && is_singular()){
+		  $id = ampforwp_get_the_ID();
+		  $content = get_post_field( 'post_content', $id);
+		  if ($content) {
+		  	$sanitizer_obj = new AMPFORWP_Content( $content,
+              apply_filters( 'amp_content_embed_handlers', array(
+          				    'AMP_Reddit_Embed_Handler'     => array(),
+                      		'AMP_Twitter_Embed_Handler'     => array(),
+          				    'AMP_YouTube_Embed_Handler'     => array(),
+                  			'AMP_DailyMotion_Embed_Handler' => array(),
+                  			'AMP_Vimeo_Embed_Handler'       => array(),
+                  			'AMP_SoundCloud_Embed_Handler'  => array(),
+          				    'AMP_Instagram_Embed_Handler'   => array(),
+          				    'AMP_Vine_Embed_Handler'        => array(),
+          				    'AMP_Facebook_Embed_Handler'    => array(),
+                  			'AMP_Pinterest_Embed_Handler'   => array(),
+          				    'AMP_Gallery_Embed_Handler'     => array(),
+                      		'AMP_Playlist_Embed_Handler'    => array(),
+             		 ) ),
+              apply_filters(  'amp_content_sanitizers', array(
+          				    'AMP_Style_Sanitizer'     => array(),
+          				    'AMP_Blacklist_Sanitizer' => array(),
+          				    'AMP_Img_Sanitizer'       => array(),
+          				    'AMP_Video_Sanitizer'     => array(),
+          				    'AMP_Audio_Sanitizer'     => array(),
+                  			'AMP_Playbuzz_Sanitizer'  => array(),
+          				    'AMP_Iframe_Sanitizer'    => array(
+          					       'add_placeholder' => true,
+          				    ),
+              		)  ) );
+			$content =  $sanitizer_obj->get_amp_content();
+		  $queried_var = get_query_var('paged');
+		  $con = explode("<!--nextpage-->", $content);
+		  if($queried_var>=2){
+		  	 if(isset($con[$queried_var-1])){
+		  	 	$content = $con[$queried_var-1];
+		  	 }
+		  }
+		}
 		$ampforwp_the_content = $content;
 		$checker = preg_match('/<!--nextpage-->/', $ampforwp_the_content);
 		if ( 1 === $checker && true == ampforwp_get_setting('amp-pagination') ) {
@@ -4132,6 +4218,7 @@ function ampforwp_post_paginated_content($content){
 		else {
 			return $ampforwp_the_content;
 		}
+		  }	  
 	}
 	return $content;
 }
@@ -6026,6 +6113,9 @@ function ampforwp_is_non_amp( $type="" ) {
 		if(get_query_var( 'robots' )){
       		return; 
     	}
+    	if ( function_exists('is_embed') && is_embed() ){
+            return;
+        }
     	if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
 		    return false;
 		}
@@ -8968,10 +9058,13 @@ function ampforwp_amp_bind_script($data) {
 	}	
 	return $data;
 }
-add_filter('ampforwp_post_template_data','ampforwp_amp_story_player_script');
+add_filter('ampforwp_post_template_data','ampforwp_amp_story_player_script',12);
 function ampforwp_amp_story_player_script($data) {	
-	if ( empty( $data['amp_component_scripts']['amp-story-player'] ) ) {	
-		$data['amp_component_scripts']['amp-story-player'] = 'https://cdn.ampproject.org/v0/amp-story-player-latest.js';	
+	if ( isset($data['post'])) {
+		$post_content = $data['post']->post_content;
+		if ( preg_match('/<amp-story-player(.*?)<\/amp-story-player>/s', $post_content ) && empty( $data['amp_component_scripts']['amp-story-player'] ) ) {	
+			$data['amp_component_scripts']['amp-story-player'] = 'https://cdn.ampproject.org/v0/amp-story-player-latest.js';	
+		}
 	}	
 	return $data;	
 } 
@@ -9024,3 +9117,50 @@ function ampforwp_video_lightbox_css(){
 .amp-video-img{max-width:600px;position:relative}
 .amp-video-play-on-image{cursor:pointer;margin:auto;width:56px;height:56px;-webkit-border-radius:50%;border-radius:50%;background-color:rgba(0,0,0,.2);background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAAY1BMVEVHcEz///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////80LMUcAAAAIHRSTlMA1d4MSXeg9glf6yEq4hfnnr7Z8qm5U/3Jm1pwFJcmBYTgJ9QAAAIjSURBVGje7VnJdoMwDFSMHVMSQljCklX//5U99NQHGEm22gtz9tPAWNYKsGPHDiou1h3rpvDD4Iumvjp7SWg86yeDM5ipz5KYt53HFfjORn+8KzEI88iizLe4icLlUvtfFZJQ3kXmTzWScTsJPr9FBtovpvn8iExMrJu4jMjGyHh67xIFMOSLOFcoQnUmfr/QPmL1JulfohiGcA/5iBEYt33piFG4br4vjMTGizu1sQRt2FlrjMZNVSBExEBszaoUBOW6JzlMArf6A0XIOzyZoMgkPwDnA5nhsWz/E4wRnBxhVuoTDBMAkGVarma6TQKyTN3iFfttAqJMg1/y1B4JBFSZ+gWCiUZAk+m1QGCIBCSZmoVEhlQCkkxPppP+JiDIZNlxiFmYOXaqnEX2sEwTO9XMq6egTPXsfMMlCMt0mB0v2ARBmYrZYS8gCMjkZ2cHCcG6TMPfE6hLpH7J6m6a+KHN67urdqhQD3bq4Vo94ainTP2kn7RssbqFF7a5buk4dP9T/Ib9KEH5Dg/lBkS/hVJvAiEvU9gPtLFwT0HQh1r9m/IoQX8YEj+t2JwCX+PsT7ojtWH8EIaCJmIo+FQeaxJHs9LBbPkGIt4ilQxjxi8ajj+BgZztra8P8MBcUAi2LCdGXJKsWADgTozeppeuoXJXEPKXfM0FANnDaC7qtlaNbfyq8Uep/rXQYDUvm0M6XKyb6sPPuvdwm5x9wo4dO6j4BoilN6H4pmTiAAAAAElFTkSuQmCC);background-position:center;-webkit-background-size:48px 48px;background-size:48px 48px;position:absolute;top:0;bottom:0;left:0;right:0}';
 }
+function ampforwp_admin_discount_btn() {
+	if(! current_user_can( 'manage_options' )) {
+        return ;
+    }
+	$screen = get_current_screen();
+	$result = get_option( "ampforwp_dismiss_discount_btn");
+	$date_now = new DateTime();
+ 	$date_exp = new DateTime("02/12/2020");
+	if ($result != 'removed' && ($date_now > $date_exp) && ('toplevel_page_amp_options' == $screen->base )) {
+	$date = date('d-m-y');
+	if ($date == '01-12-20') {
+			$msg = 'Only 24 Hours Remaining';
+			$img = AMPFORWP_IMAGE_DIR . '/last-chance.png';
+			$class_img = 'offer-img-24';
+			$class_text = 'offer-text-bm-24';
+	}else{
+		$msg = 'Black Friday &amp; Cyber Monday';
+		$img = AMPFORWP_IMAGE_DIR . '/bf-offer.png';
+		$class_img = 'offer-img';
+		$class_text = 'offer-text-bm';
+	}
+	$href = admin_url('admin.php?page=amp_options&tab=31');
+	if (ampforwp_check_extensions()) {
+		$href = 'https://ampforwp.com/festive-season/';
+	}
+	?>
+	<div class="wrapper-discount">
+	<a class="admin_discount_btn" target="_blank" href="<?php echo esc_url_raw($href) ?>">
+    <img src="<?php echo esc_url($img) ?>" class="<?php echo esc_attr($class_img) ?>" >
+    <span class="offer-text-top" ><?php echo esc_html($msg) ?></span><br><span class="<?php echo esc_html($class_text) ?>">50% OFF on AMPforWP</span></a>
+		<span id='amp-close'>x</span></div>
+<?php } }
+add_action('admin_footer', 'ampforwp_admin_discount_btn');
+
+function ampforwp_dismiss_discount_btn(){
+	if(! current_user_can( 'manage_options' )) {
+        return ;
+    }
+    $result = update_option( "ampforwp_dismiss_discount_btn", 'removed');
+    if($result){
+        echo json_encode(array('status'=>'t'));            
+    }else{    
+        echo json_encode(array('status'=>'f'));                
+    }   
+    wp_die();                
+}
+add_action('wp_ajax_ampforwp_dismiss_discount_btn', 'ampforwp_dismiss_discount_btn'); 

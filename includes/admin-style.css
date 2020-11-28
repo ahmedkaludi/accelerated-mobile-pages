@@ -2098,3 +2098,69 @@ fieldset#redux_builder_amp-ampforwp-onesignal-positioning {
 #amp-show-hide-tax .hide-show-amp-tax{
     cursor: pointer;
 }
+.wrapper-discount {
+    position: fixed;
+    bottom: 10px;
+    border: 0;
+    right: 20px;
+    background: linear-gradient(to right,#eb3349,#f14f35);
+    padding: 15px;
+    border-radius: 5px;
+    text-align: right;
+    display: inline-block;
+}
+.wrapper-discount:before {
+    content: "";
+}
+.admin_discount_btn{
+    font-weight: normal;
+    font-size: 15px;
+    color: #efeeee;
+    text-decoration: none;
+}
+.admin_discount_btn:hover, .admin_discount_btn:active{
+    color: #fff;
+}
+.offer-img{
+    position: absolute;
+    top: -62px;
+    left: -5px;
+    width: 45%;
+}
+.offer-img-24 {
+    position: absolute;
+    top: -15px;
+    left: -75px;
+    width: 100px;
+}
+span.offer-text-top {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+span.offer-text-bm {
+    font-size: 20px;
+    font-weight: 600;
+}
+span.offer-text-bm-24 {
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 30px;
+}
+span#amp-close {
+   color: #ececec;
+    background: #000000c7;
+    border-radius: 50%;
+    padding: 0px 7.5px;
+    height: 22px;
+    cursor: pointer;
+    position: absolute;
+    top: -13px;
+    right: -7px;
+    line-height: 18px;
+    font-weight: normal;
+    font-size: 16px;
+}
+ 

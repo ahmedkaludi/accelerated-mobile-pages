@@ -53,7 +53,7 @@ function amp_post_template_add_cached_link($amp_template) {
 		<?php
 		$scripts = $amp_template->get( 'amp_component_scripts', array() );
 		foreach ( $scripts as $element => $script ) : 
-			if (strpos($script, "amp-experiment") || strpos($script, "amp-dynamic-css-classes") || strpos($script, "amp-story")) { 
+			if (strpos($script, "amp-experiment") || strpos($script, "amp-dynamic-css-classes")) { 
 		?>
 			<link rel="preload" as="script" href="<?php echo esc_url( $script ); ?>">
 		<?php } 
