@@ -9125,7 +9125,7 @@ function ampforwp_admin_discount_btn() {
 	$result = get_option( "ampforwp_dismiss_discount_btn");
 	$date_now = new DateTime();
  	$date_exp = new DateTime("02/12/2020");
-	if ($result != 'removed' && ($date_now > $date_exp) && ('toplevel_page_amp_options' == $screen->base || 'dashboard' == $screen->base || 'plugins' == $screen->base)) {
+	if ($result != 'removed' && ($date_now > $date_exp) && ('toplevel_page_amp_options' == $screen->base )) {
 	$date = date('d-m-y');
 	if ($date == '01-12-20') {
 			$msg = 'Only 24 Hours Remaining';
