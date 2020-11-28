@@ -9202,3 +9202,68 @@ function ampforwp_dismiss_discount_btn(){
     wp_die();                
 }
 add_action('wp_ajax_ampforwp_dismiss_discount_btn', 'ampforwp_dismiss_discount_btn');
+
+add_action('amp_post_template_css','ampforwp_i2prosandcons');
+function ampforwp_i2prosandcons(){
+	if (function_exists('i2_pros_cons_setup')) {
+		$options = get_option( 'i2_pros_and_cons');
+		$prosHeadingBackground = $options['pros_heading_background'];
+		$consHeadingBackground = $options['cons_heading_background'];
+		$prosBackground = $options['pros_background'];
+		$consBackground = $options['cons_background'];
+		$headingFontSize = $options['heading_font_size'];
+		$sectionFontSize = $options['body_font_size'];
+		$headingColor = $options['heading_color'];
+		$sectionColor = $options['body_color'];?>
+		.i2-pros-cons-main-wrapper .i2-pros-cons-wrapper {
+		    display: table;
+		    width: 100%;
+		}
+		.i2-pros-cons-main-wrapper .i2-pros-cons-wrapper .i2-pros, .i2-pros-cons-main-wrapper .i2-pros-cons-wrapper .i2-cons {
+		    display: table-cell;
+		    width: 50%;
+		    margin-bottom: 15px;
+		    position: relative;
+		}
+		.i2-pros-cons-main-wrapper .i2-pros-cons-wrapper .i2-pros .i2-pros-title, .i2-pros-cons-main-wrapper .i2-pros-cons-wrapper .i2-pros .i2-cons-title, .i2-pros-cons-main-wrapper .i2-pros-cons-wrapper .i2-cons .i2-pros-title, .i2-pros-cons-main-wrapper .i2-pros-cons-wrapper .i2-cons .i2-cons-title {
+		    padding: 5px 15px 5px;
+		    margin: 0px;
+		    display: block;
+		}
+		.i2-pros-cons-wrapper .i2-pros-title {
+		    background-color:<?php echo $prosHeadingBackground; ?>;
+		    font-size:<?php echo $headingFontSize; ?>px;
+		}
+		.i2-pros-cons-wrapper .i2-cons-title, .i2-pros-cons-wrapper .i2-pros-title {
+		    color: #ffffff!important;
+		    font-size:<?php echo $headingFontSize; ?>px;
+		}
+		.i2-pros {
+		    background-color: <?php echo $prosBackground; ?>;
+		}
+		.i2-cons{
+			background-color: <?php echo $consBackground; ?>;
+		}
+		.i2-pros-cons-wrapper ul li{
+			font-size:<?php echo $sectionFontSize; ?>px;
+		}
+		.artl-cnt ul li:before {
+		    content: "\e315";
+		    display: inline-block;
+		    width: 0;
+		    background: #333;
+		    position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    font-family: 'icomoon';
+		}
+		.i2-pros-cons-wrapper .i2-cons-title {
+		    background-color: <?php echo $consHeadingBackground; ?>;
+		}
+		.i2-pros-cons-wrapper .i2-pros, .i2-pros-cons-wrapper .i2-cons{
+		    color: <?php echo $sectionColor; ?>;
+		}
+		.i2-pros-cons-wrapper .i2-cons-title, .i2-pros-cons-wrapper .i2-pros-title {
+		    color: <?php echo $headingColor; ?>;
+		}
+<?php } }
