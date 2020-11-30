@@ -9165,7 +9165,8 @@ function ampforwp_amp_bind_script($data) {
 
 add_filter('yoast_seo_development_mode','ampforwp_yoast_seo_development');
 function ampforwp_yoast_seo_development($dev){
-	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home()) {
+	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home() && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
 		$dev = true;
 	}
 	return $dev;
@@ -9173,7 +9174,8 @@ function ampforwp_yoast_seo_development($dev){
 
 add_filter('wpseo_debug_json_data','ampforwp_remove_homepage_breadcrumb');
 function ampforwp_remove_homepage_breadcrumb($data){
-	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home()) {
+	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home() && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
 		if (isset($data["@graph"][2]["breadcrumb"])) {
 			unset($data["@graph"][2]["breadcrumb"]);
 		}
