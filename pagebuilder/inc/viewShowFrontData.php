@@ -517,8 +517,11 @@ function ampforwp_pb_autoCompileLess($css)
     $medias = array();
     foreach ($completeCssMinifies as $key => $value) {
     	preg_match_all('!\d+!', $key, $matches);
-    	if($matches){
+    	if($matches && !isset($medias[$matches[0][0]])){
 			$medias[$matches[0][0]] = $value;
+		}
+		if($matches && isset($medias[$matches[0][0]])){
+			$medias[$matches[0][0]] .= $value;
 		}
     }   
     krsort($medias);
