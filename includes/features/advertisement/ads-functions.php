@@ -70,7 +70,7 @@ function ampforwp_header_advert() {
 					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-1').'"
 					data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-1') .'"';
 		if($is_dboc){
-			$output .= 'data-block-on-consent';
+			$output .= 'data-block-on-consent="_till_accepted"';
 		}
 		if ( $responsive ) {
 			$output .= 'data-auto-format="rspv"
@@ -146,7 +146,7 @@ function ampforwp_footer_advert() {
 					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-2').'"
 					data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-2') .'"';
 		if($is_dboc){
-			$output .= 'data-block-on-consent';
+			$output .= 'data-block-on-consent="_till_accepted"';
 		}
 		if ( $responsive ) {
 			$output .= 'data-auto-format="rspv"
@@ -241,7 +241,7 @@ function ampforwp_before_post_content_advert() {
 							data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-3').'"
 							data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-3') .'"';
 				if($is_dboc){
-					$output .= 'data-block-on-consent';
+					$output .= 'data-block-on-consent="_till_accepted"';
 				}
 				if ( $responsive ) {
 					$output .= 'data-auto-format="rspv"
@@ -324,7 +324,7 @@ function ampforwp_after_post_content_advert() {
 					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-4').'"
 					data-ad-slot="'. ampforwp_get_setting('enable-amp-ads-text-feild-slot-4') .'"';
 		if($is_dboc){
-			$output .= 'data-block-on-consent';
+			$output .= 'data-block-on-consent="_till_accepted"';
 		}
 		if ( $responsive ) {
 			$output .= 'data-auto-format="rspv"
@@ -395,7 +395,7 @@ function ampforwp_below_the_title_advert() {
 					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-5').'"
 					data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-5') .'"';
 		if($is_dboc){
-			$output .= 'data-block-on-consent';
+			$output .= 'data-block-on-consent="_till_accepted"';
 		}
 		if ( $responsive ) {
 			$output .= 'data-auto-format="rspv"
@@ -469,7 +469,7 @@ function ampforwp_above_related_post_advert() {
 					data-ad-client="'. ampforwp_get_setting('enable-amp-ads-text-feild-client-6').'"
 					data-ad-slot="'.  ampforwp_get_setting('enable-amp-ads-text-feild-slot-6') .'"';
 		if($is_dboc){
-			$output .= 'data-block-on-consent';
+			$output .= 'data-block-on-consent="_till_accepted"';
 		}
 		if ( $responsive ) {
 			$output .= 'data-auto-format="rspv"
