@@ -43,6 +43,9 @@ function ampforwp_add_admin_styling($hook_suffix){
         if(class_exists('WC_Ecpay_Apple_Pay')){
             remove_all_actions('admin_footer');
         }
+        if (function_exists('wps_pf_pr_filter_register')) {
+            wp_dequeue_script('wpspf-main-js-3');
+        }
         add_action('admin_notices', 'ampforwp_dev_mode_notice');
         add_action('admin_notices', 'ampforwp_plugins_manager_notice');
         add_action('admin_notices', 'ampforwp_ampwptheme_notice');
