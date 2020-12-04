@@ -50,6 +50,9 @@ function ampforwp_minify_html_output($content_buffer){
         $content_buffer = preg_replace('/&lt;/', '<', $content_buffer);
         $content_buffer = preg_replace('/&gt;/', '>', $content_buffer);
     }
+    if(function_exists('googlesitekit_activate_plugin') && preg_match('/<script custom-element="amp-auto-ads"(.*?)src="(.*?)" async><\/script>(.*?)<amp-auto-ads/', $content_buffer)==0){
+        $content_buffer = preg_replace('/<script custom-element="amp-auto-ads"(.*?)src="(.*?)" async><\/script>/', '', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
