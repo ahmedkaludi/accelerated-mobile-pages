@@ -426,8 +426,9 @@ function amp_pagebuilder_content_styles(){
 			 					if(!isset($moduleTemplate[$contentArray['type']]['repeater']['front_css'])){
 			 						continue;
 			 					}
-
+			 					$repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater']['front_css'];
 			                    if($moduleField['content_type']=='css'){
+			                    	$repeaterFrontCss = str_replace("{{module-class}}", '.ap_m_'.$contentArray['cell_id'], $repeaterFrontCss );
 			                    	$repeaterFrontCss = str_replace('{{repeater-module-class}}', $moduleField['name'].'_'.$repeaterVarIndex, $repeaterFrontCss);
 			                    	$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
 				                    if(is_array($replace)){
@@ -522,8 +523,11 @@ function ampforwp_pb_autoCompileLess($css)
     $medias = array();
     foreach ($completeCssMinifies as $key => $value) {
     	preg_match_all('!\d+!', $key, $matches);
-    	if($matches){
+    	if($matches && !isset($medias[$matches[0][0]])){
 			$medias[$matches[0][0]] = $value;
+		}
+		if($matches && isset($medias[$matches[0][0]])){
+			$medias[$matches[0][0]] .= $value;
 		}
     }   
     krsort($medias);
