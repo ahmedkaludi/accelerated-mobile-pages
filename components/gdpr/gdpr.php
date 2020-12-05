@@ -21,7 +21,7 @@ function amp_gdpr_output(){
     if(isset($redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']) && $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']){
     $privacy_button_text = $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text'];
     }
-    $gdpr_countries = array("AT","BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IS", "IE", "IT", "LV", "LI", "LT", "LU", "MT", "NL", "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB", "AX", "IC", "EA", "GF", "PF", "TF", "GI", "GP", "GG", "JE", "MQ", "YT", "NC", "RE", "BL", "MF", "PM", "SJ", "VA", "WF", "EZ", "CH");
+    $gdpr_countries = array("AT","BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IS", "IE", "IT", "LV", "LI", "LT", "LU", "MT", "NL", "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB", "AX", "IC", "EA", "GF", "PF", "TF", "GI", "GP", "GG", "JE", "MQ", "YT", "NC", "RE", "BL", "MF", "PM", "SJ", "VA", "WF", "EZ", "CH","BR");
     $gdpr_countries = apply_filters( 'ampforwp_gdpr_country_list' , $gdpr_countries ); 
     $gdpr_text = array("headline"=>$headline,"user_data"=>$user_data,"accept"=>$accept,"reject"=>$reject,"settings"=>$settings,"more_info "=>$more_info,"privacy_button_text"=>$privacy_button_text );
 	$gdpr_text = apply_filters('ampforwp_modify_gdpr_output',$gdpr_text);
