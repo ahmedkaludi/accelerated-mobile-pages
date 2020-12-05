@@ -3295,6 +3295,9 @@ function ampforwp_meta_description() {
 	if ( false == ampforwp_get_setting('ampforwp-seo-meta-desc') || ('rank_math' == ampforwp_get_setting('ampforwp-seo-selection') && is_singular() )) {
 		return;
 	}
+	if (function_exists('aioseo_pro_just_activated') && 'aioseo' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+		return;
+	}
 	$desc = ampforwp_generate_meta_desc();
 	if ( $desc && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
@@ -4409,6 +4412,9 @@ function ampforwp_home_archive_canonical_setter(){
 }
 
 function ampforwp_rel_canonical_home_archive(){
+	if (function_exists('aioseo_pro_just_activated')) {
+	   return;
+	}
 	global $redux_builder_amp;
 	global $wp;
 	$current_archive_url 	= '';
