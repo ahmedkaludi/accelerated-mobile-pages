@@ -7212,7 +7212,8 @@ add_filter('ampforwp_is_amp_endpoint_takeover', "ampforwp_bulktool_takeover");
 if (! function_exists('ampforwp_bulktool_takeover') ) {
 function ampforwp_bulktool_takeover($data){
 	$bulk_option = ampforwp_get_setting('amp-pages-meta-default');
-	if(is_page() && $bulk_option == "hide" && ( true == ampforwp_get_setting('ampforwp-amp-takeover') || true == ampforwp_get_setting('ampforwp-amp-convert-to-wp'))){
+	$ampforwp_stored_meta = get_post_meta( ampforwp_get_the_ID(),'ampforwp-amp-on-off',true);
+	if(is_page() && $bulk_option == "hide" && !isset($ampforwp_stored_meta) && ( true == ampforwp_get_setting('ampforwp-amp-takeover') || true == ampforwp_get_setting('ampforwp-amp-convert-to-wp'))){
 		remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 		return false; 
 	}
