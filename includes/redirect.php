@@ -164,7 +164,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     }
 
     // Frontpage
-    if ( is_front_page() && $current_location == $home_url ) {
+    if ( is_front_page() && $current_location == $home_url && ampforwp_is_front_page()) {
       return;
     }
 
@@ -215,7 +215,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     }
     $ampforwp_amp_post_on_off_meta = "";
     $ampforwp_amp_post_on_off_meta = get_post_meta(  ampforwp_get_the_ID(),'ampforwp-amp-on-off',true);
-    if(false == $ampforwp_amp_post_on_off_meta){ 
+    if(false == $ampforwp_amp_post_on_off_meta && !ampforwp_is_home()){ 
       return;
     }
     /* Fallback, if for any reason, $redirection_location is still NULL
