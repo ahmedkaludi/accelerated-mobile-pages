@@ -8317,6 +8317,7 @@ function ampforwp_remove_unwanted_code($content){
 }
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
+	$allscripts = '';
 	$comp_to_remove_arr = array();
 	preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
 	if(isset($matches[1][0])){
