@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.6
-Stable tag: 1.0.69.2
+Stable tag: 1.0.70
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,48 +193,27 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.70 (5th December 2020) =
+* Improvement: Added filter to modify author bio description #4849
+* Improvement: Added LGDP (Brazil's GDPR) #4854
+* Fixed: Ads are displaying even GDPR popup is rejected #4843
+* Fixed: Role Based Access not working for SEO manager role in Yoast #4830
+* Fixed: Homepage url not redirecting to non-amp url with AMP takeover and ?amp #4826
+* Fixed: The amphtml not generating with the Hide By Default option in AMP Takeover #4824
+* Fixed: Undefined variable: allscripts #4846
+* Fixed: Breadcrumb bug in amp homepage #4827
+* Fixed: When the minify option is disabled then the WhatsApp share link has a space #4848
+* Fixed: Validation error when using web stories plugin #4847
+* Fixed: The background color of feature module of layout2 is not getting applied #4835
+* Fixed: Canonical and meta description errors in All in one SEO PRO #4829
+* Fixed: Avatar image doesn't have alt attribute #4836
+* Fixed: AMP posts are redirecting to the 404 page when post id is added in permalink #4842
+* Fixed: The amphtml not generating on the custom taxonomy and the custom post types #4841
+
 = 1.0.69.2 (27th November 2020) =
 * Fixed: Improvements in offer banner #4833
 
 = 1.0.69.1 (25th November 2020) =
 * Fixed: amp-story-player was found on this page, but is unused. #4839
-
-= 1.0.69 (25th November 2020) =
-* Fixed: Wrong tooltip link in the infinite scroll #4823
-* Fixed: Images are not showing in the AMP due to SG Optimizer lazy load #4815
-* Fixed: Embeds not working in AMP Takeover mode #4819
-* Fixed: AMPHTML appearing in archive page of Google web stories #4820
-* Fixed: AMP option panel page is blank with ECPay Payment for WooCommerce plugin #4816 
-* Fixed: 404 errors on pagination urls #4373
-* Fixed: Blank lines not appearing between paragraphs #4818
-* Fixed: amp-story-player preload is being added when not using #4828
-
-= 1.0.68.1 (10th November 2020) =
-* Fixed: Missing amphtml on product pages #4822
-* Fixed: Debug warnings #4821
-
-= 1.0.68 (9th November 2020) =
-* Fixed: Validation error occurs when input type image is added #4785
-* Fixed: Featured images are not showing when "Enable lazy load images" option is enabled in the "DEUS" Theme #4710
-* Fixed: AMP Push Notification - Dropdown issue #4812
-* Fixed: Italic style caption of gallery #4806
-* Fixed: The canonical links are not generating for the coupon store when YOAST Plugin is active with AMPFORWP #4811
-* Fixed: Content not displayed in AMP post/pages with plain permalink #4814
-* Fixed: Tables created with 2 columns displaying 1 extra column on mobile view #4765
-* Fixed: Content appearing in excerpt on single post #4798
-* Fixed: Code improvment for amp pagebuilder's category-module #4660
-
-= 1.0.67 (4th November 2020) =
-* Improvement: Optimize Pagespeed score by implimenting AMP video lightbox #4531
-* Improvement: Added Paid Memberships PRO for AMP Extension #4737
-* Improvement: Added help section for the users in Options panel #4683
-* Improvement: Added code improvement in Tag base remover and category base remover #4664
-* Improvement: Added UberMenu 3 Compatiblity #4732
-* Improvement: Added filter to overwrite the scripts #4642
-* Fixed: Style amp-custom unterminated comment Error on AMP #4792
-* Fixed: Proper styling of Header right side icons in Design 2 #3935
-* Fixed: Revolution Slider not working in AMP #4669
-* Fixed: Additional characters at the end of footer text in Design Two #4805
-* Fixed: Related thumbnail image title is getting break and leading to the validation error #4804
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

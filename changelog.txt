@@ -1,5 +1,22 @@
 == Changelog ==
 
+= 1.0.70 (5th December 2020) =
+* Improvement: Added filter to modify author bio description #4849
+* Improvement: Added LGDP (Brazil's GDPR) #4854
+* Fixed: Ads are displaying even GDPR popup is rejected #4843
+* Fixed: Role Based Access not working for SEO manager role in Yoast #4830
+* Fixed: Homepage url not redirecting to non-amp url with AMP takeover and ?amp #4826
+* Fixed: The amphtml not generating with the Hide By Default option in AMP Takeover #4824
+* Fixed: Undefined variable: allscripts #4846
+* Fixed: Breadcrumb bug in amp homepage #4827
+* Fixed: When the minify option is disabled then the WhatsApp share link has a space #4848
+* Fixed: Validation error when using web stories plugin #4847
+* Fixed: The background color of feature module of layout2 is not getting applied #4835
+* Fixed: Canonical and meta description errors in All in one SEO PRO #4829
+* Fixed: Avatar image doesn't have alt attribute #4836
+* Fixed: AMP posts are redirecting to the 404 page when post id is added in permalink #4842
+* Fixed: The amphtml not generating on the custom taxonomy and the custom post types #4841
+
 = 1.0.69.2 (27th November 2020) =
 * Fixed: Improvements in offer banner #4833
 
