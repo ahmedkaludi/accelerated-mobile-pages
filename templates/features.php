@@ -314,6 +314,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$current_archive_url = home_url( 'index.php/' . $wp->request );
 			}
 	        $amp_url = trailingslashit($current_archive_url);
+	        if ($endpoint_check && !is_category() && !is_tag()) {
+	        	$amp_url =  ampforwp_url_controller($amp_url);	
+	        }
 	    } else {
 	      $amp_url = AMPforWP\AMPVendor\amp_get_permalink( get_queried_object_id() );
 	    }
@@ -371,8 +374,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					$current_search_url =trailingslashit(get_home_url()) . $wp->request .'/'."?amp=1&s=".get_search_query();
 				}
 			}
-
-			$amp_url = user_trailingslashit($amp_url);	
+			if (!$endpoint_check) {
+	        	$amp_url = user_trailingslashit($amp_url);
+	        }
 
 			if( is_search() ) {
 				$current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
