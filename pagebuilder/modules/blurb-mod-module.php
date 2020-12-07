@@ -379,6 +379,22 @@ return array(
 		           				'content_type'=>'html',
 	 						),
 						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'blurb_head_type',
+	 							'label' => esc_html__('Header Type', 'accelerated-mobile-pages'),
+								'tab'     =>'customizer',
+	 							'default' =>'h3',
+	 							'options_details'=>array(
+	 												'h1'  	=>'H1',
+	 												'h2'  	=>'H2',
+	 												'h3'  	=>'H3',
+	 												'h4'  	=>'H4',
+	 												'h5'  	=>'H5',
+	 												'h6'  	=>'H6',
+	 											),
+	 							'content_type'=>'html',
+	 					),
+						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"content",		
 		 						'label'		=>'Content',
@@ -392,7 +408,7 @@ return array(
         '{{if_condition_blurb_layout_type==1}}
         	<div class="blu-mod">
 				<span class="ico-pic icon-{{icon-picker}}"></span>
-				<h3 class="blurb-txt">{{content_title}}</h3>
+				<{{blurb_head_type}} class="blurb-txt">{{content_title}}</{{blurb_head_type}}>
 				{{content}}
 			</div> 
 		{{ifend_condition_blurb_layout_type_1}}
