@@ -9270,3 +9270,10 @@ function ampforwp_i2prosandcons(){
 		    color: <?php echo $headingColor; ?>;
 		}
 <?php } }
+//Twitter title #2744
+function ampforwp_sanitize_twitter_title($post_title){
+	$post_title = html_entity_decode( $post_title, ENT_QUOTES, 'UTF-8' );
+    $post_title = rawurlencode( $post_title );
+    $post_title = esc_html( $post_title );
+    return $post_title;
+}
