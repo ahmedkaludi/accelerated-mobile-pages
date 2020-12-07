@@ -9235,20 +9235,20 @@ function ampforwp_i2prosandcons(){
 		}
 		.i2-pros-cons-wrapper .i2-pros-title {
 		    background-color:<?php echo $prosHeadingBackground; ?>;
-		    font-size:<?php echo $headingFontSize; ?>px;
+		    font-size:<?php echo esc_html($headingFontSize); ?>px;
 		}
 		.i2-pros-cons-wrapper .i2-cons-title, .i2-pros-cons-wrapper .i2-pros-title {
 		    color: #ffffff!important;
-		    font-size:<?php echo $headingFontSize; ?>px;
+		    font-size:<?php echo esc_html($headingFontSize); ?>px;
 		}
 		.i2-pros {
-		    background-color: <?php echo $prosBackground; ?>;
+		    background-color: <?php echo ampforwp_sanitize_color($prosBackground); ?>;
 		}
 		.i2-cons{
-			background-color: <?php echo $consBackground; ?>;
+			background-color: <?php echo ampforwp_sanitize_color($consBackground); ?>;
 		}
 		.i2-pros-cons-wrapper ul li{
-			font-size:<?php echo $sectionFontSize; ?>px;
+			font-size:<?php echo esc_html($sectionFontSize); ?>px;
 		}
 		.artl-cnt ul li:before {
 		    content: "\e315";
@@ -9261,13 +9261,13 @@ function ampforwp_i2prosandcons(){
 		    font-family: 'icomoon';
 		}
 		.i2-pros-cons-wrapper .i2-cons-title {
-		    background-color: <?php echo $consHeadingBackground; ?>;
+		    background-color: <?php echo ampforwp_sanitize_color($consHeadingBackground); ?>;
 		}
 		.i2-pros-cons-wrapper .i2-pros, .i2-pros-cons-wrapper .i2-cons{
-		    color: <?php echo $sectionColor; ?>;
+		    color: <?php echo ampforwp_sanitize_color($sectionColor); ?>;
 		}
 		.i2-pros-cons-wrapper .i2-cons-title, .i2-pros-cons-wrapper .i2-pros-title {
-		    color: <?php echo $headingColor; ?>;
+		    color: <?php echo ampforwp_sanitize_color($headingColor); ?>;
 		}
 <?php } }
 //Twitter title #2744
