@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.70 (5th December 2020) =
+= 1.0.70 (7th December 2020) =
 * Improvement: Added filter to modify author bio description #4849
 * Improvement: Added LGDP (Brazil's GDPR) #4854
 * Fixed: Ads are displaying even GDPR popup is rejected #4843
