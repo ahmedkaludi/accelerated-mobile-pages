@@ -32,7 +32,7 @@ $author_link = get_author_posts_url($post_author->ID);
 if ( function_exists('coauthors_posts_links') ) {
     $author_link = coauthors_posts_links($and_text,$and_text,null,null,false);
 }
-$author_image_wrapper = '';
+$author_image_wrapper = $alt = '';
 
 if ( isset($args['author_pub_name']) ) {
     $author_pub_name = $args['author_pub_name'];
@@ -95,9 +95,20 @@ if ( isset($args['show_time']) ) {
     $author_avatar_url = ampforwp_get_wp_user_avatar();
     if( null == $author_avatar_url ){
        $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
-    } ?>
+    } 
+    if(class_exists('WP_User_Avatar_Functions')){
+        $image = get_wp_user_avatar();
+        if (!empty($image)) {
+            preg_match_all( '@alt="([^"]+)"@' , $image, $match );
+            $alt = array_pop($match);
+            if (isset($alt[0])) {
+                $alt = 'alt=' . $alt[0];
+            }
+        }
+    }
+    ?>
         <div class="amp-author-image <?php echo esc_attr($author_image_wrapper); ?>">
-            <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo esc_attr($avatar_size_width); ?>" height="<?php echo esc_attr($avatar_size_height); ?>" layout="fixed"></amp-img> 
+            <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>src="<?php echo esc_url($author_avatar_url); ?>" <?php echo esc_attr($alt); ?> width="<?php echo esc_attr($avatar_size_width); ?>" height="<?php echo esc_attr($avatar_size_height); ?>" layout="fixed"></amp-img> 
         </div>
         <?php } ?>
         <?php echo '<div class="author-details '. esc_attr($author_wrapper_class) .'">';
@@ -144,7 +155,9 @@ if ( isset($args['show_time']) ) {
         if ( $author_description ) {
             if( true == ampforwp_get_setting('amp-author-box-description') ){
                 $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
-                echo "<p>".strip_tags($post_author->description,$allowed_tags)."</p>";
+                $author_description = "<p>".strip_tags($post_author->description,$allowed_tags)."</p>";
+                $author_description = apply_filters( 'ampforwp_author_description', $author_description);
+                echo $author_description;
             }
         } ?>
         </div>

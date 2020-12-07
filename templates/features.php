@@ -290,9 +290,6 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			if (empty(ampforwp_get_setting('ampforwp-custom-type'))) {
 				return;
 			}
-			if(is_array(ampforwp_get_setting('ampforwp-custom-type')) && $post_type != ampforwp_get_setting('ampforwp-custom-type')[0]){
-				return;
-			}
 		}
 		$page_for_posts = intval(get_option( 'page_for_posts' ));
 		$post_id = ampforwp_get_the_ID();
@@ -317,6 +314,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$current_archive_url = home_url( 'index.php/' . $wp->request );
 			}
 	        $amp_url = trailingslashit($current_archive_url);
+	        if ($endpoint_check && !is_category() && !is_tag()) {
+	        	$amp_url =  ampforwp_url_controller($amp_url);	
+	        }
 	    } else {
 	      $amp_url = AMPforWP\AMPVendor\amp_get_permalink( get_queried_object_id() );
 	    }
@@ -374,8 +374,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					$current_search_url =trailingslashit(get_home_url()) . $wp->request .'/'."?amp=1&s=".get_search_query();
 				}
 			}
-
-			$amp_url = user_trailingslashit($amp_url);	
+			if (!$endpoint_check) {
+	        	$amp_url = user_trailingslashit($amp_url);
+	        }
 
 			if( is_search() ) {
 				$current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
@@ -1330,7 +1331,7 @@ function ampforwp_sticky_social_icons(){
 			    	<amp-social-share type="linkedin" width="50" height="28" aria-label="linkedin" <?php ampforwp_rel_attributes_social_links(); ?>></amp-social-share>
 			  	<?php } ?>
 		  	<?php if($redux_builder_amp['enable-single-whatsapp-share'] == true)  { ?>
-			<a title="whatsapp share" <?php ampforwp_rel_attributes_social_links(); ?> href="https://api.whatsapp.com/send?text=<?php echo esc_attr(htmlspecialchars(get_the_title()))."\n".esc_url($amp_permalink);?>">
+			<a title="whatsapp share" <?php ampforwp_rel_attributes_social_links(); ?> href="https://api.whatsapp.com/send?text=<?php echo esc_attr(htmlspecialchars(get_the_title()))."&nbsp;".esc_url($amp_permalink);?>">
 			<div class="a-so-i">
 			    <amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgOTAgOTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDkwIDkwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggaWQ9IldoYXRzQXBwIiBkPSJNOTAsNDMuODQxYzAsMjQuMjEzLTE5Ljc3OSw0My44NDEtNDQuMTgyLDQzLjg0MWMtNy43NDcsMC0xNS4wMjUtMS45OC0yMS4zNTctNS40NTVMMCw5MGw3Ljk3NS0yMy41MjIgICBjLTQuMDIzLTYuNjA2LTYuMzQtMTQuMzU0LTYuMzQtMjIuNjM3QzEuNjM1LDE5LjYyOCwyMS40MTYsMCw0NS44MTgsMEM3MC4yMjMsMCw5MCwxOS42MjgsOTAsNDMuODQxeiBNNDUuODE4LDYuOTgyICAgYy0yMC40ODQsMC0zNy4xNDYsMTYuNTM1LTM3LjE0NiwzNi44NTljMCw4LjA2NSwyLjYyOSwxNS41MzQsNy4wNzYsMjEuNjFMMTEuMTA3LDc5LjE0bDE0LjI3NS00LjUzNyAgIGM1Ljg2NSwzLjg1MSwxMi44OTEsNi4wOTcsMjAuNDM3LDYuMDk3YzIwLjQ4MSwwLDM3LjE0Ni0xNi41MzMsMzcuMTQ2LTM2Ljg1N1M2Ni4zMDEsNi45ODIsNDUuODE4LDYuOTgyeiBNNjguMTI5LDUzLjkzOCAgIGMtMC4yNzMtMC40NDctMC45OTQtMC43MTctMi4wNzYtMS4yNTRjLTEuMDg0LTAuNTM3LTYuNDEtMy4xMzgtNy40LTMuNDk1Yy0wLjk5My0wLjM1OC0xLjcxNy0wLjUzOC0yLjQzOCwwLjUzNyAgIGMtMC43MjEsMS4wNzYtMi43OTcsMy40OTUtMy40Myw0LjIxMmMtMC42MzIsMC43MTktMS4yNjMsMC44MDktMi4zNDcsMC4yNzFjLTEuMDgyLTAuNTM3LTQuNTcxLTEuNjczLTguNzA4LTUuMzMzICAgYy0zLjIxOS0yLjg0OC01LjM5My02LjM2NC02LjAyNS03LjQ0MWMtMC42MzEtMS4wNzUtMC4wNjYtMS42NTYsMC40NzUtMi4xOTFjMC40ODgtMC40ODIsMS4wODQtMS4yNTUsMS42MjUtMS44ODIgICBjMC41NDMtMC42MjgsMC43MjMtMS4wNzUsMS4wODItMS43OTNjMC4zNjMtMC43MTcsMC4xODItMS4zNDQtMC4wOS0xLjg4M2MtMC4yNy0wLjUzNy0yLjQzOC01LjgyNS0zLjM0LTcuOTc3ICAgYy0wLjkwMi0yLjE1LTEuODAzLTEuNzkyLTIuNDM2LTEuNzkyYy0wLjYzMSwwLTEuMzU0LTAuMDktMi4wNzYtMC4wOWMtMC43MjIsMC0xLjg5NiwwLjI2OS0yLjg4OSwxLjM0NCAgIGMtMC45OTIsMS4wNzYtMy43ODksMy42NzYtMy43ODksOC45NjNjMCw1LjI4OCwzLjg3OSwxMC4zOTcsNC40MjIsMTEuMTEzYzAuNTQxLDAuNzE2LDcuNDksMTEuOTIsMTguNSwxNi4yMjMgICBDNTguMiw2NS43NzEsNTguMiw2NC4zMzYsNjAuMTg2LDY0LjE1NmMxLjk4NC0wLjE3OSw2LjQwNi0yLjU5OSw3LjMxMi01LjEwN0M2OC4zOTgsNTYuNTM3LDY4LjM5OCw1NC4zODYsNjguMTI5LDUzLjkzOHoiIGZpbGw9IiNGRkZGRkYiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" width="50" height="20" alt="whatsapp" />
 			    </div>
@@ -3298,6 +3299,9 @@ function ampforwp_meta_description() {
 	if ( false == ampforwp_get_setting('ampforwp-seo-meta-desc') || ('rank_math' == ampforwp_get_setting('ampforwp-seo-selection') && is_singular() )) {
 		return;
 	}
+	if (function_exists('aioseo_pro_just_activated') && 'aioseo' == ampforwp_get_setting('ampforwp-seo-selection') ) {
+		return;
+	}
 	$desc = ampforwp_generate_meta_desc();
 	if ( $desc && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
@@ -4412,6 +4416,9 @@ function ampforwp_home_archive_canonical_setter(){
 }
 
 function ampforwp_rel_canonical_home_archive(){
+	if (function_exists('aioseo_pro_just_activated')) {
+	   return;
+	}
 	global $redux_builder_amp;
 	global $wp;
 	$current_archive_url 	= '';
@@ -7214,10 +7221,13 @@ function ampforwp_embedly_sanitizer( $sanitizer_classes ) {
 add_filter('ampforwp_is_amp_endpoint_takeover', "ampforwp_bulktool_takeover");
 if (! function_exists('ampforwp_bulktool_takeover') ) {
 function ampforwp_bulktool_takeover($data){
-	$bulk_option = ampforwp_get_setting('amp-pages-meta-default');
-	if(is_page() && $bulk_option == "hide" && ( true == ampforwp_get_setting('ampforwp-amp-takeover') || true == ampforwp_get_setting('ampforwp-amp-convert-to-wp'))){
-		remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
-		return false; 
+	if ( true == ampforwp_get_setting('ampforwp-amp-takeover') || true == ampforwp_get_setting('ampforwp-amp-convert-to-wp')) {
+		$bulk_option = ampforwp_get_setting('amp-pages-meta-default');
+		$ampforwp_stored_meta = get_post_meta( ampforwp_get_the_ID(),'ampforwp-amp-on-off',true);
+		if(is_page() && $bulk_option == "hide" && !isset($ampforwp_stored_meta)){
+			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
+			return false; 
+		}
 	}
 	return $data;
 }
@@ -8319,6 +8329,7 @@ function ampforwp_remove_unwanted_code($content){
 }
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
+	$allscripts = '';
 	$comp_to_remove_arr = array();
 	preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
 	if(isset($matches[1][0])){
@@ -9117,50 +9128,28 @@ function ampforwp_video_lightbox_css(){
 .amp-video-img{max-width:600px;position:relative}
 .amp-video-play-on-image{cursor:pointer;margin:auto;width:56px;height:56px;-webkit-border-radius:50%;border-radius:50%;background-color:rgba(0,0,0,.2);background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAAY1BMVEVHcEz///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////80LMUcAAAAIHRSTlMA1d4MSXeg9glf6yEq4hfnnr7Z8qm5U/3Jm1pwFJcmBYTgJ9QAAAIjSURBVGje7VnJdoMwDFSMHVMSQljCklX//5U99NQHGEm22gtz9tPAWNYKsGPHDiou1h3rpvDD4Iumvjp7SWg86yeDM5ipz5KYt53HFfjORn+8KzEI88iizLe4icLlUvtfFZJQ3kXmTzWScTsJPr9FBtovpvn8iExMrJu4jMjGyHh67xIFMOSLOFcoQnUmfr/QPmL1JulfohiGcA/5iBEYt33piFG4br4vjMTGizu1sQRt2FlrjMZNVSBExEBszaoUBOW6JzlMArf6A0XIOzyZoMgkPwDnA5nhsWz/E4wRnBxhVuoTDBMAkGVarma6TQKyTN3iFfttAqJMg1/y1B4JBFSZ+gWCiUZAk+m1QGCIBCSZmoVEhlQCkkxPppP+JiDIZNlxiFmYOXaqnEX2sEwTO9XMq6egTPXsfMMlCMt0mB0v2ARBmYrZYS8gCMjkZ2cHCcG6TMPfE6hLpH7J6m6a+KHN67urdqhQD3bq4Vo94ainTP2kn7RssbqFF7a5buk4dP9T/Ib9KEH5Dg/lBkS/hVJvAiEvU9gPtLFwT0HQh1r9m/IoQX8YEj+t2JwCX+PsT7ojtWH8EIaCJmIo+FQeaxJHs9LBbPkGIt4ilQxjxi8ajj+BgZztra8P8MBcUAi2LCdGXJKsWADgTozeppeuoXJXEPKXfM0FANnDaC7qtlaNbfyq8Uep/rXQYDUvm0M6XKyb6sPPuvdwm5x9wo4dO6j4BoilN6H4pmTiAAAAAElFTkSuQmCC);background-position:center;-webkit-background-size:48px 48px;background-size:48px 48px;position:absolute;top:0;bottom:0;left:0;right:0}';
 }
-function ampforwp_admin_discount_btn() {
-	if(! current_user_can( 'manage_options' )) {
-        return ;
-    }
-	$screen = get_current_screen();
-	$result = get_option( "ampforwp_dismiss_discount_btn");
-	$date_now = new DateTime();
- 	$date_exp = new DateTime("02/12/2020");
-	if ($result != 'removed' && ($date_now > $date_exp) && ('toplevel_page_amp_options' == $screen->base )) {
-	$date = date('d-m-y');
-	if ($date == '01-12-20') {
-			$msg = 'Only 24 Hours Remaining';
-			$img = AMPFORWP_IMAGE_DIR . '/last-chance.png';
-			$class_img = 'offer-img-24';
-			$class_text = 'offer-text-bm-24';
-	}else{
-		$msg = 'Black Friday &amp; Cyber Monday';
-		$img = AMPFORWP_IMAGE_DIR . '/bf-offer.png';
-		$class_img = 'offer-img';
-		$class_text = 'offer-text-bm';
-	}
-	$href = admin_url('admin.php?page=amp_options&tab=31');
-	if (ampforwp_check_extensions()) {
-		$href = 'https://ampforwp.com/festive-season/';
-	}
-	?>
-	<div class="wrapper-discount">
-	<a class="admin_discount_btn" target="_blank" href="<?php echo esc_url_raw($href) ?>">
-    <img src="<?php echo esc_url($img) ?>" class="<?php echo esc_attr($class_img) ?>" >
-    <span class="offer-text-top" ><?php echo esc_html($msg) ?></span><br><span class="<?php echo esc_html($class_text) ?>">50% OFF on AMPforWP</span></a>
-		<span id='amp-close'>x</span></div>
-<?php } }
-add_action('admin_footer', 'ampforwp_admin_discount_btn');
 
-function ampforwp_dismiss_discount_btn(){
-	if(! current_user_can( 'manage_options' )) {
-        return ;
-    }
-    $result = update_option( "ampforwp_dismiss_discount_btn", 'removed');
-    if($result){
-        echo json_encode(array('status'=>'t'));            
-    }else{    
-        echo json_encode(array('status'=>'f'));                
-    }   
-    wp_die();                
+if (class_exists('WPSEO_Options')) {
+	add_filter('yoast_seo_development_mode','ampforwp_yoast_seo_development');
+	add_filter('wpseo_debug_json_data','ampforwp_remove_homepage_breadcrumb');
 }
-add_action('wp_ajax_ampforwp_dismiss_discount_btn', 'ampforwp_dismiss_discount_btn'); 
+
+function ampforwp_yoast_seo_development($dev){
+	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home() && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
+		$dev = true;
+	}
+	return $dev;
+}	
+function ampforwp_remove_homepage_breadcrumb($data){
+	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home() && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
+		if (isset($data["@graph"][2]["breadcrumb"])) {
+			unset($data["@graph"][2]["breadcrumb"]);
+		}
+		if ($data["@graph"][3]["@type"] == 'BreadcrumbList') {
+			unset($data["@graph"][3]);
+		}
+	}
+	return $data;
+}

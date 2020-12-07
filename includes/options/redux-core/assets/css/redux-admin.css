@@ -976,7 +976,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     color: #666;
     font-weight: 500;
     margin-bottom: 15px;
-    display: block;
+    display: none;
     text-decoration: line-through;
 }
 .d-amt sup{

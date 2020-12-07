@@ -892,8 +892,7 @@ $freepro_listing = '
         <span class="ov"></span>
     </div>
     <div class="fp-cnt">
-            <h1>Black Friday & Cyber Monday Deal</h1>
-            <h2>Flat 50% discount on all the products for a very limited time</h2>
+            <h1>Upgrade to Pro</h1>
             <p>Take your AMP to the next level with more beautiful themes, great extensions and more powerful features.</p>
             <a class="buy" href="#upgrade">BUY NOW</a>
     </div>
@@ -1046,11 +1045,11 @@ $freepro_listing = '
             </div>
             <div class="pri-lst">
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2020&download_id=24570&edd_options[price_id]=1">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=1">
                         <h5>PERSONAL</h5>
                         <span class="d-amt"><sup>$</sup>149</span>
-                        <span class="amt"><sup>$</sup>74</span>
-                        <span class="s-amt">(Save $75)</span>
+                        <span class="amt"><sup>$</sup>149</span>
+                        <span class="s-amt">(Save $59)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">1 Site License</span>
                         <span class="e">E-mail support</span>
@@ -1060,11 +1059,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb rec">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2020&download_id=24570&edd_options[price_id]=2">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=2">
                         <h5>MULTIPLE</h5>
                         <span class="d-amt"><sup>$</sup>199</span>
-                        <span class="amt"><sup>$</sup>99</span>
-                        <span class="s-amt">(Save $100)</span>
+                        <span class="amt"><sup>$</sup>199</span>
+                        <span class="s-amt">(Save $79)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">3 Site License</span>
                         <span class="e">E-mail support</span>
@@ -1075,11 +1074,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2020&download_id=24570&edd_options[price_id]=3">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=3">
                         <h5>WEBMASTER</h5>
                         <span class="d-amt"><sup>$</sup>249</span>
-                        <span class="amt"><sup>$</sup>124</span>
-                        <span class="s-amt">(Save $125)</span>
+                        <span class="amt"><sup>$</sup>249</span>
+                        <span class="s-amt">(Save $99)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">10 Site License</span>
                         <span class="e">E-mail support</span>
@@ -1089,11 +1088,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2020&download_id=24570&edd_options[price_id]=4">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=4">
                         <h5>FREELANCER</h5>
                         <span class="d-amt"><sup>$</sup>299</span>
-                        <span class="amt"><sup>$</sup>149</span>
-                        <span class="s-amt">(Save $150)</span>
+                        <span class="amt"><sup>$</sup>299</span>
+                        <span class="s-amt">(Save $119)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">25 Site License</span>
                         <span class="e">E-mail support</span>
@@ -1103,11 +1102,11 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2020&download_id=24570&edd_options[price_id]=5">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=5">
                         <h5>AGENCY</h5>
                         <span class="d-amt"><sup>$</sup>499</span>
-                        <span class="amt"><sup>$</sup>249</span>
-                        <span class="s-amt">(Save $250)</span>
+                        <span class="amt"><sup>$</sup>499</span>
+                        <span class="s-amt">(Save $199)</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">Unlimited</span>
                         <span class="e">E-mail support</span>
@@ -1397,16 +1396,11 @@ if(get_theme_support('amp-template-mode')){
     $upg_to_pro_url = 'https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin';
     $upg_to_pro_target = 'target="_blank"';
 }
-$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn dof" href="'.$upg_to_pro_url.'" id="ampforwp-prem-upg-to" '.$upg_to_pro_target.'> 
-<img class="black-friday-img" src="'.AMPFORWP_IMAGE_DIR . '/blackfriday.png" /> 
-<span>50% OFF on Everything</span>  
-</a> ';
+$proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Upgrade to PRO</a> ';
 if($ampforwp_nameOfUser!=""){
-    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url($amppro_settings_url)."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
+    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url(admin_url('admin.php?page=amp_options&tabid=opt-go-premium'))."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
-    $proDetailsProvide = "<span class='extension-menu-call'><a class='premium_features_btn' href='".esc_url($amppro_enter_keyurl)."'>Enter license here</a></span><a class='premium_features_btn dof' target='_blank' href='https://ampforwp.com/festive-season/' id='ampforwp-prem-upg-to'> 
-<img class='black-friday-img' src='".AMPFORWP_IMAGE_DIR . "/blackfriday.png' /> 
-<span>50% OFF on Upgrades & Renewals</span></a>";
+    $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".esc_url(admin_url('admin.php?tabid=opt-go-premium&page=amp_options'))."'>Enter license here</a></span>";
 }
 if(function_exists('amp_activate') ){
     $proDetailsProvide = "<a class='premium_features_btn_txt' href=\"#\"> AMP by Automattic compatibility has been activated</a>";
@@ -1423,7 +1417,9 @@ if( in_array( 'administrator', $user->roles ) ) {
 }elseif( in_array( 'author', $user->roles ) && in_array('author', $amp_access)){
     $permissions = 'edit_posts';
 }
-
+if (class_exists('WPSEO_Options') && in_array( 'wpseo_manager', $user->roles ) && in_array('wpseo_manager', $amp_access)) {
+    $permissions = 'edit_pages'; 
+}
 $args = array(
     // TYPICAL -> Change these values as you need/desire
     'opt_name'              => 'redux_builder_amp', // This is where your data is stored in the database and also becomes your global variable name.
