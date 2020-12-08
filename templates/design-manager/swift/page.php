@@ -54,6 +54,13 @@ amp_header(); ?>
 						<?php amp_comments();?>
 					</div>
 				<?php } // Level up Condition ends
+				if (ampforwp_is_front_page() && false == ampforwp_get_setting('gbl-sidebar')) {
+						if(ampforwp_get_comments_status()){ ?>
+							<div class="cmts">
+								<?php amp_comments();?>
+							</div>
+						<?php } 
+					}
 				if( ampforwp_get_setting('enable-add-this-option') == true && 'above-content' !=  ampforwp_get_setting('swift-add-this-position')) {
 				echo ampforwp_addThis_support();
 			}?>
