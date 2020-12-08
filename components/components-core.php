@@ -732,6 +732,28 @@ function ampforwp_backtotop_global_css(){?>
 	.sharedaddy li{display:none}
 	sub {vertical-align: sub;font-size: small;}
 	sup {vertical-align: super;font-size: small;}
+	<?php if (function_exists('wp_pagenavi')) {?>
+	  .wp-pagenavi {
+	      border: 1px solid #BFBFBF;
+	      padding: 10px;
+	  }
+	  .wp-pagenavi span.pages {
+	      margin-right: 10px;
+	  }
+	  .wp-pagenavi a.previouspostslink {
+	      margin-left: 20px;
+	  }
+	  .wp-pagenavi a.page.smaller, .wp-pagenavi a.page.larger, .wp-pagenavi span.current
+	  {
+	      padding: 0 5px;
+	  }
+	  .wp-pagenavi span.extend {
+	      display: none;
+	  }
+	  .wp-pagenavi a.last , .amp-archive a.first {
+	      margin-left: 10px;
+	  }
+  <?php } ?>  
 	<?php if (class_exists('FVP_HTML')) {?>
 	.featured-video-plus amp-iframe {margin: 0 auto;}
 	<?php } ?>
