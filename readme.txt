@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.71 (9th December 2020) =
+= 1.0.71 (10th December 2020) =
 * Fixed: AMP Page builder accordion not working in 1.0.70 #4862
 * Fixed: Category name in the dropdown not redirecting and AMP Sidebar alignment #4861
 * Fixed: AMP Sidebar Menu Remains Open After Browser Back in Firefox and Safari #4840
