@@ -76,7 +76,10 @@ if ( ! defined( 'ABSPATH' ) ) {
         $attributes .= ' class="dropdown-toggle"';
         $attributes .= ' data-toggle="dropdown"';
     }
-
+    global $is_safari; 
+    if ($is_safari || strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox')) {
+      $attributes .= 'on="tap:sidebar.close"';
+    }
     $item_output = isset($args->before) ? $args->before : 1;
   
     $item_output .= '<a'. $attributes .'>';
