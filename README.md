@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.6
-Stable tag: 1.0.70
+Stable tag: 1.0.71
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,17 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.71 (9th December 2020) =
+* Fixed: AMP Page builder accordion not working in 1.0.70 #4862
+* Fixed: Category name in the dropdown not redirecting and AMP Sidebar alignment #4861
+* Fixed: AMP Sidebar Menu Remains Open After Browser Back in Firefox and Safari #4840
+* Fixed: amp-auto-ads was found on this page, but is unused error #4851
+* Fixed: Amp option panel breaks in Product Filter For WooCommerce Product Plugin #4853
+* Fixed: ID attribute added inside the analytics section #4852
+* Fixed: Updated Facebook Messanger Icon #4859
+* Fixed: Heading elements added in blurb module of AMP page builder #4856
+* Fixed: Special characters are showing for post titles after sharing tweets #4850
 
 = 1.0.70 (7th December 2020) =
 * Improvement: Added filter to modify author bio description #4849
