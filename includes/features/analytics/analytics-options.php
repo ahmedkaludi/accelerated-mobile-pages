@@ -17,6 +17,7 @@ function ampforwp_analytics_options($opt_name){
    Redux::setSection( $opt_name,    array(
                 'title' => esc_html__('Analytics'),
                 // 'icon' => 'el el-th-large',
+                'id' => 'analytics',
                 'subsection' => true,
                 'fields' =>
                     array(
