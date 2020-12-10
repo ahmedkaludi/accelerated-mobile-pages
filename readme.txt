@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.6
-Stable tag: 1.0.71
+Stable tag: 1.0.71.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.71.1 (10th December 2020) =
+* Fixed: Validation error in author bio alt attribute #4864
 
 = 1.0.71 (10th December 2020) =
 * Fixed: AMP Page builder accordion not working in 1.0.70 #4862
