@@ -52,6 +52,9 @@ function ampforwp_add_admin_styling($hook_suffix){
         if(function_exists('html5blank_header_scripts')){
             wp_dequeue_script( 'jquery-js' );
         }
+        if (function_exists('aeccglobal_setup')) {
+            remove_action( 'admin_footer', 'js_update_show_in_slider' );
+        }
         remove_all_actions('admin_notices');
         add_action('admin_notices', 'ampforwp_dev_mode_notice');
         add_action('admin_notices', 'ampforwp_plugins_manager_notice');
