@@ -29,7 +29,7 @@
 })();
 
 jQuery(document).ready(function($) {
-    $("#meta-checkbox").click(function(){ 
+    $("#meta-checkbox").on("click", function(){ 
            ampforwp_check_custom_content_status($(this));
     });
     ampforwp_check_custom_content_status($("#meta-checkbox")); 

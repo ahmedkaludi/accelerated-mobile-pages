@@ -45,7 +45,7 @@ var Merlin = (function($){
         	body.toggleClass( drawer_opened );
         });
 
-    	$('.merlin__button--proceed:not(.merlin__button--closer)').click(function (e) {
+    	$('.merlin__button--proceed:not(.merlin__button--closer)').on("click", function (e) {
 		    e.preventDefault();
 		    var goTo = this.getAttribute("href");
 

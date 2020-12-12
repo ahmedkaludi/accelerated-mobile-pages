@@ -190,7 +190,7 @@
 			// Event handler for widget save button (for new instances)
 			// Note: this event handler is intentionally attached to the save button instead of document
 			// to let the the textarea content be updated before the ajax request is run
-			$( 'input[name=savewidget]',  bstw( $( this ) ).get_widget() ).click(function() {
+			$( 'input[name=savewidget]',  bstw( $( this ) ).get_widget() ).on("click", function() {
 				if ( bstw( $( this ) ).is_tinymce_active() ) {
 					bstw( $( this ) ).deactivate();
 				}
