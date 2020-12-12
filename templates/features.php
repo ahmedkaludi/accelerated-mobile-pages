@@ -314,7 +314,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$current_archive_url = home_url( 'index.php/' . $wp->request );
 			}
 	        $amp_url = trailingslashit($current_archive_url);
-	        if ($endpoint_check && !is_category() && !is_tag()) {
+	        if ($endpoint_check && (is_tax() || is_post_type_archive())) {
 	        	$amp_url =  ampforwp_url_controller($amp_url);	
 	        }
 	    } else {
