@@ -1241,7 +1241,7 @@
             // Create button and setup attributes
             elements.button.appendTo(elements.titlebar || tooltip)
                 .attr('role', 'button')
-                .on("click", function(event) {
+                .click(function(event) {
                     if(!tooltip.hasClass(CLASS_DISABLED)) { self.hide(event); }
                     return FALSE;
                 });

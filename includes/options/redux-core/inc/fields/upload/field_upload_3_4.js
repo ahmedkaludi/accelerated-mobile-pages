@@ -20,7 +20,7 @@ jQuery(document).ready(function () {
 
     jQuery("img[src='']").attr("src", redux_upload.url);
 
-    jQuery('.redux-opts-upload').on("click", function () {
+    jQuery('.redux-opts-upload').click(function () {
         header_clicked = true;
         formfield = jQuery(this).attr('rel-id');
         preview = jQuery(this).prev('img');
@@ -28,7 +28,7 @@ jQuery(document).ready(function () {
         return false;
     });
 
-    jQuery('.redux-opts-upload-remove').on("click", function () {
+    jQuery('.redux-opts-upload-remove').click(function () {
         $relid = jQuery(this).attr('rel-id');
         jQuery('#' + $relid).val('');
         jQuery(this).prev().fadeIn('slow');

@@ -1,7 +1,7 @@
 
 jQuery(document).ready(function($){
 
-    $('.ampforwp-activation-call-module-upgrade').on("click", function(e){
+    $('.ampforwp-activation-call-module-upgrade').click(function(e){
         if(pagenow == 'toplevel_page_amp_options' && $(this).hasClass('ampforwp-activation-call-module-upgrade')){// Check for current page
             var self = $(this);
             var nonce = self.attr('data-secure');
