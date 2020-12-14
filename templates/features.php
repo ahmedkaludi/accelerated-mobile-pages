@@ -314,7 +314,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$current_archive_url = home_url( 'index.php/' . $wp->request );
 			}
 	        $amp_url = trailingslashit($current_archive_url);
-	        if ($endpoint_check && !is_category() && !is_tag()) {
+	        if ($endpoint_check && (is_tax() || is_post_type_archive())) {
 	        	$amp_url =  ampforwp_url_controller($amp_url);	
 	        }
 	    } else {
@@ -9152,4 +9152,11 @@ function ampforwp_remove_homepage_breadcrumb($data){
 		}
 	}
 	return $data;
+}
+//Twitter title #2744
+function ampforwp_sanitize_twitter_title($post_title){
+	$post_title = html_entity_decode( $post_title, ENT_QUOTES, 'UTF-8' );
+    $post_title = rawurlencode( $post_title );
+    $post_title = esc_html( $post_title );
+    return $post_title;
 }

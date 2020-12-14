@@ -101,6 +101,8 @@ if ( isset($args['show_time']) ) {
         if (!empty($image)) {
             preg_match_all( '@alt="([^"]+)"@' , $image, $match );
             $alt = array_pop($match);
+            $alt = implode(" ", $alt);
+            $alt = explode(" ", $alt);
             if (isset($alt[0])) {
                 $alt = 'alt=' . $alt[0];
             }

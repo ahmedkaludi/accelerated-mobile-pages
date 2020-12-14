@@ -1,5 +1,22 @@
 == Changelog ==
 
+= 1.0.71.2 (12th December 2020) =
+* Fixed: Incorrect AMPHTML on homepage with ?amp #4865
+
+= 1.0.71.1 (10th December 2020) =
+* Fixed: Validation error in author bio alt attribute #4864
+
+= 1.0.71 (10th December 2020) =
+* Fixed: AMP Page builder accordion not working in 1.0.70 #4862
+* Fixed: Category name in the dropdown not redirecting and AMP Sidebar alignment #4861
+* Fixed: AMP Sidebar Menu Remains Open After Browser Back in Firefox and Safari #4840
+* Fixed: amp-auto-ads was found on this page, but is unused error #4851
+* Fixed: Amp option panel breaks in Product Filter For WooCommerce Product Plugin #4853
+* Fixed: ID attribute added inside the analytics section #4852
+* Fixed: Updated Facebook Messanger Icon #4859
+* Fixed: Heading elements added in blurb module of AMP page builder #4856
+* Fixed: Special characters are showing for post titles after sharing tweets #4850
+
 = 1.0.70 (7th December 2020) =
 * Improvement: Added filter to modify author bio description #4849
 * Improvement: Added LGDP (Brazil's GDPR) #4854
