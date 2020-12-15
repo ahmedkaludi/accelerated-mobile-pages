@@ -24,6 +24,9 @@ function amp_archive_title(){
 		}else{
 			the_archive_title( '<h2 class="amp-archive-title">', '</h2>' );
 		}
+		if(function_exists('ampforwp_category_image_compatibility')){
+			ampforwp_category_image_compatibility('echo','amp-archive-image');
+		}
 	    $description 	= get_the_archive_description();
 		$sanitizer = new AMPFORWP_Content( $description, array(), 
 			apply_filters( 'ampforwp_content_sanitizers',
@@ -49,9 +52,9 @@ function amp_archive_title(){
 				if($paged <= '1' && ampforwp_get_setting('ampforwp-cat-description')) {?>
 					<div class="amp-archive-desc">
 						<?php echo do_shortcode($arch_desc);// amphtml content, no kses ?>
-				    </div> <?php
-				}
+					</div> <?php	
 			}
+		}	
 	}
 	if( is_category() && 1 == $redux_builder_amp['ampforwp-sub-categories-support'] ){
 		$parent_cat_id 	= '';

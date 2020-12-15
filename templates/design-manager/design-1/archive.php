@@ -68,7 +68,9 @@ global $redux_builder_amp, $wp; ?>
 		}else{
 			the_archive_title( '<h2 class="page-title">', '</h2>' );
 		}
-	    
+	    	if(function_exists('ampforwp_category_image_compatibility')){
+	    		ampforwp_category_image_compatibility('echo','amp-wp-content taxonomy-image');
+	    	}
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
 				if ( get_query_var( 'paged' ) ) {
