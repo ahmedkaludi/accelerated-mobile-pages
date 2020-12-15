@@ -708,6 +708,28 @@ function ampforwp_backtotop_global_css(){?>
 	sub {vertical-align: sub;font-size: small;}
 	sup {vertical-align: super;font-size: small;}
 	amp-call-tracking a {display: none;}
+	<?php if (function_exists('wp_pagenavi')) {?>
+	  .wp-pagenavi {
+	      border: 1px solid #BFBFBF;
+	      padding: 10px;
+	  }
+	  .wp-pagenavi span.pages {
+	      margin-right: 10px;
+	  }
+	  .wp-pagenavi a.previouspostslink {
+	      margin-left: 20px;
+	  }
+	  .wp-pagenavi a.page.smaller, .wp-pagenavi a.page.larger, .wp-pagenavi span.current
+	  {
+	      padding: 0 5px;
+	  }
+	  .wp-pagenavi span.extend {
+	      display: none;
+	  }
+	  .wp-pagenavi a.last , .amp-archive a.first {
+	      margin-left: 10px;
+	  }
+  <?php } ?>  
 	<?php if (class_exists('UAGB_Admin')) {?>
 	.wp-block-uagb-faq svg {display: none;}
 	<?php } ?>

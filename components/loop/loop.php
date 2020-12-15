@@ -297,6 +297,9 @@ function amp_pagination($args =array()) {
 	}?>
 
     <div class="loop-pagination"><?php
+	    if (function_exists('wp_pagenavi')) {
+	      wp_pagenavi();
+	    }else{
 	    if ( get_next_posts_link( $args['next_text'], $amp_q->max_num_pages ) ) { 
     	 	$next_link = '<div class="right">'. apply_filters('ampforwp_next_posts_link',get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ), $paged) .'</div>';
     	 	echo $next_link; // escaped above
@@ -306,7 +309,7 @@ function amp_pagination($args =array()) {
 	    	echo $pre_link; // escaped above 
     	} ?>
 	    <div class="clearfix"></div>
-	</div><?php
+	</div><?php }
 	
 }
 
