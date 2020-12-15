@@ -700,6 +700,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('paid-memberships-pro-for-amp/paid-memberships-pro-for-amp.php')? 1 : 2),
                         ),
                         array(
+                            'name'=>'Recipe Compatibility for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Recipes Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/recipe-compatibility-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/recipe-compatibility-for-amp/',
+                            'plugin_active_path'=> 'recipe-compatibility-for-amp/recipe-compatibility-for-amp.php',
+                            'item_name'=>'Recipe Compatibility for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('recipe-compatibility-for-amp/recipe-compatibility-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Polls for AMP',
                             'class'=>'new-ext',
                             'desc'=>'Add Polls Support in AMP',
