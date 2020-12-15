@@ -7,8 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_title' );
 function amp_post_template_add_title( $amp_template ) {
+	$title = $amp_template->get( 'document_title' );
+	$title = str_replace('&#8211;', '-', $title);
 	?>
-	<title><?php echo esc_html( $amp_template->get( 'metadata' )["headline"] ); ?></title>
+	<title><?php echo esc_html( $title ); ?></title>
 	<?php
 }
 
