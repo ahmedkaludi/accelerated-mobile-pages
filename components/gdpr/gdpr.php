@@ -21,7 +21,7 @@ function amp_gdpr_output(){
     if(isset($redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']) && $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']){
     $privacy_button_text = $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text'];
     }
-    $gdpr_countries = array("AT","BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IS", "IE", "IT", "LV", "LI", "LT", "LU", "MT", "NL", "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB", "AX", "IC", "EA", "GF", "PF", "TF", "GI", "GP", "GG", "JE", "MQ", "YT", "NC", "RE", "BL", "MF", "PM", "SJ", "VA", "WF", "EZ", "CH","BR");
+    $gdpr_countries = array("AT","BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IS", "IE", "IT", "LV", "LI", "LT", "LU", "MT", "NL", "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB", "AX", "IC", "EA", "GF", "PF", "TF", "GI", "GP", "GG", "JE", "MQ", "YT", "NC", "RE", "BL", "MF", "PM", "SJ", "VA", "WF", "EZ", "CH","IN");
     $gdpr_countries = apply_filters( 'ampforwp_gdpr_country_list' , $gdpr_countries ); 
     $gdpr_text = array("headline"=>$headline,"user_data"=>$user_data,"accept"=>$accept,"reject"=>$reject,"settings"=>$settings,"more_info "=>$more_info,"privacy_button_text"=>$privacy_button_text );
 	$gdpr_text = apply_filters('ampforwp_modify_gdpr_output',$gdpr_text);
@@ -57,28 +57,28 @@ function amp_gdpr_output(){
               <div class="gdpr_x" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
               <div class="gdpr-l">
 	              	<div class="gdpr_t">
-		                <h3><?php echo esc_attr($headline); ?></h3>
-		                <p><?php echo esc_attr($user_data); ?></p>
+		                <h3><?php echo esc_html__($headline,'accelerated-mobile-pages'); ?></h3>
+		                <p><?php echo esc_html__($user_data,'accelerated-mobile-pages'); ?></p>
 	                </div><?php if(isset($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']) && $redux_builder_amp['amp-gdpr-compliance-select-privacy-page']){?>
 	                <div class="gdpr_fmi">
-	                  <span><?php echo esc_attr($more_info); ?></span>
-	                  <a class="gdpr_fmi pri_page_link" href="<?php echo esc_attr($privacy_page); ?>" target="_blank"><?php echo esc_attr($privacy_button_text); ?></a> 
+	                  <span><?php echo esc_html__($more_info,'accelerated-mobile-pages'); ?></span>
+	                  <a class="gdpr_fmi pri_page_link" href="<?php echo esc_attr($privacy_page); ?>" target="_blank"><?php echo esc_html__($privacy_button_text,'accelerated-mobile-pages'); ?></a> 
 	                </div><?php } ?>
 	            </div>
               <div id="gdpr_yn" class="gdpr_yn">
               	<div class="gdpr-btns">
 	                <form class="acp" action-xhr="<?php echo esc_url($form_url.'&type=accept'); ?>" method="post" target="_top">
-	                  <button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_attr($accept); ?></button>
+	                  <button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_html__($accept,'accelerated-mobile-pages'); ?></button>
 	                </form>
 	                <form class="rej" action-xhr="<?php echo esc_url($form_url.'&type=reject'); ?>" method="post" target="_top">
-	                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_attr($reject); ?></button>
+	                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_html__($reject,'accelerated-mobile-pages'); ?></button>
 	                 </form>
 	             </div>
               </div>
             </div>
           </div>
           <div id="post-consent-ui">
-            <a href="#" on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_attr($settings); ?></a> 
+            <a href="#" on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_html__($settings,'accelerated-mobile-pages'); ?></a> 
           </div>
       </amp-consent>
 <?php 
