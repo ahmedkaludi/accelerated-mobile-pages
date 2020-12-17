@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.72 (15th December 2020) =
+= 1.0.72 (17th December 2020) =
 * Improvement: Added i2Pros and cons plugin compatibility #4837
 * Improvement: Added WP-PageNavi plugin compatibility #4831
 * Improvement: Added Categories Images plugin compatibility #3973
