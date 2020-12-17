@@ -5914,10 +5914,10 @@ $single_page_options = array(
             array(
                  'id'       => 'amp-author-name-display',
                  'type'     => 'switch',
-                 'class' => 'child_opt child_opt_arrow', 
+                 'class'    => 'child_opt child_opt_arrow', 
                  'title'    => esc_html__( 'Below Title on Mobile', 'accelerated-mobile-pages' ),
                  'default'  => 0,
-                  'tooltip-subtitle'     => esc_html__('Enable this option to show author name below the title in mobile view and','accelerated-mobile-pages'),
+                  'tooltip-subtitle' => esc_html__('Enable this option to show author name below the title in mobile view','accelerated-mobile-pages'),
                   'required' => array(
                     array('amp-author-name' , '=' , '1'),
                 )
