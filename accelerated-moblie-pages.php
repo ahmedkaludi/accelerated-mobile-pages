@@ -693,6 +693,12 @@ function ampforwp_bundle_core_amp_files(){
 		remove_action( 'plugins_loaded', 'jnews_amp' );
 		remove_filter( 'amp_content_sanitizers', 'jnews_amp_content_sanitize');
 	}
+	if (function_exists('wpda_hb_pro__plugins_loaded')) {
+		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+    	if( function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
+			remove_action('plugins_loaded', 'wpda_hb_pro__plugins_loaded');
+		}
+	}
 } 
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
 
