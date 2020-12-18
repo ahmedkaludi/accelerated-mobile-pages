@@ -6532,8 +6532,7 @@ function ampforwp_get_comments_status(){
 add_action('ampforwp_post_after_design_elements','ampforwp_vuukle_comments_support');
 function ampforwp_vuukle_comments_support() {
 	global $redux_builder_amp;
-	if ( true == ampforwp_get_setting('ampforwp-vuukle-comments-support') && comments_open() 
-		) {
+	if ( true == ampforwp_get_setting('ampforwp-vuukle-comments-support') && comments_open() && ampforwp_get_setting('amp-design-selector') != 4) {
 		echo ampforwp_vuukle_comments_markup();
 	}
 }
