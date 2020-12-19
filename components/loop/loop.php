@@ -24,6 +24,9 @@ function amp_archive_title(){
 		}else{
 			the_archive_title( '<h2 class="amp-archive-title">', '</h2>' );
 		}
+		if(function_exists('ampforwp_category_image_compatibility')){
+			ampforwp_category_image_compatibility('echo','amp-archive-image');
+		}
 	    $description 	= get_the_archive_description();
 		$sanitizer = new AMPFORWP_Content( $description, array(), 
 			apply_filters( 'ampforwp_content_sanitizers',
@@ -49,9 +52,9 @@ function amp_archive_title(){
 				if($paged <= '1' && ampforwp_get_setting('ampforwp-cat-description')) {?>
 					<div class="amp-archive-desc">
 						<?php echo do_shortcode($arch_desc);// amphtml content, no kses ?>
-				    </div> <?php
-				}
+					</div> <?php	
 			}
+		}	
 	}
 	if( is_category() && 1 == $redux_builder_amp['ampforwp-sub-categories-support'] ){
 		$parent_cat_id 	= '';
@@ -297,6 +300,9 @@ function amp_pagination($args =array()) {
 	}?>
 
     <div class="loop-pagination"><?php
+	    if (function_exists('wp_pagenavi')) {
+	      wp_pagenavi();
+	    }else{
 	    if ( get_next_posts_link( $args['next_text'], $amp_q->max_num_pages ) ) { 
     	 	$next_link = '<div class="right">'. apply_filters('ampforwp_next_posts_link',get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ), $paged) .'</div>';
     	 	echo $next_link; // escaped above
@@ -306,7 +312,7 @@ function amp_pagination($args =array()) {
 	    	echo $pre_link; // escaped above 
     	} ?>
 	    <div class="clearfix"></div>
-	</div><?php
+	</div><?php }
 	
 }
 

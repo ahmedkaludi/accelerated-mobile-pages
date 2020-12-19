@@ -277,7 +277,7 @@ main { padding: 30px 15% 10px 15%; }
 <?php } ?>
 .amp-wp-content.widget-wrapper{padding:12px 10px 10px 10px;}
 main .amp-wp-content{ margin-bottom: 12px;  padding: 15px; }
-.amp-loop-list, .featured-image-content, .the_content, .taxonomy-description{background: #fff; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05);}
+.amp-loop-list, .featured-image-content, .the_content, .taxonomy-description, .taxonomy-image{background: #fff; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05);}
 .home-post_image{ float: right; margin-left: 15px; margin-bottom: -6px; }
 .amp-wp-title{ margin-top: 0px; }
 h2.amp-wp-title , h3.amp-wp-title{ line-height: 30px; }

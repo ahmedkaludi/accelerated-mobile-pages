@@ -473,7 +473,7 @@ height:<?php echo esc_html($fimg_height).'px';?>;width:<?php echo esc_html($fimg
 .pt-dt{font-size:11px;color:#757575;margin: 8px 0px 0px 0px;display: inline-flex;}
 .arch-tlt{margin:30px 0px 30px;display:inline-block;width:100%;}
 .amp-archive-title, .amp-loop-label{font-weight:600;}
-.amp-archive-desc{font-size: 14px;margin:8px 0px 0px 0px;color: #333;line-height:20px;}
+.amp-archive-desc , .amp-archive-image{font-size: 14px;margin:8px 0px 0px 0px;color: #333;line-height:20px;}
 .author-img amp-img {border-radius: 50%;margin: 0px 12px 10px 0px;display: block; width:50px;}
 .author-img{float: left;}
 .amp-sub-archives{margin:10px 0px 0px 10px;}

@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 1.0.72 (17th December 2020) =
+* Improvement: Added i2Pros and cons plugin compatibility #4837
+* Improvement: Added WP-PageNavi plugin compatibility #4831
+* Improvement: Added Categories Images plugin compatibility #3973
+* Improvement: Added webp images on the homepage and Archives with Imagify plugin #4725
+* Improvement: Added Recipe Compatibility for AMP Extension #4868
+* Fixed: Amp option panel breaks when AECC Global Theme is activated. #4863
+* Fixed: Facebook page embed fails #4871
+* Fixed: Referenced AMP URL is self-canonical AMP while using All in One Seo #4873
+
 = 1.0.71.2 (12th December 2020) =
 * Fixed: Incorrect AMPHTML on homepage with ?amp #4865
 
