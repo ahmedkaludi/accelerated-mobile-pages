@@ -116,7 +116,7 @@ jQuery(function($) {
     $('.redux-container').each(function() {
         if (!$(this).hasClass('redux-no-sections')) {
             $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls" style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');
-            $('.redux-amp-search-icon').click(function(){
+            $('.redux-amp-search-icon').on("click", function(){
                 $('.redux_field_search').toggle('slide');
                 var val = $('.redux_field_search').val();
                 var display = $('.redux_field_search').css('display');
@@ -218,7 +218,7 @@ jQuery(function($) {
         });
     
     }); 
-    $(".redux_field_search").keypress(function (evt) {
+    $(".redux_field_search").on( "keypress", function (evt) {
         //Deterime where our character code is coming from within the event
         var charCode = evt.charCode || evt.keyCode;
         if (charCode  == 13) { //Enter key's keycode
@@ -227,7 +227,7 @@ jQuery(function($) {
     });
     //option panel Section Division
     var optionSectionDevision = function(){
-        $('.afw-accordion-header').click(function(){
+        $('.afw-accordion-header').on("click", function(){
             //Get Cookie Changes
             if ( $.cookie( "redux_current_section_customize" )){
                  var allReduxTabs = JSON.parse($.cookie( "redux_current_section_customize" ));   
@@ -306,7 +306,7 @@ jQuery(function($) {
             }
         });
 
-        jQuery( '.redux-group-tab-link-a' ).click(function(){
+        jQuery( '.redux-group-tab-link-a' ).on("click", function(){
             if(jQuery(this).parent('li').hasClass('otherSectionFields')){
                 jQuery(this).parent('li.otherSectionFields').siblings('li.otherSectionFields').hide();
                 if(!jQuery(this).parent('li').is(':visible')){
@@ -336,7 +336,7 @@ jQuery(function($) {
                 $(this).parent('div.switch-options').find('.switch-text-off').show();
             }
         });        
-        switchText.siblings('label').click(function(){
+        switchText.siblings('label').on("click", function(){
             if ( $(this).siblings('input').attr('value') == 1 ) {
                 $(this).parent().find('.switch-text-on').hide();
                 $(this).parent().find('.switch-text-off').show();
@@ -677,7 +677,7 @@ var dataTabRequired = function(){
     });
 }    
 var reduxOptionTab = function(){
-    $('.redux-tab-selector').click(function(){
+    $('.redux-tab-selector').on("click", function(){
         var tabId = $(this).attr('data-tab');
         var tabRequired = $(this).attr('data-tab-required');
         $(this).parents().find('.custom-tab-container').hide();   
@@ -706,7 +706,7 @@ var reduxOptionTab = function(){
         });//$(".amp-ls-solve") each closed
    }
 });
-$(".redux-ampforwp-ext-activate").click(function(){
+$(".redux-ampforwp-ext-activate").on("click", function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
     var secure_nonce = currentThis.parents("li").attr('data-ext-secure');
@@ -772,7 +772,7 @@ function AMPforwpreadCookie(name) {
     return null;
 }
 function deactivatelicence(){
-    $(".ampforwp-ext-refresh").click(function(){
+    $(".ampforwp-ext-refresh").on("click", function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
 
@@ -824,7 +824,7 @@ function deactivatelicence(){
 
     }
 });
-$(".redux-ampforwp-ext-deactivate").click(function(){
+$(".redux-ampforwp-ext-deactivate").on("click", function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
     var secure_nonce = currentThis.parents("li").attr('data-ext-secure');
@@ -894,7 +894,7 @@ var helpSection = function(){
 helpSection();
 
 var redux_title_modify = function(){
-    $( '.redux-group-tab-link-a' ).click(function(){
+    $( '.redux-group-tab-link-a' ).on("click", function(){
         var link = $( this );
         if ( link.parent().hasClass( 'empty_section' ) && link.parent().hasClass( 'hasSubSections' ) ) {
             var elements = $( this ).closest( 'ul' ).find( '.redux-group-tab-link-a' );
@@ -916,7 +916,7 @@ var redux_title_modify = function(){
     $('li.active .redux-group-tab-link-a').click();
     }
 
-    $("#meta-checkbox").click(function(){ 
+    $("#meta-checkbox").on("click", function(){ 
            ampforwp_check_custom_content_status($(this));
     });
     ampforwp_check_custom_content_status($("#meta-checkbox")); 
@@ -952,7 +952,7 @@ var redux_title_modify = function(){
     });
 
     if($(".amp-preview-button").length>0){
-        $(".amp-preview-button").click(function(){
+        $(".amp-preview-button").on("click", function(){
             var srcLink = $("#amp-preview-iframe").attr('data-src');
            $("#amp-preview-iframe").html("<iframe  src='"+srcLink+"'></iframe>");
         });
@@ -1108,7 +1108,7 @@ jQuery(document).ready(function($) {
             $('#redux-footer-sticky').hide();
         }
     },10);
-    $(".redux-group-tab-link-li").click(function(){
+    $(".redux-group-tab-link-li").on("click", function(){
         var this_c_val = $(this).children('a').children('span.group_title').html();
         if($(this).hasClass('ampforwp-new-ux') || $(this).hasClass('opt-go-premium')){
             $('#redux-footer-sticky').hide();
@@ -1367,7 +1367,7 @@ jQuery(document).ready(function($) {
             $(".ux-setup-icon").addClass("amp-ux-warning-okay");
         }
     }
-    $("#ampforwp-prem-upg-to").click(function(){
+    $("#ampforwp-prem-upg-to").on("click", function(){
         $(".redux-group-tab-link-a").each(function(){
             var id = $(this).attr('data-key');
             var thischildelem = $(this).children('.group_title').html();
@@ -1378,7 +1378,7 @@ jQuery(document).ready(function($) {
             }
         });
     }); 
-    $("#ampforwp-goto-analytics").click(function(){
+    $("#ampforwp-goto-analytics").on("click", function(){
         $(".redux-group-tab-link-a").each(function(){
             var id = $(this).attr('data-key');
             var thischildelem = $(this).children('.group_title').html();
@@ -1393,7 +1393,7 @@ jQuery(document).ready(function($) {
             }
         });
     }); 
-     $("[data-href=ampforwp-ux-advertisement-section]").click(function(){
+     $("[data-href=ampforwp-ux-advertisement-section]").on("click", function(){
        $(".redux-group-tab-link-a").each(function(){
             var id = $(this).attr('data-key');
             var thischildelem = $(this).children('.group_title').html();
@@ -1453,7 +1453,7 @@ jQuery(document).ready(function($) {
     });
 
     // Homepage
-    $('input[id="amp-ux-homepage"]').click(function(){
+    $('input[id="amp-ux-homepage"]').on("click", function(){
         if($(this).prop("checked") == true){
             $('.amp-ux-frontpage').show();
             $(this).attr('value', 1);
@@ -1470,7 +1470,7 @@ jQuery(document).ready(function($) {
         
     });
     // Frontpage
-     $('input[id="amp-ux-frontpage"]').click(function(){
+     $('input[id="amp-ux-frontpage"]').on("click", function(){
         if($(this).prop("checked") == true){
             // FrontPage
             $("input[data-id=amp-frontpage-select-option]").prop('checked', true).trigger( 'change' );
@@ -1495,7 +1495,7 @@ jQuery(document).ready(function($) {
         }
     });
     // Posts
-    $('#amp-ux-posts').click(function(){
+    $('#amp-ux-posts').on("click", function(){
         if($(this).prop("checked") == true){
             if($('input[id="amp-on-off-for-all-posts"]').val() != 1 ) {
                 $("input[data-id=amp-on-off-for-all-posts]").prop('checked', true).trigger( 'change' );
@@ -1508,7 +1508,7 @@ jQuery(document).ready(function($) {
         }
     });
     // Pages
-    $('input[id="amp-ux-pages"]').click(function(){
+    $('input[id="amp-ux-pages"]').on("click", function(){
         if($(this).prop("checked") == true){
             if($('input[id="amp-on-off-for-all-pages"]').val() != 1 ) {
                 $("input[data-id=amp-on-off-for-all-pages]").prop('checked', true).trigger( 'change' );
@@ -1521,7 +1521,7 @@ jQuery(document).ready(function($) {
         }
     });
     // Archives
-    $('input[id="amp-ux-archives"]').click(function(){
+    $('input[id="amp-ux-archives"]').on("click", function(){
         if($(this).prop("checked") == true){
             if($('input[id="ampforwp-archive-support"]').val() != 1 ) {
                 $("input[data-id=ampforwp-archive-support]").prop('checked', true).trigger( 'change' );
@@ -1544,7 +1544,7 @@ jQuery(document).ready(function($) {
             }
     });
     // Design and Presentation Section
-    $('.media-amp-ux-opt-media' ).unbind().on(
+    $('.media-amp-ux-opt-media' ).off().on(
         'click', function( event ) {
             redux.field_objects.media.addFile( event, $( this ).parents( 'div.amp-ux-opt-media-container:first' ) );
              $('.media-button-select').on('click', function(){
@@ -1815,7 +1815,7 @@ jQuery(document).ready(function($) {
         }
     }
     // Privacy Settings Section
-    $('input[id="amp-ux-notice-switch"]').click(function(){
+    $('input[id="amp-ux-notice-switch"]').on("click", function(){
         if($(this).prop("checked") == true){
             $(this).val(1);
             if($('input[id="amp-enable-notifications"]').val() != 1 ) {
@@ -1840,7 +1840,7 @@ jQuery(document).ready(function($) {
         
     });
     
-    $('input[id="amp-ux-gdpr-switch"]').click(function(){
+    $('input[id="amp-ux-gdpr-switch"]').on("click", function(){
         if($(this).prop("checked") == true){
             $(this).val(1);
             if($('input[id="amp-gdpr-compliance-switch"]').val() != 1 ) {
@@ -1862,7 +1862,7 @@ jQuery(document).ready(function($) {
             $(this).val(0);
         }
     });
-  $(".amp-ux-section-field").click(function(){
+  $(".amp-ux-section-field").on("click", function(){
         var track = $(this).attr('data-href');
         localStorage.setItem('ampforwp_current_drawer_click',track);
     });
@@ -1890,7 +1890,7 @@ function ampforwp_check_required(value,required){
         $("[required="+required+"]").removeClass("hide");
     }
 }
-$("#ampforwp-add-more-analytics").click(function(){
+$("#ampforwp-add-more-analytics").on("click", function(){
     var analytics = $("#ampforwp-ux-analytics-more").val();
     
     if( analytics && $("[data-href="+analytics+"]").hasClass('hide')){
@@ -1911,7 +1911,7 @@ $("#ampforwp-add-more-analytics").click(function(){
     }
 });
 
-$('.ampforwp-ux-closable').click(function(){
+$('.ampforwp-ux-closable').on("click", function(){
     $(this).parent('.ampforwp-ux-sub-section').addClass('hide');
      var data_href = $(this).parent('.ampforwp-ux-sub-section').attr('data-href');
     var checked = $('#redux_builder_amp-'+data_href).children('.switch-options').children('.ios7-switch').children('.switch-on-off').prop('checked');
@@ -2332,7 +2332,7 @@ function Drawer(drawerElem) {
     }
     amp_option_panel_view_func();
 
-    $(".amp-opt-view").click(function(){
+    $(".amp-opt-view").on("click", function(){
          var thisid = $(this).attr('id');
          amp_options_hide_show(thisid);
          $(".ampforwp-option-panel-view-pop").remove();
@@ -2384,14 +2384,14 @@ function Drawer(drawerElem) {
          $("body").css({'overflow':'auto'});
          $("#1_section_group_li_a").click();
     }
-    $("[data-href='ampforwp-ux-design-section']").click(function(){
+    $("[data-href='ampforwp-ux-design-section']").on("click", function(){
         if($("[name='redux_builder_amp[amp-design-selector]']").val() == '4'){
             $('#ampforwp-easy-setup-global-color').show();
         }else{
             $('#ampforwp-easy-setup-global-color').hide();
         }
     });
-    $(".amp-opt-change").click(function(){
+    $(".amp-opt-change").on("click", function(){
         var thisid = $(this).attr('id');
         $(".amp-opt-change").each(function(){
             $(this).parent().removeClass('active');
@@ -2592,7 +2592,7 @@ $("#subscribe-newsletter-form").on('submit',function(e){
         var checkBoxes = $(this).children('input:radio')
          checkBoxes.prop("checked", "true");
     });
-    $("#ampforwp-close-notice").click(function(){
+    $("#ampforwp-close-notice").on("click", function(){
         var data = {
             action: 'ampforwp_feedback_remove_notice',
         };
