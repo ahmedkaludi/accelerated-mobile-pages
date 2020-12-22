@@ -6,8 +6,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Callbacks for adding content to an AMP template
 
 function amp_post_template_add_title( $amp_template ) {
+	$title = $amp_template->get( 'document_title' );
+	$title = str_replace('&#8211;', '-', $title);
 	?>
-	<title><?php echo esc_html( $amp_template->get( 'document_title' ) ); ?></title>
+	<title><?php echo esc_html( $title ); ?></title>
 	<?php
 }
 
