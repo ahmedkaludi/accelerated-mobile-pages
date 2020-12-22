@@ -56,6 +56,9 @@ $amp_icons_css = array();
 function add_amp_icon($args=array()){
 	global $amp_icons_css, $redux_builder_amp;
 	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
+	if (ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' && ampforwp_get_setting('ampforwp-fa-icon-pagebuilder')) {
+		$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons-fontawesome.php';
+	}
 	foreach ($args as $key ) {
 		if(isset($amp_icons_css_array[$key]))
 			$amp_icons_css[$key] = $amp_icons_css_array[$key]; 
@@ -754,6 +757,12 @@ function ampforwp_backtotop_global_css(){?>
 	      margin-left: 10px;
 	  }
   <?php } ?>  
+    <?php if (ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' && ampforwp_get_setting('ampforwp-fa-icon-pagebuilder') && checkAMPforPageBuilderStatus(ampforwp_get_the_ID())) {?>
+    	i.ico-pic , span.ico-pic {
+    		font-family: 'Font Awesome 5 Free';
+    		padding-left: 10px;
+		}
+   <?php } ?> 
 	<?php if (class_exists('FVP_HTML')) {?>
 	.featured-video-plus amp-iframe {margin: 0 auto;}
 	<?php } ?>

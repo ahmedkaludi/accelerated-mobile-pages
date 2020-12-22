@@ -4272,6 +4272,14 @@ Redux::setSection( $opt_name, array(
                     'default'  => 'swift-icons',
                 ),
                 array(
+                    'id'       => 'ampforwp-fa-icon-pagebuilder',
+                    'type'     => 'switch',
+                    'class'    => 'child_opt child_opt_arrow',
+                    'title'    => esc_html__('For AMP Pagebuilder', 'accelerated-mobile-pages'),
+                    'default'  => false,
+                     'required' => array('ampforwp_font_icon', '=' , 'fontawesome-icons') ,
+                ),
+                array(
                            'id' => 'design-advanced',
                            'type' => 'section',
                            'title' => esc_html__('Advanced', 'accelerated-mobile-pages'),

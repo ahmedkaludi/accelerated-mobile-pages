@@ -251,6 +251,9 @@ function ampforwp_icons_list_format(){
         die;
 	}
 	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
+	if (ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' && ampforwp_get_setting('ampforwp-fa-icon-pagebuilder')) {
+		$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons-fontawesome.php';
+	}
 
 	foreach ($amp_icons_css_array as $key=>$value ) {
 		$amp_icons_list[] = array('name'=>$key); 
@@ -318,6 +321,9 @@ function ampforwp_dynaminc_css() {
         die;	
     }
     $amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
+    if (ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' && ampforwp_get_setting('ampforwp-fa-icon-pagebuilder')) {
+		$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons-fontawesome.php';
+	}
     header("Content-type: text/css; charset: UTF-8");
 	foreach ($amp_icons_css_array as $key=>$value ) {
 		echo  $value;

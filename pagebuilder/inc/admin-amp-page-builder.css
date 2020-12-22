@@ -1239,6 +1239,12 @@ Layout css
 #amp-page-builder [class*=" icon-"]:before {
 font-family: 'icomoon'!important; 
 }
+#amp-page-builder [class*=" icon-fa"]:before {
+font-family: 'Font Awesome 5 Free'!important; 
+font-weight: 600;
+font-size: 20px;
+}
+.icon-close:before {content: "\e5cd";}
 .amppb_accordion__panel {
   padding: 1rem;
   background: #ffffff;
