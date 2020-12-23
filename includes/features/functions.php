@@ -230,6 +230,7 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         // xlink attribute causes Validatation Issues #1149
         $content_buffer = preg_replace('/xlink="href"/','',$content_buffer);
         $content_buffer = preg_replace('/!important/', '' , $content_buffer);
+        $content_buffer = preg_replace('/<area(.*?)>/', '', $content_buffer);
         //  Compatibility with the footnotes plugin. #2447
         if(class_exists('MCI_Footnotes')){
         $footnote_collapse_link = '';
