@@ -159,6 +159,7 @@ $avia_pb_for_ampchecker = array(
       if( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ){
         $pb_title =  'Divi Builder Support';
       }
+      }
      if( class_exists('ET_Builder_Plugin') || 'Divi' == $theme->name || 'Divi' == $theme->parent_theme ){
           $pb_title =  'Divi Builder Support';
       }
