@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     	$right_click = 'oncontextmenu="return false"';
     }
 	?>
-<body <?php echo $right_click; ?> <?php echo esc_attr($lightbox); ?><?php ampforwp_body_class('single-post design_2_wrapper');?> >
+<body <?php echo sanitize_text_field($right_click); ?> <?php echo esc_attr($lightbox); ?><?php ampforwp_body_class('single-post design_2_wrapper');?> >
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
