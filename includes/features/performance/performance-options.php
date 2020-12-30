@@ -75,6 +75,14 @@ if ( ! defined( 'ABSPATH' ) ) {
                'default'  => 0
            ),
            array(
+               'id'       => 'ampforwp_leverage_browser_caching_expires',
+               'class'    => 'child_opt child_opt_arrow',
+               'type'     => 'text',
+               'default'  => '90',
+               'title'    => esc_html__('Days to Expiration', 'accelerated-mobile-pages'),
+               'required' => array('ampforwp_leverage_browser_caching_mode', '=' , '1'),
+           ),
+           array(
                'id'       => 'ampforwp_css_tree_shaking',
                'type'     => 'switch',
                'title'     => esc_html__('Optimize CSS (beta)', 'accelerated-mobile-pages'),

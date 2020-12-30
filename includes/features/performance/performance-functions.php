@@ -49,6 +49,9 @@ function ampforwp_minify_html_output($content_buffer){
     if (function_exists('aioseo_pro_just_activated') && preg_match('/<link rel="canonical" href="([^>]*)\/amp\/" \/>/', $content_buffer)) {
         $content_buffer = preg_replace('/<link rel="canonical" href="([^>]*)\/amp\/" \/>/','<link rel="canonical" href="$1/" />', $content_buffer);
     }
+    if(preg_match('/<script(.*?)src="https:\/\/www.google-analytics.com\/analytics.js"><\/script>/', $content_buffer)){
+        $content_buffer = preg_replace('/<script(.*?)src="https:\/\/www.google-analytics.com\/analytics.js"><\/script>/', '', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
@@ -211,6 +214,18 @@ function ampforwp_no_htaccess_notice(){
     echo wp_kses_post( $message );
 }
 function ampforwp_code_to_add_in_htaccess(){
+    $expires = ampforwp_get_setting('ampforwp_leverage_browser_caching_expires');
+    if (empty($expires)) {
+        $expires = '3 month';
+    }
+    if ($expires == 90) {
+        $expires = '3 month';
+    }
+    else if ($expires == 1) {
+        $expires = '1 day';
+    }else{
+        $expires = $expires . ' days';
+    }    
     $htaccess_cntn  = "\n";
     $htaccess_cntn .= '# AMPFORWPLBROWSERCSTART Browser Caching' . "\n";
     $htaccess_cntn .= '<IfModule mod_expires.c>' . "\n";
@@ -231,15 +246,15 @@ function ampforwp_code_to_add_in_htaccess(){
     $htaccess_cntn .= 'ExpiresByType image/jpeg "access 1 year"' . "\n";
     $htaccess_cntn .= 'ExpiresByType image/png "access 1 year"' . "\n";
     $htaccess_cntn .= 'ExpiresByType image/x-icon "access 1 year"' . "\n";
-    $htaccess_cntn .= 'ExpiresByType text/css "access 3 month"' . "\n";
-    $htaccess_cntn .= 'ExpiresByType text/javascript "access 3 month"' . "\n";
-    $htaccess_cntn .= 'ExpiresByType text/html "access 3 month"' . "\n";
-    $htaccess_cntn .= 'ExpiresByType application/javascript "access 3 month"' . "\n";
-    $htaccess_cntn .= 'ExpiresByType application/x-javascript "access 3 month"' . "\n";
-    $htaccess_cntn .= 'ExpiresByType application/xhtml-xml "access 3 month"' . "\n";
-    $htaccess_cntn .= 'ExpiresByType application/pdf "access 3 month"' . "\n";
-    $htaccess_cntn .= 'ExpiresByType application/x-shockwave-flash "access 3 month"' . "\n";
-    $htaccess_cntn .= 'ExpiresDefault "access 3 month"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType text/css "access '.esc_html($expires).'"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType text/javascript "access '.esc_html($expires).'"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType text/html "access '.esc_html($expires).'"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/javascript "access '.esc_html($expires).'"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/x-javascript "access '.esc_html($expires).'"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/xhtml-xml "access '.esc_html($expires).'"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/pdf "access '.esc_html($expires).'"' . "\n";
+    $htaccess_cntn .= 'ExpiresByType application/x-shockwave-flash "access '.esc_html($expires).'"' . "\n";
+    $htaccess_cntn .= 'ExpiresDefault "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= '</IfModule>' . "\n";
     $htaccess_cntn .= '# END Caching AMPFORWPLBROWSERCEND' . "\n";
     return $htaccess_cntn;
