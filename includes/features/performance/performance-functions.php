@@ -257,13 +257,11 @@ function ampforwp_code_to_add_in_htaccess(){
     $htaccess_cntn .= 'ExpiresByType image/x-icon "access 1 year"' . "\n";
     $htaccess_cntn .= 'ExpiresByType text/css "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType text/javascript "access '.esc_html($expires).'"' . "\n";
-    $htaccess_cntn .= 'ExpiresByType text/html "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType application/javascript "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType application/x-javascript "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType application/xhtml-xml "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType application/pdf "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType application/x-shockwave-flash "access '.esc_html($expires).'"' . "\n";
-    $htaccess_cntn .= 'ExpiresDefault "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= '</IfModule>' . "\n";
     $htaccess_cntn .= '# END Caching AMPFORWPLBROWSERCEND' . "\n";
     return $htaccess_cntn;
