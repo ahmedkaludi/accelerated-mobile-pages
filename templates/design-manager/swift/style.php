@@ -2029,6 +2029,8 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 .s_stk ul{width:100%;display:inline-flex;}
 .s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:40px}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
+.s_stk span.shr-txt{display:none}
+.s_stk .ss-ic{padding-bottom:0px;border-bottom: none;}
 <?php } //Sticky CSS Condition ends
  } ?>
 <?php } // levelup condition ends ?>

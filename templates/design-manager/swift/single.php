@@ -49,7 +49,12 @@ $page = get_query_var( 'page' ); ?>
 			<div class="sp-rl">
 				<div class="sp-rt">
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'above-content' == $redux_builder_amp['swift-social-position']){
+						if(!ampforwp_get_setting('ampforwp-social-share-reorder')){
 							ampforwp_swift_social_icons(); 
+						} 
+						if (ampforwp_get_setting('ampforwp-social-share-reorder')) {
+							ampforwp_swift_social_icons_sort();
+						} 
 						}
 						if ( 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
 							echo ampforwp_addThis_support(); 
@@ -69,7 +74,12 @@ $page = get_query_var( 'page' ); ?>
 					</div>
 					<?php do_action( 'ampforwp_after_the_post_content_wrp' ); ?>
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
-						ampforwp_swift_social_icons(); 
+						if(!ampforwp_get_setting('ampforwp-social-share-reorder')){
+							ampforwp_swift_social_icons(); 
+						} 
+						if (ampforwp_get_setting('ampforwp-social-share-reorder')) {
+							ampforwp_swift_social_icons_sort();
+						}
 						}
 						if ( 'below-content' ==  ampforwp_get_setting('swift-add-this-position') ){
 							echo ampforwp_addThis_support();
@@ -100,7 +110,12 @@ $page = get_query_var( 'page' ); ?>
 				<?php if(!checkAMPforPageBuilderStatus(get_the_ID()) && (true == ampforwp_get_setting('enable-single-post-social-icons') || true == ampforwp_get_setting('amp-author-name') || true == ampforwp_get_setting('swift-date') || true == ampforwp_get_setting('ampforwp-single-related-posts-switch'))){ ?>
 				<div class="sp-lt">
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'default' == $redux_builder_amp['swift-social-position']){
-						ampforwp_swift_social_icons(); 
+						if(!ampforwp_get_setting('ampforwp-social-share-reorder')){
+							ampforwp_swift_social_icons(); 
+						} 
+						if (ampforwp_get_setting('ampforwp-social-share-reorder')) {
+							ampforwp_swift_social_icons_sort();
+						}
 						}
 						if ( 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
 								echo ampforwp_addThis_support(); 
@@ -357,7 +372,12 @@ do_action("ampforwp_single_design_type_handle_d1");
 						<div class="sp-rl">
 							<div class="sp-rt">
 							<?php if (true == ampforwp_get_setting('swift-social-position') && 'above-content' == ampforwp_get_setting('swift-social-position')){
+							if(!ampforwp_get_setting('ampforwp-social-share-reorder')){
 								ampforwp_swift_social_icons(); 
+							} 
+							if (ampforwp_get_setting('ampforwp-social-share-reorder')) {
+								ampforwp_swift_social_icons_sort();
+							} 
 							}?>
 								<div class="cntn-wrp artl-cnt">
 									<?php 
@@ -373,7 +393,12 @@ do_action("ampforwp_single_design_type_handle_d1");
 								<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 								<div class="ss-ic">
 								<?php if (true == ampforwp_get_setting('swift-social-position') && 'below-content' == ampforwp_get_setting('swift-social-position')){
+								if(!ampforwp_get_setting('ampforwp-social-share-reorder')){
 									ampforwp_swift_social_icons(); 
+								} 
+								if (ampforwp_get_setting('ampforwp-social-share-reorder')) {
+									ampforwp_swift_social_icons_sort();
+								} 
 								}?>
 					            </div>
 					            <?php if( true == $redux_builder_amp['ampforwp-tags-single'] && amp_tags_list()){ ?>

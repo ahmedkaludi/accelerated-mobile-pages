@@ -82,6 +82,11 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 	}
 if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']) ){ ?>
 <div class="s_stk ss-ic">
+	<?php
+	if (ampforwp_get_setting('ampforwp-social-share-reorder')) {
+		ampforwp_swift_social_icons_sort();
+		return;
+	} ?>
 	<ul>
 		<?php if(ampforwp_get_setting('ampforwp-facebook-like-button')){?>
 		<li>

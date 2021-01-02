@@ -32,7 +32,12 @@ amp_header(); ?>
 		<div <?php if(!checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){ ?>class="cntr"<?php } ?>>	
        <div class="pg">
        		<?php if (  is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' ==  ampforwp_get_setting('swift-social-position') ){
+						if(!ampforwp_get_setting('ampforwp-social-share-reorder')){
 							ampforwp_swift_social_icons(); 
+						} 
+						if (ampforwp_get_setting('ampforwp-social-share-reorder')) {
+							ampforwp_swift_social_icons_sort();
+						} 
 			
 			
 			} ?>
@@ -47,7 +52,12 @@ amp_header(); ?>
 					amp_content();
 				}
 				if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' !=  ampforwp_get_setting('swift-social-position') ) { 
-						echo ampforwp_swift_social_icons();
+						if(!ampforwp_get_setting('ampforwp-social-share-reorder')){
+							echo ampforwp_swift_social_icons(); 
+						} 
+						if (ampforwp_get_setting('ampforwp-social-share-reorder')) {
+							echo ampforwp_swift_social_icons_sort();
+						}
 		        	} ?>
 		    	<?php if( !ampforwp_levelup_compatibility('levelup_elementor') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && !ampforwp_is_front_page()){ // Level up Condition starts ?>
 					<div class="cmts">

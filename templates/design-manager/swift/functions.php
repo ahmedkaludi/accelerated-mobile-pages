@@ -337,3 +337,111 @@ function ampforwp_swift_social_icons(){
 // Remove default sticky social from Swift
 remove_action('amp_post_template_footer','ampforwp_sticky_social_icons');
 remove_action('amp_post_template_css','amp_social_styles',11);
+function ampforwp_swift_social_icons_sort(){
+	$data = $amp_permalink = $url = $line_icon = $mewe_icon = $flipboard_icon = '';
+	$data = ampforwp_get_setting('ampforwp-social-sortable');
+	$amp_permalink = get_the_permalink();
+	?>
+  <div class="ss-ic">
+            <span class="shr-txt"><?php echo esc_attr(ampforwp_translation(ampforwp_get_setting('amp-translator-share-text'), 'Share' )); ?></span>
+            <ul>
+            <?php 
+            foreach ($data as $key => $value) {
+             if ('s_fb_like' == $key) {?>
+            		<amp-facebook-like width=90 height=28
+				 		layout="fixed"
+				 		data-size="large"
+				    	data-layout="button_count"
+				    	<?php ampforwp_rel_attributes_social_links(); ?>
+				    	data-href="<?php echo esc_url(get_the_permalink());?>">
+					</amp-facebook-like>
+             <?php }	
+             if (ampforwp_get_setting('enable-single-facebook-share')) {
+              $url = 'https://www.facebook.com/sharer.php?u='.esc_url($amp_permalink);
+        		}
+              if ($key == 's_tw') {
+                $data_param =  $twitter_amp_permalink = '';
+                $data_param_data = ampforwp_get_setting('enable-single-twitter-share-handle');
+                $data_param_data = str_replace('@', '', $data_param_data);
+                $data_param = ( '' == $data_param_data ) ? '' : '&via='.$data_param_data.'';
+                $twitter_amp_permalink = $amp_permalink;
+				if(false == ampforwp_get_setting('enable-single-twitter-share-link')){
+				   $twitter_amp_permalink =  wp_get_shortlink();
+				}
+                $url = 'https://twitter.com/intent/tweet?url=' . esc_url($twitter_amp_permalink) . '&text=' . ampforwp_sanitize_twitter_title(get_the_title());
+              }
+              if ($key == 's_em') {
+                $url = 'mailto:?subject='.esc_attr(htmlspecialchars(get_the_title())) .'&body=' . esc_url($amp_permalink);
+              }
+              if ($key == 's_pt') {
+                $image = '';
+                if (ampforwp_has_post_thumbnail( ) ){
+                   $image = ampforwp_get_post_thumbnail( 'url', 'full' );
+                 }
+                $url = 'https://pinterest.com/pin/create/button/?media='.esc_url($image) .'&url=' . esc_url($amp_permalink).'&description='.esc_attr(htmlspecialchars(get_the_title()));
+              }
+              if ($key == 's_lk') {
+                $url = 'https://www.linkedin.com/shareArticle?url='.esc_url($amp_permalink).'&title='.esc_attr(htmlspecialchars(get_the_title()));
+              }
+              if ($key == 's_wp') {
+                $url = 'https://api.whatsapp.com/send?text='.esc_attr(htmlspecialchars(get_the_title()))."&nbsp;".esc_url($amp_permalink);
+              }
+              if ($key == 's_li') {
+                $line_share = 'http://line.me/R/msg/text/';
+				$url = add_query_arg($amp_permalink,'', $line_share );
+				$line_icon = '<amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI5Ni41MjggMjk2LjUyOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjk2LjUyOCAyOTYuNTI4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CjxnPgoJPHBhdGggZD0iTTI5NS44MzgsMTE1LjM0N2wwLjAwMy0wLjAwMWwtMC4wOTItMC43NmMtMC4wMDEtMC4wMTMtMC4wMDItMC4wMjMtMC4wMDQtMC4wMzZjLTAuMDAxLTAuMDExLTAuMDAyLTAuMDIxLTAuMDA0LTAuMDMyICAgbC0wLjM0NC0yLjg1OGMtMC4wNjktMC41NzQtMC4xNDgtMS4yMjgtMC4yMzgtMS45NzRsLTAuMDcyLTAuNTk0bC0wLjE0NywwLjAxOGMtMy42MTctMjAuNTcxLTEzLjU1My00MC4wOTMtMjguOTQyLTU2Ljc2MiAgIGMtMTUuMzE3LTE2LjU4OS0zNS4yMTctMjkuNjg3LTU3LjU0OC0zNy44NzhjLTE5LjEzMy03LjAxOC0zOS40MzQtMTAuNTc3LTYwLjMzNy0xMC41NzdjLTI4LjIyLDAtNTUuNjI3LDYuNjM3LTc5LjI1NywxOS4xOTMgICBDMjMuMjg5LDQ3LjI5Ny0zLjU4NSw5MS43OTksMC4zODcsMTM2LjQ2MWMyLjA1NiwyMy4xMTEsMTEuMTEsNDUuMTEsMjYuMTg0LDYzLjYyMWMxNC4xODgsMTcuNDIzLDMzLjM4MSwzMS40ODMsNTUuNTAzLDQwLjY2ICAgYzEzLjYwMiw1LjY0MiwyNy4wNTEsOC4zMDEsNDEuMjkxLDExLjExNmwxLjY2NywwLjMzYzMuOTIxLDAuNzc2LDQuOTc1LDEuODQyLDUuMjQ3LDIuMjY0YzAuNTAzLDAuNzg0LDAuMjQsMi4zMjksMC4wMzgsMy4xOCAgIGMtMC4xODYsMC43ODUtMC4zNzgsMS41NjgtMC41NywyLjM1MmMtMS41MjksNi4yMzUtMy4xMSwxMi42ODMtMS44NjgsMTkuNzkyYzEuNDI4LDguMTcyLDYuNTMxLDEyLjg1OSwxNC4wMDEsMTIuODYgICBjMC4wMDEsMCwwLjAwMSwwLDAuMDAyLDBjOC4wMzUsMCwxNy4xOC01LjM5LDIzLjIzMS04Ljk1NmwwLjgwOC0wLjQ3NWMxNC40MzYtOC40NzgsMjguMDM2LTE4LjA0MSwzOC4yNzEtMjUuNDI1ICAgYzIyLjM5Ny0xNi4xNTksNDcuNzgzLTM0LjQ3NSw2Ni44MTUtNTguMTdDMjkwLjE3MiwxNzUuNzQ1LDI5OS4yLDE0NS4wNzgsMjk1LjgzOCwxMTUuMzQ3eiBNOTIuMzQzLDE2MC41NjFINjYuNzYxICAgYy0zLjg2NiwwLTctMy4xMzQtNy03Vjk5Ljg2NWMwLTMuODY2LDMuMTM0LTcsNy03YzMuODY2LDAsNywzLjEzNCw3LDd2NDYuNjk2aDE4LjU4MWMzLjg2NiwwLDcsMy4xMzQsNyw3ICAgQzk5LjM0MywxNTcuNDI3LDk2LjIwOSwxNjAuNTYxLDkyLjM0MywxNjAuNTYxeiBNMTE5LjAzLDE1My4zNzFjMCwzLjg2Ni0zLjEzNCw3LTcsN2MtMy44NjYsMC03LTMuMTM0LTctN1Y5OS42NzUgICBjMC0zLjg2NiwzLjEzNC03LDctN2MzLjg2NiwwLDcsMy4xMzQsNyw3VjE1My4zNzF6IE0xODIuMzA0LDE1My4zNzFjMCwzLjAzMy0xLjk1Myw1LjcyMS00LjgzOCw2LjY1OCAgIGMtMC43MTIsMC4yMzEtMS40NDEsMC4zNDMtMi4xNjEsMC4zNDNjLTIuMTk5LDAtNC4zMjMtMS4wMzktNS42NjYtMi44ODhsLTI1LjIwNy0zNC43MTd2MzAuNjA1YzAsMy44NjYtMy4xMzQsNy03LDcgICBjLTMuODY2LDAtNy0zLjEzNC03LTd2LTUyLjE2YzAtMy4wMzMsMS45NTMtNS43MjEsNC44MzgtNi42NThjMi44ODYtMC45MzYsNi4wNDUsMC4wOSw3LjgyNywyLjU0NWwyNS4yMDcsMzQuNzE3Vjk5LjY3NSAgIGMwLTMuODY2LDMuMTM0LTcsNy03YzMuODY2LDAsNywzLjEzNCw3LDdWMTUzLjM3MXogTTIzMy4zMTEsMTU5LjI2OWgtMzQuNjQ1Yy0zLjg2NiwwLTctMy4xMzQtNy03di0yNi44NDdWOTguNTczICAgYzAtMy44NjYsMy4xMzQtNyw3LTdoMzMuNTdjMy44NjYsMCw3LDMuMTM0LDcsN3MtMy4xMzQsNy03LDdoLTI2LjU3djEyLjg0OWgyMS41NjJjMy44NjYsMCw3LDMuMTM0LDcsN2MwLDMuODY2LTMuMTM0LDctNyw3ICAgaC0yMS41NjJ2MTIuODQ3aDI3LjY0NWMzLjg2NiwwLDcsMy4xMzQsNyw3UzIzNy4xNzcsMTU5LjI2OSwyMzMuMzExLDE1OS4yNjl6IiBmaWxsPSIjRkZGRkZGIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" width="15" height="15" />';
+              }
+              if ($key == 's_vk') {
+                $url = 'http://vk.com/share.php?url='. esc_url($amp_permalink);
+              }
+              if ($key == 's_od') {
+                $url = 'https://connect.ok.ru/offer?url='. esc_url($amp_permalink) . '&title='.esc_attr(htmlspecialchars(get_the_title()));
+              }
+              if ($key == 's_rd') {
+                $url = 'https://reddit.com/submit?url='.esc_url($amp_permalink).'&title='.esc_attr(htmlspecialchars(get_the_title()));
+              }
+              if ($key == 's_tb') {
+                $url = 'https://www.tumblr.com/widgets/share/tool?canonicalUrl='.esc_url($amp_permalink);
+              }
+              if ($key == 's_tg') {
+                $url = 'https://telegram.me/share/url?url='.esc_url($amp_permalink).'&text='.esc_attr(htmlspecialchars(get_the_title()));
+              }
+              if ($key == 's_su') {
+                $url = 'http://www.stumbleupon.com/submit?url='.esc_url($amp_permalink).'&title='.esc_attr(htmlspecialchars(get_the_title()));
+              }
+              if ($key == 's_wc') {
+                $url = 'http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url='.esc_url($amp_permalink);
+              }
+              if ($key == 's_vb') {
+                $url = 'viber://forward?text='.esc_url($amp_permalink);
+              }
+             if ($key == 's_ym') {
+                $url = 'http://www.yummly.com/urb/verify?url='.esc_url($amp_permalink).'&title='.esc_attr(htmlspecialchars(get_the_title()));
+              }
+              if ($key == 's_hb') {
+                $url = 'http://b.hatena.ne.jp/entry/'.esc_url($amp_permalink).'&title='.esc_attr(htmlspecialchars(get_the_title()));
+              }
+              if ($key == 's_pk') {
+                $url = 'https://getpocket.com/save?url='.esc_url($amp_permalink).'&title='.esc_attr(htmlspecialchars(get_the_title()));
+              }
+              if ($key == 's_mewe') {
+                $url = 'https://mewe.com/share?link='.esc_url($amp_permalink);
+                
+                $mewe_icon = '<amp-img src="'. esc_url(AMPFORWP_IMAGE_DIR . '/favicon-mewe.svg').'" width="15" height="15" />';
+              }
+              if ($key == 's_flipboard') {
+                $url = 'https://share.flipboard.com/bookmarklet/popout?v='.esc_html(get_the_title(ampforwp_get_the_ID())).'&url='.urlencode(esc_url($amp_permalink));
+                $flipboard_icon = '<amp-img src="'. esc_url(AMPFORWP_IMAGE_DIR . '/flipboard.png').'" width="15" height="15" />';
+              }
+            if ('s_fb_like' != $key) {?>
+            <li>
+			 <a class="<?php echo esc_attr($key) ?>" target="_blank"  href="<?php echo esc_url($url) ?>"><?php echo  $image_icon2;
+			 if ($key == 's_li') {echo strip_tags($line_icon, '<amp-img>'); }
+			 if ($key == 's_mewe') {echo strip_tags($mewe_icon, '<amp-img>'); }
+			 if ($key == 's_flipboard') {echo strip_tags($flipboard_icon, '<amp-img>'); }
+			?></a>
+            </li>
+            <?php } } ?>
+            </ul>
+            </div>
+<?php }

@@ -1857,6 +1857,76 @@ function ampforwp_get_all_tags($id){
         }
         return $default;
     }
+    function ampforwp_social_sort_options(){
+        $default = array();
+      if( true == ampforwp_get_setting('ampforwp-facebook-like-button')){
+        $default['s_fb_like'] = 'Facebook Like';
+      }
+       if (ampforwp_get_setting('enable-single-facebook-share')) {
+             $default['s_fb'] = 'Facebook';
+        }
+        if (ampforwp_get_setting('enable-single-facebook-share-messenger')) {
+             $default['s_fb_ms'] = 'Facebook messenger';
+        }
+        if (ampforwp_get_setting('enable-single-twitter-share')) {
+              $default['s_tw'] = 'Twitter';
+       } 
+       if(ampforwp_get_setting('enable-single-email-share')){
+              $default['s_em'] = 'Email';
+       }
+       if(ampforwp_get_setting('enable-single-email-share')){
+              $default['s_pt'] = 'Pinterest';    
+       }
+       if(ampforwp_get_setting('enable-single-linkedin-share')){
+             $default['s_lk'] = 'linkedin';     
+       }
+       if(ampforwp_get_setting('enable-single-whatsapp-share')){
+             $default['s_wp'] = 'whatsapp';     
+       }
+       if(ampforwp_get_setting('enable-single-line-share')){
+             $default['s_li'] = 'line';     
+       }
+       if(ampforwp_get_setting('enable-single-vk-share')){
+             $default['s_vk'] = 'VKontakte';     
+       }
+       if(ampforwp_get_setting('enable-single-odnoklassniki-share')){
+             $default['s_od'] = 'Odnoklassniki';     
+       }
+       if(ampforwp_get_setting('enable-single-reddit-share')){
+             $default['s_rd'] = 'reddit';     
+       }
+       if(ampforwp_get_setting('enable-single-tumblr-share')){
+             $default['s_tb'] = 'tumblr';     
+       }
+       if(ampforwp_get_setting('enable-single-telegram-share')){
+             $default['s_tg'] = 'telegram';     
+       }
+       if(ampforwp_get_setting('enable-single-stumbleupon-share')){
+             $default['s_su'] = 'stumbleupon';     
+       }
+       if(ampforwp_get_setting('enable-single-wechat-share')){
+             $default['s_wc'] = 'wechat';     
+       }
+       if(ampforwp_get_setting('enable-single-viber-share')){
+             $default['s_vb'] = 'viber';     
+       }
+       if(ampforwp_get_setting('enable-single-yummly-share')){
+             $default['s_ym'] = 'yummly';     
+       }
+       if(ampforwp_get_setting('enable-single-hatena-bookmarks')){
+             $default['s_hb'] = 'hatena';     
+       }
+       if(ampforwp_get_setting('enable-single-pocket-share')){
+             $default['s_pk'] = 'pocket';     
+       }
+       if(ampforwp_get_setting('enable-single-mewe-share')){
+             $default['s_mewe'] = 'mewe';     
+       }
+       if(ampforwp_get_setting('enable-single-flipboard-share')){
+             $default['s_flipboard'] = 'flipboard';     
+       }
+        return $default;
+    }
         Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'General', 'accelerated-mobile-pages' ),
         'id'         => 'opt-text-subsection',
@@ -7915,6 +7985,34 @@ else{
               'type'      =>  'switch',
               'title'     =>  esc_html__('Flipboard', 'accelerated-mobile-pages'),
               'default'   =>  0,
+        ),
+          array(
+           'id' => 'ampforwp-social-reorder-settings',
+           'type' => 'section',
+           'title' => esc_html__('Re-order Social Share', 'accelerated-mobile-pages'),
+           'indent' => true,
+           'layout_type' => 'accordion',
+           'accordion-open'=> 1,
+           'required' => array('amp-design-selector', '=' , '4'),
+        ), 
+        // Reorder Social Share Icons ON/OFF
+        array(
+            'id'        =>  'ampforwp-social-share-reorder',
+            'type'      =>  'switch',
+            'title'     =>  esc_html__('Re-order Social Share', 'accelerated-mobile-pages'),
+            'default'   =>  0,
+            'required' => array('amp-design-selector', '=' , '4'),
+        ),
+        array(
+            'id'       => 'ampforwp-social-sortable',
+            'type'     => 'sortable',
+            'options' => ampforwp_social_sort_options(),
+            'default' => ampforwp_social_sort_options(),
+            'required'  => array('ampforwp-social-share-reorder', '=' , '1'),
+            'required' => array(
+                        array('amp-design-selector', '=' , '4'),
+                        array('ampforwp-social-share-reorder', '=' , '1'),
+                    ),
         ),
         array(
                'id' => 'social-prfl',
