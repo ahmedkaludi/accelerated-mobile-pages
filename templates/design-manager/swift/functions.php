@@ -435,7 +435,7 @@ function ampforwp_swift_social_icons_sort(){
               }
             if ('s_fb_like' != $key) {?>
             <li>
-			 <a class="<?php echo esc_attr($key) ?>" target="_blank"  href="<?php echo esc_url($url) ?>"><?php echo  $image_icon2;
+			 <a class="<?php echo esc_attr($key) ?>" target="_blank"  href="<?php echo esc_url($url) ?>"><?php
 			 if ($key == 's_li') {echo strip_tags($line_icon, '<amp-img>'); }
 			 if ($key == 's_mewe') {echo strip_tags($mewe_icon, '<amp-img>'); }
 			 if ($key == 's_flipboard') {echo strip_tags($flipboard_icon, '<amp-img>'); }
