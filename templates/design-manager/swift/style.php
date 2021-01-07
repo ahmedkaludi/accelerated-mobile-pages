@@ -2525,3 +2525,15 @@ if(ampforwp_get_setting('header-position-type') == '2'){?>
 }
 }
 <?php }
+if(function_exists('pll__') && ampforwp_get_setting('header-type') == '2'){?>
+.t-btn:after {
+    position: absolute;
+    left: 280px;
+    top: 25px;
+}
+@media only screen and (max-width: 1024px) {
+.t-btn:after {
+    left: 20px;
+}
+}
+<?php }
