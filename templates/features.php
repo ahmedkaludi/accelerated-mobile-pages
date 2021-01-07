@@ -4183,7 +4183,6 @@ function ampforwp_post_paginated_content($content){
 		$ampforwp_new_content = $ampforwp_the_content = $checker = '';
 		if(ampforwp_get_setting('ampforwp-pagination-link-type')==true && is_singular() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
 		  $id = ampforwp_get_the_ID();
-		  $content = get_post_field( 'post_content', $id);
 		  $sanitizer_obj = new AMPFORWP_Content( $content,
               apply_filters( 'amp_content_embed_handlers', array(
           				    'AMP_Reddit_Embed_Handler'     => array(),
