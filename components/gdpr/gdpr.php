@@ -30,7 +30,7 @@ function amp_gdpr_output(){
 	$accept = $gdpr_text['accept'];
 	$reject = $gdpr_text['reject'];
 	$settings = $gdpr_text['settings'];
-	$more_info = $gdpr_text['more_info'];
+	$more_info = isset($gdpr_text['more_info']) ? $gdpr_text['more_info'] : "";
 	$privacy_button_text = $gdpr_text['privacy_button_text'];
     ?>
     <amp-geo layout="nodisplay">
