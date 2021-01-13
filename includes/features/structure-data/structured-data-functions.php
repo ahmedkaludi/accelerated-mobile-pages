@@ -412,6 +412,86 @@ if ( ! function_exists('ampforwp_sd_multiple_images') ) {
 // schema.org/SiteNavigationElement missing from menus #1229 & #2952
 add_action('amp_post_template_footer','ampforwp_sd_sitenavigation');
 function ampforwp_sd_sitenavigation(){
+	if (class_exists('Bunyad_Theme_SmartMag')) {
+	    if (!is_single() || !Bunyad::posts()->meta('reviews')) {
+	      return;
+	    }
+	    $schema_type = Bunyad::posts()->meta('review_schema') ? Bunyad::posts()->meta('review_schema') : 'Product';
+	    $item_author = Bunyad::posts()->meta('review_item_author') ? Bunyad::posts()->meta('review_item_author') : get_the_author();
+	    $item_name   = Bunyad::posts()->meta('review_item_name') ? Bunyad::posts()->meta('review_item_name') : get_the_title();
+	    $item_author_type = Bunyad::posts()->meta('review_item_author_type');
+	     $image_url = ampforwp_get_post_thumbnail('url','full');
+	        $image_width = ampforwp_get_post_thumbnail('width');
+	        $image_height = ampforwp_get_post_thumbnail('height');
+	        $post_image_meta = false;
+	        if (!empty($image_url)) {
+	          $post_image_meta = array(
+	        '@type' => 'ImageObject',
+	        'url' => $image_url,
+	        'width' => $image_width,
+	        'height' => $image_height,
+	      );
+	        }
+	    $publisher = array(
+	      '@type'  => 'Organization',
+	      'name'   => get_bloginfo('name'),
+	      'sameAs' => get_bloginfo('url')
+	    );
+	    $description = (
+	      Bunyad::posts()->meta('review_verdict_text') 
+	        ? Bunyad::posts()->meta('review_verdict_text') 
+	        : strip_tags(Bunyad::posts()->excerpt(null, 180, ['add_more' => false]))
+	    );
+	    $author_data = [
+	      '@type' => $item_author_type ? ucfirst($item_author_type) : 'Person',
+	      'name'  => $item_author
+	    ];
+	    $have_author = [
+	      'CreativeWorkSeason', 'CreativeWorkSeries', 'Game', 'MediaObject', 'MusicPlaylist', 'MusicRecording'
+	    ];
+	    // Final schema.
+	    $schema      = array(
+	      '@context' => 'http://schema.org',
+	      '@type'    => 'Review',
+	      
+	      'itemReviewed' => array(
+	        '@type'  => $schema_type,
+	        'name'   => $item_name,
+	        'image'  => $post_image_meta,
+	      ),
+	      'author'   => array(
+	        '@type' => 'Person',
+	        'name'  => get_the_author(),
+	      ),
+	      'publisher' => $publisher,
+	      'reviewRating' => array(
+	        '@type'       => 'Rating',
+	        'ratingValue' => Bunyad::posts()->meta('review_overall'),
+	        'bestRating'  => Bunyad::options()->review_scale,
+	      ),
+	      'description'   => substr($description, 0, 200),
+	      'datePublished' => get_the_date(DATE_W3C),
+	    );
+	    if ($link = Bunyad::posts()->meta('review_item_link')) {
+	      $schema['itemReviewed']['sameAs'] = esc_url($link);
+	    }
+	    $schema_id     = esc_url(get_permalink()) . '#review';
+	    $schema['@id'] = $schema_id;
+	    $schema['itemReviewed']['review'] = ['@id' => $schema_id];
+	    if (in_array($schema_type, $have_author)) {
+	      $schema['itemReviewed']['author'] = $author_data;
+	    } 
+	    if ($schema_type == 'Product' ) {
+	      if (Bunyad::posts()->meta('review_item_author')) {
+	        $author_data['@type'] = 'Brand';
+	        $schema['itemReviewed']['brand'] = $author_data;
+	      }
+	      $schema['itemReviewed']['description'] = $description;
+	    }else{
+	      return;
+	    }
+	    echo '<script type="application/ld+json">' . json_encode($schema) . "</script>";
+    }
     if ( ! class_exists('saswp_fields_generator') && ampforwp_get_setting('ampforwp-sd-navigation-schema')) {
 	    $input = array();           
 	    $navObj = array();
