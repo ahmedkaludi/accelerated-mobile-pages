@@ -559,6 +559,7 @@ class AMP_Allowed_Tags_Generated {
 				'attr_spec_list' => array(
 					'autoplay' => array(),
 					'data-outstream' => array(
+						'mandatory' => true,
 						'value_regex' => '[0-9]+',
 					),
 					'data-partner' => array(
@@ -570,9 +571,11 @@ class AMP_Allowed_Tags_Generated {
 						'value_regex' => '[0-9]+',
 					),
 					'data-playlist' => array(
+						'mandatory' => true,
 						'value_regex' => '[0-9]+',
 					),
 					'data-video' => array(
+						'mandatory' => true,
 						'value_regex' => '[0-9]+',
 					),
 					'media' => array(),
