@@ -367,7 +367,7 @@ if ( is_admin() ) {
 
                               <div class="cml"> 
                                <a href="{{ampforwp_post_url}}">
-                               {{if_image}}<amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="responsive" alt="{{image_alt}}"> </amp-img>{{ifend_image}}</a>
+                               {{if_image}}<amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" srcset="{{image}}" layout="responsive" alt="{{image_alt}}"> </amp-img>{{ifend_image}}</a>
                               </div>
                               <div class="cmr">
                                 <a href="{{ampforwp_post_url}}">{{title}}</a>
