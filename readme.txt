@@ -195,7 +195,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Srcset not loading in category module of AMP page builder #4900
 * Fixed: Advertising section displaying blank when AdsforWP plugin is active #4889
 * Fixed: AMP Page Builder not working on the pages and posts except the homepage #4890
-* Fixed: P tags getting stripped when Change Pagination Links to /amp option is active #4892
 * Fixed: Swift 2nd header menu aligned towards right with polylang plugin #4893
 * Fixed: Post Pagination not working after 1.0.69 version #4902
 * Fixed: Debug warnings #4896
