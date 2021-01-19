@@ -2963,6 +2963,14 @@ Redux::setSection( $opt_name, array(
                     )
                 ), 
                     array(
+                       'id'       => 'ampforwp-right-click-disable',
+                       'type'     => 'switch',
+                       'title'    => esc_html__('Disable Right Click', 'accelerated-mobile-pages'),
+                       'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option if you want a disable the right click in AMP to protect your data from copying', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-disable-right-click-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+                       'default'  => false,
+                ),
+                    array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
                         'title'    => esc_html__('Enter HTML in Head', 'accelerated-mobile-pages'),

@@ -16,11 +16,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</style>
 </head>
 <?php
-	$lightbox = ''; 
+	$lightbox = $right_click = '';
 	if( false == ampforwp_get_setting('ampforwp-amp-img-lightbox') ){
 	    $lightbox = 'data-amp-auto-lightbox-disable ';
-	}?>
-<body <?php echo esc_attr($lightbox); ?><?php ampforwp_body_class('single-post design_1_wrapper');?>>
+	}
+	if( true == ampforwp_get_setting('ampforwp-right-click-disable') ){
+    	$right_click = 'oncontextmenu="return false"';
+    }?>
+<body <?php echo sanitize_text_field($right_click); ?> <?php echo esc_attr($lightbox); ?><?php ampforwp_body_class('single-post design_1_wrapper');?>>
 	<?php do_action('ampforwp_body_beginning', $this); ?>
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
 	<?php do_action( 'below_the_header_design_1', $this ); ?>
