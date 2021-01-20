@@ -4178,11 +4178,14 @@ function ampforwp_post_paginated_content($content){
 	if(preg_match('/<a(.*?)data-pin-do="embedPin"(.*?)href="(.*?)"><\/a>/', $content)){
  		$content = preg_replace('/<a(.*?)data-pin-do="embedPin"(.*?)href="(.*?)"><\/a>/', '<amp-pinterest width="250" height="500" data-do="embedPin" data-url="$3"></amp-pinterest>', $content);
 	}
+	if (ampforwp_is_front_page()) {
+		$id = ampforwp_get_the_ID();
+		$content = get_post_field( 'post_content', $id);
+	}
 	if ( is_singular() || ampforwp_is_front_page() ){
 		global $redux_builder_amp, $page, $multipage;
 		$ampforwp_new_content = $ampforwp_the_content = $checker = '';
 		if(ampforwp_get_setting('ampforwp-pagination-link-type')==true && is_singular() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
-		  $id = ampforwp_get_the_ID();
 		  $sanitizer_obj = new AMPFORWP_Content( $content,
               apply_filters( 'amp_content_embed_handlers', array(
           				    'AMP_Reddit_Embed_Handler'     => array(),
