@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.75 (18th January 2021) =
+= 1.0.75 (23rd January 2021) =
 * Fixed: Imgur embed code not working in AMP #4899
 * Fixed: Srcset not loading in category module of AMP page builder #4900
 * Fixed: Advertising section displaying blank when AdsforWP plugin is active #4889
