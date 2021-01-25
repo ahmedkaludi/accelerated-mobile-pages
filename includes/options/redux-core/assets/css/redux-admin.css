@@ -1569,3 +1569,7 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
 }   
 
 /** Discount Offer CSS Ends **/
+
+table#section-table-ampforwp-the-seo-checklist strong , table#section-table-ampforwp-the-seo-checklist th {
+    display: none;
+}

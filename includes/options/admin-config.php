@@ -2380,6 +2380,20 @@ function ampforwp_get_all_tags($id){
                'required'  => array('amp-inspection-tool', '=' , '0'),
                'switch-text' => true,
            ),
+           array(
+                  'id' => 'ampforwp-the-seo-checklist',
+                  'type' => 'section',
+                  'title' => esc_html__('The SEO Checklist - Get your website on the first page of Google', 'accelerated-mobile-pages'),
+                  'indent' => true,
+                  'layout_type' => 'accordion',
+                  'accordion-open'=> 1,
+              ),
+          
+            array(
+            'id'   => 'ampforwp-the-seo-checklist-title',
+            'type' => 'select',
+             'desc' => '<div style="text-align:center;"><a href="https://seobuddy.com/seo-checklist/magazine3"  target="_blank"><img src="'.AMPFORWP_IMAGE_DIR . '/the-seo-checklist-by-seo-buddy.png" width="100" height="60" /></a><br/><br/><b>RECOMMENDED:</b> We would like to recommend <a href="https://seobuddy.com/seo-checklist/magazine3" target="_blank">102-Point SEO Checklist</a>. It includes 40+ step-by-step guides (SOPs) to every important SEO action you need to take to optimize your website and get more organic traffic. And using discount coupon MAGAZINE3 you get a 25% off the original price.<br/><br/><a class="premium_features_btn" target="_blank" href="https://seobuddy.com/seo-checklist/magazine3" style="color: #000;padding: 10px 15px;cursor: pointer;text-decoration: none;" >Read more about this SEO Checklist</a></div>',
+             ),
        )
   )
   );
