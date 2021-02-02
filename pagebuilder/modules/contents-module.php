@@ -367,7 +367,7 @@ if ( is_admin() ) {
 
                               <div class="cml"> 
                                <a href="{{ampforwp_post_url}}">
-                               {{if_image}}<amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" srcset="{{image}}" layout="responsive" alt="{{image_alt}}"> </amp-img>{{ifend_image}}</a>
+                               {{if_image}}<amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" srcset="{{image_srcset}}" layout="responsive" alt="{{image_alt}}"> </amp-img>{{ifend_image}}</a>
                               </div>
                               <div class="cmr">
                                 <a href="{{ampforwp_post_url}}">{{title}}</a>
@@ -399,11 +399,12 @@ if ( is_admin() ) {
               }else{
                 $ampforwp_post_url = user_trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR;
              }
-             $image = $height = $width = $image_alt = ""; 
+             $image = $height = $width = $image_alt = $image_srcset = ""; 
              if ( has_post_thumbnail() ) {  
                    $thumb_id = get_post_thumbnail_id();   
                    $image_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
-                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true);  
+                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true); 
+                   $image_srcset  = wp_get_attachment_image_srcset( $thumb_id, 'full'); 
                    $image = $thumb_url_array[0];
                    $width = $thumb_url_array[1];
                    $height = $thumb_url_array[2];
@@ -496,6 +497,7 @@ if ( is_admin() ) {
               $rawhtml = str_replace(array(
                                 "{{ampforwp_post_url}}",
                                 "{{image}}",
+                                "{{image_srcset}}",
                                 "{{width}}",
                                 "{{height}}",
                                 "{{title}}",
@@ -510,6 +512,7 @@ if ( is_admin() ) {
                               array(
                                 $ampforwp_post_url,
                                 $image,
+                                $image_srcset,
                                 $width,
                                 $height,
                                 $title,
@@ -524,6 +527,7 @@ if ( is_admin() ) {
                               $loopHtml);
             $rawhtml = ampforwp_replaceIfContentConditional("ampforwp_post_url", $ampforwp_post_url, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("image", $image, $rawhtml);
+            $rawhtml = ampforwp_replaceIfContentConditional("image_srcset", $image_srcset, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("width", $width, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("height", $height, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("title", $title, $rawhtml);
