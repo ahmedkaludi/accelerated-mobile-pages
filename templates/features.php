@@ -8383,7 +8383,9 @@ function ampforwp_include_required_scripts($content){
 			}
 		}
 	}
-
+	if (empty($content)) {
+		return '';
+	}
 	$comp_dom = new DOMDocument();
 	@$comp_dom->loadHTML($content);
 	$xpath       = new DOMXPath( $comp_dom );

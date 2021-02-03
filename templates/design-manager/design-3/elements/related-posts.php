@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 global $post,  $redux_builder_amp;
 do_action('ampforwp_above_related_post',$this); //Above Related Posts
-$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		
+$string_number_of_related_posts = ampforwp_get_setting('ampforwp-number-of-related-posts');		
 $int_number_of_related_posts = (int)$string_number_of_related_posts;
 
 // declaring this variable here to prevent debug errors
@@ -38,7 +38,7 @@ if( $current_post_type = get_post_type( $post )) {
 } 			
 }//end of block for custom Post types
 
-if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
+if(ampforwp_get_setting('ampforwp-single-select-type-of-related')==2){
 	$categories = get_the_category($post->ID);
 	if ($categories) {
 		$category_ids = array();
@@ -63,7 +63,7 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
 	}
 } //end of block for categories
 //code block for tags
-if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
+if(ampforwp_get_setting('ampforwp-single-select-type-of-related')==1) {
 	$ampforwp_tags = get_the_tags($post->ID);
 	if ($ampforwp_tags) {
 			$tag_ids = array();
