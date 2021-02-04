@@ -106,8 +106,12 @@ if ( isset($args['show_time']) ) {
             $alt = array_pop($match);
             $alt = implode(" ", $alt);
             $alt = explode(" ", $alt);
-            if (isset($alt[0])) {
+            if(class_exists('transposh_plugin') && isset($_GET['lang']) && isset($alt[1]) ){
+                $alt = 'alt=' . $alt[1];
+            }
+            elseif (isset($alt[0])) {
                 $alt = 'alt=' . $alt[0];
+            }
             }
         }
     }
