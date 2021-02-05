@@ -2399,10 +2399,13 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
     font-size: 16px;
 }
 <?php }?>
-.m-s-i li a.s_telegram{
-	background: #d0d0d0;
-    padding: 0px 2px;
-    border-radius: 2px;
+.m-s-i li a.s_telegram:after {
+    content: "\e93f";
+}
+.m-s-i .s_tw:after {
+    content: "\e942";
+    color: #fff;
+    color: rgba(255,255,255,0.8);
 }
 figure.amp-featured-image {
     margin: 10px 0;
