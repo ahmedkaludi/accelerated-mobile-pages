@@ -112,7 +112,6 @@ if ( isset($args['show_time']) ) {
             elseif (isset($alt[0])) {
                 $alt = 'alt=' . $alt[0];
             }
-            }
         }
     }
     ?>
