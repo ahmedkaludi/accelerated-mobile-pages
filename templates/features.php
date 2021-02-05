@@ -9103,7 +9103,7 @@ function ampforwp_pennews_audio_embed(){
 	echo $sanitized_html;
 }
 //Fallback added
-if( !function_exists( 'fifu_amp_url' ) ) {
+if( function_exists('fifu_activate') && !function_exists( 'fifu_amp_url' ) ) {
 	function fifu_amp_url($url, $width, $height) {
 		$size = get_post_meta(ampforwp_get_the_ID(), 'fifu_image_dimension');
 	    if (!empty($size)) {
