@@ -3869,7 +3869,7 @@ function ampforwp_view_nonamp(){
    	if( true == ampforwp_get_setting('ampforwp-nofollow-view-nonamp') ){
    		$nofollow = 'rel=nofollow';
    	}
-	$amp_url = untrailingslashit( home_url( $wp->request ) );
+	$amp_url = ampforwp_amphtml_generator();
 	$amp_url = explode('/', $amp_url);
 	$amp_url = array_flip($amp_url);
 	unset($amp_url['amp']);
