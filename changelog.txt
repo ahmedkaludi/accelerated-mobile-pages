@@ -1,5 +1,17 @@
 == Changelog ==
 
+= 1.0.76 (9th February 2021) =
+* Improvement: The SEO Checklist Banner #4912
+* Fixed: Telegram icon not visible in menu #4919
+* Fixed: Validation error in amp-img with transposh plugin #4918
+* Fixed: Fatal error when FIFU plugin is activate #4920
+* Fixed: AMP admin option panel is showing blank on user end #4914
+* Fixed: Tag base remove in AMP not working after 1.0.60 #4908
+* Fixed: data-playlist gets removed automatically in amp-brid-player #4906
+* Fixed: View Non-Amp Version link does not link to proper canonical url #4901
+* Fixed: Srcset not loading in category module of AMP page builder #4900
+* Fixed: Debug warnings #4917
+
 = 1.0.75 (23rd January 2021) =
 * Fixed: Imgur embed code not working in AMP #4899
 * Fixed: Srcset not loading in category module of AMP page builder #4900
