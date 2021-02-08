@@ -1,5 +1,14 @@
 == Changelog ==
 
+= 1.0.75 (23rd January 2021) =
+* Fixed: Imgur embed code not working in AMP #4899
+* Fixed: Srcset not loading in category module of AMP page builder #4900
+* Fixed: Advertising section displaying blank when AdsforWP plugin is active #4889
+* Fixed: AMP Page Builder not working on the pages and posts except the homepage #4890
+* Fixed: Swift 2nd header menu aligned towards right with polylang plugin #4893
+* Fixed: Post Pagination not working after 1.0.69 version #4902
+* Fixed: Debug warnings #4896
+
 = 1.0.74 (30th December 2020) =
 * Improvement: Added Oxygen Pagebuilder Compatibility for AMP Pagebuilder Extension #4868
 * Improvement: Added disable right click option on AMP for copy protection #4877

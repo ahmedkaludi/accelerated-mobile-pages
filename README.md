@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.6
-Stable tag: 1.0.74
+Stable tag: 1.0.75
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,15 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.75 (23rd January 2021) =
+* Fixed: Imgur embed code not working in AMP #4899
+* Fixed: Srcset not loading in category module of AMP page builder #4900
+* Fixed: Advertising section displaying blank when AdsforWP plugin is active #4889
+* Fixed: AMP Page Builder not working on the pages and posts except the homepage #4890
+* Fixed: Swift 2nd header menu aligned towards right with polylang plugin #4893
+* Fixed: Post Pagination not working after 1.0.69 version #4902
+* Fixed: Debug warnings #4896
+
 = 1.0.74 (30th December 2020) =
 * Improvement: Added Oxygen Pagebuilder Compatibility for AMP Pagebuilder Extension #4868
 * Improvement: Added disable right click option on AMP for copy protection #4877
@@ -208,15 +217,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Vuukle comments box appearing twice in AMP #4878
 * Fixed: Validation error when 'area' tag is added in post content #4882
 * Fixed: Validation error "Custom JS is not allowed" with ALL in one SEO pro #4883
-
-= 1.0.72 (17th December 2020) =
-* Improvement: Added i2Pros and cons plugin compatibility #4837
-* Improvement: Added WP-PageNavi plugin compatibility #4831
-* Improvement: Added Categories Images plugin compatibility #3973
-* Improvement: Added webp images on the homepage and Archives with Imagify plugin #4725
-* Improvement: Added Recipe Compatibility for AMP Extension #4868
-* Fixed: Amp option panel breaks when AECC Global Theme is activated. #4863
-* Fixed: Facebook page embed fails #4871
-* Fixed: Referenced AMP URL is self-canonical AMP while using All in One Seo #4873
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

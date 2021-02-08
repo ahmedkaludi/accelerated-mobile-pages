@@ -76,6 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
     </div>';
     }
+if (!function_exists('adsforwp_admin_notice')) {    
 // ADS SECTION
  Redux::setSection( $opt_name, array(
             'title'      => esc_html__( 'Advertisement', 'accelerated-mobile-pages' ),
@@ -85,6 +86,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             'subsection' => true,
             'fields'     => apply_filters('ampforwp_ads_option_fields', $fields = array() ),
         ) );   
+ } 
  }
 
  //
