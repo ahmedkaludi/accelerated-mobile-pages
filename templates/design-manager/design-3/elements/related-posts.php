@@ -47,19 +47,18 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
 		$args=array(
 			'fields'=>'ids',
 		    'category__in'		 => $category_ids,
-		    'posts_per_page'	 => $int_number_of_related_posts,
-		    'post__not_in' => array($post->ID),
+		    'posts_per_page'	 => $int_number_of_related_posts, 
 		    'ignore_sticky_posts'=> 1,
 			'has_password' 		 => false ,
 			'post_status'		 => 'publish',
 			'no_found_rows' 	  => true,
 			'orderby' 			 => $orderby,
 		    'meta_query' => array(
-					array(
-					'key'        => 'ampforwp-amp-on-off',
-					'value'      => 'default',
-				)
-				)
+		    	array(
+		    		'key' => 'ampforwp-amp-on-off',
+		    		'value' => 'default',
+		    	)
+		    )
 		);
 	}
 } //end of block for categories
@@ -117,10 +116,12 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 			    	} ?></span>
 					<ol class="clearfix">
 						<?php
-						
+						$current_id = ampforwp_get_the_ID();
 				    	while( $my_query->have_posts() ) {
 						    $my_query->the_post();
-						  
+						    if(ampforwp_get_the_ID()==$current_id){
+				            	continue;
+				            }
 							$related_post_permalink = "";
 							$related_post_permalink = ampforwp_url_controller( get_permalink() );
 							if (  ampforwp_get_setting('ampforwp-single-related-posts-link') ) {

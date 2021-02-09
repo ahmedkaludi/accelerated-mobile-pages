@@ -2804,7 +2804,54 @@ Redux::setSection( $opt_name, array(
     ),
    )
 );
+function ampforwp_get_post_percent(){
+    $total_post = get_option('ampforwp_get_total_post_count');
+    if(!$total_post){
+        $args=array(
+            'fields'        => 'ids',
+            'post_type'    => 'post',
+            'posts_per_page'=> -1,
+            'ignore_sticky_posts'=>1,
+            'has_password' => false ,
+            'post_status'=> 'publish',
+            'no_found_rows' => true,
+        );
+        $my_query = new wp_query( $args );
+        $total_post =  $my_query->post_count;
+        get_option('ampforwp_get_total_post_count',$total_post);
+    }
 
+    $post_count = get_option('ampforwp_get_not_meta_post_count');
+    if(!$post_count){
+        $args=array(
+            'fields'        => 'ids',
+            'post_type'    => 'post',
+            'posts_per_page'=> -1,
+            'ignore_sticky_posts'=>1,
+            'has_password' => false ,
+            'post_status'=> 'publish',
+            'no_found_rows' => true,
+            'meta_query' => array(
+                array(
+                    'key' => 'ampforwp-amp-on-off', 
+                    'compare' => 'NOT EXISTS',
+                )
+            )
+        );
+        $my_query   = new wp_query( $args );
+        $post_count = $my_query->post_count;
+        get_option('ampforwp_get_not_meta_post_count',$post_count);
+    }
+    $post_count = $total_post-$post_count;
+
+    $post_percent = ($post_count/$total_post)*100;
+    return round($post_percent);
+}
+$post_percent = 0;
+$current_page = ampforwp_get_admin_current_page();
+if($current_page=="amp_options"){
+    $post_percent = ampforwp_get_post_percent();
+}
  // Hide AMP Bulk Tools
 Redux::setSection( $opt_name, array(
    'title'      => esc_html__( 'Tools', 'accelerated-mobile-pages' ),
@@ -2869,6 +2916,18 @@ Redux::setSection( $opt_name, array(
                             'title'     => esc_html__('Show Query Monitor data in AMP', 'accelerated-mobile-pages'),
                             'default'   => 1,
                             'tooltip-subtitle' => esc_html__('Enable/Disable Query Monitor for amp when logged in as admin and Query Monitor Plugin installed', 'accelerated-mobile-pages'),
+                        ),
+                        array(
+                                'id'       => 'ampforwp-refersh-related-post',
+                               'type'     => 'raw',
+                               'title'     => esc_html__('Refresh Related Post', 'accelerated-mobile-pages'),
+                               'content'   => "<span class='button button-primary button-small' id='ampforwp-refersh-related-post' target='_blank' data-id='".intval($post_percent)."' data-nonce='".wp_create_nonce( 'ampforwp_refresh_related_poost')."'><i class='el el-refresh'></i> Refresh</span> 
+                                <div class='ref-rel-bar-cont'>
+                                  <div id='ref_rel_post_bar' class='ref-rel-post-bar' style='width:".intval($post_percent)."%;'>".intval($post_percent)."%</div>
+                                </div>",
+                               'tooltip-subtitle' => esc_html__('If related post is not showing up properly, please refresh it and check it once again.', 'accelerated-mobile-pages'),
+                               'full_width' => false,
+                               'description' => "It will refresh only 50 records at once, please try refreshing until it will complete to 100%",
                         ),
                     )   
                  )
@@ -5686,14 +5745,6 @@ if(class_exists('WPSEO_Options')){
            );
 }
 if(!is_plugin_active( 'amp-newspaper-theme/ampforwp-custom-theme.php' ) ){
-function ampforwp_get_post_percent(){
-    return 0;
-}
-$post_percent = 0;
-$current_page = ampforwp_get_admin_current_page();
-if($current_page=="amp_options"){
-    $post_percent = ampforwp_get_post_percent();
-}
 $single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',
@@ -6418,19 +6469,6 @@ $single_page_options = array(
                     'default'  => '7',
                     'required' => array('ampforwp-in-content-related-posts-days-switch', '=' , '1'),  
                 ),
-            array(
-                    'id'        => 'ampforwp-refersh-related-post',
-                    'type'       => 'raw',
-                    'class'      => 'hide',
-                    'title'      => esc_html__('Refresh Related Post', 'accelerated-mobile-pages'),
-                    'content'    => "<span class='button button-primary button-small' id='ampforwp-refersh-related-post' target='_blank' data-id='".intval($post_percent)."' data-nonce='".wp_create_nonce( 'ampforwp_refresh_related_poost')."'><i class='el el-refresh'></i> Refresh</span> 
-                    <div class='ref-rel-bar-cont'>
-                      <div id='ref_rel_post_bar' class='ref-rel-post-bar' style='width:".intval($post_percent)."%;'>".intval($post_percent)."%</div>
-                    </div>",
-                   'tooltip-subtitle' => esc_html__('If related post is not showing up properly, please refresh it and check it once again.', 'accelerated-mobile-pages'),
-                   'full_width' => false,
-                   'description' => "It will refresh only 50 records at once, please try refreshing until it will complete to 100%",
-            ),
             $jetpack_rp,
             array(
                    'id' => 'single-tab-2',
