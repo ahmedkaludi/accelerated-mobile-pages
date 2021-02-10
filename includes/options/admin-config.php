@@ -2805,6 +2805,7 @@ Redux::setSection( $opt_name, array(
    )
 );
 function ampforwp_get_post_percent(){
+    $total_post = $post_count = $post_percent = '';
     $total_post = get_option('ampforwp_get_total_post_count');
     if(!$total_post){
         $args=array(
@@ -2818,7 +2819,6 @@ function ampforwp_get_post_percent(){
         );
         $my_query = new wp_query( $args );
         $total_post =  $my_query->post_count;
-        get_option('ampforwp_get_total_post_count',$total_post);
     }
 
     $post_count = get_option('ampforwp_get_not_meta_post_count');
@@ -2840,7 +2840,6 @@ function ampforwp_get_post_percent(){
         );
         $my_query   = new wp_query( $args );
         $post_count = $my_query->post_count;
-        get_option('ampforwp_get_not_meta_post_count',$post_count);
     }
     $post_count = $total_post-$post_count;
 
