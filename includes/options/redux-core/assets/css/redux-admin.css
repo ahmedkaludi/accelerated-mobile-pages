@@ -1569,3 +1569,6 @@ doc-cnt h1 , .doc-cnt p{
 }   
 
 /** Discount Offer CSS Ends **/
+table#section-table-ampforwp-the-seo-checklist strong , table#section-table-ampforwp-the-seo-checklist th {
+    display: none;
+}

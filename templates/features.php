@@ -3869,7 +3869,7 @@ function ampforwp_view_nonamp(){
    	if( true == ampforwp_get_setting('ampforwp-nofollow-view-nonamp') ){
    		$nofollow = 'rel=nofollow';
    	}
-	$amp_url = untrailingslashit( home_url( $wp->request ) );
+	$amp_url = ampforwp_amphtml_generator();
 	$amp_url = explode('/', $amp_url);
 	$amp_url = array_flip($amp_url);
 	unset($amp_url['amp']);
@@ -8394,7 +8394,9 @@ function ampforwp_include_required_scripts($content){
 			}
 		}
 	}
-
+	if (empty($content)) {
+		return '';
+	}
 	$comp_dom = new DOMDocument();
 	@$comp_dom->loadHTML($content);
 	$xpath       = new DOMXPath( $comp_dom );
@@ -9051,7 +9053,7 @@ function ampforwp_yoast_home_robots($string) {
     return $string;
 }
 //Fallback added
-if( !function_exists( 'fifu_amp_url' ) ) {
+if( function_exists('fifu_activate') && !function_exists( 'fifu_amp_url' ) ) {
 	function fifu_amp_url($url, $width, $height) {
 		$size = get_post_meta(ampforwp_get_the_ID(), 'fifu_image_dimension');
 	    if (!empty($size)) {

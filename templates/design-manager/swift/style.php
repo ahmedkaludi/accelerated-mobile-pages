@@ -2354,10 +2354,8 @@ if(ampforwp_get_setting('ampforwp-gallery-design-type')==3){?>
     font-size: 16px;
 }
 <?php } ?>
-.m-s-i li a.s_telegram{
-	background: #d0d0d0;
-    padding: 0px 2px;
-    border-radius: 2px;
+.m-s-i li a.s_telegram:after {
+    content: "\e93f";
 }
 .cntn-wrp h1, .cntn-wrp h2, .cntn-wrp h3, .cntn-wrp h4, .cntn-wrp h5, h6{margin-bottom:5px;}
 <?php // H1 - H6 Font Sizes 
