@@ -315,6 +315,7 @@ function amp_header_core(){
     $ampforwp_custom_post_page  =  ampforwp_custom_post_page();
 
     add_action('amp_post_template_head','ampforwp_sanitize_archive_desc');
+   if ( !function_exists('ampforwp_sanitize_archive_desc') ) {
 	function ampforwp_sanitize_archive_desc(){
 	    $description 	= get_the_archive_description();
 	    if ($description) {
@@ -339,6 +340,7 @@ function amp_header_core(){
 					}
 				}   
 		}
+	}
 	}
     // Homepage
 	if ( is_home() ) {
