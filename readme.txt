@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.6
-Stable tag: 1.0.76
+Stable tag: 1.0.76.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.76.1 (13th February 2021) =
+* Fixed: Fatal conflict with Yoast Premium #4926
+* Fixed: Wrong Yoast breadcrumb links for the posts having multiple categories #4923
+* Fixed: Fatal error on bbpress profile page #4922
+* Fixed: Comments not showing on AMP front page #4921
 
 = 1.0.76 (9th February 2021) =
 * Improvement: The SEO Checklist Banner #4912
