@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.76.1 (13th February 2021) =
+= 1.0.76.1 (16th February 2021) =
 * Fixed: Fatal conflict with Yoast Premium #4926
 * Fixed: Wrong Yoast breadcrumb links for the posts having multiple categories #4923
 * Fixed: Fatal error on bbpress profile page #4922
