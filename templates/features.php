@@ -5372,8 +5372,8 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 		}
 			// Check for Screen base, user ability to read and visibility
 			if ($current_access && (isset($post->ID) && current_user_can('read_post', $post->ID ))
-				&& ( $wp_post_types[$post->post_type]->public )
-				&& ( $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
+				&& ( isset ( $wp_post_types[ $post->post_type ]->public ) && $wp_post_types[$post->post_type]->public )
+				&& ( isset ( $wp_post_types[ $post->post_type ]->show_in_admin_bar ) && $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
 				// Check if current post type is AMPed or not
 				if( $supported_amp_post_types && in_array($post->post_type, $supported_amp_post_types) ){
 					// If AMP on Posts or Pages is off then do nothing
@@ -8305,7 +8305,7 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
 
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
-	$allscripts = '';
+	$allscripts = $is_script = '';
 	// Mediavine validation issue with form and amp-consent #4206
 	if(preg_match('/<amp-consent id="mv-consent" layout="nodisplay">(.*?)<\/amp-consent>/s', $content)){
 		$content = preg_replace('/<amp-consent id="mv-consent" layout="nodisplay">(.*?)<\/amp-consent>/s', '', $content);
