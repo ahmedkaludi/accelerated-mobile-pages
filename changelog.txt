@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.76.2 (17th February 2021) =
+* Fixed: Removed The SEO Checklist Banner #4912
+
 = 1.0.76.1 (16th February 2021) =
 * Fixed: Fatal conflict with Yoast Premium #4926
 * Fixed: Wrong Yoast breadcrumb links for the posts having multiple categories #4923
