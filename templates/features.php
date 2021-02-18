@@ -5005,7 +5005,7 @@ function ampforwp_inline_related_posts(){
 									$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" layout="responsive" ></amp-img>';
 									if(!isset($thumb_url_2[0]) && is_null($thumb_url_2[0]) || wp_check_filetype(ampforwp_get_post_thumbnail('url') == 'svg')){
 										$thumb_url = ampforwp_get_post_thumbnail('url');
-										$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="' . esc_attr(220) . '" height="' . esc_attr(134) . '" layout="responsive"></amp-img>';
+										$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="' . esc_attr(150) . '" height="' . esc_attr(150) . '" layout="responsive"></amp-img>';
 									}
 								}
 								$inline_related_posts_img = apply_filters("ampforwp_modify_inline_rp_loop_image",$inline_related_posts_img);
