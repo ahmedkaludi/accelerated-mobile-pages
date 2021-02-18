@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.6
-Stable tag: 1.0.76.2
+Stable tag: 1.0.76.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,15 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.76.3 (19th February 2021) =
+* Improvement: Added the Smart Mag Theme review schema #4898
+* Improvement: Added disable right click for copy protection #4877
+* Improvement: Added an option to hide the title on pages #4929
+* Fixed: AMP Browser caching policy #4876
+* Fixed: p tags getting stripped with Change Pagination Links to /amp option #4892
+* Fixed: Missing URL for attribute error for SVG images #4911
+* Fixed: Debug warnings #4924
+
 = 1.0.76.2 (17th February 2021) =
 * Fixed: Removed The SEO Checklist Banner #4912
 
@@ -198,26 +207,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Wrong Yoast breadcrumb links for the posts having multiple categories #4923
 * Fixed: Fatal error on bbpress profile page #4922
 * Fixed: Comments not showing on AMP front page #4921
-
-= 1.0.76 (9th February 2021) =
-* Improvement: The SEO Checklist Banner #4912
-* Fixed: Telegram icon not visible in menu #4919
-* Fixed: Validation error in amp-img with transposh plugin #4918
-* Fixed: Fatal error when FIFU plugin is activate #4920
-* Fixed: AMP admin option panel is showing blank on user end #4914
-* Fixed: Tag base remove in AMP not working after 1.0.60 #4908
-* Fixed: data-playlist gets removed automatically in amp-brid-player #4906
-* Fixed: View Non-Amp Version link does not link to proper canonical url #4901
-* Fixed: Srcset not loading in category module of AMP page builder #4900
-* Fixed: Debug warnings #4917
-
-= 1.0.75 (23rd January 2021) =
-* Fixed: Imgur embed code not working in AMP #4899
-* Fixed: Srcset not loading in category module of AMP page builder #4900
-* Fixed: Advertising section displaying blank when AdsforWP plugin is active #4889
-* Fixed: AMP Page Builder not working on the pages and posts except the homepage #4890
-* Fixed: Swift 2nd header menu aligned towards right with polylang plugin #4893
-* Fixed: Post Pagination not working after 1.0.69 version #4902
-* Fixed: Debug warnings #4896
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

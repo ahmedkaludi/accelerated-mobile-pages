@@ -1,5 +1,14 @@
 == Changelog ==
 
+= 1.0.76.3 (19th February 2021) =
+* Improvement: Added the Smart Mag Theme review schema #4898
+* Improvement: Added disable right click for copy protection #4877
+* Improvement: Added an option to hide the title on pages #4929
+* Fixed: AMP Browser caching policy #4876
+* Fixed: p tags getting stripped with Change Pagination Links to /amp option #4892
+* Fixed: Missing URL for attribute error for SVG images #4911
+* Fixed: Debug warnings #4924
+
 = 1.0.76.2 (17th February 2021) =
 * Fixed: Removed The SEO Checklist Banner #4912
 
