@@ -5035,7 +5035,7 @@ function ampforwp_inline_related_posts(){
 									}
 									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, $r_width , $r_height , true, false, true );
 									$inline_related_posts_img  = '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . esc_attr($thumb_url_2[1]) . '" height="' . esc_attr($thumb_url_2[2]) . '" layout="responsive"></amp-img>';
-									if(!isset($thumb_url_2[0]) && is_null($thumb_url_2[0])){
+									if(!isset($thumb_url_2[0]) && is_null($thumb_url_2[0]) || wp_check_filetype(ampforwp_get_post_thumbnail('url') == 'svg')){
 										$thumb_url = ampforwp_get_post_thumbnail('url');
 										$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="' . esc_attr(220) . '" height="' . esc_attr(134) . '" layout="responsive"></amp-img>';
 									}
@@ -5053,6 +5053,10 @@ function ampforwp_inline_related_posts(){
 									$thumb_width 	= $thumb_url_2[1];
 									$thumb_height 	= $thumb_url_2[2];
 									$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" layout="responsive" ></amp-img>';
+									if(!isset($thumb_url_2[0]) && is_null($thumb_url_2[0]) || wp_check_filetype(ampforwp_get_post_thumbnail('url') == 'svg')){
+										$thumb_url = ampforwp_get_post_thumbnail('url');
+										$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="' . esc_attr(150) . '" height="' . esc_attr(150) . '" layout="responsive"></amp-img>';
+									}
 								}
 								$inline_related_posts_img = apply_filters("ampforwp_modify_inline_rp_loop_image",$inline_related_posts_img);
 								$inline_related_posts .= $inline_related_posts_img;
