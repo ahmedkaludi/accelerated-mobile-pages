@@ -7270,7 +7270,14 @@ else{
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
              ),
-
+            array(
+                  'id'       => 'ampforwp_pages_title',
+                  'type'     => 'switch',
+                  'default'  =>  '1',
+                  'title'    => esc_html__('Title', 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => esc_html__('Enable Title on Pages.','accelerated-mobile-pages'),
+                  'required' => array('amp-design-selector','=','4'),
+            ),      
          // Meta ON/OFF Pages
             array(
                   'id'       => 'featured_image_swift_page',

@@ -11,7 +11,9 @@ amp_header(); ?>
 			<?php if ( is_page() && true == ampforwp_get_setting('ampforwp_pages_breadcrumbs') ) {
 				amp_breadcrumb();
 			}?>
-		 	<?php amp_title(); ?>
+		 	<?php if ( is_page() && true == ampforwp_get_setting('ampforwp_pages_title') ) {
+				amp_title();
+			}?>
 		<?php } ?>
 		<?php } // Level up Condition ends here?>
 		</div>
