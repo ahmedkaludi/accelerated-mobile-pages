@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.76.4 (19th February 2021) =
+* Fixed: AMP front page not working after update #4892
+
 = 1.0.76.3 (19th February 2021) =
 * Improvement: Added the Smart Mag Theme review schema #4898
 * Improvement: Added disable right click for copy protection #4877
