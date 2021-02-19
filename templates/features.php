@@ -4164,6 +4164,10 @@ function ampforwp_post_paginated_content($content){
 		global $redux_builder_amp, $page, $multipage;
 		$ampforwp_new_content = $ampforwp_the_content = $checker = '';
 		if(ampforwp_get_setting('ampforwp-pagination-link-type')==true && is_singular() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
+			if (get_query_var('paged') > 1) {
+				$id = ampforwp_get_the_ID();
+				$content = get_post_field( 'post_content', $id);
+			}
 		  if ($content) {
 		  	$sanitizer_obj = new AMPFORWP_Content( $content,
               apply_filters( 'amp_content_embed_handlers', array(
