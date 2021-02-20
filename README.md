@@ -194,6 +194,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 == Changelog ==
 
 = 1.0.76.5 (20th February 2021) =
+* Improvements: Added UX Builder compatibility #4933
 * Fixed: Second paginated post not working #4892
 * Fixed: Jetpack hosted videos not working on AMP #4931
 * Fixed: AMP Pagebuilder module getting narrowed with All in One SEO plugin #4930
