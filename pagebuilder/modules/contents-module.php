@@ -400,7 +400,8 @@ if ( is_admin() ) {
                 $ampforwp_post_url = user_trailingslashit($ampforwp_post_url);
                 $ampforwp_post_url = add_query_arg( 'amp', '', $ampforwp_post_url);
               }else{
-                $ampforwp_post_url = user_trailingslashit($ampforwp_post_url) . user_trailingslashit(AMPFORWP_AMP_QUERY_VAR);
+                $ampforwp_post_url = user_trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR;
+                $ampforwp_post_url = user_trailingslashit($ampforwp_post_url);
              }
              $image = $height = $width = $image_alt = ""; 
              if ( has_post_thumbnail() ) {  
