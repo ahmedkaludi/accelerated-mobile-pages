@@ -53,6 +53,7 @@ function ampforwp_add_admin_styling($hook_suffix){
         add_action('admin_notices', 'ampforwp_admin_notices' );
         add_action('admin_notices', 'ampforwp_seo_selection_notice' );
         add_action('admin_notices', 'ampforwp_internal_feedback_notice' );
+        add_action('admin_notices', 'ampforwp_enable_menu_notice' );
     }else{
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
@@ -1351,4 +1352,16 @@ add_action('wp_ajax_ampforwp_internal_feedback_dismiss','ampforwp_internal_feedb
 function ampforwp_internal_feedback_dismiss(){
     set_transient( 'ampforwp_dismiss_time_notice', 1 );
     exit();
+}
+
+function ampforwp_enable_menu_notice(){
+    if(true == has_nav_menu( 'amp-menu' )){
+        return;
+    }else{
+        echo sprintf(('<div class="notice notice-error"><p>%s <a href="%s">%s</a>%s<a href="%s">%s</a></p></div>'), esc_html__('We have detected that you have not selected the menu for AMP. Please','accelerated-mobile-pages'),
+        esc_url(get_admin_url().'nav-menus.php'),
+        esc_html__('Click here','accelerated-mobile-pages'),
+        esc_html__(' to set up the menu for AMP pages or ','accelerated-mobile-pages'),
+        esc_url('https://ampforwp.com/tutorials/article/navigation-menu-amp/'),esc_html__('Click here for the tutorial','accelerated-mobile-pages'),esc_html__('Click here for the tutorial','accelerated-mobile-pages'));
+    }
 }
