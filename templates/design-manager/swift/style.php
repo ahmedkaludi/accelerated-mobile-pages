@@ -727,6 +727,14 @@ if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
 .sgl table {width: 100%;margin-bottom:25px;}
 .sgl th , .sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
 .sgl tr:nth-child(odd) td {background: #f7f7f7;}
+<?php if( true == ampforwp_get_setting('amp-author-name') && true == ampforwp_get_setting('amp-author-name-display') ) {?>
+@media(min-width:768px){
+.sp-athr.mob-athr {display: none;}
+}
+@media(max-width:768px){
+.sp-athr.desk-athr {display: none;}
+}
+<?php } ?>
 <?php // Social Sharing Conditional CSS
 if($redux_builder_amp['swift-social-position'] == 'above-content'){?>
 .shr-txt{display:none;}

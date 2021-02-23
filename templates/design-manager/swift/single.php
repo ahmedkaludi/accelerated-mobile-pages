@@ -21,17 +21,14 @@ $page = get_query_var( 'page' ); ?>
 			    </div>
 			<?php } ?>
 			<?php 
-			if( true == ampforwp_get_setting('amp-author-name') && true == ampforwp_get_setting('amp-author-name-display') ) {
-				$mobile_detect = new AMPforWP_Mobile_Detect;
-    			$isMobile = $mobile_detect->isMobile();
-    			if ($isMobile) { ?>
-			    <div class="sp-athr">
+			if( true == ampforwp_get_setting('amp-author-name') && true == ampforwp_get_setting('amp-author-name-display') ) {?>
+			    <div class="sp-athr mob-athr">
 			        <span class="athr-tx"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-published-by'), 'Published by' ); ?></span>
 			            <?php amp_author_box( 
 							array('author_pub_name'=>true,'author_info'=>true)
 						); ?>
 			    </div>
-			<?php } } ?> 
+			<?php } ?>
 		</div>
 		<?php 
 	   	if($paged==0 && $page==0){
@@ -120,8 +117,8 @@ $page = get_query_var( 'page' ); ?>
 						if ( 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
 								echo ampforwp_addThis_support(); 
 						} ?>
-		              <?php if( true == ampforwp_get_setting('amp-author-name') && !$isMobile ) { ?>
-			            <div class="sp-athr">
+		              <?php if( true == ampforwp_get_setting('amp-author-name') ) { ?>
+			            <div class="sp-athr desk-athr">
 			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
 			            	<?php amp_author_box( 
 										array('author_pub_name'=>true,'author_info'=>true)
