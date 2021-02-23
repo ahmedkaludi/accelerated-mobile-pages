@@ -550,7 +550,7 @@ if(!function_exists('ampforwp_findInternalUrl')){
         if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
           // Skip the URL's that have edit link to it
           $parts = parse_url($url);
-          $query = '';
+          $query = array();
           if ( isset($parts['query']) && $parts['query']) {
             parse_str($parts['query'], $query);
           }
@@ -1546,8 +1546,14 @@ if(!function_exists('ampforwp_featured_video_markup')){
                 $video_url = get_post_meta($post_id, $metaKey,true);
                 $video_url = ampforwp_jnews_featured_video($video_url);
                 $parts = parse_url($video_url);
-                parse_str($parts['query'], $query);
-                $ext = pathinfo($parts['path'], PATHINFO_EXTENSION);
+                $query = array();
+                if ( isset($parts['query']) && $parts['query']) {
+                    parse_str($parts['query'], $query);
+                }
+                $ext = '';
+                if ( isset($parts['path']) && $parts['path']) {
+                    $ext = pathinfo($parts['path'], PATHINFO_EXTENSION);
+                }
                 $type = '';
                 $video_id = '';
                 if(!strpos($video_url,"iframe") && $ext!=""){
