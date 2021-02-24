@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.6
-Stable tag: 1.0.76.5
+Stable tag: 1.0.76.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,12 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.76.6 (24th February 2021) =
+* Improvements: Added an option to show the author details after the title on mobile #4858
+* Fixed: Images not appearing with WP stateless Google cloud storage plugin #4575
+* Fixed: Category module doesnot have "/" at the end of the URL #4932
+* Fixed: Proper commenting added for hooks #3368
+
 = 1.0.76.5 (20th February 2021) =
 * Improvements: Added UX Builder compatibility #4933
 * Fixed: Second paginated post not working #4892
@@ -210,14 +216,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: p tags getting stripped with Change Pagination Links to /amp option #4892
 * Fixed: Missing URL for attribute error for SVG images #4911
 * Fixed: Debug warnings #4924
-
-= 1.0.76.2 (17th February 2021) =
-* Fixed: Removed The SEO Checklist Banner #4912
-
-= 1.0.76.1 (16th February 2021) =
-* Fixed: Fatal conflict with Yoast Premium #4926
-* Fixed: Wrong Yoast breadcrumb links for the posts having multiple categories #4923
-* Fixed: Fatal error on bbpress profile page #4922
-* Fixed: Comments not showing on AMP front page #4921
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
