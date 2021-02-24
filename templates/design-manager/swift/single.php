@@ -20,6 +20,15 @@ $page = get_query_var( 'page' ); ?>
 				   <?php amp_excerpt(); ?>
 			    </div>
 			<?php } ?>
+			<?php 
+			if( true == ampforwp_get_setting('amp-author-name') && true == ampforwp_get_setting('amp-author-name-display') ) {?>
+			    <div class="sp-athr mob-athr">
+			        <span class="athr-tx"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-published-by'), 'Published by' ); ?></span>
+			            <?php amp_author_box( 
+							array('author_pub_name'=>true,'author_info'=>true)
+						); ?>
+			    </div>
+			<?php } ?> 
 		</div>
 		<?php 
 	   	if($paged==0 && $page==0){
@@ -94,7 +103,7 @@ $page = get_query_var( 'page' ); ?>
 								echo ampforwp_addThis_support(); 
 						} ?>
 		              <?php if( true == ampforwp_get_setting('amp-author-name') ) { ?>
-			            <div class="sp-athr">
+			            <div class="sp-athr desk-athr">
 			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
 			            	<?php amp_author_box( 
 										array('author_pub_name'=>true,'author_info'=>true)
