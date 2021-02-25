@@ -4335,6 +4335,17 @@ Redux::setSection( $opt_name, array(
                                     ),
                     ),
                     array(
+                        'id'       => 'ampforwp-infinite-scroll-single-tag',
+                        'type'     => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'    => esc_html__('Same Tag', 'accelerated-mobile-pages'),
+                        'default' => false,
+                         'required' => array(
+                                        array('ampforwp-infinite-scroll', '=' , '1'),
+                                        array('ampforwp-infinite-scroll-single', '=' , '1')
+                                    ),
+                    ),
+                    array(
                         'id'       => 'ampforwp-infinite-scroll-new-features',
                         'type'     => 'switch',
                         'class'    => 'child_opt child_opt_arrow',

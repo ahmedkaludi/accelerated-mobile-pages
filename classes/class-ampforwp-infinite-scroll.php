@@ -154,6 +154,16 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				}
 				$query_args['category__in'] = $category_ids;
 			}
+			if (ampforwp_get_setting('ampforwp-infinite-scroll-single') && ampforwp_get_setting('ampforwp-infinite-scroll-single-tag')){
+				$tags = get_the_tags(ampforwp_get_the_ID());
+				if ($tags) {
+					$tags_ids = array();
+					foreach($tags as $individual_tag){ 
+						$tags_ids[] = $individual_tag->term_id;
+					}
+				}
+				$query_args['tag__in'] = $tags_ids;
+				}
 			$query_args = apply_filters('ampforwp_infinite_scroll_query_args', $query_args);
 			$query = new WP_Query( $query_args );
 			while ($query->have_posts()) {
