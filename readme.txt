@@ -190,12 +190,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.76.6 (24th February 2021) =
+= 1.0.76.6 (25th February 2021) =
 * Improvements: Added an option to show the author details after the title on mobile #4858
 * Fixed: Images not appearing with WP stateless Google cloud storage plugin #4575
 * Fixed: Category module doesnot have "/" at the end of the URL #4932
 * Fixed: Proper commenting added for hooks #3368
 * Fixed: Sticky social share bar icon colliding with polylang plugin #4935
+* Fixed: AMP Page Builder is breaking with contact form module #4937
 
 = 1.0.76.5 (20th February 2021) =
 * Improvements: Added UX Builder compatibility #4933
