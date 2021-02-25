@@ -200,6 +200,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Proper commenting added for hooks #3368
 * Fixed: Sticky social share bar icon colliding with polylang plugin #4935
 * Fixed: AMP Page Builder is breaking with contact form module #4937
+* Fixed: Truepush notification not working in AMP #4936
 
 = 1.0.76.5 (20th February 2021) =
 * Improvements: Added UX Builder compatibility #4933
