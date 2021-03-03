@@ -297,6 +297,9 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
             // compatibility with AMP Pagebuilder Compatibility
             return $completeContent;
         }
+        if(function_exists('heateor_sss_run')){
+            return $completeContent;
+        }
         //for fonts
         $completeContent = str_replace(array('"\\', "'\\"), array('":backSlash:',"':backSlash:"), $completeContent);   
         /***Replacements***/
