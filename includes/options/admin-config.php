@@ -2734,6 +2734,18 @@ Redux::setSection( $opt_name, array(
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
                     array(
+                           'id'       => 'amp-ia-meta-default',
+                           'type'     => 'select',
+                           'title'    => esc_html__( 'Individual Instant Article', 'accelerated-mobile-pages' ),
+                           'tooltip-subtitle' => esc_html__( 'Allows you to Show or Hide IA from All posts, so it can be changed individually later. This option will change the  Default value of AMP metabox in Posts', 'accelerated-mobile-pages' ),
+                           'options'  => array(
+                               'show' => esc_html__('Show by Default', 'accelerated-mobile-pages' ),
+                               'hide' => esc_html__('Hide by Default', 'accelerated-mobile-pages' ),
+                           ),
+                           'default'  => 'show',
+                           'required'=>array('fb-instant-article-switch','=','1'),
+                        ),
+                    array(
                         'id'       => 'ampforwp-fb-instant-article-posts',
                         'type'      => 'text',
                         'title'     => esc_html__('Number of Posts', 'accelerated-mobile-pages'),

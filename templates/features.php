@@ -9284,3 +9284,31 @@ function ampforwp_sanitize_twitter_title($post_title){
     $post_title = esc_html( $post_title );
     return $post_title;
 }
+//Hide by default for instance article #4940
+add_action( 'redux/options/redux_builder_amp/saved', 'ampforwp_change_default_meta_ia',10,2);
+function ampforwp_change_default_meta_ia() {
+	if ( ! current_user_can('manage_options') ) {
+	   return ;
+	}
+
+	$check_meta = get_option('ampforwp_default_posts_ia');
+	$checker = 'show';
+	$control = ampforwp_get_setting('amp-ia-meta-default');
+	$meta_value_to_upate = 'default';
+
+	if ( $control  === 'hide' ) {
+	   $checker = 'hide';
+	   $meta_value_to_upate = 'hide-ia';
+	}
+
+	if ( $check_meta === $checker ) {
+	   return;
+	}
+
+	$pages = get_posts(array());
+	foreach($pages as $page){
+	    update_post_meta($page->ID,'ampforwp-ia-on-off', $meta_value_to_upate);
+	}
+	update_option('ampforwp_default_posts_ia', $checker);
+	return ;
+}
