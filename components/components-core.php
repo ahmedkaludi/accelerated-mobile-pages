@@ -784,6 +784,15 @@ function ampforwp_backtotop_global_css(){?>
 	<?php if (class_exists('FVP_HTML')) {?>
 	.featured-video-plus amp-iframe {margin: 0 auto;}
 	<?php } ?>
+	<?php if (class_exists('Jetpack_Gallery_Settings')) {?>
+	.wp-block-jetpack-slideshow_container.swiper-container amp-selector {
+    	display: none;
+	}
+	.wp-block-jetpack-slideshow_slide.amp-carousel-slide {
+	    height: auto;
+	    margin-bottom: 20px;
+	}
+	<?php } ?>
 <?php if (function_exists('yarpp_init')) {?>
 	.yarpp-related ol li a {
     color: #000;
