@@ -43,7 +43,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_color' ) ) {
          * @return        void
          */
         private $time = '';
-        function __construct( $field = array(), $value = '', $parent ) {
+        function __construct( $field = array(), $value = '', $parent = ' ' ) {
 
             $this->parent = $parent;
             $this->field  = $field;

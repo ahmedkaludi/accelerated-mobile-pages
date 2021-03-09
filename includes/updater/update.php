@@ -257,7 +257,7 @@ function ampforwp_admin_notices() {
     }
 }
 
-function ampforwp_set_plugin_limit( $force=false, $license_data='', $data) {
+function ampforwp_set_plugin_limit( $force=false, $license_data='', $data = '') {
 
     global $wp_version;
     

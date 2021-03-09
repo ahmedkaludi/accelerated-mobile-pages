@@ -14,7 +14,7 @@ if ( ! class_exists( 'ReduxFramework_sortable' ) ) {
          *
          * @since Redux_Options 2.0.1
          */
-        function __construct( $field = array(), $value = '', $parent ) {
+        function __construct( $field = array(), $value = '', $parent = ' ' ) {
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;
