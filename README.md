@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.76.6 (11th March 2021) =
+= 1.0.76.6 (12th March 2021) =
 * Improvements: Added an option to show the author details after the title on mobile #4858
 * Fixed: Images not appearing with WP stateless Google cloud storage plugin #4575
 * Fixed: Category module doesnot have "/" at the end of the URL #4932
