@@ -3894,7 +3894,7 @@ function ampforwp_view_nonamp(){
    		$non_amp_url = '';
    	}
 
-	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url(apply_filters('ampforwp_view_nonamp_url', $non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?> title="<?php echo ampforwp_get_setting('amp-translator-non-amp-page-text') ?>"><?php if(function_exists('pll__')){echo pll__(esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages'));}else{echo esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages');?></a> <?php }}
+	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url(apply_filters('ampforwp_view_nonamp_url', $non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?> title="<?php echo ampforwp_get_setting('amp-translator-non-amp-page-text') ?>"><?php if(function_exists('pll__')){echo pll__(esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages'));}else{echo esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages');}?></a> <?php }
 }
 
  //68. Facebook Instant Articles
@@ -4164,8 +4164,10 @@ function ampforwp_post_paginated_content($content){
 		global $redux_builder_amp, $page, $multipage;
 		$ampforwp_new_content = $ampforwp_the_content = $checker = '';
 		if(ampforwp_get_setting('ampforwp-pagination-link-type')==true && is_singular() && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID())){
-		  $id = ampforwp_get_the_ID();
-		  $content = get_post_field( 'post_content', $id);
+			if (get_query_var('paged') > 1) {
+				$id = ampforwp_get_the_ID();
+				$content = get_post_field( 'post_content', $id);
+			}
 		  if ($content) {
 		  	$sanitizer_obj = new AMPFORWP_Content( $content,
               apply_filters( 'amp_content_embed_handlers', array(
@@ -5033,7 +5035,7 @@ function ampforwp_inline_related_posts(){
 									}
 									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, $r_width , $r_height , true, false, true );
 									$inline_related_posts_img  = '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . esc_attr($thumb_url_2[1]) . '" height="' . esc_attr($thumb_url_2[2]) . '" layout="responsive"></amp-img>';
-									if(!isset($thumb_url_2[0]) && is_null($thumb_url_2[0])){
+									if(!isset($thumb_url_2[0]) && is_null($thumb_url_2[0]) || wp_check_filetype(ampforwp_get_post_thumbnail('url') == 'svg')){
 										$thumb_url = ampforwp_get_post_thumbnail('url');
 										$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="' . esc_attr(220) . '" height="' . esc_attr(134) . '" layout="responsive"></amp-img>';
 									}
@@ -5051,6 +5053,10 @@ function ampforwp_inline_related_posts(){
 									$thumb_width 	= $thumb_url_2[1];
 									$thumb_height 	= $thumb_url_2[2];
 									$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" layout="responsive" ></amp-img>';
+									if(!isset($thumb_url_2[0]) && is_null($thumb_url_2[0]) || wp_check_filetype(ampforwp_get_post_thumbnail('url') == 'svg')){
+										$thumb_url = ampforwp_get_post_thumbnail('url');
+										$inline_related_posts_img = '<amp-img src="'.esc_url( $thumb_url ).'" width="' . esc_attr(150) . '" height="' . esc_attr(150) . '" layout="responsive"></amp-img>';
+									}
 								}
 								$inline_related_posts_img = apply_filters("ampforwp_modify_inline_rp_loop_image",$inline_related_posts_img);
 								$inline_related_posts .= $inline_related_posts_img;
@@ -5418,8 +5424,8 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 		}
 			// Check for Screen base, user ability to read and visibility
 			if ($current_access && (isset($post->ID) && current_user_can('read_post', $post->ID ))
-				&& ( $wp_post_types[$post->post_type]->public )
-				&& ( $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
+				&& ( isset ( $wp_post_types[ $post->post_type ]->public ) && $wp_post_types[$post->post_type]->public )
+				&& ( isset ( $wp_post_types[ $post->post_type ]->show_in_admin_bar ) && $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
 				// Check if current post type is AMPed or not
 				if( $supported_amp_post_types && in_array($post->post_type, $supported_amp_post_types) ){
 					// If AMP on Posts or Pages is off then do nothing
@@ -8329,7 +8335,7 @@ function ampforwp_remove_unwanted_code($content){
 }
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
-	$allscripts = '';
+	$allscripts = $is_script = '';
 	$comp_to_remove_arr = array();
 	preg_match_all('/<\/amp-(.*?)>/', $content, $matches);
 	if(isset($matches[1][0])){

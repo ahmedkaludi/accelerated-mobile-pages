@@ -1,5 +1,41 @@
 == Changelog ==
 
+= 1.0.76.6 (12th March 2021) =
+* Improvements: Added an option to show the author details after the title on mobile #4858
+* Fixed: Images not appearing with WP stateless Google cloud storage plugin #4575
+* Fixed: Category module doesnot have "/" at the end of the URL #4932
+* Fixed: Proper commenting added for hooks #3368
+* Fixed: Sticky social share bar icon colliding with polylang plugin #4935
+* Fixed: AMP Page Builder is breaking with contact form module #4937
+* Fixed: Truepush notification not working in AMP #4936
+
+= 1.0.76.5 (20th February 2021) =
+* Improvements: Added UX Builder compatibility #4933
+* Fixed: Second paginated post not working #4892
+* Fixed: Jetpack hosted videos not working on AMP #4931
+* Fixed: AMP Pagebuilder module getting narrowed with All in One SEO plugin #4930
+
+= 1.0.76.4 (19th February 2021) =
+* Fixed: AMP front page not working after update #4892
+
+= 1.0.76.3 (19th February 2021) =
+* Improvement: Added the Smart Mag Theme review schema #4898
+* Improvement: Added disable right click for copy protection #4877
+* Improvement: Added an option to hide the title on pages #4929
+* Fixed: AMP Browser caching policy #4876
+* Fixed: p tags getting stripped with Change Pagination Links to /amp option #4892
+* Fixed: Missing URL for attribute error for SVG images #4911
+* Fixed: Debug warnings #4924
+
+= 1.0.76.2 (17th February 2021) =
+* Fixed: Removed The SEO Checklist Banner #4912
+
+= 1.0.76.1 (16th February 2021) =
+* Fixed: Fatal conflict with Yoast Premium #4926
+* Fixed: Wrong Yoast breadcrumb links for the posts having multiple categories #4923
+* Fixed: Fatal error on bbpress profile page #4922
+* Fixed: Comments not showing on AMP front page #4921
+
 = 1.0.76 (9th February 2021) =
 * Improvement: The SEO Checklist Banner #4912
 * Fixed: Telegram icon not visible in menu #4919

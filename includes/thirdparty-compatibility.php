@@ -1149,6 +1149,9 @@ function ampforwp_wp_optimize_iframe($content){
 }
 add_action('init','ampforwp_include_required_yoast_files');
 function ampforwp_include_required_yoast_files(){
+	if(class_exists('WPSEO_Premium') && defined('WPSEO_VERSION') && version_compare(WPSEO_VERSION,'15.8', '>=') && !method_exists('WPSEO_Meta_Columns', 'get_context_for_post_id')){
+		return;
+	}
 	// Yoast SEO 14+ support helper class #4574
 	$include_file = $include_yoast_files = $include_yoast_premium_files= '';
 	$include_yoast_files = WP_PLUGIN_DIR . '/wordpress-seo/admin/class-meta-columns.php';

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.6
-Stable tag: 1.0.76
+Stable tag: 1.0.76.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,25 +190,31 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.76 (9th February 2021) =
-* Improvement: The SEO Checklist Banner #4912
-* Fixed: Telegram icon not visible in menu #4919
-* Fixed: Validation error in amp-img with transposh plugin #4918
-* Fixed: Fatal error when FIFU plugin is activate #4920
-* Fixed: AMP admin option panel is showing blank on user end #4914
-* Fixed: Tag base remove in AMP not working after 1.0.60 #4908
-* Fixed: data-playlist gets removed automatically in amp-brid-player #4906
-* Fixed: View Non-Amp Version link does not link to proper canonical url #4901
-* Fixed: Srcset not loading in category module of AMP page builder #4900
-* Fixed: Debug warnings #4917
+= 1.0.76.6 (12th March 2021) =
+* Improvements: Added an option to show the author details after the title on mobile #4858
+* Fixed: Images not appearing with WP stateless Google cloud storage plugin #4575
+* Fixed: Category module doesnot have "/" at the end of the URL #4932
+* Fixed: Proper commenting added for hooks #3368
+* Fixed: Sticky social share bar icon colliding with polylang plugin #4935
+* Fixed: AMP Page Builder is breaking with contact form module #4937
+* Fixed: Truepush notification not working in AMP #4936
 
-= 1.0.75 (23rd January 2021) =
-* Fixed: Imgur embed code not working in AMP #4899
-* Fixed: Srcset not loading in category module of AMP page builder #4900
-* Fixed: Advertising section displaying blank when AdsforWP plugin is active #4889
-* Fixed: AMP Page Builder not working on the pages and posts except the homepage #4890
-* Fixed: Swift 2nd header menu aligned towards right with polylang plugin #4893
-* Fixed: Post Pagination not working after 1.0.69 version #4902
-* Fixed: Debug warnings #4896
+= 1.0.76.5 (20th February 2021) =
+* Improvements: Added UX Builder compatibility #4933
+* Fixed: Second paginated post not working #4892
+* Fixed: Jetpack hosted videos not working on AMP #4931
+* Fixed: AMP Pagebuilder module getting narrowed with All in One SEO plugin #4930
+
+= 1.0.76.4 (19th February 2021) =
+* Fixed: AMP front page not working after update #4892
+
+= 1.0.76.3 (19th February 2021) =
+* Improvement: Added the Smart Mag Theme review schema #4898
+* Improvement: Added disable right click for copy protection #4877
+* Improvement: Added an option to hide the title on pages #4929
+* Fixed: AMP Browser caching policy #4876
+* Fixed: p tags getting stripped with Change Pagination Links to /amp option #4892
+* Fixed: Missing URL for attribute error for SVG images #4911
+* Fixed: Debug warnings #4924
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
