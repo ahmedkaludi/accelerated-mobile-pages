@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 1.0.76.7 (15th March 2021) =
+* Fixed: Srcset attribute not appearing on images with AMP page builder #4954
+* Fixed: Option added to disable structured data in AMP #4953
+* Fixed: Debug Warning with PHP 8.02 and WordPress 5.6.2 #4946
+* Fixed: Background Video loop not working with AMP page builder #4948
+* Fixed: Mobile redirection not working for the front page when pages are disabled #4942
+* Fixed: Sassy social share icons are not displaying on AMP #4945
+* Fixed: Captions are not working on Slideshow Module by Jetpack Plugin #4950
+* Fixed: Improvements in AMP Menu #4934
+
 = 1.0.76.6 (12th March 2021) =
 * Improvements: Added an option to show the author details after the title on mobile #4858
 * Fixed: Images not appearing with WP stateless Google cloud storage plugin #4575
