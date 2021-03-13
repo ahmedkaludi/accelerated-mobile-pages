@@ -951,7 +951,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 								if(!is_array($replace)){
 									
 									if($field['type']=="upload"){
-										$image_alt = $imageUrl = $imageWidth = $imageHeight = $image_caption = '';
+										$image_alt = $imageUrl = $imageWidth = $imageHeight = $image_caption = $image_srcset = '';
 										if(isset($contentArray[$field['name']."_image_data"])){
 										 	$replace= $contentArray[$field['name']."_image_data"];
 										 	$imageUrl = $replace[0];
@@ -959,6 +959,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 											$imageHeight = $replace[2];
 											$image_alt = (isset($replace['alt'])? $replace['alt']: "");
 											$image_caption = (isset($replace['caption'])? $replace['caption']: "");
+											$image_srcset = $replace[0];
 										}elseif( $replace != "" ){
 											$imageDetails = ampforwp_get_attachment_id( $replace);
 											if(is_array($imageDetails)){
@@ -1009,6 +1010,16 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 													 	), 
 													$moduleFrontHtml
 												);
+										$moduleFrontHtml = str_replace(
+													array('{{image_srcset}}',
+														  '{{image_srcset_'.$field['name'].'}}'
+														 ), 
+													 array($image_srcset,
+													 	   $image_srcset
+													 	), 
+													$moduleFrontHtml
+												);
+										$moduleFrontHtml = ampforwp_replaceIfContentConditional('image_srcset', $image_srcset, $moduleFrontHtml);
 										$moduleFrontHtml = ampforwp_replaceIfContentConditional('image_alt', $image_alt, $moduleFrontHtml);
 										$moduleFrontHtml = str_replace(
 													array('{{image_caption}}',
