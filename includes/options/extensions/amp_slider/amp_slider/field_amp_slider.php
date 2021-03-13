@@ -39,7 +39,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_amp_slider' ) ) 
 		
 		 
 
-        function __construct( $field = array(), $value = '', $parent ) {
+        function __construct( $field = array(), $value = '', $parent = ' ' ) {
 
             //parent::__construct( $parent->sections, $parent->args );
             $this->parent = $parent;

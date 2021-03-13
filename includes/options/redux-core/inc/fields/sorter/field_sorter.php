@@ -14,7 +14,7 @@ namespace ReduxCore\ReduxFramework;
              *
              * @since Redux_Options 1.0.0
              */
-            function __construct( $field = array(), $value = '', $parent ) {
+            function __construct( $field = array(), $value = '', $parent = ' ' ) {
                 $this->parent = $parent;
                 $this->field  = $field;
                 $this->value  = $value;
