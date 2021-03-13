@@ -751,6 +751,15 @@ function ampforwp_backtotop_global_css(){?>
 	<?php if (class_exists('UAGB_Admin')) {?>
 	.wp-block-uagb-faq svg {display: none;}
 	<?php } ?>
+	<?php if (class_exists('Jetpack_Gallery_Settings')) {?>
+	.wp-block-jetpack-slideshow_container.swiper-container amp-selector {
+    	display: none;
+	}
+	.wp-block-jetpack-slideshow_slide.amp-carousel-slide {
+	    height: auto;
+	    margin-bottom: 20px;
+	}
+	<?php } ?>
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
