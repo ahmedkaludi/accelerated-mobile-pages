@@ -837,6 +837,24 @@ function ampforwp_backtotop_global_css(){?>
 <?php if (class_exists('UAGB_Admin')) {?>
 	.wp-block-uagb-faq svg {display: none;}
 	<?php } ?>
+<?php if (ampforwp_get_setting('amp-quantcast-notice-switch')) {?>
+		#postPromptUI button {
+           background: #368bd6;
+           color: white;
+           padding: 5px 15px;
+           border: none;
+           outline: none;
+           display: flex;
+           align-items: center;
+           position: fixed;
+           right: 0;
+           bottom: 0;
+           border-radius: 3px 0 0 3px;
+           max-height: 30px;
+           max-width: 110px;
+           cursor: pointer;
+        }
+	<?php } ?>	
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
