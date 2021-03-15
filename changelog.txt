@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.76.7 (15th March 2021) =
+* Fixed: WP_Scripts Debug Warnings when WordPress updated to v5.7 #4958
+
 = 1.0.76.6 (12th March 2021) =
 * Improvements: Added an option to show the author details after the title on mobile #4858
 * Fixed: Images not appearing with WP stateless Google cloud storage plugin #4575
