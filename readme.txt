@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.7
+Stable tag: 1.0.76.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.76.7 (15th March 2021) =
+= 1.0.76.8 (17th March 2021) =
 * Fixed: Srcset attribute not appearing on images with AMP page builder #4954
 * Fixed: Option added to disable structured data in AMP #4953
 * Fixed: Debug Warning with PHP 8.02 and WordPress 5.6.2 #4946
@@ -199,6 +199,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Sassy social share icons are not displaying on AMP #4945
 * Fixed: Captions are not working on Slideshow Module by Jetpack Plugin #4950
 * Fixed: Improvements in AMP Menu #4934
+
+= 1.0.76.7 (15th March 2021) =
+* Fixed: WP_Scripts Debug Warnings when WordPress updated to v5.7 #4958
 
 = 1.0.76.6 (12th March 2021) =
 * Improvements: Added an option to show the author details after the title on mobile #4858
