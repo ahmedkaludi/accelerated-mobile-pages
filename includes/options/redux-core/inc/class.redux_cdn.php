@@ -42,7 +42,7 @@
                 }
             }
 
-            private static function _cdn( $register = true, $handle = '', $src_cdn, $deps, $ver, $footer_or_media, $is_script = true ) {
+            private static function _cdn( $register = true, $handle = '', $src_cdn = '', $deps = '', $ver = '', $footer_or_media = '', $is_script = true ) {
                 $tran_key = '_style_cdn_is_up';
                 if ( $is_script ) {
                     $tran_key = '_script_cdn_is_up';
@@ -98,7 +98,7 @@
                 }
             }
 
-            private static function _vendor_plugin( $register = true, $handle = '', $src_cdn, $deps, $ver, $footer_or_media, $is_script = true ) {
+            private static function _vendor_plugin( $register = true, $handle = '', $src_cdn = '', $deps = '', $ver = '', $footer_or_media = '', $is_script = true ) {
                 if ( class_exists( 'ReduxCore\\ReduxFramework\\Redux_VendorURL' ) ) {
                     if (!empty($handle)) {
                         $src = Redux_VendorURL::get_url( $handle );
