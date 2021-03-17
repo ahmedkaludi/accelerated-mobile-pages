@@ -837,6 +837,10 @@ function ampforwp_backtotop_global_css(){?>
 <?php if (class_exists('UAGB_Admin')) {?>
 	.wp-block-uagb-faq svg {display: none;}
 	<?php } ?>
+<?php if (function_exists('on_bsf_aiosrs_pro_activate')) {?>
+  span.wpsp-icon.wpsp-faq-icon-wrap svg , span.wpsp-icon-active.wpsp-faq-icon-wrap svg{
+    display: none;}
+  <?php } ?>
 <?php if (ampforwp_get_setting('amp-quantcast-notice-switch')) {?>
 		#postPromptUI button {
            background: #368bd6;
