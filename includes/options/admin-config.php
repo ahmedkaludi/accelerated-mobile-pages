@@ -3476,6 +3476,14 @@ $e_commerce_support[] = array(
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
+                       'id'       => 'amp-translator-incontent-related-text',
+                       'type'     => 'text',
+                       'title'    => esc_html__('In-Content Related Post', 'accelerated-mobile-pages'),
+                       'default'  => esc_html__('Related Post','accelerated-mobile-pages'),
+                       'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
                        'id'       => 'amp-translator-recent-text',
                        'type'     => 'text',
                        'title'    => esc_html__('Recent Posts', 'accelerated-mobile-pages'),
