@@ -44,7 +44,17 @@ function ampforwp_add_sd_fields($fields){
            return $fields;
     }
     else {
-        
+            $schema_install = '';  
+            if(function_exists('saswp_add_plugin_meta_links')){
+                $schema_install = '<a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>'.esc_html__('Go to Structure Data settings','accelerated-mobile-pages').'</p></div></a>';
+            }else{
+                  $schema_install = '<div class="install-now ampforwp-activation-call-module-upgrade button  " id="ampforwp-structure-data-activation-call" data-secure="'.wp_create_nonce('verify_module').'"><p>'.esc_html__('Upgrade for Free','accelerated-mobile-pages').'</p></div>';
+              }
+              foreach (get_plugins() as $key => $value) {
+                  if($key == 'schema-and-structured-data-for-wp/structured-data-for-wp.php' && !function_exists('saswp_add_plugin_meta_links')){
+                     $schema_install = '<div class="install-now button"><a style="text-decoration: none;" target="_blank" href="'.admin_url('plugins.php').'">'.esc_html__('Activate Plugin','accelerated-mobile-pages').'</a></div>';
+                  }
+              }
              $fields[] =    array(
                                 'id' => 'ampforwp-sd_modules_section',
                                 'type' => 'section',
@@ -68,14 +78,7 @@ function ampforwp_add_sd_fields($fields){
                                                         </ul> </div>' : '')
                                                     .'
                                                     <div class="col-1">
-                                                        '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 
-                                                            '
-                                <div class="install-now ampforwp-activation-call-module-upgrade button  " id="ampforwp-structure-data-activation-call" data-secure="'.wp_create_nonce('verify_module').'">
-                                    <p>'.esc_html__('Upgrade for Free','accelerated-mobile-pages').'</p>
-                                </div>' :
-                                                            '<a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>'.esc_html__('Go to Structure Data settings','accelerated-mobile-pages').'</p></div></a>'
-                                                        )
-                                                        .'
+                                                        '. $schema_install .'
                                                          &nbsp;<a href="https://ampforwp.com/tutorials/article/what-is-the-structured-data-update-all-about/" class="amp_recommend_learnmore" target="_blank">'.esc_html__('Learn more','accelerated-mobile-pages').'</a>
                                                     </div>
                                             </div>' 
