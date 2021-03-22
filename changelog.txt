@@ -6,7 +6,6 @@
 * Fixed: Debug Warning with PHP 8.02 and WordPress 5.6.2 #4946
 * Fixed: Background Video loop not working with AMP page builder #4948
 * Fixed: Mobile redirection not working for the front page when pages are disabled #4942
-* Fixed: Sassy social share icons are not displaying on AMP #4945
 * Fixed: Captions are not working on Slideshow Module by Jetpack Plugin #4950
 
 = 1.0.76.7 (15th March 2021) =
