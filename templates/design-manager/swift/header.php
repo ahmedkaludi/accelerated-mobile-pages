@@ -111,7 +111,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
             <div class="head h_m_w">
-                <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true && has_nav_menu( 'amp-menu' ) == true) {?>
+                <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true) {?>
                 <div class="h-nav">
                     <label for="offcanvas-menu" class="t-btn"></label>
                 </div><!--end menu-->
@@ -250,7 +250,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
             <div class="head-2 h_m_w">
-                <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true && has_nav_menu( 'amp-menu' ) == true) {?>
+                <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true) {?>
                 <div class="h-nav">
                    <label for="offcanvas-menu" class="t-btn"></label>
                 </div><!-- /.left-nav -->
@@ -402,7 +402,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                         </div>
                     <?php } ?>
                     <?php do_action('ampforwp_header_elements') ?>
-                    <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true && has_nav_menu( 'amp-menu' ) == true) {?>
+                    <?php  if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true) {?>
                     <div class="h-nav">
                        <label for="offcanvas-menu" class="t-btn"></label>
                     </div><!-- /.left-nav --> 
