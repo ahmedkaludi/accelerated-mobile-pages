@@ -90,21 +90,31 @@ function ampforwp_add_sd_fields($fields){
                       'layout_type' => 'accordion',
                         'accordion-open'=> 1, 
                   );
+                $fields[] =  array(
+                      'id'        => 'ampforwp-sd-switch',
+                      'type'      => 'switch',
+                      'title'     => esc_html__('Schema & Structured Data', 'accelerated-mobile-pages'),
+                      'default'   => 1,   
+                  );
                 $fields[] =   array(
                               'id'       => 'ampforwp-sd-type-posts',
                               'type'     => 'select',
+                              'class'    => 'child_opt child_opt_arrow',
                               'title'    => esc_html__('Posts', 'accelerated-mobile-pages'),
                               'tooltip-subtitle' => esc_html__('Select the Structured Data Type for Posts', 'accelerated-mobile-pages'),
                               'options'  => ampforwp_get_sd_types(),
                               'default'  => 'BlogPosting',
+                              'required'=>array('ampforwp-sd-switch','=','1'),
                     );
                 $fields[] =   array(
                               'id'       => 'ampforwp-sd-type-pages',
                               'type'     => 'select',
+                              'class'    => 'child_opt child_opt_arrow',
                               'title'    => esc_html__('Pages', 'accelerated-mobile-pages'),
                               'tooltip-subtitle' => esc_html__('Select the Structured Data Type for Pages', 'accelerated-mobile-pages'),
                               'options'  =>  ampforwp_get_sd_types(),
                               'default'  => 'BlogPosting',
+                              'required'=>array('ampforwp-sd-switch','=','1'),
                     );
                   $fields[] = array(
                               'id' => 'ampforwp-sd_2',
@@ -113,6 +123,7 @@ function ampforwp_add_sd_fields($fields){
                               'indent' => true,
                               'layout_type' => 'accordion',
                                 'accordion-open'=> 1, 
+                              'required'=>array('ampforwp-sd-switch','=','1'),
                           );
 
                 $fields[] =   array(
@@ -122,12 +133,14 @@ function ampforwp_add_sd_fields($fields){
                               'title'    => esc_html__('Default Structured Data Logo', 'accelerated-mobile-pages'),
                               'tooltip-subtitle' => esc_html__('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
                                'default' => array('url' => ampforwp_default_logo_settings() ),
+                               'required'=>array('ampforwp-sd-switch','=','1'),
                     );
                 $fields[] =   array(
                               'id'       => 'ampforwp-sd-logo-dimensions',
                               'title'    => esc_html__('Custom Logo Size', 'accelerated-mobile-pages'),
                               'type'     => 'switch',
                               'default'  => 0,
+                              'required'=>array('ampforwp-sd-switch','=','1'),
                     );
                 $fields[] =   array(
                             'class'=>'child_opt child_opt_arrow',
@@ -155,6 +168,7 @@ function ampforwp_add_sd_fields($fields){
                               'tooltip-subtitle'    => esc_html__('Upload the Image you want to show as Placeholder Image.', 'accelerated-mobile-pages'),
                               'placeholder'  => esc_html__('when there is no featured image set in the post','accelerated-mobile-pages'),
                               'default' => array('url' => AMPFORWP_IMAGE_DIR . '/SD-default-image.png' ),
+                              'required'=>array('ampforwp-sd-switch','=','1'),
                     );
                 $fields[] =   array(
                               'id'       => 'amp-structured-data-placeholder-image-width',
@@ -162,7 +176,8 @@ function ampforwp_add_sd_fields($fields){
                               'type'     => 'text',
                               'placeholder' => '550',
                               'tooltip-subtitle' => esc_html__('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
-                              'default'  => '1280'
+                              'default'  => '1280',
+                              'required'=>array('ampforwp-sd-switch','=','1'),
                     );
                 $fields[] =   array(
                               'id'       => 'amp-structured-data-placeholder-image-height',
@@ -170,7 +185,8 @@ function ampforwp_add_sd_fields($fields){
                               'type'     => 'text',
                               'placeholder' => '350',
                               'tooltip-subtitle' => esc_html__('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
-                              'default'  => '720'
+                              'default'  => '720',
+                              'required'=>array('ampforwp-sd-switch','=','1'),
                      );
                 $fields[] =   array(
                               'id'      => 'amporwp-structured-data-video-thumb-url',
@@ -180,12 +196,14 @@ function ampforwp_add_sd_fields($fields){
                               'tooltip-subtitle'    => esc_html__('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
                               'placeholder'  => esc_html__('When there is no thumbnail set for the video','accelerated-mobile-pages'),
                               'default' => array('url' => AMPFORWP_IMAGE_DIR . '/SD-default-image.png' ),
+                              'required'=>array('ampforwp-sd-switch','=','1'),
                     );
                 $fields[] =   array(  
                               'id'       => 'ampforwp-sd-multiple-images',  
                               'title'    => esc_html__('High-resolution Images', 'accelerated-mobile-pages'), 
                               'type'     => 'switch', 
                               'default'  => 0,  
+                              'required'=>array('ampforwp-sd-switch','=','1'),
                               'tooltip-subtitle' => esc_html__('For best results, provide multiple high-resolution images (minimum of 800,000 pixels when multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1 ', 'accelerated-mobile-pages'). '<a href="https://developers.google.com/search/docs/data-types/article#article_types" target="_blank">'.esc_html__('Read more','accelerated-mobile-pages').'</a>' 
                     );
         }// is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') Closed
@@ -210,10 +228,12 @@ if( ! function_exists('saswp_non_amp') ) {
                 $custom_fields[] = array(
                   'id'       => 'ampforwp-sd-type-'.esc_attr($p_type),
                   'type'     => 'select',
-                  'title'    => __($post_type, 'accelerated-mobile-pages'),
+                  'class'    => 'child_opt child_opt_arrow',
+                  'title'    => esc_html__($post_type, 'accelerated-mobile-pages'),
                   'tooltip-subtitle' => 'Select the Structured Data Type for '.esc_attr($p_type),
                   'options'  =>  ampforwp_get_sd_types(),
                   'default'  => 'BlogPosting',
+                  'required'=>array('ampforwp-sd-switch','=','1'),
                 );
                 $extra_fields = array_merge($extra_fields, $custom_fields);
             }

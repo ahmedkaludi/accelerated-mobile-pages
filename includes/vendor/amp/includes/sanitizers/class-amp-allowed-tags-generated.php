@@ -2653,6 +2653,7 @@ class AMP_Allowed_Tags_Generated {
 					'placeholder' => array(),
 					'poster' => array(),
 					'dock' => array(),
+					'loop' => array(),
 					'preload' => array(
 						'value_regex' => '(none|metadata|auto|)',
 					),
@@ -2895,6 +2896,7 @@ class AMP_Allowed_Tags_Generated {
 					'[data-videoid]' => array(),
 					'[dock]' => array(),
 					'autoplay' => array(),
+					'loop' => array(),
 					'credentials' => array(
 						'value_regex_casei' => '(include|omit)',
 					),

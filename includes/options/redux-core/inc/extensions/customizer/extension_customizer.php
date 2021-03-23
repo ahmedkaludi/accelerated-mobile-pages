@@ -582,14 +582,16 @@ namespace ReduxCore\ReduxFramework;
 
             }
 
-            public function add_section( $id, $args = array(), $wp_customize ) {
+            public function add_section( $id, $args = array(), $wp_customize = '' ) {
 
                 if ( is_a( $id, 'WP_Customize_Section' ) ) {
                     $section = $id;
                 } else {
 
                     $section_class = apply_filters( 'redux/customizer/section/class_name', "Redux_Customizer_Section" );
-                    $section       = new $section_class( $wp_customize, $id, $args );
+                    if (!empty($wp_customize)) {
+                        $section = new $section_class( $wp_customize, $id, $args );
+                    }
                 }
 
                 $wp_customize->add_section( $section, $args );
@@ -605,12 +607,14 @@ namespace ReduxCore\ReduxFramework;
              * @param WP_Customize_Panel|string $id   Customize Panel object, or Panel ID.
              * @param array                     $args Optional. Panel arguments. Default empty array.
              */
-            public function add_panel( $id, $args = array(), $wp_customize ) {
+            public function add_panel( $id, $args = array(), $wp_customize = '' ) {
                 if ( is_a( $id, 'WP_Customize_Panel' ) ) {
                     $panel = $id;
                 } else {
                     $panel_class = apply_filters( 'redux/customizer/panel/class_name', "Redux_Customizer_Panel" );
-                    $panel       = new $panel_class( $wp_customize, $id, $args );
+                    if (!empty($wp_customize)) {
+                      $panel = new $panel_class( $wp_customize, $id, $args );
+                    }
                 }
 
                 $wp_customize->add_panel( $panel, $args );

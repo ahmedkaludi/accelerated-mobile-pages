@@ -2250,7 +2250,7 @@
                                             150,
                                             150
                                         ) );
-                                        $this->options[ $field['id'] ]['thumbnail'] = $data[0];
+                                        $this->options[ $field['id'] ]['thumbnail'] = isset($data[0]) ? $data[0] : '' ;
                                         $doUpdate                                   = true;
                                     }
                                 }

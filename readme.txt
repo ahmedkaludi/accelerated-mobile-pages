@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.6
-Stable tag: 1.0.76.6
+Tested up to: 5.7
+Stable tag: 1.0.76.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,17 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.76.8 (22nd March 2021) =
+* Fixed: Srcset attribute not appearing on images with AMP page builder #4954
+* Fixed: Option added to disable structured data in AMP #4953
+* Fixed: Debug Warning with PHP 8.02 and WordPress 5.6.2 #4946
+* Fixed: Background Video loop not working with AMP page builder #4948
+* Fixed: Mobile redirection not working for the front page when pages are disabled #4942
+* Fixed: Captions are not working on Slideshow Module by Jetpack Plugin #4950
+
+= 1.0.76.7 (15th March 2021) =
+* Fixed: WP_Scripts Debug Warnings when WordPress updated to v5.7 #4958
+
 = 1.0.76.6 (12th March 2021) =
 * Improvements: Added an option to show the author details after the title on mobile #4858
 * Fixed: Images not appearing with WP stateless Google cloud storage plugin #4575
@@ -204,17 +215,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Second paginated post not working #4892
 * Fixed: Jetpack hosted videos not working on AMP #4931
 * Fixed: AMP Pagebuilder module getting narrowed with All in One SEO plugin #4930
-
-= 1.0.76.4 (19th February 2021) =
-* Fixed: AMP front page not working after update #4892
-
-= 1.0.76.3 (19th February 2021) =
-* Improvement: Added the Smart Mag Theme review schema #4898
-* Improvement: Added disable right click for copy protection #4877
-* Improvement: Added an option to hide the title on pages #4929
-* Fixed: AMP Browser caching policy #4876
-* Fixed: p tags getting stripped with Change Pagination Links to /amp option #4892
-* Fixed: Missing URL for attribute error for SVG images #4911
-* Fixed: Debug warnings #4924
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
