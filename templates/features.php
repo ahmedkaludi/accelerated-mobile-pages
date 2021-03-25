@@ -1136,6 +1136,10 @@ function ampforwp_remove_schema_data() {
 		if ( ampforwp_is_front_page() ) {
 				ampforwp_remove_filters_for_class( 'the_content', 'SiteOrigin_Panels', 'generate_post_content', 10 );
 		}
+		//Addition HTTP added in canonical from Yoast SEO Multilingual #4970
+		if (class_exists('WPML_WPSEO_Filters')) {
+			ampforwp_remove_filters_for_class( 'wpseo_canonical', 'WPML_WPSEO_Filters', 'canonical_filter', 10 );
+		}
 		//SiteOrigin Page builder compatibilty
 		//Neglect SOPB If Custom AMP Editor is checked
 	      if ( $amp_custom_content_enable === 'yes') {
