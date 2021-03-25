@@ -289,6 +289,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 <?php if(isset($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']) && $redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-overlay-color-control']['rgba'])?>;<?php } ?>line-height: 0;display: block;text-indent: 1px;}
 .c-btn{float: right;padding: 15px 5px;}
+header[style] label.c-btn {margin-top: 30px;}
 .m-ctr{transition: margin 0.3s ease-in-out;}
 .m-ctr{<?php if(ampforwp_get_setting('header-overlay-width')){?>width:<?php echo esc_html(ampforwp_get_setting('header-overlay-width'))?>;<?php } ?>height:100%;position: absolute;z-index:99;padding: 2% 0% 100vh 0%;}
 .m-menu{display: inline-block;width: 100%;padding: 2px 20px 10px 20px;}
