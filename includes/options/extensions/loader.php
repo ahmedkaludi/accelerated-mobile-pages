@@ -22,7 +22,7 @@ if(!function_exists('ampforwp_register_custom_extension_loader')) :
                         require_once( $class_file );
                     }
                 }
-                if ( ! isset( $ReduxFramework->extensions[ $folder ] ) ) {
+                if ( !class_exists('Redux_Framework_Plugin') && ! isset( $ReduxFramework->extensions[ $folder ] ) ) {
                     $ReduxFramework->extensions[ $folder ] = new $extension_class( $ReduxFramework );
                 }
             }
