@@ -41,6 +41,8 @@ class AMP_Video_Sanitizer extends AMP_Base_Sanitizer {
 			$new_attributes = $this->enforce_sizes_attribute( $new_attributes );
 			if(ampforwp_get_setting('ampforwp-amp-video-docking')==true){
 				$new_attributes['dock'] = '#dock-slot';
+				$new_attributes['width'] = '500';
+				$new_attributes['layout'] = 'responsive';
 			}
 			$new_node = AMP_DOM_Utils::create_node( $this->dom, 'amp-video', $new_attributes );
 
