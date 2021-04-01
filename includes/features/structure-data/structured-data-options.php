@@ -50,11 +50,10 @@ function ampforwp_add_sd_fields($fields){
             }else{
                   $schema_install = '<div class="install-now ampforwp-activation-call-module-upgrade button  " id="ampforwp-structure-data-activation-call" data-secure="'.wp_create_nonce('verify_module').'"><p>'.esc_html__('Upgrade for Free','accelerated-mobile-pages').'</p></div>';
               }
-              foreach (get_plugins() as $key => $value) {
-                  if($key == 'schema-and-structured-data-for-wp/structured-data-for-wp.php' && !function_exists('saswp_add_plugin_meta_links')){
+              
+                  if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."schema-and-structured-data-for-wp/structured-data-for-wp.php") && !function_exists('saswp_add_plugin_meta_links')){
                      $schema_install = '<div class="install-now button"><a style="text-decoration: none;" target="_blank" href="'.admin_url('plugins.php').'">'.esc_html__('Activate Plugin','accelerated-mobile-pages').'</a></div>';
                   }
-              }
              $fields[] =    array(
                                 'id' => 'ampforwp-sd_modules_section',
                                 'type' => 'section',
