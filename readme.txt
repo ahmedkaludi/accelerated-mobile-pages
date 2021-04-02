@@ -201,6 +201,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Docking functionality is not working for the amp-video type in mobile view #4961
 * Fixed: Cannot change the title for in-content related post #4959
 * Fixed: Upgrade for Free' button in structured data settings is not working #4960
+* Fixed: Beginner and advance mode popup not closing #4974
 
 = 1.0.76.8 (22nd March 2021) =
 * Fixed: Srcset attribute not appearing on images with AMP page builder #4954
