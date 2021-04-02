@@ -193,7 +193,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 1.0.76.9 (2nd April 2021) =
 * Fixed: Facebook videos embedding not working #4973
 * Fixed: The incorrect excerpt for the custom front page if user is using the Divi #4972
-* Fixed: Image is not showing when the post is shared on social network #4971
 * Fixed: When Yoast SEO Multilingual is activated canonical getting addition http #4970
 * Fixed: Close button not visible in the menu for the Google Cached AMP Pages #4969
 * Fixed: Sassy social share icons are not displaying on AMP #4945
