@@ -968,8 +968,8 @@ function ampforwp_seopress_social(){
 				if ( '' == $url && has_post_thumbnail() ) {
 					$url = get_the_post_thumbnail_url();
 				}
-				if (has_post_thumbnail(ampforwp_get_the_ID())) {
-					$image_id = get_post_thumbnail_id( ampforwp_get_the_ID() );
+				if (function_exists('attachment_url_to_postid')) {
+					$image_id = attachment_url_to_postid( $url );
 					if ( !$image_id ){
 						return;
 					}
