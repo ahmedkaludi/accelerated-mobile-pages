@@ -808,8 +808,11 @@ function ampforwp_seopress_social(){
 				if ( '' == $url && has_post_thumbnail() ) {
 					$url = get_the_post_thumbnail_url();
 				}
-				if (function_exists('attachment_url_to_postid')) {
+				if (function_exists('attachment_url_to_postid') || has_post_thumbnail(ampforwp_get_the_ID()) ) {
 					$image_id = attachment_url_to_postid( $url );
+					if(empty($image_id)){
+						$image_id = get_post_thumbnail_id( ampforwp_get_the_ID() );
+					}
 					if ( !$image_id ){
 						return;
 					}
