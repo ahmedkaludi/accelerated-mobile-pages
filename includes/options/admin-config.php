@@ -6090,6 +6090,17 @@ $single_page_options = array(
 
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
+             array(
+                 'id'       => 'amp-published-date-display',
+                 'type'     => 'switch',
+                 'class'    => 'child_opt child_opt_arrow', 
+                 'title'    => esc_html__( 'Below Title on Mobile', 'accelerated-mobile-pages' ),
+                 'default'  => 0,
+                  'tooltip-subtitle' => esc_html__('Enable this option to show published date below the title in mobile view','accelerated-mobile-pages'),
+                  'required' => array(
+                    array('swift-date' , '=' , '1'),
+                )
+            ),
          //Breadcrumb ON/OFF
           array(
               'id'       => 'ampforwp-bread-crumb',

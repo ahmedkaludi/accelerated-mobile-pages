@@ -721,6 +721,14 @@ if ( ampforwp_get_setting('swift-featued-image-type') == 2) { ?>
 .post-date .post-edit-link{color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;float: right;}
 .post-date .post-edit-link:hover{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .sp-athr, .amp-tags, .post-date{margin-top:20px;}
+<?php if( true == ampforwp_get_setting('swift-date') && true == ampforwp_get_setting('amp-published-date-display')) { ?>
+@media(min-width:768px){
+.post-date.mob-date {display: none;}
+}
+@media(max-width:768px){
+.post-date.desk-date {display: none;}
+}
+<?php } ?>
 .sp-athr .author-details a, .sp-athr .author-details, .amp-tags span a, .amp-tag {font-size: 15px;color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;font-weight: 400;line-height: 1.5;}
 .amp-tags .amp-tag:after{content: "/";display: inline-block;padding: 0px 10px;position: relative;top: -1px;color: #ccc;font-size: 12px;}
 .amp-tags .amp-tag:last-child:after{display:none;}
