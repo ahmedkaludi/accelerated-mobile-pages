@@ -2915,6 +2915,14 @@ Redux::setSection( $opt_name, array(
                         'default' => 1,
                     ),
                     array(
+                        'id'       => 'amp-desktop-redirection',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Disable AMP on Desktop', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('
+                        Enable this option to give your visitors normal version on Desktop when accessing AMP','accelerated-mobile-pages'),
+                        'default' => 0,
+                    ),
+                    array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
                         'title'    => esc_html__('Change Internal Links to AMP', 'accelerated-mobile-pages'),
