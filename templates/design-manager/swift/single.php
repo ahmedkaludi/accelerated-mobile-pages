@@ -28,7 +28,13 @@ $page = get_query_var( 'page' ); ?>
 							array('author_pub_name'=>true,'author_info'=>true)
 						); ?>
 			    </div>
-			<?php } ?> 
+			 <?php } 
+			if( true == ampforwp_get_setting('swift-date') && true == ampforwp_get_setting('amp-published-date-display')) { ?>
+			            <div class="post-date mob-date">
+			            	<?php amp_date(); ?><?php edit_post_link(); ?>
+			            </div>
+					<?php do_action('ampforwp_post_views_ctr'); ?> 
+		            <?php } ?>
 		</div>
 		<?php 
 	   	if($paged==0 && $page==0){
@@ -119,7 +125,7 @@ $page = get_query_var( 'page' ); ?>
 			            </div>
 		            <?php } 
 		             if( true == ampforwp_get_setting('swift-date') ) { ?>
-			            <div class="post-date">
+			            <div class="post-date desk-date">
 			            	<?php amp_date(); ?><?php edit_post_link(); ?>
 			            </div>
                           <?php do_action('ampforwp_post_views_ctr'); ?>
