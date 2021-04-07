@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.9
+Stable tag: 1.0.76.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.76.10 (7th April 2021) =
+* Improvements: Added the Compatibility with the Schema Pro FAQ #4956
+* Improvements: Added the feature to track each author contribution to the website pageview #4952
+* Improvements: Added an option to show published date and time below the title #4976
+* Improvements: Added an option to automatic redirect AMP to non-amp when access through desktop #4975
+* Improvements: Added the Compatibility for Add Widget After Content plugin #4949
+* Improvements: Added Forminator for AMP Extension #4965
+* Fixed: Search Close Button is hidden for the Google Cached AMP Pages #4977
+* Fixed: Image is not showing when the post is shared on social network #4971
+
 = 1.0.76.9 (2nd April 2021) =
 * Fixed: Facebook videos embedding not working #4973
 * Fixed: The incorrect excerpt for the custom front page if user is using the Divi #4972
@@ -209,8 +219,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Background Video loop not working with AMP page builder #4948
 * Fixed: Mobile redirection not working for the front page when pages are disabled #4942
 * Fixed: Captions are not working on Slideshow Module by Jetpack Plugin #4950
-
-= 1.0.76.7 (15th March 2021) =
-* Fixed: WP_Scripts Debug Warnings when WordPress updated to v5.7 #4958
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
