@@ -755,6 +755,10 @@ function ampforwp_backtotop_global_css(){?>
 	<?php if (class_exists('UAGB_Admin')) {?>
 	.wp-block-uagb-faq svg {display: none;}
 	<?php } ?>
+	<?php if (function_exists('on_bsf_aiosrs_pro_activate')) {?>
+	  span.wpsp-icon.wpsp-faq-icon-wrap svg , span.wpsp-icon-active.wpsp-faq-icon-wrap svg{
+	    display: none;}
+  <?php } ?>
 	<?php if (class_exists('Jetpack_Gallery_Settings')) {?>
 	.wp-block-jetpack-slideshow_container.swiper-container amp-selector {
     	display: none;
