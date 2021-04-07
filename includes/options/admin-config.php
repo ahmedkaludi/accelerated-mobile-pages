@@ -688,6 +688,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('ultimate-membership-pro-compatibility-for-amp/ultimate-membership-pro-compatibility-for-amp.php')? 1 : 2),
                         ), 
                         array(
+                            'name'=>'Forminator for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Forminator forms Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/forminator-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/forminator-for-amp/',
+                            'plugin_active_path'=> 'forminator-for-amp/forminator-for-amp.php',
+                            'item_name'=>'Forminator for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('forminator-for-amp/forminator-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Paid Memberships PRO for AMP',
                             'class'=>'new-ext',
                             'desc'=>'Add Paid Memberships PRO Support in AMP',
