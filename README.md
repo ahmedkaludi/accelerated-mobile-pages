@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.76.10 (7th April 2021) =
+= 1.0.76.10 (9th April 2021) =
 * Improvements: Added the Compatibility with the Schema Pro FAQ #4956
 * Improvements: Added the feature to track each author contribution to the website pageview #4952
 * Improvements: Added an option to show published date and time below the title #4976
