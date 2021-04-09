@@ -37,6 +37,12 @@ function ampforwp_analytics() {
 				'enabled'=> true
 			);
 		}
+		if (ampforwp_get_setting('ampforwp-ga-field-author')) {
+			$author = ampforwp_get_setting('ampforwp-ga-field-author-index');
+			if ($author) {
+				$ga_fields['vars']['config'][$author] = get_the_author_meta('display_name');
+			}
+		}
 		$ga_fields = apply_filters('ampforwp_google_analytics_fields', $ga_fields );
 		$ampforwp_ga_fields = json_encode( $ga_fields);
 		if( ampforwp_get_setting('ampforwp-ga-field-advance-switch') ){

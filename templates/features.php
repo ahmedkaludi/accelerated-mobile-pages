@@ -1128,6 +1128,9 @@ function ampforwp_remove_schema_data() {
 		if(defined('EZOIC__PLUGIN_NAME')){
 			ampforwp_remove_filters_for_class( 'shutdown', 'Ezoic_Namespace\Ezoic_Integration_Public', 'ez_buffer_end', 0 );
 		}	
+		if (class_exists('AddWidgetAfterContent')) {
+			ampforwp_remove_filters_for_class( 'the_content', 'AddWidgetAfterContent', 'insert_after_content', 10 );
+		}
 		// Yoast Schema Compatibility #3332
 		if( ampforwp_get_setting('ampforwp-seo-selection') != "yoast"){
 			ampforwp_remove_filters_for_class( 'amp_post_template_head', 'WPSEO_Schema', 'json_ld', 9 );
@@ -1135,6 +1138,10 @@ function ampforwp_remove_schema_data() {
 		//SiteOrigin Page builder compatibilty with AMP Frontpage
 		if ( ampforwp_is_front_page() ) {
 				ampforwp_remove_filters_for_class( 'the_content', 'SiteOrigin_Panels', 'generate_post_content', 10 );
+		}
+		//Addition HTTP added in canonical from Yoast SEO Multilingual #4970
+		if (class_exists('WPML_WPSEO_Filters')) {
+			ampforwp_remove_filters_for_class( 'wpseo_canonical', 'WPML_WPSEO_Filters', 'canonical_filter', 10 );
 		}
 		//SiteOrigin Page builder compatibilty
 		//Neglect SOPB If Custom AMP Editor is checked
@@ -1471,7 +1478,7 @@ function ampforwp_yoast_the_excerpt(){
 	}
 }
 function ampforwp_yoast_excerpt($desc){
-	 if(ampforwp_is_front_page()){
+	 if(ampforwp_is_front_page() && empty($desc)){
 	 	$get_meta_excerpt = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_metadesc', true);
 	 	if(isset($get_meta_excerpt)){
 	 		$desc = $get_meta_excerpt;
@@ -5006,7 +5013,7 @@ function ampforwp_inline_related_posts(){
 				$inline_related_posts_img = '';
 				$inline_related_posts = '<div class="amp-wp-content relatedpost">
 						    <div class="rp">
-							<span class="related-title">'.esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' )).'</span>
+							<span class="related-title">'.esc_html(ampforwp_translation( ampforwp_get_setting('amp-translator-incontent-related-text'), 'Related Post' )).'</span>
 							<ol class="clearfix">';			
 				    while( $my_query->have_posts() ) {
 					    $my_query->the_post();
@@ -5790,6 +5797,16 @@ if ( ! function_exists('ampforwp_allowed_tags') ) {
 add_action('ampforwp_after_post_content', 'ampforwp_list_subpages');
 if ( ! function_exists('ampforwp_list_subpages') ) {
 	function ampforwp_list_subpages() {
+		if (class_exists('AddWidgetAfterContent')) {
+			$sanitized_output = '';
+			$sanitized_output = ampforwp_sidebar_content_sanitizer('add-widget-after-content');
+			if ( $sanitized_output) {
+				$sanitized_output = $sanitized_output->get_amp_content();?>
+				<div class="amp-add-widget-after-content">
+					<?php echo do_shortcode($sanitized_output); ?> 
+				</div>
+			<?php }
+		}
 		global $post, $redux_builder_amp;
 		if ( is_page() && true == $redux_builder_amp['ampforwp_subpages_list'] ) {
 			$pages = '';

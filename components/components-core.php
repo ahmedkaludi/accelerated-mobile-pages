@@ -393,6 +393,10 @@ function amp_header_core(){
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
 				<?php $custom_css = ampforwp_get_setting('css_editor');
+				if (function_exists('heateor_sss_run') && ampforwp_get_setting('ampforwp_css_tree_shaking') ) {
+					  global $wp_filesystem;
+					  $custom_css .= $wp_filesystem->get_contents(AMPFORWP_PLUGIN_DIR."/includes/sassy-style-optimized.css");
+					}
 					  $custom_css = str_replace(array('.accordion-mod'), array('.apac'), $custom_css);
 					  $sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
 					  echo $sanitized_css; // sanitized above ?>
@@ -751,6 +755,10 @@ function ampforwp_backtotop_global_css(){?>
 	<?php if (class_exists('UAGB_Admin')) {?>
 	.wp-block-uagb-faq svg {display: none;}
 	<?php } ?>
+	<?php if (function_exists('on_bsf_aiosrs_pro_activate')) {?>
+	  span.wpsp-icon.wpsp-faq-icon-wrap svg , span.wpsp-icon-active.wpsp-faq-icon-wrap svg{
+	    display: none;}
+  <?php } ?>
 	<?php if (class_exists('Jetpack_Gallery_Settings')) {?>
 	.wp-block-jetpack-slideshow_container.swiper-container amp-selector {
     	display: none;

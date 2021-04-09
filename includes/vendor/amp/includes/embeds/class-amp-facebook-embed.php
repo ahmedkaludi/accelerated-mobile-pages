@@ -51,7 +51,9 @@ class AMP_Facebook_Embed_Handler extends AMP_Base_Embed_Handler {
 				'height' => $this->args['height'],
 			);
 		$attrs = ampforwp_amp_consent_check( $attrs );
-
+		if(preg_match('/facebook(.*?)posts(.*?)/', $attrs['data-href'])){
+			return AMP_HTML_Utils::build_tag('amp-facebook',$attrs);
+		}
 		return AMP_HTML_Utils::build_tag('amp-facebook-page',$attrs);
 	}
 }

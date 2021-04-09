@@ -61,7 +61,25 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
       }else{
         return;
       }
-}          
+}        
+  if (ampforwp_get_setting('amp-desktop-redirection')) {
+    require_once AMPFORWP_PLUGIN_DIR.'/includes/vendor/Mobile_Detect.php';
+    $mobile_detect = new AMPforWP_Mobile_Detect;
+    $isMobile = $mobile_detect->isMobile();
+    if (!$isMobile ) {
+        $current_url = home_url(add_query_arg(array($_GET), $wp->request));
+        $current_url = explode('/', $current_url);
+        $check =  AMPFORWP_AMP_QUERY_VAR;
+      if (in_array( $check  , $current_url ) ) {
+          $current_url = array_flip($current_url);
+          unset($current_url['amp']);
+          $current_url = array_flip($current_url);
+          $current_url = implode('/', $current_url);
+          wp_safe_redirect( $current_url );
+          exit;
+      }
+    } 
+  }  
   // Redirect ?nonamp=1 to normal url #3269
   $current_url = $check = '';
   $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 

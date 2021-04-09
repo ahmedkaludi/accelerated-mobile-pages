@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.8
+Stable tag: 1.0.76.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,28 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.76.10 (9th April 2021) =
+* Improvements: Added the Compatibility with the Schema Pro FAQ #4956
+* Improvements: Added the feature to track each author contribution to the website pageview #4952
+* Improvements: Added an option to show published date and time below the title #4976
+* Improvements: Added an option to automatic redirect AMP to non-amp when access through desktop #4975
+* Improvements: Added the Compatibility for Add Widget After Content plugin #4949
+* Improvements: Added Forminator for AMP Extension #4965
+* Fixed: Search Close Button is hidden for the Google Cached AMP Pages #4977
+* Fixed: Image is not showing when the post is shared on social network #4971
+
+= 1.0.76.9 (2nd April 2021) =
+* Fixed: Facebook videos embedding not working #4973
+* Fixed: The incorrect excerpt for the custom front page if user is using the Divi #4972
+* Fixed: When Yoast SEO Multilingual is activated canonical getting addition http #4970
+* Fixed: Close button not visible in the menu for the Google Cached AMP Pages #4969
+* Fixed: Sassy social share icons are not displaying on AMP #4945
+* Fixed: The AMP For WP option panel not saving due to redux plugin #4963
+* Fixed: Docking functionality is not working for the amp-video type in mobile view #4961
+* Fixed: Cannot change the title for in-content related post #4959
+* Fixed: Upgrade for Free' button in structured data settings is not working #4960
+* Fixed: Beginner and advance mode popup not closing #4974
+
 = 1.0.76.8 (22nd March 2021) =
 * Fixed: Srcset attribute not appearing on images with AMP page builder #4954
 * Fixed: Option added to disable structured data in AMP #4953
@@ -200,23 +222,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Background Video loop not working with AMP page builder #4948
 * Fixed: Mobile redirection not working for the front page when pages are disabled #4942
 * Fixed: Captions are not working on Slideshow Module by Jetpack Plugin #4950
-
-= 1.0.76.7 (15th March 2021) =
-* Fixed: WP_Scripts Debug Warnings when WordPress updated to v5.7 #4958
-
-= 1.0.76.6 (12th March 2021) =
-* Improvements: Added an option to show the author details after the title on mobile #4858
-* Fixed: Images not appearing with WP stateless Google cloud storage plugin #4575
-* Fixed: Category module doesnot have "/" at the end of the URL #4932
-* Fixed: Proper commenting added for hooks #3368
-* Fixed: Sticky social share bar icon colliding with polylang plugin #4935
-* Fixed: AMP Page Builder is breaking with contact form module #4937
-* Fixed: Truepush notification not working in AMP #4936
-
-= 1.0.76.5 (20th February 2021) =
-* Improvements: Added UX Builder compatibility #4933
-* Fixed: Second paginated post not working #4892
-* Fixed: Jetpack hosted videos not working on AMP #4931
-* Fixed: AMP Pagebuilder module getting narrowed with All in One SEO plugin #4930
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

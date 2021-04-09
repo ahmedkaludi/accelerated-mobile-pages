@@ -58,6 +58,9 @@ function ampforwp_minify_html_output($content_buffer){
     if ( class_exists( 'Jetpack' ) && preg_match('/<div(.*?)id="v-(.*?)-(.*?)"(.*?)class="video-player">(.*?)<\/div>/', $content_buffer)) {
         $content_buffer = preg_replace('/<div(.*?)id="v-(.*?)-(.*?)"(.*?)class="video-player">(.*?)<\/div>/', '<div$1id="v-$2-$3"$4class="video-player"><amp-iframe width="300" height="150" sandbox="allow-scripts allow-same-origin" layout="responsive" src="https://videopress.com/embed/$2"></amp-iframe></div>', $content_buffer);
     }
+    if (class_exists('AddWidgetAfterContent') && preg_match('/<form(.*?)><label(.*?)for="cat"(.*?)name="cat"(.*?)<\/form>/s', $content_buffer)) {
+        $content_buffer = preg_replace('/<form(.*?)><label(.*?)for="cat"(.*?)name="cat"(.*?)<\/form>/s', '<form$1 id="amp-wp-widget-categories-1" on="change:amp-wp-widget-categories-1.submit"><label$2for="cat"$3name="cat"$4</form>', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       

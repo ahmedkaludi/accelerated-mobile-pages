@@ -688,6 +688,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('ultimate-membership-pro-compatibility-for-amp/ultimate-membership-pro-compatibility-for-amp.php')? 1 : 2),
                         ), 
                         array(
+                            'name'=>'Forminator for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Forminator forms Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/forminator-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/forminator-for-amp/',
+                            'plugin_active_path'=> 'forminator-for-amp/forminator-for-amp.php',
+                            'item_name'=>'Forminator for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('forminator-for-amp/forminator-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Paid Memberships PRO for AMP',
                             'class'=>'new-ext',
                             'desc'=>'Add Paid Memberships PRO Support in AMP',
@@ -2915,6 +2927,14 @@ Redux::setSection( $opt_name, array(
                         'default' => 1,
                     ),
                     array(
+                        'id'       => 'amp-desktop-redirection',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Disable AMP on Desktop', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('
+                        Enable this option to give your visitors normal version on Desktop when accessing AMP','accelerated-mobile-pages'),
+                        'default' => 0,
+                    ),
+                    array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
                         'title'    => esc_html__('Change Internal Links to AMP', 'accelerated-mobile-pages'),
@@ -3325,6 +3345,14 @@ $e_commerce_support[] = array(
                        'id'       => 'amp-translator-related-text',
                        'type'     => 'text',
                        'title'    => esc_html__('Related Post', 'accelerated-mobile-pages'),
+                       'default'  => esc_html__('Related Post','accelerated-mobile-pages'),
+                       'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
+                       'id'       => 'amp-translator-incontent-related-text',
+                       'type'     => 'text',
+                       'title'    => esc_html__('In-Content Related Post', 'accelerated-mobile-pages'),
                        'default'  => esc_html__('Related Post','accelerated-mobile-pages'),
                        'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
@@ -5809,6 +5837,17 @@ $single_page_options = array(
                      esc_html__('Enable this option to show published date in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-published-date-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
 
                     'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                 'id'       => 'amp-published-date-display',
+                 'type'     => 'switch',
+                 'class'    => 'child_opt child_opt_arrow', 
+                 'title'    => esc_html__( 'Below Title on Mobile', 'accelerated-mobile-pages' ),
+                 'default'  => 0,
+                  'tooltip-subtitle' => esc_html__('Enable this option to show published date below the title in mobile view','accelerated-mobile-pages'),
+                  'required' => array(
+                    array('swift-date' , '=' , '1'),
+                )
             ),
          //Breadcrumb ON/OFF
           array(
