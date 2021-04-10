@@ -3419,8 +3419,6 @@ function ampforwp_meta_description() {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
 	}
 }
-// All in One Seo Compatibility #1557
-add_filter('aioseop_amp_description', '__return_false');
 
 // 55. Call Now Button Feature added
 add_action('ampforwp_call_button','ampforwp_call_button_html_output');
