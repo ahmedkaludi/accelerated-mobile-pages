@@ -563,7 +563,7 @@ function amp_content($post_id= ''){
 	// Muffin Builder Compatibility #1455 #1893 #4983
 	if ( class_exists('Mfn_Builder_Front') && ! $amp_custom_content_enable ) {
 		$mfn_builder = new Mfn_Builder_Front(ampforwp_get_the_ID());
-		if (! empty($mfn_builder) {
+		if (! empty($mfn_builder) ) {
 			$content = $mfn_builder->show();
 		}
 		$sanitizer_obj = new AMPFORWP_Content( $content,
