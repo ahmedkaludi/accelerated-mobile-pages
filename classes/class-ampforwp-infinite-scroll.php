@@ -125,7 +125,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				'posts_per_page' => 2,
 				'no_found_rows'	=> true
 			  );
-			if (ampforwp_get_setting('ampforwp-infinite-scroll-single') &&ampforwp_get_setting('ampforwp-infinite-scroll-single-category')){
+			if (ampforwp_get_setting('ampforwp-infinite-scroll-single') && ampforwp_get_setting('ampforwp-infinite-scroll-single-category')){
 				$categories = get_the_category($post->ID);
 				if ($categories) {
 					$category_ids = array();
