@@ -3330,8 +3330,9 @@ function ampforwp_meta_description() {
 	}
 }
 // All in One Seo Compatibility #1557
-add_filter('aioseop_amp_description', '__return_false');
-
+if(version_compare(AIOSEO_VERSION,'4.0.0', '<')){
+	add_filter('aioseop_amp_description', '__return_false');
+}
 // 55. Call Now Button Feature added
 add_action('ampforwp_call_button','ampforwp_call_button_html_output');
 function ampforwp_call_button_html_output(){
