@@ -125,6 +125,16 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				'posts_per_page' => 2,
 				'no_found_rows'	=> true
 			  );
+			if (ampforwp_get_setting('ampforwp-infinite-scroll-single') &&ampforwp_get_setting('ampforwp-infinite-scroll-single-category')){
+				$categories = get_the_category($post->ID);
+				if ($categories) {
+					$category_ids = array();
+					foreach($categories as $individual_category){ 
+						$category_ids[] = $individual_category->cat_ID;
+					}		
+				}
+				$query_args['category__in'] = $category_ids;
+			}
 			if (ampforwp_get_setting('ampforwp-infinite-scroll-single') && ampforwp_get_setting('ampforwp-infinite-scroll-single-tag')){
 				$tags = get_the_tags(ampforwp_get_the_ID());
 				if ($tags) {
