@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.10
+Stable tag: 1.0.76.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,16 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.76.11 (13th April 2021) =
+* Improvements: Added an option to select same categories in infinite scroll #4017
+* Improvements: Added an option to select same tags in infinite scroll #4939
+* Improvements: Added an option to hide by default for instance article #4940
+* Improvements: Added the filter to change breadcrumbs name #4979
+* Fixed: Muffin pagebuilder not working in AMP #4983
+* Fixed: PHP 8 debug errors #4981
+* Fixed: AMP menu automatically scrolls down to bottom in Design three #4967
+* Fixed: Deprecated Filters Detected Warning in All in one SEO plugin #4980
+
 = 1.0.76.10 (9th April 2021) =
 * Improvements: Added the Compatibility with the Schema Pro FAQ #4956
 * Improvements: Added the feature to track each author contribution to the website pageview #4952
@@ -214,13 +224,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Cannot change the title for in-content related post #4959
 * Fixed: Upgrade for Free' button in structured data settings is not working #4960
 * Fixed: Beginner and advance mode popup not closing #4974
-
-= 1.0.76.8 (22nd March 2021) =
-* Fixed: Srcset attribute not appearing on images with AMP page builder #4954
-* Fixed: Option added to disable structured data in AMP #4953
-* Fixed: Debug Warning with PHP 8.02 and WordPress 5.6.2 #4946
-* Fixed: Background Video loop not working with AMP page builder #4948
-* Fixed: Mobile redirection not working for the front page when pages are disabled #4942
-* Fixed: Captions are not working on Slideshow Module by Jetpack Plugin #4950
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
