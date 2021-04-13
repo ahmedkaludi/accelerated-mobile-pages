@@ -3,7 +3,6 @@
 = 1.0.76.11 (13th April 2021) =
 * Improvements: Added an option to select same categories in infinite scroll #4017
 * Improvements: Added an option to select same tags in infinite scroll #4939
-* Improvements: Added an option to hide by default for instance article #4940
 * Improvements: Added the filter to change breadcrumbs name #4979
 * Fixed: Muffin pagebuilder not working in AMP #4983
 * Fixed: PHP 8 debug errors #4981
