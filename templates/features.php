@@ -3330,7 +3330,7 @@ function ampforwp_meta_description() {
 	}
 }
 // All in One Seo Compatibility #1557
-if(version_compare(AIOSEO_VERSION,'4.0.0', '<')){
+if(defined( 'AIOSEO_VERSION' ) && version_compare(AIOSEO_VERSION,'4.0.0', '<')){
 	add_filter('aioseop_amp_description', '__return_false');
 }
 // 55. Call Now Button Feature added
