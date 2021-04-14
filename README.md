@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.76.11 (13th April 2021) =
+= 1.0.76.11 (14th April 2021) =
 * Improvements: Added an option to select same categories in infinite scroll #4017
 * Improvements: Added an option to select same tags in infinite scroll #4939
 * Improvements: Added the filter to change breadcrumbs name #4979
