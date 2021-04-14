@@ -2911,11 +2911,20 @@ Redux::setSection( $opt_name, array(
 
                     ),
                     array(
+                        'id'       => 'amp-mob-redirection-pres-link',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Preserve Original Permalinks', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable/Disable Mobile redirection for preserve original permalinks.','accelerated-mobile-pages'),
+                        'default' => 0,
+                        'required' => array( 'amp-mobile-redirection', '=' , 1 )
+                    ),
+                    array(
                         'id'       => 'amp-tablet-redirection',
                         'class'    => 'child_opt child_opt_arrow',
                         'type'     => 'switch',
-                        'title'    => __('Tablets', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Enable/Disable Mobile redirection for Tablets.','accelerated-mobile-pages'),
+                        'title'    => esc_html__('Tablets', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable/Disable Mobile redirection for Tablets.','accelerated-mobile-pages'),
                         'default' => 1,
                         'required' => array( 'amp-mobile-redirection', '=' , 1 )
                     ),

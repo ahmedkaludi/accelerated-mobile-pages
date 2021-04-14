@@ -826,7 +826,11 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
     }
     $new_url = "";
     $get_permalink_structure = "";
-    if ( ampforwp_amp_nonamp_convert("", "check") || (isset($redux_builder_amp['ampforwp-amp-takeover']) && true == $redux_builder_amp['ampforwp-amp-takeover']) ) {
+    $mob_pres_link = false;
+    if(function_exists('ampforwp_mobile_redirect_preseve_link')){
+      $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
+    }
+    if ( ampforwp_amp_nonamp_convert("", "check") || ($mob_pres_link == true || true == ampforwp_get_setting('ampforwp-amp-takeover'))) {
         $nonamp = 'nonamp';
     }
     if ( isset($nonamp) && 'nonamp' == $nonamp ) {
