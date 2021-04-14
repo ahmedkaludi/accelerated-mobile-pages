@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.76.11.1 (14th April 2021) =
+* Fixed: Fatal error occuring with the recent update Version 1.0.76.11 #4986
+
 = 1.0.76.11 (14th April 2021) =
 * Improvements: Added an option to select same categories in infinite scroll #4017
 * Improvements: Added an option to select same tags in infinite scroll #4939

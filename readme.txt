@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.11
+Stable tag: 1.0.76.11.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.76.11.1 (14th April 2021) =
+* Fixed: Fatal error occuring with the recent update Version 1.0.76.11 #4986
 
 = 1.0.76.11 (14th April 2021) =
 * Improvements: Added an option to select same categories in infinite scroll #4017
