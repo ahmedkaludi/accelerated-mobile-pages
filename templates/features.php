@@ -3330,8 +3330,9 @@ function ampforwp_meta_description() {
 	}
 }
 // All in One Seo Compatibility #1557
-add_filter('aioseop_amp_description', '__return_false');
-
+if(version_compare(AIOSEO_VERSION,'4.0.0', '<')){
+	add_filter('aioseop_amp_description', '__return_false');
+}
 // 55. Call Now Button Feature added
 add_action('ampforwp_call_button','ampforwp_call_button_html_output');
 function ampforwp_call_button_html_output(){
@@ -6869,10 +6870,10 @@ function ampforwp_thrive_content($content){
 add_action( 'add_meta_boxes', 'ampforwp_ia_meta_box' );
 if ( ! function_exists('ampforwp_ia_meta_box') ) {
 	function ampforwp_ia_meta_box() {
-		global $redux_builder_amp, $post;
+		global $post;
 	    
 	    if ( ampforwp_role_based_access_options() == true ) { 
-		    if( true == $redux_builder_amp['fb-instant-article-switch'] && $post->post_type == 'post' ) {
+		    if( ampforwp_get_setting('fb-instant-article-switch') && $post->post_type == 'post' ) {
 		    	add_meta_box( 'ampforwp_ia_meta', esc_html__( 'Show Instant Article for Current Post?','accelerated-mobile-pages' ), 'ampforwp_ia_meta_callback', 'post','side' );      
 		    }
         }

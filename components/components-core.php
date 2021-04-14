@@ -560,12 +560,13 @@ function amp_content($post_id= ''){
 			// Custom/Alternative AMP content added through post meta  
 			$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
 		} 
-	// Muffin Builder Compatibility #1455 #1893
-	if ( function_exists('mfn_builder_print') && ! $amp_custom_content_enable ) {
-		ob_start();
-	  	mfn_builder_print( $thisTemplate->get( 'post_id' ) );
-		$content = ob_get_contents();
-		ob_end_clean();
+	// Muffin Builder Compatibility #1455 #1893 #4983
+	if ( class_exists('Mfn_Builder_Front') && ! $amp_custom_content_enable ) {
+		$mfn_builder = $content = '';
+		$mfn_builder = new Mfn_Builder_Front(ampforwp_get_the_ID());
+		if (! empty($mfn_builder) ) {
+			$content = $mfn_builder->show();
+		}
 		$sanitizer_obj = new AMPFORWP_Content( $content,
 							array(), 
 							apply_filters( 'ampforwp_content_sanitizers', 
