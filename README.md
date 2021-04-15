@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.12
+Stable tag: 1.0.76.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,14 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.76.13 (16th April 2021) =
+* Improvements: Added an option to preserve original permalinks in mobile redirection #4207
+* Improvements: Added an option to add moderation tool for the Facebook comments #4485
+* Improvements: Added an option to make buttons side by side in the mobile with AMP pagebuilder #4472
+* Improvements: Added an option to add UTM souce parameters in URLs to both related & incontent related posts #4237
+* Improvements: Added Quantcast CMP (consent management platform) support in AMP 4951
+* Fixed: Alt tag not appearing in sticky social sharing icons #4984
+
 = 1.0.76.12(14th April 2021) =
 * Fixed: Fatal error occuring with the recent update Version 1.0.76.11 #4986
 
@@ -204,27 +212,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: PHP 8 debug errors #4981
 * Fixed: AMP menu automatically scrolls down to bottom in Design three #4967
 * Fixed: Deprecated Filters Detected Warning in All in one SEO plugin #4980
-
-= 1.0.76.10 (9th April 2021) =
-* Improvements: Added the Compatibility with the Schema Pro FAQ #4956
-* Improvements: Added the feature to track each author contribution to the website pageview #4952
-* Improvements: Added an option to show published date and time below the title #4976
-* Improvements: Added an option to automatic redirect AMP to non-amp when access through desktop #4975
-* Improvements: Added the Compatibility for Add Widget After Content plugin #4949
-* Improvements: Added Forminator for AMP Extension #4965
-* Fixed: Search Close Button is hidden for the Google Cached AMP Pages #4977
-* Fixed: Image is not showing when the post is shared on social network #4971
-
-= 1.0.76.9 (2nd April 2021) =
-* Fixed: Facebook videos embedding not working #4973
-* Fixed: The incorrect excerpt for the custom front page if user is using the Divi #4972
-* Fixed: When Yoast SEO Multilingual is activated canonical getting addition http #4970
-* Fixed: Close button not visible in the menu for the Google Cached AMP Pages #4969
-* Fixed: Sassy social share icons are not displaying on AMP #4945
-* Fixed: The AMP For WP option panel not saving due to redux plugin #4963
-* Fixed: Docking functionality is not working for the amp-video type in mobile view #4961
-* Fixed: Cannot change the title for in-content related post #4959
-* Fixed: Upgrade for Free' button in structured data settings is not working #4960
-* Fixed: Beginner and advance mode popup not closing #4974
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
