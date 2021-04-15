@@ -9378,16 +9378,25 @@ function ampforwp_i2prosandcons(){
 		}
 <?php }
 function ampforwp_modify_url_utm_params($url){
-	$modify_url = '';
-	$modify_url = apply_filters('ampforwp_modify_related_post_url',$modify_url);
-	if($modify_url!=''){
-	 	if(preg_match('/\?amp/', $url)){
-	 		$url = esc_url($url) .'&'. esc_html($modify_url);
-	 	}else if(preg_match('/amp/', $url)){
-	 		$url = esc_url($url) .'?'. esc_html($modify_url);
-	 	}
+	if(true == ampforwp_get_setting('ampforwp-related-post-utm-tracking-switch') && !empty(ampforwp_get_setting('ampforwp-related-posts-utm-tracking'))){
+		$modify_url = ampforwp_get_setting('ampforwp-related-posts-utm-tracking');
+		$modify_url = apply_filters('ampforwp_modify_related_post_url', $modify_url);
+		$url = add_query_arg($modify_url, '' , $url);
+		return esc_url_raw($url);
+	}							
+	return esc_url_raw($url);
+}
+if(true == ampforwp_get_setting('ampforwp-recent-post-utm-tracking-switch') && !empty(ampforwp_get_setting('ampforwp-recent-posts-utm-tracking'))){
+	add_filter('ampforwp_loop_permalink_update','ampforwp_recent_posts_utm_tracking');
+}
+function ampforwp_recent_posts_utm_tracking($recent_post_permalink){
+	if(is_single()){
+		$modify_url = ampforwp_get_setting('ampforwp-recent-posts-utm-tracking');
+		$modify_url = apply_filters('ampforwp_modify_recent_post_url', $modify_url);
+		$recent_post_permalink = add_query_arg($modify_url, '' , $recent_post_permalink);
+		return esc_url_raw($recent_post_permalink);
 	}
-	return $url;
+	return esc_url_raw($recent_post_permalink);
 }
 if(ampforwp_get_setting('ampforwp-facebook-comments-support')){
     add_action('amp_post_template_head','ampforwp_facebook_moderation_tool');
