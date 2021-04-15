@@ -60,7 +60,7 @@ if(!function_exists("ampforwp_module_templates")){
 }//If Fucntion check closed
 
 //Row Contents
-$output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row_class}} {{grid_type}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
+$output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row_class}} {{grid_type}} {{mobile_display}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
 	{{if_condition_background_type==video}}
 	<div class="amp_video">
 		<div class="amp-txt">
@@ -449,7 +449,24 @@ $containerCommonSettings = array(
 								'content_type'=>'css',
 								'output_format'=>"color: %default%"
 							),
-
+							array(
+								'type'		=> 'radio',
+								'name'		=> "mobile_display",
+								'label'		=> esc_html__('Mobile Display'),
+								'tab'		=> 'customizer',
+								'default'	=> 'stack',
+								'options'	=> array(
+												array(
+													'label'=> 'Stack',
+													'value'=> 'stack',
+												),
+												array(
+													'label'=> 'Side By Side',
+													'value'=> 'sbs',
+												),
+											),
+								'content_type' => 'html',
+							),
 							array(		
 	 							'type'	=>'select',		
 	 							'name'  =>"background_type",		
