@@ -200,6 +200,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvements: Added an option to add UTM souce parameters in URLs to both related & incontent related posts #4237
 * Improvements: Added Quantcast CMP (consent management platform) support in AMP 4951
 * Fixed: Alt tag not appearing in sticky social sharing icons #4984
+* Fixed: Debug Warning in edit tag page when using PHP8 #4990
 
 = 1.0.76.12(14th April 2021) =
 * Fixed: Fatal error occuring with the recent update Version 1.0.76.11 #4986
