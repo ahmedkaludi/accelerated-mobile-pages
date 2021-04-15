@@ -9064,7 +9064,7 @@ function ampforwp_extra_category_fields( $tag ) {
 		$term_data = ampforwp_get_taxonomy_meta($tag->term_id);
 		$visible = '';
 		$visible_status = '';
-		if(isset($term_data['visible'])){
+		if(isset($term_data['visible']) && !empty($term_data['visible'])){
 			$visible = $term_data['visible'][0];
 			$visible_status = $term_data['visible_status'][0];
 		}
