@@ -2394,6 +2394,83 @@ function ampforwp_footer_html_output() {
   if( ampforwp_get_setting('amp-footer-text-area-for-html') ) {
     echo ampforwp_get_setting('amp-footer-text-area-for-html') ;
   }
+  //Quantcast Support #4951
+  if (ampforwp_get_setting('amp-quantcast-notice-switch')) {
+  	 $id = $hashcode = $country = $name = '';
+  	 $id = ampforwp_get_setting('amp-quantcast-id');
+  	 $hashcode = ampforwp_get_setting('amp-quantcast-hashcode');
+  	 $country = ampforwp_get_setting('amp-quantcast-publishercountrycode');
+  	 $name = ampforwp_get_setting('amp-quantcast-publishername');
+  if (!empty($id) && !empty($hashcode) && !empty($country) && !empty($name) ) {?>
+	<amp-consent id="quantcast" layout="nodisplay">
+    	<script type="application/json">
+       	{
+		   "consentInstanceId": "quantcast",
+           "checkConsentHref": "https://apis.quantcast.mgr.consensu.org/amp/check-consent",
+           "consentRequired": "remote",
+           "promptUISrc": "https://quantcast.mgr.consensu.org/tcfv2/amp.html",
+           "clientConfig": {
+               "coreConfig": {
+                   "quantcastAccountId": "<?php echo esc_html($id); ?>",
+                   "privacyMode": ["GDPR"],
+                   "hashCode": "<?php echo esc_html($hashcode); ?>",
+                   "publisherCountryCode": "<?php echo esc_html($country); ?>",
+                   "publisherName": "<?php echo esc_html($name); ?>",
+                   "vendorPurposeIds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                   "vendorFeaturesIds": [1, 2, 3],
+                   "vendorPurposeLegitimateInterestIds": [2, 3, 4, 5, 6, 7, 8, 9, 10],
+                   "vendorSpecialFeaturesIds": [1, 2],
+                   "vendorSpecialPurposesIds": [1, 2],
+                   "googleEnabled": false,
+                   "lang_": "en",
+                   "displayUi": "always",
+                   "publisherConsentRestrictionIds": [],
+                   "publisherLIRestrictionIds": [],
+                   "publisherPurposeIds": [],
+                   "publisherPurposeLegitimateInterestIds": [],
+                   "publisherSpecialPurposesIds": [],
+                   "publisherFeaturesIds": [],
+                   "publisherSpecialFeaturesIds": [],
+                   "stacks": [1, 42],
+                   "vendorListUpdateFreq": 30
+                }
+            }
+        }
+   	   </script>
+<!-- PRIVACY BUTTON LOWER RIGHT -->
+       <div id="postPromptUI">
+           <button role="button" on="tap:quantcast.prompt()">
+               <svg style="height:20px">
+                   <g fill="none">
+                       <g fill="#FFF">
+                           <path
+                               d="M16 10L15 9C15 9 15 8 15 8L16 7C16 7 16 6 16 6 16 
+5 15 4 14 3 14 2 13 2 13 3L12 3C12 3 11 3 11 2L11 1C11 1 10 0 10 0 9 0 7 0 6 0 6 0 
+5 1 5 1L5 2C5 3 4 3 4 3L3 3C3 2 2 2 2 3 1 4 0 5 0 6 0 6 0 7 0 7L1 8C1 8 1 9 1 9L0 
+10C0 10 0 11 0 11 0 12 1 13 2 14 2 15 3 15 3 14L4 14C4 14 5 14 5 15L5 16C5 16 6 17 
+6 17 7 17 9 17 10 17 10 17 11 16 11 16L11 15C11 14 12 14 12 14L13 14C13 15 14 15 14 
+14 15 13 16 12 16 11 16 11 16 10 16 10ZM13 13L12 13C11 13 11 13 9 14L9 16C9 16 7 16 7
+ 16L7 14C5 14 5 13 4 13L3 13C2 13 1 12 1 11L3 10C2 9 2 8 3 7L1 6C1 5 2 4 3 4L4 4C5 4 5 
+3 7 3L7 1C7 1 9 1 9 1L9 3C11 3 11 4 12 4L13 4C14 4 15 5 15 6L13 7C14 8 14 9 13 10L15 
+11C15 12 14 13 13 13ZM8 5C6 5 5 7 5 9 5 10 6 12 8 12 10 12 11 10 11 9 11 7 10 5 8 5ZM8
+ 11C7 11 6 10 6 9 6 7 7 6 8 6 9 6 10 7 10 9 10 10 9 11 8 11Z" />
+                       </g>
+                   </g>
+               </svg>
+               PRIVACY
+           </button>
+       </div>
+	</amp-consent>
+	<amp-geo layout="nodisplay">
+	  <script type="application/json">
+	    {
+	      "ISOCountryGroups": {
+	         "<?php echo esc_html($country); ?>": ["<?php echo esc_html($country); ?>"]
+	      }
+	    }
+	   </script>
+ 	</amp-geo>
+<?php } }
 }
 
 add_filter( 'amp_post_template_data', 'ampforwp_global_head_scripts');
