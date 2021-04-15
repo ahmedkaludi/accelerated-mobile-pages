@@ -5045,6 +5045,7 @@ function ampforwp_inline_related_posts(){
 						$related_post_permalink = get_permalink();
 						$related_post_permalink = trailingslashit($related_post_permalink);
 						$related_post_permalink = ampforwp_url_controller( $related_post_permalink );
+						$related_post_permalink = ampforwp_modify_url_utm_params($related_post_permalink);
 						if ( ampforwp_has_post_thumbnail() ) {
 							$title_class = 'has_related_thumbnail';
 						} else {
@@ -9299,3 +9300,15 @@ function ampforwp_i2prosandcons(){
 		    color: <?php echo ampforwp_sanitize_color($headingColor); ?>;
 		}
 <?php }
+function ampforwp_modify_url_utm_params($url){
+	$modify_url = '';
+	$modify_url = apply_filters('ampforwp_modify_related_post_url',$modify_url);
+	if($modify_url!=''){
+	 	if(preg_match('/\?amp/', $url)){
+	 		$url = esc_url($url) .'&'. esc_html($modify_url);
+	 	}else if(preg_match('/amp/', $url)){
+	 		$url = esc_url($url) .'?'. esc_html($modify_url);
+	 	}
+	}
+	return $url;
+}
