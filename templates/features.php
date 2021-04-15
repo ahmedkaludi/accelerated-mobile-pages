@@ -9312,3 +9312,26 @@ function ampforwp_modify_url_utm_params($url){
 	}
 	return $url;
 }
+if(ampforwp_get_setting('ampforwp-facebook-comments-support')){
+    add_action('amp_post_template_head','ampforwp_facebook_moderation_tool');
+}
+function ampforwp_facebook_moderation_tool(){
+	$facebook_app_id = ampforwp_get_setting('ampforwp-fb-moderation-app-id');
+	if($facebook_app_id!=''){
+?>
+	<meta property="fb:app_id" content="<?php echo esc_attr($facebook_app_id);?>" />
+<?php
+	}
+	$facebook_admin_id = ampforwp_get_setting('ampforwp-fb-moderation-admin-id');
+	if($facebook_admin_id!=''){
+		$ids = explode(",", $facebook_admin_id);
+		for($i=0;$i<count($ids);$i++){
+			$id = $ids[$i];
+			if($id!=''){
+?>
+	<meta property="fb:admins" content="<?php echo esc_attr($id);?>"/>
+<?php
+			}
+		}
+	}
+}
