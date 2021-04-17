@@ -861,6 +861,10 @@ function ampforwp_backtotop_global_css(){?>
            cursor: pointer;
         }
 	<?php } ?>	
+	<?php if (true == has_nav_menu( 'amp-menu' )) {?>
+		button.sub-menu-toggle {display: none;}
+	<?php }
+	?>
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
