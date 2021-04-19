@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.76.13 (16th April 2021) =
+= 1.0.76.13 (19th April 2021) =
 * Improvements: Added an option to preserve original permalinks in mobile redirection #4207
 * Improvements: Added an option to add moderation tool for the Facebook comments #4485
 * Improvements: Added an option to make buttons side by side in the mobile with AMP pagebuilder #4472
