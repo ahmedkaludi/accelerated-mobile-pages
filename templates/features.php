@@ -9399,3 +9399,31 @@ function ampforwp_change_default_meta_ia() {
 	update_option('ampforwp_default_posts_ia', $checker);
 	return ;
 }
+//Schema Pro FAQ block compatibility #4956
+add_filter('ampforwp_modify_the_content','ampforwp_schema_pro_faq_block');
+function ampforwp_schema_pro_faq_block($content_buffer){
+	if (!function_exists('on_bsf_aiosrs_pro_activate')) {
+		return;
+	}
+	preg_match_all('/<span class="wpsp-question">(.*?)<\/span>(.*?)class="wpsp-faq-content"><span><p>(.*?)<\/p>/', $content_buffer, $matches);
+	if(is_array($matches)){
+		$schema  = array();
+		$schema['@context'] = 'https://schema.org';
+		$schema['type']     = 'FAQPage';
+		for($i=0;$i<count($matches[1]);$i++){
+		 	$questions = $matches[1];
+		 	$answers = $matches[3];
+		 	foreach ( $questions as $key => $question ) {
+				$schema['mainEntity'][ $key ]['@type'] = 'Question';
+				$schema['mainEntity'][ $key ]['name']  = $question;
+			}
+			foreach ( $answers as $key => $answer ) {
+				$schema['mainEntity'][ $key ]['acceptedAnswer']['@type'] = 'Answer';
+				$schema['mainEntity'][ $key ]['acceptedAnswer']['text']  = $answer;
+			}
+		}
+		$schema = '<script type="application/ld+json">'.wp_json_encode( $schema, JSON_UNESCAPED_UNICODE ).'</script>';
+		$content_buffer = preg_replace('/(<div class="wp-block-wpsp-faq\s(.*?)<\/div>)/s', ''.$schema.'$1', $content_buffer);
+	} 
+	return $content_buffer;
+}
