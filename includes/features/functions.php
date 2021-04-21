@@ -258,7 +258,10 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         //  Compatibility with the footnotes plugin. #2447
         if(class_exists('MCI_Footnotes')){
         $footnote_collapse_link = '';
-        $footnote_collapse = MCI_Footnotes_Convert::toBool(MCI_Footnotes_Settings::instance()->get(MCI_Footnotes_Settings::C_BOOL_REFERENCE_CONTAINER_COLLAPSE));
+        $footnote_collapse = false;
+        if (method_exists('MCI_Footnotes_Convert', 'toBool')) {
+           $footnote_collapse = MCI_Footnotes_Convert::toBool(MCI_Footnotes_Settings::instance()->get(MCI_Footnotes_Settings::C_BOOL_REFERENCE_CONTAINER_COLLAPSE));
+        }
         if( $footnote_collapse == true ){
             $footnote_collapse_link = 'on="tap:footnote_references_container.show" role="click" tabindex="1" ';
             $content_buffer = preg_replace( '/<div id=(.*?)footnote_references_container(.*?)\s/m','<div id=$1footnote_references_container$2 hidden ',$content_buffer);
