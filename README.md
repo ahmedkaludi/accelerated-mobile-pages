@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.76.14 (22nd April 2021) =
+= 1.0.76.14 (23rd April 2021) =
 * Improvements: Added an option to add Schema Pro FAQ in AMP #4956
 * Improvements: Added support for the audio from the Pennews Theme #4576
 * Improvements: Added Getty Images embed Compatibility #4188
@@ -204,6 +204,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Call to undefined method MCI_Footnotes_Convert error #4993
 * Fixed: Search bar close icon is hidden behind the admin navigation bar #4991
 * Fixed: AMP menu automatically scrolls down to bottom in Design three #4967
+* Fixed: Single post content not showing when using AMP on subdomain #4996
 
 = 1.0.76.13 (19th April 2021) =
 * Improvements: Added an option to preserve original permalinks in mobile redirection #4207
