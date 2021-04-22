@@ -4687,6 +4687,15 @@ Redux::setSection( $opt_name, array(
                     )  
               ),
             array(
+                'id'        => 'signin-button-new-tab',
+                'class'     => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('New Tab', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Open the button link in new tab','accelerated-mobile-pages'),
+                'type'      => 'switch',
+                'default'   => '1',
+                'required'  => array('signin-button', '=', '1')
+              ),
+            array(
                 'id'        => 'signin-button-border-line',
                 'class' => 'child_opt child_opt_arrow',
                 'title'     => esc_html__('CTA Border Line', 'accelerated-mobile-pages'),
