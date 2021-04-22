@@ -9403,7 +9403,7 @@ function ampforwp_change_default_meta_ia() {
 add_filter('ampforwp_modify_the_content','ampforwp_schema_pro_faq_block');
 function ampforwp_schema_pro_faq_block($content_buffer){
 	if (!function_exists('on_bsf_aiosrs_pro_activate')) {
-		return;
+		return $content_buffer;
 	}
 	preg_match_all('/<span class="wpsp-question">(.*?)<\/span>(.*?)class="wpsp-faq-content"><span><p>(.*?)<\/p>/', $content_buffer, $matches);
 	if(is_array($matches)){
