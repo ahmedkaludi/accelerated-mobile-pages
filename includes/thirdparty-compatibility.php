@@ -71,6 +71,10 @@ function ampforwp_thirdparty_compatibility(){
 	if(class_exists('FinalTiles_Gallery')){
 		add_filter('wp_is_mobile','ampforwp_final_tiles_grid_gallery');
 	}
+	if(class_exists('Getty_Images')){
+		add_filter( 'embed_oembed_html', 'ampforwp_get_gitty_image_embed',10,4);
+		add_filter( 'ampforwp_the_content_last_filter','ampforwp_getty_image_compatibility',10);
+	}
 	$yoast_canonical = $yoast_canonical_post = $yoast_canonical_page = '';
 	$yoast_canonical = get_option( 'wpseo_titles' );
 	if(isset($yoast_canonical['noindex-post'])){
