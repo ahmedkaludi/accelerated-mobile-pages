@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.13
+Stable tag: 1.0.76.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,18 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.76.14 (22nd April 2021) =
+* Improvements: Added an option to add Schema Pro FAQ in AMP #4956
+* Improvements: Added support for the audio from the Pennews Theme #4576
+* Improvements: Added Getty Images embed Compatibility #4188
+* Improvements: Added an option to move the search bar top and bottom. #4748
+* Improvements: Added an option for autoplay in slider module of AMP pagebuilder #3859
+* Improvements: Added an option to remove Site navigation element schema #4583
+* Improvements: Added related posts after the last post for infinity scroll posts in AMP layout #4652
+* Fixed: Call to undefined method MCI_Footnotes_Convert error #4993
+* Fixed: Search bar close icon is hidden behind the admin navigation bar #4991
+* Fixed: AMP menu automatically scrolls down to bottom in Design three #4967
+
 = 1.0.76.13 (19th April 2021) =
 * Improvements: Added an option to preserve original permalinks in mobile redirection #4207
 * Improvements: Added an option to add moderation tool for the Facebook comments #4485
@@ -201,14 +213,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.76.12 (14th April 2021) =
 * Fixed: Fatal error occuring with the recent update Version 1.0.76.11 #4986
-
-= 1.0.76.11 (14th April 2021) =
-* Improvements: Added an option to select same categories in infinite scroll #4017
-* Improvements: Added an option to select same tags in infinite scroll #4939
-* Improvements: Added the filter to change breadcrumbs name #4979
-* Fixed: Muffin pagebuilder not working in AMP #4983
-* Fixed: PHP 8 debug errors #4981
-* Fixed: AMP menu automatically scrolls down to bottom in Design three #4967
-* Fixed: Deprecated Filters Detected Warning in All in one SEO plugin #4980
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
