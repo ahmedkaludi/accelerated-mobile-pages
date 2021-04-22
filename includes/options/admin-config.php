@@ -4396,6 +4396,22 @@ Redux::setSection( $opt_name, array(
                     'default'  => '1'         
             ),
             array(
+                    'id'       => 'menu-search-after-menu',
+                    'class'    => 'child_opt child_opt_arrow',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('After Menu', 'accelerated-mobile-pages'),
+                    'required' => array('menu-search', '=' , '1'),
+                    'default'  => '1'         
+            ),
+            array(
+                    'id'       => 'menu-search-before-menu',
+                    'class'    => 'child_opt child_opt_arrow',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Before Menu', 'accelerated-mobile-pages'),
+                    'required' => array('menu-search', '=' , '1'),
+                    'default'  => '0'         
+            ),
+            array(
                 'id'       => 'amp-swift-menu-cprt',
                 'type'     => 'switch',
                 'title'    => esc_html__( 'Menu Copyright', 'accelerated-mobile-pages' ),
