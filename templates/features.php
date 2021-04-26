@@ -9507,6 +9507,7 @@ function ampforwp_pennews_audio_embed(){
 	if(empty($audio)){
 		return;
 	}
+	$audio = preg_replace('/<iframe(.*?)width="(.*?)%"(.*?)<\/iframe>/', '<iframe$1width="1000"$3</iframe>', $audio);
 	$audio_str = substr( $audio, -4 );
 	$html ='<div class="audio-iframe">';
 	if ( wp_oembed_get( $audio ) ) {
