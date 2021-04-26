@@ -636,6 +636,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('forminator-for-amp/forminator-for-amp.php')? 1 : 2),
                         ),
                         array(
+                            'name'=>'Happyforms for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Happy forms Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/happyforms-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/happyforms-for-amp/',
+                            'plugin_active_path'=> 'happyforms-for-amp/happyforms-for-amp.php',
+                            'item_name'=>'Happyforms for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('happyforms-for-amp/happyforms-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Paid Memberships PRO for AMP',
                             'class'=>'new-ext',
                             'desc'=>'Add Paid Memberships PRO Support in AMP',
