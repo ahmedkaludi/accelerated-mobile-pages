@@ -9405,14 +9405,14 @@ function ampforwp_schema_pro_faq_block($content_buffer){
 	if (!function_exists('on_bsf_aiosrs_pro_activate')) {
 		return $content_buffer;
 	}
-	preg_match_all('/<span class="wpsp-question">(.*?)<\/span>(.*?)class="wpsp-faq-content"><span><p>(.*?)<\/p>/', $content_buffer, $matches);
+	preg_match_all('/<div class="wp-block-wpsp-faq(.*?)class="wpsp-question">(.*?)<\/(.*?)>(.*?)class="wpsp-faq-content"><span><p>(.*?)<\/p>/', $content_buffer, $matches);
 	if(is_array($matches)){
 		$schema  = array();
 		$schema['@context'] = 'https://schema.org';
 		$schema['type']     = 'FAQPage';
-		for($i=0;$i<count($matches[1]);$i++){
-		 	$questions = $matches[1];
-		 	$answers = $matches[3];
+		for($i=0;$i<count($matches[2]);$i++){
+		 	$questions = $matches[2];
+		 	$answers = $matches[5];
 		 	foreach ( $questions as $key => $question ) {
 				$schema['mainEntity'][ $key ]['@type'] = 'Question';
 				$schema['mainEntity'][ $key ]['name']  = $question;
