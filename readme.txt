@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.76.15 (26th April 2021) =
+= 1.0.76.15 (28th April 2021) =
 * Improvements: Added an option to add one signal notification on the desktop #4377
 * Improvements: Added an option to set Target for CTA button in swift theme #4995
 * Improvements: Added an option to install PWA from options panel #4529
