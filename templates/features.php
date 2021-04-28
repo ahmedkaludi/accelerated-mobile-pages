@@ -9427,3 +9427,20 @@ function ampforwp_schema_pro_faq_block($content_buffer){
 	} 
 	return $content_buffer;
 }
+
+//Alignment issue with Gutenberg image block #4997
+add_filter('ampforwp_modify_the_content','ampforwp_wp_block_cover_image');
+function ampforwp_wp_block_cover_image($content_buffer){
+	if(ampforwp_get_setting('ampforwp_css_tree_shaking') && ampforwp_is_gutenberg_active()){
+		preg_match_all('/<amp-img(.*?)class="wp-block-cover__image-background(.*?)"(.*?)src="(.*?)"(.*?)<\/amp-img>/', $content_buffer, $matches);
+		if(is_array($matches)){
+			$img_url = $matches[4][0];
+				if (!empty($img_url)) {
+					$content_buffer = preg_replace('/<div(.*?)class="wp-block-cover(.*?)"><amp-img(.*?)<\/amp-img>/', '<div$1style="background-image:url('.$img_url.');" class="wp-block-cover$2"><amp-img$3</amp-img>', $content_buffer); 
+					$content_buffer = preg_replace('/<amp-img(.*?)class="wp-block-cover__image-background(.*?)"(.*?)src="(.*?)"(.*?)<\/amp-img>/', '', $content_buffer);
+					return $content_buffer;
+				}
+		} 
+	}
+	return $content_buffer;
+}
