@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.15
+Stable tag: 1.0.76.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,13 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.76.16 (3rd May 2021) =
+* Fixed: Incorrent height in anchor.fm audio embed from the Pennews Theme #4576
+* Fixed: Slide Anything Plugin text slider not working in AMP #4999
+* Fixed: Backend button translation #4717
+* Fixed: Alignment issue with Gutenberg image block #4997 
+* Fixed: Undefined variable $q / Attempt to read property max_num_pages on null #5004
+
 = 1.0.76.15 (28th April 2021) =
 * Improvements: Added an option to add one signal notification on the desktop #4377
 * Improvements: Added an option to set Target for CTA button in swift theme #4995
@@ -213,17 +220,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Search bar close icon is hidden behind the admin navigation bar #4991
 * Fixed: AMP menu automatically scrolls down to bottom in Design three #4967
 * Fixed: Single post content not showing when using AMP on subdomain #4996
-
-= 1.0.76.13 (19th April 2021) =
-* Improvements: Added an option to preserve original permalinks in mobile redirection #4207
-* Improvements: Added an option to add moderation tool for the Facebook comments #4485
-* Improvements: Added an option to make buttons side by side in the mobile with AMP pagebuilder #4472
-* Improvements: Added an option to add UTM souce parameters in URLs to both related & incontent related posts #4237
-* Improvements: Added Quantcast CMP (consent management platform) support in AMP 4951
-* Fixed: Alt tag not appearing in sticky social sharing icons #4984
-* Fixed: Debug Warning in edit tag page when using PHP8 #4990
-
-= 1.0.76.12(14th April 2021) =
-* Fixed: Fatal error occuring with the recent update Version 1.0.76.11 #4986
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

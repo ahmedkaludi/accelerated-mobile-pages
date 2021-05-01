@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.76.16 (3rd May 2021) =
+* Fixed: Incorrent height in anchor.fm audio embed from the Pennews Theme #4576
+* Fixed: Slide Anything Plugin text slider not working in AMP #4999
+* Fixed: Backend button translation #4717
+* Fixed: Alignment issue with Gutenberg image block #4997 
+* Fixed: Undefined variable $q / Attempt to read property max_num_pages on null #5004
+
 = 1.0.76.15 (28th April 2021) =
 * Improvements: Added an option to add one signal notification on the desktop #4377
 * Improvements: Added an option to set Target for CTA button in swift theme #4995
