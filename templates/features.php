@@ -8795,7 +8795,7 @@ function ampforwp_referesh_related_post(){
 	$args=array(
 		'fields'        => 'ids',
 		'post_type'	   => 'post',
-	    'posts_per_page'=> 50,
+	    'posts_per_page'=> 30,
 	    'orderby' => $orderby,
 	    'ignore_sticky_posts'=>1,
 		'has_password' => false ,

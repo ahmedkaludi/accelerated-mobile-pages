@@ -2861,8 +2861,14 @@ function ampforwp_get_post_percent(){
 }
 $post_percent = 0;
 $current_page = ampforwp_get_admin_current_page();
+$refresh_btn = "";
+$refresh_text = 'Working as expected and no need to refresh the related post';
 if($current_page=="amp_options"){
     $post_percent = ampforwp_get_post_percent();
+    if ($post_percent != 100) {
+       $refresh_btn = "<span class='button button-primary button-small' id='ampforwp-refersh-related-post' target='_blank' data-id='".intval($post_percent)."' data-nonce='".wp_create_nonce( 'ampforwp_refresh_related_poost')."'><i class='el el-refresh'></i> Refresh</span>";
+       $refresh_text = 'It will refresh only 30 records at once, please try refreshing until it will complete to 100%';  
+    }
 }
  // Hide AMP Bulk Tools
 Redux::setSection( $opt_name, array(
@@ -2933,13 +2939,13 @@ Redux::setSection( $opt_name, array(
                                 'id'       => 'ampforwp-refersh-related-post',
                                'type'     => 'raw',
                                'title'     => esc_html__('Refresh Related Post', 'accelerated-mobile-pages'),
-                               'content'   => "<span class='button button-primary button-small' id='ampforwp-refersh-related-post' target='_blank' data-id='".intval($post_percent)."' data-nonce='".wp_create_nonce( 'ampforwp_refresh_related_poost')."'><i class='el el-refresh'></i> Refresh</span> 
+                               'content'   => $refresh_btn ." 
                                 <div class='ref-rel-bar-cont'>
                                   <div id='ref_rel_post_bar' class='ref-rel-post-bar' style='width:".intval($post_percent)."%;'>".intval($post_percent)."%</div>
                                 </div>",
                                'tooltip-subtitle' => esc_html__('If related post is not showing up properly, please refresh it and check it once again.', 'accelerated-mobile-pages'),
                                'full_width' => false,
-                               'description' => "It will refresh only 50 records at once, please try refreshing until it will complete to 100%",
+                               'description' => $refresh_text,
                         ),
                     )   
                  )
