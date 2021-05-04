@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.76.16 (3rd May 2021) =
+= 1.0.76.16 (4th May 2021) =
 * Fixed: Incorrent height in anchor.fm audio embed from the Pennews Theme #4576
 * Fixed: Slide Anything Plugin text slider not working in AMP #4999
 * Fixed: Backend button translation #4717
