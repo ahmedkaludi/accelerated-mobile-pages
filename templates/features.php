@@ -3963,7 +3963,11 @@ function ampforwp_view_nonamp(){
 	$amp_url = ampforwp_amphtml_generator();
 	$amp_url = explode('/', $amp_url);
 	$amp_url = array_flip($amp_url);
-	unset($amp_url['amp']);
+	$endpoint = AMPFORWP_AMP_QUERY_VAR;
+	if (ampforwp_get_setting('amp-core-end-point')) {
+		 $endpoint = '?'. $endpoint;
+	}
+	unset($amp_url[$endpoint]);
 	$non_amp_url = array_flip($amp_url);
 	$non_amp_url = implode('/', $non_amp_url);
 	$query_arg_array 	= $wp->query_vars;
