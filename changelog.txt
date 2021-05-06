@@ -1,5 +1,13 @@
 == Changelog ==
 
+= 1.0.76.17 (7th May 2021) =
+* Improvements: Added Beaver builder Pagebuilder Support in AMP Pagebuilder Extension #5009
+* Fixed: Title on Static Front Page is not displaying #5007
+* Fixed: The attribute 'height' in tag 'amp-img' is set to the invalid value. #5005
+* Fixed: ?amp doesn’t removing from view non-amp text #5006
+* Fixed: Errors in Schema Pro FAQ #4956
+* Fixed: PHP Warning error when enable Breadcrumbs option #5008
+
 = 1.0.76.16 (4th May 2021) =
 * Fixed: Incorrent height in anchor.fm audio embed from the Pennews Theme #4576
 * Fixed: Slide Anything Plugin text slider not working in AMP #4999

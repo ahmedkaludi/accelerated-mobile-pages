@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.16
+Stable tag: 1.0.76.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.76.17 (7th May 2021) =
+* Improvements: Added Beaver builder Pagebuilder Support in AMP Pagebuilder Extension #5009
+* Fixed: Title on Static Front Page is not displaying #5007
+* Fixed: The attribute 'height' in tag 'amp-img' is set to the invalid value. #5005
+* Fixed: ?amp doesn’t removing from view non-amp text #5006
+* Fixed: Errors in Schema Pro FAQ #4956
+* Fixed: PHP Warning error when enable Breadcrumbs option #5008
+
 = 1.0.76.16 (4th May 2021) =
 * Fixed: Incorrent height in anchor.fm audio embed from the Pennews Theme #4576
 * Fixed: Slide Anything Plugin text slider not working in AMP #4999
@@ -204,18 +212,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Improvements: Added HappyForms Compatibility Extension #5001
 * Fixed: Width in percentage not working for the audio from the Pennews Theme #4576
 * Fixed: Need to allow two attributes in input tag #4998
-
-= 1.0.76.14 (23rd April 2021) =
-* Improvements: Added an option to add Schema Pro FAQ in AMP #4956
-* Improvements: Added support for the audio from the Pennews Theme #4576
-* Improvements: Added Getty Images embed Compatibility #4188
-* Improvements: Added an option to move the search bar top and bottom. #4748
-* Improvements: Added an option for autoplay in slider module of AMP pagebuilder #3859
-* Improvements: Added an option to remove Site navigation element schema #4583
-* Improvements: Added related posts after the last post for infinity scroll posts in AMP layout #4652
-* Fixed: Call to undefined method MCI_Footnotes_Convert error #4993
-* Fixed: Search bar close icon is hidden behind the admin navigation bar #4991
-* Fixed: AMP menu automatically scrolls down to bottom in Design three #4967
-* Fixed: Single post content not showing when using AMP on subdomain #4996
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
