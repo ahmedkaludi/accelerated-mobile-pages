@@ -11,7 +11,7 @@ amp_header(); ?>
 			<?php if ( is_page() && true == ampforwp_get_setting('ampforwp_pages_breadcrumbs') ) {
 				amp_breadcrumb();
 			}?>
-		 	<?php if ( is_page() && true == ampforwp_get_setting('ampforwp_pages_title') ) {
+		 	<?php if ( (is_page() && true == ampforwp_get_setting('ampforwp_pages_title')) ||  (ampforwp_is_front_page() && ampforwp_get_setting('ampforwp-title-on-front-page'))) {
 				amp_title();
 			}?>
 		<?php } ?>
