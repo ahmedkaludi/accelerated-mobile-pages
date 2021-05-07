@@ -2819,10 +2819,6 @@ Redux::setSection( $opt_name, array(
 );
 function ampforwp_get_post_percent(){
     $total_post = $post_count = $post_percent = '';
-    $count_posts = wp_count_posts();
-    if($count_posts){
-        $total_post = $count_posts->publish;
-    }
     $args=array(
         'fields'        => 'ids',
         'post_type'    => 'post',
@@ -2843,9 +2839,13 @@ function ampforwp_get_post_percent(){
     if ($post_count == 0) {
         return 100;
     }
+    $count_posts = wp_count_posts();
+    if($count_posts){
+        $total_post = $count_posts->publish;
+    }
     $post_count = $total_post-$post_count;
-
     $post_percent = ($post_count/$total_post)*100;
+    $post_percent = $post_percent - 24;
     return round($post_percent);
 }
 $post_percent = 0;
