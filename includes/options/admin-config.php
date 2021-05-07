@@ -2840,6 +2840,9 @@ function ampforwp_get_post_percent(){
     );
     $my_query   = new wp_query( $args );
     $post_count = $my_query->post_count;    
+    if ($post_count == 0) {
+        return 100;
+    }
     $post_count = $total_post-$post_count;
 
     $post_percent = ($post_count/$total_post)*100;
