@@ -2819,41 +2819,27 @@ Redux::setSection( $opt_name, array(
 );
 function ampforwp_get_post_percent(){
     $total_post = $post_count = $post_percent = '';
-    $total_post = get_option('ampforwp_get_total_post_count');
-    if(!$total_post){
-        $args=array(
-            'fields'        => 'ids',
-            'post_type'    => 'post',
-            'posts_per_page'=> -1,
-            'ignore_sticky_posts'=>1,
-            'has_password' => false ,
-            'post_status'=> 'publish',
-            'no_found_rows' => true,
-        );
-        $my_query = new wp_query( $args );
-        $total_post =  $my_query->post_count;
+    $count_posts = wp_count_posts();
+    if($count_posts){
+        $total_post = $count_posts->publish;
     }
-
-    $post_count = get_option('ampforwp_get_not_meta_post_count');
-    if(!$post_count){
-        $args=array(
-            'fields'        => 'ids',
-            'post_type'    => 'post',
-            'posts_per_page'=> -1,
-            'ignore_sticky_posts'=>1,
-            'has_password' => false ,
-            'post_status'=> 'publish',
-            'no_found_rows' => true,
-            'meta_query' => array(
-                array(
-                    'key' => 'ampforwp-amp-on-off', 
-                    'compare' => 'NOT EXISTS',
-                )
+    $args=array(
+        'fields'        => 'ids',
+        'post_type'    => 'post',
+        'posts_per_page'=> 1,
+        'ignore_sticky_posts'=>1,
+        'has_password' => false ,
+        'post_status'=> 'publish',
+        'no_found_rows' => true,
+        'meta_query' => array(
+            array(
+                'key' => 'ampforwp-amp-on-off', 
+                'compare' => 'NOT EXISTS',
             )
-        );
-        $my_query   = new wp_query( $args );
-        $post_count = $my_query->post_count;
-    }
+        )
+    );
+    $my_query   = new wp_query( $args );
+    $post_count = $my_query->post_count;    
     $post_count = $total_post-$post_count;
 
     $post_percent = ($post_count/$total_post)*100;

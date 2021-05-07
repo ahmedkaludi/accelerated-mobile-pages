@@ -8831,16 +8831,9 @@ function ampforwp_referesh_related_post(){
 		$my_query->the_post();
 		update_post_meta(get_the_ID(),'ampforwp-ia-on-off','default');
 	}
-	delete_option('ampforwp_get_not_meta_post_count');
 	$data['response'] = ampforwp_get_post_percent();
 	echo json_encode($data);
 }
-add_action( 'save_post', 'ampforwp_delete_refresh_related_post_trans');
-function ampforwp_delete_refresh_related_post_trans(){
-	delete_option('ampforwp_get_not_meta_post_count');
-	delete_option('ampforwp_get_total_post_count');
-}
-
 
 // HIDE/SHOW TAG AND CATEGORY #4326
 function ampforwp_save_taxonomy_meta($term_id){
