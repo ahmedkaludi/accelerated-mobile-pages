@@ -160,6 +160,7 @@ function amp_pagebuilder_content_styles(){
 .col-2{width:100%;float:none;margin-bottom:10%;}
 .col-2-wrap .col-2:nth-child(1){padding-right:0px;}
 .col-2-wrap .col-2:nth-child(2){padding-left:0px;}
+.sbs .col-2{width: calc(50% - 5px);float: left;margin:2px;}
 }
 ';
 

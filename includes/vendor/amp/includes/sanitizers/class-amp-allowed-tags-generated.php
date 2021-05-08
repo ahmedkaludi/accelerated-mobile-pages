@@ -5059,6 +5059,8 @@ class AMP_Allowed_Tags_Generated {
 			array(
 				'attr_spec_list' => array(
 					'accept' => array(),
+					'mask' => array(),
+					'mask-output' => array(),
 					'accesskey' => array(),
 					'autocomplete' => array(),
 					'autofocus' => array(),

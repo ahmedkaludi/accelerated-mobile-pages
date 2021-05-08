@@ -700,6 +700,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('forminator-for-amp/forminator-for-amp.php')? 1 : 2),
                         ),
                         array(
+                            'name'=>'Happyforms for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Happy forms Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/happyforms-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/happyforms-for-amp/',
+                            'plugin_active_path'=> 'happyforms-for-amp/happyforms-for-amp.php',
+                            'item_name'=>'Happyforms for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('happyforms-for-amp/happyforms-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Paid Memberships PRO for AMP',
                             'class'=>'new-ext',
                             'desc'=>'Add Paid Memberships PRO Support in AMP',
@@ -1142,8 +1154,8 @@ $freepro_listing = '
             </div><!-- /.pri-lst -->
             <div class="tru-us">
                 <img src="'.AMPFORWP_IMAGE_DIR . '/rating.png" />
-                <h2>Trusted by more that 180000+ Users!</h2>
-                <p>More than 180k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
+                <h2>Trusted by more that 200000+ Users!</h2>
+                <p>More than 200k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
                 <a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?filter=5" target="_blank">Read The Reviews</a>
             </div>
         </div><!--/ .amp-upg -->
@@ -2487,6 +2499,31 @@ function ampforwp_get_all_tags($id){
                          'default'  => 0,
                      ),
                      array(
+                        'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-fb-moderation-app-id',
+                         'type'     => 'text',
+                         'tooltip-subtitle'     => 
+                         sprintf('%s <a href="https://developers.facebook.com/docs/plugins/comments/#moderation-setup-instructions" target="_blank">%s</a>.',esc_html__( 'If your site has many comments boxes, we recommend you specify a Facebook app ID as the managing entity, which means that all app administrators can moderate comments. Doing this enables a moderator interface on Facebook where comments from all plugins administered by your app ID can be easily moderated together. For details, see the','accelerated-mobile-pages' ),esc_html__('Facebook Moderation Setup documentation','accelerated-mobile-pages') ),
+                         'title'    => esc_html__('Facebook APP ID', 'accelerated-mobile-pages'),
+                         'default'  => '',
+                         'required' => array(
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                         ),
+                    ),
+                     array(
+                        'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-fb-moderation-admin-id',
+                         'type'     => 'text',
+                         'tooltip-subtitle'     => 
+                         sprintf('%s <a href="https://developers.facebook.com/docs/plugins/comments/#moderation-setup-instructions" target="_blank">%s</a>.',esc_html__( 'To assign a Facebook account to be the admin of a comments plugin implementation, see the','accelerated-mobile-pages' ),esc_html__('Facebook Moderation Setup documentation','accelerated-mobile-pages') ),
+                         'title'    => esc_html__('Facebook Admin User ID', 'accelerated-mobile-pages'),
+                         'default'  => '',
+                         'desc'  => 'You can add multiple ID(S) separated by comma(,) sign',
+                         'required' => array(
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                         ),
+                    ),
+                     array(
                         'class' => 'child_opt child_opt_arrow',
                         'id'       => 'ampforwp-facebook-comments-title',
                         'type'     => 'text',
@@ -2911,11 +2948,20 @@ Redux::setSection( $opt_name, array(
 
                     ),
                     array(
+                        'id'       => 'amp-mob-redirection-pres-link',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Preserve Original Permalinks', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable/Disable Mobile redirection for preserve original permalinks.','accelerated-mobile-pages'),
+                        'default' => 0,
+                        'required' => array( 'amp-mobile-redirection', '=' , 1 )
+                    ),
+                    array(
                         'id'       => 'amp-tablet-redirection',
                         'class'    => 'child_opt child_opt_arrow',
                         'type'     => 'switch',
-                        'title'    => __('Tablets', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Enable/Disable Mobile redirection for Tablets.','accelerated-mobile-pages'),
+                        'title'    => esc_html__('Tablets', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable/Disable Mobile redirection for Tablets.','accelerated-mobile-pages'),
                         'default' => 1,
                         'required' => array( 'amp-mobile-redirection', '=' , 1 )
                     ),
@@ -4362,6 +4408,22 @@ Redux::setSection( $opt_name, array(
                     'default'  => '1'         
             ),
             array(
+                    'id'       => 'menu-search-after-menu',
+                    'class'    => 'child_opt child_opt_arrow',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('After Menu', 'accelerated-mobile-pages'),
+                    'required' => array('menu-search', '=' , '1'),
+                    'default'  => '1'         
+            ),
+            array(
+                    'id'       => 'menu-search-before-menu',
+                    'class'    => 'child_opt child_opt_arrow',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Before Menu', 'accelerated-mobile-pages'),
+                    'required' => array('menu-search', '=' , '1'),
+                    'default'  => '0'         
+            ),
+            array(
                 'id'       => 'amp-swift-menu-cprt',
                 'type'     => 'switch',
                 'title'    => esc_html__( 'Menu Copyright', 'accelerated-mobile-pages' ),
@@ -4489,6 +4551,15 @@ Redux::setSection( $opt_name, array(
                       array('signin-button','=',1)
                     )  
               ),
+            array(
+                'id'        => 'signin-button-new-tab',
+                'class'     => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('New Tab', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Open the button link in new tab','accelerated-mobile-pages'),
+                'type'      => 'switch',
+                'default'   => '1',
+                'required'  => array('signin-button', '=', '1')
+            ),
             array(
                 'id'        => 'signin-button-border-line',
                 'class' => 'child_opt child_opt_arrow',
@@ -6139,6 +6210,25 @@ $single_page_options = array(
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
             array(
+              'id'        =>  'ampforwp-recent-post-utm-tracking-switch',
+              'type'      =>  'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     =>  esc_html__('UTM Tracking', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to add utm tracking to all your recent post links and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-utm-tracking-to-all-your-recent-post-links/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+              'default'   =>  0,
+              'required' => array('ampforwp-swift-recent-posts', '=', '1')
+            ),
+            array(
+               'id'       => 'ampforwp-recent-posts-utm-tracking',
+               'title'    => esc_html__('Campaign Source', 'accelerated-mobile-pages'),
+               'desc'  =>esc_html__('Use \'&\' for adding parameters in the tracking. Example: utm_source=xxx&utm_medium=xxx','accelerated-mobile-pages'),
+               'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
+               'required'  => array('ampforwp-recent-post-utm-tracking-switch', '=' , '1'),
+               'default'  => '',
+            ),
+            array(
                        'id' => 'ampforwp-single_section_3',
                        'type' => 'section',
                        'title' => esc_html__('Related Post Settings', 'accelerated-mobile-pages'),
@@ -6344,6 +6434,25 @@ $single_page_options = array(
                     'required' => array( 
                                     array('ampforwp-related-posts-days-switch', '=' , '1'),
                                 ),
+            ),
+             array(
+              'id'        =>  'ampforwp-related-post-utm-tracking-switch',
+              'type'      =>  'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     =>  esc_html__('UTM Tracking', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to add utm tracking to all your related post links and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-utm-tracking-to-all-your-related-post-links/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+              'default'   =>  0,
+              'required' => array('ampforwp-single-related-posts-switch', '=', '1')
+            ),
+           array(
+               'id'       => 'ampforwp-related-posts-utm-tracking',
+               'title'    => esc_html__('Campaign Source', 'accelerated-mobile-pages'),
+               'desc'  =>esc_html__('Use \'&\' for adding parameters in the tracking. Example: utm_source=xxx&utm_medium=xxx','accelerated-mobile-pages'),
+               'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
+               'required'  => array('ampforwp-related-post-utm-tracking-switch', '=' , '1'),
+               'default'  => '',
             ),
              // DESIGN 3 RECENT POST BELOW RELATED
             array(

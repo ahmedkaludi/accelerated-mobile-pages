@@ -225,6 +225,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 .lb-t:target {opacity: 1;top: 0;bottom: 0;left:0;z-index:2;}
 .lb-t:target img {max-height: 100%;max-width: 100%;}
 .lb-t:target a.lb-x {top: 25px;}
+<?php if ( is_admin_bar_showing() ) {?>.lb-t:target a.lb-x {top: 70px;}<?php } ?>
 .lb img{cursor:pointer;}
 .lb-btn form{position: absolute;top: 200px;left: 0;right: 0;margin: 0 auto;text-align: center;}
 .lb-btn .s{padding:10px;}

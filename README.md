@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.12
+Stable tag: 1.0.76.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,38 +193,27 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.76.12(14th April 2021) =
-* Fixed: Fatal error occuring with the recent update Version 1.0.76.11 #4986
+= 1.0.76.17 (7th May 2021) =
+* Improvements: Added Beaver builder Pagebuilder Support in AMP Pagebuilder Extension #5009
+* Fixed: Title on Static Front Page is not displaying #5007
+* Fixed: The attribute 'height' in tag 'amp-img' is set to the invalid value. #5005
+* Fixed: ?amp doesn’t removing from view non-amp text #5006
+* Fixed: Errors in Schema Pro FAQ #4956
+* Fixed: PHP Warning error when enable Breadcrumbs option #5008
 
-= 1.0.76.11 (14th April 2021) =
-* Improvements: Added an option to select same categories in infinite scroll #4017
-* Improvements: Added an option to select same tags in infinite scroll #4939
-* Improvements: Added the filter to change breadcrumbs name #4979
-* Fixed: Muffin pagebuilder not working in AMP #4983
-* Fixed: PHP 8 debug errors #4981
-* Fixed: AMP menu automatically scrolls down to bottom in Design three #4967
-* Fixed: Deprecated Filters Detected Warning in All in one SEO plugin #4980
+= 1.0.76.16 (4th May 2021) =
+* Fixed: Incorrent height in anchor.fm audio embed from the Pennews Theme #4576
+* Fixed: Slide Anything Plugin text slider not working in AMP #4999
+* Fixed: Backend button translation #4717
+* Fixed: Alignment issue with Gutenberg image block #4997 
+* Fixed: Undefined variable $q / Attempt to read property max_num_pages on null #5004
 
-= 1.0.76.10 (9th April 2021) =
-* Improvements: Added the Compatibility with the Schema Pro FAQ #4956
-* Improvements: Added the feature to track each author contribution to the website pageview #4952
-* Improvements: Added an option to show published date and time below the title #4976
-* Improvements: Added an option to automatic redirect AMP to non-amp when access through desktop #4975
-* Improvements: Added the Compatibility for Add Widget After Content plugin #4949
-* Improvements: Added Forminator for AMP Extension #4965
-* Fixed: Search Close Button is hidden for the Google Cached AMP Pages #4977
-* Fixed: Image is not showing when the post is shared on social network #4971
-
-= 1.0.76.9 (2nd April 2021) =
-* Fixed: Facebook videos embedding not working #4973
-* Fixed: The incorrect excerpt for the custom front page if user is using the Divi #4972
-* Fixed: When Yoast SEO Multilingual is activated canonical getting addition http #4970
-* Fixed: Close button not visible in the menu for the Google Cached AMP Pages #4969
-* Fixed: Sassy social share icons are not displaying on AMP #4945
-* Fixed: The AMP For WP option panel not saving due to redux plugin #4963
-* Fixed: Docking functionality is not working for the amp-video type in mobile view #4961
-* Fixed: Cannot change the title for in-content related post #4959
-* Fixed: Upgrade for Free' button in structured data settings is not working #4960
-* Fixed: Beginner and advance mode popup not closing #4974
+= 1.0.76.15 (28th April 2021) =
+* Improvements: Added an option to add one signal notification on the desktop #4377
+* Improvements: Added an option to set Target for CTA button in swift theme #4995
+* Improvements: Added an option to install PWA from options panel #4529
+* Improvements: Added HappyForms Compatibility Extension #5001
+* Fixed: Width in percentage not working for the audio from the Pennews Theme #4576
+* Fixed: Need to allow two attributes in input tag #4998
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

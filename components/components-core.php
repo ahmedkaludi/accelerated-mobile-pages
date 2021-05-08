@@ -769,6 +769,24 @@ function ampforwp_backtotop_global_css(){?>
 	    margin-bottom: 20px;
 	}
 	<?php } ?>
+	<?php if (ampforwp_get_setting('amp-quantcast-notice-switch')) {?>
+		#postPromptUI button {
+           background: #368bd6;
+           color: white;
+           padding: 5px 15px;
+           border: none;
+           outline: none;
+           display: flex;
+           align-items: center;
+           position: fixed;
+           right: 0;
+           bottom: 0;
+           border-radius: 3px 0 0 3px;
+           max-height: 30px;
+           max-width: 110px;
+           cursor: pointer;
+        }
+	<?php } ?>	
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
@@ -827,7 +845,41 @@ function ampforwp_backtotop_global_css(){?>
     .has-text-align-left { text-align: left;}
     .has-text-align-right { text-align: right;}
     .has-text-align-center { text-align: center;}
-<?php }
+    <?php if (ampforwp_get_setting('ampforwp-web-push-onesignal') && ampforwp_get_setting('ampforwp-web-push-onesignal-popup') && is_single()) { ?>
+    @media (min-width:1281px){
+		.onesignal-popup{
+	    position: fixed; 
+		top: 0; 
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(0, 0, 0, 0.7);
+		color: #333;
+		z-index:9999999;
+		line-height:1.3;
+		height: 100vh;
+		width: 100vw
+		}
+		.onesignal-popup_wrapper{
+		padding: 2rem;
+		background: #fff;
+		max-width: 700px;
+		width: 95%;
+		margin: 5% auto;
+		text-align: center;
+		position:fixed;
+		left: 0;
+		right: 0;
+		margin:10% auto;
+		}
+		.onesignal-popup_x{
+		position: absolute;
+		right: 24px; 
+		top: 16px; 
+		cursor:pointer;
+		}
+ 	}
+<?php } }
 // Fallback for amp_call_now #2782
 if ( !function_exists('amp_call_now') ) {
 	function amp_call_now(){

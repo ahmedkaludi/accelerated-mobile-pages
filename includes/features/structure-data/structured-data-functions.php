@@ -495,7 +495,7 @@ function ampforwp_sd_sitenavigation(){
 	    }
 	    echo '<script type="application/ld+json">' . json_encode($schema) . "</script>";
     }
-    if ( ! class_exists('saswp_fields_generator') ) {
+    if ( ! class_exists('saswp_fields_generator') && ampforwp_get_setting('ampforwp-sd-navigation-schema')) {
 	    $input = array();           
 	    $navObj = array();
 	    $ampforwp_sd_menu = get_transient('ampforwp_sd_menu');

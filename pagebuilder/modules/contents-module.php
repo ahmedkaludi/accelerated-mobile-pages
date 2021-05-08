@@ -386,12 +386,15 @@ if ( is_admin() ) {
   $ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');
   $ampforwp_excerpt_length = (isset($fieldValues['ampforwp_excerpt_length'])? $fieldValues['ampforwp_excerpt_length']: 15);
   $ampforwp_excerpt_length = (int) $ampforwp_excerpt_length;
-  
+  $mob_pres_link = false;
+  if(function_exists('ampforwp_mobile_redirect_preseve_link')){
+    $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
+  }
   if ( $the_query->have_posts() ) { 
          while ( $the_query->have_posts() ) {   
              $the_query->the_post();    
              $ampforwp_post_url = get_permalink();
-             if(ampforwp_get_setting('ampforwp-amp-takeover') == true){ 
+             if(ampforwp_get_setting('ampforwp-amp-takeover') == true || $mob_pres_link == true){
                 $ampforwp_post_url = user_trailingslashit($ampforwp_post_url);
              }else if(true == ampforwp_get_setting('amp-core-end-point')){
                 $ampforwp_post_url = user_trailingslashit($ampforwp_post_url);
