@@ -78,6 +78,9 @@ function ampforwp_thirdparty_compatibility(){
 		add_filter( 'embed_oembed_html', 'ampforwp_get_gitty_image_embed',10,4);
 		add_filter( 'ampforwp_the_content_last_filter','ampforwp_getty_image_compatibility',10);
 	}	
+	if(function_exists('megashop_setup')){
+        remove_filter( 'wp_nav_menu_args', 'TT_nav_menu_args' );
+    }
 }
 function ampforwp_removing_sassy_social_share(){	
 	return 1;
