@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.6
-Stable tag: 1.0.76
+Tested up to: 5.7
+Stable tag: 1.0.76.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,25 +190,27 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.76 (9th February 2021) =
-* Improvement: The SEO Checklist Banner #4912
-* Fixed: Telegram icon not visible in menu #4919
-* Fixed: Validation error in amp-img with transposh plugin #4918
-* Fixed: Fatal error when FIFU plugin is activate #4920
-* Fixed: AMP admin option panel is showing blank on user end #4914
-* Fixed: Tag base remove in AMP not working after 1.0.60 #4908
-* Fixed: data-playlist gets removed automatically in amp-brid-player #4906
-* Fixed: View Non-Amp Version link does not link to proper canonical url #4901
-* Fixed: Srcset not loading in category module of AMP page builder #4900
-* Fixed: Debug warnings #4917
+= 1.0.76.17 (7th May 2021) =
+* Improvements: Added Beaver builder Pagebuilder Support in AMP Pagebuilder Extension #5009
+* Fixed: Title on Static Front Page is not displaying #5007
+* Fixed: The attribute 'height' in tag 'amp-img' is set to the invalid value. #5005
+* Fixed: ?amp doesn’t removing from view non-amp text #5006
+* Fixed: Errors in Schema Pro FAQ #4956
+* Fixed: PHP Warning error when enable Breadcrumbs option #5008
 
-= 1.0.75 (23rd January 2021) =
-* Fixed: Imgur embed code not working in AMP #4899
-* Fixed: Srcset not loading in category module of AMP page builder #4900
-* Fixed: Advertising section displaying blank when AdsforWP plugin is active #4889
-* Fixed: AMP Page Builder not working on the pages and posts except the homepage #4890
-* Fixed: Swift 2nd header menu aligned towards right with polylang plugin #4893
-* Fixed: Post Pagination not working after 1.0.69 version #4902
-* Fixed: Debug warnings #4896
+= 1.0.76.16 (4th May 2021) =
+* Fixed: Incorrent height in anchor.fm audio embed from the Pennews Theme #4576
+* Fixed: Slide Anything Plugin text slider not working in AMP #4999
+* Fixed: Backend button translation #4717
+* Fixed: Alignment issue with Gutenberg image block #4997 
+* Fixed: Undefined variable $q / Attempt to read property max_num_pages on null #5004
+
+= 1.0.76.15 (28th April 2021) =
+* Improvements: Added an option to add one signal notification on the desktop #4377
+* Improvements: Added an option to set Target for CTA button in swift theme #4995
+* Improvements: Added an option to install PWA from options panel #4529
+* Improvements: Added HappyForms Compatibility Extension #5001
+* Fixed: Width in percentage not working for the audio from the Pennews Theme #4576
+* Fixed: Need to allow two attributes in input tag #4998
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

@@ -60,7 +60,7 @@ if(!function_exists("ampforwp_module_templates")){
 }//If Fucntion check closed
 
 //Row Contents
-$output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row_class}} {{grid_type}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
+$output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row_class}} {{grid_type}} {{mobile_display}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
 	{{if_condition_background_type==video}}
 	<div class="amp_video">
 		<div class="amp-txt">
@@ -88,6 +88,7 @@ $output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row
 			{{if_condition_enable_mp4video_autoplay==1}}autoplay{{ifend_condition_enable_mp4video_autoplay_1}}
 			src="{{row_background_mp4video}}"
 			layout="responsive"
+			{{if_condition_enable_youtube_loop==1}}loop{{ifend_condition_enable_youtube_loop_1}}
 			{{if_condition_enable_mp4video_controls==1}}controls{{ifend_condition_enable_mp4video_controls_1}}>
 		</amp-video>
     	{{if_condition_check_for_overlay==1}}
@@ -108,7 +109,7 @@ $output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row
                {{if_condition_enable_modestbranding==1}}data-param-modestbranding="1"{{ifend_condition_enable_modestbranding_1}}
                {{if_condition_enable_youtube_rel==1}}data-param-rel="1"{{ifend_condition_enable_youtube_rel_1}}
                {{if_condition_enable_youtube_rel==0}}data-param-rel="0"{{ifend_condition_enable_youtube_rel_0}}
-               {{if_condition_enable_youtube_loop==1}}data-param-playlist="{{row_background_youtubevideo}}"{{ifend_condition_enable_youtube_loop_1}}
+               {{if_condition_enable_youtube_loop==1}}loop{{ifend_condition_enable_youtube_loop_1}}
                data-videoid="{{row_background_youtubevideo}}"
                {{if_condition_enable_youtube_autoplay==1}}autoplay{{ifend_condition_enable_youtube_autoplay_1}}>
   		</amp-youtube>
@@ -448,7 +449,24 @@ $containerCommonSettings = array(
 								'content_type'=>'css',
 								'output_format'=>"color: %default%"
 							),
-
+							array(
+								'type'		=> 'radio',
+								'name'		=> "mobile_display",
+								'label'		=> esc_html__('Mobile Display'),
+								'tab'		=> 'customizer',
+								'default'	=> 'stack',
+								'options'	=> array(
+												array(
+													'label'=> 'Stack',
+													'value'=> 'stack',
+												),
+												array(
+													'label'=> 'Side By Side',
+													'value'=> 'sbs',
+												),
+											),
+								'content_type' => 'html',
+							),
 							array(		
 	 							'type'	=>'select',		
 	 							'name'  =>"background_type",		
@@ -615,7 +633,7 @@ $containerCommonSettings = array(
                                                 )
                                             ),
                                 'content_type'=>'html',
-		           				'required'  => array('background_type'=> 'youtubevideo')
+		           				'required'  => array('background_type'=> array('mp4video','youtubevideo'))
                             ),
                             array(
                                 'type'      =>'checkbox_bool',

@@ -35,8 +35,14 @@ function ampforwp_footer() {
         <?php } ?>
        <button on="tap:amp-user-notification1.dismiss"><?php echo esc_html__(ampforwp_get_setting('amp-accept-button-text'),'accelerated-mobile-pages'); ?></button>
   </amp-user-notification>
-<?php }
-}
+<?php } 
+if(ampforwp_get_setting('ampforwp-web-push-onesignal') && ampforwp_get_setting('ampforwp-web-push-onesignal-popup') && is_single()){ ?>
+<amp-user-notification id="onesignal-popup-id" class="onesignal-popup" layout="nodisplay">
+	<div class="onesignal-popup_wrapper">
+    <?php echo ampforwp_onesignal_notifications_widget() ?>
+    <button class="onesignal-popup_x" on="tap:onesignal-popup-id.dismiss">X</button></div>
+</amp-user-notification>
+<?php } }
 
 // 50. Properly adding noditification Scritps the AMP way
 add_filter( 'amp_post_template_data', 'ampforwp_add_notification_scripts', 75 );

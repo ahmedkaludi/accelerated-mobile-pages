@@ -14,7 +14,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
          *
          * @since ReduxFramework 1.0.0
          */
-        function __construct( $field = array(), $value = '', $parent ) {
+        function __construct( $field = array(), $value = '', $parent = ' ' ) {
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;

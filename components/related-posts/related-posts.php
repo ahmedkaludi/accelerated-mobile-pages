@@ -133,6 +133,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 		$related_post_permalink = get_permalink();
 	}
 	$show_image = (isset($data['show_image']) ? $data['show_image'] : true);
+	$related_post_permalink = ampforwp_modify_url_utm_params($related_post_permalink);
 	?>
 	<a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 	    <?php
@@ -187,6 +188,7 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 	global $redux_builder_amp;
 	$title = get_the_title();
 	$related_post_permalink = ampforwp_url_controller( get_permalink() );
+	$related_post_permalink = ampforwp_modify_url_utm_params($related_post_permalink);
 	if ( ampforwp_get_setting('ampforwp-single-related-posts-link') ) {
 		$related_post_permalink = get_permalink();
 		if ( ampforwp_get_setting('amp-mobile-redirection') ) {

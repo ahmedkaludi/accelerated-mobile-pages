@@ -23,7 +23,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_demolink_image_s
          *
          * @since ReduxFramework 1.0.0
          */
-        function __construct( $field = array(), $value = '', $parent ) {
+        function __construct( $field = array(), $value = '', $parent = ' ' ) {
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;

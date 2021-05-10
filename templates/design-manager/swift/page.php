@@ -11,7 +11,9 @@ amp_header(); ?>
 			<?php if ( is_page() && true == ampforwp_get_setting('ampforwp_pages_breadcrumbs') ) {
 				amp_breadcrumb();
 			}?>
-		 	<?php amp_title(); ?>
+		 	<?php if ( (is_page() && true == ampforwp_get_setting('ampforwp_pages_title')) ||  (ampforwp_is_front_page() && ampforwp_get_setting('ampforwp-title-on-front-page'))) {
+				amp_title();
+			}?>
 		<?php } ?>
 		<?php } // Level up Condition ends here?>
 		</div>
@@ -41,6 +43,11 @@ amp_header(); ?>
 				}
 				if(ampforwp_is_front_page() && false == ampforwp_get_setting('gbl-sidebar') ){
 					amp_content();
+					if(ampforwp_get_comments_status()){ ?>
+						<div class="cmts">
+							<?php amp_comments();?>
+						</div>
+					<?php }
 				}
 				if(!ampforwp_is_front_page()){
 					amp_content();

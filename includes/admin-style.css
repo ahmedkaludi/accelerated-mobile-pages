@@ -1090,6 +1090,7 @@ span.switch-text {
     font-size: 14px;
     top: 7px;
     left: 12px;
+    margin-left: 10px;
 }
 #finalized-import-structure-data-from-amp{
     margin-left:8px;

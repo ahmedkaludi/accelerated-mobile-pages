@@ -18,7 +18,7 @@
             static public $_parent;
             static private $_set;
 
-            private static function is_enqueued( $handle, $list = 'enqueued', $is_script ) {
+            private static function is_enqueued( $handle, $list = 'enqueued', $is_script = true ) {
                 if ( $is_script ) {
                     wp_script_is( $handle, $list );
                 } else {
@@ -42,13 +42,14 @@
                 }
             }
 
-            private static function _cdn( $register = true, $handle, $src_cdn, $deps, $ver, $footer_or_media, $is_script = true ) {
+            private static function _cdn( $register = true, $handle = '', $src_cdn = '', $deps = '', $ver = '', $footer_or_media = '', $is_script = true ) {
                 $tran_key = '_style_cdn_is_up';
                 if ( $is_script ) {
                     $tran_key = '_script_cdn_is_up';
                 }
-
-                $cdn_is_up = get_transient( $handle . $tran_key );
+                if (!empty($handle)) {
+                    $cdn_is_up = get_transient( $handle . $tran_key );
+                }
                 if ( $cdn_is_up ) {
                     if ( $register ) {
                         self::_register( $handle, $src_cdn, $deps, $ver, $footer_or_media, $is_script );
@@ -97,10 +98,11 @@
                 }
             }
 
-            private static function _vendor_plugin( $register = true, $handle, $src_cdn, $deps, $ver, $footer_or_media, $is_script = true ) {
+            private static function _vendor_plugin( $register = true, $handle = '', $src_cdn = '', $deps = '', $ver = '', $footer_or_media = '', $is_script = true ) {
                 if ( class_exists( 'ReduxCore\\ReduxFramework\\Redux_VendorURL' ) ) {
-                    $src = Redux_VendorURL::get_url( $handle );
-
+                    if (!empty($handle)) {
+                        $src = Redux_VendorURL::get_url( $handle );
+                    }
                     if ( $register ) {
                         self::_register( $handle, $src, $deps, $ver, $footer_or_media, $is_script );
                     } else {

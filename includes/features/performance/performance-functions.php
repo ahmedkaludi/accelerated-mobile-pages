@@ -55,6 +55,15 @@ function ampforwp_minify_html_output($content_buffer){
     if(preg_match('/<blockquote class="imgur-embed(.*?)"(.*?)data-id="(.*?)"(.*?)<\/blockquote>/', $content_buffer)){
         $content_buffer = preg_replace('/<blockquote class="imgur-embed(.*?)"(.*?)data-id="(.*?)"(.*?)<\/blockquote>/', '<amp-imgur data-imgur-id="$3" layout="responsive" width="500" height="600"></amp-imgur>', $content_buffer);
     }
+    if ( class_exists( 'Jetpack' ) && preg_match('/<div(.*?)id="v-(.*?)-(.*?)"(.*?)class="video-player">(.*?)<\/div>/', $content_buffer)) {
+        $content_buffer = preg_replace('/<div(.*?)id="v-(.*?)-(.*?)"(.*?)class="video-player">(.*?)<\/div>/', '<div$1id="v-$2-$3"$4class="video-player"><amp-iframe width="300" height="150" sandbox="allow-scripts allow-same-origin" layout="responsive" src="https://videopress.com/embed/$2"></amp-iframe></div>', $content_buffer);
+    }
+    if (class_exists('AddWidgetAfterContent') && preg_match('/<form(.*?)><label(.*?)for="cat"(.*?)name="cat"(.*?)<\/form>/s', $content_buffer)) {
+        $content_buffer = preg_replace('/<form(.*?)><label(.*?)for="cat"(.*?)name="cat"(.*?)<\/form>/s', '<form$1 id="amp-wp-widget-categories-1" on="change:amp-wp-widget-categories-1.submit"><label$2for="cat"$3name="cat"$4</form>', $content_buffer);
+    }
+    if(function_exists('vp_pfui_admin_init') && function_exists('penci_setup') && preg_match('/<amp-iframe src="(.*?)anchor.fm(.*?)"(.*?)<\/amp-iframe>/', $content_buffer)){
+        $content_buffer = preg_replace('/<amp-iframe src="(.*?)anchor.fm(.*?)"(.*?)<\/amp-iframe>/', '<amp-iframe src="$1anchor.fm$2" scrolling="no" $3</amp-iframe>', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
@@ -251,13 +260,11 @@ function ampforwp_code_to_add_in_htaccess(){
     $htaccess_cntn .= 'ExpiresByType image/x-icon "access 1 year"' . "\n";
     $htaccess_cntn .= 'ExpiresByType text/css "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType text/javascript "access '.esc_html($expires).'"' . "\n";
-    $htaccess_cntn .= 'ExpiresByType text/html "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType application/javascript "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType application/x-javascript "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType application/xhtml-xml "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType application/pdf "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= 'ExpiresByType application/x-shockwave-flash "access '.esc_html($expires).'"' . "\n";
-    $htaccess_cntn .= 'ExpiresDefault "access '.esc_html($expires).'"' . "\n";
     $htaccess_cntn .= '</IfModule>' . "\n";
     $htaccess_cntn .= '# END Caching AMPFORWPLBROWSERCEND' . "\n";
     return $htaccess_cntn;

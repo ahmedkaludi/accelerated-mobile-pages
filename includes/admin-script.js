@@ -2409,7 +2409,7 @@ function Drawer(drawerElem) {
             data: {
                     action:     'ampforwp_set_option_panel_view',
                     option_type: opt_type,
-                    verify_nonce: ampforwp_nonce
+                    verify_nonce: ampforwp_nonce.security
                  },
             dataType: 'json',
             success: function(response){

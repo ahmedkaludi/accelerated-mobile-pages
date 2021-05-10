@@ -32,6 +32,7 @@ if(is_plugin_active('amp-cf7/amp-cf7.php')){
 	$cf7formArray = array();
 	if(count($form_titles)>0){
 		foreach ($form_titles as $key => $formName) {
+			$formName = esc_html($formName);
 			$cf7formArray[$form_id[$key]] = $formName;
 		}
 	}

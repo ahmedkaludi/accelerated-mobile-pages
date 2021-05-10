@@ -25,7 +25,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				// amp-next-page script
 				add_filter('ampforwp_post_template_data', array( $this , 'amp_infinite_scroll_script') );
 				// amp-next-page tag
-				if ( 4 != ampforwp_get_setting('amp-design-selector') ) 
+				if ( 4 != ampforwp_get_setting('amp-design-selector') || (class_exists('AmpforwpAmpLayouts')) && 3 == ampforwp_get_setting('single-design-type') )
 					add_action('ampforwp_above_related_post', array( $this , 'amp_next_page') );
 				else 
 					add_action('ampforwp_single_design_type_handle', array( $this , 'amp_next_page') );
@@ -125,6 +125,26 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				'posts_per_page' => 2,
 				'no_found_rows'	=> true
 			  );
+			if (ampforwp_get_setting('ampforwp-infinite-scroll-single') && ampforwp_get_setting('ampforwp-infinite-scroll-single-category')){
+				$categories = get_the_category($post->ID);
+				if ($categories) {
+					$category_ids = array();
+					foreach($categories as $individual_category){ 
+						$category_ids[] = $individual_category->cat_ID;
+					}		
+				}
+				$query_args['category__in'] = $category_ids;
+			}
+			if (ampforwp_get_setting('ampforwp-infinite-scroll-single') && ampforwp_get_setting('ampforwp-infinite-scroll-single-tag')){
+				$tags = get_the_tags(ampforwp_get_the_ID());
+				if ($tags) {
+					$tags_ids = array();
+					foreach($tags as $individual_tag){ 
+						$tags_ids[] = $individual_tag->term_id;
+					}
+				}
+				$query_args['tag__in'] = $tags_ids;
+			}
 			$query_args = apply_filters('ampforwp_infinite_scroll_query_args', $query_args);
 			$query = new WP_Query( $query_args );
 			while ($query->have_posts()) {

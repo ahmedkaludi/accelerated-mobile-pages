@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /* Global Styling */
 body{ 
   font-size: 16px;
-  line-height:1.6;
+  line-height:1.4;
 }
 body, amp-sidebar, .single-post main .amp-wp-article-content h1, .single-post main .amp-wp-article-content h2, .single-post main .amp-wp-article-content h3, .single-post main .amp-wp-article-content h4, .single-post main .amp-wp-article-content h5, .single-post main .amp-wp-article-content h6, h2.amp-wp-title , h3.amp-wp-title, .cmt-button-wrapper a, h1.amp-wp-title, .single-post main,.related-title,.single-post .cmts_list h3, .rp .related_link a{
   <?php $fontFamily = "font-family: sans-serif;"; ?>

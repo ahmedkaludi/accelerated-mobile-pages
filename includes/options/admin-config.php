@@ -688,6 +688,30 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('ultimate-membership-pro-compatibility-for-amp/ultimate-membership-pro-compatibility-for-amp.php')? 1 : 2),
                         ), 
                         array(
+                            'name'=>'Forminator for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Forminator forms Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/forminator-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/forminator-for-amp/',
+                            'plugin_active_path'=> 'forminator-for-amp/forminator-for-amp.php',
+                            'item_name'=>'Forminator for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('forminator-for-amp/forminator-for-amp.php')? 1 : 2),
+                        ),
+                        array(
+                            'name'=>'Happyforms for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Add Happy forms Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/happyforms-for-amp.png',
+                            'price'=>'$39',
+                            'url_link'=>'https://ampforwp.com/addons/happyforms-for-amp/',
+                            'plugin_active_path'=> 'happyforms-for-amp/happyforms-for-amp.php',
+                            'item_name'=>'Happyforms for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('happyforms-for-amp/happyforms-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Paid Memberships PRO for AMP',
                             'class'=>'new-ext',
                             'desc'=>'Add Paid Memberships PRO Support in AMP',
@@ -1130,8 +1154,8 @@ $freepro_listing = '
             </div><!-- /.pri-lst -->
             <div class="tru-us">
                 <img src="'.AMPFORWP_IMAGE_DIR . '/rating.png" />
-                <h2>Trusted by more that 180000+ Users!</h2>
-                <p>More than 180k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
+                <h2>Trusted by more that 200000+ Users!</h2>
+                <p>More than 200k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
                 <a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?filter=5" target="_blank">Read The Reviews</a>
             </div>
         </div><!--/ .amp-upg -->
@@ -2314,19 +2338,6 @@ function ampforwp_get_all_tags($id){
                'required'  => array('amp-inspection-tool', '=' , '0'),
                'switch-text' => true,
            ),
-           array(
-                  'id' => 'ampforwp-the-seo-checklist',
-                  'type' => 'section',
-                  'title' => esc_html__('The SEO Checklist - Get your website on the first page of Google', 'accelerated-mobile-pages'),
-                  'indent' => true,
-                  'layout_type' => 'accordion',
-                  'accordion-open'=> 1,
-              ),
-            array(
-            'id'   => 'ampforwp-the-seo-checklist-title',
-            'type' => 'select',
-             'desc' => '<div style="text-align:center;"><a href="https://seobuddy.com/seo-checklist/magazine3"  target="_blank"><img src="'.AMPFORWP_IMAGE_DIR . '/the-seo-checklist-by-seo-buddy.png" width="100" height="60" /></a><br/><br/><b>RECOMMENDED:</b> We would like to recommend <a href="https://seobuddy.com/seo-checklist/magazine3" target="_blank">102-Point SEO Checklist</a>. It includes 40+ step-by-step guides (SOPs) to every important SEO action you need to take to optimize your website and get more organic traffic. And using discount coupon MAGAZINE3 you get a 25% off the original price.<br/><br/><a class="premium_features_btn" target="_blank" href="https://seobuddy.com/seo-checklist/magazine3" style="color: #000;padding: 10px 15px;cursor: pointer;text-decoration: none;" >Read more about this SEO Checklist</a></div>',
-             ),
        )
   )
   );
@@ -2487,6 +2498,31 @@ function ampforwp_get_all_tags($id){
                          'tooltip-subtitle' => esc_html__('Enable/Disable Facebook comments using this switch.', 'accelerated-mobile-pages'),
                          'default'  => 0,
                      ),
+                     array(
+                        'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-fb-moderation-app-id',
+                         'type'     => 'text',
+                         'tooltip-subtitle'     => 
+                         sprintf('%s <a href="https://developers.facebook.com/docs/plugins/comments/#moderation-setup-instructions" target="_blank">%s</a>.',esc_html__( 'If your site has many comments boxes, we recommend you specify a Facebook app ID as the managing entity, which means that all app administrators can moderate comments. Doing this enables a moderator interface on Facebook where comments from all plugins administered by your app ID can be easily moderated together. For details, see the','accelerated-mobile-pages' ),esc_html__('Facebook Moderation Setup documentation','accelerated-mobile-pages') ),
+                         'title'    => esc_html__('Facebook APP ID', 'accelerated-mobile-pages'),
+                         'default'  => '',
+                         'required' => array(
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                         ),
+                    ),
+                     array(
+                        'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-fb-moderation-admin-id',
+                         'type'     => 'text',
+                         'tooltip-subtitle'     => 
+                         sprintf('%s <a href="https://developers.facebook.com/docs/plugins/comments/#moderation-setup-instructions" target="_blank">%s</a>.',esc_html__( 'To assign a Facebook account to be the admin of a comments plugin implementation, see the','accelerated-mobile-pages' ),esc_html__('Facebook Moderation Setup documentation','accelerated-mobile-pages') ),
+                         'title'    => esc_html__('Facebook Admin User ID', 'accelerated-mobile-pages'),
+                         'default'  => '',
+                         'desc'  => 'You can add multiple ID(S) separated by comma(,) sign',
+                         'required' => array(
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                         ),
+                    ),
                      array(
                         'class' => 'child_opt child_opt_arrow',
                         'id'       => 'ampforwp-facebook-comments-title',
@@ -2965,11 +3001,20 @@ Redux::setSection( $opt_name, array(
 
                     ),
                     array(
+                        'id'       => 'amp-mob-redirection-pres-link',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Preserve Original Permalinks', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable/Disable Mobile redirection for preserve original permalinks.','accelerated-mobile-pages'),
+                        'default' => 0,
+                        'required' => array( 'amp-mobile-redirection', '=' , 1 )
+                    ),
+                    array(
                         'id'       => 'amp-tablet-redirection',
                         'class'    => 'child_opt child_opt_arrow',
                         'type'     => 'switch',
-                        'title'    => __('Tablets', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('Enable/Disable Mobile redirection for Tablets.','accelerated-mobile-pages'),
+                        'title'    => esc_html__('Tablets', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('Enable/Disable Mobile redirection for Tablets.','accelerated-mobile-pages'),
                         'default' => 1,
                         'required' => array( 'amp-mobile-redirection', '=' , 1 )
                     ),
@@ -2979,6 +3024,14 @@ Redux::setSection( $opt_name, array(
                         'title'    => esc_html__('Search Result Page in AMP', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => esc_html__('Disable this option if you want your search pages in Non-AMP.','accelerated-mobile-pages'),
                         'default' => 1,
+                    ),
+                    array(
+                        'id'       => 'amp-desktop-redirection',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Disable AMP on Desktop', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => esc_html__('
+                        Enable this option to give your visitors normal version on Desktop when accessing AMP','accelerated-mobile-pages'),
+                        'default' => 0,
                     ),
                     array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
@@ -3391,6 +3444,14 @@ $e_commerce_support[] = array(
                        'id'       => 'amp-translator-related-text',
                        'type'     => 'text',
                        'title'    => esc_html__('Related Post', 'accelerated-mobile-pages'),
+                       'default'  => esc_html__('Related Post','accelerated-mobile-pages'),
+                       'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
+                       'id'       => 'amp-translator-incontent-related-text',
+                       'type'     => 'text',
+                       'title'    => esc_html__('In-Content Related Post', 'accelerated-mobile-pages'),
                        'default'  => esc_html__('Related Post','accelerated-mobile-pages'),
                        'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
@@ -4236,6 +4297,28 @@ Redux::setSection( $opt_name, array(
                         'default' => true,
                         'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
                     ),
+                    array(
+                        'id'       => 'ampforwp-infinite-scroll-single-category',
+                        'type'     => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'    => esc_html__('Same Category', 'accelerated-mobile-pages'),
+                        'default' => false,
+                         'required' => array(
+                                        array('ampforwp-infinite-scroll', '=' , '1'),
+                                        array('ampforwp-infinite-scroll-single', '=' , '1')
+                                    ),
+                    ),
+                    array(
+                        'id'       => 'ampforwp-infinite-scroll-single-tag',
+                        'type'     => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'    => esc_html__('Same Tag', 'accelerated-mobile-pages'),
+                        'default' => false,
+                         'required' => array(
+                                        array('ampforwp-infinite-scroll', '=' , '1'),
+                                        array('ampforwp-infinite-scroll-single', '=' , '1')
+                                    ),
+                    ),
                 array(
                        'id' => 'google-icons',
                        'type' => 'section',
@@ -4378,6 +4461,22 @@ Redux::setSection( $opt_name, array(
                     'default'  => '1'         
             ),
             array(
+                    'id'       => 'menu-search-after-menu',
+                    'class'    => 'child_opt child_opt_arrow',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('After Menu', 'accelerated-mobile-pages'),
+                    'required' => array('menu-search', '=' , '1'),
+                    'default'  => '1'         
+            ),
+            array(
+                    'id'       => 'menu-search-before-menu',
+                    'class'    => 'child_opt child_opt_arrow',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Before Menu', 'accelerated-mobile-pages'),
+                    'required' => array('menu-search', '=' , '1'),
+                    'default'  => '0'         
+            ),
+            array(
                 'id'       => 'amp-swift-menu-cprt',
                 'type'     => 'switch',
                 'title'    => esc_html__( 'Menu Copyright', 'accelerated-mobile-pages' ),
@@ -4505,6 +4604,15 @@ Redux::setSection( $opt_name, array(
                       array('signin-button','=',1)
                     )  
               ),
+            array(
+                'id'        => 'signin-button-new-tab',
+                'class'     => 'child_opt child_opt_arrow',
+                'title'     => esc_html__('New Tab', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => esc_html__('Open the button link in new tab','accelerated-mobile-pages'),
+                'type'      => 'switch',
+                'default'   => '1',
+                'required'  => array('signin-button', '=', '1')
+            ),
             array(
                 'id'        => 'signin-button-border-line',
                 'class' => 'child_opt child_opt_arrow',
@@ -5848,6 +5956,17 @@ $single_page_options = array(
                 )
              ),
             array(
+                 'id'       => 'amp-author-name-display',
+                 'type'     => 'switch',
+                 'class'    => 'child_opt child_opt_arrow', 
+                 'title'    => esc_html__( 'Below Title on Mobile', 'accelerated-mobile-pages' ),
+                 'default'  => 0,
+                  'tooltip-subtitle'  => esc_html__('Enable this option to show author name below the title in mobile view','accelerated-mobile-pages'),
+                  'required' => array(
+                    array('amp-author-name' , '=' , '1'),
+                )
+            ),
+            array(
                     'id'    => 'swift-date',
                     'type'  => 'switch',
                     'title' => esc_html__('Published Date', 'accelerated-mobile-pages'),
@@ -5856,6 +5975,17 @@ $single_page_options = array(
                      esc_html__('Enable this option to show published date in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-published-date-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
 
                     'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                 'id'       => 'amp-published-date-display',
+                 'type'     => 'switch',
+                 'class'    => 'child_opt child_opt_arrow', 
+                 'title'    => esc_html__( 'Below Title on Mobile', 'accelerated-mobile-pages' ),
+                 'default'  => 0,
+                  'tooltip-subtitle' => esc_html__('Enable this option to show published date below the title in mobile view','accelerated-mobile-pages'),
+                  'required' => array(
+                    array('swift-date' , '=' , '1'),
+                )
             ),
          //Breadcrumb ON/OFF
           array(
@@ -6125,6 +6255,25 @@ $single_page_options = array(
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
             array(
+              'id'        =>  'ampforwp-recent-post-utm-tracking-switch',
+              'type'      =>  'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     =>  esc_html__('UTM Tracking', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to add utm tracking to all your recent post links and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-utm-tracking-to-all-your-recent-post-links/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+              'default'   =>  0,
+              'required' => array('ampforwp-swift-recent-posts', '=', '1')
+            ),
+            array(
+               'id'       => 'ampforwp-recent-posts-utm-tracking',
+               'title'    => esc_html__('Campaign Source', 'accelerated-mobile-pages'),
+               'desc'  =>esc_html__('Use \'&\' for adding parameters in the tracking. Example: utm_source=xxx&utm_medium=xxx','accelerated-mobile-pages'),
+               'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
+               'required'  => array('ampforwp-recent-post-utm-tracking-switch', '=' , '1'),
+               'default'  => '',
+            ),
+            array(
                        'id' => 'ampforwp-single_section_3',
                        'type' => 'section',
                        'title' => esc_html__('Related Post Settings', 'accelerated-mobile-pages'),
@@ -6330,6 +6479,25 @@ $single_page_options = array(
                     'required' => array( 
                                     array('ampforwp-related-posts-days-switch', '=' , '1'),
                                 ),
+            ),
+             array(
+              'id'        =>  'ampforwp-related-post-utm-tracking-switch',
+              'type'      =>  'switch',
+              'class' => 'child_opt child_opt_arrow',
+              'title'     =>  esc_html__('UTM Tracking', 'accelerated-mobile-pages'),
+              'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                        esc_html__('Enable this option to add utm tracking to all your related post links and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-utm-tracking-to-all-your-related-post-links/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+              'default'   =>  0,
+              'required' => array('ampforwp-single-related-posts-switch', '=', '1')
+            ),
+           array(
+               'id'       => 'ampforwp-related-posts-utm-tracking',
+               'title'    => esc_html__('Campaign Source', 'accelerated-mobile-pages'),
+               'desc'  =>esc_html__('Use \'&\' for adding parameters in the tracking. Example: utm_source=xxx&utm_medium=xxx','accelerated-mobile-pages'),
+               'type'     => 'text',
+               'class' => 'child_opt child_opt_arrow',
+               'required'  => array('ampforwp-related-post-utm-tracking-switch', '=' , '1'),
+               'default'  => '',
             ),
              // DESIGN 3 RECENT POST BELOW RELATED
             array(
@@ -7315,7 +7483,14 @@ else{
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
              ),
-
+            array(
+                  'id'       => 'ampforwp_pages_title',
+                  'type'     => 'switch',
+                  'default'  =>  '1',
+                  'title'    => esc_html__('Title', 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => esc_html__('Enable Title on Pages.','accelerated-mobile-pages'),
+                  'required' => array('amp-design-selector','=','4'),
+            ),      
          // Meta ON/OFF Pages
             array(
                   'id'       => 'featured_image_swift_page',

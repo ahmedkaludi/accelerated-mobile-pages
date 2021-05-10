@@ -31,7 +31,9 @@ function ampforwp_add_admin_styling($hook_suffix){
     wp_enqueue_style( 'ampforwp_admin_css' );
 
     // Admin area scripts file
-    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', array('wp-color-picker'), AMPFORWP_VERSION );
+    $dep = array('wp-color-picker');
+    $dep = apply_filters('ampforwp_modify_script_dependency', $dep);
+    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', $dep , AMPFORWP_VERSION );
 
     // Localize the script with new data
     $redux_data = array();
@@ -76,7 +78,7 @@ function ampforwp_add_admin_styling($hook_suffix){
     $screen = get_current_screen();
     if ( 'toplevel_page_amp_options' == $screen->base ) {
         $opt = get_option("ampforwp_option_panel_view_type");
-        wp_localize_script( 'ampforwp_admin_js', 'amp_option_panel_view', $opt);
+        wp_localize_script( 'ampforwp_admin_js', 'amp_option_panel_view', array($opt));
     }else{
         $opt = get_option("ampforwp_option_panel_view_type");
         if($opt==1 || $opt==2){
@@ -84,12 +86,15 @@ function ampforwp_add_admin_styling($hook_suffix){
         }else{
             $opt = "31";
         }
-        wp_localize_script( 'ampforwp_admin_js', 'amp_option_panel_view', "$opt");
+        wp_localize_script( 'ampforwp_admin_js', 'amp_option_panel_view', array($opt));
     }
-    wp_localize_script( 'ampforwp_admin_js', 'amp_fields', $amp_fields );
+    wp_localize_script( 'ampforwp_admin_js', 'amp_fields', array($amp_fields));
     $redux_data = apply_filters("ampforwp_custom_localize_data", $redux_data);
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
-    wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', wp_create_nonce('ampforwp-verify-request') );
+    $ampforwp_nonce = array(
+        'security'  => wp_create_nonce( 'ampforwp-verify-request' )
+    );
+    wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', $ampforwp_nonce );
     wp_enqueue_script( 'wp-color-picker' );
     wp_enqueue_script( 'ampforwp_admin_js' );
 }
@@ -234,7 +239,10 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         //  Compatibility with the footnotes plugin. #2447
         if(class_exists('MCI_Footnotes')){
         $footnote_collapse_link = '';
-        $footnote_collapse = MCI_Footnotes_Convert::toBool(MCI_Footnotes_Settings::instance()->get(MCI_Footnotes_Settings::C_BOOL_REFERENCE_CONTAINER_COLLAPSE));
+        $footnote_collapse = false;
+        if (method_exists('MCI_Footnotes_Convert', 'toBool')) {
+           $footnote_collapse = MCI_Footnotes_Convert::toBool(MCI_Footnotes_Settings::instance()->get(MCI_Footnotes_Settings::C_BOOL_REFERENCE_CONTAINER_COLLAPSE));
+        }
         if( $footnote_collapse == true ){
             $footnote_collapse_link = 'on="tap:footnote_references_container.show" role="click" tabindex="1" ';
             $content_buffer = preg_replace( '/<div id=(.*?)footnote_references_container(.*?)\s/m','<div id=$1footnote_references_container$2 hidden ',$content_buffer);
@@ -823,7 +831,11 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
     }
     $new_url = "";
     $get_permalink_structure = "";
-    if ( ampforwp_amp_nonamp_convert("", "check") || (isset($redux_builder_amp['ampforwp-amp-takeover']) && true == $redux_builder_amp['ampforwp-amp-takeover']) ) {
+    $mob_pres_link = false;
+    if(function_exists('ampforwp_mobile_redirect_preseve_link')){
+      $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
+    }
+    if ( ampforwp_amp_nonamp_convert("", "check") || ($mob_pres_link == true || true == ampforwp_get_setting('ampforwp-amp-takeover'))) {
         $nonamp = 'nonamp';
     }
     if ( isset($nonamp) && 'nonamp' == $nonamp ) {

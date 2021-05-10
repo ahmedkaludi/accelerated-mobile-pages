@@ -101,6 +101,28 @@ function ampforwp_analytics_options($opt_name){
                             esc_html__( 'for more details on AMP Linker','accelerated-mobile-pages' ) ),             
                           'default'  => 0,
                       ),
+                      array(
+                          'class'    => 'child_opt',
+                          'id'       => 'ampforwp-ga-field-author',
+                          'type'     => 'switch',
+                          'title'    => esc_html__( 'Author Pageview', 'accelerated-mobile-pages' ),
+                          'required' => array('ampforwp-ga-switch', '=' , '1'),
+                          'tooltip-subtitle' => sprintf( '<a href="%s" target="_blank">%s</a> %s', 
+                                            esc_url('https://ampforwp.com/tutorials/article/how-to-track-author-pageview-analytics-in-amp'),
+                                            esc_html__( 'Click Here','accelerated-mobile-pages' ), 
+                            esc_html__( 'for more details on Author Pageview','accelerated-mobile-pages' ) ),             
+                          'default'  => 0,
+                      ),
+                       array(
+                            'class'=>'child_opt child_opt_arrow',
+                            'id'            =>'ampforwp-ga-field-author-index',
+                            'type'          => 'text',
+                            'title'         => esc_html__('Index of Author','accelerated-mobile-pages'),
+                            'default' => '',
+                            'tooltip-subtitle'  => 'Index number of author in custom dimension section',
+                            'required' => 
+                                array('ampforwp-ga-field-author', '=' , '1'),
+                        ),
                       // Advance Tracking options for Google Analytics
                       array(
                           'class' => 'child_opt',

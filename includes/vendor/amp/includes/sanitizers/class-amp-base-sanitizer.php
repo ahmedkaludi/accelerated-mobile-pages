@@ -48,8 +48,9 @@ abstract class AMP_Base_Sanitizer {
 			return $value;
 		}
 
-		if ( false !== filter_var( $value, FILTER_VALIDATE_INT ) ) {
-			return absint( $value );
+		// Accepts both integers and floats & prevents negative values #5005
+		if ( is_numeric( $value ) ) {
+			return max( 0, (float) $value );
 		}
 
 		if ( AMP_String_Utils::endswith( $value, 'px' ) ) {
