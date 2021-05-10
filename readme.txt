@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.76.17
+Stable tag: 1.0.77
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.77 (11th May 2021) =
+* Fixed: Related posts doesn't show more than 3-4 #4300
+
 = 1.0.76.17 (7th May 2021) =
 * Improvements: Added Beaver builder Pagebuilder Support in AMP Pagebuilder Extension #5009
 * Fixed: Title on Static Front Page is not displaying #5007
@@ -204,13 +207,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Backend button translation #4717
 * Fixed: Alignment issue with Gutenberg image block #4997 
 * Fixed: Undefined variable $q / Attempt to read property max_num_pages on null #5004
-
-= 1.0.76.15 (28th April 2021) =
-* Improvements: Added an option to add one signal notification on the desktop #4377
-* Improvements: Added an option to set Target for CTA button in swift theme #4995
-* Improvements: Added an option to install PWA from options panel #4529
-* Improvements: Added HappyForms Compatibility Extension #5001
-* Fixed: Width in percentage not working for the audio from the Pennews Theme #4576
-* Fixed: Need to allow two attributes in input tag #4998
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

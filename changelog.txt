@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.77 (11th May 2021) =
+* Fixed: Related posts doesn't show more than 3-4 #4300
+
 = 1.0.76.17 (7th May 2021) =
 * Improvements: Added Beaver builder Pagebuilder Support in AMP Pagebuilder Extension #5009
 * Fixed: Title on Static Front Page is not displaying #5007
