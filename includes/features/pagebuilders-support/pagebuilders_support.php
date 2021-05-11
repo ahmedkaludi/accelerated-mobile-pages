@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 function ampforwp_page_builders_support_options($opt_name){
-$divi_pb_for_ampchecker = $elemntr_pb_for_ampchecker = $avada_pb_for_ampchecker = $avia_pb_for_ampchecker = $oxygen_pb_for_ampchecker = $ux_pb_for_ampchecker = $beaver_builder_pb_for_ampchecker = array();
+$divi_pb_for_ampchecker = $elemntr_pb_for_ampchecker = $avada_pb_for_ampchecker = $avia_pb_for_ampchecker = $oxygen_pb_for_ampchecker = $ux_pb_for_ampchecker = $beaver_builder_pb_for_ampchecker = $muffin_builder_pb_for_ampchecker = array();
 if(!function_exists('amp_pagebuilder_compatibility_init')){
 $divi_pb_for_ampchecker = array( 
                 'id'   => 'divi_pb_for_amp_info_normal',
@@ -61,6 +61,15 @@ $avia_pb_for_ampchecker = array(
                 'type' => 'info',
                 'required' => array(
                     array('ampforwp-beaver-pb-for-amp', '=' , true),  
+                    ),
+                 'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder compatibility For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
+           );
+
+            $muffin_builder_pb_for_ampchecker = array( 
+                'id'   => 'muffin_b_pb_for_amp_info_normal',
+                'type' => 'info',
+                'required' => array(
+                    array('ampforwp-muffin-pb-for-amp', '=' , true),  
                     ),
                  'desc' => sprintf('<div style="background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;"><b>%s</b> %s <a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a> extension.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/page-builder-compatibility-for-amp/" target="_blank">%s</a>)</div></div>',esc_html__( 'ONE LAST STEP REQUIRED:','accelerated-mobile-pages'),esc_html__( 'This feature requires', 'accelerated-mobile-pages' ),esc_html__( 'Page Builder compatibility For AMP', 'accelerated-mobile-pages'),esc_html__( 'Click here for more info', 'accelerated-mobile-pages' )),               
            );
@@ -188,6 +197,26 @@ $avia_pb_for_ampchecker = array(
     }
     $pb_for_amp[] = $beaver_builder_pb_for_ampchecker;
 
+    $theme = wp_get_theme();
+    if ( 'Betheme' == $theme->name || 'Betheme Child' == $theme) {
+      $pb_for_amp[] =  array(
+                  'id' => 'ampforwp-muffin-pb-for-amp-accor',
+                  'type' => 'section',
+                  'title' => esc_html__('Muffin Compatibility', 'accelerated-mobile-pages'),
+                  'indent' => true,
+                  'layout_type' => 'accordion',
+                  'accordion-open'=> 1, 
+              );
+      $pb_for_amp[] = array(
+                 'id'       => 'ampforwp-muffin-pb-for-amp',
+                 'type'     => 'switch',
+                 'title'    => esc_html__('Muffin Builder Support','accelerated-mobile-pages'),
+                 'tooltip-subtitle' => esc_html__('Enable or Disable the Muffin support for AMP', 'accelerated-mobile-pages'),
+                 'default'  => false
+              ); 
+    }
+    $pb_for_amp[] = $muffin_builder_pb_for_ampchecker;
+
     
   $pb_title = 'Page Builder';
   $theme = wp_get_theme(); // gets the current theme
@@ -231,6 +260,12 @@ $avia_pb_for_ampchecker = array(
 
   if(function_exists('flatsome_setup')){
         $pb_title = 'UX Builder Support';
+  }
+  if(class_exists('FLBuilderAdminPointers')){
+        $pb_title = 'Beaver Builder Support';
+  }
+  if ( 'Betheme' == $theme->name || 'Betheme Child' == $theme) {
+    $pb_title = 'Muffin Builder Support';
   }
 Redux::setSection( $opt_name, array(
        'title'      => esc_html__( $pb_title, 'accelerated-mobile-pages' ),
