@@ -97,6 +97,7 @@ function ampforwp_framework_get_featured_image(){
 			echo $video_markup;
 			return;
 		}
+		$amp_html = apply_filters('ampforwp_modify_featured_image',$amp_html);
 		if( $amp_html ){ ?>
 			<figure class="amp-featured-image <?php echo esc_html($f_vid); ?>"> <?php  
 				if(function_exists('ampforwp_add_fallback_element')){
