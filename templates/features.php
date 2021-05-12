@@ -8967,7 +8967,7 @@ function ampforwp_referesh_related_post(){
 		$my_query->the_post();
 		update_post_meta(get_the_ID(),'ampforwp-amp-on-off','default');
 	}
-	$args=array(
+	/*$args=array(
 		'fields'        => 'ids',
 	    'post_status'           => 'publish',
         'ignore_sticky_posts'   => true,
@@ -8984,7 +8984,7 @@ function ampforwp_referesh_related_post(){
 	while( $my_query->have_posts() ) {
 		$my_query->the_post();
 		update_post_meta(get_the_ID(),'ampforwp-ia-on-off','default');
-	}
+	}*/
 	$data['response'] = ampforwp_get_post_percent();
 	echo json_encode($data);
 }
