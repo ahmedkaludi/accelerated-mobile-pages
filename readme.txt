@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.77 (11th May 2021) =
+= 1.0.77 (12th May 2021) =
 * Fixed: Related posts doesn't show more than 3-4 #4300
 
 = 1.0.76.17 (7th May 2021) =
