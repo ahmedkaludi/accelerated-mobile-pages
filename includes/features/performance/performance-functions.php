@@ -73,7 +73,7 @@ function ampforwp_minify_html_output($content_buffer){
     }
     if(class_exists('Mfn_Builder_Front') && preg_match_all('/<div\sclass="section mcb-section(.*?)<div class="amp-wp-content">/s', $content_buffer, $matches)){
         $match = $matches[0][0];
-        $mfn_content = ampforwp_content_sanitizer($match);
+        $mfn_content = str_replace("img", 'amp-img', $match);
         $content_buffer = preg_replace('/<div\sclass="section mcb-section(.*?)<div class="amp-wp-content">/s', $mfn_content , $content_buffer);
     }
     global $redux_builder_amp;
