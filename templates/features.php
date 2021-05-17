@@ -8526,6 +8526,9 @@ function ampforwp_include_required_scripts($content){
 	}
 	//OTHER COMPONENT CHECK 
 	$other_comp_arr = array('amp-mustache'=>'amp-mustache','amp-embed'=>'amp-ad','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection');
+	if (preg_match('/<amp-carousel(.*?)lightbox(.*?)>/', $content)) {
+		 $other_comp_arr['amp-carousel'] = 'amp-lightbox-gallery';
+	}
 	foreach ($other_comp_arr as $key => $value) {
 		$ocomp = $value;
 		$celem = 'element';
