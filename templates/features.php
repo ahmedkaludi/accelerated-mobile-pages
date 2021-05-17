@@ -8943,9 +8943,7 @@ function ampforwp_referesh_related_post(){
 		die;
 	}
 	$orderby = 'ID';
-    if( true == ampforwp_get_setting('ampforwp-single-order-of-related-posts')){
-		$orderby = 'rand';
-	}
+
 	$args=array(
 		'fields'        => 'ids',
 		'post_type'	   => 'post',
