@@ -235,6 +235,10 @@ jQuery(function($) {
                         width++; 
                         elem.style.width = width + '%'; 
                         elem.innerHTML = width * 1  + '%';
+                        if(width == '100'){
+                            $('#ampforwp-refersh-related-post').remove();
+                            $('#redux_builder_amp-ampforwp-refersh-related-post .description').html('All the posts have been refreshed successfully.');
+                        }
                     }
                 }
             }
