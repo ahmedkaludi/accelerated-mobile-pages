@@ -18,12 +18,8 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 				<ul class="clearfix">
 					<?php ampforwp_related_post(); ?>
 					<?php
-					$current_id = ampforwp_get_the_ID();
 				    while( $my_query->have_posts() ) {
 					    $my_query->the_post();
-					if(ampforwp_get_the_ID()==$current_id){
-			            continue;
-			        }   
 					?>
 						<li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 				            <?php
