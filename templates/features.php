@@ -5537,7 +5537,7 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 			$current_access = current_user_can('edit_posts',$current_user );
 		}
 			// Check for Screen base, user ability to read and visibility
-			if ($current_access && (isset($post->ID) && current_user_can('read_post', $post->ID ))
+			if ($current_access && (isset($post->ID) && $post->ID && current_user_can('read_post', $post->ID ))
 				&& ( isset ( $wp_post_types[ $post->post_type ]->public ) && $wp_post_types[$post->post_type]->public )
 				&& ( isset ( $wp_post_types[ $post->post_type ]->show_in_admin_bar ) && $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
 				// Check if current post type is AMPed or not
