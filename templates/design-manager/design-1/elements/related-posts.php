@@ -47,7 +47,6 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2) {
 				   'fields'=>'ids',
 					'category__in' 		 => $category_ids,
 					'posts_per_page'	 => $int_number_of_related_posts,
-					'post__not_in' => array($post->ID),
 					'ignore_sticky_posts'=> 1,
 					'has_password'		 => false ,
 					'post_status'  		 => 'publish',
@@ -55,10 +54,10 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==2) {
 					'no_found_rows'  => true,
 					'meta_query' => array(
 						array(
-							'key'        => 'ampforwp-amp-on-off',
-							'value'      => 'default',
+							'key' => 'ampforwp-amp-on-off',
+			    			'value' => 'default',
 						)
-					)
+					)		
 			);
 	}
 } //end of block for categories
@@ -81,9 +80,9 @@ if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
 				'no_found_rows'		 => true,
 			    'meta_query' => array(
 					array(
-						'key'        => 'ampforwp-amp-on-off',
-						'value'      => 'default',
-					)
+		    			'key' => 'ampforwp-amp-on-off',
+		    			'value' => 'default',
+		    		)
 				)
 			);
 	}
@@ -104,7 +103,7 @@ if ( isset($redux_builder_amp['ampforwp-related-posts-days-switch']) && true == 
 if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && $redux_builder_amp['ampforwp-single-select-type-of-related'] ){
 	$args = apply_filters('ampforwp_related_posts_query_args', $args);
 	$my_query = new wp_query( $args );
-	if( $my_query->have_posts() ) { ?>
+	if( $my_query->have_posts() ) {?>
 		<div class="amp-wp-content relatedpost">
 		     <div class="rp">
 		    	<span><?php 
@@ -115,9 +114,12 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 		    	}?></span>
 				<ol class="clearfix">
 					<?php
-					
+					$current_id = ampforwp_get_the_ID();
 			    	while( $my_query->have_posts() ) {
-					    $my_query->the_post();
+					    $my_query->the_post();	
+					    if(ampforwp_get_the_ID()==$current_id){
+			            	continue;
+			            }
 					   						
 						$related_post_permalink = ampforwp_url_controller( get_permalink() );
 						if ( ampforwp_get_setting('ampforwp-single-related-posts-link') ) {
