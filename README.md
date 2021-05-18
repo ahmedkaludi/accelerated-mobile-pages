@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.77
+Stable tag: 1.0.77.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,12 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.1 (19th May 2021) =
+* Improvements: Added a filter from which user can control Mobile redirection #4488
+* Improvements: Implemented the Mobile redirection functionality using Javascript method #3844 
+* Improvements: Added preload to get featured image on AMP #5020 
+* Fixed: Debug Warning in templates/features.php #5014 
+
 = 1.0.77 (17th May 2021) =
 * Fixed: Related posts doesn't show more than 3-4 #4300
 
@@ -203,12 +209,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: ?amp doesn’t removing from view non-amp text #5006
 * Fixed: Errors in Schema Pro FAQ #4956
 * Fixed: PHP Warning error when enable Breadcrumbs option #5008
-
-= 1.0.76.16 (4th May 2021) =
-* Fixed: Incorrent height in anchor.fm audio embed from the Pennews Theme #4576
-* Fixed: Slide Anything Plugin text slider not working in AMP #4999
-* Fixed: Backend button translation #4717
-* Fixed: Alignment issue with Gutenberg image block #4997 
-* Fixed: Undefined variable $q / Attempt to read property max_num_pages on null #5004
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
