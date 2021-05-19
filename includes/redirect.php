@@ -387,6 +387,18 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
           return true;
         }
       }
+    if(ampforwp_is_amp_endpoint()==false && $redirectToAMP==false){
+      if(!isset($_GET['nonamphead']) && isset($_SESSION['nonamphead']) && in_array($url_to_redirect, $_SESSION['nonamphead'])){
+           return;
+        }
+        if (( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp'])) && !isset($_GET['nonamphead']) ) {
+          $_SESSION['ampforwp_amp_mode'] = 'mobile-on';
+          if ( $url_to_redirect ) { ?>
+              <script>if(screen.width<769){window.location = "<?php echo esc_url($url_to_redirect); ?>";}</script>
+            <?php }  
+          return;
+      }
+    }  
     // #1947 when nonamp=1 it should redirect to original link
     $go_to_url  = "";
     $url        = "";
