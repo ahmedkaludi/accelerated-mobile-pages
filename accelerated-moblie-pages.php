@@ -835,20 +835,11 @@ if ( !function_exists('amp_activate') ) {
 }
 if(is_admin()){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/modules-upgrade.php' );
-	add_action( "redux/options/redux_builder_amp/saved", 'ampforwpformobileredirection', 10, 2 );
-	add_action( "redux/options/redux_builder_amp/reset", 'ampforwpformobileredirectionreset');
-	add_action( "redux/options/redux_builder_amp/section/reset", 'ampforwpformobileredirectionreset');
 	add_action( "redux/options/redux_builder_amp/saved", 'ampforwp_update_data_when_saved', 10, 2 );
 	add_action( "redux/options/redux_builder_amp/reset", 'ampforwp_update_data_when_reset' );
 	add_action( "redux/options/redux_builder_amp/section/reset", 'ampforwp_update_data_when_reset' );
 }
-function ampforwpformobileredirectionreset($rest_object = ''){
-	if(isset($rest_object->parent->transients)){
-		if($rest_object->parent->transients['changed_values']['amp-mobile-redirection'] == 1){
-			insert_with_markers( ABSPATH . '/.htaccess', "ampforwp_mobile_redirection_code", '' );
-		}
-	}
-}
+
 /**
  * Redirects the old AMP URL to the new AMP URL.
  * If post slug is updated the amp page with old post slug will be redirected to the updated url.
@@ -1520,39 +1511,6 @@ if(!function_exists('ampforwp_delete_transient_on_update')){
 					delete_transient( $trans_arr[$i] );
 				}
 			}
-		}
-	}
-}
-function ampforwpformobileredirection($options, $changed_values) {
-	if ( isset( $changed_values['amp-mobile-redirection'] ) ) {
-		if ( $changed_values['amp-mobile-redirection'] == '0' ) {
-			$admin_URL = admin_url();
-			$admin_URLArray = explode('/',$admin_URL);
-			$admin_URLArray = array_filter($admin_URLArray);
-			$admin_URL_slug = end($admin_URLArray);
-			$rules = "<IfModule mod_rewrite.c>\n";
-			$rules .= "RewriteEngine On\n";
-			$rules .= 'RewriteCond %{QUERY_STRING} !^desktop
-                    RewriteCond %{HTTP_USER_AGENT} "android|blackberry|googlebot-mobile|iemobile|iphone|ipod|#opera mobile|palmos|webos" [NC]
-                    RewriteCond %{HTTP_USER_AGENT} "acs|alav|alca|amoi|audi|aste|avan|benq|bird|blac|blaz|brew|cell|cldc|cmd-" [NC,OR]
-                    RewriteCond %{HTTP_USER_AGENT} "dang|doco|eric|hipt|inno|ipaq|java|jigs|kddi|keji|leno|lg-c|lg-d|lg-g|lge-" [NC,OR]
-                    RewriteCond %{HTTP_USER_AGENT}  "maui|maxo|midp|mits|mmef|mobi|mot-|moto|mwbp|nec-|newt|noki|opwv" [NC,OR]
-                    RewriteCond %{HTTP_USER_AGENT} "palm|pana|pant|pdxg|phil|play|pluc|port|prox|qtek|qwap|sage|sams|sany" [NC,OR]
-                    RewriteCond %{HTTP_USER_AGENT} "sch-|sec-|send|seri|sgh-|shar|sie-|siem|smal|smar|sony|sph-|symb|t-mo" [NC,OR]
-                    RewriteCond %{HTTP_USER_AGENT} "teli|tim-|tosh|tsm-|upg1|upsi|vk-v|voda|w3cs|wap-|wapa|wapi" [NC,OR]
-                    RewriteCond %{HTTP_USER_AGENT} "wapp|wapr|webc|winw|winw|xda|xda-" [NC,OR]
-                    RewriteCond %{HTTP_USER_AGENT} "up.browser|up.link|windowssce|iemobile|mini|mmp" [NC,OR]
-                    RewriteCond %{HTTP_USER_AGENT} "symbian|midp|wap|phone|pocket|mobile|pda|psp" [NC]
-                    RewriteCond %{REQUEST_URI} !^/.*\.(gif|jpg|png|bmp|js|css|ttf|mp4|mp3|wav|zip|doc|docx|rtf|txt|xls|xlsx|xlr|csv|woff2|woff)$
-                    RewriteCond %{REQUEST_URI} !^/amp/.*$
-                    RewriteCond %{REQUEST_URI} !^.*\\'.$admin_URL_slug.'.*$
-                    RewriteCond ' . str_replace( "\\", "/", AMPFORWP_PLUGIN_DIR ) . 'accelerated-moblie-pages.php -f
-                    RewriteRule ^(.*)$  %{REQUEST_URI}amp/ [L,R=301] ';
-			$rules .= "\n</IfModule>\n";
-			insert_with_markers( ABSPATH . '/.htaccess', "ampforwp_mobile_redirection_code", $rules );
-		} else {
-			$rules = '';
-			insert_with_markers( ABSPATH . '/.htaccess', "ampforwp_mobile_redirection_code", $rules );
 		}
 	}
 }
