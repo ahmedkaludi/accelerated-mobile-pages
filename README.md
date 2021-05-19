@@ -198,6 +198,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvements: Implemented the Mobile redirection functionality using Javascript method #3844 
 * Improvements: Added preload to get featured image on AMP #5020 
 * Fixed: Debug Warning in templates/features.php #5014 
+* Fixed: Validation error in image lightbox for gallery #5021
 
 = 1.0.77 (17th May 2021) =
 * Fixed: Related posts doesn't show more than 3-4 #4300
