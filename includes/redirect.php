@@ -173,9 +173,9 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     if(preg_match('/robots\.txt/', $this_url)){
       return;
     }
-    $default = false;
-    $default = apply_filters('ampforwp_modify_mobile_redirection',$default);
-    if($default){
+    $stop_mob_redirection = false;
+    $stop_mob_redirection = apply_filters('ampforwp_modify_mobile_redirection',$stop_mob_redirection);
+    if($stop_mob_redirection === true){
       return;
     }
     // return if the current page is Feed page, as we don't need anything on feedpaged
