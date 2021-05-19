@@ -196,6 +196,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Improvements: Added preload to get featured image on AMP #5020 
 * Fixed: Debug Warning in templates/features.php #5014 
 * Fixed: Validation error in image lightbox for gallery #5021
+* Fixed: Fatal error on AMP pages after updating WP User Avatar plugin #5029
 
 = 1.0.77 (17th May 2021) =
 * Fixed: Related posts doesn't show more than 3-4 #4300
