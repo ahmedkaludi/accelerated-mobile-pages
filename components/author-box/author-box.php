@@ -99,7 +99,7 @@ if ( isset($args['show_time']) ) {
     if( null == $author_avatar_url ){
        $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
     } 
-    if(class_exists('WP_User_Avatar_Functions')){
+    if(class_exists('WP_User_Avatar_Functions') && version_compare(PPRESS_VERSION_NUMBER,'3.0', '<')){
         $image = get_wp_user_avatar();
         if (!empty($image)) {
             preg_match_all( '@alt="([^"]+)"@' , $image, $match );

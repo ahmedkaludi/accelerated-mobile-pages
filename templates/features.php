@@ -4602,13 +4602,11 @@ function ampforwp_add_blacklist_sanitizer($data){
 //Compatibility with WP User Avatar #975
 function ampforwp_get_wp_user_avatar($object='',$type=''){
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		if(is_plugin_active( 'wp-user-avatar/wp-user-avatar.php' )){
-			if(class_exists('WP_User_Avatar_Functions')){
+			if(class_exists('WP_User_Avatar_Functions') && version_compare(PPRESS_VERSION_NUMBER,'3.0', '<')){
 				$user_avatar_url = '';
 				$user_avatar_url = get_wp_user_avatar_src($object);
 				return $user_avatar_url;
 			}
-		}
 }
 add_filter('get_amp_supported_post_types','ampforwp_supported_post_types');
 function ampforwp_supported_post_types($supported_types){
