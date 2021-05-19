@@ -4602,7 +4602,7 @@ function ampforwp_add_blacklist_sanitizer($data){
 //Compatibility with WP User Avatar #975
 function ampforwp_get_wp_user_avatar($object='',$type=''){
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			if(class_exists('WP_User_Avatar_Functions') && version_compare(PPRESS_VERSION_NUMBER,'3.0', '<')){
+			if(class_exists('WP_User_Avatar_Functions') && defined('PPRESS_VERSION_NUMBER') && version_compare(PPRESS_VERSION_NUMBER,'3.0', '<')){
 				$user_avatar_url = '';
 				$user_avatar_url = get_wp_user_avatar_src($object);
 				return $user_avatar_url;
