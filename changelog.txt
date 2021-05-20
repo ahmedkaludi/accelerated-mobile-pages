@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.77.2 (20th May 2021) =
+* Fixed: Some issues with style on normal version after update #3844
+
 = 1.0.77.1 (19th May 2021) =
 * Improvements: Added a filter from which user can control Mobile redirection #4488
 * Improvements: Implemented the Mobile redirection functionality using Javascript method #3844 
