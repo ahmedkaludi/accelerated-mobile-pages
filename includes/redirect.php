@@ -393,9 +393,9 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
         }
         if (( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp'])) && !isset($_GET['nonamphead']) ) {
           $_SESSION['ampforwp_amp_mode'] = 'mobile-on';
-          if ( $url_to_redirect ) { ?>
-              <script>if(screen.width<769){window.location = "<?php echo esc_url($url_to_redirect); ?>";}</script>
-            <?php }  
+          if ( $url_to_redirect ) { 
+            add_action('wp_head', 'ampforwp_mobile_redirection_js');
+          }
           return;
       }
     }  

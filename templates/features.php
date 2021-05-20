@@ -9541,3 +9541,11 @@ function ampforwp_wp_block_cover_image($content_buffer){
 	}
 	return $content_buffer;
 }
+ function ampforwp_mobile_redirection_js() {
+ 	$url_to_redirect = ampforwp_amphtml_generator();?>
+    <script>
+		if(screen.width<769){
+        	window.location = "<?php echo esc_url($url_to_redirect); ?>";
+        }
+    	</script>
+<?php }
