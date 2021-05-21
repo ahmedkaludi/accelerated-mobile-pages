@@ -167,6 +167,7 @@ function amp_menu($echo=true, $menu_args=array(), $type='header'){
 		else{
 			$amp_menu = amp_menu_html($echo, $menu_args, $type);
 		}
+		$amp_menu = apply_filters('ampforwp_amp_menu_content',$amp_menu,$type);
 		if ( false == $echo ) {
 			return $amp_menu;
 		}
