@@ -47,6 +47,9 @@ function ampforwp_add_admin_styling($hook_suffix){
         if(function_exists('html5blank_header_scripts')){
             wp_dequeue_script( 'jquery-js' );
         }
+        if(function_exists('megashop_setup')){
+            wp_dequeue_script( 'adminjs' );
+        }
         remove_all_actions('admin_notices');
         remove_all_actions('all_admin_notices');
         if(class_exists('WC_Ecpay_Apple_Pay')){
