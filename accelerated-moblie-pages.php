@@ -838,6 +838,7 @@ if(is_admin()){
 	add_action( "redux/options/redux_builder_amp/saved", 'ampforwp_update_data_when_saved', 10, 2 );
 	add_action( "redux/options/redux_builder_amp/reset", 'ampforwp_update_data_when_reset' );
 	add_action( "redux/options/redux_builder_amp/section/reset", 'ampforwp_update_data_when_reset' );
+	add_action( "redux/options/redux_builder_amp/saved", 'ampforwp_save_local_font', 10, 2 );
 }
 
 /**
@@ -1511,6 +1512,40 @@ if(!function_exists('ampforwp_delete_transient_on_update')){
 					delete_transient( $trans_arr[$i] );
 				}
 			}
+		}
+	}
+}
+if(!function_exists('ampforwp_save_local_font')){
+	function ampforwp_save_local_font(){
+		if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')!=""){
+			$upload_dir = wp_upload_dir(); 
+			$user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-local-fonts';
+			if(!file_exists($user_dirname)) wp_mkdir_p($user_dirname);
+			$font_url 	= ampforwp_get_setting('ampforwp-local-font-upload','url');
+			$abs_path 	= explode("wp-content", $font_url);
+			if(isset($abs_path[1])){
+		        $permfile   = ABSPATH.'wp-content'.$abs_path[1];
+		        $files = explode('/', $abs_path[1]);
+		        $file_name = end($files);
+		        $copy_to   = esc_attr($user_dirname).'/'.esc_attr($file_name);
+		        if(!file_exists($copy_to)){
+		        	$files = glob( $user_dirname . '/*' );
+		            foreach ( $files as $file ) {
+		                unlink( $file );
+		            }
+	            	copy($permfile, $copy_to);
+		        	unzip_file($permfile, $user_dirname );
+		        }
+		    }
+		}else if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')==""){
+			$upload_dir   = wp_upload_dir();
+	        $user_dirname = esc_attr($upload_dir['basedir']) . '/' . 'ampforwp-local-fonts';
+	        if ( file_exists( $user_dirname ) ) {
+	            $files = glob( $user_dirname . '/*' );
+	            foreach ( $files as $file ) {
+	                 unlink( $file );
+	            }
+	        }
 		}
 	}
 }

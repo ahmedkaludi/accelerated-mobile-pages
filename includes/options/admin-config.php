@@ -4181,7 +4181,25 @@ Redux::setSection( $opt_name, array(
                 'required' => array(
                     array('ampforwp-google-font-switch', '=', '1'),
                 )
-            )
+            ),
+            array(
+               'id' => 'ampforwp-local-font-switch',
+               'type' => 'switch',
+               'title' => esc_html__('Local Fonts', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => esc_html__('Enable/Disable Local Font','accelerated-mobile-pages'),
+                'default'   => '',
+            ),
+            array(
+               'id' => 'ampforwp-local-font-upload',
+               'type' => 'media',
+               'url'      => true,
+               'mode'      => 'zip',
+               'class'    => 'child_opt child_opt_arrow',
+               'title' => esc_html__('Upload Local Font', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => esc_html__('Upload Local Font','accelerated-mobile-pages'),
+               'required' => array('ampforwp-local-font-switch', '=', '1'),
+                'default' => '',
+            ),
         );
             $amp_fontparts = array_merge($amp_fontparts ,$fonts_settings);   
     }
