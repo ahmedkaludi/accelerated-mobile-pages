@@ -395,6 +395,11 @@ function amp_header_core(){
 				<?php $custom_css = ampforwp_get_setting('css_editor');
 					if (function_exists('heateor_sss_run') && ampforwp_get_setting('ampforwp_css_tree_shaking') ) {
 						global $wp_filesystem;
+						if(!is_object($wp_filesystem)){
+							require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-base.php';
+			    			require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php';
+			    			$wp_filesystem = new WP_Filesystem_Direct( array() );
+		    			}
 						$custom_css .= $wp_filesystem->get_contents(AMPFORWP_PLUGIN_DIR."/includes/sassy-style-optimized.css");
 					}
 					  $custom_css = str_replace(array('.accordion-mod'), array('.apac'), $custom_css);
