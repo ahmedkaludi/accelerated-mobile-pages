@@ -64,6 +64,11 @@ function ampforwp_minify_html_output($content_buffer){
     if(function_exists('vp_pfui_admin_init') && function_exists('penci_setup') && preg_match('/<amp-iframe src="(.*?)anchor.fm(.*?)"(.*?)<\/amp-iframe>/', $content_buffer)){
         $content_buffer = preg_replace('/<amp-iframe src="(.*?)anchor.fm(.*?)"(.*?)<\/amp-iframe>/', '<amp-iframe src="$1anchor.fm$2" scrolling="no" $3</amp-iframe>', $content_buffer);
     }
+    if(class_exists('Mfn_Builder_Front') && preg_match_all('/<div\sclass="section mcb-section(.*?)<div class="amp-wp-content">/s', $content_buffer, $matches)){
+        $match = $matches[0][0];
+        $mfn_content = str_replace("img", 'amp-img', $match);
+        $content_buffer = preg_replace('/<div\sclass="section mcb-section(.*?)<div class="amp-wp-content">/s', $mfn_content , $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
