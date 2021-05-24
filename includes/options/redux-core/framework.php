@@ -2845,9 +2845,10 @@
                     $values = $this->redux_parse_str( $sanitized_data );
 
                     $values = $values[ $redux->args['opt_name'] ];
-
-                    if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
+                    if ( version_compare( PHP_VERSION, '7.4', '<' ) && function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
                         $values = array_map( 'stripslashes_deep', $values );
+                    }else{
+                        $values = stripslashes($values);
                     }
 
                     if ( ! empty ( $values ) ) {
