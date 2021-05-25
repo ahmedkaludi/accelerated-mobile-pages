@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.77.3 (24th May 2021) =
+= 1.0.77.3 (26th May 2021) =
 * Improvements: Added Compatibility with WebP Express plugin #4357 
 * Improvements: Added an option to allow users to upload and use local fonts on AMP #4264
 * Improvements: Added Muffin builder Pagebuilder Support in AMP Pagebuilder Extension #5015
