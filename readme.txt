@@ -201,6 +201,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Hide featured images on a single post if this is older than certain date #5018 
 * Fixed: Getting AMP validation Error in Add Widget After Content plugin #5027 
 * Fixed: Query Monitor not working on AMP pages #5025 
+* Fixed: Full-size image is always preloaded for the featured image in Swift theme #5038
 
 = 1.0.77.2 (20th May 2021) =
 * Fixed: Some issues with style on normal version after update #3844
