@@ -48,10 +48,15 @@ function amp_post_template_add_cached_link($amp_template) {
 	?>
 		<link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
 		<?php
-			$image = get_the_post_thumbnail_url();
-			if($image!=""){
+			$thumb_id = get_post_thumbnail_id(ampforwp_get_the_ID());
+			$image_size = ampforwp_get_setting('swift-featued-image-size');
+			$image = wp_get_attachment_image_src( $thumb_id, $image_size );
+			if($image!="" && isset($image[0])){
+				if(function_exists('_imagify_init')){
+					$image[0] = esc_url($image[0]).".webp";
+				}
 			?>
-			<link rel="preload" href="<?php echo esc_url($image);?>" as="image">
+			<link rel="preload" href="<?php echo esc_url($image[0]);?>" as="image">
 		<?php } ?>
 		<?php
 		$scripts = $amp_template->get( 'amp_component_scripts', array() );
