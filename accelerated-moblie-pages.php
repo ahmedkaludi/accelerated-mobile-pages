@@ -1535,6 +1535,18 @@ if(!function_exists('ampforwp_save_local_font')){
 		            }
 	            	copy($permfile, $copy_to);
 		        	unzip_file($permfile, $user_dirname );
+		        	$files = glob( $user_dirname . '/*' );
+		            foreach ( $files as $file ) {
+		            	if(is_dir($file)){
+		            		rmdir($file);
+		            	}
+			            $fonts = explode("/", $file);
+		               	$font_names = end($fonts);
+						$ext = end(explode(".", $font_names));
+						if($ext!='ttf' && $ext!='eot' && $ext!='svg'){
+							unlink( $file );
+						}
+		            }
 		        }
 		    }
 		}else if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')==""){
