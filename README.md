@@ -198,7 +198,6 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvements: Added an option to allow users to upload and use local fonts on AMP #4264
 * Improvements: Added Muffin builder Pagebuilder Support in AMP Pagebuilder Extension #5015
 * Fixed: Fatal error when both Sassy Social Share and Optimize CSS are enabled #5032 
-* Fixed: AMP submenu is not getting visible when clicking on the parent menu #4587 
 * Fixed: Issues with Megashop theme #5010 
 * Fixed: Images not sanitized when added using Muffin Pagebuilder #5013 
 * Fixed: Hide featured images on a single post if this is older than certain date #5018 
