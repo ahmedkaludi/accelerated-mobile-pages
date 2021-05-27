@@ -1,5 +1,28 @@
 == Changelog ==
 
+= 1.0.77.3 (27th May 2021) =
+* Improvements: Added Compatibility with WebP Express plugin #4357 
+* Improvements: Added an option to allow users to upload and use local fonts on AMP #4264
+* Improvements: Added Muffin builder Pagebuilder Support in AMP Pagebuilder Extension #5015
+* Fixed: Fatal error when both Sassy Social Share and Optimize CSS are enabled #5032  
+* Fixed: Issues with Megashop theme #5010 
+* Fixed: Images not sanitized when added using Muffin Pagebuilder #5013 
+* Fixed: Hide featured images on a single post if this is older than certain date #5018 
+* Fixed: Getting AMP validation Error in Add Widget After Content plugin #5027 
+* Fixed: Query Monitor not working on AMP pages #5025 
+* Fixed: Full-size image is always preloaded for the featured image in Swift theme #5038
+
+= 1.0.77.2 (20th May 2021) =
+* Fixed: Some issues with style on normal version after update #3844
+
+= 1.0.77.1 (19th May 2021) =
+* Improvements: Added a filter from which user can control Mobile redirection #4488
+* Improvements: Implemented the Mobile redirection functionality using Javascript method #3844 
+* Improvements: Added preload to get featured image on AMP #5020 
+* Fixed: Debug Warning in templates/features.php #5014 
+* Fixed: Validation error in image lightbox for gallery #5021
+* Fixed: Fatal error on AMP pages after updating WP User Avatar plugin #5029
+
 = 1.0.77 (17th May 2021) =
 * Fixed: Related posts doesn't show more than 3-4 #4300
 

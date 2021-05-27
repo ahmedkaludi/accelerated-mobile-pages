@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.77
+Version: 1.0.77.3
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.77');
+define('AMPFORWP_VERSION','1.0.77.3');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
@@ -838,6 +838,7 @@ if(is_admin()){
 	add_action( "redux/options/redux_builder_amp/saved", 'ampforwp_update_data_when_saved', 10, 2 );
 	add_action( "redux/options/redux_builder_amp/reset", 'ampforwp_update_data_when_reset' );
 	add_action( "redux/options/redux_builder_amp/section/reset", 'ampforwp_update_data_when_reset' );
+	add_action( "redux/options/redux_builder_amp/saved", 'ampforwp_save_local_font', 10, 2 );
 }
 
 /**
@@ -1511,6 +1512,52 @@ if(!function_exists('ampforwp_delete_transient_on_update')){
 					delete_transient( $trans_arr[$i] );
 				}
 			}
+		}
+	}
+}
+if(!function_exists('ampforwp_save_local_font')){
+	function ampforwp_save_local_font(){
+		if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')!=""){
+			$upload_dir = wp_upload_dir(); 
+			$user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-local-fonts';
+			if(!file_exists($user_dirname)) wp_mkdir_p($user_dirname);
+			$font_url 	= ampforwp_get_setting('ampforwp-local-font-upload','url');
+			$abs_path 	= explode("wp-content", $font_url);
+			if(isset($abs_path[1])){
+		        $permfile   = ABSPATH.'wp-content'.$abs_path[1];
+		        $files = explode('/', $abs_path[1]);
+		        $file_name = end($files);
+		        $copy_to   = esc_attr($user_dirname).'/'.esc_attr($file_name);
+		        if(!file_exists($copy_to)){
+		        	$files = glob( $user_dirname . '/*' );
+		            foreach ( $files as $file ) {
+		                unlink( $file );
+		            }
+	            	copy($permfile, $copy_to);
+		        	unzip_file($permfile, $user_dirname );
+		        	$files = glob( $user_dirname . '/*' );
+		            foreach ( $files as $file ) {
+		            	if(is_dir($file)){
+		            		rmdir($file);
+		            	}
+			            $fonts = explode("/", $file);
+		               	$font_names = end($fonts);
+						$ext = end(explode(".", $font_names));
+						if($ext!='ttf' && $ext!='eot' && $ext!='svg'){
+							unlink( $file );
+						}
+		            }
+		        }
+		    }
+		}else if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')==""){
+			$upload_dir   = wp_upload_dir();
+	        $user_dirname = esc_attr($upload_dir['basedir']) . '/' . 'ampforwp-local-fonts';
+	        if ( file_exists( $user_dirname ) ) {
+	            $files = glob( $user_dirname . '/*' );
+	            foreach ( $files as $file ) {
+	                 unlink( $file );
+	            }
+	        }
 		}
 	}
 }

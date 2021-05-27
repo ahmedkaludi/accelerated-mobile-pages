@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.77
+Stable tag: 1.0.77.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,22 +190,27 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.77 (17th May 2021) =
-* Fixed: Related posts doesn't show more than 3-4 #4300
+= 1.0.77.3 (27th May 2021) =
+* Improvements: Added Compatibility with WebP Express plugin #4357 
+* Improvements: Added an option to allow users to upload and use local fonts on AMP #4264
+* Improvements: Added Muffin builder Pagebuilder Support in AMP Pagebuilder Extension #5015
+* Fixed: Fatal error when both Sassy Social Share and Optimize CSS are enabled #5032  
+* Fixed: Issues with Megashop theme #5010 
+* Fixed: Images not sanitized when added using Muffin Pagebuilder #5013 
+* Fixed: Hide featured images on a single post if this is older than certain date #5018 
+* Fixed: Getting AMP validation Error in Add Widget After Content plugin #5027 
+* Fixed: Query Monitor not working on AMP pages #5025 
+* Fixed: Full-size image is always preloaded for the featured image in Swift theme #5038
 
-= 1.0.76.17 (7th May 2021) =
-* Improvements: Added Beaver builder Pagebuilder Support in AMP Pagebuilder Extension #5009
-* Fixed: Title on Static Front Page is not displaying #5007
-* Fixed: The attribute 'height' in tag 'amp-img' is set to the invalid value. #5005
-* Fixed: ?amp doesn’t removing from view non-amp text #5006
-* Fixed: Errors in Schema Pro FAQ #4956
-* Fixed: PHP Warning error when enable Breadcrumbs option #5008
+= 1.0.77.2 (20th May 2021) =
+* Fixed: Some issues with style on normal version after update #3844
 
-= 1.0.76.16 (4th May 2021) =
-* Fixed: Incorrent height in anchor.fm audio embed from the Pennews Theme #4576
-* Fixed: Slide Anything Plugin text slider not working in AMP #4999
-* Fixed: Backend button translation #4717
-* Fixed: Alignment issue with Gutenberg image block #4997 
-* Fixed: Undefined variable $q / Attempt to read property max_num_pages on null #5004
+= 1.0.77.1 (19th May 2021) =
+* Improvements: Added a filter from which user can control Mobile redirection #4488
+* Improvements: Implemented the Mobile redirection functionality using Javascript method #3844 
+* Improvements: Added preload to get featured image on AMP #5020 
+* Fixed: Debug Warning in templates/features.php #5014 
+* Fixed: Validation error in image lightbox for gallery #5021
+* Fixed: Fatal error on AMP pages after updating WP User Avatar plugin #5029
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

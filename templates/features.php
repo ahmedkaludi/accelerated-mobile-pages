@@ -4602,13 +4602,11 @@ function ampforwp_add_blacklist_sanitizer($data){
 //Compatibility with WP User Avatar #975
 function ampforwp_get_wp_user_avatar($object='',$type=''){
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		if(is_plugin_active( 'wp-user-avatar/wp-user-avatar.php' )){
-			if(class_exists('WP_User_Avatar_Functions')){
+			if(class_exists('WP_User_Avatar_Functions') && defined('PPRESS_VERSION_NUMBER') && version_compare(PPRESS_VERSION_NUMBER,'3.0', '<')){
 				$user_avatar_url = '';
 				$user_avatar_url = get_wp_user_avatar_src($object);
 				return $user_avatar_url;
 			}
-		}
 }
 add_filter('get_amp_supported_post_types','ampforwp_supported_post_types');
 function ampforwp_supported_post_types($supported_types){
@@ -5537,7 +5535,7 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 			$current_access = current_user_can('edit_posts',$current_user );
 		}
 			// Check for Screen base, user ability to read and visibility
-			if ($current_access && (isset($post->ID) && current_user_can('read_post', $post->ID ))
+			if ($current_access && (isset($post->ID) && $post->ID && current_user_can('read_post', $post->ID ))
 				&& ( isset ( $wp_post_types[ $post->post_type ]->public ) && $wp_post_types[$post->post_type]->public )
 				&& ( isset ( $wp_post_types[ $post->post_type ]->show_in_admin_bar ) && $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
 				// Check if current post type is AMPed or not
@@ -8600,6 +8598,9 @@ function ampforwp_include_required_scripts($content){
 	}
 	//OTHER COMPONENT CHECK 
 	$other_comp_arr = array('amp-mustache'=>'amp-mustache','amp-embed'=>'amp-ad','form'=>'amp-form','amp-access'=>'amp-access','amp-fx'=>'amp-fx-collection');
+	if (preg_match('/<amp-carousel(.*?)lightbox(.*?)>/', $content)) {
+		 $other_comp_arr['amp-carousel'] = 'amp-lightbox-gallery';
+	}
 	foreach ($other_comp_arr as $key => $value) {
 		$ocomp = $value;
 		$celem = 'element';
@@ -8746,7 +8747,7 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					$m_content = $matches[1][$i];
 					$m_content = ampforwp_imagify_webp_compatibility($m_content);
 					$m_content = ampforwp_ewww_webp_compatibility($m_content);
-					
+					$m_content = ampforwp_webp_express_compatibility($m_content);
 					$m1_content = ampforwp_set_default_fallback_image($matches[1][$i]);
 					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
@@ -9539,4 +9540,67 @@ function ampforwp_wp_block_cover_image($content_buffer){
 		} 
 	}
 	return $content_buffer;
+}
+ function ampforwp_mobile_redirection_js() {
+ 	$url_to_redirect = ampforwp_amphtml_generator();?>
+    <script>
+		if(screen.width<769){
+        	window.location = "<?php echo esc_url($url_to_redirect); ?>";
+        }
+    	</script>
+<?php }
+function ampforwp_webp_express_compatibility($content){
+	if(function_exists('webp_express_process_post')){
+		preg_match_all('/src="(.*?)"/', $content,$src);
+		if(isset($src[1][0])){
+			$img_url = esc_url($src[1][0]);
+			if(preg_match('/http(.*?)\/wp-content\/uploads/', $img_url)){
+				$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images/doc-root/wp-content$2', $img_url);
+				if(!preg_match('/\.webp/', $img_url)){	
+					$img_url_webp = esc_url($img_url_webp).".webp";
+			 		$content = str_replace($img_url, $img_url_webp, $content); 
+				}
+			}
+	 	}
+	}	
+	return $content;
+}
+add_action('amp_post_template_css','ampforwp_set_local_font',33);
+if(!function_exists('ampforwp_set_local_font')){
+	function ampforwp_set_local_font(){
+		if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')!=""){
+			$upload_dir   = wp_upload_dir();
+	        $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-local-fonts';
+	        if ( file_exists( $user_dirname ) ) {
+	            $files = glob( $user_dirname . '/*' );
+	            $font_css =  '@font-face {';
+	            $i = 0;
+	            foreach ( $files as $file ) {
+	               	$fonts = explode("/", $file);
+	               	$font_name = end($fonts);
+					$ext = end(explode(".", $font_name));
+					if($ext!='zip'){
+						$font_arr = explode('-', $font_name);
+		                $font_family = $font_arr[0];
+		               	if($i==0){
+		               		$font_css .= "font-family: '".esc_attr(ucfirst($font_family))."'; font-style: normal; font-weight: 400;";
+		               	}
+		               	$font_path =  $upload_dir['baseurl'].'/'.'ampforwp-local-fonts/'.$font_name;
+		               	if($ext=='eot'){
+		               		$font_css .= "src: url('".esc_url($font_path)."'); src: url('".esc_url($font_path)."?#iefix') format('embedded-opentype'),";
+		               	}else if($ext=='svg'){
+		               		$font_css .= "src: url('".esc_url($font_path)."?#".esc_attr(ucfirst($font_family))."') format('svg'),";
+		               	}else if($ext=='ttf'){
+		               		$font_css .= "src: url('".esc_url($font_path)."') format('truetype'),";
+		               	}else{
+		               		$font_css .= "src: url('".esc_url($font_path)."') format('".esc_attr($ext)."'),";
+		               	}
+		               	$i++;
+					}
+	            }
+	            $font_css .= '}';
+	            echo $font_css;
+	        }
+		}
+	}
 }

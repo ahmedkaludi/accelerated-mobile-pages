@@ -75,6 +75,9 @@ function ampforwp_thirdparty_compatibility(){
 		add_filter( 'embed_oembed_html', 'ampforwp_get_gitty_image_embed',10,4);
 		add_filter( 'ampforwp_the_content_last_filter','ampforwp_getty_image_compatibility',10);
 	}
+	if(function_exists('megashop_setup')){
+        remove_filter( 'wp_nav_menu_args', 'TT_nav_menu_args' );
+    }
 	$yoast_canonical = $yoast_canonical_post = $yoast_canonical_page = '';
 	$yoast_canonical = get_option( 'wpseo_titles' );
 	if(isset($yoast_canonical['noindex-post'])){

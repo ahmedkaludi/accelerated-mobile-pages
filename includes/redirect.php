@@ -173,7 +173,11 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     if(preg_match('/robots\.txt/', $this_url)){
       return;
     }
-
+    $stop_mob_redirection = false;
+    $stop_mob_redirection = apply_filters('ampforwp_modify_mobile_redirection',$stop_mob_redirection);
+    if($stop_mob_redirection === true){
+      return;
+    }
     // return if the current page is Feed page, as we don't need anything on feedpaged
     if ( is_feed() ) {
       return;
@@ -383,6 +387,18 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
           return true;
         }
       }
+    if(ampforwp_is_amp_endpoint()==false && $redirectToAMP==false){
+      if(!isset($_GET['nonamphead']) && isset($_SESSION['nonamphead']) && in_array($url_to_redirect, $_SESSION['nonamphead'])){
+           return;
+        }
+        if (( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp'])) && !isset($_GET['nonamphead']) ) {
+          $_SESSION['ampforwp_amp_mode'] = 'mobile-on';
+          if ( $url_to_redirect ) { 
+            add_action('wp_head', 'ampforwp_mobile_redirection_js');
+          }
+          return;
+      }
+    }  
     // #1947 when nonamp=1 it should redirect to original link
     $go_to_url  = "";
     $url        = "";
