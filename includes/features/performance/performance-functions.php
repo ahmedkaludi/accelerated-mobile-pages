@@ -78,6 +78,9 @@ function ampforwp_minify_html_output($content_buffer){
         $mfn_content = str_replace("img", 'amp-img', $match);
         $content_buffer = preg_replace('/<div\sclass="section mcb-section(.*?)<div class="amp-wp-content">/s', $mfn_content , $content_buffer);
     }
+    if(preg_match('/<animatetransform(.*?)<\/animatetransform>/', $content_buffer)){
+        $content_buffer = preg_replace('/<animatetransform(.*?)<\/animatetransform>/', '', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
