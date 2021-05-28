@@ -3992,7 +3992,10 @@ function ampforwp_view_nonamp(){
    	if ( true == ampforwp_get_setting('ampforwp-amp-takeover') || $mob_pres_link==true) {
    		$non_amp_url = '';
    	}
-
+   	$permalink = get_option('permalink_structure');
+   	if(strpos($permalink, '/%year%/%monthnum%/%day%/%postname%/') !== false){
+    	$non_amp_url = get_permalink(ampforwp_get_the_ID());
+	}
 	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url(apply_filters('ampforwp_view_nonamp_url', $non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?> title="<?php echo ampforwp_get_setting('amp-translator-non-amp-page-text') ?>"><?php if(function_exists('pll__')){echo pll__(esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages'));}else{echo esc_html__( ampforwp_get_setting('amp-translator-non-amp-page-text'), 'accelerated-mobile-pages');}?></a> <?php }
 }
 
