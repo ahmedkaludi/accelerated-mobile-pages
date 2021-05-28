@@ -191,6 +191,7 @@ class AMP_Post_Template {
 		$post_author_name = '';
 		$post_author_image = '';
 		$post_title = get_the_title( $this->ID );
+		$headline = (strlen($post_title) > 110) ? substr($post_title, 0, 107) . '...' : $post_title;
 		$post_publish_timestamp = get_the_date( 'U', $this->ID );
 		$post_publish_timestamp = intval( $post_publish_timestamp );
 		$post_modified_timestamp = get_post_modified_time( 'U', false, $this->post );
@@ -218,7 +219,7 @@ class AMP_Post_Template {
 				'@type' => 'Organization',
 				'name' => $this->get( 'blog_name' ),
 			),
-			'headline' => $post_title,
+			'headline' => $headline,
 			'author' => array(
 				'@type' => 'Person',
 				'name' => $post_author_name,
