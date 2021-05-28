@@ -193,6 +193,7 @@ class AMP_Post_Template {
 		$post_author_name = '';
 		$post_author_image = '';
 		$post_title = get_the_title( $this->ID );
+		$post_title = substr($post_title,0,110);
 		$post_publish_timestamp = get_the_date( 'U', $this->ID );
 		$post_publish_timestamp = intval( $post_publish_timestamp );
 		$post_modified_timestamp = get_post_modified_time( 'U', false, $this->post );
