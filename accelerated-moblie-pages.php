@@ -1561,3 +1561,8 @@ if(!function_exists('ampforwp_save_local_font')){
 		}
 	}
 }
+
+add_action("plugins_loaded", "ampforwp_amp_optimizer");
+function ampforwp_amp_optimizer(){
+	require_once AMPFORWP_PLUGIN_DIR."/includes/amp-optimizer-addon.php";
+}
