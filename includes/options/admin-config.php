@@ -700,6 +700,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('forminator-for-amp/forminator-for-amp.php')? 1 : 2),
                         ),
                         array(
+                            'name'=>'Smart Sticky Header for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Adds Smart Sticky Header in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/Sticky_Header.png',
+                            'price'=>'$19',
+                            'url_link'=>'https://ampforwp.com/addons/smart-sticky-header-for-amp/',
+                            'plugin_active_path'=> 'smart-sticky-header-for-amp/smart-sticky-header-for-amp.php',
+                            'item_name'=>'Smart Sticky Header for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('smart-sticky-header-for-amp/smart-sticky-header-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Happyforms for AMP',
                             'class'=>'new-ext',
                             'desc'=>'Add Happy forms Support in AMP',
