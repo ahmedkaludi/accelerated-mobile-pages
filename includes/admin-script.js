@@ -475,11 +475,15 @@ jQuery(function($) {
 
             // Creating a select 
             var s = $('<select/>');
-
+            var amp_font_selector = redux_data['amp_font_selector'];
             for (var i in allFonts) {
 
                 var fontDetail = allFonts[i].fontFamily;                   
-
+                var selected = '';
+                if(amp_font_selector===fontDetail){
+                    selected = 'selected';
+                }
+               $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'" '+ selected +'> '+ fontDetail  +' </option>'));
                $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
                $('#amp_font_selector_content_single-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
             }
