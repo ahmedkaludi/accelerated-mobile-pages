@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 1.0.77.4 (31st May 2021) =
+* Improvements: Added dynamic copyright code so that year changes automatically #5019
+* Improvements: Added  Smart Sticky Header Extension #5001
+* Fixed: View Non-amp version link redirecting to 404 using custom permalink #5039
+* Fixed: Headline error in schema when adding more than 110 characters in title #5033
+* Fixed: Aq_resize.process() error in error logs #5041
+* Fixed: Google Fonts are not getting saved while using Safari #4978
+* Fixed: The tag 'animatetransform' is disallowed validation error #5043
+* Fixed: Debug Warning Function get_magic_quotes_gpc() is deprecated #5035
+
 = 1.0.77.3 (27th May 2021) =
 * Improvements: Added Compatibility with WebP Express plugin #4357 
 * Improvements: Added an option to allow users to upload and use local fonts on AMP #4264

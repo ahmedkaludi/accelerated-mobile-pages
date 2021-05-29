@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.77.3
+Stable tag: 1.0.77.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,16 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.4 (31st May 2021) =
+* Improvements: Added dynamic copyright code so that year changes automatically #5019
+* Improvements: Added  Smart Sticky Header Extension #5001
+* Fixed: View Non-amp version link redirecting to 404 using custom permalink #5039
+* Fixed: Headline error in schema when adding more than 110 characters in title #5033
+* Fixed: Aq_resize.process() error in error logs #5041
+* Fixed: Google Fonts are not getting saved while using Safari #4978
+* Fixed: The tag 'animatetransform' is disallowed validation error #5043
+* Fixed: Debug Warning Function get_magic_quotes_gpc() is deprecated #5035
+
 = 1.0.77.3 (27th May 2021) =
 * Improvements: Added Compatibility with WebP Express plugin #4357 
 * Improvements: Added an option to allow users to upload and use local fonts on AMP #4264
@@ -207,13 +217,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 = 1.0.77.2 (20th May 2021) =
 * Fixed: Some issues with style on normal version after update #3844
-
-= 1.0.77.1 (19th May 2021) =
-* Improvements: Added a filter from which user can control Mobile redirection #4488
-* Improvements: Implemented the Mobile redirection functionality using Javascript method #3844 
-* Improvements: Added preload to get featured image on AMP #5020 
-* Fixed: Debug Warning in templates/features.php #5014 
-* Fixed: Validation error in image lightbox for gallery #5021
-* Fixed: Fatal error on AMP pages after updating WP User Avatar plugin #5029
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
