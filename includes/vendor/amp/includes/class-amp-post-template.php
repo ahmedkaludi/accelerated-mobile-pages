@@ -193,7 +193,6 @@ class AMP_Post_Template {
 		$post_author_name = '';
 		$post_author_image = '';
 		$post_title = get_the_title( $this->ID );
-		$post_title = substr($post_title,0,110);
 		$post_publish_timestamp = get_the_date( 'U', $this->ID );
 		$post_publish_timestamp = intval( $post_publish_timestamp );
 		$post_modified_timestamp = get_post_modified_time( 'U', false, $this->post );
@@ -203,6 +202,10 @@ class AMP_Post_Template {
 				$post_author_name = $post_author->display_name;
 				$post_author_image = get_avatar_url($post_author->ID, array('size' => 50));
 			}
+		}
+		$headline_str = $post_title;
+		if (strlen($headline_str) > 110){
+			$headline_str = substr($post_title,0,107) . '...';
 		}
 		$this->add_data( array(
 			'post' => $this->post,
@@ -221,7 +224,7 @@ class AMP_Post_Template {
 				'@type' => 'Organization',
 				'name' => $this->get( 'blog_name' ),
 			),
-			'headline' => $post_title,
+			'headline' => $headline_str,
 			'author' => array(
 				'@type' => 'Person',
 				'name' => $post_author_name,
