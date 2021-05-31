@@ -9607,3 +9607,9 @@ if(!function_exists('ampforwp_set_local_font')){
 		}
 	}
 }
+
+function ampforwp_year_shortcode() {
+  $year = date('Y');
+  return $year;
+}
+add_shortcode('year', 'ampforwp_year_shortcode');
