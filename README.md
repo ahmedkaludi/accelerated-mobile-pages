@@ -202,6 +202,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Google Fonts are not getting saved while using Safari #4978
 * Fixed: The tag 'animatetransform' is disallowed validation error #5043
 * Fixed: Debug Warning Function get_magic_quotes_gpc() is deprecated #5035
+* Fixed: Debug Warning Trying to get property 'ID' of non-object #5046
 
 = 1.0.77.3 (27th May 2021) =
 * Improvements: Added Compatibility with WebP Express plugin #4357 
