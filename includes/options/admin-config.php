@@ -3538,7 +3538,9 @@ $e_commerce_support[] = array(
                        'title'    => esc_html__('Footer', 'accelerated-mobile-pages'),
                        'default'  => esc_html__('All Rights Reserved','accelerated-mobile-pages'),
                        'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
-                       'required' => array( 'amp-use-pot', '=' , 0 )
+                       'required' => array( 'amp-use-pot', '=' , 0 ),
+                       'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                    esc_html__('If you want to add the current year then use this shortcode [ampforwp_current_year] and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-current-year-in-amp-footer/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
                    ),
                    array(
                        'id'       => 'amp-translator-categories-text',

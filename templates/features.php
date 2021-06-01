@@ -9612,4 +9612,4 @@ function ampforwp_year_shortcode() {
   $year = date('Y');
   return $year;
 }
-add_shortcode('year', 'ampforwp_year_shortcode');
+add_shortcode('ampforwp_current_year', 'ampforwp_year_shortcode');
