@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.77.4 (31st May 2021) =
+= 1.0.77.4 (1st June 2021) =
 * Improvements: Added dynamic copyright code so that year changes automatically #5019
 * Improvements: Added  Smart Sticky Header Extension #5001
 * Fixed: View Non-amp version link redirecting to 404 using custom permalink #5039
