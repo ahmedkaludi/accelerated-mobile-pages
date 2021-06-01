@@ -286,6 +286,9 @@ if(!function_exists('ampforwp_aq_resize')) {
      * need to change any code in your own WP themes. Usage is still the same :)
      */
     function ampforwp_aq_resize( $url, $width = null, $height = null, $crop = null, $single = true, $upscale = false ) {
+        if (empty($url)) {
+           return;
+        }
         // Disable ampforwp_aq_resize and return images without compressing. 
         // Useful for some who wants to disable when using CDN images 
         $disable_aq_resize = false; 

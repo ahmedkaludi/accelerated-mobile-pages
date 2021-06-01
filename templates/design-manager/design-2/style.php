@@ -13,7 +13,7 @@ global $redux_builder_amp;
 	global $redux_builder_amp;
 	global $post;
 	$post_id = '';
-	$post_id = $post->ID;
+	$post_id = ampforwp_get_the_ID();
 	$get_customizer = new AMP_Post_Template( $post_id );
 	// Get content width
 	$content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
