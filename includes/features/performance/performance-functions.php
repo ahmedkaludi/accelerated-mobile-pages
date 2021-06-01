@@ -7,6 +7,7 @@ use AMPforWP\AMPVendor\AMP_DOM_Utils;
 add_filter('ampforwp_the_content_last_filter','ampforwp_minify_html_output');
 function ampforwp_minify_html_output($content_buffer){
     $content_buffer = str_replace('srcset=""', '', $content_buffer);
+    $content_buffer = str_replace('<style amp-runtime=""></style>', '', $content_buffer);
     //Removed trbidi attribute #3687
     $content_buffer = str_replace('trbidi="on"', '', $content_buffer);
     $content_buffer = str_replace("trbidi='on'", '', $content_buffer);
