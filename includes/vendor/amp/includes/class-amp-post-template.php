@@ -201,6 +201,10 @@ class AMP_Post_Template {
 				$post_author_image = get_avatar_url($post_author->ID, array('size' => 50));
 			}
 		}
+		$headline_str = $post_title;
+		if (strlen($headline_str) > 110){
+			$headline_str = substr($post_title,0,107) . '...';
+		}
 		$this->add_data( array(
 			'post' => $this->post,
 			'post_id' => $this->ID,
@@ -218,7 +222,7 @@ class AMP_Post_Template {
 				'@type' => 'Organization',
 				'name' => $this->get( 'blog_name' ),
 			),
-			'headline' => $post_title,
+			'headline' => $headline_str,
 			'author' => array(
 				'@type' => 'Person',
 				'name' => $post_author_name,

@@ -700,6 +700,18 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('forminator-for-amp/forminator-for-amp.php')? 1 : 2),
                         ),
                         array(
+                            'name'=>'Smart Sticky Header for AMP',
+                            'class'=>'new-ext',
+                            'desc'=>'Adds Smart Sticky Header in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/Sticky_Header.png',
+                            'price'=>'$19',
+                            'url_link'=>'https://ampforwp.com/addons/smart-sticky-header-for-amp/',
+                            'plugin_active_path'=> 'smart-sticky-header-for-amp/smart-sticky-header-for-amp.php',
+                            'item_name'=>'Smart Sticky Header for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('smart-sticky-header-for-amp/smart-sticky-header-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Happyforms for AMP',
                             'class'=>'new-ext',
                             'desc'=>'Add Happy forms Support in AMP',
@@ -3526,7 +3538,9 @@ $e_commerce_support[] = array(
                        'title'    => esc_html__('Footer', 'accelerated-mobile-pages'),
                        'default'  => esc_html__('All Rights Reserved','accelerated-mobile-pages'),
                        'placeholder'=>esc_html__('write here','accelerated-mobile-pages'),
-                       'required' => array( 'amp-use-pot', '=' , 0 )
+                       'required' => array( 'amp-use-pot', '=' , 0 ),
+                       'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                    esc_html__('If you want to add the current year then use this shortcode [ampforwp_current_year] and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-current-year-in-amp-footer/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
                    ),
                    array(
                        'id'       => 'amp-translator-categories-text',
