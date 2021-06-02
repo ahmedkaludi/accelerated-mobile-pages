@@ -349,6 +349,8 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                 if(strpos($sheet, '-keyframes')!==false){
                     $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
                 }
+                preg_match_all('/<style amp-custom>(.*?)<\/style>/', $completeContent, $matches);
+                $sheet .= $matches[1][0];
                 //TRANSPOSH PLUGIN RTL ISSUE FIXED #3895
                 if(class_exists('transposh_plugin')){
                      ampforwp_clear_css_on_transposh_rtl($sheet);
