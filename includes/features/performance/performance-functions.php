@@ -343,6 +343,7 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                 foreach($data as $styles){
                     $sheet .= $styles;
                 }
+                $sheet = '';
                 $sheet.=$font_css;
                 $sheet.=$white_lists;
                 $sheet = stripcslashes($sheet);
