@@ -551,9 +551,13 @@ function amp_loop_image( $data=array() ) {
 // Category
 function amp_loop_category(){
 	global $redux_builder_amp;
-	if(count(get_the_category()) > 0){
+	$categories = get_the_category();
+	$categories_count = count($categories);
+	$categories_count = apply_filters("ampforwp_modify_categories",$categories_count);
+	$categories = array_slice($categories , 0 , $categories_count);
+	if( $categories_count > 0){
 		echo ' <ul class="loop-category">';
-			foreach((get_the_category()) as $category) {
+			foreach($categories as $category) {
 				if(ampforwp_get_setting('ampforwp-cats-tags-links-single') == true){
 					$cat_link = get_category_link( $category->term_id );
 					if(ampforwp_get_setting('ampforwp-archive-support-cat') == true && ampforwp_get_setting('ampforwp-archive-support') == true){
