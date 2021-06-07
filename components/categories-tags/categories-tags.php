@@ -10,9 +10,6 @@ global $post;
 function ampforwp_framework_get_categories_list( $separator = '' ){
 	global $post, $redux_builder_amp;
 	 $ampforwp_categories = get_the_terms( $post->ID, 'category' );
-	 $categories_count = count($ampforwp_categories);
-	 $categories_count = apply_filters("ampforwp_modify_categories",$categories_count);
-	 $ampforwp_categories = array_slice($ampforwp_categories , 0 , $categories_count);
 	 if(ampforwp_get_setting('ampforwp-cats-single') == '1'){
 		if ( $ampforwp_categories ) : ?>
 		<div class="amp-category">
