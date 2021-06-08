@@ -133,7 +133,7 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
             $curlErrno = curl_errno($curlHandle);
             curl_close($curlHandle);
 
-            if ($body === false && method_exists('FailedToGetFromRemoteUrl','withHttpStatus')) {
+            if ($body === false) {
                 if (! $retriesLeft || in_array($curlErrno, self::RETRYABLE_ERROR_CODES, true) === false) {
                     if (! empty($status) && is_numeric($status)) {
                         throw FailedToGetFromRemoteUrl::withHttpStatus($url, (int) $status);

@@ -1,9 +1,7 @@
 <?php
 
 namespace AmpProject;
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
+
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use DOMNode;
