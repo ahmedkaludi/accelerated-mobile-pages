@@ -50,7 +50,7 @@
                 "issues": "https://github.com/sabberworm/PHP-CSS-Parser/issues",
                 "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.3.1"
             },
-            "install-path": "../sabberworm/sabberworm/php-css-parser"
+            "install-path": "../sabberworm/php-css-parser"
         }
     ],
     "dev": true,

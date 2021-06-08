@@ -13,7 +13,7 @@ class ComposerStaticInit36c553b877d93c41f97bfeeed7ef5433
         array (
             'Sabberworm\\CSS' => 
             array (
-                0 => __DIR__ . '/..' . '/css-parser/sabberworm/php-css-parser/lib',
+                0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib',
             ),
         ),
     );
