@@ -6,7 +6,7 @@ function ampforwp_add_optimizer_addon($output_buffer){
 		);
 	if(!$ssr_settings){ return $output_buffer; }
 	if(!class_exists('AmpProject\Optimizer\Transformer\AmpRuntimeCss')){
-		require_once AMPFORWP_PLUGIN_DIR."/includes/vendor/css-parser/autoload.php";
+		require_once AMPFORWP_PLUGIN_DIR."/includes/vendor/autoload.php";
 	}
 	$configurationData = [
 		AmpProject\Optimizer\Transformer\AmpRuntimeCss::class => [
