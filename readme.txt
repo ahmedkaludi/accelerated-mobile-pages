@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.77.4
+Stable tag: 1.0.77.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.77.5 (9th June 2021) =
+* Fixed: Some issues found while refresh the individual extension from the Extension section #5056
+* Fixed: Referenced AMP URL is self-canonical AMP when AMP takeover is enabled #5053
+* Fixed: Remove AMP blocks from options panel for CWV #5052
+* Fixed: Incorrect link in the Breadcrumb #5050
+* Fixed: Blank taxonomy in option panel #5037
+
 = 1.0.77.4 (1st June 2021) =
 * Improvements: Added dynamic copyright code so that year changes automatically #5019
 * Improvements: Added  Smart Sticky Header Extension #5001
@@ -212,8 +219,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Getting AMP validation Error in Add Widget After Content plugin #5027 
 * Fixed: Query Monitor not working on AMP pages #5025 
 * Fixed: Full-size image is always preloaded for the featured image in Swift theme #5038
-
-= 1.0.77.2 (20th May 2021) =
-* Fixed: Some issues with style on normal version after update #3844
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
