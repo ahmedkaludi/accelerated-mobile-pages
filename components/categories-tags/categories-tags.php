@@ -27,6 +27,7 @@ function ampforwp_framework_get_categories_list( $separator = '' ){
 		$get_cat_id = SQ_Classes_ObjController::getClass('SQ_Models_Domain_Categories')->getAllCategories(ampforwp_get_the_ID());
 		$cat_id = key($get_cat_id);
 	}
+	$cat_id = apply_filters('ampforwp_custom_primary_cat',$cat_id);
 	if (isset($cat_id)) { 
 		$cat_name = get_cat_name($cat_id);
 	}
