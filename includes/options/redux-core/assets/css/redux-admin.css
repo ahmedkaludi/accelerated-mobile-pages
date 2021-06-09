@@ -1140,12 +1140,12 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     margin-top: 15px;
 }
 
-.beta_tester {
+.custom_url {
     float: left;
     margin-top: 12px;
     margin-left: 15px
 }
-.beta_tester a{
+.custom_url a{
     text-decoration: none;
 background: #fff;
     color: #4452a7;
@@ -1153,7 +1153,7 @@ background: #fff;
     border-radius: 20px;
     border: 1px solid #ddd;
 }
-.beta_tester a:hover{
+.custom_url a:hover{
     text-decoration: underline;
 }
 @media(max-width:1366px){
