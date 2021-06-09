@@ -140,8 +140,6 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
                         }
                     }
                 }
-                
-                echo '<option></option>';
 
                 foreach ( $this->field['options'] as $k => $v ) {
 
