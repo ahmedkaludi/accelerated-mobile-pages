@@ -190,13 +190,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.77.5 (9th June 2021) =
+= 1.0.77.5 (10th June 2021) =
 * Fixed: Some issues found while refresh the individual extension from the Extension section #5056
 * Fixed: Referenced AMP URL is self-canonical AMP when AMP takeover is enabled #5053
 * Fixed: Remove AMP blocks from options panel for CWV #5052
 * Fixed: Incorrect link in the Breadcrumb #5050
 * Fixed: Blank taxonomy in option panel #5037
-* Fixed: Featured image not working in amp #5058
+* Fixed: Featured image not working for specific usecase in amp #5058
 
 = 1.0.77.4 (1st June 2021) =
 * Improvements: Added dynamic copyright code so that year changes automatically #5019
