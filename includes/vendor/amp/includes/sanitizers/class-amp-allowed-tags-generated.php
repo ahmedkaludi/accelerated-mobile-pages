@@ -10178,7 +10178,7 @@ class AMP_Allowed_Tags_Generated {
 						'error_message' => 'CSS !important',
 						'regex' => '!important',
 					),
-					'max_bytes' => 50000,
+					'max_bytes' => 75000,
 					'max_bytes_spec_url' => 'https://www.ampproject.org/docs/reference/spec#maximum-size',
 				),
 				'tag_spec' => array(
@@ -10238,7 +10238,7 @@ class AMP_Allowed_Tags_Generated {
 					),
 				),
 				'cdata' => array(
-					'max_bytes' => 500000,
+					'max_bytes' => 750000,
 					'max_bytes_spec_url' => 'https://www.ampproject.org/docs/reference/spec#keyframes-stylesheet',
 				),
 				'tag_spec' => array(
