@@ -5699,24 +5699,24 @@ function ampforwp_is_non_amp( $type="" ) {
 	if ( false !== get_query_var( 'amp', false ) ) {
 		return false;
 	}
-	if (""===$type  && isset( $redux_builder_amp['ampforwp-amp-takeover']) && true == $redux_builder_amp['ampforwp-amp-takeover'] ) {
+	if (""===$type  && ampforwp_get_setting('ampforwp-amp-takeover') ) {
 		$non_amp = true;
 
 		
 		// Check for Posts
-		if ( is_single() && false == $redux_builder_amp['amp-on-off-for-all-posts'] ) {
+		if ( is_single() && false == ampforwp_get_setting('amp-on-off-for-all-posts') ) {
 			return false;
 		}
 		// Archives
-		if ( is_archive() && false == $redux_builder_amp['ampforwp-archive-support'] ) {
+		if ( is_archive() && false == ampforwp_get_setting('ampforwp-archive-support') ) {
 			return false;
 		}
 		// Pages
-		if ( is_page() && false == $redux_builder_amp['amp-on-off-for-all-pages'] ) {
+		if ( is_page() && false == ampforwp_get_setting('amp-on-off-for-all-pages') ) {
 			return false;
 		}
 		// Homepage
-		if ( is_home() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+		if ( is_home() && false == ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
 			return false;
 		}
 		// Search #2681
@@ -5736,7 +5736,7 @@ function ampforwp_is_non_amp( $type="" ) {
 		            }
 		        }
 	    }
-		if ( is_front_page() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+		if ( is_front_page() && false == ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
 			return false;
 		}
 		if ( is_feed() ) {
@@ -5749,26 +5749,24 @@ function ampforwp_is_non_amp( $type="" ) {
 				ampforwp_get_setting('amp-design-selector') == 4)
 				&&
 				(
-				isset( $redux_builder_amp['ampforwp-amp-convert-to-wp']) 
-				&& true == $redux_builder_amp['ampforwp-amp-convert-to-wp'] 
+			 true == ampforwp_get_setting('ampforwp-amp-convert-to-wp') 
 				) 
 				|| 
 				(
 					'non_amp_check_convert' === $type
-					&& isset( $redux_builder_amp['ampforwp-amp-convert-to-wp']) 
-					&& true == $redux_builder_amp['ampforwp-amp-convert-to-wp']  
+					&& true == ampforwp_get_setting('ampforwp-amp-convert-to-wp') 
 				) ) {
 		$non_amp = true;
 
 	}
 	// Convert AMP to WP issues fixed #2493
 	//Blogposts
-	if ( is_home()  && $redux_builder_amp['ampforwp-homepage-on-off-support'] ==false ) {
+	if ( is_home()  && ampforwp_get_setting('ampforwp-homepage-on-off-support') == false ) {
       return;
     }
     // Pages
     
-	if ( is_page() && false == $redux_builder_amp['amp-on-off-for-all-pages'] ) {
+	if ( is_page() && false == ampforwp_get_setting('amp-on-off-for-all-pages') ) {
 		return;
 	}
 	if ( is_singular() || ampforwp_is_front_page() || ampforwp_is_blog() ) {
