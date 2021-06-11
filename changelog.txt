@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.77.6 (11th June 2021) =
+* Fixed: Custom JavaScript is not allowed error when analytics added by All in one SEO #5062
+
 = 1.0.77.5 (10th June 2021) =
 * Fixed: Some issues found while refresh the individual extension from the Extension section #5056
 * Fixed: Referenced AMP URL is self-canonical AMP when AMP takeover is enabled #5053

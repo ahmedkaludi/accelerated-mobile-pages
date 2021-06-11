@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.77.5
+Stable tag: 1.0.77.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.77.6 (11th June 2021) =
+* Fixed: Custom JavaScript is not allowed error when analytics added by All in one SEO #5062
+
 = 1.0.77.5 (10th June 2021) =
 * Fixed: Some issues found while refresh the individual extension from the Extension section #5056
 * Fixed: Referenced AMP URL is self-canonical AMP when AMP takeover is enabled #5053
@@ -208,17 +211,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: The tag 'animatetransform' is disallowed validation error #5043
 * Fixed: Debug Warning Function get_magic_quotes_gpc() is deprecated #5035
 * Fixed: Debug Warning Trying to get property 'ID' of non-object #5046
-
-= 1.0.77.3 (27th May 2021) =
-* Improvements: Added Compatibility with WebP Express plugin #4357 
-* Improvements: Added an option to allow users to upload and use local fonts on AMP #4264
-* Improvements: Added Muffin builder Pagebuilder Support in AMP Pagebuilder Extension #5015
-* Fixed: Fatal error when both Sassy Social Share and Optimize CSS are enabled #5032  
-* Fixed: Issues with Megashop theme #5010 
-* Fixed: Images not sanitized when added using Muffin Pagebuilder #5013 
-* Fixed: Hide featured images on a single post if this is older than certain date #5018 
-* Fixed: Getting AMP validation Error in Add Widget After Content plugin #5027 
-* Fixed: Query Monitor not working on AMP pages #5025 
-* Fixed: Full-size image is always preloaded for the featured image in Swift theme #5038
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
