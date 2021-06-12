@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.77.6 (11th June 2021) =
+= 1.0.77.6 (12th June 2021) =
 * Fixed: Custom JavaScript is not allowed error when analytics added by All in one SEO #5062
 
 = 1.0.77.5 (10th June 2021) =
