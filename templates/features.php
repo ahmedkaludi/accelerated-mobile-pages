@@ -8788,7 +8788,7 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					if(function_exists('rocket_activation')){
 						$m1_content = preg_replace('/srcset="(.*?)"/', '', $m1_content);
 					}
-					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
+					$fallback_img = "<amp-img data-hero ".$m_content."<amp-img data-hero fallback ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
 					$content = str_replace("$match", $fallback_img, $content);
 				}
 				}
