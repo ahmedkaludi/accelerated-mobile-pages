@@ -3109,6 +3109,20 @@ Redux::setSection( $opt_name, array(
                        'default'  => false,
                 ),
                     array(
+                       'id'       => 'ampforwp-meta-viewport',
+                       'type'     => 'switch',
+                       'title'    => esc_html__('Full Meta Viewport', 'accelerated-mobile-pages'),
+                       'tooltip-subtitle' => esc_html__('Enable this option if you want full meta viewport','accelerated-mobile-pages'),
+                       'default'  => 0,
+                ),
+                    array(
+                    'id'       => 'ampforwp-meta-viewport-notice',
+                    'type'     => 'info',
+                    'style'    => 'info',
+                    'desc'     => esc_html__('Enabling this causes a 300-350ms tap delay which can decrease FID ( First Input Delay ). Please use this with caution.', 'accelerated-mobile-pages'),
+                    'required' => array('ampforwp-meta-viewport', '=', 1)
+                ),
+                    array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
                         'title'    => esc_html__('Enter HTML in Head', 'accelerated-mobile-pages'),
