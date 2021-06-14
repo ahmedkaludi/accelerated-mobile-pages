@@ -9438,3 +9438,11 @@ function ampforwp_wp_block_cover_image($content_buffer){
 	}
 	return $content_buffer;
 }
+if (ampforwp_get_setting('amp-core-end-point') && function_exists('get_rocket_cache_query_string') ) {
+	add_filter('rocket_cache_query_strings', 'ampforwp_rocket_cache_query_string');
+}
+
+function ampforwp_rocket_cache_query_string($query_strings){
+	array_push($query_strings,"amp"); 
+	return $query_strings;
+}
