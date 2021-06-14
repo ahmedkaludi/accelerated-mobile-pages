@@ -3030,6 +3030,13 @@ Redux::setSection( $opt_name, array(
                         'default' => 1,
                         'required' => array( 'amp-mobile-redirection', '=' , 1 )
                     ),
+                     array(
+                       'id'    => 'amp-server-side-rendering',
+                       'type'  => 'switch',
+                       'title' => esc_html__('Server Side Rendering', 'accelerated-mobile-pages'),
+                       'tooltip-subtitle' => esc_html__('Improve the Google Page Speed and Loading time with Server Side Rendering', 'accelerated-mobile-pages'),
+                       'default'  => 0
+                   ),
                     array(
                         'id'       => 'amp-redirection-search',
                         'type'     => 'switch',

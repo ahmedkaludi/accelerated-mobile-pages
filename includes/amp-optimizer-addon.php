@@ -1,5 +1,7 @@
 <?php
-add_filter('ampforwp_the_content_last_filter', 'ampforwp_add_optimizer_addon',12);// phpcs:ignore PHPCompatibility.Constants.NewConstants.php_int_minFound
+if (true == ampforwp_get_setting('amp-server-side-rendering')) {
+	add_filter('ampforwp_the_content_last_filter', 'ampforwp_add_optimizer_addon',12);// phpcs:ignore PHPCompatibility.Constants.NewConstants.php_int_minFound
+}
 function ampforwp_add_optimizer_addon($output_buffer){
 	$ssr_settings = add_filter(
 			'amp_enable_ssr', true, defined( 'PHP_INT_MIN' ) ? PHP_INT_MIN : ~PHP_INT_MAX // phpcs:ignore PHPCompatibility.Constants.NewConstants.php_int_minFound
