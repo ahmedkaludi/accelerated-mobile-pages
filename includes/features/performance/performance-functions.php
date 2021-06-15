@@ -72,6 +72,13 @@ function ampforwp_minify_html_output($content_buffer){
     if(preg_match('/<animatetransform(.*?)<\/animatetransform>/', $content_buffer)){
         $content_buffer = preg_replace('/<animatetransform(.*?)<\/animatetransform>/', '', $content_buffer);
     }
+    if( function_exists('aioseo') && preg_match('/<script type="text\/javascript"(.*?)>/', $content_buffer)){
+        $content_buffer = preg_replace('/<script type="text\/javascript"(.*?)>/', '', $content_buffer); 
+        $content_buffer = preg_replace('/window.ga=window.ga||function()(.*?)/', '', $content_buffer); 
+        $content_buffer = preg_replace('/\|\|\(\)\{\(ga\.q=ga\.q\|\|\[\]\).push\(arguments\)};ga\.l(.*?);/', '', $content_buffer);
+        $content_buffer = preg_replace('/ga\(\'create\',(.*?),\s{\s\'cookieDomain\':\s\'(.*?)\'\s}\s\);/', '', $content_buffer);
+        $content_buffer = preg_replace('/ga\(\'(.*?)\',(.*?)\'(.*?)\'\);/', '', $content_buffer);
+   }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       

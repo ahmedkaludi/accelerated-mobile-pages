@@ -52,8 +52,8 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <?php } ?>
 
             </div>
-         <?php } $beta_test_url = 'https://wordpress.org/plugins/amp-blocks/';?>
-         <div class='beta_tester'><a href="<?php echo esc_url($beta_test_url);?>" target="_blank"><?php echo "Just Launched: AMP Design Library" ?></a></div>
+         <?php } $url = 'https://webvitalsdev.com/';?>
+         <div class='custom_url'><a href="<?php echo esc_url($url);?>" target="_blank"><?php echo "The New Core Web Vitals Project" ?></a></div>
 
         <div class="redux-action_bar">
             <span class="spinner"></span>

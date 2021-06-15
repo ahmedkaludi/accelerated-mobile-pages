@@ -28,6 +28,9 @@ function ampforwp_get_licence_activate_update(){
             $license = $selectedOption['amp-license'][$ampforwp_license_activate]['license'];
             $item_name = $selectedOption['amp-license'][$ampforwp_license_activate]['item_name'];
             $store_url = $selectedOption['amp-license'][$ampforwp_license_activate]['store_url'];
+            if($selectedOption['amp-license'][$ampforwp_license_activate]['item_name']=="" || $selectedOption['amp-license'][$ampforwp_license_activate]['item_name']==NULL){
+                $item_name = $selectedOption['amp-license'][$ampforwp_license_activate]['all_data']['item_name'];
+            }
         }
         $status = 400;
         if($license==""){
@@ -136,8 +139,8 @@ function ampforwp_get_licence_activate_update(){
                 $selectedOption['amp-license'][$ampforwp_license_activate]['status'] =  $status;
                 $selectedOption['amp-license'][$ampforwp_license_activate]['message'] =  $message;
 
-            update_option( 'redux_builder_amp', $selectedOption );
             if($status=='valid'){
+                update_option( 'redux_builder_amp', $selectedOption );
                 $status     = "200";
                 $message    = "Plugin activated successfully";
             }else{
