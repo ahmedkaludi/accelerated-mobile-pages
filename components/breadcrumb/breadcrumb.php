@@ -133,7 +133,7 @@ function amp_breadcrumb_output(){
                     $cat_display = '';
                     foreach($cat_parents as $parents) {
                         $categories = get_the_category();
-                        $cat_id = $categories[0]->cat_ID;
+                        $cat_id = end($categories)->cat_ID;
                          if(class_exists( 'WPSEO_Options' ) && !empty($primary_cateogory)){
                             $cat_id = $primary_cateogory;
                         }

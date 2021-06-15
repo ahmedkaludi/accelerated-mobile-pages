@@ -5,7 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $redux_builder_amp; ?>
 <?php amp_header(); 
 $paged = get_query_var( 'paged' );
-$page = get_query_var( 'page' ); ?>
+$page = get_query_var( 'page' );
+$page = intval($page); ?>
 <?php if(ampforwp_get_setting('single-design-type') == '1'){?>
 <div class="sp sgl">
 	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>

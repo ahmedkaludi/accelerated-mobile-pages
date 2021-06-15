@@ -2510,18 +2510,6 @@ function ampforwp_header_html_output() {
 	if(function_exists('ampforwp_mobile_redirect_preseve_link')){
 	   $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
 	}	
-  // amphtml tag when AMP Takeover is enabled #2550
-  if(ampforwp_get_setting('ampforwp-amp-takeover') == true || $mob_pres_link == true){
-    $amp_url = "";
-    $amp_url = ampforwp_amphtml_generator();
-    $canonical_url = "";
-    $canonical_url 	= explode('/', $amp_url);
-	$canonical_url 	= array_flip($canonical_url);
-	unset($canonical_url['amp']); 
-	$canonical_url 	= array_flip($canonical_url);
-	$canonical_url = implode('/' , $canonical_url);
-    printf('<link rel="amphtml" href="%s" />', user_trailingslashit(esc_url($canonical_url)));
-}
 }
 
 add_filter('amp_post_template_data','ampforwp_set_body_content_script', 20);
