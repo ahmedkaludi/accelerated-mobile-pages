@@ -659,7 +659,7 @@ add_action('init','ampforwp_plugin_init', 9);
 * to be used be used in before or after Loop
 */
 ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php' );
-
+ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/amp-code-widget.php' );
 
 /*
 * 	Including core AMP plugin files and removing any other things if necessary
