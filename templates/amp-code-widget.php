@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class AMPFORWP_AMP_Code_Widget extends WP_Widget {
-
+  protected $registered = false;
   protected $default_instance = array(
     'title'   => '',
     'content' => '',
