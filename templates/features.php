@@ -8742,6 +8742,7 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					$m_content = ampforwp_imagify_webp_compatibility($m_content);
 					$m_content = ampforwp_ewww_webp_compatibility($m_content);
 					$m_content = ampforwp_webp_express_compatibility($m_content);
+					$m_content = ampforwp_litespeed_webp_compatibility($m_content);
 					$m1_content = ampforwp_set_default_fallback_image($matches[1][$i]);
 					preg_match_all('/src="(.*?)"/', $m1_content,$fimgsrc);
 					preg_match_all('/width="(.*?)"/', $m1_content,$fimgwidth);
@@ -9604,3 +9605,23 @@ function ampforwp_year_shortcode() {
   return $year;
 }
 add_shortcode('ampforwp_current_year', 'ampforwp_year_shortcode');
+
+function ampforwp_litespeed_webp_compatibility($content){
+	if(function_exists( 'run_litespeed_cache' )){
+		preg_match_all('/src="(.*?)"/', $content,$src);
+		if(isset($src[1][0])){
+			$img_url = esc_url($src[1][0]);
+			if(!preg_match('/\.webp/', $img_url)){	
+				$rep_url = esc_url($src[1][0]).".webp";
+				if(preg_match('/http(.*)\/wp-content\/uploads/', $rep_url)){
+					$upload_dir = wp_upload_dir()['basedir'];
+					$img_file = preg_replace('/http(.*)\/wp-content\/uploads/', $upload_dir, $rep_url);
+					if(file_exists($img_file)){
+						$content = str_replace($img_url, $rep_url, $content);
+					}
+				}
+			}
+		}
+	}
+	return $content;
+}
