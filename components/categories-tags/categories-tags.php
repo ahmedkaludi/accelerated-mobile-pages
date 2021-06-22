@@ -9,8 +9,29 @@ TODO: 1: Connect with options panel(archive support and translational panel)
 global $post;
 function ampforwp_framework_get_categories_list( $separator = '' ){
 	global $post, $redux_builder_amp;
-	 $ampforwp_categories = get_the_terms( $post->ID, 'category' );
-	 if(ampforwp_get_setting('ampforwp-cats-single') == '1'){
+	$ampforwp_categories = get_the_terms( $post->ID, 'category' );
+	$cat_id = '';
+	if (function_exists('seopress_activation')){
+		$cat_id = get_post_meta(ampforwp_get_the_ID(),'_seopress_robots_primary_cat',true);
+	}
+	if(class_exists( 'WPSEO_Options' )){
+        $cat_id = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_primary_category', true);
+	}
+	if(class_exists('RankMath')){
+        $cat_id = get_post_meta(ampforwp_get_the_ID(), 'rank_math_primary_category', true);
+	}
+	if (function_exists( 'the_seo_framework' )) {
+		$cat_id = the_seo_framework()->get_primary_term_id( ampforwp_get_the_ID(),'category' );
+	}
+	if(class_exists( 'SQ_Classes_ObjController' )){
+		$get_cat_id = SQ_Classes_ObjController::getClass('SQ_Models_Domain_Categories')->getAllCategories(ampforwp_get_the_ID());
+		$cat_id = key($get_cat_id);
+	}
+	$cat_id = apply_filters('ampforwp_custom_primary_cat',$cat_id);
+	if (isset($cat_id)) { 
+		$cat_name = get_cat_name($cat_id);
+	}
+	if(ampforwp_get_setting('ampforwp-cats-single') == '1' && empty($cat_id)){
 		if ( $ampforwp_categories ) : ?>
 		<div class="amp-category">
 				<span><?php echo esc_html(ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories' )); ?></span>
@@ -46,6 +67,18 @@ function ampforwp_framework_get_categories_list( $separator = '' ){
 			} ?>
 		</div>
 	<?php endif; 
+	}else{
+	if( true == ampforwp_get_setting('ampforwp-cats-tags-links-single') ){
+		$url   = get_category_link( $cat_id );
+		if( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-archive-support-cat')){
+			$url = ampforwp_url_controller($url);
+		}
+			$anchorTag = '<a href="'.esc_url($url).'" title="'.esc_html($cat_name).'">';
+			$anchorClose = "</a>";
+			echo ('<span class="amp-cat amp-cat-'.esc_attr($cat_id).'">'.$anchorTag.esc_html($cat_name).$anchorClose.'</span>');
+	}else{
+			echo ('<span class="amp-cat"> '.esc_html($cat_name).'</span>');
+	}
 }
 }
 function ampforwp_framework_get_tags_list($separator=''){
