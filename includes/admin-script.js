@@ -2176,7 +2176,7 @@ function Drawer(drawerElem) {
             } else if (currentId == 'amp-ux-ext-ssd') {
                 activate = '&activate=structure_data';
             } else if (currentId == 'amp-ux-ext-afwp') {
-                activate = '&activate=adsforwp';
+                activate = '&activate=quads-settings';
             }
             console.log(wp.updates.l10n.installing);
 
@@ -2267,7 +2267,7 @@ function Drawer(drawerElem) {
                             }
                         });
                         }else if(self.attr('id')=='amp-ux-ext-afwp'){
-                        msgplug = 'Ads for WP';
+                        msgplug = 'Ads by WPQuads';
                         self.text( 'Importing data...' );
                         //Import Data
                         jQuery.ajax({
@@ -2275,12 +2275,12 @@ function Drawer(drawerElem) {
                             type: 'post',
                             data: 'action=ampforwp_import_modules_ads&verify_nonce='+nonce,
                             success: function () {
-                                console.log("Ads for WP");
+                                console.log("Ads by WPQuads");
                                 var res_url = ampforwp_generate_plugin_ulr(response.redirect_url);
                               $('.amp-ux-ext-afwp').html(res_url);
                               $("[required=amp-ux-ext-afwp]").addClass("hide");
                               var afwp_str = '<div id="section-ampforwp-ads-section" class="redux-section-field redux-field adsactive redux-section-indent-start  afw-accordion-header afw-accordion-tab-open">'+
-                                                '<h3 style="margin-top: 20px;">Introducing Ads for WP</h3>'+
+                                                '<h3 style="margin-top: 20px;">Introducing Ads by WPQuads</h3>'+
                                             '</div>'+
                                             '<table id="section-table-ampforwp-ads-section" data-id="ampforwp-ads-section" class="form-table form-table-section no-border form-table-section-indented" style="display: inline-table;">'+
                                                 '<tbody>'+
@@ -2292,15 +2292,15 @@ function Drawer(drawerElem) {
                                                         '<td colspan="2">'+
                                                             '<fieldset id="redux_builder_amp-ampforwp-ads-module" class="redux-field-container redux-field redux-field-init redux-container-raw redux_remove_th" data-id="ampforwp-ads-module" data-type="raw">'+
                                                                 '<div class="ampforwp-ads-data-update">'+
-                                                                    '<input type="hidden" value="admin.php?page=adsforwp&amp;tab=general&amp;reference=ampforwp" class="ampforwp-activation-url" id="active">'+
-                                                                    'Thank you for upgrading the Ads for WP'+
+                                                                    '<input type="hidden" value="admin.php?page=quads-settings&amp;tab=general&amp;reference=ampforwp" class="ampforwp-activation-url" id="active">'+
+                                                                    'Thank you for upgrading the Ads by WPQuads'+
                                                                     '<div class="row"><div>'+
-                                                                    '<a href="http://localhost/wasweb/wp-admin/edit.php?post_type=adsforwp">'+
+                                                                     '<a href="http://localhost/wasweb/wp-admin/edit.php?post_type=quads-settings">'+
                                                                         '<div class="ampforwp-recommendation-btn updated-message">'+
-                                                                            '<p>Go to Ads for WP settings</p>'+
+                                                                            '<p>Go to Ads by WPQuads settings</p>'+
                                                                         '</div>'+
                                                                     '</a>&nbsp;<br>'+
-                                                                    '<a href="https://ampforwp.com/tutorials/article/what-is-ads-for-wp-update-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>'+
+                                                                     '<a href="https://wpquads.com/documentation/" class="amp_recommend_learnmore" target="_blank">Learn more</a>'+
                                                                 '</div>'+
                                                             '</fieldset>'+
                                                         '</td>'+
