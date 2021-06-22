@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.77.7
+Stable tag: 1.0.77.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,18 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.77.8 (23rd June 2021) =
+* Added: Webp images support with LiteSpeed Cache plugin #5051
+* Added: Primary category compatibility of all SEO plugins #5049
+* Added: Notice if license key isn't added in AMP pro extension manager #5068
+* Fixed: Instagram embeds are not loading on the Facebook instance Article #5066
+* Fixed: WP rocket cache not working with ?amp query string #5063 
+* Fixed: Debug error appearing in the non-amp #5059
+* Fixed: Code improvements for options panel #5057
+* Fixed: Disqus comments not showing on mobile when adding ads #5055
+* Fixed: Proper preload added if WebP Express is active #4357
+* Fixed: The slashes (\) are no longer appear in the custom CSS #5035
 
 = 1.0.77.7 (21st June 2021) =
 * Added: AMP Optimizer (SSR) Support #5034 
