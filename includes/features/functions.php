@@ -70,6 +70,12 @@ function ampforwp_add_admin_styling($hook_suffix){
         add_action('admin_notices', 'ampforwp_mobile_redirection_notice' );
         add_action('admin_notices', 'ampforwp_category_base_remove_notice' );
         add_action('admin_notices', 'ampforwp_internal_feedback_notice' );
+        if ( defined('AMPFORWPPRO_PLUGIN_DIR')  ) {     
+            $license_info = get_option( 'ampforwppro_license_info');
+            if (!$license_info) {
+               add_action('admin_notices', 'ampforwp_pro_extension_manager_notice' );
+            }
+        }
     }else{
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
     }
@@ -1498,3 +1504,12 @@ function ampforwp_feedback_remove_notice(){
     wp_die();                
 }
 add_action('wp_ajax_ampforwp_feedback_remove_notice', 'ampforwp_feedback_remove_notice');
+
+function ampforwp_pro_extension_manager_notice(){?>
+    <div class="updated notice ampforwp_remove_notice" style="box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);background-color:white;">
+    <p> 
+    <?php echo esc_html__('AMP Pro Extension Manager has been activated, Please enter your license key', 'accelerated-mobile-pages'); ?>
+    <a href="<?php echo esc_url(admin_url('admin.php?page=amp-extension-manager')) ?>" style="font-weight:bold;"> <?php echo esc_html__('here', 'accelerated-mobile-pages') ?></a>
+    </p>
+    </div>
+<?php }
