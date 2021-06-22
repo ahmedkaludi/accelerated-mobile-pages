@@ -2,11 +2,11 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-use AMPforWP\AMPVendor\AMP_DOM_Utils;
 // 86. minify the content of pages
 add_filter('ampforwp_the_content_last_filter','ampforwp_minify_html_output');
 function ampforwp_minify_html_output($content_buffer){
     $content_buffer = str_replace('srcset=""', '', $content_buffer);
+    $content_buffer = preg_replace('/<style amp-runtime(=""|)><\/style>/', '', $content_buffer);
     //Removed trbidi attribute #3687
     $content_buffer = str_replace('trbidi="on"', '', $content_buffer);
     $content_buffer = str_replace("trbidi='on'", '', $content_buffer);
@@ -316,7 +316,7 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
         $completeContent = str_replace(array('"\\', "'\\"), array('":backSlash:',"':backSlash:"), $completeContent);   
         /***Replacements***/
         if(!empty($completeContent)){
-            $tmpDoc = AMP_DOM_Utils::get_dom_from_content($completeContent); 
+            $tmpDoc = AMPforWP\AMPVendor\AMP_DOM_Utils::get_dom_from_content($completeContent); 
             libxml_use_internal_errors(true);
             $tmpDoc->loadHTML($completeContent);
             $font_css = '';
@@ -338,14 +338,10 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                 $arg['allow_dirty_styles'] = false;
                 $obj = new AMPforWP\AMPVendor\AMP_treeshaking_Style_Sanitizer($tmpDoc, $arg);
                 $datatrack = $obj->sanitize();
-                // return json_encode($datatrack);
-
+                
                 $data = $obj->get_stylesheets();
-                //return json_encode($data);
-
                 $comment = $obj->get_comments();
-                //return json_encode($comment);
-
+                
                 foreach($data as $styles){
                     $sheet .= $styles;
                 }
@@ -355,6 +351,7 @@ if( !function_exists("ampforwp_tree_shaking_purify_amphtml") ){
                 if(strpos($sheet, '-keyframes')!==false){
                     $sheet = preg_replace("/@(-o-|-moz-|-webkit-|-ms-)*keyframes\s(.*?){([0-9%a-zA-Z,\s.]*{(.*?)})*[\s\n]*}/s", "", $sheet);
                 }
+                
                 //TRANSPOSH PLUGIN RTL ISSUE FIXED #3895
                 if(class_exists('transposh_plugin')){
                      ampforwp_clear_css_on_transposh_rtl($sheet);

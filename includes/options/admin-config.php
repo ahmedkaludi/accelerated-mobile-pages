@@ -3030,6 +3030,13 @@ Redux::setSection( $opt_name, array(
                         'default' => 1,
                         'required' => array( 'amp-mobile-redirection', '=' , 1 )
                     ),
+                     array(
+                       'id'    => 'amp-server-side-rendering',
+                       'type'  => 'switch',
+                       'title' => esc_html__('Server Side Rendering', 'accelerated-mobile-pages'),
+                       'tooltip-subtitle' => esc_html__('Improve the Google Page Speed and Loading time with Server Side Rendering', 'accelerated-mobile-pages'),
+                       'default'  => 0
+                   ),
                     array(
                         'id'       => 'amp-redirection-search',
                         'type'     => 'switch',
@@ -3100,6 +3107,20 @@ Redux::setSection( $opt_name, array(
                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
                          esc_html__('Enable this option if you want a disable the right click in AMP to protect your data from copying', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-disable-right-click-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
                        'default'  => false,
+                ),
+                    array(
+                       'id'       => 'ampforwp-meta-viewport',
+                       'type'     => 'switch',
+                       'title'    => esc_html__('Full Meta Viewport', 'accelerated-mobile-pages'),
+                       'tooltip-subtitle' => esc_html__('Enable this option if you want full meta viewport','accelerated-mobile-pages'),
+                       'default'  => 0,
+                ),
+                    array(
+                    'id'       => 'ampforwp-meta-viewport-notice',
+                    'type'     => 'info',
+                    'style'    => 'info',
+                    'desc'     => esc_html__('Enabling this causes a 300-350ms tap delay which can decrease FID ( First Input Delay ). Please use this with caution.', 'accelerated-mobile-pages'),
+                    'required' => array('ampforwp-meta-viewport', '=', 1)
                 ),
                     array(
                         'id'       => 'amp-header-text-area-for-html',
