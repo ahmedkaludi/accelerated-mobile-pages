@@ -190,7 +190,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.77.7 (19th June 2021) =
+= 1.0.77.7 (21st June 2021) =
 * Added: AMP Optimizer (SSR) Support #5034 
 
 = 1.0.77.6 (12th June 2021) =
