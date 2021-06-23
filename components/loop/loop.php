@@ -592,9 +592,9 @@ function amp_loop_category(){
 			if(ampforwp_get_setting('ampforwp-archive-support-cat') == true && ampforwp_get_setting('ampforwp-archive-support') == true){
 	            $cat_link = ampforwp_url_controller( $cat_link );
 	        }
-	            echo '<li class="amp-cat-'. $cat_id .'"><a href="'.esc_url($cat_link).'">'. esc_html($cat_name).'</a></li>';
+	            echo '<li class="amp-cat-'. esc_attr($cat_id) .'"><a href="'.esc_url($cat_link).'">'. esc_html($cat_name).'</a></li>';
 		}else{
-			echo '<li class="amp-cat-'. $cat_id .'">'. esc_html($cat_name).'</li>';
+			echo '<li class="amp-cat-'. esc_attr($cat_id) .'">'. esc_html($cat_name).'</li>';
 		}
 		echo '</ul>';
 	}
