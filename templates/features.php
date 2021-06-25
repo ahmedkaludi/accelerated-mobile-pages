@@ -8930,6 +8930,7 @@ function ampforwp_wp_rocket_compatibility($content){
 	    }
 	    if(isset($cnds_arr['images'])){
 	    	$img_cdn_url = $cnds_arr['images'];
+	    	$img_cdn_url = apply_filters( 'ampforwp_modify_wp_rocket_cdn_url', $img_cdn_url );
 	    }else if(isset($cnds_arr['all'])){
 	    	$img_cdn_url = $cnds_arr['all'];
 	    }
