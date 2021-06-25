@@ -22,7 +22,8 @@ if ( empty($ampforwp_font_icon) ) {
 }
 ?>
 <?php if(1==ampforwp_get_setting('ampforwp-google-font-switch') && ( !isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector']) ) ) {
-if(!ampforwp_levelup_compatibility('levelup_theme_and_elementor')){ // Level up Condition starts
+	$google_font_api = ampforwp_get_setting('google_font_api_key');
+if(!ampforwp_levelup_compatibility('levelup_theme_and_elementor') && !empty($google_font_api) ){ // Level up Condition starts
 		$fonts_upload = wp_upload_dir();
 	    $fonts_upload_dir = $fonts_upload['basedir'];
 	    $fonts_upload_dir = $fonts_upload_dir . '/ampforwp-fonts/' .ampforwp_design_selector();
