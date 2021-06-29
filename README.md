@@ -193,7 +193,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.77.9 (28th June 2021) =
+= 1.0.77.9 (29th June 2021) =
 * Added: AMP widget for adding amp code #5064
 * Added: Filter to modify the WP Rocket CDN URL #5076
 * Fixed: Meta description of Rank Math SEO plugin not showing on amp #5071
