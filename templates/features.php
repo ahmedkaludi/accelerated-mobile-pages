@@ -9466,5 +9466,6 @@ function ampforwp_litespeed_webp_compatibility($content){
 				}
 			}
 		}
+		$content = str_replace('.webp.webp','.webp',$content);
 		return $content;
 	}
