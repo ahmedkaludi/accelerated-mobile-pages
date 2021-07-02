@@ -96,7 +96,7 @@ $page = intval($page); ?>
 						amp_author_box( $author_box ); ?>	
 					<?php } ?>
 					<?php amp_post_navigation();?>
-					<?php if ( true == ampforwp_get_setting('wordpress-comments-support') || true == ampforwp_get_setting('ampforwp-disqus-comments-support') || true == ampforwp_get_setting('ampforwp-facebook-comments-support') ||true == ampforwp_get_setting('ampforwp-vuukle-comments-support') ||true == ampforwp_get_setting('ampforwp-spotim-comments-support') ){ ?>
+					<?php if ((true == ampforwp_get_setting('wordpress-comments-support') && comments_open()) || true == ampforwp_get_setting('ampforwp-disqus-comments-support') || true == ampforwp_get_setting('ampforwp-facebook-comments-support') ||true == ampforwp_get_setting('ampforwp-vuukle-comments-support') ||true == ampforwp_get_setting('ampforwp-spotim-comments-support') ){ ?>
 					<div class="cmts">
 						<?php amp_comments();?>
 					</div>

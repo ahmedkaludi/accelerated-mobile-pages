@@ -55,7 +55,7 @@ function ampforwp_analytics() {
 				<?php echo $ampforwp_ga_fields; ?>
 			</script>
 			</amp-analytics>
-	 		<?php } else { ?>
+	 		<?php } else if (!empty($ga_account) && $ga_account != "UA-XXXXX-Y") { ?>
 			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="gtag" id="analytics1" data-credentials="include" >
 				<script type="application/json">
 					<?php echo $ampforwp_ga_fields; ?>
@@ -421,19 +421,6 @@ if( ! function_exists( ' ampforwp_analytics_clientid_api ' ) ) {
 			<meta name="amp-google-client-id-api" content="googleanalytics">
 		<?php }
 	}
-}
-
-// 6.1 Adding Analytics Scripts
-add_filter('amp_post_template_data','ampforwp_register_analytics_script', 20);
-function ampforwp_register_analytics_script( $data ){ 
-	global $redux_builder_amp;
-	if( true == ampforwp_get_setting('ampforwp-ga-switch') || true == ampforwp_get_setting('ampforwp-Segment-switch') || true == ampforwp_get_setting('ampforwp-Quantcast-switch') || true == ampforwp_get_setting('ampforwp-comScore-switch') || true == ampforwp_get_setting('ampforwp-Yandex-switch') || true == ampforwp_get_setting('ampforwp-Chartbeat-switch') || true == ampforwp_get_setting('ampforwp-Alexa-switch') || true == ampforwp_get_setting('ampforwp-afs-analytics-switch') || true == ampforwp_get_setting('amp-use-gtm-option') || true == ampforwp_get_setting('amp-clicky-switch') || true == ampforwp_get_setting('ampforwp-Piwik-switch')) {
-		
-		if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
-			$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
-		}
-	}
-	return $data;
 }
 
 if ( ! function_exists('amp_activate') ) {

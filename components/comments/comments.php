@@ -119,7 +119,7 @@ function ampforwp_framework_get_comments(){
 						</div> <!-- .amp-comments-wrapper -->
 						<?php // if amp-comments extension is enabled then hide this button
 					} // if ( $comments )
-					if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
+					if ( ! defined( 'AMP_COMMENTS_VERSION' ) && comments_open($postID) ) { ?>
 						<div class="amp-comment-button">
 							<?php if ( comments_open($postID) ) {
 								$nofollow = '';
