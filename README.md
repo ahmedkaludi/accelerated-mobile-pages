@@ -193,8 +193,9 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.77.10 (2nd July 2021) =
+= 1.0.77.10 (3rd July 2021) =
 * Improvements: Unused CSS and Scripts are removed in AMP Optimizer (SSR) #5070 
+* Improvements: Added data-hero attribute in AMP logo #5083
 
 = 1.0.77.7 (21st June 2021) =
 * Added: AMP Optimizer (SSR) Support #5034 
