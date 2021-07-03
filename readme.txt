@@ -193,6 +193,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 1.0.77.10 (3rd July 2021) =
 * Improvements: Unused CSS and Scripts are removed in AMP Optimizer (SSR) #5070 
 * Improvements: Added data-hero attribute in AMP logo #5083
+* Fixed: Webp images not appearing with Litespeed cache #5081
 
 = 1.0.77.7 (21st June 2021) =
 * Added: AMP Optimizer (SSR) Support #5034 
