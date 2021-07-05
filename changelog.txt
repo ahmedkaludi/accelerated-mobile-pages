@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.77.10 (5th July 2021) =
+* Improvements: Unused CSS and Scripts are removed in AMP Optimizer (SSR) #5070 
+* Improvements: Added data-hero attribute in AMP logo #5083
+* Fixed: Webp images not appearing with Litespeed cache #5081
+
 = 1.0.77.9 (29th June 2021) =
 * Added: AMP widget for adding amp code #5064
 * Added: Filter to modify the WP Rocket CDN URL #5076

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.77.9
+Stable tag: 1.0.77.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.77.10 (5th July 2021) =
+* Improvements: Unused CSS and Scripts are removed in AMP Optimizer (SSR) #5070 
+* Improvements: Added data-hero attribute in AMP logo #5083
+* Fixed: Webp images not appearing with Litespeed cache #5081
+
 = 1.0.77.9 (29th June 2021) =
 * Added: AMP widget for adding amp code #5064
 * Added: Filter to modify the WP Rocket CDN URL #5076
@@ -216,24 +221,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.77.6 (12th June 2021) =
 * Fixed: Custom JavaScript is not allowed error when analytics added by All in one SEO #5062
-
-= 1.0.77.5 (10th June 2021) =
-* Fixed: Some issues found while refresh the individual extension from the Extension section #5056
-* Fixed: Referenced AMP URL is self-canonical AMP when AMP takeover is enabled #5053
-* Fixed: Remove AMP blocks from options panel for CWV #5052
-* Fixed: Incorrect link in the Breadcrumb #5050
-* Fixed: Blank taxonomy in option panel #5037
-* Fixed: Featured image not working for specific usecase in amp #5058
-
-= 1.0.77.4 (1st June 2021) =
-* Improvements: Added dynamic copyright code so that year changes automatically #5019
-* Improvements: Added  Smart Sticky Header Extension #5001
-* Fixed: View Non-amp version link redirecting to 404 using custom permalink #5039
-* Fixed: Headline error in schema when adding more than 110 characters in title #5033
-* Fixed: Aq_resize.process() error in error logs #5041
-* Fixed: Google Fonts are not getting saved while using Safari #4978
-* Fixed: The tag 'animatetransform' is disallowed validation error #5043
-* Fixed: Debug Warning Function get_magic_quotes_gpc() is deprecated #5035
-* Fixed: Debug Warning Trying to get property 'ID' of non-object #5046
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

@@ -476,46 +476,7 @@ function amp_back_to_top_link(){
     if(true == ampforwp_get_setting('ampforwp-footer-top')){?>
         <a id="scrollToTopButton" title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" href="#" ></a>
         <?php 
-        global $wp;
-        $current_url = home_url(add_query_arg(array($_GET), $wp->request));
-        if(ampforwp_get_setting('ampforwp-amp-convert-to-wp')==false || (strpos( $current_url,'/amp')!=false || strpos( $current_url,'?amp')!=false)){?>
-        <amp-animation id="showAnim"
-		  layout="nodisplay">
-		  <script type="application/json">
-		    {
-		      "duration": "400ms",
-		      "fill": "both",
-		      "iterations": "1",
-		      "direction": "alternate",
-		      "animations": [{
-		        "selector": "#scrollToTopButton",
-		        "keyframes": [{
-		          "opacity": "1",
-		          "visibility": "visible"
-		        }]
-		      }]
-		    }
-		  </script>
-		</amp-animation>
-		<amp-animation id="hideAnim"
-		  layout="nodisplay">
-		  <script type="application/json">
-		    {
-		      "duration": "400ms",
-		      "fill": "both",
-		      "iterations": "1",
-		      "direction": "alternate",
-		      "animations": [{
-		        "selector": "#scrollToTopButton",
-		        "keyframes": [{
-		          "opacity": "0",
-		          "visibility": "hidden"
-		        }]
-		      }]
-		    }
-		  </script>
-		</amp-animation>
-	<?php }else if(ampforwp_get_setting('ampforwp-amp-convert-to-wp')==true){?>
+        if(ampforwp_get_setting('ampforwp-amp-convert-to-wp') == true){?>
       	<script>
       		var elem = document.getElementById('scrollToTopButton');
       		elem.addEventListener("click", function(){
@@ -884,6 +845,9 @@ function ampforwp_backtotop_global_css(){?>
 		cursor:pointer;
 		}
  	}
+ 	html {
+    scroll-behavior: smooth;
+  	}
 <?php } }
 // Fallback for amp_call_now #2782
 if ( !function_exists('amp_call_now') ) {
