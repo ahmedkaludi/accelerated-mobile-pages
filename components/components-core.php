@@ -706,7 +706,7 @@ function ampforwp_backtotop_global_css(){?>
 	sub {vertical-align: sub;font-size: small;}
 	sup {vertical-align: super;font-size: small;}
 	@media only screen and (max-width: 480px) {
-	svg {width: 250px;height: 250px;}
+	svg {max-width: 250px;height: 250px;}
 	}
     <?php if (true == ampforwp_get_setting('ampforwp-right-click-disable')) {?>
     	.*{
