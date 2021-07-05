@@ -305,7 +305,7 @@ class AMPFORWP_Slide_Anything_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_
 		$returnCompleteHtml = str_replace('{{with_carousel_thumbnail}}', $amp_carousel_thumbnail, $returnCompleteHtml);
 		$returnCompleteHtml = str_replace('{{amp_image_lightbox}}', $amp_image_lightbox, $returnCompleteHtml);
 		$returnCompleteHtml = str_replace('{{with_images}}', implode( PHP_EOL, $images ), $returnCompleteHtml);
-		$returnCompleteHtml = preg_replace('/<div slideampcontent="(.*?)"><\/div>/', '<div>$1</div>', $returnCompleteHtml);
+		$returnCompleteHtml = preg_replace('/<div slideampcontent="(.*?)"><\/div>/s', '<div>$1</div>', $returnCompleteHtml);
         $returnCompleteHtml = str_replace('&lt;', '<', $returnCompleteHtml);
         $returnCompleteHtml = str_replace('&gt;', '>', $returnCompleteHtml);
 		return $returnCompleteHtml;

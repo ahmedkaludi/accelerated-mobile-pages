@@ -5,6 +5,27 @@
 * Improvements: Added data-hero attribute in AMP logo #5083
 * Fixed: Webp images not appearing with Litespeed cache #5081
 
+= 1.0.77.9 (29th June 2021) =
+* Added: AMP widget for adding amp code #5064
+* Added: Filter to modify the WP Rocket CDN URL #5076
+* Fixed: Meta description of Rank Math SEO plugin not showing on amp #5071
+* Fixed: Slide Anything Plugin slider content is not showing #5073
+* Fixed: When Convert AMP to WP theme Option is enabled, it breaks the Design #5074
+* Fixed: Remove preload if Featured Image option is off in AMP options panel #5077
+* Fixed: Icons are not loading when visiting first time or after clearing cache #5060
+
+= 1.0.77.8 (23rd June 2021) =
+* Added: Webp images support with LiteSpeed Cache plugin #5051
+* Added: Primary category compatibility of all SEO plugins #5049
+* Added: Notice if license key isn't added in AMP pro extension manager #5068
+* Fixed: Instagram embeds are not loading on the Facebook instance Article #5066
+* Fixed: WP rocket cache not working with ?amp query string #5063 
+* Fixed: Debug error appearing in the non-amp #5059
+* Fixed: Code improvements for options panel #5057
+* Fixed: Disqus comments not showing on mobile when adding ads #5055
+* Fixed: Proper preload added if WebP Express is active #4357
+* Fixed: The slashes (\) are no longer appear in the custom CSS #5035
+
 = 1.0.77.7 (21st June 2021) =
 * Added: AMP Optimizer (SSR) Support #5034 
 

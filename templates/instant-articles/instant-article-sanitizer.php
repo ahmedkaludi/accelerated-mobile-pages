@@ -156,7 +156,10 @@ function ampforwp_fbia_get_content_from_DOM($DOMDocument){
 				$filtered_content .= $temp_content;
 			}
 		}
-
+		//Instagram embeds are not loading on the Facebook instance Article #5066
+		if (preg_match('/<blockquote class="instagram-media"/', $filtered_content)) {
+	      $filtered_content = preg_replace( '/<blockquote class="instagram-media"(.*?)>(.*?)<\/blockquote><\/iframe><\/figure>(.*?)<script(.*?)src="(.*?)instagram(.*?)"><\/script>/s', '<blockquote class="instagram-media"$1>$2</blockquote><script$4src="$5instagram$6"></script></iframe></figure>$3', $filtered_content );
+	    }
 		return $filtered_content;
 	}	
 

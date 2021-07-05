@@ -659,7 +659,7 @@ add_action('init','ampforwp_plugin_init', 9);
 * to be used be used in before or after Loop
 */
 ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php' );
-
+ampforwp_require_file( AMPFORWP_PLUGIN_DIR.'/templates/amp-code-widget.php' );
 
 /*
 * 	Including core AMP plugin files and removing any other things if necessary
@@ -875,6 +875,9 @@ if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 // Get Settings from Redux #2177 & #2911
 function ampforwp_get_setting( $opt_name='', $child_option='', $sanitize_method='' ){
 	global $redux_builder_amp;
+	if (is_plugin_active('amp/amp.php')) {
+		unset($redux_builder_amp['ampforwp-seo-selection']);
+	}
 	if(empty($redux_builder_amp)){
 		$redux_builder_amp =  (array) get_option('redux_builder_amp');
 	}
