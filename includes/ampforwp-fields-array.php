@@ -424,14 +424,14 @@ if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."schema-and-structured-data-for-wp/struc
 $is_afwp = "not-exist";
 $afwp_active_url = '';
 $afwp_default = 0;
-if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."ads-for-wp/ads-for-wp.php")){
-	if(!is_plugin_active('ads-for-wp/ads-for-wp.php')){
+if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."quick-adsense-reloaded/quick-adsense-reloaded.php")){
+	if(!is_plugin_active('quick-adsense-reloaded/quick-adsense-reloaded.php')){
 		$is_afwp = "inactive";
-		$plugin_file = "ads-for-wp/ads-for-wp.php";
+		$plugin_file = "quick-adsense-reloaded/quick-adsense-reloaded.php";
 		$afwp_active_url = ampforwp_wp_plugin_action_link( $plugin_file, 'activate' );
 	}else{
 		$is_afwp = "active";
-		$afwp_active_url = $ampforwp_admin_url.'admin.php?page=adsforwp&amp;tab=general&amp;reference=ampforwp';
+		$afwp_active_url = $ampforwp_admin_url.'admin.php?page=quads-settings&amp;tab=general&amp;reference=ampforwp';
 		$afwp_default = 2;
 	}
 }
@@ -652,7 +652,7 @@ $amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"St
 
 $amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-ssd','=',0),'default'=>0));
 
-$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Ads for WP",'id'=>"amp-ux-ext-afwp",'class'=>esc_attr($afwp_class),'data-id'=>'amp-ux-ext-afwp-switch','desc'=>'','data-secure'=>esc_attr($ux_secure),'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>esc_attr($afwp_default),'data-url'=>esc_url($afwp_active_url)));
+$amp_ux_fields[] = array('field_type'=>'switch','field_data'=>array('title'=>"Ads by WPQuads",'id'=>"amp-ux-ext-afwp",'class'=>esc_attr($afwp_class),'data-id'=>'amp-ux-ext-afwp-switch','desc'=>'','data-secure'=>esc_attr($ux_secure),'element-class'=>'third-pp','parent-class'=>'ux-seo-blk','default'=>esc_attr($afwp_default),'data-url'=>esc_url($afwp_active_url)));
 
 $amp_ux_fields[] = array('field_type'=>'notification', 'field_data'=>array('type'=>'notice','desc'=>'Please wait until process completes.','required'=>array('amp-ux-ext-afwp','=',0),'default'=>0));
 

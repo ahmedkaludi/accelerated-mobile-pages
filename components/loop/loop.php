@@ -549,20 +549,53 @@ function amp_loop_image( $data=array() ) {
 
 // Category
 function amp_loop_category(){
-	global $redux_builder_amp;
-	if(count(get_the_category()) > 0){
+	$categories = get_the_category();
+	$cat_id = '';
+	if (function_exists('seopress_activation')){
+		$cat_id = get_post_meta(ampforwp_get_the_ID(),'_seopress_robots_primary_cat',true);
+	}
+	if(class_exists( 'WPSEO_Options' )){
+        $cat_id = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_primary_category', true);
+	}
+	if(class_exists('RankMath')){
+        $cat_id = get_post_meta(ampforwp_get_the_ID(), 'rank_math_primary_category', true);
+	}
+	if (function_exists( 'the_seo_framework' )) {
+		$cat_id = the_seo_framework()->get_primary_term_id( ampforwp_get_the_ID(),'category' );
+	}
+	if(class_exists( 'SQ_Classes_ObjController' )){
+		$get_cat_id = SQ_Classes_ObjController::getClass('SQ_Models_Domain_Categories')->getAllCategories(ampforwp_get_the_ID());
+		$cat_id = key($get_cat_id);
+	}
+	$cat_id = apply_filters('ampforwp_custom_primary_cat',$cat_id);
+	if (isset($cat_id)) {
+		$cat_name = get_cat_name($cat_id);
+	}
+	if( count($categories) > 0 && empty($cat_id)){
 		echo ' <ul class="loop-category">';
-			foreach((get_the_category()) as $category) {
+			foreach($categories as $category) {
 				if(ampforwp_get_setting('ampforwp-cats-tags-links-single') == true){
 					$cat_link = get_category_link( $category->term_id );
 					if(ampforwp_get_setting('ampforwp-archive-support-cat') == true && ampforwp_get_setting('ampforwp-archive-support') == true){
 	                    $cat_link = ampforwp_url_controller( $cat_link );
 	                }
-	                echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.esc_url($cat_link).'">'. esc_html($category->cat_name).'</a></li>';
+	                echo '<li class="amp-cat-'. esc_attr($category->term_id) .'"><a href="'.esc_url($cat_link).'">'. esc_html($category->cat_name).'</a></li>';
 				}else{
-				echo '<li class="amp-cat-'. $category->term_id.'">'. esc_html($category->cat_name).'</li>';
+				echo '<li class="amp-cat-'. esc_attr($category->term_id) .'">'. esc_html($category->cat_name).'</li>';
 				}
 			}
+		echo '</ul>';
+		}else{
+		echo '<ul class="loop-category">';
+		if(ampforwp_get_setting('ampforwp-cats-tags-links-single') == true){
+			$cat_link = get_category_link( $cat_id );
+			if(ampforwp_get_setting('ampforwp-archive-support-cat') == true && ampforwp_get_setting('ampforwp-archive-support') == true){
+	            $cat_link = ampforwp_url_controller( $cat_link );
+	        }
+	            echo '<li class="amp-cat-'. esc_attr($cat_id) .'"><a href="'.esc_url($cat_link).'">'. esc_html($cat_name).'</a></li>';
+		}else{
+			echo '<li class="amp-cat-'. esc_attr($cat_id) .'">'. esc_html($cat_name).'</li>';
+		}
 		echo '</ul>';
 	}
 }

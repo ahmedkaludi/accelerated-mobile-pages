@@ -2501,7 +2501,7 @@ function ampforwp_get_all_tags($id){
                          'title'    => esc_html__('Disqus Iframe Height', 'accelerated-mobile-pages'),
                          'placeholder' => 'Enter the height',
                          'default' => '420',
-                         'required' => array('ampforwp-disqus-layout', '=' , 'fixed'),
+                         'required'=>array('ampforwp-disqus-comments-support','=','1'),
                      ),
                      array(
                          'id'       => 'ampforwp-facebook-comments-support',

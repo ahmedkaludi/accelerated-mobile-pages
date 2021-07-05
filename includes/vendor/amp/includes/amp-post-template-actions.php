@@ -59,8 +59,8 @@ function amp_post_template_add_cached_link($amp_template) {
 			$thumb_id = get_post_thumbnail_id(ampforwp_get_the_ID());
 			$image_size = ampforwp_get_setting('swift-featued-image-size');
 			$image = wp_get_attachment_image_src( $thumb_id, $image_size );
-			if($image!="" && isset($image[0])){
-				if(function_exists('_imagify_init')){
+			if($image!="" && isset($image[0]) && ampforwp_get_setting('swift-featued-image')){
+				if(function_exists('_imagify_init') || function_exists('webp_express_process_post')){
 					$image[0] = esc_url($image[0]).".webp";
 				}?>
 				<link rel="preload" href="<?php echo esc_url($image[0]);?>" as="image">
