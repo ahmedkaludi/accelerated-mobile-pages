@@ -29,18 +29,15 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 * NEW - Gutenberg Support
 * NEW - Divi and Elementor Support [More Info](https://ampforwp.com/amp-pagebuilder-compatibility/)
-* NEW - Improved CSS Optimization (Tree Shaking)
-* NEW - Google Fonts Support For All Designs
-* NEW - Addthis Sharing Support
-* NEW - AMP Infinite Scroll Support
-* NEW - Photo Gallery by 10Web Support 
-* NEW - MEWE social network Support 
 * NEW - GDPR Compliance
-* Out of the box compatiblity for Yoast SEO, All in One Seo, Rank Math, Genesis, SEOPress, Bridge Qode SEO, The SEO Framework and Squrilly SEO Plugin.
+* NEW - Google PageSpeed Optimization with SSR (Server Side Rendering)
+* NEW - CSS Optimization (Tree Shaking) - This will automatically remove all the unused CSS from your AMP pages
+* NEW - Google Font API and Local Fonts Support For All Designs
+* Out of the box compatiblity for Yoast SEO, All in One Seo, Rank Math, Genesis, SEOPress, Bridge Qode SEO, The SEO Framework, SmartCrawl and Squrilly SEO Plugin.
 * Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * New Default Theme for AMP called Swift
 * 3 Pre-built AMP Layouts for Business websites and landing pages 
-* OneSignal Push Notifications integration 
+* OneSignal and TruePush Push Notifications integration 
 * Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
 * AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
 * Structured Data Options
@@ -58,11 +55,14 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Native AMP Search functionality.
 * Design 3 [Watch the Video Overview](https://www.youtube.com/watch?v=ub1pwskt3Rc)
 * Disqus Comments Support
+* Vuukle Comments Support
+* Spot.IM Comments Support
 * Google Tag Manager Support
 * Page, Category & Tags Support Added
 * Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
 * Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
 * Custom Post Type Support 
+* Custom Taxonomies Support
 * Star Ratings
 * Drag & Drop Page builder Added 
 * 4 Designs for AMP 
@@ -73,7 +73,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Related posts below the post
 * Recent Comments list
 * Automatically integrate AMP to your website.
-* Google Adsense (AMP-AD) Support with 4 different Ad slots across the layout! The First Plugin to have this capability.
+* Google Adsense (AMP-AD) Support with 6 different Ad slots across the layout! The First Plugin to have this capability.
 * Built in MGID Ads Support with 6 different ad slots.
 * Google Analytics Support.
 * User Friendly Theme Options Panel.
@@ -105,7 +105,10 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * AMP Installation Wizard that makes it easy to setup for new users.
 * Category base remover support
 * Tag base remover support
-* 7 New Social Media Integrations added (Reddit, Tumblr, Telegram, Digg, StumbleUpon, Wechat, Viber) 
+* Addthis Sharing Support
+* Infinite Scroll Support
+* Photo Gallery by 10Web Support  
+* 12 New Social Media Integrations added (Reddit, Tumblr, Telegram, Digg, StumbleUpon, Wechat, Viber, Hatena Bookmarks, Pocket, Yummly, MeWe, Flipboard) 
 * AMP Theme Framework Core Support Added. You can now create AMP templates of your own in just minutes. **[More](https://ampforwp.com/amp-theme-framework/)**
 * NEW - Make AMP & Non-AMP Same with just one click! 
 * NEW - Allows you to use AMP as primary website!
