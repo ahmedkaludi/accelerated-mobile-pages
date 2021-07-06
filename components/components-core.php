@@ -682,7 +682,7 @@ function ampforwp_backtotop_global_css(){?>
 	sup {vertical-align: super;font-size: small;}
 	amp-call-tracking a {display: none;}
 	@media only screen and (max-width: 480px) {
-	svg {max-width: 250px;height: 250px;}
+	svg {max-width: 250px;max-height: 250px;}
 	}
 	<?php if (function_exists('wp_pagenavi')) {?>
 	  .wp-pagenavi {
