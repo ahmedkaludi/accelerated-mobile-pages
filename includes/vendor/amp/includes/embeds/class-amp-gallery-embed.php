@@ -142,6 +142,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 							.carousel-preview button{padding:0;}
 							.carousel-preview amp-img{height:40px;width:60px;position:relative;}
 							.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}
+							.carousel-preview .amp-carousel-img img {object-fit: fill;}
 							.cls-btn { background: #0d0d0d; border: none;position: absolute;right: 10px;}
 							.cls-btn:after{content:"X";display:inline-block;color:#fff;font-size:20px;padding:20px;}
 							',
