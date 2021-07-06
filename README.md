@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.77.10
+Stable tag: 1.0.77.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -196,6 +196,12 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.11 (6th July 2021) =
+* Improvements: Improved readme.txt for newer features #5080
+* Fixed: SVG images are loading with a bigger size in the AMP version #5084
+* Fixed: Removed the percentage symbol beside AMP icon in dashboard #5082
+* Fixed: Gallery thumbnail image improved #5003
+
 = 1.0.77.10 (5th July 2021) =
 * Improvements: Unused CSS and Scripts are removed in AMP Optimizer (SSR) #5070 
 * Improvements: Added data-hero attribute in AMP logo #5083
@@ -209,23 +215,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: When Convert AMP to WP theme Option is enabled, it breaks the Design #5074
 * Fixed: Remove preload if Featured Image option is off in AMP options panel #5077
 * Fixed: Icons are not loading when visiting first time or after clearing cache #5060
-
-= 1.0.77.8 (23rd June 2021) =
-* Added: Webp images support with LiteSpeed Cache plugin #5051
-* Added: Primary category compatibility of all SEO plugins #5049
-* Added: Notice if license key isn't added in AMP pro extension manager #5068
-* Fixed: Instagram embeds are not loading on the Facebook instance Article #5066
-* Fixed: WP rocket cache not working with ?amp query string #5063 
-* Fixed: Debug error appearing in the non-amp #5059
-* Fixed: Code improvements for options panel #5057
-* Fixed: Disqus comments not showing on mobile when adding ads #5055
-* Fixed: Proper preload added if WebP Express is active #4357
-* Fixed: The slashes (\) are no longer appear in the custom CSS #5035
-
-= 1.0.77.7 (21st June 2021) =
-* Added: AMP Optimizer (SSR) Support #5034 
-
-= 1.0.77.6 (12th June 2021) =
-* Fixed: Custom JavaScript is not allowed error when analytics added by All in one SEO #5062
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

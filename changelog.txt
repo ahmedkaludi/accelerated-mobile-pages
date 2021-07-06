@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 1.0.77.11 (6th July 2021) =
+* Improvements: Improved readme.txt for newer features #5080
+* Fixed: SVG images are loading with a bigger size in the AMP version #5084
+* Fixed: Removed the percentage symbol beside AMP icon in dashboard #5082
+* Fixed: Gallery thumbnail image improved #5003
+
 = 1.0.77.10 (5th July 2021) =
 * Improvements: Unused CSS and Scripts are removed in AMP Optimizer (SSR) #5070 
 * Improvements: Added data-hero attribute in AMP logo #5083
