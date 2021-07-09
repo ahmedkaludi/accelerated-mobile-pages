@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.0.77.11
+Stable tag: 1.0.77.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.12 (9th July 2021) =
+* Fixed: Exclude categories loop not working #5088
+* Fixed: Endpoint '?amp' not working with plain permalink #5087
+
 = 1.0.77.11 (6th July 2021) =
 * Improvements: Improved readme.txt for newer features #5080
 * Fixed: SVG images are loading with a bigger size in the AMP version #5084
@@ -207,14 +211,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvements: Unused CSS and Scripts are removed in AMP Optimizer (SSR) #5070 
 * Improvements: Added data-hero attribute in AMP logo #5083
 * Fixed: Webp images not appearing with Litespeed cache #5081
-
-= 1.0.77.9 (29th June 2021) =
-* Added: AMP widget for adding amp code #5064
-* Added: Filter to modify the WP Rocket CDN URL #5076
-* Fixed: Meta description of Rank Math SEO plugin not showing on amp #5071
-* Fixed: Slide Anything Plugin slider content is not showing #5073
-* Fixed: When Convert AMP to WP theme Option is enabled, it breaks the Design #5074
-* Fixed: Remove preload if Featured Image option is off in AMP options panel #5077
-* Fixed: Icons are not loading when visiting first time or after clearing cache #5060
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

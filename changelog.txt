@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.77.12 (9th July 2021) =
+* Fixed: Exclude categories loop not working #5088
+* Fixed: Endpoint '?amp' not working with plain permalink #5087
+
 = 1.0.77.11 (6th July 2021) =
 * Improvements: Improved readme.txt for newer features #5080
 * Fixed: SVG images are loading with a bigger size in the AMP version #5084
