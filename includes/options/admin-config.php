@@ -119,7 +119,7 @@ if(!is_plugin_active( 'amp-pagebuilder-compatibility/amp-pagebuilder-compatibili
             ); 
     $pb_for_amp[] = $elemntr_pb_for_ampchecker;*/
 
-$all_extensions_data = $jetpack_rp = $sassy_ss = array();
+$all_extensions_data = $jetpack_rp = $sassy_ss = $amp_endpoint = array();
 if(class_exists( 'Jetpack_RelatedPosts' )){
     $jetpack_rp =  array(
                     'id'       => 'ampforwp-jetpack-related-posts',
@@ -136,6 +136,17 @@ if(function_exists('heateor_sss_save_default_options')){
                     'default'  => '1',
                 );
 }
+    $get_permalink_structure = get_option('permalink_structure');
+    if ($get_permalink_structure) { 
+        $amp_endpoint = array(
+                        'id'       => 'amp-core-end-point',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Change End Point to ?amp','accelerated-mobile-pages'),
+                        'default' => 0,
+                        'tooltip-subtitle' => esc_html__('Enable this option when /amp/ is giving 404 after resaving the permalink settings.','accelerated-mobile-pages'),
+                        'desc' => esc_html__( 'Making endpoints to ?amp will help you get the amp in tricky setups with taxonomies & post typs. Question mark in the url will not make any difference in the SEO.','accelerated-mobile-pages' ),
+                    );
+    }
 global $all_extensions_data;
 $extension_listing_array = array(
                          array(
@@ -3081,14 +3092,7 @@ Redux::setSection( $opt_name, array(
                         'default' => 0,
                     ),
                     // End-point option
-                     array(
-                        'id'       => 'amp-core-end-point',
-                        'type'     => 'switch',
-                        'title'    => ('Change End Point to ?amp'),
-                        'default' => 0,
-                        'tooltip-subtitle' => 'Enable this option when /amp/ is giving 404 after resaving the permalink settings.',
-                        'desc'     => esc_html__( 'Making endpoints to ?amp will help you get the amp in tricky setups with taxonomies & post typs. Question mark in the url will not make any difference in the SEO.' ),
-                    ),
+                    $amp_endpoint,
                     array(
                    'id'       => 'ampforwp-amp-convert-to-wp',
                    'type'     => 'switch',
