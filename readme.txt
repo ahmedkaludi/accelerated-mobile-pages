@@ -194,7 +194,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.77.12 (10th July 2021) =
+= 1.0.77.12 (12th July 2021) =
 * Fixed: Exclude categories loop not working #5088
 * Fixed: Endpoint '?amp' not working with plain permalink #5087
 
