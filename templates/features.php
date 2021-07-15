@@ -6778,14 +6778,8 @@ function ampforwp_check_excerpt(){
 // Back to top 
 add_action( 'ampforwp_body_beginning' ,'ampforwp_back_to_top_markup');
 function ampforwp_back_to_top_markup(){
-	global $redux_builder_amp;
 	if(true == ampforwp_get_setting('ampforwp-footer-top')){
-		echo '<div id="backtotop"></div>
-		<div id="marker">
-	      <amp-position-observer on="enter:hideAnim.start; exit:showAnim.start"
-	        layout="nodisplay">
-	      </amp-position-observer>
-	    </div>';
+		echo '<div id="backtotop"></div>';
 	}
 }
 
