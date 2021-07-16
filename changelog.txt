@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 1.0.77.13 (16th July 2021) =
+* Fixed: FooGallery plugin not working with AMP #5090
+* Fixed: Console error when Back to Top link option is enabled #5091
+* Fixed: Exclude Categories is not working #5088
+* Fixed: Long word post title not breaking in mobile view #5092
+
 = 1.0.77.12 (12th July 2021) =
 * Fixed: Exclude categories loop not working #5088
 * Fixed: Endpoint '?amp' not working with plain permalink #5087
