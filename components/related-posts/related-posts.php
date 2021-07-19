@@ -193,7 +193,7 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 	}
 	?>
 	<div class="related_link">
-        <p><a href="<?php echo esc_url( $related_post_permalink ); ?>" title="<?php echo esc_html( $title ); ?>"><?php the_title(); ?></a>
+        <a href="<?php echo esc_url( $related_post_permalink ); ?>" title="<?php echo esc_html( $title ); ?>"><?php the_title(); ?></a>
         <?php
         $show_excerpt = (isset($argsdata['show_excerpt'])? $argsdata['show_excerpt'] : true);
         if($show_excerpt){
@@ -202,7 +202,7 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 				}else{
 					$content = get_the_content();
 				}
-		?><?php $excerpt_length = ampforwp_get_setting('enable-excerpt-single-related-posts');
+		?><p><?php $excerpt_length = ampforwp_get_setting('enable-excerpt-single-related-posts');
 		if(empty($excerpt_length)){
 			$excerpt_length = 15;
 		}
