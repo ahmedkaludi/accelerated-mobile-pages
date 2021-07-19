@@ -3923,8 +3923,8 @@ function ampforwp_remove_rel_on_bp(){
 		}
 		// Removing AMP from WPForo Forums Pages #592
 		if(class_exists('wpForo')){
-			Global $post, $wpdb,$wpforo;
-			$foid = $post->ID;
+			global $wpdb,$wpforo;
+			$foid = ampforwp_get_the_ID();
 			$fid = $wpforo->pageid;
 			if($foid==$fid){
 				remove_action( 'wp_head', 'amp_frontend_add_canonical');
