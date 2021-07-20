@@ -1214,6 +1214,12 @@ function ampforwp_is_amp_inURL($url){
 		if( in_array( '?' . AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
         	return true;
     	}
+    	else {
+    		foreach($urlArray as $index => $string) {
+	        if (strpos($string, '?' . AMPFORWP_AMP_QUERY_VAR) !== FALSE)
+	            return true;
+	    	}
+    	}
 	}
 	if (ampforwp_get_setting('ampforwp-amp-takeover')) {
 		return true;
