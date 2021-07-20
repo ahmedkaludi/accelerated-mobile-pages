@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.77.14 (20th July 2021) =
+* Fixed: AMP page not showing with query string from 1.0.66 version #5096
+* Fixed: Related posts title and excerpt not appearing properly #5095
+* Fixed: Debug warnigs with WP Foro plugin #5094
+
 = 1.0.77.13 (16th July 2021) =
 * Fixed: FooGallery plugin not working with AMP #5090
 * Fixed: Console error when Back to Top link option is enabled #5091
