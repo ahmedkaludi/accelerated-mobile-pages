@@ -5957,6 +5957,13 @@ Redux::setSection( $opt_name, array(
                     'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
                 ),
                 array(
+                    'id'        => 'amforwp-homepage-author-switch',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Author Name in Loop', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('Enabel this option to show author name below each post of Home page loop'),
+                ),
+                array(
                     'id'        => 'amforwp-homepage-post-switch',
                     'type'      => 'switch',
                     'title'     => esc_html__('Posts on Homepage', 'accelerated-mobile-pages'),

@@ -97,7 +97,7 @@ amp-carousel > amp-img > img {object-fit: contain;}
 .amp-carousel-img img {object-fit: contain;}
 amp-instagram{box-sizing: initial;}
 figure.aligncenter amp-img {margin: 0 auto;}
-.rr span,.loop-date,.fbp-cnt .amp-author,.display-name{color:#191919;}
+.rr span,.loop-date,.fbp-cnt .amp-author,.display-name,.author-name{color:#191919;}
 .fsp-cnt .loop-category li {padding: 8px 0px;}
 .fbp-cnt h2.loop-title {padding: 8px 0px;}
 <?php global $post;
@@ -475,7 +475,7 @@ height:<?php echo $fimg_height.'px';?>;width:<?php echo $fimg_width.'px';?>;
 .fsp-img {margin-bottom:10px;}
 .fsp h2, .fsp h3{margin:0px 0px 5px 0px;font-size:20px;line-height:1.4;font-weight:500;}
 .at-dt{font-size:11px;color:#808080;margin:12px 0px 9px 0px; display: inline-flex;}
-.pt-dt{font-size:11px;color:#808080;margin: 8px 0px 0px 0px;display: inline-flex;}
+.pt-dt,.pt-author{font-size:11px;color:#808080;margin: 8px 0px 0px 0px;display: inline-flex;}
 .arch-tlt{margin:30px 0px 30px;display:inline-block;width:100%;}
 .amp-archive-title, .amp-loop-label{font-weight:600;}
 .amp-archive-desc{font-size: 14px;margin:8px 0px 0px 0px;color: #333;line-height:20px;}
