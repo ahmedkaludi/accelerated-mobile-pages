@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.14
+Stable tag: 1.0.77.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.77.15 (26th July 2021) =
+* Fixed: Author name only showing for the first post on homepage #5099
+* Fixed: Youtube videos does not appear on the AMP page with the Video Yoast plugin
+* Fixed: The parent tag of tag ‘picture’ must be noscript validation error #5097
+
 = 1.0.77.14 (20th July 2021) =
 * Fixed: AMP page not showing with query string from 1.0.66 version #5096
 * Fixed: Related posts title and excerpt not appearing properly #5095
@@ -204,9 +209,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Console error when Back to Top link option is enabled #5091
 * Fixed: Exclude Categories is not working #5088
 * Fixed: Long word post title not breaking in mobile view #5092
-
-= 1.0.77.12 (12th July 2021) =
-* Fixed: Exclude categories loop not working #5088
-* Fixed: Endpoint '?amp' not working with plain permalink #5087
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

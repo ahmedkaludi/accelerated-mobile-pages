@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.77.15 (26th July 2021) =
+* Fixed: Author name only showing for the first post on homepage #5099
+* Fixed: Youtube videos does not appear on the AMP page with the Video Yoast plugin
+* Fixed: The parent tag of tag ‘picture’ must be noscript validation error #5097
+
 = 1.0.77.14 (20th July 2021) =
 * Fixed: AMP page not showing with query string from 1.0.66 version #5096
 * Fixed: Related posts title and excerpt not appearing properly #5095
