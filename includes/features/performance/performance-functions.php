@@ -79,6 +79,9 @@ function ampforwp_minify_html_output($content_buffer){
         $content_buffer = preg_replace('/ga\(\'create\',(.*?),\s{\s\'cookieDomain\':\s\'(.*?)\'\s}\s\);/', '', $content_buffer);
         $content_buffer = preg_replace('/ga\(\'(.*?)\',(.*?)\'(.*?)\'\);/', '', $content_buffer);
    }
+    if(preg_match('/<picture(.*?)<\/picture>/s', $content_buffer)){
+        $content_buffer = preg_replace('/<picture(.*?)<\/picture>/s', '<noscript><picture$1</picture></noscript>', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
