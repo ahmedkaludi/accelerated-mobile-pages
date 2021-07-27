@@ -1,6 +1,7 @@
 == Changelog ==
 
-= 1.0.77.15 (26th July 2021) =
+= 1.0.77.15 (27th July 2021) =
+* Improvements: Added Yoast custom breadcrumbs title support #5100
 * Fixed: Author name only showing for the first post on homepage #5099
 * Fixed: Youtube videos does not appear on the AMP page with the Video Yoast plugin
 * Fixed: The parent tag of tag ‘picture’ must be noscript validation error #5097
