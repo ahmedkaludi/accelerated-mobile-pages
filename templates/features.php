@@ -9543,8 +9543,8 @@ function ampforwp_webp_express_compatibility($content){
 		preg_match_all('/src="(.*?)"/', $content,$src);
 		if(isset($src[1][0])){
 			$img_url = esc_url($src[1][0]);
-			if(file_exists($img_url_webp) && !preg_match('/\.webp/', $img_url)){
-				$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images/doc-root/wp-content$2', $img_url);
+			if(!preg_match('/\.webp/', $img_url)){
+				$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images$2', $img_url);
 				if(!preg_match('/\.webp/', $img_url)){	
 					$img_url_webp = esc_url($img_url_webp).".webp";
 			 		$content = str_replace($img_url, $img_url_webp, $content); 
