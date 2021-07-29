@@ -325,6 +325,13 @@ function ampforwp_analytics() {
                 </script>
                 </amp-analytics>   
             <?php } }
+            if( true == ampforwp_get_setting('ampforwp-dotmetrics-switch')) { 
+                $dot_id = '';
+                $dot_id = ampforwp_get_setting('ampforwp-dotmetrics-id');
+                if(!empty($dot_id)){
+                $analytics_url = "https://script.dotmetrics.net/AmpConfig.json?id=".esc_html($dot_id); ?>
+                <amp-analytics config="<?php echo esc_url($analytics_url); ?>"></amp-analytics>   
+            <?php } }
             if( true == ampforwp_get_setting('ampforwp-iotech-switch')) {
                 $project_id = $id = $title = $author = $categories = $cat_names = '';
                 $project_id = ampforwp_get_setting('ampforwp-iotech-projectid');
