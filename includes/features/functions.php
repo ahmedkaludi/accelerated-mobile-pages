@@ -624,6 +624,13 @@ function ampforwp_is_amp_inURL($url){
     if(get_option('permalink_structure') == '' && isset($_GET['amp'])){
        return true;
     }
+    $mob_pres_link = false;
+    if(function_exists('ampforwp_mobile_redirect_preseve_link')){
+       $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
+    }
+    if ($mob_pres_link == true) {
+        return true;
+    }
     $urlArray = explode("/", $url);
     if( !in_array( AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
         return false;
