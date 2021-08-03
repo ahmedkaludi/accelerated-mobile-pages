@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.16
+Stable tag: 1.0.77.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.17 (3rd August 2021) =
+* Improvements: Added dotmetrics analytics support in amp #5107
+* Improvements: Added support to preserve query string with ?amp #5103
+
 = 1.0.77.16 (29th July 2021) =
 * Improvements: Added Filter to remove last-modified header in amp #5101
 * Fixed: Webp images are not converting with Webp Express plugin #5108
@@ -208,10 +212,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Author name only showing for the first post on homepage #5099
 * Fixed: Youtube videos does not appear on the AMP page with the Video Yoast plugin
 * Fixed: The parent tag of tag ‘picture’ must be noscript validation error #5097
-
-= 1.0.77.14 (20th July 2021) =
-* Fixed: AMP page not showing with query string from 1.0.66 version #5096
-* Fixed: Related posts title and excerpt not appearing properly #5095
-* Fixed: Debug warnigs with WP Foro plugin #5094
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

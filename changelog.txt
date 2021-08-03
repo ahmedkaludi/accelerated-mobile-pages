@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.77.17 (3rd August 2021) =
+* Improvements: Added dotmetrics analytics support in amp #5107
+* Improvements: Added support to preserve query string with ?amp #5103
+
 = 1.0.77.16 (29th July 2021) =
 * Improvements: Added Filter to remove last-modified header in amp #5101
 * Fixed: Webp images are not converting with Webp Express plugin #5108
