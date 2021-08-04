@@ -162,7 +162,6 @@ function ampforwp_add_welcome_styling(){
             background: #388e3c;
             color: #fff;
             border-radius: 40px;
-            padding-right: px;
             padding-top: 1px;
         }
 		.ampforwp-plugin-action-buttons {
