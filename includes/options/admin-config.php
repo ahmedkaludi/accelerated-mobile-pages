@@ -1461,7 +1461,9 @@ if($ampforwp_nameOfUser!=""){
         $license_info = get_option( 'ampforwppro_license_info');    
         if (defined('AMPFORWPPRO_PLUGIN_DIR') && !empty($license_info)){
             $ampforwp_pro_manager = AMPFORWPPRO_PLUGIN_DIR.'inc/amp-ext-manager-lic-data.php';
-            require_once $ampforwp_pro_manager;
+            if( file_exists($ampforwp_pro_manager) ){
+                require_once $ampforwp_pro_manager;
+            }
             $settings_url = esc_url( admin_url('admin.php?page=amp-extension-manager') );
         }
  }
