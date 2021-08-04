@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.17
+Stable tag: 1.0.77.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,9 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.18 4th August 2021) =
+* Improvements: Added License Key information in AMP panel #5110
+
 = 1.0.77.17 (3rd August 2021) =
 * Improvements: Added dotmetrics analytics support in amp #5107
 * Improvements: Added support to preserve query string with ?amp #5103
@@ -206,11 +209,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Webp images are not converting with Webp Express plugin #5108
 * Fixed: Validation error - The tag 'lite-youtube' is disallowed #5102
 * Fixed: Yoast custom breadcrumbs title not working after update #5100
-
-= 1.0.77.15 (27th July 2021) =
-* Improvements: Added Yoast custom breadcrumbs title support #5100
-* Fixed: Author name only showing for the first post on homepage #5099
-* Fixed: Youtube videos does not appear on the AMP page with the Video Yoast plugin
-* Fixed: The parent tag of tag ‘picture’ must be noscript validation error #5097
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
