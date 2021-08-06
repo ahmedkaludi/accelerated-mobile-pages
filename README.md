@@ -197,7 +197,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.77.18 4th August 2021) =
+= 1.0.77.18 (5th August 2021) =
 * Improvements: Added License Key information in AMP panel #5110
 
 = 1.0.77.17 (3rd August 2021) =
