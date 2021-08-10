@@ -78,6 +78,11 @@ global $redux_builder_amp; ?>
 				    	<?php amp_loop_date(); ?>
 				    </div>
 					<?php }?>
+					<?php if( true == ampforwp_get_setting('amforwp-homepage-author-switch')){?>
+				    <div class="pt-author" >
+				    	<?php amp_author_box( array('author_pub_name'=>true,)); ?>
+				    </div>
+					<?php } ?>
 			    </div>
 			</div>
 		<?php } $i++; ?>

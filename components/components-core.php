@@ -681,6 +681,13 @@ function ampforwp_backtotop_global_css(){?>
 	sub {vertical-align: sub;font-size: small;}
 	sup {vertical-align: super;font-size: small;}
 	amp-call-tracking a {display: none;}
+	@media only screen and (max-width: 480px) {
+	svg {max-width: 250px;max-height: 250px;}
+	}
+	h2.amp-post-title {
+    word-break: break-word;
+    word-wrap: break-word;
+	}
 	<?php if (function_exists('wp_pagenavi')) {?>
 	  .wp-pagenavi {
 	      border: 1px solid #BFBFBF;

@@ -119,7 +119,7 @@ if(!is_plugin_active( 'amp-pagebuilder-compatibility/amp-pagebuilder-compatibili
             ); 
     $pb_for_amp[] = $elemntr_pb_for_ampchecker;*/
 
-$all_extensions_data = $jetpack_rp = $sassy_ss = array();
+$all_extensions_data = $jetpack_rp = $sassy_ss = $amp_endpoint = array();
 if(class_exists( 'Jetpack_RelatedPosts' )){
     $jetpack_rp =  array(
                     'id'       => 'ampforwp-jetpack-related-posts',
@@ -136,6 +136,17 @@ if(function_exists('heateor_sss_save_default_options')){
                     'default'  => '1',
                 );
 }
+    $get_permalink_structure = get_option('permalink_structure');
+    if ($get_permalink_structure) { 
+        $amp_endpoint = array(
+                        'id'       => 'amp-core-end-point',
+                        'type'     => 'switch',
+                        'title'    => esc_html__('Change End Point to ?amp','accelerated-mobile-pages'),
+                        'default' => 0,
+                        'tooltip-subtitle' => esc_html__('Enable this option when /amp/ is giving 404 after resaving the permalink settings.','accelerated-mobile-pages'),
+                        'desc' => esc_html__( 'Making endpoints to ?amp will help you get the amp in tricky setups with taxonomies & post typs. Question mark in the url will not make any difference in the SEO.','accelerated-mobile-pages' ),
+                    );
+    }
 global $all_extensions_data;
 $extension_listing_array = array(
                          array(
@@ -1446,8 +1457,21 @@ if(get_theme_support('amp-template-mode')){
 }
 $proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Upgrade to PRO</a> ';
 if($ampforwp_nameOfUser!=""){
+    if (class_exists('AMPExtensionManager') ) {
+        $license_info = get_option( 'ampforwppro_license_info');    
+        if (defined('AMPFORWPPRO_PLUGIN_DIR') && !empty($license_info)){
+            $ampforwp_pro_manager = AMPFORWPPRO_PLUGIN_DIR.'inc/amp-ext-manager-lic-data.php';
+            if( file_exists($ampforwp_pro_manager) ){
+                require_once $ampforwp_pro_manager;
+            }
+            $settings_url = esc_url( admin_url('admin.php?page=amp-extension-manager') );
+        }
+ }
+ else{
     $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url(admin_url('admin.php?page=amp_options&tabid=opt-go-premium'))."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
-}elseif($ampforwp_is_productActivated){
+}
+} 
+elseif($ampforwp_is_productActivated){
     $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".esc_url(admin_url('admin.php?tabid=opt-go-premium&page=amp_options'))."'>Enter license here</a></span>";
 }
 if(function_exists('amp_activate') ){
@@ -3081,14 +3105,7 @@ Redux::setSection( $opt_name, array(
                         'default' => 0,
                     ),
                     // End-point option
-                     array(
-                        'id'       => 'amp-core-end-point',
-                        'type'     => 'switch',
-                        'title'    => ('Change End Point to ?amp'),
-                        'default' => 0,
-                        'tooltip-subtitle' => 'Enable this option when /amp/ is giving 404 after resaving the permalink settings.',
-                        'desc'     => esc_html__( 'Making endpoints to ?amp will help you get the amp in tricky setups with taxonomies & post typs. Question mark in the url will not make any difference in the SEO.' ),
-                    ),
+                    $amp_endpoint,
                     array(
                    'id'       => 'ampforwp-amp-convert-to-wp',
                    'type'     => 'switch',
@@ -5898,6 +5915,13 @@ Redux::setSection( $opt_name, array(
                     'title'     => esc_html__('Date in Loop', 'accelerated-mobile-pages'),
                     'default'   => 1,
                     'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
+                ),
+                array(
+                    'id'        => 'amforwp-homepage-author-switch',
+                    'type'      => 'switch',
+                    'title'     => esc_html__('Author Name in Loop', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'tooltip-subtitle'  => esc_html__('Enabel this option to show author name below each post of Home page loop'),
                 ),
         )
     ));

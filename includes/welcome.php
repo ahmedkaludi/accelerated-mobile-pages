@@ -151,20 +151,18 @@ function ampforwp_add_welcome_styling(){
         .dashicons-warning, .dashicons-yes{
             font-family: dashicons;
             font-style: normal;
-            position: relative;
-            top: 1px;
             font-size: 32px;
             margin-right: 18px;
         }
         .dashicons-yes{
-            margin-right: 25px;
+            margin-right: 0px;
         }
         .dashicons-yes:before {
             content: "\f147";
             background: #388e3c;
             color: #fff;
             border-radius: 40px;
-            padding-right: 3px;
+            padding-right: 0px;
             padding-top: 1px;
         }
 		.ampforwp-plugin-action-buttons {

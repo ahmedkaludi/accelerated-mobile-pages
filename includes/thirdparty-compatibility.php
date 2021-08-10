@@ -1214,6 +1214,12 @@ function ampforwp_is_amp_inURL($url){
 		if( in_array( '?' . AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
         	return true;
     	}
+    	else {
+    		foreach($urlArray as $index => $string) {
+	        if (strpos($string, '?' . AMPFORWP_AMP_QUERY_VAR) !== FALSE)
+	            return true;
+	    	}
+    	}
 	}
 	if (ampforwp_get_setting('ampforwp-amp-takeover')) {
 		return true;
@@ -1224,6 +1230,13 @@ function ampforwp_is_amp_inURL($url){
     if (class_exists('AMPforWP_Subdomain_Endpoint') && ampforwp_get_setting('amp-subdomain-url-format')) {
 		return true;
 	}
+	$mob_pres_link = false;
+    if(function_exists('ampforwp_mobile_redirect_preseve_link')){
+       $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
+    }
+    if ($mob_pres_link == true) {
+        return true;
+    }
     $urlArray = explode("/", $url);
     if( !in_array( AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
         return false;

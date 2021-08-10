@@ -94,7 +94,9 @@ if ( ! function_exists('AMPforWP\\AMPVendor\\amp_render') ) {
 		$template = $ampforwpTemplate = new AMP_Post_Template( $post_id );
 		$template->load();
 		// Set Header: last modified information
-		if( is_singular() && $post_id ) {
+		$last_modified = true;
+		$last_modified = apply_filters('ampforwp_update_last_modified_header', $last_modified);
+		if( is_singular() && $post_id && $last_modified) {
             header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 	    }
 		exit;

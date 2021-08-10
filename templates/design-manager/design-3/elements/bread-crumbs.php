@@ -100,7 +100,12 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                         $tags_breadcrumbs .= '<li class="item-tag item-tag-' . esc_attr($tag_id) . ' item-tag-' . esc_attr($tag_name) . '"><a class="bread-tag bread-tag-' . esc_attr($tag_id) . ' bread-tag-' . esc_attr($tag_name) . '" href="' . esc_url($tag_link) . '" title="'.esc_attr($tag_name).'">'.esc_html($tag_name).'</a></li>';                 
                     }
                     if(ampforwp_get_setting('ampforwp-bread-crumb-post')){
-                         $tags_breadcrumbs .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';
+                        if (class_exists('WPSEO_Premium') && !empty(WPSEO_Meta::get_value( 'bctitle', ampforwp_get_the_ID()))) {
+                            $bc_title = WPSEO_Meta::get_value( 'bctitle', ampforwp_get_the_ID() );
+                        }else{
+                            $bc_title = get_the_title(ampforwp_get_the_ID());
+                        }
+                            $tags_breadcrumbs .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( $bc_title ). '</span></li>';
                     } 
                     echo $tags_breadcrumbs; // escaped above
                 }
@@ -138,7 +143,12 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                         $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. esc_url($cat_link).'" title="'.esc_attr($parents).'">'.esc_html($parents).'</a></li>';
                     }
                         if(ampforwp_get_setting('ampforwp-bread-crumb-post')){
-                             $cat_display .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( get_the_title(ampforwp_get_the_ID()) ). '</span></li>';
+                            if (class_exists('WPSEO_Premium') && !empty(WPSEO_Meta::get_value( 'bctitle', ampforwp_get_the_ID()))) {
+                               $bc_title = WPSEO_Meta::get_value( 'bctitle', ampforwp_get_the_ID() );
+                            }else{
+                                $bc_title = get_the_title(ampforwp_get_the_ID());
+                            }
+                            $cat_display .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( $bc_title ). '</span></li>';
                         } 
                 }
             }
