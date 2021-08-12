@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.18
+Stable tag: 1.0.77.19
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,17 +197,16 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.19 (13th August 2021) =
+* Fixed: Disable AMP on desktop not working with ?amp #5113
+* Fixed: Can't use function return value error when activating plugin #5115
+* Fixed: Button icon showing white When installing schema internally #5111
+
 = 1.0.77.18 (5th August 2021) =
 * Improvements: Added License Key information in AMP panel #5110
 
 = 1.0.77.17 (3rd August 2021) =
 * Improvements: Added dotmetrics analytics support in amp #5107
 * Improvements: Added support to preserve query string with ?amp #5103
-
-= 1.0.77.16 (29th July 2021) =
-* Improvements: Added Filter to remove last-modified header in amp #5101
-* Fixed: Webp images are not converting with Webp Express plugin #5108
-* Fixed: Validation error - The tag 'lite-youtube' is disallowed #5102
-* Fixed: Yoast custom breadcrumbs title not working after update #5100
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
