@@ -68,7 +68,11 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     $isMobile = $mobile_detect->isMobile();
     if (!$isMobile ) {
         $current_url = home_url(add_query_arg(array($_GET), $wp->request));
-        $current_url = explode('/', $current_url);
+        if (ampforwp_get_setting('amp-core-end-point')) {
+          $current_url = explode('?', $current_url);
+        }else{
+          $current_url = explode('/', $current_url);
+        }
         $check =  AMPFORWP_AMP_QUERY_VAR;
       if (in_array( $check  , $current_url ) ) {
           $current_url = array_flip($current_url);
