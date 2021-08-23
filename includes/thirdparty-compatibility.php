@@ -1309,3 +1309,10 @@ if(!function_exists('ampforwp_category_image_compatibility')){
 		}
 	}
 }
+add_action('plugins_loaded', 'ampforwp_jetpack_boost_compatibility' , 0);
+function ampforwp_jetpack_boost_compatibility(){
+    $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );	
+    if (function_exists('\Automattic\Jetpack_Boost\run_jetpack_boost') && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
+ 		remove_action( 'plugins_loaded', '\Automattic\Jetpack_Boost\run_jetpack_boost', 1 );
+ 	}
+}
