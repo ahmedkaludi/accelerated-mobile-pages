@@ -4407,7 +4407,7 @@ function ampforwp_generate_yoast_no_index_canonical_url(){
 	if(isset($yoast_data['canonical'])){ 
 		$canonical_url = $yoast_data['canonical'];
 			if(ampforwp_is_home() || ampforwp_is_front_page()){
-				   $canonical_url = user_trailingslashit(get_site_url());
+				   $canonical_url = user_trailingslashit(get_home_url());
 			} ?>
 	   <link rel="canonical" href="<?php echo esc_url($canonical_url) ?>"/>
 	<?php }
@@ -4421,7 +4421,7 @@ function ampforwp_modify_yoast_amp_homepage_canonical(){
 
  function ampforwp_modify_yoast_homepage_canonical_url($canonical_url){
 	if(ampforwp_is_home() || ampforwp_is_front_page()){
-	  $canonical_url = user_trailingslashit(get_site_url());
+	  $canonical_url = user_trailingslashit(get_home_url());
 	} 
   return esc_url($canonical_url);
  }
