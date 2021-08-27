@@ -241,7 +241,9 @@ class AMP_Image_Dimension_Extractor {
 					$urlArrayLastdata = end( $urlArraydata );
 					$parsed_url       = explode( 'x', $urlArrayLastdata );
 					if ( is_array( $parsed_url ) ) {
-						$height             = explode( '.', $parsed_url[1] );
+						if (array_key_exists( 1, $parsed_url )){
+  							$height = explode( '.', $parsed_url[1] );
+  						}
 						$image_data['size'] = array( $parsed_url[0], $height[0] );
 					}
 				}
