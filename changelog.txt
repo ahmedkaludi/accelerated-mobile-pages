@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.77.21 (6th September 2021) =
+* Fixed: Images not displaying in AMP with Lazy loading of Zeen theme #5126
+* Fixed: Missing rel noopener attribute in links #5125
+* Fixed: Incorrect canonical for Homepage if WordPress installation is another folder #5122
+* Fixed: No data hero attribute on featured image of default image #5121
+* Fixed: Debug log errors #5124
+
 = 1.0.77.19 (13th August 2021) =
 * Fixed: Disable AMP on desktop not working with ?amp #5113
 * Fixed: Can't use function return value error when activating plugin #5115
