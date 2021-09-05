@@ -204,6 +204,11 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: No data hero attribute on featured image of default image #5121
 * Fixed: Debug log errors #5124
 
+= 1.0.77.20 (24th August 2021) =
+* Fixed: Validation errors when Jetpack boost plugin is active #5120
+* Fixed: Display Warning Icon more clearly if setup is not completed #5119
+* Fixed: Image loading issues while using Webp express #5118
+
 = 1.0.77.19 (13th August 2021) =
 * Fixed: Disable AMP on desktop not working with ?amp #5113
 * Fixed: Can't use function return value error when activating plugin #5115
@@ -211,9 +216,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 = 1.0.77.18 (5th August 2021) =
 * Improvements: Added License Key information in AMP panel #5110
-
-= 1.0.77.17 (3rd August 2021) =
-* Improvements: Added dotmetrics analytics support in amp #5107
-* Improvements: Added support to preserve query string with ?amp #5103
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
