@@ -9544,7 +9544,15 @@ function ampforwp_webp_express_compatibility($content){
 		if(isset($src[1][0])){
 			$img_url = esc_url($src[1][0]);
 			if(!preg_match('/\.webp/', $img_url)){
-				$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images$2', $img_url);
+				$config = \WebPExpress\Config::loadConfigAndFix();
+				if($config['destination-folder'] == 'mingled'){
+					$img_url_webp = $img_url;
+				}else{
+					$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images$2', $img_url);
+					if($config['destination-structure'] == 'doc-root'){
+						$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images/doc-root/wordpress/wp-content$2', $img_url);
+					}
+				}
 				if(!preg_match('/\.webp/', $img_url)){	
 					$img_url_webp = esc_url($img_url_webp).".webp";
 			 		$content = str_replace($img_url, $img_url_webp, $content); 

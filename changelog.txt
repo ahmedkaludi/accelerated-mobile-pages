@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.77.20 (24th August 2021) =
+* Fixed: Validation errors when Jetpack boost plugin is active #5120
+* Fixed: Display Warning Icon more clearly if setup is not completed #5119
+* Fixed: Image loading issues while using Webp express #5118
+
 = 1.0.77.19 (13th August 2021) =
 * Fixed: Disable AMP on desktop not working with ?amp #5113
 * Fixed: Can't use function return value error when activating plugin #5115
