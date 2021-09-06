@@ -8904,26 +8904,7 @@ function ampforwp_themify_compatibility($content){
 	}
 	return $content;
 }
-if(class_exists('RankMath')){
-	add_filter('ampforwp_modify_the_content','ampforwp_rank_math_external_link_newtab');
-}
-function ampforwp_rank_math_external_link_newtab($content){
-	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
-	if($rank_math_external_link){
-		preg_match_all('/<a(.*?)href="(.*?)"/s', $content, $matches);
-		for($i=0;$i<count($matches[2]);$i++){
-			$url = $matches[2][$i];
-			if(ampforwp_isexternal($url)){
-				$url = esc_url($url);
-				$url = str_replace("/", "\/", $url);
-				if(preg_match('/<a(.*?)href="'.$url.'"(.*?)<\/a>/' , $content)){
-					$content = preg_replace('/<a(.*?)href="'.$url.'"(.*?)<\/a>/', '<a$1 target="_blank" href="'.stripcslashes($url).'"$2</a>', $content);
-				}	
-			}
-		}
-	}
-	return $content;
-}	
+
 add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
 function ampforwp_referesh_related_post(){
 	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp_refresh_related_poost') ){
