@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.21
+Stable tag: 1.0.77.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.22 (6th September 2021) =
+* Fixed: Validation error with rankmath's "open external links in new tab" option #5129
 
 = 1.0.77.21 (6th September 2021) =
 * Fixed: Images not displaying in AMP with Lazy loading of Zeen theme #5126

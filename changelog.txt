@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.77.22 (6th September 2021) =
+* Fixed: Validation error with rankmath's "open external links in new tab" option #5129
+
 = 1.0.77.21 (6th September 2021) =
 * Fixed: Images not displaying in AMP with Lazy loading of Zeen theme #5126
 * Fixed: Missing rel noopener attribute in links #5125
