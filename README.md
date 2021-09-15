@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.22
+Stable tag: 1.0.77.23
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,11 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.23 (16th September 2021) =
+* Improvements: Added Top Mail Ru analytics support in amp #5130
+* Improvements: Added an option to move sponsorship label above the ad
+* Improvements: Updated the facebook instant articles to 50 when limit is not set #5131
+
 = 1.0.77.22 (6th September 2021) =
 * Fixed: Validation error with rankmath's "open external links in new tab" option #5129
 
@@ -206,18 +211,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Incorrect canonical for Homepage if WordPress installation is another folder #5122
 * Fixed: No data hero attribute on featured image of default image #5121
 * Fixed: Debug log errors #5124
-
-= 1.0.77.20 (24th August 2021) =
-* Fixed: Validation errors when Jetpack boost plugin is active #5120
-* Fixed: Display Warning Icon more clearly if setup is not completed #5119
-* Fixed: Image loading issues while using Webp express #5118
-
-= 1.0.77.19 (13th August 2021) =
-* Fixed: Disable AMP on desktop not working with ?amp #5113
-* Fixed: Can't use function return value error when activating plugin #5115
-* Fixed: Button icon showing white When installing schema internally #5111
-
-= 1.0.77.18 (5th August 2021) =
-* Improvements: Added License Key information in AMP panel #5110
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

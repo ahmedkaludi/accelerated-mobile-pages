@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.77.23 (16th September 2021) =
+* Improvements: Added Top Mail Ru analytics support in amp #5130
+* Improvements: Added an option to move sponsorship label above the ad
+* Improvements: Updated the facebook instant articles to 50 when limit is not set #5131
+
 = 1.0.77.22 (6th September 2021) =
 * Fixed: Validation error with rankmath's "open external links in new tab" option #5129
 
