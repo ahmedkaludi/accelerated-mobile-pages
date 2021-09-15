@@ -317,6 +317,20 @@ function ampforwp_analytics() {
                 $analytics_url = "https://script.dotmetrics.net/AmpConfig.json?id=".esc_html($dot_id); ?>
                 <amp-analytics config="<?php echo esc_url_raw($analytics_url); ?>"></amp-analytics>
                 <?php } }
+            if( true == ampforwp_get_setting('ampforwp-topmailru-switch')) { 
+                $topmailru_id = '';
+                $topmailru_id = ampforwp_get_setting('ampforwp-topmailru-id');
+                if(!empty($topmailru_id)){ ?>
+                <amp-analytics type="topmailru" id="topmailru">
+				<script type="application/json">
+				{
+				    "vars": {
+				        "id": "<?php echo esc_attr($topmailru_id);?>"
+				    }
+				}
+				</script>
+				</amp-analytics>
+                <?php } }    
 			if( true == ampforwp_get_setting('ampforwp-iotech-switch')) {
                 $project_id = $id = $title = $author = $categories = $cat_names = '';
                 $project_id = ampforwp_get_setting('ampforwp-iotech-projectid');
