@@ -64,6 +64,9 @@ function ampforwp_header_advert() {
 			$advert_height = '320';
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_1">';
+		if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '1') {
+			$output .= ampforwp_ads_sponsorship();
+		}
 		$output .= '<amp-ad class="amp-ad-1"
 					type="adsense"
 					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
@@ -79,7 +82,9 @@ function ampforwp_header_advert() {
 		}
 		else
 			$output .= '></amp-ad>';
-		$output .= ampforwp_ads_sponsorship();
+		if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '2') {
+			$output .= ampforwp_ads_sponsorship();
+		}
 		$output .= ' </div>';
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
@@ -140,6 +145,9 @@ function ampforwp_footer_advert() {
 			$advert_height = '320';
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_2">';
+		if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '1') {
+			$output .= ampforwp_ads_sponsorship();
+		}
 		$output	.=	'<amp-ad class="amp-ad-2" 
 					type="adsense" '. esc_attr($optimize) .'
 					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
@@ -155,7 +163,9 @@ function ampforwp_footer_advert() {
 		}
 		else
 			$output .= '></amp-ad>';
-		$output .= ampforwp_ads_sponsorship();
+		if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '2') {
+			$output .= ampforwp_ads_sponsorship();
+		}
 		$output	.=   ' </div>';
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
@@ -235,6 +245,9 @@ function ampforwp_before_post_content_advert() {
 					$advert_height = '320';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_3">';
+				if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '1') {
+					$output .= ampforwp_ads_sponsorship();
+				}
 				$output	.=	'<amp-ad class="amp-ad-3" 
 							type="adsense"
 							width='. esc_attr($advert_width).' height='. esc_attr($advert_height) . '
@@ -250,7 +263,9 @@ function ampforwp_before_post_content_advert() {
 				}
 				else
 					$output .= '></amp-ad>';
-				$output .= ampforwp_ads_sponsorship();
+				if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '2') {
+					$output .= ampforwp_ads_sponsorship();
+				}
 				$output	.=   ' </div>';
 			}
 			$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
@@ -318,6 +333,9 @@ function ampforwp_after_post_content_advert() {
 			$advert_height = '320';
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_4">';
+		if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '1') {
+			$output .= ampforwp_ads_sponsorship();
+		}
 		$output	.=	'<amp-ad class="amp-ad-4"
 					type="adsense" '. esc_attr($optimize) .'
 					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
@@ -333,7 +351,9 @@ function ampforwp_after_post_content_advert() {
 		}
 		else
 			$output .= '></amp-ad>';
-		$output .= ampforwp_ads_sponsorship();
+		if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '2') {
+			$output .= ampforwp_ads_sponsorship();
+		}
 		$output	.=   ' </div>';
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
@@ -389,6 +409,9 @@ function ampforwp_below_the_title_advert() {
 			$advert_height = '320';
   		}		
 		$output = '<div class="amp-ad-wrapper amp_ad_5">';
+		if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '1') {
+			$output .= ampforwp_ads_sponsorship();
+		}
 		$output	.=	'<amp-ad class="amp-ad-5"
 					type="adsense"
 					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
@@ -404,7 +427,9 @@ function ampforwp_below_the_title_advert() {
 		}
 		else
 			$output .= '></amp-ad>';
-		$output .= ampforwp_ads_sponsorship();
+		if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '2') {
+			$output .= ampforwp_ads_sponsorship();
+		}
 		$output	.=   ' </div>';
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
@@ -463,6 +488,9 @@ function ampforwp_above_related_post_advert() {
 			$advert_height = '320';
   		}
 		$output = '<div class="amp-ad-wrapper amp_ad_6">';
+		if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '1') {
+			$output .= ampforwp_ads_sponsorship();
+		}
 		$output	.=	'<amp-ad class="amp-ad-6"
 					type="adsense" '. esc_attr($optimize) .'
 					width='. esc_attr($advert_width) .' height='. esc_attr($advert_height) . '
@@ -478,7 +506,9 @@ function ampforwp_above_related_post_advert() {
 		}
 		else
 			$output .= '></amp-ad>';
-		$output .= ampforwp_ads_sponsorship();
+		if (ampforwp_get_setting('ampforwp-ads-sponsorship-position') == '2') {
+			$output .= ampforwp_ads_sponsorship();
+		}
 		$output	.=   ' </div>';
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
