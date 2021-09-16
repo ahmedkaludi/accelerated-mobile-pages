@@ -24,7 +24,7 @@ header('Content-Type: ' . esc_attr(feed_content_type('rss2')) . '; charset=' . e
         $number_of_articles = intval( $number_of_articles );
     }
     else{
-        $number_of_articles = 500;
+        $number_of_articles = 50;
     }
     
     $ia_args = array(

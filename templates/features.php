@@ -692,7 +692,6 @@ function ampforwp_new_dir( $dir ) {
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				 //for removing attributes within html tags
 				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
-				 $content = preg_replace('/(<[^>]+) rel="(.*?) noopener(.*?)"/', '$1 rel="$2$3"', $content);
 				 // Remove alt attribute from the div tag #2093 
 				 $content = preg_replace('/<div(.*?) alt=".*?"(.*?)/', '<div $1', $content);
 				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
@@ -4407,7 +4406,7 @@ function ampforwp_generate_yoast_no_index_canonical_url(){
 	if(isset($yoast_data['canonical'])){ 
 		$canonical_url = $yoast_data['canonical'];
 			if(ampforwp_is_home() || ampforwp_is_front_page()){
-				   $canonical_url = user_trailingslashit(get_site_url());
+				   $canonical_url = user_trailingslashit(get_home_url());
 			} ?>
 	   <link rel="canonical" href="<?php echo esc_url($canonical_url) ?>"/>
 	<?php }
@@ -4421,7 +4420,7 @@ function ampforwp_modify_yoast_amp_homepage_canonical(){
 
  function ampforwp_modify_yoast_homepage_canonical_url($canonical_url){
 	if(ampforwp_is_home() || ampforwp_is_front_page()){
-	  $canonical_url = user_trailingslashit(get_site_url());
+	  $canonical_url = user_trailingslashit(get_home_url());
 	} 
   return esc_url($canonical_url);
  }
@@ -8773,7 +8772,7 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					if(function_exists('rocket_activation')){
 						$m1_content = preg_replace('/srcset="(.*?)"/', '', $m1_content);
 					}
-					$fallback_img = "<amp-img ".$m_content."<amp-img fallback ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
+					$fallback_img = "<amp-img data-hero ".$m_content."<amp-img fallback data-hero ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
 					$content = str_replace("$match", $fallback_img, $content);
 				}
 				}
@@ -8905,26 +8904,7 @@ function ampforwp_themify_compatibility($content){
 	}
 	return $content;
 }
-if(class_exists('RankMath')){
-	add_filter('ampforwp_modify_the_content','ampforwp_rank_math_external_link_newtab');
-}
-function ampforwp_rank_math_external_link_newtab($content){
-	$rank_math_external_link = RankMath\Helper::get_settings( 'general.new_window_external_links' );
-	if($rank_math_external_link){
-		preg_match_all('/<a(.*?)href="(.*?)"/s', $content, $matches);
-		for($i=0;$i<count($matches[2]);$i++){
-			$url = $matches[2][$i];
-			if(ampforwp_isexternal($url)){
-				$url = esc_url($url);
-				$url = str_replace("/", "\/", $url);
-				if(preg_match('/<a(.*?)href="'.$url.'"(.*?)<\/a>/' , $content)){
-					$content = preg_replace('/<a(.*?)href="'.$url.'"(.*?)<\/a>/', '<a$1 target="_blank" href="'.stripcslashes($url).'"$2</a>', $content);
-				}	
-			}
-		}
-	}
-	return $content;
-}	
+
 add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
 function ampforwp_referesh_related_post(){
 	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp_refresh_related_poost') ){

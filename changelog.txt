@@ -1,5 +1,20 @@
 == Changelog ==
 
+= 1.0.77.23 (16th September 2021) =
+* Improvements: Added Top Mail Ru analytics support in amp #5130
+* Improvements: Added an option to move sponsorship label above the ad
+* Improvements: Updated the facebook instant articles to 50 when limit is not set #5131
+
+= 1.0.77.22 (6th September 2021) =
+* Fixed: Validation error with rankmath's "open external links in new tab" option #5129
+
+= 1.0.77.21 (6th September 2021) =
+* Fixed: Images not displaying in AMP with Lazy loading of Zeen theme #5126
+* Fixed: Missing rel noopener attribute in links #5125
+* Fixed: Incorrect canonical for Homepage if WordPress installation is another folder #5122
+* Fixed: No data hero attribute on featured image of default image #5121
+* Fixed: Debug log errors #5124
+
 = 1.0.77.20 (24th August 2021) =
 * Fixed: Validation errors when Jetpack boost plugin is active #5120
 * Fixed: Display Warning Icon more clearly if setup is not completed #5119

@@ -1187,9 +1187,9 @@ function ampforwp_new_gallery_images($images_markup, $image, $markup_arr){
 }
 if( ! function_exists( 'ampforwp_additional_gallery_style' ) ){
     function ampforwp_additional_gallery_style(){
-        global $redux_builder_amp,$carousel_markup_all;
+        global $carousel_markup_all;
         $design_type = '';
-        $design_type = $redux_builder_amp['ampforwp-gallery-design-type'];
+        $design_type = ampforwp_get_setting('ampforwp-gallery-design-type');
         
         if(isset($design_type) && $design_type!==''){
             echo $carousel_markup_all[$design_type]['gallery_css'];

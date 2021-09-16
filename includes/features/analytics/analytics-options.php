@@ -622,6 +622,23 @@ function ampforwp_analytics_options($opt_name){
                         'tooltip-subtitle' => esc_html__( 'Enter Your User ID Here','accelerated-mobile-pages'),
                         'required' => array('ampforwp-dotmetrics-switch', '=' , '1')
                     ),
+
+                    //Top.Mail.Ru Analytics    
+                    array(
+                        'id'            =>'ampforwp-topmailru-switch',
+                        'type'          => 'switch',
+                        'title'         => esc_html__('Top Mail Ru Analytics','accelerated-mobile-pages'),
+                        'default'       => 0,
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option to track topmailru analytics in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-topmailru-analytics-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+                    ),
+                    array(
+                        'id'       => 'ampforwp-topmailru-id',
+                        'type'     => 'text',
+                        'title'    => esc_html__( 'Counter ID', 'accelerated-mobile-pages' ),
+                        'tooltip-subtitle' => esc_html__( 'Enter Your Counter ID Here','accelerated-mobile-pages'),
+                        'required' => array('ampforwp-topmailru-switch', '=' , '1')
+                    ),
                         )
             )
    );

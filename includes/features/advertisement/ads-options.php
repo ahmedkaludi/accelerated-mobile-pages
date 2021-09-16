@@ -1179,6 +1179,19 @@ if (!function_exists('adsforwp_admin_notice')) {
                             'default'   => '',
                             'placeholder'=> 'Sponsored'
                         );
+                $fields[] =  array(
+                        'id'    => 'ampforwp-ads-sponsorship-position',
+                        'class' => 'child_opt child_opt_arrow', 
+                        'type'     => 'select',
+                        'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
+                        'tooltip-subtitle' => esc_html__( 'Select Sponsorship Position you want to show.', 'accelerated-mobile-pages' ),
+                        'options'   => array(
+                            '1'     => 'Above the Ads',
+                            '2'     => 'Below the Ads',
+                                    ),
+                        'default'  => '2',
+                        'required'  => array('ampforwp-ads-sponsorship','=','1'),
+                    );
         }
 
            return $fields;

@@ -78,6 +78,9 @@ function ampforwp_thirdparty_compatibility(){
 	if(function_exists('megashop_setup')){
         remove_filter( 'wp_nav_menu_args', 'TT_nav_menu_args' );
     }
+    if(function_exists('zeen_lazyload_images')){
+        add_filter('zeen_lazy_embedded_images','ampforwp_zeen_lazyload');
+    }
 	$yoast_canonical = $yoast_canonical_post = $yoast_canonical_page = '';
 	$yoast_canonical = get_option( 'wpseo_titles' );
 	if(isset($yoast_canonical['noindex-post'])){
@@ -1309,6 +1312,12 @@ if(!function_exists('ampforwp_category_image_compatibility')){
 		}
 	}
 }
+
+function ampforwp_zeen_lazyload($lazyload){
+	$lazyload = false;
+    return $lazyload;
+}
+
 add_action('plugins_loaded', 'ampforwp_jetpack_boost_compatibility' , 0);
 function ampforwp_jetpack_boost_compatibility(){
     $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );	
