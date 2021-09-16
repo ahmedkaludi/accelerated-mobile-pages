@@ -3209,6 +3209,13 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 	if($item->type=='taxonomy' && !in_array($item->object, ampforwp_get_all_post_types()) ){
 		return $atts;
 	}
+	$mob_pres_link = false;
+	if(function_exists('ampforwp_mobile_redirect_preseve_link')){
+	  $mob_pres_link = ampforwp_mobile_redirect_preseve_link();
+	}
+	if(ampforwp_get_setting('ampforwp-amp-takeover') || $mob_pres_link == true){
+		return $atts;
+	}
 	$url = $atts['href'];
 	if($url){
 		$is_external = ampforwp_isexternal($url);
