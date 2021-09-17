@@ -104,7 +104,9 @@ function ampforwp_analytics() {
 			$idsite = ampforwp_get_setting('pa-feild');
 			$title = urlencode(get_the_title());
 			$url = get_the_permalink();
-			$url = ampforwp_remove_protocol(ampforwp_url_controller($url));
+			if (function_exists( 'is_ssl' ) && !is_ssl()) {
+				$url = ampforwp_remove_protocol(ampforwp_url_controller($url));
+			}
 			$rand = rand(1111,9999);
 			$referer  = $url;
 			if(isset($_SERVER['HTTP_REFERER'])) {
