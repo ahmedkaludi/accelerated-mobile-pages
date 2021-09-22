@@ -4479,6 +4479,7 @@ add_filter( 'amp_skip_post', 'ampforwp_cat_specific_skip_amp_post', 10, 3 );
 function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
 	$skip_this_post = '';
 	$skip_this_post = ampforwp_posts_to_remove();
+	$skip_this_post = apply_filters( 'ampforwp_skip_category', $skip_this_post );
 	wp_reset_postdata();
 	if ( $skip_this_post ) {
 	  $skip = true;
