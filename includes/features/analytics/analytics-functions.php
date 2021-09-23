@@ -106,6 +106,8 @@ function ampforwp_analytics() {
 			$url = get_the_permalink();
 			if (function_exists( 'is_ssl' ) && !is_ssl()) {
 				$url = ampforwp_remove_protocol(ampforwp_url_controller($url));
+			}else{
+				ampforwp_url_controller($url);
 			}
 			$rand = rand(1111,9999);
 			$referer  = $url;
