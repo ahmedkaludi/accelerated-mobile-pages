@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.23
+Stable tag: 1.0.77.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,16 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.24 (23rd September 2021) =
+* Improvements: Added Filter to disable AMP for all categories except one #5139
+* Improvements: Added Ninja Form in the description of contact form module #5138
+* Fixed: Basic/Advance popup shows everytime when visiting option panel #5143
+* Fixed: Renewal link redirecting to 404 from options panel #5140
+* Fixed: Incorrect URL while using Matomo analytics #5136
+* Fixed: Validation error in the alt tag with Transposh plugin #5135
+* Fixed: Some design issues on one specific users #5134
+* Fixed: Debug Warnings - Use of undefined constant AUTH_KEY and SECURE_AUTH_KEY #5035 
+
 = 1.0.77.23 (16th September 2021) =
 * Improvements: Added Top Mail Ru analytics support in amp #5130
 * Improvements: Added an option to move sponsorship label above the ad
@@ -204,12 +214,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 = 1.0.77.22 (6th September 2021) =
 * Fixed: Validation error with rankmath's "open external links in new tab" option #5129
-
-= 1.0.77.21 (6th September 2021) =
-* Fixed: Images not displaying in AMP with Lazy loading of Zeen theme #5126
-* Fixed: Missing rel noopener attribute in links #5125
-* Fixed: Incorrect canonical for Homepage if WordPress installation is another folder #5122
-* Fixed: No data hero attribute on featured image of default image #5121
-* Fixed: Debug log errors #5124
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
