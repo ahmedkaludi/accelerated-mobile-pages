@@ -83,6 +83,13 @@ if ( get_query_var( 'paged' ) ) {
 			$curauth = (get_query_var('author_name')) ? get_user_by('slug', esc_attr($author_name)) : get_userdata(esc_attr($author));
 				if( true == ampforwp_gravatar_checker($curauth->user_email) ){
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
+				if(class_exists( 'UM_Functions' )){
+                   $author = get_user_by( 'slug', get_query_var( 'author_name' ) );
+                   $author_id = $author->ID;
+                   if(isset($author_id)){
+                   		$curauth_url = "".esc_url(get_site_url())."/wp-content/uploads/ultimatemember/".intval($author_id)."/profile_photo-190x190.jpg";
+ 					}
+                }
 					if($curauth_url){ ?>
 						<div class="amp-wp-content author-img">
 							<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
