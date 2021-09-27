@@ -6995,15 +6995,15 @@ if ( ! function_exists('ampforwp_ia_meta_box') ) {
 function ampforwp_ia_meta_callback( $post ) {
 	global $redux_builder_amp;
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_ia_nonce' );
-    $ampforwp_stored_meta = get_post_meta( $post->ID );
+    $ampforwp_stored_meta = get_post_meta( ampforwp_get_the_ID() );
 	if ( ! isset($ampforwp_stored_meta['ampforwp-ia-on-off']) && ! isset($ampforwp_stored_meta['ampforwp-ia-on-off'][0]) && $ampforwp_stored_meta['ampforwp-ia-on-off'][0] == 'hide-ia') {
 		$exclude_post_value = get_option('ampforwp_ia_exclude_post');
 		if ( $exclude_post_value == null ) {
 			$exclude_post_value[] = 0;
 		}
 		if ( $exclude_post_value ) {
-			if ( ! in_array( $post->ID, $exclude_post_value ) ) {
-				$exclude_post_value[] = $post->ID;
+			if ( ! in_array( ampforwp_get_the_ID(), $exclude_post_value ) ) {
+				$exclude_post_value[] = ampforwp_get_the_ID();
 				update_option('ampforwp_ia_exclude_post', $exclude_post_value);
 			}
 		}
@@ -7013,8 +7013,8 @@ function ampforwp_ia_meta_callback( $post ) {
 			$exclude_post_value[] = 0;
 		}
 		if ( $exclude_post_value ) {
-			if ( in_array( $post->ID, $exclude_post_value ) ) {
-				$exclude_ids = array_diff($exclude_post_value, array($post->ID) );
+			if ( in_array( ampforwp_get_the_ID(), $exclude_post_value ) ) {
+				$exclude_ids = array_diff($exclude_post_value, array(ampforwp_get_the_ID()) );
 				update_option('ampforwp_ia_exclude_post', $exclude_ids);
 			}
 		}
