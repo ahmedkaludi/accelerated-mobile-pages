@@ -335,6 +335,36 @@ function ampforwp_analytics() {
 				</script>
 				</amp-analytics>
                 <?php } }    
+                if( true == ampforwp_get_setting('ampforwp-plausible-switch')) { 
+                $site_url = site_url();?>
+                <amp-analytics>
+		    		<script type="application/json">
+				        {
+				            "vars": {
+				                "dataDomain": "<?php echo esc_attr($site_url);?>"
+				            },
+				            "requests": {
+				                "event": "https://plausible.io/api/event"
+				            },
+				            "triggers": {
+				                "trackPageview": {
+				                    "on": "visible",
+				                    "request": "event",
+				                    "extraUrlParams": {
+				                        "n": "pageview"
+				                    }
+				                },
+				            },
+				            "transport": {
+				                "beacon": true,
+				                "xhrpost": true,
+				                "image": false,
+				                "useBody": true
+				            }
+				        }
+				    </script>
+				</amp-analytics>
+                <?php }
 			if( true == ampforwp_get_setting('ampforwp-iotech-switch')) {
                 $project_id = $id = $title = $author = $categories = $cat_names = '';
                 $project_id = ampforwp_get_setting('ampforwp-iotech-projectid');
