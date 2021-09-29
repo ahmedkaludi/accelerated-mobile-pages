@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     if(function_exists('quads_loaded')){
         $quads_download = '<a href="'.admin_url('admin.php?page=quads-settings').'"> '.esc_html__('Go to WP QUADS Settings','accelerated-mobile-pages').' </a>';
     }else{
-        $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">'.esc_html__('Install Plugin','accelerated-mobile-pages').'</div>';
+        $quads_download = '<div class="install-now ampforwp-activation-call-module-upgrade button quads_install_button " id="ampforwp-wp-quads-activation-call" data-secure="'.wp_create_nonce('verify_module').'">'.esc_html__('Install Free Plugin','accelerated-mobile-pages').'</div>';
     }
     foreach (get_plugins() as $key => $value) {
         if($key == 'quick-adsense-reloaded/quick-adsense-reloaded.php' && !function_exists('quads_loaded')){
@@ -20,10 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
     }
     $advertisementdesc = '
     <div class="ads-baner">
-        <span class="adt-top">The Best AMP integration for Advertisement</span>
+        <div class="adt-top">The Best AMP integration for Advertisement</div>
         <div class="ads-baner-inner">
+            <div class="ads-baner-top">
             <span>'.esc_html__('INTRODUCING','accelerated-mobile-pages').'</span>
             <img class="ampforwp-quads-logo" src="'.AMPFORWP_IMAGE_DIR . '/wpquads-logo.png" width="180" height="42" />
+            </div>
+      
             <div class="list-of-feat">
                 <ul>
                     <li>
@@ -31,11 +34,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                         <ul class="inner-list">
                             <li>Unlimited Ads</li>
                             <li>Ad after X paragraph</li>
-                            <li>after every Nth para</li>
-                            <li>for AMP & non-AMP</li>
-                            <li>Ad after Image</li>
-                            <li>Ad by Word count</li>
+                            <li>After every nth paragraph</li>
                         </ul>
+
                     </li>
                     <li>
                         <h5>'.esc_html__('VENDORS','accelerated-mobile-pages').'</h5>
@@ -43,34 +44,57 @@ if ( ! defined( 'ABSPATH' ) ) {
                             <li>Adsense</li>
                             <li>Ad manager (DFP)</li>
                             <li>Yandex Direct</li>
-                            <li>Custom Code</li>
-                            <li>MGID</li>
-                            <li>30+ coming soon</li>
+                             
                         </ul>
                     </li>
                     <li>
-                        <h5>'.esc_html__('VISIBILITY by','accelerated-mobile-pages').'</h5>
+                        <h5>'.esc_html__('VISIBILITY BY','accelerated-mobile-pages').'</h5>
                         <ul class="inner-list">
                             <li>Post Type</li>
                             <li>Specific Post</li>
                             <li>Taxonomy</li>
-                            <li>Page Template</li>
-                            <li>MCategory / Tag</li>
-                            <li>and 8+ more</li>
+                             
                         </ul>
                     </li>
                     <li>
-                        <h5>'.esc_html__('TARGETTING by','accelerated-mobile-pages').'</h5>
+                        <h5>'.esc_html__('TARGETTING BY','accelerated-mobile-pages').'</h5>
                         <ul class="inner-list">
                             <li>Device type</li>
                             <li>User Agent</li>
                             <li>Cookie</li>
-                            <li>Referre</li>
+                             
+                        </ul>
+                    </li>
+                </ul> 
+                 
+<div id="blur">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing</div></br>
+<div id="showmore" style="display:none">
+                            <ul class="inner-list">
+                            <li>For AMP & non-AMP</li>
+                            <li>Ad after Image</li>
+                            <li>Ad by Word count</li>
+                        </ul>
+                        <ul class="inner-list">
+                             
+                            <li>Custom Code</li>
+                            <li>MGID</li>
+                            <li>30+ coming soon</li>
+                        </ul>
+                        <ul class="inner-list" style="width: 120px;">
+                             
+                            <li>Page Template</li>
+                            <li>Category / Tag</li>
+                            <li>and 8+ more</li>
+                        </ul>
+                        <ul class="inner-list inner-list-last">
+                             
+                            <li>Referrer</li>
                             <li>Language</li>
                             <li>and 4+ more</li>
                         </ul>
-                    </li>
-                </ul>
+</div>
+<div class="show">
+                      <a href="#" id="showonclick" onclick="ampforwp_wpquads_visibility(\'showmore\');">Show More</a></div>
                 <div class="ad-lnk">
                  '. $quads_download .'
                 </div>

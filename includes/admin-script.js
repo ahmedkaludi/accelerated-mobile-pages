@@ -2618,3 +2618,23 @@ function DrawerIcon(icon) {
         );
     });
 });
+
+function ampforwp_wpquads_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+
+      var blur = document.getElementById('blur');
+      if(blur.style.display == 'none')
+          blur.style.display = 'block';
+      else
+          blur.style.display = 'none';
+
+      var btnText = document.getElementById("showonclick");
+      if(btnText.innerHTML == 'Show More')
+        btnText.innerHTML = "Show Less";
+      else
+        btnText.innerHTML = "Show More";
+}

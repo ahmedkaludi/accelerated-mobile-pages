@@ -404,42 +404,82 @@ body.new-wp-version #redux-defaults {
 .amp-ads a{
     text-decoration: none;
 }
-.ads-baner{
-    border: 1px solid #2196F3;
-    width: 100%;
-    display: inline-block;
-    box-sizing: border-box;
-    border-radius: 3px;
+#showmore ul.inner-list {
+    float: left;
+    width: 28%;
 }
-.ads-baner span.adt-top{
-    background: #087fde;
-    padding: 10px 0px 10px 15px;
-    display: inline-block;
-    width: 100%;
-    box-sizing: border-box;
-    color: #fff;
+#blur {
+        color: transparent;
+        text-shadow: 0 0 8px #0d3e3e;
+      }
+ul.inner-list.inner-list-last {
+    float: left;
+    margin-left: 77px;
+    width: 120px!important;
+}
+.show {
+    text-align: center;
+    padding: 6px;
+    width: 15%;
+
+    margin: 0 auto;
+}
+ 
+.show a {
+    color: #000;
     font-size: 13px;
-    font-weight: 500;
+    background: #000;
+    background: linear-gradient(#ffb6b633, #f3e3e3);
+    padding: 5px 10px;
+}
+.ads-baner {
+    border-top: none;
+    background: #fff;
+    border-width: 0px 1px 1px 1px !important;
+    border: solid #e5e5e5;
+    width: 100%;
+    padding: 0;
+    display: inline-table;
+    background: rgb(255, 255, 255);
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.adt-top{
+    background: #f9f9f9 !important;
+    border-width: 1px 1px 0 1px !important;
+    padding: 10px 16px;
+    border: solid #e5e5e5;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #eee !important;
+}
+div#showmore {
+    position: relative;
+    top: -20px;
+}
+.ads-baner-top {
+    text-align: center;
 }
 .ads-baner-inner{
     padding:10px;
 }
 .ads-baner-inner span{
-    text-align: center;
-    width: 100%;
     display: inline-block;
     letter-spacing: 5px;
     color: #03A9F4;
     font-size: 13px;
+    position: relative;
+    bottom: 15px;
 }
 img.ampforwp-quads-logo{
     max-width: 180px;
     height: 42px;
     margin: 10px auto 0 auto;
-    display: inherit;
+    display: inline-block;
 }
 .list-of-feat{
-    padding:15px 10px;
+    padding:0px 10px;
 }
 .list-of-feat h5{
     font-size: 14px;
@@ -448,13 +488,13 @@ img.ampforwp-quads-logo{
     margin:0px;
 }
 .inner-list{
-    padding: 14px 0px 10px 0px;
     font-size: 15px;
     font-weight: 500;
     color: #666;
+    margin-top: 5px;
 }
 .inner-list li{
-    margin-bottom: 14px !important;
+    margin-bottom: 5px !important;
 }
 .inner-list li:before{
     content: "";
