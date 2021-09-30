@@ -12,15 +12,29 @@ add_filter('ampforwp_modify_ad_6','ampforwp_adpushup_ad_6',10,1);
 
 function ampforwp_adpushup_ad_1($output){
 	if( ampforwp_get_setting('enable-amp-ads-1')  && 'adpushup' == ampforwp_get_setting('enable-amp-ads-type-1') ) {
-		$width 		= ampforwp_get_setting('ampforwp-adpushup-width-1');
-		$height 	= ampforwp_get_setting('ampforwp-adpushup-height-1');
 		$site_id 	= ampforwp_get_setting('ampforwp-adpushup-site-id');
 		$slotpath 	= ampforwp_get_setting('ampforwp-adpushup-slotpath-1');
-		if (empty($width)) {
-			$width = "300";
-		}
-		if (empty($height)) {
-			$height = "250";
+		if(ampforwp_get_setting('ampforwp-adpushup-select-1') == 1)  {
+			$width  = '300';
+			$height = '250';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-1') == 2) {
+			$width  = '336';
+			$height = '280';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-1') == 3)  {
+			$width  = '728';
+			$height = '90';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-1') == 4)  {
+			$width  = '300';
+			$height = '600';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-1') == 5)  {
+			$width  = '320';
+			$height = '100';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-1') == 6)  {
+			$width  = '200';
+			$height = '50';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-1') == 7)  {
+			$width  = '320';
+			$height = '50';
 		}
 		if (!empty($site_id) && !empty($slotpath)) {
 			$output = '<div class="amp-ad-wrapper amp_ad_1">
@@ -39,15 +53,29 @@ function ampforwp_adpushup_ad_1($output){
 }
 function ampforwp_adpushup_ad_2($output){
 	if( ampforwp_get_setting('enable-amp-ads-2')  && 'adpushup' == ampforwp_get_setting('enable-amp-ads-type-2') ) {
-		$width 		= ampforwp_get_setting('ampforwp-adpushup-width-2');
-		$height 	= ampforwp_get_setting('ampforwp-adpushup-height-2');
 		$site_id 	= ampforwp_get_setting('ampforwp-adpushup-site-id');
 		$slotpath 	= ampforwp_get_setting('ampforwp-adpushup-slotpath-2');
-		if (empty($width)) {
-			$width = "300";
-		}
-		if (empty($height)) {
-			$height = "250";
+		if(ampforwp_get_setting('ampforwp-adpushup-select-2') == 1)  {
+			$width  = '300';
+			$height = '250';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-2') == 2) {
+			$width  = '336';
+			$height = '280';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-2') == 3)  {
+			$width  = '728';
+			$height = '90';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-2') == 4)  {
+			$width  = '300';
+			$height = '600';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-2') == 5)  {
+			$width  = '320';
+			$height = '100';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-2') == 6)  {
+			$width  = '200';
+			$height = '50';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-2') == 7)  {
+			$width  = '320';
+			$height = '50';
 		}
 		if (!empty($site_id) && !empty($slotpath)) {
 			$output = '<div class="amp-ad-wrapper amp_ad_2">
@@ -66,15 +94,29 @@ function ampforwp_adpushup_ad_2($output){
 }
 function ampforwp_adpushup_ad_3($output){
 	if( ampforwp_get_setting('enable-amp-ads-3')  && 'adpushup' == ampforwp_get_setting('enable-amp-ads-type-3') ) {
-		$width 		= ampforwp_get_setting('ampforwp-adpushup-width-3');
-		$height 	= ampforwp_get_setting('ampforwp-adpushup-height-3');
 		$site_id 	= ampforwp_get_setting('ampforwp-adpushup-site-id');
 		$slotpath 	= ampforwp_get_setting('ampforwp-adpushup-slotpath-3');
-		if (empty($width)) {
-			$width = "300";
-		}
-		if (empty($height)) {
-			$height = "250";
+		if(ampforwp_get_setting('ampforwp-adpushup-select-3') == 1)  {
+			$width  = '300';
+			$height = '250';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-3') == 2) {
+			$width  = '336';
+			$height = '280';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-3') == 3)  {
+			$width  = '728';
+			$height = '90';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-3') == 4)  {
+			$width  = '300';
+			$height = '600';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-3') == 5)  {
+			$width  = '320';
+			$height = '100';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-3') == 6)  {
+			$width  = '200';
+			$height = '50';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-3') == 7)  {
+			$width  = '320';
+			$height = '50';
 		}
 		if (!empty($site_id) && !empty($slotpath)) {
 			$output = '<div class="amp-ad-wrapper amp_ad_3">
@@ -93,15 +135,29 @@ function ampforwp_adpushup_ad_3($output){
 }
 function ampforwp_adpushup_ad_4($output){
 	if( ampforwp_get_setting('enable-amp-ads-4')  && 'adpushup' == ampforwp_get_setting('enable-amp-ads-type-4') ) {
-		$width 		= ampforwp_get_setting('ampforwp-adpushup-width-4');
-		$height 	= ampforwp_get_setting('ampforwp-adpushup-height-4');
 		$site_id 	= ampforwp_get_setting('ampforwp-adpushup-site-id');
 		$slotpath 	= ampforwp_get_setting('ampforwp-adpushup-slotpath-4');
-		if (empty($width)) {
-			$width = "300";
-		}
-		if (empty($height)) {
-			$height = "250";
+		if(ampforwp_get_setting('ampforwp-adpushup-select-4') == 1)  {
+			$width  = '300';
+			$height = '250';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-4') == 2) {
+			$width  = '336';
+			$height = '280';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-4') == 3)  {
+			$width  = '728';
+			$height = '90';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-4') == 4)  {
+			$width  = '300';
+			$height = '600';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-4') == 5)  {
+			$width  = '320';
+			$height = '100';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-4') == 6)  {
+			$width  = '200';
+			$height = '50';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-4') == 7)  {
+			$width  = '320';
+			$height = '50';
 		}
 		if (!empty($site_id) && !empty($slotpath)) {
 			$output = '<div class="amp-ad-wrapper amp_ad_4">
@@ -120,15 +176,29 @@ function ampforwp_adpushup_ad_4($output){
 }
 function ampforwp_adpushup_ad_5($output){
 	if( ampforwp_get_setting('enable-amp-ads-5')  && 'adpushup' == ampforwp_get_setting('enable-amp-ads-type-5') ) {
-		$width 		= ampforwp_get_setting('ampforwp-adpushup-width-5');
-		$height 	= ampforwp_get_setting('ampforwp-adpushup-height-5');
 		$site_id 	= ampforwp_get_setting('ampforwp-adpushup-site-id');
 		$slotpath 	= ampforwp_get_setting('ampforwp-adpushup-slotpath-5');
-		if (empty($width)) {
-			$width = "300";
-		}
-		if (empty($height)) {
-			$height = "250";
+		if(ampforwp_get_setting('ampforwp-adpushup-select-5') == 1)  {
+			$width  = '300';
+			$height = '250';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-5') == 2) {
+			$width  = '336';
+			$height = '280';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-5') == 3)  {
+			$width  = '728';
+			$height = '90';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-5') == 4)  {
+			$width  = '300';
+			$height = '600';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-5') == 5)  {
+			$width  = '320';
+			$height = '100';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-5') == 6)  {
+			$width  = '200';
+			$height = '50';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-5') == 7)  {
+			$width  = '320';
+			$height = '50';
 		}
 		if (!empty($site_id) && !empty($slotpath)) {
 			$output = '<div class="amp-ad-wrapper amp_ad_5">
@@ -147,15 +217,29 @@ function ampforwp_adpushup_ad_5($output){
 }
 function ampforwp_adpushup_ad_6($output){
 	if( ampforwp_get_setting('enable-amp-ads-6')  && 'adpushup' == ampforwp_get_setting('enable-amp-ads-type-6') ) {
-		$width 		= ampforwp_get_setting('ampforwp-adpushup-width-6');
-		$height 	= ampforwp_get_setting('ampforwp-adpushup-height-6');
 		$site_id 	= ampforwp_get_setting('ampforwp-adpushup-site-id');
 		$slotpath 	= ampforwp_get_setting('ampforwp-adpushup-slotpath-6');
-		if (empty($width)) {
-			$width = "300";
-		}
-		if (empty($height)) {
-			$height = "250";
+		if(ampforwp_get_setting('ampforwp-adpushup-select-6') == 1)  {
+			$width  = '300';
+			$height = '250';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-6') == 2) {
+			$width  = '336';
+			$height = '280';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-6') == 3)  {
+			$width  = '728';
+			$height = '90';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-6') == 4)  {
+			$width  = '300';
+			$height = '600';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-6') == 5)  {
+			$width  = '320';
+			$height = '100';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-6') == 6)  {
+			$width  = '200';
+			$height = '50';
+		} elseif (ampforwp_get_setting('ampforwp-adpushup-select-6') == 7)  {
+			$width  = '320';
+			$height = '50';
 		}
 		if (!empty($site_id) && !empty($slotpath)) {
 			$output = '<div class="amp-ad-wrapper amp_ad_6">

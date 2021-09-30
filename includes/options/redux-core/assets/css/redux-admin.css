@@ -1596,7 +1596,9 @@ fieldset#redux_builder_amp-AMPforWP_cache_mode .description.field-desc {
 #toplevel_page_amp_options > a{ 
     position: relative; 
 }     
-
+a#ampforwp-prem-upg-to {
+    display: none;
+}
 /** Discount Offer CSS Ends **/
 
 table#section-table-ampforwp-the-seo-checklist strong , table#section-table-ampforwp-the-seo-checklist th {
@@ -1615,4 +1617,8 @@ div#\34_section_group.amp-ads .redux-section-desc {
 }
 table#section-table-amp-ads_0 {
     border-color: #ff4954;
+}
+
+div#section-amp-ads_0.afw-accordion-tab-open:after {
+    color: #fff;
 }
