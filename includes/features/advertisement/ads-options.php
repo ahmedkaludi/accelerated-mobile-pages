@@ -109,6 +109,7 @@ if (!function_exists('adsforwp_admin_notice')) {
             'desc' => $advertisementdesc,
             'class'      => '',
             'id'         => 'amp-ads',
+            'class'=>'ampforwp_new_features ',
             'subsection' => true,
             'fields'     => apply_filters('ampforwp_ads_option_fields', $fields = array() ),
         ) );   
@@ -119,6 +120,36 @@ if (!function_exists('adsforwp_admin_notice')) {
  add_filter('ampforwp_ads_option_fields', 'ampforwp_add_ads_fields');
  function ampforwp_add_ads_fields($fields){
         if ( !is_plugin_active('ads-for-wp/ads-for-wp.php') ) {
+
+                $fields[] =     array(
+                            'id' => 'amp-ads_0',
+                           'type' => 'section',
+                           'title' => esc_html__('Optimize Your Revenue with AdPushup', 'accelerated-mobile-pages'),
+                           'indent' => true,
+                           'layout_type' => 'accordion',
+                           'accordion-open'=> 1,
+                );
+
+                $fields[] =    array(
+                        'id'        =>'ampforwp-ads-adpushup',
+                        'type'      => 'switch',
+                        'title'     => esc_html__('Ad Revenue Optimization', 'accelerated-mobile-pages'),
+                        'desc' => sprintf('%s <a href="%s" target="_blank">%s</a>', 
+                         esc_html__('Increase Ad CTRs, CPMs, and overall revenues using automated A/B testing, header bidding, innovative ad formats and', 'accelerated-mobile-pages'), esc_url('https://www.adpushup.com/'),esc_html__('many more here','accelerated-mobile-pages')),    
+                        'default'   => 0,
+                    );
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-adpushup-site-id',
+                            'type'      => 'text',
+                            'required' => array('ampforwp-ads-adpushup', '=' , '1'),
+                                       
+                            'title'     => esc_html__('Site ID', 'accelerated-mobile-pages'),
+                            'desc' => sprintf('%s <a href="%s" target="_blank">%s</a>', 
+                        esc_html__('Get the site ID from', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-adpushup-ads-in-amp'), esc_html__('here','accelerated-mobile-pages')),
+                            'default'   => '',
+                            'placeholder'=> '40827'
+                        );
 
                 $fields[] = array(
                        'id' => 'amp-ads_1',
@@ -147,6 +178,7 @@ if (!function_exists('adsforwp_admin_notice')) {
                             // Must provide key => value pairs for select options
                             'options'  => array(
                                 'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
+                                'adpushup'   =>  esc_html__('AdPushup', 'accelerated-mobile-pages'),
                                 'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
                             ),
                             'default'  => 'adsense',
@@ -207,6 +239,44 @@ if (!function_exists('adsforwp_admin_notice')) {
                                             array('enable-amp-ads-1', '=' , '1'),
                                             array('enable-amp-ads-type-1', '=' , 'adsense'),
                                         ),
+                        );
+                // AdPushup fields
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-adpushup-width',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-1', '=' , '1'),
+                                            array('enable-amp-ads-type-1', '=' , 'adpushup'),
+                                        ),
+                            'title'     => esc_html__('Width', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> '300'
+                        );
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-adpushup-height',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-1', '=' , '1'),
+                                            array('enable-amp-ads-type-1', '=' , 'adpushup'),
+                                        ),
+                            'title'     => esc_html__('Height', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> '250'
+                        );
+                
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'enable-amp-ads-adpushup-slotpath',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-1', '=' , '1'),
+                                            array('enable-amp-ads-type-1', '=' , 'adpushup'),
+                                        ),
+                            'title'     => esc_html__('Slotpath', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> '/103512698/AMP_COMPONENT_TEST_1'
                         );
                 // MGID fields
                 $fields[] =        array(
