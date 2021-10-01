@@ -526,8 +526,9 @@ function amp_content($post_id= ''){
 			// Custom/Alternative AMP content added through post meta  
 			$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
 		} 
+	$ampforwp_pb = get_post_meta(ampforwp_get_the_ID(),'ampforwp_page_builder_enable', true);	
 	// Muffin Builder Compatibility #1455 #1893 #4983
-	if ( class_exists('Mfn_Builder_Front') && ! $amp_custom_content_enable ) {
+	if ( isset($ampforwp_pb) && $ampforwp_pb != "yes" && class_exists('Mfn_Builder_Front') && ! $amp_custom_content_enable ) {
 		$mfn_page = get_post_field( 'mfn-page-items-seo', ampforwp_get_the_ID());
 		if (!empty($mfn_page)) {
 		$mfn_builder = $content = '';
