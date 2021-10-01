@@ -201,6 +201,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Improvements: Added Plausible analytics compatible in AMP #5142
 * Fixed: The amp-minute-media-player tag is getting stripped from the content #5146
 * Fixed: Author profile images not loading from Ultimate Member plugin #5141
+* Fixed: AMP Page builder content not rendering with Muffin builder #5147
 * Fixed: Debug log Errors #5145
 
 = 1.0.77.24 (23rd September 2021) =
