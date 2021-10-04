@@ -2644,4 +2644,12 @@ $("#subscribe-newsletter-form").on('submit',function(e){
             $(".ampforwp_remove_notice").remove();
         });
     });
+    $("#ampforwp-close-ad-notice").on("click", function(){
+        var data = {
+            action: 'ampforwp_adpushup_remove_notice',
+        };
+        $.post(ajaxurl, data, function(response) {
+            $(".ampforwp_remove_notice").remove();
+        });
+    });
 });

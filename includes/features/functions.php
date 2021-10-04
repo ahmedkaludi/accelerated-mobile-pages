@@ -37,6 +37,10 @@ function ampforwp_add_admin_styling($hook_suffix){
 
     // Localize the script with new data
     $redux_data = array();
+    global $pagenow;
+    if ('plugins.php' == $pagenow) {
+        add_action('admin_notices', 'ampforwp_adpushup_notice' );
+    }
     if( current_user_can("manage_options") && $hook_suffix=='toplevel_page_amp_options' ){
         $redux_data = $redux_builder_amp;
         wp_dequeue_script( 'insert-post-adschart-admin' );
@@ -70,6 +74,7 @@ function ampforwp_add_admin_styling($hook_suffix){
         add_action('admin_notices', 'ampforwp_mobile_redirection_notice' );
         add_action('admin_notices', 'ampforwp_category_base_remove_notice' );
         add_action('admin_notices', 'ampforwp_internal_feedback_notice' );
+        add_action('admin_notices', 'ampforwp_adpushup_notice' );
         if ( defined('AMPFORWPPRO_PLUGIN_DIR')  ) {     
             $license_info = get_option( 'ampforwppro_license_info');
             if (!$license_info) {
@@ -1516,6 +1521,30 @@ function ampforwp_feedback_remove_notice(){
     wp_die();                
 }
 add_action('wp_ajax_ampforwp_feedback_remove_notice', 'ampforwp_feedback_remove_notice');
+
+function ampforwp_adpushup_notice(){
+    $activation_never =  get_option("ampforwp_adpushup_remove_notice");
+    if ($activation_never =='remove' && !ampforwp_get_setting('ampforwp-ads-adpushup')) {?>
+        <div class="updated notice ampforwp_remove_notice" style="box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);background-color:white;">
+            <p> 
+            <?php esc_html_e('We have integrated AdPushup ads in our AMP plugin, it is a revenue optimization platform that helps publishers increase their ad revenue with fast fetch ad delivery and publishers can earn as much as 6x the revenue compared to non-optimized pages.', 'accelerated-mobile-pages'); ?></br>
+            <a href="<?php echo esc_url('admin.php?page=amp_options&tab=4') ?>" class="button-primary" target="_self" style="font-weight:bold;" title="Ok, you deserved it"> <?php echo esc_html__('Setup AdPushup in AMP', 'accelerated-mobile-pages') ?></a>
+            <a class="button-primary" id="ampforwp-close-ad-notice" style="font-weight:bold;"><?php echo esc_html__('Dismiss Notice', 'accelerated-mobile-pages') ?></a>
+            </p>
+        </div>
+<?php    }
+}
+
+function ampforwp_adpushup_remove_notice(){     
+    $result = update_option( "ampforwp_adpushup_remove_notice", 'remove');
+    if($result){
+        echo json_encode(array('status'=>'t'));            
+    }else{    
+        echo json_encode(array('status'=>'f'));                
+    }   
+    wp_die();                
+}
+add_action('wp_ajax_ampforwp_adpushup_remove_notice', 'ampforwp_adpushup_remove_notice');
 
 function ampforwp_pro_extension_manager_notice(){?>
     <div class="updated notice ampforwp_remove_notice" style="box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);background-color:white;">

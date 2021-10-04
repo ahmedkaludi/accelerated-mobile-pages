@@ -2177,3 +2177,22 @@ span#amp-close {
     color: white;
     border-radius: 5px; 
 }
+
+.ampforwp_new_features .redux-group-tab-link-a span:after {
+    content: "NEW";
+    color: #fff;
+    font-size: 10px;
+    background: #4452a7;
+    padding: 5px 10px;
+    border-radius: 30px;
+    font-weight: normal;
+    position: relative;
+    top: -1px;
+    left: 15px;
+}
+.updated.notice p {
+    font-size: 15px;
+}
+.updated.notice a {
+    margin-top: 15px;
+}

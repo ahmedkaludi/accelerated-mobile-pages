@@ -1561,3 +1561,17 @@ doc-cnt h1 , .doc-cnt p{
 ul#\32 _section_group_li_subsections .redux-group-tab-link-li.active {  
     background: linear-gradient(to right,#eb3349,#f45c43);
 }
+
+/**Removed WP Quads Banner**/
+div#\34_section_group.amp-ads .redux-section-desc {
+    display: none!important;
+}
+
+#section-amp-ads_0.afw-accordion-header > h3 {
+    background: #ff4954 !important;
+    border-color: #ff4954 !important;
+    color: #fff;
+}
+table#section-table-amp-ads_0 {
+    border-color: #ff4954;
+}
