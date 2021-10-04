@@ -2193,6 +2193,8 @@ span#amp-close {
 .updated.notice p {
     font-size: 15px;
 }
-.updated.notice a {
-    margin-top: 15px;
+a#ampforwp-close-ad-notice {
+    background: #fff;
+    color: #2271b1;
+    border: none;
 }
