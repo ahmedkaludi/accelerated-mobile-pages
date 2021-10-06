@@ -5459,6 +5459,13 @@ if( ! function_exists('ampforwp_get_comments_gravatar') ){
 		if(isset($redux_builder_amp['ampforwp-display-avatar']) && $redux_builder_amp['ampforwp-display-avatar']==0){
 			return '';
 		}
+		if (class_exists('FV_Gravatar_Cache')) {
+			$avatar_url = get_avatar_url($comment);
+			$upload_dir = wp_upload_dir(); 
+			$upload_dir = $upload_dir['baseurl'] . '/fv-gravatar-cache/';
+			$avatar_url = preg_replace('/(.*?)avatar\/(.*?)\?s=(.*?)&(.*?)g/', ''.$upload_dir.'$2x$3.png', $avatar_url);
+			return $avatar_url;
+		}
 	$gravatar_exists = '';
 	$gravatar_exists = ampforwp_gravatar_checker($comment->comment_author_email);
 	if ( null !== ampforwp_get_wp_user_avatar($comment, 'comment') ) {
