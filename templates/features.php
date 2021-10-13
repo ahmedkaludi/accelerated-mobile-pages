@@ -9537,7 +9537,7 @@ function ampforwp_webp_express_compatibility($content){
 				}else{
 					$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images$2', $img_url);
 					if($config['destination-structure'] == 'doc-root'){
-						$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images/doc-root/wordpress/wp-content$2', $img_url);
+						$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images/doc-root/wp-content$2', $img_url);
 					}
 				}
 				if(!preg_match('/\.webp/', $img_url)){	
