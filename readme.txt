@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.23
+Stable tag: 1.0.77.26
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.26 (13th October 2021) =
+* Improvements: Added FV Gravatar Cache Compatibility in AMP #5149
+* Fixed: Images not loading when destination structure is document root in WebP Express #5150
 
 = 1.0.77.23 (16th September 2021) =
 * Improvements: Added Top Mail Ru analytics support in amp #5130

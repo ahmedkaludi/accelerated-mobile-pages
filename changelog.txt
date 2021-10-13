@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.77.26 (13th October 2021) =
+* Improvements: Added FV Gravatar Cache Compatibility in AMP #5149
+* Fixed: Images not loading when destination structure is document root in WebP Express #5150
+
 = 1.0.77.23 (16th September 2021) =
 * Improvements: Added Top Mail Ru analytics support in amp #5130
 * Improvements: Added an option to move sponsorship label above the ad
