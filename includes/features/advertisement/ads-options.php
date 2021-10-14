@@ -109,7 +109,7 @@ if (!function_exists('adsforwp_admin_notice')) {
                         'type'      => 'switch',
                         'title'     => esc_html__('Ad Revenue Optimization', 'accelerated-mobile-pages'),
                         'desc' => sprintf('%s <a href="%s" target="_blank">%s</a>', 
-                         esc_html__('Increase Ad CTRs, CPMs, and overall revenues using automated A/B testing, header bidding, innovative ad formats and', 'accelerated-mobile-pages'), esc_url('https://www.adpushup.com/'),esc_html__('many more here','accelerated-mobile-pages')),    
+                         esc_html__('Get upto 2x revenue and all the benefits of Header Bidding now on AMP inventory with AdPushup and ', 'accelerated-mobile-pages'), esc_url('https://www.adpushup.com/publisher/amp-for-wp/'),esc_html__('many more here','accelerated-mobile-pages')),    
                         'default'   => 0,
                     );
                 $fields[] =        array(
