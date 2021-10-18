@@ -139,7 +139,7 @@ $formFields = array(
 					'default' =>'',
 					'options_details'=>$formSupported,
 					'content_type'=>'html',
-					'helpmessage' => 'This module requires <a href="https://ampforwp.com/contact-form-7" target="_blank">AMP Contact Form 7</a> or <a href="https://ampforwp.com/gravity-forms/" target="_blank">AMP Gravity Forms</a> Extension. <a target="_blank" href="https://ampforwp.com/extensions/">View all the Extensions</a>'
+					'helpmessage' => 'This module requires <a href="https://ampforwp.com/contact-form-7" target="_blank">AMP Contact Form 7</a> , <a href="https://ampforwp.com/gravity-forms/" target="_blank">AMP Gravity Forms</a> or <a href="https://ampforwp.com/ninja-forms/" target="_blank">Ninja Forms for AMP</a> Extension. <a target="_blank" href="https://ampforwp.com/extensions/">View all the Extensions</a>'
 				),
 			);
 if(isset($cf7FormsList)){

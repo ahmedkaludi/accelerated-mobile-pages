@@ -74,7 +74,7 @@ function ampforwp_get_licence_activate_update(){
                                     esc_html__( 'Your license key expired on %s.', 'accelerated-mobile-pages' ),
                                     date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
                                 );
-                                $message .= "<a href='".$store_url."/checkout-2/?edd_license_key=16ed15c13524cc7e00346eeb3f76e412'>Renew Link</a>";
+                                $message .= "<a href='".esc_url($store_url)."/order/?edd_license_key=".esc_html($license)."'>Renew Link</a>";
                                 break;
 
                             case 'revoked' :

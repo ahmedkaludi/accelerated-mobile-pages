@@ -639,6 +639,16 @@ function ampforwp_analytics_options($opt_name){
                         'tooltip-subtitle' => esc_html__( 'Enter Your Counter ID Here','accelerated-mobile-pages'),
                         'required' => array('ampforwp-topmailru-switch', '=' , '1')
                     ),
+
+                    //Plausible Analytics 
+                    array(
+                        'id'            =>'ampforwp-plausible-switch',
+                        'type'          => 'switch',
+                        'title'         => esc_html__('Plausible Analytics','accelerated-mobile-pages'),
+                        'default'       => 0,
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option to track plausible analytics in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-plausible-analytics-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+                    ),
                         )
             )
    );
