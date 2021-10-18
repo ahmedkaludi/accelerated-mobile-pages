@@ -194,7 +194,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.77.26 (13th October 2021) =
+= 1.0.77.26 (18th October 2021) =
 * Improvements: Added FV Gravatar Cache Compatibility in AMP #5149
 * Fixed: Images not loading when destination structure is document root in WebP Express #5150
 
