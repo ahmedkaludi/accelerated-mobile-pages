@@ -1536,6 +1536,7 @@ function ampforwp_adpushup_notice(){
 }
 
 function ampforwp_adpushup_remove_notice(){    
+    $result = '';
     if(current_user_can( 'manage_options' )){
        $result = update_option( "ampforwp_adpushup_remove_notice", 'remove');
     }
