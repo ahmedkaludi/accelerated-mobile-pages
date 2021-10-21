@@ -1535,8 +1535,10 @@ function ampforwp_adpushup_notice(){
 <?php    }
 }
 
-function ampforwp_adpushup_remove_notice(){     
-    $result = update_option( "ampforwp_adpushup_remove_notice", 'remove');
+function ampforwp_adpushup_remove_notice(){    
+    if(current_user_can( 'manage_options' )){
+       $result = update_option( "ampforwp_adpushup_remove_notice", 'remove');
+    }
     if($result){
         echo json_encode(array('status'=>'t'));            
     }else{    
