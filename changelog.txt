@@ -1,5 +1,12 @@
 == Changelog ==
 
+1.0.77.26 (21TH October 2021) =
+Improvements: Added AdPushup Support in AMP #5144
+
+1.0.77.26 (20TH October 2021) =
+Improvements: Added FV Gravatar Cache Compatibility in AMP #5149
+Fixed: Images not loading when destination structure is document root in WebP Express #5150
+
 = 1.0.77.25 (1st October 2021) =
 * Improvements: Added Plausible analytics compatible in AMP #5142
 * Fixed: The amp-minute-media-player tag is getting stripped from the content #5146

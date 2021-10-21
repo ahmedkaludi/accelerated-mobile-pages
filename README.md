@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.25
+Stable tag: 1.0.77.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,26 +197,18 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+1.0.77.26 (21TH October 2021) =
+Improvements: Added AdPushup Support in AMP #5144
+
+1.0.77.26 (20TH October 2021) =
+Improvements: Added FV Gravatar Cache Compatibility in AMP #5149
+Fixed: Images not loading when destination structure is document root in WebP Express #5150
+
 = 1.0.77.25 (1st October 2021) =
 * Improvements: Added Plausible analytics compatible in AMP #5142
 * Fixed: The amp-minute-media-player tag is getting stripped from the content #5146
 * Fixed: Author profile images not loading from Ultimate Member plugin #5141
 * Fixed: AMP Page builder content not rendering with Muffin builder #5147
 * Fixed: Debug log Errors #5145
-
-= 1.0.77.24 (23rd September 2021) =
-* Improvements: Added Filter to disable AMP for all categories except one #5139
-* Improvements: Added Ninja Form in the description of contact form module #5138
-* Fixed: Basic/Advance popup shows everytime when visiting option panel #5143
-* Fixed: Renewal link redirecting to 404 from options panel #5140
-* Fixed: Incorrect URL while using Matomo analytics #5136
-* Fixed: Validation error in the alt tag with Transposh plugin #5135
-* Fixed: Some design issues on one specific users #5134
-* Fixed: Debug Warnings - Use of undefined constant AUTH_KEY and SECURE_AUTH_KEY #5035 
-
-= 1.0.77.23 (16th September 2021) =
-* Improvements: Added Top Mail Ru analytics support in amp #5130
-* Improvements: Added an option to move sponsorship label above the ad
-* Improvements: Updated the facebook instant articles to 50 when limit is not set #5131
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
