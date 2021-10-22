@@ -7535,7 +7535,7 @@ function ampforwp_fontawesome_canonical_link(){
 add_action('amp_post_template_head', 'ampforwp_set_dns_preload_urls');
 function ampforwp_set_dns_preload_urls(){
 	// Open graph tag is not loading from the SEO framework #4399
-	if (function_exists('the_seo_framework_boot') && 'seo_framework' == ampforwp_get_setting('ampforwp-seo-selection')) {
+	if (function_exists('the_seo_framework') && 'seo_framework' == ampforwp_get_setting('ampforwp-seo-selection')) {
 		$og_tsf = \the_seo_framework();
 		if($og_tsf){
 			echo $og_tsf->og_image();
