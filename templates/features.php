@@ -9604,6 +9604,9 @@ function ampforwp_year_shortcode() {
 add_shortcode('ampforwp_current_year', 'ampforwp_year_shortcode');
 
 function ampforwp_litespeed_webp_compatibility($content){
+	if(class_exists( 'WP_Offload_Media_Autoloader')){
+		return $content;
+	}
 	if(function_exists( 'run_litespeed_cache' )){
 		preg_match_all('/src="(.*?)"/', $content,$src);
 		if(isset($src[1][0])){
