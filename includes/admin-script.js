@@ -974,6 +974,23 @@ $(".ampforwp-ext-refresh").click(function(){
             })
     });
     // End User Refresh when Expired
+    var extmnger = document.querySelector('a[extmnger_data="1"]');
+if (extmnger) {
+    var tamp_options = document.getElementById("toplevel_page_amp_options");
+    let collection = tamp_options.querySelectorAll(".wp-submenu a");
+    collection.forEach((ele, ind) => {
+        let p = ele.parentNode;
+      let p_ind = Array.from(document.querySelectorAll('.wp-submenu')).indexOf(p);
+      ind++;
+      p_ind++;
+      ele.addEventListener('click', function(){
+            if (ele.innerText == 'Extensions') {
+        window.location.href = "admin.php?page=amp-extension-manager"
+    }
+}
+)
+  })
+}
 
 $(".redux-ampforwp-ext-deactivate").click(function(){
     var currentThis = $(this);

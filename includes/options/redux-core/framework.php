@@ -3234,6 +3234,7 @@
                     }
                     $amp_opt = get_option("ampforwp_option_panel_view_type");
                     $opt_visible = "";
+                    $extmnger_data = "";
                     $opt_visible_class = "amp-full-view-options";
                     $anchor_href = 'javascript:void(0);';
                     if(($amp_opt==1 || $amp_opt=="") && !get_theme_support('amp-template-mode')){
@@ -3245,9 +3246,10 @@
                     }
                     if($section['title']=="Extensions"){
                          $anchor_href = class_exists('AMPExtensionManager') ?admin_url( 'admin.php?page=amp-extension-manager' ) : 'javascript:void(0);';                         
+                         $extmnger_data = class_exists('AMPExtensionManager') ? 'extmnger_data="1"' : '';                         
                     }
                     $string .= '<li '.esc_html($opt_visible).' id="' . esc_attr( $k . $suffix ) . '_section_group_li" class="'.esc_attr($opt_visible_class).' redux-group-tab-link-li '.esc_attr($addClass).'' . esc_attr( $hide_section ) . esc_attr( $section['class'] ) . esc_attr( $subsectionsClass ) . ' ' . strtolower( wp_kses_post( $section['id'] )) . '" '.ampforwp_css_sanitizer($style).'>';
-                    $string .= '<a href="'.$anchor_href.'" id="' . esc_attr( $k . $suffix ) . '_section_group_li_a" class="redux-group-tab-link-a" data-key="' . esc_attr( $k ) . '" data-rel="' . esc_attr( $k . $suffix ) . '">' . $extra_icon . $icon . '<span class="group_title">' . wp_kses_post( $section['title'] ) . '</span></a>';
+                    $string .= '<a href="'.$anchor_href.'" '.$extmnger_data.' id="' . esc_attr( $k . $suffix ) . '_section_group_li_a" class="redux-group-tab-link-a" data-key="' . esc_attr( $k ) . '" data-rel="' . esc_attr( $k . $suffix ) . '">' . $extra_icon . $icon . '<span class="group_title">' . wp_kses_post( $section['title'] ) . '</span></a>';
 
                     $nextK = $k;
 

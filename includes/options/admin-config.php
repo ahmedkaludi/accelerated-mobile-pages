@@ -877,7 +877,12 @@ foreach ($extension_listing_array as $key => $extension) {
             if(isset($selectedOption['amp-license'][$pathExploded]['all_data']) && $selectedOption['amp-license'][$pathExploded]['all_data']!=""){
                 $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
                 $remainingExpiresDays = floor( ( strtotime($allResponseData['expires'] )- time() )/( 60*60*24 ) );
-                if($remainingExpiresDays>0){
+                $lifetime_lic = isset($allResponseData['expires']) ? $allResponseData['expires'] : '' ;
+                if($lifetime_lic == 'lifetime' ){
+                $remainingExpiresDays = 'Lifetime';
+                $amp_license_response = "<span class='license-tenure'>".esc_html__('Your License is valid for', 'accelerated-mobile-pages')." ".esc_html($remainingExpiresDays)."</span>. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."' style='display:inline-block;' class='license-renew-a'>".esc_html__('Renew License', 'accelerated-mobile-pages')."</a>";
+            }
+                else if($remainingExpiresDays>0){
                     $amp_license_response = "<span class='license-tenure'>".esc_html($remainingExpiresDays)."  ".esc_html__('Days Remaining', 'accelerated-mobile-pages')."</span>. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."' class='license-renew-a'>".esc_html__('Renew License', 'accelerated-mobile-pages')."</a>";
                 }else{ $amp_license_response = "<span class='license-tenure expire'>".esc_html__('Expired', 'accelerated-mobile-pages')."!</span> <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."'  class='license-renew-a'>".esc_html__('Renew your license', 'accelerated-mobile-pages')."</a>"; }
             }
@@ -1629,8 +1634,6 @@ if($ampforwp_nameOfUser!=""){
                     $refresh_addon = '<a id='.$pathExploded.' data-nonce='.wp_create_nonce('verify_extension').' data-days="'.$days.'"  class="days_remain">
                     <i addon-is-expired class="dashicons dashicons-update-alt" id="refresh_expired_addon"></i>
                     </a>';
-                    $refresh_addon.= '
-                        <input type="hidden" license-status="inactive"  licensestatusinternal="'.$license_status.'" add-on="'.strtolower($license_name).'" class="button button-default pwaforwp_license_activation '.$license_status.'mode '.strtolower($license_name).''.strtolower($license_name).'" id="pwaforwp_license_deactivation_internal">';
                     }
                 }
                 elseif($days<0){
