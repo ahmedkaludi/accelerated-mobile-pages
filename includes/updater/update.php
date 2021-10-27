@@ -157,6 +157,14 @@ function ampforwp_get_licence_activate_update(){
 }
 add_action( 'wp_ajax_ampforwp_get_licence_activate_update', 'ampforwp_get_licence_activate_update' );
 
+add_action( 'wp_ajax_ampforwp_set_license_transient', 'ampforwp_set_license_transient' );
+function ampforwp_set_license_transient(){
+    $transient_load =  'ampforwp_addon_set_transient';
+    $value_load =  'ampforwp_addon_set_transient_value';
+    $expiration_load =  86400 ;
+    set_transient( $transient_load, $value_load, $expiration_load );
+}
+
 
 /***********************************************
 * Illustrates how to deactivate a license key.

@@ -870,8 +870,13 @@ foreach ($extension_listing_array as $key => $extension) {
             if(isset($selectedOption['amp-license'][$pathExploded]['all_data']) && $selectedOption['amp-license'][$pathExploded]['all_data']!=""){
                 $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
                 $remainingExpiresDays = floor( ( strtotime($allResponseData['expires'] )- time() )/( 60*60*24 ) );
-                if($remainingExpiresDays>0){
-                $amp_license_response = "<span class='license-tenure'>".esc_html($remainingExpiresDays)."  ".esc_html__('Days Remaining', 'accelerated-mobile-pages')."</span>. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."'  class='license-renew-a'>".esc_html__('Renew License', 'accelerated-mobile-pages')."</a>";
+                $lifetime_lic = isset($allResponseData['expires']) ? $allResponseData['expires'] : '' ;
+                if($lifetime_lic == 'lifetime' ){
+                $remainingExpiresDays = 'Lifetime';
+                $amp_license_response = "<span class='license-tenure'>".esc_html__('Your License is valid for', 'accelerated-mobile-pages')." ".esc_html($remainingExpiresDays)."</span>. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."' style='display:inline-block;' class='license-renew-a'>".esc_html__('Renew License', 'accelerated-mobile-pages')."</a>";
+            }
+                else if($remainingExpiresDays>0){
+                    $amp_license_response = "<span class='license-tenure'>".esc_html($remainingExpiresDays)."  ".esc_html__('Days Remaining', 'accelerated-mobile-pages')."</span>. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."' class='license-renew-a'>".esc_html__('Renew License', 'accelerated-mobile-pages')."</a>";
                 }else{ $amp_license_response = "<span class='license-tenure expire'>".esc_html__('Expired', 'accelerated-mobile-pages')."!</span> <a href='https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($amplicense)."&download_id=".esc_attr($allResponseData['item_name'])."'  class='license-renew-a'>".esc_html__('Renew your license', 'accelerated-mobile-pages')."</a>"; }
             }
         }
@@ -1457,8 +1462,8 @@ if(get_theme_support('amp-template-mode')){
 }
 $proDetailsProvide = '<a class="technical_support_btn_txt" href="https://ampforwp.com/support/" target="_blank">'.esc_html__('Technical Support','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Upgrade to PRO</a> ';
 if($ampforwp_nameOfUser!=""){
-    if (class_exists('AMPExtensionManager') ) {
-        $license_info = get_option( 'ampforwppro_license_info');    
+    if (class_exists('AMPExtensionManager') ) {        
+        $license_info = get_option( 'ampforwppro_license_info');
         if (defined('AMPFORWPPRO_PLUGIN_DIR') && !empty($license_info)){
             $ampforwp_pro_manager = AMPFORWPPRO_PLUGIN_DIR.'inc/amp-ext-manager-lic-data.php';
             if( file_exists($ampforwp_pro_manager) ){
@@ -1466,14 +1471,230 @@ if($ampforwp_nameOfUser!=""){
             }
             $settings_url = esc_url( admin_url('admin.php?page=amp-extension-manager') );
         }
- }
- else{
+    }
+}
+
+  if ( !class_exists( 'AMPExtensionManager' ) ) {
+    if ( !defined('AMPFORWPPRO_PLUGIN_DIR') ){
+        $expiredLicensedata  = array();
+        foreach ($extension_listing_array as $key => $extension) {
+            $currentStatus = "";
+            $license_key        = '';
+            $license_status     = 'inactive';
+            $license_status_msg = '';
+            $license_user_name = '';    
+            $remainingExpiresDays = '';
+
+            if($extension['plugin_active_path'] != "" && is_plugin_active($extension['plugin_active_path']) ){
+                $ampforwp_is_productActivated = true;
+                $currentStatus = "not-active invalid";
+                $pathExploded = explode("/", $extension['plugin_active_path']);
+                $pathExploded = $pathExploded[0];
+                
+                $amplicense = '';
+                $allResponseData = '';
+                $allResponseData = array('success'=>'',
+                                'license'=> '',
+                                'item_name'=> '',
+                                'expires'=> '',
+                                'customer_name'=> '',
+                                'customer_email'=> '',
+                                );
+                $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
+                $selectedOption = (array) get_option('redux_builder_amp',true);
+                $expiredLicensedata[$pathExploded] = $selectedOption['amp-license'][$pathExploded]['status'] == 'expired' ? 1 : 0 ;
+                $remainingExpiresDays =  date('Y-m-d', strtotime($allResponseData['expires'])) ;
+                $license_info_lifetime = $allResponseData['expires'];
+                $today = date('Y-m-d');
+                $exp_date = $remainingExpiresDays; 
+                $date1 = date_create($today);
+                $date2 = date_create($exp_date);
+                $diff = date_diff($date1,$date2);
+                $days = $diff->format("%a");
+                if( $license_info_lifetime == 'lifetime' ){
+                    $days = 'Lifetime';
+                    if ($days == 'Lifetime') {
+                        $expire_msg = " Your License is Valid for Lifetime ";
+                    }
+                }
+                elseif($today > $exp_date){
+                    $days = -$days;
+                }
+            }
+            
+            $license_status = '';
+            if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
+            $license_status = $selectedOption['amp-license'][$pathExploded]['status'];
+            $license_user_name = substr($ampforwp_nameOfUser, 0, strpos($ampforwp_nameOfUser, ' '));
+            $check_for_Caps = ctype_upper($license_user_name); 
+            if ( $check_for_Caps == 1 ) {
+                $license_user_name =  strtolower($license_user_name);
+                $license_user_name =  ucwords($license_user_name);
+            }
+            else{
+                $license_user_name =  ucwords($license_user_name);
+            }
+            $currentStatus = 'active valid';
+
+            if($ampforwp_nameOfUser=="" && isset($selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'])){
+                $ampforwp_nameOfUser = $selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'];
+            }
+
+            if(isset($selectedOption['amp-license'][$pathExploded]['all_data']) && $selectedOption['amp-license'][$pathExploded]['all_data']!=""){
+                $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
+                $remainingExpiresDays =  date('Y-m-d', strtotime($allResponseData['expires'])) ;
+              $license_info_lifetime = $allResponseData['expires']; 
+              $today = date('Y-m-d');
+              $exp_date = $remainingExpiresDays; 
+              $date1 = date_create($today);
+              $date2 = date_create($exp_date);
+              $diff = date_diff($date1,$date2);
+              $days = $diff->format("%a");
+              if( $license_info_lifetime == 'lifetime' ){
+                $days = 'Lifetime';
+                if ($days == 'Lifetime') {
+                    $expire_msg = " Your License is Valid for Lifetime ";
+                }
+            }
+            elseif($today > $exp_date){
+                $days = -$days;
+            }
+        }
+    }
+}
+    if(isset($selectedOption['amp-license'][$pathExploded])){
+        while ( strlen($selectedOption['amp-license'][$pathExploded]['license']) > 32 ) {
+            $selectedOption['amp-license'][$pathExploded]['license'] = base64_decode($selectedOption['amp-license'][$pathExploded]['license']);
+            $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];}
+            $license_key = $selectedOption['amp-license'][$pathExploded]['license'];
+        }
+
+        $lic_status = isset($selectedOption['amp-license'][$pathExploded]['status']) ? $selectedOption['amp-license'][$pathExploded]['status'] : '';
+            $lic_uname = isset($selectedOption['amp-license'][$pathExploded]['all_data']['customer_name']) ? $selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'] : '';
+            $license_user_name = substr($lic_uname, 0, strpos($lic_uname, ' ')); 
+            $check_for_Caps = ctype_upper($license_user_name); 
+            if ( $check_for_Caps == 1 ) {
+            $license_user_name =  strtolower($license_user_name);
+            $license_user_name =  ucwords($license_user_name);}
+            else{ $license_user_name =  ucwords($license_user_name); }
+
+            if ( isset( $license_user_name ) && $license_user_name!=="" && isset( $days ) ){
+                if (  $license_status == 'valid' || $lic_status == 'expired' ) {
+                    if ($lic_status == 'expired') { $days = -1; }
+
+                    $one_of_plugin_expired = 0;
+                    if ( in_array( 1, $expiredLicensedata ) ){
+                            $one_of_plugin_expired = 1;
+                        }
+                    if ( !in_array( 0, $expiredLicensedata ) ){
+                            $one_of_plugin_expired = 0;
+                        }
+                $exp_id = '';
+                $expire_msg = '';
+                $renew_mesg = '';
+                $span_class = '';
+                $expire_msg_before = '';
+                $ZtoS_days = '';
+                $refresh_addon = '';
+                $user_refr = '';
+                $alert_icon = '';
+                $ext_settings_url = 'ext_url'; 
+                $settings_url = esc_url(admin_url('edit.php?post_type=ampforwp&page=structured_data_options'));
+                if ( $days == 'Lifetime' ) {
+                    $expire_msg = " ".esc_html('Valid for Lifetime')." ";
+                    // $expire_msg = " Active ";
+                    $expire_msg_before = '<span class="before_msg_active">'.esc_html('Your License is').'</span>';
+                    $span_class = "ampforwp_addon_icon dashicons dashicons-yes pro_icon ampforwppro_icon";
+                    $color = 'color:green';
+                }
+                else if( $days>=0 && $days<=30 ){
+                    $renew_url = "https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($license_key)."&download_id=".esc_attr($allResponseData['item_name'])."";
+
+                    if ($one_of_plugin_expired == 1) {
+                    $expire_msg_before = '<span class="before_msg_active">'.esc_html('One of your').' <span class="lessthan_30" style="color:red;">'.esc_html('license key is').'</span></span>';
+                    $spann_class = "<span class='ampforwp_addon_icon dashicons dashicons-no lttn'></span>"; 
+                    $expire_msg = '<span class="one_of_expired">'.esc_html("Expired").'</span> '.$spann_class.' <a target="blank" class="renewal-license" href="'.$renew_url.'"><span class="renew-lic">'.esc_html__('Renew', 'accelerated-mobile-pages').'</span></a>';
+                }
+                else
+                    {
+                        $expire_msg_before = '<span class="before_msg">'.esc_html('Your License is').'</span> <span class="ampforwp-addon-alert">'.esc_html('expiring in').' '.$days.' '.esc_html('days').'</span><a target="blank" class="renewal-license" href="'.$renew_url.'"><span class="renew-lic">'.esc_html__('Renew', 'accelerated-mobile-pages').'</span></a>';
+                    }
+                    $color = 'color:red';
+                    $alert_icon = '<span class="ampforwp_addon_icon dashicons dashicons-warning pro_warning"></span>';
+                    $trans_check = get_transient( 'ampforwp_addon_set_transient' );
+                    if ( $trans_check !== 'ampforwp_addon_set_transient_value' ){
+                    $refresh_addon = '<a id='.$pathExploded.' data-nonce='.wp_create_nonce('verify_extension').' data-days="'.$days.'"  class="days_remain">
+                    <i addon-is-expired class="dashicons dashicons-update-alt" id="refresh_expired_addon"></i>
+                    </a>';
+                    }
+                }
+                elseif($days<0){
+                    $ext_settings_url = 'ext_settings_url';
+                    $renew_url = "https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($license_key)."&download_id=".esc_attr($allResponseData['item_name'])."";
+                    if ($one_of_plugin_expired == 1) {
+                    $expire_msg_before = '<span class="ampforwp_addon_inactive"><span class="ooy">'.esc_html('One of your').'</span> <span class="lthan_0" style="color:red;">'.esc_html('license key is').'</span></span>';
+                    }else{
+                        $expire_msg_before = '<span class="ampforwp_addon_inactive">'.esc_html('Your').' <span class="lthan_0" style="color:red;">'.esc_html('License has been').'</span></span>';
+                        $user_refr = '<a class="user_refr" id='.$pathExploded.' data-nonce='.wp_create_nonce('verify_extension').' data-days="'.$days.'"  >
+                    <i addon-is-expired class="dashicons dashicons-update-alt" id="user_refr_addon"></i>
+                    </a>';
+                    }
+                    $expire_msg = " Expired ";
+                    $exp_class = 'expired';
+                    $exp_id = 'exp';
+                    $exp_class_2 = 'renew_license_key_';
+                    $span_class = "ampforwp_addon_icon dashicons dashicons-no ltz";
+                    $renew_mesg = '<a target="blank" class="renewal-license" href="'.$renew_url.'"><span class="renew-lic">'.esc_html__('Renew', 'accelerated-mobile-pages').'</span></a>';
+                    $color = 'color:red';
+
+                    $trans_check = get_transient( 'ampforwp_addon_set_transient' );
+                    if ( $trans_check !== 'ampforwp_addon_set_transient_value' ){
+                        $refresh_addon = '<a id='.$pathExploded.' data-nonce='.wp_create_nonce('verify_extension').' data-days="'.$days.'"  class="days_remain">
+                    <i addon-is-expired class="dashicons dashicons-update-alt" id="refresh_expired_addon"></i>
+                    </a>';
+                    }
+}
+                    else{
+                        if ($one_of_plugin_expired == 1) {
+                        $expire_msg_before = '<span class="before_msg_active">'.esc_html('One of your').' <span class="less_than_30" style="color:red;">'.esc_html('license key is').'</span></span>';    
+                        }else{
+                        $expire_msg_before = '<span class="before_msg_active">'.esc_html('Your License is').'</span>';                        
+                        }
+                        if ($one_of_plugin_expired == 1) {
+                            $renew_url = "https://accounts.ampforwp.com/order/?edd_license_key=".esc_attr($license_key)."&download_id=".esc_attr($allResponseData['item_name'])."";
+                        $expire_msg = " <span class='one_of_expired'>".esc_html('Expired')."</span> ";
+                        $renew_mesg = '<a target="blank" class="renewal-license" href="'.$renew_url.'"><span class="renew-lic">'.esc_html__('Renew', 'accelerated-mobile-pages').'</span></a>';
+                        }
+                        else{
+                            $expire_msg = " Active ";
+                        }
+                        if ($one_of_plugin_expired == 1) {
+                        $span_class = "ampforwp_addon_icon dashicons dashicons-no pro_icon";                        
+                        }
+                        else{
+                            $span_class = "ampforwp_addon_icon dashicons dashicons-yes pro_icon ampforwppro_icon";
+                        }
+                        if ($one_of_plugin_expired == 1) { $color = 'color:red';}
+                        else{ $color = 'color:green'; }
+                    }
+                    if($days<0){ $exp_id = 'exp'; }
+                    $proDetailsProvide = "<div class='ampforwp-addon-main'>
+                    <span class='ampforwp-addon-info'>
+                    ".$alert_icon."<span class='activated-plugins'>".esc_html('Hi')." <span class='ampforwp-addon_key_user_name'>".esc_html($license_user_name)."</span>".','."
+                <span id='active-plugins-dr' data-days=".$days." class=".$days."> ".$expire_msg_before." </span>
+                <span class='expiredinner_span' data-remain-days=".$days." id=".$exp_id.">".$expire_msg."</span>
+                <span class='".$span_class."'></span>".$renew_mesg.$refresh_addon.$user_refr ;
+                $proDetailsProvide .= $ZtoS_days."
+                </span>
+                </div>";
+            }
+        }
+    }
+}
+ else if( $ampforwp_nameOfUser!="" && !class_exists('AMPExtensionManager') ){
     $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url(admin_url('admin.php?page=amp_options&tabid=opt-go-premium'))."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
-}
-} 
-elseif($ampforwp_is_productActivated){
-    $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".esc_url(admin_url('admin.php?tabid=opt-go-premium&page=amp_options'))."'>Enter license here</a></span>";
-}
+ }
+
 if(function_exists('amp_activate') ){
     $proDetailsProvide = "<a class='premium_features_btn_txt' href=\"#\"> AMP by Automattic compatibility has been activated</a>";
 }

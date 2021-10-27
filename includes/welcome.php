@@ -148,11 +148,10 @@ function ampforwp_add_welcome_styling(){
 		    text-decoration: none;
 		    margin-top: 8px;
 		    display: inline-block;}
-        .dashicons-warning, .dashicons-yes{
+         .dashicons-yes{
             font-family: dashicons;
             font-style: normal;
             font-size: 32px;
-            margin-right: 18px;
         }
         .dashicons-yes{
             margin-right: 0px;
