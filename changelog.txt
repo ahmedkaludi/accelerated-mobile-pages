@@ -1,6 +1,14 @@
 == Changelog ==
 
-1.0.77.26 (21TH October 2021) =
+1.0.77.28 (28TH October 2021) =
+Improvements: License code improved #5151
+Fixed: Default Gravatar not appearing with FV Gravatar Cache #5149
+Fixed: Featured image not appearing with Offload Media Lite #5153
+Fixed: Function name updated in the seo framework #5155
+Fixed: Lifetime license key is showing as expired in admin panel #5156
+Fixed: Video is not loading when created by slider revolution with divi #5159
+
+1.0.77.27 (21TH October 2021) =
 Improvements: Added AdPushup Support in AMP #5144
 
 1.0.77.26 (20TH October 2021) =

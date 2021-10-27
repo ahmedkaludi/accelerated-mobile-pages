@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.27
+Stable tag: 1.0.77.28
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,18 +197,19 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-1.0.77.26 (21TH October 2021) =
+1.0.77.28 (28TH October 2021) =
+Improvements: License code improved #5151
+Fixed: Default Gravatar not appearing with FV Gravatar Cache #5149
+Fixed: Featured image not appearing with Offload Media Lite #5153
+Fixed: Function name updated in the seo framework #5155
+Fixed: Lifetime license key is showing as expired in admin panel #5156
+Fixed: Video is not loading when created by slider revolution with divi #5159
+
+1.0.77.27 (21TH October 2021) =
 Improvements: Added AdPushup Support in AMP #5144
 
 1.0.77.26 (20TH October 2021) =
 Improvements: Added FV Gravatar Cache Compatibility in AMP #5149
 Fixed: Images not loading when destination structure is document root in WebP Express #5150
-
-= 1.0.77.25 (1st October 2021) =
-* Improvements: Added Plausible analytics compatible in AMP #5142
-* Fixed: The amp-minute-media-player tag is getting stripped from the content #5146
-* Fixed: Author profile images not loading from Ultimate Member plugin #5141
-* Fixed: AMP Page builder content not rendering with Muffin builder #5147
-* Fixed: Debug log Errors #5145
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
