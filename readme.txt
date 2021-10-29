@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.23
+Stable tag: 1.0.77.28
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,19 +194,19 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.77.23 (16th September 2021) =
-* Improvements: Added Top Mail Ru analytics support in amp #5130
-* Improvements: Added an option to move sponsorship label above the ad
-* Improvements: Updated the facebook instant articles to 50 when limit is not set #5131
+1.0.77.28 (28TH October 2021) =
+Improvements: License code improved #5151
+Fixed: Default Gravatar not appearing with FV Gravatar Cache #5149
+Fixed: Featured image not appearing with Offload Media Lite #5153
+Fixed: Function name updated in the seo framework #5155
+Fixed: Lifetime license key is showing as expired in admin panel #5156
+Fixed: Video is not loading when created by slider revolution with divi #5159
 
-= 1.0.77.22 (6th September 2021) =
-* Fixed: Validation error with rankmath's "open external links in new tab" option #5129
+1.0.77.26 (21TH October 2021) =
+Improvements: Added AdPushup Support in AMP #5144
 
-= 1.0.77.21 (6th September 2021) =
-* Fixed: Images not displaying in AMP with Lazy loading of Zeen theme #5126
-* Fixed: Missing rel noopener attribute in links #5125
-* Fixed: Incorrect canonical for Homepage if WordPress installation is another folder #5122
-* Fixed: No data hero attribute on featured image of default image #5121
-* Fixed: Debug log errors #5124
+1.0.77.26 (20TH October 2021) =
+Improvements: Added FV Gravatar Cache Compatibility in AMP #5149
+Fixed: Images not loading when destination structure is document root in WebP Express #5150
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

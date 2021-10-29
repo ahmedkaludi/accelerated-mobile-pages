@@ -41,6 +41,13 @@ namespace ReduxCore\ReduxFramework;
                 return false;
             }
 
+            public static function get_auth_key_secret_key() {
+                $key = "";
+                $key .= defined( 'AUTH_KEY' ) ? AUTH_KEY : get_site_url();
+                $key .= defined( 'SECURE_AUTH_KEY' ) ? SECURE_AUTH_KEY : get_site_url();
+                return $key;
+            }
+
             public static function isFieldInUse( $parent, $field ) {
                 foreach ( $parent->sections as $k => $section ) {
                     if ( ! isset( $section['title'] ) ) {

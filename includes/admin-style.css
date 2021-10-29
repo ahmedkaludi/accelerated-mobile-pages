@@ -2177,3 +2177,212 @@ span#amp-close {
     color: white;
     border-radius: 5px; 
 }
+
+.ampforwp_new_features .redux-group-tab-link-a span:after {
+    content: "NEW";
+    color: #fff;
+    font-size: 10px;
+    background: #4452a7;
+    padding: 5px 10px;
+    border-radius: 30px;
+    font-weight: normal;
+    position: relative;
+    top: -1px;
+    left: 15px;
+}
+.updated.notice p {
+    font-size: 15px;
+}
+a#ampforwp-close-ad-notice {
+    background: #fff;
+    color: #2271b1;
+    border: none;
+}.activated-plugins {
+    position: relative;
+    display: inline-block;
+    color: #222;
+    font-size: 14px;
+    letter-spacing: 0;
+    right: 5px
+}.inner_span {
+    color: green
+}i.dashicons-before.dashicons-admin-generic {
+    color: #666
+}#exp {
+    color: red
+}.dashicons-no {
+    color: #fff;
+    border-radius: 10px;
+    right: 5px;
+    position: relative;
+    font-size: 15px
+}.dashicons-no:before {
+    content: "\f158";
+    top: 2px;
+    position: relative;
+    left: .5px
+}.amppro-alert {
+    color: red;
+    font-size: 14px;
+    letter-spacing: 0;
+    margin-right: 3px
+}.dashicons-alert::before {
+    content: "\f534";
+    background: #ffb900;
+    border-radius: 40px;
+    color: #fff;
+    border-radius: 40px;
+    padding: 4px 3px 4px 4px;
+    top: 0;
+    right: 9px;
+    margin: 0;
+    position: relative
+}a.renewal-license {
+    margin-left: 5px;
+    font-size: 12px !important;
+    padding: 6px 12px;
+    letter-spacing: .1px;
+    border-radius: 60px;
+    margin-right: 0;
+    background: -webkit-linear-gradient(to right, #eb3349, #f45c43);
+    background: linear-gradient(to right, #eb3349, #f45c43);
+    color: #fff !important;
+    box-shadow: 0 .15em .65em 0 rgb(0 0 0 / 25%)
+}.renew-lic:hover {
+    color: #eee
+}span.renew-lic {
+    font-size: 14px
+}.ampforwp-addon_pro_key_user_name {
+    font-weight: 700
+}.before_msg_Pro {
+    margin-left: 4px
+}.before_msg_Pro_active {
+    margin-left: 3px
+}.Pro_inactive {
+    margin-left: 3px
+}.pro_warning {
+    color: #ffb229;
+    right: 5px;
+    position: relative;
+    bottom: 1px
+}.zto30 {
+    color: red
+}.ampforwp-lifetime-alert {
+    color: green
+}.ampforwppro_icon:before {
+    content: "\f147";
+    background: #388e3c;
+    border-radius: 40px;
+    color: #fff;
+    position: relative;
+    left: 1px;
+    border-radius: 40px;
+    padding: 1px 1px 0 0;
+    top: 1px;
+    margin: 0;
+    font-size: 14px
+}span.ampforwppro_icon {
+    font-size: 16px
+}.pro_icon {
+    margin: 0;
+    right: 0
+}.expiredinner_span {
+    color: green
+}#exp {
+    color: red
+}.dashicons-no:before {
+    content: "\f158";
+    top: 3px;
+    position: relative;
+    left: 0
+}.ampforwp-addon-alert {
+    color: red;
+    font-size: 14px;
+    letter-spacing: 0;
+    cursor: default
+}.dashicons-alert::before {
+    content: "\f534";
+    background: #ffb900;
+    border-radius: 40px;
+    color: #fff;
+    border-radius: 40px;
+    padding: 4px 3px 4px 4px;
+    top: 0;
+    right: 9px;
+    margin: 0;
+    position: relative
+}.ampforwp-addon_key_user_name {
+    font-weight: 700
+}.before_msg {
+    margin-left: 4px;
+    cursor: default
+}.before_msg_active {
+    margin-left: 3px
+}.ampforwp_addon_inactive {
+    margin-left: 3px
+}.ext_settings_url {
+    margin-left: 8px;
+    text-decoration: unset
+}.ampforwp-addon-main .activated-plugins {
+    color: #222
+}a.ext_url {
+    text-decoration: unset
+}.dashicons.spin {
+    animation: dashicons-spin 2s infinite;
+    animation-timing-function: linear
+}@keyframes dashicons-spin {
+    0% {
+        transform: rotate(0)
+    }
+    100% {
+        transform: rotate(-360deg)
+    }
+}span#lic_exp {
+    color: red;
+    margin-left: 4px
+}i#refresh_expired_addon {
+    cursor: pointer;
+    display: none;
+    color: #135e96
+}i#user_refr_addon {
+    cursor: pointer;
+    color: #135e96
+}i#user_refresh_expired_addon {
+    cursor: pointer
+}span.one_of_expired {
+    color: red
+}.ampforwppro_alert {
+    color: #ffb229;
+    top: 2px;
+    position: relative;
+    right: 1px
+}#lic_active {
+    color: green;
+    margin-left: 8px
+}.lic_is_active {
+    color: #000
+}#lic_inactive {
+    color: #bebfc0;
+    margin-left: 8px
+}.expire_msg {
+    color: red
+}.less_than_zero {
+    color: red;
+    cursor: default
+}.lifetime_ {
+    color: green
+}.user_refresh_single_addon {
+    cursor: pointer
+}.ampforwp_pro_alert {
+    color: #ffb229
+}.ampforwp-license-tenure {
+    display: inline-block;
+    margin-top: 8px
+}.ampforwp_inactive_key {
+    color: #bebfc0;
+    padding-left: 5px
+}span.lttn {
+    position: unset
+}span.ltz {
+    position: unset
+}

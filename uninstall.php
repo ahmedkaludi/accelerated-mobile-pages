@@ -74,5 +74,6 @@ if(isset($redux_builder_amp['ampforwp-delete-on-uninstall']) && $redux_builder_a
 		delete_option('ampforwp_option_panel_view_type');
 		delete_option("ampforwp_feedback_remove_notice");
 		delete_option("ampforwp_dismiss_discount_btn");
+		delete_option("ampforwp_adpushup_remove_notice");
 	}
 }

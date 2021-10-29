@@ -120,12 +120,13 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 			$slides = $slider->get_slides_for_output(true,'',$gallery_ids);
 			foreach ($slides as $slide) {
 				$bgtype = $slide->get_param(array('bg', 'type'),'');
+				$layers = $slide->getLayers();
 				$image_id = $slide->image_id;
 				$url = $slide->image_url;
 				if ( $image_id ) {
 				 	$img_data = wp_get_attachment_metadata( $image_id );
 				}
-				if($bgtype == 'external'){
+				if($bgtype == 'external' || !empty($layers)){
 					$url = esc_url($slide->get_param(array('bg','externalSrc'), ''));
 					$imgalt = esc_attr($slide->get_param('alt_attr', ''));
 					$img_title = esc_attr($slide->get_param('title_attr', ''));
@@ -137,7 +138,23 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 						'height' => intval($img_h),
 						'bgtype' => esc_attr($bgtype)
 					),$image_id);
-				}elseif( $bgtype == 'image'){
+					if(!empty($layers)){
+						foreach ($layers as $key => $layer) {
+							if($layer['type'] == 'video'){
+								$video_url = esc_attr($layer['media']['mp4Url']);;
+								$video_url = str_replace('http:','https:',$video_url);
+								$cover_img = esc_attr($layer['media']['posterUrl']);
+								$urls[] = apply_filters('amp_gallery_image_params', array(
+									'url' => esc_url($video_url),
+									'width' => '480',
+									'height' => '270',
+									'bgtype' => esc_attr($layer['type']),
+									'cover_img' => esc_url($cover_img)
+								),$image_id);
+							}
+						}
+					}
+				}elseif( $bgtype == 'image' || !empty($layers) ){
 					$width = 480;
 					$height = 270;
 					if(isset($img_data['width'])){
@@ -152,7 +169,23 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 						'height' => intval($height),
 						'bgtype' => esc_attr($bgtype)
 					),$image_id);
-				}elseif( $bgtype == 'youtube' ){
+					if(!empty($layers)){
+						foreach ($layers as $key => $layer) {
+							if($layer['type'] == 'video'){
+								$video_url = esc_attr($layer['media']['mp4Url']);;
+								$video_url = str_replace('http:','https:',$video_url);
+								$cover_img = esc_attr($layer['media']['posterUrl']);
+								$urls[] = apply_filters('amp_gallery_image_params', array(
+									'url' => esc_url($video_url),
+									'width' => '480',
+									'height' => '270',
+									'bgtype' => esc_attr($layer['type']),
+									'cover_img' => esc_url($cover_img)
+								),$image_id);
+							}
+						}
+					}
+				}elseif( $bgtype == 'youtube' || !empty($layers) ){
 					$youtube_id = $slide->get_param(array('bg','youtube'), '');
 					$cover_img = $slide->get_param(array('bg','image'), '');
 					$urls[] = apply_filters('amp_gallery_image_params', array(
@@ -162,7 +195,23 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 						'bgtype' => esc_attr($bgtype),
 						'cover_img' => esc_attr($cover_img)
 					),$image_id);
-				}elseif($bgtype == 'vimeo'){
+					if(!empty($layers)){
+						foreach ($layers as $key => $layer) {
+							if($layer['type'] == 'video'){
+								$video_url = esc_attr($layer['media']['mp4Url']);;
+								$video_url = str_replace('http:','https:',$video_url);
+								$cover_img = esc_attr($layer['media']['posterUrl']);
+								$urls[] = apply_filters('amp_gallery_image_params', array(
+									'url' => esc_url($video_url),
+									'width' => '480',
+									'height' => '270',
+									'bgtype' => esc_attr($layer['type']),
+									'cover_img' => esc_url($cover_img)
+								),$image_id);
+							}
+						}
+					}
+				}elseif( $bgtype == 'vimeo' || !empty($layers) ){
 					$vimeo_id = $slide->get_param(array('bg','vimeo'), '');
 					$cover_img = $slide->get_param(array('bg','image'), '');
 					$urls[] = apply_filters('amp_gallery_image_params', array(
@@ -172,7 +221,23 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 						'bgtype' => esc_attr($bgtype),
 						'cover_img' => esc_attr($cover_img)
 					),$image_id);
-				}elseif($bgtype == 'html5'){
+					if(!empty($layers)){
+						foreach ($layers as $key => $layer) {
+							if($layer['type'] == 'video'){
+								$video_url = esc_attr($layer['media']['mp4Url']);;
+								$video_url = str_replace('http:','https:',$video_url);
+								$cover_img = esc_attr($layer['media']['posterUrl']);
+								$urls[] = apply_filters('amp_gallery_image_params', array(
+									'url' => esc_url($video_url),
+									'width' => '480',
+									'height' => '270',
+									'bgtype' => esc_attr($layer['type']),
+									'cover_img' => esc_url($cover_img)
+								),$image_id);
+							}
+						}
+					}
+				}elseif($bgtype == 'html5' || !empty($layers)){
 					$html5_url = $slide->get_param(array('bg','mpeg'), '');
 					$html5_url = str_replace('http:','https:',$html5_url);
 					$cover_img = $slide->get_param(array('bg','image'), '');
@@ -183,6 +248,22 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 						'bgtype' => esc_attr($bgtype),
 						'cover_img' => esc_url($cover_img)
 					),$image_id);
+					if(!empty($layers)){
+						foreach ($layers as $key => $layer) {
+							if($layer['type'] == 'video'){
+								$video_url = esc_attr($layer['media']['mp4Url']);;
+								$video_url = str_replace('http:','https:',$video_url);
+								$cover_img = esc_attr($layer['media']['posterUrl']);
+								$urls[] = apply_filters('amp_gallery_image_params', array(
+									'url' => esc_url($video_url),
+									'width' => '480',
+									'height' => '270', 
+									'bgtype' => esc_attr($layer['type']),
+									'cover_img' => esc_url($cover_img)
+								),$image_id);
+							}
+						}
+					}
 				}
 			}
 		}
@@ -292,6 +373,19 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 				);
 				$tag_type = 'amp-vimeo';
 			}elseif( $image['bgtype'] =="html5"){
+				$amp_img_arr = array(
+					'src'=> $image['url'],
+					'width' => $image['width'],
+					'height' => $image['height'],
+					'layout'=>'responsive',
+					'class'  => 'amp-carousel-img',
+					'poster' => $image['cover_img'],
+					'controls' => '',
+					'autoplay' => '',
+				);
+				$tag_type = 'amp-video';
+			}
+			elseif( $image['bgtype'] =="video"){
 				$amp_img_arr = array(
 					'src'=> $image['url'],
 					'width' => $image['width'],

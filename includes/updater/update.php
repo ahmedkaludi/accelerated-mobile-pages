@@ -74,7 +74,7 @@ function ampforwp_get_licence_activate_update(){
                                     esc_html__( 'Your license key expired on %s.', 'accelerated-mobile-pages' ),
                                     date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
                                 );
-                                $message .= "<a href='".$store_url."/checkout-2/?edd_license_key=16ed15c13524cc7e00346eeb3f76e412'>Renew Link</a>";
+                                $message .= "<a href='".esc_url($store_url)."/order/?edd_license_key=".esc_html($license)."'>Renew Link</a>";
                                 break;
 
                             case 'revoked' :
@@ -156,6 +156,14 @@ function ampforwp_get_licence_activate_update(){
     }
 }
 add_action( 'wp_ajax_ampforwp_get_licence_activate_update', 'ampforwp_get_licence_activate_update' );
+
+add_action( 'wp_ajax_ampforwp_set_license_transient', 'ampforwp_set_license_transient' );
+function ampforwp_set_license_transient(){
+    $transient_load =  'ampforwp_addon_set_transient';
+    $value_load =  'ampforwp_addon_set_transient_value';
+    $expiration_load =  86400 ;
+    set_transient( $transient_load, $value_load, $expiration_load );
+}
 
 
 /***********************************************

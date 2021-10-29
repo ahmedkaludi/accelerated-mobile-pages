@@ -48,6 +48,9 @@ function ampforwp_framework_get_featured_image(){
 			else{
 				$alt = get_the_title( $post_id );
 			}
+			if(class_exists('transposh_plugin')){
+		       $alt = strtok($alt, " ");
+		    }
 			$alt = convert_chars( stripslashes( $alt ) );
 			if(function_exists('fifu_show_elements')){
 				$fifu_image_url = get_post_meta($post_id, 'fifu_image_url', true);

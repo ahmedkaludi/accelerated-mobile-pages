@@ -868,6 +868,123 @@ function deactivatelicence(){
         alert('Please try after '+ lastcheck);
     }
 });
+
+        // Start Refresh and check if user has done renewal in between 0-7 Days & when Expired
+        var ap = document.getElementById("active-plugins-dr"); 
+        if (ap) {
+        var remainingdays = ap.getAttribute("data-days");
+        }
+        if (  remainingdays <= 7 ){
+            setTimeout(function () {
+                jQuery("#refresh_expired_addon").trigger("click");
+            }, 0);
+        }
+
+        $(".days_remain").click(function(){
+            var currentThis = $(this);
+            var plugin_id = currentThis.attr("id");
+            jQuery("#refresh_expired_addon").addClass( 'spin' );
+
+            var secure_nonce = currentThis.attr('data-nonce');
+            $.ajax({
+                url: ajaxurl,
+                method: 'post',
+                data: {action: 'ampforwp_get_licence_activate_update',
+                        update_check: 'yes',
+                       ampforwp_license_activate:plugin_id,
+                       verify_nonce: secure_nonce
+                        },
+                dataType: 'json',
+                success: function(response){
+                    jQuery("#refresh_expired_addon").removeClass( 'spin' );
+                    if(response.status=='200'){
+                        var expireData = new Date(response.other.all_data.expires);
+                        var today = new Date();
+                        var diffTime = Math.abs( expireData.getTime()-today.getTime() );
+                        var expireDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+                        if (expireDays > 30) {
+                            $("span.before_msg_active").text('Your License is')
+                            $("span.lthan_0").text('Your License is')
+                            $(".lessthan_30,.pro_warning,.dashicons-no,.renewal-license,.ampforwp-addon-alert,.ooy").css("display","none")
+                            $("span.one_of_expired").text('Active')
+                            $(".one_of_expired,.expiredinner_span,.lthan_0").css("color","green")
+                            $("span.expiredinner_span").text('Active')
+                        }
+                    }else{
+                        jQuery("#refresh_expired_addon").removeClass( 'spin' );
+                    }
+                }
+            })
+
+            $.ajax({
+                url: ajaxurl,
+                method: 'post',
+                data: {action: 'ampforwp_set_license_transient',
+                        update_check: 'yes',
+                       verify_nonce: secure_nonce
+                        },
+                dataType: 'json',
+                        success: function (s) {
+                            JSON.parse(s);
+                        },
+                    });
+        });
+    // End Refresh to check if user has done renewal in between 0-7 Days & when Expired
+
+    // Start User Refresh when expired 
+       $(".user_refr").click(function(){
+        var currentThis = $(this);
+        var plugin_id = currentThis.attr("id");
+        jQuery("#user_refr_addon").addClass( 'spin' );         
+        var secure_nonce = currentThis.attr('data-nonce');
+
+        $.ajax({
+                url: ajaxurl,
+                method: 'post',
+                data: {action: 'ampforwp_get_licence_activate_update',
+                        update_check: 'yes',
+                       ampforwp_license_activate:plugin_id,
+                       verify_nonce: secure_nonce
+                        },
+                dataType: 'json',
+                success: function(response){
+                    jQuery("#user_refr_addon").removeClass( 'spin' );
+                    if(response.status=='200'){
+                        var expireData = new Date(response.other.all_data.expires);
+                        var today = new Date();
+                        var diffTime = Math.abs( expireData.getTime()-today.getTime() );
+                        var expireDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+                        if (expireDays > 30) {
+                            $("span.before_msg_active").text('Your License is')
+                            $(".lessthan_30,.pro_warning,.dashicons-no,.renewal-license").css("display","none")
+                            $("span.one_of_expired").text('Active')
+                            $("span.one_of_expired").css("color","green")
+                        }
+                    }else{
+                        jQuery("#user_refr_addon").removeClass( 'spin' );
+                    }
+                }
+            })
+    });
+    // End User Refresh when Expired
+    var extmnger = document.querySelector('a[extmnger_data="1"]');
+if (extmnger) {
+    var tamp_options = document.getElementById("toplevel_page_amp_options");
+    let collection = tamp_options.querySelectorAll(".wp-submenu a");
+    collection.forEach((ele, ind) => {
+        let p = ele.parentNode;
+      let p_ind = Array.from(document.querySelectorAll('.wp-submenu')).indexOf(p);
+      ind++;
+      p_ind++;
+      ele.addEventListener('click', function(){
+            if (ele.innerText == 'Extensions') {
+        window.location.href = "admin.php?page=amp-extension-manager"
+    }
+}
+)
+  })
+}
+
 $(".redux-ampforwp-ext-deactivate").on("click", function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
@@ -2639,6 +2756,14 @@ $("#subscribe-newsletter-form").on('submit',function(e){
     $("#ampforwp-close-notice").on("click", function(){
         var data = {
             action: 'ampforwp_feedback_remove_notice',
+        };
+        $.post(ajaxurl, data, function(response) {
+            $(".ampforwp_remove_notice").remove();
+        });
+    });
+    $("#ampforwp-close-ad-notice").on("click", function(){
+        var data = {
+            action: 'ampforwp_adpushup_remove_notice',
         };
         $.post(ajaxurl, data, function(response) {
             $(".ampforwp_remove_notice").remove();

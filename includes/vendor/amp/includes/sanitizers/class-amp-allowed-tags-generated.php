@@ -1904,6 +1904,59 @@ class AMP_Allowed_Tags_Generated {
 				),
 			),
 		),
+		'amp-minute-media-player' => array(
+			array(
+				'attr_spec_list' => array(
+					'autoplay' => array(),
+					'data-content-id' => array(),
+					'data-content-type' => array(
+						'mandatory' => true,
+						'value' => array(
+							'curated',
+							'semantic',
+							'specific',
+						),
+					),
+					'data-minimum-date-factor' => array(),
+					'data-scanned-element' => array(),
+					'data-scanned-element-type' => array(
+						'value' => array(
+							'className',
+							'id',
+							'tag',
+						),
+					),
+					'data-scoped-keywords' => array(),
+					'data-tags' => array(),
+					'dock' => array(
+						'requires_extension' => array(
+							'amp-video-docking',
+						),
+					),
+					'media' => array(),
+					'noloading' => array(
+						'value' => array(
+							'',
+						),
+					),
+				),
+				'tag_spec' => array(
+					'amp_layout' => array(
+						'supported_layouts' => array(
+							6,
+							2,
+							3,
+							7,
+							4,
+						),
+					),
+					'requires_extension' => array(
+						'amp-minute-media-player',
+					),
+					'spec_url' => 'https://amp.dev/documentation/components/amp-minute-media-player/',
+				),
+			),
+		),
 		'amp-nexxtv-player' => array(
 			array(
 				'attr_spec_list' => array(
