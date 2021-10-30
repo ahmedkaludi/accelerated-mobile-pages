@@ -1524,8 +1524,8 @@ if($ampforwp_nameOfUser!=""){
             }
             
             $license_status = '';
-            $isset_Checker = isset($selectedOption['amp-license'][$pathExploded]['status']) ? $selectedOption['amp-license'][$pathExploded]['status'] : 'NULL';
-            if ($isset_Checker !='NULL') {
+            $isset_Checker = isset($selectedOption['amp-license'][$pathExploded]['status']) ? $selectedOption['amp-license'][$pathExploded]['status'] : NULL;
+            if ($isset_Checker != NULL) {
             if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid' || $selectedOption['amp-license'][$pathExploded]['status']==='expired'){
             $license_status = $selectedOption['amp-license'][$pathExploded]['status'];
             $license_user_name = substr($ampforwp_nameOfUser, 0, strpos($ampforwp_nameOfUser, ' '));
