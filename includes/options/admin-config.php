@@ -3361,6 +3361,13 @@ Redux::setSection( $opt_name, array(
                     'required' => array('ampforwp-meta-viewport', '=', 1)
                 ),
                     array(
+                       'id'       => 'ampforwp-search-google',
+                       'type'     => 'switch',
+                       'title'    => esc_html__('Search Results in Google', 'accelerated-mobile-pages'),
+                       'tooltip-subtitle' => esc_html__('Enable this option if you want the search results as Google search','accelerated-mobile-pages'),
+                       'default'  => 0,
+                ),
+                    array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
                         'title'    => esc_html__('Enter HTML in Head', 'accelerated-mobile-pages'),
