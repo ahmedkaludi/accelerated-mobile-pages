@@ -1,5 +1,10 @@
 == Changelog ==
 
+1.0.77.29 (28TH October 2021) =
+Improvements: Search results opens directly in Google search in AMP #5161
+Fixed: Undefined variable - pathExploded debug notice #5160
+Fixed: ID has been getting removed from the amp-img tag #5163
+
 1.0.77.28 (28TH October 2021) =
 Improvements: License code improved #5151
 Fixed: Default Gravatar not appearing with FV Gravatar Cache #5149
