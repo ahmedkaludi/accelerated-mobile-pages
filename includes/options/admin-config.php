@@ -1500,7 +1500,8 @@ if($ampforwp_nameOfUser!=""){
                                 'customer_name'=> '',
                                 'customer_email'=> '',
                                 );
-                $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
+                $allResponseData = isset($selectedOption['amp-license'][$pathExploded]['all_data']) ? $selectedOption['amp-license'][$pathExploded]['all_data'] : NULL ;
+                if ($allResponseData!=NULL) {
                 $selectedOption = (array) get_option('redux_builder_amp',true);
                 $expiredLicensedata[$pathExploded] = $selectedOption['amp-license'][$pathExploded]['status'] == 'expired' ? 1 : 0 ;
                 $remainingExpiresDays =  date('Y-m-d', strtotime($allResponseData['expires'])) ;
@@ -1523,7 +1524,9 @@ if($ampforwp_nameOfUser!=""){
             }
             
             $license_status = '';
-            if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
+            $isset_Checker = isset($selectedOption['amp-license'][$pathExploded]['status']) ? $selectedOption['amp-license'][$pathExploded]['status'] : NULL;
+            if ($isset_Checker != NULL) {
+            if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid' || $selectedOption['amp-license'][$pathExploded]['status']==='expired'){
             $license_status = $selectedOption['amp-license'][$pathExploded]['status'];
             $license_user_name = substr($ampforwp_nameOfUser, 0, strpos($ampforwp_nameOfUser, ' '));
             $check_for_Caps = ctype_upper($license_user_name); 
@@ -1560,9 +1563,8 @@ if($ampforwp_nameOfUser!=""){
                 $days = -$days;
             }
         }
-    }
-}
-    if(isset($selectedOption['amp-license'][$pathExploded])){
+
+        if(isset($selectedOption['amp-license'][$pathExploded])){
         while ( strlen($selectedOption['amp-license'][$pathExploded]['license']) > 32 ) {
             $selectedOption['amp-license'][$pathExploded]['license'] = base64_decode($selectedOption['amp-license'][$pathExploded]['license']);
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];}
@@ -1690,6 +1692,10 @@ if($ampforwp_nameOfUser!=""){
             }
         }
     }
+}
+}
+}
+}
 }
  else if( $ampforwp_nameOfUser!="" && !class_exists('AMPExtensionManager') ){
     $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins'>Hello, ".esc_html($ampforwp_nameOfUser)."</span> <a class='' href='".esc_url(admin_url('admin.php?page=amp_options&tabid=opt-go-premium'))."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
@@ -3359,6 +3365,13 @@ Redux::setSection( $opt_name, array(
                     'style'    => 'info',
                     'desc'     => esc_html__('Enabling this causes a 300-350ms tap delay which can decrease FID ( First Input Delay ). Please use this with caution.', 'accelerated-mobile-pages'),
                     'required' => array('ampforwp-meta-viewport', '=', 1)
+                ),
+                    array(
+                       'id'       => 'ampforwp-search-google',
+                       'type'     => 'switch',
+                       'title'    => esc_html__('Search Results in Google', 'accelerated-mobile-pages'),
+                       'tooltip-subtitle' => esc_html__('Enable this option if you want the search results as Google search','accelerated-mobile-pages'),
+                       'default'  => 0,
                 ),
                     array(
                         'id'       => 'amp-header-text-area-for-html',

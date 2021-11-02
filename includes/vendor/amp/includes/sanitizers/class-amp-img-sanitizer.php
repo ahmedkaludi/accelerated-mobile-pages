@@ -228,6 +228,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 			switch ( $name ) {
 				case 'src':
 				case 'alt':
+				case 'id':
 				case 'class':
 				case 'srcset':
 				case 'sizes':
