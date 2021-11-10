@@ -60,9 +60,26 @@ function amp_post_template_add_cached_link($amp_template) {
 			$image_size = ampforwp_get_setting('swift-featued-image-size');
 			$image = wp_get_attachment_image_src( $thumb_id, $image_size );
 			if($image!="" && isset($image[0]) && ampforwp_get_setting('swift-featued-image')){
-				if(function_exists('_imagify_init') || function_exists('webp_express_process_post')){
+				if(function_exists('_imagify_init')){
 					$image[0] = esc_url($image[0]).".webp";
-				}?>
+				}
+				if(function_exists('webp_express_process_post')){
+					$img_url_webp = '';
+				 	$img_url = $image[0];
+					if(!preg_match('/\.webp/', $img_url)){
+						$config = \WebPExpress\Config::loadConfigAndFix();
+						if($config['destination-folder'] == 'mingled'){
+							$img_url_webp = $img_url;
+						}else{
+							$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images$2', $img_url);
+							if($config['destination-structure'] == 'doc-root'){
+								$img_url_webp = preg_replace('/http(.*?)\/wp-content(.*?)/', 'http$1/wp-content/webp-express/webp-images/doc-root/wp-content$2', $img_url);
+							}
+						}
+						$image[0] = esc_url($img_url_webp).".webp";
+				    }
+				}
+				?>
 				<link rel="preload" href="<?php echo esc_url($image[0]);?>" as="image">
 			<?php } ?>
 		<?php
