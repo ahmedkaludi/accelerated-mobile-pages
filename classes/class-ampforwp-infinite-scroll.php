@@ -134,9 +134,11 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 					}	
 					if(class_exists( 'WPSEO_Options' )){
 						$primary_cat = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_primary_category', true);
-						$primary_cat = explode( " ", $primary_cat);
-						$category_ids = array_intersect($category_ids,
+						if (isset($primary_cat)) {
+							$primary_cat = explode( " ", $primary_cat);
+							$category_ids = array_intersect($category_ids,
 	                       $primary_cat);
+						}
 					}	
 				}
 				$query_args['category__in'] = $category_ids;
