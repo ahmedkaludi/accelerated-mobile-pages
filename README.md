@@ -197,7 +197,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-1.0.77.30 (14th November 2021) =
+1.0.77.30 (19th November 2021) =
 Fixed: Featured image not appearing in loop with Offload Media Lite #5153
 Fixed: Infinite scroll showing posts from different categories also when same category is selected #5168
 Fixed: Webp images not appearing in preload with WEBP express plugin #5165
