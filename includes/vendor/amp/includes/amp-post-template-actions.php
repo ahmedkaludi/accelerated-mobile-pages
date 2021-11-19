@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function amp_post_template_add_title( $amp_template ) {
 	$title = $amp_template->get( 'document_title' );
 	$title = str_replace('&#8211;', '-', $title);
+	$title = apply_filters( 'ampforwp_modify_title', $title );
 	?>
 	<title><?php echo esc_html( $title ); ?></title>
 	<?php
