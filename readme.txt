@@ -194,10 +194,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-1.0.77.30 (19th November 2021) =
-Fixed: Featured image not appearing in loop with Offload Media Lite #5153
-Fixed: Infinite scroll showing posts from different categories also when same category is selected #5168
-Fixed: Webp images not appearing in preload with WEBP express plugin #5165
+1.0.77.30 (25th November 2021) =
+* Improvements: Added Filter to modify title in AMP #5170
+* Fixed: Whitelisted amp-render tag #5171
+* Fixed: Featured image not appearing in loop with Offload Media Lite #5153
+* Fixed: Infinite scroll showing posts from different categories also when same category is selected #5168
+* Fixed: Webp images not appearing in preload with WEBP express plugin #5165
+* Fixed: pagination 404 issue with infinite scroll #5167
 
 1.0.77.29 (28TH October 2021) =
 Improvements: Search results opens directly in Google search in AMP #5161
