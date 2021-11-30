@@ -2210,6 +2210,62 @@ class AMP_Allowed_Tags_Generated {
 				),
 			),
 		),
+		'amp-render' => array(
+			array(
+				'attr_spec_list' => array(
+					'binding' => array(
+						'value' => array(
+							'always',
+							'never',
+							'no',
+							'refresh',
+						),
+					),
+					'credentials' => array(),
+					'data-amp-bind-src' => array(),
+					'key' => array(),
+					'media' => array(),
+					'noloading' => array(
+						'value' => array(
+							'',
+						),
+					),
+					'src' => array(
+						'disallowed_value_regex' => '__amp_source_origin',
+						'value_url' => array(
+							'protocol' => array(
+								'amp-script',
+								'amp-state',
+								'https',
+							),
+						),
+					),
+					'template' => array(),
+					'xssi-prefix' => array(),
+				),
+				'tag_spec' => array(
+					'amp_layout' => array(
+						'supported_layouts' => array(
+							5,
+							6,
+							2,
+							3,
+							7,
+							1,
+							4,
+						),
+					),
+					'mandatory_anyof' => array(
+						'data-amp-bind-src',
+						'src',
+					),
+					'requires_extension' => array(
+						'amp-render',
+					),
+					'spec_url' => 'https://amp.dev/documentation/components/amp-render/',
+				),
+			),
+		),
 		'amp-riddle-quiz' => array(
 			array(
 				'attr_spec_list' => array(

@@ -131,7 +131,15 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 					$category_ids = array();
 					foreach($categories as $individual_category){ 
 						$category_ids[] = $individual_category->cat_ID;
-					}		
+					}	
+					if(class_exists( 'WPSEO_Options' )){
+						$primary_cat = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_primary_category', true);
+						if (isset($primary_cat)) {
+							$primary_cat = explode( " ", $primary_cat);
+							$category_ids = array_intersect($category_ids,
+	                       $primary_cat);
+						}
+					}	
 				}
 				$query_args['category__in'] = $category_ids;
 			}
@@ -187,6 +195,13 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			// Change the next link to paged+3
 			// reason: amp-next-page will show the results for 3 pages
 			$next_link = preg_replace('/'.($paged+1).'/', ($paged+3), $next_link);
+			//Pagination + infinite scroll creates 404 links #5167
+			preg_match_all('/<a href="(.*?)"(.*?)<\/a>/', $next_link, $match);
+			$url = $match[1][0];
+			$headers = get_headers($url, 1);
+			if(isset($headers[0]) && !stripos($headers[0], "200 OK")){
+			  return;
+			} 
 			return $next_link;
 		}
 	}

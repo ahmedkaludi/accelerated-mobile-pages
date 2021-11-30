@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.29
+Stable tag: 1.0.77.30
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,14 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+1.0.77.30 (25th November 2021) =
+* Improvements: Added Filter to modify title in AMP #5170
+* Fixed: Whitelisted amp-render tag #5171
+* Fixed: Featured image not appearing in loop with Offload Media Lite #5153
+* Fixed: Infinite scroll showing posts from different categories also when same category is selected #5168
+* Fixed: Webp images not appearing in preload with WEBP express plugin #5165
+* Fixed: pagination 404 issue with infinite scroll #5167
+
 1.0.77.29 (28TH October 2021) =
 Improvements: Search results opens directly in Google search in AMP #5161
 Fixed: Undefined variable - pathExploded debug notice #5160
@@ -209,8 +217,5 @@ Fixed: Featured image not appearing with Offload Media Lite #5153
 Fixed: Function name updated in the seo framework #5155
 Fixed: Lifetime license key is showing as expired in admin panel #5156
 Fixed: Video is not loading when created by slider revolution with divi #5159
-
-1.0.77.27 (21TH October 2021) =
-Improvements: Added AdPushup Support in AMP #5144
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
