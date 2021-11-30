@@ -8279,21 +8279,23 @@ if(class_exists('WPSEO_Options')){
 	add_filter('ampforwp_the_content_last_filter','ampforwp_remove_duplicate_canonical',25);
 }
 function ampforwp_remove_duplicate_canonical($content){
-	$comp_dom = new DOMDocument();
-	@$comp_dom->loadHTML($content);
-	$xpath = new DOMXPath( $comp_dom );
-    $count = 0;
-    $nodes = $xpath->query('//link[@rel="canonical"]');
-    $con = '';
-    foreach ($nodes as $node) {
-    	$count++;
-    }
-    if($count>1){
-    	 if(preg_match("/<link\b[^>]*?\brel=[\'\"]canonical[\'\"][^>]*>/", $content, $matches, PREG_OFFSET_CAPTURE)){
-		    $content = preg_replace("/<link\b[^>]*?\brel=[\'\"]canonical[\'\"][^>]*>/", "", $content);
-		    $content = substr_replace($content, $matches[0][0], $matches[0][1], 0);
-		}
-    }
+	if( class_exists( 'DOMDocument' ) && ! empty( $content ) && is_string( $content ) ){
+		$comp_dom = new DOMDocument();
+		@$comp_dom->loadHTML($content);
+		$xpath = new DOMXPath( $comp_dom );
+	    $count = 0;
+	    $nodes = $xpath->query('//link[@rel="canonical"]');
+	    $con = '';
+	    foreach ($nodes as $node) {
+	    	$count++;
+	    }
+	    if($count>1){
+	    	 if(preg_match("/<link\b[^>]*?\brel=[\'\"]canonical[\'\"][^>]*>/", $content, $matches, PREG_OFFSET_CAPTURE)){
+			    $content = preg_replace("/<link\b[^>]*?\brel=[\'\"]canonical[\'\"][^>]*>/", "", $content);
+			    $content = substr_replace($content, $matches[0][0], $matches[0][1], 0);
+			}
+	    }
+  }
 	return $content;
 }
 // Font URL controller
