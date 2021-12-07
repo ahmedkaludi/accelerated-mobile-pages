@@ -1,5 +1,10 @@
 == Changelog ==
 
+1.0.77.31 (7th December 2021) =
+* Fixed: Uncaught ValueError - DOMDocument::loadHTML() Error #5174
+* Fixed: PHP Notice: Undefined index: rgba #5175
+* Fixed: Optional added for font display in google fonts #5176
+
 1.0.77.30 (25th November 2021) =
 * Improvements: Added Filter to modify title in AMP #5170
 * Fixed: Whitelisted amp-render tag #5171
