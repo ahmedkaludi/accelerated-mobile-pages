@@ -1535,7 +1535,7 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 .f-menu ul li a {padding:0;color:#575656;}
 .f-menu ul > li:hover a{color: <?php echo ampforwp_sanitize_color($hovercolor); ?>;}
 .f-menu{font-size:14px;line-height:1.4;margin-bottom:30px;}
-.rr{font-size: 12px;color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-footer-txt-clr']['rgba']) ?>;}
+.rr{font-size: 12px;color: <?php echo ampforwp_sanitize_color(ampforwp_get_setting('swift-footer-txt-clr','rgba')) ?>;}
 .rr span{margin:0 10px 0 0px}
 .f-menu ul li.menu-item-has-children:hover > ul{display:none;}
 .f-menu ul li.menu-item-has-children:after{display:none;}
@@ -1636,8 +1636,8 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
 	<?php } ?>
 		font-size: <?php echo esc_html(ampforwp_get_setting('swift-footer1-cntnsize'))?>; 
 	    line-height: 1.5;
-    <?php if( $redux_builder_amp['swift-footer-txt-clr']['rgba'] ) {?>
-		color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-footer-txt-clr']['rgba']) ?>;
+    <?php if( ampforwp_get_setting('swift-footer-txt-clr','rgba') ) {?>
+		color: <?php echo ampforwp_sanitize_color(ampforwp_get_setting('swift-footer-txt-clr','rgba')) ?>;
 	<?php } ?>
 }
 .w-bl h4{
@@ -1694,7 +1694,7 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
 .rr{
 	display:inline-block;
 	float:left;
-	color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-footer-txt-clr']['rgba']) ?>;
+	color: <?php echo ampforwp_sanitize_color(ampforwp_get_setting('swift-footer-txt-clr','rgba')) ?>;
 }
 @media(max-width:768px){
 .f-menu{
@@ -1713,7 +1713,7 @@ else{ // Default Footer CSS ?>
 	.f-menu {font-size: 14px;line-height: 1.4;margin-bottom: 30px;}
 	.f-menu ul li {display: inline-block;margin-right: 20px;}
 	.f-menu .sub-menu{display:none;}
-	.rr{font-size:13px;color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-footer-txt-clr']['rgba']) ?>;}
+	.rr{font-size:13px;color: <?php echo ampforwp_sanitize_color(ampforwp_get_setting('swift-footer-txt-clr','rgba')) ?>;}
 <?php } // If advanced footer is disabled Default Footer CSS will be load ?>
 @media(max-width:768px){
     .footer {margin-top: 60px;}

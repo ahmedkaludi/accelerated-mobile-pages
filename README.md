@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.30
+Stable tag: 1.0.77.31
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,11 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+1.0.77.31 (7th December 2021) =
+* Fixed: Uncaught ValueError - DOMDocument::loadHTML() Error #5174
+* Fixed: PHP Notice: Undefined index: rgba #5175
+* Fixed: Optional added for font display in google fonts #5176
+
 1.0.77.30 (25th November 2021) =
 * Improvements: Added Filter to modify title in AMP #5170
 * Fixed: Whitelisted amp-render tag #5171
@@ -209,13 +214,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 Improvements: Search results opens directly in Google search in AMP #5161
 Fixed: Undefined variable - pathExploded debug notice #5160
 Fixed: ID has been getting removed from the amp-img tag #5163
-
-1.0.77.28 (28TH October 2021) =
-Improvements: License code improved #5151
-Fixed: Default Gravatar not appearing with FV Gravatar Cache #5149
-Fixed: Featured image not appearing with Offload Media Lite #5153
-Fixed: Function name updated in the seo framework #5155
-Fixed: Lifetime license key is showing as expired in admin panel #5156
-Fixed: Video is not loading when created by slider revolution with divi #5159
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
