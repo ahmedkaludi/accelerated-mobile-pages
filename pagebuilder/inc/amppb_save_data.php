@@ -44,6 +44,7 @@ function amppb_save_post( $post_id, $post ){
 
 
     $submitted_data = json_decode($submitted_data,true);
+    //Script
     preg_match_all("/<script(?:(?!src).)*>(.*?)<\/script>/",$submitted_data['settingdata']['scripts_data'], $outremove, PREG_SET_ORDER);
     if($outremove && count($outremove)>0){
         foreach($outremove as $unwanted){
@@ -51,7 +52,7 @@ function amppb_save_post( $post_id, $post ){
         }
     }
 
-    //Style & script
+    //Style 
     $submitted_data['settingdata']['style_data']=strip_tags($submitted_data['settingdata']['style_data']);
     $submitted_data = json_encode($submitted_data);
 
@@ -71,3 +72,6 @@ function amppb_save_post( $post_id, $post ){
         delete_post_meta( $post_id, 'amp-page-builder' );
     }
 }
+
+
+//add_filetr('add_amp-page-builder_metadata',)
