@@ -72,6 +72,3 @@ function amppb_save_post( $post_id, $post ){
         delete_post_meta( $post_id, 'amp-page-builder' );
     }
 }
-
-
-//add_filetr('add_amp-page-builder_metadata',)
