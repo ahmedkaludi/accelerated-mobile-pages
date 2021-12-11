@@ -197,7 +197,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-1.0.77.32 (10th December 2021) =
+1.0.77.32 (11th December 2021) =
 * Fixed: Code improvements in AMP pagebuilder #5179
 
 1.0.77.31 (7th December 2021) =
