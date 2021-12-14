@@ -41,6 +41,21 @@ function amppb_save_post( $post_id, $post ){
  
     /* Get new submitted data and sanitize it. */
     $submitted_data = isset( $request['amp-page-builder'] ) &&  ampforwp_isjson($request['amp-page-builder']) ? $request['amp-page-builder'] : null;
+
+
+    $submitted_data = json_decode($submitted_data,true);
+    //Script
+    preg_match_all("/<script(?:(?!src).)*>(.*?)<\/script>/",$submitted_data['settingdata']['scripts_data'], $outremove, PREG_SET_ORDER);
+    if($outremove && count($outremove)>0){
+        foreach($outremove as $unwanted){
+            $submitted_data['settingdata']['scripts_data'] = str_replace($unwanted[0], '', $submitted_data['settingdata']['scripts_data']);
+        }
+    }
+
+    //Style 
+    $submitted_data['settingdata']['style_data']=strip_tags($submitted_data['settingdata']['style_data']);
+    $submitted_data = json_encode($submitted_data);
+
     $submitted_data = wp_slash($submitted_data);
     
     /* New data submitted, No previous data, create it  */

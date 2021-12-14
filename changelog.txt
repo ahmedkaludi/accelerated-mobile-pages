@@ -1,5 +1,8 @@
 == Changelog ==
 
+1.0.77.32 (11th December 2021) =
+* Fixed: Code improvements in AMP pagebuilder #5179
+
 1.0.77.31 (7th December 2021) =
 * Fixed: Uncaught ValueError - DOMDocument::loadHTML() Error #5174
 * Fixed: PHP Notice: Undefined index: rgba #5175
