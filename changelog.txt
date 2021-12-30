@@ -1,5 +1,9 @@
 == Changelog ==
 
+1.0.77.33 (15th December 2021) =
+* Fixed: Code improvements in AMP options panel #5179
+* Fixed: Stylesheet errors when using Qoxag theme #5177
+
 1.0.77.32 (11th December 2021) =
 * Fixed: Code improvements in AMP pagebuilder #5179
 

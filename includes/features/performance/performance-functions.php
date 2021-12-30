@@ -85,6 +85,9 @@ function ampforwp_minify_html_output($content_buffer){
     if(class_exists('Avada') && preg_match('/<lite-youtube(.*?)videoid="(.*?)"(.*?)><\/lite-youtube>/s', $content_buffer)){
         $content_buffer = preg_replace('/<lite-youtube(.*?)videoid="(.*?)"(.*?)><\/lite-youtube>/', '<amp-youtube width="480" height="270" layout="responsive" data-videoid="$2"></amp-youtube>', $content_buffer);
     }    
+    if (function_exists('qoxag_setup')) {
+        $content_buffer = preg_replace('/<link rel="stylesheet"(.*?)href="(.*?).css">/', '', $content_buffer);
+    }
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       

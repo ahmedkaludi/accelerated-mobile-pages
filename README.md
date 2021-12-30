@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.32
+Stable tag: 1.0.77.33
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+1.0.77.33 (15th December 2021) =
+* Fixed: Code improvements in AMP options panel #5179
+* Fixed: Stylesheet errors when using Qoxag theme #5177
+
 1.0.77.32 (11th December 2021) =
 * Fixed: Code improvements in AMP pagebuilder #5179
 
@@ -204,13 +208,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Uncaught ValueError - DOMDocument::loadHTML() Error #5174
 * Fixed: PHP Notice: Undefined index: rgba #5175
 * Fixed: Optional added for font display in google fonts #5176
-
-1.0.77.30 (25th November 2021) =
-* Improvements: Added Filter to modify title in AMP #5170
-* Fixed: Whitelisted amp-render tag #5171
-* Fixed: Featured image not appearing in loop with Offload Media Lite #5153
-* Fixed: Infinite scroll showing posts from different categories also when same category is selected #5168
-* Fixed: Webp images not appearing in preload with WEBP express plugin #5165
-* Fixed: pagination 404 issue with infinite scroll #5167
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
