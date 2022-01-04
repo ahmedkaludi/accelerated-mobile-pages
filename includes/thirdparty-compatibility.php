@@ -78,6 +78,9 @@ function ampforwp_thirdparty_compatibility(){
 	if(function_exists('megashop_setup')){
         remove_filter( 'wp_nav_menu_args', 'TT_nav_menu_args' );
     }
+    if (function_exists('vinkmag_action_setup')) {
+    	remove_action( 'amp_post_template_head', 'vinkmag_amp_fonts', 1 );
+    }
     if(function_exists('zeen_lazyload_images')){
         add_filter('zeen_lazy_embedded_images','ampforwp_zeen_lazyload');
     }
