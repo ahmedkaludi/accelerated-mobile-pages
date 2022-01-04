@@ -6233,6 +6233,11 @@ function ampforwp_is_non_amp( $type="" ) {
 		if ( is_page() && false == ampforwp_get_setting('amp-on-off-for-all-pages') ) {
 			return false;
 		}
+		//Blogpage
+		$page_for_posts = intval(get_option( 'page_for_posts' ));
+		if ( $page_for_posts == ampforwp_get_the_ID() ) {
+			return true;
+		}
 		// Homepage
 		if ( is_home() && false == ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
 			return false;
