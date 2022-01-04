@@ -1499,7 +1499,7 @@ function ampforwp_internal_feedback_notice(){
        $install_date = date("m-d-Y", $install_date);
     }
     $activation_never =  get_option("ampforwp_feedback_remove_notice");
-    if (strtotime($install_date) < strtotime('1 month ago') && $activation_never !='remove') {?>
+    if (strtotime($install_date) < strtotime('-30 days') && $activation_never !='remove') {?>
         <div class="updated notice ampforwp_remove_notice" style="box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);background-color:white;">
             <p> 
             <?php esc_html_e('Awesome, you\'ve been using AMPforWP for more than 1 month. May I ask you to give it a 5-star rating on WordPress.org?', 'accelerated-mobile-pages'); ?></br>
