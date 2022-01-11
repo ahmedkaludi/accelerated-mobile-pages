@@ -197,17 +197,17 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-1.0.77.34 (5th January 2022) =
+= 1.0.77.34 (11th January 2022) =
 * Fixed: External stylesheet Errors using Vinkmag theme #5189
 * Fixed: AMP Takeover functionality is not working on the blog posts #5188
 * Fixed: Replace webvitalsdev to Microwork #5183
 * Fixed: Wrong Notice for first time installation #5184
 
-1.0.77.33 (15th December 2021) =
+= 1.0.77.33 (15th December 2021) =
 * Fixed: Code improvements in AMP options panel #5179
 * Fixed: Stylesheet errors when using Qoxag theme #5177
 
-1.0.77.32 (11th December 2021) =
+= 1.0.77.32 (11th December 2021) =
 * Fixed: Code improvements in AMP pagebuilder #5179
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
