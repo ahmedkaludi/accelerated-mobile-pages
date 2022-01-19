@@ -186,7 +186,9 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     if ( is_feed() ) {
       return;
     }
-
+    if ( function_exists('is_embed') && is_embed() ){
+      return;
+    }
     // Homepage
     if ( ( ampforwp_is_home() || $current_location == $home_url ) && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
       return;
