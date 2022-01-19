@@ -29,6 +29,26 @@ function ampforwp_analytics() {
 								'request'=>'pageview'			
 						)
 					);
+		if (true == ampforwp_get_setting('ampforwp-infinite-scroll')) {
+			$url = ampforwp_url_controller(get_the_permalink());
+      		$ga_fields['requests'] =  array(
+				'nextpage' => esc_url($url) ,	 
+			);
+			$ga_fields['triggers'] = array(
+						'trackPageview'=> array(
+								'on'=>'visible',
+								'request'=>'pageview'			
+						),
+						'trackScrollThrough'=> array(
+								'on'=>'amp-next-page-scroll',
+								'request'=>'nextpage'			
+						),
+						'trackClickThrough'=> array(
+								'on'=>'amp-next-page-click',
+								'request'=>'nextpage'			
+						)
+					);
+		}
 		if ( true == ampforwp_get_setting('ampforwp-ga-field-anonymizeIP')) {
 			$ga_fields['vars']['anonymizeIP'] = 'true';
 		}
