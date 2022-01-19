@@ -52,8 +52,8 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <?php } ?>
 
             </div>
-         <?php } $url = 'https://webvitalsdev.com/';?>
-         <div class='custom_url'><a href="<?php echo esc_url($url);?>" target="_blank"><?php echo "The New Core Web Vitals Project" ?></a></div>
+         <?php } $url = 'https://microwork.dev/';?>
+         <div class='custom_url'><a href="<?php echo esc_url($url);?>" target="_blank"><?php echo "Introducing MicroWork.dev" ?></a></div>
 
         <div class="redux-action_bar">
             <span class="spinner"></span>

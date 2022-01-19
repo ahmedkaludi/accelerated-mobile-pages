@@ -1147,11 +1147,11 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 }
 .custom_url a{
     text-decoration: none;
-background: #fff;
-    color: #4452a7;
     padding: 6px 10px;
     border-radius: 20px;
-    border: 1px solid #ddd;
+    background: #4452a7;
+    color: #fff;
+    border: 0;
 }
 .custom_url a:hover{
     text-decoration: underline;
