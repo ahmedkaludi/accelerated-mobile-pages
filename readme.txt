@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.8
-Stable tag: 1.0.77.34
+Stable tag: 1.0.77.35
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.77.35 (21th January 2022) =
+* Fixed: Embed URLs not working with Amp takeover active #5193
+* Fixed: Need to change Google Fonts display to optional #5191
+* Fixed: Need to make compatibility of amp analytics in infinite scroll #5194
+* Fixed: Current year is not showing in design 1,2,3 #5190
+* Fixed: VKontakte social media not working in social media profile links #5196
+* Fixed: PHP Notice: tag_rewrite_rules is deprecated #5197
+
 = 1.0.77.34 (11th January 2022) =
 * Fixed: External stylesheet Errors using Vinkmag theme #5189
 * Fixed: AMP Takeover functionality is not working on the blog posts #5188
@@ -203,8 +211,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 1.0.77.33 (15th December 2021) =
 * Fixed: Code improvements in AMP options panel #5179
 * Fixed: Stylesheet errors when using Qoxag theme #5177
-
-= 1.0.77.32 (11th December 2021) =
-* Fixed: Code improvements in AMP pagebuilder #5179
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
