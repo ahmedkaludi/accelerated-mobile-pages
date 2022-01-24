@@ -33,7 +33,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * NEW - Google PageSpeed Optimization with SSR (Server Side Rendering)
 * NEW - CSS Optimization (Tree Shaking) - This will automatically remove all the unused CSS from your AMP pages
 * NEW - Google Font API and Local Fonts Support For All Designs
-* Out of the box compatiblity for Yoast SEO, All in One Seo, Rank Math, Genesis, SEOPress, Bridge Qode SEO, The SEO Framework, SmartCrawl and Squrilly SEO Plugin.
+* Out of the box compatibility for Yoast SEO, All in One Seo, Rank Math, Genesis, SEOPress, Bridge Qode SEO, The SEO Framework, SmartCrawl and Squrilly SEO Plugin.
 * Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * New Default Theme for AMP called Swift
 * 3 Pre-built AMP Layouts for Business websites and landing pages 
