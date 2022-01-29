@@ -102,7 +102,7 @@ global $redux_builder_amp;
               if (function_exists('pll__')) {
                 echo strip_tags( pll__(ampforwp_get_setting('amp-translator-footer-text')) ,$allowed_tags );
               }else {
-                echo strip_tags( ampforwp_translation(ampforwp_get_setting('amp-translator-footer-text'), 'All Rights Reserved') ,$allowed_tags );
+                echo strip_tags( ampforwp_translation(do_shortcode(ampforwp_get_setting('amp-translator-footer-text')), 'All Rights Reserved') ,$allowed_tags );
               }
               if ( '1' == $redux_builder_amp['amp-footer-link-non-amp-page'] ) {
                 if ( $redux_builder_amp['amp-translator-footer-text'] ) { ?> | <?php ampforwp_view_nonamp(); }

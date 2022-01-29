@@ -50,7 +50,7 @@ wp_reset_postdata(); ?>
       if (function_exists('pll__')) {
       echo strip_tags( pll__(ampforwp_get_setting('amp-translator-footer-text')) ,$allowed_tags );
       }else {
-        echo strip_tags( ampforwp_translation(ampforwp_get_setting('amp-translator-footer-text'), 'All Rights Reserved') ,$allowed_tags );
+        echo strip_tags( ampforwp_translation(do_shortcode(ampforwp_get_setting('amp-translator-footer-text')), 'All Rights Reserved') ,$allowed_tags );
       }?></p>
     <?php
     if ( true == ampforwp_get_setting('amp-footer-link-non-amp-page') ) { ?><p class="rightslink back-to-top"><?php 

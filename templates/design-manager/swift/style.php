@@ -1212,7 +1212,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 }
 <?php }
 if($redux_builder_amp['enbl-vk']){?>
-.ss-ic .s_vk:after {
+.ss-ic .s_vk:after,.s_vk:after{
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
 	content: "\e944";
 <?php }
