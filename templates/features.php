@@ -4357,7 +4357,11 @@ function ampforwp_modify_rel_amphtml_paginated_post($url) {
 					$new_url = trailingslashit($url) . user_trailingslashit($post_paginated_page);
 				}
 
-				$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$new_url);
+				if(ampforwp_get_setting('ampforwp-pagination-link-type')==true ){
+		 			$new_url = ampforwp_url_controller($new_url);
+				}else{
+					$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$new_url);
+				}
 				return $new_url;
 			}
 		} 
