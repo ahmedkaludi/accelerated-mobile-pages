@@ -9683,17 +9683,24 @@ function ampforwp_publisher_desk_ads_insert( $ads, $content ) {
 
 add_filter( 'ampforwp_modify_the_content', 'ampforwp_publisher_desk_ads' );
 function ampforwp_publisher_desk_ads( $content ) {
+	$pub_id = $url = '';
 	$pub_id = ampforwp_get_setting('ampforwp-publisherdesk-id');
-	$site_url = get_site_url();
-    $site_url = preg_replace('#^https?://#i', '', $site_url);
-    if ( is_single() && !empty($pub_id) ) {
-        $content = ampforwp_publisher_desk_ads_insert( array(
-        '1' => '<amp-ad width=336 height=600 type="doubleclick" layout="fixed"  data-multi-size="300x250,320x50,300x50,336x280,300x600"  data-multi-size-validation="false"  data-slot="/134702932/0'.esc_html($pub_id).'-'.esc_url($site_url).'/0'.esc_html($pub_id).'-'.esc_url($site_url).'-amp" data-enable-refresh="30"  json=\"{\"targeting\":{\"position\":[\"amp-box-ad-a\"]}}\" rtc-config=\"{\"vendors\":{\"ampBidderName\":[],\"prebidappnexus\":{\"PLACEMENT_ID\":\"15005224\"},\"indexexchange\":{\"SITE_ID\":\"347043\"},\"aps\":{\"PUB_ID\":\"600\",\"PUB_UUID\":\"8f0be570-94e3-4c8a-8dac-4372ca412efd\",\"PARAMS\":{\"amp\":\"1\"}}},\"timeoutMillis\":850}\"></amp-ad>',
-        '2' => '<amp-ad width=336 height=280 type="doubleclick" layout="fixed"  data-multi-size="300x250,320x50,300x50,336x280"  data-multi-size-validation="false"  data-slot="/134702932/0'.esc_html($pub_id).'-'.esc_url($site_url).'/0'.esc_html($pub_id).'-'.esc_url($site_url).'-amp" data-enable-refresh="30" json=\"{\"targeting\":{\"position\":[\"amp-box-ad-b\"]}}\" rtc-config=\"{\"vendors\":{\"ampBidderName\":[],\"prebidappnexus\":{\"PLACEMENT_ID\":\"15005225\"},\"indexexchange\":{\"SITE_ID\":\"347045\"},\"aps\":{\"PUB_ID\":\"600\",\"PUB_UUID\":\"8f0be570-94e3-4c8a-8dac-4372ca412efd\",\"PARAMS\":{\"amp\":\"1\"}}},\"timeoutMillis\":850}\"></amp-ad>',
-        '3' => '<amp-ad width=336 height=280 type="doubleclick" layout="fixed"  data-multi-size="300x250,320x50,300x50,336x280"  data-multi-size-validation="false"  data-slot="/134702932/0'.esc_html($pub_id).'-'.esc_url($site_url).'/0'.esc_html($pub_id).'-'.esc_url($site_url).'-amp" data-enable-refresh="30"  json=\"{\"targeting\":{\"position\":[\"amp-box-ad-c\"]}}\" rtc-config=\"{\"vendors\":{\"ampBidderName\":[],\"prebidappnexus\":{\"PLACEMENT_ID\":\"15005226\"},\"indexexchange\":{\"SITE_ID\":\"347044\"},\"aps\":{\"PUB_ID\":\"600\",\"PUB_UUID\":\"8f0be570-94e3-4c8a-8dac-4372ca412efd\",\"PARAMS\":{\"amp\":\"1\"}}},\"timeoutMillis\":850}\"></amp-ad>'
-        ), $content );
+	if (!empty($pub_id)) {
+		$url = 'https://publisher-desk.herokuapp.com/api/tpd-amp-tags-by-publisher-id?publisherId='. esc_html($pub_id);
+	}
+    
+	$data_api = file_get_contents($url);
+	$json_data_api = json_decode($data_api, true);
 
-        $content .= '<amp-sticky-ad layout="nodisplay"><amp-ad width=320 height=50 type="doubleclick" data-multi-size="320x50,300x50"  data-multi-size-validation="false"  data-slot="/134702932/0'.esc_html($pub_id).'-'.esc_url($site_url).'/0'.esc_html($pub_id).'-'.esc_url($site_url).'-amp" data-enable-refresh="30" json=\"{\"targeting\":{\"position\":[\"amp-banner-ad-a\"]}}\" rtc-config=\"{\"vendors\":{\"ampBidderName\":[],\"prebidappnexus\":{\"PLACEMENT_ID\":\"15005223\"},\"indexexchange\":{\"SITE_ID\":\"347042\"},\"aps\":{\"PUB_ID\":\"600\",\"PUB_UUID\":\"8f0be570-94e3-4c8a-8dac-4372ca412efd\",\"PARAMS\":{\"amp\":\"1\"}}},\"timeoutMillis\":850}\"></amp-ad></amp-sticky-ad>';
+    if ( is_single() && !empty($pub_id) && !empty($json_data_api) ) {
+        $content = ampforwp_publisher_desk_ads_insert( array(
+        '1' => $json_data_api['customHTMLInContentAds'][0],
+        '2' => $json_data_api['customHTMLInContentAds'][1],
+        '3' => $json_data_api['customHTMLInContentAds'][2]
+        ), $content );
+        $content .= $json_data_api['stickyCustomHTMLAd'][0];
+    $content = preg_replace('/json="/', 'json=\"' , $content);
+    $content = preg_replace('/rtc-config="/', 'rtc-config=\"' , $content);
     }
     return $content;
 }
