@@ -9683,6 +9683,9 @@ function ampforwp_publisher_desk_ads_insert( $ads, $content ) {
 
 add_filter( 'ampforwp_modify_the_content', 'ampforwp_publisher_desk_ads' );
 function ampforwp_publisher_desk_ads( $content ) {
+	if (!ampforwp_get_setting('ampforwp-ads-publisherdesk')) {
+		return $content;
+	}
 	$pub_id = $url = '';
 	$pub_id = ampforwp_get_setting('ampforwp-publisherdesk-id');
 	if (!empty($pub_id)) {
