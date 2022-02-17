@@ -9680,30 +9680,3 @@ function ampforwp_publisher_desk_ads_insert( $ads, $content ) {
 
     return implode( '', $paragraphs );
 }
-
-add_filter( 'ampforwp_modify_the_content', 'ampforwp_publisher_desk_ads' );
-function ampforwp_publisher_desk_ads( $content ) {
-	if (!ampforwp_get_setting('ampforwp-ads-publisherdesk')) {
-		return $content;
-	}
-	$pub_id = $url = '';
-	$pub_id = ampforwp_get_setting('ampforwp-publisherdesk-id');
-	if (!empty($pub_id)) {
-		$url = 'https://publisher-desk.herokuapp.com/api/tpd-amp-tags-by-publisher-id?publisherId='. esc_html($pub_id);
-	}
-    
-	$data_api = file_get_contents($url);
-	$json_data_api = json_decode($data_api, true);
-
-    if ( is_single() && !empty($pub_id) && !empty($json_data_api) ) {
-        $content = ampforwp_publisher_desk_ads_insert( array(
-        '1' => $json_data_api['customHTMLInContentAds'][0],
-        '2' => $json_data_api['customHTMLInContentAds'][1],
-        '3' => $json_data_api['customHTMLInContentAds'][2]
-        ), $content );
-        $content .= $json_data_api['stickyCustomHTMLAd'][0];
-    $content = preg_replace('/json="/', 'json=\"' , $content);
-    $content = preg_replace('/rtc-config="/', 'rtc-config=\"' , $content);
-    }
-    return $content;
-}
