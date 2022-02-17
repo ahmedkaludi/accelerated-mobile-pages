@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.77.36 (21th February 2022) =
+* Fixed: If the server-side cache is aggressive then the pagination URL with ?amp=1 is redirecting to non-AMP #5208
+* Fixed: Errror getting in featured-image.php, on line 77 #5207
+* Fixed: Need to keep the mobile redirection filter outside of any condition #5216
+
 = 1.0.77.35 (21th January 2022) =
 * Fixed: Embed URLs not working with Amp takeover active #5193
 * Fixed: Need to change Google Fonts display to optional #5191
