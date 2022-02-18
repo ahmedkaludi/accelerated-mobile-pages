@@ -98,30 +98,30 @@ if (!function_exists('adsforwp_admin_notice')) {
                 $fields[] =     array(
                             'id' => 'amp-ads_0',
                            'type' => 'section',
-                           'title' => esc_html__('Optimize Your Revenue With The Publisher Desk', 'accelerated-mobile-pages'),
+                           'title' => esc_html__('Optimize Your Revenue with AdPushup', 'accelerated-mobile-pages'),
                            'indent' => true,
                            'layout_type' => 'accordion',
                            'accordion-open'=> 1,
                 );
 
                 $fields[] =    array(
-                        'id'        =>'ampforwp-ads-publisherdesk',
+                        'id'        =>'ampforwp-ads-adpushup',
                         'type'      => 'switch',
                         'title'     => esc_html__('Ad Revenue Optimization', 'accelerated-mobile-pages'),
                         'desc' => sprintf('%s <a href="%s" target="_blank">%s</a>', 
-                         esc_html__('Integrate Ads Through The Publisher Desk', 'accelerated-mobile-pages'), esc_url('https://www.publisherdesk.com/'),esc_html__('Learn more','accelerated-mobile-pages')),    
+                         esc_html__('Get upto 2x revenue and all the benefits of Header Bidding now on AMP inventory with AdPushup', 'accelerated-mobile-pages'), esc_url('https://www.adpushup.com/publisher/amp-for-wp/'),esc_html__('Learn more','accelerated-mobile-pages')),    
                         'default'   => 0,
                     );
                 $fields[] =        array(
                             'class' => 'child_opt',
-                            'id'        =>'ampforwp-publisherdesk-id',
+                            'id'        =>'ampforwp-adpushup-site-id',
                             'type'      => 'text',
-                            'required' => array('ampforwp-ads-publisherdesk', '=' , '1'),
-                            'title'     => esc_html__('Publisher ID', 'accelerated-mobile-pages'),
+                            'required' => array('ampforwp-ads-adpushup', '=' , '1'),
+                            'title'     => esc_html__('Site ID', 'accelerated-mobile-pages'),
                             'desc' => sprintf('%s <a href="%s" target="_blank">%s</a>', 
-                        esc_html__('Obtain your Publisher ID through', 'accelerated-mobile-pages'), esc_url('https://www.publisherdesk.com/use-tpd-ads-on-your-amp-pages/'), esc_html__('these steps','accelerated-mobile-pages')),
+                        esc_html__('Get the site ID from', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-adpushup-ads-in-amp'), esc_html__('here','accelerated-mobile-pages')),
                             'default'   => '',
-                            'placeholder'=> '337'
+                            'placeholder'=> '40827'
                         );
 
                 $fields[] = array(
@@ -151,6 +151,7 @@ if (!function_exists('adsforwp_admin_notice')) {
                             // Must provide key => value pairs for select options
                             'options'  => array(
                                 'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
+                                'adpushup'   =>  esc_html__('AdPushup', 'accelerated-mobile-pages'),
                                 'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
                             ),
                             'default'  => 'adsense',
@@ -211,6 +212,40 @@ if (!function_exists('adsforwp_admin_notice')) {
                                             array('enable-amp-ads-1', '=' , '1'),
                                             array('enable-amp-ads-type-1', '=' , 'adsense'),
                                         ),
+                        );
+                // AdPushup fields
+                $fields[] =        array(
+                            'class' => 'child_opt child_opt_arrow',
+                            'id'       => 'ampforwp-adpushup-select-1',
+                            'type'     => 'select',
+                            'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
+                            'required' => array(
+                                            array('enable-amp-ads-1', '=' , '1'),
+                                            array('enable-amp-ads-type-1', '=' , 'adpushup'),
+                                        ),
+                            // Must provide key => value pairs for select options
+                            'options'  => array(
+                                '1' => esc_html__('300x250','accelerated-mobile-pages'),
+                                '2' => esc_html__('336x280','accelerated-mobile-pages'),
+                                '3' => esc_html__('728x90','accelerated-mobile-pages'),
+                                '4' => esc_html__('300x600','accelerated-mobile-pages'),
+                                '5' => esc_html__('320x100','accelerated-mobile-pages'),
+                                '6' => esc_html__('200x50','accelerated-mobile-pages'),
+                                '7' => esc_html__('320x50','accelerated-mobile-pages'),                      ),
+                            'default'  => '1',
+                        );
+                
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'ampforwp-adpushup-slotpath-1',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-1', '=' , '1'),
+                                            array('enable-amp-ads-type-1', '=' , 'adpushup'),
+                                        ),
+                            'title'     => esc_html__('Slotpath', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> '/103512698/AMP_COMPONENT_TEST_1'
                         );
                 // MGID fields
                 $fields[] =        array(
@@ -311,6 +346,7 @@ if (!function_exists('adsforwp_admin_notice')) {
                             // Must provide key => value pairs for select options
                             'options'  => array(
                                 'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
+                                'adpushup'   =>  esc_html__('AdPushup', 'accelerated-mobile-pages'),
                                 'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
                             ),
                             'default'  => 'adsense',
@@ -372,6 +408,40 @@ if (!function_exists('adsforwp_admin_notice')) {
                                             array('enable-amp-ads-2', '=' , '1'),
                                             array('enable-amp-ads-type-2', '=' , 'adsense'),
                                         ),
+                        );
+                // AdPushup fields
+                $fields[] =        array(
+                            'class' => 'child_opt child_opt_arrow',
+                            'id'       => 'ampforwp-adpushup-select-2',
+                            'type'     => 'select',
+                            'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
+                            'required' => array(
+                                            array('enable-amp-ads-2', '=' , '1'),
+                                            array('enable-amp-ads-type-2', '=' , 'adpushup'),
+                                        ),
+                            // Must provide key => value pairs for select options
+                            'options'  => array(
+                                '1' => esc_html__('300x250','accelerated-mobile-pages'),
+                                '2' => esc_html__('336x280','accelerated-mobile-pages'),
+                                '3' => esc_html__('728x90','accelerated-mobile-pages'),
+                                '4' => esc_html__('300x600','accelerated-mobile-pages'),
+                                '5' => esc_html__('320x100','accelerated-mobile-pages'),
+                                '6' => esc_html__('200x50','accelerated-mobile-pages'),
+                                '7' => esc_html__('320x50','accelerated-mobile-pages'),                      ),
+                            'default'  => '1',
+                        );
+                
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'ampforwp-adpushup-slotpath-2',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-2', '=' , '1'),
+                                            array('enable-amp-ads-type-2', '=' , 'adpushup'),
+                                        ),
+                            'title'     => esc_html__('Slotpath', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> '/103512698/AMP_COMPONENT_TEST_1'
                         );
                 // MGID fields
                 $fields[] =        array(
@@ -472,6 +542,7 @@ if (!function_exists('adsforwp_admin_notice')) {
                             // Must provide key => value pairs for select options
                             'options'  => array(
                                 'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
+                                'adpushup'   =>  esc_html__('AdPushup', 'accelerated-mobile-pages'),
                                 'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
                             ),
                             'default'  => 'adsense',
@@ -549,6 +620,40 @@ if (!function_exists('adsforwp_admin_notice')) {
                                             array('enable-amp-ads-3', '=' , '1'),
                                             array('enable-amp-ads-type-3', '=' , 'adsense'),
                                         ),
+                        );
+                // AdPushup fields
+                $fields[] =        array(
+                            'class' => 'child_opt child_opt_arrow',
+                            'id'       => 'ampforwp-adpushup-select-3',
+                            'type'     => 'select',
+                            'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
+                            'required' => array(
+                                            array('enable-amp-ads-3', '=' , '1'),
+                                            array('enable-amp-ads-type-3', '=' , 'adpushup'),
+                                        ),
+                            // Must provide key => value pairs for select options
+                            'options'  => array(
+                                '1' => esc_html__('300x250','accelerated-mobile-pages'),
+                                '2' => esc_html__('336x280','accelerated-mobile-pages'),
+                                '3' => esc_html__('728x90','accelerated-mobile-pages'),
+                                '4' => esc_html__('300x600','accelerated-mobile-pages'),
+                                '5' => esc_html__('320x100','accelerated-mobile-pages'),
+                                '6' => esc_html__('200x50','accelerated-mobile-pages'),
+                                '7' => esc_html__('320x50','accelerated-mobile-pages'),                      ),
+                            'default'  => '1',
+                        );
+                
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'ampforwp-adpushup-slotpath-3',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-3', '=' , '1'),
+                                            array('enable-amp-ads-type-3', '=' , 'adpushup'),
+                                        ),
+                            'title'     => esc_html__('Slotpath', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> '/103512698/AMP_COMPONENT_TEST_1'
                         );
                 // MGID fields
                 $fields[] =        array(
@@ -649,6 +754,7 @@ if (!function_exists('adsforwp_admin_notice')) {
                             // Must provide key => value pairs for select options
                             'options'  => array(
                                 'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
+                                'adpushup'   =>  esc_html__('AdPushup', 'accelerated-mobile-pages'),
                                 'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
                             ),
                             'default'  => 'adsense',
@@ -710,6 +816,40 @@ if (!function_exists('adsforwp_admin_notice')) {
                                             array('enable-amp-ads-4', '=' , '1'),
                                             array('enable-amp-ads-type-4', '=' , 'adsense'),
                                         ),
+                        );
+                // AdPushup fields
+                $fields[] =        array(
+                            'class' => 'child_opt child_opt_arrow',
+                            'id'       => 'ampforwp-adpushup-select-4',
+                            'type'     => 'select',
+                            'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
+                            'required' => array(
+                                            array('enable-amp-ads-4', '=' , '1'),
+                                            array('enable-amp-ads-type-4', '=' , 'adpushup'),
+                                        ),
+                            // Must provide key => value pairs for select options
+                            'options'  => array(
+                                '1' => esc_html__('300x250','accelerated-mobile-pages'),
+                                '2' => esc_html__('336x280','accelerated-mobile-pages'),
+                                '3' => esc_html__('728x90','accelerated-mobile-pages'),
+                                '4' => esc_html__('300x600','accelerated-mobile-pages'),
+                                '5' => esc_html__('320x100','accelerated-mobile-pages'),
+                                '6' => esc_html__('200x50','accelerated-mobile-pages'),
+                                '7' => esc_html__('320x50','accelerated-mobile-pages'),                      ),
+                            'default'  => '1',
+                        );
+                
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'ampforwp-adpushup-slotpath-4',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-4', '=' , '1'),
+                                            array('enable-amp-ads-type-4', '=' , 'adpushup'),
+                                        ),
+                            'title'     => esc_html__('Slotpath', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> '/103512698/AMP_COMPONENT_TEST_1'
                         );
                 // MGID fields
                 $fields[] =        array(
@@ -810,6 +950,7 @@ if (!function_exists('adsforwp_admin_notice')) {
                             // Must provide key => value pairs for select options
                             'options'  => array(
                                 'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
+                                'adpushup'   =>  esc_html__('AdPushup', 'accelerated-mobile-pages'),
                                 'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
                             ),
                             'default'  => 'adsense',
@@ -871,6 +1012,40 @@ if (!function_exists('adsforwp_admin_notice')) {
                                             array('enable-amp-ads-5', '=' , '1'),
                                             array('enable-amp-ads-type-5', '=' , 'adsense'),
                                         ),
+                        );
+                // AdPushup fields
+                $fields[] =        array(
+                            'class' => 'child_opt child_opt_arrow',
+                            'id'       => 'ampforwp-adpushup-select-5',
+                            'type'     => 'select',
+                            'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
+                            'required' => array(
+                                            array('enable-amp-ads-5', '=' , '1'),
+                                            array('enable-amp-ads-type-5', '=' , 'adpushup'),
+                                        ),
+                            // Must provide key => value pairs for select options
+                            'options'  => array(
+                                '1' => esc_html__('300x250','accelerated-mobile-pages'),
+                                '2' => esc_html__('336x280','accelerated-mobile-pages'),
+                                '3' => esc_html__('728x90','accelerated-mobile-pages'),
+                                '4' => esc_html__('300x600','accelerated-mobile-pages'),
+                                '5' => esc_html__('320x100','accelerated-mobile-pages'),
+                                '6' => esc_html__('200x50','accelerated-mobile-pages'),
+                                '7' => esc_html__('320x50','accelerated-mobile-pages'),                      ),
+                            'default'  => '1',
+                        );
+                
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'ampforwp-adpushup-slotpath-5',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-5', '=' , '1'),
+                                            array('enable-amp-ads-type-5', '=' , 'adpushup'),
+                                        ),
+                            'title'     => esc_html__('Slotpath', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> '/103512698/AMP_COMPONENT_TEST_1'
                         );
                  // MGID fields
                 $fields[] =        array(
@@ -970,6 +1145,7 @@ if (!function_exists('adsforwp_admin_notice')) {
                             // Must provide key => value pairs for select options
                             'options'  => array(
                                 'adsense'   =>  esc_html__('Adsense', 'accelerated-mobile-pages'),
+                                'adpushup'   =>  esc_html__('AdPushup', 'accelerated-mobile-pages'),
                                 'mgid'      =>  esc_html__('MGID','accelerated-mobile-pages'),
                             ),
                             'default'  => 'adsense',
@@ -1031,7 +1207,41 @@ if (!function_exists('adsforwp_admin_notice')) {
                                             array('enable-amp-ads-6', '=' , '1'),
                                             array('enable-amp-ads-type-6', '=' , 'adsense'),
                                         ),
-                        );   
+                        );
+                // AdPushup fields
+                $fields[] =        array(
+                            'class' => 'child_opt child_opt_arrow',
+                            'id'       => 'ampforwp-adpushup-select-6',
+                            'type'     => 'select',
+                            'title'    => esc_html__('AD Size', 'accelerated-mobile-pages'),
+                            'required' => array(
+                                            array('enable-amp-ads-6', '=' , '1'),
+                                            array('enable-amp-ads-type-6', '=' , 'adpushup'),
+                                        ),
+                            // Must provide key => value pairs for select options
+                            'options'  => array(
+                                '1' => esc_html__('300x250','accelerated-mobile-pages'),
+                                '2' => esc_html__('336x280','accelerated-mobile-pages'),
+                                '3' => esc_html__('728x90','accelerated-mobile-pages'),
+                                '4' => esc_html__('300x600','accelerated-mobile-pages'),
+                                '5' => esc_html__('320x100','accelerated-mobile-pages'),
+                                '6' => esc_html__('200x50','accelerated-mobile-pages'),
+                                '7' => esc_html__('320x50','accelerated-mobile-pages'),                      ),
+                            'default'  => '1',
+                        );
+                
+                $fields[] =        array(
+                            'class' => 'child_opt',
+                            'id'        =>'ampforwp-adpushup-slotpath-6',
+                            'type'      => 'text',
+                            'required' => array(
+                                            array('enable-amp-ads-6', '=' , '1'),
+                                            array('enable-amp-ads-type-6', '=' , 'adpushup'),
+                                        ),
+                            'title'     => esc_html__('Slotpath', 'accelerated-mobile-pages'),
+                            'default'   => '',
+                            'placeholder'=> '/103512698/AMP_COMPONENT_TEST_1'
+                        );    
                      // MGID fields
                 $fields[] =        array(
                             'class' => 'child_opt',

@@ -9657,26 +9657,3 @@ function ampforwp_rocket_cache_query_string($query_strings){
 	array_push($query_strings,"amp"); 
 	return $query_strings;
 }
-
-
-function ampforwp_publisher_desk_ads_insert( $ads, $content ) {
-    if ( ! is_array( $ads ) ) {
-        return $content;
-    }
-
-    $closing_p = '</p>';
-    $paragraphs = explode( $closing_p, $content );
-
-    foreach ($paragraphs as $index => $paragraph) {
-        if ( trim( $paragraph ) ) {
-            $paragraphs[$index] .= $closing_p;
-        }
-
-        $n = $index + 1;
-        if ( isset( $ads[ $n ] ) ) {
-            $paragraphs[$index] .= $ads[ $n ];
-        }
-    }
-
-    return implode( '', $paragraphs );
-}
