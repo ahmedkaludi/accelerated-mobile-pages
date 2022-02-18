@@ -1,6 +1,6 @@
 == Changelog ==
 
-= 1.0.77.36 (21th February 2022) =
+= 1.0.77.36 (18th February 2022) =
 * Fixed: If the server-side cache is aggressive then the pagination URL with ?amp=1 is redirecting to non-AMP #5208
 * Fixed: Errror getting in featured-image.php, on line 77 #5207
 * Fixed: Need to keep the mobile redirection filter outside of any condition #5216
