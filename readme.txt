@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.8
-Stable tag: 1.0.77.35
+Tested up to: 5.9
+Stable tag: 1.0.77.36
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.77.36 (18th February 2022) =
+* Fixed: If the server-side cache is aggressive then the pagination URL with ?amp=1 is redirecting to non-AMP #5208
+* Fixed: Errror getting in featured-image.php, on line 77 #5207
+* Fixed: Need to keep the mobile redirection filter outside of any condition #5216
+
 = 1.0.77.35 (21th January 2022) =
 * Fixed: Embed URLs not working with Amp takeover active #5193
 * Fixed: Need to change Google Fonts display to optional #5191
@@ -207,9 +212,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: AMP Takeover functionality is not working on the blog posts #5188
 * Fixed: Replace webvitalsdev to Microwork #5183
 * Fixed: Wrong Notice for first time installation #5184
-
-= 1.0.77.33 (15th December 2021) =
-* Fixed: Code improvements in AMP options panel #5179
-* Fixed: Stylesheet errors when using Qoxag theme #5177
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
