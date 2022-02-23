@@ -640,6 +640,8 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/structure-data/structured-data-functions.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/notice-bar/notice-bar-functions.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/push-notification/push-notification-functions.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/mb-helper-function.php";
+			
 		}
 	}
 }
