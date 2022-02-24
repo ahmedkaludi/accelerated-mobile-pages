@@ -2399,6 +2399,15 @@ function ampforwp_footer_html_output() {
   	 $hashcode = ampforwp_get_setting('amp-quantcast-hashcode');
   	 $country = ampforwp_get_setting('amp-quantcast-publishercountrycode');
   	 $name = ampforwp_get_setting('amp-quantcast-publishername');
+  	 $privacy = ampforwp_get_setting('amp-quantcast-privacy-mode');
+  	 $lang = ampforwp_get_setting('amp-quantcast-lang');
+  	 if (empty($privacy)) {
+  	 	$privacy = 'GDPR';
+  	 }
+  	 if (empty($lang)) {
+  	 	$lang = 'en';
+  	 }
+  	  
   if (!empty($id) && !empty($hashcode) && !empty($country) && !empty($name) ) {?>
 	<amp-consent id="quantcast" layout="nodisplay">
     	<script type="application/json">
@@ -2410,7 +2419,7 @@ function ampforwp_footer_html_output() {
            "clientConfig": {
                "coreConfig": {
                    "quantcastAccountId": "<?php echo esc_html($id); ?>",
-                   "privacyMode": ["GDPR"],
+                   "privacyMode": ["<?php echo esc_html($privacy); ?>"],
                    "hashCode": "<?php echo esc_html($hashcode); ?>",
                    "publisherCountryCode": "<?php echo esc_html($country); ?>",
                    "publisherName": "<?php echo esc_html($name); ?>",
@@ -2420,7 +2429,7 @@ function ampforwp_footer_html_output() {
                    "vendorSpecialFeaturesIds": [1, 2],
                    "vendorSpecialPurposesIds": [1, 2],
                    "googleEnabled": false,
-                   "lang_": "en",
+                   "lang_": "<?php echo esc_html($lang); ?>",
                    "displayUi": "always",
                    "publisherConsentRestrictionIds": [],
                    "publisherLIRestrictionIds": [],

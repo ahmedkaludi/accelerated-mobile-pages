@@ -260,6 +260,22 @@ function ampforwp_notice_bar_options($opt_name){
                'required' => array('amp-quantcast-notice-switch', '=' , '1'),
            ),
            array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-quantcast-privacy-mode',
+               'type'      => 'text',
+               'title'     => esc_html__('Privacy Mode', 'accelerated-mobile-pages'),
+               'placeholder'=> 'GDPR',
+               'required' => array('amp-quantcast-notice-switch', '=' , '1'),
+           ),
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-quantcast-lang',
+               'type'      => 'text',
+               'title'     => esc_html__('Language', 'accelerated-mobile-pages'),
+               'placeholder'=> 'en',
+               'required' => array('amp-quantcast-notice-switch', '=' , '1'),
+           ),
+           array(
            'class' => 'amp-popup-fld',
            'id'   => 'info_normal_amp_popup',
            'type'     => 'info',
