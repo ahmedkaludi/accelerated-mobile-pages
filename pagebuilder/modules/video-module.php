@@ -23,6 +23,7 @@ $output = '
 	<amp-youtube {{if_id}}id="{{id}}"{{ifend_id}}
     data-videoid="{{youtube_video_id}}"
     {{if_condition_hide_rel_video==1}} data-param-rel="0" {{ifend_condition_hide_rel_video_1}}
+    {{if_condition_autoplay_video==1}} autoplay {{ifend_condition_autoplay_video_1}}
     layout="responsive"
     width="{{width}}" height="{{height}}"></amp-youtube>
     {{ifend_condition_video_option_youtube}}
@@ -115,6 +116,20 @@ return array(
 	           				'required'  => array('video_option'=>'custom',
 											'video_option'=>'youtube',
 	           								),
+ 						),
+ 						array(		
+	 						'type'		=>'checkbox_bool',		
+	 						'name'		=>"autoplay_video",		
+	 						'label'		=>'Autoplay',
+	           				'tab'       =>'customizer',
+	 						'default'	=>1,
+	 						'options'	=>array(
+												array(
+													'value'=>1,
+												),
+											),
+	 						'content_type'=>'html',
+	           				'required'  => array('video_option'=>'youtube'),
  						),
  						array(		
 	 						'type'		=>'checkbox_bool',		
