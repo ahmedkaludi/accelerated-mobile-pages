@@ -484,7 +484,6 @@ jQuery(function($) {
                     selected = 'selected';
                 }
                $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'" '+ selected +'> '+ fontDetail  +' </option>'));
-               $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
                $('#amp_font_selector_content_single-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
             }
             $('#amp_font_selector-select').append($('<option value="sans-serif" data-font-number="'+ i +'"> sans-serif </option>'));
