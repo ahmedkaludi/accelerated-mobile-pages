@@ -334,7 +334,7 @@ function ampforwp_analytics_options($opt_name){
                       array(
                           'id'       => 'pa-feild',
                           'class' => 'child_opt',
-                          'type'     => 'text',
+                          'type'     => 'multi_text',
                           'title'    => esc_html__( ' Enter Your Piwik Analytics URL', 'accelerated-mobile-pages' ),
                           'desc'=>sprintf( 'Example - 
                           https://YOUR_PIWIK_BASE_INSTALLATION_URL/piwik.php?idsite=1&amp;rec=1&amp;
