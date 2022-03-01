@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.9
-Stable tag: 1.0.77.36
+Stable tag: 1.0.77.37
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,7 +33,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * NEW - Google PageSpeed Optimization with SSR (Server Side Rendering)
 * NEW - CSS Optimization (Tree Shaking) - This will automatically remove all the unused CSS from your AMP pages
 * NEW - Google Font API and Local Fonts Support For All Designs
-* Out of the box compatiblity for Yoast SEO, All in One Seo, Rank Math, Genesis, SEOPress, Bridge Qode SEO, The SEO Framework, SmartCrawl and Squrilly SEO Plugin.
+* Out of the box compatibility for Yoast SEO, All in One Seo, Rank Math, Genesis, SEOPress, Bridge Qode SEO, The SEO Framework, SmartCrawl and Squrilly SEO Plugin.
 * Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * New Default Theme for AMP called Swift
 * 3 Pre-built AMP Layouts for Business websites and landing pages 
@@ -194,6 +194,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.77.37 (28th February 2022) =
+* Improvements: Added feedback form with auto email system #5223
+* Improvements: Added new infinite scrolling experience #4791
+* Improvements: Added An option to add lang_ and privacyMode values in Quantcast #5206
+* Improvements: Added FireWork compatibility #5210
+* Fixed: AMP autocomplete tag is not working #5217
+* Fixed: Autoplay functionality not working in video module #5219
+* Fixed: Fonts loading twice in Global font family #5220
+* Fixed: Unable to connect to Matomo analytics #5221
+
 = 1.0.77.36 (18th February 2022) =
 * Fixed: If the server-side cache is aggressive then the pagination URL with ?amp=1 is redirecting to non-AMP #5208
 * Fixed: Errror getting in featured-image.php, on line 77 #5207
@@ -206,11 +216,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Current year is not showing in design 1,2,3 #5190
 * Fixed: VKontakte social media not working in social media profile links #5196
 * Fixed: PHP Notice: tag_rewrite_rules is deprecated #5197
-
-= 1.0.77.34 (11th January 2022) =
-* Fixed: External stylesheet Errors using Vinkmag theme #5189
-* Fixed: AMP Takeover functionality is not working on the blog posts #5188
-* Fixed: Replace webvitalsdev to Microwork #5183
-* Fixed: Wrong Notice for first time installation #5184
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

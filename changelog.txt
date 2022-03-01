@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 1.0.77.37 (28th February 2022) =
+* Improvements: Added feedback form with auto email system #5223
+* Improvements: Added new infinite scrolling experience #4791
+* Improvements: Added An option to add lang_ and privacyMode values in Quantcast #5206
+* Improvements: Added FireWork compatibility #5210
+* Fixed: AMP autocomplete tag is not working #5217
+* Fixed: Autoplay functionality not working in video module #5219
+* Fixed: Fonts loading twice in Global font family #5220
+* Fixed: Unable to connect to Matomo analytics #5221
+
 = 1.0.77.36 (18th February 2022) =
 * Fixed: If the server-side cache is aggressive then the pagination URL with ?amp=1 is redirecting to non-AMP #5208
 * Fixed: Errror getting in featured-image.php, on line 77 #5207
