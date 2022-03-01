@@ -2407,7 +2407,7 @@ function ampforwp_footer_html_output() {
   	 if (empty($lang)) {
   	 	$lang = 'en';
   	 }
-  	  
+
   if (!empty($id) && !empty($hashcode) && !empty($country) && !empty($name) ) {?>
 	<amp-consent id="quantcast" layout="nodisplay">
     	<script type="application/json">
@@ -9665,4 +9665,53 @@ if (ampforwp_get_setting('amp-core-end-point') && function_exists('get_rocket_ca
 function ampforwp_rocket_cache_query_string($query_strings){
 	array_push($query_strings,"amp"); 
 	return $query_strings;
+}
+
+
+function ampforwp_publisher_desk_ads_insert( $ads, $content ) {
+    if ( ! is_array( $ads ) ) {
+        return $content;
+    }
+
+    $closing_p = '</p>';
+    $paragraphs = explode( $closing_p, $content );
+
+    foreach ($paragraphs as $index => $paragraph) {
+        if ( trim( $paragraph ) ) {
+            $paragraphs[$index]  .= $closing_p;
+        }
+
+        $n = $index + 1;
+        if ( isset( $ads[ $n ] ) ) {
+            $paragraphs[$index] .= $ads[ $n ];
+        }
+    }
+
+    return implode( '', $paragraphs );
+}
+
+add_filter( 'ampforwp_modify_the_content', 'ampforwp_publisher_desk_ads' );
+function ampforwp_publisher_desk_ads( $content ) {
+	if (!ampforwp_get_setting('ampforwp-ads-publisherdesk')) {
+		return $content;
+	}
+	$pub_id = $url = '';
+	$pub_id = ampforwp_get_setting('ampforwp-publisherdesk-id');
+	if (!empty($pub_id)) {
+		$url = 'https://publisher-desk.herokuapp.com/api/tpd-amp-tags-by-publisher-id?publisherId='. esc_html($pub_id);
+	}
+    
+	$data_api = wp_remote_get($url);
+	$json_data_api = json_decode( $data_api['body'] );
+    if ( is_single() && !empty($pub_id) && !empty($json_data_api) ) {
+        $content = ampforwp_publisher_desk_ads_insert( array(
+        '3' => $json_data_api->customHTMLInContentAds[0],
+        '6' => $json_data_api->customHTMLInContentAds[1],
+        '9' => $json_data_api->customHTMLInContentAds[2]
+        ), $content );
+        $content .= $json_data_api->stickyCustomHTMLAd[0];
+    	$content = preg_replace('/json="/', 'json=\"' , $content);
+    	$content = preg_replace('/rtc-config="/', 'rtc-config=\"' , $content);
+    }
+    return $content;
 }
