@@ -197,7 +197,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.77.37 (28th February 2022) =
+= 1.0.77.37 (2nd March 2022) =
 * Improvements: Added feedback form with auto email system #5223
 * Improvements: Added new infinite scrolling experience #4791
 * Improvements: Added An option to add lang_ and privacyMode values in Quantcast #5206
