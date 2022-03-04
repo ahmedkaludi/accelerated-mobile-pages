@@ -3052,6 +3052,44 @@ class AMP_Allowed_Tags_Generated {
 				),
 			),
 		),
+		'amp-wordpress-embed' => array(
+			array(
+				'attr_spec_list' => array(
+					'data-url' => array(
+						'mandatory' => true,
+						'value_url' => array(
+							'allow_relative' => false,
+							'protocol' => array(
+								'https',
+							),
+						),
+					),
+					'media' => array(),
+					'noloading' => array(
+						'value' => array(
+							'',
+						),
+					),
+				),
+				'tag_spec' => array(
+					'amp_layout' => array(
+						'supported_layouts' => array(
+							6,
+							2,
+							3,
+							7,
+							9,
+							1,
+							4,
+						),
+					),
+					'requires_extension' => array(
+						'amp-wordpress-embed',
+					),
+					'spec_url' => 'https://amp.dev/documentation/components/amp-wordpress-embed/',
+				),
+			),
+		),
 		'amp-youtube' => array(
 			array(
 				'attr_spec_list' => array(
