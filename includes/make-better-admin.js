@@ -24,7 +24,10 @@ jQuery(document).ready(function ($) {
     // show text fields
     $('#ampforwp-reloaded-feedback-content input[type="radio"]').click(function () {
         // show text field if there is one
-        $(this).parents('li').next('li').children('input[type="text"], textarea').show();
+        var input_value = $(this).attr("value");
+        var target_box = $("." + input_value);
+        $(".mb-box").not(target_box).hide();
+        $(target_box).show();
     });
     // send form or close it
     $('#ampforwp-reloaded-feedback-content .button').click(function (e) {
