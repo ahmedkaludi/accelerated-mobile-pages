@@ -197,8 +197,9 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.77.37.1 (3rd March 2022) =
+= 1.0.77.37.1 (4th March 2022) =
 * Improvements: Added new infinite scrolling experience #4791
+* Fixed: The links in embed URLs are not clickable #5193
 
 = 1.0.77.37 (2nd March 2022) =
 * Improvements: Added feedback form with auto email system #5223
@@ -214,13 +215,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: If the server-side cache is aggressive then the pagination URL with ?amp=1 is redirecting to non-AMP #5208
 * Fixed: Errror getting in featured-image.php, on line 77 #5207
 * Fixed: Need to keep the mobile redirection filter outside of any condition #5216
-
-= 1.0.77.35 (21th January 2022) =
-* Fixed: Embed URLs not working with Amp takeover active #5193
-* Fixed: Need to change Google Fonts display to optional #5191
-* Fixed: Need to make compatibility of amp analytics in infinite scroll #5194
-* Fixed: Current year is not showing in design 1,2,3 #5190
-* Fixed: VKontakte social media not working in social media profile links #5196
-* Fixed: PHP Notice: tag_rewrite_rules is deprecated #5197
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
