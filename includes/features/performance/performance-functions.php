@@ -91,9 +91,6 @@ function ampforwp_minify_html_output($content_buffer){
     if(preg_match('/<fw-embed-feed(.*?)<\/fw-embed-feed>/', $content_buffer)){
         $content_buffer = preg_replace('/<fw-embed-feed(.*?)<\/fw-embed-feed>/', '', $content_buffer);
     }
-    if(preg_match('/<figure\sclass="wp-block-embed(.*?)<a href="(.*?)"(.*?)<\/figure>/s', $content_buffer)){
-        $content_buffer = preg_replace('/<figure\sclass="wp-block-embed(.*?)<a href="(.*?)"(.*?)<\/figure>/s', '<amp-wordpress-embed width="400" height="400" data-url="$2" ></amp-wordpress-embed>', $content_buffer);
-    }
 
     if(preg_match('/<blockquote\sclass="wp-embedded-content"(.*?)<a href="(.*?)"(.*?)<\/blockquote>/', $content_buffer)){
         $content_buffer = preg_replace('/<blockquote\sclass="wp-embedded-content"(.*?)<a href="(.*?)"(.*?)<\/blockquote>/', '<amp-wordpress-embed width="400" height="400" data-url="$2" ></amp-wordpress-embed>', $content_buffer);

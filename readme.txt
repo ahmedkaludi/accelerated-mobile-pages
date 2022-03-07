@@ -196,6 +196,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.77.38 (7th March 2022) =
 * Improvements: Added The Publisher Desk Support #5213
+* Fixed: Displaying a blank white screen when embed URLs are used #5193
 
 1.0.77.37.1 (4TH March 2022)
 * Improvements: Added new infinite scrolling experience #4791
