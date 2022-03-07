@@ -4623,6 +4623,14 @@ Redux::setSection( $opt_name, array(
                                         array('ampforwp-infinite-scroll-single', '=' , '1')
                                     ),
                     ),
+                    array(
+                        'id'       => 'ampforwp-infinite-scroll-new-features',
+                        'type'     => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'    => esc_html__('New Features', 'accelerated-mobile-pages'),
+                        'default' => false,
+                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
+                    ),
                 array(
                         'id'       => 'ampforwp-infinite-scroll-new-features',
                         'type'     => 'switch',
