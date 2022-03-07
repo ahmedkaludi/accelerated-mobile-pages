@@ -27,8 +27,13 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				// amp-next-page tag
 				if ( 4 != ampforwp_get_setting('amp-design-selector') || (class_exists('AmpforwpAmpLayouts')) && 3 == ampforwp_get_setting('single-design-type') )
 					add_action('ampforwp_above_related_post', array( $this , 'amp_next_page') );
-				else 
-					add_action('ampforwp_single_design_type_handle', array( $this , 'amp_next_page') );
+				else {
+					if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
+						add_action('ampforwp_global_after_footer', array( $this , 'amp_next_page') );
+					}else{
+						add_action('ampforwp_single_design_type_handle', array( $this , 'amp_next_page') );
+					}
+				}
 			}
 			if ( $this->is_loop ) {
 				// amp-next-page experiment meta tag
@@ -75,7 +80,11 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 
 		public function amp_infinite_scroll_script( $data ) {
 			if ( empty( $data['amp_component_scripts']['amp-next-page'] ) ) {
-				$data['amp_component_scripts']['amp-next-page'] = 'https://cdn.ampproject.org/v0/amp-next-page-0.1.js';
+				if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
+					$data['amp_component_scripts']['amp-next-page'] = 'https://cdn.ampproject.org/v0/amp-next-page-latest.js';
+				}else{
+					$data['amp_component_scripts']['amp-next-page'] = 'https://cdn.ampproject.org/v0/amp-next-page-0.1.js';	
+				}
 			}
 			return $data;
 		}
@@ -92,8 +101,12 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 					$loop_link1 = ampforwp_url_controller($loop_link1);
 					$loop_link2 = ampforwp_url_controller($loop_link2);
 				}
-				$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link1);
-				$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link2);
+				if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
+					$pages[] = array('title'=>'','image'=>'','url'=>$loop_link1); 
+				}else{
+					$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link1);
+					$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link2);
+				}
 			}
 			if ( $this->is_single ) {
 				$pages = $this->single_post();
@@ -102,10 +115,16 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			?>
 			<amp-next-page>
 			  	<script type="application/json">
-			    {
-			      	"pages": <?php echo json_encode($pages)?>,
-				    "hideSelectors": <?php echo $classes?>
-		    	}
+			    <?php 
+			    if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
+			    	echo json_encode($pages);
+			    }else{
+			    	?>
+			    	{
+			    	  	"pages": <?php echo json_encode($pages);?>,
+			    	  	"hideSelectors": <?php echo ampforwp_css_sanitizer($classes);?>
+			    	}
+			    <?php } ?>
 			  	</script>
 			</amp-next-page>
 		<?php }
@@ -157,7 +176,11 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			$query = new WP_Query( $query_args );
 			while ($query->have_posts()) {
 				$query->the_post();
-				$pages[] = array('title'=>get_the_title(),'image'=>ampforwp_get_post_thumbnail('url', 'full'),'ampUrl'=>ampforwp_url_controller( get_permalink() ));
+				if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
+					$pages[] = array('title'=>get_the_title(),'image'=>ampforwp_get_post_thumbnail('url', 'full'),'url'=>ampforwp_url_controller( get_permalink() ));
+				}else{
+					$pages[] = array('title'=>get_the_title(),'image'=>ampforwp_get_post_thumbnail('url', 'full'),'ampUrl'=>ampforwp_url_controller( get_permalink() ));
+				}
 			}
 			wp_reset_postdata();
 			return $pages;
