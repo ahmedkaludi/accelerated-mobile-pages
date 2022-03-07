@@ -109,7 +109,7 @@ if (!function_exists('adsforwp_admin_notice')) {
                         'type'      => 'switch',
                         'title'     => esc_html__('Ad Revenue Optimization', 'accelerated-mobile-pages'),
                         'desc' => sprintf('%s <a href="%s" target="_blank">%s</a>', 
-                         esc_html__('Integrate Ads Through The Publisher Desk', 'accelerated-mobile-pages'), esc_url('https://www.publisherdesk.com/'),esc_html__('Learn more','accelerated-mobile-pages')),    
+                         esc_html__('Integrate Ads Through The Publisher Desk', 'accelerated-mobile-pages'), esc_url('https://www.publisherdesk.com/amp-for-wp/'),esc_html__('Learn more','accelerated-mobile-pages')),    
                         'default'   => 0,
                     );
                 $fields[] =        array(
@@ -119,7 +119,7 @@ if (!function_exists('adsforwp_admin_notice')) {
                             'required' => array('ampforwp-ads-publisherdesk', '=' , '1'),
                             'title'     => esc_html__('Publisher ID', 'accelerated-mobile-pages'),
                             'desc' => sprintf('%s <a href="%s" target="_blank">%s</a>', 
-                        esc_html__('Obtain your Publisher ID through', 'accelerated-mobile-pages'), esc_url('https://www.publisherdesk.com/use-tpd-ads-on-your-amp-pages/'), esc_html__('these steps','accelerated-mobile-pages')),
+                        esc_html__('Obtain your Publisher ID through', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-the-publisher-desk-ads-in-amp/'), esc_html__('these steps','accelerated-mobile-pages')),
                             'default'   => '',
                             'placeholder'=> '337'
                         );
