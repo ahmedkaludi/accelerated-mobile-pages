@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.9
-Stable tag: 1.0.77.37
+Stable tag: 1.0.77.38
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.77.38 (7th March 2022) =
+* Improvements: Added The Publisher Desk Support #5213
+
 = 1.0.77.37 (28th February 2022) =
 * Improvements: Added feedback form with auto email system #5223
 * Improvements: Added new infinite scrolling experience #4791
@@ -208,13 +211,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: If the server-side cache is aggressive then the pagination URL with ?amp=1 is redirecting to non-AMP #5208
 * Fixed: Errror getting in featured-image.php, on line 77 #5207
 * Fixed: Need to keep the mobile redirection filter outside of any condition #5216
-
-= 1.0.77.35 (21th January 2022) =
-* Fixed: Embed URLs not working with Amp takeover active #5193
-* Fixed: Need to change Google Fonts display to optional #5191
-* Fixed: Need to make compatibility of amp analytics in infinite scroll #5194
-* Fixed: Current year is not showing in design 1,2,3 #5190
-* Fixed: VKontakte social media not working in social media profile links #5196
-* Fixed: PHP Notice: tag_rewrite_rules is deprecated #5197
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
