@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.77.38 (7th March 2022) =
+* Improvements: Added The Publisher Desk Support #5213
+
+1.0.77.37.1 (4TH March 2022)
+* Improvements: Added new infinite scrolling experience #4791
+* Fixed: The links in embed URLs are not clickable #5193
+
 = 1.0.77.37 (2nd March 2022) =
 * Improvements: Added feedback form with auto email system #5223
 * Improvements: Added new infinite scrolling experience #4791
