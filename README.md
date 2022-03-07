@@ -3,7 +3,7 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.9
+Tested up to: 5.9.1
 Stable tag: 1.0.77.38
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -200,7 +200,11 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 = 1.0.77.38 (7th March 2022) =
 * Improvements: Added The Publisher Desk Support #5213
 
-= 1.0.77.37 (28th February 2022) =
+1.0.77.37.1 (4TH March 2022)
+* Improvements: Added new infinite scrolling experience #4791
+* Fixed: The links in embed URLs are not clickable #5193
+
+= 1.0.77.37 (2nd March 2022) =
 * Improvements: Added feedback form with auto email system #5223
 * Improvements: Added new infinite scrolling experience #4791
 * Improvements: Added An option to add lang_ and privacyMode values in Quantcast #5206

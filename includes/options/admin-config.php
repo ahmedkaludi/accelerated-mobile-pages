@@ -4624,6 +4624,14 @@ Redux::setSection( $opt_name, array(
                                     ),
                     ),
                 array(
+                        'id'       => 'ampforwp-infinite-scroll-new-features',
+                        'type'     => 'switch',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'title'    => esc_html__('New Features', 'accelerated-mobile-pages'),
+                        'default' => false,
+                        'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
+                    ),    
+                array(
                        'id' => 'google-icons',
                        'type' => 'section',
                        'title' => esc_html__('Font Icon Library', 'accelerated-mobile-pages'),
