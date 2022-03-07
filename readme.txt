@@ -216,12 +216,4 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Errror getting in featured-image.php, on line 77 #5207
 * Fixed: Need to keep the mobile redirection filter outside of any condition #5216
 
-= 1.0.77.35 (21th January 2022) =
-* Fixed: Embed URLs not working with Amp takeover active #5193
-* Fixed: Need to change Google Fonts display to optional #5191
-* Fixed: Need to make compatibility of amp analytics in infinite scroll #5194
-* Fixed: Current year is not showing in design 1,2,3 #5190
-* Fixed: VKontakte social media not working in social media profile links #5196
-* Fixed: PHP Notice: tag_rewrite_rules is deprecated #5197
-
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
