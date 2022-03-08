@@ -70,7 +70,9 @@ function ampforwp_send_feedback() {
 
     $subject = isset( $form['ampforwp_disable_reason'] ) ? $form['ampforwp_disable_reason'] : '(no reason given)';
 
-    if($subject == 'technical issue'){
+    $subject = $subject.' - Accelerated Mobile Pages';
+
+    if($subject == 'technical - Accelerated Mobile Pages'){
 
           $text = trim($text);
 
