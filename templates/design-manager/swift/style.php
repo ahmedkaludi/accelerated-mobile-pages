@@ -184,7 +184,7 @@ $callnowcolor = ampforwp_get_setting('amp-opt-color-rgba-colorscheme-call');
 if($header_type == '1'){?>
 .logo{z-index: 2;flex-grow: 1;align-self: center;text-align:center;line-height:0;}
 .h-1{display:flex;order:1;}
-.h-nav{order: -1;align-self: center;}
+.h-nav{order: -1;align-self: center;flex-basis: 30px;}
 .h-ic:last-child{margin-right:0;}
 <?php } ?>
 <?php //hyder-type-2
