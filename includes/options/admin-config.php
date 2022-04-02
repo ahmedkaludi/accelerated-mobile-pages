@@ -4469,6 +4469,16 @@ Redux::setSection( $opt_name, array(
                 )
             ),
             array(
+                    'id'       => 'ampforwp_font_display',
+                    'type'     => 'select',
+                    'title'    => esc_html__('Font Display', 'accelerated-mobile-pages'),
+                    'options'  => array(
+                        'optional' => 'Optional',
+                        'swap'     => 'Swap'
+                    ),
+                    'default'  => 'optional',
+                ),
+            array(
                'id' => 'ampforwp-local-font-switch',
                'type' => 'switch',
                'title' => esc_html__('Local Fonts', 'accelerated-mobile-pages'),
