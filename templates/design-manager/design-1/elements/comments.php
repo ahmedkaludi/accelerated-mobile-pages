@@ -76,7 +76,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 									</div>
 									<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth);  ?>
 								</article> <!-- .cmt-body -->
-							</li> <!-- #li-comment-## -->
 							<?php
 						}// end of ampforwp_custom_translated_comment()
 

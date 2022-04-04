@@ -76,7 +76,6 @@ do_action('ampforwp_before_comment_hook',$this);
 									</div>
 									<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth);  ?>
 								</article> <!-- .cmt-body -->
-							</li> <!-- #li-comment-## -->
 							<?php
 						}// end of ampforwp_custom_translated_comment()
 

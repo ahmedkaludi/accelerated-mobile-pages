@@ -86,7 +86,6 @@ function ampforwp_framework_get_comments(){
 											</div>
 										<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth); ?>
 										</article>
-									</li>
 									<?php 
 								}
 								wp_list_comments( array(
