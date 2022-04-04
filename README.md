@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.9.1
-Stable tag: 1.0.77.38
+Stable tag: 1.0.77.39
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,17 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.39 (4th April 2022) =
+* Improvements: UI improved of feedback form #5223
+* Improvements: Added New Guidelines in GDPR #5225
+* Improvements: Added AT internet analytics support #5233
+* Fixed: Header and footer showing twice in new infine scroll #5238
+* Fixed: AMP option panel not working with Tour Booking Manager plugin #5236
+* Fixed: Font style not loading correctly on first page load #5224
+* Fixed: The hamburger icon is not clickable when Font Icon Library is selected as CSS Icons #5243
+* Fixed: Duplicate li tags removed #5241
+* Fixed: Warning compatibility PHP 8.0 #5245
+
 = 1.0.77.38 (7th March 2022) =
 * Improvements: Added The Publisher Desk Support #5213
 * Fixed: Displaying a blank white screen when embed URLs are used #5193
@@ -204,20 +215,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 1.0.77.37.1 (4TH March 2022)
 * Improvements: Added new infinite scrolling experience #4791
 * Fixed: The links in embed URLs are not clickable #5193
-
-= 1.0.77.37 (2nd March 2022) =
-* Improvements: Added feedback form with auto email system #5223
-* Improvements: Added new infinite scrolling experience #4791
-* Improvements: Added An option to add lang_ and privacyMode values in Quantcast #5206
-* Improvements: Added FireWork compatibility #5210
-* Fixed: AMP autocomplete tag is not working #5217
-* Fixed: Autoplay functionality not working in video module #5219
-* Fixed: Fonts loading twice in Global font family #5220
-* Fixed: Unable to connect to Matomo analytics #5221
-
-= 1.0.77.36 (18th February 2022) =
-* Fixed: If the server-side cache is aggressive then the pagination URL with ?amp=1 is redirecting to non-AMP #5208
-* Fixed: Errror getting in featured-image.php, on line 77 #5207
-* Fixed: Need to keep the mobile redirection filter outside of any condition #5216
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
