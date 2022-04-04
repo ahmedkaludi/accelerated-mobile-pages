@@ -197,10 +197,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.77.39 (4th April 2022) =
-* Improvements: UI improved of feedback form #5223
+= 1.0.77.39 (5th April 2022) =
 * Improvements: Added New Guidelines in GDPR #5225
 * Improvements: Added AT internet analytics support #5233
+* Improvements: UI improved of feedback form #5223
 * Fixed: Header and footer showing twice in new infine scroll #5238
 * Fixed: AMP option panel not working with Tour Booking Manager plugin #5236
 * Fixed: Font style not loading correctly on first page load #5224
