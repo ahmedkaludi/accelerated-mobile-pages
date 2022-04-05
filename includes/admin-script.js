@@ -863,8 +863,6 @@ function deactivatelicence(){
         $(".dashicons").addClass( 'spin' );
         setTimeout( function() {
             $(".dashicons").removeClass( 'spin' );}, 3000 );   
-        lastcheck = Math.abs(lastcheck.getDate()+1)+'/'+Math.abs(lastcheck.getMonth()+1) +'/'+lastcheck.getFullYear()+' '+lastcheck.getHours()+':'+lastcheck.getMinutes()+':'+lastcheck.getSeconds();
-        alert('Please try after '+ lastcheck);
     }
 });
 
