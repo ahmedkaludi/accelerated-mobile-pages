@@ -8,8 +8,13 @@ global $redux_builder_amp ?>
 <?php 
 do_action( 'levelup_foot');
 if(!ampforwp_levelup_compatibility('hf_builder_foot') ){
-if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { ?>
-<footer class="footer">
+if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { 
+	$hide_infine_scroll = '';   
+	if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
+	$hide_infine_scroll = 'next-page-hide';
+	}
+	?>
+<footer class="footer" <?php echo esc_html($hide_infine_scroll) ?>>
 	<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
 	<div class="f-w-f1">
 		<div class="cntr">

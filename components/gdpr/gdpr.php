@@ -59,6 +59,23 @@ function amp_gdpr_output(){
 	              	<div class="gdpr_t">
 		                <h3><?php echo esc_html__($headline,'accelerated-mobile-pages'); ?></h3>
 		                <p><?php echo esc_html__($user_data,'accelerated-mobile-pages'); ?></p>
+		                <?php if (ampforwp_get_setting('amp-gdpr-newguidelines-switch')) { ?>
+		                <p>You can control the ways in which we improve and personalize your experience. Please choose whether you wish to allow the following:</p>
+		          		<div class="choices">
+				            <label class="consentLabel" for="consent-purpose-marketing">
+				              <input id="consent-purpose-marketing" type="checkbox" on="change:siteConsent.setPurpose(purpose-marketing=event.checked)">
+				              Marketing cookies
+				            </label>
+				            <label class="consentLabel" for="consent-purpose-conversion">
+				              <input id="consent-purpose-conversion" type="checkbox" on="change:siteConsent.setPurpose(purpose-conversion=event.checked)">
+				              Conversion tracking cookies
+				            </label>
+				            <label class="consentLabel" for="consent-purpose-analytics">
+				              <input id="consent-purpose-analytics" type="checkbox" on="change:siteConsent.setPurpose(purpose-analytics=event.checked)">
+				              Analytics
+				            </label>
+		        		</div>
+		        	<?php } ?>
 	                </div><?php if(isset($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']) && $redux_builder_amp['amp-gdpr-compliance-select-privacy-page']){?>
 	                <div class="gdpr_fmi">
 	                   <span><?php echo esc_html__($more_info,'accelerated-mobile-pages'); ?></span>

@@ -211,6 +211,13 @@ function ampforwp_notice_bar_options($opt_name){
                'default'   => 'Click Here',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
+           array(
+               'id'        =>'amp-gdpr-newguidelines-switch',
+               'type'      => 'switch',
+               'class'  => 'child_opt',
+               'title'     => esc_html__('New Guidelines', 'accelerated-mobile-pages'),
+               'default'   => 0,
+           ),
             array(
             'id' => 'ampforwp-notice-quantcast',
             'type' => 'section',

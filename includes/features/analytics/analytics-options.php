@@ -649,6 +649,26 @@ function ampforwp_analytics_options($opt_name){
                         'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
                          esc_html__('Enable this option to track plausible analytics in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-plausible-analytics-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
                     ),
+                    // AT internet Analytics    
+                    array(
+                        'id'            =>'amp-atinternet-switch',
+                        'type'          => 'switch',
+                        'title'         => esc_html__('AT internet Analytics','accelerated-mobile-pages'),
+                        'default'       => 0,
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option to track AT internet analytics in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-atinternet-analytics-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+                    ),
+                    array(
+                        'id'       => 'amp-atinternet-site-id',
+                        'type'     => 'text',
+                        'title'    => esc_html__( 'Site ID', 'accelerated-mobile-pages' ),
+                        'tooltip-subtitle' =>  
+                            esc_html__( 'Enter your AT internet Analytics Site ID here','accelerated-mobile-pages'),
+                        'required' => array(
+                          array('amp-atinternet-switch', '=' , '1')
+                        ),
+                        'placeholder'  => esc_html__('YOUR_SITE_ID_HERE','accelerated-mobile-pages'),
+                    ),
                         )
             )
    );

@@ -385,6 +385,32 @@ function ampforwp_analytics() {
 				    </script>
 				</amp-analytics>
                 <?php }
+                if( true == ampforwp_get_setting('amp-atinternet-switch')) { 
+	                $site_id = $site_url = $title = '';
+	                $site_id = ampforwp_get_setting('amp-atinternet-site-id');
+	                $site_url = site_url();
+					$title = get_the_title(ampforwp_get_the_ID());
+					if (!empty($site_id)) {?>
+	                <amp-analytics type="atinternet" id="atinternet">
+					<script type="application/json">
+					{
+					  "vars": {
+					    "site": "<?php echo esc_attr($site_id);?>",
+					    "log": "logs",
+					    "domain": "<?php echo esc_attr($site_url);?>",
+					    "title": "<?php echo esc_attr($title);?>",
+					    "level2": "10"
+					  },
+					  "triggers": {
+					    "defaultPageview": {
+					      "on": "visible",
+					      "request": "pageview"
+					    }
+					  }
+					}
+					</script>
+					</amp-analytics>
+                <?php } }
 			if( true == ampforwp_get_setting('ampforwp-iotech-switch')) {
                 $project_id = $id = $title = $author = $categories = $cat_names = '';
                 $project_id = ampforwp_get_setting('ampforwp-iotech-projectid');

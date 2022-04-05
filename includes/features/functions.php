@@ -65,6 +65,9 @@ function ampforwp_add_admin_styling($hook_suffix){
         if (function_exists('aeccglobal_setup')) {
             remove_action( 'admin_footer', 'js_update_show_in_slider' );
         }
+        if (function_exists('appsero_init_tracker_tour_booking_manager')) {
+           add_action( 'wp_print_scripts', 'ampforwp_dequeue_tour_booking_script', 100 );
+        }
         add_action('admin_notices', 'ampforwp_dev_mode_notice');
         add_action('admin_notices', 'ampforwp_plugins_manager_notice');
         add_action('admin_notices', 'ampforwp_ampwptheme_notice');
@@ -123,6 +126,9 @@ function ampforwp_add_admin_styling($hook_suffix){
     );
     wp_enqueue_script( 'wp-color-picker' );
     wp_enqueue_script( 'ampforwp_admin_js' );
+}
+function ampforwp_dequeue_tour_booking_script() {
+    wp_dequeue_script( 'ttbm_mp_script' );
 }
 // 96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
 function ampforwp_is_front_page(){

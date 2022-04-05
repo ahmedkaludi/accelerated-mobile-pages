@@ -16,8 +16,12 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 ?>
 <?php if($header_type == '1'){?>
 <?php do_action('ampforwp_admin_menu_bar_front'); 
-      do_action('ampforwp_reading_progress_bar'); ?>
-<header class="header h_m h_m_1">
+      do_action('ampforwp_reading_progress_bar'); 
+    $hide_infine_scroll = '';   
+    if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
+    $hide_infine_scroll = 'next-page-hide';
+    }?>
+<header class="header h_m h_m_1" <?php echo esc_html($hide_infine_scroll) ?>>
     <?php do_action('ampforwp_header_top_design4'); ?>
     <input type="checkbox" id="offcanvas-menu" on="change:AMP.setState({ offcanvas_menu: (event.checked ? true : false) })"  [checked] = "offcanvas_menu"  class="tg" />
     <div class="hamb-mnu">
@@ -155,8 +159,13 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 </header>
 <?php } ?>
 <?php if($header_type == '2'){
-    do_action('ampforwp_reading_progress_bar'); ?>
-<header class="header-2 h_m h_m_1">
+    do_action('ampforwp_reading_progress_bar'); 
+    $hide_infine_scroll = '';   
+    if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
+    $hide_infine_scroll = 'next-page-hide';
+    }
+    ?>
+<header class="header-2 h_m h_m_1" <?php echo esc_html($hide_infine_scroll) ?>>
     <?php do_action('ampforwp_header_top_design4'); ?>
     <input type="checkbox" id="offcanvas-menu"  on="change:AMP.setState({ offcanvas_menu: (event.checked ? true : false) })"  [checked] = "offcanvas_menu"  class="tg" />
     <div class="hamb-mnu">
@@ -296,8 +305,13 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 </header>
 <?php } ?>
 <?php if($header_type == '3'){
-    do_action('ampforwp_reading_progress_bar'); ?>
-<header class="header-3 h_m h_m_1">
+    do_action('ampforwp_reading_progress_bar'); 
+    $hide_infine_scroll = '';   
+    if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
+    $hide_infine_scroll = 'next-page-hide';
+    }
+    ?>
+<header class="header-3 h_m h_m_1" <?php echo esc_html($hide_infine_scroll) ?>>
     <?php do_action('ampforwp_header_top_design4'); ?>
     <input type="checkbox" id="offcanvas-menu"  on="change:AMP.setState({ offcanvas_menu: (event.checked ? true : false) })"  [checked] = "offcanvas_menu"  class="tg" />
     <div class="hamb-mnu">
