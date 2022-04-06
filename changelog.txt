@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.77.40 (6th April 2022) =
+* Fixed: The Publisher Desk CDN URL added instead of Heroku link #5237
+* Fixed: AMP Option panel improvements #5240
+
 = 1.0.77.39 (5th April 2022) =
 * Improvements: Added New Guidelines in GDPR #5225
 * Improvements: Added AT internet analytics support #5233

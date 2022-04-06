@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.9.1
-Stable tag: 1.0.77.39
+Stable tag: 1.0.77.40
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.40 (6th April 2022) =
+* Fixed: The Publisher Desk CDN URL added instead of Heroku link #5237
+* Fixed: AMP Option panel improvements #5240
+
 = 1.0.77.39 (5th April 2022) =
 * Improvements: Added New Guidelines in GDPR #5225
 * Improvements: Added AT internet analytics support #5233
@@ -211,9 +215,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 = 1.0.77.38 (7th March 2022) =
 * Improvements: Added The Publisher Desk Support #5213
 * Fixed: Displaying a blank white screen when embed URLs are used #5193
-
-1.0.77.37.1 (4TH March 2022)
-* Improvements: Added new infinite scrolling experience #4791
-* Fixed: The links in embed URLs are not clickable #5193
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
