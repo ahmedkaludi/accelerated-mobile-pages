@@ -9702,7 +9702,7 @@ function ampforwp_publisher_desk_ads( $content ) {
 	$pub_id = $url = '';
 	$pub_id = ampforwp_get_setting('ampforwp-publisherdesk-id');
 	if (!empty($pub_id)) {
-		$url = 'https://publisher-desk.herokuapp.com/api/tpd-amp-tags-by-publisher-id?publisherId='. esc_html($pub_id);
+		$url = 'https://cdn.tpdads.com/json/amp-tags/'.esc_html($pub_id).'.json';
 	}
     
 	$data_api = wp_remote_get($url);
