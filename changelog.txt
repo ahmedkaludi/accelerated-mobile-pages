@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.77.41 (12th April 2022) =
+* Improvements: Added Compatibility with GenerateBlocks plugin #5248
+* Improvements: Added Web Safe Fonts in Google Fonts List #5242
+* Improvements: AMP Option panel improvements #5239
+* Fixed: White space in footer element between the posts of infinite scroll #5238
+* Fixed: Invalid JSON error in console when using Plausible analytics #5142
+
 = 1.0.77.40 (6th April 2022) =
 * Fixed: The Publisher Desk CDN URL added instead of Heroku link #5237
 * Fixed: AMP Option panel improvements #5240
