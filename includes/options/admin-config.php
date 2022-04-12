@@ -8992,7 +8992,8 @@ else{
     
 // Extension Section
     $selectedOption = get_option('redux_builder_amp',true);
-    if (empty(array_values($selectedOption['amp-license'])[0]["license"]) ){
+    $value = is_array($selectedOption['amp-license'])? array_values($selectedOption['amp-license']): array();
+    if (empty($value[0]["license"]) ){
         $selected = '<span class="exclamation">!</span>';
         Redux::setSection( $opt_name, array(
         'title'      => __( "Extensions$selected" , 'accelerated-mobile-pages' ),
