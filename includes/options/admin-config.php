@@ -8991,6 +8991,16 @@ else{
     ) );
     
 // Extension Section
+    $selectedOption = get_option('redux_builder_amp',true);
+    if (empty(array_values($selectedOption['amp-license'])[0]["license"]) ){
+        $selected = '<span class="exclamation">!</span>';
+        Redux::setSection( $opt_name, array(
+        'title'      => __( "Extensions$selected" , 'accelerated-mobile-pages' ),
+        'id'         => 'opt-go-premium',
+        'subsection' => false,
+        'desc' => $extension_listing,
+    ) );
+   }else{
     Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'Extensions', 'accelerated-mobile-pages' ),
         'id'         => 'opt-go-premium',
@@ -8998,7 +9008,7 @@ else{
         'desc' => $extension_listing,
         'icon' => 'el el-puzzle',
     ) );
-
+   }
 if(!ampforwp_check_extensions()){
     Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'Upgrade to Pro', 'accelerated-mobile-pages' ),

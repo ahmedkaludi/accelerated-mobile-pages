@@ -2386,3 +2386,11 @@ a#ampforwp-close-ad-notice {
 }span.ltz {
     position: unset
 }
+
+span.exclamation {
+    display: inline-block!important;
+    color: #ed1d24;
+    font-size: 20px;
+    float: right;
+    margin: 0px 20px;
+}
