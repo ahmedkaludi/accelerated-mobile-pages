@@ -773,6 +773,14 @@ function ampforwp_backtotop_global_css(){?>
 		font-family:<?php echo ampforwp_get_setting('amp_font_selector_heading'); ?>
 		}	
 	<?php } ?>	
+	<?php if( ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) { ?>
+		footer.footer {
+    		margin: 0;
+		}
+		footer .f-w-f2 {
+		    padding: 0;
+		}
+	<?php } ?>
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
