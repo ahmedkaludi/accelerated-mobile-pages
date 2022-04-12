@@ -767,6 +767,12 @@ function ampforwp_backtotop_global_css(){?>
            cursor: pointer;
         }
 	<?php } ?>	
+	
+	<?php if( ampforwp_get_setting('amp_font_selector_heading')) { ?>
+		h1,h2,h3,h4,h5,h6{
+		font-family:<?php echo ampforwp_get_setting('amp_font_selector_heading'); ?>
+		}	
+	<?php } ?>	
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
