@@ -373,7 +373,7 @@ function ampforwp_analytics() {
 				                    "extraUrlParams": {
 				                        "n": "pageview"
 				                    }
-				                },
+				                }
 				            },
 				            "transport": {
 				                "beacon": true,

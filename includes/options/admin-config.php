@@ -4382,6 +4382,15 @@ Redux::setSection( $opt_name, array(
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'None',
+                    'Arial' => 'Arial',
+                    'Verdana' => 'Verdana',
+                    'Helvetica' => 'Helvetica',
+                    'Tahoma' => 'Tahoma',
+                    'Times New Roman' => 'Times New Roman',
+                    'Georgia' => 'Georgia',
+                    'Courier New' => 'Courier New',
+                    'Brush Script MT' => 'Brush Script MT',
+                    'Trebuchet MS' => 'Trebuchet MS'
                 ),
                 'default'  => '',
                 'required' => array(
@@ -4419,7 +4428,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'content-font-family-enable',
                     'type'     => 'switch',
                     'class'    => 'ampforwp-google-font-class secondary-font-selector',
-                    'title'    => sprintf('%s', esc_html__( $secondary_text . 'Font Selector', 'accelerated-mobile-pages' ) ),
+                    'title'    => sprintf('%s', esc_html__( $secondary_text . ' Font Selector', 'accelerated-mobile-pages' ) ),
                     'default'  => '0' ,
                     'required' => array(
                         array('ampforwp-google-font-switch', '=', '1')
@@ -4433,6 +4442,15 @@ Redux::setSection( $opt_name, array(
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'None',
+                    'Arial' => 'Arial',
+                    'Verdana' => 'Verdana',
+                    'Helvetica' => 'Helvetica',
+                    'Tahoma' => 'Tahoma',
+                    'Times New Roman' => 'Times New Roman',
+                    'Georgia' => 'Georgia',
+                    'Courier New' => 'Courier New',
+                    'Brush Script MT' => 'Brush Script MT',
+                    'Trebuchet MS' => 'Trebuchet MS'
                 ),
                 'default'  => '',
                 'required' => array(
@@ -4450,6 +4468,15 @@ Redux::setSection( $opt_name, array(
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'none',
+                    'Arial' => 'Arial',
+                    'Verdana' => 'Verdana',
+                    'Helvetica' => 'Helvetica',
+                    'Tahoma' => 'Tahoma',
+                    'Times New Roman' => 'Times New Roman',
+                    'Georgia' => 'Georgia',
+                    'Courier New' => 'Courier New',
+                    'Brush Script MT' => 'Brush Script MT',
+                    'Trebuchet MS' => 'Trebuchet MS'
                 ),
                 'default'  => '',
                 'required' => array(
@@ -4467,6 +4494,30 @@ Redux::setSection( $opt_name, array(
                 'required' => array(
                     array('ampforwp-google-font-switch', '=', '1'),
                 )
+            ),
+            array(
+                'id'       => 'amp_font_selector_heading',
+                'type'     => 'select',
+                'class'    => 'ampforwp-google-font-class ampwp-font-families',
+                'title'    => esc_html__( 'Heading Font Family ', 'accelerated-mobile-pages' ),
+                'tooltip-subtitle' => esc_html__( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                    '1' => 'None',
+                    'Arial' => 'Arial',
+                    'Verdana' => 'Verdana',
+                    'Helvetica' => 'Helvetica',
+                    'Tahoma' => 'Tahoma',
+                    'Times New Roman' => 'Times New Roman',
+                    'Georgia' => 'Georgia',
+                    'Courier New' => 'Courier New',
+                    'Brush Script MT' => 'Brush Script MT',
+                    'Trebuchet MS' => 'Trebuchet MS'
+                ),
+                'default'  => '',
+                'required' => array(
+                    array('ampforwp-google-font-switch', '=', '1')
+                )
+
             ),
             array(
                     'id'       => 'ampforwp_font_display',
@@ -8940,6 +8991,17 @@ else{
     ) );
     
 // Extension Section
+    $selectedOption = get_option('redux_builder_amp',true);
+    $value = is_array($selectedOption['amp-license'])? array_values($selectedOption['amp-license']): array();
+    if (empty($value[0]["license"]) ){
+        $selected = '<span class="exclamation">!</span>';
+        Redux::setSection( $opt_name, array(
+        'title'      => __( "Extensions$selected" , 'accelerated-mobile-pages' ),
+        'id'         => 'opt-go-premium',
+        'subsection' => false,
+        'desc' => $extension_listing,
+    ) );
+   }else{
     Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'Extensions', 'accelerated-mobile-pages' ),
         'id'         => 'opt-go-premium',
@@ -8947,7 +9009,7 @@ else{
         'desc' => $extension_listing,
         'icon' => 'el el-puzzle',
     ) );
-
+   }
 if(!ampforwp_check_extensions()){
     Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'Upgrade to Pro', 'accelerated-mobile-pages' ),
