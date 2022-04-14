@@ -8992,8 +8992,11 @@ else{
     
 // Extension Section
     $selectedOption = get_option('redux_builder_amp',true);
-    $value = is_array($selectedOption['amp-license'])? array_values($selectedOption['amp-license']): array();
-    if (empty($value[0]["license"]) ){
+    $value = array();
+    if (isset($selectedOption['amp-license']) && $selectedOption['amp-license']) {
+     $value = is_array($selectedOption['amp-license'])? array_values($selectedOption['amp-license']): array();
+     }
+    if (empty($value[0]["license"]) && ampforwp_check_extensions()){
         $selected = '<span class="exclamation">!</span>';
         Redux::setSection( $opt_name, array(
         'title'      => __( "Extensions$selected" , 'accelerated-mobile-pages' ),
