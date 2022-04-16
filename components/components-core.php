@@ -781,6 +781,81 @@ function ampforwp_backtotop_global_css(){?>
 		    padding: 0;
 		}
 	<?php } ?>
+	<?php if( function_exists('rehub_framework_plugin_activate') ) { ?>
+		.table_view_charts{ margin: 10px 0; overflow: hidden;}
+		.top_chart_wrap, .top_chart .swiper-container{float: left; width: calc(100% - 160px); position: relative; }
+		.top_chart_controls{ float: right; margin-bottom: 10px}
+		.top_chart_controls .controls {text-decoration: none; width: 30px;height: 30px;cursor: pointer;opacity: 0.8;text-align: center;float: left;border: 1px solid #ddd;color: #444;}
+		.top_chart_controls .controls.next:after, .top_chart_controls .controls.prev:after{line-height: 30px;font-size: 18px;} 
+		.top_chart_controls .controls.next:after {content: "\f105"; }
+		.top_chart_controls .controls.prev:after {content: "\f104";}
+		.top_chart_pagination a span{ display: none;}
+		.top_chart_pagination a{width: 8px;height: 8px;margin: 11px 2px;float: left; background-color: #ccc; cursor: pointer; border-radius: 50%}
+		.top_chart_pagination a.selected {cursor: default;}
+		.top_chart_pagination{ float: left; margin: 0 7px}
+		.table_view_charts .top_chart_item, .table_view_charts .top_chart_first{border-top:1px solid #ddd; float: left;  position: relative;}
+		.table_view_charts .top_chart_item li:first-child, .table_view_charts .top_chart_first li:first-child{background-color: #fff}
+		.table_view_charts .top_chart_first {  width: 160px; clear: both;}
+		.table_view_charts .top_chart_item{width: 220px; background: #fff;display: inline; max-width: 260px }
+		.table_view_charts li { border-bottom: 1px solid #e8e8e8; border-right:1px solid #e8e8e8; border-left:1px solid transparent; list-style: none !important; margin:0; padding: 8px; overflow: hidden; font-size: 14px;line-height: 20px;}
+		.table_view_charts li p, .post .table_view_charts ul li{margin: 0}
+		.table_view_charts .top_chart_first ul li{  background-color: #f8f8f8; text-align: right; border-left: 1px solid #e8e8e8;}
+		.table_view_charts li.heading_row_chart { font-weight: bold; font-size: 15px; line-height: 18px; background-color: #fff !important; border-right-color: #fff !important;border-left-color: #fff !important; padding: 17px 0 17px 4px}
+		.table_view_charts .top_chart_item li{text-align: center;}
+		.table_view_charts .top_chart_item li.meta_value_left{text-align: inherit;}
+		.table_view_charts .top_chart_item figure{height: auto; margin: 0 auto; text-align: center; width: auto; padding: 0; height: 150px}
+		.table_view_charts .top_chart_item figure a{width: auto; height: auto; display: block; border:none;}
+		.table_view_charts .top_chart_item figure > a img{ height:auto; width: auto; max-height: 150px; max-width: 100%; border: none; vertical-align: middle; padding: 0}
+		.table_view_charts .top_chart_item .star { margin: 0 auto !important}
+		.table_view_charts .top_chart_item .rehub_meta_field_icon{ font-size: 18px; color: #41BD28}
+		.table_view_charts .top_chart_item .rehub_meta_field_icon .rhi-ban{color: #dc0000}
+		.table_view_charts .top_chart_item .title_row_chart a{color: #111;text-decoration: none; }
+		.table_view_charts ul{ padding: 0; margin: 0}
+		.table_view_charts h2{ font-size: 17px; line-height: 17px; margin: 10px 0 0 0; padding: 0}
+		.meta_value_row_chart ul li{border: none;text-align: left;margin: 0 0 12px 0;padding: 0;}
+		.table_view_charts .is-sticky li{z-index: 999999;background-color: #fff}
+		.table_view_charts .sticky-wrapper li { transition: all 1s ease 0.5s; top: 0; position: relative; }
+		.table_view_charts div.sticky-wrapper.is-sticky li { transition: all 1.5s ease; z-index: 100; max-height: 200px }
+		.table_view_charts .sticky-wrapper.is-sticky .sticky-cell .price-in-compare-flip { display:none }
+		.table_view_charts .sticky-wrapper.is-sticky .row_chart_0.image_row_chart.row-is-different { height:170px !important; }
+		.table_view_charts .top_chart_item .sticky-wrapper.is-sticky figure{height: 100px}
+		.table_view_charts .top_chart_item .sticky-wrapper.is-sticky figure > a img{max-height: 100px}
+		.top_chart_item:not(.activecol) .is-sticky {opacity: 0}
+		.re-compare-show-diff, .diff-label{cursor: pointer;}
+		.re-compare-show-diff{padding: 4px; margin-right: 5px}
+		.table_view_charts li.low-opacity{opacity: 0.1}
+		.imagefull_row_chart del{display: none;}
+		.imagefull_row_chart .greencolor{display: block;}
+		.table_view_charts .rh-star-ajax .title_star_ajax small { display: block;}
+		.table_view_charts .user-rate{ float: none;margin: 0 auto}
+		.table_view_charts .rehub_offer_coupon:not(.coupon_btn){ margin: 0 auto 10px auto;}
+		.loading.table_view_charts:before{ font-size: 45px; color: #ccc}
+		.top_chart_controls {display: none;}
+		.loading.table_view_charts{ text-align: center; border: 1px solid #f9f9f9; background-color: #f9f9f9}
+		.table_view_charts ul li ul li{border: none !important}
+		.top_chart_wrap.woocommerce .rev-in-compare-flip{left: 15px; right: auto;}
+		.price-woo-compare-chart{font-size: 19px; display: block; }
+		.price-woo-compare-chart del{display: none;}
+		@media screen and (max-width: 767px) {
+		.table_view_charts .is-sticky h2{font-size: 14px}
+		.top_chart_item{ width: 186px}}
+		@media (max-width: 468px) {
+		.table_view_charts li.heading_row_chart{font-size: 14px}
+		.rev-in-compare-flip{display: none;}
+		.table_view_charts h2, .top_chart_item .price-woo-compare-chart{font-size: 15px; margin-top: 5px}
+		.table_view_charts .top_chart_item figure, .table_view_charts .top_chart_item .sticky-wrapper.is-sticky figure{height: 80px}
+		.table_view_charts .top_chart_item figure > a img{max-height: 80px}
+		.table_view_charts{margin: 10px -15px}
+		.table_view_charts .top_chart_item .sticky-wrapper.is-sticky figure > a img{max-height: 80px}
+		.table_view_charts .top_chart_wrap, .top_chart .swiper-container{float: left; width: calc(100% - 90px);}  
+		.table_view_charts .top_chart_first{ width: 90px; overflow: hidden;}
+		.table_view_charts .top_chart_first li { font-size: 12px}
+		.table_view_charts li{font-size: 13px;}
+		.top_chart:not(.loading) .chart_helper{display: inline-block;}
+		.table_view_charts .top_chart_item {max-width: 150px;}
+		.single-post main .amp-wp-article-content h2 {font-size: 12px;}
+		}
+	<?php } ?>
 <?php if( true == ampforwp_get_setting('ampforwp-footer-top') ) { ?>
   .btt{
       position: fixed;
