@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.9.3
-Stable tag: 1.0.77.41
+Stable tag: 1.0.77.42
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.42 (16th April 2022) =
+* Improvements: Added REHub Comparison charts, tables Compatibility #5250
+* Fixed: Debug Warnings - Undefined index: amp-license #5251
+
 = 1.0.77.41 (12th April 2022) =
 * Improvements: Added Compatibility with GenerateBlocks plugin #5248
 * Improvements: Added Web Safe Fonts in Google Fonts List #5242
@@ -207,16 +211,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 = 1.0.77.40 (6th April 2022) =
 * Fixed: The Publisher Desk CDN URL added instead of Heroku link #5237
 * Fixed: AMP Option panel improvements #5240
-
-= 1.0.77.39 (5th April 2022) =
-* Improvements: Added New Guidelines in GDPR #5225
-* Improvements: Added AT internet analytics support #5233
-* Improvements: UI improved of feedback form #5223
-* Fixed: Header and footer showing twice in new infine scroll #5238
-* Fixed: AMP option panel not working with Tour Booking Manager plugin #5236
-* Fixed: Font style not loading correctly on first page load #5224
-* Fixed: The hamburger icon is not clickable when Font Icon Library is selected as CSS Icons #5243
-* Fixed: Duplicate li tags removed #5241
-* Fixed: Warning compatibility PHP 8.0 #5245
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
