@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 5.9.3
-Stable tag: 1.0.77.42
+Stable tag: 1.0.77.43
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.43 (04th May 2022) =
+* Updated: TPD feature updated #5257
+* Fixed: Resolved the issue of Image Gallery Carousel in AMP does not change the gallery view in posts/pages. #5259
 
 = 1.0.77.42 (16th April 2022) =
 * Improvements: Added REHub Comparison charts, tables Compatibility #5250

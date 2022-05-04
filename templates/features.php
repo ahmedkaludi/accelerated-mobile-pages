@@ -9708,12 +9708,21 @@ function ampforwp_publisher_desk_ads( $content ) {
 	$data_api = wp_remote_get($url);
 	$json_data_api = json_decode( $data_api['body'] );
     if ( is_single() && !empty($pub_id) && !empty($json_data_api) ) {
-        $content = ampforwp_publisher_desk_ads_insert( array(
+      if($json_data_api->inContentPlacementMethod=='Auto'){
+        $content = ampforwp_publisher_desk_ads_insert(array(
         '3' => $json_data_api->customHTMLInContentAds[0],
         '6' => $json_data_api->customHTMLInContentAds[1],
         '9' => $json_data_api->customHTMLInContentAds[2]
         ), $content );
-        $content .= $json_data_api->stickyCustomHTMLAd[0];
+      } 
+      else{
+      	$afterParagraphNum = array();
+      	for ($i=0; $i < count($json_data_api->afterParagraphNumbers); $i++) { 
+      	 $afterParagraphNum[$json_data_api->afterParagraphNumbers[$i]] = $json_data_api->customHTMLInContentAds[$i];
+      	}
+      	$content = ampforwp_publisher_desk_ads_insert( $afterParagraphNum, $content );
+      }
+      $content .= $json_data_api->stickyCustomHTMLAd[0];
     	$content = preg_replace('/json="/', 'json=\"' , $content);
     	$content = preg_replace('/rtc-config="/', 'rtc-config=\"' , $content);
     }
