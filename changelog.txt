@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.77.42 (16th April 2022) =
+* Improvements: Added REHub Comparison charts, tables Compatibility #5250
+* Fixed: Debug Warnings - Undefined index: amp-license #5251
+
 = 1.0.77.41 (12th April 2022) =
 * Improvements: Added Compatibility with GenerateBlocks plugin #5248
 * Improvements: Added Web Safe Fonts in Google Fonts List #5242
