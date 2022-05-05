@@ -194,7 +194,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.77.43 (04th May 2022) =
+= 1.0.77.43 (05th May 2022) =
 * Updated: TPD feature updated #5257
 * Fixed: Resolved the issue of Image Gallery Carousel in AMP does not change the gallery view in posts/pages. #5259
 

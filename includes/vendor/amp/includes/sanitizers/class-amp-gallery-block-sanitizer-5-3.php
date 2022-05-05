@@ -71,7 +71,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 		$xpath       = new \DOMXPath( $this->dom );
 		$class_query = 'contains( concat( " ", normalize-space( @class ), " " ), " wp-block-gallery " )';
 		$expr        = sprintf(
-			'//figure[ %s ]',
+			'//ul[ %s ]',
 			implode(
 				' or ',
 				[
@@ -80,7 +80,24 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 				]
 			)
 		);
+
+		
 		$query       = $xpath->query( $expr );
+		
+		if(empty($query->length)){
+			$expr        = sprintf(
+				'//figure[ %s ]',
+				implode(
+					' or ',
+					[
+						sprintf( '( parent::figure[ %s ] )', $class_query ),
+						$class_query,
+					]
+				)
+			);
+			$query       = $xpath->query( $expr );
+		}
+
 		$num_nodes = $query->length;
 		$nodes     = $this->dom->getElementsByTagName( self::$tag );
 		// print_r($nodes);exit;
