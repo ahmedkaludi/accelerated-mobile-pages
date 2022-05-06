@@ -9706,39 +9706,35 @@ function ampforwp_publisher_desk_ads( $content ) {
 	}
     
 		$data_api = wp_remote_get($url);
-		$json_data_api = json_decode( $data_api['body'] );
-		
-    $addList = array();
-    if(!empty($json_data_api->customHTMLAboveContentAd)){
-    	$content = $json_data_api->customHTMLAboveContentAd[0]." ".$content;
-    }
-   
-    if(!empty($json_data_api->customHTMLBelowContentAd)){
-    	$content .= $json_data_api->customHTMLBelowContentAd[0];
-    }
-    if ( is_single() && !empty($pub_id) && !empty($json_data_api) ) {
-      if($json_data_api->inContentPlacementMethod=='Auto'){
-        /*$content = ampforwp_publisher_desk_ads_insert(array(
-        '3' => $json_data_api->customHTMLInContentAds[0],
-        '6' => $json_data_api->customHTMLInContentAds[1],
-        '9' => $json_data_api->customHTMLInContentAds[2]
-        ), $content );*/
-        $addList[3] = $json_data_api->customHTMLInContentAds[0];
-        $addList[6] = $json_data_api->customHTMLInContentAds[1];
-        $addList[9] = $json_data_api->customHTMLInContentAds[2];
-      } 
-      else{
-      	
-      	for ($i=0; $i < count($json_data_api->afterParagraphNumbers); $i++) { 
-      	 $addList[$json_data_api->afterParagraphNumbers[$i]] = $json_data_api->customHTMLInContentAds[$i];
-      	}
-      }
-      // echo "<pre>";
-		// print_r($content);exit;
-      	$content = ampforwp_publisher_desk_ads_insert( $addList, $content );
-      $content .= $json_data_api->stickyCustomHTMLAd[0];
-    	$content = preg_replace('/json="/', 'json=\"' , $content);
-    	$content = preg_replace('/rtc-config="/', 'rtc-config=\"' , $content);
-    }
+		if (is_array($data_api) && !empty($data_api['body'])) {
+				$json_data_api = json_decode( $data_api['body'] );
+				
+		    $addList = array();
+		    if(!empty($json_data_api->customHTMLAboveContentAd)){
+		    	$content = $json_data_api->customHTMLAboveContentAd[0]." ".$content;
+		    }
+		   
+		    if(!empty($json_data_api->customHTMLBelowContentAd)){
+		    	$content .= $json_data_api->customHTMLBelowContentAd[0];
+		    }
+		    if ( is_single() && !empty($pub_id) && !empty($json_data_api) ) {
+		      if($json_data_api->inContentPlacementMethod=='Auto'){
+		       
+		        $addList[3] = $json_data_api->customHTMLInContentAds[0];
+		        $addList[6] = $json_data_api->customHTMLInContentAds[1];
+		        $addList[9] = $json_data_api->customHTMLInContentAds[2];
+		      } 
+		      else{
+		      	
+		      	for ($i=0; $i < count($json_data_api->afterParagraphNumbers); $i++) { 
+		      	 $addList[$json_data_api->afterParagraphNumbers[$i]] = $json_data_api->customHTMLInContentAds[$i];
+		      	}
+		      }
+		      $content = ampforwp_publisher_desk_ads_insert( $addList, $content );
+		      $content .= $json_data_api->stickyCustomHTMLAd[0];
+		    	$content = preg_replace('/json="/', 'json=\"' , $content);
+		    	$content = preg_replace('/rtc-config="/', 'rtc-config=\"' , $content);
+		    }
+		  }
     return $content;
 }
