@@ -316,7 +316,15 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 			}
 			if ( 2 == ampforwp_get_setting('ampforwp-gallery-design-type') ) {
 				//Small Thumbnail Images
-				$thumb_url = ampforwp_aq_resize( $image['url'], 120, 60, true, false ); //resize & crop the image
+				$explod_imgext = explode('.',$image['url']); 
+				$image_extension = end($explod_imgext);
+				if($image_extension =='svg' || $image_extension=='SVG'){
+					$thumb_url[0] =$image['url'];
+					$thumb_url[1] = 120;
+					$thumb_url[2] = 60;
+				}else{
+					$thumb_url = ampforwp_aq_resize( $image['url'], 120, 60, true, false ); //resize & crop the image
+				}
 				if($thumb_url!=false){
 					$smallimage   =  $thumb_url[0];
 					$smallwidth   =  $thumb_url[1];
