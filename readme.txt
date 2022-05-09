@@ -196,7 +196,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.77.43 (09th May 2022) =
 * Updated: TPD feature updated #5257
-* Fixed: Resolved the issue of Image Gallery Carousel in AMP does not change the gallery view in posts/pages. #5259
+* Fixed: Resolved the issue of Image Gallery Carousel in AMP does not change the gallery view in posts/pages #5259
 
 = 1.0.77.42 (16th April 2022) =
 * Improvements: Added REHub Comparison charts, tables Compatibility #5250
