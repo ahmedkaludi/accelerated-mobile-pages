@@ -100,10 +100,8 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 
 		$num_nodes = $query->length;
 		$nodes     = $this->dom->getElementsByTagName( self::$tag );
-		// print_r($nodes);exit;
 		for ( $i = $num_nodes - 1; $i >= 0; $i-- ) {
 			$node = $nodes->item( $i );
-			// print_r($node);exit;
 			// We're looking for figure elements that at least one child.
 			if ( 0 === count( $node->childNodes ) ) {
 				continue;
@@ -305,7 +303,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 			if ( 3 != ampforwp_get_setting('ampforwp-gallery-design-type') ) {
 				$image_div = AMP_DOM_Utils::create_node( $this->dom, 'div', array('class'=>'ampforwp-gallery-item amp-carousel-container') );
 				$image_div->appendChild($amp_image_node);
-				if ( isset($image['caption'])  && is_object($image['caption'])) {
+				if ( isset($image['caption'])  ) {
 					$figure_node = AMP_DOM_Utils::create_node($this->dom, 'figure', array());
 					$fig_caption = AMP_DOM_Utils::create_node($this->dom, 'figcaption', array('on'=>"tap:AMP.setState({expanded: !expanded})",'tabindex'=>0,'role'=>'button'));
 					$fig_caption->nodeValue = $image['caption'];
@@ -366,29 +364,19 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 			}
 		}
 		if ( 2 == ampforwp_get_setting('ampforwp-gallery-design-type') ) {
-			$carousel_args = array(
-									'width' => 'auto',
-									'height' => 48,
-									'type' => 'carousel',
-									'layout' => 'fixed-height',
-									'class'  => 'carousel-preview'
-								);
-			$c_args = array('loop'=>'', 'autoplay'=>'');
-			$carousel_filter = apply_filters('ampforwp_carousel_args',$c_args);
-			$carousel_args = array_merge($carousel_args,$carousel_filter);
 			$button_nodes = array();
 			$amp_carousel_thumbnail = AMP_DOM_Utils::create_node(
 								$this->dom, 
-								'amp-carousel',
-								$carousel_args
+								'div',
+								array(
+										'class'=>'carousel-preview')
 							);
 			foreach ($amp_images_small as $key => $value) {
 				$button_node = AMP_DOM_Utils::create_node(
 									$this->dom, 
 									'button',
 									array(
-										'on'=>'tap:carousel-with-carousel-preview-'.$r.'.goToSlide(index='.$key.')',
-										'class'=>'amp-carousel-slide amp-scrollable-carousel-slide')
+										'on'=>'tap:carousel-with-carousel-preview-'.$r.'.goToSlide(index='.$key.')')
 								);
 				$button_node->appendChild($value);
 				$amp_carousel_thumbnail->appendChild($button_node);
@@ -403,7 +391,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 				$figure_node = AMP_DOM_Utils::create_node($this->dom, 'figure', array('class'=>'ampforwp-gallery-item amp-carousel-containerd3'));
 				$figure_node->appendChild($amp_image);
 				$fig_caption = AMP_DOM_Utils::create_node($this->dom, 'figcaption', array());
-				if ( isset($image['caption']) && is_object($image['caption']) ) {
+				if ( isset($image['caption'])) {
 					$captionlength = $image['caption']->length;
 					for ($i=0 ;$i < $captionlength;$i++){
 						$fig_caption->appendChild($image['caption']->item(0));
@@ -484,7 +472,7 @@ function ampforwp_gal_des_1(){
 	echo '.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}.cls-btn:after{content:"X";display:inline-block;color:#fff;font-size:20px;padding:20px;}';
 }
 function ampforwp_gal_des_2(){
-	echo ".carousel-preview button{padding:0;}.carousel-preview amp-img{height:40px;width:60px;position:relative;}.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}.cls-btn:after{content:\"X\";display:inline-block;color:#fff;font-size:20px;padding:20px;}";
+	echo ".carousel-preview button{padding:0;}.carousel-preview amp-img{height:40px;width:80px;position:relative;}.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}.cls-btn:after{content:\"X\";display:inline-block;color:#fff;font-size:20px;padding:20px;}.carousel-preview .amp-carousel-img img {object-fit: fill;}";
 }
 function ampforwp_gal_des_3(){
 	echo '.gal_w{display:inline-block;width:100%}.gal_w amp-img{background:#f1f1f1;height:134px;width:150px;position: relative;float:left;margin:10px;}.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}.cls-btn:after{content:"X";display:inline-block;color:#fff;font-size:20px;padding:20px;}';

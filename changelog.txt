@@ -1,6 +1,10 @@
 == Changelog ==
 
-= 1.0.77.43 (05th May 2022) =
+= 1.0.77.44 (09th May 2022) =
+* Fixed: Image Gallery Carousel in AMP does not change the gallery view in posts/pages. #5259
+* Fixed: TPD feature update #5257
+
+= 1.0.77.43 (04th May 2022) =
 * Updated: TPD feature updated #5257
 * Fixed: Resolved the issue of Image Gallery Carousel in AMP does not change the gallery view in posts/pages. #5259
 
