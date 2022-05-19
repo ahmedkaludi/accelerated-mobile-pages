@@ -411,6 +411,20 @@ function ampforwp_analytics() {
 					</script>
 					</amp-analytics>
                 <?php } }
+            // Marfeel Analytics
+            if(true == ampforwp_get_setting('amp-marfeel-pixel')){ 
+            	$account_id = ampforwp_get_setting('amp-marfeel-account-id'); ?>
+				<amp-analytics config="https://events.newsroom.bi/amp.v1.json" data-credentials="include">
+				<script type="application/json" >
+					{
+						"vars" : {
+							"accountId": "<?php echo esc_attr($account_id);?>"
+						}
+					}
+				</script>
+				</amp-analytics><?php
+            }
+
 			if( true == ampforwp_get_setting('ampforwp-iotech-switch')) {
                 $project_id = $id = $title = $author = $categories = $cat_names = '';
                 $project_id = ampforwp_get_setting('ampforwp-iotech-projectid');

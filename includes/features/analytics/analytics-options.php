@@ -679,10 +679,10 @@ function ampforwp_analytics_options($opt_name){
                          esc_html__('Enable this option to track marfeel pixel in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-facebook-pixel-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
                     ),
                     array(
-                        'id'            =>'amp-marfeel-pixel-id',
+                        'id'            =>'amp-marfeel-account-id',
                         'type'          => 'text',
-                        'title'         => esc_html__('Marfeel Pixel ID','accelerated-mobile-pages'),
-                        'default'       => '',
+                        'title'         => esc_html__('Marfeel Account ID','accelerated-mobile-pages'),
+                        'default'       => '0',
                         'desc'  => 'Example: 153246987501548',
                         'required' => array(
                           array('amp-marfeel-pixel', '=' , '1')),
