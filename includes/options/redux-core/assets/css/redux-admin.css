@@ -1578,3 +1578,7 @@ table#section-table-amp-ads_0 {
 #pa-feild-ul a.deletion.redux-multi-text-remove , #redux_builder_amp-pa-feild a.button.button-primary.redux-multi-text-add{
     display: none;
 }
+
+fieldset#redux_builder_amp-signin-button-link a.deletion.redux-multi-text-remove , fieldset#redux_builder_amp-signin-button-link a.button.button-primary.redux-multi-text-add{
+    display: none;
+}
