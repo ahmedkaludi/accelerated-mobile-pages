@@ -26,10 +26,11 @@ function ampforwp_include_aqresizer(){
 add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
 function ampforwp_add_admin_styling($hook_suffix){
     global $redux_builder_amp, $amp_ux_fields;
+    if( $hook_suffix=='toplevel_page_amp_options' && current_user_can("manage_options") ){
     // Style file to add or modify css inside admin area
     wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style.css', false, AMPFORWP_VERSION );
     wp_enqueue_style( 'ampforwp_admin_css' );
-
+    }
     // Admin area scripts file
     $dep = array('wp-color-picker');
     $dep = apply_filters('ampforwp_modify_script_dependency', $dep);
