@@ -8,7 +8,7 @@ require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-base-embed-handle
 // Much of this class is borrowed from Jetpack embeds
 class AMP_Instagram_Embed_Handler extends AMP_Base_Embed_Handler {
 	const SHORT_URL_HOST = 'instagr.am';
-	const URL_PATTERN = '#http(s?)://(www\.)?instagr(\.am|am\.com)/(p|tv)/([^/?]+)#i';
+	const URL_PATTERN = '#http(s?)://(www\.)?instagr(\.am|am\.com)/(p|tv|reel)/([^/?]+)#i';
 
 	protected $DEFAULT_WIDTH = 600;
 	protected $DEFAULT_HEIGHT = 600;
