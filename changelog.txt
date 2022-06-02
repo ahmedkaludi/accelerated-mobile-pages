@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 1.0.77.44 (2nd June 2022) =
+* Improvements: Added Marfeel analytics compatibility in AMP #5266
+* Improvements: Added WP Table Builder compatibility in AMP #5270
+* Improvements: Updated the email id in feedback form #5273
+* Fixed: Instagram reels not working in AMP #5269
+* Fixed: Preload Funtionality not working when Image is added #5260
+* Fixed: AMP dashicons CSS overwrites the WP default dashicons #5265
+* Fixed: Tel protocols not working in the AMP #5268
+* Fixed: CTA links saving without '=' character #5267
+
 = 1.0.77.43 (10th May 2022) =
 * Updated: TPD feature updated #5257
 * Fixed: Resolved the issue of Image Gallery Carousel in AMP does not change the gallery view in posts/pages #5259

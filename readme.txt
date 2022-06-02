@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 5.9.3
-Stable tag: 1.0.77.43
+Tested up to: 6.0
+Stable tag: 1.0.77.44
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.44 (2nd June 2022) =
+* Improvements: Added Marfeel analytics compatibility in AMP #5266
+* Improvements: Added WP Table Builder compatibility in AMP #5270
+* Improvements: Updated the email id in feedback form #5273
+* Fixed: Instagram reels not working in AMP #5269
+* Fixed: Preload Funtionality not working when Image is added #5260
+* Fixed: AMP dashicons CSS overwrites the WP default dashicons #5265
+* Fixed: Tel protocols not working in the AMP #5268
+* Fixed: CTA links saving without '=' character #5267
 
 = 1.0.77.43 (10th May 2022) =
 * Updated: TPD feature updated #5257
