@@ -2210,13 +2210,13 @@ a#ampforwp-close-ad-notice {
     color: #666
 }#exp {
     color: red
-}.dashicons-no {
+}.toplevel_page_amp_options .dashicons-no {
     color: #fff;
     border-radius: 10px;
     right: 5px;
     position: relative;
     font-size: 15px
-}.dashicons-no:before {
+}.toplevel_page_amp_options .dashicons-no:before {
     content: "\f158";
     top: 2px;
     position: relative;
