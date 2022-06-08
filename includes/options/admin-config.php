@@ -4959,7 +4959,7 @@ Redux::setSection( $opt_name, array(
                 'class' => 'child_opt child_opt_arrow',
                 'title'     => esc_html__('CTA Link', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('You can add the Link here ','accelerated-mobile-pages'),
-                'type'      => 'text',
+                'type'      => 'multi_text',
                 'default'   => '#',
                     'required' => array(
                       array('signin-button','=',1)

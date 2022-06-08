@@ -7609,9 +7609,13 @@ function ampforwp_set_dns_preload_urls(){
 	               	if(isset($data_arr[$j]['value'][$i])){
 	               	 	$value 	= $data_arr[$j+1]['value'][$i];
 	               	}
+	               	$type = ''; 
+	               	if (preg_match('/(\.jpg|\.png|\.webp)$/', $value)) {
+	               		$type = 'as="image"';
+	               	}
 	               	 	if($value!=""){
 	               	 		?>
-	               	 		<link rel="<?php echo esc_attr($key)?>" href="<?php echo esc_url($value);?>" crossorigin>
+	               	 		<link rel="<?php echo esc_attr($key)?>" <?php echo $type; // XXS ok, escaped above ?> href="<?php echo esc_url($value);?>" crossorigin>
 	               	 		<?php
 	               	 	}
 	               	}

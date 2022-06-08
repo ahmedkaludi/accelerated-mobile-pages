@@ -29,7 +29,6 @@ function ampforwp_add_admin_styling($hook_suffix){
     // Style file to add or modify css inside admin area
     wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style.css', false, AMPFORWP_VERSION );
     wp_enqueue_style( 'ampforwp_admin_css' );
-
     // Admin area scripts file
     $dep = array('wp-color-picker');
     $dep = apply_filters('ampforwp_modify_script_dependency', $dep);
