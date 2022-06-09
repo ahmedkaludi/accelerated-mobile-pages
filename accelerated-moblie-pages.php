@@ -1572,9 +1572,12 @@ function ampforwp_amp_optimizer(){
 	require_once AMPFORWP_PLUGIN_DIR."/includes/amp-optimizer-addon.php";
 }
 
-add_filter('ampforwp_is_amp_endpoint_takeover', function ($return) {
-  if (is_user_logged_in() && !empty($_GET['wpml-app'])) {
-  	return false;
-  }
-  return $return;
-});
+add_action("amp_init", "ampforwp_endpoint_takeover_beta");
+function ampforwp_endpoint_takeover_beta(){
+	add_filter('ampforwp_is_amp_endpoint_takeover', function ($return) {
+	  if (is_user_logged_in() && !empty($_GET['wpml-app'])) {
+	  	return false;
+	  }
+	  return $return;
+	});
+}
