@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.77.44
+Stable tag: 1.0.77.45
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.45 (9th June 2022) =
+* Fixed: Conflict issue with WPML #5274
 
 = 1.0.77.44 (2nd June 2022) =
 * Improvements: Added Marfeel analytics compatibility in AMP #5266
