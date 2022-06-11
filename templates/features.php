@@ -9742,3 +9742,12 @@ function ampforwp_publisher_desk_ads( $content ) {
 		  }
     return $content;
 }
+
+// #5274 AMP Take over conflict with WPML
+add_filter('ampforwp_is_amp_endpoint_takeover', 'ampforwp_wpml_takeover_compatibility');
+function ampforwp_wpml_takeover_compatibility($return) {
+  if (is_user_logged_in() && !empty($_GET['wpml-app'])) {
+  	return false;
+  }
+  return $return;
+};
