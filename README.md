@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.77.44
+Stable tag: 1.0.77.45
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -196,6 +196,13 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.77.45 (13th June 2022) =
+* Fixed: Conflict issue with WPML #5274
+* Fixed: Page builder modal is getting hidden below the header of the post/page editor. #5279
+* Fixed: FAQ Schema For Pages And Posts compatibility #5278
+* Fixed: Debug Warnings - Trying to access array offset on value of type null #5277
+* Fixed: fatal error #5280
 
 = 1.0.77.44 (2nd June 2022) =
 * Improvements: Added Marfeel analytics compatibility in AMP #5266
