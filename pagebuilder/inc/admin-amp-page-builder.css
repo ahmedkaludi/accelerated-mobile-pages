@@ -677,7 +677,7 @@ position: fixed;
     padding-left: 20px;   
     padding-top: 0px;
 }
-#amp-page-builder .modal-container {position: fixed;overflow: hidden;top:30px;left: 30px;right: 30px;bottom: 30px;z-index: 160000;overflow: hidden;min-height: 300px;box-shadow: 0 5px 15px rgba(0,0,0,.7);background: #fcfcfc;-webkit-font-smoothing: subpixel-antialiased;max-width: 1200px;}
+#amp-page-builder .modal-container {position: fixed;overflow: hidden;top:65px;left: 6px;right: 30px;bottom: 30px;z-index: 160000;overflow: hidden;min-height: 300px;box-shadow: 0 5px 15px rgba(0,0,0,.7);background: #fcfcfc;-webkit-font-smoothing: subpixel-antialiased;max-width: 1190px;}
 
 .modal-header h3 {
     font-weight: normal;

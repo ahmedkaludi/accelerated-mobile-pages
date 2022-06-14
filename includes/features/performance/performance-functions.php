@@ -95,7 +95,13 @@ function ampforwp_minify_html_output($content_buffer){
     if(preg_match('/<blockquote\sclass="wp-embedded-content"(.*?)<a href="(.*?)"(.*?)<\/blockquote>/', $content_buffer)){
         $content_buffer = preg_replace('/<blockquote\sclass="wp-embedded-content"(.*?)<a href="(.*?)"(.*?)<\/blockquote>/', '<amp-wordpress-embed width="400" height="400" data-url="$2" ></amp-wordpress-embed>', $content_buffer);
         $content_buffer = preg_replace('/<amp-iframe(.*?)class="wp-embedded-content(.*?)<\/amp-iframe>/', '', $content_buffer);
-     }
+    }
+    if (function_exists('wp_faq_schema_load_plugin_textdomain')) {
+        $content_buffer = preg_replace('/<div\sclass="">(.*?)<\/div>/s', '$1', $content_buffer);
+        $content_buffer = preg_replace('/<h4>/s', '<section><h4>', $content_buffer);
+        $content_buffer = preg_replace('/<\/p>/s', '</p></section>', $content_buffer);
+        $content_buffer = preg_replace('/<div\sclass="wp-faq-schema-items">(.*?)<\/div>/s', '<amp-accordion expand-single-section>$1</amp-accordion>', $content_buffer);
+    } 
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
