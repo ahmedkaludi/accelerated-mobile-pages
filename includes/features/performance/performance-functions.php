@@ -105,6 +105,9 @@ function ampforwp_minify_html_output($content_buffer){
    if(preg_match('/<amp-iframe(.*?)src="(.*?)embed\/(.*?)"(.*?)width="(.*?)"(.*?)height="(.*?)"(.*?)<\/amp-iframe>/', $content_buffer)){
         $content_buffer = preg_replace('/<amp-iframe(.*?)src="(.*?)embed\/(.*?)"(.*?)width="(.*?)"(.*?)height="(.*?)"(.*?)<\/amp-iframe>/', '<amp-youtube data-videoid="$3" layout="responsive" width="$5" height="$7"></amp-youtube>', $content_buffer);
     }
+    if(preg_match('/<amp-iframe\sclass="instagram-media(.*?)"(.*?)src="https:\/\/instagram.com\/p\/(.*?)\/(.*?)"(.*?)><\/amp-iframe>/', $content_buffer)){
+        $content_buffer = preg_replace('/<amp-iframe\sclass="instagram-media(.*?)"(.*?)src="https:\/\/instagram.com\/p\/(.*?)\/(.*?)"(.*?)><\/amp-iframe>/', '<amp-instagram data-shortcode="$3" data-captioned width="400" height="400"layout="responsive"></amp-instagram>', $content_buffer); 
+    }
 
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
