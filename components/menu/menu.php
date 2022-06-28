@@ -99,9 +99,6 @@ function amp_menu_styles(){
 	         .amp-menu li.ubermenu-has-submenu-drop ul {
 	            display: none;
 	         }
-	         .m-menu .amp-menu [id^=drop]:checked + label + ul ul,.amp-menu [id^=drop]:checked + label + ul ul {
-	          display: block;
-	         } 
 
 	         ul.ubermenu-submenu {
 			    margin-left: 10px;
