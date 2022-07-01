@@ -120,8 +120,8 @@ if (!function_exists('adsforwp_admin_notice')) {
                             'title'     => esc_html__('Publisher ID', 'accelerated-mobile-pages'),
                             'desc' => sprintf('%s <a href="%s" target="_blank">%s</a>', 
                         esc_html__('Obtain your Publisher ID through', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-the-publisher-desk-ads-in-amp/'), esc_html__('these steps','accelerated-mobile-pages')),
-                            'default'   => '',
-                            'placeholder'=> '337'
+                            'default'   => '10001',
+                            'placeholder'=> '10001'
                         );
 
                 $fields[] = array(

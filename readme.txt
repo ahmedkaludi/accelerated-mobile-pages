@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.77.45
+Stable tag: 1.0.77.46
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.46 (28th June 2022) =
+* Fixed: Reduced the execution of JS in youtube embeds #5287
+* Fixed: Instagram embeds not working when added with iframe #5289
+* Fixed: Subchild menu items does not expand with UberMenu plugin
+* Fixed: Incorrect default value in TPD #5286
+* Fixed: Debug Warnings - Undefined array-key: row #5283
 
 = 1.0.77.45 (13th June 2022) =
 * Fixed: Conflict issue with WPML #5274

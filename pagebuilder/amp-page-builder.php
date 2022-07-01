@@ -85,7 +85,7 @@ function ampforwp_call_page_builder(){
 	$totalmodules = 1;
 	if(!empty($previousData)){
 		$jsonData = json_decode($previousData,true);
-		if(is_array($jsonData) && count($jsonData['rows'])>0){
+		if(is_array($jsonData) && isset($jsonData['rows']) && count($jsonData['rows'])>0){
 			$totalRows = $jsonData['totalrows'];
 			$totalmodules = $jsonData['totalmodules'];
 			$previousData = json_encode($jsonData);

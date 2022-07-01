@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.77.46 (28th June 2022) =
+* Fixed: Reduced the execution of JS in youtube embeds #5287
+* Fixed: Instagram embeds not working when added with iframe #5289
+* Fixed: Subchild menu items does not expand with UberMenu plugin
+* Fixed: Incorrect default value in TPD #5286
+* Fixed: Debug Warnings - Undefined array-key: row #5283
+
 = 1.0.77.45 (13th June 2022) =
 * Fixed: Conflict issue with WPML #5274
 * Fixed: Page builder modal is getting hidden below the header of the post/page editor. #5279
