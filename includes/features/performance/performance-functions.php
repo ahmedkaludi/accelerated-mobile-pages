@@ -109,6 +109,10 @@ function ampforwp_minify_html_output($content_buffer){
         $content_buffer = preg_replace('/<amp-iframe\sclass="instagram-media(.*?)"(.*?)src="https:\/\/instagram.com\/p\/(.*?)\/(.*?)"(.*?)><\/amp-iframe>/', '<amp-instagram data-shortcode="$3" data-captioned width="400" height="400"layout="responsive"></amp-instagram>', $content_buffer); 
     }
 
+    if(preg_match('/<blockquote\sclass="instagram-media\s(.*?)"(.*?)data-instgrm-permalink="(.*?)p\/(.*?)"(.*?)<\/blockquote>/', $content_buffer)){
+        $content_buffer = preg_replace('/<blockquote\sclass="instagram-media\s(.*?)"(.*?)data-instgrm-permalink="(.*?)p\/(.*?)"(.*?)<\/blockquote>/', '<amp-instagram data-shortcode="$4" data-captioned width="400" height="400"layout="responsive"></amp-instagram>', $content_buffer); 
+    }
+
     global $redux_builder_amp;
     if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
