@@ -103,6 +103,8 @@ function ampforwp_minify_html_output($content_buffer){
         $content_buffer = preg_replace('/<div\sclass="wp-faq-schema-items">(.*?)<\/div>/s', '<amp-accordion expand-single-section>$1</amp-accordion>', $content_buffer);
     } 
    if(preg_match('/<amp-iframe(.*?)src="(.*?)embed\/(.*?)"(.*?)width="(.*?)"(.*?)height="(.*?)"(.*?)<\/amp-iframe>/', $content_buffer)){
+        // Youtube Embed with Query Parameters
+        $content_buffer = preg_replace('/<amp-iframe(.*?)src="(.*?)youtube.com\/embed\/(.*?)\?(.*?)"(.*?)width="(.*?)"(.*?)height="(.*?)"(.*?)<\/amp-iframe>/', '<amp-youtube data-videoid="$3" layout="responsive" width="$6" height="$8"></amp-youtube>', $content_buffer);
         $content_buffer = preg_replace('/<amp-iframe(.*?)src="(.*?)embed\/(.*?)"(.*?)width="(.*?)"(.*?)height="(.*?)"(.*?)<\/amp-iframe>/', '<amp-youtube data-videoid="$3" layout="responsive" width="$5" height="$7"></amp-youtube>', $content_buffer);
     }
     if(preg_match('/<amp-iframe\sclass="instagram-media(.*?)"(.*?)src="https:\/\/instagram.com\/p\/(.*?)\/(.*?)"(.*?)><\/amp-iframe>/', $content_buffer)){
