@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.77.47 (5th July 2022) =
+* Fixed: AMP validation error when youtube video is embeded with query parameters #5292
+* Fixed: Instagram embeds not working when added with blockquote tags #5289
+
 = 1.0.77.46 (28th June 2022) =
 * Fixed: Reduced the execution of JS in youtube embeds #5287
 * Fixed: Instagram embeds not working when added with iframe #5289

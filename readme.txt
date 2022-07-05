@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.77.46
+Stable tag: 1.0.77.47
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.77.47 (5th July 2022) =
+* Fixed: AMP validation error when youtube video is embeded with query parameters #5292
+* Fixed: Instagram embeds not working when added with blockquote tags #5289
+
 = 1.0.77.46 (28th June 2022) =
 * Fixed: Reduced the execution of JS in youtube embeds #5287
 * Fixed: Instagram embeds not working when added with iframe #5289
@@ -207,34 +211,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: FAQ Schema For Pages And Posts compatibility #5278
 * Fixed: Debug Warnings - Trying to access array offset on value of type null #5277
 * Fixed: fatal error #5280
-
-= 1.0.77.44 (2nd June 2022) =
-* Improvements: Added Marfeel analytics compatibility in AMP #5266
-* Improvements: Added WP Table Builder compatibility in AMP #5270
-* Improvements: Updated the email id in feedback form #5273
-* Fixed: Instagram reels not working in AMP #5269
-* Fixed: Preload Funtionality not working when Image is added #5260
-* Fixed: AMP dashicons CSS overwrites the WP default dashicons #5265
-* Fixed: Tel protocols not working in the AMP #5268
-* Fixed: CTA links saving without '=' character #5267
-
-= 1.0.77.43 (10th May 2022) =
-* Updated: TPD feature updated #5257
-* Fixed: Resolved the issue of Image Gallery Carousel in AMP does not change the gallery view in posts/pages #5259
-
-= 1.0.77.42 (16th April 2022) =
-* Improvements: Added REHub Comparison charts, tables Compatibility #5250
-* Fixed: Debug Warnings - Undefined index: amp-license #5251
-
-= 1.0.77.41 (12th April 2022) =
-* Improvements: Added Compatibility with GenerateBlocks plugin #5248
-* Improvements: Added Web Safe Fonts in Google Fonts List #5242
-* Improvements: AMP Option panel improvements #5239
-* Fixed: White space in footer element between the posts of infinite scroll #5238
-* Fixed: Invalid JSON error in console when using Plausible analytics #5142
-
-= 1.0.77.40 (6th April 2022) =
-* Fixed: The Publisher Desk CDN URL added instead of Heroku link #5237
-* Fixed: AMP Option panel improvements #5240
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
