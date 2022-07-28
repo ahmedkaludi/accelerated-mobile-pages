@@ -733,6 +733,33 @@ function ampforwp_backtotop_global_css(){?>
 	<?php if (class_exists('UAGB_Admin')) {?>
 	.wp-block-uagb-faq svg {display: none;}
 	<?php } ?>
+	<?php if (function_exists('irp_block_category')) {?>
+	h3.uagb-post__title a {
+	    color: #000;
+	    font-weight: 500;
+	}
+	.uagb-post__items article {
+	    width: 50%;
+	    float: left;
+	    padding: 2px;
+	}
+	p.has-background {
+	    padding: 25px 10px 25px;
+	    background-color: #1e73be;
+	    color: #fff;
+	    margin: 40px 0px;
+	}
+	@media only screen and (max-width: 600px) {
+	  .uagb-post__items article {
+	    width: 100%;
+	    float: inherit;
+	    padding: 2px;
+		}
+		.cntn-wrp.artl-cnt p.has-background {
+	    	margin: 100px 0px 20px;
+		}
+	}
+	<?php } ?>
 	<?php if (function_exists('on_bsf_aiosrs_pro_activate')) {?>
 	  span.wpsp-icon.wpsp-faq-icon-wrap svg , span.wpsp-icon-active.wpsp-faq-icon-wrap svg{
 	    display: none;}
