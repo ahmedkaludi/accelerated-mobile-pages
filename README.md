@@ -197,9 +197,10 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
-= 1.0.77.48 (5th August 2022) =
+= 1.0.77.48 (11th August 2022) =
 * Improvements: Added Super Related Posts plugin compatibility #5298
 * Improvements: Added Inline Related Post plugin compatibility #5296
+* Fixed: Fatal error while activating official AMP. #5300
 * Fixed: Spotify Embed not working after 1.0.77.46 version #5294
 * Fixed: AMP Pagebuilder not loading with All in One SEO latest update #5299
 
