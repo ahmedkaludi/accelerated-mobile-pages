@@ -1,0 +1,190 @@
+.sprp-wrpr {
+
+    border-bottom: 1px solid #d8d8d8;
+
+    display: flex;
+
+    flex-direction: row;
+
+    margin: 7px 0 15px;
+
+    max-width: 100%;
+
+    order: 1;
+
+    padding-bottom: 15px;
+
+    width: 100%;
+
+}
+
+.sprp.d1 .sprp-wrpr {
+
+    justify-content: space-around;
+
+}
+
+.sprp-wrpr .sprp-txt {
+
+    display: flex;
+
+    flex: 0 1 auto;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    width: calc(75% - 8px);
+
+    font-size: 14px;
+    line-height: 1.5;
+
+}
+
+.sprp.d1 .sprp-img {
+
+    order: 2;
+    width: 135px;
+    max-height: 90px;
+    line-height: 0;
+    overflow: hidden;
+    margin-left: 16px;
+
+}
+
+.sprp.d2 .sprp-img {
+
+    order: 1;
+
+	width: 75px;
+
+    height: 70px;
+
+}
+
+#content-main .sprp-wrpr h3, .sprp-wrpr h3 {
+
+    color: #000;
+
+    font-size: 0.9em;
+
+}
+
+li {
+
+    list-style: none;
+
+}
+
+.sprp.d2 .sprp-wrpr {
+
+    margin: 0;
+
+    padding: 0;
+
+    justify-content: left;
+
+}
+
+.sprp.d2 .sprp-txt {
+
+    order: 2;
+
+	margin-left: 16px;
+
+}
+
+.sprp h2 {
+
+    font-size: 1.5em;
+
+    font-weight: 500;
+
+    margin-bottom: 25px;
+
+    text-transform: uppercase;
+
+}
+
+.d1 h2 {
+
+    text-align: center;
+
+}
+
+.d2 h2 {
+
+    text-align: left;
+
+    border-bottom: 1px solid;
+
+}
+
+.sprp ul {
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+.sprp.d3 .sprp-wrpr {
+
+    flex-direction: column-reverse;
+    text-align: center;
+
+}
+
+.sprp.d3 li {
+
+    width: calc(30% - 8px);
+
+    display: inline-block;
+
+}
+
+@media(max-width:475px){
+    .sprp.d3 li {
+        width: calc(100% - 8px);
+    }
+}
+
+.sprp.d3 .sprp-txt {
+
+    width: 100%;
+    margin-top: 10px;
+
+}
+
+.sprp-wrpr .sprp-txt a {
+    color: #222222;
+}
+
+.single .sprp-wrpr img {
+
+    max-width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+.sprp.d3 .sprp-img {
+    width: 100%;
+    max-height: 130px;
+    line-height: 0;
+    overflow: hidden;
+}
+/* .sprp ul li, .single #content-main ul li {
+    margin: 0 5px;
+    padding: 0;
+} */
+.sprp ul li {
+    margin: 0 5px;
+    padding: 0;
+}
+
+.cntn-wrp.artl-cnt .sprp ul li:before {
+    height: inherit;
+}

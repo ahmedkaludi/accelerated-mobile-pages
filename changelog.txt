@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.77.48 (11th August 2022) =
+* Improvements: Added Super Related Posts plugin compatibility #5298
+* Improvements: Added Inline Related Post plugin compatibility #5296
+* Fixed: Fatal error while activating official AMP. #5300
+* Fixed: Spotify Embed not working after 1.0.77.46 version #5294
+* Fixed: AMP Pagebuilder not loading with All in One SEO latest update #5299
+
 = 1.0.77.47 (5th July 2022) =
 * Fixed: AMP validation error when youtube video is embeded with query parameters #5292
 * Fixed: Instagram embeds not working when added with blockquote tags #5289

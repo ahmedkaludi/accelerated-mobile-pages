@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.77.47
+Stable tag: 1.0.77.48
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,13 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.48 (11th August 2022) =
+* Improvements: Added Super Related Posts plugin compatibility #5298
+* Improvements: Added Inline Related Post plugin compatibility #5296
+* Fixed: Fatal error while activating official AMP. #5300
+* Fixed: Spotify Embed not working after 1.0.77.46 version #5294
+* Fixed: AMP Pagebuilder not loading with All in One SEO latest update #5299
+
 = 1.0.77.47 (5th July 2022) =
 * Fixed: AMP validation error when youtube video is embeded with query parameters #5292
 * Fixed: Instagram embeds not working when added with blockquote tags #5289
@@ -207,12 +214,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Subchild menu items does not expand with UberMenu plugin
 * Fixed: Incorrect default value in TPD #5286
 * Fixed: Debug Warnings - Undefined array-key: row #5283
-
-= 1.0.77.45 (13th June 2022) =
-* Fixed: Conflict issue with WPML #5274
-* Fixed: Page builder modal is getting hidden below the header of the post/page editor. #5279
-* Fixed: FAQ Schema For Pages And Posts compatibility #5278
-* Fixed: Debug Warnings - Trying to access array offset on value of type null #5277
-* Fixed: fatal error #5280
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
