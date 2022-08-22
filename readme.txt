@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.77.48
+Stable tag: 1.0.77.49
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.49 (22nd August 2022) =
+* Fixed: There is a compatibility issue with the latest version of the All in One SEO Plugin. #5306
 
 = 1.0.77.48 (11th August 2022) =
 * Improvements: Added Super Related Posts plugin compatibility #5298
