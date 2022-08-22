@@ -4544,7 +4544,7 @@ function ampforwp_home_archive_canonical_setter(){
 }
 
 function ampforwp_rel_canonical_home_archive(){
-	if (function_exists('aioseo_pro_just_activated')) {
+	if (function_exists('aioseo_pro_just_activated') && version_compare(AIOSEO_VERSION,'4.2.4', '<')) {
 	   return;
 	}
 	global $redux_builder_amp;
