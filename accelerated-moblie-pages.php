@@ -39,9 +39,15 @@ function ampforwp_generate_endpoint(){
 }
 
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', ampforwp_generate_endpoint() ) );
-
+if (!function_exists('is_plugin_active')) {
+    include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+}
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
+	// Adding rewrite rules only when we are in standard mode
+	if (is_plugin_active('amp/amp.php')) {
+		return;
+	}
 	global $redux_builder_amp;
 	add_rewrite_endpoint( AMPFORWP_AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_AUTHORS | EP_ALL_ARCHIVES | EP_ROOT );
 	// Pages
@@ -88,6 +94,11 @@ function ampforwp_get_the_page_id_blog_page(){
 
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
+	
+	// Adding rewrite rules only when we are in standard mode
+	if (is_plugin_active('amp/amp.php')) {
+		return;
+	}
 	global $redux_builder_amp, $wp_rewrite;
     // For Homepage
     add_rewrite_rule(
@@ -338,6 +349,11 @@ function ampforwp_update_option_permalink_structure(){
 add_action( 'init', 'ampforwp_custom_rewrite_rules_for_product_category' );
 if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
 	function ampforwp_custom_rewrite_rules_for_product_category(){
+		
+		// Adding rewrite rules only when we are in standard mode
+		if (is_plugin_active('amp/amp.php')) {
+			return;
+		}
 		if ( class_exists('WooCommerce') ) {
 			$permalinks = wp_parse_args( (array) get_option( 'woocommerce_permalinks', array() ), array(
 				'product_base'           => '',
@@ -721,8 +737,11 @@ if ( ! function_exists('ampforwp_init') ) {
 		do_action( 'amp_init' );
 
 		load_plugin_textdomain( 'accelerated-mobile-pages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-
+		
+		// Adding rewrite rules only when we are in standard mode
+		if (!is_plugin_active('amp/amp.php')) {
 		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
+		}
 		add_post_type_support( 'post', AMP_QUERY_VAR );
 
 		add_filter( 'request', 'AMPforWP\\AMPVendor\\amp_force_query_var_value' );
