@@ -7133,12 +7133,17 @@ add_filter( 'amp_post_template_data', 'ampforwp_backtotop' );
 function ampforwp_backtotop( $data ) {
 	global $redux_builder_amp;
 	if(true == ampforwp_get_setting('ampforwp-footer-top')){
+		$dom = AMP_DOM_Utils::get_dom_from_content($data['post_amp_content']);
+		if ( 0 !== $dom->getElementsByTagName( 'amp-position-observer' )->length ) {
 			if ( empty( $data['amp_component_scripts']['amp-position-observer'] ) ) {
 				$data['amp_component_scripts']['amp-position-observer'] = 'https://cdn.ampproject.org/v0/amp-position-observer-0.1.js';
 			}
+		}
+		if ( 0 !== $dom->getElementsByTagName( 'amp-animation' )->length ) {
 			if ( empty( $data['amp_component_scripts']['amp-animation'] ) ) {
 				$data['amp_component_scripts']['amp-animation'] = 'https://cdn.ampproject.org/v0/amp-animation-0.1.js';
 			}
+		}
 			
 	}
 	return $data;
