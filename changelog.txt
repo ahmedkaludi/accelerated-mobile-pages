@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.77.49 (22nd August 2022) =
+* Fixed: There is a compatibility issue with the latest version of the All in One SEO Plugin. #5306
+
 = 1.0.77.48 (11th August 2022) =
 * Improvements: Added Super Related Posts plugin compatibility #5298
 * Improvements: Added Inline Related Post plugin compatibility #5296
