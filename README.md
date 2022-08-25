@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.77.48
+Stable tag: 1.0.77.50
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,13 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.77.50 (24th August 2022) =
+* Fixed: "Back to Top link" option adds amp-animation & amp-position-observer script without its usage on page #5305
+* Fixed: AMPforWP is creating "/amp" as an endpoint in Addon mode. #5303
+* Improvements: Strange Exclamation mark . #5304
+
+= 1.0.77.49 (22nd August 2022) =
+* Fixed: There is a compatibility issue with the latest version of the All in One SEO Plugin. #5306
 = 1.0.77.48 (11th August 2022) =
 * Improvements: Added Super Related Posts plugin compatibility #5298
 * Improvements: Added Inline Related Post plugin compatibility #5296

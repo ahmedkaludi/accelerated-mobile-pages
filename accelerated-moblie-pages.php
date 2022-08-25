@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.77.48
+Version: 1.0.77.50
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.77.48');
+define('AMPFORWP_VERSION','1.0.77.50');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
@@ -39,13 +39,11 @@ function ampforwp_generate_endpoint(){
 }
 
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', ampforwp_generate_endpoint() ) );
-if (!function_exists('is_plugin_active')) {
-    include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-}
+
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
 	// Adding rewrite rules only when we are in standard mode
-	if (is_plugin_active('amp/amp.php')) {
+	if (is_amp_plugin_active()) {
 		return;
 	}
 	global $redux_builder_amp;
@@ -96,7 +94,7 @@ function ampforwp_get_the_page_id_blog_page(){
 function ampforwp_add_custom_rewrite_rules() {
 	
 	// Adding rewrite rules only when we are in standard mode
-	if (is_plugin_active('amp/amp.php')) {
+	if (is_amp_plugin_active()) {
 		return;
 	}
 	global $redux_builder_amp, $wp_rewrite;
@@ -351,7 +349,7 @@ if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
 	function ampforwp_custom_rewrite_rules_for_product_category(){
 		
 		// Adding rewrite rules only when we are in standard mode
-		if (is_plugin_active('amp/amp.php')) {
+		if (is_amp_plugin_active()) {
 			return;
 		}
 		if ( class_exists('WooCommerce') ) {
@@ -739,7 +737,7 @@ if ( ! function_exists('ampforwp_init') ) {
 		load_plugin_textdomain( 'accelerated-mobile-pages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 		
 		// Adding rewrite rules only when we are in standard mode
-		if (!is_plugin_active('amp/amp.php')) {
+		if (!is_amp_plugin_active()) {
 		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
 		}
 		add_post_type_support( 'post', AMP_QUERY_VAR );
@@ -1589,4 +1587,19 @@ if(!function_exists('ampforwp_save_local_font')){
 add_action("amp_init", "ampforwp_amp_optimizer");
 function ampforwp_amp_optimizer(){
 	require_once AMPFORWP_PLUGIN_DIR."/includes/amp-optimizer-addon.php";
+}
+
+if(!function_exists('is_amp_plugin_active')){
+	function is_amp_plugin_active()
+	{
+		if (!function_exists('is_plugin_active')) {
+			include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+		}
+
+		if (is_plugin_active('amp/amp.php')) {
+			return true;
+		}
+		return false;
+	}
+
 }
