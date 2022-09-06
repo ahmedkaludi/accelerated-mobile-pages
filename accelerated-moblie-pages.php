@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.77.49
+Version: 1.0.77.50
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.77.49');
+define('AMPFORWP_VERSION','1.0.77.50');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
@@ -42,6 +42,10 @@ define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', ampforwp_genera
 
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
+	// Adding rewrite rules only when we are in standard mode
+	if (is_amp_plugin_active()) {
+		return;
+	}
 	global $redux_builder_amp;
 	add_rewrite_endpoint( AMPFORWP_AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_AUTHORS | EP_ALL_ARCHIVES | EP_ROOT );
 	// Pages
@@ -88,6 +92,11 @@ function ampforwp_get_the_page_id_blog_page(){
 
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
+	
+	// Adding rewrite rules only when we are in standard mode
+	if (is_amp_plugin_active()) {
+		return;
+	}
 	global $redux_builder_amp, $wp_rewrite;
     // For Homepage
     add_rewrite_rule(
@@ -338,6 +347,11 @@ function ampforwp_update_option_permalink_structure(){
 add_action( 'init', 'ampforwp_custom_rewrite_rules_for_product_category' );
 if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
 	function ampforwp_custom_rewrite_rules_for_product_category(){
+		
+		// Adding rewrite rules only when we are in standard mode
+		if (is_amp_plugin_active()) {
+			return;
+		}
 		if ( class_exists('WooCommerce') ) {
 			$permalinks = wp_parse_args( (array) get_option( 'woocommerce_permalinks', array() ), array(
 				'product_base'           => '',
@@ -721,8 +735,11 @@ if ( ! function_exists('ampforwp_init') ) {
 		do_action( 'amp_init' );
 
 		load_plugin_textdomain( 'accelerated-mobile-pages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-
+		
+		// Adding rewrite rules only when we are in standard mode
+		if (!is_amp_plugin_active()) {
 		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
+		}
 		add_post_type_support( 'post', AMP_QUERY_VAR );
 
 		add_filter( 'request', 'AMPforWP\\AMPVendor\\amp_force_query_var_value' );
@@ -1570,4 +1587,19 @@ if(!function_exists('ampforwp_save_local_font')){
 add_action("amp_init", "ampforwp_amp_optimizer");
 function ampforwp_amp_optimizer(){
 	require_once AMPFORWP_PLUGIN_DIR."/includes/amp-optimizer-addon.php";
+}
+
+if(!function_exists('is_amp_plugin_active')){
+	function is_amp_plugin_active()
+	{
+		if (!function_exists('is_plugin_active')) {
+			include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+		}
+
+		if (is_plugin_active('amp/amp.php')) {
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.77.50 (24th August 2022) =
+* Fixed: "Back to Top link" option adds amp-animation & amp-position-observer script without its usage on page #5305
+* Fixed: AMPforWP is creating "/amp" as an endpoint in Addon mode. #5303
+* Improvements: Strange Exclamation mark . #5304
+
 = 1.0.77.49 (22nd August 2022) =
 * Fixed: There is a compatibility issue with the latest version of the All in One SEO Plugin. #5306
 
