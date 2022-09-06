@@ -19,7 +19,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			$this->is_single = true == $this->is_single() ? $this->is_single() : $this->is_single;
 			$this->is_loop = true == $this->is_loop() ? $this->is_loop() : $this->is_loop;
 			$this->paged = $this->paged();
-			if ( $this->is_single && 'post' === get_post_type(ampforwp_get_the_ID()) ){
+			if ( $this->is_single && 'page' != get_post_type(ampforwp_get_the_ID()) ){
 				// amp-next-page experiment meta tag
 				add_action('amp_experiment_meta', array( $this, 'amp_experiment_meta') );
 				// amp-next-page script
@@ -146,8 +146,8 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			  );
 			if (ampforwp_get_setting('ampforwp-infinite-scroll-single') && ampforwp_get_setting('ampforwp-infinite-scroll-single-category')){
 				$categories = get_the_category($post->ID);
+				$category_ids = array();
 				if ($categories) {
-					$category_ids = array();
 					foreach($categories as $individual_category){ 
 						$category_ids[] = $individual_category->cat_ID;
 					}	
