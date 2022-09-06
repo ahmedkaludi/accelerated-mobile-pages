@@ -127,8 +127,9 @@ if ( isset($args['show_time']) ) {
                     if($is_author_link_amp==true){
                         $auth_link = ampforwp_url_controller($author_link);
                     }
-                    $author_link = (true == ampforwp_get_setting('ampforwp-archive-support'))? esc_url($auth_link) :  esc_url($author_link);
-	                echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url($author_link).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';
+                    //$author_link = (true == ampforwp_get_setting('ampforwp-archive-support') && strlen($auth_link)>0)? esc_url($auth_link) :  esc_url($author_link);
+                    echo $auth_link?$auth_link :$author_link;
+	                //echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url($author_link).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';
                     echo ampforwp_yoast_twitter_handle();
                 }
             }
