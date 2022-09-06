@@ -11,6 +11,7 @@ function ampforwp_framework_get_featured_image(){
 	$caption 		= "";
 	$f_vid 			= "";
 	$srcet 			= '';
+	$fox_theme_thumb=get_post_meta( $post_id, '_wi_thumbnail', true); // fox theme amp featured hide/show
 	if( ampforwp_is_front_page() ){
 		$post_id = ampforwp_get_frontpage_id();
 	}
@@ -30,7 +31,7 @@ function ampforwp_framework_get_featured_image(){
 		}elseif (has_post_thumbnail( $post_id ) ){
 		 	$thumb_id = get_post_thumbnail_id($post_id);
 		 	$post_content = $post->post_content;
-			if ( ampforwp_webp_featured_image() && true !== apply_filters('ampforwp_allow_featured_image', false) && ( false !== strpos( $post_content, 'wp-image-' . $thumb_id ) || false !== strpos( $post_content, 'attachment_' . $thumb_id ) ) ) {
+			if ( ampforwp_webp_featured_image() && true !== apply_filters('ampforwp_allow_featured_image', false) && ( false !== strpos( $post_content, 'wp-image-' . $thumb_id ) || false !== strpos( $post_content, 'attachment_' . $thumb_id )) || $fox_theme_thumb == "false" ) {
 				return;
 			}
 			$image_size = ampforwp_get_setting('swift-featued-image-size');
