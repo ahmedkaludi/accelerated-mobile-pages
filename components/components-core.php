@@ -944,6 +944,7 @@ function ampforwp_backtotop_global_css(){?>
     .has-text-align-left { text-align: left;}
     .has-text-align-right { text-align: right;}
     .has-text-align-center { text-align: center;}
+	 .collapsible-captions amp-img img {object-fit: contain;}
     <?php if (ampforwp_get_setting('ampforwp-web-push-onesignal') && ampforwp_get_setting('ampforwp-web-push-onesignal-popup') && is_single()) { ?>
     @media (min-width:1281px){
 		.onesignal-popup{
