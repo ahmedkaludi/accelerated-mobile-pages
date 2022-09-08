@@ -1328,3 +1328,34 @@ function ampforwp_jetpack_boost_compatibility(){
  		remove_action( 'plugins_loaded', '\Automattic\Jetpack_Boost\run_jetpack_boost', 1 );
  	}
 }
+if(!function_exists('ampforwp_get_coauthor_id')){
+	function ampforwp_get_coauthor_id()
+	{
+		$author_name = esc_attr(get_query_var('author_name'));
+		$coauthor_id 	 = get_the_author_meta( 'ID' );
+		if(!$coauthor_id)
+		{
+			$coauthors = get_the_coauthor_meta('login');
+			foreach($coauthors as $key=>$value)
+			{
+			if($value==$author_name)
+			{
+				$coauthor_id = $key;
+			}
+			}
+		}
+		return $coauthor_id;
+	}
+}
+
+if(!function_exists('ampforwp_get_coauthor_meta')){
+	function ampforwp_get_coauthor_meta($meta,$coauthor_id)
+	{
+		$display_name = get_the_author()?get_the_author():get_the_coauthor_meta($meta,$coauthor_id);
+		if(is_array($display_name))
+		{ 
+			$display_name=$display_name[$coauthor_id];
+		}
+		return $display_name;
+	}
+}

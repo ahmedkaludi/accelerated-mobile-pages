@@ -2136,7 +2136,15 @@ function ampforwp_modify_archive_title( $title ) {
     } elseif ( is_tag() ) {
         $title = single_tag_title( '', false );
     } elseif ( is_author() ) {
-        $title = '<span class="vcard">' . get_the_author() . '</span>';
+		if(!get_the_author() && function_exists('get_the_coauthor_meta'))
+		{
+			$coauthor_id 	 = ampforwp_get_coauthor_id();
+			$title = '<span class="vcard">' . ampforwp_get_coauthor_meta('display_name',$coauthor_id) . '</span>';
+		}
+		else{
+			$title = '<span class="vcard">' . get_the_author() . '</span>';
+		}
+       
     } elseif ( is_post_type_archive() ) {
         $title = post_type_archive_title( '', false );
     } elseif ( is_tax() ) {
