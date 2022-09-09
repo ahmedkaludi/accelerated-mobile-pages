@@ -1349,13 +1349,41 @@ if(!function_exists('ampforwp_get_coauthor_id')){
 }
 
 if(!function_exists('ampforwp_get_coauthor_meta')){
-	function ampforwp_get_coauthor_meta($meta,$coauthor_id)
-	{
-		$display_name = get_the_author()?get_the_author():get_the_coauthor_meta($meta,$coauthor_id);
-		if(is_array($display_name))
-		{ 
-			$display_name=$display_name[$coauthor_id];
+	function ampforwp_get_coauthor_meta($meta_name=null)
+	{ 
+		if(!function_exists('get_the_coauthor_meta') || !$meta_name)
+		{
+			return '';
+	    }
+		$coauthor_id 	 = get_the_author_meta( 'ID' );
+		if(!$coauthor_id)
+		{
+			$author_name = esc_attr(get_query_var('author_name'));
+			$coauthors = get_the_coauthor_meta('login');
+			foreach($coauthors as $key=>$value)
+			{
+				if($value==$author_name)
+				{
+					$coauthor_id = $key;
+				}
+			}
 		}
-		return $display_name;
+		if(!$coauthor_id)
+		{
+			return '';
+		}
+		if($meta_name=='avatar_url')
+		{
+			$meta_value = get_avatar_url($coauthor_id,array('size'=>180));
+		}
+		else 
+		{
+			$meta_value = get_the_coauthor_meta($meta_name,$coauthor_id);
+		}
+		if(is_array($meta_value))
+		{ 
+			$meta_value=$meta_value[$coauthor_id];
+		}
+		return esc_html($meta_value);
 	}
 }

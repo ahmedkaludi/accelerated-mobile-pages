@@ -2138,8 +2138,7 @@ function ampforwp_modify_archive_title( $title ) {
     } elseif ( is_author() ) {
 		if(!get_the_author() && function_exists('get_the_coauthor_meta'))
 		{
-			$coauthor_id 	 = ampforwp_get_coauthor_id();
-			$title = '<span class="vcard">' . ampforwp_get_coauthor_meta('display_name',$coauthor_id) . '</span>';
+			$title = '<span class="vcard">' . ampforwp_get_coauthor_meta('display_name') . '</span>';
 		}
 		else{
 			$title = '<span class="vcard">' . get_the_author() . '</span>';

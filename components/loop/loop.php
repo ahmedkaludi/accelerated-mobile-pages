@@ -11,14 +11,9 @@ function amp_archive_title(){
 		//added code for guest author compatibility for plugin coauthors
 		if(!$curauth && function_exists('get_the_coauthor_meta') )
 		{
-			$coauthor_id 	 = ampforwp_get_coauthor_id();
-			$thumb_url		 = get_the_post_thumbnail_url($coauthor_id,'thumbnail');
-			if(!$thumb_url)
-			{
-				$thumb_url=get_avatar_url( $coauthor_id, array('size'=>180) );	
-			}
+			$thumb_url=ampforwp_get_coauthor_meta('avatar_url');		
 			if($thumb_url){
-					$display_name=ampforwp_get_coauthor_meta('display_name',$coauthor_id);
+					$display_name=ampforwp_get_coauthor_meta('display_name');
 				?>
 					<div class="amp-wp-content author-img">
 						<amp-img src="<?php echo esc_url($thumb_url); ?>" width="90" height="90" layout="responsive" alt="<?php echo esc_html($display_name); ?>"></amp-img>
