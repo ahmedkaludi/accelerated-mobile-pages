@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.77.50
+Stable tag: 1.0.77.51
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.51 (9th September 2022) =
+* Fixed: Infinite scroll doesn't work with custom post type. #5309
+* Fixed: Need to make it compatible with the Co-Authors Plus plugin  #5313
+* Fixed: Slide Anything image src not loading properly. #5315
 
 = 1.0.77.50 (24th August 2022) =
 * Fixed: "Back to Top link" option adds amp-animation & amp-position-observer script without its usage on page #5305
