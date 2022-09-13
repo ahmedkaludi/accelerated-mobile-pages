@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.77.51 (9th September 2022) =
+* Fixed: Infinite scroll doesn't work with custom post type. #5309
+* Fixed: Need to make it compatible with the Co-Authors Plus plugin  #5313
+* Fixed: Slide Anything image src not loading properly. #5315
+
 = 1.0.77.50 (24th August 2022) =
 * Fixed: "Back to Top link" option adds amp-animation & amp-position-observer script without its usage on page #5305
 * Fixed: AMPforWP is creating "/amp" as an endpoint in Addon mode. #5303

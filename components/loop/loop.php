@@ -8,6 +8,20 @@ function amp_archive_title(){
 		$author_name = esc_attr(get_query_var('author_name'));
 		$author = esc_attr(get_query_var('author'));
 		$curauth = (get_query_var('author_name')) ? get_user_by('slug', $author_name) : get_userdata($author);
+		//added code for guest author compatibility for plugin coauthors
+		if(!$curauth && function_exists('get_the_coauthor_meta') )
+		{
+			$thumb_url=ampforwp_get_coauthor_meta('avatar_url');		
+			if($thumb_url){
+					$display_name=ampforwp_get_coauthor_meta('display_name');
+				?>
+					<div class="amp-wp-content author-img">
+						<amp-img src="<?php echo esc_url($thumb_url); ?>" width="90" height="90" layout="responsive" alt="<?php echo esc_html($display_name); ?>"></amp-img>
+					</div>
+				<?php }
+		
+		}
+		else{
 		if( true == ampforwp_gravatar_checker($curauth->user_email) ){
 			$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 			if($curauth_url){ ?>
@@ -15,6 +29,7 @@ function amp_archive_title(){
 					<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive" alt="<?php echo esc_html(get_the_author()); ?>"></amp-img>
 				</div>
 			<?php }
+		}
 	}
 }
 	if ( is_archive() ) {
@@ -183,10 +198,9 @@ function call_loops_standard($data=array()){
 	}
 	if(is_author()){
 		$exclude_ids = ampforwp_exclude_posts();
-		$author = esc_attr(get_query_var( 'author_name' ));
-		$author = get_user_by( 'slug', $author);
+		$author_name = esc_attr(get_query_var( 'author_name' ));
 		$args =  array(
-			'author'        	  =>  $author->ID,
+			'author_name'         =>  $author_name,
 			'post_type'           => 'post',
 			'orderby'             => 'date',
 			'ignore_sticky_posts' => 1,
@@ -221,7 +235,6 @@ function call_loops_standard($data=array()){
 	if( isset( $data['posts_per_page'] ) && $data['posts_per_page']>0 ){
 		$args['posts_per_page'] = $data['posts_per_page'];
 	}
-	
 	$filtered_args = apply_filters('ampforwp_query_args', $args);
 	$amp_q = new WP_Query( $filtered_args );
 

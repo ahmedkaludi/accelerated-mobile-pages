@@ -123,12 +123,18 @@ if ( isset($args['show_time']) ) {
         if ( true == ampforwp_get_setting('ampforwp-author-page-url') ){
             if ( function_exists('coauthors_posts_links') ) {
                 if( $author_pub_name  ){
-                    $auth_link = $author_link;
-                    if($is_author_link_amp==true){
-                        $auth_link = ampforwp_url_controller($author_link);
+                    $author_link_ = $author_link;
+                    if($is_author_link_amp==true && ampforwp_get_setting('ampforwp-archive-support')){
+                        $author_link_ = ampforwp_url_controller($author_link);
+                        if($author_link_)
+                        {
+                            echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url($author_link_).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';  
+                        }
+                        else
+                        {
+                            echo $author_link; // this is html
+                        }
                     }
-                    $author_link = (true == ampforwp_get_setting('ampforwp-archive-support'))? esc_url($auth_link) :  esc_url($author_link);
-	                echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url($author_link).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';
                     echo ampforwp_yoast_twitter_handle();
                 }
             }
