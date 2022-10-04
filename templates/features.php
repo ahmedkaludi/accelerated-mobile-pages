@@ -8847,6 +8847,24 @@ if(!function_exists('ampforwp_add_fallback_element')){
 		return $content;
 	}
 }
+
+add_filter('ampforwp_modify_the_content','amp_youtube_the_content');
+function amp_youtube_the_content($content){
+	preg_match_all('/<div\s+class="(.*?)elementor-widget-video"(.*?)data-settings=\'(.*?)\'\sdata-widget_type="video.default">/', $content, $matches);
+		
+    foreach($matches[3] as $jss){
+		$arr = json_decode($jss);
+	    $get_url = $arr->youtube_url;
+		$get_id = explode('?v=', $get_url);
+		
+		$content_html = preg_replace('/<div\s+class="(.*?)elementor-widget-video"(.*?)data-settings=\'(.*?)\'\sdata-widget_type="video.default">/','<amp-youtube 
+		data-videoid="'.$get_id[1].'" 
+		layout="responsive"
+		width="480" height="270"></amp-youtube><div class="$1elementor-widget-video"$2data-settings="$3">', $content);
+		return $content_html;
+	}
+}
+
 if(!function_exists('ampforwp_imagify_webp_compatibility')){
 	function ampforwp_imagify_webp_compatibility($content){
 		if(function_exists('_imagify_init')){
