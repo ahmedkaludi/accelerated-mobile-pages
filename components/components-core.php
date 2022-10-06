@@ -982,7 +982,12 @@ function ampforwp_backtotop_global_css(){?>
  	html {
     scroll-behavior: smooth;
   	}
-<?php } }
+<?php } ?>
+.web-stories-list__story-poster amp-img {
+    width: 100%;
+    height: 100%;
+}
+<?php }
 // Fallback for amp_call_now #2782
 if ( !function_exists('amp_call_now') ) {
 	function amp_call_now(){
