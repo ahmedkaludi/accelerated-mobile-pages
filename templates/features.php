@@ -8847,6 +8847,71 @@ if(!function_exists('ampforwp_add_fallback_element')){
 		return $content;
 	}
 }
+// added fix for youtube video not displaying on AMP using Elementor #5322
+add_filter('ampforwp_modify_the_content','amp_youtube_the_content');
+
+function amp_youtube_the_content($content){
+	// checking is Elementor is installed and activated
+	if ( did_action( 'elementor/loaded' ) ) {
+			preg_match_all('/<div\s+class="(.*?)elementor-widget-video"(.*?)data-settings=\'(.*?)\'\sdata-widget_type="video.default">/', $content, $matches);
+				foreach($matches[3] as $video){
+					$video_attr = json_decode($video);
+					$get_url = $video_attr->youtube_url;
+					$get_id = get_video_id_from_url($get_url);
+					$content_html = preg_replace('/<div\s+class="(.*?)elementor-widget-video"(.*?)data-settings=\'(.*?)\'\sdata-widget_type="video.default">/','<amp-youtube 
+					data-videoid="'.$get_id.'" 
+					layout="responsive"
+					width="480" height="270"></amp-youtube>', $content);
+					return $content_html;
+				}
+	}
+	return $content;
+}
+
+ function get_video_id_from_url( $url ) {
+	$short_url_host = 'youtu.be';
+	$video_id = false;
+	$parsed_url = parse_url( $url );
+	
+	if(!isset($parsed_url['host'])){
+		$parsed_url['host'] = '';
+	}
+	if ($short_url_host === substr( $parsed_url['host'], -strlen($short_url_host ) ) ) {
+		// youtu.be/{id}
+		$parts = explode( '/', $parsed_url['path'] );
+		if ( ! empty( $parts ) ) {
+			$video_id = $parts[1];
+		}
+	} else {
+		// ?v={id} or ?list={id}
+		if(isset($parsed_url['query'])){
+		  parse_str( $parsed_url['query'], $query_args );
+		}
+		
+		if ( isset( $query_args['v'] ) ) {
+			if ( false !== strpos( $query_args['v'], '?' ) ) {
+				$video_id = strtok( $query_args['v'], '?' );
+				var_dump($query_args);
+			}
+			else{
+				$video_id = $query_args['v'];
+			}
+		}
+	}
+
+	if ( empty( $video_id ) ) {
+		// /(v|e|embed)/{id}
+		$parts = explode( '/', $parsed_url['path'] );
+
+		if ( in_array( $parts[1], array( 'v', 'e', 'embed' ) ) ) {
+			$video_id = $parts[2];
+		}
+	}
+
+	return $video_id;
+}
+
+
 if(!function_exists('ampforwp_imagify_webp_compatibility')){
 	function ampforwp_imagify_webp_compatibility($content){
 		if(function_exists('_imagify_init')){
