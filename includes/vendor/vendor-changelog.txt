@@ -96,3 +96,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 66. Whitelisted label and input tags #4054
 67. Whitelisted Picture tag #4051
 68. Improvement in input type #4289
+69. Fixed $url to render function in class-amp-Dailymotion-embed.php line 72
