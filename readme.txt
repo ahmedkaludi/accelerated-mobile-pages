@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.77.51
+Stable tag: 1.0.77.52
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.52 (14th October 2022) =
+* Fixed: Duplicate canonical URL when AIOSEO Pro is active. #5320 
+* Fixed: Youtube embedded videos via elementor is not displaying in the AMP version #5322
+* Fixed: Slide Anything image src not loading properly. #5315
+* Fixed: PHP Warning Attempt to read property "post_type" on null #5323
+* Fixed: While adding the multiple Webstories  on the website page, the image is not showing of the web stories the AMP Pages. #5301
+* Fixed: Author names are not shown in AMP when the Co-Authors Plus plugin is activated #5319
 
 = 1.0.77.51 (9th September 2022) =
 * Fixed: Infinite scroll doesn't work with custom post type. #5309

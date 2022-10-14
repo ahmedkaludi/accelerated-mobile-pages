@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.77.50
+Stable tag: 1.0.77.52
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -196,6 +196,19 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.77.52 (14th October 2022) =
+* Fixed: Duplicate canonical URL when AIOSEO Pro is active. #5320 
+* Fixed: Youtube embedded videos via elementor is not displaying in the AMP version #5322
+* Fixed: Slide Anything image src not loading properly. #5315
+* Fixed: PHP Warning Attempt to read property "post_type" on null #5323
+* Fixed: While adding the multiple Webstories  on the website page, the image is not showing of the web stories the AMP Pages. #5301
+* Fixed: Author names are not shown in AMP when the Co-Authors Plus plugin is activated #5319 
+
+= 1.0.77.51 (9th September 2022) =
+* Fixed: Infinite scroll doesn't work with custom post type. #5309
+* Fixed: Need to make it compatible with the Co-Authors Plus plugin  #5313
+* Fixed: Slide Anything image src not loading properly. #5315
 
 = 1.0.77.50 (24th August 2022) =
 * Fixed: "Back to Top link" option adds amp-animation & amp-position-observer script without its usage on page #5305

@@ -8862,7 +8862,7 @@ function amp_youtube_the_content($content){
 					data-videoid="'.$get_id.'" 
 					layout="responsive"
 					width="480" height="270"></amp-youtube>', $content);
-					return $content_html;
+					return esc_html($content_html);
 				}
 	}
 	return $content;
