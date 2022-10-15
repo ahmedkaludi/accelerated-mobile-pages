@@ -8859,10 +8859,10 @@ function amp_youtube_the_content($content){
 					$get_url = $video_attr->youtube_url;
 					$get_id = get_video_id_from_url($get_url);
 					$content_html = preg_replace('/<div\s+class="(.*?)elementor-widget-video"(.*?)data-settings=\'(.*?)\'\sdata-widget_type="video.default">/','<amp-youtube 
-					data-videoid="'.esc_html($get_id).'" 
+					data-videoid="'.esc_attr($get_id).'" 
 					layout="responsive"
 					width="480" height="270"></amp-youtube>', $content);
-					return esc_html($content_html);
+					return $content_html;
 				}
 	}
 	return $content;
