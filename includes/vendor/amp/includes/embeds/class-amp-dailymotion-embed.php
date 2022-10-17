@@ -61,6 +61,7 @@ class AMP_DailyMotion_Embed_Handler extends AMP_Base_Embed_Handler {
 		}
 
 		return $this->render( array(
+			'url'=>$url,
 			'video_id' => $video_id,
 		) );
 	}

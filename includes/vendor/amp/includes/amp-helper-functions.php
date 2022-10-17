@@ -25,18 +25,22 @@ function amp_get_permalink( $post_id ) {
 }
 
 function post_supports_amp( $post ) {
-	// Because `add_rewrite_endpoint` doesn't let us target specific post_types :(
-	if ( ! post_type_supports( $post->post_type, AMP_QUERY_VAR ) ) {
-		return false;
-	}
+	// checking for $post->ID and $post->post_type since dynamically generated pages does not have these value set
+	if(isset($post))
+	{
+		// Because `add_rewrite_endpoint` doesn't let us target specific post_types :(
+		if ( isset($post->post_type) && ! post_type_supports( $post->post_type, AMP_QUERY_VAR ) ) {
+			return false;
+		}
 
-	if ( post_password_required( $post ) ) {
-		return false;
-	}
+		if ( post_password_required( $post ) ) {
+			return false;
+		}
 
-	if ( true === apply_filters( 'amp_skip_post', false, $post->ID, $post ) ) {
-		return false;
-	}
+		if ( isset($post->ID) && true === apply_filters( 'amp_skip_post', false, $post->ID, $post ) ) {
+			return false;
+		}
+	}	
 
 	return true;
 }
