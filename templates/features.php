@@ -8910,7 +8910,6 @@ function amp_youtube_the_content($content){
 	return $video_id;
 }
 
-
 if(!function_exists('ampforwp_imagify_webp_compatibility')){
 	function ampforwp_imagify_webp_compatibility($content){
 		if(function_exists('_imagify_init')){
