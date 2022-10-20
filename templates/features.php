@@ -3328,6 +3328,7 @@ function ampforwp_content_sanitizer( $content ) {
 						'AMP_Vine_Embed_Handler' => array(),
 						'AMP_Facebook_Embed_Handler' => array(),
 						'AMP_Gallery_Embed_Handler' => array(),
+						'AMP_Tiktok_Embed_Handler'=>array(),
 				) ),
 				apply_filters(  'amp_content_sanitizers', array(
 						 'AMP_Style_Sanitizer' => array(),
@@ -3848,6 +3849,7 @@ function ampforwp_generate_pagebuilder_data() {
           'AMP_Vine_Embed_Handler' => array(),
           'AMP_Facebook_Embed_Handler' => array(),
           'AMP_Gallery_Embed_Handler' => array(),
+		  'AMP_Tiktok_Embed_Handler'=>array(),
     ) ),
     apply_filters(  'amp_content_sanitizers', array(
            'AMP_Style_Sanitizer' => array(),
@@ -4115,6 +4117,7 @@ function ampforwp_post_pagination( $args = '' ) {
                   			'AMP_Pinterest_Embed_Handler'   => array(),
           				    'AMP_Gallery_Embed_Handler'     => array(),
                       		'AMP_Playlist_Embed_Handler'    => array(),
+							  'AMP_Tiktok_Embed_Handler'=>array(),
              		 ) ),
               apply_filters(  'amp_content_sanitizers', array(
           				    'AMP_Style_Sanitizer'     => array(),
@@ -4311,6 +4314,7 @@ function ampforwp_post_paginated_content($content){
                   			'AMP_Pinterest_Embed_Handler'   => array(),
           				    'AMP_Gallery_Embed_Handler'     => array(),
                       		'AMP_Playlist_Embed_Handler'    => array(),
+							  'AMP_Tiktok_Embed_Handler'=>array(),
              		 ) ),
               apply_filters(  'amp_content_sanitizers', array(
           				    'AMP_Style_Sanitizer'     => array(),
@@ -7261,6 +7265,7 @@ function ampforwp_comments_sanitizer(){
 		          'AMP_Facebook_Embed_Handler' => array(),
 		          'AMP_Pinterest_Embed_Handler' => array(),
 		          'AMP_Gallery_Embed_Handler' => array(),
+				  'AMP_Tiktok_Embed_Handler'=>array(),
 		    ) ),  apply_filters(  'amp_sidebar_sanitizers', array(
 		           'AMP_Style_Sanitizer' => array(),
 		           'AMP_Blacklist_Sanitizer' => array(),

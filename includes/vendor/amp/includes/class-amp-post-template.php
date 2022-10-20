@@ -42,6 +42,7 @@ require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-pinterest-embed.p
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-wistia-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-core-block-handler.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-playlist-embed-handler.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-tiktok-embed.php' );
 
 if ( file_exists( AMPFORWP_PLUGIN_DIR .'includes/vendor/css-parser/autoload.php' ) ) {
 	require_once AMPFORWP_PLUGIN_DIR .'includes/vendor/css-parser/autoload.php';
@@ -290,7 +291,6 @@ class AMP_Post_Template {
 				$new_post_content = '';
 			// #2001 Filter to remove the unused JS from the paginated post
 			$new_post_content = apply_filters( 'ampforwp_post_content_filter', $new_post_content );
-			$new_post_content .= $this->ampforwp_tiktok_video_support($new_post_content);
 
 			$amp_content = new AMP_Content( $new_post_content,
 				apply_filters( 'amp_content_embed_handlers', array(
@@ -308,6 +308,7 @@ class AMP_Post_Template {
 					'AMP_Gallery_Embed_Handler' => array(),
 					'AMP_Playlist_Embed_Handler'    => array(),
 					'AMP_Wistia_Embed_Handler' => array(),
+					'AMP_Tiktok_Embed_Handler'=>array(),
 				), $this->post ),
 				apply_filters( 'amp_content_sanitizers', array(
 					 'AMP_Style_Sanitizer' => array(),
@@ -346,16 +347,6 @@ class AMP_Post_Template {
 			$this->add_data_by_key( 'post_amp_content', '' );
 			$this->merge_data_for_key( 'amp_component_scripts', array() );
 			$this->add_data_by_key( 'post_amp_styles', array() );
-		}
-	}
-	public function ampforwp_tiktok_video_support($content){
-		if(preg_match('/<blockquote(.*?)(https?:\/\/(?:www\.)?(?:tiktok\.com\/@(.*?)\/video\/\d+))(.*?)data-video-id="(.*?)"(.*?)<\/blockquote>/i', $content,$matches)){
-			if(isset($matches[5])){
-				$src = 'https://www.tiktok.com/embed/v2/'.$matches[5].'?lang=en-US';
-				$iframe = '<iframe src="'.esc_url_raw($src).'" width="375" height="820" allow="fullscreen"></iframe>';
-				$content = preg_replace('/<blockquote(.*?)(https?:\/\/(?:www\.)?(?:tiktok\.com\/@(.*?)\/video\/\d+))(.*?)data-video-id="(.*?)"(.*?)<\/blockquote>/i', $iframe, $content);
-			}
-			return $content;
 		}
 	}
 	

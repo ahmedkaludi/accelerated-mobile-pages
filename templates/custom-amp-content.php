@@ -55,6 +55,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
                   'AMP_Pinterest_Embed_Handler'   => array(),
           				    'AMP_Gallery_Embed_Handler'     => array(),
                       'AMP_Playlist_Embed_Handler'    => array(),
+                      'AMP_Tiktok_Embed_Handler'=>array(),
               ) ),
               apply_filters(  'amp_content_sanitizers', array(
           				    'AMP_Style_Sanitizer'     => array(),
