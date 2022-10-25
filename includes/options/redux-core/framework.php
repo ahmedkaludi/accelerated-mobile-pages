@@ -2846,8 +2846,12 @@
 
                     $values = $values[ $redux->args['opt_name'] ];
 
+                    // Saving a copy of global css 
+                    $tmp_css_editor = $values['css_editor'];
                     $values = array_map( 'stripslashes_deep', $values );
 
+                    // fixing backslash not saving in global css #5329
+                    $values['css_editor'] = $tmp_css_editor;
                     if ( ! empty ( $values ) ) {
 
                         try {

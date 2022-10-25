@@ -627,6 +627,7 @@ Class AMPforWP_theme_mode{
 					'AMP_Gallery_Embed_Handler' => array(),
 					'AMP_Playlist_Embed_Handler'    => array(),
 					'AMP_Wistia_Embed_Handler' => array(),
+					'AMP_Tiktok_Embed_Handler'=>array(),
 				) ),
 				apply_filters( 'amp_content_sanitizers_template_mode', array(
 					 'AMP_Style_Sanitizer' => array(),

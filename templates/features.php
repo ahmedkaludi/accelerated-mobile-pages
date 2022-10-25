@@ -3328,6 +3328,7 @@ function ampforwp_content_sanitizer( $content ) {
 						'AMP_Vine_Embed_Handler' => array(),
 						'AMP_Facebook_Embed_Handler' => array(),
 						'AMP_Gallery_Embed_Handler' => array(),
+						'AMP_Tiktok_Embed_Handler'=>array(),
 				) ),
 				apply_filters(  'amp_content_sanitizers', array(
 						 'AMP_Style_Sanitizer' => array(),
@@ -3848,6 +3849,7 @@ function ampforwp_generate_pagebuilder_data() {
           'AMP_Vine_Embed_Handler' => array(),
           'AMP_Facebook_Embed_Handler' => array(),
           'AMP_Gallery_Embed_Handler' => array(),
+		  'AMP_Tiktok_Embed_Handler'=>array(),
     ) ),
     apply_filters(  'amp_content_sanitizers', array(
            'AMP_Style_Sanitizer' => array(),
@@ -4115,6 +4117,7 @@ function ampforwp_post_pagination( $args = '' ) {
                   			'AMP_Pinterest_Embed_Handler'   => array(),
           				    'AMP_Gallery_Embed_Handler'     => array(),
                       		'AMP_Playlist_Embed_Handler'    => array(),
+							  'AMP_Tiktok_Embed_Handler'=>array(),
              		 ) ),
               apply_filters(  'amp_content_sanitizers', array(
           				    'AMP_Style_Sanitizer'     => array(),
@@ -4311,6 +4314,7 @@ function ampforwp_post_paginated_content($content){
                   			'AMP_Pinterest_Embed_Handler'   => array(),
           				    'AMP_Gallery_Embed_Handler'     => array(),
                       		'AMP_Playlist_Embed_Handler'    => array(),
+							  'AMP_Tiktok_Embed_Handler'=>array(),
              		 ) ),
               apply_filters(  'amp_content_sanitizers', array(
           				    'AMP_Style_Sanitizer'     => array(),
@@ -7261,6 +7265,7 @@ function ampforwp_comments_sanitizer(){
 		          'AMP_Facebook_Embed_Handler' => array(),
 		          'AMP_Pinterest_Embed_Handler' => array(),
 		          'AMP_Gallery_Embed_Handler' => array(),
+				  'AMP_Tiktok_Embed_Handler'=>array(),
 		    ) ),  apply_filters(  'amp_sidebar_sanitizers', array(
 		           'AMP_Style_Sanitizer' => array(),
 		           'AMP_Blacklist_Sanitizer' => array(),
@@ -8847,6 +8852,8 @@ if(!function_exists('ampforwp_add_fallback_element')){
 		return $content;
 	}
 }
+
+
 // added fix for youtube video not displaying on AMP using Elementor #5322
 add_filter('ampforwp_modify_the_content','amp_youtube_the_content');
 
@@ -8858,10 +8865,24 @@ function amp_youtube_the_content($content){
 					$video_attr = json_decode($video);
 					$get_url = $video_attr->youtube_url;
 					$get_id = get_video_id_from_url($get_url);
-					$content_html = preg_replace('/<div\s+class="(.*?)elementor-widget-video"(.*?)data-settings=\'(.*?)\'\sdata-widget_type="video.default">/','<amp-youtube 
-					data-videoid="'.esc_attr($get_id).'" 
-					layout="responsive"
-					width="480" height="270"></amp-youtube>', $content);
+					if(ampforwp_get_setting('ampforwp-amp-video-lightbox')==true)
+					{
+						$content_html=preg_replace('/<div\s+class="(.*?)elementor-widget-video"(.*?)data-settings=\'(.*?)\'\sdata-widget_type="video.default">/','<amp-lightbox id="open-video'.esc_attr($get_id).'" layout="nodisplay">
+						<div class="amp-lightbox-video" on="tap:open-video'.esc_attr($get_id).'.close,btn-play'.esc_attr($get_id).'.show" role="button" aria-label="Close Video">
+						<div class="amp-video-box"><amp-youtube data-videoid="'.esc_attr($get_id).'" layout="responsive" width="480" height="270"></amp-youtube></div></div></amp-lightbox>
+						<div class="amp-video-img" id="btn-play'.esc_attr($get_id).'" on="tap:video.show, video.play, btn-play'.esc_attr($get_id).'.hide,open-video'.esc_attr($get_id).'" role="button"  aria-label="Play Video">
+						<amp-img alt="Video" src="http://i3.ytimg.com/vi/'.esc_attr($get_id).'/hqdefault.jpg" width="480" height="270" layout="responsive"></amp-img>
+						<div class="amp-video-play-on-image"></div>
+						</div>', $content);
+			
+					}
+					else
+					{
+						$content_html = preg_replace('/<div\s+class="(.*?)elementor-widget-video"(.*?)data-settings=\'(.*?)\'\sdata-widget_type="video.default">/','<amp-youtube 
+						data-videoid="'.esc_attr($get_id).'" 
+						layout="responsive"
+						width="480" height="270"></amp-youtube>', $content);
+						}
 					return $content_html;
 				}
 	}

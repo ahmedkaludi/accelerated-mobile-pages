@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 1.0.77.53 (25th October 2022) =
+* Fixed: Backslash in custom css error #5329
+* Fixed: If we enable the Responsive ad option then no need to show size option. #5302
+* Fixed: TikTok embed video is not working in AMP #5325
+* Fixed: lightbox for Youtube feature is not working properly #5327
+
 = 1.0.77.52 (14th October 2022) =
 * Fixed: Duplicate canonical URL when AIOSEO Pro is active. #5320 
 * Fixed: Youtube embedded videos via elementor is not displaying in the AMP version #5322

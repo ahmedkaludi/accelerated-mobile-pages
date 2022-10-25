@@ -1949,3 +1949,32 @@ function redux_hook( object, functionName, callback, before ) {
         };
     }( object[functionName] ));
 }
+
+jQuery('.checkbox-input').change(function(){
+    var id=jQuery(this).attr('id');
+    var val=jQuery('#'+id).val();
+    let cusregex = /enable-amp-ads-resp-\d+/;
+    if(cusregex.test(id))
+    {
+        let ad_id=id.match(/(\d+)/);
+        if(val==1)
+        {
+            jQuery('#enable-amp-ads-select-'+ad_id[0]+'-select').parent().parent().parent().hide();
+        }
+        else{
+            jQuery('#enable-amp-ads-select-'+ad_id[0]+'-select').parent().parent().parent().show(); 
+        }
+       
+    }
+})
+if(jQuery('#enable-amp-ads-resp-1').length)
+{
+    for(var i=1;i<=8;i++)
+    {
+        if(jQuery('#enable-amp-ads-resp-'+i).length && jQuery('#enable-amp-ads-resp-'+i).val()==1)
+        {
+            jQuery('#enable-amp-ads-select-'+i+'-select').parent().parent().parent().hide();
+        }
+
+    }
+}

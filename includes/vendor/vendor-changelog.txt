@@ -98,3 +98,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 68. Improvement in input type #4289
 69. Fixed $url to render function in class-amp-Dailymotion-embed.php line 72
 70. Checking for $post->ID and $post->post_type since dynamically generated pages does not have these value set (amp-helper-functions.php from line 27) #5323
+71. Added new file for tiktok embeds class-amp-tikok-embed.php and removed old code for tiktok bed #5325
