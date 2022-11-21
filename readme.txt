@@ -194,10 +194,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.77.54 (17th November 2022) =
+= 1.0.77.54 (21st November 2022) =
 * Fixed: Tested compatibility with wp 6.1 #5331
 * Fixed: Removed deprecated warning in php 8.1.10 #5333
 * Fixed: Resolved STN video Ads due to the outdated tag issue #5334
+* New  : BFCM internal offer  #5336
 
 = 1.0.77.53 (25th October 2022) =
 * Fixed: Backslash in custom css error #5329
