@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 6.0
-Stable tag: 1.0.77.53
+Tested up to: 6.1
+Stable tag: 1.0.77.54
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.54 (21st November 2022) =
+* Fixed: Tested compatibility with wp 6.1 #5331
+* Fixed: Removed deprecated warning in php 8.1.10 #5333
+* Fixed: Resolved STN video Ads due to the outdated tag issue #5334
+* New  : BFCM internal offer  #5336
 
 = 1.0.77.53 (25th October 2022) =
 * Fixed: Backslash in custom css error #5329
