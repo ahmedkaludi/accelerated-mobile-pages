@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.77.54.1 (22nd November 2022) =
+* Fixed: PHP Fatal error: Uncaught Value Error #5174
+
 = 1.0.77.54 (21st November 2022) =
 * Fixed: Tested compatibility with wp 6.1 #5331
 * Fixed: Removed deprecated warning in php 8.1.10 #5333
