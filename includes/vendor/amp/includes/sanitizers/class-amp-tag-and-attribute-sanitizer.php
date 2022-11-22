@@ -1091,7 +1091,8 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 		 * Check 'value_casei' - case insensitive
 		 */
 		if ( isset( $attr_spec_rule[ AMP_Rule_Spec::VALUE_CASEI ] ) ) {
-			$rule_value = strtolower( $attr_spec_rule[ AMP_Rule_Spec::VALUE_CASEI ] );
+			
+			$rule_value = !is_array($attr_spec_rule[ AMP_Rule_Spec::VALUE_CASEI ])?strtolower( $attr_spec_rule[ AMP_Rule_Spec::VALUE_CASEI ] ):$attr_spec_rule[ AMP_Rule_Spec::VALUE_CASEI ];
 			if ( $node->hasAttribute( $attr_name ) ) {
 				$attr_value = strtolower( $node->getAttribute( $attr_name ) );
 				if ( $attr_value === (string) $rule_value ) {
