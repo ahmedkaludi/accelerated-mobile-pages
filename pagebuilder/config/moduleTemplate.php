@@ -60,7 +60,7 @@ if(!function_exists("ampforwp_module_templates")){
 }//If Fucntion check closed
 
 //Row Contents
-$output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row_class}} {{grid_type}} {{mobile_display}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
+$ampforwp_module_output = '<section {{if_row_id}}id={{row_id}}{{ifend_row_id}} class="ap_m {{row_class}} {{grid_type}} {{mobile_display}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
 	{{if_condition_background_type==video}}
 	<div class="amp_video">
 		<div class="amp-txt">
@@ -1112,7 +1112,7 @@ $containerCommonSettings = array(
 								'required'  => array('check_for_mrgn'=>1),
 							),
 						),
-			'front_template_start'=>$output,
+			'front_template_start'=>$ampforwp_module_output,
 			'front_template_end'=>$outputEnd,
 			'front_css'=>$front_css,
 			'front_common_css' => $front_common_css,
