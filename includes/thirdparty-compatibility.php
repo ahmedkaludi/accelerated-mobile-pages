@@ -1389,3 +1389,27 @@ if(!function_exists('ampforwp_get_coauthor_meta')){
 		return esc_html($meta_value);
 	}
 }
+
+add_action('template_redirect', 'ampforwp_callrail_buffer_start', 0);
+function ampforwp_callrail_buffer_start() {
+	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );	
+	if(function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path) && !is_admin()) {
+		add_action('shutdown', 'ampforwp_callrail_buffer_stop', PHP_INT_MAX);
+    	ob_start('ampforwp_callrail_modify_content'); 
+	}
+}
+function ampforwp_callrail_buffer_stop() {
+    ob_end_flush();
+}
+function ampforwp_callrail_modify_content($content) {
+    //modify $content
+    $config_url = $number = $analytics_url = '';
+	$config_url = ampforwp_get_setting('ampforwp-callrail-config-url');
+	$number = ampforwp_get_setting('ampforwp-callrail-number');
+	$analytics_url = ampforwp_get_setting('ampforwp-callrail-analytics-url');
+	if(!empty($config_url) && !empty($number) && !empty($analytics_url)){
+		$call_rail_analytics = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_html($number).'</a></amp-call-tracking><amp-analytics config="'.esc_url($analytics_url).'"></amp-analytics>';
+		$content = str_replace($number, $call_rail_analytics, $content);
+	}
+	return $content;
+}

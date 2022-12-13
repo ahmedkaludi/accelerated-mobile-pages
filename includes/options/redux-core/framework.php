@@ -2983,7 +2983,24 @@
 
                             }
                             if ( isset ( $field['type'] ) &&  $field['type'] == 'text'  ) {
+                                    $callrail_config_url = []; $callrail_analytics_url = [];
+                                    if($field['id'] == 'ampforwp-callrail-config-url' && !empty($plugin_options[ $field['id'] ])){
+                                        $callrail_config_url['id'] = $field['id'];
+                                        $callrail_config_url['value'] = $plugin_options[ $field['id']];
+                                    }
+                                    if($field['id'] == 'ampforwp-callrail-analytics-url' && !empty($plugin_options[ $field['id'] ])){
+                                        $callrail_analytics_url['id'] = $field['id'];
+                                        $callrail_analytics_url['value'] = $plugin_options[ $field['id']];
+                                    }
+                                    
                                     $plugin_options[ $field['id'] ]= str_replace("=", "", $plugin_options[ $field['id'] ]);
+
+                                    if(!empty($callrail_config_url)){
+                                        $plugin_options[$callrail_config_url['id']] = $callrail_config_url['value'];
+                                    }
+                                    if(!empty($callrail_analytics_url)){
+                                        $plugin_options[ $callrail_analytics_url['id'] ] = $callrail_analytics_url['value'];
+                                    }
                             }
 
 //                            if ( isset ( $field['type'] ) && $field['type'] == 'typography' ) {
