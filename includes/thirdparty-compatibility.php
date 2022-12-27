@@ -1407,7 +1407,20 @@ function ampforwp_callrail_buffer_stop() {
 }
 function ampforwp_callrail_modify_content($content) {
     //modify $content
-    if(ampforwp_get_setting('ampforwp-callrail-switch')){
+    $config_url = $number = $analytics_url = '';
+	$config_url = ampforwp_get_setting('ampforwp-callrail-config-url');
+	$number = ampforwp_get_setting('ampforwp-callrail-number');
+	$analytics_url = ampforwp_get_setting('ampforwp-callrail-analytics-url');
+	if(ampforwp_is_callrail_switch_active()){
+		$call_rail_analytics = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_html($number).'</a></amp-call-tracking><amp-analytics config="'.esc_url($analytics_url).'"></amp-analytics>';
+		$content = str_replace($number, $call_rail_analytics, $content);
+	}
+	return $content;
+}
+
+function ampforwp_is_callrail_switch_active()
+{
+	if(ampforwp_get_setting('ampforwp-callrail-switch')){
 	    $config_url = $number = $analytics_url = '';
 		$config_url = ampforwp_get_setting('ampforwp-callrail-config-url');
 		$number = ampforwp_get_setting('ampforwp-callrail-number');
