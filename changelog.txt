@@ -1,5 +1,13 @@
 == Changelog ==
 
+= 1.0.77.55 (27th December 2022) =
+* Fixed: Unable to add STN video Ads due to the outdated tag #5334
+* Fixed: Jetpack Boost disappears after enabling the AMP Takeover #5343
+* Fixed: When implementing callRail analytics, it throws error in console #5344
+* Fixed: Fallback attribute is getting stripped when Change Pagination Links to /amp option is enabled #5345
+* Fixed: AMP is reacting with the Scripts in the WP root folder #5346
+* Fixed: PHP warning appears after activating AMP with WP Fastest Cache #5348
+
 = 1.0.77.54.1 (22nd November 2022) =
 * Fixed: PHP Fatal error: Uncaught Value Error #5174
 
