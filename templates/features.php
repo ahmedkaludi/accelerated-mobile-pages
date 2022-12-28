@@ -9432,7 +9432,7 @@ function ampforwp_remove_homepage_breadcrumb($data){
 		if (isset($data["@graph"][2]["breadcrumb"])) {
 			unset($data["@graph"][2]["breadcrumb"]);
 		}
-		if(array_key_exists(3, $data["@graph"]) {
+		if(array_key_exists(3, $data["@graph"])) {
 			if (!empty($data["@graph"][3]["@type"]) && $data["@graph"][3]["@type"] == 'BreadcrumbList') {
 				unset($data["@graph"][3]);
 			}
