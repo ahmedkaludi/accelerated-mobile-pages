@@ -1450,7 +1450,7 @@ function ampforwp_mobile_redirection_notice(){
           $plugin = 'LiteSpeed Cache';
           $option = 'Cache Mobile';
     }
-    if(function_exists('wpfastestcache_activate') && 'on' != $GLOBALS["wp_fastest_cache_options"]->wpFastestCacheMobile) {
+    if(function_exists('wpfastestcache_activate') && isset($GLOBALS["wp_fastest_cache_options"]->wpFastestCacheMobile) && 'on' != $GLOBALS["wp_fastest_cache_options"]->wpFastestCacheMobile) {
           $plugin = 'WP Fastest Cache';
           $option = 'Mobile';
     }

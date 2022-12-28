@@ -8692,6 +8692,25 @@ function ampforwp_include_required_scripts($content){
 		}
 	}
 
+	$amp_video_iframe = $xpath->query("//amp-video-iframe");
+	foreach($amp_video_iframe as $node) {
+		if($node->hasAttribute('dock')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+				$celem = 'element';
+				$ocomp = 'amp-video-docking';
+				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
+					$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+					$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
+					$content =  str_replace('<head>', $script_tag, $content);
+				}
+			}else{
+				if(preg_match('/<amp-video-iframe(.*?) dock|dock=">/', $content)){
+					$content = preg_replace('/<amp-video-iframe(.*?) dock|dock=">/','<amp-video-iframe $1>', $content);
+				}
+			}
+		}
+	}
+
 	$amp_youtube = $xpath->query("//amp-youtube");
 	foreach($amp_youtube as $node) {
 		if($node->hasAttribute('dock')){

@@ -1324,8 +1324,10 @@ function ampforwp_zeen_lazyload($lazyload){
 add_action('plugins_loaded', 'ampforwp_jetpack_boost_compatibility' , 0);
 function ampforwp_jetpack_boost_compatibility(){
     $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );	
-    if (function_exists('\Automattic\Jetpack_Boost\run_jetpack_boost') && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
- 		remove_action( 'plugins_loaded', '\Automattic\Jetpack_Boost\run_jetpack_boost', 1 );
+    if (function_exists('\Automattic\Jetpack_Boost\run_jetpack_boost') && function_exists('ampforwp_is_amp_inURL') && !ampforwp_is_amp_inURL($url_path)) {
+    	if(!is_admin()){
+ 			remove_action( 'plugins_loaded', '\Automattic\Jetpack_Boost\run_jetpack_boost', 1 );
+ 		}
  	}
 }
 if(!function_exists('ampforwp_get_coauthor_id')){
@@ -1385,5 +1387,49 @@ if(!function_exists('ampforwp_get_coauthor_meta')){
 			$meta_value=$meta_value[$coauthor_id];
 		}
 		return esc_html($meta_value);
+	}
+}
+
+add_action('template_redirect', 'ampforwp_callrail_buffer_start', 0);
+function ampforwp_callrail_buffer_start() {
+	if(ampforwp_is_callrail_switch_active()){
+		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );	
+		if(function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path) && !is_admin()) {
+			add_action('shutdown', 'ampforwp_callrail_buffer_stop', PHP_INT_MAX);
+	    	ob_start('ampforwp_callrail_modify_content'); 
+		}
+	}
+}
+function ampforwp_callrail_buffer_stop() {
+	if(ob_get_length() > 0) {
+    	ob_end_flush();
+    }
+}
+function ampforwp_callrail_modify_content($content) {
+    //modify $content
+    $config_url = $number = $analytics_url = '';
+	$config_url = ampforwp_get_setting('ampforwp-callrail-config-url');
+	$number = ampforwp_get_setting('ampforwp-callrail-number');
+	$analytics_url = ampforwp_get_setting('ampforwp-callrail-analytics-url');
+	$call_rail_analytics = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_html($number).'</a></amp-call-tracking><amp-analytics config="'.esc_url($analytics_url).'"></amp-analytics>';
+	$content = str_replace($number, $call_rail_analytics, $content);
+
+	return $content;
+}
+
+function ampforwp_is_callrail_switch_active()
+{
+	if(ampforwp_get_setting('ampforwp-callrail-switch')){
+	    $config_url = $number = $analytics_url = '';
+		$config_url = ampforwp_get_setting('ampforwp-callrail-config-url');
+		$number = ampforwp_get_setting('ampforwp-callrail-number');
+		$analytics_url = ampforwp_get_setting('ampforwp-callrail-analytics-url');
+		if(!empty($config_url) && !empty($number) && !empty($analytics_url)){
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+		return false;
 	}
 }
