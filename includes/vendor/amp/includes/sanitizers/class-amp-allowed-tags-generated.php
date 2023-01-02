@@ -22488,11 +22488,7 @@ class AMP_Allowed_Tags_Generated {
 		'datatype' => array(),
 		'dir' => array(),
 		'draggable' => array(),
-		'fallback' => array(
-			'value' => array(
-				'',
-			),
-		),
+		'fallback' => array(),
 		'hidden' => array(
 			'value' => array(
 				'',
