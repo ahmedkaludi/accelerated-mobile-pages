@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.77.55.1 (2nd January 2023) =
+* Fixed: Disallowed attribute or attribute value present in HTML tag error issue resolved #5360
+
 = 1.0.77.55 (27th December 2022) =
 * Fixed: Unable to add STN video Ads due to the outdated tag #5334
 * Fixed: Jetpack Boost disappears after enabling the AMP Takeover #5343

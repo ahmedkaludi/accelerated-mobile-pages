@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.1
-Stable tag: 1.0.77.55
+Stable tag: 1.0.77.55.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,6 +193,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.77.55.1 (2nd January 2023) =
+* Fixed: Disallowed attribute or attribute value present in HTML tag error issue resolved #5360
 
 = 1.0.77.55 (27th December 2022) =
 * Fixed: Unable to add STN video Ads due to the outdated tag #5334
