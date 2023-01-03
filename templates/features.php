@@ -8704,8 +8704,8 @@ function ampforwp_include_required_scripts($content){
 					$content =  str_replace('<head>', $script_tag, $content);
 				}
 			}else{
-				if(preg_match('/<amp-video-iframe(.*?) dock|dock=">/', $content)){
-					$content = preg_replace('/<amp-video-iframe(.*?) dock|dock=">/','<amp-video-iframe $1>', $content);
+				if(preg_match('/<amp-video-iframe(.*?) (dock|dock=")>/', $content)){
+					$content = preg_replace('/<amp-video-iframe(.*?) (dock|dock=")>/','<amp-video-iframe $1>', $content);
 				}
 			}
 		}
