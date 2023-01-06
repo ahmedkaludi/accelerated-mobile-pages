@@ -1098,7 +1098,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 			$rule_value = !is_array($attr_spec_rule[ AMP_Rule_Spec::VALUE_CASEI ])?strtolower( $attr_spec_rule[ AMP_Rule_Spec::VALUE_CASEI ] ):$attr_spec_rule[ AMP_Rule_Spec::VALUE_CASEI ];
 			if ( $node->hasAttribute( $attr_name ) ) {
 				$attr_value = strtolower( $node->getAttribute( $attr_name ) );
-				if ( $attr_value === (string) $rule_value ) {
+				if ( $attr_value === join($rule_value) {
 					return AMP_Rule_Spec::PASS;
 				} else {
 					return AMP_Rule_Spec::FAIL;
@@ -1107,7 +1107,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 				foreach ( $attr_spec_rule[ AMP_Rule_Spec::ALTERNATIVE_NAMES ] as $alternative_name ) {
 					if ( $node->hasAttribute( $alternative_name ) ) {
 						$attr_value = strtolower( $node->getAttribute( $alternative_name ) );
-						if ( $attr_value === (string) $rule_value ) {
+						if ( $attr_value === join($rule_value) {
 							return AMP_Rule_Spec::PASS;
 						} else {
 							return AMP_Rule_Spec::FAIL;
