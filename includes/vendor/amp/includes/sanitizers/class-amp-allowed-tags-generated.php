@@ -7584,11 +7584,7 @@ class AMP_Allowed_Tags_Generated {
 							'',
 						),
 					),
-					'controls' => array(
-						'value' => array(
-							'',
-						),
-					),
+					'controls' => array(),
 					'controlslist' => array(),
 					'crossorigin' => array(),
 					'data-amp-bind-album' => array(),
