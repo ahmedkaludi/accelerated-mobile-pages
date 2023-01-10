@@ -1,5 +1,7 @@
 jQuery(function($) {
     var reduxOptionSearch = function(){
+
+        if(jQuery('.redux_field_search').length > 0){
             jQuery('.redux_field_search').typeWatch({
                 callback:function( searchString ){
                     searchString = searchString.toLowerCase();
@@ -112,6 +114,7 @@ jQuery(function($) {
                 highlight:false,
                 captureLength:0
             });
+        }
         }
     $('.redux-container').each(function() {
         if (!$(this).hasClass('redux-no-sections')) {
