@@ -8887,7 +8887,8 @@ function amp_youtube_the_content($content){
 					if(ampforwp_get_setting('ampforwp-amp-video-lightbox')==true)
 					{
 						$content_html=preg_replace('/<div\s+class="(.*?)elementor-widget-video"(.*?)data-settings=\'(.*?)\'\sdata-widget_type="video.default">/','<amp-lightbox id="open-video'.esc_attr($get_id).'" layout="nodisplay">
-						<div class="amp-lightbox-video" on="tap:open-video'.esc_attr($get_id).'.close,btn-play'.esc_attr($get_id).'.show" role="button" aria-label="Close Video">
+						<div class="amp-lightbox-video" on="tap:open-video'.esc_attr($get_id).'.close,btn-play'.esc_attr($get_id).'.show" role="button" tabindex=0 aria-label="Close Video">
+						<a title="close" class="lb-x" href="#" on="tap:open-video'.esc_attr($get_id).'.close,btn-play'.esc_attr($get_id).'.show" role="button" tabindex=0></a>
 						<div class="amp-video-box"><amp-youtube data-videoid="'.esc_attr($get_id).'" layout="responsive" width="480" height="270"></amp-youtube></div></div></amp-lightbox>
 						<div class="amp-video-img" id="btn-play'.esc_attr($get_id).'" on="tap:video.show, video.play, btn-play'.esc_attr($get_id).'.hide,open-video'.esc_attr($get_id).'" role="button"  aria-label="Play Video">
 						<amp-img alt="Video" src="http://i3.ytimg.com/vi/'.esc_attr($get_id).'/hqdefault.jpg" width="480" height="270" layout="responsive"></amp-img>
@@ -9411,6 +9412,7 @@ function ampforwp_video_lightbox_css(){
 .amp-lightbox-video{background:rgba(0,0,0,.8);width:100%;height:100%;position:absolute;display:flex;align-items:center;justify-content:center}
 .amp-video-box{max-width:800px}
 .amp-video-img{max-width:600px;position:relative}
+.amp-lightbox-video .lb-x { top: 100px; right: 5%; }
 .amp-video-play-on-image{cursor:pointer;margin:auto;width:56px;height:56px;-webkit-border-radius:50%;border-radius:50%;background-color:rgba(0,0,0,.2);background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAAY1BMVEVHcEz///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////80LMUcAAAAIHRSTlMA1d4MSXeg9glf6yEq4hfnnr7Z8qm5U/3Jm1pwFJcmBYTgJ9QAAAIjSURBVGje7VnJdoMwDFSMHVMSQljCklX//5U99NQHGEm22gtz9tPAWNYKsGPHDiou1h3rpvDD4Iumvjp7SWg86yeDM5ipz5KYt53HFfjORn+8KzEI88iizLe4icLlUvtfFZJQ3kXmTzWScTsJPr9FBtovpvn8iExMrJu4jMjGyHh67xIFMOSLOFcoQnUmfr/QPmL1JulfohiGcA/5iBEYt33piFG4br4vjMTGizu1sQRt2FlrjMZNVSBExEBszaoUBOW6JzlMArf6A0XIOzyZoMgkPwDnA5nhsWz/E4wRnBxhVuoTDBMAkGVarma6TQKyTN3iFfttAqJMg1/y1B4JBFSZ+gWCiUZAk+m1QGCIBCSZmoVEhlQCkkxPppP+JiDIZNlxiFmYOXaqnEX2sEwTO9XMq6egTPXsfMMlCMt0mB0v2ARBmYrZYS8gCMjkZ2cHCcG6TMPfE6hLpH7J6m6a+KHN67urdqhQD3bq4Vo94ainTP2kn7RssbqFF7a5buk4dP9T/Ib9KEH5Dg/lBkS/hVJvAiEvU9gPtLFwT0HQh1r9m/IoQX8YEj+t2JwCX+PsT7ojtWH8EIaCJmIo+FQeaxJHs9LBbPkGIt4ilQxjxi8ajj+BgZztra8P8MBcUAi2LCdGXJKsWADgTozeppeuoXJXEPKXfM0FANnDaC7qtlaNbfyq8Uep/rXQYDUvm0M6XKyb6sPPuvdwm5x9wo4dO6j4BoilN6H4pmTiAAAAAElFTkSuQmCC);background-position:center;-webkit-background-size:48px 48px;background-size:48px 48px;position:absolute;top:0;bottom:0;left:0;right:0}';
 }
 

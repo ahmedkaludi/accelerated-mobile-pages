@@ -1321,13 +1321,11 @@ function ampforwp_zeen_lazyload($lazyload){
     return $lazyload;
 }
 
-add_action('plugins_loaded', 'ampforwp_jetpack_boost_compatibility' , 0);
+add_action('plugins_loaded', 'ampforwp_jetpack_boost_compatibility' , 1);
 function ampforwp_jetpack_boost_compatibility(){
     $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );	
-    if (function_exists('\Automattic\Jetpack_Boost\run_jetpack_boost') && function_exists('ampforwp_is_amp_inURL') && !ampforwp_is_amp_inURL($url_path)) {
-    	if(!is_admin()){
+    if (function_exists('\Automattic\Jetpack_Boost\run_jetpack_boost') && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path) && !is_admin()) {
  			remove_action( 'plugins_loaded', '\Automattic\Jetpack_Boost\run_jetpack_boost', 1 );
- 		}
  	}
 }
 if(!function_exists('ampforwp_get_coauthor_id')){

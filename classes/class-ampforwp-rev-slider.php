@@ -341,6 +341,9 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 		$amp_images = array();
 		$tag_type = '';
 		foreach ( $args['images'] as $key => $image ) {
+
+			$amp_img_arr = array();
+
 			if($image['bgtype'] =="image" || $image['bgtype'] =="external" ){
 				$amp_img_arr = array(
 					'src' => $image['url'],
@@ -401,7 +404,9 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 			if(  3 == ampforwp_get_setting('ampforwp-gallery-design-type') || true == ampforwp_get_setting('ampforwp-gallery-lightbox') ){
 				$design3_additional_attr = array('on'=> 'tap:gallery-lightbox', 'role'=>'button', 
                 	'tabindex'=>$key);
-				$amp_img_arr = array_merge($amp_img_arr, $design3_additional_attr);
+				if( is_array($amp_img_arr) && !empty($amp_img_arr) ){
+					$amp_img_arr = array_merge($amp_img_arr, $design3_additional_attr);
+				}				
 				$amp_image_lightbox = '<amp-image-lightbox id="gallery-lightbox" layout="nodisplay">
 					      <div on="tap:gallery-lightbox.close" role="button"
 					          tabindex="0">
