@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.1
-Stable tag: 1.0.78
+Stable tag: 1.0.77.55
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,18 +193,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
-
-= 1.0.78 (10th January 2023) =
-* Fixed: Unnecessary character showing issue resolved #5334
-* Fixed: Youtube close button not appearing in lightbox issue resolved #5357
-* Fixed: Iframe code not loading issue resolved #5358
-* Fixed: Jet Booster not connecting to site issue resolved #5362
-* Fixed: After the update there is no control="" in video's code issue resolved #5366
-* Fixed: Warning: Array to string conversion issue resolved #5367
-* Fixed: TypeError: jQuery(...).typeWatch is not a function issue resolved #5368
-* Fixed: Removed Offer Bannner #5370
-* Fixed: Fatal error: Uncaught TypeError: array_merge() issue resolved #5371
-* Fixed: Fatal error: Uncaught TypeError: call_user_func_array() issue resolved #5373
 
 = 1.0.77.55 (27th December 2022) =
 * Fixed: Unable to add STN video Ads due to the outdated tag #5334
