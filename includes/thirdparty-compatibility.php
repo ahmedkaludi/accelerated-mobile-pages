@@ -1431,3 +1431,53 @@ function ampforwp_is_callrail_switch_active()
 		return false;
 	}
 }
+
+add_action('pre_amp_render_post', 'amp_saswp_faq_comp');
+function amp_saswp_faq_comp(){
+    if ( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+    	remove_shortcode('saswp_tiny_multiple_faq');
+    	add_shortcode( 'saswp_tiny_multiple_faq', 'amp_saswp_tiny_multi_faq_render' );
+    }
+}
+
+function amp_saswp_tiny_multi_faq_render( $atts, $content = null ){
+    global $saswp_tiny_multi_faq;
+    $output = '';
+    $saswp_tiny_multi_faq = shortcode_atts(
+        [
+            'css_class' => '',
+            'count'     => '1',
+            'html'      => true,
+            'elements'  => [],
+        ], $atts );
+    foreach ( $atts as $key => $merged_att ) {
+        if ( strpos( $key, 'headline' ) !== false || strpos( $key, 'question' ) !== false || strpos( $key,
+                'answer' ) !== false || strpos( $key, 'image' ) !== false ) {
+            $saswp_tiny_multi_faq['elements'][ explode( '-', $key )[1] ][ substr( $key, 0, strpos( $key, '-' ) ) ] = $merged_att;
+        }
+    }
+    if($saswp_tiny_multi_faq['html'] == 'true'){
+        if( !empty($saswp_tiny_multi_faq['elements']) ){
+            foreach ($saswp_tiny_multi_faq['elements'] as $value) {
+                $output .= '<details>';
+                $output .= '<summary>';
+                $output .= '<'.esc_attr($value['headline']).'>';
+                $output .=  esc_html($value['question']);
+                $output .= '</'.esc_attr($value['headline']).'>';
+                $output .= '</summary>';
+                $output .= '<div>';
+                if ( ! empty( $value['image'] ) ) {
+                    $image_id       = intval( $value['image'] );                
+                    $image_thumburl = wp_get_attachment_image_url( $image_id, [ 150, 150 ] );
+                    $output .= '<figure>';
+                    $output .= '<a href="'.esc_url(esc_url($image_thumburl)).'"><img class="saswp_tiny_faq_image" src="'.esc_url($image_thumburl).'"></a>';
+                    $output .= '</figure>';
+                }
+                $output .= '<div class="saswp_faq_tiny_content">'.esc_html($value['answer']).'</div>';                
+                $output .= '</div>';
+                $output .= '</details>';
+            }
+        }
+    }    
+    return $output;
+} 
