@@ -83,7 +83,6 @@ if (!function_exists('adsforwp_admin_notice')) {
             'desc' => $advertisementdesc,
             'class'      => '',
             'id'         => 'amp-ads',
-            'class'=>'ampforwp_new_features ',
             'subsection' => true,
             'fields'     => apply_filters('ampforwp_ads_option_fields', $fields = array() ),
         ) );   
