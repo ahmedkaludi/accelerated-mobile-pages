@@ -34,7 +34,7 @@ function ampforwp_add_page_booster_fields($fields){
                'title'     => esc_html__('Core Web Vitals Page Speed Booster', 'accelerated-mobile-pages'),
                'content'  =>'<div class="col-wrapper">
                                    <a href="'.admin_url('admin.php?page=cwvpsb').'"> <div class="ampforwp-recommendation-btn updated-message"><p>Page Speed Booster Settings</p></div> </a>
-                            <a class="amp_recommend_learnmore" href="https://ampforwp.com/tutorials/article/" target="_blank">Learn more</a></div>'
+                            <a class="amp_recommend_learnmore" href="https://ampforwp.com/tutorials/article/what-is-the-cwv-plugin-all-about/" target="_blank">Learn more</a></div>'
             );
            return $fields;
     }
@@ -77,7 +77,7 @@ function ampforwp_add_page_booster_fields($fields){
                                                     .'
                                                     <div class="col-1">
                                                         '. $cwvpsb_install /* $cwvpsb_install XSS escaped */.' 
-                                                         &nbsp;<a href="https://ampforwp.com/tutorials/" class="amp_recommend_learnmore" target="_blank">Learn more</a>
+                                                         &nbsp;<a href="https://ampforwp.com/tutorials/article/what-is-the-cwv-plugin-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>
                                                     </div>
                                             </div>' 
                                             
