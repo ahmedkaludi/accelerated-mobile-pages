@@ -22592,7 +22592,7 @@ class AMP_Allowed_Tags_Generated {
 		'typeof' => array(),
 		'validation-for' => array(),
 		'visible-when-invalid' => array(
-			'value' => array(
+			array(
 				'badInput',
 				'customError',
 				'patternMismatch',
