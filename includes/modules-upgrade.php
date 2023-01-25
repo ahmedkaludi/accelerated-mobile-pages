@@ -108,6 +108,25 @@ function ampforwp_enable_modules_upgread(){
                         );
             $redirectSettingsUrl = admin_url('admin.php?page=quads-settings');        
         break;
+        case 'cwvpsb': 
+            $nonceUrl = add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'core-web-vitals-pagespeed-booster',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => wp_create_nonce( 'core-web-vitals-pagespeed-booster' ),
+                                    ),
+                        esc_url(network_admin_url( 'plugins.php' ))
+                        );
+            $plugins[] = array(
+                            'name' => 'core-web-vitals-pagespeed-booster',
+                            'path_' => 'https://downloads.wordpress.org/plugin/core-web-vitals-pagespeed-booster.zip',
+                            'path' => $nonceUrl,
+                            'install' => 'core-web-vitals-pagespeed-booster/core-web-vitals-pagespeed-booster.php',
+                        );
+            $redirectSettingsUrl = admin_url('admin.php?page=cwvpsb');        
+        break;
         default:
             $plugins = array();
         break;

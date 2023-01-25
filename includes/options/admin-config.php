@@ -9,6 +9,7 @@ if ( ! class_exists( 'ReduxCore\ReduxFramework\Redux' ) ) {
 }
 //Require features
 require_once AMPFORWP_PLUGIN_DIR."includes/features/advertisement/ads-options.php";
+require_once AMPFORWP_PLUGIN_DIR."includes/features/page-booster/page-booster-options.php";
 require_once AMPFORWP_PLUGIN_DIR."includes/features/performance/performance-options.php";
 require_once AMPFORWP_PLUGIN_DIR."includes/features/analytics/analytics-options.php";
 require_once AMPFORWP_PLUGIN_DIR."includes/features/structure-data/structured-data-options.php";
@@ -2608,6 +2609,8 @@ function ampforwp_get_all_tags($id){
   if ( ! function_exists('amp_activate') ) {    
     // PageBuilders section
     ampforwp_page_builders_support_options($opt_name);
+    //Page booster
+    ampforwp_admin_page_booster_options($opt_name);
     // Performance section
     ampforwp_admin_performance_options($opt_name);
     // Analytics section

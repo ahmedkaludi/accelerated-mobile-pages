@@ -8425,7 +8425,7 @@ function ampforwp_pblayout_head_scripts($data){
       $totalmodules = 1;
       if(!empty($previousData)){
          $jsonData = json_decode($previousData,true);
-         if(count($jsonData['rows'])>0){
+         if(isset($jsonData['rows']) && count($jsonData['rows'])>0){
             $totalRows = $jsonData['totalrows'];
             $totalmodules = $jsonData['totalmodules'];
             $previousData = json_encode($jsonData);
