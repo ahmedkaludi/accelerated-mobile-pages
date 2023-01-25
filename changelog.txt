@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.0.79 (25th January 2023) =
+* Fixed: Errors because of the FAQ blocks of schema issue resolved #5352
+* New  : Core Web Vitals Option  #5363
+
 = 1.0.78 (10th January 2023) =
 * Fixed: Unnecessary character showing issue resolved #5334
 * Fixed: Youtube close button not appearing in lightbox issue resolved #5357
