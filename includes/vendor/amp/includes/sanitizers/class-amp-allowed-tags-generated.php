@@ -676,6 +676,7 @@ class AMP_Allowed_Tags_Generated {
 					),
 					'tabindex' => array(),
 					'target' => array(
+						'mandatory'=> true,
 						'value' => array(
 							'_blank',
 							'_self',
