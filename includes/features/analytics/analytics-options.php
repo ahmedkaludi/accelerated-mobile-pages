@@ -165,6 +165,62 @@ function ampforwp_analytics_options($opt_name){
 }')
                     ),
 
+                      // Google Analytics 4
+                       array(
+                          'id' => 'ampforwp-ga4-switch',
+                          'type'  => 'switch',
+                          'title' => 'Google Analytics 4',
+                          'tooltip-subtitle' => esc_html__( 'Enable Google Analytics 4 in AMP.', 'accelerated-mobile-pages' ),
+                          'default'  => 0,
+                        ),
+                        array(
+                            'class' => 'child_opt child_opt_arrow',
+                            'id'       => 'ampforwp-ga4-id',
+                            'type'     => 'text',
+                            'title'    => esc_html__( 'GA4 Measurement ID', 'accelerated-mobile-pages' ),
+                            'required' => array(
+                              array('ampforwp-ga4-switch', '=' , '1'),
+                            ),
+                            'tooltip-subtitle' => esc_html__( 'Enter your Your Measurement ID Example: G-XXXXXXXX', 'accelerated-mobile-pages' ),
+                            'default'  => 'G-XXXXXXXX',
+                        ),
+                        array(
+                            'class'    => 'child_opt',
+                            'id'       => 'ampforwp-ga4-dpe',
+                            'type'     => 'switch',
+                            'title'    => esc_html__( 'Default Pageview Enabled', 'accelerated-mobile-pages' ),
+                            'required' => array('ampforwp-ga4-switch', '=' , '1'),             
+                            'tooltip-subtitle' => esc_html__( 'If this option is enabled then page_view event fire on the page load', 'accelerated-mobile-pages' ),
+                            'default'  => 1,
+                        ),
+                        array(
+                            'class'    => 'child_opt',
+                            'id'       => 'ampforwp-ga4-gce',
+                            'type'     => 'switch',
+                            'title'    => esc_html__( 'Google Consent Enabled', 'accelerated-mobile-pages' ),
+                            'required' => array('ampforwp-ga4-switch', '=' , '1'),
+                            'tooltip-subtitle' => esc_html__( 'If this option is enabled then &gcs parameter will be added to the payloads with the current Consent Status', 'accelerated-mobile-pages' ),             
+                            'default'  => 0,
+                        ),
+                        array(
+                            'class'    => 'child_opt',
+                            'id'       => 'ampforwp-ga4-wvt',
+                            'type'     => 'switch',
+                            'title'    => esc_html__( 'Webvitals Tracking', 'accelerated-mobile-pages' ),
+                            'required' => array('ampforwp-ga4-switch', '=' , '1'),
+                            'tooltip-subtitle' => esc_html__( 'If this option is enabled then webvitals event will fire 5 seconds after the page is visible', 'accelerated-mobile-pages' ),             
+                            'default'  => 0,
+                        ),
+                        array(
+                            'class'    => 'child_opt',
+                            'id'       => 'ampforwp-ga4-ptt',
+                            'type'     => 'switch',
+                            'title'    => esc_html__( 'Performance Timing Tracking', 'accelerated-mobile-pages' ),
+                            'required' => array('ampforwp-ga4-switch', '=' , '1'),
+                            'tooltip-subtitle' => esc_html__( 'If this option is enabled then performance_timing event including the current page load performance timings', 'accelerated-mobile-pages' ),             
+                            'default'  => 0,
+                        ),
+
                       //GTM
                         array(
                             'id'       => 'amp-use-gtm-option',

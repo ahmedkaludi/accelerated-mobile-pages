@@ -84,6 +84,37 @@ function ampforwp_analytics() {
 			<?php }
 		}//code ends for supporting Google Analytics
 
+	
+	// Code Starts for Google Analytics 4
+	// Original code by David Vallejo
+ 	// ga4.json - https://github.com/analytics-debugger/google-analytics-4-for-amp
+	if( function_exists('ampforwp_get_setting') && ampforwp_get_setting('ampforwp-ga4-switch') == true ){
+		$ga4_id = ampforwp_get_setting('ampforwp-ga4-id');
+		$ga4_dpe = ampforwp_get_setting('ampforwp-ga4-dpe') == 1 ? true : false;
+		$ga4_webv = ampforwp_get_setting('ampforwp-ga4-wvt') == 1 ? true : false;
+		$ga4_gce = ampforwp_get_setting('ampforwp-ga4-gce') == 1 ? true : false;
+		$ga4_perf = ampforwp_get_setting('ampforwp-ga4-ptt') == 1 ? true : false;
+		$ga4_fields = array(
+						'vars'=>array(
+							'GA4_MEASUREMENT_ID'=> $ga4_id,
+							'GA4_ENDPOINT_HOSTNAME'=> 'www.google-analytics.com',
+							'DEFAULT_PAGEVIEW_ENABLED'=> $ga4_dpe,
+							'GOOGLE_CONSENT_ENABLED'=> $ga4_gce,
+							'WEBVITALS_TRACKING'=> $ga4_webv,
+							'PERFORMANCE_TIMING_TRACKING'=> $ga4_perf,
+							),
+						);
+		$ampforwp_ga4_fields = json_encode( $ga4_fields);
+ 		?>
+ 		<amp-analytics type="googleanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>config="<?php echo AMPFORWP_ANALYTICS_URL?>/ga4.json" data-credentials="include">
+ 		<script type="application/json">
+			<?php echo $ampforwp_ga4_fields; ?>
+		</script>
+		</amp-analytics>
+ 		<?php
+	}
+	//Code Ends for Google Analytics 4
+
 	// 10.2 Analytics Support added for clicky.com
 	if ( true == ampforwp_get_setting('amp-clicky-switch') ) { 
 		$clicky_site_id = ampforwp_get_setting('clicky-site-id'); 

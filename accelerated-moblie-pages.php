@@ -22,6 +22,7 @@ define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
 define('AMPFORWP_VERSION','1.0.79');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
+define('AMPFORWP_ANALYTICS_URL',plugin_dir_url(__FILE__).'includes/features/analytics');
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
 	$url = parse_url($urlinfo);
