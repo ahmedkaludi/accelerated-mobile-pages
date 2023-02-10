@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 6.1
-Stable tag: 1.0.79
+Tested up to: 6.1.1
+Stable tag: 1.0.80
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,7 @@ Some code used in this plugin was forked from 'AMP for WordPress' plugin https:/
 Mobile & Tablet detection library used https://github.com/serbanghita/Mobile-Detect - License URI: https://github.com/serbanghita/Mobile-Detect/blob/master/LICENSE.txt
 PHP CSS Parser library used https://github.com/sabberworm/PHP-CSS-Parser - License URI: https://github.com/sabberworm/PHP-CSS-Parser#license (PHP-CSS-Parser is freely distributable under the terms of an MIT-style license.)
 AMP Optimizer library used https://github.com/ampproject/amp-toolbox/tree/main/packages/optimizer - License URI: https://github.com/ampproject/amp-toolbox#license (AMP Toolbox is made by the AMP Project, and is licensed under the Apache License, Version 2.0.)
+GA4 Code used from https://github.com/analytics-debugger/google-analytics-4-for-amp - License URI: https://github.com/analytics-debugger/google-analytics-4-for-amp/blob/main/LICENSE
 
 == Installation ==
 **[Visit Help area for the Documentation:](https://ampforwp.com/help/)**
@@ -193,6 +194,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.80 (10th February 2023) =
+* Improvements: Added Support for Google Analytics 4 #4793 (Thanks to David Vallejo)
+* Improvements: Added 3D Viewer plugin compatibility #5372
+* Fixed: Getting error Attribute 'visible-when-invalid' missing or incorrect issue resolved #5382
+* Fixed: AMP version removing the "\_blank" attribute #5383
+* Fixed: Autoplay is not working #5386
+* Fixed: Uncaught TypeError: count() Argument #1 must be of type Countable|array issue resolved #5388
 
 = 1.0.79 (25th January 2023) =
 * Fixed: Errors because of the FAQ blocks of schema issue resolved #5352
