@@ -77,7 +77,7 @@ function amp_pagebuilder_script_loader($scriptData){
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
 		$previousData = json_decode($previousData,true);
-		if(count($previousData['rows'])>0){
+		if(isset($previousData['rows']) && count($previousData['rows'])>0){
 			foreach ($previousData['rows'] as $key => $rowsData) {
 				$container = $rowsData['cell_data'];
 				if(count($container)>0){
@@ -172,7 +172,7 @@ function amp_pagebuilder_content_styles(){
 
 		add_filter('ampforwp_body_class', 'bodyClassForAMPPagebuilder',10,2);
 		$previousData = json_decode($previousData,true);
-		if(count($previousData['rows'])>0){
+		if(isset($previousData['rows']) && count($previousData['rows'])>0){
 
 			foreach ($previousData['rows'] as $key => $rowsData) {
 				$container = $rowsData['cell_data'];

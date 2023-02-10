@@ -676,6 +676,7 @@ class AMP_Allowed_Tags_Generated {
 					),
 					'tabindex' => array(),
 					'target' => array(
+						'mandatory'=> true,
 						'value' => array(
 							'_blank',
 							'_self',
@@ -7580,6 +7581,7 @@ class AMP_Allowed_Tags_Generated {
 					'artwork' => array(),
 					'attribution' => array(),
 					'autoplay' => array(
+						'mandatory' => true,
 						'value' => array(
 							'',
 						),
@@ -7690,6 +7692,7 @@ class AMP_Allowed_Tags_Generated {
 					'artwork' => array(),
 					'attribution' => array(),
 					'autoplay' => array(
+						'mandatory' => true, 
 						'value' => array(
 							'',
 						),
@@ -7929,6 +7932,7 @@ class AMP_Allowed_Tags_Generated {
 					'artwork' => array(),
 					'attribution' => array(),
 					'autoplay' => array(
+						'mandatory' => true,
 						'value' => array(
 							'',
 						),
@@ -22592,7 +22596,7 @@ class AMP_Allowed_Tags_Generated {
 		'typeof' => array(),
 		'validation-for' => array(),
 		'visible-when-invalid' => array(
-			'value' => array(
+			array(
 				'badInput',
 				'customError',
 				'patternMismatch',

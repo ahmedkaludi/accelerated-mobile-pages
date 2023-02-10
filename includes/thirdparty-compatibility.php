@@ -1481,3 +1481,59 @@ function amp_saswp_tiny_multi_faq_render( $atts, $content = null ){
     }    
     return $output;
 } 
+
+add_action('pre_amp_render_post', 'amp_3d_viewer_comp');
+function amp_3d_viewer_comp(){
+    if ( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+    	remove_shortcode('3d_viewer', ['Shortcode', 'bp3dviewer_cpt_content_func']);
+    	add_shortcode( '3d_viewer', 'amp_3dviewer_content_func' );
+    }
+}
+
+function amp_3dviewer_content_func( $atts ){
+	extract( shortcode_atts( array(
+	    'id' => '',
+	    'src' => '',
+	    'alt' => '',
+	    'width' => '100%',
+	    'height' => '%',
+	    'auto_rotate' => 'auto-rotate',
+	    'camera_controls' =>'camera-controls',
+	    'zooming_3d' => '',
+	    'loading' => '',
+	), $atts ) ); ob_start(); 
+		
+	// Options Data
+	$modeview_3d = false;
+	if($id){
+	    $modeview_3d = get_post_meta( $id, '_bp3dimages_', true );
+	}else {
+	    $id = uniqid();
+	}
+
+	$attribute = [];
+	
+	if( class_exists( 'BP3D' ) && $modeview_3d && is_array($modeview_3d) ) {
+		//https://playground.amp.dev/static/samples/glTF/DamagedHelmet.glb
+	    $src = BP3D\Helper\Utils::isset2($modeview_3d, 'bp_3d_src', 'url', 'i-do-not-exist.glb');
+	    $src = str_replace('http', 'https', $src);
+	    $width = BP3D\Helper\Utils::isset2($modeview_3d, 'bp_3d_width', 'width', '100').BP3D\Helper\Utils::isset2($modeview_3d, 'bp_3d_width', 'unit', '%');
+	    $height = BP3D\Helper\Utils::isset2($modeview_3d, 'bp_3d_height', 'height', '300').BP3D\Helper\Utils::isset2($modeview_3d, 'bp_3d_height', 'unit', 'px');
+	    $camera_controls = $modeview_3d['bp_camera_control'] == 1 ? 'camera-controls' : '';
+	    $alt            = !empty($modeview_3d['bp_3d_src']['url']) ? $modeview_3d['bp_3d_src']['title'] : '';
+	    $auto_rotate    = $modeview_3d['bp_3d_rotate'] === '1' ? 'auto-rotate' : '';
+	    $zooming_3d     = $modeview_3d['bp_3d_zooming'] === '1' ? '' : 'disable-zoom';
+	    // Preload
+	    $loading   = isset ($modeview_3d['bp_3d_loading']) ? $modeview_3d['bp_3d_loading'] : '';
+	    $attribute = apply_filters('bp3d_model_attribute', [], $id, false);
+	}
+	if( !empty($src) ){ ?>
+		<!-- 3D Model html -->
+		<div class="bp_grand wrapper_<?php echo esc_attr($id) ?>">   
+		<div class="bp_model_parent">
+		    <amp-3d-gltf class="model" id="bp_model_id_<?php echo esc_attr($id); ?>" src="<?php echo esc_url($src); ?>" alt="<?php echo esc_attr($alt); ?>" layout="fixed" width="320" height="240"></amp-3d-gltf>
+		</div>
+		</div>
+	<?php }
+	$output = ob_get_clean(); return $output;
+}
