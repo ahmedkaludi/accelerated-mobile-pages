@@ -1537,3 +1537,11 @@ function amp_3dviewer_content_func( $atts ){
 	<?php }
 	$output = ob_get_clean(); return $output;
 }
+
+//JetPack Boost
+add_action('wp','ampforwp_jetpack_defer_js_comp');
+function ampforwp_jetpack_defer_js_comp(){
+	if( (function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint()) || (function_exists( 'is_amp_endpoint' ) && is_amp_endpoint()) ){
+		add_filter( 'jetpack_boost_should_defer_js', '__return_false' );
+	}
+} 
