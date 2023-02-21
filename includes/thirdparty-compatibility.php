@@ -1545,3 +1545,52 @@ function ampforwp_jetpack_defer_js_comp(){
 		add_filter( 'jetpack_boost_should_defer_js', '__return_false' );
 	}
 } 
+
+add_filter('the_content','ampforwp_newsp_td_get_css', 12);
+function ampforwp_newsp_td_get_css($content){
+	$tdc_status = get_post_meta( ampforwp_get_the_ID(), 'tdc_content', true);
+	if(!empty($tdc_status)){
+		global $amp_td_custom_css;
+		$amp_td_custom_css = '';
+		preg_match_all('/<style>(.*?)<\/style>/s', $content, $matches);
+		if($matches[1]){
+			foreach ($matches[1] as $key => $value) {
+				$amp_td_custom_css .= $value;
+			}
+		}
+		$content = preg_replace('/data-img-url="(.*?)"/', 'data-img-url="$1" style="background-image:url($1)"', $content);
+	}
+	return $content;
+}
+
+add_action('amp_post_template_css','ampforwp_newsp_td_render_css');
+function ampforwp_newsp_td_render_css(){
+	$tdc_status = get_post_meta( ampforwp_get_the_ID(), 'tdc_content', true);
+		if(!empty($tdc_status)){
+		global $amp_td_custom_css;
+		$cssData = '';
+		$newspaper_css_url[] = get_template_directory_uri().'/style.css';
+		$newspaper_css_url[] = TDC_URL_LEGACY . '/assets/css/td_legacy_main.css';
+		if($newspaper_css_url){
+			foreach ($newspaper_css_url as $key => $urlValue) {
+		    $cssData = ampforwp_get_remote_content($urlValue);
+		    $cssData = preg_replace("/\/\*(.*?)\*\//si", "", $cssData);
+		    $newspaper_css .= preg_replace_callback('/url[(](.*?)[)]/', function($matches)use($urlValue){
+		            $matches[1] = str_replace(array('"', "'"), array('', ''), $matches[1]);
+		                if(!wp_http_validate_url($matches[1]) && strpos($matches[1],"data:")===false){
+		                    $urlExploded = explode("/", $urlValue);
+		                    $parentUrl = str_replace(end($urlExploded), "", $urlValue);
+		                    return 'url('.$parentUrl.$matches[1].")"; 
+		                }else{
+		                    return $matches[0];
+		                }
+		            }, $cssData);
+			}
+	  }
+		echo $newspaper_css;
+		echo $amp_td_custom_css;
+		if(class_exists('td_util') && class_exists('td_block')){
+			echo td_util::remove_style_tag(td_block::get_common_css());
+		}
+	}
+}
