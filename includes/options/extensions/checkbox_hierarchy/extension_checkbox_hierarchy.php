@@ -33,6 +33,7 @@ if( !class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_extension_checkbox
         public static $version       = '1.0.0';
         // Set the name of your extension here
         public $ext_name             = 'Checkbox hierarchy';
+        public $field_name           = '';
         
         // Set the minumum required version of Redux here (optional).
         // Leave blank to require no minimum version.
