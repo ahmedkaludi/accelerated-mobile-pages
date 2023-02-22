@@ -9888,3 +9888,12 @@ function ampforwp_super_related_posts_style(){
 	}
 	echo ampforwp_css_sanitizer($css);
 }	
+
+if( function_exists('ampforwp_get_setting') && true == ampforwp_get_setting('amp-core-end-point') && class_exists('RankMath') && RankMath\Helper::get_settings( 'general.wc_remove_product_base' ) ){
+  add_filter( 'ampforwp_is_amp_endpoint', 'ampforwp_rankmath_endpoint_fix', 20, 1);
+}
+function ampforwp_rankmath_endpoint_fix($flag){
+  if(isset($_GET['amp'])){
+    return false;
+  }
+}
