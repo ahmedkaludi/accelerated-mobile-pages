@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.1.1
-Stable tag: 1.0.80
+Stable tag: 1.0.81
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.81 (27th February 2023) =
+* Fixed: When selecting a post with custom structure /%postname%/amp/ issue resolved. #5379
+* Fixed: TagDiv composer recent posts grid breaks if the AMP takeover is enabled issue resolved #5387
+* Fixed: Validation error while using the JetPack Boost plugin issue resolved #5391
+* Fixed: Warning: Cannot modify header information - headers already sent issue resolved #5394
+* Fixed: Product Base Remover not working properly with ?amp issue resolved #5397
 
 = 1.0.80 (10th February 2023) =
 * Improvements: Added Support for Google Analytics 4 #4793 (Thanks to David Vallejo)
