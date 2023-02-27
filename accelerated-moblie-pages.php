@@ -105,6 +105,7 @@ function ampforwp_add_custom_rewrite_rules() {
       'index.php?amp',
       'top'
     );
+    do_action('ampforwp_rewrite_rules_hook');
 	// For Homepage with Pagination
     add_rewrite_rule(
         'amp/'.$wp_rewrite->pagination_base.'/([0-9]{1,})/?$',
