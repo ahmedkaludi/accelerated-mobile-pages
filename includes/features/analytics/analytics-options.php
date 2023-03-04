@@ -419,6 +419,59 @@ function ampforwp_analytics_options($opt_name){
                         'required' => array(
                         array('ampforwp-Quantcast-switch', '=' , '1')),
                       ),
+
+                       // Adobe 
+
+                    array(
+                      'id' => 'ampforwp-adobe-switch',
+
+                      'type' => 'switch',
+
+                      'title' => 'Adobe Analytics',
+
+                      'default' => 0,
+
+                      // 'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+
+                      // esc_html__('Enable this option to track Adobe analytics in AMP and', 'accelerated-mobile-pages'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+
+                    ),
+                    
+                    array(
+                      'id'       => 'ampforwp-adobe-host',
+
+                      'type'     => 'text',
+
+                      'title'    => __( 'Host Name', 'accelerated-mobile-pages' ),
+
+                      'required' => array(
+                        
+                        array('ampforwp-adobe-switch', '=' , '1')
+                      ),
+
+                      'tooltip-subtitle' => __( 'Enter the Website domain', 'accelerated-mobile-pages' ),
+                      'default'  => '',
+                      'desc' => 'For example: metrics.example.com',
+                ),
+
+                array(
+
+                  'id'       => 'ampforwp-adobe-reportsuiteid',
+                  
+                  'type'     => 'text',
+
+                  'title'    => __( 'ReportSuite ID', 'accelerated-mobile-pages' ),
+
+                  'required' => array(
+                    array('ampforwp-adobe-switch', '=' , '1')
+                  ),
+
+                  'tooltip-subtitle' => __( 'Enter the ReportSuite ID', 'accelerated-mobile-pages' ),
+                  'default'  => '',
+                  'desc' => 'For example: 00000003',
+            ),
+  
+                 
                       // comScore  
                       array(
                         'id' => 'ampforwp-comScore-switch',
