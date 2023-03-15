@@ -91,6 +91,23 @@ function ampforwp_get_the_page_id_blog_page(){
 	return $output;
 }
 
+/**
+ * All in One SEO Plugin Conflict
+ * for stopping redirecting
+ * on amp query string
+ * @since 1.0.82
+*/
+if( in_array( 'all-in-one-seo-pack/all_in_one_seo_pack.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+    add_filter( 'aioseo_unrecognized_allowed_query_args', 'AMP_for_WP_QueryStringAllowed_for_AIOSEO_Plugin', -1 );
+    function AMP_for_WP_QueryStringAllowed_for_AIOSEO_Plugin($allowedQueryArgs) {
+        return array_merge($allowedQueryArgs, array(
+            'nonamp',
+            'namp',
+            'nonamphead',
+        ));
+    }
+}
+
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
 	
