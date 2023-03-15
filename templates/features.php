@@ -8564,7 +8564,7 @@ function ampforwp_include_required_scripts($content){
 					$comp = 'bind';
 				}
 				if($comp == 'img'){
-					$component_url = "https://cdn.ampproject.org/v0/amp-bind-latest.js";
+					$comp_url = "https://cdn.ampproject.org/v0/amp-bind-latest.js";
 				}else{
 					$comp_url = 'https://cdn.ampproject.org/v0/amp-'.esc_attr($comp).'-'.esc_attr($script_ver).'.js';
 				}
