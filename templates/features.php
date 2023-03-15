@@ -1772,7 +1772,7 @@ function ampforwp_replace_title_tags() {
 				}
 			}
 			// Custom Front Page Title From Yoast SEO #1163
-			if ( ampforwp_is_front_page() || ampforwp_is_blog() && class_exists('Yoast\WP\SEO\Presentations\Indexable_Presentation') ) {
+			if ( ampforwp_is_front_page() || ampforwp_is_blog() && class_exists('Yoast\WP\SEO\Presentations\Indexable_Presentation')) {
 				$yoast_title = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_title', true);
 				$yoast_title = wpseo_replace_vars( $yoast_title,$post );
 				// Get info for custom front page, blog page and blog post paginated pages for v14+ #4574
@@ -1780,7 +1780,7 @@ function ampforwp_replace_title_tags() {
 					$yoast_data = new Ampforwp_Yoast_Data;
 					$context = $yoast_data->get_context_for_post_id(ampforwp_get_the_ID());	
 				}
-				if ( $context) {
+				if (isset($context)) {
 					$yoast_title = $context->title;
 				}
 			}
