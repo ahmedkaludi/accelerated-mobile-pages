@@ -2546,7 +2546,7 @@ function ampforwp_set_body_content_script($data){
 					if($comp == 'auto-ads' || $comp == 'ad'){
 						$script_ver = '0.1';
 					}
-    				// $component_url = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-".esc_attr($script_ver).".js";
+    				$component_url = "https://cdn.ampproject.org/v0/amp-".esc_attr($comp)."-".esc_attr($script_ver).".js";
     				if(isset($matches[1][0])){
     					$thtml = $matches1[1];
     					if(!in_array($comp, $thtml)){
@@ -8670,7 +8670,7 @@ function ampforwp_include_required_scripts($content){
 		}
 		if(preg_match('/(type|template|id)="('.$ocomp.')"/', $content) || preg_match("/<\/$key>/",  $content) || preg_match("/amp-fx/",  $content)){
 			if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
-				// $o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+				$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
 				$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
 				$content =  str_replace('<head>', $script_tag, $content);
 			}
@@ -8684,7 +8684,7 @@ function ampforwp_include_required_scripts($content){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
-					// $o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+					$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
 					$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
 					$content =  str_replace('<head>', $script_tag, $content);
 				}
@@ -8703,7 +8703,7 @@ function ampforwp_include_required_scripts($content){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
-					// $o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+					$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
 					$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
 					$content =  str_replace('<head>', $script_tag, $content);
 				}
@@ -8722,7 +8722,7 @@ function ampforwp_include_required_scripts($content){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
-					// $o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+					$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
 					$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
 					$content =  str_replace('<head>', $script_tag, $content);
 				}
@@ -8741,7 +8741,7 @@ function ampforwp_include_required_scripts($content){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
-					// $o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+					$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
 					$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
 					$content =  str_replace('<head>', $script_tag, $content);
 				}
@@ -8759,7 +8759,7 @@ function ampforwp_include_required_scripts($content){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
-					// $o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+					$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
 					$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
 					$content =  str_replace('<head>', $script_tag, $content);
 				}
