@@ -19,7 +19,8 @@ function amp_init_customizer() {
          * theme not doing
          * @since 1.0.82
          */
-        if( 'Yuki Blogger' == apply_filters( 'current_theme', get_option( 'current_theme' ) ) ) {
+		
+        if( ('Yuki' == apply_filters( 'current_theme', get_option( 'current_theme' ) )) || ('Yuki Blogger' == apply_filters( 'current_theme', get_option( 'current_theme' ) ))  ) {
             if ( ! class_exists( '_WP_Editors' ) )
                 require( ABSPATH . WPINC . '/class-wp-editor.php' );
         }
