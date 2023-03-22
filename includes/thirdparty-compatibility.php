@@ -1410,7 +1410,11 @@ function ampforwp_callrail_modify_content($content) {
 	$number = ampforwp_get_setting('ampforwp-callrail-number');
 	$analytics_url = ampforwp_get_setting('ampforwp-callrail-analytics-url');
 	$call_rail_analytics = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_html($number).'</a></amp-call-tracking><amp-analytics config="'.esc_url($analytics_url).'"></amp-analytics>';
+	$replace_meta = '<meta>';
+	$content = preg_replace("#<meta (.*?)>#is", $replace_meta, $content);
 	$content = str_replace($number, $call_rail_analytics, $content);
+	$ct_test = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_attr($number).'</a></amp-call-tracking>';
+	$content = preg_replace('/<a(.*?)><amp-call-tracking(.*?)><a(.*?)<\/a>/', $ct_test, $content);
 
 	return $content;
 }
