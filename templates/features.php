@@ -8881,6 +8881,46 @@ if(!function_exists('ampforwp_add_fallback_element')){
 add_filter('ampforwp_modify_the_content','amp_youtube_the_content');
 
 function amp_youtube_the_content($content){
+	/* Check if youtube embed plugin is active
+	This is the solution for facade mode issue
+	if facade mode is enabled in embed youtube plugin then video was not working so this is the 
+	solution for that issue
+	*/
+	if(is_plugin_active('youtube-embed-plus/youtube.php')){
+		$youtube_all_opts = get_option('youtubeprefs_alloptions');
+		if(!empty($youtube_all_opts) && isset($youtube_all_opts['facade_mode'])){
+			if($youtube_all_opts['facade_mode'] == 1){
+				preg_match_all('#<figure class=\"wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio\">(.*?)<\/figure>#is', $content, $video_matches);
+				if(!empty($video_matches) && is_array($video_matches)){
+					foreach ($video_matches as $vmkey => $vmvalue) {
+						if(is_array($vmvalue)){
+							foreach ($vmvalue as $vmkey1 => $vmvalue1) {
+								if(!empty($vmvalue1)){
+									$dochtml = new DOMDocument();
+									$dochtml->loadHTML($vmvalue1);
+									$div_tags = $dochtml->getElementsByTagName('div');
+									if(!empty($div_tags)){
+										foreach($div_tags as $div_tag) {
+											$facade_src = $div_tag->getAttribute('data-facadesrc');
+											if(!empty($facade_src)){
+												$get_id = get_video_id_from_url($facade_src);
+												$content_html = '<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+					<amp-iframe width="800" height="450" src="'.$facade_src.'" class="__youtube_prefs__  epyt-is-override  no-lazyload amp-wp-enforced-sizes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation" sizes="(min-width: 800px) 800px, 100vw"><div placeholder="" class="amp-wp-iframe-placeholder"></div></amp-iframe>
+					</div></figure>';
+													$content = str_replace($vmvalue1, $content_html, $content);
+											} // facade_src if end
+										} // div_tags foreach end
+									} // div_tags if end 
+								} // vmvalue1 if end
+							} // vmvalue foreach end
+						} // vmvalue if end
+					} // video_matches foreach end
+				} // video_matches if end
+			} // facade_mode if end
+		} // youtube_all_opts if end
+	} // is_plugin_active if end
+
+
 	// checking is Elementor is installed and activated
 	if ( did_action( 'elementor/loaded' ) ) {
 			preg_match_all('/<div\s+class="(.*?)elementor-widget-video"(.*?)data-settings=\'(.*?)\'\sdata-widget_type="video.default">/', $content, $matches);
