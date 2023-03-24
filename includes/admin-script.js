@@ -1483,7 +1483,7 @@ jQuery(document).ready(function($) {
                 if(yemdex_c!="" && !hasCls && data_href=='ampforwp-Yandex-switch'){analytic_arr.push("Yandex Metrika");}
                 if(chartbeat_c!="" && !hasCls && data_href=='ampforwp-Chartbeat-switch'){analytic_arr.push("Chartbeat Analytics");}
                 if(alexa_c!="" && alexa_d!="" && !hasCls && data_href=='ampforwp-Alexa-switch'){analytic_arr.push("Alexa Metrics");}
-                if(host!="" && ReportSuiteId!=""=='ampforwp_adobe_switch'){analytic_arr.push("Adobe Analytics");}
+                if(host!="" && ReportSuiteId!="" && !hasCls && data_href=='ampforwp_adobe_switch'){analytic_arr.push("Adobe Analytics");}
                 if(afs_c!="" && !hasCls && data_href=='ampforwp-afs-analytics-switch'){analytic_arr.push("AFS Analytics");}
                 if(clicky_side_id!="" && !hasCls && data_href=='amp-clicky-switch'){analytic_arr.push("Clicky Analytics");}
                 if(cr_config_url!="" && cr_number!="" && cr_analytics_url!="" && !hasCls && data_href=='ampforwp-callrail-switch'){analytic_arr.push("Call Rail Analytics");}
