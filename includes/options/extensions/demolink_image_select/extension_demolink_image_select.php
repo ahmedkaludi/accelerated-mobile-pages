@@ -33,6 +33,7 @@ if( !class_exists( 'ReduxFramework_extension_demolink_image_select' ) ) {
         public static $version       = '1.0.0';
         // Set the name of your extension here
         public $ext_name             = 'Demolink Image Select';
+        public $field_name           = '';
         
         // Set the minumum required version of Redux here (optional).
         // Leave blank to require no minimum version.

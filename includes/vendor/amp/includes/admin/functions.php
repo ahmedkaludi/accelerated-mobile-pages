@@ -13,6 +13,18 @@ define( 'AMP_VENDOR_CUSTOMIZER_QUERY_VAR', 'customize_amp' );
 function amp_init_customizer() {
 	require_once( AMP__VENDOR__DIR__ . '/includes/admin/class-amp-customizer.php' );
 
+        /**
+         * Yuki Theme Compatibility
+         * for updating code which 
+         * theme not doing
+         * @since 1.0.82
+         */
+		
+        if( ('Yuki' == apply_filters( 'current_theme', get_option( 'current_theme' ) )) || ('Yuki Blogger' == apply_filters( 'current_theme', get_option( 'current_theme' ) ))  ) {
+            if ( ! class_exists( '_WP_Editors' ) )
+                require( ABSPATH . WPINC . '/class-wp-editor.php' );
+        }
+        
 	// Drop core panels (menus, widgets) from the AMP customizer
 	add_filter( 'customize_loaded_components', array( 'AMPforWP\\AMPVendor\\AMP_Template_Customizer', '_unregister_core_panels' ) );
 

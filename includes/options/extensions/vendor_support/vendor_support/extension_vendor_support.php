@@ -34,6 +34,7 @@ namespace ReduxCore\ReduxFramework;
 
             static $version = "1.0.0";
             public $extension_dir;
+            public $extension_url;
 
             /**
              * Class Constructor. Defines the args for the extions class

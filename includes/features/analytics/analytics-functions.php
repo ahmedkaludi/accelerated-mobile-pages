@@ -384,7 +384,55 @@ function ampforwp_analytics() {
 				}
 				</script>
 				</amp-analytics>
-                <?php } }    
+                <?php } } 
+				
+				
+					// Analytics support added for Adobe
+
+					if( true == ampforwp_get_setting('ampforwp-adobe-switch')){
+						$hostname = $ReportSuiteId =
+						$hostname = ampforwp_get_setting('ampforwp-adobe-host');
+						$ReportSuiteId = ampforwp_get_setting('ampforwp-adobe-reportsuiteid');
+	
+						$adobe_fields = array(
+	
+							'vars' => array(
+								'host'=> $hostname,
+								'reportSuiteId' => $ReportSuiteId
+							),
+						  'triggers' => array(
+								'pageLoad' => array(
+								  'on' => 'visible',
+								  'request' => 'pageView'
+						  ),
+	
+						),
+						  
+					);
+	
+					$adobe_fields =  apply_filters('ampforwp-adobe-analytics', $adobe_fields);?>
+					
+					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="adobeanalytics">
+	
+							<script type="application/json">
+	
+							<?php echo json_encode( $adobe_fields,JSON_UNESCAPED_SLASHES); ?>
+	
+							</script>
+	
+						</amp-analytics>
+					
+					
+					<?php
+	
+	
+	
+	
+	
+					}
+	
+	
+
                 if( true == ampforwp_get_setting('ampforwp-plausible-switch')) { 
                 $site_url = site_url();?>
                 <amp-analytics>

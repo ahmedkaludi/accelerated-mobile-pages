@@ -1458,6 +1458,8 @@ jQuery(document).ready(function($) {
             var chartbeat_c = $('#amp-Chartbeat-analytics-code').val();
             var alexa_c = $('#ampforwp-alexa-account').val();
             var alexa_d = $('#ampforwp-alexa-domain').val();
+            var host = ampforwp_get_setting('#ampforwp-adobe-host').val();
+            var ReportSuiteId = ampforwp_get_setting('#ampforwp-adobe-reportsuiteid').val();
             var afs_c = $('#ampforwp-afs-siteid').val();
             var clicky_side_id = $('#clicky-site-id').val();
             var cr_config_url = $('#ampforwp-callrail-config-url').val();
@@ -1481,6 +1483,7 @@ jQuery(document).ready(function($) {
                 if(yemdex_c!="" && !hasCls && data_href=='ampforwp-Yandex-switch'){analytic_arr.push("Yandex Metrika");}
                 if(chartbeat_c!="" && !hasCls && data_href=='ampforwp-Chartbeat-switch'){analytic_arr.push("Chartbeat Analytics");}
                 if(alexa_c!="" && alexa_d!="" && !hasCls && data_href=='ampforwp-Alexa-switch'){analytic_arr.push("Alexa Metrics");}
+                if(host!="" && ReportSuiteId!="" && !hasCls && data_href=='ampforwp_adobe_switch'){analytic_arr.push("Adobe Analytics");}
                 if(afs_c!="" && !hasCls && data_href=='ampforwp-afs-analytics-switch'){analytic_arr.push("AFS Analytics");}
                 if(clicky_side_id!="" && !hasCls && data_href=='amp-clicky-switch'){analytic_arr.push("Clicky Analytics");}
                 if(cr_config_url!="" && cr_number!="" && cr_analytics_url!="" && !hasCls && data_href=='ampforwp-callrail-switch'){analytic_arr.push("Call Rail Analytics");}
@@ -1773,6 +1776,8 @@ jQuery(document).ready(function($) {
         var chartbeat_c = $('#amp-Chartbeat-analytics-code').val();
         var alexa_c = $('#ampforwp-alexa-account').val();
         var alexa_d = $('#ampforwp-alexa-domain').val();
+        var host = $('#ampforwp-adobe-host').val();
+        var host = ampforwp_get_setting('#ampforwp-adobe-host').var();
         var afs_c = $('#ampforwp-afs-siteid').val();
         var clicky_side_id = $('#clicky-site-id').val();
         var cr_config_url = $('#ampforwp-callrail-config-url').val();
@@ -1936,6 +1941,18 @@ jQuery(document).ready(function($) {
                     $('input[data-id="'+data_href+'"]').click();
                     $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }
+            }
+        }else if(data_href=='ampforwp-adobe-switch'){
+            if(host!="" && ReportSuiteId!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
+                }
+            }else if(host!="" && ReportSuiteId!=""){
+                if(!checked){
+                    $('input[data-id="'+data_href+'"]').click();
+                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
+                }      
             }
         }else if(data_href=='ampforwp-afs-analytics-switch'){
             if(afs_c!=""){

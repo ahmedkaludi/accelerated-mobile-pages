@@ -12,7 +12,7 @@ if($current_page=="amp_options"){
 		$options[$page->ID] = $page->post_title;
 	}
 }
-$analytics_options = array(''=>'Add Analytics Type','ampforwp-ga-switch'=>'Google Analytics','amp-use-gtm-option'=>'Google Tag Manager','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics','ampforwp-callrail-switch'=>'Call Rail Analytics');
+$analytics_options = array(''=>'Add Analytics Type','ampforwp-ga-switch'=>'Google Analytics','amp-use-gtm-option'=>'Google Tag Manager','ampforwp-Segment-switch'=>'Segment Analytics','ampforwp-Piwik-switch'=>'Matomo (Piwik) Analytics','ampforwp-Quantcast-switch'=>'Quantcast Measurement','ampforwp-comScore-switch'=>'comScore', 'ampforwp-Effective-switch'=>'Effective Measure','ampforwp-StatCounter-switch'=>'StatCounter','ampforwp-Histats-switch'=>'Histats Analytics','ampforwp-Yandex-switch'=>'Yandex Metrika','ampforwp-Chartbeat-switch'=>'Chartbeat Analytics','ampforwp-Alexa-switch'=>'Alexa Metrics','ampforwp-afs-analytics-switch'=>'AFS Analytics','amp-fb-pixel'=>'Facebook Pixel','amp-clicky-switch'=>'Clicky Analytics','ampforwp-callrail-switch'=>'Call Rail Analytics','ampforwp-adobe-switch'=>'Adobe Analytics');
 $analytics_default_option = ampforwp_get_setting('amp-analytics-select-option');
 $analytics_default = 'ampforwp-ga-switch';
 switch ($analytics_default_option) {
@@ -60,6 +60,9 @@ switch ($analytics_default_option) {
 		break;
 	case '15': 
 		$analytics_default = 'ampforwp-callrail-switch';
+		break;
+    case '16':
+		$analytics_default = 'ampforp-adobe-switch';
 		break;
 	default:
 		break;
@@ -317,6 +320,28 @@ $amp_ux_fields = array(
 					),
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Tracking ID','element-class'=>'ux-label trac-id','id'=>'amp-ux-ca','class'=>'amp-ux-ca analytics-text','required'=>array(),'data-text'=>'amp-Chartbeat-analytics-code','default'=>ampforwp_get_setting('amp-Chartbeat-analytics-code'))
 					),
+					array('field_type'=>'sub_section_end','field_data'=>array()),
+					//adobe 
+					array('field_type'=>'sub_section_start',
+
+						'field_data'=>array('id'=>'ampforwp-ux-adobe-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Adobe analytics'),'closable'=>1,'data-href'=>'ampforwp-adobe-switch')
+
+					),
+
+					array('field_type'=>'heading',
+
+					'field_data'=>array('title'=>'Adobe Analytics','class'=>'child_opt child_opt_arrow')
+
+					),
+
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Host Name','id'=>'amp-ux-aa','class'=>'amp-ux-aa analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'ampforwp-adobe-host','default'=>ampforwp_get_setting('ampforwp-adobe-host'))
+
+					),
+
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Report Suite ID','id'=>'amp-ux-aa-2','class'=>'amp-ux-aa analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-adobe-reportsuiteid','default'=>ampforwp_get_setting('ampforwp-adobe-reportsuiteid'))
+
+					),
+
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
 						'field_data'=>array('id'=>'ampforwp-ux-alexa-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Alexa Metrics'),'closable'=>1,'data-href'=>'ampforwp-Alexa-switch')
