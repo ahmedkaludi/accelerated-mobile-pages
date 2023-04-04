@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.83 (4th April 2023) =
+* Fixed: The Facebook like button is not showing up properly on the AMP version. #5416
+* Fixed: Conflict WP-Bakery page builder with AMP. #5417
+* Fixed: Deprecated error messages in debug log in wordpress 6.2. #5418
+
 = 1.0.82 (24th March 2023) =
 * Fixed: Callrail conflicting with contact number format. #5392
 * Fixed: Adobe Analytics support in AMPforWP. #5395
