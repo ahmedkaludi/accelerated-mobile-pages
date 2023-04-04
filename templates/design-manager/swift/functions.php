@@ -90,7 +90,7 @@ function ampforwp_swift_social_icons(){
 
 							<?php }
 							else { ?>
-								<amp-facebook-like width=90 height=28
+								<amp-facebook-like width=96 height=28
 				 					layout="fixed"
 				 					data-size="large"
 				    				data-layout="button_count"

@@ -86,6 +86,9 @@ class FasterImage
                     }
         );
 
+        if ( ! defined( 'REQUESTS_SILENCE_PSR0_DEPRECATIONS' ) ) {
+            define( 'REQUESTS_SILENCE_PSR0_DEPRECATIONS', true );
+        }
         if( class_exists('Requests') ){
             $responseResults = \Requests::request_multiple($request , $options);
         }

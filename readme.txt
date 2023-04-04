@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.1.1
-Stable tag: 1.0.82
+Stable tag: 1.0.83
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.83 (4th April 2023) =
+* Fixed: The Facebook like button is not showing up properly on the AMP version. #5416
+* Fixed: Conflict WP-Bakery page builder with AMP. #5417
+* Fixed: Deprecated error messages in debug log in wordpress 6.2. #5418
 
 = 1.0.82 (24th March 2023) =
 * Fixed: Callrail conflicting with contact number format. #5392
