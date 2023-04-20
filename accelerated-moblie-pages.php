@@ -641,9 +641,20 @@ function ampforwp_is_amp_endpoint() {
 		return apply_filters('ampforwp_is_amp_endpoint_takeover', ampforwp_is_non_amp() );
 	}
 	else {
-		return apply_filters('ampforwp_is_amp_endpoint', false !== get_query_var( 'amp', false ) );
+		return apply_filters('ampforwp_is_amp_endpoint', false !== ampforwp_get_query_var( 'amp', false ) );
 	}
 }
+/* 
+* Customizing get_query_var to fix fatal error logs get() on null 
+* when ampforwp_is_amp_endpoint() function is used by third party plugin
+* [Fatal error with Nitropack #5427] 
+*/
+function ampforwp_get_query_var( $var, $default = '' ) {
+	global $wp_query;
+	if( ! isset( $wp_query ) || ! method_exists( $wp_query, 'get' ) ) return $default;
+	return $wp_query->get( $var, $default );
+}
+
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 	class Ampforwp_Init {
