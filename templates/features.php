@@ -7073,16 +7073,22 @@ function ampforwp_ia_meta_callback( $post ) {
 		}
 
 	} 
-	$ampforwp_user_has_amp_roles = ampforwp_role_based_access_options(); 
+	$ampforwp_current_ia_value='hide-ia';
+	if(ampforwp_role_based_access_options()==true){
+		$ampforwp_current_ia_value='default';	
+	}
+	if ( ! empty($ampforwp_stored_meta['ampforwp-ia-on-off']) && ! empty($ampforwp_stored_meta['ampforwp-ia-on-off'][0])){
+		$ampforwp_current_ia_value= $ampforwp_stored_meta['ampforwp-ia-on-off'][0];
+	}
 	?>
     <p>
         <div class="prfx-row-content">
             <label class="meta-radio-two" for="ampforwp-ia-on-off-meta-radio-one">
-                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-ia-on-off-meta-radio-one" value="default"  <?php if ( $ampforwp_user_has_amp_roles == true ) { ?> checked="checked" <?php } ?> <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'default' ); ?>>
+                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-ia-on-off-meta-radio-one" value="default"   <?php checked( $ampforwp_current_ia_value, 'default' ); ?>>
                 <?php esc_html_e( 'Enable', 'accelerated-mobile-pages' )?>
             </label>
             <label class="meta-radio-two" for="ampforwp-ia-on-off-meta-radio-two">
-                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-ia-on-off-meta-radio-two" value="hide-ia" <?php if ( $ampforwp_user_has_amp_roles == false ) { ?> checked="checked" <?php } ?> <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'hide-ia' ); ?>>
+                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-ia-on-off-meta-radio-two" value="hide-ia"  <?php checked( $ampforwp_current_ia_value, 'hide-ia' ); ?>>
                 <?php esc_html_e( 'Disable', 'accelerated-mobile-pages' )?>
             </label> 
         </div>
