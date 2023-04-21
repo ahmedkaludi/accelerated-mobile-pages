@@ -7039,11 +7039,9 @@ if ( ! function_exists('ampforwp_ia_meta_box') ) {
 	function ampforwp_ia_meta_box() {
 		global $post;
 	    
-	    if ( ampforwp_role_based_access_options() == true ) { 
 		    if( ampforwp_get_setting('fb-instant-article-switch') && $post->post_type == 'post' ) {
 		    	add_meta_box( 'ampforwp_ia_meta', esc_html__( 'Show Instant Article for Current Post?','accelerated-mobile-pages' ), 'ampforwp_ia_meta_callback', 'post','side' );      
 		    }
-        }
     }
 }
 // Callback function for Instant Articles Meta Box.
@@ -7051,7 +7049,7 @@ function ampforwp_ia_meta_callback( $post ) {
 	global $redux_builder_amp;
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_ia_nonce' );
     $ampforwp_stored_meta = get_post_meta( ampforwp_get_the_ID() );
-	if ( ! isset($ampforwp_stored_meta['ampforwp-ia-on-off']) && ! isset($ampforwp_stored_meta['ampforwp-ia-on-off'][0]) && $ampforwp_stored_meta['ampforwp-ia-on-off'][0] == 'hide-ia') {
+	if ( ! empty($ampforwp_stored_meta['ampforwp-ia-on-off']) && ! empty($ampforwp_stored_meta['ampforwp-ia-on-off'][0]) && $ampforwp_stored_meta['ampforwp-ia-on-off'][0] == 'hide-ia') {
 		$exclude_post_value = get_option('ampforwp_ia_exclude_post');
 		if ( $exclude_post_value == null ) {
 			$exclude_post_value[] = 0;
@@ -7074,15 +7072,17 @@ function ampforwp_ia_meta_callback( $post ) {
 			}
 		}
 
-	} ?>
+	} 
+	$ampforwp_user_has_amp_roles = ampforwp_role_based_access_options(); 
+	?>
     <p>
         <div class="prfx-row-content">
             <label class="meta-radio-two" for="ampforwp-ia-on-off-meta-radio-one">
-                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-ia-on-off-meta-radio-one" value="default"  checked="checked" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'default' ); ?>>
+                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-ia-on-off-meta-radio-one" value="default"  <?php if ( $ampforwp_user_has_amp_roles == true ) { ?> checked="checked" <?php } ?> <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'default' ); ?>>
                 <?php esc_html_e( 'Enable', 'accelerated-mobile-pages' )?>
             </label>
             <label class="meta-radio-two" for="ampforwp-ia-on-off-meta-radio-two">
-                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-ia-on-off-meta-radio-two" value="hide-ia" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'hide-ia' ); ?>>
+                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-ia-on-off-meta-radio-two" value="hide-ia" <?php if ( $ampforwp_user_has_amp_roles == false ) { ?> checked="checked" <?php } ?> <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'hide-ia' ); ?>>
                 <?php esc_html_e( 'Disable', 'accelerated-mobile-pages' )?>
             </label> 
         </div>
