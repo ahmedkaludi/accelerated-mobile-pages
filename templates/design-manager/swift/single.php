@@ -152,7 +152,7 @@ $page = intval($page); ?>
 							                $r_width = 220;
 											$r_height = 134;
 
-									 if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') ) {
+									 if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') &&  ampforwp_get_setting('ampforwp-single-related-posts-image-width') && ampforwp_get_setting('ampforwp-single-related-posts-image-height')) {
 											$r_width = ampforwp_get_setting('ampforwp-single-related-posts-image-width');
 											$r_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
 										}
@@ -208,7 +208,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 				                <?php 
 				                $r_width = 220;
 								$r_height = 134;
-								if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') ) {
+								if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') &&  ampforwp_get_setting('ampforwp-single-related-posts-image-width') && ampforwp_get_setting('ampforwp-single-related-posts-image-height')) {
 										$r_width = ampforwp_get_setting('ampforwp-single-related-posts-image-width');
 										$r_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
 									}
@@ -257,7 +257,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 				                 <?php 
 				                $r_width = 346;
 								$r_height = 188;
-								if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') ) {
+								if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') &&  ampforwp_get_setting('ampforwp-single-related-posts-image-width') && ampforwp_get_setting('ampforwp-single-related-posts-image-height')) {
 										$r_width = ampforwp_get_setting('ampforwp-single-related-posts-image-width');
 										$r_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
 									}
@@ -444,7 +444,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 									                <?php 
 											            $r_width = 346;
 														$r_height = 188;
-													if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') ) {
+													if ( ampforwp_get_setting('ampforwp-single-related-posts-change-image-size') &&  ampforwp_get_setting('ampforwp-single-related-posts-image-width') && ampforwp_get_setting('ampforwp-single-related-posts-image-height')) {
 															$r_width = ampforwp_get_setting('ampforwp-single-related-posts-image-width');
 															$r_height = ampforwp_get_setting('ampforwp-single-related-posts-image-height');
 														}
