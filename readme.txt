@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.2
-Stable tag: 1.0.83
+Stable tag: 1.0.84
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.84 (28th April 2023) =
+* Fixed: Conflict issue with Jetpack Tiled gallery #5424
+* Fixed: An Author's page amphtml is not getting generated if the author name has "-" character. #5426
+* Fixed: Incorrect hook used to add admin scripts #4457
+* Fixed: when user is not an ampforwp admin, then newely created posts are not getting added in the instantarticles feed #4588
+* Fixed: Fatal error with Nitropack #5427
+* Fixed: Conflict issue with Imagify and WP Offload Media Lite plugin #5432
+* Fixed: The Analytic option Google Tag Manager is causing an error in the console while using with AMP Pop-up #5429
+* Improvement: Test with WordPress 6.2 and update Tested Up To in readme.txt #5431
 
 = 1.0.83 (4th April 2023) =
 * Fixed: The Facebook like button is not showing up properly on the AMP version. #5416
