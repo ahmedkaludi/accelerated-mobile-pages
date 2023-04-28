@@ -691,6 +691,10 @@ function ampforwp_backtotop_global_css(){?>
     word-break: break-word;
     word-wrap: break-word;
 	}
+	@media (min-width: 768px){
+	.artl-cnt .wp-block-column {
+		max-width: 100%;
+	}}
 	<?php if (function_exists('wp_pagenavi')) {?>
 	  .wp-pagenavi {
 	      border: 1px solid #BFBFBF;

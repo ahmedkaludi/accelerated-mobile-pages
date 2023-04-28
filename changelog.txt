@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 1.0.84 (28th April 2023) =
+* Fixed: Conflict issue with Jetpack Tiled gallery #5424
+* Fixed: An Author's page amphtml is not getting generated if the author name has "-" character. #5426
+* Fixed: Incorrect hook used to add admin scripts #4457
+* Fixed: when user is not an ampforwp admin, then newely created posts are not getting added in the instantarticles feed #4588
+* Fixed: Fatal error with Nitropack #5427
+* Fixed: Conflict issue with Imagify and WP Offload Media Lite plugin #5432
+* Fixed: The Analytic option Google Tag Manager is causing an error in the console while using with AMP Pop-up #5429
+* Improvement: Test with WordPress 6.2 and update Tested Up To in readme.txt #5431
+
 = 1.0.83 (4th April 2023) =
 * Fixed: The Facebook like button is not showing up properly on the AMP version. #5416
 * Fixed: Conflict WP-Bakery page builder with AMP. #5417

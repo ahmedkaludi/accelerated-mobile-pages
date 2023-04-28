@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.83
+Version: 1.0.84
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.83');
+define('AMPFORWP_VERSION','1.0.84');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 define('AMPFORWP_ANALYTICS_URL',plugin_dir_url(__FILE__).'includes/features/analytics');
 if(!defined('AMPFROWP_HOST_NAME')){
@@ -641,9 +641,20 @@ function ampforwp_is_amp_endpoint() {
 		return apply_filters('ampforwp_is_amp_endpoint_takeover', ampforwp_is_non_amp() );
 	}
 	else {
-		return apply_filters('ampforwp_is_amp_endpoint', false !== get_query_var( 'amp', false ) );
+		return apply_filters('ampforwp_is_amp_endpoint', false !== ampforwp_get_query_var( 'amp', false ) );
 	}
 }
+/* 
+* Customizing get_query_var to fix fatal error logs get() on null 
+* when ampforwp_is_amp_endpoint() function is used by third party plugin
+* [Fatal error with Nitropack #5427] 
+*/
+function ampforwp_get_query_var( $var, $default = '' ) {
+	global $wp_query;
+	if( ! isset( $wp_query ) || ! method_exists( $wp_query, 'get' ) ) return $default;
+	return $wp_query->get( $var, $default );
+}
+
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 	class Ampforwp_Init {
