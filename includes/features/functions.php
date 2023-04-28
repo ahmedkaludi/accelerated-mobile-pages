@@ -30,11 +30,12 @@ function ampforwp_include_aqresizer(){
     if ('plugins.php' == $pagenow) {
         add_action('admin_notices', 'ampforwp_tpd_notice' );
     }
-    $redux_data['frontpage']='';
+        $redux_data['frontpage']='';
         if( current_user_can("manage_options") && $pagenow == 'options-reading.php' && 0 == $redux_builder_amp['amp-frontpage-select-option']) {
             $redux_data['frontpage'] = 'false';
             $redux_data['admin_url'] = esc_url(admin_url("admin.php?page=amp_options&tabid=opt-text-subsection#redux_builder_amp-ampforwp-homepage-on-off-support"));
         }
+        $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
         wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style-global.css', false, AMPFORWP_VERSION );
         wp_enqueue_style( 'ampforwp_admin_css' );
         wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script-global.js', array('wp-color-picker'), AMPFORWP_VERSION );  
