@@ -39,7 +39,11 @@ function ampforwp_include_aqresizer(){
         wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style-global.css', false, AMPFORWP_VERSION );
         wp_enqueue_style( 'ampforwp_admin_css' );
         wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script-global.js', array('wp-color-picker'), AMPFORWP_VERSION );  
-        wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce', wp_create_nonce('ampforwp-verify-request') );
+        wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce',
+        array( 
+            'security' => wp_create_nonce( 'ampforwp-verify-request' )
+        )
+    );
       
         $redux_data = apply_filters("ampforwp_custom_localize_data", $redux_data);
         wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
