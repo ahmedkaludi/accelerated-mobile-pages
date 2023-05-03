@@ -1,6 +1,7 @@
 jQuery(function($) {
 
     // Dismiss button functionlaity
+    if($("#aampforwp-automattic-notice")){
     $('#ampforwp-automattic-notice').on('click', 'button', function(){
         var nonce = $('#ampforwp-automattic-notice').attr('data-nonce');
         var data_notice = {
@@ -11,7 +12,29 @@ jQuery(function($) {
     
         });
     });
-});
+    }
+    if($("#ampforwp-close-ad-notice")){
+        $("#ampforwp-close-ad-notice").on("click", function(){
+            var data = {
+                action: 'ampforwp_tpd_remove_notice',
+            };
+            $.post(ajaxurl, data, function(response) {
+                $(".ampforwp_remove_notice").remove();
+            });
+        });
+    }
+    if($("#ampforwp-close-notice")){
+    $("#ampforwp-close-notice").on("click", function(){
+        var data = {
+            action: 'ampforwp_feedback_remove_notice',
+        };
+        $.post(ajaxurl, data, function(response) {
+            $(".ampforwp_remove_notice").remove();
+        });
+    });
+    }
+
+    });
    
 jQuery(document).ready(function($){
     // AMP FrontPage notice in Reading Settings #2348
