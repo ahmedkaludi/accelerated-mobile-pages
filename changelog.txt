@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.85 (8th May 2023) =
+* Fixed: Notice : Function WP_Scripts::localize was called incorrectly. The $l10n parameter must be array #5435
+* Fixed: PHP error after the recent update 1.0.84 #5436
+* Fixed: Dismiss button not working #5437
+* Fixed: Issue with Google Font and Global Font Weight Selector #5440
+* Fixed: Some issue in extension section #5433
+
 = 1.0.84 (28th April 2023) =
 * Fixed: Conflict issue with Jetpack Tiled gallery #5424
 * Fixed: An Author's page amphtml is not getting generated if the author name has "-" character. #5426

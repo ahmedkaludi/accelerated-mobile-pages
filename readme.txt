@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.2
-Stable tag: 1.0.84
+Stable tag: 1.0.85
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.85 (8th May 2023) =
+* Fixed: Notice : Function WP_Scripts::localize was called incorrectly. The $l10n parameter must be array #5435
+* Fixed: PHP error after the recent update 1.0.84 #5436
+* Fixed: Dismiss button not working #5437
+* Fixed: Issue with Google Font and Global Font Weight Selector #5440
+* Fixed: Some issue in extension section #5433
 
 = 1.0.84 (28th April 2023) =
 * Fixed: Conflict issue with Jetpack Tiled gallery #5424
