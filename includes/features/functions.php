@@ -25,11 +25,12 @@ function ampforwp_include_aqresizer(){
  //  Some Extra Styling for Admin area
 
  add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling_amp' );
- function ampforwp_add_admin_styling_amp(){
+ function ampforwp_add_admin_styling_amp($hook_suffix){
     global $pagenow,$redux_builder_amp;
     if ('plugins.php' == $pagenow) {
         add_action('admin_notices', 'ampforwp_tpd_notice' );
     }
+    if($hook_suffix!='toplevel_page_amp_options' ){
         $redux_data['frontpage']='';
         if( current_user_can("manage_options") && $pagenow == 'options-reading.php' && 0 == $redux_builder_amp['amp-frontpage-select-option']) {
             $redux_data['frontpage'] = 'false';
@@ -49,8 +50,7 @@ function ampforwp_include_aqresizer(){
         wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_data );
         wp_enqueue_script( 'wp-color-picker' );
         wp_enqueue_script( 'ampforwp_admin_js' );
-    
-   
+    }
  }
 add_action( 'redux/page/redux_builder_amp/enqueue', 'ampforwp_add_admin_styling' );
 function ampforwp_add_admin_styling($hook_suffix){
@@ -69,7 +69,7 @@ function ampforwp_add_admin_styling($hook_suffix){
     // if ('plugins.php' == $pagenow) {
     //     add_action('admin_notices', 'ampforwp_tpd_notice' );
     // }
-    if( current_user_can("manage_options") && $hook_suffix=='toplevel_page_amp_options' ){
+    if( current_user_can("manage_options")){
         $redux_data = $redux_builder_amp;
         wp_dequeue_script( 'insert-post-adschart-admin' );
         if(function_exists('brokers_page_template_redirect')){
