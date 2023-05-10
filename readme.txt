@@ -195,7 +195,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 1.0.85 (8th May 2023) =
+= 1.0.85 (10th May 2023) =
 * Fixed: Notice : Function WP_Scripts::localize was called incorrectly. The $l10n parameter must be array #5435
 * Fixed: PHP error after the recent update 1.0.84 #5436
 * Fixed: Dismiss button not working #5437
