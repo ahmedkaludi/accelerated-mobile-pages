@@ -1009,6 +1009,7 @@ $(".redux-ampforwp-ext-deactivate").on("click", function(){
                     window.location.href = window.location.href;
                 }else{
                     alert(response.message);
+                    currentThis.html("Deactivate");
                 }
             }
         })
