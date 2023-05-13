@@ -50,8 +50,8 @@ function ampforwp_sidebar_opening_button($data=array()){
 	if(isset($data['class'])){
 		$class = $data['class'];
 	}
-	return '<div on="tap:'.esc_attr( $id ).'.toggle" role="button" tabindex="0" class="'. esc_attr( $class ) .'">
-						<a href="#" class="amp-sidebar-toggle">
+	return '<div on="tap:'.esc_attr( $id ).'.toggle" role="button" tabindex="0" aria-label="amp-sidebar-button-navigation" class="'. esc_attr( $class ) .'">
+						<a href="#" aria-label="amp-sidebar-button-navigation-toggle" class="amp-sidebar-toggle">
 							<span></span>
 							<span></span>
 							<span></span>
