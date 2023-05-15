@@ -34,6 +34,9 @@ function ampforwp_thirdparty_compatibility(){
 	if ( in_array( 'wordproof-timestamp/wordproof-timestamp.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 		add_filter('amp_post_template_data','ampforwp_compatibility_filter_tags_for_wordproof_plugin');
 	}
+	if ( in_array( 'opensea/opensea.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		add_filter('amp_post_template_data','ampforwp_compatibility_for_opensea_plugin');
+	}
 	// AMP is not working due to JCH Optimize Pro plugin #3185
 	remove_action('shutdown', 'jch_buffer_end', -1);
 	//ShortPixel Plugin Compatibility to remove picture tag in amp #3439
@@ -1625,6 +1628,22 @@ function ampforwp_compatibility_filter_tags_for_wordproof_plugin( $amp_post_temp
 	}
 
 	$amp_post_template_data['post_amp_content'] = $content;
+
+	return $amp_post_template_data;
+}
+
+/**
+ * ampforwp_compatibility_for_opensea_plugin function
+ *
+ * @since 1.0.86
+ * @param mixed|string $amp_post_template_data
+ * @return mixed|string
+ */
+function ampforwp_compatibility_for_opensea_plugin( $amp_post_template_data )
+{
+	$amp_component_scripts = $amp_post_template_data['amp_component_scripts']; 
+	array_push( $amp_component_scripts, 'https://unpkg.com/embeddable-nfts/dist/nft-card.min.js' );
+	$amp_post_template_data['amp_component_scripts'] = $amp_component_scripts;
 
 	return $amp_post_template_data;
 }
