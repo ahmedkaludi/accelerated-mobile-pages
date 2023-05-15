@@ -30,6 +30,10 @@ function ampforwp_thirdparty_compatibility(){
 	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
 	// #3124 enfold theme shortcodes removed
 	add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
+
+	if ( in_array( 'wordproof-timestamp/wordproof-timestamp.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		add_filter('the_content','ampforwp_compatibility_filter_tags_for_wordproof_plugin');
+	}
 	// AMP is not working due to JCH Optimize Pro plugin #3185
 	remove_action('shutdown', 'jch_buffer_end', -1);
 	//ShortPixel Plugin Compatibility to remove picture tag in amp #3439
@@ -1597,4 +1601,18 @@ function ampforwp_newsp_td_render_css(){
 			echo td_util::remove_style_tag(td_block::get_common_css());
 		}
 	}
+}
+
+function ampforwp_compatibility_filter_tags_for_wordproof_plugin( $content ) {
+	$removeTags = array(
+		'w-certificate',
+		'w-certificate-button',
+	);
+	
+	foreach ( $removeTags as $tag )	{
+		if( false !== strpos($content, "<$tag") )
+			$content = preg_replace("/<$tag.*?\/$tag>/i",'', $content);
+	}
+
+	return $content;
 }
