@@ -32,7 +32,7 @@ function ampforwp_thirdparty_compatibility(){
 	add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
 
 	if ( in_array( 'wordproof-timestamp/wordproof-timestamp.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-		add_filter('the_content','ampforwp_compatibility_filter_tags_for_wordproof_plugin');
+		add_filter('amp_post_template_data','ampforwp_compatibility_filter_tags_for_wordproof_plugin');
 	}
 	// AMP is not working due to JCH Optimize Pro plugin #3185
 	remove_action('shutdown', 'jch_buffer_end', -1);
@@ -1607,14 +1607,15 @@ function ampforwp_newsp_td_render_css(){
  * Ampforwp_compatibility_filter_tags_for_wordproof_plugin function
  *
  * @since 1.0.86
- * @param mixed|string $content
+ * @param mixed|string $amp_post_template_data
  * @return mixed|string
  */
-function ampforwp_compatibility_filter_tags_for_wordproof_plugin( $content ) {
-
+function ampforwp_compatibility_filter_tags_for_wordproof_plugin( $amp_post_template_data ) 
+{
+	$content = $amp_post_template_data['post_amp_content'];
 	$removeTags = array(
 		'w-certificate' => 'amp-lightbox',
-		'w-certificate-button' => 'amp-button',
+		'w-certificate-button' => 'button',
 	);
 	foreach( $removeTags as $findTag => $replaceTag ) {
 		if( false !== strpos($content, "<$findTag") ) { 
@@ -1623,5 +1624,7 @@ function ampforwp_compatibility_filter_tags_for_wordproof_plugin( $content ) {
 		}
 	}
 
-	return $content;
+	$amp_post_template_data['post_amp_content'] = $content;
+
+	return $amp_post_template_data;
 }
