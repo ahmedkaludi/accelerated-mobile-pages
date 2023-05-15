@@ -1603,15 +1603,24 @@ function ampforwp_newsp_td_render_css(){
 	}
 }
 
+/**
+ * Ampforwp_compatibility_filter_tags_for_wordproof_plugin function
+ *
+ * @since 1.0.86
+ * @param mixed|string $content
+ * @return mixed|string
+ */
 function ampforwp_compatibility_filter_tags_for_wordproof_plugin( $content ) {
+
 	$removeTags = array(
-		'w-certificate',
-		'w-certificate-button',
+		'w-certificate' => 'amp-lightbox',
+		'w-certificate-button' => 'amp-button',
 	);
-	
-	foreach ( $removeTags as $tag )	{
-		if( false !== strpos($content, "<$tag") )
-			$content = preg_replace("/<$tag.*?\/$tag>/i",'', $content);
+	foreach( $removeTags as $findTag => $replaceTag ) {
+		if( false !== strpos($content, "<$findTag") ) { 
+			$findRegExforTag = '~<(' . $findTag . ')(.*)?>(.*)<\/\1>~mi';
+			$content = preg_replace( $findRegExforTag, "<$replaceTag$2>$3</$replaceTag>", $content);
+		}
 	}
 
 	return $content;
