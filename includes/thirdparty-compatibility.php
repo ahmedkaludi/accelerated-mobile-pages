@@ -37,6 +37,7 @@ function ampforwp_thirdparty_compatibility(){
 	if ( in_array( 'opensea/opensea.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 		add_filter('amp_post_template_data','ampforwp_compatibility_for_opensea_plugin');
 	}
+	add_filter('amp_post_template_data','Ampforwp_add_target_attribute_in_form_tags');
 	// AMP is not working due to JCH Optimize Pro plugin #3185
 	remove_action('shutdown', 'jch_buffer_end', -1);
 	//ShortPixel Plugin Compatibility to remove picture tag in amp #3439
@@ -1644,6 +1645,36 @@ function ampforwp_compatibility_for_opensea_plugin( $amp_post_template_data )
 	$amp_component_scripts = $amp_post_template_data['amp_component_scripts']; 
 	array_push( $amp_component_scripts, 'https://unpkg.com/embeddable-nfts/dist/nft-card.min.js' );
 	$amp_post_template_data['amp_component_scripts'] = $amp_component_scripts;
+
+	return $amp_post_template_data;
+}
+
+/**
+ * Ampforwp_add_target_attribute_in_form_tags function
+ *
+ * @since 1.0.86
+ * @param mixed|string $amp_post_template_data
+ * @return mixed|string
+ */
+function Ampforwp_add_target_attribute_in_form_tags( $amp_post_template_data )
+{
+	$content = $amp_post_template_data['post_amp_content'];
+	$pattern = '~<form(?![^>]*\btarget=)[^<]*>~im';
+
+	if( preg_match_all( $pattern, $content, $matches ) ) 
+	{
+		if( 0 < count( $matches[0] ) )
+		{
+			$matchesUnique = array_unique( $matches[0] );
+			foreach( $matchesUnique as $match )
+			{
+				$matchStr = trim( str_replace( '>', '', $match ) ); 
+				$content = str_replace( $matchStr, $matchStr . ' target="_top"', $content );
+			}
+		}
+	}
+
+	$amp_post_template_data['post_amp_content'] = $content;
 
 	return $amp_post_template_data;
 }
