@@ -60,7 +60,7 @@ jQuery(document).ready(function($) {
               $('.amp-editor-content').hide();
            }
     }
-    if(document.getElementById('ampforwp_custom_content_editor')){
+    if(document.getElementById('ampforwp_custom_content_editor') && document.getElementById('meta-checkbox').checked){
         tinymce.get('ampforwp_custom_content_editor').on("keyup change paste",function(){
         var thisval = tinymce.get('ampforwp_custom_content_editor').getContent();
         if(thisval!=""){
