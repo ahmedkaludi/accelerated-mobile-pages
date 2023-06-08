@@ -39,7 +39,7 @@ function ampforwp_sidebar_close_button($data=array() ){
 	if(isset($data['class'])){
 		$class .= $data['class'];
 	}
-	return '<div role="button" tabindex="0" on="tap:'.esc_attr( $id ).'.close" class="'.esc_attr( $class ).'">X</div>';
+	return '<div role="button" tabindex="0" on="tap:'.esc_attr( $id ).'.close" aria-label="Close" class="'.esc_attr( $class ).'">X</div>';
 }
 function ampforwp_sidebar_opening_button($data=array()){
 	$id = 'sidebar';
@@ -50,8 +50,8 @@ function ampforwp_sidebar_opening_button($data=array()){
 	if(isset($data['class'])){
 		$class = $data['class'];
 	}
-	return '<div on="tap:'.esc_attr( $id ).'.toggle" role="button" tabindex="0" class="'. esc_attr( $class ) .'">
-						<a href="#" class="amp-sidebar-toggle">
+	return '<div on="tap:'.esc_attr( $id ).'.toggle" role="button" tabindex="0" aria-label="Sidebar Button" class="'. esc_attr( $class ) .'">
+						<a href="#" aria-label="Sidebar Button Toggle" class="amp-sidebar-toggle">
 							<span></span>
 							<span></span>
 							<span></span>

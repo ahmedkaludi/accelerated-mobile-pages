@@ -6956,9 +6956,9 @@ if ( ! function_exists('ampforwp_content_sneak_peek') ) {
 function ampforwp_sneak_peek_content_modifier($content){
 	
 	if ( strlen($content) >= 3000 ) {
-		$content = '<div class="fd-h" [class]="contentVisible ? \'show\' : \'fd-h\'">' . $content . '</div>';
-		$content = $content . '<div id="fader" class="content-fader" [class]="contentVisible ? \'content-fader hide\' : \'content-fader\'"></div>';
-		$content = $content . '<div class="fd-b-c" [class]="contentVisible ? \'fd-b-c hide\' : \'fd-b-c\'"><button class="fd-b" [text]="contentVisible ? \'\' : \''.ampforwp_translation(ampforwp_get_setting('content-sneak-peek-btn-text'), 'Show Full Article').'\'" on="tap:AMP.setState({contentVisible: !contentVisible})">'.ampforwp_translation(ampforwp_get_setting('content-sneak-peek-btn-text'), 'Show Full Article').'</button></div>';
+		$content = '<div class="fd-h" data-amp-bind-class="contentVisible ? \'show\' : \'fd-h\'">' . $content . '</div>';
+		$content = $content . '<div id="fader" class="content-fader" data-amp-bind-class="contentVisible ? \'content-fader hide\' : \'content-fader\'"></div>';
+		$content = $content . '<div class="fd-b-c" data-amp-bind-class="contentVisible ? \'fd-b-c hide\' : \'fd-b-c\'"><button class="fd-b" data-amp-bind-text="contentVisible ? \'\' : \''.ampforwp_translation(ampforwp_get_setting('content-sneak-peek-btn-text'), 'Show Full Article').'\'" on="tap:AMP.setState({contentVisible: !contentVisible})">'.ampforwp_translation(ampforwp_get_setting('content-sneak-peek-btn-text'), 'Show Full Article').'</button></div>';
 	}
 	return $content;
 }

@@ -30,6 +30,14 @@ function ampforwp_thirdparty_compatibility(){
 	remove_filter('wp_nav_menu_args',array('AitMenu','modify_arguments'),100);
 	// #3124 enfold theme shortcodes removed
 	add_filter('the_content','ampforwp_remove_enfold_theme_shortcodes_tags');
+
+	if ( in_array( 'wordproof-timestamp/wordproof-timestamp.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		add_filter('amp_post_template_data','ampforwp_compatibility_filter_tags_for_wordproof_plugin');
+	}
+	if ( in_array( 'opensea/opensea.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		add_filter('amp_post_template_data','ampforwp_compatibility_for_opensea_plugin');
+	}
+	add_filter('amp_post_template_data','ampforwp_add_target_attribute_in_form_tags');
 	// AMP is not working due to JCH Optimize Pro plugin #3185
 	remove_action('shutdown', 'jch_buffer_end', -1);
 	//ShortPixel Plugin Compatibility to remove picture tag in amp #3439
@@ -1597,4 +1605,188 @@ function ampforwp_newsp_td_render_css(){
 			echo td_util::remove_style_tag(td_block::get_common_css());
 		}
 	}
+}
+
+/**
+ * Ampforwp_compatibility_filter_tags_for_wordproof_plugin function
+ *
+ * @since 1.0.86
+ * @param mixed|string $amp_post_template_data
+ * @return mixed|string
+ */
+function ampforwp_compatibility_filter_tags_for_wordproof_plugin( $amp_post_template_data ) 
+{
+	global $wpdb,$post;
+	if(is_single() && isset($post->ID) && !empty($post->ID)){
+		
+	
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT meta_value FROM {$wpdb->prefix}postmeta WHERE post_id = %d AND meta_key LIKE %s",array( $post->ID,'_wordproof_hash_input_%' )),
+				ARRAY_N
+		);
+		if($results)
+		{
+			$schema_data = reset($results);
+			if(isset($schema_data[0])){
+			 $schema_data = unserialize($schema_data[0]);
+			}
+			if(empty($schema_data)) { return $amp_post_template_data; }
+			$content = $amp_post_template_data['post_amp_content'];
+		// for w-certificate-button
+		if( false !== strpos($content, "<w-certificate-button") ) { 
+			add_action( 'amp_post_template_css', 'amp_wordproof_compatibility_css' );
+			$findRegExforTag = '~<(w-certificate-button)(.*) text="(.*)"?>(.*)<\/\1>~mi';
+			$content = preg_replace( $findRegExforTag, "<button on='tap:w-certificate-button'>$3</button>", $content);
+		}
+		 
+		 $lightbox_content = '<amp-lightbox id="w-certificate-button" layout="nodisplay" scrollable>';
+		 $lightbox_content.='<div class="amp_wordproof_lightbox" role="button" tabindex="0" on="tap:w-certificate-button.close">';
+		 $lightbox_content.='<svg xmlns="http://www.w3.org/2000/svg" class="shield"><use xlink:href="#shield"></use><symbol id="shield" viewBox="0 0 44 58"><path d="M21.799.018c1.463-.176 3.371 1.017 4.736 1.475 4.102 1.375 8.177 2.9 12.235 4.405 1.344.5 4.237.945 4.939 2.296.513.989.191 2.694.191 3.783v8.875c0 8.06.633 16.427-3.742 23.623-1.15 1.889-2.563 3.55-4.151 5.088-1.867 1.807-4.078 3.306-6.315 4.621a81.965 81.965 0 01-5.13 2.788c-.766.38-1.626.968-2.5 1.025-.857.055-1.763-.595-2.5-.96-2.019-1.002-4.003-2.057-5.92-3.24-2.533-1.565-4.924-3.364-6.961-5.537C-.563 40.532.091 30.113.091 20.33v-8.353c0-1.066-.301-2.682.192-3.654.77-1.517 3.831-2.007 5.334-2.525 3.657-1.26 7.287-2.627 10.92-3.96 1.643-.602 3.516-1.61 5.262-1.82m0 3.817c-1.708.222-3.526 1.221-5.131 1.822-2.834 1.06-5.737 1.947-8.552 3.057-.936.37-3.805.823-4.262 1.752-.37.754-.08 2.244-.08 3.077v7.309c0 8.573-.77 17.4 5.19 24.406 1.563 1.837 3.498 3.303 5.467 4.68 1.675 1.17 3.484 2.1 5.263 3.095.63.352 1.62 1.068 2.368 1.021.745-.047 1.602-.686 2.236-1.04 1.46-.817 2.917-1.598 4.342-2.48a30.632 30.632 0 005.915-4.754c6.455-6.7 5.662-15.868 5.662-24.406v-7.7c0-.864.306-2.428-.08-3.208-.424-.86-3.243-1.385-4.13-1.71-3.282-1.204-6.588-2.346-9.867-3.559-1.192-.441-3.056-1.53-4.341-1.362m-1.053 32.417h-.132l-6.183-6.134c-.48-.476-2.081-1.63-2.078-2.35.004-.827 1.785-2.058 2.341-2.61 1.521 1.098 2.898 2.683 4.188 4.042.408.43 1.209 1.572 1.864 1.564.814-.01 2.082-1.798 2.631-2.342l6.447-6.395c.518-.515 1.588-2.044 2.368-2.064.793-.02 2.65 2.02 2.187 2.716-1.094 1.638-3.023 3.048-4.424 4.438z" fill="currentColor"></path></symbol></svg>';
+		 if(isset($schema_data->dateCreated)){
+		  $datetime = new DateTime($schema_data->dateCreated);
+		  $lightbox_content.= '<h5>Last edited '.esc_attr($datetime->format('F j, Y at h:i A')) .' </h5>';
+		 }
+		 $lightbox_content.= '<h4>This information did not change since the last timestamp</h4><p>This is important, because it proves that the content has not been tampered with and it can be trusted.<p>';
+		 $lightbox_content.= '</div></amp-lightbox>';
+	
+		 // for w-certificate
+		if( false !== strpos($content, "<w-certificate") ) { 
+			$findRegExforTag = '~<(w-certificate)(.*)?>(.*)<\/\1>~mi';
+			$content = preg_replace( $findRegExforTag, $lightbox_content, $content);
+		}
+	
+		$amp_post_template_data['post_amp_content'] = $content;
+		}
+		
+	}
+
+
+	return $amp_post_template_data;
+}
+
+function amp_wordproof_compatibility_css(){
+	echo '.amp_wordproof_lightbox{background:rgba(0,0,0,.8);width:100%;height:100%;position:absolute;display:flex;flex-wrap:wrap;color:#fff;justify-content:center;align-content:center;align-items:center}.amp_wordproof_lightbox h4,.amp_wordproof_lightbox h5,.amp_wordproof_lightbox p{padding:0 10px}';
+}
+/**
+ * ampforwp_compatibility_for_opensea_plugin function
+ *
+ * @since 1.0.86
+ * @param mixed|string $amp_post_template_data
+ * @return mixed|string
+ */
+function ampforwp_compatibility_for_opensea_plugin( $amp_post_template_data )
+{
+	$content = $amp_post_template_data['post_amp_content'];
+	if( false !== strpos($content, "<nft-card") ) { 
+		add_action( 'amp_post_template_css', 'ampforwp_opensea_compatibility_css' );
+
+		$findRegExforTag = '~<(nft-card) tokenaddress="(.*)" tokenid="(.*)">?>(.*)<\/\1>~mi';
+		$content = preg_replace_callback($findRegExforTag, 'ampforwp_compatibility_for_opensea_callback', $content);
+	}
+	$amp_post_template_data['post_amp_content'] = $content;
+	return $amp_post_template_data;
+}
+
+function ampforwp_opensea_compatibility_css(){
+	echo '.ampforwp_opensea_card .asset-detail-type a {border: 1px solid;border-radius: 20px;display: flex;flex-direction: row;align-items: center;}.ampforwp_opensea_card .asset-detail-type img {width:25px;border-radius:50%;padding:5px;}.ampforwp_opensea_card{background-color:#fff;font-family:Roboto,sans-serif;-webkit-font-smoothing:antialiased;font-style:normal;font-weight:400;line-height:normal;border-radius:5px;perspective:1000px;margin:auto;width:80vw;height:210px;min-height:200px;max-width:670px}.ampforwp_opensea_card .card-inner{position:relative;width:100%;height:100%;text-align:center;transition:transform .6s;transform-style:preserve-3d;box-shadow:0 1px 6px rgba(0,0,0,.25);border-radius:5px}.ampforwp_opensea_card a{text-decoration:none;color:inherit}.ampforwp_opensea_card .card-front{backface-visibility:hidden;background:#fff;border-radius:5px;display:grid;grid-template-columns:1fr 2fr;position:relative;width:100%;height:100%;transform:translateY(0);overflow:hidden}.ampforwp_opensea_card .card-front p{margin:0;padding:0 10px;}.ampforwp_opensea_card .asset-image-container{border-right:1px solid #e2e6ef;background-size:cover;box-sizing:border-box}.ampforwp_opensea_card .asset-image{background-size:contain;background-position:50%;background-repeat:no-repeat;height:100%;box-sizing:border-box}.ampforwp_opensea_card .asset-details-container{display:grid;grid-template-rows:auto;grid-template-columns:1fr 1fr;padding:20px;align-items:center}.ampforwp_opensea_card .asset-detail{display:flex}.ampforwp_opensea_card .asset-detail .asset-detail-type{height:35px;font-size:12px;margin-right:10px}.ampforwp_opensea_card .asset-detail .asset-detail-badge{width:54px;height:30px;font-size:12px}.ampforwp_opensea_card .asset-detail-name{font-weight:400;text-align:left}.ampforwp_opensea_card .asset-detail-price{align-items:flex-end;font-size:18px;font-weight:400;display:flex;flex-flow:row;justify-content:flex-end;line-height:15px;text-align:right;padding:6px 0}.ampforwp_opensea_card .asset-detail-price img{margin:0 4px}.ampforwp_opensea_card .asset-detail-price-current img{width:15px}.ampforwp_opensea_card .asset-detail-price-previous{font-size:14px;color:#828282;line-height:10px}.ampforwp_opensea_card .asset-detail-price-previous img{width:1ex}.ampforwp_opensea_card .asset-detail-price .value{margin-left:5px}.ampforwp_opensea_card .asset-detail-price .previous-value{font-size:14px;color:#828282}.ampforwp_opensea_card .asset-action-buy{grid-column-start:1;grid-column-end:3}.ampforwp_opensea_card .asset-action-buy button{width:100%;background:#3291e9;border-radius:5px;height:35px;color:#fff;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:.2s;outline:0;border-style:none;text-transform:uppercase}.ampforwp_opensea_card .asset-action-buy button:hover{background:#153d62}.ampforwp_opensea_card .asset-link{text-decoration:none;}';
+}
+
+function ampforwp_compatibility_for_opensea_callback($matches){
+	$default_return="";
+	if(isset($matches[2]) && !empty($matches[2]) &&  isset($matches[3]) && !empty($matches[3])){
+	
+		$response = wp_remote_get( 'https://api.opensea.io/api/v1/asset/'.$matches[2].'/'.$matches[3].'/?',
+		array('headers'=>array('X-API-KEY'=>'e4e7b08f1807492e91301de85728ce2e',
+		   'accept' => 'application/json'
+		 )) );
+		 if ( is_array( $response ) && ! is_wp_error( $response ) ) {
+			
+			$body    = $response['body']; // use the content
+			$nft_data = json_decode($body,true);
+			
+			if(isset($nft_data['token_id']) && isset($nft_data['image_url']) && isset($nft_data['name']) && isset($nft_data['permalink']) && isset($nft_data['asset_contract']['name']) && isset($nft_data['asset_contract']['image_url']) && isset($nft_data['collection']['slug'])){
+			$nft_card_html="
+			<div class='ampforwp_opensea_card'>
+			<div class='card-inner'>
+			<div class='card-front'>
+			  <div class='asset-image-container'>
+				<a target='_blank' href='".esc_url($nft_data['permalink'])."'>
+				  <div class='asset-image' style='background-image: url(&quot;".esc_url($nft_data['image_url'])."&quot;); background-size: contain;'></div>
+				</a>
+			  </div>
+				<div class='asset-details-container'>
+				  <div class='asset-detail'>
+					<div class='asset-detail-type'>
+					  <a class='asset-link' target='_blank' href='https://opensea.io/assets/".esc_url($nft_data['collection']['slug'])."'>
+					  <img alt='' src='".esc_url($nft_data['asset_contract']['image_url'])."'>
+            		  <p>".esc_attr($nft_data['asset_contract']['name'])."</p>
+					  </a>
+					</div>
+				  </div>
+				  <div class='spacer'></div>
+				  <div class='asset-detail-name'>
+					<a class='asset-link' target='_blank' href='".esc_url($nft_data['permalink'])."'>".esc_attr($nft_data['name'])."</a>
+				  </div>
+				  
+				<a class='asset-link' target='_blank' href='".esc_url($nft_data['permalink'])."'>
+				<div class='asset-detail-price asset-detail-price-previous'>
+				<div class='previous-value'>Prev.&nbsp;</div>  
+				<img alt='' src='https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg'>
+				<div class='asset-detail-price-value'>
+				  ";
+				  if(isset($nft_data['last_sale']['total_price'])){
+					$price_to_show=round($nft_data['last_sale']['total_price']/1000000000000000000,3);
+					$nft_card_html.= esc_attr($price_to_show);
+				  }
+				$nft_card_html.="</div>
+			  </div>
+			  </a>
+			<div class='asset-action-buy'>
+			  <button>
+				<a class='asset-link' target='_blank' href='".esc_url($nft_data['permalink'])."'> buy this item > </a>
+			  </button>
+				  </div>
+				</div>
+		  </div>
+		</div>
+	</div>";
+	return $nft_card_html;
+			}
+		}
+
+	}
+	if(isset($response['response']['code']) && $response['response']['message'] ){
+		$default_return = '<center><small> Opensea Error - '.esc_attr($response['response']['code']).' : '.esc_attr($response['response']['message']).'</small></center>' ;
+	}
+ return $default_return;
+}
+/**
+ * ampforwp_add_target_attribute_in_form_tags function
+ *
+ * @since 1.0.86
+ * @param mixed|string $amp_post_template_data
+ * @return mixed|string
+ */
+function ampforwp_add_target_attribute_in_form_tags( $amp_post_template_data )
+{
+	$content = $amp_post_template_data['post_amp_content'];
+	$pattern = '~<form(?![^>]*\btarget=)[^<]*>~im';
+
+	if( preg_match_all( $pattern, $content, $matches ) ) 
+	{
+		if( 0 < count( $matches[0] ) )
+		{
+			$matchesUnique = array_unique( $matches[0] );
+			foreach( $matchesUnique as $match )
+			{
+				$matchStr = trim( str_replace( '>', '', $match ) ); 
+				$content = str_replace( $matchStr, $matchStr . ' target="_top"', $content );
+			}
+		}
+	}
+
+	$amp_post_template_data['post_amp_content'] = $content;
+
+	return $amp_post_template_data;
 }

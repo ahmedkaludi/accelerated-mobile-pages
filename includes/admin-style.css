@@ -296,68 +296,6 @@ body #toplevel_page_amp_options .wp-menu-image{
     border-style: solid;
     border-color: transparent black transparent transparent;
 }
-/* Mobile preview button and preview Iframe Styling #1082 */
-.col-sm-12 {
-    width: 100%;
-}
-.margin-top-bottom {
-    margin-top: 9px;
-    margin-bottom: 10px;
-}
-.text-center {
-    text-align: center;
-}
-#ampforwp-preview-format {
-    margin-bottom: 0px;
-    line-height: 0.5em;
-}
-.ampforwp-preview-phone-frame-wrapper {
-    width:110%;
-    display:inline-block;
-    position: relative;
-    max-width: 300px;
-    text-align: center;
-    margin-left: -12px;
-}
-.ampforwp-preview-phone-frame-wrapper:after {
-    padding-top: 180%; 
-    display:block;
-    content: '';
-}
-.ampforwp-preview-phone-frame {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    border: 1px solid #e5e5e5;
-    border-radius: 40px;
-    padding-top:50px;
-    padding-bottom: 35px;        
-    background: #f1f1f1;
-
-}
-.ampforwp-preview-container {
-    height: 100%;
-    position: relative;
-    width: 100%;
-    border: 1px solid #e5e5e5;
-    overflow: hidden;
-}
-.ampforwp-preview-container > iframe {
-    height: 100%;
-    width: 100%;
-    transform: scale(1, 1); 
-    transform-origin: top left;
-}
-#TB_window #TB_ajaxContent{
-    width: 100%;
-    height: 100%;
-}
-.ampforwp-preview-button-container{
-    float: right; 
-    margin-top: 0px;    
-}
 .meta-radio-two{margin-right: 8px; top: 3px; position: relative;}
 #wp-admin-bar-ampforwp-view-amp a, #wp-admin-bar-ampforwp-view-amp:hover a{
  background-size: 18px !important;background-repeat: no-repeat !important;background-position: 4px 7px !important;text-indent: -99999px;width: 12px;  background:

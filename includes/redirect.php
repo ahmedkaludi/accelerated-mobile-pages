@@ -356,7 +356,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
         return;
     }
 
-    if ( function_exists('session_id') && ! session_id() ) {
+    if ( function_exists('session_id') && ! session_id() && $redirectToAMP) {
         session_start();
     }
 
