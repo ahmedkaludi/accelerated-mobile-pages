@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.2
-Stable tag: 1.0.85
+Stable tag: 1.0.86
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,15 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.86 (8th June 2023) =
+* Fixed: Content Sneak Peek not working #5446
+* Fixed: Need to add the name and attribute to the elements. #5439
+* Fixed: Compatibility with OpenSea plugin #5384
+* Fixed: Compatibility with the plugin WordProof. #5342
+* Fixed: WPCore Module of Search is throwing error in AMP validation #5450
+* Fixed: NON-AMP site is slowed down if the mobile redirection is enabled in AMP #5451
+* Fixed: "Preview AMP" shows a blank modal #5454
 
 = 1.0.85 (10th May 2023) =
 * Fixed: Notice : Function WP_Scripts::localize was called incorrectly. The $l10n parameter must be array #5435
