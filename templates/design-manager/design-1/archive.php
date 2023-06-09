@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-global $redux_builder_amp, $wp; ?>
+global $redux_builder_amp, $wp,$wp_query; ?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
@@ -72,7 +72,7 @@ global $redux_builder_amp, $wp; ?>
 	    		ampforwp_category_image_compatibility('echo','amp-wp-content taxonomy-image');
 	    	}
 			$arch_desc 		= $sanitizer->get_amp_content();
-			if( $arch_desc ) {  
+			if( $arch_desc || have_posts() ) {  
 				if ( get_query_var( 'paged' ) ) {
 		        $paged = get_query_var('paged');
 		    } elseif ( get_query_var( 'page' ) ) {
@@ -153,7 +153,7 @@ global $redux_builder_amp, $wp; ?>
 		    <div class="amp-wp-content pagination-holder">
 
 		        <div id="pagination">
-		        	<?php if ( get_next_posts_link('next', $q->max_num_pages) ){ ?><div class="next"><?php echo apply_filters('ampforwp_next_posts_link', get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ).'&raquo;', 0), $paged ) ?></div><?php }?>
+		        	<?php if ( get_next_posts_link('next', $wp_query->max_num_pages) ){ ?><div class="next"><?php echo apply_filters('ampforwp_next_posts_link', get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ).'&raquo;', 0), $paged ) ?></div><?php }?>
 		        	<?php if ( get_previous_posts_link() ){ ?><div class="prev"><?php echo apply_filters( 'ampforwp_previous_posts_link', get_previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' )), $paged ); ?></div><?php }?>
 		            <div class="clearfix"></div>
 		        </div>
