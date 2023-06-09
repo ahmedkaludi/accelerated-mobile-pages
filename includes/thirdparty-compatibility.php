@@ -1416,15 +1416,23 @@ function ampforwp_callrail_modify_content($content) {
     $config_url = $number = $analytics_url = '';
 	$config_url = ampforwp_get_setting('ampforwp-callrail-config-url');
 	$number = ampforwp_get_setting('ampforwp-callrail-number');
+	$number_2 = ampforwp_callrail_get_formated_phone($number); // getting number in format 123-456-7890
+	$number_2_replace= '(<a(.*?)href="tel:((.*?-)?'.esc_attr($number_2).')"(.*?)>(.*?)<\/a>)'; // regex for matching number format with anchor tag
 	$analytics_url = ampforwp_get_setting('ampforwp-callrail-analytics-url');
 	$call_rail_analytics = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_html($number).'</a></amp-call-tracking><amp-analytics config="'.esc_url($analytics_url).'"></amp-analytics>';
 	$replace_meta = '<meta>';
 	$content = preg_replace("#<meta (.*?)>#is", $replace_meta, $content);
 	$content = str_replace($number, $call_rail_analytics, $content);
+	$content = preg_replace($number_2_replace, $call_rail_analytics, $content); // replacing number with call tracing code
 	$ct_test = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_attr($number).'</a></amp-call-tracking>';
 	$content = preg_replace('/<a(.*?)><amp-call-tracking(.*?)><a(.*?)<\/a>/', $ct_test, $content);
 
 	return $content;
+}
+function ampforwp_callrail_get_formated_phone($number){
+	$number = preg_replace("/[^\d]/","",$number);
+	$number = preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", $number);
+	return $number;
 }
 
 function ampforwp_is_callrail_switch_active()
