@@ -6,6 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Callbacks for adding content to an AMP template
 
 function amp_post_template_add_title( $amp_template ) {
+	if(!is_object($amp_template)){
+		return;
+	}
 	$title = $amp_template->get( 'document_title' );
 	$title = str_replace('&#8211;', '-', $title);
 	$title = apply_filters( 'ampforwp_modify_title', $title );
@@ -26,6 +29,10 @@ if( (class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) ){
 	add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_title' );
 }
 function amp_post_template_add_canonical( $amp_template ) {
+
+	if(!is_object($amp_template)){
+		return;
+	}
 	
 	if (function_exists('aioseo') && ((aioseo()->pro && (version_compare(AIOSEO_VERSION,'4.2.6')>=0)) || (!aioseo()->pro && (version_compare(AIOSEO_VERSION,'4.2.4')>0)))) {
 		return;
@@ -45,6 +52,9 @@ if(false==ampforwp_get_setting('hide-amp-version-from-source')){
 
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_cached_link' );
 function amp_post_template_add_cached_link($amp_template) {
+	if(!is_object($amp_template)){
+		return;
+	}
 	$design = "swift";
 	if(ampforwp_get_setting("ampforwp_font_icon")=="swift-icons" && (ampforwp_get_setting('amp-design-selector')==3 || ampforwp_get_setting('amp-design-selector')==4)){
 		if(ampforwp_get_setting('amp-design-selector')!=4){
@@ -104,6 +114,9 @@ function amp_post_template_add_cached_link($amp_template) {
 
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_scripts' );
 function amp_post_template_add_scripts( $amp_template ) {
+	if(!is_object($amp_template)){
+		return;
+	}
 	$scripts = $amp_template->get( 'amp_component_scripts', array() );
 	$scripts = apply_filters('ampforwp_set_amp_custom_type_script',$scripts);
 	foreach ( $scripts as $element => $script ) : 
@@ -116,6 +129,9 @@ function amp_post_template_add_scripts( $amp_template ) {
 
 add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_fonts' );
 function amp_post_template_add_fonts( $amp_template ) {
+	if(!is_object($amp_template)){
+		return;
+	}
 	$font_urls = $amp_template->get( 'font_urls', array() );
 	foreach ( $font_urls as $slug => $url ) : ?>
 		<link rel="stylesheet" href="<?php echo esc_url( $url ); ?>">
@@ -132,6 +148,9 @@ function amp_post_template_add_boilerplate_css( $amp_template ) {
 if(ampforwp_get_setting('ampforwp-sd-switch') && !function_exists('ampforwp_with_scheme_app_output') && !function_exists('saswp_schema_markup_output') && ( ampforwp_get_setting('ampforwp-seo-selection') != "rank_math" || ! ampforwp_get_setting('ampforwp-seo-rank_math-schema')) && ! class_exists('SQ_Classes_ObjController') ):
 add_action( 'amp_post_template_footer', 'AMPforWP\\AMPVendor\\amp_post_template_add_schemaorg_metadata' );
 function amp_post_template_add_schemaorg_metadata( $amp_template ) {
+	if(!is_object($amp_template)){
+		return;
+	}
 	$metadata = $amp_template->get( 'metadata' );
 	if ( empty( $metadata ) ) {
 		return;
@@ -155,6 +174,9 @@ endif;
 
 add_action( 'amp_post_template_css', 'AMPforWP\\AMPVendor\\amp_post_template_add_styles', 99 );
 function amp_post_template_add_styles( $amp_template ) {
+	if(!is_object($amp_template)){
+		return;
+	}
 	$styles = $amp_template->get( 'post_amp_styles' );
 	if ( ! empty( $styles ) ) {
 		echo '/* Inline styles */' . PHP_EOL;
@@ -176,6 +198,9 @@ function amp_post_template_add_analytics_script( $data ) {
 
 add_action( 'amp_post_template_footer', 'AMPforWP\\AMPVendor\\amp_post_template_add_analytics_data' );
 function amp_post_template_add_analytics_data( $amp_template ) {
+	if(!is_object($amp_template)){
+		return;
+	}
 	$analytics_entries = $amp_template->get( 'amp_analytics' );
 	if ( empty( $analytics_entries ) ) {
 		return;
