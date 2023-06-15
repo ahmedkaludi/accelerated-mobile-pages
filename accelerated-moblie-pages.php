@@ -402,6 +402,11 @@ if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
 			      'index.php?amp&product_cat=$matches[1]',
 			      'top'
 			    );
+				add_rewrite_rule(
+					'^'.$permalinks['category_rewrite_slug'].'\/(.+?)\/([^\/]+)\/amp\/?$',
+					'index.php?amp&product_cat=$matches[2]',
+					'top'
+				  );
 
 
 			add_rewrite_rule( 
