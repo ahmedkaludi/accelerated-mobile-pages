@@ -217,11 +217,18 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 	     // HIDE/SHOW TAG AND CATEGORY #4326
 	  if(is_tag() || is_category() || is_tax()){
-          $term_id = get_queried_object()->term_id;
-          $tax_status = ampforwp_get_taxonomy_meta($term_id,'status');
-          if($tax_status==false){
-           	return;
-          }
+		$amp_queried_object = get_queried_object();
+		if (property_exists($amp_queried_object, 'term_id'))
+		{
+			$term_id = get_queried_object()->term_id;
+			$tax_status = ampforwp_get_taxonomy_meta($term_id,'status');
+			if($tax_status==false){
+				 return;
+			}
+		}else{
+			return;
+		} 
+          
       }else if(is_single()){
           $tax_status = ampforwp_get_taxonomy_meta('','post_status');
           if($tax_status==false){
