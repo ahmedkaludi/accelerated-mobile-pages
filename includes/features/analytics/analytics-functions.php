@@ -106,7 +106,7 @@ function ampforwp_analytics() {
 						);
 		$ampforwp_ga4_fields = json_encode( $ga4_fields);
  		?>
- 		<amp-analytics type="googleanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>config="<?php echo AMPFORWP_ANALYTICS_URL?>/ga4.json" data-credentials="include">
+ 		<amp-analytics type="googleanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>config="<?php echo AMPFORWP_ANALYTICS_URL;?>/ga4.json"  data-credentials="include">
  		<script type="application/json">
 			<?php echo $ampforwp_ga4_fields; ?>
 		</script>
