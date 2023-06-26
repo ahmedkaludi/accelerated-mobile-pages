@@ -797,7 +797,7 @@ function ampforwp_backtotop_global_css(){?>
 	<?php } ?>	
 	
 	<?php if( ampforwp_get_setting('amp_font_selector_heading')) { ?>
-		h1,h2,h3,h4,h5,h6{
+		h1,h2,h3,h4,h5,h6,.amp-wp-title{
 		font-family:<?php echo ampforwp_get_setting('amp_font_selector_heading'); ?>
 		}	
 	<?php } ?>	

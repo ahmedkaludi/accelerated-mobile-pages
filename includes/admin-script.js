@@ -466,6 +466,29 @@ jQuery(function($) {
         }
        
     }
+        ampforwp_heading_fonts_select();
+            function ampforwp_heading_fonts_select(){
+                gAPIkey = redux_data.google_font_api_key;
+                fontswitch = redux_data['ampforwp-google-font-switch'];
+                if(fontswitch != 1 || gAPIkey=='' || typeof gAPIkey == 'undefined'){
+                    return;
+                }
+                var all_fonts = localStorage.getItem("googlefontapidata");
+                all_fonts = JSON.parse(all_fonts);
+                if(all_fonts != null ){
+                    all_fonts_values = Object.values(all_fonts.items);
+                    let target_heading_select= jQuery('#amp_font_selector_heading-select');
+                    for (const sfont of all_fonts_values) {
+                        var selected_heading='';
+                        if(redux_data.amp_font_selector_heading==sfont.family){
+                            selected_heading ='selected';
+                        }
+                        target_heading_select.append(jQuery('<option value="'+sfont.family+'" '+selected_heading+'> '+sfont.family+' </option>'));
+                    }
+                    target_heading_select.trigger('change');
+                }
+            }
+
         function ampforwp_fonts_select_data(data){
             if(data && localStorage.getItem("googlefontapidata") != null ){
                 var values = Object.values(data.items);
@@ -495,8 +518,7 @@ jQuery(function($) {
             $('#amp_font_selector_content_single-select').append($('<option value="Segoe UI" data-font-number="'+ i +'"> Segoe UI </option>'));   
             $('#amp_font_selector-select, #amp_font_selector_content_single-select').on('change', function() {
                 var select = $('option:selected', this).attr('data-font-number');
-                var fontVariants = data.items[select].variants ;
-                var fontFile = data.items[select].files ;
+                var fontVariants = data.items[select]?data.items[select].variants:false ;
 
                 if($(this).attr("id")=='amp_font_selector-select'){
                     if ( fontVariants) {
