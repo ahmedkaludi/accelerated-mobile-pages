@@ -37,9 +37,6 @@ function ampforwp_thirdparty_compatibility(){
 	if ( in_array( 'opensea/opensea.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 		add_filter('amp_post_template_data','ampforwp_compatibility_for_opensea_plugin');
 	}
-	if(function_exists('hestia_run')){
-		add_action('amp_post_template_css','ampforwp_heista_pro_frontpage_section_css');
-	}
 	
 	add_filter('amp_post_template_data','ampforwp_add_target_attribute_in_form_tags');
 	// AMP is not working due to JCH Optimize Pro plugin #3185
@@ -1804,14 +1801,51 @@ function ampforwp_add_target_attribute_in_form_tags( $amp_post_template_data )
 }
 
 
-add_filter('ampforwp_modify_the_content','ampforwp_heista_pro_frontpage_section');
+add_filter('the_content','ampforwp_heista_pro_frontpage_section');
 function ampforwp_heista_pro_frontpage_section($content){
 	global $redux_builder_amp;
 	if ( is_home() && function_exists('hestia_run')) {
-			if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 && shortcode_exists( 'hestia_slider' )) {
-			add_action( 'amp_post_template_css', 'ampforwp_heista_pro_frontpage_section_css' );
-			$ampforwp_hestia_slider = do_shortcode('[hestia_slider]');
-			$content = $ampforwp_hestia_slider.$content;
+			if ( $redux_builder_amp['amp-frontpage-select-option'] == 1) {
+				$slider_content = get_theme_mod( 'hestia_slider_content');
+				$slider_content = json_decode( $slider_content );
+				if ( !empty( $slider_content ) ) {
+					add_action('amp_post_template_css','ampforwp_heista_pro_frontpage_section_css');
+				
+				$amp_html.='<div class="ampforwp-carousel-cont" >
+					<amp-carousel width="auto" height="300" layout="responsive" type="slides" aria-label="Hestia Header carousel">';
+				foreach ( $slider_content as $slider_item ) {
+					$title                = ! empty( $slider_item->title ) ? apply_filters( 'hestia_translate_single_string', $slider_item->title, 'Slider section' ) : '';
+					$subtitle             = ! empty( $slider_item->subtitle ) ? apply_filters( 'hestia_translate_single_string', $slider_item->subtitle, 'Slider section' ) : '';
+					$button               = ! empty( $slider_item->text ) ? apply_filters( 'hestia_translate_single_string', $slider_item->text, 'Slider section' ) : '';
+					$link                 = ! empty( $slider_item->link ) ? apply_filters( 'hestia_translate_single_string', $slider_item->link, 'Slider section' ) : '';
+					$button2              = ! empty( $slider_item->text2 ) ? apply_filters( 'hestia_translate_single_string', $slider_item->text2, 'Slider section' ) : '';
+					$link2                = ! empty( $slider_item->link2 ) ? apply_filters( 'hestia_translate_single_string', $slider_item->link2, 'Slider section' ) : '';
+					$slider_type 		  = get_theme_mod( 'hestia_slider_type', apply_filters( 'hestia_slider_type_default', 'image' ) );
+					$image_url_bg         = ! empty( $slider_item->image_url ) && $slider_type=='image' ? apply_filters( 'hestia_translate_single_string', $slider_item->image_url, 'Slider section' ) : '';				
+					$amp_html.='<div class="ampforwp-carousel-wrapper">';
+					if($image_url_bg){
+						$amp_html.='<div class="ampforwp-carousel-img-wrapper" ><amp-img src="'.esc_url($image_url_bg).'" width="1200" height="800" layout="responsive"></amp-img></div>';
+					}
+						$amp_html.='<div class="ampforwp-carousel-content">';
+					if($title){
+						$amp_html.=	'<h1>'.esc_attr( $title ).'</h1>';
+					}
+					if($subtitle){
+						$amp_html.=	'<p>'.esc_attr( $subtitle ).'</p>';
+					}
+					if($button && $link){
+						$amp_html.=	'<a href="'.esc_url($link).'" title="'.esc_attr( $button ).'"><button>'.esc_attr( $button ).'</button></a>';
+					} 
+					if($button2 && $link2){
+						$amp_html.=	'<a href="'.esc_url($link2).'" title="'.esc_attr( $button2 ).'"><button>'.esc_attr( $button2 ).'</button></a>';
+					}
+					$amp_html.='</div>
+					</div>'; 
+				}
+				$amp_html.='</amp-carousel></div>';
+				
+				}
+			$content = $amp_html.$content;
 			
 		 }
 	}
@@ -1819,8 +1853,5 @@ function ampforwp_heista_pro_frontpage_section($content){
 }
 
 function ampforwp_heista_pro_frontpage_section_css(){
-	global $redux_builder_amp;
-	if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] == 1 && shortcode_exists( 'hestia_slider' )) {
-		echo '.carousel .page-header{display:flex;z-index:-2;}.carousel .page-header .row{display:flex;align-items:center;padding:0 15px;margin:0;flex:1;max-width:100%;}.carousel .item{text-align:center;}.carousel .item .container{display:flex;position:relative;padding:100px 0;margin:0 auto;}.carousel .buttons .btn-left+.btn-right{margin-left:30px;}.page-header .container,.page-header .hestia-title{color:#fff;}.page-header{will-change:transform;overflow:hidden;margin:0;padding:0;border:0;background-position:center center;background-size:cover;}.page-header .container{padding-top:30vh;color:#fff;}.page-header .container .hestia-title{margin:0 0 20px;}.header-filter{position:absolute;top:0;bottom:0;left:0;right:0;z-index:-1;background-position:center center;background-size:cover;}.header-filter:after,.header-filter:before{display:block;position:absolute;top:0;left:0;width:100%;height:100%;content:"";}.header-filter::before{background-color:rgba(0,0,0,.5);}.carousel .header-filter:after,.carousel .header-filter:before{z-index:-1;}.btn.btn-primary,.btn.btn-primary:link,.btn.btn-primary:hover,.btn.btn-primary:focus,.btn.btn-primary:active,.btn.btn-primary:active:hover,.btn.btn-primary:active:focus{background-color:#e91e63;}.btn.btn-primary{-webkit-box-shadow:0 2px 2px 0 rgba(233,30,99,0.14),0 3px 1px -2px rgba(233,30,99,0.2),0 1px 5px 0 rgba(233,30,99,0.12);box-shadow:0 2px 2px 0 rgba(233,30,99,0.14),0 3px 1px -2px rgba(233,30,99,0.2),0 1px 5px 0 rgba(233,30,99,0.12);}.btn.btn-primary:hover,.btn.btn-primary:focus,.btn.btn-primary:active,.btn.btn-primary:active:focus,.btn.btn-primary:active:hover{-webkit-box-shadow:0 14px 26px -12px rgba(233,30,99,0.42),0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px rgba(233,30,99,0.2);box-shadow:0 14px 26px -12px rgba(233,30,99,0.42),0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px rgba(233,30,99,0.2);color:#fff;}.header-filter:before{background-color:rgba(0,0,0,0.5);}.page-header,.page-header .hestia-title,.page-header .sub-title{color:#fff;}.btn.btn-left,.btn.btn-right{padding-top:15px;padding-bottom:15px;padding-left:33px;padding-right:33px;}.btn.btn-left,.btn.btn-right{border-radius:3px;}.btn:hover{background-color:#858585;}.buttons{margin-top:50px;}';
-	}
+echo '.ampforwp-carousel-cont amp-carousel{height:300px} .ampforwp-carousel-wrapper{position:relative;width:100%;height:300px} .ampforwp-carousel-content h1 , .ampforwp-carousel-content p{background-color: #3d3d3da1;padding: 0px 10px;border-radius:8px} .ampforwp-carousel-content{position:absolute;top:0;bottom:0;right:0;left:0;text-align:center;display: flex;flex-direction: column;flex-wrap: wrap;align-items: center;justify-content: center;color:#fff;}';
 }
