@@ -612,7 +612,7 @@ jQuery(function($) {
                     let fontData  = redux_data.google_current_font_data;
                    // fontData = JSON.parse(fontData);
                    // console.log(fontData);
-                    if (! fontData.variants) {
+                    if (! fontData.hasOwnProperty('variants')) {
                         //$('.select2-search-choice').remove();
                         //$('#amp_font_type-select').html('<option></option>');
 
