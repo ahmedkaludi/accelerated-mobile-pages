@@ -1811,7 +1811,7 @@ function ampforwp_heista_pro_frontpage_section($content){
 				if ( !empty( $slider_content ) ) {
 					add_action('amp_post_template_css','ampforwp_heista_pro_frontpage_section_css');
 				
-				$amp_html.='<div class="ampforwp-carousel-cont" >
+				$amp_html='<div class="ampforwp-carousel-cont" >
 					<amp-carousel width="auto" height="300" layout="responsive" type="slides" aria-label="Hestia Header carousel">';
 				foreach ( $slider_content as $slider_item ) {
 					$title                = ! empty( $slider_item->title ) ? apply_filters( 'hestia_translate_single_string', $slider_item->title, 'Slider section' ) : '';
