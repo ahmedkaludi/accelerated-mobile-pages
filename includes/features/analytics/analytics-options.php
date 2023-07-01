@@ -555,14 +555,32 @@ function ampforwp_analytics_options($opt_name){
 
                       'tooltip-subtitle' => __( 'Enter the Adobe organization id ', 'accelerated-mobile-pages' ),
                       'default'  => '',
-                      'desc' => 'For example: 224GYJDWUW4GV345JHB@AdobeOrg',
+                      'desc' => __( 'For example: 224GYJDWUW4GV345JHB@AdobeOrg', 'accelerated-mobile-pages' ),
                 ),
+
+                array(
+                  'id'       => 'ampforwp-adobe-subdomain',
+    
+                  'type'     => 'text',
+    
+                  'title'    => __( 'Subdomain for tracking', 'accelerated-mobile-pages' ),
+    
+                  'required' => array(
+                    
+                    array('ampforwp-adobe-type', '=' , 'adobeanalytics_nativeConfig')
+                  ),
+    
+                  'tooltip-subtitle' => __( 'Enter the Subdomain for tracking', 'accelerated-mobile-pages' ),
+                  'default'  => '',
+                  'desc' => 'For example: adobestat.yourwebsite.com  This subdomain must be pointing to the root of your website for which your are  adding tracking',
+            ),
+
                     array(
                       'id'       => 'ampforwp-adobe-host',
 
                       'type'     => 'text',
 
-                      'title'    => __( 'Host Name', 'accelerated-mobile-pages' ),
+                      'title'    => __( 'Tracking Server', 'accelerated-mobile-pages' ),
 
                       'required' => array(
                         
@@ -574,22 +592,22 @@ function ampforwp_analytics_options($opt_name){
                       'desc' => 'For example: metrics.example.com',
                 ),
 
-                array(
+                  array(
 
-                  'id'       => 'ampforwp-adobe-reportsuiteid',
-                  
-                  'type'     => 'text',
+                    'id'       => 'ampforwp-adobe-reportsuiteid',
+                    
+                    'type'     => 'text',
 
-                  'title'    => __( 'ReportSuite ID', 'accelerated-mobile-pages' ),
+                    'title'    => __( 'ReportSuite ID', 'accelerated-mobile-pages' ),
 
-                  'required' => array(
-                    array('ampforwp-adobe-switch', '=' , '1')
-                  ),
+                    'required' => array(
+                      array('ampforwp-adobe-switch', '=' , '1')
+                    ),
 
-                  'tooltip-subtitle' => __( 'Enter the ReportSuite ID', 'accelerated-mobile-pages' ),
-                  'default'  => '',
-                  'desc' => 'For example: reportSuiteID1, reportSuiteID2',
-            ),
+                    'tooltip-subtitle' => __( 'Enter the ReportSuite ID', 'accelerated-mobile-pages' ),
+                    'default'  => '',
+                    'desc' => 'For example: reportSuiteID1, reportSuiteID2',
+              ),
                      // Yandex Metrika  
                        array(
                         'id' => 'ampforwp-Yandex-switch',

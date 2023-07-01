@@ -507,33 +507,26 @@ function ampforwp_analytics() {
 				
 					// Analytics support added for Adobe
 
-					if( true == ampforwp_get_setting('ampforwp-adobe-switch')){
-						add_action( 'init', 'ampforwp_adobe_query_var', 10 );
-						
+					if( true == ampforwp_get_setting('ampforwp-adobe-switch')){		
 						$hostname = $ReportSuiteId =
 						$hostname = ampforwp_get_setting('ampforwp-adobe-host');
+						$subdomain = ampforwp_get_setting('ampforwp-adobe-subdomain');
 						$type = ampforwp_get_setting('ampforwp-adobe-type');
 						$ReportSuiteId = ampforwp_get_setting('ampforwp-adobe-reportsuiteid');
 						
 						
 						if($type =='adobeanalytics_nativeConfig')
 						{	
-							$cus_obj =get_queried_object_id();
-							$page_name ="AMP";
-							if($cus_obj && isset($cus_obj->post_name)){
-								$page_name = $cus_obj->post_name;
-							}
 							
 							$adobe_fields = array(
 								"requests"=> array(
 									'base'=>'https://${host}',
-									'iframeMessage'=> '${base}/?ampforwpAnaltics=nativeConfig&campaign=${queryParam(campaign)}&pageURL=${ampdocUrl}&ref=${documentReferrer}'
+									'iframeMessage'=> '${base}/?ampforwpAnalytics=adobeNativeConfig&campaign=${queryParam(campaign)}&pageURL=${ampdocUrl}&ref=${documentReferrer}'
 								),
 								'vars' => array(
-									'host'=> $hostname,
+									'host'=> $subdomain,
 								),
 							  'extraUrlParams' => array(
-									'pageName' => $page_name,
 									'pageType' =>'AMP'
 		
 							),
@@ -883,8 +876,8 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 }
 
 function ampforwp_adobe_query_var( $qvars ) {
-	if( true == ampforwp_get_setting('ampforwp-adobe-switch')){
-		$qvars[] = 'ampforwpAnaltics';
+	if( true == ampforwp_get_setting('ampforwp-adobe-switch') && 'adobeanalytics_nativeConfig' == ampforwp_get_setting('ampforwp-adobe-type')){
+		$qvars[] = 'ampforwpAnalytics';
 	}
 	return $qvars;
 }
@@ -892,10 +885,10 @@ add_filter( 'query_vars', 'ampforwp_adobe_query_var' );
 
 function ampforwp_adobe_stats_page($wp_query){
 
-	if( false == ampforwp_get_setting('ampforwp-adobe-switch')){
+	if( false == ampforwp_get_setting('ampforwp-adobe-switch') || 'adobeanalytics_nativeConfig' != ampforwp_get_setting('ampforwp-adobe-type')){
 		return;
 	}
- if(isset($wp_query->query_vars['ampforwpAnaltics']) && $wp_query->query_vars['ampforwpAnaltics']=='nativeConfig'){
+ if(isset($wp_query->query_vars['ampforwpAnalytics']) && $wp_query->query_vars['ampforwpAnalytics']=='adobeNativeConfig'){
 		$hostname = ampforwp_get_setting('ampforwp-adobe-host');
 		$orgid = ampforwp_get_setting('ampforwp-adobe-orgid');
 		$ReportSuiteId = ampforwp_get_setting('ampforwp-adobe-reportsuiteid');

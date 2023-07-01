@@ -350,6 +350,10 @@ $amp_ux_fields = array(
 
 					),
 
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Subdomain for tracking','id'=>'amp-ux-aa-2','class'=>'amp-ux-aa analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-adobe-subdomain','default'=>ampforwp_get_setting('ampforwp-adobe-subdomain'))
+
+				),
+
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',
 						'field_data'=>array('id'=>'ampforwp-ux-alexa-analytics-section','class'=>'ampforwp-ux-sub-section ampforwp-ux-ana-sub','default'=>ampforwp_check_analytics_setup('Alexa Metrics'),'closable'=>1,'data-href'=>'ampforwp-Alexa-switch')
