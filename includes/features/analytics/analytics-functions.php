@@ -909,7 +909,6 @@ function ampforwp_adobe_stats_page($wp_query){
       var s = s_gi(s_account);
       s.account = s_account;
       s.trackingServer = s_trackingServer;
-      s.visitorNamespace = s_visitorNamespace;
       s.visitor = visitor;
       s.pageName = s.Util.getQueryParam("pageName");
       s.eVar1 = s.Util.getQueryParam("v1");
