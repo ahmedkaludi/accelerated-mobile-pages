@@ -876,7 +876,7 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 }
 
 add_filter( 'query_vars', 'ampforwp_adobe_query_var' );
-function ampforwp_adobe_query_var2( $qvars) {
+function ampforwp_adobe_query_var( $qvars) {
 	if( true == ampforwp_get_setting('ampforwp-adobe-switch') && 'adobeanalytics_nativeConfig' == ampforwp_get_setting('ampforwp-adobe-type')){
 		$qvars[] = 'ampforwpAnalytics';
 	}
