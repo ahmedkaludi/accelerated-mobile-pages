@@ -524,7 +524,7 @@ function ampforwp_analytics() {
 									'iframeMessage'=> '${base}/?ampforwpAnalytics=adobeNativeConfig&campaign=${queryParam(campaign)}&pageURL=${ampdocUrl}&ref=${documentReferrer}'
 								),
 								'vars' => array(
-									'host'=> $subdomain,
+									'host'=> ampforwpremoveHttps($subdomain),
 								),
 							  'extraUrlParams' => array(
 									'pageType' =>'AMP'
@@ -875,13 +875,13 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	return $ga_fields;	
 }
 
-function ampforwp_adobe_query_var( $qvars ) {
+add_filter( 'query_vars', 'ampforwp_adobe_query_var' );
+function ampforwp_adobe_query_var2( $qvars) {
 	if( true == ampforwp_get_setting('ampforwp-adobe-switch') && 'adobeanalytics_nativeConfig' == ampforwp_get_setting('ampforwp-adobe-type')){
 		$qvars[] = 'ampforwpAnalytics';
 	}
 	return $qvars;
 }
-add_filter( 'query_vars', 'ampforwp_adobe_query_var' );
 
 function ampforwp_adobe_stats_page($wp_query){
 
@@ -927,3 +927,7 @@ function ampforwp_adobe_stats_page($wp_query){
 }
 
 add_filter( 'parse_query','ampforwp_adobe_stats_page', 10 );
+function ampforwpremoveHttps($url) {
+	$url = preg_replace( "#^[^:/.]*[:/]+#i", "", $url );
+	return $url;
+}

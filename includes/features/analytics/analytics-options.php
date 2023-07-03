@@ -569,10 +569,10 @@ function ampforwp_analytics_options($opt_name){
                     
                     array('ampforwp-adobe-type', '=' , 'adobeanalytics_nativeConfig')
                   ),
-    
+
                   'tooltip-subtitle' => __( 'Enter the Subdomain for tracking', 'accelerated-mobile-pages' ),
                   'default'  => '',
-                  'desc' => 'For example: adobestat.yourwebsite.com  This subdomain must be pointing to the root of your website for which your are  adding tracking',
+                  'desc' => ' You need to create a subdomain which will be pointing to the root of your website. This is required otherwise tracking will not work. For example: adobestat.yourwebsite.com',
             ),
 
                     array(
