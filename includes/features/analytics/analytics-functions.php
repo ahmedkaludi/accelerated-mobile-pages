@@ -94,19 +94,137 @@ function ampforwp_analytics() {
 		$ga4_webv = ampforwp_get_setting('ampforwp-ga4-wvt') == 1 ? true : false;
 		$ga4_gce = ampforwp_get_setting('ampforwp-ga4-gce') == 1 ? true : false;
 		$ga4_perf = ampforwp_get_setting('ampforwp-ga4-ptt') == 1 ? true : false;
-		$ga4_fields = array(
-						'vars'=>array(
-							'GA4_MEASUREMENT_ID'=> $ga4_id,
-							'GA4_ENDPOINT_HOSTNAME'=> 'www.google-analytics.com',
-							'DEFAULT_PAGEVIEW_ENABLED'=> $ga4_dpe,
-							'GOOGLE_CONSENT_ENABLED'=> $ga4_gce,
-							'WEBVITALS_TRACKING'=> $ga4_webv,
-							'PERFORMANCE_TIMING_TRACKING'=> $ga4_perf,
-							),
-						);
-		$ampforwp_ga4_fields = json_encode( $ga4_fields);
+		$ampforwp_ga4_config =array (
+			'cookies' => 
+			array (
+			  '_ga' => 
+			  array (
+				'value' => '$IF(LINKER_PARAM(_gl, _ga),GA1.0.LINKER_PARAM(_gl, _ga),)',
+			  ),
+			),
+			'linkers' => 
+			array (
+			  '_gl' => 
+			  array (
+				'enabled' => true,
+				'ids' => 
+				array (
+				  '_ga' => '${clientId}',
+				),
+				'proxyOnly' => false,
+			  ),
+			),
+			'triggers' => 
+			array (
+			  'page_view' => 
+			  array (
+				'enabled' => $ga4_dpe,
+				'on' => 'visible',
+				'request' => 'ga4Pageview',
+			  ),
+			  'doubleClick' => 
+			  array (
+				'enabled' => $ga4_dpe,
+				'on' => 'visible',
+				'request' => 'ga4Dc',
+			  ),
+			  'webVitals' => 
+			  array (
+				'enabled' => $ga4_webv,
+				'on' => 'timer',
+				'timerSpec' => 
+				array (
+				  'interval' => 5,
+				  'maxTimerLength' => 4.99,
+				  'immediate' => false,
+				),
+				'request' => 'ga4Event',
+				'vars' => 
+				array (
+				  'ga4_event_name' => 'web_vitals',
+				),
+				'extraUrlParams' => 
+				array (
+				  'event__num_first_contenful_paint' => 'FIRST_CONTENTFUL_PAINT',
+				  'event__num_first_viewport_ready' => 'FIRST_VIEWPORT_READY',
+				  'event__num_make_body_visible' => 'MAKE_BODY_VISIBLE',
+				  'event__num_largest_contentful_paint' => 'LARGEST_CONTENTFUL_PAINT',
+				  'event__num_cumulative_layout_shift' => 'CUMULATIVE_LAYOUT_SHIFT',
+				),
+			  ),
+			  'performanceTiming' => 
+			  array (
+				'enabled' => $ga4_perf,
+				'on' => 'visible',
+				'request' => 'ga4Event',
+				'sampleSpec' => 
+				array (
+				  'sampleOn' => '${clientId}',
+				  'threshold' => 100,
+				),
+				'vars' => 
+				array (
+				  'ga4_event_name' => 'performance_timing',
+				),
+				'extraUrlParams' => 
+				array (
+				  'event__num_page_load_time' => '${pageLoadTime}',
+				  'event__num_domain_lookup_time' => '${domainLookupTime}',
+				  'event__num_tcp_connect_time' => '${tcpConnectTime}',
+				  'event__num_redirect_time' => '${redirectTime}',
+				  'event__num_server_response_time' => '${serverResponseTime}',
+				  'event__num_page_download_time' => '${pageDownloadTime}',
+				  'event__num_content_download_time' => '${contentLoadTime}',
+				  'event__num_dom_interactive_time' => '${domInteractiveTime}',
+				),
+			  ),
+			),
+			'vars' => 
+			array (
+			  'ampHost' => '${ampdocHost}',
+			  'documentLocation' => 'SOURCE_URL',
+			  'clientId' => 'CLIENT_ID(AMP_ECID_GOOGLE,,_ga,true)',
+			  'dataSource' => 'AMP',
+			),
+			'extraUrlParams' => 
+			array (
+			  'sid' => '$CALC(SESSION_TIMESTAMP, 1000, divide, true)',
+			  'sct' => 'SESSION_COUNT',
+			  'seg' => '$IF($EQUALS(SESSION_ENGAGED, true),1,0)',
+			  '_et' => '$CALC(TOTAL_ENGAGED_TIME,1000, multiply)',
+			  'gcs' => '$IF($EQUALS('.$ga4_gce.',TRUE),G10$IF($EQUALS(CONSENT_STATE,sufficient),1,0),)',
+			),
+			'extraUrlParamsReplaceMap' => 
+			array (
+			  'user__str_' => 'up.',
+			  'user__num_' => 'upn.',
+			  'event__str_' => 'ep.',
+			  'event__num_' => 'epn.',
+			),
+			'requestOrigin' => 'https://www.google-analytics.com',
+			'requests' => 
+			array (
+			  'ga4IsFirstVisit' => '$IF($EQUALS($CALC(SESSION_COUNT, $CALC($CALC(${timestamp}, 1000, divide, true),$CALC(SESSION_TIMESTAMP, 1000, divide, true), subtract), add),1), _fv, __nfv )',
+			  'ga4IsSessionStart' => '$IF($EQUALS($CALC($CALC(${timestamp}, 1000, divide, true),$CALC(SESSION_TIMESTAMP, 1000, divide, true), subtract),0), _ss, __nss)',
+			  'ga4SharedPayload' => 'v=2&tid='.$ga4_id.'&ds=${dataSource}&_p=${pageViewId}&cid=${clientId}&ul=${browserLanguage}&sr=${screenWidth}x${screenHeight}&_s=${requestCount}&dl=${documentLocation}&dr=${externalReferrer}&dt=${title}&${ga4IsFirstVisit}=1&${ga4IsSessionStart}=1',
+			  'ga4Pageview' => 
+			  array (
+				'baseUrl' => '/g/collect?${ga4SharedPayload}&en=page_view',
+			  ),
+			  'ga4Event' => 
+			  array (
+				'baseUrl' => '/g/collect?${ga4SharedPayload}&en=${ga4_event_name}',
+			  ),
+			  'ga4Dc' => 
+			  array (
+				'origin' => 'https://stats.g.doubleclick.net',
+				'baseUrl' => '/g/collect?v=2&tid='.$ga4_id.'&cid=${clientId}&aip=1',
+			  ),
+			),
+		);
+		$ampforwp_ga4_fields = json_encode( $ampforwp_ga4_config);
  		?>
- 		<amp-analytics type="googleanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>config="<?php echo AMPFORWP_ANALYTICS_URL?>/ga4.json" data-credentials="include">
+ 		<amp-analytics type="googleanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>  data-credentials="include">
  		<script type="application/json">
 			<?php echo $ampforwp_ga4_fields; ?>
 		</script>
@@ -389,11 +507,47 @@ function ampforwp_analytics() {
 				
 					// Analytics support added for Adobe
 
-					if( true == ampforwp_get_setting('ampforwp-adobe-switch')){
+					if( true == ampforwp_get_setting('ampforwp-adobe-switch')){		
 						$hostname = $ReportSuiteId =
 						$hostname = ampforwp_get_setting('ampforwp-adobe-host');
+						$subdomain = ampforwp_get_setting('ampforwp-adobe-subdomain');
+						$type = ampforwp_get_setting('ampforwp-adobe-type');
 						$ReportSuiteId = ampforwp_get_setting('ampforwp-adobe-reportsuiteid');
-	
+						
+						
+						if($type =='adobeanalytics_nativeConfig')
+						{	
+							
+							$adobe_fields = array(
+								"requests"=> array(
+									'base'=>'https://${host}',
+									'iframeMessage'=> '${base}/?ampforwpAnalytics=adobeNativeConfig&campaign=${queryParam(campaign)}&pageURL=${ampdocUrl}&ref=${documentReferrer}'
+								),
+								'vars' => array(
+									'host'=> ampforwpremoveHttps($subdomain),
+								),
+							  'extraUrlParams' => array(
+									'pageType' =>'AMP'
+		
+							),
+							  
+						);
+
+						$adobe_fields =  apply_filters('ampforwp-adobe-analytics', $adobe_fields);?>
+						
+						<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="<?php echo $type;?>">
+							
+							<script type="application/json">
+
+								<?php echo json_encode( $adobe_fields,JSON_UNESCAPED_SLASHES); ?>
+
+							</script>
+
+						</amp-analytics>
+
+						<?php
+
+						}else{
 						$adobe_fields = array(
 	
 							'vars' => array(
@@ -421,11 +575,13 @@ function ampforwp_analytics() {
 							</script>
 	
 						</amp-analytics>
+
+				
 					
 					
 					<?php
 	
-	
+							}
 	
 	
 	
@@ -717,4 +873,60 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 		return $ampforwp_adv_ga_fields;
 	}	
 	return $ga_fields;	
+}
+
+add_filter( 'query_vars', 'ampforwp_adobe_query_var' );
+function ampforwp_adobe_query_var( $qvars) {
+	if( true == ampforwp_get_setting('ampforwp-adobe-switch') && 'adobeanalytics_nativeConfig' == ampforwp_get_setting('ampforwp-adobe-type')){
+		$qvars[] = 'ampforwpAnalytics';
+	}
+	return $qvars;
+}
+
+function ampforwp_adobe_stats_page($wp_query){
+
+	if( false == ampforwp_get_setting('ampforwp-adobe-switch') || 'adobeanalytics_nativeConfig' != ampforwp_get_setting('ampforwp-adobe-type')){
+		return;
+	}
+ if(isset($wp_query->query_vars['ampforwpAnalytics']) && $wp_query->query_vars['ampforwpAnalytics']=='adobeNativeConfig'){
+		$hostname = ampforwp_get_setting('ampforwp-adobe-host');
+		$orgid = ampforwp_get_setting('ampforwp-adobe-orgid');
+		$ReportSuiteId = ampforwp_get_setting('ampforwp-adobe-reportsuiteid');
+		?>
+	  <html>
+  <head>
+    <title>Adobe Stats Iframe</title>
+    <script language="javaScript" type="text/javascript" src="<?php echo AMPFORWP_ANALYTICS_URL;?>/VisitorAPI.js"></script>
+    <script language="javaScript" type="text/javascript" src="<?php echo AMPFORWP_ANALYTICS_URL;?>/AppMeasurement.js"></script>
+  </head>
+  <body>
+    <script>
+      var v_orgId = "<?php echo $orgid;?>";
+      var s_account = "<?php echo $ReportSuiteId;?>";
+      var s_trackingServer = "<?php echo $hostname;?>";
+      var visitor = Visitor.getInstance(v_orgId);
+      visitor.trackingServer = s_trackingServer;
+      var s = s_gi(s_account);
+      s.account = s_account;
+      s.trackingServer = s_trackingServer;
+      s.visitor = visitor;
+      s.pageName = s.Util.getQueryParam("pageName");
+      s.eVar1 = s.Util.getQueryParam("v1");
+      s.campaign = s.Util.getQueryParam("campaign");
+      s.pageURL = s.Util.getQueryParam("pageURL");
+      s.referrer = s.Util.getQueryParam("ref");
+      s.t();
+    </script>
+  </body>
+</html>
+		<?php
+		 exit;
+			 
+	 }
+}
+
+add_filter( 'parse_query','ampforwp_adobe_stats_page', 10 );
+function ampforwpremoveHttps($url) {
+	$url = preg_replace( "#^[^:/.]*[:/]+#i", "", $url );
+	return $url;
 }

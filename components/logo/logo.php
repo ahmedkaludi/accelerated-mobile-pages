@@ -25,12 +25,12 @@ function ampforwp_framework_get_logo(){
            <a href="<?php echo esc_url( $ampforwp_home_url ); ?>" title="<?php echo esc_html( $title ); ?>" <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  >
              <amp-img data-hero src="<?php echo esc_url( $logo_url );  ?>" width="<?php echo esc_attr(ampforwp_default_logo('width')); ?>" height="<?php echo esc_attr(ampforwp_default_logo('height')); ?>" alt="<?php echo esc_attr($alt); ?>" class="amp-logo" layout="responsive"></amp-img></a>
              <?php if( ampforwp_is_home() || ampforwp_is_blog() ){ ?>
-                    <h1 class="hide"> 
+                    <div class="hide"> 
                        <?php  bloginfo('name'); ?> 
-                    </h1>
+             </div>
              <?php } ?>
-              <?php } else { ?><h1>
-              <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  ><?php bloginfo('name'); ?></a></h1><?php
+              <?php } else { ?>
+              <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  ><?php bloginfo('name'); ?></a><?php
             } ?>
     </div>
  <?php }

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.2
-Stable tag: 1.0.86
+Stable tag: 1.0.87
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,21 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.87 (3rd July 2023) =
+* Fixed: CallNow buttons number is not replaced by callrail #5459
+* Fixed: Add compatibility with Adobe Launch #5457
+* Fixed: Undefined variable $q + attempt to read property “max_num_pages” in design-1 #5458
+* Fixed: AMP not working with categories. #5456
+* Fixed: Truepush integration not working: missing file /accelerated-mobile-pages/includes/truepush-integration/sw.js #5455
+* Fixed: An error is appearing in the console and the AMP setting panel is frizzed #5442
+* Fixed: Hestia Pro theme buttons are not appearing in the AMP version of the website. #5452
+* Fixed: Uncaught Error: Call to a member function get() on string #5463
+* Fixed: PHP Error is showing in the AMP #5464
+* Fixed: ampforwp_modify_rel_canonical filter should be applied at last in function #5468
+* Fixed: Playfair Display font is not showing in the heading font family. #5469
+* Fixed: Title H1 tags is automatically converted to H2 tags in AMP #5470
+* Fixed: GA4 activity fails when the AMP page is hosted on Google #5471
 
 = 1.0.86 (8th June 2023) =
 * Fixed: Content Sneak Peek not working #5446

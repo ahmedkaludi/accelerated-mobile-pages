@@ -334,6 +334,10 @@ $amp_ux_fields = array(
 
 					),
 
+					array('field_type'=>'select', 'field_data'=>array('title'=>'Analytics Type','id'=>'amp-ux-aa-2','class'=>'amp-ux-aa analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-adobe-type','default'=>ampforwp_get_setting('ampforwp-adobe-type'))
+
+					),
+
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Host Name','id'=>'amp-ux-aa','class'=>'amp-ux-aa analytics-text','required'=>array(),'element-class'=>'ux-label','data-text'=>'ampforwp-adobe-host','default'=>ampforwp_get_setting('ampforwp-adobe-host'))
 
 					),
@@ -341,6 +345,14 @@ $amp_ux_fields = array(
 					array('field_type'=>'text', 'field_data'=>array('title'=>'Report Suite ID','id'=>'amp-ux-aa-2','class'=>'amp-ux-aa analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-adobe-reportsuiteid','default'=>ampforwp_get_setting('ampforwp-adobe-reportsuiteid'))
 
 					),
+
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Organisation ID','id'=>'amp-ux-aa-2','class'=>'amp-ux-aa analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-adobe-orgid','default'=>ampforwp_get_setting('ampforwp-adobe-orgid'))
+
+					),
+
+					array('field_type'=>'text', 'field_data'=>array('title'=>'Subdomain for tracking','id'=>'amp-ux-aa-2','class'=>'amp-ux-aa analytics-text','element-class'=>'ux-label trac-id','required'=>array(),'data-text'=>'ampforwp-adobe-subdomain','default'=>ampforwp_get_setting('ampforwp-adobe-subdomain'))
+
+				),
 
 					array('field_type'=>'sub_section_end','field_data'=>array()),
 					array('field_type'=>'sub_section_start',

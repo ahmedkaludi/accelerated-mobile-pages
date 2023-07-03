@@ -118,10 +118,8 @@ function amp_title(){
 		do_action('ampforwp_above_the_title'); 
 		$ampforwp_title = get_the_title($ID);
 		$ampforwp_title =  apply_filters('ampforwp_filter_single_title', $ampforwp_title);
-		if(!empty($ampforwp_title) && ampforwp_default_logo() && ampforwp_get_setting('opt-media','url')!=''){
+		if(!empty($ampforwp_title)){
 			$title_tag = '<h1 class="amp-post-title">' . wp_kses_data( $ampforwp_title ) . '</h1>'; 
-		}else{ 
-			$title_tag = '<h2 class="amp-post-title">' . wp_kses_data( $ampforwp_title ) . '</h2>'; 
 		}
 		$title_tag = apply_filters('ampforwp_modify_title_tag',$title_tag,$ampforwp_title);
 		echo $title_tag; // Escaped above 
@@ -799,7 +797,7 @@ function ampforwp_backtotop_global_css(){?>
 	<?php } ?>	
 	
 	<?php if( ampforwp_get_setting('amp_font_selector_heading')) { ?>
-		h1,h2,h3,h4,h5,h6{
+		h1,h2,h3,h4,h5,h6,.amp-wp-title{
 		font-family:<?php echo ampforwp_get_setting('amp_font_selector_heading'); ?>
 		}	
 	<?php } ?>	

@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.86
+Version: 1.0.87
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.86');
+define('AMPFORWP_VERSION','1.0.87');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 define('AMPFORWP_ANALYTICS_URL',plugin_dir_url(__FILE__).'includes/features/analytics');
 if(!defined('AMPFROWP_HOST_NAME')){
@@ -402,6 +402,11 @@ if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
 			      'index.php?amp&product_cat=$matches[1]',
 			      'top'
 			    );
+				add_rewrite_rule(
+					'^'.$permalinks['category_rewrite_slug'].'\/(.+?)\/([^\/]+)\/amp\/?$',
+					'index.php?amp&product_cat=$matches[2]',
+					'top'
+				  );
 
 
 			add_rewrite_rule( 
@@ -1007,6 +1012,8 @@ if(!function_exists('ampforwp_get_setup_info')){
             $analytics_txt = "";
             $analytic_arr = array();
 			$host = ampforwp_get_setting('ampforwp-adobe-host');
+			$adobe_orgid = ampforwp_get_setting('ampforwp-adobe-orgid');
+			$adobe_type = ampforwp_get_setting('ampforwp-adobe-type');
 			$ReportSuiteId = ampforwp_get_setting('ampforwp-adobe-reportsuiteid');
             if(ampforwp_get_setting('ampforwp-ga-switch') && $ga_field!="UA-XXXXX-Y" && $ga_field!=""){$analytic_arr[]="Google Analytics";}
             if(ampforwp_get_setting('amp-use-gtm-option') && $ga_field_gtm!="" && $ga_field_gtm!=""){$analytic_arr[]="Google Tag Manager";}
@@ -1021,7 +1028,7 @@ if(!function_exists('ampforwp_get_setup_info')){
             if(ampforwp_get_setting('ampforwp-Yandex-switch') && $yemdex_c!=""){$analytic_arr[]="Yandex Metrika";}
             if(ampforwp_get_setting('ampforwp-Chartbeat-switch') && $chartbeat_c!=""){$analytic_arr[]="Chartbeat Analytics";}
             if(ampforwp_get_setting('ampforwp-Alexa-switch') && $alexa_c!="" && $alexa_d!=""){$analytic_arr[]="Alexa Metrics";}
-			if(ampforwp_get_setting('ampforwp-adobe-switch') && $host!=="" && $ReportSuiteId!=""){$analytic_arr[]="Adobe Analytics";}
+			if(ampforwp_get_setting('ampforwp-adobe-switch') && $host!=="" && $ReportSuiteId!="" && (($adobe_type=='adobeanalytics_native' && $adobe_orgid!="") || $adobe_type=='adobeanalytics')){$analytic_arr[]="Adobe Analytics";}
             if(ampforwp_get_setting('ampforwp-afs-analytics-switch') && $afs_c!=""){$analytic_arr[]="AFS Analytics";}
             if(ampforwp_get_setting('amp-clicky-switch') && $clicky_side_id!=""){$analytic_arr[]="Clicky Analytics";}
             if(ampforwp_get_setting('ampforwp-callrail-switch') && $cr_config_url!="" && $cr_number!="" && $cr_analytics_url!=""){$analytic_arr[]="Call Rail Analytics";}

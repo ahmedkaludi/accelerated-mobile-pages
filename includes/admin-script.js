@@ -466,6 +466,29 @@ jQuery(function($) {
         }
        
     }
+        ampforwp_heading_fonts_select();
+            function ampforwp_heading_fonts_select(){
+                gAPIkey = redux_data.google_font_api_key;
+                fontswitch = redux_data['ampforwp-google-font-switch'];
+                if(fontswitch != 1 || gAPIkey=='' || typeof gAPIkey == 'undefined'){
+                    return;
+                }
+                var all_fonts = localStorage.getItem("googlefontapidata");
+                all_fonts = JSON.parse(all_fonts);
+                if(all_fonts != null ){
+                    all_fonts_values = Object.values(all_fonts.items);
+                    let target_heading_select= jQuery('#amp_font_selector_heading-select');
+                    for (const sfont of all_fonts_values) {
+                        var selected_heading='';
+                        if(redux_data.amp_font_selector_heading==sfont.family){
+                            selected_heading ='selected';
+                        }
+                        target_heading_select.append(jQuery('<option value="'+sfont.family+'" '+selected_heading+'> '+sfont.family+' </option>'));
+                    }
+                    target_heading_select.trigger('change');
+                }
+            }
+
         function ampforwp_fonts_select_data(data){
             if(data && localStorage.getItem("googlefontapidata") != null ){
                 var values = Object.values(data.items);
@@ -495,8 +518,7 @@ jQuery(function($) {
             $('#amp_font_selector_content_single-select').append($('<option value="Segoe UI" data-font-number="'+ i +'"> Segoe UI </option>'));   
             $('#amp_font_selector-select, #amp_font_selector_content_single-select').on('change', function() {
                 var select = $('option:selected', this).attr('data-font-number');
-                var fontVariants = data.items[select].variants ;
-                var fontFile = data.items[select].files ;
+                var fontVariants = data.items[select]?data.items[select].variants:false ;
 
                 if($(this).attr("id")=='amp_font_selector-select'){
                     if ( fontVariants) {
@@ -590,7 +612,7 @@ jQuery(function($) {
                     let fontData  = redux_data.google_current_font_data;
                    // fontData = JSON.parse(fontData);
                    // console.log(fontData);
-                    if (! fontData.variants) {
+                    if (! fontData.hasOwnProperty('variants')) {
                         //$('.select2-search-choice').remove();
                         //$('#amp_font_type-select').html('<option></option>');
 
@@ -1416,8 +1438,11 @@ jQuery(document).ready(function($) {
             var chartbeat_c = $('#amp-Chartbeat-analytics-code').val();
             var alexa_c = $('#ampforwp-alexa-account').val();
             var alexa_d = $('#ampforwp-alexa-domain').val();
-            var host = ampforwp_get_setting('#ampforwp-adobe-host').val();
-            var ReportSuiteId = ampforwp_get_setting('#ampforwp-adobe-reportsuiteid').val();
+            var host = $('#ampforwp-adobe-host').val();
+            var adobe_orgid = $('#ampforwp-adobe-orgid').val();
+            var adobe_type = $('#ampforwp-adobe-type').val();
+            var adobe_subdomain = $('#ampforwp-adobe-subdomain').val();
+            var ReportSuiteId = $('#ampforwp-adobe-reportsuiteid').val();
             var afs_c = $('#ampforwp-afs-siteid').val();
             var clicky_side_id = $('#clicky-site-id').val();
             var cr_config_url = $('#ampforwp-callrail-config-url').val();
@@ -1441,7 +1466,7 @@ jQuery(document).ready(function($) {
                 if(yemdex_c!="" && !hasCls && data_href=='ampforwp-Yandex-switch'){analytic_arr.push("Yandex Metrika");}
                 if(chartbeat_c!="" && !hasCls && data_href=='ampforwp-Chartbeat-switch'){analytic_arr.push("Chartbeat Analytics");}
                 if(alexa_c!="" && alexa_d!="" && !hasCls && data_href=='ampforwp-Alexa-switch'){analytic_arr.push("Alexa Metrics");}
-                if(host!="" && ReportSuiteId!="" && !hasCls && data_href=='ampforwp_adobe_switch'){analytic_arr.push("Adobe Analytics");}
+                if(host!="" && ReportSuiteId!="" && !hasCls && (adobe_type=='adobeanalytics_native' && adobe_orgid!="" && adobe_subdomain!="" || adobe_type=='adobeanalytics') && data_href=='ampforwp_adobe_switch'){analytic_arr.push("Adobe Analytics");}
                 if(afs_c!="" && !hasCls && data_href=='ampforwp-afs-analytics-switch'){analytic_arr.push("AFS Analytics");}
                 if(clicky_side_id!="" && !hasCls && data_href=='amp-clicky-switch'){analytic_arr.push("Clicky Analytics");}
                 if(cr_config_url!="" && cr_number!="" && cr_analytics_url!="" && !hasCls && data_href=='ampforwp-callrail-switch'){analytic_arr.push("Call Rail Analytics");}
@@ -1735,7 +1760,6 @@ jQuery(document).ready(function($) {
         var alexa_c = $('#ampforwp-alexa-account').val();
         var alexa_d = $('#ampforwp-alexa-domain').val();
         var host = $('#ampforwp-adobe-host').val();
-        var host = ampforwp_get_setting('#ampforwp-adobe-host').var();
         var afs_c = $('#ampforwp-afs-siteid').val();
         var clicky_side_id = $('#clicky-site-id').val();
         var cr_config_url = $('#ampforwp-callrail-config-url').val();
@@ -1906,10 +1930,10 @@ jQuery(document).ready(function($) {
                     $('input[data-id="'+data_href+'"]').click();
                     $('[name="redux_builder_amp['+data_href+']"]').val(1);
                 }
-            }else if(host!="" && ReportSuiteId!=""){
-                if(!checked){
+            }else if(host=="" && ReportSuiteId ==""){
+                if(checked){
                     $('input[data-id="'+data_href+'"]').click();
-                    $('[name="redux_builder_amp['+data_href+']"]').val(1);
+                    $('[name="redux_builder_amp['+data_href+']"]').val(0);
                 }      
             }
         }else if(data_href=='ampforwp-afs-analytics-switch'){

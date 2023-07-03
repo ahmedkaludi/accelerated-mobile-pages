@@ -37,6 +37,7 @@ function ampforwp_thirdparty_compatibility(){
 	if ( in_array( 'opensea/opensea.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 		add_filter('amp_post_template_data','ampforwp_compatibility_for_opensea_plugin');
 	}
+	
 	add_filter('amp_post_template_data','ampforwp_add_target_attribute_in_form_tags');
 	// AMP is not working due to JCH Optimize Pro plugin #3185
 	remove_action('shutdown', 'jch_buffer_end', -1);
@@ -1416,15 +1417,23 @@ function ampforwp_callrail_modify_content($content) {
     $config_url = $number = $analytics_url = '';
 	$config_url = ampforwp_get_setting('ampforwp-callrail-config-url');
 	$number = ampforwp_get_setting('ampforwp-callrail-number');
+	$number_2 = ampforwp_callrail_get_formated_phone($number); // getting number in format 123-456-7890
+	$number_2_replace= '(<a(.*?)href="tel:((.*?-)?'.esc_attr($number_2).')"(.*?)>(.*?)<\/a>)'; // regex for matching number format with anchor tag
 	$analytics_url = ampforwp_get_setting('ampforwp-callrail-analytics-url');
 	$call_rail_analytics = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_html($number).'</a></amp-call-tracking><amp-analytics config="'.esc_url($analytics_url).'"></amp-analytics>';
 	$replace_meta = '<meta>';
 	$content = preg_replace("#<meta (.*?)>#is", $replace_meta, $content);
 	$content = str_replace($number, $call_rail_analytics, $content);
+	$content = preg_replace($number_2_replace, $call_rail_analytics, $content); // replacing number with call tracing code
 	$ct_test = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_attr($number).'</a></amp-call-tracking>';
 	$content = preg_replace('/<a(.*?)><amp-call-tracking(.*?)><a(.*?)<\/a>/', $ct_test, $content);
 
 	return $content;
+}
+function ampforwp_callrail_get_formated_phone($number){
+	$number = preg_replace("/[^\d]/","",$number);
+	$number = preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", $number);
+	return $number;
 }
 
 function ampforwp_is_callrail_switch_active()
@@ -1789,4 +1798,60 @@ function ampforwp_add_target_attribute_in_form_tags( $amp_post_template_data )
 	$amp_post_template_data['post_amp_content'] = $content;
 
 	return $amp_post_template_data;
+}
+
+
+add_filter('the_content','ampforwp_heista_pro_frontpage_section');
+function ampforwp_heista_pro_frontpage_section($content){
+	global $redux_builder_amp;
+	if ( is_home() && function_exists('hestia_run')) {
+			if ( $redux_builder_amp['amp-frontpage-select-option'] == 1) {
+				$slider_content = get_theme_mod( 'hestia_slider_content');
+				$slider_content = json_decode( $slider_content );
+				if ( !empty( $slider_content ) ) {
+					add_action('amp_post_template_css','ampforwp_heista_pro_frontpage_section_css');
+				
+				$amp_html='<div class="ampforwp-carousel-cont" >
+					<amp-carousel width="auto" height="300" layout="responsive" type="slides" aria-label="Hestia Header carousel">';
+				foreach ( $slider_content as $slider_item ) {
+					$title                = ! empty( $slider_item->title ) ? apply_filters( 'hestia_translate_single_string', $slider_item->title, 'Slider section' ) : '';
+					$subtitle             = ! empty( $slider_item->subtitle ) ? apply_filters( 'hestia_translate_single_string', $slider_item->subtitle, 'Slider section' ) : '';
+					$button               = ! empty( $slider_item->text ) ? apply_filters( 'hestia_translate_single_string', $slider_item->text, 'Slider section' ) : '';
+					$link                 = ! empty( $slider_item->link ) ? apply_filters( 'hestia_translate_single_string', $slider_item->link, 'Slider section' ) : '';
+					$button2              = ! empty( $slider_item->text2 ) ? apply_filters( 'hestia_translate_single_string', $slider_item->text2, 'Slider section' ) : '';
+					$link2                = ! empty( $slider_item->link2 ) ? apply_filters( 'hestia_translate_single_string', $slider_item->link2, 'Slider section' ) : '';
+					$slider_type 		  = get_theme_mod( 'hestia_slider_type', apply_filters( 'hestia_slider_type_default', 'image' ) );
+					$image_url_bg         = ! empty( $slider_item->image_url ) && $slider_type=='image' ? apply_filters( 'hestia_translate_single_string', $slider_item->image_url, 'Slider section' ) : '';				
+					$amp_html.='<div class="ampforwp-carousel-wrapper">';
+					if($image_url_bg){
+						$amp_html.='<div class="ampforwp-carousel-img-wrapper" ><amp-img src="'.esc_url($image_url_bg).'" width="1200" height="800" layout="responsive"></amp-img></div>';
+					}
+						$amp_html.='<div class="ampforwp-carousel-content">';
+					if($title){
+						$amp_html.=	'<h1>'.esc_attr( $title ).'</h1>';
+					}
+					if($subtitle){
+						$amp_html.=	'<p>'.esc_attr( $subtitle ).'</p>';
+					}
+					if($button && $link){
+						$amp_html.=	'<a href="'.esc_url($link).'" title="'.esc_attr( $button ).'"><button>'.esc_attr( $button ).'</button></a>';
+					} 
+					if($button2 && $link2){
+						$amp_html.=	'<a href="'.esc_url($link2).'" title="'.esc_attr( $button2 ).'"><button>'.esc_attr( $button2 ).'</button></a>';
+					}
+					$amp_html.='</div>
+					</div>'; 
+				}
+				$amp_html.='</amp-carousel></div>';
+				
+				}
+			$content = $amp_html.$content;
+			
+		 }
+	}
+ return $content;
+}
+
+function ampforwp_heista_pro_frontpage_section_css(){
+echo '.ampforwp-carousel-cont amp-carousel{height:300px} .ampforwp-carousel-wrapper{position:relative;width:100%;height:300px} .ampforwp-carousel-content h1 , .ampforwp-carousel-content p{background-color: #3d3d3da1;padding: 0px 10px;border-radius:8px} .ampforwp-carousel-content{position:absolute;top:0;bottom:0;right:0;left:0;text-align:center;display: flex;flex-direction: column;flex-wrap: wrap;align-items: center;justify-content: center;color:#fff;}';
 }

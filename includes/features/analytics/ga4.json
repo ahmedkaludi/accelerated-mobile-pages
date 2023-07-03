@@ -68,6 +68,7 @@
         }                  
     },    
     "vars": {
+        "ampHost" : "${ampdocHost}",
         "documentLocation": "SOURCE_URL",
         "clientId": "CLIENT_ID(AMP_ECID_GOOGLE,,_ga,true)",
         "dataSource": "AMP"        
