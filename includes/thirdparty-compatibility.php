@@ -1804,15 +1804,15 @@ function ampforwp_add_target_attribute_in_form_tags( $amp_post_template_data )
 add_filter('the_content','ampforwp_heista_pro_frontpage_section');
 function ampforwp_heista_pro_frontpage_section($content){
 	global $redux_builder_amp;
-	if ( is_home() && function_exists('hestia_run')) {
-			if ( $redux_builder_amp['amp-frontpage-select-option'] == 1) {
-				$slider_content = get_theme_mod( 'hestia_slider_content');
+	$ampforwp_frontpage = $redux_builder_amp['amp-frontpage-select-option-pages']?intval($redux_builder_amp['amp-frontpage-select-option-pages']):0;
+	if ( (is_home() || is_page($ampforwp_frontpage)) && function_exists('hestia_run')) {
+			if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 && class_exists('Hestia_Defaults_Models')) {
+				$slider_default = Hestia_Defaults_Models::instance()->get_slider_default();
+				$slider_content = get_theme_mod( 'hestia_slider_content',json_encode($slider_default));
 				$slider_content = json_decode( $slider_content );
 				if ( !empty( $slider_content ) ) {
-					add_action('amp_post_template_css','ampforwp_heista_pro_frontpage_section_css');
-				
 				$amp_html='<div class="ampforwp-carousel-cont" >
-					<amp-carousel width="auto" height="300" layout="responsive" type="slides" aria-label="Hestia Header carousel">';
+					<amp-carousel width="500" height="300" layout="responsive" type="slides" aria-label="Hestia Header carousel">';
 				foreach ( $slider_content as $slider_item ) {
 					$title                = ! empty( $slider_item->title ) ? apply_filters( 'hestia_translate_single_string', $slider_item->title, 'Slider section' ) : '';
 					$subtitle             = ! empty( $slider_item->subtitle ) ? apply_filters( 'hestia_translate_single_string', $slider_item->subtitle, 'Slider section' ) : '';
@@ -1851,7 +1851,23 @@ function ampforwp_heista_pro_frontpage_section($content){
 	}
  return $content;
 }
-
+add_action('amp_post_template_css','ampforwp_heista_pro_frontpage_section_css');
 function ampforwp_heista_pro_frontpage_section_css(){
-echo '.ampforwp-carousel-cont amp-carousel{height:300px} .ampforwp-carousel-wrapper{position:relative;width:100%;height:300px} .ampforwp-carousel-content h1 , .ampforwp-carousel-content p{background-color: #3d3d3da1;padding: 0px 10px;border-radius:8px} .ampforwp-carousel-content{position:absolute;top:0;bottom:0;right:0;left:0;text-align:center;display: flex;flex-direction: column;flex-wrap: wrap;align-items: center;justify-content: center;color:#fff;}';
+	global $redux_builder_amp;
+	$ampforwp_frontpage = $redux_builder_amp['amp-frontpage-select-option-pages']?intval($redux_builder_amp['amp-frontpage-select-option-pages']):0;
+	if ( (is_home() || is_page($ampforwp_frontpage)) && function_exists('hestia_run')) {
+		echo '.ampforwp-carousel-cont amp-carousel{height:300px} .ampforwp-carousel-wrapper{position:relative;width:100%;height:300px} .ampforwp-carousel-content h1 , .ampforwp-carousel-content p{background-color: #3d3d3da1;padding: 0px 10px;border-radius:8px} .ampforwp-carousel-content{position:absolute;top:0;bottom:0;right:0;left:0;text-align:center;display: flex;flex-direction: column;flex-wrap: wrap;align-items: center;justify-content: center;color:#fff;}';
+	}
 }
+
+// add_filter('the_content','ampforwp_wordcount_translate');
+
+// function ampforwp_wordcount_translate($content){
+
+// 	if(class_exists('Wordcount_Translation')) {
+// 		$content = do_shortcode($content);
+// 		$findRegExforTag = '/<input id="fileupload"(.*?)>/i';
+// 		$content = preg_replace($findRegExforTag, '<form target="_top" method="POST"><input id="fileupload"$1></form>', $content);
+// 	}
+// 	return $content;
+// }
