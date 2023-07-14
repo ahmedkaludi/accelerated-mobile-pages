@@ -1824,7 +1824,7 @@ function ampforwp_heista_pro_frontpage_section($content){
 					$image_url_bg         = ! empty( $slider_item->image_url ) && $slider_type=='image' ? apply_filters( 'hestia_translate_single_string', $slider_item->image_url, 'Slider section' ) : '';				
 					$amp_html.='<div class="ampforwp-carousel-wrapper">';
 					if($image_url_bg){
-						$amp_html.='<div class="ampforwp-carousel-img-wrapper" ><amp-img src="'.esc_url($image_url_bg).'" width="1200" height="800" layout="responsive"></amp-img></div>';
+						$amp_html.='<div class="ampforwp-carousel-img-wrapper" ><amp-img src="'.esc_url($image_url_bg).'" width="1200" height="800" layout="fill"></amp-img></div>';
 					}
 						$amp_html.='<div class="ampforwp-carousel-content">';
 					if($title){
@@ -1856,7 +1856,7 @@ function ampforwp_heista_pro_frontpage_section_css(){
 	global $redux_builder_amp;
 	$ampforwp_frontpage = $redux_builder_amp['amp-frontpage-select-option-pages']?intval($redux_builder_amp['amp-frontpage-select-option-pages']):0;
 	if ( (is_home() || is_page($ampforwp_frontpage)) && function_exists('hestia_run')) {
-		echo '.ampforwp-carousel-cont amp-carousel{height:300px} .ampforwp-carousel-wrapper{position:relative;width:100%;height:300px} .ampforwp-carousel-content h1 , .ampforwp-carousel-content p{background-color: #3d3d3da1;padding: 0px 10px;border-radius:8px} .ampforwp-carousel-content{position:absolute;top:0;bottom:0;right:0;left:0;text-align:center;display: flex;flex-direction: column;flex-wrap: wrap;align-items: center;justify-content: center;color:#fff;}';
+		echo '.ampforwp-carousel-cont amp-carousel{height:400px} .ampforwp-carousel-wrapper{position:relative;width:100%;} .ampforwp-carousel-img-wrapper img{filter: brightness(50%);} .ampforwp-carousel-content h1 , .ampforwp-carousel-content p{width:90%;padding: 0px 10px;border-radius:8px} .ampforwp-carousel-content{position:absolute;top:0;bottom:0;right:0;left:0;text-align:center;display: flex;flex-direction: column;align-items: center;justify-content: center;color:#fff;}';
 	}
 }
 
