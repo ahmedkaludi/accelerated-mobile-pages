@@ -2443,7 +2443,8 @@ section.amp-facebook-comments h5{
 <?php } 
 if ($ampforwp_font_icon == 'css-icons'){?>
 .t-btn {
-    color: #000;
+    <?php if(isset($redux_builder_amp['swift-element-color-control'] ['rgba']) && $redux_builder_amp['swift-element-color-control'] ['rgba']){?>color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-color-control']['rgba'])?>;<?php }
+    else{ ?> color: #000 <?php }?>
     position: absolute;
     width: 17px;
     height: 5px;
@@ -2459,12 +2460,18 @@ if ($ampforwp_font_icon == 'css-icons'){?>
     height: 5px;
     border-bottom: solid 1px currentColor;
 }
+.t-btn:after{
+	<?php if(isset($redux_builder_amp['swift-element-color-control'] ['rgba']) && $redux_builder_amp['swift-element-color-control'] ['rgba']){?>color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-color-control']['rgba'])?>;<?php }
+	else{ ?> color: #000 <?php }?>
+	}
 .icon-src,a.lb-x {
-    color: #000;
+    <?php if(isset($redux_builder_amp['swift-element-color-control'] ['rgba']) && $redux_builder_amp['swift-element-color-control'] ['rgba']){?>color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-color-control']['rgba'])?>;<?php }
+    else{ ?> color: #000 <?php }?>
     position: absolute;
     width: 12px;
     height: 12px;
-    border: solid 1px #000;
+    border: solid 1px <?php if(isset($redux_builder_amp['swift-element-color-control'] ['rgba']) && $redux_builder_amp['swift-element-color-control'] ['rgba']){?> <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-color-control']['rgba'])?>;<?php }
+    else{ ?> #000 <?php }?>;
     border-radius: 100%;
     transform: rotate(-45deg);
 }
