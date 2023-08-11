@@ -1589,14 +1589,14 @@ function ampforwp_newsp_td_render_css(){
 	$tdc_status = get_post_meta( ampforwp_get_the_ID(), 'tdc_content', true);
 		if(!empty($tdc_status)){
 		global $amp_td_custom_css;
-		$cssData = '';
+		$cssData = $newspaper_css = '';
 		$newspaper_css_url[] = get_template_directory_uri().'/style.css';
 		$newspaper_css_url[] = TDC_URL_LEGACY . '/assets/css/td_legacy_main.css';
 		if($newspaper_css_url){
 			foreach ($newspaper_css_url as $key => $urlValue) {
 		    $cssData = ampforwp_get_remote_content($urlValue);
 		    $cssData = preg_replace("/\/\*(.*?)\*\//si", "", $cssData);
-		    $newspaper_css .= preg_replace_callback('/url[(](.*?)[)]/', function($matches)use($urlValue){
+		    $newspaper_css = preg_replace_callback('/url[(](.*?)[)]/', function($matches)use($urlValue){
 		            $matches[1] = str_replace(array('"', "'"), array('', ''), $matches[1]);
 		                if(!wp_http_validate_url($matches[1]) && strpos($matches[1],"data:")===false){
 		                    $urlExploded = explode("/", $urlValue);
