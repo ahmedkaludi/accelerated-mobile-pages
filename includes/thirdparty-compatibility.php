@@ -1569,7 +1569,8 @@ function ampforwp_jetpack_defer_js_comp(){
 
 add_filter('the_content','ampforwp_newsp_td_get_css', 12);
 function ampforwp_newsp_td_get_css($content){
-	$tdc_status = get_post_meta( ampforwp_get_the_ID(), 'tdc_content', true);
+	$the_ID = function_exists('ampforwp_get_the_ID') ? ampforwp_get_the_ID() : get_the_ID();
+	$tdc_status = get_post_meta( $the_ID, 'tdc_content', true);
 	if(!empty($tdc_status)){
 		global $amp_td_custom_css;
 		$amp_td_custom_css = '';
