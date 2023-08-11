@@ -39,6 +39,7 @@ namespace ReduxCore\ReduxFramework;
             private $_extension_url;
             private $_extension_dir;
             private $parent;
+            private $upload_dir;
             private $orig_options = array();
             private static $post_values = array();
             public static $version = "2.0.0";

@@ -64,6 +64,8 @@
          *
          * @since       1.0.0
          */
+        use \AllowDynamicProperties;
+        #[AllowDynamicProperties]
         class ReduxFramework {
 
             // ATTENTION DEVS

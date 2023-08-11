@@ -34,6 +34,7 @@
             public static $init = array();
             public static $extensions = array();
             public static $uses_extensions = array();
+            public static $apiHasRun;
 
             public function __call( $closure, $args ) {
                 return call_user_func_array( $this->{$closure}->bindTo( $this ), $args );
