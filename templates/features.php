@@ -8552,16 +8552,19 @@ function ampforwp_remove_unwanted_code($content){
 	        $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
 	    }
 	}
-	if(preg_match('/<table(.*?)height="\d+"(.*?)>/', $content)){
-		$content = preg_replace('/<table(.*?)height="\d+"(.*?)>/', '<table$1$2>', $content);
-	}
   $dom = new \DOMDocument();
   if(function_exists('mb_convert_encoding')){
       @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
   }else{
       @$dom->loadHTML( $content );
   }
-  //Remove label from anchor tag
+  //Remove height from table
+  $all_tables = $dom->getElementsByTagName('table');
+  for ($i=0; $i < $all_tables->length ; $i++) {
+	  $elmnts = $all_tables->item($i);
+	  $elmnts->removeAttribute('height');
+  }
+  //Remove label from anchor
   $all_anchs = $dom->getElementsByTagName('a');
   for ($i=0; $i < $all_anchs->length ; $i++) {
 	  $elmnts = $all_anchs->item($i);
