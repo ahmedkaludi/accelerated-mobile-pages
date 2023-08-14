@@ -8552,6 +8552,9 @@ function ampforwp_remove_unwanted_code($content){
 	        $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
 	    }
 	}
+	if(preg_match('/<table(.*?)height="\d+"(.*?)>/', $content)){
+		$content = preg_replace('/<table(.*?)height="\d+"(.*?)>/', '<table$1$2>', $content);
+	}
 	return $content;
 }
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
