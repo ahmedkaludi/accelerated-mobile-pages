@@ -31,6 +31,8 @@
         add_action( 'redux/init', 'ReduxCore\\ReduxFramework\\ReduxFrameworkInstances::get_instance' );
     }
 
+    use \AllowDynamicProperties;
+    #[AllowDynamicProperties]
     // Don't duplicate me!
     if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework' ) ) {
 
@@ -64,8 +66,6 @@
          *
          * @since       1.0.0
          */
-        use \AllowDynamicProperties;
-        #[AllowDynamicProperties]
         class ReduxFramework {
 
             // ATTENTION DEVS
