@@ -7982,7 +7982,7 @@ function ampforwp_front_admin_menu_bar(){
 		if($pref==="true"){
 			if(class_exists('QM_Plugin') && class_exists('QM_Dispatchers') && ampforwp_get_setting('ampforwp-query-monitor')){
 				$dis = QM_Dispatchers::get( 'html' );
-				if($dis->did_footer==false){
+				if(is_object($dis) && $dis->did_footer==false){
 					$dis->did_footer = true;
 					add_action( 'amp_post_template_head', 'ampforwp_query_monitor_script'  );
 					add_action( 'amp_post_template_head',  'ampforwp_manual_qm_script', 11 );
