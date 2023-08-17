@@ -180,25 +180,20 @@ function ampforwp_analytics_options($opt_name){
                             'title'    => esc_html__( 'GA4 Measurement ID', 'accelerated-mobile-pages' ),
                             'required' => array(
                               array('ampforwp-ga4-switch', '=' , '1'),
+                              array('ampforwp-ga4-field-advance-switch', '=' , '0'),
                             ),
                             'tooltip-subtitle' => esc_html__( 'Enter your Your Measurement ID Example: G-XXXXXXXX', 'accelerated-mobile-pages' ),
                             'default'  => 'G-XXXXXXXX',
                         ),
                         array(
                             'class'    => 'child_opt',
-                            'id'       => 'ampforwp-ga4-dpe',
-                            'type'     => 'switch',
-                            'title'    => esc_html__( 'Default Pageview Enabled', 'accelerated-mobile-pages' ),
-                            'required' => array('ampforwp-ga4-switch', '=' , '1'),             
-                            'tooltip-subtitle' => esc_html__( 'If this option is enabled then page_view event fire on the page load', 'accelerated-mobile-pages' ),
-                            'default'  => 1,
-                        ),
-                        array(
-                            'class'    => 'child_opt',
                             'id'       => 'ampforwp-ga4-gce',
                             'type'     => 'switch',
                             'title'    => esc_html__( 'Google Consent Enabled', 'accelerated-mobile-pages' ),
-                            'required' => array('ampforwp-ga4-switch', '=' , '1'),
+                            'required' => array(
+                              array('ampforwp-ga4-switch', '=' , '1'),
+                              array('ampforwp-ga4-field-advance-switch', '=' , '0'),
+                            ),
                             'tooltip-subtitle' => esc_html__( 'If this option is enabled then &gcs parameter will be added to the payloads with the current Consent Status', 'accelerated-mobile-pages' ),             
                             'default'  => 0,
                         ),
@@ -207,7 +202,10 @@ function ampforwp_analytics_options($opt_name){
                             'id'       => 'ampforwp-ga4-wvt',
                             'type'     => 'switch',
                             'title'    => esc_html__( 'Webvitals Tracking', 'accelerated-mobile-pages' ),
-                            'required' => array('ampforwp-ga4-switch', '=' , '1'),
+                            'required' => array(
+                              array('ampforwp-ga4-switch', '=' , '1'),
+                              array('ampforwp-ga4-field-advance-switch', '=' , '0'),
+                            ),
                             'tooltip-subtitle' => esc_html__( 'If this option is enabled then webvitals event will fire 5 seconds after the page is visible', 'accelerated-mobile-pages' ),             
                             'default'  => 0,
                         ),
@@ -216,10 +214,52 @@ function ampforwp_analytics_options($opt_name){
                             'id'       => 'ampforwp-ga4-ptt',
                             'type'     => 'switch',
                             'title'    => esc_html__( 'Performance Timing Tracking', 'accelerated-mobile-pages' ),
-                            'required' => array('ampforwp-ga4-switch', '=' , '1'),
+                            'required' => array(
+                              array('ampforwp-ga4-switch', '=' , '1'),
+                              array('ampforwp-ga4-field-advance-switch', '=' , '0'),
+                            ),
                             'tooltip-subtitle' => esc_html__( 'If this option is enabled then performance_timing event including the current page load performance timings', 'accelerated-mobile-pages' ),             
                             'default'  => 0,
                         ),
+                        // Advance Tracking options for Google Analytics
+                        array(
+                            'class' => 'child_opt',
+                            'id'       => 'ampforwp-ga4-field-advance-switch',
+                            'type'     => 'switch',
+                            'title'    => esc_html__( 'Customize Configuration', 'accelerated-mobile-pages' ),
+                            'required' => array(
+                              array('amp-use-gtm-option', '=' , '0'),
+                              array('ampforwp-ga4-switch', '=' , '1')
+                            ),
+                            'default'  => 0,
+                        ),
+                        array(
+                            'class' => 'child_opt',
+                            'id'       => 'ampforwp-ga4-field-advance',
+                            'type'     => 'ace_editor',
+                            'title'    => esc_html__('Analytics Code in JSON Format', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle'    => sprintf( '%s<a href="%s" target="_blank">%s</a>', esc_html__( 'Tutorial: ','accelerated-mobile-pages' ), esc_url('https://ampforwp.com/tutorials/article/how-to-add-ga4-in-ampforwp/'),  esc_html__( 'How To Add Advanced Google Analytics in AMP?','accelerated-mobile-pages' ) ),
+                            'required' => array(
+                              array('amp-use-gtm-option', '=' , '0'),
+                              array('ampforwp-ga4-switch', '=' , '1'),
+                              array('ampforwp-ga4-field-advance-switch', '=' , '1')
+                            ),
+                            'mode'     => 'javascript',
+                            'theme'    => 'monokai',
+                            'default'  => ('{
+    "vars":{
+        "gtag_id":"G-XXXXXXXXXX",
+        "config":{
+            "G-XXXXXXXXXX":{"groups":"default"}
+            }
+        },
+    "triggers":{
+        "trackPageview":{
+            "on":"visible","request":"pageview"
+        }
+    }
+}'),
+                      ),
 
                       //GTM
                         array(

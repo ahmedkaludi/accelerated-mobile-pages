@@ -89,147 +89,98 @@ function ampforwp_analytics() {
 	// Original code by David Vallejo
  	// ga4.json - https://github.com/analytics-debugger/google-analytics-4-for-amp
 	if( function_exists('ampforwp_get_setting') && ampforwp_get_setting('ampforwp-ga4-switch') == true ){
+		$ga4_fields = array();
+		$ampforwp_ga4_fields = array();
 		$ga4_id = ampforwp_get_setting('ampforwp-ga4-id');
-		$ga4_dpe = ampforwp_get_setting('ampforwp-ga4-dpe') == 1 ? true : false;
-		$ga4_webv = ampforwp_get_setting('ampforwp-ga4-wvt') == 1 ? true : false;
-		$ga4_gce = ampforwp_get_setting('ampforwp-ga4-gce') == 1 ? true : false;
-		$ga4_perf = ampforwp_get_setting('ampforwp-ga4-ptt') == 1 ? true : false;
-		$ampforwp_ga4_config =array (
-			'cookies' => 
-			array (
-			  '_ga' => 
-			  array (
-				'value' => '$IF(LINKER_PARAM(_gl, _ga),GA1.0.LINKER_PARAM(_gl, _ga),)',
-			  ),
-			),
-			'linkers' => 
-			array (
-			  '_gl' => 
-			  array (
-				'enabled' => true,
-				'ids' => 
-				array (
-				  '_ga' => '${clientId}',
-				),
-				'proxyOnly' => false,
-			  ),
-			),
-			'triggers' => 
-			array (
-			  'page_view' => 
-			  array (
-				'enabled' => $ga4_dpe,
-				'on' => 'visible',
-				'request' => 'ga4Pageview',
-			  ),
-			  'doubleClick' => 
-			  array (
-				'enabled' => $ga4_dpe,
-				'on' => 'visible',
-				'request' => 'ga4Dc',
-			  ),
-			  'webVitals' => 
-			  array (
-				'enabled' => $ga4_webv,
-				'on' => 'timer',
-				'timerSpec' => 
-				array (
-				  'interval' => 5,
-				  'maxTimerLength' => 4.99,
-				  'immediate' => false,
-				),
-				'request' => 'ga4Event',
-				'vars' => 
-				array (
-				  'ga4_event_name' => 'web_vitals',
-				),
-				'extraUrlParams' => 
-				array (
-				  'event__num_first_contenful_paint' => 'FIRST_CONTENTFUL_PAINT',
-				  'event__num_first_viewport_ready' => 'FIRST_VIEWPORT_READY',
-				  'event__num_make_body_visible' => 'MAKE_BODY_VISIBLE',
-				  'event__num_largest_contentful_paint' => 'LARGEST_CONTENTFUL_PAINT',
-				  'event__num_cumulative_layout_shift' => 'CUMULATIVE_LAYOUT_SHIFT',
-				),
-			  ),
-			  'performanceTiming' => 
-			  array (
-				'enabled' => $ga4_perf,
-				'on' => 'visible',
-				'request' => 'ga4Event',
-				'sampleSpec' => 
-				array (
-				  'sampleOn' => '${clientId}',
-				  'threshold' => 100,
-				),
-				'vars' => 
-				array (
-				  'ga4_event_name' => 'performance_timing',
-				),
-				'extraUrlParams' => 
-				array (
-				  'event__num_page_load_time' => '${pageLoadTime}',
-				  'event__num_domain_lookup_time' => '${domainLookupTime}',
-				  'event__num_tcp_connect_time' => '${tcpConnectTime}',
-				  'event__num_redirect_time' => '${redirectTime}',
-				  'event__num_server_response_time' => '${serverResponseTime}',
-				  'event__num_page_download_time' => '${pageDownloadTime}',
-				  'event__num_content_download_time' => '${contentLoadTime}',
-				  'event__num_dom_interactive_time' => '${domInteractiveTime}',
-				),
-			  ),
-			),
-			'vars' => 
-			array (
-			  'ampHost' => '${ampdocHost}',
-			  'documentLocation' => 'SOURCE_URL',
-			  'clientId' => 'CLIENT_ID(AMP_ECID_GOOGLE,,_ga,true)',
-			  'dataSource' => 'AMP',
-			),
-			'extraUrlParams' => 
-			array (
-			  'sid' => '$CALC(SESSION_TIMESTAMP, 1000, divide, true)',
-			  'sct' => 'SESSION_COUNT',
-			  'seg' => '$IF($EQUALS(SESSION_ENGAGED, true),1,0)',
-			  '_et' => '$CALC(TOTAL_ENGAGED_TIME,1000, multiply)',
-			  'gcs' => '$IF($EQUALS('.$ga4_gce.',TRUE),G10$IF($EQUALS(CONSENT_STATE,sufficient),1,0),)',
-			),
-			'extraUrlParamsReplaceMap' => 
-			array (
-			  'user__str_' => 'up.',
-			  'user__num_' => 'upn.',
-			  'event__str_' => 'ep.',
-			  'event__num_' => 'epn.',
-			),
-			'requestOrigin' => 'https://www.google-analytics.com',
-			'requests' => 
-			array (
-			  'ga4IsFirstVisit' => '$IF($EQUALS($CALC(SESSION_COUNT, $CALC($CALC(${timestamp}, 1000, divide, true),$CALC(SESSION_TIMESTAMP, 1000, divide, true), subtract), add),1), _fv, __nfv )',
-			  'ga4IsSessionStart' => '$IF($EQUALS($CALC($CALC(${timestamp}, 1000, divide, true),$CALC(SESSION_TIMESTAMP, 1000, divide, true), subtract),0), _ss, __nss)',
-			  'ga4SharedPayload' => 'v=2&tid='.$ga4_id.'&ds=${dataSource}&_p=${pageViewId}&cid=${clientId}&ul=${browserLanguage}&sr=${screenWidth}x${screenHeight}&_s=${requestCount}&dl=${documentLocation}&dr=${externalReferrer}&dt=${title}&${ga4IsFirstVisit}=1&${ga4IsSessionStart}=1',
-			  'ga4Pageview' => 
-			  array (
-				'baseUrl' => '/g/collect?${ga4SharedPayload}&en=page_view',
-			  ),
-			  'ga4Event' => 
-			  array (
-				'baseUrl' => '/g/collect?${ga4SharedPayload}&en=${ga4_event_name}',
-			  ),
-			  'ga4Dc' => 
-			  array (
-				'origin' => 'https://stats.g.doubleclick.net',
-				'baseUrl' => '/g/collect?v=2&tid='.$ga4_id.'&cid=${clientId}&aip=1',
-			  ),
-			),
-		);
-		$ampforwp_ga4_fields = json_encode( $ampforwp_ga4_config);
- 		?>
- 		<amp-analytics type="googleanalytics" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>  data-credentials="include">
- 		<script type="application/json">
-			<?php echo $ampforwp_ga4_fields; ?>
-		</script>
-		</amp-analytics>
- 		<?php
+		$ga4_id = str_replace(' ', '', $ga4_id);
+		$ga4_fields = array(
+						'vars'=>array(
+							'gtag_id'=>$ga4_id,
+							),
+						);
+		$url = parse_url( home_url() , PHP_URL_HOST );
+		$ga4_fields['vars']['config'] = array(
+						$ga4_id=> array(
+								'groups'=>'default',
+						)
+					);
+		$ga4_fields['triggers'] = array(
+						'trackPageview'=> array(
+								'on'=>'visible',
+								'request'=>'pageview'			
+						)
+					);
+		if( ampforwp_get_setting('ampforwp-ga4-wvt') == 1 ){
+			$ga4_fields['triggers'] = array(
+							'webVitals'=> array(
+									'on'=>'timer',
+									'timerSpec'=>array(
+										'interval' => 5,
+										'maxTimerLength' => 4.99,
+										'immediate' => false,
+									),
+									'request'=>'event',
+									'vars'=>array(
+										'event_name' => 'web_vitals',
+									),
+									'extraUrlParams'=>array(
+										'event__num_first_contenful_paint' => 'FIRST_CONTENTFUL_PAINT',
+										'event__num_first_viewport_ready' => 'FIRST_VIEWPORT_READY',
+										'event__num_make_body_visible' => 'MAKE_BODY_VISIBLE',
+										'event__num_largest_contentful_paint' => 'LARGEST_CONTENTFUL_PAINT',
+										'event__num_cumulative_layout_shift' => 'CUMULATIVE_LAYOUT_SHIFT',
+									),		
+							)
+						);
+		}
+		if( ampforwp_get_setting('ampforwp-ga4-ptt') == 1 ){
+			$ga4_fields['triggers'] = array(
+							'performanceTiming'=> array(
+									'on'=>'visible',
+									'request'=>'event',
+									'sampleSpec'=>array(
+										'sampleOn' => '${clientId}',
+										'threshold' => 100,
+									),
+									'vars'=>array(
+										'event_name' => 'performance_timing',
+									),
+									'extraUrlParams'=>array(
+										'event__num_page_load_time' => '${pageLoadTime}',
+										'event__num_domain_lookup_time' => '${domainLookupTime}',
+										'event__num_tcp_connect_time' => '${tcpConnectTime}',
+										'event__num_redirect_time' => '${redirectTime}',
+										'event__num_server_response_time' => '${serverResponseTime}',
+										'event__num_page_download_time' => '${pageDownloadTime}',
+										'event__num_content_download_time' => '${contentLoadTime}',
+										'event__num_dom_interactive_time' => '${domInteractiveTime}',
+									),	
+							)
+						);
+		}
+		if ( ampforwp_get_setting('ampforwp-ga4-gce') == 1 ) {
+			$ga4_fields['extraUrlParams'] = array(
+				'gcs' => '$IF($EQUALS(true,TRUE),G10$IF($EQUALS(CONSENT_STATE,sufficient),1,0),)',
+			);
+		}
+		$ampforwp_ga4_fields = json_encode( $ga4_fields);
+		if( ampforwp_get_setting('ampforwp-ga4-field-advance-switch') ){
+			$ampforwp_ga4_fields = apply_filters('ampforwp_advance_google_analytics4', $ampforwp_ga4_fields );
+			$ampforwp_ga4_fields = preg_replace('!/\*.*?\*/!s', '', $ampforwp_ga4_fields);
+			$ampforwp_ga4_fields = preg_replace('/\n\s*\n/', '', $ampforwp_ga4_fields);
+	 		?>
+	 		<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="gtag" id="analytics1">
+	 		<script type="application/json">
+				<?php echo $ampforwp_ga4_fields; ?>
+			</script>
+			</amp-analytics>
+	 	<?php } else if (!empty($ga4_id)) { ?>
+			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="gtag" id="analytics1" data-credentials="include" >
+				<script type="application/json">
+					<?php echo $ampforwp_ga4_fields; ?>
+				</script>
+			</amp-analytics>
+		<?php }
 	}
 	//Code Ends for Google Analytics 4
 
@@ -873,6 +824,62 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 		return $ampforwp_adv_ga_fields;
 	}	
 	return $ga_fields;	
+}
+
+//Advance Analytics(Google Analytics 4)
+add_filter('ampforwp_advance_google_analytics4','ampforwp_add_advance_ga4_fields');
+function ampforwp_add_advance_ga4_fields($ga4_fields){
+	global $redux_builder_amp, $post;
+	$url = $title = $id = $author_id = $author_name = '';
+	$url = get_the_permalink();
+	$tag_names = array();
+	if(!is_object($post)){ return $ga4_fields; }
+	$id = ampforwp_get_the_ID();
+	$title = get_the_title($id);
+	$category_detail = get_the_category($id);//$post->ID
+	$category_name = '';
+	if ( ! empty( $category_detail ) ) {
+		foreach($category_detail as $cd){
+			$category_name_array[] = $cd->cat_name;
+		}
+		$category_name = implode( ', ', $category_name_array );
+	}
+	$tags = get_the_tags( $id );
+	$focusKeyword = '';
+	$seoScore = '';
+	if( defined('WPSEO_FILE')){
+		$focusKeyword = get_post_meta($id, '_yoast_wpseo_focuskw', true); 
+		$seoScore = get_post_meta($id, '_yoast_wpseo_content_score', true); 
+	}
+
+	$tagNames = '';
+	if( !empty($tags) ){
+	    foreach( $tags as $tag ) {
+	    	$tag_names[] = $tag->name;
+	    }
+	    $tagNames = implode( ', ', $tag_names );
+	}
+	$author_id = get_post_field( 'post_author', $id );
+	$author_name = get_the_author_meta( 'display_name' , $author_id );
+	$published_at = get_the_date( 'F j, Y' , $id );
+	$ampforwp_adv_ga4_fields = array();
+	$ampforwp_adv_ga4_fields = ampforwp_get_setting('ampforwp-ga4-field-advance');
+	if($ampforwp_adv_ga4_fields)	{
+		$ampforwp_adv_ga4_fields = str_replace('{url}', $url, $ampforwp_adv_ga4_fields);
+		$ampforwp_adv_ga4_fields = str_replace('{id}', $id, $ampforwp_adv_ga4_fields);
+		$ampforwp_adv_ga4_fields = str_replace('{title}', $title, $ampforwp_adv_ga4_fields);
+		$ampforwp_adv_ga4_fields = str_replace('{author_id}', $author_id, $ampforwp_adv_ga4_fields);
+		$ampforwp_adv_ga4_fields = str_replace('{author_name}', $author_name, $ampforwp_adv_ga4_fields);
+		$ampforwp_adv_ga4_fields = str_replace('{category}', $category_name, $ampforwp_adv_ga4_fields);
+		$ampforwp_adv_ga4_fields = str_replace('{published_at}', $published_at, $ampforwp_adv_ga4_fields);
+		$ampforwp_adv_ga4_fields = str_replace('{tags}', $tagNames, $ampforwp_adv_ga4_fields);
+		if( defined('WPSEO_FILE')){
+			$ampforwp_adv_ga4_fields = str_replace('{seo_score}', $seoScore, $ampforwp_adv_ga4_fields);
+			$ampforwp_adv_ga4_fields = str_replace('{focus_keyword}', $focusKeyword, $ampforwp_adv_ga4_fields);
+		}
+		return $ampforwp_adv_ga4_fields;
+	}	
+	return $ga4_fields;	
 }
 
 add_filter( 'query_vars', 'ampforwp_adobe_query_var' );
