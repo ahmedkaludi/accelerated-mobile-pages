@@ -31,8 +31,6 @@
         add_action( 'redux/init', 'ReduxCore\\ReduxFramework\\ReduxFrameworkInstances::get_instance' );
     }
 
-    use \AllowDynamicProperties;
-    #[AllowDynamicProperties]
     // Don't duplicate me!
     if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework' ) ) {
 
@@ -79,6 +77,11 @@
             public static $_upload_url;
             public static $wp_content_url;
             public static $base_wp_content_url;
+            public static $old_opt_name;
+            public static $transients = array();
+            public static $wp_data = array();
+            public static $field_types = array();
+            public static $field_head = array();
             public static $_is_plugin = true;
             public static $_as_plugin = false;
 
