@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 6.2
-Stable tag: 1.0.87
+Tested up to: 6.3
+Stable tag: 1.0.88
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,20 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.88 (22nd August 2023) =
+* Fixed: Error in error log #5472
+* Fixed: Screen gets wider on mobile when enable callrail analytics #5473
+* Fixed: When we disable the Call to Action button from the AMP, the CTA is still shown #5475
+* Fixed: PHP Warning: Undefined variable #5479
+* Fixed: The attribute 'height' may not appear in tag 'table' #5483
+* Fixed: The attribute 'label' may not appear in tag 'a' #5485
+* Fixed: Header Elements chosen color not loading on front end #5491
+* Fixed: Deprecated warning on the AMP #5493
+* Fixed: Deprecated issue #5497
+* Fixed: Fatal Error & warning in the debug log #5500
+* Fixed: The PDF files are not appearing properly on the AMP version #5502
+* New  : Multiple Google Analytics 4 accounts support #5481
 
 = 1.0.87 (3rd July 2023) =
 * Fixed: CallNow buttons number is not replaced by callrail #5459
