@@ -7982,7 +7982,7 @@ function ampforwp_front_admin_menu_bar(){
 		if($pref==="true"){
 			if(class_exists('QM_Plugin') && class_exists('QM_Dispatchers') && ampforwp_get_setting('ampforwp-query-monitor')){
 				$dis = QM_Dispatchers::get( 'html' );
-				if($dis->did_footer==false){
+				if(is_object($dis) && $dis->did_footer==false){
 					$dis->did_footer = true;
 					add_action( 'amp_post_template_head', 'ampforwp_query_monitor_script'  );
 					add_action( 'amp_post_template_head',  'ampforwp_manual_qm_script', 11 );
@@ -8552,6 +8552,25 @@ function ampforwp_remove_unwanted_code($content){
 	        $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
 	    }
 	}
+  $dom = new \DOMDocument();
+  if(function_exists('mb_convert_encoding')){
+      @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+  }else{
+      @$dom->loadHTML( $content );
+  }
+  //Remove height from table
+  $all_tables = $dom->getElementsByTagName('table');
+  for ($i=0; $i < $all_tables->length ; $i++) {
+	  $elmnts = $all_tables->item($i);
+	  $elmnts->removeAttribute('height');
+  }
+  //Remove label from anchor
+  $all_anchs = $dom->getElementsByTagName('a');
+  for ($i=0; $i < $all_anchs->length ; $i++) {
+	  $elmnts = $all_anchs->item($i);
+	  $elmnts->removeAttribute('label');
+  }
+	$content = $dom->saveHTML();
 	return $content;
 }
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);

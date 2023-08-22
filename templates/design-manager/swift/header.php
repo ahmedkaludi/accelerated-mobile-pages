@@ -277,7 +277,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                     <?php amp_logo(); ?>
                 </div>
                 <div class="h-2">
-                    <?php if( ampforwp_get_setting('signin-button-text') && ampforwp_get_setting('signin-button-link')[0] ){
+                    <?php if( true == ampforwp_get_setting('signin-button') && ampforwp_get_setting('signin-button-text') && ampforwp_get_setting('signin-button-link')[0] ){
                     $new_tab = '';
                     if (ampforwp_get_setting('signin-button-new-tab')) {
                         $new_tab = 'target=_blank';

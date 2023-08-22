@@ -38,6 +38,14 @@ class AMP_Iframe_Sanitizer extends AMP_Base_Sanitizer {
 
 		for ( $i = $num_nodes - 1; $i >= 0; $i-- ) {
 			$node = $nodes->item( $i );
+			
+			//Pdf comp
+			$get_src = $node->getAttribute('src');
+			if( strpos( $get_src, '.pdf' ) !== false ){
+				$new_pdfsrc = rawurlencode($get_src);
+				$node->setAttribute('src', 'https://docs.google.com/gview?url='.$new_pdfsrc.'&embedded=true');
+			}
+
 			$old_attributes = AMP_DOM_Utils::get_node_attributes_as_assoc_array( $node );
 
 			$new_attributes = $this->filter_attributes( $old_attributes );

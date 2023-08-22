@@ -47,12 +47,7 @@ function ampforwp_minify_html_output($content_buffer){
     if(preg_match('/<form(.*?)for="categories-dropdown-(.*?)"(.*?)class="postform(.*?)>/', $content_buffer)){
         $content_buffer = preg_replace('/<form(.*?)for="categories-dropdown-(.*?)"(.*?)class="postform(.*?)>/', '<form id="amp-wp-widget-categories-1" on="change:amp-wp-widget-categories-1.submit" $1for="categories-dropdown-$2"$3class="postform$4>', $content_buffer);
     }
-    if(preg_match('/<a(.*?)( a )(.*?)<\/a>/', $content_buffer)){
-        $content_buffer = preg_replace('/<a(.*?)( a )(.*?)<\/a>/', '<a$1 $3</a>', $content_buffer);
-    }
-    if(preg_match('/<a(.*?)( a>)(.*?)<\/a>/', $content_buffer)){
-        $content_buffer = preg_replace('/<a(.*?)( a>)(.*?)<\/a>/', '<a$1>$3</a>', $content_buffer);
-    }
+
     if (function_exists('aioseo_pro_just_activated') && preg_match('/<link rel="canonical" href="([^>]*)\/amp\/" \/>/', $content_buffer)) {
         $content_buffer = preg_replace('/<link rel="canonical" href="([^>]*)\/amp\/" \/>/','<link rel="canonical" href="$1/" />', $content_buffer);
     }

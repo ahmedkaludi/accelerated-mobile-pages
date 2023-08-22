@@ -1421,8 +1421,6 @@ function ampforwp_callrail_modify_content($content) {
 	$number_2_replace= '(<a(.*?)href="tel:((.*?-)?'.esc_attr($number_2).')"(.*?)>(.*?)<\/a>)'; // regex for matching number format with anchor tag
 	$analytics_url = ampforwp_get_setting('ampforwp-callrail-analytics-url');
 	$call_rail_analytics = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_html($number).'</a></amp-call-tracking><amp-analytics config="'.esc_url($analytics_url).'"></amp-analytics>';
-	$replace_meta = '<meta>';
-	$content = preg_replace("#<meta (.*?)>#is", $replace_meta, $content);
 	$content = str_replace($number, $call_rail_analytics, $content);
 	$content = preg_replace($number_2_replace, $call_rail_analytics, $content); // replacing number with call tracing code
 	$ct_test = '<amp-call-tracking config="'.esc_url($config_url).'"><a href="tel:'.esc_attr($number).'">'.esc_attr($number).'</a></amp-call-tracking>';
@@ -1569,7 +1567,8 @@ function ampforwp_jetpack_defer_js_comp(){
 
 add_filter('the_content','ampforwp_newsp_td_get_css', 12);
 function ampforwp_newsp_td_get_css($content){
-	$tdc_status = get_post_meta( ampforwp_get_the_ID(), 'tdc_content', true);
+	$the_ID = function_exists('ampforwp_get_the_ID') ? ampforwp_get_the_ID() : get_the_ID();
+	$tdc_status = get_post_meta( $the_ID, 'tdc_content', true);
 	if(!empty($tdc_status)){
 		global $amp_td_custom_css;
 		$amp_td_custom_css = '';
@@ -1589,14 +1588,14 @@ function ampforwp_newsp_td_render_css(){
 	$tdc_status = get_post_meta( ampforwp_get_the_ID(), 'tdc_content', true);
 		if(!empty($tdc_status)){
 		global $amp_td_custom_css;
-		$cssData = '';
+		$cssData = $newspaper_css = '';
 		$newspaper_css_url[] = get_template_directory_uri().'/style.css';
 		$newspaper_css_url[] = TDC_URL_LEGACY . '/assets/css/td_legacy_main.css';
 		if($newspaper_css_url){
 			foreach ($newspaper_css_url as $key => $urlValue) {
 		    $cssData = ampforwp_get_remote_content($urlValue);
 		    $cssData = preg_replace("/\/\*(.*?)\*\//si", "", $cssData);
-		    $newspaper_css .= preg_replace_callback('/url[(](.*?)[)]/', function($matches)use($urlValue){
+		    $newspaper_css = preg_replace_callback('/url[(](.*?)[)]/', function($matches)use($urlValue){
 		            $matches[1] = str_replace(array('"', "'"), array('', ''), $matches[1]);
 		                if(!wp_http_validate_url($matches[1]) && strpos($matches[1],"data:")===false){
 		                    $urlExploded = explode("/", $urlValue);
@@ -1804,15 +1803,15 @@ function ampforwp_add_target_attribute_in_form_tags( $amp_post_template_data )
 add_filter('the_content','ampforwp_heista_pro_frontpage_section');
 function ampforwp_heista_pro_frontpage_section($content){
 	global $redux_builder_amp;
-	if ( is_home() && function_exists('hestia_run')) {
-			if ( $redux_builder_amp['amp-frontpage-select-option'] == 1) {
-				$slider_content = get_theme_mod( 'hestia_slider_content');
+	$ampforwp_frontpage = $redux_builder_amp['amp-frontpage-select-option-pages']?intval($redux_builder_amp['amp-frontpage-select-option-pages']):0;
+	if ( (is_home() || is_page($ampforwp_frontpage)) && function_exists('hestia_run')) {
+			if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 && class_exists('Hestia_Defaults_Models')) {
+				$slider_default = Hestia_Defaults_Models::instance()->get_slider_default();
+				$slider_content = get_theme_mod( 'hestia_slider_content',json_encode($slider_default));
 				$slider_content = json_decode( $slider_content );
 				if ( !empty( $slider_content ) ) {
-					add_action('amp_post_template_css','ampforwp_heista_pro_frontpage_section_css');
-				
 				$amp_html='<div class="ampforwp-carousel-cont" >
-					<amp-carousel width="auto" height="300" layout="responsive" type="slides" aria-label="Hestia Header carousel">';
+					<amp-carousel width="500" height="300" layout="responsive" type="slides" aria-label="Hestia Header carousel">';
 				foreach ( $slider_content as $slider_item ) {
 					$title                = ! empty( $slider_item->title ) ? apply_filters( 'hestia_translate_single_string', $slider_item->title, 'Slider section' ) : '';
 					$subtitle             = ! empty( $slider_item->subtitle ) ? apply_filters( 'hestia_translate_single_string', $slider_item->subtitle, 'Slider section' ) : '';
@@ -1824,7 +1823,7 @@ function ampforwp_heista_pro_frontpage_section($content){
 					$image_url_bg         = ! empty( $slider_item->image_url ) && $slider_type=='image' ? apply_filters( 'hestia_translate_single_string', $slider_item->image_url, 'Slider section' ) : '';				
 					$amp_html.='<div class="ampforwp-carousel-wrapper">';
 					if($image_url_bg){
-						$amp_html.='<div class="ampforwp-carousel-img-wrapper" ><amp-img src="'.esc_url($image_url_bg).'" width="1200" height="800" layout="responsive"></amp-img></div>';
+						$amp_html.='<div class="ampforwp-carousel-img-wrapper" ><amp-img src="'.esc_url($image_url_bg).'" width="1200" height="800" layout="fill"></amp-img></div>';
 					}
 						$amp_html.='<div class="ampforwp-carousel-content">';
 					if($title){
@@ -1851,7 +1850,23 @@ function ampforwp_heista_pro_frontpage_section($content){
 	}
  return $content;
 }
-
+add_action('amp_post_template_css','ampforwp_heista_pro_frontpage_section_css');
 function ampforwp_heista_pro_frontpage_section_css(){
-echo '.ampforwp-carousel-cont amp-carousel{height:300px} .ampforwp-carousel-wrapper{position:relative;width:100%;height:300px} .ampforwp-carousel-content h1 , .ampforwp-carousel-content p{background-color: #3d3d3da1;padding: 0px 10px;border-radius:8px} .ampforwp-carousel-content{position:absolute;top:0;bottom:0;right:0;left:0;text-align:center;display: flex;flex-direction: column;flex-wrap: wrap;align-items: center;justify-content: center;color:#fff;}';
+	global $redux_builder_amp;
+	$ampforwp_frontpage = $redux_builder_amp['amp-frontpage-select-option-pages']?intval($redux_builder_amp['amp-frontpage-select-option-pages']):0;
+	if ( (is_home() || is_page($ampforwp_frontpage)) && function_exists('hestia_run')) {
+		echo '.ampforwp-carousel-cont amp-carousel{height:400px} .ampforwp-carousel-wrapper{position:relative;width:100%;} .ampforwp-carousel-img-wrapper img{filter: brightness(50%);} .ampforwp-carousel-content h1 , .ampforwp-carousel-content p{width:90%;padding: 0px 10px;border-radius:8px} .ampforwp-carousel-content{position:absolute;top:0;bottom:0;right:0;left:0;text-align:center;display: flex;flex-direction: column;align-items: center;justify-content: center;color:#fff;}';
+	}
 }
+
+// add_filter('the_content','ampforwp_wordcount_translate');
+
+// function ampforwp_wordcount_translate($content){
+
+// 	if(class_exists('Wordcount_Translation')) {
+// 		$content = do_shortcode($content);
+// 		$findRegExforTag = '/<input id="fileupload"(.*?)>/i';
+// 		$content = preg_replace($findRegExforTag, '<form target="_top" method="POST"><input id="fileupload"$1></form>', $content);
+// 	}
+// 	return $content;
+// }
