@@ -195,6 +195,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.88.1 (24nd August 2023) =
+* Fixed: AMP for WP Update Causes Dashboard Notices and Warnings #5508
+
 = 1.0.88 (22nd August 2023) =
 * Fixed: Error in error log #5472
 * Fixed: Screen gets wider on mobile when enable callrail analytics #5473
