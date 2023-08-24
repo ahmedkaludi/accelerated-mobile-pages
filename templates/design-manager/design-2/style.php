@@ -548,7 +548,7 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
 .breadcrumb ul, .category-single ul{padding:0; margin:0;}
 .breadcrumb ul li{display:inline;}
 .breadcrumb ul li a, .breadcrumb ul li span{font-size:12px;}
-.breadcrumb ul li a::after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top: -0.5px;}
+.breadcrumb ul li a::after {content: "\25BA";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top: -0.5px;}
 .breadcrumb ul li:hover a::after{color:#c3c3c3;}
 .breadcrumb .bread-post{color: #555;}
 .breadcrumb ul li:last-child a::after{display:none;}

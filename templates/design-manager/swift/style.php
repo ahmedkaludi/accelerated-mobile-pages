@@ -2530,7 +2530,7 @@ if ($ampforwp_font_icon == 'css-icons'){?>
     top: 10px;
 }
 a.bread-link.bread-home::after {
-    content: "►";
+    content: "\25BA";
     top:-1px;
 }
 .lb-t:target a.lb-x {
