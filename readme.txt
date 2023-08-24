@@ -197,6 +197,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.88.1 (24nd August 2023) =
 * Fixed: AMP for WP Update Causes Dashboard Notices and Warnings #5508
+* Fixed: Breadcrumb icon broken of design 3 #5509
 
 = 1.0.88 (22nd August 2023) =
 * Fixed: Error in error log #5472
