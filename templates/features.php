@@ -8555,28 +8555,32 @@ function ampforwp_remove_unwanted_code($content) {
             }
         }
         
-        $dom = new \DOMDocument();
-        if (function_exists('mb_convert_encoding')) {
-            @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
-        } else {
-            @$dom->loadHTML($content);
+        // Check if $content is not empty before using DOMDocument
+        if (!empty($content)) {
+            $dom = new \DOMDocument();
+            if (function_exists('mb_convert_encoding')) {
+                @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+            } else {
+                @$dom->loadHTML($content);
+            }
+            
+            // Remove height from table
+            $all_tables = $dom->getElementsByTagName('table');
+            for ($i = 0; $i < $all_tables->length; $i++) {
+                $elmnts = $all_tables->item($i);
+                $elmnts->removeAttribute('height');
+            }
+            
+            // Remove label from anchor
+            $all_anchs = $dom->getElementsByTagName('a');
+            for ($i = 0; $i < $all_anchs->length; $i++) {
+                $elmnts = $all_anchs->item($i);
+                $elmnts->removeAttribute('label');
+            }
+            
+            $content = $dom->saveHTML();
         }
         
-        // Remove height from table
-        $all_tables = $dom->getElementsByTagName('table');
-        for ($i = 0; $i < $all_tables->length; $i++) {
-            $elmnts = $all_tables->item($i);
-            $elmnts->removeAttribute('height');
-        }
-        
-        // Remove label from anchor
-        $all_anchs = $dom->getElementsByTagName('a');
-        for ($i = 0; $i < $all_anchs->length; $i++) {
-            $elmnts = $all_anchs->item($i);
-            $elmnts->removeAttribute('label');
-        }
-        
-        $content = $dom->saveHTML();
         return $content;
     } catch (Exception $e) {
         // Handle the exception here (e.g., log the error or return a default content)
@@ -8585,6 +8589,7 @@ function ampforwp_remove_unwanted_code($content) {
         return $content; // Return the original content as a fallback
     }
 }
+
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
 	$allscripts = $is_script = '';
