@@ -8536,43 +8536,60 @@ if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
 }
 
 
-add_filter('ampforwp_the_content_last_filter','ampforwp_remove_unwanted_code',10);
-function ampforwp_remove_unwanted_code($content){
-// Mediavine validation issue with form and amp-consent #4206
-	if(preg_match('/<amp-consent id="mv-consent" layout="nodisplay">(.*?)<\/amp-consent>/s', $content)){
-		$content = preg_replace('/<amp-consent id="mv-consent" layout="nodisplay">(.*?)<\/amp-consent>/s', '', $content);
-	}
-	if(preg_match('/<form class="mv-create-print-form">(.*?)<\/form>/s', $content)){
-		$content = preg_replace('/<form class="mv-create-print-form">(.*?)<\/form>/s', '', $content);
-	}
-	// close #4206
-	// Ticket #4539
-	if(function_exists('orbital_setup')){
-	    if(preg_match('/<script>function orbital_expand_navbar(.*?)<\/script>/', $content)){
-	        $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
-	    }
-	}
-  $dom = new \DOMDocument();
-  if(function_exists('mb_convert_encoding')){
-      @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
-  }else{
-      @$dom->loadHTML( $content );
-  }
-  //Remove height from table
-  $all_tables = $dom->getElementsByTagName('table');
-  for ($i=0; $i < $all_tables->length ; $i++) {
-	  $elmnts = $all_tables->item($i);
-	  $elmnts->removeAttribute('height');
-  }
-  //Remove label from anchor
-  $all_anchs = $dom->getElementsByTagName('a');
-  for ($i=0; $i < $all_anchs->length ; $i++) {
-	  $elmnts = $all_anchs->item($i);
-	  $elmnts->removeAttribute('label');
-  }
-	$content = $dom->saveHTML();
-	return $content;
+add_filter('ampforwp_the_content_last_filter', 'ampforwp_remove_unwanted_code', 10);
+
+function ampforwp_remove_unwanted_code($content) {
+    try {
+        // Mediavine validation issue with form and amp-consent #4206
+        if (preg_match('/<amp-consent id="mv-consent" layout="nodisplay">(.*?)<\/amp-consent>/s', $content)) {
+            $content = preg_replace('/<amp-consent id="mv-consent" layout="nodisplay">(.*?)<\/amp-consent>/s', '', $content);
+        }
+        if (preg_match('/<form class="mv-create-print-form">(.*?)<\/form>/s', $content)) {
+            $content = preg_replace('/<form class="mv-create-print-form">(.*?)<\/form>/s', '', $content);
+        }
+        // close #4206
+        // Ticket #4539
+        if (function_exists('orbital_setup')) {
+            if (preg_match('/<script>function orbital_expand_navbar(.*?)<\/script>/', $content)) {
+                $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
+            }
+        }
+        
+        // Check if $content is not empty before using DOMDocument
+        if (!empty($content)) {
+            $dom = new \DOMDocument();
+            if (function_exists('mb_convert_encoding')) {
+                @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+            } else {
+                @$dom->loadHTML($content);
+            }
+            
+            // Remove height from table
+            $all_tables = $dom->getElementsByTagName('table');
+            for ($i = 0; $i < $all_tables->length; $i++) {
+                $elmnts = $all_tables->item($i);
+                $elmnts->removeAttribute('height');
+            }
+            
+            // Remove label from anchor
+            $all_anchs = $dom->getElementsByTagName('a');
+            for ($i = 0; $i < $all_anchs->length; $i++) {
+                $elmnts = $all_anchs->item($i);
+                $elmnts->removeAttribute('label');
+            }
+            
+            $content = $dom->saveHTML();
+        }
+        
+        return $content;
+    } catch (Exception $e) {
+        // Handle the exception here (e.g., log the error or return a default content)
+        // You can customize this part based on your error handling requirements.
+        error_log('An error occurred: ' . $e->getMessage());
+        return $content; // Return the original content as a fallback
+    }
 }
+
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
 function ampforwp_include_required_scripts($content){
 	$allscripts = $is_script = '';
