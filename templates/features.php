@@ -8552,6 +8552,9 @@ function ampforwp_remove_unwanted_code($content){
 	        $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
 	    }
 	}
+	if(empty($content)){
+		return $content;
+	}
   $dom = new \DOMDocument();
   if(function_exists('mb_convert_encoding')){
       @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
