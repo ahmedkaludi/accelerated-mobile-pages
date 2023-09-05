@@ -1792,7 +1792,7 @@ function ampforwp_replace_title_tags() {
 					$yoast_data = new Ampforwp_Yoast_Data;
 					$context = $yoast_data->get_context_for_post_id(ampforwp_get_the_ID());	
 				}
-				if (isset($context)) {
+				if (isset($context->title)) {
 					$yoast_title = $context->title;
 				}
 			}
