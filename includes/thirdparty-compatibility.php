@@ -1859,14 +1859,14 @@ function ampforwp_heista_pro_frontpage_section_css(){
 	}
 }
 
-// add_filter('the_content','ampforwp_wordcount_translate');
-
-// function ampforwp_wordcount_translate($content){
-
-// 	if(class_exists('Wordcount_Translation')) {
-// 		$content = do_shortcode($content);
-// 		$findRegExforTag = '/<input id="fileupload"(.*?)>/i';
-// 		$content = preg_replace($findRegExforTag, '<form target="_top" method="POST"><input id="fileupload"$1></form>', $content);
-// 	}
-// 	return $content;
-// }
+/*
+* To fix validation error attribute a may not appear in a tag
+* Issue is due to WPBakery Page Builder plugin which is adding a attribute in anchor tag
+*/
+add_filter( 'vc_gitem_post_data_get_link_real_link','ampforwp_fix_a_attr_in_anchor_tag',99,1);
+function ampforwp_fix_a_attr_in_anchor_tag($target_link){
+	 if(preg_match('/a (.*?)/', $target_link)){
+        $target_link = preg_replace('/a (.*?)/', '$1', $target_link); 
+    }
+	return $target_link;
+}
