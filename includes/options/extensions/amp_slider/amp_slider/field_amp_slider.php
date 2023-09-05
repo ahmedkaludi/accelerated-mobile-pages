@@ -36,8 +36,12 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_amp_slider' ) ) 
         private $display_label = 1;
         private $display_text = 2;
         private $display_select = 3;
-		
-		 
+        private $parent;
+        private $field = array();
+        private $value = array();
+        private $extension_dir;
+        private $extension_url;
+        private $time;
 
         function __construct( $field = array(), $value = '', $parent = ' ' ) {
 

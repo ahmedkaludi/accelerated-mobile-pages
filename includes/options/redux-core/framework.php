@@ -84,7 +84,10 @@
             public  $wp_data = array();
             public  $field_types = array();
             public  $field_head = array();
-
+            public $apiHasRun;
+            public $transients_check;
+            public $validation_ran;
+            
             public static function init() {
                 $dir = Redux_Helpers::cleanFilePath( dirname( __FILE__ ) );
 

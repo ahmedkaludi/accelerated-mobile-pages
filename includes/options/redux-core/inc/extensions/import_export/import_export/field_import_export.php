@@ -32,6 +32,16 @@ namespace ReduxCore\ReduxFramework;
          */
         class ReduxFramework_import_export extends ReduxFramework {
 
+            public $parent;
+            public $field;
+            public $value;
+            public $extension_dir;
+            public $extension_url;
+            public $time;
+            public $timestamp;
+            public $is_field;
+            
+
             /**
              * Field Constructor.
              * Required - must call the parent constructor, then assign field and value to vars, and obviously call the render field function

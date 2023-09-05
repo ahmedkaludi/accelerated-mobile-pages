@@ -7,6 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'ReduxFramework_switch' ) ) {
     class ReduxFramework_switch {
+        public $parent;
+        public $field;
+        public $value;
+        public $timestamp;
 
         /**
          * Field Constructor.

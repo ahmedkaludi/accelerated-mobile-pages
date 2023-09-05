@@ -17,6 +17,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_demolink_image_select' ) ) {
     class ReduxFramework_demolink_image_select {
 
+        public $parent;
+        public $field;
+        public $value;
+        public $extension_dir;
+        public $extension_url;
+        public $time;
+        
+        
         /**
          * Field Constructor.
          * Required - must call the parent constructor, then assign field and value to vars, and obviously call the render field function
