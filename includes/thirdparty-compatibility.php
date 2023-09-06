@@ -1865,8 +1865,10 @@ function ampforwp_heista_pro_frontpage_section_css(){
 */
 add_filter( 'vc_gitem_post_data_get_link_real_link','ampforwp_fix_a_attr_in_anchor_tag',99,1);
 function ampforwp_fix_a_attr_in_anchor_tag($target_link){
-	 if(preg_match('/a (.*?)/', $target_link)){
-        $target_link = preg_replace('/a (.*?)/', '$1', $target_link); 
-    }
+	if ( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+		if(preg_match('/a (.*?)/', $target_link)){
+			$target_link = preg_replace('/a (.*?)/', '$1', $target_link); 
+		}
+ 	}
 	return $target_link;
 }
