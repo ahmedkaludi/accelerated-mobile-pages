@@ -111,8 +111,9 @@ amp-wistia-player {margin:5px 0px;}
 .alignright{ float:right; margin-left: 12px; margin-bottom:5px; }
 .aligncenter{display: block; text-align:center; margin: 0 auto }
 #statcounter{width: 1px;height:1px;}
-ol, ul {list-style-position: inside;}
+ol, ul {list-style-position: inside;} 
 .hide{display:none}
+.amp-logo a {text-align: center;font-size: 20px;font-weight: bold;line-height: 1;padding: 4px 3px;margin: 0;}
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {
 	<?php echo ampforwp_font_selector('content'); ?>
