@@ -538,7 +538,36 @@ function ampforwp_analytics() {
 	
 					}
 	
-	
+
+		if ( true == ampforwp_get_setting('ampforwp-Piwik-Pro-switch')) { 
+			$ppas_host = ampforwp_get_setting('ppas-host');
+			$ppas_id = ampforwp_get_setting('ppas-website-id');
+			$ppas_hash = ampforwp_get_setting('ppas-website-hash');
+			$ppas_tracking = ampforwp_get_setting('ppas-advanced-tracking');
+			$ppas_custom_code = ampforwp_get_setting('ppas-advanced-tracking-code');
+			if($ppas_tracking && !empty($ppas_custom_code))
+			{
+				$ppas_fields = str_replace(array('##instance_domain##','##app_id##','##tracker_hash##'),array($ppas_host,$ppas_id,$ppas_hash),$ppas_custom_code);
+			}else {
+				$ppas_fields = array(
+					'vars'=>array(
+						'host'=>$ppas_host,
+						'website_id'=> $ppas_id,
+						'website_hash'=> $ppas_hash
+						),
+				); 
+				$ppas_fields =  json_encode( $ppas_fields);
+
+			}
+			
+			$ppas_fields = apply_filters('ampforwp_piwikpro_analytics', $ppas_fields );?>
+				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="ppasanalytics">
+					<script type="application/json">
+						<?php echo $ppas_fields; ?>
+					</script>
+				</amp-analytics>
+				<?php
+			}
 
                 if( true == ampforwp_get_setting('ampforwp-plausible-switch')) { 
                 $site_url = site_url();?>

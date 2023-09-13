@@ -1449,6 +1449,9 @@ jQuery(document).ready(function($) {
             var cr_number = $('#ampforwp-callrail-number').val();
             var cr_analytics_url = $('#ampforwp-callrail-analytics-url').val();
             var analytics_txt = "";
+            var ppas_host = $('#ppas-host').val();
+			var ppas_id = $('#ppas-website-id').val();
+			var ppas_hash = $('#ppas-website-hash').val();
             var analytic_arr = [];
              $(".ampforwp-ux-ana-sub").each(function(){
                 var data_href = $(this).attr('data-href');
@@ -1470,6 +1473,7 @@ jQuery(document).ready(function($) {
                 if(afs_c!="" && !hasCls && data_href=='ampforwp-afs-analytics-switch'){analytic_arr.push("AFS Analytics");}
                 if(clicky_side_id!="" && !hasCls && data_href=='amp-clicky-switch'){analytic_arr.push("Clicky Analytics");}
                 if(cr_config_url!="" && cr_number!="" && cr_analytics_url!="" && !hasCls && data_href=='ampforwp-callrail-switch'){analytic_arr.push("Call Rail Analytics");}
+                if(ppas_host!="" && ppas_id!="" && ppas_hash!="" && data_href=='ampforwp-Piwik-Pro-switch'){analytic_arr.push("Piwik Pro Analytics");}
             });
             thishtml = analytic_arr.toString().replace(/,/g, ", ");
             button = "CONFIG";
