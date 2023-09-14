@@ -32,6 +32,9 @@ namespace ReduxCore\ReduxFramework;
          * @since       1.0.0
          */
         class ReduxFramework_section {
+            public $parent;
+            public $field;
+            public $value;
 
             /**
              * Field Constructor.

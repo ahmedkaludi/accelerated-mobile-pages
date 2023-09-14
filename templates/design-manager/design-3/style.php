@@ -527,7 +527,7 @@ pre{ white-space: pre-wrap; }
 .searchmenu button{ background:transparent; border:none }
 .amp-logo amp-img{margin: 0 auto; position:relative;top:9px;max-width:190px;}
 .headerlogo{ margin: 0 auto; width: 80%; text-align: center; }
-.headerlogo a{ color:#F42; display:inline-block}
+.headerlogo a{ color:#F42; display:inline-block;text-align: center;font-size: 16px;position: relative;font-weight: bold;line-height: 50px;padding: 0;margin: 0;text-transform: uppercase;}
 
 /*Navigation Menu*/
 .toast { display: block; position: relative; height: 50px; padding-left: 20px; padding-right: 15px; width: 49px; background:none; border:0 }
@@ -767,7 +767,7 @@ if(!is_home() && ((is_single() && true == ampforwp_get_setting('ampforwp-bread-c
 .breadcrumb ul li{display:inline;}
 .breadcrumb ul li a, .breadcrumb ul li span, .breadcrumbs span{ font-size:12px;}
 .breadcrumb .bread-post{color: #575757;}
-.breadcrumb ul li a::after, .breadcrumbs span a:after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top:-1px}
+.breadcrumb ul li a::after, .breadcrumbs span a:after {content: "\25BA";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top:-1px}
 .breadcrumb ul li:hover a::after{color:#c3c3c3;}
 .breadcrumb ul li:last-child a::after{display:none;}
 <?php } ?> 

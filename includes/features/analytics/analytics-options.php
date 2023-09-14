@@ -442,6 +442,93 @@ function ampforwp_analytics_options($opt_name){
                           'tooltip-subtitle' => sprintf('%s<a href="%s" target="_blank">%s</a>', esc_html__( 'Tutorial: ','accelerated-mobile-pages' ), esc_url('https://ampforwp.com/tutorials/article/how-to-add-matomo-piwik-analytics-in-amp/'), esc_html__( 'How to add Matomo Piwik Analytics in AMP?','accelerated-mobile-pages') ),
                           'default'  => '',
                       ),
+                       // Piwik PRO Analytics 
+                       array(
+                        'id' => 'ampforwp-Piwik-Pro-switch',
+                        'type'  => 'switch',
+                        'title' => esc_html__('Piwik Pro Analytics', 'accelerated-mobile-pages' ),
+                        'default' => ampforwp_get_default_analytics('17'),
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option to track matomo Piwik Pro analytics in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-piwik-pro-analytics-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+                    ),
+                      array(
+                          'id'       => 'ppas-host',
+                          'class' => 'child_opt',
+                          'type'     => 'text',
+                          'title'    => esc_html__( ' Piwik PRO Host URL', 'accelerated-mobile-pages' ),
+                          'desc'=>sprintf( 'Example - analytics.example.com') ,
+                          'required' => array(
+                            array('ampforwp-Piwik-Pro-switch', '=' , '1')
+                          ),
+                          'tooltip-subtitle' => sprintf('%s<a href="%s" target="_blank">%s</a>', esc_html__( 'Tutorial: ','accelerated-mobile-pages' ), esc_url('https://ampforwp.com/tutorials/article/how-to-add-piwik-pro-analytics-in-amp/'), esc_html__( 'How to add Piwik Pro nalytics in AMP?','accelerated-mobile-pages') ),
+                          'default'  => '',
+                      ),
+                      array(
+                        'id'       => 'ppas-website-id',
+                        'class' => 'child_opt',
+                        'type'     => 'text',
+                        'title'    => esc_html__( ' Piwik PRO Website Id', 'accelerated-mobile-pages' ),
+                        'desc'=>sprintf( 'Example - 12345678-1234-1234-1234-1234567890ab') ,
+                        'required' => array(
+                          array('ampforwp-Piwik-Pro-switch', '=' , '1')
+                        ),
+                        'tooltip-subtitle' => sprintf('%s<a href="%s" target="_blank">%s</a>', esc_html__( 'Tutorial: ','accelerated-mobile-pages' ), esc_url('https://ampforwp.com/tutorials/article/how-to-add-piwik-pro-analytics-in-amp/'), esc_html__( 'How to add Piwik Pro Analytics in AMP?','accelerated-mobile-pages') ),
+                        'default'  => '',
+                    ),
+                    array(
+                      'id'       => 'ppas-website-hash',
+                      'class' => 'child_opt',
+                      'type'     => 'text',
+                      'title'    => esc_html__( ' Piwik PRO Website hash', 'accelerated-mobile-pages' ),
+                      'desc'=>sprintf( 'Example - cdef') ,
+                      'required' => array(
+                        array('ampforwp-Piwik-Pro-switch', '=' , '1')
+                      ),
+                      'tooltip-subtitle' => sprintf('%s<a href="%s" target="_blank">%s</a>', esc_html__( 'Tutorial: ','accelerated-mobile-pages' ), esc_url('https://ampforwp.com/tutorials/article/how-to-add-piwik-pro-analytics-in-amp/'), esc_html__( 'How to add Piwik Pro Analytics in AMP?','accelerated-mobile-pages') ),
+                      'default'  => '',
+                  ),
+                  array(
+                    'id' => 'ppas-advanced-tracking',
+                    'class' => 'child_opt',
+                    'type'  => 'switch',
+                    'title' => esc_html__('Advance Tracking', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                      array('ampforwp-Piwik-Pro-switch', '=' , '1')
+                    ),
+                     esc_html__('Enable this option to add custom triggers to  Piwik Pro analytics in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-add-piwik-pro-analytics-in-amp/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages'),
+              ),
+              array(
+                'class' => 'child_opt',
+              'id'       => 'ppas-advanced-tracking-code',
+              'type'     => 'ace_editor',
+              'title'    => esc_html__('Analytics Code in JSON Format', 'accelerated-mobile-pages'),
+              'required' => array(
+                array('ampforwp-Piwik-Pro-switch', '=' , '1'),
+                  array('ppas-advanced-tracking', '=' , '1')
+              ),
+              'mode'     => 'javascript',
+              'theme'    => 'monokai',
+              'desc'     => '',
+              'default'  => (' {
+                "vars": {
+                  "host": "##instance_domain##",
+                  "website_id": "##app_id##",
+                  "website_hash": "##tracker_hash##"
+                },
+                "triggers": {
+                  "exampleEvent": {
+                    "selector": "#mybutton",
+                    "on": "click",
+                    "request": "customevent",
+                    "vars": {
+                      "event_category": "buttons",
+                      "event_action": "click",
+                      "event_name": "testButton"
+                    }
+                  }
+                }
+              }')
+          ),
                       // Quantcast 
                         array(
                         'id' => 'ampforwp-Quantcast-switch',

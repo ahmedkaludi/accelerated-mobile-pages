@@ -111,8 +111,9 @@ amp-wistia-player {margin:5px 0px;}
 .alignright{ float:right; margin-left: 12px; margin-bottom:5px; }
 .aligncenter{display: block; text-align:center; margin: 0 auto }
 #statcounter{width: 1px;height:1px;}
-ol, ul {list-style-position: inside;}
+ol, ul {list-style-position: inside;} 
 .hide{display:none}
+.amp-logo a {text-align: center;font-size: 20px;font-weight: bold;line-height: 1;padding: 4px 3px;margin: 0;}
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {
 	<?php echo ampforwp_font_selector('content'); ?>
@@ -548,7 +549,7 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
 .breadcrumb ul, .category-single ul{padding:0; margin:0;}
 .breadcrumb ul li{display:inline;}
 .breadcrumb ul li a, .breadcrumb ul li span{font-size:12px;}
-.breadcrumb ul li a::after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top: -0.5px;}
+.breadcrumb ul li a::after {content: "\25BA";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top: -0.5px;}
 .breadcrumb ul li:hover a::after{color:#c3c3c3;}
 .breadcrumb .bread-post{color: #555;}
 .breadcrumb ul li:last-child a::after{display:none;}

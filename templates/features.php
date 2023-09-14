@@ -1792,7 +1792,7 @@ function ampforwp_replace_title_tags() {
 					$yoast_data = new Ampforwp_Yoast_Data;
 					$context = $yoast_data->get_context_for_post_id(ampforwp_get_the_ID());	
 				}
-				if (isset($context)) {
+				if (isset($context->title)) {
 					$yoast_title = $context->title;
 				}
 			}
@@ -8551,6 +8551,9 @@ function ampforwp_remove_unwanted_code($content){
 	    if(preg_match('/<script>function orbital_expand_navbar(.*?)<\/script>/', $content)){
 	        $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
 	    }
+	}
+	if(empty($content)){
+		return $content;
 	}
   $dom = new \DOMDocument();
   if(function_exists('mb_convert_encoding')){

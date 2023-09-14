@@ -20,6 +20,9 @@ class AMPforWP_Fields
 	private $data_url = '';
 	private $options = array();
 	private $required = array();
+	private $data_text = '';
+	private $data_href = '';
+	private $ampforwp_field = array();
 
 	public function createFields($fields_array){
 		if ( is_array($fields_array) ) {

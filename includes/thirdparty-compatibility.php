@@ -110,6 +110,12 @@ function ampforwp_thirdparty_compatibility(){
 	}elseif (class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID()) == 1) {
 		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 	}
+	if(class_exists('\\EmbedPress\\Ends\\Front\\Handler')){
+		global $wp_embed;
+		remove_filter('the_content', ['\\EmbedPress\\Ends\\Front\\Handler', 'autoEmbedUrls']);
+		add_filter('the_content', [$wp_embed, 'autoembed'], 8);
+		add_filter('the_content', [$wp_embed, 'run_shortcode'], 8);
+	}
 }
 function ampforwp_removing_sassy_social_share(){	
 	return 1;
@@ -1859,14 +1865,16 @@ function ampforwp_heista_pro_frontpage_section_css(){
 	}
 }
 
-// add_filter('the_content','ampforwp_wordcount_translate');
-
-// function ampforwp_wordcount_translate($content){
-
-// 	if(class_exists('Wordcount_Translation')) {
-// 		$content = do_shortcode($content);
-// 		$findRegExforTag = '/<input id="fileupload"(.*?)>/i';
-// 		$content = preg_replace($findRegExforTag, '<form target="_top" method="POST"><input id="fileupload"$1></form>', $content);
-// 	}
-// 	return $content;
-// }
+/*
+* To fix validation error attribute a may not appear in a tag
+* Issue is due to WPBakery Page Builder plugin which is adding a attribute in anchor tag
+*/
+add_filter( 'vc_gitem_post_data_get_link_real_link','ampforwp_fix_a_attr_in_anchor_tag',99,1);
+function ampforwp_fix_a_attr_in_anchor_tag($target_link){
+	if ( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+		if(preg_match('/a (.*?)/', $target_link)){
+			$target_link = preg_replace('/a (.*?)/', '$1', $target_link); 
+		}
+ 	}
+	return $target_link;
+}

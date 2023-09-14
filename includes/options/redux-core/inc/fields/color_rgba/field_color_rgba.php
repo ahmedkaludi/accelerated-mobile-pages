@@ -35,6 +35,10 @@ if( !class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_color_rgba' ) ) {
      */
     class ReduxFramework_color_rgba {
     
+        public $parent;
+        public $field;
+        public $value;
+        public $time;
       /**
        * Class Constructor. Defines the args for the extions class
        *
