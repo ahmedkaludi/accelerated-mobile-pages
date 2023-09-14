@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.3
-Stable tag: 1.0.88.1
+Stable tag: 1.0.89
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.89 (14th September 2023) =
+* New: Piwik Pro Analytics #5510
+* New: compatibility with EmbedPress #5486
+* Fixed: Conflict WP-Bakery page builder with AMP #5417
+* Fixed: Warning in error log #5504
+* Fixed: Uncaught ValueError: DOMDocument::loadHTML(): Argument #1 ($source) must not be empty #5512
+* Fixed: Header Font Size Offset Changing After Update 1.0.86 #5496
+* Fixed: Various deprecated warning in PHP 8.2+ related to dynamic property creation #5515
+* Fixed: Added post data variables in GTM advanced code #5498
 
 = 1.0.88.1 (24nd August 2023) =
 * Fixed: AMP for WP Update Causes Dashboard Notices and Warnings #5508
