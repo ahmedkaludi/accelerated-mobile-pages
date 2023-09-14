@@ -19,7 +19,7 @@ public function sanitize() {
     $blockquotes = $xpath->query("//*[contains(@class,'$class_name')]");
     foreach($blockquotes as $instagram_media){
       $this->replace_with_amp_instagram($instagram_media);
-    }
+    }   
     if(count($this->instagram_medias) > 0){
      $this->did_convert_elements = true;
     }
@@ -36,6 +36,15 @@ function replace_with_amp_instagram ($instagram_media){
    $tag = $this->create_instagram_tag($sourcecode);
    $this->instagram_medias[] = $tag; // add it to array
    $instagram_media->parentNode->replaceChild( $tag, $instagram_media);
+  }else{
+    $href = $instagram_media->getAttribute('data-instgrm-permalink');
+    if($href){
+      $sourcecode = $this->get_instagram_id_from_url($href);
+      $tag = $this->create_instagram_tag($sourcecode);
+      $this->instagram_medias[] = $tag; // add it to array
+      $instagram_media->parentNode->replaceChild( $tag, $instagram_media);
+      
+    }
   }
  }
 function create_instagram_tag($sourcecode){

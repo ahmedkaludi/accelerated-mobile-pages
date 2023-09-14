@@ -110,6 +110,12 @@ function ampforwp_thirdparty_compatibility(){
 	}elseif (class_exists('WPSEO_Options') && 'yoast' == ampforwp_get_setting('ampforwp-seo-selection') && WPSEO_Meta::get_value( 'meta-robots-noindex', ampforwp_get_the_ID()) == 1) {
 		add_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 	}
+	if(class_exists('\\EmbedPress\\Ends\\Front\\Handler')){
+		global $wp_embed;
+		remove_filter('the_content', ['\\EmbedPress\\Ends\\Front\\Handler', 'autoEmbedUrls']);
+		add_filter('the_content', [$wp_embed, 'autoembed'], 8);
+		add_filter('the_content', [$wp_embed, 'run_shortcode'], 8);
+	}
 }
 function ampforwp_removing_sassy_social_share(){	
 	return 1;
