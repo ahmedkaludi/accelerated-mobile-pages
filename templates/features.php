@@ -8556,10 +8556,14 @@ function ampforwp_remove_unwanted_code($content){
 		return $content;
 	}
   $dom = new \DOMDocument();
-  if(function_exists('mb_convert_encoding')){
-      @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+  if(class_exists('Rate_My_Post')){
+		@$dom->loadHTML('<meta http-equiv="content-type" content="text/html; charset=utf-8">'.$content);
   }else{
-      @$dom->loadHTML( $content );
+	  if(function_exists('mb_convert_encoding')){
+	      @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+	  }else{
+	      @$dom->loadHTML( $content );
+	  }
   }
   //Remove height from table
   $all_tables = $dom->getElementsByTagName('table');
