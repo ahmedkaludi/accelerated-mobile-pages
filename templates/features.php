@@ -8555,29 +8555,14 @@ function ampforwp_remove_unwanted_code($content){
 	if(empty($content)){
 		return $content;
 	}
-  $dom = new \DOMDocument();
-  if(class_exists('Rate_My_Post')){
-		@$dom->loadHTML('<meta http-equiv="content-type" content="text/html; charset=utf-8">'.$content);
-  }else{
-	  if(function_exists('mb_convert_encoding')){
-	      @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
-	  }else{
-	      @$dom->loadHTML( $content );
-	  }
-  }
   //Remove height from table
-  $all_tables = $dom->getElementsByTagName('table');
-  for ($i=0; $i < $all_tables->length ; $i++) {
-	  $elmnts = $all_tables->item($i);
-	  $elmnts->removeAttribute('height');
-  }
+  if(preg_match('/<table(.*?)height="\d+"(.*?)>/', $content)){
+		$content = preg_replace('/<table(.*?)height="\d+"(.*?)>/', '<table$1$2>', $content);
+	}
   //Remove label from anchor
-  $all_anchs = $dom->getElementsByTagName('a');
-  for ($i=0; $i < $all_anchs->length ; $i++) {
-	  $elmnts = $all_anchs->item($i);
-	  $elmnts->removeAttribute('label');
-  }
-	$content = $dom->saveHTML();
+	if(preg_match('/<a(.*?)label\s(.*?)>/', $content)){
+		$content = preg_replace('/<a(.*?)label\s(.*?)>/', '<a$1$2>', $content);
+	}
 	return $content;
 }
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
