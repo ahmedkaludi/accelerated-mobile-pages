@@ -6433,8 +6433,30 @@ function ampforwp_homepage_loop( $args ) {
 			$args['category__not_in'] = ampforwp_get_setting('ampforwp-homepage-loop-cats');
 		}
 	}
+	if(function_exists('ampforwp_is_home') && ampforwp_is_home() && isset($redux_builder_amp['amp-no-of-posts-home-page'])){
+		$args['posts_per_page'] = $redux_builder_amp['amp-no-of-posts-home-page'];
+	}
+	if(function_exists('is_category') && is_category() && isset($redux_builder_amp['amp-no-of-posts-cat-page'])){
+		$args['posts_per_archive_page'] = $redux_builder_amp['amp-no-of-posts-cat-page'];
+	}
 	return $args; 
 }
+
+//To modify number of posts #5503
+add_filter( 'pre_get_posts', 'ampforwp_modify_no_of_posts' );
+function ampforwp_modify_no_of_posts( $query ) {
+	global $redux_builder_amp;
+	$amp_q_ck = is_object($query) ? $query->query : '';
+	if(isset($amp_q_ck['amp']) && $amp_q_ck['amp'] == 1){
+		if(function_exists('ampforwp_is_home') && ampforwp_is_home() && isset($redux_builder_amp['amp-no-of-posts-home-page'])){
+	  	$query->set( 'posts_per_page', $redux_builder_amp['amp-no-of-posts-home-page']);
+		}
+		if(function_exists('is_category') && is_category() && isset($redux_builder_amp['amp-no-of-posts-cat-page'])){
+	  	$query->set( 'posts_per_page', $redux_builder_amp['amp-no-of-posts-cat-page']);
+		}
+	}
+}
+
 // To get correct comments count #1662
 add_filter('get_comments_number', 'ampforwp_comment_count', 0);
 function ampforwp_comment_count( $count ) {

@@ -6107,6 +6107,22 @@ Redux::setSection( $opt_name, array(
                         'accordion-open'=> 1,
                 ),
                 array(
+                    'id'        =>'amp-no-of-posts-home-page',
+                    'type'      =>'text',
+                    'tooltip-subtitle'  => esc_html__('Enter the number of posts Eg: 20','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Number of Posts for Home Page','accelerated-mobile-pages'),
+                    'validate'  =>'numeric',
+                    'default'   =>'10',
+                ),
+                array(
+                    'id'        =>'amp-no-of-posts-cat-page',
+                    'type'      =>'text',
+                    'tooltip-subtitle'  => esc_html__('Enter the number of posts Eg: 20','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Number of Posts for Category Page','accelerated-mobile-pages'),
+                    'validate'  =>'numeric',
+                    'default'   =>'10',
+                ),
+                array(
                         'id'       => 'ampforwp-homepage-loop-type',
                         'type'     => 'select',
                         'multi'    => true,
