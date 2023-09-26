@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.90 (26th September 2023) =
+* New: An option to configure the number of posts appearing on Homepage & Category page #5503
+* Fixed: PHP notice on style.php #5514
+* Fixed: Star rating are broken, showing numbers instead of stars #5516
+* Fixed: Validation error from recent AMP update version 1.0.88.1 #5518
+* Fixed: Fatal error in setting panel #5521
+
 = 1.0.89 (14th September 2023) =
 * New: Piwik Pro Analytics #5510
 * New: compatibility with EmbedPress #5486
