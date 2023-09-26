@@ -1462,7 +1462,7 @@ function ampforwp_mobile_redirection_notice(){
         return;
     }
     $plugin = $option = '';
-    if(function_exists('rocket_load_textdomain') && 0 == get_rocket_option( 'do_caching_mobile_files' )){
+    if(function_exists('rocket_load_textdomain') && (function_exists('get_rocket_option') && 0 == get_rocket_option( 'do_caching_mobile_files' ))){
         $plugin = 'WP Rocket';
         $option = 'Separate cache files for mobile devices';
     }

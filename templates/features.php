@@ -6433,8 +6433,30 @@ function ampforwp_homepage_loop( $args ) {
 			$args['category__not_in'] = ampforwp_get_setting('ampforwp-homepage-loop-cats');
 		}
 	}
+	if(function_exists('ampforwp_is_home') && ampforwp_is_home() && isset($redux_builder_amp['amp-no-of-posts-home-page'])){
+		$args['posts_per_page'] = $redux_builder_amp['amp-no-of-posts-home-page'];
+	}
+	if(function_exists('is_category') && is_category() && isset($redux_builder_amp['amp-no-of-posts-cat-page'])){
+		$args['posts_per_archive_page'] = $redux_builder_amp['amp-no-of-posts-cat-page'];
+	}
 	return $args; 
 }
+
+//To modify number of posts #5503
+add_filter( 'pre_get_posts', 'ampforwp_modify_no_of_posts' );
+function ampforwp_modify_no_of_posts( $query ) {
+	global $redux_builder_amp;
+	$amp_q_ck = is_object($query) ? $query->query : '';
+	if(isset($amp_q_ck['amp']) && $amp_q_ck['amp'] == 1){
+		if(function_exists('ampforwp_is_home') && ampforwp_is_home() && isset($redux_builder_amp['amp-no-of-posts-home-page'])){
+	  	$query->set( 'posts_per_page', $redux_builder_amp['amp-no-of-posts-home-page']);
+		}
+		if(function_exists('is_category') && is_category() && isset($redux_builder_amp['amp-no-of-posts-cat-page'])){
+	  	$query->set( 'posts_per_page', $redux_builder_amp['amp-no-of-posts-cat-page']);
+		}
+	}
+}
+
 // To get correct comments count #1662
 add_filter('get_comments_number', 'ampforwp_comment_count', 0);
 function ampforwp_comment_count( $count ) {
@@ -8555,25 +8577,14 @@ function ampforwp_remove_unwanted_code($content){
 	if(empty($content)){
 		return $content;
 	}
-  $dom = new \DOMDocument();
-  if(function_exists('mb_convert_encoding')){
-      @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
-  }else{
-      @$dom->loadHTML( $content );
-  }
   //Remove height from table
-  $all_tables = $dom->getElementsByTagName('table');
-  for ($i=0; $i < $all_tables->length ; $i++) {
-	  $elmnts = $all_tables->item($i);
-	  $elmnts->removeAttribute('height');
-  }
+  if(preg_match('/<table(.*?)height="\d+"(.*?)>/', $content)){
+		$content = preg_replace('/<table(.*?)height="\d+"(.*?)>/', '<table$1$2>', $content);
+	}
   //Remove label from anchor
-  $all_anchs = $dom->getElementsByTagName('a');
-  for ($i=0; $i < $all_anchs->length ; $i++) {
-	  $elmnts = $all_anchs->item($i);
-	  $elmnts->removeAttribute('label');
-  }
-	$content = $dom->saveHTML();
+	if(preg_match('/<a(.*?)label\s(.*?)>/', $content)){
+		$content = preg_replace('/<a(.*?)label\s(.*?)>/', '<a$1$2>', $content);
+	}
 	return $content;
 }
 add_filter('ampforwp_the_content_last_filter','ampforwp_include_required_scripts',12);
