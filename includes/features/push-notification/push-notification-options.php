@@ -102,6 +102,7 @@ function ampforwp_push_notification_options($opt_name){
                                '1' => esc_html__('OneSignal', 'accelerated-mobile-pages' ),
                                '2' => esc_html__('iZooto', 'accelerated-mobile-pages' ),
                                '4' => esc_html__('Truepush', 'accelerated-mobile-pages' ),
+                               '5' => esc_html__('webpushr', 'accelerated-mobile-pages' ),
                               ),
                             'default'   =>  ampforwp_push_notification_default(),
                             ),
@@ -150,6 +151,16 @@ function ampforwp_push_notification_options($opt_name){
                                         array( 'ampforwp-web-push', '=' , '4' ),
                                     ),  
                           ),  
+                    array(
+                        'id'        => 'ampforwp-webpushr-public-key',
+                        'type'      => 'text',
+                        'title'     => esc_html__('Public Key','accelerated-mobile-pages'),
+                        'class' => 'child_opt child_opt_arrow',
+                        'tooltip-subtitle'  => '<a href="https://ampforwp.com/tutorials/webpushr-in-amp/" target="_blank">'.esc_html__('View Integration Tutorial','accelerated-mobile-pages').'</a>',
+                        'required' => array( 
+                                    array( 'ampforwp-web-push', '=' , '5' ),
+                                ),  
+                    ),
                     array(
                             'id'        => 'ampforwp-one-signal-page',
                             'type'      => 'switch',
@@ -208,6 +219,22 @@ function ampforwp_push_notification_options($opt_name){
                             'tooltip-subtitle'  => esc_html__('Show Subscribe Button Above the Content','accelerated-mobile-pages'),
                             'required'  => array('ampforwp-web-push', '=' , '4'),
                             ),
+                    array(
+                            'id'        => 'ampforwp-web-push-webpushr-below-content',
+                            'type'      => 'switch',
+                            'title'     => esc_html__('Below Content','accelerated-mobile-pages'),
+                            'default'   =>  1,
+                            'tooltip-subtitle'  => esc_html__('Show Subscribe Button Below the Content','accelerated-mobile-pages'),
+                            'required'  => array('ampforwp-web-push', '=' , '5'),
+                            ),                   
+                    array(
+                            'id'        => 'ampforwp-web-push-webpushr-above-content',
+                            'type'      => 'switch',
+                            'title'     => esc_html__('Above Content','accelerated-mobile-pages'), 
+                            'default'   =>  0,
+                            'tooltip-subtitle'  => esc_html__('Show Subscribe Button Above the Content','accelerated-mobile-pages'),
+                            'required'  => array('ampforwp-web-push', '=' , '5'),
+                            ),
                     $izt_opt3,
                     $izt_opt1,$izt_opt2,
                     array(
@@ -216,7 +243,7 @@ function ampforwp_push_notification_options($opt_name){
                             'title'     => 'Popup on Desktop',
                             'default'   =>  0,
                             'tooltip-subtitle'  => 'Show Subscribe Button in Popup on Desktop',
-                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            'required'  => array('ampforwp-web-push', '=' , '1'),
                     ),
                     array(
                        'id' => 'translation',
@@ -250,6 +277,13 @@ function ampforwp_push_notification_options($opt_name){
                        'default'  => esc_html__('Subscribe to Notifications','accelerated-mobile-pages'),
                        'required'=> array( array(  'ampforwp-web-push', '=' , '4' )),
                    ),  
+                   array(
+                       'id'       => 'ampforwp-webpushr-translator-subscribe',
+                       'type'     => 'text',
+                       'title'    => esc_html__('Subscribe', 'accelerated-mobile-pages'),
+                       'default'  => esc_html__('Subscribe to Notifications','accelerated-mobile-pages'),
+                       'required'=> array( array(  'ampforwp-web-push', '=' , '5' )),
+                   ),
                    array(
                        'id' => 'ampforwp-onesignal-exper',
                        'type' => 'section',

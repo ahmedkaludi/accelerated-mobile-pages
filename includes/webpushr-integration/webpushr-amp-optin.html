@@ -1,0 +1,540 @@
+<!doctype html>
+<html>
+<!-- AMP Web Push Permission Dialog -->
+
+<head>
+  <meta charset="utf-8">
+
+  <!-- Do not edit styles in this section -->
+  <style builtin>
+    /* Do not edit styles in this section. Add custom styles in the next
+       style section */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Default loading spinner */
+    .spinner,
+    .spinner:after {
+      border-radius: 50%;
+      width: 10em;
+      height: 10em;
+    }
+    .spinner {
+      margin: 60px auto;
+      font-size: 10px;
+      position: relative;
+      text-indent: -9999em;
+      border-top: 1.1em solid rgba(140, 140, 140, 0.2);
+      border-right: 1.1em solid rgba(140, 140, 140, 0.2);
+      border-bottom: 1.1em solid rgba(140, 140, 140, 0.2);
+      border-left: 1.1em solid rgb(140, 140, 140);
+      -webkit-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-animation: spinner 1.1s infinite linear;
+      animation: spinner 1.1s infinite linear;
+    }
+    @-webkit-keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+    @keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Horizontally and vertically center items */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    /* Page message text styles */
+    .message {
+      font-size: 22px;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    /* Close icon styles */
+    #close {
+      position: fixed;
+      right: 32px;
+      top: 32px;
+      width: 32px;
+      height: 32px;
+      opacity: 0.5;
+      cursor: pointer;
+    }
+    #close:before, #close:after {
+      position: fixed;
+      right: 48px;
+      content: ' ';
+      height: 33px;
+      width: 3px;
+      background-color: #333;
+    }
+    #close:before {
+      transform: rotate(45deg);
+    }
+    #close:after {
+      transform: rotate(-45deg);
+    }
+
+    /* Used to hide the preload and postload sections */
+    .invisible {
+      display: none;
+    }
+  </style>
+
+  <!-- Optional: Add custom styles here -->
+<style amp-custom>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #f6f6f6;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-size: 14px;
+            font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+            background:#f1f1f1
+        }
+        .wrapper{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 2em;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            justify-content: center;            
+            text-align:center;
+        }
+        .title{    font-size: 1.429em;
+          font-weight: 500;
+          max-width: 360px;
+          margin: 0 auto;}
+        .subtitle{    font-size: 1.143em;
+          font-weight: 300;
+          line-height: 1.714em;
+          color: #666;
+          margin: .714em auto 2.143em;
+          max-width: 360px;}
+        .notice{    font-style: italic;
+    font-weight: 300;
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;}
+	 #subsus{margin-top:20px; display:none; color:green}
+	button{
+				margin: 25px auto;
+				display: block;
+				background: #2c7be5;
+				border: none;
+				color: #fff;
+				font-size: 22px;
+				padding: 10px 35px;
+				line-height: 1;
+				border-radius: 5px;
+				cursor: pointer;
+				display: none;
+			}
+	button:hover{
+		background: #1a68d1;
+	}
+	.logo{text-align:center; display:none;}
+	.logo img{width:100px;}
+	#subsus p{font-size:20px; margin:10px; color:#616161}
+</style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+			  <div id="before-permission">
+					<div class="title">Click Allow</div>
+					<div class="logo"></div>
+					<div class="subtitle">We'd like to send you notifications for the latest news and updates.<button id="proceed-button"onclick="_webpushrPromptAction()">Click to proceed &#187;</button></div>
+					<div class="unsubscribe notice">You can unsubscribe anytime</div>
+				</div>
+				<div id="subsus" style="">
+					<svg style="width: 100px; margin-bottom: 30px;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 286.054 286.054" style="enable-background:new 0 0 286.054 286.054;" xml:space="preserve">
+						<g>
+							<path style="fill:#3DB39E;" d="M143.031,0C64.027,0,0.004,64.04,0.004,143.027c0,78.996,64.031,143.027,143.027,143.027
+								c78.987,0,143.018-64.031,143.018-143.027C286.049,64.049,222.018,0,143.031,0z M143.031,259.236
+								c-64.183,0-116.209-52.026-116.209-116.209S78.857,26.818,143.031,26.818s116.2,52.026,116.2,116.209
+								S207.206,259.236,143.031,259.236z M199.241,82.187c-6.079-3.629-13.847-1.475-17.342,4.827l-47.959,86.147l-26.71-32.512
+								c-4.836-5.569-11.263-8.456-17.333-4.827c-6.079,3.638-8.591,12.39-4.657,18.004l37.169,45.241c2.78,3.611,5.953,5.775,9.27,6.392
+								l0.027,0.054l0.34,0.018c0.751,0.116,11.979,2.19,16.815-6.463l55.048-98.876C207.402,93.879,205.32,85.825,199.241,82.187z"/>
+						</g>
+					</svg>
+					<p>Thank you for your subscription.</p>
+					<p>This window will now close automatically.</p>
+				</div>
+        </div>
+    </div>
+  
+  <!-- start webpushr tracking code --> 
+<script>
+
+/* Webpushr JS for AMP
+*	version 1.0
+*/
+var applicationServerKey, _wp_sw_path,_wp_user_subscribed_callback, _wp_prompt_info, _wp_apple_push_id, _wp_endpoint,end_point, device_token,_wp_endpoint;
+var user_browser = (navigator.userAgent.indexOf("Firefox") > -1) ? 'Firefox' : (  ('safari' in window) ? 'Safari' : 'Chrome');
+var d1 = new Date();
+today = (d1.getMonth() + 1) + '/' + d1.getDate() + "/" + d1.getFullYear() + " 00:00" ;
+var _wp_is_safari = false;
+var _wp_debug = true;
+var publicMethods = {
+	init: function () {
+		console.log('Web Push Notifications powered by WEBPUSHR');
+		applicationServerKey = self.location.search.match(/public_key=([0-9a-zA-Z-_]+)&?/i)[1];
+		console.log(applicationServerKey);
+		
+		_wp_sw_path = '/webpushr-sw.js';
+		
+		switch( _webpushrBrowserSupport() ){
+
+
+			case true:
+				if( _wp_debug )
+					console.log("It's Chrome");
+
+				_wp_registerServiceWorker();
+				break;
+			
+			case 'Firefox':
+				if( _wp_debug )
+					console.log("It's Firefox");
+        
+        document.getElementById('proceed-button').style.display = "block";
+
+				break;
+
+			case 'http':
+				_webpushrCheckPermission();
+		
+		}//switch
+  }
+
+};
+
+publicMethods.init();
+
+
+
+
+function _webpushrBrowserSupport(){
+
+	if( 'safari' in window && 'pushNotification' in window.safari )
+		return 'safari';
+
+	if( window.location.href.indexOf('http://') != -1 )
+		return 'http';
+
+	if ( ! ('serviceWorker' in navigator) ) {
+		console.warn("WEBPUSHR: Service workers are not supported by this browser");
+		//changePushButtonState('incompatible');
+		return false;
+	}
+
+	if (!('PushManager' in window)  ) {
+		console.warn('WEBPUSHR: Push notifications are not supported by this browser');
+		//changePushButtonState('incompatible');
+		return false;
+	}
+
+	if (!('showNotification' in ServiceWorkerRegistration.prototype)  ) {
+		console.warn('WEBPUSHR: Notifications are not supported by this browser');
+		//changePushButtonState('incompatible');
+		return false;
+	}
+
+	// Check the current Notification permission.
+	// If its denied, the button should appears as such, until the user changes the permission manually
+	if (Notification.permission === 'denied') {
+		console.warn('WEBPUSHR: Notifications are denied by the user');
+
+
+		//changePushButtonState('incompatible');
+		return false;
+	}
+	if( _wp_debug )
+		console.log('WEBPUSHR: Browser supports web push notifications');
+	
+	if (navigator.userAgent.indexOf("Firefox") > -1) 
+		return "Firefox";
+
+  return true;
+}
+function _webpushrPromptAction(){
+	document.getElementById('proceed-button').innerHTML = "Processing...";
+  _wp_registerServiceWorker();
+}
+function _wp_registerServiceWorker(){
+	navigator.serviceWorker.register(_wp_sw_path, {scope: '/'})
+	.then(function(reg)  {
+		if( _wp_debug )
+			console.log('Service worker has been registered successfully!');
+		_webpushrCheckPermission();	
+	}, e => {
+		console.error('[SW] Service worker registration failed', e);
+		// if( _wp_sw_path == '/webpushr-sw.js')
+		// 	console.warn('Please confirm you have webpushr-sw.js in your root directory');
+		// else
+			console.warn('Cannot access service worker file. Please confirm you have service worker file at  ' + _wp_sw_path);
+	});
+
+}
+
+function _webpushrCheckPermission(){
+	
+	
+   if( window.location.href.indexOf('http://') != -1 ){
+      //if non-https site and user already approved
+      if( _webpushrGetCookie('_webpushrSubscriberID') ){
+         _wp_endpoint = _webpushrGetCookie('_webpushrSubscriberID');
+         //log page visit for non-https sites
+         fetch('https://bot.webpushr.com/logs/visit',
+            {
+               body: JSON.stringify({sub_id : _wp_endpoint, site_id	: applicationServerKey, url : window.location.href}),
+               method:'POST',
+            }
+         );
+         _webpushrExecuteHooks();
+         if (typeof _webpushrScriptReady !== 'undefined' && typeof _webpushrScriptReady === 'function') { 
+            _webpushrScriptReady();
+         }
+         return; 
+      }else{
+      }
+      return;
+   }
+
+	if( Notification.permission=='default' ){
+    _webpushrRequestPermission();
+	}else if( Notification.permission=='granted' ){
+		_wpCheckSubscription();
+	}
+	return;
+
+}
+
+
+
+
+function _wpCheckSubscription(){
+	navigator.serviceWorker.ready.then(serviceWorkerRegistration => serviceWorkerRegistration.pushManager.getSubscription())
+	.then(subscription => {
+		if( _wp_debug )
+			console.log('Check subscription');
+
+		if (!subscription) {
+			if( _wp_debug )
+				console.log('No subscription found, ask for permission');
+
+			_webpushrRequestPermission();
+			return;
+		}
+
+		if( _wp_debug )
+			console.log('User alerady subscribed');
+		_webpushrSubscribeNow(subscription);
+
+		/*== Send last page visit once per day */
+		_webpushrLastVisit = localStorage.getItem('_webpushrLastVisit');
+		if( ! _webpushrLastVisit || new Date(_webpushrLastVisit) < new Date(today) ){
+			localStorage.setItem('_webpushrLastVisit',today);	
+			if( _wp_debug )
+				console.log('Send page visit update request');
+			return _webpushrSendSubscriptionToServer(subscription, 'PUT'); //log last visit time
+		}
+		/*== Send last page visit once per day */
+
+	})
+	// .then(subscription => subscription ) // Set your UI to show they have subscribed for push messages
+	.catch(e => {
+		console.log(e);
+	});
+}
+
+var checkRemotePermission = function (permissionData) {
+	if (permissionData.permission === 'default') {
+		// This is a new web service URL and its validity is unknown.
+		window.safari.pushNotification.requestPermission(
+				'https://bot.webpushr.com', // The web service URL.
+				_wp_apple_push_id,     // The Website Push ID.
+				{host: _wp_prompt_info.host, 'site_id' : applicationServerKey }, // Data that you choose to send to your server to help you identify the user.
+				checkRemotePermission         // The callback function.
+		);
+	}
+	else if (permissionData.permission === 'denied') {
+		console.log('The user said no.');
+
+		if (typeof webpushrPermissionAction === "function")
+			webpushrPermissionAction('denied');
+		
+		_webpushrSendSubscriptionToServer('', 'DELETE');
+		
+		_webpushrPermissionResetInstructions();
+
+
+	}
+	else if (permissionData.permission === 'granted') {
+		// The web service URL is a valid push provider, and the user said yes.
+		return _webpushrSendSubscriptionToServer(permissionData.deviceToken, 'POST');
+		//permissionData.deviceToken is now available to use.
+	}
+};
+
+
+function _webpushrRequestPermission(){
+	Notification.requestPermission().then(status => {
+		switch(status){
+			case "default":
+				console.log('permission unknown');
+				break;
+			case "denied":
+
+				console.log('permission denied');
+
+				_webpushrSendSubscriptionToServer('', 'DELETE');
+
+				break;
+			case "granted":
+				
+				_webpushrSubscribeNow();
+
+
+				break;
+		}//switch
+	})//request permission
+}
+
+function _webpushrSubscribeNow(existing_subscription = null){
+	navigator.serviceWorker.ready
+	.then(function(registration){
+			registration.pushManager.subscribe({
+			userVisibleOnly: true,
+			applicationServerKey: _wp_urlBase64ToUint8Array(applicationServerKey),
+		})
+		.then(subscription => {
+			// Subscription was successful
+			// send subscription to database
+			_wp_endpoint = end_point = subscription.endpoint;
+			if( existing_subscription == null){
+				if( _wp_debug )
+					console.log('New subscriber, store in localstorage and database');
+
+				return _webpushrSendSubscriptionToServer(subscription, 'POST');
+			}
+      	if( _wp_debug )
+					console.log('Already registerd on webpushr');
+
+
+		})
+		.catch(e => {
+			console.log(e);
+			if( existing_subscription !== null){
+				existing_subscription.unsubscribe().then(function(successful) {
+					_webpushrRequestPermission();
+				})
+			}
+			
+		});
+	});
+}
+
+function _wp_urlBase64ToUint8Array(base64String) {
+	const padding = '='.repeat((4 - base64String.length % 4) % 4);
+	const base64 = (base64String + padding)
+		.replace(/\-/g, '+')
+		.replace(/_/g, '/');
+
+	const rawData = window.atob(base64);
+	const outputArray = new Uint8Array(rawData.length);
+
+	for (let i = 0; i < rawData.length; ++i) {
+		outputArray[i] = rawData.charCodeAt(i);
+	}
+	return outputArray;
+}
+
+function _webpushrSendSubscriptionToServer(subscription, method, uri = '') {
+
+	document.getElementById("subsus").style.display = 'block';
+	document.getElementById("before-permission").style.display = 'none';
+
+	if( subscription && ! _wp_is_safari )
+	{
+		const key 	= subscription.getKey('p256dh');
+		const token = subscription.getKey('auth');
+		end_point 	= subscription.endpoint;
+		
+		var data = {
+			endpoint	: end_point,
+			key		: key ? btoa(String.fromCharCode.apply(null, new Uint8Array(key))) : null,
+			token		: token ? btoa(String.fromCharCode.apply(null, new Uint8Array(token))) : null,
+			site_id	: applicationServerKey, 
+			type		: method,
+			old		: ("old_endpoint" in subscription) ? subscription.old_endpoint : '',
+			
+			timezone:new Date().getTimezoneOffset(),
+		};
+	}
+	else if( subscription &&  _wp_is_safari ){
+		end_point = subscription;
+		data = {type	: 'POST' ,site_id		: applicationServerKey, endpoint : subscription,timezone:new Date().getTimezoneOffset() };
+	}else{
+		data = {type	: 'DELETE',site_id		: applicationServerKey};
+	}
+	fetch('https://bot.webpushr.com/subscribe/' + uri,
+		{
+			body: JSON.stringify(data),
+			method:'POST',
+		}
+	)
+	.then(function(response) {
+		if(response.ok)
+			return response.text();
+	})
+	.then(function(text) {
+		_wp_endpoint = end_point;
+		console.log(_wp_endpoint);
+		window.opener.postMessage(end_point,'*');
+		window.close();
+	});
+	return;
+
+}
+</script>
+<!-- end webpushr tracking code -->
+  
+</body>
+</html>

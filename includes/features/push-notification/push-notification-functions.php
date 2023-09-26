@@ -217,13 +217,13 @@ function ampforwp_onesignal_sticky(){ ?>
 		</amp-web-push-widget>
 	</div>
 <?php }
-add_action( 'ampforwp_body_beginning' , 'ampforwp_truepush_notifications');
-function ampforwp_truepush_notifications(){
+add_action( 'ampforwp_body_beginning' , 'ampforwp_truepush_webpushr_notifications');
+function ampforwp_truepush_webpushr_notifications(){
 	$checker = false;
 	if (!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() ){
 			$checker = true;
 	}
-	if('4' == ampforwp_get_setting('ampforwp-web-push') && $checker ){
+	if(function_exists('ampforwp_get_setting') && '4' == ampforwp_get_setting('ampforwp-web-push') && $checker ){
 		$app_id	= ampforwp_get_setting('ampforwp-truepush-app-id');
 		$public_key = ampforwp_get_setting('ampforwp-truepush-public-key');
 		$domain_path = AMPFORWP_PLUGIN_DIR_URI.'includes/truepush-integration/';
@@ -238,9 +238,23 @@ function ampforwp_truepush_notifications(){
 	    service-worker-url="<?php echo esc_url($service_worker_url); ?>">
 	 </amp-web-push>
 	<?php }
+	if(function_exists('ampforwp_get_setting') && '5' == ampforwp_get_setting('ampforwp-web-push') && $checker ){
+		$public_key = ampforwp_get_setting('ampforwp-webpushr-public-key');
+		$domain_path = AMPFORWP_PLUGIN_DIR_URI.'includes/webpushr-integration/';
+		$helper_iframe_url = $domain_path .'webpushr-amp-helper.html';
+		$permission_dialog_url = $domain_path .'webpushr-amp-optin.html?public_key='.$public_key;
+		$service_worker_url = $domain_path .'webpushr-sw.js';?>
+	 <amp-web-push
+	    id="amp-web-push"
+	    layout="nodisplay"
+	    helper-iframe-url="<?php echo esc_url_raw($helper_iframe_url); ?>"
+	    permission-dialog-url="<?php echo esc_url_raw($permission_dialog_url); ?>"
+	    service-worker-url="<?php echo esc_url($service_worker_url); ?>">
+	 </amp-web-push>
+	<?php }
 }
-add_action('amp_post_template_css' , 'ampforwp_truepush_styling');
-function ampforwp_truepush_styling(){?>
+add_action('amp_post_template_css' , 'ampforwp_truepush_webpushr_styling');
+function ampforwp_truepush_webpushr_styling(){?>
 	amp-web-push-widget button.amp-subscribe {
 	  display: inline-flex;
 	  align-items: center;
@@ -267,10 +281,30 @@ function ampforwp_truepush_markup(){
 		</amp-web-push-widget>
 	<?php }
 }
-if(ampforwp_get_setting('ampforwp-web-push-truepush-below-content')){
+if(function_exists('ampforwp_get_setting') && ampforwp_get_setting('ampforwp-web-push-truepush-below-content')){
 	add_action('ampforwp_after_post_content', 'ampforwp_truepush_markup');
 }
 
-if(ampforwp_get_setting('ampforwp-web-push-truepush-above-content')){
+if(function_exists('ampforwp_get_setting') && ampforwp_get_setting('ampforwp-web-push-truepush-above-content')){
 	add_action('ampforwp_before_post_content', 'ampforwp_truepush_markup');
+}
+
+//webpushr
+function ampforwp_webpushr_markup(){
+	if (!checkAMPforPageBuilderStatus(get_the_ID()) && is_single() && '5' == ampforwp_get_setting('ampforwp-web-push')) {?>
+		<amp-web-push-widget visibility="unsubscribed" layout="fixed" height="50" width="290">
+		  <button class="amp-subscribe" on="tap:amp-web-push.subscribe">
+		    <amp-img class="webpushr-amp-subscribe-icon" width="24" height="24" layout="fixed" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNDQwLjgzMiA0NDAuODMyIiBzdHlsZT0iZmlsbDojZmZmZmZmIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxnPg0KCQk8cGF0aCBkPSJNMzgxLjQ0LDI2NS43MjhWMTYxLjc5MkMzODEuNDQsNzIuMTkyLDMwOS4yNDgsMCwyMTkuNjQ4LDBTNTguMzY4LDcyLjE5Miw1OC4zNjgsMTYxLjc5MnYxMDMuOTM2bC00MS45ODQsODIuOTQ0aDQwOC4wNjQNCgkJCUwzODEuNDQsMjY1LjcyOHoiLz4NCgk8L2c+DQo8L2c+DQo8Zz4NCgk8Zz4NCgkJPHBhdGggZD0iTTE1MS41NTIsMzcyLjczNmMwLDM3LjM3NiwzMC43Miw2OC4wOTYsNjguMDk2LDY4LjA5NmMzNy4zNzYsMCw2OC4wOTYtMzAuNzIsNjguMDk2LTY4LjA5NkgxNTEuNTUyeiIvPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
+		    </amp-img>
+		    <?php echo ampforwp_translation( ampforwp_get_setting('ampforwp-webpushr-translator-subscribe'), 'Subscribe to updates' ); ?>
+		  </button>
+		</amp-web-push-widget>
+	<?php }
+}
+if(function_exists('ampforwp_get_setting') && ampforwp_get_setting('ampforwp-web-push-webpushr-below-content')){
+	add_action('ampforwp_after_post_content', 'ampforwp_webpushr_markup');
+}
+
+if(function_exists('ampforwp_get_setting') && ampforwp_get_setting('ampforwp-web-push-webpushr-above-content')){
+	add_action('ampforwp_before_post_content', 'ampforwp_webpushr_markup');
 }
