@@ -40,7 +40,7 @@ function amp_jetpack_disable_related_posts() {
 }
 
 function jetpack_amp_add_stats_pixel( $amp_template ) {
-	if ( ! has_action( 'wp_footer', 'stats_footer' ) ) {
+	if ( ! has_action( 'wp_footer', array( 'Automattic\Jetpack\Stats\Tracking_Pixel', 'add_amp_pixel' ) ) ) {
 		return;
 	}
 	?>
@@ -56,8 +56,8 @@ function jetpack_amp_add_stats_pixel( $amp_template ) {
  */
 function jetpack_amp_build_stats_pixel_url() {
 	global $wp_the_query;
-	if ( function_exists( 'stats_build_view_data' ) ) { // added in https://github.com/Automattic/jetpack/pull/3445
-		$data = \stats_build_view_data();
+	if ( method_exists('Automattic\Jetpack\Stats\Tracking_Pixel', 'build_view_data') ) {
+		$data = \Automattic\Jetpack\Stats\Tracking_Pixel::build_view_data();
 	} else {
 		$blog = \Jetpack_Options::get_option( 'id' );
 		$tz = get_option( 'gmt_offset' );
