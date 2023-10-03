@@ -8582,8 +8582,8 @@ function ampforwp_remove_unwanted_code($content){
 		$content = preg_replace('/<table(.*?)height="\d+"(.*?)>/', '<table$1$2>', $content);
 	}
   //Remove label from anchor
-	if(preg_match('/<a(.*?)label\s(.*?)>/', $content)){
-		$content = preg_replace('/<a(.*?)label\s(.*?)>/', '<a$1$2>', $content);
+	if(preg_match('/<a(.*?)\slabel\s(.*?)>/', $content)){
+		$content = preg_replace('/<a(.*?)\slabel\s(.*?)>/', '<a $1$2>', $content);
 	}
 	return $content;
 }
