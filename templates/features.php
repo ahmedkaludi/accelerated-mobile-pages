@@ -1895,8 +1895,10 @@ function ampforwp_replace_title_tags() {
 		 	}
 		 	if ( is_archive() ) {
 		 		$object = get_queried_object();
-				$rank_math_title = RankMath\Term::get_meta( 'title', $object, $object->taxonomy );
-				if ( '' == $rank_math_title ) {
+		 		if( !empty($object->taxonomy) ){
+					$rank_math_title = RankMath\Term::get_meta( 'title', $object, $object->taxonomy );
+		 		}
+				if ( '' == $rank_math_title && !empty($object->taxonomy) ) {
 					$rank_math_title = RankMath\Paper\Paper::get_from_options( "tax_{$object->taxonomy}_title", $object );
 				}
 		 	}
