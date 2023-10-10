@@ -70,19 +70,17 @@ global $redux_builder_amp; ?>
 			    <div class="fsp-cnt">
 			    	<?php amp_loop_category(); ?>
 				    <?php amp_loop_title(); ?>
-				    <?php if( ampforwp_check_excerpt() ) { 
-				    amp_loop_excerpt(ampforwp_get_setting('amp-swift-excerpt-len'));
-			    	} ?>	
-				    <?php if( true == ampforwp_get_setting('amforwp-homepage-date-switch')){?>
 				    <div class="pt-dt">
+				    <?php if( true == ampforwp_get_setting('amforwp-homepage-date-switch')){?>
 				    	<?php amp_loop_date(); ?>
-				    </div>
 					<?php }?>
 					<?php if( true == ampforwp_get_setting('amforwp-homepage-author-switch')){?>
-				    <div class="pt-author" >
 				    	<?php amp_author_box( array('author_pub_name'=>true,)); ?>
 				    </div>
 					<?php } ?>
+				    <?php if( ampforwp_check_excerpt() ) { 
+				    amp_loop_excerpt(ampforwp_get_setting('amp-swift-excerpt-len'));
+			    	} ?>	
 			    </div>
 			</div>
 		<?php } $i++; ?>
