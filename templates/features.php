@@ -9793,6 +9793,9 @@ function ampforwp_webp_express_compatibility($content){
 		preg_match_all('/src="(.*?)"/', $content,$src);
 		if(isset($src[1][0])){
 			$img_url = esc_url($src[1][0]);
+			if(preg_match('/m\.media-amazon/', $img_url)){
+				return $content;
+			}
 			if(!preg_match('/\.webp/', $img_url)){
 				$config = \WebPExpress\Config::loadConfigAndFix();
 				if($config['destination-folder'] == 'mingled'){
