@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 6.3.1
-Stable tag: 1.0.90
+Tested up to: 6.3.2
+Stable tag: 1.0.91
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,15 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.91 (16th October 2023) =
+* New: Compatibility with webpushr notification #5517
+* Fixed: Jetpack Stats are not showing in the AMP. #5495
+* Fixed: Double curly brackets parsed from {{}} to %7B%7B%7D%7D in src attribute in amp-iframe component #5522
+* Fixed: Amp Validation Error in New update #5528
+* Fixed: A warning (Warning: Undefined property: WP_Post_Type::$taxonomy) is appearing on the AMP version #5532
+* Fixed: The author link and date not showing properly on the homepage #5533
+* Fixed: AAWP Images not loading if WebP Express is active #5535
 
 = 1.0.90 (26th September 2023) =
 * New: An option to configure the number of posts appearing on Homepage & Category page #5503

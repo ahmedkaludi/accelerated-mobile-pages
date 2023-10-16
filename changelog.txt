@@ -1,5 +1,14 @@
 == Changelog ==
 
+= 1.0.91 (16th October 2023) =
+* New: Compatibility with webpushr notification #5517
+* Fixed: Jetpack Stats are not showing in the AMP. #5495
+* Fixed: Double curly brackets parsed from {{}} to %7B%7B%7D%7D in src attribute in amp-iframe component #5522
+* Fixed: Amp Validation Error in New update #5528
+* Fixed: A warning (Warning: Undefined property: WP_Post_Type::$taxonomy) is appearing on the AMP version #5532
+* Fixed: The author link and date not showing properly on the homepage #5533
+* Fixed: AAWP Images not loading if WebP Express is active #5535
+
 = 1.0.90 (26th September 2023) =
 * New: An option to configure the number of posts appearing on Homepage & Category page #5503
 * Fixed: PHP notice on style.php #5514
