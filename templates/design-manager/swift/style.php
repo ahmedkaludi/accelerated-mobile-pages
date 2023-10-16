@@ -475,7 +475,7 @@ height:<?php echo esc_html($fimg_height).'px';?>;width:<?php echo esc_html($fimg
 .fsp-cnt .loop-category li {font-weight: 500;}
 .fbp-cnt h2 {margin: 0px;font-size: 32px;line-height: 38px;font-weight:700;}
 .fbp-cnt h2 a{color:#191919;}
-.fbp-cnt .amp-author {padding-left:6px;}
+.fbp-cnt .amp-author, .fsp-cnt .amp-author {padding-left:6px;}
 .fbp:hover .author-name a{text-decoration:underline;}
 .fbp-cnt .author-details a{color:#808080;}
 .fbp-cnt .author-details a:hover{color: #005be2;}
@@ -489,8 +489,7 @@ height:<?php echo esc_html($fimg_height).'px';?>;width:<?php echo esc_html($fimg
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
 .fsp-img {margin-bottom:10px;}
 .fsp h2, .fsp h3{margin:0px 0px 5px 0px;font-size:20px;line-height:1.4;font-weight:500;}
-.at-dt{font-size:11px;color:#757575;margin:12px 0px 9px 0px; display: inline-flex;}
-.pt-dt,.pt-author{font-size:11px;color:#757575;margin: 8px 0px 0px 0px;display: inline-flex;}
+.at-dt,.pt-dt{font-size:11px;color:#757575;margin:12px 0px 9px 0px; display: inline-flex;}
 .arch-tlt{margin:30px 0px 30px;display:inline-block;width:100%;}
 .amp-archive-title, .amp-loop-label{font-weight:600;}
 .amp-archive-desc , .amp-archive-image{font-size: 14px;margin:8px 0px 0px 0px;color: #333;line-height:20px;}
@@ -542,7 +541,7 @@ echo sanitize_text_field($fontFamily);
     .fsp{flex-basis: calc(100% - 30px);}
     .fsp-img{width:40%;float:left;margin-right:20px;}
     .fsp-cnt{width:54%;float:left;}
-    .at-dt{margin: 10px 0px 0px 0px;}
+    .at-dt,.pt-dt{margin: 10px 0px 0px 0px;}
     .hmp .loop-wrapper {margin-top: 0;}
     .arch-tlt{margin:20px 0px;}
     .amp-loop-label {font-size: 16px;}
@@ -551,7 +550,7 @@ echo sanitize_text_field($fontFamily);
 }
 @media(max-width:480px){
     .cntr.b-w{padding:0px;}
-    .at-dt {margin: 7px 0px 0px 0px;}
+    .at-dt,.pt-dt{margin: 7px 0px 0px 0px;}
     .right, .left{float:none;text-align:center;}
     .right{margin-bottom:30px;}
     .fsp-img{width:100%;float:none;margin-right:0px;}
@@ -971,7 +970,6 @@ letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 .fsp h2, .fsp h3{margin:0px 0px 5px 0px;font-size:20px;line-height:25px;font-weight:500;}
 .fsp-cnt .loop-category{margin-bottom:20px;}
 .fsp-cnt .loop-category li {font-weight: 500;}
-.pt-dt,.pt-author{font-size:11px;color:#808080;margin: 8px 0px 0px 0px;display: inline-flex;}
 blockquote{margin-bottom:20px;}
 blockquote p {font-size: 34px; line-height: 1.4; font-weight: 700; position: relative; padding: 30px 0 0 0; }
 blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-height: 40px;display: inline-block;position: absolute;top: 0;}

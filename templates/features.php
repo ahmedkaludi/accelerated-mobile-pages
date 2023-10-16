@@ -1895,8 +1895,10 @@ function ampforwp_replace_title_tags() {
 		 	}
 		 	if ( is_archive() ) {
 		 		$object = get_queried_object();
-				$rank_math_title = RankMath\Term::get_meta( 'title', $object, $object->taxonomy );
-				if ( '' == $rank_math_title ) {
+		 		if( !empty($object->taxonomy) ){
+					$rank_math_title = RankMath\Term::get_meta( 'title', $object, $object->taxonomy );
+		 		}
+				if ( '' == $rank_math_title && !empty($object->taxonomy) ) {
 					$rank_math_title = RankMath\Paper\Paper::get_from_options( "tax_{$object->taxonomy}_title", $object );
 				}
 		 	}
@@ -8582,8 +8584,8 @@ function ampforwp_remove_unwanted_code($content){
 		$content = preg_replace('/<table(.*?)height="\d+"(.*?)>/', '<table$1$2>', $content);
 	}
   //Remove label from anchor
-	if(preg_match('/<a(.*?)label\s(.*?)>/', $content)){
-		$content = preg_replace('/<a(.*?)label\s(.*?)>/', '<a$1$2>', $content);
+	if(preg_match('/<a(.*?)\slabel\s(.*?)>/', $content)){
+		$content = preg_replace('/<a(.*?)\slabel\s(.*?)>/', '<a $1$2>', $content);
 	}
 	return $content;
 }
@@ -9791,6 +9793,9 @@ function ampforwp_webp_express_compatibility($content){
 		preg_match_all('/src="(.*?)"/', $content,$src);
 		if(isset($src[1][0])){
 			$img_url = esc_url($src[1][0]);
+			if(preg_match('/m\.media-amazon/', $img_url)){
+				return $content;
+			}
 			if(!preg_match('/\.webp/', $img_url)){
 				$config = \WebPExpress\Config::loadConfigAndFix();
 				if($config['destination-folder'] == 'mingled'){

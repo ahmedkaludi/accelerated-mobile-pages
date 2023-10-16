@@ -98,6 +98,12 @@ function ampforwp_minify_html_output($content_buffer){
         $content_buffer = preg_replace('/<blockquote\sclass="wp-embedded-content"(.*?)<a href="(.*?)"(.*?)<\/blockquote>/', '<amp-wordpress-embed width="400" height="400" data-url="$2" ></amp-wordpress-embed>', $content_buffer);
         $content_buffer = preg_replace('/<amp-iframe(.*?)class="wp-embedded-content(.*?)<\/amp-iframe>/', '', $content_buffer);
     }
+    if(preg_match('/<amp-iframe(.*?)\ssrc="(.*?)"(.*?)>/', $content_buffer)){
+        $content_buffer = preg_replace_callback('/<amp-iframe(.*?)\ssrc="(.*?)"(.*?)>/', 
+            function($matches){
+                return '<amp-iframe'.$matches[1].' src="'.esc_attr(urldecode($matches[2])).'"'.$matches[3].'>';
+            }, $content_buffer);
+    }
     if (function_exists('wp_faq_schema_load_plugin_textdomain')) {
         $content_buffer = preg_replace('/<div\sclass="">(.*?)<\/div>/s', '$1', $content_buffer);
         $content_buffer = preg_replace('/<h4>/s', '<section><h4>', $content_buffer);
