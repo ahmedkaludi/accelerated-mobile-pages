@@ -9822,6 +9822,7 @@ if(!function_exists('ampforwp_set_local_font')){
 			$upload_dir   = wp_upload_dir();
 	        $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-local-fonts';
 	        if ( file_exists( $user_dirname ) ) {
+	        		$font_name = '';
 	            $files = glob( $user_dirname . '/*' );
 	            $font_css =  '@font-face {';
 	            $i = 0;
@@ -9849,6 +9850,9 @@ if(!function_exists('ampforwp_set_local_font')){
 					}
 	            }
 	            $font_css .= '}';
+	            if(!empty($font_family) && $font_family != ''){
+	            	$font_css .= "body, .cntn-wrp {font-family: '".esc_attr(ucfirst($font_family))."'}";
+	            }
 	            echo $font_css;
 	        }
 		}
