@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.91.1 (20th October 2023) =
+* Fixed: Version 1.0.91 breaks Swift Theme #5537
+
 = 1.0.91 (16th October 2023) =
 * New: Compatibility with webpushr notification #5517
 * Fixed: Jetpack Stats are not showing in the AMP. #5495
