@@ -76,8 +76,8 @@ global $redux_builder_amp; ?>
 					<?php }?>
 					<?php if( true == ampforwp_get_setting('amforwp-homepage-author-switch')){?>
 				    	<?php amp_author_box( array('author_pub_name'=>true,)); ?>
-				    </div>
 					<?php } ?>
+				    </div>
 				    <?php if( ampforwp_check_excerpt() ) { 
 				    amp_loop_excerpt(ampforwp_get_setting('amp-swift-excerpt-len'));
 			    	} ?>	
