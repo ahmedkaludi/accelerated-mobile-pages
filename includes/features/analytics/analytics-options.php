@@ -956,6 +956,26 @@ function ampforwp_analytics_options($opt_name){
                         ),
                         'placeholder'  => esc_html__('YOUR_SITE_ID_HERE','accelerated-mobile-pages'),
                     ),
+                    //Publytics 
+                    array(
+                        'id'            =>'ampforwp-publytics-switch',
+                        'type'          => 'switch',
+                        'title'         => esc_html__('Publytics','accelerated-mobile-pages'),
+                        'default'       => 0,
+                        'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                         esc_html__('Enable this option to track publytics in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')),
+                    ),
+                    array(
+                        'id'       => 'ampforwp-publytics-track-code',
+                        'type'     => 'text',
+                        'title'    => esc_html__( 'Domain/Tracking Code', 'accelerated-mobile-pages' ),
+                        'tooltip-subtitle' =>  
+                            esc_html__( 'Enter your publytics Tracking ID here','accelerated-mobile-pages'),
+                        'required' => array(
+                          array('ampforwp-publytics-switch', '=' , '1')
+                        ),
+                        'placeholder'  => esc_html__('ADD_CODE_HERE','accelerated-mobile-pages'),
+                    ),
                     // Marfeel Analytics
                        array(
                         'id'            =>'amp-marfeel-pixel',
