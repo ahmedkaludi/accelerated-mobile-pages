@@ -1615,7 +1615,7 @@ function ampforwp_newsp_td_render_css(){
 	  }
 		echo $newspaper_css;
 		echo $amp_td_custom_css;
-		if(class_exists('td_util') && class_exists('td_block')){
+		if(method_exists('td_block', 'get_common_css') && method_exists('td_util', 'remove_style_tag')){
 			echo td_util::remove_style_tag(td_block::get_common_css());
 		}
 	}
