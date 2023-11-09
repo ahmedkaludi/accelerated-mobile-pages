@@ -8579,10 +8579,6 @@ function ampforwp_remove_unwanted_code($content){
 	if(empty($content)){
 		return $content;
 	}
-  //Remove height from table
-  if(preg_match('/<table(.*?)height="\d+"(.*?)>/', $content)){
-		$content = preg_replace('/<table(.*?)height="\d+"(.*?)>/', '<table$1$2>', $content);
-	}
   //Remove label from anchor
 	if(preg_match('/<a(.*?)\slabel\s(.*?)>/', $content)){
 		$content = preg_replace('/<a(.*?)\slabel\s(.*?)>/', '<a $1$2>', $content);
