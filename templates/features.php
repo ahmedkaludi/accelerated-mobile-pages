@@ -4974,7 +4974,7 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 			$image_width 	= $matches[2][0];
 			$image_height 	= $matches[3][0];
 		}
-		if($output==0 && isset($post->post_content)){
+		if($output==0 && is_object($post) && isset($post->post_content)){
 			if(preg_match('/<figure\sclass="(.*?)">(<img\ssrc="(.*?)"(.*?)>)<\/figure>/', $post->post_content, $fm)){
 				if(isset( $fm[2])){
 					$dom = new DOMDocument();
