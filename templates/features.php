@@ -4903,7 +4903,7 @@ if(! function_exists('ampforwp_save_custom_post_types_sd') ) {
 		}
 
 		if (empty($saved_custom_posts)) {
-			update_option('ampforwp_custom_post_types',  $post_types);
+			update_option('ampforwp_custom_post_types',  $post_types, false);
 		}
  		if ( empty( $saved_custom_posts ) ) {
 			$saved_custom_posts = array();
@@ -4922,7 +4922,7 @@ if(! function_exists('ampforwp_save_custom_post_types_sd') ) {
 		}
 
 		if( array_diff( $array_1, $array_2 ) ){	
-			update_option('ampforwp_custom_post_types',  $post_types);
+			update_option('ampforwp_custom_post_types',  $post_types, false);
 		}
 
 	}
@@ -7089,7 +7089,7 @@ function ampforwp_ia_meta_callback( $post ) {
 		if ( $exclude_post_value ) {
 			if ( ! in_array( ampforwp_get_the_ID(), $exclude_post_value ) ) {
 				$exclude_post_value[] = ampforwp_get_the_ID();
-				update_option('ampforwp_ia_exclude_post', $exclude_post_value);
+				update_option('ampforwp_ia_exclude_post', $exclude_post_value, false);
 			}
 		}
 	} else {
@@ -7100,7 +7100,7 @@ function ampforwp_ia_meta_callback( $post ) {
 		if ( $exclude_post_value ) {
 			if ( in_array( ampforwp_get_the_ID(), $exclude_post_value ) ) {
 				$exclude_ids = array_diff($exclude_post_value, array(ampforwp_get_the_ID()) );
-				update_option('ampforwp_ia_exclude_post', $exclude_ids);
+				update_option('ampforwp_ia_exclude_post', $exclude_ids, false);
 			}
 		}
 
@@ -8282,7 +8282,7 @@ function ampforwp_set_option_panel_view(){
 	if($opt_type==1 || $opt_type==2){
 		$opt = get_option("ampforwp_option_panel_view_type");
 		if($opt){
-			update_option("ampforwp_option_panel_view_type", $opt_type);
+			update_option("ampforwp_option_panel_view_type", $opt_type, false);
 		}else{
 			add_option("ampforwp_option_panel_view_type", $opt_type);
 		}
