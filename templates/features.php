@@ -4903,7 +4903,7 @@ if(! function_exists('ampforwp_save_custom_post_types_sd') ) {
 		}
 
 		if (empty($saved_custom_posts)) {
-			update_option('ampforwp_custom_post_types',  $post_types);
+			update_option('ampforwp_custom_post_types',  $post_types, false);
 		}
  		if ( empty( $saved_custom_posts ) ) {
 			$saved_custom_posts = array();
@@ -4922,7 +4922,7 @@ if(! function_exists('ampforwp_save_custom_post_types_sd') ) {
 		}
 
 		if( array_diff( $array_1, $array_2 ) ){	
-			update_option('ampforwp_custom_post_types',  $post_types);
+			update_option('ampforwp_custom_post_types',  $post_types, false);
 		}
 
 	}
@@ -4974,7 +4974,7 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 			$image_width 	= $matches[2][0];
 			$image_height 	= $matches[3][0];
 		}
-		if($output==0){
+		if($output==0 && is_object($post) && isset($post->post_content)){
 			if(preg_match('/<figure\sclass="(.*?)">(<img\ssrc="(.*?)"(.*?)>)<\/figure>/', $post->post_content, $fm)){
 				if(isset( $fm[2])){
 					$dom = new DOMDocument();
@@ -7089,7 +7089,7 @@ function ampforwp_ia_meta_callback( $post ) {
 		if ( $exclude_post_value ) {
 			if ( ! in_array( ampforwp_get_the_ID(), $exclude_post_value ) ) {
 				$exclude_post_value[] = ampforwp_get_the_ID();
-				update_option('ampforwp_ia_exclude_post', $exclude_post_value);
+				update_option('ampforwp_ia_exclude_post', $exclude_post_value, false);
 			}
 		}
 	} else {
@@ -7100,7 +7100,7 @@ function ampforwp_ia_meta_callback( $post ) {
 		if ( $exclude_post_value ) {
 			if ( in_array( ampforwp_get_the_ID(), $exclude_post_value ) ) {
 				$exclude_ids = array_diff($exclude_post_value, array(ampforwp_get_the_ID()) );
-				update_option('ampforwp_ia_exclude_post', $exclude_ids);
+				update_option('ampforwp_ia_exclude_post', $exclude_ids, false);
 			}
 		}
 
@@ -8282,7 +8282,7 @@ function ampforwp_set_option_panel_view(){
 	if($opt_type==1 || $opt_type==2){
 		$opt = get_option("ampforwp_option_panel_view_type");
 		if($opt){
-			update_option("ampforwp_option_panel_view_type", $opt_type);
+			update_option("ampforwp_option_panel_view_type", $opt_type, false);
 		}else{
 			add_option("ampforwp_option_panel_view_type", $opt_type);
 		}
@@ -8578,10 +8578,6 @@ function ampforwp_remove_unwanted_code($content){
 	}
 	if(empty($content)){
 		return $content;
-	}
-  //Remove height from table
-  if(preg_match('/<table(.*?)height="\d+"(.*?)>/', $content)){
-		$content = preg_replace('/<table(.*?)height="\d+"(.*?)>/', '<table$1$2>', $content);
 	}
   //Remove label from anchor
 	if(preg_match('/<a(.*?)\slabel\s(.*?)>/', $content)){
@@ -9822,6 +9818,7 @@ if(!function_exists('ampforwp_set_local_font')){
 			$upload_dir   = wp_upload_dir();
 	        $user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-local-fonts';
 	        if ( file_exists( $user_dirname ) ) {
+	        		$font_name = '';
 	            $files = glob( $user_dirname . '/*' );
 	            $font_css =  '@font-face {';
 	            $i = 0;
@@ -9849,6 +9846,9 @@ if(!function_exists('ampforwp_set_local_font')){
 					}
 	            }
 	            $font_css .= '}';
+	            if(!empty($font_family) && $font_family != ''){
+	            	$font_css .= "body, .cntn-wrp {font-family: '".esc_attr(ucfirst($font_family))."'}";
+	            }
 	            echo $font_css;
 	        }
 		}

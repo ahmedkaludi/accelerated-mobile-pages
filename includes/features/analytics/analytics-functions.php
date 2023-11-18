@@ -625,6 +625,63 @@ function ampforwp_analytics() {
 					</script>
 					</amp-analytics>
                 <?php } }
+                //Publytics
+                if(function_exists('ampforwp_get_setting') && true == ampforwp_get_setting('ampforwp-publytics-switch')) {
+					$title = $track_code = '';
+					$title = get_the_title(ampforwp_get_the_ID());
+					$track_code = ampforwp_get_setting('ampforwp-publytics-track-code');
+					if (!empty($track_code)) { ?>
+	                <amp-analytics>
+	                	<script type="application/json">
+	                	    {
+	                	        "requests": {
+	                	            "event": "https://api.publytics.net/events"
+	                	        },
+	                	        "extraUrlParams": {
+	                	            "r": "${documentReferrer}",
+	                	            "u": "SOURCE_URL",
+	                	            "w": 400,
+	                	            "d": "<?php echo esc_attr($track_code);?>"
+	                	        },
+	                	        "triggers": {
+	                	            "trackPageview": {
+	                	                "on": "visible",
+	                	                "request": "event",
+	                	                "extraUrlParams": {
+	                	                    "n": "pageview",
+	                	                    "p": {
+	                	                            "amp":true,
+	                	                            "article_title": "<?php echo esc_attr($title);?>"
+	                	                         }
+	                	                }
+	                	            },
+	                	            "trackScrollThrough":{
+	                	                "on":"amp-next-page-scroll",
+	                	                "useInitialPageSize": true,
+	                	                "request":"event",
+	                	                "extraUrlParams": {
+	                	                  "n": "amp_next_page_pageview"
+	                	                }
+	                	            },
+	                	            "trackClickThrough":{
+	                	                "on":"amp-next-page-click",
+	                	                "useInitialPageSize": true,
+	                	                "request":"event",
+	                	                "extraUrlParams": {
+	                	                  "n": "amp_next_page_pageview"
+	                	                }
+	                	            }
+	                	        },
+	                	        "transport": {
+	                	            "beacon": true,
+	                	            "xhrpost": true,
+	                	            "image": false,
+	                	            "useBody": true
+	                	        }
+	                	    }
+	                	</script>
+					</amp-analytics>
+               <?php } }
             // Marfeel Analytics
             if(true == ampforwp_get_setting('amp-marfeel-pixel')){ 
             	$account_id = ampforwp_get_setting('amp-marfeel-account-id'); ?>

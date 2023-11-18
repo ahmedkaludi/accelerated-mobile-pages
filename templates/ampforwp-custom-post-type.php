@@ -57,7 +57,7 @@ if ( false == $ampforwp_cpt_plugin_check ) {
                 }
 
                 if ( array_diff( $array_1, $array_2 ) ) {
-                    update_option('ampforwp_cpt_generated_post_types',$post_types);
+                    update_option('ampforwp_cpt_generated_post_types',$post_types, false);
                 }
         }
     }

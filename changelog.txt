@@ -1,5 +1,17 @@
 == Changelog ==
 
+= 1.0.92 (18th November 2023) =
+* New: Compatibility with Publytics.net #5477
+* Fixed: Add a filter to modify unused CSS #5478
+* Fixed: Local Fonts option not working properly. #5506
+* Fixed: Autoload is termed as yes in wp_options. #5523
+* Fixed: Deprecated error in query monitor #5527
+* Fixed: PHP Fatal error appears in AMP #5539
+* Fixed: CSS issue with 1.0.91 Version #5540
+* Fixed: Invalid Layout Issue in AMP HTML Tag for Missing 'height' Attribute. #5542
+* Fixed: Getting blank screen on amp pages #5546
+* Fixed: Images from Slider revolution plugin not visible in AMP #5548
+
 = 1.0.91.1 (20th October 2023) =
 * Fixed: Version 1.0.91 breaks Swift Theme #5537
 

@@ -400,6 +400,7 @@ function amp_header_core(){
 		    			}
 					  $custom_css .= $wp_filesystem->get_contents(AMPFORWP_PLUGIN_DIR."/includes/sassy-style-optimized.css");
 					}
+					  $custom_css = apply_filters('ampforwp_custom_css_output', $custom_css);
 					  $custom_css = str_replace(array('.accordion-mod'), array('.apac'), $custom_css);
 					  $sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
 					  echo $sanitized_css; // sanitized above ?>

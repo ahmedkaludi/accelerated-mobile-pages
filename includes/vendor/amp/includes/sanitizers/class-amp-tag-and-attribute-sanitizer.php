@@ -852,6 +852,9 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 		foreach ( $node->attributes as $attr_name => $attr_node ) {
 			if ( ! $this->is_amp_allowed_attribute( $attr_name, $attr_spec_list ) ) {
 				$attrs_to_remove[] = $attr_node;
+			}elseif( $node->tagName == 'table' && $attr_name == 'height' ){
+				//Remove height from table
+				$attrs_to_remove[] = $attr_node;
 			}
 		}
 

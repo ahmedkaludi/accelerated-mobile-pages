@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 6.3.2
-Stable tag: 1.0.91.1
+Tested up to: 6.4.1
+Stable tag: 1.0.92
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,18 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.92 (18th November 2023) =
+* New: Compatibility with Publytics.net #5477
+* Fixed: Add a filter to modify unused CSS #5478
+* Fixed: Local Fonts option not working properly. #5506
+* Fixed: Autoload is termed as yes in wp_options. #5523
+* Fixed: Deprecated error in query monitor #5527
+* Fixed: PHP Fatal error appears in AMP #5539
+* Fixed: CSS issue with 1.0.91 Version #5540
+* Fixed: Invalid Layout Issue in AMP HTML Tag for Missing 'height' Attribute. #5542
+* Fixed: Getting blank screen on amp pages #5546
+* Fixed: Images from Slider revolution plugin not visible in AMP #5548
 
 = 1.0.91.1 (20th October 2023) =
 * Fixed: Version 1.0.91 breaks Swift Theme #5537
