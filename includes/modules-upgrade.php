@@ -273,7 +273,7 @@ function ampforwp_import_structure_data(){
             }
        
     update_option('sd_data', $sd_data_update);
-    update_option('ampforwp_structure_data_module_upgrade','migrated', false);
+    update_option('ampforwp_structure_data_module_upgrade','migrated');
     return true;
     wp_die();
 }

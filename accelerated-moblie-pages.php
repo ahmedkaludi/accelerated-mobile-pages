@@ -484,7 +484,7 @@ function ampforwp_flush_rewrite_by_option(){
 	// Adding double check to make sure, we are not updating and calling database unnecessarily
 	if ( empty( $get_current_permalink_settings ) ) {
 		$wp_rewrite->flush_rules();
-		update_option('ampforwp_rewrite_flush_option', 'true', false);
+		update_option('ampforwp_rewrite_flush_option', 'true');
 	}
 
 }
@@ -800,13 +800,13 @@ function amp_update_db_check() {
 	global $redux_builder_amp;
 	$ampforwp_current_version = AMPFORWP_VERSION;
 	if ( isset( $_GET['ampforwp-dismiss-theme'] ) && trim( $_GET['ampforwp-dismiss-theme']) === "ampforwp_dismiss_admin_notices" && wp_verify_nonce($_GET['ampforwp_notice'], 'ampforwp_notice') ) {
-		update_option( 'ampforwp_theme_notice', true, false );
+		update_option( 'ampforwp_theme_notice', true );
 		wp_redirect("admin.php?page=amp_options");
 	}
    	if ( get_option( 'AMPforwp_db_version' ) !== $ampforwp_current_version ) {
 
    		if ( isset( $_GET['ampforwp-dismiss'] ) && trim( $_GET['ampforwp-dismiss']) === "ampforwp_dismiss_admin_notices" && wp_verify_nonce($_GET['ampforwp_notice'], 'ampforwp_notice') ) {
-			update_option( 'AMPforwp_db_version', $ampforwp_current_version, false );
+			update_option( 'AMPforwp_db_version', $ampforwp_current_version );
 			wp_redirect(remove_query_arg('ampforwp-dismiss'), 301);
 		}
     }
@@ -1249,7 +1249,7 @@ if ( false == get_transient('ampforwp-pm-disabler') ) {
 		$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php' );
 		if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
 			unset($ampforwp_active_plugins['amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php']);
-			update_option('active_plugins', array_flip($ampforwp_active_plugins), false);
+			update_option('active_plugins', array_flip($ampforwp_active_plugins));
 			set_transient('ampforwp-pm-disabler', true);
 			include_once( ABSPATH . 'wp-includes/pluggable.php' );
 			wp_redirect(admin_url('plugins.php'));
@@ -1259,7 +1259,7 @@ if ( false == get_transient('ampforwp-pm-disabler') ) {
 		$plugin_data = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR . 'amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php' );
 		if ( version_compare( floatval( $plugin_data['Version'] ), '1.1', '<' ) ){
 			unset($ampforwp_active_plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php']);
-			update_option('active_plugins', array_flip($ampforwp_active_plugins), false);
+			update_option('active_plugins', array_flip($ampforwp_active_plugins));
 			set_transient('ampforwp-pm-disabler', true);
 			include_once( ABSPATH . 'wp-includes/pluggable.php' );
 			wp_redirect(admin_url('plugins.php'));
