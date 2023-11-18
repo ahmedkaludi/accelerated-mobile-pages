@@ -126,39 +126,7 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 				if ( $image_id ) {
 				 	$img_data = wp_get_attachment_metadata( $image_id );
 				}
-				if( $bgtype == 'image' && !empty($layers) ){
-					$width = 480;
-					$height = 270;
-					if(isset($img_data['width'])){
-						$width = $img_data['width'];
-					}
-					if(isset($img_data['height'])){
-						$height = $img_data['height'];
-					}
-					if(empty($layers)){
-						$urls[] = apply_filters('amp_gallery_image_params', array(
-							'url' => $url,
-							'width' => intval($width),
-							'height' => intval($height),
-							'bgtype' => esc_attr($bgtype)
-						),$image_id);
-					}elseif(!empty($layers)){
-						foreach ($layers as $key => $layer) {
-							if($layer['type'] == 'text'){
-								$text = $layer['text'];
-								if(!empty($text)){
-								$urls[] = apply_filters('amp_gallery_image_params', array(
-									'url' => esc_attr($url),
-									'width' => intval($width),
-									'height' => intval($height),
-									'caption' => $text,
-									'bgtype' => esc_attr($bgtype)
-								),$image_id);
-								}
-							}
-						}
-					}
-				}elseif($bgtype == 'external' || !empty($layers)){
+				if($bgtype == 'external' || !empty($layers)){
 					$url = esc_url($slide->get_param(array('bg','externalSrc'), ''));
 					$imgalt = esc_attr($slide->get_param('alt_attr', ''));
 					$img_title = esc_attr($slide->get_param('title_attr', ''));
