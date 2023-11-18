@@ -1546,7 +1546,7 @@ function ampforwp_internal_feedback_notice(){
 <?php    }
 }
 function ampforwp_feedback_remove_notice(){     
-    $result = update_option( "ampforwp_feedback_remove_notice", 'remove');
+    $result = update_option( "ampforwp_feedback_remove_notice", 'remove', false);
     if($result){
         echo json_encode(array('status'=>'t'));            
     }else{    
@@ -1589,7 +1589,7 @@ function ampforwp_tpd_notice(){
 function ampforwp_tpd_remove_notice(){    
     $result = '';
     if(current_user_can( 'manage_options' )){
-       $result = update_option( "ampforwp_tpd_remove_notice", 'remove');
+       $result = update_option( "ampforwp_tpd_remove_notice", 'remove', false);
     }
     if($result){
         echo json_encode(array('status'=>'t'));            
