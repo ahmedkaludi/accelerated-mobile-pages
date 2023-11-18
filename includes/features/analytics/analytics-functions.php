@@ -627,8 +627,7 @@ function ampforwp_analytics() {
                 <?php } }
                 //Publytics
                 if(function_exists('ampforwp_get_setting') && true == ampforwp_get_setting('ampforwp-publytics-switch')) {
-					$site_url = $title = $track_code = '';
-	                $site_url = site_url();
+					$title = $track_code = '';
 					$title = get_the_title(ampforwp_get_the_ID());
 					$track_code = ampforwp_get_setting('ampforwp-publytics-track-code');
 					if (!empty($track_code)) { ?>
@@ -640,7 +639,7 @@ function ampforwp_analytics() {
 	                	        },
 	                	        "extraUrlParams": {
 	                	            "r": "${documentReferrer}",
-	                	            "u": "<?php echo esc_attr($site_url);?>",
+	                	            "u": "SOURCE_URL",
 	                	            "w": 400,
 	                	            "d": "<?php echo esc_attr($track_code);?>"
 	                	        },
