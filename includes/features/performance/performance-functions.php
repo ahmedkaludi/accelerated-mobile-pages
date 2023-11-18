@@ -101,11 +101,7 @@ function ampforwp_minify_html_output($content_buffer){
     if(preg_match('/<amp-iframe(.*?)\ssrc="(.*?)"(.*?)>/', $content_buffer)){
         $content_buffer = preg_replace_callback('/<amp-iframe(.*?)\ssrc="(.*?)"(.*?)>/', 
             function($matches){
-                $src = $matches[2];
-                if(strpos($src, '%7B')!==false && strpos($src, '%7D')!==false){
-                    $src = urldecode($src);
-                }
-                return '<amp-iframe'.$matches[1].' src="'.esc_attr($src).'"'.$matches[3].'>';
+                return '<amp-iframe'.$matches[1].' src="'.esc_attr(urldecode($matches[2])).'"'.$matches[3].'>';
             }, $content_buffer);
     }
     if (function_exists('wp_faq_schema_load_plugin_textdomain')) {
