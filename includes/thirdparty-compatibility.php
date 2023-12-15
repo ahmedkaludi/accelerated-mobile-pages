@@ -1878,3 +1878,11 @@ function ampforwp_fix_a_attr_in_anchor_tag($target_link){
  	}
 	return $target_link;
 }
+
+//ftc theme compatibility
+add_action( 'admin_init', 'ampforwp_fTC_theme_remove_scripts');
+function ampforwp_fTC_theme_remove_scripts() {
+    if ( isset ( $_GET['page'] ) && $_GET['page'] == 'amp_options' ) {
+        remove_action('admin_enqueue_scripts', 'ftc_register_admin_scripts');
+    }
+}
