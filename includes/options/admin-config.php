@@ -4870,6 +4870,20 @@ Redux::setSection( $opt_name, array(
                 ),
                 'default'  => '1'
             ),
+
+            array(
+                'id'       => 'amp-swift-menu-link-non-amp-page',
+                'type'     => 'switch',
+                'title'    => esc_html__('Link to Non-AMP page in Menu', 'accelerated-mobile-pages'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 0,
+                'required' => array(
+                                array('amp-design-selector', '=' , '4'),
+                                array('ampforwp-amp-menu-swift', '=' , '1')
+                            ),
+            ),
+
             array(
                     'id'       => 'primary-menu',
                     'type'     => 'switch',

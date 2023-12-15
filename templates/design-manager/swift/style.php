@@ -1275,9 +1275,11 @@ if( isset($redux_builder_amp['amp-swift-menu-cprt']) && $redux_builder_amp['amp-
 	border-bottom:1px solid <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-element-overlay-color-control']['rgba'])?>;
 	margin-left:10px;
 }
+<?php if( function_exists('ampforwp_get_setting') && ampforwp_get_setting('amp-swift-menu-link-non-amp-page') == false ){ ?>
 .cp-rgt .view-non-amp{
 	display:none;
 }
+<?php } ?>
 a.btt:hover {
     cursor: pointer;
 }
