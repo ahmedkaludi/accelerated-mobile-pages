@@ -199,7 +199,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 == Changelog ==
 
 = 1.0.92.1 (16th December 2023) =
-* Fixed:  Cross-Site Scripting issue on shortcode [amp-gist] for contributer+ access
+* Fixed:  Cross-Site Scripting issue on shortcode [amp-gist] for contributer+ access (Reported by Wordfence)
 
 = 1.0.92 (18th November 2023) =
 * New: Compatibility with Publytics.net #5477
