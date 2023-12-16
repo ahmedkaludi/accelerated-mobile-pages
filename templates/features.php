@@ -3607,10 +3607,15 @@ function ampforwp_gist_shortcode_generator($atts) {
    if ( empty ( $height ) ) {
    		$height = '250';
    }
-  	return '<amp-gist data-gistid='. esc_attr($atts['id']) .' 
+   // adding sanitization for gist id 
+   $sanitized_id = preg_replace('/[^a-z0-9\-]/', '', $atts['id']);
+   if($sanitized_id){
+	return '<amp-gist data-gistid='. esc_attr($sanitized_id) .' 
   		layout="fixed-height"
   		height="'. esc_attr($height) .'">
   		</amp-gist>';
+   }
+  
 }
 
 // Code updated and added the JS proper way #336
