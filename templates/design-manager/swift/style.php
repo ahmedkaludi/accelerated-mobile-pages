@@ -629,6 +629,11 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 	@media (max-width: 480px){
 		blockquote p {font-size:20px;}
 	}
+
+	<?php if( true == ampforwp_get_setting('ampforwp-pages-recent-posts') ){ ?>
+	.rc-pt { margin-top: 10px; display: inline-block; width: 100%; } .pg .rc-pt h3 { text-transform: uppercase; font-size: 12px; color: #666; font-weight: 400; } .loop-wrapper { display: flex; flex-wrap: wrap; margin: -15px; } .pg-fsp { margin: 15px; flex-basis: calc(33.33% - 30px); } .pg-fsp-img { margin-bottom: 10px; } .pg-fsp .loop-category { margin-bottom: 20px; } .pg-fsp .loop-category li { display: inline-block; list-style-type: none; margin-right: 10px; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; } .pg-fsp .loop-category li a { color: #555; text-transform: uppercase; } .pg-fsp .loop-category li { font-weight: 500; padding: 8px 0px; } .pg-fsp .loop-category li { } .pg-fsp h2, .pg-fsp h3 { margin: 0px 0px 5px 0px; font-size: 20px; line-height: 25px; font-weight: 500; } .pg-fsp h2 a, .pg-fsp h3 a { color: #191919; } .pg-fsp-cnt p { color: #444; font-size: 13px; line-height: 20px; letter-spacing: 0.10px; word-break: break-word;     margin: 7px 0; } .pg-fsp .loop-date { display: inline-block; color: #191919; }
+	<?php } ?>
+
 <?php } ?>
 <?php } // Level Condition Ends
 if(is_page() || ampforwp_is_front_page()){ ?>
@@ -2342,6 +2347,9 @@ if( true == ampforwp_get_setting('gnrl-sidebar') && true == ampforwp_get_setting
     float: none;
     max-width:100%;
   }
+}
+.pg-fsp {
+    flex-basis: calc(47.33% - 30px);
 }
 <?php }
 

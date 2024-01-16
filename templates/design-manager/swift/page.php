@@ -60,6 +60,50 @@ amp_header(); ?>
 						<?php amp_comments();?>
 					</div>
 				<?php } // Level up Condition ends
+				if( true == ampforwp_get_setting('ampforwp-pages-recent-posts') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {?>
+                    <div class="pg rc-pt">
+                        <h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
+                        <?php
+                        $number_of_posts = 6;
+                        $rcp = ampforwp_get_setting('ampforwp-pages-number-of-recent-posts');
+                        if( !empty($rcp) ){
+                            $number_of_posts = (int) ampforwp_get_setting('ampforwp-pages-number-of-recent-posts');
+                        }
+                        while( amp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
+                            <div class="pg-fsp">
+                                <?php
+                                if(ampforwp_has_post_thumbnail()){
+                                    $width  = 346;
+                                    $height = 188;
+                                    $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+                                    <?php 
+                                if( ampforwp_get_setting('ampforwp-pages-recentpost-image') == true){
+                                ?>
+                                    <div class="pg-fsp-img">
+                                        <?php amp_loop_image($args); ?>
+                                    </div>
+                                <?php } ?>
+                                <?php } ?>
+                                <div class="pg-fsp-cnt">
+                                    <?php amp_loop_category(); ?>
+                                    <?php amp_loop_title(); ?>
+                                    <?php if( true == ampforwp_get_setting('ampforwp-pages-recentpost-excerpt') ){
+        					   				$excep_len = 15;
+        	                                if(ampforwp_get_setting('ampforwp-pages-recentpost-excerpt-len') && is_numeric(ampforwp_get_setting('ampforwp-pages-recentpost-excerpt-len'))){
+        	                                    $excep_len = intval(ampforwp_get_setting('ampforwp-pages-recentpost-excerpt-len'));
+        	                                }
+                                            amp_loop_excerpt($excep_len);
+                                        } ?>
+                				<?php if( true == ampforwp_get_setting('ampforwp-pages-recentpost-date')){?>
+                                <div class="pg-pt-dt">
+                                    <?php amp_loop_date(); ?>
+                                </div>
+                				<?php }?>
+                                </div>
+                            </div>
+                        <?php endwhile; amp_loop('end');  ?>
+                    </div>
+                <?php }
 				if( ampforwp_get_setting('enable-add-this-option') == true && 'above-content' !=  ampforwp_get_setting('swift-add-this-position')) {
 				echo ampforwp_addThis_support();
 			}?>
