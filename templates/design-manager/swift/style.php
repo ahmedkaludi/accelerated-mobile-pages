@@ -1783,7 +1783,8 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 list-style-type:none;display:inline-block;}
 .ss-ic li a{color: #fff;padding: 5px;border-radius: 3px;margin: 0px 10px 10px 0px;display: inline-block;}
-.ss-ic li a.s_tw {color: #1da1f2;}
+.ss-ic li a.s_tw {color: #FFFFFF;}
+.s_tw{background:#000000;}
 .ss-ic li a.s_li {color: #00cc00;}
 <?php if($redux_builder_amp['enable-single-facebook-share'] || $redux_builder_amp['enbl-fb'] ){?>
 .ss-ic ul li .s_fb{	color:#fff;background:#3b5998;}
@@ -1820,7 +1821,6 @@ font-family:"Font Awesome 5 Brands";
 	color: #1da1f2;
 }
 <?php } ?>
-.s_tw{background:#1da1f2;}
 .s_tw:after{
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>
 	content: "\e942";
@@ -1831,7 +1831,17 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 	color:#fff;
 <?php } ?>
 }
-<?php } 
+<?php if ( $ampforwp_font_icon != 'css-icons' ){ ?>
+.s_tw:after {
+    content: "";
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23fff" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>');
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+}
+<?php } ?>
+<?php }
 if($redux_builder_amp['enable-single-linkedin-share'] || $redux_builder_amp['enbl-lk']){?>
 .s_lk{background:#0077b5;}
 .s_lk:after{

@@ -377,7 +377,7 @@ if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 .a-so-facebook{background:#3b5998}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-twitter-share') ) { ?>
-.a-so-twitter{background:#1da1f2}
+.a-so-twitter{color: #fff;background:#000000}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-email-share') ) { ?>
 .a-so-email{background:#000000}
@@ -709,7 +709,7 @@ if( ampforwp_get_setting('ampforwp-advertisement-sticky-type') == 3) {?>
   margin-top:10px;
 }
 .icon-telegram a:before{background:#1da1f2 }
-.icon-twitter a:before{ content: "\f099";background:#1da1f2 }
+.icon-twitter a:before{ content: ""; background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9InN2ZzUiIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCgkgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI1MDBweCIgaGVpZ2h0PSI1MDBweCIKCSB2aWV3Qm94PSIwIDAgNTAwIDUwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTAwIDUwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGVsbGlwc2Ugc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGN4PSIyNTAiIGN5PSIyNTAiIHJ4PSIyNDkuNzM1IiByeT0iMjUwLjIzNSIvPgoJPGcgaWQ9ImxheWVyMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTIuMzkwMDg4LC0yNS4wNTg1OTcpIj4KCQk8cGF0aCBpZD0icGF0aDEwMDkiIGZpbGw9IiNGRkZGRkYiIGQ9Ik00My43NzMsMTMwLjA4bDExOS4zNywxNTkuOTI2TDQzLjAyLDQyMC4wMzNoMjcuMDM3bDEwNS4xNy0xMTMuODQ0bDg0Ljk3MiwxMTMuODQ0aDkxLjk5OQoJCQlMMjI2LjExMSwyNTEuMTE0TDMzNy45MjEsMTMwLjA4aC0yNy4wMzdsLTk2Ljg1MywxMDQuODQ1TDEzNS43NzQsMTMwLjA4SDQzLjc3M3ogTTgzLjUzMiwxNTAuMDMzaDQyLjI2NUwzMTIuNDM0LDQwMC4wOEgyNzAuMTcKCQkJTDgzLjUzMiwxNTAuMDMzeiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPgo=); background-size: cover; position: relative; top: 12px; }
 .icon-facebook a:before{ content: "\f09a";background:#3b5998 }
 .icon-facebook-f a:before{ content: "\f09a";background:#3b5998 }
 .icon-pinterest a:before{ content: "\f0d2";background:#bd081c }
