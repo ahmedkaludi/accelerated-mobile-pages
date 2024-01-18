@@ -309,8 +309,10 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 
 		$new_urls = array();
 
-		foreach ($urls as $k => $v) {
-		  $new_urls[implode($v)] = $v;
+		if(is_array($urls)){
+			foreach ($urls as $k => $v) {
+			  $new_urls[implode($v)] = $v;
+			}
 		}
 
 		$new_urls = array_values($new_urls);
