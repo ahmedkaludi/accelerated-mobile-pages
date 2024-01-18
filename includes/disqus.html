@@ -31,10 +31,13 @@
     };
 
     (function () {
+        let nameRegex = /^[A-Za-z0-9]*$/;
+        if(nameRegex.test(disqus_name) == true){
         var d = document, s = d.createElement('script');
-        s.src = disqus_name;
+        s.src = 'https://' + disqus_name + '.disqus.com';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
+        }
     })();
 
     (function () {
