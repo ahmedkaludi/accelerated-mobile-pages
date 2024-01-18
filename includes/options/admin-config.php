@@ -5220,6 +5220,71 @@ Redux::setSection( $opt_name, array(
                     'default'  => '0'
             ),
             array(
+                    'id'       => 'dsg-alt-menu',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Alternative Menu', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => '0',
+                    'required' => array( 
+                                    array('amp-design-selector', '!=' , '4'),
+                                ),
+            ),
+            array(
+                    'id'             => 'dsg-alt-menu-padding',
+                    'type'           => 'spacing',
+                    'output'         => array('.p-menu'),
+                    'class' => 'child_opt child_opt_arrow',
+                    'mode'           => 'padding',
+                    'units'          => array('px'),
+                    'units_extended' => 'false',
+                    'title'          => esc_html__('Alt Menu Padding', 'accelerated-mobile-pages'),
+                    'default'            => array(
+                        'padding-top'     => '12px', 
+                        'padding-right'   => '25px', 
+                        'padding-bottom'  => '12px', 
+                        'padding-left'    => '25px',
+                        'units'          => 'px', 
+                    ),
+                    'required' => array(
+                      array('dsg-alt-menu','=',1)
+                    )       
+            ),
+            array(
+                    'class' => 'child_opt',
+                    'id'        => 'dsg-alt-menu-text',
+                    'title'     => esc_html__('Alt Menu Text', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'rgba'  => 'rgba(53, 53, 53,1)',
+                        ),
+                        'required' => array(
+                          array('dsg-alt-menu','=',1)
+                        )  
+              ),
+            array(
+                    'class' => 'child_opt',
+                    'id'        => 'dsg-alt-menu-bg',
+                    'title'     => esc_html__('Alt Menu Background', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'rgba'  => 'rgba(239, 239, 239,1)',
+                        ),
+                        'required' => array(
+                          array('dsg-alt-menu','=',1)
+                        )  
+              ),
+            array(
+                    'id'       => 'dsg-alt-drp-dwn',
+                    'type'     => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'    => esc_html__('Dropdown Support', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => 0,
+                    'required' => array( array('dsg-alt-menu','=',1) ),
+            ),
+            array(
                     'id'       => 'amp-swift-search-feature',
                     'type'     => 'switch',
                     'title'    => esc_html__( 'Search', 'accelerated-mobile-pages' ),

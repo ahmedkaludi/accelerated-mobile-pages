@@ -54,3 +54,10 @@ global $redux_builder_amp; ?>
 </amp-sidebar>
 <?php }
 do_action('ampforwp_design_1_after_header');
+if( function_exists('ampforwp_get_setting') && ampforwp_get_setting('dsg-alt-menu') ) { ?>
+<div class="dsg-m-fl">
+    <div class="dsg-menu">
+    <?php echo amp_menu_html( true, array(), 'amp-alternative-menu' ); ?>
+    </div> 
+</div>
+<?php }
