@@ -4874,7 +4874,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'       => 'amp-swift-menu-link-non-amp-page',
                 'type'     => 'switch',
-                'title'    => esc_html__('Link to Non-AMP page in Menu', 'accelerated-mobile-pages'),
+                'title'    => esc_html__('Non-AMP Link in Menu', 'accelerated-mobile-pages'),
                 'true'      => 'true',
                 'false'     => 'false',
                 'default'   => 0,
