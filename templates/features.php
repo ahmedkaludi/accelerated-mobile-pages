@@ -2648,13 +2648,13 @@ function ampforwp_talking_to_robots() {
   	$noindex       = 'index';
 	$nofollow      = 'follow';
   	$aios_class = new All_in_One_SEO_Pack();
-  	if (property_exists($aios_class,'get_page_number')) {
+  	if (is_object($aios_class) && property_exists($aios_class,'get_page_number')) {
   		$page       = $aios_class->get_page_number();
 	}
-	if (property_exists($aios_class,'get_current_options')) {
+	if (is_object($aios_class) && property_exists($aios_class,'get_current_options')) {
 		$opts = $aios_class->get_current_options( array(), 'aiosp' );
 	}
-	if (property_exists($aios_class,'get_robots_meta')) {
+	if (is_object($aios_class) && property_exists($aios_class,'get_robots_meta')) {
   		$aios_meta = $aios_class->get_robots_meta();
  	} 
   	if ( ( is_category() && ! empty( $aioseop_options['aiosp_category_noindex'] ) ) || ( ! is_category() && is_archive() && ! is_tag() && ! is_tax() || ( is_tag() && ! empty( $aioseop_options['aiosp_tags_noindex'] ) ) || ( is_search() && ! empty( $aioseop_options['aiosp_search_noindex'] ) )
@@ -2681,7 +2681,7 @@ function ampforwp_talking_to_robots() {
 				}
 			}
 		}
-		if ( is_singular() && property_exists($aios_class,'is_password_protected') && $aios_class->is_password_protected() && apply_filters( 'aiosp_noindex_password_posts', false ) ) {
+		if ( is_singular() && is_object($aios_class) && property_exists($aios_class,'is_password_protected') && $aios_class->is_password_protected() && apply_filters( 'aiosp_noindex_password_posts', false ) ) {
 			$noindex = 'noindex';
 		}
 

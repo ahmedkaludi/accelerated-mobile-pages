@@ -151,7 +151,7 @@ final class Url
 
         if ($parsedUrl) {
             foreach ($parsedUrl as $key => $value) {
-                if (property_exists($this, $key)) {
+                if (is_object($this) && property_exists($this, $key)) {
                     $this->$key = $value;
                 }
             }
