@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.4
-Stable tag: 1.0.92.1
+Stable tag: 1.0.93
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,19 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.0.93 (19th January 2024) =
+* New: Compatibility with the plugin WP No Base Permalink #5541
+* New: An option of "AMP Alternative Menu—Below the Header" when Theme Design is set on Three #5545
+* New: An option to add the "View NON-AMP version" link in the hamburger menu #5466
+* New: An option where, users can add the single-post design to pages #5482
+* Fixed: Code Improvement #5550
+* Fixed: Change Twitter icon everywhere #5551
+* Fixed: Amp backend design conflict with Vani Theme #5552
+* Fixed: Debug warning #5554
+* Fixed: Slider Revolution images not showing on AMP #5555
+* Fixed: Dual-feature image is visible in the Design Three theme #5556
+* Fixed: CRITICAL Uncaught TypeError - 'property_exists()' Critical Issue" #5557
 
 = 1.0.92.1 (16th December 2023) =
 * Fixed:  Cross-Site Scripting issue on shortcode [amp-gist] for contributer+ access (Reported by Wordfence)
