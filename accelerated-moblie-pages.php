@@ -616,7 +616,7 @@ if ( is_admin() ) {
  				if ( $plugin === $plugin_file ) {
  					$amp_activate = '';
  					if ( function_exists('amp_activate') ) {
- 						$amp_activate = sprintf( __( ' | <span style="color:black;">Status: Addon Mode</span>', 'accelerated-mobile-pages' ) );
+ 						$amp_activate = ' | <span style="color:black;">' . esc_html__('Status: Addon Mode', 'accelerated-mobile-pages') . '</span>';
  					}
  					$settings = array( 'settings' => '<a href="admin.php?page=amp_options&tab=8">' . esc_html__('Settings', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/extensions/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=features">' . esc_html__('Premium Features', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/membership/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=pro">' . esc_html__('Pro', 'accelerated-mobile-pages') . '</a>'. $amp_activate );
  					
