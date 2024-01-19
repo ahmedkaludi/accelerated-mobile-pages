@@ -2712,7 +2712,7 @@ function ampforwp_get_all_tags($id){
                          'id'       => 'ampforwp-disqus-comments-name',
                          'type'     => 'text',
                          'title'    => esc_html__('Disqus Name', 'accelerated-mobile-pages'),
-                         'tooltip-subtitle' => esc_html__('Eg: https://xyz.disqus.com', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => esc_html__('Eg: Please add xyz, if the url is https://xyz.disqus.com', 'accelerated-mobile-pages'),
                          'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
                          'default'  => ''
                      ),
@@ -4870,6 +4870,20 @@ Redux::setSection( $opt_name, array(
                 ),
                 'default'  => '1'
             ),
+
+            array(
+                'id'       => 'amp-swift-menu-link-non-amp-page',
+                'type'     => 'switch',
+                'title'    => esc_html__('Non-AMP Link in Menu', 'accelerated-mobile-pages'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 0,
+                'required' => array(
+                                array('amp-design-selector', '=' , '4'),
+                                array('ampforwp-amp-menu-swift', '=' , '1')
+                            ),
+            ),
+
             array(
                     'id'       => 'primary-menu',
                     'type'     => 'switch',
@@ -5204,6 +5218,71 @@ Redux::setSection( $opt_name, array(
                         array('amp-design-selector', '=' , '1')
                     ),
                     'default'  => '0'
+            ),
+            array(
+                    'id'       => 'dsg-alt-menu',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Alternative Menu', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => '0',
+                    'required' => array( 
+                                    array('amp-design-selector', '!=' , '4'),
+                                ),
+            ),
+            array(
+                    'id'             => 'dsg-alt-menu-padding',
+                    'type'           => 'spacing',
+                    'output'         => array('.p-menu'),
+                    'class' => 'child_opt child_opt_arrow',
+                    'mode'           => 'padding',
+                    'units'          => array('px'),
+                    'units_extended' => 'false',
+                    'title'          => esc_html__('Alt Menu Padding', 'accelerated-mobile-pages'),
+                    'default'            => array(
+                        'padding-top'     => '12px', 
+                        'padding-right'   => '25px', 
+                        'padding-bottom'  => '12px', 
+                        'padding-left'    => '25px',
+                        'units'          => 'px', 
+                    ),
+                    'required' => array(
+                      array('dsg-alt-menu','=',1)
+                    )       
+            ),
+            array(
+                    'class' => 'child_opt',
+                    'id'        => 'dsg-alt-menu-text',
+                    'title'     => esc_html__('Alt Menu Text', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'rgba'  => 'rgba(53, 53, 53,1)',
+                        ),
+                        'required' => array(
+                          array('dsg-alt-menu','=',1)
+                        )  
+              ),
+            array(
+                    'class' => 'child_opt',
+                    'id'        => 'dsg-alt-menu-bg',
+                    'title'     => esc_html__('Alt Menu Background', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'rgba'  => 'rgba(239, 239, 239,1)',
+                        ),
+                        'required' => array(
+                          array('dsg-alt-menu','=',1)
+                        )  
+              ),
+            array(
+                    'id'       => 'dsg-alt-drp-dwn',
+                    'type'     => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'    => esc_html__('Dropdown Support', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => 0,
+                    'required' => array( array('dsg-alt-menu','=',1) ),
             ),
             array(
                     'id'       => 'amp-swift-search-feature',
@@ -7936,6 +8015,64 @@ else{
                       'title'    => esc_html__('Subpages/ChildPages', 'accelerated-mobile-pages'),
                       'tooltip-subtitle' => esc_html__('Shows a List of Subpages'),                  
                   ),
+             array(
+                    'id'       => 'ampforwp-pages-recent-posts',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Recent Posts below Content', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => sprintf('%s <a href="%s" target="_blank">%s</a> %s', 
+                    esc_html__('Enable this option to show recent posts in AMP and', 'accelerated-mobile-pages'), esc_url('https://ampforwp.com/tutorials/article/how-to-enable-recent-posts-below-related-in-single-page/'),esc_html__('Click Here','accelerated-mobile-pages'), esc_html__('for more info','accelerated-mobile-pages')), 
+                    'default'  => 0,
+                    'required' => array('amp-design-selector' , '=' , '4'),
+             ),
+             array(
+                    'id'        => 'ampforwp-pages-recentpost-date',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Recent Posts Date', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
+                    'required' => array('ampforwp-pages-recent-posts' , '=' , '1'),
+                 ),
+             array(
+                    'id'        => 'ampforwp-pages-recentpost-image',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Image', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop'),
+                    'required' => array('ampforwp-pages-recent-posts' , '=' , '1'),
+                 ),
+             array(
+                    'id'        => 'ampforwp-pages-recentpost-excerpt',
+                    'type'      => 'switch',
+                    'class' => 'child_opt child_opt_arrow',
+                    'title'     => esc_html__('Excerpt', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop'),
+                    'required' => array('ampforwp-pages-recent-posts' , '=' , '1'),
+                 ),
+             array(
+                    'id'        =>'ampforwp-pages-recentpost-excerpt-len',
+                    'class' => 'child_opt',
+                    'type'      =>'text',
+                    'tooltip-subtitle'  => esc_html__('Enter the number of words Eg: 15','accelerated-mobile-pages'),
+                    'title'     => esc_html__('Excerpt Length','accelerated-mobile-pages'),
+                    'required' => array(
+                    array('amp-design-selector', '=' , '4'),
+                    array('ampforwp-pages-recentpost-excerpt', '=' , '1'),
+                    ),
+                    'validate'  =>'numeric',
+                    'default'   =>'15',
+             ),
+             array(
+                    'id'       => 'ampforwp-pages-number-of-recent-posts',
+                    'type'     => 'text',
+                    'class' => 'child_opt',
+                    'title'    => esc_html__('Number of Recent Post', 'accelerated-mobile-pages'),
+                    'validate' => 'numeric',
+                    'default'  => '6',
+                    'required' => array('ampforwp-pages-recent-posts' , '=' , '1'),
+                 ),
              array(
                       'id'       => 'ampforwp-page-social',
                       'type'     => 'switch',

@@ -279,7 +279,7 @@ class AMPforWP_Fields
 			if($this->default!="Other"){
 				$hide = 'hide';
 			}
-			$output .= '<div class="ux-other-site-type '.esc_attr($hide).'"><h2 class="ux-label trac-id site-tpy">Mention the type of your site</h2></div><input type="text" id="'.esc_attr($fields['data-value-id']).'" class="'.esc_attr($this->class).' '.esc_attr($hide).'" value="'.esc_attr($fields['data-value']).'" placeholder="Enter your website type">';
+			$output .= '<div class="ux-other-site-type '.esc_attr($hide).'"><h2 class="ux-label trac-id site-tpy">'.esc_html__('Mention the type of your site').'</h2></div><input type="text" id="'.esc_attr($fields['data-value-id']).'" class="'.esc_attr($this->class).' '.esc_attr($hide).'" value="'.esc_attr($fields['data-value']).'" placeholder="'.esc_attr__('Enter your website type').'">';
 		}
 		if( $this->data_href ){
 			if ( isset($fields['data-href-id']) ) {
@@ -288,7 +288,7 @@ class AMPforWP_Fields
 			$output .= '<input type="hidden" value="'.esc_attr($this->default).'" id="'.esc_attr($hrf_id).'">';
 		}
 		if($this->id=="ampforwp-ux-analytics-more"){
-			$output .= '<span><button type="button" id="ampforwp-add-more-analytics" class="">Add</button></span>';
+			$output .= sprintf( __( '<span><button type="button" id="ampforwp-add-more-analytics" class="">Add</button></span>', 'accelerated-mobile-pages' ) );
 		}
 
 		$output .= '</div>';
@@ -395,7 +395,7 @@ class AMPforWP_Fields
 				</div>
 				<div class="upload_button_div amp-ux-upload '.esc_attr($logo_css).'">
 					<span class="button media_upload_button media-amp-ux-opt-media media-'.intval($this->id).'" id="opt-media-media">'.esc_attr($but_name).'</span>
-					<span class="amp-ux-img-re-txt">(Recommended Size: 120 x 90)</span>				
+					<span class="amp-ux-img-re-txt">'.esc_html__('Recommended Size: 120 x 90', 'accelerated-mobile-pages').'</span>				
 				</div>';
 			$output .= '</div></div>';
         echo $output; /* $output XSS escaped */
@@ -469,7 +469,7 @@ class AMPforWP_Fields
 			}
 			$output .= '<div class="ux-field-foot-cont"><a href="'.esc_url($f['url']).'" target="_blank">
 							<i class="ux-foot-icon '.esc_attr($f['icon']).'"></i>'.$svg.'
-							<p>'.esc_html__($f['desc']).'</p></a>
+							<p>'.esc_html($f['desc']).'</p></a>
 						</div>';
 		}
 		$output .= '</div>';

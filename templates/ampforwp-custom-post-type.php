@@ -16,8 +16,6 @@ if ( false == $ampforwp_cpt_plugin_check ) {
 
     if ( ! function_exists('ampforwp_cpt_post_types_new') ) {
         function ampforwp_cpt_post_types_new(){
-            $args       = "";
-            $get_post_types = "";
             $post_types   = $options = array();
 
             $args = array(
@@ -25,6 +23,7 @@ if ( false == $ampforwp_cpt_plugin_check ) {
             );
 
             $get_post_types = get_post_types( $args, 'objects');
+            if(is_array($get_post_types)){
             foreach ( $get_post_types  as $post_type ) {
                 $name = $post_type->name;
                 $value = $post_type->label;
@@ -32,6 +31,7 @@ if ( false == $ampforwp_cpt_plugin_check ) {
                     continue;
                 }
                 $post_types[ $name ] = $value;
+            }
             }
 
             $post_types = apply_filters( 'ampforwp_cpt_modify_post_types', $post_types );

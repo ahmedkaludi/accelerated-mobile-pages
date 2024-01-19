@@ -218,9 +218,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	     // HIDE/SHOW TAG AND CATEGORY #4326
 	  if(is_tag() || is_category() || is_tax()){
 		$amp_queried_object = get_queried_object();
-		if (property_exists($amp_queried_object, 'term_id'))
+		if (is_object($amp_queried_object) && property_exists($amp_queried_object, 'term_id'))
 		{
-			$term_id = get_queried_object()->term_id;
+			$term_id = $amp_queried_object->term_id;
 			$tax_status = ampforwp_get_taxonomy_meta($term_id,'status');
 			if($tax_status==false){
 				 return;
@@ -2280,7 +2280,7 @@ function ampforwp_add_disqus_support() {
 				$disqus_script_host_url = esc_url( $redux_builder_amp['ampforwp-disqus-host-file'] );
 			}
 
-			$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.rawurlencode(get_permalink()).'&disqus_name='. esc_url( $redux_builder_amp['ampforwp-disqus-comments-name'] ) ."/embed.js"  ;
+			$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.rawurlencode(get_permalink()).'&disqus_name='. esc_attr( $redux_builder_amp['ampforwp-disqus-comments-name'] ) ."/embed.js"  ;
 			?>
 			<section class="amp-wp-content post-comments amp-wp-article-content amp-disqus-comments" id="comments">
 				<amp-iframe
@@ -2648,13 +2648,13 @@ function ampforwp_talking_to_robots() {
   	$noindex       = 'index';
 	$nofollow      = 'follow';
   	$aios_class = new All_in_One_SEO_Pack();
-  	if (property_exists($aios_class,'get_page_number')) {
+  	if (is_object($aios_class) && property_exists($aios_class,'get_page_number')) {
   		$page       = $aios_class->get_page_number();
 	}
-	if (property_exists($aios_class,'get_current_options')) {
+	if (is_object($aios_class) && property_exists($aios_class,'get_current_options')) {
 		$opts = $aios_class->get_current_options( array(), 'aiosp' );
 	}
-	if (property_exists($aios_class,'get_robots_meta')) {
+	if (is_object($aios_class) && property_exists($aios_class,'get_robots_meta')) {
   		$aios_meta = $aios_class->get_robots_meta();
  	} 
   	if ( ( is_category() && ! empty( $aioseop_options['aiosp_category_noindex'] ) ) || ( ! is_category() && is_archive() && ! is_tag() && ! is_tax() || ( is_tag() && ! empty( $aioseop_options['aiosp_tags_noindex'] ) ) || ( is_search() && ! empty( $aioseop_options['aiosp_search_noindex'] ) )
@@ -2681,7 +2681,7 @@ function ampforwp_talking_to_robots() {
 				}
 			}
 		}
-		if ( is_singular() && property_exists($aios_class,'is_password_protected') && $aios_class->is_password_protected() && apply_filters( 'aiosp_noindex_password_posts', false ) ) {
+		if ( is_singular() && is_object($aios_class) && property_exists($aios_class,'is_password_protected') && $aios_class->is_password_protected() && apply_filters( 'aiosp_noindex_password_posts', false ) ) {
 			$noindex = 'noindex';
 		}
 
@@ -3607,10 +3607,14 @@ function ampforwp_gist_shortcode_generator($atts) {
    if ( empty ( $height ) ) {
    		$height = '250';
    }
-  	return '<amp-gist data-gistid='. esc_attr($atts['id']) .' 
+   // adding sanitization for gist id 
+   $sanitized_id = preg_replace('/[^a-z0-9\-]/', '', $atts['id']);
+   if($sanitized_id){
+	return '<amp-gist data-gistid='. esc_attr($sanitized_id) .' 
   		layout="fixed-height"
   		height="'. esc_attr($height) .'">
   		</amp-gist>';
+   }
 }
 
 // Code updated and added the JS proper way #336

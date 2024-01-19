@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.92
+Version: 1.0.93
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.92');
+define('AMPFORWP_VERSION','1.0.93');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 define('AMPFORWP_ANALYTICS_URL',plugin_dir_url(__FILE__).'includes/features/analytics');
 if(!defined('AMPFROWP_HOST_NAME')){
@@ -616,7 +616,7 @@ if ( is_admin() ) {
  				if ( $plugin === $plugin_file ) {
  					$amp_activate = '';
  					if ( function_exists('amp_activate') ) {
- 						$amp_activate = ' | <span style="color:black;">Status: Addon Mode</span style=>';
+ 						$amp_activate = sprintf( __( ' | <span style="color:black;">Status: Addon Mode</span>', 'accelerated-mobile-pages' ) );
  					}
  					$settings = array( 'settings' => '<a href="admin.php?page=amp_options&tab=8">' . esc_html__('Settings', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/extensions/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=features">' . esc_html__('Premium Features', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/membership/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=pro">' . esc_html__('Pro', 'accelerated-mobile-pages') . '</a>'. $amp_activate );
  					
@@ -1544,11 +1544,11 @@ function ampforwp_update_data_when_saved($options, $changed_values) {
 	}
 }
 
-function ampforwp_update_data_when_reset($rest_object = '') {
+function ampforwp_update_data_when_reset($rest_object = null) {
 	if(!current_user_can( 'manage_options' )){
 		return ;
 	}
-	if ( isset( $rest_object->parent->transients ) ) {
+	if ( is_object($rest_object) && is_object($parent) && isset( $rest_object->parent->transients ) ) {
 		$updatedDataForTransient = array(
 			'hide-amp-categories2',
 			'amp-design-3-category-selector',

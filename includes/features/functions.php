@@ -715,7 +715,7 @@ function ampforwp_url_purifier($url){
     $wpml_lang_checker          = true;
     $endpoint                   = AMPFORWP_AMP_QUERY_VAR;
     $get_permalink_structure = get_option('permalink_structure');
-    $checker = $redux_builder_amp['amp-core-end-point'];
+    $checker = isset($redux_builder_amp['amp-core-end-point']) ? $redux_builder_amp['amp-core-end-point'] : false;
     $endpointq = '?' . $endpoint;
     if ( empty( $get_permalink_structure ) ) {
         if ( is_home() || is_archive() || is_front_page() ) {

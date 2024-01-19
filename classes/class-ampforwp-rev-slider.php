@@ -155,6 +155,13 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 									'bgtype' => esc_attr($bgtype)
 								),$image_id);
 								}
+							}else{
+								$urls[] = apply_filters('amp_gallery_image_params', array(
+									'url' => $url,
+									'width' => intval($width),
+									'height' => intval($height),
+									'bgtype' => esc_attr($bgtype)
+								),$image_id);
 							}
 						}
 					}
@@ -299,9 +306,19 @@ class AMP_Rev_Slider_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Han
 				}
 			}
 		}
+
+		$new_urls = array();
+
+		if(is_array($urls)){
+			foreach ($urls as $k => $v) {
+			  $new_urls[implode($v)] = $v;
+			}
+		}
+
+		$new_urls = array_values($new_urls);
 		
 		return $this->render( array(
-			'images' => $urls,
+			'images' => $new_urls,
 		) );
 	}
 
