@@ -183,7 +183,7 @@ function ampforwp_framework_get_disqus_comments(){
 			$disqus_script_host_url = esc_url( $redux_builder_amp['ampforwp-disqus-host-file'] );
 		}
 
-		$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.rawurlencode(get_permalink()).'&disqus_name='. esc_attr( ampforwp_get_setting('ampforwp-disqus-comments-name') ) ."/embed.js"  ;
+		$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.rawurlencode(get_permalink()).'&disqus_name='. esc_url( ampforwp_get_setting('ampforwp-disqus-comments-name') ) ."/embed.js"  ;
 		?>
 		<section class="amp-disqus-comments">
 			<amp-iframe

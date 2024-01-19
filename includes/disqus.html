@@ -31,10 +31,10 @@
     };
 
     (function () {
-        let nameRegex = /^[A-Za-z0-9]*$/;
-        if(nameRegex.test(disqus_name) == true){
+        let isDisq = disqus_name.slice(-11);
+        if(isDisq === '.disqus.com'){
         var d = document, s = d.createElement('script');
-        s.src = 'https://' + disqus_name + '.disqus.com';
+        s.src = disqus_name;
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
         }
