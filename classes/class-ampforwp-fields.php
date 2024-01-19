@@ -288,7 +288,7 @@ class AMPforWP_Fields
 			$output .= '<input type="hidden" value="'.esc_attr($this->default).'" id="'.esc_attr($hrf_id).'">';
 		}
 		if($this->id=="ampforwp-ux-analytics-more"){
-			$output .= sprintf( __( '<span><button type="button" id="ampforwp-add-more-analytics" class="">Add</button></span>', 'accelerated-mobile-pages' ) );
+			$output .= '<span><button type="button" id="ampforwp-add-more-analytics" class="">' . esc_html__('Add', 'accelerated-mobile-pages') . '</button></span>';
 		}
 
 		$output .= '</div>';

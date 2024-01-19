@@ -2712,7 +2712,7 @@ function ampforwp_get_all_tags($id){
                          'id'       => 'ampforwp-disqus-comments-name',
                          'type'     => 'text',
                          'title'    => esc_html__('Disqus Name', 'accelerated-mobile-pages'),
-                         'tooltip-subtitle' => esc_html__('Eg: Please add xyz, if the url is https://xyz.disqus.com', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => esc_html__('Eg: https://xyz.disqus.com', 'accelerated-mobile-pages'),
                          'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
                          'default'  => ''
                      ),
