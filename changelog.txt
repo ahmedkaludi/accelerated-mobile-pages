@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.93.1 (22nd January 2024) =
+* Fixed : CSS syntax error in the 'style amp-custom tag #5564
+
 = 1.0.93 (19th January 2024) =
 * New: Compatibility with the plugin WP No Base Permalink #5541
 * New: An option of "AMP Alternative Menu—Below the Header" when Theme Design is set on Three #5545
