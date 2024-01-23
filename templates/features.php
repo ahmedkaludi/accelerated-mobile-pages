@@ -8733,7 +8733,7 @@ function ampforwp_include_required_scripts($content){
 	$amp_video = $xpath->query("//amp-video");
 	foreach($amp_video as $node) {
 		if($node->hasAttribute('dock')){
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking') || ampforwp_get_setting('amp-theme-video-docking')){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
@@ -8752,7 +8752,7 @@ function ampforwp_include_required_scripts($content){
 	$amp_video_iframe = $xpath->query("//amp-video-iframe");
 	foreach($amp_video_iframe as $node) {
 		if($node->hasAttribute('dock')){
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking') || ampforwp_get_setting('amp-theme-video-docking')){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
@@ -8771,7 +8771,7 @@ function ampforwp_include_required_scripts($content){
 	$amp_youtube = $xpath->query("//amp-youtube");
 	foreach($amp_youtube as $node) {
 		if($node->hasAttribute('dock')){
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking') || ampforwp_get_setting('amp-theme-video-docking')){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
@@ -8790,7 +8790,7 @@ function ampforwp_include_required_scripts($content){
 	$amp_brid_player = $xpath->query("//amp-brid-player");
 	foreach($amp_brid_player as $node) {
 		if($node->hasAttribute('dock')){
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking') || ampforwp_get_setting('amp-theme-video-docking')){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
@@ -8808,7 +8808,7 @@ function ampforwp_include_required_scripts($content){
 	$amp_brightcove = $xpath->query("//amp-brightcove");
 	foreach($amp_brightcove as $node) {
 		if($node->hasAttribute('dock')){
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking') || ampforwp_get_setting('amp-theme-video-docking')){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
