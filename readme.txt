@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.4
-Stable tag: 1.0.93.1
+Stable tag: 1.0.93.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+
+= 1.0.93.2 (1st February 2024) =
+* Fixed: Video docking not working in AMP Newspaper theme #5566
+* Fixed: Video not loading on Amp if video set in Soledad theme Video Embed. #5571
 
 = 1.0.93.1 (22nd January 2024) =
 * Fixed : CSS syntax error in the 'style amp-custom tag #5564
