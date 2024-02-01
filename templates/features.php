@@ -8733,7 +8733,7 @@ function ampforwp_include_required_scripts($content){
 	$amp_video = $xpath->query("//amp-video");
 	foreach($amp_video as $node) {
 		if($node->hasAttribute('dock')){
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking') || ampforwp_get_setting('amp-theme-video-docking')){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
@@ -8752,7 +8752,7 @@ function ampforwp_include_required_scripts($content){
 	$amp_video_iframe = $xpath->query("//amp-video-iframe");
 	foreach($amp_video_iframe as $node) {
 		if($node->hasAttribute('dock')){
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking') || ampforwp_get_setting('amp-theme-video-docking')){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
@@ -8771,7 +8771,7 @@ function ampforwp_include_required_scripts($content){
 	$amp_youtube = $xpath->query("//amp-youtube");
 	foreach($amp_youtube as $node) {
 		if($node->hasAttribute('dock')){
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking') || ampforwp_get_setting('amp-theme-video-docking')){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
@@ -8790,7 +8790,7 @@ function ampforwp_include_required_scripts($content){
 	$amp_brid_player = $xpath->query("//amp-brid-player");
 	foreach($amp_brid_player as $node) {
 		if($node->hasAttribute('dock')){
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking') || ampforwp_get_setting('amp-theme-video-docking')){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
@@ -8808,7 +8808,7 @@ function ampforwp_include_required_scripts($content){
 	$amp_brightcove = $xpath->query("//amp-brightcove");
 	foreach($amp_brightcove as $node) {
 		if($node->hasAttribute('dock')){
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')){
+			if(ampforwp_get_setting('ampforwp-amp-video-docking') || ampforwp_get_setting('amp-theme-video-docking')){
 				$celem = 'element';
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
@@ -9762,6 +9762,50 @@ function ampforwp_pennews_audio_embed(){
 			) ) );
 	$sanitized_html = $sanitizer->get_amp_content();
 	echo $sanitized_html;
+}
+
+if(function_exists('penci_soledad_theme_setup')){
+	add_action('ampforwp_before_post_content','ampforwp_penci_format_video_embed');
+	add_filter('ampforwp_modify_featured_image','ampforwp_penci_remove_featured_image');
+}
+
+//Show Video
+function ampforwp_penci_format_video_embed($content){
+	$penci_video = get_post_meta( get_the_ID(), '_format_video_embed', true );
+	if(!empty($penci_video) && $penci_video != ''){
+		$video_id = '';
+		$penci_video = 'https://www.youtube.com/watch?v=pMFEDv9Chlw';
+		$video_html = '<div class="amp fluid-width-video-wrapper">';
+		if(strpos($penci_video, 'youtu') !== false){
+			if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $penci_video, $match)){
+				$video_id = $match[1];
+				$video_html .= '<amp-youtube width="480" height="270" layout="responsive" data-videoid="'.$video_id.'" loop autoplay></amp-youtube>';
+			}
+		}elseif(strpos($penci_video, 'vimeo')){
+			if (preg_match('%^https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)(?:[?]?.*)$%im', $penci_video, $regs)){
+	            $video_id = $regs[3];
+	            $video_html .= '<amp-vimeo data-videoid="'.$video_id.'" layout="responsive" width="16" height="9" loop autoplay></amp-vimeo>';
+	        }
+	  }else{
+			$video_html .= '<amp-video width="480" height="270" src="'.$penci_video.'" layout="responsive" loop autoplay>
+				<div fallback>
+					<p>Your browser doesn\'t support HTML5 video.</p>
+				</div>
+				<source type="video/mp4" src="'.$penci_video.'>
+			</amp-video>';
+		}
+		$video_html .= '</div>';
+		echo $video_html;
+	}
+}
+
+//Remove Image if video is present.
+function ampforwp_penci_remove_featured_image($amp_html){
+	$penci_video = get_post_meta( get_the_ID(), '_format_video_embed', true );
+	if(!empty($penci_video) && $penci_video != ''){
+		$amp_html = false;
+	}	
+	return $amp_html;
 }	
 
 //Alignment issue with Gutenberg image block #4997

@@ -39,7 +39,7 @@ class AMP_Video_Sanitizer extends AMP_Base_Sanitizer {
 
 			$new_attributes = $this->enforce_fixed_height( $new_attributes );
 			$new_attributes = $this->enforce_sizes_attribute( $new_attributes );
-			if(ampforwp_get_setting('ampforwp-amp-video-docking')==true){
+			if( ampforwp_get_setting('ampforwp-amp-video-docking') == true || ampforwp_get_setting('amp-theme-video-docking')==true ){
 				$new_attributes['dock'] = '#dock-slot';
 				$new_attributes['width'] = '500';
 				$new_attributes['layout'] = 'responsive';

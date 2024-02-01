@@ -126,11 +126,19 @@ function amppb_save_layout_data(){
 
 add_action( 'wp_ajax_amppb_remove_saved_layout_data', 'amppb_remove_saved_layout_data');
 function amppb_remove_saved_layout_data(){
+
+	$layoutid = intval($_POST['layoutid']);
+
+	// Exit if the user does not have proper permissions
+	if ( !current_user_can( 'delete_post', $layoutid ) ) {
+		echo json_encode(array("status"=>300,"message"=>'User not have authority'));
+		die;
+	}
+
 	check_ajax_referer( 'verify_pb', 'verify_nonce' );
 	$users = wp_get_current_user();
 	$roles = $users->roles;
 	if(in_array("administrator", $roles) || in_array("editor", $roles)||in_array("author", $roles)|| in_array("contributor", $roles)){
-		$layoutid = intval($_POST['layoutid']);
 		$is_delete = wp_delete_post($layoutid);
 		$allPostLayout = array();
 		$args = array(
