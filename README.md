@@ -202,6 +202,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 = 1.0.93.2 (1st February 2024) =
 * Fixed: Video docking not working in AMP Newspaper theme #5566
 * Fixed: Video not loading on Amp if video set in Soledad theme Video Embed. #5571
+* Fixed: Authenticated(Contributor+) Arbitrary Post Deletion Vulnerability (Reported by Wordfence)
 
 = 1.0.93 (19th January 2024) =
 * New: Compatibility with the plugin WP No Base Permalink #5541
