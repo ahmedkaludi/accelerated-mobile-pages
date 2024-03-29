@@ -8,7 +8,7 @@ if( class_exists('Simple_Author_Box') && !isset($args['author_info']) ){
     return;
 }
 global $post, $redux_builder_amp;
-$post_author = get_userdata($post->post_author);
+$post_author = is_object($post) ? get_userdata($post->post_author):'';
 if(empty($post_author)){
     return;
 }
