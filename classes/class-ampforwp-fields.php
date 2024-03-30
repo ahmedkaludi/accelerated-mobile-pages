@@ -279,7 +279,7 @@ class AMPforWP_Fields
 			if($this->default!="Other"){
 				$hide = 'hide';
 			}
-			$output .= '<div class="ux-other-site-type '.esc_attr($hide).'"><h2 class="ux-label trac-id site-tpy">'.esc_html__('Mention the type of your site').'</h2></div><input type="text" id="'.esc_attr($fields['data-value-id']).'" class="'.esc_attr($this->class).' '.esc_attr($hide).'" value="'.esc_attr($fields['data-value']).'" placeholder="'.esc_attr__('Enter your website type').'">';
+			$output .= '<div class="ux-other-site-type '.esc_attr($hide).'"><h2 class="ux-label trac-id site-tpy">'.esc_html__('Mention the type of your site').'</h2></div><input type="text" id="'.esc_attr($fields['data-value-id']).'" class="'.esc_attr($this->class).' '.esc_attr($hide).'" value="'.esc_attr($fields['data-value']).'" placeholder="'.esc_attr__('Enter your website type','accelerated-mobile-pages').'">';
 		}
 		if( $this->data_href ){
 			if ( isset($fields['data-href-id']) ) {
@@ -381,7 +381,7 @@ class AMPforWP_Fields
 			$logo_css = "amp-ux-chng-lg";
 		}
 		$output .= '<div id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).'" data-id="opt-media" data-type="media">
-				<input placeholder="No media selected" type="text" class="upload large-text hide" id="amp-ux-opt-media-url" value="'.intval($id).'" readonly="readonly">
+				<input placeholder="'.esc_attr__('No media selected','accelerated-mobile-pages').'" type="text" class="upload large-text hide" id="amp-ux-opt-media-url" value="'.intval($id).'" readonly="readonly">
 				<input type="hidden" class="data" data-mode="image">
 				<input type="hidden" class="library-filter" data-lib-filter="">
 				<input type="hidden" class="upload-id " name="amp-ux-logo-id" id="amp-ux-logo-id" value="'.intval($id).'">

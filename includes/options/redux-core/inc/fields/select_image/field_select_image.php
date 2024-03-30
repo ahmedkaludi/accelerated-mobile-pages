@@ -64,7 +64,7 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                 }
 
                 // Process placeholder
-                $placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : __( 'Select an item', 'accelerated-mobile-pages' );
+                $placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : esc_attr__( 'Select an item', 'accelerated-mobile-pages' );
 
                 if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
                     $select2_params = wp_json_encode( $this->field['select2'] );

@@ -154,7 +154,7 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
                 $hide = '';
             }
 
-            $placeholder = isset( $this->field['placeholder'] ) ? $this->field['placeholder'] : __( 'No media selected', 'accelerated-mobile-pages' );
+            $placeholder = isset( $this->field['placeholder'] ) ? $this->field['placeholder'] : esc_attr__( 'No media selected', 'accelerated-mobile-pages' );
 
             $readOnly = ' readonly="readonly"';
             if ( isset( $this->field['readonly'] ) && $this->field['readonly'] === false ) {
