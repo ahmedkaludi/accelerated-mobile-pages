@@ -141,11 +141,11 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 	        if(isset($data['image_crop']) && $data['image_crop'] != ""){
 				$width 	= $data['image_crop_width'];
 				if(empty($width)){
-					$width = $thumb_url_array_2[1];
+					$width = $thumb_width;
 				}
 				$height = $data['image_crop_height'];
 				if(empty($height)){
-					$height = $thumb_url_array_2[2];
+					$height = $thumb_height;
 				}
 				if ( isset($redux_builder_amp['ampforwp-retina-images']) && true == $redux_builder_amp['ampforwp-retina-images'] ) {
 					$resolution = 2;
