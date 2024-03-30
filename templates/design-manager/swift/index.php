@@ -20,7 +20,7 @@ global $redux_builder_amp; ?>
 }
 		$i=1;
 
-		while(amp_loop('start')):
+		while(ampforwp_loop('start')):
 		if($i==1 && $paged==1){ 
 			?>
 			<div class="fbp">
@@ -34,14 +34,14 @@ global $redux_builder_amp; ?>
 
 					$argsbig = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$fimg_width,'image_crop_height'=>$fimg_height, 'responsive'=> true); ?>
 			    <div class="fbp-img fbp-c">
-			    	<?php amp_loop_image($argsbig); ?>
+			    	<?php ampforwp_loop_image($argsbig); ?>
 			    </div> <?php } ?>
 			    <div class="fbp-cnt fbp-c">
-			    	<?php amp_loop_category(); ?>
-				    <?php amp_loop_title(); ?>
+			    	<?php ampforwp_loop_category(); ?>
+				    <?php ampforwp_loop_title(); ?>
 				    <div class="at-dt">
 					    <?php 
-				    	if( true == ampforwp_get_setting('amforwp-homepage-date-switch')){	amp_loop_date();
+				    	if( true == ampforwp_get_setting('amforwp-homepage-date-switch')){	ampforwp_loop_date();
 						} 
 						?>
 					    <?php amp_author_box( 
@@ -49,7 +49,7 @@ global $redux_builder_amp; ?>
 										); ?>
 					</div>
 				    <?php if( ampforwp_check_excerpt() ) { 
-				    amp_loop_excerpt(ampforwp_get_setting('amp-swift-excerpt-len'));
+				    ampforwp_loop_excerpt(ampforwp_get_setting('amp-swift-excerpt-len'));
 			    	} ?>
 			    </div>
 			</div>
@@ -64,29 +64,29 @@ global $redux_builder_amp; ?>
 				<?php if( ampforwp_has_post_thumbnail() ) { 
 					$args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
 				    <div class="fsp-img">
-				    	<?php amp_loop_image($args); ?>
+				    	<?php ampforwp_loop_image($args); ?>
 				    </div>
 				<?php } ?>    
 			    <div class="fsp-cnt">
-			    	<?php amp_loop_category(); ?>
-				    <?php amp_loop_title(); ?>
+			    	<?php ampforwp_loop_category(); ?>
+				    <?php ampforwp_loop_title(); ?>
 				    <div class="pt-dt">
 				    <?php if( true == ampforwp_get_setting('amforwp-homepage-date-switch')){?>
-				    	<?php amp_loop_date(); ?>
+				    	<?php ampforwp_loop_date(); ?>
 					<?php }?>
 					<?php if( true == ampforwp_get_setting('amforwp-homepage-author-switch')){?>
 				    	<?php amp_author_box( array('author_pub_name'=>true,)); ?>
 					<?php } ?>
 				    </div>
 				    <?php if( ampforwp_check_excerpt() ) { 
-				    amp_loop_excerpt(ampforwp_get_setting('amp-swift-excerpt-len'));
+				    ampforwp_loop_excerpt(ampforwp_get_setting('amp-swift-excerpt-len'));
 			    	} ?>	
 			    </div>
 			</div>
 		<?php } $i++; ?>
-		<?php endwhile; amp_loop('end');  ?>
+		<?php endwhile; ampforwp_loop('end');  ?>
 		<?php do_action('ampforwp_loop_before_pagination') ?>
-	<?php amp_pagination(); ?>
+	<?php ampforwp_pagination(); ?>
 	<?php do_action('ampforwp_home_below_loop') ?>
    </div>
    <?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
@@ -103,6 +103,6 @@ global $redux_builder_amp; ?>
 		</div>
 	<?php } ?>
 </div>
-<?php //amp_loop_template(); ?>
+<?php //ampforwp_loop_template(); ?>
 
 <?php amp_footer(); ?>

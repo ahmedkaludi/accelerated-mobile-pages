@@ -132,7 +132,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 									$width = 150;
 									$height = 150;
 									$image_args = array("tag"=>'div','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height,'responsive'=> 'true','referer'=>"related_post" );
-									amp_loop_image($image_args);
+									ampforwp_loop_image($image_args);
 								} 
 								}?>
 				                <div class="related_link">

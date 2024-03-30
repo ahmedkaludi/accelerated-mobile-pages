@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$height = $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'];
 			}
 			$image_args = array("tag"=>'div',"tag_class"=>'home-post_image','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height); ?>
-					<?php amp_loop_image($image_args); ?>
+					<?php ampforwp_loop_image($image_args); ?>
 				<?php } ?>
 
 			<div class="amp-wp-post-content">
@@ -79,7 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					if ( true == $redux_builder_amp['excerpt-option-design-2'] ) {
 						$class = 'small-screen-excerpt';
 					}
-					amp_loop_excerpt( ampforwp_get_setting('amp-design-2-excerpt'), 'p', $class );
+					ampforwp_loop_excerpt( ampforwp_get_setting('amp-design-2-excerpt'), 'p', $class );
 				} ?>
 		    </div>
 		    <div class="amp-wp-meta">

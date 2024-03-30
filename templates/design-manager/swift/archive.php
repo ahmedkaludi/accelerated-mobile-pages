@@ -9,12 +9,12 @@ amp_header() ?>
 		echo ampforwp_yoast_breadcrumbs_output();
 	  }?>
 	<div class="arch-tlt">
-		<?php amp_archive_title(); ?>
+		<?php ampforwp_archive_title(); ?>
 	</div>
 	<div class="arch-dsgn">
 		<div class="arch-psts">
-			<?php amp_loop_template(); ?>
-			<?php amp_pagination(); ?>
+			<?php ampforwp_loop_template(); ?>
+			<?php ampforwp_pagination(); ?>
 		</div>
 		<?php 
 

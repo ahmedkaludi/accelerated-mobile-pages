@@ -92,9 +92,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 						$width = 100;
 						$height = 75;
 						$image_args = array("tag"=>'div',"tag_class"=>'home-post-image','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height); ?>
-						<?php amp_loop_image($image_args); ?>
+						<?php ampforwp_loop_image($image_args); ?>
 					<?php } ?>
-					<?php if( ampforwp_check_excerpt() ) { amp_loop_excerpt( ampforwp_get_setting('amp-design-1-excerpt') ); } ?>
+					<?php if( ampforwp_check_excerpt() ) { ampforwp_loop_excerpt( ampforwp_get_setting('amp-design-1-excerpt') ); } ?>
 				</div>
 	        </div>
 	    <?php

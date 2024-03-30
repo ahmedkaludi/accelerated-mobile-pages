@@ -69,7 +69,7 @@ amp_header(); ?>
                         if( !empty($rcp) ){
                             $number_of_posts = (int) ampforwp_get_setting('ampforwp-pages-number-of-recent-posts');
                         }
-                        while( amp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
+                        while( ampforwp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
                             <div class="pg-fsp">
                                 <?php
                                 if(ampforwp_has_post_thumbnail()){
@@ -80,28 +80,28 @@ amp_header(); ?>
                                 if( ampforwp_get_setting('ampforwp-pages-recentpost-image') == true){
                                 ?>
                                     <div class="pg-fsp-img">
-                                        <?php amp_loop_image($args); ?>
+                                        <?php ampforwp_loop_image($args); ?>
                                     </div>
                                 <?php } ?>
                                 <?php } ?>
                                 <div class="pg-fsp-cnt">
-                                    <?php amp_loop_category(); ?>
-                                    <?php amp_loop_title(); ?>
+                                    <?php ampforwp_loop_category(); ?>
+                                    <?php ampforwp_loop_title(); ?>
                                     <?php if( true == ampforwp_get_setting('ampforwp-pages-recentpost-excerpt') ){
         					   				$excep_len = 15;
         	                                if(ampforwp_get_setting('ampforwp-pages-recentpost-excerpt-len') && is_numeric(ampforwp_get_setting('ampforwp-pages-recentpost-excerpt-len'))){
         	                                    $excep_len = intval(ampforwp_get_setting('ampforwp-pages-recentpost-excerpt-len'));
         	                                }
-                                            amp_loop_excerpt($excep_len);
+                                            ampforwp_loop_excerpt($excep_len);
                                         } ?>
                 				<?php if( true == ampforwp_get_setting('ampforwp-pages-recentpost-date')){?>
                                 <div class="pg-pt-dt">
-                                    <?php amp_loop_date(); ?>
+                                    <?php ampforwp_loop_date(); ?>
                                 </div>
                 				<?php }?>
                                 </div>
                             </div>
-                        <?php endwhile; amp_loop('end');  ?>
+                        <?php endwhile; ampforwp_loop('end');  ?>
                     </div>
                 <?php }
 				if( ampforwp_get_setting('enable-add-this-option') == true && 'above-content' !=  ampforwp_get_setting('swift-add-this-position')) {
