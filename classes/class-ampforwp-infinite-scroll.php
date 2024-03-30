@@ -117,11 +117,11 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			  	<script type="application/json">
 			    <?php 
 			    if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
-			    	echo json_encode($pages);
+			    	echo wp_json_encode($pages);
 			    }else{
 			    	?>
 			    	{
-			    	  	"pages": <?php echo json_encode($pages);?>,
+			    	  	"pages": <?php echo wp_json_encode($pages);?>,
 			    	  	"hideSelectors": <?php echo ampforwp_css_sanitizer($classes);?>
 			    	}
 			    <?php } ?>
@@ -212,7 +212,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				$classes = array(".p-m-fl",".loop-pagination",".footer",".r-pf",".srp ul",".srp h3","#pagination",".h_m_w", ".f-w");
 			}
 			$classes = (array) apply_filters('ampforwp_infinite_scroll_exclude_items', $classes);
-			return json_encode($classes);
+			return wp_json_encode($classes);
 		}
 		public function next_posts_link( $next_link , $paged ) {
 			// Change the next link to paged+3

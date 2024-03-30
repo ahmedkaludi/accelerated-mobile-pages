@@ -116,7 +116,7 @@ Class AMPforWP_theme_mode{
 		  header("Content-Type:application/json;charset=utf-8");
 		  if(wp_verify_nonce($_POST['amp_comment_form_nonce'], 'commentform_submission')){
 			$comment_status = array('response' => 'Nonce not verified' );
-			echo json_encode($comment_status);
+			echo wp_json_encode($comment_status);
 			die;
 			}
 		  $comment = wp_handle_comment_submission( wp_unslash( $_POST ) );
@@ -131,7 +131,7 @@ Class AMPforWP_theme_mode{
 		      $comment_html = $comment->get_error_message();
 		      $comment_html = str_replace("&#8217;","'",$comment_html);
 		      $comment_status = array('response' => $comment_html );
-		      echo json_encode($comment_status);
+		      echo wp_json_encode($comment_status);
 		      die;
 		    } else {
 		      wp_die( 'Unknown error' );
@@ -153,7 +153,7 @@ Class AMPforWP_theme_mode{
 		  $GLOBALS['comment_depth'] = $comment_depth;
 		  $comment_html = $text_data;
 		  $comment_status = array('response' => $comment_html );
-		  echo json_encode($comment_status);
+		  echo wp_json_encode($comment_status);
 		  die;
 	}
 	function comment_form_conversion($content){

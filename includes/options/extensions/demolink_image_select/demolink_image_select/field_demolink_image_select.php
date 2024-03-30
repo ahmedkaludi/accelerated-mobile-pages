@@ -88,7 +88,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_demolink_image_s
                 $placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : __( 'Select an item', 'accelerated-mobile-pages' );
 
                 if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
-                    $select2_params = json_encode( $this->field['select2'] );
+                    $select2_params = wp_json_encode( $this->field['select2'] );
                     $select2_params = htmlspecialchars( $select2_params, ENT_QUOTES );
 
                     echo '<input type="hidden" class="select2_params" value="' . $select2_params . '">';

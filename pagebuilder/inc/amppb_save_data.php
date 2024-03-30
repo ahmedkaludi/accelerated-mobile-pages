@@ -54,7 +54,7 @@ function amppb_save_post( $post_id, $post ){
 
     //Style 
     $submitted_data['settingdata']['style_data']=strip_tags($submitted_data['settingdata']['style_data']);
-    $submitted_data = json_encode($submitted_data);
+    $submitted_data = wp_json_encode($submitted_data);
 
     $submitted_data = wp_slash($submitted_data);
     

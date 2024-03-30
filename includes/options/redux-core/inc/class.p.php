@@ -293,7 +293,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 $jsonp_callback = $enable_jsonp && isset( $_GET['callback'] ) ? $_GET['callback'] : null;
 
                 // Generate JSON/JSONP string
-                $json = json_encode( $data );
+                $json = wp_json_encode( $data );
 
                 print $jsonp_callback ? "$jsonp_callback($json)" : $json;
 

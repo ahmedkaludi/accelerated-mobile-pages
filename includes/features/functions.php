@@ -130,7 +130,7 @@ function ampforwp_add_admin_styling($hook_suffix){
         $redux_data['frontpage'] = 'false';
         $redux_data['admin_url'] = esc_url(admin_url("admin.php?page=amp_options&tabid=opt-text-subsection#redux_builder_amp-ampforwp-homepage-on-off-support"));
     }
-    $amp_fields = json_encode($amp_ux_fields, true);
+    $amp_fields = wp_json_encode($amp_ux_fields, true);
     $screen = get_current_screen();
     if ( 'toplevel_page_amp_options' == $screen->base ) {
         $opt = get_option("ampforwp_option_panel_view_type");
@@ -1548,9 +1548,9 @@ function ampforwp_internal_feedback_notice(){
 function ampforwp_feedback_remove_notice(){     
     $result = update_option( "ampforwp_feedback_remove_notice", 'remove', false);
     if($result){
-        echo json_encode(array('status'=>'t'));            
+        echo wp_json_encode(array('status'=>'t'));            
     }else{    
-        echo json_encode(array('status'=>'f'));                
+        echo wp_json_encode(array('status'=>'f'));                
     }   
     wp_die();                
 }
@@ -1592,9 +1592,9 @@ function ampforwp_tpd_remove_notice(){
        $result = update_option( "ampforwp_tpd_remove_notice", 'remove', false);
     }
     if($result){
-        echo json_encode(array('status'=>'t'));            
+        echo wp_json_encode(array('status'=>'t'));            
     }else{    
-        echo json_encode(array('status'=>'f'));                
+        echo wp_json_encode(array('status'=>'f'));                
     }   
     wp_die();                
 }

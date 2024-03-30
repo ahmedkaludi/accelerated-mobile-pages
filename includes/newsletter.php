@@ -88,7 +88,7 @@ class ampforwp_pointers {
 		?>
 		<script type="text/javascript">
 			(function ($) {
-				var wp_pointers_tour_opts = <?php echo json_encode ($options); ?>, setup;
+				var wp_pointers_tour_opts = <?php echo wp_json_encode ($options); ?>, setup;
 				wp_pointers_tour_opts = $.extend (wp_pointers_tour_opts, {
 					buttons: function (event, t) {
 						button= jQuery ('<a id="pointer-close" class="button-secondary">' + '<?php echo wp_kses_post($button1); ?>' + '</a>');

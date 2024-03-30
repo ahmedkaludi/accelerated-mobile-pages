@@ -146,7 +146,7 @@ namespace ReduxCore\ReduxFramework;
                     unset( $var['REDUX_imported'] );
                 }
 
-                echo json_encode( $var );
+                echo wp_json_encode( $var );
 
                 die();
             }
@@ -164,8 +164,8 @@ namespace ReduxCore\ReduxFramework;
                     unset( $backup_options['REDUX_imported'] );
                 }
 
-                // No need to escape this, as it's been properly escaped previously and through json_encode
-                $content = json_encode( $backup_options );
+                // No need to escape this, as it's been properly escaped previously and through wp_json_encode
+                $content = wp_json_encode( $backup_options );
 
                 if ( isset( $_GET['action'] ) && $_GET['action'] == 'redux_download_options-' . $this->parent->args['opt_name'] ) {
                     header( 'Content-Description: File Transfer' );

@@ -72,9 +72,9 @@ namespace ReduxCore\ReduxFramework;
              */
             public function render() {
                 if ( version_compare( phpversion(), "5.3.0", ">=" ) ) {
-                    $json = json_encode( $this->parent->options, true );
+                    $json = wp_json_encode( $this->parent->options, true );
                 } else {
-                    $json = json_encode( $this->parent->options );
+                    $json = wp_json_encode( $this->parent->options );
                 }
                 
                 $defaults = array(

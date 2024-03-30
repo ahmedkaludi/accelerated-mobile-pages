@@ -302,7 +302,7 @@ function ampforwp_consent_submission(){
 		header("AMP-Access-Control-Allow-Source-Origin: ".esc_url($amp_site));
 		header("AMP-Redirect-To: ".esc_url($current_url));
     }else{
-    	echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+    	echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
     }
 	

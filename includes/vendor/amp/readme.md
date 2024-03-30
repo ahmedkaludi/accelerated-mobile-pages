@@ -598,7 +598,7 @@ Each analytics entry must include a unique array key and the following attribute
 
 - `type`: `(string)` one of the [valid vendors](https://github.com/ampproject/amphtml/blob/master/extensions/amp-analytics/amp-analytics.md#analytics-vendors) for amp-analytics.
 - `attributes`: `(array)` any [additional valid  attributes](https://github.com/ampproject/amphtml/blob/master/extensions/amp-analytics/amp-analytics.md#attributes) to add to the `amp-analytics` element.
-- `config_data`: `(array)` the [config data](https://github.com/ampproject/amphtml/blob/master/extensions/amp-analytics/amp-analytics.md#configuration) to include in the `amp-analytics` script tag. This is `json_encode`-d on output.
+- `config_data`: `(array)` the [config data](https://github.com/ampproject/amphtml/blob/master/extensions/amp-analytics/amp-analytics.md#configuration) to include in the `amp-analytics` script tag. This is `wp_json_encode`-d on output.
 
 ## Custom Post Type Support
 

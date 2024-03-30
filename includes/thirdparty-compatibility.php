@@ -1813,7 +1813,7 @@ function ampforwp_heista_pro_frontpage_section($content){
 	if ( (is_home() || is_page($ampforwp_frontpage)) && function_exists('hestia_run')) {
 			if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 && class_exists('Hestia_Defaults_Models')) {
 				$slider_default = Hestia_Defaults_Models::instance()->get_slider_default();
-				$slider_content = get_theme_mod( 'hestia_slider_content',json_encode($slider_default));
+				$slider_content = get_theme_mod( 'hestia_slider_content',wp_json_encode($slider_default));
 				$slider_content = json_decode( $slider_content );
 				if ( !empty( $slider_content ) ) {
 				$amp_html='<div class="ampforwp-carousel-cont" >

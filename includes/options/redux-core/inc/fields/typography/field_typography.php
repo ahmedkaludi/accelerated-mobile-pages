@@ -169,7 +169,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
             echo '<div id="' . $this->field['id'] . '" class="redux-typography-container" data-id="' . $this->field['id'] . '" data-units="' . $unit . '">';
 
             if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
-                $select2_params = json_encode( $this->field['select2'] );
+                $select2_params = wp_json_encode( $this->field['select2'] );
                 $select2_params = htmlspecialchars( $select2_params, ENT_QUOTES );
 
                 echo '<input type="hidden" class="select2_params" value="' . $select2_params . '">';
@@ -961,7 +961,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                     }
 
                     if ( ! empty( $this->parent->googleArray ) ) {
-                        $this->parent->filesystem->execute( 'put_contents', $gFile, array( 'content' => "<?php return json_decode( '" . json_encode( $this->parent->googleArray ) . "', true );" ) );
+                        $this->parent->filesystem->execute( 'put_contents', $gFile, array( 'content' => "<?php return json_decode( '" . wp_json_encode( $this->parent->googleArray ) . "', true );" ) );
                     }
                 }
             }

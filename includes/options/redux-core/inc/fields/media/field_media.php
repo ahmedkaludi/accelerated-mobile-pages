@@ -115,7 +115,7 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
 
                 }
 
-                $libFilter = urlencode(json_encode($jsonArr));
+                $libFilter = urlencode(wp_json_encode($jsonArr));
             }
 
             if ( empty( $this->value ) && ! empty( $this->field['default'] ) ) { // If there are standard values and value is empty

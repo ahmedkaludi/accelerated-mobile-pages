@@ -447,7 +447,7 @@ if( !function_exists("ampforwp_clear_tree_shaking") ) {
 				}
 			}
 			if ( $options == '' && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) ) {
-				echo json_encode( array( "status" => 200, "message" => "CSS Cache Cleared Successfully" ) );
+				echo wp_json_encode( array( "status" => 200, "message" => "CSS Cache Cleared Successfully" ) );
 				wp_die();
 			}
 		}
