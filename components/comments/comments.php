@@ -143,7 +143,7 @@ global $redux_builder_amp;
 	$lang = ampforwp_get_setting('ampforwp-fb-comments-lang');
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) {
 	if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) {
-		$facebook_comments_markup = '<div class="fb-comments" data-href="' . get_permalink() . '" data-width="800px" data-numposts="'.$redux_builder_amp['ampforwp-number-of-fb-no-of-comments'].'"></div>';
+		$facebook_comments_markup = '<div class="fb-comments" data-href="' . esc_url(get_permalink()) . '" data-width="800px" data-numposts="'.esc_attr($redux_builder_amp['ampforwp-number-of-fb-no-of-comments']).'"></div>';
 	}
 	else {  
 		$facebook_comments_markup = '<section class="amp-facebook-comments">';
@@ -156,7 +156,7 @@ global $redux_builder_amp;
 	    if(ampforwp_get_data_consent()){
 	    	$facebook_comments_markup .= ' data-block-on-consent ';
 	    }
-		$facebook_comments_markup .= 'data-href="' . esc_html(get_permalink()) . '"';
+		$facebook_comments_markup .= 'data-href="' . esc_url(get_permalink()) . '"';
 	    $facebook_comments_markup .= '></amp-facebook-comments></section>';
 	}
 		return $facebook_comments_markup;
