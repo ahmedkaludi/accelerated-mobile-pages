@@ -277,7 +277,7 @@ function amp_post_pagination($args='' ){
 function amp_breadcrumb(){
 	global $loadComponent;
 	if ( isset($loadComponent['AMP-breadcrumb']) && true == $loadComponent['AMP-breadcrumb'] ) {
-		echo ampforwp_breadcrumb_output();
+		echo amp_breadcrumb_output();
 	}
 }
 
@@ -490,7 +490,7 @@ function amp_back_to_top_link(){
     }
 }
 
-function ampforwp_loop_template(){
+function amp_loop_template(){
 	global $ampforwpTemplate;
 	$post_id = get_queried_object_id();
 	$thisTemplate = $ampforwpTemplate;

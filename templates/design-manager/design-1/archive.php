@@ -140,9 +140,9 @@ global $redux_builder_amp, $wp,$wp_query; ?>
 						$height = $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'];
 					}
 					$image_args = array("tag"=>'div',"tag_class"=>'home-post-image','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height); ?>
-						<?php ampforwp_loop_image($image_args); ?>
+						<?php amp_loop_image($image_args); ?>
 					<?php } ?>
-					<?php if( ampforwp_check_excerpt() ) { ampforwp_loop_excerpt( ampforwp_get_setting('amp-design-1-excerpt') ); } ?>
+					<?php if( ampforwp_check_excerpt() ) { amp_loop_excerpt( ampforwp_get_setting('amp-design-1-excerpt') ); } ?>
 				</div>
 	        </div>
 	    <?php 

@@ -308,7 +308,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 		if( !empty($rcp) ){
 			$number_of_posts = (int) ampforwp_get_setting('ampforwp-number-of-recent-posts');
 		}
-		while( ampforwp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
+		while( amp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
 			<div class="fsp">
 				<?php if( ampforwp_has_post_thumbnail() ){
 					$width 	= 346;
@@ -320,28 +320,28 @@ do_action("ampforwp_single_design_type_handle_d1");
 					$args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
 					<?php if( ampforwp_get_setting('amforwp-recentpost-image-switch') == true){?>
 				    <div class="fsp-img">
-				    	<?php ampforwp_loop_image($args); ?>
+				    	<?php amp_loop_image($args); ?>
 				    </div>
 				<?php } ?>
 			    <?php } ?>
 			    <div class="fsp-cnt">
-			    	<?php ampforwp_loop_category(); ?>
-				   	<?php ampforwp_loop_title(); ?>
+			    	<?php amp_loop_category(); ?>
+				   	<?php amp_loop_title(); ?>
 				    <?php if( true == ampforwp_get_setting('amforwp-recentpost-excerpt-switch') ){
 				   				$excep_len = 15;
                                 if(ampforwp_get_setting('amp-swift-recentpost-excerpt-len') && is_numeric(ampforwp_get_setting('amp-swift-recentpost-excerpt-len'))){
                                     $excep_len = intval(ampforwp_get_setting('amp-swift-recentpost-excerpt-len'));
                                 }
-                                ampforwp_loop_excerpt($excep_len);
+                                amp_loop_excerpt($excep_len);
 				   			}
 				   		if( true == ampforwp_get_setting('amforwp-recentpost-date-switch')){ ?>
 					    <div class="pt-dt">
-					    	<?php ampforwp_loop_date(); ?>
+					    	<?php amp_loop_date(); ?>
 					    </div>
 				<?php }?>
 			    </div>
 			</div>
-		<?php endwhile; ampforwp_loop('end');  ?>
+		<?php endwhile; amp_loop('end');  ?>
 		</div>
 	</div>
 <?php } // Recent Posts End Here ?>
@@ -483,7 +483,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 						if( !empty($rcp) ){
 							$number_of_posts = (int) ampforwp_get_setting('ampforwp-number-of-recent-posts');
 						}
-						while( ampforwp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
+						while( amp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
 							<div class="fsp">
 								<?php
 								if(ampforwp_has_post_thumbnail()){
@@ -498,24 +498,24 @@ do_action("ampforwp_single_design_type_handle_d1");
 								if( ampforwp_get_setting('amforwp-recentpost-image-switch') == true){
 								?>
 								    <div class="fsp-img">
-								    	<?php ampforwp_loop_image($args); ?>
+								    	<?php amp_loop_image($args); ?>
 								    </div>
 								<?php } ?>
 							    <?php } ?>
 							    <div class="fsp-cnt">
-							    	<?php ampforwp_loop_category(); ?>
-								    <?php ampforwp_loop_title(); ?>
+							    	<?php amp_loop_category(); ?>
+								    <?php amp_loop_title(); ?>
 								    <?php if( true == ampforwp_get_setting('amforwp-recentpost-excerpt-switch') ){
-							   				ampforwp_loop_excerpt(20);
+							   				amp_loop_excerpt(20);
 							   			} ?>
 				<?php if( true == ampforwp_get_setting('amforwp-recentpost-date-switch')){?>
 							    <div class="pt-dt">
-							    	<?php ampforwp_loop_date(); ?>
+							    	<?php amp_loop_date(); ?>
 							    </div>
 				<?php }?>
 							    </div>
 							</div>
-						<?php endwhile; ampforwp_loop('end');  ?>
+						<?php endwhile; amp_loop('end');  ?>
 					</div>
 					<?php } ?>
 				</div><!-- /.sp-left -->

@@ -42,10 +42,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 						if(!empty($rcp) ){
 							$number_of_posts = (int) ampforwp_get_setting('ampforwp-design3-number-of-recent-posts');
 						}
-						while( ampforwp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
+						while( amp_loop('start', array( 'posts_per_page' => $number_of_posts ) ) ): ?>
 							<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
 								<div class="related-post_image">
-	                            <a href="<?php echo esc_url( ampforwp_loop_permalink() ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+	                            <a href="<?php echo esc_url( amp_loop_permalink() ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 							<?php if ( ampforwp_has_post_thumbnail() ) { 
 							$thumb_url 		= ampforwp_get_post_thumbnail();
 							$thumb_width  	= ampforwp_get_post_thumbnail('width');
@@ -58,24 +58,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	                  	</div>
 			                <div class="related_link">
 			                    <?php $title = get_the_title(); ?>
-			                    <a href="<?php echo esc_url( ampforwp_loop_permalink() ); ?>" title="<?php echo esc_html( $title ); ?>" ><?php the_title(); ?></a>
+			                    <a href="<?php echo esc_url( amp_loop_permalink() ); ?>" title="<?php echo esc_html( $title ); ?>" ><?php the_title(); ?></a>
 			                    <?php
                                    if( true == ampforwp_get_setting('amforwp-design3-recentpost-excerpt-switch') ){
                                         $excep_len = 15;
                                         if(ampforwp_get_setting('amp-design3-recentpost-excerpt-len') && is_numeric(ampforwp_get_setting('amp-design3-recentpost-excerpt-len'))){
                                             $excep_len = intval(ampforwp_get_setting('amp-design3-recentpost-excerpt-len'));
                                         }
-                                        ampforwp_loop_excerpt($excep_len);
+                                        amp_loop_excerpt($excep_len);
                                     }
                                 ?>
 			                    <?php 
 			                    if (true == ampforwp_get_setting('amforwp-design3-recentpost-date-switch') ) {
-			                    		ampforwp_loop_date();
+			                    		amp_loop_date();
 			                   		 }
 			                     ?>
 			                </div>
 		            		</li>
-						<?php endwhile; ampforwp_loop('end');  ?>
+						<?php endwhile; amp_loop('end');  ?>
 					</div>
 				</div>
 			<?php } ?>

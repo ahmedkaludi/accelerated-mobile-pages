@@ -35,21 +35,21 @@ function ampforwp_url_base_rewrite_rules(){
 		$tagBaseRewrite = $redux_builder_amp['ampforwp-tag-base-removal-link'];
 	}
 	if($categoryBaseRewrite === '1'){
-		add_action( 'created_category', 'ampforwp_flush_rewrite_rules', 999 );
-		add_action( 'edited_category', 'ampforwp_flush_rewrite_rules', 999 );
-		add_action( 'delete_category', 'ampforwp_flush_rewrite_rules', 999 ); 
+		add_action( 'created_category', 'amp_flush_rewrite_rules', 999 );
+		add_action( 'edited_category', 'amp_flush_rewrite_rules', 999 );
+		add_action( 'delete_category', 'amp_flush_rewrite_rules', 999 ); 
 		add_filter( 'category_rewrite_rules', 'ampforwp_category_url_rewrite_rules');
 	}elseif($categoryBaseRewrite === '0'){
-		remove_action( 'created_category', 'ampforwp_flush_rewrite_rules' , 999 );
-		remove_action( 'edited_category', 'ampforwp_flush_rewrite_rules' , 999 );
-		remove_action( 'delete_category', 'ampforwp_flush_rewrite_rules' , 999 );
+		remove_action( 'created_category', 'amp_flush_rewrite_rules' , 999 );
+		remove_action( 'edited_category', 'amp_flush_rewrite_rules' , 999 );
+		remove_action( 'delete_category', 'amp_flush_rewrite_rules' , 999 );
 		remove_filter( 'category_rewrite_rules', 'ampforwp_category_url_rewrite_rules');
 		
 	}
 	if( $tagBaseRewrite === '1'){
-		add_action( 'created_post_tag', 'ampforwp_flush_rewrite_rules' , 999 );
-		add_action( 'edited_post_tag', 'ampforwp_flush_rewrite_rules', 999 );
-		add_action( 'delete_post_tag', 'ampforwp_flush_rewrite_rules', 999 );
+		add_action( 'created_post_tag', 'amp_flush_rewrite_rules' , 999 );
+		add_action( 'edited_post_tag', 'amp_flush_rewrite_rules', 999 );
+		add_action( 'delete_post_tag', 'amp_flush_rewrite_rules', 999 );
 		add_filter( 'post_tag_rewrite_rules', 'ampforwp_tag_url_rewrite_rules' );
 		if(class_exists('kallookoo\wp_no_base_permalink\Plugin')){
 			$options = get_option( 'wp_no_base_permalink' );
@@ -58,9 +58,9 @@ function ampforwp_url_base_rewrite_rules(){
 			}
 		}
 	}elseif( $tagBaseRewrite === '0' ) {
-		remove_action( 'created_post_tag', 'ampforwp_flush_rewrite_rules' , 999 );
-		remove_action( 'edited_post_tag', 'ampforwp_flush_rewrite_rules', 999 );
-		remove_action( 'delete_post_tag', 'ampforwp_flush_rewrite_rules', 999 );
+		remove_action( 'created_post_tag', 'amp_flush_rewrite_rules' , 999 );
+		remove_action( 'edited_post_tag', 'amp_flush_rewrite_rules', 999 );
+		remove_action( 'delete_post_tag', 'amp_flush_rewrite_rules', 999 );
 		remove_filter( 'post_tag_rewrite_rules', 'ampforwp_tag_url_rewrite_rules' ); 
 		remove_filter( 'tag_rewrite_rules', 'ampforwp_tag_url_rewrite_rules' ); 
 	} 
@@ -69,7 +69,7 @@ function ampforwp_url_base_rewrite_rules(){
 
 
 
-function ampforwp_flush_rewrite_rules( $hard=true ) {
+function amp_flush_rewrite_rules( $hard=true ) {
 	global $wp_rewrite;
     $wp_rewrite->flush_rules( $hard );
 }

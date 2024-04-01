@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-function ampforwp_breadcrumb_output(){
+function amp_breadcrumb_output(){
     global $redux_builder_amp; 
     $home_non_amp = $archive_non_amp = '';
     if ( false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {

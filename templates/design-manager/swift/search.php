@@ -6,11 +6,11 @@ global $redux_builder_amp, $search_found;
 amp_header() ?>
 <div class="cntr archive">
 	<div class="arch-tlt">
-		<?php ampforwp_archive_title(); ?>
+		<?php amp_archive_title(); ?>
 	</div>
 	<div class="arch-dsgn">
 		<div class="arch-psts">
-			<?php ampforwp_loop_template(); ?>
+			<?php amp_loop_template(); ?>
 			<?php 
 			if ( false == $search_found ){ ?>
 				<div class="cntn-wrp srch ">
@@ -24,7 +24,7 @@ amp_header() ?>
 	 				</p>
 			    </div>
  			<?php } ?>
-			<?php ampforwp_pagination(); ?>
+			<?php amp_pagination(); ?>
 		</div>
 		<?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
 		<div class="sdbr-right">

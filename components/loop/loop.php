@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-function ampforwp_archive_title(){
+function amp_archive_title(){
 	global $redux_builder_amp;
 	if( is_author() ){
 		$author_name = esc_attr(get_query_var('author_name'));
@@ -107,7 +107,7 @@ function ampforwp_archive_title(){
 
 $amp_q = '';
 $count = 1;
-function ampforwp_call_loops_standard($data=array()){
+function call_loops_standard($data=array()){
 	global $amp_q;
 	$post_type = get_post_type();
 	if (get_query_var( 'paged' ) ) {
@@ -250,10 +250,10 @@ function ampforwp_call_loops_standard($data=array()){
  */
 //add_action("init", 'call_loops_standered');
 	
-function ampforwp_loop($selection,$data=array()){
+function amp_loop($selection,$data=array()){
 	global $amp_q;
 	if(empty($amp_q) || is_null($amp_q)){
-		ampforwp_call_loops_standard($data);
+		call_loops_standard($data);
         echo "<div class='loop-wrapper'>";
 	}
 	if ( false == $amp_q->have_posts() ) {
@@ -262,10 +262,10 @@ function ampforwp_loop($selection,$data=array()){
 	if ( !isset($ampLoopData['no_data']) ) :
 		switch($selection){
 			case 'start':
-				return ampforwp_start_loop();
+				return amp_start_loop();
 			break;	
 			case 'end':
-				return ampforwp_end_loop();
+				return amp_end_loop();
 			break;		
 		}
 	else : // If no posts exist.
@@ -273,7 +273,7 @@ function ampforwp_loop($selection,$data=array()){
 	endif; // End loop.
 }
 
-function ampforwp_start_loop(){
+function amp_start_loop(){
 	global $amp_q, $count;
 	$post_status = $amp_q->have_posts();
 	$amp_q->the_post();
@@ -281,19 +281,19 @@ function ampforwp_start_loop(){
     $count++;
 	return $post_status;
 }
-function ampforwp_end_loop(){
+function amp_end_loop(){
 	global $amp_q;
 	wp_reset_postdata();
     echo "</div>";
 }
 
-function ampforwp_reset_loop(){
+function amp_reset_loop(){
 	global $amp_q;
 	$amp_q = '';
 	return "";
 }
 
-function ampforwp_pagination($args =array()) {
+function amp_pagination($args =array()) {
 	global $amp_q, $wp_query, $redux_builder_amp;
 
 	if (get_query_var( 'paged' ) ) {
@@ -332,9 +332,9 @@ function ampforwp_pagination($args =array()) {
 /***
 * Get Title of post
 * Arguments: $data = array('class' => 'new-class test-class', 'data-attr-test'=> 'data-val');
-* Usage : ampforwp_loop_title($data);
+* Usage : amp_loop_title($data);
 */
-function ampforwp_loop_title($data=array()){
+function amp_loop_title($data=array()){
 	$data = array_filter($data);
 	$tag = 'h2';
 	if ( is_archive() || is_search() ) {
@@ -380,7 +380,7 @@ function ampforwp_loop_title($data=array()){
 	}
 	echo '<'.esc_attr($tag).' '.$attr_val.' '.$data_val.'>';
 		if(!isset($data['link']) ){
-			echo '<a href="'. esc_url(ampforwp_loop_permalink(true)) .'">';
+			echo '<a href="'. esc_url(amp_loop_permalink(true)) .'">';
 		}
 	echo the_title('','',false);
 	
@@ -390,7 +390,7 @@ function ampforwp_loop_title($data=array()){
 	echo '</'.esc_attr($tag).'>';
 }
 
-function ampforwp_loop_date($args=array()){
+function amp_loop_date($args=array()){
 	global $redux_builder_amp;
     if ( 2 == $redux_builder_amp['ampforwp-post-date-format'] ) {
     	$args['format'] = 'traditional';
@@ -407,7 +407,7 @@ function ampforwp_loop_date($args=array()){
     echo '<div class="loop-date">'.esc_html($post_date).'</div>';
 }
 
-function ampforwp_loop_excerpt($excerpt_length = 15,$tag = 'p', $class = ''){
+function amp_loop_excerpt($excerpt_length = 15,$tag = 'p', $class = ''){
 	//excerpt
 	global $post,$redux_builder_amp;
 	$excerpt_length = (int) $excerpt_length;
@@ -437,12 +437,12 @@ function ampforwp_loop_excerpt($excerpt_length = 15,$tag = 'p', $class = ''){
 	
 }
 
-function ampforwp_loop_all_content($tag = 'p'){
+function amp_loop_all_content($tag = 'p'){
 	$fullContent = strip_shortcodes( get_the_content() );
 	echo ('<'.$tag.'>'. $fullContent .'</'.$tag.'>');
 }
 
-function ampforwp_loop_permalink($return = ''){
+function amp_loop_permalink($return = ''){
 	if (is_single() && ampforwp_get_setting('ampforwp-single-related-posts-link')) {
 		$url =  get_permalink();
 	}else{
@@ -452,17 +452,17 @@ function ampforwp_loop_permalink($return = ''){
 	return $url;
 }
 	
-if (! function_exists('ampforwp_loop_get_permalink')){
-	function ampforwp_loop_get_permalink(){
-		return ampforwp_loop_permalink();
+if (! function_exists('amp_loop_get_permalink')){
+	function amp_loop_get_permalink(){
+		return amp_loop_permalink();
 	}
 }
-if (! function_exists('ampforwp_loop_the_permalink')){
-	function ampforwp_loop_the_permalink(){
-		echo ampforwp_loop_get_permalink();
+if (! function_exists('amp_loop_the_permalink')){
+	function amp_loop_the_permalink(){
+		echo amp_loop_get_permalink();
 	}
 }
-function ampforwp_loop_image( $data=array() ) {
+function amp_loop_image( $data=array() ) {
 	global $ampLoopData, $counterOffset, $redux_builder_amp;
 	if (ampforwp_has_post_thumbnail()  ) {
 
@@ -519,7 +519,7 @@ function ampforwp_loop_image( $data=array() ) {
 			$thumb_height = $thumb_url_array[2];
 		}
 		if ( $thumb_url ) {
-			$imageLink = ampforwp_loop_permalink(true);
+			$imageLink = amp_loop_permalink(true);
 			$loopImageData = array("post_id"	=>get_the_ID(),
 									"image_url"			=>$thumb_url,
 									"width"				=>$thumb_width,
@@ -561,7 +561,7 @@ function ampforwp_loop_image( $data=array() ) {
 } 
 
 // Category
-function ampforwp_loop_category(){
+function amp_loop_category(){
 	$categories = get_the_category();
 	$cat_id = '';
 	if (function_exists('seopress_activation')){
@@ -613,7 +613,7 @@ function ampforwp_loop_category(){
 	}
 }
 // author
-function ampforwp_loop_author($args = array()){
+function amp_loop_author($args = array()){
 	 global $redux_builder_amp;
 	if(function_exists('ampforwp_framework_get_author_box')){
 		ampforwp_framework_get_author_box($args);

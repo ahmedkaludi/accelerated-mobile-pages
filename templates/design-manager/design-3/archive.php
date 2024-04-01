@@ -190,7 +190,7 @@ if ( get_query_var( 'paged' ) ) {
 						if ( true == $redux_builder_amp['excerpt-option-design-3'] ) {
 							$class = 'small-screen-excerpt-design-3';
 						}
-						ampforwp_loop_excerpt( ampforwp_get_setting('amp-design-3-excerpt'), 'p', $class );
+						amp_loop_excerpt( ampforwp_get_setting('amp-design-3-excerpt'), 'p', $class );
 					} ?>
                 <div class="featured_time"><?php
                    $post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
