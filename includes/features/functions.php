@@ -1598,4 +1598,51 @@ function ampforwp_tpd_remove_notice(){
     }   
     wp_die();                
 }
-add_action('wp_ajax_ampforwp_tpd_remove_notice', 'ampforwp_tpd_remove_notice');
+/*
+* AMP Visibility Shortcode
+* @since 1.0.94
+* It is used to display or hide the page content based on parameters passed to the shortcode.
+*/
+function ampforwp_visibility_shortcode($atts, $content = null) {
+    // Extract shortcode attributes
+    $atts = shortcode_atts(
+        array(
+            'mode' => 'amp',       // Default mode is AMP
+            'visibility' => 'show' // Default visibility is show
+        ),
+        $atts,
+        'ampforwp_visibility'
+    );
+
+    // Check if AMP mode is enabled
+    if ((function_exists('is_amp_endpoint') && is_amp_endpoint()) || (function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint())) {
+        // If in AMP mode and mode attribute is set to amp, check visibility attribute
+        if ($atts['mode'] === 'amp') {
+            // If visibility attribute is set to show, return the content
+            if ($atts['visibility'] === 'show') {
+                return do_shortcode($content);
+            } else {
+                // If visibility attribute is set to hide, return an empty string
+                return '';
+            }
+        } else {
+            // If in AMP mode and mode attribute is set to non-amp, return an empty string
+            return '';
+        }
+    } else {
+        // If not in AMP mode and mode attribute is set to non-amp, check visibility attribute
+        if ($atts['mode'] === 'non-amp') {
+            // If visibility attribute is set to show, return the content
+            if ($atts['visibility'] === 'show') {
+                return do_shortcode($content);
+            } else {
+                // If visibility attribute is set to hide, return an empty string
+                return '';
+            }
+        } else {
+            // If not in AMP mode and mode attribute is set to amp, return an empty string
+            return '';
+        }
+    }
+}
+add_shortcode('ampforwp_visibility', 'ampforwp_visibility_shortcode');
