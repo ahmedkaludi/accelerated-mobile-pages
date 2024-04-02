@@ -9,10 +9,14 @@ function amp_gdpr_output(){
     $accept   = $redux_builder_amp['amp-gdpr-compliance-accept-text'];
     $reject   = $redux_builder_amp['amp-gdpr-compliance-reject-text'];
     $settings   = $redux_builder_amp['amp-gdpr-compliance-settings-text'];
-    $user_data  = $redux_builder_amp['amp-gdpr-compliance-textarea'];
+    $user_data  = !empty($redux_builder_amp['amp-gdpr-compliance-textarea'])?$redux_builder_amp['amp-gdpr-compliance-textarea']:'You can control the ways in which we improve and personalize your experience. Please choose whether you wish to allow the following:';
     $form_url   = admin_url('admin-ajax.php?action=amp_consent_submission&verify_nonce='.wp_create_nonce('amp_consent'));
     $form_url   = preg_replace('#^https?:#', '', $form_url);
     $more_info  = $redux_builder_amp['amp-gdpr-compliance-for-more-privacy-info'];
+	$cookie_enable  = isset($redux_builder_amp['amp-gdpr-compliance-enable-options'])? $redux_builder_amp['amp-gdpr-compliance-enable-options'] :null;
+	$cookie_options  = isset($redux_builder_amp['amp-gdpr-compliance-options'])? $redux_builder_amp['amp-gdpr-compliance-options'] :null;
+	$cookie_toggle  = isset($redux_builder_amp['amp-gdpr-compliance-enable-toggle'])? $redux_builder_amp['amp-gdpr-compliance-enable-toggle'] :null;
+	
     $privacy_page = '';
     $privacy_button_text = '';
     if(isset($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']) && $redux_builder_amp['amp-gdpr-compliance-select-privacy-page']){
@@ -59,21 +63,27 @@ function amp_gdpr_output(){
 	              	<div class="gdpr_t">
 		                <h3><?php echo esc_html__($headline,'accelerated-mobile-pages'); ?></h3>
 		                <p><?php echo esc_html__($user_data,'accelerated-mobile-pages'); ?></p>
-		                <?php if (ampforwp_get_setting('amp-gdpr-newguidelines-switch')) { ?>
-		                <p>You can control the ways in which we improve and personalize your experience. Please choose whether you wish to allow the following:</p>
+						<?php $cookie_options = is_array($cookie_options)?$cookie_options:null;?>
+		                <?php if (ampforwp_get_setting('amp-gdpr-newguidelines-switch') || $cookie_enable) { ?>
 		          		<div class="choices">
+						  <?php if ($cookie_options==null || (isset($cookie_options['marketing']) && $cookie_options['marketing'] ==1)) { ?>
 				            <label class="consentLabel" for="consent-purpose-marketing">
 				              <input id="consent-purpose-marketing" type="checkbox" on="change:siteConsent.setPurpose(purpose-marketing=event.checked)">
-				              Marketing cookies
+				              <?php echo esc_html__('Marketing cookies','accelerated-mobile-pages'); ?>
 				            </label>
+							<?php } ?>
+							<?php if ($cookie_options==null || (isset($cookie_options['conversion']) && $cookie_options['conversion'] ==1)) { ?>
 				            <label class="consentLabel" for="consent-purpose-conversion">
 				              <input id="consent-purpose-conversion" type="checkbox" on="change:siteConsent.setPurpose(purpose-conversion=event.checked)">
-				              Conversion tracking cookies
+				              <?php echo esc_html__('Conversion tracking cookies','accelerated-mobile-pages'); ?>
 				            </label>
+							<?php } ?>
+							<?php if ($cookie_options==null || (isset($cookie_options['analytics']) && $cookie_options['analytics'] ==1)) { ?>
 				            <label class="consentLabel" for="consent-purpose-analytics">
 				              <input id="consent-purpose-analytics" type="checkbox" on="change:siteConsent.setPurpose(purpose-analytics=event.checked)">
-				              Analytics
+							  <?php echo esc_html__('Analytics','accelerated-mobile-pages'); ?> 
 				            </label>
+							<?php } ?>
 		        		</div>
 		        	<?php } ?>
 	                </div><?php if(isset($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']) && $redux_builder_amp['amp-gdpr-compliance-select-privacy-page']){?>
@@ -95,7 +105,9 @@ function amp_gdpr_output(){
             </div>
           </div>
           <div id="post-consent-ui">
+			<?php if($cookie_toggle ==null || $cookie_toggle == 1){ ?>
             <a href="#" on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_html__($settings,'accelerated-mobile-pages'); ?></a> 
+			<?php } ?>
           </div>
       </amp-consent>
 <?php 

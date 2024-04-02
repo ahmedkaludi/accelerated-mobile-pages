@@ -90,13 +90,17 @@ if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox' ) ) {
                 if ( empty ( $this->field[ 'options' ] ) && isset ( $this->field[ 'default' ] ) && is_array ( $this->field[ 'default' ] ) ) {
                     $this->field[ 'options' ] = $this->field[ 'default' ];
                 }
-
                 foreach ( $this->field[ 'options' ] as $k => $v ) {
-
-                    if ( empty ( $this->value[ $k ] ) ) {
-                        $this->value[ $k ] = "";
+                    if ( !isset ( $this->value[ $k ] ) ) {
+                 
+                        if( isset ( $this->field[ 'default' ][$k] )){
+     
+                            $this->value[ $k ] = $this->field[ 'default' ][$k];
+                        }else{
+                            $this->value[ $k ] = "";  
+                        }
+    
                     }
-
                     echo '<li>';
                     echo '<label for="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $k . ']', array(
                         '[' => '_',
