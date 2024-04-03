@@ -118,7 +118,7 @@ global $savedlayoutTemplate;
                                                         }else{
                                                     ?>
                                                     <img src="<?php echo esc_url($lay[$firstLayout]['preview_img']); ?>" @click="viewSpacialLayouts($event);"
-                                                    data-info='<?php echo json_encode($lay); ?>'
+                                                    data-info='<?php echo wp_json_encode($lay); ?>'
                                                     data-heading="<?php echo esc_attr( ucfirst($layoutName) ); ?>">
                                                     <?php } ?>
                                                 </div>
@@ -131,7 +131,7 @@ global $savedlayoutTemplate;
                                                             <?php
                                                         }else{
                                                         ?>
-                                                        <button type="button" class="button button-lg"@click="viewSpacialLayouts($event);" data-info='<?php echo json_encode($lay); ?>'
+                                                        <button type="button" class="button button-lg"@click="viewSpacialLayouts($event);" data-info='<?php echo wp_json_encode($lay); ?>'
                                                         data-heading="<?php echo esc_attr(ucfirst($layoutName)); ?>">View Layout</button>
                                                         <?php } ?>
                                                     </div>

@@ -775,7 +775,7 @@
                         }
                     } else if ( $this->args['database'] === 'network' ) {
                         // Strip those slashes!
-                        $value = json_decode( stripslashes( json_encode( $value ) ), true );
+                        $value = json_decode( stripslashes( wp_json_encode( $value ) ), true );
                         update_site_option( $this->args['opt_name'], $value );
                     } else {
                         update_option( $this->args['opt_name'], $value );
@@ -827,7 +827,7 @@
                     $result = get_theme_mods();
                 } else if ( $this->args['database'] === 'network' ) {
                     $result = get_site_option( $this->args['opt_name'], array() );
-                    $result = json_decode( stripslashes( json_encode( $result ) ), true );
+                    $result = json_decode( stripslashes( wp_json_encode( $result ) ), true );
                 } else {
                     $result = get_option( $this->args['opt_name'], array() );
                 }
@@ -2806,8 +2806,8 @@
 
             public function ajax_save() {
                 if ( ! wp_verify_nonce( $_REQUEST['nonce'], "redux_ajax_nonce" . $this->args['opt_name'] ) ) {
-                    echo json_encode( array(
-                        'status' => __( 'Invalid security credential.  Please reload the page and try again.', 'accelerated-mobile-pages' ),
+                    echo wp_json_encode( array(
+                        'status' => esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'accelerated-mobile-pages' ),
                         'action' => ''
                     ) );
 
@@ -2815,8 +2815,8 @@
                 }
 
                 if ( ! current_user_can( $this->args['page_permissions'] ) ) {
-                    echo json_encode( array(
-                        'status' => __( 'Invalid user capability.  Please reload the page and try again.', 'accelerated-mobile-pages' ),
+                    echo wp_json_encode( array(
+                        'status' => esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'accelerated-mobile-pages' ),
                         'action' => ''
                     ) );
 
@@ -2880,7 +2880,7 @@
                             }
 
                             if ( $do_reload || ( isset ( $values['defaults'] ) && ! empty ( $values['defaults'] ) ) || ( isset ( $values['defaults-section'] ) && ! empty ( $values['defaults-section'] ) ) ) {
-                                echo json_encode( array( 'status' => 'success', 'action' => 'reload' ) );
+                                echo wp_json_encode( array( 'status' => 'success', 'action' => 'reload' ) );
                                 die ();
                             }
 
@@ -2899,7 +2899,7 @@
                             $return_array = array( 'status' => $e->getMessage() );
                         }
                     } else {
-                        echo json_encode( array( 'status' => __( 'Your panel has no fields. Nothing to save.', 'accelerated-mobile-pages' ) ) );
+                        echo wp_json_encode( array( 'status' => esc_html__( 'Your panel has no fields. Nothing to save.', 'accelerated-mobile-pages' ) ) );
                     }
                 }
                 if ( isset ( $this->transients['run_compiler'] ) && $this->transients['run_compiler'] ) {
@@ -2951,7 +2951,7 @@
                         $return_array['notification_bar'] = $notification_bar;
                     }
 
-                    echo json_encode( apply_filters( "redux/options/{$this->args['opt_name']}/ajax_save/response", $return_array ) );
+                    echo wp_json_encode( apply_filters( "redux/options/{$this->args['opt_name']}/ajax_save/response", $return_array ) );
                 }
 
                 die ();

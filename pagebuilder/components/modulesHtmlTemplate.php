@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
                             >
                                 <span class=" dashicons dashicons-admin-page"></span>
                             </label>
-			        		<label  @click="showModulePopUp($event)" class="link" title="'.esc_attr($module['label']).'" data-popupContent=\''.json_encode($module).'\'
+			        		<label  @click="showModulePopUp($event)" class="link" title="'.esc_attr($module['label']).'" data-popupContent=\''.wp_json_encode($module).'\'
                                 :data-module_id="cell.cell_id"
                                 :data-container_id="cell.container_id"
                                 :data-cell_identity_name = cell.cell_identity_name

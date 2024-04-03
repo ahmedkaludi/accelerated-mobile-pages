@@ -425,7 +425,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	
 	function ampforwp_save_steps_data(){
 		if(!wp_verify_nonce( $_REQUEST['wpnonce'], 'ampforwp_install_nonce' ) ) {
-	        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+	        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
 	        die;
 	    }
 		// Exit if the user does not have proper permissions

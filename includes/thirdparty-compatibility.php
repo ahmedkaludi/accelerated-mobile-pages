@@ -1813,7 +1813,7 @@ function ampforwp_heista_pro_frontpage_section($content){
 	if ( (is_home() || is_page($ampforwp_frontpage)) && function_exists('hestia_run')) {
 			if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 && class_exists('Hestia_Defaults_Models')) {
 				$slider_default = Hestia_Defaults_Models::instance()->get_slider_default();
-				$slider_content = get_theme_mod( 'hestia_slider_content',json_encode($slider_default));
+				$slider_content = get_theme_mod( 'hestia_slider_content',wp_json_encode($slider_default));
 				$slider_content = json_decode( $slider_content );
 				if ( !empty( $slider_content ) ) {
 				$amp_html='<div class="ampforwp-carousel-cont" >
@@ -1885,4 +1885,24 @@ function ampforwp_fTC_theme_remove_scripts() {
     if ( isset ( $_GET['page'] ) && $_GET['page'] == 'amp_options' ) {
         remove_action('admin_enqueue_scripts', 'ftc_register_admin_scripts');
     }
+}
+
+//Remove Poll maker to solve validation error
+add_action('wp','ampforwp_poll_maker_remove_html');
+function ampforwp_poll_maker_remove_html(){
+	$plugin_name = 'poll-maker-ays';
+	if (defined('POLL_MAKER_AYS_VERSION')) {
+	    $version = POLL_MAKER_AYS_VERSION;
+	} else {
+	    $version = '1.0.0';
+	}
+	if(class_exists('Poll_Maker_Ays_Public')){
+		$new = new Poll_Maker_Ays_Public($plugin_name, $version);	
+		remove_shortcode('ays_poll', array($new, 'ays_poll_generate_shortcode'));
+		add_shortcode('ays_poll', 'ampforwp_ays_poll_remove_shortcode');
+	}
+}
+
+function ampforwp_ays_poll_remove_shortcode($atts){
+	return;
 }

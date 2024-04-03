@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.0.94 (3rd April 2024) =
+* New: Added Shortcode so that user can show or hide some content in AMP. #5474
+* Improvements: Code improvement part 2 #5567
+* Fixed: Warning appears related to author-box #5577
+* Fixed: The excerpt is not showing inside the em tag in AMP, and the font is not working. #5487
+* Fixed: Issue with a cookie banner (GDPR) #5561
+
 = 1.0.93.2 (1st February 2024) =
 * Fixed: Video docking not working in AMP Newspaper theme #5566
 * Fixed: Video not loading on Amp if video set in Soledad theme Video Embed. #5571

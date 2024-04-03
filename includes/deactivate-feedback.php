@@ -7,7 +7,7 @@ $reasons = array(
 		4 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="technical"/>' . esc_html__('Technical Issue', 'accelerated-mobile-pages') . '</label></li>
 		<li><textarea  class="mb-box technical" name="ampforwp_disable_text[]" placeholder="' . esc_html__('How Can we help? Please describe your problem', 'accelerated-mobile-pages') . '"></textarea></li>',
 		5 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="another"/>' . esc_html__('I switched to another plugin', 'accelerated-mobile-pages') .  '</label></li>
-		<li><input type="text"  class="mb-box another" name="ampforwp_disable_text[]" value="" placeholder="Name of the plugin"/></li>',
+		<li><input type="text"  class="mb-box another" name="ampforwp_disable_text[]" value="" placeholder="'.esc_html__('Name of the plugin', 'accelerated-mobile-pages').'"/></li>',
 		6 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="other"/>' . esc_html__('Other reason', 'accelerated-mobile-pages') . '</label></li>
 		<li><textarea  class="mb-box other" name="ampforwp_disable_text[]" placeholder="' . esc_html__('Please specify, if possible', 'accelerated-mobile-pages') . '"></textarea></li>',
     );

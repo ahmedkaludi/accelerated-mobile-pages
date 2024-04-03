@@ -35,9 +35,9 @@ function ampforwp_framework_get_search_form() {
 	  $form = '<form role="search" method="get" class="amp-search" target="_top" action="' . esc_url($action_url)  .'">
 				<div class="amp-search-wrapper">
 					<label aria-label="Type your query" class="screen-reader-text" for="s">' . esc_html__($label,'accelerated-mobile-pages') . '</label>
-					<input type="text" placeholder="AMP" value="'.esc_attr($amp_query_variable_val).'" name="'.esc_attr($amp_query_variable).'" class="hidden"/>
+					<input type="text" placeholder="'.esc_attr__('AMP','accelerated-mobile-pages').'" value="'.esc_attr($amp_query_variable_val).'" name="'.esc_attr($amp_query_variable).'" class="hidden"/>
 					<label aria-label="search text"  for="search-text-'.esc_attr($rand).'"></label>
-					<input id="search-text-'.esc_attr($rand).'" type="text" placeholder="'.esc_attr($placeholder).'" value="' . esc_attr($value).'" name="'.esc_attr($name).'" class="s" />
+					<input id="search-text-'.esc_attr($rand).'" type="text" placeholder="'.esc_attr__($placeholder,'accelerated-mobile-pages').'" value="' . esc_attr($value).'" name="'.esc_attr($name).'" class="s" />
 					<label aria-label="Submit amp search" for="amp-search-submit" >
 						<input type="submit" class="icon-search" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
 					</label>

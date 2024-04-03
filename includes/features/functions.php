@@ -130,7 +130,7 @@ function ampforwp_add_admin_styling($hook_suffix){
         $redux_data['frontpage'] = 'false';
         $redux_data['admin_url'] = esc_url(admin_url("admin.php?page=amp_options&tabid=opt-text-subsection#redux_builder_amp-ampforwp-homepage-on-off-support"));
     }
-    $amp_fields = json_encode($amp_ux_fields, true);
+    $amp_fields = wp_json_encode($amp_ux_fields, true);
     $screen = get_current_screen();
     if ( 'toplevel_page_amp_options' == $screen->base ) {
         $opt = get_option("ampforwp_option_panel_view_type");
@@ -1548,9 +1548,9 @@ function ampforwp_internal_feedback_notice(){
 function ampforwp_feedback_remove_notice(){     
     $result = update_option( "ampforwp_feedback_remove_notice", 'remove', false);
     if($result){
-        echo json_encode(array('status'=>'t'));            
+        echo wp_json_encode(array('status'=>'t'));            
     }else{    
-        echo json_encode(array('status'=>'f'));                
+        echo wp_json_encode(array('status'=>'f'));                
     }   
     wp_die();                
 }
@@ -1592,10 +1592,57 @@ function ampforwp_tpd_remove_notice(){
        $result = update_option( "ampforwp_tpd_remove_notice", 'remove', false);
     }
     if($result){
-        echo json_encode(array('status'=>'t'));            
+        echo wp_json_encode(array('status'=>'t'));            
     }else{    
-        echo json_encode(array('status'=>'f'));                
+        echo wp_json_encode(array('status'=>'f'));                
     }   
     wp_die();                
 }
-add_action('wp_ajax_ampforwp_tpd_remove_notice', 'ampforwp_tpd_remove_notice');
+/*
+* AMP Visibility Shortcode
+* @since 1.0.94
+* It is used to display or hide the page content based on parameters passed to the shortcode.
+*/
+function ampforwp_visibility_shortcode($atts, $content = null) {
+    // Extract shortcode attributes
+    $atts = shortcode_atts(
+        array(
+            'mode' => 'amp',       // Default mode is AMP
+            'visibility' => 'show' // Default visibility is show
+        ),
+        $atts,
+        'ampforwp_visibility'
+    );
+
+    // Check if AMP mode is enabled
+    if ((function_exists('is_amp_endpoint') && is_amp_endpoint()) || (function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint())) {
+        // If in AMP mode and mode attribute is set to amp, check visibility attribute
+        if ($atts['mode'] === 'amp') {
+            // If visibility attribute is set to show, return the content
+            if ($atts['visibility'] === 'show') {
+                return do_shortcode($content);
+            } else {
+                // If visibility attribute is set to hide, return an empty string
+                return '';
+            }
+        } else {
+            // If in AMP mode and mode attribute is set to non-amp, return an empty string
+            return '';
+        }
+    } else {
+        // If not in AMP mode and mode attribute is set to non-amp, check visibility attribute
+        if ($atts['mode'] === 'non-amp') {
+            // If visibility attribute is set to show, return the content
+            if ($atts['visibility'] === 'show') {
+                return do_shortcode($content);
+            } else {
+                // If visibility attribute is set to hide, return an empty string
+                return '';
+            }
+        } else {
+            // If not in AMP mode and mode attribute is set to amp, return an empty string
+            return '';
+        }
+    }
+}
+add_shortcode('ampforwp_visibility', 'ampforwp_visibility_shortcode');

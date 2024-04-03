@@ -112,7 +112,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_border' ) ) {
             $this->value = wp_parse_args( $this->value, $defaults );
 
             if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
-                $select2_params = json_encode( $this->field['select2'] );
+                $select2_params = wp_json_encode( $this->field['select2'] );
                 $select2_params = htmlspecialchars( $select2_params, ENT_QUOTES );
 
                 echo '<input type="hidden" class="select2_params" value="' . $select2_params . '">';
@@ -122,7 +122,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_border' ) ) {
             echo '<input type="hidden" class="field-units" value="px">';
 
             if ( isset( $this->field['all'] ) && $this->field['all'] == true ) {
-                echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-fullscreen icon-large"></i></span><input type="text" class="redux-border-all redux-border-input mini ' . $this->field['class'] . '" placeholder="' . __( 'All', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-all" value="' . $this->value['top'] . '"></div>';
+                echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-fullscreen icon-large"></i></span><input type="text" class="redux-border-all redux-border-input mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'All', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-all" value="' . $this->value['top'] . '"></div>';
             }
 
             echo '<input type="hidden" class="redux-border-value" id="' . $this->field['id'] . '-top" name="' . $this->field['name'] . $this->field['name_suffix'] . '[border-top]" value="' . ( isset($this->value['top']) && $this->value['top'] != '' ? $this->value['top'] . 'px' : '' ) . '">';
@@ -135,28 +135,28 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_border' ) ) {
                  * Top
                  * */
                 if ( $this->field['top'] === true ) {
-                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-up icon-large"></i></span><input type="text" class="redux-border-top redux-border-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Top', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-top" value="' . $this->value['top'] . '"></div>';
+                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-up icon-large"></i></span><input type="text" class="redux-border-top redux-border-input mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Top', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-top" value="' . $this->value['top'] . '"></div>';
                 }
 
                 /**
                  * Right
                  * */
                 if ( $this->field['right'] === true ) {
-                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-right icon-large"></i></span><input type="text" class="redux-border-right redux-border-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Right', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-right" value="' . $this->value['right'] . '"></div>';
+                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-right icon-large"></i></span><input type="text" class="redux-border-right redux-border-input mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Right', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-right" value="' . $this->value['right'] . '"></div>';
                 }
 
                 /**
                  * Bottom
                  * */
                 if ( $this->field['bottom'] === true ) {
-                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-down icon-large"></i></span><input type="text" class="redux-border-bottom redux-border-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Bottom', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-bottom" value="' . $this->value['bottom'] . '"></div>';
+                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-down icon-large"></i></span><input type="text" class="redux-border-bottom redux-border-input mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Bottom', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-bottom" value="' . $this->value['bottom'] . '"></div>';
                 }
 
                 /**
                  * Left
                  * */
                 if ( $this->field['left'] === true ) {
-                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-left icon-large"></i></span><input type="text" class="redux-border-left redux-border-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Left', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-left" value="' . $this->value['left'] . '"></div>';
+                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-left icon-large"></i></span><input type="text" class="redux-border-left redux-border-input mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Left', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-left" value="' . $this->value['left'] . '"></div>';
                 }
             }
 

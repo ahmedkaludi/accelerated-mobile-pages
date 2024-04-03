@@ -47,11 +47,13 @@ class AMPforWP_Photo_Gallery_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_E
       $shortcode = $wpdb->get_var($wpdb->prepare("SELECT tagtext FROM " . $wpdb->prefix . "bwg_shortcode WHERE id='%d'", $params['id']));
       if ($shortcode) {
         $shortcode_params = explode('" ', $shortcode);
-        foreach ($shortcode_params as $shortcode_param) {
-          $shortcode_param = str_replace('"', '', $shortcode_param);
-          $shortcode_elem = explode('=', $shortcode_param);
-          $params[str_replace(' ', '', $shortcode_elem[0])] = $shortcode_elem[1];
-        }
+        if(!empty($shortcode_params)){
+          foreach ($shortcode_params as $shortcode_param) {
+            $shortcode_param = str_replace('"', '', $shortcode_param);
+            $shortcode_elem = explode('=', $shortcode_param);
+            $params[str_replace(' ', '', $shortcode_elem[0])] = $shortcode_elem[1];
+          }
+       }
       }
       else {
         return;

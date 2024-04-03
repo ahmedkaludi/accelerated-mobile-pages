@@ -155,7 +155,7 @@ function ampforwp_notice_bar_options($opt_name){
                'type'      => 'textarea',
                'title'     => esc_html__('Message to Visitor', 'accelerated-mobile-pages'),
                'subtitle'     => esc_html__('', 'accelerated-mobile-pages'),
-               'default'   => '',
+               'default'   => 'You can control the ways in which we improve and personalize your experience. Please choose whether you wish to allow the following:',
                'required' =>  array(  array('amp-gdpr-compliance-switch', '=' , '1', ), array('gdpr-type', '=' , '1' ) ),
            ),
            
@@ -211,6 +211,38 @@ function ampforwp_notice_bar_options($opt_name){
                'default'   => 'Click Here',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
+           array(
+            'class'  => 'child_opt',
+            'id'        =>'amp-gdpr-compliance-enable-options',
+            'type'      => 'switch',
+            'title'     => esc_html__('Enable Cookie Selection', 'accelerated-mobile-pages'),
+            'default'   => 1,
+            'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+        ),
+        array(
+            'class'  => 'child_opt',
+            'id'    => 'amp-gdpr-compliance-options',
+           'title'  => esc_html__('Cookies to display', 'accelerated-mobile-pages'),
+           'type'   => 'checkbox',
+           'default'=> array('marketing'=>1,'conversion'=>1,'analytics'=>1),
+           'options'=> array(
+                'marketing' => esc_html__('Marketing cookies', 'accelerated-mobile-pages'),
+                'conversion' => esc_html__('Conversion tracking cookies', 'accelerated-mobile-pages'),
+                'analytics' => esc_html__('Analytics', 'accelerated-mobile-pages')
+            ),
+            'required' => array(
+                array('amp-gdpr-compliance-switch','=',1),
+                array('amp-gdpr-compliance-enable-options','=',1)
+            )
+        ),
+        array(
+            'class'  => 'child_opt',
+            'id'        =>'amp-gdpr-compliance-enable-toggle',
+            'type'      => 'switch',
+            'title'     => esc_html__('Enable Cookie Setting Toggle', 'accelerated-mobile-pages'),
+            'default'   => 1,
+            'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+        ),
            array(
                'id'        =>'amp-gdpr-newguidelines-switch',
                'type'      => 'switch',

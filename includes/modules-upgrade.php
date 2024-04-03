@@ -4,12 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  add_action('wp_ajax_ampforwp_enable_modules_upgread', 'ampforwp_enable_modules_upgread');
 function ampforwp_enable_modules_upgread(){
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
-        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         exit();
     }
     // Exit if the user does not have proper permissions
     if(! current_user_can( 'install_plugins' ) ) {
-        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('User Request not valid','accelerated-mobile-pages')));
         exit();
     }
     $plugins = array();
@@ -132,9 +132,9 @@ function ampforwp_enable_modules_upgread(){
         break;
     }
     if(count($plugins)>0){
-       echo json_encode( array( "status"=>200, "message"=>"Module successfully Added",'redirect_url'=>esc_url($redirectSettingsUrl) , "slug"=>$plugins[0]['name'], 'path'=> $plugins[0]['path'] ) );
+       echo wp_json_encode( array( "status"=>200, "message"=>esc_html__("Module successfully Added",'accelerated-mobile-pages'),'redirect_url'=>esc_url($redirectSettingsUrl) , "slug"=>$plugins[0]['name'], 'path'=> $plugins[0]['path'] ) );
     }else{
-        echo json_encode(array("status"=>300, "message"=>"Modules not Found"));
+        echo wp_json_encode(array("status"=>300, "message"=>esc_html__("Modules not Found",'accelerated-mobile-pages')));
     }
     wp_die();
 } 
@@ -181,12 +181,12 @@ add_action( 'admin_notices', 'ampforwp_admin_notice_module_reference_install' );
 add_action('wp_ajax_ampforwp_import_modules_scema', 'ampforwp_import_structure_data');
 function ampforwp_import_structure_data(){
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
-        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         exit();
     }
     // Exit if the user does not have proper permissions
     if(! current_user_can( 'install_plugins' ) ) {
-        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('User Request not valid','accelerated-mobile-pages')));
         exit();
     }
     global $redux_builder_amp;
@@ -283,21 +283,21 @@ add_action('wp_ajax_ampforwp_import_modules_ads', 'ampforwp_import_ads_data');
 function ampforwp_import_ads_data(){
     global $redux_builder_amp;
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
-        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         exit();
     }
     // Exit if the user does not have proper permissions
     if(! current_user_can( 'install_plugins' ) ) {
-        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('User Request not valid','accelerated-mobile-pages')));
         exit();
     }
     $adsforwp_object = new adsforwp_admin_common_functions();
     $result = $adsforwp_object->adsforwp_migrate_ampforwp_ads();
     $result = array_filter($result);
     if($result){           
-        echo json_encode(array('status'=>'t', 'message'=>esc_html__('Data has been imported succeessfully','accelerated-mobile-pages')));            
+        echo wp_json_encode(array('status'=>'t', 'message'=>esc_html__('Data has been imported succeessfully','accelerated-mobile-pages')));            
     }else{
-        echo json_encode(array('status'=>'f', 'message'=>esc_html__('Plugin data is not available or it is not activated','accelerated-mobile-pages')));
+        echo wp_json_encode(array('status'=>'f', 'message'=>esc_html__('Plugin data is not available or it is not activated','accelerated-mobile-pages')));
     }
     wp_die();  
 }       

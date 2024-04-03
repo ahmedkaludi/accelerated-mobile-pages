@@ -138,9 +138,11 @@ function amp_excerpt( $no_of_words=260 ) {
 			 if ( has_excerpt() ) {
 				$content = get_the_excerpt();
 			}
-			/* `wp_trim_words` will strip all the tags 
-			   as it has `wp_strip_all_tags` inside to clean */
-			echo wp_trim_words( strip_shortcodes( $content ) , $no_of_words );  
+			/*
+			 Encoding $content  as HTML entities, then trimming it to a certain number of words, decoding it back from   HTML entities, and finally ensuring that all HTML tags are properly balanced.
+			 We are  doing this since the excerpt may contain HTML tags and wp_trim_words strips all HTML tags.
+			*/
+			echo force_balance_tags( html_entity_decode( wp_trim_words( htmlentities( $content ), $no_of_words) ) );
 		?></p><?php
     }
 }
@@ -1038,7 +1040,7 @@ function ampforwp_addthis_floating_social_share(){
 		if( ampforwp_get_setting('amp-design-selector') == 4){ ?>	
 			<amp-state id="sidemenu">
 				<script type="application/json">
-				  <?php echo json_encode(array('offcanvas_menu'=> false));?>
+				  <?php echo wp_json_encode(array('offcanvas_menu'=> false));?>
 				</script>
 			</amp-state>
 		<?php }

@@ -130,7 +130,7 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                         $hide = ' hide';
                     }
 
-                    echo '<span class="button remove-image' . $hide . '" id="reset_' . $x . '" rel="' . $slide[ 'attachment_id' ] . '">' . __ ( 'Remove', 'accelerated-mobile-pages' ) . '</span>';
+                    echo '<span class="button remove-image' . $hide . '" id="reset_' . $x . '" rel="' . $slide[ 'attachment_id' ] . '">' . esc_attr__ ( 'Remove', 'accelerated-mobile-pages' ) . '</span>';
 
                     echo '</div>' . "\n";
 

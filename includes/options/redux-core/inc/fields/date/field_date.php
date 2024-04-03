@@ -58,7 +58,7 @@ if ( ! class_exists( 'ReduxFramework_date' ) ) {
          * @return        void
          */
         public function render() {
-            $placeholder = ( isset( $this->field['placeholder'] ) ) ? ' placeholder="' . esc_attr( $this->field['placeholder'] ) . '" ' : '';
+            $placeholder = ( isset( $this->field['placeholder'] ) ) ? ' placeholder="' . esc_attr__( $this->field['placeholder'],'accelerated-mobile-pages' ) . '" ' : '';
 
             echo '<input data-id="' . $this->field['id'] . '" type="text" id="' . $this->field['id'] . '-date" name="' . $this->field['name'] . $this->field['name_suffix'] . '"' . $placeholder . 'value="' . $this->value . '" class="redux-datepicker regular-text ' . $this->field['class'] . '" />';
         }

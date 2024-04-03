@@ -136,7 +136,7 @@ namespace ReduxCore\ReduxFramework;
                 echo '<fieldset id="' . $this->field['id'] . '" class="redux-dimensions-container" data-id="' . $this->field['id'] . '">';
 
                 if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
-                    $select2_params = json_encode( $this->field['select2'] );
+                    $select2_params = wp_json_encode( $this->field['select2'] );
                     $select2_params = htmlspecialchars( $select2_params, ENT_QUOTES );
 
                     echo '<input type="hidden" class="select2_params" value="' . $select2_params . '">';
@@ -159,7 +159,7 @@ namespace ReduxCore\ReduxFramework;
                     }
                     echo '<div class="field-dimensions-input input-prepend">';
                     echo '<span class="add-on"><i class="el el-resize-horizontal icon-large"></i></span>';
-                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-width mini ' . $this->field['class'] . '" placeholder="' . __( 'Width', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-width" value="' . filter_var( $this->value['width'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
+                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-width mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Width', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-width" value="' . filter_var( $this->value['width'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
                     echo '<input data-id="' . $this->field['id'] . '" type="hidden" id="' . $this->field['id'] . '-width" name="' . $this->field['name'] . $this->field['name_suffix'] . '[width]' . '" value="' . $this->value['width'] . '"></div>';
                 }
 
@@ -175,7 +175,7 @@ namespace ReduxCore\ReduxFramework;
                     }
                     echo '<div class="field-dimensions-input input-prepend">';
                     echo '<span class="add-on"><i class="el el-resize-vertical icon-large"></i></span>';
-                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-height mini ' . $this->field['class'] . '" placeholder="' . __( 'Height', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-height" value="' . filter_var( $this->value['height'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
+                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-height mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Height', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-height" value="' . filter_var( $this->value['height'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
                     echo '<input data-id="' . $this->field['id'] . '" type="hidden" id="' . $this->field['id'] . '-height" name="' . $this->field['name'] . $this->field['name_suffix'] . '[height]' . '" value="' . $this->value['height'] . '"></div>';
                 }
 
@@ -186,8 +186,8 @@ namespace ReduxCore\ReduxFramework;
                 // fill out the options object and show it, otherwise it's hidden
                 // and the default units value will apply.
                 if ( isset( $this->field['units'] ) && $this->field['units'] !== false ) {
-                    echo '<div class="select_wrapper dimensions-units" original-title="' . __( 'Units', 'accelerated-mobile-pages' ) . '">';
-                    echo '<select data-id="' . $this->field['id'] . '" data-placeholder="' . __( 'Units', 'accelerated-mobile-pages' ) . '" class="redux-dimensions redux-dimensions-units select ' . $this->field['class'] . '" original-title="' . __( 'Units', 'accelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[units]' . '">';
+                    echo '<div class="select_wrapper dimensions-units" original-title="' . esc_attr__( 'Units', 'accelerated-mobile-pages' ) . '">';
+                    echo '<select data-id="' . $this->field['id'] . '" data-placeholder="' . esc_attr__( 'Units', 'accelerated-mobile-pages' ) . '" class="redux-dimensions redux-dimensions-units select ' . $this->field['class'] . '" original-title="' . __( 'Units', 'accelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[units]' . '">';
 
                     //  Extended units, show 'em all
                     if ( $this->field['units_extended'] ) {

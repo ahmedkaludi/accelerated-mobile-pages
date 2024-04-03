@@ -88,12 +88,12 @@ function ampforwp_call_page_builder(){
 		if(is_array($jsonData) && isset($jsonData['rows']) && count($jsonData['rows'])>0){
 			$totalRows = $jsonData['totalrows'];
 			$totalmodules = $jsonData['totalmodules'];
-			$previousData = json_encode($jsonData);
+			$previousData = wp_json_encode($jsonData);
 		}else{
 			$jsonData['rows'] = array();
 			$jsonData['totalrows']=1;
 			$jsonData['totalmodules'] = 1;
-			$previousData = json_encode($jsonData);
+			$previousData = wp_json_encode($jsonData);
 		}
 	}
 	$pageBuilderData = array(
@@ -170,7 +170,7 @@ function ampforwp_call_page_builder(){
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">1 <?php echo esc_html__('Column','accelerated-mobile-pages'); ?></span>
 						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove dashicons dashicons-trash"></span>
-						            <span @click="showRowSettingPopUp($event)" class="rowBoxContainer" title="Row settings column 1" :data-popupContent='JSON.stringify(<?php echo json_encode($backendRowSetting); ?>)'
+						            <span @click="showRowSettingPopUp($event)" class="rowBoxContainer" title="Row settings column 1" :data-popupContent='JSON.stringify(<?php echo wp_json_encode($backendRowSetting); ?>)'
 						            :data-container_id="row.id"
 						            >
 						            	<i class="tools-icon dashicons dashicons-menu"></i>
@@ -210,7 +210,7 @@ function ampforwp_call_page_builder(){
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">2 <?php echo esc_html__('Columns','accelerated-mobile-pages'); ?></span> 
 						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove amppb-item-remove dashicons dashicons-trash"></span>
-						            <span href="#" class="rowBoxContainer" title="Row settings column 2" @click="showRowSettingPopUp($event)" :data-popupContent='JSON.stringify(<?php echo json_encode($backendRowSetting); ?>)'
+						            <span href="#" class="rowBoxContainer" title="Row settings column 2" @click="showRowSettingPopUp($event)" :data-popupContent='JSON.stringify(<?php echo wp_json_encode($backendRowSetting); ?>)'
 						            :data-container_id="row.id"
 						            >
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
@@ -280,11 +280,11 @@ function ampforwp_call_page_builder(){
 
 		<div class="modules-options">
          	<div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; // nothing to escaped ?>">
-	        	<drag class="drag" :transfer-data='{type: "column",value: "col-1",rowSettingJson:<?php echo json_encode($backendRowSetting); ?>}' :draggable="true" :effect-allowed="'copy'">
+	        	<drag class="drag" :transfer-data='{type: "column",value: "col-1",rowSettingJson:<?php echo wp_json_encode($backendRowSetting); ?>}' :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-1" class="amppb-add-row button-primary button-large module-col-1" data-template="col-1"
 				    >1 Column</span>
 				</drag>
-				<drag class="drag" :transfer-data='{type: "column",value: "col-2", rowSettingJson:<?php echo json_encode($backendRowSetting); ?>}' :draggable="true" :effect-allowed="'copy'">
+				<drag class="drag" :transfer-data='{type: "column",value: "col-2", rowSettingJson:<?php echo wp_json_encode($backendRowSetting); ?>}' :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-2" class="amppb-add-row button-primary button-large draggable module-col-2" data-template="col-2"
 				    >2 Columns</span>
 				</drag>
@@ -317,7 +317,7 @@ function ampforwp_call_page_builder(){
 	                }
 			    	$moduleJson = array('type'=> 'module','moduleDraggable'=>true ,'modulename'=>strtolower($module['name']),'moduleJson'=>$module);
 			    	echo '
-			    	<drag class="drag" :transfer-data=\''.json_encode($moduleJson).'\' :draggable="true" :effect-allowed="\'copy\'">
+			    	<drag class="drag" :transfer-data=\''.wp_json_encode($moduleJson).'\' :draggable="true" :effect-allowed="\'copy\'">
 				    	<span class="amppb-add-row button-primary button-large draggable module-'.esc_attr(strtolower($module['name'])).'"
 				    	>
 				    		'.$module['label'].'

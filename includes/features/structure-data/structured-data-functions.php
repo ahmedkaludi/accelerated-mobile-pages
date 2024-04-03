@@ -493,7 +493,7 @@ function ampforwp_sd_sitenavigation(){
 	    }else{
 	      return;
 	    }
-	    echo '<script type="application/ld+json">' . json_encode($schema) . "</script>";
+	    echo '<script type="application/ld+json">' . wp_json_encode($schema) . "</script>";
     }
     if ( ! class_exists('saswp_fields_generator') && ampforwp_get_setting('ampforwp-sd-navigation-schema')) {
 	    $input = array();           

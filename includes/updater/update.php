@@ -7,12 +7,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function ampforwp_get_licence_activate_update(){
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
-        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
     }
     // Exit if the user does not have proper permissions
     if(! current_user_can( 'manage_options' ) ) {
-        echo json_encode(array("status"=>300,"message"=>'User not have authority'));
+        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('User not have authority','accelerated-mobile-pages')));
         die;
     }
     $selectedOption = get_option('redux_builder_amp',true);
@@ -142,16 +142,16 @@ function ampforwp_get_licence_activate_update(){
             if($status=='valid'){
                 update_option( 'redux_builder_amp', $selectedOption );
                 $status     = "200";
-                $message    = "Plugin activated successfully";
+                $message    = esc_html__("Plugin activated successfully",'accelerated-mobile-pages');
             }else{
                 $status     = "500";
             }
             }else{
             $status     = "400";
-            $message    = "License not found";
+            $message    = esc_html__("License not found",'accelerated-mobile-pages');
         }
 
-        echo json_encode(array("status"=>$status,"message"=>$message,"other"=> $selectedOption['amp-license'][$ampforwp_license_activate]));
+        echo wp_json_encode(array("status"=>$status,"message"=>$message,"other"=> $selectedOption['amp-license'][$ampforwp_license_activate]));
         die;
     }
 }
@@ -173,7 +173,7 @@ function ampforwp_set_license_transient(){
 
 function ampforwp_deactivate_license() {
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
-        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
     }
     // Exit if the user does not have proper permissions
@@ -214,13 +214,13 @@ function ampforwp_deactivate_license() {
             if ( is_wp_error( $response ) ) {
                 $message = $response->get_error_message();
             } else {
-                $message = esc_html__( 'An error occurred, please try again.', 'advanced-amp-ads' );
+                $message = esc_html__( 'An error occurred, please try again.', 'accelerated-mobile-pages' );
             }
 
-            echo json_encode(array('status'=>500,"message"=>$message,"test"=>$selectedOption['amp-license'][$ampforwp_license_deactivate], "dsc"=>$pluginItemStoreUrl));
+            echo wp_json_encode(array('status'=>500,"message"=>$message,"test"=>$selectedOption['amp-license'][$ampforwp_license_deactivate], "dsc"=>$pluginItemStoreUrl));
             exit();
         }else{
-            $message = 'Plugin deactivated successfully';
+            $message = esc_html__( 'Plugin deactivated successfully', 'accelerated-mobile-pages' );
         }
 
         // decode the license data
@@ -235,7 +235,7 @@ function ampforwp_deactivate_license() {
            $selectedOption['amp-license'][$ampforwp_license_deactivate]['license']= '';
            update_option( 'redux_builder_amp', $selectedOption );
         }
-        echo json_encode(array('status'=>200,"message"=>$message));
+        echo wp_json_encode(array('status'=>200,"message"=>$message));
         exit();
     }
     exit();

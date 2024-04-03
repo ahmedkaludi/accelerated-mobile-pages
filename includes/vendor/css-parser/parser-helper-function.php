@@ -52,7 +52,7 @@ class AMPFORWP_Tree_Shaking_Transient{
 				if ( ! $ifp ) {
 		          return ( array( 'error' => sprintf( __( 'Could not write file %s' ), $new_file ) ));
 		        }
-		        $result = @fwrite( $ifp, json_encode($value) );
+		        $result = @fwrite( $ifp, wp_json_encode($value) );
 			    fclose( $ifp );
 			}
 

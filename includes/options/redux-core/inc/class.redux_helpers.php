@@ -580,13 +580,6 @@ namespace ReduxCore\ReduxFramework;
                     $sysinfo['theme']['parent_author_uri'] = $parent_theme->{'Author URI'};
                 }
 
-                //if ( $json_output ) {
-                //    $sysinfo = json_encode( $sysinfo );
-                //}
-
-                //print_r($sysinfo);
-                //exit();
-
                 return $sysinfo;
             }
 

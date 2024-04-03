@@ -120,7 +120,7 @@ if( !class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_color_rgba' ) ) {
                       data-cancel-text="'               . $this->field['options']['cancel_text'] . '"
                       data-input-text="'                . $this->field['options']['input_text'] . '"
                       data-show-buttons="'              . $this->field['options']['show_buttons'] . '"
-                      data-palette="'                   . urlencode(json_encode($this->field['options']['palette'])) . '"
+                      data-palette="'                   . urlencode(wp_json_encode($this->field['options']['palette'])) . '"
                   >';
             
             // Colour picker layout
