@@ -197,7 +197,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 = 1.0.94 (3rd April 2024) =
-* New: Added Shortcode  so that user can show '[ampforwp_visibility visibility="show"] content[/ampforwp_visibility]' or hide  '[ampforwp_visibility visibility="hide"]content[/ampforwp_visibility]'some content in AMP. #5474
+* New: Added Shortcode [ampforwp_visibility] so that user can show or hide some content in AMP. #5474
 * Improvements: Code improvement part 2 #5567
 * Fixed: Warning appears related to author-box #5577
 * Fixed: The excerpt is not showing inside the em tag in AMP, and the font is not working. #5487
