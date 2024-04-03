@@ -216,7 +216,7 @@ function ampforwp_notice_bar_options($opt_name){
             'id'        =>'amp-gdpr-compliance-enable-options',
             'type'      => 'switch',
             'title'     => esc_html__('Enable Cookie Selection', 'accelerated-mobile-pages'),
-            'default'   => 0,
+            'default'   => 1,
             'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
         ),
         array(
