@@ -41,21 +41,23 @@ function amp_gdpr_output(){
         <script type="application/json">
             {
                "ISOCountryGroups": {
-               		"eea":[ <?php echo '"'.implode('","', array_values($gdpr_countries)).'"';?> ]
+				"eea": [ "preset-eea", "unknown" ]
                 }
             }
         </script>
-    </amp-geo>      
+    </amp-geo>
     <amp-consent id="ampforwpConsent" layout="nodisplay">
-	    <script type="application/json">{
-	        "consents": {
-	          "consent1": {
-	            "promptIfUnknownForGeoGroup": "eea",
-	            "promptUI": "gdpr_c"
-	          }
-	        },
-	        "postPromptUI": "post-consent-ui"
-	    }</script>
+		<script type="application/json">{
+		"consentInstanceId": "ampforwp-consent",
+		"consentRequired": false,
+		"geoOverride": {
+			"eea": {
+			"promptUI": "gdpr_c",
+			"consentRequired": true
+			}
+		},
+		"postPromptUI": "post-consent-ui"
+		}</script>
           <div class="gdpr" id="gdpr_c">
             <div class="gdpr_w">
               <div class="gdpr_x" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
@@ -68,19 +70,19 @@ function amp_gdpr_output(){
 		          		<div class="choices">
 						  <?php if ($cookie_options==null || (isset($cookie_options['marketing']) && $cookie_options['marketing'] ==1)) { ?>
 				            <label class="consentLabel" for="consent-purpose-marketing">
-				              <input id="consent-purpose-marketing" type="checkbox" on="change:siteConsent.setPurpose(purpose-marketing=event.checked)">
+				              <input id="consent-purpose-marketing" type="checkbox" on="change:ampforwpConsent.setPurpose(purpose-marketing=event.checked)">
 				              <?php echo esc_html__('Marketing cookies','accelerated-mobile-pages'); ?>
 				            </label>
 							<?php } ?>
 							<?php if ($cookie_options==null || (isset($cookie_options['conversion']) && $cookie_options['conversion'] ==1)) { ?>
 				            <label class="consentLabel" for="consent-purpose-conversion">
-				              <input id="consent-purpose-conversion" type="checkbox" on="change:siteConsent.setPurpose(purpose-conversion=event.checked)">
+				              <input id="consent-purpose-conversion" type="checkbox" on="change:ampforwpConsent.setPurpose(purpose-conversion=event.checked)">
 				              <?php echo esc_html__('Conversion tracking cookies','accelerated-mobile-pages'); ?>
 				            </label>
 							<?php } ?>
 							<?php if ($cookie_options==null || (isset($cookie_options['analytics']) && $cookie_options['analytics'] ==1)) { ?>
 				            <label class="consentLabel" for="consent-purpose-analytics">
-				              <input id="consent-purpose-analytics" type="checkbox" on="change:siteConsent.setPurpose(purpose-analytics=event.checked)">
+				              <input id="consent-purpose-analytics" type="checkbox" on="change:ampforwpConsent.setPurpose(purpose-analytics=event.checked)">
 							  <?php echo esc_html__('Analytics','accelerated-mobile-pages'); ?> 
 				            </label>
 							<?php } ?>
@@ -95,7 +97,7 @@ function amp_gdpr_output(){
               <div id="gdpr_yn" class="gdpr_yn">
               	<div class="gdpr-btns">
 	                <form class="acp" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-	                  <button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_html__($accept,'accelerated-mobile-pages'); ?></button>
+	                  <button type="submit" on="tap:ampforwpConsent.accept(purposeConsentDefault=false)" class="btn gdpr_y btn"><?php echo esc_html__($accept,'accelerated-mobile-pages'); ?></button>
 	                </form>
 	                <form class="rej" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
 	                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_html__($reject,'accelerated-mobile-pages'); ?></button>
@@ -305,7 +307,7 @@ function ampforwp_gdpr_css(){
 
 function amp_consent_submission(){
 	if(wp_verify_nonce( $_REQUEST['verify_nonce'], 'amp_consent' ) ) {
-		setcookie('ampforwp_gdpr_action','true', time() + (86400 * 30), "/");
+		//setcookie('ampforwp_gdpr_action','true', time() + (86400 * 30), "/");
        	$current_url = $site_url = $site_host = $amp_site = '';
 		$current_url 	= wp_get_referer();
 		$site_url 		= parse_url( get_site_url() );
