@@ -129,7 +129,7 @@ function amp_breadcrumb_output(){
                         $primary_cateogory = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_primary_category', true);
                     if(isset($primary_cateogory) && $primary_cateogory!="" && $primary_cateogory > 0){
                         $get_parent_cat = get_category_parents($primary_cateogory, false, '>');
-                        if(is_string($get_parent_cat)){
+                        if(!is_wp_error($get_parent_cat)){
                             $get_cat_parents = rtrim($get_parent_cat,'>');
                         }
                        }
