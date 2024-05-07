@@ -8919,7 +8919,11 @@ if(!function_exists('ampforwp_add_fallback_element')){
 					if(function_exists('rocket_activation')){
 						$m1_content = preg_replace('/srcset="(.*?)"/', '', $m1_content);
 					}
-					$fallback_img = "<amp-img data-hero ".$m_content."<amp-img fallback data-hero ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
+					if(has_action('penci_loop_product_image')){
+						$fallback_img = "<amp-img data-hero ".$m_content."</amp-img>";
+					}else{
+						$fallback_img = "<amp-img data-hero ".$m_content."<amp-img fallback data-hero ".$m1_content."</amp-img></amp-img>";//$m_content, $m1_content escaped above.
+					}
 					$content = str_replace("$match", $fallback_img, $content);
 				}
 				}
@@ -9081,7 +9085,7 @@ if(!function_exists('ampforwp_imagify_webp_compatibility')){
 }
 if(!function_exists('ampforwp_set_default_fallback_image')){
 	function ampforwp_set_default_fallback_image($content){
-		if(!function_exists('_imagify_init') && !function_exists('ewww_image_optimizer_webp_initialize')){
+		if(!function_exists('_imagify_init') && !function_exists('ewww_image_optimizer_webp_initialize') && !has_action('penci_loop_product_image')){
 			preg_match_all('/src="(.*?)"/', $content,$cc); // need to check extenstion for fallback.
 			if(isset($cc[1][0])){
 				$img = $cc[1][0];
