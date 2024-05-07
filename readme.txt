@@ -201,6 +201,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Issue persist due to recent update with poll maker plugin #5585
 * Fixed: PHP Warning: Attempt to read property "ID" on null #5589
 * Test: Test with new version of wordpress i.e. 6.5v #5581
+* Fixed: Validation issues in images when using Pencil builder #5592
 
 = 1.0.94 (3rd April 2024) =
 * New: Added Shortcode so that user can show or hide some content in AMP. #5474
