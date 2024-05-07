@@ -127,8 +127,11 @@ function amp_breadcrumb_output(){
                     $get_cat_parents = rtrim(get_category_parents($last_category->term_id, false, '>'),'>');
                     if(class_exists( 'WPSEO_Options' )){
                         $primary_cateogory = get_post_meta(ampforwp_get_the_ID(), '_yoast_wpseo_primary_category', true);
-                    if(isset($primary_cateogory) && $primary_cateogory!=""){
-                        $get_cat_parents = rtrim(get_category_parents($primary_cateogory, false, '>'),'>');
+                    if(isset($primary_cateogory) && $primary_cateogory!="" && $primary_cateogory > 0){
+                        $get_parent_cat = get_category_parents($primary_cateogory, false, '>');
+                        if(!is_wp_error($get_parent_cat)){
+                            $get_cat_parents = rtrim($get_parent_cat,'>');
+                        }
                        }
                    }
                     // Get parent any categories and create array 

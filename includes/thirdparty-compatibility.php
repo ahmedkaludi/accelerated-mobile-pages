@@ -1890,17 +1890,19 @@ function ampforwp_fTC_theme_remove_scripts() {
 //Remove Poll maker to solve validation error
 add_action('wp','ampforwp_poll_maker_remove_html');
 function ampforwp_poll_maker_remove_html(){
-	$plugin_name = 'poll-maker-ays';
-	if (defined('POLL_MAKER_AYS_VERSION')) {
-	    $version = POLL_MAKER_AYS_VERSION;
-	} else {
-	    $version = '1.0.0';
-	}
-	if(class_exists('Poll_Maker_Ays_Public')){
-		$new = new Poll_Maker_Ays_Public($plugin_name, $version);	
-		remove_shortcode('ays_poll', array($new, 'ays_poll_generate_shortcode'));
-		add_shortcode('ays_poll', 'ampforwp_ays_poll_remove_shortcode');
-	}
+	if((function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()) || (function_exists('is_amp_endpoint') && is_amp_endpoint())){
+		$plugin_name = 'poll-maker-ays';
+		if (defined('POLL_MAKER_AYS_VERSION')) {
+			$version = POLL_MAKER_AYS_VERSION;
+		} else {
+			$version = '1.0.0';
+		}
+		if(class_exists('Poll_Maker_Ays_Public')){
+			$new = new Poll_Maker_Ays_Public($plugin_name, $version);	
+			remove_shortcode('ays_poll', array($new, 'ays_poll_generate_shortcode'));
+			add_shortcode('ays_poll', 'ampforwp_ays_poll_remove_shortcode');
+		}
+}
 }
 
 function ampforwp_ays_poll_remove_shortcode($atts){
