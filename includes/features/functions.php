@@ -1586,7 +1586,8 @@ function ampforwp_tpd_notice(){
 <?php    }
 }
 
-function ampforwp_tpd_remove_notice(){    
+add_action( 'wp_ajax_ampforwp_tpd_remove_notice', 'ampforwp_tpd_remove_notice' );
+function ampforwp_tpd_remove_notice(){   
     $result = '';
     if(current_user_can( 'manage_options' )){
        $result = update_option( "ampforwp_tpd_remove_notice", 'remove', false);
