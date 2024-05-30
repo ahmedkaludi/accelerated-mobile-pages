@@ -77,7 +77,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Built in MGID Ads Support with 6 different ad slots.
 * Google Analytics Support.
 * User Friendly Theme Options Panel.
-* Unlimited Color Scheme.
+* Unlimited Color Scheme..
 * Image Logo Upload.
 * Supports Posts and Pages and other custom post types.
 * Proper rel canonical tags which means that Google know the original page.
