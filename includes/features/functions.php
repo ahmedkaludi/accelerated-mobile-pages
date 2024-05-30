@@ -1585,8 +1585,8 @@ function ampforwp_tpd_notice(){
         </div>
 <?php    }
 }
-
-add_action( 'wp_ajax_ampforwp_tpd_remove_notice', 'ampforwp_tpd_remove_notice' );
+// added ajax hook here.
+add_action( 'wp_ajax_ampforwp_tpd_remove_notice', 'ampforwp_tpd_remove_notice' ); 
 function ampforwp_tpd_remove_notice(){   
     $result = '';
     if(current_user_can( 'manage_options' )){
