@@ -10001,10 +10001,14 @@ function ampforwp_publisher_desk_ads( $content ) {
 		        $addList[9] = $json_data_api->customHTMLInContentAds[2];
 		      } 
 		      else{
-		      	
-		      	for ($i=0; $i < count($json_data_api->afterParagraphNumbers); $i++) { 
-		      	 $addList[$json_data_api->afterParagraphNumbers[$i]] = $json_data_api->customHTMLInContentAds[$i];
+		      	$countjsonDAta = [];
+		      	if($json_data_api->afterParagraphNumbers){
+		      		$countjsonDAta = $json_data_api->afterParagraphNumbers;
+		      		for ($i=0; $i < count($countjsonDAta); $i++) { 
+			      	 $addList[$json_data_api->afterParagraphNumbers[$i]] = $json_data_api->customHTMLInContentAds[$i];
+			      	}
 		      	}
+		      	
 		      }
 		      $content = ampforwp_publisher_desk_ads_insert( $addList, $content );
 		      $content .= $json_data_api->stickyCustomHTMLAd[0];
