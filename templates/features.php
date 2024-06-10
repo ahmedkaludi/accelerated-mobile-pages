@@ -5761,6 +5761,12 @@ function ampforwp_merriweather_font_management( $data ) {
 add_filter('ampforwp_menu_content','ampforwp_modify_menu_content');
 if( ! function_exists(' ampforwp_modify_menu_content ') ){
 	function ampforwp_modify_menu_content($menu){
+		
+		// Return $menu If tagDiv Composer plugin is active 
+		if(function_exists('tdc_error_handler')){
+			return $menu;
+		}
+		
 		$dom 		= '';
 		$nodes 		= '';
 		$num_nodes 	= '';
