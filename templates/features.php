@@ -7577,6 +7577,11 @@ if(false==ampforwp_get_setting('hide-amp-version-from-source')){
 add_filter('ampforwp_menu_content','ampforwp_modify_ivory_search');
 if( ! function_exists(' ampforwp_modify_ivory_search ') ){
 	function ampforwp_modify_ivory_search($menu){
+		
+		if(!class_exists('Ivory_Search')){
+			return $menu;
+		}
+		
 		$dom 		= '';
 		$nodes 		= '';
 		$num_nodes 	= '';
