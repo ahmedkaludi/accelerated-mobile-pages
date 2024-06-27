@@ -5774,8 +5774,11 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 			// Create a new document
 			$dom = new DOMDocument();
 			if( function_exists( 'mb_convert_encoding' ) ){
-				// $menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
-				$menu = htmlentities($menu);
+				if (version_compare(PHP_VERSION, '8.2.0', '>=')) {
+					$menu = htmlentities($menu);
+				} else {
+					$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');
+				}
 			}
 			else{
 				$menu =  preg_replace( '/&[^amp|#038].*?;/', 'x', $menu ); // multi-byte characters converted to X
