@@ -10008,7 +10008,7 @@ function ampforwp_publisher_desk_ads( $content ) {
 		    	$content .= $json_data_api->customHTMLBelowContentAd[0];
 		    }
 		    if ( is_single() && !empty($pub_id) && !empty($json_data_api) ) {
-		      if($json_data_api->inContentPlacementMethod=='Auto'){
+		      if(isset($json_data_api->inContentPlacementMethod) && $json_data_api->inContentPlacementMethod=='Auto'){
 		       
 		        $addList[3] = $json_data_api->customHTMLInContentAds[0];
 		        $addList[6] = $json_data_api->customHTMLInContentAds[1];
