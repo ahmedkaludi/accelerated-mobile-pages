@@ -110,7 +110,7 @@ function ampforwp_framework_get_featured_image(){
 				<?php
 					$caption = get_post_meta($post->ID, '_cc_featured_image_caption', true);
 			        if (isset($caption['caption_text']) && !empty($caption['caption_text'])) {
-			            echo "<p class='wp-caption-text'>".$caption['caption_text']."</p>";
+			            echo "<p class='wp-caption-text'>".esc_html($caption['caption_text'])."</p>";
 			        }
 				 ?>
 				 
