@@ -5776,6 +5776,8 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 			if( function_exists( 'mb_convert_encoding' ) ){
 				if (version_compare(PHP_VERSION, '8.2.0', '>=')) {
 					$menu = htmlentities($menu);
+					$menu = html_entity_decode($menu, ENT_QUOTES | ENT_HTML401, 'UTF-8');
+					$menu = mb_convert_encoding($menu, 'UTF-8', 'UTF-8');
 				} else {
 					$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');
 				}
