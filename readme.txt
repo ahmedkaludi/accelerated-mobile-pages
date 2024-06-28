@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.5
-Stable tag: 1.0.95
+Stable tag: 1.0.96
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -195,6 +195,17 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+
+= 1.0.96 (28th June 2024) =
+* Fixed: Featured image caption is not working #5574
+* Fixed: PHP deprecated error (PHP 8.2) #5587
+* Fixed: PHP warning message displayed on the user's end. #5594
+* Fixed: Publisher desk "Dismiss" button is not working.  #5591
+* Fixed: PHP error on the user end. #5605
+* Fixed: Undefined property: stdClass::$inContentPlacementMethod #5607
+* Fixed: While using the News12Paper theme and tagDiv Composer plugin, there is an issue with the AMP menu (user-end issue). #5608
+* Fixed: Change Twitter as X #5609
+* Fixed: Amazon auto links are not working on AMP #5583
 
 = 1.0.95 (7th May 2024) =
 * Fixed: rtrim(): Argument #1 ($string) must be of type string, WP_Error given #5588

@@ -5761,6 +5761,12 @@ function ampforwp_merriweather_font_management( $data ) {
 add_filter('ampforwp_menu_content','ampforwp_modify_menu_content');
 if( ! function_exists(' ampforwp_modify_menu_content ') ){
 	function ampforwp_modify_menu_content($menu){
+		
+		// Return $menu If tagDiv Composer plugin is active 
+		if(function_exists('tdc_error_handler')){
+			return $menu;
+		}
+		
 		$dom 		= '';
 		$nodes 		= '';
 		$num_nodes 	= '';
@@ -5768,7 +5774,11 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 			// Create a new document
 			$dom = new DOMDocument();
 			if( function_exists( 'mb_convert_encoding' ) ){
-				$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
+				if (version_compare(PHP_VERSION, '8.2.0', '>=')) {
+					$menu = htmlentities($menu);
+				} else {
+					$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');
+				}
 			}
 			else{
 				$menu =  preg_replace( '/&[^amp|#038].*?;/', 'x', $menu ); // multi-byte characters converted to X
@@ -7570,6 +7580,11 @@ if(false==ampforwp_get_setting('hide-amp-version-from-source')){
 add_filter('ampforwp_menu_content','ampforwp_modify_ivory_search');
 if( ! function_exists(' ampforwp_modify_ivory_search ') ){
 	function ampforwp_modify_ivory_search($menu){
+		
+		if(!class_exists('Ivory_Search')){
+			return $menu;
+		}
+		
 		$dom 		= '';
 		$nodes 		= '';
 		$num_nodes 	= '';
@@ -9993,17 +10008,19 @@ function ampforwp_publisher_desk_ads( $content ) {
 		    	$content .= $json_data_api->customHTMLBelowContentAd[0];
 		    }
 		    if ( is_single() && !empty($pub_id) && !empty($json_data_api) ) {
-		      if($json_data_api->inContentPlacementMethod=='Auto'){
+		      if(isset($json_data_api->inContentPlacementMethod) && $json_data_api->inContentPlacementMethod=='Auto'){
 		       
 		        $addList[3] = $json_data_api->customHTMLInContentAds[0];
 		        $addList[6] = $json_data_api->customHTMLInContentAds[1];
 		        $addList[9] = $json_data_api->customHTMLInContentAds[2];
 		      } 
 		      else{
-		      	
-		      	for ($i=0; $i < count($json_data_api->afterParagraphNumbers); $i++) { 
-		      	 $addList[$json_data_api->afterParagraphNumbers[$i]] = $json_data_api->customHTMLInContentAds[$i];
+		      	if($json_data_api->afterParagraphNumbers){ 
+		      		for ($i=0; $i < count($json_data_api->afterParagraphNumbers); $i++) { 
+			      	 $addList[$json_data_api->afterParagraphNumbers[$i]] = $json_data_api->customHTMLInContentAds[$i];
+			      	}
 		      	}
+		      	
 		      }
 		      $content = ampforwp_publisher_desk_ads_insert( $addList, $content );
 		      $content .= $json_data_api->stickyCustomHTMLAd[0];

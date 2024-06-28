@@ -181,8 +181,8 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 					$ID = ampforwp_get_frontpage_id();
 					$headline =  get_the_title( $ID ) . ' | ' . get_option('blogname');
 					$static_page_data = get_post( $ID );
-					$datePublished = $static_page_data->post_date;
-					$dateModified = $static_page_data->post_modified;
+					$datePublished = isset($static_page_data->post_date) ? $static_page_data->post_date : '';
+					$dateModified = isset($static_page_data->post_modified) ? $static_page_data->post_modified : '';
 					$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id($ID), 'full' ); 
 					// Featured Image structured Data
 					if( $featured_image_array ) {
@@ -348,7 +348,7 @@ if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 			$metadata['name'] = $metadata['headline'];
 			$metadata['uploadDate'] = $metadata['datePublished'];
 			$metadata['thumbnailUrl'] = $structured_data_video_thumb_url;
-			$desc = $post->post_content;
+			$desc = isset($post->post_content) ? $post->post_content : '';
 			if(ampforwp_is_home()){
 				$desc = get_bloginfo('description');
 			}

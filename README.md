@@ -100,7 +100,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Incontent & DoubleClick Support
 * Great Support & Active Development.
 * Widgets & WooCommerce 
-* Breadcrumb Support added 
+* Breadcrumb Support added.
 * Facebook Instant Articles Support Added
 * AMP Installation Wizard that makes it easy to setup for new users.
 * Category base remover support

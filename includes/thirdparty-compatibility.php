@@ -1908,3 +1908,97 @@ function ampforwp_poll_maker_remove_html(){
 function ampforwp_ays_poll_remove_shortcode($atts){
 	return;
 }
+
+/*
+* Adding compatiblity for Amazon Auto Links Plugin
+* since 1.0.96
+*/
+add_filter('the_content','ampforwp_aal_content_fix', 9);
+function ampforwp_aal_content_fix($content){
+	if(is_amp_endpoint() && class_exists('AmazonAutoLinks_Registry_Base')){
+		$auto_insert ='';
+		// get all post  ids with  post_type aal_auto_insert and are  published. Only need to fetch ids not the whole post
+
+		$posts = get_posts(array(
+			'post_type' => 'aal_auto_insert',
+			'post_status' => 'publish',
+			'fields' => 'ids',
+			'posts_per_page' => -1
+		));
+
+		// if there are no posts then return the content as it is
+		if(empty($posts)){
+			return $content;
+		}
+			$position = 'below';
+		foreach($posts as $post){
+			$unit_ids =  get_post_meta( $post, 'unit_ids', true );
+			$status = get_post_meta( $post, 'status', true );
+			$position = get_post_meta( $post, 'position', true );
+			$enable_post_ids = get_post_meta( $post, 'enable_post_ids', true );
+			$enable_page_types = get_post_meta( $post, 'enable_page_types', true );
+			$enable_post_types = get_post_meta( $post, 'enable_post_types', true );
+			$diable_post_ids = get_post_meta( $post, 'diable_post_ids', true );
+			$disable_page_types = get_post_meta( $post, 'disable_page_types', true );
+			$disable_post_types = get_post_meta( $post, 'disable_post_types', true );
+			$pages_types = ['is_singular'=>is_singular(),'is_home'=>is_home(),'is_archive'=>is_archive(),'is_404'=>is_404(),'is_search'=>is_search()];
+			$get_current_post_type = get_post_type();
+			$get_current_post_id  = get_the_ID(); 
+			$enable_post_types_values = array_filter(array_unique(array_values($enable_post_types)));
+			$disable_post_types_values = array_filter(array_unique(array_values($disable_post_types)));
+			$enable_pages_types_values = array_filter(array_unique(array_values($enable_page_types)));
+			$disable_pages_types_values = array_filter(array_unique(array_values($disable_page_types)));
+			$diable_post_ids = array_filter(explode(',',$diable_post_ids));
+			$enable_post_ids = array_filter(explode(',',$enable_post_ids));
+		
+			if($status == '1' && (empty($enable_post_ids)  || (!empty($enable_post_ids) &&in_array($get_current_post_id, $enable_post_ids))) && (!in_array('1', $enable_post_types_values) || (in_array('1', $enable_post_types_values) && isset($enable_post_types[$get_current_post_type]) && $enable_post_types[$get_current_post_type] == 1)) && !in_array($get_current_post_id, $diable_post_ids) && (!in_array('1', $disable_post_types) ||( in_array('1', $disable_post_types_values) && isset($disable_post_types[$get_current_post_type]) && $disable_post_types[$get_current_post_type] == 0)) && ((!in_array('1', $enable_pages_types_values) || (in_array('1', $enable_pages_types_values) && ampforwp_aal_check_pages_types($pages_types,$enable_page_types)) ))&& ((!in_array('1', $disable_pages_types_values) || (in_array('1', $disable_pages_types_values) && ampforwp_aal_check_pages_types($pages_types,$disable_page_types)) )))
+	 		{
+				$auto_insert .= apply_filters( 'aal_filter_output', '', array('id'=>implode(',',$unit_ids)));
+			} 
+
+		}
+
+		if($position == 'above'){
+			$content = $auto_insert.$content;
+		}else if($position == 'both'){
+			$content = $auto_insert.$content.$auto_insert;
+		}else{
+			$content = $content.$auto_insert;
+		}
+		
+		
+	}
+	return $content;
+}
+
+function ampforwp_aal_check_pages_types($pages_types, $enabled_or_not) {
+    foreach ($pages_types as $key => $value) {
+        if ($value && $enabled_or_not[$key] == '1') {
+            return true;
+        }
+    }
+    return false;
+}
+
+add_action('amp_post_template_css','ampforwp_aal_css');
+function ampforwp_aal_css(){
+	if (is_amp_endpoint() && class_exists('AmazonAutoLinks_Registry_Base')) {
+		echo '.amazon-products-container-list{overflow-y:auto;overflow-x:hidden;width:100%}.amazon-products-container-list *{-webkit-box-sizing:border-box;box-sizing:border-box}.amazon-products-container-list a{color:inherit;text-decoration:none}.amazon-products-container-list .amazon-product-container{width:100%;display:block;clear:both;margin-bottom:1.4em}.amazon-products-container-list .amazon-product-title{margin:.1em 0 1em}.amazon-products-container-list .amazon-product-thumbnail-container{width:100%}.amazon-products-container-list .amazon-product-thumbnail{display:table;margin:auto;text-align:center;padding:1em}.amazon-products-container-list .amazon-product-thumbnail a{display:inline-block;background-color:#fff;padding:.8em;border:none;border-radius:4%;-webkit-box-shadow:none;box-shadow:none}.amazon-products-container-list .amazon-product-thumbnail a:focus,.amazon-products-container-list .amazon-product-thumbnail a:hover{-webkit-box-shadow:none;box-shadow:none}.amazon-products-container-list .amazon-product-thumbnail img{max-width:100%;margin-left:auto;margin-right:auto}.amazon-products-container-list .amazon-auto-links-product-body{display:inline-block;width:65.8%}.amazon-products-container-list .crIFrameNumCustReviews{display:inline-block;vertical-align:top;height:auto}.amazon-products-container-list .crAvgStars{white-space:nowrap}.amazon-products-container-list span.crAvgStars a{font-size:inherit}.amazon-products-container-list .amazon-customer-rating-stars{display:inline-block;margin:0 .2em 0 0;vertical-align:middle;line-height:1.6;font-size:88%}.amazon-products-container-list .amazon-customer-rating-stars .review-stars{display:inline;vertical-align:text-bottom;margin-right:.44em;line-height:1}.amazon-products-container-list .amazon-customer-rating-stars .review-stars svg{top:-2px}.amazon-products-container-list .amazon-customer-rating-stars .review-count{margin-top:2px;margin-left:-2px;display:inline}.amazon-products-container-list .pricing-disclaimer a.amazon-disclaimer-tooltip{outline:0}.amazon-products-container-list .pricing-disclaimer a.amazon-disclaimer-tooltip>span.amazon-disclaimer-tooltip-content>.amazon-disclaimer-tooltip-content-text{z-index:999;display:none;padding:14px 20px;margin-top:-30px;margin-left:28px;width:300px;line-height:16px;border-radius:4px;-webkit-box-shadow:5px 5px 8px #ccc;box-shadow:5px 5px 8px #ccc}.amazon-products-container-list .pricing-disclaimer a.amazon-disclaimer-tooltip:hover{text-decoration:none}.amazon-products-container-list .pricing-disclaimer a.amazon-disclaimer-tooltip:hover>span.amazon-disclaimer-tooltip-content{display:inline;position:relative}.amazon-products-container-list .pricing-disclaimer a.amazon-disclaimer-tooltip:hover>span.amazon-disclaimer-tooltip-content>.amazon-disclaimer-tooltip-content-text{display:inline;float:right;position:absolute;color:#111;border:1px solid #dca;background:#fffaf0;margin-left:-100px;margin-top:-140px}.amazon-products-container-list .amazon-auto-links-product-image{vertical-align:top;display:inline-block;width:32%;margin-right:1%;font-size:80%}.amazon-products-container-list .amazon-prices{margin-right:.2em;line-height:1.6;font-size:88%;display:inline-block;vertical-align:middle}.amazon-products-container-list .amazon-prices .offered-price{display:inline}.amazon-products-container-list span.offered-price{color:#b12704;font-weight:700}@media only screen and (max-width:520px){.amazon-products-container-list .amazon-auto-links-product-image{width:100%;margin-bottom:1em}.amazon-products-container-list .amazon-auto-links-product-body{font-size:88%;width:100%}}.amazon-product-thumbnail .amp-wp-enforced-sizes {width:200px;}';
+	}
+}
+
+add_filter('amp_post_template_data','ampforwp_aal_compatibility');
+
+function ampforwp_aal_compatibility( $amp_post_template_data ) 
+{
+	if (is_amp_endpoint() && class_exists('AmazonAutoLinks_Registry_Base')) {
+			$content = $amp_post_template_data['post_amp_content'];
+		if (strpos($content, '<div class="amazon-customer-rating-stars">') !== false) {
+    // Perform the replacement within <span class="review-stars">
+		$content = preg_replace('/(<span class="review-stars">.*?<a [^>]*>).*?<svg[^>]*><title>([^<]*)<\/title>.*?<\/svg>(.*?<\/a>.*?<\/span>)/s', '$1$2$3', $content);
+				$amp_post_template_data['post_amp_content'] = $content;
+	} 	
+	}
+
+	return $amp_post_template_data;
+}
