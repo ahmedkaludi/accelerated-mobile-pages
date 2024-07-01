@@ -196,7 +196,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 
-= 1.0.96.1 (29th June 2024) =
+= 1.0.96.1 (1st July 2024) =
 * Fixed: Update Twitter Icon as X  in author box #5609
 * Fixed: AMP footer Menu showing as text for some users
 
