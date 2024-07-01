@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.5
-Stable tag: 1.0.96
+Stable tag: 1.0.96.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -196,6 +196,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 
+= 1.0.96.1 (1st July 2024) =
+* Fixed: Update Twitter Icon as X  in author box #5609
+* Fixed: AMP footer Menu showing as text for some users
+
 = 1.0.96 (28th June 2024) =
 * Fixed: Featured image caption is not working #5574
 * Fixed: PHP deprecated error (PHP 8.2) #5587
@@ -327,13 +331,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: WPCore Module of Search is throwing error in AMP validation #5450
 * Fixed: NON-AMP site is slowed down if the mobile redirection is enabled in AMP #5451
 * Fixed: "Preview AMP" shows a blank modal #5454
-
-= 1.0.85 (10th May 2023) =
-* Fixed: Notice : Function WP_Scripts::localize was called incorrectly. The $l10n parameter must be array #5435
-* Fixed: PHP error after the recent update 1.0.84 #5436
-* Fixed: Dismiss button not working #5437
-* Fixed: Issue with Google Font and Global Font Weight Selector #5440
-* Fixed: Some issue in extension section #5433
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
