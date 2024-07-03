@@ -35,7 +35,7 @@
         const matches = disqus_name.match(pattern);
         if (matches) {
             var d = document, s = d.createElement('script');
-            s.src = matches;
+            s.src = matches.input;
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         }
