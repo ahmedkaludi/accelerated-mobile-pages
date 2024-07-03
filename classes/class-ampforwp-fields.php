@@ -419,6 +419,10 @@ class AMPforWP_Fields
 			$required = 'required="'.esc_attr($this->required[0]).'"';
 			$hide .= ' hide';
 		}
+		
+		if (is_array($this->default)) {
+			$this->default = $this->default[0];
+		}
 		$output = '<div class="ux-field-container amp-ux-text-container '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
 			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html($this->title).'</h2>';
