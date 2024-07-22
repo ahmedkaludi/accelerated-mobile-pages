@@ -199,6 +199,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Stored Cross-Site Scripting via SVG File Upload (Reported by Wordfence)
 * Fixed: Contributor+ Broken Access Control discovered by Rafie Muhammad (Patchstack)
 * Fixed: PHP Deprecated: error with AMP #5621
+* Fixed: Disqus comments are not showing on the AMP. #5353
+* Fixed: Warning in query monitor, "Array to String Conversion" #5610
 * Tested: WordPress version 6.6 #5618
 
 = 1.0.96.1 (1st July 2024) =
