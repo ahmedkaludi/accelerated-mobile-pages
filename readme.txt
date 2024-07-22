@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.6
-Stable tag: 1.0.96.1
+Stable tag: 1.0.97
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -195,6 +195,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.0.97 (22nd July 2024) =
+* Fixed: Stored Cross-Site Scripting via SVG File Upload (Reported by Wordfence)
+* Fixed: Contributor+ Broken Access Control discovered by Rafie Muhammad (Patchstack)
+* Fixed: PHP Deprecated: error with AMP #5621
+* Tested: WordPress version 6.6 #5618
 
 = 1.0.96.1 (1st July 2024) =
 * Fixed: Update Twitter Icon as X  in author box #5609
@@ -322,15 +327,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Playfair Display font is not showing in the heading font family. #5469
 * Fixed: Title H1 tags is automatically converted to H2 tags in AMP #5470
 * Fixed: GA4 activity fails when the AMP page is hosted on Google #5471
-
-= 1.0.86 (8th June 2023) =
-* Fixed: Content Sneak Peek not working #5446
-* Fixed: Need to add the name and attribute to the elements. #5439
-* Fixed: Compatibility with OpenSea plugin #5384
-* Fixed: Compatibility with the plugin WordProof. #5342
-* Fixed: WPCore Module of Search is throwing error in AMP validation #5450
-* Fixed: NON-AMP site is slowed down if the mobile redirection is enabled in AMP #5451
-* Fixed: "Preview AMP" shows a blank modal #5454
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
