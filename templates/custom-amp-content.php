@@ -183,7 +183,7 @@ function amp_content_editor_meta_save( $post_id ) {
     }
     // Save data of Custom AMP Editor CheckBox
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) { 
-      $ampforwp_custom_editor_checkbox = null;      
+      $ampforwp_custom_editor_checkbox = '';      
       if ( isset($_POST['ampforwp_custom_content_editor_checkbox']) ) {
         $ampforwp_custom_editor_checkbox = sanitize_text_field($_POST[ 'ampforwp_custom_content_editor_checkbox' ]);
       }

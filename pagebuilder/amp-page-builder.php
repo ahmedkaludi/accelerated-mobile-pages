@@ -77,7 +77,7 @@ function ampforwp_call_page_builder(){
 	
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
-	$previousData = isset($previousData[0])? $previousData[0]: null;
+	$previousData = isset($previousData[0])? $previousData[0]: '';
 	
 	$previousData = (str_replace("'", "&apos;", $previousData));
 	
