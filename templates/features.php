@@ -10068,3 +10068,45 @@ function ampforwp_rankmath_endpoint_fix($flag){
     return false;
   }
 }
+add_filter('wp_handle_upload_prefilter', 'ampforwp_sanitize_svg_upload');
+
+/**
+ * Sanitize SVG files before upload.
+ *
+ * This function checks if the uploaded file is an SVG. If it is, it sanitizes the SVG file by removing
+ * any <script> tags and their content.
+ *
+ * @param array $file An array of file information. 
+ * @return array The modified file information array with sanitized SVG file path.
+ */
+function ampforwp_sanitize_svg_upload( $file ) {
+	if ( isset( $file['type'] ) && 'image/svg+xml' === $file['type'] ) {
+		$file['tmp_name'] = ampforwp_sanitize_svg_file( $file['tmp_name'] );
+	}
+	return $file;
+}
+
+
+/**
+ * Sanitize SVG file by removing <script> tags and their content.
+ *
+ * @param string $file_path The path to the SVG file.
+ * @return string The path to the sanitized SVG file.
+ */
+function ampforwp_sanitize_svg_file( $file_path ) {
+    global $wp_filesystem;
+
+    if ( ! function_exists( 'WP_Filesystem' ) ) {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+    }
+
+    WP_Filesystem();
+
+    $svg_content = $wp_filesystem->get_contents( $file_path );
+
+    $sanitized_svg = preg_replace( '/<script\b[^>]*>(.*?)<\/script>/is', '', $svg_content );
+
+    $wp_filesystem->put_contents( $file_path, $sanitized_svg, FS_CHMOD_FILE );
+
+    return $file_path;
+}

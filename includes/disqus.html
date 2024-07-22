@@ -35,7 +35,7 @@
         const matches = disqus_name.match(pattern);
         if (matches) {
             var d = document, s = d.createElement('script');
-            s.src = matches;
+            s.src = matches.input;
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         }
@@ -64,19 +64,29 @@
             for (var i=0; i < frames.length; ++i) {
                 frame = frames[i];
                 framename = frame.getAttribute("name");
-                if ( framename && /dsq/.test(framename) ) {
+                src = frame.getAttribute("src");
+                if ( framename && /dsq/.test(framename) && src && src != null) {
+                    frame_id = frame.getAttribute("id");
                     // check the size now since the frame is now available
                     checkSizeChange();
-
-                    var resizeObserver = new MutationObserver(checkSizeChange);
-                    resizeObserver.observe(frame, {
-                        attributes: true,
-                        attributeFilter: ['style']
-                    });
+                    if (!amp_is_mobile_device()) {
+                        var resizeObserver = new MutationObserver(checkSizeChange);
+                        resizeObserver.observe(frame, {
+                            attributes: true,
+                            attributeFilter: ['style']
+                        });
+                    }
                     foundframe = true;
+                    if (amp_is_mobile_device()) {
+                        setTimeout(function() {
+                                apply_scroller(frame_id);
+                        }, 5000);
+                    }
                     break;
                 }
             }
+
+            
 
             // if the frame is not available yet try again later
             if (foundframe === false) {
@@ -89,6 +99,38 @@
         if (mutationObserverAvailable) {
             bindObserver();
         }
+
+        function amp_amp_is_mobile_device() {
+            if (navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)) {
+            return true;
+            }
+            return false;
+        }
+
+        function apply_scroller(frame_id =null){
+            if (frame_id != null) {
+                frames = document.getElementsByTagName('iframe');
+                for (var i=0; i < frames.length; ++i) {
+                    frame = frames[i];
+                    framename = frame.getAttribute("name");
+                    src = frame.getAttribute("src");
+                    if ( framename && /dsq/.test(framename) && src && src != null) {
+                        fram_id = frame.getAttribute("id");
+                        var test = document.getElementById(fram_id);
+                        test.setAttribute('scrolling','yes');
+                        test.style.height='520px';
+                    }
+                }
+            }
+        }
+
+        setTimeout(apply_scroller, 800);
 
         // also check periodically for the size of the frame
         setInterval(checkSizeChange, mutationObserverAvailable ? 5000 : 500);

@@ -41,10 +41,21 @@ function enable_amp_pagebuilder(){
     	echo wp_json_encode(array("status"=>300,"message"=>esc_html__('User do not have access','accelerated-mobile-pages')));
         die;
 	}
+
+	if ( function_exists( 'ampforwp_user_access_check' ) && !ampforwp_user_access_check() ) {
+    	echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Access Denied','accelerated-mobile-pages')));
+        die;
+	}
+
 	if(isset($_POST['postId'])){
 		$postId = intval($_POST['postId']);
 	}else{
 		echo wp_json_encode(array('status'=>"500", 'Message'=>esc_html__("post id not found",'accelerated-mobile-pages')));
+		die;
+	}
+	if ( function_exists( 'ampforwp_user_post_access_check' ) && !ampforwp_user_post_access_check(intval( wp_unslash( $_POST['postId'] ) ) ) ) {
+    	echo wp_json_encode(array("status"=>300,"message"=>esc_html__('You dont have permission to edit this post','accelerated-mobile-pages')));
+        die;
 	}
 	if(isset($postId) && get_post_meta($postId,'use_ampforwp_page_builder', true)!=='yes' && current_user_can('edit_posts')){
 		update_post_meta($postId, 'use_ampforwp_page_builder','yes');
@@ -91,6 +102,13 @@ function amppb_save_layout_data(){
 		echo wp_json_encode(array("status"=>300,"message"=>esc_html__('User not have authority','accelerated-mobile-pages')));
         die;
 	}
+
+	if ( function_exists( 'ampforwp_user_access_check' ) && !ampforwp_user_access_check() ) {
+    	echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Access Denied','accelerated-mobile-pages')));
+        die;
+	}
+
+
 	$layoutname = sanitize_text_field($_POST['layoutname']);
 	$layoutdata = wp_slash($_POST['layoutdata']);
 	$postarr = array(
@@ -184,6 +202,16 @@ function ampforwp_get_image() {
 	));
         die;
 	}
+
+	if ( function_exists( 'ampforwp_user_access_check' ) && !ampforwp_user_access_check() ) {
+    	echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Access Denied','accelerated-mobile-pages')));
+        die;
+	}
+	if ( function_exists( 'ampforwp_user_post_access_check' ) && !ampforwp_user_post_access_check(intval( wp_unslash( $_GET['postId'] ) ) ) ) {
+    	echo wp_json_encode(array("status"=>300,"message"=>esc_html__('You dont have permission','accelerated-mobile-pages')));
+        die;
+	}
+
 	$get_id = intval($_GET['id']);
     if(isset($get_id)){
 		if(strpos($get_id,",") !== false){
@@ -308,4 +336,58 @@ function ampforwp_dynaminc_css() {
 		echo  $value;
 	}
     exit;
+}
+
+/**
+ * Check if the current logged-in user has any of the allowed roles.
+ *
+ * This function retrieves the roles assigned to the current user and compares them
+ * with a list of allowed roles. It returns true if there is an intersection between
+ * the user's roles and the allowed roles, indicating that the user has the required access.
+ *
+ * @return bool True if the user has at least one of the allowed roles, false otherwise.
+ */
+function ampforwp_user_access_check() {
+    if ( is_user_logged_in() ) {
+        $current_user = wp_get_current_user();
+        $allowed_roles = ampforwp_get_setting('ampforwp-role-based-access');
+        
+        if ( !empty( array_intersect( $allowed_roles, $current_user->roles ) ) ) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+/**
+ * Check if the current logged-in user has access to the specified post.
+ *
+ * This function checks if the logged-in user has one of the default allowed roles (administrator or editor)
+ * or if the user is the author of the post with the given ID. It returns true if either condition is met,
+ * indicating that the user has access to the post.
+ *
+ * @param int $post_id The ID of the post to check access for.
+ * @return bool True if the user has access to the post, false otherwise.
+ */
+function ampforwp_user_post_access_check( $post_id ) {
+
+    if ( is_user_logged_in() ) {
+        $current_user = wp_get_current_user();
+        $default_allowed_roles = ['administrator', 'editor'];
+
+
+        if ( array_intersect( $default_allowed_roles, $current_user->roles ) ) {
+            return true; 
+        }
+
+
+        $post = get_post( $post_id );
+
+        if ( $post && $post->post_author == $current_user->ID ) {
+            return true; 
+        }
+    }
+
+    return false; 
 }
