@@ -198,6 +198,28 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 == Changelog ==
 
+= 1.0.97 (22nd July 2024) =
+* Fixed: Stored Cross-Site Scripting via SVG File Upload (Reported by Wordfence)
+* Fixed: Contributor+ Broken Access Control discovered by Rafie Muhammad (Patchstack)
+* Fixed: PHP Deprecated: error with AMP #5621
+* Fixed: Disqus comments are not showing on the AMP. #5353
+* Fixed: Warning in query monitor, "Array to String Conversion" #5610
+* Tested: WordPress version 6.6 #5618
+
+= 1.0.96.1 (1st July 2024) =
+* Fixed: Update Twitter Icon as X  in author box #5609
+* Fixed: AMP footer Menu showing as text for some users
+
+= 1.0.96 (28th June 2024) =
+* Fixed: Featured image caption is not working #5574
+* Fixed: PHP deprecated error (PHP 8.2) #5587
+* Fixed: PHP warning message displayed on the user's end. #5594
+* Fixed: Publisher desk "Dismiss" button is not working.  #5591
+* Fixed: PHP error on the user end. #5605
+* Fixed: Undefined property: stdClass::$inContentPlacementMethod #5607
+* Fixed: While using the News12Paper theme and tagDiv Composer plugin, there is an issue with the AMP menu (user-end issue). #5608
+* Fixed: Change Twitter as X #5609
+* Fixed: Amazon auto links are not working on AMP #5583
 
 = 1.0.95 (7th May 2024) =
 * Fixed: rtrim(): Argument #1 ($string) must be of type string, WP_Error given #5588
