@@ -10017,17 +10017,23 @@ function ampforwp_publisher_desk_ads( $content ) {
 		        $addList[9] = $json_data_api->customHTMLInContentAds[2];
 		      } 
 		      else{
-		      	if($json_data_api->afterParagraphNumbers){ 
+		      	if( isset( $json_data_api->afterParagraphNumbers ) && $json_data_api->afterParagraphNumbers ) { 
 		      		for ($i=0; $i < count($json_data_api->afterParagraphNumbers); $i++) { 
 			      	 $addList[$json_data_api->afterParagraphNumbers[$i]] = $json_data_api->customHTMLInContentAds[$i];
 			      	}
 		      	}
 		      	
 		      }
-		      $content = ampforwp_publisher_desk_ads_insert( $addList, $content );
-		      $content .= $json_data_api->stickyCustomHTMLAd[0];
-		    	$content = preg_replace('/json="/', 'json=\"' , $content);
-		    	$content = preg_replace('/rtc-config="/', 'rtc-config=\"' , $content);
+		         $content = ampforwp_publisher_desk_ads_insert( $addList, $content );
+				 
+				 if ( isset( $json_data_api->stickyCustomHTMLAd[0] ) ) {
+
+					$content .= $json_data_api->stickyCustomHTMLAd[0];
+
+				 }
+		         
+		    	 $content = preg_replace('/json="/', 'json=\"' , $content);
+		    	 $content = preg_replace('/rtc-config="/', 'rtc-config=\"' , $content);
 		    }
 		  }
     return $content;
