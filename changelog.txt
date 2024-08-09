@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.98 (9th August 2024) =
+* Fixed: PHP errors and warnings #5617,#5624,#5619,#5628,#5629,#5626
+* Fixed: Disqus comments are not showing on the AMP. #5353
+
+
 = 1.0.97 (22nd July 2024) =
 * Fixed: Stored Cross-Site Scripting via SVG File Upload (Reported by Wordfence)
 * Fixed: Contributor+ Broken Access Control discovered by Rafie Muhammad (Patchstack)

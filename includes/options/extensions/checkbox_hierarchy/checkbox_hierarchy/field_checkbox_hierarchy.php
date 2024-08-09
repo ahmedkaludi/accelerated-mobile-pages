@@ -38,6 +38,12 @@ if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox_hierarc
          * @access      public
          * @return      void
          */
+
+        private $parent;
+        private $value;
+        private $field;
+        private $time;
+
         function __construct ( $field = array(), $value = '', $parent = ' ' ) {
             $this->parent = $parent;
             $this->field = $field;

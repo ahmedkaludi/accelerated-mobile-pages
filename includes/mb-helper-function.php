@@ -14,9 +14,20 @@ if( !defined( 'ABSPATH' ) )
  * @return bool
  */
 function ampforwp_is_plugins_page() {
-    global $pagenow;
+    
+    if ( function_exists( 'get_current_screen' ) ){
 
-    return ( 'plugins.php' === $pagenow );
+        $screen = get_current_screen();
+
+            if ( is_object( $screen ) ) {
+                if ( $screen->id == 'plugins' || $screen->id == 'plugins-network' ) {
+                    return true;
+                }
+            }
+    }
+    
+    return false;
+
 }
 
 /**
@@ -27,20 +38,18 @@ function ampforwp_is_plugins_page() {
 
 
 function ampforwp_add_deactivation_feedback_modal() {
-    
-  
-    if( !is_admin() && !ampforwp_is_plugins_page()) {
-        return;
-    }
+      
+    if( is_admin() && ampforwp_is_plugins_page() ) {
 
-    $current_user = wp_get_current_user();
-    if( !($current_user instanceof WP_User) ) {
         $email = '';
-    } else {
-        $email = trim( $current_user->user_email );
-    }
+        $current_user = wp_get_current_user();
+        if( ($current_user instanceof WP_User) ) {
+            $email = trim( $current_user->user_email );
+        } 
+    
+        require_once AMPFORWP_PLUGIN_DIR."/includes/deactivate-feedback.php";   
 
-    require_once AMPFORWP_PLUGIN_DIR."/includes/deactivate-feedback.php";
+    }
     
 }
 
@@ -52,7 +61,7 @@ function ampforwp_add_deactivation_feedback_modal() {
 function ampforwp_send_feedback() {
 
     if( isset( $_POST['data'] ) ) {
-        parse_str( $_POST['data'], $form );
+        parse_str( wp_unslash( $_POST['data'] ), $form );
     }
 
     $text = '';
@@ -87,29 +96,25 @@ function ampforwp_send_feedback() {
       
     }
 
-    $success = wp_mail( 'team@magazine3.in', $subject, $text, $headers );
+    wp_mail( 'team@magazine3.in', $subject, $text, $headers );
 
     die();
 }
+
 add_action( 'wp_ajax_ampforwp_send_feedback', 'ampforwp_send_feedback' );
-
-
 
 add_action( 'admin_enqueue_scripts', 'ampforwp_enqueue_makebetter_email_js' );
 
-function ampforwp_enqueue_makebetter_email_js(){
+function ampforwp_enqueue_makebetter_email_js() {
  
-    if( !is_admin() && !ampforwp_is_plugins_page()) {
-        return;
+    if( is_admin() && ampforwp_is_plugins_page() ) {
+    
+        wp_enqueue_script( 'ampforwp-make-better-js', AMPFORWP_PLUGIN_DIR_URI . 'includes/make-better-admin.js', array( 'jquery' ), AMPFORWP_VERSION, true );
+    
+        wp_enqueue_style( 'ampforwp-make-better-css', AMPFORWP_PLUGIN_DIR_URI . 'includes/make-better-admin.css', false , AMPFORWP_VERSION);
+
     }
-
-    wp_enqueue_script( 'ampforwp-make-better-js', AMPFORWP_PLUGIN_DIR_URI . 'includes/make-better-admin.js', array( 'jquery' ), AMPFORWP_VERSION);
-
-    wp_enqueue_style( 'ampforwp-make-better-css', AMPFORWP_PLUGIN_DIR_URI . 'includes/make-better-admin.css', false , AMPFORWP_VERSION);
+    
 }
 
-if( is_admin() && ampforwp_is_plugins_page()) {
-    add_filter('admin_footer', 'ampforwp_add_deactivation_feedback_modal');
-}
-
-
+add_filter( 'admin_footer', 'ampforwp_add_deactivation_feedback_modal' );

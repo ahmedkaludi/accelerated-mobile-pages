@@ -40,7 +40,10 @@ if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox' ) ) {
          * @since       1.0.0
          * @access      public
          * @return      void
-         */
+         */        
+        private $parent;
+        private $value;
+        private $field;
         private $timestamp = '';
 
         function __construct ( $field = array(), $value = '', $parent = ' ' ) {
