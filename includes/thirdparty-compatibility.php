@@ -1914,8 +1914,10 @@ function ampforwp_ays_poll_remove_shortcode($atts){
 * since 1.0.96
 */
 add_filter('the_content','ampforwp_aal_content_fix', 9);
-function ampforwp_aal_content_fix($content){
-	if(is_amp_endpoint() && class_exists('AmazonAutoLinks_Registry_Base')){
+
+function ampforwp_aal_content_fix( $content ) {
+
+	if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() && class_exists( 'AmazonAutoLinks_Registry_Base' ) ) {
 		$auto_insert ='';
 		// get all post  ids with  post_type aal_auto_insert and are  published. Only need to fetch ids not the whole post
 
