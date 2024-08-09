@@ -5936,7 +5936,11 @@ Redux::setSection( $opt_name, array(
       );
 
     $ampforwp_home_loop = array();
-    $ampforwp_home_loop = get_option('ampforwp_custom_post_types');
+    
+    if ( get_option('ampforwp_custom_post_types') ){
+        $ampforwp_home_loop = get_option('ampforwp_custom_post_types');
+    }
+    
     $ampforwp_home_loop['post'] = 'Posts';
     unset($ampforwp_home_loop['page']);
     unset($ampforwp_home_loop['category']);
