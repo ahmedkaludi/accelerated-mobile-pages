@@ -2986,7 +2986,7 @@
                             }
                             if ( isset ( $field['type'] ) &&  $field['type'] == 'ace_editor'  ) {
                                 if(isset($field['mode']) && in_array($field['mode'], array('css','javascript')) ) {
-                                    $plugin_options[ $field['id'] ]= strip_tags($plugin_options[ $field['id'] ]);
+                                    $plugin_options[ $field['id'] ]= wp_strip_all_tags($plugin_options[ $field['id'] ]);
                                 }
 
                             }

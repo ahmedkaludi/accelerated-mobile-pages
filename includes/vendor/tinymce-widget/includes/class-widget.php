@@ -80,15 +80,15 @@ if ( ! class_exists( 'WP_Widget_Black_Studio_TinyMCE' ) ) {
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance = $old_instance;
-			$instance['title'] = strip_tags( $new_instance['title'] );
+			$instance['title'] = wp_strip_all_tags( $new_instance['title'] );
 			if ( current_user_can( 'unfiltered_html' ) ) {
 				$instance['text'] = $new_instance['text'];
 			}
 			else {
 				$instance['text'] = stripslashes( wp_filter_post_kses( addslashes( $new_instance['text'] ) ) ); // wp_filter_post_kses() expects slashed
 			}
-			$instance['type'] = strip_tags( $new_instance['type'] );
-			$instance['filter'] = strip_tags( $new_instance['filter'] );
+			$instance['type'] = wp_strip_all_tags( $new_instance['type'] );
+			$instance['filter'] = wp_strip_all_tags( $new_instance['filter'] );
 			$instance = apply_filters( 'black_studio_tinymce_widget_update',  $instance, $this );
 			return $instance;
 		}
@@ -121,7 +121,7 @@ if ( ! class_exists( 'WP_Widget_Black_Studio_TinyMCE' ) ) {
 			if ( ! isset( $instance['filter'] ) ) {
 				$instance['filter'] = $instance['type'] == 'visual' && substr( $instance['text'], 0, 3 ) != '<p>' ? 1 : 0;
 			}
-			$title = strip_tags( $instance['title'] );
+			$title = wp_strip_all_tags( $instance['title'] );
 			do_action( 'black_studio_tinymce_before_editor' );
 			?>
 			<input id="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'type' ) ); ?>" type="hidden" value="<?php echo esc_attr( $instance['type'] ); ?>" />

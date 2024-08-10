@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php do_action('ampforwp_post_before_design_elements') ?>
 			<h2 class="amp-wp-title"><?php global $redux_builder_amp; 
 				$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
-				echo strip_tags(ampforwp_translation($redux_builder_amp['amp-translator-fourohfour'],'Oops! That page can’t be found.'),$allowed_tags); ?></h2>
+				echo wp_strip_all_tags(ampforwp_translation($redux_builder_amp['amp-translator-fourohfour'],'Oops! That page can’t be found.'),$allowed_tags); ?></h2>
 			<?php do_action('ampforwp_post_after_design_elements') ?>
 		</article>
 	</div>

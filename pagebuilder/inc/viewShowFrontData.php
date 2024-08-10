@@ -627,7 +627,7 @@ function amppb_post_content($content){
 								$replace .= 'ap-fi';
 							}else{
 								$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span><div>';
-								$replace .= strip_tags($rowsData['data'][$field['name']],$allowed_tags);
+								$replace .= wp_strip_all_tags($rowsData['data'][$field['name']],$allowed_tags);
 							}
 						}else{
 							$replace .= '';

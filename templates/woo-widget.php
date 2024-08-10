@@ -194,12 +194,12 @@ class AMPFORWP_Woo_Widget extends WP_Widget {
   // Apply settings to the widget instance.
   public function update( $new_instance, $old_instance ) {
     $instance = $old_instance;
-    $instance[ 'title' ] = strip_tags( $new_instance[ 'title' ] );
-    $instance[ 'num_of_products' ] = strip_tags( $new_instance[ 'num_of_products' ] );
-    $instance['link'] = strip_tags($new_instance['link']);
-    $instance['show_price'] = strip_tags($new_instance['show_price']);
-    $instance['on_sale'] = strip_tags($new_instance['on_sale']);
-    $instance['ratings'] = strip_tags($new_instance['ratings']);
+    $instance[ 'title' ] = wp_strip_all_tags( $new_instance[ 'title' ] );
+    $instance[ 'num_of_products' ] = wp_strip_all_tags( $new_instance[ 'num_of_products' ] );
+    $instance['link'] = wp_strip_all_tags($new_instance['link']);
+    $instance['show_price'] = wp_strip_all_tags($new_instance['show_price']);
+    $instance['on_sale'] = wp_strip_all_tags($new_instance['on_sale']);
+    $instance['ratings'] = wp_strip_all_tags($new_instance['ratings']);
 
     return $instance;
   }

@@ -238,7 +238,7 @@ if( ! function_exists('saswp_non_amp') ) {
                   'id'       => 'ampforwp-sd-type-'.esc_attr($p_type),
                   'type'     => 'select',
                   'class'    => 'child_opt child_opt_arrow',
-                  'title'    => esc_html__($post_type, 'accelerated-mobile-pages'),
+                  'title'    => esc_html($post_type),
                   'tooltip-subtitle' => 'Select the Structured Data Type for '.esc_attr($p_type),
                   'options'  =>  ampforwp_get_sd_types(),
                   'default'  => 'BlogPosting',

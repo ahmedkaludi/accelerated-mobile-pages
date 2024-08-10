@@ -1258,7 +1258,7 @@ if( ! function_exists( 'ampforwp_disable_comment_author_links' ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
 		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 		if ( $ampforwp_is_amp_endpoint ) {
-			return strip_tags( $author_link );
+			return wp_strip_all_tags( $author_link );
 		} else {
 			return $author_link;
 		}
@@ -1735,7 +1735,7 @@ function ampforwp_replace_title_tags() {
 			$title = ! empty( $post->post_title ) ? $post->post_title : $title;
 			$site_title = $title . $sep . get_option( 'blogname' );
 		} elseif ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) {
-			$site_title = strip_tags( get_the_archive_title( '' ) . $sep . get_bloginfo( 'name' ) );
+			$site_title = wp_strip_all_tags( get_the_archive_title( '' ) . $sep . get_bloginfo( 'name' ) );
 		}
 
 		if ( is_home() ) {
@@ -2527,7 +2527,7 @@ function ampforwp_global_head_scripts($data){
 add_action('amp_post_template_head','ampforwp_header_html_output',11);
 function ampforwp_header_html_output() {
  	if( ampforwp_get_setting('ampforwp-seo-custom-additional-meta') ){
-		echo strip_tags( ampforwp_get_setting('ampforwp-seo-custom-additional-meta'), '<link><meta>' );
+		echo wp_strip_all_tags( ampforwp_get_setting('ampforwp-seo-custom-additional-meta'), '<link><meta>' );
 	}
   if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
   		$allhtml = ampforwp_get_setting('amp-header-text-area-for-html');
@@ -3430,7 +3430,7 @@ function ampforwp_meta_description() {
 	if ( $desc && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
 		}else if(class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')){
-		$yoast_desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', ampforwp_get_the_ID() ) ) );
+		$yoast_desc = addslashes( wp_strip_all_tags( WPSEO_Meta::get_value('metadesc', ampforwp_get_the_ID() ) ) );
 		$yoast_desc_meta = get_option( 'wpseo_titles' );
 		if(isset($yoast_desc_meta['metadesc-page'])){
 			$yoast_desc_meta = $yoast_desc_meta['metadesc-page'];
@@ -5145,9 +5145,9 @@ function ampforwp_inline_related_posts(){
             $args['date_query'] = array(
                                     array(
                                         'after' => array(
-                                            'year'  => date('Y', esc_html($date_range) ),
-                                            'month' => date('m', esc_html($date_range) ),
-                                            'day'   => date('d', esc_html($date_range)),
+                                            'year'  => gmdate( 'Y', esc_html( $date_range ) ),
+                                            'month' => gmdate( 'm', esc_html( $date_range ) ),
+                                            'day'   => gmdate( 'd', esc_html( $date_range )),
                                             ),
                                         )
                                     );  

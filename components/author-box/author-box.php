@@ -169,7 +169,7 @@ if ( isset($args['show_time']) ) {
         if ( $author_description ) {
             if( true == ampforwp_get_setting('amp-author-box-description') ){
                 $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
-                $author_description = "<p>".strip_tags($post_author->description,$allowed_tags)."</p>";
+                $author_description = "<p>".wp_strip_all_tags($post_author->description,$allowed_tags)."</p>";
                 $author_description = apply_filters( 'ampforwp_author_description', $author_description);
                 echo $author_description;
             }

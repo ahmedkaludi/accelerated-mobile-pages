@@ -710,7 +710,7 @@ function ampforwp_analytics() {
 					}
 					$cat_names = substr($cat_names, 1);
 					$content = get_post_field( 'post_content', $id );
-	    			$word_count = str_word_count( strip_tags( $content ) );
+	    			$word_count = str_word_count( wp_strip_all_tags( $content ) );
 	    			$date = get_post_time('F d, Y g:i a');
 				?>
             <amp-analytics>

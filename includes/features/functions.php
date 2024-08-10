@@ -339,10 +339,10 @@ function ampforwp_generate_meta_desc($json=""){
     $post_id = ampforwp_get_the_ID();
     if ( true == ampforwp_get_setting('ampforwp-seo-meta-desc') || !empty($json) ) {
         if ( ampforwp_is_home() || ampforwp_is_blog() ) {
-            $desc = addslashes( strip_tags( get_bloginfo( 'description' ) ) );
+            $desc = addslashes( wp_strip_all_tags( get_bloginfo( 'description' ) ) );
         }
         if ( is_archive() ) {
-            $desc = addslashes( strip_tags( get_the_archive_description() ) );
+            $desc = addslashes( wp_strip_all_tags( get_the_archive_description() ) );
         }
         if ( is_single() || is_page() || ampforwp_is_front_page()) {
             if ( has_excerpt() ) {
@@ -352,7 +352,7 @@ function ampforwp_generate_meta_desc($json=""){
                 $desc = $post->post_content;
             }
             $desc = preg_replace('/\[(.*?)\]/',' ', $desc);
-            $desc = addslashes( wp_trim_words( strip_tags( $desc ) , 15 ) );
+            $desc = addslashes( wp_trim_words( wp_strip_all_tags( $desc ) , 15 ) );
         }
         if ( is_search() ) {
             $desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
@@ -361,12 +361,12 @@ function ampforwp_generate_meta_desc($json=""){
         if ( class_exists('WPSEO_Frontend') && ('yoast' == ampforwp_get_setting('ampforwp-seo-selection') || 1 == ampforwp_get_setting('ampforwp-seo-selection')) && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
             $front = $yoast_desc = '';
             $front = WPSEO_Frontend::get_instance();
-            $yoast_desc = addslashes( strip_tags( $front->metadesc( false ) ) );
+            $yoast_desc = addslashes( wp_strip_all_tags( $front->metadesc( false ) ) );
             // Static front page
             if ( ampforwp_is_front_page() ) { 
                 $post_id = ampforwp_get_frontpage_id();
                 if ( class_exists('WPSEO_Meta') ) {
-                    $yoast_desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
+                    $yoast_desc = addslashes( wp_strip_all_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
                 }
             }
             // for search
@@ -411,13 +411,13 @@ function ampforwp_generate_meta_desc($json=""){
                 $genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
             }
             elseif(ampforwp_is_front_page()){
-                $genesis_description = strip_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
+                $genesis_description = wp_strip_all_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
             }
             elseif ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
                 $post_id = get_option( 'page_for_posts' );
                 if ( null !== $post_id || is_singular() ) {
                     if ( genesis_get_custom_field( '_genesis_description', intval($post_id) ) ) {
-                        $genesis_description = strip_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
+                        $genesis_description = wp_strip_all_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
                         if ( $genesis_description ) {
                             $desc = $genesis_description;
                         }
@@ -428,7 +428,7 @@ function ampforwp_generate_meta_desc($json=""){
                 $post_id = get_option('page_on_front');
                 if ( null !== $post_id || is_singular() ) {
                     if ( genesis_get_custom_field( '_genesis_description', intval($post_id) ) ) {
-                        $genesis_description = strip_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
+                        $genesis_description = wp_strip_all_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
                         }
                     }
                 }

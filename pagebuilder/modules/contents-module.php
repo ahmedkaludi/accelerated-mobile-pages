@@ -480,7 +480,7 @@ if ( is_admin() ) {
                     $readMore = $fieldValues['ampforwp_read_more'];
                     $read_more_link = '<a href="'.esc_url($ampforwp_post_url).'" > '.esc_html($readMore).'</a>';
                   }   
-                 $excerptContent = '<p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).$read_more_link.'</p>';
+                 $excerptContent = '<p>'.wp_trim_words( wp_strip_all_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).$read_more_link.'</p>';
               }
                $loopdate = "";
                $loopdate =  human_time_diff(

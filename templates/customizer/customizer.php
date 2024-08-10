@@ -62,7 +62,7 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 
 	public static function enqueue_customizer_preview_scripts() {
 
-		wp_register_script( 'ampforwp-customizer-design-preview', plugin_dir_url( __FILE__ ) . 'assets/customizer-preview.js', array( 'amp-customizer' ), false, true );
+		wp_register_script( 'ampforwp-customizer-design-preview', plugin_dir_url( __FILE__ ) . 'assets/customizer-preview.js', array( 'amp-customizer' ), AMPFORWP_VERSION, true );
   		global $redux_builder_amp;
 		$ampforwp_customizer_settings = array( 'design_type' => $redux_builder_amp['amp-design-selector'] );
 
@@ -218,10 +218,10 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
  function ampforwp_customize_register_scripts(){
 
 	 /* CSS */
-	 wp_register_style( 'ampforwp-share-customize', AMPFORWP_SHARE_URL . 'assets/customizer-control.css' );
+	 wp_register_style( 'ampforwp-share-customize', AMPFORWP_SHARE_URL . 'assets/customizer-control.css', array(), AMPFORWP_VERSION );
 
 	/* JS */
-	wp_register_script( 'ampforwp-share-customize', AMPFORWP_SHARE_URL . 'assets/customizer-control.js', array( 'jquery', 'jquery-ui-sortable', 'customize-controls' ) );
+	wp_register_script( 'ampforwp-share-customize', AMPFORWP_SHARE_URL . 'assets/customizer-control.js', array( 'jquery', 'jquery-ui-sortable', 'customize-controls' ), AMPFORWP_VERSION, false );
 
   	global $redux_builder_amp;
 	$ampforwp_customizer_settings = array( 'design_type' => $redux_builder_amp['amp-design-selector'] );

@@ -2407,8 +2407,8 @@ function ampforwp_get_all_tags($id){
             array(
                'id'       => 'ampforwp-seo-custom-additional-meta',
                'type'     => 'textarea',
-               'title'    => esc_html__('Head Section', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => esc_html__('Adds additional Meta to the head section', 'accelerated-mobile-pages', 'accelerated-mobile-pages'),
+               'title'    => esc_html__( 'Head Section', 'accelerated-mobile-pages' ),
+               'tooltip-subtitle' => esc_html__( 'Adds additional Meta to the head section', 'accelerated-mobile-pages' ),
                'placeholder'  => esc_html__('<!-- Paste your Additional HTML , that goes between <head> </head> tags -->','accelerated-mobile-pages')
             ),
             array(
@@ -2889,7 +2889,7 @@ function ampforwp_fb_instant_article() {
     $fb_instant_article_feed = trailingslashit( get_home_url() ).$feedname ;
     $input      =  '<a href=" '. esc_url_raw($fb_instant_article_feed)  . '" target="_blank">' .  esc_url_raw( $fb_instant_article_feed ). '</a>' ;
 
-    return strip_tags($input, '<a>');
+    return wp_strip_all_tags($input, '<a>');
 }
 
 // Facebook Instant Articles
@@ -3470,7 +3470,7 @@ Redux::setSection( $opt_name, array(
                        'id'       => 'ampforwp-custom-fields-featured-image',
                        'type'     => 'text',
                        'title'    => esc_html__('Custom Field For Featured Image', 'accelerated-mobile-pages'),
-                       'default'  => esc_html__ ('','accelerated-mobile-pages'),
+                       'default'  => '',
                        'placeholder'=>esc_html__('Write the Custom Field of Featured Image','accelerated-mobile-pages'),
                        'required' => array( 'ampforwp-custom-fields-featured-image-switch', '=' , 1 )
                    ),

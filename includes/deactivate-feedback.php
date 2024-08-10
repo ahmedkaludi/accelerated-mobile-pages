@@ -3,13 +3,13 @@ $reasons = array(
     	1 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="temporary"/>' . esc_html__('It is only temporary', 'accelerated-mobile-pages') . '</label></li>',
 		2 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="stopped"/>' . esc_html__('I stopped using AMP on my site', 'accelerated-mobile-pages') . '</label></li>',
 		3 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="missing"/>' . esc_html__('I miss a feature', 'accelerated-mobile-pages') . '</label></li>
-		<li><input type="text" class="mb-box missing" name="ampforwp_disable_text[]" value="" placeholder="Please describe the feature"/></li>',
+		<li><input type="text" class="mb-box missing" name="ampforwp_disable_text[]" value="" placeholder="'. esc_attr__('Please describe the feature', 'accelerated-mobile-pages') .'"/></li>',
 		4 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="technical"/>' . esc_html__('Technical Issue', 'accelerated-mobile-pages') . '</label></li>
 		<li><textarea  class="mb-box technical" name="ampforwp_disable_text[]" placeholder="' . esc_html__('How Can we help? Please describe your problem', 'accelerated-mobile-pages') . '"></textarea></li>',
 		5 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="another"/>' . esc_html__('I switched to another plugin', 'accelerated-mobile-pages') .  '</label></li>
-		<li><input type="text"  class="mb-box another" name="ampforwp_disable_text[]" value="" placeholder="'.esc_html__('Name of the plugin', 'accelerated-mobile-pages').'"/></li>',
+		<li><input type="text"  class="mb-box another" name="ampforwp_disable_text[]" value="" placeholder="'.esc_attr__('Name of the plugin', 'accelerated-mobile-pages').'"/></li>',
 		6 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="other"/>' . esc_html__('Other reason', 'accelerated-mobile-pages') . '</label></li>
-		<li><textarea  class="mb-box other" name="ampforwp_disable_text[]" placeholder="' . esc_html__('Please specify, if possible', 'accelerated-mobile-pages') . '"></textarea></li>',
+		<li><textarea  class="mb-box other" name="ampforwp_disable_text[]" placeholder="' . esc_attr__('Please specify, if possible', 'accelerated-mobile-pages') . '"></textarea></li>',
     );
 shuffle($reasons);
 ?>
@@ -21,8 +21,10 @@ shuffle($reasons);
 	    <h3><strong><?php echo esc_html__('If you have a moment, please let us know why you are deactivating:', 'accelerated-mobile-pages'); ?></strong></h3>
 	    <ul>
                 <?php 
-                foreach ($reasons as $reason){
-                    echo $reason;
+                foreach ( $reasons as $reason_escaped ) {
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped	-- already escaped
+                    echo $reason_escaped;
+
                 }
                 ?>
 	    </ul>
