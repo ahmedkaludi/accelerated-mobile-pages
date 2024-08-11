@@ -1597,7 +1597,7 @@ if(!function_exists('ampforwp_save_local_font')){
 		        if(!file_exists($copy_to)){
 		        	$files = glob( $user_dirname . '/*' );
 		            foreach ( $files as $file ) {
-		                unlink( $file );
+		                wp_delete_file( $file );
 		            }
 	            	copy($permfile, $copy_to);
 		        	unzip_file($permfile, $user_dirname );
@@ -1610,7 +1610,7 @@ if(!function_exists('ampforwp_save_local_font')){
 		               	$font_names = end($fonts);
 						$ext = end(explode(".", $font_names));
 						if($ext!='ttf' && $ext!='eot' && $ext!='svg'){
-							unlink( $file );
+							wp_delete_file( $file );
 						}
 		            }
 		        }
@@ -1621,7 +1621,7 @@ if(!function_exists('ampforwp_save_local_font')){
 	        if ( file_exists( $user_dirname ) ) {
 	            $files = glob( $user_dirname . '/*' );
 	            foreach ( $files as $file ) {
-	                 unlink( $file );
+					wp_delete_file( $file );
 	            }
 	        }
 		}

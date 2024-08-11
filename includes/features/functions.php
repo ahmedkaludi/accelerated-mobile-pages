@@ -39,7 +39,7 @@ function ampforwp_include_aqresizer(){
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
         wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style-global.css', false, AMPFORWP_VERSION );
         wp_enqueue_style( 'ampforwp_admin_css' );
-        wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script-global.js', array('wp-color-picker'), AMPFORWP_VERSION );  
+        wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script-global.js', array('wp-color-picker'), AMPFORWP_VERSION, false );  
         wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce',
         array( 
             'security' => wp_create_nonce( 'ampforwp-verify-request' )
@@ -61,7 +61,7 @@ function ampforwp_add_admin_styling($hook_suffix){
     // Admin area scripts file
     $dep = array('wp-color-picker');
     $dep = apply_filters('ampforwp_modify_script_dependency', $dep);
-    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', $dep , AMPFORWP_VERSION );
+    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', $dep , AMPFORWP_VERSION, false );
 
     // Localize the script with new data
     $redux_data = array();

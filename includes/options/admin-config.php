@@ -1505,9 +1505,9 @@ if($ampforwp_nameOfUser!=""){
                 if ($allResponseData!=NULL) {
                 $selectedOption = (array) get_option('redux_builder_amp',true);
                 $expiredLicensedata[$pathExploded] = $selectedOption['amp-license'][$pathExploded]['status'] == 'expired' ? 1 : 0 ;
-                $remainingExpiresDays =  date('Y-m-d', strtotime($allResponseData['expires'])) ;
+                $remainingExpiresDays =  gmdate( 'Y-m-d', strtotime( $allResponseData['expires'] ) );
                 $license_info_lifetime = $allResponseData['expires'];
-                $today = date('Y-m-d');
+                $today = gmdate( 'Y-m-d' );
                 $exp_date = $remainingExpiresDays; 
                 $date1 = date_create($today);
                 $date2 = date_create($exp_date);
@@ -1546,9 +1546,9 @@ if($ampforwp_nameOfUser!=""){
 
             if(isset($selectedOption['amp-license'][$pathExploded]['all_data']) && $selectedOption['amp-license'][$pathExploded]['all_data']!=""){
                 $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
-                $remainingExpiresDays =  date('Y-m-d', strtotime($allResponseData['expires'])) ;
+                $remainingExpiresDays =  gmdate( 'Y-m-d', strtotime( $allResponseData['expires'] ) ) ;
               $license_info_lifetime = $allResponseData['expires']; 
-              $today = date('Y-m-d');
+              $today = gmdate( 'Y-m-d' );
               $exp_date = $remainingExpiresDays; 
               $date1 = date_create($today);
               $date2 = date_create($exp_date);

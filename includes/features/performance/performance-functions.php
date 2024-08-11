@@ -442,7 +442,7 @@ if( !function_exists("ampforwp_clear_tree_shaking") ) {
 					//Make sure that this is a file and not a directory.
 					if ( is_file( $file ) && strpos( $file, '_transient' ) !== false ) {
 						//Use the unlink function to delete the file.
-						unlink( $file );
+						wp_delete_file( $file );
 					}
 				}
 			}
@@ -468,7 +468,7 @@ function ampforwp_clear_tree_shaking_on_activity($plugin='', $network=''){
                 //Make sure that this is a file and not a directory.
                 if ( is_file( $file ) && strpos( $file, '_transient' ) !== false ) {
                     //Use the unlink function to delete the file.
-                    unlink( $file );
+                    wp_delete_file( $file );
                 }
             }
         }
@@ -503,7 +503,7 @@ if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
     				$upload_dir = wp_upload_dir();
     				$ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($transient_filename).".css";
     				if(file_exists($ts_file) && is_file($ts_file)){
-    					unlink($ts_file);
+    					wp_delete_file( $ts_file );
     				}
                 }
 			}
@@ -528,7 +528,7 @@ if(!function_exists('ampforwp_clear_css_on_transposh_rtl')){
                               //Make sure that this is a file and not a directory.
                               if ( is_file( $file ) && strpos( $file, '_transient' ) !== false ) {
                                 //Use the unlink function to delete the file.
-                                unlink( $file );
+                                wp_delete_file( $file );
                               }
                             }
                           }

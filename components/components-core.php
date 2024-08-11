@@ -999,11 +999,11 @@ if ( !function_exists('amp_call_now') ) {
 	}
 }
 // AddThis Support #2416
-function ampforwp_addThis_support(){
+function ampforwp_addthis_support() {
+	
 	$data_pub_id = ampforwp_get_setting('add-this-pub-id');
 	$data_widget_id = ampforwp_get_setting('add-this-widget-id');
-	$addthisWidth = '';
-	$amp_addthis = '';
+	$addthisWidth = '';	
 	if ( ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social')) ) && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) {
 	 	if( ampforwp_get_setting('enable-add-this-option') ) {
 	
@@ -1013,13 +1013,20 @@ function ampforwp_addThis_support(){
 	 		else{
 				$addthisWidth = 320; 
 			}
-			if( ampforwp_get_setting('addthis-inline-share') == true){
-				$amp_addthis .= '<div class="amp-wp-content"><amp-addthis width="'.$addthisWidth.'" height="92" data-pub-id="'.esc_attr($data_pub_id).'" data-widget-id="'. esc_attr($data_widget_id).'"></amp-addthis></div>';
-			}
 
 			do_action('ampforwp_before_social_icons_hook');
-			return $amp_addthis;
-			do_action('ampforwp_after_social_icons_hook');
+
+			if ( ampforwp_get_setting('addthis-inline-share') == true ) {
+
+				?>
+				
+				<div class="amp-wp-content"><amp-addthis width="<?php echo esc_attr($addthisWidth); ?>" height="92" data-pub-id="<?php echo esc_attr($data_pub_id); ?>" data-widget-id="<?php echo esc_attr($data_widget_id); ?>"></amp-addthis></div>
+
+				<?php
+			}
+
+			do_action('ampforwp_after_social_icons_hook');						
+			
 		}
 	}
 }

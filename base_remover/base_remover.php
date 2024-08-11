@@ -105,12 +105,17 @@ function ampforwp_category_url_rewrite_rules( $rewrite ) {
 
  
 function ampforwp_tag_url_rewrite_rules( $rewrite ) {
-	$tags = get_terms('post_tag', array('hide_empty' => false));
-	if(is_array( $tags ) && ! empty( $tags ) ) {
+
+	$tags = get_terms( array( 'taxonomy'   => 'post_tag', 'hide_empty' => false ) );
+
+	if ( is_array( $tags ) && ! empty( $tags ) ) {
+
 	 	foreach ( $tags as $tag ) {
-	 		$tag_nicename = trim($tag->slug);
+
+	 		$tag_nicename = trim( $tag->slug );
 	 		$rewrite[ '('.$tag_nicename.')'.'/amp/?$' ] = 'index.php?amp&tag=$matches[1]';
 	 		$rewrite[ '('.$tag_nicename.')'.'/amp/page/?([0-9]{1,})/?$' ] = 'index.php?amp&tag=$matches[1]&paged=$matches[2]'; 
+
 		}
 	}
 	

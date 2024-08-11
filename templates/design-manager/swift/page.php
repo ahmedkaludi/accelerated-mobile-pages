@@ -39,7 +39,7 @@ amp_header(); ?>
 			} ?>
 			<div class="cntn-wrp">
 				<?php if (  is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
-					echo ampforwp_addThis_support(); 
+					ampforwp_addthis_support(); 
 				}
 				if(ampforwp_is_front_page() && false == ampforwp_get_setting('gbl-sidebar') ){
 					amp_content();
@@ -105,7 +105,7 @@ amp_header(); ?>
                     </div>
                 <?php }
 				if( ampforwp_get_setting('enable-add-this-option') == true && 'above-content' !=  ampforwp_get_setting('swift-add-this-position')) {
-				echo ampforwp_addThis_support();
+				ampforwp_addthis_support();
 			}?>
 			</div>	
 				<?php if( ampforwp_get_setting('gbl-sidebar') == '1' && ampforwp_is_front_page() ){ ?>				

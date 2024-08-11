@@ -2129,7 +2129,7 @@ function ampforwp_seopress_title_sanitize($title){
 		$woo_single_price_exc_tax,
 		date_i18n('j'),
 		date_i18n('F'),
-		date('Y'),
+		gmdate('Y'),
 		date_i18n( get_option( 'date_format' )),
 		current_time(get_option( 'time_format' )),
 	);
@@ -8086,7 +8086,7 @@ function ampforwp_head_css(){
 					            $files = glob($user_dirname . '/*');
 					            foreach($files as $file){
 					                if(is_file($file) && strpos($file, '_transient')!==false ){
-					                    unlink($file);
+					                    wp_delete_file( $file );
 					                }
 					            }
 					        }
@@ -8227,12 +8227,14 @@ function ampforwp_head_css(){
 			wp_enqueue_style(
 				'query-monitor',
 				esc_attr($qm)."/query-monitor/assets/{$css}.css",
-				array( 'dashicons' )
+				array( 'dashicons' ),
+				AMPFORWP_VERSION
 			);
 			wp_enqueue_script(
 				'query-monitor',
 				esc_attr($qm).'/query-monitor/assets/query-monitor.js',
 				$deps,
+				AMPFORWP_VERSION,
 				false
 			);
 			wp_localize_script(
@@ -9925,7 +9927,7 @@ if(!function_exists('ampforwp_set_local_font')){
 }
 
 function ampforwp_year_shortcode() {
-  $year = date('Y');
+  $year = gmdate('Y');
   return $year;
 }
 add_shortcode('ampforwp_current_year', 'ampforwp_year_shortcode');

@@ -288,7 +288,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                     <?php } ?>
                     <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
                         <div class="h-shop h-ic">
-                            <a href="<?php echo ampforwp_wc_cart_page_url(); ?>" class="isc"></a>
+                            <a href="<?php echo esc_url( ampforwp_wc_cart_page_url() ); ?>" class="isc"></a>
                         </div>
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
@@ -425,7 +425,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                     <?php } ?>
                     <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
                         <div class="h-shop h-ic">
-                            <a href="<?php echo ampforwp_wc_cart_page_url(); ?>" class="isc"></a>
+                            <a href="<?php echo esc_url( ampforwp_wc_cart_page_url() ); ?>" class="isc"></a>
                         </div>
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
