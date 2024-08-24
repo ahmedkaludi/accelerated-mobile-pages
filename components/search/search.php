@@ -15,7 +15,7 @@ function ampforwp_framework_get_search_form() {
 		if (function_exists('pll__')) {
 			$placeholder = pll__(esc_html__( ampforwp_get_setting('ampforwp-search-placeholder'), 'accelerated-mobile-pages'));
 		}
-		$rand = rand(10,100);
+		$rand = wp_rand(10,100);
 		$value = get_search_query();
 		$name = 's';
 		$mob_pres_link = false;

@@ -5541,7 +5541,7 @@ if ( ! function_exists('ampforwp_gravatar_checker') ) {
 		if ( $hash ) {
 			$gravatar_server = hexdec( $hash[0] ) % 3;
 		} else {
-			$gravatar_server = rand( 0, 2 );
+			$gravatar_server = wp_rand( 0, 2 );
 		}
 		if ( is_ssl() ) {
 			$uri = 'https://secure.gravatar.com/avatar/' . $hash;

@@ -229,7 +229,7 @@ function ampforwp_analytics() {
 			}else{
 				ampforwp_url_controller($url);
 			}
-			$rand = rand(1111,9999);
+			$rand = wp_rand(1111,9999);
 			$referer  = $url;
 			if(isset($_SERVER['HTTP_REFERER'])) {
 		      $referer  = $_SERVER['HTTP_REFERER'];

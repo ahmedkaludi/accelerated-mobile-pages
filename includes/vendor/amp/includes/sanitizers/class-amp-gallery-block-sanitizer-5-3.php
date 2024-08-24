@@ -348,7 +348,7 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 			}
 		}// foreach Closed
 		//replacements
-		$r = rand(1,100);
+		$r = wp_rand(1,100);
 		if ( 3 != ampforwp_get_setting('ampforwp-gallery-design-type') ){
 			$carousel_args = array(
 									'width' => 600,

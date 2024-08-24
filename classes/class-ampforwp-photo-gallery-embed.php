@@ -255,7 +255,7 @@ public function front_end($params) {
     }// foreach Closed
 
     //replacements
-      $r = rand(1,100);
+      $r = wp_rand(1,100);
       $amp_carousel = AMP_HTML_Utils::build_tag(
               'amp-carousel',
               array(
