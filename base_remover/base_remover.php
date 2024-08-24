@@ -16,7 +16,9 @@ if ( is_plugin_active( $old_plugin ) ) {
 function ampforwp_catagory_base_removal_admin_notice(){
 	?>
 	<div class="notice notice-success is-dismissible">
-        <p><?php sprintf( __( 'AMP Category Base URL Remover plugin has De-activated, <br> Category removal option is added in our core plugin <a href=%s>Click here to view details</a>', 'accelerated-mobile-pages' ), "#" ); ?></p>
+        <p><?php
+		/* translators: %s: # */
+		sprintf( __( 'AMP Category Base URL Remover plugin has De-activated, <br> Category removal option is added in our core plugin <a href=%s>Click here to view details</a>', 'accelerated-mobile-pages' ), "#" ); ?></p>
     </div>
 	<?php
 }

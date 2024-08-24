@@ -595,7 +595,7 @@ function amp_date( $args=array() ) {
     $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
 
    	if(isset($args['custom_format']) && $args['custom_format']!=""){
-	    $post_date = date($args['custom_format'],get_the_time('U', get_the_ID() ));
+	    $post_date = gmdate($args['custom_format'],get_the_time('U', get_the_ID() ));
 	}
     if ( 'date' == $args || 'time' == $args ) {
         echo esc_html( $post_date ) .' ';

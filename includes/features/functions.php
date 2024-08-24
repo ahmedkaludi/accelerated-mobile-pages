@@ -1530,7 +1530,7 @@ function ampforwp_internal_feedback_notice(){
     $install_date = get_option('ampforwp_plugin_info');
     if (isset($install_date["activation_data"])) {
        $install_date = $install_date["activation_data"];
-       $install_date = date("m-d-Y", $install_date);
+       $install_date = gmdate("m-d-Y", $install_date);
     }
     $activation_never =  get_option("ampforwp_feedback_remove_notice");
     if (strtotime($install_date) < strtotime('-30 days') && $activation_never !='remove') {?>
