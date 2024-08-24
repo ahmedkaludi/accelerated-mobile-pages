@@ -75,9 +75,11 @@
 
                                     // Get the current page.  To avoid errors, we'll set
                                     // the redux page slug if the GET is empty.
+                                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                                     $pageName = empty( $_GET['page'] ) ? '&amp;page=' . self::$_parent->args['page_slug'] : '&amp;page=' . esc_attr( $_GET['page'] );
 
                                     // Ditto for the current tab.
+                                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                                     $curTab = empty( $_GET['tab'] ) ? '&amp;tab=0' : '&amp;tab=' . esc_attr( $_GET['tab'] );
                                 }
 
@@ -150,8 +152,10 @@
                         // Get the user id
                         $userid = $current_user->ID;
 
-                        // Get the notice id
+                        // Get the notice 
+                        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                         $id  = esc_attr( $_GET['id'] );
+                        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                         $val = esc_attr( $_GET['dismiss'] );
                         if ( ! wp_verify_nonce( $_POST['nonce'], $id . $userid . 'nonce' ) ) {
                             die( 0 );
@@ -174,6 +178,7 @@
                 global $current_user;
 
                 // Get the notice id
+                // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reason: verify nonce in line 187.
                 $id = explode( '&', intval($_POST['id']) );
                 $id = $id[0];
                 // Get the user id

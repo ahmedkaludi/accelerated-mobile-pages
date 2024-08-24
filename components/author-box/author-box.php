@@ -106,6 +106,7 @@ if ( isset($args['show_time']) ) {
             $alt = array_pop($match);
             $alt = implode(" ", $alt);
             $alt = explode(" ", $alt);
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
             if(class_exists('transposh_plugin') && isset($_GET['lang']) && isset($alt[1]) ){
                 $alt = 'alt=' . $alt[1];
             }

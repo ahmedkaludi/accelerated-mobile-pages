@@ -51,6 +51,7 @@ function ampforwp_redirection() {
       exit;
     }
   }
+  // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 $current_url = home_url(add_query_arg(array($_GET), $wp->request));
   //AMP on Search Pages #3977
 if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
@@ -67,6 +68,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     $mobile_detect = new AMPforWP_Mobile_Detect;
     $isMobile = $mobile_detect->isMobile();
     if (!$isMobile ) {
+      // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
         $current_url = home_url(add_query_arg(array($_GET), $wp->request));
         if (ampforwp_get_setting('amp-core-end-point')) {
           $current_url = explode('?', $current_url);
@@ -95,6 +97,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
   }
   $current_url = explode('/', $current_url);
   $check =  '?nonamp=1';
+  // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
   if (( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) && function_exists('session_start') && !isset($_SESSION)){
       session_start();
       $_SESSION['ampforwp_mobile'] = 'exit';     
@@ -120,6 +123,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
           $term_id = get_queried_object()->term_id;
           $tax_status = ampforwp_get_taxonomy_meta($term_id,'status');
           if($tax_status==false){
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
             $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
             $go_to_url = str_replace("/amp", '', $go_to_url);
             $go_to_url =  remove_query_arg('amp',$go_to_url);
@@ -129,6 +133,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
       }else if(is_single()){
           $tax_status = ampforwp_get_taxonomy_meta('','post_status');
           if($tax_status==false){
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
             $go_to_url =  home_url(add_query_arg($_GET,$wp->request));
             $go_to_url = str_replace("/amp", '', $go_to_url);
             $go_to_url =  remove_query_arg('amp',$go_to_url);
@@ -181,6 +186,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
      */
 
     // #4541
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
     $this_url = home_url(add_query_arg(array($_GET), $wp->request));
     if(preg_match('/robots\.txt/', $this_url)){
       return;
@@ -359,11 +365,11 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     if ( function_exists('session_id') && ! session_id() && $redirectToAMP) {
         session_start();
     }
-
+  
     if ( isset( $_SESSION['ampforwp_mobile'] ) && (isset($_SESSION['ampforwp_amp_mode']) && 'mobile-on' == $_SESSION['ampforwp_amp_mode']) && 'exit' == $_SESSION['ampforwp_mobile'] ) {
         return;
     }
-
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
     if ( $isMobile && (isset($_SESSION['ampforwp_amp_mode']) && 'mobile-on' == $_SESSION['ampforwp_amp_mode']) && ( isset($_GET['nonamp']) && 1 == $_GET['nonamp'] ) ){
         // non mobile session variable creation
         session_start();
@@ -379,6 +385,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
     }
     // Check if we are on Mobile phones then start redirection process
     if ( $redirectToAMP ) {
+      // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
       if(isset($_GET['namp']) && $_GET['namp']==1){
         return;
       }
@@ -388,9 +395,11 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
           return true;
         }
       }
+      // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
       if(!isset($_GET['nonamphead']) && isset($_SESSION['nonamphead']) && in_array($url_to_redirect, $_SESSION['nonamphead'])){
            return;
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
         if (( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp'])) && !isset($_GET['nonamphead']) ) {
 
           $_SESSION['ampforwp_amp_mode'] = 'mobile-on';
@@ -410,9 +419,11 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
         }
       }
     if(ampforwp_is_amp_endpoint()==false && $redirectToAMP==false){
+      // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
       if(!isset($_GET['nonamphead']) && isset($_SESSION['nonamphead']) && in_array($url_to_redirect, $_SESSION['nonamphead'])){
            return;
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
         if (( ! isset($_SESSION['ampforwp_amp_mode']) || ! isset($_GET['nonamp'])) && !isset($_GET['nonamphead']) ) {
           $_SESSION['ampforwp_amp_mode'] = 'mobile-on';
           if ( $url_to_redirect ) { 

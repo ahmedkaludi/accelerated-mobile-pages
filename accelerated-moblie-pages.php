@@ -799,6 +799,7 @@ if ( ! function_exists('ampforwp_init') ) {
 function amp_update_db_check() {
 	global $redux_builder_amp;
 	$ampforwp_current_version = AMPFORWP_VERSION;
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 	if ( isset( $_GET['ampforwp-dismiss-theme'] ) && trim( $_GET['ampforwp-dismiss-theme']) === "ampforwp_dismiss_admin_notices" && wp_verify_nonce($_GET['ampforwp_notice'], 'ampforwp_notice') ) {
 		update_option( 'ampforwp_theme_notice', true, false );
 		wp_redirect("admin.php?page=amp_options");
@@ -1448,11 +1449,12 @@ function ampforwp_automattic_activation(){
 }
 
 add_action('wp_ajax_ampforwp_automattic_notice_delete','ampforwp_automattic_notice_delete');
-function ampforwp_automattic_notice_delete(){
+function ampforwp_automattic_notice_delete() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 	$automattic_wizard_nonce = $_REQUEST['security'];
 
 	if ( wp_verify_nonce( $automattic_wizard_nonce, 'automattic_wizard_nonce' ) && current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {   
-	  set_transient( 'ampforwp_automattic_activation_notice', 1 );
+		set_transient( 'ampforwp_automattic_activation_notice', 1 );
 	}
 	exit();
 }
@@ -1518,9 +1520,8 @@ if(!function_exists('ampforwp_get_admin_current_page')){
 	function ampforwp_get_admin_current_page(){
 		$current_page = '';
 		if(is_admin()){
-			if(isset($_GET['page'])){
-				$current_page = $_GET['page'];
-			}
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+			$current_page = (isset($_GET['page'])) ? $_GET['page'] : '';
 		}
 		return $current_page;
 	}

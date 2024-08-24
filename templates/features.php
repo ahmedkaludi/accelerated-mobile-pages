@@ -4280,9 +4280,11 @@ function ampforwp_post_paginated_link_generator( $i ) {
 	}
 
 	if ( is_preview() ) {
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if ( ( 'draft' !== $post->post_status ) && isset( $_GET['preview_id'], $_GET['preview_nonce'] ) ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 			$query_args['preview_id'] = wp_unslash( $_GET['preview_id'] );
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 			$query_args['preview_nonce'] = wp_unslash( $_GET['preview_nonce'] );
 		}
 
@@ -4552,10 +4554,11 @@ function ampforwp_home_archive_canonical_setter(){
 	// Remove the canonical from the homepage if the Yoast 14 and above version is available
 		// Except for the homepage
 	if( class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration') ) {
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if ( ampforwp_is_home() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) && !isset($_GET['lang'])) {
 			return ;
 		}
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if(ampforwp_is_front_page() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) && !isset($_GET['lang']) && !ampforwp_get_setting('ampforwp-amp-takeover')){
 			return ;
 		}
@@ -7935,8 +7938,7 @@ if ( ! function_exists('ampforwp_include_opengraph') ) {
 
 add_action('wp_ajax_ampforwp_import_file_from_file','ampforwp_import_settings_from_file');
 function ampforwp_import_settings_from_file(){
-	$security = $_POST['security'];
-	if ( wp_verify_nonce( $security, 'ampforwp_import_file' ) && current_user_can( 'manage_options' ) ) {
+	if ( wp_verify_nonce( $_POST['security'], 'ampforwp_import_file' ) && current_user_can( 'manage_options' ) ) {
 		if(isset($_FILES["file"]["tmp_name"])){
 			$content = file_get_contents($_FILES["file"]["tmp_name"]);
 			if ( ! empty ( $content ) ) {
@@ -8558,7 +8560,9 @@ if(class_exists('transposh_plugin')){
 if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
 	function ampforwp_transposh_plugin_rtl_css() {
     	 $rtl_lang_arr = array('ar', 'he', 'fa', 'ur', 'yi');
+		 // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
     	 if(isset($_GET['lang'])){
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 	 		if(in_array(esc_attr($_GET['lang']), $rtl_lang_arr)){
 	 			if(ampforwp_get_setting('header-position-type') == '1'){?>
 					.tg:checked + .hamb-mnu > .m-ctr {

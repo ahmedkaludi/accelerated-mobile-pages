@@ -9,7 +9,7 @@ Class AMPforWP_theme_mode{
 		
 		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedAction'));
 		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedMenuWidgets'), 11);
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if(!is_admin() && $GLOBALS['pagenow'] !== 'wp-login.php' && (!is_preview() && !isset($_GET['elementor-preview'])) ){
 			add_action(	'init', array($this, 'rm_wp_core'), 20 );
 			add_filter("ampforwp_is_amp_endpoint",  array($this, 'ampforwp_theme_mode_enable'));

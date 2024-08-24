@@ -258,6 +258,7 @@
                 }
 
                 // Do not save the defaults if we're on a live preview!
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                 if ( $GLOBALS['pagenow'] == "customize" && isset( $_GET['theme'] ) && ! empty( $_GET['theme'] ) ) {
                     $this->args['save_defaults'] = false;
                 }
@@ -372,6 +373,7 @@
                     add_action( 'admin_init', array( $this, '_dismiss_admin_notice' ), 9 );
 
                     // Enqueue the admin page CSS and JS
+                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                     if ( isset ( $_GET['page'] ) && $_GET['page'] == $this->args['page_slug'] ) {
                         add_action( 'admin_enqueue_scripts', array( $this, '_enqueue' ), 1 );
                     }
@@ -1736,10 +1738,13 @@
                     $hint_status = get_user_meta( $current_user->ID, 'ignore_hints' ) ? get_user_meta( $current_user->ID, 'ignore_hints', true ) : 'true';
 
                     // current page parameters
+                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                     $curPage = esc_attr( $_GET['page'] );
 
                     $curTab = '0';
+                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                     if ( isset ( $_GET['tab'] ) ) {
+                        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                         $curTab = esc_attr( $_GET['tab'] );
                     }
 
@@ -2053,7 +2058,7 @@
                     }
 
                     $display = true;
-
+                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                     if ( isset ( $_GET['page'] ) && $_GET['page'] == $this->args['page_slug'] ) {
                         if ( isset ( $section['panel'] ) && $section['panel'] == false ) {
                             $display = false;
@@ -2176,7 +2181,7 @@
                             $this->field_sections[ $field['type'] ][ $field['id'] ] = $k;
 
                             $display = true;
-
+                            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                             if ( isset ( $_GET['page'] ) && $_GET['page'] == $this->args['page_slug'] ) {
                                 if ( isset ( $field['panel'] ) && $field['panel'] == false ) {
                                     $display = false;
@@ -3187,7 +3192,7 @@
                 $display = true;
 
                 $section['class'] = isset ( $section['class'] ) ? ' ' . $section['class'] : '';
-
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                 if ( isset ( $_GET['page'] ) && $_GET['page'] == $this->args['page_slug'] ) {
                     if ( isset ( $section['panel'] ) && $section['panel'] == false ) {
                         $display = false;
@@ -3297,7 +3302,7 @@
                         while ( $doLoop ) {
                             $nextK += 1;
                             $display = true;
-
+                            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                             if ( isset ( $_GET['page'] ) && $_GET['page'] == $this->args['page_slug'] ) {
                                 if ( isset ( $sections[ $nextK ]['panel'] ) && $sections[ $nextK ]['panel'] == false ) {
                                     $display = false;
@@ -3482,6 +3487,7 @@
 
                     // If the field is set not to display in the panel
                     $display = true;
+                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                     if ( isset ( $_GET['page'] ) && $_GET['page'] == $this->args['page_slug'] ) {
                         if ( isset ( $field['panel'] ) && $field['panel'] == false ) {
                             $display = false;

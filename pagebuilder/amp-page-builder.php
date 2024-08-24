@@ -47,11 +47,13 @@ function amp_content_pagebuilder_title_callback( $post ){
 		update_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
 	}
 	//Disable page builder
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 	if(isset($_GET['ramppb']) && sanitize_text_field( wp_unslash($_GET['ramppb']))=='1'){
 		delete_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
 		delete_post_meta($amp_current_post_id, 'ampforwp_page_builder_enable','yes');
 	}
 	//Enable page builder
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 	if(isset($_GET['use_amp_pagebuilder']) && sanitize_text_field( wp_unslash($_GET['use_amp_pagebuilder']))=='1'){
 		update_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
 	}
@@ -69,7 +71,9 @@ function ampforwp_call_page_builder(){
 	if($post!=null){
 		$postId = $post->ID;
 	}
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 	if(isset($_GET['post_id'])){
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		$id = intval($_GET['post_id']);
 		$postId = sanitize_text_field( wp_unslash($id));
 	}

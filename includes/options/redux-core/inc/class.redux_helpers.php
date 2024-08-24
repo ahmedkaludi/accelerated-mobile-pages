@@ -216,6 +216,7 @@ namespace ReduxCore\ReduxFramework;
                     'http://verify.redux.io',
                     array(
                         'body' => array(
+                            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                             'hash' => $_GET['action'],
                             'site' => esc_url( home_url( '/' ) ),
                         )
@@ -223,7 +224,7 @@ namespace ReduxCore\ReduxFramework;
                 );
 
                 $data['body'] = urldecode( $data['body'] );
-
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                 if ( ! isset( $_GET['code'] ) || $data['body'] != $_GET['code'] ) {
                     die();
                 }
