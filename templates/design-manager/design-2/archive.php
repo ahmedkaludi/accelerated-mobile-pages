@@ -155,6 +155,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		         $count++;
 	 endwhile;  ?>
 	 	<?php do_action('ampforwp_loop_before_pagination') ?>
+		<?php $infinite_scroll = ( int ) ampforwp_get_setting( 'ampforwp-infinite-scroll' );
+		$infinite_scroll_home = ( int ) ampforwp_get_setting( 'ampforwp-infinite-scroll-home' );
+		if ( $infinite_scroll === 0 || ( $infinite_scroll === 1 && $infinite_scroll_home === 0 ) ) {
+			?>
 		<div class="amp-wp-content pagination-holder">
 			<div id="pagination">
 				<?php $paged = get_query_var('paged'); if ( get_next_posts_link() ){ ?><div class="next"><?php echo apply_filters('ampforwp_next_posts_link',get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ).'&raquo;', 0), $paged);?></div><?php }?>
@@ -162,6 +166,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="clearfix"></div>
 			</div>
 		</div>
+		<?php } ?>
 
 	<?php endif; ?>
 	<?php do_action('ampforwp_post_after_loop') ?>
