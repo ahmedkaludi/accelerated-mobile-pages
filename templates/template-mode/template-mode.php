@@ -586,8 +586,9 @@ Class AMPforWP_theme_mode{
 								$element->removeAttribute('action');
 							}else{
 								$scheme = is_ssl() ? 'https://' : 'http://';
-
-								$path = "{$scheme}{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+								$host = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) );
+								$request_uri = sanitize_text_field( esc_url_raw( $_SERVER['REQUEST_URI'] ) );
+								$path = "{$scheme}{$host}{$request_uri}";
 								$path = str_replace("http:", "https:", $path);
 								$element->setAttribute('action-xhr', esc_url($path) );
 							}

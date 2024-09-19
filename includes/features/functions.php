@@ -575,7 +575,11 @@ if ( ! function_exists( 'ampforwp_isexternal ') ) {
         if ( strcasecmp($components['host'], AMPFROWP_HOST_NAME) === 0 ) return false; 
         
         // check if the url host is a subdomain
-        $check =  strrpos(strtolower($components['host']), $_SERVER['HTTP_HOST']) !== strlen($components['host']) - strlen($_SERVER['HTTP_HOST']);// #3561 - it's returing empty that is why it's creating broken link. So checking empty condition and returning 1 to not create amp link.
+        $check = "";
+        if ( isset($_SERVER['HTTP_HOST']) ) {
+            $host = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) );
+            $check =  strrpos(strtolower($components['host']), $host) !== strlen($components['host']) - strlen($host);// #3561 - it's returing empty that is why it's creating broken link. So checking empty condition and returning 1 to not create amp link.
+        }
         if($check==""){ 
             return 1;
         }else{
@@ -866,7 +870,7 @@ function ampforwp_url_purifier($url){
         }
     }
     if ( is_singular() && !empty($_SERVER['QUERY_STRING']) ) {
-        $query_arg   = wp_parse_args($_SERVER['QUERY_STRING']);
+        $query_arg   = wp_parse_args( sanitize_text_field( wp_unslash($_SERVER['QUERY_STRING']) ) );
         $query_name = '';
         if(is_single()){
             $query_name = isset($wp_query->query['name'])?$wp_query->query['name']:'';  

@@ -800,17 +800,28 @@ function amp_update_db_check() {
 	global $redux_builder_amp;
 	$ampforwp_current_version = AMPFORWP_VERSION;
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-	if ( isset( $_GET['ampforwp-dismiss-theme'] ) && trim( $_GET['ampforwp-dismiss-theme']) === "ampforwp_dismiss_admin_notices" && wp_verify_nonce($_GET['ampforwp_notice'], 'ampforwp_notice') ) {
+	if ( isset( $_GET['ampforwp-dismiss-theme'] ) && 
+		trim( sanitize_text_field( wp_unslash( $_GET['ampforwp-dismiss-theme'] ) ) ) === "ampforwp_dismiss_admin_notices" && 
+		isset( $_GET['ampforwp_notice'] ) && 
+		wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ampforwp_notice'] ) ), 'ampforwp_notice' ) ) {
+
 		update_option( 'ampforwp_theme_notice', true, false );
 		wp_redirect("admin.php?page=amp_options");
+		exit; // Always exit after wp_redirect
 	}
-   	if ( get_option( 'AMPforwp_db_version' ) !== $ampforwp_current_version ) {
 
-   		if ( isset( $_GET['ampforwp-dismiss'] ) && trim( $_GET['ampforwp-dismiss']) === "ampforwp_dismiss_admin_notices" && wp_verify_nonce($_GET['ampforwp_notice'], 'ampforwp_notice') ) {
+	if ( get_option( 'AMPforwp_db_version' ) !== $ampforwp_current_version ) {
+
+		if ( isset( $_GET['ampforwp-dismiss'] ) && 
+			trim( sanitize_text_field( wp_unslash( $_GET['ampforwp-dismiss'] ) ) ) === "ampforwp_dismiss_admin_notices" && 
+			isset( $_GET['ampforwp_notice'] ) && 
+			wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ampforwp_notice'] ) ), 'ampforwp_notice' ) ) {
+
 			update_option( 'AMPforwp_db_version', $ampforwp_current_version );
 			wp_redirect(remove_query_arg('ampforwp-dismiss'), 301);
+			exit; // Always exit after wp_redirect
 		}
-    }
+	}
 }
 
 
@@ -869,7 +880,7 @@ if ( !function_exists('amp_activate') ) {
 	if(is_admin()){
 		global $pagenow;
 		if( is_multisite() ){
-		$current_url = $_SERVER['REQUEST_URI'];
+		$current_url = ( isset( $_SERVER['REQUEST_URI'] ) ) ? sanitize_text_field( esc_url_raw( $_SERVER['REQUEST_URI'] ) ) : "";
 		$post_old = preg_match('/post\.php/', $current_url);
 		$post_new = preg_match('/post-new\.php/', $current_url);
 			if($post_old || $post_new){ 
@@ -1451,7 +1462,7 @@ function ampforwp_automattic_activation(){
 add_action('wp_ajax_ampforwp_automattic_notice_delete','ampforwp_automattic_notice_delete');
 function ampforwp_automattic_notice_delete() {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-	$automattic_wizard_nonce = $_REQUEST['security'];
+	$automattic_wizard_nonce = ( isset( $_REQUEST['security'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['security'] ) ) : "";
 
 	if ( wp_verify_nonce( $automattic_wizard_nonce, 'automattic_wizard_nonce' ) && current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {   
 		set_transient( 'ampforwp_automattic_activation_notice', 1 );
@@ -1521,7 +1532,7 @@ if(!function_exists('ampforwp_get_admin_current_page')){
 		$current_page = '';
 		if(is_admin()){
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-			$current_page = (isset($_GET['page'])) ? $_GET['page'] : '';
+			$current_page = (isset($_GET['page'])) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 		}
 		return $current_page;
 	}

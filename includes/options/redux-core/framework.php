@@ -226,7 +226,7 @@
                 }
 
                 if ( empty ( $this->args['footer_credit'] ) ) {
-                    $this->args['footer_credit'] = '<span id="footer-thankyou">' . sprintf( __( 'Options panel created using %1$s', 'accelerated-mobile-pages' ), '<a href="' . esc_url( $this->framework_url ) . '" target="_blank">' . __( 'Redux Framework', 'accelerated-mobile-pages' ) . '</a> v' . self::$_version ) . '</span>';
+                    $this->args['footer_credit'] = '<span id="footer-thankyou">' . sprintf( __( 'Options panel created using %1$s', 'accelerated-mobile-pages' ), '<a href="' . esc_url( $this->framework_url ) . '" target="_blank">' . esc_html__( 'Redux Framework', 'accelerated-mobile-pages' ) . '</a> v' . self::$_version ) . '</span>';
                 }
 
                 if ( empty ( $this->args['menu_title'] ) ) {
@@ -1750,12 +1750,12 @@
 
                     // Default url values for enabling hints.
                     $dismiss = 'true';
-                    $s       = __( 'Enable', 'accelerated-mobile-pages' );
+                    $s       = esc_html__( 'Enable', 'accelerated-mobile-pages' );
 
                     // Values for disabling hints.
                     if ( 'true' == $hint_status ) {
                         $dismiss = 'false';
-                        $s       = __( 'Disable', 'accelerated-mobile-pages' );
+                        $s       = esc_html__( 'Disable', 'accelerated-mobile-pages' );
                     }
 
                     // Make URL
@@ -1770,6 +1770,7 @@
                     }
 
                     // Construct message
+                    /* translators: %d: href */
                     $msg = sprintf( __( 'Hints are tooltips that popup when %d the hint icon, offering addition information about the field in which they appear.  They can be %d d by using the link below.', 'accelerated-mobile-pages' ), $event, strtolower( $s ) ) . '<br/><br/>' . $url;// url escaped above
 
                     // Construct hint tab
