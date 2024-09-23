@@ -200,7 +200,7 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 
 = 1.0.99 (23 September 2024) =
 * Fixed: Conflict issue with Infinite Scroll option. #5638
-* Fixed: Finnish characters was changes in 1.0.96 version. #5627 , #5639 , #5620
+* Fixed: Some language characters breaking in amp footer #5627 , #5639 , #5620
 * Fixed: Code Improvement #5630
 
 = 1.0.98 (9th August 2024) =
