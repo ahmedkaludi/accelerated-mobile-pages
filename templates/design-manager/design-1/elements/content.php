@@ -8,7 +8,7 @@ global $redux_builder_amp; ?>
 <div class="amp-wp-article-content">
 	<?php 
 	if ( 'above-content' ==  ampforwp_get_setting('design-1-2-3-addthis-pos') ){
-		echo ampforwp_addThis_support(); 
+		ampforwp_addthis_support(); 
 	}	?>
 	<div class="amp-wp-content the_content">
 	<?php amp_content(); ?>
@@ -16,7 +16,7 @@ global $redux_builder_amp; ?>
 	<?php do_action( 'ampforwp_after_the_post_content_wrp' ); ?>
 	<?php 
 	if ( 'below-content' ==  ampforwp_get_setting('design-1-2-3-addthis-pos') ){
-		echo ampforwp_addThis_support();
+		ampforwp_addthis_support();
 	} ?>
 	<!--Post Next-Previous Links-->
 	<?php

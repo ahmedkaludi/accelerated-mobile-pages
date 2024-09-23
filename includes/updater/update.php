@@ -246,11 +246,13 @@ add_action( 'wp_ajax_ampforwp_deactivate_license', 'ampforwp_deactivate_license'
  * This is a means of catching errors from the activation method above and displaying it to the customer
  */
 function ampforwp_admin_notices() {
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
     if ( isset( $_GET['sl_activation'] ) && ! empty( $_GET['message'] ) ) {
-
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
         switch( $_GET['sl_activation'] ) {
 
             case 'false':
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                 $message = urldecode( $_GET['message'] );
                 ?>
                 <div class="error">

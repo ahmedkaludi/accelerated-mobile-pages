@@ -30,7 +30,7 @@ function ampforwp_nl2p($string, $only_if_no_html = TRUE) {
   // If the only_if_no_html flag is set, then we only want to replace if no HTML is detected
   if ($only_if_no_html) {
     // Create a string of the input string with stripped tags
-    $str2 = strip_tags($string);
+    $str2 = wp_strip_all_tags($string);
     // If there is a difference, then HTML must have been in the input string.
     // Since HTML already exists, we do not want to replace new lines with HTML
     if ($str2 != $string) {

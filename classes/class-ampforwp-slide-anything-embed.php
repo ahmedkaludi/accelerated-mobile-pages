@@ -267,7 +267,7 @@ class AMPFORWP_Slide_Anything_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_
 		}// foreach Closed
 
 		//replacements
-			$r = rand(1,100);
+			$r = wp_rand(1,100);
 			$carousel_args = array(
 								'width' => $this->args['width'],
 								'height' => $this->args['height'],

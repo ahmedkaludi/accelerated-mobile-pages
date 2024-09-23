@@ -179,6 +179,7 @@ function ampforwp_minify_html_output($content_buffer){
 
         if(function_exists('tec_amp_compatibility_orgs_venues_support')){
             global $wp;
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
             $current_url = home_url(add_query_arg(array($_GET), $wp->request));
             if(preg_match('/months/', $current_url)){
                 $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('> ', ' <', '  '), $process);
@@ -265,11 +266,13 @@ function ampforwp_leverage_browser_caching(){
                 file_put_contents( $htaccess_file, $htaccess_cntn );
             }
         } else {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
             if( $pagenow == 'admin.php' && isset($_GET['page']) && esc_attr($_GET['page']) == 'amp_options'){
                 add_action( 'admin_notices', 'ampforwp_no_htaccess_access_notice' );
             }
         }
     }else {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
         if( $pagenow == 'admin.php' && isset($_GET['page']) && esc_attr($_GET['page']) == 'amp_options'){
             add_action( 'admin_notices', 'ampforwp_no_htaccess_notice');
         }
@@ -442,7 +445,7 @@ if( !function_exists("ampforwp_clear_tree_shaking") ) {
 					//Make sure that this is a file and not a directory.
 					if ( is_file( $file ) && strpos( $file, '_transient' ) !== false ) {
 						//Use the unlink function to delete the file.
-						unlink( $file );
+						wp_delete_file( $file );
 					}
 				}
 			}
@@ -468,7 +471,7 @@ function ampforwp_clear_tree_shaking_on_activity($plugin='', $network=''){
                 //Make sure that this is a file and not a directory.
                 if ( is_file( $file ) && strpos( $file, '_transient' ) !== false ) {
                     //Use the unlink function to delete the file.
-                    unlink( $file );
+                    wp_delete_file( $file );
                 }
             }
         }
@@ -503,7 +506,7 @@ if( !function_exists("ampforwp_clear_tree_shaking_post") ) {
     				$upload_dir = wp_upload_dir();
     				$ts_file = $upload_dir['basedir'] . '/' . 'ampforwp-tree-shaking/_transient_'.esc_attr($transient_filename).".css";
     				if(file_exists($ts_file) && is_file($ts_file)){
-    					unlink($ts_file);
+    					wp_delete_file( $ts_file );
     				}
                 }
 			}
@@ -515,7 +518,9 @@ if(!function_exists('ampforwp_clear_css_on_transposh_rtl')){
     function ampforwp_clear_css_on_transposh_rtl($css){
         if(class_exists('transposh_plugin')){
             $rtl_lang_arr = array('ar', 'he', 'fa', 'ur', 'yi');
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
             if(isset($_GET['lang'])){
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                 if(in_array(esc_attr($_GET['lang']), $rtl_lang_arr)){
                     if(!preg_match('/m-ctr{margin-right:0%}/', $css)){
                         if(ampforwp_get_setting('ampforwp_css_tree_shaking')){
@@ -528,7 +533,7 @@ if(!function_exists('ampforwp_clear_css_on_transposh_rtl')){
                               //Make sure that this is a file and not a directory.
                               if ( is_file( $file ) && strpos( $file, '_transient' ) !== false ) {
                                 //Use the unlink function to delete the file.
-                                unlink( $file );
+                                wp_delete_file( $file );
                               }
                             }
                           }

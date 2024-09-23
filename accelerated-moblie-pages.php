@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.0.98
+Version: 1.0.99
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.0.98');
+define('AMPFORWP_VERSION','1.0.99');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 define('AMPFORWP_ANALYTICS_URL',plugin_dir_url(__FILE__).'includes/features/analytics');
 if(!defined('AMPFROWP_HOST_NAME')){
@@ -799,17 +799,29 @@ if ( ! function_exists('ampforwp_init') ) {
 function amp_update_db_check() {
 	global $redux_builder_amp;
 	$ampforwp_current_version = AMPFORWP_VERSION;
-	if ( isset( $_GET['ampforwp-dismiss-theme'] ) && trim( $_GET['ampforwp-dismiss-theme']) === "ampforwp_dismiss_admin_notices" && wp_verify_nonce($_GET['ampforwp_notice'], 'ampforwp_notice') ) {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+	if ( isset( $_GET['ampforwp-dismiss-theme'] ) && 
+		trim( sanitize_text_field( wp_unslash( $_GET['ampforwp-dismiss-theme'] ) ) ) === "ampforwp_dismiss_admin_notices" && 
+		isset( $_GET['ampforwp_notice'] ) && 
+		wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ampforwp_notice'] ) ), 'ampforwp_notice' ) ) {
+
 		update_option( 'ampforwp_theme_notice', true, false );
 		wp_redirect("admin.php?page=amp_options");
+		exit; // Always exit after wp_redirect
 	}
-   	if ( get_option( 'AMPforwp_db_version' ) !== $ampforwp_current_version ) {
 
-   		if ( isset( $_GET['ampforwp-dismiss'] ) && trim( $_GET['ampforwp-dismiss']) === "ampforwp_dismiss_admin_notices" && wp_verify_nonce($_GET['ampforwp_notice'], 'ampforwp_notice') ) {
+	if ( get_option( 'AMPforwp_db_version' ) !== $ampforwp_current_version ) {
+
+		if ( isset( $_GET['ampforwp-dismiss'] ) && 
+			trim( sanitize_text_field( wp_unslash( $_GET['ampforwp-dismiss'] ) ) ) === "ampforwp_dismiss_admin_notices" && 
+			isset( $_GET['ampforwp_notice'] ) && 
+			wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ampforwp_notice'] ) ), 'ampforwp_notice' ) ) {
+
 			update_option( 'AMPforwp_db_version', $ampforwp_current_version );
 			wp_redirect(remove_query_arg('ampforwp-dismiss'), 301);
+			exit; // Always exit after wp_redirect
 		}
-    }
+	}
 }
 
 
@@ -868,7 +880,7 @@ if ( !function_exists('amp_activate') ) {
 	if(is_admin()){
 		global $pagenow;
 		if( is_multisite() ){
-		$current_url = $_SERVER['REQUEST_URI'];
+		$current_url = ( isset( $_SERVER['REQUEST_URI'] ) ) ? sanitize_text_field( esc_url_raw( $_SERVER['REQUEST_URI'] ) ) : "";
 		$post_old = preg_match('/post\.php/', $current_url);
 		$post_new = preg_match('/post-new\.php/', $current_url);
 			if($post_old || $post_new){ 
@@ -1448,11 +1460,12 @@ function ampforwp_automattic_activation(){
 }
 
 add_action('wp_ajax_ampforwp_automattic_notice_delete','ampforwp_automattic_notice_delete');
-function ampforwp_automattic_notice_delete(){
-	$automattic_wizard_nonce = $_REQUEST['security'];
+function ampforwp_automattic_notice_delete() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+	$automattic_wizard_nonce = ( isset( $_REQUEST['security'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['security'] ) ) : "";
 
 	if ( wp_verify_nonce( $automattic_wizard_nonce, 'automattic_wizard_nonce' ) && current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {   
-	  set_transient( 'ampforwp_automattic_activation_notice', 1 );
+		set_transient( 'ampforwp_automattic_activation_notice', 1 );
 	}
 	exit();
 }
@@ -1518,9 +1531,8 @@ if(!function_exists('ampforwp_get_admin_current_page')){
 	function ampforwp_get_admin_current_page(){
 		$current_page = '';
 		if(is_admin()){
-			if(isset($_GET['page'])){
-				$current_page = $_GET['page'];
-			}
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+			$current_page = (isset($_GET['page'])) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 		}
 		return $current_page;
 	}
@@ -1597,7 +1609,7 @@ if(!function_exists('ampforwp_save_local_font')){
 		        if(!file_exists($copy_to)){
 		        	$files = glob( $user_dirname . '/*' );
 		            foreach ( $files as $file ) {
-		                unlink( $file );
+		                wp_delete_file( $file );
 		            }
 	            	copy($permfile, $copy_to);
 		        	unzip_file($permfile, $user_dirname );
@@ -1610,7 +1622,7 @@ if(!function_exists('ampforwp_save_local_font')){
 		               	$font_names = end($fonts);
 						$ext = end(explode(".", $font_names));
 						if($ext!='ttf' && $ext!='eot' && $ext!='svg'){
-							unlink( $file );
+							wp_delete_file( $file );
 						}
 		            }
 		        }
@@ -1621,7 +1633,7 @@ if(!function_exists('ampforwp_save_local_font')){
 	        if ( file_exists( $user_dirname ) ) {
 	            $files = glob( $user_dirname . '/*' );
 	            foreach ( $files as $file ) {
-	                 unlink( $file );
+					wp_delete_file( $file );
 	            }
 	        }
 		}

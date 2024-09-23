@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.6
-Stable tag: 1.0.97
+Stable tag: 1.0.99
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,15 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+
+= 1.0.99 (23 September 2024) =
+* Fixed: Conflict issue with Infinite Scroll option. #5638
+* Fixed: Some language characters breaking in amp footer #5627 , #5639 , #5620
+* Fixed: Code Improvement #5630
+
+= 1.0.98 (9th August 2024) =
+* Fixed: PHP errors and warnings #5617,#5624,#5619,#5628,#5629,#5626
+* Fixed: Disqus comments are not showing on the AMP. #5353
 
 = 1.0.97 (22nd July 2024) =
 * Fixed: Stored Cross-Site Scripting via SVG File Upload (Reported by Wordfence)

@@ -939,7 +939,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
                 if ( file_exists( $gFile ) ) {
                     // Keep the fonts updated weekly
-                    $weekback     = strtotime( date( 'jS F Y', time() + ( 60 * 60 * 24 * - 7 ) ) );
+                    $weekback     = strtotime( gmdate( 'jS F Y', time() + ( 60 * 60 * 24 * - 7 ) ) );
                     $last_updated = filemtime( $gFile );
                     if ( $last_updated < $weekback ) {
                         unlink( $gFile );

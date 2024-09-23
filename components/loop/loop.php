@@ -77,7 +77,8 @@ function amp_archive_title(){
 	    $parent_cat_id 	= get_queried_object_id();
 	 	$cat_childs 	= get_terms( array(
 	  						'taxonomy' => get_queried_object()->taxonomy,
-	  						'parent'   => $parent_cat_id )
+	  						'parent'   => $parent_cat_id 
+							)
 						);
 		if( !empty( $cat_childs ) ){
 			echo "<div class='amp-sub-archives'><ul>";

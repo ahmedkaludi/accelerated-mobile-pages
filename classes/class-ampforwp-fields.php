@@ -258,7 +258,7 @@ class AMPforWP_Fields
 		}
 		$output = '<div class="ux-field-container amp-ux-select-container '.$hide.'" '.esc_attr($required).'>';
 		if ( !empty($this->title) ) {
-			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html__($this->title).'</h2>';
+			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html($this->title).'</h2>';
 		}
 		$output .= '<select id="'.$this->id.'" class="'.$this->class.'"  '.$this->data_href.'>';
 		if ( !empty($this->options) ) {
@@ -309,8 +309,7 @@ class AMPforWP_Fields
 			$lbl_cls = 'class="'.esc_attr($fields['label-class']).'"';
 		} /* $lbl_cls XSS escaped */
 
-		$output = '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).' '.esc_attr($this->parent_class).' " '.esc_attr($required).'><label '.$lbl_cls.'><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" ' . esc_attr($checked).'>'.esc_html__($this->title).'</label></div>';   /* $lbl_cls XSS escaped */
-		echo $output;  /* $output XSS escaped */
+		echo '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).' '.esc_attr($this->parent_class).' " '.esc_attr($required).'><label '.$lbl_cls.'><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" ' . esc_attr($checked).'>'.esc_html($this->title).'</label></div>';
 	}
 	public function ampforwp_field_switch($fields){
 
@@ -328,7 +327,7 @@ class AMPforWP_Fields
 		}
 		$output .= '<div class="ux-field-container amp-ux-switch-container '.esc_attr($this->parent_class).' '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
-			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html__($this->title, 'accelerated-mobile-pages').'</h2>';
+			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html( $this->title ).'</h2>';
 		}
 		if ( 1 == $this->default ) {
 			$this->selected = 'checked';
@@ -431,9 +430,10 @@ class AMPforWP_Fields
 		echo $output; /* $output XSS escaped */
 	}
 
-	public function loading(){
-		$output = '<span class="hide amp-ux-check"></span><div class="hide amp-ux-loading"></div><br>';
-		echo $output; /* $output XSS escaped */
+	public function loading() {
+
+		echo '<span class="hide amp-ux-check"></span><div class="hide amp-ux-loading"></div><br>';
+
 	}
 	public function ampforwp_field_notification($fields){
 		$required = $hide = $hrf_id = '';

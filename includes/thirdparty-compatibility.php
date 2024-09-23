@@ -1230,6 +1230,7 @@ function ampforwp_execute_amp_prior_marfeel(){
 function ampforwp_is_amp_inURL($url){
 	if (ampforwp_get_setting('amp-core-end-point')) {
 		global $wp;
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		$url = home_url(add_query_arg(array($_GET), $wp->request));
 		$urlArray = explode("/", $url);
 		if( in_array( '?' . AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
@@ -1245,6 +1246,7 @@ function ampforwp_is_amp_inURL($url){
 	if (ampforwp_get_setting('ampforwp-amp-takeover')) {
 		return true;
 	}
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 	if(get_option('permalink_structure') == '' && isset($_GET['amp'])){
         return true;
     }
@@ -1882,6 +1884,7 @@ function ampforwp_fix_a_attr_in_anchor_tag($target_link){
 //ftc theme compatibility
 add_action( 'admin_init', 'ampforwp_fTC_theme_remove_scripts');
 function ampforwp_fTC_theme_remove_scripts() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
     if ( isset ( $_GET['page'] ) && $_GET['page'] == 'amp_options' ) {
         remove_action('admin_enqueue_scripts', 'ftc_register_admin_scripts');
     }

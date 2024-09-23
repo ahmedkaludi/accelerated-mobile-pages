@@ -74,12 +74,13 @@
                             if ( ! self::is_enqueued( $handle, 'enqueued', $is_script ) ) {
                                 $msg = __( 'Please wait a few minutes, then try refreshing the page. Unable to load some remotely hosted scripts.', 'accelerated-mobile-pages' );
                                 if ( self::$_parent->args['dev_mode'] ) {
+                                    /* translators: %s: href */
                                     $msg = sprintf( __( 'If you are developing offline, please download and install the <a href="%s" target="_blank">Redux Vendor Support</a> plugin/extension to bypass the our CDN and avoid this warning', 'accelerated-mobile-pages' ), 'https://github.com/reduxframework/redux-vendor-support' );
                                 }
 
                                 self::$_parent->admin_notices[] = array(
                                     'type'    => 'error',
-                                    'msg'     => '<strong>' . __( 'Redux Framework Warning', 'accelerated-mobile-pages' ) . '</strong><br/>' . sprintf( __( '%s CDN unavailable.  Some controls may not render properly.', 'accelerated-mobile-pages' ), $handle ) . '  ' . $msg,
+                                    'msg'     => '<strong>' . esc_html__( 'Redux Framework Warning', 'accelerated-mobile-pages' ) . '</strong><br/>' . $handle. '  ' . esc_html__( 'CDN unavailable.  Some controls may not render properly.', 'accelerated-mobile-pages' ) . '  ' . $msg,
                                     'id'      => $handle . $tran_key,
                                     'dismiss' => false,
                                 );
@@ -112,7 +113,8 @@
                     if ( ! self::$_set ) {
                         self::$_parent->admin_notices[] = array(
                             'type'    => 'error',
-                            'msg'     => sprintf( __( 'The <a href="%s">Vendor Support plugin</a> (or extension) is either not installed or not activated and thus, some controls may not render properly.  Please ensure that it is installed and <a href="%s">activated</a>', 'accelerated-mobile-pages' ), 'https://github.com/reduxframework/redux-vendor-support', admin_url( 'plugins.php' ) ),
+                            /* translators: %1$s %2$s: href */
+                            'msg'     => sprintf( __( 'The <a href="%1$s">Vendor Support plugin</a> (or extension) is either not installed or not activated and thus, some controls may not render properly.  Please ensure that it is installed and <a href="%2$s">activated</a>', 'accelerated-mobile-pages' ), 'https://github.com/reduxframework/redux-vendor-support', admin_url( 'plugins.php' ) ),
                             'id'      => $handle . '23',
                             'dismiss' => false,
                         );

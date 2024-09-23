@@ -39,7 +39,7 @@ function ampforwp_include_aqresizer(){
         $redux_data['ampforwp-amp-takeover'] =  ampforwp_get_setting('ampforwp-amp-takeover');
         wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style-global.css', false, AMPFORWP_VERSION );
         wp_enqueue_style( 'ampforwp_admin_css' );
-        wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script-global.js', array('wp-color-picker'), AMPFORWP_VERSION );  
+        wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script-global.js', array('wp-color-picker'), AMPFORWP_VERSION, false );  
         wp_localize_script( 'ampforwp_admin_js', 'ampforwp_nonce',
         array( 
             'security' => wp_create_nonce( 'ampforwp-verify-request' )
@@ -61,7 +61,7 @@ function ampforwp_add_admin_styling($hook_suffix){
     // Admin area scripts file
     $dep = array('wp-color-picker');
     $dep = apply_filters('ampforwp_modify_script_dependency', $dep);
-    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', $dep , AMPFORWP_VERSION );
+    wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', $dep , AMPFORWP_VERSION, false );
 
     // Localize the script with new data
     $redux_data = array();
@@ -339,10 +339,10 @@ function ampforwp_generate_meta_desc($json=""){
     $post_id = ampforwp_get_the_ID();
     if ( true == ampforwp_get_setting('ampforwp-seo-meta-desc') || !empty($json) ) {
         if ( ampforwp_is_home() || ampforwp_is_blog() ) {
-            $desc = addslashes( strip_tags( get_bloginfo( 'description' ) ) );
+            $desc = addslashes( wp_strip_all_tags( get_bloginfo( 'description' ) ) );
         }
         if ( is_archive() ) {
-            $desc = addslashes( strip_tags( get_the_archive_description() ) );
+            $desc = addslashes( wp_strip_all_tags( get_the_archive_description() ) );
         }
         if ( is_single() || is_page() || ampforwp_is_front_page()) {
             if ( has_excerpt() ) {
@@ -352,7 +352,7 @@ function ampforwp_generate_meta_desc($json=""){
                 $desc = $post->post_content;
             }
             $desc = preg_replace('/\[(.*?)\]/',' ', $desc);
-            $desc = addslashes( wp_trim_words( strip_tags( $desc ) , 15 ) );
+            $desc = addslashes( wp_trim_words( wp_strip_all_tags( $desc ) , 15 ) );
         }
         if ( is_search() ) {
             $desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
@@ -361,12 +361,12 @@ function ampforwp_generate_meta_desc($json=""){
         if ( class_exists('WPSEO_Frontend') && ('yoast' == ampforwp_get_setting('ampforwp-seo-selection') || 1 == ampforwp_get_setting('ampforwp-seo-selection')) && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
             $front = $yoast_desc = '';
             $front = WPSEO_Frontend::get_instance();
-            $yoast_desc = addslashes( strip_tags( $front->metadesc( false ) ) );
+            $yoast_desc = addslashes( wp_strip_all_tags( $front->metadesc( false ) ) );
             // Static front page
             if ( ampforwp_is_front_page() ) { 
                 $post_id = ampforwp_get_frontpage_id();
                 if ( class_exists('WPSEO_Meta') ) {
-                    $yoast_desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
+                    $yoast_desc = addslashes( wp_strip_all_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
                 }
             }
             // for search
@@ -411,13 +411,13 @@ function ampforwp_generate_meta_desc($json=""){
                 $genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
             }
             elseif(ampforwp_is_front_page()){
-                $genesis_description = strip_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
+                $genesis_description = wp_strip_all_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
             }
             elseif ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
                 $post_id = get_option( 'page_for_posts' );
                 if ( null !== $post_id || is_singular() ) {
                     if ( genesis_get_custom_field( '_genesis_description', intval($post_id) ) ) {
-                        $genesis_description = strip_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
+                        $genesis_description = wp_strip_all_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
                         if ( $genesis_description ) {
                             $desc = $genesis_description;
                         }
@@ -428,7 +428,7 @@ function ampforwp_generate_meta_desc($json=""){
                 $post_id = get_option('page_on_front');
                 if ( null !== $post_id || is_singular() ) {
                     if ( genesis_get_custom_field( '_genesis_description', intval($post_id) ) ) {
-                        $genesis_description = strip_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
+                        $genesis_description = wp_strip_all_tags(genesis_get_custom_field( '_genesis_description', intval($post_id) ));
                         }
                     }
                 }
@@ -575,7 +575,11 @@ if ( ! function_exists( 'ampforwp_isexternal ') ) {
         if ( strcasecmp($components['host'], AMPFROWP_HOST_NAME) === 0 ) return false; 
         
         // check if the url host is a subdomain
-        $check =  strrpos(strtolower($components['host']), $_SERVER['HTTP_HOST']) !== strlen($components['host']) - strlen($_SERVER['HTTP_HOST']);// #3561 - it's returing empty that is why it's creating broken link. So checking empty condition and returning 1 to not create amp link.
+        $check = "";
+        if ( isset($_SERVER['HTTP_HOST']) ) {
+            $host = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) );
+            $check =  strrpos(strtolower($components['host']), $host) !== strlen($components['host']) - strlen($host);// #3561 - it's returing empty that is why it's creating broken link. So checking empty condition and returning 1 to not create amp link.
+        }
         if($check==""){ 
             return 1;
         }else{
@@ -866,7 +870,7 @@ function ampforwp_url_purifier($url){
         }
     }
     if ( is_singular() && !empty($_SERVER['QUERY_STRING']) ) {
-        $query_arg   = wp_parse_args($_SERVER['QUERY_STRING']);
+        $query_arg   = wp_parse_args( sanitize_text_field( wp_unslash($_SERVER['QUERY_STRING']) ) );
         $query_name = '';
         if(is_single()){
             $query_name = isset($wp_query->query['name'])?$wp_query->query['name']:'';  
@@ -1530,7 +1534,7 @@ function ampforwp_internal_feedback_notice(){
     $install_date = get_option('ampforwp_plugin_info');
     if (isset($install_date["activation_data"])) {
        $install_date = $install_date["activation_data"];
-       $install_date = date("m-d-Y", $install_date);
+       $install_date = gmdate("m-d-Y", $install_date);
     }
     $activation_never =  get_option("ampforwp_feedback_remove_notice");
     if (strtotime($install_date) < strtotime('-30 days') && $activation_never !='remove') {?>

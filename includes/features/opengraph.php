@@ -224,7 +224,7 @@ if ( ! function_exists('ampforwp_default_og_tags') ) {
 				$site_title = $title . $sep . get_option( 'blogname' );
 			}
 			if ( is_archive() ) {
-	            $site_title = strip_tags( get_the_archive_title('') . $sep . get_bloginfo( 'name' ) );
+	            $site_title = wp_strip_all_tags( get_the_archive_title('') . $sep . get_bloginfo( 'name' ) );
 	        }
 			if ( is_search() ) {
 				$site_title = $redux_builder_amp['amp-translator-search-text'] . ' ' . get_search_query();
@@ -234,10 +234,10 @@ if ( ! function_exists('ampforwp_default_og_tags') ) {
 
 			// og:description
 			if ( ampforwp_is_home() || ampforwp_is_blog() ) {
-	            $desc = addslashes( strip_tags( get_bloginfo( 'description' ) ) );
+	            $desc = addslashes( wp_strip_all_tags( get_bloginfo( 'description' ) ) );
 	        }
 	        if ( is_archive() ) {
-	            $desc = addslashes( strip_tags( get_the_archive_description() ) );
+	            $desc = addslashes( wp_strip_all_tags( get_the_archive_description() ) );
 	        }
 	        if ( is_single() || is_page() ) {
 	            if ( has_excerpt() ) {
@@ -246,13 +246,13 @@ if ( ! function_exists('ampforwp_default_og_tags') ) {
 	                $desc = $post->post_content;
 	            }
 	            $desc = preg_replace('/\[(.*?)\]/',' ', $desc);
-	            $desc = addslashes( wp_trim_words( strip_tags( $desc ) , 15 ) );
+	            $desc = addslashes( wp_trim_words( wp_strip_all_tags( $desc ) , 15 ) );
 	        }
 	        if ( is_search() ) {
 	            $desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
 	        }
 	        if ( ampforwp_is_front_page() ) {
-	            $desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , 15 ) );
+	            $desc = addslashes( wp_trim_words(  wp_strip_all_tags( get_post_field('post_content', $post_id) ) , 15 ) );
 	        }
 
 	        $og_tags['og:description'] = $desc;

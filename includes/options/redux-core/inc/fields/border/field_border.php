@@ -115,48 +115,48 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_border' ) ) {
                 $select2_params = wp_json_encode( $this->field['select2'] );
                 $select2_params = htmlspecialchars( $select2_params, ENT_QUOTES );
 
-                echo '<input type="hidden" class="select2_params" value="' . $select2_params . '">';
+                echo '<input type="hidden" class="select2_params" value="' . esc_attr( $select2_params ) . '">';
             }
 
 
             echo '<input type="hidden" class="field-units" value="px">';
 
             if ( isset( $this->field['all'] ) && $this->field['all'] == true ) {
-                echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-fullscreen icon-large"></i></span><input type="text" class="redux-border-all redux-border-input mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'All', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-all" value="' . $this->value['top'] . '"></div>';
+                echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-fullscreen icon-large"></i></span><input type="text" class="redux-border-all redux-border-input mini ' . esc_attr( $this->field['class'] ). '" placeholder="' . esc_attr__( 'All', 'accelerated-mobile-pages' ) . '" rel="' . esc_attr( $this->field['id'] ). '-all" value="' . esc_attr( $this->value['top'] ). '"></div>';
             }
 
-            echo '<input type="hidden" class="redux-border-value" id="' . $this->field['id'] . '-top" name="' . $this->field['name'] . $this->field['name_suffix'] . '[border-top]" value="' . ( isset($this->value['top']) && $this->value['top'] != '' ? $this->value['top'] . 'px' : '' ) . '">';
-            echo '<input type="hidden" class="redux-border-value" id="' . $this->field['id'] . '-right" name="' . $this->field['name'] . $this->field['name_suffix'] . '[border-right]" value="' . ( isset($this->value['right']) && $this->value['right'] != '' ? $this->value['right'] . 'px' : '' ) . '">';
-            echo '<input type="hidden" class="redux-border-value" id="' . $this->field['id'] . '-bottom" name="' . $this->field['name'] . $this->field['name_suffix'] . '[border-bottom]" value="' . ( isset($this->value['bottom']) && $this->value['bottom'] != '' ? $this->value['bottom'] . 'px' : '' ) . '">';
-            echo '<input type="hidden" class="redux-border-value" id="' . $this->field['id'] . '-left" name="' . $this->field['name'] . $this->field['name_suffix'] . '[border-left]" value="' . ( isset($this->value['left']) && $this->value['left'] != '' ? $this->value['left'] . 'px' : '' ) . '">';
+            echo '<input type="hidden" class="redux-border-value" id="' . esc_attr( $this->field['id'] ). '-top" name="' . esc_attr( $this->field['name']) . esc_attr( $this->field['name_suffix'] ). '[border-top]" value="' . ( isset($this->value['top']) && $this->value['top'] != '' ? esc_attr( $this->value['top'] ). 'px' : '' ) . '">';
+            echo '<input type="hidden" class="redux-border-value" id="' . esc_attr( $this->field['id'] ). '-right" name="' . esc_attr( $this->field['name']). esc_attr( $this->field['name_suffix'] ). '[border-right]" value="' . ( isset($this->value['right']) && $this->value['right'] != '' ? esc_attr( $this->value['right'] ). 'px' : '' ) . '">';
+            echo '<input type="hidden" class="redux-border-value" id="' .esc_attr( $this->field['id']) . '-bottom" name="' . esc_attr( $this->field['name']) . esc_attr( $this->field['name_suffix'] ). '[border-bottom]" value="' . ( isset($this->value['bottom']) && $this->value['bottom'] != '' ? esc_attr( $this->value['bottom']) . 'px' : '' ) . '">';
+            echo '<input type="hidden" class="redux-border-value" id="' . esc_attr( $this->field['id'] ). '-left" name="' . esc_attr( $this->field['name'] ). esc_attr( $this->field['name_suffix'] ). '[border-left]" value="' . ( isset($this->value['left']) && $this->value['left'] != '' ? esc_attr( $this->value['left'] ). 'px' : '' ) . '">';
 
             if ( ! isset( $this->field['all'] ) || $this->field['all'] !== true ) {
                 /**
                  * Top
                  * */
                 if ( $this->field['top'] === true ) {
-                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-up icon-large"></i></span><input type="text" class="redux-border-top redux-border-input mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Top', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-top" value="' . $this->value['top'] . '"></div>';
+                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-up icon-large"></i></span><input type="text" class="redux-border-top redux-border-input mini ' . esc_attr( $this->field['class'] ). '" placeholder="' . esc_attr__( 'Top', 'accelerated-mobile-pages' ) . '" rel="' . esc_attr( $this->field['id']) . '-top" value="' . esc_attr( $this->value['top']) . '"></div>';
                 }
 
                 /**
                  * Right
                  * */
                 if ( $this->field['right'] === true ) {
-                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-right icon-large"></i></span><input type="text" class="redux-border-right redux-border-input mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Right', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-right" value="' . $this->value['right'] . '"></div>';
+                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-right icon-large"></i></span><input type="text" class="redux-border-right redux-border-input mini ' . esc_attr( $this->field['class'] ). '" placeholder="' . esc_attr__( 'Right', 'accelerated-mobile-pages' ) . '" rel="' . esc_attr( $this->field['id']) . '-right" value="' . esc_attr( $this->value['right']) . '"></div>';
                 }
 
                 /**
                  * Bottom
                  * */
                 if ( $this->field['bottom'] === true ) {
-                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-down icon-large"></i></span><input type="text" class="redux-border-bottom redux-border-input mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Bottom', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-bottom" value="' . $this->value['bottom'] . '"></div>';
+                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-down icon-large"></i></span><input type="text" class="redux-border-bottom redux-border-input mini ' . esc_attr( $this->field['class']) . '" placeholder="' . esc_attr__( 'Bottom', 'accelerated-mobile-pages' ) . '" rel="' . esc_attr( $this->field['id']) . '-bottom" value="' . esc_attr( $this->value['bottom']) . '"></div>';
                 }
 
                 /**
                  * Left
                  * */
                 if ( $this->field['left'] === true ) {
-                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-left icon-large"></i></span><input type="text" class="redux-border-left redux-border-input mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Left', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-left" value="' . $this->value['left'] . '"></div>';
+                    echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-arrow-left icon-large"></i></span><input type="text" class="redux-border-left redux-border-input mini ' . esc_attr( $this->field['class']) . '" placeholder="' . esc_attr__( 'Left', 'accelerated-mobile-pages' ) . '" rel="' . esc_attr( $this->field['id']) . '-left" value="' . esc_attr( $this->value['left'] ). '"></div>';
                 }
             }
 
@@ -165,19 +165,19 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_border' ) ) {
              * */
             if ( $this->field['style'] != false ) {
                 $options = array(
-                    'solid'  => 'Solid',
-                    'dashed' => 'Dashed',
-                    'dotted' => 'Dotted',
-                    'double' => "Double",
-                    'none'   => 'None'
+                    'solid'  => esc_html__( 'Solid', 'accelerated-mobile-pages' ),
+                    'dashed' => esc_html__( 'Dashed', 'accelerated-mobile-pages' ),
+                    'dotted' => esc_html__( 'Dotted', 'accelerated-mobile-pages' ),
+                    'double' => esc_html__( "Double", 'accelerated-mobile-pages' ),
+                    'none'   => esc_html__( 'None', 'accelerated-mobile-pages' )
                 );
-                echo '<select original-title="' . __( 'Border style', 'accelerated-mobile-pages' ) . '" id="' . $this->field['id'] . '[border-style]" name="' . $this->field['name'] . $this->field['name_suffix'] . '[border-style]" class="tips redux-border-style ' . $this->field['class'] . '" rows="6" data-id="' . $this->field['id'] . '">';
+                echo '<select original-title="' . esc_html__( 'Border style', 'accelerated-mobile-pages' ) . '" id="' . esc_attr( $this->field['id']) . '[border-style]" name="' . esc_attr( $this->field['name']) . esc_attr( $this->field['name_suffix']) . '[border-style]" class="tips redux-border-style ' . esc_attr( $this->field['class']) . '" rows="6" data-id="' . esc_attr( $this->field['id']) . '">';
                 foreach ( $options as $k => $v ) {
-                    echo '<option value="' . $k . '"' . selected( $value['style'], $k, false ) . '>' . $v . '</option>';
+                    echo '<option value="' . esc_attr( $k) . '"' . selected( $value['style'], $k, false ) . '>' . esc_html( $v) . '</option>';
                 }
                 echo '</select>';
             } else {
-                echo '<input type="hidden" id="' . $this->field['id'] . '[border-style]" name="' . $this->field['name'] . $this->field['name_suffix'] . '[border-style]" value="' . $this->value['style'] . '" data-id="' . $this->field['id'] . '">';
+                echo '<input type="hidden" id="' . esc_attr( $this->field['id'] ). '[border-style]" name="' . esc_attr( $this->field['name']) . esc_attr( $this->field['name_suffix']) . '[border-style]" value="' . esc_attr( $this->value['style']) . '" data-id="' . esc_attr( $this->field['id'] ). '">';
             }
 
             /**
@@ -191,9 +191,9 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_border' ) ) {
                     $default = ( isset( $this->field['default']['color'] ) ) ? $this->field['default']['color'] : '#ffffff';
                 }
 
-                echo '<input name="' . $this->field['name'] . $this->field['name_suffix'] . '[border-color]" id="' . $this->field['id'] . '-border" class="redux-border-color redux-color redux-color-init ' . $this->field['class'] . '"  type="text" value="' . $this->value['color'] . '"  data-default-color="' . $default . '" data-id="' . $this->field['id'] . '" />';
+                echo '<input name="' . esc_attr( $this->field['name'] ). esc_attr( $this->field['name_suffix'] ). '[border-color]" id="' . esc_attr( $this->field['id'] ). '-border" class="redux-border-color redux-color redux-color-init ' . esc_attr( $this->field['class'] ). '"  type="text" value="' . esc_attr( $this->value['color'] ). '"  data-default-color="' . esc_attr( $default ). '" data-id="' . esc_attr( $this->field['id']) . '" />';
             } else {
-                echo '<input type="hidden" id="' . $this->field['id'] . '[border-color]" name="' . $this->field['name'] . $this->field['name_suffix'] . '[border-color]" value="' . $this->value['color'] . '" data-id="' . $this->field['id'] . '">';
+                echo '<input type="hidden" id="' . esc_attr( $this->field['id']) . '[border-color]" name="' . esc_attr( $this->field['name']) . esc_attr( $this->field['name_suffix']) . '[border-color]" value="' . esc_attr( $this->value['color'] ). '" data-id="' . esc_attr( $this->field['id']) . '">';
             }
         }
 

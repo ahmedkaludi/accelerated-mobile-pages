@@ -27,7 +27,7 @@ function ampforwp_get_pb_comment_list($moduleFrontHtml, $moduleTemplate, $conten
 								$output .='<div class="fn"><img src="'.esc_url($avatar).'" height="50" width="50"/></div>';
 							}
 							$output .='<div class="pbc-auth-info"><div class="pbc-auth-name"><b class="fn">'.esc_attr($value->comment_author).'</b></div>';
-							$output .='<span>'.esc_attr(date('F d, Y H:i:s', strtotime($value->comment_date))).'</span></div>';
+							$output .='<span>'.esc_attr(gmdate('F d, Y H:i:s', strtotime($value->comment_date))).'</span></div>';
 							$output .='<p class="pbc-comment">'.wp_kses_post($value->comment_content).'</p>';
 							$output .='</li>';	
 					} 	

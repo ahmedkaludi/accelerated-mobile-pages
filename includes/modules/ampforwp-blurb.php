@@ -51,7 +51,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
 
 
-        echo $before_widget;
+		echo wp_kses( $before_widget, wp_kses_allowed_html('post') );
         
         $output .= '<div class="amp-wp-content amp_cb_module amp_cb_blurb">';
         
@@ -83,7 +83,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 			echo $sanitized_output; // amphtml content, no kses
 		} 
 
-		echo $after_widget;
+		echo wp_kses( $after_widget, wp_kses_allowed_html('post') );		
 
 	} // end widget
 
@@ -97,12 +97,12 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 
 		$instance = $old_instance;
 		
-		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['title'] = wp_strip_all_tags($new_instance['title']);
 
 		foreach($new_instance['features'] as $feature){
-			$feature['title'] = strip_tags($feature['title']);
-			$feature['description'] = strip_tags($feature['description']);
-			$feature['image'] = strip_tags($feature['image']);
+			$feature['title'] = wp_strip_all_tags($feature['title']);
+			$feature['description'] = wp_strip_all_tags($feature['description']);
+			$feature['image'] = wp_strip_all_tags($feature['image']);
 		}
 		$instance['features'] = $new_instance['features'];
 
@@ -141,18 +141,18 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 
 			            <div class="widget-inside">
 							<p>
-								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][title]'; ?>"><?php esc_attr_e( 'Title:' ); ?></label>
-								<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. $c.'-title'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][title]'; ?>" type="text" value="<?php echo esc_attr($feature['title']); ?>" />
-								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][description]'; ?>"><?php esc_attr_e( 'Description:' ); ?></label>
+								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][title]'; ?>"><?php esc_attr_e( 'Title:' ); ?></label>
+								<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. $c.'-title'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][title]'; ?>" type="text" value="<?php echo esc_attr($feature['title']); ?>" />
+								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][description]'; ?>"><?php esc_attr_e( 'Description:' ); ?></label>
 
-								<textarea  class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. $c.'-description'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][description]'; ?>" rows="6" cols="50"><?php echo esc_attr($feature['description']); ?></textarea> <span class="clear"></span>
+								<textarea  class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. $c.'-description'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][description]'; ?>" rows="6" cols="50"><?php echo esc_attr($feature['description']); ?></textarea> <span class="clear"></span>
 							</p>
 							<p>
-								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][image]'; ?>"><?php esc_attr_e( 'Image:' ); ?></label>
+								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][image]'; ?>"><?php esc_attr_e( 'Image:' ); ?></label>
 								<input type="button" class="select-img-<?php echo esc_attr($c);?> button left" style="width:auto;" value="Select Image" onclick="ampSelectImage('<?php echo esc_attr($c);?>');"/>
 								<input type="button" style="display:none" name="removeimg" id="remove-img-<?php echo esc_attr($c);?>" class="button button-secondary remove-img-button" data-count-type="<?php echo esc_attr($c);?>"  value="Remove Image" onclick="removeImage('<?php echo esc_attr($c);?>')">
 								<img src="<?php echo esc_url($instance['features']["$c"]['image'])  ?>" class="preview-image block-image-<?php echo esc_attr($c);?>" >
-								<input type="hidden" id="amp-img-field-<?php echo esc_attr($c);?>" class="img<?php echo esc_attr($c);?>" style="width:auto;" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][image]'; ?>" id="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][image]';?>'" value="<?php echo esc_attr($instance['features']["$c"]['image'])  ?>" />
+								<input type="hidden" id="amp-img-field-<?php echo esc_attr($c);?>" class="img<?php echo esc_attr($c);?>" style="width:auto;" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][image]'; ?>" id="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][image]';?>'" value="<?php echo esc_attr($instance['features']["$c"]['image'])  ?>" />
 							</p>
 							<p>	<a class="ampforwp-blurb-remove delete button left"><?php esc_attr_e('Remove Feature','accelerated-mobile-pages')?></a> </p>
 						</div>

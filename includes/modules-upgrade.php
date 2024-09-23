@@ -144,8 +144,9 @@ function ampforwp_admin_notice_module_reference_install() {
     if(! current_user_can( 'manage_options' )) {
         return ;
     }
-
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
     $reference = isset($_GET['reference']) ? sanitize_text_field( wp_unslash($_GET['reference'])) : '';
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
     $page = isset($_GET['page']) ? sanitize_text_field( wp_unslash($_GET['page'])) : '';
     $message = '';
     if($reference=='ampforwp'){

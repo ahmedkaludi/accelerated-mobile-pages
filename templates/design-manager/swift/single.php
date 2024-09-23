@@ -56,7 +56,7 @@ $page = intval($page); ?>
 							ampforwp_swift_social_icons(); 
 						}
 						if ( 'above-content' ==  ampforwp_get_setting('swift-add-this-position') ){
-							echo ampforwp_addThis_support(); 
+							ampforwp_addthis_support(); 
 						}	?>
 					<div class="cntn-wrp artl-cnt">
 						<?php 
@@ -79,7 +79,7 @@ $page = intval($page); ?>
 						ampforwp_swift_social_icons(); 
 						}
 						if ( 'below-content' ==  ampforwp_get_setting('swift-add-this-position') ){
-							echo ampforwp_addThis_support();
+							ampforwp_addthis_support();
 						} ?>
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 					<?php 
@@ -110,7 +110,7 @@ $page = intval($page); ?>
 						ampforwp_swift_social_icons(); 
 						}
 						if ( 'default' ==  ampforwp_get_setting('swift-add-this-position') ){
-								echo ampforwp_addThis_support(); 
+								ampforwp_addthis_support(); 
 						} ?>
 		              <?php if( true == ampforwp_get_setting('amp-author-name') ) { ?>
 			            <div class="sp-athr desk-athr">
@@ -382,11 +382,11 @@ do_action("ampforwp_single_design_type_handle_d1");
 								<div class="cntn-wrp artl-cnt">
 									<?php 
 									if ( 'above-content' ==  ampforwp_get_setting('swift-layout-addthis-pos') ){
-										echo ampforwp_addThis_support(); 
+										ampforwp_addthis_support(); 
 									} ?>
 									<?php amp_content(); 
 									if ( 'below-content' ==  ampforwp_get_setting('swift-layout-addthis-pos') ){
-											echo ampforwp_addThis_support();
+											ampforwp_addthis_support();
 									}	?>
 								</div>
 								<?php do_action( 'ampforwp_after_the_post_content_wrp' ); ?>

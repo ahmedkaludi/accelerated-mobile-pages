@@ -87,7 +87,7 @@ class AMPFORWP_AMP_Code_Widget extends WP_Widget {
         <?php if ( ! empty( $disallowed_html ) ) : ?>
           <# if ( data.codeEditorDisabled ) { #>
             <p>
-              <?php _e( 'Some HTML tags are not permitted, including:' ); ?>
+              <?php esc_html_e( 'Some HTML tags are not permitted, including:' , 'accelerated-mobile-pages' ); ?>
               <code><?php echo implode( '</code>, <code>', $disallowed_html ); ?></code>
             </p>
           <# } #>

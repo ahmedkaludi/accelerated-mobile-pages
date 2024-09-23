@@ -15,6 +15,7 @@ function ampforwp_welcome_screen_do_activation_redirect() {
   delete_transient( 'ampforwp_welcome_screen_activation_redirect' );
 
   // Bail if activating from network, or bulk
+  // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
   if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
     return;
   }

@@ -5,7 +5,9 @@ require_once  ABSPATH . WPINC . '/category.php';
 add_filter('ampforwp_content_module_args','ampforwp_content_module_pagination',10,2);
 function ampforwp_content_module_pagination($args, $fieldValues){
   if(isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1 ){
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
       if( isset($_GET['pageno']) && $_GET['pageno']!=''){
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
           $paged = intval($_GET['pageno']);
       }else{
           $paged = 1;
@@ -20,7 +22,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
     return $args;
   }
 }
- $output = '{{if_condition_content_layout_type==1}}
+$output = '{{if_condition_content_layout_type==1}}
             <div {{if_id}}id="{{id}}"{{ifend_id}} class="pb_mod cm {{user_class}}">
             {{if_content_title}}<h4>{{content_title}}</h4> {{ifend_content_title}}
                 <div id="cat-jump{{id}}" class="wrap"><ul>{{category_selection}}</ul></div>
@@ -480,7 +482,7 @@ if ( is_admin() ) {
                     $readMore = $fieldValues['ampforwp_read_more'];
                     $read_more_link = '<a href="'.esc_url($ampforwp_post_url).'" > '.esc_html($readMore).'</a>';
                   }   
-                 $excerptContent = '<p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).$read_more_link.'</p>';
+                 $excerptContent = '<p>'.wp_trim_words( wp_strip_all_tags( strip_shortcodes( $content ) ) , (int) $ampforwp_excerpt_length ).$read_more_link.'</p>';
               }
                $loopdate = "";
                $loopdate =  human_time_diff(
@@ -578,7 +580,9 @@ if ( is_admin() ) {
         }else{
           $total_num_pages = $the_query->max_num_pages - $offset_num;
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
         if(isset($_GET[$pagination_text]) && $_GET[$pagination_text]!='' ){
+          // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
             $paged = intval($_GET[$pagination_text]);
         }else{
             $paged = 1;

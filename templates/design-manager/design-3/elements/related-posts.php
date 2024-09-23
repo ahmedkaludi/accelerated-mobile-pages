@@ -95,9 +95,9 @@ if ( isset($redux_builder_amp['ampforwp-related-posts-days-switch']) && true == 
 	$args['date_query'] = array(
 				            array(
 				                'after' => array(
-				                    'year'  => date('Y', $date_range ),
-				                    'month' => date('m', $date_range ),
-				                    'day'   => date('d', $date_range ),
+				                    'year'  => gmdate( 'Y', $date_range ),
+				                    'month' => gmdate( 'm', $date_range ),
+				                    'day'   => gmdate( 'd', $date_range ),
 				                	),
 				            	)
 				       		); 

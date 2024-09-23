@@ -331,8 +331,8 @@ if ( ! class_exists( 'Black_Studio_TinyMCE_Compatibility_Wordpress' ) ) {
             <div id="<?php echo esc_attr( $id ); ?>-wp-content-wrap" class="wp-core-ui wp-editor-wrap <?php echo esc_attr( $switch_class ); ?> has-dfw">
                 <div id="<?php echo esc_attr( $id ); ?>-wp-content-editor-tools" class="wp-editor-tools hide-if-no-js">
                     <div class="wp-editor-tabs">
-                        <a id="<?php echo esc_attr( $id ); ?>-content-html" class="wp-switch-editor switch-html"><?php _e( 'HTML' ); ?></a>
-                        <a id="<?php echo esc_attr( $id ); ?>-content-tmce" class="wp-switch-editor switch-tmce"><?php _e( 'Visual' ); ?></a>
+                        <a id="<?php echo esc_attr( $id ); ?>-content-html" class="wp-switch-editor switch-html"><?php esc_html_e( 'HTML', 'accelerated-mobile-pages' ); ?></a>
+                        <a id="<?php echo esc_attr( $id ); ?>-content-tmce" class="wp-switch-editor switch-tmce"><?php esc_html_e( 'Visual', 'accelerated-mobile-pages' ); ?></a>
                     </div>
                     <div id="<?php esc_attr( $id ); ?>-wp-content-media-buttons" class="wp-media-buttons">
 						<?php do_action( 'media_buttons', $id ); ?>

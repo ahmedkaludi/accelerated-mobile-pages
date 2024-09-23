@@ -21,7 +21,8 @@ function ampforwp_framework_get_logo(){
         $ampforwp_home_url = apply_filters('ampforwp_header_url', $ampforwp_home_url); ?>
         <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {
           $alt = ampforwp_default_logo('alt'); 
-          $logo_url = __( $redux_builder_amp['opt-media']['url'], 'accelerated-mobile-pages' ); ?>
+          $logo_url = $redux_builder_amp['opt-media']['url'];
+           ?>
            <a href="<?php echo esc_url( $ampforwp_home_url ); ?>" title="<?php echo esc_html( $title ); ?>" <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  >
              <amp-img data-hero src="<?php echo esc_url( $logo_url );  ?>" width="<?php echo esc_attr(ampforwp_default_logo('width')); ?>" height="<?php echo esc_attr(ampforwp_default_logo('height')); ?>" alt="<?php echo esc_attr($alt); ?>" class="amp-logo" layout="responsive"></amp-img></a>
              <?php if( ampforwp_is_home() || ampforwp_is_blog() ){ ?>

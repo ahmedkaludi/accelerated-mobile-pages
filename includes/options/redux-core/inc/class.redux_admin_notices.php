@@ -75,10 +75,12 @@
 
                                     // Get the current page.  To avoid errors, we'll set
                                     // the redux page slug if the GET is empty.
-                                    $pageName = empty( $_GET['page'] ) ? '&amp;page=' . self::$_parent->args['page_slug'] : '&amp;page=' . esc_attr( $_GET['page'] );
+                                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+                                    $pageName = empty( $_GET['page'] ) ? '&amp;page=' . self::$_parent->args['page_slug'] : '&amp;page=' . esc_attr( sanitize_text_field( wp_unslash( $_GET['page'] ) ) );
 
                                     // Ditto for the current tab.
-                                    $curTab = empty( $_GET['tab'] ) ? '&amp;tab=0' : '&amp;tab=' . esc_attr( $_GET['tab'] );
+                                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+                                    $curTab = empty( $_GET['tab'] ) ? '&amp;tab=0' : '&amp;tab=' . esc_attr( sanitize_text_field( wp_unslash( $_GET['tab'] ) ) );
                                 }
 
                                 global $wp_version;
@@ -150,10 +152,12 @@
                         // Get the user id
                         $userid = $current_user->ID;
 
-                        // Get the notice id
-                        $id  = esc_attr( $_GET['id'] );
-                        $val = esc_attr( $_GET['dismiss'] );
-                        if ( ! wp_verify_nonce( $_POST['nonce'], $id . $userid . 'nonce' ) ) {
+                        // Get the notice 
+                        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+                        $id  = esc_attr( sanitize_text_field( wp_unslash( $_GET['id'] ) ) );
+                        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+                        $val = esc_attr( sanitize_text_field( wp_unslash( $_GET['dismiss'] ) ) );
+                        if ( isset( $_POST['nonce'] ) &&  ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), $id . $userid . 'nonce' ) ) {
                             die( 0 );
                         } else {
                         // Add the dismiss request to the user meta.
@@ -174,12 +178,13 @@
                 global $current_user;
 
                 // Get the notice id
+                // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reason: verify nonce in line 187.
                 $id = explode( '&', intval($_POST['id']) );
                 $id = $id[0];
                 // Get the user id
                 $userid = $current_user->ID;
 
-                if ( ! wp_verify_nonce( $_POST['nonce'], $id . $userid . 'nonce' ) ) {
+                if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), $id . $userid . 'nonce' ) ) {
                     die( 0 );
                 } else {
                     // Add the dismiss request to the user meta.

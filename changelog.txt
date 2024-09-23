@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 1.0.99 (23 September 2024) =
+* Fixed: Conflict issue with Infinite Scroll option. #5638
+* Fixed: Some language characters breaking in amp footer #5627 , #5639 , #5620
+* Fixed: Code Improvement #5630
+
 = 1.0.98 (9th August 2024) =
 * Fixed: PHP errors and warnings #5617,#5624,#5619,#5628,#5629,#5626
 * Fixed: Disqus comments are not showing on the AMP. #5353

@@ -154,7 +154,7 @@ function ampforwp_notice_bar_options($opt_name){
                'id'        =>'amp-gdpr-compliance-textarea',
                'type'      => 'textarea',
                'title'     => esc_html__('Message to Visitor', 'accelerated-mobile-pages'),
-               'subtitle'     => esc_html__('', 'accelerated-mobile-pages'),
+               'subtitle'     => "",
                'default'   => 'You can control the ways in which we improve and personalize your experience. Please choose whether you wish to allow the following:',
                'required' =>  array(  array('amp-gdpr-compliance-switch', '=' , '1', ), array('gdpr-type', '=' , '1' ) ),
            ),

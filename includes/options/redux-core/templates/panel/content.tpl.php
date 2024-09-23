@@ -75,6 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         // Don't display in the
         $display = true;
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
         if ( isset( $_GET['page'] ) && $_GET['page'] == $this->parent->args['page_slug'] ) {
             if ( isset( $section['panel'] ) && $section['panel'] == "false" ) {
                 $display = false;

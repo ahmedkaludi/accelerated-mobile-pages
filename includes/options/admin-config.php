@@ -1505,9 +1505,9 @@ if($ampforwp_nameOfUser!=""){
                 if ($allResponseData!=NULL) {
                 $selectedOption = (array) get_option('redux_builder_amp',true);
                 $expiredLicensedata[$pathExploded] = $selectedOption['amp-license'][$pathExploded]['status'] == 'expired' ? 1 : 0 ;
-                $remainingExpiresDays =  date('Y-m-d', strtotime($allResponseData['expires'])) ;
+                $remainingExpiresDays =  gmdate( 'Y-m-d', strtotime( $allResponseData['expires'] ) );
                 $license_info_lifetime = $allResponseData['expires'];
-                $today = date('Y-m-d');
+                $today = gmdate( 'Y-m-d' );
                 $exp_date = $remainingExpiresDays; 
                 $date1 = date_create($today);
                 $date2 = date_create($exp_date);
@@ -1546,9 +1546,9 @@ if($ampforwp_nameOfUser!=""){
 
             if(isset($selectedOption['amp-license'][$pathExploded]['all_data']) && $selectedOption['amp-license'][$pathExploded]['all_data']!=""){
                 $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
-                $remainingExpiresDays =  date('Y-m-d', strtotime($allResponseData['expires'])) ;
+                $remainingExpiresDays =  gmdate( 'Y-m-d', strtotime( $allResponseData['expires'] ) ) ;
               $license_info_lifetime = $allResponseData['expires']; 
-              $today = date('Y-m-d');
+              $today = gmdate( 'Y-m-d' );
               $exp_date = $remainingExpiresDays; 
               $date1 = date_create($today);
               $date2 = date_create($exp_date);
@@ -1765,18 +1765,18 @@ Redux::setArgs( "redux_builder_amp", $args );
         array(
             'id'      => 'redux-help-tab-1',
             'title'   => esc_html__( 'Theme Information 1', 'accelerated-mobile-pages' ),
-            'content' => esc_html__( '<p>This is the tab content, HTML is allowed.</p>', 'accelerated-mobile-pages' )
+            'content' => '<p>'.esc_html__( 'This is the tab content, HTML is allowed.', 'accelerated-mobile-pages' ).'</p>'
         ),
         array(
             'id'      => 'redux-help-tab-2',
             'title'   => esc_html__( 'Theme Information 2', 'accelerated-mobile-pages' ),
-            'content' => esc_html__( '<p>This is the tab content, HTML is allowed.</p>', 'accelerated-mobile-pages' )
+            'content' => '<p>'.esc_html__( 'This is the tab content, HTML is allowed.', 'accelerated-mobile-pages' ).'</p>'
         )
     );
     Redux::setHelpTab( $opt_name, $tabs );
 
     // Set the help sidebar
-    $content = esc_html__( '<p>This is the sidebar content, HTML is allowed.</p>', 'accelerated-mobile-pages' );
+    $content = '<p>'.esc_html__( 'This is the sidebar content, HTML is allowed.', 'accelerated-mobile-pages' ).'</p>';
     Redux::setHelpSidebar( $opt_name, $content );
 
 
@@ -2116,9 +2116,9 @@ function ampforwp_get_all_tags($id){
                 );
     }
     $design_types = ampforwp_get_setting('amp-design-selector');
-    $secondary_text = 'Content';
+    $secondary_text = esc_html__('Content', 'accelerated-mobile-pages' );
     if($design_types == 1 || $design_types == 2 || $design_types == 3){
-        $secondary_text = 'Secondary';
+        $secondary_text = esc_html__('Secondary', 'accelerated-mobile-pages' );
     }
     $show_for_admin = '';
     if(!current_user_can('administrator') ){
@@ -2407,8 +2407,8 @@ function ampforwp_get_all_tags($id){
             array(
                'id'       => 'ampforwp-seo-custom-additional-meta',
                'type'     => 'textarea',
-               'title'    => esc_html__('Head Section', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => esc_html__('Adds additional Meta to the head section', 'accelerated-mobile-pages', 'accelerated-mobile-pages'),
+               'title'    => esc_html__( 'Head Section', 'accelerated-mobile-pages' ),
+               'tooltip-subtitle' => esc_html__( 'Adds additional Meta to the head section', 'accelerated-mobile-pages' ),
                'placeholder'  => esc_html__('<!-- Paste your Additional HTML , that goes between <head> </head> tags -->','accelerated-mobile-pages')
             ),
             array(
@@ -2889,7 +2889,7 @@ function ampforwp_fb_instant_article() {
     $fb_instant_article_feed = trailingslashit( get_home_url() ).$feedname ;
     $input      =  '<a href=" '. esc_url_raw($fb_instant_article_feed)  . '" target="_blank">' .  esc_url_raw( $fb_instant_article_feed ). '</a>' ;
 
-    return strip_tags($input, '<a>');
+    return wp_strip_all_tags($input, '<a>');
 }
 
 // Facebook Instant Articles
@@ -3470,7 +3470,7 @@ Redux::setSection( $opt_name, array(
                        'id'       => 'ampforwp-custom-fields-featured-image',
                        'type'     => 'text',
                        'title'    => esc_html__('Custom Field For Featured Image', 'accelerated-mobile-pages'),
-                       'default'  => esc_html__ ('','accelerated-mobile-pages'),
+                       'default'  => '',
                        'placeholder'=>esc_html__('Write the Custom Field of Featured Image','accelerated-mobile-pages'),
                        'required' => array( 'ampforwp-custom-fields-featured-image-switch', '=' , 1 )
                    ),
@@ -4431,7 +4431,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'content-font-family-enable',
                     'type'     => 'switch',
                     'class'    => 'ampforwp-google-font-class secondary-font-selector',
-                    'title'    => sprintf('%s', esc_html__( $secondary_text . ' Font Selector', 'accelerated-mobile-pages' ) ),
+                    'title'    => $secondary_text .' '.esc_html__('Font Selector', 'accelerated-mobile-pages' ),
                     'default'  => '0' ,
                     'required' => array(
                         array('ampforwp-google-font-switch', '=', '1')
@@ -4441,7 +4441,7 @@ Redux::setSection( $opt_name, array(
                 'id'       => 'amp_font_selector_content_single',
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-families secondary-font-family-selector',
-                'title'    => sprintf('%s', esc_html__( $secondary_text.' Font Family Selector', 'accelerated-mobile-pages') ),
+                'title'    =>  $secondary_text.' '.esc_html__('Font Family Selector', 'accelerated-mobile-pages'),
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'None',
@@ -4467,7 +4467,7 @@ Redux::setSection( $opt_name, array(
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-family-weights secondary-font-family-weights',
                 'multi'    => true,
-                'title'    => sprintf('%s',  esc_html__( $secondary_text. ' Font Family Weight Selector', 'accelerated-mobile-pages' ) ),
+                'title'    => $secondary_text.' '.esc_html__('Font Family Weight Selector', 'accelerated-mobile-pages' ),
                 'tooltip-subtitle' => esc_html__( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'none',
@@ -9159,7 +9159,7 @@ else{
     if (empty($value[0]["license"]) && ampforwp_check_extensions()){
         $selected = '<span class="exclamation">!</span>';
         Redux::setSection( $opt_name, array(
-        'title'      => __( "Extensions$selected" , 'accelerated-mobile-pages' ),
+        'title'      => esc_html__( "Extensions", 'accelerated-mobile-pages' ).$selected,
         'id'         => 'opt-go-premium',
         'subsection' => false,
         'desc' => $extension_listing,

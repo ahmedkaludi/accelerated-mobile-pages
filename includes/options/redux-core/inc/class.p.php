@@ -206,22 +206,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
                 $args = array(
-                    'user-agent' => isset( $_GET['user_agent'] ) ? $_GET['user_agent'] : $_SERVER['HTTP_USER_AGENT'],
+                    'user-agent' => isset( $_GET['user_agent'] ) ? sanitize_text_field( wp_unslash( $_GET['user_agent'] ) ) : sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ),
                     'method'     => 'GET',
                 );
 
-                if ( isset( $_GET['send_cookies'] ) && $_GET['send_cookies'] ) {
+                if ( isset( $_GET['send_cookies'] ) && sanitize_text_field( wp_unslash( $_GET['send_cookies'] ) ) ) {
                     $cookie = array();
                     foreach ( $_COOKIE as $key => $value ) {
                         $cookie[] = $key . '=' . $value;
                     }
-                    if ( isset( $_GET['send_session'] ) && $_GET['send_session'] ) {
+                    if ( isset( $_GET['send_session'] ) && sanitize_text_field( wp_unslash( $_GET['send_session'] ) ) ) {
                         $cookie[] = SID;
                     }
                     $args['cookies'] = $cookie;
 
                 }
-                if ( strtolower( $_SERVER['REQUEST_METHOD'] ) == 'post' ) {
+                if ( isset( $_SERVER['REQUEST_METHOD'] ) && strtolower( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) == 'post' ) {
                     $sanitized_body_data   = sanitize_text_field($_POST);
                     $args['body']   = $sanitized_body_data;
                     $args['method'] = 'POST';

@@ -16,7 +16,9 @@ if ( is_plugin_active( $old_plugin ) ) {
 function ampforwp_catagory_base_removal_admin_notice(){
 	?>
 	<div class="notice notice-success is-dismissible">
-        <p><?php sprintf( __( 'AMP Category Base URL Remover plugin has De-activated, <br> Category removal option is added in our core plugin <a href=%s>Click here to view details</a>', 'accelerated-mobile-pages' ), "#" ); ?></p>
+        <p><?php
+		/* translators: %s: # */
+		sprintf( __( 'AMP Category Base URL Remover plugin has De-activated, <br> Category removal option is added in our core plugin <a href=%s>Click here to view details</a>', 'accelerated-mobile-pages' ), "#" ); ?></p>
     </div>
 	<?php
 }
@@ -105,12 +107,17 @@ function ampforwp_category_url_rewrite_rules( $rewrite ) {
 
  
 function ampforwp_tag_url_rewrite_rules( $rewrite ) {
-	$tags = get_terms('post_tag', array('hide_empty' => false));
-	if(is_array( $tags ) && ! empty( $tags ) ) {
+
+	$tags = get_terms( array( 'taxonomy'   => 'post_tag', 'hide_empty' => false ) );
+
+	if ( is_array( $tags ) && ! empty( $tags ) ) {
+
 	 	foreach ( $tags as $tag ) {
-	 		$tag_nicename = trim($tag->slug);
+
+	 		$tag_nicename = trim( $tag->slug );
 	 		$rewrite[ '('.$tag_nicename.')'.'/amp/?$' ] = 'index.php?amp&tag=$matches[1]';
 	 		$rewrite[ '('.$tag_nicename.')'.'/amp/page/?([0-9]{1,})/?$' ] = 'index.php?amp&tag=$matches[1]&paged=$matches[2]'; 
+
 		}
 	}
 	

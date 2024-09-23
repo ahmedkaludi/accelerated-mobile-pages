@@ -63,8 +63,8 @@ function amp_gdpr_output(){
               <div class="gdpr_x" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
               <div class="gdpr-l">
 	              	<div class="gdpr_t">
-		                <h3><?php echo esc_html__($headline,'accelerated-mobile-pages'); ?></h3>
-		                <p><?php echo esc_html__($user_data,'accelerated-mobile-pages'); ?></p>
+		                <h3><?php echo esc_html( $headline ); ?></h3>
+		                <p><?php echo esc_html( $user_data ); ?></p>
 						<?php $cookie_options = is_array($cookie_options)?$cookie_options:null;?>
 		                <?php if (ampforwp_get_setting('amp-gdpr-newguidelines-switch') || $cookie_enable) { ?>
 		          		<div class="choices">
@@ -90,17 +90,17 @@ function amp_gdpr_output(){
 		        	<?php } ?>
 	                </div><?php if(isset($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']) && $redux_builder_amp['amp-gdpr-compliance-select-privacy-page']){?>
 	                <div class="gdpr_fmi">
-	                   <span><?php echo esc_html__($more_info,'accelerated-mobile-pages'); ?></span>
-	                  <a class="gdpr_fmi pri_page_link" href="<?php echo esc_attr($privacy_page); ?>" target="_blank"><?php echo esc_html__($privacy_button_text,'accelerated-mobile-pages'); ?></a> 
+	                   <span><?php echo esc_html( $more_info ); ?></span>
+	                  <a class="gdpr_fmi pri_page_link" href="<?php echo esc_attr($privacy_page); ?>" target="_blank"><?php echo esc_html( $privacy_button_text ); ?></a> 
 	                </div><?php } ?>
 	            </div>
               <div id="gdpr_yn" class="gdpr_yn">
               	<div class="gdpr-btns">
 	                <form class="acp" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-	                  <button type="submit" on="tap:ampforwpConsent.accept(purposeConsentDefault=false)" class="btn gdpr_y btn"><?php echo esc_html__($accept,'accelerated-mobile-pages'); ?></button>
+	                  <button type="submit" on="tap:ampforwpConsent.accept(purposeConsentDefault=false)" class="btn gdpr_y btn"><?php echo esc_html( $accept ); ?></button>
 	                </form>
 	                <form class="rej" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-	                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_html__($reject,'accelerated-mobile-pages'); ?></button>
+	                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_html( $reject ); ?></button>
 	                 </form>
 	             </div>
               </div>
@@ -108,7 +108,7 @@ function amp_gdpr_output(){
           </div>
           <div id="post-consent-ui">
 			<?php if($cookie_toggle ==null || $cookie_toggle == 1){ ?>
-            <a href="#" on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_html__($settings,'accelerated-mobile-pages'); ?></a> 
+            <a href="#" on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_html( $settings ); ?></a> 
 			<?php } ?>
           </div>
       </amp-consent>

@@ -9,7 +9,7 @@ Class AMPforWP_theme_mode{
 		
 		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedAction'));
 		add_action(	'init', array("AMPforWP_theme_mode", 'removeUnusedMenuWidgets'), 11);
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if(!is_admin() && $GLOBALS['pagenow'] !== 'wp-login.php' && (!is_preview() && !isset($_GET['elementor-preview'])) ){
 			add_action(	'init', array($this, 'rm_wp_core'), 20 );
 			add_filter("ampforwp_is_amp_endpoint",  array($this, 'ampforwp_theme_mode_enable'));
@@ -586,8 +586,9 @@ Class AMPforWP_theme_mode{
 								$element->removeAttribute('action');
 							}else{
 								$scheme = is_ssl() ? 'https://' : 'http://';
-
-								$path = "{$scheme}{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+								$host = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) );
+								$request_uri = sanitize_text_field( esc_url_raw( $_SERVER['REQUEST_URI'] ) );
+								$path = "{$scheme}{$host}{$request_uri}";
 								$path = str_replace("http:", "https:", $path);
 								$element->setAttribute('action-xhr', esc_url($path) );
 							}

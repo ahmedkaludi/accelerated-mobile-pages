@@ -80,15 +80,15 @@ if ( ! class_exists( 'WP_Widget_Black_Studio_TinyMCE' ) ) {
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance = $old_instance;
-			$instance['title'] = strip_tags( $new_instance['title'] );
+			$instance['title'] = wp_strip_all_tags( $new_instance['title'] );
 			if ( current_user_can( 'unfiltered_html' ) ) {
 				$instance['text'] = $new_instance['text'];
 			}
 			else {
 				$instance['text'] = stripslashes( wp_filter_post_kses( addslashes( $new_instance['text'] ) ) ); // wp_filter_post_kses() expects slashed
 			}
-			$instance['type'] = strip_tags( $new_instance['type'] );
-			$instance['filter'] = strip_tags( $new_instance['filter'] );
+			$instance['type'] = wp_strip_all_tags( $new_instance['type'] );
+			$instance['filter'] = wp_strip_all_tags( $new_instance['filter'] );
 			$instance = apply_filters( 'black_studio_tinymce_widget_update',  $instance, $this );
 			return $instance;
 		}
@@ -121,18 +121,18 @@ if ( ! class_exists( 'WP_Widget_Black_Studio_TinyMCE' ) ) {
 			if ( ! isset( $instance['filter'] ) ) {
 				$instance['filter'] = $instance['type'] == 'visual' && substr( $instance['text'], 0, 3 ) != '<p>' ? 1 : 0;
 			}
-			$title = strip_tags( $instance['title'] );
+			$title = wp_strip_all_tags( $instance['title'] );
 			do_action( 'black_studio_tinymce_before_editor' );
 			?>
 			<input id="<?php echo esc_attr( $this->get_field_id( 'type' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'type' ) ); ?>" type="hidden" value="<?php echo esc_attr( $instance['type'] ); ?>" />
-			<p><label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:' ); ?></label>
+			<p><label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'accelerated-mobile-pages' ); ?></label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" /></p>
 			<?php
 			do_action( 'black_studio_tinymce_editor', $instance['text'], $this->get_field_id( 'text' ), $this->get_field_name( 'text' ), $instance['type'] );
 			do_action( 'black_studio_tinymce_after_editor' );
 			?>
 			<input id="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>-hidden" name="<?php echo esc_attr( $this->get_field_name( 'filter' ) ); ?>" type="hidden" value="0" />
-			<p><input id="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'filter' ) ); ?>" type="checkbox" value="1" <?php checked( $instance['filter'] ); ?> />&nbsp;<label for="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>"><?php _e( 'Automatically add paragraphs' ); ?></label></p>
+			<p><input id="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'filter' ) ); ?>" type="checkbox" value="1" <?php checked( $instance['filter'] ); ?> />&nbsp;<label for="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>"><?php esc_html_e( 'Automatically add paragraphs', 'accelerated-mobile-pages' ); ?></label></p>
             <?php
 		}
 

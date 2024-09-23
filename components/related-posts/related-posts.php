@@ -97,9 +97,9 @@ function ampforwp_related_post_loop_query(){
 		$args['date_query'] = array(
 					            array(
 					                'after' => array(
-					                    'year'  => date('Y', $date_range ),
-					                    'month' => date('m', $date_range ),
-					                    'day'   => date('d', $date_range ),
+					                    'year'  => gmdate( 'Y', $date_range ),
+					                    'month' => gmdate( 'm', $date_range ),
+					                    'day'   => gmdate( 'd', $date_range ),
 					                	),
 					            	)
 					       		); 

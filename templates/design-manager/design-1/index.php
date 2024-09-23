@@ -102,6 +102,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		    	
 		    endwhile;  ?>
  			<?php do_action('ampforwp_loop_before_pagination') ?>
+			 <?php $infinite_scroll = ( int ) ampforwp_get_setting( 'ampforwp-infinite-scroll' );
+		$infinite_scroll_home = ( int ) ampforwp_get_setting( 'ampforwp-infinite-scroll-home' );
+		if ( $infinite_scroll === 0 || ( $infinite_scroll === 1 && $infinite_scroll_home === 0 ) ) {
+			?>
 		    <div class="amp-wp-content pagination-holder">
 		    	<?php	
 				if (function_exists('wp_pagenavi')) {
@@ -114,6 +118,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		        </div>
 		        <?php } ?>
 		    </div>
+		<?php } ?>
 
 		<?php endif; ?>
 

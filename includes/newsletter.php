@@ -28,6 +28,7 @@ class ampforwp_pointers {
 		global $pagenow;
 		global $current_user;
 		$tour = array ();
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
         $tab = isset($_GET['tab']) ? sanitize_text_field( wp_unslash($_GET['tab'])) : '';
 		$function = '';
 		$button2 = '';

@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
              */
             function validate() {
 
-                $newvalue = strip_tags( $this->value );
+                $newvalue = wp_strip_all_tags( $this->value );
 
                 if ( $this->value != $newvalue ) {
                     $this->warning = $this->field;

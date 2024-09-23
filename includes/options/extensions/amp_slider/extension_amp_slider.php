@@ -83,12 +83,12 @@ if( !class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_extension_amp_slid
             $redux_ver = ReduxFramework::$_version;
             if ($this->min_redux_version != '') {
                 if (version_compare($redux_ver, $this->min_redux_version) < 0) {
-                    $msg = '<strong>' . esc_html__( 'The', 'redux-framework') . ' ' .  $this->ext_name . ' ' .  esc_html__('extension requires', 'redux-framework') . ' Redux Framework ' . esc_html__('version', 'redux-framework') . ' ' . $this->min_redux_version . ' ' .  esc_html__('or higher.','redux-framework' ) . '</strong>&nbsp;&nbsp;' . esc_html__( 'You are currently running', 'redux-framework') . ' Redux Framework ' . esc_html__('version','redux-framework' ) . ' ' . $redux_ver . '.<br/><br/>' . esc_html__('This field will not render in your option panel, and featuress of this extension will not be available until the latest version of','redux-framework' ) . ' Redux Framework ' . esc_html__('has been installed.','redux-framework' );
+                    $msg_escaped = '<strong>' . esc_html__( 'The', 'redux-framework') . ' ' .  $this->ext_name . ' ' .  esc_html__('extension requires', 'redux-framework') . ' Redux Framework ' . esc_html__('version', 'redux-framework') . ' ' . $this->min_redux_version . ' ' .  esc_html__('or higher.','redux-framework' ) . '</strong>&nbsp;&nbsp;' . esc_html__( 'You are currently running', 'redux-framework') . ' Redux Framework ' . esc_html__('version','redux-framework' ) . ' ' . $redux_ver . '.<br/><br/>' . esc_html__('This field will not render in your option panel, and featuress of this extension will not be available until the latest version of','redux-framework' ) . ' Redux Framework ' . esc_html__('has been installed.','redux-framework' );
                     
                     $data = array(
                         'parent'    => $this->parent,
                         'type'      => 'error',
-                        'msg'       => $msg,
+                        'msg'       => $msg_escaped,
                         'id'        => $this->ext_name . '_notice_' . self::$version,
                         'dismiss'   => false
                     );
@@ -98,7 +98,8 @@ if( !class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_extension_amp_slid
                     } else {
                         echo '<div class="error">';
                         echo     '<p>';
-                        echo         $msg;
+                        //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped	-- all html inside this variable already escaped
+                        echo         $msg_escaped;
                         echo     '</p>';
                         echo '</div>';
                     }

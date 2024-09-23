@@ -99,10 +99,10 @@ class AMPFORWP_Tree_Shaking_Transient{
 			        	
 			        	$file_time  = filectime($file);
 
-						$file_date = date("Y-m-d",$file_time);
+						$file_date = gmdate( "Y-m-d", $file_time );
 						$datetime1 = date_create($file_date);
 
-						$get_current_date =  date('Y-m-d');
+						$get_current_date =  gmdate( 'Y-m-d' );
 						$datetime2 = date_create($get_current_date);
 
 						$interval = date_diff($datetime1, $datetime2);
@@ -112,7 +112,7 @@ class AMPFORWP_Tree_Shaking_Transient{
 							//Make sure that this is a file and not a directory.
 					        if(is_file($file) && strpos($file, '_transient')!==false ){
 					        	//Use the unlink function to delete the file.
-					            unlink($file);
+					            wp_delete_file($file);
 					        }
 					    }			          
 			        }

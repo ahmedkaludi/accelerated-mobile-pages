@@ -1258,7 +1258,7 @@ if( ! function_exists( 'ampforwp_disable_comment_author_links' ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
 		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 		if ( $ampforwp_is_amp_endpoint ) {
-			return strip_tags( $author_link );
+			return wp_strip_all_tags( $author_link );
 		} else {
 			return $author_link;
 		}
@@ -1735,7 +1735,7 @@ function ampforwp_replace_title_tags() {
 			$title = ! empty( $post->post_title ) ? $post->post_title : $title;
 			$site_title = $title . $sep . get_option( 'blogname' );
 		} elseif ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) {
-			$site_title = strip_tags( get_the_archive_title( '' ) . $sep . get_bloginfo( 'name' ) );
+			$site_title = wp_strip_all_tags( get_the_archive_title( '' ) . $sep . get_bloginfo( 'name' ) );
 		}
 
 		if ( is_home() ) {
@@ -2129,7 +2129,7 @@ function ampforwp_seopress_title_sanitize($title){
 		$woo_single_price_exc_tax,
 		date_i18n('j'),
 		date_i18n('F'),
-		date('Y'),
+		gmdate('Y'),
 		date_i18n( get_option( 'date_format' )),
 		current_time(get_option( 'time_format' )),
 	);
@@ -2527,7 +2527,7 @@ function ampforwp_global_head_scripts($data){
 add_action('amp_post_template_head','ampforwp_header_html_output',11);
 function ampforwp_header_html_output() {
  	if( ampforwp_get_setting('ampforwp-seo-custom-additional-meta') ){
-		echo strip_tags( ampforwp_get_setting('ampforwp-seo-custom-additional-meta'), '<link><meta>' );
+		echo wp_strip_all_tags( ampforwp_get_setting('ampforwp-seo-custom-additional-meta'), '<link><meta>' );
 	}
   if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
   		$allhtml = ampforwp_get_setting('amp-header-text-area-for-html');
@@ -3430,7 +3430,7 @@ function ampforwp_meta_description() {
 	if ( $desc && !class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
 		}else if(class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration')){
-		$yoast_desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', ampforwp_get_the_ID() ) ) );
+		$yoast_desc = addslashes( wp_strip_all_tags( WPSEO_Meta::get_value('metadesc', ampforwp_get_the_ID() ) ) );
 		$yoast_desc_meta = get_option( 'wpseo_titles' );
 		if(isset($yoast_desc_meta['metadesc-page'])){
 			$yoast_desc_meta = $yoast_desc_meta['metadesc-page'];
@@ -4280,9 +4280,11 @@ function ampforwp_post_paginated_link_generator( $i ) {
 	}
 
 	if ( is_preview() ) {
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if ( ( 'draft' !== $post->post_status ) && isset( $_GET['preview_id'], $_GET['preview_nonce'] ) ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 			$query_args['preview_id'] = wp_unslash( $_GET['preview_id'] );
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 			$query_args['preview_nonce'] = wp_unslash( $_GET['preview_nonce'] );
 		}
 
@@ -4552,10 +4554,11 @@ function ampforwp_home_archive_canonical_setter(){
 	// Remove the canonical from the homepage if the Yoast 14 and above version is available
 		// Except for the homepage
 	if( class_exists('Yoast\\WP\\SEO\\Integrations\\Front_End_Integration') ) {
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if ( ampforwp_is_home() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) && !isset($_GET['lang'])) {
 			return ;
 		}
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if(ampforwp_is_front_page() && 'page' == get_option( 'show_on_front') && empty(get_option( 'page_for_posts')) && !isset($_GET['lang']) && !ampforwp_get_setting('ampforwp-amp-takeover')){
 			return ;
 		}
@@ -5145,9 +5148,9 @@ function ampforwp_inline_related_posts(){
             $args['date_query'] = array(
                                     array(
                                         'after' => array(
-                                            'year'  => date('Y', esc_html($date_range) ),
-                                            'month' => date('m', esc_html($date_range) ),
-                                            'day'   => date('d', esc_html($date_range)),
+                                            'year'  => gmdate( 'Y', esc_html( $date_range ) ),
+                                            'month' => gmdate( 'm', esc_html( $date_range ) ),
+                                            'day'   => gmdate( 'd', esc_html( $date_range )),
                                             ),
                                         )
                                     );  
@@ -5541,7 +5544,7 @@ if ( ! function_exists('ampforwp_gravatar_checker') ) {
 		if ( $hash ) {
 			$gravatar_server = hexdec( $hash[0] ) % 3;
 		} else {
-			$gravatar_server = rand( 0, 2 );
+			$gravatar_server = wp_rand( 0, 2 );
 		}
 		if ( is_ssl() ) {
 			$uri = 'https://secure.gravatar.com/avatar/' . $hash;
@@ -5770,15 +5773,11 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		$dom 		= '';
 		$nodes 		= '';
 		$num_nodes 	= '';
-		if( !empty( $menu ) ){
+		if( !empty( $menu ) && !preg_match('/<img\s+[^>]*src\s*=\s*"[^"]*"[^>]*>/i', $menu)){
 			// Create a new document
 			$dom = new DOMDocument();
 			if( function_exists( 'mb_convert_encoding' ) ){
-				if (version_compare(PHP_VERSION, '8.2.0', '>=')) {
-					$menu = htmlentities($menu);
-					$menu = html_entity_decode($menu, ENT_QUOTES | ENT_HTML401, 'UTF-8');
-					$menu = mb_convert_encoding($menu, 'UTF-8', 'UTF-8');
-				} else {
+				if (version_compare(PHP_VERSION, '8.2.0', '<')) {
 					$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');
 				}
 			}
@@ -5788,8 +5787,12 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 
 			// To Suppress Warnings
 			libxml_use_internal_errors(true);
+			if (version_compare(PHP_VERSION, '8.2.0', '<')) {
+				$dom->loadHTML($menu);
+			} else {
+				$dom->loadHTML('<?xml encoding="utf-8" ?>' . $menu, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+			}
 
-			$dom->loadHTML($menu);
 
 			libxml_use_internal_errors(false);
 
@@ -7935,8 +7938,7 @@ if ( ! function_exists('ampforwp_include_opengraph') ) {
 
 add_action('wp_ajax_ampforwp_import_file_from_file','ampforwp_import_settings_from_file');
 function ampforwp_import_settings_from_file(){
-	$security = $_POST['security'];
-	if ( wp_verify_nonce( $security, 'ampforwp_import_file' ) && current_user_can( 'manage_options' ) ) {
+	if ( wp_verify_nonce( $_POST['security'], 'ampforwp_import_file' ) && current_user_can( 'manage_options' ) ) {
 		if(isset($_FILES["file"]["tmp_name"])){
 			$content = file_get_contents($_FILES["file"]["tmp_name"]);
 			if ( ! empty ( $content ) ) {
@@ -8086,7 +8088,7 @@ function ampforwp_head_css(){
 					            $files = glob($user_dirname . '/*');
 					            foreach($files as $file){
 					                if(is_file($file) && strpos($file, '_transient')!==false ){
-					                    unlink($file);
+					                    wp_delete_file( $file );
 					                }
 					            }
 					        }
@@ -8227,12 +8229,14 @@ function ampforwp_head_css(){
 			wp_enqueue_style(
 				'query-monitor',
 				esc_attr($qm)."/query-monitor/assets/{$css}.css",
-				array( 'dashicons' )
+				array( 'dashicons' ),
+				AMPFORWP_VERSION
 			);
 			wp_enqueue_script(
 				'query-monitor',
 				esc_attr($qm).'/query-monitor/assets/query-monitor.js',
 				$deps,
+				AMPFORWP_VERSION,
 				false
 			);
 			wp_localize_script(
@@ -8556,7 +8560,9 @@ if(class_exists('transposh_plugin')){
 if(!function_exists('ampforwp_transposh_plugin_rtl_css')){
 	function ampforwp_transposh_plugin_rtl_css() {
     	 $rtl_lang_arr = array('ar', 'he', 'fa', 'ur', 'yi');
+		 // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
     	 if(isset($_GET['lang'])){
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 	 		if(in_array(esc_attr($_GET['lang']), $rtl_lang_arr)){
 	 			if(ampforwp_get_setting('header-position-type') == '1'){?>
 					.tg:checked + .hamb-mnu > .m-ctr {
@@ -9925,7 +9931,7 @@ if(!function_exists('ampforwp_set_local_font')){
 }
 
 function ampforwp_year_shortcode() {
-  $year = date('Y');
+  $year = gmdate('Y');
   return $year;
 }
 add_shortcode('ampforwp_current_year', 'ampforwp_year_shortcode');

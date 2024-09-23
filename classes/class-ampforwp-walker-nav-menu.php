@@ -77,7 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         $attributes .= ' data-toggle="dropdown"';
     }
     global $is_safari; 
-    if ($is_safari || ( isset($_SERVER["HTTP_USER_AGENT"]) && strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox'))) {
+    if ($is_safari || ( isset($_SERVER["HTTP_USER_AGENT"]) && strpos( sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ), 'Firefox'))) {
       $attributes .= 'on="tap:sidebar.close"';
     }
     $item_output = isset($args->before) ? $args->before : 1;
