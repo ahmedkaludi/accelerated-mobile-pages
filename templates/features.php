@@ -5773,13 +5773,11 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		$dom 		= '';
 		$nodes 		= '';
 		$num_nodes 	= '';
-		if( !empty( $menu ) && !preg_match('/<img\s+[^>]*src\s*=\s*"[^"]*"[^>]*>/i', $menu)){
+		if( !empty( $menu ) && preg_match('/<img\s+[^>]*src\s*=\s*"[^"]*"[^>]*>/i', $menu)){
 			// Create a new document
 			$dom = new DOMDocument();
 			if( function_exists( 'mb_convert_encoding' ) ){
-				if (version_compare(PHP_VERSION, '8.2.0', '<')) {
-					$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');
-				}
+				$menu = @mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
 			}
 			else{
 				$menu =  preg_replace( '/&[^amp|#038].*?;/', 'x', $menu ); // multi-byte characters converted to X
@@ -5787,12 +5785,8 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 
 			// To Suppress Warnings
 			libxml_use_internal_errors(true);
-			if (version_compare(PHP_VERSION, '8.2.0', '<')) {
-				$dom->loadHTML($menu);
-			} else {
-				$dom->loadHTML('<?xml encoding="utf-8" ?>' . $menu, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-			}
 
+			$dom->loadHTML($menu);
 
 			libxml_use_internal_errors(false);
 

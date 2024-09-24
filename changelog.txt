@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.99.1 (24 September 2024) =
+* Fixed: The tag <? is disallowed error in 1.0.99 WITH MENU #5646
+
 = 1.0.99 (23 September 2024) =
 * Fixed: Conflict issue with Infinite Scroll option. #5638
 * Fixed: Some language characters breaking in amp footer #5627 , #5639 , #5620
