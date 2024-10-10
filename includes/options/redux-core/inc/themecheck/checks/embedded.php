@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             if ( $redux ) {
                 if ( ! isset( $_POST['redux_wporg'] ) ) {
                     checkcount();
+                    /* translators: %s: href */
                     $this->error[] = '<div class="redux-error">' . sprintf( __( '<span class="tc-lead tc-recommended">RECOMMENDED</span>: If you are submitting to WordPress.org Theme Repository, it is <strong>strongly</strong> suggested that you read <a href="%s" target="_blank">this document</a>, or your theme will be rejected because of Redux.', 'redux-framework' ), 'https://docs.reduxframework.com/core/wordpress-org-submissions/' ) . '</div>';
                     $ret           = false;
                 } else {

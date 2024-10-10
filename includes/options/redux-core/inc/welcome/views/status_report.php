@@ -32,7 +32,8 @@ namespace ReduxCore\ReduxFramework;
     <div class="redux-badge">
         <i class="el el-redux"></i>
         <span>
-            <?php printf( __( 'Version %s', 'redux-framework' ), esc_html(ReduxFramework::$_version )); ?>
+            <?php /* translators: %s: version */
+            printf( __( 'Version %s', 'redux-framework' ), esc_html(ReduxFramework::$_version )); ?>
         </span>
     </div>
 
@@ -118,6 +119,7 @@ namespace ReduxCore\ReduxFramework;
                     if ( $sysinfo['redux_data_writeable'] == 'true' ) {
                         echo '<mark class="yes">' . '&#10004; <code>' . esc_html($sysinfo['redux_data_dir']) . '</code></mark> ';
                     } else {
+                        /* translators: %s: data dir */
                         printf( '<mark class="error">' . '&#10005; ' . __( 'To allow data saving, make <code>%s</code> writable.', 'redux-framework' ) . '</mark>', esc_html($sysinfo['redux_data_dir']) );
                     }
                 ?></td>
@@ -218,7 +220,9 @@ namespace ReduxCore\ReduxFramework;
                     $memory = $sysinfo['wp_mem_limit']['raw'];
 
                     if ( $memory < 40000000 ) {
-                        echo '<mark class="error">' . sprintf( __( '%s - We recommend setting memory to at least 40MB. See: <a href="%s" target="_blank">Increasing memory allocated to PHP</a>', 'redux-framework' ), esc_html($sysinfo['wp_mem_limit']['size']), 'http://codex.wordpress.org/Editing_wp-config.php#Increasing_memory_allocated_to_PHP' ) . '</mark>';
+                        /* translators: %1$s: size limit */
+                        /* translators: %2$s: href */
+                        echo '<mark class="error">' . sprintf( __( '%1$s - We recommend setting memory to at least 40MB. See: <a href="%2$s" target="_blank">Increasing memory allocated to PHP</a>', 'redux-framework' ), esc_html($sysinfo['wp_mem_limit']['size']), 'http://codex.wordpress.org/Editing_wp-config.php#Increasing_memory_allocated_to_PHP' ) . '</mark>';
                     } else {
                         echo '<mark class="yes">' . esc_html($sysinfo['wp_mem_limit']['size']) . '</mark>';
                     }
@@ -414,6 +418,7 @@ namespace ReduxCore\ReduxFramework;
             <td>
 <?php
                 if ( $sysinfo['def_tz_is_utc'] === 'false' ) {
+                    /* translators: %s: timezone */
                     echo '<mark class="error">' . '&#10005; ' . sprintf( __( 'Default timezone is %s - it should be UTC', 'redux-framework' ), esc_html(date_default_timezone_get()) ) . '</mark>';
                 } else {
                     echo '<mark class="yes">' . '&#10004;' . '</mark>';
@@ -480,6 +485,7 @@ namespace ReduxCore\ReduxFramework;
                 $posting['wp_remote_post']['note'] = esc_html__( 'wp_remote_post() failed. Many advanced features may not function. Contact your hosting provider.', 'redux-framework' );
 
                 if ( $sysinfo['wp_remote_post_error'] ) {
+                    /* translators: %s: error message */
                     $posting['wp_remote_post']['note'] .= ' ' . sprintf( __( 'Error: %s', 'redux-framework' ), redux_clean( $sysinfo['wp_remote_post_error'] ) );
                 }
 
@@ -495,6 +501,7 @@ namespace ReduxCore\ReduxFramework;
             } else {
                 $posting['wp_remote_get']['note'] = esc_html__( 'wp_remote_get() failed. This is needed to get information from remote servers. Contact your hosting provider.', 'redux-framework' );
                 if ( $sysinfo['wp_remote_get_error'] ) {
+                    /* translators: %s: error message */
                     $posting['wp_remote_get']['note'] .= ' ' . sprintf( __( 'Error: %s', 'redux-framework' ), redux_clean( $sysinfo['wp_remote_get_error'] ) );
                 }
 
@@ -551,7 +558,9 @@ namespace ReduxCore\ReduxFramework;
                         <td><?php echo $plugin_name; ?></td>
                         <td class="help">&nbsp;</td>
                         <td>
-                            <?php echo sprintf( _x( 'by %s', 'by author', 'redux-framework' ), $plugin_data['Author'] ) . ' &ndash; ' . esc_html( $plugin_data['Version'] ) . $version_string . $network_string; ?>
+                            <?php 
+                            /* translators: %s: text */
+                            echo sprintf( _x( 'by %s', 'by author', 'redux-framework' ), $plugin_data['Author'] ) . ' &ndash; ' . esc_html( $plugin_data['Version'] ) . $version_string . $network_string; ?>
                         </td>
                     </tr>
 <?php
@@ -734,7 +743,7 @@ namespace ReduxCore\ReduxFramework;
             <td data-export-label="Child Theme"><?php esc_html_e( 'Child Theme', 'redux-framework' ); ?>:</td>
             <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'Displays whether or not the current theme is a child theme.', 'redux-framework' ) . '">[?]</a>'; ?></td>
             <td>
-<?php
+<?php   /* translators: %s: href */
                 echo is_child_theme() ? '<mark class="yes">' . '&#10004;' . '</mark>' : '&#10005; <br /><em>' . sprintf( __( 'If you\'re modifying Redux Framework or a parent theme you didn\'t build personally, we recommend using a child theme. See: <a href="%s" target="_blank">How to create a child theme</a>', 'redux-framework' ), 'http://codex.wordpress.org/Child_Themes' ) . '</em>';
 ?>
             </td>

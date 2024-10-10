@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
                 $this->parent                    = $parent;
                 $this->field                     = $field;
+                /* translators: %s: text */
                 $this->field['msg']              = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : __( 'That URL slug is in use, please choose another. <code>%s</code> is open for use.', 'redux-framework' );
                 $this->field['flush_permalinks'] = ( isset( $this->field['flush_permalinks'] ) ) ? $this->field['flush_permalinks'] : false;
                 $this->value                     = $value;

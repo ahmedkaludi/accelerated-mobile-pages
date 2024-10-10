@@ -33,7 +33,7 @@ function ampforwp_footer() {
 	       <a class="amp-not-privacy amp-not-page-link" href="<?php echo esc_url( ampforwp_get_setting('amp-notice-bar-select-privacy-page')); ?>" <?php ampforwp_nofollow_notification(); ?> target="_blank"><?php echo esc_attr(ampforwp_get_setting('amp-notice-bar-privacy-page-button-text')); ?>
 	       </a> 
         <?php } ?>
-       <button on="tap:amp-user-notification1.dismiss"><?php echo esc_html__(ampforwp_get_setting('amp-accept-button-text'),'accelerated-mobile-pages'); ?></button>
+       <button on="tap:amp-user-notification1.dismiss"><?php echo esc_html(ampforwp_get_setting('amp-accept-button-text')); ?></button>
   </amp-user-notification>
 <?php } 
 if(ampforwp_get_setting('ampforwp-web-push-onesignal') && ampforwp_get_setting('ampforwp-web-push-onesignal-popup') && is_single()){ ?>

@@ -148,7 +148,8 @@ global $redux_builder_amp;
 	else {  
 		$facebook_comments_markup = '<section class="amp-facebook-comments">';
 		if(true == ampforwp_get_setting('ampforwp-facebook-comments-title')){
-			$facebook_comments_markup .= '<h5>'. esc_html__(ampforwp_translation(ampforwp_get_setting('ampforwp-facebook-comments-title'), 'Leave a Comment'),'accelerated-mobile-pages') .'</h5>';
+			
+			$facebook_comments_markup .= '<h5>'. esc_html(ampforwp_translation(ampforwp_get_setting('ampforwp-facebook-comments-title'), 'Leave a Comment')) .'</h5>';
 		}
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
 	    		layout="responsive" '.'data-locale = "'.esc_attr($lang).'"'.' data-numposts=';

@@ -7,7 +7,10 @@
     <div class="redux-badge">
         <i class="el el-redux"></i>
         <span>
-            <?php printf( __( 'Version %s', 'redux-framework' ), esc_html(ReduxFramework::$_version) ); ?>
+            <?php 
+            /* translators: %s: version */
+            printf( __( 'Version %s', 'redux-framework' ), esc_html(ReduxFramework::$_version) ); 
+            ?>
         </span>
     </div>
 

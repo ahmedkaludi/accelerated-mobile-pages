@@ -69,7 +69,7 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
             );
 
             $this->field = wp_parse_args ( $this->field, $defaults );
-
+            /* translators: %s: content title */
             echo '<div class="redux-slides-accordion" data-new-content-title="' . esc_attr ( sprintf ( __ ( 'New %s', 'accelerated-mobile-pages' ), $this->field[ 'content_title' ] ) ) . '">';
 
             $x = 0;
@@ -171,6 +171,7 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
             }
 
             if ( $x == 0 ) {
+                /* translators: %s: content title */
                 echo '<div class="redux-slides-accordion-group"><fieldset class="redux-field" data-id="' . $this->field[ 'id' ] . '"><h3><span class="redux-slides-header">' . esc_attr ( sprintf ( __ ( 'New %s', 'accelerated-mobile-pages' ), $this->field[ 'content_title' ] ) ) . '</span></h3><div>';
 
                 $hide = ' hide';
@@ -220,6 +221,7 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                 echo '<li><a href="javascript:void(0);" class="button deletion redux-slides-remove">' . __ ( 'Delete', 'accelerated-mobile-pages' ) . '</a></li>';
                 echo '</ul></div></fieldset></div>';
             }
+            /* translators: %s: content title */
             echo '</div><a href="javascript:void(0);" class="button redux-slides-add button-primary" rel-id="' . $this->field[ 'id' ] . '-ul" rel-name="' . $this->field[ 'name' ] . '[title][]' . $this->field['name_suffix'] .'">' . sprintf ( __ ( 'Add %s', 'accelerated-mobile-pages' ), $this->field[ 'content_title' ] ) . '</a><br/>';
         }
 

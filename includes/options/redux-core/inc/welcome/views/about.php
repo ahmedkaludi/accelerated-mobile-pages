@@ -1,11 +1,20 @@
 <div class="wrap about-wrap">
-    <h1><?php printf( __( 'Welcome to Redux Framework %s', 'redux-framework' ), $this->display_version ); ?></h1>
+    <h1>
+        <?php 
+            /* translators: %s: version */
+            printf( __( 'Welcome to Redux Framework %s', 'redux-framework' ), $this->display_version ); 
+        ?>
+    </h1>
 
     <div
-        class="about-text"><?php printf( __( 'Thank you for updating to the latest version! Redux Framework %s is a huge step forward in Redux Development. Look at all that\'s new.', 'redux-framework' ), $this->display_version ); ?></div>
+        class="about-text"><?php 
+        /* translators: %s: version */
+        printf( __( 'Thank you for updating to the latest version! Redux Framework %s is a huge step forward in Redux Development. Look at all that\'s new.', 'redux-framework' ), $this->display_version ); ?></div>
     <div
         class="redux-badge"><i
-            class="el el-redux"></i><span><?php printf( __( 'Version %s', 'redux-framework' ), ReduxFramework::$_version ); ?></span>
+            class="el el-redux"></i><span>
+                <?php /* translators: %s: version */
+            printf( __( 'Version %s', 'redux-framework' ), ReduxFramework::$_version ); ?></span>
     </div>
 
     <?php $this->actions(); ?>

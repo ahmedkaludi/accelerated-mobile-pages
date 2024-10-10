@@ -260,7 +260,7 @@ if(!function_exists('amp_pagebuilder_compatibility_init')){
         $pb_title = 'Muffin Builder Support';
       }
 Redux::setSection( $opt_name, array(
-       'title'      => esc_html__( $pb_title, 'accelerated-mobile-pages' ),
+       'title'      => esc_html( $pb_title),
        'id'         => 'amp-content-builder',
        'subsection' => true,
        'fields' => $pb_for_amp,

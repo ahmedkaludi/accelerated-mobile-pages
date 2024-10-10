@@ -116,7 +116,8 @@ function ampforwp_related_post(){
 	?>
     <h3 class="amp-related-posts-title"><?php 
     if (function_exists('pll__')) {
-		echo pll__(esc_html__( ampforwp_get_setting('amp-translator-related-text'), 'accelerated-mobile-pages'));
+		
+		echo pll__(esc_html( ampforwp_get_setting('amp-translator-related-text')));
 	}else {
 		echo esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-related-text'), 'Related Post' ));
 	}?></h3>

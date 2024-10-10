@@ -226,6 +226,7 @@
                 }
 
                 if ( empty ( $this->args['footer_credit'] ) ) {
+                    /* translators: %1$s: href */
                     $this->args['footer_credit'] = '<span id="footer-thankyou">' . sprintf( __( 'Options panel created using %1$s', 'accelerated-mobile-pages' ), '<a href="' . esc_url( $this->framework_url ) . '" target="_blank">' . esc_html__( 'Redux Framework', 'accelerated-mobile-pages' ) . '</a> v' . self::$_version ) . '</span>';
                 }
 
@@ -1770,8 +1771,8 @@
                     }
 
                     // Construct message
-                    /* translators: %d: href */
-                    $msg = sprintf( __( 'Hints are tooltips that popup when %d the hint icon, offering addition information about the field in which they appear.  They can be %d d by using the link below.', 'accelerated-mobile-pages' ), $event, strtolower( $s ) ) . '<br/><br/>' . $url;// url escaped above
+                    /* translators: %s: text */
+                    $msg = sprintf( __( 'Hints are tooltips that popup when %1$s the hint icon, offering addition information about the field in which they appear.  They can be %2$s d by using the link below.', 'accelerated-mobile-pages' ), $event, strtolower( $s ) ) . '<br/><br/>' . $url;// url escaped above
 
                     // Construct hint tab
                     $tab = array(
