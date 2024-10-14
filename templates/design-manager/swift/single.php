@@ -298,7 +298,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 		if ($check_rp > 1) {?>
 			<h3><?php 
 			if (function_exists('pll__')) {
-				echo pll__(esc_html__( ampforwp_get_setting('amp-translator-recent-text'), 'accelerated-mobile-pages'));
+				echo pll__(esc_html( ampforwp_get_setting('amp-translator-recent-text')));
 			}else {
 				echo esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' ));
 			}?></h3>

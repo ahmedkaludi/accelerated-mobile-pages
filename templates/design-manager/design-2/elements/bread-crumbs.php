@@ -17,7 +17,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
     $breadcrums_class   = 'breadcrumbs';
     $home_title         = ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-homepage-text'] , 'Homepage' );
     if (function_exists('pll__')) {
-        $home_title = pll__(esc_html__( ampforwp_get_setting('amp-translator-breadcrumbs-homepage-text'), 'accelerated-mobile-pages'));
+        $home_title = pll__(esc_html( ampforwp_get_setting('amp-translator-breadcrumbs-homepage-text')));
     }  
     // If you have any custom post types with custom taxonomies, put the taxonomy name below (e.g. product_cat)
     $custom_taxonomy    = 'product_cat';

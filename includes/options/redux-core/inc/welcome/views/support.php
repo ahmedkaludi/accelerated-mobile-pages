@@ -5,7 +5,10 @@
     </div>
     <div class="redux-badge">
         <i class="el el-redux"></i>
-        <span><?php printf( __( 'Version %s', 'redux-framework' ), esc_html(ReduxFramework::$_version) ); ?></span>
+        <span>
+        <?php 
+        /* translators: %s: version */
+        printf( __( 'Version %s', 'redux-framework' ), esc_html(ReduxFramework::$_version) ); ?></span>
     </div>
 
     <?php $this->actions(); ?>
@@ -28,11 +31,14 @@
                 </h2>
 
                 <h3 class="fs-title" style="margin-top:0;">
-                    <?php esc_html_e( 'To get started, we will need to generate a support hash.', 'redux-framework' ); ?>
+                    <?php 
+                    esc_html_e( 'To get started, we will need to generate a support hash.', 'redux-framework' ); ?>
                 </h3>
 
                 <p>
-                    <?php echo sprintf( wp_kses( __( 'This will provide to your developer all the information they may need to remedy your issue. This action WILL send information securely to a remote server. To see the type of information sent, please look at the  <a href="%s">Status tab</a>.', 'redux-framework' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( admin_url( 'tools.php?page=redux-status' ) ) ); ?>
+                    <?php 
+                    /* translators: %s: href */
+                    echo sprintf( wp_kses( __( 'This will provide to your developer all the information they may need to remedy your issue. This action WILL send information securely to a remote server. To see the type of information sent, please look at the  <a href="%s">Status tab</a>.', 'redux-framework' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( admin_url( 'tools.php?page=redux-status' ) ) ); ?>
                 </p>
 
                 <p>
@@ -131,7 +137,9 @@
 
                 <p>
                     <em>
-                        <?php echo sprintf( wp_kses( __( 'Should the developer not be responsive, read the <a href="%s" target="_blank">following article</a> before asking for support from us directly.', 'redux-framework' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( 'http://docs.reduxframework.com/core/support-defined/' ) );?>
+                        <?php
+                        /* translators: %s: href */
+                         echo sprintf( wp_kses( __( 'Should the developer not be responsive, read the <a href="%s" target="_blank">following article</a> before asking for support from us directly.', 'redux-framework' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( 'http://docs.reduxframework.com/core/support-defined/' ) );?>
                     </em>
                 </p>
                 <input type="button" 

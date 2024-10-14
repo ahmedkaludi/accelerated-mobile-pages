@@ -72,6 +72,7 @@ class AMPFORWP_Content {
 			$embed_handler = new $embed_handler_class( array_merge( $this->args, $args ) );
 
 			if ( ! is_subclass_of( $embed_handler, 'AMPforWP\\AMPVendor\\AMP_Base_Embed_Handler' ) ) {
+				/* translators: %s: string */
 				_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Embed Handler (%s) must extend `AMP_Embed_Handler`', 'accelerated-mobile-pages' ), esc_html($embed_handler_class) ), '0.1' );
 				continue;
 			}
@@ -115,12 +116,14 @@ class AMPFORWP_Content_Sanitizer {
 					$amp_base_sanitizer = 'AMP_Base_Sanitizer';
 				}
 				if ( ! class_exists( $sanitizer_class ) ) {
+					/* translators: %s: string */
 					_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) class does not exist', 'accelerated-mobile-pages' ), esc_html( $sanitizer_class ) ), '0.4.1' );
 					continue;
 				}
 
 				$sanitizer = new $sanitizer_class( $dom, array_merge( $global_args, $args ) );
 				if ( ! is_subclass_of( $sanitizer, $amp_base_sanitizer) ) {
+					/* translators: %s: string */
 					_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) must extend `AMP_Base_Sanitizer`', 'accelerated-mobile-pages' ), esc_html( $sanitizer_class ) ), '0.1' );
 					continue;
 				}

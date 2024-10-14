@@ -122,7 +122,7 @@ Class AMPforWP_theme_mode{
 		  $comment = wp_handle_comment_submission( wp_unslash( $_POST ) );
 		  $text_data = 'Comment Successfully submitted';
 		  if ($redux_builder_amp['amp-comments-Successful-message']){
-		    $text_data = esc_html__( $redux_builder_amp['amp-comments-Successful-message'], 'accelerated-mobile-pages');
+		    $text_data = esc_html( $redux_builder_amp['amp-comments-Successful-message']);
 		  }
 		        
 		  if ( is_wp_error( $comment ) ) {

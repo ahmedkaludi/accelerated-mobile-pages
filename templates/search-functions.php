@@ -76,7 +76,7 @@ function ampforwp_get_search_form() {
 		$action_url = '';
 		$amp_query_variable = '';
 		$amp_query_variable_val = '';
-		$label = esc_html__(ampforwp_translation(ampforwp_get_setting('ampforwp-search-label'), 'Type your search query and hit enter'));
+		$label = esc_html(ampforwp_translation(ampforwp_get_setting('ampforwp-search-label'), 'Type your search query and hit enter'));
 		$action_url = esc_url( get_bloginfo('url') );
 		$action_url = preg_replace('#^http?:#', '', $action_url);
 		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
@@ -98,7 +98,7 @@ function ampforwp_get_search_form() {
 		}
 	  $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . esc_url($action_url)  .'">
 <div>
-<label aria-label="Type your query" class="screen-reader-text" for="s">' . esc_html__($label,'accelerated-mobile-pages') . '</label>
+<label aria-label="Type your query" class="screen-reader-text" for="s">' . esc_html($label) . '</label>
 <input type="text" placeholder="AMP" value="'.esc_attr($amp_query_variable_val).'" name="'.esc_attr($amp_query_variable).'" class="hide" id="ampforwp_search_query_item" />
 <input type="text" placeholder="'.esc_attr($placeholder).'" value="' . esc_attr($value).'" name="'.esc_attr($name).'" id="s" />
 <label aria-label="Submit amp search" for="amp-search-submit" >

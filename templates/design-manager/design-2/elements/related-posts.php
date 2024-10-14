@@ -108,7 +108,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 			     <div class="rp">
 			    	<span class="related-title">
 				    <?php if (function_exists('pll__')) {
-			    		echo pll__(esc_html__( ampforwp_get_setting('amp-translator-related-text'), 'accelerated-mobile-pages'));
+			    		echo pll__(esc_html( ampforwp_get_setting('amp-translator-related-text')));
 			    	}else{
 			    		echo esc_attr(ampforwp_translation( ampforwp_get_setting('amp-translator-related-text'), 'Related Post' ));
 			    	} ?></span>
