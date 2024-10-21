@@ -143,7 +143,9 @@ add_amp_theme_support('AMP-menu');
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ;
  	// Custom Post Types
  	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-custom-post-type.php';
- 	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-infinite-scroll-select-post-meta.php';
+	 if ((true == ampforwp_get_setting('ampforwp-infinite-scroll-single')) && (true == ampforwp_get_setting('ampforwp-infinite-scroll') || true == ampforwp_get_setting('ampforwp-wcp-infinite-scroll') ) ) {
+ 		require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-infinite-scroll-select-post-meta.php';
+	 }
  	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){
  		global $redux_builder_amp;
@@ -10138,4 +10140,22 @@ function ampforwp_search_infinite_scroll_post(){
 		echo json_encode($post_data);
 		die;
 	}
+}
+
+add_action('wp_ajax_ampforwp_infinite_scroll_post_ajax','ampforwp_infinite_scroll_post_ajax');
+add_action('wp_ajax_nopriv_ampforwp_infinite_scroll_post_ajax','ampforwp_infinite_scroll_post_ajax');
+function ampforwp_infinite_scroll_post_ajax(){
+   // if( isset( $_POST[ 'security' ] ) && wp_verify_nonce( $_POST[ 'security' ],'ampforwp_filtered_post_nounce') ){
+		$search = $_POST[ 'q' ];
+		$exclude_id[] = $this_id;
+		$args = array("post_type" => "post", "s" => $search);
+		$query = get_posts( $args );
+		if ( $query ) :
+			foreach ($query as $value ) {
+					$return[] = array($value->ID,$value->post_title);// array( Cat ID, Cat Name )
+			}
+		endif;
+		wp_send_json( $return );
+		
+	//}
 }

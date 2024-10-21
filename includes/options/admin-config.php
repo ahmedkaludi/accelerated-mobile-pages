@@ -4562,6 +4562,7 @@ Redux::setSection( $opt_name, array(
            update_option( 'redux_builder_amp', $redux_builder_amp );
        }
     }
+   
     if( !function_exists('ampforwp_custom_theme_files_register') ){
         $newspaper_theme_check = array(
                         'id'       => 'ampforwp-infinite-scroll-home',
@@ -4664,6 +4665,19 @@ Redux::setSection( $opt_name, array(
                         'title'    => esc_html__('Single', 'accelerated-mobile-pages'),
                         'default' => true,
                         'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
+                    ),
+                    array(
+                        'id'       => 'ampforwp-infinite-scroll-posts',
+                        'title'    => esc_html__('Defaul Infinite Scroll Post', 'accelerated-mobile-pages'),
+                        'type'     => 'select',
+                        'class' => 'child_opt child_opt_arrow',
+                        'multi' => true,
+                        'ajax' => true,
+                        'data-action'     => 'ampforwp_infinite_scroll_post_ajax',
+                        'options'     => $infinite_scroll_posts,
+                        'default' => ampforwp_get_setting('ampforwp-infinite-scroll-posts'),
+                        'required'=>array('ampforwp-infinite-scroll-single','=','1'),
+                        'data'=>'posts'
                     ),
                     array(
                         'id'       => 'ampforwp-infinite-scroll-single-category',
