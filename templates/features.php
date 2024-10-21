@@ -143,7 +143,7 @@ add_amp_theme_support('AMP-menu');
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ;
  	// Custom Post Types
  	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-custom-post-type.php';
- 	
+ 	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-infinite-scroll-select-post-meta.php';
  	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){
  		global $redux_builder_amp;
@@ -1003,7 +1003,7 @@ function ampforwp_title_meta_save( $post_id ) {
     if ( $is_autosave || $is_revision || !$is_valid_nonce || !$is_valid_nonce_ia) {
         return;
     }
-
+	
     // Checks for radio buttons and saves if needed
     if( isset( $_POST[ 'ampforwp-amp-on-off' ] ) ) {
         $ampforwp_amp_status = sanitize_text_field( $_POST[ 'ampforwp-amp-on-off' ] );
@@ -1017,7 +1017,10 @@ function ampforwp_title_meta_save( $post_id ) {
         $ampforwp_redirection_status = sanitize_text_field( $_POST[ 'ampforwp-redirection-on-off' ] );
         update_post_meta( $post_id, 'ampforwp-redirection-on-off', $ampforwp_redirection_status );
     }
-
+	if( isset( $_POST[ 'ampforwp_filtered_post_ids' ] ) ) {
+		$recent_posts = $_POST[ 'ampforwp_filtered_post_ids' ];
+		update_post_meta( $post_id, 'ampforwp_filtered_post_ids', $recent_posts );
+	}
 }
 add_action( 'save_post', 'ampforwp_title_meta_save' );
 
@@ -10117,4 +10120,22 @@ function ampforwp_sanitize_svg_file( $file_path ) {
     $wp_filesystem->put_contents( $file_path, $sanitized_svg, FS_CHMOD_FILE );
 
     return $file_path;
+}
+
+add_action('wp_ajax_ampforwp_search_infinite_scroll_post','ampforwp_search_infinite_scroll_post');
+add_action('wp_ajax_nopriv_ampforwp_search_infinite_scroll_post','ampforwp_search_infinite_scroll_post');
+function ampforwp_search_infinite_scroll_post(){
+    if( isset( $_POST[ 'security' ] ) && wp_verify_nonce( $_POST[ 'security' ],'ampforwp_filtered_post_nounce') ){
+		$this_id = $_POST[ 'this_id' ];
+		$search = $_POST[ 'search' ];
+		$exclude_id[] = $this_id;
+		$args = array("post_type" => "post", "s" => $search,"post__not_in"=>$exclude_id);
+		$query = get_posts( $args );
+		$post_data = array();
+		foreach ($query as $key => $value) {
+			$post_data[] = $value; 
+		}
+		echo json_encode($post_data);
+		die;
+	}
 }

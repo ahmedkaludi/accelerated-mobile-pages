@@ -1651,3 +1651,14 @@ function ampforwp_visibility_shortcode($atts, $content = null) {
     }
 }
 add_shortcode('ampforwp_visibility', 'ampforwp_visibility_shortcode');
+function ampforwp_get_infinite_scroll_post_on_id(){
+    $filter_ids = get_post_meta(ampforwp_get_the_ID(), 'ampforwp_filtered_post_ids', true);
+    $in_ids = array();
+    if(!empty($filter_ids)){
+        $filter_ids = json_decode($filter_ids);
+        foreach ($filter_ids as $key => $value) {
+            $in_ids[] = $value;
+        }
+    }
+    return $in_ids;
+}
