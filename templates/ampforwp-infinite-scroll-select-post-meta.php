@@ -17,10 +17,18 @@ function ampforwp_select_post_meta( $post ) {
 		$posts_array = get_posts($arguments);
 		
 		?>
-			<div class="ampforwp-dd">
-				<div>
+			<div class="ampforwp-dd" id="afwp-pt-box-dd">
+				<div id="afwp-pt-box">
 					<div class="ampforwp-post-tag-box">
 						<input type="text" placeholder="Type post title to search..." id="ampforwp-post-sb" onkeyup="ampforwpFilterPost()" onfocus="ampforwpShowPostDD()">
+						<ul id="ampforwp-dd-content">
+						<?php
+							foreach ($posts_array as $key => $value) {?>
+								<li onclick="ampforwp_select_post_item(this.value,<?php echo $value->ID?>,'<?php echo $value->post_title?>')" id="afwp-infinite-post-li-<?php echo $value->ID?>"><?php echo $value->post_title; ?></li>
+								<?php
+							}
+						?>
+						</ul>
 						<input type="hidden" id="ampforwp_filtered_post_nounce" name="ampforwp_filtered_post_nounce" value="<?php echo wp_create_nonce( 'ampforwp_filtered_post_nounce' )?>"/>
 						<input type="hidden" id="ampforwp_filtered_this_post_id" value='<?php echo ampforwp_get_the_ID()?>'/>
 						<input type="hidden" id="ampforwp_filtered_post_ids" name="ampforwp_filtered_post_ids" value='<?php echo (!empty($infinite_posts))? json_encode($infinite_posts):"[]";?>'/>
@@ -30,15 +38,9 @@ function ampforwp_select_post_meta( $post ) {
 							<?php }?>
 						</div>
 						<p id="afwp-post-tag-error" style="color:red;margin-left:10px"></p>
+						
 					</div>
-					<ul id="ampforwp-dd-content">
-					<?php
-						foreach ($posts_array as $key => $value) {?>
-							<li onclick="ampforwp_select_post_item(this.value,<?php echo $value->ID?>,'<?php echo $value->post_title?>')"><?php echo $value->post_title; ?></li>
-							<?php
-						}
-					?>
-					</ul>
+					
 				</div>
 			</div>
 		<?php

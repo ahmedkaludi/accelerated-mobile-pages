@@ -103,18 +103,12 @@ body #toplevel_page_amp_options .wp-menu-image{background-image:url(data:image/s
   }
   
   
-  
-  .ampforwp-dd {
-    position: relative;
-    display: inline-block;
-  }
-  
   #ampforwp-dd-content {
     display: none;
     margin-top: 0px;
     position: absolute;
     background-color: #fff;
-    min-width: 230px;
+    width: 100%;
     overflow: auto;
     border: 1px solid #d7d7d7;
     z-index: 1;
@@ -122,19 +116,23 @@ body #toplevel_page_amp_options .wp-menu-image{background-image:url(data:image/s
   
   #ampforwp-dd-content li {
     color: black;
-    padding: 12px 16px;
+    padding: 5px 10px;
     text-decoration: none;
     display: block;
     border-bottom: 1px solid #d7d7d7;
     cursor: pointer;
+    margin: 0px;
   }
   
-  .ampforwp-dd li:hover {background-color: #ddd;}
+  .ampforwp-dd li:hover {background-color: #71bfff;color:#fff !important}
+  #ampforwp-dd-content li.active {background-color: #71bfff;color:#fff !important}
   .ampforwp-post-tag-box{
+    position: relative;
     box-shadow: 0 0 0 transparent;
     border-radius: 4px;
     border: 1px solid #8c8f94;
     background-color: #fff;
+    display: inline-block;
   }
   .ampforwp-tag-sp{
     background: #999898;
