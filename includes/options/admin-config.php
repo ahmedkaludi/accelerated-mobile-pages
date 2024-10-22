@@ -4668,7 +4668,8 @@ Redux::setSection( $opt_name, array(
                     ),
                     array(
                         'id'       => 'ampforwp-infinite-scroll-posts',
-                        'title'    => esc_html__('Defaul Infinite Scroll Post', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Manual Posts', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'  => 'Select your own posts which will be loading for every single post infinite loop.',
                         'type'     => 'select',
                         'class' => 'child_opt child_opt_arrow',
                         'multi' => true,
