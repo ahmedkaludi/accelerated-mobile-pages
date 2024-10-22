@@ -4674,7 +4674,7 @@ Redux::setSection( $opt_name, array(
                         'multi' => true,
                         'ajax' => true,
                         'data-action'     => 'ampforwp_infinite_scroll_post_ajax',
-                        'options'     => $infinite_scroll_posts,
+                        'options'     => array(),
                         'default' => ampforwp_get_setting('ampforwp-infinite-scroll-posts'),
                         'required'=>array('ampforwp-infinite-scroll-single','=','1'),
                         'data'=>'posts'
