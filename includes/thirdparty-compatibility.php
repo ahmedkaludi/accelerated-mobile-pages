@@ -2007,3 +2007,12 @@ function ampforwp_aal_compatibility( $amp_post_template_data )
 
 	return $amp_post_template_data;
 }
+
+/* Disable lazyload of JNews theme when AMP mode is active */
+function ampforwp_jnews_disable_lazyload_image ( $value ){
+	add_filter('theme_mod_jnews_image_load',function($value){
+		return 'normal';
+	});
+}
+
+add_action("amp_init", "ampforwp_jnews_disable_lazyload_image");
