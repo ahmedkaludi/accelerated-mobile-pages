@@ -219,6 +219,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			$query = new WP_Query( $query_args );
 			while ($query->have_posts()) {
 				$query->the_post();
+				do_action('infinite_scroll_amp_analytics');
 				if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
 					$pages[] = array('title'=>get_the_title(),'image'=>ampforwp_get_post_thumbnail('url', 'full'),'url'=>ampforwp_url_controller( get_permalink() ));
 				}else{

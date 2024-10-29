@@ -3,6 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 // Analytics Area
+add_action('infinite_scroll_amp_analytics','ampforwp_analytics',11);
 add_action('amp_post_template_footer','ampforwp_analytics',11);
 function ampforwp_analytics() {
 	// 10.1 Analytics Support added for Google Analytics
