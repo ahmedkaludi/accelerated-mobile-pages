@@ -17,7 +17,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 <?php if($header_type == '1'){?>
 <?php do_action('ampforwp_admin_menu_bar_front'); 
       do_action('ampforwp_reading_progress_bar'); 
-    $hide_infine_scroll = '';   
+    $hide_infine_scroll = 'next-page-hide';   
     if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
     $hide_infine_scroll = 'next-page-hide';
     }?>
@@ -160,7 +160,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 <?php } ?>
 <?php if($header_type == '2'){
     do_action('ampforwp_reading_progress_bar'); 
-    $hide_infine_scroll = '';   
+    $hide_infine_scroll = 'next-page-hide';   
     if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
     $hide_infine_scroll = 'next-page-hide';
     }
@@ -306,7 +306,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 <?php } ?>
 <?php if($header_type == '3'){
     do_action('ampforwp_reading_progress_bar'); 
-    $hide_infine_scroll = '';   
+    $hide_infine_scroll = 'next-page-hide';   
     if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
     $hide_infine_scroll = 'next-page-hide';
     }

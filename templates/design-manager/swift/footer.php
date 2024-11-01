@@ -9,7 +9,7 @@ global $redux_builder_amp ?>
 do_action( 'levelup_foot');
 if(!ampforwp_levelup_compatibility('hf_builder_foot') ){
 if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { 
-	$hide_infine_scroll = '';   
+	$hide_infine_scroll = 'next-page-hide';   
 	if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
 	$hide_infine_scroll = 'next-page-hide';
 	}
