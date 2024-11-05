@@ -88,7 +88,7 @@ if( !class_exists( 'ReduxFramework_extension_demolink_image_select' ) ) {
                     $data = array(
                         'parent'    => $this->parent,
                         'type'      => 'error',
-                        'msg'       => $msg,
+                        'msg'       => esc_attr($msg),
                         'id'        => $this->ext_name . '_notice_' . self::$version,
                         'dismiss'   => false
                     );
@@ -98,7 +98,7 @@ if( !class_exists( 'ReduxFramework_extension_demolink_image_select' ) ) {
                     } else {
                         echo '<div class="error">';
                         echo     '<p>';
-                        echo         $msg;
+                        echo         esc_attr($msg);
                         echo     '</p>';
                         echo '</div>';
                     }

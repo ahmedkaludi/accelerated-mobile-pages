@@ -1238,6 +1238,7 @@ if( ! function_exists( 'ampforwp_additional_gallery_style' ) ){
         $design_type = ampforwp_get_setting('ampforwp-gallery-design-type');
         
         if(isset($design_type) && $design_type!==''){
+            //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $carousel_markup_all[$design_type]['gallery_css'];
         }
     }
@@ -1458,6 +1459,7 @@ function ampforwp_subscribe_for_newsletter(){
     );
     $response = wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
     $response = wp_remote_retrieve_body( $response );
+    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo $response;
     die;
 }

@@ -9,6 +9,7 @@ function ampforwp_framework_get_comments(){
 	do_action('ampforwp_comment_start_hook');
 	if ( $display_comments_on ) {
 		if ( $redux_builder_amp['ampforwp-facebook-comments-support']  ) { 
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		 	echo ampforwp_framework_get_facebook_comments(); 
 		}
 
@@ -63,8 +64,10 @@ function ampforwp_framework_get_comments(){
 													 printf('<b class="fn">%s</b> <span class="says">'.esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-says-text'),'says')).':</span>', get_comment_author_link()) ?>
 												</div>
 												<div class="cmt-metadata">
-													<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
-														<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
+													<a href="<?php echo esc_url(htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) )) ?>">
+														<?php 
+														//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+														printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
 													</a>
 													<?php edit_comment_link(  ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  ) ?>
 												</div>
@@ -82,6 +85,7 @@ function ampforwp_framework_get_comments(){
                                    								'add_placeholder' => true,
                                 							) ) ) );
 						                         $sanitized_comment_content =  $sanitizer->get_amp_content();
+												 //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						                          echo make_clickable( $sanitized_comment_content );   ?>
 											</div>
 										<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth); ?>
@@ -112,7 +116,9 @@ function ampforwp_framework_get_comments(){
 								}
 						    if ( paginate_comments_links($args) ) { ?>
 								<div class="cmts-wrap">
-					     			<?php echo paginate_comments_links( $args ); ?>
+					     			<?php 
+									//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+									echo paginate_comments_links( $args ); ?>
 					     		</div>
 				     		<?php } ?>
 						</div> <!-- .amp-comments-wrapper -->
@@ -126,7 +132,9 @@ function ampforwp_framework_get_comments(){
 									$nofollow = 'rel=nofollow';
 								}
 							 ?>
-							 <a href="<?php echo ampforwp_comment_button_url(); ?>" title="<?php echo ampforwp_get_setting('amp-translator-leave-a-comment-text')?>" <?php echo esc_html($nofollow) ?> ><?php echo esc_html(ampforwp_translation( ampforwp_get_setting('amp-translator-leave-a-comment-text'), 'Leave a Comment' ) ); ?></a> <?php } ?>
+							 <a href="<?php 
+							 //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							 echo ampforwp_comment_button_url(); ?>" title="<?php echo esc_attr(ampforwp_get_setting('amp-translator-leave-a-comment-text'))?>" <?php echo esc_html($nofollow) ?> ><?php echo esc_html(ampforwp_translation( ampforwp_get_setting('amp-translator-leave-a-comment-text'), 'Leave a Comment' ) ); ?></a> <?php } ?>
 						</div>	 
 				<?php } ?>
 				</div>
@@ -203,6 +211,7 @@ function ampforwp_framework_get_disqus_comments(){
 	}
 }
 function ampforwp_framework_get_vuukle_comments(){
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo ampforwp_vuukle_comments_markup();
 }
 function ampforwp_framework_get_spotim_comments(){
@@ -219,6 +228,7 @@ function ampforwp_framework_get_spotim_comments(){
 	  <amp-img placeholder height="815" layout="fill" src="//amp.spot.im/loader.png"></amp-img>
 	  <div overflow class="spot-im-amp-overflow" tabindex="0" role="button" aria-label="Read more">'.esc_html__('Load more...','accelerated-mobile-pages').'</div>
 	</amp-iframe>';
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $spotim_html; // escaped above
 }
 

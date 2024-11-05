@@ -80,6 +80,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 		$sanitized_output 		= $sanitizer->get_amp_content();
 
 		if( $sanitized_output ) {  
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $sanitized_output; // amphtml content, no kses
 		} 
 
@@ -142,10 +143,10 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 			            <div class="widget-inside">
 							<p>
 								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][title]'; ?>"><?php esc_attr_e( 'Title:' ); ?></label>
-								<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. $c.'-title'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][title]'; ?>" type="text" value="<?php echo esc_attr($feature['title']); ?>" />
+								<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. esc_attr( $c ).'-title'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][title]'; ?>" type="text" value="<?php echo esc_attr($feature['title']); ?>" />
 								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][description]'; ?>"><?php esc_attr_e( 'Description:' ); ?></label>
 
-								<textarea  class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. $c.'-description'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][description]'; ?>" rows="6" cols="50"><?php echo esc_attr($feature['description']); ?></textarea> <span class="clear"></span>
+								<textarea  class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'.esc_attr( $c ).'-description'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][description]'; ?>" rows="6" cols="50"><?php echo esc_attr($feature['description']); ?></textarea> <span class="clear"></span>
 							</p>
 							<p>
 								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][image]'; ?>"><?php esc_attr_e( 'Image:' ); ?></label>

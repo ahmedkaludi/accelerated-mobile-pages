@@ -146,10 +146,10 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 			            <div class="widget-content">
 							<p>
 								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][title]'; ?>"><?php esc_attr_e( 'Button Text:' ); ?></label>
-                                <input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. $c.'-title'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][title]'; ?>" type="text" value="<?php echo esc_attr($feature['title']); ?>" /> </p>
+                                <input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. esc_attr( $c ).'-title'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][title]'; ?>" type="text" value="<?php echo esc_attr($feature['title']); ?>" /> </p>
 
                             <p><label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][url]'; ?>"><?php esc_attr_e( 'Url:' ); ?></label>
-								<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. $c.'-url'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][url]'; ?>" type="text" value="<?php echo esc_attr($feature['url']); ?>" />
+								<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. esc_attr( $c ).'-url'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][url]'; ?>" type="text" value="<?php echo esc_attr($feature['url']); ?>" />
 							</p>
 
 

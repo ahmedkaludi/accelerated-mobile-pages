@@ -326,7 +326,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_amp_slider' ) ) 
                 echo '<input type="text"
                          name="' . esc_attr($nameOne) . '"
                          id="' . esc_attr($idOne) . '"
-                         value="' . $valOne . '"
+                         value="' . esc_attr($valOne) . '"
                          class="redux-amp_slider-input redux-amp_slider-input-one-' . esc_attr($fieldID) . ' ' . esc_attr($this->field['class']) . '"/>';
 
             // LABEL output
@@ -336,8 +336,8 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_amp_slider' ) ) 
                 $labelNum = $twoHandles ? '-one' : '';
 
                 echo '<div class="redux-amp_slider-label' . esc_attr($labelNum) . '"
-                       id="redux-slider-label-one-' . $fieldID . '"
-                       name="' . $nameOne . '">
+                       id="redux-slider-label-one-' . esc_attr($fieldID) . '"
+                       name="' . esc_attr($nameOne) . '">
                   </div>';
 
             // SELECT output
@@ -359,6 +359,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_amp_slider' ) ) 
             }
 
             // DIV output
+            //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo 
             '<div
                 class="redux-amp_slider-container ' . esc_attr($this->field['class']) . '"

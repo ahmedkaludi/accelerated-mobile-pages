@@ -336,10 +336,10 @@ function ampforwp_plgins_update_message_according_pluginOpt( $plugin_data, $r )
     }
 
     if($license_key==""){
-        echo "<a href='".self_admin_url("?page=amp_options&tab=29")."'>Please enter key</a>";
+        echo "<a href='".esc_url(self_admin_url("?page=amp_options&tab=29"))."'>Please enter key</a>";
     }
     if($pluginstatus!="valid"){
-        echo "<a href='".self_admin_url("?page=amp_options&tab=29")."'>Please enter a valid key</a>";
+        echo "<a href='".esc_url(self_admin_url("?page=amp_options&tab=29"))."'>Please enter a valid key</a>";
     }
 
 }

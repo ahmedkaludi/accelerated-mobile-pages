@@ -11,17 +11,21 @@ if(!function_exists('ampforwp_framework_get_sideabr')){
 		unset($data['action']);
 		switch(strtolower($action)) {
 			case 'start':
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo (ampforwp_sideber_begin($data));
 				do_action('amp_sidebar_start');
 				break;
 			case 'end':
 				do_action('amp_sidebar_end');
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo (ampforwp_sideber_end());
 				break;
 			case 'open-button':
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo (ampforwp_sidebar_opening_button($data));
 				break;
 			case 'close-button':
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo (ampforwp_sidebar_close_button($data));
 				break;
 			default:

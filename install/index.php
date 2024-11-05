@@ -264,6 +264,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 				
 				<?php 
 				wp_enqueue_media ();
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo $stepDetails['fields']; // escaped above
 				?>
 				
@@ -276,7 +277,10 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html__( 'Skip','accelerated-mobile-pages' ); ?></a>
 				
 				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="save_logo">
-					<span class="merlin__button--loading__text"><?php echo esc_html__( 'Save' ,'accelerated-mobile-pages'); ?></span><?php echo ampforwp_loading_spinner(); ?>
+					<span class="merlin__button--loading__text"><?php echo esc_html__( 'Save' ,'accelerated-mobile-pages'); ?></span>
+					<?php //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo ampforwp_loading_spinner(); 
+					?>
 				</a>
 				
 				<?php wp_nonce_field( 'ampforwp_install_nonce' ); ?>

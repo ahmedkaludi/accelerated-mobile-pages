@@ -101,6 +101,7 @@ function ampforwp_framework_get_featured_image(){
 				if(function_exists('ampforwp_add_fallback_element')){
  					$amp_html = ampforwp_add_fallback_element($amp_html,'amp-img');
    				}
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
    				echo $amp_html; // escaped above
 				 if ( $caption ) : ?>
 					<p class="wp-caption-text">

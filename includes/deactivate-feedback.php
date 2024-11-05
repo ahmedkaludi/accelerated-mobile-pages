@@ -26,10 +26,11 @@ shuffle($reasons);
                     echo $reason_escaped;
 
                 }
-                ?>
-	    </ul>
+        
+		?>
+	    </ul
 	    <?php if ($email) : ?>
-    	    <input type="hidden" name="ampforwp_disable_from" value="<?php echo $email; ?>"/>
+    	    <input type="hidden" name="ampforwp_disable_from" value="<?php echo esc_html($email); ?>"/>
 	    <?php endif; ?>
 	    <input id="ampforwp-reloaded-feedback-submit" class="button button-primary" type="submit" name="ampforwp_disable_submit" value="<?php echo esc_html__('Submit & Deactivate', 'accelerated-mobile-pages'); ?>"/>
 	    <a class="button"><?php echo esc_html__('Only Deactivate', 'accelerated-mobile-pages'); ?></a>

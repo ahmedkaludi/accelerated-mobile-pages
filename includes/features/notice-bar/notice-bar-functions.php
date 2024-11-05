@@ -24,11 +24,13 @@ if(is_plugin_active('amp/amp.php')){
 add_action('ampforwp_global_after_footer','ampforwp_footer');
 function ampforwp_footer() {
 		global $redux_builder_amp; ?>
-	<!--Plugin Version :<?php echo (AMPFORWP_VERSION); ?> -->
+	<!--Plugin Version :<?php echo esc_attr(AMPFORWP_VERSION); ?> -->
 <?php if($redux_builder_amp['amp-enable-notifications'] == true && (isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] == 0) ) { ?>
 	<!-- Thanks to @nicholasgriffintn for Cookie Notification Code-->
   <amp-user-notification layout=nodisplay id="amp-user-notification1">
-       <p><?php $cookie_message = ampforwp_get_setting('amp-notification-text'); echo wp_strip_all_tags($cookie_message, '<span><a><b><i><br>');?></p>
+       <p><?php $cookie_message = ampforwp_get_setting('amp-notification-text'); 
+	   //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	   echo wp_strip_all_tags($cookie_message, '<span><a><b><i><br>');?></p>
        <?php if ( ampforwp_get_setting('amp-enable-links') ){ ?>
 	       <a class="amp-not-privacy amp-not-page-link" href="<?php echo esc_url( ampforwp_get_setting('amp-notice-bar-select-privacy-page')); ?>" <?php ampforwp_nofollow_notification(); ?> target="_blank"><?php echo esc_attr(ampforwp_get_setting('amp-notice-bar-privacy-page-button-text')); ?>
 	       </a> 
@@ -39,7 +41,10 @@ function ampforwp_footer() {
 if(ampforwp_get_setting('ampforwp-web-push-onesignal') && ampforwp_get_setting('ampforwp-web-push-onesignal-popup') && is_single()){ ?>
 <amp-user-notification id="onesignal-popup-id" class="onesignal-popup" layout="nodisplay">
 	<div class="onesignal-popup_wrapper">
-    <?php echo ampforwp_onesignal_notifications_widget() ?>
+    <?php 
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo ampforwp_onesignal_notifications_widget() 
+	?>
     <button class="onesignal-popup_x" on="tap:onesignal-popup-id.dismiss">X</button></div>
 </amp-user-notification>
 <?php } }

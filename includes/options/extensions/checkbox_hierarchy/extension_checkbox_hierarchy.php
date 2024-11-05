@@ -98,7 +98,7 @@ if( !class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_extension_checkbox
                     } else {
                         echo '<div class="error">';
                         echo     '<p>';
-                        echo         $msg;
+                        echo         esc_attr($msg);
                         echo     '</p>';
                         echo '</div>';
                     }

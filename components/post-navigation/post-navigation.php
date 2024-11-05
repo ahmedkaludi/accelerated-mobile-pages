@@ -16,11 +16,17 @@ function ampforwp_framework_get_post_navigation(){
 						} ?>
 						<a href="<?php echo esc_url($next_link); ?>"><span><?php
 						if (function_exists('pll__')) {
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							echo pll__(esc_html( ampforwp_get_setting('amp-translator-next-text')));
 						}else {
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							echo ampforwp_translation(ampforwp_get_setting('amp-translator-next-text'), 'Next' );
 						} ?>
-						 </span><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
+						 </span>
+						 <?php 
+						 	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						 	echo apply_filters('ampforwp_next_link',$next_text ); 
+						?> &raquo;</a> <?php
 						} ?>
 					</div>
 
@@ -34,10 +40,14 @@ function ampforwp_framework_get_post_navigation(){
 						 } ?>	 
 					    <a href="<?php echo esc_url($prev_link); ?>"><span><?php
 					    if (function_exists('pll__')) {
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							echo pll__(esc_html( ampforwp_get_setting('amp-translator-previous-text')));
 						}else {
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							echo ampforwp_translation(ampforwp_get_setting('amp-translator-previous-text'), 'Next' );
-						} ?></span> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
+						} ?></span> &laquo; <?php 
+						//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
 					  } ?>	
 					</div>
 

@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <?php submit_button( __( 'Reset All', 'accelerated-mobile-pages' ), 'secondary', $this->parent->args['opt_name'] . '[defaults]', false, array( 'id' => 'redux-defaults' ) ); ?>
 			<?php endif; ?>
 		</div>
-		<div class="redux-ajax-loading" alt="<?php _e( 'Working...', 'accelerated-mobile-pages' ) ?>">&nbsp;</div>
+		<div class="redux-ajax-loading" alt="Working...">&nbsp;</div>
 		<div class="clear"></div>
 	</div>
 
