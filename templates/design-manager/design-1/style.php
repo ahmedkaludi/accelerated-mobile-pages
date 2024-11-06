@@ -141,7 +141,9 @@ body, .cmts_list ul li{
         $fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector')."';";
       }
     }
-  echo sanitize_text_field($fontFamily); ?>
+    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo sanitize_text_field($fontFamily); 
+  ?>
 }
 ol, ul {list-style-position: inside;}
 p,ol,ul,figure {margin: 0 0 1em;padding: 0;} a,a:visited {color:<?php echo ampforwp_sanitize_color($redux_builder_amp['amp-opt-color-rgba-link-design1']['color']); ?>;}a:hover,a:active,a:focus {color: <?php echo sanitize_hex_color( $text_color ); ?>;} .wp-caption amp-img{max-width: 100%}

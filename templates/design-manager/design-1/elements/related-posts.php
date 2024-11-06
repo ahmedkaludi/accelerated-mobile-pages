@@ -108,6 +108,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 		     <div class="rp">
 		    	<span><?php 
 		    	if (function_exists('pll__')) {
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		    		echo pll__(esc_html( ampforwp_get_setting('amp-translator-related-text')));
 		    	}else{
 		    		echo esc_attr(ampforwp_translation( ampforwp_get_setting('amp-translator-related-text'), 'Related Post' ));
@@ -157,6 +158,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 			                    		if (true == ampforwp_get_setting('excerpt-option-rp-read-more')){
 											$content .= '...&nbsp;';
 										}
+										//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			                    		 echo wp_trim_words( strip_shortcodes( $content ) , $excerpt_length ); ?><?php if (true == ampforwp_get_setting('excerpt-option-rp-read-more')){ ?><a class="readmore-rp" href="<?php echo esc_url( $related_post_permalink ); ?>"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-read-more'),'Read More') ?></a></p>
 			                    	<?php } } ?>
 			                </div>

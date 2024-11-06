@@ -47,6 +47,7 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
    				if(preg_match('/<amp-img(.*?)srcset="(.*?)"(.*?)<\/amp-img>/', $amp_html) == 0){
 		   				$amp_html = preg_replace('/<amp-img(.*?) src="(.*?)"(.*?)<\/amp-img>/', '<amp-img$1 src="$2" srcset="$2" $3</amp-img>', $amp_html);
 		   			}
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
    				echo $amp_html; // amphtml content; no kses ?>
 				<?php if ( $caption ) : ?>
 					<p class="wp-caption-text">

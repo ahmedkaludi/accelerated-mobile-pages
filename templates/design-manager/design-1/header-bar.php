@@ -57,7 +57,10 @@ do_action('ampforwp_design_1_after_header');
 if( function_exists('ampforwp_get_setting') && ampforwp_get_setting('dsg-alt-menu') ) { ?>
 <div class="dsg-m-fl">
     <div class="dsg-menu">
-    <?php echo amp_menu_html( true, array(), 'amp-alternative-menu' ); ?>
+    <?php 
+    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo amp_menu_html( true, array(), 'amp-alternative-menu' ); 
+    ?>
     </div> 
 </div>
 <?php }

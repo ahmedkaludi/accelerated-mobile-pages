@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div id="right-elements">
         <div class="links">
             <?php if ( uwl_fs()->is_not_paying() ) {  ?>
-                <span class="uwl-premium-message">20+ awesome widgets, more widgets styling, premium support <a href="<?php echo uwl_fs()->get_upgrade_url(); ?>">Upgrade Now!</a></span>
+                <span class="uwl-premium-message">20+ awesome widgets, more widgets styling, premium support <a href="<?php echo esc_url(uwl_fs()->get_upgrade_url()); ?>">Upgrade Now!</a></span>
             <?php } ?>
             <a href="<?php echo esc_url(admin_url( 'admin.php?page=uwl_options-contact' )); ?>" class="uwl-support" target="_blank">Support Request</a>
         </div>

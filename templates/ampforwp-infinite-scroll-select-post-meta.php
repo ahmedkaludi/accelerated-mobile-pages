@@ -24,17 +24,17 @@ function ampforwp_select_post_meta( $post ) {
 						<ul id="ampforwp-dd-content">
 						<?php
 							foreach ($posts_array as $key => $value) {?>
-								<li onclick="ampforwp_select_post_item(this.value,<?php echo $value->ID?>,'<?php echo $value->post_title?>')" id="afwp-infinite-post-li-<?php echo $value->ID?>"><?php echo $value->post_title; ?></li>
+								<li onclick="ampforwp_select_post_item(this.value,<?php echo esc_attr($value->ID)?>,'<?php echo esc_attr($value->post_title)?>')" id="afwp-infinite-post-li-<?php echo esc_attr($value->ID)?>"><?php echo esc_attr($value->post_title); ?></li>
 								<?php
 							}
 						?>
 						</ul>
-						<input type="hidden" id="ampforwp_filtered_post_nounce" name="ampforwp_filtered_post_nounce" value="<?php echo wp_create_nonce( 'ampforwp_filtered_post_nounce' )?>"/>
-						<input type="hidden" id="ampforwp_filtered_this_post_id" value='<?php echo ampforwp_get_the_ID()?>'/>
+						<input type="hidden" id="ampforwp_filtered_post_nounce" name="ampforwp_filtered_post_nounce" value="<?php echo esc_attr(wp_create_nonce( 'ampforwp_filtered_post_nounce' ))?>"/>
+						<input type="hidden" id="ampforwp_filtered_this_post_id" value='<?php echo esc_attr(ampforwp_get_the_ID())?>'/>
 						<input type="hidden" id="ampforwp_filtered_post_ids" name="ampforwp_filtered_post_ids" value='<?php echo (!empty($infinite_posts))? json_encode($infinite_posts):"[]";?>'/>
 						<div style="margin:10px 5px" id="ampforwp-post-tag-ihtml">
 							<?php foreach ($infinite_posts as $key => $value) {?>
-								<p class="ampforwp-tag-sp"><?php echo $value->title;?><span style="cursor:pointer;float:right" onclick="ampforwp_remove_item(<?php echo $key?>)">x</span></p>
+								<p class="ampforwp-tag-sp"><?php echo esc_attr($value->title);?><span style="cursor:pointer;float:right" onclick="ampforwp_remove_item(<?php echo esc_attr($key)?>)">x</span></p>
 							<?php }?>
 						</div>
 						<p id="afwp-post-tag-error" style="color:red;margin-left:10px"></p>

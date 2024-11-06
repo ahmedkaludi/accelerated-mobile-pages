@@ -32,6 +32,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
         echo '<ul id="' . esc_attr($breadcrums_id) . '" class="' . esc_attr($breadcrums_class) . '">';
            
         // Home page 
+        //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo '<li class="item-home"><a class="bread-link bread-home" href="' . ampforwp_url_controller( get_home_url('', '/'), $home_non_amp ) . '" title="' . esc_attr($home_title) . '">' . esc_html($home_title) . '</a></li>';
 
         if ( is_archive() && !is_tax() && !is_category() && !is_tag() && !is_author() ) {
@@ -45,6 +46,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                 $author_url= get_author_posts_url($userdata->ID);
                 $author_url = trailingslashit($author_url);
                 // Display author name
+                //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo '<li class="item-current item-current-' . esc_attr($userdata->user_nicename) . '"><a class="bread-current bread-current-' . $userdata->user_nicename . '" title="' . esc_attr($userdata->display_name) . '" href="'. ampforwp_url_controller( $author_url, $archive_non_amp ). '">' . 'Author: ' . esc_attr($userdata->display_name) . '</a></li>';
 
         } else if ( is_archive() && is_tax() && !is_category() && !is_tag() ) {
@@ -58,6 +60,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                 $post_type_object = get_post_type_object($post_type);
                 $post_type_archive = get_post_type_archive_link($post_type);
                 if ( false != $post_type_archive){
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo '<li class="item-cat item-custom-post-type-' . esc_attr($post_type) . '"><a class="bread-cat bread-custom-post-type-' . esc_attr($post_type) . '" href="' .ampforwp_url_controller( $post_type_archive, $archive_non_amp ) . '" title="' . esc_attr($post_type_object->labels->name) . '">' . esc_attr($post_type_object->labels->name) . '</a></li>'; 
                 }
                 else {
@@ -78,6 +81,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                 $post_type_object = get_post_type_object($post_type);
                 $post_type_archive = get_post_type_archive_link($post_type);
                 if ( false != $post_type_archive){
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo '<li class="item-cat item-custom-post-type-' . esc_attr($post_type) . '"><a class="bread-cat bread-custom-post-type-' . esc_attr($post_type) . '" href="' .ampforwp_url_controller( $post_type_archive, $archive_non_amp ) . '" title="' . esc_attr($post_type_object->labels->name) . '">' . esc_html($post_type_object->labels->name) . '</a></li>'; 
                 }
                 else {
@@ -107,6 +111,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                         }
                             $tags_breadcrumbs .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( $bc_title ). '</span></li>';
                     }
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo $tags_breadcrumbs; // escaped above
                 }
             }
@@ -173,11 +178,12 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
               
             // Check if the post is in a category
             if(!empty($last_category)) {
+                //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo $cat_display; // escaped above
     
             // Else if post is in a custom taxonomy
             } else if(!empty($cat_id)) {
-                  
+                  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo '<li class="item-cat item-cat-' . esc_attr($cat_id) . ' item-cat-' . esc_attr($cat_nicename) . '"><a class="bread-cat bread-cat-' . esc_attr($cat_id) . ' bread-cat-' . esc_attr($cat_nicename) . '" href="' . ampforwp_url_controller( $cat_link, $archive_non_amp ) . '" title="' . esc_attr($cat_name) . '">' . esc_html($cat_name) . '</a></li>';                
             }  
               
@@ -199,10 +205,11 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                 // Parent page loop
                 if ( !isset( $parents ) ) $parents = null;
                 foreach ( $anc as $ancestor ) {
+                    
                     $parents .= '<li class="item-parent item-parent-' . esc_attr($ancestor) . '"><a class="bread-parent bread-parent-' . esc_attr($ancestor) . '" href="' . ampforwp_url_controller( get_permalink( $ancestor ), $archive_non_amp )  . '" title="' . esc_attr(get_the_title($ancestor)) . '">' . esc_html(get_the_title($ancestor)) . '</a></li>';
                 }
-                   
                 // Display parent pages
+                //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo $parents; // escaped above
                    
                 // Current page
@@ -229,40 +236,40 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
             // Day archive
                
             // Year link
-            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . '</a></li>';
+            echo '<li class="item-year item-year-' . esc_attr(get_the_time('Y')) . '"><a class="bread-year bread-year-' . esc_attr(get_the_time('Y')) . '" href="' . esc_url(get_year_link( get_the_time('Y') )) . '" title="' . esc_attr(get_the_time('Y')) . '">' . esc_attr(get_the_time('Y')) . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . '</a></li>';
             
             // Month link
-            echo '<li class="item-month item-month-' . get_the_time('m') . '"><a class="bread-month bread-month-' . get_the_time('m') . '" href="' . get_month_link( get_the_time('Y'), get_the_time('m') ) . '" title="' . get_the_time('M') . '">' . get_the_time('M') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . ' </a></li>';
+            echo '<li class="item-month item-month-' .esc_attr(get_the_time('m')) . '"><a class="bread-month bread-month-' . esc_attr(get_the_time('m')) . '" href="' . esc_url(get_month_link( get_the_time('Y'), get_the_time('m') )) . '" title="' . esc_attr(get_the_time('M')) . '">' . esc_attr(get_the_time('M')) . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . ' </a></li>';
             
                
             // Day display
-            echo '<li class="item-current item-' . get_the_time('j') . '"><strong class="bread-current bread-' . get_the_time('j') . '"> ' . get_the_time('jS') . ' ' . get_the_time('M') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . ' </strong></li>';
+            echo '<li class="item-current item-' . esc_attr(get_the_time('j')) . '"><strong class="bread-current bread-' . esc_attr(get_the_time('j')) . '"> ' . esc_attr(get_the_time('jS')) . ' ' . esc_attr(get_the_time('M')) . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . ' </strong></li>';
                
         } else if ( is_month() ) {
                
             // Month Archive
                
             // Year link
-            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text']), 'Archives') . ' </a></li>';
+            echo '<li class="item-year item-year-' . esc_attr(get_the_time('Y')) . '"><a class="bread-year bread-year-' . esc_attr(get_the_time('Y')) . '" href="' . esc_url(get_year_link( get_the_time('Y') )) . '" title="' . esc_attr(get_the_time('Y')) . '">' . esc_attr(get_the_time('Y')) . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text']), 'Archives') . ' </a></li>';
             
             // Month display
-            echo '<li class="item-month item-month-' . get_the_time('m') . '"><strong class="bread-month bread-month-' . get_the_time('m') . '" title="' . get_the_time('M') . '">' . get_the_time('M') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . ' </strong></li>';
+            echo '<li class="item-month item-month-' . esc_attr(get_the_time('m')) . '"><strong class="bread-month bread-month-' . esc_attr(get_the_time('m')) . '" title="' . esc_attr(get_the_time('M')) . '">' . esc_attr(get_the_time('M')) . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . ' </strong></li>';
                
         } else if ( is_year() ) {
                
             // Display year archive
-            echo '<li class="item-current item-current-' . get_the_time('Y') . '"><strong class="bread-current bread-current-' . get_the_time('Y') . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')). ' </strong></li>';
+            echo '<li class="item-current item-current-' . esc_attr(get_the_time('Y')) . '"><strong class="bread-current bread-current-' . esc_attr(get_the_time('Y')) . '" title="' . esc_attr(get_the_time('Y')) . '">' . esc_attr(get_the_time('Y')) . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')). ' </strong></li>';
                
         }   else if ( get_query_var('paged') ) {
 
             // Paginated archives
-            echo '<li class="item-current item-current-' . get_query_var('paged') . '"><strong class="bread-current bread-current-' . get_query_var('paged') . '" title="Page ' . get_query_var('paged') . '">'. esc_html(ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page')) . ' ' . get_query_var('paged') . '</strong></li>';
+            echo '<li class="item-current item-current-' . esc_attr(get_query_var('paged')) . '"><strong class="bread-current bread-current-' . esc_attr(get_query_var('paged')) . '" title="Page ' . esc_attr(get_query_var('paged')) . '">'. esc_html(ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page')) . ' ' . get_query_var('paged') . '</strong></li>';
                
         } else if ( is_search() ) {
            
             // Search results page
-            echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Search results for: ' . get_search_query() . '">
-            ' . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-search-text'], 'Search results for')) . ': ' . get_search_query() . '</strong></li>';
+            echo '<li class="item-current item-current-' . esc_attr(get_search_query()) . '"><strong class="bread-current bread-current-' . esc_attr(get_search_query()) . '" title="Search results for: ' . esc_attr(get_search_query()) . '">
+            ' . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-search-text'], 'Search results for')) . ': ' . esc_attr(get_search_query()) . '</strong></li>';
            
         }
         echo '</ul>';

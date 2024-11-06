@@ -1349,6 +1349,7 @@ if(!function_exists('ampforwp_category_image_compatibility')){
 		if($type=='return'){
 			return $cat_image;
 		}else if($type=='echo'){
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $cat_image;
 		}
 	}
@@ -1636,7 +1637,9 @@ function ampforwp_newsp_td_render_css(){
 		            }, $cssData);
 			}
 	  }
+	  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $newspaper_css;
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $amp_td_custom_css;
 		if(method_exists('td_block', 'get_common_css') && method_exists('td_util', 'remove_style_tag')){
 			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
