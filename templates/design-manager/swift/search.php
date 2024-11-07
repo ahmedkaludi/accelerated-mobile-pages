@@ -34,6 +34,7 @@ amp_header() ?>
 			if ( $sanitized_sidebar) {
 				$sidebar_output = $sanitized_sidebar->get_amp_content();
 				$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             	echo $sidebar_output; // amphtml content, no kses
 			}
 			?>

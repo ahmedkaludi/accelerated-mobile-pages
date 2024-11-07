@@ -5,7 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php global $redux_builder_amp;  ?>
 <!doctype html>
-<html amp <?php //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+<html amp <?php 
+//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
@@ -79,9 +80,19 @@ echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' 
 			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	        	$title_name = '<a href="'.ampforwp_url_controller( get_permalink() ).'">'.get_the_title().'</a>';
 		        if( ampforwp_default_logo() ){ ?>
-	    		   	<h2 class="amp-wp-title"><?php echo $title_name; // escaped above ?></h2>
+	    		   	<h2 class="amp-wp-title">
+						<?php 
+						//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							echo $title_name; // escaped above 
+						?>
+					</h2>
 				<?php }else{ ?>
-					<h3 class="amp-wp-title"><?php echo $title_name; // escaped above ?></h3>
+					<h3 class="amp-wp-title">
+						<?php 
+						//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo $title_name; // escaped above 
+						?>
+					</h3>
 				<?php } ?>
 				<div class="amp-wp-content-loop">
 

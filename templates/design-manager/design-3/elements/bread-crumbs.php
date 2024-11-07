@@ -32,6 +32,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
         echo '<ul id="' . esc_attr($breadcrums_id) . '" class="' . esc_attr($breadcrums_class) . '">';
            
         // Home page 
+        //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo '<li class="item-home"><a class="bread-link bread-home" href="' . ampforwp_url_controller( get_home_url('', '/'), $home_non_amp ) . '" title="' . esc_attr($home_title) . '">' . esc_html($home_title) . '</a></li>';
 
         if ( is_archive() && !is_tax() && !is_category() && !is_tag() && !is_author() ) {
@@ -45,6 +46,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                 $author_url= get_author_posts_url($userdata->ID);
                 $author_url = trailingslashit($author_url);
                 // Display author name
+                //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo '<li class="item-current item-current-' . esc_attr($userdata->user_nicename) . '"><a class="bread-current bread-current-' . esc_attr($userdata->user_nicename) . '" title="' . esc_attr($userdata->display_name) . '" href="'. ampforwp_url_controller( $author_url, $archive_non_amp ). '">' . 'Author: ' . esc_html($userdata->display_name) . '</a></li>';
 
         } else if ( is_archive() && is_tax() && !is_category() && !is_tag() ) {
@@ -58,6 +60,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                 $post_type_object = get_post_type_object($post_type);
                 $post_type_archive = get_post_type_archive_link($post_type);
                 if ( false != $post_type_archive){
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo '<li class="item-cat item-custom-post-type-' . esc_attr($post_type) . '"><a class="bread-cat bread-custom-post-type-' . esc_attr($post_type) . '" href="' .ampforwp_url_controller( $post_type_archive, $archive_non_amp ) . '" title="' . esc_attr($post_type_object->labels->name) . '">' . esc_html($post_type_object->labels->name) . '</a></li>'; 
                 }
                 else {
@@ -78,6 +81,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                 $post_type_object = get_post_type_object($post_type);
                 $post_type_archive = get_post_type_archive_link($post_type);
                 if ( false != $post_type_archive){
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo '<li class="item-cat item-custom-post-type-' . esc_attr($post_type) . '"><a class="bread-cat bread-custom-post-type-' .esc_attr($post_type) . '" href="' .ampforwp_url_controller( $post_type_archive, $archive_non_amp ) . '" title="' . esc_attr($post_type_object->labels->name) . '">' . esc_html($post_type_object->labels->name) . '</a></li>'; 
                 }
                 else {
@@ -107,6 +111,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                         }
                             $tags_breadcrumbs .='<li class="item-post item-post-' . esc_attr(ampforwp_get_the_ID()) . '"><span class="bread-post">'.wp_kses_data( $bc_title ). '</span></li>';
                     } 
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo $tags_breadcrumbs; // escaped above
                 }
             }
@@ -170,6 +175,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
               
             // Check if the post is in a category
             if(!empty($last_category)) {
+                //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo $cat_display; // escaped above
     
             // Else if post is in a custom taxonomy
@@ -200,6 +206,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                 }
                    
                 // Display parent pages
+                //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo $parents; // escaped above
                    
                 // Current page

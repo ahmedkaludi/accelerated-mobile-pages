@@ -5,7 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php global $redux_builder_amp; global $wp;  ?>
 <!doctype html>
-<html amp <?php //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+<html amp <?php 
+//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">

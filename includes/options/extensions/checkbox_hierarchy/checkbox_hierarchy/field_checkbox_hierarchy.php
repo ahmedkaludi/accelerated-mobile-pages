@@ -153,7 +153,7 @@ if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox_hierarc
                 echo '<input type="checkbox" id="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . ']', array(
                     '[' => '_',
                     ']' => ''
-                ) ) . '" value="1" class="checkbox ' . $this->field[ 'class' ] . '" ' . checked ( $this->value, '1', false ) . '/>';
+                ) ) . '" value="1" class="checkbox ' . esc_attr($this->field[ 'class' ]) . '" ' . checked ( $this->value, '1', false ) . '/>';
                 //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo isset( $this->field[ 'label' ] ) ? ' ' . $this->field[ 'label' ] : '';
                 echo '</label></li></ul>';
@@ -181,19 +181,21 @@ if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox_hierarc
                     if(isset($this->value[ $category->term_id ])){
                         $selectedvalue = $this->value[ $category->term_id ];
                     }
-
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo '<li><label for="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $category->term_id . ']', array(
                         '[' => '_',
                         ']' => ''
-                    ) ) . '_' . array_search ( $category->term_id, array_keys ( $this->field[ 'options' ] ) ) . '">';
+                    ) ) . '_' . esc_attr(array_search ( $category->term_id, array_keys ( $this->field[ 'options' ] ) )) . '">';
                     if($this->field[ 'name' ]){
-                    echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . $this->field[ 'name' ] . '[' . $category->term_id . ']' . $this->field[ 'name_suffix' ] . '" value="' . $selectedvalue . '" ' . '/>';
+                    echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . esc_attr($this->field[ 'name' ]) . '[' . esc_attr($category->term_id) . ']' . esc_attr($this->field[ 'name_suffix' ]) . '" value="' . esc_attr($selectedvalue) . '" ' . '/>';
                     }
-                    echo '<input type="checkbox" class="checkbox ' . $this->field[ 'class' ] . '" id="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $category->term_id . ']', array(
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo '<input type="checkbox" class="checkbox ' . esc_attr($this->field[ 'class' ]) . '" id="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $category->term_id . ']', array(
                         '[' => '_',
                         ']' => ''
                     ) ) . '_' . array_search ( $category->term_id, array_keys ( $this->field[ 'options' ] ) ) . '" value="1" ' . checked ( $selectedvalue, '1', false ) . '/>';
-                    echo ' <span>' .$pad. $category->name . '</span></label></li>';
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo ' <span>' .$pad. esc_attr($category->name) . '</span></label></li>';
 
 
 

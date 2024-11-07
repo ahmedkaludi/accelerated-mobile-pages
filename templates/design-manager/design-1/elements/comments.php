@@ -118,7 +118,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							$nofollow = 'rel=nofollow';
 						}
 						?>
-				    	<a href="<?php echo esc_url(ampforwp_comment_button_url()); ?>" <?php echo esc_html($nofollow) ?> title="<?php echo ampforwp_get_setting('amp-translator-leave-a-comment-text') ?>" >
+				    	<a href="<?php echo esc_url(ampforwp_comment_button_url()); ?>" <?php echo esc_html($nofollow) ?> title="<?php echo esc_attr(ampforwp_get_setting('amp-translator-leave-a-comment-text')) ?>" >
 						<?php //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						 echo  ampforwp_translation( ampforwp_get_setting('amp-translator-leave-a-comment-text'), 'Leave a Comment'  ); 
 						 ?>

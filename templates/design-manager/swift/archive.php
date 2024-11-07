@@ -6,6 +6,7 @@ global $redux_builder_amp;
 amp_header() ?>
 <div class="cntr archive">
 	<?php if(true == ampforwp_get_setting('ampforwp-yoast-bread-crumb')){
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo ampforwp_yoast_breadcrumbs_output();
 	  }?>
 	<div class="arch-tlt">
@@ -27,6 +28,7 @@ amp_header() ?>
 				$sidebar_output = $sanitized_sidebar->get_amp_content();
 				$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
 			}
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $sidebar_output;// amphtml content, no kses
 			?>
 		</div>

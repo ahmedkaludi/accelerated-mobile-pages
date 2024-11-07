@@ -5,7 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php global $redux_builder_amp;  ?>
 <!doctype html>
-<html amp <?php //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+<html amp <?php 
+//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
@@ -61,7 +62,8 @@ echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' 
 				
 			 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 		        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
-		        	<h2 class="amp-wp-title"><?php  $ampforwp_post_url = get_permalink(); ?><a href="<?php //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		        	<h2 class="amp-wp-title"><?php  $ampforwp_post_url = get_permalink(); ?><a href="<?php 
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo ampforwp_url_controller( $ampforwp_post_url ); ?>"><?php the_title() ?></a></h2>
 
 					<div class="amp-wp-content-loop">

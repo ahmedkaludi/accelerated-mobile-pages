@@ -5,7 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php global $redux_builder_amp;  ?>
 <!doctype html>
-<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
+<html amp <?php 
+//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
 	<?php if(is_search() && false == ampforwp_get_setting('amp-inspection-tool') && false == ampforwp_get_setting('ampforwp-robots-search-pages')){?>
@@ -61,7 +63,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="amp-wp-content amp-archive-heading">
 		<?php if( ampforwp_default_logo() ){ ?>
-			<h1 class="page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?></h1>
+			<h1 class="page-title">
+				<?php 
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?>
+			</h1>
 		<?php }else{ ?>	
 			<h2 class="page-title"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query());?></h2>
 		<?php } ?>
@@ -79,9 +85,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php 
 					$title_name = '<a href="'.esc_url( $ampforwp_amp_post_url ).'">'.get_the_title().'</a>';
 					if( ampforwp_default_logo() ){ ?>
-						<h2 class="amp-wp-title"><?php echo $title_name;//escaped above ?></h2>
+						<h2 class="amp-wp-title">
+							<?php 
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							echo $title_name;//escaped above ?></h2>
 					<?php }else{ ?>
-					<h3 class="amp-wp-title"><?php echo $title_name; //escaped above ?></h3>
+					<h3 class="amp-wp-title">
+						<?php 
+						//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo $title_name; //escaped above ?></h3>
 					<?php } ?>
 				<?php if( ampforwp_check_excerpt() ) {
 					$class = 'large-screen-excerpt';

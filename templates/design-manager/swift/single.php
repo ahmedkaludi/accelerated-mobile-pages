@@ -24,7 +24,7 @@ $page = intval($page); ?>
 			<?php 
 			if( true == ampforwp_get_setting('amp-author-name') && true == ampforwp_get_setting('amp-author-name-display') ) {?>
 			    <div class="sp-athr mob-athr">
-			        <span class="athr-tx"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-published-by'), 'Published by' ); ?></span>
+			        <span class="athr-tx"><?php echo esc_attr(ampforwp_translation(ampforwp_get_setting('amp-translator-published-by'), 'Published by' )); ?></span>
 			            <?php amp_author_box( 
 							array('author_pub_name'=>true,'author_info'=>true)
 						); ?>
@@ -114,7 +114,7 @@ $page = intval($page); ?>
 						} ?>
 		              <?php if( true == ampforwp_get_setting('amp-author-name') ) { ?>
 			            <div class="sp-athr desk-athr">
-			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
+			            	<span class="athr-tx"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' )); ?></span>
 			            	<?php amp_author_box( 
 										array('author_pub_name'=>true,'author_info'=>true)
 										); ?>
@@ -298,6 +298,7 @@ do_action("ampforwp_single_design_type_handle_d1");
 		if ($check_rp > 1) {?>
 			<h3><?php 
 			if (function_exists('pll__')) {
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo pll__(esc_html( ampforwp_get_setting('amp-translator-recent-text')));
 			}else {
 				echo esc_html(ampforwp_translation(ampforwp_get_setting('amp-translator-recent-text'), 'Recent Posts' ));
@@ -476,7 +477,8 @@ do_action("ampforwp_single_design_type_handle_d1");
 					</div><!-- /.sp-cntn -->
 					<?php if( $redux_builder_amp['single-design-type'] == '4' && ampforwp_get_setting('ampforwp-swift-recent-posts')=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) {?>
 					<div class="r-pf">
-						<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
+						<h3>
+							<?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' )); ?></h3>
 						<?php
 						$number_of_posts = 6;
 						$rcp = ampforwp_get_setting('ampforwp-number-of-recent-posts');

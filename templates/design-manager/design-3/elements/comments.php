@@ -26,7 +26,9 @@ do_action('ampforwp_before_comment_hook',$this);
 				$comment_nums = " ($comment_nums) " ?>
 
 				<div class="amp-wp-content comments_list cmts_list">
-			        <h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' )). $comment_nums?></h3>
+			        <h3>
+						<?php 
+						echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' )). esc_attr($comment_nums)?></h3>
 			        <ul> <?php // Display the list of comments
 						function ampforwp_custom_translated_comment($comment, $args, $depth){
 							global $redux_builder_amp;
@@ -50,7 +52,7 @@ do_action('ampforwp_before_comment_hook',$this);
 										<!-- .cmt-author -->
 										<div class="cmt-metadata">
 											<a href="<?php echo esc_url(htmlspecialchars( untrailingslashit( get_comment_link( $comment->comment_ID ) ) )) ?>">
-												<?php printf( esc_attr(ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at  %2$s') ), get_comment_date(),  get_comment_time())?>
+												<?php printf( esc_attr(ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at  %2$s') ), esc_attr(get_comment_date()),  esc_attr(get_comment_time()))?>
 											</a>
 											<?php edit_comment_link( ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' ) ) ?>
 										</div>
@@ -72,6 +74,7 @@ do_action('ampforwp_before_comment_hook',$this);
 				                                )
 			                          	 ) ) );
 			                        	$sanitized_comment_content = $sanitizer->get_amp_content();
+										//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			                        	echo make_clickable( $sanitized_comment_content );//amphtml content, no kses ?>      
 									</div>
 									<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth);  ?>
@@ -115,7 +118,7 @@ do_action('ampforwp_before_comment_hook',$this);
 							$nofollow = 'rel=nofollow';
 						}
 						?>
-				    	<a href="<?php echo esc_url(ampforwp_comment_button_url()); ?>" <?php echo esc_html($nofollow) ?> title="<?php echo ampforwp_get_setting('amp-translator-leave-a-comment-text') ?>"><?php echo  ampforwp_translation( ampforwp_get_setting('amp-translator-leave-a-comment-text'), 'Leave a Comment'  ); ?></a> <?php
+				    	<a href="<?php echo esc_url(ampforwp_comment_button_url()); ?>" <?php echo esc_html($nofollow) ?> title="<?php echo esc_attr(ampforwp_get_setting('amp-translator-leave-a-comment-text')) ?>"><?php echo  esc_attr(ampforwp_translation( ampforwp_get_setting('amp-translator-leave-a-comment-text'), 'Leave a Comment'  )); ?></a> <?php
 					}?>
 				</div> <?php 
 			} ?>

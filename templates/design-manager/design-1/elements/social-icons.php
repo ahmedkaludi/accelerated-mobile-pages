@@ -68,7 +68,7 @@ if(true == ampforwp_get_setting('ampforwp-social-share')){ ?>
 				<?php ampforwp_rel_attributes_social_links(); ?>
 				data-param-url=""
 				data-param-text="TITLE <?php //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo esc_url($twitter_amp_permalink).' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.esc_attr($data_param_data) ?>"
+				echo esc_url($twitter_amp_permalink).' '.esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' )).' '.esc_attr($data_param_data) ?>"
 			></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-email-share'] == true)  { ?>

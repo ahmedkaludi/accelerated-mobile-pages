@@ -263,7 +263,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
         }   else if ( get_query_var('paged') ) {
 
             // Paginated archives
-            echo '<li class="item-current item-current-' . esc_attr(get_query_var('paged')) . '"><strong class="bread-current bread-current-' . esc_attr(get_query_var('paged')) . '" title="Page ' . esc_attr(get_query_var('paged')) . '">'. esc_html(ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page')) . ' ' . get_query_var('paged') . '</strong></li>';
+            echo '<li class="item-current item-current-' . esc_attr(get_query_var('paged')) . '"><strong class="bread-current bread-current-' . esc_attr(get_query_var('paged')) . '" title="Page ' . esc_attr(get_query_var('paged')) . '">'. esc_html(ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page')) . ' ' . esc_attr(get_query_var('paged')) . '</strong></li>';
                
         } else if ( is_search() ) {
            
