@@ -5530,32 +5530,33 @@ if( ! function_exists('ampforwp_get_comments_gravatar') ){
 		}
 		if (class_exists('FV_Gravatar_Cache')) {
 			$options = get_option('fv_gravatar_cache');
-			$size = $options['size'];
-			if (empty($size)) {
-				$size = '96';
-			}
-			$avatar_url = get_avatar_url($comment);
+			$size = !empty($options['size']) ? $options['size'] : '96';
+			$email_hash = md5(strtolower(trim($comment->comment_author_email)));
 			$upload_dir = wp_upload_dir(); 
-			$upload_dir = $upload_dir['baseurl'] . '/fv-gravatar-cache/';
-			$avatar_url = preg_replace('/(.*?)avatar\/(.*?)\?s=(.*?)&(.*?)g/', ''.$upload_dir.'$2x$3.png', $avatar_url);
-			preg_match_all('/(.*?)wp-content\/uploads\/fv-gravatar-cache\/(.*?)/U', $avatar_url, $match);
-			$url = $match[0][0];
-			$headers = get_headers($url, 1);
-			if(isset($headers[0]) && !stripos($headers[0], "200 OK")){
-			   $avatar_url = $upload_dir.'mystery'. esc_html($size) .'.png';
+			$cache_dir = $upload_dir['basedir'] . '/fv-gravatar-cache/';
+			$cache_url = $upload_dir['baseurl'] . '/fv-gravatar-cache/';
+
+			
+			$cached_avatar_path = $cache_dir . $email_hash . 'x' . $size . '.png';
+			$default_avatar_url = $cache_url . 'mystery' . esc_html($size) . '.png';
+
+			if (file_exists($cached_avatar_path)) {
+				$avatar_url = $cache_url . $email_hash . 'x' . $size . '.png';
+			} else {
+				$avatar_url = $default_avatar_url;
 			}
 			return $avatar_url;
 		}
-	$gravatar_exists = '';
-	$gravatar_exists = ampforwp_gravatar_checker($comment->comment_author_email);
-	if ( null !== ampforwp_get_wp_user_avatar($comment, 'comment') ) {
-		return ampforwp_get_wp_user_avatar($comment, 'comment');
-	}
-	elseif($gravatar_exists == true){
-		return get_avatar_url( $comment, apply_filters( 'ampforwp_get_comments_gravatar', '60' ), '' );
-	}
-	else
-		return apply_filters( 'ampforwp_get_comments_gravatar', '' );   	
+
+		$gravatar_exists = ampforwp_gravatar_checker($comment->comment_author_email);
+
+		if (null !== ampforwp_get_wp_user_avatar($comment, 'comment')) {
+			return ampforwp_get_wp_user_avatar($comment, 'comment');
+		} elseif ($gravatar_exists) {
+			return get_avatar_url($comment, apply_filters('ampforwp_get_comments_gravatar', '60'), '');
+		} else {
+			return apply_filters('ampforwp_get_comments_gravatar', '');
+		}
 	}
 }
 // Gravatar Checker
