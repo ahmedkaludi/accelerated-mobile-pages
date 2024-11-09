@@ -680,11 +680,7 @@ Class AMPforWP_theme_mode{
 }//Class Closed
 add_action('after_setup_theme', 'ampforwp_template_mode_is_activate', 999);
 function ampforwp_template_mode_is_activate(){
-	$url_path = parse_url(add_query_arg(array()), PHP_URL_PATH);
-	if($url_path=="" || $url_path==null){
-		$url_path = $url_path.'/';
-	}
-	$url_path = trim($url_path,'/' );
+	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
 	if((function_exists('td_wp_title') || class_exists('Bunyad_Theme_SmartMag') ) && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)){
 		add_theme_support( 'title-tag' );
 	}
