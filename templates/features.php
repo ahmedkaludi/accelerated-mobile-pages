@@ -743,6 +743,11 @@ function ampforwp_new_dir( $dir ) {
 				  $content = preg_replace('/(<[^>]+) ga-event-category=".*?"/', '$1', $content);
 				   // aria-current
 				  $content = preg_replace('/(<[^>]+) aria-current=".*?"/', '$1', $content);
+
+				  //https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/5643
+				  //Afterpay Gateway for WooCommerce plugin is causing issue in Amp Validator
+				  $content = preg_replace('/<square-placement(.*)<\/square-placement>/', '', $content);
+
 				  // Gallery Break fix 
 				  $content = preg_replace('/[^\[]\[gallery(.*?)ids=(.*?)\]/', '</p>[gallery$1ids=$2]</p>', $content);
 				  // value attribute from anchor tag #2262
