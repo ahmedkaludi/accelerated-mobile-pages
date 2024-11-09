@@ -70,17 +70,17 @@
 
 ?>
 <div class="wrap about-wrap">
-    <h1><?php esc_html_e( 'Redux Framework - Extensions', 'redux-framework' ); ?></h1>
+    <h1><?php esc_html_e( 'Redux Framework - Extensions', 'accelerated-mobile-pages' ); ?></h1>
 
     <div class="about-text">
-        <?php printf( __( 'Supercharge your Redux experience. Our extensions provide you with features that will take your products to the next level.', 'redux-framework' ), esc_html($this->display_version) ); ?>
+        <?php printf( __( 'Supercharge your Redux experience. Our extensions provide you with features that will take your products to the next level.', 'accelerated-mobile-pages' ), esc_html($this->display_version) ); ?>
     </div>
     <div class="redux-badge">
         <i class="el el-redux"></i>
         <span>
             <?php 
             /* translators: %s: version */
-            printf( __( 'Version %s', 'redux-framework' ), esc_html(ReduxFramework::$_version )); ?>
+            printf( __( 'Version %s', 'accelerated-mobile-pages' ), esc_html(ReduxFramework::$_version )); ?>
         </span>
     </div>
 
@@ -88,7 +88,7 @@
     <?php $this->tabs(); ?>
 
     <p class="about-description">
-        <?php esc_html_e( "While some are built specificially for developers, extensions such as Custom Fonts are sure to make any user happy.", 'redux-framework' ); ?>
+        <?php esc_html_e( "While some are built specificially for developers, extensions such as Custom Fonts are sure to make any user happy.", 'accelerated-mobile-pages' ); ?>
     </p>
 
     <div class="extensions">

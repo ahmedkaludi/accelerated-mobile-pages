@@ -2,39 +2,39 @@
     <h1>
         <?php 
             /* translators: %s: version */
-            printf( __( 'Welcome to Redux Framework %s', 'redux-framework' ), $this->display_version ); 
+            printf( __( 'Welcome to Redux Framework %s', 'accelerated-mobile-pages' ), $this->display_version ); 
         ?>
     </h1>
 
     <div
         class="about-text"><?php 
         /* translators: %s: version */
-        printf( __( 'Thank you for updating to the latest version! Redux Framework %s is a huge step forward in Redux Development. Look at all that\'s new.', 'redux-framework' ), $this->display_version ); ?></div>
+        printf( __( 'Thank you for updating to the latest version! Redux Framework %s is a huge step forward in Redux Development. Look at all that\'s new.', 'accelerated-mobile-pages' ), $this->display_version ); ?></div>
     <div
         class="redux-badge"><i
             class="el el-redux"></i><span>
                 <?php /* translators: %s: version */
-            printf( __( 'Version %s', 'redux-framework' ), ReduxFramework::$_version ); ?></span>
+            printf( __( 'Version %s', 'accelerated-mobile-pages' ), ReduxFramework::$_version ); ?></span>
     </div>
 
     <?php $this->actions(); ?>
     <?php $this->tabs(); ?>
 
     <div id="redux-message" class="updated">
-        <h4><?php _e( 'What is Redux Framework?', 'redux-framework' ); ?></h4>
+        <h4><?php _e( 'What is Redux Framework?', 'accelerated-mobile-pages' ); ?></h4>
 
         <p><?php _e( 'Redux Framework is the core of many products on the web. It is an option framework which developers use to
-            enhance their products.', 'redux-framework' ); ?></p>
+            enhance their products.', 'accelerated-mobile-pages' ); ?></p>
 
         <p class="submit">
             <a class="button-primary" href="<?php echo 'http://';?>reduxframework.com"
-               target="_blank"><?php _e( 'Learn More', 'redux-framework' ); ?></a>
+               target="_blank"><?php _e( 'Learn More', 'accelerated-mobile-pages' ); ?></a>
         </p>
     </div>
 
     <div class="changelog">
 
-        <h2><?php _e( 'New in this Release', 'redux-framework' ); ?></h2>
+        <h2><?php _e( 'New in this Release', 'accelerated-mobile-pages' ); ?></h2>
 
         <div class="changelog about-integrations">
             <div class="wc-feature feature-section col three-col">

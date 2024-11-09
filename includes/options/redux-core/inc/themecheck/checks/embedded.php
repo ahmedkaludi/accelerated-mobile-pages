@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 if ( ! isset( $_POST['redux_wporg'] ) ) {
                     checkcount();
                     /* translators: %s: href */
-                    $this->error[] = '<div class="redux-error">' . sprintf( __( '<span class="tc-lead tc-recommended">RECOMMENDED</span>: If you are submitting to WordPress.org Theme Repository, it is <strong>strongly</strong> suggested that you read <a href="%s" target="_blank">this document</a>, or your theme will be rejected because of Redux.', 'redux-framework' ), 'https://docs.reduxframework.com/core/wordpress-org-submissions/' ) . '</div>';
+                    $this->error[] = '<div class="redux-error">' . sprintf( __( '<span class="tc-lead tc-recommended">RECOMMENDED</span>: If you are submitting to WordPress.org Theme Repository, it is <strong>strongly</strong> suggested that you read <a href="%s" target="_blank">this document</a>, or your theme will be rejected because of Redux.', 'accelerated-mobile-pages' ), 'https://docs.reduxframework.com/core/wordpress-org-submissions/' ) . '</div>';
                     $ret           = false;
                 } else {
                     // TODO Granular WP.org tests!!!
@@ -29,9 +29,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                     $args .= "<li><code>'save_defaults' => false</code></li>";
                     $args .= "<li><code>'use_cdn' => false</code></li>";
                     $args .= "<li><code>'customizer_only' => true</code> Non-Customizer Based Panels are Prohibited within WP.org Themes</li>";
-                    $args .= "<li><code>'database' => 'theme_mods'</code> (" . __( 'Optional', 'redux-framework' ) . ")</li>";
+                    $args .= "<li><code>'database' => 'theme_mods'</code> (" . __( 'Optional', 'accelerated-mobile-pages' ) . ")</li>";
                     $args .= '</ol>';
-                    $this->error[] = '<div class="redux-error">' . __( '<span class="tc-lead tc-recommended">RECOMMENDED</span>: The following arguments MUST be used for WP.org submissions, or you will be rejected because of your Redux configuration.', 'redux-framework' ) . $args . '</div>';
+                    $this->error[] = '<div class="redux-error">' . __( '<span class="tc-lead tc-recommended">RECOMMENDED</span>: The following arguments MUST be used for WP.org submissions, or you will be rejected because of your Redux configuration.', 'accelerated-mobile-pages' ) . $args . '</div>';
 
 
                 }

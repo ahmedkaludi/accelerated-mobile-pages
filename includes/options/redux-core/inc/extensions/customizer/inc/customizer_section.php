@@ -121,7 +121,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                             ),
                         ) );
                     ?>
-                    <span class="screen-reader-text"><?php esc_attr_e( 'Press return or enter to expand', 'redux-framework' ); ?></span>
+                    <span class="screen-reader-text"><?php esc_attr_e( 'Press return or enter to expand', 'accelerated-mobile-pages' ); ?></span>
                 </h3>
                 <ul class="accordion-section-content redux-main">
                     <?php

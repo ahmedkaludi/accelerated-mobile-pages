@@ -197,7 +197,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_demolink_image_s
             } else {
 
                 // No options specified.  Really?
-                echo '<strong>' . esc_html__( 'No items of this type were found.', 'redux-framework' ) . '</strong>';
+                echo '<strong>' . esc_html__( 'No items of this type were found.', 'accelerated-mobile-pages' ) . '</strong>';
             }
         } //function
 
