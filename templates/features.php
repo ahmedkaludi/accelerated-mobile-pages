@@ -5549,7 +5549,12 @@ if( ! function_exists('ampforwp_get_comments_gravatar') ){
 		}
 
 		$gravatar_exists = ampforwp_gravatar_checker($comment->comment_author_email);
-
+		if(class_exists('SimpleUserAvatar_Public')){
+			 $id_or_email = strtolower(trim($comment->comment_author_email));
+			$avatar = get_avatar_url($comment, apply_filters('ampforwp_get_comments_gravatar', '60'), '');
+			$avatar  = ampforwp_simple_user_avatar_compatibility($avatar,$id_or_email);
+			return $avatar;
+		}
 		if (null !== ampforwp_get_wp_user_avatar($comment, 'comment')) {
 			return ampforwp_get_wp_user_avatar($comment, 'comment');
 		} elseif ($gravatar_exists) {
@@ -5558,6 +5563,19 @@ if( ! function_exists('ampforwp_get_comments_gravatar') ){
 			return apply_filters('ampforwp_get_comments_gravatar', '');
 		}
 	}
+}
+function ampforwp_simple_user_avatar_compatibility($avatar,$id_or_email){
+		$user = get_user_by('email', $id_or_email);
+		$user_id = (int)$user->ID;
+		$attachment_id = get_user_meta($user_id, SUA_USER_META_KEY, true);
+		if (empty($attachment_id) || !is_numeric($attachment_id)) {
+		  return $avatar;
+		}
+		$attachment_src = wp_get_attachment_image_src($attachment_id, 'medium');
+		if ($attachment_src !== false && !empty($attachment_src)) {
+		  $avatar = $attachment_src[0];
+		}
+		return $avatar;
 }
 // Gravatar Checker
 if ( ! function_exists('ampforwp_gravatar_checker') ) {
