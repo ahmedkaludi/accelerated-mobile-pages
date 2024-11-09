@@ -102,7 +102,7 @@ function ampforwp_get_search_form() {
 <input type="text" placeholder="AMP" value="'.esc_attr($amp_query_variable_val).'" name="'.esc_attr($amp_query_variable).'" class="hide" id="ampforwp_search_query_item" />
 <input type="text" placeholder="'.esc_attr($placeholder).'" value="' . esc_attr($value).'" name="'.esc_attr($name).'" id="s" />
 <label aria-label="Submit amp search" for="amp-search-submit" >
-<input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+<input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button', 'accelerated-mobile-pages' ) .'" />
 </label>
 </div>
 </form>';

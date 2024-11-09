@@ -302,7 +302,7 @@ namespace ReduxCore\ReduxFramework;
                         if ( $core_version && $developer_version && version_compare( $developer_version, $core_version, '<' ) ) {
                             ?>
                             <div id="message" class="error redux-message">
-                                <p><?php _e( '<strong>Your panel has bundled outdated copies of Redux Framework template files</strong> &#8211; if you encounter functionality issues this could be the reason. Ensure you update or remove them.', 'accelerated-mobile-pages' ); ?></p>
+                                <p><strong><?php esc_html_e( 'Your panel has bundled outdated copies of Redux Framework template files', 'accelerated-mobile-pages' ); ?></strong> – <?php esc_html_e( 'if you encounter functionality issues this could be the reason. Ensure you update or remove them.', 'accelerated-mobile-pages' ); ?></p>
                             </div>
                             <?php
                             return;

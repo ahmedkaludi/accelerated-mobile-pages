@@ -8058,7 +8058,7 @@ else{
                     'class' => 'child_opt child_opt_arrow',
                     'title'     => esc_html__('Image', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop'),
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop', 'accelerated-mobile-pages' ),
                     'required' => array('ampforwp-pages-recent-posts' , '=' , '1'),
                  ),
              array(

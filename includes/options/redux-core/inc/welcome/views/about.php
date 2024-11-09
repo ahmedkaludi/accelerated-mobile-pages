@@ -21,20 +21,20 @@
     <?php $this->tabs(); ?>
 
     <div id="redux-message" class="updated">
-        <h4><?php _e( 'What is Redux Framework?', 'accelerated-mobile-pages' ); ?></h4>
+        <h4><?php esc_html_e( 'What is Redux Framework?', 'accelerated-mobile-pages' ); ?></h4>
 
-        <p><?php _e( 'Redux Framework is the core of many products on the web. It is an option framework which developers use to
+        <p><?php esc_html_e( 'Redux Framework is the core of many products on the web. It is an option framework which developers use to
             enhance their products.', 'accelerated-mobile-pages' ); ?></p>
 
         <p class="submit">
             <a class="button-primary" href="<?php echo 'http://';?>reduxframework.com"
-               target="_blank"><?php _e( 'Learn More', 'accelerated-mobile-pages' ); ?></a>
+               target="_blank"><?php esc_html_e( 'Learn More', 'accelerated-mobile-pages' ); ?></a>
         </p>
     </div>
 
     <div class="changelog">
 
-        <h2><?php _e( 'New in this Release', 'accelerated-mobile-pages' ); ?></h2>
+        <h2><?php esc_html_e( 'New in this Release', 'accelerated-mobile-pages' ); ?></h2>
 
         <div class="changelog about-integrations">
             <div class="wc-feature feature-section col three-col">
