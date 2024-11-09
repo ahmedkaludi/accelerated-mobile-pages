@@ -3488,11 +3488,12 @@ function ampforwp_add_modified_date($post_object){
 				$date_notice_type = ampforwp_get_setting('ampforwp-post-date-notice-type');
 				if( $date_notice_type == "modified" && $post_object->get( 'post_modified_timestamp' ) !== $post_object->get( 'post_publish_timestamp' ) ){
 					$date_notice_text = ampforwp_get_setting('amp-translator-modified-date-text');
+					
 					$date = $post_object->get( 'post_modified_timestamp' );
 					echo esc_html(
 						sprintf(
 							/* translators: %s: date */
-							 ampforwp_translation( $date_notice_text ,'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference',
+							 ampforwp_translation( $date_notice_text ,'This article was last modified on ' ) . ' %s ',
 							date_i18n( get_option( 'date_format' ) , $date )
 						)
 					);
@@ -3506,12 +3507,12 @@ function ampforwp_add_modified_date($post_object){
 					echo esc_html(
 						sprintf(
 							/* translators: %s: date */
-							 ampforwp_translation( $date_notice_text ,'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference',
+							 ampforwp_translation( $date_notice_text ,'This article was last modified on ' ) . ' %s ',
 							date_i18n( get_option( 'date_format' ) , $date )
 						)
 					);
 					if(true == ampforwp_get_setting('ampforwp-post-date-notice-time')){
-						echo esc_attr(get_the_time());
+						echo get_the_time();
 					}
 				}
 			?>
@@ -3766,7 +3767,7 @@ function ampforwp_frontpage_comments() {
 										<!-- .comment-author -->
 										<div class="cmt-metadata">
 											<a href="<?php echo esc_url(untrailingslashit( htmlspecialchars( get_comment_link( $comment->comment_ID ) ) )) ?>">
-												<?php printf( esc_html(ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s')) , esc_attr(get_comment_date()),  esc_attr(get_comment_time()))?>
+												<?php printf( esc_html(ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s')) , get_comment_date(),  get_comment_time())?>
 											</a>
 											<?php edit_comment_link( esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  )) ?>
 										</div>
