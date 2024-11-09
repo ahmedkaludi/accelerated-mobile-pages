@@ -3026,14 +3026,14 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'fb-instant-article-custom-iframe-ad',
                         'type'     => 'text',
                         'placeholder'=> 'https://www.adserver.com/ss',
-                        'title'    => esc_html__('Enter your Custom iframe ad source URL'),
+                        'title'    => esc_html__('Enter your Custom iframe ad source URL', 'accelerated-mobile-pages' ),
                         'required'  => array('fb-instant-article-ad-type', '=', '2')
                     ),
                     array(
                         'id'       => 'fb-instant-article-custom-embed-ad',
                         'type'     => 'textarea',
                         'placeholder'=> '',
-                        'title'    => esc_html__('Enter your Custom Embed ad code'),
+                        'title'    => esc_html__('Enter your Custom Embed ad code', 'accelerated-mobile-pages' ),
                         'required'  => array('fb-instant-article-ad-type', '=', '3')
                     ),
                     array(
@@ -3083,7 +3083,7 @@ Redux::setSection( $opt_name, array(
                  array(
                         'id'        =>'hide-amp-ia-categories',
                         'type'      => 'select',
-                        'title'     => esc_html__('Select Categories to Hide in IA'),
+                        'title'     => esc_html__('Select Categories to Hide in IA', 'accelerated-mobile-pages' ),
                         'tooltip-subtitle' => esc_html__( 'Hide IA from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true, 
                         'ajax'      => true, 
@@ -3191,7 +3191,7 @@ Redux::setSection( $opt_name, array(
                         array(
                         'id'        =>'hide-amp-categories2',
                         'type'      => 'select',
-                        'title'     => esc_html__('Select Categories to Hide AMP posts'),
+                        'title'     => esc_html__('Select Categories to Hide AMP posts', 'accelerated-mobile-pages' ),
                         'tooltip-subtitle' => esc_html__( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'multi'     => true, 
                         'ajax'      => true,
@@ -3202,7 +3202,7 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'        =>'hide-amp-tags-bulk-option2',
                         'type'      => 'select',
-                        'title'     => esc_html__('Select Tags to Hide AMP posts'),
+                        'title'     => esc_html__('Select Tags to Hide AMP posts', 'accelerated-mobile-pages' ),
                         'tooltip-subtitle' => esc_html__( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                         'multi'     => true,
                         'ajax'      => true,
@@ -3537,7 +3537,7 @@ Redux::setSection( $opt_name, array(
                      array(
                         'id'       => 'ampforwp-development-mode',
                         'type'     => 'switch',
-                        'title'    => esc_html__('Dev Mode in AMP'),
+                        'title'    => esc_html__('Dev Mode in AMP', 'accelerated-mobile-pages' ),
                         'tooltip-subtitle' => esc_html__('This will enable the Development mode in AMP', 'accelerated-mobile-pages'),
                         'true'      => 'true',
                         'false'     => 'false',
@@ -3555,7 +3555,7 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'ampforwp-wptexturize',
                         'type'     => 'switch',
-                        'title'    => esc_html__('Disable wptexturize'),
+                        'title'    => esc_html__('Disable wptexturize', 'accelerated-mobile-pages' ),
                         'tooltip-subtitle' => esc_html__('Enable this option to Disable wptexturize Globally', 'accelerated-mobile-pages'),
                         'true'      => 'true',
                         'false'     => 'false',
@@ -3577,7 +3577,7 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'switch',
                          'title'    => esc_html__('Delete Data on Uninstall?', 'accelerated-mobile-pages'),
                         'default'   => 0,
-                        'tooltip-subtitle'      => esc_html__('Enable this if you would like AMPforWP to completely remove all of its data when uninstalling via Plugins > Delete.'),
+                        'tooltip-subtitle'      => esc_html__('Enable this if you would like AMPforWP to completely remove all of its data when uninstalling via Plugins > Delete.', 'accelerated-mobile-pages' ),
                     ),
    ),
 
@@ -6342,14 +6342,14 @@ Redux::setSection( $opt_name, array(
                     'type'      => 'switch',
                     'title'     => esc_html__('Date in Loop', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop'),
+                    'tooltip-subtitle'  => esc_html__('Enabel this option to show data below each post of Home page loop', 'accelerated-mobile-pages' ),
                 ),
                 array(
                     'id'        => 'amforwp-homepage-author-switch',
                     'type'      => 'switch',
                     'title'     => esc_html__('Author Name in Loop', 'accelerated-mobile-pages'),
                     'default'   => 0,
-                    'tooltip-subtitle'  => esc_html__('Enabel this option to show author name below each post of Home page loop'),
+                    'tooltip-subtitle'  => esc_html__('Enabel this option to show author name below each post of Home page loop', 'accelerated-mobile-pages' ),
                 ),
         )
     ));
@@ -6708,7 +6708,7 @@ $single_page_options = array(
                     'class' => 'child_opt child_opt_arrow',
                     'title'     => esc_html__('Recent Posts Date', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop', 'accelerated-mobile-pages' ),
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
         array(
@@ -6717,7 +6717,7 @@ $single_page_options = array(
                     'class' => 'child_opt child_opt_arrow',
                     'title'     => esc_html__('Image', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop'),
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop', 'accelerated-mobile-pages' ),
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
         array(
@@ -6726,7 +6726,7 @@ $single_page_options = array(
                     'class' => 'child_opt child_opt_arrow',
                     'title'     => esc_html__('Excerpt', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop'),
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop', 'accelerated-mobile-pages' ),
                     'required' => array('ampforwp-swift-recent-posts' , '=' , '1'),
             ),
         array(
@@ -7020,7 +7020,7 @@ $single_page_options = array(
                         'class' => 'child_opt child_opt_arrow',
                         'title'     => esc_html__('Recent Posts Date', 'accelerated-mobile-pages'),
                         'default'   => 1,
-                        'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
+                        'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop', 'accelerated-mobile-pages' ),
                         'required' => array('ampforwp-design3-recent-posts' , '=' , '1'),
                 ),
             array(
@@ -7029,7 +7029,7 @@ $single_page_options = array(
                         'class' => 'child_opt child_opt_arrow',
                         'title'     => esc_html__('Image', 'accelerated-mobile-pages'),
                         'default'   => 1,
-                        'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop'),
+                        'tooltip-subtitle'  => esc_html__('Enable this option to show image for each post of Recent post loop', 'accelerated-mobile-pages' ),
                         'required' => array('ampforwp-design3-recent-posts' , '=' , '1'),
                 ),
             array(
@@ -7038,7 +7038,7 @@ $single_page_options = array(
                     'class' => 'child_opt child_opt_arrow',
                     'title'     => esc_html__('Excerpt', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop'),
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop', 'accelerated-mobile-pages' ),
                     'required' => array('ampforwp-design3-recent-posts' , '=' , '1'),
             ),
              array(
@@ -7542,7 +7542,7 @@ else{
                   'class'    => 'child_opt child_opt_arrow',
                   'default'  =>  0,
                   'title'    => esc_html__('Not redirecting to Non-AMP? Enable it', 'accelerated-mobile-pages'),
-                  'tooltip-subtitle' => esc_html__('Enable this option if View Non-AMP Version link does not work properly, due to server configuration or server cache'),
+                  'tooltip-subtitle' => esc_html__('Enable this option if View Non-AMP Version link does not work properly, due to server configuration or server cache', 'accelerated-mobile-pages' ),
                   'required' => array('amp-footer-link-non-amp-page','=','1'),
                 ),
                 array(
@@ -8002,7 +8002,7 @@ else{
                   'type'     => 'switch',
                   'default'  =>  '0',
                   'title'    => esc_html__('Featured Image', 'accelerated-mobile-pages'),
-                  'tooltip-subtitle' => esc_html__('Enable Featured Image on Pages.'),
+                  'tooltip-subtitle' => esc_html__('Enable Featured Image on Pages.', 'accelerated-mobile-pages' ),
                   'required' => array('amp-design-selector','=','4'),
             ),
             array(
@@ -8011,7 +8011,7 @@ else{
                   'class'    => 'child_opt child_opt_arrow',
                   'default'  =>  '1',
                   'title'    => esc_html__('Featured Image on Pagebuilder', 'accelerated-mobile-pages'),
-                  'tooltip-subtitle' => esc_html__('Enable Featured Image on Pagebuilder Pages.'),
+                  'tooltip-subtitle' => esc_html__('Enable Featured Image on Pagebuilder Pages.', 'accelerated-mobile-pages' ),
                   'required' => array('featured_image_swift_page','=','1'),
             ),
             array(
@@ -8032,7 +8032,7 @@ else{
                       'type'     => 'switch',
                       'default'  =>  '0',
                       'title'    => esc_html__('Subpages/ChildPages', 'accelerated-mobile-pages'),
-                      'tooltip-subtitle' => esc_html__('Shows a List of Subpages'),                  
+                      'tooltip-subtitle' => esc_html__('Shows a List of Subpages', 'accelerated-mobile-pages' ),                  
                   ),
              array(
                     'id'       => 'ampforwp-pages-recent-posts',
@@ -8049,7 +8049,7 @@ else{
                     'class' => 'child_opt child_opt_arrow',
                     'title'     => esc_html__('Recent Posts Date', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop'),
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show data below each post of Recent post loop', 'accelerated-mobile-pages' ),
                     'required' => array('ampforwp-pages-recent-posts' , '=' , '1'),
                  ),
              array(
@@ -8067,7 +8067,7 @@ else{
                     'class' => 'child_opt child_opt_arrow',
                     'title'     => esc_html__('Excerpt', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop'),
+                    'tooltip-subtitle'  => esc_html__('Enable this option to show excerpt for each post of Recent post loop', 'accelerated-mobile-pages' ),
                     'required' => array('ampforwp-pages-recent-posts' , '=' , '1'),
                  ),
              array(
@@ -8097,14 +8097,14 @@ else{
                       'type'     => 'switch',
                       'default'  =>  '0',
                       'title'    => esc_html__('Social Icons', 'accelerated-mobile-pages'),
-                      'tooltip-subtitle' => esc_html__('Enable Social Sharing on Pages'),                  
+                      'tooltip-subtitle' => esc_html__('Enable Social Sharing on Pages', 'accelerated-mobile-pages' ),                  
                   ),
              array(
                       'id'       => 'ampforwp-page-sticky-social',
                       'type'     => 'switch',
                       'default'  =>  '0',
                       'title'    => esc_html__('Sticky Social Icons', 'accelerated-mobile-pages'),
-                      'tooltip-subtitle' => esc_html__('Enable Social Sticky Icons on Pages'),                  
+                      'tooltip-subtitle' => esc_html__('Enable Social Sticky Icons on Pages', 'accelerated-mobile-pages' ),                  
                   ),
             )
     ));
@@ -8416,7 +8416,7 @@ else{
               'type'      =>  'switch',
               'class' => 'child_opt',
               'title'     =>  esc_html__('Pretty Permalinks for X Share?', 'accelerated-mobile-pages'),
-              'tooltip-subtitle'  => esc_html__('Enable this to have pretty links for twitter sharing'),
+              'tooltip-subtitle'  => esc_html__('Enable this to have pretty links for twitter sharing', 'accelerated-mobile-pages' ),
               'default'   =>  0,
               'required'  => array('enable-single-twitter-share', '=' , '1'),
           ),

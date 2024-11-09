@@ -92,7 +92,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                'class' => 'child_opt child_opt_arrow',
                'title'     => esc_html__('Want to clear the Cache?', 'accelerated-mobile-pages'),
                'content'   => "<span class='button button-primary button-small' id='ampforwp-clear-clearcss-data' target='_blank'  data-nonce='".wp_create_nonce( 'ampforwp_clear_tree_shaking')."'><i class='el el-trash'></i> Clear Cache</span><span id='ampforwp-clear-clcss-msg' ></span>",
-               'tooltip-subtitle' => esc_html__('This will remove all the generated cache.', 'amp-pagebuilder-compatibility'),
+               'tooltip-subtitle' => esc_html__( 'This will remove all the generated cache.', 'accelerated-mobile-pages' ),
                'full_width' => false,
                'section_id'=>'amp-content-builder',
                'required'=>array('ampforwp_css_tree_shaking','=','1')

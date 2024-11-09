@@ -41,7 +41,7 @@ function ampforwp_framework_get_search_form() {
 					<label aria-label="search text"  for="search-text-'.esc_attr($rand).'"></label>
 					<input id="search-text-'.esc_attr($rand).'" type="text" placeholder="'.esc_attr($placeholder,'accelerated-mobile-pages').'" value="' . esc_attr($value).'" name="'.esc_attr($name).'" class="s" />
 					<label aria-label="Submit amp search" for="amp-search-submit" >
-						<input type="submit" class="icon-search" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+						<input type="submit" class="icon-search" value="'. esc_attr_x( 'Search', 'submit button', 'accelerated-mobile-pages' ) .'" />
 					</label>
 					<div class="overlay-search">
 					</div>

@@ -452,7 +452,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=> 'radio',
 								'name'		=> "mobile_display",
-								'label'		=> esc_html__('Mobile Display'),
+								'label'		=> esc_html__( 'Mobile Display', 'accelerated-mobile-pages' ),
 								'tab'		=> 'customizer',
 								'default'	=> 'stack',
 								'options'	=> array(

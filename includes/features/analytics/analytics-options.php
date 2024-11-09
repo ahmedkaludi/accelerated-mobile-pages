@@ -15,7 +15,7 @@ function ampforwp_get_default_analytics($param=""){
 function ampforwp_analytics_options($opt_name){
   // Analytics SECTION
    Redux::setSection( $opt_name,    array(
-                'title' => esc_html__('Analytics'),
+                'title' => esc_html__( 'Analytics', 'accelerated-mobile-pages' ),
                 // 'icon' => 'el el-th-large',
                 'id' => 'analytics',
                 'subsection' => true,

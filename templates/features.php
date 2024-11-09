@@ -491,7 +491,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		if ( $amp_url ) {
 			printf('<link rel="amphtml" href="%s" />', esc_url($amp_url));
 			if(false==ampforwp_get_setting('hide-amp-version-from-source')){
-				printf('<meta name="generator" content="%s %s"/>', esc_html__('AMP for WP'), esc_attr(AMPFORWP_VERSION) );
+				printf('<meta name="generator" content="%s %s"/>', esc_html__( 'AMP for WP', 'accelerated-mobile-pages' ), esc_attr(AMPFORWP_VERSION) );
 			}
 		}
 
@@ -904,7 +904,7 @@ function ampforwp_title_callback( $post ) {
 		echo sprintf(('<p class="afp"><b> %s </b> <a class="" target= "_blank" href="%s">%s</a></p>'), esc_html__('We have detected that you have not setup the FrontPage for AMP,','accelerated-mobile-pages'),esc_url(admin_url("admin.php?page=amp_options&tabid=opt-text-subsection#redux_builder_amp-ampforwp-homepage-on-off-support")),esc_html__('Click here to setup','accelerated-mobile-pages'));
 	}
 	if ( true == $redux_builder_amp['amp-frontpage-select-option'] && $post->ID == $redux_builder_amp['amp-frontpage-select-option-pages'] ) {
-		echo sprintf('<p>%s</p>', esc_html__('AMP FrontPage'));
+		echo sprintf('<p>%s</p>', esc_html__('AMP FrontPage', 'accelerated-mobile-pages' ));
 	}
 }
 
@@ -8319,7 +8319,7 @@ function ampforwp_head_css(){
 				'query-monitor',
 				'qm_l10n',
 				array(
-					'ajax_error' => __( 'PHP Errors in Ajax Response', 'query-monitor' ),
+					'ajax_error' => esc_html__( 'PHP Errors in Ajax Response', 'accelerated-mobile-pages' ),
 					'ajaxurl'    => admin_url( 'admin-ajax.php' ),
 					'auth_nonce' => array(
 						'on'         => wp_create_nonce( 'qm-auth-on' ),

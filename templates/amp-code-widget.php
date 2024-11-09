@@ -71,12 +71,12 @@ class AMPFORWP_AMP_Code_Widget extends WP_Widget {
       <# var elementIdPrefix = 'el' + String( Math.random() ).replace( /\D/g, '' ) + '_' #>
 
       <p>
-        <label for="{{ elementIdPrefix }}title"><?php esc_html_e( 'Title:' ); ?></label>
+        <label for="{{ elementIdPrefix }}title"><?php esc_html_e( 'Title:', 'accelerated-mobile-pages' ); ?></label>
         <input id="{{ elementIdPrefix }}title" type="text" class="widefat title">
       </p>
 
       <p>
-        <label for="{{ elementIdPrefix }}content" id="{{ elementIdPrefix }}content-label"><?php esc_html_e( 'Content:' ); ?></label>
+        <label for="{{ elementIdPrefix }}content" id="{{ elementIdPrefix }}content-label"><?php esc_html_e( 'Content:', 'accelerated-mobile-pages' ); ?></label>
         <textarea id="{{ elementIdPrefix }}content" class="widefat code content" rows="16" cols="20"></textarea>
       </p>
 
