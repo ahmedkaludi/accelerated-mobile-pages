@@ -2540,7 +2540,7 @@ add_action('amp_post_template_head','ampforwp_header_html_output',11);
 function ampforwp_header_html_output() {
  	if( ampforwp_get_setting('ampforwp-seo-custom-additional-meta') ){
 		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo wp_strip_all_tags( ampforwp_get_setting('ampforwp-seo-custom-additional-meta'), '<link><meta>' );
+		echo strip_tags( ampforwp_get_setting('ampforwp-seo-custom-additional-meta'), '<link><meta>' );
 	}
   if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
   		$allhtml = ampforwp_get_setting('amp-header-text-area-for-html');
