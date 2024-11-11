@@ -10198,7 +10198,7 @@ add_action('wp_ajax_ampforwp_search_infinite_scroll_post','ampforwp_search_infin
 add_action('wp_ajax_nopriv_ampforwp_search_infinite_scroll_post','ampforwp_search_infinite_scroll_post');
 function ampforwp_search_infinite_scroll_post(){
     if( isset( $_POST[ 'security' ] ) && wp_verify_nonce( $_POST[ 'security' ],'ampforwp_filtered_post_nounce') ){
-		$this_id = esc_attr(sanitize_text_field($_POST[ 'this_id' ]));
+		$this_id = sanitize_text_field($_POST[ 'this_id' ]);
 		$search = sanitize_text_field($_POST[ 'search' ]);
 		$exclude_id[] = $this_id;
 		$args = array("post_type" => "post", "s" => $search,"post__not_in"=>$exclude_id);
