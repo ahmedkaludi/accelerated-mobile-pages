@@ -10198,34 +10198,36 @@ add_action('wp_ajax_ampforwp_search_infinite_scroll_post','ampforwp_search_infin
 add_action('wp_ajax_nopriv_ampforwp_search_infinite_scroll_post','ampforwp_search_infinite_scroll_post');
 function ampforwp_search_infinite_scroll_post(){
     if( isset( $_POST[ 'security' ] ) && wp_verify_nonce( $_POST[ 'security' ],'ampforwp_filtered_post_nounce') ){
-		$this_id = $_POST[ 'this_id' ];
-		$search = $_POST[ 'search' ];
+		$this_id = esc_attr(sanitize_text_field($_POST[ 'this_id' ]));
+		$search = sanitize_text_field($_POST[ 'search' ]);
 		$exclude_id[] = $this_id;
-		$args = array("post_type" => "post", "s" => $search,"post__not_in"=>$exclude_id);
+		$args = array("post_type" => "post", "s" => esc_attr($search),"post__not_in"=>$exclude_id);
 		$query = get_posts( $args );
 		$post_data = array();
 		foreach ($query as $key => $value) {
 			$post_data[] = $value; 
 		}
-		echo json_encode($post_data);
-		die;
+		echo wp_json_encode($post_data);
 	}
+	die;
 }
 
 add_action('wp_ajax_ampforwp_infinite_scroll_post_ajax','ampforwp_infinite_scroll_post_ajax');
 add_action('wp_ajax_nopriv_ampforwp_infinite_scroll_post_ajax','ampforwp_infinite_scroll_post_ajax');
 function ampforwp_infinite_scroll_post_ajax(){
-   // if( isset( $_POST[ 'security' ] ) && wp_verify_nonce( $_POST[ 'security' ],'ampforwp_filtered_post_nounce') ){
-		$search = $_POST[ 'q' ];
-		$exclude_id[] = $this_id;
-		$args = array("post_type" => "post", "s" => $search);
-		$query = get_posts( $args );
-		if ( $query ) :
-			foreach ($query as $value ) {
-					$return[] = array($value->ID,$value->post_title);// array( Cat ID, Cat Name )
-			}
-		endif;
-		wp_send_json( $return );
-		
-	//}
+	$ampforwp_nonce = wp_create_nonce( 'ampforwp-verify-request' );
+	if(!wp_verify_nonce($ampforwp_nonce,'ampforwp-verify-request') ){
+	   echo wp_json_encode(array('status'=>403,'message'=>esc_html__('user request is not allowed','accelerated-mobile-pages'))) ;
+	   die;
+   	}
+	$search = sanitize_text_field($_POST[ 'q' ]);
+	$args = array("post_type" => "post", "s" => esc_attr($search));
+	$query = get_posts( $args );
+	if ( $query ) :
+		foreach ($query as $value ) {
+				$return[] = array($value->ID,$value->post_title);// array( Cat ID, Cat Name )
+		}
+	endif;
+	wp_send_json( $return );
+	die;
 }
