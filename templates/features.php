@@ -10201,11 +10201,13 @@ function ampforwp_search_infinite_scroll_post(){
 		$this_id = esc_attr(sanitize_text_field($_POST[ 'this_id' ]));
 		$search = sanitize_text_field($_POST[ 'search' ]);
 		$exclude_id[] = $this_id;
-		$args = array("post_type" => "post", "s" => esc_attr($search),"post__not_in"=>$exclude_id);
+		$args = array("post_type" => "post", "s" => $search,"post__not_in"=>$exclude_id);
 		$query = get_posts( $args );
 		$post_data = array();
-		foreach ($query as $key => $value) {
-			$post_data[] = $value; 
+		if($query){
+			foreach ($query as $key => $value) {
+				$post_data[] = $value; 
+			}
 		}
 		echo wp_json_encode($post_data);
 	}
@@ -10215,19 +10217,16 @@ function ampforwp_search_infinite_scroll_post(){
 add_action('wp_ajax_ampforwp_infinite_scroll_post_ajax','ampforwp_infinite_scroll_post_ajax');
 add_action('wp_ajax_nopriv_ampforwp_infinite_scroll_post_ajax','ampforwp_infinite_scroll_post_ajax');
 function ampforwp_infinite_scroll_post_ajax(){
-	$ampforwp_nonce = wp_create_nonce( 'ampforwp-verify-request' );
-	if(!wp_verify_nonce($ampforwp_nonce,'ampforwp-verify-request') ){
-	   echo wp_json_encode(array('status'=>403,'message'=>esc_html__('user request is not allowed','accelerated-mobile-pages'))) ;
-	   die;
-   	}
-	$search = sanitize_text_field($_POST[ 'q' ]);
-	$args = array("post_type" => "post", "s" => esc_attr($search));
-	$query = get_posts( $args );
-	if ( $query ) :
-		foreach ($query as $value ) {
-				$return[] = array($value->ID,$value->post_title);// array( Cat ID, Cat Name )
-		}
-	endif;
-	wp_send_json( $return );
+	if( isset( $_GET[ 'security' ] ) && isset($_GET[ 'security' ]['security']) && wp_verify_nonce($_GET[ 'security' ]['security'],'ampforwp-verify-request') ){
+		$search = sanitize_text_field($_GET[ 'q' ]);
+		$args = array("post_type" => "post", "s" => $search);
+		$query = get_posts( $args );
+		if ( $query ) :
+			foreach ($query as $value ) {
+					$return[] = array($value->ID,$value->post_title);// array( Cat ID, Cat Name )
+			}
+		endif;
+		wp_send_json( $return );
+	}
 	die;
 }
