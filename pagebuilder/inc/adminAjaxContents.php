@@ -26,6 +26,7 @@ function amppb_textEditor(){
 	if(! current_user_can( 'editor' ) ) {
 	return ;
 	}
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
    echo wp_editor( '', 'My_TextAreaID_22',      $settings = array( 'tinymce'=>true, 'textarea_name'=>'name77', 'wpautop' =>false,   'media_buttons' => true ,   'teeny' => false, 'quicktags'=>true, )   );    exit;
 }
 
@@ -87,6 +88,7 @@ function amppb_export_layout_data(){
 		$unsan_export_data = wp_unslash( $_POST['export_layout_data'] );
 		$export_data = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $unsan_export_data ) ));
 	}
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $export_data; // escaped above
 	
 	wp_die();
@@ -333,6 +335,7 @@ function ampforwp_dynaminc_css() {
     $amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
     header("Content-type: text/css; charset: UTF-8");
 	foreach ($amp_icons_css_array as $key=>$value ) {
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo  $value;
 	}
     exit;

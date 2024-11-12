@@ -103,7 +103,7 @@ namespace ReduxCore\ReduxFramework;
 
                 // $this->field['type'] && $this->field['id'] is sanitized in the ReduxFramework class, no need to re-sanitize it.
                 ?>
-                   <h4><?php esc_html_e( 'Export Options', 'redux-framework' ) ?></h4>
+                   <h4><?php esc_html_e( 'Export Options', 'accelerated-mobile-pages' ) ?></h4>
 
                     <div>
                         <p class="description">
@@ -114,7 +114,7 @@ namespace ReduxCore\ReduxFramework;
                 // $this->parent->args['opt_name'] is sanitized in the ReduxFramework class, no need to re-sanitize it.
                 $link = admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name'] . '&secret=' . $secret ) ;
                 ?>
-                    <p class="hide"><?php esc_html_e( 'Copy Data To Export All Your Settings', 'redux-framework' ) ?></p>              
+                    <p class="hide"><?php esc_html_e( 'Copy Data To Export All Your Settings', 'accelerated-mobile-pages' ) ?></p>              
                     <p></p>
                     <?php
                         $backup_options = get_option('redux_builder_amp');
@@ -122,11 +122,11 @@ namespace ReduxCore\ReduxFramework;
                         $content = wp_json_encode( $backup_options );
                     ?>
                     <textarea class="large-text noUpdate hide" id="redux-export-code" rows="10" readonly="true"><?php echo $content;//it's json encode content.?></textarea>
-                    <a href="<?php echo esc_url($link); ?>" id="redux-export-code-dl" class="button-primary"><?php esc_html_e( 'Export Data File', 'redux-framework' ) ?></a>&nbsp;&nbsp;
+                    <a href="<?php echo esc_url($link); ?>" id="redux-export-code-dl" class="button-primary"><?php esc_html_e( 'Export Data File', 'accelerated-mobile-pages' ) ?></a>&nbsp;&nbsp;
                     <span  class="description">
                     <?php echo esc_html( apply_filters( 'redux-backup-description', __( 'Download a backup file of your settings', 'accelerated-mobile-pages' ) ) ) ?>
                     </span >
-                    <h4><?php esc_html_e( 'Import Options', 'redux-framework' ); ?></h4>
+                    <h4><?php esc_html_e( 'Import Options', 'accelerated-mobile-pages' ); ?></h4>
                     <p class="description">
                        Here you can import your option settings file. Please download your existing settings as backup before import.
                     </p>
@@ -136,11 +136,11 @@ namespace ReduxCore\ReduxFramework;
                         <textarea id="import-code-value" name="<?php echo $this->parent->args['opt_name']; ?>[import_code]" class="large-text noUpdate" rows="10"></textarea>
                     </div>
                      <p id="redux-import-action">
-                        <input type="submit" id="redux-import" name="import" class="button-primary hide" value="<?php esc_html_e( 'Import', 'redux-framework' ) ?>">
-                        <input type="button" id="redux-import-from-file" name="import_from_file" class="button-primary" value="<?php esc_html_e( 'Import From File', 'redux-framework' ) ?>">&nbsp;&nbsp;
+                        <input type="submit" id="redux-import" name="import" class="button-primary hide" value="<?php esc_html_e( 'Import', 'accelerated-mobile-pages' ) ?>">
+                        <input type="button" id="redux-import-from-file" name="import_from_file" class="button-primary" value="<?php esc_html_e( 'Import From File', 'accelerated-mobile-pages' ) ?>">&nbsp;&nbsp;
                         <input type="file" id="redux-import-file-type" accept=".json">
                         <input type="hidden" id="ampforwp_import_nonce" value="<?php $nonce = wp_create_nonce('ampforwp_import_file'); echo $nonce;?>">
-                        <span><?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'redux-framework' ) ) ) ?></span></p>
+                        <span><?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'accelerated-mobile-pages' ) ) ) ?></span></p>
                         <p id="admin-import-file-name"></p>
 
                     <div class="hr"/>

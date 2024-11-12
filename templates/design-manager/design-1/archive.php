@@ -4,7 +4,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 global $redux_builder_amp, $wp,$wp_query; ?>
 <!doctype html>
-<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
+<html amp <?php 
+//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>
+>
 <head>
 	<meta charset="utf-8">
 	<?php do_action('amp_experiment_meta', $this); ?>
@@ -117,9 +120,19 @@ global $redux_builder_amp, $wp,$wp_query; ?>
 	        <?php 
 	        	$title_name = '<a href="'.esc_url( $ampforwp_amp_post_url ).'">'.get_the_title().'</a>';
 	        	if( ampforwp_default_logo() ){ ?>
-		        	<h2 class="amp-wp-title"><?php echo $title_name; //escaped above ?></h2>
+		        	<h2 class="amp-wp-title">
+						<?php 
+						//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo $title_name; //escaped above 
+						?>
+					</h2>
 				<?php }else{ ?>
-					<h3 class="amp-wp-title"><?php echo $title_name; //escaped above ?></h3>
+					<h3 class="amp-wp-title">
+						<?php 
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							echo $title_name; //escaped above 
+						?>
+					</h3>
 				<?php } ?>
 
 				<div class="amp-wp-content-loop">
@@ -157,8 +170,15 @@ global $redux_builder_amp, $wp,$wp_query; ?>
 		    <div class="amp-wp-content pagination-holder">
 
 		        <div id="pagination">
-		        	<?php if ( get_next_posts_link('next', $wp_query->max_num_pages) ){ ?><div class="next"><?php echo apply_filters('ampforwp_next_posts_link', get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ).'&raquo;', 0), $paged ) ?></div><?php }?>
-		        	<?php if ( get_previous_posts_link() ){ ?><div class="prev"><?php echo apply_filters( 'ampforwp_previous_posts_link', get_previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' )), $paged ); ?></div><?php }?>
+		        	<?php if ( get_next_posts_link('next', $wp_query->max_num_pages) ){ ?><div class="next">
+						<?php 
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							echo apply_filters('ampforwp_next_posts_link', get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ).'&raquo;', 0), $paged ) 
+						?></div><?php }?>
+		        	<?php if ( get_previous_posts_link() ){ ?><div class="prev">
+						<?php 
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							echo apply_filters( 'ampforwp_previous_posts_link', get_previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' )), $paged ); ?></div><?php }?>
 		            <div class="clearfix"></div>
 		        </div>
 

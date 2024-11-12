@@ -22,10 +22,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
 				$moduleJson = array('type'=> 'module','moduleDraggable'=>false ,'modulename'=>strtolower($module['name']),'moduleJson'=>$module);
     			echo '
     				<div 
-    					'.$conditioner.'="cell.type==\''.strtolower($module['name']).'\'
+    					'.esc_attr($conditioner).'="cell.type==\''.esc_attr(strtolower($module['name'])).'\'
     					 &&
     					  cellcontainer==cell.cell_container"
-    					 class="amp_mod amppb-module amppb-module-'.strtolower($module['name']).'"
+    					 class="amp_mod amppb-module amppb-module-'.esc_attr(strtolower($module['name'])).'"
                           :data-module_id="cell.cell_id"
 					>
 

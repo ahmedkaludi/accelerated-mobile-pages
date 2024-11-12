@@ -71,14 +71,14 @@ if ( ! defined( 'ABSPATH' ) ) {
             <li id="accordion-section-{{ data.id }}" class="redux-section accordion-section control-section control-section-{{ data.type }}">
                 <h3 class="accordion-section-title" tabindex="0">
                     {{ data.title }}
-                    <span class="screen-reader-text"><?php _e( 'Press return or enter to open', 'accelerated-mobile-pages' ); ?></span>
+                    <span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open', 'accelerated-mobile-pages' ); ?></span>
                 </h3>
                 <ul class="accordion-section-content redux-main">
 
                     <li class="customize-section-description-container">
                         <div class="customize-section-title">
                             <button class="customize-section-back" tabindex="-1">
-                                <span class="screen-reader-text"><?php _e( 'Back', 'accelerated-mobile-pages' ); ?></span>
+                                <span class="screen-reader-text"><?php esc_html_e( 'Back', 'accelerated-mobile-pages' ); ?></span>
                             </button>
                             <h3>
 							<span class="customize-action">
@@ -121,7 +121,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                             ),
                         ) );
                     ?>
-                    <span class="screen-reader-text"><?php esc_attr_e( 'Press return or enter to expand', 'redux-framework' ); ?></span>
+                    <span class="screen-reader-text"><?php esc_attr_e( 'Press return or enter to expand', 'accelerated-mobile-pages' ); ?></span>
                 </h3>
                 <ul class="accordion-section-content redux-main">
                     <?php

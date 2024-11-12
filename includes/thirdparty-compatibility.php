@@ -605,7 +605,9 @@ function ampforwp_simple_author_box(){
 		$fontsImplementData		= json_decode($fontsImplementRawData, true);
 		if (!empty($fontsImplementData)):
 			foreach ($fontsImplementData as $key=>$fontImplementData): ?>
-				<?php echo $fontImplementData['font_elements']; // escaped above ?>{
+				<?php
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $fontImplementData['font_elements']; // escaped above ?>{
 					font-family: '<?php echo esc_html($fontsData[$fontImplementData['font_key']]['font_name']); ?>';
 				}
 			<?php endforeach;
@@ -676,6 +678,7 @@ function ampforwp_seopress_social(){
 				if (has_filter('seopress_social_og_url')) {
 					$seopress_social_og_url = apply_filters('seopress_social_og_url', $seopress_social_og_url);
 			    }			
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo $seopress_social_og_url."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_facebook_og'])) {
@@ -684,6 +687,7 @@ function ampforwp_seopress_social(){
 				if (has_filter('seopress_social_og_site_name')) {
 					$seopress_social_og_site_name = apply_filters('seopress_social_og_site_name', $seopress_social_og_site_name);
 			    }
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo $seopress_social_og_site_name."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_facebook_og'])) {
@@ -714,6 +718,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_og_locale = apply_filters('seopress_social_og_locale', $seopress_social_og_locale);
 			    }
 				if (isset($seopress_social_og_locale) && $seopress_social_og_locale !='') {
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo $seopress_social_og_locale."\n"; // escaped above
 				}
 			}
@@ -741,6 +746,7 @@ function ampforwp_seopress_social(){
 					if (has_filter('seopress_social_og_type')) {
 						$seopress_social_og_type = apply_filters('seopress_social_og_type', $seopress_social_og_type);
 				    }
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo $seopress_social_og_type."\n"; // escaped above
 				}
 			}
@@ -763,6 +769,7 @@ function ampforwp_seopress_social(){
 					if (has_filter('seopress_social_og_author')) {
 						$seopress_social_og_author = apply_filters('seopress_social_og_author', $seopress_social_og_author);
 				    }
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo $seopress_social_og_author."\n"; // escaped above
 				}
 			}
@@ -788,6 +795,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_og_title = apply_filters('seopress_social_og_title', $seopress_social_og_title);
 			    }
 			    if (isset($seopress_social_og_title) && $seopress_social_og_title !='') {
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			    	echo $seopress_social_og_title; // escaped above
 			    }
 			}
@@ -810,6 +818,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_og_desc = apply_filters('seopress_social_og_desc', $seopress_social_og_desc);
 			    }
 			    if (isset($seopress_social_og_desc) && $seopress_social_og_desc !='') {
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			    	echo $seopress_social_og_desc; // escaped above
 				}
 			}
@@ -867,20 +876,24 @@ function ampforwp_seopress_social(){
 						$seopress_social_og_img = apply_filters('seopress_social_og_thumb', $seopress_social_og_img);
 				    }
 				    if (isset($seopress_social_og_img) && $seopress_social_og_img !='') {
+						//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			    		echo $seopress_social_og_img; // escaped above
 				    }
 				}
 			}
 			if (isset($options['seopress_social_facebook_og']) && isset($options['seopress_social_facebook_link_ownership_id'])) {
 				$seopress_social_link_ownership_id = '<meta property="fb:pages" content="'.esc_attr($options['seopress_social_facebook_link_ownership_id']).'" />';	
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo $seopress_social_link_ownership_id."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_facebook_og']) && isset($options['seopress_social_facebook_link_ownership_id']) ) {
 				$seopress_social_admin_id = '<meta property="fb:admins" content="'.esc_attr($options['seopress_social_facebook_admin_id']).'" />';		
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo $seopress_social_admin_id."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_facebook_og']) && isset($options['seopress_social_facebook_link_ownership_id']) ) {
-				$seopress_social_app_id = '<meta property="fb:app_id" content="'.esc_attr($options['seopress_social_facebook_app_id']).'" />';		
+				$seopress_social_app_id = '<meta property="fb:app_id" content="'.esc_attr($options['seopress_social_facebook_app_id']).'" />';	
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped	
 				echo $seopress_social_app_id."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_twitter_card'])) {
@@ -893,6 +906,7 @@ function ampforwp_seopress_social(){
 				if (has_filter('seopress_social_twitter_card_summary')) {
 					$seopress_social_twitter_card_summary = apply_filters('seopress_social_twitter_card_summary', $seopress_social_twitter_card_summary);
 			    }
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo $seopress_social_twitter_card_summary."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_twitter_card']) && isset($options['seopress_social_accounts_twitter']) ) {
@@ -901,6 +915,7 @@ function ampforwp_seopress_social(){
 				if (has_filter('seopress_social_twitter_card_site')) {
 					$seopress_social_twitter_card_site = apply_filters('seopress_social_twitter_card_site', $seopress_social_twitter_card_site);
 			    }
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo $seopress_social_twitter_card_site."\n"; // escaped above
 			}
 			if (isset($options['seopress_social_twitter_card'])) {
@@ -918,6 +933,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_twitter_card_creator = apply_filters('seopress_social_twitter_card_creator', $seopress_social_twitter_card_creator);
 			    }
 			    if (isset($seopress_social_twitter_card_creator) && $seopress_social_twitter_card_creator !='') {
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			    	echo $seopress_social_twitter_card_creator."\n"; // escaped above
 				}
 			}
@@ -948,6 +964,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_twitter_card_title = apply_filters('seopress_social_twitter_card_title', $seopress_social_twitter_card_title);
 			    }
 			    if (isset($seopress_social_twitter_card_title) && $seopress_social_twitter_card_title !='') {
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			    	echo $seopress_social_twitter_card_title."\n"; // escaped above
 			    }
 			}
@@ -976,6 +993,7 @@ function ampforwp_seopress_social(){
 					$seopress_social_twitter_card_desc = apply_filters('seopress_social_twitter_card_desc', $seopress_social_twitter_card_desc);
 			    }
 			    if (isset($seopress_social_twitter_card_desc) && $seopress_social_twitter_card_desc !='') {
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			    	echo $seopress_social_twitter_card_desc."\n"; // escaped above
 			    }
 			}
@@ -1037,6 +1055,7 @@ function ampforwp_seopress_social(){
 						$seopress_twitter_img = apply_filters('seopress_social_og_thumb', $seopress_twitter_img);
 				    }
 				    if (isset($seopress_twitter_img) && $seopress_twitter_img !='') {
+						//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				    	echo $seopress_twitter_img; // escaped above
 				    }
 				}
@@ -1079,7 +1098,11 @@ if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
 add_action('init','ampforwp_enfold_theme_compatibility',2);
 if(!function_exists('ampforwp_enfold_theme_compatibility')){
 	function ampforwp_enfold_theme_compatibility(){
-		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+		$url_path = parse_url(add_query_arg(array()), PHP_URL_PATH);
+		if($url_path=="" || $url_path==null){
+			$url_path = $url_path.'/';
+		}
+		$url_path = trim($url_path,'/' );
 	  	$explode_path = explode('/', $url_path);  
 	    if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)   ) {
 			remove_filter('avia_load_shortcodes','add_shortcode_folder',11);
@@ -1150,6 +1173,7 @@ if(function_exists('deco_mistape_init')){
 if(!function_exists('ampforwp_mistape_plugin_style')){
 	function ampforwp_mistape_plugin_style(){
 		$css = '.mistape_caption{font-size:80%;opacity:.8}.mistape-logo svg{display:block;height:22px;width:22px;fill:#e42029}.mistape_caption .mistape-link{text-decoration:none;border:none;box-shadow:none}.mistape-link:hover{text-decoration:none;border:none}';
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo ampforwp_css_sanitizer($css);
 	}
 }
@@ -1159,6 +1183,7 @@ if(!function_exists('ampforwp_mistape_plugin_compatibility')){
 			$rep = '<a href="https://mistape.com" target="_blank" rel="nofollow" class="mistape-link mistape-logo"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="-12 -10 39.9 40" enable-background="new -12 -10 39.9 40" xml:space="preserve">';
 			$content = preg_replace('/<span\sclass=\"mistape-link-wrap">(.*?)<\/span>/', $rep.'$1</svg></a>', $content);
 		}
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return $content;
 	}
 }
@@ -1328,6 +1353,7 @@ if(!function_exists('ampforwp_category_image_compatibility')){
 		if($type=='return'){
 			return $cat_image;
 		}else if($type=='echo'){
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $cat_image;
 		}
 	}
@@ -1340,7 +1366,11 @@ function ampforwp_zeen_lazyload($lazyload){
 
 add_action('plugins_loaded', 'ampforwp_jetpack_boost_compatibility' , 1);
 function ampforwp_jetpack_boost_compatibility(){
-    $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );	
+	$url_path = parse_url(add_query_arg(array()), PHP_URL_PATH);
+	if($url_path=="" || $url_path==null){
+		$url_path = $url_path.'/';
+	}
+	$url_path = trim($url_path,'/' );
     if (function_exists('\Automattic\Jetpack_Boost\run_jetpack_boost') && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path) && !is_admin()) {
  			remove_action( 'plugins_loaded', '\Automattic\Jetpack_Boost\run_jetpack_boost', 1 );
  	}
@@ -1615,9 +1645,12 @@ function ampforwp_newsp_td_render_css(){
 		            }, $cssData);
 			}
 	  }
+	  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $newspaper_css;
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $amp_td_custom_css;
 		if(method_exists('td_block', 'get_common_css') && method_exists('td_util', 'remove_style_tag')){
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo td_util::remove_style_tag(td_block::get_common_css());
 		}
 	}
@@ -2007,3 +2040,12 @@ function ampforwp_aal_compatibility( $amp_post_template_data )
 
 	return $amp_post_template_data;
 }
+
+/* Disable lazyload of JNews theme when AMP mode is active */
+function ampforwp_jnews_disable_lazyload_image ( $value ){
+	add_filter('theme_mod_jnews_image_load',function($value){
+		return 'normal';
+	});
+}
+
+add_action("amp_init", "ampforwp_jnews_disable_lazyload_image");

@@ -611,8 +611,10 @@ namespace ReduxCore\ReduxFramework;
                                 if ( ! $outdated_templates ) {
                                     $outdated_templates = true;
                                 }
-
-                                $found_files[ $plugin_name ][] = sprintf( __( '<code>%s</code> version <strong style="color:red">%s</strong> is out of date. The core version is %s', 'accelerated-mobile-pages' ), str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ), $theme_version ? $theme_version : '-', $core_version );
+                                /* translators: %1$s: file path */
+                                /* translators: %2$s: theme version */
+                                /* translators: %3$s: core version */
+                                $found_files[ $plugin_name ][] = sprintf( __( '<code>%1$s</code> version <strong style="color:red">%2$s</strong> is out of date. The core version is %3$s', 'accelerated-mobile-pages' ), str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ), $theme_version ? $theme_version : '-', $core_version );
                             } else {
                                 $found_files[ $plugin_name ][] = sprintf( '<code>%s</code>', str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ) );
                             }

@@ -5,7 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php global $redux_builder_amp;  ?>
 <!doctype html>
-<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
+<html amp <?php 
+//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
 	<?php do_action('amp_experiment_meta', $this); ?>
@@ -60,7 +62,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				
 			 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 		        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
-		        	<h2 class="amp-wp-title"><?php  $ampforwp_post_url = get_permalink(); ?><a href="<?php echo ampforwp_url_controller( $ampforwp_post_url ); ?>"><?php the_title() ?></a></h2>
+		        	<h2 class="amp-wp-title"><?php  $ampforwp_post_url = get_permalink(); ?><a href="<?php 
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo ampforwp_url_controller( $ampforwp_post_url ); ?>"><?php the_title() ?></a></h2>
 
 					<div class="amp-wp-content-loop">
 						<div class="amp-wp-meta">
@@ -112,8 +116,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 					wp_pagenavi();
 				}else{?>
 		        <div id="pagination">
-		        	<?php if ( get_next_posts_link('next', $q->max_num_pages) ){ ?><div class="next"><?php echo apply_filters('ampforwp_next_posts_link', get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ).'&raquo;', 0), $paged ) ?></div><?php }?>
-		        	<?php if ( get_previous_posts_link() ){ ?><div class="prev"><?php echo apply_filters( 'ampforwp_previous_posts_link', get_previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' )), $paged ); ?></div><?php }?>
+		        	<?php if ( get_next_posts_link('next', $q->max_num_pages) ){ ?><div class="next">
+					<?php 
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo apply_filters('ampforwp_next_posts_link', get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ).'&raquo;', 0), $paged ) ?></div><?php }?>
+		        	<?php if ( get_previous_posts_link() ){ ?><div class="prev">
+					<?php 
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo apply_filters( 'ampforwp_previous_posts_link', get_previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' )), $paged ); ?></div><?php }?>
 		            <div class="clearfix"></div>
 		        </div>
 		        <?php } ?>

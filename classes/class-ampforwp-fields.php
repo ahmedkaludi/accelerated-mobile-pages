@@ -279,7 +279,7 @@ class AMPforWP_Fields
 			if($this->default!="Other"){
 				$hide = 'hide';
 			}
-			$output .= '<div class="ux-other-site-type '.esc_attr($hide).'"><h2 class="ux-label trac-id site-tpy">'.esc_html__('Mention the type of your site').'</h2></div><input type="text" id="'.esc_attr($fields['data-value-id']).'" class="'.esc_attr($this->class).' '.esc_attr($hide).'" value="'.esc_attr($fields['data-value']).'" placeholder="'.esc_attr__('Enter your website type','accelerated-mobile-pages').'">';
+			$output .= '<div class="ux-other-site-type '.esc_attr($hide).'"><h2 class="ux-label trac-id site-tpy">'.esc_html__( 'Mention the type of your site', 'accelerated-mobile-pages' ).'</h2></div><input type="text" id="'.esc_attr($fields['data-value-id']).'" class="'.esc_attr($this->class).' '.esc_attr($hide).'" value="'.esc_attr($fields['data-value']).'" placeholder="'.esc_attr__('Enter your website type','accelerated-mobile-pages').'">';
 		}
 		if( $this->data_href ){
 			if ( isset($fields['data-href-id']) ) {
@@ -292,7 +292,9 @@ class AMPforWP_Fields
 		}
 
 		$output .= '</div>';
-		echo $output; /* $output XSS escaped */
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $output;
+		/* $output XSS escaped */
 	}
 	public function ampforwp_field_checkbox($fields){
 		$required = $hide = $checked = '';
@@ -306,9 +308,10 @@ class AMPforWP_Fields
 
 		$lbl_cls = '';
 		if(isset($fields['label-class'])){
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			$lbl_cls = 'class="'.esc_attr($fields['label-class']).'"';
 		} /* $lbl_cls XSS escaped */
-
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="ux-field-container amp-ux-checkbox-container '.esc_attr($hide).' '.esc_attr($this->parent_class).' " '.esc_attr($required).'><label '.$lbl_cls.'><input type="checkbox" class="'.esc_attr($this->class).'" id="'.esc_attr($this->id).'" ' . esc_attr($checked).'>'.esc_html($this->title).'</label></div>';
 	}
 	public function ampforwp_field_switch($fields){
@@ -355,6 +358,7 @@ class AMPforWP_Fields
         	$output .= '<p class="amp-ux-switch-text">'.esc_html($this->desc).'</p>';
         }
         $output .= '</div>';
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $output; /* $output XSS escaped */
 	}
 
@@ -397,6 +401,7 @@ class AMPforWP_Fields
 					<span class="amp-ux-img-re-txt">'.esc_html__('Recommended Size: 120 x 90', 'accelerated-mobile-pages').'</span>				
 				</div>';
 			$output .= '</div></div>';
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $output; /* $output XSS escaped */
 	}
 
@@ -404,11 +409,13 @@ class AMPforWP_Fields
 		
 		$output = '<div class="ux-field-container amp-ux-color-container" id="ampforwp-easy-setup-global-color">';
 		if ( !empty($this->title) ) {
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html($this->title).'</h2>';
 		}
 		$this->selected = $this->default ? 'value='.esc_attr($this->default) : "";
 		$output .= '<input type="text" id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).'" '.esc_attr($this->selected).'>';
 		$output .= '</div>';
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $output; /* $output XSS escaped */
 	}
 	public function ampforwp_field_text($fields){
@@ -424,9 +431,11 @@ class AMPforWP_Fields
 		}
 		$output = '<div class="ux-field-container amp-ux-text-container '.esc_attr($hide).'">';
 		if ( !empty($this->title) ) {
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			$output .= '<h2 class="'.esc_attr($this->element_class).'">'.esc_html($this->title).'</h2>';
 		}
 		$output .= '<input type="text" id="'.esc_attr($this->id).'" class="'.esc_attr($this->class).'" '.esc_attr($this->data_text).' value="'.esc_attr($this->default).'"></div>';
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $output; /* $output XSS escaped */
 	}
 
@@ -461,6 +470,7 @@ class AMPforWP_Fields
 			$output .= '<p>'.$this->desc.'</p>'; // xss ok for $this->desc
 		}
 		$output .= '</div>';
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $output; // xss ok for $output
 	}
 
@@ -477,6 +487,7 @@ class AMPforWP_Fields
 						</div>';
 		}
 		$output .= '</div>';
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $output; // xss ok for $output
 	}
 

@@ -167,7 +167,10 @@ function ampforwp_gdpr_css(){
 		    display: inline-block;
 		}
 		#footer .gdpr_fmi a{
-			color: <?php echo ampforwp_sanitize_color( ampforwp_get_setting('swift-color-scheme','color') ); ?>;
+			color: <?php 
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo ampforwp_sanitize_color( ampforwp_get_setting('swift-color-scheme','color') ); 
+			?>;
 		}
 	
 		@media(max-width:768px){
@@ -306,7 +309,7 @@ function ampforwp_gdpr_css(){
 <?php }
 
 function amp_consent_submission(){
-	if(wp_verify_nonce( $_REQUEST['verify_nonce'], 'amp_consent' ) ) {
+	if(isset($_REQUEST['verify_nonce']) && wp_verify_nonce( wp_unslash($_REQUEST['verify_nonce']), 'amp_consent' ) ) {
 		//setcookie('ampforwp_gdpr_action','true', time() + (86400 * 30), "/");
        	$current_url = $site_url = $site_host = $amp_site = '';
 		$current_url 	= wp_get_referer();

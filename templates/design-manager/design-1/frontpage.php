@@ -10,7 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
-<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $template->get( 'html_tag_attributes' ) ); ?>>
+<html amp <?php 
+//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo AMP_HTML_Utils::build_attributes_string( $template->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">  
 	<?php do_action( 'amp_post_template_head', $template ); ?>

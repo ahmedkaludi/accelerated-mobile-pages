@@ -49,19 +49,21 @@ class AMPFORWP_AMP_Code_Widget extends WP_Widget {
     // Adds 'noopener' relationship, without duplicating values, to all HTML A elements that have a target.
     $content = wp_targeted_link_rel( $content );
     $args['before_widget'] = preg_replace( '/(?<=\sclass=["\'])/', 'widget_text ', $args['before_widget'] );
-
+//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo $args['before_widget'];
     echo '<div class="textwidget custom-html-widget">'; // The textwidget class is for theme styling compatibility.
+    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo $content;
     echo '</div>';
+    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo $args['after_widget'];
 }
   
   public function form( $instance ) {
   $instance = wp_parse_args( (array) $instance, $this->default_instance );
   ?>
-  <input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" class="title sync-input" type="hidden" value="<?php echo esc_attr( $instance['title'] ); ?>"/>
-  <textarea id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>" class="content sync-input" hidden><?php echo esc_textarea( $instance['content'] ); ?></textarea>
+  <input id="<?php echo esc_attr($this->get_field_id( 'title' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'title' )); ?>" class="title sync-input" type="hidden" value="<?php echo esc_attr( $instance['title'] ); ?>"/>
+  <textarea id="<?php echo esc_attr($this->get_field_id( 'content' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'content' )); ?>" class="content sync-input" hidden><?php echo esc_textarea( $instance['content'] ); ?></textarea>
   <?php 
   }
   public static function render_control_template_scripts() { ?>
@@ -69,12 +71,12 @@ class AMPFORWP_AMP_Code_Widget extends WP_Widget {
       <# var elementIdPrefix = 'el' + String( Math.random() ).replace( /\D/g, '' ) + '_' #>
 
       <p>
-        <label for="{{ elementIdPrefix }}title"><?php esc_html_e( 'Title:' ); ?></label>
+        <label for="{{ elementIdPrefix }}title"><?php esc_html_e( 'Title:', 'accelerated-mobile-pages' ); ?></label>
         <input id="{{ elementIdPrefix }}title" type="text" class="widefat title">
       </p>
 
       <p>
-        <label for="{{ elementIdPrefix }}content" id="{{ elementIdPrefix }}content-label"><?php esc_html_e( 'Content:' ); ?></label>
+        <label for="{{ elementIdPrefix }}content" id="{{ elementIdPrefix }}content-label"><?php esc_html_e( 'Content:', 'accelerated-mobile-pages' ); ?></label>
         <textarea id="{{ elementIdPrefix }}content" class="widefat code content" rows="16" cols="20"></textarea>
       </p>
 
@@ -88,7 +90,12 @@ class AMPFORWP_AMP_Code_Widget extends WP_Widget {
           <# if ( data.codeEditorDisabled ) { #>
             <p>
               <?php esc_html_e( 'Some HTML tags are not permitted, including:' , 'accelerated-mobile-pages' ); ?>
-              <code><?php echo implode( '</code>, <code>', $disallowed_html ); ?></code>
+              <code>
+                <?php 
+                  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                  echo implode( '</code>, <code>', $disallowed_html ); 
+                ?>
+              </code>
             </p>
           <# } #>
         <?php endif; ?>

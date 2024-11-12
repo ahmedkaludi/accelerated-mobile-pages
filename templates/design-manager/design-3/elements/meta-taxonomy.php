@@ -17,7 +17,7 @@ global $redux_builder_amp;
 						if( ampforwp_get_setting('ampforwp-archive-support') == true && ampforwp_get_setting('ampforwp-archive-support-tag') == true){
 							$tag_link = ampforwp_url_controller(get_tag_link( $tag->term_id ));
 						}
-						echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'.esc_url($tag_link).'" >'.esc_html($tag->name).'</a></span>');//#934 
+						echo ('<span class="amp-tag-'.esc_attr($tag->term_id).'"><a href="'.esc_url($tag_link).'" >'.esc_html($tag->name).'</a></span>');//#934 
 					}else{
 						echo '<span>'.esc_html($tag->name).'</span>';
 					}
@@ -44,8 +44,11 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	                    <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_avatar_url); ?>" width="70" height="70" layout="fixed"></amp-img>
 	                    <?php
 	                } 
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	                echo ampforwp_yoast_twitter_handle().' ';
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	                echo  $post_author->description;
         		 } ?>
 	    </div>

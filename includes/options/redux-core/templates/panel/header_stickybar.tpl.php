@@ -16,21 +16,21 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div id="info_bar">
 
         <a href="javascript:void(0);" class="expand_options<?php echo esc_attr(( $this->parent->args['open_expanded'] ) ? ' expanded' : ''); ?>"<?php echo $this->parent->args['hide_expand'] ? ' style="display: none;"' : '' ?>>
-            <?php esc_attr_e( 'Expand', 'redux-framework' ); ?>
+            <?php esc_attr_e( 'Expand', 'accelerated-mobile-pages' ); ?>
         </a>
         
         <div class="redux-action_bar">
             <span class="spinner"></span>
             <?php if ( false === $this->parent->args['hide_save'] ) { ?>
-                <?php submit_button( esc_attr__( 'Save Changes', 'redux-framework' ), 'primary', 'redux_save', false ); ?>
+                <?php submit_button( esc_attr__( 'Save Changes', 'accelerated-mobile-pages' ), 'primary', 'redux_save', false ); ?>
             <?php } ?>
             
             <?php if ( false === $this->parent->args['hide_reset'] ) { ?>
-                <?php submit_button( esc_attr__( 'Reset Section', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults-section]', false, array( 'id' => 'redux-defaults-section' ) ); ?>
-                <?php submit_button( esc_attr__( 'Reset All', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults]', false, array( 'id' => 'redux-defaults' ) ); ?>
+                <?php submit_button( esc_attr__( 'Reset Section', 'accelerated-mobile-pages' ), 'secondary', $this->parent->args['opt_name'] . '[defaults-section]', false, array( 'id' => 'redux-defaults-section' ) ); ?>
+                <?php submit_button( esc_attr__( 'Reset All', 'accelerated-mobile-pages' ), 'secondary', $this->parent->args['opt_name'] . '[defaults]', false, array( 'id' => 'redux-defaults' ) ); ?>
             <?php } ?>
         </div>
-        <div class="redux-ajax-loading" alt="<?php esc_attr_e( 'Working...', 'redux-framework' ) ?>">&nbsp;</div>
+        <div class="redux-ajax-loading" alt="<?php esc_attr_e( 'Working...', 'accelerated-mobile-pages' ) ?>">&nbsp;</div>
         <div class="clear"></div>
     </div>
 

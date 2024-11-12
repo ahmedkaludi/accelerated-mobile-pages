@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
                 $this->parent       = $parent;
                 $this->field        = $field;
-                $this->field['msg'] = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : __( 'You must provide a valid email for this option.', 'redux-framework' );
+                $this->field['msg'] = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : __( 'You must provide a valid email for this option.', 'accelerated-mobile-pages' );
                 $this->value        = $value;
                 $this->current      = $current;
 

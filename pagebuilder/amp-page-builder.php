@@ -82,8 +82,9 @@ function ampforwp_call_page_builder(){
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	$previousData = isset($previousData[0])? $previousData[0]: '';
-	
-	$previousData = (str_replace("'", "&apos;", $previousData));
+	if($previousData!=''){
+		$previousData = str_replace("'", "&apos;", $previousData);
+	}
 	
 	$totalRows = 1;
 	$totalmodules = 1;
@@ -139,7 +140,12 @@ function ampforwp_call_page_builder(){
 	if(class_exists('WPSEO_Frontend') && true == ampforwp_get_setting('ampforwp-yoast-seo-analysis') && (true == ampforwp_get_setting('ampforwp-amp-takeover') || $mob_pres_link == true) ) { 
 		$pb_content = get_post_field('amp-page-builder',$post->ID);
 		?>
-		<script type="text/template" class="hide" id="amp-page-builder-ready"><?php echo stripcslashes( $pb_content ); ?></script>
+		<script type="text/template" class="hide" id="amp-page-builder-ready">
+			<?php 
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo stripcslashes( $pb_content ); 
+			?>
+		</script>
 	<?php } ?>
 	<div id="ampForWpPageBuilder_container">
 		<div id="start_amp_pb_post" class="start_amp_pb" data-postId="<?php echo esc_attr(get_the_ID()) ?>" v-if="startPagebuilder==0" @click="amppb_startFunction($event)"><?php echo esc_html__('Start the AMP Page Builder','accelerated-mobile-pages'); ?></div>
@@ -149,7 +155,9 @@ function ampforwp_call_page_builder(){
 		</div>
 		<div id="amp-page-builder" v-if="startPagebuilder==1">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
-	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php echo $previousData; // nothing to escaped ?>'>
+	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php 
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $previousData; // nothing to escaped ?>'>
 	        <?php /* This is where we gonna add & manage rows */ ?>
 			<div id="sorted_rows" class="amppb-rows drop" >
 				<drop class="drop" :class="{'row-dropping':rowOverDrop}" @drop="handleDrop" @dragover="rowOverDrop = true"
@@ -283,7 +291,7 @@ function ampforwp_call_page_builder(){
 		</div><!-- .amppb-rows -->
 
 		<div class="modules-options">
-         	<div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; // nothing to escaped ?>">
+         	<div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo esc_attr($totalRows); // nothing to escaped ?>">
 	        	<drag class="drag" :transfer-data='{type: "column",value: "col-1",rowSettingJson:<?php echo wp_json_encode($backendRowSetting); ?>}' :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-1" class="amppb-add-row button-primary button-large module-col-1" data-template="col-1"
 				    >1 Column</span>
@@ -324,7 +332,7 @@ function ampforwp_call_page_builder(){
 			    	<drag class="drag" :transfer-data=\''.wp_json_encode($moduleJson).'\' :draggable="true" :effect-allowed="\'copy\'">
 				    	<span class="amppb-add-row button-primary button-large draggable module-'.esc_attr(strtolower($module['name'])).'"
 				    	>
-				    		'.$module['label'].'
+				    		'.esc_attr($module['label']).'
 				    	</span>
 			    	</drag>
 			    	';

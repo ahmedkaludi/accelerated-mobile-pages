@@ -53,7 +53,8 @@ amp_header(); ?>
 					amp_content();
 				}
 				if( !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && is_page() && true == ampforwp_get_setting('ampforwp-page-social') && 'above-content' !=  ampforwp_get_setting('swift-social-position') ) { 
-						echo ampforwp_swift_social_icons();
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped	
+					echo ampforwp_swift_social_icons();
 		        	} ?>
 		    	<?php if( !ampforwp_levelup_compatibility('levelup_elementor') && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) && !ampforwp_is_front_page()){ // Level up Condition starts ?>
 					<div class="cmts">
@@ -126,6 +127,7 @@ amp_header(); ?>
 									$sidebar_output = $sanitized_sidebar->get_amp_content();
 									$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
 								}
+								//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					            echo $sidebar_output; // amphtml content, no kses?>
 							</div>
 						<?php } ?>

@@ -133,9 +133,11 @@ if ( isset($args['show_time']) ) {
                         }
                         else
                         {
+                            //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             echo $author_link; // this is html
                         }
                     }
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo ampforwp_yoast_twitter_handle();
                 }
             }
@@ -145,6 +147,7 @@ if ( isset($args['show_time']) ) {
                         $author_link = ampforwp_url_controller($author_link);
                     }
                     echo '<span class="author-name">' .esc_html($author_prefix) . ' <a href="'. esc_url($author_link).'" title="'. esc_html($author_name).'"> ' .esc_html( $author_name ).'</a></span>';
+                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo ampforwp_yoast_twitter_handle();
                 }
             }
@@ -152,6 +155,7 @@ if ( isset($args['show_time']) ) {
         else{
             if( $author_pub_name  ){
                 echo '<span class="author-name">' . esc_html($author_prefix) . esc_html( $author_name ) . '</span>';
+                //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo  ampforwp_yoast_twitter_handle();
             }
         }
@@ -172,6 +176,7 @@ if ( isset($args['show_time']) ) {
                 $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
                 $author_description = "<p>".wp_strip_all_tags($post_author->description,$allowed_tags)."</p>";
                 $author_description = apply_filters( 'ampforwp_author_description', $author_description);
+                //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo $author_description;
             }
         } ?>

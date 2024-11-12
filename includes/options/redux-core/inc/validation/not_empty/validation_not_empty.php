@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
                 $this->parent       = $parent;
                 $this->field        = $field;
-                $this->field['msg'] = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : __( 'This field cannot be empty. Please provide a value.', 'redux-framework' );
+                $this->field['msg'] = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : __( 'This field cannot be empty. Please provide a value.', 'accelerated-mobile-pages' );
                 $this->value        = $value;
                 $this->current      = $current;
 

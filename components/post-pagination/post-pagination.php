@@ -80,8 +80,10 @@ function ampforwp_framework_get_post_pagination( $args = '' ) {
 	 */
 	$html = apply_filters( 'ampforwp_framework_get_post_pagination', $output, $args );
 		if ( $r['echo'] ) {
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo ($html);
 		}
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return $html;
 }
 

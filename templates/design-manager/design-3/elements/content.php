@@ -24,7 +24,8 @@
 						 if(true == ampforwp_get_setting('single-next-prev-to-nonamp')){
 							$next_link = get_permalink( $next_post->ID );
 						 } ?>
-                    <span><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-next-read-text'), 'Next Read' ); ?></span> <a href="<?php echo esc_url($next_link); ?>"><?php echo esc_html($next_post->post_title); ?> &raquo;</a> <?php } ?>
+                    <span><?php 
+					echo esc_attr(ampforwp_translation(ampforwp_get_setting('amp-translator-next-read-text'), 'Next Read' )); ?></span> <a href="<?php echo esc_url($next_link); ?>"><?php echo esc_html($next_post->post_title); ?> &raquo;</a> <?php } ?>
 				</div>
 			</div>
 		<?php } ?>

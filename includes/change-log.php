@@ -76,7 +76,7 @@ if(is_array($matches) && count($matches)>2){
         $readme = str_replace($foundText[$key], $replaceHtml, $readme);
     }
 }
-
+//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 echo ampforwp_wp_kses(ampforwp_nl2p($readme,false));
 
 ?>

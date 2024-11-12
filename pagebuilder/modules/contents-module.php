@@ -595,7 +595,7 @@ if ( is_admin() ) {
           $prev_page = add_query_arg( array( $pagination_text => $paged - 1 ), $queryUrl );
           $nextLabel = (isset($fieldValues['ampforwp_pb_cat_pagination_next']) && !empty($fieldValues['ampforwp_pb_cat_pagination_next'])) ? $fieldValues['ampforwp_pb_cat_pagination_next'] : "Next";
 
-          $pagination_links .= "<a class='pagi-first' href = ".esc_url($first_page)."> ".esc_html__($nextLabel,'accelerated-mobile-pages')."</a>";
+          $pagination_links .= "<a class='pagi-first' href = ".esc_url($first_page)."> ".esc_html($nextLabel)."</a>";
           //$pagination_links .= "<a href = ".$prev_page."> Prev </a>";
         }
 
@@ -607,11 +607,11 @@ if ( is_admin() ) {
         $endPage = min( $total_num_pages, $paged + $count);
         for($i = $startPage ; $i <= $endPage ; $i++){
           if( $paged == $i && $startPage!=$endPage){
-              $pagination_links .= "<a class='active' href='#/' >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
+              $pagination_links .= "<a class='active' href='#/' >".esc_html($i)."</a>";
           }else{
             $allPages = add_query_arg( array( $pagination_text => $i ), $queryUrl ) . '#cat-jump'.esc_html($fieldValues['id']);
             if($startPage!=$endPage){
-              $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html__($i, 'accelerated-mobile-pages')."</a>";
+              $pagination_links .= "<a href =".esc_url($allPages)." >".esc_html($i)."</a>";
             }
           }
 
@@ -625,7 +625,7 @@ if ( is_admin() ) {
 	        $lastLabel = (isset($fieldValues['ampforwp_pb_cat_pagination_last']) && !empty($fieldValues['ampforwp_pb_cat_pagination_last'])) ? $fieldValues['ampforwp_pb_cat_pagination_last'] : "Last";
           $next_page = add_query_arg( array( $pagination_text => $total_num_pages ), $queryUrl );
           $next_page .= '#cat-jump'. esc_html($fieldValues['id']);
-          $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html__($lastLabel, 'accelerated-mobile-pages')."</a>";
+          $pagination_links .= "<a class='pagi-last' href =".esc_url($next_page)." >".esc_html($lastLabel)."</a>";
         }
         $pagination_links .= '</div>';
         

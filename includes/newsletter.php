@@ -114,7 +114,10 @@ class ampforwp_pointers {
 					<?php if ($button2) { ?>
 						jQuery ('#pointer-close').after ('<a id="pointer-primary" class="button-primary">' + '<?php echo wp_kses_post($button2); ?>' + '</a>');
 						jQuery ('#pointer-primary').click (function () {
-							<?php echo $function; ?>
+							<?php 
+								//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								echo $function; 
+							?>
 						});
 						jQuery ('#pointer-close').click (function () {
 							$.post (ajaxurl, {

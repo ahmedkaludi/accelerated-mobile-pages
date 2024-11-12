@@ -73,6 +73,7 @@ function amp_icon_css(){
 	global $amp_icons_css, $redux_builder_amp;
 	foreach ($amp_icons_css as $key => $value) {
 		// TODO: https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2651 
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	    echo $value;
 	}
 	$icon_url = plugin_dir_url(__FILE__);
@@ -122,6 +123,7 @@ function amp_title(){
 			$title_tag = '<h1 class="amp-post-title">' . wp_kses_data( $ampforwp_title ) . '</h1>'; 
 		}
 		$title_tag = apply_filters('ampforwp_modify_title_tag',$title_tag,$ampforwp_title);
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $title_tag; // Escaped above 
 		do_action('ampforwp_below_the_title');
     }
@@ -142,6 +144,7 @@ function amp_excerpt( $no_of_words=260 ) {
 			 Encoding $content  as HTML entities, then trimming it to a certain number of words, decoding it back from   HTML entities, and finally ensuring that all HTML tags are properly balanced.
 			 We are  doing this since the excerpt may contain HTML tags and wp_trim_words strips all HTML tags.
 			*/
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo force_balance_tags( html_entity_decode( wp_trim_words( htmlentities( $content ), $no_of_words) ) );
 		?></p><?php
     }
@@ -171,6 +174,7 @@ function amp_menu($echo=true, $menu_args=array(), $type='header'){
 			return $amp_menu;
 		}
 		else
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $amp_menu; // escaped above
 	}
 }
@@ -185,6 +189,7 @@ function amp_alter_menu($echo=true){
 			return amp_menu_html($echo, array(),'amp-alternative-menu');
 		}
 		else
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo amp_menu_html($echo, array(), 'amp-alternative-menu');
 	}
 }
@@ -255,6 +260,7 @@ function amp_comments( ){
 function amp_post_navigation( ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-post-navigation']) && $loadComponent['AMP-post-navigation']==true){
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo ampforwp_framework_get_post_navigation();
 	}
 }
@@ -263,6 +269,7 @@ function amp_post_navigation( ){
 function amp_related_posts($argsdata = array()){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-related-posts']) && $loadComponent['AMP-related-posts']==true){
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo ampforwp_framework_get_related_posts( $argsdata);
 	}
 }
@@ -271,6 +278,7 @@ function amp_related_posts($argsdata = array()){
 function amp_post_pagination($args='' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-post-pagination']) && $loadComponent['AMP-post-pagination']==true){
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		  ampforwp_framework_get_post_pagination($args);
 	}
 }
@@ -279,6 +287,7 @@ function amp_post_pagination($args='' ){
 function amp_breadcrumb(){
 	global $loadComponent;
 	if ( isset($loadComponent['AMP-breadcrumb']) && true == $loadComponent['AMP-breadcrumb'] ) {
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo amp_breadcrumb_output();
 	}
 }
@@ -288,6 +297,7 @@ function amp_gdpr(){
 	global $loadComponent;
 	$gdpr = apply_filters('ampforwp_on_off_gdpr', true);
 	if ( isset($loadComponent['AMP-gdpr']) && true == $loadComponent['AMP-gdpr'] && $gdpr) {
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo amp_gdpr_output();
 	}
 }
@@ -371,7 +381,10 @@ function amp_header_core(){
     	$lightbox = 'data-amp-auto-lightbox-disable';
     }
 	?><!doctype html>
-	<html <?php echo esc_attr(ampforwp_amp_nonamp_convert('amp ')); ?><?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
+	<html <?php echo esc_attr(ampforwp_amp_nonamp_convert('amp ')); ?>
+	<?php 
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
 		<head>
 		<meta charset="utf-8"> 
 			<?php do_action('amp_experiment_meta', $thisTemplate); ?>
@@ -405,6 +418,7 @@ function amp_header_core(){
 					  $custom_css = apply_filters('ampforwp_custom_css_output', $custom_css);
 					  $custom_css = str_replace(array('.accordion-mod'), array('.apac'), $custom_css);
 					  $sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
+					  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					  echo $sanitized_css; // sanitized above ?>
 			</style>
 			<?php do_action('ampforwp_before_head', $thisTemplate);  ?>
@@ -465,8 +479,10 @@ function amp_footer_core(){
 function amp_non_amp_link(){
 	$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>'; 
     if (function_exists('pll__')) {
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<span>' . wp_strip_all_tags(pll__(ampforwp_get_setting('amp-translator-footer-text'),'All Rights Reserved'),$allowed_tags) . '</span>';
 	}else {
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<span>' . wp_strip_all_tags(ampforwp_translation(do_shortcode(ampforwp_get_setting('amp-translator-footer-text')),'All Rights Reserved'),$allowed_tags) . '</span>';
 	}
     if(ampforwp_get_setting('amp-footer-link-non-amp-page')=='1') { ampforwp_view_nonamp(); }
@@ -566,6 +582,7 @@ function amp_content($post_id= ''){
 		$ampforwp_the_content = ampforwp_sassy_share_icons($ampforwp_the_content);
 	}
 	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $ampforwp_the_content; // amphtml content, no kses
 	do_action('ampforwp_after_post_content',$thisTemplate); 
 }
@@ -659,6 +676,7 @@ function amp_author_meta( $args ) {
 	$post_author = get_userdata($post->post_author);
 	$author_link = get_author_posts_url($post_author->ID);
 	if ( $author_name ) {
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo ' <a href="'. ampforwp_url_controller($author_link).'"> ' .esc_html( $post_author->display_name ).'</a>';
  	}
  	if ( $avatar && true == ampforwp_gravatar_checker($post_author->user_email) ) {
@@ -670,6 +688,7 @@ function amp_author_meta( $args ) {
     	$avatar_img = get_avatar( $post_author->user_email, $avatar_size );
     	$amp_html_sanitizer = new AMPFORWP_Content( $avatar_img, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
 	    $amp_html =  $amp_html_sanitizer->get_amp_content();
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $amp_html; // amphtml content, no kses
      } 
 	 
@@ -801,7 +820,7 @@ function ampforwp_backtotop_global_css(){?>
 	
 	<?php if( ampforwp_get_setting('amp_font_selector_heading')) { ?>
 		h1,h2,h3,h4,h5,h6,.amp-wp-title{
-		font-family:<?php echo ampforwp_get_setting('amp_font_selector_heading'); ?>
+		font-family:<?php echo esc_attr(ampforwp_get_setting('amp_font_selector_heading')); ?>
 		}	
 	<?php } ?>	
 	<?php if( ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) { ?>

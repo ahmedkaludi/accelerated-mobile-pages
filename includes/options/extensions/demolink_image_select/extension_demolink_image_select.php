@@ -83,12 +83,12 @@ if( !class_exists( 'ReduxFramework_extension_demolink_image_select' ) ) {
             $redux_ver = ReduxFramework::$_version;
             if ($this->min_redux_version != '') {
                 if (version_compare($redux_ver, $this->min_redux_version) < 0) {
-                    $msg = '<strong>' . esc_html__( 'The', 'redux-framework') . ' ' .  $this->ext_name . ' ' .  esc_html__('extension requires', 'redux-framework') . ' Redux Framework ' . esc_html__('version', 'redux-framework') . ' ' . $this->min_redux_version . ' ' .  esc_html__('or higher.','redux-framework' ) . '</strong>&nbsp;&nbsp;' . esc_html__( 'You are currently running', 'redux-framework') . ' Redux Framework ' . esc_html__('version','redux-framework' ) . ' ' . $redux_ver . '.<br/><br/>' . esc_html__('This field will not render in your option panel, and featuress of this extension will not be available until the latest version of','redux-framework' ) . ' Redux Framework ' . esc_html__('has been installed.','redux-framework' );
+                    $msg = '<strong>' . esc_html__( 'The', 'accelerated-mobile-pages') . ' ' .  $this->ext_name . ' ' .  esc_html__('extension requires', 'accelerated-mobile-pages') . ' Redux Framework ' . esc_html__('version', 'accelerated-mobile-pages') . ' ' . $this->min_redux_version . ' ' .  esc_html__('or higher.','accelerated-mobile-pages' ) . '</strong>&nbsp;&nbsp;' . esc_html__( 'You are currently running', 'accelerated-mobile-pages') . ' Redux Framework ' . esc_html__('version','accelerated-mobile-pages' ) . ' ' . $redux_ver . '.<br/><br/>' . esc_html__('This field will not render in your option panel, and featuress of this extension will not be available until the latest version of','accelerated-mobile-pages' ) . ' Redux Framework ' . esc_html__('has been installed.','accelerated-mobile-pages' );
                     
                     $data = array(
                         'parent'    => $this->parent,
                         'type'      => 'error',
-                        'msg'       => $msg,
+                        'msg'       => esc_attr($msg),
                         'id'        => $this->ext_name . '_notice_' . self::$version,
                         'dismiss'   => false
                     );
@@ -98,7 +98,7 @@ if( !class_exists( 'ReduxFramework_extension_demolink_image_select' ) ) {
                     } else {
                         echo '<div class="error">';
                         echo     '<p>';
-                        echo         $msg;
+                        echo         esc_attr($msg);
                         echo     '</p>';
                         echo '</div>';
                     }

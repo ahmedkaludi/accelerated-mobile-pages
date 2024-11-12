@@ -14,9 +14,11 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
   <li>
 	<div class="amp-wp-meta amp-wp-byline">
   <?php if ( is_single() ) { 
+    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo ampforwp_get_author_details( $post_author , 'meta-info' ); 
   } ?>
 <?php if( is_page() && $redux_builder_amp['meta_page'] ) {
+  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo ampforwp_get_author_details( $post_author , 'meta-info' );
     } ?>
 <?php 

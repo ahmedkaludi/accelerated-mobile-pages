@@ -17,7 +17,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 <?php if($header_type == '1'){?>
 <?php do_action('ampforwp_admin_menu_bar_front'); 
       do_action('ampforwp_reading_progress_bar'); 
-    $hide_infine_scroll = '';   
+    $hide_infine_scroll = 'next-page-hide';   
     if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
     $hide_infine_scroll = 'next-page-hide';
     }?>
@@ -160,7 +160,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 <?php } ?>
 <?php if($header_type == '2'){
     do_action('ampforwp_reading_progress_bar'); 
-    $hide_infine_scroll = '';   
+    $hide_infine_scroll = 'next-page-hide';   
     if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
     $hide_infine_scroll = 'next-page-hide';
     }
@@ -188,7 +188,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                 <?php do_action('ampforwp_after_amp_menu');?>
                 <?php if( true == ampforwp_get_setting('signin-button') && '2' == ampforwp_get_setting('cta-responsive-view')){?>
                     <div class="h-sing cta-res">
-                        <a target="_blank" <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('signin-button-link')[0])?>"><?php echo esc_html__(ampforwp_get_setting('signin-button-text'), 'accelerated-mobile-pages'); ?></a>
+                        <a target="_blank" <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('signin-button-link')[0])?>"><?php echo esc_html(ampforwp_get_setting('signin-button-text')); ?></a>
                     </div>
                     <?php } ?>
                 <?php if (ampforwp_get_setting('menu-search' ) && ampforwp_get_setting('menu-search-after-menu') ){ ?>
@@ -283,7 +283,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
                         $new_tab = 'target=_blank';
                     }?>
                     <div class="h-sing">
-                        <a <?php echo esc_html($new_tab); ?> <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('signin-button-link')[0])?>"><?php echo esc_html__(ampforwp_get_setting('signin-button-text'), 'accelerated-mobile-pages'); ?></a>
+                        <a <?php echo esc_html($new_tab); ?> <?php ampforwp_nofollow_cta_header_link(); ?> href="<?php echo esc_url(ampforwp_get_setting('signin-button-link')[0])?>"><?php echo esc_html(ampforwp_get_setting('signin-button-text')); ?></a>
                     </div>
                     <?php } ?>
                     <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
@@ -306,7 +306,7 @@ if( !ampforwp_levelup_compatibility('hf_builder_head') ){
 <?php } ?>
 <?php if($header_type == '3'){
     do_action('ampforwp_reading_progress_bar'); 
-    $hide_infine_scroll = '';   
+    $hide_infine_scroll = 'next-page-hide';   
     if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
     $hide_infine_scroll = 'next-page-hide';
     }

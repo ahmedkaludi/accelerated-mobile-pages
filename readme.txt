@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 6.6
-Stable tag: 1.0.99.1
+Tested up to: 6.7
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -195,6 +195,25 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.1.1 (12 November 2024) =
+* New : Manual post selection in infinite scroll #5651
+* Fixed: Version 1.0.99.1 causing Tag issue. #5650
+* Fixed: Errors in debug.log, PHP Deprecated: trim(): Passing null to parameter #5652
+* Fixed: GA-4 Analytic not working on infinite scroll post #5656
+* Fixed: The Last Modified date appears broken in the AMP version #5659
+* Fixed: Feature images are not loading in homepage due to conflict with JNews theme lazyload #5655
+* Fixed: Afterpay Gateway for WooCommerce plugin is causing issue in Amp Validator #5643
+* Fixed: FV Gravatar Cache plugin conflicts with AMP. #5611
+* Fixed: Php error on user end. #5642
+* Fixed: The author image added by the "Simple User Avatar plugin" is not showing in the AMP. #5606
+* Fixed: Cron reschedule event error for hook #5595
+* Fixed: PHP Deprecated: error with AMP #5621
+* Test: Test with WordPress version 6.7 #5657
+* Improvement : Few improvements required #5630
+
+= 1.0.99.2 (23 October 2024) =
+* Fixed: Cross-Site Request Forgery discovered by David Gallagher ( Wordfence )
+
 = 1.0.99.1 (24 September 2024) =
 * Fixed: The tag <? is disallowed error in 1.0.99 WITH MENU #5646
 
@@ -326,21 +345,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Fatal Error & warning in the debug log #5500
 * Fixed: The PDF files are not appearing properly on the AMP version #5502
 * New  : Multiple Google Analytics 4 accounts support #5481
-
-= 1.0.87 (3rd July 2023) =
-* Fixed: CallNow buttons number is not replaced by callrail #5459
-* Fixed: Add compatibility with Adobe Launch #5457
-* Fixed: Undefined variable $q + attempt to read property “max_num_pages” in design-1 #5458
-* Fixed: AMP not working with categories. #5456
-* Fixed: Truepush integration not working: missing file /accelerated-mobile-pages/includes/truepush-integration/sw.js #5455
-* Fixed: An error is appearing in the console and the AMP setting panel is frizzed #5442
-* Fixed: Hestia Pro theme buttons are not appearing in the AMP version of the website. #5452
-* Fixed: Uncaught Error: Call to a member function get() on string #5463
-* Fixed: PHP Error is showing in the AMP #5464
-* Fixed: ampforwp_modify_rel_canonical filter should be applied at last in function #5468
-* Fixed: Playfair Display font is not showing in the heading font family. #5469
-* Fixed: Title H1 tags is automatically converted to H2 tags in AMP #5470
-* Fixed: GA4 activity fails when the AMP page is hosted on Google #5471
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

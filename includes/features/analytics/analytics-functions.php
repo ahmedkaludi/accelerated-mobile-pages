@@ -3,6 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 // Analytics Area
+add_action('infinite_scroll_amp_analytics','ampforwp_analytics',11);
 add_action('amp_post_template_footer','ampforwp_analytics',11);
 function ampforwp_analytics() {
 	// 10.1 Analytics Support added for Google Analytics
@@ -72,13 +73,19 @@ function ampforwp_analytics() {
 	 		?>
 	 		<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="gtag" id="analytics1">
 	 		<script type="application/json">
-				<?php echo $ampforwp_ga_fields; ?>
+				<?php 
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $ampforwp_ga_fields;
+				 ?>
 			</script>
 			</amp-analytics>
 	 		<?php } else if (!empty($ga_account) && $ga_account != "UA-XXXXX-Y") { ?>
 			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="gtag" id="analytics1" data-credentials="include" >
 				<script type="application/json">
-					<?php echo $ampforwp_ga_fields; ?>
+					<?php 
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $ampforwp_ga_fields; 
+					?>
 				</script>
 			</amp-analytics>
 			<?php }
@@ -171,13 +178,19 @@ function ampforwp_analytics() {
 	 		?>
 	 		<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="gtag" id="analytics1">
 	 		<script type="application/json">
-				<?php echo $ampforwp_ga4_fields; ?>
+				<?php 
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $ampforwp_ga4_fields; 
+				?>
 			</script>
 			</amp-analytics>
 	 	<?php } else if (!empty($ga4_id)) { ?>
 			<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="gtag" id="analytics1" data-credentials="include" >
 				<script type="application/json">
-					<?php echo $ampforwp_ga4_fields; ?>
+					<?php 
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $ampforwp_ga4_fields; 
+					?>
 				</script>
 			</amp-analytics>
 		<?php }
@@ -240,7 +253,7 @@ function ampforwp_analytics() {
 			$piwik_api = str_replace("CANONICAL_URL", esc_url($url), $piwik_api);
 			$piwik_api = str_replace("RANDOM", intval($rand), $piwik_api);
 			?>
-			<amp-pixel src="<?php echo $piwik_api; // XXS ok, escaped above?>"></amp-pixel>
+			<amp-pixel src="<?php echo esc_url($piwik_api); // XXS ok, escaped above?>"></amp-pixel>
 		<?php }
 
 		// 10.4 Analytics Support added for quantcast
@@ -278,7 +291,10 @@ function ampforwp_analytics() {
 				$comscore_fields = apply_filters('ampforwp_comscore_analytics', $comscore_fields );?>
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="comscore">
 						<script type="application/json">
-							<?php echo wp_json_encode( $comscore_fields); ?>
+							<?php 
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							echo wp_json_encode( $comscore_fields); 
+							?>
 					    </script>
 					</amp-analytics>
 					<?php
@@ -287,7 +303,7 @@ function ampforwp_analytics() {
 	// 10.6 Analytics Support added for Effective Measure
 		if( true == ampforwp_get_setting('ampforwp-Effective-switch')) { ?>
 			<!-- BEGIN EFFECTIVE MEASURE CODE -->
-			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo ampforwp_get_setting('eam-feild'); ?>" />
+			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url_raw(ampforwp_get_setting('eam-feild')); ?>" />
 			<!--END EFFECTIVE MEASURE CODE -->
 		<?php }
 
@@ -295,7 +311,7 @@ function ampforwp_analytics() {
 		if( true == ampforwp_get_setting('ampforwp-StatCounter-switch')) { ?>
 			<!-- BEGIN StatCounter CODE -->
 			<div id="statcounter">
-			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo ampforwp_get_setting('sc-feild'); ?>" >
+			<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url_raw(ampforwp_get_setting('sc-feild')); ?>" >
 			</amp-pixel> 
 			</div>
 			<!--END StatCounter CODE -->
@@ -336,7 +352,10 @@ function ampforwp_analytics() {
 				$yandex_fields = apply_filters('ampforwp_yandex_analytics', $yandex_fields );?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="metrika"> 
 				<script type="application/json"> 
-					<?php echo wp_json_encode( $yandex_fields); ?>
+					<?php 
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo wp_json_encode( $yandex_fields); 
+					?>
 				</script> 
 				</amp-analytics> 
 				<?php }//code ends for supporting Yandex Metrika Analytics
@@ -356,7 +375,10 @@ function ampforwp_analytics() {
 				$ampforwp_chartbeat_fields = apply_filters('ampforwp_chartbeat_analytics', $ampforwp_chartbeat_fields );?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="chartbeat">
 					 <script type="application/json">
-					 <?php echo wp_json_encode( $ampforwp_chartbeat_fields); ?>
+					 <?php 
+					 //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					 echo wp_json_encode( $ampforwp_chartbeat_fields); 
+					 ?>
 					 </script>
 				</amp-analytics>
 				<?php
@@ -377,7 +399,10 @@ function ampforwp_analytics() {
 				<!-- Start Alexa AMP Certify Javascript -->
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="alexametrics">
 						<script type="application/json">
-						<?php echo wp_json_encode( $alexa_fields,JSON_UNESCAPED_SLASHES); ?>
+						<?php 
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							echo wp_json_encode( $alexa_fields,JSON_UNESCAPED_SLASHES); 
+						?>
 						</script>
 					</amp-analytics>
 				<!-- End Alexa AMP Certify Javascript -->
@@ -486,7 +511,7 @@ function ampforwp_analytics() {
 
 						$adobe_fields =  apply_filters('ampforwp-adobe-analytics', $adobe_fields);?>
 						
-						<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="<?php echo $type;?>">
+						<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="<?php echo esc_attr($type);?>">
 							
 							<script type="application/json">
 
@@ -521,7 +546,10 @@ function ampforwp_analytics() {
 	
 							<script type="application/json">
 	
-							<?php echo wp_json_encode( $adobe_fields,JSON_UNESCAPED_SLASHES); ?>
+							<?php 
+								//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								echo wp_json_encode( $adobe_fields,JSON_UNESCAPED_SLASHES); 
+							?>
 	
 							</script>
 	
@@ -563,7 +591,10 @@ function ampforwp_analytics() {
 			$ppas_fields = apply_filters('ampforwp_piwikpro_analytics', $ppas_fields );?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="ppasanalytics">
 					<script type="application/json">
-						<?php echo $ppas_fields; ?>
+						<?php
+						//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						 echo $ppas_fields; 
+						 ?>
 					</script>
 				</amp-analytics>
 				<?php
@@ -795,6 +826,7 @@ function ampforwp_facebook_pixel() {
 			$amp_pixel .= 'data-block-on-consent';
 		}
 		$amp_pixel .= ' src="https://www.facebook.com/tr?id='.esc_attr(ampforwp_get_setting('amp-fb-pixel-id')).'&ev=PageView&noscript=1"></amp-pixel>';
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $amp_pixel; // escaped above 
 	}
 }
@@ -875,7 +907,12 @@ function ampforwp_add_advance_gtm_fields( $ampforwp_adv_gtm_fields ) {
 			$ampforwp_adv_gtm_fields = str_replace('{tags}', $tagNames, $ampforwp_adv_gtm_fields);
 
 			if($gtm_id!=""){?>
-				<amp-analytics config="https://www.googletagmanager.com/amp.json?id=<?php echo esc_attr($gtm_id);?>" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>><script type="application/json"><?php echo sanitize_text_field($ampforwp_adv_gtm_fields) ?></script></amp-analytics> <?php
+				<amp-analytics config="https://www.googletagmanager.com/amp.json?id=<?php echo esc_attr($gtm_id);?>" <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>><script type="application/json">
+					<?php 
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo sanitize_text_field($ampforwp_adv_gtm_fields) 
+					?>
+					</script></amp-analytics> <?php
 			}
 		}else{
 			if($gtm_id!="" && empty($gtm_analytics)){ ?>
@@ -1022,14 +1059,14 @@ function ampforwp_adobe_stats_page($wp_query){
 	  <html>
   <head>
     <title>Adobe Stats Iframe</title>
-    <script language="javaScript" type="text/javascript" src="<?php echo AMPFORWP_ANALYTICS_URL;?>/VisitorAPI.js"></script>
-    <script language="javaScript" type="text/javascript" src="<?php echo AMPFORWP_ANALYTICS_URL;?>/AppMeasurement.js"></script>
+    <script language="javaScript" type="text/javascript" src="<?php echo esc_url(AMPFORWP_ANALYTICS_URL);?>/VisitorAPI.js"></script>
+    <script language="javaScript" type="text/javascript" src="<?php echo esc_url(AMPFORWP_ANALYTICS_URL);?>/AppMeasurement.js"></script>
   </head>
   <body>
     <script>
-      var v_orgId = "<?php echo $orgid;?>";
-      var s_account = "<?php echo $ReportSuiteId;?>";
-      var s_trackingServer = "<?php echo $hostname;?>";
+      var v_orgId = "<?php echo esc_attr($orgid);?>";
+      var s_account = "<?php echo esc_attr($ReportSuiteId);?>";
+      var s_trackingServer = "<?php echo esc_url($hostname);?>";
       var visitor = Visitor.getInstance(v_orgId);
       visitor.trackingServer = s_trackingServer;
       var s = s_gi(s_account);

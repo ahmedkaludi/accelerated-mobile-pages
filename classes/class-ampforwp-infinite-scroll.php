@@ -83,7 +83,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
 					$data['amp_component_scripts']['amp-next-page'] = 'https://cdn.ampproject.org/v0/amp-next-page-latest.js';
 				}else{
-					$data['amp_component_scripts']['amp-next-page'] = 'https://cdn.ampproject.org/v0/amp-next-page-0.1.js';	
+					$data['amp_component_scripts']['amp-next-page'] = 'https://cdn.ampproject.org/v0/amp-next-page-latest.js';	
 				}
 			}
 			return $data;
@@ -104,8 +104,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
 					$pages[] = array('title'=>'','image'=>'','url'=>$loop_link1); 
 				}else{
-					$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link1);
-					$pages[] = array('title'=>'','image'=>'','ampUrl'=>$loop_link2);
+					$pages[] = array('title'=>'','image'=>'','url'=>$loop_link1); 
 				}
 			}
 			if ( $this->is_single ) {
@@ -119,20 +118,28 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			    if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
 			    	echo wp_json_encode($pages);
 			    }else{
-			    	?>
-			    	{
-			    	  	"pages": <?php echo wp_json_encode($pages);?>,
-			    	  	"hideSelectors": <?php echo ampforwp_css_sanitizer($classes);?>
-			    	}
-			    <?php } ?>
+					echo wp_json_encode($pages);
+				 } ?>
 			  	</script>
 			</amp-next-page>
 		<?php }
+		public function ampforwp_get_infinite_scroll_post_ids(){
+			$filter_ids = get_post_meta(ampforwp_get_the_ID(), 'ampforwp_filtered_post_ids', true);
+			$in_ids = array();
+			if(!empty($filter_ids)){
+				$filter_ids = json_decode($filter_ids);
+				foreach ($filter_ids as $key => $value) {
+					$in_ids[] = $value->id;
+				}
+			}
+			return $in_ids;
+		}
 		public function single_post() {
 			global $post;
 			$pages = array();
+			
 			$exclude_ids = ampforwp_exclude_posts();
-			$exclude_ids[] = $post->ID;
+			$exclude_ids[] = ampforwp_get_the_ID();
 			$query_args =  array(
 				'post_type'           => get_post_type(),
 				'orderby'             => 'date',
@@ -143,7 +150,37 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				'post_status'=> 'publish',
 				'posts_per_page' => 2,
 				'no_found_rows'	=> true
-			  );
+			);
+			$global_infinite_scroll_posts = ampforwp_get_setting('ampforwp-infinite-scroll-posts');
+			if(!empty($global_infinite_scroll_posts) && is_array($global_infinite_scroll_posts)){
+				$query_args =  array(
+					'post_type'           => get_post_type(),
+					'orderby'             => 'date',
+					'ignore_sticky_posts' => 1,
+					'paged'               => esc_attr($this->paged),
+					'post__not_in' 		  => $exclude_ids,
+					'post__in' 		  => $global_infinite_scroll_posts,
+					'has_password' => false ,
+					'post_status'=> 'publish',
+					'posts_per_page' => 2,
+					'no_found_rows'	=> true
+					);
+			}
+			$include_ids = $this->ampforwp_get_infinite_scroll_post_ids();
+			if(!empty($include_ids)){
+			$query_args =  array(
+				'post_type'           => get_post_type(),
+				'orderby'             => 'date',
+				'ignore_sticky_posts' => 1,
+				'paged'               => esc_attr($this->paged),
+				'post__not_in' 		  => $exclude_ids,
+				'post__in' 		  => $include_ids,            
+				'has_password' => false ,
+				'post_status'=> 'publish',
+				'posts_per_page' => 2,
+				'no_found_rows'	=> true
+				);
+			}
 			if (ampforwp_get_setting('ampforwp-infinite-scroll-single') && ampforwp_get_setting('ampforwp-infinite-scroll-single-category')){
 				$categories = get_the_category($post->ID);
 				$category_ids = array();
@@ -172,6 +209,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				}
 				$query_args['tag__in'] = $tags_ids;
 			}
+			
 			$query_args = apply_filters('ampforwp_infinite_scroll_query_args', $query_args);
 			$query = new WP_Query( $query_args );
 			while ($query->have_posts()) {
@@ -179,7 +217,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				if (true == ampforwp_get_setting('ampforwp-infinite-scroll-new-features')) {
 					$pages[] = array('title'=>get_the_title(),'image'=>ampforwp_get_post_thumbnail('url', 'full'),'url'=>ampforwp_url_controller( get_permalink() ));
 				}else{
-					$pages[] = array('title'=>get_the_title(),'image'=>ampforwp_get_post_thumbnail('url', 'full'),'ampUrl'=>ampforwp_url_controller( get_permalink() ));
+					$pages[] = array('title'=>get_the_title(),'image'=>ampforwp_get_post_thumbnail('url', 'full'),'url'=>ampforwp_url_controller( get_permalink() ));
 				}
 			}
 			wp_reset_postdata();

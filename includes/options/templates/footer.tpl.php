@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		</div>
 
-		<div class="redux-ajax-loading" alt="<?php _e( 'Working...', 'accelerated-mobile-pages' ) ?>">&nbsp;</div>
+		<div class="redux-ajax-loading" alt="Working...">&nbsp;</div>
 		<div class="clear"></div>
 
 	</div>

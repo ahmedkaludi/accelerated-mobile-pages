@@ -89,6 +89,7 @@ function ampforwp_header_advert() {
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 	$output = apply_filters('ampforwp_modify_ad_1',$output );
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $output; // escaped above 
 }
 
@@ -170,6 +171,7 @@ function ampforwp_footer_advert() {
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 	$output = apply_filters('ampforwp_modify_ad_2',$output );
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $output; // escaped above
 }
 
@@ -270,6 +272,7 @@ function ampforwp_before_post_content_advert() {
 			}
 			$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 			$output = apply_filters('ampforwp_modify_ad_3',$output );
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $output; // escaped above
 		}
 	}
@@ -358,6 +361,7 @@ function ampforwp_after_post_content_advert() {
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 	$output = apply_filters('ampforwp_modify_ad_4',$output );
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $output; // escaped above
 }
 
@@ -434,6 +438,7 @@ function ampforwp_below_the_title_advert() {
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 	$output = apply_filters('ampforwp_modify_ad_5',$output );
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $output; // escaped above
 }
 
@@ -513,6 +518,7 @@ function ampforwp_above_related_post_advert() {
 	}
 	$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
 	$output = apply_filters('ampforwp_modify_ad_6',$output );
+	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped	
 	echo $output; // escaped above
 }
 // Ads Sponsorship output

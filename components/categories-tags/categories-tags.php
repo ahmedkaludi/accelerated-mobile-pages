@@ -56,6 +56,7 @@ function ampforwp_framework_get_categories_list( $separator = '' ){
 							}
 							$anchorTag = '<a href="'.esc_url($url).'" title="'.esc_html($term_name).'">';
 							$anchorClose = "</a>";
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							echo ('<span class="amp-cat amp-cat-'.esc_attr($term_id).' '.esc_attr($cat).' ">'.$anchorTag.esc_html($term_name).$anchorClose.'</span>');
 					}else{
 						echo ('<span class="amp-cat"> '.esc_html($term_name).'</span>');
@@ -73,8 +74,10 @@ function ampforwp_framework_get_categories_list( $separator = '' ){
 		if( true == ampforwp_get_setting('ampforwp-archive-support') && true == ampforwp_get_setting('ampforwp-archive-support-cat')){
 			$url = ampforwp_url_controller($url);
 		}
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			$anchorTag = '<a href="'.esc_url($url).'" title="'.esc_html($cat_name).'">';
 			$anchorClose = "</a>";
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo ('<span class="amp-cat amp-cat-'.esc_attr($cat_id).'">'.$anchorTag.esc_html($cat_name).$anchorClose.'</span>');
 	}else{
 			echo ('<span class="amp-cat"> '.esc_html($cat_name).'</span>');
@@ -97,6 +100,7 @@ function ampforwp_framework_get_tags_list($separator=''){
 							}
 							$anchorTag = '<a href="'.esc_url($url).'" title="'.esc_html($tag->name).'">';
 							$anchorClose = "</a>";
+							//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							echo ('<span class="amp-tag amp-tag-'.esc_attr($tag->term_id).'">'.$anchorTag.esc_html($tag->name).$anchorClose.'</span>');
 						}else{
 							echo ('<span class="amp-tag"> '.esc_html($tag->name).'</span>');

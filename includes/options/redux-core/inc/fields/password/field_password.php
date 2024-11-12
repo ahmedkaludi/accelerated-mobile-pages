@@ -80,10 +80,10 @@ namespace ReduxCore\ReduxFramework;
                 }
 
                 // Username field
-                echo '<input type="text" autocomplete="off" placeholder="' . esc_attr__($this->value['placeholder']['username'],'accelerated-mobile-pages') . '" id="' . $this->field['id'] . '[username]" name="' . $this->field['name'] . $this->field['name_suffix'] . '[username]' . '" value="' . esc_attr( $this->value['username'] ) . '" class="' . $this->field['class'] . '" />&nbsp;';
+                echo '<input type="text" autocomplete="off" placeholder="' . esc_attr($this->value['placeholder']['username']) . '" id="' . $this->field['id'] . '[username]" name="' . $this->field['name'] . $this->field['name_suffix'] . '[username]' . '" value="' . esc_attr( $this->value['username'] ) . '" class="' . $this->field['class'] . '" />&nbsp;';
 
                 // Password field
-                echo '<input type="password" autocomplete="off" placeholder="' . esc_attr__($this->value['placeholder']['password'],'accelerated-mobile-pages') . '" id="' . $this->field['id'] . '[password]" name="' . $this->field['name'] . $this->field['name_suffix'] . '[password]' . '" value="' . esc_attr( $this->value['password'] ) . '" class="' . $this->field['class'] . '" />';
+                echo '<input type="password" autocomplete="off" placeholder="' . esc_attr($this->value['placeholder']['password']) . '" id="' . $this->field['id'] . '[password]" name="' . $this->field['name'] . $this->field['name_suffix'] . '[password]' . '" value="' . esc_attr( $this->value['password'] ) . '" class="' . $this->field['class'] . '" />';
             }
 
             /**

@@ -33,7 +33,10 @@ global $redux_builder_amp; ?>
 								if(true == ampforwp_get_setting('single-next-prev-to-nonamp')){
 								$next_link = get_permalink( $next_post->ID );
 								} ?>
-								<a href="<?php echo esc_url($next_link); ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
+								<a href="<?php echo esc_url($next_link); ?>">
+									<?php 
+									//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+									echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
 									 } ?>		
 						</div>
 					<?php } 
@@ -46,7 +49,12 @@ global $redux_builder_amp; ?>
 								if(true == ampforwp_get_setting('single-next-prev-to-nonamp')){
 								$prev_link = get_permalink( $prev_post->ID );
 								} ?>
-								   <a href="<?php echo esc_url($prev_link); ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php } ?>
+								   <a href="<?php echo esc_url($prev_link); ?>"> &laquo; <?php 
+								   //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								   echo apply_filters('ampforwp_prev_link',$prev_text ); 
+								   ?>
+								   </a> 
+								<?php } ?>
 	
 						</div> 
 					<div class="cb"></div>

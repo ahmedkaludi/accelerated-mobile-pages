@@ -102,7 +102,9 @@ function amp_menu_styles(){
 
 	         ul.ubermenu-submenu {
 			    margin-left: 10px;
-			    color: <?php echo ampforwp_sanitize_color($menu_element_color); ?>;
+			    color: <?php 
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo ampforwp_sanitize_color($menu_element_color); ?>;
 			    line-height: 3;
 	          }
 	          .ubermenu-custom-content amp-img{
@@ -110,7 +112,9 @@ function amp_menu_styles(){
 	             height:240px;
 	           }
 	         .ubermenu-content-block,.ubermenu-custom-content {
-			    color: <?php echo ampforwp_sanitize_color($menu_element_color); ?>;
+			    color: <?php 
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo ampforwp_sanitize_color($menu_element_color); ?>;
 			    line-height: 2;
 			    padding: 0px <?php echo esc_html($cont_padding); ?>;
 			    width: <?php echo esc_html($ubermenu_cont_wth); ?>;

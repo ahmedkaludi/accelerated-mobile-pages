@@ -545,7 +545,7 @@ function ampforwp_translation( $redux_style_translation , $pot_style_translation
         if(!empty($redux_style_translation)){
             $pot_style_translation = $redux_style_translation;
         }
-        return __($pot_style_translation,'accelerated-mobile-pages');
+        return $pot_style_translation;
    }
 }
 
@@ -1238,6 +1238,7 @@ if( ! function_exists( 'ampforwp_additional_gallery_style' ) ){
         $design_type = ampforwp_get_setting('ampforwp-gallery-design-type');
         
         if(isset($design_type) && $design_type!==''){
+            //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $carousel_markup_all[$design_type]['gallery_css'];
         }
     }
@@ -1371,7 +1372,7 @@ function ampforwp_dev_mode_notice(){
             <div class="notice notice-success amp-dev-notice" style="position:relative;
             height: 40px; overflow: hidden; ">
                 <div class="ampforwp-dev-mode-message" style="margin-top: 10px;">
-                    <?php echo '<strong>'. esc_html__('AMP Dev mode is Enabled!', 'accelerated-mobile-pages').'</strong>'. esc_html__($message, 'accelerated-mobile-pages'); ?>             
+                    <?php echo '<strong>'. esc_html__('AMP Dev mode is Enabled!', 'accelerated-mobile-pages').'</strong>'. esc_html($message); ?>             
                 </div>  
             </div>
 <?php }
@@ -1435,7 +1436,7 @@ function ampforwp_seo_selection_notice() {
          $seosel = true;
     }
     if($seosel && ( '' != ampforwp_get_setting('ampforwp-seo-selection') ) ){
-        echo sprintf(('<div class="notice notice-error"><p>%s</p></div>'), esc_html__('Incorrect SEO plugin has been selected in AMPforWP SEO Settings, Please select '.esc_html($seo).' from SEO Settings.','accelerated-mobile-pages'));
+        echo sprintf(('<div class="notice notice-error"><p>%s</p></div>'), esc_html('Incorrect SEO plugin has been selected in AMPforWP SEO Settings, Please select '.$seo.' from SEO Settings.'));
     }
 
     if('' != ampforwp_get_setting('ampforwp-seo-selection')){
@@ -1443,7 +1444,7 @@ function ampforwp_seo_selection_notice() {
     }
     
     if(!empty($seo)){
-        echo sprintf(('<div class="notice notice-error"><p>%s </p></div>'), esc_html__('The configuration of AMPforWP and '.esc_html($seo).' plugin is seems incorrect. Please go to AMPforWP plugin settings -> SEO -> SEO Plugin Integration and select '.esc_html($seo).' plugin from the drop down.','accelerated-mobile-pages'));
+        echo sprintf(('<div class="notice notice-error"><p>%s </p></div>'), esc_html('The configuration of AMPforWP and '.$seo.' plugin is seems incorrect. Please go to AMPforWP plugin settings -> SEO -> SEO Plugin Integration and select '.$seo.' plugin from the drop down.'));
     }
 }
 add_action('wp_ajax_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
@@ -1458,6 +1459,7 @@ function ampforwp_subscribe_for_newsletter(){
     );
     $response = wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
     $response = wp_remote_retrieve_body( $response );
+    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo $response;
     die;
 }
@@ -1488,7 +1490,7 @@ function ampforwp_mobile_redirection_notice(){
           $option = 'Mobile';
     }
     if(!empty($plugin) && !empty($option)){
-    echo sprintf(('<div class="notice notice-error"><p>%s <a target="_blank" href="%s">%s</a></p></div>'), esc_html__('You need to enable the option of "'.esc_html($option).'" in '.esc_html($plugin).' plugin for mobile redirection to work properly in AMP','accelerated-mobile-pages'),esc_url('https://ampforwp.com/tutorials/article/how-to-redirect-all-mobile-visitors-to-amp/'),esc_html__('Click here for more info','accelerated-mobile-pages'));  }
+    echo sprintf(('<div class="notice notice-error"><p>%s <a target="_blank" href="%s">%s</a></p></div>'), esc_html('You need to enable the option of "'.$option.'" in '.$plugin.' plugin for mobile redirection to work properly in AMP'),esc_url('https://ampforwp.com/tutorials/article/how-to-redirect-all-mobile-visitors-to-amp/'),esc_html__('Click here for more info','accelerated-mobile-pages'));  }
  }
 function ampforwp_category_base_remove_notice(){
     if(true == ampforwp_get_setting('ampforwp-category-base-removel-link')){
@@ -1651,3 +1653,14 @@ function ampforwp_visibility_shortcode($atts, $content = null) {
     }
 }
 add_shortcode('ampforwp_visibility', 'ampforwp_visibility_shortcode');
+function ampforwp_get_infinite_scroll_post_on_id(){
+    $filter_ids = get_post_meta(ampforwp_get_the_ID(), 'ampforwp_filtered_post_ids', true);
+    $in_ids = array();
+    if(!empty($filter_ids)){
+        $filter_ids = json_decode($filter_ids);
+        foreach ($filter_ids as $key => $value) {
+            $in_ids[] = $value;
+        }
+    }
+    return $in_ids;
+}

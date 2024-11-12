@@ -44,10 +44,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     <?php if ( ! empty( $this->parent->args['display_name'] ) ) { ?>
         <div class="display_header">
 
-            <h2><?php echo $this->parent->args['display_name']; ?></h2>
+            <h2><?php echo esc_attr($this->parent->args['display_name']); ?></h2>
 
             <?php if ( ! empty( $this->parent->args['display_version'] ) ) { ?>
-                <span><?php echo $this->parent->args['display_version']; ?></span>
+                <span><?php echo esc_attr($this->parent->args['display_version']); ?></span>
             <?php } ?>
 
         </div>
@@ -56,9 +56,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div id="right-elements">
         <div class="links">
             <?php if ( uwl_fs()->is_not_paying() ) {  ?>
-                <span class="uwl-premium-message"><?php _e( '20+ awesome widgets, more widgets styling, premium support', 'accelerated-mobile-pages' ); ?> <a href="<?php echo uwl_fs()->get_upgrade_url(); ?>"><?php _e( 'upgrade Now!', 'accelerated-mobile-pages' ); ?></a></span>
+                <span class="uwl-premium-message">20+ awesome widgets, more widgets styling, premium support <a href="<?php echo esc_url(uwl_fs()->get_upgrade_url()); ?>">Upgrade Now!</a></span>
             <?php } ?>
-            <a href="<?php echo admin_url( 'admin.php?page=uwl_options-contact' ); ?>" class="uwl-support" target="_blank"><?php _e( 'Support Request', 'accelerated-mobile-pages' ); ?></a>
+            <a href="<?php echo esc_url(admin_url( 'admin.php?page=uwl_options-contact' )); ?>" class="uwl-support" target="_blank">Support Request</a>
         </div>
 
 		<?php if ( isset( $this->parent->args['share_icons'] ) ) : ?>

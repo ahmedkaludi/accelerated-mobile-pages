@@ -71,6 +71,7 @@ function ampforwp_get_licence_activate_update(){
                         switch( $license_data->error ) {
                             case 'expired' :
                                 $message = sprintf(
+                                    /* translators: %s: expiry date */
                                     esc_html__( 'Your license key expired on %s.', 'accelerated-mobile-pages' ),
                                     date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
                                 );
@@ -93,8 +94,8 @@ function ampforwp_get_licence_activate_update(){
                                 break;
 
                             case 'item_name_mismatch' :
-
                                 $message = sprintf( 
+                                    /* translators: %s: product name */
                                     esc_html__( 'This appears to be an invalid license key for %s.', 'accelerated-mobile-pages' ),
                                     $item_name
                                 );
@@ -335,10 +336,10 @@ function ampforwp_plgins_update_message_according_pluginOpt( $plugin_data, $r )
     }
 
     if($license_key==""){
-        echo "<a href='".self_admin_url("?page=amp_options&tab=29")."'>Please enter key</a>";
+        echo "<a href='".esc_url(self_admin_url("?page=amp_options&tab=29"))."'>Please enter key</a>";
     }
     if($pluginstatus!="valid"){
-        echo "<a href='".self_admin_url("?page=amp_options&tab=29")."'>Please enter a valid key</a>";
+        echo "<a href='".esc_url(self_admin_url("?page=amp_options&tab=29"))."'>Please enter a valid key</a>";
     }
 
 }

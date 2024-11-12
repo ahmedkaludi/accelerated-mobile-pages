@@ -132,3 +132,121 @@ AmpForWpYoastAnalysis = function() {
     };
     new AmpForWpYoastAnalysis();
 }); 
+function ampforwpShowPostDD(){
+    if(document.getElementById("ampforwp-dd-content")){
+        document.getElementById("ampforwp-dd-content").style.display='block';
+        ampforwp_select_selected_post_item();
+    }
+}
+function ampforwpClosePostDD(){
+    if(document.getElementById("ampforwp-dd-content")){
+        document.getElementById("ampforwp-dd-content").style.display='none';
+        
+    }
+}
+function ampforwpFilterPost() {
+    const input = document.getElementById("ampforwp-post-sb");
+    const filter = input.value.toUpperCase();
+    const div = document.getElementById("ampforwp-dd-content");
+    const a = div.getElementsByTagName("li");
+    for (let i = 0; i < a.length; i++) {
+      txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+    }
+    if(filter.length>=4){
+        ampforwp_search_infinite_scroll_post(filter);
+    }
+    ampforwp_select_selected_post_item();
+  }
+  var ajax_request = null;
+  function ampforwp_search_infinite_scroll_post(text){
+    let this_id = document.getElementById("ampforwp_filtered_this_post_id").value;
+    let nonce = document.getElementById("ampforwp_filtered_post_nounce").value;
+    var data_search = {
+        'action': 'ampforwp_search_infinite_scroll_post',
+        'security': nonce,
+        'search': text,
+        'this_id':this_id
+    };
+    
+    ajax_request = jQuery.ajax({
+        type: "POST", //TODO: Must be changed to POST
+        url: ajaxurl,
+        data: data_search,
+        success: function (response) {
+            response = JSON.parse(response);
+            let iHtml = '';
+            for (let index = 0; index < response.length; index++) {
+                const element = response[index];
+                const ptitle = "'"+element.post_title+"'";
+                iHtml +='<li id="afwp-infinite-post-li-'+element.ID+'" onclick="ampforwp_select_post_item(this.value,'+element.ID+','+ptitle+')">'+element.post_title+'</li>';
+            }
+            document.getElementById('ampforwp-dd-content').innerHTML = iHtml;
+            ampforwp_select_selected_post_item();
+        },
+        beforeSend: function () {
+            if (ajax_request !== null) {
+                ajax_request.abort();
+            }
+        }
+    });
+  }
+  function ampforwp_select_selected_post_item(){
+    let ampforwp_filtered_post_ids = document.getElementById("ampforwp_filtered_post_ids").value;
+    let pdata = JSON.parse(ampforwp_filtered_post_ids);
+    for (let index = 0; index < pdata.length; index++) {
+        const element = pdata[index];
+        let pid = parseInt(element.id);
+        if(document.getElementById('afwp-infinite-post-li-'+pid)){
+            document.getElementById('afwp-infinite-post-li-'+pid).classList.add('active');
+        }
+    }
+  }
+  function ampforwp_select_post_item(value,postid,posttitle){
+    ampforwpClosePostDD();
+    let ampforwp_filtered_post_ids = document.getElementById("ampforwp_filtered_post_ids").value;
+    let pdata = JSON.parse(ampforwp_filtered_post_ids);
+    for (let index = 0; index < pdata.length; index++) {
+        const element = pdata[index];
+        let pid = parseInt(element.id);
+        if(pid===parseInt(postid)){
+            return false;
+        }
+    }
+    if(pdata.length<2){
+        let new_data = {id:postid,title:posttitle};
+        pdata.push(new_data);
+        document.getElementById("ampforwp_filtered_post_ids").value = JSON.stringify(pdata);
+        ampforwp_build_infinite_scroll_tag();
+    }else{
+        document.getElementById('afwp-post-tag-error').innerHTML = 'Only 2 post allowed in infinite scroll';
+    }
+  }
+  function ampforwp_build_infinite_scroll_tag(){
+    let ampforwp_filtered_post_ids = document.getElementById("ampforwp_filtered_post_ids").value;
+    let pdata = JSON.parse(ampforwp_filtered_post_ids);
+    let iHtml = '';
+    for (let index = 0; index < pdata.length; index++) {
+        const element = pdata[index];
+        iHtml += '<p class="ampforwp-tag-sp">'+element.title+' <span style="cursor:pointer;float:right" onclick="ampforwp_remove_item('+index+')">x</span></p>';
+    }
+    document.getElementById('ampforwp-post-tag-ihtml').innerHTML = iHtml;
+  }
+  function ampforwp_remove_item(idx){
+    let ampforwp_filtered_post_ids = document.getElementById("ampforwp_filtered_post_ids").value;
+    let pdata = JSON.parse(ampforwp_filtered_post_ids);
+    pdata.splice(idx,1);
+    document.getElementById("ampforwp_filtered_post_ids").value = JSON.stringify(pdata);
+    ampforwp_build_infinite_scroll_tag();
+    ampforwp_select_selected_post_item();
+  }
+  window.addEventListener("mouseup", ampforwp_close_post_list_on_outside_click);
+  function ampforwp_close_post_list_on_outside_click(e){
+    if(e.target.id==='afwp-pt-box'){
+        ampforwpClosePostDD();
+    }
+  }

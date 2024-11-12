@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         public function proxy() {
 
-            if ( ! isset( $_GET['nonce'] ) || ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( $_GET['nonce'], "redux-ads-nonce" ) ) && ! current_user_can( 'manage_options' )) {
+            if ( ! isset( $_GET['nonce'] ) || ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( $_GET['nonce'], "redux-ads-nonce" ) ) || ! current_user_can( 'manage_options' )) {
                 die();
             }
 

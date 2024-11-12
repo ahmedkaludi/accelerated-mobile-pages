@@ -51,7 +51,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                      qtip-title="<?php echo esc_attr( $tip_title ); ?>"
                      qtip-content="<?php echo esc_attr( $tip_msg ); ?>">
                     <span
-                        class="redux-dev-mode-notice"><?php _e( 'Developer Mode Enabled', 'accelerated-mobile-pages' ); ?></span>
+                        class="redux-dev-mode-notice"><?php esc_html_e( 'Developer Mode Enabled', 'accelerated-mobile-pages' ); ?></span>
                 </div>
             <?php } elseif (isset($this->parent->args['forced_dev_mode_off']) && $this->parent->args['forced_dev_mode_off'] == true ) { ?>
                 <?php $tip_title    = 'The "forced_dev_mode_off" argument has been set to true.'; ?>
@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                      qtip-title="<?php echo esc_attr( $tip_title ); ?>"
                      qtip-content="<?php echo esc_attr( $tip_msg ); ?>">
                     <span
-                        class="redux-dev-mode-notice" style="background-color: #FF001D;"><?php _e( 'FORCED DEV MODE OFF ENABLED', 'accelerated-mobile-pages' ); ?></span>
+                        class="redux-dev-mode-notice" style="background-color: #FF001D;"><?php esc_html_e( 'FORCED DEV MODE OFF ENABLED', 'accelerated-mobile-pages' ); ?></span>
                 </div>
             
             <?php } ?>
