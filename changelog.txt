@@ -1,5 +1,21 @@
 == Changelog ==
 
+= 1.1.1 (12 November 2024) =
+* New : Manual post selection in infinite scroll #5651
+* Fixed: Version 1.0.99.1 causing Tag issue. #5650
+* Fixed: Errors in debug.log, PHP Deprecated: trim(): Passing null to parameter #5652
+* Fixed: GA-4 Analytic not working on infinite scroll post #5656
+* Fixed: The Last Modified date appears broken in the AMP version #5659
+* Fixed: Feature images are not loading in homepage due to conflict with JNews theme lazyload #5655
+* Fixed: Afterpay Gateway for WooCommerce plugin is causing issue in Amp Validator #5643
+* Fixed: FV Gravatar Cache plugin conflicts with AMP. #5611
+* Fixed: Php error on user end. #5642
+* Fixed: The author image added by the "Simple User Avatar plugin" is not showing in the AMP. #5606
+* Fixed: Cron reschedule event error for hook #5595
+* Fixed: PHP Deprecated: error with AMP #5621
+* Test: Test with WordPress version 6.7 #5657
+* Improvement : Few improvements required #5630
+
 = 1.0.99.2 (23 October 2024) =
 * Fixed: Cross-Site Request Forgery discovered by David Gallagher ( Wordfence )
 
