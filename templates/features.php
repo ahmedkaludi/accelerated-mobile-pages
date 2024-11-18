@@ -744,10 +744,6 @@ function ampforwp_new_dir( $dir ) {
 				   // aria-current
 				  $content = preg_replace('/(<[^>]+) aria-current=".*?"/', '$1', $content);
 
-				  //https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/5643
-				  //Afterpay Gateway for WooCommerce plugin is causing issue in Amp Validator
-				  $content = preg_replace('/<square-placement(.*)<\/square-placement>/', '', $content);
-
 				  // Gallery Break fix 
 				  $content = preg_replace('/[^\[]\[gallery(.*?)ids=(.*?)\]/', '</p>[gallery$1ids=$2]</p>', $content);
 				  // value attribute from anchor tag #2262
@@ -8673,6 +8669,11 @@ function ampforwp_remove_unwanted_code($content){
 	    if(preg_match('/<script>function orbital_expand_navbar(.*?)<\/script>/', $content)){
 	        $content = preg_replace('/<script>function orbital_expand_navbar(.*?)<\/script>/', '', $content);
 	    }
+	}
+	//https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/5643
+	//Afterpay Gateway for WooCommerce plugin is causing issue in Amp Validator
+	if(preg_match('/<square-placement(.*)<\/square-placement>/', $content)){
+		$content = preg_replace('/<square-placement(.*)<\/square-placement>/', '', $content);
 	}
 	if(empty($content)){
 		return $content;
