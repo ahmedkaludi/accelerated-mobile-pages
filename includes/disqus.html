@@ -68,15 +68,15 @@
 
     (function () {
 
-        const pattern = /https:\/\/[\w-]+\.disqus\.com/;
+        const pattern = /https:\/\/[a-zA-Z]+.disqus.com/;
 
         const matches = disqus_name.match(pattern);
 
-        if (matches) {
+        if (matches && matches[0].match(pattern)) {
 
             var d = document, s = d.createElement('script');
 
-            s.src = matches.input;
+            s.src = matches[0];
 
             s.setAttribute('data-timestamp', +new Date());
 
