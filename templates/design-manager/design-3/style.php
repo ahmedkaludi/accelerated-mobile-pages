@@ -388,7 +388,7 @@ if ( true == ampforwp_get_setting('enable-single-vk-share') ) { ?>
 <?php if ( true == ampforwp_get_setting('enable-single-linkedin-share') ) { ?>
 .a-so-linkedin{background:#0077b5}
 <?php } ?>
-<?php if ( true == ampforwp_get_setting('enable-single-whatsapp-share') ) { ?>
+<?php if ( true == ampforwp_get_setting('enable-single-whatsapp-share') || true == ampforwp_get_setting('enable-single-whatsapp-group-share') ) { ?>
 .a-so-whatsapp{background:#5cbe4a}
 <?php } ?>
 .ampforwp-custom-social{display:inline-block; margin-bottom:5px}

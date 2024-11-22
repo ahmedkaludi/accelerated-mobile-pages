@@ -1881,7 +1881,7 @@ if ( $ampforwp_font_icon == 'fontawesome-icons' ){ ?>
 <?php } ?>
 }
 <?php }
-if($redux_builder_amp['enable-single-whatsapp-share']){?>
+if($redux_builder_amp['enable-single-whatsapp-share'] || $redux_builder_amp['enable-single-whatsapp-group-share']){?>
 .s_wp{background:#075e54;}
 .s_wp:after{
 <?php if ( $ampforwp_font_icon == 'swift-icons' ){ ?>

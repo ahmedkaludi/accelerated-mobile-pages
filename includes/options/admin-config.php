@@ -8448,6 +8448,22 @@ else{
               'title'     =>  esc_html__('WhatsApp', 'accelerated-mobile-pages'),
               'default'   =>  1,
           ),
+           // WhatsApp Group
+           array(
+                'id'        =>  'enable-single-whatsapp-group-share',
+                'type'      =>  'switch',
+                'title'     =>  esc_html__('WhatsApp Group', 'accelerated-mobile-pages'),
+                'default'   =>  0,
+            ),
+            array(
+                'id'       => 'whatsapp-group-link',
+                'type'     => 'text',
+                'title'    => esc_html__('WhatsApp Group Link', 'accelerated-mobile-pages'),
+                'default'  => '#',
+                'required' => array(
+                  array('enable-single-whatsapp-group-share','=',1)
+                )           
+            ),
           // LINE
           array(
               'id'        =>  'enable-single-line-share',
