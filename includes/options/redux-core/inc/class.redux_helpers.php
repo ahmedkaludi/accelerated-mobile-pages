@@ -310,7 +310,7 @@ namespace ReduxCore\ReduxFramework;
             public static function cleanFilePath( $path ) {
                 $path = str_replace( '', '', str_replace( array( "\\", "\\\\" ), '/', $path ) );
 
-                if ( $path[ strlen( $path ) - 1 ] === '/' ) {
+                if ( !empty($path) && $path[ strlen( $path ) - 1 ] === '/' ) {
                     $path = rtrim( $path, '/' );
                 }
 
