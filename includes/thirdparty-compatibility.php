@@ -116,6 +116,79 @@ function ampforwp_thirdparty_compatibility(){
 		add_filter('the_content', [$wp_embed, 'autoembed'], 8);
 		add_filter('the_content', [$wp_embed, 'run_shortcode'], 8);
 	}
+	if(class_exists( 'Jetpack_RelatedPosts' ) && true == ampforwp_get_setting('ampforwp-jetpack-related-posts')){
+		add_filter('amp_post_template_data','ampforwp_jetpack_related_post');
+	}
+}
+function ampforwp_jetpack_related_post($amp_post_template_data){
+	$content = $amp_post_template_data['post_amp_content'];
+	$jprp = Jetpack_RelatedPosts::init();
+	$jprp_settings = $jprp->get_options();
+	$get_related_post = $jprp->get_for_post_id(ampforwp_get_the_ID(),$jprp_settings);
+	if(!empty($get_related_post)){
+		$rp_content = ampforwp_prepre_jetpack_related_post($get_related_post,$jprp_settings);
+		$content = $content.$rp_content;
+		$amp_post_template_data['post_amp_content'] = $content;
+	}
+	return $amp_post_template_data;
+}
+function ampforwp_prepre_jetpack_related_post($get_related_post,$jprp_settings){
+	$show_thumbnails = $jprp_settings['show_thumbnails'];
+	$show_headline = $jprp_settings['show_headline'];
+	$show_date = $jprp_settings['show_date'];
+	$show_context = $jprp_settings['show_context'];
+	$layout = $jprp_settings['layout'];
+	$headline = $jprp_settings['headline'];
+	
+	$jetpack_rp_content = '';
+	$jetpack_rp_content = '<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;">';
+	if($show_headline==true){
+		$jetpack_rp_content .= '<h3 class="jp-relatedposts-headline"><em>'.$headline.'</em></h3>';
+	}
+	$jetpack_rp_content .= '<div class="jp-relatedposts-items jp-relatedposts-items-visual jp-relatedposts-grid ">';
+	foreach ($get_related_post as $key => $value) {
+		$id = $value['id'];
+		$url = $value['url'];
+		$title = $value['title'];
+		$date = $value['date'];
+		$excerpt = $value['excerpt'];
+		$context = $value['context'];
+		$format = $value['format'];
+		$img = $value['img'];
+		$img_alt_text = $img['alt_text'];
+		$img_width = $img['width'];
+		$img_height = $img['height'];
+		$img_src = $img['src'];
+		$img_srcset = '';
+		if(isset($img['srcset'])){
+			$img_srcset = $img['srcset'];
+		}
+		$amp_url =  ampforwp_url_controller($url);	
+		$cls = 'jp-relatedposts-post-thumbs';
+		if($show_thumbnails==true && $img_src==""){
+			$cls = 'jp-relatedposts-post-nothumbs';
+		}
+		$jetpack_rp_content .= '<div class="jp-relatedposts-post jp-relatedposts-post'.esc_attr( $key ).' '.esc_attr( $cls ).'" data-post-id="'.esc_attr($id).'" data-post-format="'.esc_attr($format).'">';
+			if($show_thumbnails==true && $img_src!=""){
+				$jetpack_rp_content .= '<a class="jp-relatedposts-post-a" href="'.esc_url($amp_url).'" title="'.esc_attr($title).'" data-origin="37" data-position="0">
+					<amp-img  src="'.esc_url($img_src).'" width="230" height="130"></amp-img>
+				</a>';
+			}
+			$jetpack_rp_content .= '<h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="'.esc_url($amp_url).'"  title="'.esc_attr($title).'" data-origin="'.esc_attr($id).'" data-position="0">'.esc_attr($title).'</a></h4>';
+			if($show_thumbnails==true && $img_src==""){
+				$jetpack_rp_content .= '<p class="jp-relatedposts-post-excerpt" style="max-height: 7.14286em;">'.$excerpt.'</p>';
+			}
+			if($show_date==true){
+				$jetpack_rp_content .= '<time class="jp-relatedposts-post-date" style="display: block;">'.esc_attr($date).'</time>';
+			}
+			if($show_context==true){
+				$jetpack_rp_content .= '<p class="jp-relatedposts-post-context">'.$context.'</p>';
+			}
+			$jetpack_rp_content .= '</div>';
+	}
+	$jetpack_rp_content .='</div>';
+	$jetpack_rp_content .='</div>';
+	return $jetpack_rp_content;
 }
 function ampforwp_removing_sassy_social_share(){	
 	return 1;
