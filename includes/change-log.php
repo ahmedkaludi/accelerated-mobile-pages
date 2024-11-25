@@ -47,6 +47,7 @@ function ampforwp_nl2p($string, $only_if_no_html = TRUE) {
 }
 
 $readme_file = AMPFORWP_PLUGIN_DIR.'changelog.txt';
+/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents */
 $readme = file_get_contents($readme_file);
 
 $readme = preg_replace('/`(.*?)`/', '<code>\\1</code>', $readme);

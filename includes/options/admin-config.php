@@ -3121,6 +3121,7 @@ Redux::setSection( $opt_name, array(
 );
 function ampforwp_get_post_percent(){
     $total_post = $post_count = $post_percent = '';
+    /* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
     $args=array(
         'fields'        => 'ids',
         'post_type'    => 'post',

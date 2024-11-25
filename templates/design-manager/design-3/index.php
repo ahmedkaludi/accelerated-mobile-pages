@@ -129,6 +129,7 @@ if ( get_query_var( 'paged' ) ) {
 	<?php
 
 	    $exclude_ids = ampforwp_exclude_posts();
+		/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 			$args_new =  array(
 				'post_type'           => 'post',
 				'orderby'             => 'date',

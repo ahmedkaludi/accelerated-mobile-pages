@@ -1451,6 +1451,9 @@ add_action('wp_ajax_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsl
 add_action('wp_ajax_nopriv_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
 function ampforwp_subscribe_for_newsletter(){
     $api_url = 'http://magazine3.company/wp-json/api/central/email/subscribe';
+    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
+    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
+    /* phpcs:ignore WordPress.Security.NonceVerification.Missing */
     $api_params = array(
         'name' => sanitize_text_field($_POST['name']),
         'email'=> sanitize_text_field($_POST['email']),

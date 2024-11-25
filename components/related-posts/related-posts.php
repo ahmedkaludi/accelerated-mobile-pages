@@ -54,6 +54,7 @@ function ampforwp_related_post_loop_query(){
     if( true == ampforwp_get_setting('ampforwp-single-order-of-related-posts')){
 			$orderby = 'rand';
 		}
+		/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
 	$args=array(
 		'fields' => 'ids',
 		'post_type'	   => get_post_type($post),

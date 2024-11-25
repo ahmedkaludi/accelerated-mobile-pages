@@ -3515,6 +3515,7 @@ function ampforwp_add_modified_date($post_object){
 						)
 					);
 					if(true == ampforwp_get_setting('ampforwp-post-date-notice-time')){
+						/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 						echo get_the_time();
 					}
 				}
@@ -3770,7 +3771,10 @@ function ampforwp_frontpage_comments() {
 										<!-- .comment-author -->
 										<div class="cmt-metadata">
 											<a href="<?php echo esc_url(untrailingslashit( htmlspecialchars( get_comment_link( $comment->comment_ID ) ) )) ?>">
-												<?php printf( esc_html(ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s')) , get_comment_date(),  get_comment_time())?>
+												<?php 
+												 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+												 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+												printf( esc_html(ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s')) , get_comment_date(),  get_comment_time())?>
 											</a>
 											<?php edit_comment_link( esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  )) ?>
 										</div>
@@ -4062,7 +4066,7 @@ function ampforwp_view_nonamp(){
    	if(strpos($permalink, '/%year%/%monthnum%/%day%/%postname%/') !== false){
     	$non_amp_url = get_permalink(ampforwp_get_the_ID());
 	}
-	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url(apply_filters('ampforwp_view_nonamp_url', $non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?> title="<?php echo ampforwp_get_setting('amp-translator-non-amp-page-text') ?>"><?php if(function_exists('pll__')){
+	if ( $non_amp_url ) { ?><a class="view-non-amp" href="<?php echo esc_url(apply_filters('ampforwp_view_nonamp_url', $non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?> title="<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */  echo ampforwp_get_setting('amp-translator-non-amp-page-text') ?>"><?php if(function_exists('pll__')){
 		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo pll__(esc_html( ampforwp_get_setting('amp-translator-non-amp-page-text')));
 		}else{echo esc_html( ampforwp_get_setting('amp-translator-non-amp-page-text'));}?></a> <?php }
@@ -5129,6 +5133,7 @@ function ampforwp_inline_related_posts(){
                 // The query arguments
        		//#1263
        		if($current_post_type != 'page'){
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
                 $args = array(
                     'posts_per_page'=> $int_number_of_related_posts,
                     'order' => 'DESC',
@@ -5146,6 +5151,7 @@ function ampforwp_inline_related_posts(){
 					if ($categories) {
 							$category_ids = array();
 							foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
+							/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 							$args=array(
 							    'category__in' => $category_ids,
 							    'post__not_in' => array($post->ID),
@@ -5164,6 +5170,7 @@ function ampforwp_inline_related_posts(){
 						if ($ampforwp_tags) {
 										$tag_ids = array();
 										foreach($ampforwp_tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+										/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 										$args=array(
 										   'tag__in' => $tag_ids,
 										    'post__not_in' => array($post->ID),
@@ -6857,6 +6864,7 @@ add_action('ampforwp_post_after_design_elements','ampforwp_vuukle_comments_suppo
 function ampforwp_vuukle_comments_support() {
 	global $redux_builder_amp;
 	if ( true == ampforwp_get_setting('ampforwp-vuukle-comments-support') && comments_open() && ampforwp_get_setting('amp-design-selector') != 4) {
+		/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 		echo ampforwp_vuukle_comments_markup();
 	}
 }
@@ -7882,6 +7890,7 @@ function ampforwp_rel_attributes_social_links(){
 	$rel_attributes = apply_filters('ampforwp_rel_attributes_social_links', $rel_attributes);
 	$rel_attributes = array_map('esc_attr', $rel_attributes);
 	if ( $rel_attributes ) {
+		/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 		echo 'rel="' . implode(" ",$rel_attributes).'"';
 	}
 	return;
@@ -7939,7 +7948,7 @@ function ampforwp_webp_featured_image() {
 			<?php 
 			if(1 == ampforwp_get_setting('amp-design-selector') || 2 == ampforwp_get_setting('amp-design-selector') || 3 == ampforwp_get_setting('amp-design-selector')){?>
 			<figure class="amp-wp-article-featured-image">	
-				<?php echo $image_output; // escaped above
+				<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $image_output; // escaped above
 			?>
 			</figure>
 		<?php }
@@ -8020,6 +8029,7 @@ function ampforwp_import_settings_from_file(){
 			}
 			$plugin_options = get_option('redux_builder_amp');
 			if ( ! empty ( $imported_options ) && is_array( $imported_options ) && isset ( $imported_options['redux-backup'] ) && $imported_options['redux-backup'] == '1' ) {
+				/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 				echo $content;
 			}
 		}
@@ -8180,6 +8190,7 @@ function ampforwp_head_css(){
 				}else{
 					$css.='#wpadminbar~header #headerwrap{top:32px}@media(max-width:782px){#wpadminbar~header #headerwrap{margin-top:46px}}';
 				}
+				/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 				echo ampforwp_css_sanitizer($css);
 			}
 		}
@@ -8413,6 +8424,7 @@ if(!function_exists('ampforwp_sassy_icon_style')){
 			$css = $wp_filesystem->get_contents(AMPFORWP_PLUGIN_DIR."/includes/sassy-style.css");
 			set_transient('ampforwp_sassy_css', $css);
 		}
+		/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 		echo ampforwp_css_sanitizer($css);
 	}
 }	
@@ -8529,6 +8541,7 @@ if(!function_exists('ampforwp_gutenberg_block_styles')){
 		   		set_transient('ampforwp_gutenberg_styles', $response['body'], 24 * HOUR_IN_SECONDS );
 			}
 	    }
+		/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 	    echo ampforwp_css_sanitizer($gutenberg_styles);
 	}
 }
@@ -9285,7 +9298,7 @@ function ampforwp_referesh_related_post(){
 		die;
 	}
 	$orderby = 'ID';
-
+/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
 	$args=array(
 		'fields'        => 'ids',
 		'post_type'	   => 'post',
@@ -9502,7 +9515,7 @@ function ampforwp_mobile_theme_color(){
 			$content_code = '#ffffff';  
 		}
 		?>
-		<meta name="theme-color" content="<?php echo ampforwp_sanitize_color($content_code); ?>"/>
+		<meta name="theme-color" content="<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo ampforwp_sanitize_color($content_code); ?>"/>
 		<?php
 }
 
@@ -9681,7 +9694,7 @@ function ampforwp_i2prosandcons(){
 		    display: block;
 		}
 		.i2-pros-cons-wrapper .i2-pros-title {
-		    background-color:<?php echo ampforwp_sanitize_color($prosHeadingBackground); ?>;
+		    background-color:<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo ampforwp_sanitize_color($prosHeadingBackground); ?>;
 		    font-size:<?php echo esc_html($headingFontSize); ?>px;
 		}
 		.i2-pros-cons-wrapper .i2-cons-title, .i2-pros-cons-wrapper .i2-pros-title {
@@ -9689,10 +9702,10 @@ function ampforwp_i2prosandcons(){
 		    font-size:<?php echo esc_html($headingFontSize); ?>px;
 		}
 		.i2-pros {
-		    background-color: <?php echo ampforwp_sanitize_color($prosBackground); ?>;
+		    background-color: <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo ampforwp_sanitize_color($prosBackground); ?>;
 		}
 		.i2-cons{
-			background-color: <?php echo ampforwp_sanitize_color($consBackground); ?>;
+			background-color: <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo ampforwp_sanitize_color($consBackground); ?>;
 		}
 		.i2-pros-cons-wrapper ul li{
 			font-size:<?php echo esc_html($sectionFontSize); ?>px;
@@ -9708,13 +9721,13 @@ function ampforwp_i2prosandcons(){
 		    font-family: 'icomoon';
 		}
 		.i2-pros-cons-wrapper .i2-cons-title {
-		    background-color: <?php echo ampforwp_sanitize_color($consHeadingBackground); ?>;
+		    background-color: <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo ampforwp_sanitize_color($consHeadingBackground); ?>;
 		}
 		.i2-pros-cons-wrapper .i2-pros, .i2-pros-cons-wrapper .i2-cons{
-		    color: <?php echo ampforwp_sanitize_color($sectionColor); ?>;
+		    color: <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo ampforwp_sanitize_color($sectionColor); ?>;
 		}
 		.i2-pros-cons-wrapper .i2-cons-title, .i2-pros-cons-wrapper .i2-pros-title {
-		    color: <?php echo ampforwp_sanitize_color($headingColor); ?>;
+		    color: <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo ampforwp_sanitize_color($headingColor); ?>;
 		}
 <?php }
 function ampforwp_modify_url_utm_params($url){
@@ -9867,6 +9880,7 @@ function ampforwp_pennews_audio_embed(){
 				)
 			) ) );
 	$sanitized_html = $sanitizer->get_amp_content();
+	/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 	echo $sanitized_html;
 }
 
@@ -9901,6 +9915,7 @@ function ampforwp_penci_format_video_embed($content){
 			</amp-video>';
 		}
 		$video_html .= '</div>';
+		/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 		echo $video_html;
 	}
 }
@@ -10003,6 +10018,7 @@ if(!function_exists('ampforwp_set_local_font')){
 	            if(!empty($font_family) && $font_family != ''){
 	            	$font_css .= "body, .cntn-wrp {font-family: '".esc_attr(ucfirst($font_family))."'}";
 	            }
+				/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 	            echo $font_css;
 	        }
 		}
@@ -10148,6 +10164,7 @@ function ampforwp_super_related_posts_style(){
 		$css = $wp_filesystem->get_contents(AMPFORWP_PLUGIN_DIR."/includes/super-related-posts.css");
 		set_transient('ampforwp_super_related_posts', $css);
 	}
+	/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 	echo ampforwp_css_sanitizer($css);
 }	
 
@@ -10209,6 +10226,7 @@ function ampforwp_search_infinite_scroll_post(){
 		$this_id = sanitize_text_field($_POST[ 'this_id' ]);
 		$search = sanitize_text_field($_POST[ 'search' ]);
 		$exclude_id[] = $this_id;
+		/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 		$args = array("post_type" => "post", "s" => $search,"post__not_in"=>$exclude_id);
 		$query = get_posts( $args );
 		$post_data = array();

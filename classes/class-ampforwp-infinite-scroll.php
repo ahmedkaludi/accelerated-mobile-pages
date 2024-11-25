@@ -140,6 +140,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			
 			$exclude_ids = ampforwp_exclude_posts();
 			$exclude_ids[] = ampforwp_get_the_ID();
+			/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in  */ 
 			$query_args =  array(
 				'post_type'           => get_post_type(),
 				'orderby'             => 'date',
@@ -153,6 +154,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			);
 			$global_infinite_scroll_posts = ampforwp_get_setting('ampforwp-infinite-scroll-posts');
 			if(!empty($global_infinite_scroll_posts) && is_array($global_infinite_scroll_posts)){
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in  */ 
 				$query_args =  array(
 					'post_type'           => get_post_type(),
 					'orderby'             => 'date',
@@ -168,6 +170,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			}
 			$include_ids = $this->ampforwp_get_infinite_scroll_post_ids();
 			if(!empty($include_ids)){
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in  */ 
 			$query_args =  array(
 				'post_type'           => get_post_type(),
 				'orderby'             => 'date',

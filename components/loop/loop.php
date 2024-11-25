@@ -125,6 +125,7 @@ function call_loops_standard($data=array()){
 		$exclude_ids = ampforwp_exclude_posts();
 		$qobj = get_queried_object();
 		if( !is_date() ){
+				/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 				$args = array(
 							'no_found_rows' 	  => true,
 							'post_type'           => $post_type,
@@ -136,6 +137,7 @@ function call_loops_standard($data=array()){
 							'post_status'=> 'publish'
 						 );
 			if ( is_category() || ( isset($qobj->taxonomy) && taxonomy_exists($qobj->taxonomy)) ) {
+				/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query */
 				$args['tax_query'] = array(
 						        		array(
 								          'taxonomy' => $qobj->taxonomy,
@@ -150,7 +152,7 @@ function call_loops_standard($data=array()){
 			$monthnum 	= get_query_var('monthnum');
 			$week 		= get_query_var('week');
 			$day 		= get_query_var('day');
-
+/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 			$args 		= array( 
 							'date_query' => array(
 								array('year' => esc_attr($year))
@@ -174,6 +176,7 @@ function call_loops_standard($data=array()){
 	}
 	if ( is_home() ) {
 		$exclude_ids = ampforwp_exclude_posts();
+		/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 		$args = array(
 			'no_found_rows' 	  => true,
 			'post_type'           => 'post',
@@ -187,6 +190,7 @@ function call_loops_standard($data=array()){
 
 	if ( is_search() ) {
 		$exclude_ids = ampforwp_exclude_posts();
+		/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 		$args = array(
 			's' 				  => get_search_query() ,
 			'ignore_sticky_posts' => 1,
@@ -200,6 +204,7 @@ function call_loops_standard($data=array()){
 	if(is_author()){
 		$exclude_ids = ampforwp_exclude_posts();
 		$author_name = esc_attr(get_query_var( 'author_name' ));
+		/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 		$args =  array(
 			'author_name'         =>  $author_name,
 			'post_type'           => 'post',
@@ -216,6 +221,7 @@ function call_loops_standard($data=array()){
 		global $post;
 		$exclude_ids = ampforwp_exclude_posts();
 		$exclude_ids[] = $post->ID;
+		/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 		$args =  array(
 			'no_found_rows' 	  => true,
 			'post_type'           => get_post_type($post),

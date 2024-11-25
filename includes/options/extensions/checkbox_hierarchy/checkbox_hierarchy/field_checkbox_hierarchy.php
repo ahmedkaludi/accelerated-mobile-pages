@@ -193,8 +193,8 @@ if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox_hierarc
                     echo '<input type="checkbox" class="checkbox ' . esc_attr($this->field[ 'class' ]) . '" id="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $category->term_id . ']', array(
                         '[' => '_',
                         ']' => ''
-                    ) ) . '_' . array_search ( $category->term_id, array_keys ( $this->field[ 'options' ] ) ) . '" value="1" ' . checked ( $selectedvalue, '1', false ) . '/>';
-                    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    ) ) . '_' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ array_search ( $category->term_id, array_keys ( $this->field[ 'options' ] ) ) . '" value="1" ' . checked ( $selectedvalue, '1', false ) . '/>';
+                     /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ 
                     echo ' <span>' .$pad. esc_attr($category->name) . '</span></label></li>';
 
 

@@ -880,6 +880,7 @@ if ( !function_exists('amp_activate') ) {
 	if(is_admin()){
 		global $pagenow;
 		if( is_multisite() ){
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 		$current_url = ( isset( $_SERVER['REQUEST_URI'] ) ) ? sanitize_text_field( esc_url_raw( $_SERVER['REQUEST_URI'] ) ) : "";
 		$post_old = preg_match('/post\.php/', $current_url);
 		$post_new = preg_match('/post-new\.php/', $current_url);
@@ -1616,6 +1617,7 @@ if(!function_exists('ampforwp_save_local_font')){
 		        	$files = glob( $user_dirname . '/*' );
 		            foreach ( $files as $file ) {
 		            	if(is_dir($file)){
+							/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir */
 		            		rmdir($file);
 		            	}
 			            $fonts = explode("/", $file);

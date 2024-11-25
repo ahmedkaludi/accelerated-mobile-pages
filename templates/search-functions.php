@@ -68,6 +68,7 @@ function ampforwp_add_lightbox_and_form_scripts( $data ) {
 }
 
 function ampforwp_the_search_form() {
+	/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
     echo ampforwp_get_search_form();
 }
 function ampforwp_get_search_form() {

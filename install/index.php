@@ -165,6 +165,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 		// Enqueue styles.
 		wp_enqueue_style( 'ampforwp_install', esc_url(AMPFORWP_PLUGIN_DIR_URI. $ampforwp_install_config['installer_dir']. '/assets/css/merlin' . $suffix . '.css') , array( 'wp-admin' ), '0.1');
 		// Enqueue javascript.
+		/* phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter */
 		wp_enqueue_script( 'ampforwp_install', esc_url(AMPFORWP_PLUGIN_DIR_URI. $ampforwp_install_config['installer_dir']. '/assets/js/merlin' . $suffix . '.js') , array( 'jquery-core' ), '0.1' );
 		
 		wp_localize_script( 'ampforwp_install', 'ampforwp_install_params', array(

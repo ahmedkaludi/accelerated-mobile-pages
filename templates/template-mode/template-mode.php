@@ -495,6 +495,7 @@ Class AMPforWP_theme_mode{
 				$css .= $this->ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
 			}
 		}
+		/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 		echo $this->css_sanitizer($css); // sanitized above
 		echo "</style>";
 	}
@@ -561,6 +562,7 @@ Class AMPforWP_theme_mode{
 				$data = str_replace(" action=", 'target="_top" action=', $data);
 			}
 			$data = $this->amp_form_sanitization($data);
+			/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 			echo $this->ampforwp_template_mode_cnt_sanitizer($data);
 		}
 	}

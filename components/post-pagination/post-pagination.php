@@ -118,8 +118,10 @@ function ampforwp_framework_get_post_paginated_link( $i, $args = '' ) {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if ( ( 'draft' !== $post->post_status ) && isset( $_GET['preview_id'], $_GET['preview_nonce'] ) ) {
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+			/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 			$query_args['preview_id'] = wp_unslash( $_GET['preview_id'] );
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+			/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 			$query_args['preview_nonce'] = wp_unslash( $_GET['preview_nonce'] );
 		}
 

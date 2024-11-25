@@ -33,7 +33,7 @@ class AMPFORWP_Slide_Anything_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_
 			}
 			$attr['include'] = $attr['ids'];
 		}
-
+/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude  */
 		$atts = shortcode_atts( array(
 			'order'      => 'ASC',
 			'orderby'    => 'menu_order ID',

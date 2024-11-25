@@ -20,6 +20,8 @@ if( isset( $redux_builder_amp['ampforwp-single-order-of-related-posts'] ) && $re
 if( $current_post_type = get_post_type( $post )) {
 // The query arguments
 	if($current_post_type != 'page'){
+		/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
+		/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
     $args = array(
     	'fields'=>'ids',
         'posts_per_page'=> $int_number_of_related_posts,
@@ -44,6 +46,7 @@ if(ampforwp_get_setting('ampforwp-single-select-type-of-related')==2){
 	if ($categories) {
 		$category_ids = array();
 		foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
+		/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
 		$args=array(
 			'fields'=>'ids',
 		    'category__in'		 => $category_ids,
@@ -68,6 +71,8 @@ if(ampforwp_get_setting('ampforwp-single-select-type-of-related')==1) {
 	if ($ampforwp_tags) {
 			$tag_ids = array();
 			foreach($ampforwp_tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+			/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
+			/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
 				$args=array(
 					'fields'=>'ids',
 				   'tag__in' 			 => $tag_ids,

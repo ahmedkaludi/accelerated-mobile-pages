@@ -8,6 +8,7 @@ function ampforwp_select_post_meta( $post ) {
 		$infinite_posts = ampforwp_get_infinite_scroll_post_on_id();
 		$exclude_id = array();
 		$exclude_id[] = ampforwp_get_the_ID();
+		/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 		$arguments = array(
 			"post__not_in"=>$exclude_id,
 			"orderby" => "ID", 

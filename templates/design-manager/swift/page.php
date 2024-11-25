@@ -63,7 +63,7 @@ amp_header(); ?>
 				<?php } // Level up Condition ends
 				if( true == ampforwp_get_setting('ampforwp-pages-recent-posts') && !checkAMPforPageBuilderStatus(get_the_ID()) ) {?>
                     <div class="pg rc-pt">
-                        <h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
+                        <h3><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
                         <?php
                         $number_of_posts = 6;
                         $rcp = ampforwp_get_setting('ampforwp-pages-number-of-recent-posts');

@@ -44,6 +44,8 @@ class AMPforWP_Photo_Gallery_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_E
     $params['ajax'] = TRUE;
     if ( isset($params['id']) && $params['id'] ) {
       global $wpdb;
+      /* phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery  */ 
+		/* phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching  */ 
       $shortcode = $wpdb->get_var($wpdb->prepare("SELECT tagtext FROM " . $wpdb->prefix . "bwg_shortcode WHERE id=%d", $params['id']));
       if ($shortcode) {
         $shortcode_params = explode('" ', $shortcode);

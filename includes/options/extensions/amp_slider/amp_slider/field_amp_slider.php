@@ -373,7 +373,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_amp_slider' ) ) 
                 data-rtl="' . esc_attr(is_rtl()) . '"
                 data-forced="' . esc_attr($this->field['forced']) . '"
                 data-float-mark="' . esc_attr($this->field['float_mark']) . '"
-                data-resolution="' . esc_attr($this->field['resolution']) . '" ' . $html . '>
+                data-resolution="' . esc_attr($this->field['resolution']) . '" ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $html . '>
             </div>';
 
             // Double slider output

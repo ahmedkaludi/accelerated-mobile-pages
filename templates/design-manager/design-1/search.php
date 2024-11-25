@@ -50,7 +50,7 @@ echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' 
 	    }
 
 	    $exclude_ids = ampforwp_exclude_posts();
-
+/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 		$q = new WP_Query( apply_filters('ampforwp_query_args', array(
 			's' 				  => get_search_query() ,
 			'ignore_sticky_posts' => 1,

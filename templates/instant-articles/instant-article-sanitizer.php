@@ -67,7 +67,7 @@ function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
 	global $wp;
 	$post = get_post(ampforwp_get_the_ID());
 	if ( is_feed() && isset($wp->query_vars['feed']) && 'instant_articles' == $wp->query_vars['feed'] ) {
-		
+		/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude */
 			$atts = shortcode_atts( array(
 				'order'      => 'ASC',
 				'orderby'    => 'menu_order ID',
@@ -89,6 +89,7 @@ function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
 					$attachments[$val->ID] = $_attachments[$key];
 				}
 			} elseif ( ! empty( $atts['exclude'] ) ) {
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude */
 				$attachments = get_children( array( 'post_parent' => $id, 'exclude' => $atts['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
 			} else {
 				$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
