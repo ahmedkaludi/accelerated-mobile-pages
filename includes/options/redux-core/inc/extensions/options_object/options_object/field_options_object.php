@@ -104,7 +104,7 @@ namespace ReduxCore\ReduxFramework;
                 <fieldset id="<?php echo esc_attr($id); ?>" class="redux-field redux-container-<?php echo esc_attr($this->field['type']) . ' ' . esc_attr($this->field['class']); ?>" data-id="<?php echo esc_attr($this->field['id']); ?>">
                     <h3><?php esc_html_e( 'Options Object', 'accelerated-mobile-pages' ); ?></h3>
                     <div id="redux-object-browser"></div>
-                    <div id="redux-object-json" class="hide"><?php echo $json; ?></div>
+                    <div id="redux-object-json" class="hide"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $json; ?></div>
                     <a href="#" id="consolePrintObject" class="button"><?php esc_html_e( 'Show Object in Javascript Console Object', 'accelerated-mobile-pages' ); ?></a>
                 </div>
                 </fieldset>

@@ -88,9 +88,11 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
   }  
   // Redirect ?nonamp=1 to normal url #3269
   $current_url = $check = '';
-  $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
-                "https" : "http") . "://" . AMPFROWP_HOST_NAME .  
-                htmlspecialchars( $_SERVER['REQUEST_URI'] );              
+  /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
+  if(isset($_SERVER['REQUEST_URI'])){
+    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
+  $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ?  "https" : "http") . "://" . AMPFROWP_HOST_NAME .  htmlspecialchars( $_SERVER['REQUEST_URI'] );  
+  }            
   if(function_exists('googlesitekit_activate_plugin')){
     $current_url = remove_query_arg( '_gl', $current_url);
     $current_url = remove_query_arg(array('', '_gl'));

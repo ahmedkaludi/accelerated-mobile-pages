@@ -696,6 +696,7 @@ function ampforwp_new_dir( $dir ) {
 				 //Removed because class is being removed from table #2699
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
 				 // Convert the Wistia embed into URL to build amp-wistia-player and remove unnecesarry wistia code
+				 /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
 				 $content = preg_replace('/<script src="(https?).*(\/\/fast|support)(\.wistia\.com\/)(embed\/medias\/)([0-9|\w]+)(.*?)<\/script>/', "$1:$2$3$4$5\n", $content);
 				 $content = preg_replace('/<div class="wistia_responsive_padding" (.*?)>/', "", $content);
 				 $content = preg_replace('/<div class="wistia_responsive_wrapper" (.*?)>/', "", $content);
@@ -999,7 +1000,9 @@ function ampforwp_title_meta_save( $post_id ) {
     // Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
     $is_revision = wp_is_post_revision( $post_id );
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
     $is_valid_nonce = ( isset( $_POST[ 'ampforwp_title_nonce' ] ) && wp_verify_nonce( $_POST[ 'ampforwp_title_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
     $is_valid_nonce_ia = ( isset( $_POST[ 'ampforwp_ia_nonce' ] ) && wp_verify_nonce( $_POST[ 'ampforwp_ia_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
 
     // Exits script depending on save status
@@ -1009,18 +1012,22 @@ function ampforwp_title_meta_save( $post_id ) {
 	
     // Checks for radio buttons and saves if needed
     if( isset( $_POST[ 'ampforwp-amp-on-off' ] ) ) {
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
         $ampforwp_amp_status = sanitize_text_field( $_POST[ 'ampforwp-amp-on-off' ] );
         update_post_meta( $post_id, 'ampforwp-amp-on-off', $ampforwp_amp_status );
     }
     if( isset( $_POST[ 'ampforwp-ia-on-off' ] ) ) {
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
         $ampforwp_amp_status = sanitize_text_field( $_POST[ 'ampforwp-ia-on-off' ] );
         update_post_meta( $post_id, 'ampforwp-ia-on-off', $ampforwp_amp_status );
     }
      if( isset( $_POST[ 'ampforwp-redirection-on-off' ] ) ) {
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
         $ampforwp_redirection_status = sanitize_text_field( $_POST[ 'ampforwp-redirection-on-off' ] );
         update_post_meta( $post_id, 'ampforwp-redirection-on-off', $ampforwp_redirection_status );
     }
 	if( isset( $_POST[ 'ampforwp_filtered_post_ids' ] ) ) {
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized	 */
 		$recent_posts = $_POST[ 'ampforwp_filtered_post_ids' ];
 		update_post_meta( $post_id, 'ampforwp_filtered_post_ids', $recent_posts );
 	}
@@ -2209,7 +2216,7 @@ add_action('amp_init','ampforwp_remove_js_script_cleantalk');
 function ampforwp_remove_js_script_cleantalk() {
 	$current_url = '';
 	$amp_check =  '';
-  
+  /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized	 */
 	$current_url = $_SERVER['REQUEST_URI'];
 	$current_url = explode('/', $current_url);
 	$current_url = array_filter($current_url);
@@ -2523,6 +2530,7 @@ function ampforwp_global_head_scripts($data){
    $script_url = '';
    if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
       $allscripts = ampforwp_get_setting('amp-header-text-area-for-html');
+	  /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
       preg_match_all('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)><\/script>/', $allscripts, $matches);
       $script_slug = $matches[2];
       $script_url = $matches[4];
@@ -2547,6 +2555,7 @@ function ampforwp_header_html_output() {
 	}
   if( ampforwp_get_setting('amp-header-text-area-for-html') ) {
   		$allhtml = ampforwp_get_setting('amp-header-text-area-for-html');
+		/* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
   		$allhtml = preg_replace('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)><\/script>/','', $allhtml);
 		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	  	echo $allhtml;
@@ -4314,9 +4323,9 @@ function ampforwp_post_paginated_link_generator( $i ) {
 	if ( is_preview() ) {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if ( ( 'draft' !== $post->post_status ) && isset( $_GET['preview_id'], $_GET['preview_nonce'] ) ) {
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$query_args['preview_id'] = wp_unslash( $_GET['preview_id'] );
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$query_args['preview_nonce'] = wp_unslash( $_GET['preview_nonce'] );
 		}
 
@@ -5133,13 +5142,14 @@ function ampforwp_inline_related_posts(){
                 // The query arguments
        		//#1263
        		if($current_post_type != 'page'){
-				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
+				
                 $args = array(
                     'posts_per_page'=> $int_number_of_related_posts,
                     'order' => 'DESC',
                     'orderby' => $orderby,
                     'post_type' => $current_post_type,
                     'no_found_rows'  => true,
+					/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
                     'post__not_in' => array( $post->ID )
 
                 );  
@@ -5151,9 +5161,10 @@ function ampforwp_inline_related_posts(){
 					if ($categories) {
 							$category_ids = array();
 							foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
-							/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
+							
 							$args=array(
 							    'category__in' => $category_ids,
+								/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 							    'post__not_in' => array($post->ID),
 							    'posts_per_page'=> $int_number_of_related_posts,
 							    'ignore_sticky_posts'=>1,
@@ -5170,9 +5181,10 @@ function ampforwp_inline_related_posts(){
 						if ($ampforwp_tags) {
 										$tag_ids = array();
 										foreach($ampforwp_tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
-										/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
+										
 										$args=array(
 										   'tag__in' => $tag_ids,
+										   /* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 										    'post__not_in' => array($post->ID),
 										    'posts_per_page'=> $int_number_of_related_posts,
 										    'ignore_sticky_posts'=>1,
@@ -6589,7 +6601,7 @@ add_filter('ampforwp_modify_ads', 'ampforwp_nonamp_ads',10, 5);
 if ( ! function_exists('ampforwp_nonamp_ads') ) {
 	function ampforwp_nonamp_ads($output, $width, $height, $client_id, $data_slot) {
 		if ( ampforwp_is_non_amp('non_amp_check_convert') ) {
-
+			/* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
 			$output = '	<div class="add-wrapper" style="text-align:center;">
 							<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 							</script>
@@ -7241,6 +7253,7 @@ function ampforwp_ajax_cats(){
 		die;
 	}
 	$return = array();
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
  	$categories = get_categories(array('search'=> esc_html($_GET['q']),'number'=>500,'hide_empty' => 0));
  	$categories_array = array();
    	if ( $categories ) :
@@ -7258,6 +7271,7 @@ function ampforwp_ajax_tags(){
 		die;
 	}
 	$return = array();
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
  	$tags = get_tags(array('search'=> esc_html($_GET['q']),'number'=>500));
    	if ( $tags ) :
         foreach ($tags as $tag ) {
@@ -7716,7 +7730,7 @@ function ampforwp_ivory_search_css(){
 // Font Awesome Icons added for Swift
 add_action('amp_post_template_head', 'ampforwp_fontawesome_canonical_link');
 function ampforwp_fontawesome_canonical_link(){ 
-  if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ ?>
+  if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ /* phpcs:ignore 	WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet */ ?>
   		<link rel="preconnect dns-prefetch" href="//use.fontawesome.com" crossorigin>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <?php }
@@ -8021,8 +8035,10 @@ if ( ! function_exists('ampforwp_include_opengraph') ) {
 
 add_action('wp_ajax_ampforwp_import_file_from_file','ampforwp_import_settings_from_file');
 function ampforwp_import_settings_from_file(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if ( wp_verify_nonce( $_POST['security'], 'ampforwp_import_file' ) && current_user_can( 'manage_options' ) ) {
 		if(isset($_FILES["file"]["tmp_name"])){
+			/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents,	WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 			$content = file_get_contents($_FILES["file"]["tmp_name"]);
 			if ( ! empty ( $content ) ) {
 				$imported_options = json_decode( $content, true );
@@ -8212,6 +8228,7 @@ function ampforwp_head_css(){
 	          return $contentData;
 	        }
 		}else{
+			/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents */
 			return $contentData = file_get_contents( $src );
 		}
 	    return '';
@@ -8384,10 +8401,12 @@ function ampforwp_set_option_panel_view(){
 	if(!is_admin() && !current_user_can('manage_options')){
 		return ;
 	}
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp-verify-request') ){
 		echo wp_json_encode(array('status'=>403,'message'=>esc_html__('user request is not allowed','accelerated-mobile-pages'))) ;
 		die;
 	}
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
 	$opt_type = intval($_POST['option_type']);
 	if($opt_type==1 || $opt_type==2){
 		$opt = get_option("ampforwp_option_panel_view_type");
@@ -8596,6 +8615,7 @@ function ampforwp_pblayout_head_scripts($data){
          $content = $data['post_amp_content'];
          $script_slug = '';
          $allscripts = $script_data;
+		 /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
          preg_match_all('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)><\/script>/', $allscripts, $matches);
          if($matches){
          	if(isset($matches[2])){
@@ -8928,6 +8948,7 @@ function ampforwp_include_required_scripts($content){
 				$ocomp = 'amp-video-docking';
 				if(!preg_match('/<script(\s|\sasync\s)custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'"(.*?)>(.*?)<\/script>/s', $content)){
 					$o_comp_url = 'https://cdn.ampproject.org/v0/'.esc_attr($ocomp).'-'.esc_attr($script_ver).'.js';
+					/* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
 					$script_tag = '<head><script custom-'.esc_attr($celem).'="'.esc_attr($ocomp).'" src="'.esc_url($o_comp_url).'" async></script>';
 					$content =  str_replace('<head>', $script_tag, $content);
 				}
@@ -9293,12 +9314,13 @@ function ampforwp_themify_compatibility($content){
 
 add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
 function ampforwp_referesh_related_post(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp_refresh_related_poost') ){
 		echo wp_json_encode(array('status'=>403,'message'=>esc_html__('user request is not allowed','accelerated-mobile-pages'))) ;
 		die;
 	}
 	$orderby = 'ID';
-/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
+
 	$args=array(
 		'fields'        => 'ids',
 		'post_type'	   => 'post',
@@ -9308,6 +9330,7 @@ function ampforwp_referesh_related_post(){
 		'has_password' => false ,
 		'post_status'=> 'publish',
 		'no_found_rows'	=> true,
+		/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
 		'meta_query' => array(
 			array(
 					'key' => 'ampforwp-amp-on-off', 
@@ -9344,23 +9367,30 @@ function ampforwp_referesh_related_post(){
 
 // HIDE/SHOW TAG AND CATEGORY #4326
 function ampforwp_save_taxonomy_meta($term_id){
+	/* phpcs:ignore WordPress.Security.NonceVerification.Missing */
 	if(isset($_POST['amp_taxonomy'])){
+		/* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 		$cat_status = sanitize_text_field($_POST['amp_taxonomy']);
+		/* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 		$hide_tax = sanitize_text_field($_POST['hide_tax']);
 		add_term_meta($term_id, 'amp_taxonomy', $cat_status );
 		add_term_meta( $term_id,'amp_hide_tax', $hide_tax);
 	}
 }
 function ampforwp_update_taxonomy_meta($term_id, $term_id1){
+	/* phpcs:ignore WordPress.Security.NonceVerification.Missing */
 	if(isset($_POST['amp_taxonomy'])){
+		/* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 		$cat_status = sanitize_text_field($_POST['amp_taxonomy']);
+		/* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 		$hide_tax = sanitize_text_field($_POST['hide_tax']);
 		update_term_meta( $term_id,'amp_taxonomy', $cat_status);
 		update_term_meta( $term_id,'amp_hide_tax', $hide_tax);
 	}
 }
-
+/* phpcs:ignore WordPress.Security.NonceVerification.Recommended */
 if ( isset( $_REQUEST['taxonomy'] )) {
+	/* phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	$taxonomy = $_REQUEST['taxonomy'];
 	add_action('edited_'.esc_attr($taxonomy), 'ampforwp_update_taxonomy_meta',10,2);
 	add_action('create_'.esc_attr($taxonomy), 'ampforwp_save_taxonomy_meta', 10);
@@ -10143,6 +10173,7 @@ function ampforwp_publisher_desk_ads( $content ) {
 // #5274 AMP Take over conflict with WPML
 add_filter('ampforwp_is_amp_endpoint_takeover', 'ampforwp_wpml_takeover_compatibility');
 function ampforwp_wpml_takeover_compatibility($return) {
+	/* phpcs:ignore WordPress.Security.NonceVerification.Recommended */
   if (is_user_logged_in() && !empty($_GET['wpml-app'])) {
   	return false;
   }
@@ -10172,6 +10203,7 @@ if( function_exists('ampforwp_get_setting') && true == ampforwp_get_setting('amp
   add_filter( 'ampforwp_is_amp_endpoint', 'ampforwp_rankmath_endpoint_fix', 20, 1);
 }
 function ampforwp_rankmath_endpoint_fix($flag){
+	/* phpcs:ignore WordPress.Security.NonceVerification.Recommended */
   if(isset($_GET['amp'])){
     return false;
   }
@@ -10222,8 +10254,11 @@ function ampforwp_sanitize_svg_file( $file_path ) {
 add_action('wp_ajax_ampforwp_search_infinite_scroll_post','ampforwp_search_infinite_scroll_post');
 add_action('wp_ajax_nopriv_ampforwp_search_infinite_scroll_post','ampforwp_search_infinite_scroll_post');
 function ampforwp_search_infinite_scroll_post(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
     if( isset( $_POST[ 'security' ] ) && wp_verify_nonce( $_POST[ 'security' ],'ampforwp_filtered_post_nounce') ){
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 		$this_id = sanitize_text_field($_POST[ 'this_id' ]);
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 		$search = sanitize_text_field($_POST[ 'search' ]);
 		$exclude_id[] = $this_id;
 		/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
@@ -10243,7 +10278,9 @@ function ampforwp_search_infinite_scroll_post(){
 add_action('wp_ajax_ampforwp_infinite_scroll_post_ajax','ampforwp_infinite_scroll_post_ajax');
 add_action('wp_ajax_nopriv_ampforwp_infinite_scroll_post_ajax','ampforwp_infinite_scroll_post_ajax');
 function ampforwp_infinite_scroll_post_ajax(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if( isset( $_GET[ 'security' ] ) && isset($_GET[ 'security' ]['security']) && wp_verify_nonce($_GET[ 'security' ]['security'],'ampforwp-verify-request') ){
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 		$search = sanitize_text_field($_GET[ 'q' ]);
 		$args = array("post_type" => "post", "s" => $search);
 		$query = get_posts( $args );

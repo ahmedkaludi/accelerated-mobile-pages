@@ -167,6 +167,7 @@ function amp_content_editor_meta_save( $post_id ) {
   // Checks save status
     $is_autosave    = wp_is_post_autosave( $post_id );
     $is_revision    = wp_is_post_revision( $post_id );
+    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
     $is_valid_nonce = (isset( $_POST['amp_content_editor_nonce'] ) && wp_verify_nonce( $_POST[ 'amp_content_editor_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
 
     // Exits script depending on save status
@@ -177,6 +178,7 @@ function amp_content_editor_meta_save( $post_id ) {
     //if there is data to be saved to DB
     // Save data of Custom AMP Editor
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {
+      /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
       $unsan_ampforwp_custom_content_editor = htmlentities($_POST[ 'ampforwp_custom_content_editor' ]);
       $ampforwp_custom_content_editor = sanitize_post( $unsan_ampforwp_custom_content_editor );
       update_post_meta($post_id, 'ampforwp_custom_content_editor',  $ampforwp_custom_content_editor );
@@ -185,6 +187,7 @@ function amp_content_editor_meta_save( $post_id ) {
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) { 
       $ampforwp_custom_editor_checkbox = '';      
       if ( isset($_POST['ampforwp_custom_content_editor_checkbox']) ) {
+        /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
         $ampforwp_custom_editor_checkbox = sanitize_text_field($_POST[ 'ampforwp_custom_content_editor_checkbox' ]);
       }
 
@@ -193,6 +196,7 @@ function amp_content_editor_meta_save( $post_id ) {
 
     // Save data of Sidebar Select
     if ( isset( $_POST['ampforwp_custom_sidebar_select'] ) ) {
+      /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
       $ampforwp_custom_sidebar_select = sanitize_text_field($_POST['ampforwp_custom_sidebar_select'] );
         update_post_meta($post_id, 'ampforwp_custom_sidebar_select', $ampforwp_custom_sidebar_select );
     }

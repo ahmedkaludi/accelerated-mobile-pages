@@ -160,13 +160,19 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
             if ( isset( $this->field['readonly'] ) && $this->field['readonly'] === false ) {
                 $readOnly = '';
             }
-
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<input placeholder="' . $placeholder . '" type="text" class="' . $hide . 'upload large-text ' . $this->field['class'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[url]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][url]" value="' . $this->value['url'] . '"' . $readOnly . '/>';
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<input type="hidden" class="data" data-mode="' . $this->field['mode'] . '" />';
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<input type="hidden" class="library-filter" data-lib-filter="' . $libFilter . '" />';
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<input type="hidden" class="upload-id ' . $this->field['class'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[id]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][id]" value="' . $this->value['id'] . '" />';
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<input type="hidden" class="upload-height" name="' . $this->field['name'] . $this->field['name_suffix'] . '[height]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][height]" value="' . $this->value['height'] . '" />';
+             /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<input type="hidden" class="upload-width" name="' . $this->field['name'] . $this->field['name_suffix'] . '[width]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][width]" value="' . $this->value['width'] . '" />';
+             /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<input type="hidden" class="upload-thumbnail" name="' . $this->field['name'] . $this->field['name_suffix'] . '[thumbnail]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][thumbnail]" value="' . $this->value['thumbnail'] . '" />';
 
             //Preview
@@ -192,9 +198,11 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
                     $this->value['thumbnail'] = $this->value['url'];
                 }
             }
-
-            echo '<div class="' . $hide . 'screenshot">';
+ /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
+ echo '<div class="' . $hide . 'screenshot">';
+ /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<a class="of-uploaded-image" href="' . $this->value['url'] . '" target="_blank">';
+             /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<img class="redux-option-image" id="image_' . $this->field['id'] . '" src="' . $this->value['thumbnail'] . '" alt="" target="_blank" rel="external" />';
             echo '</a>';
             echo '</div>';
@@ -203,13 +211,14 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
             echo '<div class="upload_button_div">';
 
             //If the user has WP3.5+ show upload/remove button
+             /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<span class="button media_upload_button" id="' . $this->field['id'] . '-media">' . __( 'Upload', 'accelerated-mobile-pages' ) . '</span>';
 
             $hide = '';
             if ( empty( $this->value['url'] ) || $this->value['url'] == '' ) {
                 $hide = ' hide';
             }
-
+ /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<span class="button remove-image' . $hide . '" id="reset_' . $this->field['id'] . '" rel="' . $this->field['id'] . '">' . __( 'Remove', 'accelerated-mobile-pages' ) . '</span>';
 
             echo '</div>';

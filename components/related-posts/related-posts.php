@@ -54,7 +54,7 @@ function ampforwp_related_post_loop_query(){
     if( true == ampforwp_get_setting('ampforwp-single-order-of-related-posts')){
 			$orderby = 'rand';
 		}
-		/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
+		
 	$args=array(
 		'fields' => 'ids',
 		'post_type'	   => get_post_type($post),
@@ -64,6 +64,7 @@ function ampforwp_related_post_loop_query(){
 		'has_password' => false ,
 		'post_status'=> 'publish',
 		'no_found_rows'	=> true,
+		/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
 		'meta_query' => array(
 			array(
 		    	'key' => 'ampforwp-amp-on-off',

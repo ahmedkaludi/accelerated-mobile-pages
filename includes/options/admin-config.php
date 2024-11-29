@@ -2032,6 +2032,7 @@ function ampforwp_get_categories($id){
 	if(isset($selected_categories) && $selected_categories) {
 		$get_required_data = array_filter( $selected_categories );
 		if ( count( $get_required_data ) != 0 ) {
+            /* phpcs:ignore WordPress.WP.DeprecatedParameters.Get_termsParam2Found */
 			$categories = get_terms( 'category', array( 'include' => $get_required_data ) );
 			foreach ( $categories as $category ) {
 				$result[ esc_attr( $category->term_id ) ] = esc_html( $category->name );
@@ -2060,6 +2061,7 @@ function ampforwp_get_all_tags($id){
 		$get_required_data = array_filter( $selected_tags );
 
 		if ( count( $get_required_data ) != 0 ) {
+            /* phpcs:ignore WordPress.WP.DeprecatedParameters.Get_termsParam2Found */
 			$tags = get_terms( 'post_tag', array( 'include' => $get_required_data ) );
 			foreach($tags as  $tag ) {
 				$result[esc_attr($tag->term_id)] = esc_html($tag->name);
@@ -3121,7 +3123,7 @@ Redux::setSection( $opt_name, array(
 );
 function ampforwp_get_post_percent(){
     $total_post = $post_count = $post_percent = '';
-    /* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
+    
     $args=array(
         'fields'        => 'ids',
         'post_type'    => 'post',
@@ -3130,6 +3132,7 @@ function ampforwp_get_post_percent(){
         'has_password' => false ,
         'post_status'=> 'publish',
         'no_found_rows' => true,
+        /* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
         'meta_query' => array(
             array(
                 'key' => 'ampforwp-amp-on-off', 

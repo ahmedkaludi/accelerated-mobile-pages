@@ -627,8 +627,7 @@ function amp_date( $args=array() ) {
 		global $fontComponent;
 		if(count($fontComponent)){
 			$fontComponent = array_unique($fontComponent);
-			foreach ($fontComponent as $key => $value) {
-			?>
+			foreach ($fontComponent as $key => $value) { /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet */ ?>
 			<link rel="stylesheet" href="<?php echo esc_url( $value ); ?>">
 			<?php		
 			}

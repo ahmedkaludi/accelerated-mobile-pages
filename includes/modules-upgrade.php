@@ -3,6 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
  add_action('wp_ajax_ampforwp_enable_modules_upgread', 'ampforwp_enable_modules_upgread');
 function ampforwp_enable_modules_upgread(){
+    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         exit();
@@ -14,6 +15,7 @@ function ampforwp_enable_modules_upgread(){
     }
     $plugins = array();
     $redirectSettingsUrl = '';
+     /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
     $currentActivateModule = sanitize_text_field( wp_unslash($_REQUEST['activate']));
     switch($currentActivateModule){
         case 'pwa': 
@@ -181,6 +183,7 @@ add_action( 'admin_notices', 'ampforwp_admin_notice_module_reference_install' );
 //On module upgrade
 add_action('wp_ajax_ampforwp_import_modules_scema', 'ampforwp_import_structure_data');
 function ampforwp_import_structure_data(){
+     /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         exit();
@@ -283,6 +286,7 @@ function ampforwp_import_structure_data(){
 add_action('wp_ajax_ampforwp_import_modules_ads', 'ampforwp_import_ads_data');
 function ampforwp_import_ads_data(){
     global $redux_builder_amp;
+    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         exit();

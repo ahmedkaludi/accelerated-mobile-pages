@@ -190,29 +190,34 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
             if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
                 $select2_params = wp_json_encode( $this->field['select2'] );
                 $select2_params = htmlspecialchars( $select2_params, ENT_QUOTES );
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="select2_params" value="' . $select2_params . '">';
             }
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<input type="hidden" class="field-units" value="' . $this->value['units'] . '">';
 
             if ( isset( $this->field['all'] ) && $this->field['all'] == true ) {
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-fullscreen icon-large"></i></span><input type="text" class="redux-spacing-all redux-spacing-input mini ' . $this->field['class'] . '" placeholder="' . __( 'All', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-all" value="' . $this->value['top'] . '"></div>';
             }
 
             if ( $this->field['top'] === true ) {
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="redux-spacing-value" id="' . $this->field['id'] . '-top" name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] . 'top]' . '" value="' . $this->value['top'] . ( ! empty( $this->value['top'] ) ? $this->value['units'] : '' ) . '">';
             }
 
             if ( $this->field['right'] === true ) {
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="redux-spacing-value" id="' . $this->field['id'] . '-right" name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] . 'right]' . '" value="' . $this->value['right'] . ( ! empty( $this->value['right'] ) ? $this->value['units'] : '' ) . '">';
             }
 
             if ( $this->field['bottom'] === true ) {
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="redux-spacing-value" id="' . $this->field['id'] . '-bottom" name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] . 'bottom]' . '" value="' . $this->value['bottom'] . ( ! empty( $this->value['bottom'] ) ? $this->value['units'] : '' ) . '">';
             }
 
             if ( $this->field['left'] === true ) {
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="redux-spacing-value" id="' . $this->field['id'] . '-left" name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . $this->field['mode'] . 'left]' . '" value="' . $this->value['left'] . ( ! empty( $this->value['left'] ) ? $this->value['units'] : '' ) . '">';
             }
 
@@ -221,6 +226,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                  * Top
                  * */
                 if ( $this->field['top'] === true ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-up icon-large"></i></span><input type="text" class="redux-spacing-top redux-spacing-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Top', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-top" value="' . $this->value['top'] . '"></div>';
                 }
 
@@ -228,6 +234,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                  * Right
                  * */
                 if ( $this->field['right'] === true ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-right icon-large"></i></span><input type="text" class="redux-spacing-right redux-spacing-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Right', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-right" value="' . $this->value['right'] . '"></div>';
                 }
 
@@ -235,6 +242,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                  * Bottom
                  * */
                 if ( $this->field['bottom'] === true ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-down icon-large"></i></span><input type="text" class="redux-spacing-bottom redux-spacing-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Bottom', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-bottom" value="' . $this->value['bottom'] . '"></div>';
                 }
 
@@ -242,6 +250,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                  * Left
                  * */
                 if ( $this->field['left'] === true ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<div class="field-spacing-input input-prepend"><span class="add-on"><i class="el el-arrow-left icon-large"></i></span><input type="text" class="redux-spacing-left redux-spacing-input mini ' . $this->field['class'] . '" placeholder="' . __( 'Left', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-left" value="' . $this->value['left'] . '"></div>';
                 }
             }
@@ -250,8 +259,9 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
              * Units
              * */
             if ( $this->field['units'] !== false && is_array( $this->field['units'] ) /* && !isset($absolute) */ && $this->field['display_units'] == true ) {
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="select_wrapper spacing-units" original-title="' . __( 'Units', 'accelerated-mobile-pages' ) . '">';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<select data-placeholder="' . __( 'Units', 'accelerated-mobile-pages' ) . '" class="redux-spacing redux-spacing-units select ' . $this->field['class'] . '" original-title="' . __( 'Units', 'accelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[units]' . '" id="' . $this->field['id'] . '_units">';
 
                 if ( $this->field['units_extended'] ) {
@@ -267,9 +277,11 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                 echo '<option></option>';
 
                 if ( in_array( $this->field['units'], $testUnits ) ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<option value="' . $this->field['units'] . '" selected="selected">' . $this->field['units'] . '</option>';
                 } else {
                     foreach ( $testUnits as $aUnit ) {
+                        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                         echo '<option value="' . $aUnit . '" ' . selected( $this->value['units'], $aUnit, false ) . '>' . $aUnit . '</option>';
                     }
                 }

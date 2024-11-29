@@ -40,10 +40,11 @@ class AMPFORWP_Woo_Widget extends WP_Widget {
     $ampforwp_show_price          = $instance[ 'show_price' ];
 
     $exclude_ids = ampforwp_exclude_posts();
-    /* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
+    
      $q = new WP_Query( array(
       'post_type'           => 'product',
       'orderby'             => 'date',
+      /* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
       'post__not_in' 		    => $exclude_ids,
       'has_password'        => false,
       'no_found_rows'          => true,

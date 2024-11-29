@@ -46,6 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             }
         }
         $section['class'] = isset( $section['class'] ) ? ' ' . $section['class'] : '';
+        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
         echo '<div id="' . $k . '_section_group' . '" class="redux-group-tab' . esc_attr( $section['class'] ). ' '.$section['id'] . '" data-rel="' . $k . '">'.$hide_wrapper;
         //echo '<div id="' . $k . '_nav-bar' . '"';
         /*

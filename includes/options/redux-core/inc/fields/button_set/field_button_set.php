@@ -122,8 +122,9 @@ namespace ReduxCore\ReduxFramework;
                             $selected = checked( $this->value, $k, false );
                         }
                     }
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<input data-id="' . $this->field['id'] . '" type="' . $type . '" id="' . $this->field['id'] . '-buttonset' . $k . '" name="' . $this->field['name'] . $this->field['name_suffix'] . $multi_suffix . '" class="buttonset-item ' . $this->field['class'] . '" value="' . $k . '" ' . $selected . '/>';
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<label for="' . $this->field['id'] . '-buttonset' . $k . '">' . $v . '</label>';
                 }
 

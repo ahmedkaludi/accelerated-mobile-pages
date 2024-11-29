@@ -1131,12 +1131,13 @@ function ampforwp_get_attachment_id( $url , $imagetype='full') {
 			// Is URL in uploads directory?
 		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) {
 			$file = basename( $url );
-			/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
+			
 			$query_args = array(
 				'post_type'   => 'attachment',
 				'post_status' => 'inherit',
 				'fields'      => 'ids',
 				'no_found_rows' => true,
+				/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
 				'meta_query'  => array(
 					array(
 						'value'   => $file,

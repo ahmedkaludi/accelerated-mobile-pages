@@ -26,12 +26,13 @@ header('Content-Type: ' . esc_attr(feed_content_type('rss2')) . '; charset=' . e
     else{
         $number_of_articles = 50;
     }
-    /* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
+    
     $ia_args = array(
         'post_status'           => 'publish',
         'ignore_sticky_posts'   => true,
         'posts_per_page'        => esc_attr($number_of_articles),
         'no_found_rows' => true,
+        /* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
         'meta_query' => array(
             array(
                 'key'        => 'ampforwp-ia-on-off',

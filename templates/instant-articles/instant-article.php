@@ -114,9 +114,10 @@
                 if ( ! empty( $categories ) ) { 
                   $categories_ids = wp_list_pluck( $categories, 'term_id' );
                   // Get the four latest posts.
-                  /* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
+                  
                   $query_args = array(
                     'category__in'           => $categories_ids,
+                    /* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
                     'post__not_in'           => array( get_the_ID() ),
                     'posts_per_page'         => 4, // FB uses 4 related articles.
                     'ignore_sticky_posts'    => true, // Turn off sticky posts.

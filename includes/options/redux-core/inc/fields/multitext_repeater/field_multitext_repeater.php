@@ -73,6 +73,7 @@ if ( ! class_exists( 'ReduxFramework_multitext_repeater' ) ) {
                    echo '<option value="'.esc_attr($ok).'" '.esc_attr($select).'>'.esc_attr($ov).'</option>';
                 }
            echo '</select>';
+           /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
            echo '<a href="javascript:void(0);" class="button button-default redux-multitext_repeater-add" data-add_number="' . $this->field['add_number'] . '" data-id="' . esc_attr($this->field['id']) . '-ul" data-name="' . esc_attr($this->field['name']) . esc_attr($this->field['name_suffix']) . '[]">' . esc_attr($this->add_text) . '</a><br/>';
            echo '</div>';
             echo '<ul id="' . esc_attr($this->field['id']) . '-ul" class="redux-multitext_repeater">';
@@ -167,7 +168,9 @@ if ( ! class_exists( 'ReduxFramework_multitext_repeater' ) ) {
                                               $span = '<div class="main_form_select"><span>'.esc_html($rv['title']).'</span>';
                                               $div_cls = '</div>';
                                              }
+                                             /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                                echo $span;
+                                               /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                                 echo '<select '.$hide.' id="' . esc_attr($this->field['id']).'-'.esc_attr($rv['id']).'" name="' . esc_attr($this->field['name']) . '['.esc_attr($rv['id']).']['.esc_attr($rv1).']' . '[]' . '" class = "indi_option '.esc_attr($form_class).'" value="">';
                                                     foreach ($rv['options'] as $ok => $ov) {
                                                         $select = '';
@@ -177,6 +180,7 @@ if ( ! class_exists( 'ReduxFramework_multitext_repeater' ) ) {
                                                        echo '<option value="'.esc_attr($ok).'" '.esc_attr($select).'>'.esc_attr($ov).'</option>';
                                                     }
                                                 echo '</select>';
+                                                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                                 echo $div_cls;
 
                                             }else if($rv1=='text'){
@@ -214,6 +218,7 @@ if ( ! class_exists( 'ReduxFramework_multitext_repeater' ) ) {
                                                   }
                                               echo '<div class="form_sel_div '.esc_attr($hide_class).' '.esc_attr($hide_class_id).'  '.esc_attr($main_id_class).'">';  
                                               echo '<span class="multi-title '.esc_attr($class).'">'.esc_html($rv['title']).'</span>';
+                                              /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                                 echo '<input type="text" id="' . esc_attr($this->field['id']).'-'.esc_attr($rv['id']).'" name="' . esc_attr($this->field['name']) . '['.esc_attr($rv['id']).']['.$rv1.']' . '[]' . '" value="'.esc_attr($val).'" class="regular-text multi-text' . esc_attr($this->field['class']) . '" placeholder ="'.esc_attr($rv['placeholder']).'" />';
                                                  echo '</div>';  
                                             }

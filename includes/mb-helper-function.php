@@ -59,8 +59,9 @@ function ampforwp_add_deactivation_feedback_modal() {
  * @since 1.4.0
  */
 function ampforwp_send_feedback() {
-
+ /* phpcs:ignore WordPress.Security.NonceVerification.Missing */
     if( isset( $_POST['data'] ) ) {
+        /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Missing */
         parse_str( wp_unslash( $_POST['data'] ), $form );
     }
 

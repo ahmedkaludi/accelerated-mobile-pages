@@ -1741,8 +1741,7 @@ function ampforwp_compatibility_filter_tags_for_wordproof_plugin( $amp_post_temp
 	global $wpdb,$post;
 	if(is_single() && isset($post->ID) && !empty($post->ID)){
 		
-		/* phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery  */ 
-		/* phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching  */ 
+		/* phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching */
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT meta_value FROM {$wpdb->prefix}postmeta WHERE post_id = %d AND meta_key LIKE %s",array( $post->ID,'_wordproof_hash_input_%' )),

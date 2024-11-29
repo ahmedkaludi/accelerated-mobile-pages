@@ -67,7 +67,7 @@ function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
 	global $wp;
 	$post = get_post(ampforwp_get_the_ID());
 	if ( is_feed() && isset($wp->query_vars['feed']) && 'instant_articles' == $wp->query_vars['feed'] ) {
-		/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude */
+		
 			$atts = shortcode_atts( array(
 				'order'      => 'ASC',
 				'orderby'    => 'menu_order ID',
@@ -78,6 +78,7 @@ function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
 				'columns'    => 3,
 				'size'       => 'thumbnail',
 				'include'    => '',
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude */
 				'exclude'    => '',
 				'link'       => ''
 			), $attr, 'gallery' );
@@ -159,6 +160,7 @@ function ampforwp_fbia_get_content_from_DOM($DOMDocument){
 		}
 		//Instagram embeds are not loading on the Facebook instance Article #5066
 		if (preg_match('/<blockquote class="instagram-media"/', $filtered_content)) {
+			/* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
 	      $filtered_content = preg_replace( '/<blockquote class="instagram-media"(.*?)>(.*?)<\/blockquote><\/iframe><\/figure>(.*?)<script(.*?)src="(.*?)instagram(.*?)"><\/script>/s', '<blockquote class="instagram-media"$1>$2</blockquote><script$4src="$5instagram$6"></script></iframe></figure>$3', $filtered_content );
 	    }
 		return $filtered_content;

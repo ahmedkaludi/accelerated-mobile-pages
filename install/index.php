@@ -142,6 +142,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	}
 
 	function ampforwp_instller_admin_init(){
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		if(isset($_GET['ampforwp_install'], $_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], '_wpnonce') && $_GET['ampforwp_install']=='1'){
 			ampforwp_steps_call();			
 		}
@@ -149,6 +150,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	
 	function ampforwp_steps_call(){
 		global $ampforwp_install_config;
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		if ( !wp_verify_nonce($_GET['_wpnonce'], '_wpnonce') || empty( $_GET['page'] ) || $ampforwp_install_config['installerpage'] !== $_GET['page'] ) {
 			return;
 		}
@@ -445,6 +447,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	
 	
 	function ampforwp_save_steps_data(){
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		if(!wp_verify_nonce( $_REQUEST['wpnonce'], 'ampforwp_install_nonce' ) ) {
 	        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
 	        die;

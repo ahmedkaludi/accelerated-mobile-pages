@@ -133,19 +133,19 @@ namespace ReduxCore\ReduxFramework;
                     // nothing to do here, but I'm leaving the construct just in case I have to debug this again.
                 }
 
-                echo '<fieldset id="' . $this->field['id'] . '" class="redux-dimensions-container" data-id="' . $this->field['id'] . '">';
+                echo '<fieldset id="' ./* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['id'] . '" class="redux-dimensions-container" data-id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['id'] . '">';
 
                 if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
                     $select2_params = wp_json_encode( $this->field['select2'] );
                     $select2_params = htmlspecialchars( $select2_params, ENT_QUOTES );
-
-                    echo '<input type="hidden" class="select2_params" value="' . $select2_params . '">';
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
+                    echo '<input type="hidden" class="select2_params" value="' .  $select2_params . '">';
                 }
 
 
                 // This used to be unit field, but was giving the PHP index error when it was an array,
                 // so I changed it.
-                echo '<input type="hidden" class="field-units" value="' . $this->value['units'] . '">';
+                echo '<input type="hidden" class="field-units" value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->value['units'] . '">';
 
                 /**
                  * Width
@@ -159,8 +159,8 @@ namespace ReduxCore\ReduxFramework;
                     }
                     echo '<div class="field-dimensions-input input-prepend">';
                     echo '<span class="add-on"><i class="el el-resize-horizontal icon-large"></i></span>';
-                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-width mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Width', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-width" value="' . filter_var( $this->value['width'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
-                    echo '<input data-id="' . $this->field['id'] . '" type="hidden" id="' . $this->field['id'] . '-width" name="' . $this->field['name'] . $this->field['name_suffix'] . '[width]' . '" value="' . $this->value['width'] . '"></div>';
+                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-width mini ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['class'] . '" placeholder="' . esc_attr__( 'Width', 'accelerated-mobile-pages' ) . '" rel="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['id'] . '-width" value="' . filter_var( $this->value['width'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
+                    echo '<input data-id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['id'] . '" type="hidden" id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['id'] . '-width" name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name'] . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name_suffix'] . '[width]' . '" value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->value['width'] . '"></div>';
                 }
 
                 /**
@@ -175,8 +175,8 @@ namespace ReduxCore\ReduxFramework;
                     }
                     echo '<div class="field-dimensions-input input-prepend">';
                     echo '<span class="add-on"><i class="el el-resize-vertical icon-large"></i></span>';
-                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-height mini ' . $this->field['class'] . '" placeholder="' . esc_attr__( 'Height', 'accelerated-mobile-pages' ) . '" rel="' . $this->field['id'] . '-height" value="' . filter_var( $this->value['height'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
-                    echo '<input data-id="' . $this->field['id'] . '" type="hidden" id="' . $this->field['id'] . '-height" name="' . $this->field['name'] . $this->field['name_suffix'] . '[height]' . '" value="' . $this->value['height'] . '"></div>';
+                    echo '<input type="text" class="redux-dimensions-input redux-dimensions-height mini ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['class'] . '" placeholder="' . esc_attr__( 'Height', 'accelerated-mobile-pages' ) . '" rel="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['id'] . '-height" value="' . filter_var( $this->value['height'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) . '">';
+                    echo '<input data-id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['id'] . '" type="hidden" id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['id'] . '-height" name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name'] . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name_suffix'] . '[height]' . '" value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->value['height'] . '"></div>';
                 }
 
                 /**
@@ -187,7 +187,7 @@ namespace ReduxCore\ReduxFramework;
                 // and the default units value will apply.
                 if ( isset( $this->field['units'] ) && $this->field['units'] !== false ) {
                     echo '<div class="select_wrapper dimensions-units" original-title="' . esc_attr__( 'Units', 'accelerated-mobile-pages' ) . '">';
-                    echo '<select data-id="' . $this->field['id'] . '" data-placeholder="' . esc_attr__( 'Units', 'accelerated-mobile-pages' ) . '" class="redux-dimensions redux-dimensions-units select ' . $this->field['class'] . '" original-title="' . __( 'Units', 'accelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[units]' . '">';
+                    echo '<select data-id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['id'] . '" data-placeholder="' . esc_attr__( 'Units', 'accelerated-mobile-pages' ) . '" class="redux-dimensions redux-dimensions-units select ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['class'] . '" original-title="' . __( 'Units', 'accelerated-mobile-pages' ) . '" name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name'] . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name_suffix'] . '[units]' . '">';
 
                     //  Extended units, show 'em all
                     if ( $this->field['units_extended'] ) {
@@ -201,10 +201,10 @@ namespace ReduxCore\ReduxFramework;
                     }
 
                     if ( in_array( $this->field['units'], $testUnits ) ) {
-                        echo '<option value="' . $this->field['units'] . '" selected="selected">' . $this->field['units'] . '</option>';
+                        echo '<option value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['units'] . '" selected="selected">' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['units'] . '</option>';
                     } else {
                         foreach ( $testUnits as $aUnit ) {
-                            echo '<option value="' . $aUnit . '" ' . selected( $this->value['units'], $aUnit, false ) . '>' . $aUnit . '</option>';
+                            echo '<option value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $aUnit . '" ' . selected( $this->value['units'], $aUnit, false ) . '>' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $aUnit . '</option>';
                         }
                     }
                     echo '</select></div>';

@@ -37,6 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
                 // Post slugs must be unique across all posts.
                 $check_sql       = "SELECT post_name FROM $wpdb->posts WHERE post_name = %s LIMIT 1";
+                /* phpcs:ignore 	WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching	 */
                 $post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $slug ) );
 
                 /**
@@ -51,7 +52,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                 if ( $post_name_check || in_array( $slug, $feeds ) || apply_filters( 'wp_unique_post_slug_is_bad_attachment_slug', false, $slug ) ) {
                     $suffix = 2;
                     do {
+                        /* phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching */
                         $alt_post_name   = _truncate_post_slug( $slug, 200 - ( strlen( $suffix ) + 1 ) ) . "-$suffix";
+                        /* phpcs:ignore 	WordPress.DB.PreparedSQL.NotPrepared,	WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching */
                         $post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $alt_post_name ) );
                         $suffix ++;
                     } while ( $post_name_check );

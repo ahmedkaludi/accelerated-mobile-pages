@@ -65,8 +65,9 @@ namespace ReduxCore\ReduxFramework;
                 $this->field['rows']        = isset( $this->field['rows'] ) ? $this->field['rows'] : 6;
                 $readonly                   = ( isset( $this->field['readonly'] ) && $this->field['readonly']) ? ' readonly="readonly"' : '';
                 // The $this->field variables are already escaped in the ReduxFramework Class.
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped*/
                 ?>
-                <textarea <?php echo $readonly; ?> name="<?php echo esc_attr($this->field['name'] . $this->field['name_suffix']); ?>" id="<?php echo $this->field['id']; ?>-textarea" placeholder="<?php echo esc_attr( $this->field['placeholder'] ); ?>" class="large-text <?php echo esc_attr($this->field['class']); ?>" rows="<?php echo esc_attr($this->field['rows']); ?>"><?php echo esc_textarea( $this->value ); ?></textarea>
+                <textarea <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $readonly; ?> name="<?php echo esc_attr($this->field['name'] . $this->field['name_suffix']); ?>" id="<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $this->field['id']; ?>-textarea" placeholder="<?php echo esc_attr( $this->field['placeholder'] ); ?>" class="large-text <?php echo esc_attr($this->field['class']); ?>" rows="<?php echo esc_attr($this->field['rows']); ?>"><?php echo esc_textarea( $this->value ); ?></textarea>
             <?php
             }
 

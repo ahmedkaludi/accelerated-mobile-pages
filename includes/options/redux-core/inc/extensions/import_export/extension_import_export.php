@@ -177,7 +177,7 @@ namespace ReduxCore\ReduxFramework;
                     header( 'Expires: 0' );
                     header( 'Cache-Control: must-revalidate' );
                     header( 'Pragma: public' );
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo $content;
                     exit;
                 } else {
@@ -190,6 +190,7 @@ namespace ReduxCore\ReduxFramework;
 
                     // Can't include the type. Thanks old Firefox and IE. BAH.
                     //header("Content-type: application/json");
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo $content;
                     exit;
                 }
@@ -202,6 +203,7 @@ namespace ReduxCore\ReduxFramework;
 
             public function remove_cookie() {
                 // Remove the import/export tab cookie.
+                /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
                 if ( $_COOKIE['redux_current_tab'] == 'import_export_default' ) {
                     setcookie( 'redux_current_tab', '', 1, '/' );
                     $_COOKIE['redux_current_tab'] = 1;

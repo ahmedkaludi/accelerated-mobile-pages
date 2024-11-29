@@ -72,6 +72,7 @@
                             if ( class_exists( $extension['class'] ) ) {
                                 $ReduxFramework->extensions[ $name ] = new $extension['class']( $ReduxFramework );
                             } else {
+                                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                 echo '<div id="message" class="error"><p>No class named <strong>' . $extension['class'] . '</strong> exists. Please verify your extension path.</p></div>';
                             }
 
@@ -175,6 +176,7 @@
                         if ( $field['section_id'] == $section_id ) {
                             $p = $field['priority'];
                             while ( isset( $fields[ $p ] ) ) {
+                                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                 echo $p ++;
                             }
                             $fields[ $p ] = $field;

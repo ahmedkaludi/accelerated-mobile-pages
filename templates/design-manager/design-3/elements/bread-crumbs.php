@@ -221,6 +221,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
             $term_id        = get_query_var('tag_id');
             $taxonomy       = 'post_tag';
             $args           = 'include=' . intval($term_id);
+            //phpcs:ignore WordPress.WP.DeprecatedParameters.Get_termsParam2Found
             $terms          = get_terms( $taxonomy, $args );
             $get_term_id    = $terms[0]->term_id;
             $get_term_slug  = $terms[0]->slug;

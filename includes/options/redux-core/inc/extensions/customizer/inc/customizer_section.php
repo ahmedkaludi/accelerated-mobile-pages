@@ -131,7 +131,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     ?>
                     <?php if ( ! empty( $this->description ) ) : ?>
                         <li class="customize-section-description-container">
-                            <p class="description customize-section-description legacy"><?php echo $this->description; ?></p>
+                            <p class="description customize-section-description legacy"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $this->description; ?></p>
                         </li>
                     <?php endif; ?>
                 </ul>

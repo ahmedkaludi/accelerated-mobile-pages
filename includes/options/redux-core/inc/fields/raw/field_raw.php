@@ -40,8 +40,10 @@ namespace ReduxCore\ReduxFramework;
                     if ( isset( $this->field['markdown'] ) && $this->field['markdown'] == true && ! empty( $this->field['content'] ) ) {
                         require_once dirname( __FILE__ ) . "/parsedown.php";
                         $Parsedown = new Parsedown();
-                        echo $Parsedown->text( $this->field['content'] );
-                    } else {
+                         /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
+                         echo $Parsedown->text( $this->field['content'] );
+                        } else {
+                        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                         echo $this->field['content'];
                     }
                 }

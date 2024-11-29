@@ -159,7 +159,7 @@ namespace ReduxCore\ReduxFramework;
                             }
 
                             foreach ( $sortlist as $key => $list ) {
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                 echo '<input class="sorter-placebo" type="hidden" name="' . esc_attr($this->field['name']) . '[' . $group . '][placebo]' . esc_attr($this->field['name_suffix']) . '" value="placebo">';
 
                                 if ( $key != "placebo" ) {

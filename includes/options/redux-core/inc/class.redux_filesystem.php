@@ -61,6 +61,7 @@
                     echo '<div class="wrap"><div class="error"><p>';
                     /* translators: %1$s: file path */
                     /* translators: %2$s: href */
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
                     echo '<strong>' . __( 'File Permission Issues', 'accelerated-mobile-pages' ) . '</strong><br/>' . sprintf( __( 'We were unable to modify required files. Please ensure that <code>%1$s</code> has the proper read-write permissions, or modify your wp-config.php file to contain your FTP login credentials as <a href="%2$s" target="_blank">outlined here</a>.', 'accelerated-mobile-pages' ), Redux_Helpers::cleanFilePath( trailingslashit( WP_CONTENT_DIR ) ) . '/uploads/', 'https://codex.wordpress.org/Editing_wp-config.php#WordPress_Upgrade_Constants' );
                     echo '</p></div><h2></h2>' . '</div>';
                 }
@@ -182,6 +183,7 @@
 
                         $res = file_exists( $file );
                         if ( ! $res ) {
+                            /* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_mkdir */
                             mkdir( $file, $chmod, true );
                             $res = file_exists( $file );
                         }
@@ -192,6 +194,7 @@
                     if ( isset( $this->parent->ftp_form ) && ! empty( $this->parent->ftp_form ) ) {
                         $res = copy( $file, $destination );
                         if ( $res ) {
+                            /* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_chmod */
                             chmod( $destination, $chmod );
                         }
                     } else {

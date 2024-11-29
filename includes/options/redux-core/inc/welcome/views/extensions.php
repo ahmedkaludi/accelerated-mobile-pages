@@ -73,13 +73,14 @@
     <h1><?php esc_html_e( 'Redux Framework - Extensions', 'accelerated-mobile-pages' ); ?></h1>
 
     <div class="about-text">
-        <?php printf( __( 'Supercharge your Redux experience. Our extensions provide you with features that will take your products to the next level.', 'accelerated-mobile-pages' ), esc_html($this->display_version) ); ?>
+        <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ printf( __( 'Supercharge your Redux experience. Our extensions provide you with features that will take your products to the next level.', 'accelerated-mobile-pages' ), esc_html($this->display_version) ); ?>
     </div>
     <div class="redux-badge">
         <i class="el el-redux"></i>
         <span>
             <?php 
             /* translators: %s: version */
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
             printf( __( 'Version %s', 'accelerated-mobile-pages' ), esc_html(ReduxFramework::$_version )); ?>
         </span>
     </div>
