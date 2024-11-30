@@ -331,8 +331,8 @@
                     $this->_default_cleanup();
 
                     // Internataionalization
-                    $this->_internationalization();
-
+                    //$this->_internationalization();
+                    add_action( 'init', array( $this, '_internationalization') );
                     $this->filesystem = Redux_Filesystem::get_instance( $this );
 
                     //set redux upload folder
