@@ -6602,8 +6602,7 @@ if ( ! function_exists('ampforwp_nonamp_ads') ) {
 	function ampforwp_nonamp_ads($output, $width, $height, $client_id, $data_slot) {
 		if ( ampforwp_is_non_amp('non_amp_check_convert') ) {
 			/* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
-			$output = '	<div class="add-wrapper" style="text-align:center;">
-							<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+			$output = '	<div class="add-wrapper" style="text-align:center;"><script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 							</script>
 							<ins class="adsbygoogle" style="display:inline-block;width:'.esc_attr($width).';height:'.esc_attr($height).'" data-ad-client="'.esc_attr($client_id).'" data-ad-slot="'.esc_attr($data_slot).'">
 							</ins>
@@ -7732,6 +7731,7 @@ add_action('amp_post_template_head', 'ampforwp_fontawesome_canonical_link');
 function ampforwp_fontawesome_canonical_link(){ 
   if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ /* phpcs:ignore 	WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet */ ?>
   		<link rel="preconnect dns-prefetch" href="//use.fontawesome.com" crossorigin>
+		<?php /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet */?>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <?php }
     }
@@ -8963,6 +8963,7 @@ function ampforwp_include_required_scripts($content){
 	// Scripts added from Options panel should have higher priority #4064
 	if( $allscripts || (ampforwp_get_setting('amp-header-text-area-for-html') && ampforwp_get_setting('amp-header-text-area-for-html')!="")) {
 	   $allscripts .= ampforwp_get_setting('amp-header-text-area-for-html');
+	   /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
       preg_match_all('/<script(.*?)custom-element=\"(.*?)\"(.*?)src=\"(.*?)\"(.*?)>(.*?)<\/script>/s', $allscripts, $rep);
       if($rep){
 		  	if(isset($rep[2]) && isset($rep[4])){
@@ -10259,7 +10260,7 @@ function ampforwp_post_subtitle($location='left'){
 		$post_id = ampforwp_get_the_ID();
 		$post_subtitle = get_post_meta( $post_id,'post_subtitle',true);
 		if($post_subtitle!=""){
-			echo '<h2 class="amp-wp-sub-title '.$location.'">'.esc_attr($post_subtitle).'</h2>';
+			echo '<h2 class="amp-wp-sub-title '.esc_attr($location).'">'.esc_attr($post_subtitle).'</h2>';
 		}
 	}
 }

@@ -41,13 +41,13 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 		<?php if( ampforwp_get_setting('ampforwp-title-on-front-page') && !ampforwp_default_logo()) { ?>
 			<header class="amp-wp-article-header ampforwp-title">
 				<h2 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $post_id );?></h2>
-				<?php echo do_action('ampforwp_post_subtitle','center'); ?>
+				<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle','center'); ?>
 			</header>	
 		<?php }
 		elseif(ampforwp_get_setting('ampforwp-title-on-front-page') && ampforwp_default_logo()){?>
 			<header class="amp-wp-article-header ampforwp-title">
 				<h1 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $post_id );?></h1>
-				<?php echo do_action('ampforwp_post_subtitle'); ?>
+				<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle'); ?>
 			</header>	
 		<?php } 
 		do_action('ampforwp_before_featured_image_hook', $template ); ?>
@@ -310,12 +310,12 @@ function ampforwp_design_2_frontpage_title() {
 	if( ampforwp_get_setting('ampforwp-title-on-front-page') && !ampforwp_default_logo() ) { ?>
 		<header class="amp-wp-article-header ampforwp-title">
 			<h2 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $ID );?></h2>
-			<?php echo do_action('ampforwp_post_subtitle','center'); ?>
+			<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle','center'); ?>
 		</header>	
 	<?php }elseif(ampforwp_get_setting('ampforwp-title-on-front-page') && ampforwp_default_logo()){?>
 		<header class="amp-wp-article-header ampforwp-title">
 			<h1 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $ID );?></h1>
-			<?php echo do_action('ampforwp_post_subtitle'); ?>
+			<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle'); ?>
 		</header>
 	<?php }
 }
@@ -332,11 +332,11 @@ function ampforwp_design_3_frontpage_title() {
  <header class="amp-wp-article-header ampforwp-title amp-wp-content">
 	<?php if( true == ampforwp_get_setting('ampforwp-title-on-front-page') && !ampforwp_default_logo() ) { ?>
 		<h2 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $ID );?></h2>
-		<?php echo do_action('ampforwp_post_subtitle','center'); ?>
+		<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle','center'); ?>
 		 <?php 
 		}elseif(ampforwp_get_setting('ampforwp-title-on-front-page') && ampforwp_default_logo()){?>
 		<h1 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $ID );?></h1>
-		<?php echo do_action('ampforwp_post_subtitle'); ?>
+		<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle'); ?>
 		 <?php
 	} ?>
 	</header>
