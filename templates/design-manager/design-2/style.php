@@ -345,6 +345,8 @@ a.btt:hover {
 .cmt-button-wrapper{ margin-bottom: 0px; margin-top: 60px; text-align:center }
 .cmt-button-wrapper a{ color: #fff; background: #312c7e; font-size: 13px; padding: 10px 20px 10px 20px; box-shadow: 0 0px 3px rgba(0,0,0,.04); border-radius: 80px; }
 h1.amp-wp-title , h2.amp-wp-title{ text-align: center; margin: 0.7em 0px 0.6em 0px; font-size: 1.5em; }
+h2.amp-wp-sub-title{ font-size: 20px;line-height: 1.4em; margin-top: 0px;color: #a0a0a0; }
+h2.amp-wp-sub-title.center{text-align:center}
 .amp-wp-content.post-title-meta, .amp-wp-content.post-pagination-meta{ background: none; padding:  0; box-shadow:none }
 .post-pagination-meta{ min-height:75px }
 .single-post .post-pagination-meta{ min-height:auto }

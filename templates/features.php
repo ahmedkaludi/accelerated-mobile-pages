@@ -10251,6 +10251,19 @@ function ampforwp_sanitize_svg_file( $file_path ) {
     return $file_path;
 }
 
+if(defined('JNEWS_THEME_CLASS')){
+	add_action('ampforwp_post_subtitle','ampforwp_post_subtitle');
+}
+function ampforwp_post_subtitle($location='left'){
+	if(ampforwp_get_the_ID()){
+		$post_id = ampforwp_get_the_ID();
+		$post_subtitle = get_post_meta( $post_id,'post_subtitle',true);
+		if($post_subtitle!=""){
+			echo '<h2 class="amp-wp-sub-title '.$location.'">'.esc_attr($post_subtitle).'</h2>';
+		}
+	}
+}
+
 add_action('wp_ajax_ampforwp_search_infinite_scroll_post','ampforwp_search_infinite_scroll_post');
 add_action('wp_ajax_nopriv_ampforwp_search_infinite_scroll_post','ampforwp_search_infinite_scroll_post');
 function ampforwp_search_infinite_scroll_post(){

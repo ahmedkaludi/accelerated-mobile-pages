@@ -17,7 +17,10 @@
 <article class="amp-wp-article">
 
 	<header class="amp-wp-article-header">
-		<h1 class="amp-wp-title"><?php echo wp_kses_data( $this->get( 'post_title' ) ); ?></h1>
+		<h1 class="amp-wp-title">
+			<?php echo wp_kses_data( $this->get( 'post_title' ) ); ?>
+			<?php echo 'good'; ?>
+		</h1>
 		<?php $this->load_parts( apply_filters( 'amp_post_article_header_meta', array( 'meta-author', 'meta-time' ) ) ); ?>
 	</header>
 

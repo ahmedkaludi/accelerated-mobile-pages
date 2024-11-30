@@ -322,6 +322,8 @@ a.btt:hover {
 .cmt-button-wrapper{ margin-bottom: 50px; margin-top: 30px; text-align:center }
 .cmt-button-wrapper a{ color: #fff; background: #312c7e; font-size: 14px; padding: 12px 22px 12px 22px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; }
 h1.amp-wp-title,h2.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px;}
+h2.amp-wp-sub-title{ font-size: 20px;line-height: 1.4em; margin-top: 0px;color: #a0a0a0; }
+h2.amp-wp-sub-title.center{text-align:center}
 .post-pagination-meta{ min-height:75px }
 .single-post .post-pagination-meta{ font-size:15px; min-height:auto; margin-top:-5px; line-height:26px; }
 .single-post .post-pagination-meta span{ font-weight:bold }
