@@ -1741,12 +1741,17 @@ function ampforwp_compatibility_filter_tags_for_wordproof_plugin( $amp_post_temp
 	global $wpdb,$post;
 	if(is_single() && isset($post->ID) && !empty($post->ID)){
 		
-		/* phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching */
-		$results = $wpdb->get_results(
-			$wpdb->prepare(
-				"SELECT meta_value FROM {$wpdb->prefix}postmeta WHERE post_id = %d AND meta_key LIKE %s",array( $post->ID,'_wordproof_hash_input_%' )),
-				ARRAY_N
-		);
+		$cache_key = 'wordproof_cache_key_'.$post->ID;
+      	$results = wp_cache_get( $cache_key ); 
+		if($results===false){
+			/* phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery */
+			$results = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT meta_value FROM {$wpdb->prefix}postmeta WHERE post_id = %d AND meta_key LIKE %s",array( $post->ID,'_wordproof_hash_input_%' )),
+					ARRAY_N
+			);
+			wp_cache_set( $cache_key, $results );
+		}
 		if($results)
 		{
 			$schema_data = reset($results);

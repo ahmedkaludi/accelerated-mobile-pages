@@ -168,6 +168,15 @@ add_action( 'wp_ajax_ampforwp_get_licence_activate_update', 'ampforwp_get_licenc
 
 add_action( 'wp_ajax_ampforwp_set_license_transient', 'ampforwp_set_license_transient' );
 function ampforwp_set_license_transient(){
+    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
+    if(!isset($_REQUEST['verify_nonce']) || !wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
+        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
+        die;
+    }
+    // Exit if the user does not have proper permissions
+    if(! current_user_can( 'manage_options' ) ) {
+        return ;
+    }
     $transient_load =  'ampforwp_addon_set_transient';
     $value_load =  'ampforwp_addon_set_transient_value';
     $expiration_load =  86400 ;

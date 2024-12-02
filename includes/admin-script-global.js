@@ -17,6 +17,7 @@ jQuery(function($) {
         $("#ampforwp-close-ad-notice").on("click", function(){
             var data = {
                 action: 'ampforwp_tpd_remove_notice',
+                nonce:ampforwp_nonce.security
             };
             $.post(ajaxurl, data, function(response) {
                 $(".ampforwp_remove_notice").remove();

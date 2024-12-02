@@ -7246,37 +7246,33 @@ add_action('upload_mimes', 'ampforwp_upload_svg');
 // Ajax functions
 add_action( 'wp_ajax_ampforwp_categories', 'ampforwp_ajax_cats' );
 function ampforwp_ajax_cats(){
-	$ampforwp_nonce = wp_create_nonce( 'ampforwp-verify-request' );
- 	if(!wp_verify_nonce($ampforwp_nonce,'ampforwp-verify-request') ){
-		echo wp_json_encode(array('status'=>403,'message'=>esc_html__('user request is not allowed','accelerated-mobile-pages'))) ;
-		die;
-	}
 	$return = array();
-	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
- 	$categories = get_categories(array('search'=> esc_html($_GET['q']),'number'=>500,'hide_empty' => 0));
- 	$categories_array = array();
-   	if ( $categories ) :
-        foreach ($categories as $cat ) {
-                $return[] = array($cat->cat_ID,$cat->name);// array( Cat ID, Cat Name )
-        }
-    endif;
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
+	if( isset( $_GET[ 'security' ] ) && isset($_GET[ 'security' ]['security']) && wp_verify_nonce($_GET[ 'security' ]['security'],'ampforwp-verify-request') ){
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
+		$categories = get_categories(array('search'=> esc_html($_GET['q']),'number'=>500,'hide_empty' => 0));
+		$categories_array = array();
+		if ( $categories ) :
+			foreach ($categories as $cat ) {
+					$return[] = array($cat->cat_ID,$cat->name);// array( Cat ID, Cat Name )
+			}
+		endif;
+	}
 	wp_send_json( $return );
 }
 add_action( 'wp_ajax_ampforwp_tags', 'ampforwp_ajax_tags' );
 function ampforwp_ajax_tags(){
-	$ampforwp_nonce = wp_create_nonce( 'ampforwp-verify-request' );
- 	if(!wp_verify_nonce($ampforwp_nonce,'ampforwp-verify-request') ){
-		echo wp_json_encode(array('status'=>403,'message'=>esc_html__('user request is not allowed','accelerated-mobile-pages'))) ;
-		die;
-	}
 	$return = array();
-	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
- 	$tags = get_tags(array('search'=> esc_html($_GET['q']),'number'=>500));
-   	if ( $tags ) :
-        foreach ($tags as $tag ) {
-                $return[] = array($tag->term_id,$tag->name);// array( Tag ID, tag Name )
-        }
-    endif;
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
+	if( isset( $_GET[ 'security' ] ) && isset($_GET[ 'security' ]['security']) && wp_verify_nonce($_GET[ 'security' ]['security'],'ampforwp-verify-request') ){
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
+		$tags = get_tags(array('search'=> esc_html($_GET['q']),'number'=>500));
+		if ( $tags ) :
+			foreach ($tags as $tag ) {
+					$return[] = array($tag->term_id,$tag->name);// array( Tag ID, tag Name )
+			}
+		endif;
+	}
 	wp_send_json( $return );
 } 
 add_filter( 'amp_post_template_data', 'ampforwp_backtotop' );

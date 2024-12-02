@@ -321,8 +321,8 @@ function ampforwp_pb_cats(){
 	$taxonomy = '';
 	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 	$taxonomy = sanitize_text_field($_POST['selected_val']);
-	/* phpcs:ignore WordPress.WP.DeprecatedParameters.Get_termsParam2Found */
-	$terms = get_terms( $taxonomy, array(
+	$terms = get_terms(array(
+					'taxonomy'=>$taxonomy,
 				   'orderby' => 'name',     
                    'order'   => 'ASC',
                    'number'  => 500   

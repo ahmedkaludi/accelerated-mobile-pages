@@ -2032,8 +2032,7 @@ function ampforwp_get_categories($id){
 	if(isset($selected_categories) && $selected_categories) {
 		$get_required_data = array_filter( $selected_categories );
 		if ( count( $get_required_data ) != 0 ) {
-            /* phpcs:ignore WordPress.WP.DeprecatedParameters.Get_termsParam2Found */
-			$categories = get_terms( 'category', array( 'include' => $get_required_data ) );
+			$categories = get_terms( array('taxonomy'=>'category','include' => $get_required_data ) );
 			foreach ( $categories as $category ) {
 				$result[ esc_attr( $category->term_id ) ] = esc_html( $category->name );
 			}
@@ -2061,8 +2060,7 @@ function ampforwp_get_all_tags($id){
 		$get_required_data = array_filter( $selected_tags );
 
 		if ( count( $get_required_data ) != 0 ) {
-            /* phpcs:ignore WordPress.WP.DeprecatedParameters.Get_termsParam2Found */
-			$tags = get_terms( 'post_tag', array( 'include' => $get_required_data ) );
+			$tags = get_terms( array('taxonomy'=>'post_tag', 'include' => $get_required_data ) );
 			foreach($tags as  $tag ) {
 				$result[esc_attr($tag->term_id)] = esc_html($tag->name);
 			}
