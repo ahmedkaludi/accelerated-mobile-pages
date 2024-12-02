@@ -1,4 +1,11 @@
 == Changelog ==
+= 1.1.2 (02 December 2024) =
+* New: Jetpack related post not showing on AMP #5575
+* New: Add a new feature to add Whatsapp Group links to Floating Buttons for AMP #5649
+* New: Need to added the Subtitle feature in Post/pages in AMP #5665
+* Fixed: Security issue reported by "Wordfence" #5662
+* Fixed: AMP Pixel URL Issue After Recent Plugin Update 1.1.1 #5663
+* Fixed: Function _load_textdomain_just_in_time was called incorrectly #5664
 
 = 1.1.1 (12 November 2024) =
 * New : Manual post selection in infinite scroll #5651
