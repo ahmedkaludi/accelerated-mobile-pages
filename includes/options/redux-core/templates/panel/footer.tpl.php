@@ -45,6 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                                 echo esc_attr( $link['icon'] );
                             ?>"></i>
                         <?php else : ?>
+                            <?php /* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */ ?>
                             <img src="<?php echo esc_url( $link['img'] ); ?>"/>
                         <?php endif; ?>
 

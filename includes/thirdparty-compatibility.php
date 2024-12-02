@@ -1600,6 +1600,7 @@ function amp_saswp_tiny_multi_faq_render( $atts, $content = null ){
                     $image_id       = intval( $value['image'] );                
                     $image_thumburl = wp_get_attachment_image_url( $image_id, [ 150, 150 ] );
                     $output .= '<figure>';
+					/* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
                     $output .= '<a href="'.esc_url(esc_url($image_thumburl)).'"><img class="saswp_tiny_faq_image" src="'.esc_url($image_thumburl).'"></a>';
                     $output .= '</figure>';
                 }
@@ -1845,8 +1846,7 @@ function ampforwp_compatibility_for_opensea_callback($matches){
 				<div class='asset-details-container'>
 				  <div class='asset-detail'>
 					<div class='asset-detail-type'>
-					  <a class='asset-link' target='_blank' href='https://opensea.io/assets/".esc_url($nft_data['collection']['slug'])."'>
-					  <img alt='' src='".esc_url($nft_data['asset_contract']['image_url'])."'>
+					  <a class='asset-link' target='_blank' href='https://opensea.io/assets/".esc_url($nft_data['collection']['slug'])."'>"./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */"<img alt='' src='".esc_url($nft_data['asset_contract']['image_url'])."'>
             		  <p>".esc_attr($nft_data['asset_contract']['name'])."</p>
 					  </a>
 					</div>
@@ -1858,8 +1858,7 @@ function ampforwp_compatibility_for_opensea_callback($matches){
 				  
 				<a class='asset-link' target='_blank' href='".esc_url($nft_data['permalink'])."'>
 				<div class='asset-detail-price asset-detail-price-previous'>
-				<div class='previous-value'>Prev.&nbsp;</div>  
-				<img alt='' src='https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg'>
+				<div class='previous-value'>Prev.&nbsp;</div>"./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage,PluginCheck.CodeAnalysis.Offloading.OffloadedContent */"<img alt='' src='https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg'>
 				<div class='asset-detail-price-value'>
 				  ";
 				  if(isset($nft_data['last_sale']['total_price'])){

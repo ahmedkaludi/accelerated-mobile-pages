@@ -9,6 +9,7 @@ function ampforwp_notice_bar_options($opt_name){
   include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
      if(!is_plugin_active( 'AMP-cta/amp-cta.php' )){
   $cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
+  /* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
   $cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/cta-banner.png" width="560" height="85" /></a>';
   }
  // Notifications SECTION
@@ -318,6 +319,7 @@ function ampforwp_notice_bar_options($opt_name){
            'class' => 'amp-popup-fld',
            'id'   => 'info_normal_amp_popup',
            'type'     => 'info',
+           /* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
             'desc' => '<a href="https://ampforwp.com/amp-popup/"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/popup_ext.png" width="560" height="85" /></a>',   
            ),    
        ),

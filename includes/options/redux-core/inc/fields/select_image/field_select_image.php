@@ -158,14 +158,14 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                 // substract one from the saved array number.  We then pull the url
                 // out of the options array, and there we go.
                 if ( '' == $this->value ) {
-                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
                     echo '<img src="#" class="redux-preview-image" style="visibility:hidden;" id="image_' . $this->field['id'] . '">';
                 } else {
                     $demo="#";
                     if (isset($this->field['options'][ $arrNum - 1 ]['demo_link'])) {
                         $demo = $this->field['options'][ $arrNum - 1 ]['demo_link'];
                     }
-                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
                     echo '<img src=' . $this->field['options'][ $arrNum - 1 ]['img'] . ' class="redux-preview-image" id="image_' . $this->field['id'] . '"  onclick="return window.open(\''.$demo.'\')">'; 
                     if (isset($this->field['options'][ $arrNum - 1 ]['demo_link'])) {
                         /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */

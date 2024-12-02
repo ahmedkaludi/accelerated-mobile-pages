@@ -391,9 +391,7 @@ class AMPforWP_Fields
 				<input type="hidden" class="upload-height" name="amp-ux-logo-height" id="amp-ux-logo-height" value="'.intval($height).'">
 				<input type="hidden" class="upload-width" name="amp-ux-logo-width" id="amp-ux-logo-width" value="'.intval($width).'">
 				<input type="hidden" class="upload-thumbnail" name="amp-ux-logo-thumb" id="amp-ux-logo-thumb" value="'.esc_url($url).'">
-				<div class="screenshot '.esc_attr($hide).'">
-					
-					<img class="redux-option-image amp-ux-image" id="image_opt-media" src="'.esc_url($url).'" alt="" target="_blank" rel="external">
+				<div class="screenshot '.esc_attr($hide).'">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img class="redux-option-image amp-ux-image" id="image_opt-media" src="'.esc_url($url).'" alt="" target="_blank" rel="external">
 					
 				</div>
 				<div class="upload_button_div amp-ux-upload '.esc_attr($logo_css).'">

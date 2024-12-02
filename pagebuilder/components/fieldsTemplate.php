@@ -131,6 +131,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
             <input type="hidden" name="ampforwp_image_id" class="regular-text" v-model="field.default"/>
         
             <div v-if="field.default!=''" style="position: relative;display: inline-block;">
+                <?php /* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */?>
                  <img v-if="field.default!=''" src="../wp-includes/images/spinner.gif" :data-src="refresh_image(field.default,this,'tag',field)" class="amppbimageuploadField"/>
                 <span class="dashicons-before dashicons-no link" @click="removeSelectedImage(field)"></span>
             </div>
@@ -410,6 +411,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
                     :data-value="option.value"
                     :class="{'active': (field.default==option.value)}" @click="select_layout_type(field, $event)">
                 <label  :data-value="option.value">{{option.label}}</label>
+                <?php /* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */?>
                 <img  :data-value="option.value" :src="option.demo_image">
             </div>
             <div class="help-msg" v-html="field.helpmessage"></div>

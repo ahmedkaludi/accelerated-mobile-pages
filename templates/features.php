@@ -6661,6 +6661,7 @@ function ampforwp_remove_ahref_lightbox(){
 	}
 }
 function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
+	/* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
 	preg_match_all('/(<a(.*?)href=\"(.*?)\"(.*?)>(.*?)<img(.*?)src=\"(.*?)\"(.*?)(.*?)[^>]*>)/', $content, $matches);
 	if( count($matches[3])){
 		for( $i=0;$i<count($matches[3]);$i++){
@@ -6675,6 +6676,7 @@ function ampforwp_remove_ahref_lightbox_in_amp( $content ) {
 				$src = $matches[7][$i];
 				$href_src = str_replace( '/', '\/', esc_url($href));
 				$image_src = str_replace( '/', '\/', esc_url($src));
+				/* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
 				$content = preg_replace('/<a(.*?)href=\"'.$href_src.'\"(.*?)>(<img(.*?)src=\"'.$image_src.'\"(.*?)[^>]*>)<\/a>/i', '$3', $content);	
 
 			}
@@ -7732,10 +7734,8 @@ function ampforwp_ivory_search_css(){
 // Font Awesome Icons added for Swift
 add_action('amp_post_template_head', 'ampforwp_fontawesome_canonical_link');
 function ampforwp_fontawesome_canonical_link(){ 
-  if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ /* phpcs:ignore 	WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet */ ?>
-  		<link rel="preconnect dns-prefetch" href="//use.fontawesome.com" crossorigin>
-		<?php /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet */?>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  if ( ampforwp_get_setting('ampforwp_font_icon') == 'fontawesome-icons' ){ /* phpcs:ignore 	WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet,PluginCheck.CodeAnalysis.Offloading.OffloadedContent */ ?><link rel="preconnect dns-prefetch" href="//use.fontawesome.com" crossorigin>
+		<?php /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet,PluginCheck.CodeAnalysis.Offloading.OffloadedContent */?><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <?php }
     }
 add_action('amp_post_template_head', 'ampforwp_set_dns_preload_urls');
