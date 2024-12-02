@@ -171,7 +171,7 @@ function ampforwp_swift_social_icons(){
 
 	 							?>
 							<li>
-								<a class="s_pt" target="_blank" <?php ampforwp_rel_attributes_social_links(); ?> href="https://pinterest.com/pin/create/button/?media=<?php echo esc_url($image); ?>&url=<?php esc_url(the_permalink()); ?>&description=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>" aria-label="pinterest share"><?php 
+								<a class="s_pt" target="_blank" <?php ampforwp_rel_attributes_social_links(); ?> href="https://pinterest.com/pin/create/button/?media=<?php echo esc_url($image); ?>&url=<?php the_permalink(); ?>&description=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>" aria-label="pinterest share"><?php 
 								//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								echo $pinterest_icon; ?></a>
 							</li>

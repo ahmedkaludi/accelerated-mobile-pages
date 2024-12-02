@@ -266,7 +266,7 @@
                         }
                     }
                     if ( ! isset( $section['id'] ) ) {
-                        print_r( $section );
+                        print_r( $section ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r	
                         echo "DOVY";
                     }
 

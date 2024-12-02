@@ -2218,7 +2218,7 @@
 
                             if ( ! isset ( $field['id'] ) ) {
                                 echo '<br /><h3>No field ID is set.</h3><pre>';
-                                print_r( $field );
+                                print_r( $field ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
                                 echo "</pre><br />";
                                 continue;
                             }
@@ -2369,7 +2369,7 @@
                             $this->sections[ $k ]['fields'][ $fieldk ] = $field;
 
                             if ( isset ( $this->args['display_source'] ) ) {
-                                $th .= '<div id="' . $field['id'] . '-settings" style="display:none;"><pre>' . var_export( $this->sections[ $k ]['fields'][ $fieldk ], true ) . '</pre></div>';
+                                $th .= '<div id="' . $field['id'] . '-settings" style="display:none;"><pre>' . var_export( $this->sections[ $k ]['fields'][ $fieldk ], true ) /* phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_var_export */ . '</pre></div>';
                                 $th .= '<br /><a href="#TB_inline?width=600&height=800&inlineId=' . $field['id'] . '-settings" class="thickbox"><small>View Source</small></a>';
                             }
 

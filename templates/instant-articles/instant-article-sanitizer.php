@@ -55,9 +55,9 @@ function ampforwp_ia_modify_gutenburg_gallery($content){
         
         return '<figure class="op-slideshow">'.$matches[3].'</figure>';
     }, $content);
-    
+    // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
     $fbiagallery = preg_replace_callback('/<li(.*?)><figure><img(.*?)src=\"(.*?)\"(.*?)\/><\/figure><\/li>/', function($match) {
-       
+       // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
         return '<figure><img src="'.$match[3].'" /></figure>';
     }, $allMatches);
     return $fbiagallery;

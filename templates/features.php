@@ -702,6 +702,7 @@ function ampforwp_new_dir( $dir ) {
 				 $content = preg_replace('/<div class="wistia_responsive_wrapper" (.*?)>/', "", $content);
 				 $content = preg_replace('/<div class="wistia_embed (.*?)>/', "", $content);
 				 $content = preg_replace('/<div class="wistia_swatch" (.*?)>/', "", $content);
+				 // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 				 $content = preg_replace('/<img(.*?)src="https:\/\/fast.wistia.com\/embed\/(.*?)"(.*?)\/>/', "", $content);
 				 
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
@@ -5007,11 +5008,13 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 	ob_end_clean();
 	// Match all the images from the content
 	if(is_object($post)){
+		// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 
 		// Match all the figure tags from the content
 		$output_fig = preg_match_all('/\[caption.+id=[\'"]([^\'"]+).*]/i', $post->post_content, $matches_fig);
 		if ( $output_fig && $matches_fig[0][0] ) {
+			// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 			$output_fig_image = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>(.*)\[/i', $matches_fig[0][0], $matches_fig_img);
 			// Check if the first image is inside the figure and it got caption
 			if ( $matches_fig_img[1][0] == $matches[1][0] && $matches_fig_img[4][0]) {
@@ -5028,9 +5031,11 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 			$image_height 	= $matches[3][0];
 		}
 		if($output==0 && is_object($post) && isset($post->post_content)){
+			// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 			if(preg_match('/<figure\sclass="(.*?)">(<img\ssrc="(.*?)"(.*?)>)<\/figure>/', $post->post_content, $fm)){
 				if(isset( $fm[2])){
 					$dom = new DOMDocument();
+					// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 					preg_match('/<img\ssrc="(.*?)"(.*?)>/', $fm[2],$fmatch);
 					if(isset($fmatch[0])){
 						$image_html = $fmatch[0];
@@ -5041,6 +5046,7 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 					        $node->setAttribute("height","600");
 					    }
 					    $image_html = $dom->saveHtml();
+						// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 					    preg_match_all('/<img\ssrc="(.*?)">/', $image_html, $fimg);
 					    if(isset($fimg[0][0])){
 					       $image_html ='<figure class="'.esc_attr($fm[1]).'">'.$fimg[0][0].'</figure>';
@@ -5053,6 +5059,7 @@ function ampforwp_get_featured_image_from_content( $featured_image = "", $size="
 					}
 				}
 				}else{
+					// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 				preg_match_all('/<img(.*?)src=[\'"]([^\'"]+)[\'"].*.>/i', $post->post_content, $matches);
 				if(isset($matches[2][0])){
 					$image_html 	= $matches[0][0];

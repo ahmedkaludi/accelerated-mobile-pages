@@ -45,10 +45,10 @@
         <?php if(has_post_thumbnail($post->ID)):
           $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
           $attachment = get_post(get_post_thumbnail_id($post->ID));
-          $thumbnail_url = $thumb[0];
+          $thumbnail_url = isset( $thumb[0] ) ? $thumb[0] : '';
         ?>
                     <figure>
-                        <img src="<?php echo esc_url($thumbnail_url); ?>" />
+                        <img src="<?php echo esc_url($thumbnail_url); // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>" />
                         <?php if (strlen(apply_filters("the_content", $attachment->post_excerpt)) > 0):
                             if ( $attachment->post_excerpt ) { ?>
                                 <figcaption><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo apply_filters("the_content", $attachment->post_excerpt); ?></figcaption>
