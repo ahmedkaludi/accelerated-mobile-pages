@@ -8,6 +8,9 @@ namespace ReduxCore\ReduxFramework;
     if ( ! class_exists( 'ReduxFramework_raw' ) ) {
         class ReduxFramework_raw {
 
+            private $parent;
+            private $value;
+            private $field;            
             /**
              * Field Constructor.
              * Required - must call the parent constructor, then assign field and value to vars, and obviously call the render field function
