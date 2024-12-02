@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function ampforwp_get_licence_activate_update(){
     /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
-    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
+    if(!wp_verify_nonce( $_POST['verify_nonce'], 'verify_extension' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
     }
@@ -169,7 +169,7 @@ add_action( 'wp_ajax_ampforwp_get_licence_activate_update', 'ampforwp_get_licenc
 add_action( 'wp_ajax_ampforwp_set_license_transient', 'ampforwp_set_license_transient' );
 function ampforwp_set_license_transient(){
     /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
-    if(!isset($_REQUEST['verify_nonce']) || !wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
+    if(!isset($_POST['verify_nonce']) || !wp_verify_nonce( $_POST['verify_nonce'], 'verify_extension' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
     }
