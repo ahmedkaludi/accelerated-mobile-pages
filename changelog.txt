@@ -1,5 +1,5 @@
 == Changelog ==
-= 1.1.2 (02 December 2024) =
+= 1.1.2 (03 December 2024) =
 * New: Jetpack related post not showing on AMP #5575
 * New: Add a new feature to add Whatsapp Group links to Floating Buttons for AMP #5649
 * New: Need to added the Subtitle feature in Post/pages in AMP #5665
