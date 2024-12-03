@@ -55,9 +55,9 @@ function ampforwp_ia_modify_gutenburg_gallery($content){
         
         return '<figure class="op-slideshow">'.$matches[3].'</figure>';
     }, $content);
-    
+    // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
     $fbiagallery = preg_replace_callback('/<li(.*?)><figure><img(.*?)src=\"(.*?)\"(.*?)\/><\/figure><\/li>/', function($match) {
-       
+       // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
         return '<figure><img src="'.$match[3].'" /></figure>';
     }, $allMatches);
     return $fbiagallery;
@@ -78,6 +78,7 @@ function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
 				'columns'    => 3,
 				'size'       => 'thumbnail',
 				'include'    => '',
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude */
 				'exclude'    => '',
 				'link'       => ''
 			), $attr, 'gallery' );
@@ -89,6 +90,7 @@ function ampforwp_gallery_shortcode_markup_modify( $output, $attr, $instance ){
 					$attachments[$val->ID] = $_attachments[$key];
 				}
 			} elseif ( ! empty( $atts['exclude'] ) ) {
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude */
 				$attachments = get_children( array( 'post_parent' => $id, 'exclude' => $atts['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
 			} else {
 				$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
@@ -158,6 +160,7 @@ function ampforwp_fbia_get_content_from_DOM($DOMDocument){
 		}
 		//Instagram embeds are not loading on the Facebook instance Article #5066
 		if (preg_match('/<blockquote class="instagram-media"/', $filtered_content)) {
+			/* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
 	      $filtered_content = preg_replace( '/<blockquote class="instagram-media"(.*?)>(.*?)<\/blockquote><\/iframe><\/figure>(.*?)<script(.*?)src="(.*?)instagram(.*?)"><\/script>/s', '<blockquote class="instagram-media"$1>$2</blockquote><script$4src="$5instagram$6"></script></iframe></figure>$3', $filtered_content );
 	    }
 		return $filtered_content;

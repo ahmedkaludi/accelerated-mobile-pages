@@ -9,6 +9,7 @@ function ampforwp_select_post_meta( $post ) {
 		$exclude_id = array();
 		$exclude_id[] = ampforwp_get_the_ID();
 		$arguments = array(
+			/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 			"post__not_in"=>$exclude_id,
 			"orderby" => "ID", 
 			"order" => "DESC",

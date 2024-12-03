@@ -888,6 +888,7 @@ function ampforwp_rowData($container,$col,$moduleTemplate){
 							array_push($args, "no_found_rows", true);
 						}
 						if ( (isset($fieldValues['taxonomy_selection']) && 'recent_option' !== $fieldValues['taxonomy_selection']) &&  (isset($fieldValues['category_selection']) && 'recent_option' !== $fieldValues['category_selection'])) {
+							/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query */
 							$args['tax_query'] = array(
 									array(
 										'taxonomy'=>$fieldValues['taxonomy_selection'],
@@ -1130,11 +1131,13 @@ function ampforwp_get_attachment_id( $url , $imagetype='full') {
 			// Is URL in uploads directory?
 		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) {
 			$file = basename( $url );
+			
 			$query_args = array(
 				'post_type'   => 'attachment',
 				'post_status' => 'inherit',
 				'fields'      => 'ids',
 				'no_found_rows' => true,
+				/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
 				'meta_query'  => array(
 					array(
 						'value'   => $file,

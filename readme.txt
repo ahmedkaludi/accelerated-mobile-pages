@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.7
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -195,6 +195,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.1.2 (03 December 2024) =
+* New: Jetpack related post not showing on AMP #5575
+* New: Add a new feature to add Whatsapp Group links to Floating Buttons for AMP #5649
+* New: Need to added the Subtitle feature in Post/pages in AMP #5665
+* Fixed: Security issue reported by "Wordfence" #5662
+* Fixed: AMP Pixel URL Issue After Recent Plugin Update 1.1.1 #5663
+* Fixed: Function _load_textdomain_just_in_time was called incorrectly #5664
+
 = 1.1.1 (12 November 2024) =
 * New : Manual post selection in infinite scroll #5651
 * Fixed: Version 1.0.99.1 causing Tag issue. #5650
@@ -331,20 +339,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 1.0.88.1 (24nd August 2023) =
 * Fixed: AMP for WP Update Causes Dashboard Notices and Warnings #5508
 * Fixed: Breadcrumb icon broken of design 3 #5509
-
-= 1.0.88 (22nd August 2023) =
-* Fixed: Error in error log #5472
-* Fixed: Screen gets wider on mobile when enable callrail analytics #5473
-* Fixed: When we disable the Call to Action button from the AMP, the CTA is still shown #5475
-* Fixed: PHP Warning: Undefined variable #5479
-* Fixed: The attribute 'height' may not appear in tag 'table' #5483
-* Fixed: The attribute 'label' may not appear in tag 'a' #5485
-* Fixed: Header Elements chosen color not loading on front end #5491
-* Fixed: Deprecated warning on the AMP #5493
-* Fixed: Deprecated issue #5497
-* Fixed: Fatal Error & warning in the debug log #5500
-* Fixed: The PDF files are not appearing properly on the AMP version #5502
-* New  : Multiple Google Analytics 4 accounts support #5481
-
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

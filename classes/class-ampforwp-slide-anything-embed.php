@@ -39,6 +39,7 @@ class AMPFORWP_Slide_Anything_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_
 			'orderby'    => 'menu_order ID',
 			'id'         => $post ? $post->ID : 0,
 			'include'    => '',
+			/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude  */
 			'exclude'    => '',
 			//'size'       => array( $this->args['width'], $this->args['height'] ),
 			//'size'		=> isset($attr['size'])? $attr['size']:'thumbnail',

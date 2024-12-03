@@ -109,11 +109,13 @@ Class AMPforWP_theme_mode{
 		global $redux_builder_amp;
 		  header("access-control-allow-credentials:true");
 		  header("access-control-allow-headers:Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token");
+		    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		  header("Access-Control-Allow-Origin:".esc_attr($_SERVER['HTTP_ORIGIN']) );
 		  $siteUrl = parse_url(  get_site_url() );
 		  header("AMP-Access-Control-Allow-Source-Origin:".esc_attr($siteUrl['scheme']) . '://' . esc_attr($siteUrl['host']) );
 		  header("access-control-expose-headers:AMP-Access-Control-Allow-Source-Origin");
 		  header("Content-Type:application/json;charset=utf-8");
+		  /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		  if(wp_verify_nonce($_POST['amp_comment_form_nonce'], 'commentform_submission')){
 			$comment_status = array('response' => 'Nonce not verified' );
 			echo wp_json_encode($comment_status);
@@ -495,6 +497,7 @@ Class AMPforWP_theme_mode{
 				$css .= $this->ampforwp_get_remote_content(AMPFORWP_PLUGIN_DIR_URI."/templates/template-mode/admin-bar.css");
 			}
 		}
+		/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 		echo $this->css_sanitizer($css); // sanitized above
 		echo "</style>";
 	}
@@ -533,6 +536,7 @@ Class AMPforWP_theme_mode{
 	          return $contentData;
 	        }
 		}else{
+			/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents */
 			return $contentData = file_get_contents( $src );
 		}
 	    return '';
@@ -561,6 +565,7 @@ Class AMPforWP_theme_mode{
 				$data = str_replace(" action=", 'target="_top" action=', $data);
 			}
 			$data = $this->amp_form_sanitization($data);
+			/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 			echo $this->ampforwp_template_mode_cnt_sanitizer($data);
 		}
 	}
@@ -586,7 +591,9 @@ Class AMPforWP_theme_mode{
 								$element->removeAttribute('action');
 							}else{
 								$scheme = is_ssl() ? 'https://' : 'http://';
+								/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
 								$host = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) );
+								/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 								$request_uri = sanitize_text_field( esc_url_raw( $_SERVER['REQUEST_URI'] ) );
 								$path = "{$scheme}{$host}{$request_uri}";
 								$path = str_replace("http:", "https:", $path);

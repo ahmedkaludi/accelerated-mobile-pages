@@ -125,17 +125,20 @@ function call_loops_standard($data=array()){
 		$exclude_ids = ampforwp_exclude_posts();
 		$qobj = get_queried_object();
 		if( !is_date() ){
+				
 				$args = array(
 							'no_found_rows' 	  => true,
 							'post_type'           => $post_type,
 							'orderby'             => 'date',
 							'ignore_sticky_posts' => 1,
 							'paged'               => esc_attr($paged),
+							/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 							'post__not_in' 		  => $exclude_ids,
 							'has_password' => false ,
 							'post_status'=> 'publish'
 						 );
 			if ( is_category() || ( isset($qobj->taxonomy) && taxonomy_exists($qobj->taxonomy)) ) {
+				/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query */
 				$args['tax_query'] = array(
 						        		array(
 								          'taxonomy' => $qobj->taxonomy,
@@ -156,6 +159,7 @@ function call_loops_standard($data=array()){
 								array('year' => esc_attr($year))
 						),
 						'paged'         => esc_attr($paged),
+						/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 						'post__not_in' 	=> $exclude_ids,
 						'has_password' 	=> false ,
 						'post_status'	=> 'publish',
@@ -174,11 +178,13 @@ function call_loops_standard($data=array()){
 	}
 	if ( is_home() ) {
 		$exclude_ids = ampforwp_exclude_posts();
+		
 		$args = array(
 			'no_found_rows' 	  => true,
 			'post_type'           => 'post',
 			'orderby'             => 'date',
 			'paged'               => esc_attr($paged),
+			/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 			'post__not_in' 		  => $exclude_ids,
 			'has_password'		  => false ,
 			'post_status'		  => 'publish'
@@ -187,10 +193,12 @@ function call_loops_standard($data=array()){
 
 	if ( is_search() ) {
 		$exclude_ids = ampforwp_exclude_posts();
+		
 		$args = array(
 			's' 				  => get_search_query() ,
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
+			/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false ,
 			'post_status'		  => 'publish',
@@ -200,12 +208,14 @@ function call_loops_standard($data=array()){
 	if(is_author()){
 		$exclude_ids = ampforwp_exclude_posts();
 		$author_name = esc_attr(get_query_var( 'author_name' ));
+		
 		$args =  array(
 			'author_name'         =>  $author_name,
 			'post_type'           => 'post',
 			'orderby'             => 'date',
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
+			/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false ,
 			'post_status'		  => 'publish',
@@ -216,12 +226,14 @@ function call_loops_standard($data=array()){
 		global $post;
 		$exclude_ids = ampforwp_exclude_posts();
 		$exclude_ids[] = $post->ID;
+		
 		$args =  array(
 			'no_found_rows' 	  => true,
 			'post_type'           => get_post_type($post),
 			'orderby'             => 'date',
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
+			/* phpcs:ignore  WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false ,
 			'post_status'		  => 'publish'

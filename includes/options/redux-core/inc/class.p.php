@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         }
 
         public function proxy() {
-
+/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
             if ( ! isset( $_GET['nonce'] ) || ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( $_GET['nonce'], "redux-ads-nonce" ) ) || ! current_user_can( 'manage_options' )) {
                 die();
             }
@@ -165,9 +165,11 @@ if ( ! defined( 'ABSPATH' ) ) {
             $valid_url_regex = '/.*/';
 
 // ############################################################################
+/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
             $url = $_GET['url'];
 
             if ( isset( $_GET['nonce'] ) ) {
+                /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                 $url = str_replace( 'nonce=' . $_GET['nonce'] . '&', '', $url );
             }
 
@@ -187,6 +189,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             } else {
                 $url = urldecode( $url );
                 if ( isset( $_GET['proxy'] ) ) {
+                    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                     $url .= '&proxy=' . $_GET['proxy'];
                 }
 
@@ -203,9 +206,8 @@ if ( ! defined( 'ABSPATH' ) ) {
                         $url .= "&" . $key . '=' . $value;
                     }
                 }
-
-
                 $args = array(
+                    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
                     'user-agent' => isset( $_GET['user_agent'] ) ? sanitize_text_field( wp_unslash( $_GET['user_agent'] ) ) : sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ),
                     'method'     => 'GET',
                 );
@@ -267,12 +269,14 @@ if ( ! defined( 'ABSPATH' ) ) {
                 $data = array();
 
                 // Propagate all HTTP headers into the JSON data object.
+                 /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                 if ( isset( $_GET['full_headers'] ) && $_GET['full_headers'] ) {
                     $data['headers'] = array();
 
                 }
 
                 // Propagate all cURL request / response info to the JSON data object.
+                 /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                 if ( isset( $_GET['full_status'] ) && $_GET['full_status'] ) {
                     $data['status'] = $status;
                 } else {
@@ -285,16 +289,17 @@ if ( ! defined( 'ABSPATH' ) ) {
                 $data['contents'] = str_replace( 'e(window).width()', 'window.innerWidth||e(window).width()', $decoded_json ? $decoded_json : $contents );
 
                 // Generate appropriate content-type header.
-
+ /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                 $is_xhr = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) ? strtolower( $_SERVER['HTTP_X_REQUESTED_WITH'] ) : 'xmlhttprequest';
                 header( 'Content-type: application/' . ( $is_xhr ? 'json' : 'x-javascript' ) );
 
                 // Get JSONP callback.
+                /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                 $jsonp_callback = $enable_jsonp && isset( $_GET['callback'] ) ? $_GET['callback'] : null;
 
                 // Generate JSON/JSONP string
                 $json = wp_json_encode( $data );
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 print $jsonp_callback ? "$jsonp_callback($json)" : $json;
 
             }

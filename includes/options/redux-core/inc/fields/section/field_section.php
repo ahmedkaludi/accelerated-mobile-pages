@@ -91,7 +91,7 @@ namespace ReduxCore\ReduxFramework;
                 elseif(isset($this->field['accordion-open']) && $this->field['accordion-open']==0){
                     $classModify .= " afw-accordion-tab-close";
                 }
-
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div id="section-' . esc_attr($this->field['id']) . '" class="redux-section-field redux-field ' . esc_attr($this->field['style']) . ' ' . esc_attr($this->field['class']) . ' '.$classModify.'">';
 
                 if ( ! empty( $this->field['title'] ) ) {

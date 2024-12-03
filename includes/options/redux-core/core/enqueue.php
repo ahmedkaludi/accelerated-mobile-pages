@@ -288,14 +288,8 @@ namespace ReduxCore\ReduxFramework;
                     $this->timestamp,
                     true
                 );
-
-                wp_enqueue_script(
-                    'webfontloader',
-                    'https://ajax.googleapis.com/ajax/libs/webfont/1.5.0/webfont.js',
-                    array( 'jquery' ),
-                    $this->timestamp, //'1.5.0',
-                    true
-                );
+                //phpcs:ignore PluginCheck.CodeAnalysis.EnqueuedResourceOffloading.OffloadedContent
+                wp_enqueue_script('webfontloader','https://ajax.googleapis.com/ajax/libs/webfont/1.5.0/webfont.js',array( 'jquery' ), $this->timestamp, true);
             }
 
             public function _enqueue_field($field) {

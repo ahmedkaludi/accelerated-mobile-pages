@@ -9,6 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
      if(!is_plugin_active( 'amp-cache/ampforwp-cache.php' )){
   $cache_AD_URL = "http://ampforwp.com/amp-cache/#utm_source=options-panel&utm_medium=performance-tab&utm_campaign=AMP%20Plugin";
+  /* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
   $cache_desc = '<a href="'.$cache_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp_cache_b.png" width="560" height="85" /></a>';
   }
   $pwa_install = '';  

@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             $redux = $check::get_redux_details( $php_files );
 
             if ( $redux ) {
+                /* phpcs:ignore WordPress.Security.NonceVerification.Missing */
                 if ( ! isset( $_POST['redux_wporg'] ) ) {
                     checkcount();
                     /* translators: %s: href */

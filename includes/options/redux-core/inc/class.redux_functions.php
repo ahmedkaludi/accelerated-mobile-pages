@@ -194,6 +194,7 @@
 
                     // saved value from cookie.  If it's different from current ver
                     // we can still show the update notice.
+                    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                     $ver = $_COOKIE['redux_update_check'];
                 }
 

@@ -178,12 +178,14 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_demolink_image_s
                 // substract one from the saved array number.  We then pull the url
                 // out of the options array, and there we go.
                 if ( '' == $this->value ) {
+                    /* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
                     echo '<img src="#" class="redux-preview-image" style="visibility:hidden;" id="image_' . esc_attr($this->field['id']) . '">';
                 } else {
                     $demo="#";
                     if (isset($this->field['options'][ $arrNum  ]['demo_link'])) {
                         $demo = $this->field['options'][ $arrNum ]['demo_link'];
                     }
+                    /* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
                     echo '<img src="' . esc_url($this->field['options'][ $arrNum ]['img']) . '" class="redux-preview-image" id="image_' . esc_attr($this->field['id']) . '"  onclick="return window.open(\''.esc_url($demo).'\')">'; 
                     if (isset($this->field['options'][ $arrNum ]['demo_link'])) {
                         echo '<a href="'. esc_url($demo) .'" id="theme-selected-demo-link" target="_blank">  

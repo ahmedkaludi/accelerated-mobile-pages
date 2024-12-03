@@ -47,6 +47,7 @@ echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' 
 				'post_type'           => 'post',
 				'orderby'             => 'date',
 				'paged'               => esc_attr($paged),
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 				'post__not_in' 		  => $exclude_ids,
                 'has_password' => false ,
                 'post_status'=> 'publish',

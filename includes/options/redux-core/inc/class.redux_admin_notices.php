@@ -94,13 +94,16 @@
                                     $output .= "<input type='hidden' class='dismiss_data' id='" . esc_attr( $notice['id'] ) . $pageName . $curTab . "' value='{$nonce}'> \n";
                                     $output .= '<p>' . wp_kses_post( $notice['msg'] ) . '</p>';
                                     $output .= "</div> \n";
+                                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                     echo $output;
                                 } else {
+                                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                     echo '<div ' . $add_style . ' class="' . esc_attr( $notice['type'] ) . ' notice is-dismissable"><p>' . wp_kses_post( $notice['msg'] ) . '&nbsp;&nbsp;<a href="?dismiss=true&amp;id=' . esc_attr( $notice['id'] ) . $pageName . $curTab . '">' . esc_html__( 'Dismiss', 'accelerated-mobile-pages' ) . '</a>.</p></div>';
                                 }
                             }
                         } else {
                             // Standard notice
+                            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                             echo '<div ' . $add_style . ' class="' . esc_attr( $notice['type'] ) . ' notice"><p>' . wp_kses_post( $notice['msg'] ) . '</a>.</p></div>';
                         }
                         ?>
@@ -179,11 +182,12 @@
 
                 // Get the notice id
                 // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reason: verify nonce in line 187.
+                /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Missing */
                 $id = explode( '&', intval($_POST['id']) );
                 $id = $id[0];
                 // Get the user id
                 $userid = $current_user->ID;
-
+    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
                 if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), $id . $userid . 'nonce' ) ) {
                     die( 0 );
                 } else {

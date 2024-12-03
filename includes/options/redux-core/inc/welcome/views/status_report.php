@@ -33,6 +33,7 @@ namespace ReduxCore\ReduxFramework;
         <i class="el el-redux"></i>
         <span>
             <?php /* translators: %s: version */
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
             printf( __( 'Version %s', 'accelerated-mobile-pages' ), esc_html(ReduxFramework::$_version )); ?>
         </span>
     </div>
@@ -120,6 +121,7 @@ namespace ReduxCore\ReduxFramework;
                         echo '<mark class="yes">' . '&#10004; <code>' . esc_html($sysinfo['redux_data_dir']) . '</code></mark> ';
                     } else {
                         /* translators: %s: data dir */
+                        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
                         printf( '<mark class="error">' . '&#10005; ' . __( 'To allow data saving, make <code>%s</code> writable.', 'accelerated-mobile-pages' ) . '</mark>', esc_html($sysinfo['redux_data_dir']) );
                     }
                 ?></td>
@@ -222,6 +224,7 @@ namespace ReduxCore\ReduxFramework;
                     if ( $memory < 40000000 ) {
                         /* translators: %1$s: size limit */
                         /* translators: %2$s: href */
+                        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
                         echo '<mark class="error">' . sprintf( __( '%1$s - We recommend setting memory to at least 40MB. See: <a href="%2$s" target="_blank">Increasing memory allocated to PHP</a>', 'accelerated-mobile-pages' ), esc_html($sysinfo['wp_mem_limit']['size']), 'http://codex.wordpress.org/Editing_wp-config.php#Increasing_memory_allocated_to_PHP' ) . '</mark>';
                     } else {
                         echo '<mark class="yes">' . esc_html($sysinfo['wp_mem_limit']['size']) . '</mark>';
@@ -419,6 +422,7 @@ namespace ReduxCore\ReduxFramework;
 <?php
                 if ( $sysinfo['def_tz_is_utc'] === 'false' ) {
                     /* translators: %s: timezone */
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
                     echo '<mark class="error">' . '&#10005; ' . sprintf( __( 'Default timezone is %s - it should be UTC', 'accelerated-mobile-pages' ), esc_html(date_default_timezone_get()) ) . '</mark>';
                 } else {
                     echo '<mark class="yes">' . '&#10004;' . '</mark>';
@@ -518,7 +522,7 @@ namespace ReduxCore\ReduxFramework;
                         <?php echo esc_html( $post['name'] ); ?>:
                     </td>
                     <td>
-                        <?php echo isset( $post['help'] ) ? $post['help'] : ''; ?>
+                        <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo isset( $post['help'] ) ? $post['help'] : ''; ?>
                     </td>
                     <td class="help">
                         <mark class="<?php echo esc_attr($mark); ?>">
@@ -555,11 +559,12 @@ namespace ReduxCore\ReduxFramework;
                     }
 ?>
                     <tr>
-                        <td><?php echo $plugin_name; ?></td>
+                        <td><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $plugin_name; ?></td>
                         <td class="help">&nbsp;</td>
                         <td>
                             <?php 
                             /* translators: %s: text */
+                            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
                             echo sprintf( _x( 'by %s', 'by author', 'accelerated-mobile-pages' ), $plugin_data['Author'] ) . ' &ndash; ' . esc_html( $plugin_data['Version'] ) . $version_string . $network_string; ?>
                         </td>
                     </tr>
@@ -664,7 +669,7 @@ namespace ReduxCore\ReduxFramework;
                                         foreach ( $found_files as $plugin_name => $found_plugin_files ) {
 ?>
                                             <td>
-                                                <?php echo implode( ', <br/>', $found_plugin_files ); ?>
+                                                <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo implode( ', <br/>', $found_plugin_files ); ?>
                                             </td>
                                         <?php
                                         }
@@ -688,10 +693,10 @@ namespace ReduxCore\ReduxFramework;
 <?php
                                     foreach ( $ext as $name => $arr ) {
                                         $ver = $arr['version'];
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                         echo '<a href="http://reduxframework.com/extensions/' . str_replace( array(
                                                 '_',
-                                            ), '-', $name ) . '" target="blank">' . ucwords( str_replace( array(
+                                            ), '-', $name ) . '" target="blank">' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ucwords( str_replace( array(
                                                 '_',
                                                 '-'
                                             ), ' ', $name ) ) . '</a> - ' . esc_html($ver); ?><br/>
@@ -744,6 +749,7 @@ namespace ReduxCore\ReduxFramework;
             <td class="help"><?php echo '<a href="#" class="redux-hint-qtip" qtip-content="' . esc_attr__( 'Displays whether or not the current theme is a child theme.', 'accelerated-mobile-pages' ) . '">[?]</a>'; ?></td>
             <td>
 <?php   /* translators: %s: href */
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
                 echo is_child_theme() ? '<mark class="yes">' . '&#10004;' . '</mark>' : '&#10005; <br /><em>' . sprintf( __( 'If you\'re modifying Redux Framework or a parent theme you didn\'t build personally, we recommend using a child theme. See: <a href="%s" target="_blank">How to create a child theme</a>', 'accelerated-mobile-pages' ), 'http://codex.wordpress.org/Child_Themes' ) . '</em>';
 ?>
             </td>

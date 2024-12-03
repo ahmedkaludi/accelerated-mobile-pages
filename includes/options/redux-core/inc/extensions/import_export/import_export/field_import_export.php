@@ -121,7 +121,7 @@ namespace ReduxCore\ReduxFramework;
                         $backup_options['redux-backup'] = '1';
                         $content = wp_json_encode( $backup_options );
                     ?>
-                    <textarea class="large-text noUpdate hide" id="redux-export-code" rows="10" readonly="true"><?php echo $content;//it's json encode content.?></textarea>
+                    <textarea class="large-text noUpdate hide" id="redux-export-code" rows="10" readonly="true"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $content;//it's json encode content.?></textarea>
                     <a href="<?php echo esc_url($link); ?>" id="redux-export-code-dl" class="button-primary"><?php esc_html_e( 'Export Data File', 'accelerated-mobile-pages' ) ?></a>&nbsp;&nbsp;
                     <span  class="description">
                     <?php echo esc_html( apply_filters( 'redux-backup-description', __( 'Download a backup file of your settings', 'accelerated-mobile-pages' ) ) ) ?>
@@ -133,13 +133,13 @@ namespace ReduxCore\ReduxFramework;
 
                     <p></p>
                     <div id="redux-import-code-wrapper" class="hide">
-                        <textarea id="import-code-value" name="<?php echo $this->parent->args['opt_name']; ?>[import_code]" class="large-text noUpdate" rows="10"></textarea>
+                        <textarea id="import-code-value" name="<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $this->parent->args['opt_name']; ?>[import_code]" class="large-text noUpdate" rows="10"></textarea>
                     </div>
                      <p id="redux-import-action">
                         <input type="submit" id="redux-import" name="import" class="button-primary hide" value="<?php esc_html_e( 'Import', 'accelerated-mobile-pages' ) ?>">
                         <input type="button" id="redux-import-from-file" name="import_from_file" class="button-primary" value="<?php esc_html_e( 'Import From File', 'accelerated-mobile-pages' ) ?>">&nbsp;&nbsp;
                         <input type="file" id="redux-import-file-type" accept=".json">
-                        <input type="hidden" id="ampforwp_import_nonce" value="<?php $nonce = wp_create_nonce('ampforwp_import_file'); echo $nonce;?>">
+                        <input type="hidden" id="ampforwp_import_nonce" value="<?php $nonce = wp_create_nonce('ampforwp_import_file'); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $nonce;?>">
                         <span><?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'accelerated-mobile-pages' ) ) ) ?></span></p>
                         <p id="admin-import-file-name"></p>
 

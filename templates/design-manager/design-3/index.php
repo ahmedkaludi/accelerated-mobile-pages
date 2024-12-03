@@ -129,10 +129,12 @@ if ( get_query_var( 'paged' ) ) {
 	<?php
 
 	    $exclude_ids = ampforwp_exclude_posts();
+		
 			$args_new =  array(
 				'post_type'           => 'post',
 				'orderby'             => 'date',
 				'paged'               => esc_attr($paged),
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 				'post__not_in' 		  => $exclude_ids,
 				'has_password' => false,
 				'no_found_rows' 	  => true,

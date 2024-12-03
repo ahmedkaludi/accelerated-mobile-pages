@@ -40,12 +40,14 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 
 		<?php if( ampforwp_get_setting('ampforwp-title-on-front-page') && !ampforwp_default_logo()) { ?>
 			<header class="amp-wp-article-header ampforwp-title">
-				<h2 class="amp-wp-title"><?php echo get_the_title( $post_id );?></h2>
+				<h2 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $post_id );?></h2>
+				<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle','center'); ?>
 			</header>	
 		<?php }
 		elseif(ampforwp_get_setting('ampforwp-title-on-front-page') && ampforwp_default_logo()){?>
 			<header class="amp-wp-article-header ampforwp-title">
-				<h1 class="amp-wp-title"><?php echo get_the_title( $post_id );?></h1>
+				<h1 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $post_id );?></h1>
+				<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle'); ?>
 			</header>	
 		<?php } 
 		do_action('ampforwp_before_featured_image_hook', $template ); ?>
@@ -54,7 +56,7 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 					$amp_html = $featured_image['amp_html'];
 					$caption = $featured_image['caption']; ?>
 						<figure class="amp-wp-article-featured-image wp-caption">
-							<?php echo $amp_html; // amphtml content; no kses ?>
+							<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $amp_html; // amphtml content; no kses ?>
 							<?php if ( $caption ) : ?>
 								<p class="wp-caption-text">
 									<?php echo wp_kses_data( $caption ); ?>
@@ -107,6 +109,7 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 				}		
 			}
 			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
+			/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 			echo $ampforwp_the_content; // amphtml content; no kses
 			do_action( 'ampforwp_after_post_content', $template );
 			?>
@@ -138,7 +141,7 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
 					$caption = $featured_image['caption']; ?>
 					<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
 						<figure class="amp-wp-article-featured-image wp-caption">
-							<?php echo $amp_html; // amphtml content; no kses ?>
+							<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $amp_html; // amphtml content; no kses ?>
 							<?php if ( $caption ) : ?>
 								<p class="wp-caption-text">
 									<?php echo wp_kses_data( $caption ); ?>
@@ -190,6 +193,7 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
 				}
 			}
 			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
+			/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 			echo $ampforwp_the_content; // amphtml content; no kses
 			do_action( 'ampforwp_after_post_content', $template ); ?>
 
@@ -225,7 +229,7 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 						$caption = $featured_image['caption']; ?>
 						<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
 							<figure class="amp-wp-article-featured-image wp-caption">
-								<?php echo $amp_html; // amphtml content; no kses ?>
+								<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $amp_html; // amphtml content; no kses ?>
 								<?php if ( $caption ) : ?>
 									<p class="wp-caption-text">
 										<?php echo wp_kses_data( $caption ); ?>
@@ -276,6 +280,7 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 					}
 				}	
 				$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
+				/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 				echo $ampforwp_the_content; // amphtml content; no kses
 				do_action( 'ampforwp_after_post_content', $template ); ?>
 
@@ -304,11 +309,13 @@ function ampforwp_design_2_frontpage_title() {
 	}
 	if( ampforwp_get_setting('ampforwp-title-on-front-page') && !ampforwp_default_logo() ) { ?>
 		<header class="amp-wp-article-header ampforwp-title">
-			<h2 class="amp-wp-title"><?php echo get_the_title( $ID );?></h2>
+			<h2 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $ID );?></h2>
+			<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle','center'); ?>
 		</header>	
 	<?php }elseif(ampforwp_get_setting('ampforwp-title-on-front-page') && ampforwp_default_logo()){?>
 		<header class="amp-wp-article-header ampforwp-title">
-			<h1 class="amp-wp-title"><?php echo get_the_title( $ID );?></h1>
+			<h1 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $ID );?></h1>
+			<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle'); ?>
 		</header>
 	<?php }
 }
@@ -324,10 +331,12 @@ function ampforwp_design_3_frontpage_title() {
 	?>
  <header class="amp-wp-article-header ampforwp-title amp-wp-content">
 	<?php if( true == ampforwp_get_setting('ampforwp-title-on-front-page') && !ampforwp_default_logo() ) { ?>
-		<h2 class="amp-wp-title"><?php echo get_the_title( $ID );?></h2>
+		<h2 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $ID );?></h2>
+		<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle','center'); ?>
 		 <?php 
 		}elseif(ampforwp_get_setting('ampforwp-title-on-front-page') && ampforwp_default_logo()){?>
-		<h1 class="amp-wp-title"><?php echo get_the_title( $ID );?></h1>
+		<h1 class="amp-wp-title"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_title( $ID );?></h1>
+		<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle'); ?>
 		 <?php
 	} ?>
 	</header>

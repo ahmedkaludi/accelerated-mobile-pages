@@ -140,11 +140,13 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			
 			$exclude_ids = ampforwp_exclude_posts();
 			$exclude_ids[] = ampforwp_get_the_ID();
+			
 			$query_args =  array(
 				'post_type'           => get_post_type(),
 				'orderby'             => 'date',
 				'ignore_sticky_posts' => 1,
 				'paged'               => esc_attr($this->paged),
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in  */ 
 				'post__not_in' 		  => $exclude_ids,
 				'has_password' => false ,
 				'post_status'=> 'publish',
@@ -153,11 +155,13 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			);
 			$global_infinite_scroll_posts = ampforwp_get_setting('ampforwp-infinite-scroll-posts');
 			if(!empty($global_infinite_scroll_posts) && is_array($global_infinite_scroll_posts)){
+				
 				$query_args =  array(
 					'post_type'           => get_post_type(),
 					'orderby'             => 'date',
 					'ignore_sticky_posts' => 1,
 					'paged'               => esc_attr($this->paged),
+					/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in  */ 
 					'post__not_in' 		  => $exclude_ids,
 					'post__in' 		  => $global_infinite_scroll_posts,
 					'has_password' => false ,
@@ -168,11 +172,13 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			}
 			$include_ids = $this->ampforwp_get_infinite_scroll_post_ids();
 			if(!empty($include_ids)){
+				
 			$query_args =  array(
 				'post_type'           => get_post_type(),
 				'orderby'             => 'date',
 				'ignore_sticky_posts' => 1,
 				'paged'               => esc_attr($this->paged),
+				/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in  */ 
 				'post__not_in' 		  => $exclude_ids,
 				'post__in' 		  => $include_ids,            
 				'has_password' => false ,

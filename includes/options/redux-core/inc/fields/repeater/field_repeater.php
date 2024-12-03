@@ -37,6 +37,8 @@ if ( ! class_exists( 'ReduxFramework_repeater' ) ) {
         public $parent;
         public $field;
         public $value;
+        public $add_text;
+        public $show_empty;
         /**
          * Field Constructor.
          * Required - must call the parent constructor, then assign field and value to vars, and obviously call the render field function
@@ -141,6 +143,7 @@ if ( ! class_exists( 'ReduxFramework_repeater' ) ) {
                                                 $elem_arr = $nvalue[$count];
                                                 $val = $elem_arr['value'];
                                                 $count++;
+                                                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                                                 echo '<input type="text" id="' . esc_attr($this->field['id']).'-'.esc_attr($rv['id']).'" name="' . esc_attr($this->field['name']) . '['.esc_attr($rv['id']).']['.$rv1.']' . '[]' . '" value="'.esc_attr($val).'" class="regular-text ' . esc_attr($this->field['class']) . '" />';
                                             }
                                         }
@@ -186,7 +189,9 @@ if ( ! class_exists( 'ReduxFramework_repeater' ) ) {
             }
             echo '</ul>';
             echo '<span style="clear:both;display:block;height:0;" /></span>';
+              /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
             $this->field['add_number'] = ( isset( $this->field['add_number'] ) && is_numeric( $this->field['add_number'] ) ) ? $this->field['add_number'] : 1;
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
             echo '<a href="javascript:void(0);" class="button button-default redux-repeater-add" data-add_number="' . $this->field['add_number'] . '" data-id="' . $this->field['id'] . '-ul" data-name="' . $this->field['name'] . $this->field['name_suffix'] . '[]">' . $this->add_text . '</a><br/>';
         }
 

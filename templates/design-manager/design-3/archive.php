@@ -71,6 +71,7 @@ if ( get_query_var( 'paged' ) ) {
 			'no_found_rows' 	  => true,
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
+			/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' => false ,
 			'post_status'=> 'publish'

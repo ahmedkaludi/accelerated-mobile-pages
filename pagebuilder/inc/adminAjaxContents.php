@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 add_action('wp_ajax_amppb_color_picker','amppb_color_picker');
 function amppb_color_picker(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>'Request not valid'));
         die;
@@ -18,6 +19,7 @@ function amppb_color_picker(){
 
 add_action('wp_ajax_amppb_textEditor', 'amppb_textEditor');
 function amppb_textEditor(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
@@ -32,6 +34,7 @@ function amppb_textEditor(){
 
 add_action("wp_ajax_enable_amp_pagebuilder", "enable_amp_pagebuilder");
 function enable_amp_pagebuilder(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
@@ -69,6 +72,7 @@ function enable_amp_pagebuilder(){
 
 add_action( 'wp_ajax_amppb_export_layout_data', 'amppb_export_layout_data');
 function amppb_export_layout_data(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
@@ -79,12 +83,15 @@ function amppb_export_layout_data(){
         die;
 	}
 	header( 'content-type: application/json' );
+	/* phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date */
 	header( 'Content-Disposition: attachment; filename=layout-' . date( 'dmY' ) . '.json' );
 	
 	if ( function_exists('sanitize_textarea_field') ) {
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
 		$export_data = sanitize_textarea_field(wp_unslash( $_POST['export_layout_data'] ));
 	}
 	else{
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		$unsan_export_data = wp_unslash( $_POST['export_layout_data'] );
 		$export_data = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $unsan_export_data ) ));
 	}
@@ -95,6 +102,7 @@ function amppb_export_layout_data(){
 }
 add_action( 'wp_ajax_amppb_save_layout_data', 'amppb_save_layout_data');
 function amppb_save_layout_data(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
@@ -110,8 +118,9 @@ function amppb_save_layout_data(){
         die;
 	}
 
-
+/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 	$layoutname = sanitize_text_field($_POST['layoutname']);
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	$layoutdata = wp_slash($_POST['layoutdata']);
 	$postarr = array(
 				'post_title'   =>$layoutname,
@@ -146,7 +155,7 @@ function amppb_save_layout_data(){
 
 add_action( 'wp_ajax_amppb_remove_saved_layout_data', 'amppb_remove_saved_layout_data');
 function amppb_remove_saved_layout_data(){
-
+/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
 	$layoutid = intval($_POST['layoutid']);
 
 	// Exit if the user does not have proper permissions
@@ -194,6 +203,7 @@ function amppb_remove_saved_layout_data(){
 // Ajax action to refresh the user image
 add_action( 'wp_ajax_ampforwp_get_image', 'ampforwp_get_image');
 function ampforwp_get_image() {
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')
 	));
@@ -209,11 +219,12 @@ function ampforwp_get_image() {
     	echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Access Denied','accelerated-mobile-pages')));
         die;
 	}
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
 	if ( function_exists( 'ampforwp_user_post_access_check' ) && !ampforwp_user_post_access_check(intval( wp_unslash( $_GET['postId'] ) ) ) ) {
     	echo wp_json_encode(array("status"=>300,"message"=>esc_html__('You dont have permission','accelerated-mobile-pages')));
         die;
 	}
-
+/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
 	$get_id = intval($_GET['id']);
     if(isset($get_id)){
 		if(strpos($get_id,",") !== false){
@@ -231,6 +242,7 @@ function ampforwp_get_image() {
 				}
 			}
 		}else{
+			/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
 			$id = intval($_GET['id']);
 			$image = wp_get_attachment_image( $id, 'full', false, array( 'id' => 'ampforwp-preview-image' ) );
 			$image_src = ampforwp_get_attachment_id($id,'thumbnail');
@@ -257,6 +269,7 @@ function ampforwp_get_image() {
 
 add_action( 'wp_ajax_ampforwp_icons_list_format', 'ampforwp_icons_list_format');
 function ampforwp_icons_list_format(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
@@ -275,12 +288,14 @@ function ampforwp_icons_list_format(){
 }
 add_action( 'wp_ajax_ampforwp_pb_taxonomy', 'ampforwp_pb_taxonomy');
 function ampforwp_pb_taxonomy(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,	WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
     }
     $taxs = array();
     $post = '';
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 	$post = sanitize_text_field($_POST['selected_val']);
     $taxs = get_object_taxonomies( $post );
     $return = array();
@@ -297,14 +312,17 @@ function ampforwp_pb_taxonomy(){
 }
 add_action( 'wp_ajax_ampforwp_pb_cats', 'ampforwp_pb_cats');
 function ampforwp_pb_cats(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;
     }
 	$cats = array();
 	$taxonomy = '';
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 	$taxonomy = sanitize_text_field($_POST['selected_val']);
-	$terms = get_terms( $taxonomy, array(
+	$terms = get_terms(array(
+					'taxonomy'=>$taxonomy,
 				   'orderby' => 'name',     
                    'order'   => 'ASC',
                    'number'  => 500   
@@ -324,6 +342,7 @@ add_action( 'wp_ajax_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
 add_action( 'wp_ajax_nopriv_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
 
 function ampforwp_dynaminc_css() {
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(!isset($_REQUEST['verify_nonce']) || !wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
         die;

@@ -41,6 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             }
 
             if ( false == $skip_sec ) {
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo $this->parent->section_menu ( $k, $section );
                 $skip_sec = false;
             }
@@ -78,11 +79,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
      <li>
           <div class="switch-ef-btns">
-            <div class="e-v <?php echo $opt_easy_active;?>">
+            <div class="e-v <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $opt_easy_active;?>">
                 <input class="amp-opt-change <?php echo esc_attr($opt_easy);?>" id="radio-c" type="radio" name="second-switch" <?php echo esc_attr($opt_easy_checked);?>>
                 <label for="radio-c" id="basic">Basic Setup</label>
             </div>
-            <div class="f-v <?php echo $opt_full_active;?>">
+            <div class="f-v <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $opt_full_active;?>">
                 <input class="amp-opt-change <?php echo esc_attr($opt_full);?>" id="radio-d" type="radio" name="second-switch" <?php echo esc_attr($opt_full_checked);?>>
                 <label for="radio-d" id="advanced">Advance Setup</label><span class="toggle-outside">
                     <span class="toggle-inside"></span>

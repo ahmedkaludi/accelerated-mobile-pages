@@ -209,8 +209,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                 $screen = get_current_screen();
 
                 if ( 'appearance_page_themecheck' == $screen->id ) {
+                    /* phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter */
                     wp_enqueue_script( $this->slug . '-admin-script', ReduxFramework::$_url . 'inc/themecheck/js/admin.js', array( 'jquery' ), $this->version );
-
+/* phpcs:ignore WordPress.Security.NonceVerification.Missing */
                     if ( ! isset( $_POST['themename'] ) ) {
 
                         $intro = '';

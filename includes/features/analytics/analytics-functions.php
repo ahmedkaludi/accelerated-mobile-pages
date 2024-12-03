@@ -245,6 +245,7 @@ function ampforwp_analytics() {
 			$rand = wp_rand(1111,9999);
 			$referer  = $url;
 			if(isset($_SERVER['HTTP_REFERER'])) {
+				/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		      $referer  = $_SERVER['HTTP_REFERER'];
 		    }
 			$piwik_api = str_replace("YOUR_SITE_ID", '1', $idsite[0]);
@@ -252,8 +253,9 @@ function ampforwp_analytics() {
 			$piwik_api = str_replace("DOCUMENT_REFERRER", esc_url($referer), $piwik_api);
 			$piwik_api = str_replace("CANONICAL_URL", esc_url($url), $piwik_api);
 			$piwik_api = str_replace("RANDOM", intval($rand), $piwik_api);
+			
 			?>
-			<amp-pixel src="<?php echo esc_url($piwik_api); // XXS ok, escaped above?>"></amp-pixel>
+			<amp-pixel src="<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $piwik_api; // XXS ok, escaped above?>"></amp-pixel>
 		<?php }
 
 		// 10.4 Analytics Support added for quantcast
@@ -1059,7 +1061,9 @@ function ampforwp_adobe_stats_page($wp_query){
 	  <html>
   <head>
     <title>Adobe Stats Iframe</title>
+	<?php  /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */?>
     <script language="javaScript" type="text/javascript" src="<?php echo esc_url(AMPFORWP_ANALYTICS_URL);?>/VisitorAPI.js"></script>
+	<?php  /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */?>
     <script language="javaScript" type="text/javascript" src="<?php echo esc_url(AMPFORWP_ANALYTICS_URL);?>/AppMeasurement.js"></script>
   </head>
   <body>

@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 6.6
-Stable tag: 1.0.99.2
+Tested up to: 6.7
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,30 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+= 1.1.2 (03 December 2024) =
+* New: Jetpack related post not showing on AMP #5575
+* New: Add a new feature to add Whatsapp Group links to Floating Buttons for AMP #5649
+* New: Need to added the Subtitle feature in Post/pages in AMP #5665
+* Fixed: Security issue reported by "Wordfence" #5662
+* Fixed: AMP Pixel URL Issue After Recent Plugin Update 1.1.1 #5663
+* Fixed: Function _load_textdomain_just_in_time was called incorrectly #5664
+
+= 1.1.1 (12 November 2024) =
+* New : Manual post selection in infinite scroll #5651
+* Fixed: Version 1.0.99.1 causing Tag issue. #5650
+* Fixed: Errors in debug.log, PHP Deprecated: trim(): Passing null to parameter #5652
+* Fixed: GA-4 Analytic not working on infinite scroll post #5656
+* Fixed: The Last Modified date appears broken in the AMP version #5659
+* Fixed: Feature images are not loading in homepage due to conflict with JNews theme lazyload #5655
+* Fixed: Afterpay Gateway for WooCommerce plugin is causing issue in Amp Validator #5643
+* Fixed: FV Gravatar Cache plugin conflicts with AMP. #5611
+* Fixed: Php error on user end. #5642
+* Fixed: The author image added by the "Simple User Avatar plugin" is not showing in the AMP. #5606
+* Fixed: Cron reschedule event error for hook #5595
+* Fixed: PHP Deprecated: error with AMP #5621
+* Test: Test with WordPress version 6.7 #5657
+* Improvement : Few improvements required #5630
+
 = 1.0.99.2 (23 October 2024) =
 * Fixed: Cross-Site Request Forgery discovered by David Gallagher ( Wordfence )
 

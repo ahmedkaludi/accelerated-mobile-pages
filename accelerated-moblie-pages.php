@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.1.1
+Version: 1.1.2
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.1.1');
+define('AMPFORWP_VERSION','1.1.2');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 define('AMPFORWP_ANALYTICS_URL',plugin_dir_url(__FILE__).'includes/features/analytics');
 if(!defined('AMPFROWP_HOST_NAME')){
@@ -880,6 +880,7 @@ if ( !function_exists('amp_activate') ) {
 	if(is_admin()){
 		global $pagenow;
 		if( is_multisite() ){
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
 		$current_url = ( isset( $_SERVER['REQUEST_URI'] ) ) ? sanitize_text_field( esc_url_raw( $_SERVER['REQUEST_URI'] ) ) : "";
 		$post_old = preg_match('/post\.php/', $current_url);
 		$post_new = preg_match('/post-new\.php/', $current_url);
@@ -1616,6 +1617,7 @@ if(!function_exists('ampforwp_save_local_font')){
 		        	$files = glob( $user_dirname . '/*' );
 		            foreach ( $files as $file ) {
 		            	if(is_dir($file)){
+							/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir */
 		            		rmdir($file);
 		            	}
 			            $fonts = explode("/", $file);

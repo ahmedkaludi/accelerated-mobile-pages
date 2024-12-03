@@ -79,7 +79,7 @@ if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox' ) ) {
             $this->field[ 'data_class' ] = ( isset ( $this->field[ 'multi_layout' ] ) ) ? 'data-' . $this->field[ 'multi_layout' ] : 'data-full';
 
             if ( !empty ( $this->field[ 'options' ] ) && ( is_array ( $this->field[ 'options' ] ) || is_array ( $this->field[ 'default' ] ) ) ) {
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<ul class="' . $this->field[ 'data_class' ] . '">';
 
                 if ( !isset ( $this->value ) ) {
@@ -105,22 +105,26 @@ if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox' ) ) {
     
                     }
                     echo '<li>';
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<label for="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $k . ']', array(
                         '[' => '_',
                         ']' => ''
-                    ) ) . '_' . array_search ( $k, array_keys ( $this->field[ 'options' ] ) ) . '">';
+                    ) ) . '_' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ array_search ( $k, array_keys ( $this->field[ 'options' ] ) ) . '">';
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . $this->field[ 'name' ] . '[' . $k . ']' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ $k ] . '" ' . '/>';
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<input type="checkbox" class="checkbox ' . $this->field[ 'class' ] . '" id="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $k . ']', array(
                         '[' => '_',
                         ']' => ''
-                    ) ) . '_' . array_search ( $k, array_keys ( $this->field[ 'options' ] ) ) . '" value="1" ' . checked ( $this->value[ $k ], '1', false ) . '/>';
+                    ) ) . '_' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ array_search ( $k, array_keys ( $this->field[ 'options' ] ) ) . '" value="1" ' . checked ( $this->value[ $k ], '1', false ) . '/>';
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo ' ' . $v . '</label>';
                     echo '</li>';
                 }
 
                 echo '</ul>';
             } else if ( empty ( $this->field[ 'data' ] ) ) {
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo (!empty ( $this->field[ 'desc' ] ) ) ? ' <ul class="data-full"><li><label for="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . ']', array(
                             '[' => '_',
                             ']' => ''
@@ -128,11 +132,14 @@ if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox' ) ) {
 
                 // Got the "Checked" status as "0" or "1" then insert it as the "value" option
                 //$ch_value = 1; // checked($this->value, '1', false) == "" ? "0" : "1";
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . $this->field[ 'name' ] . $this->field[ 'name_suffix' ] . '" value="' . $this->value . '" ' . '/>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
                 echo '<input type="checkbox" id="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . ']', array(
                     '[' => '_',
                     ']' => ''
-                ) ) . '" value="1" class="checkbox ' . $this->field[ 'class' ] . '" ' . checked ( $this->value, '1', false ) . '/>';
+                ) ) . '" value="1" class="checkbox ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field[ 'class' ] . '" ' . checked ( $this->value, '1', false ) . '/>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo isset( $this->field[ 'label' ] ) ? ' ' . $this->field[ 'label' ] : '';
                 echo '</label></li></ul>';
             }

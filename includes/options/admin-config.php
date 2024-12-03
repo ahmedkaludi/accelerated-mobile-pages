@@ -27,6 +27,7 @@ $amptfad = '<strong>DID YOU KNOW?</strong></br ><a href="https://ampforwp.com/am
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
    if(!is_plugin_active( 'amp-comments/amp-comments.php' )){
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
+/* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
 }
 /*$wpbakery_for_ampchecker = $divi_pb_for_ampchecker = $elemntr_pb_for_ampchecker = array();
@@ -917,7 +918,7 @@ foreach ($extension_listing_array as $key => $extension) {
     }
     $ampforwp_extension_list_html .= '<li class="first '.esc_attr($currentStatus).' '.esc_attr($secondPageClickClass).'" data-ext-details=\''.wp_json_encode($extension).'\' data-ext-secure="'.wp_create_nonce('verify_extension').'">
         '.$onclickUrl.'
-        <div class="align_left"><img src="'.esc_url($extension['img_src']).'" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.esc_url($extension['img_src']).'" /></div>
         <div class="extension_desc">
         <h2>'.esc_html($extension['name']).'</h2>
         <p>'.esc_html($extension['desc']).'</p>
@@ -952,8 +953,7 @@ function ampforwp_check_extensions(){
 
 $freepro_listing = '
 <div class="fp-wr">
-    <div class="fp-img">
-        <img src="'.AMPFORWP_IMAGE_DIR . '/Bitmap.png" />
+    <div class="fp-img">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/Bitmap.png" />
         <span class="ov"></span>
     </div>
     <div class="fp-cnt">
@@ -963,18 +963,15 @@ $freepro_listing = '
     </div>
     <div class="pvf">
         <div class="ext">
-            <div class="ex-1 e-1">
-                <img src="'.AMPFORWP_IMAGE_DIR . '/ex-1.png" />
+            <div class="ex-1 e-1">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/ex-1.png" />
                 <h4>Extensions</h4>
                 <p>Includes a suite of advanced features like Ads, Email Optin, Contact Forms, E-Commerce, CTA, Cache and 15+ premium extensions.</p>
             </div>
-            <div class="ex-1 e-2">
-                <img src="'.AMPFORWP_IMAGE_DIR . '/ex-2.png" />
+            <div class="ex-1 e-2">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/ex-2.png" />
                 <h4>Designs</h4>
                 <p>Wide Variety of AMP Theme Designs included with AMP Layouts. We are dedicated to release 2-3 new designs every month.</p>
             </div>
-            <div class="ex-1 e-3">
-                <img src="'.AMPFORWP_IMAGE_DIR . '/ex-3.png" />
+            <div class="ex-1 e-3">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/ex-3.png" />
                 <h4>Dedicated Support</h4>
                 <p>Get private ticketing help from our full-time staff who helps you with the technical issues.</p>
             </div>
@@ -1012,85 +1009,73 @@ $freepro_listing = '
                         <span>Everything in Free, and:</span>
                         <div class="fet">
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Advertisement</h4>
                                 </div>
                                 <p>Advanced Ad slots, Incontent ads & Supports all Ad networks.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>AMP Cache</h4>
                                 </div>
                                 <p>Revolutionary cache system for AMP which makes it insanely fast.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Contact Forms</h4>
                                 </div>
                                 <p>Gravity Forms and Contact form 7 Support for the AMP.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>E-Commerce</h4>
                                 </div>
                                 <p>WooCommerce & Easy Digital Downloads Support.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Email Optin</h4>
                                 </div>
                                 <p>Native Email optin forms to capture email with 17+ company integrations.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Call To Action</h4>
                                 </div>
                                 <p>Get your message, product or offering to your visitors.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Localization</h4>
                                 </div>
                                 <p>Integrates with WPML, Polylang and WeGlot to provide localization.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Ratings</h4>
                                 </div>
                                 <p>Easily add Rating to the posts. Supports 3 popular rating plugins.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Dedicated Support</h4>
                                 </div>
                                 <p>With a Dedicated person helping you with the extension setup and questions.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Continious Updates</h4>
                                 </div>
                                 <p>We\'re continiously updating our premium features and releasing them.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>Innovation</h4>
                                 </div>
                                 <p>Be the first one to get the innovative features that we build in the future.</p>
                             </div>
                             <div class="fe-2">
-                                <div class="fe-t">
-                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                <div class="fe-t">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
                                     <h4>45+ AMP Extensions</h4>
                                 </div>
                                 <p>Super Charge your AMP pages with Powerful AMP Extensions</p>
@@ -1181,8 +1166,7 @@ $freepro_listing = '
                     </a>
                 </div>
             </div><!-- /.pri-lst -->
-            <div class="tru-us">
-                <img src="'.AMPFORWP_IMAGE_DIR . '/rating.png" />
+            <div class="tru-us">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/rating.png" />
                 <h2>Trusted by more that 200000+ Users!</h2>
                 <p>More than 200k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
                 <a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?filter=5" target="_blank">Read The Reviews</a>
@@ -1249,7 +1233,7 @@ $gettingstarted_extension_listing = '
 <p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
 <ul>
     <li class="first"><a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=gettingstarted-amp-ads&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
         <div class="extension_desc">
         <h2>Advanced AMP ADS</h2>
         <p>Add Advertisement directly in the content</p>
@@ -1257,7 +1241,7 @@ $gettingstarted_extension_listing = '
         </div>
     </a></li>
     <li class="second"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=gettingstarted_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
         <div class="extension_desc">
         <h2>Email Opt-in Forms</h2>
         <p>Capture Leads with Email Subscription.</p>
@@ -1265,7 +1249,7 @@ $gettingstarted_extension_listing = '
         </div>
     </a></li>
     <li class="first"><a href="http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=gettingstarted_amp-cta&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/mac-click.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/mac-click.png" /></div>
         <div class="extension_desc">
         <h2>Call To Action (CTA)</h2>
         <p>Higher Visibility & More Conversions</p>
@@ -1273,7 +1257,7 @@ $gettingstarted_extension_listing = '
         </div>
     </a></li>
     <li class="second"><a href="http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=gettingstarted_custom-post-type&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
         <div class="extension_desc">
         <h2>Custom Post Type</h2>
         <p>Enable Custom Post type support in AMP.</p>
@@ -1282,7 +1266,7 @@ $gettingstarted_extension_listing = '
     </a></li>
 
     <li class="first"><a href="http://ampforwp.com/acf-amp/#utm_source=options-panel&utm_medium=gettingstarted_acf&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/acf.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/acf.png" /></div>
         <div class="extension_desc">
         <h2>Advanced Custom Fields</h2>
         <p>Easily add ACF support in AMP.</p>
@@ -1290,7 +1274,7 @@ $gettingstarted_extension_listing = '
         </div>
     </a></li>
     <li class="second"><a href="http://ampforwp.com/doubleclick-for-publishers/#utm_source=options-panel&utm_medium=gettingstarted_doubleclick&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/dfp.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/dfp.png" /></div>
         <div class="extension_desc">
         <h2>DoubleClick For Publishers</h2>
         <p>Enable DFP Support for AMP.</p>
@@ -1300,7 +1284,7 @@ $gettingstarted_extension_listing = '
 
 
     <li class="first"><a href="http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=gettingstarted_amp-ratings&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/star.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/star.png" /></div>
         <div class="extension_desc">
         <h2>Star Ratings</h2>
         <p>Star Review Ratings for AMP.</p>
@@ -1308,7 +1292,7 @@ $gettingstarted_extension_listing = '
         </div>
     </a></li>
     <li class="second"><a href="https://ampforwp.com/woocommerce/" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/woo.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/woo.png" /></div>
         <div class="extension_desc">
         <h2>AMP WooCommerce Pro</h2>
         <p>Advanced WooCommerce in AMP in two clicks.</p>
@@ -1317,7 +1301,7 @@ $gettingstarted_extension_listing = '
     </a></li>
 
     <li class="first"><a href="http://ampforwp.com/amp-category-base-remove-support/#utm_source=options-panel&utm_medium=gettingstarted_amp-category-base-remove-support&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/puzzel.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/puzzel.png" /></div>
         <div class="extension_desc">
         <h2>Category Base Removal</h2>
         <p>Remove Category Base Support in AMP</p>
@@ -1325,7 +1309,7 @@ $gettingstarted_extension_listing = '
         </div>
     </a></li>
     <li class="second"><a href="https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=gettingstarted_amp-more-comingsoon&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
         <div class="extension_desc">
         <h2>View All Extensions</h2>
         <p>See all the extensions available for AMP</p>
@@ -1343,7 +1327,7 @@ $single_extension_listing = '
 <h3>Increase the Revenue, Leads and Conversation with these Handpicked extensions</h3>
 <ul>
     <li class="first"><a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=gettingstarted-amp-ads&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
         <div class="extension_desc">
         <h2>Advanced AMP ADS</h2>
         <p>Add Advertisement directly in the content</p>
@@ -1351,7 +1335,7 @@ $single_extension_listing = '
         </div>
     </a></li>
     <li class="second"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=gettingstarted_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
         <div class="extension_desc">
         <h2>Email Opt-in Forms</h2>
         <p>Capture Leads with Email Subscription.</p>
@@ -1359,7 +1343,7 @@ $single_extension_listing = '
         </div>
     </a></li>
     <li class="first"><a href="http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=gettingstarted_amp-cta&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/mac-click.png" /></div>
+        <div class="align_left">'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_IMAGE_DIR . '/mac-click.png" /></div>
         <div class="extension_desc">
         <h2>Call To Action (CTA)</h2>
         <p>Higher Visibility & More Conversions</p>
@@ -1378,8 +1362,7 @@ if(is_array($layouts)){
         <div class="amppb_ad-layout-layout">
             <div class="amppb_ad-layout-wrapper">
             <div class="amppb_ad-layout_pro"><a href="https://ampforwp.com/amp-layouts/" target="_blank">PRO</a></div>
-                <h4 class="amppb_ad-layout-title">'.esc_html($val['name']).'</h4>
-                <div class="amppb_ad-layout-screenshot"> <img src="'.esc_url($val['image']).'" onclick="window.open(\''.esc_url($val['link']).'\')"> </div>
+                <h4 class="amppb_ad-layout-title">'.esc_html($val['name']).'</h4>'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<div class="amppb_ad-layout-screenshot"> <img src="'.esc_url($val['image']).'" onclick="window.open(\''.esc_url($val['link']).'\')"> </div>
                 <div class="amppb_ad-layout-button">
                     <a target="_blank" href="'.esc_url($val['link']).'" class="button">'. esc_html__('View Theme','accelerated-mobile-pages').'</a> 
                 </div>
@@ -2032,7 +2015,7 @@ function ampforwp_get_categories($id){
 	if(isset($selected_categories) && $selected_categories) {
 		$get_required_data = array_filter( $selected_categories );
 		if ( count( $get_required_data ) != 0 ) {
-			$categories = get_terms( 'category', array( 'include' => $get_required_data ) );
+			$categories = get_terms( array('taxonomy'=>'category','include' => $get_required_data ) );
 			foreach ( $categories as $category ) {
 				$result[ esc_attr( $category->term_id ) ] = esc_html( $category->name );
 			}
@@ -2060,7 +2043,7 @@ function ampforwp_get_all_tags($id){
 		$get_required_data = array_filter( $selected_tags );
 
 		if ( count( $get_required_data ) != 0 ) {
-			$tags = get_terms( 'post_tag', array( 'include' => $get_required_data ) );
+			$tags = get_terms( array('taxonomy'=>'post_tag', 'include' => $get_required_data ) );
 			foreach($tags as  $tag ) {
 				$result[esc_attr($tag->term_id)] = esc_html($tag->name);
 			}
@@ -3121,6 +3104,7 @@ Redux::setSection( $opt_name, array(
 );
 function ampforwp_get_post_percent(){
     $total_post = $post_count = $post_percent = '';
+    
     $args=array(
         'fields'        => 'ids',
         'post_type'    => 'post',
@@ -3129,6 +3113,7 @@ function ampforwp_get_post_percent(){
         'has_password' => false ,
         'post_status'=> 'publish',
         'no_found_rows' => true,
+        /* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
         'meta_query' => array(
             array(
                 'key' => 'ampforwp-amp-on-off', 
@@ -8448,6 +8433,22 @@ else{
               'title'     =>  esc_html__('WhatsApp', 'accelerated-mobile-pages'),
               'default'   =>  1,
           ),
+           // WhatsApp Group
+           array(
+                'id'        =>  'enable-single-whatsapp-group-share',
+                'type'      =>  'switch',
+                'title'     =>  esc_html__('WhatsApp Group', 'accelerated-mobile-pages'),
+                'default'   =>  0,
+            ),
+            array(
+                'id'       => 'whatsapp-group-link',
+                'type'     => 'text',
+                'title'    => esc_html__('WhatsApp Group Link', 'accelerated-mobile-pages'),
+                'default'  => '#',
+                'required' => array(
+                  array('enable-single-whatsapp-group-share','=',1)
+                )           
+            ),
           // LINE
           array(
               'id'        =>  'enable-single-line-share',
@@ -9126,6 +9127,7 @@ else{
     $post_builder = '';
    }
    else{
+    /* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
     $post_builder = '<br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>';
     }
     // Misc SECTION

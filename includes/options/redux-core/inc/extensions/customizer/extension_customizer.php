@@ -100,11 +100,11 @@ namespace ReduxCore\ReduxFramework;
                  */
 
                 //add_action('customize_save', );
-
+/* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Missing */
                 if ( isset( $_POST['wp_customize'] ) && $_POST['wp_customize'] == "on" ) {
                     $this->parent->args['customizer_only'] = true;
                 }
-
+/* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Missing */
                 if ( isset( $_POST['wp_customize'] ) && $_POST['wp_customize'] == "on" && isset( $_POST['customized'] ) && ! empty( $_POST['customized'] ) && ! isset( $_POST['action'] ) ) {
                     add_action( "redux/options/{$this->parent->args['opt_name']}/options", array(
                         $this,
@@ -168,11 +168,14 @@ namespace ReduxCore\ReduxFramework;
             }
 
             protected static function get_post_values() {
+                /* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Missing */
                 if ( empty( self::$post_values ) && isset( $_POST['customized'] ) && ! empty( $_POST['customized'] ) ) {
                     if ( function_exists('sanitize_textarea_field') ) {
+                        /* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized	 */
                         self::$post_values = sanitize_textarea_field(json_decode( stripslashes_deep( $_POST['customized'] ), true ));
                     }
                     else{
+                        /* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized	 */
                         $post_values = json_decode( stripslashes_deep( $_POST['customized'] ), true );
                         self::$post_values = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $post_values ) ) );
                     }
@@ -183,7 +186,7 @@ namespace ReduxCore\ReduxFramework;
 
                 self::get_post_values();
 
-
+/* phpcs:ignore WordPress.Security.NonceVerification.Missing */
                 if ( isset( $_POST['customized'] ) && ! empty( self::$post_values ) ) {
 
                     if ( is_array( self::$post_values ) ) {
@@ -251,6 +254,7 @@ namespace ReduxCore\ReduxFramework;
                 } else {
                     echo '<tr>';
                 }
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<th scope="row">' . $this->parent->field_head[ $field['id'] ] . '</th>';
                 echo '<td>';
                 //$field['data-customize-setting-link'] = array(
@@ -625,6 +629,7 @@ namespace ReduxCore\ReduxFramework;
                 echo '1';
                 preg_match_all( "/\[([^\]]*)\]/", $option->id, $matches );
                 $id = $matches[1][0];
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo $option->link();
                 //$link = $option->link();
                 //echo $link;
@@ -648,9 +653,11 @@ namespace ReduxCore\ReduxFramework;
                 }
 
                 if ( function_exists('sanitize_textarea_field') ) {
+                    /* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                     $options  = sanitize_textarea_field(json_decode( stripslashes_deep( $_POST['customized'] ), true ));
                 }
                 else{
+                     /* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                     $unsanitized_options = json_decode( stripslashes_deep( $_POST['customized'] ), true );
                     $options = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $unsanitized_options ) ));
                 }
@@ -694,6 +701,7 @@ namespace ReduxCore\ReduxFramework;
              * @return      void
              */
             public function _enqueue_previewer() {
+                /* phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion,WordPress.WP.EnqueuedResourceParameters.NotInFooter */
                 wp_enqueue_script(
                     'redux-extension-previewer-js',
                     $this->_extension_url . 'assets/js/preview.js'

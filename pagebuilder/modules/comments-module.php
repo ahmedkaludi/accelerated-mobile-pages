@@ -24,6 +24,7 @@ function ampforwp_get_pb_comment_list($moduleFrontHtml, $moduleTemplate, $conten
 							$avatar             = get_avatar_url( $value->comment_author_email);
 							$output .='<li>';
 							if(ampforwp_get_setting('ampforwp-display-avatar')){
+								/* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
 								$output .='<div class="fn"><img src="'.esc_url($avatar).'" height="50" width="50"/></div>';
 							}
 							$output .='<div class="pbc-auth-info"><div class="pbc-auth-name"><b class="fn">'.esc_attr($value->comment_author).'</b></div>';

@@ -114,12 +114,13 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <div class="accordion-section-title" tabindex="0">
 				<span class="preview-notice"><?php
                         /* translators: %s is the site/panel title in the Customizer */
+                        /* phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment , WordPress.Security.EscapeOutput.OutputNotEscaped  */
                         echo sprintf( __( 'You are customizing %s', 'accelerated-mobile-pages' ), '<strong class="panel-title">' . esc_html( $this->title ) . '</strong>' );
                     ?></span>
                 </div>
                 <?php if ( ! empty( $this->description ) ) : ?>
                     <div class="accordion-section-content description legacy">
-                        <?php echo $this->description; ?>
+                        <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $this->description; ?>
                     </div>
                 <?php endif; ?>
             </li>
@@ -142,6 +143,8 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <div class="accordion-section-title">
 				<span class="preview-notice"><?php
                         /* translators: %s is the site/panel title in the Customizer */
+                        
+                        /* phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment, WordPress.Security.EscapeOutput.OutputNotEscaped */
                         echo sprintf( __( 'You are customizing %s', 'accelerated-mobile-pages' ), '<strong class="panel-title">{{ data.title }}</strong>' );
                     ?></span>
                     <# if ( data.description ) { #>

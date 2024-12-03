@@ -1450,10 +1450,24 @@ function ampforwp_seo_selection_notice() {
 add_action('wp_ajax_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
 add_action('wp_ajax_nopriv_ampforwp_subscribe_newsletter','ampforwp_subscribe_for_newsletter');
 function ampforwp_subscribe_for_newsletter(){
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    if ( ! isset( $_POST['nonce'] ) ) {
+        return;
+    }
+    // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Reason Validating nonce so sanitization not needed
+    if ( ! wp_verify_nonce( $_POST['nonce'], 'ampforwp-verify-request' ) ) {
+        return;
+    }
     $api_url = 'http://magazine3.company/wp-json/api/central/email/subscribe';
     $api_params = array(
+         /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.NonceVerification.Missing */
         'name' => sanitize_text_field($_POST['name']),
-        'email'=> sanitize_text_field($_POST['email']),
+         /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.NonceVerification.Missing */
+        'email'=> sanitize_email($_POST['email']),
+         /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.NonceVerification.Missing */
         'website'=> sanitize_text_field($_POST['website']),
         'type'=> 'amp'
     );
@@ -1552,6 +1566,17 @@ function ampforwp_internal_feedback_notice(){
 <?php    }
 }
 function ampforwp_feedback_remove_notice(){     
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    if ( ! isset( $_POST['nonce'] ) ) {
+        return;
+    }
+    // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Reason Validating nonce so sanitization not needed
+    if ( ! wp_verify_nonce( $_POST['nonce'], 'ampforwp-verify-request' ) ) {
+        return;
+    }
     $result = update_option( "ampforwp_feedback_remove_notice", 'remove', false);
     if($result){
         echo wp_json_encode(array('status'=>'t'));            
@@ -1594,6 +1619,13 @@ function ampforwp_tpd_notice(){
 // added ajax hook here.
 add_action( 'wp_ajax_ampforwp_tpd_remove_notice', 'ampforwp_tpd_remove_notice' ); 
 function ampforwp_tpd_remove_notice(){   
+    if ( ! isset( $_POST['nonce'] ) ) {
+        return;
+    }
+    // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Reason Validating nonce so sanitization not needed
+    if ( ! wp_verify_nonce( $_POST['nonce'], 'ampforwp-verify-request' ) ) {
+        return;
+    }
     $result = '';
     if(current_user_can( 'manage_options' )){
        $result = update_option( "ampforwp_tpd_remove_notice", 'remove', false);

@@ -8,6 +8,7 @@
         <i class="el el-redux"></i>
         <span>
             <?php /* translators: %s: version */ 
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
             printf( __( 'Version %s', 'accelerated-mobile-pages' ), esc_html(ReduxFramework::$_version )); ?>
         </span>
     </div>
@@ -17,6 +18,7 @@
 
     <p class="about-description">
         <?php /* translators: %s: href */
+        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
         echo sprintf( __( 'Redux is created by a community of developers world wide. Want to have your name listed too? <a href="%d" target="_blank">Contribute to Redux</a>.', 'accelerated-mobile-pages' ), 'https://github.com/reduxframework/redux-framework/blob/master/CONTRIBUTING.md' );?>
     </p>
 

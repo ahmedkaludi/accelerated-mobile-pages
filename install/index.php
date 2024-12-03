@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $redux_builder_amp = (array) get_option('redux_builder_amp');
 $ampLogo="";
 if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-media']['url']!=""){
+	/* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
     $ampLogo = '<br/><br/><img src="'.esc_url($redux_builder_amp['opt-media']['url']).'" class="amp_install_logo_preview" />';
 }
 	
@@ -103,11 +104,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 											<option value="4" '.(ampforwp_get_setting('amp-design-selector')==4? 'selected' : '').'>Swift</option>
 									</select>
  
-									<div>
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png" width="150" height="200" class="amp_install_theme_preview" id="design-1" style="'.(ampforwp_get_setting('amp-design-selector')==1 ? '': 'display:none' ).'">
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png" width="150" height="200" class="amp_install_theme_preview" id="design-2" style="'.(ampforwp_get_setting('amp-design-selector')==2 ? '': 'display:none' ).'">
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png" width="150" height="200" class="amp_install_theme_preview" id="design-3" style="'.(ampforwp_get_setting('amp-design-selector')==3 ? '': 'display:none' ).'">
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png" width="150" height="200" class="amp_install_theme_preview" id="design-4" style="'.(ampforwp_get_setting('amp-design-selector')==4 ? '': 'display:none' ).'">
+									<div>'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png" width="150" height="200" class="amp_install_theme_preview" id="design-1" style="'.(ampforwp_get_setting('amp-design-selector')==1 ? '': 'display:none' ).'">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png" width="150" height="200" class="amp_install_theme_preview" id="design-2" style="'.(ampforwp_get_setting('amp-design-selector')==2 ? '': 'display:none' ).'">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png" width="150" height="200" class="amp_install_theme_preview" id="design-3" style="'.(ampforwp_get_setting('amp-design-selector')==3 ? '': 'display:none' ).'">'./* phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png" width="150" height="200" class="amp_install_theme_preview" id="design-4" style="'.(ampforwp_get_setting('amp-design-selector')==4 ? '': 'display:none' ).'">
 									</div>
  									</li>',
 									),
@@ -142,6 +139,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	}
 
 	function ampforwp_instller_admin_init(){
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		if(isset($_GET['ampforwp_install'], $_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], '_wpnonce') && $_GET['ampforwp_install']=='1'){
 			ampforwp_steps_call();			
 		}
@@ -149,6 +147,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	
 	function ampforwp_steps_call(){
 		global $ampforwp_install_config;
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		if ( !wp_verify_nonce($_GET['_wpnonce'], '_wpnonce') || empty( $_GET['page'] ) || $ampforwp_install_config['installerpage'] !== $_GET['page'] ) {
 			return;
 		}
@@ -165,7 +164,8 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 		// Enqueue styles.
 		wp_enqueue_style( 'ampforwp_install', esc_url(AMPFORWP_PLUGIN_DIR_URI. $ampforwp_install_config['installer_dir']. '/assets/css/merlin' . $suffix . '.css') , array( 'wp-admin' ), '0.1');
 		// Enqueue javascript.
-		wp_enqueue_script( 'ampforwp_install', esc_url(AMPFORWP_PLUGIN_DIR_URI. $ampforwp_install_config['installer_dir']. '/assets/js/merlin' . $suffix . '.js') , array( 'jquery-core' ), '0.1' );
+		
+		wp_enqueue_script( 'ampforwp_install', esc_url(AMPFORWP_PLUGIN_DIR_URI. $ampforwp_install_config['installer_dir']. '/assets/js/merlin' . $suffix . '.js') , array( 'jquery-core' ), AMPFORWP_VERSION, false );
 		
 		wp_localize_script( 'ampforwp_install', 'ampforwp_install_params', array(
 			'ajaxurl'      		=> esc_url(admin_url( 'admin-ajax.php' )),
@@ -444,6 +444,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	
 	
 	function ampforwp_save_steps_data(){
+		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		if(!wp_verify_nonce( $_REQUEST['wpnonce'], 'ampforwp_install_nonce' ) ) {
 	        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
 	        die;

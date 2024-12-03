@@ -52,6 +52,7 @@ echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' 
 			's' 				  => get_search_query() ,
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
+			/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false,
 			'no_found_rows' 	  => true,

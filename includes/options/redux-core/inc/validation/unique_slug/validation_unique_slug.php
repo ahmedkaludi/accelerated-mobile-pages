@@ -37,7 +37,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
                 // Post slugs must be unique across all posts.
                 $check_sql       = "SELECT post_name FROM $wpdb->posts WHERE post_name = %s LIMIT 1";
-                $post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $slug ) );
+                $cache_key = 'post_slug_cache_key_'.$slug; 
+                $post_name_check = wp_cache_get( $cache_key ); 
+                if($post_name_check===false){
+                    //phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery
+                    $post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $slug ) );
+                    wp_cache_set( $cache_key, $post_name_check );
+                }
 
                 /**
                  * Filter whether the post slug would be bad as a flat slug.
@@ -51,8 +57,16 @@ if ( ! defined( 'ABSPATH' ) ) {
                 if ( $post_name_check || in_array( $slug, $feeds ) || apply_filters( 'wp_unique_post_slug_is_bad_attachment_slug', false, $slug ) ) {
                     $suffix = 2;
                     do {
+                        
                         $alt_post_name   = _truncate_post_slug( $slug, 200 - ( strlen( $suffix ) + 1 ) ) . "-$suffix";
-                        $post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $alt_post_name ) );
+                        
+                        $cache_key = 'post_name_check_cache_key_'.$alt_post_name;
+                        $post_name_check = wp_cache_get( $cache_key ); 
+                        if($post_name_check===false){
+                            //phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery
+                            $post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $alt_post_name ) );
+                            wp_cache_set( $cache_key, $post_name_check );
+                        }
                         $suffix ++;
                     } while ( $post_name_check );
                     $slug               = $alt_post_name;

@@ -58,11 +58,13 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
             
              echo '<div class="switch-options">
                         <label class="ios7-switch">
-                            <input class="switch-on-off" type="checkbox" '.($cb_enabled==' selected' ? 'checked' : '').' data-id="' . $this->field['id'] . '">
+                            <input class="switch-on-off" type="checkbox" '.($cb_enabled==' selected' ? 'checked' : '').' data-id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['id'] . '">
                             <span></span>
                         </label>
                     ';
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped*/
             echo '<input type="hidden" class="checkbox checkbox-input ' . $this->field['class'] . '" id="' . $this->field['id'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $this->value . '" />';
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo $switch_text;
             echo '</div>';
 

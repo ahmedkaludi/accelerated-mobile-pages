@@ -233,9 +233,8 @@ function amp_breadcrumb_output(){
                
             // Get tag information
             $term_id        = get_query_var('tag_id');
-            $taxonomy       = 'post_tag';
-            $args           = 'include=' . intval($term_id);
-            $terms          = get_terms( $taxonomy, $args );
+            $args = array('taxonomy' => 'post_tag', 'include' => intval($term_id));
+            $terms          = get_terms( $args );
             $get_term_id    = $terms[0]->term_id;
             $get_term_slug  = $terms[0]->slug;
             $get_term_name  = $terms[0]->name;

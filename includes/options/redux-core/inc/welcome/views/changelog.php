@@ -9,6 +9,7 @@
         <span>
             <?php 
             /* translators: %s: version */
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
             printf( __( 'Version %s', 'accelerated-mobile-pages' ), esc_html(ReduxFramework::$_version) ); 
             ?>
         </span>

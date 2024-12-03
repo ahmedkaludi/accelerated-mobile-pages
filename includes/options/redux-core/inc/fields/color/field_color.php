@@ -34,6 +34,11 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_color' ) ) {
      */
     class ReduxFramework_color {
 
+        private $time = '';
+        private $parent;
+        private $value;
+        private $field;
+        
         /**
          * Field Constructor.
          * Required - must call the parent constructor, then assign field and value to vars, and obviously call the render field function
@@ -41,8 +46,7 @@ if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_color' ) ) {
          * @since         1.0.0
          * @access        public
          * @return        void
-         */
-        private $time = '';
+         */        
         function __construct( $field = array(), $value = '', $parent = ' ' ) {
 
             $this->parent = $parent;

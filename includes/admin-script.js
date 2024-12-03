@@ -2739,7 +2739,7 @@ $("#subscribe-newsletter-form").on('submit',function(e){
         var name = $form.find('input[name="name"]').val();
         var email = $form.find('input[name="email"]').val();
         var website = $form.find('input[name="company"]').val();
-        $.post(ajaxurl, {action:'ampforwp_subscribe_newsletter',name:name, email:email,website:website},
+        $.post(ajaxurl, {action:'ampforwp_subscribe_newsletter',nonce:ampforwp_nonce.security,name:name, email:email,website:website},
           function(data) {}
         );
     });
@@ -2759,6 +2759,7 @@ $("#subscribe-newsletter-form").on('submit',function(e){
     $("#ampforwp-close-notice").on("click", function(){
         var data = {
             action: 'ampforwp_feedback_remove_notice',
+            nonce:ampforwp_nonce.security
         };
         $.post(ajaxurl, data, function(response) {
             $(".ampforwp_remove_notice").remove();
@@ -2767,6 +2768,7 @@ $("#subscribe-newsletter-form").on('submit',function(e){
      $("#ampforwp-close-ad-notice").on("click", function(){
         var data = {
             action: 'ampforwp_tpd_remove_notice',
+            nonce:ampforwp_nonce.security
         };
         $.post(ajaxurl, data, function(response) {
             $(".ampforwp_remove_notice").remove();

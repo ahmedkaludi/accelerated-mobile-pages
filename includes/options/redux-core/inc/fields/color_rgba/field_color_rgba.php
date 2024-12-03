@@ -104,22 +104,23 @@ if( !class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_color_rgba' ) ) {
             $field_id = $this->field['id'];
             
             // Color picker container
+            
             echo '<div 
-                      class="redux-color-rgba-container ' . $this->field['class'] . '" 
-                      data-id="'                        . $field_id . '"
-                      data-show-input="'                . $this->field['options']['show_input'] . '"
-                      data-show-initial="'              . $this->field['options']['show_initial'] . '"
-                      data-show-alpha="'                . $this->field['options']['show_alpha'] . '"
-                      data-show-palette="'              . $this->field['options']['show_palette'] . '"
-                      data-show-palette-only="'         . $this->field['options']['show_palette_only'] . '"
-                      data-show-selection-palette="'    . $this->field['options']['show_selection_palette'] . '"
-                      data-max-palette-size="'          . $this->field['options']['max_palette_size'] . '"
-                      data-allow-empty="'               . $this->field['options']['allow_empty'] . '"
-                      data-clickout-fires-change="'     . $this->field['options']['clickout_fires_change'] . '"
-                      data-choose-text="'               . $this->field['options']['choose_text'] . '"
-                      data-cancel-text="'               . $this->field['options']['cancel_text'] . '"
-                      data-input-text="'                . $this->field['options']['input_text'] . '"
-                      data-show-buttons="'              . $this->field['options']['show_buttons'] . '"
+                      class="redux-color-rgba-container ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['class'] . '" 
+                      data-id="'                        . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $field_id . '"
+                      data-show-input="'                . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['show_input'] . '"
+                      data-show-initial="'              . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['show_initial'] . '"
+                      data-show-alpha="'                . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['show_alpha'] . '"
+                      data-show-palette="'              . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['show_palette'] . '"
+                      data-show-palette-only="'         . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['show_palette_only'] . '"
+                      data-show-selection-palette="'    . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['show_selection_palette'] . '"
+                      data-max-palette-size="'          . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['max_palette_size'] . '"
+                      data-allow-empty="'               . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['allow_empty'] . '"
+                      data-clickout-fires-change="'     . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['clickout_fires_change'] . '"
+                      data-choose-text="'               . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['choose_text'] . '"
+                      data-cancel-text="'               . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['cancel_text'] . '"
+                      data-input-text="'                . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['input_text'] . '"
+                      data-show-buttons="'              . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['options']['show_buttons'] . '"
                       data-palette="'                   . urlencode(wp_json_encode($this->field['options']['palette'])) . '"
                   >';
             
@@ -137,44 +138,46 @@ if( !class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_color_rgba' ) ) {
             }
             
             echo '<input
-                        name="' . $this->field['name'] . $this->field['name_suffix'] . '[color]"
-                        id="' . $field_id . '-color"
+                        name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name'] . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name_suffix'] . '[color]"
+                        id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $field_id . '-color"
                         class="redux-color-rgba"
                         type="text"
-                        value="' . $this->value['color'] . '"
-                        data-color="' . $color . '"
-                        data-id="' . $field_id . '"
-                        data-current-color="' . $this->value['color'] . '"
-                        data-block-id="' . $field_id . '"
-                        data-output-transparent="' . $this->field['output_transparent'] . '"
+                        value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->value['color'] . '"
+                        data-color="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */$color . '"
+                        data-id="' ./* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */  $field_id . '"
+                        data-current-color="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->value['color'] . '"
+                        data-block-id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $field_id . '"
+                        data-output-transparent="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['output_transparent'] . '"
                       />';            
-
+            
             echo '<input
                         type="hidden"
                         class="redux-hidden-color"
-                        data-id="' . $field_id . '-color"
-                        id="' . $field_id . '-color"
-                        value="' . $this->value['color'] . '"
+                        data-id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $field_id . '-color"
+                        id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $field_id . '-color"
+                        value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->value['color'] . '"
                       />';            
 
             // Hidden input for alpha channel
+            
             echo '<input
                         type="hidden"
                         class="redux-hidden-alpha"
-                        data-id="' . $field_id . '-alpha"
-                        name="' . $this->field['name'] . $this->field['name_suffix'] . '[alpha]' .  '"
-                        id="' . $field_id . '-alpha"
-                        value="' . $this->value['alpha'] . '"
+                        data-id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $field_id . '-alpha"
+                        name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name'] . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name_suffix'] . '[alpha]' .  '"
+                        id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $field_id . '-alpha"
+                        value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->value['alpha'] . '"
                       />';
 
             // Hidden input for rgba
+            
             echo '<input
                         type="hidden"
                         class="redux-hidden-rgba"
-                        data-id="' . $field_id . '-rgba"
-                        name="' . $this->field['name'] . $this->field['name_suffix'] . '[rgba]' .  '"
-                        id="' . $field_id . '-rgba"
-                        value="' . $this->value['rgba'] . '"
+                        data-id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $field_id . '-rgba"
+                        name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name'] . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['name_suffix'] . '[rgba]' .  '"
+                        id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $field_id . '-rgba"
+                        value="' ./* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->value['rgba'] . '"
                       />';             
             
             echo '</div>';

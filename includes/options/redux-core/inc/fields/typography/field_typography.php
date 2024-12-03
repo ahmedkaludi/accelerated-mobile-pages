@@ -146,6 +146,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
             // declarations.
             // If field is set and not blank, then enqueue field
             if ( isset( $this->field['ext-font-css'] ) && $this->field['ext-font-css'] != '' ) {
+                /* phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion */
                 wp_register_style( 'redux-external-fonts', $this->field['ext-font-css'] );
                 wp_enqueue_style( 'redux-external-fonts' );
             }
@@ -165,13 +166,13 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
             }
 
             $unit = $this->field['units'];
-
+ /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo '<div id="' . $this->field['id'] . '" class="redux-typography-container" data-id="' . $this->field['id'] . '" data-units="' . $unit . '">';
 
             if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
                 $select2_params = wp_json_encode( $this->field['select2'] );
                 $select2_params = htmlspecialchars( $select2_params, ENT_QUOTES );
-
+ /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="select2_params" value="' . $select2_params . '">';
             }
 
@@ -179,6 +180,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
             if ( $this->field['font-family'] === true ) {
 
                 // font family clear
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="redux-font-clear" value="' . $this->field['font_family_clear'] . '">';
 
                 //if (filter_var($this->value['google'], FILTER_VALIDATE_BOOLEAN)) {
@@ -221,16 +223,18 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                 if ( true == $this->user_fonts ) {
                     $userFonts = '1';
                 }
-
+ /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="redux-typography-font-family ' . $this->field['class'] . '" data-user-fonts="' . $userFonts . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[font-family]' . '" value="' . $this->value['font-family'] . '" data-id="' . $this->field['id'] . '"  />';
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="redux-typography-font-options ' . $this->field['class'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[font-options]' . '" value="' . $this->value['font-options'] . '" data-id="' . $this->field['id'] . '"  />';
-
+ /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="redux-typography-google-font" value="' . $isGoogleFont . '" id="' . $this->field['id'] . '-google-font">';
 
                 echo '<div class="select_wrapper typography-family" style="width: 220px; margin-right: 5px;">';
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Font Family', 'accelerated-mobile-pages' ) . '</label>';
                 $placeholder = $fontFamily[0] ? $fontFamily[0] : __( 'Font family', 'accelerated-mobile-pages' );
-
+ /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class=" redux-typography redux-typography-family select2-container ' . $this->field['class'] . '" id="' . $this->field['id'] . '-family" placeholder="' . $placeholder . '" data-id="' . $this->field['id'] . '" data-value="' . $fontFamily[0] . '">';
 
                 echo '</div>';
@@ -240,6 +244,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                 if ( $this->field['google'] === true ) {
 
                     // Set a flag so we know to set a header style or not
+                     /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<input type="hidden" class="redux-typography-google ' . $this->field['class'] . '" id="' . $this->field['id'] . '-google" name="' . $this->field['name'] . $this->field['name_suffix'] . '[google]' . '" type="text" value="' . $this->field['google'] . '" data-id="' . $this->field['id'] . '" />';
                     $googleSet = true;
                 }
@@ -250,16 +255,20 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
                 if ( false == $googleSet ) {
                     // Set a flag so we know to set a header style or not
+                      /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<input type="hidden" class="redux-typography-google ' . $this->field['class'] . '" id="' . $this->field['id'] . '-google" name="' . $this->field['name'] . $this->field['name_suffix'] . '[google]' . '" type="text" value="' . $this->field['google'] . '" data-id="' . $this->field['id'] . '"  />';
                 }
 
                 if ( $this->field['font-backup'] === true ) {
                     echo '<div class="select_wrapper typography-family-backup" style="width: 220px; margin-right: 5px;">';
+                      /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<label>' . __( 'Backup Font Family', 'accelerated-mobile-pages' ) . '</label>';
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<select data-placeholder="' . __( 'Backup Font Family', 'accelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[font-backup]' . '" class="redux-typography redux-typography-family-backup ' . $this->field['class'] . '" id="' . $this->field['id'] . '-family-backup" data-id="' . $this->field['id'] . '" data-value="' . $this->value['font-backup'] . '">';
                     echo '<option data-google="false" data-details="" value=""></option>';
 
                     foreach ( $this->field['fonts'] as $i => $family ) {
+                        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                         echo '<option data-google="true" value="' . $i . '"' . selected( $this->value['font-backup'], $i, false ) . '>' . $family . '</option>';
                     }
 
@@ -269,15 +278,18 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
             /* Font Style/Weight */
             if ( $this->field['font-style'] === true || $this->field['font-weight'] === true ) {
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="select_wrapper typography-style" original-title="' . __( 'Font style', 'accelerated-mobile-pages' ) . '">';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Font Weight &amp; Style', 'accelerated-mobile-pages' ) . '</label>';
 
                 $style = $this->value['font-weight'] . $this->value['font-style'];
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="typography-font-weight" name="' . $this->field['name'] . $this->field['name_suffix'] . '[font-weight]' . '" value="' . $this->value['font-weight'] . '" data-id="' . $this->field['id'] . '"  /> ';
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="typography-font-style" name="' . $this->field['name'] . $this->field['name_suffix'] . '[font-style]' . '" value="' . $this->value['font-style'] . '" data-id="' . $this->field['id'] . '"  /> ';
                 $multi = ( isset( $this->field['multi']['weight'] ) && $this->field['multi']['weight'] ) ? ' multiple="multiple"' : "";
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<select' . $multi . ' data-placeholder="' . __( 'Style', 'accelerated-mobile-pages' ) . '" class="redux-typography redux-typography-style select ' . $this->field['class'] . '" original-title="' . __( 'Font style', 'accelerated-mobile-pages' ) . '" id="' . $this->field['id'] . '_style" data-id="' . $this->field['id'] . '" data-value="' . $style . '">';
 
                 if ( empty( $this->value['subsets'] ) || empty( $this->value['font-weight'] ) ) {
@@ -293,6 +305,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
                 if ( isset( $gfonts[ $this->value['font-family'] ] ) ) {
                     foreach ( $gfonts[ $this->value['font-family'] ]['variants'] as $v ) {
+                         /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                         echo '<option value="' . $v['id'] . '" ' . selected( $this->value['subsets'], $v['id'], false ) . '>' . $v['name'] . '</option>';
                     }
                 } else {
@@ -308,7 +321,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                         if ( ! isset( $this->value['subsets'] ) ) {
                             $this->value['subsets'] = false;
                         }
-
+ /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                         echo '<option value="' . $i . '" ' . selected( $this->value['font-weight'], $i, false ) . '>' . $style . '</option>';
                     }
                 }
@@ -318,10 +331,14 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
             /* Font Script */
             if ( $this->field['font-family'] == true && $this->field['subsets'] == true && $this->field['google'] == true ) {
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="select_wrapper typography-script tooltip" original-title="' . __( 'Font subsets', 'accelerated-mobile-pages' ) . '">';
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="typography-subsets" name="' . $this->field['name'] . $this->field['name_suffix'] . '[subsets]' . '" value="' . $this->value['subsets'] . '" data-id="' . $this->field['id'] . '"  /> ';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Font Subsets', 'accelerated-mobile-pages' ) . '</label>';
                 $multi = ( isset( $this->field['multi']['subset'] ) && $this->field['multi']['subset'] ) ? ' multiple="multiple"' : "";
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<select'.$multi.' data-placeholder="' . __( 'Subsets', 'accelerated-mobile-pages' ) . '" class="redux-typography redux-typography-subsets ' . $this->field['class'] . '" original-title="' . __( 'Font script', 'accelerated-mobile-pages' ) . '"  id="' . $this->field['id'] . '-subsets" data-value="' . $this->value['subsets'] . '" data-id="' . $this->field['id'] . '" >';
 
                 if ( empty( $this->value['subsets'] ) ) {
@@ -330,6 +347,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
                 if ( isset( $gfonts[ $this->value['font-family'] ] ) ) {
                     foreach ( $gfonts[ $this->value['font-family'] ]['subsets'] as $v ) {
+                        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                         echo '<option value="' . $v['id'] . '" ' . selected( $this->value['subsets'], $v['id'], false ) . '>' . $v['name'] . '</option>';
                     }
                 }
@@ -339,8 +357,11 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
             /* Font Align */
             if ( $this->field['text-align'] === true ) {
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="select_wrapper typography-align tooltip" original-title="' . __( 'Text Align', 'accelerated-mobile-pages' ) . '">';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Text Align', 'accelerated-mobile-pages' ) . '</label>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<select data-placeholder="' . __( 'Text Align', 'accelerated-mobile-pages' ) . '" class="redux-typography redux-typography-align ' . $this->field['class'] . '" original-title="' . __( 'Text Align', 'accelerated-mobile-pages' ) . '"  id="' . $this->field['id'] . '-align" name="' . $this->field['name'] . $this->field['name_suffix'] . '[text-align]' . '" data-value="' . $this->value['text-align'] . '" data-id="' . $this->field['id'] . '" >';
                 echo '<option value=""></option>';
 
@@ -354,6 +375,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                 );
 
                 foreach ( $align as $v ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<option value="' . $v . '" ' . selected( $this->value['text-align'], $v, false ) . '>' . ucfirst( $v ) . '</option>';
                 }
 
@@ -362,8 +384,11 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
             /* Text Transform */
             if ( $this->field['text-transform'] === true ) {
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="select_wrapper typography-transform tooltip" original-title="' . __( 'Text Transform', 'accelerated-mobile-pages' ) . '">';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Text Transform', 'accelerated-mobile-pages' ) . '</label>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<select data-placeholder="' . __( 'Text Transform', 'accelerated-mobile-pages' ) . '" class="redux-typography redux-typography-transform ' . $this->field['class'] . '" original-title="' . __( 'Text Transform', 'accelerated-mobile-pages' ) . '"  id="' . $this->field['id'] . '-transform" name="' . $this->field['name'] . $this->field['name_suffix'] . '[text-transform]' . '" data-value="' . $this->value['text-transform'] . '" data-id="' . $this->field['id'] . '" >';
                 echo '<option value=""></option>';
 
@@ -377,6 +402,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                 );
 
                 foreach ( $values as $v ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<option value="' . $v . '" ' . selected( $this->value['text-transform'], $v, false ) . '>' . ucfirst( $v ) . '</option>';
                 }
 
@@ -385,8 +411,11 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
             /* Font Variant */
             if ( $this->field['font-variant'] === true ) {
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="select_wrapper typography-font-variant tooltip" original-title="' . __( 'Font Variant', 'accelerated-mobile-pages' ) . '">';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Font Variant', 'accelerated-mobile-pages' ) . '</label>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<select data-placeholder="' . __( 'Font Variant', 'accelerated-mobile-pages' ) . '" class="redux-typography redux-typography-font-variant ' . $this->field['class'] . '" original-title="' . __( 'Font Variant', 'accelerated-mobile-pages' ) . '"  id="' . $this->field['id'] . '-font-variant" name="' . $this->field['name'] . $this->field['name_suffix'] . '[font-variant]' . '" data-value="' . $this->value['font-variant'] . '" data-id="' . $this->field['id'] . '" >';
                 echo '<option value=""></option>';
 
@@ -397,6 +426,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                 );
 
                 foreach ( $values as $v ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<option value="' . $v . '" ' . selected( $this->value['font-variant'], $v, false ) . '>' . ucfirst( $v ) . '</option>';
                 }
 
@@ -405,8 +435,11 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
 
             /* Text Decoration */
             if ( $this->field['text-decoration'] === true ) {
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="select_wrapper typography-decoration tooltip" original-title="' . __( 'Text Decoration', 'accelerated-mobile-pages' ) . '">';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Text Decoration', 'accelerated-mobile-pages' ) . '</label>';
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<select data-placeholder="' . __( 'Text Decoration', 'accelerated-mobile-pages' ) . '" class="redux-typography redux-typography-decoration ' . $this->field['class'] . '" original-title="' . __( 'Text Decoration', 'accelerated-mobile-pages' ) . '"  id="' . $this->field['id'] . '-decoration" name="' . $this->field['name'] . $this->field['name_suffix'] . '[text-decoration]' . '" data-value="' . $this->value['text-decoration'] . '" data-id="' . $this->field['id'] . '" >';
                 echo '<option value=""></option>';
 
@@ -420,6 +453,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                 );
 
                 foreach ( $values as $v ) {
+                     /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<option value="' . $v . '" ' . selected( $this->value['text-decoration'], $v, false ) . '>' . ucfirst( $v ) . '</option>';
                 }
 
@@ -429,8 +463,11 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
             /* Font Size */
             if ( $this->field['font-size'] === true ) {
                 echo '<div class="input_wrapper font-size redux-container-typography">';
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped    */
                 echo '<label>' . __( 'Font Size', 'accelerated-mobile-pages' ) . '</label>';
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="input-append"><input type="text" class="span2 redux-typography redux-typography-size mini typography-input ' . $this->field['class'] . '" title="' . __( 'Font Size', 'accelerated-mobile-pages' ) . '" placeholder="' . __( 'Size', 'accelerated-mobile-pages' ) . '" id="' . $this->field['id'] . '-size" name="' . $this->field['name'] . $this->field['name_suffix'] . '[font-size]' . '" value="' . str_replace( $unit, '', $this->value['font-size'] ) . '" data-value="' . str_replace( $unit, '', $this->value['font-size'] ) . '"><span class="add-on">' . $unit . '</span></div>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="typography-font-size" name="' . $this->field['name'] . $this->field['name_suffix'] . '[font-size]' . '" value="' . $this->value['font-size'] . '" data-id="' . $this->field['id'] . '"  />';
                 echo '</div>';
             }
@@ -438,8 +475,11 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
             /* Line Height */
             if ( $this->field['line-height'] === true ) {
                 echo '<div class="input_wrapper line-height redux-container-typography">';
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Line Height', 'accelerated-mobile-pages' ) . '</label>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="input-append"><input type="text" class="span2 redux-typography redux-typography-height mini typography-input ' . $this->field['class'] . '" title="' . __( 'Line Height', 'accelerated-mobile-pages' ) . '" placeholder="' . __( 'Height', 'accelerated-mobile-pages' ) . '" id="' . $this->field['id'] . '-height" value="' . str_replace( $unit, '', $this->value['line-height'] ) . '" data-value="' . str_replace( $unit, '', $this->value['line-height'] ) . '"><span class="add-on">' . $unit . '</span></div>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="typography-line-height" name="' . $this->field['name'] . $this->field['name_suffix'] . '[line-height]' . '" value="' . $this->value['line-height'] . '" data-id="' . $this->field['id'] . '"  />';
                 echo '</div>';
             }
@@ -447,8 +487,11 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
             /* Word Spacing */
             if ( $this->field['word-spacing'] === true ) {
                 echo '<div class="input_wrapper word-spacing redux-container-typography">';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Word Spacing', 'accelerated-mobile-pages' ) . '</label>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="input-append"><input type="text" class="span2 redux-typography redux-typography-word mini typography-input ' . $this->field['class'] . '" title="' . __( 'Word Spacing', 'accelerated-mobile-pages' ) . '" placeholder="' . __( 'Word Spacing', 'accelerated-mobile-pages' ) . '" id="' . $this->field['id'] . '-word" value="' . str_replace( $unit, '', $this->value['word-spacing'] ) . '" data-value="' . str_replace( $unit, '', $this->value['word-spacing'] ) . '"><span class="add-on">' . $unit . '</span></div>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="typography-word-spacing" name="' . $this->field['name'] . $this->field['name_suffix'] . '[word-spacing]' . '" value="' . $this->value['word-spacing'] . '" data-id="' . $this->field['id'] . '"  />';
                 echo '</div>';
             }
@@ -456,8 +499,11 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
             /* Letter Spacing */
             if ( $this->field['letter-spacing'] === true ) {
                 echo '<div class="input_wrapper letter-spacing redux-container-typography">';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Letter Spacing', 'accelerated-mobile-pages' ) . '</label>';
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div class="input-append"><input type="text" class="span2 redux-typography redux-typography-letter mini typography-input ' . $this->field['class'] . '" title="' . __( 'Letter Spacing', 'accelerated-mobile-pages' ) . '" placeholder="' . __( 'Letter Spacing', 'accelerated-mobile-pages' ) . '" id="' . $this->field['id'] . '-letter" value="' . str_replace( $unit, '', $this->value['letter-spacing'] ) . '" data-value="' . str_replace( $unit, '', $this->value['letter-spacing'] ) . '"><span class="add-on">' . $unit . '</span></div>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input type="hidden" class="typography-letter-spacing" name="' . $this->field['name'] . $this->field['name_suffix'] . '[letter-spacing]' . '" value="' . $this->value['letter-spacing'] . '" data-id="' . $this->field['id'] . '"  />';
                 echo '</div>';
             }
@@ -475,8 +521,11 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                 }
 
                 echo '<div class="picker-wrapper">';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<label>' . __( 'Font Color', 'accelerated-mobile-pages' ) . '</label>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<div id="' . $this->field['id'] . '_color_picker" class="colorSelector typography-color"><div style="background-color: ' . $this->value['color'] . '"></div></div>';
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<input data-default-color="' . $default . '" class="redux-color redux-typography-color ' . $this->field['class'] . '" original-title="' . __( 'Font color', 'accelerated-mobile-pages' ) . '" id="' . $this->field['id'] . '-color" name="' . $this->field['name'] . $this->field['name_suffix'] . '[color]' . '" type="text" value="' . $this->value['color'] . '" data-id="' . $this->field['id'] . '" />';
                 echo '</div>';
             }
@@ -499,7 +548,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                                 'font-style' => array( $this->value['font-weight'] . $this->value['font-style'] ),
                                 'subset'     => array( $this->value['subsets'] )
                             );
-
+/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
                             $protocol = ( ! empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443 ) ? "https:" : "http:";
 
                             wp_deregister_style( 'redux-typography-preview' );
@@ -520,7 +569,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                     //$g_size = '';
                     $inUse = '0';
                 }
-
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<p data-preview-size="' . $inUse . '" class="clear ' . $this->field['id'] . '_previewer typography-preview" ' . 'style="' . $style . '">' . $g_text . '</p>';
                 echo '</div>'; // end typography container
             }

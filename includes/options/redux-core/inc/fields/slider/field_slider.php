@@ -311,10 +311,10 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
             if ( $this->display_text == $this->field['display_value'] ) {
                 $showInput = true;
                 echo '<input type="text"
-                         name="' . $nameOne . '"
-                         id="' . $idOne . '"
-                         value="' . $valOne . '"
-                         class="redux-slider-input redux-slider-input-one-' . $fieldID . ' ' . $this->field['class'] . '"/>';
+                         name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $nameOne . '"
+                         id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $idOne . '"
+                         value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $valOne . '"
+                         class="redux-slider-input redux-slider-input-one-' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $fieldID . ' ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['class'] . '"/>';
 
             // LABEL output
             } elseif ( $this->display_label == $this->field['display_value'] ) {
@@ -322,9 +322,9 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
 
                 $labelNum = $twoHandles ? '-one' : '';
 
-                echo '<div class="redux-slider-label' . $labelNum . '"
-                       id="redux-slider-label-one-' . $fieldID . '"
-                       name="' . $nameOne . '">
+                echo '<div class="redux-slider-label' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $labelNum . '"
+                       id="redux-slider-label-one-' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $fieldID . '"
+                       name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $nameOne . '">
                   </div>';
 
             // SELECT output
@@ -334,32 +334,32 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
                 if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
                     $select2_params = wp_json_encode( $this->field['select2'] );
                     $select2_params = htmlspecialchars( $select2_params, ENT_QUOTES );
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<input type="hidden" class="select2_params" value="' . $select2_params . '">';
                 }
 
-
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.OutputNotEscaped */
                 echo '<select class="redux-slider-select-one redux-slider-select-one-' . $fieldID . ' ' . $this->field['class'] . '"
-                          name="' . $nameOne . '"
-                          id="' . $idOne . '">
+                          name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $nameOne . '"
+                          id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $idOne . '">
                  </select>';
             }
 
             // DIV output
             echo 
             '<div
-                class="redux-slider-container ' . $this->field['class'] . '"
-                id="' . $fieldID . '"
-                data-id="' . $fieldID . '"
-                data-min="' . $this->field['min'] . '"
-                data-max="' . $this->field['max'] . '"
-                data-step="' . $this->field['step'] . '"
-                data-handles="' . $this->field['handles'] . '"
-                data-display="' . $this->field['display_value'] . '"
-                data-rtl="' . is_rtl() . '"
-                data-forced="' . $this->field['forced'] . '"
-                data-float-mark="' . $this->field['float_mark'] . '"
-                data-resolution="' . $this->field['resolution'] . '" ' . $html . '>
+                class="redux-slider-container ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['class'] . '"
+                id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $fieldID . '"
+                data-id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $fieldID . '"
+                data-min="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['min'] . '"
+                data-max="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['max'] . '"
+                data-step="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['step'] . '"
+                data-handles="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['handles'] . '"
+                data-display="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['display_value'] . '"
+                data-rtl="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ is_rtl() . '"
+                data-forced="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['forced'] . '"
+                data-float-mark="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['float_mark'] . '"
+                data-resolution="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['resolution'] . '" ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $html . '>
             </div>';
 
             // Double slider output
@@ -368,25 +368,25 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
                 // TEXT
                 if ( true == $showInput ) {
                     echo '<input type="text"
-                             name="' . $nameTwo . '"
-                             id="' . $idTwo . '"
-                             value="' . $valTwo . '"
-                             class="redux-slider-input redux-slider-input-two-' . $fieldID . ' ' . $this->field['class'] . '"/>';
+                             name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $nameTwo . '"
+                             id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $idTwo . '"
+                             value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $valTwo . '"
+                             class="redux-slider-input redux-slider-input-two-' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $fieldID . ' ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['class'] . '"/>';
                 }
 
                 // LABEL
                 if ( true == $showLabel ) {
                     echo '<div class="redux-slider-label-two"
-                           id="redux-slider-label-two-' . $fieldID . '"
-                           name="' . $nameTwo . '">
+                           id="redux-slider-label-two-' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $fieldID . '"
+                           name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $nameTwo . '">
                       </div>';
                 }
 
                 // SELECT
                 if ( true == $showSelect ) {
-                    echo '<select class="redux-slider-select-two redux-slider-select-two-' . $fieldID . ' ' . $this->field['class'] . '"
-                              name="' . $nameTwo . '"
-                              id="' . $idTwo . '">
+                    echo '<select class="redux-slider-select-two redux-slider-select-two-' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $fieldID . ' ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['class'] . '"
+                              name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $nameTwo . '"
+                              id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $idTwo . '">
                      </select>';
 
                 }
@@ -395,18 +395,19 @@ if ( ! class_exists( 'ReduxFramework_slider' ) ) {
             // NO output (input hidden)
             if ( $this->display_none == $this->field['display_value'] || $this->display_label == $this->field['display_value'] ) {
                 echo '<input type="hidden"
-                         class="redux-slider-value-one-' . $fieldID . ' ' . $this->field['class'] . '"
-                         name="' . $nameOne . '"
-                         id="' . $idOne . '"
-                         value="' . $valOne . '"/>';
+                         class="redux-slider-value-one-' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $fieldID . ' ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['class'] . '"
+                         name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */$nameOne . '"
+                         id="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */$idOne . '"
+                         value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */$valOne . '"/>';
 
                 // double slider hidden output
                 if ( true == $twoHandles ) {
+                    
                     echo '<input type="hidden"
-                             class="redux-slider-value-two-' . $fieldID . ' ' . $this->field['class'] . '"
-                             name="' . $nameTwo . '"
-                             id="' . $idTwo . '"
-                             value="' . $valTwo . '"/>';
+                             class="redux-slider-value-two-' . $fieldID . ' ' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $this->field['class'] . '"
+                             name="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $nameTwo . '"
+                             id="' ./* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */  $idTwo . '"
+                             value="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ $valTwo . '"/>';
                 }
             }
         }

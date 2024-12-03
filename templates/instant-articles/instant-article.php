@@ -10,7 +10,7 @@
         <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=<?php echo esc_attr(ampforwp_get_ia_ad_density()); ?>">
       <?php } ?>
       <?php if ( isset($redux_builder_amp['fbia-header-text-area']) && $redux_builder_amp['fbia-header-text-area'] ) {
-          echo $redux_builder_amp['fbia-header-text-area'];
+          /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $redux_builder_amp['fbia-header-text-area'];
       }do_action('ampforwp_fbia_head');?>
     </head>
     <body>
@@ -34,7 +34,7 @@
         <time class="op-published" datetime="<?php echo get_the_date("c"); ?>"><?php echo get_the_date(get_option('date_format') . ", " . get_option('time_format')); ?></time>
 
         <!-- modification date/time -->
-        <time class="op-modified" datetime="<?php echo get_the_modified_date("c"); ?>"><?php echo get_the_modified_date(get_option('date_format') . ", " . get_option('time_format')); ?></time>
+        <time class="op-modified" datetime="<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_modified_date("c"); ?>"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo get_the_modified_date(get_option('date_format') . ", " . get_option('time_format')); ?></time>
         <?php if ( true == $redux_builder_amp['ampforwp-instant-article-author-meta'] ) { ?>
           <!-- author(s) -->
             <address>
@@ -45,13 +45,13 @@
         <?php if(has_post_thumbnail($post->ID)):
           $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
           $attachment = get_post(get_post_thumbnail_id($post->ID));
-          $thumbnail_url = $thumb[0];
+          $thumbnail_url = isset( $thumb[0] ) ? $thumb[0] : '';
         ?>
                     <figure>
-                        <img src="<?php echo esc_url($thumbnail_url); ?>" />
+                        <img src="<?php echo esc_url($thumbnail_url); // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>" />
                         <?php if (strlen(apply_filters("the_content", $attachment->post_excerpt)) > 0):
                             if ( $attachment->post_excerpt ) { ?>
-                                <figcaption><?php echo apply_filters("the_content", $attachment->post_excerpt); ?></figcaption>
+                                <figcaption><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo apply_filters("the_content", $attachment->post_excerpt); ?></figcaption>
                                 <?php 
                             }
                         endif; ?>
@@ -82,39 +82,42 @@
                           } ?>
                             <!-- facebook custom embed ad -->
                             <figure class="op-ad">
-                                <iframe width="300" height="250" style="border:0; margin:0;"><?php echo $redux_builder_amp['fb-instant-article-custom-embed-ad']; ?></iframe>
+                                <iframe width="300" height="250" style="border:0; margin:0;"><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $redux_builder_amp['fb-instant-article-custom-embed-ad']; ?></iframe>
                             </figure>
                    <?php } } ?>
             </header>
 
             <!-- body -->
             <?php if ( isset($redux_builder_amp['fbia-body-text-area']) && $redux_builder_amp['fbia-body-text-area'] ) {
-              echo $redux_builder_amp['fbia-body-text-area'];
+             /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */  echo $redux_builder_amp['fbia-body-text-area'];
             }do_action('ampforwp_fbia_body');?>
             <?php
             global $more;
             // Make it 1 to allow the full article
             $more = 1; 
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
             echo apply_filters('ampforwp_fbia_content', apply_filters('the_content', get_the_content())); ?>
             <?php if (isset($redux_builder_amp['fb-instant-article-analytics']) && $redux_builder_amp['fb-instant-article-analytics'] ){
                   if(isset($redux_builder_amp['fb-instant-article-analytics-code']) && $redux_builder_amp['fb-instant-article-analytics-code'] ) {?>
                       <!-- Analytics code -->
                           <figure class="op-tracker">
                             <iframe>
-                              <?php echo ampforwp_get_ia_analytics_code(); ?>
+                              <?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo ampforwp_get_ia_analytics_code(); ?>
                             </iframe>
                           </figure>
             <?php } } ?>
             <footer>
               <?php if ( isset($redux_builder_amp['fbia-footer-text-area']) && $redux_builder_amp['fbia-footer-text-area'] ) {
-                  echo $redux_builder_amp['fbia-footer-text-area'];
+                 /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */  echo $redux_builder_amp['fbia-footer-text-area'];
               }do_action('ampforwp_fbia_footer');?>
               <?php if( isset($redux_builder_amp['ampforwp-ia-related-articles']) && true == $redux_builder_amp['ampforwp-ia-related-articles'] ) {
                 if ( ! empty( $categories ) ) { 
                   $categories_ids = wp_list_pluck( $categories, 'term_id' );
                   // Get the four latest posts.
+                  
                   $query_args = array(
                     'category__in'           => $categories_ids,
+                    /* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
                     'post__not_in'           => array( get_the_ID() ),
                     'posts_per_page'         => 4, // FB uses 4 related articles.
                     'ignore_sticky_posts'    => true, // Turn off sticky posts.

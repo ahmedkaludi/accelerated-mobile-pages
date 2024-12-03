@@ -309,6 +309,7 @@ function ampforwp_gdpr_css(){
 <?php }
 
 function amp_consent_submission(){
+	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 	if(isset($_REQUEST['verify_nonce']) && wp_verify_nonce( wp_unslash($_REQUEST['verify_nonce']), 'amp_consent' ) ) {
 		//setcookie('ampforwp_gdpr_action','true', time() + (86400 * 30), "/");
        	$current_url = $site_url = $site_host = $amp_site = '';

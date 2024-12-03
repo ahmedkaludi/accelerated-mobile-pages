@@ -20,14 +20,18 @@ if( isset( $redux_builder_amp['ampforwp-single-order-of-related-posts'] ) && $re
 if( $current_post_type = get_post_type( $post )) {
 // The query arguments
 	if($current_post_type != 'page'){
+		
+		
     $args = array(
     	'fields'=>'ids',
         'posts_per_page'=> $int_number_of_related_posts,
+		/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
         'post__not_in' => array($post->ID),
         'order' => 'DESC',
         'orderby' => $orderby,
         'post_type' => $current_post_type,
         'no_found_rows' 	  => true,
+		/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
         'meta_query' => array(
 					array(
 						'key'        => 'ampforwp-amp-on-off',
@@ -44,6 +48,7 @@ if(ampforwp_get_setting('ampforwp-single-select-type-of-related')==2){
 	if ($categories) {
 		$category_ids = array();
 		foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
+		
 		$args=array(
 			'fields'=>'ids',
 		    'category__in'		 => $category_ids,
@@ -53,6 +58,7 @@ if(ampforwp_get_setting('ampforwp-single-select-type-of-related')==2){
 			'post_status'		 => 'publish',
 			'no_found_rows' 	  => true,
 			'orderby' 			 => $orderby,
+			/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
 		    'meta_query' => array(
 		    	array(
 		    		'key' => 'ampforwp-amp-on-off',
@@ -68,17 +74,21 @@ if(ampforwp_get_setting('ampforwp-single-select-type-of-related')==1) {
 	if ($ampforwp_tags) {
 			$tag_ids = array();
 			foreach($ampforwp_tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+			
+			
 				$args=array(
 					'fields'=>'ids',
 				   'tag__in' 			 => $tag_ids,
 				   
 				    'posts_per_page'	 => $int_number_of_related_posts,
+					/* phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in */
 				    'post__not_in' => array($post->ID),
 				    'ignore_sticky_posts'=> 1,
 						'has_password' 	 => false ,
 						'post_status'	 => 'publish',
 						'no_found_rows' 	  => true,
 						'orderby' 		 => $orderby,
+						/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
                        'meta_query' => array(
 							array(
 								'key'        => 'ampforwp-amp-on-off',

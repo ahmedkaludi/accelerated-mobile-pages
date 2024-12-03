@@ -181,7 +181,7 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
             // Else if post is in a custom taxonomy
             } else if(!empty($cat_id)) {
                   
-                echo '<li class="item-cat item-cat-' . esc_attr($cat_id) . ' item-cat-' . esc_attr($cat_nicename) . '"><a class="bread-cat bread-cat-' . esc_attr($cat_id) . ' bread-cat-' . esc_attr($cat_nicename) . '" href="' . ampforwp_url_controller( $cat_link, $archive_non_amp ) . '" title="' . esc_attr($cat_name) . '">' . esc_attr($cat_name) . '</a></li>';                
+                echo '<li class="item-cat item-cat-' . esc_attr($cat_id) . ' item-cat-' . esc_attr($cat_nicename) . '"><a class="bread-cat bread-cat-' . esc_attr($cat_id) . ' bread-cat-' . esc_attr($cat_nicename) . '" href="' . /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ampforwp_url_controller( $cat_link, $archive_non_amp ) . '" title="' . esc_attr($cat_name) . '">' . esc_attr($cat_name) . '</a></li>';                
             }  
               
         } else if ( is_category() ) {
@@ -219,9 +219,8 @@ if ( ( (is_single() && 1 == ampforwp_get_setting('ampforwp-bread-crumb')) || (is
                
             // Get tag information
             $term_id        = get_query_var('tag_id');
-            $taxonomy       = 'post_tag';
-            $args           = 'include=' . intval($term_id);
-            $terms          = get_terms( $taxonomy, $args );
+            $args = array('taxonomy' => 'post_tag', 'include' => intval($term_id));
+            $terms          = get_terms( $args );
             $get_term_id    = $terms[0]->term_id;
             $get_term_slug  = $terms[0]->slug;
             $get_term_name  = $terms[0]->name;

@@ -41,7 +41,9 @@ function ampforwp_minify_html_output($content_buffer){
         $content_buffer = preg_replace('/&lt;/', '<', $content_buffer);
         $content_buffer = preg_replace('/&gt;/', '>', $content_buffer);
     }
+    /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
     if(function_exists('googlesitekit_activate_plugin') && preg_match('/<script custom-element="amp-auto-ads"(.*?)src="(.*?)" async><\/script>(.*?)<amp-auto-ads/', $content_buffer)==0){
+        /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
         $content_buffer = preg_replace('/<script custom-element="amp-auto-ads"(.*?)src="(.*?)" async><\/script>/', '', $content_buffer);
     }
     if(preg_match('/<form(.*?)for="categories-dropdown-(.*?)"(.*?)class="postform(.*?)>/', $content_buffer)){
@@ -51,7 +53,9 @@ function ampforwp_minify_html_output($content_buffer){
     if (function_exists('aioseo_pro_just_activated') && preg_match('/<link rel="canonical" href="([^>]*)\/amp\/" \/>/', $content_buffer)) {
         $content_buffer = preg_replace('/<link rel="canonical" href="([^>]*)\/amp\/" \/>/','<link rel="canonical" href="$1/" />', $content_buffer);
     }
+    /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
     if(preg_match('/<script(.*?)src="https:\/\/www.google-analytics.com\/analytics.js"><\/script>/', $content_buffer)){
+        /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */
         $content_buffer = preg_replace('/<script(.*?)src="https:\/\/www.google-analytics.com\/analytics.js"><\/script>/', '', $content_buffer);
     }
     if(preg_match('/<blockquote class="imgur-embed(.*?)"(.*?)data-id="(.*?)"(.*?)<\/blockquote>/', $content_buffer)){
@@ -88,6 +92,7 @@ function ampforwp_minify_html_output($content_buffer){
         $content_buffer = preg_replace('/<lite-youtube(.*?)videoid="(.*?)"(.*?)><\/lite-youtube>/', '<amp-youtube width="480" height="270" layout="responsive" data-videoid="$2"></amp-youtube>', $content_buffer);
     }    
     if (function_exists('qoxag_setup')) {
+        /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet */
         $content_buffer = preg_replace('/<link rel="stylesheet"(.*?)href="(.*?).css">/', '', $content_buffer);
     }
     if(preg_match('/<fw-embed-feed(.*?)<\/fw-embed-feed>/', $content_buffer)){
@@ -228,9 +233,10 @@ if( true == ampforwp_get_setting('ampforwp_leverage_browser_caching_mode')){
 function ampforwp_leverage_browser_caching_remove(){
     $htaccess_file = wp_normalize_path( ABSPATH . '.htaccess' );
     if ( file_exists( $htaccess_file ) ) {
-
+/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable */
         if ( is_readable( $htaccess_file ) && is_writable( $htaccess_file ) ) {
             $unique_string    = 'AMPFORWPLBROWSERCSTART';
+            /* phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents */
             $htaccess_cntn    = file_get_contents( $htaccess_file );
             $valid            = false;
 
@@ -241,6 +247,7 @@ function ampforwp_leverage_browser_caching_remove(){
                 $pattern          = '/#\s?AMPFORWPLBROWSERCSTART.*?AMPFORWPLBROWSERCEND/s';
                 $htaccess_cntn    = preg_replace( $pattern, '', $htaccess_cntn );
                 $htaccess_cntn    = preg_replace( "/\n+/","\n", $htaccess_cntn );
+                /* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents */
                 file_put_contents( $htaccess_file, $htaccess_cntn );
             }
         } else {
@@ -254,8 +261,10 @@ function ampforwp_leverage_browser_caching(){
     global $pagenow;
     $htaccess_file = wp_normalize_path( ABSPATH . '.htaccess' );
     if ( file_exists( $htaccess_file ) ) {
+        /* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable */
         if ( is_readable( $htaccess_file ) && is_writable( $htaccess_file ) ) {
             $unique_string    = 'AMPFORWPLBROWSERCSTART';
+            /* phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents */
             $htaccess_cntn    = file_get_contents( $htaccess_file );
             $valid            = false;
             if ( strpos( $htaccess_cntn, $unique_string ) !== false ) {
@@ -263,16 +272,17 @@ function ampforwp_leverage_browser_caching(){
             }
             if ( ! $valid ) {
                 $htaccess_cntn = $htaccess_cntn . ampforwp_code_to_add_in_htaccess();
+                /* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents */
                 file_put_contents( $htaccess_file, $htaccess_cntn );
             }
         } else {
-            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+            /* phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
             if( $pagenow == 'admin.php' && isset($_GET['page']) && esc_attr($_GET['page']) == 'amp_options'){
                 add_action( 'admin_notices', 'ampforwp_no_htaccess_access_notice' );
             }
         }
     }else {
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+        /* phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
         if( $pagenow == 'admin.php' && isset($_GET['page']) && esc_attr($_GET['page']) == 'amp_options'){
             add_action( 'admin_notices', 'ampforwp_no_htaccess_notice');
         }
@@ -433,6 +443,7 @@ if( !function_exists("ampforwp_clear_tree_shaking") ) {
 		}
         $nonceCheck = false;
         if(isset($_GET['nonce'])){
+            /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
             $nonceCheck = wp_verify_nonce( $_GET['nonce'], 'ampforwp_clear_tree_shaking' );
         }	
 		if ( is_admin() && ( ( $nonceCheck && ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) && $options == '' ) || ( count( $changed_values ) != 0 && (ampforwp_get_setting( 'ampforwp_css_tree_shaking' ) || isset($changed_values['ampforwp_css_tree_shaking'])) ) ) ) {

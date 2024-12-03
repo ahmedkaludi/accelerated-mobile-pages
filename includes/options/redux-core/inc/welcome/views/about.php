@@ -2,6 +2,7 @@
     <h1>
         <?php 
             /* translators: %s: version */
+            /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
             printf( __( 'Welcome to Redux Framework %s', 'accelerated-mobile-pages' ), $this->display_version ); 
         ?>
     </h1>
@@ -9,11 +10,13 @@
     <div
         class="about-text"><?php 
         /* translators: %s: version */
+        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
         printf( __( 'Thank you for updating to the latest version! Redux Framework %s is a huge step forward in Redux Development. Look at all that\'s new.', 'accelerated-mobile-pages' ), $this->display_version ); ?></div>
     <div
         class="redux-badge"><i
             class="el el-redux"></i><span>
                 <?php /* translators: %s: version */
+                /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.WP.I18n.MissingTranslatorsComment */
             printf( __( 'Version %s', 'accelerated-mobile-pages' ), ReduxFramework::$_version ); ?></span>
     </div>
 

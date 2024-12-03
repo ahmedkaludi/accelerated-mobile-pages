@@ -125,6 +125,7 @@ function amp_title(){
 		$title_tag = apply_filters('ampforwp_modify_title_tag',$title_tag,$ampforwp_title);
 		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $title_tag; // Escaped above 
+		do_action('ampforwp_post_subtitle');
 		do_action('ampforwp_below_the_title');
     }
 }
@@ -627,9 +628,7 @@ function amp_date( $args=array() ) {
 		global $fontComponent;
 		if(count($fontComponent)){
 			$fontComponent = array_unique($fontComponent);
-			foreach ($fontComponent as $key => $value) {
-			?>
-			<link rel="stylesheet" href="<?php echo esc_url( $value ); ?>">
+			foreach ($fontComponent as $key => $value) { /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet */ ?><link rel="stylesheet" href="<?php echo esc_url( $value ); ?>">
 			<?php		
 			}
 		}
@@ -711,6 +710,12 @@ function ampforwp_backtotop_global_css(){?>
     word-break: break-word;
     word-wrap: break-word;
 	}
+	h2.amp-wp-sub-title {
+    word-break: break-word;
+    word-wrap: break-word;
+	}
+	h2.amp-wp-sub-title{ font-size: 20px;line-height: 1.4em; margin-top: 0px;color: #a0a0a0; }
+	h2.amp-wp-sub-title.center{text-align:center}
 	@media (min-width: 768px){
 	.artl-cnt .wp-block-column {
 		max-width: 100%;

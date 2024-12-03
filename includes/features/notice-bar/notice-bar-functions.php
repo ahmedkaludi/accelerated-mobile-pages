@@ -16,7 +16,7 @@ if(is_plugin_active('amp/amp.php')){
 	    if($redux_builder_amp==null){
 				$redux_builder_amp = get_option('redux_builder_amp',true);
 		}
-		echo "<script type='text/javascript' src='https://cdn.ampproject.org/v0/amp-geo-0.1.js' async custom-element=\"amp-geo\"></script>";
+		 /* phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript */ echo "<script type='text/javascript' src='https://cdn.ampproject.org/v0/amp-geo-0.1.js' async custom-element=\"amp-geo\"></script>";
 		 
 	}
 }//if end

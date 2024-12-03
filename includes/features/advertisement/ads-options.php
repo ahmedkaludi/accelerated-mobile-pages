@@ -20,8 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="ads-baner">
         <span class="adt-top">'.esc_html__('The Best AMP integration for Advertisement', 'accelerated-mobile-pages').'</span>
         <div class="ads-baner-inner">
-            <span>'.esc_html__('INTRODUCING', 'accelerated-mobile-pages').'</span>
-            <img class="ampforwp-quads-logo" src="'.AMPFORWP_IMAGE_DIR . '/wpquads-logo.png" width="180" height="42" />
+            <span>'.esc_html__('INTRODUCING', 'accelerated-mobile-pages').'</span>'./* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */'<img class="ampforwp-quads-logo" src="'.AMPFORWP_IMAGE_DIR . '/wpquads-logo.png" width="180" height="42" />
             <div class="list-of-feat">
                 <ul>
                     <li>

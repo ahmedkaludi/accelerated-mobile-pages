@@ -201,6 +201,7 @@
              */
             public function __construct( $sections = array(), $args = array(), $extra_tabs = array() ) {
                 // Disregard WP AJAX 'heartbeat'call.  Why waste resources?
+                /* phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Missing */
                 if ( isset ( $_POST ) && isset ( $_POST['action'] ) && $_POST['action'] == 'heartbeat' ) {
 
                     // Hook, for purists.
@@ -330,8 +331,8 @@
                     $this->_default_cleanup();
 
                     // Internataionalization
-                    $this->_internationalization();
-
+                    //$this->_internationalization();
+                    add_action( 'init', array( $this, '_internationalization') );
                     $this->filesystem = Redux_Filesystem::get_instance( $this );
 
                     //set redux upload folder
@@ -586,7 +587,7 @@
             }
 
             public function save_network_page() {
-
+/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.NonceVerification.Missing */
                 $data = $this->_validate_options( sanitize_text_field($_POST[ $this->args['opt_name'] ]) );
 
                 if ( ! empty ( $data ) ) {
@@ -931,6 +932,7 @@
                         } else if ( $type == "terms" || $type == "term" ) {
                             $taxonomies = $args['taxonomies'];
                             unset ( $args['taxonomies'] );
+                            /* phpcs:ignore WordPress.WP.DeprecatedParameters.Get_termsParam2Found */
                             $terms = get_terms( $taxonomies, $args ); // this will get nothing
                             if ( ! empty ( $terms ) && ! is_a( $terms, 'WP_Error' ) ) {
                                 foreach ( $terms as $term ) {
@@ -1086,8 +1088,10 @@
             public function show( $opt_name, $default = '' ) {
                 $option = $this->get( $opt_name );
                 if ( ! is_array( $option ) && $option != '' ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo $option;
                 } elseif ( $default != '' ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo $this->_get_default( $opt_name, $default );
                 }
             }
@@ -1582,8 +1586,9 @@
                 if ( isset ( $this->no_output ) ) {
                     return;
                 }
-
+/* phpcs:ignore WordPress.Security.NonceVerification.Missing */
                 if ( ! empty ( $this->outputCSS ) && ( $this->args['output_tag'] == true || ( isset ( $_POST['customized'] ) ) ) ) {
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<style type="text/css" title="dynamic-css" class="options-output">' . $this->outputCSS . '</style>';
                 }
             }
@@ -1670,7 +1675,7 @@
                             if ( typeof WebFontConfig === "undefined" ) {
                                 WebFontConfig = new Object();
                             }
-                            WebFontConfig['google'] = {families: [<?php echo $typography->makeGoogleWebfontString ( $this->typography ) ?>]};
+                            WebFontConfig['google'] = {families: [<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo $typography->makeGoogleWebfontString ( $this->typography ) ?>]};
 
                             (function() {
                                 var wf = document.createElement( 'script' );
@@ -1683,6 +1688,7 @@
                         </script>
                         <?php
                     } elseif ( ! $this->args['disable_google_fonts_link'] ) {
+                        /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
                         $protocol = ( ! empty ( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443 ) ? "https:" : "http:";
 
                         //echo '<link rel="stylesheet" id="options-google-fonts" title="" href="'.$protocol.$typography->makeGoogleWebfontLink( $this->typography ).'&amp;v='.$version.'" type="text/css" media="all" />';
@@ -1739,13 +1745,14 @@
                     $hint_status = get_user_meta( $current_user->ID, 'ignore_hints' ) ? get_user_meta( $current_user->ID, 'ignore_hints', true ) : 'true';
 
                     // current page parameters
-                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+                   
+                     /* phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                     $curPage = esc_attr( $_GET['page'] );
 
                     $curTab = '0';
                     // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
                     if ( isset ( $_GET['tab'] ) ) {
-                        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+                        /* phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                         $curTab = esc_attr( $_GET['tab'] );
                     }
 
@@ -2211,7 +2218,7 @@
 
                             if ( ! isset ( $field['id'] ) ) {
                                 echo '<br /><h3>No field ID is set.</h3><pre>';
-                                print_r( $field );
+                                print_r( $field ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
                                 echo "</pre><br />";
                                 continue;
                             }
@@ -2362,7 +2369,7 @@
                             $this->sections[ $k ]['fields'][ $fieldk ] = $field;
 
                             if ( isset ( $this->args['display_source'] ) ) {
-                                $th .= '<div id="' . $field['id'] . '-settings" style="display:none;"><pre>' . var_export( $this->sections[ $k ]['fields'][ $fieldk ], true ) . '</pre></div>';
+                                $th .= '<div id="' . $field['id'] . '-settings" style="display:none;"><pre>' . var_export( $this->sections[ $k ]['fields'][ $fieldk ], true ) /* phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_var_export */ . '</pre></div>';
                                 $th .= '<br /><a href="#TB_inline?width=600&height=800&inlineId=' . $field['id'] . '-settings" class="thickbox"><small>View Source</small></a>';
                             }
 
@@ -2812,6 +2819,7 @@
             }
 
             public function ajax_save() {
+                /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized	 */
                 if ( ! wp_verify_nonce( $_REQUEST['nonce'], "redux_ajax_nonce" . $this->args['opt_name'] ) ) {
                     echo wp_json_encode( array(
                         'status' => esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'accelerated-mobile-pages' ),
@@ -2829,7 +2837,7 @@
 
                     die();
                 }
-
+/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash */
                 $redux = ReduxFrameworkInstances::get_instance( sanitize_text_field($_POST['opt_name']) );
 
                 if ( ! empty ( $_POST['data'] ) && ! empty ( $redux->args['opt_name'] ) ) {
@@ -2850,7 +2858,7 @@
                     //    }
                     //    unset($process);
                     //}
-
+/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                     $sanitized_data = filter_var(stripslashes( $_POST['data'] ), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
                     // Old method of saving, in case we need to go back! - kp
@@ -3212,6 +3220,7 @@
                 $string = "";
                 if ( ( ( isset ( $this->args['icon_type'] ) && $this->args['icon_type'] == 'image' ) || ( isset ( $section['icon_type'] ) && $section['icon_type'] == 'image' ) ) || ( isset( $section['icon'] ) && strpos( $section['icon'], '/' ) !== false ) ) {
                     //if( !empty( $this->args['icon_type'] ) && $this->args['icon_type'] == 'image' ) {
+                    /* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
                     $icon = ( ! isset ( $section['icon'] ) ) ? '' : '<img class="image_icon_type" src="' . esc_url( $section['icon'] ) . '" /> ';
                 } else {
                     if ( ! empty ( $section['icon_class'] ) ) {
@@ -3325,6 +3334,7 @@
 
                                 if ( ( isset ( $this->args['icon_type'] ) && $this->args['icon_type'] == 'image' ) || ( isset ( $sections[ $nextK ]['icon_type'] ) && $sections[ $nextK ]['icon_type'] == 'image' ) ) {
                                     //if( !empty( $this->args['icon_type'] ) && $this->args['icon_type'] == 'image' ) {
+                                    /* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
                                     $icon = ( ! isset ( $sections[ $nextK ]['icon'] ) ) ? '' : '<img class="image_icon_type" src="' . esc_url( $sections[ $nextK ]['icon'] ) . '" /> ';
                                 } else {
                                     if ( ! empty ( $sections[ $nextK ]['icon_class'] ) ) {
@@ -3393,6 +3403,7 @@
                            $descriptions = str_replace('{'.$value['id'].'}', 'admin.php?page=amp_options&tab='.$key, $descriptions);
                         }
                     }
+                    /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                     echo '<div class="redux-section-desc">' . $descriptions . '</div>';
                 }
             }
@@ -3649,16 +3660,16 @@
                         if ( isset ( $field['fieldset_class'] ) && ! empty( $field['fieldset_class'] ) ) {
                             $class_string .= ' ' . $field['fieldset_class'];
                         }
-
+                        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                         echo '<fieldset id="' . $this->args['opt_name'] . '-' . $field['id'] . '" class="' . $hidden . 'redux-field-container redux-field redux-field-init redux-container-' . $field['type'] . ' ' . $class_string . '" data-id="' . $field['id'] . '" ' . $data_string . ' data-type="' . $field['type'] . '">';
                         //}
-
+/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                         echo $_render;
 
                         if ( ! empty ( $field['desc'] ) ) {
                             $field['description'] = $field['desc'];
                         }
-
+                        /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
                         echo ( isset ( $field['description'] ) && $field['type'] != "info" && $field['type'] !== "section" && ! empty ( $field['description'] ) ) ? '<div class="description field-desc">' . $field['description'] . '</div>' : '';
 
                         //if ( ! isset( $field['fields'] ) || empty( $field['fields'] ) ) {

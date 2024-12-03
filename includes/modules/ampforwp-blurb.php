@@ -66,6 +66,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 		foreach( $features as $feature ) {
 			$output .= '<div class="clmn">';
 				if ( $feature['image'] ) {
+					/* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */
 					$output .= '<img src="'. esc_url($feature['image']) .'" height="80" width="80" alt="" />';
 				} 
                 $output .= '<div class="amp_cb_content">';
@@ -152,6 +153,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][image]'; ?>"><?php esc_html_e( 'Image:', 'accelerated-mobile-pages' ); ?></label>
 								<input type="button" class="select-img-<?php echo esc_attr($c);?> button left" style="width:auto;" value="Select Image" onclick="ampSelectImage('<?php echo esc_attr($c);?>');"/>
 								<input type="button" style="display:none" name="removeimg" id="remove-img-<?php echo esc_attr($c);?>" class="button button-secondary remove-img-button" data-count-type="<?php echo esc_attr($c);?>"  value="Remove Image" onclick="removeImage('<?php echo esc_attr($c);?>')">
+								<?php /* phpcs:ignore 	PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */?>
 								<img src="<?php echo esc_url($instance['features']["$c"]['image'])  ?>" class="preview-image block-image-<?php echo esc_attr($c);?>" >
 								<input type="hidden" id="amp-img-field-<?php echo esc_attr($c);?>" class="img<?php echo esc_attr($c);?>" style="width:auto;" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][image]'; ?>" id="<?php echo esc_attr($this->get_field_name( 'features' )) . '['. esc_attr( $c ) .'][image]';?>'" value="<?php echo esc_attr($instance['features']["$c"]['image'])  ?>" />
 							</p>
@@ -185,7 +187,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
         wp_enqueue_style('thickbox');
         $builder_data['amp_icon_check'] = AMPFORWP_IMAGE_DIR . '/amp-icon-check.png';
         wp_localize_script( 'ampforwp-builder-script', 'builder_script_data', $builder_data );
-		wp_enqueue_script( 'ampforwp-builder-script',  plugins_url('/modules/js/amp.js' , dirname(__FILE__) ) , array( 'jquery' ), false, true );
+		wp_enqueue_script( 'ampforwp-builder-script',  plugins_url('/modules/js/amp.js' , dirname(__FILE__) ) , array( 'jquery' ), AMPFORWP_VERSION, true );
 
 	} // end register_admin_scripts
 

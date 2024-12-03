@@ -11,9 +11,11 @@ do_action('ampforwp_above_the_title',$this); ?>
 	if(!empty($ampforwp_title) && ampforwp_default_logo() && ampforwp_get_setting('opt-media','url')!=''){
 	?>
 	<h1 class="amp-wp-title"><?php echo wp_kses_data( $ampforwp_title );?></h1>
+	<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle'); ?>
 	<?php
 	}else{?>
 		<h2 class="amp-wp-title"><?php echo wp_kses_data( $ampforwp_title );?></h2>
+		<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ echo do_action('ampforwp_post_subtitle','center'); ?>
 	<?php }
 	?>
 	<?php if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
