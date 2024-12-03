@@ -37,6 +37,8 @@ if ( ! class_exists( 'ReduxFramework_repeater' ) ) {
         public $parent;
         public $field;
         public $value;
+        public $add_text;
+        public $show_empty;
         /**
          * Field Constructor.
          * Required - must call the parent constructor, then assign field and value to vars, and obviously call the render field function
