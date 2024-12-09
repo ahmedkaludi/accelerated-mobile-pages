@@ -1,4 +1,4 @@
-# AMP for WP - Accelerated Mobile Pages ===
+# AMP for WP - Accelerated Mobile Pages
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp  
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO  
 Donate link: https://www.paypal.me/Kaludi/25  
@@ -133,7 +133,7 @@ PHP CSS Parser library used https://github.com/sabberworm/PHP-CSS-Parser - Licen
 AMP Optimizer library used https://github.com/ampproject/amp-toolbox/tree/main/packages/optimizer - License URI: https://github.com/ampproject/amp-toolbox#license (AMP Toolbox is made by the AMP Project, and is licensed under the Apache License, Version 2.0.)
 GA4 Code used from https://github.com/analytics-debugger/google-analytics-4-for-amp - License URI: https://github.com/analytics-debugger/google-analytics-4-for-amp/blob/main/LICENSE
 
-### Installation ==
+### Installation
 
 **[Visit Help area for the Documentation:](https://ampforwp.com/help/)**
 
