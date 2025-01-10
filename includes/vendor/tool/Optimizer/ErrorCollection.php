@@ -64,7 +64,7 @@ final class ErrorCollection implements Countable, IteratorAggregate
      *
      * @return int Number of contained errors.
      */
-    public function count()
+    public function count():int
     {
         return count($this->errors);
     }
