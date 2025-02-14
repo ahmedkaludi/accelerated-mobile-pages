@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.7
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,13 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
 
 == Changelog ==
+= 1.1.3 (14 February 2025) =
+* Fixed: PHP Deprecated: error with AMP #5669
+* Fixed: Fatal error on user end  #5673
+* Fixed: Error in debug log. #5676
+* Fixed: Submit button issue with Amp Ninja Form extension #5667
+* Fixed: Need to added the feature in AMP CTA customize button location #5674
+
 = 1.1.2 (03 December 2024) =
 * New: Jetpack related post not showing on AMP #5575
 * New: Add a new feature to add Whatsapp Group links to Floating Buttons for AMP #5649
@@ -416,13 +423,5 @@ Device testing done through [BrowserStack](https://www.browserstack.com)
 * Fixed: Validation error while using the JetPack Boost plugin issue resolved #5391
 * Fixed: Warning: Cannot modify header information - headers already sent issue resolved #5394
 * Fixed: Product Base Remover not working properly with ?amp issue resolved #5397
-
-= 1.0.80 (10th February 2023) =
-* Improvements: Added Support for Google Analytics 4 #4793 (Thanks to David Vallejo)
-* Improvements: Added 3D Viewer plugin compatibility #5372
-* Fixed: Getting error Attribute 'visible-when-invalid' missing or incorrect issue resolved #5382
-* Fixed: AMP version removing the "\_blank" attribute #5383
-* Fixed: Autoplay is not working #5386
-* Fixed: Uncaught TypeError: count() Argument #1 must be of type Countable|array issue resolved #5388
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

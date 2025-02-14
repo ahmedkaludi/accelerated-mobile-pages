@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.7
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -195,6 +195,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.1.3 (14 February 2025) =
+* Fixed: PHP Deprecated: error with AMP #5669
+* Fixed: Fatal error on user end  #5673
+* Fixed: Error in debug log. #5676
+* Fixed: Submit button issue with Amp Ninja Form extension #5667
+* Fixed: Need to added the feature in AMP CTA customize button location #5674
+
 = 1.1.2 (03 December 2024) =
 * New: Jetpack related post not showing on AMP #5575
 * New: Add a new feature to add Whatsapp Group links to Floating Buttons for AMP #5649
@@ -336,8 +343,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Various deprecated warning in PHP 8.2+ related to dynamic property creation #5515
 * Fixed: Added post data variables in GTM advanced code #5498
 
-= 1.0.88.1 (24nd August 2023) =
-* Fixed: AMP for WP Update Causes Dashboard Notices and Warnings #5508
-* Fixed: Breadcrumb icon broken of design 3 #5509
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
