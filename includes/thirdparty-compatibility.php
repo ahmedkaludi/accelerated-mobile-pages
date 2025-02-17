@@ -141,7 +141,7 @@ function ampforwp_prepre_jetpack_related_post($get_related_post,$jprp_settings){
 	$headline = $jprp_settings['headline'];
 	
 	$jetpack_rp_content = '';
-	$jetpack_rp_content = '<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;">';
+	$jetpack_rp_content = '<div id="ampforwp-jp-relatedposts" class="jp-relatedposts">';
 	if($show_headline==true){
 		$jetpack_rp_content .= '<h3 class="jp-relatedposts-headline"><em>'.$headline.'</em></h3>';
 	}

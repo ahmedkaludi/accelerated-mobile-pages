@@ -6,7 +6,7 @@ Requires at least: 3.0
 Tested up to: 6.7  
 Stable tag: 1.1.2  
 License: GPLv2 or later  
-License URI: http://www.gnu.org/licenses/gpl-2.0.html  
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 AMP for WP is the most recommended AMP plugin by the community. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
 
@@ -201,6 +201,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
-
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
