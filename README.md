@@ -1,16 +1,17 @@
-=== AMP for WP - Accelerated Mobile Pages ===
-Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
-Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
-Donate link: https://www.paypal.me/Kaludi/25
-Requires at least: 3.0
-Tested up to: 6.7
-Stable tag: 1.1.3
-License: GPLv2 or later
+# AMP for WP - Accelerated Mobile Pages
+Contributors: mohammed_kaludi, ahmedkaludi, ampforwp  
+Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO  
+Donate link: https://www.paypal.me/Kaludi/25  
+Requires at least: 3.0  
+Tested up to: 6.7  
+Stable tag: 1.1.2  
+License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 AMP for WP is the most recommended AMP plugin by the community. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
 
-== Description ==
+### Description
+
 AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) functionality to your WordPress site. AMP makes your website faster for Mobile visitors.
 
 [What's New in this Version?](https://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://ampforwp.com/demo/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](https://ampforwp.com/help-center/)
@@ -25,7 +26,7 @@ We try our best to provide support on WordPress.org forums. However, We have a s
 Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkaludi/Accelerated-Mobile-Pages). Please note GitHub is _not_ a support forum, and issues that aren't properly qualified as bugs will be closed.
 
 
-= Features: =
+### Features:
 
 * NEW - Gutenberg Support
 * NEW - Divi and Elementor Support [More Info](https://ampforwp.com/amp-pagebuilder-compatibility/)
@@ -116,7 +117,8 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 **[JOIN CHAT GROUP COMMUNITY](https://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
-= Getting Started: =
+### Getting Started
+
 **[1. User Documentation:](https://ampforwp.com/help/)** The AMP for WordPress plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
 
 **[2. Developer Docs:](https://ampforwp.com/tutorials/article-categories/developer-documentation/)** We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.
@@ -125,14 +127,17 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 **[4. Premium Support:](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin)** We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.
 
-== Credits ==
+
+### Credits
+
 Some code used in this plugin was forked from 'AMP for WordPress' plugin https://wordpress.org/plugins/amp/ - License URI: http://www.gnu.org/licenses/gpl-2.0.html.
 Mobile & Tablet detection library used https://github.com/serbanghita/Mobile-Detect - License URI: https://github.com/serbanghita/Mobile-Detect/blob/master/LICENSE.txt
 PHP CSS Parser library used https://github.com/sabberworm/PHP-CSS-Parser - License URI: https://github.com/sabberworm/PHP-CSS-Parser#license (PHP-CSS-Parser is freely distributable under the terms of an MIT-style license.)
 AMP Optimizer library used https://github.com/ampproject/amp-toolbox/tree/main/packages/optimizer - License URI: https://github.com/ampproject/amp-toolbox#license (AMP Toolbox is made by the AMP Project, and is licensed under the Apache License, Version 2.0.)
 GA4 Code used from https://github.com/analytics-debugger/google-analytics-4-for-amp - License URI: https://github.com/analytics-debugger/google-analytics-4-for-amp/blob/main/LICENSE
 
-== Installation ==
+### Installation
+
 **[Visit Help area for the Documentation:](https://ampforwp.com/help/)**
 
 [youtube https://www.youtube.com/watch?v=Em1nsE_KaKw]
@@ -140,47 +145,48 @@ GA4 Code used from https://github.com/analytics-debugger/google-analytics-4-for-
 **[Visit Help area for the Documentation:](https://ampforwp.com/help/)**
 
 
-== Frequently Asked Questions ==
+### Frequently Asked Questions
 
-= Can I add analytics? =
+#### Can I add analytics?
 
 Yes, you easily can. In fact, we have support for 12 Analytics companies. Including Google Analytics, Facebook Pixel, StatCounter, QuantCast, Chartbeat, comScore to list a few. Also, we have Google Tag Manager (GTM) support as well.
 
-= Can I add Ads in my AMP pages? =
+#### Can I add Ads in my AMP pages?
 
 Yes, you can. We have 6 ad placement slots that are built in and strategically placed to get maximum views. Also, we have [an extension](https://ampforwp.com/advanced-amp-ads/) from which you can insert ads between the content, will get more ad slots and also add custom banners to all the available slots.
 
 
-= Can I extend/Change the AMP design, so it suits my needs? =
+#### Can I extend/Change the AMP design, so it suits my needs?
 
 Yes, you easily can. We have created this plugin in such a way that it can easily be extended. Check out our [AMP Theme Framework](https://ampforwp.com/tutorials/article/getting-started-amp-framework/)
 
 
-= Do you have any prebuilt designs? =
+#### Do you have any prebuilt designs?
 
 Yes, we have AMP themes section where we have free and paid designs available. We also update it regularly. You can check it out our [AMP Themes](https://ampforwp.com/themes)
 
 
-= I'm a developer and I want to add custom functionality for a client, can I do that? =
+#### I'm a developer and I want to add custom functionality for a client, can I do that?
 
 Yes, of course. This plugin is very developer friendly, we have lots of hooks and filters that you can use to extend and customize according to the requirements. Also, we have [developer documentation](https://ampforwp.com/tutorials/article-categories/developer-documentation/) which we update regularly.
 
 
-= How do I report bugs and suggest new features? =
+#### How do I report bugs and suggest new features?
 
 You can report the bugs [here](https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues)
 
-= Will you Add New features to my request? =
+#### Will you Add New features to my request?
 
 Yes, Absolutely! We would suggest you send your feature request by creating an issue in [Github](https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues/new/) . It helps us organize the feedback easily.
 
 
-= How do I get in touch? =
+#### How do I get in touch?
 
 You can contact us from [here](https://ampforwp.com/contact/)
 
 
-== Screenshots ==
+#### Screenshots
+
 1. AMP Homepage
 2. AMP Single Post
 3. Post Navigation in Single
@@ -195,233 +201,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 Device testing done through [BrowserStack](https://www.browserstack.com)
 ![BrowserStack](https://user-images.githubusercontent.com/16618009/53022655-a24ea780-3481-11e9-9a48-a2ca5bcd96d6.png)
-
-== Changelog ==
-= 1.1.3 (14 February 2025) =
-* Fixed: PHP Deprecated: error with AMP #5669
-* Fixed: Fatal error on user end  #5673
-* Fixed: Error in debug log. #5676
-* Fixed: Submit button issue with Amp Ninja Form extension #5667
-* Fixed: Need to added the feature in AMP CTA customize button location #5674
-
-= 1.1.2 (03 December 2024) =
-* New: Jetpack related post not showing on AMP #5575
-* New: Add a new feature to add Whatsapp Group links to Floating Buttons for AMP #5649
-* New: Need to added the Subtitle feature in Post/pages in AMP #5665
-* Fixed: Security issue reported by "Wordfence" #5662
-* Fixed: AMP Pixel URL Issue After Recent Plugin Update 1.1.1 #5663
-* Fixed: Function _load_textdomain_just_in_time was called incorrectly #5664
-
-= 1.1.1 (12 November 2024) =
-* New : Manual post selection in infinite scroll #5651
-* Fixed: Version 1.0.99.1 causing Tag issue. #5650
-* Fixed: Errors in debug.log, PHP Deprecated: trim(): Passing null to parameter #5652
-* Fixed: GA-4 Analytic not working on infinite scroll post #5656
-* Fixed: The Last Modified date appears broken in the AMP version #5659
-* Fixed: Feature images are not loading in homepage due to conflict with JNews theme lazyload #5655
-* Fixed: Afterpay Gateway for WooCommerce plugin is causing issue in Amp Validator #5643
-* Fixed: FV Gravatar Cache plugin conflicts with AMP. #5611
-* Fixed: Php error on user end. #5642
-* Fixed: The author image added by the "Simple User Avatar plugin" is not showing in the AMP. #5606
-* Fixed: Cron reschedule event error for hook #5595
-* Fixed: PHP Deprecated: error with AMP #5621
-* Test: Test with WordPress version 6.7 #5657
-* Improvement : Few improvements required #5630
-
-= 1.0.99.2 (23 October 2024) =
-* Fixed: Cross-Site Request Forgery discovered by David Gallagher ( Wordfence )
-
-= 1.0.99.1 (24 September 2024) =
-* Fixed: The tag <? is disallowed error in 1.0.99 WITH MENU #5646
-
-= 1.0.99 (23 September 2024) =
-* Fixed: Conflict issue with Infinite Scroll option. #5638
-* Fixed: Some language characters breaking in amp footer #5627 , #5639 , #5620
-* Fixed: Code Improvement #5630
-
-= 1.0.98 (9th August 2024) =
-* Fixed: PHP errors and warnings #5617,#5624,#5619,#5628,#5629,#5626
-* Fixed: Disqus comments are not showing on the AMP. #5353
-
-= 1.0.97 (22nd July 2024) =
-* Fixed: Stored Cross-Site Scripting via SVG File Upload (Reported by Wordfence)
-* Fixed: Contributor+ Broken Access Control discovered by Rafie Muhammad (Patchstack)
-* Fixed: PHP Deprecated: error with AMP #5621
-* Fixed: Disqus comments are not showing on the AMP. #5353
-* Fixed: Warning in query monitor, "Array to String Conversion" #5610
-* Tested: WordPress version 6.6 #5618
-
-= 1.0.96.1 (1st July 2024) =
-* Fixed: Update Twitter Icon as X  in author box #5609
-* Fixed: AMP footer Menu showing as text for some users
-
-= 1.0.96 (28th June 2024) =
-* Fixed: Featured image caption is not working #5574
-* Fixed: PHP deprecated error (PHP 8.2) #5587
-* Fixed: PHP warning message displayed on the user's end. #5594
-* Fixed: Publisher desk "Dismiss" button is not working.  #5591
-* Fixed: PHP error on the user end. #5605
-* Fixed: Undefined property: stdClass::$inContentPlacementMethod #5607
-* Fixed: While using the News12Paper theme and tagDiv Composer plugin, there is an issue with the AMP menu (user-end issue). #5608
-* Fixed: Change Twitter as X #5609
-* Fixed: Amazon auto links are not working on AMP #5583
-
-= 1.0.95 (7th May 2024) =
-* Fixed: rtrim(): Argument #1 ($string) must be of type string, WP_Error given #5588
-* Fixed: Issue persist due to recent update with poll maker plugin #5585
-* Fixed: PHP Warning: Attempt to read property "ID" on null #5589
-* Test: Test with new version of wordpress i.e. 6.5v #5581
-* Fixed: Validation issues in images when using Pencil builder #5592
-
-= 1.0.94 (3rd April 2024) =
-* New: Added Shortcode so that user can show or hide some content in AMP. #5474
-* Improvements: Code improvement part 2 #5567
-* Fixed: Warning appears related to author-box #5577
-* Fixed: The excerpt is not showing inside the em tag in AMP, and the font is not working. #5487
-* Fixed: Issue with a cookie banner (GDPR) #5561
-
-= 1.0.93.2 (1st February 2024) =
-* Fixed: Video docking not working in AMP Newspaper theme #5566
-* Fixed: Video not loading on Amp if video set in Soledad theme Video Embed. #5571
-* Fixed: Authenticated(Contributor+) Arbitrary Post Deletion Vulnerability (Reported by Wordfence)
-
-= 1.0.93 (19th January 2024) =
-* New: Compatibility with the plugin WP No Base Permalink #5541
-* New: An option of "AMP Alternative Menu—Below the Header" when Theme Design is set on Three #5545
-* New: An option to add the "View NON-AMP version" link in the hamburger menu #5466
-* New: An option where, users can add the single-post design to pages #5482
-* Fixed: Code Improvement #5550
-* Fixed: Change Twitter icon everywhere #5551
-* Fixed: Amp backend design conflict with Vani Theme #5552
-* Fixed: Debug warning #5554
-* Fixed: Slider Revolution images not showing on AMP #5555
-* Fixed: Dual-feature image is visible in the Design Three theme #5556
-* Fixed: CRITICAL Uncaught TypeError - 'property_exists()' Critical Issue" #5557
-
-= 1.0.92.1 (16th December 2023) =
-* Fixed:  Cross-Site Scripting issue on shortcode [amp-gist] for contributer+ access (Reported by Wordfence)
-
-= 1.0.92 (18th November 2023) =
-* New: Compatibility with Publytics.net #5477
-* Fixed: Add a filter to modify unused CSS #5478
-* Fixed: Local Fonts option not working properly. #5506
-* Fixed: Autoload is termed as yes in wp_options. #5523
-* Fixed: Deprecated error in query monitor #5527
-* Fixed: PHP Fatal error appears in AMP #5539
-* Fixed: CSS issue with 1.0.91 Version #5540
-* Fixed: Invalid Layout Issue in AMP HTML Tag for Missing 'height' Attribute. #5542
-* Fixed: Getting blank screen on amp pages #5546
-* Fixed: Images from Slider revolution plugin not visible in AMP #5548
-
-= 1.0.91.1 (20th October 2023) =
-* Fixed: Version 1.0.91 breaks Swift Theme #5537
-
-= 1.0.91 (16th October 2023) =
-* New: Compatibility with webpushr notification #5517
-* Fixed: Jetpack Stats are not showing in the AMP. #5495
-* Fixed: Double curly brackets parsed from {{}} to %7B%7B%7D%7D in src attribute in amp-iframe component #5522
-* Fixed: Amp Validation Error in New update #5528
-* Fixed: A warning (Warning: Undefined property: WP_Post_Type::$taxonomy) is appearing on the AMP version #5532
-* Fixed: The author link and date not showing properly on the homepage #5533
-* Fixed: AAWP Images not loading if WebP Express is active #5535
-
-= 1.0.90 (26th September 2023) =
-* New: An option to configure the number of posts appearing on Homepage & Category page #5503
-* Fixed: PHP notice on style.php #5514
-* Fixed: Star rating are broken, showing numbers instead of stars #5516
-* Fixed: Validation error from recent AMP update version 1.0.88.1 #5518
-* Fixed: Fatal error in setting panel #5521
-
-= 1.0.89 (14th September 2023) =
-* New: Piwik Pro Analytics #5510
-* New: compatibility with EmbedPress #5486
-* Fixed: Conflict WP-Bakery page builder with AMP #5417
-* Fixed: Warning in error log #5504
-* Fixed: Uncaught ValueError: DOMDocument::loadHTML(): Argument #1 ($source) must not be empty #5512
-* Fixed: Header Font Size Offset Changing After Update 1.0.86 #5496
-* Fixed: Various deprecated warning in PHP 8.2+ related to dynamic property creation #5515
-* Fixed: Added post data variables in GTM advanced code #5498
-
-= 1.0.88.1 (24nd August 2023) =
-* Fixed: AMP for WP Update Causes Dashboard Notices and Warnings #5508
-* Fixed: Breadcrumb icon broken of design 3 #5509
-
-= 1.0.88 (22nd August 2023) =
-* Fixed: Error in error log #5472
-* Fixed: Screen gets wider on mobile when enable callrail analytics #5473
-* Fixed: When we disable the Call to Action button from the AMP, the CTA is still shown #5475
-* Fixed: PHP Warning: Undefined variable #5479
-* Fixed: The attribute 'height' may not appear in tag 'table' #5483
-* Fixed: The attribute 'label' may not appear in tag 'a' #5485
-* Fixed: Header Elements chosen color not loading on front end #5491
-* Fixed: Deprecated warning on the AMP #5493
-* Fixed: Deprecated issue #5497
-* Fixed: Fatal Error & warning in the debug log #5500
-* Fixed: The PDF files are not appearing properly on the AMP version #5502
-* New  : Multiple Google Analytics 4 accounts support #5481
-
-= 1.0.87 (3rd July 2023) =
-* Fixed: CallNow buttons number is not replaced by callrail #5459
-* Fixed: Add compatibility with Adobe Launch #5457
-* Fixed: Undefined variable $q + attempt to read property “max_num_pages” in design-1 #5458
-* Fixed: AMP not working with categories. #5456
-* Fixed: Truepush integration not working: missing file /accelerated-mobile-pages/includes/truepush-integration/sw.js #5455
-* Fixed: An error is appearing in the console and the AMP setting panel is frizzed #5442
-* Fixed: Hestia Pro theme buttons are not appearing in the AMP version of the website. #5452
-* Fixed: Uncaught Error: Call to a member function get() on string #5463
-* Fixed: PHP Error is showing in the AMP #5464
-* Fixed: ampforwp_modify_rel_canonical filter should be applied at last in function #5468
-* Fixed: Playfair Display font is not showing in the heading font family. #5469
-* Fixed: Title H1 tags is automatically converted to H2 tags in AMP #5470
-* Fixed: GA4 activity fails when the AMP page is hosted on Google #5471
-
-= 1.0.86 (8th June 2023) =
-* Fixed: Content Sneak Peek not working #5446
-* Fixed: Need to add the name and attribute to the elements. #5439
-* Fixed: Compatibility with OpenSea plugin #5384
-* Fixed: Compatibility with the plugin WordProof. #5342
-* Fixed: WPCore Module of Search is throwing error in AMP validation #5450
-* Fixed: NON-AMP site is slowed down if the mobile redirection is enabled in AMP #5451
-* Fixed: "Preview AMP" shows a blank modal #5454
-
-= 1.0.85 (10th May 2023) =
-* Fixed: Notice : Function WP_Scripts::localize was called incorrectly. The $l10n parameter must be array #5435
-* Fixed: PHP error after the recent update 1.0.84 #5436
-* Fixed: Dismiss button not working #5437
-* Fixed: Issue with Google Font and Global Font Weight Selector #5440
-* Fixed: Some issue in extension section #5433
-
-= 1.0.84 (28th April 2023) =
-* Fixed: Conflict issue with Jetpack Tiled gallery #5424
-* Fixed: An Author's page amphtml is not getting generated if the author name has "-" character. #5426
-* Fixed: Incorrect hook used to add admin scripts #4457
-* Fixed: when user is not an ampforwp admin, then newely created posts are not getting added in the instantarticles feed #4588
-* Fixed: Fatal error with Nitropack #5427
-* Fixed: Conflict issue with Imagify and WP Offload Media Lite plugin #5432
-* Fixed: The Analytic option Google Tag Manager is causing an error in the console while using with AMP Pop-up #5429
-* Improvement: Test with WordPress 6.2 and update Tested Up To in readme.txt #5431
-
-= 1.0.83 (4th April 2023) =
-* Fixed: The Facebook like button is not showing up properly on the AMP version. #5416
-* Fixed: Conflict WP-Bakery page builder with AMP. #5417
-* Fixed: Deprecated error messages in debug log in wordpress 6.2. #5418
-
-= 1.0.82 (24th March 2023) =
-* Fixed: Callrail conflicting with contact number format. #5392
-* Fixed: Adobe Analytics support in AMPforWP. #5395
-* Fixed: While AMP is active, errors and warnings appear on the user website.  #5396
-* Fixed: The attribute "action" may not appear in tag form. #5398
-* Fixed: View non-amp and Leave a comment not working. #5404
-* Fixed: While using the Yuki Blogger theme, when we edit the AMP customization, it shows a fatal error. #5405
-* Fixed: The option Infinite Scroll is not working. #5408
-* Fixed: An error is appearing on GSC "custom java Script is not allowed. #5411
-* Fixed: An error is appearing on GSC due to an option of the plugin Embed Plus YouTube WordPress Plugin #5413
-
-= 1.0.81 (27th February 2023) =
-* Fixed: When selecting a post with custom structure /%postname%/amp/ issue resolved. #5379
-* Fixed: TagDiv composer recent posts grid breaks if the AMP takeover is enabled issue resolved #5387
-* Fixed: Validation error while using the JetPack Boost plugin issue resolved #5391
-* Fixed: Warning: Cannot modify header information - headers already sent issue resolved #5394
-* Fixed: Product Base Remover not working properly with ?amp issue resolved #5397
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
